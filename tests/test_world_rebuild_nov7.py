@@ -501,9 +501,9 @@ check(r.returncode == 0 and key.get('counts', {}).get('matched') == 1 and not li
 # ------------------------------------------------------------------ rules hashes: only the world key moves (Brandon OK'd)
 sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
 import kpc_key_freeze as KZ  # noqa: E402
-check(KZ.rules_hash('us-key') == 'da660f0d5ae7' and KZ.rules_hash('ca-key') == 'b1a521708978', 'US da660f0d5ae7 and CA b1a521708978')
+check(KZ.rules_hash('us-key') == '6395b561d4c8' and KZ.rules_hash('ca-key') == '0ebc381a788f', 'US 6395b561d4c8 and CA 0ebc381a788f')
 # Nov 8 (#76, Brandon OK): the CH BAFU parks collection rename moved it again, 6a5969a25d2c -> 6444287722b9
-check(KZ.rules_hash('world-key') == '1a8913a378bb', f"world rules hash moved on purpose: 1b50faf1dfe8 -> 6a5969a25d2c (Nov 7) -> 6444287722b9 (Nov 8, CH) -> 1a8913a378bb (Nov 10, services*.arcgis.com saved-copy only) (now {KZ.rules_hash('world-key')})")
+check(KZ.rules_hash('world-key') == '022f06d08d3c', f"world rules hash moved on purpose: 1b50faf1dfe8 -> 6a5969a25d2c (Nov 7) -> 6444287722b9 (Nov 8, CH) -> 022f06d08d3c (Nov 10, services*.arcgis.com saved-copy only) (now {KZ.rules_hash('world-key')})")
 check(json.load(open(ROOT / '.github/key-rules-version.json'))['world-key'] == 'v5b', 'key-rules-version.json not bumped (repo convention: a rule-script change moves the hash by itself; prior world moves did not bump)')
 ch = subprocess.run(['git', 'diff', '--name-only', BASE, '--', '.github/scripts/'], cwd=ROOT, capture_output=True, text=True).stdout.split()
 # Only RULE files matter here: other patches combined with this one (e.g. Tracts Part 1) may change NOT_RULES scripts.
@@ -550,8 +550,8 @@ def required_test_4_stalled_layer_still_holds():
 
 
 def required_test_5_us_and_ca_hashes_unchanged():
-    check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key')) == ('da660f0d5ae7', 'b1a521708978'),
-          'REQUIRED 5 (US and CA hashes): us da660f0d5ae7, ca b1a521708978')
+    check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key')) == ('6395b561d4c8', '0ebc381a788f'),
+          'REQUIRED 5 (US and CA hashes): us 6395b561d4c8, ca 0ebc381a788f')
 
 
 def required_test_8_finished_checkpoint_older_than_7_days_is_read_again():

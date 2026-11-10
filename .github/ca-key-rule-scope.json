@@ -15,6 +15,22 @@
    "why": "Every services*.arcgis.com host (services2 to services9 too) is saved-copy only on every path, the GeoJSON and zipped-shapefile pulls included. The Parks Canada layer on one of those hosts covers every province and territory, so the scope is all.",
    "scope": "all",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+  },
+  {
+   "id": "2026-11-10-arcgis-region-hosts",
+   "when": "2026-11-10",
+   "from": "b1a521708978",
+   "why": "services-<region>.arcgis.com hosts (services-eu1 and the like) count as services*.arcgis.com (saved copy only, robots.txt included), and ncnhde.natureserve.org is never contacted. The Parks Canada layer is on one of those hosts and covers every province and territory, so the scope is all.",
+   "scope": "all",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+  },
+  {
+   "id": "2026-11-10-ca-hand-files",
+   "when": "2026-11-10",
+   "from": "d6892ad555d8",
+   "why": "The Canada key takes a CHECKED hand file (KPC_CA_HAND, hand-CA.<name>.geojson.gz on the boundary-cache release) for a layer a bot may not read, e.g. Parks Canada's own places layer on a saved-copy-only host: fail closed on a short file, keep-bigger against the saved records of that layer, then the saved copy is saved again. No join rule changes; Parks Canada places cover every province and territory, so the scope is all.",
+   "scope": "all",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
   }
  ]
 }

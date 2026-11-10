@@ -21,5 +21,5 @@ r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_key_freeze.p
 # stays: overrides.json is data, so the hash equals the hash of the rule files alone.
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
-check('overrides.json is data, not a rules file: world rules hash 1a8913a378bb (moved Nov 10, declared) (1b50faf1dfe8 before the Nov 7 world rebuild, 463bcf9e8e3f before Links #44)', r.stdout.strip() == '1a8913a378bb')
+check('overrides.json is data, not a rules file: world rules hash 022f06d08d3c (moved Nov 10, declared) (1b50faf1dfe8 before the Nov 7 world rebuild, 463bcf9e8e3f before Links #44)', r.stdout.strip() == '022f06d08d3c')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

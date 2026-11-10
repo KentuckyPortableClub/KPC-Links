@@ -8,6 +8,9 @@
               (cache/<x>/short/) and named in a report. Exit 7 = at least one short copy. No baseline yet = a notice, the copy passes.
   plan        read master first: which layers (not states) need a live re-read, and why.
   raw-add     add a downloaded raw layer file to the manifest (name, size, sha256, source, date). The file itself is never added to git.
+  fill        THE master step (Nov 10): refill / verify the saved copies before the gate; the one writer of the saved copies.
+  collect     the join job: put the build parts' master records, layer counts, raw rows and needs-download rows together.
+  needs       merge rows into a needs-download list, or print how many rows are open (bot / person / never).
   wdpa-lookup managing agency of a park from a Protected Planet / WDPA file. Private output only, no geometry.
 
 Exit codes: 0 ok | 1 check failed | 2 SHORT read | 3 cannot verify (no expected count) | 4 licence block | 5 live read not allowed | 6 shrink held | 7 short saved copy
@@ -206,6 +209,24 @@ def cmd_wdpa(a):
     notice('wdpa-lookup', f'{len(out)} rows (agency fields only, no geometry) written privately'); return 0
 
 
+def cmd_needs(a):
+    doc = M.load_needs(a.list); rows = []
+    for p in a.add: rows += M.load_json(p, {}).get('rows') or []
+    if rows:
+        doc, add, upd = M.merge_needs(doc, rows); changed = M.save_needs(doc, a.list)
+        notice('needs-download', f'{add} new, {upd} updated row(s)' + ('' if changed else ' (no change, not saved)'))
+    print(json.dumps({'open': M.needs_summary(doc), 'rows': len(doc['rows'])})); return 0
+
+
+def cmd_watch(a):
+    """The low-cost change check of the official download sources (kpc_master_watch.py); allowed requests only."""
+    import kpc_master_watch as W
+    out = W.watch(a.sources, a.needs, offline=a.offline)
+    notice('Download sources', f"{out['checked']} checked, {len(out['changed'])} changed ({', '.join(out['changed']) or 'none'}), "
+           f"{out['not_checked']} not checked this run, {out['person']} checked by a person (the PC helper's --reminders)")
+    print(json.dumps(out, sort_keys=True)); return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter); sp = ap.add_subparsers(dest='cmd', required=True)
     t = sp.add_parser('trim'); t.add_argument('--layer-key', required=True); t.add_argument('--input'); t.add_argument('--url'); t.add_argument('--parks', required=True)
@@ -217,9 +238,36 @@ def main(argv=None):
     g = sp.add_parser('gate'); g.add_argument('--cache', required=True); g.add_argument('--root'); g.add_argument('--report')
     r = sp.add_parser('raw-add'); r.add_argument('file'); r.add_argument('--source', required=True); r.add_argument('--root')
     w = sp.add_parser('wdpa-lookup'); w.add_argument('--input', required=True); w.add_argument('--out', required=True)
+    f = sp.add_parser('fill', help='THE master step: refill / verify the saved copies before the gate (kpc_master_fill.py)')
+    f.add_argument('--cache', required=True); f.add_argument('--states', required=True); f.add_argument('--root'); f.add_argument('--parks', required=True)
+    f.add_argument('--needs'); f.add_argument('--hand'); f.add_argument('--refresh', default=''); f.add_argument('--work', required=True)
+    f.add_argument('--out-rows'); f.add_argument('--us-layers', default='data/us-key/layers.json'); f.add_argument('--state-gis', default='data/state-gis.json')
+    f.add_argument('--key'); f.add_argument('--offline', action='store_true'); f.add_argument('--no-key', action='store_true')
+    f.add_argument('--us-key', default='data/us-key', help='the live key files (US-XX.json) whose joined record ids decide what is actually missing')
+    f.add_argument('--official-files', action='store_true', help='download the open bot rows\' official direct files (the fresh-start run only)')
+    co = sp.add_parser('collect', help='join job: the build parts\' master records, layer counts, raw rows and needs rows')
+    co.add_argument('parts', nargs='*'); co.add_argument('--root'); co.add_argument('--needs-in'); co.add_argument('--needs-out')
+    n = sp.add_parser('needs', help='merge rows into a needs-download list, or print its size')
+    n.add_argument('--list', required=True); n.add_argument('--add', nargs='*', default=[])
+    wa = sp.add_parser('watch', help='the change check: a HEAD / catalog fingerprint per official download source; reopens a changed source\'s rows')
+    wa.add_argument('--sources', default=str(M.OUTLINES / 'download-sources.json')); wa.add_argument('--needs'); wa.add_argument('--offline', action='store_true')
+    ie = sp.add_parser('import-existing', help='take in the downloads already on the box: raw facts, done rows, checked hand files (kpc_master_import.py)')
+    ie.add_argument('--csv', help='the filled source list (box only; its licence notes never go public)'); ie.add_argument('--copies', help='a folder of the saved copies (US-XX, CA-ALL, W-XX)')
+    ie.add_argument('--same-as', help='box-side {area: {list label: saved-copy label}} for sources whose label differs'); ie.add_argument('--us-layers', default='data/us-key/layers.json')
+    ie.add_argument('--add', nargs='*', default=[], help="the master step's needs rows (fill --out-rows) to add"); ie.add_argument('--hand-map'); ie.add_argument('--downloads-md')
+    ie.add_argument('--drive-index'); ie.add_argument('--research'); ie.add_argument('--box-only', help='box-side list of rows whose records are only in a box file')
+    ie.add_argument('--hand-out', default='kpc-hand'); ie.add_argument('--parks'); ie.add_argument('--needs-out', required=True); ie.add_argument('--root')
+    ie.add_argument('--upload', action='store_true', help='upload the checked hand files to the boundary-cache release (gh)'); ie.add_argument('--repo', default='KentuckyPortableClub/KPC-Links')
     a = ap.parse_args(argv)
     if a.cmd == 'trim' and bool(a.input) == bool(a.url): ap.error('give exactly one of --input or --url')
-    return {'trim': cmd_trim, 'check': cmd_check, 'gate': cmd_gate, 'plan': cmd_plan, 'raw-add': cmd_raw_add, 'wdpa-lookup': cmd_wdpa}[a.cmd](a)
+    if a.cmd == 'import-existing':
+        import kpc_master_import as I
+        return I.main(a)
+    if a.cmd in ('fill', 'collect'):
+        import kpc_master_fill as F
+        a.root = a.root or str(M.OUTLINES)
+        return (F.fill if a.cmd == 'fill' else F.collect)(a)
+    return {'trim': cmd_trim, 'check': cmd_check, 'gate': cmd_gate, 'plan': cmd_plan, 'raw-add': cmd_raw_add, 'wdpa-lookup': cmd_wdpa, 'needs': cmd_needs, 'watch': cmd_watch}[a.cmd](a)
 
 
 if __name__ == '__main__': sys.exit(main())

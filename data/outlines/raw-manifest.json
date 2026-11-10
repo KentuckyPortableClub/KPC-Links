@@ -1,5 +1,166 @@
 {
  "about": "Raw layer downloads are NOT in git (2.76 GB and growing). One row per file: name, size, sha256, source, date. The files live on the club Google Drive folder (backup) and on the bot's computer (working copy). Add a row with: python3 .github/scripts/kpc_master_cli.py raw-add FILE --source 'Agency, layer name'",
- "files": [],
+ "files": [
+  {
+   "count": 7,
+   "date": "2026-11-09",
+   "name": "CA_MB_wildlife_lands_layer1",
+   "sha256": "00a6f91009bb6182b2f29995c88e0524dac385c918a96fc776199a8fc117c2c3",
+   "size": 108604,
+   "source": "https://geoportal.gov.mb.ca/apps/manitoba::manitoba-wildlife-lands"
+  },
+  {
+   "count": 129,
+   "date": "2026-11-09",
+   "name": "CA_MB_wildlife_lands_layer2",
+   "sha256": "466d20ba7231fd1ac4adee6fb18ff4c9321f2dd739ed6aaa9ae05fa73047aadf",
+   "size": 3651633,
+   "source": "https://geoportal.gov.mb.ca/apps/manitoba::manitoba-wildlife-lands"
+  },
+  {
+   "count": 53,
+   "date": "2026-11-06",
+   "name": "CA_parks_canada_places.zip",
+   "sha256": "335c61f85f41af3f89efc54be77b398d010609720ff23a8eb12216d353554ce9",
+   "size": 24341117,
+   "source": "https://open.canada.ca/data/dataset/e1f0c975-f40c-4313-9be2-beb951e35f4e"
+  },
+  {
+   "count": 481,
+   "date": "2026-11-09",
+   "name": "GB_forest_blocks",
+   "sha256": "16d33f775f1965b5bc29388825da235c48e4a3a3027ff7b492f28c5823c4898c",
+   "size": 18243668,
+   "source": "https://hub.arcgis.com/search?q=Forest%20Blocks%20WFS"
+  },
+  {
+   "count": 1728,
+   "date": "2026-11-09",
+   "name": "GB_local_nature_reserves_england",
+   "sha256": "0dad2378d88204c3232cd8ec6f4f27fe9b6f56241ec649f17b14e5a0dd95cd57",
+   "size": 43725157,
+   "source": "https://www.data.gov.uk/dataset/acdf4a9e-a115-41fb-bbe9-603c819aa7f7/local-nature-reserves-england1"
+  },
+  {
+   "count": 358,
+   "date": "2026-11-09",
+   "name": "US_ID_fishing_boating_access",
+   "sha256": "169d57534cbecb2b5e451ec8101840d6360662c7b4b5d37a3d2da7c1a0a71fe6",
+   "size": 243979,
+   "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  },
+  {
+   "count": 395,
+   "date": "2026-11-09",
+   "name": "US_ND_wildlife_management_areas",
+   "sha256": "40520078f9d9f80259c5b4db80fac98088a42ceb5546440656b3b0790519411f",
+   "size": 3450417,
+   "source": "https://www.gis.nd.gov/data"
+  },
+  {
+   "count": 266,
+   "date": "2026-11-09",
+   "name": "US_UT_wmas_wfl1",
+   "sha256": "d5687d199e7d2a9f55ddf5fd73a2563dd8f6b010850d6952d684494dbc85a804",
+   "size": 1066834,
+   "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  },
+  {
+   "count": 3478,
+   "date": "2026-11-06",
+   "name": "US_blm_natl_recreation_site_polygons.zip",
+   "sha256": "4dc98028c600cf0ac798da172b056841cbf2b6218d8c43736fc888c8e1bb8141",
+   "size": 16569122,
+   "source": "https://www.blm.gov/services/geospatial/GISData"
+  },
+  {
+   "count": 442,
+   "date": "2026-11-06",
+   "name": "US_nps_boundary.gdb.zip",
+   "sha256": "867087f9e13c07b4d07f630638bbd45e56f60db72bf339c20a1fce16705bb485",
+   "size": 12798555,
+   "source": "https://irma.nps.gov/DataStore/Reference/Profile/2319366"
+  },
+  {
+   "count": 105,
+   "date": "2026-11-09",
+   "name": "US_public_wma_boundaries",
+   "sha256": "abcba64a8faeda46f0c5e1f1a9092cc56f115e8f974a959b6e296e654c1cc698",
+   "size": 14816069,
+   "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  },
+  {
+   "count": 1051,
+   "date": "2026-11-06",
+   "name": "US_wild_scenic_river_segments.zip",
+   "sha256": "5220e3a519cc6b659e30403c452634b684d5083af2f72325719cb2ad650b0078",
+   "size": 19191028,
+   "source": "https://www.rivers.gov/maps-graphics"
+  },
+  {
+   "count": 47,
+   "date": "2026-11-10",
+   "name": "UT_state_parks_all.geojson",
+   "sha256": "7544710f1dae6b54616001e88437c4dc902999f523a35f85e694a712e83076d1",
+   "size": 288461,
+   "source": "https://gis.utah.gov/documentation/sgid/"
+  },
+  {
+   "count": 116,
+   "date": "2026-11-09",
+   "name": "query (1).json",
+   "sha256": "3dd338dd5d91cc1e56305c34d3c3141e03c7c954847979bebfef2ddf3b63dbe5",
+   "size": 2994965,
+   "source": "https://tpwd.texas.gov/gis/data/baselayers/state-park-boundaries-zip/view"
+  },
+  {
+   "count": 346,
+   "date": "2026-11-09",
+   "name": "query (17).json",
+   "sha256": "e681be5990d507ef16ed7904212cd3dd2fedea87c1d3e9c616a5bee81182b992",
+   "size": 1767724,
+   "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  },
+  {
+   "count": 16,
+   "date": "2026-11-09",
+   "name": "query (21).json",
+   "sha256": "56e5bc502b2fd033c0115670aa5963c957a63080812005bc3f3cda89f66e3310",
+   "size": 2925,
+   "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  },
+  {
+   "count": 56,
+   "date": "2026-11-09",
+   "name": "query (24).json",
+   "sha256": "d806773ff5c68c1291735d29430a238dbf6a00cd8a524623968d4853b1739021",
+   "size": 27018,
+   "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  },
+  {
+   "count": 129,
+   "date": "2026-11-09",
+   "name": "query (25).json",
+   "sha256": "3dbb903effa70b3e6c84785ecdc939f29735dab15ed65843ba533b6974fe5da6",
+   "size": 100803,
+   "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  },
+  {
+   "count": 33,
+   "date": "2026-11-09",
+   "name": "query (27).json",
+   "sha256": "9911903006f5c0a20dfd9c1ae949db8893ffe59925dab7216e0a70865d485a15",
+   "size": 8521,
+   "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  },
+  {
+   "count": 183,
+   "date": "2026-11-09",
+   "name": "query.json",
+   "sha256": "bf6249360d77127189721139b8105c34fc9bff3c6ebc062363499f0fe9ecea91",
+   "size": 10944176,
+   "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  }
+ ],
  "format": 1
 }

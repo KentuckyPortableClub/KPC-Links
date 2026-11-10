@@ -42,19 +42,18 @@ i_ref = src.index('        if REFILL_ONLY:\n            notice(f\'US key {st}\',
 i_top = src.index("if st not in FAILED_READ: save_cache(st, recs, seen)\n    else:".replace('\n    else:', ''))
 i_match = src.index('    recs = prefer_state_layer(st, recs, P)')
 check('refill returns after the saved-copy top-up and before any matching', i_top < i_ref < i_match)
-i_exit = src.index("if REFILL_ONLY:\n    for st in STATES:")
+i_exit = src.index("if REFILL_ONLY:\n    if LAYER_OUT is not None:")   # Nov 10 master step: the key's layer table first, then the refill loop
 i_loop = src.index("done = []\nSTATE_S = {}\nfor st in STATES:")
 check('refill run exits before the build loop (no index or key file written)', i_exit < i_loop and 'sys.exit(0)' in src[i_exit:i_loop])
 check('no saved copy = nothing refilled (no fresh full read)', "refill: no saved copy to refill; skipped'); return None" in src)
 
-# 3. workflow: gate, refill the held copies, the SAME gate again, then drop what is still short
+# 3. workflow (Nov 10 master step): THE MASTER STEP refills the held copies BEFORE the gate, then the gate once, then drop what is still short
+mf = wf.index('kpc_master_cli.py fill --cache cache/us')
 g1 = wf.index('python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt"')
-rf = wf.index('KPC_REFILL_ONLY=1 python3 .github/scripts/kpc_us_key.py')
-g2 = wf.index('python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt"', rf)
-drop = wf.index('for st in $STATES; do [ -f "cache/us/short/US-$st.json.gz" ] || ok="$ok $st"; done; export STATES', g2)
-build = wf.index('python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log', drop)
-check('order: gate -> refill -> gate again -> drop still-short states -> build', g1 < rf < g2 < drop < build)
-check('second gate failing to run stops the job (fail closed)', 'second gate stopped (exit $mg)' in wf)
+drop = wf.index('for st in $STATES; do [ -f "cache/us/short/US-$st.json.gz" ] || ok="$ok $st"; done; export STATES', g1)
+build = wf.index('KPC_MASTER_OWNS=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log', drop)
+check('order: master step (refill) -> gate -> drop still-short states -> build (read only)', mf < g1 < drop < build)
+check('the gate failing to run stops the job (fail closed)', '::error title=Master gate::stopped (exit $mg)' in wf)
 check('the gate script is not bypassed: no --no-gate / skip flag', '--skip' not in wf[g1:build] and 'KPC_MASTER_GATE' not in wf[g1:build])
 # 4. the stamp names a held state as failed
 st = wf.index("for f in parts/us-key-part-*/master-short.txt; do")
@@ -71,19 +70,15 @@ try:
     import yaml
     d = yaml.safe_load(wf)
     run = [s_['run'] for s_ in d['jobs']['build']['steps'] if s_.get('name', '').startswith('Build the answer key')][0]
-    snip = run[run.index('# Nov 10 (master outlines'):run.index('python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-')].replace('${{ matrix.g.i }}', '0')
-    FAKE = ("import gzip, json, os\n"
-            "assert os.environ.get('KPC_REFILL_ONLY') == '1'\n"
-            "n = int(os.environ.get('FAKE_REFILL_TO') or 0)\n"
-            "for st in os.environ['STATES'].split():\n"
-            "    json.dump({'seen': 1, 'recs': [{}] * n}, gzip.open(f'cache/us/US-{st}.json.gz', 'wt'))\n")
+    snip = run[run.index('# Nov 10 (master outlines'):run.index('KPC_MASTER_OWNS=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-')].replace('${{ matrix.g.i }}', '0')
+    FAKE = "raise SystemExit('the build step must not run the key before the gate')\n"
     for fill, want_states, want_short in ((21993, 'FL TN KY', []), (21992, 'TN KY', ['US-FL'])):
         with tempfile.TemporaryDirectory() as t:
             t = pathlib.Path(t); (t / 'cache/us').mkdir(parents=True); (t / '.github/scripts').mkdir(parents=True); (t / 'data/outlines').mkdir(parents=True)
             for fn in ('kpc_master.py', 'kpc_master_cli.py'): shutil.copy(ROOT / '.github/scripts' / fn, t / '.github/scripts' / fn)
             (t / '.github/scripts/kpc_us_key.py').write_text(FAKE)
             json.dump({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 21993}, 'US-TN': {'expected_count': 100}, 'US-KY': {'expected_count': 5}}}, open(t / 'data/outlines/layers.json', 'w'))
-            for st, nrecs in (('FL', 5198), ('TN', 100), ('KY', 5)):
+            for st, nrecs in (('FL', fill), ('TN', 100), ('KY', 5)):   # what the master step left (it ran before this step)
                 with gzip.open(t / f'cache/us/US-{st}.json.gz', 'wt') as fh: json.dump({'seen': 1, 'recs': [{}] * nrecs}, fh)
             r = subprocess.run(['bash', '-e', '-c', 'set -o pipefail\nSTATES="FL TN KY"\n' + snip + '\necho "STATES NOW: $STATES"'], cwd=t, capture_output=True, text=True,
                                env=dict(os.environ, RUNNER_TEMP=str(t), GEO_CACHE_MODE='use', FAKE_REFILL_TO=str(fill)))

@@ -152,7 +152,9 @@ check(not M.WDPA_RE.search(txt), 'WDPA: nothing under data/outlines/ as shipped 
 calls = []
 real = urllib.request.urlopen
 def spy(req, *a, **k): calls.append(getattr(req, 'full_url', str(req))); raise AssertionError('network touched: ' + calls[-1])
+real_open = urllib.request.OpenerDirector.open
 urllib.request.urlopen = spy
+urllib.request.OpenerDirector.open = lambda self, req, *a, **k: spy(req)
 try:
     f = M.http_fetcher(M.Pacer(clock=lambda: 0, sleep=lambda s: None), max_tries=1)
     for u in ('https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/x/FeatureServer/0', 'https://ncnhde.natureserve.org/arcgis/x/0', 'https://services.arcgis.com/ABC/x/0',
@@ -160,7 +162,7 @@ try:
               'https://services9.arcgis.com/ABC/x/0', 'https://apps.fs.usda.gov/arcx/x/0'):
         check(raises(M.LiveNotAllowed, f, u, {'f': 'json'}), f'hosts: {u.split("/")[2]}{"/" + u.split("/")[3] if "33TOO" in u else ""} is refused')
     check(not calls, 'hosts: no request of any kind (robots.txt included) was made for any of them')
-finally: urllib.request.urlopen = real
+finally: urllib.request.urlopen = real; urllib.request.OpenerDirector.open = real_open
 check(M.live_ok('https://services.arcgis.com/33TOOklri9xpic7U/a')[0] is False and M.live_ok('https://services.arcgis.com/OTHER/a')[0] is False, 'hosts: Grant County NM never contacted; other services.arcgis.com orgs are blocked')
 check(M.live_ok('https://services2.arcgis.com/X/a')[0] is False and M.live_ok('https://services9.arcgis.com/X/a')[0] is False and M.live_ok('https://services9.arcgis.com/X/robots.txt')[0] is False, 'hosts: every services*.arcgis.com host is blocked, robots.txt included')
 check(M.is_arcgis_services_host('services.arcgis.com') and M.is_arcgis_services_host('services1.arcgis.com') and M.is_arcgis_services_host('services9.arcgis.com') and not M.is_arcgis_services_host('apps.fs.usda.gov') and not M.is_arcgis_services_host('gis.example.gov'), 'hosts: the services*.arcgis.com matcher covers the bare and numbered hosts only')
@@ -252,11 +254,11 @@ for k in ('us-key', 'ca-key', 'world-key', 'fers'):
     check(not any('kpc_master' in f for f in KF.RULE_FILES[k]), f'{k}: the master modules are not in its rules hash')
 check({'kpc_master.py', 'kpc_master_cli.py'} <= KF.NOT_RULES, 'the master modules are listed in NOT_RULES')
 us_h, ca_h, world_h, fers_h = (KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers'))
-check((us_h, ca_h, world_h, fers_h) == ('da660f0d5ae7', 'b1a521708978', '1a8913a378bb', 'c2456edee62e'),
-      f'rules hashes stay US da660f0d5ae7, CA b1a521708978, world 1a8913a378bb, fers c2456edee62e (got {(us_h, ca_h, world_h, fers_h)})')
+check((us_h, ca_h, world_h, fers_h) == ('6395b561d4c8', '0ebc381a788f', '022f06d08d3c', 'c2456edee62e'),
+      f'rules hashes stay US 6395b561d4c8, CA 0ebc381a788f, world 022f06d08d3c, fers c2456edee62e (got {(us_h, ca_h, world_h, fers_h)})')
 try:
     changelog = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-    check('US rules f489a836894f -> bbdcc89f8120' in changelog and ('US rules bbdcc89f8120 -> ' + us_h) in changelog, 'changelog records the #109 US page-cap hash move and the Nov 10 refill move')
+    check('US rules f489a836894f -> bbdcc89f8120' in changelog and 'US rules bbdcc89f8120 -> da660f0d5ae7' in changelog and ('US rules da660f0d5ae7 -> ' + us_h) in changelog, 'changelog records the #109 US page-cap hash move, the Nov 10 refill move and the Nov 10 master-step move')
     check(('fers v1 3dde681f1427 -> ' + fers_h) in changelog, 'changelog records the #108 fers hash move')
     # #109 is already on main, so the US page-cap files now match origin/main.
     # This PR (#108) may change only the fers rule files.
@@ -268,7 +270,9 @@ try:
         else:
             # Nov 10 (one PR): the US refill + arcgis-host move, and the CA / world arcgis-host moves, each declared in the changelog
             nov10 = any(f in KF.RULE_FILES[k] and (f'{lab} rules {old} -> ' + KF.rules_hash(k, str(HERE))) in changelog
-                        for k, lab, old in (('us-key', 'US', 'bbdcc89f8120'), ('ca-key', 'CA', '570b09c3cb52'), ('world-key', 'world', '6444287722b9')))
+                        for k, lab, old in (('us-key', 'US', 'bbdcc89f8120'), ('ca-key', 'CA', '570b09c3cb52'), ('world-key', 'world', '6444287722b9'),
+                                            ('us-key', 'US', 'da660f0d5ae7'), ('ca-key', 'CA', 'b1a521708978'), ('world-key', 'world', '1a8913a378bb'),
+                                            ('ca-key', 'CA', 'd6892ad555d8')))   # + the Nov 10 master-step move and its follow-up (Canada hand files)
             check(f in allowed or nov10, f'rule file differs from main only when declared (fers, or the Nov 10 moves): {f}')
 except Exception as e: print('SKIP rule-file diff:', e)
 

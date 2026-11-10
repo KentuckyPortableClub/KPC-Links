@@ -1,0 +1,4037 @@
+{
+ "about": "Official download sources for the saved copies, with the last-seen fingerprint (size, Last-Modified, ETag, stated date or version, record count). kind: first-party / fallback (PAD-US or CPCAD only) / none (no official download found yet). check: bot = a bot may check it for a change (allowed host, robots.txt permitting); person = a person checks it on the rare reminder list. Terms: see each source page.",
+ "format": 1,
+ "sources": {
+  "h001": {
+   "areas": [
+    "US-NC"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgnca",
+   "layer_url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0",
+   "name": "NC Natural Heritage Program, NC Dept of Natural and Cultural",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, 2025-03-31"
+  },
+  "h002": {
+   "areas": [
+    "US"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.fs.usda.gov/geodata/edw/edw_resources/shp/BdyDesg_LSRS_OtherNationalDesignatedArea.zip",
+   "format": "shapefile (zip) and file geodatabase (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "fsod",
+   "layer_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_OtherNationalDesignatedArea_01/MapServer/0",
+   "name": "Forest Service national designated areas (monuments, NRAs, scenic areas)",
+   "page": "https://data.fs.usda.gov/geodata/edw/datasets.php",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Clearinghouse \"last refresh\" Nov 7, 2026 (page read 10 Nov 2026)"
+  },
+  "h003": {
+   "areas": [
+    "US"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.fs.usda.gov/geodata/edw/edw_resources/shp/BdyDesg_LSRS_WildScenicRiver.zip",
+   "format": "shapefile (zip) and file geodatabase (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "fwsr",
+   "layer_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiver_01/MapServer/0",
+   "name": "Forest Service Wild and Scenic River corridor (official boundary)",
+   "page": "https://data.fs.usda.gov/geodata/edw/datasets.php",
+   "stated_count": "261",
+   "terms": "see the source page",
+   "version": "Clearinghouse \"last refresh\" Nov 7, 2026 (page read 10 Nov 2026)"
+  },
+  "h004": {
+   "areas": [
+    "US"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://iris.fws.gov/APPS/ServCat/DownloadFile/301497?Reference=194089",
+   "format": "shapefile (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h004",
+   "layer_url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0",
+   "name": "FWSInterest Simplified Authoritative",
+   "page": "https://iris.fws.gov/APPS/ServCat/Reference/Profile/194089",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "FWS National Realty Tracts - Simplified, August 2026 (data.gov modified 2026-08-10)"
+  },
+  "h005": {
+   "areas": [
+    "US"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.fs.usda.gov/geodata/edw/edw_resources/shp/BdyDesg_LSRS_Wilderness.zip",
+   "format": "shapefile (zip) and file geodatabase (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "wld",
+   "layer_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_02/MapServer/0",
+   "name": "National Wilderness Preservation System (Forest Service map)",
+   "page": "https://data.fs.usda.gov/geodata/edw/datasets.php",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Clearinghouse \"last refresh\" Nov 7, 2026 (page read 10 Nov 2026)"
+  },
+  "h006": {
+   "areas": [
+    "US"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "not confirmed",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "wsrc",
+   "layer_url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/WildScenicRiverBoundaries/FeatureServer/0",
+   "name": "NPS Wild and Scenic River corridor (official boundary)",
+   "page": "https://www.rivers.gov/maps-graphics",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h007": {
+   "areas": [
+    "US-AK"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgakc",
+   "layer_url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0",
+   "name": "Alaska DNR Division of Forestry (Alaska DNR AGOL org)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h008": {
+   "areas": [
+    "US-AR"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgarc",
+   "layer_url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/lakes/FeatureServer/11",
+   "name": "Arkansas Game and Fish Commission",
+   "page": "https://gis.arkansas.gov/product/wildlife-management-area-boundary-polygon/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Updated 2025-08-20 (published 2015-06-01)"
+  },
+  "h009": {
+   "areas": [
+    "US-AZ"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgazc",
+   "layer_url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0",
+   "name": "Arizona Game and Fish Department (AZGFD_GIS org) · Hatchery Polys",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h010": {
+   "areas": [
+    "US-AZ"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgazb",
+   "layer_url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0",
+   "name": "Arizona Game and Fish Department (AZGFD_GIS org) · Wildlife Areas",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h011": {
+   "areas": [
+    "US-AZ"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgaza",
+   "layer_url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0",
+   "name": "Arizona State Parks & Trails",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h012": {
+   "areas": [
+    "US-AZ"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgaze",
+   "layer_url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0",
+   "name": "Arizona State Parks and Trails (park boundaries)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h013": {
+   "areas": [
+    "US-AZ"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "shapefile / GDB / GeoJSON via BLM Hub",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgazf",
+   "layer_url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0",
+   "name": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
+   "page": "https://www.blm.gov/services/geospatial/GISData",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h014": {
+   "areas": [
+    "US-AZ",
+    "US-CA",
+    "US-FL"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://iris.fws.gov/APPS/ServCat/DownloadFile/299276?Reference=192833",
+   "format": "shapefile (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgazd",
+   "layer_url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+   "name": "US Fish and Wildlife Service (approved boundary)",
+   "page": "https://iris.fws.gov/APPS/ServCat/Reference/Profile/192833",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "FWS Approved Acquisition Boundaries, April 2026 (data.gov modified 2026-04-29)"
+  },
+  "h015": {
+   "areas": [
+    "US-CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://filelib.wildlife.ca.gov/Public/BDB/GIS/BIOS/Public_Datasets/3000_3099/ds3077.zip",
+   "format": "File Geodatabase (ZIP); also shapefile/GeoJSON/KML/CSV via data-cdfw.opendata.ar",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgcaa",
+   "layer_url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0",
+   "name": "California Department of Fish & Wildlife",
+   "page": "https://catalog.data.gov/dataset/cdfw-public-access-lands-ds3077",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "modified 2026-08-17 (catalog.data.gov record)"
+  },
+  "h016": {
+   "areas": [
+    "US-CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-cdfw.opendata.arcgis.com/api/download/v1/items/4060907a307846779eee6a2b266e168a/shapefile?layers=0",
+   "format": "Shapefile (ZIP)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgcac",
+   "layer_url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3092_fpu/FeatureServer/0",
+   "name": "California Department of Fish and Wildlife (credit: CDFW, BIOS ds3092)",
+   "page": "https://data.ca.gov/dataset/cdfw-owned-and-operated-lands-and-conservation-easements-ds3092",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "last updated 2026-09-30 (publish.data.ca.gov resource page)"
+  },
+  "h017": {
+   "areas": [
+    "US-CA"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "shapefile (ParkBoundaries.zip), GDB, KML",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgcab",
+   "layer_url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0",
+   "name": "California State Parks",
+   "page": "https://www.parks.ca.gov/?page_id=29682",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Page says updated November 2026; data.ca.gov says current as of Feb 2026"
+  },
+  "h018": {
+   "areas": [
+    "US-CO"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile ZIP / Layer Package (per page text); KMZ",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "couscocpwa",
+   "layer_url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/5",
+   "name": "Colorado Parks and Wildlife admin data (saved copy)",
+   "page": "https://cpw.state.co.us/maps-and-gis",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "admin data updated first week of Feb, Mar, Aug, Sep, Nov (per page)"
+  },
+  "h019": {
+   "areas": [
+    "US-CT"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://geodata.ct.gov/api/download/v1/items/ce4e1d1825154603b9b48d861bb050ff/shapefile?layers=0",
+   "format": "Shapefile (also GeoJSON, GPKG, KML, File GDB, CSV)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "ctd",
+   "layer_url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Property/FeatureServer/0",
+   "name": "Connecticut DEEP property",
+   "page": "https://geodata.ct.gov/datasets/CTDEEP::deep-property-3",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "modified 2026-08-19 (catalog.data.gov record deep-property)"
+  },
+  "h020": {
+   "areas": [
+    "US-CT"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://geodata.ct.gov/api/download/v1/items/ce4e1d1825154603b9b48d861bb050ff/shapefile?layers=0",
+   "format": "Shapefile (also GeoJSON, GPKG, KML, File GDB, CSV)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgctc",
+   "layer_url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer/0",
+   "name": "CT DEEP (credit: Department of Energy & Environmental Protection)",
+   "page": "https://geodata.ct.gov/datasets/CTDEEP::deep-property-3",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "modified 2026-08-19 (catalog.data.gov record deep-property)"
+  },
+  "h021": {
+   "areas": [
+    "US-CT"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://geodata.ct.gov/api/download/v1/items/ce4e1d1825154603b9b48d861bb050ff/shapefile?layers=0",
+   "format": "Shapefile (also GeoJSON, GPKG, KML, File GDB, CSV)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgctb",
+   "layer_url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0",
+   "name": "CT DEEP (deepgis account)",
+   "page": "https://geodata.ct.gov/datasets/CTDEEP::deep-property-3",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "modified 2026-08-19 (catalog.data.gov record deep-property)"
+  },
+  "h022": {
+   "areas": [
+    "US-FL"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgflb",
+   "layer_url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0",
+   "name": "Florida Forest Service",
+   "page": "https://geodata.fdacs.gov/maps/florida-state-forests-",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h023": {
+   "areas": [
+    "US-FL"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "shapefile / file geodatabase",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "fnl",
+   "layer_url": "https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services/FL_Conservation_Lands_web/FeatureServer/9",
+   "name": "Florida Natural Areas Inventory conservation lands",
+   "page": "https://www.fnai.org/publications/gis-data",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Florida Managed Areas (FLMA) September 2024 edition seen in metadata"
+  },
+  "h024": {
+   "areas": [
+    "US-FL"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "shapefile, KML, geodatabase (via Open Data hub export)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgfle",
+   "layer_url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0",
+   "name": "St. Johns River Water Management District",
+   "page": "https://www.sjrwmd.com/data/gis/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h025": {
+   "areas": [
+    "US-FL"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgfld",
+   "layer_url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0",
+   "name": "Suwannee River Water Management District",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h026": {
+   "areas": [
+    "US-GA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.fs.usda.gov/geodata/edw/edw_resources/shp/BdyDesg_LSRS_SpecialInterestManagementArea.zip",
+   "format": "shapefile (zip) and file geodatabase (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sggad",
+   "layer_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0",
+   "name": "BdyDesg_LSRS_SpecialInterestManagementArea",
+   "page": "https://data.fs.usda.gov/geodata/edw/datasets.php",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Clearinghouse \"last refresh\" Nov 7, 2026 (page read 10 Nov 2026)"
+  },
+  "h027": {
+   "areas": [
+    "US-GA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sggaa",
+   "layer_url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9",
+   "name": "Georgia DNR Wildlife Resources Division",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h028": {
+   "areas": [
+    "US-GA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sggac",
+   "layer_url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14",
+   "name": "Georgia DNR Wildlife Resources Division (GA DNR AGOL org)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h029": {
+   "areas": [
+    "US-GA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sggab",
+   "layer_url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0",
+   "name": "Georgia State Parks (DNR)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h030": {
+   "areas": [
+    "US-GA"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sggae",
+   "layer_url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0",
+   "name": "National_Heritage_Areas_Updated2023",
+   "page": "https://irma.nps.gov/DataStore/Home/Index",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h031": {
+   "areas": [
+    "US-HI"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://files.hawaii.gov/dbedt/op/gis/data/parks_state.shp.zip",
+   "format": "Shapefile (zip); metadata PDF https://files.hawaii.gov/dbedt/op/gis/data/parks_s",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sghic",
+   "layer_url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer/0",
+   "name": "Hawaii State Parks (DLNR)",
+   "page": "https://planning.hawaii.gov/gis/download-gis-data-expanded/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "no date listed on page"
+  },
+  "h032": {
+   "areas": [
+    "US-HI"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "akht",
+   "layer_url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Ala_Kahakai_National_Historic_Trail_Official_Corridor/FeatureServer/0",
+   "name": "NPS Ala Kahakai National Historic Trail corridor (official)",
+   "page": "https://irma.nps.gov/DataStore/Home/Index",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h033": {
+   "areas": [
+    "US-ID"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.fs.usda.gov/geodata/edw/edw_resources/shp/BdyOwn_LSRS_BasicOwnership.zip",
+   "format": "shapefile (zip) and file geodatabase (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgidd",
+   "layer_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+   "name": "BdyOwn_LSRS_BasicOwnership",
+   "page": "https://data.fs.usda.gov/geodata/edw/datasets.php",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Clearinghouse \"last refresh\" Nov 7, 2026 (page read 10 Nov 2026)"
+  },
+  "h034": {
+   "areas": [
+    "US-ID"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgidb",
+   "layer_url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hydrography_Public/FeatureServer/0",
+   "name": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h035": {
+   "areas": [
+    "US-ID"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "idusidfish",
+   "layer_url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Fishing_and_Boating_Access_FFW_App/FeatureServer/1",
+   "name": "Idaho fishing and boating access (saved copy)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h036": {
+   "areas": [
+    "US-ID"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgide",
+   "layer_url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+   "name": "Recreation Area",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h037": {
+   "areas": [
+    "US-ID"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "idw",
+   "layer_url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0",
+   "name": "Wildlife Management Areas",
+   "page": "https://data.gis.idaho.gov/datasets/IDFGgis::wildlife-management-areas",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h038": {
+   "areas": [
+    "US-IL"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgila",
+   "layer_url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0",
+   "name": "Illinois Department of Natural Resources",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h039": {
+   "areas": [
+    "US-IL"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgilb",
+   "layer_url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3",
+   "name": "Illinois Department of Natural Resources",
+   "page": "https://clearinghouse.isgs.illinois.edu/webdocs/browse.html",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h040": {
+   "areas": [
+    "US-IL"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgilc",
+   "layer_url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
+   "name": "Illinois DNR (public conservation lands)",
+   "page": "https://clearinghouse.isgs.illinois.edu/outmeta/IL_ADMIN_Conservation_Areas_Py.html",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h041": {
+   "areas": [
+    "US-KS"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgksb",
+   "layer_url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0",
+   "name": "KDWPT (owner jjones_KDWPT)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h042": {
+   "areas": [
+    "US-KS"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgksc",
+   "layer_url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/protected_areas/FeatureServer/0",
+   "name": "KDWPT (owner jjones_KDWPT; KS Natural Heritage Inventory compilation)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h043": {
+   "areas": [
+    "US-LA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/LDWF_WMA_Boundaries_Shapefile.zip",
+   "format": "Shapefile (zip); KMZ also offered at https://www.wlf.louisiana.gov/assets/Conser",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sglab",
+   "layer_url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0",
+   "name": "LDWF, Sep 2025 edition",
+   "page": "https://www.wlf.louisiana.gov/page/wma-gis-data-download",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "not stated on page"
+  },
+  "h044": {
+   "areas": [
+    "US-LA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/LDWF_WMA_Boundaries_Shapefile.zip",
+   "format": "Shapefile (zip); KMZ also offered at https://www.wlf.louisiana.gov/assets/Conser",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sglac",
+   "layer_url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0",
+   "name": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024)",
+   "page": "https://www.wlf.louisiana.gov/page/wma-gis-data-download",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "not stated on page"
+  },
+  "h045": {
+   "areas": [
+    "US-LA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/LDWF_WMA_Boundaries_Shapefile.zip",
+   "format": "Shapefile (zip); KMZ also offered at https://www.wlf.louisiana.gov/assets/Conser",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "lar",
+   "layer_url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WildlifeRefuge/FeatureServer/0",
+   "name": "Louisiana Dept. of Wildlife and Fisheries wildlife refuges",
+   "page": "https://www.wlf.louisiana.gov/page/wma-gis-data-download",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "not stated on page"
+  },
+  "h046": {
+   "areas": [
+    "US-LA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/LDWF_WMA_Boundaries_Shapefile.zip",
+   "format": "Shapefile (zip); KMZ also offered at https://www.wlf.louisiana.gov/assets/Conser",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "law",
+   "layer_url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0",
+   "name": "Louisiana Dept. of Wildlife and Fisheries WMAs and refuges",
+   "page": "https://www.wlf.louisiana.gov/page/wma-gis-data-download",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "not stated on page"
+  },
+  "h047": {
+   "areas": [
+    "US-LA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "lauslastat",
+   "layer_url": "https://services5.arcgis.com/c87u7O5UKiyM87q5/arcgis/rest/services/Louisiana_Public_Lands_WFL1/FeatureServer/17",
+   "name": "Louisiana Public Lands — historic-site POINTS, not the polygon public-lands layer (saved copy)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h048": {
+   "areas": [
+    "US-MA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://s3.us-east-1.amazonaws.com/download.massgis.digital.mass.gov/shapefiles/state/openspace.zip",
+   "format": "Shapefile zip (75 MB); file geodatabase zip also at https://s3.us-east-1.amazona",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmab",
+   "layer_url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0",
+   "name": "Massachusetts DCR (DCRStateParks account, mass-eoeea org)",
+   "page": "https://www.mass.gov/info-details/massgis-data-protected-and-recreational-openspace",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Page shows July 2026; last updated Aug 10, 2026"
+  },
+  "h049": {
+   "areas": [
+    "US-MA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://s3.us-east-1.amazonaws.com/download.massgis.digital.mass.gov/shapefiles/state/openspace.zip",
+   "format": "Shapefile zip (75 MB); file geodatabase zip also at https://s3.us-east-1.amazona",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "maw",
+   "layer_url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/MassWildlifeLands/FeatureServer/0",
+   "name": "MassWildlife lands",
+   "page": "https://www.mass.gov/info-details/massgis-data-protected-and-recreational-openspace",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Page shows July 2026; last updated Aug 10, 2026"
+  },
+  "h050": {
+   "areas": [
+    "US-MA"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "not confirmed (geospatial dataset)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmac",
+   "layer_url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0",
+   "name": "National Park Service (property boundaries)",
+   "page": "https://irma.nps.gov/DataStore/Reference/Profile/2318845",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "2026 (NPS DataStore reference 2318845)"
+  },
+  "h051": {
+   "areas": [
+    "US-ME"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.maine.gov/dacf/parks/publications_maps/gis/State_Con/Other_Conserved_Lands.KML",
+   "format": "KML (inferred from URL; file not opened)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmea",
+   "layer_url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0",
+   "name": "State of Maine conserved lands (Bureau of Parks and Lands / IFW)",
+   "page": "https://www.maine.gov/dacf/parks/publications_maps/conservation_lands_maine.html",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h052": {
+   "areas": [
+    "US-ME"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile, KML (and REST service)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmeb",
+   "layer_url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFWWildlifeManagementAreas/FeatureServer/0",
+   "name": "WMA_Boundaries",
+   "page": "https://www.maine.gov/ifw/programs-resources/environmental-review/accessing-data.html",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Not stated; page says refresh copies at least annually"
+  },
+  "h053": {
+   "areas": [
+    "US-MI"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgmib",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2",
+   "name": "Michigan Department of Natural Resources (AGOL owner MichiganDNR)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h054": {
+   "areas": [
+    "US-MI"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmia",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+   "name": "Michigan DNR Parks & Recreation",
+   "page": "https://gis-michigan.opendata.arcgis.com/datasets/midnr::michigan-dnr-parks-unit-boundary?layer=7",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h055": {
+   "areas": [
+    "US-MI"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "mid",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRLOTSParcelsOPENDATA/FeatureServer/13",
+   "name": "Michigan DNR project boundaries",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h056": {
+   "areas": [
+    "US-MI"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmic",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/5",
+   "name": "Michigan State Park Boundaries",
+   "page": "https://gis-michigan.opendata.arcgis.com/datasets/midnr::michigan-dnr-parks-unit-boundary?layer=7",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h057": {
+   "areas": [
+    "US-MN"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmnd",
+   "layer_url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2",
+   "name": "Minnesota State Parks (DNR)",
+   "page": "https://gisdata.mn.gov/dataset/bdry-dnr-lrs-prk",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h058": {
+   "areas": [
+    "US-MO"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "mol",
+   "layer_url": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_Missouri_Department_of_Conservation_Lands/FeatureServer/0",
+   "name": "Missouri Dept. of Conservation lands (MSDIS)",
+   "page": "https://www.msdis.missouri.edu/data/mapdata/index.html",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h059": {
+   "areas": [
+    "US-MT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmtc",
+   "layer_url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0",
+   "name": "Montana Fish, Wildlife & Parks · FWPLND FAS",
+   "page": "https://ftpgeoinfo.msl.mt.gov/data/spatial/msdi/AdministrativeBoundaries/MontanaManagedAreas.xml",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2025-12-29 (metadata)"
+  },
+  "h060": {
+   "areas": [
+    "US-MT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmta",
+   "layer_url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0",
+   "name": "Montana Fish, Wildlife & Parks · FWPLND STATEPARKS",
+   "page": "https://ftpgeoinfo.msl.mt.gov/data/spatial/msdi/AdministrativeBoundaries/MontanaManagedAreas.xml",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2025-12-29 (metadata)"
+  },
+  "h061": {
+   "areas": [
+    "US-MT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmtb",
+   "layer_url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0",
+   "name": "Montana Fish, Wildlife & Parks · FWPLND WMA",
+   "page": "https://ftpgeoinfo.msl.mt.gov/data/spatial/msdi/AdministrativeBoundaries/MontanaManagedAreas.xml",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2025-12-29 (metadata)"
+  },
+  "h062": {
+   "areas": [
+    "US-NC"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgncc",
+   "layer_url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22",
+   "name": "Game Lands - detail",
+   "page": "https://www.nconemap.gov/datasets/ncwrc::ncwrc-game-lands-detail/about",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h063": {
+   "areas": [
+    "US-NC"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgncb",
+   "layer_url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21",
+   "name": "NC Wildlife Resources Commission game lands",
+   "page": "https://www.nconemap.gov/datasets/ncwrc::ncwrc-game-lands-general",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h064": {
+   "areas": [
+    "US-NC"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgncd",
+   "layer_url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/NC_State_Parks_System/FeatureServer/0",
+   "name": "ParkBoundaries",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h065": {
+   "areas": [
+    "US-ND"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "ndw",
+   "layer_url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0",
+   "name": "North Dakota Game and Fish WMAs",
+   "page": "https://www.gis.nd.gov/data",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h066": {
+   "areas": [
+    "US-ND"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgndb",
+   "layer_url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0",
+   "name": "North Dakota Parks & Recreation",
+   "page": "https://www.gis.nd.gov/data",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h067": {
+   "areas": [
+    "US-ND"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgndc",
+   "layer_url": "https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer/0",
+   "name": "North Dakota Parks and Recreation Department (credit)",
+   "page": "https://gishubdata.nd.gov/dataset/state-parks",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h068": {
+   "areas": [
+    "US-NE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgnea",
+   "layer_url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0",
+   "name": "Nebraska Game and Parks Commission",
+   "page": "https://www.nebraskamap.gov/content/1e7d80433a1d4710a099e974bfb75db5",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h069": {
+   "areas": [
+    "US-NE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "nep",
+   "layer_url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0",
+   "name": "Nebraska Game and Parks Commission",
+   "page": "https://www.nebraskamap.gov/content/1e7d80433a1d4710a099e974bfb75db5",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h070": {
+   "areas": [
+    "US-NE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgneb",
+   "layer_url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268",
+   "name": "NGPC (owner NGPC.GISAdmin)",
+   "page": "https://www.nebraskamap.gov/content/1e7d80433a1d4710a099e974bfb75db5",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "2024-2025 (title)"
+  },
+  "h071": {
+   "areas": [
+    "US-NH"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgnhb",
+   "layer_url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2",
+   "name": "New Hampshire Fish and Game Department",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h072": {
+   "areas": [
+    "US-NJ"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgnjb",
+   "layer_url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67",
+   "name": "New Jersey DEP (state-owned open space)",
+   "page": "https://gisdata-njdep.opendata.arcgis.com/datasets/njdep::state-local-and-nonprofit-open-space-of-new-jersey/about",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h073": {
+   "areas": [
+    "US-NM"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "shapefile / GDB / GeoJSON via BLM Hub",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgnmc",
+   "layer_url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+   "name": "BLM Natl Recreation Site Polygons",
+   "page": "https://www.blm.gov/services/geospatial/GISData",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h074": {
+   "areas": [
+    "US-NM"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgnma",
+   "layer_url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6",
+   "name": "New Mexico Department of Game & Fish",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h075": {
+   "areas": [
+    "US-NM"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "KML",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgnmb",
+   "layer_url": "https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0",
+   "name": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org",
+   "page": "https://catalog-bsp.data.gov/dataset/new-mexico-state-parks/resource/8dd90dc2-ce58-4e09-b51b-ddf4a0252871",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h076": {
+   "areas": [
+    "US-NV"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.fs.usda.gov/geodata/edw/edw_resources/shp/BdyAdm_LSRS_AdministrativeForest.zip",
+   "format": "shapefile (zip) and file geodatabase (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgnvg",
+   "layer_url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
+   "name": "Administrative Forest Boundaries - National Extent",
+   "page": "https://data.fs.usda.gov/geodata/edw/datasets.php",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Clearinghouse \"last refresh\" Nov 7, 2026 (page read 10 Nov 2026)"
+  },
+  "h077": {
+   "areas": [
+    "US-NV"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgnva",
+   "layer_url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0",
+   "name": "Nevada Department of Wildlife",
+   "page": "https://www.ndow.org/blog/gis-data/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h078": {
+   "areas": [
+    "US-NV"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgnvc",
+   "layer_url": "https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2",
+   "name": "Nevada Division of State Parks · VS Boundary Map 2 WFL1 2",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h079": {
+   "areas": [
+    "US-NV"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "nvusnvndow",
+   "layer_url": "https://services.arcgis.com/RyxlXSfFi87rAosq/ArcGIS/rest/services/NDOWWMAs/FeatureServer/0",
+   "name": "Nevada DOW WMAs (saved copy)",
+   "page": "https://www.ndow.org/blog/gis-data/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h080": {
+   "areas": [
+    "US-NV"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "nvusnvfish",
+   "layer_url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Nevada_Department_of_Wildlife_Fish_Hatchery_Locations/FeatureServer/0",
+   "name": "Nevada fish hatchery locations (saved copy)",
+   "page": "https://www.ndow.org/blog/gis-data/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h081": {
+   "areas": [
+    "US-NY"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgnyb",
+   "layer_url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
+   "name": "New York State Parks",
+   "page": "https://data.gis.ny.gov/maps/nysparks::ny-state-parks-property/about",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h082": {
+   "areas": [
+    "US-NY"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgnya",
+   "layer_url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/NYS_DEC_Lands/FeatureServer/0",
+   "name": "NYS DEC Lands",
+   "page": "https://data.gis.ny.gov/datasets/84b4cce8a8974c31a1c5584540f3aaae_0",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h083": {
+   "areas": [
+    "US-OK"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgokb",
+   "layer_url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0",
+   "name": "Oklahoma Department of Wildlife Conservation (ODOT GIS)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h084": {
+   "areas": [
+    "US-OK"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "odw",
+   "layer_url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1",
+   "name": "Oklahoma Dept. of Wildlife Conservation WMA map",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h085": {
+   "areas": [
+    "US-OK"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgoka",
+   "layer_url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3",
+   "name": "Oklahoma State Parks (ODOT GIS)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h086": {
+   "areas": [
+    "US-OR"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgorc",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0",
+   "name": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h087": {
+   "areas": [
+    "US-OR"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://geohub.oregon.gov/api/download/v1/items/c1d937bae66e41068721f4474a8811a6/shapefile?layers=0",
+   "format": "Shapefile (ZIP); also File GDB, GeoJSON, KML, CSV",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgorb",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Parks_view/FeatureServer/0",
+   "name": "Oregon Parks and Recreation Department (AGOL owner orstateparks)",
+   "page": "https://catalog.data.gov/dataset/oregon-state-parks",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Modified 2024-09-26"
+  },
+  "h088": {
+   "areas": [
+    "US-OR"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgord",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0",
+   "name": "State of Oregon (all state owned and managed lands)",
+   "page": "https://geohub.oregon.gov/datasets/slis-public",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h089": {
+   "areas": [
+    "US-PA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.pasda.psu.edu/download/pgc/PGC_StateGameland202301.zip",
+   "format": "ZIP (shapefile presumed, contents not stated); also KMZ, CSV, GeoJSON",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgpac",
+   "layer_url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300",
+   "name": "Pennsylvania Game Commission (PGC AGOL org k8yxvICm95iIFicb)",
+   "page": "https://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=86",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "File name 202301 (Jan 2023 implied, not stated)"
+  },
+  "h090": {
+   "areas": [
+    "US-RI"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile / File Geodatabase / GeoPackage / GeoJSON / CSV (per RIGIS FAQ)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgrib",
+   "layer_url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0",
+   "name": "ENV Conservation Lands State spf",
+   "page": "https://www.rigis.org/datasets/state-conservation-areas",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h091": {
+   "areas": [
+    "US-SC"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgscd",
+   "layer_url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3",
+   "name": "South Carolina Department of Natural Resources",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h092": {
+   "areas": [
+    "US-SC"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgscc",
+   "layer_url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0",
+   "name": "South Carolina DNR (heritage preserves)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h093": {
+   "areas": [
+    "US-SC"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgsca",
+   "layer_url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4",
+   "name": "South Carolina DNR (WMAs, heritage preserves)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h094": {
+   "areas": [
+    "US-SC"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgscb",
+   "layer_url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0",
+   "name": "South Carolina State Parks (PRT)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h095": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "tnd",
+   "layer_url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Access_Lands/FeatureServer/0",
+   "name": "TDEC public access lands",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h096": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgtnd",
+   "layer_url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0",
+   "name": "Tennessee Department of Agriculture, Division of Forestry",
+   "page": "https://geodata.tn.gov/datasets/TNDOF::tennessee-state-forest-boundaries",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h097": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile / File Geodatabase / GeoPackage / SQLite (per geodata.tn.gov How-To pa",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgtnj",
+   "layer_url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331",
+   "name": "Tennessee Department of Environment and Conservation (State Park Boundaries, Public View; multi-site parks dissolved)",
+   "page": "https://geodata.tn.gov/datasets/TDEC::tn-state-parks-boundaries",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "TDEC says the companion State Parks Points layer is updated weekly"
+  },
+  "h098": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile / File Geodatabase / GeoPackage / SQLite (per portal How-To)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgtnf",
+   "layer_url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Lands/FeatureServer/0",
+   "name": "Tennessee Department of Environment and Conservation (TDEC public lands)",
+   "page": "https://geodata.tn.gov/content/0a502164e7a746e292c0372284d02fa6",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h099": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgtnh",
+   "layer_url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10",
+   "name": "Tennessee Natural Areas (TDEC, non-state-park natural areas)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h100": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgtnb",
+   "layer_url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Boundaries_(Public_View)/FeatureServer/0",
+   "name": "Tennessee State Natural Areas (TDEC)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h101": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile / File Geodatabase / GeoPackage / SQLite (per geodata.tn.gov How-To pa",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgtng",
+   "layer_url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0",
+   "name": "Tennessee State Parks (TDEC state park boundaries)",
+   "page": "https://geodata.tn.gov/datasets/TDEC::tn-state-parks-boundaries",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "TDEC says the companion State Parks Points layer is updated weekly"
+  },
+  "h102": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile / File Geodatabase / GeoPackage / SQLite (per geodata.tn.gov How-To pa",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgtna",
+   "layer_url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0",
+   "name": "Tennessee State Parks (TDEC)",
+   "page": "https://geodata.tn.gov/datasets/TDEC::tn-state-parks-boundaries",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "TDEC says the companion State Parks Points layer is updated weekly"
+  },
+  "h103": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgtnc",
+   "layer_url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0",
+   "name": "Tennessee Wildlife Resources Agency",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h104": {
+   "areas": [
+    "US-TN"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgtne",
+   "layer_url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49",
+   "name": "Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tenne",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h105": {
+   "areas": [
+    "US-TX"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "shapefile (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgtxa",
+   "layer_url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0",
+   "name": "Texas Parks & Wildlife Department (state parks)",
+   "page": "https://tpwd.texas.gov/gis/data/baselayers/state-park-boundaries-zip/view",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "File name TPWDStateParkBoundaries_01302015.zip (Jan 2015) - may be out of date"
+  },
+  "h106": {
+   "areas": [
+    "US-TX"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "not confirmed",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgtxd",
+   "layer_url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0",
+   "name": "Texas Parks and Wildlife (public conservation lands)",
+   "page": "https://tpwd.texas.gov/gis/data/baselayers",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h107": {
+   "areas": [
+    "US-TX"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://tpwd.texas.gov/gis/data/baselayers/wildlife-management-areas/at_download/file",
+   "format": "ZIP (WMAs_02282014.zip, 362 KB)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgtxc",
+   "layer_url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0",
+   "name": "TPWD Wildlife Division (owner nancy.heger@tpwd.texas.gov_TPWD)",
+   "page": "https://tpwd.texas.gov/gis/data/baselayers/wildlife-management-areas/view",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Created 2014-04-02, modified 2017-02-14; file name dated 2014-02-28"
+  },
+  "h108": {
+   "areas": [
+    "US-UT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Open SGID (public read-only PostGIS database); hub downloads also offered",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgutf",
+   "layer_url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/state_park_boundaries_dissolved/FeatureServer/0",
+   "name": "state_park_boundaries_dissolved",
+   "page": "https://gis.utah.gov/documentation/sgid/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h109": {
+   "areas": [
+    "US-UT"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgutc",
+   "layer_url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0",
+   "name": "Utah (National Historic Landmarks)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h110": {
+   "areas": [
+    "US-UT"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgutb",
+   "layer_url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0",
+   "name": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h111": {
+   "areas": [
+    "US-UT"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "utusutgeoh",
+   "layer_url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Geoheritage_Sites_v6/FeatureServer/0",
+   "name": "Utah Geoheritage Sites v6 (saved copy)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h112": {
+   "areas": [
+    "US-UT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Open SGID (public read-only PostGIS database); hub downloads also offered",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sguta",
+   "layer_url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0",
+   "name": "Utah State Parks",
+   "page": "https://gis.utah.gov/documentation/sgid/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h113": {
+   "areas": [
+    "US-UT"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "utusutstat",
+   "layer_url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Parks/FeatureServer/0",
+   "name": "Utah State Parks (points only, not park-boundary polygons) (saved copy)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h114": {
+   "areas": [
+    "US-UT"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "utusutultr",
+   "layer_url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer/0",
+   "name": "Utah ULTRA properties (saved copy)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h115": {
+   "areas": [
+    "US-VA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgvaf",
+   "layer_url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0",
+   "name": "Virginia DCR (local parks 2023)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h116": {
+   "areas": [
+    "US-VA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.dcr.virginia.gov/natural-heritage/document/conslands.zip",
+   "format": "ZIP (page titled Shapefiles; contents not stated)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgvae",
+   "layer_url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands/FeatureServer/0",
+   "name": "Virginia DCR (Virginia's conservation lands)",
+   "page": "https://www.dcr.virginia.gov/natural-heritage/cldownload",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Uploaded 5/18/26; updated quarterly"
+  },
+  "h117": {
+   "areas": [
+    "US-VA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.dcr.virginia.gov/natural-heritage/document/conslands.zip",
+   "format": "ZIP (shapefile per page title; Virginia Lambert projection)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgvab",
+   "layer_url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VSP_Natural_Area_Preserves/FeatureServer/1",
+   "name": "Virginia DCR Natural Heritage",
+   "page": "https://www.dcr.virginia.gov/natural-heritage/cldownload",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CONSLANDS.ZIP updated 5/18/26; updated quarterly"
+  },
+  "h118": {
+   "areas": [
+    "US-VA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.dcr.virginia.gov/natural-heritage/document/conslands.zip",
+   "format": "ZIP (shapefile per page title; Virginia Lambert projection)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgvad",
+   "layer_url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0",
+   "name": "Virginia DCR State Parks (tracts)",
+   "page": "https://www.dcr.virginia.gov/natural-heritage/cldownload",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CONSLANDS.ZIP updated 5/18/26; updated quarterly"
+  },
+  "h119": {
+   "areas": [
+    "US-VA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgvaa",
+   "layer_url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0",
+   "name": "Virginia Department of Forestry",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h120": {
+   "areas": [
+    "US-VA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://www.dcr.virginia.gov/natural-heritage/document/conslands.zip",
+   "format": "ZIP (shapefile per page title; Virginia Lambert projection)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgvac",
+   "layer_url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0",
+   "name": "Virginia State Parks (DCR)",
+   "page": "https://www.dcr.virginia.gov/natural-heritage/cldownload",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CONSLANDS.ZIP updated 5/18/26; updated quarterly"
+  },
+  "h121": {
+   "areas": [
+    "US-WA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgwah",
+   "layer_url": "https://services9.arcgis.com/EGheeB0VDT6EarZv/ArcGIS/rest/services/MonumentParks1_WFL1/FeatureServer/29",
+   "name": "Hanford Reach",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h122": {
+   "areas": [
+    "US-WA"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgwae",
+   "layer_url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/NHD/FeatureServer/6",
+   "name": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices)",
+   "page": "https://gis.ecology.wa.gov/portal/apps/sites/#/washington-state-hydrography-dataset-program/pages/surface-water-mapping-project-data",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h123": {
+   "areas": [
+    "US-WA"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgwaa",
+   "layer_url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2",
+   "name": "Washington State Parks",
+   "page": "https://geo.wa.gov/datasets/wa-stateparks::parks-park-boundaries",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Dataset page metadata: last updated June 1, 2026"
+  },
+  "h124": {
+   "areas": [
+    "US-WV"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "ARCE (about 0.262 MB)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgwva",
+   "layer_url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
+   "name": "West Virginia DNR",
+   "page": "http://wvgis.wvu.edu/data/dataset.php?action=search&ID=59",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2005-05-01; metadata modified 2005-07-01"
+  },
+  "h125": {
+   "areas": [
+    "US-WV"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "wvuswvfish",
+   "layer_url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/Fish_Hatcheries_view/FeatureServer/25",
+   "name": "West Virginia fish hatcheries (saved copy)",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h126": {
+   "areas": [
+    "US-WV"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgwvb",
+   "layer_url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
+   "name": "West Virginia State Forests (DNR)",
+   "page": "https://wvgis.wvu.edu/data/data.php",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h127": {
+   "areas": [
+    "US-WY"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "'multiple formats' (unspecified)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgwyd",
+   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1",
+   "name": "Wyoming Game and Fish Department · PAA Boundaries 1",
+   "page": "http://wyoming-wgfd.opendata.arcgis.com/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h128": {
+   "areas": [
+    "US-WY"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "'multiple formats' (unspecified)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgwyc",
+   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4",
+   "name": "Wyoming Game and Fish Department · WHMA Boundaries 4",
+   "page": "http://wyoming-wgfd.opendata.arcgis.com/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h129": {
+   "areas": [
+    "US-WY"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "'multiple formats' (unspecified)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "wyuswyhatc",
+   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
+   "name": "Wyoming hatchery locations (saved copy)",
+   "page": "http://wyoming-wgfd.opendata.arcgis.com/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h130": {
+   "areas": [
+    "US-WY"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "'multiple formats' (unspecified)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "wyuswyrive",
+   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0",
+   "name": "Wyoming river access points (saved copy)",
+   "page": "http://wyoming-wgfd.opendata.arcgis.com/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h131": {
+   "areas": [
+    "US-WY"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgwya",
+   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0",
+   "name": "Wyoming State Parks",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h132": {
+   "areas": [
+    "US-WY"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "",
+   "format": "GDB (zip, per state; KMZ also offered)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "sgwyb",
+   "layer_url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0",
+   "name": "Wyoming State Parks, Historic Sites & Trails",
+   "page": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "PAD-US 4.1, published 2025-03-31"
+  },
+  "h133": {
+   "areas": [
+    "US-AK",
+    "US-CO",
+    "US-HI",
+    "US-MA",
+    "US-NE",
+    "US-NY",
+    "US-OH",
+    "US-PA",
+    "US-RI",
+    "US-SD",
+    "W-AS",
+    "W-VI"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://irma.nps.gov/DataStore/DownloadFile/761368?Reference=2319366",
+   "format": "GDB (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgakd",
+   "layer_url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+   "name": "National Park Service (legal boundary)",
+   "page": "https://irma.nps.gov/DataStore/Reference/Profile/2319366",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Issued 2026-07-22 (NPS DataStore reference 2319366)"
+  },
+  "h134": {
+   "areas": [
+    "US-MN",
+    "W-VI"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://iris.fws.gov/APPS/ServCat/DownloadFile/301500?Reference=194090",
+   "format": "shapefile (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "sgmng",
+   "layer_url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0",
+   "name": "FWSBoundaries",
+   "page": "https://iris.fws.gov/APPS/ServCat/Reference/Profile/194090",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "FWS Boundaries, August 2026 (data.gov modified 2026-08-10)"
+  },
+  "h135": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h135",
+   "layer_url": "https://services.arcgis.com/aji2lCmjXt0KpGzI/arcgis/rest/services/FacilitySites_Select_Merge/FeatureServer/0",
+   "name": "FacilitySites Select Merge (Hard look~11)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h136": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h136",
+   "layer_url": "https://services7.arcgis.com/7xVQ8rKWOtAFBw48/arcgis/rest/services/Frontenac_Arch_Biosphere_Region_Boundary/FeatureServer/0",
+   "name": "Frontenac Arch Biosphere Region Boundary (Hard look~5)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h137": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h137",
+   "layer_url": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/Heritage_Properties/FeatureServer/0",
+   "name": "Heritage Properties (Hard look~4)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h138": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h138",
+   "layer_url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0",
+   "name": "NCC Parks (Hard look~7)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h139": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "SHP, CSV, KML, GeoJSON (all via ArcGIS Hub export links)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h139",
+   "layer_url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Places_Public_lieux_public_APCA/FeatureServer/0",
+   "name": "Parks Canada",
+   "page": "https://open.canada.ca/data/dataset/e1f0c975-f40c-4313-9be2-beb951e35f4e",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2015-01-01; modified 2025-10-15; updated weekly"
+  },
+  "h140": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h140",
+   "layer_url": "https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/Parks_OD/FeatureServer/6",
+   "name": "Parks OD (layer 6) (Hard look~10)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h141": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h141",
+   "layer_url": "https://services8.arcgis.com/aCyQID5qQcyrJMm2/arcgis/rest/services/Provincial_Protected_Areas/FeatureServer/0",
+   "name": "Provincial Protected Areas (Hard look~1)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h142": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h142",
+   "layer_url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+   "name": "Trails Sentiers TIMS SGIS ln vw (Hard look~19)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h143": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h143",
+   "layer_url": "https://services2.arcgis.com/9LnN9037wYhPG904/arcgis/rest/services/VAUGHAN_PARKS/FeatureServer/0",
+   "name": "VAUGHAN PARKS (Hard look~13)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h144": {
+   "areas": [
+    "CA"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h144",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/WebMap_ConservationLands/FeatureServer/0",
+   "name": "WebMap ConservationLands (Hard look~15)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h145": {
+   "areas": [
+    "CA",
+    "CA-MB"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://geoportal.gov.mb.ca/api/download/v1/items/0b8e5b5280904fa4aeba7baf78154e59/shapefile?layers=0",
+   "format": "Shapefile (also GeoJSON, GPKG, KML, File GDB, CSV at same path)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h145",
+   "layer_url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0",
+   "name": "Manitoba Parks",
+   "page": "https://geoportal.gov.mb.ca/datasets/manitoba::manitoba-parks",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "modified 2025-02-05 (open.canada.ca record); published 2018-01-03"
+  },
+  "h146": {
+   "areas": [
+    "CA",
+    "CA-MB"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://geoportal.gov.mb.ca/api/download/v1/items/ea3470f98732403184a27823627478bb/shapefile?layers=1",
+   "format": "Shapefile (also GeoJSON, GPKG, KML, File GDB, CSV)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h146",
+   "layer_url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Provincial_Forests___Version_6/FeatureServer/1",
+   "name": "Manitoba Provincial Forests Version 6 (layer 1)",
+   "page": "https://geoportal.gov.mb.ca/datasets/manitoba-provincial-forests-version-6/about",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "modified 2025-02-05 (open.canada.ca record e0f601a0-6e31-891d-390e-c266214391ff)"
+  },
+  "h147": {
+   "areas": [
+    "CA",
+    "CA-MB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "MB-wildlife",
+   "layer_url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0",
+   "name": "Manitoba wildlife lands",
+   "page": "https://geoportal.gov.mb.ca/apps/manitoba::manitoba-wildlife-lands",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "modified 2024-12-06 (open.canada.ca record 2cbe48f7-6284-7dbe-8d78-1cf5a385764f)"
+  },
+  "h148": {
+   "areas": [
+    "CA",
+    "CA-MB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h148",
+   "layer_url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/1",
+   "name": "Manitoba Wildlife Lands (layer 1)",
+   "page": "https://geoportal.gov.mb.ca/apps/manitoba::manitoba-wildlife-lands",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "modified 2024-12-06 (open.canada.ca record 2cbe48f7-6284-7dbe-8d78-1cf5a385764f)"
+  },
+  "h149": {
+   "areas": [
+    "CA",
+    "CA-MB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h149",
+   "layer_url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2",
+   "name": "Manitoba Wildlife Lands (layer 2)",
+   "page": "https://geoportal.gov.mb.ca/apps/manitoba::manitoba-wildlife-lands",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "modified 2024-12-06 (open.canada.ca record 2cbe48f7-6284-7dbe-8d78-1cf5a385764f)"
+  },
+  "h150": {
+   "areas": [
+    "CA",
+    "CA-NS"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.novascotia.ca/api/geospatial/ticv-5du5?method=export&format=Shapefile",
+   "format": "Shapefile (also GeoJSON, KML, KMZ, CSV)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "NS-parks",
+   "layer_url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1",
+   "name": "Nova Scotia parks and protected areas",
+   "page": "https://data.novascotia.ca/Environment-and-Energy/The-Nova-Scotia-Protected-Areas-System/ticv-5du5",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "published 2020-06-11; record modified 2026-02-04 (open.canada.ca record 21a1cbdc-7a9d-cdf0-d272-6dbb965e97dc)"
+  },
+  "h151": {
+   "areas": [
+    "CA-BC"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://openmaps.gov.bc.ca/kml/geo/layers/WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW_loader.kml",
+   "format": "KML (plus WMS; BC Geographic Warehouse Custom Download for SHP/GDB etc. not veri",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h151",
+   "layer_url": "https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0",
+   "name": "British Columbia Parks, Ecological Reserves and Protected Areas",
+   "page": "https://catalogue.data.gov.bc.ca/dataset/bc-parks-ecological-reserves-and-protected-areas",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2011-03-09; modified 2026-01-28; updated daily"
+  },
+  "h152": {
+   "areas": [
+    "CA-BC"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h152",
+   "layer_url": "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0",
+   "name": "Regional Parks Boundaries (open data)",
+   "page": "https://open-data-portal-metrovancouver.hub.arcgis.com/datasets/regional-parks-boundaries-open-data",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h153": {
+   "areas": [
+    "CA-NB"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://gnb.socrata.com/api/geospatial/ixbz-22zx?method=export&format=Shapefile",
+   "format": "Shapefile (also GeoJSON, KML, KMZ, CSV; GeoNB page lists FGDB, LPK, SHP)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h153",
+   "layer_url": "https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Parks3/FeatureServer/0",
+   "name": "New Brunswick Parks (Parks3)",
+   "page": "https://www.gnb.ca/en/campaign/geonb/data-catalogue/provincial-parks.html",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2022-06-10; modified 2026-01-28; updated ad hoc"
+  },
+  "h154": {
+   "areas": [
+    "CA-NB"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://gnb.socrata.com/api/geospatial/ixbz-22zx?method=export&format=Shapefile",
+   "format": "Shapefile (also GeoJSON, KML, KMZ, CSV; GeoNB page lists FGDB, LPK, SHP)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h154",
+   "layer_url": "https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0",
+   "name": "New Brunswick Parks (public view)",
+   "page": "https://www.gnb.ca/en/campaign/geonb/data-catalogue/provincial-parks.html",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2022-06-10; modified 2026-01-28; updated ad hoc"
+  },
+  "h155": {
+   "areas": [
+    "CA-NL"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile (zip) and KMZ",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h155",
+   "layer_url": "https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0",
+   "name": "Provincial Protected Areas NL",
+   "page": "https://www.gov.nl.ca/eccc/natural-areas/gis-data/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Shapefile and KMZ last updated October 2, 2026; updated as needed"
+  },
+  "h156": {
+   "areas": [
+    "CA-NS"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.novascotia.ca/api/geospatial/ticv-5du5?method=export&format=Shapefile",
+   "format": "Shapefile (also GeoJSON, KML, KMZ, CSV)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h156",
+   "layer_url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1",
+   "name": "Nova Scotia Parks and Protected Areas System (layer 1)",
+   "page": "https://open.canada.ca/data/en/dataset/21a1cbdc-7a9d-cdf0-d272-6dbb965e97dc",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2020-06-11; modified 2026-02-04; updated as needed"
+  },
+  "h157": {
+   "areas": [
+    "CA-NS"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h157",
+   "layer_url": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0",
+   "name": "NS HRM Parks",
+   "page": "https://data-hrm.hub.arcgis.com/items/3df29a3d088a42d890f11d027ea1c0be",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h158": {
+   "areas": [
+    "CA-NS"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.novascotia.ca/api/geospatial/ticv-5du5?method=export&format=Shapefile",
+   "format": "Shapefile (also GeoJSON, KML, KMZ, CSV)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h158",
+   "layer_url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0",
+   "name": "Nova Scotia Parks and Protected Areas System (layer 0)",
+   "page": "https://open.canada.ca/data/en/dataset/21a1cbdc-7a9d-cdf0-d272-6dbb965e97dc",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2020-06-11; modified 2026-02-04; updated as needed"
+  },
+  "h159": {
+   "areas": [
+    "CA-NS"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data.novascotia.ca/api/geospatial/ticv-5du5?method=export&format=Shapefile",
+   "format": "Shapefile (also GeoJSON, KML, KMZ, CSV)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h159",
+   "layer_url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0",
+   "name": "Nova Scotia Parks and Protected Areas System V1 (layer 0)",
+   "page": "https://open.canada.ca/data/en/dataset/21a1cbdc-7a9d-cdf0-d272-6dbb965e97dc",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Published 2020-06-11; modified 2026-02-04; updated as needed"
+  },
+  "h160": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h160",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0",
+   "name": "Ausable Bayfield Conservation Authority",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h161": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h161",
+   "layer_url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0",
+   "name": "Cataraqui Conservation",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h162": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h162",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0",
+   "name": "Essex Region Conservation Authority",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h163": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h163",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6",
+   "name": "Kawartha Region Conservation Authority (Kawartha Conservation)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h164": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "CSV, KML, Zip (shapefile), GeoJSON, GeoTIFF, PNG listed as download options on t",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h164",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0",
+   "name": "Lower Thames Valley Conservation Authority",
+   "page": "https://ltvca-maps-camaps.hub.arcgis.com/datasets/ltvca-public-conservation-areas-2022",
+   "stated_count": "19",
+   "terms": "see the source page",
+   "version": "2022"
+  },
+  "h165": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h165",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2",
+   "name": "Niagara Peninsula Conservation Authority",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h166": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h166",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0",
+   "name": "Credit Valley Conservation properties (2023)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h167": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h167",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0",
+   "name": "LTC Conservation Areas",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h168": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h168",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0",
+   "name": "MVC Conservation Areas",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h169": {
+   "areas": [
+    "CA-ON"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h169",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250",
+   "name": "Toronto and Region Conservation Authority",
+   "page": "https://data.trca.ca/dataset/property-trca",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h170": {
+   "areas": [
+    "CA-PE"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h170",
+   "layer_url": "https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0",
+   "name": "NCC Atlantic Nature Reserves (2022-09-08)",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h171": {
+   "areas": [
+    "CA-QC"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://data-donnees.az.ec.gc.ca/data/species/protectrestore/canadian-protected-conserved-areas-database/Databases",
+   "format": "FGDB/GDB",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "fallback",
+   "layer": "h171",
+   "layer_url": "https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0",
+   "name": "Parcs naturels d’intérêt métropolitain",
+   "page": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "CPCAD, data current to 2025-12-31 (record modified 2026-03-25)"
+  },
+  "h172": {
+   "areas": [
+    "W-AS",
+    "W-UM",
+    "W-VI"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://iris.fws.gov/APPS/ServCat/DownloadFile/301500?Reference=194090",
+   "format": "shapefile (zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h172",
+   "layer_url": "https://services1.arcgis.com/KNdRU5cN6ENqCTjk/ArcGIS/rest/services/US_Fish_and_Wildlife_Service/FeatureServer/7",
+   "name": "FWSNationalRealtyBoundaries",
+   "page": "https://iris.fws.gov/APPS/ServCat/Reference/Profile/194090",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "FWS Boundaries, August 2026 (data.gov modified 2026-08-10)"
+  },
+  "h173": {
+   "areas": [
+    "W-AT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h173",
+   "layer_url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/6",
+   "name": "BP_AT_2025 (exkl. St - Untere Mur)",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h174": {
+   "areas": [
+    "W-AT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h174",
+   "layer_url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/1",
+   "name": "SG AT 2025 v April (layer 1)",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h175": {
+   "areas": [
+    "W-AT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h175",
+   "layer_url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/10",
+   "name": "SG AT 2025 v April (layer 10)",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h176": {
+   "areas": [
+    "W-AT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h176",
+   "layer_url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/2",
+   "name": "SG AT 2025 v April (layer 2)",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h177": {
+   "areas": [
+    "W-AT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h177",
+   "layer_url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/4",
+   "name": "SG AT 2025 v April (layer 4)",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h178": {
+   "areas": [
+    "W-AT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h178",
+   "layer_url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/5",
+   "name": "SG AT 2025 v April (layer 5)",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h179": {
+   "areas": [
+    "W-AT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h179",
+   "layer_url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/7",
+   "name": "SG AT 2025 v April (layer 7)",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h180": {
+   "areas": [
+    "W-AT"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h180",
+   "layer_url": "https://services7.arcgis.com/JhrnFQUbVgiJfOG5/ArcGIS/rest/services/SG_AT_2025_v_April/FeatureServer/9",
+   "name": "SG AT 2025 v April (layer 9)",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h181": {
+   "areas": [
+    "W-AU"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h181",
+   "layer_url": "https://services1.arcgis.com/E5n4f1VY84i0xSjy/arcgis/rest/services/ACTGOV_Urban_Open_Space_Asset/FeatureServer/1",
+   "name": "ACTGOV Urban Open Space Asset",
+   "page": "https://www.data.act.gov.au/dataset/ACTGOV-Urban-Open-Space-Asset/8rwg-v63s",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h182": {
+   "areas": [
+    "W-AU"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile (described as 6mb full extent download)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h182",
+   "layer_url": "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer/0",
+   "name": "NSW State Forest (Forestry Corporation NSW)",
+   "page": "https://data.nsw.gov.au/data/dataset/state-forest",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Last updated 07/05/2026; published 06/09/2018"
+  },
+  "h183": {
+   "areas": [
+    "W-AU"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "Shapefile (410 KB full-extent download)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h183",
+   "layer_url": "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Flora_Reserves/FeatureServer/0",
+   "name": "NSW_Flora_Reserves",
+   "page": "https://datasets.seed.nsw.gov.au/dataset/flora-reserves",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Asset creation 2000-01-01; change frequency irregular"
+  },
+  "h184": {
+   "areas": [
+    "W-AU"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h184",
+   "layer_url": "https://services1.arcgis.com/E5n4f1VY84i0xSjy/arcgis/rest/services/Public_Land_Reserves/FeatureServer/0",
+   "name": "Public Land Reserves",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h185": {
+   "areas": [
+    "W-BS"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h185",
+   "layer_url": "https://services3.arcgis.com/yRW96jkKjDj5GeHi/arcgis/rest/services/Protected_Areas_of_The_Bahamas/FeatureServer/0",
+   "name": "Protected_Areas_of_The_Bahamas",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h186": {
+   "areas": [
+    "W-BW"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h186",
+   "layer_url": "https://services7.arcgis.com/mbEujVpJG0aE29fS/arcgis/rest/services/Protected_Areas_and_Other_Effective_Conservation_Measures/FeatureServer/0",
+   "name": "Protected_Areas_and_Other_Effective_Conservation_Measures",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h187": {
+   "areas": [
+    "W-BZ"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h187",
+   "layer_url": "https://services8.arcgis.com/IXYmdkndf6VGeFte/arcgis/rest/services/PA_updated_2024/FeatureServer/0",
+   "name": "PA_updated_2024",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h188": {
+   "areas": [
+    "W-BZ"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h188",
+   "layer_url": "https://services8.arcgis.com/IXYmdkndf6VGeFte/arcgis/rest/services/Protected_Areas_Belize_2015/FeatureServer/0",
+   "name": "Protected_Areas_Belize_2015",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h189": {
+   "areas": [
+    "W-FR"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "shapefile (14 files listed; which is type 1 vs type 2 not seen)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h189",
+   "layer_url": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/0",
+   "name": "ZNIEFF (INPN data, Esri France) layer 0",
+   "page": "https://www.data.gouv.fr/datasets/inpn-donnees-du-programme-znieff",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Dataset page updated 8 Oct 2026"
+  },
+  "h190": {
+   "areas": [
+    "W-FR"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "shapefile (14 files listed; which is type 1 vs type 2 not seen)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h190",
+   "layer_url": "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/1",
+   "name": "ZNIEFF (INPN data, Esri France) layer 1",
+   "page": "https://www.data.gouv.fr/datasets/inpn-donnees-du-programme-znieff",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Dataset page updated 8 Oct 2026"
+  },
+  "h191": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h191",
+   "layer_url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Forestry_England_Ownership_2024_/FeatureServer/0",
+   "name": "FE_Ownership_160726",
+   "page": "https://www.data.gov.uk/dataset/aa06f3af-3882-4516-a8a9-f840f590a352/forestry-england-ownership2025",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Updated 7 Apr 2026"
+  },
+  "h192": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h192",
+   "layer_url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Forestry_England_Recreation_Areas/FeatureServer/0",
+   "name": "FE_RecAreas_170226",
+   "page": "https://data.gov.uk/dataset/3d279869-555d-45c2-a859-d029dab1fc39/national-forest-estate-recreation-areas-england-2016",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Updated 20 Feb 2026"
+  },
+  "h193": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h193",
+   "layer_url": "https://services6.arcgis.com/JF5BD4Y14a3LnPcJ/arcgis/rest/services/Forest_Blocks_WFS/FeatureServer/0",
+   "name": "Forest_Blocks",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h194": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h194",
+   "layer_url": "https://services7.arcgis.com/rVwbcvflURVxkV6s/arcgis/rest/services/Greenspace_3_view/FeatureServer/4",
+   "name": "Greenspace_Phase2_06052022",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h195": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h195",
+   "layer_url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Blocks/FeatureServer/0",
+   "name": "INV_BLKDATA",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h196": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "lyr listed; shp/gpkg/geojson/gdb zips not seen for this dataset",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h196",
+   "layer_url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Local_Nature_Reserves_England/FeatureServer/0",
+   "name": "Local Nature Reserves England",
+   "page": "https://www.data.gov.uk/dataset/acdf4a9e-a115-41fb-bbe9-603c819aa7f7/local-nature-reserves-england1",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Updated 13 Jul 2026"
+  },
+  "h197": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://environment.data.gov.uk/api/file/download?fileDataSetId=94be6307-8245-46ac-8f11-9a22bab76978&fileName=National_Nature_Reserves_England.shp.zip",
+   "format": "shapefile zip (also gpkg.zip, geojson.zip, gdb.zip at same fileDataSetId)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h197",
+   "layer_url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/National_Nature_Reserves_England/FeatureServer/0",
+   "name": "National Nature Reserves England",
+   "page": "https://www.data.gov.uk/dataset/726484b0-d14e-44a3-9621-29e79fc47bfc/national-nature-reserves-england",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Updated 29 Apr 2026 (revision date 15 Apr 2026)"
+  },
+  "h198": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://environment.data.gov.uk/api/file/download?fileDataSetId=e1185947-4efa-486f-a7cb-dd83106b301f&fileName=Country_Parks_England.shp.zip",
+   "format": "shapefile zip (also geojson.zip, gdb.zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h198",
+   "layer_url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Country_Parks_England/FeatureServer/0",
+   "name": "Natural England Country Parks",
+   "page": "https://www.data.gov.uk/dataset/e729abb9-aa6c-42c5-baec-b6673e2b3a62/country-parks-england2",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Updated 13 Jul 2026"
+  },
+  "h199": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://environment.data.gov.uk/api/file/download?fileDataSetId=a53acde4-27ff-4ce8-a470-85ded851519c&fileName=Areas_of_Outstanding_Natural_Beauty_England.shp.zip",
+   "format": "shp.zip (also gpkg.zip, geojson.zip, gdb.zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h199",
+   "layer_url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Areas_of_Outstanding_Natural_Beauty_England/FeatureServer/0",
+   "name": "Natural England National Landscapes",
+   "page": "https://www.data.gov.uk/dataset/8e3ae3b9-a827-47f1-b025-f08527a4e84e/areas-of-outstanding-natural-beauty-england",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Last updated 9 October 2025"
+  },
+  "h200": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://environment.data.gov.uk/api/file/download?fileDataSetId=65ed90f8-77d2-48ca-bfb0-519416af865c&fileName=National_Parks_England.shp.zip",
+   "format": "shp.zip (also geojson.zip, gpkg.zip, gdb.zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h200",
+   "layer_url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/National_Parks_England/FeatureServer/0",
+   "name": "Natural England National Parks",
+   "page": "https://www.data.gov.uk/dataset/334e1b27-e193-4ef5-b14e-696b58bb7e95/national-parks-england1",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Last updated 13 July 2026"
+  },
+  "h201": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h201",
+   "layer_url": "https://services1.arcgis.com/h1C9f6qsGKmqXsVs/arcgis/rest/services/RSPB_Public_Reserves/FeatureServer/0",
+   "name": "RSPB_Reserves_20102025_BNG",
+   "page": "https://opendata-rspb.opendata.arcgis.com/",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h202": {
+   "areas": [
+    "W-GB"
+   ],
+   "changed": null,
+   "check": "bot",
+   "file": "https://environment.data.gov.uk/api/file/download?fileDataSetId=2e2d1185-1acb-469d-9f88-9f54e2506a5d&fileName=Sites_of_Special_Scientific_Interest_England.shp.zip",
+   "format": "shp.zip (also gpkg.zip, geojson.zip, gdb.zip)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h202",
+   "layer_url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_England/FeatureServer/0",
+   "name": "SSSI England",
+   "page": "https://www.data.gov.uk/dataset/5b632bd7-9838-4ef2-9101-ea9384421b0d/sites-of-special-scientific-interest-england3",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Last updated 9 October 2025; dataset revision 15 April 2025"
+  },
+  "h203": {
+   "areas": [
+    "W-GY"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h203",
+   "layer_url": "https://services.arcgis.com/bL1WyMoaiBW4etad/arcgis/rest/services/Guyana_VIP_Status/FeatureServer/1",
+   "name": "Protected Areas",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h204": {
+   "areas": [
+    "W-IE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h204",
+   "layer_url": "https://services7.arcgis.com/6LSAdqgf43oKRpP6/arcgis/rest/services/Coillte_Recreation_Information/FeatureServer/4",
+   "name": "Forest Park",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h205": {
+   "areas": [
+    "W-JP"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "SHAPE and GML (JPGIS)",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h205",
+   "layer_url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0",
+   "name": "Ministry of the Environment national parks (Esri Japan)",
+   "page": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v4_0.html",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": "Data product v4.0 (FY2010 data) listed; v4.1 (FY2015 data) is latest"
+  },
+  "h206": {
+   "areas": [
+    "W-MP"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h206",
+   "layer_url": "https://services.arcgis.com/qchgHH9IIeiivY5M/arcgis/rest/services/CNMI_Marine_Protected_Areas/FeatureServer/0",
+   "name": "marine_protected_areas",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h207": {
+   "areas": [
+    "W-MV"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h207",
+   "layer_url": "https://services7.arcgis.com/yvCbn3q8PPtPLZIM/arcgis/rest/services/ProtectedArea/FeatureServer/0",
+   "name": "Protected_Areas_of_Maldives_EPA_V4_1",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h208": {
+   "areas": [
+    "W-NZ"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h208",
+   "layer_url": "https://services1.arcgis.com/n4yPwebTjJCmXB6W/arcgis/rest/services/Park_Extents/FeatureServer/0",
+   "name": "Park Extents",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h209": {
+   "areas": [
+    "W-OM"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h209",
+   "layer_url": "https://services3.arcgis.com/ZMzLg7Owk19jwEIO/arcgis/rest/services/%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82_%D8%A7%D9%84%D9%85%D8%AD%D9%85%D9%8A%D8%A927012025/FeatureServer/0",
+   "name": "المناطق_المحمية27012025",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h210": {
+   "areas": [
+    "W-PF"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h210",
+   "layer_url": "https://services.arcgis.com/L4H4rU26VyhEF588/arcgis/rest/services/PGEM_Aires_marines_prot%C3%A9g%C3%A9es_(TeFenua)/FeatureServer/0",
+   "name": "French Polynesia: Gouvernement de la Polynésie française, Te Fenua open data (DSI); PGEM",
+   "page": "https://www.tefenua.data.gov.pf/datasets/ef2bdc8e55f049318a3888f8134349b0_0/about",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  },
+  "h211": {
+   "areas": [
+    "W-SV"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "none",
+   "layer": "h211",
+   "layer_url": "https://services6.arcgis.com/DO1cMKsePeciYDRE/arcgis/rest/services/Layers/FeatureServer/6",
+   "name": "El Salvador: MARN – Dirección de Ecosistemas y Vida Silvestre (Ministerio de Medio",
+   "page": "",
+   "stated_count": null,
+   "terms": "see the source page",
+   "version": ""
+  }
+ }
+}

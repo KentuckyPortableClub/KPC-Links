@@ -32,7 +32,7 @@ SHRINK_LIMIT = 0.90                                    # a layer whose count fal
 NEVER_CONTACT = [('services.arcgis.com', '/33TOOklri9xpic7U'), ('ncnhde.natureserve.org', '')]
 # services.arcgis.com and services<digits>.arcgis.com: no live read of any kind, robots.txt included.
 # This is hard-coded (not only the env list) so a count run cannot reach those hosts.
-ARCGIS_SERVICES_HOST_RE = re.compile(r'^services\d*\.arcgis\.com$')
+ARCGIS_SERVICES_HOST_RE = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
 # Saved copies only, no live read (their robots.txt answers 403). Same default list as kpc_us_key.py (KPC_SAVED_ONLY_HOSTS).
 # services*.arcgis.com is also blocked in live_ok even if this list is overridden or emptied.
 SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or
@@ -112,13 +112,23 @@ def http_fetcher(pacer=None, max_tries=3):
     def raw(url, timeout=60):
         req = urllib.request.Request(url, headers={'User-Agent': UA})
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as r: return r.status, r.read().decode('utf-8', 'replace')
+            with checked_opener(hop).open(req, timeout=timeout) as r: return r.status, r.read().decode('utf-8', 'replace')
         except urllib.error.HTTPError as e: return e.code, ''
 
     def robots_get(url):
         ok, _ = live_ok(url)
         if not ok: raise LiveNotAllowed(url)
-        pacer.wait(parts(url)[0]); return raw(url)
+        pacer.wait(parts(url)[0])
+        req = urllib.request.Request(url, headers={'User-Agent': UA})
+        try:
+            with host_checked_opener().open(req, timeout=60) as r: return r.status, r.read().decode('utf-8', 'replace')
+        except urllib.error.HTTPError as e: return e.code, ''
+
+    def hop(u):   # Nov 10: a redirect hop gets the same checks as the first request (host rules, robots.txt, pacing)
+        ok, why = live_ok(u)
+        if not ok: raise LiveNotAllowed(f'redirect refused: {why}')
+        if not robots_allows(u, robots_get, robots): raise LiveNotAllowed(f'redirect refused: {parts(u)[0]}: robots.txt does not allow this read')
+        pacer.wait(parts(u)[0])
 
     def fetch(url, params=None):
         ok, why = live_ok(url)
@@ -506,6 +516,16 @@ def raw_add(path, source, date=None, root=None):
     raw_manifest_path(root).write_text(json.dumps(doc, indent=1, sort_keys=True) + '\n', encoding='utf-8'); return row
 
 
+def raw_add_facts(facts, root=None):
+    """Nov 10: one raw-manifest row from facts already measured elsewhere (import-existing, an official-file download): name, size,
+    sha256, source, date and the record count when known. Facts only: no licence or terms text goes in."""
+    row = {k: facts.get(k) for k in ('name', 'size', 'sha256', 'source', 'date', 'count') if facts.get(k) not in (None, '')}
+    doc = load_json(raw_manifest_path(root), {'format': FORMAT, 'files': []})
+    doc['files'] = [r for r in doc['files'] if r['name'] != row['name']] + [row]; doc['files'].sort(key=lambda r: r['name'])
+    raw_manifest_path(root).parent.mkdir(parents=True, exist_ok=True)
+    raw_manifest_path(root).write_text(json.dumps(doc, indent=1, sort_keys=True) + '\n', encoding='utf-8'); return row
+
+
 def raw_in_repo(files):
     """files: [(path, size)] tracked by git. Returns the ones that must not be there: layer downloads by type, a .gdb folder, or any file
     under data/outlines/ over 5 MB (a master area file is small by design)."""
@@ -543,3 +563,285 @@ def wdpa_agency_lookup(rows):
     """rows: WDPA attribute rows (dicts). Keeps ONLY id, name, managing authority, owner type, designation, and the POTA ref if there is one. No geometry, no coordinates."""
     keep = ('WDPAID', 'WDPA_PID', 'NAME', 'ORIG_NAME', 'DESIG', 'DESIG_ENG', 'MANG_AUTH', 'MANG_PLAN', 'OWN_TYPE', 'GOV_TYPE', 'PARENT_ISO', 'ISO3', 'STATUS')
     return [{k: r.get(k) for k in keep if k in r} for r in rows]
+
+
+# ==== Nov 10 (the master owns the saved copies): the needs-download list, layer files, the keep-bigger merge ==========
+# Plain words. ONE list says which layers somebody must download. It lives in KPC-Data (data/needs-download.json) because the
+# hunters and the engine write there. The master step in this repo reads it and adds its own rows through the boundary-cache
+# release (asset needs-download.json, same schema), which KPC-Data's hourly copy job merges into the one file.
+#   who = 'bot'     the master downloads it itself (allowed host, robots.txt says yes)
+#         'person' a person downloads it in a browser (saved-copy-only host, services*.arcgis.com, or robots.txt says no / 403)
+#         'never'   nobody contacts it (never-contact host); the saved copy is kept as it is
+NEEDS_FORMAT = 1
+NEEDS_FIELDS = ('id', 'area', 'layer', 'url', 'page', 'host', 'who', 'why', 'expected', 'have', 'source', 'added', 'status', 'note',
+                'src', 'check')   # Nov 10 (change check): src = the download source id in data/outlines/download-sources.json; check = bot | person
+NEEDS_STATUS = ('open', 'done', 'held')
+
+
+def who_for(url, robots_ok=None, file_url=None):
+    """('bot' | 'person' | 'never', why). robots_ok(url) -> bool is only asked for a host live_ok allows (never before it).
+    Nov 10: when the layer itself may not be read but its OFFICIAL DIRECT FILE (file_url) sits on a host a bot may fetch, the row
+    is a bot's: the master step downloads the file through the same pre-request check, robots.txt and pacing (download_official_file)."""
+    host, path = parts(url)
+    for h, p in NEVER_CONTACT:
+        if host == h and path.lower().startswith(p.lower()): return 'never', f'never contact {h}{p}: no request of any kind, by a bot or a person'
+    ok, why = live_ok(url)
+    if ok and (robots_ok is None or robots_ok(url)): return 'bot', ''
+    if not ok: why = why + ': a person downloads it in a browser'
+    else: why = f'{host}: robots.txt does not allow a bot to read it (a 403 counts as no): a person downloads it'
+    if file_url:
+        fok, _ = live_ok(file_url)
+        if fok and (robots_ok is None or robots_ok(file_url)):
+            return 'bot', f'the official direct file is on {parts(file_url)[0]}, which a bot may fetch: the master step downloads it'
+    return 'person', why
+
+
+def direct_file_of(row):
+    """The official direct file a needs row names ('direct file: <url>' in its note), or None."""
+    m = re.search(r'direct file:\s*(\S+)', str((row or {}).get('note') or ''))
+    return m.group(1) if m else None
+
+
+class _CheckedRedirect(urllib.request.HTTPRedirectHandler):
+    """Nov 10: every redirect hop goes through check(new_url) BEFORE it is followed (the same pre-request host check, and robots.txt
+    for the main fetch). A hop onto a host the rules forbid raises LiveNotAllowed: nothing is requested from it."""
+    def __init__(self, check):
+        super().__init__(); self.check = check
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        newurl = urllib.parse.urljoin(req.full_url, newurl)
+        self.check(newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def _refuse_hop(u):
+    ok, why = live_ok(u)
+    if not ok: raise LiveNotAllowed(f'redirect refused: {why}')
+
+
+def host_checked_opener(handlers=()):
+    """An opener that refuses any redirect hop onto a host live_ok forbids (robots.txt reads, HEAD checks)."""
+    return checked_opener(_refuse_hop, handlers)
+
+
+def checked_opener(check, handlers=()):
+    """A urllib opener whose every redirect hop is checked (see _CheckedRedirect). handlers: stand-ins for tests."""
+    return urllib.request.build_opener(_CheckedRedirect(check), *handlers)
+
+
+def download_official_file(url, dest, robots_get=None, pacer=None, handlers=(), max_bytes=2 << 30):
+    """Nov 10: the official-file download path. live_ok first (never a services*.arcgis.com host, never a never-contact host,
+    nothing saved-copy-only), then robots.txt (a 403 = no), then the per-host pacer (60 s on hub portals). EVERY redirect hop is
+    checked the same way before it is followed (live_ok + robots.txt + pacing; a robots.txt redirect gets live_ok), and the final
+    address is checked again. Streams the file to dest and returns its raw facts {name, size, sha256, source, date}. Raises
+    LiveNotAllowed before any request it may not make. Only the master step calls it, and only when asked (--official-files,
+    the fresh-start run)."""
+    ok, why = live_ok(url)
+    if not ok: raise LiveNotAllowed(why)
+    pacer = pacer or Pacer(); robots_cache = {}
+
+    def host_check(u):
+        ok_, why_ = live_ok(u)
+        if not ok_: raise LiveNotAllowed(f'redirect refused: {why_}')
+    robots_opener = checked_opener(host_check, handlers)
+    if robots_get is None:
+        def robots_get(u):
+            host_check(u); pacer.wait(parts(u)[0])
+            try:
+                with robots_opener.open(urllib.request.Request(u, headers={'User-Agent': UA}), timeout=30) as r: return r.status, r.read(200000).decode('utf-8', 'replace')
+            except urllib.error.HTTPError as e: return e.code, ''
+
+    def hop_check(u):   # a redirect hop of the file itself: the same three checks as the first request
+        host_check(u)
+        if not robots_allows(u, robots_get, robots_cache): raise LiveNotAllowed(f'redirect refused: {parts(u)[0]}: robots.txt does not allow this download')
+        pacer.wait(parts(u)[0])
+    if not robots_allows(url, robots_get, robots_cache): raise LiveNotAllowed(f'{parts(url)[0]}: robots.txt does not allow this download')
+    pacer.wait(parts(url)[0])
+    dest = pathlib.Path(dest); dest.parent.mkdir(parents=True, exist_ok=True); h = hashlib.sha256(); n = 0
+    tmp = dest.with_name(dest.name + '.part')
+    try:
+        with checked_opener(hop_check, handlers).open(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=300) as r:
+            final = r.geturl() or url
+            if not live_ok(final)[0]: raise LiveNotAllowed(f'final address refused: {live_ok(final)[1]}')
+            with open(tmp, 'wb') as f:
+                while True:
+                    b = r.read(1 << 20)
+                    if not b: break
+                    n += len(b)
+                    if n > max_bytes: raise MasterError(f'{url[:100]}: larger than {max_bytes} bytes; stopped')
+                    h.update(b); f.write(b)
+    except BaseException:
+        tmp.unlink(missing_ok=True); raise
+    tmp.replace(dest)
+    return {'name': dest.name, 'size': n, 'sha256': h.hexdigest(), 'source': url, 'date': datetime.date.today().isoformat()}
+
+
+def saved_counts(path):
+    """Read only. {layer: records} of one saved copy: US-XX = OBJECTID prefix ('' = PAD-US); CA-ALL = the oid's layer id (the first
+    12 letters of the source label, '~N' for the next layers of that label) and the source label itself; W-XX = the source label."""
+    out = {}
+    try: blob = load_saved(path)
+    except Exception: return out  # noqa: BLE001
+    name = pathlib.Path(path).name
+    for r in blob.get('recs') or []:
+        if name.startswith('US-'): ks = [prefix_of(r.get('OBJECTID'))]
+        elif name.startswith('CA-'): ks = {str(r.get('oid', '')).split(':', 1)[0] if ':' in str(r.get('oid', '')) else 'cpcad', 'src:' + str(r.get('src') or '')}
+        else: ks = ['src:' + str(r.get('src') or '')]
+        for k in ks: out[k] = out.get(k, 0) + 1
+    return out
+
+
+def joined_missing(key_path, blob):
+    """Nov 10 (actually missing): {prefix: n} of record ids the live key (data/us-key/US-XX.json) joins a park to that the saved copy
+    does not hold. Only these make a layer 'needed'; a short copy whose missing records sit in no joined layer asks no one."""
+    try: pk = (load_json(key_path, {}) or {}).get('parks') or {}
+    except Exception: return {}  # noqa: BLE001
+    have = {str(r.get('OBJECTID')) for r in blob.get('recs') or []}
+    out = {}
+    for q in pk.values():
+        ids = [x[0] for x in q.get('m') or [] if isinstance(x, list) and x]
+        bk = q.get('bk')
+        if isinstance(bk, list) and bk and not isinstance(bk[0], (list, dict)): ids.append(bk[0])
+        for i in ids:
+            i = str(i)
+            if i and i not in have:
+                p = prefix_of(i)
+                if p in ('trl',): continue   # trail lines live in data/trails, not in the saved copy
+                out[p] = out.get(p, 0) + 1
+    return out
+
+
+def needs_key(row): return f"{row.get('area')}|{row.get('layer')}"
+
+
+def needs_row(area, layer, url, why, source, who=None, expected=None, have=None, page=None, date=None, note='', src='', check=''):
+    w, w_why = who_for(url) if who is None else (who, '')
+    row = {'id': f'{area}|{layer}', 'area': area, 'layer': layer, 'url': str(url or ''), 'page': page or official_page(url), 'host': parts(url)[0],
+           'who': w, 'why': why + (f' ({w_why})' if w_why and w_why not in why else ''), 'expected': expected, 'have': have, 'source': source,
+           'added': date or datetime.date.today().isoformat(), 'status': 'open', 'note': note, 'src': src, 'check': check}
+    return row
+
+
+def official_page(url):
+    """The page a PERSON opens for a layer: the agency's own open-data search on ArcGIS Hub for a hosted (services*.arcgis.com) layer,
+    else the layer's own REST page (most agency servers show an 'Export' / 'Query' link there). Never fetched by a bot here."""
+    u = str(url or '').replace('svc:', '', 1).split('|')[0]
+    u = re.sub(r'/query/?$', '', u)
+    host, path = parts(u)
+    if is_arcgis_services_host(host):
+        m = re.search(r'/services/([^/]+)/(?:Feature|Map)Server', path)
+        if m: return 'https://hub.arcgis.com/search?q=' + urllib.parse.quote(m.group(1).replace('_', ' '))
+    return u
+
+
+def load_needs(path):
+    doc = load_json(path, None)
+    if not isinstance(doc, dict) or not isinstance(doc.get('rows'), list): doc = {'format': NEEDS_FORMAT, 'about': NEEDS_ABOUT, 'rows': []}
+    return doc
+
+
+NEEDS_ABOUT = ('Layers somebody must download for the saved copies. who=bot: the master step downloads it; who=person: the PC helper '
+               '(KPC-Links tools/kpc_pc_helper.py) opens the official page in a browser; who=never: nobody contacts it. Hunters and the '
+               'engine only add rows here; only the master step saves layers. One row per area|layer.')
+
+
+def merge_needs(doc, rows):
+    """Add or update rows by area|layer. A row that is already done stays done unless the new row says a NEWER need (a later date);
+    a held row stays held unless the change check reopens it.
+    Returns (doc, added, updated). Deterministic order (sorted by id)."""
+    have = {needs_key(r): r for r in doc.get('rows') or []}
+    added = updated = 0
+    for r in rows:
+        r = {k: r.get(k) for k in NEEDS_FIELDS}
+        r['id'] = needs_key(r); k = r['id']; old = have.get(k)
+        if old is None: have[k] = r; added += 1; continue
+        if old.get('status') == 'done' and r.get('status') != 'done' and str(r.get('added') or '') <= str(old.get('added') or ''): continue
+        if old.get('status') == 'held' and r.get('status') == 'open' and r.get('source') != 'change check': continue   # a held row stays held (a person decides); only a changed source reopens it
+        new = dict(old)
+        for f in NEEDS_FIELDS:
+            if f == 'added': continue
+            if r.get(f) not in (None, ''): new[f] = r[f]
+        if new != old: have[k] = new; updated += 1
+    doc['rows'] = [have[k] for k in sorted(have)]
+    doc['format'] = NEEDS_FORMAT; doc.setdefault('about', NEEDS_ABOUT)
+    return doc, added, updated
+
+
+def save_needs(doc, path):
+    p = pathlib.Path(path); p.parent.mkdir(parents=True, exist_ok=True)
+    new = json.dumps(doc, indent=1, sort_keys=True, ensure_ascii=False) + '\n'
+    if p.exists() and p.read_text(encoding='utf-8') == new: return False   # no change, no save
+    p.write_text(new, encoding='utf-8'); return True
+
+
+def needs_summary(doc):
+    c = {}
+    for r in doc.get('rows') or []:
+        if r.get('status') == 'open': c[r.get('who')] = c.get(r.get('who'), 0) + 1
+    return c
+
+
+# ---- layer files: one layer of one area, every record read, plus what the key keeps -----------------------------------------
+# GeoJSON FeatureCollection (gzip). 'kpc' says where it came from and how many records the layer itself reported for this area
+# (count_live) or a person counted (count_expected); 'features' are EVERY record read (so the count can be checked), each with
+# properties._kpc = the record as the saved copy stores it when the key keeps it (null when it is left out, e.g. a PAD-US copy).
+def layer_file_path(root, area, layer): return pathlib.Path(root) / f'{area}.{layer}.geojson.gz'   # one flat folder; the name is unique (raw-add keys on it)
+
+
+def write_layer_file(path, meta, feats):
+    p = pathlib.Path(path); p.parent.mkdir(parents=True, exist_ok=True)
+    doc = {'type': 'FeatureCollection', 'kpc': dict(meta, format=FORMAT), 'features': feats}
+    raw = json.dumps(doc, separators=(',', ':'), sort_keys=True, ensure_ascii=False).encode()
+    tmp = p.with_name(p.name + '.tmp')
+    with open(tmp, 'wb') as fh, gzip.GzipFile(fileobj=fh, mode='wb', mtime=0) as z: z.write(raw)
+    os.replace(tmp, p)   # never a half-written layer file
+    return p
+
+
+def read_layer_file(path):
+    with gzip.open(path, 'rt', encoding='utf-8') as f: doc = json.load(f)
+    return doc.get('kpc') or {}, doc.get('features') or []
+
+
+def layer_file_expected(meta):
+    """What the layer file must hold: the layer's own total for the area, else the count a person's download was checked against."""
+    for k in ('count_live', 'count_expected'):
+        if meta.get(k) not in (None, ''): return int(meta[k])
+    return None
+
+
+def prefix_of(oid): return re.match(r'[a-z]*', str(oid)).group(0)
+
+
+def merge_saved_layer(blob, layer, new_recs):
+    """Keep-bigger merge of ONE layer (OBJECTID prefix) into a saved copy blob {'recs': [...]}. The layer's records are replaced only
+    when the new read has at least as many; a smaller re-read never replaces a saved layer. Returns (blob, what)."""
+    recs = blob.get('recs') or []
+    old = [r for r in recs if prefix_of(r.get('OBJECTID')) == layer]
+    new = [r for r in new_recs if prefix_of(r.get('OBJECTID')) == layer]
+    if len(new) < len(old): return blob, f'kept the saved {layer} ({len(old)} records; the new read has {len(new)})'
+    if sorted(json.dumps(r, sort_keys=True) for r in new) == sorted(json.dumps(r, sort_keys=True) for r in old): return blob, f'{layer} unchanged ({len(old)})'
+    blob = dict(blob, recs=[r for r in recs if prefix_of(r.get('OBJECTID')) != layer] + new, saved=datetime.date.today().isoformat())
+    return blob, f'{layer}: {len(old)} -> {len(new)} records'
+
+
+def load_saved(path):
+    with gzip.open(path, 'rt', encoding='utf-8') as f: return json.load(f)
+
+
+def save_saved(path, blob):
+    """The same bytes kpc_us_key.save_cache writes (compact JSON, gzip); written to a temp file first, so it is never half-written."""
+    p = pathlib.Path(path); tmp = p.with_name(p.name + '.tmp')
+    with gzip.open(tmp, 'wt', encoding='utf-8') as f: json.dump(blob, f, separators=(',', ':'))
+    os.replace(tmp, p)
+
+
+def prefix_counts(blob):
+    c = {}
+    for r in blob.get('recs') or []: c[prefix_of(r.get('OBJECTID'))] = c.get(prefix_of(r.get('OBJECTID')), 0) + 1
+    return c
+
+
+def geojson_to_rings(g):
+    """GeoJSON (Multi)Polygon -> the key's Esri-style {'rings': [...]} (every ring, outer and holes, as the key reads them)."""
+    return {'rings': [ring for poly in polys_of(g) for ring in poly]}

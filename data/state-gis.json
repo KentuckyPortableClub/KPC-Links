@@ -1011,6 +1011,23 @@
     "lic": "see layer",
     "where": "OBJECTID IN (397680)",
     "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in NV were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-13251. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
+   },
+   {
+    "kind": "wild",
+    "ag": "Nevada Department of Wildlife wildlife management areas (NDOWWMAs)",
+    "nm": "WMA_NAME",
+    "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/ArcGIS/rest/services/NDOWWMAs/FeatureServer/0",
+    "host": "agol",
+    "note": "Nov 10: saved-copy only host (no live read); the records come from a checked hand file on the boundary-cache release"
+   },
+   {
+    "kind": "points",
+    "geom": "point",
+    "ag": "Nevada Department of Wildlife fish hatchery locations",
+    "pnm": "name",
+    "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Nevada_Department_of_Wildlife_Fish_Hatchery_Locations/FeatureServer/0",
+    "host": "agol",
+    "note": "Nov 10: POINTS (no outline): no \"nm\", so the outline key skips it; kept in the table for the point tier. Saved-copy only host; the records are a checked hand file"
    }
   ],
   "NY": [
@@ -1730,6 +1747,25 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "points",
+    "geom": "point",
+    "ag": "Wyoming Game and Fish Department hatchery locations",
+    "pnm": "NAME",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
+    "host": "agency",
+    "note": "Nov 10: POINTS (no outline): no \"nm\", so the outline key skips it; kept in the table for the point tier. Saved-copy only host; the records are a checked hand file"
+   },
+   {
+    "kind": "points",
+    "geom": "point",
+    "ag": "Wyoming Game and Fish Department river access points",
+    "pnm": "StreamName",
+    "pnm2": "LaunchLocation",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0",
+    "host": "agency",
+    "note": "Nov 10: POINTS (no outline): no \"nm\", so the outline key skips it; kept in the table for the point tier. Saved-copy only host; the records are a checked hand file"
    }
   ],
   "OH": [

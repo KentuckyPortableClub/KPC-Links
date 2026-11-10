@@ -24,7 +24,7 @@ def get(u, hdr=None, t=20):
 RB = {}
 def robots_ok(u):
     p = urllib.parse.urlparse(u); host = p.scheme + '://' + p.netloc
-    if re.match(r'services\d*\.arcgis\.com$', p.netloc, re.I): return False, 'not available for this tool'
+    if re.match(r'services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$', p.netloc, re.I): return False, 'not available for this tool'
     if host not in RB:
         rp = urllib.robotparser.RobotFileParser()
         try:

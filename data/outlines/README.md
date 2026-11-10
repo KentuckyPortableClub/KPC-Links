@@ -31,10 +31,67 @@
 2. **Paging honours the layer's own limit.** The page size is never bigger than the layer's `maxRecordCount`, and a small first page is not taken for the last one.
 3. **Official wins.** An approximate trace, a circle or a pin never overwrites an official outline. Two officials from different layers: the saved one stays and the conflict is reported.
 4. **Read master first.** Re-read one layer only when `plan` says so.
-5. **Hosts.** robots.txt is respected (a 403 means no), hub portals wait 60 s between requests, other hosts 2 s. Grant County NM's ArcGIS organisation and `ncnhde.natureserve.org` are never contacted, not even for robots.txt. No count or live read contacts any `services*.arcgis.com` host at all, robots.txt included. `apps.fs.usda.gov` uses saved copies only.
+5. **Hosts.** robots.txt is respected (a 403 means no), hub portals wait 60 s between requests, other hosts 2 s. Grant County NM's ArcGIS organisation and `ncnhde.natureserve.org` are never contacted, not even for robots.txt. No count or live read contacts any `services*.arcgis.com` host at all (`services`, `services1` to `services9` and up, and the regional ones like `services-eu1`), robots.txt included. `apps.fs.usda.gov` uses saved copies only. Redirects get the same checks: every hop is checked (host rules, then that host's robots.txt, then pacing) before it is followed, and a hop onto a forbidden host stops the request.
 6. **Protected Planet / WDPA** geometry never goes into this repo, the public pages, or the 2-fers (licence). It is only a private lookup for the managing agency.
 7. **Raw files stay out of git.** Keep them on the club Google Drive folder (backup) and on the bot's computer (working copy), and list them in `raw-manifest.json`.
 
 ## Where it plugs in
 
-`kpc-us-key.yml`, `kpc-ca-key.yml` and `kpc-world-key.yml` each run `check` and `plan` first (read master first), then `gate` on the saved copies before the build. The key scripts themselves are unchanged, so the rules hashes are unchanged.
+`kpc-us-key.yml`, `kpc-ca-key.yml` and `kpc-world-key.yml` each run `check` and `plan` first (read master first), then `gate` on the saved copies before the build.
+
+## The master step (Nov 10): one owner of the saved copies
+
+In `kpc-us-key.yml` one step, **THE MASTER STEP** (`kpc_master_cli.py fill`), runs between the plan and the gate. It is the only writer
+of the saved copies (`US-XX.json.gz` on the boundary-cache release); the build after it only reads them (`KPC_MASTER_OWNS=1`).
+
+1. **The work list.** The open rows of the needs-download list for the job's states, the copies that are short against their gate
+   baseline, the state-GIS layers a copy has no records from (new layers), and the checked downloads a person sent
+   (`hand-US-XX.<layer>.geojson.gz` on the release, from the PC helper). With `refresh=all` (the fresh start) the list is every layer of every state.
+2. **Read where allowed.** The host rules come first (never-contact hosts, every `services*.arcgis.com` host, the saved-copy-only list).
+   Then robots.txt, where a 403 counts as no. The key reads each layer into one layer file (`kpc_us_key.py` with `KPC_REFILL_ONLY=1
+   KPC_LAYER_OUT`). A person's download is read the same way (`KPC_LAYER_IN`), so it gets the same shaping.
+3. **Per layer file:** the count must reach the layer's own total (fail closed) → `trim` → `raw-add` → the keep-bigger merge into the saved
+   copy (a smaller read never replaces a saved layer). The existing save step uploads what changed. The gate and its baselines are unchanged.
+4. **The ONE needs-download list** (KPC-Data `data/needs-download.json`, one schema: id, area, layer, url, page, host, who, why, expected,
+   have, source, added, status, note). who=`bot` means a bot downloads it, `person` means a person does it with the PC helper, and `never` means nobody contacts that server.
+   The KPC-Data bots (hunters, finders, collector, engine) only add rows to it and never save layers. The US key's rows go up as the
+   release asset `needs-download.json`, and KPC-Data's hourly copy job merges them in.
+
+US only for now. The Canada and world keys keep their gate. Their key scripts share the same host rules, but no master step fills
+their copies yet. That needs the same reader mode in `kpc_ca_key.py` / `kpc_world_key.py`, which is more than a simple hook.
+
+The PC helper for the who=`person` rows is `tools/kpc_pc_helper.py`, with plain steps in `tools/README-pc-helper.md`.
+
+## download-sources.json (Nov 10): the official download sources and the change check
+
+One entry per official download source from the hand-filled layer list: `areas`, `layer`, `page`, `file` (a direct file when
+there is one), `format`, `stated_count`, `version` (as the page states it), `kind` (`first-party`, `fallback` = only PAD-US or
+CPCAD, which the keys read already, `none` = none found yet), `check` (`bot` = a bot may check it for a change; `person`),
+`terms` (always "see the source page": the terms are on each page, not copied here), and `fp`, the last-seen fingerprint
+(size, Last-Modified, ETag, stated version, record count) with `fp_seen` and `changed`.
+
+`kpc_master_cli.py watch` runs in the US key join step (no own schedule). Allowed requests only: `kpc_master.live_ok`, then
+robots.txt (a 403 = no), the per-host pacer (60 s on hub portals); never a services*.arcgis.com host or a never-contact host.
+A HEAD of the direct file, or the ScienceBase item JSON. The first check only sets the baseline. A later difference in a field
+both checks read reopens that source's rows in the needs-download list (source `change check`), and only then a person is asked.
+A held row (fallback only / none found) stays held unless its source changes.
+
+## Asking only for what is actually missing (Nov 10)
+
+- **The master step** lists a layer only when the live key (`data/us-key/US-XX.json`) joins a park to a record of it that the
+  saved copy does not hold, or when a layer of the state's own has no records in the copy at all (a new layer). A copy that is
+  short of its baseline is not, by itself, a reason to ask anyone.
+- **The seed** checks every saved copy before it opens a row: `US-XX` by the layer id (OBJECTID prefix; the US key's own prefix
+  for a row with no id), `CA-ALL` by the Canada layer id (the first 12 letters of the label) or the source label, `W-XX` by the
+  source label (or its equivalent in a box-side map when the label differs). A layer the copy holds is a done row.
+- **An official direct file** a bot may fetch (by the same host rules) makes the row a bot's. The fresh-start run
+  (`refresh=all`) downloads it with `fill --official-files`: the pre-request host check, then robots.txt (a 403 = no), then the
+  per-host pacing (60 s on hub portals). Nothing is downloaded on any other run.
+- **`kpc_master_cli.py import-existing`** (run on the box) takes in the downloads already made: the hand map, the downloads
+  table, the Drive index and the research inbox. It writes raw facts only (name, size, sha256, date, source, record count) to
+  `raw-manifest.json`, marks the rows those files cover as done (source `existing download`), and builds checked hand files
+  for rows whose records are only in a box file (`hand-US-XX.<layer>`, `hand-CA.<name>`, `hand-W-XX.<layer>`). `--upload`
+  puts them on the boundary-cache release. A US hand file is merged by the master step; a Canada one by the Canada key
+  (`KPC_CA_HAND`); the world key does not read hand files yet.
+- Point layers (hatcheries, river access points) have a table entry in `data/state-gis.json` without `nm`: the outline key
+  skips them (a point is not an outline); their checked hand files are kept for the point tier.

@@ -328,12 +328,13 @@ def _retry_wait(u, i):
 SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
 # Nov 10: every services*.arcgis.com host (services2 ... services9 too) is never contacted, robots.txt included (the same rule as
 # kpc_master.live_ok): its layers fail into the saved-copy / HOLD path at once.
-_ARCGIS_SERVICES = re.compile(r'^services\d*\.arcgis\.com$')
+NEVER_HOSTS = {'ncnhde.natureserve.org'}   # Nov 10 (standing rule): no request of any kind; Grant County NM's org is a services.arcgis.com path, covered above
+_ARCGIS_SERVICES = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
 
 
 def saved_only(u):
     h = urllib.parse.urlsplit(str(u)).netloc.lower().split(':')[0]
-    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h))
+    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h)) or h in NEVER_HOSTS   # Nov 10: a never-contact host is never read live either
 
 
 def fetch_bytes(u, tries=None, timeout=None, deadline=None, total=None, maxbytes=None, parse=None):

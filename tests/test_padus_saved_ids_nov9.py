@@ -83,8 +83,8 @@ check('no name-kept record, no change', U.prefer_state_layer('ID', [lay], P) == 
 src_full = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
 check('run(): state layer read with name-only records left out of its duplicate list', "_have([a for a in recs if not a.get('KPC_NameKeep')])" in src_full)
 check('run(): saved ids topped up on the saved-copy path too', 'saved_fetch(st, P, recs)' in src_full.split('def run(st)')[1].split('if _kr(')[0])
-check('no new host: the by-id ask uses the PAD-US query url Q only', 'nationalmap.gov' in U.Q and 'arcgis.com/33TOOklri9xpic7U' not in src_full and 'natureserve' not in src_full)
+check('no new host: the by-id ask uses the PAD-US query url Q only', 'nationalmap.gov' in U.Q and 'arcgis.com/33TOOklri9xpic7U' not in src_full and 'natureserve' not in '\n'.join(l for l in src_full.splitlines() if not l.lstrip().startswith('NEVER_HOSTS')))   # Nov 10: named only in the never-contact refusal list
 check('the 11:24 AM OK recorded (date only) with the new US hash', 'Nov 9, 2026, 11:24 AM CST' in (ROOT / 'docs/key-rules-change.txt').read_text() and KZ.rules_hash('us-key') in (ROOT / 'docs/key-rules-change.txt').read_text())
-check('rules hashes: US da660f0d5ae7, CA b1a521708978, world unchanged, fers c2456edee62e',
-      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key'), KZ.rules_hash('fers')) == ('da660f0d5ae7', 'b1a521708978', '1a8913a378bb', 'c2456edee62e'))
+check('rules hashes: US 6395b561d4c8, CA 0ebc381a788f, world unchanged, fers c2456edee62e',
+      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key'), KZ.rules_hash('fers')) == ('6395b561d4c8', '0ebc381a788f', '022f06d08d3c', 'c2456edee62e'))
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)
