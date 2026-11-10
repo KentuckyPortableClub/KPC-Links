@@ -605,6 +605,33 @@ def keep_paging(n_got, page, exceeded, n_new=None):
 
 
 CQ_KEEP = ('where', 'geometry', 'geometryType', 'inSR', 'spatialRel')
+HOP_HANDLERS = ()   # extra urllib handlers (tests put a stand-in server here)
+HOP_ROBOTS = {}     # robots.txt answers per host, for redirect hops
+
+
+def _hop_ok(u):
+    """Nov 10: every redirect hop of a layer read or count gets the same checks as the first request: the saved-copy-only and
+    never-contact hosts (saved_only), the master's host rule (live_ok), then that host's robots.txt (a 403 means no)."""
+    if saved_only(u): raise KMASTER.LiveNotAllowed(f'redirect refused: saved copy only: {urllib.parse.urlparse(u).netloc}')
+    ok, why = KMASTER.live_ok(u)
+    if not ok: raise KMASTER.LiveNotAllowed(f'redirect refused: {why}')
+
+    def robots_get(ru):
+        req = urllib.request.Request(ru, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+        try:
+            with KMASTER.checked_opener(_hop_host_ok, HOP_HANDLERS).open(req, timeout=60) as r: return r.status, r.read().decode('utf-8', 'replace')
+        except urllib.error.HTTPError as e: return e.code, ''
+    if not KMASTER.robots_allows(u, robots_get, HOP_ROBOTS):
+        raise KMASTER.LiveNotAllowed(f'redirect refused: {urllib.parse.urlparse(u).netloc}: robots.txt does not allow this read')
+
+
+def _hop_host_ok(u):   # a robots.txt fetch that redirects: host rules only
+    if saved_only(u) or not KMASTER.live_ok(u)[0]: raise KMASTER.LiveNotAllowed(f'redirect refused: {urllib.parse.urlparse(u).netloc}')
+
+
+def checked_open(req, timeout):
+    """urlopen through the master's checked-redirect opener (kpc_master.checked_opener): a hop is followed only after _hop_ok."""
+    return KMASTER.checked_opener(_hop_ok, HOP_HANDLERS).open(req, timeout=timeout)
 
 
 def count_query(url, q, box=True):
@@ -616,7 +643,7 @@ def count_query(url, q, box=True):
     c.update({'returnCountOnly': 'true', 'returnGeometry': 'false', 'f': 'json'})
     try:
         req = urllib.request.Request(url + '?' + urllib.parse.urlencode(c), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-        j = json.loads(urllib.request.urlopen(req, timeout=120).read().decode('utf-8', 'replace'))
+        with checked_open(req, 120) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
         return int(j['count']) if not j.get('error') and j.get('count') is not None else None
     except Exception: return None  # noqa: BLE001
 
@@ -634,7 +661,7 @@ def fetch_geo(url, q, timeout=180, max_records=None, page=None):
         q = dict(q, maxAllowableOffset=det, geometryPrecision=pr, resultRecordCount=want)
         try:
             req = urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-            j = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'replace'))
+            with checked_open(req, timeout) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
             if j.get('error'): raise RuntimeError(str(j['error'])[:150])
             return j, q['resultRecordCount']
         except Exception as e:  # noqa: BLE001

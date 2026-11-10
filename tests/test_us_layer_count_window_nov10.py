@@ -67,9 +67,11 @@ class Resp:
 def make_ns(server, xs, maxrec=1000, layer_out=True):
     fake_req = types.SimpleNamespace(Request=lambda u, headers=None: u, urlopen=lambda u, timeout=0: Resp(json.dumps(server.answer(u)).encode()))
     urllib_ns = types.SimpleNamespace(request=fake_req, parse=urllib.parse)
+    # every read and count goes through checked_open (the master's checked-redirect opener); here a direct stand-in transport
+    kmaster = types.SimpleNamespace(checked_opener=lambda check, handlers=(): types.SimpleNamespace(open=lambda u, timeout=0: Resp(json.dumps(server.answer(u)).encode())))
     ns = {'urllib': urllib_ns, 'json': json, 're': re, 'time': types.SimpleNamespace(sleep=lambda s: None, strftime=lambda f: '2026-11-10'),
           'saved_only': lambda u: False, 'DETAIL': 0.001, 'PREC': 5, 'PAGE': 200, 'st_box': lambda st: [-87.6, 25.1, -80.0, 31.0],
-          'XS': xs, 'resolve': lambda pre, url, nf, af: (url, nf, af, 'OBJECTID'), 'LAYER_MAXREC': {x[0]: maxrec for x in xs},
+          'XS': xs, 'KMASTER': kmaster, 'HOP_HANDLERS': (), 'resolve': lambda pre, url, nf, af: (url, nf, af, 'OBJECTID'), 'LAYER_MAXREC': {x[0]: maxrec for x in xs},
           'SF': types.SimpleNamespace(mapping=lambda *a: {}, extra_fields=lambda m: []), 'SFIELDS': {}, 'SFMAP': {}, 'RAWF': {}, 'XCOUNT': {},
           'LAYER_OUT': pathlib.Path('/nonexistent') if layer_out else None, '_layer_in': lambda st, pre: None, 'notes': [],
           'FAILED_READ': set(), 'OVR': {}, 'kinds': lambda nm: set(), 'norm': lambda s: s.lower(), '_dup': lambda *a: False, '_nf': lambda s: s,
@@ -137,7 +139,7 @@ UT = ('sgaki', AK[1], 'RESNAME', '', set(), 'NRHP (land, state GIS table)', 'STA
 nrhp = Server([(i, True) for i in range(401000, 401300)], window=False, count_mode='cap')
 ns = make_ns(nrhp, [AK, UT])
 written = []
-ns.update({'RESOLVED': {}, '_save_row': lambda a: a, 'KMASTER': types.SimpleNamespace(prefix_of=lambda o: re.match(r'[a-z]*', str(o)).group(0),
+ns.update({'RESOLVED': {}, '_save_row': lambda a: a, 'KMASTER': types.SimpleNamespace(checked_opener=ns['KMASTER'].checked_opener, prefix_of=lambda o: re.match(r'[a-z]*', str(o)).group(0),
            esri_to_geojson=lambda g: g, layer_file_path=lambda *a: a, write_layer_file=lambda p, meta, feats: written.append((meta, feats)))})
 exec(compile(chunk('def _write_layer_files', 'def save_cache'), 'kpc_us_key.py', 'exec'), ns)
 add = ns['extra_state']('UT', {}, only={'sgaki'})
