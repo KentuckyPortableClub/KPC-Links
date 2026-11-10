@@ -52,12 +52,17 @@ n = K.hold_no_owner(rows, root=str(HERE))
 check(n == 2 and rows[5]['status'].startswith('not sure: no ownership source') and rows[2]['status'].startswith('not sure'), 'blank owner with no official agency outline is held NOT SURE')
 check(rows[0]['status'] == 'candidate' and str(rows[0].get('ownership') or '').startswith('public land'), 'official agency outlines (Banff x Jasper) count as public land, no separate owner source')
 check(rows[1]['status'] == 'candidate' and rows[3]['status'] == 'candidate' and rows[4]['status'] == 'not sure: x', 'rows with an ownership source untouched')
-# point-circle and approximate stay flagged even when a source is missing
+# point-circle and approximate pairs become an approximate 2-fer, not a drop
 import kpc_fers_key_status as KS
 KS.clear(); KS.KEY_STATUS['US-APX-1'] = 'approximate'; KS.KEY_STATUS['US-APX-2'] = 'approximate'
-apx = [{'kind': 'area', 'status': 'candidate', 'refs': ['US-APX-1', 'US-APX-2']}]
+apx = [{'kind': 'area', 'status': 'candidate', 'refs': ['US-APX-1', 'US-APX-2'], 'approx': True, 'tier': 'approximate'}]
 n2 = K.hold_no_owner(apx, root=str(HERE))
-check(n2 == 1 and apx[0]['status'].startswith('not sure: no ownership source'), 'approximate pair stays flagged')
+check(n2 == 0 and apx[0]['status'] == 'candidate', 'approximate pair is not held for a blank owner')
+d = K.pc_tag({'spots': [dict(apx[0])]})
+check(d['spots'][0]['tier'] == 'approximate' and 'Not the official boundary' in d['spots'][0].get('approx_note',''), 'pc_tag writes the approximate 2-fer note')
+# WDPA / Protected Planet is never a public 2-fer source
+check(K.is_wdpa_outline({'src': 'WDPA', 'gsrc': 'protectedplanet.net'}), 'WDPA outline is detected')
+check(not K.is_wdpa_outline({'src': ['PAD-US'], 'g': 'official'}), 'a PAD-US outline is not treated as WDPA')
 KS.clear()
 
 # Canada: no 'ow' text -> manager / source name

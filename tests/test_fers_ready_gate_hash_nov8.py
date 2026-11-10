@@ -51,22 +51,19 @@ KS.KEY_BY_AREA['US-12235'] = {'US-PA': 'approximate'}
 KS.KEY_BY_AREA['US-9999'] = {'US-PA': 'official'}
 
 
-def river_trail_hold(refs, kind, areas=None):
-    """Same gate decide() uses for river/trail approximate halves."""
+def river_trail_approx(refs, kind, areas=None):
+    """Approximate river/trail halves are an approximate 2-fer, not a hold."""
     if kind not in ('river', 'trail'):
-        return ''
-    apx = [r for r in refs if KS.status_for(r, (areas or {}).get(r)) == 'approximate']
-    if not apx:
-        return ''
-    return 'not sure: approximate outline on a river/trail half (' + ', '.join(apx) + ')'
+        return []
+    return [r for r in refs if KS.status_for(r, (areas or {}).get(r)) == 'approximate']
 
 
-check(river_trail_hold(['US-12235', 'US-9999'], 'river'), 'approx river half -> not sure hold')
-check(not river_trail_hold(['US-9999', 'US-8888'], 'river'), 'official river halves -> no hold')
-check(not river_trail_hold(['US-12235', 'US-9999'], 'area'), 'area kind still uses key_line_match path (not this hold)')
-# area approximate still caught by key_line_match
+check(river_trail_approx(['US-12235', 'US-9999'], 'river') == ['US-12235'], 'approx river half is tagged, not held')
+check(not river_trail_approx(['US-9999', 'US-8888'], 'river'), 'official river halves -> not approximate')
+check(not river_trail_approx(['US-12235', 'US-9999'], 'area'), 'area kind is tagged in decide, not this helper')
+# area approximate is allowed as an approximate 2-fer (not blocked)
 msg = KS.key_line_match(['US-12235', 'US-9999'], 'area')
-check(bool(msg), f'area+approximate still blocked by key_line_match: {msg!r}')
+check(msg == '', f'area+approximate allowed as approximate 2-fer: {msg!r}')
 
 # --- 3) fers rules hash declared; us/ca/world unchanged
 KF = load('kpc_key_freeze', HERE / '.github/scripts/kpc_key_freeze.py')
@@ -125,7 +122,7 @@ with tempfile.TemporaryDirectory() as td:
 
 # decide() source contains the approx river/trail hold (string check — bot is heavy to import)
 fers_src = (HERE / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
-check('approximate outline on a river/trail half' in fers_src, 'kpc_fers.decide holds approx river/trail')
+check('approximate 2-fer' in fers_src and 'APX_NOTE' in fers_src, 'kpc_fers tags approximate 2-fers instead of holding them')
 check('fers-ready-areas' in fers_src and 'FREADY' in fers_src, 'kpc_fers.main calls ready-areas gate')
 check("rep['fers_rules']" in fers_src or 'fers_rules' in fers_src, 'run report records fers_rules')
 

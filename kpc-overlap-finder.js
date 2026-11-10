@@ -19,6 +19,8 @@
   var SHORT = '⚠️ Parks\' boundaries may overlap here, but we can\'t confirm it. Check both official boundary maps and make your own call before you count it.';   /* Brandon Oct 27 4:23 PM: 'Say this instead' */
   var YD = 1.09361, BAND = 30.48, COL = ['#0072B2', '#D55E00', '#009E73', '#CC79A7', '#56B4E9', '#8E6CEF', '#9A9A9A', '#F0E442', '#E69F00'];   /* Brandon Oct 27 3:04 PM: no gold/orange for the first parks: gold is the overlap */
   var DASH = ['', '12 6', '3 6', '12 6 3 6', '2 8', '18 6 4 6 4 6', '8 4', '1 5 9 5', '22 8'];
+  var APX_COL = ['#B85C38', '#3D5A80', '#6B4C9A', '#8A5A00', '#4A6B4A', '#7A3D5C'];  /* distinct from confirmed park colours and from gold overlap */
+  var APX_NOTE = 'Not the official boundary. We believe this is a 2-fer, but it needs more research.';
   var MEMBER = !window.KPCGate || KPCGate.member();
   function toast(t) { var e = $('ovToast'); e.textContent = t; e.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { e.hidden = true; }, 4500); }
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
@@ -98,7 +100,14 @@
       return '<li><b>Place ' + (i + 1) + '</b>: ' + sz + (tierOf(s) === 'small' ? ' · <i>small: tight fit</i>' : '') + ' <button type="button" class="ov-pl" data-place="' + esc(g.key) + '|' + i + '">🗺 SHOW</button>' + accLine(s) + '</li>'; }).join('') + '</ol></details>';
   }
   var APPROX = {};   /* ref -> source, for parks whose outline is only approximate (W-2: never shown as Official) */
-  function apxLine(refs) { var a = (refs || []).filter(function (r) { return APPROX[r]; }); return a.length ? '<p class="ov-note" style="color:#8a5a00"><b>Approximate outline</b> for ' + a.map(esc).join(', ') + ' (' + esc(APPROX[a[0]]) + '), not the official boundary.</p>' : ''; }
+  function isApxSpot(s) { return !!(s && (s.tier === 'approximate' || s.tier === 'point-circle' || s.approx || s.approx_note || (s.official_boundary === false && (s.pc_note || s.point_circle)))); }
+  function apxPair(ps) { return (ps || []).some(isApxSpot); }
+  function apxNoteOf(ps) { var n = ''; (ps || []).forEach(function (s) { if (s && s.approx_note) n = s.approx_note; }); return n || APX_NOTE; }
+  function apxLine(refs, ps) {
+    if (apxPair(ps)) return '<p class="ov-note ov-apx" style="color:#8a5a00">' + esc(apxNoteOf(ps)) + '</p>';
+    var a = (refs || []).filter(function (r) { return APPROX[r]; });
+    return a.length ? '<p class="ov-note ov-apx" style="color:#8a5a00">' + esc(APX_NOTE) + '</p>' : '';
+  }
   /* Nov 9 2026: a 2-fer with a point-circle park says so on its card, popups and export */
   function pcNotes(s) { var o = (s && s.pc_note) || {}; return Object.keys(o).map(function (r) { return [r, o[r]]; }); }
   function pcLine(ps) { var seen = {}, out = ''; (ps || []).forEach(function (s) { pcNotes(s).forEach(function (x) { if (seen[x[0]]) return; seen[x[0]] = 1; out += '<p class="ov-note ov-pc" style="color:#8a5a00">📍 <b>' + esc(x[0]) + '</b>: ' + esc(x[1]) + '</p>'; }); }); return out; }
@@ -108,8 +117,9 @@
       (s.label ? '<span class="ov-badge bg-off">' + esc(s.label.toUpperCase()) + '</span>' : '') + (ps.some(function (x) { return x._saved; }) ? '<span class="ov-badge bg-off">CHECKED ON OUR SAVED OUTLINE ONLY</span>' : '') +
       '<b class="t" style="margin-top:6px">' + g.refs.map(function (r) { return esc(r) + ' ' + esc(nm(g, r)); }).join(' + ') + '</b>' +
       '<span class="m">' + sizeLine(g, ps) + (here && g._mi != null ? ' · ' + Math.round(g._mi) + ' mi from you' : '') + '</span>' +
-      (ps.some(function (x) { return x.tier === 'point-circle'; }) ? '<span class="ov-badge bg-small">POINT CIRCLE: NO OFFICIAL BOUNDARY</span>' : '') +
-      '<p class="ov-note">Last checked ' + niceDate(s.checked || s.found || '') + '</p>' + apxLine(g.refs) + pcLine(ps) + (ps.length > 1 ? '' : accLine(s)) +
+      (apxPair(ps) ? '<span class="ov-badge bg-apx">APPROXIMATE 2-FER</span>' : '') +
+      (ps.some(function (x) { return x.tier === 'point-circle' || x.point_circle; }) ? '<span class="ov-badge bg-small">POINT CIRCLE: NO OFFICIAL BOUNDARY</span>' : '') +
+      '<p class="ov-note">Last checked ' + niceDate(s.checked || s.found || '') + '</p>' + apxLine(g.refs, ps) + pcLine(ps) + (ps.length > 1 ? '' : accLine(s)) +
       '<div class="acts"><button type="button" data-open="' + esc(g.key) + '">🗺 SHOW ON THE MAP</button></div>' +
       /* Brandon Oct 27 2:48 PM: 'see more after the last checked date to reveal the other info' */
       '<details class="ov-more"><summary>SEE MORE</summary>' + (ps.length > 1 ? placesHtml(g, ps) : '') +
@@ -266,7 +276,8 @@
     var g = ROWS.filter(function (r) { return r.key === key; })[0]; if (!g) return;
     showTab('map'); if (!mkMap()) { $('ovSpot').innerHTML = '<p class="ov-note">The map could not load (no signal?). The list still works.</p>'; return; }
     cur = g; OVON = true; stopGps(); meas = []; lastIn = false; leftUntil = 0; if (pinM) { map.removeLayer(pinM); pinM = null; }
-    cur.rings = patchRings(g); parks = g.refs.map(function (r, i) { return { ref: r, n: i + 1, c: COL[i], dash: DASH[i], on: true, fs: null }; });
+    cur.rings = patchRings(g); var _apx = apxPair(visiblePatches(g) || g.patches || []);
+    parks = g.refs.map(function (r, i) { return { ref: r, n: i + 1, c: (_apx ? APX_COL : COL)[i % (_apx ? APX_COL : COL).length], dash: DASH[i], on: true, fs: null, apx: _apx }; });
     spotPanel(); legend(); mapKey(); step = 0; clearTimeout(timer);
     /* Brandon Oct 27 5:59 PM (Pine Mountain trail + Jefferson NF WMA opened zoomed out with the overlap in a corner): fit to the MAIN
        place only (the biggest, first in the list), so it sits zoomed in, in the middle; the other stretches/places are still drawn */
@@ -389,7 +400,7 @@
     var B = window.KPCB; (B && B.ringsOf ? B.ringsOf(f.geometry) : []).forEach(function (poly) {
       var ll = poly.map(function (r) { return r.map(function (q) { return [q[1], q[0]]; }); });
       if (look === 2) cur.rings.forEach(function (x) { var c = x.s.center ? [x.s.center[1], x.s.center[0]] : x.ring[0], hit = poly[0] && (pip(c[0], c[1], poly[0]) || x.ring.some(function (q) { return pip(q[0], q[1], poly[0]); })); if (hit) ll.push(x.ring.map(function (q) { return [q[1], q[0]]; })); });   /* the overlap punched out of the piece it sits in: it stays clear */
-      gAll.addLayer(L.polygon(ll, { color: p.c, weight: 3, dashArray: p.dash, fillColor: p.c, fillOpacity: 0.3, fillRule: 'evenodd', className: cls, interactive: act }).bindPopup(parkPop(p)));
+      gAll.addLayer(L.polygon(ll, { color: p.c, weight: p.apx ? 1.5 : 3, dashArray: p.dash, fillColor: p.c, fillOpacity: p.apx ? 0.14 : 0.3, fillRule: 'evenodd', className: cls + (p.apx ? ' ov-apx' : ''), interactive: act }).bindPopup(parkPop(p)));
     });
   }
   function liveLines() { var o = []; if (cur) visiblePatches(cur).forEach(function (s) { [s].concat(s._kids || []).forEach(function (x) { if (x.lines && typeof x.lines === 'object') o.push(x.lines); }); }); return o; }
@@ -439,7 +450,7 @@
       var cls = fading && i === step - 1 ? 'ov-in' : '';
       (p.fs || []).forEach(function (f) {
         if (look === 2 || look === 3) { tint(p, f, cls, act); return; }
-        var gl = L.geoJSON(f, { style: { color: p.c, weight: 3, opacity: hasLines ? 0.35 : 1, dashArray: p.dash, fillColor: p.c, fillOpacity: shade ? 0 : 0.08, className: cls }, interactive: act }).bindPopup(parkPop(p)); gAll.addLayer(gl); p._g.push(gl); });
+        var gl = L.geoJSON(f, { style: { color: p.c, weight: p.apx ? 1.5 : 3, opacity: hasLines ? 0.35 : 1, dashArray: p.dash, fillColor: p.c, fillOpacity: shade ? 0 : (p.apx ? 0.05 : 0.08), className: cls + (p.apx ? ' ov-apx' : '') }, interactive: act }).bindPopup(parkPop(p)); gAll.addLayer(gl); p._g.push(gl); });
       /* Brandon Oct 27 5:29 PM ('the overlap lines … do not look like they follow the boundary lines'): the gold border is cut from the agency's
          LIVE full-detail map, the park lines above are our saved copy (a few yards different, up to ~20). When the data carries the live
          edges near the spot (s.lines {ref: [[[lon,lat]…]…]}, chat 2), they are drawn bold and the saved copy goes faint. */
@@ -456,10 +467,10 @@
       if (look === 1) gAll.addLayer(L.polygon(ll, { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fc, interactive: act }).bindPopup(patchPop(x.s)));
       else if (look === 2) { gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 8, opacity: 0.95, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#111', weight: 3, dashArray: '10 6', fill: true, fillOpacity: 0, className: fc, interactive: act }).bindPopup(patchPop(x.s))); }
       else if (look === 3) gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 5, fillColor: '#ffd34d', fillOpacity: 0.85, className: 'ov-glow' + fc, interactive: act }).bindPopup(patchPop(x.s)));
-      else { gAll.addLayer(L.polygon(ll, { color: '#111', weight: 7, opacity: 0.85, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#ffd34d', weight: 4, dashArray: '14 10', fill: true, fillColor: '#ffd34d', fillOpacity: 0.2, className: 'ov-march' + fc, interactive: act }).bindPopup(patchPop(x.s))); }
+      else { var _aw = (parks[0] && parks[0].apx); gAll.addLayer(L.polygon(ll, { color: '#111', weight: _aw ? 4 : 7, opacity: 0.85, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#ffd34d', weight: _aw ? 2 : 4, dashArray: '14 10', fill: true, fillColor: '#ffd34d', fillOpacity: _aw ? 0.12 : 0.2, className: 'ov-march' + fc, interactive: act }).bindPopup(patchPop(x.s))); }
     });
     parks.forEach(function (p, i) { if (i >= step || !p.on) return; var c = (p.fs && p.fs[0] && L.geoJSON(p.fs[0]).getBounds().getCenter()) || (cur.rings[0] && L.latLng(cur.rings[0].ring[0][1], cur.rings[0].ring[0][0]));
-      if (c) gAll.addLayer(L.marker(c, { interactive: !mode, icon: L.divIcon({ className: '', html: '<span class="ov-plab" style="border-color:' + p.c + '"><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span>' + esc(p.ref) + '</span>', iconSize: null, iconAnchor: [14, 14] }) }).bindPopup(parkPop(p))); });
+      if (c) gAll.addLayer(L.marker(c, { interactive: !mode, icon: L.divIcon({ className: '', html: '<span class="ov-plab' + (p.apx ? ' ov-apx' : '') + '" style="border-color:' + p.c + (p.apx ? ';font-size:11px;transform:scale(.82);transform-origin:left center' : '') + '"><span class="ov-num" style="background:' + p.c + (p.apx ? ';width:16px;height:16px;font-size:10px' : '') + '">' + p.n + '</span>' + esc(p.ref) + '</span>', iconSize: null, iconAnchor: p.apx ? [11, 11] : [14, 14] }) }).bindPopup(parkPop(p))); });
     var pins = []; visiblePatches(cur).forEach(function (s) { [s.access_pin].concat(s.pins || []).forEach(function (a) { if (a && a.at && pins.length < 3 && !pins.some(function (q) { return q.at[0] === a.at[0] && q.at[1] === a.at[1]; })) pins.push(a); }); });
     pins.forEach(function (a) { gAll.addLayer(L.marker(a.at, { interactive: !mode, icon: L.divIcon({ className: '', html: '<span style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:5px;background:#1d4d7a;color:#fff;border:2px solid #fff;font:900 14px Arial">P</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) })
       .bindPopup('<b>Closest spot to public access</b><br>' + esc(a.name || '') + ' (' + esc(a.from || '') + '), about ' + Math.round((a.walk_m || 0) * YD) + ' yards from it.<br><small>' + esc(a.note || '') + '</small><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + a.at[0] + ',' + a.at[1] + '">Directions (to the access, not to the overlap)</a><span class="ov-short">' + SHORT + '</span>')); });
@@ -485,9 +496,9 @@
   }
   function parkPop(p) { var s = cur.best, m = (s.maps || []).filter(function (x) { return x[0] === p.ref; })[0];
     return '<span class="ov-num" style="background:' + p.c + ';display:inline-grid;width:22px;height:22px;border-radius:50%;place-items:center;font-weight:900">' + p.n + '</span> <b>' + esc(p.ref) + ' · ' + esc(nm(cur, p.ref)) + '</b>' + (p.line ? '<br>A line park: the band = POTA\'s 100 ft from the line.' : '') +
-      (s.pc_note && s.pc_note[p.ref] ? '<br><span style="color:#8a5a00">📍 ' + esc(s.pc_note[p.ref]) + '</span>' : '') +
+      (p.apx || (s && s.approx_note) ? '<br><span style="color:#8a5a00">' + esc((s && s.approx_note) || APX_NOTE) + '</span>' : '') + (s.pc_note && s.pc_note[p.ref] ? '<br><span style="color:#8a5a00">📍 ' + esc(s.pc_note[p.ref]) + '</span>' : '') +
       '<br>' + (m ? '<a target="_blank" rel="noopener" href="' + esc(m[1]) + '">Official map</a> · ' : '') + '<a target="_blank" rel="noopener" href="https://pota.app/#/park/' + esc(p.ref) + '">POTA page</a>'; }   /* Brandon: the overlap message only on the overlap */
-  function patchPop(s) { return pcLine([s]) + '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : s.kind === 'river' ? 'Possible river overlap (100 ft from the bank)' : 'Possible overlap') + '</b><br>' + cur.refs.map(function (r) { return '<b>' + esc(r) + '</b> ' + esc(nm(cur, r)); }).join('<br>') + '<br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
+  function patchPop(s) { return (isApxSpot(s) ? '<p class="ov-note ov-apx" style="color:#8a5a00">' + esc(apxNoteOf([s])) + '</p>' : '') + pcLine([s]) + '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : s.kind === 'river' ? 'Possible river overlap (100 ft from the bank)' : 'Possible overlap') + '</b><br>' + cur.refs.map(function (r) { return '<b>' + esc(r) + '</b> ' + esc(nm(cur, r)); }).join('<br>') + '<br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
     'Last checked ' + esc(s.checked || '') + apxLine(cur.refs).replace(/<\/?p[^>]*>/g, '<br>') + '<span class="ov-short">' + SHORT + '</span>'; }
   function spotPanel() {
     var g = cur, ps = visiblePatches(g); $('ovSpot').innerHTML = rowHtml(g, ps).replace('class="ov-row"', 'class="ov-row" style="cursor:default;border:0;padding:0"').replace(/<button type="button" data-open="[^"]*">[^<]*<\/button>/, '') + '<p class="ov-note">One log per park (POTA): upload a log for each park number.</p><div data-gps-refs="' + esc((g.refs || []).join(',')) + '"></div>';

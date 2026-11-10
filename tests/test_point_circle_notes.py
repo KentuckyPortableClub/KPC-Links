@@ -15,7 +15,8 @@ INSIDE = re.compile(r'brandon|t9\d\du|quality|bot\b|rule|hash|decided|tier', re.
 def fers_funcs():
     src = (ROOT / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
     tree = ast.parse(src); keep = [n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name in ('pc_note', 'pc_tag')]
-    g = {'re': re, 'PC': {'CA-0754': E}, 'PCT': {'CA-0754'}, 'PC_LIST': 'point-circle'}
+    # APX_PARKS is read inside pc_tag
+    g = {'re': re, 'PC': {'CA-0754': E}, 'PCT': {'CA-0754'}, 'PC_LIST': 'point-circle', 'APX_PARKS': set()}
     exec(compile(ast.Module(body=keep, type_ignores=[]), 'kpc_fers.py', 'exec'), g); return g
 
 
@@ -25,7 +26,8 @@ def test_python_note_and_tag():
     assert not INSIDE.search(WANT)
     d = g['pc_tag']({'spots': [{'refs': ['CA-0754', 'CA-0001']}, {'refs': ['CA-0002', 'CA-0003']}]})
     a, b = d['spots']
-    assert a['tier'] == 'point-circle' and a['official_boundary'] is False and a['pc_note'] == {'CA-0754': WANT}
+    assert a['tier'] == 'approximate' and a['official_boundary'] is False and a['pc_note'] == {'CA-0754': WANT}
+    assert a.get('approx_note', '').startswith('Not the official boundary.')
     assert 'pc_note' not in b and 'tier' not in b                 # a normal 2-fer gets no note
     g['PC']['X-1'] = {'kind': 'point-circle-100ft', 'pt': [0, 0]}  # no record data: the note still reads cleanly
     assert g['pc_note']('X-1').startswith('No official boundary on file. Using a 100 ft circle around the agency\u2019s official point. ')
@@ -55,7 +57,8 @@ def test_js_cards_same_text():
 def test_every_card_wired():
     ov = (ROOT / 'kpc-overlap-finder.js').read_text(encoding='utf-8')
     fn = lambda name: re.search(r'function ' + name + r'\(.*?\n  function ', ov, re.S).group(0)
-    assert 'pcLine(ps)' in fn('rowHtml') and 'POINT CIRCLE: NO OFFICIAL BOUNDARY' in fn('rowHtml')   # 2-fer list card
+    assert 'pcLine(ps)' in fn('rowHtml') and 'POINT CIRCLE: NO OFFICIAL BOUNDARY' in fn('rowHtml')  # 2-fer list card
+    assert 'APPROXIMATE 2-FER' in fn('rowHtml') and 'Not the official boundary. We believe this is a 2-fer, but it needs more research.' in ov
     assert 's.pc_note[p.ref]' in fn('parkPop')                                                     # park popup on the 2-fer map
     assert 'pcLine([s])' in fn('patchPop')                                                         # overlap popup on the map
     assert 'pcNotes(g.best' in fn('fileOut')                                                       # GPX / KML export

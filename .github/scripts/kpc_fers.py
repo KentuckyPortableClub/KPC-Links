@@ -16,8 +16,9 @@ GOLDEN RULES = POTA's own (Activation Location and Access; Brandon Oct 26 5:55 A
 - The park must be open to the public (closures are not tested here: a reviewer checks them).
 
 KPC's extra rules (Brandon, Oct 26):
-- OFFICIAL outlines only: the answer keys' joins (data/us-key, data/ca-key), never a park the key marks approximate
-  ('reviewed-approx', a lake surface), never a park whose pin is 'well outside' its land. POTA parks only.
+- Official and approximate outlines from the answer keys (data/us-key, data/ca-key). Approximate and point-circle
+  pairs are an approximate 2-fer, never shown as official. WDPA / Protected Planet is never a public 2-fer source.
+  A lake surface is not a land outline. Never a park whose pin is well outside its land. POTA parks only.
 - A spot counts only when the overlap holds a spot AT LEAST 50 YARDS ACROSS (Oct 26 2:11 PM; was 100): shrink the overlap 25 yards inward
   and something must remain (no slivers, no parks that only touch). Holes (inholdings) in an outline stay holes.
 - TRAILS + RIVERS (official lines, data/trails): POTA's rule = the station entirely within 100 ft of the trail (KPC applies
@@ -351,6 +352,7 @@ def official_parks(PIN):
         for r, kind in (('US-0050', 'nps'), ('US-3792', 'usfs')):
             if r in parks: OWNED[r] = kind
         skip.pop('Kentucky (own list)', None)
+        add_approx_outlines(parks, PIN, skip, 'ky')
         return parks, skip
     if REGION == 'world':
         for f in sorted(pathlib.Path('data/world-key').glob('[A-Z][A-Z].json')):
@@ -359,11 +361,15 @@ def official_parks(PIN):
                 m0, m = m, _no(ref, m, 'world')
                 if m0 and not m: continue
                 if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
-                if p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
+                if is_wdpa_outline(p):
+                    WDPA_SKIP.append({'ref': ref, 'why': 'WDPA / Protected Planet is never a public 2-fer source'}); continue
+                apx = p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3) or p.get('approx')
                 if _bad(ref): continue
                 if ref not in PIN: skip['no pin'] += 1; continue
-                parks[ref] = {'st': 'W-' + f.stem, 'ids': [x[0] for x in m], 'names': {str(i): x[1] for i, x in enumerate(m)}, 'm': m}
+                parks[ref] = {'st': 'W-' + f.stem, 'ids': [x[0] for x in m], 'names': {str(i): x[1] for i, x in enumerate(m)}, 'm': m, 'approx': apx}
+                if apx: APX_PARKS.add(ref)
         skip.pop('Kentucky (own list)', None)
+        add_approx_outlines(parks, PIN, skip, 'world')
         return parks, skip
     for f in sorted(pathlib.Path('data/us-key').glob('US-*.json')):
         st = f.stem
@@ -375,13 +381,18 @@ def official_parks(PIN):
             if (not m or p.get('g') == 'pin') and ref in PC and ref in PIN:   # Brandon t950u: point-circle tier only
                 parks[ref] = pc_park(ref, st); skip['point circle (100 ft, not a boundary)'] = skip.get('point circle (100 ft, not a boundary)', 0) + 1; continue
             if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
-            # Nov 6 (Quality 2-fer grade): the key's g=approximate counts even when the join how-tag is plain 'words'/'name'
-            # (US-12459 Housatonic River Southern Fields: g=approximate, how=words). A key PIN never enters an area 2-fer.
-            if p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3) or any(isinstance(x[0], str) and re.match(r'[a-z]+', x[0]).group() in WATER for x in m):
-                skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
+            # Approximate outlines (picture traces, key g=approximate) are an approximate 2-fer, not a drop.
+            # Lake-surface-only layers stay out (they are not a land outline). WDPA is never a public 2-fer.
+            water_only = any(isinstance(x[0], str) and re.match(r'[a-z]+', str(x[0])).group() in WATER for x in m)
+            apx = p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3) or p.get('approx')
+            if water_only and not apx:
+                skip['approximate'] += 1; SKIPWHY[ref] = 'lake surface only (not a land outline)'; continue
+            if is_wdpa_outline(p):
+                WDPA_SKIP.append({'ref': ref, 'why': 'WDPA / Protected Planet is never a public 2-fer source'}); continue
             if _bad(ref, m, p): continue
             if ref not in PIN: skip['no pin'] += 1; continue
-            parks[ref] = {'st': st, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
+            parks[ref] = {'st': st, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}, 'approx': apx}
+            if apx: APX_PARKS.add(ref)
             if p.get('parts'): CLIP[ref] = p['parts']   # Oct 29 rule B12: only this park's own parts of a shared multipart record
             if AGENCY_LAND.search(PIN[ref][0]) and not re.search(r'wilderness|wild and scenic', PIN[ref][0], re.I): OWNED[ref] = 'usfs'   # rule 1b
             else:
@@ -400,14 +411,18 @@ def official_parks(PIN):
             if (not m or p.get('g') == 'pin') and ref in PC and ref in PIN:   # Brandon t950u: point-circle tier only
                 parks[ref] = pc_park(ref, f.stem); skip['point circle (100 ft, not a boundary)'] = skip.get('point circle (100 ft, not a boundary)', 0) + 1; continue
             if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
-            if p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
+            apx = p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3) or p.get('approx')
+            if is_wdpa_outline(p):
+                WDPA_SKIP.append({'ref': ref, 'why': 'WDPA / Protected Planet is never a public 2-fer source'}); continue
             if _bad(ref, m, p): continue
             if ref not in PIN: skip['no pin'] += 1; continue
-            parks[ref] = {'st': f.stem, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
+            parks[ref] = {'st': f.stem, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}, 'approx': apx}
+            if apx: APX_PARKS.add(ref)
             if all(isinstance(x[0], str) and str(x[3]).startswith(('name', 'reviewed')) for x in m if len(x) > 3): AGENCY.add(ref)   # provincial / Parks Canada layer, not CPCAD
     if NOPIN_BY_ID: skip['bad POTA pin, tested by its saved record ids (pin not used)'] = len(NOPIN_BY_ID)
     try: skip['Kentucky (own list)'] = len(json.load(open('data/parkinfo/US-KY.json'))['parks'])
     except Exception: skip['Kentucky (own list)'] = 'all (ky-overlaps.geojson)'  # noqa: BLE001
+    add_approx_outlines(parks, PIN, skip, 'na')
     return parks, skip
 
 
@@ -619,18 +634,108 @@ def pc_note(ref):
     return ("No official boundary on file. Using a 100 ft circle around the agency\u2019s official point" + (f' ({src})' if src else '')
             + '. The real boundary may be larger, so check before you activate.')
 def pc_tag(d):
-    """every spot touching a point-circle park is the 'point-circle' tier, labelled so (Quality filters on it)"""
+    """Tag approximate 2-fers (picture traces and point-circles) and keep point-circle details.
+    The public tier is approximate. Quality can also read the point_circle list."""
+    note = 'Not the official boundary. We believe this is a 2-fer, but it needs more research.'
+    lst = 'Approximate 2-fer: not the official boundary; needs more research'
     for x in (d.get('spots') or []) if isinstance(d, dict) else []:
-        pr = sorted(set(x.get('refs') or []) & PCT)
-        if pr: x['tier'] = 'point-circle'; x['list'] = PC_LIST; x['point_circle'] = pr; x['official_boundary'] = False; x['pc_note'] = {r: pc_note(r) for r in pr}
+        refs = list(x.get('refs') or [])
+        pr = sorted(set(refs) & PCT)
+        ar = sorted(set(refs) & set(APX_PARKS) | set(x.get('approx_refs') or []))
+        if pr:
+            x['point_circle'] = pr
+            x['pc_note'] = {r: pc_note(r) for r in pr}
+        if pr or ar or x.get('approx'):
+            x['tier'] = 'approximate'
+            x['list'] = lst
+            x['official_boundary'] = False
+            x['approx_note'] = x.get('approx_note') or note
+            if ar:
+                x['approx_refs'] = ar
     return d
+
+
+# Approximate 2-fer outlines (picture traces). Not official key outlines.
+# WDPA / Protected Planet is never a public 2-fer source.
+APX_NOTE = 'Not the official boundary. We believe this is a 2-fer, but it needs more research.'
+APX_LIST = 'Approximate 2-fer: not the official boundary; needs more research'
+WDPA_RX = re.compile(r'wdpa|protectedplanet|protected.?planet|unep-?wcmc|world_database_of_protected', re.I)
+WDPA_SKIP = []   # refs whose outline is WDPA / Protected Planet (internal file only)
+APX_PARKS = set()
+APX_OUT = {}
+
+
+def is_wdpa_outline(p=None, text=''):
+    """True when the outline source is WDPA / Protected Planet (never a public 2-fer)."""
+    bits = [text]
+    if isinstance(p, dict):
+        for k, v in p.items():
+            if k in ('m', 'tracts', 'rings', 'geom', 'poly', 'coords'):
+                for x in (v or [] if k in ('m', 'tracts') else []):
+                    if isinstance(x, (list, tuple)):
+                        bits.append(' '.join(str(i) for i in x[:6]))
+                    elif isinstance(x, dict):
+                        bits.append(' '.join(f'{kk}={vv}' for kk, vv in x.items() if kk not in ('rings', 'coords', 'geom')))
+            elif k not in ('rings', 'geom', 'poly', 'coords'):
+                bits.append(f'{k}={v}')
+    return bool(WDPA_RX.search(' '.join(str(b) for b in bits)))
+
+
+def load_apx_outlines(root='.'):
+    """Picture-trace outlines entered as approximate 2-fers (data/fers-approx-outlines.json)."""
+    global APX_OUT
+    if APX_OUT: return APX_OUT
+    try:
+        d = json.load(open(pathlib.Path(root) / 'data/fers-approx-outlines.json', encoding='utf-8'))
+        APX_OUT = d.get('parks') or {}
+    except Exception:
+        APX_OUT = {}  # noqa: BLE001
+    return APX_OUT
+
+
+def add_approx_outlines(parks, PIN, skip, region=None):
+    """Keep key approximate outlines (do not drop them) and enter passed picture traces.
+    WDPA / Protected Planet outlines are skipped for the public list."""
+    region = region if region is not None else REGION
+    for ref, v in (load_apx_outlines() or {}).items():
+        if is_wdpa_outline(v):
+            WDPA_SKIP.append({'ref': ref, 'why': 'WDPA / Protected Planet is never a public 2-fer source'})
+            continue
+        if ref not in PIN: continue
+        st = v.get('st') or ('CA-' + PIN[ref][5] if str(ref).startswith('CA-') else 'US-' + PIN[ref][5])
+        if not str(st).startswith(('US-', 'CA-', 'W-')):
+            st = ('CA-' + st) if str(ref).startswith('CA-') else ('W-' + st if region == 'world' else 'US-' + st)
+        if region == 'world':
+            continue  # these traces are US / Canada parks
+        if region == 'ky' and st not in ('US-KY', 'KY') and PIN[ref][5] not in ('KY', 'US-KY'):
+            continue
+        rings = v.get('rings') or []
+        if not rings: continue
+        i = f'apx|{ref}'
+        parks[ref] = {'st': 'US-KY' if st in ('KY', 'US-KY') else st, 'ids': [i], 'names': {i: v.get('name') or ref},
+                      'approx': True, 'rings': rings, 'approx_src': v.get('src') or 'picture trace of an official map'}
+        APX_PARKS.add(ref)
+        skip['approximate (picture trace)'] = skip.get('approximate (picture trace)', 0) + 1
+    return parks
+
+
+def inject_apx_geom(G, parks, refs=None):
+    """Use the picture-trace rings (and point-circle rings already handled in download)."""
+    for r, p in (parks or {}).items():
+        if refs is not None and r not in refs: continue
+        if p.get('rings'):
+            G[r] = [p['rings']]
+            MAPDATE[r] = p.get('approx_src') or 'approximate picture trace'
+            APX_PARKS.add(r)
+    return G
 
 
 def download(parks, refs, det, prec):
     """{ref: [group of rings per record]} downloaded from the agencies by object id. A park with a record that could not
     be read is left out (dead certain: half a park is not the park)."""
     _pc = {r: [[pc_ring(*PC[r]['pt'])]] for r in refs if r in PCT}   # Brandon t950u: the circle, never a download
-    refs = [r for r in refs if r not in PCT]
+    _apx = {r: [parks[r]['rings']] for r in refs if (parks.get(r) or {}).get('rings')}
+    refs = [r for r in refs if r not in PCT and r not in _apx]
     want = {}
     for ref in refs:
         ca = parks[ref]['st'].startswith('CA-')
@@ -736,6 +841,8 @@ def download(parks, refs, det, prec):
     for ref in got:   # B2 (Oct 30): the real read date (a reused bundle answer can be up to weeks old), never 'today' for an old answer
         MAPDATE[ref] = f"read from the agency {time.strftime('%Y-%m-%d', time.gmtime(READ[ref]))}" if ref in READ else f'downloaded {today}'
     got.update(_pc)
+    got.update(_apx)
+    inject_apx_geom(got, parks)
     return got, bad
 
 
@@ -2780,7 +2887,8 @@ def official_agency_outlines(refs, root=None):
     """True when every park already has an official government or agency outline in the key.
     The key source layer (PAD-US, CPCAD, provincial / Parks Canada maps, state agency layers)
     is government or public land, so no separate ownership source is required. Point-circle
-    and approximate parks are not official agency outlines and stay flagged."""
+    and approximate parks are not official agency outlines; they become an approximate 2-fer,
+    not a drop."""
     refs = list(refs or [])
     if not refs: return False
     root = str(root or _fers_links_root())
@@ -2806,13 +2914,16 @@ def official_agency_outlines(refs, root=None):
 def no_owner_source(x, root=None):
     """A live candidate with no ownership answer recorded. An official agency outline already
     shows government or public land, so that pair is not held. Point-circle and approximate
-    pairs stay flagged. A blank owner whose outline is not from an official agency layer
-    still cannot be a candidate."""
+    pairs become an approximate 2-fer (not held here). A blank owner whose outline is not
+    from an official agency layer and is not an approximate or point-circle outline still
+    cannot be a candidate."""
     st = str(x.get('status', ''))
     if not (st.startswith('candidate') or st.startswith('very tight')): return False
-    if str(x.get('tier') or '') == 'point-circle':
-        missing = True
-    elif x.get('kind') == 'same land':
+    refs = list(x.get('refs') or [])
+    if (str(x.get('tier') or '') in ('point-circle', 'approximate') or x.get('approx')
+            or any(r in PCT or r in APX_PARKS for r in refs)):
+        return False
+    if x.get('kind') == 'same land':
         o = str(x.get('owner_here') or '').lower()
         missing = not o or o.startswith(('owner not published', 'unk ', '? '))
     else:
@@ -2843,22 +2954,21 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     s['map_dates'] = {r: MAPDATE.get(r) or ('saved copy' if r in saved_only else 'official line (trails bot)' if r in LN else 'Kentucky official file' if REGION == 'ky' else 'saved copy') for r in refs}
     # Nov 6 / Part A v2: area/same-land follow key PIN/approximate PER STATE (weakest if area unknown)
     _areas = {r: (st_of(r) if callable(st_of) else '') for r in refs}
-    # Brandon t950u: a point-circle half has no key outline on purpose; the OTHER half still needs one (the row is the labelled
-    # 'point-circle' tier, never an official-boundary 2-fer: pc_tag)
-    _kr = [r for r in refs if r not in PCT]
-    _klm = key_line_match(_kr, s.get('kind'), areas=_areas) if _kr else 'dropped: two point circles are not a 2-fer'
+    # A point-circle or approximate half is an approximate 2-fer (pc_tag), not a drop.
+    # Two point-circles can still be an approximate 2-fer. A key PIN with no circle is still dropped.
+    _kr = [r for r in refs if r not in PCT and r not in APX_PARKS]
+    _klm = key_line_match(_kr, s.get('kind'), areas=_areas) if _kr else ''
     if _klm:
         s['status'] = _klm; return
-    # Nov 8 (Quality 2-fer must-fix): river/trail halves with key g=approximate must not stay plain candidates
-    if s.get('kind') in ('river', 'trail'):
-        load_key_status()
-        from kpc_fers_key_status import status_for as _status_for
-        _apx = [r for r in refs if _status_for(r, _areas.get(r)) == 'approximate']
-        if _apx:
-            s['status'] = ('not sure: approximate outline on a river/trail half ('
-                           + ', '.join(PIN.get(r, [r])[0] for r in _apx) + '): held until the key has an official line')
-            s['names'] = {r: PIN[r][0] for r in refs if r in PIN}
-            return
+    # Approximate or point-circle halves stay in the approximate 2-fer tier (they are not held).
+    # pc_tag writes the public note and thinner-card fields.
+    load_key_status()
+    from kpc_fers_key_status import status_for as _status_for
+    _apx = [r for r in refs if _status_for(r, _areas.get(r)) == 'approximate' or r in APX_PARKS or r in PCT]
+    if _apx:
+        s['approx'] = True
+        s['approx_refs'] = _apx
+        s['approx_note'] = APX_NOTE
     s['pins_inside'] = {r: pin_inside(r, PIN, G, LN) for r in refs}   # information only: pins never count (rule 6)
     if any(r in saved_only for r in refs):
         s['fresh'] = 'saved copy only for ' + ', '.join(r for r in refs if r in saved_only)
@@ -3246,6 +3356,7 @@ def main():
         lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') in ('area', 'trail') and not str(x.get('status', '')).startswith('dropped')]
         refs = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids']})
         G, bad = ky_geom(parks, refs) if REGION == 'ky' else download(parks, refs, DET, PREC)
+        inject_apx_geom(G, parks, refs)
         counts['spots given their boundary lines'] = add_lines(files, G, today)
         counts['trail stretches given their true zone'] = add_zones(files, G, PIN, today)
         if REGION == 'ky':
@@ -3263,6 +3374,7 @@ def main():
         refs = sorted({r for x in cand + same for r in x['refs'] if r in parks and parks[r]['ids']})
         if REGION == 'ky': G, bad = ky_geom(parks, refs)
         else: G, bad = download(parks, refs, DET, PREC)
+        inject_apx_geom(G, parks, refs)
         mark(f'geometry of {len(refs)} parks read')
         n = {'checked': 0, 'water only': 0, 'still not checked': 0}
         # Oct 28 (Southeast: only 17 of ~400 rows checked before pass 5's time ran out, the rest waiting on the USGS map that was down):
@@ -3439,6 +3551,7 @@ def main():
         refs = sorted({r for s in cand for r in s['refs'] if r in parks and parks[r]['ids']})
         if REGION == 'ky': G, bad = ky_geom(parks, refs)
         else: G, bad = download(parks, refs, DET, PREC)
+        inject_apx_geom(G, parks, refs)
         n = 0
         for s in cand:
             if late(): break
@@ -3541,6 +3654,10 @@ def main():
             if PARKS: raise RuntimeError('small batch: the missing-boundary list is kept as it was')
             miss = missing_list(PIN, parks, SKIPWHY, G, LN, today)
             save_json(OUT / f'missing-{RUN_TAG or REGION}.json', {'about': "Missing boundary: check the official map. A park with no official boundary (or only an approximate one) whose POTA pin sits inside another park's official outline. Never in the main list; members first.", 'parks': miss}, indent=1)
+            if WDPA_SKIP:
+                save_json(OUT / f'wdpa-internal-{RUN_TAG or REGION}.json',
+                          {'about': 'Internal only. WDPA / Protected Planet outlines are never a public 2-fer source.',
+                           'public': False, 'parks': WDPA_SKIP}, indent=1)
             counts['missing boundary'] = len(miss)
         except Exception as e: LOG.append(f'missing list: {str(e)[:80]}')  # noqa: BLE001
         if REGION == 'ky':   # Oct 27: a trail that crosses Kentucky brings pairs in other states; keep only spots IN Kentucky
@@ -3634,6 +3751,7 @@ def main():
         notice('2-fer bot', f'pass {PASS}: {len(prev)} spots from pass {PASS - 1}, {len(refs)} parks to download fresh')
         if REGION == 'ky':   # Kentucky's official files are the only copy (no agency download by id): saved copy, flagged
             G, bad = ky_geom(parks, [r for r in refs if parks[r]['ids']])
+            inject_apx_geom(G, parks, refs)
             # fresh = every tract read live (Daniel Boone = its outer line masked by the live Forest Service ownership map)
             saved_only = {r for r in G if 'file' in FRESHKY.get(r, {'file'})}
             for r in G:

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """2-fer key-status gate (Nov 6, Quality 2-fer grade; v2 per-state).
 
-An area / same-land 2-fer is a line-match ONLY when every half is an official outline in the CURRENT key.
-A key PIN is not a line-match; approximate goes to "not sure". River / trail rows that use an official LINE still run
-(the 100-ft rule does not need an area outline).
+An area / same-land 2-fer is a confirmed line-match when every half is an official outline in the CURRENT key.
+A key PIN is not a line-match. An approximate outline (picture trace or key g=approximate) is allowed as an
+approximate 2-fer, not a hold. River / trail rows that use a line still run (the 100-ft rule does not need an area outline).
 
 Multi-state (Quality Part A grade Nov 5): status is stored PER STATE. US-0367 is pin in US-IA and official in US-MN —
 grade the state's copy, or take the WEAKEST status across states (pin < approximate < official) when no area is given.
@@ -74,11 +74,10 @@ def key_line_match(refs, kind, root='.', areas=None):
         area_of = areas
     elif isinstance(areas, (list, tuple)) and len(areas) == len(refs):
         area_of = dict(zip(refs, areas))
-    pin, apx = [], []
+    pin = []
     for r in refs:
         st = status_for(r, area_of.get(r))
         if st == 'pin': pin.append(r)
-        elif st == 'approximate': apx.append(r)
+        # approximate is an approximate 2-fer (caller tags the tier), not a hold
     if pin: return 'dropped: key PIN is not a line-match (' + ', '.join(pin) + ')'
-    if apx: return 'not sure: key outline is approximate (' + ', '.join(apx) + ')'
     return ''
