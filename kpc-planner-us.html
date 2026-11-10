@@ -34,7 +34,7 @@ body.usp .usp-maphead .usp-brand,body.usp .usp-maphead .usp-brand div{color:#f6e
 body.usp .usp-maphead b{color:#f0c96b}
 body.usp .usp-card{box-shadow:0 18px 44px rgba(0,0,0,.42),0 0 28px rgba(240,180,80,.12);border-color:rgba(240,201,107,.55)}
 body.usp #plan>.usp-h{--kw-pic:url('hero-map.jpg')}
-body.usp .usp-card:nth-of-type(2)>.usp-h{--kw-pic:url('hero-lake-camp.jpg')}
+body.usp #uppanel-find>.usp-h{--kw-pic:url('hero-lake-camp.jpg')}
 body.usp .usp-maphead{--kw-pic:url('hero-mast.jpg')}
 body.usp .usp-two>.usp-card:first-child>.usp-h{--kw-pic:url('hero-river-camp.jpg')}
 body.usp .usp-two>.usp-card:last-child>.usp-h{--kw-pic:url('hero-solar.jpg')}
@@ -44,11 +44,16 @@ body.usp .usp-about>.usp-h{--kw-pic:url('hero-ky-flag.jpg')}
 body.usp .usp-card{background-image:linear-gradient(rgba(255,250,240,.7),rgba(255,250,240,.8)),var(--kw-bg,url('bg-map.jpg'))!important;background-size:cover!important;background-position:center!important}
 html[data-theme=dark] body.usp .usp-card{background-image:linear-gradient(rgba(12,10,7,.55),rgba(12,10,7,.72)),var(--kw-bg,url('bg-map.jpg'))!important}
 body.usp #plan{--kw-bg:url('bg-map.jpg')}
-body.usp .usp-card:nth-of-type(2){--kw-bg:url('bg-lake-camp.jpg')}
+body.usp #uppanel-find{--kw-bg:url('bg-lake-camp.jpg')}
 body.usp .usp-card:has(.usp-maphead){--kw-bg:url('bg-solar.jpg')}
 body.usp .usp-two>.usp-card:first-child{--kw-bg:url('bg-river-camp.jpg')}
 body.usp .usp-two>.usp-card:last-child{--kw-bg:url('bg-lodge.jpg')}
 body.usp .usp-about{--kw-bg:url('bg-night.jpg')}
+body.usp #uppanel-trip>.usp-h{--kw-pic:url('hero-river-camp.jpg')}
+body.usp #uppanel-near>.usp-h{--kw-pic:url('hero-solar.jpg')}
+body.usp #uppanel-trip{--kw-bg:url('bg-river-camp.jpg')}
+body.usp #uppanel-near{--kw-bg:url('bg-lodge.jpg')}
+@media(max-width:700px){body.usp #uppanel-trip{--kw-bg:url('bg-river-camp-mobile.jpg')}body.usp #uppanel-near{--kw-bg:url('bg-lodge-mobile.jpg')}}
 @media(max-width:700px){body.usp .usp-card{--kw-bg:url('bg-map-mobile.jpg')}body.usp .usp-two>.usp-card:first-child{--kw-bg:url('bg-river-camp-mobile.jpg')}body.usp .usp-two>.usp-card:last-child{--kw-bg:url('bg-lodge-mobile.jpg')}body.usp .usp-card:has(.usp-maphead){--kw-bg:url('bg-solar-mobile.jpg')}}
 </style>
 </head>
@@ -204,22 +209,46 @@ body.usp .usp-about .kpc-disclaim{max-width:none!important;margin:14px 0 0!impor
 @media(max-width:900px){#urf,#urt{min-width:0;width:100%}#urf-form .field{flex:1 1 100%}}
 .ctr-us{width:14px;height:14px;border-radius:50%;background:#f0c96b;border:3px solid #171717}
 @media(max-width:900px){#usmap{height:440px}#usq{min-width:0;width:100%}.us-top .field{flex:1 1 100%}}
+
+/* Nov 10: cards 1-4 sit behind ONE tab bar, set up like the Mapping Rep Tool Box (.mr-rs-tabs / .mr-rs-tab, gold active tab). The map stays outside the tabs. */
+.mr-rs-tabs{display:flex;flex-wrap:wrap;gap:0;margin:4px 0 12px;border:1px solid rgba(240,201,107,.45);border-radius:10px;overflow:hidden}
+.mr-rs-tab{flex:1 1 0;min-width:120px;background:transparent;color:inherit;border:0;border-right:1px solid rgba(240,201,107,.3);padding:11px 8px;font:inherit;font-weight:700;letter-spacing:1px;font-size:.85rem;cursor:pointer}
+.mr-rs-tab:last-child{border-right:0}.mr-rs-tab.on{background:#f0c96b;color:#1b140b}.mr-rs-tab:focus-visible{outline:2px solid #d5a63a;outline-offset:-3px}
+.usp-tabwrap{margin:20px 0 0}
+.usp-tabs{margin:0;background:rgba(255,250,240,.97);color:#171717;border-color:rgba(213,166,58,.7);box-shadow:0 10px 26px rgba(0,0,0,.3);border-radius:14px}
+.usp-tabs .mr-rs-tab{border-right-color:rgba(213,166,58,.4);padding:14px 8px;white-space:nowrap}
+.usp-tabs .mr-rs-tab.on{background:#f0c96b;color:#1b140b}
+.usp-tn{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#171717;color:#f0c96b;font-size:11px;font-weight:900;margin-right:4px}
+.usp-tab.on .usp-tn{background:#1b140b}
+.usp-tc{font-variant-numeric:tabular-nums}
+.usp-tab.flash{animation:uspflash 1.4s ease}
+@keyframes uspflash{0%,100%{box-shadow:inset 0 0 0 0 rgba(213,166,58,0)}30%{box-shadow:inset 0 0 0 3px #d5a63a;background:#f6d58a}}
+@media (prefers-reduced-motion:reduce){.usp-tab.flash{animation:none;outline:2px solid #d5a63a;outline-offset:-3px}}
+.usp-panels>.usp-card{margin:14px 0 20px}
+.usp-panel[hidden],.us-legacy[hidden]{display:none!important}
+.us-modes.mr-rs-tabs{margin:0 0 14px;background:rgba(255,250,240,.95)}.us-modes.mr-rs-tabs .mr-rs-tab{min-width:0;color:#171717}.us-modes.mr-rs-tabs .mr-rs-tab.on{color:#1b140b}
+.us-go-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.us-go-row #us-go{flex:1 1 160px}.us-go-row #us-me{flex:1 1 160px}
+@media(max-width:700px){.usp-tabs{position:sticky;top:var(--usp-hdr,0px);z-index:900}}
+@media(max-width:600px){.usp-tabs .mr-rs-tab{min-width:0;padding:8px 2px;font-size:.66rem;letter-spacing:.2px;line-height:1.25;white-space:normal}.usp-tn{display:flex;margin:0 auto 3px}.usp-tc{display:block}.us-go-row .btn{flex:1 1 100%}}
 </style>
-<section class="usp-card" id="plan">
+<div class="usp-tabwrap" id="usp-tabwrap">
+<div class="usp-tabs mr-rs-tabs" id="usp-tabs" role="tablist" aria-label="Trip planner steps"><button type="button" role="tab" class="mr-rs-tab usp-tab on" id="uptab-where" aria-selected="true" aria-controls="plan" tabindex="0" data-uptab="where"><span class="usp-tn">1</span> WHERE</button><button type="button" role="tab" class="mr-rs-tab usp-tab" id="uptab-find" aria-selected="false" aria-controls="uppanel-find" tabindex="-1" data-uptab="find"><span class="usp-tn">2</span> FIND NEW</button><button type="button" role="tab" class="mr-rs-tab usp-tab" id="uptab-trip" aria-selected="false" aria-controls="uppanel-trip" tabindex="-1" data-uptab="trip"><span class="usp-tn">3</span> MY TRIP <span class="usp-tc" id="uptab-trip-n">(0)</span></button><button type="button" role="tab" class="mr-rs-tab usp-tab" id="uptab-near" aria-selected="false" aria-controls="uppanel-near" tabindex="-1" data-uptab="near"><span class="usp-tn">4</span> NEARBY <span class="usp-tc" id="uptab-near-n">(0)</span></button></div>
+<div class="usp-panels">
+<section class="usp-card usp-panel" id="plan" role="tabpanel" aria-labelledby="uptab-where" data-uppanel="where">
 <div class="usp-h"><span class="n">1</span><div><h2>Where are you headed?</h2><small>Search near a town, ZIP, park number or GPS spot, or along a drive from start to finish.</small></div></div>
-<div class="us-modes" id="us-modes" role="group" aria-label="Search type"><button type="button" class="chip" data-m="place" aria-pressed="true">&#128205; NEAR A PLACE</button><button type="button" class="chip" data-m="route" aria-pressed="false">&#128663; ALONG A ROUTE</button></div>
+<div class="us-modes mr-rs-tabs" id="us-modes" role="tablist" aria-label="Search type"><button type="button" role="tab" class="mr-rs-tab on" id="us-mtab-place" aria-selected="true" aria-controls="usf" tabindex="0" data-m="place">&#128205; NEAR A PLACE</button><button type="button" role="tab" class="mr-rs-tab" id="us-mtab-route" aria-selected="false" aria-controls="urf-form" tabindex="-1" data-m="route">&#128663; ALONG A ROUTE</button></div>
 <form class="us-top" id="urf-form" autocomplete="off" style="display:none">
 <label class="field">START<input id="urf" placeholder="Town, address, ZIP, park # or GPS (37.57, -84.29)" spellcheck="false"></label>
 <label class="field">FINISH<input id="urt" placeholder="Town, ZIP, park number or GPS" spellcheck="false"></label>
 <label class="field">WITHIN<select id="urw"><option value="5">5 miles</option><option value="10">10 miles</option><option value="25" selected>25 miles</option><option value="50">50 miles</option></select></label>
-<button class="btn" type="submit" style="align-self:flex-end">FIND SPOTS ALONG THE WAY</button>
+<button class="btn us-legacy" type="submit" hidden>FIND SPOTS ALONG THE WAY</button>
 </form>
 <form class="us-top" id="usf" autocomplete="off">
 <label class="field">TOWN, ADDRESS, ZIP, PARK OR GPS<input id="usq" placeholder="e.g. Asheville NC, 37863, US-0034, 37.57, -84.29" spellcheck="false"></label>
 <label class="field">WITHIN<select id="usr"><option value="10">10 miles</option><option value="25" selected>25 miles</option><option value="50">50 miles</option><option value="100">100 miles</option><option value="150">150 miles</option></select></label>
-<button class="btn" type="submit" style="align-self:flex-end">SEARCH</button>
-<button class="btn alt" type="button" id="us-me" style="align-self:flex-end">&#128205; NEAR ME</button>
+<button class="btn us-legacy" type="submit" hidden>SEARCH</button>
 </form>
+<div class="us-go-row" id="us-go-row"><button class="btn" type="button" id="us-go">SEARCH</button><button class="btn alt" type="button" id="us-me">&#128205; NEAR ME</button></div>
 <div class="us-progs" id="us-progs" aria-label="Show">
 <button type="button" class="chip" data-p="POTA" aria-pressed="true"><span class="dot" style="background:#1d5a3a"></span>POTA PARKS</button>
 <button type="button" class="chip" data-p="SOTA" aria-pressed="true"><span class="dot" style="background:#8a4b14"></span>SOTA SUMMITS</button>
@@ -229,18 +258,11 @@ body.usp .usp-about .kpc-disclaim{max-width:none!important;margin:14px 0 0!impor
 <div id="us-hits"></div>
 <div id="us-status">Loading the park list&hellip;</div>
 </section>
-<section class="usp-card">
+<section class="usp-card usp-panel" id="uppanel-find" role="tabpanel" aria-labelledby="uptab-find" data-uppanel="find" hidden>
 <div class="usp-h"><span class="n">2</span><div><h2>Find new ones</h2><small>Add your call sign to fade out what you've already activated. ATNO and RARE show the parks almost nobody has done.</small></div></div>
 <div id="km-bar"></div>
 </section>
-<section class="usp-card">
-<div class="usp-maphead"><div class="usp-brand"><img src="KPC-logo.png" alt="" width="34" height="34"><div><b>KPC TRIP PLANNER</b>KENTUCKY PORTABLE CLUB</div></div><button type="button" class="chip" id="us-drop" aria-pressed="false">&#128204; DROP A PIN</button></div>
-<div class="map" id="usmap" role="application" aria-label="US Trip Planner map"></div>
-<p class="usp-hint" id="us-maphint">Tap a dot for its card: add it to your trip, Street View, parking, its outline and more. Trails that are POTA parks: pink = national scenic, orange dashes = national historic, green = state trails, purple dashes = national recreation trails (tap one). <b>🥾 We're still adding trails:</b> about half of the trail parks outside Kentucky have a line so far, and more are on the way. Zoom in to see official boundaries (gold = federal, light blue = state, orange = Army Corps) and tap the land to see what it is; the layers button switches maps.</p>
-<div class="usp-key"><span><i style="background:#1d5a3a"></i>POTA park</span><span><i style="background:#8a4b14"></i>SOTA summit</span><span><i style="background:#2b6cb0"></i>WWFF</span><span><i style="background:#fff;box-shadow:0 0 0 2px #c2410c"></i>ATNO</span><span><i style="background:#fff;box-shadow:0 0 0 2px #e08a2c"></i>Rare</span><span><i style="background:#fff;box-shadow:0 0 0 2px #f0c96b"></i>In your trip</span></div>
-</section>
-<div class="usp-two">
-<section class="usp-card">
+<section class="usp-card usp-panel" id="uppanel-trip" role="tabpanel" aria-labelledby="uptab-trip" data-uppanel="trip" hidden>
 <div class="usp-h"><span class="n">3</span><div><h2>Your trip</h2><small>Put your stops in order, draw the drive and share it.</small></div></div>
 <div class="trip" id="trip">
 <p class="muted" style="margin:0 0 10px;font-size:13px" id="trip-empty">No stops yet. Tap a dot on the map, use ADD in the list, or drop your own pin.</p>
@@ -260,16 +282,23 @@ body.usp .usp-about .kpc-disclaim{max-width:none!important;margin:14px 0 0!impor
 </div>
 
 </section>
-<section class="usp-card">
+<section class="usp-card usp-panel" id="uppanel-near" role="tabpanel" aria-labelledby="uptab-near" data-uppanel="near" hidden>
 <div class="usp-h"><span class="n">4</span><div><h2>What's nearby</h2><small>Everything in range, closest first. Tap ADD to put it in your trip.</small></div></div>
 <div class="near" id="near" style="display:none">
 <h3 style="margin:0 0 8px;font:900 14px Arial,sans-serif;letter-spacing:1px;color:#1d5a3a" id="near-h">Nearby</h3>
 <div class="tablewrap"><table class="list"><thead><tr><th>SPOT</th><th id="near-th2">MILES</th><th></th></tr></thead><tbody id="near-body"></tbody></table></div>
 </div>
 
-<p class="muted" id="near-empty" style="font-size:13px;margin:0">Search a town or a route above and everything in range shows up here.</p>
+<p class="muted" id="near-empty" style="font-size:13px;margin:0">Search a town or a route on the 1 WHERE tab and everything in range shows up here.</p>
 </section>
 </div>
+</div>
+<section class="usp-card">
+<div class="usp-maphead"><div class="usp-brand"><img src="KPC-logo.png" alt="" width="34" height="34"><div><b>KPC TRIP PLANNER</b>KENTUCKY PORTABLE CLUB</div></div><button type="button" class="chip" id="us-drop" aria-pressed="false">&#128204; DROP A PIN</button></div>
+<div class="map" id="usmap" role="application" aria-label="US Trip Planner map"></div>
+<p class="usp-hint" id="us-maphint">Tap a dot for its card: add it to your trip, Street View, parking, its outline and more. Trails that are POTA parks: pink = national scenic, orange dashes = national historic, green = state trails, purple dashes = national recreation trails (tap one). <b>🥾 We're still adding trails:</b> about half of the trail parks outside Kentucky have a line so far, and more are on the way. Zoom in to see official boundaries (gold = federal, light blue = state, orange = Army Corps) and tap the land to see what it is; the layers button switches maps.</p>
+<div class="usp-key"><span><i style="background:#1d5a3a"></i>POTA park</span><span><i style="background:#8a4b14"></i>SOTA summit</span><span><i style="background:#2b6cb0"></i>WWFF</span><span><i style="background:#fff;box-shadow:0 0 0 2px #c2410c"></i>ATNO</span><span><i style="background:#fff;box-shadow:0 0 0 2px #e08a2c"></i>Rare</span><span><i style="background:#fff;box-shadow:0 0 0 2px #f0c96b"></i>In your trip</span></div>
+</section>
 <section class="usp-card usp-about">
 <div class="usp-h"><span class="n">i</span><div><h2>Where this comes from</h2></div></div>
 <div class="note">This planner covers the whole US. Park types, official websites and how you can activate come from POTA&rsquo;s park list, refreshed every week; campgrounds and picnic shelters come from Recreation.gov (federal land only, so check state parks on their own site; camping info last checked by date on each file); SOTA summits come from SOTA and WWFF references from the WWFF directory. Boundaries on the map are the official USGS PAD-US outlines; when a park has none, its outline is from OpenStreetMap and is labelled “OpenStreetMap outline (unofficial)”. For Kentucky, the full <a href="kpc-planner.html">Kentucky Trip Planner</a> adds hand-checked access points, plus 2-fer research and more. Place search by OpenStreetMap Nominatim. Routes open in Google Maps.</div>
@@ -277,7 +306,7 @@ body.usp .usp-about .kpc-disclaim{max-width:none!important;margin:14px 0 0!impor
 </section>
 </div>
 <script src="kpc-my-parks.js?v=20261024a"></script>
-<script src="kpc-bounds.js?v=20261109am2"></script><script src="kpc-getting-in.js?v=20261107b"></script><script src="kpc-padus-layer.js?v=20261030d"></script><script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-trails-layer.js?v=20261102t"></script><script src="kpc-va-birding-layer.js?v=20261108a"></script><script src="kpc-trip-offline.js?v=20261016a"></script><script src="kpc-gps.js?v=20261109am2"></script><script src="kpc-gps-wire.js?v=20261109am2"></script><script src="kpc-us-planner.js?v=20261109am2"></script>
+<script src="kpc-bounds.js?v=20261109am2"></script><script src="kpc-getting-in.js?v=20261107b"></script><script src="kpc-padus-layer.js?v=20261030d"></script><script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-trails-layer.js?v=20261102t"></script><script src="kpc-va-birding-layer.js?v=20261108a"></script><script src="kpc-trip-offline.js?v=20261016a"></script><script src="kpc-gps.js?v=20261109am2"></script><script src="kpc-gps-wire.js?v=20261109am2"></script><script src="kpc-us-planner.js?v=20261110tabs2"></script>
 <div id="kpc-rules"></div><script src="kpc-rules-card.js?v=20261018a"></script>
 <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
 </main>
