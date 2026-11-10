@@ -1,0 +1,5 @@
+{
+ "about": "Raw layer downloads are NOT in git (2.76 GB and growing). One row per file: name, size, sha256, source, date. The files live on the club Google Drive folder (backup) and on the bot's computer (working copy). Add a row with: python3 .github/scripts/kpc_master_cli.py raw-add FILE --source 'Agency, layer name'",
+ "files": [],
+ "format": 1
+}

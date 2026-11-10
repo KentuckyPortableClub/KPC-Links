@@ -1,0 +1,225 @@
+#!/usr/bin/env python3
+"""kpc_master_cli.py: the trim tool and the checks for the outline master records. Plain words are in data/outlines/README.md.
+
+  trim        read a layer file (GeoJSON / Esri JSON / Shapefile / GDB) or a live layer URL, keep ONLY the POTA parks' geometry, write master
+              records, send the rest to a solver-queue CSV. Fails closed on a short read.
+  check       is every master file whole, every hash right, nothing from WDPA, no raw layer files tracked, (optionally) no short saved copy?
+  gate        before a build reads its SAVED copies (cache/us, cache/ca, cache/world): a copy shorter than the layer's own baseline is moved aside
+              (cache/<x>/short/) and named in a report. Exit 7 = at least one short copy. No baseline yet = a notice, the copy passes.
+  plan        read master first: which layers (not states) need a live re-read, and why.
+  raw-add     add a downloaded raw layer file to the manifest (name, size, sha256, source, date). The file itself is never added to git.
+  wdpa-lookup managing agency of a park from a Protected Planet / WDPA file. Private output only, no geometry.
+
+Exit codes: 0 ok | 1 check failed | 2 SHORT read | 3 cannot verify (no expected count) | 4 licence block | 5 live read not allowed | 6 shrink held | 7 short saved copy
+"""
+import argparse, csv, datetime, glob, gzip, json, os, pathlib, shutil, subprocess, sys, tempfile
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import kpc_master as M  # noqa: E402
+
+
+def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
+def warn(t, m): print('::warning title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
+def err(t, m): print('::error title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
+
+
+def read_parks(path):
+    """KPC-Data locations-pota.json rows: ['POTA', ref, name, lat, lon, url]. Read only; a pin is never changed."""
+    rows = M.load_json(path, [])
+    return [(r[1], r[2], float(r[3]), float(r[4])) for r in rows if isinstance(r, list) and len(r) >= 5 and r[0] == 'POTA']
+
+
+def read_file(path):
+    """-> (features as {'attributes'|'properties', 'geometry': GeoJSON}, how). Esri JSON geometry is converted; a Shapefile needs pyshp, a GDB needs ogr2ogr."""
+    p = pathlib.Path(path); low = p.name.lower()
+    if low.endswith('.shp') or low.endswith('.shp.zip') or low.endswith('.zip') or low.endswith('.gdb') or low.endswith('.gpkg'):
+        try:
+            import shapefile  # pyshp
+            if low.endswith('.shp'):
+                sf = shapefile.Reader(str(p)); out = []
+                for sr in sf.shapeRecords():
+                    gj = sr.shape.__geo_interface__
+                    out.append({'properties': sr.record.as_dict(), 'geometry': gj if gj.get('type') in ('Polygon', 'MultiPolygon', 'Point') else None})
+                return out, 'shapefile'
+        except ImportError: pass
+        og = shutil.which('ogr2ogr')
+        if not og: raise SystemExit('this input type needs pyshp (.shp) or ogr2ogr (.gdb / .gpkg / .zip) on this machine; neither is installed. Convert to GeoJSON first.')
+        with tempfile.TemporaryDirectory() as t:
+            out = pathlib.Path(t) / 'x.geojson'
+            subprocess.run([og, '-f', 'GeoJSON', '-t_srs', 'EPSG:4326', str(out), str(p)], check=True)
+            return read_file(out)
+    op = gzip.open if low.endswith('.gz') else open
+    with op(p, 'rt', encoding='utf-8') as f: doc = json.load(f)
+    feats = doc.get('features') if isinstance(doc, dict) else doc
+    if isinstance(doc, list) and doc and isinstance(doc[0], dict) and 'features' in doc[0]: feats = [x for pg in doc for x in pg.get('features', [])]   # pages
+    out = []
+    for ft in feats or []:
+        if 'attributes' in ft: out.append({'attributes': ft.get('attributes') or {}, 'geometry': M.esri_to_geojson(ft.get('geometry'))})
+        else: out.append({'properties': ft.get('properties') or {}, 'geometry': ft.get('geometry')})
+    return out, 'esri-json' if feats and 'attributes' in feats[0] else 'geojson'
+
+
+def cmd_trim(a):
+    root = pathlib.Path(a.root) if a.root else M.OUTLINES
+    doc = M.load_layers(root); L = dict(doc['layers'].get(a.layer_key) or {})
+    for k in ('agency', 'license', 'g', 'record_id_field', 'detail', 'circle_m'):
+        v = getattr(a, k, None)
+        if v not in (None, ''): L[k] = v
+    for k in ('id_fields', 'name_fields'):
+        v = getattr(a, k)
+        if v: L[k] = v.split(',')
+    areas = [x for x in (a.area or '').split(',') if x] or L.get('areas') or []
+    L['areas'] = areas
+    try:
+        if M.is_wdpa(a.layer_key, L.get('url'), L.get('agency'), a.input, L.get('license')):
+            raise M.LicenseBlocked('this looks like Protected Planet / WDPA data: its geometry cannot be used here. Use wdpa-lookup (agency only, private).')
+        if a.url:
+            ok, why = M.live_ok(a.url)
+            if not ok: raise M.LiveNotAllowed(why + '. Give a saved copy with --input instead.')
+            fetch = M.http_fetcher(); feats_raw, info = M.read_layer(a.url, fetch, want_page=a.page, out_fields='*')
+            feats = [{'attributes': f.get('attributes') or {}, 'geometry': M.esri_to_geojson(f.get('geometry'))} for f in feats_raw]
+            expected, last_edit, how = info['count'], info.get('last_edit'), 'live'; L['url'] = a.url
+        else:
+            feats, how = read_file(a.input)
+            expected = a.expected if a.expected is not None else L.get('expected_count'); last_edit = L.get('last_edit')
+            if expected is None:
+                err('trim', f'{a.input}: no expected count (pass --expected N from the layer\'s own total, or use --url). A read that cannot be checked is refused.'); return 3
+            M.check_complete(expected, len(feats), a.input)
+    except M.ShortRead as e: err('trim SHORT READ', e); return 2
+    except M.LicenseBlocked as e: err('trim licence', e); return 4
+    except M.LiveNotAllowed as e: err('trim live read', e); return 5
+    parks = read_parks(a.parks)
+    today = datetime.date.today().isoformat()
+    cfg = {'id_fields': L.get('id_fields') or [], 'name_fields': L.get('name_fields') or [], 'record_id_field': L.get('record_id_field'), 'g': L.get('g', 'official'),
+           'agency': L.get('agency', ''), 'layer_url': L.get('url') or ('file:' + os.path.basename(a.input or '')), 'license': L.get('license', ''), 'detail': float(L.get('detail', M.DEFAULT_DETAIL)),
+           'circle_m': L.get('circle_m')}
+    recs, queue = M.trim(parks, feats, cfg, today, source_count=len(feats))
+    by_area = {}
+    for ref, r in recs.items(): by_area.setdefault(areas[0] if len(areas) == 1 else ref.split('-')[0], {})[ref] = r   # one area given = that file; else by country prefix
+    notes = {}
+    for area, new in by_area.items():
+        have = M.load_area(area, root)
+        for ref, r in new.items():
+            keep, what = M.merge(have.get(ref), r); have[ref] = keep; notes[what.split(':')[0].split(' ')[0]] = notes.get(what.split(':')[0].split(' ')[0], 0) + 1
+        if not a.dry_run: M.save_area(area, have, root)
+    try: M.accept_baseline(doc, a.layer_key, {'url': L.get('url', ''), 'agency': L.get('agency', ''), 'license': L.get('license', ''), 'areas': areas, 'g': L.get('g', 'official'),
+                                              'id_fields': cfg['id_fields'], 'name_fields': cfg['name_fields'], 'record_id_field': cfg['record_id_field'],
+                                              'last_edit': last_edit, 'read_date': today, 'source_count': len(feats), 'matched': len(recs), 'queued': len(queue),
+                                              'read_how': how}, expected, accept_shrink=a.accept_shrink)
+    except M.ShrinkHeld as e: err('trim shrink held', e); return 6
+    if not a.dry_run:
+        M.save_layers(doc, root)
+        qd = root / 'solver-queue'; qd.mkdir(parents=True, exist_ok=True)
+        with open(qd / f'{a.layer_key}.csv', 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, ['ref', 'name', 'lat', 'lon', 'why', 'candidates']); w.writeheader(); w.writerows(queue)
+    notice('trim', f'{a.layer_key}: read {len(feats)} of {expected}; matched {len(recs)} parks ({sum(1 for r in recs.values() if r["via"] == "id")} by id), '
+                   f'{len(queue)} to the solver queue; {notes}' + (' (dry run, nothing written)' if a.dry_run else ''))
+    return 0
+
+
+def tracked_files(repo):
+    out = subprocess.run(['git', '-C', str(repo), 'ls-files', '-z'], capture_output=True, check=True).stdout.decode().split('\0')
+    return [(f, os.path.getsize(pathlib.Path(repo) / f)) for f in out if f and (pathlib.Path(repo) / f).is_file()]
+
+
+def cmd_check(a):
+    root = pathlib.Path(a.root) if a.root else M.OUTLINES; bad = []
+    doc = M.load_layers(root)
+    for p in sorted(root.glob('*.geojson.gz')):
+        try: recs = M.load_area(p.name[:-len('.geojson.gz')], root)
+        except Exception as e: bad.append(f'{p.name}: unreadable ({e})'); continue
+        for ref, r in recs.items():
+            if M.content_hash(r) != r.get('hash'): bad.append(f'{p.name} {ref}: content hash does not match')
+            try: M.assert_public_safe(r)
+            except M.LicenseBlocked as e: bad.append(str(e))
+            if r.get('g') not in M.RANK: bad.append(f'{p.name} {ref}: unknown g {r.get("g")!r}')
+    for key, L in doc['layers'].items():
+        if L.get('source_count') is not None and L.get('expected_count') is not None and L['source_count'] < L['expected_count']:
+            bad.append(f'layer {key}: baseline is SHORT (source {L["source_count"]} of {L["expected_count"]})')
+        if M.is_wdpa(key, L.get('url'), L.get('agency'), L.get('license')): bad.append(f'layer {key}: Protected Planet / WDPA in a public manifest')
+    if a.cache:
+        for f in sorted(glob.glob(os.path.join(a.cache, '*.json.gz'))):
+            area = os.path.basename(f)[:-len('.json.gz')]; exp = (doc.get('caches') or {}).get(area, {}).get('expected_count')
+            if exp is None:
+                bad.append(f'{area}: no baseline in the manifest (caches): held, not used')
+                continue
+            try: M.check_saved_cache(f, exp)
+            except M.ShortRead as e: bad.append(str(e))
+    if a.repo:
+        for f in M.raw_in_repo(tracked_files(a.repo)): bad.append(f'{f}: a raw layer file must not be tracked (use the raw manifest)')
+    for b in bad: err('master check', b)
+    notice('master check', 'all clear' if not bad else f'{len(bad)} problem(s)')
+    return 0 if not bad else 1
+
+
+def cmd_gate(a):
+    root = pathlib.Path(a.root) if a.root else M.OUTLINES; doc = M.load_layers(root); caches = doc.get('caches') or {}
+    cache = pathlib.Path(a.cache); short = []
+    for f in sorted(cache.glob('*.json.gz')):
+        stem = f.name[:-len('.json.gz')]; exp = (caches.get(stem) or {}).get('expected_count')
+        if exp is None:
+            err('master gate NO BASELINE', f'{stem}: no baseline in the manifest (caches): held, not used')
+            (cache / 'short').mkdir(exist_ok=True); shutil.move(str(f), str(cache / 'short' / f.name)); short.append(stem)
+            continue
+        try: M.check_saved_cache(f, exp)
+        except M.ShortRead as e:
+            err('master gate SHORT', e); (cache / 'short').mkdir(exist_ok=True); shutil.move(str(f), str(cache / 'short' / f.name)); short.append(stem)
+        except Exception as e: err('master gate', f'{f.name}: unreadable ({e})'); (cache / 'short').mkdir(exist_ok=True); shutil.move(str(f), str(cache / 'short' / f.name)); short.append(stem)
+    if a.report and short: pathlib.Path(a.report).write_text('\n'.join(short) + '\n')
+    notice('master gate', 'no short saved copy' if not short else f'SHORT saved copy moved aside: {" ".join(short)}')
+    return 7 if short else 0
+
+
+def cmd_plan(a):
+    root = pathlib.Path(a.root) if a.root else M.OUTLINES; doc = M.load_layers(root)
+    max_days = float(os.environ.get('KPC_MASTER_MAX_DAYS') or a.max_days)
+    fetch = None if a.no_probe else M.http_fetcher()
+
+    def probe(L):
+        if fetch is None: return None
+        try: i = M.layer_info(L['url'], fetch); return {'count': i['count'], 'last_edit': i['last_edit']}
+        except Exception as e: warn('plan probe', f"{L.get('url')}: {str(e)[:120]}"); return None   # noqa: BLE001
+    areas = a.areas.split(',') if a.areas else None
+    if a.prefix: areas = sorted({x for L in doc['layers'].values() for x in L.get('areas') or [] if x.startswith(a.prefix)}) or ['(none)']
+    rows = M.plan(doc, datetime.datetime.now(datetime.timezone.utc), max_days, probe, areas=areas)
+    print(json.dumps(rows, indent=1))
+    for r in rows:
+        if r['action'] != 'use-master': notice('master plan', f"{r['layer']}: {r['action']} - {r['reason']}")
+    if a.out: pathlib.Path(a.out).write_text(json.dumps(rows, indent=1))
+    return 0
+
+
+def cmd_raw_add(a):
+    row = M.raw_add(a.file, a.source, root=pathlib.Path(a.root) if a.root else None); print(json.dumps(row)); return 0
+
+
+def cmd_wdpa(a):
+    ok, why = M.private_path_ok(a.out)
+    if not ok: err('wdpa-lookup', why); return 4
+    rows = M.load_json(a.input, [])
+    rows = rows.get('features', rows) if isinstance(rows, dict) else rows
+    rows = [(r.get('properties') or r.get('attributes') or r) for r in rows]
+    out = M.wdpa_agency_lookup(rows)
+    pathlib.Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+    keys = sorted({k for r in out for k in r})
+    with open(a.out, 'w', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, keys); w.writeheader(); w.writerows(out)
+    notice('wdpa-lookup', f'{len(out)} rows (agency fields only, no geometry) written privately'); return 0
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter); sp = ap.add_subparsers(dest='cmd', required=True)
+    t = sp.add_parser('trim'); t.add_argument('--layer-key', required=True); t.add_argument('--input'); t.add_argument('--url'); t.add_argument('--parks', required=True)
+    t.add_argument('--area'); t.add_argument('--expected', type=int); t.add_argument('--agency'); t.add_argument('--license'); t.add_argument('--g', choices=sorted(M.RANK))
+    t.add_argument('--id-fields'); t.add_argument('--name-fields'); t.add_argument('--record-id-field'); t.add_argument('--detail', type=float); t.add_argument('--circle-m', type=float)
+    t.add_argument('--page', type=int, default=500); t.add_argument('--accept-shrink', action='store_true'); t.add_argument('--dry-run', action='store_true'); t.add_argument('--root')
+    c = sp.add_parser('check'); c.add_argument('--root'); c.add_argument('--cache'); c.add_argument('--repo')
+    p = sp.add_parser('plan'); p.add_argument('--root'); p.add_argument('--areas'); p.add_argument('--prefix'); p.add_argument('--max-days', type=float, default=30); p.add_argument('--no-probe', action='store_true'); p.add_argument('--out')
+    g = sp.add_parser('gate'); g.add_argument('--cache', required=True); g.add_argument('--root'); g.add_argument('--report')
+    r = sp.add_parser('raw-add'); r.add_argument('file'); r.add_argument('--source', required=True); r.add_argument('--root')
+    w = sp.add_parser('wdpa-lookup'); w.add_argument('--input', required=True); w.add_argument('--out', required=True)
+    a = ap.parse_args(argv)
+    if a.cmd == 'trim' and bool(a.input) == bool(a.url): ap.error('give exactly one of --input or --url')
+    return {'trim': cmd_trim, 'check': cmd_check, 'gate': cmd_gate, 'plan': cmd_plan, 'raw-add': cmd_raw_add, 'wdpa-lookup': cmd_wdpa}[a.cmd](a)
+
+
+if __name__ == '__main__': sys.exit(main())

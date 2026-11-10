@@ -81,8 +81,8 @@ check(ver.get('us-key') == 'v5b' and ver.get('ca-key') == 'v5b' and ver.get('wor
       'us/ca/world version lines still v5b')
 check(ver.get('fers') == 'v1', 'fers version v1')
 
-# Hashes recorded on main tip before this PR (must not move)
-BASE = {'us-key': 'f489a836894f', 'ca-key': '570b09c3cb52', 'world-key': '6444287722b9'}
+# Approved hashes on this PR: US bbdcc89f8120 (from f489a836894f); CA and world unchanged
+BASE = {'us-key': 'bbdcc89f8120', 'ca-key': '570b09c3cb52', 'world-key': '6444287722b9'}
 for k, h in BASE.items():
     got = KF.rules_hash(k, str(HERE))
     check(got == h, f'{k} rules hash unchanged ({got} == {h})')
@@ -99,8 +99,8 @@ check(fers_h in _head and 'fers v1' in _head,
 # Nov 9 7:52 PM CST: amendment 2 hashes approved; the public changelog keeps hashes and dates only (no quotes, no ids)
 check(f'{fers_h} (FINAL' in _head and 'APPROVED' in _head and '7:52 PM CST' in _head and 'PENDING' not in _head and '"' not in docs,
       "docs record the approval (hash + date) next to the final fers hash, no quoted messages")
-check('f489a836894f' in _head and '570b09c3cb52' in _head and '6444287722b9' in _head,
-      'docs entry notes us/ca/world hashes unchanged')
+check('bbdcc89f8120' in _head and 'f489a836894f' in _head and '570b09c3cb52' in _head and '6444287722b9' in _head,
+      'docs entry notes the US hash move and CA/world hashes unchanged')
 
 # Changing the ready file must move the fers hash (and only fers)
 with tempfile.TemporaryDirectory() as td:
