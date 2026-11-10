@@ -215,6 +215,16 @@ jobs:
           # and its state is NOT built tonight; the job goes red at the end (Master gate verdict) so a short read never becomes the key.
           rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
           [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; exit 1; }
+          # Nov 10 (run 42821613637: 11 states held, the same 11 every run): a held copy is only refilled by the build's own top-up, which a held
+          # state never reaches. Refill first (saved PAD-US ids by id, the newer / short state layers; saved-copy-only hosts are never asked,
+          # services*.arcgis.com included), then the SAME gate again on the refilled copy. Still short = held, as before (fail closed).
+          if [ -s "$RUNNER_TEMP/master-short.txt" ] && [ "$GEO_CACHE_MODE" = use ]; then
+            rf=""; for st in $STATES; do [ -f "cache/us/short/US-$st.json.gz" ] && mv "cache/us/short/US-$st.json.gz" cache/us/ && rf="$rf $st"; done
+            echo "::notice title=Master gate::refilling the short saved copies before the second gate:$rf"
+            STATES="${rf# }" KPC_REFILL_ONLY=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-refill-${{ matrix.g.i }}.log || { kpc_rc=$?; echo "::warning title=Master gate::the refill stopped (exit $kpc_rc); the second gate decides"; echo "Master gate - the refill stopped (exit $kpc_rc); the second gate decides" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+            rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
+            [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::second gate stopped (exit $mg)"; exit 1; }
+          fi
           if [ -s "$RUNNER_TEMP/master-short.txt" ]; then ok=""; for st in $STATES; do [ -f "cache/us/short/US-$st.json.gz" ] || ok="$ok $st"; done; export STATES="${ok# }"; fi
           [ -n "$STATES" ] || { echo '::error title=Master gate::every state in this job has a short saved copy: nothing built'; exit 1; }
           python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log
@@ -479,6 +489,10 @@ jobs:
           : > /tmp/kpc-build-failed.txt
           for f in parts/us-key-part-*/failed-states.txt; do
             [ -s "$f" ] && cat "$f" >> /tmp/kpc-build-failed.txt
+          done
+          # Nov 10: a state the master gate held (short saved copy, not built, old key file kept) is named failed in the stamp too
+          for f in parts/us-key-part-*/master-short.txt; do
+            [ -s "$f" ] && sed 's/^US-//' "$f" >> /tmp/kpc-build-failed.txt
           done
           if [ -s /tmp/kpc-build-failed.txt ]; then
             sort -u /tmp/kpc-build-failed.txt -o /tmp/kpc-build-failed.txt

@@ -36,6 +36,9 @@ PREC = 3 if DETAIL >= 0.01 else 5
 PAGE = int(os.environ.get('GEO_PAGE') or 500)
 CACHE = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/us')
 CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
+# Nov 10 (master gate): KPC_REFILL_ONLY=1 with GEO_CACHE_MODE=use only tops up and re-saves each state's saved copy (saved ids by id,
+# newer / short layers); no matching, no key file is written. The master gate then checks the refilled copy again.
+REFILL_ONLY = os.environ.get('KPC_REFILL_ONLY') == '1' and CMODE == 'use'
 CACHE_USED, CACHE_SAVED = [], []
 SHADOW = os.environ.get('SHADOW') == '1'
 NAME_JOIN = (os.environ.get('NAME_JOIN') or '1') != '0'   # Oct 24: the world key's kind-label rule, US version (needs the pin inside)
@@ -48,7 +51,14 @@ SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_H
 SAVED_ONLY_SKIPPED = {}   # state -> layer prefixes taken from the saved copy instead of a live read
 
 
-def saved_only(url): return urllib.parse.urlparse(str(url).replace('svc:', '', 1).split('|')[0]).netloc.lower() in SAVED_ONLY_HOSTS
+# Nov 10: services*.arcgis.com (services2 ... services9 too) is never contacted, robots.txt included, on every path (the same rule as
+# kpc_master.live_ok): its layers come from the saved copy only. The list above named only services and services1.
+_ARCGIS_SERVICES = re.compile(r'^services\d*\.arcgis\.com$')
+
+
+def saved_only(url):
+    h = urllib.parse.urlparse(str(url).replace('svc:', '', 1).split('|')[0]).netloc.lower().split(':')[0]
+    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h))
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
@@ -738,7 +748,9 @@ import kpc_source_fields as SF  # noqa: E402
 import kpc_tracts as TR  # noqa: E402
 def resolve(pre, url, nf, af):
     # 'svc:<service>|<layer name regex>' → (query url, name field, acres field, object id field)
-    rq = lambda u: json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=120).read().decode('utf-8', 'replace'))
+    def rq(u):
+        if saved_only(u): raise RuntimeError(f'saved copy only: {urllib.parse.urlparse(u).netloc}')   # Nov 10: never asked, robots.txt included
+        return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=120).read().decode('utf-8', 'replace'))
     if not url.startswith('svc:'):
         if not pre.startswith('sg'): return url, nf, af, ('objectid' if pre in ('wld', 'fwsr', 'fsod') else 'OBJECTID')
         if pre in RESOLVED: return RESOLVED[pre]
@@ -841,6 +853,7 @@ def zip_state(st, have):
         try:
             import io, zipfile, shapefile
             from pyproj import CRS, Transformer
+            if saved_only(url): SAVED_ONLY_SKIPPED.setdefault(st, set()).add(pre); continue   # Nov 10: services*.arcgis.com and the listed hosts, saved copy only
             if url not in ZIPC:
                 with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=240) as r: ZIPC[url] = zipfile.ZipFile(io.BytesIO(r.read()))
             z = ZIPC[url]; n = 0; bad_shp = 0
@@ -1487,6 +1500,8 @@ def run(st):
     try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}   # Oct 29: retired numbers leave the key (issue #17)
     except Exception: pass  # noqa: BLE001
     got = load_cache(st) if CMODE in ('use', 'only') else None
+    if got is None and REFILL_ONLY:
+        notice(f'US key {st}', 'refill: no saved copy to refill; skipped'); return None
     if got is None and CMODE == 'only':
         notice(f'US key {st}', 'no saved shapes yet; skipped (saved-copy-only run)'); return None
     if got is not None:
@@ -1519,13 +1534,28 @@ def run(st):
                     short.add(pre)
                     notice(f'US key {st}', f'saved copy of {pre} is short ({n_have} areas, live layer {n_live}); re-reading that layer')
             if missing or short:
+                _pf = lambda a: re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0)
+                kept_old = {}
                 if short:
-                    recs = [a for a in recs if re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0) not in short]
+                    kept_old = {pre: [a for a in recs if _pf(a) == pre] for pre in short}
+                    recs = [a for a in recs if _pf(a) not in short]
                 add = extra_state(st, _have(recs), only=missing | short)
+                # Nov 10 (run 42821613637): a re-read that came back SMALLER than the saved copy (mol 16 of 1,000, ind 0 of 457,
+                # wid 0 of 1,389) replaced it and the smaller copy was saved. A re-read now replaces a saved layer only when it has
+                # at least as many records; otherwise the saved records are kept.
+                back = []
+                for pre, old_l in sorted(kept_old.items()):
+                    n_new = sum(1 for a in add if _pf(a) == pre)
+                    if n_new < len(old_l):
+                        add = [a for a in add if _pf(a) != pre]; recs += old_l; back.append(f'{pre} {n_new} < {len(old_l)}')
+                if back: notice(f'US key {st}', 'a re-read came back smaller than the saved copy, so the saved records were kept: ' + ', '.join(back))
                 if add:
                     recs += add
                     notice(f'US key {st}', f'saved copy topped up with {len(add)} areas from {len({str(a["OBJECTID"]).rstrip("0123456789") for a in add})} layer(s)')
                     if st not in FAILED_READ: save_cache(st, recs, seen)
+        if REFILL_ONLY:
+            notice(f'US key {st}', f'refill: saved copy now {len(recs)} records' + (' (a read failed: not re-saved)' if st in FAILED_READ else ''))
+            return None
     else:
         recs, seen = pad_state(st, P)
         recs += fws_state(st, {norm(a.get('Unit_Nm') or '') for a in recs if a.get('Mang_Name') == 'FWS'})
@@ -2357,6 +2387,13 @@ except Exception as _e:  # noqa: BLE001
     _bad = []; notice('US key', f'golden cases could not be run ({_e}); carrying on')
 if _bad:
     notice('US key STOPPED', f'{len(_bad)} golden case(s) wrong, so NO keys were written: ' + ' | '.join(_bad)[:700])
+    sys.exit(0)
+if REFILL_ONLY:
+    for st in STATES:
+        if st == 'KY': continue
+        try: run(st)
+        except Exception as e: notice(f'US key {st}', f'refill FAILED: {e}')  # noqa: BLE001
+    notice('US key refill', f"saved copies re-saved: {' '.join(CACHE_SAVED) or 'none'}")
     sys.exit(0)
 done = []
 STATE_S = {}

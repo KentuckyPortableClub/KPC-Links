@@ -71,10 +71,18 @@ def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25')
 # Nov 9 (Brandon t939u, 6:20 PM CST: "4 saved copies"): no live read from a host whose robots.txt answers 403; its layers come from the
 # saved copy (the 'a layer that did not answer keeps its saved records' path). Remove a host only when its robots.txt allows us again.
 SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
+# Nov 10: every services*.arcgis.com host (services2 ... services9 too, e.g. the Parks Canada layer) is never contacted, robots.txt
+# included (the same rule as kpc_master.live_ok): its layers come from the saved copy only.
+_ARCGIS_SERVICES = re.compile(r'^services\d*\.arcgis\.com$')
+
+
+def saved_only(url):
+    h = urllib.parse.urlparse(str(url)).netloc.lower().split(':')[0]
+    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h))
 
 
 def get(url, params, tries=5):
-    if urllib.parse.urlparse(url).netloc.lower() in SAVED_ONLY_HOSTS: raise RuntimeError(f'saved copy only (Brandon t939u): {urllib.parse.urlparse(url).netloc}')
+    if saved_only(url): raise RuntimeError(f'saved copy only (owner rule, Nov 9): {urllib.parse.urlparse(url).netloc}')
     last = None
     for i in range(tries):
         try:
@@ -436,6 +444,7 @@ if recs is None:
 
     def gj_pull(label, url, nf):
         # a plain GeoJSON download (Québec's culture ministry publishes its heritage-site outlines this way)
+        if saved_only(url): raise RuntimeError(f'saved copy only: {urllib.parse.urlparse(url).netloc}')
         with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=240) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
         got = []
         for i, f in enumerate(j.get('features') or []):
@@ -452,6 +461,7 @@ if recs is None:
         # a zipped shapefile in the agency's own projection (Grand River CA: UTM zone 17, no live map service)
         import io, zipfile, shapefile
         from pyproj import Transformer
+        if saved_only(url): raise RuntimeError(f'saved copy only: {urllib.parse.urlparse(url).netloc}')
         tr = Transformer.from_crs(int(epsg), 4326, always_xy=True)
         with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=240) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
         got = []

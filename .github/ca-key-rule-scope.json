@@ -7,6 +7,14 @@
    "from": "8feccbb7d9ee",
    "why": "Bad-ID block list (Brandon t919u); the list is empty, so no current result changes.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-10-arcgis-hosts-saved-only",
+   "when": "2026-11-10",
+   "from": "570b09c3cb52",
+   "why": "Every services*.arcgis.com host (services2 to services9 too) is saved-copy only on every path, the GeoJSON and zipped-shapefile pulls included. The Parks Canada layer on one of those hosts covers every province and territory, so the scope is all.",
+   "scope": "all",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
   }
  ]
 }
