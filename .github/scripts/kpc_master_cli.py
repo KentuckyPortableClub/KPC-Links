@@ -10,7 +10,7 @@
   raw-add     add a downloaded raw layer file to the manifest (name, size, sha256, source, date). The file itself is never added to git.
   fill        THE master step (Nov 10): refill / verify the saved copies before the gate; the one writer of the saved copies.
   collect     the join job: put the build parts' master records, layer counts, raw rows and needs-download rows together.
-  needs       merge rows into a needs-download list, or print how many rows are open (bot / brandon / never).
+  needs       merge rows into a needs-download list, or print how many rows are open (bot / person / never).
   wdpa-lookup managing agency of a park from a Protected Planet / WDPA file. Private output only, no geometry.
 
 Exit codes: 0 ok | 1 check failed | 2 SHORT read | 3 cannot verify (no expected count) | 4 licence block | 5 live read not allowed | 6 shrink held | 7 short saved copy

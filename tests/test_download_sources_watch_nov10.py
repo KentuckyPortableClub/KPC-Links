@@ -54,7 +54,7 @@ test = {'format': 1, 'sources': {
     'h902': {'areas': ['US-ZZ'], 'layer': 'zzq', 'page': 'https://services1.arcgis.com/q/arcgis/rest/services/y/FeatureServer/0', 'file': 'https://services-eu1.arcgis.com/q/y.zip', 'kind': 'first-party', 'check': 'bot', 'fp': {}},
     'h903': {'areas': ['US-ZZ'], 'layer': 'zzr', 'page': 'https://p.example.gov', 'file': '', 'kind': 'first-party', 'check': 'person', 'fp': {}}}}
 sp.write_text(json.dumps(test))
-row = M.needs_row('US-ZZ', 'zzx', test['sources']['h900']['layer_url'], 'test', 'test', who='brandon', date='2026-11-01', src='h900', check='bot')
+row = M.needs_row('US-ZZ', 'zzx', test['sources']['h900']['layer_url'], 'test', 'test', who='person', date='2026-11-01', src='h900', check='bot')
 M.save_needs({'format': M.NEEDS_FORMAT, 'rows': [dict(row, status='done')]}, np_)
 state = {'size': '1000', 'ver': '2026-10-01'}
 o1 = W.watch(sp, np_, head=head, getj=getj, date='2026-11-10')

@@ -9,7 +9,7 @@ Plain words. Before the US key's gate checks the saved copies, this step:
   3. has the key read those layers (its own reader, kpc_us_key.py in refill mode) into layer files, nothing merged yet;
   4. per layer file: the count must reach the layer's own total (fail closed), then `trim` (master records + the layer's count), then
      `raw-add` (the raw-file manifest), then the keep-bigger merge into the saved copy (a smaller read never replaces a saved layer);
-  5. writes a row for every layer it may not or could not fetch (who = brandon / never / bot) for the needs-download list.
+  5. writes a row for every layer it may not or could not fetch (who = person / never / bot) for the needs-download list.
 The existing save step uploads the saved copies this step changed. It never changes the gate or the cache baselines.
 """
 import datetime, gzip, json, os, pathlib, shutil, subprocess, sys, urllib.parse
@@ -175,7 +175,7 @@ def fill(a):
         if ok: done.add(k)
         else:
             u = meta.get('url') or (table.get(meta.get('layer')) or {}).get('url', '')
-            rows.append(M.needs_row(meta.get('area'), meta.get('layer'), u, what, 'master', who='bot' if meta.get('source') == 'live' else 'brandon',
+            rows.append(M.needs_row(meta.get('area'), meta.get('layer'), u, what, 'master', who='bot' if meta.get('source') == 'live' else 'person',
                                     expected=M.layer_file_expected(meta), have=None))
     # what the bots may not or could not fetch, where it is needed
     short_after = short_states(a.cache, todo, caches)

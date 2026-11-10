@@ -5,7 +5,7 @@ One command, from the KPC-Links folder:   python tools\\kpc_pc_helper.py
 Plain steps are in tools/README-pc-helper.md.
 
 What it does:
-  1. reads the ONE needs-download list (KPC-Data data/needs-download.json) and keeps the open rows marked who=brandon
+  1. reads the ONE needs-download list (KPC-Data data/needs-download.json) and keeps the open rows marked who=person
      (a row marked who=never is never opened: nobody contacts that server). Only rows that are new, never downloaded, or
      whose official source looks CHANGED are open; a downloaded row comes back only when the change check sees a change.
      `--reminders` shows the rare list of sources a bot may not check (look at those pages about every 3 months);
@@ -63,12 +63,12 @@ def downloads_dir(given=None):
 
 
 def rows_for_person(doc, only=None):
-    """The rows a person downloads: OPEN rows for who=brandon only. A row is open when it is new, was never downloaded, or its
+    """The rows a person downloads: OPEN rows for who=person only. A row is open when it is new, was never downloaded, or its
     official source looks CHANGED (the change check reopened it). A done row is never listed again until its source changes.
     who=never is NEVER returned (nobody contacts that server)."""
     out = []
     for r in doc.get('rows') or []:
-        if r.get('status') != 'open' or r.get('who') != 'brandon': continue
+        if r.get('status') != 'open' or r.get('who') != 'person': continue
         if M.who_for(r.get('url') or '')[0] == 'never': continue   # belt and braces: the host rules say never
         if only and r.get('area') not in only and r.get('id') not in only: continue
         if not is_fillable(r): continue
@@ -260,7 +260,7 @@ def main(argv=None):
         return 0
     rows = rows_for_person(doc, a.only)
     never = sum(1 for r in doc.get('rows') or [] if r.get('status') == 'open' and r.get('who') == 'never')
-    leads = sum(1 for r in doc.get('rows') or [] if r.get('status') == 'open' and r.get('who') == 'brandon' and not is_fillable(r) and not a.only)
+    leads = sum(1 for r in doc.get('rows') or [] if r.get('status') == 'open' and r.get('who') == 'person' and not is_fillable(r) and not a.only)
     if leads: say(f'({leads} more open rows are leads the US key does not read yet, e.g. Canada, world or a layer with no saved copy: not asked here)')
     gs = groups(rows)
     say(f'{len(rows)} layer(s) to download by hand, {len(gs)} download(s)' + (f' ({never} more are marked never-contact and are skipped)' if never else '') + '.')

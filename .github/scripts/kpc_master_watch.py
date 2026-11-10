@@ -83,7 +83,7 @@ def seed(csv_path, sources_path, needs_rows_out=None):
         # check READ (the first check sets the baseline, so it never asks a person; only a later difference does).
         src[sid] = e
         for area in e['areas']:
-            who = 'never' if never else 'brandon'
+            who = 'never' if never else 'person'
             st, why = 'open', 'an official download exists for a layer a bot may not read (saved copies only)'
             if never: why = 'never contacted (no request of any kind); a first-party download elsewhere is still to be found'
             elif k == 'fallback': st, why = 'held', 'fallback only (PAD-US or CPCAD, which the keys already read): no first-party download found yet'
@@ -200,7 +200,7 @@ def change_rows(src, sids, date):
         e = src[sid]
         if e.get('kind') != 'first-party': continue   # a fallback (PAD-US / CPCAD) is read by the keys themselves: nothing to ask
         for area in e.get('areas') or []:
-            rows.append(M.needs_row(area, e.get('layer'), e.get('layer_url') or '', WHY_CHANGED, 'change check', who='brandon', page=e.get('page') or None,
+            rows.append(M.needs_row(area, e.get('layer'), e.get('layer_url') or '', WHY_CHANGED, 'change check', who='person', page=e.get('page') or None,
                                     date=date, note=('direct file: ' + e['file']) if e.get('file') else '', src=sid, check=e.get('check') or ''))
     return rows
 

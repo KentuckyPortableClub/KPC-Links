@@ -550,7 +550,7 @@ def wdpa_agency_lookup(rows):
 # hunters and the engine write there. The master step in this repo reads it and adds its own rows through the boundary-cache
 # release (asset needs-download.json, same schema), which KPC-Data's hourly copy job merges into the one file.
 #   who = 'bot'     the master downloads it itself (allowed host, robots.txt says yes)
-#         'brandon' a person downloads it in a browser (saved-copy-only host, services*.arcgis.com, or robots.txt says no / 403)
+#         'person' a person downloads it in a browser (saved-copy-only host, services*.arcgis.com, or robots.txt says no / 403)
 #         'never'   nobody contacts it (never-contact host); the saved copy is kept as it is
 NEEDS_FORMAT = 1
 NEEDS_FIELDS = ('id', 'area', 'layer', 'url', 'page', 'host', 'who', 'why', 'expected', 'have', 'source', 'added', 'status', 'note',
@@ -559,13 +559,13 @@ NEEDS_STATUS = ('open', 'done', 'held')
 
 
 def who_for(url, robots_ok=None):
-    """('bot' | 'brandon' | 'never', why). robots_ok(url) -> bool is only asked for a host live_ok allows (never before it)."""
+    """('bot' | 'person' | 'never', why). robots_ok(url) -> bool is only asked for a host live_ok allows (never before it)."""
     host, path = parts(url)
     for h, p in NEVER_CONTACT:
         if host == h and path.lower().startswith(p.lower()): return 'never', f'never contact {h}{p}: no request of any kind, by a bot or a person'
     ok, why = live_ok(url)
-    if not ok: return 'brandon', why + ': a person downloads it in a browser'
-    if robots_ok is not None and not robots_ok(url): return 'brandon', f'{host}: robots.txt does not allow a bot to read it (a 403 counts as no): a person downloads it'
+    if not ok: return 'person', why + ': a person downloads it in a browser'
+    if robots_ok is not None and not robots_ok(url): return 'person', f'{host}: robots.txt does not allow a bot to read it (a 403 counts as no): a person downloads it'
     return 'bot', ''
 
 
@@ -598,7 +598,7 @@ def load_needs(path):
     return doc
 
 
-NEEDS_ABOUT = ('Layers somebody must download for the saved copies. who=bot: the master step downloads it; who=brandon: the PC helper '
+NEEDS_ABOUT = ('Layers somebody must download for the saved copies. who=bot: the master step downloads it; who=person: the PC helper '
                '(KPC-Links tools/kpc_pc_helper.py) opens the official page in a browser; who=never: nobody contacts it. Hunters and the '
                'engine only add rows here; only the master step saves layers. One row per area|layer.')
 

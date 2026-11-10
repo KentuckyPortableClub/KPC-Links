@@ -53,14 +53,14 @@ of the saved copies (`US-XX.json.gz` on the boundary-cache release); the build a
 3. **Per layer file:** the count must reach the layer's own total (fail closed) → `trim` → `raw-add` → the keep-bigger merge into the saved
    copy (a smaller read never replaces a saved layer). The existing save step uploads what changed. The gate and its baselines are unchanged.
 4. **The ONE needs-download list** (KPC-Data `data/needs-download.json`, one schema: id, area, layer, url, page, host, who, why, expected,
-   have, source, added, status, note). who=`bot` means a bot downloads it, `brandon` means a person does it with the PC helper, and `never` means nobody contacts that server.
+   have, source, added, status, note). who=`bot` means a bot downloads it, `person` means a person does it with the PC helper, and `never` means nobody contacts that server.
    The KPC-Data bots (hunters, finders, collector, engine) only add rows to it and never save layers. The US key's rows go up as the
    release asset `needs-download.json`, and KPC-Data's hourly copy job merges them in.
 
 US only for now. The Canada and world keys keep their gate. Their key scripts share the same host rules, but no master step fills
 their copies yet. That needs the same reader mode in `kpc_ca_key.py` / `kpc_world_key.py`, which is more than a simple hook.
 
-The PC helper for the who=`brandon` rows is `tools/kpc_pc_helper.py`, with plain steps in `tools/README-pc-helper.md`.
+The PC helper for the who=`person` rows is `tools/kpc_pc_helper.py`, with plain steps in `tools/README-pc-helper.md`.
 
 ## download-sources.json (Nov 10): the official download sources and the change check
 

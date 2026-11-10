@@ -36,7 +36,8 @@
    "from": "da660f0d5ae7",
    "why": "The master step (before the gate) is now the one writer of the saved copies: the key reads short or new layers into layer files for it (KPC_LAYER_OUT), reads a person's checked download instead of the live layer (KPC_LAYER_IN), and the build only reads the saved copies (KPC_MASTER_OWNS). services-<region>.arcgis.com hosts (services-eu1 and the like) count as services*.arcgis.com, and ncnhde.natureserve.org is never contacted (saved copy only). What a state may read live changes, so every state is rebuilt once.",
    "scope": "all",
-   "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-10",
+   "restamped": "2026-11-10: comment wording only in kpc_us_key.py (neutral owner-rule notes); no rule change, same scope. APPROVED, decided_by KPC owner, 2026-11-10"
   }
  ]
 }

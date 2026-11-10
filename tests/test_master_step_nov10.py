@@ -46,21 +46,21 @@ check('the world layers on services-eu1 exist (8 or more) and every one is saved
       (lambda us: len(us) >= 8 and all(SO['kpc_world_key.py'](u) for u in us))(
           sorted(set(re.findall(r'https://services-eu1\.arcgis\.com/[^"\'\s]+', ''.join(p.read_text(encoding='utf-8', errors='replace') for p in (ROOT / 'data/world-key/layers.json', ROOT / 'data/world-key/extra-layers.json')))))))
 
-# 2. who_for: never / brandon / bot; robots asked only after the host rules, a 403 counts as no
+# 2. who_for: never / person / bot; robots asked only after the host rules, a 403 counts as no
 asked = []
 rb = lambda u: (asked.append(u), False)[1]
 check('who_for: Grant County NM parcel server = never', M.who_for('https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/P/FeatureServer/0')[0] == 'never')
 check('who_for: ncnhde = never', M.who_for('https://ncnhde.natureserve.org/x')[0] == 'never')
-check('who_for: services-eu1 = brandon (no robots asked)', M.who_for('https://services-eu1.arcgis.com/x/FeatureServer/0', rb)[0] == 'brandon' and not asked)
-check('who_for: apps.fs.usda.gov = brandon', M.who_for('https://apps.fs.usda.gov/arcx/rest/services/EDW/x/MapServer/0', rb)[0] == 'brandon' and not asked)
-check('who_for: robots says no (403) = brandon', M.who_for('https://gis.example.gov/arcgis/rest/services/x/MapServer/0', rb)[0] == 'brandon' and asked)
+check('who_for: services-eu1 = person (no robots asked)', M.who_for('https://services-eu1.arcgis.com/x/FeatureServer/0', rb)[0] == 'person' and not asked)
+check('who_for: apps.fs.usda.gov = person', M.who_for('https://apps.fs.usda.gov/arcx/rest/services/EDW/x/MapServer/0', rb)[0] == 'person' and not asked)
+check('who_for: robots says no (403) = person', M.who_for('https://gis.example.gov/arcgis/rest/services/x/MapServer/0', rb)[0] == 'person' and asked)
 check('who_for: allowed = bot', M.who_for('https://gis.example.gov/arcgis/rest/services/x/MapServer/0', lambda u: True)[0] == 'bot')
 get = lambda u: (403, '')
 check('robots_allows: a robots.txt 403 is a disallow', M.robots_allows('https://gis.example.gov/arcgis/rest/services/x', get, {}) is False)
 
 # 3. the ONE needs list: schema, merge by area|layer, done stays done, no change = no save
 r1 = M.needs_row('US-AZ', 'fsod', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/X/MapServer/0/query', 'short', 'master', expected=12, have=12, date='2026-11-10')
-check('needs row has exactly the schema fields', set(r1) == set(M.NEEDS_FIELDS) and r1['who'] == 'brandon' and r1['id'] == 'US-AZ|fsod' and r1['status'] == 'open')
+check('needs row has exactly the schema fields', set(r1) == set(M.NEEDS_FIELDS) and r1['who'] == 'person' and r1['id'] == 'US-AZ|fsod' and r1['status'] == 'open')
 check('needs row page for a hosted layer is the hub search, not the services host', M.needs_row('US-AZ', 'x', 'https://services2.arcgis.com/a/arcgis/rest/services/AZ_Parks/FeatureServer/0', 'w', 'm')['page'].startswith('https://hub.arcgis.com/search?q=AZ%20Parks'))
 doc = M.load_needs(None)
 doc, a1, u1 = M.merge_needs(doc, [r1, dict(r1)])
@@ -111,7 +111,7 @@ with tempfile.TemporaryDirectory() as t:
     check(f'apply: a whole read is merged (keep-bigger) ({what})', okk and len(recs) == 3)
     check('apply: trim wrote the master record + the layer count', (root / 'US-ZZ.geojson.gz').exists() and 'US-ZZ.sgzza' in json.load(open(root / 'layers.json'))['layers'])
     check('apply: raw-add recorded the layer file (name, size, sha256)', any(r['name'] == lf.name and len(r['sha256']) == 64 for r in json.load(open(root / 'raw-manifest.json'))['files']))
-    # fill, offline (no key, no request): a short state's saved-copy-only layer becomes a brandon row; ncnhde a never row
+    # fill, offline (no key, no request): a short state's saved-copy-only layer becomes a person row; ncnhde a never row
     json.dump({'format': 1, 'layers': {}, 'caches': {'US-ZZ': {'expected_count': 99}}}, open(root / 'layers.json', 'w'))
     usl = t / 'usl.json'; json.dump({'sgzzb': ['https://services-eu1.arcgis.com/a/arcgis/rest/services/B/FeatureServer/0/query', 'NAME', 'B'],
                                      'sgzzc': ['https://ncnhde.natureserve.org/arcgis/rest/services/C/MapServer/0/query', 'NAME', 'C']}, open(usl, 'w'))
@@ -122,7 +122,7 @@ with tempfile.TemporaryDirectory() as t:
                            offline=True, no_key=True, key=None, parks=str(parks), out_rows=str(t / 'rows.json'))
     F.fill(A)
     rows = {r['id']: r for r in json.load(open(t / 'rows.json'))['rows']}
-    check('fill: services-eu1 layer of a short state -> who=brandon', rows.get('US-ZZ|sgzzb', {}).get('who') == 'brandon')
+    check('fill: services-eu1 layer of a short state -> who=person', rows.get('US-ZZ|sgzzb', {}).get('who') == 'person')
     check('fill: ncnhde layer -> who=never', rows.get('US-ZZ|sgzzc', {}).get('who') == 'never')
     check('fill: every row has the one schema', all(set(r) == set(M.NEEDS_FIELDS) for r in rows.values()))
 
@@ -158,9 +158,9 @@ import kpc_pc_helper as H  # noqa: E402
 try: H.fetch('https://services-eu1.arcgis.com/robots.txt'); refused = False
 except SystemExit: refused = True
 check('PC helper: refuses to fetch any host but GitHub', refused)
-nd = {'rows': [dict(r1, who='brandon'), dict(r1, id='US-NM|g', layer='g', who='brandon', url='https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/P/FeatureServer/0'),
+nd = {'rows': [dict(r1, who='person'), dict(r1, id='US-NM|g', layer='g', who='person', url='https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/P/FeatureServer/0'),
                dict(r1, id='US-NC|n', layer='n', who='never', url='https://ncnhde.natureserve.org/x')]}
-check('PC helper: only brandon rows, never the Grant County server or a never row', [r['id'] for r in H.rows_for_person(nd)] == ['US-AZ|fsod'])
+check('PC helper: only person rows, never the Grant County server or a never row', [r['id'] for r in H.rows_for_person(nd)] == ['US-AZ|fsod'])
 with tempfile.TemporaryDirectory() as t:
     t = pathlib.Path(t); dl = t / 'dl'; dl.mkdir()
     sq = [[[-86.6, 36.4], [-86.4, 36.4], [-86.4, 36.6], [-86.6, 36.6], [-86.6, 36.4]]]

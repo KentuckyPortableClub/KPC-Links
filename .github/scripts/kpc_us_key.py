@@ -39,7 +39,7 @@ CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
 # Nov 10 (master gate): KPC_REFILL_ONLY=1 with GEO_CACHE_MODE=use only tops up and re-saves each state's saved copy (saved ids by id,
 # newer / short layers); no matching, no key file is written. The master gate then checks the refilled copy again.
 REFILL_ONLY = os.environ.get('KPC_REFILL_ONLY') == '1' and CMODE == 'use'
-# Nov 10 (Brandon: the master tool is the ONLY owner of the saved copies). The master step (kpc_master_cli.py fill) runs this script in
+# Nov 10 (owner rule, Nov 10: the master tool is the ONLY owner of the saved copies). The master step (kpc_master_cli.py fill) runs this script in
 # refill mode as its READER: KPC_LAYER_OUT=<dir> = each layer it re-reads is written as a layer file (every record read + what the key
 # keeps) and NOT merged here; the master checks the count, trims, records it and merges (a smaller read never replaces a saved layer).
 # KPC_LAYER_IN=<dir> = a checked download (a person's, from the PC helper) is read from <dir>/US-<st>/<prefix>.geojson.gz instead of
@@ -929,7 +929,7 @@ def extra_state(st, have, only=None):
         if len(x) > 7 and x[7] is not None and st not in x[7]: continue
         opt = x[8] if len(x) > 8 else {}      # Oct 25: state-GIS options: 'where' = the layer's own filter, 'water' = lake surfaces, not property lines
         lf = _layer_in(st, pre)   # Nov 10: a checked download the master step put down is read instead of the live layer
-        if lf is None and saved_only(url): SAVED_ONLY_SKIPPED.setdefault(st, set()).add(pre); continue   # Brandon t939u: the saved copy has it
+        if lf is None and saved_only(url): SAVED_ONLY_SKIPPED.setdefault(st, set()).add(pre); continue   # owner rule, Nov 9: the saved copy has it
         if lf is not None:
             _lm, _lfe = lf
             nf = _lm.get('name_field') or nf; af = _lm.get('acres_field') or af; oidf = _lm.get('oid_field') or 'OBJECTID'
