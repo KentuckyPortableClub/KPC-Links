@@ -204,7 +204,7 @@ jobs:
           # (1,585 shapes vs 80,934 live): 18 parks went outline -> pin with bk=noshape. Refill a short state
           # from the saved outlines (boundary-cache, offline). If that is still short, put the live state file
           # back and fail after the artifact upload (the short read is not what gets saved).
-          rm -f /tmp/shape-guard-fail /tmp/shape-short.txt
+          rm -f /tmp/shape-guard-fail /tmp/shape-short.txt /tmp/shape-guard-failed-states
           rm -rf .livekey
           if GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .livekey \
               && git -C .livekey sparse-checkout set --no-cone data/us-key/index.json \
@@ -249,6 +249,12 @@ jobs:
                       && [ -s ".livekey/data/us-key/US-$st.json" ]; then
                     cp ".livekey/data/us-key/US-$st.json" "data/us-key/US-$st.json"
                     rm -f "data/us-key/tracts/US-$st.json"   # the short read's tract file does not match the live key
+                    echo "$st" >> /tmp/shape-guard-failed-states
+                    # Keep the index row in step with the restored file (run 42797939226 wrote FL padus 5198 into the
+                    # index while US-FL.json was put back at 21993). The next shape guard reads the live index.
+                    python3 -c "import json,sys; from pathlib import Path; st=sys.argv[1]; f=Path('data/us-key/US-%s.json'%st); idxp=Path('data/us-key/index.json');
+counts=(json.loads(f.read_text()).get('counts') or {}) if f.exists() else {}; d=json.loads(idxp.read_text()) if idxp.exists() else {}; row=(d.get('states') or {}).get(st);
+row=dict(row or {}); row.update(counts); d.setdefault('states',{})[st]=row; idxp.write_text(json.dumps(d, indent=1, ensure_ascii=False)+chr(10)) if counts and idxp.exists() else None" "$st"
                     echo "::error title=US key $st::shape source still $got vs $live after the saved-copy refill. The live key's US-$st.json is what will be saved, not the short read."
                     echo "$st shape source $got vs live $live; saved the live key file instead of the short read" >> /tmp/shape-guard-fail
                   else
@@ -274,6 +280,7 @@ jobs:
           cp data/us-key/zip-*.json part/ 2>/dev/null || true   # ok: nothing to do is fine
           echo "$STATES" > part/states.txt; cp us-key-${{ matrix.g.i }}.log part/
           if [ -s /tmp/shape-guard-fail ]; then cp /tmp/shape-guard-fail part/shape-guard-fail; fi
+          if [ -s /tmp/shape-guard-failed-states ]; then sort -u /tmp/shape-guard-failed-states > part/failed-states.txt; fi
       - uses: actions/upload-artifact@v4
         with:
           name: us-key-part-${{ matrix.g.i }}
@@ -366,6 +373,16 @@ jobs:
               shutil.copy(glob.glob(f'{d}/us-key-*.log')[0], '.') if glob.glob(f'{d}/us-key-*.log') else None
           import sys; sys.path.insert(0, '.github/scripts')
           from kpc_save import save_json   # the same writer the script uses (same bytes as a serial run)
+          for st, row in list(idx.items()):
+              fp = f'data/us-key/US-{st}.json'
+              if not os.path.exists(fp) or not isinstance(row, dict):
+                  continue
+              try:
+                  counts = json.load(open(fp)).get('counts') or {}
+              except Exception:
+                  counts = {}
+              if counts.get('padus') is not None and row.get('padus') != counts.get('padus'):
+                  row = dict(row); row.update(counts); idx[st] = row
           save_json('data/us-key/index.json', {'states': {k: idx[k] for k in idx}})
           save_json('data/us-key/layers.json', LJ)
           print(f'::notice title=US key join::{n} state files from {len(glob.glob("parts/us-key-part-*"))} jobs')
@@ -433,7 +450,17 @@ jobs:
       - name: BUILD STAMP (Brandon Nov 2) - this build's id in data/us-key/index.json, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when every state built)
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
-        run: python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { kpc_rc=$?; echo "::warning title=kpc_key_freeze.py::stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $rc), see the log above" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+        run: |
+          : > /tmp/kpc-build-failed.txt
+          for f in parts/us-key-part-*/failed-states.txt; do
+            [ -s "$f" ] && cat "$f" >> /tmp/kpc-build-failed.txt
+          done
+          if [ -s /tmp/kpc-build-failed.txt ]; then
+            sort -u /tmp/kpc-build-failed.txt -o /tmp/kpc-build-failed.txt
+            export KPC_BUILD_FAILED_FILE=/tmp/kpc-build-failed.txt
+            echo "::notice title=US key stamp::parts named failed: $(tr '\n' ' ' < /tmp/kpc-build-failed.txt)"
+          fi
+          python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { kpc_rc=$?; echo "::warning title=kpc_key_freeze.py::stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $rc), see the log above" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: BOT C line for chat 11 (HQ Oct 30) - this build vs the LIVE key, one line in its inbox
         id: kept_green_3
         continue-on-error: true

@@ -552,14 +552,47 @@ def pad_cross(st, P, recs, idx, hand):
     return out
 
 
-def fetch_geo(url, q, timeout=180):
+
+def layer_page_size(requested, server_max=None):
+    """Ask for no more than the server page cap, so a full page is seen even when exceededTransferLimit is omitted."""
+    try:
+        req = int(requested)
+    except (TypeError, ValueError):
+        req = 500
+    if req <= 0:
+        req = 500
+    if server_max in (None, '', 0, '0'):
+        return req
+    try:
+        cap = int(server_max)
+    except (TypeError, ValueError):
+        return req
+    return min(req, cap) if cap > 0 else req
+
+
+def keep_paging(n_got, page, exceeded, n_new=None):
+    """Next offset? Some ArcGIS servers cap a page at maxRecordCount and leave exceededTransferLimit unset.
+    n_new is how many new ids this page added; 0 means the server ignored resultOffset (stop)."""
+    if not n_got:
+        return False
+    if n_new == 0:
+        return False
+    if exceeded:
+        return True
+    return n_got >= page
+
+
+def fetch_geo(url, q, timeout=180, max_records=None):
     """Ask for the finer outline first when one was asked for; if the server refuses or times out, fall back to
-    the 0.01-degree outline every run has always used, rather than losing the layer for that state."""
+    the 0.01-degree outline every run has always used, rather than losing the layer for that state.
+    max_records is the layer maxRecordCount from resolve(): request no more than that, so paging can tell a full page
+    from the last page when the server omits exceededTransferLimit (FL DEP STATE_OWNED_LANDS, Nov 10)."""
     if saved_only(url): raise RuntimeError(f'saved copy only (Brandon t939u): {urllib.parse.urlparse(url).netloc}')
     tries = ([(DETAIL, PREC)] if DETAIL < 0.01 else []) + [(0.01, 3)]
     last = None
     for det, pr in tries:
-        q = dict(q, maxAllowableOffset=det, geometryPrecision=pr, resultRecordCount=PAGE if det < 0.01 else 500)
+        want = layer_page_size(PAGE if det < 0.01 else 500, max_records)
+        q = dict(q, maxAllowableOffset=det, geometryPrecision=pr, resultRecordCount=want)
         try:
             req = urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
             j = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'replace'))
@@ -714,6 +747,8 @@ def resolve(pre, url, nf, af):
         oid = L.get('objectIdField') or next((f['name'] for f in flds if f.get('type') == 'esriFieldTypeOID'), 'OBJECTID')
         acres = next((f['name'] for f in flds if re.search(r'acre', f['name'], re.I)), '')
         SFIELDS[pre] = [f['name'] for f in flds if f.get('name')]   # Nov 6: for kpc_source_fields AUTO (no extra request)
+        if L.get('maxRecordCount'):
+            LAYER_MAXREC[pre] = int(L['maxRecordCount'])
         RESOLVED[pre] = (url, nf, acres, oid)
         return RESOLVED[pre]
     if pre in RESOLVED: return RESOLVED[pre]
@@ -727,10 +762,13 @@ def resolve(pre, url, nf, af):
     acres = next((f['name'] for f in flds if re.search(r'acre', f['name'], re.I)), '')
     oid = L.get('objectIdField') or next((f['name'] for f in flds if f.get('type') == 'esriFieldTypeOID'), 'OBJECTID')
     SFIELDS[pre] = [f['name'] for f in flds if f.get('name')]
+    if L.get('maxRecordCount'):
+        LAYER_MAXREC[pre] = int(L['maxRecordCount'])
     RESOLVED[pre] = (f'{svc}/{lid}/query', name, acres, oid)
     notice('US key layer found', f'{pre}: {svc}/{lid} [{pick[0].get("name")}] name={name} acres={acres} oid={oid}')
     return RESOLVED[pre]
 XCOUNT = {}
+LAYER_MAXREC = {}   # prefix -> layer maxRecordCount (resolve); used so paging does not stop on a silent server cap
 # Oct 22 (Brandon: 'keep the last good outlines'): a state whose maps did not all answer this run (a time-out, a server
 # down for the night) must not lose the parks that map would have given it. Such a state uses its saved copy instead,
 # and the half-read copy is never saved over the good one.
@@ -882,7 +920,7 @@ def extra_state(st, have, only=None):
                  'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2'), *_sfx) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off,
                  **({'orderByFields': oidf} if order else {})}
             try:
-                j, pg = fetch_geo(url, q)
+                j, pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre))
             except Exception as e:  # noqa: BLE001
                 if _sfx and off == 0:    # Nov 6: an added source field refused: read the layer exactly as before
                     _sfx = []; continue
@@ -890,10 +928,11 @@ def extra_state(st, have, only=None):
                     order = False; continue
                 notice(f'US key {st}', f'{label} not read ({e})'); FAILED_READ.add(st); break
             fs = j.get('features', [])
+            n_new = 0
             for f in fs:
                 a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
                 if a.get(oidf.lower()) in seen_ids: continue
-                seen_ids.add(a.get(oidf.lower()))
+                seen_ids.add(a.get(oidf.lower())); n_new += 1
                 nm = (a.get(nf.lower()) or '').strip()
                 if not nm: continue
                 # Oct 20: an 'easement' record is private land with public access, never joined by name alone. Oct 29 (Brandon 2:22 PM:
@@ -910,10 +949,31 @@ def extra_state(st, have, only=None):
                             **({'Water': 1} if opt.get('water') else {}),
                             **({'SA': {f: a.get(f.lower()) for f in _sfx if a.get(f.lower()) not in (None, '', ' ')}} if _sfx and any(a.get(f.lower()) not in (None, '', ' ') for f in _sfx) else {})})
                 n += 1
-            if not fs or (not j.get('exceededTransferLimit') and len(fs) < pg): break
+            if not keep_paging(len(fs), pg, j.get('exceededTransferLimit'), n_new): break
             off += len(fs); time.sleep(.5)
         XCOUNT[pre] = XCOUNT.get(pre, 0) + n
     return out
+
+def layer_live_count(st, pre, url, nf, af, opt):
+    """How many features the live layer would return for this state's box (returnCountOnly; no geometry).
+    Saved-copy-only hosts are not asked. A failed count is None (the saved copy is left as it is)."""
+    if saved_only(url):
+        return None
+    box = st_box(st)
+    if not box:
+        return None
+    try:
+        url, nf, af, oidf = resolve(pre, url, nf, af)
+    except Exception:
+        return None  # noqa: BLE001
+    q = {'where': (opt or {}).get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope',
+         'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects', 'returnCountOnly': 'true', 'returnGeometry': 'false', 'f': 'json'}
+    try:
+        j, _pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre))
+        c = j.get('count')
+        return int(c) if c is not None else None
+    except Exception:
+        return None  # noqa: BLE001
 
 
 # ------------------------------------------------------------------------------------------------ the shared scoring
@@ -1441,11 +1501,30 @@ def run(st):
         if CMODE == 'use':
             present = {re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0) for a in recs}
             missing = {x[0] for x in XS if (len(x) <= 7 or x[7] is None or st in x[7]) and x[0] not in present}
-            if missing:
-                add = extra_state(st, _have(recs), only=missing)
+            # Nov 10: a layer already in the saved copy can still be short (one silent server page, e.g. sgflf 199 vs ~17,000).
+            # Top-up used to skip any prefix that had at least one record, so the short copy was kept forever.
+            short = set()
+            for x in XS:
+                pre, url = x[0], x[1]
+                if pre not in present or pre in missing:
+                    continue
+                if len(x) > 7 and x[7] is not None and st not in x[7]:
+                    continue
+                if saved_only(url):
+                    continue
+                opt = x[8] if len(x) > 8 else {}
+                n_have = sum(1 for a in recs if str(a.get('OBJECTID') or '').startswith(pre) and str(a.get('OBJECTID'))[len(pre):].isdigit())
+                n_live = layer_live_count(st, pre, url, x[2], x[3], opt)
+                if n_live and n_have < 0.97 * n_live:
+                    short.add(pre)
+                    notice(f'US key {st}', f'saved copy of {pre} is short ({n_have} areas, live layer {n_live}); re-reading that layer')
+            if missing or short:
+                if short:
+                    recs = [a for a in recs if re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0) not in short]
+                add = extra_state(st, _have(recs), only=missing | short)
                 if add:
                     recs += add
-                    notice(f'US key {st}', f'saved copy topped up with {len(add)} areas from {len({str(a["OBJECTID"]).rstrip("0123456789") for a in add})} newer layer(s)')
+                    notice(f'US key {st}', f'saved copy topped up with {len(add)} areas from {len({str(a["OBJECTID"]).rstrip("0123456789") for a in add})} layer(s)')
                     if st not in FAILED_READ: save_cache(st, recs, seen)
     else:
         recs, seen = pad_state(st, P)
