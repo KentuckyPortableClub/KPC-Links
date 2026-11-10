@@ -1,5 +1,5 @@
 {
- "about": "POINT-CONFIRMED parks: an official POINT record with the park's name within 0.5 km of the POTA pin. kind point-circle-100ft is a 30.48 m circle around the official agency point (the POTA pin is never moved). It is a stand-in used only by the 2-fer bot as the labelled point-circle tier; never an official boundary, never a key outline. Replaced automatically when a real boundary is found. Every card for these parks notes the 100 ft circle. The drawing and 2-fer code that reads this file is in a separate pending change; these rows are the data that code will pick up.",
+ "about": "POINT-CONFIRMED parks: an official POINT record with the park's name within 0.5 km of the POTA pin. kind point-circle-100ft is a 30.48 m circle around the official agency point (the POTA pin is never moved). It is a stand-in used only by the 2-fer bot as the labelled point-circle tier; never an official boundary, never a key outline. Replaced automatically when a real boundary is found. Every card for these parks notes the 100 ft circle.",
  "parks": {
   "CA-1055": {
    "confirmed": "2026-11-09",
@@ -1361,6 +1361,21 @@
    "record_name": "Telegraph Office",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
+  "US-10272": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.thc.texas.gov/arcgis/rest/services/Historical/FeatureServer/24",
+   "pin_km": 0.026,
+   "pt": [
+    -102.09127,
+    31.99865
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "36",
+   "record_name": "Bush Family Home"
+  },
   "US-10354": {
    "confirmed": "2026-11-09",
    "decided_by": "official-point rule, Nov 9 2026",
@@ -1472,6 +1487,96 @@
    "record_name": "Dubois Hatchery",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
+  "US-10997": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/1",
+   "pin_km": 0.009,
+   "pt": [
+    -112.83909,
+    37.38527
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "96026",
+   "record_name": "North Fork Virgin River Merriam's Turkey Viewing Area"
+  },
+  "US-11006": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/1",
+   "pin_km": 0.007,
+   "pt": [
+    -113.13692,
+    41.46361
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "96383",
+   "record_name": "Hogup Mountains Designated Routes"
+  },
+  "US-11110": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.031,
+   "pt": [
+    -109.71036,
+    39.01811
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91675",
+   "record_name": "Sego Canyon Rock Art Interpretive Site"
+  },
+  "US-11309": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.008,
+   "pt": [
+    -111.5121,
+    43.0221
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91915",
+   "record_name": "Cutthroat Trout Campground"
+  },
+  "US-11754": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.009,
+   "pt": [
+    -112.83891,
+    37.38526
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91659",
+   "record_name": "Chamberlain's Ranch Trailhead"
+  },
+  "US-11768": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/0",
+   "pin_km": 0.032,
+   "pt": [
+    -97.32576,
+    35.66222
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "1421309",
+   "record_name": "Arcadia Round Barn"
+  },
   "US-11955": {
    "confirmed": "2026-11-09",
    "decided_by": "official-point rule, Nov 9 2026",
@@ -1536,6 +1641,21 @@
    "record_name": "Old Iron Town Historic Site",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
+  "US-12109": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.thc.texas.gov/arcgis/rest/services/Historical/FeatureServer/24",
+   "pin_km": 0.281,
+   "pt": [
+    -95.65381,
+    29.1556
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "41",
+   "record_name": "Stephen F. Austin Memorial State Historic Site"
+  },
   "US-12231": {
    "confirmed": "2026-11-09",
    "decided_by": "official-point rule, Nov 9 2026",
@@ -1551,6 +1671,51 @@
    "record_id": "170",
    "record_name": "Portneuf - Lower",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12281": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/1",
+   "pin_km": 0.018,
+   "pt": [
+    -117.89316,
+    48.19412
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "95642",
+   "record_name": "North Huckleberry Mountains"
+  },
+  "US-12315": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.dnr.wa.gov/site2/rest/services/Recreation/DNR_Recreation_Sites/MapServer/0",
+   "pin_km": 0.017,
+   "pt": [
+    -117.44318,
+    47.8883
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "557",
+   "record_name": "Dragoon Creek Campground"
+  },
+  "US-12480": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.011,
+   "pt": [
+    -118.84985,
+    47.67722
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "90840",
+   "record_name": "Govan Recreation Site"
   },
   "US-12517": {
    "confirmed": "2026-11-09",
@@ -1695,6 +1860,21 @@
    "record_id": "91436",
    "record_name": "Goldfield"
   },
+  "US-13215": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.018,
+   "pt": [
+    -114.2262,
+    37.4963
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91174",
+   "record_name": "Mathews Canyon Dam"
+  },
   "US-13242": {
    "confirmed": "2026-11-09",
    "decided_by": "official-point rule, Nov 9 2026",
@@ -1711,6 +1891,21 @@
    "record_name": "Spring Creek Rearing Station",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
+  "US-13513": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/1",
+   "pin_km": 0.05,
+   "pt": [
+    -120.82937,
+    36.36666
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "95620",
+   "record_name": "Laguna Mountain"
+  },
   "US-5901": {
    "confirmed": "2026-11-09",
    "decided_by": "Brandon, Nov 9 2026",
@@ -1725,6 +1920,66 @@
    "read": "saved copy",
    "record_id": "91635",
    "record_name": "Gordon Creek Trailhead"
+  },
+  "US-5977": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/1",
+   "pin_km": 0.004,
+   "pt": [
+    -112.39405,
+    37.1436
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "95689",
+   "record_name": "Crocodile Staging Area"
+  },
+  "US-6004": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_pts/MapServer/23",
+   "pin_km": 0.012,
+   "pt": [
+    -112.8719,
+    38.21412
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "69607",
+   "record_name": "Hanging Rock Recreation Site"
+  },
+  "US-6034": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.027,
+   "pt": [
+    -113.1757,
+    37.53765
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91800",
+   "record_name": "Kanarra Falls"
+  },
+  "US-6043": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/1",
+   "pin_km": 0.031,
+   "pt": [
+    -113.30635,
+    37.05837
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "96230",
+   "record_name": "Honeymoon Trail"
   },
   "US-6048": {
    "confirmed": "2026-11-09",
@@ -1741,6 +1996,21 @@
    "record_id": "91722",
    "record_name": "Notch Peak Trailhead"
   },
+  "US-6052": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/1",
+   "pin_km": 0.02,
+   "pt": [
+    -113.36778,
+    37.25278
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "96191",
+   "record_name": "Silver Reef Mining District"
+  },
   "US-6080": {
    "confirmed": "2026-11-09",
    "decided_by": "Brandon, Nov 9 2026",
@@ -1755,6 +2025,66 @@
    "read": "saved copy",
    "record_id": "91720",
    "record_name": "Conger Mountain One Day Ride"
+  },
+  "US-6190": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.02,
+   "pt": [
+    -108.85176,
+    42.35557
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91168",
+   "record_name": "Oregon Buttes"
+  },
+  "US-6560": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.thc.texas.gov/arcgis/rest/services/Historical/FeatureServer/24",
+   "pin_km": 0.062,
+   "pt": [
+    -97.73173,
+    30.26731
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "12",
+   "record_name": "French Legation"
+  },
+  "US-6582": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.thc.texas.gov/arcgis/rest/services/Historical/FeatureServer/24",
+   "pin_km": 0.048,
+   "pt": [
+    -94.11554,
+    31.52338
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "21",
+   "record_name": "Mission Dolores"
+  },
+  "US-6601": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.thc.texas.gov/arcgis/rest/services/Historical/FeatureServer/24",
+   "pin_km": 0.009,
+   "pt": [
+    -96.2075,
+    33.56992
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "28",
+   "record_name": "Sam Rayburn House"
   },
   "US-6810": {
    "confirmed": "2026-11-09",
@@ -1916,6 +2246,21 @@
    "record_name": "Whitefish Point State Harbor",
    "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
   },
+  "US-6852": {
+   "confirmed": "2026-11-09 20:27",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis2.ncdcr.gov/dncrgis/rest/services/NCDNCR_Public/NCDNCR_Sites/MapServer/0",
+   "pin_km": 0.011,
+   "pt": [
+    -78.63904,
+    35.78051
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "744",
+   "record_name": "State Capitol"
+  },
   "US-6972": {
    "confirmed": "2026-11-09",
    "decided_by": "Brandon, Nov 9 2026",
@@ -1930,6 +2275,66 @@
    "read": "saved copy",
    "record_id": "65",
    "record_name": "Historic New Harmony"
+  },
+  "US-8115": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/0",
+   "pin_km": 0.042,
+   "pt": [
+    -97.51755,
+    35.47329
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "1477523",
+   "record_name": "Oklahoma City National Memorial"
+  },
+  "US-8528": {
+   "confirmed": "2026-11-09 20:27",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/0",
+   "pin_km": 0.15,
+   "pt": [
+    -100.79195,
+    46.8054
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "1476573",
+   "record_name": "Camp Hancock Site"
+  },
+  "US-8538": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/0",
+   "pin_km": 0.06,
+   "pt": [
+    -103.77632,
+    46.27861
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "1476527",
+   "record_name": "Fort Dilts"
+  },
+  "US-8541": {
+   "confirmed": "2026-11-09 20:26",
+   "decided_by": "point-circle rule (Nov 9 2026)",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/0",
+   "pin_km": 0.03,
+   "pt": [
+    -98.99346,
+    47.97749
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "1420261",
+   "record_name": "Fort Totten"
   },
   "US-9182": {
    "confirmed": "2026-11-09",

@@ -395,25 +395,36 @@
     ]
    },
    "when": "2026-11-09",
-   "why": "Nov 2 map audit: chat 11 NO on wsrc4 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32",
+   "why": "Nov 2 map audit: chat 11 NO on wsrc4 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): USFS EDW WildScenicRiver_01 (saved copy 2026-11-03): pin inside fwsr41 (0.0 km); fwsr118 49.5 km and fwsr208 20.4 km are the other designated segments of the same river; whole-river rule: a Wild & Scenic river park = all its designated segments; the Nov 2 NO on NPS wsrc4 stays",
    "source_kind": "corridor",
-   "join_held": {
-    "ids": [
-     "fwsr208",
-     "fwsr41"
+   "join": [
+    "fwsr41",
+    "fwsr118",
+    "fwsr208"
+   ],
+   "fp": {
+    "fwsr41": [
+     "Kern, California National Wild and Scenic River",
+     3447
     ],
-    "fp": {
-     "fwsr208": [
-      "Kern, California National Wild and Scenic River",
-      20356
-     ],
-     "fwsr41": [
-      "Kern, California National Wild and Scenic River",
-      3447
-     ]
-    },
-    "reason": "fwsr208: pin 20.45 km outside",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "fwsr118": [
+     "Kern, California National Wild and Scenic River",
+     1660
+    ],
+    "fwsr208": [
+     "Kern, California National Wild and Scenic River",
+     20356
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
+    "ids": [
+     "fwsr41",
+     "fwsr118",
+     "fwsr208"
+    ],
+    "detail": "USFS EDW WildScenicRiver_01 (saved copy 2026-11-03): pin inside fwsr41 (0.0 km); fwsr118 49.5 km and fwsr208 20.4 km are the other designated segments of the same river",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — whole-river rule: a Wild & Scenic river park = all its designated segments; the Nov 2 NO on NPS wsrc4 stays"
    }
   },
   "US-0200": {
@@ -1621,25 +1632,25 @@
     "sgaki387660": [
      "Fort Smith National Historic Site",
      59
+    ],
+    "sgakd1122": [
+     "Fort Smith National Historic Site",
+     71
     ]
    },
    "join": [
-    "sgaki387660"
+    "sgaki387660",
+    "sgakd1122"
    ],
    "when": "2026-11-09",
-   "why": "2026-11-04 14:23: layers row YES 'Fort Smith National Historic Site' (auto (T1 map-match STRONG); applied by kpc_key_answers) · 2026-11-06: multi-state (OK pin + AR outline); postcheck prefers the outline copy (fers-and-pile) · 2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json): NPS Land Resources Division admin boundary record 1122; the same unit (FOSM) is in Brandon's hand-downloaded NPS Administrative Boundaries gdb (staged in KPC-Data hand-layers). The live layer (services1, robots 403) is only set up for a few states, so this join takes effect only when that outline is wired from the hand file (waits on Brandon). Quality to look.",
-   "join_held": {
+   "why": "2026-11-04 14:23: layers row YES 'Fort Smith National Historic Site' (auto (T1 map-match STRONG); applied by kpc_key_answers) · 2026-11-06: multi-state (OK pin + AR outline); postcheck prefers the outline copy (fers-and-pile) · 2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json): NPS Land Resources Division admin boundary record 1122; the same unit (FOSM) is in Brandon's hand-downloaded NPS Administrative Boundaries gdb (staged in KPC-Data hand-layers). The live layer (services1, robots 403) is only set up for a few states, so this join takes effect only when that outline is wired from the hand file (waits on Brandon). Quality to look. · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): NPS Admin Boundaries (Brandon hand copy us-nps-admin-boundaries-nov9, FOSM): pin 0.014 km; name matches; keeps the older sgaki387660 join",
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sgakd1122"
     ],
-    "fp": {
-     "sgakd1122": [
-      "Fort Smith National Historic Site",
-      71
-     ]
-    },
-    "reason": "sgakd1122: record not in the saved outline copy, pin not measured here",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "NPS Admin Boundaries (Brandon hand copy us-nps-admin-boundaries-nov9, FOSM): pin 0.014 km",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — name matches; keeps the older sgaki387660 join"
    }
   },
   "US-0824": {
@@ -1788,30 +1799,36 @@
     ]
    },
    "when": "2026-11-09",
-   "why": "Nov 2 map audit: chat 11 NO on wsrc3 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline ) · 2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32",
+   "why": "Nov 2 map audit: chat 11 NO on wsrc3 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline ) · 2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): USFS EDW WildScenicRiver_01 (saved copy): pin inside fwsr149 (0.0 km), fwsr252 0.44 km, fwsr79 9.2 km (other segment); whole-river rule; the Nov 2 NO on NPS wsrc3 stays",
    "source_kind": "corridor",
-   "join_held": {
+   "join": [
+    "fwsr149",
+    "fwsr252",
+    "fwsr79"
+   ],
+   "fp": {
+    "fwsr149": [
+     "Tuolumne, California National Wild and Scenic River",
+     1233
+    ],
+    "fwsr252": [
+     "Tuolumne, California National Wild and Scenic River",
+     7057
+    ],
+    "fwsr79": [
+     "Tuolumne, California National Wild and Scenic River",
+     89
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
-     "fwsr252",
      "fwsr149",
+     "fwsr252",
      "fwsr79"
     ],
-    "fp": {
-     "fwsr252": [
-      "Tuolumne, California National Wild and Scenic River",
-      7057
-     ],
-     "fwsr149": [
-      "Tuolumne, California National Wild and Scenic River",
-      1233
-     ],
-     "fwsr79": [
-      "Tuolumne, California National Wild and Scenic River",
-      89
-     ]
-    },
-    "reason": "fwsr79: pin 9.19 km outside",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "USFS EDW WildScenicRiver_01 (saved copy): pin inside fwsr149 (0.0 km), fwsr252 0.44 km, fwsr79 9.2 km (other segment)",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — whole-river rule; the Nov 2 NO on NPS wsrc3 stays"
    }
   },
   "US-0896": {
@@ -13707,7 +13724,7 @@
       1
      ]
     },
-    "reason": "Quality said NOT SURE (1.1-acre boat launch)",
+    "reason": "Quality said NOT SURE (1.1-acre boat launch) · t938u: stays held (Brandon: Lone Rock stays out)",
     "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
    },
    "none": true
@@ -15550,7 +15567,10 @@
    "none": true,
    "when": "2026-11-09",
    "decided_by": "official-point rule, Nov 9 2026",
-   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json.",
+   "no": [
+    "2939"
+   ]
   },
   "US-12979": {
    "fp": {
@@ -40650,27 +40670,30 @@
   },
   "US-4370": {
    "join": [
-    "Caddo National Grassland"
+    "Caddo National Grassland",
+    "sgtxc143",
+    "sgtxc146"
    ],
-   "when": "2026-11-08",
-   "why": "Oct 18 review: same place, official name written differently · 2026-11-08: Research handoff (TPWD WMA_Boundaries_4PublicDistribution FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxc143, sgtxc146",
-   "join_held": {
+   "when": "2026-11-09",
+   "why": "Oct 18 review: same place, official name written differently · 2026-11-08: Research handoff (TPWD WMA_Boundaries_4PublicDistribution FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxc143, sgtxc146 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): TPWD WMA_Boundaries (saved copy): pin 0.14 km from sgtxc143 Bois D'Arc unit; sgtxc146 Ladonia unit 30 km = the WMA's other unit; multi-unit rule: the POTA park is the whole WMA = both TPWD units",
+   "fp": {
+    "sgtxc143": [
+     "Caddo National Grassland WMA - Bois D'Arc",
+     14618
+    ],
+    "sgtxc146": [
+     "Caddo National Grassland WMA - Ladonia",
+     3676
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sgtxc143",
      "sgtxc146"
     ],
-    "fp": {
-     "sgtxc143": [
-      "Caddo National Grassland WMA - Bois D'Arc",
-      14618
-     ],
-     "sgtxc146": [
-      "Caddo National Grassland WMA - Ladonia",
-      3676
-     ]
-    },
-    "reason": "sgtxc146: pin 30.45 km outside",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "TPWD WMA_Boundaries (saved copy): pin 0.14 km from sgtxc143 Bois D'Arc unit; sgtxc146 Ladonia unit 30 km = the WMA's other unit",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — multi-unit rule: the POTA park is the whole WMA = both TPWD units"
    }
   },
   "US-4372": {
@@ -62866,24 +62889,29 @@
   "US-12235": {
    "source_kind": "corridor",
    "when": "2026-11-09",
-   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32",
-   "join_held": {
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): USFS EDW WildScenicRiver_01 (saved copy): pin inside fwsr16 (0.0 km); fwsr98 8.75 km = other segment; whole-river rule",
+   "join": [
+    "fwsr16",
+    "fwsr98"
+   ],
+   "fp": {
+    "fwsr16": [
+     "Clarion, Pennsylvania National Wild and Scenic River",
+     10878
+    ],
+    "fwsr98": [
+     "Clarion, Pennsylvania National Wild and Scenic River",
+     5589
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "fwsr16",
      "fwsr98"
     ],
-    "fp": {
-     "fwsr16": [
-      "Clarion, Pennsylvania National Wild and Scenic River",
-      10878
-     ],
-     "fwsr98": [
-      "Clarion, Pennsylvania National Wild and Scenic River",
-      5589
-     ]
-    },
-    "reason": "fwsr98: pin 8.75 km outside",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "USFS EDW WildScenicRiver_01 (saved copy): pin inside fwsr16 (0.0 km); fwsr98 8.75 km = other segment",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — whole-river rule"
    }
   },
   "US-12787": {
@@ -62904,24 +62932,29 @@
   "US-12791": {
    "source_kind": "corridor",
    "when": "2026-11-09",
-   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32",
-   "join_held": {
+   "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): USFS EDW WildScenicRiver_01 (saved copy): pin inside fwsr40 (0.0 km); fwsr116 8.2 km = other segment; whole-river rule",
+   "join": [
+    "fwsr40",
+    "fwsr116"
+   ],
+   "fp": {
+    "fwsr40": [
+     "Indian, Michigan National Wild and Scenic River",
+     8796
+    ],
+    "fwsr116": [
+     "Indian, Michigan National Wild and Scenic River",
+     2749
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "fwsr40",
      "fwsr116"
     ],
-    "fp": {
-     "fwsr40": [
-      "Indian, Michigan National Wild and Scenic River",
-      8796
-     ],
-     "fwsr116": [
-      "Indian, Michigan National Wild and Scenic River",
-      2749
-     ]
-    },
-    "reason": "fwsr116: pin 8.23 km outside",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "USFS EDW WildScenicRiver_01 (saved copy): pin inside fwsr40 (0.0 km); fwsr116 8.2 km = other segment",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — whole-river rule"
    }
   },
   "US-12797": {
@@ -62975,20 +63008,24 @@
    "decided_by": "Brandon t927u"
   },
   "US-3722": {
-   "why": "2026-11-08: Research handoff (Georgia DNR State_Parks_Boundary FeatureServer/0 (hand download by Brandon, data edited 3/31/2025)), pin inside or within 150 m, name checked; joined sggab44",
-   "when": "2026-11-08",
-   "join_held": {
+   "why": "2026-11-08: Research handoff (Georgia DNR State_Parks_Boundary FeatureServer/0 (hand download by Brandon, data edited 3/31/2025)), pin inside or within 150 m, name checked; joined sggab44 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): GA DNR State_Parks_Boundary (saved copy + hand copy us-ga-stateparks): pin inside (0.0 km); record name is a typo \"New Echtoa\"; typo counts",
+   "when": "2026-11-09",
+   "join": [
+    "sggab44"
+   ],
+   "fp": {
+    "sggab44": [
+     "New Echtoa Historic Site",
+     204
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sggab44"
     ],
-    "fp": {
-     "sggab44": [
-      "New Echtoa Historic Site",
-      204
-     ]
-    },
-    "reason": "sggab44: name differs ('New Echtoa Historic Site' vs POTA 'New Echota State Historic Site')",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "GA DNR State_Parks_Boundary (saved copy + hand copy us-ga-stateparks): pin inside (0.0 km); record name is a typo \"New Echtoa\"",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — typo counts"
    }
   },
   "US-2987": {
@@ -63006,25 +63043,30 @@
    "decided_by": "Brandon t927u"
   },
   "US-3000": {
-   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa116, sgtxa4143",
-   "when": "2026-11-08",
-   "join_held": {
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa116, sgtxa4143 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): TPWD Texas_State_Parks_Boundaries (saved copy): pin inside sgtxa116 South Sulphur unit; sgtxa4143 Doctors Creek unit 5.8 km = the park's other unit; multi-unit rule: Cooper Lake SP = both TPWD units",
+   "when": "2026-11-09",
+   "join": [
+    "sgtxa116",
+    "sgtxa4143"
+   ],
+   "fp": {
+    "sgtxa116": [
+     "Cooper - South Sulphur",
+     0
+    ],
+    "sgtxa4143": [
+     "Cooper - Doctors Creek",
+     0
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sgtxa116",
      "sgtxa4143"
     ],
-    "fp": {
-     "sgtxa116": [
-      "Cooper - South Sulphur",
-      2666
-     ],
-     "sgtxa4143": [
-      "Cooper - Doctors Creek",
-      502
-     ]
-    },
-    "reason": "sgtxa4143: pin 5.79 km outside",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "TPWD Texas_State_Parks_Boundaries (saved copy): pin inside sgtxa116 South Sulphur unit; sgtxa4143 Doctors Creek unit 5.8 km = the park's other unit",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — multi-unit rule: Cooper Lake SP = both TPWD units"
    }
   },
   "US-3006": {
@@ -63070,25 +63112,30 @@
    "decided_by": "Brandon t927u"
   },
   "US-3498": {
-   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa109, sgtxa536",
-   "when": "2026-11-08",
-   "join_held": {
-    "ids": [
-     "sgtxa109",
-     "sgtxa536"
+   "why": "2026-11-08: Research handoff (TPWD Texas_State_Parks_Boundaries FeatureServer/0 (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgtxa109, sgtxa536 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): TPWD Texas_State_Parks_Boundaries (saved copy): pin inside sgtxa536 Del Norte Unit; sgtxa109 Dan A. Hughes Unit 19.8 km = the SNA's other unit; multi-unit rule: Devils River SNA = both TPWD units",
+   "when": "2026-11-09",
+   "join": [
+    "sgtxa536",
+    "sgtxa109"
+   ],
+   "fp": {
+    "sgtxa536": [
+     "Devils River - Del Norte Unit",
+     0
     ],
-    "fp": {
-     "sgtxa109": [
-      "Devils River - Dan A. Hughes Unit",
-      17702
-     ],
-     "sgtxa536": [
-      "Devils River - Del Norte Unit",
-      19828
-     ]
-    },
-    "reason": "sgtxa109: pin 19.77 km outside",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "sgtxa109": [
+     "Devils River - Dan A. Hughes Unit",
+     0
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
+    "ids": [
+     "sgtxa536",
+     "sgtxa109"
+    ],
+    "detail": "TPWD Texas_State_Parks_Boundaries (saved copy): pin inside sgtxa536 Del Norte Unit; sgtxa109 Dan A. Hughes Unit 19.8 km = the SNA's other unit",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — multi-unit rule: Devils River SNA = both TPWD units"
    }
   },
   "US-3499": {
@@ -63176,127 +63223,156 @@
    "decided_by": "Brandon t927u"
   },
   "US-8745": {
-   "why": "2026-11-08: Research handoff (Pennsylvania Game Commission State Game Lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgpac2838",
-   "when": "2026-11-08",
-   "join_held": {
+   "why": "2026-11-08: Research handoff (Pennsylvania Game Commission State Game Lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgpac2838 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): PGC State_Game_Lands_Boundaries (saved copy + hand copy us-pa-sgl): SGL 46, pin inside (0.0 km); agency's own name (PGC calls SGL 46 'Middle Creek WMA'); number 046 = 46",
+   "when": "2026-11-09",
+   "join": [
+    "sgpac2838"
+   ],
+   "fp": {
+    "sgpac2838": [
+     "46 - Middle Creek Wildlife Management Area",
+     0
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sgpac2838"
     ],
-    "fp": {
-     "sgpac2838": [
-      "46 - Middle Creek Wildlife Management Area",
-      6061
-     ]
-    },
-    "reason": "sgpac2838: name differs ('46 - Middle Creek Wildlife Management Area' vs POTA 'PA 046 State Game Land')",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "PGC State_Game_Lands_Boundaries (saved copy + hand copy us-pa-sgl): SGL 46, pin inside (0.0 km)",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — agency's own name (PGC calls SGL 46 'Middle Creek WMA'); number 046 = 46"
    }
   },
   "US-8911": {
-   "why": "2026-11-08: Research handoff (Pennsylvania Game Commission State Game Lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgpac198",
-   "when": "2026-11-08",
-   "join_held": {
+   "why": "2026-11-08: Research handoff (Pennsylvania Game Commission State Game Lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sgpac198 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): PGC State_Game_Lands_Boundaries (saved copy + hand copy us-pa-sgl): SGL 214, pin inside (0.0 km); agency's own name; number 214 = 214",
+   "when": "2026-11-09",
+   "join": [
+    "sgpac198"
+   ],
+   "fp": {
+    "sgpac198": [
+     "214 - Pymatuning Wildlife Management Area",
+     0
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sgpac198"
     ],
-    "fp": {
-     "sgpac198": [
-      "214 - Pymatuning Wildlife Management Area",
-      9716
-     ]
-    },
-    "reason": "sgpac198: name differs ('214 - Pymatuning Wildlife Management Area' vs POTA 'PA 214 State Game Land')",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "PGC State_Game_Lands_Boundaries (saved copy + hand copy us-pa-sgl): SGL 214, pin inside (0.0 km)",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — agency's own name; number 214 = 214"
    }
   },
   "US-3732": {
-   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa806, sggaa938",
-   "when": "2026-11-08",
-   "join_held": {
-    "ids": [
-     "sggaa806",
-     "sggaa938"
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa806, sggaa938 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): GA DNR WRD WMA layer (hand copy us-ga-wma, Nov 8): POTA pin (api.pota.app 33.0216,-83.2046) inside sggaa938 (0.0 km); sggaa806 0.98 km = the WMA's other tract; multi-unit rule (both tracts of Bartram Forest WMA). Note: POTA lists this park as inactive (active 0)",
+   "when": "2026-11-09",
+   "join": [
+    "sggaa938",
+    "sggaa806"
+   ],
+   "fp": {
+    "sggaa938": [
+     "BARTRAM FOREST WMA",
+     472
     ],
-    "fp": {
-     "sggaa806": [
-      "BARTRAM FOREST WMA",
-      876
-     ],
-     "sggaa938": [
-      "BARTRAM FOREST WMA",
-      474
-     ]
-    },
-    "reason": "sggaa806: name differs ('BARTRAM FOREST WMA' vs POTA None); sggaa806: record not in the saved outline copy, pin not measured here; sggaa938: name differs ('BARTRAM FOREST WMA' vs POTA None); sggaa938: record not in the saved outline copy, pin not measured here",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "sggaa806": [
+     "BARTRAM FOREST WMA",
+     874
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
+    "ids": [
+     "sggaa938",
+     "sggaa806"
+    ],
+    "detail": "GA DNR WRD WMA layer (hand copy us-ga-wma, Nov 8): POTA pin (api.pota.app 33.0216,-83.2046) inside sggaa938 (0.0 km); sggaa806 0.98 km = the WMA's other tract",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — multi-unit rule (both tracts of Bartram Forest WMA). Note: POTA lists this park as inactive (active 0)"
    }
   },
   "US-7463": {
-   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa800",
-   "when": "2026-11-08",
-   "join_held": {
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa800 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): GA DNR WRD layer (hand copy us-ga-wma): pin inside (0.0 km); PFA = State Fishing Lake (agency's own name)",
+   "when": "2026-11-09",
+   "join": [
+    "sggaa800"
+   ],
+   "fp": {
+    "sggaa800": [
+     "DODGE COUNTY PFA",
+     445
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sggaa800"
     ],
-    "fp": {
-     "sggaa800": [
-      "DODGE COUNTY PFA",
-      446
-     ]
-    },
-    "reason": "sggaa800: record not in the saved outline copy, pin not measured here",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "GA DNR WRD layer (hand copy us-ga-wma): pin inside (0.0 km)",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — PFA = State Fishing Lake (agency's own name)"
    }
   },
   "US-7464": {
-   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa799",
-   "when": "2026-11-08",
-   "join_held": {
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa799 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): GA DNR WRD layer (hand copy us-ga-wma): pin inside (0.0 km); PFA = State Fishing Lake",
+   "when": "2026-11-09",
+   "join": [
+    "sggaa799"
+   ],
+   "fp": {
+    "sggaa799": [
+     "EVANS COUNTY PFA",
+     376
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sggaa799"
     ],
-    "fp": {
-     "sggaa799": [
-      "EVANS COUNTY PFA",
-      377
-     ]
-    },
-    "reason": "sggaa799: record not in the saved outline copy, pin not measured here",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "GA DNR WRD layer (hand copy us-ga-wma): pin inside (0.0 km)",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — PFA = State Fishing Lake"
    }
   },
   "US-7465": {
-   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa770",
-   "when": "2026-11-08",
-   "join_held": {
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa770 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): GA DNR WRD layer (hand copy us-ga-wma): pin inside (0.0 km); PFA = State Fishing Lake",
+   "when": "2026-11-09",
+   "join": [
+    "sggaa770"
+   ],
+   "fp": {
+    "sggaa770": [
+     "FLAT CREEK PFA",
+     847
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sggaa770"
     ],
-    "fp": {
-     "sggaa770": [
-      "FLAT CREEK PFA",
-      850
-     ]
-    },
-    "reason": "sggaa770: record not in the saved outline copy, pin not measured here",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "GA DNR WRD layer (hand copy us-ga-wma): pin inside (0.0 km)",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — PFA = State Fishing Lake"
    }
   },
   "US-7466": {
-   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa801",
-   "when": "2026-11-08",
-   "join_held": {
+   "why": "2026-11-08: Research handoff (Georgia DNR WRD WMA/PFA/hatchery lands (hand download by Brandon)), pin inside or within 150 m, name checked; joined sggaa801 · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): GA DNR WRD layer (hand copy us-ga-wma): pin inside (0.0 km); PFA = State Fishing Lake",
+   "when": "2026-11-09",
+   "join": [
+    "sggaa801"
+   ],
+   "fp": {
+    "sggaa801": [
+     "HUGH GILLIS PFA",
+     742
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sggaa801"
     ],
-    "fp": {
-     "sggaa801": [
-      "HUGH GILLIS PFA",
-      744
-     ]
-    },
-    "reason": "sggaa801: record not in the saved outline copy, pin not measured here",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "GA DNR WRD layer (hand copy us-ga-wma): pin inside (0.0 km)",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — PFA = State Fishing Lake"
    }
   },
   "US-6135": {
@@ -63485,36 +63561,44 @@
   },
   "US-0754": {
    "when": "2026-11-09",
-   "why": "2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json): NPS Land Resources Division admin boundary record 1159; the same unit (RORI) is in Brandon's hand-downloaded NPS Administrative Boundaries gdb (staged in KPC-Data hand-layers). The live layer (services1, robots 403) is only set up for a few states, so this join takes effect only when that outline is wired from the hand file (waits on Brandon). Quality to look.",
-   "join_held": {
+   "why": "2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json): NPS Land Resources Division admin boundary record 1159; the same unit (RORI) is in Brandon's hand-downloaded NPS Administrative Boundaries gdb (staged in KPC-Data hand-layers). The live layer (services1, robots 403) is only set up for a few states, so this join takes effect only when that outline is wired from the hand file (waits on Brandon). Quality to look. · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): NPS Admin Boundaries (hand copy, RORI): pin 0.005 km; name matches",
+   "join": [
+    "sgakd1159"
+   ],
+   "fp": {
+    "sgakd1159": [
+     "Rosie the Riveter/World War II Home Front National Historical Park",
+     149
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sgakd1159"
     ],
-    "fp": {
-     "sgakd1159": [
-      "Rosie the Riveter/World War II Home Front National Historical Park",
-      149
-     ]
-    },
-    "reason": "sgakd1159: record not in the saved outline copy, pin not measured here",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "NPS Admin Boundaries (hand copy, RORI): pin 0.005 km",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — name matches"
    }
   },
   "US-11900": {
    "when": "2026-11-09",
-   "why": "2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json): NPS Land Resources Division admin boundary record 1245; the same unit (BLSC) is in Brandon's hand-downloaded NPS Administrative Boundaries gdb (staged in KPC-Data hand-layers). The live layer (services1, robots 403) is only set up for a few states, so this join takes effect only when that outline is wired from the hand file (waits on Brandon). Quality to look.",
-   "join_held": {
+   "why": "2026-11-09 Nov 9 weekly batch: outside-agent YES row (proposed-from-outside-agent.json): NPS Land Resources Division admin boundary record 1245; the same unit (BLSC) is in Brandon's hand-downloaded NPS Administrative Boundaries gdb (staged in KPC-Data hand-layers). The live layer (services1, robots 403) is only set up for a few states, so this join takes effect only when that outline is wired from the hand file (waits on Brandon). Quality to look. · Nov 9 amendment 2 (Brandon t938u recheck, verified on saved/official data): NPS Admin Boundaries (hand copy, BLSC): pin 0.013 km; name fits (NPS unit name vs POTA \"National Park\")",
+   "join": [
+    "sgakd1245"
+   ],
+   "fp": {
+    "sgakd1245": [
+     "Blackwell School National Historic Site",
+     1
+    ]
+   },
+   "decided_by": "Brandon t927u+t938u",
+   "evidence": {
     "ids": [
      "sgakd1245"
     ],
-    "fp": {
-     "sgakd1245": [
-      "Blackwell School National Historic Site",
-      1
-     ]
-    },
-    "reason": "sgakd1245: record not in the saved outline copy, pin not measured here",
-    "held": "Nov 9 6:05 PM CST: not a sure match (Brandon t927u signs sure matches only); Quality regrade v2 must-fix (h). Held for Brandon: not joined."
+    "detail": "NPS Admin Boundaries (hand copy, BLSC): pin 0.013 km",
+    "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — name fits (NPS unit name vs POTA \"National Park\")"
    }
   },
   "US-3714": {

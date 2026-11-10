@@ -81,7 +81,8 @@ jobs:
         run: |
           pip install --quiet --break-system-packages pyshp pyproj || pip install --quiet pyshp pyproj || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           # Oct 27 (gap hunt): 'saved' = start from the saved copy on the boundary-cache release (a full re-read can time out)
-          if [ "$GEO_CACHE_MODE" = use ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
+          # Nov 9 (Brandon t939u "4 saved copies"): the monthly refresh downloads the saved copy too, so layers on saved-copy-only hosts keep their records
+          if [ "$GEO_CACHE_MODE" = use ] || [ "$GEO_CACHE_MODE" = refresh ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
           # Nov 2 (chat 2): chat 11's Canada hard-look YES records (KPC-Data questions/hardlook.json) -> data/ca-key/hardlook-joins.json
           # Nov 6: hardlook.json is .gz in KPC-Data. kpc_ca_hardlook.py stays as it is (it is part of the Canada rules hash).
           # --materialize writes the preferred bytes (.gz wins) to the plain path that script already opens, and exits 1 if neither file is there.

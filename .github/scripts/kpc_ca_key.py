@@ -68,7 +68,13 @@ def cload():
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
 
 
+# Nov 9 (Brandon t939u, 6:20 PM CST: "4 saved copies"): no live read from a host whose robots.txt answers 403; its layers come from the
+# saved copy (the 'a layer that did not answer keeps its saved records' path). Remove a host only when its robots.txt allows us again.
+SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
+
+
 def get(url, params, tries=5):
+    if urllib.parse.urlparse(url).netloc.lower() in SAVED_ONLY_HOSTS: raise RuntimeError(f'saved copy only (Brandon t939u): {urllib.parse.urlparse(url).netloc}')
     last = None
     for i in range(tries):
         try:

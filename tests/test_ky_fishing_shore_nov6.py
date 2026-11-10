@@ -45,11 +45,11 @@ def samples(geom, n=9):
     return found
 
 
-check(KF.rules_hash('us-key') == '19d219f37114', 'US rules hash 19d219f37114 (moved Nov 9, Brandon 11:24 AM CST; declared)')
-check(KF.rules_hash('ca-key') == '22f16bc69b96', 'Canada rules hash stays 22f16bc69b96')
+check(KF.rules_hash('us-key') == 'f489a836894f', 'US rules hash f489a836894f (moved Nov 9, Brandon 11:24 AM CST; declared)')
+check(KF.rules_hash('ca-key') == '570b09c3cb52', 'Canada rules hash stays 570b09c3cb52')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
-check(KF.rules_hash('world-key') == '10e4092cc97f', 'world rules hash stays 10e4092cc97f')
+check(KF.rules_hash('world-key') == '6444287722b9', 'world rules hash stays 6444287722b9')
 check('kpc_research_sources.py' in KF.NOT_RULES, 'the shore reader is not a rule file')
 
 # Nov 9 weekly batch (Brandon 10:08 AM CST 'KY lakes -> use the county parcel'): the two shore outlines went INTO
@@ -88,12 +88,16 @@ nov8_wf = {'.github/workflows/kpc-key-postcheck.yml'}
 nov9_wf = {'.github/workflows/kpc-adds-probe.yml', '.github/workflows/kpc-bot-health.yml', '.github/workflows/kpc-guide-pdf.yml'}
 # Nov 9 evening (Brandon t909u + 4:52 PM KPC-Archive): saved outlines saved to KPC-Archive too (not a key rule)
 nov9_wf |= {'.github/workflows/kpc-boundary-check.yml'}
+# Nov 9 amendment 2 (KPC-Links #106): the research inbox workflow (recommends only) and the CA key monthly refresh reads its saved copies
+nov9_wf |= {'.github/workflows/kpc-research-inbox.yml'}
 extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))
 if set(changed_wf) & allowed_wf:
     body = subprocess.run(['git', 'diff', 'origin/main', '--', *sorted(allowed_wf)],
                           cwd=ROOT, capture_output=True, text=True, timeout=30).stdout
+    # Nov 9 amendment 2: only the changed lines count (the CA saved-copy line sits next to the hard-look comments)
+    body = '\n'.join(ln for ln in body.splitlines() if ln[:1] in '+-' and ln[:3] not in ('+++', '---'))
     # Nov 7: Links #53 is on main, so a later US key workflow change (the problem solver step) no longer carries the hard-look
     # lines; the check applies only to a diff that touches the hard-look checkout.
     check(('hardlook' not in body) or ('hardlook.json.gz' in body and '--materialize' in body and 'external-results.json.gz' in body),

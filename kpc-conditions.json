@@ -2,6 +2,15 @@
  "updated": "2026-11-09",
  "items": [
   {
+   "id": "pa-fs-portion-redbird-crest-trail-redbird-wma-closed-prescribed-bu-US-10159",
+   "ref": "US-10159",
+   "kind": "Burn or forest work",
+   "details": "Portion of Redbird Crest Trail, Redbird WMA closed for prescribed burn, November 10 — A portion of the Redbird Wildlife Management Area in Leslie County will be closed during planned prescribed burn operations on Tuesday, November 10, 2026. Sugar Creek Trailhead and Redbird Crest Trail Sections 4, 5 and 6 will also be closed during operations and may remain closed for several days…",
+   "seen": "2026-11-09",
+   "call": "KPC BOT",
+   "expires": "2026-11-23"
+  },
+  {
    "id": "pa-lbl-x-wildlife-refuges-will-be-closed-from-nov-US-3792",
    "ref": "US-3792",
    "kind": "Park alert",

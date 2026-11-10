@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09 18:11",
+ "updated": "2026-11-09 20:52",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -864,9 +864,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/portion-redbird-crest-trail-redbird-wma-closed-prescribed-burn-november-10",
    "routine": true,
    "first": "2026-11-09",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": [
     "US-10159"
    ]
@@ -878,9 +878,9 @@
    "link": "https://www.fs.usda.gov/r08/danielboone/alerts/indian-creek-rd-9b-camping-area-closed-prescribed-burn-operations-november",
    "routine": true,
    "first": "2026-11-09",
-   "runs": 1,
+   "runs": 2,
    "missing": 0,
-   "announced": false,
+   "announced": true,
    "refs": []
   }
  },
@@ -892,5 +892,5 @@
   "lbl",
   "nps"
  ],
- "burns_posted_on": "2026-10-28"
+ "burns_posted_on": "2026-11-09"
 }

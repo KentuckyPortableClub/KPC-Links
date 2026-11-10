@@ -50,7 +50,7 @@ TMP = pathlib.Path(tempfile.mkdtemp(prefix='kpc-tracts-nov7-'))
 try:
     # ------------------------------------------------------------------ 0. hashes, rule files, keys
     import kpc_key_freeze as KF
-    EXP = {'us-key': '19d219f37114', 'ca-key': '22f16bc69b96', 'world-key': '1b50faf1dfe8'}
+    EXP = {'us-key': 'f489a836894f', 'ca-key': '570b09c3cb52', 'world-key': '6444287722b9'}   # amendment 2 hashes (declared)
     # Combined with the Nov 7 world rebuild (Part 2, Brandon OK'd): that patch moves the world hash by editing kpc_world_key.py
     # only, and declares it in docs/key-rules-change.txt. Tracts (Part 1) must still not touch any rule file, so the declared
     # world change is the one exception: the world hash may be the declared one and kpc_world_key.py may differ from main.
@@ -61,6 +61,9 @@ try:
           KF.rules_hash('us-key') == EXP['us-key'] and KF.rules_hash('ca-key') == EXP['ca-key'] and KF.rules_hash('world-key') in _wok)
     rels = sorted(set(sum((v for k, v in KF.RULE_FILES.items() if k != 'fers'), [])))  # Nov 8: fers kind is separate
     if _wdecl: rels = [r for r in rels if not r.endswith('/kpc_world_key.py')]
+    # Amendment 2 (Nov 9): the three key scripts change on purpose (saved-copy hosts, world exact ids), declared with their new hashes
+    _a2 = all(x in _decl for x in ('US rules 19d219f37114 -> f489a836894f', 'CA rules 22f16bc69b96 -> 570b09c3cb52', 'world rules 10e4092cc97f -> 6444287722b9'))
+    if _a2: rels = [r for r in rels if not r.endswith(('/kpc_us_key.py', '/kpc_ca_key.py', '/kpc_world_key.py'))]
     have_base = git_show('kpc-bounds.js') is not None
     check(f'{BASE} is readable (the OFF comparisons need it)', have_base)
     check('us/ca/world rule files are byte-identical to ' + BASE, have_base and all(git_show(r) == (ROOT / r).read_bytes() for r in rels))
@@ -71,6 +74,7 @@ try:
     _MOVES = moved_sources(ROOT)
     d = subprocess.run(['git', 'diff', '--quiet', BASE, '--', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json',
                         ':!data/us-key/overrides.json',   # round 3: the hand-override ledger may gain a declared row (US-3917)
+                        ':!data/ca-key/overrides.json', ':!data/world-key/overrides.json',   # amendment 2: declared ledger rows
                         # Nov 7 evening bundle: the layer lists and 'rebuild tonight' lists are inputs, not answer keys
                         ':!data/*/answers-states.txt', ':!data/*/answers-provinces.txt', ':!data/*/answers-countries.txt',
                         ':!data/world-key/extra-layers.json',

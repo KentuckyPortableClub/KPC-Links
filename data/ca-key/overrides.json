@@ -2346,6 +2346,15 @@
    "why": "Nov 8: CA trails round 2 (Research lead, checked): SK ParksAsLegislated/4 OBJECTID 3392, POTA pin inside; Wascana Trails is the Wascana Valley Natural Area (name variant), same province",
    "when": "2026-11-08"
   },
+  "CA-0037": {
+   "join": [
+    "Estuary Islands National Wildlife Area"
+   ],
+   "decided_by": "Brandon t957u",
+   "when": "2026-11-09",
+   "why": "Brandon t957u (Nov 9 2026 7:11 PM CST): Iles de l'Estuaire = Estuary Islands NWA, the French and English names of the same park (CPCAD 22160, pin inside)",
+   "evidence": "CPCAD MapServer/0 record 22160 \"Estuary Islands National Wildlife Area\", pin inside (t955u research)"
+  },
   "CA-1055": {
    "none": true,
    "when": "2026-11-09",
