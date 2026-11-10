@@ -1369,8 +1369,12 @@
    "why": "same place, another name (hand review Oct 22)"
   },
   "CA-1280": {
-   "none": true,
-   "why": "a different place, not this park (hand review Oct 22)"
+   "join": [
+    "ABITIBI LAKE NARROWS WILDERNESS AREA"
+   ],
+   "when": "2026-11-09",
+   "decided_by": "KPC owner, Nov 9 2026",
+   "why": "Official Ontario wilderness area outline (record 203353)."
   },
   "CA-1586": {
    "join": [
@@ -2344,6 +2348,498 @@
    "when": "2026-11-09",
    "why": "Brandon t957u (Nov 9 2026 7:11 PM CST): Iles de l'Estuaire = Estuary Islands NWA, the French and English names of the same park (CPCAD 22160, pin inside)",
    "evidence": "CPCAD MapServer/0 record 22160 \"Estuary Islands National Wildlife Area\", pin inside (t955u research)"
+  },
+  "CA-1055": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-1067": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-1069": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-1079": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4774": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4791": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4794": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4799": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4812": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4818": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4819": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4823": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4824": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4825": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4827": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4831": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4836": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4843": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4846": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4853": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4855": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4858": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4859": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4860": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4862": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4864": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4866": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4868": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4870": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4875": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4876": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4877": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4879": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4880": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4881": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4883": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4884": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4886": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4888": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4891": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4893": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4894": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4896": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4898": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4899": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4900": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4903": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4904": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4907": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4911": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4912": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4913": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4916": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4920": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4924": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4925": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4927": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4934": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4937": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4938": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4619": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-5286": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-5455": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-5456": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-5458": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6299": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6300": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6301": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6302": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6303": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6304": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6305": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6306": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6307": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6308": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6309": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6330": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-5538": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-6209": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4908": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-4930": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
+  },
+  "CA-5287": {
+   "none": true,
+   "when": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "why": "Official point confirmed; no official boundary. A 100 ft point circle around the agency official point is in data/point-circles.json."
   }
  }
 }

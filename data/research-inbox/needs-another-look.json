@@ -8,9 +8,9 @@
     "decision": "no outline of its own (none: true)",
     "why": "a different place, not this park (hand review Oct 22)"
    },
-   "last": "2026-11-09 20:27",
+   "last": "2026-11-09 23:14",
    "layer_url": "https://ws.lioservices.lrc.gov.on.ca/arcgis1071a/rest/services/LIO_OPEN_DATA/LIO_Open06/MapServer/5",
-   "reason": "sure match: polygon \"ABITIBI LAKE NARROWS WILDERNESS AREA\" record 203353, name fits, pin inside (the file said record 66586475; the polygon at the pin is 203353) | earlier NO (Oct 22): no outline of its own (none: true); not signed: on the owner's flip list",
+   "reason": "official Ontario wilderness record 203353 ABITIBI LAKE NARROWS WILDERNESS AREA, name fits, pin inside; flipped Nov 9 2026 after the owner YES on the seven checked YES parks. Earlier NO (Oct 22) superseded.",
    "record_id": "203353",
    "record_name": "ABITIBI LAKE NARROWS WILDERNESS AREA",
    "row": {
@@ -26,7 +26,7 @@
     "record_id": "66586475",
     "source": "research.xlsx [Solved cases]"
    },
-   "status": "SOLUTION FOUND vs earlier NO"
+   "status": "flipped Nov 9 2026"
   },
   "US-0620": {
    "earlier_no": {
@@ -323,6 +323,90 @@
     "record_id": "95963",
     "source": "no-ID file, Nov 9 2026"
    },
+   "status": "SOLUTION FOUND vs earlier NO"
+  },
+  "US-10823": {
+   "earlier_no": {
+    "by": "",
+    "date": "2026-10-22",
+    "decision": "no outline of its own (none: true)",
+    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+   },
+   "last": "2026-11-09 23:14",
+   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
+   "reason": "point record \"Dubois Hatchery\" (7) 0.484 km from the pin; earlier NO (2026-10-22): no outline of its own (none: true); not signed: Quality held the circle, Nov 9 2026, until the owner flips the earlier NO",
+   "record_id": "7",
+   "record_name": "Dubois Hatchery",
+   "status": "SOLUTION FOUND vs earlier NO"
+  },
+  "US-12978": {
+   "earlier_no": {
+    "by": "",
+    "date": "2026-10-29",
+    "decision": "none: true, NO to 2939",
+    "why": "a different place, not this park; gis-hunter row NO Willamette National Forest (2026-10-29)"
+   },
+   "last": "2026-11-09 23:14",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "reason": "point record \"WILLAMETTE\" (11) 0.198 km from the pin; earlier NO (2026-10-29): none: true, NO to 2939; not signed: Quality held the circle, Nov 9 2026, until the owner flips the earlier NO",
+   "record_id": "11",
+   "record_name": "WILLAMETTE",
+   "status": "SOLUTION FOUND vs earlier NO"
+  },
+  "US-12981": {
+   "earlier_no": {
+    "by": "",
+    "date": "2026-10-22",
+    "decision": "no outline of its own (none: true)",
+    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+   },
+   "last": "2026-11-09 23:14",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "reason": "point record \"OAK SPRINGS\" (12) 0.335 km from the pin; earlier NO (2026-10-22): no outline of its own (none: true); not signed: Quality held the circle, Nov 9 2026, until the owner flips the earlier NO",
+   "record_id": "12",
+   "record_name": "OAK SPRINGS",
+   "status": "SOLUTION FOUND vs earlier NO"
+  },
+  "CA-4773": {
+   "earlier_no": {
+    "by": "",
+    "date": "Oct 22",
+    "decision": "no outline of its own (none: true)",
+    "why": "a different place, not this park (hand review Oct 22)"
+   },
+   "last": "2026-11-09 23:14",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "reason": "point record \"Banff Park Museum National Historic Site of Canada\" (6) 0.042 km from the pin; earlier NO (Oct 22): no outline of its own (none: true); not signed: Quality held the circle, Nov 9 2026, until the owner flips the earlier NO",
+   "record_id": "6",
+   "record_name": "Banff Park Museum National Historic Site of Canada",
+   "status": "SOLUTION FOUND vs earlier NO"
+  },
+  "CA-4779": {
+   "earlier_no": {
+    "by": "",
+    "date": "Oct 22",
+    "decision": "no outline of its own (none: true)",
+    "why": "a different place, not this park (hand review Oct 22)"
+   },
+   "last": "2026-11-09 23:14",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "reason": "point record \"Jasper House National Historic Site of Canada\" (89) 0.485 km from the pin; earlier NO (Oct 22): no outline of its own (none: true); not signed: Quality held the circle, Nov 9 2026, until the owner flips the earlier NO",
+   "record_id": "89",
+   "record_name": "Jasper House National Historic Site of Canada",
+   "status": "SOLUTION FOUND vs earlier NO"
+  },
+  "CA-4780": {
+   "earlier_no": {
+    "by": "",
+    "date": "Oct 22",
+    "decision": "no outline of its own (none: true)",
+    "why": "a different place, not this park (hand review Oct 22)"
+   },
+   "last": "2026-11-09 23:14",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "reason": "point record \"Jasper Park Information Centre National Historic Site of Canada\" (90) 0.018 km from the pin; earlier NO (Oct 22): no outline of its own (none: true); not signed: Quality held the circle, Nov 9 2026, until the owner flips the earlier NO",
+   "record_id": "90",
+   "record_name": "Jasper Park Information Centre National Historic Site of Canada",
    "status": "SOLUTION FOUND vs earlier NO"
   }
  },
@@ -13168,8 +13252,8 @@
    "wait_on": "layer"
   },
   "CA-4773": {
-   "last": "2026-11-09 20:26",
-   "reason": "outline not readable: services5.arcgis.com: robots.txt answers 401/403 (= disallow); needs a hand download or a saved copy (earlier NO on file, Oct 22: stays)",
+   "last": "2026-11-09 23:14",
+   "reason": "Point match Banff Park Museum National Historic Site of Canada (record 6, pin 0.042 km) was found, but an earlier NO is on file (Oct 22: no outline of its own (none: true)). Quality held, Nov 9 2026: a point over an earlier NO gets no circle until the owner flips it. Circle removed.",
    "row": {
     "confidence": "low",
     "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
@@ -13185,7 +13269,7 @@
    },
    "since": "2026-11-09 20:26",
    "status": "needs another look",
-   "wait_on": "hand-download"
+   "wait_on": "person"
   },
   "CA-4774": {
    "last": "2026-11-09 20:26",
@@ -13228,8 +13312,8 @@
    "wait_on": "hand-download"
   },
   "CA-4779": {
-   "last": "2026-11-09 20:26",
-   "reason": "outline not readable: services5.arcgis.com: robots.txt answers 401/403 (= disallow); needs a hand download or a saved copy (earlier NO on file, Oct 22: stays)",
+   "last": "2026-11-09 23:14",
+   "reason": "Point match Jasper House National Historic Site of Canada (record 89, pin 0.485 km) was found, but an earlier NO is on file (Oct 22: no outline of its own (none: true)). Quality held, Nov 9 2026: a point over an earlier NO gets no circle until the owner flips it. Circle removed.",
    "row": {
     "confidence": "low",
     "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
@@ -13245,11 +13329,11 @@
    },
    "since": "2026-11-09 20:26",
    "status": "needs another look",
-   "wait_on": "hand-download"
+   "wait_on": "person"
   },
   "CA-4780": {
-   "last": "2026-11-09 20:26",
-   "reason": "outline not readable: services5.arcgis.com: robots.txt answers 401/403 (= disallow); needs a hand download or a saved copy (earlier NO on file, Oct 22: stays)",
+   "last": "2026-11-09 23:14",
+   "reason": "Point match Jasper Park Information Centre National Historic Site of Canada (record 90, pin 0.018 km) was found, but an earlier NO is on file (Oct 22: no outline of its own (none: true)). Quality held, Nov 9 2026: a point over an earlier NO gets no circle until the owner flips it. Circle removed.",
    "row": {
     "confidence": "low",
     "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
@@ -13265,7 +13349,7 @@
    },
    "since": "2026-11-09 20:26",
    "status": "needs another look",
-   "wait_on": "hand-download"
+   "wait_on": "person"
   },
   "CA-4782": {
    "last": "2026-11-09 20:26",
@@ -39648,8 +39732,8 @@
    "wait_on": "hand-download"
   },
   "US-10823": {
-   "last": "2026-11-09 20:26",
-   "reason": "outline not readable: services6.arcgis.com: robots.txt answers 401/403 (= disallow); needs a hand download or a saved copy (earlier NO on file, 2026-10-22: stays)",
+   "last": "2026-11-09 23:14",
+   "reason": "Point match Dubois Hatchery (record 7, pin 0.484 km) was found, but an earlier NO is on file (2026-10-22: no outline of its own (none: true)). Quality held, Nov 9 2026: a point over an earlier NO gets no circle until the owner flips it. Circle removed.",
    "row": {
     "confidence": "med",
     "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
@@ -39665,7 +39749,7 @@
    },
    "since": "2026-11-09 20:26",
    "status": "needs another look",
-   "wait_on": "hand-download"
+   "wait_on": "person"
   },
   "US-10836": {
    "last": "2026-11-09 20:26",
@@ -40888,8 +40972,8 @@
    "wait_on": "layer"
   },
   "US-12231": {
-   "last": "2026-11-09 20:27",
-   "reason": "agency alias: the record \"Portneuf (Lower) Access Site\" (199663) is not the park name \"Portneuf Gap River Access BLM Recreation Management Area\"; joins only on an owner YES to that exact name with the pin inside (rule 8; pin inside)",
+   "last": "2026-11-09 23:14",
+   "reason": "Quality held, Nov 9 2026: the POTA park is Portneuf Gap River Access BLM Recreation Management Area, but the point record used for a circle was Idaho Fish and Game Portneuf - Lower (record 170, pin 0.163 km). Different agency, and Gap versus Lower. Circle removed. Same-park / alias question.",
    "row": {
     "confidence": "low",
     "layer_url": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Fee_Managers_PADUS/FeatureServer/0",
@@ -41068,8 +41152,8 @@
    "wait_on": "layer"
   },
   "US-12517": {
-   "last": "2026-11-09 20:27",
-   "reason": "outline not readable: services2.arcgis.com: robots.txt answers 401/403 (= disallow); needs a hand download or a saved copy",
+   "last": "2026-11-09 23:14",
+   "reason": "Quality held, Nov 9 2026: the point record is Confederate Memorial Cemetery (Alabama Register id 848, pin 0.233 km) but the POTA name is Confederate Memorial Park Historic Site. Cemetery versus historic-site name is unclear. Circle removed.",
    "row": {
     "confidence": "low",
     "layer_url": "https://services2.arcgis.com/XBn0Kai3hQ20FeCo/arcgis/rest/services/Alabama_Register___Points/FeatureServer/2",
@@ -41085,7 +41169,7 @@
    },
    "since": "2026-11-09 20:26",
    "status": "needs another look",
-   "wait_on": "hand-download"
+   "wait_on": "person"
   },
   "US-12715": {
    "last": "2026-11-09 20:27",
@@ -41288,8 +41372,8 @@
    "wait_on": "hand-download"
   },
   "US-12978": {
-   "last": "2026-11-09 20:26",
-   "reason": "outline not readable: services.arcgis.com: saved copy only (no live reads while its robots.txt answers 403); needs a hand download or a saved copy (earlier NO on file, 2026-10-29: stays)",
+   "last": "2026-11-09 23:14",
+   "reason": "Point match WILLAMETTE (record 11, pin 0.198 km) was found, but an earlier NO is on file (2026-10-29: none: true, NO to 2939). Quality held, Nov 9 2026: a point over an earlier NO gets no circle until the owner flips it. Circle removed.",
    "row": {
     "confidence": "med",
     "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
@@ -41305,7 +41389,7 @@
    },
    "since": "2026-11-09 20:26",
    "status": "needs another look",
-   "wait_on": "hand-download"
+   "wait_on": "person"
   },
   "US-12980": {
    "last": "2026-11-09 20:26",
@@ -41328,8 +41412,8 @@
    "wait_on": "hand-download"
   },
   "US-12981": {
-   "last": "2026-11-09 20:26",
-   "reason": "outline not readable: services.arcgis.com: saved copy only (no live reads while its robots.txt answers 403); needs a hand download or a saved copy (earlier NO on file, 2026-10-22: stays)",
+   "last": "2026-11-09 23:14",
+   "reason": "Point match OAK SPRINGS (record 12, pin 0.335 km) was found, but an earlier NO is on file (2026-10-22: no outline of its own (none: true)). Quality held, Nov 9 2026: a point over an earlier NO gets no circle until the owner flips it. Circle removed.",
    "row": {
     "confidence": "med",
     "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
@@ -41345,7 +41429,7 @@
    },
    "since": "2026-11-09 20:26",
    "status": "needs another look",
-   "wait_on": "hand-download"
+   "wait_on": "person"
   },
   "US-12986": {
    "last": "2026-11-09 20:26",
@@ -42848,8 +42932,8 @@
    "wait_on": "layer"
   },
   "US-3714": {
-   "last": "2026-11-09 20:27",
-   "reason": "agency alias: the record \"Yates Lake West Wildlife Management Area\" (166141) is not the park name \"Yates Lake Wildlife Management Area\"; joins only on an owner YES to that exact name with the pin inside (rule 8; pin inside)",
+   "last": "2026-11-09 23:14",
+   "reason": "Quality held, Nov 9 2026: not a signed sure join. PAD-US records 166141 and 166140 are both named Yates Lake West Wildlife Management Area (extra word West). Pin is inside; official acres about 5,810 versus merged GIS about 5,474. Tracts are not labelled as named pieces. Same-park / alias question; evidence kept in overrides join_held.",
    "row": {
     "confidence": "med",
     "layer_url": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Fee_Managers_PADUS/FeatureServer/0",
@@ -43508,8 +43592,8 @@
    "wait_on": "layer"
   },
   "US-6090": {
-   "last": "2026-11-09 20:27",
-   "reason": "agency alias: the record \"Beaver Dam (North)\" (426) is not the park name \"Beaver Dam Mountain Wilderness Area\"; joins only on an owner YES to that exact name with the pin inside (rule 8; pin inside)",
+   "last": "2026-11-09 23:14",
+   "reason": "Quality held, Nov 9 2026: not a signed sure join. Six BLM units (wbl258, wbl284, wbl287, wbl290, wbl273, wbl296) are all named Beaver Dam Mountains with 0 acres and are not labelled as Arizona or Utah pieces. Pin is inside; official page about 17,600 acres versus a merge of about 18,198. Same-park / alias question; evidence kept in overrides join_held.",
    "row": {
     "confidence": "med",
     "layer_url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer/0",

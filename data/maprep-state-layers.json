@@ -1,5 +1,5 @@
 {
- "about": "Nov 8 (Brandon 4:31 PM CST, t764u: \"for example GA it searches pad and state level that way it dont miss many\"). Built by .github/scripts/kpc_maprep_state_layers.py (by hand).",
+ "about": "State and province layers the answer keys use, with only the ones this tool is set up to query live (ok: true). Kentucky is the model: every place from every source gets the same checks. Hosts that may be used only as a saved copy (services.arcgis.com, services1.arcgis.com, and apps.fs.usda.gov) are labelled saved copy and are not queried live.",
  "built": "2026-11-08",
  "areas": {
   "AK": [
@@ -31,8 +31,10 @@
     "field": "forestname",
     "label": "Alaska DNR Division of Forestry",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgakd",
@@ -40,8 +42,10 @@
     "field": "UNIT_NAME",
     "label": "National Park Service (legal boundary)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgake",
@@ -153,6 +157,26 @@
     "facts": {
      "website": "Link"
     }
+   },
+   {
+    "pre": "alusalfore",
+    "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/Alabama_Forever_Wild_Tracts_2024_(Public_view)/FeatureServer/36",
+    "field": "NAME",
+    "label": "Alabama Forever Wild tracts (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "alusalregi",
+    "url": "https://services2.arcgis.com/XBn0Kai3hQ20FeCo/arcgis/rest/services/Alabama_Register___Points/FeatureServer/2",
+    "field": "NAME",
+    "label": "Alabama Register points (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "AR": [
@@ -184,8 +208,10 @@
     "field": "fisheries_name",
     "label": "Arkansas Game and Fish Commission",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "AZ": [
@@ -222,8 +248,10 @@
     "field": "ORGNAME",
     "label": "US Fish and Wildlife Service (approved boundary)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgaze",
@@ -240,8 +268,10 @@
     "field": "NCA_NAME",
     "label": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgazg",
@@ -355,6 +385,16 @@
      "acres": "GIS_ACRES",
      "website": "WEB_LINK"
     }
+   },
+   {
+    "pre": "couscocpwa",
+    "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/5",
+    "field": "NAME",
+    "label": "Colorado Parks and Wildlife admin data (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "CT": [
@@ -364,8 +404,10 @@
     "field": "PROPERTY",
     "label": "Connecticut DEEP",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgctb",
@@ -373,8 +415,10 @@
     "field": "OFFIC_NAME",
     "label": "CT DEEP (deepgis account)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgctc",
@@ -382,8 +426,10 @@
     "field": "HuntAName",
     "label": "CT DEEP",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "DE": [
@@ -494,8 +540,10 @@
     "field": "TRACT_NAME",
     "label": "Suwannee River Water Management District",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgfle",
@@ -503,8 +551,10 @@
     "field": "CONSERVATION_AREA",
     "label": "St. Johns River Water Management District",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgflf",
@@ -599,8 +649,10 @@
     "field": "areaname",
     "label": "BdyDesg_LSRS_SpecialInterestManagementArea",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sggae",
@@ -608,8 +660,10 @@
     "field": "RESNAME",
     "label": "National_Heritage_Areas_Updated2023",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "HI": [
@@ -647,8 +701,10 @@
     "field": "NAME",
     "label": "Hawaii State Parks (DLNR)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "IA": [
@@ -721,8 +777,10 @@
     "field": "Name",
     "label": "Idaho Fish & Game",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgidb",
@@ -730,8 +788,10 @@
     "field": "NAME",
     "label": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgidc",
@@ -752,8 +812,10 @@
     "field": "forestname",
     "label": "BdyOwn_LSRS_BasicOwnership",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgide",
@@ -763,6 +825,16 @@
     "ok": false,
     "why": "not available for this tool",
     "count": null
+   },
+   {
+    "pre": "idusidfish",
+    "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Fishing_and_Boating_Access_FFW_App/FeatureServer/1",
+    "field": "site_name",
+    "label": "Idaho fishing and boating access (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "IL": [
@@ -772,8 +844,10 @@
     "field": "Site_Name",
     "label": "Illinois Department of Natural Resources · IllinoisProtectedLandsDH 1 22",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgilb",
@@ -781,8 +855,10 @@
     "field": "Site_Name",
     "label": "Illinois Department of Natural Resources · IllinoisProtectedLandsDH 1 22 3",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgilc",
@@ -790,8 +866,10 @@
     "field": "Site_Name",
     "label": "Illinois DNR (public conservation lands)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgild",
@@ -867,8 +945,10 @@
     "field": "Label_Name",
     "label": "KDWPT · KDWPT Wildlife Areas",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgksc",
@@ -876,8 +956,30 @@
     "field": "Unit_Name",
     "label": "KDWPT · protected areas",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "ksuskspark",
+    "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Parks%202013/FeatureServer/0",
+    "field": "FEATNAME",
+    "label": "Kansas Parks 2013 (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "ksuskssflc",
+    "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Res_SFL_CFAP_NoFee_Current2022/FeatureServer/0",
+    "field": "NAME",
+    "label": "Kansas state fishing lakes / CFAP 2022 (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "LA": [
@@ -887,8 +989,10 @@
     "field": "NAME",
     "label": "Louisiana Department of Wildlife & Fisheries",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sglab",
@@ -896,8 +1000,10 @@
     "field": "Name_Short",
     "label": "LDWF, Sep 2025 edition",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sglac",
@@ -905,8 +1011,20 @@
     "field": "NAME",
     "label": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "lauslastat",
+    "url": "https://services5.arcgis.com/c87u7O5UKiyM87q5/arcgis/rest/services/Louisiana_Public_Lands_WFL1/FeatureServer/17",
+    "field": "NAME",
+    "label": "Louisiana Public Lands — historic-site POINTS, not the polygon public-lands layer (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "MA": [
@@ -930,8 +1048,10 @@
     "field": "SITE_NAME",
     "label": "Massachusetts DCR (DCRStateParks account, mass-eoeea org)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgmac",
@@ -939,8 +1059,10 @@
     "field": "UNIT_NAME",
     "label": "National Park Service (property boundaries)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgmad",
@@ -992,8 +1114,10 @@
     "field": "PARCEL_NAME",
     "label": "State of Maine conserved lands (Bureau of Parks and Lands / IFW)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgmeb",
@@ -1001,8 +1125,10 @@
     "field": "PROJECT",
     "label": "WMA_Boundaries",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "MI": [
@@ -1032,6 +1158,36 @@
     "ok": false,
     "why": "not available for this tool",
     "count": null
+   },
+   {
+    "pre": "miusmidnrr",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+    "field": "DESCRIP",
+    "label": "Michigan DNR reference assets / state harbors (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "miusmidnrf",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/2",
+    "field": "NAME",
+    "label": "Michigan DNR management boundaries layer 2 (15 Forest Management Units) (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "miusmidnrr",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+    "field": "DESCRIP",
+    "label": "Michigan DNR harbors — points are in the reference-assets file, not a separate harbor-polygon layer (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "MN": [
@@ -1079,8 +1235,10 @@
     "field": "AREA_NAME",
     "label": "Minnesota State Parks (DNR)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgmne",
@@ -1116,8 +1274,10 @@
     "field": "ORGNAME",
     "label": "FWSBoundaries",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "MO": [
@@ -1316,8 +1476,10 @@
     "field": "GML_HAB",
     "label": "NCWRC",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgncc",
@@ -1325,8 +1487,10 @@
     "field": "GML_HAB",
     "label": "Game Lands - detail",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgncd",
@@ -1345,8 +1509,10 @@
     "field": "Unit_Name",
     "label": "North Dakota Game & Fish",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgndb",
@@ -1354,8 +1520,10 @@
     "field": "UNIT_NAME",
     "label": "North Dakota Parks & Recreation",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgndc",
@@ -1378,6 +1546,26 @@
      "designation": "UNIT_TYPE",
      "acres": "ACRES"
     }
+   },
+   {
+    "pre": "ndusndstat",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Forest/FeatureServer/0",
+    "field": "NAME",
+    "label": "North Dakota State Forest (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "ndusndwild",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0",
+    "field": "NAME",
+    "label": "North Dakota WMAs (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "NE": [
@@ -1481,8 +1669,10 @@
     "field": "FEATURE_NAME",
     "label": "New Jersey DEP (state-owned open space)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "NM": [
@@ -1510,8 +1700,10 @@
     "field": "FET_NAME",
     "label": "BLM Natl Recreation Site Polygons",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "NV": [
@@ -1521,8 +1713,10 @@
     "field": "LandName",
     "label": "Nevada Department of Wildlife",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgnvb",
@@ -1589,8 +1783,10 @@
     "field": "forestname",
     "label": "Administrative Forest Boundaries - National Extent",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgnvh",
@@ -1618,6 +1814,26 @@
      "agency": "ADMIN_AGCY",
      "acres": "GIS_ACRES"
     }
+   },
+   {
+    "pre": "nvusnvndow",
+    "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/ArcGIS/rest/services/NDOWWMAs/FeatureServer/0",
+    "field": "NAME",
+    "label": "Nevada DOW WMAs (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "nvusnvfish",
+    "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Nevada_Department_of_Wildlife_Fish_Hatchery_Locations/FeatureServer/0",
+    "field": "NAME",
+    "label": "Nevada fish hatchery locations (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "NY": [
@@ -1636,8 +1852,10 @@
     "field": "Name",
     "label": "New York State Parks",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "OH": [
@@ -1739,8 +1957,20 @@
     "field": "SHORTNAME",
     "label": "ODWC",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "okuspublic",
+    "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1",
+    "field": "NAME",
+    "label": "Public WMA Boundaries (Oklahoma) (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "OR": [
@@ -1763,8 +1993,10 @@
     "field": "FULL_NAME",
     "label": "Oregon Parks and Recreation Department (AGOL owner orstateparks)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgorc",
@@ -1772,8 +2004,10 @@
     "field": "AreaName",
     "label": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgord",
@@ -1781,8 +2015,10 @@
     "field": "NAME",
     "label": "State of Oregon (all state owned and managed lands)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgore",
@@ -1819,6 +2055,26 @@
     "facts": {
      "acres": "GIS_ACRES"
     }
+   },
+   {
+    "pre": "orusornatu",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+    "field": "NAME",
+    "label": "Oregon primarily natural resources / fish hatcheries (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "orusordept",
+    "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/ArcGIS/rest/services/OregonDeptForestry_ManagedLands_HERS/FeatureServer/0",
+    "field": "NAME",
+    "label": "Oregon Dept of Forestry managed lands (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "PA": [
@@ -1869,8 +2125,10 @@
     "field": "sgl_name",
     "label": "Pennsylvania Game Commission",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgpad",
@@ -1937,8 +2195,10 @@
     "field": "PropertyName",
     "label": "South Carolina DNR (WMAs, heritage preserves)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgscb",
@@ -1955,8 +2215,10 @@
     "field": "PropertyName",
     "label": "South Carolina DNR (heritage preserves)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgscd",
@@ -1964,8 +2226,10 @@
     "field": "PropertyName",
     "label": "South Carolina Department of Natural Resources",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "SD": [
@@ -2029,8 +2293,10 @@
     "field": "StateForestName",
     "label": "Tennessee Department of Agriculture, Division of Forestry",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgtne",
@@ -2090,6 +2356,26 @@
     "ok": false,
     "why": "not available for this tool",
     "count": null
+   },
+   {
+    "pre": "tnustntdec",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Access_Lands/FeatureServer/0",
+    "field": "NAME",
+    "label": "Tennessee TDEC Public Access Lands (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "tnustnnatu",
+    "url": "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/FeatureServer/0",
+    "field": "NAME",
+    "label": "Tennessee Natural Areas (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "TX": [
@@ -2127,8 +2413,10 @@
     "field": "ParkName",
     "label": "Texas Parks & Wildlife Department (state parks)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgtxb",
@@ -2149,8 +2437,10 @@
     "field": "LoName",
     "label": "TPWD Wildlife Division",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgtxd",
@@ -2158,8 +2448,20 @@
     "field": "P_Loc_Nm",
     "label": "Texas Parks and Wildlife (public conservation lands)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "txustxstat",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/ArcGIS/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0",
+    "field": "NAME",
+    "label": "Texas State Parks Boundaries (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "UT": [
@@ -2169,8 +2471,10 @@
     "field": "name",
     "label": "Utah State Parks",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgutb",
@@ -2178,8 +2482,10 @@
     "field": "Property_N",
     "label": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgutc",
@@ -2187,8 +2493,10 @@
     "field": "L_Name",
     "label": "Utah (National Historic Landmarks)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgutd",
@@ -2218,8 +2526,50 @@
     "field": "truncated_name",
     "label": "state_park_boundaries_dissolved",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "utusutultr",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer/0",
+    "field": "NAME",
+    "label": "Utah ULTRA properties (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "utusutgeoh",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Geoheritage_Sites_v6/FeatureServer/0",
+    "field": "NAME",
+    "label": "Utah Geoheritage Sites v6 (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "utusutwmas",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0",
+    "field": "NAME",
+    "label": "Utah WMAs WFL1 (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "utusutstat",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Parks/FeatureServer/0",
+    "field": "NAME",
+    "label": "Utah State Parks (points only, not park-boundary polygons) (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "VA": [
@@ -2229,8 +2579,10 @@
     "field": "Name",
     "label": "Virginia Department of Forestry",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgvab",
@@ -2238,8 +2590,10 @@
     "field": "MANAME",
     "label": "Virginia DCR Natural Heritage",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgvac",
@@ -2247,8 +2601,10 @@
     "field": "LABEL",
     "label": "Virginia State Parks (DCR)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgvad",
@@ -2256,8 +2612,10 @@
     "field": "MANAME",
     "label": "Virginia DCR State Parks (tracts)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgvae",
@@ -2265,8 +2623,10 @@
     "field": "LABEL",
     "label": "Virginia DCR (Virginia's conservation lands)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgvaf",
@@ -2274,8 +2634,10 @@
     "field": "NAME",
     "label": "Virginia DCR (local parks 2023)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgvag",
@@ -2369,8 +2731,10 @@
     "field": "GNIS_Name",
     "label": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices)",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgwaf",
@@ -2506,6 +2870,16 @@
      "designation": "Loc_Ds",
      "acres": "GIS_Acres"
     }
+   },
+   {
+    "pre": "wvuswvfish",
+    "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/Fish_Hatcheries_view/FeatureServer/25",
+    "field": "NAME",
+    "label": "West Virginia fish hatcheries (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "WY": [
@@ -2524,8 +2898,10 @@
     "field": "site_name",
     "label": "Wyoming State Parks, Historic Sites & Trails",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "sgwyc",
@@ -2544,6 +2920,26 @@
     "ok": false,
     "why": "not available for this tool",
     "count": null
+   },
+   {
+    "pre": "wyuswyhatc",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
+    "field": "NAME",
+    "label": "Wyoming hatchery locations (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "wyuswyrive",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0",
+    "field": "NAME",
+    "label": "Wyoming river access points (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ],
   "AB": [
@@ -2731,8 +3127,10 @@
     "field": null,
     "label": "ON-ABCA Ausa",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "caonchconser",
@@ -2759,8 +3157,10 @@
     "field": null,
     "label": "ON-CVC Credi",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "caonercaesse",
@@ -2768,8 +3168,10 @@
     "field": null,
     "label": "ON-ERCA Esse",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "caonganagana",
@@ -2801,8 +3203,10 @@
     "field": null,
     "label": "ON-KRCA Kawa",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "caonlsrcalak",
@@ -2823,8 +3227,10 @@
     "field": null,
     "label": "ON-LTC Lower",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "caonltvcalow",
@@ -2832,8 +3238,10 @@
     "field": null,
     "label": "ON-LTVCA Low",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "caonmvcmissi",
@@ -2841,8 +3249,10 @@
     "field": null,
     "label": "ON-MVC Missi",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "caonnpcaniag",
@@ -2850,8 +3260,10 @@
     "field": null,
     "label": "ON-NPCA Niag",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "caonorcaoton",
@@ -2894,8 +3306,10 @@
     "field": null,
     "label": "ON-TRCA Toro",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "caontariopar",
@@ -3095,8 +3509,10 @@
     "field": null,
     "label": "Manitoba Par",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "camanitobapr",
@@ -3104,8 +3520,10 @@
     "field": null,
     "label": "Manitoba pro",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "camanitobawi",
@@ -3113,8 +3531,10 @@
     "field": null,
     "label": "Manitoba wil",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "camanitobawi",
@@ -3122,8 +3542,10 @@
     "field": null,
     "label": "Manitoba wil~1",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "camanitobawi",
@@ -3131,8 +3553,10 @@
     "field": null,
     "label": "Manitoba wil~2",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "NB": [
@@ -3142,8 +3566,10 @@
     "field": null,
     "label": "NB Parks",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "canbparks",
@@ -3201,8 +3627,10 @@
     "field": null,
     "label": "NS NS_Lands_",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "cansnslands",
@@ -3210,8 +3638,10 @@
     "field": null,
     "label": "NS NS_Lands_~1",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "cansfnova",
@@ -3239,8 +3669,10 @@
     "field": null,
     "label": "NS-PPA Nova",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "canovascotia",
@@ -3266,8 +3698,10 @@
     "field": null,
     "label": "Nova Scotia ~2",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    }
   ],
   "NT": [
@@ -3302,8 +3736,10 @@
     "field": null,
     "label": "PE NCC_AT_Na",
     "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "why": "saved copy — not queried live",
+    "count": null,
+    "read": "saved copy",
+    "live": false
    },
    {
     "pre": "capeprovince",
@@ -3591,6 +4027,28 @@
      "designation": "TYPE",
      "website": "URL"
     }
+   }
+  ],
+  "MS": [
+   {
+    "pre": "msusmscoas",
+    "url": "https://services5.arcgis.com/CYWvDQNfmlrPP5Rh/arcgis/rest/services/Mississippi_Coastal_Preserves/FeatureServer/0",
+    "field": "NAME",
+    "label": "Mississippi Coastal Preserves (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
+   },
+   {
+    "pre": "msuspadus4",
+    "url": "https://gis.mississippi.edu/server/rest/services/Environmental/MS_USGSProtectedAreasData_2021/MapServer/0",
+    "field": "NAME",
+    "label": "Mississippi USGS PAD 2021 — covered by the PAD-US 4.1 MS state GDB (saved copy)",
+    "ok": false,
+    "why": "saved copy — not queried live",
+    "read": "saved copy",
+    "live": false
    }
   ]
  },
