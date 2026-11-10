@@ -325,7 +325,9 @@
   const PTTC = { kenwood: on => [asc(on ? 'TX;' : 'RX;')], yaesu: on => [asc(on ? 'TX1;' : 'TX0;')], yaesu8: on => [asc(on ? 'TX1;' : 'TX0;')], yaesuold: on => [new Uint8Array([0, 0, 0, 0, on ? 0x08 : 0x88])], icom: on => [icom([0x1C, 0x00, on ? 1 : 0])] };
   function ptt(on, via) {
     via = via || S.ptt || 'cat'; if (via === 'vox') return Promise.resolve(true);
+    PTTW++;   /* Nov 10 (the KPC app's Nov 8 fix): a waiting PTT makes queued meter reads step aside (the key / unkey was up to 1.2 s late) */
     busy = busy.then(async () => {
+      PTTW = Math.max(0, PTTW - 1);
       if (!await connect(false)) { say('Radio not connected, so no PTT. Connect it, or use VOX.', false); return false; }
       try { if (via === 'rts' || via === 'dtr') { await port.setSignals(via === 'rts' ? { requestToSend: !!on } : { dataTerminalReady: !!on }); return true; }
         for (const b of (PTTC[S.proto] || PTTC.kenwood)(!!on)) await write(b); return true; }
@@ -336,10 +338,14 @@
   /* ---- CW from the keyboard (Brandon Oct 17: 'cw keyboard to cw') ----
      The radio's own keyer sends the text: Kenwood / Elecraft / QRP Labs 'KY text;', Icom CI-V 0x17. Yaesu radios can't take free text
      over CAT, so for them (or anything else) the page keys the DTR or RTS line itself (Digirig etc.: DTR = key). */
+  /* Nov 10 (Opus, the KPC app's Oct 27 table, from POTACAT): the newer Yaesu radios DO take typed CW over CAT — `KY0 <text padded to 48>;`,
+     speed `KS###;`; the FTDX101 wants KM5 + KYA. Kenwood / Elecraft / QRP Labs `KY`, Icom CI-V 0x17 as before. */
+  const YKY = { ft710: 1, ft991: 1, ftdx10: 1, ftx1: 1, ft891: 1, ft450: 1, ft2000: 1, ftdx3000: 1, ftdx101: 2 };
   const CWOK = { kenwood: 1, icom: 1 };
-  function cwCan() { return !!CWOK[S.proto]; }
+  const yky = () => (S.proto === 'yaesu' || S.proto === 'yaesu8') && YKY[S.radio] || 0;
+  function cwCan() { return !!CWOK[S.proto] || !!yky(); }
   async function cwSpeed(wpm) { wpm = Math.max(6, Math.min(48, Math.round(wpm)));
-    if (S.proto === 'kenwood') await write(asc('KS' + pad(wpm, 3) + ';'));
+    if (S.proto === 'kenwood' || yky()) await write(asc('KS' + pad(wpm, 3) + ';'));
     if (S.proto === 'icom') { const lv = Math.round((wpm - 6) / 42 * 255), d = pad(lv, 4); await write(icom([0x14, 0x0C, parseInt(d.slice(0, 2), 16), parseInt(d.slice(2), 16)])); } }
   function cw(text, wpm) {
     text = String(text || '').toUpperCase().replace(/[^A-Z0-9 /?.,=+\-]/g, '');
@@ -347,14 +353,16 @@
       if (!await connect(false)) { say('Radio not connected.', false); return false; }
       if (!cwCan()) { say('This radio type can\'t take typed CW over CAT: use the DTR or RTS key line, or audio.', false); return false; }
       try { if (wpm) await cwSpeed(wpm);
-        if (S.proto === 'kenwood') { for (let i = 0; i < text.length; i += 24) await write(asc('KY ' + text.slice(i, i + 24).padEnd(24, ' ') + ';')); }
+        if (yky() === 2) { for (let i = 0; i < text.length; i += 50) { await write(asc('KM5' + text.slice(i, i + 50) + ';')); await write(asc('KYA;')); } }
+        else if (yky()) { for (let i = 0; i < text.length; i += 48) await write(asc('KY0 ' + text.slice(i, i + 48).padEnd(48, ' ') + ';')); }
+        else if (S.proto === 'kenwood') { for (let i = 0; i < text.length; i += 24) await write(asc('KY ' + text.slice(i, i + 24).padEnd(24, ' ') + ';')); }
         else { for (let i = 0; i < text.length; i += 30) await write(icom([0x17, ...asc(text.slice(i, i + 30))])); }
         return true; }
       catch (e) { say('CW did not send: ' + (e.message || e), false); return false; }
     }).catch(() => false);
     return busy;
   }
-  async function cwStop() { try { if (!port || !writer) return; if (S.proto === 'kenwood') await write(asc('RX;'));
+  async function cwStop() { try { if (!port || !writer) return; if (yky()) await write(asc('KY0 ;TX0;')); else if (S.proto === 'kenwood') await write(asc('RX;'));
     if (S.proto === 'icom') await write(icom([0x17, 0xFF])); } catch (e) {} }
   /* key a serial line on and off (true = key down) */
   async function keyLine(down, line) { if (!port) return false; try { await port.setSignals(line === 'rts' ? { requestToSend: !!down } : { dataTerminalReady: !!down }); return true; } catch (e) { return false; } }
@@ -389,16 +397,18 @@
      or null. Yaesu RM1/3/4/5/6/7/8 + PC (FT-710 / FTDX10 answer 'RM4120000;'), Kenwood SM0 + PC, Icom CI-V 0x15 sub-meters. */
   const M255 = v => Math.round(Math.max(0, Math.min(255, v)) / 2.55);
   const sdb = (v, s9, top) => v == null || !isFinite(v) ? null : v <= s9 ? Math.round((v / s9 * 9 - 9) * 6) : Math.round((v - s9) / (top - s9) * 60);
+  let PTTW = 0;
   function meters() {
     if (!S.on) return Promise.resolve(null);
     busy = busy.then(async () => {
+      if (PTTW) return null;
       if (!port || !writer) return null; const pr = S.proto;
       try {
         if (pr === 'yaesu' || pr === 'yaesu8') { rbuf = []; await write(asc('RM1;RM3;RM4;RM5;RM6;RM7;RM8;PC;')); await sleep(260); const t = String.fromCharCode(...rbuf);
           const raw = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? +m[1] : null; }, g = k => { const v = raw(k); return v == null ? null : M255(v); }, pc = /PC(\d{3});/.exec(t);
           return { s: sdb(raw('RM1'), 120, 241), comp: g('RM3'), alc: g('RM4'), po: g('RM5'), swr: g('RM6'), idd: g('RM7'), vdd: g('RM8'), pwr: pc ? +pc[1] : null }; }
         if (pr === 'kenwood') { rbuf = []; await write(asc('SM0;PC;')); await sleep(220); const t = String.fromCharCode(...rbuf), pc = /PC(\d{3});/.exec(t), sm = /SM0(\d{4});/.exec(t); return { s: sm ? sdb(+sm[1], 15, 30) : null, alc: null, po: null, swr: null, pwr: pc ? +pc[1] : null }; }
-        if (pr === 'icom') { const rd = async sub2 => { rbuf = []; await write(icom([0x15, sub2])); await sleep(180); const r = rbuf.slice(), i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i), hi = d[d.length - 2], lo = d[d.length - 1]; return (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); };
+        if (pr === 'icom') { const rd = async sub2 => { if (PTTW) return null; rbuf = []; await write(icom([0x15, sub2])); await sleep(180); const r = rbuf.slice(), i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i), hi = d[d.length - 2], lo = d[d.length - 1]; return (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); };
           const one = async x => { const v = await rd(x); return v == null ? null : M255(v); };
           return { s: sdb(await rd(0x02), 120, 241), alc: await one(0x13), po: await one(0x11), swr: await one(0x12), comp: await one(0x14), idd: await one(0x16), vdd: await one(0x15), pwr: null }; }
       } catch (e) { return null; }
