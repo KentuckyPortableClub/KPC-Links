@@ -81,10 +81,11 @@ def get(params, tries=5):
     for i in range(tries):
         try:
             req = urllib.request.Request(Q + '?' + urllib.parse.urlencode(params), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-            with urllib.request.urlopen(req, timeout=180) as r:
+            with checked_open(req, 180) as r:   # Nov 10: checked opener + 2 s per-host pace, first address and every hop
                 j = json.loads(r.read().decode('utf-8', 'replace'))
             if j.get('error'): raise RuntimeError(str(j['error'])[:200])
             return j
+        except KMASTER.LiveNotAllowed: raise   # a refused host or hop is never retried
         except Exception as e:  # noqa: BLE001
             last = e; time.sleep(8 * (i + 1))
     raise last
@@ -346,7 +347,7 @@ def fields():
     if FIELDS is None:
         try:
             req = urllib.request.Request(Q.rsplit('/', 1)[0] + '?f=json', headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-            info = json.loads(urllib.request.urlopen(req, timeout=120).read())
+            with checked_open(req, 120) as r: info = json.loads(r.read())   # Nov 10: checked opener + pace
             have = {f['name'] for f in info.get('fields', [])}
             # Oct 27 (boundary review #2 / rule B7): the PAD-US version every PAD-US outline comes from
             m = re.search(r'PAD-US\s*(?:version\s*)?(\d+(?:\.\d+)*)', ' '.join(str(info.get(k) or '') for k in ('description', 'copyrightText', 'name')), re.I)
@@ -609,6 +610,21 @@ HOP_HANDLERS = ()   # extra urllib handlers (tests put a stand-in server here)
 HOP_ROBOTS = {}     # robots.txt answers per host, for redirect hops
 
 
+def _pace(u):
+    """Nov 10 (Quality on #117, v2): the checked opener does not go through urllib.request.urlopen, so kpc_host_pace's wrap never
+    sees it. Every checked request waits here instead: the first address, each redirect hop and each hop's robots.txt, 2 s per host
+    (kpc_host_pace.wait); a hub portal (hub / opendata.arcgis.com, kpc_master.HUB_RE) also keeps its 60 s crawl delay."""
+    h = kpc_host_pace.host_of(u)
+    kpc_host_pace.wait(h)
+    if KMASTER.HUB_RE.search(h.split(':')[0]):
+        w = _HUB_LAST.get(h, -1e9) + KMASTER.HUB_DELAY - time.monotonic()
+        if w > 0: time.sleep(w)
+        _HUB_LAST[h] = time.monotonic()
+
+
+_HUB_LAST = {}
+
+
 def _hop_ok(u):
     """Nov 10: every redirect hop of a layer read or count gets the same checks as the first request: the saved-copy-only and
     never-contact hosts (saved_only), the master's host rule (live_ok), then that host's robots.txt (a 403 means no)."""
@@ -618,19 +634,29 @@ def _hop_ok(u):
 
     def robots_get(ru):
         req = urllib.request.Request(ru, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+        _pace(ru)
         try:
             with KMASTER.checked_opener(_hop_host_ok, HOP_HANDLERS).open(req, timeout=60) as r: return r.status, r.read().decode('utf-8', 'replace')
         except urllib.error.HTTPError as e: return e.code, ''
     if not KMASTER.robots_allows(u, robots_get, HOP_ROBOTS):
         raise KMASTER.LiveNotAllowed(f'redirect refused: {urllib.parse.urlparse(u).netloc}: robots.txt does not allow this read')
+    _pace(u)   # the hop itself: paced like any other request to that host
 
 
 def _hop_host_ok(u):   # a robots.txt fetch that redirects: host rules only
     if saved_only(u) or not KMASTER.live_ok(u)[0]: raise KMASTER.LiveNotAllowed(f'redirect refused: {urllib.parse.urlparse(u).netloc}')
+    _pace(u)
 
 
 def checked_open(req, timeout):
-    """urlopen through the master's checked-redirect opener (kpc_master.checked_opener): a hop is followed only after _hop_ok."""
+    """urlopen through the master's checked-redirect opener (kpc_master.checked_opener): a hop is followed only after _hop_ok.
+    Nov 10 (Quality on #117, v2): the ONLY way this script reads the network. The first address gets saved_only + live_ok and the
+    2 s per-host pace before it is asked; every hop is checked and paced in _hop_ok."""
+    u = getattr(req, 'full_url', None) or str(req)
+    if saved_only(u): raise KMASTER.LiveNotAllowed(f'saved copy only: {urllib.parse.urlparse(u).netloc}')
+    ok, why = KMASTER.live_ok(u)
+    if not ok: raise KMASTER.LiveNotAllowed(why)
+    _pace(u)
     return KMASTER.checked_opener(_hop_ok, HOP_HANDLERS).open(req, timeout=timeout)
 
 
@@ -806,7 +832,8 @@ def resolve(pre, url, nf, af):
     # 'svc:<service>|<layer name regex>' → (query url, name field, acres field, object id field)
     def rq(u):
         if saved_only(u): raise RuntimeError(f'saved copy only: {urllib.parse.urlparse(u).netloc}')   # Nov 10: never asked, robots.txt included
-        return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=120).read().decode('utf-8', 'replace'))
+        with checked_open(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), 120) as r:   # Nov 10: every hop checked + paced
+            return json.loads(r.read().decode('utf-8', 'replace'))
     if not url.startswith('svc:'):
         if not pre.startswith('sg'): return url, nf, af, ('objectid' if pre in ('wld', 'fwsr', 'fsod') else 'OBJECTID')
         if pre in RESOLVED: return RESOLVED[pre]
@@ -911,7 +938,7 @@ def zip_state(st, have):
             from pyproj import CRS, Transformer
             if saved_only(url): SAVED_ONLY_SKIPPED.setdefault(st, set()).add(pre); continue   # Nov 10: services*.arcgis.com and the listed hosts, saved copy only
             if url not in ZIPC:
-                with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=240) as r: ZIPC[url] = zipfile.ZipFile(io.BytesIO(r.read()))
+                with checked_open(urllib.request.Request(url, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), 240) as r: ZIPC[url] = zipfile.ZipFile(io.BytesIO(r.read()))   # Nov 10: every hop checked + paced
             z = ZIPC[url]; n = 0; bad_shp = 0
             for sp in [q for q in z.namelist() if q.lower().endswith('.shp')]:
                 b = sp[:-4]

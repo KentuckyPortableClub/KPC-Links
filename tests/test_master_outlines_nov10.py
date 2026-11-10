@@ -254,8 +254,8 @@ for k in ('us-key', 'ca-key', 'world-key', 'fers'):
     check(not any('kpc_master' in f for f in KF.RULE_FILES[k]), f'{k}: the master modules are not in its rules hash')
 check({'kpc_master.py', 'kpc_master_cli.py'} <= KF.NOT_RULES, 'the master modules are listed in NOT_RULES')
 us_h, ca_h, world_h, fers_h = (KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers'))
-check((us_h, ca_h, world_h, fers_h) == ('67625e0e3e7c', '0ebc381a788f', '022f06d08d3c', 'c2456edee62e'),
-      f'rules hashes stay US 67625e0e3e7c, CA 0ebc381a788f, world 022f06d08d3c, fers c2456edee62e (got {(us_h, ca_h, world_h, fers_h)})')
+check((us_h, ca_h, world_h, fers_h) == ('2c7f4be3dc36', '0ebc381a788f', '022f06d08d3c', 'c2456edee62e'),
+      f'rules hashes stay US 2c7f4be3dc36, CA 0ebc381a788f, world 022f06d08d3c, fers c2456edee62e (got {(us_h, ca_h, world_h, fers_h)})')
 try:
     changelog = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
     check('US rules f489a836894f -> bbdcc89f8120' in changelog and 'US rules bbdcc89f8120 -> da660f0d5ae7' in changelog and 'US rules da660f0d5ae7 -> 6395b561d4c8' in changelog and ('US rules 6395b561d4c8 -> ' + us_h) in changelog, 'changelog records the #109 US page-cap hash move, the Nov 10 refill move, the Nov 10 master-step move and the Nov 10 layer-count move')

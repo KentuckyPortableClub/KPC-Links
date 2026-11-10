@@ -36,7 +36,10 @@ class Stand(urllib.request.BaseHandler):
 def chunk(a, b): return src[src.index(a):src.index(b)]
 
 
-ns = {'urllib': urllib, 'json': json, 're': re, 'os': os, 'KMASTER': KMASTER, 'DETAIL': 0.001, 'PREC': 5, 'PAGE': 200}
+PACED = []   # Nov 10 v2: checked_open paces through kpc_host_pace; here the wait only records the host (no real sleep)
+ns = {'urllib': urllib, 'json': json, 're': re, 'os': os, 'KMASTER': KMASTER, 'DETAIL': 0.001, 'PREC': 5, 'PAGE': 200,
+      'time': types.SimpleNamespace(sleep=lambda s: None, monotonic=lambda: 0.0),
+      'kpc_host_pace': types.SimpleNamespace(host_of=lambda u: urllib.parse.urlsplit(str(getattr(u, 'full_url', u))).netloc.lower(), wait=PACED.append)}
 code = (chunk('SAVED_ONLY_HOSTS = ', 'SAVED_ONLY_SKIPPED') + chunk('NEVER_HOSTS = ', 'def notice(') + chunk('def layer_page_size', 'FWS = '))
 exec(compile(code, 'kpc_us_key.py', 'exec'), ns)
 check('count_query and fetch_geo use checked_open (no plain urlopen left in them)',

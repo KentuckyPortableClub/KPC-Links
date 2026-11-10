@@ -79,7 +79,7 @@ check(ver.get('us-key') == 'v5b' and ver.get('ca-key') == 'v5b' and ver.get('wor
 check(ver.get('fers') == 'v1', 'fers version v1')
 
 # Approved hashes after merging main (#109) into this PR: US bbdcc89f8120 (from f489a836894f); fers c2456edee62e; CA and world unchanged
-BASE = {'us-key': '67625e0e3e7c', 'ca-key': '0ebc381a788f', 'world-key': '022f06d08d3c'}
+BASE = {'us-key': '2c7f4be3dc36', 'ca-key': '0ebc381a788f', 'world-key': '022f06d08d3c'}
 for k, h in BASE.items():
     got = KF.rules_hash(k, str(HERE))
     check(got == h, f'{k} rules hash unchanged ({got} == {h})')

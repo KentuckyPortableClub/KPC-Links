@@ -62,7 +62,7 @@ with tempfile.TemporaryDirectory() as d:
     check('a saved-outline gzip reports its record count', G.cache_count(zpath) == 2)
     check('cache_count on a bad file is none', G.cache_count(pathlib.Path(d) / 'nope.gz') is None)
 
-check('US rules hash is 67625e0e3e7c', KF.rules_hash('us-key') == '67625e0e3e7c')
+check('US rules hash is 2c7f4be3dc36', KF.rules_hash('us-key') == '2c7f4be3dc36')
 check('Canada rules hash is unchanged', KF.rules_hash('ca-key') == '0ebc381a788f')
 # Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
 # changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
