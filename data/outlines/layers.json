@@ -1,6 +1,3388 @@
 {
- "about": "Layer manifest for the outline master records. One entry per agency layer: its URL, licence, the areas it covers, the id/name fields used to match POTA parks, and the EXPECTED COUNT = the total the layer itself reported (returnCountOnly) at the last COMPLETE read. A short read never changes it; a layer that now reports under 90% of it is held for a person. 'caches' = the same for the saved state copies the key builders read (US-FL, CA-ALL, W-AU...). Empty until the first verified trim run.",
- "caches": {},
+ "about": "Layer manifest for the outline master records. One entry per agency layer: its URL, the areas it covers, and the EXPECTED COUNT = the total the layer itself reported (returnCountOnly=true) on 2026-11-10 when a live read was allowed. A short read never changes it. Layers that could not be counted under the host and robots rules have no expected_count. caches = official expected totals for the saved state copies the key builders read (US-FL, ...): taken from the live key file counts.padus (US-FL is 21993 from the restored file, not the 5198 index row left by US-42797939226). CA-ALL is left without a count: the saved copy is a merge of many layers and CPCAD's host disallows this user-agent in robots.txt, so no single official total was taken.",
+ "caches": {
+  "US-AR": {
+   "expected_count": 851,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-AZ": {
+   "expected_count": 901,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-CO": {
+   "expected_count": 5094,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-CT": {
+   "expected_count": 18654,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-DE": {
+   "expected_count": 2003,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-FL": {
+   "expected_count": 21993,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-ID": {
+   "expected_count": 7135,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-LA": {
+   "expected_count": 556,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-MA": {
+   "expected_count": 62739,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-MO": {
+   "expected_count": 5990,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-MT": {
+   "expected_count": 3658,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-NC": {
+   "expected_count": 18238,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-NH": {
+   "expected_count": 40687,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-NJ": {
+   "expected_count": 4011,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-NM": {
+   "expected_count": 1125,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-NV": {
+   "expected_count": 3617,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-OH": {
+   "expected_count": 3904,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-SC": {
+   "expected_count": 1681,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-UT": {
+   "expected_count": 6692,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-WI": {
+   "expected_count": 81615,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-WV": {
+   "expected_count": 461,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  },
+  "US-WY": {
+   "expected_count": 19786,
+   "read_date": "2026-11-10",
+   "read_how": "live key file counts.padus (complete published total; not the index row)"
+  }
+ },
  "format": 1,
- "layers": {}
+ "layers": {
+  "BC-recreation-sites": {
+   "agency": "BC recreation sites",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5"
+  },
+  "CPCAD": {
+   "agency": "Canadian Protected and Conserved Areas Database",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer"
+  },
+  "MB-wildlife": {
+   "agency": "Manitoba wildlife lands",
+   "areas": [
+    "CA-MB"
+   ],
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0"
+  },
+  "NB-WMZ": {
+   "agency": "New Brunswick WMZ",
+   "areas": [
+    "CA-NB"
+   ],
+   "expected_count": 27,
+   "layer_name": "Wildlife Management Zones",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/MapServer/0"
+  },
+  "NS-parks": {
+   "agency": "Nova Scotia parks and protected areas",
+   "areas": [
+    "CA-NS"
+   ],
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1"
+  },
+  "ON-federal-protected": {
+   "agency": "Ontario federal protected areas",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 36,
+   "layer_name": "Federal Protected Area",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/10"
+  },
+  "ON-municipal-parks": {
+   "agency": "Ontario municipal parks",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 388,
+   "layer_name": "Municipal Park",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3"
+  },
+  "QC-nature-reserves": {
+   "agency": "Qu\u00e9bec recognized nature reserves (MELCCFP)",
+   "areas": [
+    "CA-QC"
+   ],
+   "expected_count": 271,
+   "layer_name": "AP - R\u00e9serves naturelles reconnues - MELCCFP",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12"
+  },
+  "SK-regional-parks": {
+   "agency": "Saskatchewan regional parks",
+   "areas": [
+    "CA-SK"
+   ],
+   "expected_count": 106,
+   "layer_name": "Regional Park",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6"
+  },
+  "YT-campgrounds": {
+   "agency": "Yukon campgrounds and parks",
+   "areas": [
+    "CA-YT"
+   ],
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0"
+  },
+  "YT-parks": {
+   "agency": "Yukon parks and protected areas",
+   "areas": [
+    "CA-YT"
+   ],
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3"
+  },
+  "arw": {
+   "agency": "Arkansas Game and Fish Commission WMAs",
+   "areas": [
+    "US-AR"
+   ],
+   "expected_count": 143,
+   "layer_name": "WMA Boundaries",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gisec2.agfc.com/arcgis/rest/services/APP_AGFC/MapServer/10"
+  },
+  "ca:AB Public La": {
+   "agency": "AB Public La",
+   "areas": [
+    "CA-AB"
+   ],
+   "expected_count": 61,
+   "layer_name": "Public Land Use Zone",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/ags_apps/ags_apps_land_use_management/MapServer/0"
+  },
+  "ca:AB-PLUZ Gove": {
+   "agency": "AB-PLUZ Gove",
+   "areas": [
+    "CA-AB"
+   ],
+   "expected_count": 61,
+   "layer_name": "Public Land Use Zone",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/11"
+  },
+  "ca:Alberta Park": {
+   "agency": "Alberta Park",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 469,
+   "layer_name": "Protected Area Designations",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer/0"
+  },
+  "ca:Alberta publ": {
+   "agency": "Alberta publ",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 64,
+   "layer_name": "Public Land Recreation Area",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/14"
+  },
+  "ca:BC BC Parks ": {
+   "agency": "BC BC Parks ",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0"
+  },
+  "ca:BC Park Inve": {
+   "agency": "BC Park Inve",
+   "areas": [
+    "CA-BC"
+   ],
+   "expected_count": 402,
+   "layer_name": "Park Inventory",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.burnaby.ca/arcgis/rest/services/OpenData/OpenData1/MapServer/6"
+  },
+  "ca:BC RegionalP": {
+   "agency": "BC RegionalP",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0"
+  },
+  "ca:BC local and": {
+   "agency": "BC local and",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/39"
+  },
+  "ca:BC recreatio": {
+   "agency": "BC recreatio",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5"
+  },
+  "ca:BC-HCA Gover": {
+   "agency": "BC-HCA Gover",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/46"
+  },
+  "ca:BC-HP Govern": {
+   "agency": "BC-HP Govern",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/82"
+  },
+  "ca:Hard look~0": {
+   "agency": "Hard look~0",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 45,
+   "layer_name": "ParkArea",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geo.sylvanlake.ca/server/rest/services/Tourism/ParkArea/FeatureServer/0"
+  },
+  "ca:Hard look~1": {
+   "agency": "Hard look~1",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services8.arcgis.com/aCyQID5qQcyrJMm2/arcgis/rest/services/Provincial_Protected_Areas/FeatureServer/0"
+  },
+  "ca:Hard look~10": {
+   "agency": "Hard look~10",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/Parks_OD/FeatureServer/6"
+  },
+  "ca:Hard look~11": {
+   "agency": "Hard look~11",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services.arcgis.com/aji2lCmjXt0KpGzI/arcgis/rest/services/FacilitySites_Select_Merge/FeatureServer/0"
+  },
+  "ca:Hard look~12": {
+   "agency": "Hard look~12",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 7274,
+   "layer_name": "OTN Trail Segment",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis1071a/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19"
+  },
+  "ca:Hard look~13": {
+   "agency": "Hard look~13",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services2.arcgis.com/9LnN9037wYhPG904/arcgis/rest/services/VAUGHAN_PARKS/FeatureServer/0"
+  },
+  "ca:Hard look~14": {
+   "agency": "Hard look~14",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 24,
+   "last_edit": 1789674246739,
+   "layer_name": "LANDMGNT_CA_Lands",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0"
+  },
+  "ca:Hard look~15": {
+   "agency": "Hard look~15",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/WebMap_ConservationLands/FeatureServer/0"
+  },
+  "ca:Hard look~16": {
+   "agency": "Hard look~16",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 1261,
+   "layer_name": "CLUPA Provincial",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open06/MapServer/5"
+  },
+  "ca:Hard look~17": {
+   "agency": "Hard look~17",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0"
+  },
+  "ca:Hard look~18": {
+   "agency": "Hard look~18",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 6,
+   "layer_name": "National Park",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0"
+  },
+  "ca:Hard look~19": {
+   "agency": "Hard look~19",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
+  },
+  "ca:Hard look~2": {
+   "agency": "Hard look~2",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 5504,
+   "layer_name": "Property Boundaries",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://idgsi-rpgdi-arcgis.spac-pspc.gc.ca/gisserver/rest/services/Hosted/DFRP_PUBLIC/FeatureServer/4"
+  },
+  "ca:Hard look~20": {
+   "agency": "Hard look~20",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/19"
+  },
+  "ca:Hard look~21": {
+   "agency": "Hard look~21",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 24,
+   "layer_name": "Provincial Parks",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0"
+  },
+  "ca:Hard look~22": {
+   "agency": "Hard look~22",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 347,
+   "layer_name": "Provincial Park Regulated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4"
+  },
+  "ca:Hard look~3": {
+   "agency": "Hard look~3",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 166,
+   "layer_name": "Heritage Buildings",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://map.stjohns.ca/mapsrv/rest/services/Mapcentre/Planning/MapServer/5"
+  },
+  "ca:Hard look~4": {
+   "agency": "Hard look~4",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/Heritage_Properties/FeatureServer/0"
+  },
+  "ca:Hard look~5": {
+   "agency": "Hard look~5",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services7.arcgis.com/7xVQ8rKWOtAFBw48/arcgis/rest/services/Frontenac_Arch_Biosphere_Region_Boundary/FeatureServer/0"
+  },
+  "ca:Hard look~6": {
+   "agency": "Hard look~6",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 15,
+   "layer_name": "Crown Game Preserve",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open05/MapServer/7"
+  },
+  "ca:Hard look~7": {
+   "agency": "Hard look~7",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/NCC_Parks/FeatureServer/0"
+  },
+  "ca:Hard look~8": {
+   "agency": "Hard look~8",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 139,
+   "layer_name": "Park PB",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/32"
+  },
+  "ca:Hard look~9": {
+   "agency": "Hard look~9",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 17,
+   "layer_name": "Conservation Area",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://maps.simcoe.ca/arcgis/rest/services/Public/Operational_Layers_Dynamic/MapServer/46"
+  },
+  "ca:Manitoba Par": {
+   "agency": "Manitoba Par",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0"
+  },
+  "ca:Manitoba pro": {
+   "agency": "Manitoba pro",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Provincial_Forests___Version_6/FeatureServer/1"
+  },
+  "ca:Manitoba wil": {
+   "agency": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0"
+  },
+  "ca:Manitoba wil~1": {
+   "agency": "Manitoba wil~1",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/1"
+  },
+  "ca:Manitoba wil~2": {
+   "agency": "Manitoba wil~2",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2"
+  },
+  "ca:NB Parks": {
+   "agency": "NB Parks",
+   "areas": [
+    "CA-NB"
+   ],
+   "url": "https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Parks3/FeatureServer/0"
+  },
+  "ca:NB Parks~1": {
+   "agency": "NB Parks~1",
+   "areas": [
+    "CA-NB"
+   ],
+   "url": "https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0"
+  },
+  "ca:NB WMZ": {
+   "agency": "NB WMZ",
+   "areas": [
+    "CA-NB"
+   ],
+   "expected_count": 27,
+   "layer_name": "Wildlife Management Zones",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/MapServer/0"
+  },
+  "ca:NB-PP Govern": {
+   "agency": "NB-PP Govern",
+   "areas": [
+    "CA-NB"
+   ],
+   "expected_count": 24,
+   "layer_name": "Provincial Parks",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0"
+  },
+  "ca:NL Provincia": {
+   "agency": "NL Provincia",
+   "areas": [
+    "CA-NL"
+   ],
+   "url": "https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0"
+  },
+  "ca:NS HRM Parks": {
+   "agency": "NS HRM Parks",
+   "areas": [
+    "CA-NS"
+   ],
+   "url": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0"
+  },
+  "ca:NS NS_Lands_": {
+   "agency": "NS NS_Lands_",
+   "areas": [
+    "CA-NS"
+   ],
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0"
+  },
+  "ca:NS NS_Lands_~1": {
+   "agency": "NS NS_Lands_~1",
+   "areas": [
+    "CA-NS"
+   ],
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0"
+  },
+  "ca:NS-F111 Nova": {
+   "agency": "NS-F111 Nova",
+   "areas": [
+    "CA-NS"
+   ],
+   "expected_count": 3,
+   "layer_name": "Flight 111 Act Lands",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/52"
+  },
+  "ca:NS-NHS Nova ": {
+   "agency": "NS-NHS Nova ",
+   "areas": [
+    "CA-NS"
+   ],
+   "expected_count": 27,
+   "layer_name": "National Historic Sites and Parks",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29"
+  },
+  "ca:NS-PPA Nova ": {
+   "agency": "NS-PPA Nova ",
+   "areas": [
+    "CA-NS"
+   ],
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1"
+  },
+  "ca:NT GNWT Envi": {
+   "agency": "NT GNWT Envi",
+   "areas": [
+    "CA-NT"
+   ],
+   "expected_count": 4,
+   "layer_name": "Federal/Territorial Conservation Areas",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195"
+  },
+  "ca:NT Nagwichoo": {
+   "agency": "NT Nagwichoo",
+   "areas": [
+    "CA-NT"
+   ],
+   "expected_count": 1,
+   "layer_name": "Nagwichoonjik National Historic Site",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206"
+  },
+  "ca:NU-TP Crown-": {
+   "agency": "NU-TP Crown-",
+   "areas": [
+    "CA-NU"
+   ],
+   "url": "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21"
+  },
+  "ca:New Brunswic": {
+   "agency": "New Brunswic",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 208,
+   "layer_name": "Protected Natural Areas",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/PNAs/FeatureServer/0"
+  },
+  "ca:New Brunswic~1": {
+   "agency": "New Brunswic~1",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 552,
+   "layer_name": "Nature Legacy protected areas",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Nature_Legacy_Protected_Areas/FeatureServer/0"
+  },
+  "ca:New Brunswic~2": {
+   "agency": "New Brunswic~2",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 21,
+   "layer_name": "Wildlife Refuges",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WildlifeRefuge/MapServer/0"
+  },
+  "ca:Nova Scotia ": {
+   "agency": "Nova Scotia ",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://nsgiwa.novascotia.ca/arcgis/rest/services/ENV/ENV_NS_Prot_Area_Sys_UT83/MapServer/0"
+  },
+  "ca:Nova Scotia ~1": {
+   "agency": "Nova Scotia ~1",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer/0"
+  },
+  "ca:Nova Scotia ~2": {
+   "agency": "Nova Scotia ~2",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1"
+  },
+  "ca:ON-ABCA Ausa": {
+   "agency": "ON-ABCA Ausa",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0"
+  },
+  "ca:ON-CH Conser": {
+   "agency": "ON-CH Conser",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 8,
+   "layer_name": "Conservation Halton Parks",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://utility.arcgis.com/usrsvcs/servers/f5ef7d87ccef45f4a0de9c0e4548c39f/rest/services/ms-opendata/CH_Parks/MapServer/0"
+  },
+  "ca:ON-CRCA Cata": {
+   "agency": "ON-CRCA Cata",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0"
+  },
+  "ca:ON-CVC Credi": {
+   "agency": "ON-CVC Credi",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0"
+  },
+  "ca:ON-ERCA Esse": {
+   "agency": "ON-ERCA Esse",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0"
+  },
+  "ca:ON-GANA Gana": {
+   "agency": "ON-GANA Gana",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 24,
+   "last_edit": 1789674246739,
+   "layer_name": "LANDMGNT_CA_Lands",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0"
+  },
+  "ca:ON-GSCA Grey": {
+   "agency": "ON-GSCA Grey",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 211,
+   "layer_name": "Properties - GSCA",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/3"
+  },
+  "ca:ON-KRCA Kawa": {
+   "agency": "ON-KRCA Kawa",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6"
+  },
+  "ca:ON-LSRCA Lak": {
+   "agency": "ON-LSRCA Lak",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 59,
+   "layer_name": "LSRCA Lands - Public",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46"
+  },
+  "ca:ON-LTC Lower": {
+   "agency": "ON-LTC Lower",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0"
+  },
+  "ca:ON-LTVCA Low": {
+   "agency": "ON-LTVCA Low",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0"
+  },
+  "ca:ON-MVC Missi": {
+   "agency": "ON-MVC Missi",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0"
+  },
+  "ca:ON-NPCA Niag": {
+   "agency": "ON-NPCA Niag",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2"
+  },
+  "ca:ON-ORCA Oton": {
+   "agency": "ON-ORCA Oton",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 99,
+   "layer_name": "Conservation Area Boundaries",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2"
+  },
+  "ca:ON-RVCA Ride": {
+   "agency": "ON-RVCA Ride",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 10,
+   "layer_name": "Conservation Areas",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8"
+  },
+  "ca:ON-SVCA Grey": {
+   "agency": "ON-SVCA Grey",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 172,
+   "layer_name": "Properties - SVCA",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4"
+  },
+  "ca:ON-TRCA Toro": {
+   "agency": "ON-TRCA Toro",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250"
+  },
+  "ca:Ontario Park": {
+   "agency": "Ontario Park",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 347,
+   "layer_name": "Provincial Park Regulated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4"
+  },
+  "ca:Ontario cons": {
+   "agency": "Ontario cons",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 306,
+   "layer_name": "Conservation Reserve Regulated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/2"
+  },
+  "ca:Ontario fede": {
+   "agency": "Ontario fede",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 36,
+   "layer_name": "Federal Protected Area",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/10"
+  },
+  "ca:Ontario muni": {
+   "agency": "Ontario muni",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 388,
+   "layer_name": "Municipal Park",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3"
+  },
+  "ca:PE NCC_AT_Na": {
+   "agency": "PE NCC_AT_Na",
+   "areas": [
+    "CA-PE"
+   ],
+   "url": "https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0"
+  },
+  "ca:PE Province ": {
+   "agency": "PE Province ",
+   "areas": [
+    "CA-PE"
+   ],
+   "expected_count": 49,
+   "layer_name": "WildlifeManagementArea2025",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0"
+  },
+  "ca:PE-PP Govern": {
+   "agency": "PE-PP Govern",
+   "areas": [
+    "CA-PE"
+   ],
+   "expected_count": 46,
+   "layer_name": "provincial_park_polygon_ENV",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLinc_Provincial_Parks/MapServer/0"
+  },
+  "ca:Parks Canada": {
+   "agency": "Parks Canada",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Places_Public_lieux_public_APCA/FeatureServer/0"
+  },
+  "ca:QC PoleConne": {
+   "agency": "QC PoleConne",
+   "areas": [
+    "CA-QC"
+   ],
+   "url": "https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0"
+  },
+  "ca:Qu\u00e9bec Aire ": {
+   "agency": "Qu\u00e9bec Aire ",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 4,
+   "layer_name": "Aire faunique communautaire",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/0"
+  },
+  "ca:Qu\u00e9bec Parc ": {
+   "agency": "Qu\u00e9bec Parc ",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 1,
+   "layer_name": "Parc marin",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/3"
+  },
+  "ca:Qu\u00e9bec Parc ~1": {
+   "agency": "Qu\u00e9bec Parc ~1",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 4,
+   "layer_name": "Parc national du Canada",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/4"
+  },
+  "ca:Qu\u00e9bec Parc ~2": {
+   "agency": "Qu\u00e9bec Parc ~2",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 28,
+   "layer_name": "Parc national du Qu\u00e9bec",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/5"
+  },
+  "ca:Qu\u00e9bec Parc ~3": {
+   "agency": "Qu\u00e9bec Parc ~3",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 16,
+   "layer_name": "Parc r\u00e9gional",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/6"
+  },
+  "ca:Qu\u00e9bec Refug": {
+   "agency": "Qu\u00e9bec Refug",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 9,
+   "layer_name": "Refuge faunique",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/10"
+  },
+  "ca:Qu\u00e9bec R\u00e9ser": {
+   "agency": "Qu\u00e9bec R\u00e9ser",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 21,
+   "layer_name": "R\u00e9serve faunique",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/11"
+  },
+  "ca:Qu\u00e9bec Zone ": {
+   "agency": "Qu\u00e9bec Zone ",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 86,
+   "layer_name": "Zone d exploitation contr\u00f4l\u00e9e",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/16"
+  },
+  "ca:Qu\u00e9bec ecolo": {
+   "agency": "Qu\u00e9bec ecolo",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 75,
+   "layer_name": "AP - R\u00e9serves \u00e9cologiques - MELCCFP",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/10"
+  },
+  "ca:Qu\u00e9bec prote": {
+   "agency": "Qu\u00e9bec prote",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 5611,
+   "layer_name": "Ensemble des aires prot\u00e9g\u00e9es et autres mesures de conservation efficaces",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23"
+  },
+  "ca:Qu\u00e9bec recog": {
+   "agency": "Qu\u00e9bec recog",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 271,
+   "layer_name": "AP - R\u00e9serves naturelles reconnues - MELCCFP",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12"
+  },
+  "ca:SK-ALL Gover": {
+   "agency": "SK-ALL Gover",
+   "areas": [
+    "CA-SK"
+   ],
+   "expected_count": 172,
+   "layer_name": "All Parks as Legislated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4"
+  },
+  "ca:SK-PT Govern": {
+   "agency": "SK-PT Govern",
+   "areas": [
+    "CA-SK"
+   ],
+   "expected_count": 6,
+   "layer_name": "National Park",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0"
+  },
+  "ca:Saskatchewan": {
+   "agency": "Saskatchewan",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 36,
+   "layer_name": "Provincial Park as Legislated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/0"
+  },
+  "ca:Saskatchewan~1": {
+   "agency": "Saskatchewan~1",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 104,
+   "layer_name": "Recreation Site as Legislated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/1"
+  },
+  "ca:Saskatchewan~2": {
+   "agency": "Saskatchewan~2",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 24,
+   "layer_name": "Protected Area as Legislated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/2"
+  },
+  "ca:Saskatchewan~3": {
+   "agency": "Saskatchewan~3",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 8,
+   "layer_name": "Historic Site as Legislated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/3"
+  },
+  "ca:Saskatchewan~4": {
+   "agency": "Saskatchewan~4",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 172,
+   "layer_name": "All Parks as Legislated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4"
+  },
+  "ca:Saskatchewan~5": {
+   "agency": "Saskatchewan~5",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 18,
+   "layer_name": "Hunting Allowed Parks as Legislated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/5"
+  },
+  "ca:Saskatchewan~6": {
+   "agency": "Saskatchewan~6",
+   "areas": [
+    "CA"
+   ],
+   "expected_count": 106,
+   "layer_name": "Regional Park",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6"
+  },
+  "ca:Yukon campgr": {
+   "agency": "Yukon campgr",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0"
+  },
+  "ca:Yukon parks ": {
+   "agency": "Yukon parks ",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3"
+  },
+  "ca:cpcad": {
+   "agency": "cpcad",
+   "areas": [
+    "CA"
+   ],
+   "url": "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0"
+  },
+  "ca:trl": {
+   "agency": "trl",
+   "areas": [
+    "CA"
+   ],
+   "url": "file:data/trails/CA-{n}.json"
+  },
+  "caabpluzgove": {
+   "agency": "AB-PLUZ Gove",
+   "areas": [
+    "CA-AB"
+   ],
+   "expected_count": 61,
+   "layer_name": "Public Land Use Zone",
+   "name_fields": [
+    "PLUZ_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/11"
+  },
+  "caabpublicla": {
+   "agency": "AB Public La",
+   "areas": [
+    "CA-AB"
+   ],
+   "expected_count": 61,
+   "layer_name": "Public Land Use Zone",
+   "name_fields": [
+    "PLUZ_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/ags_apps/ags_apps_land_use_management/MapServer/0"
+  },
+  "caalbertapar": {
+   "agency": "Alberta Park",
+   "areas": [
+    "CA-AB"
+   ],
+   "expected_count": 469,
+   "layer_name": "Protected Area Designations",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer/0"
+  },
+  "caalbertapub": {
+   "agency": "Alberta publ",
+   "areas": [
+    "CA-AB"
+   ],
+   "expected_count": 64,
+   "layer_name": "Public Land Recreation Area",
+   "name_fields": [
+    "PLREC_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/14"
+  },
+  "cabcbcparks": {
+   "agency": "BC BC Parks",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0"
+  },
+  "cabchcagover": {
+   "agency": "BC-HCA Gover",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/46"
+  },
+  "cabchpgovern": {
+   "agency": "BC-HP Govern",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/82"
+  },
+  "cabclocaland": {
+   "agency": "BC local and",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_basemapping/MapServer/39"
+  },
+  "cabcparkinve": {
+   "agency": "BC Park Inve",
+   "areas": [
+    "CA-BC"
+   ],
+   "expected_count": 402,
+   "layer_name": "Park Inventory",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.burnaby.ca/arcgis/rest/services/OpenData/OpenData1/MapServer/6"
+  },
+  "cabcrecreati": {
+   "agency": "BC recreatio",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5"
+  },
+  "cabcregional": {
+   "agency": "BC RegionalP",
+   "areas": [
+    "CA-BC"
+   ],
+   "url": "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0"
+  },
+  "cahardlook": {
+   "agency": "Hard look~12",
+   "areas": [
+    "CA-ON",
+    "CA-SK",
+    "CA-YT"
+   ],
+   "name_fields": [
+    "TRAIL_NAME"
+   ],
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/19"
+  },
+  "camanitobapa": {
+   "agency": "Manitoba Par",
+   "areas": [
+    "CA-MB"
+   ],
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0"
+  },
+  "camanitobapr": {
+   "agency": "Manitoba pro",
+   "areas": [
+    "CA-MB"
+   ],
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Provincial_Forests___Version_6/FeatureServer/1"
+  },
+  "camanitobawi": {
+   "agency": "Manitoba wil",
+   "areas": [
+    "CA-MB"
+   ],
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2"
+  },
+  "canbparks": {
+   "agency": "NB Parks",
+   "areas": [
+    "CA-NB"
+   ],
+   "url": "https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0"
+  },
+  "canbppgovern": {
+   "agency": "NB-PP Govern",
+   "areas": [
+    "CA-NB"
+   ],
+   "expected_count": 24,
+   "layer_name": "Provincial Parks",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0"
+  },
+  "canbwmz": {
+   "agency": "NB WMZ",
+   "areas": [
+    "CA-NB"
+   ],
+   "expected_count": 27,
+   "layer_name": "Wildlife Management Zones",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/MapServer/0"
+  },
+  "canlprovinci": {
+   "agency": "NL Provincia",
+   "areas": [
+    "CA-NL"
+   ],
+   "url": "https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0"
+  },
+  "canovascotia": {
+   "agency": "Nova Scotia",
+   "areas": [
+    "CA-NS"
+   ],
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1"
+  },
+  "cansfnova": {
+   "agency": "NS-F111 Nova",
+   "areas": [
+    "CA-NS"
+   ],
+   "expected_count": 3,
+   "layer_name": "Flight 111 Act Lands",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/52"
+  },
+  "canshrmparks": {
+   "agency": "NS HRM Parks",
+   "areas": [
+    "CA-NS"
+   ],
+   "url": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0"
+  },
+  "cansnhsnova": {
+   "agency": "NS-NHS Nova",
+   "areas": [
+    "CA-NS"
+   ],
+   "expected_count": 27,
+   "layer_name": "National Historic Sites and Parks",
+   "name_fields": [
+    "NAME1"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29"
+  },
+  "cansnslands": {
+   "agency": "NS NS_Lands_",
+   "areas": [
+    "CA-NS"
+   ],
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0"
+  },
+  "cansppanova": {
+   "agency": "NS-PPA Nova",
+   "areas": [
+    "CA-NS"
+   ],
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1"
+  },
+  "cantgnwtenvi": {
+   "agency": "NT GNWT Envi",
+   "areas": [
+    "CA-NT"
+   ],
+   "expected_count": 4,
+   "layer_name": "Federal/Territorial Conservation Areas",
+   "name_fields": [
+    "Name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195"
+  },
+  "cantnagwicho": {
+   "agency": "NT Nagwichoo",
+   "areas": [
+    "CA-NT"
+   ],
+   "expected_count": 1,
+   "layer_name": "Nagwichoonjik National Historic Site",
+   "name_fields": [
+    "Name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206"
+  },
+  "caonabcaausa": {
+   "agency": "ON-ABCA Ausa",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0"
+  },
+  "caonchconser": {
+   "agency": "ON-CH Conser",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 8,
+   "layer_name": "Conservation Halton Parks",
+   "name_fields": [
+    "Park_Name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://utility.arcgis.com/usrsvcs/servers/f5ef7d87ccef45f4a0de9c0e4548c39f/rest/services/ms-opendata/CH_Parks/MapServer/0"
+  },
+  "caoncrcacata": {
+   "agency": "ON-CRCA Cata",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0"
+  },
+  "caoncvccredi": {
+   "agency": "ON-CVC Credi",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0"
+  },
+  "caonercaesse": {
+   "agency": "ON-ERCA Esse",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0"
+  },
+  "caonganagana": {
+   "agency": "ON-GANA Gana",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 24,
+   "last_edit": 1789674246739,
+   "layer_name": "LANDMGNT_CA_Lands",
+   "name_fields": [
+    "name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0"
+  },
+  "caongscagrey": {
+   "agency": "ON-GSCA Grey",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 211,
+   "layer_name": "Properties - GSCA",
+   "name_fields": [
+    "PROP_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/3"
+  },
+  "caonkrcakawa": {
+   "agency": "ON-KRCA Kawa",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6"
+  },
+  "caonlsrcalak": {
+   "agency": "ON-LSRCA Lak",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 59,
+   "layer_name": "LSRCA Lands - Public",
+   "name_fields": [
+    "PROPERTY_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46"
+  },
+  "caonltclower": {
+   "agency": "ON-LTC Lower",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0"
+  },
+  "caonltvcalow": {
+   "agency": "ON-LTVCA Low",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0"
+  },
+  "caonmvcmissi": {
+   "agency": "ON-MVC Missi",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0"
+  },
+  "caonnpcaniag": {
+   "agency": "ON-NPCA Niag",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2"
+  },
+  "caonorcaoton": {
+   "agency": "ON-ORCA Oton",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 99,
+   "layer_name": "Conservation Area Boundaries",
+   "name_fields": [
+    "CANAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2"
+  },
+  "caonrvcaride": {
+   "agency": "ON-RVCA Ride",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 10,
+   "layer_name": "Conservation Areas",
+   "name_fields": [
+    "Property_Name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8"
+  },
+  "caonsvcagrey": {
+   "agency": "ON-SVCA Grey",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 172,
+   "layer_name": "Properties - SVCA",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4"
+  },
+  "caontariocon": {
+   "agency": "Ontario cons",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 306,
+   "layer_name": "Conservation Reserve Regulated",
+   "name_fields": [
+    "PROTECTED_AREA_NAME_ENG"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/2"
+  },
+  "caontariofed": {
+   "agency": "Ontario fede",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 36,
+   "layer_name": "Federal Protected Area",
+   "name_fields": [
+    "OFFICIAL_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/10"
+  },
+  "caontariomun": {
+   "agency": "Ontario muni",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 388,
+   "layer_name": "Municipal Park",
+   "name_fields": [
+    "OFFICIAL_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3"
+  },
+  "caontariopar": {
+   "agency": "Ontario Park",
+   "areas": [
+    "CA-ON"
+   ],
+   "expected_count": 347,
+   "layer_name": "Provincial Park Regulated",
+   "name_fields": [
+    "PROTECTED_AREA_NAME_ENG"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4"
+  },
+  "caontrcatoro": {
+   "agency": "ON-TRCA Toro",
+   "areas": [
+    "CA-ON"
+   ],
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250"
+  },
+  "capenccatna": {
+   "agency": "PE NCC_AT_Na",
+   "areas": [
+    "CA-PE"
+   ],
+   "url": "https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0"
+  },
+  "capeppgovern": {
+   "agency": "PE-PP Govern",
+   "areas": [
+    "CA-PE"
+   ],
+   "expected_count": 46,
+   "layer_name": "provincial_park_polygon_ENV",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLinc_Provincial_Parks/MapServer/0"
+  },
+  "capeprovince": {
+   "agency": "PE Province",
+   "areas": [
+    "CA-PE"
+   ],
+   "expected_count": 49,
+   "layer_name": "WildlifeManagementArea2025",
+   "name_fields": [
+    "NAME_E"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0"
+  },
+  "caqcpoleconn": {
+   "agency": "QC PoleConne",
+   "areas": [
+    "CA-QC"
+   ],
+   "url": "https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0"
+  },
+  "caqubecaire": {
+   "agency": "Qu\u00e9bec Aire",
+   "areas": [
+    "CA-QC"
+   ],
+   "expected_count": 4,
+   "layer_name": "Aire faunique communautaire",
+   "name_fields": [
+    "NOM_OFFICIEL"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/0"
+  },
+  "caqubececolo": {
+   "agency": "Qu\u00e9bec ecolo",
+   "areas": [
+    "CA-QC"
+   ],
+   "expected_count": 75,
+   "layer_name": "AP - R\u00e9serves \u00e9cologiques - MELCCFP",
+   "name_fields": [
+    "DESIGNOM"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/10"
+  },
+  "caqubecparc": {
+   "agency": "Qu\u00e9bec Parc",
+   "areas": [
+    "CA-QC"
+   ],
+   "expected_count": 16,
+   "layer_name": "Parc r\u00e9gional",
+   "name_fields": [
+    "NOM_OFFICIEL"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/6"
+  },
+  "caqubecprote": {
+   "agency": "Qu\u00e9bec prote",
+   "areas": [
+    "CA-QC"
+   ],
+   "expected_count": 5611,
+   "layer_name": "Ensemble des aires prot\u00e9g\u00e9es et autres mesures de conservation efficaces",
+   "name_fields": [
+    "DESIGNOM"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23"
+  },
+  "caqubecrecog": {
+   "agency": "Qu\u00e9bec recog",
+   "areas": [
+    "CA-QC"
+   ],
+   "expected_count": 271,
+   "layer_name": "AP - R\u00e9serves naturelles reconnues - MELCCFP",
+   "name_fields": [
+    "DESIGNOM"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12"
+  },
+  "caqubecrefug": {
+   "agency": "Qu\u00e9bec Refug",
+   "areas": [
+    "CA-QC"
+   ],
+   "expected_count": 9,
+   "layer_name": "Refuge faunique",
+   "name_fields": [
+    "NOM_OFFICIEL"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/10"
+  },
+  "caqubecrser": {
+   "agency": "Qu\u00e9bec R\u00e9ser",
+   "areas": [
+    "CA-QC"
+   ],
+   "expected_count": 21,
+   "layer_name": "R\u00e9serve faunique",
+   "name_fields": [
+    "NOM_OFFICIEL"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/11"
+  },
+  "caqubeczone": {
+   "agency": "Qu\u00e9bec Zone",
+   "areas": [
+    "CA-QC"
+   ],
+   "expected_count": 86,
+   "layer_name": "Zone d exploitation contr\u00f4l\u00e9e",
+   "name_fields": [
+    "NOM_OFFICIEL"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/16"
+  },
+  "casaskatchew": {
+   "agency": "Saskatchewan",
+   "areas": [
+    "CA-SK"
+   ],
+   "expected_count": 106,
+   "layer_name": "Regional Park",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6"
+  },
+  "caskallgover": {
+   "agency": "SK-ALL Gover",
+   "areas": [
+    "CA-SK"
+   ],
+   "expected_count": 172,
+   "layer_name": "All Parks as Legislated",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4"
+  },
+  "caskptgovern": {
+   "agency": "SK-PT Govern",
+   "areas": [
+    "CA-SK"
+   ],
+   "expected_count": 6,
+   "layer_name": "National Park",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0"
+  },
+  "cayukoncampg": {
+   "agency": "Yukon campgr",
+   "areas": [
+    "CA-YT"
+   ],
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0"
+  },
+  "cayukonparks": {
+   "agency": "Yukon parks",
+   "areas": [
+    "CA-YT"
+   ],
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3"
+  },
+  "couscocpwa": {
+   "agency": "Colorado Parks and Wildlife admin data (saved copy)",
+   "areas": [
+    "US-CO"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/5"
+  },
+  "cow": {
+   "agency": "Colorado Parks and Wildlife properties",
+   "areas": [
+    "US-CO"
+   ],
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5"
+  },
+  "ctd": {
+   "agency": "Connecticut DEEP property",
+   "areas": [
+    "US-CT"
+   ],
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Property/FeatureServer/0"
+  },
+  "fnl": {
+   "agency": "Florida Natural Areas Inventory conservation lands",
+   "areas": [
+    "US-FL"
+   ],
+   "url": "https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services/FL_Conservation_Lands_web/FeatureServer/9"
+  },
+  "handmbp": {
+   "agency": "Manitoba provincial parks (hand download; replaces missing shapes)",
+   "areas": [
+    "CA-MB"
+   ],
+   "name_fields": [
+    "NAME_E"
+   ],
+   "url": "data/maprep-layers/ca-mb-provparks.geojson"
+  },
+  "idusidfish": {
+   "agency": "Idaho fishing and boating access (saved copy)",
+   "areas": [
+    "US-ID"
+   ],
+   "name_fields": [
+    "site_name"
+   ],
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Fishing_and_Boating_Access_FFW_App/FeatureServer/1"
+  },
+  "idw": {
+   "agency": "Idaho Fish and Game WMAs",
+   "areas": [
+    "US-ID"
+   ],
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0"
+  },
+  "lar": {
+   "agency": "Louisiana Dept. of Wildlife and Fisheries wildlife refuges",
+   "areas": [
+    "US-LA"
+   ],
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WildlifeRefuge/FeatureServer/0"
+  },
+  "lauslastat": {
+   "agency": "Louisiana Public Lands \u2014 historic-site POINTS, not the polygon public-lands layer (saved copy)",
+   "areas": [
+    "US-LA"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services5.arcgis.com/c87u7O5UKiyM87q5/arcgis/rest/services/Louisiana_Public_Lands_WFL1/FeatureServer/17"
+  },
+  "law": {
+   "agency": "Louisiana Dept. of Wildlife and Fisheries WMAs and refuges",
+   "areas": [
+    "US-LA"
+   ],
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0"
+  },
+  "mol": {
+   "agency": "Missouri Dept. of Conservation lands (MSDIS)",
+   "areas": [
+    "US-MO"
+   ],
+   "url": "https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_Missouri_Department_of_Conservation_Lands/FeatureServer/0"
+  },
+  "nvusnvfish": {
+   "agency": "Nevada fish hatchery locations (saved copy)",
+   "areas": [
+    "US-NV"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Nevada_Department_of_Wildlife_Fish_Hatchery_Locations/FeatureServer/0"
+  },
+  "nvusnvndow": {
+   "agency": "Nevada DOW WMAs (saved copy)",
+   "areas": [
+    "US-NV"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/ArcGIS/rest/services/NDOWWMAs/FeatureServer/0"
+  },
+  "sgara": {
+   "agency": "Arkansas Natural Heritage Commission",
+   "areas": [
+    "US-AR"
+   ],
+   "expected_count": 79,
+   "layer_name": "NHC_NATURAL_AREAS",
+   "name_fields": [
+    "maname"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/21"
+  },
+  "sgarb": {
+   "agency": "Arkansas State Parks",
+   "areas": [
+    "US-AR"
+   ],
+   "expected_count": 52,
+   "last_edit": 1768049155507,
+   "layer_name": "StateParks",
+   "name_fields": [
+    "name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0"
+  },
+  "sgarc": {
+   "agency": "Arkansas Game and Fish Commission",
+   "areas": [
+    "US-AR"
+   ],
+   "name_fields": [
+    "fisheries_name"
+   ],
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/lakes/FeatureServer/11"
+  },
+  "sgaza": {
+   "agency": "Arizona State Parks & Trails",
+   "areas": [
+    "US-AZ"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0"
+  },
+  "sgazb": {
+   "agency": "Arizona Game and Fish Department (AZGFD_GIS org) \u00b7 Wildlife Areas",
+   "areas": [
+    "US-AZ"
+   ],
+   "name_fields": [
+    "MasterName"
+   ],
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0"
+  },
+  "sgazc": {
+   "agency": "Arizona Game and Fish Department (AZGFD_GIS org) \u00b7 Hatchery Polys",
+   "areas": [
+    "US-AZ"
+   ],
+   "name_fields": [
+    "Prop_name"
+   ],
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0"
+  },
+  "sgazd": {
+   "agency": "US Fish and Wildlife Service (approved boundary)",
+   "areas": [
+    "US-AZ"
+   ],
+   "name_fields": [
+    "ORGNAME"
+   ],
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0"
+  },
+  "sgaze": {
+   "agency": "Arizona State Parks and Trails (park boundaries)",
+   "areas": [
+    "US-AZ"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0"
+  },
+  "sgazf": {
+   "agency": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
+   "areas": [
+    "US-AZ"
+   ],
+   "name_fields": [
+    "NCA_NAME"
+   ],
+   "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0"
+  },
+  "sgazg": {
+   "agency": "Bureau of Land Management, Arizona (recreation sites, polygons)",
+   "areas": [
+    "US-AZ"
+   ],
+   "expected_count": 71,
+   "layer_name": "BLM AZ Recreation Sites (Polygon)",
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.blm.gov/azarcgis/rest/services/recreation/BLM_AZ_RECS/MapServer/1"
+  },
+  "sgcoa": {
+   "agency": "Colorado Parks & Wildlife \u00b7 Colorado State Basemap 30",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 324,
+   "layer_name": "State Wildlife Areas",
+   "name_fields": [
+    "PropName"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/30"
+  },
+  "sgcob": {
+   "agency": "Colorado Parks & Wildlife \u00b7 Colorado State Basemap 41",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 48,
+   "layer_name": "State Parks",
+   "name_fields": [
+    "PropName"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/41"
+  },
+  "sgcoc": {
+   "agency": "Colorado Parks & Wildlife \u00b7 CPWAdminData 5",
+   "areas": [
+    "US-CO"
+   ],
+   "name_fields": [
+    "PropName"
+   ],
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5"
+  },
+  "sgcod": {
+   "agency": "Colorado Parks and Wildlife",
+   "areas": [
+    "US-CO"
+   ],
+   "name_fields": [
+    "PropName"
+   ],
+   "url": "https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9"
+  },
+  "sgcoe": {
+   "agency": "Bureau of Land Management, Colorado (recreation sites)",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 278,
+   "layer_name": "BLM Colorado Recreation Sites",
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.blm.gov/coarcgis/rest/services/recreation/BLM_Colorado_Recreation_for_HUB/FeatureServer/1"
+  },
+  "sgcta": {
+   "agency": "Connecticut DEEP",
+   "areas": [
+    "US-CT"
+   ],
+   "name_fields": [
+    "PROPERTY"
+   ],
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0"
+  },
+  "sgctb": {
+   "agency": "CT DEEP (deepgis account)",
+   "areas": [
+    "US-CT"
+   ],
+   "name_fields": [
+    "OFFIC_NAME"
+   ],
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0"
+  },
+  "sgctc": {
+   "agency": "CT DEEP",
+   "areas": [
+    "US-CT"
+   ],
+   "name_fields": [
+    "HuntAName"
+   ],
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer/0"
+  },
+  "sgdea": {
+   "agency": "Delaware DNREC",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 1329,
+   "layer_name": "DNREC Managed Lands",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_State_Lands/FeatureServer/0"
+  },
+  "sgdeb": {
+   "agency": "Delaware Forest Service",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 31,
+   "layer_name": "State Forest",
+   "name_fields": [
+    "LABEL"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/0"
+  },
+  "sgdec": {
+   "agency": "Delaware Fish & Wildlife (DNREC)",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 83,
+   "layer_name": "Wildlife Area Boundaries",
+   "name_fields": [
+    "AREA_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/17"
+  },
+  "sgded": {
+   "agency": "Delaware nature preserves (DNREC)",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 129,
+   "layer_name": "Nature Preserves",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/8"
+  },
+  "sgdee": {
+   "agency": "Delaware public protected lands (DNREC)",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 869,
+   "layer_name": "Public Protected Lands",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/11"
+  },
+  "sgfla": {
+   "agency": "Florida State Parks (DEP)",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 179,
+   "layer_name": "Florida State Park Boundaries",
+   "name_fields": [
+    "SITE_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/0"
+  },
+  "sgflb": {
+   "agency": "Florida Forest Service",
+   "areas": [
+    "US-FL"
+   ],
+   "name_fields": [
+    "LABEL"
+   ],
+   "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0"
+  },
+  "sgflc": {
+   "agency": "Florida Fish & Wildlife Conservation Commission",
+   "areas": [
+    "US-FL"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/0"
+  },
+  "sgfld": {
+   "agency": "Suwannee River Water Management District",
+   "areas": [
+    "US-FL"
+   ],
+   "name_fields": [
+    "TRACT_NAME"
+   ],
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0"
+  },
+  "sgfle": {
+   "agency": "St. Johns River Water Management District",
+   "areas": [
+    "US-FL"
+   ],
+   "name_fields": [
+    "CONSERVATION_AREA"
+   ],
+   "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0"
+  },
+  "sgflf": {
+   "agency": "Florida DEP Division of State Lands",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 79689,
+   "layer_name": "FL-SOLARIS/LITS State Owned Lands",
+   "name_fields": [
+    "PROJECT_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0"
+  },
+  "sgflg": {
+   "agency": "FWC",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 284,
+   "layer_name": "Wildlife Management Areas Florida",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1"
+  },
+  "sgida": {
+   "agency": "Idaho Fish & Game",
+   "areas": [
+    "US-ID"
+   ],
+   "name_fields": [
+    "Name"
+   ],
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0"
+  },
+  "sgidb": {
+   "agency": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame)",
+   "areas": [
+    "US-ID"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hydrography_Public/FeatureServer/0"
+  },
+  "sgidc": {
+   "agency": "BLM Idaho recreation area polygons (76)",
+   "areas": [
+    "US-ID"
+   ],
+   "expected_count": 76,
+   "layer_name": "BLM ID Recreation Area Poly",
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.blm.gov/idarcgis/rest/services/recreation/BLM_ID_Recreation_Area_Poly/MapServer/0"
+  },
+  "sgidd": {
+   "agency": "BdyOwn_LSRS_BasicOwnership",
+   "areas": [
+    "US-ID"
+   ],
+   "name_fields": [
+    "forestname"
+   ],
+   "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0"
+  },
+  "sgide": {
+   "agency": "Recreation Area",
+   "areas": [
+    "US-ID"
+   ],
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
+  },
+  "sglaa": {
+   "agency": "Louisiana Department of Wildlife & Fisheries",
+   "areas": [
+    "US-LA"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0"
+  },
+  "sglab": {
+   "agency": "LDWF, Sep 2025 edition",
+   "areas": [
+    "US-LA"
+   ],
+   "name_fields": [
+    "Name_Short"
+   ],
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0"
+  },
+  "sglac": {
+   "agency": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024)",
+   "areas": [
+    "US-LA"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0"
+  },
+  "sgmaa": {
+   "agency": "MassGIS / Executive Office of Energy and Environmental Affai",
+   "areas": [
+    "US-MA"
+   ],
+   "name_fields": [
+    "SITE_NAME"
+   ],
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/openspace/FeatureServer/0"
+  },
+  "sgmab": {
+   "agency": "Massachusetts DCR (DCRStateParks account, mass-eoeea org)",
+   "areas": [
+    "US-MA"
+   ],
+   "name_fields": [
+    "SITE_NAME"
+   ],
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0"
+  },
+  "sgmac": {
+   "agency": "National Park Service (property boundaries)",
+   "areas": [
+    "US-MA"
+   ],
+   "name_fields": [
+    "UNIT_NAME"
+   ],
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0"
+  },
+  "sgmad": {
+   "agency": "MassGIS / Massachusetts EEA (Protected and Recreational OpenSpace)",
+   "areas": [
+    "US-MA"
+   ],
+   "expected_count": 61892,
+   "layer_name": "Protected and Recreational OpenSpace (Polygons)",
+   "name_fields": [
+    "SITE_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.eea.mass.gov/server/rest/services/Protected_and_Recreational_OpenSpace_Polygons/MapServer/0"
+  },
+  "sgmoa": {
+   "agency": "Missouri State Parks (DNR)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 207,
+   "layer_name": "Missouri Department of Natural Resources Lands",
+   "name_fields": [
+    "LOC_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/0"
+  },
+  "sgmob": {
+   "agency": "Missouri Natural Areas (DNR)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 36,
+   "layer_name": "Natural Areas",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/3"
+  },
+  "sgmoc": {
+   "agency": "Missouri Department of Conservation (gisblue.mdc.mo.gov)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 1049,
+   "layer_name": "Conservation Area Boundaries",
+   "name_fields": [
+    "Area_Name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5"
+  },
+  "sgmod": {
+   "agency": "Missouri Department of Conservation",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 192,
+   "layer_name": "Natural Areas",
+   "name_fields": [
+    "Area_Name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/3"
+  },
+  "sgmoe": {
+   "agency": "Missouri DNR, Division of State Parks",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 13,
+   "layer_name": "Wild Areas",
+   "name_fields": [
+    "WA_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/2"
+  },
+  "sgmof": {
+   "agency": "MDC Lands",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 1049,
+   "layer_name": "MDC Lands",
+   "name_fields": [
+    "Area_Name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/0"
+  },
+  "sgmog": {
+   "agency": "Natural Areas",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 192,
+   "layer_name": "Natural Areas",
+   "name_fields": [
+    "Name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/3"
+  },
+  "sgmoh": {
+   "agency": "Missouri Department of Conservation (conservation area boundaries)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 1049,
+   "layer_name": "Conservation Area Boundaries",
+   "name_fields": [
+    "Area_Name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/MapServer/5"
+  },
+  "sgmta": {
+   "agency": "Montana Fish, Wildlife & Parks \u00b7 FWPLND STATEPARKS",
+   "areas": [
+    "US-MT"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0"
+  },
+  "sgmtb": {
+   "agency": "Montana Fish, Wildlife & Parks \u00b7 FWPLND WMA",
+   "areas": [
+    "US-MT"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0"
+  },
+  "sgmtc": {
+   "agency": "Montana Fish, Wildlife & Parks \u00b7 FWPLND FAS",
+   "areas": [
+    "US-MT"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0"
+  },
+  "sgmtd": {
+   "agency": "Managed Areas",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 1531,
+   "layer_name": "Managed Areas",
+   "name_fields": [
+    "MANAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gisservice.mt.gov/ArcGIS/rest/services/msdi_administrative_boundaries_map_v1/MapServer/70"
+  },
+  "sgmte": {
+   "agency": "Montana Fish, Wildlife & Parks (state park boundaries)",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 55,
+   "layer_name": "State Park Boundaries",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/5"
+  },
+  "sgmtf": {
+   "agency": "Montana Fish, Wildlife & Parks (fishing access site boundaries)",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 333,
+   "layer_name": "Fishing Access Site Boundaries",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/2"
+  },
+  "sgnca": {
+   "agency": "NC Natural Heritage Program, NC Dept of Natural and Cultural",
+   "areas": [
+    "US-NC"
+   ],
+   "name_fields": [
+    "MA_NAME"
+   ],
+   "url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0"
+  },
+  "sgncb": {
+   "agency": "NCWRC",
+   "areas": [
+    "US-NC"
+   ],
+   "name_fields": [
+    "GML_HAB"
+   ],
+   "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21"
+  },
+  "sgncc": {
+   "agency": "Game Lands - detail",
+   "areas": [
+    "US-NC"
+   ],
+   "name_fields": [
+    "GML_HAB"
+   ],
+   "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22"
+  },
+  "sgncd": {
+   "agency": "ParkBoundaries",
+   "areas": [
+    "US-NC"
+   ],
+   "name_fields": [
+    "PK_NAME"
+   ],
+   "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/NC_State_Parks_System/FeatureServer/0"
+  },
+  "sgnha": {
+   "agency": "NH GRANIT",
+   "areas": [
+    "US-NH"
+   ],
+   "expected_count": 13502,
+   "layer_name": "CL: Solid",
+   "name_fields": [
+    "name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6"
+  },
+  "sgnhb": {
+   "agency": "New Hampshire Fish and Game Department",
+   "areas": [
+    "US-NH"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2"
+  },
+  "sgnhc": {
+   "agency": "NH GRANIT (recreation inventory areas)",
+   "areas": [
+    "US-NH"
+   ],
+   "expected_count": 2718,
+   "layer_name": "Recreation Inventory: Areas",
+   "name_fields": [
+    "site"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/3"
+  },
+  "sgnhd": {
+   "agency": "NH GRANIT conservation lands (UNH / NH OSI)",
+   "areas": [
+    "US-NH"
+   ],
+   "expected_count": 13502,
+   "layer_name": "CL: Management Status",
+   "name_fields": [
+    "NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://nhgeodata.unh.edu/nhgeodata/rest/services/EC/Conservation/MapServer/0"
+  },
+  "sgnja": {
+   "agency": "New Jersey DEP (Natural Lands Trust preserves)",
+   "areas": [
+    "US-NJ"
+   ],
+   "expected_count": 118,
+   "layer_name": "Preserve Boundaries",
+   "name_fields": [
+    "FACILITY"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_NLT/MapServer/1"
+  },
+  "sgnjb": {
+   "agency": "New Jersey DEP (state-owned open space)",
+   "areas": [
+    "US-NJ"
+   ],
+   "name_fields": [
+    "FEATURE_NAME"
+   ],
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67"
+  },
+  "sgnma": {
+   "agency": "New Mexico Department of Game & Fish",
+   "areas": [
+    "US-NM"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6"
+  },
+  "sgnmb": {
+   "agency": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org",
+   "areas": [
+    "US-NM"
+   ],
+   "name_fields": [
+    "Name"
+   ],
+   "url": "https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0"
+  },
+  "sgnmc": {
+   "agency": "BLM Natl Recreation Site Polygons",
+   "areas": [
+    "US-NM"
+   ],
+   "name_fields": [
+    "FET_NAME"
+   ],
+   "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2"
+  },
+  "sgnva": {
+   "agency": "Nevada Department of Wildlife",
+   "areas": [
+    "US-NV"
+   ],
+   "name_fields": [
+    "LandName"
+   ],
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0"
+  },
+  "sgnvb": {
+   "agency": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 759,
+   "last_edit": 1769553142760,
+   "layer_name": "SCORPRecAreas_Master",
+   "name_fields": [
+    "name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0"
+  },
+  "sgnvc": {
+   "agency": "Nevada Division of State Parks \u00b7 VS Boundary Map 2 WFL1 2",
+   "areas": [
+    "US-NV"
+   ],
+   "name_fields": [
+    "LandName"
+   ],
+   "url": "https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2"
+  },
+  "sgnvd": {
+   "agency": "Nevada (SCORP recreation areas)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 756,
+   "last_edit": 1761672189875,
+   "layer_name": "SCORPRecAreas",
+   "name_fields": [
+    "name"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0"
+  },
+  "sgnve": {
+   "agency": "Nevada Division of State Parks \u00b7 NDSP State Park Bondaries 1",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 30,
+   "last_edit": 1782246893482,
+   "layer_name": "NDSP_State_Park_Bondaries",
+   "name_fields": [
+    "landname"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/1"
+  },
+  "sgnvf": {
+   "agency": "BLM Nevada national monuments + NCAs",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 10,
+   "layer_name": "NLCS National Monuments, National Conservation Areas and Similar Designations Polygons",
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_National_Monument_National_Conservation_Area/MapServer/0"
+  },
+  "sgnvg": {
+   "agency": "Administrative Forest Boundaries - National Extent",
+   "areas": [
+    "US-NV"
+   ],
+   "name_fields": [
+    "forestname"
+   ],
+   "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0"
+  },
+  "sgnvh": {
+   "agency": "ACEC Designated Polygons",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 1120,
+   "layer_name": "ACEC Designated Polygons",
+   "name_fields": [
+    "ACEC_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_ACEC/MapServer/0"
+  },
+  "sgnvi": {
+   "agency": "Bureau of Land Management, Nevada (wild horse and burro herd management areas)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 86,
+   "layer_name": "BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas",
+   "name_fields": [
+    "HMA_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/FeatureServer/0"
+  },
+  "sgoha": {
+   "agency": "Ohio DNR Division of Parks and Watercraft",
+   "areas": [
+    "US-OH"
+   ],
+   "name_fields": [
+    "LANDS_NAME"
+   ],
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5"
+  },
+  "sgohb": {
+   "agency": "Ohio DNR Division of Wildlife",
+   "areas": [
+    "US-OH"
+   ],
+   "name_fields": [
+    "LANDS_NAME"
+   ],
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/7"
+  },
+  "sgohc": {
+   "agency": "Ohio DNR Division of Forestry",
+   "areas": [
+    "US-OH"
+   ],
+   "name_fields": [
+    "LANDS_NAME"
+   ],
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/6"
+  },
+  "sgohd": {
+   "agency": "Ohio DNR Division of Natural Areas and Preserves",
+   "areas": [
+    "US-OH"
+   ],
+   "name_fields": [
+    "LANDS_NAME"
+   ],
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/8"
+  },
+  "sgohe": {
+   "agency": "Ohio DNR",
+   "areas": [
+    "US-OH"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134"
+  },
+  "sgohf": {
+   "agency": "Ohio DNR, Office of Information Technology",
+   "areas": [
+    "US-OH"
+   ],
+   "expected_count": 865,
+   "layer_name": "ODNR_LANDS",
+   "name_fields": [
+    "Name_Label"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External/MapServer/0"
+  },
+  "sgohg": {
+   "agency": "Ohio DNR: city, county + NGO lands",
+   "areas": [
+    "US-OH"
+   ],
+   "expected_count": 623,
+   "layer_name": "City, County, NGO Lands",
+   "name_fields": [
+    "FIRST_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/Ohio_Conservation_Lands/MapServer/0"
+  },
+  "sgsca": {
+   "agency": "South Carolina DNR (WMAs, heritage preserves)",
+   "areas": [
+    "US-SC"
+   ],
+   "name_fields": [
+    "PropertyName"
+   ],
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4"
+  },
+  "sgscb": {
+   "agency": "South Carolina State Parks (PRT)",
+   "areas": [
+    "US-SC"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0"
+  },
+  "sgscc": {
+   "agency": "South Carolina DNR (heritage preserves)",
+   "areas": [
+    "US-SC"
+   ],
+   "name_fields": [
+    "PropertyName"
+   ],
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0"
+  },
+  "sgscd": {
+   "agency": "South Carolina Department of Natural Resources",
+   "areas": [
+    "US-SC"
+   ],
+   "name_fields": [
+    "PropertyName"
+   ],
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3"
+  },
+  "sguta": {
+   "agency": "Utah State Parks",
+   "areas": [
+    "US-UT"
+   ],
+   "name_fields": [
+    "name"
+   ],
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0"
+  },
+  "sgutb": {
+   "agency": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org)",
+   "areas": [
+    "US-UT"
+   ],
+   "name_fields": [
+    "Property_N"
+   ],
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0"
+  },
+  "sgutc": {
+   "agency": "Utah (National Historic Landmarks)",
+   "areas": [
+    "US-UT"
+   ],
+   "name_fields": [
+    "L_Name"
+   ],
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0"
+  },
+  "sgutd": {
+   "agency": "BLM Utah State Office (congressionally designated recreation areas)",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 26,
+   "layer_name": "BLM UT Congressionally Designated Recreation Areas (Polygon)",
+   "name_fields": [
+    "RECS_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer/1"
+  },
+  "sgute": {
+   "agency": "NLCS Wild and Scenic Rivers",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 2077,
+   "layer_name": "NLCS Wild and Scenic Rivers",
+   "name_fields": [
+    "NLCS_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer/0"
+  },
+  "sgutf": {
+   "agency": "state_park_boundaries_dissolved",
+   "areas": [
+    "US-UT"
+   ],
+   "name_fields": [
+    "truncated_name"
+   ],
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/state_park_boundaries_dissolved/FeatureServer/0"
+  },
+  "sgwia": {
+   "agency": "Wisconsin DNR",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 1799,
+   "layer_name": "DNR Managed Land by Property",
+   "name_fields": [
+    "PROP_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0"
+  },
+  "sgwib": {
+   "agency": "Wisconsin State Parks (DNR)",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 81,
+   "layer_name": "WSPS Properties",
+   "name_fields": [
+    "PROP_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0"
+  },
+  "sgwic": {
+   "agency": "Wisconsin DNR Natural Heritage Conservation",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 683,
+   "layer_name": "SNAs",
+   "name_fields": [
+    "SNA_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1"
+  },
+  "sgwid": {
+   "agency": "Wisconsin DNR Bureau of Facilities and Lands",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 82539,
+   "layer_name": "DNR Managed Lands by Parcel--No Property Names",
+   "name_fields": [
+    "PROP_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1"
+  },
+  "sgwie": {
+   "agency": "Wisconsin DNR (county forests, from the counties)",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 30,
+   "layer_name": "County Forests",
+   "name_fields": [
+    "FR_PROP_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/0"
+  },
+  "sgwif": {
+   "agency": "Natural Area Parcel Ownership",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 801,
+   "layer_name": "Natural Area Parcel Ownership",
+   "name_fields": [
+    "SNA_NAME"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/ER_DNR_NA_StateNaturalAreas_WTM/MapServer/2"
+  },
+  "sgwva": {
+   "agency": "West Virginia DNR",
+   "areas": [
+    "US-WV"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1"
+  },
+  "sgwvb": {
+   "agency": "West Virginia State Forests (DNR)",
+   "areas": [
+    "US-WV"
+   ],
+   "name_fields": [
+    "Name"
+   ],
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16"
+  },
+  "sgwvc": {
+   "agency": "West Virginia State Parks (WVDOT boundaries server)",
+   "areas": [
+    "US-WV"
+   ],
+   "expected_count": 36,
+   "layer_name": "State_Parks",
+   "name_fields": [
+    "Loc_Nm"
+   ],
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/10"
+  },
+  "sgwya": {
+   "agency": "Wyoming State Parks",
+   "areas": [
+    "US-WY"
+   ],
+   "name_fields": [
+    "Park_Name"
+   ],
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0"
+  },
+  "sgwyb": {
+   "agency": "Wyoming State Parks, Historic Sites & Trails",
+   "areas": [
+    "US-WY"
+   ],
+   "name_fields": [
+    "site_name"
+   ],
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0"
+  },
+  "sgwyc": {
+   "agency": "Wyoming Game and Fish Department \u00b7 WHMA Boundaries 4",
+   "areas": [
+    "US-WY"
+   ],
+   "name_fields": [
+    "WHMA_Name"
+   ],
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4"
+  },
+  "sgwyd": {
+   "agency": "Wyoming Game and Fish Department \u00b7 PAA Boundaries 1",
+   "areas": [
+    "US-WY"
+   ],
+   "name_fields": [
+    "PAA_Name"
+   ],
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1"
+  },
+  "utusutgeoh": {
+   "agency": "Utah Geoheritage Sites v6 (saved copy)",
+   "areas": [
+    "US-UT"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Geoheritage_Sites_v6/FeatureServer/0"
+  },
+  "utusutstat": {
+   "agency": "Utah State Parks (points only, not park-boundary polygons) (saved copy)",
+   "areas": [
+    "US-UT"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Parks/FeatureServer/0"
+  },
+  "utusutultr": {
+   "agency": "Utah ULTRA properties (saved copy)",
+   "areas": [
+    "US-UT"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer/0"
+  },
+  "utusutwmas": {
+   "agency": "Utah WMAs WFL1 (saved copy)",
+   "areas": [
+    "US-UT"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0"
+  },
+  "utw": {
+   "agency": "Utah DWR public access properties",
+   "areas": [
+    "US-UT"
+   ],
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer/0"
+  },
+  "wid": {
+   "agency": "Wisconsin DNR managed properties",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 1799,
+   "layer_name": "DNR Managed Land by Property",
+   "read_date": "2026-11-10",
+   "read_how": "returnCountOnly",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0"
+  },
+  "wvuswvfish": {
+   "agency": "West Virginia fish hatcheries (saved copy)",
+   "areas": [
+    "US-WV"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/Fish_Hatcheries_view/FeatureServer/25"
+  },
+  "wyuswyhatc": {
+   "agency": "Wyoming hatchery locations (saved copy)",
+   "areas": [
+    "US-WY"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0"
+  },
+  "wyuswyrive": {
+   "agency": "Wyoming river access points (saved copy)",
+   "areas": [
+    "US-WY"
+   ],
+   "name_fields": [
+    "NAME"
+   ],
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0"
+  }
+ }
 }

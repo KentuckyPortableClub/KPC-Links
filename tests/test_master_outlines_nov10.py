@@ -197,8 +197,12 @@ with tempfile.TemporaryDirectory() as t:
     t = pathlib.Path(t); c = t / 'cache'; c.mkdir()
     with gzip.open(c / 'US-FL.json.gz', 'wt') as fh: json.dump({'st': 'FL', 'seen': 199, 'recs': [{}] * 199}, fh)
     check(raises(M.ShortRead, M.check_saved_cache, c / 'US-FL.json.gz', 17000), 'saved copy: FL with 199 of ~17,000 fails the check')
-    root = t / 'o'; M.save_layers({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 17000}}}, root)
-    r, _ = quiet(CLI.main, ['check', '--root', str(root), '--cache', str(c)]); check(r == 1, 'saved copy: `check --cache` goes red on it')
+    check(raises(M.ShortRead, M.check_saved_cache, c / 'US-FL.json.gz', 21993), 'saved copy: Nov 3 FL copy (199 sgflf) vs 21,993 total fails the check')
+    root = t / 'o'; M.save_layers({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 21993}}}, root)
+    r, _ = quiet(CLI.main, ['check', '--root', str(root), '--cache', str(c)]); check(r == 1, 'saved copy: `check --cache` goes red on a 199-vs-21993 FL copy')
+    r, out = quiet(CLI.main, ['gate', '--root', str(root), '--cache', str(c), '--report', str(t / 'short.txt')])
+    check(r == 7 and (t / 'short.txt').read_text().split() == ['US-FL'] and (c / 'short/US-FL.json.gz').exists(),
+          'gate: Nov 3 FL copy (199 sgflf vs 21,993 total) is moved aside and named short')
 
 # --- 8) raw files: manifest only
 check(M.raw_in_repo([('data/x.gdb/a', 10), ('big.zip', 10), ('layer.shp', 1), ('data/outlines/US-KY.geojson.gz', 100), ('index.html', 10 ** 7), ('data/outlines/huge.geojson.gz', 10 ** 7)]) == ['data/x.gdb/a', 'big.zip', 'layer.shp', 'data/outlines/huge.geojson.gz'],
@@ -216,9 +220,15 @@ for k in ('us-key', 'ca-key', 'world-key', 'fers'):
     check(not any('kpc_master' in f for f in KF.RULE_FILES[k]), f'{k}: the master modules are not in its rules hash')
 check({'kpc_master.py', 'kpc_master_cli.py'} <= KF.NOT_RULES, 'the master modules are listed in NOT_RULES')
 try:
+    changelog = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
+    declared = ('US rules f489a836894f -> ' + KF.rules_hash('us-key')) in changelog
+    allowed = {'.github/scripts/kpc_us_key.py', '.github/us-key-rule-scope.json'} if declared else set()
     for f in sorted({f for fs in KF.RULE_FILES.values() for f in fs}):
         same = subprocess.run(['git', '-C', str(HERE), 'diff', '--quiet', 'origin/main', '--', f], capture_output=True).returncode == 0
-        check(same, f'rule file unchanged from main: {f}')
+        if f in allowed:
+            check((not same), f'rule file {f} differs from main as declared (page cap, US hash {KF.rules_hash("us-key")})')
+        else:
+            check(same, f'rule file unchanged from main: {f}')
 except Exception as e: print('SKIP rule-file diff:', e)
 
 
@@ -234,7 +244,7 @@ try:
     with tempfile.TemporaryDirectory() as t:
         t = pathlib.Path(t); (t / 'cache/us').mkdir(parents=True); (t / '.github/scripts').mkdir(parents=True); (t / 'data/outlines').mkdir(parents=True)
         for fn in ('kpc_master.py', 'kpc_master_cli.py'): (t / '.github/scripts' / fn).write_bytes((HERE / '.github/scripts' / fn).read_bytes())
-        json.dump({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 17000}, 'US-TN': {'expected_count': 100}}}, open(t / 'data/outlines/layers.json', 'w'))
+        json.dump({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 21993}, 'US-TN': {'expected_count': 100}}}, open(t / 'data/outlines/layers.json', 'w'))
         for st, seen in (('FL', 199), ('TN', 100), ('KY', 5)):
             with gzip.open(t / f'cache/us/US-{st}.json.gz', 'wt') as fh: json.dump({'seen': seen, 'recs': []}, fh)
         r = subprocess.run(['bash', '-e', '-c', 'set -o pipefail\nSTATES="FL TN KY"\n' + snip + '\necho "STATES NOW: $STATES"'], cwd=t, capture_output=True, text=True, env=dict(os.environ, RUNNER_TEMP=str(t)))
