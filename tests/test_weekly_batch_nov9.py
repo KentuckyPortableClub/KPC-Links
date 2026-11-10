@@ -21,7 +21,7 @@ def check(cond, msg):
 
 
 # 0. no rules hash moves (the 2-fer run 42649544758 is going)
-for k, h in (('us-key', '19d219f37114'), ('ca-key', '22f16bc69b96'), ('world-key', '10e4092cc97f'), ('fers', 'eb92de7a5f65')):
+for k, h in (('us-key', 'f489a836894f'), ('ca-key', '570b09c3cb52'), ('world-key', '6444287722b9'), ('fers', '3dde681f1427')):
     check(KF.rules_hash(k) == h, f'{k} rules hash stays {h}')
 check('kpc_problem_solver.py' in KF.NOT_RULES, 'the problem solver is not a rules file')
 
@@ -40,8 +40,10 @@ for r, ids in WSR.items():
           f'{r} WSR corridor join {ids} is back with its fingerprint')
 check(ov['US-0197'].get('no') == ['wsrc4'], 'US-0197 keeps its Nov 2 NO on wsrc4')
 # 2. the Nov 8 KPC-Data rows are here (spot checks)
-check('sggab44' in ((ov.get('US-3722') or {}).get('join_held') or {}).get('ids', []) and 'sggab44' not in (ov.get('US-3722') or {}).get('join', []),
-      'US-3722 New Echota hand-layer join (Nov 8) is kept but HELD (name differs: not sure under t927u; Quality regrade v2 must-fix h)')
+# held in the weekly batch; amendment 2 (KPC-Links #106) signs it after the recheck (decided_by Brandon t927u+t938u)
+check(('sggab44' in ((ov.get('US-3722') or {}).get('join_held') or {}).get('ids', []) and 'sggab44' not in (ov.get('US-3722') or {}).get('join', []))
+      or ('sggab44' in (ov.get('US-3722') or {}).get('join', []) and 't938u' in str((ov.get('US-3722') or {}).get('decided_by', ''))),
+      'US-3722 New Echota hand-layer join: HELD in the weekly batch, signed only by the amendment 2 recheck')
 check('sggaa904' in (ov.get('US-12418') or {}).get('fp', {}), 'US-12418 Tallulah fingerprint of Nov 8 is here')
 check('Quality grade PR#50' in (ov.get('US-2200') or {}).get('why', ''), 'US-2200 carries the Nov 8 Quality unjoin note')
 ca = json.load(open(ROOT / 'data/ca-key/overrides.json', encoding='utf-8'))['parks']

@@ -4,7 +4,7 @@ Branch `prep/nov9-amendment2` (fresh from main after Links #104 / Data #57). Bra
 
 ## What changed (KISS, t958u)
 1. **The 19 held parks**: 18 signed (`decided_by: Brandon t927u+t938u`, evidence in `data/us-key/overrides.json`); US-12471 Lone Rock still held.
-2. **Saved-copy hosts** (t939u, "4 saved copies"): services.arcgis.com, services1.arcgis.com, apps.fs.usda.gov are never read live; the key builds use the saved outlines.
+2. **Saved-copy hosts** (t939u): services.arcgis.com, services1.arcgis.com, apps.fs.usda.gov are never read live; the key builds use the saved outlines.
 3. **World overrides keep exact IDs** (`ids` in world overrides).
 4. **Research inbox** (t943u/t942u): `data/research-inbox/*.csv|json` -> `kpc_research_inbox.py` runs ONE sure test on just those parks; results in `data/research-inbox/results/`, retry list `needs-another-look.json`. Format: `docs/research-input-format.md`. Converter: `kpc_research_from_xlsx.py` (Nov 9 workbooks and the t955u "Solved cases" sheet).
 5. **One sure test** = polygon, pin inside or within 0.5 km, the SAME core name (accents folded, generic words dropped; every name field on the record counts, so French/English NAME_E/NAME_F match, t957u), no kind clash, not a piece, not an overlay. Tightened after the spot check below: an extra distinctive word on one side (Deep Closure, Buckhorn Unit, North/Lower) is a person's call.
@@ -15,7 +15,7 @@ Branch `prep/nov9-amendment2` (fresh from main after Links #104 / Data #57). Bra
 ## Brandon's one short list
 `data/research-inbox/brandon-list.md` (solutions over an earlier NO + agency-alias names). Say YES to flip, or NO.
 
-## Rule hashes: PENDING Brandon's OK by name
+## Rule hashes: APPROVED by Brandon by name (Nov 9 2026, 7:52 PM CST, card t962s3428; recorded in docs/key-rules-change.txt)
 | key | main | this branch |
 |---|---|---|
 | us-key | 19d219f37114 | f489a836894f |
@@ -39,3 +39,6 @@ Bilingual rule: exactly **1** park moves to sure because of French/English names
 
 ## Hand downloads
 `hand-downloads-amendment2.csv` (outbox): 145 layers, 1,045 parks; top: Vicmap WFS, Naturbase, Ontario forest blocks, Parks Canada NHS view, Paris espaces verts, England historic parklands, Yukon GY_ParksProtectedAreas/0 and GY_CultureHeritage/0 (robots-disallowed).
+
+## Gate
+`kpc_full_suite.py`: GATE PASS (115/120 tests, 123/128 with selftests; the 5 failures are the known failures of main). Tests that pin the rules hashes now pin the approved ones. Page script `?v=` cache tags were left as on main (tests pin them).
