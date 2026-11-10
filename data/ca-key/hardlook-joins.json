@@ -2161,6 +2161,16 @@
     "WIDDIFIELD FOREST PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)"
    ],
    "oid": 59537
+  },
+  {
+   "ref": "CA-1280",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open06/MapServer/5",
+   "name_field": "NAME_ENG",
+   "record_name": "ABITIBI LAKE NARROWS WILDERNESS AREA",
+   "names": [
+    "ABITIBI LAKE NARROWS WILDERNESS AREA"
+   ],
+   "oid": 203353
   }
  ]
 }

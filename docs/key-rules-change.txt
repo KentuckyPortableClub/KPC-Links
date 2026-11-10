@@ -43,3 +43,6 @@ stalled layer FAILS into the existing saved-copy / HOLD path; B5 partial reads N
 cache/world/parts/<CC>/ (finished layers reused until the country is written, then its finished checkpoints deleted;
 in-progress ones kept so a stalled layer resumes; 7-day limit);
 B6 no Natura 2000 source for CH and NO. A full world rebuild is due on merge.
+
+Official-point circles and candidate joins, Nov 9 2026, draft PR prep/nov9-yes7-solver: NO rule file changed and NO rule hash moved: US 19d219f37114, CA 22f16bc69b96, world 10e4092cc97f, fers eb92de7a5f65. Files: data/us-key/overrides.json, data/ca-key/overrides.json, data/ca-key/hardlook-joins.json.
+Why: standing candidate-check YES parks were joined; official agency points without a boundary got a 100 ft point circle (data/point-circles.json).

@@ -1,0 +1,1967 @@
+{
+ "about": "POINT-CONFIRMED parks: an official POINT record with the park's name within 0.5 km of the POTA pin. kind point-circle-100ft is a 30.48 m circle around the official agency point (the POTA pin is never moved). It is a stand-in used only by the 2-fer bot as the labelled point-circle tier; never an official boundary, never a key outline. Replaced automatically when a real boundary is found. Every card for these parks notes the 100 ft circle. The drawing and 2-fer code that reads this file is in a separate pending change; these rows are the data that code will pick up.",
+ "parks": {
+  "CA-1055": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.009,
+   "pt": [
+    -96.93173,
+    50.11208
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "105",
+   "record_name": "Lower Fort Garry National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-1067": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.059,
+   "pt": [
+    -94.21332,
+    58.79722
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "126",
+   "record_name": "Prince of Wales Fort National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-1069": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.065,
+   "pt": [
+    -97.13625,
+    49.8193
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "135",
+   "record_name": "Riel House National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-1079": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.055,
+   "pt": [
+    -97.12816,
+    49.88907
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "162",
+   "record_name": "The Forks National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4619": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.326,
+   "pt": [
+    -134.62008,
+    61.24266
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "40",
+   "record_name": "T'äw Tà'är National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4773": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.042,
+   "pt": [
+    -115.57159,
+    51.17373
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "6",
+   "record_name": "Banff Park Museum National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4774": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.468,
+   "pt": [
+    -114.2451,
+    50.42281
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "7",
+   "record_name": "Bar U Ranch National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4779": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.485,
+   "pt": [
+    -117.9841,
+    53.14692
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "89",
+   "record_name": "Jasper House National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4780": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.018,
+   "pt": [
+    -118.08079,
+    52.8774
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "90",
+   "record_name": "Jasper Park Information Centre National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4791": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.166,
+   "pt": [
+    -128.01727,
+    55.12104
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "77",
+   "record_name": "Gitwangak Battle Hill National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4794": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.061,
+   "pt": [
+    -116.04525,
+    50.52677
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "95",
+   "record_name": "Kootenae House National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4799": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.082,
+   "pt": [
+    -97.13457,
+    49.88734
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "73",
+   "record_name": "Forts Rouge, Garry, and Gibraltar National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4812": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.067,
+   "pt": [
+    -64.07077,
+    46.04322
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "53",
+   "record_name": "Fort Gaspareaux National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4818": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.024,
+   "pt": [
+    -53.20983,
+    47.53522
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "84",
+   "record_name": "Hawthorne Cottage National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4819": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.011,
+   "pt": [
+    -60.21233,
+    55.45871
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "86",
+   "record_name": "Hopedale Mission National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4823": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.18,
+   "pt": [
+    -56.42943,
+    51.73221
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "131",
+   "record_name": "Red Bay National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4824": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.081,
+   "pt": [
+    -53.11212,
+    48.64783
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "139",
+   "record_name": "Ryan Premises National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4825": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.018,
+   "pt": [
+    -52.68208,
+    47.57006
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "149",
+   "record_name": "Signal Hill National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4827": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.079,
+   "pt": [
+    -64.26085,
+    45.84789
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "16",
+   "record_name": "Beaubassin National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4831": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.015,
+   "pt": [
+    -63.64654,
+    44.67473
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "40",
+   "record_name": "D'Anville's Encampment National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4836": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.014,
+   "pt": [
+    -64.35127,
+    44.28838
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "65",
+   "record_name": "Fort Sainte Marie de Grâce National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4843": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.414,
+   "pt": [
+    -65.59303,
+    44.71845
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "110",
+   "record_name": "Melanson Settlement National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4846": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.025,
+   "pt": [
+    -59.9801,
+    45.90927
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "138",
+   "record_name": "Royal Battery National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4853": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.006,
+   "pt": [
+    -81.70557,
+    42.69415
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "9",
+   "record_name": "Battle Hill National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4855": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.078,
+   "pt": [
+    -75.48716,
+    44.7211
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "13",
+   "record_name": "Battle of the Windmill National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4858": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.043,
+   "pt": [
+    -76.50418,
+    44.22296
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "19",
+   "record_name": "Bellevue House National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4859": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.027,
+   "pt": [
+    -79.37632,
+    44.92052
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "20",
+   "record_name": "Bethune Memorial House National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4860": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.073,
+   "pt": [
+    -83.11948,
+    42.08697
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "22",
+   "record_name": "Bois Blanc Island Lighthouse and Blockhouse National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4862": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.012,
+   "pt": [
+    -77.58195,
+    44.04869
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "30",
+   "record_name": "Carrying Place of the Bay of Quinte National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4864": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.078,
+   "pt": [
+    -76.45968,
+    44.23097
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "55",
+   "record_name": "Fort Henry National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4866": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.021,
+   "pt": [
+    -79.07688,
+    43.26174
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "62",
+   "record_name": "Fort Mississauga National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4868": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.167,
+   "pt": [
+    -75.50861,
+    44.71327
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "70",
+   "record_name": "Fort Wellington National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4870": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.093,
+   "pt": [
+    -79.85536,
+    43.27532
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "85",
+   "record_name": "HMCS Haida National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4875": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.007,
+   "pt": [
+    -79.07688,
+    43.26174
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "62",
+   "record_name": "Fort Mississauga National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4876": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.254,
+   "pt": [
+    -79.36896,
+    44.60543
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "113",
+   "record_name": "Mnjikaning Fish Weirs National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4877": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.028,
+   "pt": [
+    -76.49038,
+    44.22235
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "117",
+   "record_name": "Murney Tower National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4879": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.137,
+   "pt": [
+    -78.30058,
+    44.30787
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "121",
+   "record_name": "Peterborough Lift Lock National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4880": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.033,
+   "pt": [
+    -81.75727,
+    44.07283
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "122",
+   "record_name": "Point Clark Lighthouse National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4881": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.01,
+   "pt": [
+    -79.0529,
+    43.16004
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "130",
+   "record_name": "Queenston Heights National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4883": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.47,
+   "pt": [
+    -79.04147,
+    42.90812
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "133",
+   "record_name": "Ridgeway Battlefield National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4884": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.003,
+   "pt": [
+    -79.78127,
+    44.72908
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "144",
+   "record_name": "Saint-Louis Mission National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4886": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.01,
+   "pt": [
+    -76.47814,
+    44.22882
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "148",
+   "record_name": "Shoal Tower National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4888": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.334,
+   "pt": [
+    -81.35976,
+    42.67452
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "155",
+   "record_name": "Southwold Earthworks National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4891": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.085,
+   "pt": [
+    -63.12641,
+    46.25197
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "4",
+   "record_name": "Ardgowan National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4893": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.403,
+   "pt": [
+    -63.37738,
+    46.48939
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "96",
+   "record_name": "L.M. Montgomery's Cavendish National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4894": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.049,
+   "pt": [
+    -63.13562,
+    46.19552
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "153",
+   "record_name": "Skmaqn–Port-la-Joye–Fort Amherst National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4896": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.035,
+   "pt": [
+    -73.92859,
+    45.15883
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "11",
+   "record_name": "Battle of the Châteauguay National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4898": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.014,
+   "pt": [
+    -74.37169,
+    45.56501
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "27",
+   "record_name": "Carillon Barracks National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4899": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.073,
+   "pt": [
+    -74.37568,
+    45.56758
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "28",
+   "record_name": "Carillon Canal National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4900": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.281,
+   "pt": [
+    -71.23594,
+    46.82462
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "31",
+   "record_name": "Cartier-Brébeuf National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4903": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.401,
+   "pt": [
+    -72.65741,
+    46.39837
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "45",
+   "record_name": "Forges du Saint-Maurice National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4904": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.079,
+   "pt": [
+    -73.27688,
+    45.4495
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "50",
+   "record_name": "Fort Chambly National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4907": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.024,
+   "pt": [
+    -73.26021,
+    45.3972
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "68",
+   "record_name": "Fort Ste-Thérèse National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4908": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.157,
+   "pt": [
+    -79.45857,
+    47.28946
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "120",
+   "record_name": "Obadjiwan - Fort Témiscamingue National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4911": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.348,
+   "pt": [
+    -73.67046,
+    45.43118
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "98",
+   "record_name": "Lachine Canal National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4912": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.04,
+   "pt": [
+    -71.15793,
+    46.81464
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "101",
+   "record_name": "Lévis Forts National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4913": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.028,
+   "pt": [
+    -71.82628,
+    45.24225
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "103",
+   "record_name": "Louis S. St. Laurent National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4916": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.461,
+   "pt": [
+    -74.94553,
+    45.64612
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "108",
+   "record_name": "Manoir Papineau National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4920": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.051,
+   "pt": [
+    -73.95606,
+    45.40464
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "142",
+   "record_name": "Sainte-Anne-de-Bellevue Canal National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4924": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.012,
+   "pt": [
+    -73.75778,
+    45.85249
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "152",
+   "record_name": "Sir Wilfrid Laurier National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4925": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.022,
+   "pt": [
+    -73.67541,
+    45.43145
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "163",
+   "record_name": "The Fur Trade at Lachine National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4927": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.322,
+   "pt": [
+    -106.15266,
+    52.53901
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "14",
+   "record_name": "Battle of Tourond's Coulee / Fish Creek National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4930": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.042,
+   "pt": [
+    -101.57757,
+    50.4923
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "52",
+   "record_name": "Fort Espérance National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4934": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.138,
+   "pt": [
+    -109.57425,
+    53.62798
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "74",
+   "record_name": "Frenchman Butte National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4937": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.368,
+   "pt": [
+    -139.33563,
+    63.9436
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "42",
+   "record_name": "Dredge No. 4 National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-4938": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/JZPISF0sj1UatnZ8/arcgis/rest/services/NationalHistoricSitesParksCanada_view/FeatureServer/0",
+   "pin_km": 0.034,
+   "pt": [
+    -139.44037,
+    64.05643
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "46",
+   "record_name": "Former Territorial Court House National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-5286": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.039,
+   "pt": [
+    -139.43531,
+    64.06288
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "19",
+   "record_name": "Canadian Bank Of Commerce",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-5287": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.087,
+   "pt": [
+    -139.44442,
+    64.04774
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "34",
+   "record_name": "Tr'ochëk National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-5455": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.009,
+   "pt": [
+    -139.43505,
+    64.05698
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "31",
+   "record_name": "Old Territorial Administration Building National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-5456": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.023,
+   "pt": [
+    -139.43848,
+    64.05882
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "33",
+   "record_name": "St. Paul's Anglican Church National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-5458": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.017,
+   "pt": [
+    -139.43834,
+    64.05912
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "35",
+   "record_name": "Yukon Hotel National Historic Site of Canada",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-5538": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/SNC_Conservation_Areas/FeatureServer/0",
+   "pin_km": 0.057,
+   "pt": [
+    -75.36953,
+    45.26132
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "5",
+   "record_name": "J. Henry Tweed",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6209": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/SNC_Conservation_Areas/FeatureServer/0",
+   "pin_km": 0.079,
+   "pt": [
+    -75.09321,
+    45.3177
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "2",
+   "record_name": "High Falls",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6299": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.022,
+   "pt": [
+    -134.70637,
+    60.16508
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "5",
+   "record_name": "Caribou Hotel",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6300": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.011,
+   "pt": [
+    -139.43303,
+    64.0558
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "7",
+   "record_name": "Dawson City Telegraph Office",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6301": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.023,
+   "pt": [
+    -139.42999,
+    64.06579
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "8",
+   "record_name": "Yukon Sawmill Company Office",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6302": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.025,
+   "pt": [
+    -135.89482,
+    63.59121
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "11",
+   "record_name": "Mayo Legion Hall",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6303": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.006,
+   "pt": [
+    -139.83392,
+    67.56856
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "36",
+   "record_name": "Archdeacon McDonald Memorial Church and St. Luke's Church",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6304": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.014,
+   "pt": [
+    -140.99778,
+    67.41709
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "37",
+   "record_name": "Gindèhchik–Rampart House",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6305": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.064,
+   "pt": [
+    -128.82305,
+    60.11376
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "28",
+   "record_name": "Watson Lake Air Terminal Building",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6306": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.075,
+   "pt": [
+    -128.71417,
+    60.06333
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "25",
+   "record_name": "Watson Lake Sign Post Forest",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6307": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.026,
+   "pt": [
+    -135.05403,
+    60.71823
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "27",
+   "record_name": "Old Log Church and Rectory",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6308": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.092,
+   "pt": [
+    -135.23422,
+    61.35806
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "18",
+   "record_name": "AJ Goddard Shipwreck",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6309": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.036,
+   "pt": [
+    -135.89691,
+    63.59332
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "4",
+   "record_name": "Mayo Mining Recorder's Office",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "CA-6330": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_CultureHeritage/MapServer/0",
+   "pin_km": 0.018,
+   "pt": [
+    -135.05132,
+    60.72097
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "24",
+   "record_name": "Telegraph Office",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-10354": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/c87u7O5UKiyM87q5/arcgis/rest/services/Louisiana_Public_Lands_WFL1/FeatureServer/17",
+   "pin_km": 0.399,
+   "pt": [
+    -92.44945,
+    31.32397
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "7",
+   "record_name": "Fort Randolph & Buhlow State Historic Site",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-10433": {
+   "confirmed": "2026-11-09",
+   "decided_by": "Brandon, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gisportal-idfg.idaho.gov/hosting/rest/services/Fisheries/Fish_Hatcheries/MapServer/0",
+   "pin_km": 0.098,
+   "pt": [
+    -116.40283,
+    43.67868
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "8",
+   "record_name": "Eagle Fish Hatchery"
+  },
+  "US-10447": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services5.arcgis.com/c87u7O5UKiyM87q5/arcgis/rest/services/Louisiana_Public_Lands_WFL1/FeatureServer/17",
+   "pin_km": 0.356,
+   "pt": [
+    -91.30656,
+    30.79705
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "1",
+   "record_name": "Audubon State Historic Site",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-10613": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "pin_km": 0.061,
+   "pt": [
+    -122.68539,
+    42.66307
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "38",
+   "record_name": "COLE RIVERS",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-10817": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
+   "pin_km": 0.087,
+   "pt": [
+    -106.92782,
+    44.56518
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "1",
+   "record_name": "Story Hatchery",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-10818": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
+   "pin_km": 0.089,
+   "pt": [
+    -111.10179,
+    42.76335
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "2",
+   "record_name": "Auburn Hatchery",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-10823": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
+   "pin_km": 0.484,
+   "pt": [
+    -109.5856,
+    43.50027
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "7",
+   "record_name": "Dubois Hatchery",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-11955": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWS_NFHS_CMT_Points/FeatureServer/3",
+   "pin_km": 0.389,
+   "pt": [
+    -91.21548,
+    43.52341
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "77",
+   "record_name": "Genoa National Fish Hatchery",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12053": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/Fish_Hatcheries_view/FeatureServer/25",
+   "pin_km": 0.069,
+   "pt": [
+    -80.10512,
+    38.2698
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "8",
+   "record_name": "Edray Hatchery",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12054": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/Fish_Hatcheries_view/FeatureServer/25",
+   "pin_km": 0.01,
+   "pt": [
+    -78.3112,
+    39.46356
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "21",
+   "record_name": "Ridge Hatchery",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12069": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Parks/FeatureServer/0",
+   "pin_km": 0.097,
+   "pt": [
+    -113.45005,
+    37.59975
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "42",
+   "record_name": "Old Iron Town Historic Site",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12231": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Fishing_and_Boating_Access_FFW_App/FeatureServer/1",
+   "pin_km": 0.163,
+   "pt": [
+    -112.0038,
+    42.64202
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "170",
+   "record_name": "Portneuf - Lower",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12517": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services2.arcgis.com/XBn0Kai3hQ20FeCo/arcgis/rest/services/Alabama_Register___Points/FeatureServer/2",
+   "pin_km": 0.233,
+   "pt": [
+    -86.47114,
+    32.72088
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "848",
+   "record_name": "Confederate Memorial Cemetery",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12977": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "pin_km": 0.113,
+   "pt": [
+    -123.93844,
+    45.0172
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "4",
+   "record_name": "SALMON RIVER",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12978": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "pin_km": 0.198,
+   "pt": [
+    -122.44382,
+    43.74322
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "11",
+   "record_name": "WILLAMETTE",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12980": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "pin_km": 0.187,
+   "pt": [
+    -123.72263,
+    45.43185
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "29",
+   "record_name": "TRASK",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12981": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "pin_km": 0.335,
+   "pt": [
+    -121.08238,
+    45.22074
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "12",
+   "record_name": "OAK SPRINGS",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12986": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "pin_km": 0.318,
+   "pt": [
+    -123.56558,
+    44.42279
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "30",
+   "record_name": "ALSEA",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12990": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "pin_km": 0.193,
+   "pt": [
+    -123.00329,
+    43.33589
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "15",
+   "record_name": "ROCK CREEK",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-12994": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Primarily_Natural_Resources/FeatureServer/3",
+   "pin_km": 0.061,
+   "pt": [
+    -123.71734,
+    46.08961
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "51",
+   "record_name": "KLASKANINE",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-13209": {
+   "confirmed": "2026-11-09",
+   "decided_by": "Brandon, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.029,
+   "pt": [
+    -117.25233,
+    37.72194
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91436",
+   "record_name": "Goldfield"
+  },
+  "US-13242": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Nevada_Department_of_Wildlife_Fish_Hatchery_Locations/FeatureServer/0",
+   "pin_km": 0.084,
+   "pt": [
+    -114.10513,
+    38.91773
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "3",
+   "record_name": "Spring Creek Rearing Station",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-5901": {
+   "confirmed": "2026-11-09",
+   "decided_by": "Brandon, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.038,
+   "pt": [
+    -110.95356,
+    39.62152
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91635",
+   "record_name": "Gordon Creek Trailhead"
+  },
+  "US-6048": {
+   "confirmed": "2026-11-09",
+   "decided_by": "Brandon, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.027,
+   "pt": [
+    -113.35231,
+    39.12936
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91722",
+   "record_name": "Notch Peak Trailhead"
+  },
+  "US-6080": {
+   "confirmed": "2026-11-09",
+   "decided_by": "Brandon, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation_Sites_Facilities/MapServer/0",
+   "pin_km": 0.0,
+   "pt": [
+    -113.62,
+    39.078
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "91720",
+   "record_name": "Conger Mountain One Day Ride"
+  },
+  "US-6810": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.184,
+   "pt": [
+    -83.89962,
+    45.99712
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "3155",
+   "record_name": "De Tour State Harbor",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6811": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.111,
+   "pt": [
+    -88.14876,
+    47.4589
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "3014",
+   "record_name": "Eagle Harbor State Harbor",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6812": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.202,
+   "pt": [
+    -83.48757,
+    44.27711
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "621",
+   "record_name": "East Tawas State Harbor",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6813": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.219,
+   "pt": [
+    -84.16149,
+    45.59168
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "2351",
+   "record_name": "Hammond Bay State Harbor",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6815": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.157,
+   "pt": [
+    -82.52628,
+    43.26762
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "2281",
+   "record_name": "Lexington Harbor",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6817": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.072,
+   "pt": [
+    -85.35917,
+    46.71588
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "2343",
+   "record_name": "Litte Lake Harbor",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6819": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.197,
+   "pt": [
+    -82.99473,
+    44.0482
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "2890",
+   "record_name": "Port Austin",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6820": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.184,
+   "pt": [
+    -83.48752,
+    45.34186
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "526",
+   "record_name": "Presque Isle State Harbor",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6821": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.017,
+   "pt": [
+    -84.722,
+    45.77853
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "2850",
+   "record_name": "Straits State Harbor",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6822": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+   "pin_km": 0.232,
+   "pt": [
+    -84.965,
+    46.76038
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "1724",
+   "record_name": "Whitefish Point State Harbor",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-6972": {
+   "confirmed": "2026-11-09",
+   "decided_by": "Brandon, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://gisdata.in.gov/server/rest/services/Hosted/DNR_Recreation_Sites_RO/FeatureServer/8",
+   "pin_km": 0.203,
+   "pt": [
+    -87.93319,
+    38.13035
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "65",
+   "record_name": "Historic New Harmony"
+  },
+  "US-9182": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Parks%202013/FeatureServer/0",
+   "pin_km": 0.054,
+   "pt": [
+    -97.86093,
+    39.90796
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "958",
+   "record_name": "Pawnee Indian Village",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  },
+  "US-9184": {
+   "confirmed": "2026-11-09",
+   "decided_by": "official-point rule, Nov 9 2026",
+   "kind": "point-circle-100ft",
+   "layer_url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Parks%202013/FeatureServer/0",
+   "pin_km": 0.018,
+   "pt": [
+    -100.17299,
+    39.35454
+   ],
+   "radius_m": 30.48,
+   "read": "saved copy",
+   "record_id": "443",
+   "record_name": "Cottonwood Ranch",
+   "note": "No official boundary on file. Using a 100 ft circle around the agency official point. The real boundary may be larger, so check before you activate."
+  }
+ }
+}

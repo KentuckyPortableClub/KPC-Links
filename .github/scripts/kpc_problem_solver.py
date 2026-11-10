@@ -27,8 +27,19 @@ Verdicts (one per park, with plain-words reasons):
   KEY=us (only the US key for now)   PARKINFO=<dir> (default kpcdata/data/parkinfo)   GEO_CACHE=<dir> (default cache/us)
   OUT=<file stem> (default data/us-key/review/problem-solver)   STATES=<file> (default kpc-us-states.json)
   --selftest   (the 17 Research Bot calls of Nov 7, tests/fixtures/problem-solver-17.json)
+Standing candidate check (check_candidate): pin within 0.5 km, acreage within about 15% of an official figure
+when we have one, whole park vs a piece (same-name parts on the same layer are merged first), land type and agency
+fit, and a record already rejected stays out unless new evidence appears. official_website reads the park's official
+page (from POTA / the key) with robots.txt, a crawl delay, a cache, and the never-touch host list; a name plus
+acreage that agree with the polygon push toward YES, a page that describes a different place or size toward NO.
+A dead or missing site is noted and does not block. Verdicts from the check: YES (auto, signed by this bot rule as
+a recommendation only), NO (with why), or ONLY-PERSON. This file still writes no override.
+
+  --check <csv-or-json>   run the standing check (optional --fetch-site to read official pages)
+  --selftest              the 17 Research Bot calls of Nov 7
+
 Never fails the build: exit 0 (the selftest exits 1 on a wrong verdict)."""
-import glob, gzip, json, math, os, pathlib, re, sys
+import glob, gzip, json, math, os, pathlib, re, sys, unicodedata, urllib.parse, urllib.request
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402  (inside, km_to: even-odd over every ring)
@@ -42,6 +53,58 @@ TYPO_KM = 1.0                 # a one-digit fix that puts the pin within this of
 SMALL_KM = 10.0               # typo patterns are only read on land smaller than this across: on a huge refuge any one-digit
                               # change lands somewhere inside by chance, so it proves nothing
 COORD_MATCH = 0.02            # degrees: one coordinate "matches" the land when it is this close to the land's range (~2 km)
+
+# POTA often stores the WDPA site ID as a Protected Planet (or DOPA Explorer) URL on the park website.
+WDPA_URL_RE = re.compile(
+    r'protectedplanet\.net/([0-9]+)|dopa-explorer\.jrc\.ec\.europa\.eu/wdpa/([0-9]+)', re.I)
+WDPA_ID_KEYS = ('wdpaid', 'wdpa_id', 'wdpa_pid', 'site_id', 'site_pid')
+WDPA_LAYER_MARKS = ('unep-wcmc', 'protectedplanet', 'world_database_of_protected_areas', 'wdpa_leads', 'wdpa_v0')
+
+
+def pota_wdpa_id(park):
+    """The WDPA site ID POTA already stores (explicit field, or the number in a Protected Planet URL)."""
+    park = park or {}
+    for k in ('wdpa_id', 'wdpaid', 'site_id', 'pota_wdpa_id'):
+        v = park.get(k)
+        if v not in (None, '', 0, '0'):
+            try:
+                return int(str(v).strip())
+            except ValueError:
+                pass
+    web = str(park.get('website') or park.get('url') or '')
+    m = WDPA_URL_RE.search(web)
+    if m:
+        return int(m.group(1) or m.group(2))
+    return None
+
+
+def rec_wdpa_ids(rec):
+    """WDPA site IDs carried on a record (official layers often use WDPAID / WDPA_PID; WDPA uses site_id)."""
+    ids = set()
+    blobs = [rec]
+    attrs = rec.get('attrs') or rec.get('properties') or rec.get('a')
+    if isinstance(attrs, dict):
+        blobs.append(attrs)
+    for blob in blobs:
+        if not isinstance(blob, dict):
+            continue
+        for k, v in blob.items():
+            if v in (None, ''):
+                continue
+            kl = re.sub(r'[^a-z0-9]', '', str(k).lower())
+            if kl in ('wdpaid', 'wdpaidid', 'wdpapid', 'siteid', 'sitepid') or kl.endswith('wdpaid'):
+                try:
+                    ids.add(int(str(v).strip()))
+                except ValueError:
+                    pass
+    ids.discard(0)
+    return ids
+
+
+def is_wdpa_rec(rec):
+    layer = str(rec.get('layer_url') or rec.get('layer') or rec.get('source') or rec.get('gsrc') or '')
+    return any(s in layer.lower() for s in WDPA_LAYER_MARKS)
+
 ACRE_RATIO = 3.0              # the outline measured vs the acres the record claims: further apart than this = a person looks
 GENERIC = set('state national wildlife management area forest park recreation special preserve heritage refuge wilderness '
               'blm srma rma nra wma swa nwr sf sp the of and at on in watchable bay river creek lake canyon mesa site sites wwa sra srs nhp nhs'.split())
@@ -539,8 +602,529 @@ def selftest(path=None):
     return bad
 
 
+
+# ---- standing candidate check (one function + one official-website function)
+
+SURE_KM = 0.5
+ACRE_TOL = 0.15
+PIECE_RX = re.compile(
+    r'\b(north|south|east|west|upper|lower|unit|tract|zone|addition|type [ab]|management [ab])\b|'
+    r'\((north|south|east|west)\)', re.I)
+# land-type tokens that should not be mixed
+TYPE_RX = {
+    'hatchery': r'\bhatchery\b',
+    'conservation': r'conservation area|nature reserve|nature preserve',
+    'beach': r'\bbeach\b',
+    'aquatic': r'aquatic reserve|fish habitat',
+    'river': r'wild (and|&) scenic|\bnational wild\b',
+    'wildlife': r'wildlife (area|management|complex|demonstration)',
+    'dam': r'\bdam\b',
+    'airstrip': r'\bairstrip\b|\bairport\b',
+    'reservoir': r'\breservoir\b',
+    'lighthouse': r'\blighthouse\b',
+    'fortress': r'\bfortress\b',
+}
+TYPE_CLASH = {
+    frozenset(('hatchery', 'conservation')),
+    frozenset(('beach', 'aquatic')),
+    frozenset(('beach', 'river')),
+    frozenset(('wildlife', 'river')),
+    frozenset(('airstrip', 'reservoir')),
+    frozenset(('lighthouse', 'fortress')),
+}
+NEVER_HOST = (
+    'ncnhde.natureserve.org',
+    'apps.fs.usda.gov',
+)
+NEVER_SUB = ('33TOOklri9xpic7U',)
+HOLD_HOST = ('services.arcgis.com', 'services1.arcgis.com')  # saved copies only; no live page fetch
+ACRE_RX = re.compile(
+    r'(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+\.\d+|\d+)\s*(acres?|hectares?|\bha\b|km[²2]|sq(?:uare)?\s*km)',
+    re.I)
+COORD_RX = re.compile(r'(?<!\d)([+-]?\d{1,2}\.\d{3,7})\s*[,/ ]\s*([+-]?\d{1,3}\.\d{3,7})')
+MAP_RX = re.compile(r'\b(boundary|boundaries|official map|park map|site map|\.pdf|geospatial|gis|shapefile|kml|kmz|geojson)\b', re.I)
+
+
+def _types(s):
+    t = str(s or '').lower()
+    return {k for k, rx in TYPE_RX.items() if re.search(rx, t)}
+
+
+def _to_acres(n, unit):
+    u = unit.lower().replace('²', '2')
+    if u.startswith('acre'): return n
+    if u in ('hectare', 'hectares', 'ha'): return n * 2.4710538147
+    if 'km' in u: return n * 247.10538147
+    return n
+
+
+def rec_acres(rec):
+    """Acres from the geometry, else a layer acre/hectare attribute."""
+    if rec.get('acres') is not None:
+        try: return float(rec['acres'])
+        except (TypeError, ValueError): pass
+    if rec.get('_r') or rec.get('rings'):
+        r = dict(rec)
+        if rec.get('rings') and not rec.get('_r'): r['_r'] = rec['rings']
+        a = acres(r)
+        if a: return a
+    attrs = rec.get('attrs') or rec.get('a') or {}
+    for k, v in attrs.items():
+        lk = str(k).lower()
+        if not any(s in lk for s in ('acre', 'hect', 'gaz_area', 'gis_area', 'o_area', 'rep_area')): continue
+        try: n = float(str(v).replace(',', ''))
+        except (TypeError, ValueError): continue
+        if n <= 0: continue
+        if 'hect' in lk or lk.endswith('_ha') or 'o_area_ha' in lk or lk in ('gaz_area', 'gis_area') and n < 20000:
+            # gaz_area / gis_area on AU layers are hectares when the number is in that range
+            if 'hect' in lk or lk.endswith('_ha') or 'o_area_ha' in lk or lk in ('gaz_area', 'gis_area'):
+                return n * 2.4710538147
+        if 'acre' in lk: return n
+    return None
+
+
+def _merge_parts(park_name, recs):
+    """If the named record looks like a piece, merge same-name parts from the same layer and recheck."""
+    recs = [r for r in (recs or []) if r]
+    if not recs: return recs, False
+    main = recs[0]
+    name = str(main.get('name') or main.get('record_name') or '')
+    if not PIECE_RX.search(name): return recs, False
+    # a word that marks a piece and is not also in the park name
+    if not any(m and m.group(0).lower() not in park_name.lower() for m in [PIECE_RX.search(name)]):
+        return recs, False
+    layer = (main.get('layer_url') or main.get('layer') or '').rstrip('/')
+    core_p = core(park_name) | core(name)
+    extra = []
+    for r in recs[1:]:
+        if (r.get('layer_url') or r.get('layer') or '').rstrip('/') != layer and layer:
+            continue
+        if not (core(r.get('name') or r.get('record_name')) & core_p):
+            continue
+        extra.append(r)
+    if not extra: return recs, True  # still a piece, nothing to merge
+    rings = []
+    for r in [main] + extra:
+        rings.extend(r.get('_r') or r.get('rings') or [])
+    merged = dict(main)
+    merged['_r'] = rings
+    merged['rings'] = rings
+    merged['name'] = (main.get('name') or '') + ' + ' + ' + '.join(str(r.get('name') or r.get('id') or '') for r in extra)
+    merged['merged_from'] = [main.get('id')] + [r.get('id') for r in extra]
+    ac = acres({'_r': rings}) if rings else None
+    if ac: merged['acres'] = ac
+    return [merged] + [r for r in recs if r is not main and r not in extra], True
+
+
+def official_website(park, rec=None, pin=None, rec_acres_v=None, fetch=False, html=None, url=None):
+    """Read the park's official website (one function). URL from the park row, the key, or api.pota.app.
+    robots.txt, crawl delay, a cache, and the never-touch host list are obeyed. A dead or missing
+    site is noted and does not block. Map/PDF links are returned as leads."""
+    out = {'url': '', 'status': 'none', 'note': '', 'name_fit': None, 'acres_fit': None,
+           'location_fit': None, 'page_acres': None, 'map_leads': [], 'push': None, 'why': ''}
+    url = url or (park or {}).get('website') or (park or {}).get('official_url') or ''
+    if not url and fetch:
+        url = _pota_website((park or {}).get('ref') or (park or {}).get('pota_ref')) or ''
+    out['url'] = url
+    if not url:
+        out['status'] = 'missing'; out['note'] = 'no official website on file'; out['why'] = out['note']
+        return out
+    if html is None and not fetch:
+        out['status'] = 'not-fetched'; out['note'] = 'website on file, not fetched this run'; out['why'] = out['note']
+        return out
+    host = urllib.parse.urlparse(url).netloc.lower()
+    path = urllib.parse.urlparse(url).path or ''
+    if any(h == host or host.endswith('.' + h) for h in NEVER_HOST) or any(s in url for s in NEVER_SUB):
+        out['status'] = 'blocked'; out['note'] = 'never-touch host; page not fetched'; out['why'] = out['note']
+        return out
+    if any(host == h or host.endswith('.' + h) for h in HOLD_HOST):
+        out['status'] = 'blocked'; out['note'] = 'saved-copy host; no live page fetch'; out['why'] = out['note']
+        return out
+    if html is None:
+        html, err = _fetch_site(url)
+        if err:
+            out['status'] = 'dead' if err != 'robots' else 'robots'
+            out['note'] = err; out['why'] = f'official page not readable ({err}); does not block'
+            return out
+    text = html
+    try:
+        sys.path.insert(0, str(pathlib.Path(os.environ.get('KPCDATA') or ROOT.parent / 'KPC-Data') / '.github/scripts'))
+        import kpc_manners as _KM  # noqa: E402
+        if '<html' in html[:400].lower() or '<!doctype' in html[:400].lower():
+            text = _KM.page_text(html)
+            out['map_leads'] = [u for u, lab in _KM.links_in(html, url) if MAP_RX.search(u + ' ' + lab)][:12]
+        else:
+            out['map_leads'] = [u for u, lab in _KM.links_in(html, url) if MAP_RX.search(u + ' ' + lab)][:12]
+    except Exception:
+        text = re.sub(r'<[^>]+>', ' ', html)
+        out['map_leads'] = [urllib.parse.urljoin(url, m) for m in re.findall(r'href=["\']([^"\']+)["\']', html, re.I)
+                            if MAP_RX.search(m)][:12]
+    park_name = str((park or {}).get('name') or (park or {}).get('park_name') or '')
+    rec_name = str((rec or {}).get('name') or (rec or {}).get('record_name') or '')
+    rec_local = str((rec or {}).get('name_local') or (rec or {}).get('name_ja') or '')
+    # name tokens keep letters in every script (Japanese / Arabic pages otherwise look empty)
+    def _tok(s):
+        s = unicodedata.normalize('NFKC', str(s or '')).lower().replace('-', ' ')
+        s = re.sub(r'[^\w]+', ' ', s, flags=re.UNICODE)
+        return {x for x in s.split() if x not in GENERIC and len(x) > 1}
+    path = urllib.parse.urlparse(url or '').path.replace('/', ' ').replace('_', ' ').replace('.html', ' ').replace('.php', ' ')
+    title = (text or '')[:20000] + ' ' + ' '.join(w for w in path.replace('-', ' ').split() if len(w) > 3)
+    pc, rc, lc, tc = _tok(park_name), _tok(rec_name), _tok(rec_local), _tok(title)
+    name_ok = bool(tc and ((pc and (tc & pc)) or (rc and (tc & rc)) or (lc and (tc & lc))))
+    out['name_fit'] = name_ok
+    # acreage on the page
+    found = []
+    for m in ACRE_RX.finditer(text[:20000]):
+        try: n = float(m.group(1).replace(',', ''))
+        except ValueError: continue
+        found.append(_to_acres(n, m.group(2)))
+    # pick the figure closest to the record acres when we have one, else the first reasonable one
+    page_ac = None
+    if found:
+        if rec_acres_v:
+            page_ac = min(found, key=lambda a: abs(a - rec_acres_v))
+        else:
+            page_ac = found[0]
+    out['page_acres'] = page_ac
+    if page_ac and rec_acres_v and rec_acres_v > 0:
+        out['acres_fit'] = abs(page_ac - rec_acres_v) / rec_acres_v <= ACRE_TOL
+    # coordinates on the page vs the pin
+    if pin and pin[0] is not None:
+        for m in COORD_RX.finditer(text[:20000]):
+            a, b = float(m.group(1)), float(m.group(2))
+            # lat,lon or lon,lat
+            pairs = [(a, b)] if abs(a) <= 90 else []
+            if abs(b) <= 90: pairs.append((b, a))
+            for la, lo in pairs:
+                k = math.cos(math.radians(pin[0]))
+                dkm = math.hypot((lo - pin[1]) * 111.32 * k, (la - pin[0]) * 110.57)
+                if dkm <= 10:
+                    out['location_fit'] = True
+                    break
+            if out['location_fit']:
+                break
+        if out['location_fit'] is None and COORD_RX.search(text[:20000]):
+            out['location_fit'] = False
+    why = []
+    if name_ok: why.append('official page name fits')
+    elif text: why.append('official page name does not clearly fit')
+    if out['acres_fit'] is True: why.append(f'page acres {page_ac:,.0f} agree with the polygon')
+    elif out['acres_fit'] is False: why.append(f'page acres {page_ac:,.0f} differ from the polygon ({rec_acres_v:,.0f})')
+    if out['location_fit'] is True: why.append('page coordinates fit the pin')
+    elif out['location_fit'] is False: why.append('page coordinates do not fit the pin')
+    if out['map_leads']: why.append(f'{len(out["map_leads"])} map or PDF lead(s) on the page')
+    if name_ok and out['acres_fit'] is True:
+        out['push'] = 'yes'
+    elif (out['acres_fit'] is False and rec_acres_v and page_ac and
+          (page_ac / rec_acres_v > 3 or rec_acres_v / page_ac > 3)) or out['location_fit'] is False:
+        out['push'] = 'no'
+    elif (text and not name_ok and pc and tc and not (tc & pc) and not (lc and (tc & lc))
+          and any(all(ord(c) < 128 for c in w) for w in tc)
+          and any(all(ord(c) < 128 for c in w) for w in (pc | rc))):
+        # a Latin page name that shares no tokens is a different place; a page in another
+        # script with no Latin name overlap is unclear, not a block
+        out['push'] = 'no'
+    out['status'] = 'ok'
+    out['why'] = '; '.join(why) or 'official page read'
+    out['note'] = out['why']
+    return out
+
+
+def _pota_website(ref):
+    """Website field from api.pota.app park info (allowed). Cached. Never used to move a pin."""
+    if not ref: return ''
+    cache = pathlib.Path(os.environ.get('POTA_WEB_CACHE') or ROOT / 'cache/official-pages')
+    cache.mkdir(parents=True, exist_ok=True)
+    f = cache / f'pota-{ref}.json'
+    try:
+        if f.exists():
+            d = json.loads(f.read_text(encoding='utf-8'))
+            return d.get('website') or d.get('parkinfoWebsite') or ''
+    except Exception:
+        pass
+    url = 'https://api.pota.app/park/' + urllib.parse.quote(str(ref))
+    # robots + manners if available
+    body, err = _fetch_site(url)
+    if err or not body: return ''
+    try:
+        d = json.loads(body)
+    except Exception:
+        return ''
+    try: f.write_text(json.dumps(d), encoding='utf-8')
+    except Exception: pass
+    return d.get('website') or d.get('parkinfoWebsite') or ''
+
+
+def _fetch_site(url):
+    """Polite fetch: manners when present, else a robots.txt check + 2 s gap. Returns (text, err)."""
+    kpdata = pathlib.Path(os.environ.get('KPCDATA') or ROOT.parent / 'KPC-Data')
+    sys.path.insert(0, str(kpdata / '.github/scripts'))
+    os.environ.setdefault('KPC_MANNERS_CACHE', str(ROOT / 'cache/official-pages'))
+    os.environ.setdefault('KPC_MANNERS_CACHE_ALL', '1')
+    try:
+        import kpc_manners as KM  # noqa: E402
+        M = KM.Manners('official park page check')
+        st, _headers, body, _final = M.get(url)
+        if st == 200 and body:
+            if isinstance(body, bytes):
+                if body[:5] == b'%PDF-':
+                    return KM.pdf_text(body, pages=3), None
+                return body.decode('utf-8', 'replace'), None
+            return str(body), None
+        if KM.robots_block(st) or st == 'robots':
+            return None, 'robots'
+        return None, f'http {st}'
+    except Exception as e:  # noqa: BLE001
+        # last-resort: do not fetch if we cannot check robots
+        return None, f'not fetched ({type(e).__name__})'
+
+
+def check_candidate(park, recs, official_acres=None, earlier_no=None, fetch_site=False, page_html=None):
+    """Standing check for every candidate. park = {ref, name, pin=(lat,lon), website?, kind?, agency?}.
+    recs = list of records {id, name, rings/_r, acres?, layer_url?, attrs?, agency?, type?}.
+    Official acres may also come from a record attribute. YES is a bot-rule recommendation only
+    (this function writes no override)."""
+    park = park or {}
+    recs = list(recs or [])
+    ref = park.get('ref') or park.get('pota_ref') or ''
+    name = park.get('name') or park.get('park_name') or ''
+    pin = park.get('pin')
+    why = []
+    recs, was_piece = _merge_parts(name, recs)
+    park_wid = pota_wdpa_id(park)
+    match_how = None
+    if park_wid is not None and recs:
+        official_id, wdpa_id_hits = [], []
+        for r in recs:
+            if park_wid in rec_wdpa_ids(r):
+                (official_id if not is_wdpa_rec(r) else wdpa_id_hits).append(r)
+        if official_id:
+            recs = official_id + [r for r in recs if r not in official_id]
+            match_how = 'official_wdpa_id'
+            why.append(f'official record carries the same WDPA ID ({park_wid}) as POTA')
+        elif wdpa_id_hits:
+            recs = wdpa_id_hits + [r for r in recs if r not in wdpa_id_hits]
+            match_how = 'pota_wdpa_id'
+            why.append(f'matched by the WDPA site ID POTA already stores ({park_wid})')
+    rec = recs[0] if recs else None
+    if not rec:
+        return {'ref': ref, 'verdict': 'ONLY-PERSON', 'signed_by': None, 'why': 'no candidate record', 'merged': False}
+    rid = str(rec.get('id') or rec.get('record_id') or '')
+    rname = str(rec.get('name') or rec.get('record_name') or '')
+    earlier_no = {str(x) for x in (earlier_no or []) if x is not None}
+    # website is fetched later; earlier-NO is decided after the site can count as new evidence
+
+    # pin
+    dkm = None
+    rings_ = rec.get('_r') or rec.get('rings') or []
+    if pin and rings_:
+        dkm = KM.km_to(pin[0], pin[1], {'rings': rings_})
+    elif pin and rec.get('pt'):
+        k = math.cos(math.radians(pin[0]))
+        dkm = round(math.hypot((rec['pt'][0] - pin[1]) * 111.32 * k, (rec['pt'][1] - pin[0]) * 110.57), 3)
+    if pin and dkm is None and not rec.get('pt') and not rings_:
+        why.append('no shape or official point to test the pin against')
+    elif pin and dkm is not None and dkm > SURE_KM:
+        return {'ref': ref, 'verdict': 'NO', 'signed_by': None,
+                'why': f'pin is {dkm} km from the record (over {SURE_KM} km)', 'pin_km': dkm, 'record_id': rid, 'merged': bool(rec.get('merged_from'))}
+    elif pin and dkm == 0:
+        why.append('pin is inside the record')
+    elif pin and dkm is not None:
+        why.append(f'pin is {dkm} km from the record (within {SURE_KM} km)')
+
+    # acres
+    rac = rec_acres(rec)
+    off = official_acres
+    if off is None:
+        off = park.get('official_acres')
+    acres_ok = None
+    if off and rac and off > 0:
+        acres_ok = abs(rac - off) / off <= ACRE_TOL
+        if acres_ok:
+            why.append(f'record acres {rac:,.0f} agree with official {off:,.0f} (within 15%)')
+        else:
+            why.append(f'record acres {rac:,.0f} vs official {off:,.0f} (off by more than 15%)')
+
+    # whole vs piece
+    piece = was_piece and not rec.get('merged_from')
+    if rec.get('merged_from'):
+        why.append('same-name parts on the same official layer were merged')
+        if acres_ok:
+            piece = False
+        elif off and rac and acres_ok is False:
+            piece = True
+            why.append('even after the merge, the acreage still does not cover the official park')
+    elif was_piece or (PIECE_RX.search(rname) and not any(w in name.lower() for w in re.findall(r'(north|south|east|west|unit|tract|zone)', rname.lower()))):
+        piece = True
+        why.append(f'record looks like a piece of the park ({rname})')
+
+    # land type / agency
+    pt, rt = _types(name + ' ' + str(park.get('kind') or '')), _types(rname + ' ' + str(rec.get('type') or rec.get('kind') or ''))
+    clash = None
+    for pair in TYPE_CLASH:
+        if pair <= (pt | rt) and pt & pair and rt & pair and not (pt & rt & pair):
+            # both sides of the pair appear, but not the same token on both
+            if (pt & pair) != (rt & pair):
+                clash = tuple(sorted(pair))
+                break
+    # simpler: types on park vs record share a clash pair and do not share that token
+    if clash is None and pt and rt and not (pt & rt):
+        for pair in TYPE_CLASH:
+            if (pt & pair) and (rt & pair) and (pt & pair) != (rt & pair):
+                clash = tuple(sorted(pair)); break
+    if clash:
+        why.append(f'land type does not fit ({clash[0]} vs {clash[1]})')
+    pagency = str(park.get('agency') or park.get('kind') or '').lower()
+    ragency = str(rec.get('agency') or rec.get('owner') or rec.get('mang') or '').lower()
+    agency_clash = False
+    if 'blm' in name.lower() and ragency and 'blm' not in ragency and any(s in ragency for s in ('fish', 'idfg', 'wdfw', 'state')):
+        agency_clash = True
+        why.append('agency does not fit (park is BLM, record is not)')
+
+    # official website (does not block when dead or missing)
+    site = official_website(park, rec, pin, rec_acres_v=rac, fetch=fetch_site, html=page_html, url=park.get('website'))
+    if site.get('why'):
+        why.append(site['why'])
+
+    if rid and rid in earlier_no:
+        # new evidence: a merge that now covers official acres, or a website that agrees
+        new_ev = bool(rec.get('merged_from')) or site.get('push') == 'yes'
+        if not new_ev:
+            return {'ref': ref, 'name': name, 'verdict': 'NO', 'signed_by': None,
+                    'why': f'record {rid} was already rejected and no new evidence is on hand' + ('; ' + '; '.join(why) if why else ''),
+                    'record_id': rid, 'record_name': rname, 'record_acres': rec_acres(rec),
+                    'merged': bool(rec.get('merged_from')), 'site': site}
+
+    # verdict
+    if clash or agency_clash:
+        verd = 'NO'
+    elif piece and not rec.get('merged_from'):
+        verd = 'ONLY-PERSON' if acres_ok is not False else 'NO'
+    elif acres_ok is False:
+        verd = 'ONLY-PERSON' if site.get('push') == 'yes' else 'NO'
+    elif dkm is None and not pin:
+        verd = 'ONLY-PERSON'
+        why.append('no POTA pin, so a person compares the outline')
+    elif site.get('push') == 'no' and not (acres_ok and (dkm == 0 or (dkm is not None and dkm <= SURE_KM))):
+        verd = 'NO'
+    elif site.get('push') == 'no' and acres_ok is False:
+        verd = 'NO'
+    elif (dkm is not None and dkm <= SURE_KM) and (acres_ok is True or (off is None and not piece and not clash)):
+        # official acres missing: only YES when type fits, not a piece, pin ok, and the site does not push NO
+        if off is None and site.get('push') != 'yes':
+            verd = 'ONLY-PERSON'
+            why.append('no official acreage to compare, so a person checks')
+        else:
+            verd = 'YES'
+    else:
+        verd = 'ONLY-PERSON'
+
+    # website can upgrade or downgrade when the rest was close
+    # a page that matches the polygon cannot override a known official-acre miss, and WDPA is never official
+    layer = str(rec.get('layer_url') or rec.get('layer') or rec.get('source') or '')
+    wdpa = is_wdpa_rec(rec)
+    if wdpa:
+        why.append('WDPA / Protected Planet is never official')
+        if verd == 'YES':
+            verd = 'ONLY-PERSON'
+    if (verd == 'ONLY-PERSON' and site.get('push') == 'yes' and dkm is not None and dkm <= SURE_KM
+            and not clash and not piece and acres_ok is not False and not wdpa):
+        verd = 'YES'
+        why.append('official page name and acreage agree; bot rule can take this')
+    if verd == 'YES' and site.get('push') == 'no':
+        verd = 'NO'
+        why.append('official page describes a different place or size')
+
+    signed = 'candidate-check rule, Nov 9 2026' if verd == 'YES' else None
+    out = {'ref': ref, 'name': name, 'verdict': verd, 'signed_by': signed, 'why': '; '.join(why) or verd,
+            'pin_km': dkm, 'record_id': rid, 'record_name': rname, 'record_acres': rac, 'official_acres': off,
+            'merged': bool(rec.get('merged_from')), 'piece': bool(piece), 'site': site,
+            'wdpa_id': park_wid, 'match_how': match_how}
+    return out
+
+
+def run_check(path, fetch_site=False, out_dir=None):
+    """Run check_candidate on a CSV or JSON of candidates (the LOOK list or a research-inbox results file)."""
+    path = pathlib.Path(path)
+    rows = []
+    if path.suffix.lower() == '.json':
+        data = json.loads(path.read_text(encoding='utf-8'))
+        raw = data.get('rows') or data.get('parks') or (data if isinstance(data, list) else [])
+        if isinstance(raw, dict):
+            raw = [{'ref': k, **(v if isinstance(v, dict) else {'v': v})} for k, v in raw.items()]
+        for r in raw:
+            recs = r.get('records') or r.get('recs')
+            if recs:
+                rec_list = recs
+            else:
+                rec_list = [{'id': r.get('record_id') or r.get('file_record_id'), 'name': r.get('record_name'),
+                   'layer_url': r.get('layer_url'), 'acres': r.get('record_acres') or r.get('computed_acres'),
+                   'agency': r.get('agency'), 'type': r.get('record_type'),
+                   'rings': r.get('rings'), '_r': r.get('_r'), 'pt': r.get('official_pt') or r.get('pt')}]
+            park = {'ref': r.get('ref') or r.get('pota_ref'), 'name': r.get('name') or r.get('park_name'),
+                    'pin': r.get('pin'), 'website': r.get('website'), 'kind': r.get('pota_kind') or r.get('kind'),
+                    'official_acres': r.get('official_acres')}
+            earlier = r.get('earlier_no') or r.get('rejected_ids') or []
+            if isinstance(earlier, dict): earlier = [earlier.get('id')] if earlier.get('id') else []
+            rows.append((park, rec_list, earlier, r))
+    else:
+        import csv
+        with path.open(encoding='utf-8', newline='') as f:
+            for r in csv.DictReader(f):
+                rec = {'id': r.get('record_id'), 'name': r.get('record_name'),
+                       'acres': r.get('record_acres'), 'agency': r.get('agency')}
+                # official acres may be a sentence; try first number
+                off = None
+                m = re.search(r'([\d,.]+)', r.get('official_acres') or '')
+                rec_ac = None
+                m2 = re.search(r'([\d,.]+)', str(r.get('record_acres') or ''))
+                try:
+                    if m2: rec['acres'] = float(m2.group(1).replace(',', ''))
+                    if m: off = float(m.group(1).replace(',', ''))
+                except ValueError: pass
+                # unit in official text: ha vs acres
+                ot = (r.get('official_acres') or '').lower()
+                if off and (' ha' in ot or 'hectare' in ot) and 'acre' not in ot.split('ha')[0][-12:]:
+                    off = off * 2.4710538147
+                pin = r.get('pin')
+                if isinstance(pin, str) and pin.startswith('['):
+                    try: pin = json.loads(pin)
+                    except Exception: pin = None
+                park = {'ref': r.get('ref'), 'name': r.get('name'), 'pin': pin, 'website': r.get('website'),
+                        'official_acres': off, 'kind': r.get('pota_kind')}
+                earlier = [x for x in re.findall(r'\d+', r.get('earlier_no') or '')]
+                rows.append((park, [rec], earlier, r))
+    out = []
+    for park, recs, earlier, raw in rows:
+        # skip empty refs
+        if not park.get('ref'): continue
+        out.append(check_candidate(park, recs, official_acres=park.get('official_acres'),
+                                   earlier_no=earlier, fetch_site=fetch_site))
+    n = {}
+    for x in out: n[x['verdict']] = n.get(x['verdict'], 0) + 1
+    dest = pathlib.Path(out_dir or path.with_name(path.stem + '-solver-check'))
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    json.dump({'about': 'standing candidate check (recommendations only; no override written)',
+               'counts': n, 'parks': out}, open(str(dest) + '.json', 'w', encoding='utf-8'), indent=1)
+    lines = [f"# Candidate check: {path.name}", '',
+             ', '.join(f'**{v}** {k}' for k, v in sorted(n.items())) or 'No rows.', '']
+    for x in out:
+        lines.append(f"- **{x.get('ref')}** {x.get('name') or ''}: **{x['verdict']}** — {x['why']}")
+    open(str(dest) + '.md', 'w', encoding='utf-8').write('\n'.join(lines) + '\n')
+    print(f'candidate check: {len(out)} parks; ' + ', '.join(f'{k} {v}' for k, v in sorted(n.items())))
+    print('wrote', str(dest) + '.json', 'and', str(dest) + '.md')
+    return out
+
+
 if __name__ == '__main__':
     if '--selftest' in sys.argv: sys.exit(1 if selftest() else 0)
+    if '--check' in sys.argv:
+        i = sys.argv.index('--check')
+        src = sys.argv[i + 1] if i + 1 < len(sys.argv) else ''
+        if not src:
+            print('usage: kpc_problem_solver.py --check <csv-or-json> [--fetch-site]'); sys.exit(2)
+        fetch = '--fetch-site' in sys.argv
+        run_check(src, fetch_site=fetch); sys.exit(0)
     try: run()
     except Exception as e:  # noqa: BLE001
         print(f'::warning title=Problem solver::stopped ({type(e).__name__}: {str(e)[:160]}); the key build is not affected')

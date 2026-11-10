@@ -211,11 +211,12 @@
     })(), 12000, []);
     return outlineP[ref];
   }
-  /* ---------- state / province layers next to PAD-US / CPCAD (Brandon Nov 8 4:31 PM CST, t764u: "for example GA it searches pad
-     and state level that way it dont miss many") ----------
+  /* ---------- state / province layers next to PAD-US / CPCAD ----------
      data/maprep-state-layers.json (built by hand with .github/scripts/kpc_maprep_state_layers.py) lists the layers the answer keys use for
-     each state or province, with only the ones this tool is set up to use (ok: true). Kentucky is the model:
-     every place from every source gets the same checks. Each layer is one query, at most 4 at a time, each with a time limit. */
+     each state or province, with only the ones this tool is set up to query live (ok: true). Kentucky is the model:
+     every place from every source gets the same checks. Each layer is one query, at most 4 at a time, each with a time limit.
+     Hosts that may be used only as a saved copy (services.arcgis.com, services1.arcgis.com, apps.fs.usda.gov) are labelled
+     saved copy and are never queried live. */
   const FACT_KEYS = ['owner', 'manager', 'agency', 'designation', 'acres', 'website'];
   let SLP = null;
   function stateLayers(code) { SLP = SLP || within(jget('data/maprep-state-layers.json?v=' + new Date().toISOString().slice(0, 10)), 15000, null).then(j => (j && j.areas) || {});
@@ -225,7 +226,7 @@
     const la = r.length ? r[0][1] : 0; const km2 = Math.abs(s2 / 2) * 111.32 * 111.32 * Math.cos(la * Math.PI / 180); a += (k ? -1 : 1) * km2 * 247.105; })); return Math.max(0, a); }
   function slRec(L, f) {
     const a = f.properties || {}, id = [f.id, a.OBJECTID, a.objectid, a.ObjectID, a.OBJECTID_1, a.FID].find(v => v != null);
-    /* Nov 8 (t766u): the layer's own owner / manager / agency / designation / acres / website fields (data/maprep-state-layers.json 'facts') */
+    /* the layer's own owner / manager / agency / designation / acres / website fields (data/maprep-state-layers.json 'facts') */
     const F = L.facts || {}, facts = {};
     FACT_KEYS.forEach(k => { const fl = F[k], v = fl != null && a[fl] != null ? String(a[fl]).trim() : ''; if (v && !/^(null|none|n\/?a|unknown|unk|-|0)$/i.test(v)) facts[k] = { v, src: L.label, field: fl }; });
     if (!facts.manager && facts.agency) facts.manager = Object.assign({}, facts.agency);
@@ -233,8 +234,14 @@
     return { kind: 'state', a, facts, id: L.pre + id, name: capName(a[L.field]) || L.label, manager: facts.manager ? facts.manager.v : L.label, owner: facts.owner ? facts.owner.v : '', designation: facts.designation ? facts.designation.v : '', acc: '', cat: '', acres: ac > 0 ? ac : geomAcres(f.geometry),
       access: 'not stated in this layer (check the agency)', protection: '', geom: f.geometry, source: L.label, layer: L.pre, link: L.url + '?objectIds=' + encodeURIComponent(id) + '&outFields=*&f=html' };
   }
+  const SAVED_ONLY_HOSTS = /^(?:www\.)?(?:services\.arcgis\.com|services1\.arcgis\.com|apps\.fs\.usda\.gov)$/i;
+  function isSavedCopy(L) {
+    if (!L) return false;
+    if (L.live === false || L.read === 'saved copy') return true;
+    try { return SAVED_ONLY_HOSTS.test(new URL(L.url).hostname); } catch (e) { return false; }
+  }
   async function slQuery(L, params, ms) {
-    if (BANNED.test(L.url) || !/^https:\/\//.test(L.url)) throw new Error('not an allowed source');
+    if (isSavedCopy(L) || BANNED.test(L.url) || !/^https:\/\//.test(L.url)) throw new Error('not an allowed source');
     const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 25000);
     try { const r = await fetch(L.url + '?' + new URLSearchParams(Object.assign({ f: 'geojson', outSR: 4326, outFields: '*', returnGeometry: true, maxAllowableOffset: 0.0008, geometryPrecision: 5 }, params)), { signal: c.signal });
       if (!r.ok) throw new Error('HTTP ' + r.status); const j = await r.json(); if (j.error) throw new Error(j.error.message || 'query error');
@@ -262,7 +269,7 @@
   }
   /* every ok layer for the place, 4 at a time: [{L, recs, err}] */
   async function slSearch(code, kind, arg) {
-    const LS = (await stateLayers(code)).filter(L => L.ok && L.field && !BANNED.test(L.url) && (L.local || /^https:\/\//.test(L.url)));
+    const LS = (await stateLayers(code)).filter(L => L.ok && L.field && !isSavedCopy(L) && !BANNED.test(L.url) && (L.local || /^https:\/\//.test(L.url)));
     const params = L => kind === 'state' ? { where: '1=1', resultRecordCount: 1000 }
       : kind === 'pin' ? (() => { const d = 6 / 111, dx = d / Math.max(0.2, Math.cos(arg[0] * Math.PI / 180)); return { where: '1=1', geometry: [arg[1] - dx, arg[0] - d, arg[1] + dx, arg[0] + d].join(','), geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects' }; })()
       : (() => { const w = norm(arg).split(' ').filter(x => x.length > 2).slice(0, 2); return { where: w.length ? 'UPPER(' + L.field + ") LIKE '%" + w.join('%').toUpperCase().replace(/'/g, '%') + "%'" : '1=0' }; })();
@@ -428,7 +435,7 @@
     const padSrc = places.find(p => p.kind !== 'state'), st = srcStats(places), padLabel = padSrc ? padSrc.source : (src === 'CPCAD' ? 'CPCAD, December 2025 edition' : 'USGS PAD-US 4.0');
     stLine(padLabel + ': ' + (padErr ? 'did not answer (' + padErr + ')' : (st.by[padLabel] || 0) + ' places'), !padErr);
     S.out.forEach(o => stLine(o.L.label + ': ' + (o.err ? 'did not answer (' + o.err + ')' : (st.by[o.L.label] || 0) + ' places' + (o.recs.length >= 1000 ? ' (first 1,000 read)' : '')), !o.err));
-    /* skipped layers stay silent on the page (Brandon t777u) */
+    /* skipped layers stay silent on the page */
     stLine('Same land in both lists: ' + st.both + ' \u00b7 only in ' + (src === 'CPCAD' ? 'CPCAD' : 'PAD-US') + ': ' + st.padOnly + ' \u00b7 only in a state layer: ' + st.stateOnly, true);
     W.KPCResearch && (W.KPCResearch.lastStats = Object.assign({ layers: S.out.map(o => ({ label: o.L.label, recs: o.recs.length, err: o.err })), skipped: S.skipped.map(L => ({ label: L.label })), padErr }, st));
   }
