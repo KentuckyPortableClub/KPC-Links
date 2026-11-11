@@ -1954,20 +1954,20 @@
    "areas": [
     "US-FL"
    ],
-   "expected_count": 188,
+   "expected_count": 77144,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 0,
+   "matched": 84,
    "name_fields": [
     "PROJECT_NAME"
    ],
-   "queued": 9,
-   "read_date": "2026-11-10",
+   "queued": 288,
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
-   "source_count": 189,
+   "source_count": 77144,
    "url": ""
   },
   "US-FL.sgflg": {

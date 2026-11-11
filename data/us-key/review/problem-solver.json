@@ -2,7 +2,8 @@
  "about": "recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)",
  "counts": {
   "pin wrong": 86,
-  "needs a person": 73,
+  "needs a person": 74,
+  "land wrong": 1,
   "wrong state": 1,
   "sliver": 2
  },
@@ -692,6 +693,28 @@
    ]
   },
   {
+   "park": "US-12126",
+   "name": "Stormwater Treatment Area 5/6 State Conservation Area",
+   "type": "State Conservation Area",
+   "state": "US-FL",
+   "verdict": "needs a person",
+   "confidence": "low",
+   "recommend": "a person looks (nothing changed)",
+   "reasons": [
+    "the pin is next to the held sgflf26301 on the saved outline, so the key's 0.02 km came from its coarse working copy; a person checks the held record"
+   ],
+   "records": [
+    {
+     "id": "sgflf26301",
+     "name": "Stormwater Treatment Areas,Everglades Agricultural Area Taxing District",
+     "points": 8,
+     "measured_ac": 8842.5,
+     "claimed_ac": 8884.28,
+     "km": 0.02
+    }
+   ]
+  },
+  {
    "park": "US-3660",
    "name": "Suwannee River Wilderness State Trail",
    "type": "State Trail",
@@ -711,6 +734,65 @@
      "measured_ac": 68.8,
      "claimed_ac": 74.04,
      "km": 14.15
+    }
+   ]
+  },
+  {
+   "park": "US-6327",
+   "name": "Tenoroc Wildlife Area",
+   "type": "Wildlife Area",
+   "state": "US-FL",
+   "verdict": "land wrong",
+   "confidence": "high",
+   "recommend": "join 191721 (Tenoroc Fish Management Area) and drop the held sgflf10761, sgflf8115, sgflf5903, sgflf5998, sgflf5999",
+   "reasons": [
+    "the POTA pin is inside 191721 (Tenoroc Fish Management Area, ~7,528 ac)",
+    "the held sgflf10761 (Tenoroc State Reserve) is 100.5 km away (key): a different piece of land",
+    "the held sgflf8115 (Tenoroc Fish Management Area) is 100.5 km away (key): a different piece of land",
+    "the held sgflf5903 (Tenoroc Fish Management Area) is 100.5 km away (key): a different piece of land",
+    "the held sgflf5998 (Tenoroc Fish Management Area) is 100.5 km away (key): a different piece of land",
+    "the held sgflf5999 (Tenoroc Fish Management Area) is 100.5 km away (key): a different piece of land"
+   ],
+   "records": [
+    {
+     "id": "sgflf10761",
+     "name": "Tenoroc State Reserve",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgflf8115",
+     "name": "Tenoroc Fish Management Area",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgflf5903",
+     "name": "Tenoroc Fish Management Area",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgflf5998",
+     "name": "Tenoroc Fish Management Area",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
+    },
+    {
+     "id": "sgflf5999",
+     "name": "Tenoroc Fish Management Area",
+     "points": null,
+     "measured_ac": null,
+     "claimed_ac": null,
+     "km": null
     }
    ]
   },
@@ -3844,15 +3926,15 @@
   }
  ],
  "why_counts": {
-  "PERSON_NO": 329,
+  "PERSON_NO": 328,
   "LINEAR": 64,
-  "SUB_UNIT_OF_BROADER": 530,
-  "LAYER_GAP": 184,
+  "SUB_UNIT_OF_BROADER": 531,
+  "LAYER_GAP": 182,
   "POINT_FEATURE": 213,
-  "NAME_ALIAS": 57,
+  "NAME_ALIAS": 58,
   "PIN_FAR_SAME_NAME": 13,
   "BORDER": 32,
-  "HELD_CHECK": 8,
+  "HELD_CHECK": 9,
   "SHARED_RECORD": 3,
   "UNKNOWN": 1
  },
@@ -5165,16 +5247,16 @@
    "ref": "US-12123",
    "state": "US-FL",
    "name": "Oak Creek, No Name Slough and Starvation Slough State Conservation Area",
-   "code": "LAYER_GAP",
-   "why": "no record found, and the saved copy of this state is short (5,198 of 21,993 records)",
-   "next_step": "refill the saved copy (master step), then rebuild"
+   "code": "SUB_UNIT_OF_BROADER",
+   "why": "the pin is inside sgflf67864 (Kissimmee River), a bigger area with another name",
+   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
    "ref": "US-12124",
    "state": "US-FL",
    "name": "Harold A. Campbell Public Use and STA 3/4 State Conservation Area",
    "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside 190265 (Stormwater Treatment Areas), a bigger area with another name",
+   "why": "the pin is inside sgflf25493 (Everglades Agricultural Area Taxing District,Stormwater Treatment Areas), a bigger area with another name",
    "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
@@ -5182,24 +5264,24 @@
    "state": "US-FL",
    "name": "Seaboard Marsh, Telex Marsh and Yates Marsh State Conservation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and the saved copy of this state is short (5,198 of 21,993 records)",
-   "next_step": "refill the saved copy (master step), then rebuild"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12126",
    "state": "US-FL",
    "name": "Stormwater Treatment Area 5/6 State Conservation Area",
    "code": "PERSON_NO",
-   "why": "a person already said NO to 190265 (Stormwater Treatment Areas) (overrides.json)",
+   "why": "a person already said NO to the record(s) found for this park (overrides.json)",
    "next_step": "nothing to do unless new evidence appears; a person re-opens it with new evidence"
   },
   {
    "ref": "US-12130",
    "state": "US-FL",
    "name": "Nubbin Slough Stormwater Treatment Area State Conservation Area",
-   "code": "LAYER_GAP",
-   "why": "no record found, and the saved copy of this state is short (5,198 of 21,993 records)",
-   "next_step": "refill the saved copy (master step), then rebuild"
+   "code": "NAME_ALIAS",
+   "why": "sgflf2894 (Nubbin Slough STA) looks like the same land under another name",
+   "next_step": "a person decides whether to approve an alias row (park name = record name); nothing is applied automatically"
   },
   {
    "ref": "US-12132",
@@ -5213,9 +5295,9 @@
    "ref": "US-12134",
    "state": "US-FL",
    "name": "A-1 Flow Equalization Basin State Conservation Area",
-   "code": "LAYER_GAP",
-   "why": "no record found, and the saved copy of this state is short (5,198 of 21,993 records)",
-   "next_step": "refill the saved copy (master step), then rebuild"
+   "code": "SUB_UNIT_OF_BROADER",
+   "why": "the pin is inside sgflf11984 (Everglades Agricultural Storage Reservoirs,Everglades Agricultural Area Taxing District,Stormwater T), a bigger area with another name",
+   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
    "ref": "US-3621",
@@ -5234,20 +5316,20 @@
    "next_step": "a person verifies the held record: keep it with an overrides.json join row, or find a better record. The POTA pin is never moved."
   },
   {
-   "ref": "US-6281",
+   "ref": "US-6327",
    "state": "US-FL",
-   "name": "Loxahatchee River National Wild and Scenic River",
-   "code": "PERSON_NO",
-   "why": "a person already said NO to fnl1808 (Loxahatchee River Park) (overrides.json)",
-   "next_step": "nothing to do unless new evidence appears; a person re-opens it with new evidence"
+   "name": "Tenoroc Wildlife Area",
+   "code": "HELD_CHECK",
+   "why": "the join check held this join: the nearest part of the joined outline is 100.5 km from the POTA pin (over 15 km)",
+   "next_step": "a person verifies the held record: keep it with an overrides.json join row, or find a better record. The POTA pin is never moved."
   },
   {
    "ref": "US-7374",
    "state": "US-FL",
    "name": "Wysong Park State Conservation Area",
-   "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside sgflf11610 (Wysong Lock And Dam), a bigger area with another name",
-   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
+   "code": "LAYER_GAP",
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7475",
@@ -5270,7 +5352,7 @@
    "state": "US-FL",
    "name": "Choctawhatchee & Holmes Creek State Conservation Area",
    "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside sgflf794 (MONY), a bigger area with another name",
+   "why": "the pin is inside sgflf21578 (MONY), a bigger area with another name",
    "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
@@ -5326,7 +5408,7 @@
    "state": "US-FL",
    "name": "Horse Creek State Conservation Area",
    "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside sgflf13505 (Lake Marion Creek Horseshoe Scrub Tract), a bigger area with another name",
+   "why": "the pin is inside sgflg37 (Lake Marion Creek Wildlife Management Area), a bigger area with another name",
    "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {

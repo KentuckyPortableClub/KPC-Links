@@ -1,10 +1,289 @@
 ref,name,lat,lon,why,candidates
-US-0007,Biscayne Bay National Park,25.4643,-80.3353,a same-name outline is nearby but the pin is outside it,"Biscayne Coastal Wetlands,Biscayne Bay Coastal Wetlands"
-US-0245,Lake Wales Ridge Wildlife Management Area,27.5312,-81.4056,a same-name outline is nearby but the pin is outside it,Lake Wales Ridge Ecosystem
-US-12129,Shingle Creek State Conservation Area,28.3686,-81.4371,a same-name outline is nearby but the pin is outside it,Shingle Creek
-US-1835,Bald Point State Park,29.9378,-84.3374,a same-name outline is nearby but the pin is outside it,Dickerson Bay/Bald Point
-US-3618,Fakahatchee Strand Preserve State Park,26.0449,-81.3999,a same-name outline is nearby but the pin is outside it,Fakahatchee Strand; Fakahatchee Strand Preserve State Park
-US-4640,Tate's Hell State Forest,29.9311,-84.7978,a same-name outline is nearby but the pin is outside it,Tate's Hell State Forest
-US-6292,Big Bend Wildlife Management Area,30.053,-83.8398,a same-name outline is nearby but the pin is outside it,Big Bend Coast Tract
-US-6312,Joe Budd Wildlife Management Area,30.5193,-84.536,a same-name outline is nearby but the pin is outside it,Joe Budd Wildlife Management Area
+US-0007,Biscayne Bay National Park,25.4643,-80.3353,a same-name outline is nearby but the pin is outside it,"Biscayne Bay Coastal Wetlands; Biscayne Bay Coastal Wetlands, Model Lands; Biscayne Bay Coastal Wetlands,Biscayne Coastal Wetlands; Biscayne Bay Coastal Wetlands,Model Lands; Biscayne Coastal Wetlands,Biscayne Bay Coastal Wetlands; Model Lands,Biscayne Bay Coastal Wetlands"
+US-0231,Archie Carr National Wildlife Refuge,27.8759,-80.456,a same-name outline is nearby but the pin is outside it,Archie Carr National Wildlife Refuge; Archie Carr Sea Turtle Refuge
+US-0235,Chassahowitzka National Wildlife Refuge,28.7725,-82.6269,a same-name outline is nearby but the pin is outside it,Chassahowitzka Wildlife Management Area
+US-0237,Crystal River National Wildlife Refuge,28.8843,-82.5922,a same-name outline is nearby but the pin is outside it,Crystal River; Crystal River Preserve State Park; Crystal River State Archeological
+US-0245,Lake Wales Ridge Wildlife Management Area,27.5312,-81.4056,a same-name outline is nearby but the pin is outside it,Lake Wales Ridge Ecosystem; Lake Wales Ridge Wildlife Environmental Area
+US-0246,Lake Woodruff National Wildlife Refuge,29.1068,-81.371,a same-name outline is nearby but the pin is outside it,Lake Woodruff
+US-0247,Lower Suwannee National Wildlife Refuge,29.374,-83.0377,a same-name outline is nearby but the pin is outside it,Lower Suwannee
+US-0256,St. Marks National Wildlife Refuge,30.1515,-84.1472,a same-name outline is nearby but the pin is outside it,St. Marks Trail
+US-10462,DuPuis State Conservation Area,26.9939,-80.573,pin is inside an outline but no name agrees,DuPuis Reserve
+US-10463,Price's Scrub State Park,29.4551,-82.2816,pin is inside an outline but no name agrees,Northwest Marion Greenway
+US-10550,Scanlon State Conservation Area,30.1422,-83.8628,pin is inside an outline but no name agrees,Econfina
+US-10551,Falling Creek State Conservation Area,30.3297,-82.707,pin is inside an outline but no name agrees,Upper Suwannee
+US-10553,Guaranto State Conservation Area,29.7778,-82.9494,pin is inside an outline but no name agrees,Lower Suwannee
+US-10559,Camp Branch State Conservation Area,30.3781,-82.8789,pin is inside an outline but no name agrees,Upper Suwannee
+US-10565,Stuart's Landing North State Conservation Area,29.9197,-82.9207,pin is inside an outline but no name agrees,Middle Suwannee
+US-10566,Stuart's Landing South State Conservation Area,29.9,-82.9148,pin is inside an outline but no name agrees,Middle Suwannee
+US-10567,Hatchbend State Conservation Area,29.8731,-82.8891,pin is inside an outline but no name agrees,Lower Suwannee
+US-10568,Trillium Slopes State Conservation Area,30.4256,-83.0664,pin is inside an outline but no name agrees,Upper Suwannee
+US-10569,Hunter Creek State Conservation Area,30.484,-82.7103,pin is inside an outline but no name agrees,Upper Suwannee
+US-10570,Belmont State Conservation Area,30.5066,-82.7169,pin is inside an outline but no name agrees,Upper Suwannee
+US-10571,Avoca State Conservation Area,30.5875,-83.0483,pin is inside an outline but no name agrees,Alapaha
+US-10588,Branford-Bend State Conservation Area,29.9665,-82.9445,pin is inside an outline but no name agrees,Middle Suwannee
+US-10590,Lake Alto State Conservation Area,29.8288,-82.1347,pin is inside an outline but no name agrees,Santa Fe
+US-10591,Steinhatchee Rise State Conservation Area,29.6822,-83.3363,pin is inside an outline but no name agrees,Steinhatchee
+US-10592,Big Pine Tract State Conservation Area,30.3242,-82.7689,pin is inside an outline but no name agrees,Upper Suwannee
+US-10593,New Pine Landing State Conservation Area,29.5236,-82.9729,pin is inside an outline but no name agrees,Lower Suwannee
+US-10594,Manatee Springs South State Conservation Area,29.4628,-82.9834,pin is inside an outline but no name agrees,Lower Suwannee
+US-10601,Suwannee Springs Park State Conservation Area,30.3932,-82.9355,pin is inside an outline but no name agrees,Upper Suwannee
+US-10603,Rocky Creek State Conservation Area,30.3397,-82.8364,pin is inside an outline but no name agrees,Upper Suwannee
+US-10604,Blue Sink State Conservation Area,30.3353,-82.8085,pin is inside an outline but no name agrees,Upper Suwannee
+US-10614,Roline State Conservation Area,30.5643,-82.7268,pin is inside an outline but no name agrees,Upper Suwannee
+US-10615,Cypress Creek South State Conservation Area,30.5077,-82.7173,pin is inside an outline but no name agrees,Upper Suwannee
+US-10616,Tyree State Conservation Area,30.4724,-83.0831,pin is inside an outline but no name agrees,Alapaha
+US-10619,Little River Wildlife Management Area,30.0078,-82.9964,pin is inside an outline but no name agrees,Middle Suwannee
+US-10620,Jerry Branch State Conservation Area,30.3687,-82.8597,pin is inside an outline but no name agrees,Upper Suwannee
+US-11223,Ruth B. Kirby Gilchrist Blue Springs State Park,29.8287,-82.6836,pin is inside an outline but no name agrees,Florida's First Magnitude Springs
+US-12121,"Lower Reedy Creek: Rough Island North and South, and Johnson Island State Conservation Area",28.0554,-81.3661,pin is inside an outline but no name agrees,"Regulatory Mitigation Lands,Kissimmee Chain of Lakes"
+US-12122,S-65E Impoundment and Paradise Run State Conservation Area,27.2253,-80.971,pin is inside an outline but no name agrees,Kissimmee River
+US-12123,"Oak Creek, No Name Slough and Starvation Slough State Conservation Area",27.4476,-81.1284,pin is inside an outline but no name agrees,Kissimmee River
+US-12124,Harold A. Campbell Public Use and STA 3/4 State Conservation Area,26.3382,-80.6283,pin is inside an outline but no name agrees,"Everglades Agricultural Area Taxing District,Stormwater Treatment Areas"
+US-12126,Stormwater Treatment Area 5/6 State Conservation Area,26.4331,-80.9412,pin is inside an outline but no name agrees,"Everglades Agricultural Area Taxing District,Stormwater Treatment Areas"
+US-12127,Stormwater Treatment Area 1 West State Conservation Area,26.678,-80.4276,pin is inside an outline but no name agrees,"Everglades Agricultural Area Taxing District,Stormwater Treatment Areas"
+US-12128,Stormwater Treatment Area 1 East State Conservation Area,26.6837,-80.3512,pin is inside an outline but no name agrees,Stormwater Treatment Areas
+US-12132,Chandler Slough State Conservation Area,27.3732,-81.0448,pin is inside an outline but no name agrees,Kissimmee River
+US-12133,Catfish Creek State Conservation Area,28.0247,-81.4427,pin is inside an outline but no name agrees,Kissimmee Chain of Lakes
+US-12134,A-1 Flow Equalization Basin State Conservation Area,26.3985,-80.5878,pin is inside an outline but no name agrees,"Everglades Agricultural Storage Reservoirs,Everglades Agricultural Area Taxing District,Stormwater T"
+US-13011,Shoal River Headwaters State Park,30.7733,-86.2063,pin is inside an outline but no name agrees,Upper Shoal River
+US-1829,Alafia River State Park,27.7801,-82.1452,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1831,Amelia Island State Park,30.521,-81.4403,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1832,Anastasia State Park,29.8964,-81.2822,pin is inside an outline but no name agrees,Conch Island/Anastasia State Rec Area
+US-1833,Avalon State Park,27.5383,-80.3162,pin is inside an outline but no name agrees,Avalon Tract
+US-1835,Bald Point State Park,29.9378,-84.3374,a same-name outline is nearby but the pin is outside it,Bald Point State Park; Dickerson Bay/Bald Point
+US-1836,Barnacle State Park,25.7253,-80.2426,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1837,Big Lagoon State Park,30.3218,-87.4038,a same-name outline is nearby but the pin is outside it,Big Lagoon State Park
+US-1838,Big Shoals State Park,30.3439,-82.7371,a same-name outline is nearby but the pin is outside it,Big Shoals; Big Shoals State Park Addition
+US-1839,Big Talbot Island State Park,30.4812,-81.443,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1841,Blackwater River State Park,30.7041,-86.881,pin is inside an outline but no name agrees,"Agency Deed-Chapter 67-269, General Laws of 1967"
+US-1842,Blue Spring State Park,28.9489,-81.3403,pin is inside an outline but no name agrees,Blue Springs State Park
+US-1846,Cayo Costa State Park,26.6942,-82.2502,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1847,Collier-Seminole State Park,25.9803,-81.598,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1848,Colt Creek State Park,28.3023,-82.0535,pin is inside an outline but no name agrees,Green Swamp; Green Swamp Wilderness Preserve
+US-1850,Crystal River Archaeological State Park,28.9092,-82.6285,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1854,Deer Lake State Park,30.3029,-86.0749,a same-name outline is nearby but the pin is outside it,Deer Lake State Park;South Walton County Ecosystem - Eminent Domain
+US-1856,Devil's Millhopper Geological State Park,29.707,-82.3952,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1858,Dr. Von D. Mizell-Eula Johnson State Park,26.0847,-80.1106,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1859,Dunns Creek State Park,29.5211,-81.6248,pin is inside an outline but no name agrees,Dunn's Creek/Saddle Blanket Lakes Scrub
+US-1860,Econfina River State Park,30.0704,-83.9162,pin is inside an outline but no name agrees,Big Bend Coast Tract
+US-1861,Eden Gardens State Park,30.3689,-86.12,a same-name outline is nearby but the pin is outside it,Eden Gardens State Park
+US-1864,Falling Waters State Park,30.7313,-85.5311,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1865,Fanning Springs State Park,29.5893,-82.9355,pin is inside an outline but no name agrees,Florida's First Magnitude Springs
+US-1866,Faver-Dykes State Park,29.6716,-81.2712,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1867,Florida Caverns State Park,30.8141,-85.2328,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1869,Fort Clinch State Park,30.6966,-81.4416,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1872,Fort Pierce Inlet State Park,27.4848,-80.3032,pin is inside an outline but no name agrees,Ft. Pierce Inlet
+US-1873,Fred Gannon Rocky Bayou State Park,30.495,-86.4276,pin is inside an outline but no name agrees,Ocala National Forest;Non-Project Acquisition
+US-1875,Grayton Beach State Park,30.3378,-86.1634,pin is inside an outline but no name agrees,Grayton Dunes
+US-1876,Henderson Beach State Park,30.3847,-86.444,pin is inside an outline but no name agrees,Destin Beach
+US-1877,Highlands Hammock State Park,27.4745,-81.5295,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1878,Hillsborough River State Park,28.1483,-82.235,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1879,Homosassa Springs Wildlife State Park,28.7996,-82.587,a same-name outline is nearby but the pin is outside it,Homosassa Springs
+US-1880,Honeymoon Island State Park,28.0643,-82.8321,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1882,Hugh Taylor Birch State Park,26.1475,-80.1052,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1884,John D. MacArthur Beach State Park,26.8246,-80.044,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1885,John Gorrie Museum State Park,29.7251,-84.9854,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1886,John Pennekamp Coral Reef State Park,25.1255,-80.4069,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1888,Lafayette Blue Springs State Park,30.1332,-83.2305,pin is inside an outline but no name agrees,Middle Suwannee
+US-1889,Lake Griffin State Park,28.8575,-81.9032,a same-name outline is nearby but the pin is outside it,Lake Griffin State Park
+US-1891,Lake June-in-Winter Scrub State Park,27.2968,-81.4201,pin is inside an outline but no name agrees,Lake Wales Ridge Ecosystem
+US-1892,Lake Kissimmee State Park,27.9689,-81.3801,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1893,Lake Louisa State Park,28.4386,-81.7364,pin is inside an outline but no name agrees,Green Swamp
+US-1895,Lake Talquin State Park,30.4367,-84.5354,pin is inside an outline but no name agrees,Withlacoochee State Forest
+US-1901,Manatee Springs State Park,29.4872,-82.9776,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1902,Mike Roess Gold Head Branch State Park,29.8478,-81.9619,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1903,Mound Key Archaeological State Park,26.42,-81.862,pin is inside an outline but no name agrees,"Agency Deed-Chapter 67-269, General Laws of 1967"
+US-1906,O'Leno State Park,29.9146,-82.5763,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1907,Ochlockonee River State Park,30.0016,-84.4812,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1908,Oleta River State Park,25.9188,-80.1394,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1909,Oscar Scherer State Park,27.1726,-82.4689,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1912,Rainbow Springs State Park,29.1032,-82.4374,pin is inside an outline but no name agrees,Rainbow River State Park
+US-1915,Silver Springs State Park,29.2128,-82.0543,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1917,St. Andrews State Park,30.1399,-85.7426,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1920,Stump Pass Beach State Park,26.9039,-82.3478,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1921,Suwannee River State Park,30.3839,-83.1683,pin is inside an outline but no name agrees,"Agency Deed-Chapter 67-269, General Laws of 1967"
+US-1923,Tomoka State Park,29.3491,-81.0886,a same-name outline is nearby but the pin is outside it,Tomoka State Park
+US-1924,Torreya State Park,30.5545,-84.9479,a same-name outline is nearby but the pin is outside it,Torreya State Park
+US-1925,Troy Spring State Park,30.0023,-82.9985,pin is inside an outline but no name agrees,Florida's First Magnitude Springs
+US-1926,Washington Oaks Gardens State Park,29.6343,-81.2064,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-1928,Werner-Boyce Salt Springs State Park,28.2878,-82.7191,pin is inside an outline but no name agrees,Wetstone/Berkovitz
+US-1929,Wes Skiles Peacock Springs State Park,30.1287,-83.1318,pin is inside an outline but no name agrees,Peacock Slough
+US-3604,Addison Blockhouse State Park,29.3314,-81.0939,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3606,Anclote Key Preserve State Park,28.166,-82.8455,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3607,Beker-Wingate Creek State Park,27.4594,-82.1483,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3609,Bulow Plantation Ruins State Park,29.4351,-81.1425,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3610,Cedar Key Museum State Park,29.1518,-83.0482,pin is inside an outline but no name agrees,"Agency Deed-Chapter 67-269, General Laws of 1967"
+US-3614,Crystal River Preserve State Park,28.9086,-82.6364,pin is inside an outline but no name agrees,Florida Springs Coastal Greenway
+US-3621,Fort Foster State Historic Site,28.1489,-82.2198,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3622,Fort Mose State Park,29.9297,-81.3222,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3625,Gamble Plantation State Park,27.5229,-82.5269,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3626,Gamble Rogers Memorial State Recreation Area,29.4377,-81.111,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3629,Haw Creek Preserve State Park,29.3897,-81.3876,a same-name outline is nearby but the pin is outside it,Haw Creek
+US-3631,Indian River Lagoon State Park,27.9369,-80.4977,ambiguous: more than one outline name fits,FL Forever - Indian River Lagoon Blueway; Indian River Lagoon Blueway
+US-3632,Kissimmee Prairie Preserve State Park,27.5844,-81.0452,pin is inside an outline but no name agrees,Kissimmee Prairie Ecosystem; Kissimmee Prairie/River Ecosystem
+US-3633,Koreshan State Historic Site,26.4325,-81.8116,pin is inside an outline but no name agrees,"Agency Deed-Chapter 67-269, General Laws of 1967"
+US-3634,Lower Wekiva River Preserve State Park,28.8981,-81.3801,pin is inside an outline but no name agrees,Wekiva-Ocala Greenway
+US-3635,Madira Bickel Mound State Historic Site,27.566,-82.5929,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3636,Madison Blue Spring State Park,30.4783,-83.2451,pin is inside an outline but no name agrees,Florida's First Magnitude Springs
+US-3637,Marjorie Harris Carr Cross State Park,29.1427,-82.0528,pin is inside an outline but no name agrees,Cross Florida Greenway
+US-3639,Natural Bridge Battlefield State Park,30.2797,-84.1486,pin is inside an outline but no name agrees,Florida's First Magnitude Springs
+US-3640,Nature Coast State Trail,29.5824,-82.924,a same-name outline is nearby but the pin is outside it,Nature Coast State Trail
+US-3641,Okeechobee Battlefield State Park,27.2124,-80.7893,a same-name outline is nearby but the pin is outside it,Okeechobee Battlefield
+US-3642,Olustee Battlefield State Park,30.2189,-82.3804,a same-name outline is nearby but the pin is outside it,Olustee Battlefield Historic State Park
+US-3645,Palatka-to-Lake Butler State Trail,29.7752,-82.0141,a same-name outline is nearby but the pin is outside it,Palatka to Lake Butler Rail to Trail
+US-3647,Paynes Prairie Preserve State Park,29.5838,-82.3051,pin is inside an outline but no name agrees,Paynes Creek
+US-3649,River Rise Preserve State Park,29.8452,-82.6342,a same-name outline is nearby but the pin is outside it,River Rise State Preserve
+US-3650,Rock Springs Run State Park,28.7681,-81.4411,pin is inside an outline but no name agrees,Consolidated Ranch
+US-3652,San Marcos de Apalache State Park,30.1518,-84.2108,a same-name outline is nearby but the pin is outside it,San Marcos de Apalache State Historic Site
+US-3654,Savannas Preserve State Park,27.328,-80.279,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-3655,Seabranch Preserve State Park,27.1305,-80.1695,pin is inside an outline but no name agrees,Seabranch
+US-3656,Beker - South Fork State Park,27.5887,-82.2393,pin is inside an outline but no name agrees,Little Manatee River Corridor
+US-3657,St. Lucie Inlet Preserve State Park,27.1438,-80.1502,a same-name outline is nearby but the pin is outside it,St. Lucie Inlet
+US-3658,Ney Landrum State Park,30.3934,-84.0876,pin is inside an outline but no name agrees,Upper St. Marks River Corridor
+US-3659,St. Sebastian River Preserve State Park,27.8249,-80.6072,pin is inside an outline but no name agrees,Non-Project Acquisition; Sebastian Creek CARL
+US-3662,Tarkiln Bayou Preserve State Park,30.3652,-87.3906,pin is inside an outline but no name agrees,Perdido Pitcher Plant Prairie
+US-3663,Terra Ceia Preserve State Park,27.5806,-82.5723,a same-name outline is nearby but the pin is outside it,Terra Ceia; Terra Ceia State Park
+US-3664,Topsail Hill Preserve State Park,30.3673,-86.2878,pin is inside an outline but no name agrees,Deer Lake State Park;South Walton County Ecosystem - Eminent Domain
+US-3666,Weeki Wachee Springs State Park,28.5183,-82.5756,pin is inside an outline but no name agrees,Weekiwachee Preserve
+US-3667,Withlacoochee State Trail,28.804,-82.3105,a same-name outline is nearby but the pin is outside it,Withlacoochee State Trail
+US-3668,Ybor City Museum State Park,27.962,-82.4386,a same-name outline is nearby but the pin is outside it,Ybor City State Museum
+US-3670,Yellow River Marsh Preserve State Park,30.4843,-87.0714,pin is inside an outline but no name agrees,Garcon Ecosystem
+US-4612,Belmore State Forest,29.8517,-81.8772,pin is inside an outline but no name agrees,Northeast Florida Timberlands
+US-4614,Blackwater River State Forest,30.7,-86.8759,pin is inside an outline but no name agrees,"Agency Deed-Chapter 67-269, General Laws of 1967"
+US-4616,Cary State Forest,30.4003,-81.9324,pin is inside an outline but no name agrees,"Agency Deed-Chapter 67-269, General Laws of 1967"
+US-4617,Charles H. Bronson State Forest,28.6239,-81.023,pin is inside an outline but no name agrees,FL Forever - Econ-St. Johns Ecosystem
+US-4620,Etoniah Creek State Forest,29.7578,-81.8356,pin is inside an outline but no name agrees,Etoniah/Cross Florida Greenway
+US-4621,Four Creeks State Forest,30.5983,-81.7639,pin is inside an outline but no name agrees,FL Forever-NE FL Timberlands & Watershed Reserve; Northeast Florida Timberlands
+US-4622,Goethe State Forest,29.1291,-82.5613,pin is inside an outline but no name agrees,Levy County Forest/Sandhills
+US-4623,Holopaw State Forest,28.1392,-81.0333,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-4624,Indian Lake State Forest,29.2719,-82.0562,a same-name outline is nearby but the pin is outside it,Indian Lake Addition; Indian Lake State Forest
+US-4626,John M. Bethea State Forest,30.4968,-82.3126,pin is inside an outline but no name agrees,FL Forever - Pinhook Swamp; Pinhook Swamp
+US-4628,Lake Talquin State Forest,30.4696,-84.454,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-4629,Lake Wales Ridge State Forest,27.7056,-81.4463,pin is inside an outline but no name agrees,Lake Arbuckle
+US-4630,Little Big Econ State Forest,28.6872,-81.1595,pin is inside an outline but no name agrees,FL Forever - Econ-St. Johns Ecosystem
+US-4631,Matanzas State Forest,29.7165,-81.3019,pin is inside an outline but no name agrees,FL Forever - Northeast Florida Blueway; Northeast Florida Blueway
+US-4634,Picayune Strand State Forest,26.1417,-81.5612,a same-name outline is nearby but the pin is outside it,Picayune Strand Restoration; Picayune Strand Restoration - Belle Meade; Picayune Strand State Forest
+US-4635,Pine Log State Forest,30.4052,-85.861,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-4636,Point Washington State Forest,30.3547,-86.1519,pin is inside an outline but no name agrees,South Walton County Ecosystem
+US-4637,Ralph E. Simmons Memorial State Forest,30.7938,-81.9383,pin is inside an outline but no name agrees,St. Marys River
+US-4638,Ross Prairie State Forest,29.0367,-82.295,pin is inside an outline but no name agrees,Longleaf Pine Ecosystem
+US-4639,Seminole State Forest,28.8193,-81.4281,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-4642,Twin Rivers State Forest,30.376,-83.2018,pin is inside an outline but no name agrees,Middle Suwannee
+US-4643,Wakulla State Forest,30.2595,-84.2858,pin is inside an outline but no name agrees,Wakulla Springs
+US-4644,Watson Island State Forest,29.8923,-81.5017,pin is inside an outline but no name agrees,St. Johns River Blueway
+US-5118,Edward W. Chance Reserve State Conservation Area,27.498,-82.3116,pin is inside an outline but no name agrees,Edward W Chance - Gilley Creek
+US-5250,Annutteliga Hammock State Conservation Area,28.6147,-82.5439,a same-name outline is nearby but the pin is outside it,Annutteliga Hammock
+US-5330,Green Swamp Wilderness Park Reserve,28.3031,-81.9186,pin is inside an outline but no name agrees,Green Swamp Wilderness Preserve
+US-5513,Halpata Tatanaki Preserve State Conservation Area,29.0281,-82.3104,pin is inside an outline but no name agrees,Halpata Tastanaki Preserve
+US-5520,Chassahowitzka River and Coastal Swamp State Conservation Area,28.7145,-82.5772,pin is inside an outline but no name agrees,Chassahowitzka River And Coastal Swamps
+US-5524,Chito Branch Reserve State Conservation Area,27.8333,-82.1741,pin is inside an outline but no name agrees,Alafia River Corridor
+US-6281,Loxahatchee River National Wild and Scenic River,26.9881,-80.1429,a same-name outline is nearby but the pin is outside it,Loxahatchee River
+US-6282,Newnans Lake State Forest,29.6641,-82.2521,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-6283,Plank Road State Forest,30.362,-84.0628,pin is inside an outline but no name agrees,Upper St. Marks River Corridor
+US-6284,Atlantic Ridge Preserve State Park,27.1031,-80.2413,pin is inside an outline but no name agrees,"Atlantic Ridge Ecosystem; Atlantic Ridge Ecosystem,Indian River Lagoon - South"
+US-6285,Peace River State Forest,27.1574,-81.9605,pin is inside an outline but no name agrees,Peaceful Horse Ranch
+US-6286,Andrews Wildlife Management Area,29.5333,-82.9392,pin is inside an outline but no name agrees,Andrews Tract 
+US-6288,Apalachicola River Wildlife Area,29.8869,-84.98,pin is inside an outline but no name agrees,Apalachicola Bay;Tate's Hell State Forest
+US-6289,Aucilla Wildlife Management Area,30.2009,-83.9244,a same-name outline is nearby but the pin is outside it,Aucilla; Aucilla Wildlife Management Area
+US-6290,Bell Ridge Longleaf Wildlife Area,29.7399,-82.6987,pin is inside an outline but no name agrees,Gopher Tortoise Mitigation Park
+US-6291,Fred C. Babcock/Cecil M. Webb Wildlife Management Area,26.858,-81.9622,a same-name outline is nearby but the pin is outside it,Babcock Webb Wildlife Management Area; Babcock-Webb WMA
+US-6293,Box-R Wildlife Management Area,29.7264,-85.082,pin is inside an outline but no name agrees,St. Joe Timberland
+US-6296,Chassahowitzka Wildlife Management Area,28.6176,-82.5528,pin is inside an outline but no name agrees,Longleaf Pine Ecosystem
+US-6297,Chinsegut Wildlife Area,28.6313,-82.3571,pin is inside an outline but no name agrees,Chinsegut WEA
+US-6298,Crooked Lake Wildlife Area,27.7356,-81.6214,pin is inside an outline but no name agrees,Gopher Tortoise Mitigation Park
+US-6299,Dinner Island Ranch Wildlife Management Area,26.4975,-81.126,pin is inside an outline but no name agrees,Panther Glades
+US-6301,Everglades and Francis S. Taylor Wildlife Management Area,25.7677,-80.6734,pin is inside an outline but no name agrees,Water Conservation Areas
+US-6304,Fort White Wildlife Area,29.9118,-82.7764,pin is inside an outline but no name agrees,Ft White WEA 
+US-6306,Half Moon Wildlife Management Area,28.8722,-82.2202,a same-name outline is nearby but the pin is outside it,Carlton Half-Moon Ranch
+US-6307,Herky Huffman/Bull Creek Wildlife Management Area,28.1166,-80.9326,pin is inside an outline but no name agrees,USJR Project - Federal Flood Control Project
+US-6308,Hickey Creek Wildlife Management Area,26.7127,-81.665,a same-name outline is nearby but the pin is outside it,Hickey Creek Mitigation Park
+US-6309,Hilochee Wildlife Management Area,28.2148,-81.658,pin is inside an outline but no name agrees,Green Swamp
+US-6310,Holey Land Wildlife Management Area,26.3352,-80.6366,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-6313,John C. and Mariana Jones/Hungryland Wildlife Area,26.9641,-80.2879,pin is inside an outline but no name agrees,Pal Mar; Pal-Mar
+US-6314,L. Kirk Edwards Wildlife Area,30.4458,-84.098,pin is inside an outline but no name agrees,Upper St. Marks River Corridor
+US-6319,Perry Oldenburg Wildlife Area,28.6193,-82.3146,a same-name outline is nearby but the pin is outside it,Perry Oldenburg WEA
+US-6320,Platt Branch Wildlife Area,27.0501,-81.365,ambiguous: more than one outline name fits,Platt Branch Mitigation Park; Platt Branch Mitigation Park WEA
+US-6321,Rotenberger Wildlife Management Area,26.4776,-80.8232,pin is inside an outline but no name agrees,"Stormwater Treatment Areas,Everglades Agricultural Area Taxing District"
+US-6322,Salt Lake Wildlife Management Area,28.6384,-80.8748,pin is inside an outline but no name agrees,Brevard Coastal Scrub Ecosystem; FL Forever - Brevard Coastal Scrub Ecosystem
+US-6323,Spirit-of-the-Wild Wildlife Management Area,26.5964,-81.4069,pin is inside an outline but no name agrees,Twelve Mile Slough
+US-6325,Suwannee Ridge Wildlife Area,30.46,-83.0662,pin is inside an outline but no name agrees,Hamilton Timberlands Mitigation Park
+US-6326,T.M. Goodwin Wildlife Management Area,27.845,-80.7125,pin is inside an outline but no name agrees,USJR Project - Federal Flood Control Project
+US-6327,Tenoroc Wildlife Area,28.1055,-81.9127,pin is inside an outline but no name agrees,Non-Project Acquisition
+US-6328,Three Lakes Wildlife Management Area,27.9627,-81.0123,a same-name outline is nearby but the pin is outside it,Three Lakes WMA; Three Lakes Wildlife Management Area; Three Lakes Wildlife Management Area;Prairie-Lakes
+US-6330,Triple N Ranch Wildlife Management Area,28.131,-81.0207,pin is inside an outline but no name agrees,Bull Creek Wildlife Management Area; FL Forever -Osceola Pine Savannas
+US-6331,Watermelon Pond Wildlife Area,29.5806,-82.6065,a same-name outline is nearby but the pin is outside it,Watermelon Pond
+US-6444,Conner Preserve State Conservation Area,28.3212,-82.4439,a same-name outline is nearby but the pin is outside it,Conner Preserve
+US-6682,RV Griffin Reserve State Conservation Area,27.0888,-82.0096,a same-name outline is nearby but the pin is outside it,Rv Griffin Reserve
+US-6744,Terra Ceia Preserve Frog Creek State Conservation Area,27.5901,-82.5284,pin is inside an outline but no name agrees,Tampa Bay Estuarine Ecosystem
+US-7475,Starkey Wilderness/Serenova Preserve State Conservation Area,28.3295,-82.5695,pin is inside an outline but no name agrees,Starkey Wilderness Presereve
+US-7879,Citrus Wildlife Management Area,28.72,-82.494,pin is inside an outline but no name agrees,Annutteliga Hammock
+US-8326,Apalachicola River State Conservation Area,30.1843,-85.0858,pin is inside an outline but no name agrees,Southwest Forest Industries
+US-8327,Blackwater River State Conservation Area,30.634,-87.0262,a same-name outline is nearby but the pin is outside it,Blackwater River State Forest
+US-8329,Choctawhatchee & Holmes Creek State Conservation Area,30.5584,-85.9082,pin is inside an outline but no name agrees,MONY
+US-8330,Econfina Creek Water Management Area,30.4282,-85.6097,pin is inside an outline but no name agrees,Rosewood  2
+US-8332,Escambia River State Conservation Area,30.76,-87.2905,pin is inside an outline but no name agrees,Champion International
+US-8333,Garcon Point State Conservation Area,30.4705,-87.0838,pin is inside an outline but no name agrees,FDIC
 US-8334,Perdido River State Conservation Area,30.5513,-87.4224,pin is inside an outline but no name agrees,International Paper
+US-8335,Yellow River Water Management Area,30.6543,-86.877,pin is inside an outline but no name agrees,Yellow River Ravines
+US-8336,Bayard State Conservation Area,29.9331,-81.6718,pin is inside an outline but no name agrees,Bayard Point
+US-8337,Black Creek Ravines State Conservation Area,30.0581,-81.8469,pin is inside an outline but no name agrees,Upper Black Creek CARL
+US-8338,Blue Cypress State Conservation Area,27.6624,-80.6443,pin is inside an outline but no name agrees,USJR Project - Federal Flood Control Project
+US-8341,Clark Bay State Conservation Area,29.0757,-81.2498,pin is inside an outline but no name agrees,FL Forever -Volusia Conservation Corridor
+US-8343,Deep Creek State Conservation Area,29.7064,-81.4836,a same-name outline is nearby but the pin is outside it,Deep Creek
+US-8344,Dunns Creek State Conservation Area,29.571,-81.5853,pin is inside an outline but no name agrees,Dunns Creek CARL
+US-8348,Fort Drum Marsh State Conservation Area,27.641,-80.7671,pin is inside an outline but no name agrees,USJR Project - Federal Flood Control Project
+US-8349,Gourd Island State Conservation Area,30.0695,-81.5088,pin is inside an outline but no name agrees,Mitigation - SR 9B Project - Gourd Island
+US-8351,Heart Island State Conservation Area,29.2491,-81.3267,a same-name outline is nearby but the pin is outside it,Heart Island Conservation Area
+US-8352,Julington-Durbin Preserve State Conservation Area,30.1294,-81.5443,pin is inside an outline but no name agrees,Julington-Durbin Creek; Julington-Durbin Creeks
+US-8356,Lake Monroe State Conservation Area,28.8199,-81.1845,a same-name outline is nearby but the pin is outside it,Lake Monroe
+US-8357,Lake Norris State Conservation Area,28.9138,-81.5444,pin is inside an outline but no name agrees,FL Forever -Wekiva-Ocala Greenway
+US-8358,Lochloosa Wildlife State Conservation Area,29.4949,-82.1293,pin is inside an outline but no name agrees,FL Forever - Lochloosa Wildlife
+US-8360,Micco Water Management Area State Conservation Area,27.8621,-80.5217,pin is inside an outline but no name agrees,FL Forever - Brevard Coastal Scrub Ecosystem
+US-8362,Murphy Creek State Conservation Area,29.5702,-81.6601,pin is inside an outline but no name agrees,Confluence with Ocklawaha
+US-8366,Palm Bluff State Conservation Area,28.8885,-81.1396,pin is inside an outline but no name agrees,FL Forever -Volusia Conservation Corridor
+US-8367,Pellicer Creek State Conservation Area,29.6369,-81.2668,a same-name outline is nearby but the pin is outside it,Pellicer Creek
+US-8368,Rice Creek State Conservation Area,29.6833,-81.7329,pin is inside an outline but no name agrees,FL Forever - Etoniah/Cross Florida Greenway 
+US-8369,River Lakes State Conservation Area,28.23,-80.8112,pin is inside an outline but no name agrees,USJR Parcels - North of  Hwy 192
+US-8371,Silver Springs Forest State Conservation Area,29.2667,-82.0533,a same-name outline is nearby but the pin is outside it,Silver Springs
+US-8373,Sunnyhill Restoration Area State Conservation Area,28.9918,-81.8078,a same-name outline is nearby but the pin is outside it,Sunnyhill Restoration Area
+US-8375,Three Forks State Conservation Area,27.9824,-80.7549,pin is inside an outline but no name agrees,USJR Project - Federal Flood Control Project
+US-8376,Twelve Mile Swamp State Conservation Area,29.915,-81.3781,a same-name outline is nearby but the pin is outside it,Twelve Mile Swamp
+US-8675,Alapahoochee State Conservation Area,30.5997,-83.0725,pin is inside an outline but no name agrees,Alapaha
+US-8676,Cabbage Creek State Conservation Area,30.1425,-83.8657,pin is inside an outline but no name agrees,Econfina
+US-8677,Christian State Conservation Area,30.2096,-83.2319,pin is inside an outline but no name agrees,Middle Suwannee
+US-8678,Cuba Bay State Conservation Area,30.3813,-83.7679,pin is inside an outline but no name agrees,Aucilla
+US-8679,Devil's Hammock State Conservation Area,29.3519,-82.7384,pin is inside an outline but no name agrees,Waccasassa
+US-8680,Bell Springs State Conservation Area,30.3308,-82.6901,pin is inside an outline but no name agrees,Upper Suwannee
+US-8683,Log Landing State Conservation Area,29.7509,-82.9413,pin is inside an outline but no name agrees,Lower Suwannee
+US-8684,Grady State Conservation Area,29.9224,-82.9272,pin is inside an outline but no name agrees,Middle Suwannee
+US-8685,Holton Creek State Conservation Area,30.4428,-83.0765,pin is inside an outline but no name agrees,Upper Suwannee
+US-8687,Jennings Bluff State Conservation Area,30.5672,-83.0389,pin is inside an outline but no name agrees,Alapaha
+US-8688,Lindsey State Conservation Area,29.6986,-82.9441,pin is inside an outline but no name agrees,Lower Suwannee
+US-8689,"Little Creek, McAlpin Landing State Conservation Area",30.3826,-82.6681,pin is inside an outline but no name agrees,Upper Suwannee
+US-8690,Mallory Swamp State Conservation Area,29.9275,-83.0735,pin is inside an outline but no name agrees,Steinhatchee
+US-8691,Mattair Springs State Conservation Area,30.3828,-82.9038,pin is inside an outline but no name agrees,Upper Suwannee
+US-8692,"Lamont, Mt. Gilead State Conservation Area",30.2914,-83.8471,pin is inside an outline but no name agrees,Aucilla
+US-8693,Mud Swamp State Conservation Area,29.8535,-82.314,pin is inside an outline but no name agrees,Santa Fe
+US-8694,Natural Well Branch State Conservation Area,30.2339,-83.7171,pin is inside an outline but no name agrees,Econfina
+US-8695,Peacock Slough State Conservation Area,30.1148,-83.1678,pin is inside an outline but no name agrees,Middle Suwannee
+US-8696,"Purvis Landing, Otter Springs, Shingle Lndg State Conservation Area",29.6441,-82.9431,pin is inside an outline but no name agrees,Middle Suwannee
+US-8698,Ruth-Springs State Conservation Area,29.9953,-82.9698,pin is inside an outline but no name agrees,Middle Suwannee
+US-8699,Sandlin Bay State Conservation Area,30.5594,-82.573,pin is inside an outline but no name agrees,Upper Suwannee
+US-8701,"Shelly, Duck Pond, Hartsfield State Conservation Area",30.5077,-83.7463,pin is inside an outline but no name agrees,Aucilla
+US-8702,Sneads Lake State Conservation Area,30.5957,-83.7172,pin is inside an outline but no name agrees,Aucilla
+US-8703,Steinhatchee Falls State Conservation Area,29.7743,-83.3293,pin is inside an outline but no name agrees,Steinhatchee
+US-8705,Stephen Foster State Conservation Area,30.3242,-82.769,pin is inside an outline but no name agrees,Upper Suwannee
+US-8706,Sunnyvale State Conservation Area,29.5139,-82.9986,pin is inside an outline but no name agrees,Lower Suwannee
+US-8707,Sugar Creek State Conservation Area,30.4004,-82.9411,pin is inside an outline but no name agrees,Upper Suwannee
+US-8708,Swift Creek State Conservation Area,30.342,-82.8163,pin is inside an outline but no name agrees,Upper Suwannee
+US-8709,Turner Bridge State Conservation Area,30.5245,-82.7288,pin is inside an outline but no name agrees,Upper Suwannee
+US-8711,"Owens Spring, Walker, Adams State Conservation Area",30.0354,-83.0371,pin is inside an outline but no name agrees,Middle Suwannee
+US-8712,"White Springs, Little Shoals, Gar Pond State Conservation Area",30.3253,-82.7395,pin is inside an outline but no name agrees,Upper Suwannee
+US-8713,Withlacoochee Hills State Conservation Area,30.6335,-83.3064,pin is inside an outline but no name agrees,Withlacoochee
+US-8714,Withlacoochee Quail Farms State Conservation Area,30.5456,-83.2692,pin is inside an outline but no name agrees,Withlacoochee
+US-8715,Seven Bridges State Conservation Area,30.4372,-83.7408,pin is inside an outline but no name agrees,Aucilla
+US-8717,Allapattah Flats State Conservation Area,27.1629,-80.4401,pin is inside an outline but no name agrees,"Allapattah Flats,Indian River Lagoon - South"
+US-8718,Lakeside Ranch State Conservation Area,27.1194,-80.6727,pin is inside an outline but no name agrees,"Lake Okeechobee & Estuary Recovery (LOER), Lake Okeechobee Watershed"
+US-8719,Horse Creek State Conservation Area,28.1573,-81.5654,pin is inside an outline but no name agrees,Lake Marion Creek Horseshoe Scrub Tract 
+US-8720,Frog Pond State Conservation Area,25.4005,-80.5661,pin is inside an outline but no name agrees,"C-111 South Dade, C-111 Spreader Canal, Frog Pond"
+US-8721,Taylor Creek State Conservation Area,27.3124,-80.8484,pin is inside an outline but no name agrees,"Lake Okeechobee Watershed,Lake Okeechobee Watershed"

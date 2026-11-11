@@ -441,10 +441,10 @@
    "source": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-FL.sgflf.geojson.gz",
-   "sha256": "780adaa6cb87e1952c19a69815e5ba77664e7104a5bf531c35d8bb72cefae41a",
-   "size": 12852,
+   "sha256": "3d743b664e6672a943ff19a8f5060aafc3de5145d8f1c6a2b0fb9a3b84c4ce6d",
+   "size": 4989336,
    "source": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0/query"
   },
   {

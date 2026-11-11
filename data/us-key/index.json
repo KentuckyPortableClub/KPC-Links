@@ -13,12 +13,12 @@
    "pin_swap": 0,
    "pin_well_outside": 5,
    "read": 1038,
+   "rules": "9e06aa4b4783",
    "seconds": 309,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 21,
-   "rules": "9e06aa4b4783"
+   "site": 21
   },
   "AL": {
    "check": 4,
@@ -33,12 +33,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 1658,
+   "rules": "9e06aa4b4783",
    "seconds": 8,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4,
-   "rules": "9e06aa4b4783"
+   "site": 4
   },
   "AR": {
    "check": 8,
@@ -73,12 +73,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 2318,
+   "rules": "9e06aa4b4783",
    "seconds": 12,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 10,
-   "rules": "9e06aa4b4783"
+   "site": 10
   },
   "CA": {
    "check": 5,
@@ -93,12 +93,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 19244,
+   "rules": "9e06aa4b4783",
    "seconds": 196,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 8,
-   "rules": "9e06aa4b4783"
+   "site": 8
   },
   "CO": {
    "check": 3,
@@ -113,12 +113,12 @@
    "pin_swap": 0,
    "pin_well_outside": 13,
    "read": 7895,
+   "rules": "9e06aa4b4783",
    "seconds": 91,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 6,
-   "rules": "9e06aa4b4783"
+   "site": 6
   },
   "CT": {
    "check": 2,
@@ -133,12 +133,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 14273,
+   "rules": "9e06aa4b4783",
    "seconds": 103,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3,
-   "rules": "9e06aa4b4783"
+   "site": 3
   },
   "DC": {
    "check": 2,
@@ -153,12 +153,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 322,
+   "rules": "9e06aa4b4783",
    "seconds": 4,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4,
-   "rules": "9e06aa4b4783"
+   "site": 4
   },
   "DE": {
    "check": 1,
@@ -173,32 +173,32 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 2786,
+   "rules": "9e06aa4b4783",
    "seconds": 20,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 6,
-   "rules": "9e06aa4b4783"
+   "site": 6
   },
   "FL": {
    "check": 12,
-   "detail": 0.01,
-   "joined_in_another_state": 0,
-   "matched": 436,
-   "none": 6,
-   "nonum": 16134,
-   "padus": 21993,
+   "detail": 0.001,
+   "matched": 437,
+   "none": 4,
+   "nonum": 69048,
+   "padus": 82144,
    "parks": 460,
    "pin_no_shape": 0,
-   "pin_outside": 191,
+   "pin_outside": 80,
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 8681,
-   "seconds": 85,
+   "seconds": 1964,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 6
+   "site": 7,
+   "rules": "9e06aa4b4783"
   },
   "GA": {
    "check": 3,
@@ -213,12 +213,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 4265,
+   "rules": "9e06aa4b4783",
    "seconds": 16,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3,
-   "rules": "9e06aa4b4783"
+   "site": 3
   },
   "HI": {
    "check": 5,
@@ -233,12 +233,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 1005,
+   "rules": "9e06aa4b4783",
    "seconds": 6,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 8,
-   "rules": "9e06aa4b4783"
+   "site": 8
   },
   "IA": {
    "check": 1,
@@ -253,12 +253,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 4910,
+   "rules": "9e06aa4b4783",
    "seconds": 75,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 2,
-   "rules": "9e06aa4b4783"
+   "site": 2
   },
   "ID": {
    "check": 16,
@@ -273,12 +273,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 1662,
+   "rules": "9e06aa4b4783",
    "seconds": 229,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 96,
-   "rules": "9e06aa4b4783"
+   "site": 96
   },
   "IL": {
    "check": 7,
@@ -293,12 +293,12 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 10674,
+   "rules": "9e06aa4b4783",
    "seconds": 94,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 0,
-   "rules": "9e06aa4b4783"
+   "site": 0
   },
   "IN": {
    "check": 3,
@@ -313,12 +313,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 3299,
+   "rules": "9e06aa4b4783",
    "seconds": 23,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 8,
-   "rules": "9e06aa4b4783"
+   "site": 8
   },
   "KS": {
    "check": 3,
@@ -333,7 +333,7 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 1604,
-   "seconds": 4,
+   "seconds": 6,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -353,12 +353,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 1502,
+   "rules": "9e06aa4b4783",
    "seconds": 5,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 1,
-   "rules": "9e06aa4b4783"
+   "site": 1
   },
   "MA": {
    "check": 3,
@@ -373,12 +373,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 22817,
+   "rules": "9e06aa4b4783",
    "seconds": 1827,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3,
-   "rules": "9e06aa4b4783"
+   "site": 3
   },
   "MD": {
    "check": 2,
@@ -393,12 +393,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 3539,
+   "rules": "9e06aa4b4783",
    "seconds": 25,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 5,
-   "rules": "9e06aa4b4783"
+   "site": 5
   },
   "ME": {
    "check": 2,
@@ -413,12 +413,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 6623,
+   "rules": "9e06aa4b4783",
    "seconds": 44,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 2,
-   "rules": "9e06aa4b4783"
+   "site": 2
   },
   "MI": {
    "check": 4,
@@ -433,12 +433,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 7798,
+   "rules": "9e06aa4b4783",
    "seconds": 72,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 12,
-   "rules": "9e06aa4b4783"
+   "site": 12
   },
   "MN": {
    "check": 2,
@@ -453,12 +453,12 @@
    "pin_swap": 1,
    "pin_well_outside": 5,
    "read": 7733,
+   "rules": "9e06aa4b4783",
    "seconds": 382,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 11,
-   "rules": "9e06aa4b4783"
+   "site": 11
   },
   "MO": {
    "check": 3,
@@ -473,7 +473,7 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 3917,
-   "seconds": 258,
+   "seconds": 312,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -493,12 +493,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 693,
+   "rules": "9e06aa4b4783",
    "seconds": 8,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 15,
-   "rules": "9e06aa4b4783"
+   "site": 15
   },
   "MT": {
    "check": 4,
@@ -513,12 +513,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 1457,
+   "rules": "9e06aa4b4783",
    "seconds": 48,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3,
-   "rules": "9e06aa4b4783"
+   "site": 3
   },
   "NC": {
    "check": 13,
@@ -533,12 +533,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 5540,
+   "rules": "9e06aa4b4783",
    "seconds": 217,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4,
-   "rules": "9e06aa4b4783"
+   "site": 4
   },
   "ND": {
    "check": 0,
@@ -553,12 +553,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 768,
+   "rules": "9e06aa4b4783",
    "seconds": 15,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 6,
-   "rules": "9e06aa4b4783"
+   "site": 6
   },
   "NE": {
    "check": 2,
@@ -573,12 +573,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 1909,
+   "rules": "9e06aa4b4783",
    "seconds": 16,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3,
-   "rules": "9e06aa4b4783"
+   "site": 3
   },
   "NH": {
    "check": 1,
@@ -593,12 +593,12 @@
    "pin_swap": 0,
    "pin_well_outside": 8,
    "read": 5125,
+   "rules": "9e06aa4b4783",
    "seconds": 218,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4,
-   "rules": "9e06aa4b4783"
+   "site": 4
   },
   "NJ": {
    "check": 0,
@@ -613,7 +613,7 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 15894,
-   "seconds": 50,
+   "seconds": 54,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -633,12 +633,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 1395,
+   "rules": "9e06aa4b4783",
    "seconds": 16,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 13,
-   "rules": "9e06aa4b4783"
+   "site": 13
   },
   "NV": {
    "check": 10,
@@ -653,12 +653,12 @@
    "pin_swap": 0,
    "pin_well_outside": 16,
    "read": 1908,
+   "rules": "9e06aa4b4783",
    "seconds": 83,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 76,
-   "rules": "9e06aa4b4783"
+   "site": 76
   },
   "NY": {
    "check": 4,
@@ -673,12 +673,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 13248,
+   "rules": "9e06aa4b4783",
    "seconds": 238,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 13,
-   "rules": "9e06aa4b4783"
+   "site": 13
   },
   "OH": {
    "check": 0,
@@ -693,12 +693,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 7626,
+   "rules": "9e06aa4b4783",
    "seconds": 49,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 0,
-   "rules": "9e06aa4b4783"
+   "site": 0
   },
   "OK": {
    "check": 0,
@@ -713,12 +713,12 @@
    "pin_swap": 0,
    "pin_well_outside": 6,
    "read": 1561,
+   "rules": "9e06aa4b4783",
    "seconds": 11,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 10,
-   "rules": "9e06aa4b4783"
+   "site": 10
   },
   "OR": {
    "check": 19,
@@ -733,12 +733,12 @@
    "pin_swap": 0,
    "pin_well_outside": 5,
    "read": 6116,
+   "rules": "9e06aa4b4783",
    "seconds": 535,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 17,
-   "rules": "9e06aa4b4783"
+   "site": 17
   },
   "PA": {
    "check": 2,
@@ -753,7 +753,7 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 15528,
-   "seconds": 50,
+   "seconds": 60,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -773,12 +773,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 2584,
+   "rules": "9e06aa4b4783",
    "seconds": 10,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 0,
-   "rules": "9e06aa4b4783"
+   "site": 0
   },
   "SC": {
    "check": 1,
@@ -793,12 +793,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 3085,
+   "rules": "9e06aa4b4783",
    "seconds": 18,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4,
-   "rules": "9e06aa4b4783"
+   "site": 4
   },
   "SD": {
    "check": 0,
@@ -813,12 +813,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 1323,
+   "rules": "9e06aa4b4783",
    "seconds": 12,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3,
-   "rules": "9e06aa4b4783"
+   "site": 3
   },
   "TN": {
    "check": 1,
@@ -833,12 +833,12 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 2157,
+   "rules": "9e06aa4b4783",
    "seconds": 36,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 5,
-   "rules": "9e06aa4b4783"
+   "site": 5
   },
   "TX": {
    "check": 1,
@@ -853,12 +853,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 11915,
+   "rules": "9e06aa4b4783",
    "seconds": 126,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 6,
-   "rules": "9e06aa4b4783"
+   "site": 6
   },
   "UT": {
    "check": 20,
@@ -873,12 +873,12 @@
    "pin_swap": 0,
    "pin_well_outside": 15,
    "read": 6550,
+   "rules": "9e06aa4b4783",
    "seconds": 991,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 250,
-   "rules": "9e06aa4b4783"
+   "site": 250
   },
   "VA": {
    "check": 4,
@@ -893,7 +893,7 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 6836,
-   "seconds": 182,
+   "seconds": 181,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
@@ -913,12 +913,12 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 2190,
+   "rules": "9e06aa4b4783",
    "seconds": 15,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3,
-   "rules": "9e06aa4b4783"
+   "site": 3
   },
   "WA": {
    "check": 4,
@@ -933,12 +933,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 6607,
+   "rules": "9e06aa4b4783",
    "seconds": 264,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 28,
-   "rules": "9e06aa4b4783"
+   "site": 28
   },
   "WI": {
    "check": 4,
@@ -953,12 +953,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 6027,
+   "rules": "9e06aa4b4783",
    "seconds": 1436,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 10,
-   "rules": "9e06aa4b4783"
+   "site": 10
   },
   "WV": {
    "check": 0,
@@ -973,12 +973,12 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 1459,
+   "rules": "9e06aa4b4783",
    "seconds": 14,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 1,
-   "rules": "9e06aa4b4783"
+   "site": 1
   },
   "WY": {
    "check": 12,
@@ -993,27 +993,24 @@
    "pin_swap": 0,
    "pin_well_outside": 11,
    "read": 19788,
+   "rules": "9e06aa4b4783",
    "seconds": 628,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 51,
-   "rules": "9e06aa4b4783"
+   "site": 51
   }
  },
- "rules": "a066624520b4",
+ "rules": "9e06aa4b4783",
  "rules_files": [
   ".github/scripts/kpc_key_facts.py",
   ".github/scripts/kpc_key_rules.py",
   ".github/scripts/kpc_match.py",
   ".github/scripts/kpc_us_key.py",
+  ".github/us-key-rule-scope.json",
   ".github/key-rules-version.json"
  ],
  "rules_of_run": "9e06aa4b4783",
- "build": "US-42956018092",
- "built": "2026-11-11 05:58 UTC",
- "failed": [
-  "FL"
- ],
- "complete": false
+ "build": "US-42996829343",
+ "built": "2026-11-11 10:28 UTC"
 }
