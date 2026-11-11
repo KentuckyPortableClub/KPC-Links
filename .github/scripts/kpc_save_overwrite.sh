@@ -17,6 +17,7 @@
 #                  KPC_SAVE_TRIES 5
 #                  KPC_SAVE_RED   yes (default) = a save that never lands exits 1 (red job) | no = ::error only, exit 0 (the Oct 22
 #                                 rule for the busy bots: a lost race is loud but does not email). Nov 2 review.
+#                  KPC_SAVE_REDO_STOP yes = a failed redo command stops the save (nothing committed, exit 1) | no (default) = ::error and go on
 #                  KPC_SAVE_WORDS / KPC_SAVE_LINES (Nov 2 review, space lists): hand-kept files that are MERGED, not copied back:
 #                    WORDS = a space list like answers-countries.txt (newest main's list - what this run took off + what it added),
 #                    LINES = an inbox like .claude/inbox/chat-11.md (this run's new lines go into the newest copy). kpc_save_merge.py.
@@ -240,7 +241,11 @@ for i in $(seq 1 "$tries"); do
     if [ "$copy" = 1 ]; then (cd "$stash" && find . -type f -print) | while IFS= read -r f; do f=${f#./}; mkdir -p "$(dirname "$f")"; cp -p "$stash/$f" "$f"; done; fi
     python3 "$here/kpc_save_merge.py" apply "$merge"
     if [ "$redo" != "-" ]; then
-      bash -c "$redo" || echo "::error title=Save::$msg: the redo step failed on try $i"
+      if ! bash -c "$redo"; then
+        echo "::error title=Save::$msg: the redo step failed on try $i"
+        # Nov 11 (KPC owner): with KPC_SAVE_REDO_STOP=yes a failed redo stops the save: nothing is committed or pushed, exit 1
+        if [ "${KPC_SAVE_REDO_STOP:-no}" = yes ]; then git reset -q --hard origin/main; echo "::error title=Save::$msg was NOT saved: the redo step failed and this save stops on that"; exit 1; fi
+      fi
     fi
     add_paths "$@"; kpc_stamp_filter
     if git diff --cached --quiet; then echo "::notice title=Save::$msg: nothing to change on top of main"; exit 0; fi
