@@ -80,15 +80,29 @@ function noNumBox(o,esc){const L=a=>a.slice(0,6).map(x=>esc(x.c)+' '+esc(x.n||''
 /* Oct 17 (Brandon): a name match needs the same kind of place (Yatesville Lake WMA is not Yatesville Lake State Park); outlines with no POTA park of their own NAME are drawn red dotted = NOT A POTA PARK */
 const kOf=s=>{s=String(s||'').toLowerCase();const k=[];if(/wildlife management area|\bwma\b|hunting area/.test(s))k.push('wma');if(/nature preserve|natural area|\bsnp\b|\bsna\b/.test(s))k.push('snp');if(/state (resort )?park|recreation(al)? area/.test(s))k.push('sp');if(/state forest/.test(s))k.push('sf');if(/wild river|scenic river/.test(s))k.push('wr');return k},kSame=(a,b)=>{const x=kOf(a),y=kOf(b);return !x.length||!y.length||x.some(v=>y.includes(v))};
 const NOTPARK={color:'#ff2a2a',dashArray:'2 6'};
-function potaFor(f){ // POTA parks matched to a boundary: alias, reference point inside, or name match
- if(f._pota)return f._pota;
- const pr=(f.properties||{}).ref;if(pr&&(f.properties||{}).owner){f._named=true;return (f._pota=D.parks.filter(p=>p.c===pr))}   /* Oct 27: owned-land parcels carry their park number */
- const nm=norm(fName(f)),b=f._bb||(f._bb=bbox(f.geometry)),out=new Map(),NM=new Set();
- (ALIAS[fName(f)]||[]).forEach(r=>{const p=D.parks.find(x=>x.c===r);if(p)out.set(r,p)});
- for(const p of D.parks){if(out.has(p.c))continue;
-  if(p.lo>=b[0]-.02&&p.lo<=b[2]+.02&&p.la>=b[1]-.02&&p.la<=b[3]+.02&&inside(p.la,p.lo,f.geometry)){out.set(p.c,p);continue}
+/* Nov 10: same lookup order as Park Commander after the answer-key join: the outline's own
+   POTA reference (properties.ref), then the Kentucky answer key (layer + outline name), then
+   the name-match / alias fallback. Do not remember "no POTA reference" until the key has been
+   tried; restyle when it arrives. The key itself lives in kpc-answer-key.js (shared). */
+const ownRef=f=>{const r=(f&&f.properties||{}).ref;return typeof r==='string'&&/^[A-Z0-9]{1,4}-\d{4,5}$/.test(r.trim())?r.trim():''};
+function joinsReady(){return !!(D&&window.kpcAnswerKey&&kpcAnswerKey.ready())}
+let joinWait=null;
+function whenJoins(){if(window.kpcAnswerKey)kpcAnswerKey.loadKey(restyleBounds);if(joinWait)return;let n=0;joinWait=setInterval(()=>{const ok=joinsReady();if(!ok&&++n<480)return;clearInterval(joinWait);joinWait=null;if(ok)restyleBounds()},250)}
+function restyleBounds(){Object.keys(bData).forEach(k=>{if(B[k]&&!B[k].own&&!B[k].proc)(bData[k].features||[]).forEach(f=>{delete f._pota;delete f._named})});Object.values(bLay).forEach(l=>{if(l._kst)l._kst.forEach(g=>g.setStyle(g.options.style));else if(l.setStyle&&l.options&&l.options.style)l.setStyle(l.options.style)})}
+function potaFor(f){ // POTA parks matched to a boundary: answer key, alias, reference point inside, or name match
+ if(f._pota&&(f._named||joinsReady()))return f._pota;
+ if(window.kpcAnswerKey)kpcAnswerKey.loadKey(restyleBounds);
+ const parks=(D&&D.parks)||[],park=r=>parks.find(x=>x.c===r),out=new Map(),NM=new Set();
+ const own=ownRef(f);if(own){out.set(own,park(own)||{c:own,n:(f.properties||{}).OFFICIAL_NAME||fName(f)});NM.add(own)}
+ for(const row of (window.kpcAnswerKey?kpcAnswerKey.keyJoin(f,fName):[])){const r=row.ref;if(!NM.has(r)){out.set(r,out.get(r)||park(r)||{c:r,n:row.n||fName(f)});NM.add(r)}}
+ (ALIAS[fName(f)]||[]).forEach(r=>{const p=park(r);if(p){if(!out.has(r))out.set(r,p);NM.add(r)}});
+ const nm=norm(fName(f)),b=f._bb||(f._bb=bbox(f.geometry));
+ for(const p of parks){if(NM.has(p.c))continue;
+  if(p.lo>=b[0]-.02&&p.lo<=b[2]+.02&&p.la>=b[1]-.02&&p.la<=b[3]+.02&&inside(p.la,p.lo,f.geometry)){if(!out.has(p.c))out.set(p.c,p);continue}
   const dn=norm(p.n);if(nm.length>4&&dn&&kSame(p.n,fName(f))&&p.lo>=b[0]-.5&&p.lo<=b[2]+.5&&p.la>=b[1]-.5&&p.la<=b[3]+.5){const sh=dn.length<nm.length?dn:nm,lg=dn.length<nm.length?nm:dn;if(dn===nm||(sh.length>6&&lg.startsWith(sh)&&sh.length/lg.length>=.7)){out.set(p.c,p);NM.add(p.c)}}}
- f._named=[...out.values()].filter(p=>NM.has(p.c)||(ALIAS[fName(f)]||[]).includes(p.c)).length>0;if(!f._named&&D&&otherRefs(f,D,fName(f),inside).kn.length)f._named=true;return (f._pota=[...out.values()])}
+ const named=NM.size>0||(D&&otherRefs(f,D,fName(f),inside).kn.length>0);
+ if(named||joinsReady()){f._named=named;return (f._pota=[...out.values()])}
+ whenJoins();f._named=named;return [...out.values()]}
 const refTxt = ps => ps.length ? ps.slice(0,4).map(p=>p.c).join(', ')+(ps.length>4?' +'+(ps.length-4):'') : '';
 
 /* where is a point? inside which boundaries, near which trails */
@@ -117,9 +131,8 @@ function whereHtml(w){
  if(w.trails.length)h+=w.trails.map(t=>`<div class="pw-in">🥾 ${t.d<0.03?'On':'Near'} <b>${esc(t.name)}</b> · POTA <b>${t.ref}</b> · ${fmtMi(t.d)} from the trail</div>`).join('');
  return h+'<div class="pw-muted">Map outlines can differ from POTA’s boundary, so confirm on the POTA map.</div>'}
 
-const bRend = () => L.canvas({pane:'bndp', padding:.4, tolerance:6});
-let canvasR=null;
 async function loadBoundaries(){
+ if(window.kpcAnswerKey)kpcAnswerKey.loadKey(restyleBounds);
  const stat=$('lyrStat');let n=0;const keys=Object.keys(B);
  await Promise.all(keys.map(async k=>{try{const r=await fetch(B[k].file+'?v=20261109a',{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);bData[k]=j;drawB(k)}catch(e){}if(stat)stat.textContent=`Loading boundaries… ${++n} of ${keys.length}`}));
  const tk=Object.keys(T);await Promise.all(tk.map(async k=>{try{const r=await fetch(T[k].file?T[k].file+'?v=20261109a':T[k].url,T[k].file?{cache:'force-cache'}:{});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;j.features=j.features.filter(f=>f.geometry&&linesOf(f.geometry).length);tData[k]=j;drawT(k)}catch(e){}}));
@@ -129,8 +142,12 @@ function shown(k){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayers')||
 function setShown(k,v){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayers')||'{}');o[k]=v;localStorage.setItem('kpcPlanLayers',JSON.stringify(o))}catch(e){}}
 /* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
 const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo(f):f;
-function drawB(k){const s=B[k];canvasR=canvasR||bRend();
- bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{if(s.proc)return{color:s.color,weight:LW(1.6),opacity:.75,dashArray:'6 8',fill:false};if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(has?.07:.04)   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
+/* Nov 10: official outlines as SVG (same as Park Commander), not on a Leaflet canvas.
+   A canvas renderer rasterizes the stroke (thick and blocky on a phone or satellite view)
+   and clips shapes at the canvas edge, which showed up as a hard straight cut. */
+function drawB(k){const s=B[k];
+ (bData[k].features||[]).forEach(f=>{f._lk=k});
+ bLay[k]=L.geoJSON(bData[k],{pane:'bndp',style:f=>{if(s.proc)return{color:s.color,weight:LW(1.6),opacity:.75,dashArray:'6 8',fill:false};if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(has?.07:.04)   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
   onEachFeature:(f,l)=>{l.on('click',e=>{if(adding)return;L.popup({maxWidth:290}).setLatLng(e.latlng).setContent(bPopup(f,s,e.latlng)).openOn(map)})}});
  if(shown(k))bLay[k].addTo(map);order()}
 function drawT(k){const s=T[k];
@@ -431,7 +448,7 @@ function pickTown(){const v=$('town').value,p=findPlace(v);if(!p){if(v.trim().le
  if(KM){KM.bar($('km-bar'));let pend=false;const redo=()=>{if(origin){run(false);refreshInfo()}};
   window.addEventListener('kpcmine',()=>{if(map._popup&&map.hasLayer(map._popup)){pend=true;return}redo()});
   map.on('popupclose',()=>{if(pend){pend=false;setTimeout(redo,0)}})}
- window.kpcPlanner={map:()=>map,trip:()=>trip,where:(a,b)=>whereIs(a,b),ready:()=>bReady,extras:()=>X,res:()=>res};
+ window.kpcPlanner={map:()=>map,trip:()=>trip,where:(a,b)=>whereIs(a,b),ready:()=>bReady,extras:()=>X,res:()=>res,potaFor,ownRef,restyleBounds,joinsReady,fName};
 })();
 /* Our own suggestion list for the town and route boxes. The phone's built-in list (<datalist>) shows see-through on
    iPhones and covered the page ("double screen"). Searching happens on a pick, Enter or GO, never on blur. */

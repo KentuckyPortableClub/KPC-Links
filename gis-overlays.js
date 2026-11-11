@@ -74,16 +74,16 @@
  const kOf=s=>{s=String(s||'').toLowerCase();const k=[];if(/wildlife management area|\bwma\b|hunting area/.test(s))k.push('wma');if(/nature preserve|natural area|\bsnp\b|\bsna\b/.test(s))k.push('snp');if(/state (resort )?park|recreation(al)? area/.test(s))k.push('sp');if(/state forest/.test(s))k.push('sf');if(/wild river|scenic river/.test(s))k.push('wr');return k},kSame=(a,b)=>{const x=kOf(a),y=kOf(b);return !x.length||!y.length||x.some(v=>y.includes(v))};
  /* Nov 10: an outline file can carry its own POTA reference (properties.ref, e.g. the PAD-US park outlines). That is a join, even when the names differ. */
 const ownRef=f=>{const r=(f&&f.properties||{}).ref;return typeof r==='string'&&/^[A-Z0-9]{1,4}-\d{4,5}$/.test(r.trim())?r.trim():''};
-/* Nov 10: the Kentucky answer key already joins some outlines whose names differ from the POTA name (how = alias, file, or name).
-   Load it once, lazily. Look up by layer + outline name, after properties.ref and before the name-match fallback.
+/* Nov 10: answer-key joins live in kpc-answer-key.js (shared with the KY trip planner).
+   Look up by layer + outline name, after properties.ref and before the name-match fallback.
    Do not remember "no POTA reference" until this file has been tried, then restyle (same race as the POTA list). */
-let keyIdx=null,keyTried=false,keyReadyP=null;
-function buildKeyIdx(j){const m=new Map();for(const ref of Object.keys((j&&j.parks)||{})){const p=j.parks[ref];for(const t of p.tracts||[]){if(!t||!t[0]||!t[1])continue;const k=t[0]+'\t'+t[1];if(!m.has(k))m.set(k,[]);if(!m.get(k).some(x=>x.ref===ref))m.get(k).push({ref,n:p.n||'',how:t[3]||''})}}return m}
-function useAnswerKey(j){keyIdx=buildKeyIdx(j);keyTried=true;keyReadyP=Promise.resolve(keyIdx);return keyIdx}
-function loadKey(){if(keyTried)return keyReadyP;keyTried=true;keyReadyP=fetch('data/ky-answer-key.json?v=20261110aj',{cache:'force-cache'}).then(r=>r.ok?r.json():null).then(j=>{keyIdx=buildKeyIdx(j);restyleBounds();return keyIdx}).catch(()=>{keyIdx=new Map();return keyIdx});return keyReadyP}
-function keyOf(layer,name){return (keyIdx&&layer&&name)?(keyIdx.get(layer+'\t'+name)||[]):[]}
-function keyJoin(f){loadKey();return keyOf(f._lk||(f._L&&f._L.k)||'',getName(f))}
-function joinsReady(){return potaPts().length>0&&keyIdx!==null}
+const AK=()=>window.kpcAnswerKey;
+function buildKeyIdx(j){return AK().buildKeyIdx(j)}
+function useAnswerKey(j){return AK().useAnswerKey(j)}
+function loadKey(){return AK().loadKey(restyleBounds)}
+function keyOf(layer,name){return AK().keyOf(layer,name)}
+function keyJoin(f){loadKey();return AK().keyJoin(f,getName)}
+function joinsReady(){return potaPts().length>0&&AK().ready()}
 function keepName(out,r,d,why){const o=out.get(r);if(!o)out.set(r,{d,why});else if(why.startsWith('name')&&!o.why.startsWith('name'))out.set(r,{d,why})}
 function matchPota(f){const g=f.geometry,b=f._bb||(f._bb=bbox(g)),nm=norm(getName(f)),out=new Map();
   const own=ownRef(f);if(own){const d=potaPts().find(x=>x[1]===own)||['POTA',own,(f.properties||{}).OFFICIAL_NAME||getName(f)];out.set(own,{d,why:'name match (this outline’s POTA reference)'})}
@@ -123,7 +123,7 @@ function restyleBounds(){Object.keys(bData).forEach(k=>{if(bounds[k]&&!bounds[k]
  let legend=null;
  function drawLegend(){const on=Object.keys(bLayers);if(!on.length){if(legend){legend.remove();legend=null}return}
   if(!legend){legend=L.control({position:'bottomleft'});legend.onAdd=()=>{const d=L.DomUtil.create('div','kpc-blegend');L.DomEvent.disableClickPropagation(d);return d};legend.addTo(map)}
-  legend.getContainer().innerHTML='<button type="button" class="kbl-t" aria-expanded="true">Boundaries legend</button><div class="kbl-b"><b>Official boundaries</b>'+on.map(k=>`<div><i style="${bounds[k].kpc?'border:2px dashed '+bounds[k].color:'background:'+bounds[k].color+'33;border:2px solid '+bounds[k].color}"></i>${safe(bounds[k].name)}${bounds[k].kpc?' (approximate, no shading)':''}</div>`).join('')+'<div class="k"><i style="border:2px solid #555"></i>Solid = has a POTA reference</div><div class="k"><i style="border:2px dashed #555"></i>Dashed = no POTA reference</div>'+(on.some(k=>bounds[k].kpc)?'<div class="k"><i style="border:2px dashed #ffd400"></i>Yellow dash-dot = OpenStreetMap outline (unofficial)</div>':'')+'</div>';const c=legend.getContainer(),t=c.querySelector('.kbl-t');if(!c.dataset.seen){c.classList.add('closed');t.setAttribute('aria-expanded','false')}c.dataset.seen=1;t.onclick=()=>{const cl=c.classList.toggle('closed');t.setAttribute('aria-expanded',String(!cl))}}
+  legend.getContainer().innerHTML='<div class="kbl-h"><button type="button" class="kbl-t" aria-expanded="true">Boundaries legend</button><button type="button" class="kbl-x" aria-label="Close legend">✕</button></div><div class="kbl-b"><b>Official boundaries</b>'+on.map(k=>`<div><i style="${bounds[k].kpc?'border:2px dashed '+bounds[k].color:'background:'+bounds[k].color+'33;border:2px solid '+bounds[k].color}"></i>${safe(bounds[k].name)}${bounds[k].kpc?' (approximate, no shading)':''}</div>`).join('')+'<div class="k"><i style="border:2px solid #555"></i>Solid = has a POTA reference</div><div class="k"><i style="border:2px dashed #555"></i>Dashed = no POTA reference</div>'+(on.some(k=>bounds[k].kpc)?'<div class="k"><i style="border:2px dashed #ffd400"></i>Yellow dash-dot = OpenStreetMap outline (unofficial)</div>':'')+'</div>';const c=legend.getContainer(),t=c.querySelector('.kbl-t'),x=c.querySelector('.kbl-x');if(!c.dataset.seen){c.classList.add('closed');t.setAttribute('aria-expanded','false')}c.dataset.seen=1;const shut=()=>{c.classList.add('closed');t.setAttribute('aria-expanded','false');if(window.KPCX&&KPCX.fitLegend)KPCX.fitLegend()};t.onclick=()=>{const cl=c.classList.toggle('closed');t.setAttribute('aria-expanded',String(!cl));if(window.KPCX&&KPCX.fitLegend)KPCX.fitLegend()};if(x)x.onclick=e=>{e.preventDefault();e.stopPropagation();shut()}}
 
  /* status text appears both in the layer panel and under the map */
  const setAll=(n,txt)=>{const a=document.getElementById('gis-'+n),b=document.querySelector('[data-gis="'+n+'"]');if(a)a.textContent=txt;if(b)b.textContent=txt};
