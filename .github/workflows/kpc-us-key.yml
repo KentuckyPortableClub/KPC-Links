@@ -492,7 +492,7 @@ jobs:
           rm -rf .mneeds && mkdir -p .mneeds
           gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p needs-download.json -D .mneeds 2>/dev/null || echo "no needs-download.json asset yet"
           # Nov 11: per state from its owning part; a conflict (two parts, one state / one layer row) fails and data/outlines is not saved
-          python3 .github/scripts/kpc_master_cli.py collect parts/us-key-part-*/outlines --root data/outlines --needs-in .mneeds/needs-download.json --needs-out .mneeds/new.json \
+          python3 .github/scripts/kpc_master_cli.py collect parts/us-key-part-*/outlines --root data/outlines --us-key data/us-key --needs-in .mneeds/needs-download.json --needs-out .mneeds/new.json \
             || { kpc_rc=$?; touch /tmp/kpc-outlines-bad; git checkout -q HEAD -- data/outlines && git clean -fdq data/outlines; echo "::error title=Master collect::the parts did not join per state (exit $kpc_rc): this run's data/outlines changes are dropped, not saved"; }
           # The change check (Nov 10): a HEAD / catalog fingerprint per official download source (data/outlines/download-sources.json,
           # saved with the key below). Allowed requests only (kpc_master.live_ok, then robots.txt; never a services*.arcgis.com host).

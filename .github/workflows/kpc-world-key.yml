@@ -289,40 +289,9 @@ jobs:
         env:
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
         run: |
-          python3 - <<'PY'
-          import glob, json, os, shutil, sys
-          sys.path.insert(0, '.github/scripts')
-          from kpc_save import save_json   # the same writer the script uses
-          O = 'data/world-key'; os.makedirs(f'{O}/review', exist_ok=True)
-          try: old = json.load(open(f'{O}/index.json', encoding='utf-8'))
-          except Exception: old = {}
-          idx = dict(old.get('countries') or {}); failed = []; n = 0; LJ = None
-          for d in sorted(glob.glob('parts/world-key-part-*')):
-              cs = open(f'{d}/countries.txt').read().split()
-              failed += open(f'{d}/failed.txt').read().split() if os.path.exists(f'{d}/failed.txt') else []
-              try: pi = json.load(open(f'{d}/world-key/index.json', encoding='utf-8')).get('countries', {})
-              except Exception: pi = {}
-              for c in cs:
-                  if os.path.exists(f'{d}/world-key/{c}.json'):
-                      shutil.copy(f'{d}/world-key/{c}.json', f'{O}/{c}.json'); n += 1
-                      if os.path.exists(f'{d}/world-key/review/{c}.md'): shutil.copy(f'{d}/world-key/review/{c}.md', f'{O}/review/{c}.md')
-                      if os.path.exists(f'{d}/world-key/tracts/{c}.json'): os.makedirs(f'{O}/tracts', exist_ok=True); shutil.copy(f'{d}/world-key/tracts/{c}.json', f'{O}/tracts/{c}.json')   # Nov 6
-                      if os.path.isdir(f'{d}/world-bounds/{c}'):
-                          shutil.rmtree(f'data/world-bounds/{c}', ignore_errors=True); shutil.copytree(f'{d}/world-bounds/{c}', f'data/world-bounds/{c}')
-                      if c in pi: idx[c] = pi[c]
-              for f in ('layers.json', 'eea-designations.json', 'jp-wikidata.json', 'outline-test.json'):   # the same for every job (sources / caches): the biggest copy wins
-                  src = f'{d}/world-key/{f}'
-                  if os.path.exists(src) and (not os.path.exists(f'{O}/{f}') or os.path.getsize(src) >= os.path.getsize(f'{O}/{f}')): shutil.copy(src, f'{O}/{f}')
-          new = {'countries': idx}
-          pb, pt = old.get('build') or old.get('previous_build'), old.get('built') or old.get('previous_built')
-          if pb: new['previous_build'] = pb
-          if pt: new['previous_built'] = pt
-          if n: save_json(f'{O}/index.json', new)
-          failed = sorted(set(failed))
-          open('/tmp/world-failed.txt', 'w').write(''.join(f + '\n' for f in failed))
-          open(os.environ['GITHUB_OUTPUT'], 'a').write(f'built={n}\n')
-          print(f"::notice title=World key join::{n} countries from {len(glob.glob('parts/world-key-part-*'))} job(s)" + (f"; failed or unfinished: {' '.join(failed)}" if failed else ''))
-          PY
+          # Nov 11 (KPC owner, 2026-11-11): per country from its owning part, fail closed (kpc_world_key_join.py): one country in two parts,
+          # a part carrying a country it does not own, or two parts changing one key of a shared file differently = exit 1, nothing written.
+          python3 .github/scripts/kpc_world_key_join.py parts/world-key-part-* --out data/world-key --bounds data/world-bounds --failed-out /tmp/world-failed.txt
           # Owner rule, 2026-11-10: a planned country with no part (or not in its part's done.txt) was not built: named failed
           python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS" --built-file parts/world-key-part-*/done.txt >> /tmp/world-failed.txt
           sort -u -o /tmp/world-failed.txt /tmp/world-failed.txt

@@ -499,14 +499,21 @@ def trim(parks, feats, cfg, date_read=None, source_count=None):
                            [rid(feats[i], i) for i in idx], source_count, date_read, cfg.get('license', ''), via, cfg.get('detail', DEFAULT_DETAIL))
 
     # 1) the layer's own id fields
-    ids = {}
+    ids, unknown = {}, {}
+    have_pre = {p[0].split('-')[0] for p in parks}   # a ref of another country's list is not this run's miss
     for i, f in enumerate(feats):
         for fld in cfg.get('id_fields') or []:
             v = str(prop(f).get(fld) or '').strip().upper().replace(' ', '')
             if REF_RE.match(v) and v in by_ref: ids.setdefault(v, []).append(i)
+            elif REF_RE.match(v) and v.split('-')[0] in have_pre: unknown.setdefault(v, i)
     for ref, idx in ids.items():
-        r = build(ref, idx, 'id');
+        r = build(ref, idx, 'id')
         if r: recs[ref] = r; used.add(ref)
+        else: queue.append({'ref': ref, 'name': by_ref[ref][1], 'lat': by_ref[ref][2], 'lon': by_ref[ref][3], 'why': WHY_NO_GEOM,
+                            'candidates': '; '.join(rid(feats[i], i) for i in idx[:6])})   # Nov 11: matched by id, then dropped for lack of an outline
+    for v, i in sorted(unknown.items()):   # Nov 11: a layer record that names a POTA ref the park list does not hold (retired / mistyped)
+        nf = (cfg.get('name_fields') or [None])[0]
+        queue.append({'ref': v, 'name': str(prop(feats[i]).get(nf) or '') if nf else '', 'lat': '', 'lon': '', 'why': WHY_UNKNOWN_REF, 'candidates': rid(feats[i], i)})
     # 2) name + pin inside, for the rest
     ext = None
     bbs = [b for b in (bbox_of(g) for g in geoms) if b]
@@ -534,7 +541,42 @@ def trim(parks, feats, cfg, date_read=None, source_count=None):
                           'candidates': '; '.join(sorted({str(prop(feats[i]).get(fields[0])) for i in hit})[:6])}); continue
         r = build(ref, hit, 'name+pin')
         if r: recs[ref] = r
-    return recs, queue
+        else: queue.append({'ref': ref, 'name': name, 'lat': lat, 'lon': lon, 'why': WHY_NO_GEOM, 'candidates': '; '.join(rid(feats[i], i) for i in hit[:6])})
+    return recs, dedupe_queue([q for q in queue if not (q['why'] == WHY_NO_GEOM and q['ref'] in recs)])   # a park that got an outline another way is not a miss
+
+
+# ---- the solver queue (Nov 11): one reason per row, one row per (park, reason), written only when it changed -------------
+WHY_NO_GEOM = 'matched an outline record, but the record has no usable outline'
+WHY_UNKNOWN_REF = 'the layer record names a POTA ref that is not in the park list'
+WHY_NO_LAYER = 'no layer joined this park in the key (no outline record to match)'
+WHY_NOT_KEPT = 'joined in the key, but no outline for it is in the master records'
+QUEUE_FIELDS = ['ref', 'name', 'lat', 'lon', 'why', 'candidates']
+
+
+def dedupe_queue(rows):
+    """One row per (ref, why), first one wins, order kept (so an unchanged queue is the same bytes and makes no commit)."""
+    seen, out = set(), []
+    for r in rows:
+        k = (str(r.get('ref', '')), str(r.get('why', '')))
+        if k in seen: continue
+        seen.add(k); out.append({f: r.get(f, '') for f in QUEUE_FIELDS})
+    return out
+
+
+def write_queue(path, rows, keep_empty=True):
+    """Write a solver-queue CSV (header + deduped rows) ONLY when its bytes would change. Returns True when the file changed.
+    keep_empty=False: an empty queue removes the file instead of writing a header-only one."""
+    import csv, io
+    path = pathlib.Path(path); rows = dedupe_queue(rows)
+    if not rows and not keep_empty:
+        if path.exists(): path.unlink(); return True
+        return False
+    buf = io.StringIO(newline='')
+    w = csv.DictWriter(buf, QUEUE_FIELDS); w.writeheader(); w.writerows(rows)
+    data = buf.getvalue().encode('utf-8')
+    if path.is_file() and path.read_bytes() == data: return False
+    path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(data)
+    return True
 
 
 # ---- the layers manifest (expected counts) and the refresh policy -------------------------------------------------------

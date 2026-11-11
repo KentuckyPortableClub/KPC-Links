@@ -428,6 +428,43 @@ def collect_parts(parts, root):
     return files, {k: v for k, (v, _) in lay.items()}, {k: v for k, (v, _) in cac.items()}, {k: v for k, (v, _) in raw.items()}, solver, rows
 
 
+def _queue_refs(path):
+    """The refs a solver-queue CSV already holds (an unreadable file holds none)."""
+    import csv
+    try:
+        with open(path, newline='', encoding='utf-8') as f: return {r.get('ref', '') for r in csv.DictReader(f)}
+    except OSError: return set()
+
+
+def nomatch_rows(root, st, key_dir):
+    """Nov 11: the parks of one state that the live key knows (data/us-key/US-ST.json) but that have NO outline in the master records and are
+    in no layer's solver-queue file yet: one row each with the reason (no layer joined it / joined but nothing kept). None = no key file
+    for the state (nothing is said about it). Pins are not in the key, so lat / lon stay blank; a pin is never moved or guessed."""
+    kp = M.load_json(pathlib.Path(key_dir) / f'US-{st}.json', None)
+    if not isinstance(kp, dict) or not isinstance(kp.get('parks'), dict): return None
+    have = set(M.load_area(f'US-{st}', pathlib.Path(root)))
+    queued = set()
+    for f in sorted((pathlib.Path(root) / 'solver-queue').glob(f'US-{st}.*.csv')):
+        if f.name != f'US-{st}.nomatch.csv': queued |= _queue_refs(f)
+    rows = []
+    for ref, q in sorted(kp['parks'].items()):
+        if ref in have or ref in queued or not isinstance(q, dict): continue
+        m = [x for x in q.get('m') or [] if isinstance(x, list) and len(x) > 1]
+        bk = q.get('bk')
+        joined = bool(m) or (isinstance(bk, list) and bool(bk) and not isinstance(bk[0], (list, dict)))
+        rows.append({'ref': ref, 'name': q.get('n') or '', 'lat': '', 'lon': '', 'why': M.WHY_NOT_KEPT if joined else M.WHY_NO_LAYER,
+                     'candidates': '; '.join(sorted({str(x[1]) for x in m})[:6])})
+    return rows
+
+
+def _owned_states(parts):
+    out = []
+    for d in sorted(pathlib.Path(p) for p in parts):
+        f = d / 'states.txt'
+        if f.is_file(): out += f.read_text().split()
+    return out
+
+
 def collect(a):
     """Join job: the parts' master records, layer counts, raw-manifest rows and needs rows into one place, PER STATE (Nov 11):
     each state from its owning part, per layer row and per raw row; a conflict fails (exit 1) and writes nothing."""
@@ -437,12 +474,25 @@ def collect(a):
         print('::error title=Master collect conflict::' + str(e).replace('\n', ' '), flush=True); return 1
     for name, f in files.items(): shutil.copy(f, root / name)
     if solver: (root / 'solver-queue').mkdir(parents=True, exist_ok=True)
-    for name, f in solver.items(): shutil.copy(f, root / 'solver-queue' / name)
+    quiet = 0
+    for name, f in solver.items():   # Nov 11: a queue file is copied only when its bytes differ (no empty bot commit)
+        dst = root / 'solver-queue' / name
+        if dst.is_file() and dst.read_bytes() == f.read_bytes(): continue
+        shutil.copy(f, dst); quiet += 1
+    nm = 0
+    if getattr(a, 'us_key', None):   # Nov 11: every park the key knows that has no outline lands in US-ST.nomatch.csv with its reason
+        for st in sorted(set(_owned_states(a.parts))):
+            rows = nomatch_rows(root, st, a.us_key)
+            if rows is None: continue
+            nf = root / 'solver-queue' / f'US-{st}.nomatch.csv'
+            # an existing file is emptied to its header, never deleted: the copy-mode save (kpc_save_overwrite.sh --copy) carries no deletions
+            if M.write_queue(nf, rows, keep_empty=nf.exists()): nm += 1
     doc['layers'].update(lay); doc.setdefault('caches', {}).update(cac)
     byname = {r['name']: r for r in raw.get('files') or []}; byname.update(rawrows)
     raw['files'] = sorted(byname.values(), key=lambda r: r['name'])
     M.save_layers(doc, root); M.raw_manifest_path(root).write_text(json.dumps(raw, indent=1, sort_keys=True) + '\n', encoding='utf-8')
-    notice('Master step', f'collect: {len(files)} outline file(s), {len(lay)} layer row(s), {len(cac)} cache row(s), {len(rawrows)} raw row(s), each from its owning part')
+    notice('Master step', f'collect: {len(files)} outline file(s), {len(lay)} layer row(s), {len(cac)} cache row(s), {len(rawrows)} raw row(s), each from its owning part; '
+                          f'solver queue: {quiet} file(s) changed, {nm} no-match file(s) written')
     if a.needs_out:
         nd = M.load_needs(a.needs_in) if a.needs_in else M.load_needs(None)
         nd, add, upd = M.merge_needs(nd, rows)
