@@ -10,7 +10,8 @@ easier'). Notes only: nothing here decides, nothing goes to the waiting room, th
            boundary / recreation / wildlife / forest / lands words + its name field, in the file's '## Layers on these servers'
            section (rewritten each run). Lists only.
   python3 kpc_research_helpers.py packets|atlas [AREA ...]      env DATA = a KPC-Data checkout (default kpcdata)
-Manners: KPC-Data's kpc_manners.py (robots obeyed; ArcGIS REST exempt; 2 s per host; 3 strikes = a day's rest). Never fails."""
+Manners: KPC-Data's kpc_manners.py (host rules first: services*.arcgis.com and the never-contact hosts get no request of any kind,
+robots.txt included; robots obeyed with no exemption; 2 s per host; 3 strikes = a day's rest). No Manners = no request. Never fails."""
 import datetime as dt, glob, json, os, pathlib, re, sys, time, urllib.parse
 
 DATA = pathlib.Path(os.environ.get('DATA') or 'kpcdata')

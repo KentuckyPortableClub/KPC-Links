@@ -2,6 +2,10 @@ name: KPC owned land (agency-land parks)
 # Oct 27 2026 (Fable's boundary review #1, HQ GO 11:00 AM): the land an agency OWNS inside a forest / refuge / project
 # line, for Am I in the Park and the map tools (rule B1 + B-G1). Kentucky first: ky-dbnf-owned.geojson. By hand + monthly.
 # Never fails (a failed run emails Brandon); a map that does not answer keeps the last file.
+# Nov 11 (host rules, review package A): run through kpc_owned_run.py (kpc_owned.py is a 2-fer rule file, left as it is). The guard is
+# on before any request; a map on a never-contact host (the Forest Service ownership map is one) is read from the saved copy
+# only, and with no saved copy nothing is asked: the last file stays, with a visible warning and data/status/kpc_owned.json (STALE
+# since, and the needs-download row for a person).
 on:
   workflow_dispatch:
   schedule:
@@ -21,7 +25,7 @@ jobs:
         id: kept_green_1
         continue-on-error: true
         timeout-minutes: 50
-        run: python3 .github/scripts/kpc_owned.py ky || { kpc_rc=$?; echo "::error title=kpc_owned.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_owned.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+        run: python3 .github/scripts/kpc_owned_run.py ky || { kpc_rc=$?; echo "::error title=kpc_owned_run.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_owned_run.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         if: always()
         id: kept_green_2
@@ -30,6 +34,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add ky-dbnf-owned.geojson 2>/dev/null || true   # ok: an optional path may not exist
+          git add data/status/kpc_owned.json 2>/dev/null || true   # ok: written only when a map was blocked or did not answer
           git diff --cached --quiet && exit 0
           git commit -m 'Owned land: Daniel Boone NF Forest Service land (kpc_owned.py)' || exit 0
           { saved=0; for i in 1 2 3; do git pull --rebase -q && git push -q && { saved=1; break; }; sleep 5; done; [ "$saved" = 1 ] || { kpc_rc=$?; echo "::error title=Save::not saved after every try; the next run tries again"; echo "Save - not saved after every try; the next run tries again" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; }

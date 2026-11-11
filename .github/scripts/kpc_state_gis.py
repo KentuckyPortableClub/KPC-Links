@@ -6,7 +6,7 @@ curate into data/state-gis.json). One-time / occasional run; never fails the wor
 How: (1) ArcGIS Online public search for "<State> state parks" etc. (Feature Services + Map Services), (2) the state GIS
 server roots listed in ROOTS are crawled (folders → services → layers). Every polygon layer whose name/fields look like a
 park or wildlife layer is queried once (count) and its fields are saved."""
-import json, re, sys, time, threading, urllib.error, urllib.request, urllib.parse, concurrent.futures as cf
+import json, os, re, sys, time, threading, urllib.error, urllib.request, urllib.parse, urllib.robotparser, concurrent.futures as cf
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 
@@ -110,9 +110,70 @@ NAMEF = re.compile(r'^(dnr_?name|lands_?name|prop_?name|sitename|site_?name|park
 WEBF = re.compile(r'url|link|web|hyperlink|website|homepage|page', re.I)
 OUT = 'data/state-gis-found.json'
 
+# Nov 11 2026 (host rules, review package A): every request goes through get() below, in this order, before anything is sent:
+#   1. the host rules (kpc_net_guard): services*.arcgis.com, apps.fs.usda.gov, never-contact layers = Blocked, no request of any kind
+#      (robots.txt included). A blocked layer is listed as BLOCKED (saved copy only), never as 'not found' or 'did not answer';
+#   2. robots.txt of that host (read once, through the same pacing; 401 / 403 / 5xx / no answer = no; 404 / 410 = no rules);
+#   3. pacing per host: 60 s between requests on ArcGIS Online / Hub portals (www.arcgis.com sharing search, *.maps.arcgis.com,
+#      hub.arcgis.com, *.opendata.arcgis.com and the state hub sites in HUBS), 2 s on every other host; one request at a time per host;
+#   4. a time budget (KPC_STATE_GIS_MINUTES, 50): past it nothing more is asked; what was not read keeps last time's layers (stale).
+class Blocked(Exception): pass       # the host rules say no: nothing was asked
+class NotThisRun(Exception): pass    # robots.txt says no, or the time budget is used up: nothing was asked
+
+SLOW_RE = re.compile(r'(^|\.)(www\.arcgis\.com|maps\.arcgis\.com|hub\.arcgis\.com|opendata\.arcgis\.com)$')
+SLOW_HOSTS = {(urllib.parse.urlparse(x).hostname or '').lower() for v in HUBS.values() for x in v}
+SLOW_GAP, GAP = 60.0, 2.0
+BUDGET = float(os.environ.get('KPC_STATE_GIS_MINUTES') or 50) * 60
+T0 = time.time()
+BLOCKED = {}     # address without query -> why (the host rules): listed in the output and the log, never 'not found'
+ROBOTS_NO = {}   # host -> why robots.txt said no this run
+_HOST_LK, _LAST, _ROBOTS, _LK = {}, {}, {}, threading.Lock()
+
+
+def gap_for(host): return SLOW_GAP if SLOW_RE.search(host) or host in SLOW_HOSTS else GAP
+
+
+def _host_lock(host):
+    with _LK: return _HOST_LK.setdefault(host, threading.Lock())
+
+
+def _paced_open(req, host, timeout):
+    """One request at a time per host, at least gap_for(host) seconds apart."""
+    with _host_lock(host):
+        if time.time() - T0 > BUDGET: raise NotThisRun('time budget used up')
+        w = _LAST.get(host, -1e9) + gap_for(host) - time.time()
+        if w > 0: time.sleep(w)
+        _LAST[host] = time.time()
+        return urllib.request.urlopen(req, timeout=timeout)
+
+
+def robots_ok(url):
+    p = urllib.parse.urlparse(url); host = (p.hostname or '').lower(); key = f'{p.scheme}://{p.netloc}'
+    if key not in _ROBOTS:
+        rp = False
+        try:
+            with _paced_open(urllib.request.Request(key + '/robots.txt', headers={'User-Agent': UA}), host, 15) as r:
+                rp = urllib.robotparser.RobotFileParser(); rp.parse(r.read(512_000).decode('utf-8', 'replace').splitlines())
+        except NotThisRun: raise
+        except urllib.error.HTTPError as e: rp = None if e.code in (404, 410) else False
+        except Exception: rp = False  # noqa: BLE001  (rules we cannot read = not this run)
+        _ROBOTS[key] = rp
+    rp = _ROBOTS[key]
+    try: ok = rp is None or (rp is not False and rp.can_fetch(UA, url))
+    except Exception: ok = False  # noqa: BLE001
+    if not ok: ROBOTS_NO[host] = 'robots.txt says no (or could not be read)' if rp is False else 'robots.txt disallows this path'
+    return ok
+
+
 def get(url, timeout=25):
+    ok, why = kpc_net_guard.host_ok(url)
+    if not ok:
+        BLOCKED[url.split('?')[0].rstrip('/').removesuffix('/query')] = why
+        raise Blocked(why)
+    host = (urllib.parse.urlparse(url).hostname or '').lower()
+    if not robots_ok(url): raise NotThisRun(ROBOTS_NO.get(host) or 'robots.txt')
     req = urllib.request.Request(url, headers={'User-Agent': UA, 'Accept': 'application/json'})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
+    with _paced_open(req, host, timeout) as r:
         return r.read().decode('utf-8', 'replace')
 
 FAILED = set()   # Oct 28: URLs that did not answer this run (timeout / server error): their layers are kept from last time, not dropped
@@ -126,10 +187,16 @@ def jget(url, timeout=25):
     if HOST_FAILS.get(host, 0) >= 3 and 'arcgis.com' not in host:
         FAILED.add(url.split('?')[0].rstrip('/').removesuffix('/query'))
         return None
+    stopped = False
     for i in range(2):   # one timeout is not a dead layer: one more try after a short pause
         try:
             t = get(url, timeout)
             return json.loads(t)
+        except Blocked:
+            return None       # never asked (host rules): listed as BLOCKED, its old layers are kept marked 'blocked'
+        except NotThisRun:
+            stopped = True    # robots.txt said no / out of time: nothing asked, not a dead layer, kept from last time
+            break
         except urllib.error.HTTPError as e:
             if e.code < 500:
                 return None   # 4xx: really not there
@@ -139,7 +206,7 @@ def jget(url, timeout=25):
             pass
         time.sleep(4)
     FAILED.add(url.split('?')[0].rstrip('/').removesuffix('/query'))
-    HOST_FAILS[host] = HOST_FAILS.get(host, 0) + 1
+    if not stopped: HOST_FAILS[host] = HOST_FAILS.get(host, 0) + 1   # a robots / time-budget stop is not a host failure
     if re.search(r'/sharing/rest/|/api/(v3|search)/', url) and getattr(_T, 'st', None):
         SEARCH_FAILED.add(_T.st)
     return None
@@ -329,7 +396,7 @@ def host_hunt(st, seen, out):
         for page in (f'https://{site}/', f'https://{site}/gis', f'https://{site}/maps', f'https://{site}/data', f'https://www.{base}/gis'):
             try:
                 t = get(page, 15)
-            except Exception:
+            except Exception:  # noqa: BLE001  (Blocked / NotThisRun / no answer: this page is skipped)
                 continue
             for u in set(re.findall(r'https?://[^\s"\'<>]+?/(?:arcgis|server|hosting|gis)/rest/services[^\s"\'<>]*', t)):
                 roots.append(re.sub(r'(/rest/services).*', r'\1', u))
@@ -511,15 +578,24 @@ def main():
     # a layer found last time whose server (or service / layer URL) timed out this run stays on the list, marked 'stale'
     have_u = {(r['st'], r['url']) for r in found}
     kept = []
+    n_blocked = 0
     for r in old:
-        if r['st'] in sts and (r['st'], r['url']) not in have_u and (r['st'] in SEARCH_FAILED or any(r['url'] == f or r['url'].startswith(f + '/') for f in FAILED)):
+        if r['st'] not in sts or (r['st'], r['url']) in have_u: continue
+        bwhy = '' if kpc_net_guard.host_ok(r['url'])[0] else kpc_net_guard.host_ok(r['url'])[1]
+        if bwhy:   # Nov 11: a layer on a never-contact host is BLOCKED (saved copy only), not 'stale' and not 'gone'
+            r = dict(r); r['blocked'] = bwhy; r.setdefault('stale', time.strftime('%Y-%m-%d')); kept.append(r); n_blocked += 1
+        elif r['st'] in SEARCH_FAILED or any(r['url'] == f or r['url'].startswith(f + '/') for f in FAILED):
             r = dict(r); r.setdefault('stale', time.strftime('%Y-%m-%d')); kept.append(r)
     for r in found:
-        r.pop('stale', None)
+        r.pop('stale', None); r.pop('blocked', None)
     found += kept
     found.sort(key=lambda r: (r['st'], r['kind'], -r['count']))
-    print(f'::notice title=State GIS scan::GATE PASS {len(found)} layers saved; {len(kept)} kept from last time because their server did not answer ({len(FAILED)} URLs timed out twice)')
-    save_json(OUT, {'n': len(found), 'layers': found}, indent=0)
+    print(f'::notice title=State GIS scan::GATE PASS {len(found)} layers saved; {len(kept) - n_blocked} kept from last time because their server did not answer '
+          f'or was not reached this run ({len(FAILED)} URLs); {n_blocked} kept marked BLOCKED (never-contact host: saved copy only)')
+    if BLOCKED or ROBOTS_NO:
+        print(f'::warning title=State GIS scan::{len(BLOCKED)} address(es) NOT asked because the host rules forbid them (saved copy only), '
+              f'e.g. {"; ".join(list(BLOCKED)[:3])}; robots.txt said no on {len(ROBOTS_NO)} host(s): {", ".join(sorted(ROBOTS_NO)[:6])}', flush=True)
+    save_json(OUT, {'n': len(found), 'layers': found, 'blocked': sorted(BLOCKED)[:500], 'robots_no': dict(sorted(ROBOTS_NO.items())[:200])}, indent=0)
     by = {}
     for r in found:
         by[r['st']] = by.get(r['st'], 0) + 1

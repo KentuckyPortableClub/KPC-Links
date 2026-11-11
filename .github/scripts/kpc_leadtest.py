@@ -14,21 +14,62 @@ FED_ORG = re.compile(r'bureau of land management|\bblm\b|forest service|\busfs\b
                      r'parks canada|environment and climate change canada|statistics canada|government of (?:canada|alberta|british columbia|ontario|'
                      r'quebec|manitoba|saskatchewan|nova scotia|new brunswick|newfoundland|prince edward island|yukon|northwest territories|nunavut)', re.I)
 LAST = {}
+# Nov 11 2026 (host rules, review package A): every request of the discovery bot goes through polite_open(): the host rules first
+# (kpc_net_guard: services*.arcgis.com and the never-contact hosts get no request of any kind, robots.txt included), then robots.txt
+# of that host (401 / 403 / 5xx / no answer = no; 404 / 410 = no rules), then pacing: 60 s between requests on ArcGIS Online / Hub
+# portals (www.arcgis.com sharing search, *.maps.arcgis.com, hub.arcgis.com, *.opendata.arcgis.com), 2 s on every other host.
+import kpc_net_guard, urllib.robotparser  # noqa: E402,E401
+kpc_net_guard.install()
+SLOW_RE = re.compile(r'(^|\.)(www\.arcgis\.com|maps\.arcgis\.com|hub\.arcgis\.com|opendata\.arcgis\.com)$')
+ROBOTS = {}
+
+
+class NotAsked(OSError):
+    """Nothing was sent: the host rules or robots.txt say no. 'blocked' tells a never-contact host from a robots 'no'."""
+    def __init__(self, why, blocked=False): super().__init__(why); self.blocked = blocked
+
+
+def _pace(host):
+    w = (60.0 if SLOW_RE.search(host.split(':')[0]) else 2.0) - (time.time() - LAST.get(host, 0))
+    if w > 0: time.sleep(w)
+    LAST[host] = time.time()
+
+
+def robots_ok(url):
+    p = urllib.parse.urlparse(url); key = f'{p.scheme}://{p.netloc}'
+    if key not in ROBOTS:
+        _pace(p.netloc)
+        try:
+            with urllib.request.urlopen(urllib.request.Request(key + '/robots.txt', headers=UA), timeout=15) as r:
+                rp = urllib.robotparser.RobotFileParser(); rp.parse(r.read(512_000).decode('utf-8', 'replace').splitlines())
+        except urllib.error.HTTPError as e: rp = None if e.code in (404, 410) else False
+        except Exception: rp = False  # noqa: BLE001
+        ROBOTS[key] = rp
+    rp = ROBOTS[key]
+    try: return rp is None or (rp is not False and rp.can_fetch(UA['User-Agent'], url))
+    except Exception: return False  # noqa: BLE001
+
+
+def polite_open(req, timeout=20):
+    """urlopen(req) after the host rules, robots.txt and the per-host pause. Raises NotAsked when nothing may be sent."""
+    url = getattr(req, 'full_url', req)
+    ok, why = kpc_net_guard.host_ok(url)
+    if not ok: raise NotAsked(f'BLOCKED (saved copy only, not asked): {why}', blocked=True)
+    if not robots_ok(url): raise NotAsked(f'not asked: robots.txt of {urllib.parse.urlparse(url).netloc} says no')
+    _pace(urllib.parse.urlparse(url).netloc)
+    return urllib.request.urlopen(req, timeout=timeout)
 
 
 def get(url, params=None, timeout=20, tries=2):
-    """1 request a second per host, 20 s timeout, 2 tries (design §2)."""
-    host = urllib.parse.urlparse(url).netloc
+    """Through polite_open (host rules, robots.txt, 2 s per host / 60 s on hub portals), 20 s timeout, 2 tries (design §2)."""
     for i in range(tries):
-        w = 1.0 - (time.time() - LAST.get(host, 0))
-        if w > 0: time.sleep(w)
-        LAST[host] = time.time()
         try:
             u = url + ('?' + urllib.parse.urlencode(params) if params else '')
-            with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=timeout) as r:
+            with polite_open(urllib.request.Request(u, headers=UA), timeout=timeout) as r:
                 j = json.loads(r.read().decode('utf-8', 'replace'))
             if isinstance(j, dict) and j.get('error'): raise RuntimeError(str(j['error'])[:120])
             return j
+        except NotAsked: raise          # nothing was sent: never retried
         except Exception as e:  # noqa: BLE001
             last = e
             if '403' in str(e): break   # never retry a refusal (design §2 'what the bot never does')
