@@ -5,8 +5,8 @@
   "date": "2026-11-11",
   "result": "PASS"
  },
- "previous_build": "CA-42689962177",
- "previous_built": "2026-11-09 20:26 UTC",
+ "previous_build": "CA-43003880140",
+ "previous_built": "2026-11-11 10:45 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -200,8 +200,8 @@
  ],
  "rules_of_run": "4b4176190334",
  "inputs": {
-  "us-key": "US-42996829343"
+  "us-key": "US-43037613117"
  },
- "build": "CA-43003880140",
- "built": "2026-11-11 10:45 UTC"
+ "build": "CA-43049790907",
+ "built": "2026-11-11 15:52 UTC"
 }
