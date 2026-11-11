@@ -16,6 +16,112 @@
   function dfetch(u, opt) { return (window.KPC && KPC.dataUrl) ? KPC.dataUrl(u, opt) : fetch(u, opt); }
   async function dget(u, opt, ms) { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 25000); try { const r = await dfetch(u, Object.assign({ signal: c.signal }, opt || {})); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.json(); } finally { clearTimeout(t); } }
 
+  /* Nov 10: the US key's own matched/trimmed outlines, one FeatureCollection per state
+     (data/outlines/US-XX.geojson.gz). The same format a refresh=all key run writes.
+     Shared with the US planner / Park Commander map layer. No live PAD-US or services*.arcgis.com. */
+
+  window.kpcKeyOutlines = window.kpcKeyOutlines || (function () {
+    const cache = {}, caCache = {}, wCache = {};
+    const day = () => new Date().toISOString().slice(0, 10);
+    const dfetch = (u, opt) => (window.KPC && KPC.dataUrl) ? KPC.dataUrl(u, opt) : fetch(u, opt);
+    function getJson(url) {
+      return dfetch(url, { cache: 'force-cache' }).then(r => r.ok ? r.json() : Promise.reject())
+        .catch(() => fetch(url, { cache: 'reload' }).then(r => r.ok ? r.json() : null))
+        .catch(() => null);
+    }
+    async function gunzipJson(res) {
+      const ab = await res.arrayBuffer(), u8 = new Uint8Array(ab);
+      let text;
+      if (u8.length >= 2 && u8[0] === 0x1f && u8[1] === 0x8b) {
+        if (typeof DecompressionStream !== 'function') throw new Error('gzip');
+        text = await new Response(new Blob([ab]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+      } else text = new TextDecoder().decode(ab);
+      return JSON.parse(text);
+    }
+    function load(st) {
+      st = String(st || '').replace(/^US-/i, '').toUpperCase();
+      if (!st || st === 'KY') return Promise.resolve(null);
+      if (!cache[st]) {
+        cache[st] = fetch('data/outlines/US-' + st + '.geojson.gz?v=' + day(), { cache: 'force-cache' })
+          .then(r => r.ok ? gunzipJson(r) : null)
+          .then(j => {
+            if (!j || !Array.isArray(j.features)) return null;
+            const by = {};
+            j.features.forEach(f => { const r = (f.properties || {}).ref; if (r) by[r] = f; });
+            return { features: j.features, by, area: (j.kpc && j.kpc.area) || ('US-' + st) };
+          })
+          .catch(() => null);
+      }
+      return cache[st];
+    }
+    /* Published per-park Canada outlines already on the site (data/canada-bounds/<REF>.json). No new files. */
+    function loadCanada(ref) {
+      ref = String(ref || '').toUpperCase();
+      if (!/^CA-\d/.test(ref)) return Promise.resolve(null);
+      if (!caCache[ref]) {
+        const url = 'data/canada-bounds/' + encodeURIComponent(ref) + '.json?v=' + day();
+        caCache[ref] = getJson(url).then(j => {
+          if (!j) return null;
+          const fs = (j.type === 'FeatureCollection' ? (j.features || []) : [j]).filter(f => f && f.geometry);
+          if (!fs.length) return null;
+          fs.forEach(f => {
+            const p = f.properties || (f.properties = {});
+            if (!p.ref) p.ref = ref;
+            if (!p.name) p.name = p.cpcad || ref;
+            if (!p.g) p.g = p.approx ? 'approximate' : 'official';
+          });
+          return { features: fs, area: ref };
+        }).catch(() => null);
+      }
+      return caCache[ref];
+    }
+    function worldToFeat(ref, b) {
+      if (!b || !b.r || !b.r.length) return null;
+      return { type: 'Feature', properties: { ref, name: b.n || ref, g: 'official', src: b.s || '' },
+        geometry: { type: 'MultiPolygon', coordinates: b.r.map(r => [r]) } };
+    }
+    /* Saved world shards (data/world-bounds/CC/n.json, 100 parks each) already published on KPC-Data
+       and the world-bounds branch. World-key JSON has joins but no geometry; do not live-fetch agency maps. */
+    function loadWorldShard(cc, n) {
+      cc = String(cc || '').toUpperCase(); n = +n;
+      if (!/^[A-Z]{2}$/.test(cc) || cc === 'US' || cc === 'CA' || !isFinite(n) || n < 0) return Promise.resolve(null);
+      const key = cc + '/' + n;
+      if (!wCache[key]) {
+        const rel = 'data/world-bounds/' + cc + '/' + n + '.json?v=' + day();
+        const raw = 'https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/world-bounds/data/world-bounds/' + cc + '/' + n + '.json';
+        wCache[key] = getJson(rel)
+          .then(j => j || fetch(raw).then(r => r.ok ? r.json() : null).catch(() => null))
+          .then(j => {
+            if (!j || typeof j !== 'object') return null;
+            const features = [];
+            Object.keys(j).forEach(ref => { const f = worldToFeat(ref, j[ref]); if (f) features.push(f); });
+            return features.length ? { features, area: key } : null;
+          })
+          .catch(() => null);
+      }
+      return wCache[key];
+    }
+    function loadWorldRef(ref) {
+      ref = String(ref || '').toUpperCase();
+      const m = /^([A-Z]{2})-(\d+)$/.exec(ref);
+      if (!m || m[1] === 'US' || m[1] === 'CA') return Promise.resolve(null);
+      return loadWorldShard(m[1], Math.floor(parseInt(m[2], 10) / 100));
+    }
+    let caRows = null, caRowsP = null;
+    function canadaRows() {
+      if (caRows) return Promise.resolve(caRows);
+      return caRowsP || (caRowsP = getJson('data/canada.json?v=' + day()).then(j => {
+        const rows = (j && j.rows) || [];
+        caRows = rows.filter(r => r && r[0] === 'POTA' && /^CA-/.test(r[1]) && isFinite(r[3]) && isFinite(r[4]))
+          .map(r => ({ ref: r[1], la: r[3], lo: r[4] }));
+        return caRows;
+      }).catch(() => (caRows = [])));
+    }
+    return { load, loadCanada, loadWorldShard, loadWorldRef, canadaRows };
+  })();
+  const keyOutlines = () => window.kpcKeyOutlines;
+
+
   /* ---------- geometry ---------- */
   function ringsOf(g) { if (!g) return []; if (g.type === 'Polygon') return [g.coordinates]; if (g.type === 'MultiPolygon') return g.coordinates; return []; }
   function linesOf(g) { if (!g) return []; if (g.type === 'LineString') return [g.coordinates]; if (g.type === 'MultiLineString') return g.coordinates; const o = []; ringsOf(g).forEach(p => p.forEach(r => o.push(r))); return o; }
@@ -259,8 +365,29 @@
     const off = a => a < 20000 ? 0.00004 : a < 200000 ? 0.00015 : a < 1000000 ? 0.0003 : 0.0008;
     const groups = {};
     m.forEach(x => { const s = String(x[0]), pre = (s.match(/^[a-z]+/) || [''])[0], id = s.slice(pre.length), o = off(+x[2] || 0), g = pre + o; (groups[g] = groups[g] || { pre, o, ids: [] }).ids.push(id); });
+    /* Nov 10: draw from the key's own per-state outline file when it is on this site.
+       A missing file (or a park not in it yet) is "no saved outline yet" — never a live PAD-US / ArcGIS read. */
+    const savedFs = [];
+    for (let si = 0; si < SL.length; si++) {
+      const pack = await keyOutlines().load(SL[si]);
+      const f = pack && pack.by && pack.by[ref];
+      if (f && f.geometry) {
+        const p = f.properties || {};
+        const ff = Object.assign({}, f);
+        ff._src = 'US answer key (saved outline)';
+        ff._nm = p.name || hit.n;
+        ff._bb = bbox(f.geometry);
+        ff._line = isLine(f.geometry);
+        savedFs.push(ff);
+      }
+    }
+    if (savedFs.length) {
+      const line = savedFs.every(f => f._line);
+      const approx = grade === 'approximate' || (savedFs[0].properties || {}).g === 'approximate';
+      return { state: 'ok', n: hit.n, m, fs: savedFs, approx, why: '', note, water: false, read: hit.read || '', grade, pinOff, line };
+    }
     const jobs = [];
-    Object.values(groups).forEach(g => { for (let i = 0; i < g.ids.length; i += 40) { const ids = g.ids.slice(i, i + 40).join(','), X = XMAP[g.pre];
+    Object.values(groups).forEach(g => { for (let i = 0; i < g.ids.length; i += 40) { const X = XMAP[g.pre];
       if (X && String(X[0]).startsWith('file:') && String(X[0]).indexOf('{n}') >= 0) {   /* Oct 30: one file per record (official trail lines) */
         g.ids.slice(i, i + 40).forEach(n => jobs.push(dfetch(X[0].slice(5).replace('{n}', n) + '?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null)
           .then(j => (!j ? [] : j.type === 'FeatureCollection' ? (j.features || []) : [j]).map(f => (f._src = X[2] || 'National Park Service', f._line = true, f))).catch(() => [])));
@@ -272,10 +399,9 @@
           .then(j => (j.features || []).filter(f => want.has(String((f.properties || {}).OBJECTID))).map(f => (f._src = X[2], f))).catch(() => []));
         continue;
       }
-      jobs.push(X ? jget(X[0] + '?' + new URLSearchParams({ objectIds: ids, outFields: X[1], returnGeometry: true, outSR: 4326, maxAllowableOffset: g.o, geometryPrecision: 5, f: 'geojson' }), null, 30000).then(j => (j.features || []).map(f => { f._src = X[2]; const p = f.properties || {}; f.properties = Object.assign({ Unit_Nm: p[X[1]] }, p); return f; })).catch(() => [])
-        : padus({ objectIds: ids, returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: g.o }).then(j => (j.features || []).map(f => (f._src = 'USGS PAD-US', f))).catch(() => [])); } });
+      /* no live services*.arcgis.com or PAD-US queries — wait for the key's outline file */ } });
     const fs = (await Promise.all(jobs)).flat().filter(f => f.geometry);
-    if (!fs.length) return { state: 'error', n: hit.n, m };
+    if (!fs.length) return { state: 'none', site, grade, pinOff, missingOutline: true };
     fs.forEach(f => { const p = f.properties || {}; f._nm = p.Unit_Nm || p.ORGNAME || hit.n; f._bb = bbox(f.geometry); });
     /* Oct 22 (Brandon: 'note boundaries that we dont know for sure so they clearly know this is not offical'): an outline is
        APPROXIMATE when the names only partly match AND the park's map pin is outside the land. A pin alone is not enough:
@@ -298,9 +424,8 @@
     let k = null; try { k = await usKey(ref, states); } catch (e) {}
     if (k && k.state === 'ok' && T) { try { k.fs = await tractify(ref, k.fs, states); } catch (e) {} }
     if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', line: !!k.line, pinOff: !!k.pinOff, water: !!k.water, read: k.read || '', old: !!k.read && (Date.now() - Date.parse(k.read + 'T12:00:00')) > 365 * 864e5, why: k.why || '', note: k.note || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
-    if (k && k.state === 'none') return { fs: [], label: 'none', why: '', src: '', site: k.site, pinOff: !!k.pinOff };
-    let fs = []; try { fs = await padusByName(name, la, lo); } catch (e) {}
-    return fs.length ? { fs, label: 'approx', why: 'found by a name search and not checked yet', src: 'USGS PAD-US' } : { fs: [], label: 'none', why: '', src: '' };
+    if (k && k.state === 'none') return { fs: [], label: 'none', why: k.missingOutline ? 'no saved outline yet' : '', src: '', site: k.site, pinOff: !!k.pinOff, missingOutline: !!k.missingOutline };
+    return { fs: [], label: 'none', why: 'no saved outline yet', src: '', missingOutline: true };
   }
   /* Oct 18 (Brandon: review the US data… tappable land): what official land is at a spot, and which POTA parks the answer key joined to it */
   const revCache = {};
@@ -311,18 +436,20 @@
   }
   const ACC = { OA: 'open to the public', RA: 'restricted access', XA: 'closed to the public', UK: 'access unknown' };
   async function usLandAt(la, lo, states) {
-    const pt = { geometry: `${lo},${la}`, geometryType: 'esriGeometryPoint' };
-    const meta = await padus(Object.assign({ returnGeometry: false }, pt)).catch(() => ({ features: [] }));
-    let fs = (meta.features || []).map(f => f.properties || {}).filter(p => p.Category !== 'Proclamation');
-    const seen = new Set(); fs = fs.filter(p => { const k = (p.Unit_Nm || '') + '|' + (p.Loc_Mang || p.Mang_Name || ''); if (seen.has(k)) return false; seen.add(k); return true; })
-      .sort((a, b) => (+a.GIS_Acres || 0) - (+b.GIS_Acres || 0)).slice(0, 5);
-    if (!fs.length) return [];
-    const rev = Object.assign({}, ...(await Promise.all((states || []).map(keyRev))));
-    const geo = await padus({ objectIds: fs.map(p => p.OBJECTID).join(','), returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: 0.0002,
-      geometry: `${lo - 0.15},${la - 0.15},${lo + 0.15},${la + 0.15}`, geometryType: 'esriGeometryEnvelope' }).catch(() => ({ features: [] }));
-    const G = {}; (geo.features || []).forEach(f => { G[(f.properties || {}).OBJECTID] = f; });
-    return fs.map(p => ({ id: p.OBJECTID, name: p.Unit_Nm || p.Loc_Nm || 'Public land', by: p.Loc_Mang || p.Mang_Name || '', kind: p.Des_Tp || '',
-      access: ACC[p.Pub_Access] || '', acres: Math.round(+p.GIS_Acres || 0), parks: rev[String(p.OBJECTID)] || [], f: G[p.OBJECTID] || null }));
+    /* Nov 10: hit-test the key's saved per-state outlines. No live PAD-US. */
+    const rows = [];
+    for (const st of (states || [])) {
+      const pack = await keyOutlines().load(st);
+      if (!pack) continue;
+      (pack.features || []).forEach(f => {
+        if (!f.geometry || !inside(la, lo, f.geometry)) return;
+        const p = f.properties || {};
+        const ff = Object.assign({}, f, { _nm: p.name || p.ref, _bb: bbox(f.geometry), _src: 'US answer key (saved outline)' });
+        rows.push({ id: p.ref || p.record_ids, name: p.name || p.ref || 'Park', by: p.agency || '', kind: p.g || 'official',
+          access: '', acres: 0, parks: p.ref ? [{ ref: p.ref, n: p.name || p.ref }] : [], f: ff, missingOutline: false });
+      });
+    }
+    return rows.slice(0, 8);
   }
   const words = n => String(n || '').replace(/\b(state|national|park|parks|forest|wildlife|management|area|recreation|recreational|nature|preserve|refuge|historic|historical|site|reserve|natural|lake|wma|nwr|the|of|and)\b/gi, ' ').replace(/[^A-Za-z0-9' ]/g, ' ').trim().split(/\s+/).filter(w => w.length > 2);
   async function padusByName(name, la, lo) {
@@ -692,6 +819,6 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { pointCircle, pcSync, pcNote, tileHas, tileIndex, kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usKeyLayers: () => layers(), usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, ncLabel, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE,
+  window.KPCB = { pointCircle, pcSync, pcNote, tileHas, tileIndex, kyFailed: () => KYBAD > 0 && !kyFeat, trailLine, trailsNear, isLine, closeUp, gradeText, sharpLayer, landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usKeyLayers: () => layers(), usOutline, usLandAt, keyOutlines, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, ncLabel, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE,
     tractsOn, tractsReady, tractSwitch, tractMode, countMode, tractPath, tractDoc, tractsOf, splitRecs, tractGroups, tractify, ringsToPolys, toKml, toGpx };
 })();

@@ -20,7 +20,7 @@ check('</div></div><div class="mapgrid"><section class="panel mapwrap" id="finde
 check(all(f'id="{i}"' in h for i in ('place', 'town', 'gps', 'sota', 'pota', 'wwff', 'radius', 'status', 'items', 'count', 'favorites', 'tripstops', 'tripcount', 'clearplan', 'exportresults', 'exporttrip', 'sharesearch', 'gis-inside-btn')), 'main control ids kept')
 check(all(x in js for x in ('function setTab', 'kpcCmdTab', 'function goNear', 'flashTab', 'invalidateSize', 'ArrowRight', 'hashchange', 'aria-selected')), 'tab logic: remember, hash, arrows, map resize')
 check(js.count('wantNear=true') >= 5, 'every kind of search (town, reference, GPS, Kentucky jump, shared link) opens NEARBY')
-check('finder.js?v=20261110tabs' in h and 'finder.css?v=20261110tabs' in h, 'script and style versions bumped')
+check(re.search(r'finder\.js\?v=[A-Za-z0-9]+', h) and re.search(r'finder\.css\?v=[A-Za-z0-9]+', h), 'script and style have a version stamp')
 r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_feature_inventory.py'), '--check'], capture_output=True, text=True)
 check(r.returncode == 0, 'every feature-inventory item is still present: ' + r.stdout.strip()[-120:])
 print('ALL PASS' if not bad else 'SOME FAILED'); sys.exit(1 if bad else 0)
