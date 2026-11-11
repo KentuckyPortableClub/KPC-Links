@@ -1,10 +1,10 @@
 {
  "United States": {
   "totals": {
-   "matched": 11723,
-   "far": 2464,
+   "matched": 11735,
+   "far": 2338,
    "noshape": 0,
-   "edge": 2352,
+   "edge": 2226,
    "out": 112,
    "swap": 1
   },
@@ -119,15 +119,15 @@
    },
    {
     "st": "FL",
-    "matched": 436,
-    "far": 191,
+    "matched": 437,
+    "far": 65,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 190
+    "edge": 64
    },
    {
     "st": "GA",
@@ -179,27 +179,27 @@
    },
    {
     "st": "IL",
-    "matched": 212,
-    "far": 40,
+    "matched": 213,
+    "far": 39,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 39
+    "edge": 38
    },
    {
     "st": "IN",
-    "matched": 213,
-    "far": 31,
+    "matched": 217,
+    "far": 32,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 30
+    "edge": 31
    },
    {
     "st": "KS",
@@ -407,7 +407,7 @@
    },
    {
     "st": "NY",
-    "matched": 828,
+    "matched": 830,
     "far": 130,
     "noshape": 0,
     "out": 0,
@@ -431,7 +431,7 @@
    },
    {
     "st": "OK",
-    "matched": 159,
+    "matched": 160,
     "far": 42,
     "noshape": 0,
     "out": 5,
@@ -443,15 +443,15 @@
    },
    {
     "st": "OR",
-    "matched": 387,
-    "far": 73,
+    "matched": 389,
+    "far": 74,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 69
+    "edge": 70
    },
    {
     "st": "PA",
@@ -563,7 +563,7 @@
    },
    {
     "st": "WA",
-    "matched": 493,
+    "matched": 494,
     "far": 102,
     "noshape": 0,
     "out": 0,
@@ -588,14 +588,14 @@
    {
     "st": "WV",
     "matched": 165,
-    "far": 19,
+    "far": 18,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 16
+    "edge": 15
    },
    {
     "st": "WY",
@@ -852,10 +852,10 @@
  },
  "Canada": {
   "totals": {
-   "matched": 4392,
-   "far": 1644,
-   "noshape": 38,
-   "edge": 1530,
+   "matched": 4381,
+   "far": 1628,
+   "noshape": 25,
+   "edge": 1527,
    "out": 76,
    "swap": 0
   },
@@ -887,14 +887,14 @@
    {
     "st": "CA-MB",
     "matched": 219,
-    "far": 80,
+    "far": 79,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 77
+    "edge": 76
    },
    {
     "st": "CA-NB",
@@ -958,9 +958,9 @@
    },
    {
     "st": "CA-ON",
-    "matched": 960,
-    "far": 398,
-    "noshape": 27,
+    "matched": 950,
+    "far": 387,
+    "noshape": 16,
     "out": 7,
     "swap": 0,
     "stale": false,
@@ -971,26 +971,26 @@
    {
     "st": "CA-PE",
     "matched": 18,
-    "far": 10,
+    "far": 9,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 9
+    "edge": 8
    },
    {
     "st": "CA-QC",
     "matched": 442,
-    "far": 167,
+    "far": 166,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 162
+    "edge": 161
    },
    {
     "st": "CA-SI",
@@ -1006,7 +1006,7 @@
    },
    {
     "st": "CA-SK",
-    "matched": 303,
+    "matched": 304,
     "far": 151,
     "noshape": 2,
     "out": 17,
@@ -1030,9 +1030,9 @@
    },
    {
     "st": "CA-YT",
-    "matched": 29,
-    "far": 9,
-    "noshape": 2,
+    "matched": 27,
+    "far": 7,
+    "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
@@ -1074,6 +1074,30 @@
     "Lee Lake Wildlife Management Area"
    ],
    [
+    "CA-MB",
+    "CA-2506",
+    "Saskeram Wildlife Management Area",
+    ""
+   ],
+   [
+    "CA-NB",
+    "CA-4350",
+    "Allardville Protected Natural Area",
+    ""
+   ],
+   [
+    "CA-NB",
+    "CA-4357",
+    "Becaguimec Stream Protected Natural Area",
+    ""
+   ],
+   [
+    "CA-NB",
+    "CA-4380",
+    "Cains River Protected Area",
+    ""
+   ],
+   [
     "CA-NB",
     "CA-4435",
     "MacFarlane Brook Protected Area",
@@ -1083,19 +1107,31 @@
     "CA-NB",
     "CA-4443",
     "McCluskey Brook Protected Area",
-    "McCluskey Brook"
+    ""
+   ],
+   [
+    "CA-NB",
+    "CA-4508",
+    "Shikatehawk Stream Protected Area",
+    ""
+   ],
+   [
+    "CA-NB",
+    "CA-5153",
+    "Butternut Island Nature Reserve",
+    ""
    ],
    [
     "CA-NB",
     "CA-6544",
     "New Brunswick #5 Wildlife Management Area",
-    "New Brunswick #5 Wildlife Management Area"
+    ""
    ],
    [
     "CA-NB",
     "CA-6549",
     "New Brunswick #6 Wildlife Management Area",
-    "New Brunswick #6 Wildlife Management Area"
+    ""
    ],
    [
     "CA-NS",
@@ -1147,6 +1183,12 @@
    ],
    [
     "CA-QC",
+    "CA-0129",
+    "Ulittaniujalik National Park",
+    ""
+   ],
+   [
+    "CA-QC",
     "CA-2301",
     "Zec Collin Nature Reserve",
     "Zec Collin"
@@ -1177,6 +1219,12 @@
    ],
    [
     "CA-SK",
+    "CA-2554",
+    "Backes Island Wildlife Refuge",
+    ""
+   ],
+   [
+    "CA-SK",
     "CA-2582",
     "Bluebell Recreation Site",
     "Bluebell"
@@ -1201,6 +1249,12 @@
    ],
    [
     "CA-SK",
+    "CA-2846",
+    "Shell Lake Recreation Site",
+    ""
+   ],
+   [
+    "CA-SK",
     "CA-2860",
     "St. Walburg Recreation Site",
     "St. Walburg Recreation Site"
@@ -1210,15 +1264,21 @@
     "CA-2919",
     "Wreford Recreation Site",
     "Wreford"
+   ],
+   [
+    "CA-YT",
+    "CA-4623",
+    "Old Crow Flats Special Management Area Habitat Protection Area",
+    ""
    ]
   ]
  },
  "World": {
   "totals": {
-   "matched": 43965,
-   "far": 10121,
+   "matched": 43525,
+   "far": 9700,
    "noshape": 0,
-   "edge": 9799,
+   "edge": 9378,
    "out": 322,
    "swap": 1
   },
@@ -1249,15 +1309,15 @@
    },
    {
     "st": "AT",
-    "matched": 282,
-    "far": 66,
+    "matched": 285,
+    "far": 51,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 61
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 46
    },
    {
     "st": "AU",
@@ -1285,7 +1345,7 @@
    },
    {
     "st": "BE",
-    "matched": 164,
+    "matched": 165,
     "far": 46,
     "noshape": 0,
     "out": 0,
@@ -1573,15 +1633,15 @@
    },
    {
     "st": "FR",
-    "matched": 13081,
-    "far": 3535,
+    "matched": 12587,
+    "far": 3456,
     "noshape": 0,
     "out": 150,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 3385
+    "edge": 3306
    },
    {
     "st": "GA",
@@ -1597,15 +1657,15 @@
    },
    {
     "st": "GB",
-    "matched": 3673,
-    "far": 1187,
+    "matched": 3719,
+    "far": 865,
     "noshape": 0,
     "out": 15,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 1172
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 850
    },
    {
     "st": "GE",
@@ -1717,15 +1777,15 @@
    },
    {
     "st": "IE",
-    "matched": 103,
-    "far": 24,
+    "matched": 104,
+    "far": 22,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 24
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 22
    },
    {
     "st": "IM",
@@ -1765,15 +1825,15 @@
    },
    {
     "st": "JP",
-    "matched": 187,
-    "far": 18,
+    "matched": 188,
+    "far": 15,
     "noshape": 0,
     "out": 6,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 12
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 9
    },
    {
     "st": "KE",
@@ -2029,7 +2089,7 @@
    },
    {
     "st": "PL",
-    "matched": 2694,
+    "matched": 2696,
     "far": 402,
     "noshape": 0,
     "out": 0,
@@ -2234,7 +2294,7 @@
     "AT",
     "AT-0029",
     "Kaunergrat Nature Reserve",
-    "Naturpark Kaunergrat"
+    ""
    ],
    [
     "AT",
@@ -2678,7 +2738,7 @@
     "FR",
     "FR-11230",
     "Versant sud du Massif du Madres Biological Reserve",
-    "Versant sud du Massif du Madres"
+    ""
    ],
    [
     "FR",
@@ -2936,7 +2996,7 @@
     "FR",
     "FR-12522",
     "Vallee du Conflent Biological Reserve",
-    "Vall\u00e9e du Conflent"
+    ""
    ],
    [
     "FR",
@@ -2954,7 +3014,7 @@
     "FR",
     "FR-12542",
     "Coteaux du Sousson de Samaran a Pavie Biological Reserve",
-    "Coteaux du Sousson de Samaran \u00e0 Pavie"
+    ""
    ],
    [
     "FR",
@@ -3428,13 +3488,13 @@
     "FR",
     "FR-2560",
     "LITTORAL CAUCHOIS FR2300139 Natura 2000",
-    "Orquevaux"
+    ""
    ],
    [
     "FR",
     "FR-2929",
     "VALLEES DE LA SAYE ET DU MEUDON FR7200689 Natura 2000",
-    "Vall\u00e9es de la Saye et du Meudon"
+    ""
    ],
    [
     "FR",
@@ -3446,13 +3506,13 @@
     "FR",
     "FR-3061",
     "Massif forestier de Compiegne FR2200380 Natura 2000",
-    "Massifs forestiers d'Halatte, de Chantilly et d'Ermenonville"
+    ""
    ],
    [
     "FR",
     "FR-3156",
     "Marais d Ippling FR4112014 Natura 2000",
-    "Marais d'Ippling"
+    ""
    ],
    [
     "FR",
@@ -3464,43 +3524,43 @@
     "FR",
     "FR-3530",
     "Tourbieres du plateau ardennais FR2100273 Natura 2000",
-    "Tourbi\u00e8res du plateau ardennais"
+    ""
    ],
    [
     "FR",
     "FR-3611",
     "RESEAU DE CAVITES A MINIOPTERES DE SCHREIBERS EN FRANCHE COMTE 6 CAVITES  FR4301351 Natura 2000",
-    "R\u00e9seau de cavit\u00e9s \u00e0 Miniopt\u00e8res de Schreibers en Franche-Comt\u00e9 (6 cavit\u00e9s)"
+    ""
    ],
    [
     "FR",
     "FR-3625",
     "MARAIS SALANTS DE GUERANDE TRAICTS DU CROISIC ET DUNES DE PEN BRON  FR5200627 Natura 2000",
-    "Marais salants de Gu\u00e9rande, traicts du Croisic et dunes de Pen-Bron"
+    ""
    ],
    [
     "FR",
     "FR-3638",
     "CHATAIGNERAIES A OSMODERMA EREMITA AU SUD DU MANS  FR5202005 Natura 2000",
-    "Ch\u00e2taigneraies \u00e0 Osmoderma eremita au sud du Mans"
+    ""
    ],
    [
     "FR",
     "FR-3773",
     "Massif Du Pibeste - Aoulhet Biological Reserve",
-    "Massif Du Pibeste - Aoulhet"
+    ""
    ],
    [
     "FR",
     "FR-3912",
     "Bresse Jurassienne Natura 2000",
-    "Bresse jurassienne"
+    ""
    ],
    [
     "FR",
     "FR-4414",
     "Bresse jurassienne Natura 2000",
-    "Bresse jurassienne"
+    ""
    ],
    [
     "FR",
@@ -3614,19 +3674,19 @@
     "JP",
     "JP-0114",
     "Suigo-Tsukuba Quasi-National Park",
-    "suigou tsukuba"
+    ""
    ],
    [
     "JP",
     "JP-0148",
     "Genkai Quasi-National Park",
-    "genkai"
+    ""
    ],
    [
     "JP",
     "JP-0151",
     "Kyushu Chuo Sanchi Quasi-National Park",
-    "kyuushuu chuuou sanchi chiiki   oku kuma"
+    ""
    ],
    [
     "JP",
@@ -3794,7 +3854,7 @@
     "NL",
     "NL-0204",
     "de Voorde Historic Site",
-    "Voordelta"
+    ""
    ],
    [
     "NZ",
