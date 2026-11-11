@@ -1,7 +1,7 @@
 {
  "about": "Errors and warnings a step caught itself (kept green), from each timed bot's last timed run (G8 'Hidden failures' lines). Written by the check-up (kpc_bot_health.py); next round C4, Nov 5. A job marked safe to fail goes red on a caught error (repo variable KPC_HIDDEN_RED=off turns that off).",
- "checked": "2026-11-10T17:18+00:00",
- "runs_checked": 97,
+ "checked": "2026-11-11T12:16+00:00",
+ "runs_checked": 96,
  "runs_unread": 0,
  "with_hidden": [
   {
@@ -20,8 +20,8 @@
    "warnings": 0,
    "kept_green_steps": 0,
    "workflow": "KPC-Data/kpc-convert-layers.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42810852086",
-   "created": "2026-11-10T11:51:20Z",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/43012269070",
+   "created": "2026-11-11T11:28:47Z",
    "conclusion": "success"
   },
   {
@@ -90,8 +90,8 @@
    "warnings": 0,
    "kept_green_steps": 0,
    "workflow": "KPC-Data/kpc-waiting-room.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42820412810",
-   "created": "2026-11-10T12:59:14Z",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42998600968",
+   "created": "2026-11-11T09:50:51Z",
    "conclusion": "success"
   },
   {
@@ -103,6 +103,26 @@
    "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/42846876362",
    "created": "2026-11-10T15:40:52Z",
    "conclusion": "success"
+  },
+  {
+   "job": "build",
+   "errors": 0,
+   "warnings": 1,
+   "kept_green_steps": 0,
+   "workflow": "kpc-us-key.yml",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Links/actions/runs/42879248840",
+   "created": "2026-11-10T18:50:29Z",
+   "conclusion": "cancelled"
+  },
+  {
+   "job": "build",
+   "errors": 0,
+   "warnings": 1,
+   "kept_green_steps": 0,
+   "workflow": "kpc-us-key.yml",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Links/actions/runs/42879248840",
+   "created": "2026-11-10T18:50:29Z",
+   "conclusion": "cancelled"
   }
  ]
 }
