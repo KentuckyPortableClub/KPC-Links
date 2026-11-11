@@ -54,12 +54,16 @@ if(window.L){
    el.insertAdjacentElement('beforebegin',bar);
    const H={s:'280px',m:'',t:'78vh'};let cur='m';try{cur=localStorage.getItem('kpcMapSize')||'m'}catch(e){}if(cur==='f')cur='m';
    const fx=()=>setTimeout(()=>map.invalidateSize(),60);
-   function set(k){if(k==='f')return full(true);cur=k;try{localStorage.setItem('kpcMapSize',k)}catch(e){}el.style.height=H[k]||'';bar.querySelectorAll('[data-s]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s===k)));fx()}
+   function set(k){if(k==='f')return full(true);cur=k;try{localStorage.setItem('kpcMapSize',k)}catch(e){}el.style.height=H[k]||'';bar.querySelectorAll('[data-s]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s===k)));fx();if(window.KPCX&&KPCX.fitLegend)setTimeout(KPCX.fitLegend,70)}
    function sizeFull(){if(wrap.classList.contains('kpc-mapfull')){el.style.height='';el.style.minHeight='';el.style.flex=''}else el.style.height=H[cur]||''}
    window.addEventListener('resize',()=>{if(wrap.classList.contains('kpc-mapfull')){sizeFull();map.invalidateSize()}});
    function moveLayers(on){const lb=window.kpcLayerBar;if(!lb)return;on?lb.dock(bar):lb.undock()}   // full screen: the Map layers dropdown rides along in the map toolbar
-   function full(on){moveLayers(on);wrap.classList.toggle('kpc-mapfull',on);document.documentElement.classList.toggle('kpc-nofs-scroll',on);bar.querySelector('.mapx').hidden=!on;bar.querySelector('.mapfs').hidden=on;sizeFull();
-    if(on){try{history.pushState({kpcfs:1},'')}catch(e){}}fx()}
+   let fsPh=null;
+   function full(on){moveLayers(on);
+    if(on){if(!fsPh){fsPh=document.createComment('kpc-mapfull');wrap.parentNode.insertBefore(fsPh,wrap);document.body.appendChild(wrap)}wrap.classList.add('kpc-mapfull')}
+    else{wrap.classList.remove('kpc-mapfull');if(fsPh&&fsPh.parentNode){fsPh.parentNode.insertBefore(wrap,fsPh);fsPh.remove();fsPh=null}}
+    document.documentElement.classList.toggle('kpc-nofs-scroll',on);bar.querySelector('.mapx').hidden=!on;bar.querySelector('.mapfs').hidden=on;sizeFull();
+    if(on){try{history.pushState({kpcfs:1},'')}catch(e){}}fx();if(window.KPCX&&KPCX.fitLegend)setTimeout(KPCX.fitLegend,70)}
    bar.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.closest('.kx-tbar'))return;if(b.classList.contains('mapx')){if(history.state&&history.state.kpcfs){history.back()}else full(false)}else set(b.dataset.s)});
    window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&wrap.classList.contains('kpc-mapfull'))full(false)});
    window.addEventListener('popstate',()=>{if(wrap.classList.contains('kpc-mapfull'))full(false)});

@@ -17,7 +17,7 @@ check('dashed stays only for features with no join; OpenStreetMap outlines keep 
 check('bottom-left map buttons are lifted above the credits line', '__kpcLiftBL' in x and "'.leaflet-bottom.leaflet-left'" in x and 'leaflet-control-attribution' in x)
 check('credits are never hidden by the lift', 'display:none' not in x.split('__kpcLiftBL')[1])
 pages = list(ROOT.glob('*.html')) + list(ROOT.glob('.claude/build/**/*.html'))
-want = {'gis-overlays': '?v=20261110aj', 'kpc-map-extras': '?v=20261110leg'}
+want = {'gis-overlays': '?v=20261110fit', 'kpc-map-extras': '?v=20261110fit'}
 for name, stamp in want.items():
     vs = {}
     for p in pages:

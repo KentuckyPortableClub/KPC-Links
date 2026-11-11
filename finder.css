@@ -209,3 +209,10 @@ path.kpc-bnd{filter:drop-shadow(0 0 1.2px rgba(0,0,0,.95)) drop-shadow(0 0 1px r
 .mapgrid{grid-template-columns:minmax(0,1fr)!important}
 @media(max-width:700px){.fp-tabs{position:sticky;top:var(--fp-hdr,0px);z-index:900}}
 @media(max-width:600px){.fp-tabs .mr-rs-tab{padding:8px 1px;font-size:.62rem;letter-spacing:.1px;line-height:1.25;white-space:normal}.fp-tn{display:flex;margin:0 auto 3px}.fp-tc{display:block}}
+
+/* Nov 10: full screen must fill the phone viewport and hide leftover under-map chrome
+   (2-fer lists, status notes, Am I inside) so the map itself can grow. */
+.mapwrap.kpc-mapfull,#finder-map.kpc-mapfull{position:fixed!important;inset:0!important;top:0!important;right:0!important;bottom:0!important;left:0!important;width:100vw!important;width:100dvw!important;height:100vh!important;height:100dvh!important;max-height:none!important;max-width:none!important;margin:0!important;padding:8px!important;z-index:2147483000!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;border-radius:0!important;background:#0b0b0b!important}
+.mapwrap.kpc-mapfull > :not(.mapbar):not(#map):not(.kx-tbar){display:none!important}
+.mapwrap.kpc-mapfull .mapbar{flex:0 0 auto;margin:0 0 6px}
+.mapwrap.kpc-mapfull #map,#finder-map.kpc-mapfull #map{flex:1 1 auto!important;height:auto!important;min-height:0!important;margin-top:0!important;border-radius:8px}

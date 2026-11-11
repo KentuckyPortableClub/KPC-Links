@@ -577,8 +577,15 @@ window.KPCX = {baseSwitcher, attach, hover, overlapData, overlapIndex, overlapCa
    const ctl=[...bl.children].filter(e=>e.getBoundingClientRect().height);
    let need=0;if(a&&ctl.length&&a.textContent.trim()){const ar=a.getBoundingClientRect(),mr=c.getBoundingClientRect();
     if(ar.height&&ar.width){const right=Math.max(...ctl.map(e=>e.getBoundingClientRect().right));if(ar.left<right+4)need=Math.max(0,Math.ceil(mr.bottom-ar.top))}}
-   const want=need?need+'px':'';if(bl.style.bottom!==want)bl.style.bottom=want};
+   const want=need?need+'px':'';if(bl.style.bottom!==want)bl.style.bottom=want;
+   const mr=c.getBoundingClientRect(),liftPx=need||0,margin=12;
+   c.querySelectorAll('.kpc-blegend').forEach(leg=>{
+    if(leg.classList.contains('closed')){leg.style.maxHeight='';return}
+    const max=Math.max(96,Math.floor(mr.height-liftPx-margin));
+    if(leg.style.maxHeight!==max+'px')leg.style.maxHeight=max+'px'});
+  };
   const later=()=>{if(!raf)raf=requestAnimationFrame(lift)};
+  window.KPCX=window.KPCX||{};KPCX.fitLegend=later;
   map.whenReady(()=>{later();setTimeout(later,600);
    if(window.ResizeObserver){ro=new ResizeObserver(later);const c=map.getContainer();ro.observe(c);
     const watch=()=>{const a=c.querySelector('.leaflet-control-attribution'),bl=c.querySelector('.leaflet-bottom.leaflet-left');if(a&&!a._kpcRO){a._kpcRO=1;ro.observe(a)}if(bl&&!bl._kpcRO){bl._kpcRO=1;ro.observe(bl)}};watch();
