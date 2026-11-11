@@ -112,7 +112,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     x.fill('nonzero'); x.lineWidth = 2; x.stroke(); x.restore();
   }
   window.KPCPad = function (map, opts) {
-    opts = opts || {}; const MINZ_ = opts.minz || MINZ;   /* Oct 30: a page may ask for outlines sooner (US Trip Planner = 7) */
+    opts = opts || {}; if (opts.kyOfficial) opts.skipKY = true; const MINZ_ = opts.minz || MINZ;   /* Oct 30: a page may ask for outlines sooner (US Trip Planner = 7) */
     let fails = 0, ok = 0, statusEl = null;
     const tellStatus = () => {
       if (!statusEl) return;
@@ -189,7 +189,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
       let open = false; try { open = localStorage.getItem('kpcPadKeyOpen') === '1'; } catch (e) {}
       d.classList.toggle('open', open);
       d.innerHTML = '<button type="button" class="kpc-pad-tg" aria-expanded="' + open + '"><i class="sw"></i>BOUNDARIES <span>' + (open ? '▾' : '▸') + '</span></button><div class="kpc-pad-body"><b>OFFICIAL BOUNDARIES (USGS PAD-US)</b>' + GK.map(k => `<label><input type="checkbox" data-g="${k}"${GROUPS[k].on ? ' checked' : ''}><i style="border-color:${css(GROUPS[k].col)};background:${css(GROUPS[k].col)}33"></i>${GROUPS[k].name}</label>`).join('') +
-        '<small>Public land from the US government\'s map of protected areas. A park\'s own map can differ: check it before you set up.</small></div><small class="kpc-pad-st"></small>';
+        '<small>Public land from the US government\'s map of protected areas. A park\'s own map can differ: check it before you set up.' + (opts.kyOfficial ? ' In Kentucky, official outlines are the same saved state and federal files Park Commander uses, drawn as thin lines.' : '') + '</small></div><small class="kpc-pad-st"></small>';
       statusEl = d.querySelector('.kpc-pad-st'); tellStatus();
       const tg = d.querySelector('.kpc-pad-tg');
       tg.onclick = () => { open = !open; d.classList.toggle('open', open); tg.setAttribute('aria-expanded', open); tg.querySelector('span').textContent = open ? '▾' : '▸'; try { localStorage.setItem('kpcPadKeyOpen', open ? '1' : '0'); } catch (e) {} };
@@ -210,6 +210,71 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
       document.head.appendChild(s);
     }
     if (opts.legend !== false) { layer.on('add', () => legend.addTo(map)); layer.on('remove', () => legend.remove()); }
+    if (opts.kyOfficial) attachKyOfficial(map, layer);
     return { layer, legend };
   };
+
+  /* Nov 10: the US Trip Planner was drawing official boundaries from a PAD-US raster export.
+     That paints state land as a thick, blocky cyan outline, clips at tile edges, and misses
+     parks the saved Kentucky files already have (Green River SNA, Barren River Lake State
+     Resort Park, Brigadoon SNP, Marrowbone WMA, and others). When kyOfficial is on, Kentucky
+     is cut out of the raster (skipKY) and those saved vector files are drawn as thin SVG,
+     the same outlines as Park Commander. No new services*.arcgis.com calls. */
+  const KY_OFFICIAL = {
+    bstate:{name:'State parks',file:'ky-state-parks.geojson',color:'#2fa84f'},
+    bwma:{name:'WMAs & public hunting areas',file:'ky-hunting-areas.geojson',color:'#f08a1c'},
+    bsnp:{name:'State nature preserves',file:'ky-nature-preserves.geojson',color:'#a25ee0'},
+    bsna:{name:'State natural areas',file:'ky-natural-areas.geojson',color:'#e2559f'},
+    bdbnfo:{name:'Daniel Boone NF (Forest Service land)',file:'ky-dbnf-owned.geojson',color:'#2f7fd6',own:true},
+    bdbnf:{name:'Forest boundary line (Daniel Boone)',file:'ky-dbnf.geojson',color:'#2f7fd6',proc:true},
+    bnps:{name:'National Park Service',file:'ky-nps.geojson',color:'#9b6a3c'},
+    bwild:{name:'Wild river corridors',file:'ky-wild-rivers.geojson',color:'#16b3c0'},
+    bwilder:{name:'Wilderness areas',file:'ky-wilderness.geojson',color:'#c6e03a'},
+    bfws:{name:'Wildlife refuges & fish hatcheries',file:'ky-fws.geojson',color:'#5ab0ff'},
+    busace:{name:'Army Corps of Engineers land',file:'ky-usace.geojson',color:'#ff8c38',corps:true},
+    bpad:{name:'More official park outlines',file:'ky-padus-parks.geojson',color:'#e8b04a'}
+  };
+  function attachKyOfficial(map, host) {
+    if (!window.L || !map || !map.createPane) return;
+    if (!map.getPane('kyoff')) {
+      const p = map.createPane('kyoff');
+      p.style.zIndex = 450;
+    }
+    const rend = L.svg({ pane: 'kyoff', padding: 0.5 });
+    const group = L.layerGroup();
+    const ownRef = f => { const r = (f && f.properties || {}).ref; return typeof r === 'string' && /^[A-Z0-9]{1,4}-\d{4,5}$/.test(r.trim()) ? r.trim() : ''; };
+    const nm = f => (window.kpcAnswerKey && kpcAnswerKey.outlineName(f)) || ((f.properties || {}).NAME || '');
+    const joined = f => !!(ownRef(f) || (window.kpcAnswerKey && kpcAnswerKey.keyJoin(f).length));
+    const W = 2;   /* thin, crisp SVG stroke — the PAD-US raster outline was many pixels wide */
+    function restyle() {
+      group.eachLayer(l => {
+        if (l.setStyle && l.options && l.options.style) l.setStyle(l.options.style);
+        if (l.eachLayer) l.eachLayer(x => { if (x.setStyle && x.options && x.options.style) x.setStyle(x.options.style); });
+      });
+    }
+    if (window.kpcAnswerKey) kpcAnswerKey.loadKey(restyle);
+    Object.keys(KY_OFFICIAL).forEach(k => {
+      const s = KY_OFFICIAL[k];
+      fetch(s.file + '?v=20261110ky', { cache: 'force-cache' }).then(r => r.ok ? r.json() : null).then(j => {
+        if (!j || !Array.isArray(j.features)) return;
+        (j.features || []).forEach(f => { f._lk = k; });
+        const st = f => {
+          if (s.proc) return { color: s.color, weight: 1.4, opacity: 0.75, fill: false, dashArray: '6 8', className: 'kpc-kyoff' };
+          if (s.corps) return { color: s.color, weight: W, opacity: 1, fill: true, fillOpacity: 0, className: 'kpc-kyoff' };
+          const has = s.own || joined(f);
+          return has
+            ? { color: s.color, weight: W, opacity: 0.95, fillColor: s.color, fillOpacity: 0.06, dashArray: null, className: 'kpc-kyoff' }
+            : { color: '#ff2a2a', weight: W, opacity: 1, fill: true, fillOpacity: 0, dashArray: '2 6', className: 'kpc-kyoff' };
+        };
+        const lay = L.geoJSON(j, { pane: 'kyoff', renderer: rend, style: st, className: 'kpc-kyoff',
+          onEachFeature: (f, l) => l.bindPopup(() => `<b>${(nm(f) || s.name).replace(/[<>]/g, '')}</b><div style="font-size:12px;color:#555">${s.name}</div>`, { maxWidth: 260 })
+        });
+        group.addLayer(lay);
+      }).catch(() => {});
+    });
+    const sync = () => { if (map.hasLayer(host)) { if (!map.hasLayer(group)) group.addTo(map); } else if (map.hasLayer(group)) map.removeLayer(group); };
+    host.on('add', sync); host.on('remove', sync);
+    map.whenReady(sync);
+    if (map.hasLayer(host)) group.addTo(map);
+  }
 })();

@@ -91,7 +91,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);
  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
  /* Official boundaries (USGS PAD-US, kpc-padus-layer.js): federal + state land outlined over any map */
- const pad=window.KPCPad?KPCPad(map,{keyPos:'bottomleft',minz:7}):null;
+ const pad=window.KPCPad?KPCPad(map,{keyPos:'bottomleft',minz:7,skipKY:true,kyOfficial:true}):null;
  const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);   /* streets + names above the boundary outlines (zIndex 6) */
  const OFF='Satellite + Streets + Official Boundaries';
