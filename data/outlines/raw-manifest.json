@@ -471,9 +471,9 @@
   {
    "date": "2026-11-11",
    "name": "US-FL.sgflf.geojson.gz",
-   "sha256": "3d743b664e6672a943ff19a8f5060aafc3de5145d8f1c6a2b0fb9a3b84c4ce6d",
-   "size": 4989336,
-   "source": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0/query"
+   "sha256": "a61bbc2fa87bf6281a531e52a9356a555c45c0df23e242d215decf054f07e182",
+   "size": 6728659,
+   "source": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0"
   },
   {
    "date": "2026-11-11",
@@ -2029,6 +2029,13 @@
    "sha256": "bf6249360d77127189721139b8105c34fc9bff3c6ebc062363499f0fe9ecea91",
    "size": 10944176,
    "source": "https://www.sciencebase.gov/catalog/item/6759abcfd34edfeb8710a004"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "sgflf-full-esri.json.gz",
+   "sha256": "ba40c35939423238434b89e2adc094cc7160985c0fccfee004a169c06e27aa02",
+   "size": 5141175,
+   "source": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0"
   }
  ],
  "format": 1

@@ -2181,7 +2181,7 @@
    ],
    "queued": 304,
    "read_date": "2026-11-11",
-   "read_how": "esri-json",
+   "read_how": "geojson",
    "record_id_field": null,
    "source_count": 79689,
    "url": ""
