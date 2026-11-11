@@ -13,7 +13,8 @@
               Hand files for any area (hand-<US-XX|CA-XX|CA-ALL|W-XX>.<layer>.geojson.gz): US ones are merged; Canada / world ones
               are checked into a per-area store (their builders do not read it yet: data/outlines/README.md).
   baseline    record a saved copy's first baseline (only when it has none; never lowered, never replaced): the first good full read.
-  collect     the join job: put the build parts' master records, layer counts, raw rows and needs-download rows together.
+  part        a build job: write ONLY its own states into its part (outline files; layer, cache and raw rows that changed).
+  collect     the join job: put the build parts together per state (each from its owning part; a conflict fails, exit 1).
   needs       merge rows into a needs-download list, or print how many rows are open (bot / person / never).
   save-check  before an upload of saved copies: refuse (exit 1, names the file) one that fails the gate baseline or holds fewer records,
               in total or for any layer, than the release copy (--against DIR); --ok-list FILE gets the ones that may be uploaded.
@@ -326,6 +327,8 @@ def main(argv=None):
     f.add_argument('--checked', help='the per-area checked store for Canada / world hand files (default: <work>/checked)')
     co = sp.add_parser('collect', help='join job: the build parts\' master records, layer counts, raw rows and needs rows')
     co.add_argument('parts', nargs='*'); co.add_argument('--root'); co.add_argument('--needs-in'); co.add_argument('--needs-out')
+    pa = sp.add_parser('part', help='build job: write only this job\'s own states (outline files, changed layer / cache / raw rows) into its part (Nov 11)')
+    pa.add_argument('--root', required=True); pa.add_argument('--base', required=True); pa.add_argument('--states', required=True); pa.add_argument('--out', required=True)
     n = sp.add_parser('needs', help='merge rows into a needs-download list, or print its size')
     n.add_argument('--list', required=True); n.add_argument('--add', nargs='*', default=[])
     sc = sp.add_parser('save-check', help='before an upload: refuse a saved copy that fails the gate baseline or has fewer records than the release copy')
@@ -345,10 +348,10 @@ def main(argv=None):
     if a.cmd == 'import-existing':
         import kpc_master_import as I
         return I.main(a)
-    if a.cmd in ('fill', 'collect'):
+    if a.cmd in ('fill', 'collect', 'part'):
         import kpc_master_fill as F
         a.root = a.root or str(M.OUTLINES)
-        return (F.fill if a.cmd == 'fill' else F.collect)(a)
+        return {'fill': F.fill, 'collect': F.collect, 'part': F.part}[a.cmd](a)
     return {'trim': cmd_trim, 'check': cmd_check, 'gate': cmd_gate, 'plan': cmd_plan, 'raw-add': cmd_raw_add, 'wdpa-lookup': cmd_wdpa, 'needs': cmd_needs, 'watch': cmd_watch, 'save-check': cmd_save_check, 'baseline': cmd_baseline}[a.cmd](a)
 
 

@@ -297,11 +297,12 @@
    {
     "kind": "forest",
     "ag": "Florida Forest Service",
-    "nm": "LABEL",
+    "nm": "DOF_NAME",
     "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0",
     "web": "WEBSITE",
     "ds": "State Forest",
-    "host": "agol"
+    "host": "agol",
+    "note": "Nov 11 (KPC owner, 2026-11-11): name field DOF_NAME (LABEL is a number); OUT PARCEL rows dropped and parcels dissolved by forest in the checked hand file"
    },
    {
     "kind": "land",
@@ -384,6 +385,14 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-7139"
+   },
+   {
+    "kind": "land",
+    "ag": "Georgia DNR Lands (UGA ITOS conservation framework)",
+    "nm": "NAME",
+    "url": "https://maps.itos.uga.edu/arcgis/rest/services/FrameWork/Conservation/FeatureServer/0",
+    "host": "agency",
+    "note": "KPC owner, 2026-11-11: allowed host (robots.txt 404), read by the bot"
    }
   ],
   "HI": [
@@ -555,6 +564,15 @@
     "lic": "Indiana open data",
     "note": "Oct 30 9:00 AM chat 2: put BACK. The traced build (run 41065824040) proved the 5 state recreation areas are NOT in ManagedLands_DNR_Open; only this service has them (chat 8 + look-up 2-in-managedlandsall). 9:35 AM: unitname alone does not carry the SRA names (trace run 41067678846, 1986 records, none named so): read subunit as the second name.",
     "nm2": "subunit"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-IN.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "KS": [
@@ -591,6 +609,15 @@
     "lic": "see layer",
     "where": "OBJECTID IN (400284)",
     "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in KS were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-9190. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-KS.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "LA": [
@@ -703,6 +730,17 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-0367"
+   }
+  ],
+  "MS": [
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-MS.sgide (person download, saved copies only host); plus per-project dissolves (Arkabutla, Grenada, Sardis, Enid, Okatibbee) as approximate lake-project outlines; MS had no state GIS rows before"
    }
   ],
   "MT": [
@@ -840,6 +878,15 @@
     "lic": "see layer",
     "where": "OBJECTID IN (379041,379181,383579,400132,400204)",
     "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in ND were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-8532, US-8559, US-8555, US-8536, US-8544. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-ND.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "NJ": [
@@ -1056,6 +1103,22 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "park",
+    "ag": "NYS Adirondack Park Agency (Adirondack Park Blue Line)",
+    "nm": "NAME",
+    "url": "https://services2.arcgis.com/8krRUWgifzA4cgL3/arcgis/rest/services/AdirondackParkBoundary/FeatureServer/0",
+    "host": "agol",
+    "note": "KPC owner, 2026-11-11: checked hand file (person download, saved copies only host); the layer is the Blue Line as 107 line segments, stitched into one polygon"
+   },
+   {
+    "kind": "park",
+    "ag": "NYS DEC (Catskill Park boundary)",
+    "nm": "NAME",
+    "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/Catskill_Park_Boundary/FeatureServer/0",
+    "host": "agol",
+    "note": "KPC owner, 2026-11-11: checked hand file (person download, saved copies only host); one polygon, NAME set to Catskill Park (the layer has no name field)"
    }
   ],
   "OK": [
@@ -1090,6 +1153,15 @@
     "lic": "see layer",
     "where": "OBJECTID IN (386929,387660,400282,400286)",
     "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in OK were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-11778, US-0822, US-6336, US-6335. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-OK.sgide (person download, saved copies only host); its matches to National Wildlife Refuges are left out of the master outlines"
    }
   ],
   "OR": [
@@ -1167,6 +1239,15 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 3 sheet parks"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-OR.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "PA": [
@@ -1336,6 +1417,15 @@
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331",
     "host": "agol",
     "note": "chat 3 find + look-up 2-tn-parks-b, Oct 29: 70 parks, edited 2026-10-29"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-TN.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "TX": [
@@ -1369,6 +1459,15 @@
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0",
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 6 outline-less parks"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-TX.sgide (person download, saved copies only host); its matches to National Wildlife Refuges are left out of the master outlines"
    }
   ],
   "UT": [
@@ -1620,6 +1719,15 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-4555"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-WA.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "WI": [
@@ -1696,6 +1804,15 @@
     "host": "agency",
     "acc": "Pub_Access",
     "note": "lead Oct 24, tested Oct 25 (36 parks)"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-WV.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "WY": [
@@ -1837,6 +1954,15 @@
     "read": "2026-10-28",
     "note": "623 city / county / NGO lands: outline only on a SURE match (WORK STYLE Oct 28)",
     "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/Ohio_Conservation_Lands/MapServer/0"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-OH.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "SC": [
@@ -1895,6 +2021,14 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-8458"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Maine Conserved Lands, Ecological Reserves (Bureau of Parks and Lands)",
+    "nm": "PROJECT",
+    "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Eco_Reserves/FeatureServer/0",
+    "host": "agol",
+    "note": "KPC owner, 2026-11-11: checked hand file (person download, saved copies only host)"
    }
   ],
   "MD": [
@@ -2170,6 +2304,23 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-4118"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Illinois Nature Preserves Commission / IDNR protected lands (Chicago Wilderness, Holman)",
+    "nm": "site_name",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
+    "host": "agol",
+    "note": "KPC owner, 2026-11-11: checked hand file (person download, saved copies only host); keeps prefix sgilc"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-IL.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "VT": [
@@ -2775,6 +2926,15 @@
     "host": "agency",
     "lic": "US federal data",
     "note": "chat 2 more-layers probe2 Oct 29 8:05 PM (polygons + names confirmed); staged for the rebuild after the release"
+   },
+   {
+    "kind": "park",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "note": "KPC owner, 2026-11-11: checked hand file hand-US-SD.sgide (person download, saved copies only host); Corps recreation-area polygons"
    }
   ],
   "BC": [

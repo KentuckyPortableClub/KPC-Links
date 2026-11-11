@@ -128,7 +128,7 @@ check('XS lists the Vermont ANR lands layer (vta) once', xs.count("('vta', ") ==
 check('XS has no prefix twice', len(re.findall(r"^\s*\('([a-z]+)',", xs, re.M)) == len(set(re.findall(r"^\s*\('([a-z]+)',", xs, re.M))))
 written = []
 wns = {'XS': [LAY], 'RAWF': {'sgvtz': [{'attributes': {'OBJECTID': i}, 'geometry': None} for i in (1, 2, 3)] * 2}, 'RESOLVED': {}, 'time': types.SimpleNamespace(strftime=lambda f: '2026-11-10'),
-       '_layer_in': lambda st, pre: None, '_save_row': lambda a: a, 'layer_live_count': lambda *a: 3, 'notice': lambda t, m: None, 'LAYER_OUT': '/x', 'st_box': lambda st: None,
+       '_layer_in': lambda st, pre: None, '_save_row': lambda a: a, 'layer_live_count': lambda *a: 3, 'layer_total_count': lambda *a: None, '_one_state_layer': lambda *a: False, 'notice': lambda t, m: None, 'LAYER_OUT': '/x', 'st_box': lambda st: None,
        'KMASTER': types.SimpleNamespace(prefix_of=lambda o: re.match(r'[a-z]*', str(o)).group(0), esri_to_geojson=lambda g: None, layer_file_path=lambda *a: a,
                                         write_layer_file=lambda p, meta, feats: written.append((meta, feats)))}
 exec(compile(chunk('def _write_layer_files', 'def save_cache'), 'kpc_us_key.py', 'exec'), wns)

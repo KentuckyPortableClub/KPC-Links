@@ -1,0 +1,4 @@
+ref,name,lat,lon,why,candidates
+US-1330,Beltzville State Park,40.8634,-75.6179,pin is inside an outline but no name agrees,Pine Run East Boat Launch
+US-1364,Kettle Creek State Park,41.3754,-77.9323,a same-name outline is nearby but the pin is outside it,KETTLE CREEK STATE PARK
+US-1405,Prompton State Park,41.6119,-75.342,pin is inside an outline but no name agrees,PROMPTON BOAT RAMP

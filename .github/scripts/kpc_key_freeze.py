@@ -60,6 +60,9 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',
              'kpc_join_check.py',
+             # Nov 11 r2 (KPC owner, 2026-11-11): the US key join puts the build parts together per state and fails closed on a conflict;
+             # it copies the parts' files, never decides a join
+             'kpc_us_key_join.py',
              # Nov 7 (Brandon 4:55 PM CST): recommends a fix for each held park, writes only data/us-key/review/problem-solver.*
              'kpc_problem_solver.py',
              # Nov 9 amendment 2 (Brandon t943u/t942u): the research inbox + its xlsx converter recommend only, never decide a join

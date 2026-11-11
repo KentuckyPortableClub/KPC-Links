@@ -757,7 +757,17 @@ def st_box(st):
     x = next((b for b in STB if b.get('a') == st), None)
     if not x: return None
     xs = [q[0] for pl in x['p'] for q in pl[0]]; ys = [q[1] for pl in x['p'] for q in pl[0]]
-    return [min(xs), min(ys), max(xs), max(ys)]
+    b = [min(xs), min(ys), max(xs), max(ys)]
+    add = BOX_ADD.get(st)   # Nov 11 (KPC owner, 2026-11-11): land the drawn state outline leaves out
+    if add: b = [min(b[0], add[0]), min(b[1], add[1]), max(b[2], add[2]), max(b[3], add[3])]
+    return b
+
+
+# Nov 11 (KPC owner, 2026-11-11): kpc-us-states.json draws Florida as one polygon without the Keys (south edge 25.12), so every
+# Florida box read missed Monroe County: FL DEP state-owned lands sent 77,144 of its 79,689 records (2,545 Keys parcels: Bahia Honda,
+# Long Key, Curry Hammock, Lignumvitae Key, Indian Key, Windley Key, Fort Zachary Taylor, Key Deer lands). The box takes in the Keys
+# and the Dry Tortugas. Only Florida's box changes.
+BOX_ADD = {'FL': (-83.2, 24.3, -80.0, 25.2)}
 
 
 def fws_state(st, have):
@@ -1133,6 +1143,23 @@ def layer_live_count(st, pre, url, nf, af, opt):
     return count_query(url, q)   # Nov 10: no page or outline parameters on a count (they cut or refuse it)
 
 
+def _one_state_layer(pre, st):
+    """Nov 11 r2: True when every XS entry of this prefix (and of its address) belongs to this one state only."""
+    ys = [y for y in XS if y[0] == pre]
+    if not ys: return False
+    u = ys[0][1]
+    ys += [y for y in XS if y[1] == u and y[0] != pre]
+    return all(len(y) > 7 and y[7] is not None and set(y[7]) == {st} for y in ys)
+
+
+def layer_total_count(pre, url, nf, af, opt):
+    """Nov 11: the layer's own total for its where, with NO state box (returnCountOnly). Saved-copy-only hosts are not asked; None = no count."""
+    if saved_only(url): return None
+    try: url, nf, af, oidf = resolve(pre, url, nf, af)
+    except Exception: return None  # noqa: BLE001
+    return count_query(url, {'where': (opt or {}).get('where') or '1=1'}, box=False)
+
+
 # ------------------------------------------------------------------------------------------------ the shared scoring
 # Oct 22 (Fable's review): one weighing of the evidence for every country, in kpc_match.py. This is the US side of it:
 # it READS the names the US way and hands kpc_match plain facts. It runs in SHADOW next to the matcher above - its
@@ -1346,6 +1373,12 @@ def _write_layer_files(st, want, add):
                 'source': 'live' if lf is None else 'hand', 'read': time.strftime('%Y-%m-%d')}
         if lf is None:
             meta['count_live'] = layer_live_count(st, pre, url, x[2], x[3], x[8] if len(x) > 8 else {}) if x else None
+            # Nov 11: a layer of this state only (a state-GIS row) is also counted WITHOUT the box: the master step refuses a read
+            # whose box left records of the layer's own total out (sgflf: 77,144 in the box of 79,689), unless layers.json allows it
+            # (Nov 11 r2, Quality: one-state = EVERY XS entry of the prefix is this state's; NRHP and the USACE layer are listed once per
+            # state, and their unboxed total is the whole country). The key is always written for such a layer: None = the count failed,
+            # and the master step HOLDS the read (fail closed)
+            if x and _one_state_layer(pre, st): meta['count_layer'] = layer_total_count(pre, url, x[2], x[3], x[8] if len(x) > 8 else {})
         else:
             meta.update({k: lf[0].get(k) for k in ('count_expected', 'raw', 'page', 'by') if lf[0].get(k) is not None})
             meta['count_raw'] = sum(1 for ft in lf[1] if _in_box(ft.get('geometry'), st_box(st)))

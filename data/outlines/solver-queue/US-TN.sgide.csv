@@ -1,0 +1,5 @@
+ref,name,lat,lon,why,candidates
+US-0703,Fort Donelson National Battlefield,36.4885,-87.8522,pin is inside an outline but no name agrees,FT. DONELSON
+US-2956,Long Hunter State Park,36.0948,-86.5504,a same-name outline is nearby but the pin is outside it,LONG HUNTER STATE PARK
+US-2973,Rock Island State Park,35.8104,-85.6419,a same-name outline is nearby but the pin is outside it,ROCK ISLAND STATE PARK
+US-7578,Cheatham Lake Wildlife Management Area,36.3036,-87.1535,pin is inside an outline but no name agrees,PARDUE

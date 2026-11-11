@@ -900,8 +900,16 @@ def read_layer_file(path):
     return doc.get('kpc') or {}, doc.get('features') or []
 
 
-def layer_file_expected(meta):
-    """What the layer file must hold: the layer's own total for the area, else the count a person's download was checked against."""
+def layer_file_expected(meta, outside_ok=0):
+    """What the layer file must hold: the layer's own total for the area, else the count a person's download was checked against.
+    Nov 11 (KPC owner, 2026-11-11; Quality): a live read of a one-state layer carries count_layer, the layer's own total with no state
+    box. Then the file must hold that total (less the records layers.json says really lie outside the state, outside_ok), not the boxed
+    count_live: a box that misses part of the state (Florida's Keys) cannot pass. count_layer present but None (its count failed) = no
+    expected count: the read cannot be checked and is held (fail closed)."""
+    if 'count_layer' in meta and meta.get('source', 'live') == 'live':
+        tot = meta.get('count_layer')
+        if tot in (None, ''): return None
+        return max(int(tot) - int(outside_ok or 0), int(meta.get('count_live') or 0))
     for k in ('count_live', 'count_expected'):
         if meta.get(k) not in (None, ''): return int(meta[k])
     return None

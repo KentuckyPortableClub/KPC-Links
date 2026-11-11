@@ -772,7 +772,7 @@
     "NCA_NAME"
    ],
    "queued": 1,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2,
@@ -793,7 +793,7 @@
     "FET_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 15,
@@ -814,7 +814,7 @@
     "FET_NAME"
    ],
    "queued": 21,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 43,
@@ -835,7 +835,7 @@
     "PARKNAME"
    ],
    "queued": 31,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 157,
@@ -856,7 +856,7 @@
     "LDA_NAME_1"
    ],
    "queued": 20,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2318,
@@ -877,7 +877,7 @@
     "PARKNAME"
    ],
    "queued": 31,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 157,
@@ -898,7 +898,7 @@
     "PARKNAME"
    ],
    "queued": 31,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 157,
@@ -919,7 +919,7 @@
     "FET_NAME"
    ],
    "queued": 21,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 43,
@@ -940,7 +940,7 @@
     "ACEC_NAME"
    ],
    "queued": 1,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 40,
@@ -961,10 +961,31 @@
     "RESNAME"
    ],
    "queued": 8,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 78,
+   "url": ""
+  },
+  "US-AK.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-AK"
+   ],
+   "expected_count": 5,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 5,
    "url": ""
   },
   "US-AK.wsa": {
@@ -982,7 +1003,7 @@
     "NLCS_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 9,
@@ -1093,6 +1114,27 @@
    "source_count": 20,
    "url": ""
   },
+  "US-AL.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-AL"
+   ],
+   "expected_count": 163,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 163,
+   "url": ""
+  },
   "US-AR.arw": {
    "agency": "Arkansas Game and Fish Commission WMAs",
    "areas": [
@@ -1156,6 +1198,27 @@
    "source_count": 52,
    "url": ""
   },
+  "US-AR.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-AR"
+   ],
+   "expected_count": 355,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 15,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 355,
+   "url": ""
+  },
   "US-AZ.hab": {
    "agency": "BLM herd areas",
    "areas": [
@@ -1171,7 +1234,7 @@
     "HA_NAME"
    ],
    "queued": 13,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 17,
@@ -1192,7 +1255,7 @@
     "HMA_NAME"
    ],
    "queued": 12,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 13,
@@ -1213,7 +1276,7 @@
     "NCA_NAME"
    ],
    "queued": 11,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 25,
@@ -1234,7 +1297,7 @@
     "FET_NAME"
    ],
    "queued": 1,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 53,
@@ -1255,7 +1318,7 @@
     "FET_NAME"
    ],
    "queued": 26,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 63,
@@ -1276,7 +1339,7 @@
     "FET_NAME"
    ],
    "queued": 26,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 63,
@@ -1297,7 +1360,7 @@
     "ACEC_NAME"
    ],
    "queued": 13,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 98,
@@ -1318,7 +1381,7 @@
     "FET_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 71,
@@ -1339,7 +1402,7 @@
     "NLCS_NAME"
    ],
    "queued": 12,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 89,
@@ -1360,7 +1423,7 @@
     "NLCS_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 9,
@@ -1532,6 +1595,27 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 90,
+   "url": ""
+  },
+  "US-CA.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-CA"
+   ],
+   "expected_count": 82,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 2,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 82,
    "url": ""
   },
   "US-CA.wbl": {
@@ -1765,6 +1849,27 @@
    "source_count": 278,
    "url": ""
   },
+  "US-CO.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-CO"
+   ],
+   "expected_count": 10,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 10,
+   "url": ""
+  },
   "US-CO.wbl": {
    "agency": "BLM wilderness",
    "areas": [
@@ -1807,6 +1912,49 @@
    "source_count": 80,
    "url": ""
   },
+  "US-DC.dcnps": {
+   "agency": "DC GIS National Parks (NPS reservations, Map A)",
+   "areas": [
+    "US-DC"
+   ],
+   "expected_count": 456,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "NAME",
+    "LABEL"
+   ],
+   "queued": 19,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 456,
+   "url": ""
+  },
+  "US-DC.dcparks": {
+   "agency": "DC Department of Parks and Recreation, parks and recreation areas",
+   "areas": [
+    "US-DC"
+   ],
+   "expected_count": 252,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 252,
+   "url": ""
+  },
   "US-DE.sgdea": {
    "agency": "Delaware DNREC (land, state GIS table)",
    "areas": [
@@ -1843,7 +1991,7 @@
     "LABEL"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 31,
@@ -1864,7 +2012,7 @@
     "AREA_NAME"
    ],
    "queued": 9,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 83,
@@ -1885,7 +2033,7 @@
     "NAME"
    ],
    "queued": 11,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 129,
@@ -1906,7 +2054,7 @@
     "NAME"
    ],
    "queued": 29,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 868,
@@ -1954,25 +2102,46 @@
    "source_count": 171,
    "url": ""
   },
+  "US-FL.sgflb": {
+   "agency": "Florida Forest Service (forest, state GIS table)",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 39,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 35,
+   "name_fields": [
+    "DOF_NAME"
+   ],
+   "queued": 9,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 39,
+   "url": ""
+  },
   "US-FL.sgflf": {
    "agency": "Florida DEP Division of State Lands (land, state GIS table)",
    "areas": [
     "US-FL"
    ],
-   "expected_count": 77144,
+   "expected_count": 79689,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 84,
+   "matched": 99,
    "name_fields": [
     "PROJECT_NAME"
    ],
-   "queued": 288,
+   "queued": 304,
    "read_date": "2026-11-11",
-   "read_how": "geojson",
+   "read_how": "esri-json",
    "record_id_field": null,
-   "source_count": 77144,
+   "source_count": 79689,
    "url": ""
   },
   "US-FL.sgflg": {
@@ -1994,6 +2163,69 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 263,
+   "url": ""
+  },
+  "US-FL.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 39,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 39,
+   "url": ""
+  },
+  "US-GA.sggaf": {
+   "agency": "Georgia DNR Lands (UGA ITOS conservation framework) (land, state GIS table)",
+   "areas": [
+    "US-GA"
+   ],
+   "expected_count": 671,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 133,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 54,
+   "read_date": "2026-11-11",
+   "read_how": "esri-json",
+   "record_id_field": null,
+   "source_count": 671,
+   "url": ""
+  },
+  "US-GA.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-GA"
+   ],
+   "expected_count": 363,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 6,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 363,
    "url": ""
   },
   "US-HI.sgaki": {
@@ -2032,7 +2264,7 @@
     "name"
    ],
    "queued": 34,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 70,
@@ -2053,7 +2285,7 @@
     "name"
    ],
    "queued": 50,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 377,
@@ -2064,7 +2296,7 @@
    "areas": [
     "US-IA"
    ],
-   "expected_count": 200,
+   "expected_count": 1846,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2074,7 +2306,7 @@
     "AREA_NAME"
    ],
    "queued": 59,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1846,
@@ -2085,7 +2317,7 @@
    "areas": [
     "US-IA"
    ],
-   "expected_count": 200,
+   "expected_count": 344,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2095,7 +2327,7 @@
     "NAME"
    ],
    "queued": 17,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 344,
@@ -2106,7 +2338,7 @@
    "areas": [
     "US-IA"
    ],
-   "expected_count": 200,
+   "expected_count": 5450,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2116,7 +2348,7 @@
     "NAME"
    ],
    "queued": 50,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 5450,
@@ -2127,7 +2359,7 @@
    "areas": [
     "US-IA"
    ],
-   "expected_count": 200,
+   "expected_count": 326,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2137,10 +2369,31 @@
     "NameUnit"
    ],
    "queued": 15,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 326,
+   "url": ""
+  },
+  "US-IA.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-IA"
+   ],
+   "expected_count": 125,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 125,
    "url": ""
   },
   "US-ID.hab": {
@@ -2353,12 +2606,54 @@
    "source_count": 99,
    "url": ""
   },
+  "US-IL.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-IL"
+   ],
+   "expected_count": 133,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 133,
+   "url": ""
+  },
+  "US-IL.sgilc": {
+   "agency": "Illinois Nature Preserves Commission / IDNR protected lands (Chicago Wilderness, Holman) (preserve, state GIS table)",
+   "areas": [
+    "US-IL"
+   ],
+   "expected_count": 7100,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 17,
+   "name_fields": [
+    "site_name"
+   ],
+   "queued": 12,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 7100,
+   "url": ""
+  },
   "US-IL.sgild": {
    "agency": "IDNR Properties (wild, state GIS table)",
    "areas": [
     "US-IL"
    ],
-   "expected_count": 200,
+   "expected_count": 383,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2368,7 +2663,7 @@
     "SITE_NAME"
    ],
    "queued": 51,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 383,
@@ -2393,6 +2688,27 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 654,
+   "url": ""
+  },
+  "US-IN.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-IN"
+   ],
+   "expected_count": 82,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 12,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 82,
    "url": ""
   },
   "US-IN.sgina": {
@@ -2479,6 +2795,48 @@
    "source_count": 1,
    "url": ""
   },
+  "US-KS.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-KS"
+   ],
+   "expected_count": 157,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 13,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 157,
+   "url": ""
+  },
+  "US-LA.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-LA"
+   ],
+   "expected_count": 106,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 106,
+   "url": ""
+  },
   "US-MA.sgmad": {
    "agency": "MassGIS / Massachusetts EEA (Protected and Recreational OpenSpace) (land, state GIS table)",
    "areas": [
@@ -2505,7 +2863,7 @@
    "areas": [
     "US-MD"
    ],
-   "expected_count": 200,
+   "expected_count": 580,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2515,7 +2873,7 @@
     "DNRName"
    ],
    "queued": 55,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 580,
@@ -2542,12 +2900,33 @@
    "source_count": 1,
    "url": ""
   },
+  "US-MD.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-MD"
+   ],
+   "expected_count": 9,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 9,
+   "url": ""
+  },
   "US-MD.sgmda": {
    "agency": "Maryland DNR (state parks, WMAs, forests, natural resource areas) (land, state GIS table)",
    "areas": [
     "US-MD"
    ],
-   "expected_count": 200,
+   "expected_count": 580,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2557,7 +2936,7 @@
     "DNRName"
    ],
    "queued": 55,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 580,
@@ -2578,10 +2957,95 @@
     "AREA_NAME"
    ],
    "queued": 13,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 34,
+   "url": ""
+  },
+  "US-ME.sgmec": {
+   "agency": "Maine Conserved Lands, Ecological Reserves (Bureau of Parks and Lands)",
+   "areas": [
+    "US-ME"
+   ],
+   "expected_count": 76,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "PROJECT"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 76,
+   "url": ""
+  },
+  "US-MI.dnrsf": {
+   "agency": "Michigan DNR Forest Inventory compartments, dissolved by state forest (FMU key: DNR stumpage reports)",
+   "areas": [
+    "US-MI"
+   ],
+   "expected_count": 6,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "FOREST_NAME"
+   ],
+   "note": "KPC owner, 2026-11-11: Michigan DNR Forest Inventory compartments (a person's download, EPSG:4326, 2,464 records; sha256 4f1c3bb6f116...) dissolved by state forest through the forest management unit (FMU) code. The FMU-to-forest key is official: Michigan DNR timber stumpage price reports (michigandnr.com, e.g. '2025 Stumpage Price Reports, 12 Months/3rd_Qtr_July_2025.pdf'; FMU 12 from the January 2023 report): Copper Country 11, 12; Escanaba River 32, 33; Lake Superior 41, 42, 45; Mackinaw 52, 53, 54; Pere Marquette 61, 63; Au Sable 71, 72, 73 (2,016 compartments). Left out: the 5-digit 80xxx/90xxx units (no official name), FMU 0 and no FMU (448 records, data/outlines/solver-queue/US-MI.dnrsf-left-out.csv). No ManagementType/District/County guess is used. Mackinaw State Forest (US-4778): its pin is 1.5 km outside the dissolved compartments, so it is not joined (solver queue). Master only: the layer has no service address the key reads.",
+   "queued": 79,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 6,
+   "url": ""
+  },
+  "US-MI.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-MI"
+   ],
+   "expected_count": 7,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 7,
+   "url": ""
+  },
+  "US-MN.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-MN"
+   ],
+   "expected_count": 47,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 47,
    "url": ""
   },
   "US-MN.sgmna": {
@@ -2589,7 +3053,7 @@
    "areas": [
     "US-MN"
    ],
-   "expected_count": 200,
+   "expected_count": 1753,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2599,7 +3063,7 @@
     "name"
    ],
    "queued": 43,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1753,
@@ -2620,7 +3084,7 @@
     "name"
    ],
    "queued": 24,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 60,
@@ -2631,7 +3095,7 @@
    "areas": [
     "US-MN"
    ],
-   "expected_count": 200,
+   "expected_count": 239,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2641,7 +3105,7 @@
     "unit_name"
    ],
    "queued": 12,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 239,
@@ -2652,20 +3116,20 @@
    "areas": [
     "US-MN"
    ],
-   "expected_count": 200,
+   "expected_count": 13490,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 80,
+   "matched": 81,
    "name_fields": [
     "mgtprjname"
    ],
-   "queued": 40,
-   "read_date": "2026-11-10",
+   "queued": 39,
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
-   "source_count": 13483,
+   "source_count": 13490,
    "url": ""
   },
   "US-MN.sgmnf": {
@@ -2673,7 +3137,7 @@
    "areas": [
     "US-MN"
    ],
-   "expected_count": 200,
+   "expected_count": 6715,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2683,10 +3147,31 @@
     "UNIT_NAME"
    ],
    "queued": 69,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 6715,
+   "url": ""
+  },
+  "US-MO.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-MO"
+   ],
+   "expected_count": 343,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 343,
    "url": ""
   },
   "US-MO.sgmoa": {
@@ -2694,7 +3179,7 @@
    "areas": [
     "US-MO"
    ],
-   "expected_count": 200,
+   "expected_count": 207,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2704,7 +3189,7 @@
     "LOC_NAME"
    ],
    "queued": 20,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 207,
@@ -2725,7 +3210,7 @@
     "NAME"
    ],
    "queued": 6,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 36,
@@ -2736,7 +3221,7 @@
    "areas": [
     "US-MO"
    ],
-   "expected_count": 200,
+   "expected_count": 1049,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2746,10 +3231,10 @@
     "Area_Name"
    ],
    "queued": 325,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
-   "source_count": 1047,
+   "source_count": 1049,
    "url": ""
   },
   "US-MO.sgmod": {
@@ -2767,7 +3252,7 @@
     "Area_Name"
    ],
    "queued": 62,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 192,
@@ -2788,7 +3273,7 @@
     "WA_NAME"
    ],
    "queued": 7,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 13,
@@ -2799,7 +3284,7 @@
    "areas": [
     "US-MO"
    ],
-   "expected_count": 200,
+   "expected_count": 1049,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2809,10 +3294,10 @@
     "Area_Name"
    ],
    "queued": 325,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
-   "source_count": 1047,
+   "source_count": 1049,
    "url": ""
   },
   "US-MO.sgmog": {
@@ -2830,7 +3315,7 @@
     "Name"
    ],
    "queued": 21,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 192,
@@ -2851,10 +3336,52 @@
     "Area_Name"
    ],
    "queued": 325,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1049,
+   "url": ""
+  },
+  "US-MS.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-MS"
+   ],
+   "expected_count": 124,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 124,
+   "url": ""
+  },
+  "US-MS.usaceproj": {
+   "agency": "USACE recreation areas of the lake project, dissolved (approximate for the lake State Recreation Area)",
+   "areas": [
+    "US-MS"
+   ],
+   "expected_count": 5,
+   "g": "approximate",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 5,
    "url": ""
   },
   "US-MT.hab": {
@@ -2872,7 +3399,7 @@
     "HA_NAME"
    ],
    "queued": 8,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 13,
@@ -2893,7 +3420,7 @@
     "HMA_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 4,
@@ -2914,7 +3441,7 @@
     "NCA_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 3,
@@ -2935,7 +3462,7 @@
     "FET_NAME"
    ],
    "queued": 1,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 23,
@@ -2956,7 +3483,7 @@
     "FET_NAME"
    ],
    "queued": 70,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 162,
@@ -2977,7 +3504,7 @@
     "FET_NAME"
    ],
    "queued": 70,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 162,
@@ -2998,10 +3525,31 @@
     "ACEC_NAME"
    ],
    "queued": 10,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 83,
+   "url": ""
+  },
+  "US-MT.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-MT"
+   ],
+   "expected_count": 43,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 43,
    "url": ""
   },
   "US-MT.sgmtd": {
@@ -3009,7 +3557,7 @@
    "areas": [
     "US-MT"
    ],
-   "expected_count": 200,
+   "expected_count": 1531,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -3019,7 +3567,7 @@
     "MANAME"
    ],
    "queued": 123,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1531,
@@ -3040,7 +3588,7 @@
     "NAME"
    ],
    "queued": 19,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 55,
@@ -3051,7 +3599,7 @@
    "areas": [
     "US-MT"
    ],
-   "expected_count": 200,
+   "expected_count": 333,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -3061,7 +3609,7 @@
     "NAME"
    ],
    "queued": 34,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 333,
@@ -3082,7 +3630,7 @@
     "NLCS_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2,
@@ -3103,10 +3651,31 @@
     "NLCS_NAME"
    ],
    "queued": 4,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 86,
+   "url": ""
+  },
+  "US-NC.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-NC"
+   ],
+   "expected_count": 296,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 296,
    "url": ""
   },
   "US-ND.rma": {
@@ -3124,7 +3693,7 @@
     "FET_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2,
@@ -3145,7 +3714,7 @@
     "FET_NAME"
    ],
    "queued": 11,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 3,
@@ -3166,7 +3735,7 @@
     "FET_NAME"
    ],
    "queued": 11,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 3,
@@ -3193,6 +3762,27 @@
    "source_count": 5,
    "url": ""
   },
+  "US-ND.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-ND"
+   ],
+   "expected_count": 81,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 8,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 81,
+   "url": ""
+  },
   "US-ND.sgndd": {
    "agency": "North Dakota Forest Service (via ND Dept of Mineral Resources server) (forest, state GIS table)",
    "areas": [
@@ -3208,7 +3798,7 @@
     "DESCRIPTION"
    ],
    "queued": 4,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 27,
@@ -3229,7 +3819,7 @@
     "FET_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
@@ -3256,6 +3846,27 @@
    "source_count": 1,
    "url": ""
   },
+  "US-NE.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-NE"
+   ],
+   "expected_count": 66,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 11,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 66,
+   "url": ""
+  },
   "US-NH.nhc": {
    "agency": "NH GRANIT conservation and public lands",
    "areas": [
@@ -3271,7 +3882,7 @@
     "name"
    ],
    "queued": 90,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 13501,
@@ -3292,7 +3903,7 @@
     "name"
    ],
    "queued": 90,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 13501,
@@ -3313,7 +3924,7 @@
     "site"
    ],
    "queued": 77,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2718,
@@ -3324,7 +3935,7 @@
    "areas": [
     "US-NH"
    ],
-   "expected_count": 200,
+   "expected_count": 13501,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -3334,7 +3945,7 @@
     "NAME"
    ],
    "queued": 90,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 13501,
@@ -3355,7 +3966,7 @@
     "FACILITY"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 117,
@@ -3376,7 +3987,7 @@
     "HA_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 4,
@@ -3397,7 +4008,7 @@
     "HMA_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
@@ -3418,7 +4029,7 @@
     "NCA_NAME"
    ],
    "queued": 6,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 21,
@@ -3439,7 +4050,7 @@
     "FET_NAME"
    ],
    "queued": 4,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 45,
@@ -3460,7 +4071,7 @@
     "FET_NAME"
    ],
    "queued": 20,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 144,
@@ -3481,7 +4092,7 @@
     "FET_NAME"
    ],
    "queued": 20,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 144,
@@ -3502,7 +4113,7 @@
     "ACEC_NAME"
    ],
    "queued": 5,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 114,
@@ -3523,7 +4134,7 @@
     "NLCS_NAME"
    ],
    "queued": 2,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 19,
@@ -3544,7 +4155,7 @@
     "NLCS_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 111,
@@ -3565,7 +4176,7 @@
     "HA_NAME"
    ],
    "queued": 99,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 176,
@@ -3586,7 +4197,7 @@
     "HMA_NAME"
    ],
    "queued": 83,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 110,
@@ -3607,7 +4218,7 @@
     "NCA_NAME"
    ],
    "queued": 24,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 25,
@@ -3628,7 +4239,7 @@
     "FET_NAME"
    ],
    "queued": 13,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 89,
@@ -3649,7 +4260,7 @@
     "FET_NAME"
    ],
    "queued": 74,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 151,
@@ -3670,7 +4281,7 @@
     "FET_NAME"
    ],
    "queued": 74,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 151,
@@ -3691,7 +4302,7 @@
     "ACEC_NAME"
    ],
    "queued": 24,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 165,
@@ -3718,6 +4329,27 @@
    "source_count": 1,
    "url": ""
   },
+  "US-NV.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 32,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 32,
+   "url": ""
+  },
   "US-NV.sgnvb": {
    "agency": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server) (land, state GIS table)",
    "areas": [
@@ -3733,7 +4365,7 @@
     "name"
    ],
    "queued": 21,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 759,
@@ -3754,7 +4386,7 @@
     "name"
    ],
    "queued": 21,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 756,
@@ -3775,7 +4407,7 @@
     "landname"
    ],
    "queued": 8,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 30,
@@ -3796,7 +4428,7 @@
     "NLCS_NAME"
    ],
    "queued": 23,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 10,
@@ -3817,7 +4449,7 @@
     "ACEC_NAME"
    ],
    "queued": 24,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 165,
@@ -3838,7 +4470,7 @@
     "HMA_NAME"
    ],
    "queued": 77,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 86,
@@ -3880,7 +4512,7 @@
     "NLCS_NAME"
    ],
    "queued": 14,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 103,
@@ -3901,10 +4533,94 @@
     "NLCS_NAME"
    ],
    "queued": 6,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 148,
+   "url": ""
+  },
+  "US-NY.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-NY"
+   ],
+   "expected_count": 62,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 62,
+   "url": ""
+  },
+  "US-NY.sgnyc": {
+   "agency": "NYS Adirondack Park Agency (Adirondack Park Blue Line)",
+   "areas": [
+    "US-NY"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 23,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-NY.sgnyd": {
+   "agency": "NYS DEC (Catskill Park boundary)",
+   "areas": [
+    "US-NY"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 8,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-OH.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-OH"
+   ],
+   "expected_count": 169,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 14,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 169,
    "url": ""
   },
   "US-OH.sgohf": {
@@ -3989,6 +4705,27 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 4,
+   "url": ""
+  },
+  "US-OK.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-OK"
+   ],
+   "expected_count": 278,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 9,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 278,
    "url": ""
   },
   "US-OR.hab": {
@@ -4159,6 +4896,27 @@
    "source_count": 226,
    "url": ""
   },
+  "US-OR.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-OR"
+   ],
+   "expected_count": 132,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 132,
+   "url": ""
+  },
   "US-OR.sgora": {
    "agency": "Oregon Parks & Recreation Department (park, state GIS table)",
    "areas": [
@@ -4285,6 +5043,27 @@
    "source_count": 150,
    "url": ""
   },
+  "US-PA.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-PA"
+   ],
+   "expected_count": 118,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 118,
+   "url": ""
+  },
   "US-PA.sgpaa": {
    "agency": "Pennsylvania DCNR Bureau of State Parks (park, state GIS table)",
    "areas": [
@@ -4300,7 +5079,7 @@
     "PARK_NAME"
    ],
    "queued": 19,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 125,
@@ -4311,7 +5090,7 @@
    "areas": [
     "US-PA"
    ],
-   "expected_count": 200,
+   "expected_count": 240,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -4321,7 +5100,7 @@
     "StParkName"
    ],
    "queued": 22,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 240,
@@ -4342,7 +5121,7 @@
     "NAME"
    ],
    "queued": 1,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 23,
@@ -4353,7 +5132,7 @@
    "areas": [
     "US-PA"
    ],
-   "expected_count": 200,
+   "expected_count": 662,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -4363,7 +5142,7 @@
     "SF_Name"
    ],
    "queued": 12,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 662,
@@ -4374,7 +5153,7 @@
    "areas": [
     "US-RI"
    ],
-   "expected_count": 200,
+   "expected_count": 1039,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -4384,7 +5163,7 @@
     "NAME"
    ],
    "queued": 23,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1039,
@@ -4395,7 +5174,7 @@
    "areas": [
     "US-RI"
    ],
-   "expected_count": 200,
+   "expected_count": 1039,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -4405,10 +5184,31 @@
     "NAME"
    ],
    "queued": 23,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1039,
+   "url": ""
+  },
+  "US-SC.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-SC"
+   ],
+   "expected_count": 187,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 2,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 187,
    "url": ""
   },
   "US-SD.rma": {
@@ -4495,6 +5295,27 @@
    "source_count": 3,
    "url": ""
   },
+  "US-SD.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-SD"
+   ],
+   "expected_count": 94,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 8,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 9,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 94,
+   "url": ""
+  },
   "US-SD.sgsda": {
    "agency": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data) (park, state GIS table)",
    "areas": [
@@ -4537,6 +5358,27 @@
    "source_count": 134,
    "url": ""
   },
+  "US-TN.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-TN"
+   ],
+   "expected_count": 208,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 208,
+   "url": ""
+  },
   "US-TN.sgtni": {
    "agency": "Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table)",
    "areas": [
@@ -4573,7 +5415,7 @@
     "HA_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2,
@@ -4594,7 +5436,7 @@
     "HMA_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
@@ -4615,7 +5457,7 @@
     "NCA_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 5,
@@ -4636,7 +5478,7 @@
     "FET_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 35,
@@ -4657,10 +5499,31 @@
     "FET_NAME"
    ],
    "queued": 8,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 78,
+   "url": ""
+  },
+  "US-TX.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-TX"
+   ],
+   "expected_count": 663,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 663,
    "url": ""
   },
   "US-TX.sgtxb": {
@@ -4668,7 +5531,7 @@
    "areas": [
     "US-TX"
    ],
-   "expected_count": 200,
+   "expected_count": 463,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -4678,7 +5541,7 @@
     "Name"
    ],
    "queued": 21,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 463,
@@ -4699,7 +5562,7 @@
     "NLCS_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2,
@@ -4720,7 +5583,7 @@
     "NLCS_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 19,
@@ -4741,7 +5604,7 @@
     "HA_NAME"
    ],
    "queued": 85,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 46,
@@ -4762,7 +5625,7 @@
     "HMA_NAME"
    ],
    "queued": 48,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 24,
@@ -4783,7 +5646,7 @@
     "NCA_NAME"
    ],
    "queued": 29,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 37,
@@ -4804,7 +5667,7 @@
     "FET_NAME"
    ],
    "queued": 28,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 105,
@@ -4825,7 +5688,7 @@
     "FET_NAME"
    ],
    "queued": 233,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 181,
@@ -4846,7 +5709,7 @@
     "FET_NAME"
    ],
    "queued": 233,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 181,
@@ -4867,7 +5730,7 @@
     "ACEC_NAME"
    ],
    "queued": 82,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 100,
@@ -4909,7 +5772,7 @@
     "RECS_NAME"
    ],
    "queued": 18,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 26,
@@ -4930,7 +5793,7 @@
     "NLCS_NAME"
    ],
    "queued": 31,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 57,
@@ -4951,10 +5814,31 @@
     "NLCS_NAME"
    ],
    "queued": 44,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 430,
+   "url": ""
+  },
+  "US-VA.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-VA"
+   ],
+   "expected_count": 226,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 226,
    "url": ""
   },
   "US-VA.sgvag": {
@@ -4962,7 +5846,7 @@
    "areas": [
     "US-VA"
    ],
-   "expected_count": 200,
+   "expected_count": 242,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -4972,7 +5856,7 @@
     "WMA_NAME"
    ],
    "queued": 8,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 242,
@@ -4983,7 +5867,7 @@
    "areas": [
     "US-VA"
    ],
-   "expected_count": 200,
+   "expected_count": 3169,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -4993,7 +5877,7 @@
     "PropertyNames"
    ],
    "queued": 26,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 3169,
@@ -5004,7 +5888,7 @@
    "areas": [
     "US-VT"
    ],
-   "expected_count": 200,
+   "expected_count": 515,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -5014,7 +5898,7 @@
     "NAME"
    ],
    "queued": 45,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 515,
@@ -5025,7 +5909,7 @@
    "areas": [
     "US-VT"
    ],
-   "expected_count": 200,
+   "expected_count": 484,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -5035,10 +5919,10 @@
     "NAME"
    ],
    "queued": 73,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
-   "source_count": 968,
+   "source_count": 484,
    "url": ""
   },
   "US-WA.nca": {
@@ -5144,6 +6028,27 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 22,
+   "url": ""
+  },
+  "US-WA.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-WA"
+   ],
+   "expected_count": 196,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 5,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 5,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 196,
    "url": ""
   },
   "US-WA.sgorf": {
@@ -5335,6 +6240,27 @@
    "source_count": 1,
    "url": ""
   },
+  "US-WI.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-WI"
+   ],
+   "expected_count": 12,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 12,
+   "url": ""
+  },
   "US-WI.sgwia": {
    "agency": "Wisconsin DNR (land, state GIS table)",
    "areas": [
@@ -5350,7 +6276,7 @@
     "PROP_NAME"
    ],
    "queued": 115,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1796,
@@ -5371,7 +6297,7 @@
     "PROP_NAME"
    ],
    "queued": 18,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 80,
@@ -5392,7 +6318,7 @@
     "SNA_NAME"
    ],
    "queued": 71,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 661,
@@ -5413,7 +6339,7 @@
     "PROP_NAME"
    ],
    "queued": 110,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 82488,
@@ -5434,7 +6360,7 @@
     "FR_PROP_NAME"
    ],
    "queued": 5,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 30,
@@ -5455,7 +6381,7 @@
     "SNA_NAME"
    ],
    "queued": 70,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 789,
@@ -5476,10 +6402,31 @@
     "PROP_NAME"
    ],
    "queued": 115,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1796,
+   "url": ""
+  },
+  "US-WV.sgide": {
+   "agency": "Recreation Area (park, state GIS table)",
+   "areas": [
+    "US-WV"
+   ],
+   "expected_count": 180,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "RECPROJECTSITEAREANAME"
+   ],
+   "queued": 7,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 180,
    "url": ""
   },
   "US-WV.sgwvc": {
@@ -5497,7 +6444,7 @@
     "Loc_Nm"
    ],
    "queued": 9,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 36,
@@ -5648,6 +6595,28 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 55,
+   "url": ""
+  },
+  "W-PF.h210": {
+   "agency": "French Polynesia: Gouvernement de la Polyn\u00e9sie fran\u00e7aise, Te Fenua open data (DSI); PGEM",
+   "areas": [
+    "W-PF"
+   ],
+   "expected_count": 8,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "nom"
+   ],
+   "note": "KPC owner, 2026-11-11: A person's download (8 Moorea PGEM marine areas, sha256 aca84e4f49a1...) saved as the checked hand file hand-W-PF.h210.geojson.gz. The trim matched no PF park by name (AMP de X vs X Marine Protected Area): 7 go to the solver queue. The world builder does not read hand files yet.",
+   "queued": 7,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 8,
    "url": ""
   },
   "YT-campgrounds": {

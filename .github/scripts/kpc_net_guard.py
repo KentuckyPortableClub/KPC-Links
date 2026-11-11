@@ -10,11 +10,16 @@ it), HTTPRedirectHandler.redirect_request (scheme downgrade) and http.client.HTT
 opens, before any DNS lookup). kpc_host_pace, kpc_http_cache and kpc_master call install() when they are imported.
 Not a rule file: it never decides a join. Standard library only.
 """
-import http.client, os, re, sys, urllib.error, urllib.parse, urllib.request
+import http.client, json, os, re, sys, urllib.error, urllib.parse, urllib.request
 
 SERVICES_RE = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')
 NEVER = frozenset({'apps.fs.usda.gov', 'ncnhde.natureserve.org'})   # plus SERVICES_RE (hard-coded: an env list cannot drop them)
 _STATE = {'installed': False}
+# data/outlines/layers.json rows with "never_contact": true: no request of any kind to that layer's service (its host + the path
+# up to /MapServer or /FeatureServer). KPC_LAYERS_JSON points at another copy (tests). Missing file = no flags; an unreadable or
+# malformed file refuses every request (fail closed).
+LAYERS_JSON = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'data', 'outlines', 'layers.json')
+_FLAGS = {}
 
 
 class NetGuardRefused(urllib.error.URLError):
@@ -44,6 +49,42 @@ def extra_hosts():
     return {_norm_host(h) for h in str(os.environ.get('KPC_SAVED_ONLY_HOSTS') or '').split(',') if h.strip()}
 
 
+def _service_path(url):
+    p = urllib.parse.unquote(urllib.parse.urlsplit(url).path or '/').lower().rstrip('/')
+    m = re.search(r'/(mapserver|featureserver|imageserver)(/|$)', p)
+    return p[:m.start()] if m else p
+
+
+def never_contact_flags(path=None):
+    """{(host, service path)} for layers.json rows with never_contact true. Raises ValueError when the file cannot be read."""
+    path = path or os.environ.get('KPC_LAYERS_JSON') or LAYERS_JSON
+    try: st = os.stat(path)
+    except FileNotFoundError: return frozenset()
+    except OSError as e: raise ValueError(f'{path}: {e}')
+    key = (path, st.st_mtime_ns, st.st_size)
+    if key not in _FLAGS:
+        try:
+            d = json.load(open(path, encoding='utf-8'))
+            rows = (d.get('layers') or {}).values()
+            _FLAGS.clear()
+            _FLAGS[key] = frozenset((host_of(r['url']), _service_path(_addr(r['url'])))
+                                    for r in rows if isinstance(r, dict) and r.get('never_contact') is True and r.get('url'))
+        except Exception as e:  # noqa: BLE001
+            raise ValueError(f'{path}: cannot read the never_contact flags ({e})')
+    return _FLAGS[key]
+
+
+def flag_rule(url):
+    """'' unless url reaches a layer flagged never_contact in layers.json (or the flags cannot be read)."""
+    try: flags = never_contact_flags()
+    except ValueError as e: return f'{e}: refused (fail closed)'
+    u = _addr(url); host, path = host_of(u), urllib.parse.unquote(urllib.parse.urlsplit(u).path or '/').lower()
+    for h, p in flags:
+        if host == h and (path.rstrip('/') == p or path.startswith(p.rstrip('/') + '/')):
+            return f'{h}{p}: never_contact in data/outlines/layers.json, no request of any kind to that service'
+    return ''
+
+
 def host_rule(host):
     """'' when host may be contacted, else why not."""
     host = _norm_host(host)
@@ -59,7 +100,7 @@ def host_ok(url):
     try: scheme = urllib.parse.urlsplit(u).scheme.lower()
     except ValueError: scheme = ''
     if scheme not in ('http', 'https'): return False, f'{u[:80]}: only http(s) addresses are allowed'
-    why = host_rule(host_of(u))
+    why = host_rule(host_of(u)) or flag_rule(u)
     return (False, why) if why else (True, '')
 
 
