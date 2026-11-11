@@ -4,19 +4,21 @@
   "KPC-Data/kpc-intake.yml",
   "KPC-Data/kpc-pile-solver.yml",
   "KPC-Data/kpc-storage.yml",
+  "KPC-Data/kpc-waiting-room.yml",
   "KPC-Data/kpc-wdpa-phonebook.yml",
-  "kpc-discord-relay.yml",
+  "kpc-band-alerts.yml",
+  "kpc-boards.yml",
+  "kpc-bot-queue.yml",
+  "kpc-fb-comments.yml",
   "kpc-guide-pdf.yml",
   "kpc-hunters.json",
-  "kpc-hunters.yml",
-  "kpc-pota-discord.yml",
   "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:US-AZ:US-13337",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324"
  ],
- "checked": "2026-11-11T12:16+00:00",
+ "checked": "2026-11-11T17:28+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -122,16 +124,16 @@
    "b": 31658
   },
   "L:data/us-key": {
-   "b": 50117347
+   "b": 50101352
   },
   "L:data/ca-key": {
    "b": 5791754
   },
   "L:data/world-key": {
-   "b": 38231410
+   "b": 38079528
   },
   "L:data/pota": {
-   "b": 5703264
+   "b": 5703454
   },
   "L:data/canada.json": {
    "b": 2494163
@@ -146,22 +148,22 @@
    "b": 583380
   },
   "L:data/state-gis.json": {
-   "b": 119593
+   "b": 127262
   },
   "L:data/boundary-score.json": {
-   "b": 965563
+   "b": 965729
   },
   "L:data/campfed": {
    "b": 643240
   },
   "L:data/campstate": {
-   "b": 877171
+   "b": 877962
   },
   "L:data/nwr": {
    "b": 334294
   },
   "L:locations.json": {
-   "b": 5421460
+   "b": 5421575
   },
   "L:kpc-events-auto.json": {
    "b": 20937
@@ -204,7 +206,7 @@
    "b": 20045555
   },
   "D:data/alerts/eu.json": {
-   "b": 158540
+   "b": 150684
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -220,7 +222,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1145333
+   "b": 1154216
   }
  }
 }
