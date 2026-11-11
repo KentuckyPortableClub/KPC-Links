@@ -1,31 +1,6 @@
 {
- "updated": "2026-11-11 02:50",
- "pending": [
-  {
-   "kind": "open",
-   "who": "Daniel Boone National Forest",
-   "title": "Tornado Damaged Area Closure in London, Pulaski counties",
-   "refs": [
-    "US-11181"
-   ]
-  },
-  {
-   "kind": "open",
-   "who": "Daniel Boone National Forest",
-   "title": "Hawk Creek, Sinking Creek trail bridges impassable",
-   "refs": [
-    "US-11181"
-   ]
-  },
-  {
-   "kind": "open",
-   "who": "Daniel Boone National Forest",
-   "title": "Red River Gorge Suspension Bridge Impassable",
-   "refs": [
-    "US-11181"
-   ]
-  }
- ],
+ "updated": "2026-11-11 06:16",
+ "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
    "who": "Kentucky State Parks",
