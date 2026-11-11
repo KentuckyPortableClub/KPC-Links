@@ -49,6 +49,18 @@
       "why": "Review fixes. Every pass reads a blocked-host layer from the key's saved copy; a missing saved copy holds the pair with a reason, and Wild and Scenic corridors come from saved records or the pair is held. Two parks on the same official records are an approximate 2-fer only when both POTA pins are inside the shared outline; otherwise the pair is held as a likely join to fix (pins and records listed on the row). Record ids are compared with their area and source; an outline with no source label is not official; a failed read never leaves a partial outline. A state feeds 2-fers only when its own index row was built on the current key rules.",
       "scope": "all",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+    },
+    {
+      "id": "2026-11-11-trail-25m-key-gate",
+      "when": "2026-11-11",
+      "from": "0361802fe00e",
+      "why": "A trail or river stretch counts only when at least 25 metres of the line run inside the other park (was no minimum). Pieces of one line that touch are measured together, to the line's real end. A line whose whole saved copy is under 25 metres is a broken copy: its pairs are held as not sure, never dropped. In a trail or river row the park that is not the line is graded by the current key like an area half (a key pin drops the row). A row's own stretch length is kept apart, so copies of other rows no longer shrink it.",
+      "scope": {
+        "flags": [
+          "line"
+        ]
+      },
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-11"
     }
   ]
 }

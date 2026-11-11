@@ -47,10 +47,15 @@
     files.forEach(function (d) { (d && d.spots || []).forEach(function (s) { s._st = d.st || ''; all.push(s); }); });
     all.forEach(function (s) { var m = /^merged into one row: (.+)$/.exec(s.status || ''); if (m) (kids[m[1]] = kids[m[1]] || []).push(s); });
     var groups = {}; ROWS = []; TIGHT = []; WATER = []; WAITN = 0;
+    HELD = { pin: [], short: [], unknown: [], apx: [] };
     all.forEach(function (s) {
       if (!ok3(s)) return;
       if (CFG && CFG.hide && CFG.hide[(s.refs || []).slice().sort().join('+')]) return;   // a row chat 8 said to drop (kpc-fers-regions.json 'hide')
       var st = String(s.status || '');
+      if (/^(candidate|very tight|water only)/.test(st)) {   // Nov 11 (KPC owner): the CURRENT key decides what may be listed (a pin is never a 2-fer)
+        var kh = keyHold(s); if (kh) { HELD[kh].push(s.id); return; }
+        s._apx = keyApx(s); if (s._apx && /^candidate/.test(st)) HELD.apx.push(s.id);
+      }
       if (/^very tight/.test(st)) { if (MEMBER) TIGHT.push(s); return; }
       if (/^water only/.test(st)) { if (MEMBER) WATER.push(s); return; }   /* rule 9: water-only spots are listed apart (boat or kayak) */
       if (!/^candidate/.test(st)) return;                                // not sure / dropped / merged
@@ -100,7 +105,7 @@
       return '<li><b>Place ' + (i + 1) + '</b>: ' + sz + (tierOf(s) === 'small' ? ' · <i>small: tight fit</i>' : '') + ' <button type="button" class="ov-pl" data-place="' + esc(g.key) + '|' + i + '">🗺 SHOW</button>' + accLine(s) + '</li>'; }).join('') + '</ol></details>';
   }
   var APPROX = {};   /* ref -> source, for parks whose outline is only approximate (W-2: never shown as Official) */
-  function isApxSpot(s) { return !!(s && (s.tier === 'approximate' || s.tier === 'point-circle' || s.approx || s.approx_note || (s.official_boundary === false && (s.pc_note || s.point_circle)))); }
+  function isApxSpot(s) { return !!(s && (s._apx || s.tier === 'approximate' || s.tier === 'point-circle' || s.approx || s.approx_note || (s.official_boundary === false && (s.pc_note || s.point_circle)))); }
   function apxPair(ps) { return (ps || []).some(isApxSpot); }
   function apxNoteOf(ps) { var n = ''; (ps || []).forEach(function (s) { if (s && s.approx_note) n = s.approx_note; }); return n || APX_NOTE; }
   function apxLine(refs, ps) {
@@ -108,6 +113,84 @@
     var a = (refs || []).filter(function (r) { return APPROX[r]; });
     return a.length ? '<p class="ov-note ov-apx" style="color:#8a5a00">' + esc(APX_NOTE) + '</p>' : '';
   }
+  /* ---------- Nov 11 2026 (KPC owner): every region is graded by the CURRENT answer key ----------
+     The key files are read the way the map reads them (KPCREL: the released copy once an area is released, else the working
+     copy on the KPC-Data site through KPC.dataUrl): US-OH -> data/us-key/US-OH.json, CA-SK -> data/ca-key/CA-SK.json,
+     W-GB -> data/world-key/GB.json. Kentucky (US-KY) has no key file: its own hand-checked list is shown as it is.
+     The rule is the builder's (kpc_fers_key_status.py, key_line_match + _status_of): a park the key grades PIN is not an outline,
+     so an area / same-land row with one is not shown; in a trail / river row the park tested by its LINE (line_source) is not
+     graded, its other park is (a pin drops the row). Point-circle parks and picture-trace parks (data/fers-approx-outlines.json)
+     are approximate, not pins. A park graded approximate makes the row an APPROXIMATE 2-FER with the not-official note.
+     A park missing from its region's key is graded in the state its spot lies in (kpc-us-states.json). A key that does not load
+     = nothing is shown (never a guessed list). A line row shorter than 25 metres in all is not shown (the 25 m rule, kpc_fers.py). */
+  var GR = null, HELD = { pin: [], short: [], unknown: [], apx: [] }, APXP = {}, KEYC = {}, STRETCH_M = 25;
+  var RANK = { unknown: -2, pin: 0, approximate: 1, official: 2 };
+  function keyStatus(p) {
+    var m = p.m || p.tracts || [];
+    if (p.g === 'pin' || !m.length) return 'pin';
+    if (p.g === 'approximate' || (p.m || []).some(function (x) { return x && x.length > 3 && /approx/.test(String(x[3])); }) || p.approx) return 'approximate';
+    return 'official';
+  }
+  function keyPath(f) {
+    var m = /^(US|CA)-([A-Z]{2})$/.exec(f || ''), w = /^W-([A-Z]{2})$/.exec(f || '');
+    if (m) return m[1] === 'CA' ? 'data/ca-key/CA-' + m[2] + '.json' : m[2] === 'KY' ? null : 'data/us-key/US-' + m[2] + '.json';
+    return w ? 'data/world-key/' + w[1] + '.json' : undefined;   // undefined = no known key for this file: fail safe
+  }
+  function keyGet(path) {
+    if (KEYC[path]) return KEYC[path];
+    var old = function (q) { var u = q + '?v=' + new Date().toISOString().slice(0, 10); return (window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, { cache: 'no-cache' }) : fetch(u, { cache: 'no-cache' }); };
+    var p = Promise.resolve().then(function () { return window.KPCREL ? KPCREL.get(path, old) : old(path).then(function (r) { return r && r.ok ? r.json() : null; }); })
+      .then(function (k) { return k && k.parks && typeof k.parks === 'object' ? k : null; }).catch(function () { return null; });
+    KEYC[path] = p; p.then(function (k) { if (!k) delete KEYC[path]; });
+    return p;
+  }
+  function addKey(G, k) { var P = k.parks; Object.keys(P).forEach(function (r) { var st = keyStatus(P[r] || {}); if (!(r in G.g) || RANK[st] < RANK[G.g[r]]) G.g[r] = st; if (P[r] && P[r].line) G.line[r] = 1; }); }
+  function stateAt(B, lat, lon) {
+    var hit = null; (B || []).some(function (b) { return (b.p || []).some(function (poly) { var c = pip(lon, lat, poly[0] || []); for (var i = 1; c && i < poly.length; i++) if (pip(lon, lat, poly[i])) c = false; if (c) hit = b.a; return c; }); });
+    return hit;
+  }
+  /* -> {g: {ref: grade}, line: {ref: 1}} | {none: true} (Kentucky) | null (a key did not load: show nothing) */
+  function gradeRegion(reg, files) {
+    var paths = [], unknown = false;
+    (reg.files || []).forEach(function (f) { var p = keyPath(f); if (p === undefined) unknown = true; else if (p) paths.push(p); });
+    if (unknown) return Promise.resolve(null);
+    if (!paths.length) return Promise.resolve({ none: true });
+    return Promise.all(paths.map(keyGet).concat([APXP._p || (APXP._p = j('data/fers-approx-outlines.json'))])).then(function (ks) {
+      var ax = ks.pop(); APXP = { _p: APXP._p }; Object.keys((ax && ax.parks) || {}).forEach(function (r) { APXP[r] = 1; });
+      if (ks.some(function (k) { return !k; })) return null;
+      var G = { g: {}, line: {} }; ks.forEach(function (k) { addKey(G, k); });
+      /* refs the region's own key does not list (a neighbour state's park on a border river): the key of the state the spot lies in */
+      var need = {};
+      (files || []).forEach(function (d) { (d && d.spots || []).forEach(function (s) { if (!ok3(s)) return; (s.refs || []).forEach(function (r) { if (!(r in G.g) && /^US-/.test(r) && s.center) (need[r] = need[r] || []).push(s.center); }); }); });
+      var refs = Object.keys(need); if (!refs.length) return G;
+      return (US_P || (US_P = j('kpc-us-states.json'))).then(function (B) {
+        var want = {}; refs.forEach(function (r) { need[r].forEach(function (c) { var st = stateAt(B, c[0], c[1]); if (st && st !== 'KY') want['data/us-key/US-' + st + '.json'] = 1; }); });
+        var wp = Object.keys(want).filter(function (p) { return paths.indexOf(p) < 0; });
+        return Promise.all(wp.map(keyGet)).then(function (k2) {
+          var bad = k2.some(function (k) { return !k; }), H = { g: {}, line: {} };
+          k2.forEach(function (k) { if (k) addKey(H, k); });
+          refs.forEach(function (r) { if (r in H.g) { G.g[r] = H.g[r]; if (H.line[r]) G.line[r] = 1; } else if (bad || !B) G.g[r] = 'unknown'; });   // not found and every key read = missing (as the builder)
+          return G;
+        });
+      });
+    });
+  }
+  function gradeOf(r) { return GR && GR.g ? (GR.g[r] || 'missing') : 'missing'; }
+  /* '' = may be shown; 'pin' / 'unknown' / 'short' = held back (counted in HELD) */
+  function keyHold(s) {
+    var kind = s.kind, line = kind === 'trail' || kind === 'river';
+    if (line && !s.water_route && /^candidate/.test(String(s.status || '')) && (+s.len_m || 0) < STRETCH_M) return 'short';
+    if (!GR || GR.none) return '';
+    if (!(line || kind === 'area' || kind === 'same land')) return '';
+    var lines = line ? Object.keys(s.line_source || {}) : [];
+    if (line && !lines.length) lines = (s.refs || []).filter(function (r) { return GR.line[r]; });
+    var free = (s.point_circle || []).concat(Object.keys(s.pc_note || {}));
+    var refs = (s.refs || []).filter(function (r) { return lines.indexOf(r) < 0 && free.indexOf(r) < 0 && !APXP[r]; });
+    if (refs.some(function (r) { return gradeOf(r) === 'unknown'; })) return 'unknown';
+    return refs.some(function (r) { return gradeOf(r) === 'pin'; }) ? 'pin' : '';
+  }
+  function keyApx(s) { return !!(GR && GR.g && (s.refs || []).some(function (r) { return gradeOf(r) === 'approximate' || APXP[r]; })); }
+
   /* Nov 9 2026: a 2-fer with a point-circle park says so on its card, popups and export */
   function pcNotes(s) { var o = (s && s.pc_note) || {}; return Object.keys(o).map(function (r) { return [r, o[r]]; }); }
   function pcLine(ps) { var seen = {}, out = ''; (ps || []).forEach(function (s) { pcNotes(s).forEach(function (x) { if (seen[x[0]]) return; seen[x[0]] = 1; out += '<p class="ov-note ov-pc" style="color:#8a5a00">📍 <b>' + esc(x[0]) + '</b>: ' + esc(x[1]) + '</p>'; }); }); return out; }
@@ -595,13 +678,14 @@
     else if (t === 'sv') { var c = cur.best.access_pin && cur.best.access_pin.at || cur.best.center; window.open('https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + c[0] + ',' + c[1], '_blank', 'noopener'); }
     else if (t === 'share') { var u = location.origin + location.pathname + '?region=' + encodeURIComponent(REG.id) + '&id=' + encodeURIComponent(cur.key); try { navigator.clipboard.writeText(u + '\n' + SHORT); } catch (x) {} toast('Link copied (with the overlap notice).'); }
     else if (t === 'gpx' || t === 'kml') fileOut(t);
-    else if (t === 'save') { var until = Date.now() + 30 * 864e5; try { localStorage.setItem('kpcOvSave-' + REG.id, JSON.stringify({ until: until, files: SAVED[REG.id] })); toast('Saved for offline until ' + new Date(until).toDateString() + '. It refreshes when you are back online and expires after 30 days, so old boundaries are never used.'); } catch (x) { toast('This phone has no room to save it.'); } }
+    else if (t === 'save') { var until = Date.now() + 30 * 864e5; try { localStorage.setItem('kpcOvSave-' + REG.id, JSON.stringify({ until: until, files: SAVED[REG.id], grades: savedGrades() })); toast('Saved for offline until ' + new Date(until).toDateString() + '. It refreshes when you are back online and expires after 30 days, so old boundaries are never used.'); } catch (x) { toast('This phone has no room to save it.'); } }
     tools();
   });
   $('ovQ').addEventListener('input', function () { showTab('list'); list(); });
   $('ovWait').addEventListener('change', list);
 
   var SAVED = {};
+  function savedGrades() { if (!GR || GR.none) return GR; var o = { g: {}, line: {} }; (SAVED[REG.id] || []).forEach(function (d) { (d && d.spots || []).forEach(function (s) { (s.refs || []).forEach(function (r) { if (GR.g[r]) o.g[r] = GR.g[r]; if (GR.line[r]) o.line[r] = 1; }); }); }); return o; }
   /* Brandon Oct 27 5 PM: 'might as well have a drop down now for states and provinces': every US state + Canadian province; the ones
      with a checked list come first, the rest say 'not checked yet' (picking one says so plainly, never an empty 'no overlaps') */
   var PLACES = { US: 'AL Alabama|AK Alaska|AZ Arizona|AR Arkansas|CA California|CO Colorado|CT Connecticut|DE Delaware|DC District of Columbia|FL Florida|GA Georgia|HI Hawaii|ID Idaho|IL Illinois|IN Indiana|IA Iowa|KS Kansas|KY Kentucky|LA Louisiana|ME Maine|MD Maryland|MA Massachusetts|MI Michigan|MN Minnesota|MS Mississippi|MO Missouri|MT Montana|NE Nebraska|NV Nevada|NH New Hampshire|NJ New Jersey|NM New Mexico|NY New York|NC North Carolina|ND North Dakota|OH Ohio|OK Oklahoma|OR Oregon|PA Pennsylvania|RI Rhode Island|SC South Carolina|SD South Dakota|TN Tennessee|TX Texas|UT Utah|VT Vermont|VA Virginia|WA Washington|WV West Virginia|WI Wisconsin|WY Wyoming',
@@ -809,13 +893,23 @@
         else { $('ovList').innerHTML = '<div class="ov-empty"><b>Could not load the overlap list right now.</b> Nothing is shown rather than an old or guessed list. Try again with a signal.</div>'; return; }
       }
       SAVED[REG.id] = files; APPROX = {};
-      if (REG.key) j((CFG.keyBase || '../KPC-Data/data/') + REG.key + '.json').then(function (k) { var P = (k && k.parks) || {}; Object.keys(P).forEach(function (r) { var g = String(P[r].g || ''); if (/^approx/.test(g)) APPROX[r] = P[r].gsrc || 'not the agency\'s own map'; }); if (Object.keys(APPROX).length) list(); });
+      var reg = REG;
+      return gradeRegion(reg, files).then(function (gr) {
+      if (reg !== REG) return;   // another region was picked meanwhile
+      if (!gr) {   // the key did not load: a saved copy's grades if it has some, else nothing (never a list that may count a bare pin)
+        var sv2 = null; try { sv2 = JSON.parse(localStorage.getItem('kpcOvSave-' + REG.id) || 'null'); } catch (e) {}
+        if (sv2 && sv2.until > Date.now() && sv2.grades) { gr = sv2.grades; toast('Offline: park grades from your saved copy (good until ' + new Date(sv2.until).toDateString() + ').'); }
+      }
+      if (!gr) { GR = null; ROWS = []; TIGHT = []; WATER = []; MISS = []; HELD = { pin: [], short: [], unknown: [], apx: [] };
+        $('ovList').innerHTML = '<div class="ov-empty"><b>Could not load the park answer key right now.</b> Nothing is shown rather than a list that might count a park with no official boundary. Try again with a signal.</div>'; return; }
+      GR = gr; Object.keys(gr.g || {}).forEach(function (r) { if (gr.g[r] === 'approximate') APPROX[r] = 'key'; });
       build(files, miss);
       var nb = $('ovRegNote'); if (!nb) { nb = document.createElement('div'); nb.id = 'ovRegNote'; nb.className = 'ov-empty'; nb.style.margin = '0 0 12px'; $('ovRegions').after(nb); }
       nb.hidden = !REG.note; nb.innerHTML = REG.note ? (REG.beta ? '🧪 ' : '🔄 ') + '<b>' + esc(REG.note) + '</b>' : '';
       if (MEMBER && REG.showWaiting) $('ovWait').checked = true;   // Brandon Oct 27 2:15 PM: 'members only … good with putting KY list on there for now to test it'
       list();
       var q = new URLSearchParams(location.search).get('id'); if (q && ROWS.some(function (r) { return r.key === q; })) { openRow(q); setTimeout(function () { scrollTo({ top: $('ovMap').getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); }, 400); }   // a shared link lands on the map
+      });
     });
   }
   var list0 = list; list = function () { list0(); usState(); };
@@ -830,5 +924,5 @@
     loadRegion(want); setView(VIEW, true);
     var vw = $('ovView'); if (vw) vw.addEventListener('click', function (e) { var b = e.target.closest('[data-view]'); if (b && b.dataset.view !== VIEW) setView(b.dataset.view); });
   });
-  window.KPCOverlap = { rows: function () { return ROWS; }, openRow: openRow, status: status, map: function () { return map; }, rings: function (g) { return patchRings(g); }, sharp: function () { return SHARP; } };
+  window.KPCOverlap = { held: function () { return HELD; }, grades: function () { return GR; }, load: function (id) { return loadRegion(id); }, rows: function () { return ROWS; }, openRow: openRow, status: status, map: function () { return map; }, rings: function (g) { return patchRings(g); }, sharp: function () { return SHARP; } };
 })();

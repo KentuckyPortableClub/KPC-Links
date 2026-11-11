@@ -3,7 +3,8 @@
 
 An area / same-land 2-fer is a confirmed line-match when every half is an official outline in the CURRENT key.
 A key PIN is not a line-match. An approximate outline (picture trace or key g=approximate) is allowed as an
-approximate 2-fer, not a hold. River / trail rows that use a line still run (the 100-ft rule does not need an area outline).
+approximate 2-fer, not a hold. River / trail rows: the line park still runs (the 100-ft rule does not need an area outline); the
+other park of the row is an area half and follows the same PIN rule (KPC owner, 2026-11-11).
 
 Multi-state (Quality Part A grade Nov 5): status is stored PER STATE. US-0367 is pin in US-IA and official in US-MN —
 grade the state's copy, or take the WEAKEST status across states (pin < approximate < official) when no area is given.
@@ -64,10 +65,17 @@ def status_for(ref, area=None):
     return KEY_STATUS.get(ref, 'missing')
 
 
-def key_line_match(refs, kind, root='.', areas=None):
-    """'' = ok to be a line-match candidate; else a status string. Area/same-land only (Quality Nov 5).
-    areas: optional dict {ref: area} or list of areas parallel to refs — grades each half in its state."""
-    if kind not in ('area', 'same land'): return ''
+def key_line_match(refs, kind, root='.', areas=None, lines=None):
+    """'' = ok to be a line-match candidate; else a status string. Area/same-land: every half (Quality Nov 5).
+    areas: optional dict {ref: area} or list of areas parallel to refs — grades each half in its state.
+    Trail / river rows (KPC owner, 2026-11-11): the LINE park(s) are tested by their line (the 100-ft rule needs no area
+    outline), so they are never graded here; when `lines` (the refs tested by their line) is given, every OTHER park of the row
+    is an area half and is graded like one (a key PIN drops the row). lines=None keeps the old answer for trail / river: ''."""
+    if kind in ('trail', 'river'):
+        if lines is None: return ''
+        refs = [r for r in refs if r not in set(lines)]
+        if not refs: return ''
+    elif kind not in ('area', 'same land'): return ''
     load_key_status(root)
     area_of = {}
     if isinstance(areas, dict):

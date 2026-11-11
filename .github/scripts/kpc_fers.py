@@ -22,8 +22,9 @@ KPC's extra rules (Brandon, Oct 26):
 - A spot counts only when the overlap holds a spot AT LEAST 50 YARDS ACROSS (Oct 26 2:11 PM; was 100): shrink the overlap 25 yards inward
   and something must remain (no slivers, no parks that only touch). Holes (inholdings) in an outline stay holes.
 - TRAILS + RIVERS (official lines, data/trails): POTA's rule = the station entirely within 100 ft of the trail (KPC applies
-  the same to rivers). So a stretch AT LEAST 100 YARDS LONG where a station spot inside the other park (5 m in) is within
-  100 ft of the line; two lines: their 100-ft zones meet along 100 yards.
+  the same to rivers). So a stretch AT LEAST 25 METRES LONG (STRETCH; KPC owner, 2026-11-11) where a station spot inside the
+  other park (5 m in) is within 100 ft of the line; two lines: their 100-ft zones meet along 25 metres. A line whose whole
+  saved copy is shorter than 25 metres is a broken copy, not the trail: its pairs are NOT SURE (fix the line), never dropped.
 - n-fers: a 3-fer is three parks whose boundaries may overlap at the SAME place (never a chain); same up to 9 (Oct 27).
 - Two park numbers joined to the SAME outline record (Oct 27 10:35 AM, HQ: the 'never a 2-fer' rule is retired): SHOWN as
   'Same land, two park numbers' everywhere (US, Canada, Kentucky); also listed in data/fers/same-outline.json.
@@ -88,7 +89,10 @@ SMALL_M = 91.44           # under 100 yards across = 'small overlap: tight fit, 
 TIGHT_M = 45.72           # 50 yards: below this = very tight
 TIGHT_SHRINK = 11.43      # 12.5 yards in from every edge = a spot 25 yards across (the smallest kept)
 VERY_TIGHT = 'very tight: could be map error: check both official maps on the ground'
-STRETCH = 0.0             # trails + rivers: POTA's 100-ft rule only (no KPC 'length along the line')
+# KPC owner, 2026-11-11: a trail / river stretch counts only when it runs at least 25 METRES (about 27 yards) along the line
+# inside the other park: room to set up, longer than the usual 10-20 m map slop. Measured on the joined stretch (pieces of one
+# line that touch count together); passes 1-2 only screen (every stretch goes on), pass 3 applies it.
+STRETCH = 25.0
 # POTA's trail rule (Activator Guide, docs.pota.app): 'Your station must be located entirely within 100 feet (30.5m) of the
 # trail'; KPC's guide applies the same to river parks (within 100 ft of the water). So a trail / river counts with another
 # park where a station spot sits INSIDE that park (5 m in) and within 100 ft of the line (5 m to spare): 25 m.
@@ -2030,12 +2034,19 @@ def water_route_spots(lref, ls, oref, obox):
 
 
 def line_spots(lref, ls, oref, other, other_is_line, box, kind):
-    """Stretches of park lref's line(s) at least 100 yards long where a station can stand within 100 ft of the line AND
-    inside park oref (5 m in from its line); for two lines: within 100 ft of both (the two 100-ft zones meet)."""
-    out = []
+    """Stretches of park lref's line(s) at least STRETCH (25 metres) long where a station can stand within 100 ft of the line AND
+    inside park oref (5 m in from its line); for two lines: within 100 ft of both (the two 100-ft zones meet).
+    Nov 11 (KPC owner): a stretch is measured to the line's real end (sample() leaves the last vertex out) and pieces of the line
+    that touch are joined before the 25 m test (a trail saved as many short pieces is one stretch). Passes 1-2 only screen (saved
+    copies, coarse cells): every stretch goes on, as before; pass 3 applies the 25 m. A line whose WHOLE saved copy is
+    shorter than 25 m is a broken copy, not the trail: anything it touches is kept and marked 'line_short' (decide() = not sure)."""
+    out, runs, step = [], [], CELL / 2
+    whole = sum(line_m(l) for l in ls)          # the whole saved line (every piece), metres
     for l in ls:
-        pts = [p for p in sample(l, CELL / 2) if box[0] <= p[0] <= box[2] and box[1] <= p[1] <= box[3]]
-        if len(pts) < 2: continue
+        smp = sample(l, step)
+        if len(l) > 1 and (not smp or (smp[-1][0], smp[-1][1]) != (l[-1][0], l[-1][1])): smp = smp + [(l[-1][0], l[-1][1])]   # the line's real end
+        pts = [p for p in smp if box[0] <= p[0] <= box[2] and box[1] <= p[1] <= box[3]]
+        if len(pts) < 2 and not (pts and whole < STRETCH): continue
         ins = np.zeros(len(pts), bool)
         for b in tiles(bbox_lines([pts]), CELL, 0):
             idx = [i for i, p in enumerate(pts) if b[0] <= p[0] <= b[2] and b[1] <= p[1] <= b[3]]
@@ -2060,17 +2071,38 @@ def line_spots(lref, ls, oref, other, other_is_line, box, kind):
                 ins[idx] = okd[P[:, 1], P[:, 0]] <= ZONE + wd[P[:, 1], P[:, 0]]   # 100 ft from the BANK, the centre line sits wd from it
             else:
                 ins[idx] = ok[P[:, 1], P[:, 0]] > 0
-        run, best = [], []
+        run = []
         for i, p in enumerate(pts + [None]):
             if p is not None and ins[i]: run.append(p); continue
-            if run:
-                L = sum(math.hypot((b2[0] - a2[0]) * 111320 * math.cos(math.radians(a2[1])), (b2[1] - a2[1]) * 110574) for a2, b2 in zip(run, run[1:]))
-                if L >= STRETCH:
-                    st = run[::max(1, len(run) // 200)]
-                    out.append({'refs': sorted([lref, oref]), 'kind': kind, 'center': [round(run[len(run) // 2][1], 6), round(run[len(run) // 2][0], 6)],
-                                'len_m': round(L), 'shape': [[round(q[0], 6), round(q[1], 6)] for q in st]})
+            if run: runs.append((run, line_m(run)))
             run = []
+    # Nov 11 (KPC owner, 25 m rule): runs whose ends touch (pieces of one line, joined end to end) are ONE stretch for the test
+    grp = list(range(len(runs)))
+    def root(i):
+        while grp[i] != i: grp[i] = grp[grp[i]]; i = grp[i]
+        return i
+    for i in range(len(runs)):
+        for j in range(i + 1, len(runs)):
+            if any(close_m(a, b) <= step for a in (runs[i][0][0], runs[i][0][-1]) for b in (runs[j][0][0], runs[j][0][-1])): grp[root(i)] = root(j)
+    tot = {}
+    for i, (_r, L) in enumerate(runs): tot[root(i)] = tot.get(root(i), 0.0) + L
+    for i, (run, L) in enumerate(runs):
+        short = whole < STRETCH                 # a broken saved line: kept, marked, decided as NOT SURE (never dropped)
+        if not (short or PASS < 3 or tot[root(i)] >= STRETCH): continue   # passes 1-2 only screen (saved copies, coarse cells): pass 3 decides
+        st = run[::max(1, len(run) // 200)]
+        if len(st) == 1: st = st * 2
+        out.append({'refs': sorted([lref, oref]), 'kind': kind, 'center': [round(run[len(run) // 2][1], 6), round(run[len(run) // 2][0], 6)],
+                    'len_m': round(L), 'shape': [[round(q[0], 6), round(q[1], 6)] for q in st], **({'line_short': {lref: round(whole)}} if short else {})})
     return merge(out)
+
+
+def line_m(pts):
+    """Length of a line (list of [lon, lat]) in metres, flat earth per segment (the same sum line_spots always used)."""
+    return sum(math.hypot((b[0] - a[0]) * 111320 * math.cos(math.radians(a[1])), (b[1] - a[1]) * 110574) for a, b in zip(pts, pts[1:]))
+
+
+def close_m(a, b):
+    return math.hypot((b[0] - a[0]) * 111320 * math.cos(math.radians(a[1])), (b[1] - a[1]) * 110574)
 
 
 # ------------------------------------------------------------------ the passes
@@ -2698,7 +2730,10 @@ def dedupe_line_rows(spots):
         mem = [x for x in spots if str(x.get('status', '')) == 'merged into one row: ' + m['id']]
         own = (m.get('len_main') or m.get('len_m') or 0) if not mem else None
         m['stretches'] = 1 + len(mem)
-        if 'len_main' not in m: m['len_main'] = max(0, (m.get('len_m') or 0) - sum(x.get('len_m') or 0 for x in spots if str(x.get('status', '')).startswith(('merged into one row: ' + m['id'], 'dropped: the same stretch twice')) and tuple(x['refs']) == tuple(m['refs'])))
+        if 'len_main' not in m:   # a row merged before Nov 11 has no own length: its total less ITS members and the copies OF them
+            ids = {m['id']} | {x.get('id') for x in mem}   # (was: every copy of the pair, even of other rows = 0 m for real trails)
+            m['len_main'] = max(0, (m.get('len_m') or 0) - sum(x.get('len_m') or 0 for x in spots if tuple(x['refs']) == tuple(m['refs']) and (
+                str(x.get('status', '')) == 'merged into one row: ' + m['id'] or any(str(x.get('status', '')).startswith('dropped: the same stretch twice (copy of ' + str(i) + ')') for i in ids))))
         m['len_m'] = m['len_main'] + sum(x.get('len_m') or 0 for x in mem)
     return n
 
@@ -3173,9 +3208,14 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     # A point-circle or approximate half is an approximate 2-fer (pc_tag), not a drop.
     # Two point-circles can still be an approximate 2-fer. A key PIN with no circle is still dropped.
     _kr = [r for r in refs if r not in PCT and r not in APX_PARKS]
-    _klm = key_line_match(_kr, s.get('kind'), areas=_areas) if _kr else ''
+    _lines = [r for r in refs if r in LN and r not in G]   # trail / river rows: the park(s) tested by their line (the rest are area halves)
+    _klm = key_line_match(_kr, s.get('kind'), areas=_areas, lines=_lines) if _kr else ''
     if _klm:
         s['status'] = _klm; return
+    if s.get('line_short'):   # Nov 11 (KPC owner): the saved line is shorter than 25 m in all = a broken copy, not the trail
+        s['status'] = ('not sure: our saved copy of the official line for ' + ', '.join(f'{r} is only {m} m long in all' for r, m in sorted(s['line_short'].items()))
+                       + ' (a broken copy, not the trail): fix the line, then run again')
+        s['names'] = {r: (PIN[r][0] if r in PIN else r) for r in refs}; return
     _sv = same_records_verdict(parks, refs, PIN, G)
     if _sv and same_records_mark(s, _sv, parks, PIN): return
     _held = [WSR_HELD.get(r) or saved_missing_why(r) for r in refs if WSR_HELD.get(r) or saved_missing_why(r)]
@@ -3379,7 +3419,7 @@ def tidy_rows(spots, PIN, today):
         pins.sort(key=lambda q: (q.get('from') != 'road', q.get('walk_m') or 1e9))
         main['pins'] = pins[:3]
         if kind == 'area': main['patches'] = len(ss); main['acres_all'] = round(sum(x.get('acres') or 0 for x in ss), 1)
-        else: main['stretches'] = len(ss); main['len_m'] = sum(x.get('len_m') or 0 for x in ss)
+        else: main.setdefault('len_main', main.get('len_m') or 0); main['stretches'] = len(ss); main['len_m'] = main['len_main'] + sum(x.get('len_m') or 0 for x in ss[1:])
         xs = [b for x in ss for b in (x.get('box') or [])]
         if xs: main['box'] = [min(xs[0::4]), min(xs[1::4]), max(xs[2::4]), max(xs[3::4])]
         for x in ss[1:]: x['status'] = 'merged into one row: ' + main['id']
@@ -3415,7 +3455,8 @@ def one_row_per_line_pair(spots, st_of, G, LN):
         pins = [x.get('access_pin') for x in ss if x.get('access_pin') and x['access_pin'].get('from') != 'none']
         pins.sort(key=lambda p: (p.get('from') != 'road', p.get('walk_m') or 1e9))
         main['pins'] = pins[:3]
-        main['stretches'] = len(ss); main['len_m'] = sum(x.get('len_m') or 0 for x in ss)
+        main.setdefault('len_main', main.get('len_m') or 0)   # Nov 11: the row's OWN stretch, kept apart before the others are added
+        main['stretches'] = len(ss); main['len_m'] = main['len_main'] + sum(x.get('len_m') or 0 for x in ss[1:])
         xs = [b for x in ss for b in (x.get('box') or [])]
         if xs: main['box'] = [min(xs[0::4]), min(xs[1::4]), max(xs[2::4]), max(xs[3::4])]
         for x in ss[1:]: x['status'] = 'merged into one row: ' + main['id']
@@ -4084,7 +4125,7 @@ ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by t
          "notes/mapping.md): the park = where its designation legally applies (national forests + grasslands = Forest Service-OWNED land only, "
          "never proclamation lines); public land open to the public; layered = real, side by side = not (ownership step: PAD-US / CPCAD at the "
          "spot, read at up to 5 points of the patch; no public owner there = not sure); a patch 50 yards across in every park ('small' = 50-100 yards; 25-50 yards = the separate 'very tight' list, members only; under 25 = not kept); line-only trails / rivers by POTA's 100-ft rule from the line "
-         "or the river EDGE (USGS NHD); pins never count. Status: 'candidate' = all checks passed; 'not sure: …' and 'water only: boat or "
+         "or the river EDGE (USGS NHD), along at least 25 metres of the line inside the other park; pins never count. Status: 'candidate' = all checks passed; 'not sure: …' and 'water only: boat or "
          "kayak' are separate lists, never the main one; n-fers up to 9; 'Same land, two park numbers' (two numbers on one official outline) is shown with that label; 'dropped: …' says why. Every decided spot shows 'checked' + 'map_dates'. Parks with "
          "no official boundary: missing-<region>.json. HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 "
          "and status 'candidate' before a person looks. Wording when shown (house rule, Oct 27): '⚠️ Parks' boundaries may overlap here, but we can't confirm it. "
