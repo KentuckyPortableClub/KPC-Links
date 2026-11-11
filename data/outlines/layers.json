@@ -2123,6 +2123,27 @@
    "source_count": 39,
    "url": ""
   },
+  "US-FL.sgfld": {
+   "agency": "Suwannee River Water Management District (land, state GIS table)",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 1574,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 49,
+   "name_fields": [
+    "TRACT_NAME"
+   ],
+   "queued": 34,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1574,
+   "url": ""
+  },
   "US-FL.sgfle": {
    "agency": "St. Johns River Water Management District (land, state GIS table)",
    "areas": [

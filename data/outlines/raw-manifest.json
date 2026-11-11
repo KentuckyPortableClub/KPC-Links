@@ -163,8 +163,8 @@
   {
    "date": "2026-11-11",
    "name": "US-AR.arw.geojson.gz",
-   "sha256": "10d183062a4747093567ffa70640f63bf8c77909adba4904732124a050d6270b",
-   "size": 224245,
+   "sha256": "4b247fbe47dd0fdefb500af711e691f17543d8d62edce13d09a4829b1b1d90d9",
+   "size": 224214,
    "source": "svc:https://gisec2.agfc.com/arcgis/rest/services/APP_AGFC/MapServer|wma boundar"
   },
   {
@@ -254,8 +254,8 @@
   {
    "date": "2026-11-11",
    "name": "US-CA.hab.geojson.gz",
-   "sha256": "136209d2df249b0c9e4d7485b8f3547b73ad19006e9b924817aa9dae1fb7456b",
-   "size": 115341,
+   "sha256": "9c7af189ab590c097637c93159847f9013671d369d36bd3f701a3d419e1b5fc6",
+   "size": 115445,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/1/query"
   },
   {
@@ -268,8 +268,8 @@
   {
    "date": "2026-11-11",
    "name": "US-CA.nca.geojson.gz",
-   "sha256": "711598646b93b04943b694d1c231196f3b07b03612819d85698b7d9e385d25dd",
-   "size": 76985,
+   "sha256": "766e0664e87105dc6aa9ab0d65a85b878b34c273c253a3ca95cde1b15daa7902",
+   "size": 76712,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query"
   },
   {
@@ -456,6 +456,13 @@
   },
   {
    "date": "2026-11-11",
+   "name": "US-FL.sgfld.geojson.gz",
+   "sha256": "b66cfb61fae5be41509ed2e0f894c4ad432a6868aebc8ee018b3c5d62f51abcc",
+   "size": 265498,
+   "source": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-FL.sgfle.geojson.gz",
    "sha256": "57c819ffa6ff31abdc5722bac8bfb8d2014cb529641358bdc4b0624b24d79020",
    "size": 121428,
@@ -499,29 +506,29 @@
   {
    "date": "2026-11-11",
    "name": "US-IA.sgiaa.geojson.gz",
-   "sha256": "126c151feb05a1539ce84c649ec56af22bf59383597a70ee15f3e26271564c8a",
-   "size": 272820,
+   "sha256": "510c80ef273ba41020c49c5d88944b3c7330e08834f772c874dd05f70ee1c9dd",
+   "size": 272822,
    "source": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-IA.sgiab.geojson.gz",
-   "sha256": "80f5714fd14fab3af8301ac2ae7ad23648787432ada30b78a6b1f9ece1e6d143",
-   "size": 37819,
+   "sha256": "22c993d399e184395c01d282377e8e8d9b862b20470e6dde1655d78979b47655",
+   "size": 37822,
    "source": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails/MapServer/2/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-IA.sgiac.geojson.gz",
-   "sha256": "9fecbafdca5e5d5b16a0018cc2fa45ee35e592ecee3f50ac48c5c19bff8e9f2a",
-   "size": 522020,
+   "sha256": "783e89f8b7abe4dd16d5656f12c80662638ff16464b062380d003fc89825ad5c",
+   "size": 522023,
    "source": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-IA.sgiad.geojson.gz",
-   "sha256": "b59c418dfb5f820609b60a4b7080ceea133124da138e4f8ddf3a49fe246b29e3",
-   "size": 33585,
+   "sha256": "be8e8a7cafbd78c434d9dccf9d83dca8b55d868488c9889ac6780b9fd518ee7e",
+   "size": 33588,
    "source": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/10/query"
   },
   {
@@ -1066,8 +1073,8 @@
   {
    "date": "2026-11-11",
    "name": "US-NV.nca.geojson.gz",
-   "sha256": "eac09860297d5af19c8101f3ac8a14eb44c6b8537a0be4573b290f80b424c951",
-   "size": 41736,
+   "sha256": "0e4a1133a7309c3911d251847f8f46e243f8fa225e22ed05ecdec1cc871906bb",
+   "size": 41026,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query"
   },
   {
@@ -1903,6 +1910,13 @@
    "sha256": "f59662ae6bf2b27539595f57d166a6a88ab1562e827860114f12a27cc2fba079",
    "size": 10163230,
    "source": "https://geodata.fdacs.gov/maps/florida-state-forests-"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "hand-US-FL-sgfld-srwmd-page1.geojson+hand-US-FL-sgfld-srwmd-page2.geojson",
+   "sha256": "d4e5e07cc14177f247d31c8ebf9e264305ad57ad266e79990a3805ef01de62ee",
+   "size": 3859311,
+   "source": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0"
   },
   {
    "date": "2026-11-11",
