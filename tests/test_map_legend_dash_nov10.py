@@ -17,7 +17,7 @@ check('dashed stays only for features with no join; OpenStreetMap outlines keep 
 check('bottom-left map buttons are lifted above the credits line', '__kpcLiftBL' in x and "'.leaflet-bottom.leaflet-left'" in x and 'leaflet-control-attribution' in x)
 check('credits are never hidden by the lift', 'display:none' not in x.split('__kpcLiftBL')[1])
 pages = list(ROOT.glob('*.html')) + list(ROOT.glob('.claude/build/**/*.html'))
-want = {'gis-overlays': '?v=20261110fit', 'kpc-map-extras': '?v=20261110fit'}
+want = {'gis-overlays': '?v=20261110key', 'kpc-map-extras': '?v=20261110fit', 'kpc-answer-key': '?v=20261110key'}
 for name, stamp in want.items():
     vs = {}
     for p in pages:
@@ -35,7 +35,7 @@ js = r'''
 const fs=require('fs');global.window=global;global.document={getElementById:()=>null,querySelector:()=>null,querySelectorAll:()=>[]};
 global.matchMedia=()=>({matches:false});global.fetch=()=>Promise.resolve({ok:false});global.L={};
 const rows=JSON.parse(fs.readFileSync('locations-ky.json','utf8')).rows;global.data=rows;
-eval(fs.readFileSync('gis-overlays.js','utf8'));
+eval(fs.readFileSync('kpc-answer-key.js','utf8'));eval(fs.readFileSync('gis-overlays.js','utf8'));
 const pad=JSON.parse(fs.readFileSync('ky-padus-parks.geojson','utf8')).features;
 const res=pad.map(f=>({ref:f.properties.ref,own:kpcGIS.ownRef(f),joined:kpcGIS.matchPota(f).some(m=>m.d[1]===f.properties.ref&&m.why.startsWith('name'))}));
 console.log(JSON.stringify(res));'''

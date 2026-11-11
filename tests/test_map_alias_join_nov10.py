@@ -12,13 +12,16 @@ def check(name, cond, detail=''):
     ok = ok and bool(cond)
 
 g = (ROOT / 'gis-overlays.js').read_text(encoding='utf-8')
-check('answer key is loaded once, lazily', 'function loadKey()' in g and 'if(keyTried)return keyReadyP' in g and "data/ky-answer-key.json" in g)
+ak = (ROOT / 'kpc-answer-key.js').read_text(encoding='utf-8')
+check('answer key is loaded once, lazily, from a shared module',
+      'function loadKey' in ak and 'if (keyTried) return keyReadyP' in ak and "data/ky-answer-key.json" in ak
+      and 'kpcAnswerKey' in g and 'AK().loadKey(restyleBounds)' in g)
 check('ref lookup uses the key after properties.ref and before the name-match fallback',
       g.index('const own=ownRef(f)') < g.index('for(const row of keyJoin(f))') < g.index('for(const d of potaPts())'))
-check('lookup is by layer + outline name', "f._lk||(f._L&&f._L.k)" in g and "keyOf(f._lk" in g)
-check('"no POTA reference" is not remembered before the key has been tried', 'if(v||joinsReady())f._pota=v;else whenJoins()' in g and 'potaPts().length>0&&keyIdx!==null' in g)
+check('lookup is by layer + outline name', "f._lk || (f._L && f._L.k)" in ak and 'AK().keyJoin(f,getName)' in g)
+check('"no POTA reference" is not remembered before the key has been tried', 'if(v||joinsReady())f._pota=v;else whenJoins()' in g and 'potaPts().length>0&&AK().ready()' in g)
 check('drawn layers restyle after the key loads, and a cached no-join answer is cleared',
-      'keyIdx=buildKeyIdx(j);restyleBounds()' in g and 'delete f._pota' in g)
+      'AK().loadKey(restyleBounds)' in g and 'delete f._pota' in g)
 check('layer key is stamped on each outline so the lookup can use it', 'f._lk=k' in g)
 check('key helpers are exposed for tests', 'useAnswerKey' in g and 'keyJoin' in g)
 
@@ -47,6 +50,7 @@ global.fetch=()=>Promise.resolve({ok:false});
 global.L={};
 const rows=JSON.parse(fs.readFileSync('locations-ky.json','utf8')).rows;
 global.data=rows;
+eval(fs.readFileSync('kpc-answer-key.js','utf8'));
 eval(fs.readFileSync('gis-overlays.js','utf8'));
 const G=kpcGIS;
 const key=JSON.parse(fs.readFileSync('data/ky-answer-key.json','utf8'));
