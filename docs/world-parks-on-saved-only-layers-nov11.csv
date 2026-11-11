@@ -1,0 +1,812 @@
+country,ref,name,type,saved_only_layers_it_is_joined_through
+AS,AS-0001,American Samoa National Park,National Park,nps_boundary
+AS,AS-0002,Rose Atoll National Wildlife Refuge,National Wildlife Refuge,FWSNationalRealtyBoundaries
+AT,AT-0002,Vienna Prater Recreation Park,Recreation Park,LSG_AT
+AT,AT-0005,Lainzer Tiergarten Park,Park,NSG_AT
+AT,AT-0011,Almenland Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0012,Attersee-Traunsee Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0017,Eichenhain Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0018,Eisenwurzen Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0020,Fohrenberge Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0022,Geschriebenstein-Irottko Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0023,Heidenreichsteiner Moor Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0025,Hohe Wand Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0026,Jauerling-Wachau Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0027,Kamptal-Schoenberg Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0031,Leiserberge Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0032,Mannersdorf-Wuste Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0035,Oetztal Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0036,Sparbach Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0037,Weissensee Nature Reserve,Nature Reserve,LSG_AT; NAP_AT
+AT,AT-0039,Hohe Tauern National Park,National Park,ESG_AT; ESG_FFH_AT; ESG_VSR_AT
+AT,AT-0041,Donau Auen National Park,National Park,ESG_AT; ESG_VSR_AT
+AT,AT-0051,Kalkhochalpen Hochkoenig Nature Reserve,Nature Reserve,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0052,Felbertal Ammertal Dorferoed Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0053,Huettschlager Talschluesse Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0055,Schafberg-Salzkammergutseen Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0056,Suedburgenlandisches Huegel- Und Terrassenland Nature Reserve,Nature Reserve,ESG_AT; ESG_FFH_AT; LSG_AT
+AT,AT-0057,Untere Marchauen Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0058,Johannisbachklamm Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0059,Wachau Und Umgebung Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0060,Donau-March-Thaya-Auen Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0061,Ybbsfeld-Forstheide Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0062,Gamsstein-Voralpe Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0066,Riesachtal In Den Schladminger Tauern Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0070,Gadental Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0073,Otztaler Alpen Nature Reserve,Nature Reserve,S_AT
+AT,AT-0074,Baerenkopf Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0075,Stubaier Alpen Nature Reserve,Nature Reserve,S_AT
+AT,AT-0076,Trumer Seen Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0077,Wallersee Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0078,Patscherkofel-Zirmberg Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0079,Palten- und Liesingtal Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0080,Zirbitzkogel Nature Reserve,Nature Reserve,ESG_AT; ESG_VSR_AT; LSG_AT
+AT,AT-0081,Laßnitzau Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0083,Tappenkarsee Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0085,Leithagebirge Nature Reserve,Nature Reserve,LSG_AT
+AT,AT-0087,Seebenstein Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0088,Wildalpener Salzatal Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0089,Urfahrwaend Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0092,Auenmoos Protected Landscape Area,Protected Landscape Area,NSG_AT
+AT,AT-0093,Bretterich National Reserve,National Reserve,NSG_AT
+AT,AT-0094,Drobollacher Moor National Reserve,National Reserve,NSG_AT
+AT,AT-0095,Egelsee National Reserve,National Reserve,NSG_AT
+AT,AT-0097,Gurina Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0098,Finkensteiner Moor National Reserve,National Reserve,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0099,Flachwasserbiotop Neudenstein National Reserve,National Reserve,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0100,Flachwasserbiotop Föderlach National Reserve,National Reserve,NSG_AT
+AT,AT-0101,Flattnitzbach-Hochmoor National Reserve,National Reserve,NSG_AT
+AT,AT-0102,Gösselsdorfer See Süd National Reserve,National Reserve,NSG_AT
+AT,AT-0103,Vogelschutzgebiet Großedlinger Teich National Reserve,National Reserve,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0104,Grünsee National Reserve,National Reserve,NSG_AT
+AT,AT-0105,Guntschacher Au National Reserve,National Reserve,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0106,Gurkursprung National Reserve,National Reserve,NSG_AT
+AT,AT-0107,Hallegger Teiche National Reserve,National Reserve,NSG_AT
+AT,AT-0108,Höflein-Moor National Reserve,National Reserve,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0109,Hörfeld National Reserve,National Reserve,NSG_AT
+AT,AT-0110,Innere Wimitz National Reserve,National Reserve,NSG_AT
+AT,AT-0111,Inneres Bodental und Vertatscha National Reserve,National Reserve,NSG_AT
+AT,AT-0115,Vellacher Kotschna Nature Reserve,Nature Reserve,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0118,Inneres Pöllatal National Nature Reserve,National Nature Reserve,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0119,Äußeres Pöllatal Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0120,Jammernspitz National Park,National Park,NSG_AT
+AT,AT-0121,Bodensdorf National Park,National Park,LSG_AT
+AT,AT-0122,Tiebelmündung National Reserve,National Reserve,NSG_AT
+AT,AT-0123,Bleistätter Moor Natura 2000,Natura 2000,ESG_AT; ESG_FFH_AT; ESG_VSR_AT
+AT,AT-0126,Ruine Landskron Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0127,Ossiacher See - West Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0128,Ossiacher See -  Westbucht National Reserve,National Reserve,NSG_AT
+AT,AT-0131,Kleinfragant National Reserve,National Reserve,NSG_AT
+AT,AT-0132,Wurten National Reserve,National Reserve,NSG_AT
+AT,AT-0133,Meerspitz am Ossiacher See National Reserve,National Reserve,NSG_AT
+AT,AT-0134,Mussen National Reserve,National Reserve,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0135,Sablatnigmoor bei Eberndorf National Reserve,National Reserve,NSG_AT
+AT,AT-0136,Spintik-Teiche National Reserve,National Reserve,NSG_AT
+AT,AT-0138,Türkenmoos National Reserve,National Reserve,NSG_AT
+AT,AT-0139,Stappitzer See National Reserve,National Reserve,ESG_AT; ESG_VSR_AT
+AT,AT-0140,Vogelschutzgebiet Völkermarkter Stausee National Reserve,National Reserve,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0141,Wolayersee und Umgebung National Reserve,National Reserve,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0155,Pressegger See Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0156,Turnersee Natura 2000,Natura 2000,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; LSG_AT
+AT,AT-0161,Nordkette Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0162,Martinswand-Solstein-Reitherspitze National Park,National Park,LSG_AT
+AT,AT-0164,Kalkkögel Landscape Reserve,Landscape Reserve,S_AT
+AT,AT-0165,Rosengarten National Reserve,National Reserve,NSG_AT
+AT,AT-0180,Naturpark Sierningtal-Flatzer Wand Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0196,Naturschutzgebiet Sandberge Oberweiden Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0197,Weikendorfer Remise Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0200,NATURPARK RAAB-ÖRSÉG-GORICKO Nature Park,Nature Park,LSG_AT; NAP_AT
+AT,AT-0201,Naturpark in der Weinidylle Nature Park,Nature Park,NAP_AT
+AT,AT-0210,Stotzinger Heide Protected Area,Protected Area,S_AT
+AT,AT-0214,Zylinderteich Protected Area,Protected Area,NSG_AT
+AT,AT-0215,Bubanj Protected Area,Protected Area,NSG_AT
+AT,AT-0216,Bisamberg Protected Landscape Area,Protected Landscape Area,ESG_AT; ESG_FFH_AT
+AT,AT-0217,Enzesfeld-Lindabrunn-Hernstein Protected Landscape Area,Protected Landscape Area,LSG_AT
+AT,AT-0218,Strudengau und Umgebung Protected Landscape Area,Protected Landscape Area,LSG_AT
+AT,AT-0220,Fronwiesen und Kuhlacke Protected Area,Protected Area,NSG_AT
+AT,AT-0221,Goldberg Protected Area,Protected Area,NSG_AT
+AT,AT-0222,Weißes Kreuz Protected Area,Protected Area,S_AT
+AT,AT-0223,Naturschutzgebiet Thenau Protected Area,Protected Area,NSG_AT
+AT,AT-0224,Naturpark Neusiedler See - Leithagebirge Nature Reserve,Nature Reserve,NAP_AT
+AT,AT-0229,Schoenauer Teich Protected Area,Protected Area,NSG_AT
+AT,AT-0235,Pischelsdorfer Wiesen Protected Area,Protected Area,NSG_AT
+AT,AT-0236,Naturschutzgebiet Goldberg Protected Area,Protected Area,NSG_AT
+AT,AT-0241,Hackelsberg Protected Area,Protected Area,NSG_AT
+AT,AT-0242,Jungerberg Protected Area,Protected Area,NSG_AT
+AT,AT-0246,Noplerberg-Biri Protected Area,Protected Area,LSG_AT
+AT,AT-0255,Batthyanyfeld Protected Area,Protected Area,NSG_AT
+AT,AT-0259,Zurndorfer Eichenwald und Hutweide Protected Area,Protected Area,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0260,Pfarrwiesen Illmitz Protected Area,Protected Area,NSG_AT
+AT,AT-0262,Frauenwiesen Protected Area,Protected Area,NSG_AT
+AT,AT-0263,Rochuskapelle und Hetscherlberg Protected Area,Protected Area,S_AT
+AT,AT-0264,Hoelzlstein Protected Area,Protected Area,S_AT
+AT,AT-0268,Landschaftsschutzgebiet Falkenstein Protected Area,Protected Area,LSG_AT
+AT,AT-0269,Burgruine Falkenstein Historic Site,Historic Site,LSG_AT
+AT,AT-0278,Kalkschottersteppe Obereggendorf Protected Area,Protected Area,NSG_AT
+AT,AT-0279,Hohe Wand - Duerre Wand Protected Landscape,Protected Landscape,LSG_AT
+AT,AT-0289,Rohrbacher (Marzer) Kogel Protected Area,Protected Area,NSG_AT
+AT,AT-0294,Eichkogel Protected Area,Protected Area,NSG_AT
+AT,AT-0295,Glaslauterriegel-Heferlberg Protected Area,Protected Area,NSG_AT
+AT,AT-0297,Serles - Habicht - Zuckerhütl National Park,National Park,LSG_AT
+AT,AT-0298,Kalkklippe Oberpiesting Protected Area,Protected Area,NSG_AT
+AT,AT-0302,Mitterschoepfl-Hirschenstein Protected Area,Protected Area,NSG_AT
+AT,AT-0304,Weinberg-Hoeherberg Protected Area,Protected Area,NSG_AT
+AT,AT-0311,"Landschaftsschutzgebiet Bernstein, Lockenhaus, Rechnitz Protected Landscape",Protected Landscape,ESG_AT; ESG_FFH_AT; LSG_AT
+AT,AT-0312,Galgenberg Rechnitz Protected Area,Protected Area,NSG_AT
+AT,AT-0313,Waldteich Deutschkreutz Protected Area,Protected Area,NSG_AT
+AT,AT-0314,Europaschutzgebiet Truppenübungsplatz Allentsteig Protected Area,Protected Area,ESG_AT; ESG_VSR_AT
+AT,AT-0315,Moorlandschaft Schwemm Protected Area,Protected Area,NSG_AT
+AT,AT-0318,Nordmoor am Grabensee Nature Conservation Reserve,Nature Conservation Reserve,NSG_AT
+AT,AT-0320,Teile des Hehermooses und der Holzöstersee Nature Conservation Reserve,Nature Conservation Reserve,NSG_AT
+AT,AT-0321,Pfeiferanger Nature Conservation Reserve,Nature Conservation Reserve,ESG_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0322,Nordmoor am Mattsee Nature Conservation Reserve,Nature Conservation Reserve,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0323,Jackenmoos auf dem Mühlberg Nature Conservation Reserve,Nature Conservation Reserve,NSG_AT
+AT,AT-0324,Feuchtgebiet Teichstätt Nature Conservation Reserve,Nature Conservation Reserve,NSG_AT
+AT,AT-0325,Ettenau Nature Conservation Reserve,Nature Conservation Reserve,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0326,Ettenau II Nature Conservation Reserve,Nature Conservation Reserve,NSG_AT
+AT,AT-0327,Buchenwald Ranshofen Nature Conservation Reserve,Nature Conservation Reserve,NSG_AT
+AT,AT-0328,Hammerauer-Moor Nature Conservation Reserve,Nature Conservation Reserve,NSG_AT
+AT,AT-0329,Ursprunger Moor Nature Conservation Reserve,Nature Conservation Reserve,NSG_AT
+AT,AT-0330,Weidmoos Nature Conservation Reserve,Nature Conservation Reserve,ESG_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0335,Egelseen National Conservation Area,National Conservation Area,NSG_AT
+AT,AT-0337,Bürmooser Moor Nature Conservation Reserve,Nature Conservation Reserve,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0338,Unterer Inn National Park,National Park,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0340,Imsee National Conservation Area,National Conservation Area,NSG_AT
+AT,AT-0342,Höllerersee Nature Conservation Reserve,Nature Conservation Reserve,NSG_AT
+AT,AT-0344,Frankinger Moos National Conservation Area,National Conservation Area,ESG_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0348,Naturpark Muerzer Oberland Nature Park,Nature Park,NAP_AT
+AT,AT-0349,Naturschutzgebiet Braunsberg-Hundsheimerberg Protected Area,Protected Area,NSG_AT
+AT,AT-0354,Burgberg Straßfried Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0355,Derther Platte Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0356,Großfragant Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0357,Haidensee–Hardegg Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0358,Hemmaberg Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0359,Kreuzbergl Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0360,Pyramidenkogel Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0361,Teurnia Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0362,Griffner Schloßberg Landscape Reserve,Landscape Reserve,ESG_AT; ESG_FFH_AT; LSG_AT
+AT,AT-0363,Virunum Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0365,Wollanig – Oswaldiberg Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0366,Ulrichsberg Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0368,St. Georgsberg Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0369,Turnersee Landscape Reserve,Landscape Reserve,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; LSG_AT
+AT,AT-0370,Kleinsee Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0371,Lamprechtskogel und Trixner Schlösser Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0372,Katharinakogel Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0374,Möchlinger Au Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0385,Großedlinger Teich Nature Reserve,Nature Reserve,ESG_AT; ESG_FFH_AT; ESG_VSR_AT; NSG_AT
+AT,AT-0386,Koralm-Kar Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0388,Soboth - Radlpass Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0389,Koralpe Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0390,"Pack, Reinischkogel, Rosenkogel Landscape Reserve",Landscape Reserve,LSG_AT
+AT,AT-0391,Faaker See-Ost Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0394,Aichwaldsee Landscape Reserve,Landscape Reserve,LSG_AT
+AT,AT-0396,Schutzgebiet Kaisergebirge Protected Area,Protected Area,NSG_AT
+AT,AT-0401,Biosphärenpark Naturpark Nagelfluhkette Nature Park,Nature Park,NAP_AT
+AT,AT-0403,Hefferthorn-Fellhorn-Sonnenberg Protected Area,Protected Area,LSG_AT
+AT,AT-0404,Nenzinger Himmel Flora Reserve,Flora Reserve,S_AT
+AT,AT-0409,Aulandschaft entlang der Laßnitz und Sulm Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0412,Niedere Tauern Bird Sanctuary,Bird Sanctuary,LSG_AT
+AT,AT-0413,Nordwestlicher Teil der Gemeinde Ramsau am Dachstein Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0414,Altausseer See Nature Reserve,Nature Reserve,NSG_AT
+AT,AT-0415,Ödensee Nature Reserve,Nature Reserve,ESG_AT; ESG_FFH_AT; NSG_AT
+AT,AT-0416,Steirisches Dachsteinplateau Flora and Fauna Reserve,Flora and Fauna Reserve,NSG_AT
+AT,AT-0418,Teile des steirischen Nockgebietes Flora and Fauna Reserve,Flora and Fauna Reserve,ESG_AT; ESG_FFH_AT
+AT,AT-0422,Landschaftsschutzgebiet Großglockner Hochalpenstraße Protected Area,Protected Area,LSG_AT
+AT,AT-0423,Roßfeldstrasse Protected Area,Protected Area,LSG_AT
+AT,AT-0424,Landschaftsschutzgebiet Dachstein–Salzkammergut Protected Landscape,Protected Landscape,LSG_AT
+AT,AT-0426,"Dachstein in den Gemeinden Gosau, Hallstatt und Obertraun Protected Area",Protected Area,NSG_AT
+AT,AT-0427,Europaschutzgebiet Dachstein Protected Area,Protected Area,ESG_AT; ESG_FFH_AT; ESG_VSR_AT
+AT,AT-0428,Postalm Protected Landscape,Protected Landscape,LSG_AT
+AT,AT-0429,Almsee Protected Landscape Area,Protected Landscape Area,NSG_AT
+AT,AT-0430,Großer und Kleiner Ödsee Protected Area,Protected Area,NSG_AT
+AT,AT-0431,Biosphärenpark Salzburger Lungau und Kärntner Nockberge Biosphere Reserve,Biosphere Reserve,BP_AT_2025 (exkl. St - Untere Mur)
+AU,AU-10773,Molonglo Reach District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10774,Lennox Gardens District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10775,Weston Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10776,John Knight Memorial Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10777,Black Mountain Peninsula District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10792,Acton District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10794,Bowen Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10797,Haig District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10799,Telopea District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10800,Yarralumla Bay District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10808,Fadden Pines District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10809,Kambah District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10810,Lake Tuggeranong District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-10811,Point Hut District Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-11334,Valour Park,Park,ACTGOV Urban Open Space Asset
+AU,AU-7008,Isaacs Pines Forest Reserve,Forest Reserve,Public Land Reserves
+AU,AU-7009,Kowen Forest Reserve,Forest Reserve,Public Land Reserves
+AU,AU-7010,Majura Pines Forest Reserve,Forest Reserve,Public Land Reserves
+AU,AU-7012,Pierces Creek Forest Reserve,Forest Reserve,Public Land Reserves
+AU,AU-7013,Stromlo Pines Forest Reserve,Forest Reserve,Public Land Reserves
+AU,AU-7014,Tuggeranong Pines Forest Reserve,Forest Reserve,Public Land Reserves
+AU,AU-7015,Uriarra Forest Reserve,Forest Reserve,Public Land Reserves
+AU,AU-7862,Willsons Downfall State Forest,State Forest,NSW State Forest (Forestry Corporation NSW)
+AU,AU-8057,Croft Knoll State Forest,State Forest,NSW State Forest (Forestry Corporation NSW)
+BS,BS-0001,Abaco National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0002,Black Sound Cay Reserve,Reserve,Protected_Areas_of_The_Bahamas
+BS,BS-0003,Fowl Cays National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0005,Tilloo Cay National Reserve,National Reserve,Protected_Areas_of_The_Bahamas
+BS,BS-0006,Walker's Cay National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0007,Blue Holes National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0009,Crab Replenishment Reserve,Reserve,Protected_Areas_of_The_Bahamas
+BS,BS-0011,Conception Island National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0012,Hope Great House National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0013,Marine Farm National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0014,Leon Levy Native Plant Preserve National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0015,Exuma Cays Land & Sea National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0016,Lucayan National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0017,Peterson Cay National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0018,Rand Nature Park,Nature Park,Protected_Areas_of_The_Bahamas
+BS,BS-0019,Inagua National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0020,Little Inagua National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0021,Union Creek Reserve,Reserve,Protected_Areas_of_The_Bahamas
+BS,BS-0022,Bonefish Pond National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0023,Harrold and Wilson Ponds National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0024,Primeval Forest National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0032,Moriah Harbour National Park,National Park,Protected_Areas_of_The_Bahamas
+BS,BS-0050,Big Pond National Park,National Park,Protected_Areas_of_The_Bahamas
+BW,BW-0001,Central Kalahari Game Reserve,Game Reserve,Protected_Areas_and_Other_Effective_Conservation_Measures
+BW,BW-0002,Chobe National Park,National Park,Protected_Areas_and_Other_Effective_Conservation_Measures
+BW,BW-0004,Khutse Game Reserve,Game Reserve,Protected_Areas_and_Other_Effective_Conservation_Measures
+BW,BW-0005,Makgadikgadi Pans National Park,National Park,Protected_Areas_and_Other_Effective_Conservation_Measures
+BW,BW-0006,Moremi Game Reserve,Game Reserve,Protected_Areas_and_Other_Effective_Conservation_Measures
+BW,BW-0007,Nxai Pan National Park,National Park,Protected_Areas_and_Other_Effective_Conservation_Measures
+BZ,BZ-0001,Monkey Bay National Park,National Park,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0002,Five Blues Lakes National Park,National Park,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0003,Laughing Bird Caye Marine Protected Area,Marine Protected Area,Protected_Areas_Belize_2015
+BZ,BZ-0004,St. Herman’s Blue Hole National Park,National Park,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0005,Guanacaste National Park,National Park,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0006,Bacalar Chico Marine Protected Area,Marine Protected Area,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0007,Hol Chan Marine Reserve,Marine Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0008,Sarstoon Temash National Park,National Park,Protected_Areas_Belize_2015
+BZ,BZ-0009,Aguas Turbias National Park,National Park,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0010,Chiquibul National Park,National Park,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0011,Gra Gra Lagoon National Park,National Park,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0012,Mayflower Bocawina National Park,National Park,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0015,Bladen Nature Conservation Reserve,Nature Conservation Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0016,Tapir Mountain National Wildlife Management Area,National Wildlife Management Area,Protected_Areas_Belize_2015
+BZ,BZ-0017,Aguacaliente National Wildlife Management Area,National Wildlife Management Area,Protected_Areas_Belize_2015
+BZ,BZ-0018,Cockscomb Basin National Reserve,National Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0020,Corozal Bay Marine Reserve,Marine Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0022,Crooked Tree Wildlife Reserve,Wildlife Reserve,PA_updated_2024
+BZ,BZ-0028,Mountain Pine Ridge Forest Reserve,Forest Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0029,Columbia River Forest Reserve,Forest Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0031,Peccary Hills Forest Reserve,Forest Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0032,Rio Blanco Forest Reserve,Forest Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0033,Maya Mountain Forest Reserve,Forest Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0034,Sibun Forest Reserve,Forest Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0035,Sittee River Forest Reserve,Forest Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0036,Swasey Bladen Forest Reserve,Forest Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0037,Vaca Forest Reserve,Forest Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0038,Mango Creek Forest Reserve,Forest Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0042,Deep River Forest Reserve,Forest Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0044,Machaca Forest Reserve,Forest Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0045,Caye Caulker Marine Reserve,Marine Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0046,Gladden Spit/Silk Cayes Marine Reserve,Marine Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0047,Glovers Reef Marine Reserve,Marine Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0048,Port Honduras Marine Reserve,Marine Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0049,Sapodilla Cayes Marine Reserve,Marine Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0050,South Water Caye Marine Reserve,Marine Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0051,Bird Caye Bird Sanctuary,Bird Sanctuary,Protected_Areas_Belize_2015
+BZ,BZ-0053,Honey Camp Bird Sanctuary,Bird Sanctuary,Protected_Areas_Belize_2015
+BZ,BZ-0055,Monkey Caye Bird Sanctuary,Bird Sanctuary,Protected_Areas_Belize_2015
+BZ,BZ-0056,Man of War Caye Bird Sanctuary,Bird Sanctuary,Protected_Areas_Belize_2015
+BZ,BZ-0058,Serpon Sugar Mill Archeological Reserve,Archeological Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0060,Caracol Archeological Reserve,Archeological Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0061,Cerro Maya Archeological Reserve,Archeological Reserve,PA_updated_2024
+BZ,BZ-0062,El Pilar Archeological Reserve,Archeological Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0063,Lamanai Archeological Reserve,Archeological Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0065,Nim Li Punit Archeological Reserve,Archeological Reserve,PA_updated_2024
+BZ,BZ-0072,Turneffe Atoll Marine Reserve,Marine Reserve,PA_updated_2024
+BZ,BZ-0073,Gallon Jug Nature Conservation Reserve,Nature Conservation Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0075,Half Moon Caye Marine Reserve,Marine Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0076,Victoria Peak National Monument,National Monument,PA_updated_2024; Protected_Areas_Belize_2015
+BZ,BZ-0077,Thousand Foot Falls National Monument,National Monument,Protected_Areas_Belize_2015
+BZ,BZ-0078,Actun Tunichil Muknal Archeological Reserve,Archeological Reserve,Protected_Areas_Belize_2015
+BZ,BZ-0080,Burdon Canal Nature Reserve,Nature Reserve,PA_updated_2024; Protected_Areas_Belize_2015
+GB,GB-0004,Snettisham RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0024,Marshside RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0027,Broadland SPA - Sutton Fen RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0045,Fowlmere RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0050,The Lodge (Sandy) RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0055,Highnam Woods RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0057,Hodbarrow RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0068,Nene Washes SPA (and RSPB) Protected Area,Protected Area,RSPB_Reserves_20102025_BNG
+GB,GB-0083,Wallasea Island RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0114,Elmley Marshes National Nature Reserve,National Nature Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0147,Geltsdale RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0154,Dorset Heathlands - Stoborough Heath National Nature Reserve,National Nature Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0158,Winterbourne Downs RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0164,Nor Marsh & Motney Hill RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0167,Ouse Washes SPA (and RSPB) Protected Area,Protected Area,RSPB_Reserves_20102025_BNG
+GB,GB-0170,Eastern Moors SSSI & RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0179,Farnham Heath RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0180,Frampton Marsh RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0194,Blacktoft Sands RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0199,Ham Wall RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0202,Garston Wood RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0216,Aylesbeare Common RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0218,Church Wood RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0228,Mersey Estuary SPA/SAC/Ramsar (and RSPB) Protected Area,Protected Area,RSPB_Reserves_20102025_BNG
+GB,GB-0240,Haweswater RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0241,Teesmouth & Cleveland Coast SPA - Saltholme RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0249,Berney Marshes & Breydon Water RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0254,Flamborough Head and Bempton Cliffs SPA (and RSPB) Protected Area,Protected Area,RSPB_Reserves_20102025_BNG
+GB,GB-0255,Wolves Wood RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0260,Solway Mosses SAC - Campfield Marsh RSPB (inc South Solway Mosses) National Nature Reserve,National Nature Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0270,Middleton Lakes RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0273,Lindisfarne (Holy Island) SPA Protected Area,Protected Area,NT_Land_Limited_Access; Parks and Gardens
+GB,GB-0274,Chapel Wood RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0276,Freiston Shore RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0280,Coquet Island SPA (and RSPB) Protected Area,Protected Area,RSPB_Reserves_20102025_BNG
+GB,GB-0282,Sandlings SPA - North Warren RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0284,Titchwell Marsh RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0306,South Essex Marshes RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0315,Minsmere-Walberswick SPA - Minsmere RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0323,Hayle Estuary RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0324,Lakenheath Fen RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0336,Fen Drayton Lakes RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0357,Cliffe Pools RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0363,Badminton House and Estate Country Park,Country Park,Parks and Gardens
+GB,GB-0371,Brockwell Park Country Park,Country Park,Parks and Gardens
+GB,GB-0372,Brownsea Island Country Park,Country Park,NT_Land_Limited_Access
+GB,GB-0380,Cusworth Hall Museum Country Park,Country Park,Parks and Gardens
+GB,GB-0393,Hardwick Ponds Country Park,Country Park,NT_Land_Limited_Access
+GB,GB-0395,Hardcastle Crags & Gibson Mill Country Park,Country Park,NT_Land_Always_Open
+GB,GB-0397,Heaton Country Park,Country Park,Parks and Gardens
+GB,GB-0401,Hyde Park Country Park,Country Park,Parks and Gardens
+GB,GB-0409,Longshaw Estate Country Park,Country Park,NT_Land_Always_Open; NT_Land_Limited_Access
+GB,GB-0411,Myddelton House Country Park,Country Park,Parks and Gardens
+GB,GB-0413,Norbury Park Country Park,Country Park,Parks and Gardens
+GB,GB-0425,Rievaulx Terrace Country Park,Country Park,NT_Land_Limited_Access; Parks and Gardens
+GB,GB-0433,Sheringham Park Country Park,Country Park,NT_Land_Always_Open; Parks and Gardens
+GB,GB-0437,Stoneleigh Park Country Park,Country Park,Parks and Gardens
+GB,GB-0445,Victoria Park Country Park,Country Park,Parks and Gardens
+GB,GB-0448,"West Wycombe Park, Village and Hill Country Park",Country Park,NT_Land_Always_Open
+GB,GB-0456,Chatsworth House and Estate Country Park,Country Park,Parks and Gardens
+GB,GB-0519,St Ives Country Park,Country Park,Parks and Gardens
+GB,GB-0526,Bicton Botanical Gardens Country Park,Country Park,Parks and Gardens
+GB,GB-0548,Bradgate Country Park,Country Park,Parks and Gardens
+GB,GB-0584,Forty Hall Country Park,Country Park,Parks and Gardens
+GB,GB-0585,Labrador Bay RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0595,Isley Marsh RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0596,Consall Woods RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0634,St Aidan's RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0657,Lullingstone Country Park,Country Park,Parks and Gardens
+GB,GB-0670,RSPB Ouse Fen Nature Reserve,Nature Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0671,Leasowes Country Park,Country Park,Parks and Gardens
+GB,GB-0751,Quarry Park,Park,Parks and Gardens
+GB,GB-0769,Lowther Castle & Gardens Park,Park,Parks and Gardens
+GB,GB-0772,Glenariff Forest National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-0773,Portrush Nature Reserve,Nature Reserve,Greenspace_Phase2_06052022
+GB,GB-0774,Binevenagh Area of Outstanding Natural Beauty,Area of Outstanding Natural Beauty,Greenspace_Phase2_06052022
+GB,GB-0775,Castle Ward National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-0777,Castle Archdale National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-0779,Crawfordsburn National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-0780,Burntollet wood Wildlife Management Area,Wildlife Management Area,Greenspace_Phase2_06052022
+GB,GB-0781,Gortin Glen National Forest,National Forest,Greenspace_Phase2_06052022
+GB,GB-0782,Magilligan Point Nature Reserve,Nature Reserve,Greenspace_Phase2_06052022
+GB,GB-0784,Roe Valley National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-0785,Lough Foyle Ramsar Wetland Reserve,Wetland Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0787,Drum Manor Park National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-0789,Castlewellan National Forest,National Forest,Greenspace_Phase2_06052022
+GB,GB-0791,Oxford Island National Conservation Area,National Conservation Area,Greenspace_Phase2_06052022
+GB,GB-0793,Parkanaur National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-0796,Ballypatrick Forrest Forest Reserve,Forest Reserve,Greenspace_Phase2_06052022
+GB,GB-0798,Rathlin Island National Nature Reserve,National Nature Reserve,Greenspace_Phase2_06052022
+GB,GB-0802,Killbroney National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-0803,Slieve Gullion Area of Outstanding Natural Beauty,Area of Outstanding Natural Beauty,Greenspace_Phase2_06052022
+GB,GB-0804,Gosford Park National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-0818,Balranald RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0897,Glencripesdale National Nature Reserve,National Nature Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0923,Loch Druidibeg (Isle Of South Uist) National Nature Reserve,National Nature Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0933,Loch Na Muilne (Isle of Lewis) RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0940,Meikle Loch RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-0988,Mersehead RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1025,Cadair Idris National Nature Reserve,National Nature Reserve,NT_Land_Always_Open; NT_Land_Limited_Access
+GB,GB-1051,Dinefwr Park National Nature Reserve,National Nature Reserve,NT_Land_Limited_Access
+GB,GB-1081,Carngafallt RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1082,Conwy RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1083,Cwm Clydach RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1084,Cors Ddyga RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1086,Gwenffrwd-Dinas RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1087,Lake Vyrnwy RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1092,South Stack RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1093,Valley Wetlands RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1094,Ynys-hir RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1099,Pontcysyllte Aqueduct and Canal World Heritage Site,World Heritage Site,World Heritage Sites
+GB,GB-1218,Tollymore Forest Reserve,Forest Reserve,Greenspace_Phase2_06052022
+GB,GB-1222,Towneley Country Park,Country Park,Parks and Gardens
+GB,GB-1294,Cranny Falls Area of Outstanding Natural Beauty,Area of Outstanding Natural Beauty,Greenspace_Phase2_06052022
+GB,GB-1295,Diamond Jubilee Wood National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-1343,Hardwick Country Park,Country Park,Parks and Gardens
+GB,GB-1344,Crystal Palace Park,Park,Parks and Gardens
+GB,GB-1414,Ditchling Beacon Site of Significant Scientific Interest,Site of Significant Scientific Interest,NT_Land_Always_Open
+GB,GB-1423,War Memorial Park,Park,Parks and Gardens
+GB,GB-1511,Dyrham Park,Park,NT_Land_Limited_Access; Parks and Gardens
+GB,GB-1573,Bushy Park,Park,Parks and Gardens
+GB,GB-1746,Worden Park,Park,Parks and Gardens
+GB,GB-1766,Eynsham Park,Park,Parks and Gardens
+GB,GB-1792,Wentworth Castle Gardens National Park,National Park,Parks and Gardens
+GB,GB-1812,Broadwater Warren RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1817,Harty Marshes RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1838,Wentworth Park,Park,Parks and Gardens
+GB,GB-1849,Ashridge Estate National Park,National Park,NT_Land_Always_Open; NT_Land_Limited_Access; Parks and Gardens
+GB,GB-1877,Queen's Park,Park,Parks and Gardens
+GB,GB-1879,East Park,Park,Parks and Gardens
+GB,GB-1882,Sledmere House and Gardens Park,Park,Parks and Gardens
+GB,GB-1921,Beckingham Marshes RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1923,Langford Lowfields RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-1927,Belton Park,Park,NT_Land_Limited_Access; Parks and Gardens
+GB,GB-1932,Verulamium Park,Park,Scheduled Monuments
+GB,GB-1982,Renishaw Hall and Gardens Park,Park,Parks and Gardens
+GB,GB-2019,Holme Pierrepont Country Park,Country Park,Parks and Gardens
+GB,GB-2031,Roundhay Park,Park,Parks and Gardens
+GB,GB-2032,Studley Royal Park,Park,NT_Land_Always_Open; Parks and Gardens
+GB,GB-2125,Stanley Park,Park,Parks and Gardens
+GB,GB-2145,Peasholm Park,Park,Parks and Gardens
+GB,GB-2220,Amberley Wildbrooks RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2295,Trelissick Garden Park,Park,Parks and Gardens
+GB,GB-2332,Albert Park,Park,Parks and Gardens
+GB,GB-2334,Ropner Park,Park,Parks and Gardens
+GB,GB-2337,Ward Jackson Park,Park,Parks and Gardens
+GB,GB-2399,Ilam Country Park,Country Park,NT_Land_Always_Open; NT_Land_Limited_Access
+GB,GB-2449,Queens Park,Park,Parks and Gardens
+GB,GB-2472,Hodnet Hall Gardens Park,Park,Parks and Gardens
+GB,GB-2480,Dudmaston Hall and Gardens Reserve,Reserve,Parks and Gardens
+GB,GB-2489,Grosvenor Park,Park,Parks and Gardens
+GB,GB-2492,South Park,Park,Parks and Gardens
+GB,GB-2563,The Valley Park,Park,Parks and Gardens
+GB,GB-2585,Ness Country Park,National Park,Greenspace_Phase2_06052022
+GB,GB-2586,Peatlands National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-2587,Redburn Country Park,Country Park,Greenspace_Phase2_06052022
+GB,GB-2588,Scrabo Country Park,Country Park,Greenspace_Phase2_06052022
+GB,GB-2589,Norfolk Heritage Park,Park,Parks and Gardens
+GB,GB-2591,Lister Park,Park,Parks and Gardens
+GB,GB-2593,Peel Park,Park,Parks and Gardens
+GB,GB-2616,Hulton Park,Park,Parks and Gardens
+GB,GB-2703,Brodgar RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2711,The Loons and Loch of Banks RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2716,Birsay Moors RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2726,Noup Cliffs RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2905,Loch of Spiggie RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2907,Trumland RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2908,Onziebust RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2909,Cottascarth and Rendall Moss RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2910,"Mill Dam, Shapinsay RSPB Reserve",RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2911,Hobbister RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2916,Fairy Glen RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2917,Corrimony RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2918,Culbin Sands RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2919,Troup Head RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2921,Insh Marshes National Park,National Park,RSPB_Reserves_20102025_BNG
+GB,GB-2922,Crannach RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2923,Glenborrodale RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2925,Black Devon Wetlands RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2928,Loch Gruinart RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2929,Lochwinnoch RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2930,Baron's Haugh RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2932,Crook of Baldoon RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2933,Ken-Dee Marshes RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-2956,Shobrooke Park,Park,Parks and Gardens
+GB,GB-2970,Hylands Park,Park,Parks and Gardens
+GB,GB-3026,Castle Park,Park,Parks and Gardens
+GB,GB-3091,Howard Park,Park,Parks and Gardens
+GB,GB-3094,Walsall Arboretum Geopark,Geopark,Parks and Gardens
+GB,GB-3100,Alexandra Park,Park,Parks and Gardens
+GB,GB-3120,Weston Park,Park,Parks and Gardens
+GB,GB-3154,West Park Black Country Geopark,Geopark,Parks and Gardens
+GB,GB-3180,Nonsuch Park,Park,Parks and Gardens
+GB,GB-3193,Cirencester Park,Park,Parks and Gardens
+GB,GB-3197,Queens Park,Park,Parks and Gardens
+GB,GB-3231,Campbell Park,Park,Parks and Gardens
+GB,GB-3242,Birkenhead Park,Park,Parks and Gardens
+GB,GB-3253,Alexandra Park,Park,Parks and Gardens
+GB,GB-3257,Barlborough Country Park,Country Park,Parks and Gardens
+GB,GB-3265,Rickerby Park,Park,Parks and Gardens
+GB,GB-3268,Thoresby Vale Country Park,Country Park,Parks and Gardens
+GB,GB-3352,Petersfield Heath Reserve,Reserve,Scheduled Monuments
+GB,GB-3375,Greenhead Park,Park,Parks and Gardens
+GB,GB-3377,Shroggs Park,Park,Parks and Gardens
+GB,GB-3401,Thompson Park,Park,Parks and Gardens
+GB,GB-3402,Burnley Queen's Park,Park,Parks and Gardens
+GB,GB-3405,Pittville Park,Park,Parks and Gardens
+GB,GB-3409,Abbey Park,Park,Parks and Gardens
+GB,GB-3413,Congleton Park,Park,Parks and Gardens
+GB,GB-3441,Falinge Park,Park,Parks and Gardens
+GB,GB-3451,Sefton Park,Park,Parks and Gardens
+GB,GB-3479,Mesnes Park,Park,Parks and Gardens
+GB,GB-3489,Delamont Country Park,Country Park,Greenspace_Phase2_06052022
+GB,GB-3502,Astley Park,Park,Parks and Gardens
+GB,GB-3504,Buile Hill Park,Park,Parks and Gardens
+GB,GB-3507,Newsham Park,Park,Parks and Gardens
+GB,GB-3530,Stanmer Park Nature Reserve,Nature Reserve,Parks and Gardens
+GB,GB-3545,Stamford Park,Park,Parks and Gardens
+GB,GB-3556,Rowntree Park,Park,Parks and Gardens
+GB,GB-3560,Thornes Park,Park,Parks and Gardens
+GB,GB-3562,Clifton Park,Park,Parks and Gardens
+GB,GB-3571,Colchester Castle Park,Park,Parks and Gardens
+GB,GB-3572,Christchurch Park,Park,Parks and Gardens
+GB,GB-3583,Barrow Park,Park,Parks and Gardens
+GB,GB-3593,Wicksteed Park,Park,Parks and Gardens
+GB,GB-3618,Avenham and Miller Park,Park,Parks and Gardens
+GB,GB-3636,Mote Park,Park,Parks and Gardens
+GB,GB-3641,Stoke Park Estate Park,Park,Parks and Gardens
+GB,GB-3653,Boultham Park,Park,Parks and Gardens
+GB,GB-3658,Wollaton Hall Country Park,Country Park,Parks and Gardens
+GB,GB-3661,Moor Park,Park,Parks and Gardens
+GB,GB-3666,Burghley Country Park,Country Park,Parks and Gardens
+GB,GB-3670,Nostell Priory Parkland Country Park,Country Park,Parks and Gardens
+GB,GB-3690,Cannon Hill Park,Park,Parks and Gardens
+GB,GB-3737,Bedford Park,Park,Parks and Gardens
+GB,GB-3742,Harlow Town Park,Park,Parks and Gardens
+GB,GB-3746,Helsby Hill and Fort National Historic Site,National Historic Site,NT_Land_Limited_Access
+GB,GB-3748,Stanley Park,Park,Parks and Gardens
+GB,GB-3809,Pearson Park,Park,Parks and Gardens
+GB,GB-3812,Bold Venture Park,Park,Parks and Gardens
+GB,GB-3826,Whitehall Country Park,Park,Parks and Gardens
+GB,GB-3830,Hughenden Park,Park,NT_Land_Always_Open; NT_Land_Limited_Access; Parks and Gardens
+GB,GB-3897,West Park,Park,Parks and Gardens
+GB,GB-3963,Victoria National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-3967,Hanley Heritage Park,Park,Parks and Gardens
+GB,GB-3969,Buxton Pavilion Gardens Park,Park,Parks and Gardens
+GB,GB-4005,Wardown Park,Park,Parks and Gardens
+GB,GB-4020,Kirkstall Abbey Park,Park,Scheduled Monuments
+GB,GB-4021,Bowling Park,Park,Parks and Gardens
+GB,GB-4023,Crow Nest Park,Park,Parks and Gardens
+GB,GB-4042,Bridwell Country Park,Park,Parks and Gardens
+GB,GB-4067,Medmerry Nature Reserve and RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-4101,Queen's Park,Park,Parks and Gardens
+GB,GB-4102,Preston Park,Park,Parks and Gardens
+GB,GB-4136,Mowbray Historic Park,Park,Parks and Gardens
+GB,GB-4157,The Weir Garden Country Park,Country Park,NT_Land_Limited_Access
+GB,GB-4163,Old Warden Park,Park,Parks and Gardens
+GB,GB-4246,Snibston Colliery Country Park,Country Park,Scheduled Monuments
+GB,GB-4278,South Hill Park,Park,Parks and Gardens
+GB,GB-4302,Ditton Country Park,Park,Parks and Gardens
+GB,GB-4304,Home Park,Park,Parks and Gardens
+GB,GB-4313,People's Country Park,Country Park,Parks and Gardens
+GB,GB-4343,Beaumont Park and Nature Reserve,Nature Reserve,Parks and Gardens
+GB,GB-4354,Dunorlan Park,Park,Parks and Gardens
+GB,GB-4379,Leazes Park,Park,Parks and Gardens
+GB,GB-4430,Chilston Ponds and Pines Nature Reserve,Nature Reserve,Parks and Gardens
+GB,GB-4431,Badbury Rings Historic Site,Historic Site,NT_Land_Always_Open; Scheduled Monuments
+GB,GB-4436,Panshangar Park,Park,Parks and Gardens
+GB,GB-4473,Oare Gunpowder Works Country Park,Country Park,Scheduled Monuments
+GB,GB-4480,Tring Park,Park,Parks and Gardens
+GB,GB-4481,Hod Hill Historic Site,Historic Site,NT_Land_Always_Open
+GB,GB-4541,Limpsfield Common National Park,National Park,NT_Land_Always_Open
+GB,GB-4560,Chantry Park,Park,Parks and Gardens
+GB,GB-4594,Alport Heights Scenic Site,Scenic Site,NT_Land_Always_Open
+GB,GB-4638,Taylor Park Nature Recreation Area,Nature Recreation Area,Parks and Gardens
+GB,GB-4693,Ampthill Park,Park,Parks and Gardens
+GB,GB-4695,St James's Park,Park,Parks and Gardens
+GB,GB-4737,Torrs Park,Park,NT_Land_Always_Open
+GB,GB-4759,Wallingford Castle Gardens & Meadow Park,Park,Scheduled Monuments
+GB,GB-4765,Highfields Park,Park,Parks and Gardens
+GB,GB-4768,Corporation Park,Park,Parks and Gardens
+GB,GB-4845,Helman Tor Nature Reserve,Nature Reserve,Scheduled Monuments
+GB,GB-4846,Glastonbury Tor & St Michael's Tower Scenic Site,Scenic Site,NT_Land_Always_Open
+GB,GB-4861,Londesborough Park,Park,Parks and Gardens
+GB,GB-4872,Cholmondeley Castle Gardens Nature Park,Nature Park,Parks and Gardens
+GB,GB-4906,Dunham Massey Country Park,Country Park,NT_Land_Limited_Access; Parks and Gardens
+GB,GB-4923,Newstead Abbey Gardens Country Park,Country Park,Parks and Gardens
+GB,GB-4933,Fyne Court Park Reserve,Park Reserve,NT_Land_Limited_Access
+GB,GB-4954,Hawksmoor Nature Reserve,Nature Reserve,NT_Land_Always_Open
+GB,GB-4959,Danson Country Park,Country Park,Parks and Gardens
+GB,GB-4966,Diamond Jubilee Wood National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-4967,Forthill Park and Coles Monument National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-4968,Banagher Forest Reserve,Forest Reserve,Greenspace_Phase2_06052022
+GB,GB-4972,Sir Thomas and Lady Dixon National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-4973,Drumkeeragh National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-5007,Victoria Park,Park,Parks and Gardens
+GB,GB-5037,Shugborough Estate National Park,National Park,NT_Land_Limited_Access; Parks and Gardens
+GB,GB-5043,Thoresby Country Park,Country Park,Parks and Gardens
+GB,GB-5048,Carnmoney Hill Nature Reserve,Nature Reserve,Greenspace_Phase2_06052022
+GB,GB-5049,The People's Park,Park,Greenspace_Phase2_06052022
+GB,GB-5050,Killeter National Forest,National Forest,Greenspace_Phase2_06052022
+GB,GB-5056,Crummock Water Scenic Reserve,Scenic Reserve,NT_Land_Always_Open
+GB,GB-5083,Scott Park,Park,Parks and Gardens
+GB,GB-5084,Ightenhill Park,Park,Scheduled Monuments
+GB,GB-5091,Tower Gardens Park,Park,Parks and Gardens
+GB,GB-5105,Locke Country Park,Country Park,Parks and Gardens
+GB,GB-5190,Gosfield (Sandpits) Local Nature Reserve,Nature Reserve,Parks and Gardens
+GB,GB-5345,Poole Country Park,Country Park,Parks and Gardens
+GB,GB-5357,Bembridge & Culver Downs National Park & Site of Significant Scientific Interest,Site of Significant Scientific Interest,NT_Land_Always_Open
+GB,GB-5393,Saltwell Country Park,Country Park,Parks and Gardens
+GB,GB-5453,Plumpton Rocks Country Park,Country Park,Parks and Gardens
+GB,GB-5483,Roker Country Park,Country Park,Parks and Gardens
+GB,GB-5502,Oakley Wood Local Nature Reserve,Nature Reserve,Scheduled Monuments
+GB,GB-5504,Ashton Gardens Park,Park,Parks and Gardens
+GB,GB-5505,The Promenade Gardens Park,Park,Parks and Gardens
+GB,GB-5516,Randalstown Forest Reserve,Forest Reserve,Greenspace_Phase2_06052022
+GB,GB-5517,Portmore Lough National Park,National Park,RSPB_Reserves_20102025_BNG
+GB,GB-5519,Brandon Hill Park,Park,Scheduled Monuments
+GB,GB-5553,Balls Wood Local Nature Reserve,Nature Reserve,Parks and Gardens
+GB,GB-5570,Gheluvelt Memorial & Country Park,Country Park,Parks and Gardens
+GB,GB-5583,Hesketh Park,Park,Parks and Gardens
+GB,GB-5617,Thorswood Nature Reserve,Nature Reserve,Scheduled Monuments
+GB,GB-5625,Reigate Priory Park,Park,Parks and Gardens
+GB,GB-5648,Ballyboley State Forest Park,State Forest Park,Greenspace_Phase2_06052022
+GB,GB-5649,Tardree National Forest,National Forest,Greenspace_Phase2_06052022
+GB,GB-5650,Portglenone Forest Reserve,Forest Reserve,Greenspace_Phase2_06052022
+GB,GB-5651,Sheffield Botanical Gardens,Botanical Gardens,Parks and Gardens
+GB,GB-5658,Whinfell Quarry Gardens Park,Park,Parks and Gardens
+GB,GB-5681,Temple Newsam Country Park,Country Park,Parks and Gardens
+GB,GB-5682,Gawthorpe Hall Country Park,Country Park,NT_Land_Limited_Access; Parks and Gardens
+GB,GB-5735,Workington Hall Parklands Park,Park,Parks and Gardens
+GB,GB-5741,Bolton Queens Park,Park,Parks and Gardens
+GB,GB-5769,Roberts Park,Park,Parks and Gardens
+GB,GB-5818,Brockhole on Windermere Country Park,Country Park,Parks and Gardens
+GB,GB-5819,Vernon Park,Park,Parks and Gardens
+GB,GB-5855,Holmwood Common Country Park,Country Park,NT_Land_Always_Open
+GB,GB-5923,Melandra Castle & Roman Fort Historic Site,Historic Site,Scheduled Monuments
+GB,GB-5926,Whitworth Park,Park,Parks and Gardens
+GB,GB-5931,Duffield Castle National Historic Site,National Historic Site,NT_Land_Limited_Access
+GB,GB-5949,Peel Park,Park,Parks and Gardens
+GB,GB-5950,Alexandra Park,Park,Parks and Gardens
+GB,GB-5956,Lynford Arboretum Reserve,Reserve,FE_RecAreas_170226
+GB,GB-5963,Farnworth Central Park,Park,Parks and Gardens
+GB,GB-5976,Buckland Rings Iron Age Hillfort Historic Site,Historic Site,Scheduled Monuments
+GB,GB-5981,Haworth Central Park,Park,Parks and Gardens
+GB,GB-5987,Fleetwood Memorial Park,Park,Parks and Gardens
+GB,GB-6021,Lincoln Arboretum Historical Park,Park,Parks and Gardens
+GB,GB-6024,Wensum Park,Park,Parks and Gardens
+GB,GB-6025,Norwich Waterloo Park,Park,Parks and Gardens
+GB,GB-6026,Eaton Country Park,Country Park,Parks and Gardens
+GB,GB-6027,Earlham Country Park,Country Park,Parks and Gardens
+GB,GB-6049,Southsea Common Historic Park,Park,Parks and Gardens
+GB,GB-6054,Clitheroe Castle and Grounds Historic Site,Historic Site,Parks and Gardens
+GB,GB-6083,South Marine Park,Park,Parks and Gardens
+GB,GB-6084,Bents Park,Park,Parks and Gardens
+GB,GB-6110,Sheffield Park & Garden Country Park,Country Park,NT_Land_Limited_Access
+GB,GB-6113,Tonbridge Castle & Gardens Park,Park,Scheduled Monuments
+GB,GB-6114,Knole Park National Park,National Park,NT_Land_Always_Open; NT_Land_Limited_Access; Parks and Gardens
+GB,GB-6159,Maidenhead/Cookham Commons & Pinkneys Green/Drive National Park,National Park,NT_Land_Always_Open
+GB,GB-6167,Norton Camp Hillfort Nature Reserve,Nature Reserve,Scheduled Monuments
+GB,GB-6200,Warley Woods Country Park & Nature Reserve,Nature Reserve,Parks and Gardens
+GB,GB-6259,Princes Park,Park,Parks and Gardens
+GB,GB-6305,Flitwick Manor Country Park,Country Park,Parks and Gardens
+GB,GB-6326,Moreton Corbet Castle Grounds & National Park,National Park,Scheduled Monuments
+GB,GB-6341,Egremont Castle & Grounds Park,Park,Scheduled Monuments
+GB,GB-6388,Eccles Pike Hillside Reserve,Reserve,NT_Land_Always_Open
+GB,GB-6400,St Agnes Beacon Hillside & Historical Reserve,Historical Reserve,NT_Land_Always_Open
+GB,GB-6402,Chapel Porth Coastal Reserve,Reserve,NT_Land_Always_Open
+GB,GB-6418,Coaley Peak Nature Reserve,Nature Reserve,NT_Land_Always_Open
+GB,GB-6421,Friarwood Valley Gardens Park,Park,Parks and Gardens
+GB,GB-6425,Ightham Mote Country Park,Country Park,NT_Land_Always_Open; NT_Land_Limited_Access
+GB,GB-6445,Grovelands Country Park,Country Park,Parks and Gardens
+GB,GB-6455,Gunnersbury Country Park,Country Park,Parks and Gardens
+GB,GB-6462,Bridgnorth Castle & Gardens Historic Site,Historic Site,Scheduled Monuments
+GB,GB-6520,Flaybrick Memorial Gardens & Arboretum Reserve,Reserve,Parks and Gardens
+GB,GB-6531,Philips Park,Park,Parks and Gardens
+GB,GB-6726,Bookham Commons National Park,National Park,NT_Land_Always_Open
+GB,GB-6728,Wareham Forest Reserve,Forest Reserve,FE_RecAreas_170226
+GB,GB-6778,Chase Wood Forest Reserve,Forest Reserve,Scheduled Monuments
+GB,GB-6800,Copythorne Common Nature Reserve,Nature Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-6864,Headley Heath Scenic Park Reserve,Park Reserve,NT_Land_Always_Open
+GB,GB-6873,Devonport Historical Park,Park,Parks and Gardens
+GB,GB-6874,Plymouth Hoe Promenade & Park,Park,Parks and Gardens
+GB,GB-6917,Inversnaid RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-7163,Golden Cap Hillside & Meadowland National Park,National Park,NT_Land_Always_Open
+GB,GB-7165,Valentines Park,Park,Parks and Gardens
+GB,GB-7181,Riverside National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-7192,Ballycastle National Forest,National Forest,Greenspace_Phase2_06052022
+GB,GB-7194,Ballintempo Forest Reserve,Forest Reserve,Greenspace_Phase2_06052022
+GB,GB-7195,Pomeroy National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-7196,Iniscarn Forest Reserve,Forest Reserve,Greenspace_Phase2_06052022
+GB,GB-7212,Abernethy Site of Significant Scientific Interest,Site of Significant Scientific Interest,RSPB_Reserves_20102025_BNG
+GB,GB-7214,Orangefield National Park,National Park,Greenspace_Phase2_06052022
+GB,GB-7292,Skinflats RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GB,GB-7293,Fannyside RSPB Reserve,RSPB Reserve,RSPB_Reserves_20102025_BNG
+GL,GL-0002,Naternaq Ramsar Site,Ramsar Site,Protected or Important Areas of Greenland Display Layer
+GL,GL-0003,Eqalummiut Nunaat and Nassuttuup Nunaa Ramsar Site,Ramsar Site,Protected or Important Areas of Greenland Display Layer
+GL,GL-0006,Heden Ramsar Site,Ramsar Site,Protected or Important Areas of Greenland Display Layer
+GL,GL-0007,Hochstetter Forland Ramsar Site,Ramsar Site,Protected or Important Areas of Greenland Display Layer
+GL,GL-0008,Kilen Ramsar Site,Ramsar Site,Protected or Important Areas of Greenland Display Layer
+GL,GL-0011,Kuannersuit Kuussuat Ramsar Site,Ramsar Site,Protected or Important Areas of Greenland Display Layer
+GL,GL-0012,Kitsissunnguit Ramsar Site,Ramsar Site,Protected or Important Areas of Greenland Display Layer
+GY,GY-0001,Kaieteur National Park,National Park,Protected Areas
+GY,GY-0002,Kanashen Amerindian Protected Area,Protected Area,Protected Areas
+GY,GY-0004,Shell Beach Protected Area,Protected Area,Protected Areas
+GY,GY-0005,Kanuku Mountains Protected Area,Protected Area,Protected Areas
+IE,IE-0001,Killarney National Park,National Park,National Park Boundaries
+IE,IE-0002,Burren National Park,National Park,National Park Boundaries
+IE,IE-0003,Wicklow Mountains National Park,National Park,National Park Boundaries
+IE,IE-0004,Connemara National Park,National Park,National Park Boundaries
+IE,IE-0006,Glenveagh National Park,National Park,National Park Boundaries
+IE,IE-0007,Ballyhoura National Park,National Park,Forest Park
+IE,IE-0019,Gougane Barra National Forest,National Forest,Forest Park
+IE,IE-0069,Portumna Forest Country Park,Country Park,Forest Park
+IE,IE-0101,Avondale Forest National Forest,National Forest,Forest Park
+IE,IE-0111,Dún A Rí Forest National Forest,National Forest,Forest Park
+IE,IE-0112,Killykeen Forest Park National Forest,National Forest,Forest Park
+IE,IE-0127,Donadea Park,Park,Forest Park
+IE,IE-0152,Lough Key forest park National Recreation Area,National Recreation Area,Forest Park
+IE,IE-0199,Wild Nephin National Park,National Park,National Park Boundaries
+JP,JP-0001,Rishiri-Rebun-Sarobetsu National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0002,Shiretoko National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0003,Akan-Mashu National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0004,Kushiroshitsugen National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0005,Daisetsuzan National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0006,Shikotsu-Toya National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0007,Towada-Hachimantai National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0008,Sanriku Fukko(reconstruction) National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0009,Bandai-Asahi National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0010,Nikko National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0011,Oze National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0012,Joshin'etsu Kogen National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0013,Myoko-Togakushi renzan National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0014,Chichibu-Tama-Kai National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0015,Ogasawara National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0016,Fuji-Hakone-Izu National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0017,Chubusangaku National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0018,Hakusan National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0019,Minami Alps National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0020,Ise-Shima National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0021,Yoshino-Kumano National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0022,San'inkaigan National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0023,Setonaikai National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0024,Daisen-Oki National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0028,Aso-Kuju National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0029,Kirishima-Kinkowan National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0031,Amamigunto National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0032,Yambaru National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0033,Keramashoto National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-0034,Iriomote-Ishigaki National Park,National Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1142,Nikko Tamozawa Implerial Villa Memorial Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1334,Fujihokuroku Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1445,Mt. Fuji Children's World Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1653,Kinrin Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1828,Lake Okutama Hotori Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1830,Oshima Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1831,Takowan Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1832,Habushiura Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1833,Hachijo Botanical Garden Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1859,Tochigi Prefectual Forest Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1860,Italian Embassy Villa Memorial Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1861,British Embassy Villa Memorial Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1867,Yamagata Nature Museum Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1871,Showa-no-mori Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1947,Hinohara Tokyo Citizens' Forest Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-1948,Okutama Tokyo Citizens' Forest Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2011,Tottori Sakyu Kodomonokuni Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2016,Miyajima Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2023,Hinamoridai Kenmin Fureai no Mori Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2046,Kozai Nishichiku Kowan Ryokuchi Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2086,Togakushi Forest Botanical Garden Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2090,Maruyamagawa Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2144,Ookagou Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2145,Sokodo Campground Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2146,Sokodo Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2147,Okataura Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2148,Nanbara Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+JP,JP-2151,Flower Park Kagoshima Prefectural Park,Prefectural Park,Ministry of the Environment national parks (Esri Japan)
+MP,MP-0003,Managaha Marine National Park,Marine National Park,marine_protected_areas
+MT,MT-0028,Rdumijiet ta' Għawdex: Id-Dawra tas-Sanap sa Tal-Ħajt Natura 2000,Natura 2000,N2K Special Protected Areas
+MT,MT-0029,Rdumijiet ta' Għawdex: Il-Ponta ta' Ħarrux sal-Bajja tax-Xlendi Natura 2000,Natura 2000,N2K Special Protected Areas
+MT,MT-0030,Rdumijiet ta' Għawdex: Il-Ponta ta' San Dimitri sal-Ponta ta' Ħarrux Natura 2000,Natura 2000,N2K Special Protected Areas
+MT,MT-0031,Rdumijiet ta' Malta: Ix-Xaqqa sa Wied Moqbol Natura 2000,Natura 2000,N2K Special Protected Areas
+MT,MT-0032,Rdumijiet ta' Malta: Ras il-Pellegrin sax-Xaqqa Natura 2000,Natura 2000,N2K Special Protected Areas
+MT,MT-0033,Rdumijiet ta' Malta: Wied Moqbol sal-Ponta ta' Bengħisa Natura 2000,Natura 2000,N2K Special Protected Areas
+NZ,NZ-0012,Motukorea Regional Park,Regional Park,Park Extents
+NZ,NZ-0015,Orere Point Regional Park,Regional Park,Park Extents
+NZ,NZ-0017,Scandrett Regional Park,Regional Park,Park Extents
+NZ,NZ-0018,Shakespear Regional Park,Regional Park,Park Extents
+UM,UM-0001,Baker Island National Wildlife Refuge,National Wildlife Refuge,FWSNationalRealtyBoundaries
+UM,UM-0003,Kingman Reef National Wildlife Refuge,National Wildlife Refuge,FWSNationalRealtyBoundaries
+UM,UM-0004,Midway Atoll National Wildlife Refuge,National Wildlife Refuge,FWSNationalRealtyBoundaries
+UM,UM-0005,Jarvis Island National Wildlife Refuge,National Wildlife Refuge,FWSNationalRealtyBoundaries
+UM,UM-0006,Palmyra Atoll National Wildlife Refuge,National Wildlife Refuge,FWSNationalRealtyBoundaries
+UM,UM-0007,Howland Island National Wildlife Refuge,National Wildlife Refuge,FWSNationalRealtyBoundaries
+UM,UM-0008,Navassa Island National Wildlife Refuge,National Wildlife Refuge,FWSNationalRealtyBoundaries
+VI,VI-0001,Virgin Islands National Park,National Park,nps_boundary
+VI,VI-0002,Buck Island National Wildlife Refuge,National Wildlife Refuge,FWSBoundaries; FWSNationalRealtyBoundaries
+VI,VI-0004,Sandy Point National Wildlife Refuge,National Wildlife Refuge,FWSBoundaries; FWSNationalRealtyBoundaries
+VI,VI-0005,Salt River Bay National Historical Park,National Historical Park,nps_boundary
+VI,VI-0006,Christiansted National Historic Site,National Historic Site,nps_boundary
+VI,VI-0007,Buck Island Reef National Monument,National Monument,nps_boundary
+VI,VI-0008,Virgin Islands Coral Reef National Monument,National Monument,nps_boundary
