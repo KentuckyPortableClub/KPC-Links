@@ -69,6 +69,19 @@
     },
     "approved": "APPROVED, decided_by KPC owner, 2026-11-10",
     "restamped": "2026-11-11 r2 (Quality NO on #126): count_layer is written only for a layer whose every key entry is this one state's (NRHP and the USACE layer are listed once per state, and their unboxed total is the whole country), and it is always written for such a layer, None when the count fails, so the master step holds that read; same scope (US-FL). APPROVED, decided_by KPC owner, 2026-11-10"
+  },
+  {
+   "id": "2026-11-11-fl-box-east",
+   "when": "2026-11-11",
+   "from": "ad47ee2ff99a",
+   "why": "Florida's state box east edge moves from -80.0 to -79.8. Run 43037613117 refused the checked FL DEP state-owned lands hand file (hand-US-FL.sgflf, 79,689 records) because 45 parcels off Miami (lon -79.875 to -79.858) lay east of the box: 79,644 of 79,689, SHORT, not merged, so the saved copy kept its old 77,144. No Bahamas land is inside the new edge (Bimini is at -79.3). Only Florida's box changes.",
+   "scope": {
+    "states": [
+     "US-FL"
+    ],
+    "saved_ids": false
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
   }
  ]
 }

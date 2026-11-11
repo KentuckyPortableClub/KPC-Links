@@ -23,6 +23,17 @@ def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25')
 def warn(t, m): print('::warning title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
 
 
+def hand_refused(what):
+    """Nov 11 r3 (run 43037613117, Quality NO): a person's checked hand file the master step refused left the saved copy short while the
+    run and its stamp stayed green. Say it as an error (red annotation) and in the run's hidden-warnings list, not a warning only."""
+    print('::error title=Master step hand file refused::%s' % str(what).replace('%', '%25').replace('\n', '%0A'), flush=True)
+    rt = os.environ.get('RUNNER_TEMP')
+    if rt:
+        try:
+            with open(os.path.join(rt, 'kpc-hidden.txt'), 'a', encoding='utf-8') as fh: fh.write(f'Master step - hand file refused, the saved copy was not changed: {what}\n')
+        except OSError: pass
+
+
 def short_states(cache, states, caches):
     """{st: (have, expected)} for saved copies under their gate baseline; a missing copy is ('missing', expected). Read only."""
     out = {}
@@ -125,7 +136,11 @@ def apply_layer_file(path, cache, root, parks, raw_root=None):
     if exp is None:
         if 'count_layer' in meta: return False, f'{area} {pre}: the layer\'s own total (no state box) could not be counted, so the read cannot be checked: HELD, not merged (fail closed)'
         return False, f'{area} {pre}: the layer did not report its own total, so the read cannot be checked: not merged'
-    if got < exp: return False, f'{area} {pre}: read {got} of {exp} records: SHORT, not merged (fail closed)'
+    if got < exp:
+        if meta.get('source') == 'hand':   # Nov 11 r3 (run 43037613117): say WHY a whole hand file came up short (the state box)
+            return False, (f'{area} {pre}: the checked hand file holds {exp} records, but only {got} lie in the state box ({exp - got} outside it): '
+                           f'SHORT, not merged (fail closed); widen the state box (kpc_us_key.py BOX_ADD) if those records are in the state')
+        return False, f'{area} {pre}: read {got} of {exp} records: SHORT, not merged (fail closed)'
     short = box_short(meta, got, root)
     if short: return False, short
     key = f'{area}.{pre or "padus"}'
@@ -289,6 +304,7 @@ def fill(a):
         ok, what = apply_layer_file(lf, a.cache, root, a.parks)
         meta, _ = M.read_layer_file(lf); k = f"{meta.get('area')}|{meta.get('layer')}"
         results.append((ok, what)); (notice if ok else warn)('Master step', what)
+        if not ok and meta.get('source') == 'hand': hand_refused(what)
         if ok: done.add(k)
         else:
             u = meta.get('url') or (table.get(meta.get('layer')) or {}).get('url', '')
