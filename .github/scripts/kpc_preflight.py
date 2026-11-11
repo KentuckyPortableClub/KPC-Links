@@ -55,6 +55,7 @@ def added_lines(base_text, text):
 def scan_added(path, lines):
     """(fails, warns) for the added lines of one file."""
     fails, warns, p = [], [], str(path)
+    if p.endswith(('.gz', '.png', '.jpg', '.pdf')): return fails, warns   # Nov 11: packed bytes are not text (random bytes looked like callsigns)
     code = p.endswith(('.py', '.yml', '.yaml')) and not p.startswith(('tests/', 'docs/', 'data/'))
     guarded = any(g in '\n'.join(lines) for g in GUARDS) and p.endswith('.py')
     for l in lines:
@@ -126,9 +127,16 @@ def run():
         say('PASS' if r.returncode == 0 else 'FAIL', 'actionlint', r.stdout.strip()[:300])
     r = subprocess.run([sys.executable, '-B', '.github/scripts/kpc_master_cli.py', 'check'], cwd=ROOT, capture_output=True, text=True)
     say('PASS' if r.returncode == 0 else 'FAIL', 'master check', (r.stdout + r.stderr).strip().splitlines()[-1][:200] if (r.stdout + r.stderr).strip() else '')
-    _new = lambda f: subprocess.run(['git', 'cat-file', '-e', f'{BASE}:{f}'], cwd=ROOT, capture_output=True).returncode != 0   # noqa: E731  only a NEW file is held to the size limit
-    big = [f for f in files if (ROOT / f).is_file() and (ROOT / f).stat().st_size > 1_000_000 and _new(f) or re.search(r'\.(zip|gdb|shp|gpkg)$|(^|/)raw/', f)]
+    def _was(f):   # the file's size on the base, or None when it is new
+        r = subprocess.run(['git', 'cat-file', '-s', f'{BASE}:{f}'], cwd=ROOT, capture_output=True, text=True)
+        return int(r.stdout) if r.returncode == 0 and r.stdout.strip().isdigit() else None
+    over = [f for f in files if (ROOT / f).is_file() and (ROOT / f).stat().st_size > 1_000_000]
+    # Nov 11 (KPC owner): a new file over 1 MB fails, and so does a file that GROWS past 1 MB. A file that was already over
+    # 1 MB on the base (overrides.json, the WI key, the AU / FR / GB world keys) is named in a WARN until it is split.
+    old_big = [f for f in over if (_was(f) or 0) > 1_000_000]
+    big = [f for f in over if f not in old_big] + [f for f in files if re.search(r'\.(zip|gdb|shp|gpkg)$|(^|/)raw/', f)]
     say('FAIL' if big else 'PASS', 'big / raw files', ', '.join(big[:6]) or 'none over 1 MB, no zip or raw layer')
+    if old_big: say('WARN', 'files already over 1 MB on the base (split them when you can)', ', '.join(old_big[:8]))
     fails, warns, crons = [], [], []
     for f in files:
         if not (ROOT / f).is_file() or (ROOT / f).stat().st_size > 2_000_000: continue

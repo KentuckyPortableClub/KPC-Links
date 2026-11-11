@@ -1,3 +1,52 @@
+/* >>> kpc_released (KPC owner, 2026-11-11): the same block is in kpc-bounds.js, kpc-padus-layer.js, kpc-us-planner.js and kpc-gps.js (a test keeps them equal).
+   The public map reads RELEASED files only: data/released/RELEASED.json (asked for fresh every page load) lists, per working file name,
+   its released file(s) and each one's own version, so a changed file shows at once and an unchanged one stays cached.
+   KPCREL.get('data/outlines/US-FL.geojson.gz') -> the parsed file (parts put together), or null when it is not released.
+   An area that was never released (no entry in RELEASED.json) reads the working file as before.
+   The Map Rep pages set window.KPC_WORKING_COPY = true before this file: they always read the working copy (the key being reviewed). */
+(function (w) {
+  if (!w || w.KPCREL || typeof w.fetch !== 'function') return;
+  var P = null, AREA = [[/^(outlines\/US-|us-key\/)/, 'US'], [/^ca-key\//, 'CA'], [/^world-key\//, 'world']];
+  function index() { return P || (P = w.fetch('data/released/RELEASED.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })); }
+  function parse(r) {
+    if (!r || !r.ok) return null;
+    return r.arrayBuffer().then(function (ab) {
+      var u8 = new Uint8Array(ab);
+      if (u8.length >= 2 && u8[0] === 0x1f && u8[1] === 0x8b) {
+        if (typeof DecompressionStream !== 'function') throw new Error('gzip');
+        return new Response(new Blob([ab]).stream().pipeThrough(new DecompressionStream('gzip'))).text().then(JSON.parse);
+      }
+      return JSON.parse(new TextDecoder().decode(ab));
+    });
+  }
+  function join(docs) {
+    if (docs.some(function (d) { return !d; })) return null;            /* a missing part = not released (never half a file) */
+    if (docs.length === 1) return docs[0];
+    var out = Object.assign({}, docs[0]); delete out.kpc_part;
+    if (Array.isArray(out.features)) out.features = [].concat.apply([], docs.map(function (d) { return d.features || []; }));
+    if (out.parks && !Array.isArray(out.parks)) out.parks = Object.assign.apply(null, [{}].concat(docs.map(function (d) { return d.parks || {}; })));
+    return out;
+  }
+  function urls(path) {
+    var rel = String(path).replace(/^data\//, '').replace(/\?.*$/, '');
+    return index().then(function (d) {
+      var a = AREA.filter(function (x) { return x[0].test(rel); })[0];
+      if (w.KPC_WORKING_COPY === true || !a || !(d.areas || {})[a[1]]) return null;   /* a review page (Map Rep sets KPC_WORKING_COPY) or an area not released yet: the working file */
+      return ((d.files || {})[rel] || []).map(function (f) { return 'data/released/' + f[0] + '?v=' + f[1]; });
+    });
+  }
+  function get(path, working) {
+    return urls(path).then(function (list) {
+      /* nothing released for it: the working file, read exactly as before this block existed (the caller's own fetch and r.json(); only an outline .gz is unpacked) */
+      if (list === null) return working ? working(path).then(function (r) { return r && r.ok ? r.json() : null; })
+        : w.fetch(path + '?v=' + new Date().toISOString().slice(0, 10), { cache: 'force-cache' }).then(parse);
+      if (!list.length) return null;
+      return Promise.all(list.map(function (u) { return w.fetch(u, { cache: 'force-cache' }).then(parse); })).then(join);
+    }).catch(function () { return null; });
+  }
+  w.KPCREL = { get: get, urls: urls, index: index };
+})(typeof window !== 'undefined' ? window : null);
+/* <<< kpc_released */
 /* place-name labels over satellite (Esri). Oct 16: an iPhone-only CARTO version was tried and taken out again:
    CARTO now answers 'API KEY REQUIRED' (Brandon's iPhone screenshot). Same labels on every device. */
 window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z)o.zIndex=z;
@@ -12,6 +61,8 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
 const $=id=>document.getElementById(id),esc=KPC.esc;
 /* Storage plan Step B (Oct 27): the folders/files below now live on KentuckyPortableClub/KPC-Data; dfetch
    tries that address first and falls back to this site's own copy, same as window.KPC.dataUrl. */
+/* Nov 11 (KPC owner): the US key file comes from data/released (KPCREL); not released yet = read as before */
+const relKey=p=>{const old=q=>dfetch(q+'?v='+new Date().toISOString().slice(0,10));return (window.KPCREL?KPCREL.get(p,old):old(p).then(r=>r.ok?r.json():null)).catch(()=>null);};
 const dfetch=(u,o)=>(window.KPC&&KPC.dataUrl&&!/^locations(-ky)?\.json/.test(u))?KPC.dataUrl(u,o):fetch(u,o);   /* locations.json lives on this site, not KPC-Data (Oct 31: 80 404s a load) */
 const COL={POTA:'#1d5a3a',SOTA:'#8a4b14',WWFF:'#2b6cb0',PIN:'#b5452b'};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
@@ -173,7 +224,7 @@ async function retNote(s,el){if(s.p!=='POTA'||!window.KPCB||!KPCB.retired)return
 const NBK={};
 async function noBound(s,el){if(s.p!=='POTA'||!/^US-/.test(s.c)||(window.KPCB&&KPCB.inKY&&KPCB.inKY(s.la,s.lo)))return;
  const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let known=false,has=false,site=null;
- for(const st of sts){if(st==='KY')continue;if(!(st in NBK))NBK[st]=dfetch('data/us-key/US-'+st+'.json?v='+new Date().toISOString().slice(0,10)).then(r=>r.ok?r.json():null).catch(()=>null);
+ for(const st of sts){if(st==='KY')continue;if(!(st in NBK))NBK[st]=relKey('data/us-key/US-'+st+'.json');
   const k=await NBK[st],p=k&&k.parks&&k.parks[s.c];if(p){known=true;if(p.m&&p.m.length)has=true;if(p.a&&p.a.length)site=p.a}}
  if(!known||has||el.querySelector('.nob'))return;
  const d=document.createElement('div');d.className='nob';d.style.cssText='margin:8px 0 4px;padding:7px 9px;border:2px solid #b5452b;border-radius:8px;background:#fff4f0;color:#8a2b17;font-size:13px;line-height:1.35';
@@ -225,7 +276,7 @@ async function wwffFacts(s){const pf=String(s.c).split('-')[0];if(!(pf in WWROWS
 async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
  const P=s.p,sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let h='';
  /* Oct 30 (Brandon via chat 11): the outline grade sits in the card's pinned top (Official / Approximate / Pin only), when the key knows the park */
- if(P==='POTA'&&/^US-/.test(s.c)&&window.KPCB&&KPCB.gradeText){const gEl=el.closest('.us-pop')&&el.closest('.us-pop').querySelector('.us-grade');(async()=>{for(const st of sts){if(st==='KY')continue;if(!(st in UKEY))UKEY[st]=dfetch('data/us-key/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);const k=await UKEY[st],e=k&&k.parks&&k.parks[s.c];if(e&&e.g&&gEl){const lab=e.g==='official'?'official':e.g==='approximate'?'approx':'pin';gEl.textContent=KPCB.gradeText({label:lab,line:!!e.line,pinOff:!!e.pin_may_be_wrong,ref:s.c});if(lab==='pin'&&KPCB.pointCircle)KPCB.pointCircle(s.c).then(pc=>{if(pc)gEl.textContent=KPCB.gradeText({label:lab,pinOff:!!e.pin_may_be_wrong,pc});}).catch(()=>{});gEl.dataset.g=lab;return}}})().catch(()=>{})}   /* the key file only (no outline read) */
+ if(P==='POTA'&&/^US-/.test(s.c)&&window.KPCB&&KPCB.gradeText){const gEl=el.closest('.us-pop')&&el.closest('.us-pop').querySelector('.us-grade');(async()=>{for(const st of sts){if(st==='KY')continue;if(!(st in UKEY))UKEY[st]=relKey('data/us-key/US-'+st+'.json');const k=await UKEY[st],e=k&&k.parks&&k.parks[s.c];if(e&&e.g&&gEl){const lab=e.g==='official'?'official':e.g==='approximate'?'approx':'pin';gEl.textContent=KPCB.gradeText({label:lab,line:!!e.line,pinOff:!!e.pin_may_be_wrong,ref:s.c});if(lab==='pin'&&KPCB.pointCircle)KPCB.pointCircle(s.c).then(pc=>{if(pc)gEl.textContent=KPCB.gradeText({label:lab,pinOff:!!e.pin_may_be_wrong,pc});}).catch(()=>{});gEl.dataset.g=lab;return}}})().catch(()=>{})}   /* the key file only (no outline read) */
  const pre=String(s.c).split('-')[0];
  /* Canada + the rest of North America (Brandon Oct 17): data/parkinfo/<PREFIX>.json, same fields + the province / area */
  if(P==='POTA'&&pre!=='US'){if(!(pre in PINFO))PINFO[pre]=dfetch('data/parkinfo/'+pre+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
