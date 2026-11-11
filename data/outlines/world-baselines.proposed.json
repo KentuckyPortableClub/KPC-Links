@@ -1,0 +1,65 @@
+{
+ "about": "PROPOSED baselines for the world master gate, for the owner's sign-off (KPC owner, 2026-11-11, after run 43082247085). The gate NEVER reads this file. To approve: check each copy, fill copy_sha256 with the sha256 of that exact W-XX.json.gz on the boundary-cache release, set approved_by to 'KPC owner' and approved_date to the day, remove what you do not approve, and save it as data/outlines/world-baselines.approved.json in a reviewed PR. The gate (kpc_master_cli.py gate --approved) then checks each listed copy EXACTLY against expected_count (fewer records = short = moved aside). An entry without a real copy_sha256, or a file without a sign-off, is not read at all (fail closed: the layers.json baselines apply). This file is the bridge for copies uploaded before copies carried their own manifest; a hand bundle re-made with `kpc_master_cli.py bundle-manifest` is checked against its own manifest and needs no entry here. Counts: the gate's own 'read N of M' lines in run 43082247085 (N = records in the copy).",
+ "approved_by": "",
+ "approved_date": "",
+ "baselines": {
+  "W-AS": {
+   "expected_count": 3,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (NPS + FWS realty layers, both on a saved-copy-only host); 1,711 is the full-layer count. The AS key joins 2 distinct records; 3 >= 2.",
+   "copy_sha256": "FILL IN before approving: the sha256 of the release asset W-AS.json.gz the owner checked (an approval is for that one file)"
+  },
+  "W-BS": {
+   "expected_count": 53,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (1 layer, saved-copy-only host); 76 is the full layer. The BS key joins 24 distinct records, 29 with candidates; 53 >= 29.",
+   "copy_sha256": "FILL IN before approving: the sha256 of the release asset W-BS.json.gz the owner checked (an approval is for that one file)"
+  },
+  "W-BW": {
+   "expected_count": 9,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (1 layer, saved-copy-only host); 53 is the full layer. The BW key joins 6 distinct records; 9 >= 6. BW was held in run 43082247085 for want of this copy.",
+   "copy_sha256": "FILL IN before approving: the sha256 of the release asset W-BW.json.gz the owner checked (an approval is for that one file)"
+  },
+  "W-BZ": {
+   "expected_count": 503,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (2 layers, saved-copy-only host); 647 is both full layers. The BZ key joins 230 distinct records, 248 with candidates; 503 >= 248.",
+   "copy_sha256": "FILL IN before approving: the sha256 of the release asset W-BZ.json.gz the owner checked (an approval is for that one file)"
+  },
+  "W-GL": {
+   "expected_count": 63,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (1 layer, saved-copy-only host); 2,679 is the full layer. The GL key joins 16 distinct records, 23 with candidates; 63 >= 23. GL was held in run 43082247085 for want of this copy.",
+   "copy_sha256": "FILL IN before approving: the sha256 of the release asset W-GL.json.gz the owner checked (an approval is for that one file)"
+  },
+  "W-NZ": {
+   "expected_count": 2837,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features; 23,385 is all 3 layers in full (this run read 19,406 + 10 live; Park Extents, on a saved-copy-only host, failed). The NZ key joins 1,044 distinct records; 2,837 >= 1,044.",
+   "copy_sha256": "FILL IN before approving: the sha256 of the release asset W-NZ.json.gz the owner checked (an approval is for that one file)"
+  },
+  "W-UM": {
+   "expected_count": 10,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (FWS realty, saved-copy-only host); 1,274 is the full layer. The UM key joins 7 distinct records, 10 with candidates; 10 >= 10. UM was held in run 43082247085 for want of this copy.",
+   "copy_sha256": "FILL IN before approving: the sha256 of the release asset W-UM.json.gz the owner checked (an approval is for that one file)"
+  },
+  "W-VI": {
+   "expected_count": 11,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (3 US national layers, saved-copy-only hosts); 2,796 is the full layers. The VI key joins 9 distinct records; 11 >= 9.",
+   "copy_sha256": "FILL IN before approving: the sha256 of the release asset W-VI.json.gz the owner checked (an approval is for that one file)"
+  },
+  "W-AU": {
+   "expected_count": 365915,
+   "kind": "full",
+   "reason": "The older bot-made copy as it is (Nov 4 per the run notes; the log does not date it) (every layer it holds, dropped ones included: the gate counts them all). 3,743,432 is the Nov 8-9 key count over 27 layers incl. Surface_HydroLines_National, never in this copy; 32,226 is this run's live read of 14 of the 19 current layers (5 failed): a different quantity.",
+   "copy_sha256": "FILL IN before approving: the sha256 of the release asset W-AU.json.gz the owner checked (an approval is for that one file)"
+  }
+ },
+ "not_proposed": {
+  "W-MT": "NOT proposed, keep held: the bundle holds 14 records, but the current MT key joins 39 distinct records of its 2 layers (27 Ambjent Malta + 12 N2K SPA), both on a saved-copy-only host, so the bundle cannot carry the joins the key has. Check it with `kpc_master_cli.py bundle-manifest W-MT.json.gz --show`, re-make it with both layers in full or trimmed to every joined record, stamp it with bundle-manifest.",
+  "W-BE W-CH W-CZ W-DE W-PT": "NOT proposed: these copies are whole for the layers they were made with; the baselines count layers added after them. Refresh the copies with the saved shapes workflow (countries BE CH CZ DE PT) instead of lowering anything."
+ }
+}

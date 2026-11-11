@@ -146,6 +146,24 @@ its total. The Canada build runs `gate --first-ok`, and after a good full build 
 
 The PC helper for the who=`person` rows is `tools/kpc_pc_helper.py`, with plain steps in `tools/README-pc-helper.md`.
 
+### Trimmed copies and owner-approved baselines (Nov 11)
+
+A saved copy trimmed on purpose (a hand bundle that keeps only the features near POTA parks) is never compared with the full-layer
+baseline in `layers.json` (`caches`). Whoever makes such a bundle runs, on the final file, right before the upload:
+
+    python3 .github/scripts/kpc_master_cli.py bundle-manifest W-XX.json.gz --by "KPC owner" [--source-full "LABEL=N" ...]
+
+It writes the copy's own manifest INTO the copy: trimmed to parks, the record count per layer and in total, who made it and when, the
+records' sha256, and (optional) each source layer's full count for the record. `--show` prints a copy's per-layer counts and file
+sha256; `--check` checks a copy against its manifest. The world key's gate (`gate --allow-trimmed`) checks a trimmed copy against its
+own manifest, exactly (fewer records, in total or for one layer = SHORT, moved aside), and refuses one whose manifest is incomplete or
+does not match the records. A full copy keeps its full baseline. The gate writes no baseline; `baseline` refuses a trimmed copy and
+`save-check` never lets a bot upload one.
+
+Copies made before manifests existed, and baselines recorded wrong, go through the owner: `world-baselines.proposed.json` lists the
+proposed counts with a reason each; the gate never reads it. The gate reads only `world-baselines.approved.json`, and only when
+`approved_by` / `approved_date` is a real sign-off, and each entry only for the one copy whose sha256 it names (`copy_sha256`).
+
 ## download-sources.json (Nov 10): the official download sources and the change check
 
 One entry per official download source from the hand-filled layer list: `areas`, `layer`, `page`, `file` (a direct file when
