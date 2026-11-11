@@ -134,7 +134,7 @@ function whereHtml(w){
 async function loadBoundaries(){
  if(window.kpcAnswerKey)kpcAnswerKey.loadKey(restyleBounds);
  const stat=$('lyrStat');let n=0;const keys=Object.keys(B);
- await Promise.all(keys.map(async k=>{try{const r=await fetch(B[k].file+'?v=20261109a',{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);bData[k]=j;drawB(k)}catch(e){}if(stat)stat.textContent=`Loading boundaries… ${++n} of ${keys.length}`}));
+ await Promise.all(keys.map(async k=>{try{const u=B[k].file+'?v=20261110us';let r=await fetch(u,{cache:'force-cache'});if(!r.ok)r=await fetch(u,{cache:'reload'});if(!r.ok)throw 0;const j=await r.json();j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);bData[k]=j;drawB(k)}catch(e){}if(stat)stat.textContent=`Loading boundaries… ${++n} of ${keys.length}`}));
  const tk=Object.keys(T);await Promise.all(tk.map(async k=>{try{const r=await fetch(T[k].file?T[k].file+'?v=20261109a':T[k].url,T[k].file?{cache:'force-cache'}:{});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;j.features=j.features.filter(f=>f.geometry&&linesOf(f.geometry).length);tData[k]=j;drawT(k)}catch(e){}}));
  bReady=true;if(stat)stat.textContent=`${Object.keys(bData).length} boundary layers and ${Object.keys(tData).length} trails loaded.`;
  tripLayer.eachLayer(m=>{if(m._stop&&m.isPopupOpen&&m.isPopupOpen())m.setPopupContent(spotPopup(m._stop))});renderTrip()}
@@ -147,7 +147,7 @@ const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo
    and clips shapes at the canvas edge, which showed up as a hard straight cut. */
 function drawB(k){const s=B[k];
  (bData[k].features||[]).forEach(f=>{f._lk=k});
- bLay[k]=L.geoJSON(bData[k],{pane:'bndp',style:f=>{if(s.proc)return{color:s.color,weight:LW(1.6),opacity:.75,dashArray:'6 8',fill:false};if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(has?.07:.04)   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
+ bLay[k]=L.geoJSON(bData[k],{pane:'bndp',style:f=>{if(s.proc)return{color:s.color,weight:LW(1.6),opacity:.75,dashArray:'6 8',fill:false};if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3.5:2.5),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(has?.22:.04)   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
   onEachFeature:(f,l)=>{l.on('click',e=>{if(adding)return;L.popup({maxWidth:290}).setLatLng(e.latlng).setContent(bPopup(f,s,e.latlng)).openOn(map)})}});
  if(shown(k))bLay[k].addTo(map);order()}
 function drawT(k){const s=T[k];

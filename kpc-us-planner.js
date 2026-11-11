@@ -91,7 +91,8 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);
  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
  /* Official boundaries (USGS PAD-US, kpc-padus-layer.js): federal + state land outlined over any map */
- const pad=window.KPCPad?KPCPad(map,{keyPos:'bottomleft',minz:7,skipKY:true,kyOfficial:true}):null;
+ function pinsInView(){if(!map||!map.getBounds)return [];const b=map.getBounds();return ALL.filter(s=>s&&s.p==='POTA'&&isFinite(s.la)&&isFinite(s.lo)&&b.contains([s.la,s.lo])).map(s=>({ref:s.c,la:s.la,lo:s.lo}))}
+ const pad=window.KPCPad?KPCPad(map,{keyPos:'bottomleft',minz:7,skipKY:true,kyOfficial:true,usOfficial:true,parksInView:pinsInView}):null;
  const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);   /* streets + names above the boundary outlines (zIndex 6) */
  const OFF='Satellite + Streets + Official Boundaries';
@@ -178,7 +179,7 @@ async function noBound(s,el){if(s.p!=='POTA'||!/^US-/.test(s.c)||(window.KPCB&&K
  const d=document.createElement('div');d.className='nob';d.style.cssText='margin:8px 0 4px;padding:7px 9px;border:2px solid #b5452b;border-radius:8px;background:#fff4f0;color:#8a2b17;font-size:13px;line-height:1.35';
  d.innerHTML='<b style="font-size:14px">Sorry, no boundary available at this time.</b><br>'+(site&&site.length?'Its map pin sits inside <b>'+esc(site[0][1])+'</b>, a different place. ':'')+'Lines on the map are other land, not this park. Check the park’s own map.';
  const at=el.querySelector('.pinfo');at?at.before(d):el.querySelector('.us-pop').appendChild(d)}
-function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries, and tap the land to see what it is; the layers button switches maps (Satellite + Streets + Official Boundaries) or turns the boundaries off.'}
+function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official park outlines from the saved US and Canada key files, and from saved world outline files where those exist. If a state has no saved outline yet, a note appears. The layers button switches maps (Satellite + Streets + Official Boundaries) or turns the boundaries off.'}
 function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}`;
  const page=s.p==='POTA'?KPC.links.pota(s.c):s.p==='SOTA'?(s.url||KPC.links.sota(s.c)):s.p==='WWFF'?KPC.links.kff(s.c):'';
  return{sv,dir:KPC.links.dir(s.la,s.lo),page}}
@@ -439,7 +440,7 @@ async function showBoundary(s,btn){
  if(window.KPCB&&s.p!=='SOTA'&&/^(US|KFF)-/.test(s.c)){let fs=null,src='USGS PAD-US',none=false,site=null,approx=false,approxWhy='',bnote='';
   try{const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);const k=KPCB.usKey?await KPCB.usKey(s.c,sts):null;
    if(k&&k.state==='ok'){fs=k.fs;approx=!!k.approx;approxWhy=k.why||'';bnote=(k.note||'')+(k.pinOff?(k.note?' ':'')+'POTA\u2019s pin may be off for this park.':'');const u=[...new Set(fs.map(f=>f._src))];src=u.join(' + ')}else if(k&&k.state==='none'){none=true;site=k.site}}catch(e){}
-  if(!fs&&!none){try{const g=await KPCB.padusByName(s.n,s.la,s.lo);if(g&&g.length)fs=g}catch(e){}}
+  /* Nov 10: no live PAD-US name search; a missing saved outline stays "no boundary available". */
   if(fs&&fs.length){
    bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,dashArray:approx?'10 6':null,fillColor:'#f0c96b',fillOpacity:approx?.07:.15}}).addTo(map);
    if(KPCB.sharpLayer){if(window.__usSharp)window.__usSharp();window.__usSharp=KPCB.sharpLayer(map,bound,fs)}   /* RULE SHEET G: full detail when zoomed in */

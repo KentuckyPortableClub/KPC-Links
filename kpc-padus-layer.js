@@ -111,11 +111,118 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     rings.forEach(poly => poly.forEach(ring => ring.forEach(([lo, la], i) => i ? x.lineTo(X(lo), Y(la)) : x.moveTo(X(lo), Y(la)))));
     x.fill('nonzero'); x.lineWidth = 2; x.stroke(); x.restore();
   }
+
+
+  window.kpcKeyOutlines = window.kpcKeyOutlines || (function () {
+    const cache = {}, caCache = {}, wCache = {};
+    const day = () => new Date().toISOString().slice(0, 10);
+    const dfetch = (u, opt) => (window.KPC && KPC.dataUrl) ? KPC.dataUrl(u, opt) : fetch(u, opt);
+    function getJson(url) {
+      return dfetch(url, { cache: 'force-cache' }).then(r => r.ok ? r.json() : Promise.reject())
+        .catch(() => fetch(url, { cache: 'reload' }).then(r => r.ok ? r.json() : null))
+        .catch(() => null);
+    }
+    async function gunzipJson(res) {
+      const ab = await res.arrayBuffer(), u8 = new Uint8Array(ab);
+      let text;
+      if (u8.length >= 2 && u8[0] === 0x1f && u8[1] === 0x8b) {
+        if (typeof DecompressionStream !== 'function') throw new Error('gzip');
+        text = await new Response(new Blob([ab]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+      } else text = new TextDecoder().decode(ab);
+      return JSON.parse(text);
+    }
+    function load(st) {
+      st = String(st || '').replace(/^US-/i, '').toUpperCase();
+      if (!st || st === 'KY') return Promise.resolve(null);
+      if (!cache[st]) {
+        cache[st] = fetch('data/outlines/US-' + st + '.geojson.gz?v=' + day(), { cache: 'force-cache' })
+          .then(r => r.ok ? gunzipJson(r) : null)
+          .then(j => {
+            if (!j || !Array.isArray(j.features)) return null;
+            const by = {};
+            j.features.forEach(f => { const r = (f.properties || {}).ref; if (r) by[r] = f; });
+            return { features: j.features, by, area: (j.kpc && j.kpc.area) || ('US-' + st) };
+          })
+          .catch(() => null);
+      }
+      return cache[st];
+    }
+    /* Published per-park Canada outlines already on the site (data/canada-bounds/<REF>.json). No new files. */
+    function loadCanada(ref) {
+      ref = String(ref || '').toUpperCase();
+      if (!/^CA-\d/.test(ref)) return Promise.resolve(null);
+      if (!caCache[ref]) {
+        const url = 'data/canada-bounds/' + encodeURIComponent(ref) + '.json?v=' + day();
+        caCache[ref] = getJson(url).then(j => {
+          if (!j) return null;
+          const fs = (j.type === 'FeatureCollection' ? (j.features || []) : [j]).filter(f => f && f.geometry);
+          if (!fs.length) return null;
+          fs.forEach(f => {
+            const p = f.properties || (f.properties = {});
+            if (!p.ref) p.ref = ref;
+            if (!p.name) p.name = p.cpcad || ref;
+            if (!p.g) p.g = p.approx ? 'approximate' : 'official';
+          });
+          return { features: fs, area: ref };
+        }).catch(() => null);
+      }
+      return caCache[ref];
+    }
+    function worldToFeat(ref, b) {
+      if (!b || !b.r || !b.r.length) return null;
+      return { type: 'Feature', properties: { ref, name: b.n || ref, g: 'official', src: b.s || '' },
+        geometry: { type: 'MultiPolygon', coordinates: b.r.map(r => [r]) } };
+    }
+    /* Saved world shards (data/world-bounds/CC/n.json, 100 parks each) already published on KPC-Data
+       and the world-bounds branch. World-key JSON has joins but no geometry; do not live-fetch agency maps. */
+    function loadWorldShard(cc, n) {
+      cc = String(cc || '').toUpperCase(); n = +n;
+      if (!/^[A-Z]{2}$/.test(cc) || cc === 'US' || cc === 'CA' || !isFinite(n) || n < 0) return Promise.resolve(null);
+      const key = cc + '/' + n;
+      if (!wCache[key]) {
+        const rel = 'data/world-bounds/' + cc + '/' + n + '.json?v=' + day();
+        const raw = 'https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/world-bounds/data/world-bounds/' + cc + '/' + n + '.json';
+        wCache[key] = getJson(rel)
+          .then(j => j || fetch(raw).then(r => r.ok ? r.json() : null).catch(() => null))
+          .then(j => {
+            if (!j || typeof j !== 'object') return null;
+            const features = [];
+            Object.keys(j).forEach(ref => { const f = worldToFeat(ref, j[ref]); if (f) features.push(f); });
+            return features.length ? { features, area: key } : null;
+          })
+          .catch(() => null);
+      }
+      return wCache[key];
+    }
+    function loadWorldRef(ref) {
+      ref = String(ref || '').toUpperCase();
+      const m = /^([A-Z]{2})-(\d+)$/.exec(ref);
+      if (!m || m[1] === 'US' || m[1] === 'CA') return Promise.resolve(null);
+      return loadWorldShard(m[1], Math.floor(parseInt(m[2], 10) / 100));
+    }
+    let caRows = null, caRowsP = null;
+    function canadaRows() {
+      if (caRows) return Promise.resolve(caRows);
+      return caRowsP || (caRowsP = getJson('data/canada.json?v=' + day()).then(j => {
+        const rows = (j && j.rows) || [];
+        caRows = rows.filter(r => r && r[0] === 'POTA' && /^CA-/.test(r[1]) && isFinite(r[3]) && isFinite(r[4]))
+          .map(r => ({ ref: r[1], la: r[3], lo: r[4] }));
+        return caRows;
+      }).catch(() => (caRows = [])));
+    }
+    return { load, loadCanada, loadWorldShard, loadWorldRef, canadaRows };
+  })();
+
   window.KPCPad = function (map, opts) {
-    opts = opts || {}; if (opts.kyOfficial) opts.skipKY = true; const MINZ_ = opts.minz || MINZ;   /* Oct 30: a page may ask for outlines sooner (US Trip Planner = 7) */
-    let fails = 0, ok = 0, statusEl = null;
+    opts = opts || {}; if (opts.kyOfficial || opts.usOfficial) opts.skipKY = true; const MINZ_ = opts.minz || MINZ;   /* Oct 30: a page may ask for outlines sooner (US Trip Planner = 7) */
+    let fails = 0, ok = 0, statusEl = null, missingNames = [];
     const tellStatus = () => {
       if (!statusEl) return;
+      if (opts.usOfficial) {
+        statusEl.textContent = map.getZoom() < MINZ_ ? 'Zoom in closer (county level) to see official outlines.'
+          : (missingNames.length ? ('No saved outline yet for ' + missingNames.join(', ') + '.') : '');
+        return;
+      }
       statusEl.textContent = map.getZoom() < MINZ_ ? 'Zoom in closer (county level) to see the boundaries.'
         : fails > 3 && !ok ? 'The official boundary map is not answering right now. Try again later.' : '';
     };
@@ -180,7 +287,9 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
         return out;
       }
     });
-    const layer = new Pad({ tileSize: 256, maxZoom: 19, zIndex: 6, attribution: 'Boundaries: USGS PAD-US' });
+    const layer = opts.usOfficial
+      ? L.layerGroup([], { attribution: 'Boundaries: saved US, Canada, and world key outlines' })
+      : new Pad({ tileSize: 256, maxZoom: 19, zIndex: 6, attribution: 'Boundaries: USGS PAD-US' });
 
     const legend = L.control({ position: opts.keyPos || 'topleft' });
     legend.onAdd = () => {
@@ -188,13 +297,18 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
       /* starts folded as a small button so it never covers the map or its buttons; tap to open (remembered) */
       let open = false; try { open = localStorage.getItem('kpcPadKeyOpen') === '1'; } catch (e) {}
       d.classList.toggle('open', open);
-      d.innerHTML = '<button type="button" class="kpc-pad-tg" aria-expanded="' + open + '"><i class="sw"></i>BOUNDARIES <span>' + (open ? '▾' : '▸') + '</span></button><div class="kpc-pad-body"><b>OFFICIAL BOUNDARIES (USGS PAD-US)</b>' + GK.map(k => `<label><input type="checkbox" data-g="${k}"${GROUPS[k].on ? ' checked' : ''}><i style="border-color:${css(GROUPS[k].col)};background:${css(GROUPS[k].col)}33"></i>${GROUPS[k].name}</label>`).join('') +
-        '<small>Public land from the US government\'s map of protected areas. A park\'s own map can differ: check it before you set up.' + (opts.kyOfficial ? ' In Kentucky, official outlines are the same saved state and federal files Park Commander uses, drawn as thin lines.' : '') + '</small></div><small class="kpc-pad-st"></small>';
+      d.innerHTML = opts.usOfficial
+        ? ('<button type="button" class="kpc-pad-tg" aria-expanded="' + open + '"><i class="sw"></i>BOUNDARIES <span>' + (open ? '▾' : '▸') + '</span></button><div class="kpc-pad-body"><b>OFFICIAL OUTLINES (SAVED KEY FILES)</b>' +
+          '<small>Thin official POTA park outlines from the US key\'s saved files, loaded for the states on screen. A park\'s own map can differ: check it before you set up.' +
+          (opts.kyOfficial ? ' In Kentucky, official outlines are the same saved state and federal files Park Commander uses.' : '') +
+          ' If a state has no saved file yet, a note appears instead of a background map.</small></div><small class="kpc-pad-st"></small>')
+        : ('<button type="button" class="kpc-pad-tg" aria-expanded="' + open + '"><i class="sw"></i>BOUNDARIES <span>' + (open ? '▾' : '▸') + '</span></button><div class="kpc-pad-body"><b>OFFICIAL BOUNDARIES (USGS PAD-US)</b>' + GK.map(k => `<label><input type="checkbox" data-g="${k}"${GROUPS[k].on ? ' checked' : ''}><i style="border-color:${css(GROUPS[k].col)};background:${css(GROUPS[k].col)}33"></i>${GROUPS[k].name}</label>`).join('') +
+        '<small>Public land from the US government\'s map of protected areas. A park\'s own map can differ: check it before you set up.' + (opts.kyOfficial ? ' In Kentucky, official outlines are the same saved state and federal files Park Commander uses, drawn as thin lines.' : '') + '</small></div><small class="kpc-pad-st"></small>');
       statusEl = d.querySelector('.kpc-pad-st'); tellStatus();
       const tg = d.querySelector('.kpc-pad-tg');
       tg.onclick = () => { open = !open; d.classList.toggle('open', open); tg.setAttribute('aria-expanded', open); tg.querySelector('span').textContent = open ? '▾' : '▸'; try { localStorage.setItem('kpcPadKeyOpen', open ? '1' : '0'); } catch (e) {} };
       L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
-      d.querySelectorAll('input').forEach(b => b.onchange = () => { GROUPS[b.dataset.g].on = b.checked; const v = {}; GK.forEach(k => v[k] = GROUPS[k].on); store.set(v); layer.redraw(); });
+      d.querySelectorAll('input').forEach(b => b.onchange = () => { GROUPS[b.dataset.g].on = b.checked; const v = {}; GK.forEach(k => v[k] = GROUPS[k].on); store.set(v); if (layer.redraw) layer.redraw(); });
       return d;
     };
     map.on('zoomend', tellStatus);
@@ -210,6 +324,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
       document.head.appendChild(s);
     }
     if (opts.legend !== false) { layer.on('add', () => legend.addTo(map)); layer.on('remove', () => legend.remove()); }
+    if (opts.usOfficial) attachUsOfficial(map, layer, { minz: MINZ_, parksInView: opts.parksInView, onMissing: names => { missingNames = names || []; tellStatus(); } });
     if (opts.kyOfficial) attachKyOfficial(map, layer);
     return { layer, legend };
   };
@@ -232,7 +347,8 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     bwilder:{name:'Wilderness areas',file:'ky-wilderness.geojson',color:'#c6e03a'},
     bfws:{name:'Wildlife refuges & fish hatcheries',file:'ky-fws.geojson',color:'#5ab0ff'},
     busace:{name:'Army Corps of Engineers land',file:'ky-usace.geojson',color:'#ff8c38',corps:true},
-    bpad:{name:'More official park outlines',file:'ky-padus-parks.geojson',color:'#e8b04a'}
+    bpad:{name:'More official park outlines',file:'ky-padus-parks.geojson',color:'#e8b04a'},
+    bkpc:{name:'OpenStreetMap outlines (unofficial)',file:'ky-kpc-drawn.geojson',color:'#ffd400',kpc:true}
   };
   function attachKyOfficial(map, host) {
     if (!window.L || !map || !map.createPane) return;
@@ -255,16 +371,22 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     if (window.kpcAnswerKey) kpcAnswerKey.loadKey(restyle);
     Object.keys(KY_OFFICIAL).forEach(k => {
       const s = KY_OFFICIAL[k];
-      fetch(s.file + '?v=20261110ky', { cache: 'force-cache' }).then(r => r.ok ? r.json() : null).then(j => {
+      const url = s.file + '?v=20261110us';
+      const load = () => fetch(url, { cache: 'force-cache' }).then(r => r.ok ? r.json() : Promise.reject())
+        .catch(() => fetch(url, { cache: 'reload' }).then(r => r.ok ? r.json() : null));
+      load().then(j => {
         if (!j || !Array.isArray(j.features)) return;
         (j.features || []).forEach(f => { f._lk = k; });
         const st = f => {
-          if (s.proc) return { color: s.color, weight: 1.4, opacity: 0.75, fill: false, dashArray: '6 8', className: 'kpc-kyoff' };
-          if (s.corps) return { color: s.color, weight: W, opacity: 1, fill: true, fillOpacity: 0, className: 'kpc-kyoff' };
+          if (s.proc) return { color: s.color, weight: 1.6, opacity: 0.75, fill: false, dashArray: '6 8', className: 'kpc-kyoff' };
+          if (s.corps) return { color: s.color, weight: 2.6, opacity: 1, fill: true, fillOpacity: 0, className: 'kpc-kyoff' };
+          if (s.kpc) return { color: s.color, weight: 3, opacity: 1, fill: true, fillOpacity: 0, dashArray: '12 5 2 5', className: 'kpc-kyoff' };
           const has = s.own || joined(f);
+          /* Same idea as Park Commander: a joined official park is a solid, clearly visible line
+             (WMA orange especially), not a 2 px nearly-empty stroke on satellite. */
           return has
-            ? { color: s.color, weight: W, opacity: 0.95, fillColor: s.color, fillOpacity: 0.06, dashArray: null, className: 'kpc-kyoff' }
-            : { color: '#ff2a2a', weight: W, opacity: 1, fill: true, fillOpacity: 0, dashArray: '2 6', className: 'kpc-kyoff' };
+            ? { color: s.color, weight: 3.5, opacity: 1, fillColor: s.color, fillOpacity: 0.22, dashArray: null, className: 'kpc-kyoff' }
+            : { color: '#ff2a2a', weight: 2.5, opacity: 1, fill: true, fillOpacity: 0, dashArray: '2 6', className: 'kpc-kyoff' };
         };
         const lay = L.geoJSON(j, { pane: 'kyoff', renderer: rend, style: st, className: 'kpc-kyoff',
           onEachFeature: (f, l) => l.bindPopup(() => `<b>${(nm(f) || s.name).replace(/[<>]/g, '')}</b><div style="font-size:12px;color:#555">${s.name}</div>`, { maxWidth: 260 })
@@ -277,4 +399,165 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     map.whenReady(sync);
     if (map.hasLayer(host)) group.addTo(map);
   }
+
+  /* Nov 10: official outlines outside Kentucky come from published saved files only,
+     drawn as thin SVG, never the PAD-US raster, and no new outline files are generated.
+     US: data/outlines/US-XX.geojson.gz (states in view). Canada: data/canada-bounds/<REF>.json
+     for parks in view. World: data/world-bounds/CC/n.json shards where those files exist
+     (currently a subset of countries). A missing file is "no saved outline yet". */
+  function attachUsOfficial(map, host, cfg) {
+    if (!window.L || !map || !map.createPane) return;
+    cfg = cfg || {};
+    const MINZ = cfg.minz || 7;
+    if (!map.getPane('usoff')) {
+      const p = map.createPane('usoff');
+      p.style.zIndex = 440;
+    }
+    const rend = L.svg({ pane: 'usoff', padding: 0.5 });
+    /* when usOfficial, host is an empty LayerGroup used as the on/off overlay */
+    const useHost = !!(host && host.addLayer && host.eachLayer && !host.redraw);
+    const group = useHost ? host : L.layerGroup();
+    const loaded = {};
+    const W = 2;
+    const style = f => {
+      const g = (f.properties || {}).g;
+      if (g && g !== 'official') return { color: '#c47a12', weight: W, opacity: 0.9, fill: false, dashArray: '6 6', className: 'kpc-usoff' };
+      return { color: '#c9a227', weight: W, opacity: 0.95, fillColor: '#c9a227', fillOpacity: 0, className: 'kpc-usoff' };
+    };
+    const nm = f => ((f.properties || {}).name || (f.properties || {}).ref || '');
+    let borders = null;
+    const bordersP = fetch('kpc-us-states.json').then(r => r.ok ? r.json() : []).then(a => (borders = a || [])).catch(() => (borders = []));
+    function hitsBox(p, box) {
+      /* True shape test: a state's overall bbox can cover a neighbor (New York's
+         rectangle reaches into Vermont). Use vertices, view corners, and edges. */
+      const [x0, y0, x1, y1] = box;
+      const inRect = (x, y) => x >= x0 && x <= x1 && y >= y0 && y <= y1;
+      const inRing = (x, y, r) => {
+        let ins = false;
+        for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+          const xi = r[i][0], yi = r[i][1], xj = r[j][0], yj = r[j][1];
+          if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi + 1e-15) + xi) ins = !ins;
+        }
+        return ins;
+      };
+      const crosses = (ax, ay, bx, by, cx, cy, dx, dy) => {
+        const den = (ax - bx) * (cy - dy) - (ay - by) * (cx - dx);
+        if (!den) return false;
+        const t = ((ax - cx) * (cy - dy) - (ay - cy) * (cx - dx)) / den;
+        const u = -((ax - bx) * (ay - cy) - (ay - by) * (ax - cx)) / den;
+        return t >= 0 && t <= 1 && u >= 0 && u <= 1;
+      };
+      const edges = [[x0, y0, x1, y0], [x1, y0, x1, y1], [x1, y1, x0, y1], [x0, y1, x0, y0]];
+      const corners = [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
+      const ringHits = r => {
+        if (!r || r.length < 2) return false;
+        for (let i = 0; i < r.length; i++) if (inRect(r[i][0], r[i][1])) return true;
+        for (let i = 0; i < corners.length; i++) if (inRing(corners[i][0], corners[i][1], r)) return true;
+        for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+          const a = r[j], b = r[i];
+          for (let k = 0; k < edges.length; k++) {
+            const e = edges[k];
+            if (crosses(a[0], a[1], b[0], b[1], e[0], e[1], e[2], e[3])) return true;
+          }
+        }
+        return false;
+      };
+      const walkRings = o => {
+        if (!Array.isArray(o) || !o.length) return false;
+        if (typeof o[0][0] === 'number') return ringHits(o);
+        for (let i = 0; i < o.length; i++) if (walkRings(o[i])) return true;
+        return false;
+      };
+      return walkRings(p);
+    }
+    function statesInView() {
+      if (!borders || !borders.length || !map.getBounds) return [];
+      const b = map.getBounds(), box = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
+      return borders.filter(s => s && s.a && s.a !== 'KY' && hitsBox(s.p, box)).map(s => s);
+    }
+    let req = 0;
+    function refresh() {
+      if (!hostOn()) {
+        if (!useHost && map.hasLayer(group)) map.removeLayer(group);
+        return;
+      }
+      if (!useHost && !map.hasLayer(group)) group.addTo(map);
+      if (map.getZoom() < MINZ) {
+        if (cfg.onMissing) cfg.onMissing([]);
+        return;
+      }
+      const id = ++req;
+      Promise.resolve(borders || bordersP).then(() => {
+        if (id !== req) return;
+        const sts = statesInView();
+        const missing = [];
+        function addPack(key, pack) {
+          if (!pack || loaded[key]) return;
+          const feats = (pack.features || []).filter(f => f && f.geometry && (f.properties || {}).g !== 'pin');
+          if (!feats.length) return false;
+          const fc = { type: 'FeatureCollection', features: feats };
+          const lay = L.geoJSON(fc, { pane: 'usoff', renderer: rend, style, className: 'kpc-usoff',
+            onEachFeature: (f, l) => l.bindPopup(() => {
+              const p = f.properties || {};
+              const ref = (p.ref || '').replace(/[<>]/g, '');
+              return '<b>' + nm(f).replace(/[<>]/g, '') + '</b>' + (ref ? '<div style="font-size:12px;color:#555">' + ref + '</div>' : '');
+            }, { maxWidth: 260 })
+          });
+          group.addLayer(lay);
+          loaded[key] = true;
+          return true;
+        }
+        const KO = window.kpcKeyOutlines;
+        const jobs = sts.map(s => (KO ? KO.load(s.a) : Promise.resolve(null)).then(pack => {
+          if (!pack) { missing.push(s.n || s.a); return; }
+          if (addPack(s.a, pack) === false) missing.push(s.n || s.a);
+        }).catch(() => { missing.push(s.n || s.a); }));
+        /* Canada: saved per-park files for POTA pins in the viewport (cap so a phone is not asked for thousands). */
+        const b = map.getBounds(), c = map.getCenter();
+        const CA_CAP = 80;
+        const near = (la, lo) => (la - c.lat) * (la - c.lat) + (lo - c.lng) * (lo - c.lng);
+        const pins = typeof cfg.parksInView === 'function' ? (cfg.parksInView() || []) : [];
+        jobs.push((KO && KO.canadaRows ? KO.canadaRows() : Promise.resolve([])).then(rows => {
+          let hits = (rows || []).filter(r => b.contains([r.la, r.lo]));
+          pins.forEach(p => { if (p && /^CA-/.test(p.ref) && isFinite(p.la) && isFinite(p.lo) && b.contains([p.la, p.lo]) && !hits.some(h => h.ref === p.ref)) hits.push(p); });
+          hits.sort((a, x) => near(a.la, a.lo) - near(x.la, x.lo));
+          hits = hits.filter(h => !loaded[h.ref]).slice(0, CA_CAP);
+          let i = 0;
+          const worker = () => {
+            if (i >= hits.length) return Promise.resolve();
+            const h = hits[i++];
+            return (KO.loadCanada(h.ref)).then(pack => { addPack(h.ref, pack); }).catch(() => {}).then(worker);
+          };
+          return Promise.all([0, 1, 2, 3, 4, 5, 6, 7].map(() => worker()));
+        }));
+        /* World: only where a saved world-bounds shard already exists. Pins already on the page (does not add parks). */
+        const wSeen = {};
+        pins.forEach(p => {
+          const ref = p && p.ref && String(p.ref).toUpperCase();
+          const m = ref && /^([A-Z]{2})-(\d+)$/.exec(ref);
+          if (!m || m[1] === 'US' || m[1] === 'CA') return;
+          if (!isFinite(p.la) || !isFinite(p.lo) || !b.contains([p.la, p.lo])) return;
+          const key = 'W:' + m[1] + '/' + Math.floor(parseInt(m[2], 10) / 100);
+          if (loaded[key] || wSeen[key] || !KO || !KO.loadWorldRef) return;
+          wSeen[key] = true;
+          jobs.push(KO.loadWorldRef(ref).then(pack => addPack(key, pack)).catch(() => {}));
+        });
+        Promise.all(jobs).then(() => { if (id === req && cfg.onMissing) cfg.onMissing(missing); });
+      });
+    }
+    const hostOn = () => map.hasLayer(host) || (useHost === false && map.hasLayer(group));
+    const sync = () => {
+      if (hostOn()) {
+        if (!useHost && !map.hasLayer(group)) group.addTo(map);
+        refresh();
+      } else if (!useHost && map.hasLayer(group)) map.removeLayer(group);
+    };
+    host.on && host.on('add', sync);
+    host.on && host.on('remove', () => { if (!useHost && map.hasLayer(group)) map.removeLayer(group); });
+    map.on('moveend', () => { if (hostOn()) refresh(); });
+    map.on('zoomend', () => { if (hostOn()) refresh(); });
+    map.whenReady(sync);
+    if (hostOn()) refresh();
+  }
+
 })();
