@@ -495,16 +495,16 @@
   },
   "FR": {
    "areas": 29980,
-   "check": 791,
+   "check": 792,
    "detail": 0.01,
-   "matched": 12587,
+   "matched": 12589,
    "none": 433,
-   "parks": 13811,
+   "parks": 13814,
    "pin_no_shape": 0,
    "pin_outside": 3456,
    "pin_swap": 0,
    "pin_well_outside": 150,
-   "saved_outlines": 9624,
+   "saved_outlines": 9626,
    "shadow_add": 207,
    "shadow_demote": 84,
    "shadow_other_place": 9,
@@ -1412,8 +1412,8 @@
    "thin": 60
   }
  },
- "previous_build": "W-43006330573",
- "previous_built": "2026-11-11 12:25 UTC",
+ "previous_build": "W-43030818751",
+ "previous_built": "2026-11-11 15:21 UTC",
  "rules": "487a51327b86",
  "rules_files": [
   ".github/scripts/kpc_key_facts.py",
@@ -1423,11 +1423,11 @@
  ],
  "rules_of_run": "096a551a8cb6",
  "inputs": {
-  "us-key": "US-43037613117",
-  "ca-key": "CA-43003880140"
+  "us-key": "US-43056604383",
+  "ca-key": "CA-43049790907"
  },
- "build": "W-43030818751",
- "built": "2026-11-11 15:21 UTC",
+ "build": "W-43052784663",
+ "built": "2026-11-11 17:24 UTC",
  "failed": [
   "AS",
   "AU",
