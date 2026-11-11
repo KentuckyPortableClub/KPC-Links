@@ -164,7 +164,8 @@ def main():
                 svcs = services(base, folder)
                 svcs = sorted(svcs, key=lambda x: not REC.search(x[0]))[:200 if not deep else 400]
             except Exception as e:  # noqa: BLE001
-                log.append(f'{st}: {base}/{folder} not listed ({str(e)[:60]})'); failed = True; continue
+                log.append(f'{st}: {base}/{folder} ' + ('BLOCKED: never-contact host, saved copy only (not asked; last leads kept)'   # Nov 11: never 'not listed'
+                                                         if isinstance(e, kpc_net_guard.NetGuardRefused) else f'not listed ({str(e)[:60]})')); failed = True; continue
             for name, typ in svcs:
                 if time.time() - T0 > LIMIT: failed = True; break   # cut short: keep the leads not reached
                 su = f'{base}/{name}/{typ}'

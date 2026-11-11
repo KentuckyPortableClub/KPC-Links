@@ -125,9 +125,27 @@ def rss(url):
 
 
 # ---------------------------------------------------------------- each source: rows of {name, title, text, link, end, at}
+# Nov 11 2026 (host rules, review package A): the five feeds on services*.arcgis.com hosts (CA, WI, FL, MT, NJ) are NEVER asked (no
+# request of any kind, robots.txt included; kpc_net_guard). main() checks every feed's host first: a blocked feed keeps its last items,
+# each marked 'STALE since <last good read>', and the source says blocked + stale_since in data/alerts/us-parks.json and in the log
+# (a '::warning', not a quiet notice). There is no saved copy of a live status feed and no other official feed for these states here.
+CA_FEED = 'https://services2.arcgis.com/AhxrK3F6WM8ECvDi/arcgis/rest/services/CSPParkUnit_CurrentStatus/FeatureServer/0'
+WI_FEED = 'https://services5.arcgis.com/Ul9AyFFeFTjf08DW/arcgis/rest/services/WI_Park_Closures_PUBLIC_VIEW/FeatureServer/0'
+FL_FEED = 'https://services1.arcgis.com/nRHtyn3uE1kyzoYc/arcgis/rest/services/Florida_State_Parks_Operational_Status/FeatureServer/{}'
+MT_FEED = 'https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_LANDS_CLOSURES_RESTRICTIONS/FeatureServer/0'
+MO_FEED = 'https://gis.dnr.mo.gov/server/rest/services/parks/State_Parks_Status_Viewer/MapServer/0'
+NJ_FEED = ('https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/'
+           'New_Jersey_State_Park_Service_Live_Status_Updates_(Public_View)/FeatureServer/0')
+OR_FEED = 'https://nrimp.dfw.state.or.us/arcgis/rest/services/ORHAM/ORHAM/MapServer/6'
+CO_FEED = ('https://docs.google.com/spreadsheets/d/e/2PACX-1vQv8-zuZoYsA6jhM2l76icNnlVKK6NR36qeamBg_6s2f0POK6-nA0s66Nt_'
+           'TcanQeClTXBvBvZGJls9/pub?gid=0&single=true&output=csv')
+AR_FEED = 'https://www.agfc.com/category/wma-closure/feed/'
+NC_FEED = 'https://www.ncparks.gov/blog-category/alerts/feed'
+
+
 def src_ca():
     rows = []
-    for f in arcgis('https://services2.arcgis.com/AhxrK3F6WM8ECvDi/arcgis/rest/services/CSPParkUnit_CurrentStatus/FeatureServer/0'):
+    for f in arcgis(CA_FEED):
         a = f.get('attributes') or {}
         st = str(F(a, 'Status', 'STATUS', 'CurrentStatus', 'Unit_Status', 'ParkStatus') or '')
         if not st or st.strip().upper() == 'OPEN': continue
@@ -139,7 +157,7 @@ def src_ca():
 
 def src_wi():
     rows = []
-    for f in arcgis('https://services5.arcgis.com/Ul9AyFFeFTjf08DW/arcgis/rest/services/WI_Park_Closures_PUBLIC_VIEW/FeatureServer/0'):
+    for f in arcgis(WI_FEED):
         a = f.get('attributes') or {}
         if str(F(a, 'Active_Flag') or 'Y').strip().upper() in ('N', 'NO', '0', 'FALSE', 'INACTIVE'): continue
         end = day(F(a, 'Exp_End_Date'))
@@ -152,7 +170,7 @@ def src_wi():
 def src_fl():
     rows = []
     for lid, what in ((6, ''), (5, 'Campground: ')):
-        for f in arcgis(f'https://services1.arcgis.com/nRHtyn3uE1kyzoYc/arcgis/rest/services/Florida_State_Parks_Operational_Status/FeatureServer/{lid}'):
+        for f in arcgis(FL_FEED.format(lid)):
             a = f.get('attributes') or {}
             st = str(F(a, 'PARK_STATUS', 'STATUS', 'CAMP_STATUS') or '')
             if not st or st.strip().lower().startswith('open'): continue
@@ -165,7 +183,7 @@ def src_fl():
 
 def src_mt():
     rows = []
-    for f in arcgis('https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_LANDS_CLOSURES_RESTRICTIONS/FeatureServer/0'):
+    for f in arcgis(MT_FEED):
         a = f.get('attributes') or {}
         end = day(F(a, 'DATE_END'))
         if end and end < TODAY: continue
@@ -178,7 +196,7 @@ def src_mt():
 
 def src_mo():
     rows = []
-    for f in arcgis('https://gis.dnr.mo.gov/server/rest/services/parks/State_Parks_Status_Viewer/MapServer/0'):
+    for f in arcgis(MO_FEED):
         a = f.get('attributes') or {}
         st = str(F(a, 'STATUS') or '').strip()
         adv = []
@@ -194,8 +212,7 @@ def src_mo():
 
 def src_nj():
     rows = []
-    for f in arcgis('https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/'
-                    'New_Jersey_State_Park_Service_Live_Status_Updates_(Public_View)/FeatureServer/0'):
+    for f in arcgis(NJ_FEED):
         a = f.get('attributes') or {}
         st = str(F(a, 'Status') or '').strip()
         if not st or st.lower().startswith('open'): continue
@@ -206,7 +223,7 @@ def src_nj():
 
 def src_or():
     rows = []
-    for f in arcgis('https://nrimp.dfw.state.or.us/arcgis/rest/services/ORHAM/ORHAM/MapServer/6', 'alert_enabled=1'):
+    for f in arcgis(OR_FEED, 'alert_enabled=1'):
         a = f.get('attributes') or {}
         end = day(F(a, 'alert_end'))
         if end and end < TODAY: continue
@@ -218,8 +235,7 @@ def src_or():
 def src_co():
     # Colorado Parks & Wildlife's own '2026 Weather and Drought Closures' list (a sheet CPW publishes and links from
     # cpw.state.co.us). Drought / low-water / fishing closures only.
-    b = get('https://docs.google.com/spreadsheets/d/e/2PACX-1vQv8-zuZoYsA6jhM2l76icNnlVKK6NR36qeamBg_6s2f0POK6-nA0s66Nt_'
-            'TcanQeClTXBvBvZGJls9/pub?gid=0&single=true&output=csv', raw=True).decode('utf-8', 'replace')
+    b = get(CO_FEED, raw=True).decode('utf-8', 'replace')
     rows = []
     for r in csv.DictReader(io.StringIO(b)):
         nm = F(r, 'Name of Location', 'Location')
@@ -242,8 +258,8 @@ def _rss_rows(url, keep=r'.'):
     return rows
 
 
-def src_ar(): return _rss_rows('https://www.agfc.com/category/wma-closure/feed/')
-def src_nc(): return _rss_rows('https://www.ncparks.gov/blog-category/alerts/feed', r'clos|status|open|restrict|alert')
+def src_ar(): return _rss_rows(AR_FEED)
+def src_nc(): return _rss_rows(NC_FEED, r'clos|status|open|restrict|alert')
 
 
 # ---------------------------------------------------------------- Georgia WRD closures page (chat 5, Oct 28 2026)
@@ -403,6 +419,22 @@ SOURCES = [  # id, state, agency, its page for people, reader
     ('nc-parks', 'NC', 'NC State Parks', 'https://www.ncparks.gov/', src_nc),
     ('ga-wrd', 'GA', 'Georgia DNR Wildlife Resources', 'https://georgiawildlife.com/closures', src_ga),
 ]
+FEED_URLS = {'ca-parks': [CA_FEED], 'wi-dnr': [WI_FEED], 'fl-parks': [FL_FEED.format(6), FL_FEED.format(5)], 'mt-fwp': [MT_FEED],
+             'mo-parks': [MO_FEED], 'nj-parks': [NJ_FEED], 'or-odfw': [OR_FEED], 'co-cpw': [CO_FEED], 'ar-agfc': [AR_FEED],
+             'nc-parks': [NC_FEED], 'ga-wrd': [GA_PAGE]}
+
+
+def feed_blocked(sid):
+    """'' when every address the source reads may be asked, else why not (kpc_net_guard's rule, checked before any request)."""
+    for u in FEED_URLS.get(sid) or []:
+        ok, why = kpc_net_guard.host_ok(u)
+        if not ok: return why
+    return ''
+
+
+def blocked_states():
+    """[(source id, state, why)] for the sources the host rules block today."""
+    return [(sid, st, feed_blocked(sid)) for sid, st, _a, _p, _f in SOURCES if feed_blocked(sid)]
 
 
 # ---------------------------------------------------------------- tie a row to parks
@@ -476,12 +508,26 @@ def main():
     old = {}
     for it in was.get('items', []): old.setdefault(it['src'], []).append(it)
     first = {it['id']: it.get('seen') for it in was.get('items', [])}
-    items, srcs, lines = [], {}, []
+    items, srcs, lines, stale = [], {}, [], []
     for sid, st, agency, page, fn in SOURCES:
+        oldm = (was.get('sources') or {}).get(sid) or {}
+        blk = feed_blocked(sid)
+        if blk:   # Nov 11: never asked; the last items are kept but say they are stale, and the source says so too
+            since = oldm.get('last_ok') or oldm.get('stale_since') or 'unknown (no good read on file)'
+            kept = [dict(it, stale_since=since, details=(it.get('details') or '')[:300] + f' [STALE: not re-read since {since}; check the agency page]')
+                    if not it.get('stale_since') else it for it in old.get(sid, [])]
+            items += kept
+            srcs[sid] = {'agency': agency, 'st': st, 'page': page, 'ok': False, 'blocked': True, 'stale_since': since,
+                         'why': f'STALE since {since}: {blk}', 'blocked_host': kpc_net_guard.host_of(FEED_URLS[sid][0]),
+                         'n_kept': len(kept), **source_clock(oldm, False, None)}
+            stale.append(f'{st} ({sid}) STALE since {since}')
+            lines.append(f'{sid}: BLOCKED host, not asked ({blk}); kept {len(kept)} item(s) marked stale since {since}')
+            continue
         try:
             rows = fn()
         except Exception as e:  # noqa: BLE001
-            srcs[sid] = {'agency': agency, 'st': st, 'page': page, 'ok': False, 'why': str(e)[:160], **source_clock((was.get('sources') or {}).get(sid), False, None)}
+            srcs[sid] = {'agency': agency, 'st': st, 'page': page, 'ok': False, 'why': str(e)[:160], 'last_ok': oldm.get('last_ok'),
+                         **source_clock((was.get('sources') or {}).get(sid), False, None)}
             items += old.get(sid, [])                  # keep the last list: a failed read is not a reopening
             lines.append(f'{sid}: NOT READ ({str(e)[:80]}), kept {len(old.get(sid, []))}')
             continue
@@ -504,7 +550,7 @@ def main():
                               'seen': first.get(iid) or (r.get('date') or TODAY).isoformat(), 'call': 'KPC BOT',
                               'expires': exp.isoformat(), 'link': r.get('link') or page})
                 n += 1
-        srcs[sid] = {'agency': agency, 'st': st, 'page': page, 'ok': True, 'rows': len(rows), 'n': n,
+        srcs[sid] = {'agency': agency, 'st': st, 'page': page, 'ok': True, 'rows': len(rows), 'n': n, 'last_ok': TODAY.isoformat(),
                      'unmatched': nomatch[:15], **({'preview': prev} if prev else {}),
                      **source_clock((was.get('sources') or {}).get(sid), True, n)}
         lines.append(f'{sid}: {len(rows)} notices, {n} park entries' + (f'; no park for: {"; ".join(nomatch[:6])}' if nomatch else ''))
@@ -517,6 +563,9 @@ def main():
     merge()
     for l in lines: notice('US closures', l)
     notice('US closures', f'{len(uniq)} park entries from {sum(1 for s in srcs.values() if s["ok"])} of {len(SOURCES)} sources')
+    if stale:   # Nov 11: a blocked source never looks like fresh data
+        print('::warning title=US closures::%s of %s sources are on a host the bots may not read: %s. Their last items are kept and '
+              'marked stale.' % (len(stale), len(SOURCES), '; '.join(stale)), flush=True)
 
 
 if __name__ == '__main__':

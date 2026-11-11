@@ -364,14 +364,12 @@ def pdf_patterns(st, cfg, leads):
             made, ok = '', False
             try:
                 req = urllib.request.Request(url, method='HEAD', headers=T.UA)
-                time.sleep(1.0)
-                with urllib.request.urlopen(req, timeout=20) as r:
+                with T.polite_open(req, timeout=20) as r:   # Nov 11: host rules, robots.txt and the per-host pause first
                     ok = r.status == 200 and 'pdf' in (r.headers.get('Content-Type') or '').lower()
                     lm = r.headers.get('Last-Modified') or ''
                 if ok:   # Oct 27 (chat 8): keep the map's printed date: PDF metadata is plain bytes at the front of the file
                     rq = urllib.request.Request(url, headers=dict(T.UA, Range='bytes=0-131071'))
-                    time.sleep(1.0)
-                    with urllib.request.urlopen(rq, timeout=30) as r2: head = r2.read()
+                    with T.polite_open(rq, timeout=30) as r2: head = r2.read()
                     m = re.search(rb'/(?:Creation|Mod)Date\s*\(D:(\d{4})(\d{2})(\d{2})', head)
                     made = '-'.join(x.decode() for x in m.groups()) if m else ''
                     if not made and lm:
@@ -404,9 +402,14 @@ def step_c(st, leads):
     t0, pages, errs = time.time(), 0, {}
     with sync_playwright() as p:
         b = p.chromium.launch(); pg = b.new_page(user_agent=T.UA['User-Agent'])
+        # Nov 11 (host rules): the browser asks nothing of a never-contact host either (an embedded map widget on an agency page
+        # would load from services*.arcgis.com): every request the page makes is checked and refused before it is sent
+        pg.route('**/*', lambda rt: rt.abort() if not T.kpc_net_guard.host_ok(rt.request.url)[0] else rt.continue_())
         for ref, name, url in todo[:int(cfg.get('max', 300))]:
             host = url.split('/')[2]
             if late('C', t0) or pages >= 300 or errs.get(host, 0) >= 5: break
+            if not T.kpc_net_guard.host_ok(url)[0] or not T.robots_ok(url): continue   # Nov 11: host rules, then robots.txt, first
+            T._pace(host)
             try:
                 pg.goto(url, timeout=30000, wait_until='networkidle'); pages += 1
                 links = pg.eval_on_selector_all('a[href]', 'as => as.map(a => [a.href, (a.innerText||"").trim().slice(0,60)])')
