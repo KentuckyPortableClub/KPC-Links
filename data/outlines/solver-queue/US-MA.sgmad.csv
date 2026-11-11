@@ -1,0 +1,147 @@
+ref,name,lat,lon,why,candidates
+US-0322,Mashpee National Wildlife Refuge,41.6022,-70.5111,pin is inside an outline but no name agrees,Pump 5
+US-0672,Cape Cod National Seashore,41.9276,-70.0539,a same-name outline is nearby but the pin is outside it,Cape Cod National Seashore
+US-0725,Adams National Historical Park,42.2563,-71.0095,a same-name outline is nearby but the pin is outside it,Adams National Historical Park
+US-0745,Minute Man National Historical Park,42.4669,-71.3557,a same-name outline is nearby but the pin is outside it,Minute Man National Historical Park
+US-0748,New Bedford Whaling National Historical Park,41.6323,-70.9257,a same-name outline is nearby but the pin is outside it,New Bedford Park
+US-0838,John Fitzgerald Kennedy National Historic Site,42.3465,-71.1234,a same-name outline is nearby but the pin is outside it,John Fitzgerald Kennedy Park
+US-0843,Longfellow House National Historic Site,42.3775,-71.126,a same-name outline is nearby but the pin is outside it,Longfellow National Historic House
+US-0859,Salem Maritime National Historic Site,42.5228,-70.8869,a same-name outline is nearby but the pin is outside it,Salem Maritime National Historic Site
+US-0862,Saugus Iron Works National Historic Site,42.4693,-71.0059,a same-name outline is nearby but the pin is outside it,Saugus Iron Works
+US-0863,Springfield Armory National Historic Site,42.1076,-72.5847,pin is inside an outline but no name agrees,Armory National Historical Park
+US-11399,Bullock Ledge Wildlife Management Area,42.7021,-73.2404,pin is inside an outline but no name agrees,Taconic Trail State Park
+US-11400,Chalet Wildlife Management Area,42.5711,-73.1086,pin is inside an outline but no name agrees,Stafford Hill WMA
+US-11401,Cummington Wildlife Management Area,42.602,-72.8642,pin is inside an outline but no name agrees,Hawks Brook WMA
+US-11409,Fox Den Wildlife Management Area,42.3771,-73.0012,a same-name outline is nearby but the pin is outside it,Fox Den WMA
+US-11428,Hubbard Brook Wildlife Management Area,42.1413,-73.3868,a same-name outline is nearby but the pin is outside it,Hubbard Brook WMA
+US-11429,John J. Kelly Wildlife Management Area,42.2794,-72.988,a same-name outline is nearby but the pin is outside it,John J. Kelly WMA
+US-11431,Lilly Pond Wildlife Management Area,42.4406,-72.8289,a same-name outline is nearby but the pin is outside it,Lilly Pond WMA
+US-11433,Maple Hill Wildlife Management Area,42.3321,-73.372,a same-name outline is nearby but the pin is outside it,Maple Hill WMA
+US-11436,Misery Mountain Wildlife Management Area,42.6094,-73.288,a same-name outline is nearby but the pin is outside it,Misery Mountain WMA
+US-11437,North Egremont Wildlife Management Area,42.2062,-73.4386,a same-name outline is nearby but the pin is outside it,North Egremont WCE; North Egremont WMA
+US-11440,Powell Brook Wildlife Management Area,42.4507,-72.9617,a same-name outline is nearby but the pin is outside it,Powell Brook WMA
+US-11441,Ram Hill Wildlife Management Area,42.3948,-72.7993,a same-name outline is nearby but the pin is outside it,Ram Hill WMA
+US-11444,Shales Brook Wildlife Management Area,42.2586,-73.1459,a same-name outline is nearby but the pin is outside it,Shales Brook WCE; Shales Brook WMA
+US-11445,Shaw Brook Wildlife Management Area,42.4805,-72.9053,a same-name outline is nearby but the pin is outside it,Shaw Brook WMA
+US-11458,Brushy Mountain Wildlife Management Area,42.4578,-72.4459,pin is inside an outline but no name agrees,Paul C. Jones Working Forest WCE
+US-11461,East Mountain Wildlife Management Area,42.224,-72.6451,a same-name outline is nearby but the pin is outside it,East Mountain Country Club; East Mountain WMA
+US-11467,Green River Wildlife Management Area,42.6792,-72.6531,a same-name outline is nearby but the pin is outside it,Green River CR; Green River Cemetery; Green River Club; Green River Conservation Area; Green River Swimming Area; Green River WMA
+US-11469,Honey Pot Wildlife Management Area,42.0953,-72.8189,a same-name outline is nearby but the pin is outside it,Honey Pot WCE; Honey Pot WMA
+US-11473,Montague Wildlife Management Area,42.5243,-72.4754,a same-name outline is nearby but the pin is outside it,Montague State Forest; Montague WMA
+US-11477,Orange Wildlife Management Area,42.6223,-72.294,a same-name outline is nearby but the pin is outside it,Orange State Forest; Orange WMA
+US-11480,Poland Brook Wildlife Management Area,42.4905,-72.7474,a same-name outline is nearby but the pin is outside it,Poland Brook WMA
+US-11482,Satan's Kingdom Wildlife Management Area,42.7064,-72.5481,a same-name outline is nearby but the pin is outside it,Satan's Kingdom WCE; Satan's Kingdom WMA
+US-11486,Sunderland Islands Wildlife Management Area,42.4886,-72.5693,a same-name outline is nearby but the pin is outside it,Sunderland Islands WMA
+US-11490,Wendell Wildlife Management Area,42.5237,-72.4157,a same-name outline is nearby but the pin is outside it,Wendell State Forest; Wendell WMA
+US-11491,Westfield Wildlife Management Area,42.114,-72.8211,a same-name outline is nearby but the pin is outside it,Westfield WMA
+US-11498,Birch Hill Wildlife Management Area,42.6646,-72.1096,a same-name outline is nearby but the pin is outside it,Birch Hill; Birch Hill Dam; Birch Hill WMA
+US-11499,Bolton Flats Wildlife Management Area,42.4575,-71.6493,a same-name outline is nearby but the pin is outside it,Bolton Flats WMA
+US-11502,Clinton Bluff Wildlife Management Area,42.4194,-71.6659,a same-name outline is nearby but the pin is outside it,Clinton Bluff WMA
+US-11504,E. Kent Swift Wildlife Management Area,42.1227,-71.6056,pin is inside an outline but no name agrees,West Hill Dam WMA
+US-11505,Fish Brook Wildlife Management Area,42.6775,-72.2727,a same-name outline is nearby but the pin is outside it,Fish Brook WCE; Fish Brook WMA
+US-11507,High Ridge Wildlife Management Area,42.5725,-71.9203,a same-name outline is nearby but the pin is outside it,High Ridge WMA
+US-11510,Lackey Pond Wildlife Management Area,42.103,-71.6896,a same-name outline is nearby but the pin is outside it,Lackey Pond WMA
+US-11512,Leadmine Wildlife Management Area,42.065,-72.1318,a same-name outline is nearby but the pin is outside it,Leadmine WMA
+US-11514,Mckinstry Brook Wildlife Management Area,42.1136,-72.0471,a same-name outline is nearby but the pin is outside it,McKinstry Brook WCE; McKinstry Brook WCR; McKinstry Brook WMA
+US-11550,Moose Brook Wildlife Management Area,42.4065,-72.1272,a same-name outline is nearby but the pin is outside it,Moose Brook Access; Moose Brook WCE; Moose Brook WMA
+US-11551,Moose Hill Wildlife Management Area,42.2764,-71.9586,a same-name outline is nearby but the pin is outside it,Moose Hill Flood Control Site; Moose Hill WMA
+US-11553,Muddy Brook Wildlife Management Area,42.339,-72.2323,a same-name outline is nearby but the pin is outside it,Muddy Brook WCE; Muddy Brook WMA
+US-11559,Poutwater Pond Wildlife Management Area,42.4197,-71.8488,a same-name outline is nearby but the pin is outside it,Poutwater Pond WMA
+US-11564,Raccoon Hill Wildlife Management Area,42.4127,-72.1845,a same-name outline is nearby but the pin is outside it,Raccoon Hill Preserve; Raccoon Hill WCR; Raccoon Hill WMA
+US-11565,Richardson Wildlife Management Area,42.2202,-72.1168,a same-name outline is nearby but the pin is outside it,Richardson WMA
+US-11572,Wayne F. MacCallum Wildlife Management Area,42.2913,-71.6361,a same-name outline is nearby but the pin is outside it,Wayne F. MacCallum WMA
+US-11593,Fessenden Hill Wildlife Management Area,42.7013,-71.7019,pin is inside an outline but no name agrees,Townsend State Forest
+US-11594,Flagg Swamp Wildlife Management Area,42.3651,-71.5742,a same-name outline is nearby but the pin is outside it,Flagg Swamp WMA
+US-11596,Hauk Swamp Wildlife Management Area,42.6744,-71.513,a same-name outline is nearby but the pin is outside it,Hauk Swamp WCE; Hauk Swamp WMA
+US-11597,Hunting Hills Wildlife Management Area,42.6224,-71.6733,a same-name outline is nearby but the pin is outside it,Hunting Hills WCE; Hunting Hills WMA
+US-11598,King Phillip Woods Wildlife Management Area,42.3773,-71.3897,pin is inside an outline but no name agrees,Bay Circuit Trail
+US-11601,Nissitissit River Wildlife Management Area,42.6921,-71.5918,a same-name outline is nearby but the pin is outside it,Nissitissit River Conservation Area; Nissitissit River Land Trust; Nissitissit River WCE; Nissitissit River WMA
+US-11602,Pantry Brook Wildlife Management Area,42.4028,-71.3753,pin is inside an outline but no name agrees,Great Meadows National Wildlife Refuge
+US-11604,Squannacook River Wildlife Management Area,42.6522,-71.688,a same-name outline is nearby but the pin is outside it,Squannacook River CR; Squannacook River Conservation Area; Squannacook River WCE; Squannacook River WCR; Squannacook River WMA
+US-11607,Unkety Brook Wildlife Management Area,42.6885,-71.5497,a same-name outline is nearby but the pin is outside it,Unkety Brook Conservation Area; Unkety Brook WCE; Unkety Brook WMA; Unkety Brook Watershed
+US-11609,Whittier Wildlife Management Area,42.4988,-71.4208,a same-name outline is nearby but the pin is outside it,Whittier WMA
+US-11615,Camp Cachalot Wildlife Management Area,41.8138,-70.6543,pin is inside an outline but no name agrees,Myles Standish State Forest
+US-11620,Cooks Pond Wildlife Management Area,41.9237,-70.667,a same-name outline is nearby but the pin is outside it,Cooks Pond WMA
+US-11621,Copicut Wildlife Management Area,41.7388,-71.05,pin is inside an outline but no name agrees,Freetown-Fall River State Forest
+US-11627,Fox Island Wildlife Management Area,41.9075,-70.0169,a same-name outline is nearby but the pin is outside it,Fox Island Salt Marsh Conservation Area; Fox Island WMA
+US-11628,Francis A. Crane Wildlife Management Area,41.6345,-70.5744,pin is inside an outline but no name agrees,Frances A. Crane WMA
+US-11631,Hartley Reservoir Wildlife Management Area,41.749,-70.8069,pin is inside an outline but no name agrees,Hiller Farm CR
+US-11635,Hyannis Ponds Wildlife Management Area,41.6822,-70.2803,a same-name outline is nearby but the pin is outside it,Hyannis Ponds WMA
+US-11637,Maple Springs Wildlife Management Area,41.7809,-70.6734,a same-name outline is nearby but the pin is outside it,Maple Springs WCE; Maple Springs WMA
+US-11638,Marconi Wildlife Management Area,41.8904,-69.9729,pin is inside an outline but no name agrees,Cape Cod National Seashore
+US-11675,Mashpee River Wildlife Management Area,41.6445,-70.4824,a same-name outline is nearby but the pin is outside it,Mashpee River Reservation; Mashpee River WMA; Mashpee River Woodland Conservation Area; Mashpee River Woodlands Conservation Area
+US-11681,Olivers Pond Wildlife Management Area,41.716,-70.036,a same-name outline is nearby but the pin is outside it,Olivers Pond WMA
+US-11687,Quashnet River Wildlife Management Area,41.5891,-70.5095,a same-name outline is nearby but the pin is outside it,Quashnet River Conservation Area; Quashnet River WCE; Quashnet River WMA
+US-11689,Rocky Gutter Wildlife Management Area,41.8408,-70.7955,a same-name outline is nearby but the pin is outside it,Rocky Gutter WMA
+US-11690,Sandwich Hollows Wildlife Management Area,41.7175,-70.4588,a same-name outline is nearby but the pin is outside it,Sandwich Hollows Golf Club; Sandwich Hollows WMA
+US-11692,Sippican Headwaters Wildlife Management Area,41.8164,-70.8297,a same-name outline is nearby but the pin is outside it,Sippican Headwaters WCE; Sippican Headwaters WMA
+US-11694,South Shore Marshes Wildlife Management Area,41.6295,-70.8554,a same-name outline is nearby but the pin is outside it,South Shore Marshes WMA
+US-11696,Triangle Pond Wildlife Management Area,41.6897,-70.4514,a same-name outline is nearby but the pin is outside it,Triangle Pond WMA
+US-11697,West Meadows Wildlife Management Area,42.0346,-71.0363,pin is inside an outline but no name agrees,West Bridgewater State Forest
+US-13236,Rockdale Heights Wildlife Management Area,42.2935,-73.3645,pin is inside an outline but no name agrees,Rockdale Highlands WMA
+US-1655,Campbell Falls State Park,42.0422,-73.226,a same-name outline is nearby but the pin is outside it,Campbell Falls State Park
+US-2429,Demarest Lloyd State Park,41.5257,-70.9904,a same-name outline is nearby but the pin is outside it,Demarest Lloyd State Park
+US-2438,Hampton Ponds State Park,42.1786,-72.6934,a same-name outline is nearby but the pin is outside it,Hampton Ponds Playground; Hampton Ponds State Park
+US-2439,Holyoke Heritage State Park,42.2041,-72.6083,a same-name outline is nearby but the pin is outside it,Holyoke Heritage State Park
+US-2442,Lake Wyola State Park,42.5074,-72.4362,a same-name outline is nearby but the pin is outside it,Lake Wyola Conservation Area; Lake Wyola Dam; Lake Wyola State Park
+US-2443,Lawrence Heritage State Park,42.7066,-71.1575,a same-name outline is nearby but the pin is outside it,Lawrence Heritage State Park
+US-2449,Mount Holyoke Range State Park,42.3036,-72.5311,pin is inside an outline but no name agrees,Holyoke Range Conservation Area
+US-2450,Natural Bridge State Park,42.7065,-73.0905,a same-name outline is nearby but the pin is outside it,Natural Bridge State Park
+US-2452,Pearl Hill State Park,42.669,-71.7489,a same-name outline is nearby but the pin is outside it,Pearl Hill State Park
+US-2454,Quinsigamond State Park,42.2774,-71.7578,a same-name outline is nearby but the pin is outside it,Quinsigamond State Park
+US-2455,Robinson State Park,42.0819,-72.6581,a same-name outline is nearby but the pin is outside it,Robinson State Park
+US-2456,Roxbury Heritage State Park,42.3304,-71.0905,a same-name outline is nearby but the pin is outside it,Roxbury Heritage State Park
+US-2457,Rutland State Park,42.3676,-71.9882,a same-name outline is nearby but the pin is outside it,Rutland State Park
+US-2463,Western Gateway Heritage State Park,42.6997,-73.1149,a same-name outline is nearby but the pin is outside it,Western Gateway Heritage State Park
+US-2881,World War II Veterans Memorial State Park,42.0101,-71.5097,a same-name outline is nearby but the pin is outside it,Veterans Memorial Park
+US-4699,Berkley State Forest,41.8247,-71.0722,a same-name outline is nearby but the pin is outside it,Berkley State Forest
+US-4702,F. Gilbert Hills State Forest,42.0498,-71.2673,a same-name outline is nearby but the pin is outside it,F. Gilbert Hills State Forest
+US-4707,Tolland State Forest,42.1343,-73.0295,a same-name outline is nearby but the pin is outside it,Tolland State Forest
+US-4712,Upton State Forest,42.2107,-71.6091,a same-name outline is nearby but the pin is outside it,Upton State Forest
+US-4722,Gilbert A. Bliss State Forest,42.4351,-72.8627,a same-name outline is nearby but the pin is outside it,Gilbert A. Bliss State Forest
+US-4729,Federated Women's Club State Forest,42.4951,-72.2664,pin is inside an outline but no name agrees,Quabbin Reservoir Watershed
+US-4734,Wendell State Forest,42.538,-72.4367,a same-name outline is nearby but the pin is outside it,Wendell State Forest; Wendell WMA
+US-4736,West Bridgewater State Forest,42.0344,-71.0365,pin is inside an outline but no name agrees,West Meadows WMA
+US-4745,Otter River State Forest,42.6251,-72.0792,a same-name outline is nearby but the pin is outside it,Otter River Conservation Area; Otter River Recreation Area; Otter River Sportsmans Club; Otter River State Forest
+US-4747,Mohawk Trail State Forest,42.6366,-72.9358,a same-name outline is nearby but the pin is outside it,Mohawk Trail State Forest
+US-4758,Monroe State Forest,42.7085,-73.0278,a same-name outline is nearby but the pin is outside it,Monroe State Forest
+US-4762,Kingston State Forest,41.9595,-70.7516,a same-name outline is nearby but the pin is outside it,Kingston State Forest
+US-5635,Mount Greylock State Reserve,42.6167,-73.1869,pin is inside an outline but no name agrees,Mount Greylock State Reservation
+US-6876,Castle Island State Park,42.3372,-71.0107,pin is inside an outline but no name agrees,Old Harbor Reservation
+US-8014,"Nashua, Squannacook, and Nissitissit National Wild and Scenic River",42.736,-71.6715,a same-name outline is nearby but the pin is outside it,Nissitissit River WMA; Squannacook River WMA
+US-8381,Wellfleet Hollow State Campground State Recreation Area,41.9248,-70.006,a same-name outline is nearby but the pin is outside it,Wellfleet Hollow State Campground
+US-8384,Constitution Beach State Park,42.3831,-71.0119,a same-name outline is nearby but the pin is outside it,Constitution Beach
+US-8385,Farnham-Connolly State Park,42.1675,-71.1674,pin is inside an outline but no name agrees,Along Neponset St.
+US-8386,Fort Revere Park State Park,42.3054,-70.9122,a same-name outline is nearby but the pin is outside it,Fort Revere Park
+US-8387,Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area,42.2448,-71.1265,pin is inside an outline but no name agrees,Neponset River Reservation
+US-8389,Lake Dennison State Recreation Area,42.6517,-72.0798,a same-name outline is nearby but the pin is outside it,Lake Dennison Recreation Area
+US-8390,Mystic Lakes State Park,42.4317,-71.1477,a same-name outline is nearby but the pin is outside it,Mystic Lakes
+US-8391,Quabbin State Park,42.28,-72.3479,pin is inside an outline but no name agrees,Quabbin Reservoir Watershed
+US-8392,South Cape Beach State Park,41.5533,-70.5077,a same-name outline is nearby but the pin is outside it,South Cape Beach State Park; South Cape Beach Town Park
+US-8393,Stodder's Neck & Abigail Adams State Park,42.2501,-70.9314,a same-name outline is nearby but the pin is outside it,Abigail Adams Park; Abigail Adams State Park; Stodder's Neck
+US-8394,Ashuwillticook Rail Trail State Trail,42.562,-73.1592,a same-name outline is nearby but the pin is outside it,Ashuwillticook Rail Trail
+US-8395,Cape Cod Rail Trail State Trail,41.7502,-70.0714,pin is inside an outline but no name agrees,Sheep Pond Woodlands
+US-8396,Nashua River Rail Trail State Trail,42.6358,-71.5783,pin is inside an outline but no name agrees,J. Harry Rich State Forest
+US-8397,Norwottuck Rail Trail State Trail,42.3425,-72.5969,a same-name outline is nearby but the pin is outside it,Norwottuck Rail Trail
+US-8398,Southern New England Trunkline Trail State Trail,42.0589,-71.7141,a same-name outline is nearby but the pin is outside it,Southern New England Trunkline Trail
+US-8399,Alewife Brook State Reserve,42.3977,-71.1458,pin is inside an outline but no name agrees,Alewife Brook Reservation
+US-8401,Belle Isle Marsh State Reserve,42.3925,-70.9971,a same-name outline is nearby but the pin is outside it,Belle Isle Marsh
+US-8402,Blue Hills State Reserve,42.2145,-71.0959,pin is inside an outline but no name agrees,Blue Hills Reservation
+US-8403,Breakheart State Reserve,42.4828,-71.029,pin is inside an outline but no name agrees,Breakheart Reservation
+US-8404,Bristol Blake State State Reserve,42.1079,-71.3197,pin is inside an outline but no name agrees,Bristol Blake State Reservation
+US-8405,Charles River State Reserve,42.3648,-71.1377,pin is inside an outline but no name agrees,Charles River Reservation
+US-8408,Elm Bank State Reserve,42.2761,-71.303,pin is inside an outline but no name agrees,Elm Bank Reservation
+US-8412,Horseneck Beach State Reserve,41.502,-71.0417,pin is inside an outline but no name agrees,Horseneck Beach State Reservation
+US-8414,Middlesex Fells State Reserve,42.4505,-71.1047,pin is inside an outline but no name agrees,Middlesex Fells Reservation
+US-8415,Mount Everett State Reserve,42.1063,-73.4322,pin is inside an outline but no name agrees,Mount Everett State Reservation
+US-8417,Mount Tom State Reserve,42.2642,-72.6386,pin is inside an outline but no name agrees,Mount Tom State Reservation
+US-8419,Nantasket Beach State Reserve,42.271,-70.8566,pin is inside an outline but no name agrees,Nantasket Beach Reservation
+US-8423,Purgatory Chasm State Reserve,42.129,-71.7136,pin is inside an outline but no name agrees,Purgatory Chasm State Reservation
+US-8424,Quincy Quarries State Reserve,42.2433,-71.0364,pin is inside an outline but no name agrees,Blue Hills Reservation
+US-8426,Revere Beach State Reserve,42.4062,-70.9912,pin is inside an outline but no name agrees,Revere Beach Reservation
+US-8427,Rumney Marsh State Reserve,42.4367,-70.9962,pin is inside an outline but no name agrees,Rumney Marsh Reservation
+US-8429,Sandy Point State Reserve,42.7043,-70.7816,pin is inside an outline but no name agrees,Sandy Point State Reservation
+US-8430,Scusset Beach State Reserve,41.7787,-70.5123,pin is inside an outline but no name agrees,Cape Cod Canal Access
+US-8431,Stony Brook State Reserve,42.2488,-71.1385,pin is inside an outline but no name agrees,Stony Brook Reservation
+US-8432,Walden Pond State Reserve,42.4401,-71.3358,pin is inside an outline but no name agrees,Walden Pond State Reservation
+US-8433,Winthrop Shore State Reserve,42.3784,-70.9787,pin is inside an outline but no name agrees,Winthrop Golf Club

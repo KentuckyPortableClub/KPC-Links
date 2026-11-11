@@ -13,11 +13,12 @@
    "pin_swap": 0,
    "pin_well_outside": 5,
    "read": 1038,
-   "seconds": 302,
+   "seconds": 309,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 21
+   "site": 21,
+   "rules": "9e06aa4b4783"
   },
   "AL": {
    "check": 4,
@@ -36,7 +37,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4
+   "site": 4,
+   "rules": "9e06aa4b4783"
   },
   "AR": {
    "check": 8,
@@ -55,7 +57,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 11
+   "site": 11,
+   "rules": "9e06aa4b4783"
   },
   "AZ": {
    "check": 3,
@@ -70,11 +73,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 2318,
-   "seconds": 17,
+   "seconds": 12,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 10
+   "site": 10,
+   "rules": "9e06aa4b4783"
   },
   "CA": {
    "check": 5,
@@ -89,11 +93,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 19244,
-   "seconds": 271,
+   "seconds": 196,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 8
+   "site": 8,
+   "rules": "9e06aa4b4783"
   },
   "CO": {
    "check": 3,
@@ -108,11 +113,12 @@
    "pin_swap": 0,
    "pin_well_outside": 13,
    "read": 7895,
-   "seconds": 110,
+   "seconds": 91,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 6
+   "site": 6,
+   "rules": "9e06aa4b4783"
   },
   "CT": {
    "check": 2,
@@ -127,11 +133,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 14273,
-   "seconds": 104,
+   "seconds": 103,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3
+   "site": 3,
+   "rules": "9e06aa4b4783"
   },
   "DC": {
    "check": 2,
@@ -150,26 +157,28 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4
+   "site": 4,
+   "rules": "9e06aa4b4783"
   },
   "DE": {
    "check": 1,
    "detail": 0.001,
-   "matched": 84,
+   "matched": 85,
    "none": 1,
-   "nonum": 1348,
-   "padus": 2003,
+   "nonum": 1892,
+   "padus": 3114,
    "parks": 89,
    "pin_no_shape": 0,
    "pin_outside": 17,
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 2786,
-   "seconds": 31,
+   "seconds": 20,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 7
+   "site": 6,
+   "rules": "9e06aa4b4783"
   },
   "FL": {
    "check": 12,
@@ -204,11 +213,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 4265,
-   "seconds": 19,
+   "seconds": 16,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3
+   "site": 3,
+   "rules": "9e06aa4b4783"
   },
   "HI": {
    "check": 5,
@@ -223,11 +233,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 1005,
-   "seconds": 7,
+   "seconds": 6,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 8
+   "site": 8,
+   "rules": "9e06aa4b4783"
   },
   "IA": {
    "check": 1,
@@ -242,11 +253,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 4910,
-   "seconds": 93,
+   "seconds": 75,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 2
+   "site": 2,
+   "rules": "9e06aa4b4783"
   },
   "ID": {
    "check": 16,
@@ -261,11 +273,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 1662,
-   "seconds": 232,
+   "seconds": 229,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 96
+   "site": 96,
+   "rules": "9e06aa4b4783"
   },
   "IL": {
    "check": 7,
@@ -280,11 +293,12 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 10674,
-   "seconds": 115,
+   "seconds": 94,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 0
+   "site": 0,
+   "rules": "9e06aa4b4783"
   },
   "IN": {
    "check": 3,
@@ -303,7 +317,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 8
+   "site": 8,
+   "rules": "9e06aa4b4783"
   },
   "KS": {
    "check": 3,
@@ -318,11 +333,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 1604,
-   "seconds": 5,
+   "seconds": 4,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 1
+   "site": 1,
+   "rules": "9e06aa4b4783"
   },
   "LA": {
    "check": 1,
@@ -337,30 +353,32 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 1502,
-   "seconds": 6,
+   "seconds": 5,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 1
+   "site": 1,
+   "rules": "9e06aa4b4783"
   },
   "MA": {
    "check": 3,
    "detail": 0.001,
    "matched": 411,
    "none": 4,
-   "nonum": 49795,
-   "padus": 62739,
+   "nonum": 97212,
+   "padus": 119649,
    "parks": 421,
    "pin_no_shape": 0,
    "pin_outside": 118,
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 22817,
-   "seconds": 1387,
+   "seconds": 1827,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3
+   "site": 3,
+   "rules": "9e06aa4b4783"
   },
   "MD": {
    "check": 2,
@@ -375,11 +393,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 3539,
-   "seconds": 30,
+   "seconds": 25,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 5
+   "site": 5,
+   "rules": "9e06aa4b4783"
   },
   "ME": {
    "check": 2,
@@ -394,18 +413,19 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 6623,
-   "seconds": 48,
+   "seconds": 44,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 2
+   "site": 2,
+   "rules": "9e06aa4b4783"
   },
   "MI": {
    "check": 4,
    "detail": 0.001,
-   "matched": 358,
-   "none": 16,
-   "nonum": 1126,
+   "matched": 356,
+   "none": 18,
+   "nonum": 1129,
    "padus": 1965,
    "parks": 388,
    "pin_no_shape": 0,
@@ -413,11 +433,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 7798,
-   "seconds": 86,
+   "seconds": 72,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 12
+   "site": 12,
+   "rules": "9e06aa4b4783"
   },
   "MN": {
    "check": 2,
@@ -425,37 +446,39 @@
    "matched": 312,
    "none": 4,
    "nonum": 16660,
-   "padus": 24988,
+   "padus": 24995,
    "parks": 319,
    "pin_no_shape": 0,
    "pin_outside": 52,
    "pin_swap": 1,
    "pin_well_outside": 5,
    "read": 7733,
-   "seconds": 525,
+   "seconds": 382,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 11
+   "site": 11,
+   "rules": "9e06aa4b4783"
   },
   "MO": {
    "check": 3,
    "detail": 0.001,
    "matched": 553,
    "none": 5,
-   "nonum": 3804,
-   "padus": 5990,
+   "nonum": 3808,
+   "padus": 5994,
    "parks": 561,
    "pin_no_shape": 0,
    "pin_outside": 82,
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 3917,
-   "seconds": 281,
+   "seconds": 258,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 0
+   "site": 0,
+   "rules": "9e06aa4b4783"
   },
   "MS": {
    "check": 3,
@@ -474,7 +497,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 15
+   "site": 15,
+   "rules": "9e06aa4b4783"
   },
   "MT": {
    "check": 4,
@@ -489,11 +513,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 1457,
-   "seconds": 49,
+   "seconds": 48,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3
+   "site": 3,
+   "rules": "9e06aa4b4783"
   },
   "NC": {
    "check": 13,
@@ -508,11 +533,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 5540,
-   "seconds": 234,
+   "seconds": 217,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4
+   "site": 4,
+   "rules": "9e06aa4b4783"
   },
   "ND": {
    "check": 0,
@@ -531,7 +557,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 6
+   "site": 6,
+   "rules": "9e06aa4b4783"
   },
   "NE": {
    "check": 2,
@@ -546,30 +573,32 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 1909,
-   "seconds": 17,
+   "seconds": 16,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3
+   "site": 3,
+   "rules": "9e06aa4b4783"
   },
   "NH": {
    "check": 1,
    "detail": 0.001,
-   "matched": 196,
-   "none": 5,
-   "nonum": 38471,
+   "matched": 195,
+   "none": 6,
+   "nonum": 38473,
    "padus": 40687,
    "parks": 206,
    "pin_no_shape": 0,
-   "pin_outside": 82,
+   "pin_outside": 81,
    "pin_swap": 0,
    "pin_well_outside": 8,
    "read": 5125,
-   "seconds": 267,
+   "seconds": 218,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4
+   "site": 4,
+   "rules": "9e06aa4b4783"
   },
   "NJ": {
    "check": 0,
@@ -584,11 +613,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 15894,
-   "seconds": 54,
+   "seconds": 50,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 2
+   "site": 2,
+   "rules": "9e06aa4b4783"
   },
   "NM": {
    "check": 1,
@@ -603,11 +633,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 1395,
-   "seconds": 20,
+   "seconds": 16,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 13
+   "site": 13,
+   "rules": "9e06aa4b4783"
   },
   "NV": {
    "check": 10,
@@ -622,11 +653,12 @@
    "pin_swap": 0,
    "pin_well_outside": 16,
    "read": 1908,
-   "seconds": 74,
+   "seconds": 83,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 76
+   "site": 76,
+   "rules": "9e06aa4b4783"
   },
   "NY": {
    "check": 4,
@@ -641,11 +673,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 13248,
-   "seconds": 328,
+   "seconds": 238,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 13
+   "site": 13,
+   "rules": "9e06aa4b4783"
   },
   "OH": {
    "check": 0,
@@ -660,11 +693,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 7626,
-   "seconds": 59,
+   "seconds": 49,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 0
+   "site": 0,
+   "rules": "9e06aa4b4783"
   },
   "OK": {
    "check": 0,
@@ -679,49 +713,52 @@
    "pin_swap": 0,
    "pin_well_outside": 6,
    "read": 1561,
-   "seconds": 13,
+   "seconds": 11,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 10
+   "site": 10,
+   "rules": "9e06aa4b4783"
   },
   "OR": {
    "check": 19,
    "detail": 0.001,
    "matched": 387,
    "none": 19,
-   "nonum": 16885,
-   "padus": 20323,
+   "nonum": 16887,
+   "padus": 20325,
    "parks": 440,
    "pin_no_shape": 0,
    "pin_outside": 75,
    "pin_swap": 0,
    "pin_well_outside": 5,
    "read": 6116,
-   "seconds": 738,
+   "seconds": 535,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 17
+   "site": 17,
+   "rules": "9e06aa4b4783"
   },
   "PA": {
-   "check": 1,
+   "check": 2,
    "detail": 0.001,
-   "matched": 490,
+   "matched": 489,
    "none": 3,
-   "nonum": 687,
+   "nonum": 688,
    "padus": 2651,
    "parks": 494,
    "pin_no_shape": 0,
-   "pin_outside": 23,
+   "pin_outside": 24,
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 15528,
-   "seconds": 66,
+   "seconds": 50,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 0
+   "site": 0,
+   "rules": "9e06aa4b4783"
   },
   "RI": {
    "check": 2,
@@ -736,11 +773,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 2584,
-   "seconds": 12,
+   "seconds": 10,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 0
+   "site": 0,
+   "rules": "9e06aa4b4783"
   },
   "SC": {
    "check": 1,
@@ -755,11 +793,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 3085,
-   "seconds": 22,
+   "seconds": 18,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 4
+   "site": 4,
+   "rules": "9e06aa4b4783"
   },
   "SD": {
    "check": 0,
@@ -774,11 +813,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "read": 1323,
-   "seconds": 15,
+   "seconds": 12,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3
+   "site": 3,
+   "rules": "9e06aa4b4783"
   },
   "TN": {
    "check": 1,
@@ -793,11 +833,12 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 2157,
-   "seconds": 50,
+   "seconds": 36,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 5
+   "site": 5,
+   "rules": "9e06aa4b4783"
   },
   "TX": {
    "check": 1,
@@ -812,11 +853,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "read": 11915,
-   "seconds": 115,
+   "seconds": 126,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 6
+   "site": 6,
+   "rules": "9e06aa4b4783"
   },
   "UT": {
    "check": 20,
@@ -831,11 +873,12 @@
    "pin_swap": 0,
    "pin_well_outside": 15,
    "read": 6550,
-   "seconds": 683,
+   "seconds": 991,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 250
+   "site": 250,
+   "rules": "9e06aa4b4783"
   },
   "VA": {
    "check": 4,
@@ -850,11 +893,12 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 6836,
-   "seconds": 189,
+   "seconds": 182,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 16
+   "site": 16,
+   "rules": "9e06aa4b4783"
   },
   "VT": {
    "check": 11,
@@ -869,18 +913,19 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "read": 2190,
-   "seconds": 14,
+   "seconds": 15,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 3
+   "site": 3,
+   "rules": "9e06aa4b4783"
   },
   "WA": {
    "check": 4,
    "detail": 0.001,
-   "matched": 494,
-   "none": 11,
-   "nonum": 8647,
+   "matched": 493,
+   "none": 12,
+   "nonum": 8648,
    "padus": 10564,
    "parks": 536,
    "pin_no_shape": 0,
@@ -888,11 +933,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 6607,
-   "seconds": 323,
+   "seconds": 264,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 28
+   "site": 28,
+   "rules": "9e06aa4b4783"
   },
   "WI": {
    "check": 4,
@@ -907,11 +953,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "read": 6027,
-   "seconds": 1287,
+   "seconds": 1436,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 10
+   "site": 10,
+   "rules": "9e06aa4b4783"
   },
   "WV": {
    "check": 0,
@@ -930,7 +977,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 1
+   "site": 1,
+   "rules": "9e06aa4b4783"
   },
   "WY": {
    "check": 12,
@@ -945,11 +993,12 @@
    "pin_swap": 0,
    "pin_well_outside": 11,
    "read": 19788,
-   "seconds": 775,
+   "seconds": 628,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "site": 51
+   "site": 51,
+   "rules": "9e06aa4b4783"
   }
  },
  "rules": "a066624520b4",
@@ -960,13 +1009,11 @@
   ".github/scripts/kpc_us_key.py",
   ".github/key-rules-version.json"
  ],
- "rules_of_run": "6395b561d4c8",
- "build": "US-42891101784",
- "built": "2026-11-10 21:40 UTC",
+ "rules_of_run": "9e06aa4b4783",
+ "build": "US-42956018092",
+ "built": "2026-11-11 05:58 UTC",
  "failed": [
-  "DE",
-  "FL",
-  "UT"
+  "FL"
  ],
  "complete": false
 }

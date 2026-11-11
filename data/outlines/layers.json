@@ -983,6 +983,27 @@
    "source_count": 9,
    "url": ""
   },
+  "US-AL.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-AL"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
   "US-AL.sgala": {
    "agency": "Alabama State Parks (ADCNR) (park, state GIS table)",
    "areas": [
@@ -998,7 +1019,7 @@
     "NAME"
    ],
    "queued": 7,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 21,
@@ -1009,7 +1030,7 @@
    "areas": [
     "US-AL"
    ],
-   "expected_count": 200,
+   "expected_count": 227,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -1019,7 +1040,7 @@
     "DCNR_Name"
    ],
    "queued": 25,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 227,
@@ -1040,7 +1061,7 @@
     "Name"
    ],
    "queued": 11,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 42,
@@ -1061,7 +1082,7 @@
     "Name"
    ],
    "queued": 15,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 20,
@@ -1082,7 +1103,7 @@
     "fname"
    ],
    "queued": 89,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 143,
@@ -1103,7 +1124,7 @@
     "maname"
    ],
    "queued": 42,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 79,
@@ -1124,7 +1145,7 @@
     "name"
    ],
    "queued": 20,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 52,
@@ -1355,7 +1376,7 @@
     "HA_NAME"
    ],
    "queued": 105,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 185,
@@ -1376,7 +1397,7 @@
     "HMA_NAME"
    ],
    "queued": 86,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 113,
@@ -1397,7 +1418,7 @@
     "NCA_NAME"
    ],
    "queued": 30,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 982,
@@ -1418,7 +1439,7 @@
     "FET_NAME"
    ],
    "queued": 13,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 127,
@@ -1439,7 +1460,7 @@
     "FET_NAME"
    ],
    "queued": 71,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 192,
@@ -1460,7 +1481,7 @@
     "FET_NAME"
    ],
    "queued": 71,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 192,
@@ -1481,7 +1502,7 @@
     "ACEC_NAME"
    ],
    "queued": 31,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 303,
@@ -1502,7 +1523,7 @@
     "FET_NAME"
    ],
    "queued": 10,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 90,
@@ -1523,7 +1544,7 @@
     "NLCS_NAME"
    ],
    "queued": 15,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 162,
@@ -1544,7 +1565,7 @@
     "NLCS_NAME"
    ],
    "queued": 5,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 178,
@@ -1565,7 +1586,7 @@
     "HA_NAME"
    ],
    "queued": 5,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 14,
@@ -1586,7 +1607,7 @@
     "HMA_NAME"
    ],
    "queued": 2,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 5,
@@ -1607,7 +1628,7 @@
     "NCA_NAME"
    ],
    "queued": 4,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 11,
@@ -1628,7 +1649,7 @@
     "FET_NAME"
    ],
    "queued": 4,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 47,
@@ -1649,7 +1670,7 @@
     "ACEC_NAME"
    ],
    "queued": 12,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 106,
@@ -1723,7 +1744,7 @@
    "areas": [
     "US-CO"
    ],
-   "expected_count": 200,
+   "expected_count": 278,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -1733,7 +1754,7 @@
     "FET_NAME"
    ],
    "queued": 29,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 278,
@@ -1754,7 +1775,7 @@
     "NLCS_NAME"
    ],
    "queued": 2,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 7,
@@ -1775,10 +1796,31 @@
     "NLCS_NAME"
    ],
    "queued": 8,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 80,
+   "url": ""
+  },
+  "US-DE.sgdea": {
+   "agency": "Delaware DNREC (land, state GIS table)",
+   "areas": [
+    "US-DE"
+   ],
+   "expected_count": 1326,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 50,
+   "name_fields": [
+    "NAME"
+   ],
+   "queued": 32,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1326,
    "url": ""
   },
   "US-DE.sgdeb": {
@@ -1880,7 +1922,7 @@
     "NCA_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
@@ -1901,7 +1943,7 @@
     "SITE_NAME"
    ],
    "queued": 38,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 171,
@@ -1943,10 +1985,31 @@
     "NAME"
    ],
    "queued": 56,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 263,
+   "url": ""
+  },
+  "US-HI.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-HI"
+   ],
+   "expected_count": 2,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 2,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 2,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 2,
    "url": ""
   },
   "US-HI.sghia": {
@@ -2090,7 +2153,7 @@
     "HA_NAME"
    ],
    "queued": 11,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 17,
@@ -2111,7 +2174,7 @@
     "HMA_NAME"
    ],
    "queued": 7,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 9,
@@ -2132,7 +2195,7 @@
     "NCA_NAME"
    ],
    "queued": 10,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 3,
@@ -2153,7 +2216,7 @@
     "FET_NAME"
    ],
    "queued": 2,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 30,
@@ -2174,7 +2237,7 @@
     "FET_NAME"
    ],
    "queued": 129,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 400,
@@ -2195,7 +2258,7 @@
     "FET_NAME"
    ],
    "queued": 129,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 400,
@@ -2216,7 +2279,7 @@
     "ACEC_NAME"
    ],
    "queued": 24,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 134,
@@ -2237,7 +2300,7 @@
     "FET_NAME"
    ],
    "queued": 95,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 76,
@@ -2258,7 +2321,7 @@
     "NLCS_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 13,
@@ -2279,7 +2342,7 @@
     "NLCS_NAME"
    ],
    "queued": 8,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 99,
@@ -2321,7 +2384,7 @@
     "unitname"
    ],
    "queued": 84,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 654,
@@ -2342,7 +2405,7 @@
     "unitname"
    ],
    "queued": 84,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 654,
@@ -2363,7 +2426,7 @@
     "unitname"
    ],
    "queued": 10,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 196,
@@ -2384,10 +2447,52 @@
     "unitname"
    ],
    "queued": 40,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 102,
+   "url": ""
+  },
+  "US-KS.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-KS"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 1,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-MA.sgmad": {
+   "agency": "MassGIS / Massachusetts EEA (Protected and Recreational OpenSpace) (land, state GIS table)",
+   "areas": [
+    "US-MA"
+   ],
+   "expected_count": 59508,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 238,
+   "name_fields": [
+    "SITE_NAME"
+   ],
+   "queued": 146,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 59508,
    "url": ""
   },
   "US-MD.mdd": {
@@ -2409,6 +2514,27 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 580,
+   "url": ""
+  },
+  "US-MD.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-MD"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
    "url": ""
   },
   "US-MD.sgmda": {
@@ -3041,6 +3167,27 @@
    "source_count": 3,
    "url": ""
   },
+  "US-ND.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-ND"
+   ],
+   "expected_count": 5,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 3,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 3,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 5,
+   "url": ""
+  },
   "US-ND.sgndd": {
    "agency": "North Dakota Forest Service (via ND Dept of Mineral Resources server) (forest, state GIS table)",
    "areas": [
@@ -3078,6 +3225,27 @@
    ],
    "queued": 3,
    "read_date": "2026-11-10",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
+  "US-NE.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-NE"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
@@ -3524,6 +3692,27 @@
    "source_count": 165,
    "url": ""
   },
+  "US-NV.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-NV"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 4,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
   "US-NV.sgnvb": {
    "agency": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server) (land, state GIS table)",
    "areas": [
@@ -3718,7 +3907,7 @@
    "areas": [
     "US-OH"
    ],
-   "expected_count": 200,
+   "expected_count": 865,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -3728,7 +3917,7 @@
     "Name_Label"
    ],
    "queued": 98,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 865,
@@ -3749,7 +3938,7 @@
     "FIRST_NAME"
    ],
    "queued": 4,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 623,
@@ -3770,10 +3959,31 @@
     "FET_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
+   "url": ""
+  },
+  "US-OK.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-OK"
+   ],
+   "expected_count": 4,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 4,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 4,
    "url": ""
   },
   "US-OR.hab": {
@@ -3791,7 +4001,7 @@
     "HA_NAME"
    ],
    "queued": 17,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 46,
@@ -3812,7 +4022,7 @@
     "HMA_NAME"
    ],
    "queued": 12,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 25,
@@ -3833,7 +4043,7 @@
     "NCA_NAME"
    ],
    "queued": 13,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 5,
@@ -3844,7 +4054,7 @@
    "areas": [
     "US-OR"
    ],
-   "expected_count": 200,
+   "expected_count": 422,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -3854,7 +4064,7 @@
     "NAME"
    ],
    "queued": 60,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 422,
@@ -3875,7 +4085,7 @@
     "FET_NAME"
    ],
    "queued": 39,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 184,
@@ -3896,7 +4106,7 @@
     "FET_NAME"
    ],
    "queued": 115,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2354,
@@ -3917,7 +4127,7 @@
     "FET_NAME"
    ],
    "queued": 115,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2354,
@@ -3938,7 +4148,7 @@
     "ACEC_NAME"
    ],
    "queued": 29,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 226,
@@ -3949,7 +4159,7 @@
    "areas": [
     "US-OR"
    ],
-   "expected_count": 200,
+   "expected_count": 422,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -3959,7 +4169,7 @@
     "NAME"
    ],
    "queued": 60,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 422,
@@ -3970,7 +4180,7 @@
    "areas": [
     "US-OR"
    ],
-   "expected_count": 200,
+   "expected_count": 6345,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -3980,10 +4190,10 @@
     "PARK_NAME"
    ],
    "queued": 109,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
-   "source_count": 6343,
+   "source_count": 6345,
    "url": ""
   },
   "US-OR.sgorf": {
@@ -4022,7 +4232,7 @@
     "WSR_NAME"
    ],
    "queued": 28,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 132,
@@ -4043,7 +4253,7 @@
     "NLCS_NAME"
    ],
    "queued": 4,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 12,
@@ -4064,7 +4274,7 @@
     "NLCS_NAME"
    ],
    "queued": 15,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 150,
@@ -4211,7 +4421,7 @@
     "FET_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 6,
@@ -4232,7 +4442,7 @@
     "FET_NAME"
    ],
    "queued": 5,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 11,
@@ -4253,7 +4463,7 @@
     "FET_NAME"
    ],
    "queued": 5,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 11,
@@ -4274,7 +4484,7 @@
     "ACEC_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 3,
@@ -4295,7 +4505,7 @@
     "AreaName"
    ],
    "queued": 23,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 133,
@@ -4316,7 +4526,7 @@
     "AreaName"
    ],
    "queued": 23,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 134,
@@ -4337,7 +4547,7 @@
     "NAME"
    ],
    "queued": 66,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 228,
@@ -4658,6 +4868,27 @@
    "source_count": 100,
    "url": ""
   },
+  "US-UT.sgaki": {
+   "agency": "National Register of Historic Places Polygons (land, state GIS table)",
+   "areas": [
+    "US-UT"
+   ],
+   "expected_count": 1,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 1,
+   "name_fields": [
+    "RESNAME"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 1,
+   "url": ""
+  },
   "US-UT.sgutd": {
    "agency": "BLM Utah State Office (congressionally designated recreation areas) (land, state GIS table)",
    "areas": [
@@ -4820,7 +5051,7 @@
     "NCA_NAME"
    ],
    "queued": 19,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
@@ -4841,7 +5072,7 @@
     "FET_NAME"
    ],
    "queued": 4,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 14,
@@ -4862,7 +5093,7 @@
     "FET_NAME"
    ],
    "queued": 24,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 244,
@@ -4883,7 +5114,7 @@
     "FET_NAME"
    ],
    "queued": 24,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 244,
@@ -4904,7 +5135,7 @@
     "ACEC_NAME"
    ],
    "queued": 1,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 22,
@@ -4946,7 +5177,7 @@
     "ManagedPlaceName"
    ],
    "queued": 101,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 729,
@@ -4967,7 +5198,7 @@
     "PARCEL_LABEL_NM"
    ],
    "queued": 69,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 18844,
@@ -4988,7 +5219,7 @@
     "NAME"
    ],
    "queued": 167,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2148,
@@ -4999,7 +5230,7 @@
    "areas": [
     "US-WA"
    ],
-   "expected_count": 200,
+   "expected_count": 218,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -5009,7 +5240,7 @@
     "WildlifeAreaUnitName"
    ],
    "queued": 50,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 218,
@@ -5030,7 +5261,7 @@
     "WildlifeAreaName"
    ],
    "queued": 121,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 33,
@@ -5051,7 +5282,7 @@
     "NLCS_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
@@ -5072,7 +5303,7 @@
     "WLA_Name"
    ],
    "queued": 118,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 220,
@@ -5093,7 +5324,7 @@
     "NLCS_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
@@ -5282,7 +5513,7 @@
     "HA_NAME"
    ],
    "queued": 51,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 39,
@@ -5303,7 +5534,7 @@
     "HMA_NAME"
    ],
    "queued": 14,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 16,
@@ -5324,7 +5555,7 @@
     "FET_NAME"
    ],
    "queued": 1,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2,
@@ -5345,7 +5576,7 @@
     "FET_NAME"
    ],
    "queued": 100,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 81,
@@ -5366,7 +5597,7 @@
     "FET_NAME"
    ],
    "queued": 100,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 81,
@@ -5387,7 +5618,7 @@
     "ACEC_NAME"
    ],
    "queued": 33,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 53,
@@ -5408,7 +5639,7 @@
     "NLCS_NAME"
    ],
    "queued": 11,
-   "read_date": "2026-11-10",
+   "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 55,
