@@ -566,3 +566,22 @@ window.KPCX = {baseSwitcher, attach, hover, overlapData, overlapIndex, overlapCa
    clearInterval(p._kpcW);if(p.options.autoPan===false)p._kpcW=setInterval(()=>{if(!p._map){clearInterval(p._kpcW);return}if(p.options.autoPan!==false){clearInterval(p._kpcW);fit(p)}},250);
    if(window.ResizeObserver&&p._container){if(p._kpcRO)p._kpcRO.disconnect();let t=0;p._kpcRO=new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(()=>{cap(p);go()},60)});p._kpcRO.observe(p._container)}});
   map.on('popupclose',e=>{const p=e.popup;setTimeout(()=>{if(!map.getContainer().querySelector('.leaflet-popup'))map.getContainer().classList.remove('kx-popopen')},50);if(!p)return;clearInterval(p._kpcW);if(p._kpcRO){p._kpcRO.disconnect();p._kpcRO=null}})})})();
+/* KPC bottom-left lift (shared, runs once per page). On a narrow map the credits line (Leaflet | Imagery | PAD-US)
+   wraps across the whole bottom edge and covered the bottom-left buttons (Boundaries legend, PAD-US key).
+   The credits stay as they are; the bottom-left buttons are lifted to sit just above them, re-measured whenever the
+   map, the credits or the buttons change size (map size buttons, full screen, layers turned on or off). Nov 10. */
+(function(){if(!window.L||!L.Map||window.__kpcLiftBL)return;window.__kpcLiftBL=true;
+ L.Map.addInitHook(function(){const map=this;let raf=0,ro=null;
+  const lift=()=>{raf=0;const c=map.getContainer&&map.getContainer();if(!c||!c.isConnected)return;
+   const bl=c.querySelector('.leaflet-bottom.leaflet-left'),a=c.querySelector('.leaflet-control-attribution');if(!bl)return;
+   const ctl=[...bl.children].filter(e=>e.getBoundingClientRect().height);
+   let need=0;if(a&&ctl.length&&a.textContent.trim()){const ar=a.getBoundingClientRect(),mr=c.getBoundingClientRect();
+    if(ar.height&&ar.width){const right=Math.max(...ctl.map(e=>e.getBoundingClientRect().right));if(ar.left<right+4)need=Math.max(0,Math.ceil(mr.bottom-ar.top))}}
+   const want=need?need+'px':'';if(bl.style.bottom!==want)bl.style.bottom=want};
+  const later=()=>{if(!raf)raf=requestAnimationFrame(lift)};
+  map.whenReady(()=>{later();setTimeout(later,600);
+   if(window.ResizeObserver){ro=new ResizeObserver(later);const c=map.getContainer();ro.observe(c);
+    const watch=()=>{const a=c.querySelector('.leaflet-control-attribution'),bl=c.querySelector('.leaflet-bottom.leaflet-left');if(a&&!a._kpcRO){a._kpcRO=1;ro.observe(a)}if(bl&&!bl._kpcRO){bl._kpcRO=1;ro.observe(bl)}};watch();
+    if(window.MutationObserver){const bl=c.querySelector('.leaflet-bottom.leaflet-left');if(bl)new MutationObserver(()=>{[...bl.children].forEach(e=>{if(!e._kpcRO){e._kpcRO=1;ro.observe(e)}});later()}).observe(bl,{childList:true,subtree:true,attributes:true,attributeFilter:['class']})}}});
+  map.on('resize layeradd layerremove baselayerchange',later);
+  map.on('unload',()=>{if(ro)ro.disconnect()})})})();
