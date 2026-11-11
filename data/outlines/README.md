@@ -7,12 +7,62 @@
 | File | What it holds |
 |---|---|
 | `<area>.geojson.gz` | The park outlines for one area (for example `US-KY`). One entry per park: `ref`, `name`, `geometry`, `g`, source agency, layer URL, source record ids, source feature count, date read, licence, content hash. |
+| `<area>.p2.geojson.gz` ... | Nov 11: the next parts of an area whose outlines do not fit one file under 1 MB (see *Parts* below). |
 | `layers.json` | One entry per agency layer, with the total the layer itself reported at the last complete read (the *expected count*). Also the expected counts for the saved state copies. |
 | `raw-manifest.json` | A list of the big raw layer downloads (name, size, sha256, source, date). The files are **not** in git. |
 | `solver-queue/<layer>.csv` | Parks the tool could not match, or matched two ways. A person decides these. |
 | `solver-queue/US-XX.nomatch.csv` | Nov 11: parks the live key (`data/us-key/US-XX.json`) knows that have no outline in the master records and are in no layer's queue file: `no layer joined this park in the key`, or `joined in the key, but no outline for it is in the master records`. Written by `collect --us-key`; when every park has an outline it is emptied to its header line (not deleted: the save carries no deletions). Pins are not in the key, so lat / lon are blank. |
 
 `g` says how good the outline is: `official` (an agency's own boundary), `approximate` (a trace), `point-circle` (a circle around the pin), `pin` (a point). A better one is never replaced by a worse one, so an official outline stays official.
+
+## Parts: an area over 1 MB (Nov 11)
+
+An area file that would pass 1 MB (gzip bytes) is saved in parts by `kpc_master.save_area`, with the same part scheme the release
+uses (`kpc_release.split` / `join`; the pages' `KPCREL` block reads it):
+
+- `US-AK.geojson.gz` is part 1 and keeps the area's own name; parts 2..N are `US-AK.p2.geojson.gz` ... `US-AK.pN.geojson.gz`.
+- Every part is a whole FeatureCollection with the same `kpc` header plus `kpc_part: [i, N, tag]`; `tag` is the first 12 hex of the
+  sha256 of the whole area, so parts of two different saves are never put together (the reader refuses: never half an area).
+- Parks go into the parts in ref order. One park that alone does not fit is cut by its polygons into pieces: Features with the same
+  properties plus `kpc_piece: [k, M]`. Reading puts the polygons back in order, so the record (and its content hash) is the same.
+- Part 1 decides how many parts there are. The copy-mode save carries no deletions, so an old `.p3` left behind after the area
+  shrinks is harmless: nobody reads it. An area that fits stays one file with no part fields, exactly as before.
+- Every tool reads every part: `load_area` (and so trim, `check`, `collect`, `part`, `kpc_outlines_from_key`, `kpc_outlines_keep_main`,
+  `kpc_key_drop_guard`, `tools/kpc_boundary_gap.py`), the release (a working area in parts is released part by part, byte for
+  byte), and the pages (`KPCREL.get` reads part 1, then parts 2..N, on the working-copy path too).
+- Each part is a tracked file under 1 MB, so the preflight size check covers them as it covers any file.
+
+## Pin-graded parks have no outline (Nov 11)
+
+`kpc_master.save_area` leaves out a park the US key grades `pin` (`kpc_master.pin_drops`), so every writer and every map tool agrees
+without reading the key. The rule looks at every US key that lists the park, whichever state's file holds the record (a record
+in a neighbour's file counts the same): the park is dropped when every one of those keys grades it pin. A park no US key lists is
+left alone. A park that is pin in one state and official in another (US-4514: pin in TX and OK, official in NM; US-0015: pin in DC,
+official in MD and WV) keeps its outline: the planner's lookup takes the best grade over the states it reads, so it draws that outline. `kpc_outlines_keep_main` does not bring such an outline back from main's copy, and the
+drop guard does not count it as a lost outline. `kpc_master_cli.py resave [--dry-run]` puts every area file through the save once.
+
+The same place keeps the grade honest: a record whose `g` is higher than the key allows (say `official` while
+`data/us-key/US-XX.json` grades the park `approximate`) is saved as `approximate` (`kpc_master.grade_lowers`; only `g` and the content
+hash change), whichever state's file holds it, only when approximate is the best grade any US key that lists the park gives it:
+a park official in any state's key is not touched, and a grade is never raised this way. A later trim or main's old official copy
+cannot flip it back, because every save applies the rule again (`kpc_master.key_fix`, also in `kpc_outlines_keep_main`).
+
+**Same content, other bytes = no change.** Another zlib build packs the same content into other bytes (the deflate stream differs;
+the header is fixed: mtime 0, the file name, XFL 2, OS 255). So every writer compares the unpacked content, not the bytes, and leaves
+a file that already holds the same content untouched (`kpc_master.write_if_changed`: save_area and its parts, `resave`, `collect`,
+`part`, `kpc_outlines_from_key`; the release keeps a released file and its version). `kpc_outlines_keep_main`, which runs as the
+save's redo step just before `git add`, puts main's own bytes back for any area file whose content equals main's, so git sees no change.
+
+## Building the outlines a key joins (Alaska, Nov 11)
+
+On a computer with shapely and the saved copy (`US-AK.json.gz` from the boundary-cache release) in a folder, from the repo root:
+
+    python3 .github/scripts/kpc_outlines_from_key.py --cache <folder with US-AK.json.gz> --states AK --dry-run   # what would be written, the part files and sizes
+    python3 .github/scripts/kpc_outlines_from_key.py --cache <folder with US-AK.json.gz> --states AK             # write it (parts when over 1 MB)
+    python3 .github/scripts/kpc_outlines_from_key.py --verify --states AK                                        # old outlines unchanged, every file under 1 MB, counts
+    python3 .github/scripts/kpc_master_cli.py check --repo .
+
+Full default precision (5 decimals, the 0.0001 degree trim the master always keeps); nothing else is simplified.
 
 ## The tool
 
