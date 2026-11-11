@@ -1,6 +1,12 @@
 {
  "about": "The map files the public pages read. Written only by kpc_release.py (the by-hand Release workflow). files: working name -> [[released file, version]].",
  "areas": {
+  "CA": {
+   "files": 17,
+   "run": "43109466490",
+   "sha": "addf5c4e23d864a95a5c3fa7848819c93295034a",
+   "time": "2026-11-11T22:10:49Z"
+  },
   "US": {
    "files": 101,
    "run": "43109409415",
@@ -9,6 +15,108 @@
   }
  },
  "files": {
+  "ca-key/CA-AB.json": [
+   [
+    "ca-key/CA-AB.json",
+    "807d8728b0b5"
+   ]
+  ],
+  "ca-key/CA-BC.json": [
+   [
+    "ca-key/CA-BC.json",
+    "e118bb7d09e8"
+   ]
+  ],
+  "ca-key/CA-MB.json": [
+   [
+    "ca-key/CA-MB.json",
+    "fe344f83cd6e"
+   ]
+  ],
+  "ca-key/CA-NB.json": [
+   [
+    "ca-key/CA-NB.json",
+    "742a98f4bf97"
+   ]
+  ],
+  "ca-key/CA-NL.json": [
+   [
+    "ca-key/CA-NL.json",
+    "00f00dbaaf2e"
+   ]
+  ],
+  "ca-key/CA-NS.json": [
+   [
+    "ca-key/CA-NS.json",
+    "6c1035d3075e"
+   ]
+  ],
+  "ca-key/CA-NT.json": [
+   [
+    "ca-key/CA-NT.json",
+    "f3db611d9d38"
+   ]
+  ],
+  "ca-key/CA-NU.json": [
+   [
+    "ca-key/CA-NU.json",
+    "b4488ea111db"
+   ]
+  ],
+  "ca-key/CA-ON.json": [
+   [
+    "ca-key/CA-ON.json",
+    "7c42f3803271"
+   ]
+  ],
+  "ca-key/CA-PE.json": [
+   [
+    "ca-key/CA-PE.json",
+    "0995edce4e82"
+   ]
+  ],
+  "ca-key/CA-QC.json": [
+   [
+    "ca-key/CA-QC.json",
+    "2c7bc6b79de4"
+   ]
+  ],
+  "ca-key/CA-SI.json": [
+   [
+    "ca-key/CA-SI.json",
+    "1716b4259d87"
+   ]
+  ],
+  "ca-key/CA-SK.json": [
+   [
+    "ca-key/CA-SK.json",
+    "5f8cf0288853"
+   ]
+  ],
+  "ca-key/CA-SP.json": [
+   [
+    "ca-key/CA-SP.json",
+    "d2012eb41f11"
+   ]
+  ],
+  "ca-key/CA-YT.json": [
+   [
+    "ca-key/CA-YT.json",
+    "345f929d4a00"
+   ]
+  ],
+  "ca-key/layers.json": [
+   [
+    "ca-key/layers.json",
+    "fa2749d51eb5"
+   ]
+  ],
+  "ca-key/refs.json": [
+   [
+    "ca-key/refs.json",
+    "3f088b336a40"
+   ]
+  ],
   "outlines/US-AK.geojson.gz": [
    [
     "outlines/US-AK.geojson.gz",
