@@ -163,6 +163,18 @@
    "held_joins": 27,
    "acres_off": 2,
    "acres_checked": 7170
+  },
+  {
+   "build": "US-43056604383",
+   "checked": "2026-11-11 16:51",
+   "far_pins": 86,
+   "pins_outside": 86,
+   "outline_to_pin": 0,
+   "flat_outlines": 396,
+   "overrides_missed": 60,
+   "held_joins": 0,
+   "acres_off": 2,
+   "acres_checked": 7167
   }
  ],
  "acres_off_latest": [
@@ -181,7 +193,5 @@
    "from": "tract side file"
   }
  ],
- "last_jumps": [
-  "held_joins 1 -> 27"
- ]
+ "last_jumps": []
 }

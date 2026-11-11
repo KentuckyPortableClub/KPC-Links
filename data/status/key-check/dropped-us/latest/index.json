@@ -1,10 +1,10 @@
 {
  "key": "us",
- "build": "US-43021462438",
- "report": "us-US-43021462438.json",
- "report_checked": "2026-11-11 13:37",
- "checked_at": "2026-11-11 13:37 UTC",
- "prev_ref": "554cc2ae0dd7",
+ "build": "US-43056604383",
+ "report": "us-US-43056604383.json",
+ "report_checked": "2026-11-11 16:51",
+ "checked_at": "2026-11-11 16:51 UTC",
+ "prev_ref": "2ef29f41b1ee",
  "about": "parks this build has with NO outline, one row each, split by reason (kpc_key_dropped.py, links-07; latest/ only, rewritten only when the rows change)",
  "counts": {
   "joined_in_other_area": 19,
@@ -95,12 +95,12 @@
  "jump_check": {
   "checked": true,
   "new_drops": 0,
-  "outlined_before": 11673,
-  "limit": 583.6
+  "outlined_before": 11685,
+  "limit": 584.2
  },
  "system_warnings": [],
  "inputs": {
-  "pota_pins": 99204,
+  "pota_pins": 99208,
   "answer_sheet_read": true,
   "precheck_read": true
  },
