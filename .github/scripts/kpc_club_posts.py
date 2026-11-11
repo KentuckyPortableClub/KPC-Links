@@ -33,6 +33,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 INFO = ('ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. '

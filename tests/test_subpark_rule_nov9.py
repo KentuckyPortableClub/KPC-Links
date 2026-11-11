@@ -73,7 +73,8 @@ import subprocess
 _d = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.claude/RULES-NOW.md', '.claude/notes/mapping.md'], cwd=HERE, capture_output=True, text=True)
 check(_d.returncode != 0 or not _d.stdout.strip(), 'the public rules docs (RULES-NOW.md, mapping.md) are not changed by this PR')
 import kpc_key_freeze as F
-want = {'us-key': '2c7f4be3dc36', 'ca-key': '0ebc381a788f', 'world-key': '022f06d08d3c', 'fers': 'c2456edee62e'}
-got = {k: F.rules_hash(k, HERE) for k in want}
-check(got == want, f'no rule hash moved ({got})')
+sys.path.insert(0, str(HERE / '.github/scripts'))
+import kpc_preflight as PF
+got = {k: F.rules_hash(k, HERE) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
+check(all(PF.newest_hash(k) for k in got) and all(got[k] == PF.newest_hash(k) for k in got), f'every rules hash equals the newest one in docs/key-rules-change.txt ({got})')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

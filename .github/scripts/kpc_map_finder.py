@@ -10,6 +10,7 @@ run carries on where this one stopped (rotation by the 'checked' date). Monthly,
 import html, json, os, pathlib, re, sys, time, urllib.parse, urllib.request
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
+import kpc_net_guard; kpc_net_guard.install()
 
 T0, LIMIT = time.time(), float(os.environ.get('MINUTES') or 150) * 60
 MAX = int(os.environ.get('MAX') or 600)

@@ -1,8 +1,3 @@
-# Known failures of KPC-Links main 66037efcff80 (Nov 5 2026 CST; Nov 7 update below for main e65fa3326), read by .github/scripts/kpc_full_suite.py (the handoff gate).
-# A failure listed here does not fail the gate; anything else does. Remove a line when its test passes on main.
-tests/test_fixbundle_de0095_nov4.py   # 'on today's DE key only DE-0095 is reached: []' (fails on main and on the fers stack)
-tests/test_ky_brandon_slash_nov6.py   # known pre-existing on main (KY slash decided_by), per the Nov 7 handoff
-tests/test_maprep_nearspot_address_nov8.py   # pre-existing on main 74bb56fd (script version pin); not this PR
-tests/test_tracts_nov7.py   # pre-existing on main 74bb56fd (tract side-file / GB outline byte pins); not this PR
-tests/test_world_ax_moved_nov8.py   # pre-existing on main 009d6388 / 078f0f6d (AX extra-layers moved by a bot); Quality confirmed Nov 9 PM (grade of #104)
-tests/test_fers_key_status_nov6.py   # US-0822 Fort Smith: test expects an OK pin copy; origin/main 4e288359 (partial key stamped by US-42797939226) has official in both US-AR and US-OK. Confirmed failing on a clean origin/main checkout. Not a #109 code change; test and key data not changed here.
+# Known failures of KPC-Links main, read by .github/scripts/kpc_full_suite.py (the handoff gate).
+# A failure listed here does not fail the gate; anything else does. A listed test that now PASSES fails the gate (stale baseline): remove its line.
+# One entry per line: a test path (tests/test_x.py) or selftest:<script path>.

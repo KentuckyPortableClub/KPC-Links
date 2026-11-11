@@ -231,13 +231,16 @@ def main(a):
             r = next((x for x in doc['rows'] if x['id'] == s['row']), None)
             if r is None: report.append((s['row'], False, 'no such needs row')); continue
             kind = s.get('kind') or ('us' if r['area'].startswith('US-') else 'ca' if r['area'].startswith('CA') else 'world')
+            blk = M.share_block(r, root)
+            if blk: report.append((s['row'], False, blk)); continue   # WDPA / redistribute=no: never packed or uploaded
             try:
                 ok, msg, p = (pack_us(s, r, out, a.parks, lt, today, work) if kind == 'us' else pack_ca(s, r, out, today) if kind == 'ca' else pack_world(s, r, out, today))
             except Exception as e: ok, msg, p = False, f'could not pack it ({e})', None  # noqa: BLE001
             report.append((s['row'], ok, msg))
             if ok:
                 made.append(p)
-                for r2 in [x for x in doc['rows'] if x['id'] in [s['row']] + list(s.get('also') or [])]:
+                fa = (M.parse_hand_name(p.name) or (r['area'],))[0]   # a checked file is noted only on rows of the area in its name
+                for r2 in [x for x in doc['rows'] if x['id'] in [s['row']] + list(s.get('also') or []) and (x['area'] == fa or not p.name.startswith(('hand-US-', 'hand-W-')))]:
                     r2['note'] = ((r2.get('note') or '') + f' checked hand file: {p.name}').strip()[:600]
                     if s.get('status'): r2['status'] = s['status']; r2['why'] = s.get('why') or r2['why']
     M.save_needs(doc, a.needs_out)

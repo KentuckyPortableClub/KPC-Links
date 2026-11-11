@@ -6,6 +6,7 @@ field carries land ownership + the values in it. For a SERVER root it lists fold
 (TVA, the Florida water districts, NC). Writes .claude/build/research/SE/candidates-tested.json and prints one notice a layer.
 Adds nothing to the live data. Never fails."""
 import json, pathlib, re, sys, time, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 UA = {'User-Agent': 'KPC park mapping (kentuckyportableclub.github.io; ham radio club)'}
 D = pathlib.Path('.claude/build/research/SE')
 OWNW = re.compile(r'owner|ownership|owncode|managing|manager|mang|agency|admin|fee|title|tenure', re.I)

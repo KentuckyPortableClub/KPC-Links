@@ -17,17 +17,17 @@ def test_ca_and_world_dispatch_the_post_key_check():
     for f, key, needs in (('kpc-ca-key.yml', 'ca', ['run']), ('kpc-world-key.yml', 'world', ['plan', 'join'])):
         y, _ = _y(f)
         j = y['jobs']['postcheck']
-        assert j['needs'] == needs and "github.triggering_actor == 'github-actions[bot]'" in j['if'] and 'always()' in j['if']
+        assert j['needs'] == needs and 'triggering_actor' not in j['if'] and '!cancelled()' in j['if']
         assert j['permissions'] == {'actions': 'write', 'contents': 'read'}
         run = ' '.join(str(s.get('run')) for s in j['steps'])
         assert f'gh workflow run kpc-key-postcheck.yml -R "$GITHUB_REPOSITORY" --ref main -f key={key}' in run and 'kpc-hidden.txt' in run
     assert "needs.run.outputs.skip != '1'" in _y('kpc-ca-key.yml')[0]['jobs']['postcheck']['if']        # a skipped Canada start built nothing
-    assert "needs.join.result == 'success'" in _y('kpc-world-key.yml')[0]['jobs']['postcheck']['if']
+    assert "needs.join.result != 'skipped'" in _y('kpc-world-key.yml')[0]['jobs']['postcheck']['if']
 
 
-def test_person_runs_still_use_workflow_run_and_no_cron_added():
+def test_no_workflow_run_and_no_cron_added():
     y, on = _y('kpc-key-postcheck.yml')
-    assert set(on['workflow_run']['workflows']) == {'KPC US answer key', 'KPC Canada answer key', 'KPC world answer key'}
+    assert 'workflow_run' not in on
     assert 'schedule' not in on and set(on['workflow_dispatch']['inputs']) >= {'key'}
     assert _y('kpc-ca-key.yml')[0]['name'] == 'KPC Canada answer key' and _y('kpc-world-key.yml')[0]['name'] == 'KPC world answer key'
 

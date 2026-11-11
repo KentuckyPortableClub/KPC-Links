@@ -9,10 +9,10 @@ on:
   workflow_dispatch:
     inputs:
       only:
-        description: 'Test just one of them (leave blank for the normal daily job)'
+        description: 'Test just one of them (all = the normal daily job)'
         type: choice
-        options: ['', park, lonely, weather, contests, wma, holiday]
-        default: ''
+        options: [all, park, lonely, weather, contests, wma, holiday]
+        default: all
       dry_run:
         description: 'Practice run: print it instead of posting'
         type: boolean
@@ -41,7 +41,7 @@ jobs:
           KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          ONLY: ${{ inputs.only }}
+          ONLY: ${{ inputs.only != 'all' && inputs.only || '' }}   # 'all' (and a scheduled run) = blank for the script, as before
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '' }}
         run: |
           echo "::notice title=Club posts::started"

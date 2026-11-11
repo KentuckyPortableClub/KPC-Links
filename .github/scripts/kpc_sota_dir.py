@@ -4,6 +4,7 @@ storage.sota.org.uk/summitslist.csv is ~25 MB, too big for a phone, so every wee
 split into 1 x 1 degree tiles: data/sota/t/<floor lat>_<floor lon>.json = [[code, name, altFt, altM, lat, lon, points], ...].
 """
 import csv, io, json, math, pathlib, datetime, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 UA = 'Mozilla/5.0 (compatible; KPC-Links SOTA summits copy)'
 raw = urllib.request.urlopen(urllib.request.Request('https://storage.sota.org.uk/summitslist.csv', headers={'User-Agent': UA}), timeout=180).read().decode('utf-8', 'replace')
 lines = raw.splitlines()

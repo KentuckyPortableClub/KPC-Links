@@ -22,6 +22,7 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 OUT = pathlib.Path('kpc-events-auto.json')
 UA = 'Mozilla/5.0 (compatible; KPC-events-bot; +https://kentuckyportableclub.github.io/KPC-Links/events.html)'

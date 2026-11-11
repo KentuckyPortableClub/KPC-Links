@@ -17,7 +17,8 @@ check('verify-then-fix' in (ov.get('decided_by') or ov.get('why') or ''), f'deci
 # US-7322: both joins still in key; acres not left as only 0-ac
 us=json.load(open(ROOT/'data/us-key/US-AR.json'))['parks']['US-7322']
 ids=[str(x[0]) for x in us['m']]
-check('166815' in ids and 'arw1659' in ids, f'US-7322 keeps PAD-US + AR WMA ({ids})')
+check('166815' in ids, f'US-7322 keeps the PAD-US record ({ids})')
+check(any(i.startswith('arw') for i in ids), f'US-7322 keeps an AR WMA (arw) record too ({ids}; the record number is bot-written, so the layer prefix is tested)')
 check((us.get('ac') or 0) > 0 or any((x[2] or 0) > 0 for x in us['m'] if isinstance(x[2], (int,float))),
       f'US-7322 not left with only 0-ac join (ac={us.get("ac")} m={us["m"]})')
 # No US-7322 override stripping River Bend

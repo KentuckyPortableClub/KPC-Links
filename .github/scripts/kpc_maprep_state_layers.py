@@ -7,6 +7,7 @@ services*.arcgis.com layer is left out), never a banned host, never a hub portal
 (returnCountOnly) with an Origin header to see if a browser may read it (CORS). Run by hand only:
   DATA=<KPC-Data checkout> python3 .github/scripts/kpc_maprep_state_layers.py"""
 import json, os, re, sys, time, urllib.request, urllib.robotparser, urllib.parse, gzip
+import kpc_net_guard; kpc_net_guard.install()
 D = os.environ.get('DATA', '../KPC-Data'); OUT = 'data/maprep-state-layers.json'
 BANNED = re.compile(r'ncnhde\.natureserve\.org|services\.arcgis\.com/33TOOklri9xpic7U|maps\.gov\.bc\.ca', re.I)
 UA = 'KPC-Links maprep layer check (https://kentuckyportableclub.github.io)'

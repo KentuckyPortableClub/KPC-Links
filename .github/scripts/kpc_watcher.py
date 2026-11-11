@@ -33,6 +33,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import urllib.robotparser
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = 'KPC-Watcher/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/; weekly check of public pages)'
 T0 = time.time()

@@ -12,11 +12,9 @@ on:
     - cron: '17 11 3 * *'   # monthly
     - cron: '7 10 * * *'    # nightly, ONLY the countries BOT W wired a new approved layer for (data/world-key/answers-countries.txt)
   # Nov 4 (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4: "Full world rebuild yes after us and Canada..stand by for more"):
-  # NO new cron. After a rules change this key waits for the key(s) before it (kpc_key_order.py); it is picked up here when one of
-  # them finishes. A chained start builds ONLY a new-rules catch-up; otherwise it skips cleanly (one notice).
-  workflow_run:
-    workflows: ['KPC US answer key', 'KPC Canada answer key']
-    types: [completed]
+  # owner rule, 2026-11-10: no workflow_run trigger. The Canada key's chain job dispatches this key once per Canada run
+  # (chained=ca-key). After a rules change this key waits for the keys before it (kpc_key_order.py). A chained start builds ONLY
+  # a new-rules catch-up; otherwise it skips cleanly (one notice).
   workflow_dispatch:
     inputs:
       chained:
@@ -189,7 +187,8 @@ jobs:
             echo "::endgroup::"
             if [ "$rc" = 124 ] || [ "$rc" = 137 ]; then echo "::warning title=World key $c::stopped after ${CMIN} min (a source stopped answering?); the build stamp lists it as failed"; echo "$c" >> part/failed.txt
             elif [ "$rc" = 3 ]; then echo "::warning title=World key $c::HELD (exit 3): a source failed or came back empty with no saved records; previous key kept (tried again at the end if time allows)"; echo "$c" >> part/failed.txt; echo "$c" >> part/held.txt
-            elif [ "$rc" != 0 ]; then echo "::warning title=World key $c::stopped with an error (see the traceback above); the build stamp lists it as failed"; echo "$c" >> part/failed.txt; fi
+            elif [ "$rc" != 0 ]; then echo "::warning title=World key $c::stopped with an error (see the traceback above); the build stamp lists it as failed"; echo "$c" >> part/failed.txt
+            else echo "$c" >> part/done.txt; fi   # owner rule, 2026-11-10: the one 'built this run' signal (the old key file is in the checkout too)
           done
           # Nov 7 (world fix part A): held countries again, after a wait with jitter, never past this step's own limit
           for n in $(seq 1 "${RETRIES:-0}"); do
@@ -204,7 +203,7 @@ jobs:
               echo "::group::World key $c (held retry $n, limit ${lim} min)"
               rc=0; COUNTRIES=$c timeout --kill-after=60 "${lim}m" python3 .github/scripts/kpc_world_key.py || rc=$?
               echo "::endgroup::"
-              if [ "$rc" = 0 ]; then awk -v c="$c" '$0 != c' part/failed.txt > part/failed.tmp; mv part/failed.tmp part/failed.txt; echo "::notice title=World key $c::built on held retry $n"
+              if [ "$rc" = 0 ]; then awk -v c="$c" '$0 != c' part/failed.txt > part/failed.tmp; mv part/failed.tmp part/failed.txt; echo "$c" >> part/done.txt; echo "::notice title=World key $c::built on held retry $n"
               elif [ "$rc" = 3 ]; then echo "$c" >> part/held.txt; echo "::warning title=World key $c::still HELD after retry $n"
               else echo "::warning title=World key $c::held retry $n stopped (exit $rc); the build stamp lists it as failed"; fi
             done
@@ -223,8 +222,8 @@ jobs:
           mkdir -p part/world-key/review part/world-bounds
           [ -f part/countries.txt ] || echo "${{ matrix.g.countries }}" > part/countries.txt
           for c in $(cat part/countries.txt); do
-            # a country never finished (job stopped) = failed
-            grep -qx "$c" part/failed.txt 2>/dev/null || [ -f data/world-key/$c.json ] || echo "$c" >> part/failed.txt
+            # a country not finished THIS run (job stopped, error, held) = failed, and its old checkout file is not sent to the join
+            grep -qx "$c" part/done.txt 2>/dev/null || { echo "$c" >> part/failed.txt; continue; }
             [ -f data/world-key/$c.json ] && cp data/world-key/$c.json part/world-key/
             [ -f data/world-key/review/$c.md ] && cp data/world-key/review/$c.md part/world-key/review/
             [ -f data/world-key/tracts/$c.json ] && mkdir -p part/world-key/tracts && cp data/world-key/tracts/$c.json part/world-key/tracts/   # Nov 6: tract side file
@@ -287,6 +286,8 @@ jobs:
           path: parts
       - name: Put the parts together (Nov 3)
         id: tonight
+        env:
+          PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
         run: |
           python3 - <<'PY'
           import glob, json, os, shutil, sys
@@ -322,6 +323,9 @@ jobs:
           open(os.environ['GITHUB_OUTPUT'], 'a').write(f'built={n}\n')
           print(f"::notice title=World key join::{n} countries from {len(glob.glob('parts/world-key-part-*'))} job(s)" + (f"; failed or unfinished: {' '.join(failed)}" if failed else ''))
           PY
+          # Owner rule, 2026-11-10: a planned country with no part (or not in its part's done.txt) was not built: named failed
+          python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS" --built-file parts/world-key-part-*/done.txt >> /tmp/world-failed.txt
+          sort -u -o /tmp/world-failed.txt /tmp/world-failed.txt
       - name: Tonight's list (the plan job's, again)
         env:
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
@@ -349,7 +353,7 @@ jobs:
         if: ${{ steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         env:
           KPC_BUILD_FAILED_FILE: /tmp/world-failed.txt
-          KPC_FULL_BUILD: ${{ needs.plan.outputs.full == '1' && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
+          KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
         run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         if: ${{ always() && steps.tonight.outputs.built != '0' }}
@@ -407,20 +411,17 @@ jobs:
               sys.exit(1)
           PY
   postcheck:
-    # Next round v2 C13 (Brandon's 10 answers, item 2: 'Yes, go with your picks', relayed via Super 8:55 AM CST Nov 5): as the US key
-    # does since the Nov 5 hotfix, a World run started with the GITHUB_TOKEN (the US / Canada key's chain job, the watchdog: triggering
-    # actor github-actions[bot]) fires NO workflow_run, so 'KPC key check (after a key build)' would not start after it. Such a run
-    # DISPATCHES the check with key=world. A person's run still starts it through workflow_run, as before (no check runs twice).
+    # owner rule, 2026-11-10: dispatch is the ONLY path to the post-key check. Not for a cancelled or skipped build.
     needs: [plan, join]
-    if: ${{ always() && github.triggering_actor == 'github-actions[bot]' && needs.join.result == 'success' }}
+    if: ${{ !cancelled() && needs.join.result != 'cancelled' && needs.join.result != 'skipped' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
       actions: write
       contents: read
     steps:
-      - name: Start the post-key check (a bot-started run fires no workflow_run)
+      - name: Start the post-key check
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh workflow run kpc-key-postcheck.yml -R "$GITHUB_REPOSITORY" --ref main -f key=world && echo "::notice title=World key::post-key check started (this run was started by github-actions[bot])" || { kpc_rc=$?; echo "::warning title=World key::could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=world"; echo "World key - could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=world" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          gh workflow run kpc-key-postcheck.yml -R "$GITHUB_REPOSITORY" --ref main -f key=world && echo "::notice title=World key::post-key check started" || { kpc_rc=$?; echo "::warning title=World key::could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=world"; echo "World key - could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=world" >> "$RUNNER_TEMP/kpc-hidden.txt"; }

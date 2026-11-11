@@ -12,6 +12,7 @@ Scheduled runs never call this: they always do the full run. Never prints a secr
   env DISCORD_BOT_TOKEN, KPC_RELAY_CHANNEL, GH_TOKEN, GITHUB_REPOSITORY, GITHUB_OUTPUT, FULL"""
 import datetime as dt, json, os, subprocess, sys, urllib.request
 from zoneinfo import ZoneInfo
+import kpc_net_guard; kpc_net_guard.install()
 
 CT = ZoneInfo('America/Chicago')
 NOW = dt.datetime.now(dt.timezone.utc)

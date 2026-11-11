@@ -208,16 +208,26 @@ jobs:
           pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           mkdir -p cache/us .master/hand; touch "$RUNNER_TEMP/cache-t0"
           [ "$GEO_CACHE_MODE" = use ] || { echo "::notice title=Master step::KPC_KEY_LIVE=1 (all-live read): no saved copies, nothing to fill"; exit 0; }
-          for st in $STATES; do gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us --clobber || echo "::notice title=US key $st::no saved outlines yet; the build reads live and saves the first copy"; done
+          # Owner rule, 2026-11-10: a copy the release HAS but that failed to download holds its state (not built from live, not uploaded);
+          # only an asset the release does not have is a first copy. A failed asset listing holds every state of this job (fail closed).
+          : > "$RUNNER_TEMP/download-held.txt"; mkdir -p .against
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > .against/ASSETS.txt || { rm -f .against/ASSETS.txt; echo "::error title=Master step::the boundary-cache asset list could not be read: every state of this job is held"; }
+          for st in $STATES; do
+            if [ ! -f .against/ASSETS.txt ]; then echo "US-$st" >> "$RUNNER_TEMP/download-held.txt"
+            elif ! grep -qx "US-$st.json.gz" .against/ASSETS.txt; then echo "::notice title=US key $st::no saved outlines yet; the build reads live and saves the first copy"
+            elif gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us --clobber; then cp "cache/us/US-$st.json.gz" .against/
+            else echo "::error title=US key $st::US-$st.json.gz is on the release but its download failed: $st is held (not built, not uploaded)"; echo "US-$st" >> "$RUNNER_TEMP/download-held.txt"; fi
+          done
+          FILL_STATES=$(for st in $STATES; do grep -qx "US-$st" "$RUNNER_TEMP/download-held.txt" || printf '%s ' "$st"; done)
           gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'hand-US-*.geojson.gz' -D .master/hand --clobber 2>/dev/null || echo "no checked hand downloads waiting"
           touch "$RUNNER_TEMP/cache-t0"
           rm -rf .mdata; git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .mdata \
             && git -C .mdata sparse-checkout set --no-cone data/needs-download.json locations-pota.json && git -C .mdata checkout -q \
             || { echo "::error title=Master step::KPC-Data (the parks + the needs-download list) could not be read; the gate decides on the copies as they are"; exit 0; }
           rm -rf .master/root; cp -a data/outlines .master/root
-          python3 .github/scripts/kpc_master_cli.py fill --cache cache/us --states "$STATES" --root .master/root --parks .mdata/locations-pota.json \
+          python3 .github/scripts/kpc_master_cli.py fill --cache cache/us --states "$FILL_STATES" --root .master/root --parks .mdata/locations-pota.json \
             --needs .mdata/data/needs-download.json --hand .master/hand --refresh "$REFRESH" --work .master/work --out-rows .master/needs-rows.json $( [ "$REFRESH" = all ] && echo --official-files ) 2>&1 | tee us-master-${{ matrix.g.i }}.log \
-            || { kpc_rc=$?; echo "::warning title=Master step::stopped (exit $kpc_rc); the gate decides on the copies as they are"; echo "Master step - stopped (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+            || { kpc_rc=$?; if [ "$kpc_rc" = 4 ]; then echo "::error title=Master step::licence block (exit 4): this job stops; nothing it read is built or saved"; exit 4; fi; echo "::warning title=Master step::stopped (exit $kpc_rc); the gate decides on the copies as they are"; echo "Master step - stopped (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           mkdir -p part/outlines; cp .master/root/US-*.geojson.gz .master/root/layers.json .master/root/raw-manifest.json part/outlines/ 2>/dev/null || true   # ok: a step with nothing merged writes none
           mkdir -p part/outlines/solver-queue; cp .master/root/solver-queue/*.csv part/outlines/solver-queue/ 2>/dev/null || true   # ok: nothing queued is fine
           cp .master/needs-rows.json part/outlines/needs-rows.json 2>/dev/null || true   # ok: no rows is fine
@@ -251,16 +261,27 @@ jobs:
           pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
           # Nov 10: the master step above downloaded the saved copies (and touched cache-t0 before it filled them, so its changes are saved)
           mkdir -p cache/us; [ -f "$RUNNER_TEMP/cache-t0" ] || touch "$RUNNER_TEMP/cache-t0"
-          if [ "$GEO_CACHE_MODE" = use ]; then for st in $STATES; do [ -f "cache/us/US-$st.json.gz" ] || gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us || echo "::notice title=US key $st::no saved outlines yet; read live and saved"; done; fi
+          if [ "$GEO_CACHE_MODE" = use ]; then for st in $STATES; do
+            if [ -f "cache/us/US-$st.json.gz" ] || grep -qx "US-$st" "$RUNNER_TEMP/download-held.txt" 2>/dev/null; then continue; fi
+            if [ -f .against/ASSETS.txt ] && ! grep -qx "US-$st.json.gz" .against/ASSETS.txt; then echo "::notice title=US key $st::no saved outlines yet; read live and saved"; continue; fi
+            if gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us; then mkdir -p .against; cp "cache/us/US-$st.json.gz" .against/
+            else echo "::error title=US key $st::the saved copy could not be downloaded: $st is held"; echo "US-$st" >> "$RUNNER_TEMP/download-held.txt"; fi
+          done; fi
+          PLANNED_STATES="$STATES"; python3 .github/scripts/kpc_key_freeze.py mark-rows data/us-key/index.json "$STATES"   # owner rule, 2026-11-10: a row the builder does not rewrite = not built
           # Nov 10 (master outlines, read master first): a saved copy shorter than its layer's own baseline (the Nov 3 truncated copies) is moved aside
           # and its state is NOT built tonight; the job goes red at the end (Master gate verdict) so a short read never becomes the key.
           rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
           [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; exit 1; }
+          cat "$RUNNER_TEMP/download-held.txt" >> "$RUNNER_TEMP/master-short.txt" 2>/dev/null || true   # ok: no held download = nothing added
+          [ -s "$RUNNER_TEMP/master-short.txt" ] || rm -f "$RUNNER_TEMP/master-short.txt"
           # Nov 10 (run 42821613637: 11 states held, the same 11 every run): the refill of a short copy is now THE MASTER STEP above (before
           # this gate), so a held state is refilled every run. Still short after it = held, as before (fail closed).
           if [ -s "$RUNNER_TEMP/master-short.txt" ]; then ok=""; for st in $STATES; do [ -f "cache/us/short/US-$st.json.gz" ] || ok="$ok $st"; done; export STATES="${ok# }"; fi
+          if [ -s "$RUNNER_TEMP/download-held.txt" ]; then ok=""; for st in $STATES; do grep -qx "US-$st" "$RUNNER_TEMP/download-held.txt" || ok="$ok $st"; done; export STATES="${ok# }"; fi
           [ -n "$STATES" ] || { echo '::error title=Master gate::every state in this job has a short saved copy: nothing built'; exit 1; }
           KPC_MASTER_OWNS=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log   # Nov 10: the build only READS the saved copies (the master step owns them)
+          python3 .github/scripts/kpc_key_freeze.py take-rows data/us-key/index.json "$PLANNED_STATES" > /tmp/not-built-states.txt
+          if [ -s /tmp/not-built-states.txt ]; then echo "::error title=US key::planned but NOT built (named failed in the stamp): $(tr '\n' ' ' < /tmp/not-built-states.txt)"; fi
           # Nov 6: a state whose shape source returned zero or under half the last live key (KPC-Data) must not
           # be published as pins. Run 42230313177 timed out on every Wisconsin DNR layer and still wrote WI
           # (1,585 shapes vs 80,934 live): 18 parks went outline -> pin with bk=noshape. Refill a short state
@@ -314,7 +335,7 @@ jobs:
                     echo "$st" >> /tmp/shape-guard-failed-states
                     # Keep the index row in step with the restored file (run 42797939226 wrote FL padus 5198 into the
                     # index while US-FL.json was put back at 21993). The next shape guard reads the live index.
-                    python3 -c 'import json,sys; from pathlib import Path; st=sys.argv[1]; f=Path("data/us-key/US-%s.json"%st); idxp=Path("data/us-key/index.json"); counts=(json.loads(f.read_text()).get("counts") or {}) if f.exists() else {}; d=json.loads(idxp.read_text()) if idxp.exists() else {}; row=dict((d.get("states") or {}).get(st) or {}); row.update(counts); d.setdefault("states", {})[st] = row; idxp.write_text(json.dumps(d, indent=1, ensure_ascii=False)+"\n") if counts and idxp.exists() else None' "$st"
+                    python3 -c 'import json,sys; from pathlib import Path; st=sys.argv[1]; f=Path("data/us-key/US-%s.json"%st); idxp=Path("data/us-key/index.json"); counts=(json.loads(f.read_text()).get("counts") or {}) if f.exists() else {}; d=json.loads(idxp.read_text()) if idxp.exists() else {}; row=dict((d.get("states") or {}).get(st) or {}); row.update(counts); row.pop("rules", None); d.setdefault("states", {})[st] = row; idxp.write_text(json.dumps(d, indent=1, ensure_ascii=False)+"\n") if counts and idxp.exists() else None' "$st"
                     echo "::error title=US key $st::shape source still $got vs $live after the saved-copy refill. The live key's US-$st.json is what will be saved, not the short read."
                     echo "$st shape source $got vs live $live; saved the live key file instead of the short read" >> /tmp/shape-guard-fail
                   else
@@ -340,9 +361,10 @@ jobs:
           cp data/us-key/zip-*.json part/ 2>/dev/null || true   # ok: nothing to do is fine
           echo "$STATES" > part/states.txt; cp us-key-${{ matrix.g.i }}.log part/
           if [ -s /tmp/shape-guard-fail ]; then cp /tmp/shape-guard-fail part/shape-guard-fail; fi
-          if [ -s /tmp/shape-guard-failed-states ]; then sort -u /tmp/shape-guard-failed-states > part/failed-states.txt; fi
+          { cat /tmp/shape-guard-failed-states 2>/dev/null; cat /tmp/not-built-states.txt 2>/dev/null; true; } | sort -u | grep . > part/failed-states.txt || rm -f part/failed-states.txt   # ok: none failed = no file
           if [ -s "$RUNNER_TEMP/master-short.txt" ]; then cp "$RUNNER_TEMP/master-short.txt" part/master-short.txt; fi   # Nov 10: states NOT built (short saved copy); the join keeps them on the rebuild list
       - uses: actions/upload-artifact@v4
+        if: ${{ always() }}   # a red group's part (master-short, failed states) still reaches the join
         with:
           name: us-key-part-${{ matrix.g.i }}
           path: part/
@@ -370,9 +392,14 @@ jobs:
           if [ "$BUILD_OK" = 1 ]; then F=$(find cache/us -maxdepth 1 -name 'US-*.json.gz' -newer "$RUNNER_TEMP/cache-t0" 2>/dev/null | sort | tr '\n' ' ')
           else F=$(for f in $(cat "$RUNNER_TEMP/master-changed.txt" 2>/dev/null); do [ -f "$f" ] && echo "$f"; done | tr '\n' ' '); echo "::notice title=US key saved outlines::the build failed: saving only the master step's checked copies"; fi
           if [ -z "$F" ]; then echo "no new live reads to save"; exit 0; fi
+          # Owner rule, 2026-11-10: only copies that pass the gate baseline and hold at least the release copy's records, per layer
+          refused=0; python3 .github/scripts/kpc_master_cli.py save-check --against .against --assets .against/ASSETS.txt --first-ok --ok-list "$RUNNER_TEMP/save-ok.txt" $F || refused=1
+          F=$(cat "$RUNNER_TEMP/save-ok.txt" 2>/dev/null | tr '\n' ' ')
+          if [ -z "${F// /}" ]; then echo "::error title=US key saved outlines::no copy passed save-check: nothing uploaded"; exit 1; fi
           echo "::notice title=US key saved outlines::saving $F"
           bash .github/scripts/kpc_archive.sh put saved-outlines "US key saved outlines: $F(run $GITHUB_RUN_ID)" $F || { kpc_rc=$?; echo "::warning title=KPC-Archive::not saved to KPC-Archive this run (exit $kpc_rc, see above); the release copy is current"; echo "KPC-Archive - not saved this run (exit $kpc_rc); the release copy is current" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           gh release upload boundary-cache $F -R "$GITHUB_REPOSITORY" --clobber
+          if [ "$refused" = 1 ]; then echo "::error title=US key saved outlines::save-check refused a copy (named above): it was not uploaded"; exit 1; fi
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
@@ -433,6 +460,7 @@ jobs:
           except Exception: LJ = {}
           n = 0
           for d in sorted(glob.glob('parts/us-key-part-*')):
+              if not (os.path.exists(f'{d}/states.txt') and os.path.exists(f'{d}/index.json')): continue   # a red group: its states are named failed in the stamp
               sts = open(f'{d}/states.txt').read().split()
               pi = json.load(open(f'{d}/index.json')).get('states', {})
               for st in sts:
@@ -496,6 +524,9 @@ jobs:
             cp .mneeds/new.json .mneeds/needs-download.json && gh release upload boundary-cache .mneeds/needs-download.json -R "$GITHUB_REPOSITORY" --clobber
           fi
           rm -rf .mneeds
+      - name: Master check of the joined outlines before the save (owner rule, 2026-11-10) - a failed check keeps data/outlines out of the save
+        run: |
+          python3 .github/scripts/kpc_master_cli.py check --repo . || { kpc_rc=$?; touch /tmp/kpc-outlines-bad; git checkout -q HEAD -- data/outlines && git clean -fdq data/outlines; echo "::error title=Master check::the joined master outlines failed their check (exit $kpc_rc): this run's data/outlines changes are dropped, not saved"; }
       - name: Lost finds check (chat 2, Nov 1; Brandon 'we are finding stuff but it never makes it in')
         id: kept_green_2
         continue-on-error: true
@@ -543,8 +574,12 @@ jobs:
       - name: BUILD STAMP (Brandon Nov 2) - this build's id in data/us-key/index.json, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when every state built)
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
+          PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
         run: |
           : > /tmp/kpc-build-failed.txt
+          # Owner rule, 2026-11-10: a planned state whose group sent no part (or no states.txt) was never built: named failed
+          python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS" --built-file parts/us-key-part-*/states.txt >> /tmp/kpc-build-failed.txt
+          export KPC_PLANNED_AREAS="$(python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS")"
           for f in parts/us-key-part-*/failed-states.txt; do
             [ -s "$f" ] && cat "$f" >> /tmp/kpc-build-failed.txt
           done
@@ -557,7 +592,7 @@ jobs:
             export KPC_BUILD_FAILED_FILE=/tmp/kpc-build-failed.txt
             echo "::notice title=US key stamp::parts named failed: $(tr '\n' ' ' < /tmp/kpc-build-failed.txt)"
           fi
-          python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { kpc_rc=$?; echo "::warning title=kpc_key_freeze.py::stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $rc), see the log above" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { echo "::error title=kpc_key_freeze.py::the stamp stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py stamp - stopped with an error (exit $rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: BOT C line for chat 11 (HQ Oct 30) - this build vs the LIVE key, one line in its inbox
         id: kept_green_3
         continue-on-error: true
@@ -669,42 +704,40 @@ jobs:
               print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
               sys.exit(1)
           PY
+      - name: Master check verdict (owner rule, 2026-11-10) - data/outlines was kept out of the save; go red
+        if: ${{ always() }}
+        run: |
+          if [ -f /tmp/kpc-outlines-bad ]; then echo "::error title=Master check::the joined master outlines failed their check: data/outlines was not saved"; exit 1; fi
   postcheck:
-    # Key hotfix Nov 5 (Brandon's approval relayed via Super Head Bot 4:21 AM CST): a run started with the GITHUB_TOKEN (the boundary
-    # bot queue, the watchdog: triggering actor github-actions[bot]) fires NO workflow_run event, so 'KPC key check (after a key
-    # build)' never started after 41984527710 (all 11 post-key checks so far followed runs started by KentuckyPortableClub). A
-    # workflow_dispatch is the one start the GITHUB_TOKEN may make. A person's run still starts it through workflow_run, as before.
+    # owner rule, 2026-11-10: dispatch is the ONLY path to the post-key check (a GITHUB_TOKEN run fires no workflow_run, so a
+    # workflow_run trigger would start it for some runs and not others). Not for a cancelled or skipped build.
     needs: [plan, join]
-    if: ${{ always() && github.triggering_actor == 'github-actions[bot]' && needs.join.result == 'success' }}
+    if: ${{ !cancelled() && needs.join.result != 'cancelled' && needs.join.result != 'skipped' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
       actions: write
       contents: read
     steps:
-      - name: Start the post-key check (a bot-started run fires no workflow_run)
+      - name: Start the post-key check
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh workflow run kpc-key-postcheck.yml -R "$GITHUB_REPOSITORY" --ref main -f key=us && echo "::notice title=US key::post-key check started (this run was started by github-actions[bot])" || { kpc_rc=$?; echo "::warning title=US key::could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=us"; echo "US key - could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=us" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          gh workflow run kpc-key-postcheck.yml -R "$GITHUB_REPOSITORY" --ref main -f key=us && echo "::notice title=US key::post-key check started" || { kpc_rc=$?; echo "::warning title=US key::could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=us"; echo "US key - could not start the post-key check (exit $kpc_rc): start 'KPC key check (after a key build)' by hand with key=us" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
   chain:
-    # Next round C1 (Nov 5; Brandon's yes relayed via Super, 4:32 AM CST Nov 5): the Canada and world keys follow the US key through
-    # workflow_run, which a GITHUB_TOKEN-started run (the boundary bot queue, the watchdog: triggering actor github-actions[bot])
-    # never fires. Like the postcheck job above, a bot-started run DISPATCHES them, marked chained=us-key, so each is checked as a
-    # chained start (kpc_key_order.py: catch-up only; a duplicate or an up-to-date key skips cleanly). A person's run is left to
-    # workflow_run as before, so no key is started twice for one US run. Runs whatever the build's result was, as workflow_run does.
+    # owner rule, 2026-11-10: the ONE start of the next key. The Canada key follows the US key (and the world key follows Canada,
+    # from its own chain job), by dispatch only, so each key is started once per run of the key before it. chained=us-key makes it
+    # a catch-up start (kpc_key_order.py: a duplicate or an up-to-date key skips cleanly). Not for a cancelled run.
     needs: [plan, join]
-    if: ${{ always() && github.triggering_actor == 'github-actions[bot]' }}
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
       actions: write
       contents: read
     steps:
-      - name: Start the Canada and world keys (a bot-started run fires no workflow_run)
+      - name: Start the Canada key
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          for k in ca world; do
-            gh workflow run "kpc-$k-key.yml" -R "$GITHUB_REPOSITORY" --ref main -f chained=us-key && echo "::notice title=US key::$k key started as a chained start (this run was started by github-actions[bot])" || { kpc_rc=$?; echo "::warning title=US key::could not start the $k key (exit $kpc_rc): start it by hand if a new-rules build is waiting"; echo "US key - could not start the $k key (exit $kpc_rc): start it by hand if a new-rules build is waiting" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
-          done
+          gh workflow run kpc-ca-key.yml -R "$GITHUB_REPOSITORY" --ref main -f chained=us-key && echo "::notice title=US key::Canada key started as a chained start" || { kpc_rc=$?; echo "::warning title=US key::could not start the Canada key (exit $kpc_rc): start it by hand if a new-rules build is waiting"; echo "US key - could not start the Canada key (exit $kpc_rc): start it by hand if a new-rules build is waiting" >> "$RUNNER_TEMP/kpc-hidden.txt"; }

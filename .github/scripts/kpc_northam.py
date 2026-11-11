@@ -8,6 +8,7 @@ Mexico, Central America, the Caribbean, Bermuda, Greenland and Saint Pierre et M
 a program POTA doesn't answer for."""
 import json, glob, time, urllib.request, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = {'User-Agent': 'KPC North America pins (kentuckyportableclub.github.io)'}
 # POTA program prefixes (ISO codes since POTA's 2025 change) for North America outside US + Canada

@@ -79,13 +79,14 @@ check(ver.get('us-key') == 'v5b' and ver.get('ca-key') == 'v5b' and ver.get('wor
 check(ver.get('fers') == 'v1', 'fers version v1')
 
 # Approved hashes after merging main (#109) into this PR: US bbdcc89f8120 (from f489a836894f); fers c2456edee62e; CA and world unchanged
-BASE = {'us-key': '2c7f4be3dc36', 'ca-key': '0ebc381a788f', 'world-key': '022f06d08d3c'}
-for k, h in BASE.items():
-    got = KF.rules_hash(k, str(HERE))
-    check(got == h, f'{k} rules hash unchanged ({got} == {h})')
+sys.path.insert(0, str(HERE / '.github/scripts'))
+import kpc_preflight as PF
+for k in ('us-key', 'ca-key', 'world-key'):
+    got, h = KF.rules_hash(k, str(HERE)), PF.newest_hash(k)
+    check(got == h and bool(h), f'{k} rules hash equals the newest one in docs/key-rules-change.txt ({got} == {h})')
 
 fers_h = KF.rules_hash('fers', str(HERE))
-check(fers_h == 'c2456edee62e', f'fers rules hash is c2456edee62e ({fers_h})')
+check(fers_h == PF.newest_hash('fers') and bool(fers_h), f'fers rules hash equals the newest one in docs/key-rules-change.txt ({fers_h})')
 print('FERS_RULES_HASH=' + fers_h)
 docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 # Ledger is newest-first: the Nov 10 layer-count entry, the Nov 10 master-step follow-up, the Nov 10 master-step entry, the Nov 10 refill entry, #109 (5:54 AM CST), then #108 (5:22 AM CST). Read the top six entries.
@@ -122,6 +123,7 @@ with tempfile.TemporaryDirectory() as td:
 # decide() source contains the approx river/trail hold (string check — bot is heavy to import)
 fers_src = (HERE / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
 check('approximate 2-fer' in fers_src and 'APX_NOTE' in fers_src, 'kpc_fers tags approximate 2-fers instead of holding them')
+check('approximate outline on a river/trail half' not in fers_src, 'decide() does not hold a river/trail half beside an approximate outline (tagged approximate)')
 check('fers-ready-areas' in fers_src and 'FREADY' in fers_src, 'kpc_fers.main calls ready-areas gate')
 check("rep['fers_rules']" in fers_src or 'fers_rules' in fers_src, 'run report records fers_rules')
 

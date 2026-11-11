@@ -4,6 +4,7 @@ sessions cannot reach the state map servers. For each lead: does the service ans
 sheet (a name search for that park's longest word). Writes data/state-gis-leads-tested.json for the mapping chat to read.
 Never fails. Leads whose service is already in data/state-gis.json are marked 'already in' and not fetched."""
 import json, re, time, urllib.parse, urllib.request, pathlib
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = {'User-Agent': 'KPC (kentuckyportableclub.github.io)'}
 OUT = pathlib.Path('data/state-gis-leads-tested.json')

@@ -2,6 +2,7 @@
 weather.gov/nwr) into kpc-nwr.json for the Weather page: call sign, frequency, site, status, location
 and the counties each one covers (SAME codes). Run monthly by kpc-nwr.yml."""
 import json, re, sys, urllib.request, datetime
+import kpc_net_guard; kpc_net_guard.install()
 U = 'https://www.weather.gov/source/nwr/JS/ccl-data.js'
 def notice(m): print('::notice title=NOAA Weather Radio::' + m)
 try:

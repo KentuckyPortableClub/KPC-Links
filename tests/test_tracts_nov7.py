@@ -46,11 +46,14 @@ def load_mod(name, path):
 def rect(w, s, e, n): return [[w, s], [e, s], [e, n], [w, n], [w, s]]
 
 
+if git_show('kpc-bounds.js') is None:
+    print(f'SKIP: {BASE} is not in this clone; every check here compares with it'); sys.exit(0)
 TMP = pathlib.Path(tempfile.mkdtemp(prefix='kpc-tracts-nov7-'))
 try:
     # ------------------------------------------------------------------ 0. hashes, rule files, keys
     import kpc_key_freeze as KF
-    EXP = {'us-key': 'f489a836894f', 'ca-key': '570b09c3cb52', 'world-key': '6444287722b9'}   # amendment 2 hashes (declared)
+    import kpc_preflight as PF
+    EXP = {k: PF.newest_hash(k) for k in ('us-key', 'ca-key', 'world-key')}   # the newest hashes recorded in docs/key-rules-change.txt
     # Combined with the Nov 7 world rebuild (Part 2, Brandon OK'd): that patch moves the world hash by editing kpc_world_key.py
     # only, and declares it in docs/key-rules-change.txt. Tracts (Part 1) must still not touch any rule file, so the declared
     # world change is the one exception: the world hash may be the declared one and kpc_world_key.py may differ from main.
@@ -61,12 +64,12 @@ try:
           KF.rules_hash('us-key') == EXP['us-key'] and KF.rules_hash('ca-key') == EXP['ca-key'] and KF.rules_hash('world-key') in _wok)
     rels = sorted(set(sum((v for k, v in KF.RULE_FILES.items() if k != 'fers'), [])))  # Nov 8: fers kind is separate
     if _wdecl: rels = [r for r in rels if not r.endswith('/kpc_world_key.py')]
-    # Amendment 2 (Nov 9): the three key scripts change on purpose (saved-copy hosts, world exact ids), declared with their new hashes
-    _a2 = all(x in _decl for x in ('US rules 19d219f37114 -> f489a836894f', 'CA rules 22f16bc69b96 -> 570b09c3cb52', 'world rules 10e4092cc97f -> 6444287722b9'))
-    if _a2: rels = [r for r in rels if not r.endswith(('/kpc_us_key.py', '/kpc_ca_key.py', '/kpc_world_key.py'))]
+    # A kind whose hash moved from origin/main must have moved to the newest declared hash (checked above); the rule files of a kind
+    # whose hash did not move must be byte-identical to origin/main.
+    rels = sorted({r for k in ('us-key', 'ca-key', 'world-key') if KF.rules_hash(k) == PF.base_hash(k, KF) for r in KF.RULE_FILES[k]})
     have_base = git_show('kpc-bounds.js') is not None
     check(f'{BASE} is readable (the OFF comparisons need it)', have_base)
-    check('us/ca/world rule files are byte-identical to ' + BASE, have_base and all(git_show(r) == (ROOT / r).read_bytes() for r in rels))
+    check('rule files of every kind whose hash did not move are byte-identical to ' + BASE, have_base and all(git_show(r) == (ROOT / r).read_bytes() for r in rels))
     _ver = json.loads((ROOT / KF.VERSION_FILE).read_text(encoding='utf-8'))
     check('key-rules-version.json us/ca/world stay v5b (fers kind may be added)',
           _ver.get('us-key') == 'v5b' and _ver.get('ca-key') == 'v5b' and _ver.get('world-key') == 'v5b')

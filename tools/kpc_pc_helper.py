@@ -18,6 +18,9 @@ What it does:
 The master step in the US key workflow merges a checked file into the saved copy on its next run (count check again,
 trim, raw-add, keep-bigger merge). This helper never changes a saved copy itself.
 
+Refused (never packed or uploaded): a layer that looks like Protected Planet / WDPA, or one whose layer or download source is marked
+`redistribute: "no"` in data/outlines/layers.json or download-sources.json.
+
 Safety: this script itself contacts only GitHub (raw.githubusercontent.com for the list, and `gh` for the upload). It never
 fetches an agency server: YOUR browser opens the page. Python standard library only; no passwords or keys are stored here.
 """
@@ -188,6 +191,8 @@ def check_and_pack(row, files, parks_path, out_dir, layers_table, today=None):
     """-> (ok, message, hand file path or None). Fail closed: short / unreadable / trim refused = nothing written."""
     today = today or datetime.date.today().isoformat()
     area, pre = row['area'], row['layer']; st = area[3:]
+    blk = M.share_block(dict(row, raw={'name': ' '.join(pathlib.Path(f).name for f in files)}), REPO / 'data' / 'outlines')
+    if blk: return False, 'refused: ' + blk, None   # WDPA / redistribute=no: never packed
     feats = []
     for f in files:
         try: feats += read_features(f)
@@ -231,6 +236,13 @@ def gh_ok():
 
 
 def upload(paths, out_dir):
+    keep = []
+    for p in paths:   # the same refusal again, from each file's own facts: a restricted layer is never uploaded or packed
+        why = M.share_block(M.read_layer_file(p)[0], REPO / 'data' / 'outlines')
+        if why: say(f'Not uploaded: {pathlib.Path(p).name}: {why}')
+        else: keep.append(p)
+    paths = keep
+    if not paths: say('Nothing left to upload.'); return None
     g = gh_ok()
     if g:
         r = subprocess.run([g, 'release', 'upload', 'boundary-cache', *map(str, paths), '-R', LINKS, '--clobber'])

@@ -26,6 +26,7 @@ What happens to each kind:
 import csv, datetime, hashlib, io, json, os, re, shutil, subprocess, sys, urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_preapproved as PA
+import kpc_net_guard; kpc_net_guard.install()
 
 TITLE = 'KPC Reports'
 def notice(m): print('::notice title=' + TITLE + '::' + str(m).replace('%', '%25').replace('\r', '').replace('\n', '%0A'), flush=True)

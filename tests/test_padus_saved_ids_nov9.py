@@ -43,6 +43,7 @@ FE = [feat(10, 'Some State Forest'),                                            
       feat(21, 'Central Park', own='LOC', mang='CITY'),                                      # a city park of no POTA name -> dropped
       feat(22, 'Heyburn State Park Annex Lot', own='PVT', mang='PVT')]                       # Heyburn has a saved id: no name exception
 U.page = lambda st, off: {'features': FE if off == 0 else []}
+U.count_query = lambda url, q, box=True: len(FE)   # offline: the PAD-US count of the stand-in page (never the network)
 U.pad_cross = lambda st, P, recs, idx, hand: []
 recs, n = U.pad_state('ID', P)
 got = {a['OBJECTID'] for a in recs}
@@ -85,6 +86,8 @@ check('run(): state layer read with name-only records left out of its duplicate 
 check('run(): saved ids topped up on the saved-copy path too', 'saved_fetch(st, P, recs)' in src_full.split('def run(st)')[1].split('if _kr(')[0])
 check('no new host: the by-id ask uses the PAD-US query url Q only', 'nationalmap.gov' in U.Q and 'arcgis.com/33TOOklri9xpic7U' not in src_full and 'natureserve' not in '\n'.join(l for l in src_full.splitlines() if not l.lstrip().startswith('NEVER_HOSTS')))   # Nov 10: named only in the never-contact refusal list
 check('the 11:24 AM OK recorded (date only) with the new US hash', 'Nov 9, 2026, 11:24 AM CST' in (ROOT / 'docs/key-rules-change.txt').read_text() and KZ.rules_hash('us-key') in (ROOT / 'docs/key-rules-change.txt').read_text())
-check('rules hashes: US 2c7f4be3dc36, CA 0ebc381a788f, world unchanged, fers c2456edee62e',
-      (KZ.rules_hash('us-key'), KZ.rules_hash('ca-key'), KZ.rules_hash('world-key'), KZ.rules_hash('fers')) == ('2c7f4be3dc36', '0ebc381a788f', '022f06d08d3c', 'c2456edee62e'))
+import kpc_preflight as PF
+_K = ('us-key', 'ca-key', 'world-key', 'fers')
+check('every rules hash equals the newest one in docs/key-rules-change.txt',
+      all(PF.newest_hash(k) for k in _K) and all(KZ.rules_hash(k) == PF.newest_hash(k) for k in _K))
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

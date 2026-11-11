@@ -75,7 +75,7 @@ try:
     for fill, want_states, want_short in ((21993, 'FL TN KY', []), (21992, 'TN KY', ['US-FL'])):
         with tempfile.TemporaryDirectory() as t:
             t = pathlib.Path(t); (t / 'cache/us').mkdir(parents=True); (t / '.github/scripts').mkdir(parents=True); (t / 'data/outlines').mkdir(parents=True)
-            for fn in ('kpc_master.py', 'kpc_master_cli.py'): shutil.copy(ROOT / '.github/scripts' / fn, t / '.github/scripts' / fn)
+            for fn in ('kpc_master.py', 'kpc_master_cli.py', 'kpc_net_guard.py'): shutil.copy(ROOT / '.github/scripts' / fn, t / '.github/scripts' / fn)
             (t / '.github/scripts/kpc_us_key.py').write_text(FAKE)
             json.dump({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 21993}, 'US-TN': {'expected_count': 100}, 'US-KY': {'expected_count': 5}}}, open(t / 'data/outlines/layers.json', 'w'))
             for st, nrecs in (('FL', fill), ('TN', 100), ('KY', 5)):   # what the master step left (it ran before this step)

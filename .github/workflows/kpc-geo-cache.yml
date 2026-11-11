@@ -95,8 +95,19 @@ jobs:
           GEO_DETAIL: '0.001'
           GEO_PAGE: '200'
           MINUTES: '320'
+          GH_TOKEN: ${{ github.token }}
         run: |
           echo "::notice title=Saved shapes::fetching $STATES"
+          # Owner rule, 2026-11-10: start from the release copies (the layers on saved-copy-only hosts come only from them) and keep
+          # them in .against, so the upload below sends only copies that hold at least as many records (save-check)
+          mkdir -p cache/us .against
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > .against/ASSETS.txt || { rm -f .against/ASSETS.txt; echo "::warning title=Saved shapes::the release asset list could not be read: nothing is uploaded this run"; }
+          for st in $STATES; do
+            grep -qx "US-$st.json.gz" .against/ASSETS.txt 2>/dev/null || continue
+            if gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D .against --clobber; then cp ".against/US-$st.json.gz" cache/us/
+            else echo "::warning title=Saved shapes $st::the release copy could not be downloaded: $st is not uploaded this run"; echo "Saved shapes $st - release copy not downloaded" >> "$RUNNER_TEMP/kpc-hidden.txt"; fi
+          done
+          touch .against/T0
           pip install --quiet --break-system-packages pyshp pyproj || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
           python3 .github/scripts/kpc_us_key.py || { kpc_rc=$?; echo "::error title=kpc_us_key.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_us_key.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Put them on the release
@@ -105,9 +116,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          ls -la cache/us/ 2>/dev/null || { echo "::notice title=Saved shapes::nothing saved for ${{ matrix.states }}"; exit 0; }
-          gh release upload boundary-cache cache/us/*.json.gz -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
-          echo "::notice title=Saved shapes::uploaded $(ls cache/us/*.json.gz | wc -l) file(s) for ${{ matrix.states }}"
+          F=$(find cache/us -maxdepth 1 -name 'US-*.json.gz' -newer .against/T0 2>/dev/null | sort | tr '\n' ' ')
+          [ -n "$F" ] || { echo "::notice title=Saved shapes::nothing new saved for ${{ matrix.states }}"; exit 0; }
+          # owner rule, 2026-11-10: only copies that pass the gate baseline and hold at least the release copy's records, per layer
+          python3 .github/scripts/kpc_master_cli.py save-check --against .against --assets .against/ASSETS.txt --first-ok --ok-list .against/OK.txt $F || { kpc_rc=$?; echo "::error title=Saved shapes::save-check refused a copy (exit $kpc_rc, named above): not uploaded"; echo "Saved shapes - save-check refused a copy (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          F=$(cat .against/OK.txt 2>/dev/null | tr '\n' ' ')
+          [ -n "${F// /}" ] || { echo "::notice title=Saved shapes::no copy passed save-check for ${{ matrix.states }}"; exit 0; }
+          gh release upload boundary-cache $F -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=upload::an upload failed (exit $kpc_rc)"; echo "upload - an upload failed (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          echo "::notice title=Saved shapes::uploaded $F"
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:

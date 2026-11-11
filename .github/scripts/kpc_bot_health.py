@@ -19,6 +19,7 @@ import pathlib
 import re
 import subprocess
 import sys
+import kpc_net_guard; kpc_net_guard.install()
 
 REPO = os.environ.get('GITHUB_REPOSITORY', 'KentuckyPortableClub/KPC-Links')
 NOW = dt.datetime.now(dt.timezone.utc)

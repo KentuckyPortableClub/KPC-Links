@@ -101,7 +101,17 @@ jobs:
           GEO_DETAIL: '0.002'
           GEO_THIN: '250'
           CC: ${{ matrix.cc }}
+          GH_TOKEN: ${{ github.token }}
         run: |
+          # Owner rule, 2026-11-10: start from the release copy and keep it in .against, so the upload sends only a copy that holds at
+          # least as many records, per source (save-check)
+          if [ "$CC" = "CA" ]; then n=CA-ALL.json.gz; d=cache/ca; else n="W-$CC.json.gz"; d=cache/world; fi
+          mkdir -p "$d" .against
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > .against/ASSETS.txt || { rm -f .against/ASSETS.txt; echo "::warning title=Saved shapes $CC::the release asset list could not be read: nothing is uploaded this run"; }
+          if grep -qx "$n" .against/ASSETS.txt 2>/dev/null; then
+            gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "$n" -D .against --clobber && cp ".against/$n" "$d/" || { kpc_rc=$?; echo "::warning title=Saved shapes $CC::the release copy could not be downloaded (exit $kpc_rc): not uploaded this run"; echo "Saved shapes $CC - release copy not downloaded (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          fi
+          touch .against/T0
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           if [ "$CC" = "CA" ]; then
             python3 .github/scripts/kpc_ca_key.py || echo "::notice title=Saved shapes CA::stopped with an error"
@@ -114,8 +124,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          f=$(ls cache/world/W-${{ matrix.cc }}.json.gz cache/ca/CA-ALL.json.gz 2>/dev/null | head -1)
-          [ -n "$f" ] || { echo "::notice title=Saved shapes ${{ matrix.cc }}::nothing saved"; exit 0; }
+          f=$(find cache/world/W-${{ matrix.cc }}.json.gz cache/ca/CA-ALL.json.gz -newer .against/T0 2>/dev/null | head -1)
+          [ -n "$f" ] || { echo "::notice title=Saved shapes ${{ matrix.cc }}::nothing new saved"; exit 0; }
+          # owner rule, 2026-11-10: only a copy that passes the gate baseline and holds at least the release copy's records
+          python3 .github/scripts/kpc_master_cli.py save-check --against .against --assets .against/ASSETS.txt --first-ok "$f" || { kpc_rc=$?; echo "::error title=Saved shapes ${{ matrix.cc }}::save-check refused $(basename $f) (named above): not uploaded"; echo "Saved shapes ${{ matrix.cc }} - save-check refused $(basename $f)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 0; }
           gh release upload boundary-cache "$f" -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           echo "::notice title=Saved shapes ${{ matrix.cc }}::uploaded $(basename $f) ($(du -h $f | cut -f1))"
       - name: Report hidden failures (Nov 2 review, G8)

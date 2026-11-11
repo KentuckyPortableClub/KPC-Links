@@ -88,6 +88,10 @@ jobs:
         run: |
           mkdir -p cache/us
           gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          # owner rule, 2026-11-10: the release copies as downloaded (+ the asset list) are what save-check compares the upload against
+          mkdir -p .against; cp cache/us/US-*.json.gz .against/ 2>/dev/null || true   # ok: none downloaded = every upload needs a first-copy check
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > .against/ASSETS.txt || rm -f .against/ASSETS.txt
+          touch .against/T0
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 2 review, Mapping #7) - no US key rebuild while chat 11 grades a held build
         # Before: only kpc-us-key.yml asked. This nightly run rebuilt US-CA, US-CO and US-OR on Nov 2 while the US key was frozen.
         # Frozen = the rebuild, the outline upload and the stamp below are skipped; the report and the second witness still run.
@@ -113,7 +117,7 @@ jobs:
           if [ -n "$STATES" ]; then echo "::notice title=Boundary check::rebuilding $STATES"; python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key.log || { kpc_rc=$?; echo "::warning title=step::a script stopped with an error (exit $kpc_rc)"; echo "step - a script stopped with an error (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
           if [ -n "$REFRESH" ]; then
             echo "::notice title=Boundary check::re-reading the saved outlines of $REFRESH from the agencies (monthly rotation)"
-            for s in $REFRESH; do [ -f cache/us/US-$s.json.gz ] && cp cache/us/US-$s.json.gz cache/us/prev-US-$s.json.gz; done
+            mkdir -p .prev; for s in $REFRESH; do [ -f .against/US-$s.json.gz ] && cp .against/US-$s.json.gz .prev/prev-US-$s.json.gz; done
             STATES="$REFRESH" GEO_CACHE_MODE=refresh python3 .github/scripts/kpc_us_key.py 2>&1 | tee -a us-key.log; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { kpc_rc=$?; echo "::warning title=kpc_us_key.py::stopped with an error (exit $rc), see the log above"; echo "kpc_us_key.py - stopped with an error (exit $rc), see the log above" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
             python3 - <<'PY' || { kpc_rc=$?; echo "::error title=inline Python::stopped with an error (exit $kpc_rc), see the log above"; echo "inline Python - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           import json, os, pathlib, time
@@ -148,10 +152,16 @@ jobs:
           KPC_ARCHIVE_TOKEN: ${{ secrets.KPC_ARCHIVE_TOKEN }}   # Nov 9 evening: KPC-Archive = the store (outlines as release assets + a small git index); the KPC-Links release stays as the mirror the readers use
         run: |
           # Nov 9 evening: KPC-Archive release saved-outlines + index (the prev-US-XX copies stay on the KPC-Links release only)
-          ls cache/us/US-*.json.gz >/dev/null 2>&1 && { bash .github/scripts/kpc_archive.sh put saved-outlines "Boundary check saved outlines (run $GITHUB_RUN_ID)" cache/us/US-*.json.gz || { kpc_rc=$?; echo "::warning title=KPC-Archive::not saved to KPC-Archive this run (exit $kpc_rc, see above); the release copy is current"; echo "KPC-Archive - not saved this run (exit $kpc_rc); the release copy is current" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; }
           gh release view boundary-cache -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
             gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' --notes 'Saved outlines for the boundary answer keys.' || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
-          ls cache/us/*.json.gz >/dev/null 2>&1 && gh release upload boundary-cache cache/us/*.json.gz -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          # owner rule, 2026-11-10: only the copies this run changed that pass the gate baseline and hold at least the release copy's records
+          F=$(find cache/us -maxdepth 1 -name 'US-*.json.gz' -newer .against/T0 2>/dev/null | sort | tr '\n' ' ')
+          if [ -n "$F" ]; then python3 .github/scripts/kpc_master_cli.py save-check --against .against --assets .against/ASSETS.txt --first-ok --ok-list .against/OK.txt $F || { kpc_rc=$?; echo "::error title=Boundary check::save-check refused a saved copy (exit $kpc_rc, named above): not uploaded"; echo "Boundary check - save-check refused a saved copy (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
+          F=$(cat .against/OK.txt 2>/dev/null | tr '\n' ' ')
+          if [ -n "${F// /}" ]; then bash .github/scripts/kpc_archive.sh put saved-outlines "Boundary check saved outlines (run $GITHUB_RUN_ID)" $F || { kpc_rc=$?; echo "::warning title=KPC-Archive::not saved to KPC-Archive this run (exit $kpc_rc, see above); the release copy is current"; echo "KPC-Archive - not saved this run (exit $kpc_rc); the release copy is current" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
+          if [ -n "${F// /}" ]; then gh release upload boundary-cache $F -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=upload::an upload failed (exit $kpc_rc)"; echo "upload - an upload failed (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
+          # the previous release copies of tonight's re-read states (unchanged bytes, kept as prev-US-XX)
+          ls .prev/prev-US-*.json.gz >/dev/null 2>&1 && { gh release upload boundary-cache .prev/prev-US-*.json.gz -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=upload::the prev- copies were not uploaded (exit $kpc_rc)"; echo "upload - prev copies not uploaded (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; }
       - name: Second witness (how sure is each outline?)
         id: kept_green_4
         continue-on-error: true

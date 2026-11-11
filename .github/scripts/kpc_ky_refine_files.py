@@ -5,6 +5,7 @@ four files that come from Kentucky's own state GIS is read again by its name (al
 shape) at ~5 m (server thinning 0.00005 deg, 6 decimals) and written back with the same properties. A feature whose read
 fails or whose area moves more than 25% keeps its old shape (listed). Writes ky-refine-report.json. Never fails."""
 import json, math, os, re, sys, time, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = {'User-Agent': 'KPC park-map bot (kentuckyportableclub.github.io; ham radio club)'}
 KYGIS = 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/'

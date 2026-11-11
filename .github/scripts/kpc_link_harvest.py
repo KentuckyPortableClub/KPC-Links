@@ -12,6 +12,7 @@ pulled from sources that are official by nature, into data/parkinfo-web.json (ne
 A bot value is written as {'web' or 'map': url, 'by': 'bot: <source>'}; a value a person filled in (no 'by', or not a
 bot) is never changed. Data only (hidden until used). Monthly, time-limited, never fails. Keys are never printed."""
 import json, math, os, pathlib, re, sys, time, urllib.error, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json, read_dates
 

@@ -5,6 +5,7 @@ on the same day by the same call = a pair people really worked together. COUNTS 
 data/fers/pota-pairs-<US-XX>.json {made, parks_read, pairs: {"A+B": times}}. Slow (1 request a second), re-read at most every
 30 days. STATES='US-KY US-OH'. A hint, never proof (an activator can drive between two parks the same day). Never fails."""
 import itertools, json, os, pathlib, sys, time, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 UA = {'User-Agent': 'KPC 2-fer missing check (kentuckyportableclub.github.io; counts only)'}
 STATES = (os.environ.get('STATES') or 'US-KY').upper().replace(',', ' ').split()
 OUT = pathlib.Path('data/fers')

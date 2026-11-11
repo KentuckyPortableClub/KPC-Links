@@ -9,6 +9,7 @@ Reads each agency page listed in data/ky-lands-seen.json (made by kpc_new_lands.
 Saves the maps AND the other documents (fact sheets, brochures, guides) the page links. Only links that are ON the agency's page are saved (never guessed). Browsers can't read those pages (no CORS), so this runs in Actions.
 """
 import datetime as dt, html, json, pathlib, re, sys, time, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 SEEN, OUT = pathlib.Path('data/ky-lands-seen.json'), pathlib.Path('data/ky-official-maps.json')
 UA = 'KPC-map-link-check/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'   # Nov 2 review: the honest KPC User-Agent, never a browser's (Oct 31 ruling)

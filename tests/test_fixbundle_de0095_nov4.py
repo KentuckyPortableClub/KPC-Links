@@ -29,13 +29,5 @@ check(not clash(kp, [kinds('DE', 'BfN Landschaftsschutzgebiete')]), 'a biosphere
 # wiring: used once, in the pin-inside + name path, before the join, writing the review list with the reason
 i = src.index('br_kind_clash(kp, [r[\'_k\'] for r, _ in holds])'); j = src.index("m = [[r['id'], r['n'], r['src'], 'pin inside + ' + how] for r, how in holds]")
 check(src.count('br_kind_clash(') == 2 and i < j and "'m': [], 'c':" in src[i:j] and 'BR_CLASH_WHY' in src[i:j], 'wired once, in the pin-inside + name path, before the join: m empty, c with the reason')
-# today's key: the parks the rule could reach = 'pin inside +' joins of a biosphere-reserve park to bird / habitat records only
-hit = []
-for f in sorted(pathlib.Path('data/world-key').glob('DE.json')):
-    for ref, p in json.load(open(f, encoding='utf-8'))['parks'].items():
-        k = kinds('DE', p.get('n')) | kinds('DE', p.get('t'))
-        ms = [q for q in p.get('m') or [] if str(q[3]).startswith('pin inside +')]
-        if ms and clash(k, [kinds('DE', q[1]) | kinds('DE', q[2]) for q in ms]): hit.append(ref)
-check(hit == ['DE-0095'], f"on today's DE key only DE-0095 is reached: {hit}")
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

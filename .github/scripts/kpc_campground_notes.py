@@ -68,6 +68,7 @@ def find_place(txt):
 # ---- state (st) and park number (ref) for every review / new place, so a place outside Kentucky shows on its state's list
 # (Brandon Oct 24: state park camping for every state). Order: park number -> GPS (point in state) -> the "Town or county" words.
 import glob
+import kpc_net_guard; kpc_net_guard.install()
 REF_ST = {r: 'KY' for r, _, _ in PLACES}
 for _f in glob.glob('data/parkinfo/US-??.json'):
     try:

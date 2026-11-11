@@ -4,6 +4,7 @@ wwff.co's directory CSV can't be read by a web page (no CORS), so every week we 
 split by program prefix: data/wwff/<PREFIX>.json = [[ref, name, lat, lon, website, state, county], ...].
 """
 import csv, io, json, pathlib, sys, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 UA = 'Mozilla/5.0 (compatible; KPC-Links WWFF directory copy)'
 raw = urllib.request.urlopen(urllib.request.Request('https://wwff.co/wwff-data/wwff_directory.csv', headers={'User-Agent': UA}), timeout=120).read().decode('utf-8', 'replace')
 out = {}

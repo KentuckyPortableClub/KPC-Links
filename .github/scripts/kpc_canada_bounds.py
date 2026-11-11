@@ -16,6 +16,7 @@ Resumable: parks already saved are skipped unless RECHECK=1; misses are retried 
 MODE=info prints the service's layers and fields only (use it first if the service changes).
 """
 import json, os, re, sys, time, unicodedata, urllib.parse, urllib.request, concurrent.futures as cf, datetime as dt
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 
 SVC = os.environ.get('CPCAD_URL', 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer')
 OUT = 'data/canada-bounds'

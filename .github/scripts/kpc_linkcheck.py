@@ -23,6 +23,7 @@ import urllib.request
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from kpc_issue import report  # noqa: E402
+import kpc_net_guard; kpc_net_guard.install()
 
 ROOT = pathlib.Path('.')
 UA = 'KPC-link-check/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'   # Nov 2 review: honest KPC User-Agent (Oct 31 ruling); a site that refuses it is listed, never worked around

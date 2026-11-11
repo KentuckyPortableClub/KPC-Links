@@ -26,6 +26,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 import zlib
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = 'Mozilla/5.0 (compatible; KPC-new-lands; +https://kentuckyportableclub.github.io/KPC-Links/)'
 SEEN = pathlib.Path('data/ky-lands-seen.json')

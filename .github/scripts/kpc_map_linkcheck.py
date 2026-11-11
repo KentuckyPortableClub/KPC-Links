@@ -8,6 +8,7 @@ workflow) + by hand. Never fails."""
 import json, os, pathlib, re, sys, time, urllib.error, urllib.request
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
+import kpc_net_guard; kpc_net_guard.install()
 
 T0, LIMIT = time.time(), float(os.environ.get('MINUTES') or 120) * 60
 P = pathlib.Path('data/parkinfo-web.json')

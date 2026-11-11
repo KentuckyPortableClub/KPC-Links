@@ -9,6 +9,8 @@ default tests/known-fail-main.txt). Exit 1 on any NEW failure; exit 0 when every
 
   pass  = exit 0 and none of the fail words below in the output
   fail  = anything else (non-zero exit, timeout, 'SOME FAILED', 'SELFTEST FAIL', '-> FAIL')
+  skip  = exit 0 and the LAST non-empty line starts with 'SKIP' (e.g. history or an optional module is missing in this clone): counted and
+          listed as skipped, never as passed
   dirty = the run changed the repo's files (git status before / after each file); counted as a failure of THAT file, because a
           test or selftest must never write the repo's own data (Part B 08: the ledger tests did). Nothing is restored or deleted.
 
@@ -18,6 +20,8 @@ offline itself). No secrets, no network, never pushes.
   python3 .github/scripts/kpc_full_suite.py [--root DIR] [--baseline FILE] [--report FILE] [--timeout 180] [--no-selftests]
   python3 .github/scripts/kpc_full_suite.py --selftest      (rule-18 style: 10+ frozen cases on a throwaway repo in /tmp)
 Env passed through (LINKS / DATA point the tests at the other repo).
+
+A baseline entry whose test now PASSES fails the gate ('stale baseline: remove X'), so the baseline cannot rot; clear it in the same PR.
 
 Baseline file: one entry per line, '#' comments. An entry is a test path (tests/test_x.py) or 'selftest:<script path>'.
 """
@@ -63,9 +67,11 @@ def run_one(cmd, root, timeout):
     except subprocess.TimeoutExpired:
         out, rc = f'TIMEOUT after {timeout}s', 124
     ok = rc == 0 and not FAIL_WORDS.search(out)
+    last = next((ln for ln in reversed(out.splitlines()) if ln.strip()), '')
+    skip = ok and last.startswith('SKIP')
     why = [ln.strip() for ln in out.splitlines() if re.match(r'\s*(FAIL|SELFTEST FAIL|Traceback|\w*Error)', ln)][:4]
     if not ok and not why: why = [f'exit {rc}'] + [ln.strip() for ln in out.splitlines()[-2:] if ln.strip()]
-    return ok, why, round(time.time() - t, 1)
+    return ok, why, round(time.time() - t, 1), skip
 
 
 def suite(root='.', baseline=None, timeout=180, selftests=True, label=''):
@@ -76,36 +82,42 @@ def suite(root='.', baseline=None, timeout=180, selftests=True, label=''):
         items += [('selftest:' + str(f.relative_to(root)), [sys.executable, '-B', str(f.relative_to(root)), '--selftest']) for f in selftest_scripts(root)]
     rows, before = [], git_state(root)
     for name, cmd in items:
-        ok, why, secs = run_one(cmd, root, timeout)
+        ok, why, secs, skip = run_one(cmd, root, timeout)
         after = git_state(root)
         if before is not None and after is not None and after != before:
             changed = sorted(set(after.splitlines()) - set(before.splitlines()))
             ok = False; why = ['left the repo changed: ' + '; '.join(c.strip() for c in changed[:4])] + why
             before = after   # attribute only NEW changes to the next file
         known = name in base
-        rows.append({'name': name, 'ok': ok, 'known': known, 'why': why, 'secs': secs})
+        rows.append({'name': name, 'ok': ok, 'known': known, 'why': why, 'secs': secs, 'skip': skip and ok})
     new = [r for r in rows if not r['ok'] and not r['known']]
-    fixed = sorted(b for b in base if any(r['name'] == b and r['ok'] for r in rows))
+    fixed = sorted(b for b in base if any(r['name'] == b and r['ok'] and not r['skip'] for r in rows))   # a skipped entry is not fixed
     gone = sorted(b for b in base if not any(r['name'] == b for r in rows))
     head = ''
     try: head = subprocess.run(['git', 'rev-parse', '--short=12', 'HEAD'], cwd=root, capture_output=True, text=True).stdout.strip()
     except Exception: pass  # noqa: BLE001
     return {'root': root, 'head': head, 'label': label, 'rows': rows, 'new': new, 'fixed': fixed, 'gone': gone,
-            'pass': sum(r['ok'] for r in rows), 'total': len(rows),
-            'tests_pass': sum(r['ok'] for r in rows if not r['name'].startswith('selftest:')),
+            'pass': sum(r['ok'] and not r['skip'] for r in rows), 'skipped': [r['name'] for r in rows if r['skip']], 'total': len(rows),
+            'tests_pass': sum(r['ok'] and not r['skip'] for r in rows if not r['name'].startswith('selftest:')),
             'tests_total': sum(1 for r in rows if not r['name'].startswith('selftest:'))}
+
+
+def gate_fails(res):
+    return bool(res['new'] or res['fixed'])
 
 
 def report(res):
     L = [f"## {res['label'] or 'suite'}  root={res['root']}  HEAD={res['head']}",
          f"CMD: python3 .github/scripts/kpc_full_suite.py --root {res['root']}  (every tests/test_*.py one by one + every --selftest)"]
     for r in res['rows']:
-        tag = 'PASS' if r['ok'] else ('FAIL (known on main)' if r['known'] else 'FAIL NEW')
+        tag = 'SKIP' if r['skip'] else 'PASS' if r['ok'] else ('FAIL (known on main)' if r['known'] else 'FAIL NEW')
         L.append(f"{tag:<21} {r['name']}  ({r['secs']}s)")
         if not r['ok']: L += ['    ' + w[:200] for w in r['why']]
     L.append(f"TOTAL tests: {res['tests_pass']}/{res['tests_total']} pass; with selftests: {res['pass']}/{res['total']} pass; "
-             f"NEW failures: {len(res['new'])}" + (' -> GATE FAIL' if res['new'] else ' -> GATE PASS'))
-    if res['fixed']: L.append('known failures that now PASS (take them off the baseline): ' + ', '.join(res['fixed']))
+             f"skipped: {len(res['skipped'])}; NEW failures: {len(res['new'])}; stale baseline entries: {len(res['fixed'])}"
+             + (' -> GATE FAIL' if gate_fails(res) else ' -> GATE PASS'))
+    if res['skipped']: L.append('skipped (not counted as passed): ' + ', '.join(res['skipped']))
+    L += [f'stale baseline: remove {b}' for b in res['fixed']]
     if res['gone']: L.append('baseline entries not found in this repo: ' + ', '.join(res['gone']))
     return '\n'.join(L) + '\n'
 
@@ -125,6 +137,8 @@ def selftest():
     w('tests/test_d_words.py', "print('SOME FAILED')\n")                         # exit 0 but says it failed
     w('tests/test_e_dirty.py', "open('written.txt','w').write('x')\nprint('PASS e')\n")
     w('tests/test_f_fixed.py', "print('PASS f')\n")
+    w('tests/test_g_skip.py', "print('PASS part')\nprint('SKIP: history missing')\n")
+    w('tests/test_h_skipfirst.py', "print('SKIP: not last')\nprint('PASS h')\n")
     w('.github/scripts/kpc_s1.py', "import sys\nif '--selftest' in sys.argv: print('SELFTEST PASS')\n")
     w('.github/scripts/kpc_s2.py', "import sys\nif '--selftest' in sys.argv: print('SELFTEST FAIL: 1 of 2')\n")
     w('.github/scripts/kpc_s3.py', "print('no selftest here')\n")
@@ -144,14 +158,19 @@ def selftest():
     check("'SELFTEST FAIL' on the baseline is known", (by['selftest:.github/scripts/kpc_s2.py']['ok'], by['selftest:.github/scripts/kpc_s2.py']['known']), (False, True))
     check('a script without --selftest is not run', 'selftest:.github/scripts/kpc_s3.py' in by, False)
     check("a script testing a[0] == '--selftest' is found too", by.get('selftest:.github/scripts/kpc_s4.py', {}).get('ok'), True)
+    check('a test whose last line is SKIP is skipped, not passed', (by['tests/test_g_skip.py']['skip'], by['tests/test_g_skip.py']['ok']), (True, True))
+    check('SKIP anywhere but the last line is a plain pass', (by['tests/test_h_skipfirst.py']['skip'], by['tests/test_h_skipfirst.py']['ok']), (False, True))
+    check('skips are listed and not counted in the pass total', (res['skipped'], res['pass'] == sum(r['ok'] for r in res['rows']) - 1), (['tests/test_g_skip.py'], True))
+    check('a baseline entry that passes is stale and fails the gate', ('stale baseline: remove tests/test_f_fixed.py' in report(res), gate_fails(res)), (True, True))
     check('NEW failures = c, d, e', sorted(r['name'] for r in res['new']), ['tests/test_c_new.py', 'tests/test_d_words.py', 'tests/test_e_dirty.py'])
     check('a baseline entry with no file is reported', res['gone'], ['tests/test_gone.py'])
     check('report says GATE FAIL', 'GATE FAIL' in report(res), True)
     (d / 'tests/test_c_new.py').write_text("print('PASS c')\n"); (d / 'tests/test_d_words.py').write_text("print('PASS d')\n")
     (d / 'tests/test_e_dirty.py').write_text("print('PASS e')\n")
+    w('tests/known-fail-main.txt', "# main\ntests/test_b_known.py\nselftest:.github/scripts/kpc_s2.py\ntests/test_gone.py\n")   # f removed: no longer stale
     subprocess.run('git add -A && git -c user.name=t -c user.email=t@t commit -qm t2', shell=True, cwd=d)
     res2 = suite(d, timeout=30, label='selftest-2')
-    check('only known failures left -> GATE PASS (exit 0)', (len(res2['new']), 'GATE PASS' in report(res2)), (0, True))
+    check('only known failures left, none stale -> GATE PASS (exit 0)', (len(res2['new']), len(res2['fixed']), 'GATE PASS' in report(res2)), (0, 0, True))
     print(f"SELFTEST {'PASS' if ok_all else 'FAIL'}: {n} cases")
     return ok_all
 
@@ -166,7 +185,7 @@ def main(argv=None):
     txt = report(res); sys.stdout.write(txt)
     if a.report:
         with open(a.report, 'a', encoding='utf-8') as f: f.write(txt + '\n')
-    return 1 if res['new'] else 0
+    return 1 if gate_fails(res) else 0
 
 
 if __name__ == '__main__':

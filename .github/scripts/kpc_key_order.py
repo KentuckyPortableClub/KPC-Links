@@ -98,12 +98,15 @@ def check(kind, env=os.environ, root='.'):
             if ev == 'workflow_run':
                 _env(SKIP=1); notice(f'{NAMES[kind]} key: already on the current rules ({why}): nothing to catch up, this chained start skips'); return 'skip'
             return 'go'
-        todo = [(k, w) for k in WAIT_FOR.get(kind, ()) for ok, w in [on_current(k, root)] if not ok]
+        # KPC owner, 2026-11-10: Canada and world wait for a FULL key before them: its full stamp ('rules', written only for a full
+        # green build) on the current rules and no failed state. A partial run ('rules_of_run' only, or a failed state) never unblocks them.
+        todo = [(k, w + (f"; failed: {', '.join(map(str, _index(k, root).get('failed') or []))}" if _index(k, root).get('failed') else ''))
+                for k in WAIT_FOR.get(kind, ()) for ok, w in [on_current(k, root)] if not ok or _index(k, root).get('failed')]
         if todo:
             _env(SKIP=1, ORDER_WAIT=1)
             notice(f"{NAMES[kind]} key WAITS (new-rules build; order US -> Canada -> world, per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4): "
                    + '; '.join(f'{NAMES[k]} has not finished its new-rules build ({w})' for k, w in todo)
-                   + f'. Nothing is built now; this key starts by itself when {NAMES[todo[-1][0]]} finishes (workflow_run, no cron)')
+                   + f'. Nothing is built now; this key starts by itself when {NAMES[todo[-1][0]]} finishes (dispatched by that key, no cron)')
             return 'wait'
         notice(f'{NAMES[kind]} key: new-rules build; ' + (' and '.join(NAMES[k] for k in WAIT_FOR.get(kind, ())) or 'no key') + ' already finished theirs: it builds now')
         return 'go'

@@ -10,6 +10,7 @@ Env: STATES (CA-ON CA-QC ...; US states are skipped), WATER_STORE, DATA. REPORT=
 import gzip, io, json, os, pathlib, re, shutil, sys, tempfile, time, urllib.error, urllib.request, zipfile
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import kpc_water_bulk as WB   # noqa: E402  (tiles_needed / report / the GeoPackage reader)
+import kpc_net_guard; kpc_net_guard.install()
 
 BASE = 'https://ftp.maps.canada.ca/pub/nrcan_rncan/vector/geobase_nhn_rhn/'
 INDEX = BASE + 'index/NHN_INDEX_WORKUNIT_LIMIT_2.zip'

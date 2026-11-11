@@ -10,6 +10,7 @@ Manual, one-time-ish. For every state but Kentucky it asks, from GitHub's networ
      asks us not to)?
 Writes data/campstate/probe.json (plain facts, no guessing) and prints ONE summary notice. Never fails the workflow."""
 import json, os, pathlib, re, sys, time, urllib.error, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 import concurrent.futures as cf
 
 UA = 'KPC-state-camps-probe/1.0 (Kentucky Portable Club; kentuckyportableclub.github.io)'

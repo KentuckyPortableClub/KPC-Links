@@ -149,6 +149,7 @@ note('Federal campgrounds done', f'{total} campgrounds in {len(STATES)} states' 
 # partial run (or a file kept from last month) left doubles behind. FINAL SWEEP over EVERY saved state file: one campground,
 # one file = the state its pin is in (else the first file); then COUNT what is left and say it (the self-check HQ asked for).
 import glob as _glob
+import kpc_net_guard; kpc_net_guard.install()
 try:
     _shapes = [(b['a'], [pl[0] for pl in b['p']]) for b in json.load(open('kpc-us-states.json'))]
 except Exception: _shapes = []  # noqa: BLE001

@@ -14,6 +14,7 @@ Oct 28 (HQ tune + speed-up): polite (1 request / 2 s per host); a layer already 
 (no count / sample re-read; REFRESH=1 re-reads all); a layer the service list already says is the wrong shape is not opened;
 when a server could not be listed this time, its leads from last time are kept (SD's timeout had emptied a state)."""
 import json, os, pathlib, re, sys, time, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 from kpc_save import save_json, save_text
 
 UA = {'User-Agent': 'KPC parking layer explorer (kentuckyportableclub.github.io)'}

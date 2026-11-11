@@ -29,6 +29,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 
 OUT = pathlib.Path('checkup-out')
 TODAY = dt.date.today().isoformat()

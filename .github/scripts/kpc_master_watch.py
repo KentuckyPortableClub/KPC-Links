@@ -222,10 +222,19 @@ def changed(old, new):
     return any(old.get(k) not in (None, '') and new.get(k) not in (None, '') and str(old[k]) != str(new[k]) for k in FP_KEYS)
 
 
-def watch(sources_path, needs_path=None, offline=False, head=None, getj=None, date=None):
-    """Check every check=bot source; reopen the done needs rows of a changed source. Returns a summary dict."""
+def _days_since(e, date):
+    """Days since this source was last tried (fp_seen or the date in last_check); None = never."""
+    seen = [str(x)[:10] for x in (e.get('fp_seen'), e.get('last_check')) if x]
+    try: return min((datetime.date.fromisoformat(date) - datetime.date.fromisoformat(d)).days for d in seen) if seen else None
+    except ValueError: return None
+
+
+def watch(sources_path, needs_path=None, offline=False, head=None, getj=None, date=None, min_days=0):
+    """Check every check=bot source; reopen the done needs rows of a changed source. Returns a summary dict. A source tried less than
+    min_days ago is not asked again this run (owner rule, 2026-11-10); the file is written only when something in it changed."""
     date = date or today()
     doc = M.load_json(sources_path, {}) or {}
+    before = json.dumps(doc, sort_keys=True)
     src = doc.get('sources') or {}
     if not offline and (head is None or getj is None): head, getj = http_fetcher()
     out = {'checked': 0, 'changed': [], 'not_checked': 0, 'person': 0}
@@ -238,6 +247,8 @@ def watch(sources_path, needs_path=None, offline=False, head=None, getj=None, da
             out['person'] += 1   # not asked every run: the PC helper's --reminders lists these rows every REMIND_DAYS days
             continue
         if offline: out['not_checked'] += 1; continue
+        ds = _days_since(e, date)
+        if min_days and ds is not None and 0 <= ds < min_days: out['recent'] = out.get('recent', 0) + 1; continue
         try: fp, how = fingerprint(e, head, getj)
         except Exception as ex: fp, how = None, f'{type(ex).__name__}'  # noqa: BLE001
         if fp is None: out['not_checked'] += 1; e['last_check'] = f'{date}: {how}'; continue
@@ -247,7 +258,7 @@ def watch(sources_path, needs_path=None, offline=False, head=None, getj=None, da
             e['fp_prev'] = old; e['changed'] = date; out['changed'].append(sid)
         e['fp'] = {**old, **fp}; e['fp_seen'] = date; e['last_check'] = f'{date}: {how}'
     doc['sources'] = src
-    pathlib.Path(sources_path).write_text(json.dumps(doc, indent=1, sort_keys=True, ensure_ascii=False) + '\n', encoding='utf-8')
+    if json.dumps(doc, sort_keys=True) != before: pathlib.Path(sources_path).write_text(json.dumps(doc, indent=1, sort_keys=True, ensure_ascii=False) + '\n', encoding='utf-8')
     if needs_path and out['changed']:
         nd = M.load_needs(needs_path)
         nd, add, upd = M.merge_needs(nd, change_rows(src, out['changed'], date)); M.save_needs(nd, needs_path); out['reopened'] = add + upd
