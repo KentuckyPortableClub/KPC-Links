@@ -210,6 +210,16 @@
    "d": "2026-10-25",
    "src": "world"
   },
+  "FR-0004": {
+   "n": "SOUS LA GRANDE ROCHE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-0005": {
+   "n": "PELOUSE DE BELLEVUE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
   "FR-13871": {
    "n": "Square de l'hôtel de ville Recreation Park",
    "d": "2026-10-23",
@@ -490,14 +500,2534 @@
    "d": "2026-10-29",
    "src": "world"
   },
+  "FR-1919": {
+   "n": "PUY DE CHIGNOR - ROC BLANC Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-2521": {
+   "n": "Ensemble des pelouses seches de la Cluse d'Annecy Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-3029": {
+   "n": "reseau hydrographique des angles et du benaques Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
   "FR-3744": {
    "n": "SITE A CHAUVES SOURIS DE VIGNOUX SUR BARANGEON  FR2402005 Natura 2000",
    "d": "2026-10-29",
    "src": "world"
   },
+  "FR-3783": {
+   "n": "bois de goujon et de bonrepos Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-3862": {
+   "n": "anciennes carrieres de la herrouinais et du chene rond Natura 2000",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4005": {
+   "n": "plateau des chanaux, serre de la font d'aoussay Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4008": {
+   "n": "contrefort sud de l'aubrac Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4142": {
+   "n": "lac du louet et ruisseau de louet daban en amont Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4320": {
+   "n": "bois de la glanais et des loges Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4391": {
+   "n": "l'etang de l'usine roclaine Natura 2000",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4492": {
+   "n": "Carrières des sables d'Ambonil Ecological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4503": {
+   "n": "Gare D'Argol Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4597": {
+   "n": "Tourbiere de Sommand Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4598": {
+   "n": "chapelle de samoens Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4609": {
+   "n": "Versant rocheux en rive droite de l Arve, de Balme a la Tete Louis Philippe Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4610": {
+   "n": "Haut Fauciny Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4612": {
+   "n": "Ensemble de prairies naturelles seches des Granges de Passy et ancienne graviere de l'Arve Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4616": {
+   "n": "La Dranse, du pont de Bioge au lac Leman Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4620": {
+   "n": "ZONES HUMIDES ET BOISEMENTS DU GENEVOIS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4621": {
+   "n": "Domaine de Coudrée et anciennes dunes lacustres du bord du Leman Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4623": {
+   "n": "Golfe de Coudree et environs Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4625": {
+   "n": "Plateau des Daines Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4755": {
+   "n": "marais du lairan Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4757": {
+   "n": "etang du repaus et bras du rhone de saint-roman Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4759": {
+   "n": "domaine de la pinede Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4760": {
+   "n": "pinede du petit saint-jean Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4761": {
+   "n": "silve de montcalm Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4763": {
+   "n": "salins de petite camargue Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4764": {
+   "n": "etangs et dunes de petite camargue Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4769": {
+   "n": "marais de la grand mar, des bruns et de la sigoulette Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4770": {
+   "n": "marais de julian, des bernacles et de saliers Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4771": {
+   "n": "la grande palus et le pattion Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4773": {
+   "n": "plaine et marais du vieux vistre Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4797": {
+   "n": "cretes et ubac du pensier jusqu'au col des portes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4801": {
+   "n": "massif du mourre de chanier - serre de montdenier - gorges de trevans - pre chauvin - la font d'isnard Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4818": {
+   "n": "la moyenne durance, de l'aval de la retenue de l'escala a la confluence avec le verdon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4819": {
+   "n": "confluence durance-verdon - retenue de cadarache - sept lacs de beaumont Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4826": {
+   "n": "le vieux rhone de l'ile vieille et des casiers de lamiat Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4827": {
+   "n": "massif de bollene-uchaux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4835": {
+   "n": "plateau d'albion Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4845": {
+   "n": "versant nord-est du massif du luberon - forets domaniales de pelissier et de montfuron - collines de montjustin Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4847": {
+   "n": "collines a l'ouest de villeneuve - bois d'asson - costebelle - la roche - saint-jean Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4848": {
+   "n": "Etang de la blonde Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4857": {
+   "n": "le vieux rhone de la piboulette et des broteaux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4858": {
+   "n": "l'aygues Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4859": {
+   "n": "rochers de saint-eucher Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4866": {
+   "n": "marais de beauchamp et du petit clar - etang de la graviere Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4871": {
+   "n": "marais de meyranne et des chanoines Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4872": {
+   "n": "mare de lanau Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4879": {
+   "n": "mares de l'ormee combe Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4881": {
+   "n": "combe raillard et bois des mouillieres Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4884": {
+   "n": "MARE DES GRANDS CHAMPS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4904": {
+   "n": "Pelouses seches de Condiere Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4906": {
+   "n": "ETANG ET MARAIS DU CORROAC'H Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4908": {
+   "n": "Marais alcalin de pente au sud de la route de Bloux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4930": {
+   "n": "Prairies seches de Farges Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4932": {
+   "n": "Marais de Greny Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4937": {
+   "n": "Marais de Bretigny Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4948": {
+   "n": "Tuffières de Neuchon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4952": {
+   "n": "Pelouses sèches des Bas Monts Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4955": {
+   "n": "Versant bordant et dominant le Rhône a l'Est de Bellegarde Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4956": {
+   "n": "Ravin du Ruisseau de la Morte et friches dans les Bois des Rippes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4957": {
+   "n": "Pinede a molinie sur argile de la Tuiliere Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4958": {
+   "n": "Prairies seches et pinede sur argile du Tremblay Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4959": {
+   "n": "Pinede et friche a molinie sur argile au lieu-dit \"le Frut\" Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4960": {
+   "n": "Pelouses seches sous Tremoirin et Chez Julliard Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4963": {
+   "n": "Marais de Bovinens Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4966": {
+   "n": "Marais de Vanzy Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4967": {
+   "n": "Friche à molinie sur argile sous le cimetiere Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4969": {
+   "n": "Friches a molinie sur argile de Desingy Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4970": {
+   "n": "Friche seche en rive gauche du ruisseau de la petite Craze Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4972": {
+   "n": "Pentes boisees en rive gauche du Rhone Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4973": {
+   "n": "Pelouse seche des Peillettes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4974": {
+   "n": "Partie aval du ruisseau de la Vezeronce Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4976": {
+   "n": "Pelouse seche proche de Malbuisson Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4978": {
+   "n": "Friche et pinede sur argile au niveau de la Chapelle de la Sainte Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4981": {
+   "n": "Gorges de la Valserine en amont de Montanges Regional Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4982": {
+   "n": "Foret et prairies du Communal Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4983": {
+   "n": "Falaise de Croix l’Eveque Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4984": {
+   "n": "Rochers de Beloz Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4986": {
+   "n": "Cret au Merle Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4987": {
+   "n": "CRET À LA MYA Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4988": {
+   "n": "La cote Druet Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4989": {
+   "n": "Le Long Cret Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4990": {
+   "n": "Source du Sebier Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4991": {
+   "n": "Source de la Doye Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4993": {
+   "n": "Mont Cornet Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4994": {
+   "n": "Rochers de Nantua Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4996": {
+   "n": "Lac de Sylans Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4997": {
+   "n": "Roche rousse Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4998": {
+   "n": "La Grande prairie Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5001": {
+   "n": "Pelouses seches de petit Vallon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5002": {
+   "n": "Marais du Grand Pre Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5003": {
+   "n": "Prairie d’Echallon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5009": {
+   "n": "A LA MIGNAUDE ET MONT DE VARLON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5010": {
+   "n": "SUR CREDULON ET EN DARBENT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5011": {
+   "n": "FALAISES DE VULVOZ ET DE CHOUX Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5014": {
+   "n": "PATURAGES ET PELOUSES DU PRE D'AVAL AU PRE CURTET Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5015": {
+   "n": "TRES LA VILLE ET LA COMBE DE LEARY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5016": {
+   "n": "LES COULOIRS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5017": {
+   "n": "SUR LA ROCHE ET SUR LA CROCHERE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5018": {
+   "n": "EBOULIS DU MOULIN D'AVAL Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5019": {
+   "n": "PELOUSE DE COISERETTE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5020": {
+   "n": "TOURBIERE SUR LA MOUILLE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5021": {
+   "n": "TOURBIERE DU PRE REVERCHON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5022": {
+   "n": "RIVIERE DU GOYEN ET SES ZONES HUMIDES CONNEXES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5023": {
+   "n": "TOURBIERE SUR LES PIECES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5025": {
+   "n": "LES TOURBIERES AUX MOUSSIERES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5031": {
+   "n": "TOURBIERES DE LA COMBE DE LAISIA Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5034": {
+   "n": "LA ROCHE BLANCHE ET GORGES DU FLUMEN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5036": {
+   "n": "SUR LES GRES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5038": {
+   "n": "TOURBIERE ET PRAIRIE DE LA FERME DU FORBONNET Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5039": {
+   "n": "MARAIS AUX GOURDIS ET SOUS LES ROCHES DU SURMONTANT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5042": {
+   "n": "ENSEMBLE DES MARAIS ENTRE BOUVERANS, DOMPIERRE-LES-TILLEULS ET FRASNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5043": {
+   "n": "ETANG DE LA RIVIERE-DRUGEON ET ZONES HUMIDES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5048": {
+   "n": "VALLEE DE LA GROSNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5050": {
+   "n": "Grotte, rochers et pelouses de la Roche d’Au-Dela Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5051": {
+   "n": "Riviere de l’Oignin Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5052": {
+   "n": "Mont de Nurieux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5053": {
+   "n": "Marais du Corberan Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5054": {
+   "n": "Tourbiere des Leches Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5055": {
+   "n": "Pelouse seche du champ Furrez Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5056": {
+   "n": "Pelouse seche de Montréal la Cluse Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5057": {
+   "n": "Marais du barrage d'Intriat, marais du Contour Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5058": {
+   "n": "Prairie du Champ Biolay et plateau de la Belloire Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5059": {
+   "n": "Tourbiere des Quatre Buis Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5060": {
+   "n": "Tourbiere de Chassagne Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5061": {
+   "n": "Bief des deux pres Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5062": {
+   "n": "Prairie de la Belloire Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5064": {
+   "n": "Bas-marais de la Lechere du Dard Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5065": {
+   "n": "Chateau de Dortan Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5066": {
+   "n": "Tourbiere du Comte Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5067": {
+   "n": "Pelouses seches du Magouillat Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5068": {
+   "n": "TOURBIERE : SOUS LES MOUSSES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5073": {
+   "n": "FALAISES DU SURMONTANT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5074": {
+   "n": "BASSE VALLEE DE LA BIENNE DE VAUX-LES-SAINT-CLAUDE A CHANCIA Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5075": {
+   "n": "BOIS ET FALAISES DU PLAN D'ACIER SOUS AVIGNON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5076": {
+   "n": "COTEAU DES GENEVRIERS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5077": {
+   "n": "SUR LA ROCHE LEZAN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5078": {
+   "n": "FALAISES DE VAUX-LES-ST-CLAUDE, JEURRE ET ST ROMAIN-DE-ROCHE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5080": {
+   "n": "ANCIENNES CARRIERES ET FRICHES DE LA BRASSELETTE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5081": {
+   "n": "FALAISES DE CHANCIA Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5082": {
+   "n": "Falaise de Saint Jacob Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5084": {
+   "n": "Marais sur les Ormes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5086": {
+   "n": "Molard de Conflans Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5087": {
+   "n": "Riviere du Suran de Fomente a sa confluence Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5088": {
+   "n": "Pelouse seche des Chabodes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5089": {
+   "n": "Falaises de Merpuis Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5090": {
+   "n": "Pelouses seches des cotes de Merloz et Chambod Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5091": {
+   "n": "Pelouses seches de Chiloup Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5092": {
+   "n": "Pelouse seche du Donjon de Buenc Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5093": {
+   "n": "Pelouses seches du bois de la Cha Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5095": {
+   "n": "Pelouses seches du mont de Rignat Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5096": {
+   "n": "Pelouses seches de Revonas Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5097": {
+   "n": "Pelouses seches du mont Louvet Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5098": {
+   "n": "Pelouse seche au dessus du Sorbier Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5099": {
+   "n": "Pelouses seches d’Ecuvillon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5100": {
+   "n": "Pont de Serrieres-sur-Ain Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5101": {
+   "n": "Pelouses seches de Mannont Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5102": {
+   "n": "Pelouses seches de Sonthonnax Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5105": {
+   "n": "Pelouse seche de Balvay Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5107": {
+   "n": "Pelouses seches de Bolozon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5108": {
+   "n": "Pelouses seches de Daranche Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5109": {
+   "n": "Pelouses seches de Napt Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5110": {
+   "n": "Pelouse seche de la combe de Vau Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5111": {
+   "n": "Rocher des trois Colonnes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5112": {
+   "n": "Pelouses seches du Mollard Maison Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5113": {
+   "n": "Falaises de Sur Chatillon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5114": {
+   "n": "Pelouses seches des pentes du mont Rosset Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5116": {
+   "n": "Grotte de Hautecourt - znieff Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5117": {
+   "n": "Pelouses seches de Curfin Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5118": {
+   "n": "Graviere de Romaneche Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5119": {
+   "n": "Anciennes sablieres de Romaneche Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5120": {
+   "n": "Pelouses seches de petit Corent Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5121": {
+   "n": "Confluent du Suran et du Selignac Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5122": {
+   "n": "Pentes de Tete Beguine Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5123": {
+   "n": "Pelouse seche de Granges Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5124": {
+   "n": "Lone de l'Ove Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5125": {
+   "n": "Pelouses seches de sur la Louve Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5126": {
+   "n": "Falaise de Saint Maurice-des-Chazaux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5127": {
+   "n": "LA CAGE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5128": {
+   "n": "Pelouses seches de Cuvergnat Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5130": {
+   "n": "AUX EPITIERES ET LA FAGE VERDE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5131": {
+   "n": "MOLARD DE LA JUSTICE ET CRET D'AVAL Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5132": {
+   "n": "LES QUARTS ET TRES LES ROCHERS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5133": {
+   "n": "LA ROCHE MOREAU, LES CRETINES ET EN FINGEON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5134": {
+   "n": "MARES DES MOULETTES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5135": {
+   "n": "CRET D'EN HAUT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5136": {
+   "n": "AUX TIERS ET PRE GATERON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5137": {
+   "n": "RUISSEAU DE LA COLOMBE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5138": {
+   "n": "COTEAU DE L'AIN AU SAUT MORTIER Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5139": {
+   "n": "COTE DE TREQUIN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5140": {
+   "n": "PRE PLAN ET SOUS RAMETAIN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5141": {
+   "n": "LA BOURBE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5142": {
+   "n": "SOUS LA CHAROUPE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5143": {
+   "n": "FALAISE AU BARRAGE DE VOUGLANS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5144": {
+   "n": "LE FINAGE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5145": {
+   "n": "LES MOLARDS ET LES LEZINES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5146": {
+   "n": "SOUS FAUCON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5147": {
+   "n": "LA CHARTREUSE DE VAUCLUSE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5148": {
+   "n": "EN GENERIA ET LA REFRECHE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5155": {
+   "n": "MARE SOUS ONOZ ET COTEAU ATTENANT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5156": {
+   "n": "BIEF D'ENFER Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5158": {
+   "n": "AUX ESSARTS ET COMBE DU SIRIER Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5159": {
+   "n": "LAC D'ONOZ Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5161": {
+   "n": "PELOUSES DE LA CREUSE ET AU PESON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5163": {
+   "n": "PATURE DE CHEVRONNET ET AFFLUENT DU CHANOIS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5165": {
+   "n": "PELOUSE DE LA VIE D'ORGELET Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5166": {
+   "n": "PELOUSE EN RONDE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5167": {
+   "n": "AU BUISSON ET PRÉ DU CHENE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5168": {
+   "n": "SUR LE DEVIAN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5169": {
+   "n": "Le Suran Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5170": {
+   "n": "FALAISE DU FAYS ET GROTTE DE GIGNY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5172": {
+   "n": "LE NOELTANT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5173": {
+   "n": "LA PRAIRIE DE PRAILLE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5174": {
+   "n": "SUR SEC Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5175": {
+   "n": "RUISSEAUX DU DARD ET DU PRELIEUX Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5176": {
+   "n": "PELOUSES DE DRAMELAY ET SOUSSONNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5177": {
+   "n": "LES PLANS ET LES MOLARDS DES FRESNES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5178": {
+   "n": "PIERRE A MONT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5179": {
+   "n": "GORGES DE LA VALOUSE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5180": {
+   "n": "LES PRES PERRIN ET MONTECENNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5181": {
+   "n": "COMBLES DU CHATEAU DE VALFIN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5182": {
+   "n": "LA COTE D'ARMAND ET LA ROCHE DE NARMONT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5183": {
+   "n": "RUISSEAUX DE LA DOYE ET DE LA CHAPELLE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5184": {
+   "n": "PELOUSE DE SAINT-MAURICE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5185": {
+   "n": "GROTTE DE LA BALME D'EPY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5186": {
+   "n": "COTE D'EN SENETENT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5187": {
+   "n": "Pelouses seches de Barezia Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5188": {
+   "n": "AU LAGREFUT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5189": {
+   "n": "A L'EPINE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5191": {
+   "n": "LES COMBES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5192": {
+   "n": "REVERS DE LA CHA Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5193": {
+   "n": "Pelouses seches de la Daille Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5194": {
+   "n": "Pelouse seche de Toulongeon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5195": {
+   "n": "Pelouses seches de Lassena Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5196": {
+   "n": "Pelouses seches du Combillon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5197": {
+   "n": "AU CURTILLET Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5198": {
+   "n": "ILE DU LOC'H (ARCHIPEL DES GLENAN) Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5199": {
+   "n": "Pelouses seches de Saint Maurice de Chasaux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5204": {
+   "n": "Pelouses seches de Corveissiat Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5206": {
+   "n": "Pelouses seches de l’Ermitage Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5207": {
+   "n": "Pelouse seche du cret de Montmerle Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5210": {
+   "n": "Pelouses seches du mont en Rocherat Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5212": {
+   "n": "Pelouses seches de la Vie Blanche Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5214": {
+   "n": "Pelouses seches de Treffort-Cuisiat et Meillonnas Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5215": {
+   "n": "Pelouses seches de Dhuys Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5216": {
+   "n": "Pelouses seches de Treffort Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5217": {
+   "n": "Pelouse seche des terres caussales Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5218": {
+   "n": "Pelouse seche de bois de Chavannes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5219": {
+   "n": "Mare des Mangettes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5220": {
+   "n": "Bief du Bois Tharlet Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5221": {
+   "n": "Etang des Gonnets Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5222": {
+   "n": "Etang du Saule Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5223": {
+   "n": "Bois de Treffort Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5224": {
+   "n": "Bois de Courmangoux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5225": {
+   "n": "VALLEES DU SEVRON, DU SOLNAN ET MASSIFS BOISES ALENTOURS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5226": {
+   "n": "Etang de Chareyziat Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5227": {
+   "n": "Etang de But Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5228": {
+   "n": "Bois de Grands Champs Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5229": {
+   "n": "Plaine de Marboz Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5230": {
+   "n": "Pelouses seches de Cuisiat Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5231": {
+   "n": "Mont Myon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5232": {
+   "n": "Pelouses seches de Verzon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5233": {
+   "n": "Rocher et grotte de Salavre Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5234": {
+   "n": "Pelouses seches de Saint Rémy-du-Mont Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5235": {
+   "n": "Etang de Bouillon Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5236": {
+   "n": "Prairie des Teppes Godet Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5237": {
+   "n": "Etang de Fougemagne Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5238": {
+   "n": "BOIS DE BINAND A CONDAL Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5241": {
+   "n": "VALLEE DE LA SANE MORTE A SAINTE-CROIX ET LA CHAPELLE-NAUDE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5242": {
+   "n": "BOCAGE ET BOIS HUMIDE DE FRONTENAUD ET SAGY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5243": {
+   "n": "ETANG DU PETIT CHARDENOUX Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5251": {
+   "n": "Etang Morel Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5252": {
+   "n": "Etang Neuf Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5253": {
+   "n": "Etang de Montalibord Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5254": {
+   "n": "Etang de Pontremble, forêt du Villard Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5255": {
+   "n": "Prairies de Jayat, du Curtelet et de Cesille Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5256": {
+   "n": "BASSE VALLEE DE LA REYSSOUZE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5257": {
+   "n": "Etang Labe Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5258": {
+   "n": "Prairies inondables de la Loeze Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5259": {
+   "n": "Etang des marais Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5261": {
+   "n": "Ruisseau de l’Etre Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5262": {
+   "n": "Marais de Vial Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5263": {
+   "n": "Etang Barvey Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5270": {
+   "n": "Combe de la Sereine Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5271": {
+   "n": "Escarpement des Guettes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5272": {
+   "n": "Vallon du Cotey Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5273": {
+   "n": "Pentes boisees de Beligneux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5274": {
+   "n": "Basse-vallee du Longevent Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5279": {
+   "n": "Ripisylve du Seymard Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5280": {
+   "n": "Pelouses seches d’Amberieu Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5281": {
+   "n": "AEROPORT D’AMBERIEU Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5282": {
+   "n": "L'Albarine Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5285": {
+   "n": "Champs des Grandes Raies et de la Terre Blanche Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5286": {
+   "n": "COURS DU RHONE DE BRIORD A LOYETTE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5287": {
+   "n": "ILES ET ILOTS DE GUIRIDEN, GUEOTEC, VIEUX GLENAN, BRILIMEC, QUIGNENEC, CIGOGNE, CASTEL BRAZ, ROC’H C’HOAR et LE GLUET (ARCHIPEL DES GLENAN) Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5289": {
+   "n": "Champs de Loyettes Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5290": {
+   "n": "Anciennes gravieres de la Bibianne Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5291": {
+   "n": "Pelouses seches des Gaboureaux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5292": {
+   "n": "Prairie du ruisseau du Gua Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5293": {
+   "n": "Prairies du Luisard Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5312": {
+   "n": "Milieux alluviaux et lone de la Ferrande Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5314": {
+   "n": "Millieux alluviaux et lone de la Negria Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5320": {
+   "n": "Cotiere de Rillieux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5322": {
+   "n": "BAIE DE KEROGAN ET ESTUAIRE DE L'ODET AMONT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5323": {
+   "n": "Ile Roy Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5326": {
+   "n": "Prairies alluviales de Bourdelan Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5327": {
+   "n": "Grotte et aqueduc de Saint Trys Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5329": {
+   "n": "Bois Baron Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5330": {
+   "n": "Bocage du bois Baron Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5331": {
+   "n": "Partie aval du ruisseau de la Callone Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5332": {
+   "n": "Riviere de l'Ardieres Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5333": {
+   "n": "Prairies inondables de Drace Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5334": {
+   "n": "Ancienne sabliere de Lancie Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5342": {
+   "n": "VAL DE SAONE DE FARGES-LES-MACON A SENOZAN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5343": {
+   "n": "Dunes de Sermoyer Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5348": {
+   "n": "VAL DE SAONE DE CHALON-SUR-SAONE A TOURNUS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5349": {
+   "n": "LA SAONE AU SUD DE CHALON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5351": {
+   "n": "LA THALIE ENTRE LUX ET CHAMPFORGEUIL Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5352": {
+   "n": "VAL DE SAONE A CHALON-SUR-SAONE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5353": {
+   "n": "PLAINE ET VAL DE SAONE ENTRE CHALON-SUR-SAONE ET VERDUN-SUR-LE-DOUBS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5354": {
+   "n": "LA SAONE DE VERDUN-SUR-LE-DOUBS A CHALON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5355": {
+   "n": "ETANG DE NEUILLON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5357": {
+   "n": "VALLEE DE LA BRENNE A LA CHASSAGNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5358": {
+   "n": "VALLEE DE LA BRENNE ENTRE FOULENAY ET CHAUMERGY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5359": {
+   "n": "BOIS ET ETANGS DE LA BRESSE MEDIANE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5361": {
+   "n": "ETANGS DE LOMBARD Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5362": {
+   "n": "ETANG CROZAT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5363": {
+   "n": "BOIS DU BEULET BOIS DU MARAIS ET ETANGS DE LA CODRE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5364": {
+   "n": "ETANG DE LA CHOULIERE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5365": {
+   "n": "ETANG AU ROCH Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5366": {
+   "n": "ETANG DU VERNOIS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5367": {
+   "n": "ETANGS VAILLANT DU CRET ET DU FORT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5368": {
+   "n": "CHAMP AU BLANC ET ETANG DE LA BELLE POMME Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5369": {
+   "n": "ETANG DU GRAND VIROLOT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5370": {
+   "n": "ETANG ANTOINE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5371": {
+   "n": "ETANG MALATREUX Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5374": {
+   "n": "ZONES HUMIDES DE DESNES ET VINCENT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5376": {
+   "n": "PRAIRIES DU GABION A VILLEGAUDIN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5378": {
+   "n": "ETANGS ET BOIS HUMIDES A ST-ETIENNE ET ST-CHRISTOPHE EN BRESSE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5381": {
+   "n": "Eglise de Saint Martin-du-Mont Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5382": {
+   "n": "BOIS DE FOUGEMAGNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5384": {
+   "n": "PELOUSE DE PALENT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5387": {
+   "n": "FERME D'ONDELLE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5390": {
+   "n": "EN CHAMARANDE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5391": {
+   "n": "EN COUTHEREY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5395": {
+   "n": "LA RENVERSURE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5397": {
+   "n": "GROTTE DE GRAVELLE 2 Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5398": {
+   "n": "RECULEE DE REVIGNY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5402": {
+   "n": "Pelouse seche des Bosses Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5403": {
+   "n": "Prairies et marais du Fays Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5405": {
+   "n": "Marais de Sainte Blaizine Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5406": {
+   "n": "Grotte de Vaux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5407": {
+   "n": "Marais de Vaux Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5408": {
+   "n": "Tourbiere de la Rochette Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5410": {
+   "n": "Marais du molard du Frene Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5411": {
+   "n": "Marais de Dovray Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5412": {
+   "n": "Marais du bois de Cros Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5413": {
+   "n": "Marais de la Bordelliere Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5414": {
+   "n": "Marais en Jarine Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5415": {
+   "n": "Falaise du Trou a la Roche Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5416": {
+   "n": "Marais de Champ Jarnet Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5417": {
+   "n": "Marais du Chanay Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5418": {
+   "n": "Pelouses seches et bas-marais de Dortan Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5419": {
+   "n": "SITE DE BODILLIO Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5424": {
+   "n": "ANSE DE LA RICHARDAIS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5432": {
+   "n": "ETANG DE LA VALAIS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5433": {
+   "n": "ETANG DU PONT ES OMNES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5434": {
+   "n": "ETANG DU FREMUR - LES RUES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5437": {
+   "n": "ILE DE LA COLOMBIERE Biosphere Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5478": {
+   "n": "LANDE HUMIDE DE PLUDUNO Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5479": {
+   "n": "FORETS DE LA HUNAUDAYE ET DE SAINT AUBIN (ancien nom : FORETS DE LA HUNAUDAIE ET DE SAINT AUBIN) Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5536": {
+   "n": "TOURBIERE AUX BOURBOUILLOTTES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5537": {
+   "n": "TOURBIERE DE LA PENEYA Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5538": {
+   "n": "COTEAU ET MARE DE LA GRANDE SEIGNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5539": {
+   "n": "LAC DU CHANON ET RUISSEAU DE MARTIGNA Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5540": {
+   "n": "VERS LE PRE ET LA GLAISIERE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5541": {
+   "n": "LAC ET ROCHE D'ANTRE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5543": {
+   "n": "L'ETANG, SOUS CHEVAL BLANC ET PRE CUVIER Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5544": {
+   "n": "PELOUSE DU PETIT BOIS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5548": {
+   "n": "AU LISIGNEY ET LES FEUILLEES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5549": {
+   "n": "COTE DU CARA ET LA QUALUE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5550": {
+   "n": "RUISSEAU DU LIZON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5551": {
+   "n": "ZONES HUMIDES D'ETIVAL AUX CROZETS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5552": {
+   "n": "PRES DE L'ETANG DE LA PENNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5553": {
+   "n": "PELOUSES DE LA CHEVRERIE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5555": {
+   "n": "MARESCHES LONGUES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5556": {
+   "n": "GRAND LAC ET PETIT LAC D'ETIVAL Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5557": {
+   "n": "EN VILLARET Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5559": {
+   "n": "COTE DES BIEFS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5560": {
+   "n": "LES COTES VERS NANS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5561": {
+   "n": "COURS SUPERIEUR DU DROUVENANT EN AVAL DE LA FRASNEE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5563": {
+   "n": "PELOUSES ET FORETS DE COGNA ET VERTAMBOZ Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5564": {
+   "n": "PELOUSE SUR GRIMONT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5566": {
+   "n": "COMBE DU NANCHEZ 2 Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5568": {
+   "n": "LAC DE L'AUTEL ET LES COTALETS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5569": {
+   "n": "LAC DE BONLIEU, LA COTE DU LAC ET SOUS LA BAUME Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5570": {
+   "n": "ETANG DU LAUTREY ET ZONES HUMIDES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5571": {
+   "n": "SOURCE DE LA SIRENE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5574": {
+   "n": "VALLEE DU HERISSON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5575": {
+   "n": "LA COMBE D'AIN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5576": {
+   "n": "COTEAUX ET PRAIRIE HUMIDE DES ROUSSELETS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5577": {
+   "n": "FALAISES DOMINANT LE PETIT MACLU, GRAND MACLU AU PIC DE L'AIGLE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5580": {
+   "n": "PELOUSE AUX COMBES ET ESSARD CAILLAT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5581": {
+   "n": "LAC ET BOIS DU VERNOIS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5585": {
+   "n": "LAC DU FIOGET Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5586": {
+   "n": "ROCHER DE LA BAUME Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5587": {
+   "n": "LAPIAZ DES PUISETS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5588": {
+   "n": "COTE BRULEE ET SOUS LA QUEILLE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5589": {
+   "n": "PATURE DES IRS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5590": {
+   "n": "RECULEE ET GROTTE DE BALERNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5595": {
+   "n": "Lac d’Aiguebelette et marais riverains Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5596": {
+   "n": "TOURBIERE SOUS LA HAUTE JOUX Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5597": {
+   "n": "PELOUSE, ZONE HUMIDE ET FORET DE L'ECLIAU Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5598": {
+   "n": "LES MOUILLES ET LA SEIGNE JEANNIN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5599": {
+   "n": "L'AIN A L'AVAL DE BOURG-DE-SIROD Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5600": {
+   "n": "LES SOUHAITURES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5601": {
+   "n": "ROCHER GAILLARD, COTE DES EPERONS, BOIS DES CLAIVES ET BOIS DE LA COTE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5602": {
+   "n": "ETANG MARQUIS ET BIEF DE FENU Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5603": {
+   "n": "FLANC SUD-EST DU MONT RIVEL Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5605": {
+   "n": "PELOUSE DE VALENTENOUZE ET BIEF DE L'ETANG Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5606": {
+   "n": "COURS INFERIEUR DE L'ANGILLON JUSQU'A LA CONFLUENCE AVEC L'AIN Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5608": {
+   "n": "ETANG ET MARAIS DE CONTE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5609": {
+   "n": "ARCHIPEL DES GLENAN 3 Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5610": {
+   "n": "VALLONS DES SOURCES DE L'AIN JUSQU'A COMBETIOZ Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5612": {
+   "n": "RUISSEAU DE LA SETTIERE ET ETANG DE TREBIEF Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5613": {
+   "n": "COMBE SANDON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5614": {
+   "n": "VALLEE SUPERIEURE DE L'ANGILLON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5615": {
+   "n": "PELOUSES MARNEUSES, PRAIRIES HUMIDES ET MOLINIAIES D'ANDELOT-EN-MONTAGNE ET SUPT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5618": {
+   "n": "SOUS CHAUX Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5619": {
+   "n": "VALLON DU MARTINET AU BAS DES CLOS Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5620": {
+   "n": "BASSIN DU DRUGEON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5622": {
+   "n": "LA SEIGNE ET PRE DOMPARON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5623": {
+   "n": "TOURBIERE DES PRES VIEUX Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5625": {
+   "n": "PRES-BOIS DE BOUJAILLES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5627": {
+   "n": "PRAIRIES SECHES DE BOUJAILLES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5628": {
+   "n": "TOURBIERE ET MARAIS DE BOUJAILLES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5629": {
+   "n": "MARAIS DES GRANDS PRES, L'ETANG ET TERREAU ALEXANDRE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5631": {
+   "n": "TOURBIERE DE VILLENEUVE D'AMONT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5635": {
+   "n": "CHAPELLE DE L'ESPERANCE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5637": {
+   "n": "PRES ET PELOUSES DU LARMONT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5638": {
+   "n": "FORET DU BUCLET Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5639": {
+   "n": "LE MORAY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5641": {
+   "n": "LES PRES AMBERT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5642": {
+   "n": "LE SEUT ET LES VARDES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5646": {
+   "n": "COTE CHAUDE ET BOIS DE LA COTE FROIDE DE THESY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5647": {
+   "n": "COTE EN VELET Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5648": {
+   "n": "FALAISES DE GOUAILLE ET PELOUSES DE CLUCY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5649": {
+   "n": "CRETE DE FORT BELIN ET COTEAU DE SAINT-ROCH Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5651": {
+   "n": "RUISSEAU DU TODEUR Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5653": {
+   "n": "COTE D'ARELLE ET CHAMPS DE NOEUD Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5656": {
+   "n": "LES FLEZ ET COTE DE CHATEAU Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5657": {
+   "n": "COTEAUX SECS DES COMMUNAUX ET PLENESSU Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5663": {
+   "n": "MARE DU GRAND BOURGEON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5665": {
+   "n": "Adrets de l'Esquirol et du Bouis Negre Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5672": {
+   "n": "RUISSEAU DU FROIDEAU Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5673": {
+   "n": "EN CHATILLON Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5674": {
+   "n": "PRAIRIES HUMIDES DE LA GROZONNE ET DE LA CUISANCE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5675": {
+   "n": "RUISSEAUX DE L'ECHENAUD ET DES GRANDS PRES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5676": {
+   "n": "LE BIEF SALE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5679": {
+   "n": "RECULEE DE VAUX SUR POLIGNY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5680": {
+   "n": "SOURCES DE LA BRENNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5683": {
+   "n": "PELOUSES SECHES DE BONNEFONTAINE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5684": {
+   "n": "BOCAGE DE PIERRE DE LA MARRE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5685": {
+   "n": "ZONE HUMIDE SOUS LA LEGETTE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5686": {
+   "n": "FALAISES DU CIRQUE DE LADOYE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5692": {
+   "n": "BOIS DE VIRY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5694": {
+   "n": "LE CUCHET ET LE PRE NARDET Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5698": {
+   "n": "FALAISE ET CIRQUE DE VAUCLUSE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5700": {
+   "n": "FALAISES DU MONT CHABOT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5701": {
+   "n": "LAPIAZ, PELOUSES ET PRAIRIES MAIGRES DE SEPTMONCEL Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5704": {
+   "n": "CHEZ BOQUIN ET LE CRET GIROD Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5705": {
+   "n": "TOURBIERE DU PRE GAILLARD Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5706": {
+   "n": "VERSANT DU CRET POURRI Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5707": {
+   "n": "COTE DE LA TENDUE ET CIRQUE DES FOULES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5709": {
+   "n": "PELOUSE SUR LA COTE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5710": {
+   "n": "LE MARAIS ET EN PIBLA Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5711": {
+   "n": "PATURAGES ET ZONES HUMIDES DU GRANDVAUX Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5712": {
+   "n": "ZONE HUMIDE DU LOUTRE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5713": {
+   "n": "EN GIGARD ET SUR LA CROIX Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5714": {
+   "n": "LE PRE BARBOUILLON ET LA COMBE DE LAUME Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5715": {
+   "n": "A LA DRUGNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5716": {
+   "n": "PELOUSE DE VILLARD-SUR-BIENNE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5717": {
+   "n": "COTEAU DE LEZAT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5718": {
+   "n": "FALAISE DE LEZAT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5719": {
+   "n": "SUR LES ROUTES Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5720": {
+   "n": "LES MOULINS PIQUAND ET LE HAUT DE LA RUCHETTE Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5721": {
+   "n": "TOURBIERES DES COMBES ET EN PISSARD Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5722": {
+   "n": "DERRIERE LE BOUCHAT Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5723": {
+   "n": "TOURBIERE DU COULOU Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5724": {
+   "n": "FALAISE DU MONT FIER Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5726": {
+   "n": "PLATEAU DU MONT FIER, COMBES BERTHOD ET DU MONT FIER, ROCHERS DE PELLAS ET THIAVY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5727": {
+   "n": "ROCHER DE TIAVY Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5733": {
+   "n": "Aval de l'Arget et affluents vallee de la Barguillere Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5734": {
+   "n": "Massif de l'Arize, versant nord Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5738": {
+   "n": "Sios et affluents Biological Reserve",
+   "d": "2026-11-11",
+   "src": "world"
+  },
   "GB-2511": {
    "n": "Coed Cilygroeslwyd Nature Reserve",
    "d": "2026-10-25",
+   "src": "world"
+  },
+  "LU-0002": {
+   "n": "Öewersauer Nature Park",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "LU-0037": {
+   "n": "Parc de Housen Natura 2000",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "LU-0038": {
+   "n": "Parc Thermal de Mondorf les Bains Natura 2000",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "LU-0039": {
+   "n": "Parc vum Galgebierg Natura 2000",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "LU-0047": {
+   "n": "Parc Ouerbett – Kayldall Natura 2000",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "LU-0052": {
+   "n": "Steekammchen Natura 2000",
+   "d": "2026-11-11",
+   "src": "world"
+  },
+  "LU-0053": {
+   "n": "Ourdall Promenade Natura 2000",
+   "d": "2026-11-11",
    "src": "world"
   },
   "SK-0222": {
@@ -572,5 +3102,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-09"
+ "updated": "2026-11-11"
 }
