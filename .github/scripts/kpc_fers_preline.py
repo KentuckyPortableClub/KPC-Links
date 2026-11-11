@@ -69,6 +69,19 @@ def override_no(path):
 def key_area(st): return st if KIND(st) != 'world-key' else st.replace('W-', '')
 
 
+def state_not_green(idx, st, cur):
+    """'' when this state was built green on the current rules in this build, else why not (owner rule, 2026-11-10). US: the
+    state's own index 'states' row; a failed state, a row still marked not built or no row = not green. Keys without rows: a FULL build."""
+    a = st.split('-', 1)[1] if '-' in st else st   # a FAILED state is held by the freshness test above
+    rows = idx.get('states') if isinstance(idx.get('states'), dict) and idx.get('states') else None
+    if rows is None:
+        return '' if str(idx.get('rules') or '') == cur else f"is not in a full build on the current rules ({idx.get('rules') or 'no rules hash'} vs {cur})"
+    r = rows.get(a)
+    if not isinstance(r, dict) or r.get('_not_built'): return 'was not built in this build'
+    rr = r.get('rules') if 'rules' in r else idx.get('rules')
+    return '' if str(rr or '') == cur else f"was not built on the current rules ({rr or 'no rules hash'} vs {cur})"
+
+
 def check_state(st, src, data, links='.'):
     kind = KIND(st); hold, warn, info = [], [], {}
     if st == 'US-KY':
@@ -97,7 +110,8 @@ def check_state(st, src, data, links='.'):
         try:
             import kpc_key_freeze as KF
             cur = KF.rules_hash(kind, links)
-            if str(idx.get('rules') or '') != cur: hold.append(f"the key build {idx.get('build')} is not a full build on the current rules ({idx.get('rules') or 'no rules hash'} vs {cur}): wait for the rebuild")
+            why = state_not_green(idx, st, cur)
+            if why: hold.append(f"the key build {idx.get('build')}: {st} {why}: wait for the rebuild")
             items = (load(pathlib.Path(data) / 'data/waiting/approved.json', {}) or {}).get('items')
             no = KF.graded_no(kind, str(idx.get('build') or ''), items, links)   # FINAL-v2: a person's, Quality's or old chat 11 NO holds
             if no: hold.append(f"the key build {idx.get('build')} was graded {no[0][:30]} by {no[1]}: no 2-fers on it")

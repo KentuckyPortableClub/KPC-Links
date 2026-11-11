@@ -57,20 +57,25 @@ NAME_JOIN = (os.environ.get('NAME_JOIN') or '1') != '0'   # Oct 24: the world ke
 
 # Nov 9 (Brandon t939u, 6:20 PM CST, on the hosts whose robots.txt answers 403: "4 saved copies"): no live read from these hosts
 # until their robots.txt lets us back in; their layers come from the saved copy (boundary-cache) on every path, refresh included.
-# Remove a host here (or set KPC_SAVED_ONLY_HOSTS) only when its robots.txt allows the read again.
-SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
+# Remove a host (in kpc_master.SAVED_ONLY_HOSTS) only when its robots.txt allows the read again.
+# One set of host rules (owner rule, 2026-11-10): kpc_master.live_ok over kpc_net_guard. Its saved-copy list starts as
+# services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov; KPC_SAVED_ONLY_HOSTS only adds hosts. No copy of the rules here.
+SAVED_ONLY_HOSTS = None   # the list is kpc_master.SAVED_ONLY_HOSTS
 SAVED_ONLY_SKIPPED = {}   # state -> layer prefixes taken from the saved copy instead of a live read
+NEVER_HOSTS = ()          # the never-contact hosts are kpc_net_guard's (services*.arcgis.com included, robots.txt too)
 
 
-# Nov 10: services*.arcgis.com (services2 ... services9 too) is never contacted, robots.txt included, on every path (the same rule as
-# kpc_master.live_ok): its layers come from the saved copy only. The list above named only services and services1.
-NEVER_HOSTS = {'ncnhde.natureserve.org'}   # Nov 10 (standing rule): no request of any kind; Grant County NM's org is a services.arcgis.com path, covered above
-_ARCGIS_SERVICES = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
+def _shared(name='kpc_master'):
+    """A shared helper module. A test that runs only this part of the file finds it from the repo root."""
+    import importlib, os as _os, sys as _sys
+    try: return importlib.import_module(name)
+    except ImportError:
+        _sys.path.insert(0, _os.path.join(_os.getcwd(), '.github', 'scripts')); return importlib.import_module(name)
 
 
 def saved_only(url):
-    h = urllib.parse.urlparse(str(url).replace('svc:', '', 1).split('|')[0]).netloc.lower().split(':')[0]
-    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h)) or h in NEVER_HOSTS   # Nov 10: a never-contact host is never read live either
+    """True when the host rules (kpc_master.live_ok) forbid a live read of url: its layers come from the saved copy."""
+    return not _shared().live_ok(url)[0]
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
@@ -352,6 +357,7 @@ def fields():
             # Oct 27 (boundary review #2 / rule B7): the PAD-US version every PAD-US outline comes from
             m = re.search(r'PAD-US\s*(?:version\s*)?(\d+(?:\.\d+)*)', ' '.join(str(info.get(k) or '') for k in ('description', 'copyrightText', 'name')), re.I)
             PADVER[0] = 'PAD-US ' + m.group(1) if m else 'PAD-US'
+            PADMAX[0] = int(info.get('maxRecordCount') or 0) or None
         except Exception: have = set()  # noqa: BLE001
         # Nov 2 (mapping agent): + Agg_Src, the data provider of each record (FWS PAD-US 3.0 / 4.0, a state's list, TNC...): the
         # KPC_PADUS_DEDUPE switch needs it, and a saved copy only carries it once it was read with this list (GEO_CACHE_MODE=refresh)
@@ -364,13 +370,14 @@ def fields():
 
 
 PADVER = ['PAD-US']
+PADMAX = [None]   # the PAD-US layer's own maxRecordCount (read with its field list)
 GEO = ([{'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC}] if DETAIL < 0.01 else []) + \
       [{'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01, 'geometryPrecision': 3},
        {'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01}, {'returnGeometry': 'true', 'outSR': 4326}]
 GI = [0]
 def page(st, off):
     while True:
-        q = {'where': "State_Nm='%s'" % st, 'outFields': fields(), 'f': 'json', 'resultOffset': off, 'resultRecordCount': PAGE, 'orderByFields': 'OBJECTID'}
+        q = {'where': "State_Nm='%s'" % st, 'outFields': fields(), 'f': 'json', 'resultOffset': off, 'resultRecordCount': layer_page_size(PAGE, PADMAX[0]), 'orderByFields': 'OBJECTID'}
         q.update(GEO[GI[0]])
         try: return get(q, tries=3)
         except Exception as e:  # noqa: BLE001
@@ -452,21 +459,30 @@ def _shape(a, f):
 
 
 def pad_state(st, P=None):
-    recs, off = [], 0
+    recs, off, seen = [], 0, set()
     idx, hand = keep_names(P, st) if (NAME_KEEP and P) else ({}, {})
+    # Owner rule, 2026-11-10: a short page without exceededTransferLimit is not the end (a silent server cap): read on until an
+    # empty page, moving by the rows really sent; a page with no new id = resultOffset ignored = the state FAILS (its last key stays).
+    lim = float(KMASTER.LAYER_MINUTES); deadline = time.monotonic() + lim * 60   # the same per-layer limit as kpc_master.read_complete
     while True:
-        j = page(st, off)
-        fs = j.get('features', [])
+        if time.monotonic() > deadline: raise RuntimeError(f'PAD-US {st}: over its {lim:g}-minute layer limit (KPC_LAYER_MINUTES) at offset {off}: not used (the last key stays)')
+        fs = page(st, off).get('features', [])
+        if not fs: break
+        here = {str((f.get('attributes') or {}).get('OBJECTID')) for f in fs}
+        if not here - seen: raise RuntimeError(f'PAD-US {st}: the server sent the page at offset {off} again (resultOffset ignored?): not used')
         for f in fs:
             a = f.get('attributes') or {}
+            if str(a.get('OBJECTID')) in seen: continue
+            seen.add(str(a.get('OBJECTID')))
             if not _passes_load(a):
                 k = name_keep(a, idx, hand) if (idx or hand) else None
                 if not k: continue
                 a['KPC_NameKeep'] = k[1]; NAME_KEEP_HIT.append([st, k[0], a.get('OBJECTID'), a.get('Unit_Nm') or a.get('Loc_Nm'), k[1]])
             recs.append(_shape(a, f))
-        if not fs or (not j.get('exceededTransferLimit') and len(fs) < PAGE): break
-        off += len(fs); time.sleep(.6)
-    n = off + len(fs)
+        off += len(here); time.sleep(.6)
+    n = len(seen)
+    want = count_query(Q, {'where': "State_Nm='%s'" % st}, box=False)   # the layer's own count, the same where (no page parameters)
+    if want is None or n != want: raise RuntimeError(f'PAD-US {st}: read {n} of {want} records the layer reports: SHORT, not used (the last key stays)')
     if NAME_KEEP and P:
         try: recs += pad_cross(st, P, recs, idx, hand)
         except Exception as e: notice(f'US key {st}', f'cross-state name read skipped ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
@@ -674,7 +690,43 @@ def count_query(url, q, box=True):
     except Exception: return None  # noqa: BLE001
 
 
-def fetch_geo(url, q, timeout=180, max_records=None, page=None):
+def _req(url, q, post=False):
+    """GET, or a POST when the request is long (an objectIds batch)."""
+    h = {'User-Agent': 'KPC (kentuckyportableclub.github.io)'}
+    if post: return urllib.request.Request(url, data=urllib.parse.urlencode(q).encode(), headers=h)
+    return urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers=h)
+
+
+def _master():
+    """kpc_master (the one complete-read helper). A test that runs only this part of the file finds it from the repo root."""
+    import importlib, os as _os, sys as _sys
+    try: return importlib.import_module('kpc_master')
+    except ImportError:
+        _sys.path.insert(0, _os.path.join(_os.getcwd(), '.github', 'scripts')); return importlib.import_module('kpc_master')
+
+
+READ_PARTS = ('outFields', 'f', 'resultOffset', 'resultRecordCount', 'orderByFields', 'returnCountOnly', 'returnIdsOnly', 'objectIds')
+
+
+def read_all(url, q, label, max_records=None, order=True, oid_field=None):
+    """Owner rule, 2026-11-10: EVERY record of this query (its where + its state box) or an error, never a partial list
+    (kpc_master.read_complete: count, ids-only, records by id, else offset paging by the rows really sent). Records through
+    fetch_geo (the finer outline first), count and ids through checked_open: the same paced, guarded opener."""
+    KM_ = _master()
+    box = {k: q[k] for k in CQ_KEEP if k in q and k != 'where'}
+    ext = {k: v for k, v in q.items() if k not in CQ_KEEP and k not in READ_PARTS}
+
+    def fj(u, params, post=False):
+        if params.get('returnCountOnly') or params.get('returnIdsOnly'):
+            with checked_open(_req(u, params, post), 120) as r: return json.loads(r.read().decode('utf-8', 'replace'))
+        n = int(params.get('resultRecordCount') or 0) or (str(params.get('objectIds') or '').count(',') + 1)
+        return fetch_geo(u, params, max_records=max_records, page=n, post=post)[0]
+    mx = int(max_records or 0) or 1000
+    return KM_.read_complete(url, q.get('where') or '1=1', box, fj, q.get('outFields') or '*', page_hint=min(mx, 1000), oid_field=oid_field,
+                             max_record_count=mx, extra=ext, label=label, order=order)
+
+
+def fetch_geo(url, q, timeout=180, max_records=None, page=None, post=False):
     """Ask for the finer outline first when one was asked for; if the server refuses or times out, fall back to
     the 0.01-degree outline every run has always used, rather than losing the layer for that state.
     max_records is the layer maxRecordCount from resolve(): request no more than that, so paging can tell a full page
@@ -686,7 +738,7 @@ def fetch_geo(url, q, timeout=180, max_records=None, page=None):
         want = page or layer_page_size(PAGE if det < 0.01 else 500, max_records)   # page: a fixed window (window paging below)
         q = dict(q, maxAllowableOffset=det, geometryPrecision=pr, resultRecordCount=want)
         try:
-            req = urllib.request.Request(url + '?' + urllib.parse.urlencode(q), headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
+            req = _req(url, q, post)
             with checked_open(req, timeout) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
             if j.get('error'): raise RuntimeError(str(j['error'])[:150])
             return j, q['resultRecordCount']
@@ -696,7 +748,6 @@ def fetch_geo(url, q, timeout=180, max_records=None, page=None):
 
 
 FWS = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query'
-FWS_EXTRA = [',ORGCODE,INTTYPE1']   # Nov 6: kpc_source_fields 'fws_interest' (stable org code + fee / easement kind); dropped if refused
 STB = None
 def st_box(st):
     global STB
@@ -710,32 +761,8 @@ def st_box(st):
 
 
 def fws_state(st, have):
-    # USFWS's own land layer: PAD-US misses some refuges (Oklahoma: Sequoyah, Optima, Tishomingo NWR are not in it)
-    if saved_only(FWS): SAVED_ONLY_SKIPPED.setdefault(st, set()).add('fws'); return []   # Brandon t939u: from the saved copy
-    box = st_box(st)
-    if not box: return []
-    out, off = [], 0
-    while True:
-        q = {'where': "INTTYPE1<>'E'", 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-             'outFields': 'OBJECTID,ORGNAME,RSL_TYPE,SUM_GISACRES' + FWS_EXTRA[0], 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off}
-        try:
-            j, pg = fetch_geo(FWS, q)
-        except Exception as e:  # noqa: BLE001
-            if FWS_EXTRA[0] and off == 0:   # Nov 6: the added source fields (ORGCODE, INTTYPE1) refused: ask again without them
-                notice(f'US key {st}', f'USFWS source fields refused ({str(e)[:80]}); read without them'); FWS_EXTRA[0] = ''; continue
-            notice(f'US key {st}', f'USFWS land not read ({e})'); FAILED_READ.add(st); return out
-        fs = j.get('features', [])
-        for f in fs:
-            a = f.get('attributes') or {}; nm = (a.get('ORGNAME') or '').title()
-            if not nm or norm(nm) in have: continue
-            g = f.get('geometry') or {}
-            out.append({'OBJECTID': 'fws' + str(a.get('OBJECTID')), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': 'FED', 'Mang_Type': 'FED', 'Mang_Name': 'FWS',
-                        'Loc_Mang': 'U.S. Fish & Wildlife Service (own map)', 'Des_Tp': '', 'GIS_Acres': a.get('SUM_GISACRES') or 0, 'Category': 'Fee',
-                        '_bb': bbox(g), '_g': g, '_k': kinds(nm) | kinds(a.get('RSL_TYPE')) | {'nwr'},
-                        **({'SA': {k: a[k] for k in ('ORGCODE', 'INTTYPE1', 'SUM_GISACRES') if a.get(k) not in (None, '')}} if a.get('ORGCODE') or a.get('INTTYPE1') else {})})
-        if not fs or (not j.get('exceededTransferLimit') and len(fs) < pg): break
-        off += len(fs); time.sleep(.5)
-    return out
+    # USFWS's own land layer (PAD-US misses some refuges) is on services.arcgis.com: never read live, its records come from the saved copy
+    SAVED_ONLY_SKIPPED.setdefault(st, set()).add('fws'); return []
 
 
 # Official maps of the agencies themselves (Oct 18, Brandon: 'anything you can be working on in the US trip planner'): PAD-US stores wilderness,
@@ -790,7 +817,6 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
     ('mol', 'svc:https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_Missouri_Department_of_Conservation_Lands/FeatureServer|.', '?', '?', set(), 'Missouri Dept. of Conservation lands (MSDIS)', 'STAT', {'MO'}),
     ('mdd', 'svc:https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer|dnr owned', '?', '?', set(), 'Maryland DNR lands', 'STAT', {'MD'}),
-    ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
 ]
 # Oct 24 (Brandon: 'they a new state level gis fable set up you can use as needed'): the Map Rep Tool Box's table of
 # each state's OWN park / wildlife / forest / preserve layers (data/state-gis.json, 60 layers in 37 states, kept by
@@ -1008,7 +1034,7 @@ def extra_state(st, have, only=None):
             try: url, nf, af, oidf = resolve(pre, url, nf, af)
             except Exception as e:  # noqa: BLE001
                 notice(f'US key {st}', f'{label} layer not found ({e})'); continue
-        off, n = 0, 0
+        n = 0
         # Nov 6 (big key / 2-fer patch): the layer's stable id / official acres / owner / parent fields (kpc_source_fields: the one
         # table, or AUTO from the field list a state layer already gave resolve()). ADDED to this same query; refused = asked without.
         _sfm = SF.mapping(url, x[5], SFIELDS.get(pre))
@@ -1016,68 +1042,60 @@ def extra_state(st, have, only=None):
         SFMAP[pre] = _sfm
         order = True   # Oct 29 (chat 2, Nags Head Woods missing): paging WITHOUT a sort order can skip records between pages; sort by the id
         seen_ids = set()
-        win = None   # Nov 10: (records in the box, rows in the layer, window) once a short page is not the end (window paging)
-        while True:
-            q = {'where': opt.get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                 'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2'), *_sfx) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off,
-                 **({'orderByFields': oidf} if order else {})}
-            try:
-                if lf is not None:   # the whole layer file in one page, the same state box as the live query
-                    j, pg = {'features': [{'attributes': {k: v for k, v in (ft.get('properties') or {}).items() if k != '_kpc'}, 'geometry': _G2R(ft.get('geometry'))}
-                                          for ft in _lfe if _in_box(ft.get('geometry'), box)]}, None
-                else:
-                    j, pg = fetch_geo(url, q, max_records=LAYER_MAXREC.get(pre), page=win[2] if win else None)
-            except Exception as e:  # noqa: BLE001
-                if _sfx and off == 0:    # Nov 6: an added source field refused: read the layer exactly as before
-                    _sfx = []; continue
-                if order and off == 0:   # a server that cannot sort: read it the old way
-                    order = False; continue
-                notice(f'US key {st}', f'{label} not read ({e})'); FAILED_READ.add(st); break
-            fs = j.get('features', [])
-            n_new = 0
-            for f in fs:
-                a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
-                if a.get(oidf.lower()) in seen_ids: continue
-                seen_ids.add(a.get(oidf.lower())); n_new += 1
-                if LAYER_OUT is not None: RAWF.setdefault(pre, []).append(f)
-                nm = (a.get(nf.lower()) or '').strip()
-                if not nm: continue
-                # Oct 20: an 'easement' record is private land with public access, never joined by name alone. Oct 29 (Brandon 2:22 PM:
-                # 'we are not here to correct POTA's mistakes, we show the boundaries of where they are'): when POTA numbered the
-                # easement itself and a person named that record in overrides.json, it IS the park's outline (Buena Vista SWA)
-                if re.search(r'easement', nm, re.I) and _nf(nm) not in {_nf(w) for o in OVR.values() for w in (o.get('join') or []) + (o.get('alias') or [])}: continue
-                k = kinds(nm) | kk
-                if opt.get('not_in') and norm(nm) in {norm(o['Unit_Nm']) for o in out if str(o['OBJECTID']).startswith(opt['not_in'])}: continue
-                if not opt.get('where') and _dup(have, (norm(nm), frozenset(k)), bbox(f.get('geometry') or {})): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
-                g = f.get('geometry') or {}
-                nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
-                out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
-                            'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': _sane_ac(_num(a.get(af.lower()) if af else 0), bbox(g)), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
-                            **({'Water': 1} if opt.get('water') else {}),
-                            **({'SA': {f: a.get(f.lower()) for f in _sfx if a.get(f.lower()) not in (None, '', ' ')}} if _sfx and any(a.get(f.lower()) not in (None, '', ' ') for f in _sfx) else {})})
-                n += 1
-            if lf is not None: break
-            if win is None and keep_paging(len(fs), pg, j.get('exceededTransferLimit'), n_new):
-                off += len(fs); time.sleep(.5); continue
-            # Nov 10 (run 42891101784): a short page without exceededTransferLimit is not always the end. Some servers (FL DEP
-            # STATE_OWNED_LANDS) cut a window of rows first and apply the state box after it (189 of a 200-row window). Ask the
-            # plain count once; while records in the box are missing, step through the layer one window at a time up to its last
-            # row. Records still missing after that are caught by the count check (fail closed).
-            if win is None:
-                tot = count_query(url, q)
-                if tot is None or len(seen_ids) >= tot: break
-                rows = count_query(url, q, box=False)
-                if not rows: break
-                win = (tot, rows, max(int(LAYER_MAXREC.get(pre) or 0), int(pg or 0), 1))
-                notice(f'US key {st}', f'{label}: a short page ({len(seen_ids)} of {tot} records in the state box): reading the layer window by window')
-                off += pg or len(fs)
-            else:
-                if fs and not n_new: break   # the same rows again: the server ignores resultOffset
-                off += win[2]
-            if len(seen_ids) >= win[0] or off >= win[1]: break
-            time.sleep(.5)
+        q = {'where': opt.get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+             'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2'), *_sfx) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json'}
+        if lf is not None:   # the whole layer file, the same state box as the live query
+            fs = [{'attributes': {k: v for k, v in (ft.get('properties') or {}).items() if k != '_kpc'}, 'geometry': _G2R(ft.get('geometry'))}
+                  for ft in _lfe if _in_box(ft.get('geometry'), box)]
+        else:
+            # Owner rule, 2026-11-10: the whole layer in the state box or nothing (read_all: count, ids, by id, else offset paging
+            # by the rows really sent). A short read is a FAILED read: the state keeps its saved copy, never half a layer.
+            fs = None
+            while fs is None:
+                try:
+                    _rk = (url, q['where'], q['geometry'], q['outFields'], order)   # one layer under two prefixes (MD, OR) is read once
+                    fs, how = READ_ONCE.get(_rk) or read_all(url, q, f'{label} ({st})', LAYER_MAXREC.get(pre), order=order, oid_field=oidf)
+                    READ_ONCE[_rk] = (fs, how)
+                except Exception as e:  # noqa: BLE001
+                    KM_ = _master()
+                    if not isinstance(e, (KM_.ShortRead, KM_.LayerStall, KM_.LiveNotAllowed)):
+                        if _sfx:    # Nov 6: an added source field refused: read the layer exactly as before
+                            _sfx = []; q['outFields'] = ','.join(x for x in (oidf, nf, af, opt.get('nm2')) if x); continue
+                        if order:   # a server that cannot sort: read it without an order
+                            order = False; continue
+                    notice(f'US key {st}', f'{label} not read ({e})'); FAILED_READ.add(st); break
+            if fs is None:
+                if LAYER_OUT is not None: RAWF.setdefault(pre, [])
+                continue
+            if how.get('short_page'):
+                notice(f'US key {st}', f"{label}: short pages without exceededTransferLimit: the layer was read window by window to its count ({how['count']})")
+        for f in fs:
+            a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
+            if a.get(oidf.lower()) in seen_ids: continue
+            seen_ids.add(a.get(oidf.lower()))
+            if LAYER_OUT is not None: RAWF.setdefault(pre, []).append(f)
+            nm = (a.get(nf.lower()) or '').strip()
+            if not nm: continue
+            # Oct 20: an 'easement' record is private land with public access, never joined by name alone. Oct 29 (Brandon 2:22 PM:
+            # 'we are not here to correct POTA's mistakes, we show the boundaries of where they are'): when POTA numbered the
+            # easement itself and a person named that record in overrides.json, it IS the park's outline (Buena Vista SWA)
+            if re.search(r'easement', nm, re.I) and _nf(nm) not in {_nf(w) for o in OVR.values() for w in (o.get('join') or []) + (o.get('alias') or [])}: continue
+            k = kinds(nm) | kk
+            if opt.get('not_in') and norm(nm) in {norm(o['Unit_Nm']) for o in out if str(o['OBJECTID']).startswith(opt['not_in'])}: continue
+            if not opt.get('where') and _dup(have, (norm(nm), frozenset(k)), bbox(f.get('geometry') or {})): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
+            g = f.get('geometry') or {}
+            nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
+            out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
+                        'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': _sane_ac(_num(a.get(af.lower()) if af else 0), bbox(g)), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
+                        **({'Water': 1} if opt.get('water') else {}),
+                        **({'SA': {f: a.get(f.lower()) for f in _sfx if a.get(f.lower()) not in (None, '', ' ')}} if _sfx and any(a.get(f.lower()) not in (None, '', ' ') for f in _sfx) else {})})
+            n += 1
         XCOUNT[pre] = XCOUNT.get(pre, 0) + n
     return out
+
+
+READ_ONCE = {}   # (query url, where, box, fields, order) -> a complete read of this run
+
 
 def _in_box(g, box):
     b = bbox(_G2R(g)) if g and 'rings' not in g else bbox(g)
@@ -1314,10 +1332,12 @@ def _write_layer_files(st, want, add):
         if pre not in RAWF and lf is None: continue   # not read: saved-copy-only host, the layer did not answer, or nothing in this state
         x = next((y for y in XS if y[0] == pre and (len(y) <= 7 or y[7] is None or st in y[7])), xs.get(pre)); url = x[1] if x else ''   # Nov 10: this state's entry (its own where), not the first one
         oidf = (RESOLVED.get(pre) or (None, None, None, 'OBJECTID'))[3] if lf is None else (lf[0].get('oid_field') or 'OBJECTID')
-        feats = []
+        feats, _ids = [], set()
         for f in RAWF.get(pre, []):
             at = f.get('attributes') or {}
             oid = next((v for k, v in at.items() if k.lower() == str(oidf).lower()), None)
+            if oid is not None and str(oid) in _ids: continue   # distinct object ids: a record read twice is one record
+            _ids.add(str(oid))
             try: geo = KMASTER.esri_to_geojson(f.get('geometry'))
             except Exception: geo = None  # noqa: BLE001
             feats.append({'type': 'Feature', 'properties': dict(at, _kpc=kept.get(pre, {}).get(f'{pre}{oid}')), 'geometry': geo})
@@ -2478,6 +2498,7 @@ def run(st):
                 if _r in _fit: continue
                 _p = parks[_r]; _q = [q for q in _p['m'] if str(q[0]) == _id]
                 _p['m'] = [q for q in _p['m'] if str(q[0]) != _id]
+                if not _p['m']: _p['g'] = 'pin'   # owner rule, 2026-11-10: no joined record left = a pin, never 'official'
                 _p['c'] = [list(q[:3]) + [f'record also joined to {", ".join(_fit)} whose kind it names'] for q in _q] + (_p.get('c') or [])
                 _moved.append(_r)
         if _moved: notice(f'US key {st}', f"{len(_moved)} parks gave back a record joined to another park of the kind it names: {', '.join(_moved[:10])}")

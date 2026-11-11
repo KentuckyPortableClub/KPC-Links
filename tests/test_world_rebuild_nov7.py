@@ -83,6 +83,8 @@ class Layer:
         return d
 
     def query(self, q):
+        if q.get('returnCountOnly') == 'true': return {'count': self.n}   # the layer's own count (not a page: not in self.queries)
+        if q.get('returnIdsOnly') == 'true': return {'objectIdFieldName': 'OBJECTID', 'objectIds': list(range(1, self.n + 1))}
         self.queries.append(q); k = len(self.queries)
         if self.spy: self.spy(k, q)
         if self.clock: self.clock.t += self.page_secs
@@ -98,8 +100,9 @@ class Layer:
         return {'features': fs, 'exceededTransferLimit': i1 < self.n, 'geometryType': self.geom}
 
     def __call__(self, req, timeout=None):
-        u = getattr(req, 'full_url', req); self.urls.append(u); p = urllib.parse.urlsplit(u)
+        u = getattr(req, 'full_url', req); p = urllib.parse.urlsplit(u)
         q = dict(urllib.parse.parse_qsl(p.query))
+        if q.get('returnCountOnly') != 'true': self.urls.append(u)   # the count is not a page
         return Resp(json.dumps(self.query(q) if p.path.endswith('/query') else self.info()).encode())
 
 
@@ -232,7 +235,9 @@ finally:
     for k in ('KPC_WORLD_REQ_TRIES', 'KPC_WORLD_REQ_S', 'KPC_WORLD_SLOW_HOSTS'): os.environ.pop(k, None)
 check(e1['REQ_TRIES'] == 2 and e1['REQ_S'] == 90 and 'slow.example.org' in e1['SLOW_HOSTS'] and 'kartor.regeringen.ax' in e1['SLOW_HOSTS'],
       'B2: tries, request limit and slow hosts are environment-tunable')
-check(TEXT.count('urllib.request.urlopen(') == 1, 'B2: every request in kpc_world_key.py goes through the one time-limited helper (_open)')
+check(TEXT.count('urllib.request.urlopen(') == 0 and TEXT.count('checked_opener(') == 2 and 'def _open(req, timeout): return checked_open(req, timeout)' in TEXT
+      and len(re.findall(r'\b_open\(', TEXT)) == 2,
+      'B2: every request in kpc_world_key.py goes through the one time-limited helper (_open -> checked_open: host rules, robots.txt, pace)')
 
 # ------------------------------------------------------------------ B3: per-layer time limit + stall rule
 lay = Layer(10 ** 9, page_secs=30.0); ns, clock, _ = new_ns(lay, parts=tempfile.mkdtemp())
@@ -380,9 +385,10 @@ check(wf.count('path: cache/world/parts') == 2 and "WCACHE / 'parts' / (PART_CC"
 
 # ------------------------------------------------------------------ end to end: the real script, a stalled layer, exit 3, previous key kept
 RUNNER = r'''
-import json, os, re, sys, runpy, urllib.parse, urllib.request
+import json, os, re, sys, runpy, types, urllib.error, urllib.parse, urllib.request
 SCRIPT, MODE = sys.argv[1], sys.argv[2]
 LOG = open(os.environ['FAKE_LOG'], 'a')
+MAXLAST = [0]
 class R:
     def __init__(s, b): s.b, s.p = b, 0
     def __enter__(s): return s
@@ -391,18 +397,23 @@ class R:
 def fake(req, timeout=None):
     u = getattr(req, 'full_url', req); p = urllib.parse.urlsplit(u); q = dict(urllib.parse.parse_qsl(p.query))
     if 'mma.gob.cl' not in p.netloc: raise OSError('no network in this test: ' + p.netloc)
-    LOG.write(json.dumps([p.path, q.get('where')]) + '\n'); LOG.flush()
+    if p.path == '/robots.txt': raise urllib.error.HTTPError(u, 404, 'no robots.txt', {}, None)   # no file = allowed
+    if q.get('returnCountOnly') != 'true': LOG.write(json.dumps([p.path, q.get('where')]) + '\n'); LOG.flush()   # pages and metadata only
     if not p.path.endswith('/query'):
         return R(json.dumps({'maxRecordCount': 1000, 'objectIdField': 'OBJECTID', 'geometryType': 'esriGeometryPolygon',
                              'fields': [{'name': 'OBJECTID', 'type': 'esriFieldTypeOID'}, {'name': 'NOMBRE', 'type': 'esriFieldTypeString'}]}).encode())
-    m = re.search(r'OBJECTID > (\d+)', q['where']); last = int(m.group(1)) if m else 0
     layer2 = p.path.endswith('FeatureServer/2/query')
+    if q.get('returnCountOnly') == 'true':   # the layer's own count: layer 2 ends 5 records after the last page asked ('finish')
+        return R(json.dumps({'count': 10 ** 9 if MODE == 'stall' and layer2 else MAXLAST[0] + 5 if MODE == 'finish' and layer2 else 1}).encode())
+    m = re.search(r'OBJECTID > (\d+)', q['where']); last = int(m.group(1)) if m else 0
+    if layer2: MAXLAST[0] = max(MAXLAST[0], last)
     stall = MODE == 'stall' and layer2                  # layer 2 pages forever (over its limit)
     n = last + 1000 if stall else last + 5 if (MODE == 'finish' and layer2) else 1
     fs = [{'attributes': {'OBJECTID': i, 'NOMBRE': 'Parque Nacional Torres del Paine' if i == 1 and not layer2 else f'Rio {i}'},
            'geometry': {'rings': [[[-73.5, -51.5], [-72.5, -51.5], [-72.5, -50.5], [-73.5, -51.5]]]}} for i in range(last + 1, n + 1)]
     return R(json.dumps({'features': fs, 'exceededTransferLimit': stall}).encode())
 urllib.request.urlopen = fake
+urllib.request.build_opener = lambda *h: types.SimpleNamespace(open=fake)   # the key's checked opener (kpc_master.checked_opener)
 sys.argv = [SCRIPT]
 runpy.run_path(SCRIPT, run_name='__main__')
 '''

@@ -315,7 +315,7 @@ class LayerStall(RuntimeError):
     """A layer that ran past its time limit or stopped moving (B3): a FAILED source, never a short one."""
 
 
-def _open(req, timeout): return urllib.request.urlopen(req, timeout=timeout)
+def _open(req, timeout): return checked_open(req, timeout)
 
 
 def _retry_wait(u, i):
@@ -324,17 +324,70 @@ def _retry_wait(u, i):
 
 
 # Nov 9 (Brandon t939u, 6:20 PM CST: "4 saved copies"): no live read from a host whose robots.txt answers 403 (B3: the layer FAILS into
-# the saved-copy / HOLD path at once, no retries). Remove a host only when its robots.txt lets us back in.
-SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
-# Nov 10: every services*.arcgis.com host (services2 ... services9 too) is never contacted, robots.txt included (the same rule as
-# kpc_master.live_ok): its layers fail into the saved-copy / HOLD path at once.
-NEVER_HOSTS = {'ncnhde.natureserve.org'}   # Nov 10 (standing rule): no request of any kind; Grant County NM's org is a services.arcgis.com path, covered above
-_ARCGIS_SERVICES = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
+# the saved-copy / HOLD path at once, no retries). Remove a host (kpc_master) only when its robots.txt lets us back in.
+# One set of host rules (owner rule, 2026-11-10): kpc_master.live_ok over kpc_net_guard. Its saved-copy list starts as
+# services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov; KPC_SAVED_ONLY_HOSTS only adds hosts. No copy of the rules here.
+SAVED_ONLY_HOSTS = None   # the list is kpc_master.SAVED_ONLY_HOSTS
+NEVER_HOSTS = ()          # the never-contact hosts are kpc_net_guard's (services*.arcgis.com included, robots.txt too)
+
+
+def _shared(name='kpc_master'):
+    """A shared helper module. A test that runs only this part of the file finds it from the repo root."""
+    import importlib, os as _os, sys as _sys
+    try: return importlib.import_module(name)
+    except ImportError:
+        _sys.path.insert(0, _os.path.join(_os.getcwd(), '.github', 'scripts')); return importlib.import_module(name)
 
 
 def saved_only(u):
-    h = urllib.parse.urlsplit(str(u)).netloc.lower().split(':')[0]
-    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h)) or h in NEVER_HOSTS   # Nov 10: a never-contact host is never read live either
+    """True when the host rules (kpc_master.live_ok) forbid a live read of u: the layer fails into the saved-copy / HOLD path."""
+    return not _shared().live_ok(u)[0]
+
+
+# Owner rule, 2026-11-10: one rule for all three keys. Every live read goes through checked_open: the host rules (kpc_master.live_ok;
+# a saved-only / never-contact host gets no request at all, robots.txt included), then robots.txt (kpc_master.robots_allows: 401 / 403
+# / 5xx = no, 404 / 410 = no file, allowed), paced per host, for the first address AND every redirect hop.
+HOP_HANDLERS = ()   # extra urllib handlers (tests put a stand-in server here)
+ROBOTS = {}         # robots.txt answer per host
+_HUB_LAST = {}
+
+
+def _pace(u):
+    h = kpc_host_pace.host_of(u)
+    kpc_host_pace.wait(h)
+    if _shared().HUB_RE.search(h.split(':')[0]):   # a hub portal also keeps its 60 s crawl delay
+        w = _HUB_LAST.get(h, -1e9) + _shared().HUB_DELAY - time.monotonic()
+        if w > 0: time.sleep(w)
+        _HUB_LAST[h] = time.monotonic()
+
+
+def _host_hop(u):   # a robots.txt fetch that redirects: host rules + pace
+    ok, why = _shared().live_ok(u)
+    if not ok: raise _shared().LiveNotAllowed(f'redirect refused: {why}')
+    _pace(u)
+
+
+def _robots_get(ru):
+    _host_hop(ru)
+    try:
+        with _shared().checked_opener(_host_hop, HOP_HANDLERS).open(urllib.request.Request(ru, headers={'User-Agent': _shared().UA}), timeout=60) as r:
+            return getattr(r, 'status', 200), r.read().decode('utf-8', 'replace')
+    except urllib.error.HTTPError as e: return e.code, ''
+
+
+def _live_check(u, hop=False):
+    ok, why = _shared().live_ok(u)
+    pre = 'redirect refused: ' if hop else ''
+    if not ok: raise _shared().LiveNotAllowed(pre + why)
+    if not _shared().robots_allows(u, _robots_get, ROBOTS):
+        raise _shared().LiveNotAllowed(f'{pre}{urllib.parse.urlsplit(u).netloc}: robots.txt does not allow this read')
+    _pace(u)
+
+
+def checked_open(req, timeout):
+    """The ONLY way this script reads the network: host rules, robots.txt and the per-host pace for the first address and every hop."""
+    _live_check(getattr(req, 'full_url', None) or str(req))
+    return _shared().checked_opener(lambda u: _live_check(u, hop=True), HOP_HANDLERS).open(req, timeout=timeout)
 
 
 def fetch_bytes(u, tries=None, timeout=None, deadline=None, total=None, maxbytes=None, parse=None):
@@ -359,7 +412,7 @@ def fetch_bytes(u, tries=None, timeout=None, deadline=None, total=None, maxbytes
             return parse(bytes(buf)) if parse else bytes(buf)
         except Exception as e:  # noqa: BLE001
             last = e
-            if i + 1 >= tries: break
+            if i + 1 >= tries or isinstance(e, _shared().LiveNotAllowed): break   # host rules / robots.txt said no: no retry
             w = _retry_wait(u, i)
             if deadline is not None and time.monotonic() + w >= deadline: break   # never sleep past the layer's time limit
             time.sleep(w)
@@ -815,7 +868,7 @@ def pull_arcgis1(label, url, where):
     else:
         part_clear(sig)
         st = {'sig': sig, 'mode': 'oid' if oid_ok else 'offset', 'pages': 0, 'n': 0, 'off': 0, 'last': None, 'started': time.time()}
-    prev_ids = None
+    prev_ids, total = None, None
     while True:
         if time.monotonic() > deadline:
             raise LayerStall(f"over its {lmin:g}-minute limit after {st['pages']} pages ({len(recs)} records; not used: the checkpoint lets the next run continue)")
@@ -843,10 +896,14 @@ def pull_arcgis1(label, url, where):
             if first and st['mode'] == 'oid':   # this server will not page by object id: page as before, from the start
                 notice(f'{label} paging', f"object-id paging refused ({str(j.get('error'))[:200]}); resultOffset paging")
                 st['mode'] = 'offset'; continue
-            if first and 'agination' in str(j.get('error')):   # Nov 2 (Nicaragua, North Macedonia): 'Pagination is not supported' = ask once without paging
-                for k_ in ('resultOffset', 'resultRecordCount', 'orderByFields'): qq.pop(k_, None)
-                j = fetch(url + '/query?' + urllib.parse.urlencode(qq), deadline=deadline)
-                page = [arcgis_rec(label, url, oidf, f) for f in j.get('features', []) or []]
+            if first and 'agination' in str(j.get('error')):   # Nov 2 (Nicaragua, North Macedonia): 'Pagination is not supported'
+                # owner rule, 2026-11-10: one query without paging cut the layer silently; read it whole by id (or fail)
+                try: fs_ = _shared().read_complete(url + '/query', where, None, lambda u_, q_, post=False: fetch(u_ + '?' + urllib.parse.urlencode(q_), deadline=deadline),
+                                                   '*', oid_field=oidf, max_record_count=mx, extra={k_: v_ for k_, v_ in qq.items() if k_ not in ('where', 'outFields', 'f', 'resultOffset', 'resultRecordCount', 'orderByFields')},
+                                                   minutes=max(0.0, (deadline - time.monotonic()) / 60), label=label, order=False, id_batch=200)[0]
+                except Exception as e:  # noqa: BLE001
+                    raise LayerStall(f'no paging and not read whole by id: {type(e).__name__}: {str(e)[:200]}') from e
+                page = [arcgis_rec(label, url, oidf, f) for f in fs_]
                 recs += page
                 if page: st['pages'] += 1; st['n'] = len(recs); part_save(sig, st, page)
                 break
@@ -865,15 +922,39 @@ def pull_arcgis1(label, url, where):
         if fs:
             page = [arcgis_rec(label, url, oidf, f) for f in fs]
             recs += page
-            st['pages'] += 1; st['n'] = len(recs); st['off'] += len(fs)
+            st['pages'] += 1; st['n'] = len(recs); st['off'] += len(set(ids)) if None not in ids else len(fs)   # the rows really sent
             if st['mode'] == 'oid': st['last'] = ids[-1]
             part_save(sig, st, page)
             prev_ids = set(ids) if None not in ids else None
-        if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break   # the end test of before, both modes
+        # owner rule, 2026-11-10: a short page without exceededTransferLimit is not the end (a silent server cap). The layer's own
+        # count (asked once, same where) decides: read on until it is reached or a page comes back empty; short = a FAILED layer.
+        if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)):
+            if total is None: total = _layer_count(url, where, deadline)
+            got = _distinct(recs)
+            if got > total: raise LayerStall(f'{got} distinct records, more than the {total} the layer reports: not used')
+            if got == total: break
+            if not fs: raise LayerStall(f'read {got} of {total} records the layer reports: SHORT, not used (the checkpoint lets the next run look again)')
         time.sleep(.5)
     if recs and PARTS_ON: st['done'] = True; part_state(sig, st)   # finished: kept until the country is written (an empty read is asked again)
     else: part_clear(sig)
+    if recs and None not in [r.get('id') for r in recs]:   # a row sent twice (overlapping pages) is one record
+        one = {}
+        for r in recs: one.setdefault(str(r['id']), r)
+        recs = list(one.values())
     return recs
+
+
+def _layer_count(url, where, deadline):
+    """The layer's own count for this where (returnCountOnly, no page parameters). No count = the read cannot be checked: FAILED."""
+    j = fetch(url + '/query?' + urllib.parse.urlencode({'where': where, 'returnCountOnly': 'true', 'returnGeometry': 'false', 'f': 'json'}), deadline=deadline)
+    if not isinstance(j, dict) or j.get('error') or j.get('count') is None:
+        raise LayerStall(f'the layer did not report its count ({str(j)[:120]}): the read cannot be checked, not used')
+    return int(j['count'])
+
+
+def _distinct(recs):
+    ids = [r.get('id') for r in recs]
+    return len(set(map(str, ids))) if None not in ids else len(recs)
 
 
 def pull_find(label, url, rx):

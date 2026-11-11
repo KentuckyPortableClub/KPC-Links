@@ -366,6 +366,7 @@ def official_parks(PIN):
                 apx = p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3) or p.get('approx')
                 if _bad(ref): continue
                 if ref not in PIN: skip['no pin'] += 1; continue
+                if outline_unlabelled(p, 'W'): WDPA_SKIP.append({'ref': ref, 'why': 'outline source not labelled: not official'}); SKIPWHY[ref] = 'outline source not labelled (fail closed)'; continue
                 parks[ref] = {'st': 'W-' + f.stem, 'ids': [x[0] for x in m], 'names': {str(i): x[1] for i, x in enumerate(m)}, 'm': m, 'approx': apx}
                 if apx: APX_PARKS.add(ref)
         skip.pop('Kentucky (own list)', None)
@@ -378,7 +379,7 @@ def official_parks(PIN):
             m = p.get('m') or []
             m0, m = m, _no(ref, m, 'us')
             if m0 and not m: continue
-            if (not m or p.get('g') == 'pin') and ref in PC and ref in PIN:   # Brandon t950u: point-circle tier only
+            if (not m or p.get('g') == 'pin') and ref in PC and ref in PIN:   # point-circle tier only
                 parks[ref] = pc_park(ref, st); skip['point circle (100 ft, not a boundary)'] = skip.get('point circle (100 ft, not a boundary)', 0) + 1; continue
             if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             # Approximate outlines (picture traces, key g=approximate) are an approximate 2-fer, not a drop.
@@ -391,6 +392,7 @@ def official_parks(PIN):
                 WDPA_SKIP.append({'ref': ref, 'why': 'WDPA / Protected Planet is never a public 2-fer source'}); continue
             if _bad(ref, m, p): continue
             if ref not in PIN: skip['no pin'] += 1; continue
+            if outline_unlabelled(p, 'US'): WDPA_SKIP.append({'ref': ref, 'why': 'outline source not labelled: not official'}); SKIPWHY[ref] = 'outline source not labelled (fail closed)'; continue
             parks[ref] = {'st': st, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}, 'approx': apx}
             if apx: APX_PARKS.add(ref)
             if p.get('parts'): CLIP[ref] = p['parts']   # Oct 29 rule B12: only this park's own parts of a shared multipart record
@@ -408,7 +410,7 @@ def official_parks(PIN):
             m = p.get('m') or []
             m0, m = m, _no(ref, m, 'ca')
             if m0 and not m: continue
-            if (not m or p.get('g') == 'pin') and ref in PC and ref in PIN:   # Brandon t950u: point-circle tier only
+            if (not m or p.get('g') == 'pin') and ref in PC and ref in PIN:   # point-circle tier only
                 parks[ref] = pc_park(ref, f.stem); skip['point circle (100 ft, not a boundary)'] = skip.get('point circle (100 ft, not a boundary)', 0) + 1; continue
             if not m or p.get('g') == 'pin': skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             apx = p.get('g') == 'approximate' or any('approx' in str(x[3]) for x in m if len(x) > 3) or p.get('approx')
@@ -416,6 +418,7 @@ def official_parks(PIN):
                 WDPA_SKIP.append({'ref': ref, 'why': 'WDPA / Protected Planet is never a public 2-fer source'}); continue
             if _bad(ref, m, p): continue
             if ref not in PIN: skip['no pin'] += 1; continue
+            if outline_unlabelled(p, 'CA'): WDPA_SKIP.append({'ref': ref, 'why': 'outline source not labelled: not official'}); SKIPWHY[ref] = 'outline source not labelled (fail closed)'; continue
             parks[ref] = {'st': f.stem, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}, 'approx': apx}
             if apx: APX_PARKS.add(ref)
             if all(isinstance(x[0], str) and str(x[3]).startswith(('name', 'reviewed')) for x in m if len(x) > 3): AGENCY.add(ref)   # provincial / Parks Canada layer, not CPCAD
@@ -469,7 +472,7 @@ LIVE_LINES = {
 FS_STATUS = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer'
 
 
-WSRQ = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/WildScenicRiverBoundaries/FeatureServer/0/query'
+WSR_HELD = {}   # W&S river ref -> why its pairs are held (no saved corridor copy)
 WSRW = re.compile(r'\b(national )?(wild (and|&) scenic|wild|scenic|recreational) river\b', re.I)
 
 
@@ -478,40 +481,37 @@ def wsr_corridors(parks, PIN, LN):
     the NPS corridor layer to only 17 rivers; here every national W&S river park with no area outline is joined to its corridor
     by name (kind words dropped) when the corridor lies within ~1 degree of the pin; the others stay line parks."""
     core = lambda x: ' '.join(re.sub(r'[^a-z0-9 ]', ' ', WSRW.sub(' ', str(x or '').lower())).replace(' river', ' ').split())
-    try:
-        j = get(WSRQ, {'where': '1=1', 'outFields': 'OBJECTID,WSR_GNIS_NAME', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01, 'f': 'json'}, timeout=240)
-    except Exception as e: LOG.append(f'W&S corridors: {str(e)[:60]}'); return 0  # noqa: BLE001
-    cors = []
-    for ft in j.get('features') or []:
-        a = ft.get('attributes') or {}; g = esri_rings(ft.get('geometry'))
-        if g: cors.append((a.get('OBJECTID'), a.get('WSR_GNIS_NAME') or '', core(a.get('WSR_GNIS_NAME')), bbox_groups([g])))
+    # owner rule, 2026-11-10: the corridors come from the key's saved copy (the corridor map is a saved-copy-only host), never live
+    saved_us({})
+    cors = [(int(k[4:]), SAVED_NAME.get(k) or '', core(SAVED_NAME.get(k)), bbox_groups([g])) for k, g in sorted(SAVED_STR.items())
+            if re.fullmatch(r'wsrc\d+', k) and g]
+    WSR_HELD.clear()
     n = 0
     for ref, v in PIN.items():
         if v[5].startswith(('W-', 'CA-')) or v[5] == 'KY' or not WSRW.search(v[0]) or v[1] is None: continue   # Nov 9 PM: never search around a bad pin
         if ref in parks and parks[ref]['ids'] and not any(str(i).startswith('wsrc') for i in parks[ref]['ids']) and ref not in LN: continue   # has its own area outline
+        if not cors:   # no saved corridor copy at all: the river's pairs are held, never quietly tested as a line park
+            WSR_HELD[ref] = 'saved copy missing for wsrc (W&S river corridors): needs download'; continue
         c = core(v[0])
         hit = [x for x in cors if c and x[2] == c and x[3] and x[3][0] - 1 <= v[2] <= x[3][2] + 1 and x[3][1] - 1 <= v[1] <= x[3][3] + 1]
         if not hit: continue
         parks[ref] = {'st': 'US-' + v[5], 'ids': [f'wsrc{x[0]}' for x in hit], 'names': {f'wsrc{x[0]}': x[1] for x in hit}}
         AGENCY.add(ref); LN.pop(ref, None); n += 1
-    LOG.append(f'W&S river corridors joined as area parks: {n}')
+    LOG.append(f'W&S river corridors joined as area parks: {n} (saved copy: {len(cors)} corridors)' + (f'; {len(WSR_HELD)} rivers held: no saved corridor copy' if WSR_HELD else ''))
     return n
 
 
 def live_lines(LN):
     today = time.strftime('%Y-%m-%d')
     for ref, (url, where, by) in LIVE_LINES.items():
+        if saved_only_host([url]): LOG.append(f'{ref} live line: saved-copy-only map, saved copy kept'); continue   # owner rule, 2026-11-10
         try:
-            ls, off = [], 0
-            while True:
-                j = get(url, {'where': where, 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DET / 4, 'geometryPrecision': 6,
-                              'resultOffset': off, 'resultRecordCount': 1000, 'f': 'json'}, timeout=180)
-                fs = j.get('features') or []
+            ls = []
+            for fs in read_pages(lambda off: get(url, {'where': where, 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DET / 4,
+                                                       'geometryPrecision': 6, 'resultOffset': off, 'resultRecordCount': 1000, 'f': 'json'}, timeout=180)):
                 for ft in fs:
                     for pth in (ft.get('geometry') or {}).get('paths') or []:
                         if len(pth) > 1: ls.append([[p[0], p[1]] for p in pth])
-                if not fs or not j.get('exceededTransferLimit'): break
-                off += len(fs)
             if not ls: LOG.append(f'{ref} live line: nothing read, saved copy kept'); continue
             note = ''
             if ref == 'US-11181':   # the districts' 'centerline data available' layers
@@ -528,6 +528,21 @@ def live_lines(LN):
             LN[ref] = {'lines': ls, 'kind': 'trail', 'by': by, 'date': f'read live {today}', 'type': 'trail', **({'districts': note} if note else {})}
             KY_NOT_SURE.pop(ref, None)
         except Exception as e: LOG.append(f'{ref} live line: {str(e)[:60]}')  # noqa: BLE001
+
+
+def read_pages(ask, most=500):
+    """Every page of one paged query (ask(offset) -> answer), or an error: never a partial answer. The same first record twice
+    (a server that ignores resultOffset) or more than `most` pages is an error."""
+    pages, off, firsts = [], 0, set()
+    for _ in range(most):
+        j = ask(off); fs = j.get('features') or []
+        if not fs: return pages
+        f0 = json.dumps(fs[0].get('attributes') or fs[0].get('geometry'), sort_keys=True, default=str)
+        if f0 in firsts: raise RuntimeError('the map ignored resultOffset (the same page twice)')
+        firsts.add(f0); pages.append(fs)
+        if not j.get('exceededTransferLimit'): return pages
+        off += len(fs)
+    raise RuntimeError(f'more than {most} pages')
 
 
 # ------------------------------------------------------------------ outlines
@@ -681,6 +696,27 @@ def is_wdpa_outline(p=None, text=''):
     return bool(WDPA_RX.search(' '.join(str(b) for b in bits)))
 
 
+def outline_unlabelled(p, area):
+    """True when a joined record of this key park has no source we can name (fail closed: an unlabelled outline is not official).
+    US: a PAD-US number, a layers.json prefix, FWS or a trail line, or the park's own 'src'; Canada: a CPCAD number or the layer
+    label the id carries ('<label>:<id>'); world: every joined row names its source."""
+    for x in (p or {}).get('m') or []:
+        if not isinstance(x, (list, tuple)) or not x: return True
+        i = x[0]
+        if area == 'W':
+            if len(x) < 3 or not str(x[2] or '').strip(): return True
+            continue
+        if isinstance(i, int): continue
+        if area == 'CA' and ':' in str(i):
+            if not str(i).partition(':')[0].strip(): return True
+            continue
+        mm = re.fullmatch(r'([a-z]+)\d+', str(i))
+        if mm and (mm.group(1) in ('fws', 'trl') or (area == 'US' and mm.group(1) in LAYERS_US)): continue
+        if area == 'US' and any(str(v).strip() for v in (p.get('src') or [])): continue
+        return True
+    return False
+
+
 def load_apx_outlines(root='.'):
     """Picture-trace outlines entered as approximate 2-fers (data/fers-approx-outlines.json)."""
     global APX_OUT
@@ -716,8 +752,8 @@ def add_approx_outlines(parks, PIN, skip, region=None, root=None):
     WDPA / Protected Planet outlines are skipped for the public list."""
     region = region if region is not None else REGION
     for ref, v in (load_apx_outlines(root or '.') or {}).items():
-        if is_wdpa_outline(v):
-            WDPA_SKIP.append({'ref': ref, 'why': 'WDPA / Protected Planet is never a public 2-fer source'})
+        if is_wdpa_outline(v) or not str(v.get('src') or '').strip():   # fail closed: an unlabelled trace is not used
+            WDPA_SKIP.append({'ref': ref, 'why': 'WDPA / Protected Planet is never a public 2-fer source' if is_wdpa_outline(v) else 'outline source not labelled: not used'})
             continue
         if ref not in PIN: continue
         if has_official_outline(ref, parks, root=root):
@@ -750,13 +786,36 @@ def inject_apx_geom(G, parks, refs=None):
     return G
 
 
+SAVED_USE = set()     # parks whose outline (or part of it) came from a saved copy in download (never re-saved as a live read)
+MISSING_SAVED = {}    # ref -> layer whose host is saved-copy only and whose record is in no saved copy
+
+
+def saved_only_host(urls):
+    """True when every map address of a record is on a saved-copy-only host (kpc_net_guard refuses it)."""
+    us = [u for u in urls or [] if str(u).startswith(('http://', 'https://'))]
+    return bool(us) and not any(HC.kpc_net_guard.host_ok(u)[0] for u in us)
+
+
+def saved_missing_why(ref):
+    return f"saved copy missing for {MISSING_SAVED[ref]}: needs download" if ref in MISSING_SAVED else ''
+
+
+def _layer_name(rid, src=None, ca=False):
+    if src: return str(src)
+    if ':' in str(rid): return str(rid).partition(':')[0]
+    m = re.fullmatch(r'([a-z]+)\d+', str(rid))
+    return m.group(1) if m else 'CPCAD' if ca else 'PAD-US'
+
+
 def download(parks, refs, det, prec):
     """{ref: [group of rings per record]} downloaded from the agencies by object id. A park with a record that could not
-    be read is left out (dead certain: half a park is not the park)."""
+    be read is left out (dead certain: half a park is not the park). A record on a saved-copy-only host is taken from the
+    same saved copy the key was built from (owner rule, 2026-11-10); none there = the park is held 'saved copy missing'."""
     _pc = {r: [[pc_ring(*PC[r]['pt'])]] for r in refs if r in PCT}   # Brandon t950u: the circle, never a download
     _apx = {r: [parks[r]['rings']] for r in refs if (parks.get(r) or {}).get('rings') and (parks.get(r) or {}).get('approx') and not has_official_outline(r, parks)}
     refs = [r for r in refs if r not in PCT and r not in _apx]
-    want = {}
+    want, saved, whole = {}, {}, set()
+    if REGION == 'na' and refs: saved_us({})
     for ref in refs:
         ca = parks[ref]['st'].startswith('CA-')
         for i, rid in enumerate(parks[ref]['ids']):
@@ -764,6 +823,13 @@ def download(parks, refs, det, prec):
                 urls, oid, chk = source_of(rid, False, parks[ref]['m'][i][2]); key = str(i)
             else:
                 urls, oid, chk = source_of(rid, ca); key = str(rid)
+            if saved_only_host(urls):
+                if not ca and 'm' not in parks[ref] and str(rid) in SAVED_STR:
+                    saved.setdefault(ref, []).append(clip(ref, rid, SAVED_STR[str(rid)])); continue
+                if not ca and 'm' not in parks[ref] and str(rid) in SAVED_LEFT:
+                    LEFT.setdefault(ref, []).append(f"{parks[ref]['names'].get(str(rid)) or rid}: {SAVED_LEFT[str(rid)]}"); saved.setdefault(ref, []); continue
+                if ca or 'm' in parks[ref]: whole.add(ref)   # Canada / world: the park's own saved copy (below)
+                MISSING_SAVED.setdefault(ref, _layer_name(rid, parks[ref]['m'][i][2] if 'm' in parks[ref] else None, ca))
             if not urls: want.setdefault(('none',), []).append((ref, key, None, chk)); continue
             want.setdefault(tuple(urls), []).append((ref, key, oid, chk))
     got, bad = {}, set()
@@ -851,15 +917,31 @@ def download(parks, refs, det, prec):
                 _w = [WHEN[(u, oid)] for u in urls if (u, oid) in WHEN]
                 if _w: READ[ref] = min([READ.get(ref, 9e12)] + _w)
             else: LEFT.setdefault(ref, []).append(f'{parks[ref]["names"].get(rid) or rid}: {why}')   # rule 2: left out, not 'unreadable'
+    for ref, gs in saved.items():   # records from the saved copy (saved-copy-only host): never asked, never cut for time
+        if ref in bad or ref in cut: continue
+        if gs: got.setdefault(ref, []).extend(gs)
+        SAVED_USE.add(ref)
     for ref in bad | cut: got.pop(ref, None)
     cut -= bad
     DL_CUT.update(cut)
     if cut: LOG.append(f'{len(cut)} parks not downloaded: out of time (listed; their areas keep their previous files)')
-    for ref in {i[0] for v in want.values() for i in v} - bad - set(got) - cut:
+    for ref in ({i[0] for v in want.values() for i in v} | set(saved)) - bad - set(got) - cut:
         if ref in LEFT: bad.add(ref)   # every record of this park was left out (all easement / closed): no public land to test
+    _miss = sorted(r for r in bad if r in MISSING_SAVED)
+    if _miss:   # a saved-copy-only record the key copy does not hold: the park's other saved copies, else held with the reason
+        if LIVE_FILE is None and REGION == 'na': live_load(area_name())
+        _ca = saved_ca({r: parks[r] for r in _miss if r in whole and parks[r]['st'].startswith('CA-')})
+        _w = saved_world({r: parks[r] for r in _miss if r in whole and parks[r]['st'].startswith('W-')}) if any(parks[r]['st'].startswith('W-') for r in _miss) else {}
+        for r in _miss:
+            g = _ca.get(r) or _w.get(r) or (LIVE[r]['g'] if r in LIVE and [str(i) for i in parks[r]['ids']] == LIVE[r].get('ids') else None)
+            if g: got[r] = g; bad.discard(r); SAVED_USE.add(r); MAPDATE[r] = 'saved copy (saved-copy-only map)'
+    for r in [r for r in MISSING_SAVED if r in got]: MISSING_SAVED.pop(r)
+    if MISSING_SAVED: LOG.append(f"{len(MISSING_SAVED)} parks held: saved copy missing (saved-copy-only maps): " + ', '.join(sorted(MISSING_SAVED)[:10]))
     today = time.strftime('%Y-%m-%d')
     for ref in got:   # B2 (Oct 30): the real read date (a reused bundle answer can be up to weeks old), never 'today' for an old answer
-        MAPDATE[ref] = f"read from the agency {time.strftime('%Y-%m-%d', time.gmtime(READ[ref]))}" if ref in READ else f'downloaded {today}'
+        if ref in SAVED_USE and ref not in READ:
+            MAPDATE[ref] = MAPDATE.get(ref) if str(MAPDATE.get(ref) or '').startswith('saved copy') else 'saved copy (answer key)'; continue
+        MAPDATE[ref] =f"read from the agency {time.strftime('%Y-%m-%d', time.gmtime(READ[ref]))}" if ref in READ else f'downloaded {today}'
     got.update(_pc)
     got.update(_apx)
     inject_apx_geom(got, parks)
@@ -871,13 +953,21 @@ SAVED_LEFT = {}
 
 SAVED_STR = {}   # Nov 9 evening: str(record id) -> rings for every saved record (state layers, FWS, ... not only PAD-US)
 SAVED_DATE = {}
+SAVED_NAME = {}   # str(record id) -> the record's name (the W&S corridors are joined by name from the saved copy)
+_SAVED_BY = []
+
+
+def area_name():
+    return 'ky' if REGION == 'ky' else RUN_TAG or ('-'.join(sorted(ONLY)) if ONLY else REGION)
 
 
 def saved_us(parks):
     """PAD-US records from the boundary cache (the answer key's own saved copy). Nov 9 evening (Brandon t909u 'saved outlines
     first'): the state-layer / FWS / line records in the same copy are kept too (SAVED_STR), so a park is downloaded live only
-    when one of its record ids is not in any saved copy."""
+    when one of its record ids is not in any saved copy. Read once per run."""
+    if _SAVED_BY: return _SAVED_BY[0]
     by = {}
+    _SAVED_BY.append(by)
     for f in CACHE_US.glob('US-*.json.gz'):
         if f.name.startswith('prev-'): continue
         try:
@@ -889,6 +979,7 @@ def saved_us(parks):
                     use, why = pad_use(r) if isinstance(oid, int) else fws_use(r) if str(oid).startswith('fws') else (True, None)
                     if use:
                         by[oid] = r['_r']; SAVED_STR[str(oid)] = r['_r']; SAVED_DATE[str(oid)] = r.get('rd') or blob.get('saved') or ''
+                        SAVED_NAME[str(oid)] = r.get('Unit_Nm') or ''
                     else: SAVED_LEFT[oid] = why; SAVED_LEFT[str(oid)] = why
         except Exception: pass  # noqa: BLE001
     return by
@@ -1040,7 +1131,9 @@ def ky_live(src, nm):
     if k in KYFRESH: return KYFRESH[k]
     gs = []
     try:
+        if saved_only_host([KYLIVE[src][0]]): KYFRESH[k] = []; return []   # owner rule, 2026-11-10: the Kentucky file copy is used
         url, fld = ky_resolve(src)
+        if saved_only_host([url]): KYFRESH[k] = []; return []
         q = lambda w: get(url, {'where': w, 'outFields': fld, 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'})
         esc = lambda x: x.upper().replace(chr(39), chr(39) * 2)
         fs = q(f"UPPER({fld}) = '{esc(nm)}'").get('features') or []
@@ -1078,18 +1171,14 @@ def ky_geom(parks, refs):
             src, nm = rid.split('|', 1)
             if src == 'padus':
                 if ('padus', nm) not in KYIDX:
-                    polys, off = [], 0
+                    polys = []
                     try:
-                        while True:
-                            j = get(PADUS, {'where': f"State_Nm='KY' AND Category='Fee' AND Unit_Nm LIKE '{nm}%'", 'outFields': 'OBJECTID',
-                                            'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DET, 'geometryPrecision': PREC,
-                                            'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'})
-                            fs = j.get('features') or []
+                        for fs in read_pages(lambda off: get(PADUS, {'where': f"State_Nm='KY' AND Category='Fee' AND Unit_Nm LIKE '{nm}%'", 'outFields': 'OBJECTID',
+                                                                     'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DET, 'geometryPrecision': PREC,
+                                                                     'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'})):
                             polys += [esri_rings(f.get('geometry')) for f in fs if esri_rings(f.get('geometry'))]
-                            if not fs or not j.get('exceededTransferLimit'): break
-                            off += len(fs)
                     except Exception as e:  # noqa: BLE001
-                        LOG.append(f'PAD-US {nm}: {str(e)[:60]}')
+                        polys = []; LOG.append(f'PAD-US {nm}: {str(e)[:60]} (not read: half a park is not the park)')   # never a partial read
                     KYIDX[('padus', nm)] = polys
                 if KYIDX[('padus', nm)]: gs += KYIDX[('padus', nm)]
                 else: bad.add(ref)
@@ -1325,44 +1414,11 @@ def fws_use(a):
     return True, None
 
 
-def pad_at(lon, lat):
-    """PAD-US records (Fee, Designation, Easement, Proclamation) at one point."""
-    j = get(PADUS, {'geometry': f'{lon},{lat}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                    'outFields': 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Own_Name,Mang_Type,Mang_Name,Category,Des_Tp,Pub_Access', 'returnGeometry': 'false', 'f': 'json'})
-    return [f.get('attributes') or {} for f in j.get('features') or []]
-
-
 def pad_closed(box):
     j = get(PADUS, {'where': "Pub_Access = 'XA' AND Category IN ('Fee','Designation')", 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope',
                     'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'Unit_Nm', 'returnGeometry': 'true', 'outSR': 4326,
                     'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'})
     return [esri_rings(f.get('geometry')) for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
-
-
-# Oct 28 (chat 9 hand-off, rule 14): the Corps of Engineers' own recreation-area polygons (3,659, 'which agency runs it').
-# Corps project land under a state park / WMA is the layered case PAD-US often misses (no fee record, or the state as owner).
-USACE_REC = 'https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0/query'
-CORPS_RUN = {'State Agency': 'STATE', 'Local Government Agency': 'LOCAL', 'Corps of Engineers': 'FED:USACE'}
-
-
-def usace_at(lon, lat):
-    """USACE recreation areas at one point: [(name, managing agency)]; [] when none or the map did not answer."""
-    try:
-        j = get(USACE_REC, {'geometry': f'{lon},{lat}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                            'outFields': 'FEATURENAME,RECPROJECTSITENAME,MANAGINGAGENCY', 'returnGeometry': 'false', 'f': 'json'}, tries=2, timeout=60)
-    except Exception: return []  # noqa: BLE001
-    out = []
-    for f in j.get('features') or []:
-        a = f.get('attributes') or {}
-        ma = str(a.get('MANAGINGAGENCY') or '')
-        out.append((str(a.get('FEATURENAME') or a.get('RECPROJECTSITENAME') or 'Corps recreation area'), next((v for k, v in CORPS_RUN.items() if ma.startswith(k)), ma or '?')))
-    return out
-
-
-def cpcad_at(lon, lat):
-    j = get(CPCAD, {'geometry': f'{lon},{lat}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                    'outFields': '*', 'returnGeometry': 'false', 'f': 'json'})
-    return [f.get('attributes') or {} for f in j.get('features') or []]
 
 
 def owner_of_pad(a):
@@ -2973,16 +3029,20 @@ SAME_RECORDS_HOLD = ('not sure: both parks join the same official records '
 
 
 def join_record_ids(park):
-    """Normalized official record ids for one park (picture-trace and point-circle ids left out)."""
+    """Official record ids for one park as (area, source, id) (picture-trace and point-circle ids left out). The area and the
+    world source keep two layers' equal numbers apart (PAD-US 3425 is not the CPCAD or a world layer's 3425)."""
     ids = []
     p = park or {}
     raw = p.get('ids') or []
-    if not raw and (p.get('m') or p.get('tracts')):
-        raw = [x[0] for x in (p.get('m') or p.get('tracts') or []) if isinstance(x, (list, tuple)) and x]
-    for i in raw:
+    rows = p.get('m') or p.get('tracts') or []
+    if not raw and rows:
+        raw = [x[0] for x in rows if isinstance(x, (list, tuple)) and x]
+    area = str(p.get('st') or '').split('-')[0]
+    for n, i in enumerate(raw):
         if i in (None, '') or str(i).startswith(('apx|', 'pc|')):
             continue
-        ids.append(str(i))
+        src = str(rows[n][2]) if area == 'W' and n < len(rows) and isinstance(rows[n], (list, tuple)) and len(rows[n]) > 2 else ''
+        ids.append((area, src, str(i)))
     return frozenset(ids)
 
 
@@ -3002,6 +3062,107 @@ def identical_records_hold(parks, refs):
     return SAME_RECORDS_HOLD if identical_record_refs(parks, refs) else ''
 
 
+# Owner rule, 2026-11-10: two parks on the same official records are an APPROXIMATE 2-fer only when both POTA pins are inside
+# the shared outline (one place, two park numbers). A pin outside it, or one that cannot be tested, means a likely wrong join: held.
+SAME_RECORDS_APX_NOTE = ('Both park numbers join the same official outline and both POTA pins are inside it. Each park\u2019s own boundary is not '
+                         'confirmed. Not the official boundary of either park alone: we believe this is a 2-fer, but it needs more research.')
+SAME_RECORDS_JOIN_HOLD = ('not sure: both parks join the same official records but a POTA pin is outside the shared outline '
+                          '(or cannot be tested): likely a join to fix')
+
+
+def pin_in_outline(ref, PIN, G):
+    """Strict point test (no river / agency exceptions): True or False for a usable pin and an outline, None when it cannot be tested."""
+    v = PIN.get(ref)
+    if not v or v[1] is None or v[2] is None or ref not in G: return None
+    la, lo, d = v[1], v[2], .004
+    F = Frame([lo - d, la - d, lo + d, la + d], CELL, 0)
+    c, r = F.px([[lo, la]])[0].astype(int)
+    return bool(pmask(F, ref, G)[min(max(r, 0), F.H - 1), min(max(c, 0), F.W - 1)])
+
+
+# KPC owner, 2026-11-10: "both pins inside" alone also passes SEPARATE units of one big record (the Patoka Lake and Salamonie Lake
+# recreation-area units, a park and its "Unit"): those parks do not overlap, so they are not 2-fers. A same-record pair is approximate
+# only when, on top of both pins inside the shared outline:
+#   * the pins are close: at most SAME_RECORDS_NEAR_KM apart. 1 km sits in the gap of the Nov 10 list: the two real pairs are 0.04 km
+#     (Chalk Bluff) and 0.48 km (Red Cliffs) apart, the nearest separate units 1.72 km (Salamonie). SAME_FAR's 8 km is far too loose;
+#   * and the shared record names both parks with no kind that differs (kpc_fers_guard.same_land_doubt, the same-land test), unless
+#     the two pins are on the same spot (SAME_RECORDS_SPOT_KM, about the precision of a POTA pin), where only the kind words differ.
+# Otherwise the pair is held as a likely join to fix, with the reason, the parks and the pin distance on the row.
+SAME_RECORDS_NEAR_KM = 1.0
+SAME_RECORDS_SPOT_KM = 0.1
+SAME_RECORDS_UNITS_HOLD = ('not sure: both parks join the same official records and both POTA pins are inside it, but the pins are '
+                           'more than 1 km apart (separate units of one big record): likely a join to fix')
+
+
+def pin_km(a, b, PIN):
+    """Great-circle km between two POTA pins; None when either pin is missing."""
+    va, vb = PIN.get(a), PIN.get(b)
+    if not va or not vb or None in (va[1], va[2], vb[1], vb[2]): return None
+    la1, lo1, la2, lo2 = map(math.radians, (float(va[1]), float(va[2]), float(vb[1]), float(vb[2])))
+    h = math.sin((la2 - la1) / 2) ** 2 + math.cos(la1) * math.cos(la2) * math.sin((lo2 - lo1) / 2) ** 2
+    return 2 * 6371.0 * math.asin(min(1.0, math.sqrt(h)))
+
+
+def shared_record_names(parks, grp):
+    """Names of the official records the parks in grp share (from their key 'm' rows)."""
+    ids = None
+    for r in grp:
+        s = {i[2] for i in join_record_ids((parks or {}).get(r))}
+        ids = s if ids is None else ids & s
+    out = []
+    for r in grp:
+        for q in ((parks or {}).get(r) or {}).get('m') or []:
+            if isinstance(q, (list, tuple)) and len(q) > 1 and str(q[0]) in (ids or set()) and q[1] and q[1] not in out: out.append(q[1])
+    return out
+
+
+def same_records_doubt(a, b, parks, PIN):
+    """'' when the pair may be an approximate 2-fer; else the reason it is held (pins far apart, or the record does not name both)."""
+    d = pin_km(a, b, PIN)
+    if d is None or d > SAME_RECORDS_NEAR_KM:
+        return SAME_RECORDS_UNITS_HOLD + (f' ({a} and {b}: pins {d:.2f} km apart)' if d is not None else f' ({a} and {b}: a pin cannot be measured)')
+    if d <= SAME_RECORDS_SPOT_KM: return ''
+    na, nb = (PIN.get(a) or [a])[0], (PIN.get(b) or [b])[0]
+    recs = shared_record_names(parks, [a, b]) or ['']
+    whys = [FG.same_land_doubt(na, nb, rec) for rec in recs]
+    return '' if '' in whys else whys[0]
+
+
+def same_records_verdict(parks, refs, PIN, G):
+    """() when no two parks of the pair join identical records; ('approx', []) when every such park's pin is inside the shared
+    outline and every two of them pass same_records_doubt; ('held', [refs whose pin is outside or untestable]) when a pin is not
+    inside; ('held', [refs], 'units', why) when the pins are inside but the parks look like separate places. Every call site
+    (decide, same-land pass 1 and pass 5) goes through here."""
+    grp = sorted({r for g in identical_record_refs(parks, refs) for r in g})
+    if not grp: return ()
+    out = [r for r in grp if pin_in_outline(r, PIN, G) is not True]
+    if out: return ('held', out)
+    far, whys = [], []
+    for i, a in enumerate(grp):
+        for b in grp[i + 1:]:
+            why = same_records_doubt(a, b, parks, PIN)
+            if why: far += [a, b]; whys.append(why)
+    return ('held', sorted(set(far)), 'units', whys[0]) if far else ('approx', [])
+
+
+def same_records_mark(x, v, parks, PIN):
+    """Write the verdict on a row. True = held (the caller stops)."""
+    refs = list(x.get('refs') or [])
+    x['shared_records'] = sorted({i[2] for r in refs for i in join_record_ids((parks or {}).get(r))})
+    if v[0] == 'held':
+        x['person_review'] = True; x['join_check'] = True; x['names'] = {r: (PIN[r][0] if r in PIN else r) for r in refs}
+        if len(v) > 2 and v[2] == 'units':   # pins inside but far apart under different names: separate units of one record
+            x['status'] = v[3] if len(v) > 3 and v[3] else SAME_RECORDS_UNITS_HOLD; x['separate_units'] = v[1]
+            x['pin_km'] = {f'{a}+{b}': (round(d, 2) if d is not None else None) for i, a in enumerate(v[1]) for b in v[1][i + 1:] for d in [pin_km(a, b, PIN)]}
+            x.pop('pin_outside', None)
+        else:
+            x['status'] = SAME_RECORDS_JOIN_HOLD; x['pin_outside'] = v[1]
+        return True
+    x['approx'] = True; x['same_records'] = True; x['approx_note'] = SAME_RECORDS_APX_NOTE
+    for k in ('person_review', 'join_check', 'pin_outside', 'separate_units', 'pin_km'): x.pop(k, None)
+    return False
+
+
 def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     """Pass 3: the rules decide what a spot that passed all three geometry passes is."""
     refs = s['refs']
@@ -3015,12 +3176,11 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     _klm = key_line_match(_kr, s.get('kind'), areas=_areas) if _kr else ''
     if _klm:
         s['status'] = _klm; return
-    _same = identical_records_hold(parks, refs)
-    if _same:
-        s['status'] = _same
-        s['person_review'] = True
-        s['names'] = {r: (PIN[r][0] if r in PIN else r) for r in refs}
-        return
+    _sv = same_records_verdict(parks, refs, PIN, G)
+    if _sv and same_records_mark(s, _sv, parks, PIN): return
+    _held = [WSR_HELD.get(r) or saved_missing_why(r) for r in refs if WSR_HELD.get(r) or saved_missing_why(r)]
+    if _held:   # owner rule, 2026-11-10: no saved copy for a saved-copy-only map = held, never tested without it
+        s['status'] = 'not sure: ' + '; '.join(sorted(set(_held))); s['names'] = {r: (PIN[r][0] if r in PIN else r) for r in refs}; return
     # Approximate or point-circle halves stay in the approximate 2-fer tier (they are not held).
     # pc_tag writes the public note and thinner-card fields.
     load_key_status()
@@ -3030,6 +3190,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         s['approx'] = True
         s['approx_refs'] = _apx
         s['approx_note'] = APX_NOTE
+    if _sv: s['approx'] = True; s['approx_note'] = SAME_RECORDS_APX_NOTE   # both pins inside the shared outline: approximate tier
     s['pins_inside'] = {r: pin_inside(r, PIN, G, LN) for r in refs}   # information only: pins never count (rule 6)
     if any(r in saved_only for r in refs):
         s['fresh'] = 'saved copy only for ' + ', '.join(r for r in refs if r in saved_only)
@@ -3476,6 +3637,9 @@ def main():
             if REGION != 'ky' and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} and any(r not in parks or not parks[r].get('ids') for r in (a, b) if r):
                 x['status'] = 'dropped: one of the two park numbers is no longer joined to this outline in the answer key (the old join was wrong)'
                 n['same land dropped: join gone from the key'] = n.get('same land dropped: join gone from the key', 0) + 1; continue
+            _sv = () if tuple(sorted((a, b))) in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} else same_records_verdict(parks, (a, b), PIN, G)
+            if _sv and same_records_mark(x, _sv, parks, PIN):
+                n['same land held: same records, a pin outside the outline'] = n.get('same land held: same records, a pin outside the outline', 0) + 1; continue
             if a in PIN and b in PIN and (PIN[a][1] is None or PIN[b][1] is None):   # Nov 9 PM: a bad pin = a person checks the join
                 x['status'] = 'not sure: one of the two parks has no usable POTA pin (0,0), so the far-pin check cannot run: a person checks the join'; continue
             if a in PIN and b in PIN and b in G and tuple(sorted((a, b))) not in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS}:
@@ -3660,7 +3824,7 @@ def main():
             time.sleep(60); got2, bad = download(parks, sorted(bad), DET, PREC); G.update(got2); got.update(got2)
         # Nov 9 evening: every live read is saved for the next run; a due re-read that failed keeps its saved copy (nothing lost)
         for ref in set(need) & set(G):
-            if ref in got: LIVE[ref] = {'ids': [str(i) for i in parks[ref]['ids']], 'g': G[ref], 'rd': today}
+            if ref in got and ref not in SAVED_USE: LIVE[ref] = {'ids': [str(i) for i in parks[ref]['ids']], 'g': G[ref], 'rd': today}
         for ref in list(bad | DL_CUT):
             if ref in LIVE and [str(i) for i in parks[ref]['ids']] == LIVE[ref].get('ids'):
                 G[ref] = LIVE[ref]['g']; MAPDATE[ref] = f"saved copy (read live {LIVE[ref].get('rd')}; today's re-read did not answer)"
@@ -3671,8 +3835,10 @@ def main():
         if DL_CUT:   # Nov 9 PM: parks not downloaded for time = an unfinished pass; their areas keep their previous files
             counts['stopped for time'] = True; counts['parks not downloaded: out of time'] = len(DL_CUT)
         counts['parks whose outline could not be read'] = len(bad)
+        _held = {r for r in bad if r in MISSING_SAVED}   # a known reason (saved copy missing): listed, not an agency map down
+        if _held: counts['parks held: saved copy missing (needs download)'] = {r: saved_missing_why(r) for r in sorted(_held)}
         _withids = sum(1 for r in parks if parks[r].get('ids'))
-        if len(bad) > 20 and len(bad) > .2 * max(1, _withids):   # half a state missing is not a 2-fer answer: stop loudly (a real issue)
+        if len(bad - _held) > 20 and len(bad - _held) > .2 * max(1, _withids):   # half a state missing is not a 2-fer answer: stop loudly (a real issue)
             hosts = sorted({str(next(iter(parks[r]['ids']), ''))[:6] for r in list(bad)[:200]})
             print(f"::error title=2-fer line: outlines not read::{len(bad)} of {_withids} parks' outlines could not be read (id prefixes {' '.join(hosts[:8])}): "
                   "an agency map did not answer. The area stops here, nothing is saved; try it again later.", flush=True)
@@ -3707,6 +3873,7 @@ def main():
                                                     # Oct 29 (chat 8: Colton Point / Leonard Harrison x Tioga SF said 'boxes do not touch'):
                                                     # parks whose official outline could not be READ in pass 1 (one record of theirs did not answer)
                                                     'unread': sorted(r for r in parks if r not in G and r not in LN and r not in SKIPWHY and r not in LEFT),
+                                                    'held_saved_missing': {r: saved_missing_why(r) for r in sorted(MISSING_SAVED) if r not in G},
                                                     # Oct 27 (HQ: the missing check's 1 km filter measures OUTLINE to OUTLINE): each park's box, so the
                                                     # check can measure every park, not only the ones in the PAD-US cache
                                                     'boxes': {r: [round(v, 4) for v in bbox_groups(G[r])] for r in G if G.get(r)}}, indent=None)
@@ -3769,7 +3936,9 @@ def main():
                       'note': f"both park numbers are joined to the same official outline ({x['name']}); POTA lists them separately: check POTA's current list",
                       'maps': [[r, map_link(r, PIN)] for r in (a, b)], 'names': {r: PIN[r][0] for r in (a, b)}}
                 sp['id'] = key_of(sp) + '@%.3f,%.3f' % tuple(sp['center'])
-                if any(r in LOWCONF for r in (a, b)): sp['status'] = 'not sure: low-confidence outline (check the join)'
+                _sv = () if tuple(sorted((a, b))) in {tuple(sorted(p[0])) for p in SAME_LAND_PAIRS} else same_records_verdict(parks, (a, b), PIN, G)
+                if _sv and same_records_mark(sp, _sv, parks, PIN): counts['same land held: same records, a pin outside the outline'] = counts.get('same land held: same records, a pin outside the outline', 0) + 1
+                elif any(r in LOWCONF for r in (a, b)): sp['status'] = 'not sure: low-confidence outline (check the join)'
                 elif _nopin: sp['status'] = 'not sure: one of the two parks has no usable POTA pin (0,0), so the far-pin check cannot run: a person checks the join'
                 elif _doubt: sp['status'] = _doubt; counts['same land not sure: one record covers two parks'] = counts.get('same land not sure: one record covers two parks', 0) + 1
                 by.setdefault(st_of(a), []).append(sp)
@@ -3842,7 +4011,9 @@ def main():
                 ub = [r for r in s['refs'] if r in bad]
                 if ub:   # Oct 29 (Mississippi: 24 rows waited for pass 2 run after run, their WMA layer will not read): a row whose
                     # outline cannot be read is NOT SURE with the reason (review list), never 'waiting' forever
-                    s['status'] = f"not sure: the official outline of {', '.join(PIN.get(r, [r])[0] for r in ub)} could not be read in pass {PASS} (the next run tries again)"; continue
+                    _sm = [saved_missing_why(r) for r in ub if r in MISSING_SAVED]
+                    s['status'] = (f"not sure: {'; '.join(_sm)} ({', '.join(PIN.get(r, [r])[0] for r in ub if r in MISSING_SAVED)})" if _sm else
+                                   f"not sure: the official outline of {', '.join(PIN.get(r, [r])[0] for r in ub)} could not be read in pass {PASS} (the next run tries again)"); continue
                 if pk not in TESTED and len(s['refs']) == 2:   # out of time before this pair: the next run carries on
                     s['status'] = f'waiting for pass {PASS}'; continue
                 sb = sbox(s)

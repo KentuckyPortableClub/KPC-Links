@@ -41,6 +41,14 @@
           "same-records"
         ]
       }
+    },
+    {
+      "id": "2026-11-10-review-fixes",
+      "when": "2026-11-10",
+      "from": "c2456edee62e",
+      "why": "Review fixes. Every pass reads a blocked-host layer from the key's saved copy; a missing saved copy holds the pair with a reason, and Wild and Scenic corridors come from saved records or the pair is held. Two parks on the same official records are an approximate 2-fer only when both POTA pins are inside the shared outline; otherwise the pair is held as a likely join to fix (pins and records listed on the row). Record ids are compared with their area and source; an outline with no source label is not official; a failed read never leaves a partial outline. A state feeds 2-fers only when its own index row was built on the current key rules.",
+      "scope": "all",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
     }
   ]
 }
