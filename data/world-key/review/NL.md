@@ -1,6 +1,6 @@
 # NL: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **81 of 312** joined (same name + same kind), **140** to check, **91** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **81 of 313** joined (same name + same kind), **140** to check, **92** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -238,3 +238,4 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - NL-0318 Egboetswater Natura 2000 (Natura 2000)
 - NL-0322 Boersberg Nature Park (Nature Park)
 - NL-0325 Landgoed Oostbroek Landscape Park (Landscape Park)
+- NL-0327 Buitenplaats Boekesteyn Landscape Reserve (Landscape Reserve)

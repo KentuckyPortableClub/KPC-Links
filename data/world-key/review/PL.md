@@ -1,6 +1,6 @@
 # PL: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Śląskie ORSIP nature and landscape complexes (GDOŚ register). **2694 of 2989** joined (same name + same kind), **180** to check, **115** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Śląskie ORSIP nature and landscape complexes (GDOŚ register). **2696 of 2992** joined (same name + same kind), **180** to check, **116** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -302,3 +302,4 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - PL-2926 Dębczyna Dewajtis Nature Reserve (Nature Reserve)
 - PL-2927 Dolina Uszewicy Nature and Landscape Complex (Nature and Landscape Complex)
 - PL-2957 Buki na Wierzysku Ecological Site (Ecological Site)
+- PL-2997 Dolina Lutyni Nature Reserve (Nature Reserve)

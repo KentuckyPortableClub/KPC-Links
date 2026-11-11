@@ -1,10 +1,10 @@
 # JP: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10), MLIT natural park areas, national file FY2010 (A10-10). **187 of 1240** joined (same name + same kind), **1** to check, **1052** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10), MLIT natural park areas, national file FY2010 (A10-10). **188 of 1241** joined (same name + same kind), **1** to check, **1052** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **JP-1727** Hyakkadai Prefectural Park (Prefectural Park) → unzen amakusa (Ministry of the Environment national parks (Esri Japan), the POTA pin is inside it (different name)); unzen amakusa (MLIT natural park areas (A10), the POTA pin is inside it (different name))
+- **JP-1727** Hyakkadai Prefectural Park (Prefectural Park) → unzen amakusa (MLIT natural park areas (A10), the POTA pin is inside it (different name)); unzen amakusa (Ministry of the Environment national parks (Esri Japan), the POTA pin is inside it (different name))
 
 ## Nothing found
 
@@ -172,7 +172,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-1139 Tochigi Central Prefectural Park (Prefectural Park)
 - JP-1140 Nasunogahara Prefectural Park (Prefectural Park)
 - JP-1141 Mikamoyama Prefectural Park (Prefectural Park)
-- JP-1142 Nikko Tamozawa Implerial Villa Memorial Prefectural Park (Prefectural Park)
 - JP-1143 Nikko Daiyagawa Prefectural Park (Prefectural Park)
 - JP-1144 Tochigi Wanpaku Prefectural Park (Prefectural Park)
 - JP-1155 Kitaurawa Prefectural Park (Prefectural Park)
@@ -303,6 +302,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-1285 Musashinonomori Prefectural Park (Prefectural Park)
 - JP-1286 Ryonan Prefectural Park (Prefectural Park)
 - JP-1287 Rokusen Prefectural Park (Prefectural Park)
+- JP-1288 Ogamiyama Prefectural Park (Prefectural Park)
 - JP-1290 Jinba Sagamiko Prefectural Nature Park (Prefectural Nature Park)
 - JP-1291 Oku Yugawara Prefectural Nature Park (Prefectural Nature Park)
 - JP-1292 Manazuru Hanto Prefectural Nature Park (Prefectural Nature Park)
@@ -536,6 +536,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-1539 Awajishima Prefectural Park (Prefectural Park)
 - JP-1540 Arima Fuji Prefectural Park (Prefectural Park)
 - JP-1542 Akashi Prefectural Park (Prefectural Park)
+- JP-1544 Ako Seaside Prefectural Park (Prefectural Park)
 - JP-1545 Takasago Seaside Prefectural Park (Prefectural Park)
 - JP-1546 Kabutoyama Forest Prefectural Park (Prefectural Park)
 - JP-1547 Mikiyama Forest Prefectural Park (Prefectural Park)
@@ -710,6 +711,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-1765 Takakumayama Prefectural Nature Park (Prefectural Nature Park)
 - JP-1766 Osumi Nanbu Prefectural Nature Park (Prefectural Nature Park)
 - JP-1767 Tokara Retto Prefectural Nature Park (Prefectural Nature Park)
+- JP-1768 Yoshino Prefectural Park (Prefectural Park)
 - JP-1769 Taniyama Ryokuchi Prefectural Park (Prefectural Park)
 - JP-1770 Kamoike Prefectural Nature Park (Prefectural Nature Park)
 - JP-1771 Kamoike Ryokuchi Prefectural Park (Prefectural Park)
@@ -769,7 +771,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-1826 Jonanjima Greenway Prefectural Park (Prefectural Park)
 - JP-1827 Keihinjima Greenway Prefectural Park (Prefectural Park)
 - JP-1829 Komine Prefectural Park (Prefectural Park)
-- JP-1833 Hachijo Botanical Garden Prefectural Park (Prefectural Park)
 - JP-1835 Niiza Greenway Prefectural Park (Prefectural Park)
 - JP-1836 Shinrinkoen Park Walking Road Prefectural Park (Prefectural Park)
 - JP-1837 Sakitama Greenway Prefectural Park (Prefectural Park)
@@ -923,7 +924,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-2013 Forest Park Tottori Deainomori Prefectural Park (Prefectural Park)
 - JP-2014 Forest Park 21st Century Prefectural Park (Prefectural Park)
 - JP-2015 Tottori Mukibanda Historic Site Prefectural Park (Prefectural Park)
-- JP-2016 Miyajima Prefectural Park (Prefectural Park)
 - JP-2017 Ehime Kodomonoshiro Prefectural Park (Prefectural Park)
 - JP-2019 Miyazaki Seaside Prefectural Park (Prefectural Park)
 - JP-2020 Miyazaki Prefectural Aoshima Subtropical Botanic Garden Prefectural Park (Prefectural Park)
@@ -1045,11 +1045,11 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-2141 Kokubu seaside Prefectural Park (Prefectural Park)
 - JP-2142 Kanazawa Minato cyuou Prefectural Park (Prefectural Park)
 - JP-2143 Odaira touge Prefectural Forest (Prefectural Forest)
-- JP-2144 Ookagou Prefectural Park (Prefectural Park)
 - JP-2149 Shirokokou Ryokuchi Prefectural Park (Prefectural Park)
 - JP-2150 Kana Garden Prefectural Park (Prefectural Park)
 - JP-2152 Shouyouju no Mori Prefectural Forest (Prefectural Forest)
 - JP-2153 Matsubara Yamate Prefectural Forest (Prefectural Forest)
+- JP-2154 Nouka Prefectural Park (Prefectural Park)
 - JP-2155 Seiryu Nagaragawa Ayu Prefectural Park (Prefectural Park)
 - JP-2156 Hiroshima Kenmin no Mori Prefectural Forest (Prefectural Forest)
 - JP-2157 Mominoki Prefectural Forest (Prefectural Forest)
@@ -1059,4 +1059,4 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - JP-2161 Koshienhama Seaside Prefectural Park (Prefectural Park)
 - JP-2162 Santokuen Prefectural Park (Prefectural Park)
 - JP-2163 Shimin-no-Mori Ryokuchi Prefectural Park (Prefectural Park)
-- JP-2164 Fukui Prefectural Children’s Science Museum(Angel Land Fukui） Park (Park)
+- JP-2164 Fukui Prefectural Childrens Science Museum(Angel Land Fukui） Park (Park)

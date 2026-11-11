@@ -1,9 +1,10 @@
 # IE: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Forest Park, National Park Boundaries. **103 of 307** joined (same name + same kind), **65** to check, **139** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Forest Park, National Park Boundaries. **104 of 312** joined (same name + same kind), **66** to check, **142** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
+- **IE-0005** Ballycroy National Park (National Park) → Wild Nephin National Park (National Park Boundaries, the POTA pin is inside it (different name))
 - **IE-0009** Glengarriff Woods Nature Reserve (Nature Reserve) → Glengarriff Harbour and Woodland SAC (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IE-0011** Lough Hyne Nature Reserve (Nature Reserve) → Lough Hyne Nature Reserve and Environs SAC (EEA Natura 2000, similar name)
 - **IE-0029** Rostellan Forest National Forest (National Forest) → Cork Harbour SPA (EEA Natura 2000, the POTA pin is inside it (different name))
@@ -18,7 +19,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **IE-0054** Bowers Wood Nature Reserve (Nature Reserve) → River Barrow and River Nore SAC (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IE-0061** Monicknew Forest National Forest (National Forest) → Slieve Bloom Mountains SPA (EEA Natura 2000, the POTA pin is inside it (different name)); Slieve Blooms MTB (Forest Park, the POTA pin is inside it (different name))
 - **IE-0064** Derryclare Nature Reserve (Nature Reserve) → The Twelve Bens/Garraun Complex SAC (EEA Natura 2000, the POTA pin is inside it (different name))
-- **IE-0069** Portumna Forest Country Park (Country Park) → Portumna (Forest Park, similar name)
 - **IE-0071** Newvillage Woods National Forest (National Forest) → Lough Corrib SAC (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IE-0072** Derroura Woods National Forest (National Forest) → Lough Corrib SAC (EEA Natura 2000, the POTA pin is inside it (different name)); Lough Corrib SPA (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IE-0073** Ballyteigue Nature Reserve (Nature Reserve) → Ballyteige (Clare) SAC (EEA Natura 2000, the POTA pin is inside it (different name))
@@ -34,7 +34,8 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **IE-0094** Dromana Woods National Forest (National Forest) → Blackwater River (Cork/Waterford) SAC (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IE-0095** Glenshelane Woods National Forest (National Forest) → Blackwater River (Cork/Waterford) SAC (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IE-0097** Glendalough Park Nature Reserve (Nature Reserve) → Wicklow Mountains SAC (EEA Natura 2000, the POTA pin is inside it (different name)); Wicklow Mountains National Park (EEA nationally designated areas, the POTA pin is inside it (different name)); Wicklow Mountains National Park (National Park Boundaries, the POTA pin is inside it (different name))
-- **IE-0105** Kinnitty Castle Loop National Forest (National Forest) → Slieve Bloom Mountains SPA (EEA Natura 2000, the POTA pin is inside it (different name))
+- **IE-0105** Kinnitty Castle Loop National Forest (National Forest) → Slieve Bloom Mountains SPA (EEA Natura 2000, the POTA pin is inside it (different name)); Slieve Blooms MTB (Forest Park, the POTA pin is inside it (different name))
+- **IE-0116** Ticknock Forest National Forest (National Forest) → Tiknock MTB (Forest Park, the POTA pin is inside it (different name))
 - **IE-0119** Ardnamona Woods Nature Reserve (Nature Reserve) → Lough Eske and Ardnamona Wood SAC (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IE-0122** Duntally Wood Nature Reserve (Nature Reserve) → Sheephaven SAC (EEA Natura 2000, the POTA pin is inside it (different name))
 - **IE-0123** Inch Levels Wildfowl Nature Reserve (Nature Reserve) → Lough Swilly SPA (EEA Natura 2000, the POTA pin is inside it (different name))
@@ -72,7 +73,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 
 ## Nothing found
 
-- IE-0005 Ballycroy National Park (National Park)
 - IE-0008 Farren Woods National Park (National Park)
 - IE-0013 Donerile wildlife park Nature Reserve (Nature Reserve)
 - IE-0014 Dromkeen Wood Nature Reserve (Nature Reserve)
@@ -133,7 +133,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - IE-0109 Castle Lake Walks Nature Reserve (Nature Reserve)
 - IE-0110 Deerpark Forest National Forest (National Forest)
 - IE-0114 Turvey Nature Reserve (Nature Reserve)
-- IE-0116 Ticknock Forest National Forest (National Forest)
 - IE-0117 Tibradden Wood National Forest (National Forest)
 - IE-0118 Cruagh Wood National Forest (National Forest)
 - IE-0121 Derkmore Wood Nature Reserve (Nature Reserve)
@@ -211,3 +210,8 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - IE-0303 Suir Blueway State Trail (State Trail)
 - IE-0306 Ballykeeran Forest Reserve (Forest Reserve)
 - IE-0308 Strade Friary Historic Site (Historic Site)
+- IE-0309 Liffeyside Nature Park Provincial Park (Provincial Park)
+- IE-0310 Liffey walk trail National Scenic Trail (National Scenic Trail)
+- IE-0311 Killinthomas Wood Forest Reserve (Forest Reserve)
+- IE-0312 Rye River Walk trail National Scenic Trail (National Scenic Trail)
+- IE-0313 St Catherines Park Regional Park (Regional Park)

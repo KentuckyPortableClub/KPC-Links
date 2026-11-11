@@ -1,6 +1,6 @@
 # SE: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **2042 of 2257** joined (same name + same kind), **125** to check, **90** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **2042 of 2258** joined (same name + same kind), **125** to check, **91** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -222,3 +222,4 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - SE-2254 Täby 100:1 Historic Site (Historic Site)
 - SE-2260 Örjasaenget Natura 2000 (Natura 2000)
 - SE-2266 Utter dalen Natura 2000 (Natura 2000)
+- SE-2269 Täby 119:1 Historic Site (Historic Site)
