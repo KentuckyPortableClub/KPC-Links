@@ -16,6 +16,8 @@
   part        a build job: write ONLY its own states into its part (outline files; layer, cache and raw rows that changed).
   collect     the join job: put the build parts together per state (each from its owning part; a conflict fails, exit 1).
   needs       merge rows into a needs-download list, or print how many rows are open (bot / person / never).
+  bundle-manifest  Nov 11: write a hand bundle's own manifest into it (trimmed to parks, per layer counts, who / when, sha256); --check, --show.
+              The gate (--allow-trimmed) checks a trimmed copy against that manifest, exactly; --approved reads a SIGNED *.approved.json.
   save-check  before an upload of saved copies: refuse (exit 1, names the file) one that fails the gate baseline or holds fewer records,
               in total or for any layer, than the release copy (--against DIR); --ok-list FILE gets the ones that may be uploaded.
   resave      Nov 11: write every area file again through save_area: a park the key grades pin is left out, a record graded higher
@@ -190,20 +192,33 @@ def cmd_resave(a):
 
 
 def cmd_gate(a):
+    """Nov 11 (KPC owner, 2026-11-11): each copy is checked against its own manifest when it says it was trimmed to parks (only with
+    --allow-trimmed), else an owner-approved baseline (--approved, a signed *.approved.json), else the full baseline (layers.json
+    caches). Always exact: fewer records = SHORT = moved aside. A copy refused for any reason is moved aside too. Nothing is written
+    to layers.json: a trimmed copy never replaces a full copy's baseline."""
     root = pathlib.Path(a.root) if a.root else M.OUTLINES; doc = M.load_layers(root); caches = doc.get('caches') or {}
     cache = pathlib.Path(a.cache); short = []
+    approved, why = M.load_approved_baselines(a.approved) if a.approved else ({}, '')
+    if a.approved and why and os.path.exists(a.approved): err('master gate approved baselines', why + ': the layers.json baselines apply (fail closed)')
+    elif approved: notice('master gate approved baselines', f'{len(approved)} owner-approved baseline(s) read from {os.path.basename(a.approved)}: ' + ' '.join(sorted(approved)))
+
+    def aside(f, stem):
+        (cache / 'short').mkdir(exist_ok=True); shutil.move(str(f), str(cache / 'short' / f.name)); short.append(stem)
     for f in sorted(cache.glob('*.json.gz')):
-        stem = f.name[:-len('.json.gz')]; exp = (caches.get(stem) or {}).get('expected_count')
-        if exp is None and a.first_ok:
+        stem = f.name[:-len('.json.gz')]
+        try: blob = M.load_saved(f); sha = M.sha256_file(f)
+        except Exception as e: err('master gate', f'{f.name}: unreadable ({e})'); aside(f, stem); continue  # noqa: BLE001
+        how, exp, why = M.gate_baseline(f.name, blob, sha, caches, approved, allow_trimmed=a.allow_trimmed)
+        if how == 'refuse' and a.first_ok and (caches.get(stem) or {}).get('expected_count') is None and stem not in approved and not M.is_trimmed(blob):
             notice('master gate NO BASELINE YET', f'{stem}: no baseline in the manifest (caches) yet: used (--first-ok); the first good full read records it'); continue
-        if exp is None:
-            err('master gate NO BASELINE', f'{stem}: no baseline in the manifest (caches): held, not used')
-            (cache / 'short').mkdir(exist_ok=True); shutil.move(str(f), str(cache / 'short' / f.name)); short.append(stem)
-            continue
-        try: M.check_saved_cache(f, exp)
-        except M.ShortRead as e:
-            err('master gate SHORT', e); (cache / 'short').mkdir(exist_ok=True); shutil.move(str(f), str(cache / 'short' / f.name)); short.append(stem)
-        except Exception as e: err('master gate', f'{f.name}: unreadable ({e})'); (cache / 'short').mkdir(exist_ok=True); shutil.move(str(f), str(cache / 'short' / f.name)); short.append(stem)
+        if how == 'refuse':
+            err('master gate NO BASELINE' if 'no baseline' in why else 'master gate REFUSED', why); aside(f, stem); continue
+        try:
+            if how == 'manifest': M.check_against_manifest(f.name, blob)
+            else: M.check_complete(exp, len(blob.get('recs') or []) if isinstance(blob.get('recs'), list) else 0, str(f))
+            if how != 'full': notice('master gate', why + ('' if (caches.get(stem) or {}).get('expected_count') is None else f"; the full baseline {caches[stem]['expected_count']} is not used here and not changed"))
+        except M.ShortRead as e: err('master gate SHORT', e); aside(f, stem)
+        except M.MasterError as e: err('master gate REFUSED', e); aside(f, stem)
     if a.report and short: pathlib.Path(a.report).write_text('\n'.join(short) + '\n')
     notice('master gate', 'no short saved copy' if not short else f'SHORT saved copy moved aside: {" ".join(short)}')
     return 7 if short else 0
@@ -214,6 +229,9 @@ def save_check(path, against_dir, caches, assets=None, first_ok=False):
     many records, in total and for every layer, as the release copy (downloaded into against_dir). No release copy: allowed only with
     first_ok, and (when the release's asset list is given) only when the release really has no such asset (owner rule, 2026-11-10)."""
     name = os.path.basename(path); stem = name[:-len('.json.gz')] if name.endswith('.json.gz') else name
+    try:
+        if M.is_trimmed(M.load_saved(path)): return f'{name}: a trimmed copy (manifest says trimmed to parks): never uploaded over a release copy by a bot'
+    except Exception as e: return f'{name}: unreadable ({e})'  # noqa: BLE001
     exp = (caches.get(stem) or {}).get('expected_count')
     if exp is None: return f'{name}: no baseline in the manifest (caches): the gate would hold it'
     try: tot_new = M.check_saved_cache(path, exp)
@@ -258,8 +276,9 @@ def cmd_baseline(a):
     for f in a.files:
         name = os.path.basename(f); stem = name[:-len('.json.gz')] if name.endswith('.json.gz') else name
         if (doc['caches'].get(stem) or {}).get('expected_count') is not None: notice('baseline', f'{stem}: has a baseline already; unchanged'); continue
-        try: cnt = len(M.load_saved(f).get('recs') or [])
+        try: blob = M.load_saved(f); cnt = len(blob.get('recs') or [])
         except Exception as e: err('baseline', f'{name}: unreadable ({e}); no baseline recorded'); return 1  # noqa: BLE001
+        if M.is_trimmed(blob): err('baseline', f'{name}: a trimmed copy (its manifest says so) never records a full baseline'); return 1
         old = pathlib.Path(a.against) / name if a.against else None
         if old is not None and old.is_file():
             try: cnt = min(cnt, len(M.load_saved(old).get('recs') or []))
@@ -269,6 +288,46 @@ def cmd_baseline(a):
         notice('baseline', f'{stem}: first baseline {cnt} records ({a.how})'); n += 1
     if n: M.save_layers(doc, root)
     return 0
+
+
+def cmd_bundle_manifest(a):
+    """Nov 11 (KPC owner, 2026-11-11): the step that makes a hand bundle (a W-XX / US-XX / CA-XX copy trimmed to the features near
+    POTA parks) ends with this: it writes the copy's own manifest INTO the copy (per layer and total record count, 'trimmed', who
+    made it and when, the records' sha256, optionally each source layer's full count), so the gate can check the copy exactly
+    against what it was made with. Run it on the final file, right before the upload; any later change to the records needs a new
+    manifest (--replace). --check checks, --show prints (both write nothing). Offline; standard library only."""
+    full = {}
+    for x in a.source_full:
+        k, _, v = str(x).partition('=')
+        if not k or not v.strip().isdigit(): err('bundle-manifest', f'--source-full {x!r}: use LABEL=N'); return 1
+        full[k] = int(v)
+    bad = 0
+    for f in a.files:
+        name = os.path.basename(f); stem = name[:-len('.json.gz')] if name.endswith('.json.gz') else ''
+        if not M.AREA_RE.match(stem): err('bundle-manifest', f'{name}: not a saved copy name (US-XX / CA-XX / CA-ALL / W-XX .json.gz)'); bad += 1; continue
+        try: blob = M.load_saved(f)
+        except Exception as e: err('bundle-manifest', f'{name}: unreadable ({e})'); bad += 1; continue  # noqa: BLE001
+        if not isinstance(blob, dict) or not isinstance(blob.get('recs'), list) or not blob['recs']: err('bundle-manifest', f'{name}: no records'); bad += 1; continue
+        if a.show:
+            print(json.dumps({'file': name, 'records': len(blob['recs']), 'layers': M.copy_layer_counts(stem, blob), 'file_sha256': M.sha256_file(f),
+                              'manifest': blob.get('manifest'), 'manifest_problems': M.manifest_problems(name, blob) if blob.get('manifest') else []}, indent=1, ensure_ascii=False)); continue
+        if a.check:
+            probs = M.manifest_problems(name, blob)
+            if probs: err('bundle-manifest', f'{name}: ' + '; '.join(probs)); bad += 1
+            else: notice('bundle-manifest', f"{name}: manifest matches ({blob['manifest']['total']} records, {'trimmed' if blob['manifest']['trimmed'] else 'full'})")
+            continue
+        if not str(a.by or '').strip(): err('bundle-manifest', 'say who made the copy (--by)'); return 1
+        if blob.get('manifest') and not a.replace: err('bundle-manifest', f'{name}: has a manifest already (use --replace to write a new one)'); bad += 1; continue
+        made = a.made or datetime.date.today().isoformat()
+        try: datetime.date.fromisoformat(made)
+        except ValueError: err('bundle-manifest', f'--made {made!r} is not a date'); return 1
+        blob['manifest'] = M.make_manifest(name, blob, a.by, made, trimmed=not a.full, source_full=full, note=a.note)
+        M.save_saved(f, blob)
+        probs = M.manifest_problems(name, M.load_saved(f))
+        if probs: err('bundle-manifest', f'{name}: the manifest written does not check ({"; ".join(probs)})'); bad += 1; continue
+        notice('bundle-manifest', f"{name}: manifest written ({blob['manifest']['total']} records in {len(blob['manifest']['layers'])} layer(s), "
+                                  f"{'trimmed to parks' if not a.full else 'full'}, by {a.by}, {made}); upload this file as it is now")
+    return 1 if bad else 0
 
 
 def cmd_plan(a):
@@ -338,6 +397,15 @@ def main(argv=None):
     p = sp.add_parser('plan'); p.add_argument('--root'); p.add_argument('--areas'); p.add_argument('--prefix'); p.add_argument('--max-days', type=float, default=30); p.add_argument('--no-probe', action='store_true'); p.add_argument('--out')
     g = sp.add_parser('gate'); g.add_argument('--cache', required=True); g.add_argument('--root'); g.add_argument('--report')
     g.add_argument('--first-ok', action='store_true', help='a saved copy with NO baseline yet passes (notice); a short one is still held')
+    g.add_argument('--allow-trimmed', action='store_true', help='a copy whose own manifest says trimmed to parks is checked against that manifest (else refused)')
+    g.add_argument('--approved', help='owner-approved baselines (*.approved.json with a sign-off); a proposed file is never read')
+    bm = sp.add_parser('bundle-manifest', help='write a saved copy\'s own manifest into it (a copy trimmed to parks on purpose), or --check / --show it')
+    bm.add_argument('files', nargs='+'); bm.add_argument('--by', help='who made the copy (e.g. KPC owner)'); bm.add_argument('--made', help='date made (YYYY-MM-DD, default today)')
+    bm.add_argument('--full', action='store_true', help='the copy is NOT trimmed (default: trimmed to parks)')
+    bm.add_argument('--source-full', action='append', default=[], help='LABEL=N: the source layer\'s own full count, for the record (repeat)')
+    bm.add_argument('--note', default=''); bm.add_argument('--replace', action='store_true', help='replace a manifest the copy already has')
+    bm.add_argument('--check', action='store_true', help='only check each copy against its manifest (exit 1 on a problem)')
+    bm.add_argument('--show', action='store_true', help='only print each copy\'s record count per layer, sha256 and manifest (writes nothing)')
     b = sp.add_parser('baseline', help="record a saved copy's first baseline (only when it has none)")
     b.add_argument('files', nargs='+'); b.add_argument('--root'); b.add_argument('--against', help='the release copies as downloaded (the baseline is never above them)')
     b.add_argument('--how', default='first good full read of the saved copy')
@@ -380,7 +448,7 @@ def main(argv=None):
         import kpc_master_fill as F
         a.root = a.root or str(M.OUTLINES)
         return {'fill': F.fill, 'collect': F.collect, 'part': F.part}[a.cmd](a)
-    return {'trim': cmd_trim, 'check': cmd_check, 'gate': cmd_gate, 'plan': cmd_plan, 'raw-add': cmd_raw_add, 'wdpa-lookup': cmd_wdpa, 'needs': cmd_needs, 'watch': cmd_watch, 'save-check': cmd_save_check, 'baseline': cmd_baseline, 'resave': cmd_resave}[a.cmd](a)
+    return {'trim': cmd_trim, 'check': cmd_check, 'gate': cmd_gate, 'plan': cmd_plan, 'raw-add': cmd_raw_add, 'wdpa-lookup': cmd_wdpa, 'needs': cmd_needs, 'watch': cmd_watch, 'save-check': cmd_save_check, 'baseline': cmd_baseline, 'resave': cmd_resave, 'bundle-manifest': cmd_bundle_manifest}[a.cmd](a)
 
 
 if __name__ == '__main__': sys.exit(main())

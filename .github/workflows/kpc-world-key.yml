@@ -147,7 +147,11 @@ jobs:
         run: |
           python3 .github/scripts/kpc_master_cli.py check || { kpc_rc=$?; echo "::error title=Master check::the master outlines failed their check (exit $kpc_rc)"; echo "Master check - failed (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           python3 .github/scripts/kpc_master_cli.py plan --prefix W- $([ "$KPC_MASTER_PROBE" = 1 ] || echo --no-probe) > /dev/null
-          rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/world --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
+          # Nov 11 (KPC owner, 2026-11-11): a copy trimmed to parks is checked against its OWN manifest (--allow-trimmed); an owner-signed
+          # data/outlines/world-baselines.approved.json is read too (never the .proposed.json). The exit code is kept for the part's verdict:
+          # no code = the join holds every country of this job (fail closed).
+          rm -f "$RUNNER_TEMP/master-short.txt" "$RUNNER_TEMP/master-gate.rc"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/world --report "$RUNNER_TEMP/master-short.txt" --allow-trimmed --approved data/outlines/world-baselines.approved.json && mg=0 || mg=$?
+          echo "$mg" > "$RUNNER_TEMP/master-gate.rc"
           [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; echo "$mg" > "$RUNNER_TEMP/master-short.txt"; }
       - name: Bring back this country's layer checkpoints (Nov 7, world fix part A; inert until kpc_world_key.py writes cache/world/parts)
         # Slow (own-job) countries only. A stopped AU read can resume from the last saved page of each layer once part B of the
@@ -230,18 +234,64 @@ jobs:
             [ -d data/world-bounds/$c ] && cp -r data/world-bounds/$c part/world-bounds/
           done
           for f in index.json layers.json eea-designations.json jp-wikidata.json outline-test.json; do [ -f data/world-key/$f ] && cp data/world-key/$f part/world-key/; done
+          # Nov 11 (KPC owner, 2026-11-11): the master gate verdict goes INTO the part, last, with the sha256 of every file in it. The join
+          # holds (does not save) every country of a part with no verdict, a gate that did not say green, or files that are not the listed ones.
+          python3 .github/scripts/kpc_world_key_join.py verdict --part part --countries "$MINE" --rc-file "$RUNNER_TEMP/master-gate.rc" --short-file "$RUNNER_TEMP/master-short.txt" || { kpc_rc=$?; echo "::error title=Master gate verdict::not written (exit $kpc_rc): the join holds this job's countries"; echo "Master gate verdict - not written (exit $kpc_rc): the join holds this job's countries" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           true
-      - uses: actions/upload-artifact@v4
+        env:
+          MINE: ${{ matrix.g.countries }}
+      # Nov 11 (KPC owner, 2026-11-11): run 43082247085 lost job 2's part: 'Failed to CreateArtifact: Failed to make request after 5 attempts:
+      # Unexpected token '<', "<!DOCTYPE "... is not valid JSON' (the action's own 5 attempts took 10 minutes); job 1 hit the same error twice
+      # while finalizing and got through. Up to 3 tries of the whole step, 2 then 5 minutes apart, same artifact name (overwrite: an artifact
+      # an earlier try made but could not finalize is replaced). All 3 failed = this job is red and the join gets no part from it (its
+      # countries are named failed and keep their previous key).
+      - name: Upload this job's part (try 1 of 3)
+        id: retry_up1
         if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
         with:
           name: world-key-part-${{ matrix.g.i }}
           path: part/
           retention-days: 3
+      - name: Wait before upload try 2
+        if: ${{ always() && steps.retry_up1.outcome == 'failure' }}
+        run: sleep 120
+      - name: Upload this job's part (try 2 of 3)
+        id: retry_up2
+        if: ${{ always() && steps.retry_up1.outcome == 'failure' }}
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-key-part-${{ matrix.g.i }}
+          path: part/
+          retention-days: 3
+          overwrite: true
+      - name: Wait before upload try 3
+        if: ${{ always() && steps.retry_up1.outcome == 'failure' && steps.retry_up2.outcome == 'failure' }}
+        run: sleep 300
+      - name: Upload this job's part (try 3 of 3)
+        id: retry_up3
+        if: ${{ always() && steps.retry_up1.outcome == 'failure' && steps.retry_up2.outcome == 'failure' }}
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-key-part-${{ matrix.g.i }}
+          path: part/
+          retention-days: 3
+          overwrite: true
+      - name: Upload this job's part - every try failed (fail closed, go red)
+        if: ${{ always() && steps.retry_up1.outcome == 'failure' && steps.retry_up2.outcome == 'failure' && steps.retry_up3.outcome == 'failure' }}
+        run: |
+          echo "::error title=World key part::the part of job ${{ matrix.g.i }} was not uploaded after 3 tries: the join gets nothing from this job, its countries are named failed and keep their previous key"
+          exit 1
       - name: Master gate verdict (Nov 10, fail closed) - a short saved copy was moved aside; that country was held as if it had none; go red
         if: ${{ always() }}
         run: |
-          if [ -s "$RUNNER_TEMP/master-short.txt" ]; then
-            echo "::error title=Master gate::short saved copy, not used as a fallback (the old key file is kept if a source failed): $(tr '\n' ' ' < "$RUNNER_TEMP/master-short.txt")"
+          # Nov 11 (KPC owner, 2026-11-11): no exit code from the gate step (it did not run, or stopped early) is red too
+          rc=$(cat "$RUNNER_TEMP/master-gate.rc" 2>/dev/null || echo none)
+          if [ -s "$RUNNER_TEMP/master-short.txt" ] || [ "$rc" != 0 ]; then
+            echo "::error title=Master gate::short saved copy, not used as a fallback and its country NOT saved by the join (the old key file is kept; gate exit $rc): $(tr '\n' ' ' < "$RUNNER_TEMP/master-short.txt" 2>/dev/null)"
             exit 1
           fi
       - name: Report hidden failures (Nov 2 review, G8)
@@ -276,11 +326,39 @@ jobs:
     if: ${{ always() && needs.build.result != 'skipped' && needs.plan.outputs.groups != '[]' && needs.plan.outputs.groups != '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    outputs:
+      built: ${{ steps.tonight.outputs.built }}   # Nov 11: the countries saved this run (0 = nothing saved: no post-key check)
     steps:
       - uses: actions/checkout@v5
         with:
           ref: main   # the newest main (other bots saved while the build ran)
-      - uses: actions/download-artifact@v4
+      # Nov 11 (KPC owner, 2026-11-11): the download is tried up to 3 times too, each into an empty folder (no half download is mixed in);
+      # a part that still comes short fails its verdict's file list and its countries are held.
+      - name: Download the parts (try 1 of 3)
+        id: retry_dl1
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          pattern: world-key-part-*
+          path: parts
+      - name: Wait before download try 2
+        if: ${{ steps.retry_dl1.outcome == 'failure' }}
+        run: rm -rf parts; sleep 120
+      - name: Download the parts (try 2 of 3)
+        id: retry_dl2
+        if: ${{ steps.retry_dl1.outcome == 'failure' }}
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          pattern: world-key-part-*
+          path: parts
+      - name: Wait before download try 3
+        if: ${{ steps.retry_dl1.outcome == 'failure' && steps.retry_dl2.outcome == 'failure' }}
+        run: rm -rf parts; sleep 300
+      - name: Download the parts (try 3 of 3)
+        id: retry_dl3
+        if: ${{ steps.retry_dl1.outcome == 'failure' && steps.retry_dl2.outcome == 'failure' }}
+        uses: actions/download-artifact@v4
         with:
           pattern: world-key-part-*
           path: parts
@@ -291,7 +369,9 @@ jobs:
         run: |
           # Nov 11 (KPC owner, 2026-11-11): per country from its owning part, fail closed (kpc_world_key_join.py): one country in two parts,
           # a part carrying a country it does not own, or two parts changing one key of a shared file differently = exit 1, nothing written.
-          python3 .github/scripts/kpc_world_key_join.py parts/world-key-part-* --out data/world-key --bounds data/world-bounds --failed-out /tmp/world-failed.txt
+          # Nov 11 (KPC owner, 2026-11-11, run 43082247085 saved on a red gate): --gate = only the countries of a part whose verdict says green, or
+          # that are not among its moved-aside copies, are joined; no verdict / an unknown gate / changed files = that part's countries held.
+          python3 .github/scripts/kpc_world_key_join.py parts/world-key-part-* --gate --held-out /tmp/world-held.txt --out data/world-key --bounds data/world-bounds --failed-out /tmp/world-failed.txt
           # Owner rule, 2026-11-10: a planned country with no part (or not in its part's done.txt) was not built: named failed
           python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS" --built-file parts/world-key-part-*/done.txt >> /tmp/world-failed.txt
           sort -u -o /tmp/world-failed.txt /tmp/world-failed.txt
@@ -325,7 +405,8 @@ jobs:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
         run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
-        if: ${{ always() && steps.tonight.outputs.built != '0' }}
+        # Nov 11 (KPC owner, 2026-11-11): only after the join itself finished (a join that stopped part way leaves no 'built' and saves nothing)
+        if: ${{ always() && steps.tonight.outcome == 'success' && steps.tonight.outputs.built != '0' }}
         run: |
           # Nov 3: only the countries built tonight come off the list (a failed one, or one BOT W added during the build, stays for next night)
           if [ -n "$NIGHT_LIST" ] && [ -f data/world-key/answers-countries.txt ]; then
@@ -339,7 +420,7 @@ jobs:
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" KPC_SAVE_WORDS="data/world-key/answers-countries.txt" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'World answer key' - -- data/world-key data/status
       - name: Saved outlines to the branch world-bounds (one commit, replaced each time; Brandon Oct 31 7:24 PM)
-        if: ${{ always() && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
+        if: ${{ always() && steps.tonight.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         id: kept_green_1
         continue-on-error: true
         run: |
@@ -350,6 +431,13 @@ jobs:
           cd $B && git init -q && git checkout -q -b world-bounds && git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -qm "World saved outlines ($(date -u +%F)): one commit, replaced every rebuild" \
             && git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" world-bounds && echo "::notice title=World outlines::branch world-bounds replaced ($(du -sh data/world-bounds | cut -f1))"
           true
+      - name: Master gate verdict of the join (Nov 11, fail closed) - a held country was not saved; go red
+        if: always()
+        run: |
+          if [ -s /tmp/world-held.txt ]; then
+            echo "::error title=Master gate::held, NOT saved this run (main keeps their previous key files): $(cut -d' ' -f1 /tmp/world-held.txt | tr '\n' ' ')"
+            exit 1
+          fi
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
@@ -382,7 +470,8 @@ jobs:
   postcheck:
     # owner rule, 2026-11-10: dispatch is the ONLY path to the post-key check. Not for a cancelled or skipped build.
     needs: [plan, join]
-    if: ${{ !cancelled() && needs.join.result != 'cancelled' && needs.join.result != 'skipped' }}
+    # Nov 11 (KPC owner, 2026-11-11): and only when the join saved a country (a1b6d54 checked a red run's save); nothing saved = no check
+    if: ${{ !cancelled() && needs.join.result != 'cancelled' && needs.join.result != 'skipped' && needs.join.outputs.built != '0' && needs.join.outputs.built != '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:

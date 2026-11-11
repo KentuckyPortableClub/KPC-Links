@@ -816,6 +816,147 @@ def check_saved_cache(path, expected):
     check_complete(expected, got, str(path)); return got
 
 
+# ---- a saved copy's own manifest, and the owner-approved baselines (KPC owner, 2026-11-11) ----------------------------------------
+# A copy trimmed on purpose (a hand bundle that keeps only the features near POTA parks) cannot be checked against the full-layer
+# baseline in layers.json (caches): every such copy is "short" by design. The copy carries its own count instead: a manifest written
+# INTO the copy (blob['manifest']) when it is made (`kpc_master_cli.py bundle-manifest`), so it travels with the file and cannot be
+# separated from it. The gate checks a trimmed copy against its own manifest, exactly; it refuses a trimmed copy whose manifest is
+# missing a field or does not match the copy. A full copy keeps the full baseline. The gate never writes a baseline.
+# Copies uploaded before manifests existed have none: for them, and for a baseline that was recorded wrong, the owner signs a file
+# of baselines (data/outlines/world-baselines.approved.json). Only a file whose name ends .approved.json and whose approved_by /
+# approved_date is a real sign-off is read; the .proposed.json file next to it is never read.
+MANIFEST_FIELDS = ('format', 'area', 'trimmed', 'made_by', 'made', 'total', 'layers', 'recs_sha256')
+
+
+def copy_layer_counts(name, blob):
+    """{layer: records} of one saved copy, by the same keys as saved_counts (W-XX: 'src:<label>')."""
+    out = {}
+    for r in (blob or {}).get('recs') or []:
+        if name.startswith('US-'): ks = [prefix_of(r.get('OBJECTID'))]
+        elif name.startswith('CA-'): ks = {str(r.get('oid', '')).split(':', 1)[0] if ':' in str(r.get('oid', '')) else 'cpcad', 'src:' + str(r.get('src') or '')}
+        else: ks = ['src:' + str(r.get('src') or '')]
+        for k in ks: out[k] = out.get(k, 0) + 1
+    return out
+
+
+def recs_sha256(recs):
+    """sha256 of the copy's record list in one canonical form (sorted keys, compact): the same records give the same hash."""
+    return hashlib.sha256(json.dumps(recs if isinstance(recs, list) else [], sort_keys=True, separators=(',', ':'), ensure_ascii=False,
+                                     default=lambda o: sorted(o) if isinstance(o, (set, frozenset)) else str(o)).encode('utf-8')).hexdigest()
+
+
+def make_manifest(name, blob, made_by, made, trimmed=True, source_full=None, note=''):
+    """The manifest for one copy, from its own records. trimmed=True: kept only the features near POTA parks, on purpose."""
+    stem = name[:-len('.json.gz')] if name.endswith('.json.gz') else name
+    recs = (blob or {}).get('recs') or []
+    m = {'format': 1, 'area': stem, 'trimmed': bool(trimmed), 'made_by': str(made_by or '').strip(), 'made': str(made or '').strip(),
+         'total': len(recs), 'layers': copy_layer_counts(stem, blob), 'recs_sha256': recs_sha256(recs)}
+    if trimmed: m['trimmed_to'] = 'the features near POTA parks (park-relevant only); a full-layer count does not apply'
+    if source_full: m['source_full'] = {str(k): int(v) for k, v in source_full.items()}   # for the record: each source layer's own full count
+    if note: m['note'] = str(note)
+    return m
+
+
+def manifest_problems(name, blob):
+    """[] when the copy's manifest is whole and matches the copy; else what is wrong (each one refuses the copy)."""
+    stem = name[:-len('.json.gz')] if name.endswith('.json.gz') else name
+    m = (blob or {}).get('manifest')
+    if not isinstance(m, dict): return ['no manifest']
+    bad = [f'manifest has no {k}' for k in MANIFEST_FIELDS if m.get(k) in (None, '')]
+    if bad: return bad
+    if m.get('format') != 1: bad.append(f"manifest format {m.get('format')!r} is not 1")
+    if m.get('area') != stem: bad.append(f"manifest is for {m.get('area')!r}, not {stem}")
+    try: datetime.date.fromisoformat(str(m.get('made'))[:10])
+    except ValueError: bad.append(f"manifest date {m.get('made')!r} is not a date")
+    recs = (blob or {}).get('recs') or []
+    if not isinstance(m.get('total'), int) or m['total'] <= 0: bad.append(f"manifest total {m.get('total')!r} is not a positive count")
+    if not isinstance(m.get('layers'), dict) or not all(isinstance(v, int) and v >= 0 for v in m['layers'].values()): bad.append('manifest layers is not {layer: count}')
+    if bad: return bad
+    if sum(m['layers'].values()) != m['total']: bad.append(f"manifest layers add up to {sum(m['layers'].values())}, its total says {m['total']}")
+    have = copy_layer_counts(stem, blob)
+    if len(recs) > m['total'] or any(have.get(k, 0) > v for k, v in m['layers'].items()) or set(have) - set(m['layers']):
+        bad.append(f"the copy holds records its manifest does not list ({len(recs)} records, manifest {m['total']})")
+    if not bad and len(recs) == m['total'] and have == m['layers'] and recs_sha256(recs) != m['recs_sha256']:
+        bad.append('the records differ from the ones the manifest was written for (recs_sha256)')
+    return bad
+
+
+def check_against_manifest(name, blob):
+    """A trimmed copy against its OWN manifest, exactly. Short (fewer records, in total or for one layer) raises ShortRead, as the
+    full-baseline check does; any other mismatch raises MasterError (refused). Returns the record count."""
+    stem = name[:-len('.json.gz')] if name.endswith('.json.gz') else name
+    m = (blob or {}).get('manifest') or {}
+    recs = (blob or {}).get('recs') or []
+    if isinstance(m.get('total'), int) and len(recs) < m['total']:
+        raise ShortRead(f'{name}: SHORT against its own manifest: {len(recs)} records, the manifest says {m["total"]} (made by {m.get("made_by")}, {m.get("made")})')
+    if isinstance(m.get('layers'), dict):
+        have = copy_layer_counts(stem, blob)
+        less = sorted(k for k, v in m['layers'].items() if isinstance(v, int) and have.get(k, 0) < v)
+        if less: raise ShortRead(f'{name}: SHORT against its own manifest for ' + ', '.join(f'{k} ({have.get(k, 0)} < {m["layers"][k]})' for k in less[:10]))
+    bad = manifest_problems(name, blob)
+    if bad: raise MasterError(f'{name}: trimmed copy refused, its manifest does not match the copy: ' + '; '.join(bad[:5]))
+    return len(recs)
+
+
+def is_trimmed(blob):
+    m = (blob or {}).get('manifest')
+    return isinstance(m, dict) and bool(m.get('trimmed'))
+
+
+APPROVED_SUFFIX = '.approved.json'
+
+
+def load_approved_baselines(path, persons=None, today=None):
+    """(entries, why_not). entries = {stem: {'expected_count': int, 'kind': 'trimmed'|'full', 'reason': str, 'copy_sha256': hex}}.
+    copy_sha256 (the sha256 of the .json.gz file, as the release page shows it) is required: an approval is for one file only.
+    Read ONLY from a file whose name ends .approved.json, with a person's sign-off: approved_by names the owner ('KPC owner') or a
+    person in KPC_PERSONS, and approved_date is a real date not in the future (kpc_answer_words.signed_off, the rule the answer
+    sheet uses). Anything else: no entries and the reason (the gate then uses the layers.json baselines: fail closed)."""
+    p = pathlib.Path(path) if path else None
+    if p is None or not p.is_file(): return {}, 'no approved baselines file'
+    if not p.name.endswith(APPROVED_SUFFIX): return {}, f'{p.name}: only a file named *{APPROVED_SUFFIX} is read (a proposed file is never read)'
+    try: doc = json.load(open(p, encoding='utf-8'))
+    except Exception as e: return {}, f'{p.name}: unreadable ({e})'  # noqa: BLE001
+    if not isinstance(doc, dict): return {}, f'{p.name}: not a JSON object'
+    try:
+        import sys; sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import kpc_answer_words as AW   # noqa: E402
+        who = set(persons) if persons is not None else AW.persons(os.environ.get('KPC_PERSONS'))
+        who = {w.lower() for w in who} | {'kpc owner'}
+        if not AW.signed_off(doc.get('approved_by'), doc.get('approved_date'), who, today=today):
+            return {}, f"{p.name}: not signed off (approved_by {doc.get('approved_by')!r}, approved_date {doc.get('approved_date')!r}): not read"
+    except ImportError as e: return {}, f'{p.name}: the sign-off check could not run ({e}): not read'
+    out, bad = {}, []
+    for stem, e in (doc.get('baselines') or {}).items():
+        if not AREA_RE.match(str(stem)) or not isinstance(e, dict): bad.append(f'{stem}: not an area entry'); continue
+        n = e.get('expected_count')
+        if not isinstance(n, int) or isinstance(n, bool) or n <= 0: bad.append(f'{stem}: expected_count {n!r} is not a positive count'); continue
+        if e.get('kind') not in ('trimmed', 'full'): bad.append(f"{stem}: kind {e.get('kind')!r} is not trimmed or full"); continue
+        if not str(e.get('reason') or '').strip(): bad.append(f'{stem}: no reason'); continue
+        sha = str(e.get('copy_sha256') or '').strip().lower()
+        if not re.fullmatch(r'[0-9a-f]{64}', sha): bad.append(f'{stem}: copy_sha256 is not the sha256 of the copy (required: the approval is for that one file)'); continue
+        out[stem] = {'expected_count': n, 'kind': e['kind'], 'reason': str(e['reason']), 'copy_sha256': sha}
+    if bad: return {}, f'{p.name}: ' + '; '.join(bad[:5]) + ' (the whole file is not read)'
+    return out, ''
+
+
+def gate_baseline(name, blob, file_sha, caches, approved, allow_trimmed=False):
+    """What one saved copy is checked against: ('manifest', None, why) | ('approved', n, why) | ('full', n, why) | ('refuse', None, why).
+    Order: the copy's own manifest when it says trimmed; else an owner-approved baseline; else the full baseline (layers.json caches)."""
+    stem = name[:-len('.json.gz')] if name.endswith('.json.gz') else name
+    if is_trimmed(blob):
+        if not allow_trimmed: return 'refuse', None, f'{name}: a trimmed copy (manifest), and this gate takes no trimmed copies'
+        m = blob['manifest']
+        return 'manifest', None, f"{name}: trimmed copy, checked against its own manifest ({m.get('total')} records, made by {m.get('made_by')}, {m.get('made')})"
+    a = (approved or {}).get(stem)
+    if a:
+        if a.get('copy_sha256') != file_sha:
+            return 'refuse', None, f"{name}: the approved baseline is for another copy (copy_sha256 {str(a.get('copy_sha256'))[:12]}, this copy {file_sha[:12]})"
+        return 'approved', a['expected_count'], f"{name}: owner-approved baseline {a['expected_count']} ({a['kind']}: {a['reason'][:120]})"
+    exp = (caches.get(stem) or {}).get('expected_count')
+    if exp is None: return 'refuse', None, f'{stem}: no baseline in the manifest (caches): held, not used'
+    return 'full', exp, ''
+
+
 # ---- WDPA: managing-agency lookup, never geometry --------------------------------------------------------------------------------
 PRIVATE_FORBIDDEN = ('data', 'docs', 'app', 'img', 'photos', 'tests', '.github')
 
@@ -950,16 +1091,9 @@ def download_official_file(url, dest, robots_get=None, pacer=None, handlers=(), 
 def saved_counts(path):
     """Read only. {layer: records} of one saved copy: US-XX = OBJECTID prefix ('' = PAD-US); CA-ALL = the oid's layer id (the first
     12 letters of the source label, '~N' for the next layers of that label) and the source label itself; W-XX = the source label."""
-    out = {}
     try: blob = load_saved(path)
-    except Exception: return out  # noqa: BLE001
-    name = pathlib.Path(path).name
-    for r in blob.get('recs') or []:
-        if name.startswith('US-'): ks = [prefix_of(r.get('OBJECTID'))]
-        elif name.startswith('CA-'): ks = {str(r.get('oid', '')).split(':', 1)[0] if ':' in str(r.get('oid', '')) else 'cpcad', 'src:' + str(r.get('src') or '')}
-        else: ks = ['src:' + str(r.get('src') or '')]
-        for k in ks: out[k] = out.get(k, 0) + 1
-    return out
+    except Exception: return {}  # noqa: BLE001
+    return copy_layer_counts(pathlib.Path(path).name, blob)
 
 
 def joined_missing(key_path, blob):
