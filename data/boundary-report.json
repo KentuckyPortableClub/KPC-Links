@@ -1,11 +1,11 @@
 {
  "United States": {
   "totals": {
-   "matched": 11725,
-   "far": 2467,
+   "matched": 11723,
+   "far": 2464,
    "noshape": 0,
-   "edge": 2356,
-   "out": 111,
+   "edge": 2352,
+   "out": 112,
    "swap": 1
   },
   "states": [
@@ -59,7 +59,7 @@
    },
    {
     "st": "CA",
-    "matched": 392,
+    "matched": 393,
     "far": 88,
     "noshape": 0,
     "out": 2,
@@ -72,14 +72,14 @@
    {
     "st": "CO",
     "matched": 266,
-    "far": 117,
+    "far": 112,
     "noshape": 0,
-    "out": 12,
+    "out": 13,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 105
+    "edge": 99
    },
    {
     "st": "CT",
@@ -107,7 +107,7 @@
    },
    {
     "st": "DE",
-    "matched": 84,
+    "matched": 85,
     "far": 17,
     "noshape": 0,
     "out": 0,
@@ -132,14 +132,14 @@
    {
     "st": "GA",
     "matched": 227,
-    "far": 26,
+    "far": 27,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 26
+    "edge": 27
    },
    {
     "st": "HI",
@@ -263,7 +263,7 @@
    },
    {
     "st": "MI",
-    "matched": 357,
+    "matched": 356,
     "far": 40,
     "noshape": 0,
     "out": 1,
@@ -276,26 +276,26 @@
    {
     "st": "MN",
     "matched": 312,
-    "far": 51,
+    "far": 52,
     "noshape": 0,
     "out": 5,
     "swap": 1,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 46
+    "edge": 47
    },
    {
     "st": "MO",
     "matched": 553,
-    "far": 83,
+    "far": 82,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 83
+    "edge": 82
    },
    {
     "st": "MS",
@@ -324,14 +324,14 @@
    {
     "st": "NC",
     "matched": 227,
-    "far": 62,
+    "far": 63,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 61
+    "edge": 62
    },
    {
     "st": "ND",
@@ -359,15 +359,15 @@
    },
    {
     "st": "NH",
-    "matched": 196,
-    "far": 81,
+    "matched": 195,
+    "far": 80,
     "noshape": 0,
     "out": 8,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 73
+    "edge": 72
    },
    {
     "st": "NJ",
@@ -396,14 +396,14 @@
    {
     "st": "NV",
     "matched": 222,
-    "far": 73,
+    "far": 72,
     "noshape": 0,
     "out": 16,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 57
+    "edge": 56
    },
    {
     "st": "NY",
@@ -455,27 +455,27 @@
    },
    {
     "st": "PA",
-    "matched": 490,
-    "far": 23,
+    "matched": 489,
+    "far": 24,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 22
+    "edge": 23
    },
    {
     "st": "RI",
     "matched": 58,
-    "far": 23,
+    "far": 24,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 23
+    "edge": 24
    },
    {
     "st": "SC",
@@ -563,7 +563,7 @@
    },
    {
     "st": "WA",
-    "matched": 494,
+    "matched": 493,
     "far": 102,
     "noshape": 0,
     "out": 0,
@@ -631,6 +631,12 @@
     "US-12185",
     "Grand Junction: West Lake State Wildlife Area",
     "Grand Junction - West Lake SWA"
+   ],
+   [
+    "CO",
+    "US-9678",
+    "Windy Gap Watchable State Wildlife Area",
+    "Windy Ridge STL"
    ],
    [
     "CT",
