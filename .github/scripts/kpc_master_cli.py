@@ -118,9 +118,7 @@ def cmd_trim(a):
     except M.ShrinkHeld as e: err('trim shrink held', e); return 6
     if not a.dry_run:
         M.save_layers(doc, root)
-        qd = root / 'solver-queue'; qd.mkdir(parents=True, exist_ok=True)
-        with open(qd / f'{a.layer_key}.csv', 'w', newline='', encoding='utf-8') as f:
-            w = csv.DictWriter(f, ['ref', 'name', 'lat', 'lon', 'why', 'candidates']); w.writeheader(); w.writerows(queue)
+        M.write_queue(root / 'solver-queue' / f'{a.layer_key}.csv', queue)   # Nov 11: deduped, and not rewritten when nothing changed
     notice('trim', f'{a.layer_key}: read {len(feats)} of {expected}; matched {len(recs)} parks ({sum(1 for r in recs.values() if r["via"] == "id")} by id), '
                    f'{len(queue)} to the solver queue; {notes}' + (' (dry run, nothing written)' if a.dry_run else ''))
     return 0
@@ -327,6 +325,7 @@ def main(argv=None):
     f.add_argument('--checked', help='the per-area checked store for Canada / world hand files (default: <work>/checked)')
     co = sp.add_parser('collect', help='join job: the build parts\' master records, layer counts, raw rows and needs rows')
     co.add_argument('parts', nargs='*'); co.add_argument('--root'); co.add_argument('--needs-in'); co.add_argument('--needs-out')
+    co.add_argument('--us-key', help='data/us-key: with it, every park the key knows that has no outline lands in solver-queue/US-XX.nomatch.csv with a reason')
     pa = sp.add_parser('part', help='build job: write only this job\'s own states (outline files, changed layer / cache / raw rows) into its part (Nov 11)')
     pa.add_argument('--root', required=True); pa.add_argument('--base', required=True); pa.add_argument('--states', required=True); pa.add_argument('--out', required=True)
     n = sp.add_parser('needs', help='merge rows into a needs-download list, or print its size')

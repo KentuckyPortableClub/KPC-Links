@@ -10,6 +10,7 @@
 | `layers.json` | One entry per agency layer, with the total the layer itself reported at the last complete read (the *expected count*). Also the expected counts for the saved state copies. |
 | `raw-manifest.json` | A list of the big raw layer downloads (name, size, sha256, source, date). The files are **not** in git. |
 | `solver-queue/<layer>.csv` | Parks the tool could not match, or matched two ways. A person decides these. |
+| `solver-queue/US-XX.nomatch.csv` | Nov 11: parks the live key (`data/us-key/US-XX.json`) knows that have no outline in the master records and are in no layer's queue file: `no layer joined this park in the key`, or `joined in the key, but no outline for it is in the master records`. Written by `collect --us-key`; when every park has an outline it is emptied to its header line (not deleted: the save carries no deletions). Pins are not in the key, so lat / lon are blank. |
 
 `g` says how good the outline is: `official` (an agency's own boundary), `approximate` (a trace), `point-circle` (a circle around the pin), `pin` (a point). A better one is never replaced by a worse one, so an official outline stays official.
 
@@ -17,7 +18,7 @@
 
 `python3 .github/scripts/kpc_master_cli.py <command>`
 
-- **trim** reads a layer (GeoJSON, Esri JSON, Shapefile or GDB file, or a live layer URL), matches POTA parks by the layer's own id fields first, then by name with the pin inside the outline, keeps **only** those parks' outlines, and sends the rest to the solver queue. Pins are read, never moved.
+- **trim** reads a layer (GeoJSON, Esri JSON, Shapefile or GDB file, or a live layer URL), matches POTA parks by the layer's own id fields first, then by name with the pin inside the outline, keeps **only** those parks' outlines, and sends the rest to the solver queue. Pins are read, never moved. A queue row has one reason: a pin inside an outline but no name agrees; ambiguous names; a same-name outline nearby but the pin is outside; matched an outline record that has no usable outline; the layer record names a POTA ref the park list does not hold (same country only). Rows are deduped per (park, reason), and a queue file is written only when its bytes change, so a repeat run makes no commit.
   A file needs `--expected N` (the layer's own total) or a stored one. A read that cannot be checked is refused.
 - **check** confirms every master file is whole, every hash matches, nothing from Protected Planet is in it, and no raw layer file is tracked by git.
   It also warns about each **suspect baseline**: a layer whose `expected_count` is lower than the records its file held (`source_count`), for example a count capped at 200 before the plain count query. The master step re-records the baseline on that layer's next verified full read (`trim` stores the layer's own total).
