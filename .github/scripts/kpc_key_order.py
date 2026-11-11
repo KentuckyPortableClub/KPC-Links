@@ -45,17 +45,6 @@ def on_current(kind, root='.'):
     return have == cur, f"build {st.get('build') or 'none'} rules {have or 'none'} vs current {cur}"
 
 
-def upstream_done(kind, root='.'):
-    """(True|False, why): has the key before this one FINISHED a build on the current rules? Its full stamp ('rules') or the rules
-    of its newest run ('rules_of_run', also for a build with a failed area): one short area must not hold the keys after it forever."""
-    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-    import kpc_key_freeze as KF
-    st = _index(kind, root)
-    cur = KF.rules_hash(kind, root) if root != '.' else KF.rules_hash(kind)
-    have = {str(st.get('rules') or ''), str(st.get('rules_of_run') or '')}
-    return cur in have, f"build {st.get('build') or 'none'} rules {st.get('rules') or 'none'} / of its run {st.get('rules_of_run') or 'none'} vs current {cur}"
-
-
 def _index(kind, root='.'):
     """Nov 4 PM fix bundle (items 1-2): KPC_INDEX_REF=origin/main (set by the key workflows) = the NEWEST main's stamp: the queued
     second Canada start of Nov 4 (41891453412) read the stamp of its trigger-time checkout, from before the first Canada build."""
@@ -109,7 +98,10 @@ def check(kind, env=os.environ, root='.'):
             if ev == 'workflow_run':
                 _env(SKIP=1); notice(f'{NAMES[kind]} key: already on the current rules ({why}): nothing to catch up, this chained start skips'); return 'skip'
             return 'go'
-        todo = [(k, w) for k in WAIT_FOR.get(kind, ()) for ok, w in [upstream_done(k, root)] if not ok]
+        # KPC owner, 2026-11-10: Canada and world wait for a FULL key before them: its full stamp ('rules', written only for a full
+        # green build) on the current rules and no failed state. A partial run ('rules_of_run' only, or a failed state) never unblocks them.
+        todo = [(k, w + (f"; failed: {', '.join(map(str, _index(k, root).get('failed') or []))}" if _index(k, root).get('failed') else ''))
+                for k in WAIT_FOR.get(kind, ()) for ok, w in [on_current(k, root)] if not ok or _index(k, root).get('failed')]
         if todo:
             _env(SKIP=1, ORDER_WAIT=1)
             notice(f"{NAMES[kind]} key WAITS (new-rules build; order US -> Canada -> world, per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4): "

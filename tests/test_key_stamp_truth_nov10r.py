@@ -97,15 +97,29 @@ with tempfile.TemporaryDirectory() as t:
     sts = sorted(x for g in json.loads(o.get('groups', '[]')) for x in g['states'].split())
     check(sts == ['OH', 'WI'] and o.get('full') == '1', f'the backup start builds only the stale states, not every state ({sts}, full={o.get("full")})')
 
-# --- order: Canada / world accept the US key's rules_of_run (one short state no longer blocks them)
-with tempfile.TemporaryDirectory() as t:
-    os.makedirs(f'{t}/data/us-key'); json.dump({'build': 'US-2', 'rules': OLDH, 'rules_of_run': CUR}, open(f'{t}/data/us-key/index.json', 'w'))
-    old = os.environ.pop('KPC_INDEX_REF', None); cwd = os.getcwd(); os.chdir(t)
-    try: done, _ = KO.upstream_done('us-key')
-    finally:
-        os.chdir(cwd)
-        if old is not None: os.environ['KPC_INDEX_REF'] = old
-    check(done, 'a US build on the current rules with a failed state counts as finished for the keys after it')
+# --- order (KPC owner, 2026-11-10): Canada / world wait for a FULL US key on the current rules, never a partial run
+def _order(stamp, kind='ca-key', ca_full=False):
+    with tempfile.TemporaryDirectory() as t:
+        os.makedirs(f'{t}/data/us-key'); os.makedirs(f'{t}/data/ca-key'); os.makedirs(f'{t}/data/world-key')
+        json.dump(stamp, open(f'{t}/data/us-key/index.json', 'w'))
+        json.dump({'build': 'CA-1', 'rules': KF.rules_hash('ca-key') if ca_full else 'old000000000'}, open(f'{t}/data/ca-key/index.json', 'w'))
+        json.dump({'build': 'W-1', 'rules': 'old000000000'}, open(f'{t}/data/world-key/index.json', 'w'))
+        old = os.environ.pop('KPC_INDEX_REF', None); cwd = os.getcwd(); os.chdir(t)
+        envf = pathlib.Path(t) / 'env'; envf.write_text('')
+        try:
+            with contextlib.redirect_stdout(io.StringIO()):
+                return KO.check(kind, {'GITHUB_ENV': str(envf), 'GITHUB_EVENT_NAME': 'workflow_dispatch'})
+        finally:
+            os.chdir(cwd)
+            if old is not None: os.environ['KPC_INDEX_REF'] = old
+check(not hasattr(KO, 'upstream_done'), 'the loose upstream check (rules_of_run accepted) is gone; the order uses on_current')
+check(_order({'build': 'US-2', 'rules': OLDH, 'rules_of_run': CUR, 'failed': ['FL'], 'complete': False}) == 'wait',
+      'a partial US run on the current rules (one failed state, only rules_of_run current) does NOT unblock Canada')
+check(_order({'build': 'US-2', 'rules': OLDH, 'rules_of_run': CUR, 'failed': ['FL'], 'complete': False}, 'world-key', ca_full=True) == 'wait', '... nor world, even with a full Canada key on the current rules')
+check(_order({'build': 'US-2', 'rules': CUR, 'rules_of_run': CUR, 'failed': ['FL'], 'complete': False}) == 'wait',
+      'a current full stamp left over from an earlier build plus a failed state now: Canada still waits')
+check(_order({'build': 'US-3', 'rules': CUR, 'rules_of_run': CUR, 'failed': [], 'complete': True}) == 'go', 'a full green US key on the current rules lets Canada build')
+check(_order({'build': 'US-3', 'rules': CUR, 'rules_of_run': CUR, 'failed': [], 'complete': True}, 'world-key', ca_full=True) == 'go', '... and world, once Canada is full too')
 
 # --- fail closed: a check error = FROZEN + exit 1; a stamp error = exit 1
 with tempfile.TemporaryDirectory() as t:
