@@ -117,8 +117,6 @@ function whereHtml(w){
  if(w.trails.length)h+=w.trails.map(t=>`<div class="pw-in">🥾 ${t.d<0.03?'On':'Near'} <b>${esc(t.name)}</b> · POTA <b>${t.ref}</b> · ${fmtMi(t.d)} from the trail</div>`).join('');
  return h+'<div class="pw-muted">Map outlines can differ from POTA’s boundary, so confirm on the POTA map.</div>'}
 
-const bRend = () => L.canvas({pane:'bndp', padding:.4, tolerance:6});
-let canvasR=null;
 async function loadBoundaries(){
  const stat=$('lyrStat');let n=0;const keys=Object.keys(B);
  await Promise.all(keys.map(async k=>{try{const r=await fetch(B[k].file+'?v=20261109a',{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);bData[k]=j;drawB(k)}catch(e){}if(stat)stat.textContent=`Loading boundaries… ${++n} of ${keys.length}`}));
@@ -129,8 +127,11 @@ function shown(k){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayers')||
 function setShown(k,v){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayers')||'{}');o[k]=v;localStorage.setItem('kpcPlanLayers',JSON.stringify(o))}catch(e){}}
 /* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
 const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo(f):f;
-function drawB(k){const s=B[k];canvasR=canvasR||bRend();
- bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{if(s.proc)return{color:s.color,weight:LW(1.6),opacity:.75,dashArray:'6 8',fill:false};if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(has?.07:.04)   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
+/* Nov 10: official outlines as SVG (same as Park Commander), not on a Leaflet canvas.
+   A canvas renderer rasterizes the stroke (thick and blocky on a phone or satellite view)
+   and clips shapes at the canvas edge, which showed up as a hard straight cut. */
+function drawB(k){const s=B[k];
+ bLay[k]=L.geoJSON(bData[k],{pane:'bndp',style:f=>{if(s.proc)return{color:s.color,weight:LW(1.6),opacity:.75,dashArray:'6 8',fill:false};if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(has?.07:.04)   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
   onEachFeature:(f,l)=>{l.on('click',e=>{if(adding)return;L.popup({maxWidth:290}).setLatLng(e.latlng).setContent(bPopup(f,s,e.latlng)).openOn(map)})}});
  if(shown(k))bLay[k].addTo(map);order()}
 function drawT(k){const s=T[k];
