@@ -62,6 +62,7 @@ ASK = []
 def fake_get(q, tries=3):
     ASK.append(q); return {'features': [feat(5300, 'Silvio O. Conte National Fish And Wildlife Refuge', st='NH')]}
 U.get = fake_get
+U.fields = lambda: '*'   # Nov 11 (KPC owner): offline. saved_fetch asked the live PAD-US layer for its field list (edits.nationalmap.gov) before the stand-in get
 PM = {'US-0329': ['Silvio O Conte National Wildlife Refuge', '', 'National Wildlife Refuge', 0, 0, 44.77, -71.70]}
 out = U.saved_fetch('MA', PM, [])
 check('cross-state saved id read BY ID (one ask, OBJECTID IN, no State_Nm filter)', len(ASK) == 1 and ASK[0]['where'] == 'OBJECTID IN (5300)' and 'State_Nm' not in ASK[0]['where'])

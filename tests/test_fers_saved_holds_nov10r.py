@@ -33,6 +33,10 @@ _real_get = K.get
 
 def spy_get(url, params, tries=3, timeout=120):
     CALLS.append(url)
+    # Nov 11 (KPC owner): never the network. A host the guard refuses still goes to the real get (it raises in the guard before any
+    # request, which is what these checks are about); a host the guard would allow gets an empty stand-in answer instead of a live read
+    # (the test used to ask kygisserver.ky.gov for real through live_lines).
+    if K.HC.kpc_net_guard.host_ok(url)[0]: return {'features': []}
     return _real_get(url, params, 1, 1)
 
 
