@@ -3080,13 +3080,69 @@ def pin_in_outline(ref, PIN, G):
     return bool(pmask(F, ref, G)[min(max(r, 0), F.H - 1), min(max(c, 0), F.W - 1)])
 
 
+# KPC owner, 2026-11-10: "both pins inside" alone also passes SEPARATE units of one big record (the Patoka Lake and Salamonie Lake
+# recreation-area units, a park and its "Unit"): those parks do not overlap, so they are not 2-fers. A same-record pair is approximate
+# only when, on top of both pins inside the shared outline:
+#   * the pins are close: at most SAME_RECORDS_NEAR_KM apart. 1 km sits in the gap of the Nov 10 list: the two real pairs are 0.04 km
+#     (Chalk Bluff) and 0.48 km (Red Cliffs) apart, the nearest separate units 1.72 km (Salamonie). SAME_FAR's 8 km is far too loose;
+#   * and the shared record names both parks with no kind that differs (kpc_fers_guard.same_land_doubt, the same-land test), unless
+#     the two pins are on the same spot (SAME_RECORDS_SPOT_KM, about the precision of a POTA pin), where only the kind words differ.
+# Otherwise the pair is held as a likely join to fix, with the reason, the parks and the pin distance on the row.
+SAME_RECORDS_NEAR_KM = 1.0
+SAME_RECORDS_SPOT_KM = 0.1
+SAME_RECORDS_UNITS_HOLD = ('not sure: both parks join the same official records and both POTA pins are inside it, but the pins are '
+                           'more than 1 km apart (separate units of one big record): likely a join to fix')
+
+
+def pin_km(a, b, PIN):
+    """Great-circle km between two POTA pins; None when either pin is missing."""
+    va, vb = PIN.get(a), PIN.get(b)
+    if not va or not vb or None in (va[1], va[2], vb[1], vb[2]): return None
+    la1, lo1, la2, lo2 = map(math.radians, (float(va[1]), float(va[2]), float(vb[1]), float(vb[2])))
+    h = math.sin((la2 - la1) / 2) ** 2 + math.cos(la1) * math.cos(la2) * math.sin((lo2 - lo1) / 2) ** 2
+    return 2 * 6371.0 * math.asin(min(1.0, math.sqrt(h)))
+
+
+def shared_record_names(parks, grp):
+    """Names of the official records the parks in grp share (from their key 'm' rows)."""
+    ids = None
+    for r in grp:
+        s = {i[2] for i in join_record_ids((parks or {}).get(r))}
+        ids = s if ids is None else ids & s
+    out = []
+    for r in grp:
+        for q in ((parks or {}).get(r) or {}).get('m') or []:
+            if isinstance(q, (list, tuple)) and len(q) > 1 and str(q[0]) in (ids or set()) and q[1] and q[1] not in out: out.append(q[1])
+    return out
+
+
+def same_records_doubt(a, b, parks, PIN):
+    """'' when the pair may be an approximate 2-fer; else the reason it is held (pins far apart, or the record does not name both)."""
+    d = pin_km(a, b, PIN)
+    if d is None or d > SAME_RECORDS_NEAR_KM:
+        return SAME_RECORDS_UNITS_HOLD + (f' ({a} and {b}: pins {d:.2f} km apart)' if d is not None else f' ({a} and {b}: a pin cannot be measured)')
+    if d <= SAME_RECORDS_SPOT_KM: return ''
+    na, nb = (PIN.get(a) or [a])[0], (PIN.get(b) or [b])[0]
+    recs = shared_record_names(parks, [a, b]) or ['']
+    whys = [FG.same_land_doubt(na, nb, rec) for rec in recs]
+    return '' if '' in whys else whys[0]
+
+
 def same_records_verdict(parks, refs, PIN, G):
     """() when no two parks of the pair join identical records; ('approx', []) when every such park's pin is inside the shared
-    outline; ('held', [refs whose pin is outside or untestable]) otherwise."""
+    outline and every two of them pass same_records_doubt; ('held', [refs whose pin is outside or untestable]) when a pin is not
+    inside; ('held', [refs], 'units', why) when the pins are inside but the parks look like separate places. Every call site
+    (decide, same-land pass 1 and pass 5) goes through here."""
     grp = sorted({r for g in identical_record_refs(parks, refs) for r in g})
     if not grp: return ()
     out = [r for r in grp if pin_in_outline(r, PIN, G) is not True]
-    return ('held', out) if out else ('approx', [])
+    if out: return ('held', out)
+    far, whys = [], []
+    for i, a in enumerate(grp):
+        for b in grp[i + 1:]:
+            why = same_records_doubt(a, b, parks, PIN)
+            if why: far += [a, b]; whys.append(why)
+    return ('held', sorted(set(far)), 'units', whys[0]) if far else ('approx', [])
 
 
 def same_records_mark(x, v, parks, PIN):
@@ -3094,11 +3150,16 @@ def same_records_mark(x, v, parks, PIN):
     refs = list(x.get('refs') or [])
     x['shared_records'] = sorted({i[2] for r in refs for i in join_record_ids((parks or {}).get(r))})
     if v[0] == 'held':
-        x['status'] = SAME_RECORDS_JOIN_HOLD; x['person_review'] = True; x['join_check'] = True; x['pin_outside'] = v[1]
-        x['names'] = {r: (PIN[r][0] if r in PIN else r) for r in refs}
+        x['person_review'] = True; x['join_check'] = True; x['names'] = {r: (PIN[r][0] if r in PIN else r) for r in refs}
+        if len(v) > 2 and v[2] == 'units':   # pins inside but far apart under different names: separate units of one record
+            x['status'] = v[3] if len(v) > 3 and v[3] else SAME_RECORDS_UNITS_HOLD; x['separate_units'] = v[1]
+            x['pin_km'] = {f'{a}+{b}': (round(d, 2) if d is not None else None) for i, a in enumerate(v[1]) for b in v[1][i + 1:] for d in [pin_km(a, b, PIN)]}
+            x.pop('pin_outside', None)
+        else:
+            x['status'] = SAME_RECORDS_JOIN_HOLD; x['pin_outside'] = v[1]
         return True
     x['approx'] = True; x['same_records'] = True; x['approx_note'] = SAME_RECORDS_APX_NOTE
-    for k in ('person_review', 'join_check', 'pin_outside'): x.pop(k, None)
+    for k in ('person_review', 'join_check', 'pin_outside', 'separate_units', 'pin_km'): x.pop(k, None)
     return False
 
 

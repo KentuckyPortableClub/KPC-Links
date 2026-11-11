@@ -105,7 +105,8 @@ with tempfile.TemporaryDirectory() as td:
     _real = K.pin_in_outline
     try:
         K.pin_in_outline = lambda r, PIN, G: True
-        check(K.same_records_verdict(same, ['US-A', 'US-B'], {}, {}) == ('approx', []), 'both pins inside the shared outline = approximate 2-fer')
+        _near = {'US-A': ['A Park', 38.0, -86.0], 'US-B': ['B Park', 38.0004, -86.0]}   # 0.04 km apart: the same spot (owner rule, 2026-11-10: pins close)
+        check(K.same_records_verdict(same, ['US-A', 'US-B'], _near, {}) == ('approx', []), 'both pins inside the shared outline and close = approximate 2-fer')
         row = {'refs': ['US-A', 'US-B'], 'status': 'candidate', 'person_review': True}
         check(K.same_records_mark(row, ('approx', []), same, {}) is False and row.get('approx') and row.get('same_records') and row['status'] == 'candidate'
               and 'person_review' not in row and 'not confirmed' in row['approx_note'], 'the approximate row keeps its status, gets the approximate note, no person review')
