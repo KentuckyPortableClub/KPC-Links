@@ -11,6 +11,8 @@ joined_record_has_no_shape, outline_in_other_state_file.   KPC owner, 2026-11-11
 import argparse, collections, csv, glob, gzip, json, os, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, ".github", "scripts"))
+import kpc_master as M  # noqa: E402
 
 
 def cand_text(v):
@@ -67,8 +69,7 @@ def main():
         st = os.path.basename(kp)[3:5]; keys[st] = json.load(open(kp))['parks']
     home = {r: st for st, p in keys.items() for r in p}
     for st in keys:
-        fp = os.path.join(ROOT, 'data', 'outlines', f'US-{st}.geojson.gz')
-        files[st] = {f['properties']['ref'] for f in json.load(gzip.open(fp))['features']} if os.path.exists(fp) else set()
+        files[st] = set(M.load_area(f'US-{st}', os.path.join(ROOT, 'data', 'outlines')))   # Nov 11: every part of a state in parts
     for st, refs in files.items():
         for r in refs:
             if home.get(r) not in (None, st): elsewhere.setdefault(r, set()).add(st)

@@ -15,7 +15,7 @@ every run. This module holds everything that keeps those files trustworthy:
 Not a rule file: it never decides a park-to-land join, so it is listed in NOT_RULES (kpc_key_freeze.py) and does not move any
 rules hash. Standard library only (a Shapefile or GDB input needs pyshp / ogr2ogr on the machine; the tool says so if missing).
 """
-import copy, datetime, gzip, hashlib, json, math, os, pathlib, re, time, urllib.error, urllib.parse, urllib.request
+import copy, datetime, gzip, hashlib, json, math, os, pathlib, re, time, urllib.error, urllib.parse, urllib.request, zlib
 from urllib import robotparser
 import kpc_net_guard
 kpc_net_guard.install()   # process-wide: never-contact hosts are refused for every request, every redirect hop
@@ -415,22 +415,154 @@ def merge(existing, new):
 def area_path(area, root=None): return pathlib.Path(root or OUTLINES) / f'{area}.geojson.gz'
 
 
+# Nov 11 (KPC owner, 2026-11-11): an area whose outlines do not fit one file under 1 MB is saved in parts with the release's own part
+# scheme (kpc_release.split / join): US-AK.geojson.gz is part 1 and says how many parts there are (kpc_part = [i, N, tag]); the
+# others are US-AK.p2.geojson.gz ... A file that fits stays one file, byte for byte as before. load_area reads every part.
+PART_CAP = 1_000_000
+
+
+def area_files(area, root=None):
+    """The files that hold an area now: [part 1 (the area file), part 2, ...] as part 1 declares them; [] when there is none."""
+    import kpc_release as REL
+    p = area_path(area, root)
+    got = REL.read_parts(p.name, lambda n: (p.parent / n).read_bytes() if (p.parent / n).is_file() else None)
+    return [p.parent / n for n in got[0]] if got else []
+
+
+def is_part_file(name):
+    """US-AK.p2.geojson.gz is part 2 of US-AK, not an area of its own."""
+    import kpc_release as REL
+    return bool(REL.PART_RE.match(str(name)))
+
+
+def load_doc_parts(name, read):
+    """The whole area document from its part 1 bytes reader (read(name) -> bytes or None); None when there is no file. Parts that
+    are missing or belong to another save raise MasterError (fail closed: never half an area)."""
+    import kpc_release as REL
+    got = REL.read_parts(name, read)
+    if got is None: return None
+    try: return REL.join([None if b is None else REL.load_doc(name, b) for b in got[1]])
+    except REL.ReleaseError as e: raise MasterError(f'{name}: {e}')
+
+
+def recs_of_doc(doc): return {ft['properties']['ref']: dict(ft['properties'], geometry=ft['geometry']) for ft in (doc or {}).get('features', [])}
+
+
 def load_area(area, root=None):
     p = area_path(area, root)
-    if not p.exists(): return {}
-    with gzip.open(p, 'rt', encoding='utf-8') as f: doc = json.load(f)
-    return {ft['properties']['ref']: dict(ft['properties'], geometry=ft['geometry']) for ft in doc.get('features', [])}
+    return recs_of_doc(load_doc_parts(p.name, lambda n: (p.parent / n).read_bytes() if (p.parent / n).is_file() else None))
 
 
-def save_area(area, recs, root=None):
-    """Deterministic bytes (sorted refs, gzip mtime 0): an unchanged area is a byte-identical file, so git shows no change."""
+# Nov 11 (KPC owner, 2026-11-11): a park the US key grades pin has no outline. save_area leaves it out of the state's file, so every
+# writer (the master step trim / collect / part, kpc_outlines_from_key, kpc_outlines_keep_main) and every reader agree without
+# reading the key. The rule: the park is dropped from a state's file when every US key that lists it grades it pin, whichever
+# state's file holds the record (a record in a neighbour's file counts the same); a park no US key lists is left alone. A park that is pin in one state but official in another (US-4514: pin in TX and OK, official in
+# NM) keeps its outline wherever it has one: the planner's lookup (KPCB.usKey) takes the best grade over the states it reads, so it
+# would still draw that outline. No key file (or one that cannot be read) = nothing is dropped.
+_KEYS = {}
+
+
+def _key_grades(key_dir):
+    """{ref: {state: g}} over every data/us-key/US-XX.json in key_dir (read once per file version)."""
+    key_dir = pathlib.Path(key_dir); out = {}
+    for f in sorted(key_dir.glob('US-??.json')):
+        try: st = f.stat(); sig = (st.st_mtime_ns, st.st_size)
+        except OSError: continue
+        if _KEYS.get(f) is None or _KEYS[f][0] != sig:
+            try: parks = json.loads(f.read_text(encoding='utf-8')).get('parks') or {}
+            except (OSError, ValueError, AttributeError): parks = {}
+            _KEYS[f] = (sig, {r: p.get('g') for r, p in parks.items() if isinstance(p, dict)})
+        for r, g in _KEYS[f][1].items(): out.setdefault(r, {})[f.stem] = g
+    return out
+
+
+def _key_ready(area, key_dir):
+    if not re.match(r'^US-[A-Z]{2}$', str(area)): return None
+    key_dir = pathlib.Path(key_dir or (OUTLINES.parent / 'us-key'))
+    return key_dir if (key_dir / f'{area}.json').is_file() else None
+
+
+def pin_drops(area, refs, key_dir=None):
+    """The refs of `refs` that may not have an outline in `area`'s file: every US key that lists the park grades it pin, whichever
+    state's file the record sits in (a park in a neighbour's file counts the same). A park no US key lists is left alone.
+    US areas only; no key file for the area = nothing (as before)."""
+    key_dir = _key_ready(area, key_dir)
+    if key_dir is None: return set()
+    grades = _key_grades(key_dir)
+    return {r for r in refs if grades.get(r) and all(g == 'pin' for g in grades[r].values())}
+
+
+def grade_lowers(area, recs, key_dir=None):
+    """Nov 11 (KPC owner, 2026-11-11): the refs whose record says a HIGHER kind than the key gives the park: the record's g is lowered
+    to approximate only when approximate is the best grade any US key that lists the park gives it, whichever state's file the record
+    sits in (a park official in any state's key is not touched; an unknown grade anywhere = left alone). Never raised. A park no US
+    key lists is left alone. US areas only."""
+    key_dir = _key_ready(area, key_dir)
+    if key_dir is None: return set()
+    grades = _key_grades(key_dir); ra = RANK['approximate']
+    return {r for r, v in recs.items() if grades.get(r) and RANK.get(v.get('g'), -1) > ra and max(RANK.get(g, 99) for g in grades[r].values()) == ra}
+
+
+def key_fix(area, recs, key_dir=None):
+    """(records as the key allows them, dropped pin refs, lowered refs): the ONE place both rules are applied (save_area, keep_main)."""
+    drop = pin_drops(area, recs, key_dir); low = grade_lowers(area, {r: v for r, v in recs.items() if r not in drop}, key_dir)
+    out = {}
+    for r, v in recs.items():
+        if r in drop: continue
+        if r in low:
+            v = dict(v, g='approximate'); v['hash'] = content_hash(v)   # only g (and so the hash) changes
+        out[r] = v
+    return out, drop, low
+
+
+def same_content(old, new):
+    """Two outline files hold the same thing: the same bytes, or the same JSON once unpacked (another zlib build packs the same
+    content into other bytes; that is no change)."""
+    if old == new: return True
+    try:
+        a, b = gzip.decompress(old), gzip.decompress(new)
+        return a == b or json.loads(a) == json.loads(b)
+    except (OSError, EOFError, ValueError, zlib.error): return False
+
+
+def write_if_changed(path, b):
+    """Write `b` to `path` unless the file there already holds the same content (same_content). True = written."""
+    path = pathlib.Path(path)
+    if path.is_file() and same_content(path.read_bytes(), b): return False
+    path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(b); return True
+
+
+def _gz_named(raw, name):
+    """The same gzip bytes the area file always had (mtime 0, level 9, the file name in the header)."""
+    import io
+    b = io.BytesIO()
+    with gzip.GzipFile(filename=name, fileobj=b, mode='wb', mtime=0, compresslevel=9) as z: z.write(raw)
+    return b.getvalue()
+
+
+def save_area(area, recs, root=None, key_dir=None, cap=None):
+    """Deterministic bytes (sorted refs, gzip mtime 0): an unchanged area is a byte-identical file, so git shows no change.
+    Nov 11: a park the key grades pin is left out (pin_drops) and a record graded higher than the key allows is saved as approximate
+    (grade_lowers); key_dir defaults to the us-key folder next to the outlines folder. An area over 1 MB is written in parts
+    (kpc_release.split). A file that already holds the same content (even packed by another zlib build) is left untouched.
+    The gzip header is fixed: mtime 0, the file name, XFL 2 (level 9), OS 255 (Python's). Returns the area file (part 1)."""
+    import kpc_release as REL
     for r in recs.values(): assert_public_safe(r)
+    root = pathlib.Path(root or OUTLINES)
+    recs, drop, low = key_fix(area, recs, key_dir or root.parent / 'us-key')
+    if drop: print(f"::notice title=Outlines {area}::{len(drop)} outline(s) not saved: the key grades the park pin ({' '.join(sorted(drop)[:8])}{' ...' if len(drop) > 8 else ''})", flush=True)
+    if low: print(f"::notice title=Outlines {area}::{len(low)} outline(s) saved as approximate: the key grades the park approximate ({' '.join(sorted(low)[:8])}{' ...' if len(low) > 8 else ''})", flush=True)
     feats = [{'type': 'Feature', 'id': ref, 'properties': {k: v for k, v in recs[ref].items() if k != 'geometry'}, 'geometry': recs[ref]['geometry']}
              for ref in sorted(recs)]
     doc = {'type': 'FeatureCollection', 'kpc': {'format': FORMAT, 'area': area}, 'features': feats}
     p = area_path(area, root); p.parent.mkdir(parents=True, exist_ok=True)
-    raw = json.dumps(doc, separators=(',', ':'), sort_keys=True).encode()
-    with open(p, 'wb') as fh, gzip.GzipFile(fileobj=fh, mode='wb', mtime=0, compresslevel=9) as z: z.write(raw)
+    pack = lambda name, d: _gz_named(json.dumps(d, separators=(',', ':'), sort_keys=True).encode(), name)   # noqa: E731
+    one = pack(p.name, doc); cap = cap or PART_CAP
+    parts = [(p.name, one)] if len(one) <= cap else REL.split(p.name, doc, cap, pack)
+    for name, b in parts: write_if_changed(p.parent / name, b)   # the same content already there is never rewritten (no change in git)
+    for f in p.parent.glob(f'{area}.p*.geojson.gz'):   # parts of an older, longer save (the copy-mode save carries no deletion: part 1 decides)
+        m = REL.PART_RE.match(f.name)
+        if m and m.group(1) == area and int(m.group(2)) > len(parts): f.unlink()
     return p
 
 

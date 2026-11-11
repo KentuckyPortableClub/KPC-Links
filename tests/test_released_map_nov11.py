@@ -40,7 +40,12 @@ with tempfile.TemporaryDirectory() as t:
     parts = idx['files']['us-key/US-WI.json']; got = {}
     for p, v in parts: got.update(json.loads((rel / p).read_text())['parks'])
     check('a file over the limit is cut into parts under it, and the parts hold every park once',
-          len(parts) > 1 and all((rel / p).stat().st_size <= R.CAP for p, _ in parts) and got == big['parks'] and not (rel / 'us-key/US-WI.json').exists() and r['cut'] == ['us-key/US-WI.json'])
+          len(parts) > 1 and all((rel / p).stat().st_size <= R.CAP for p, _ in parts) and got == big['parks'] and r['cut'] == ['us-key/US-WI.json'])
+    # Nov 11 (job 2): ONE part scheme for the release and the working outline files: part 1 keeps the file's name, then .p2, .p3 ...
+    check('the parts are named US-WI.json, US-WI.p2.json, ... and each says [i, N, tag] (one tag for the whole file)',
+          [p for p, _ in parts] == ['us-key/US-WI.json'] + [f'us-key/US-WI.p{i}.json' for i in range(2, len(parts) + 1)]
+          and [json.loads((rel / p).read_text())['kpc_part'][:2] for p, _ in parts] == [[i, len(parts)] for i in range(1, len(parts) + 1)]
+          and len({json.loads((rel / p).read_text())['kpc_part'][2] for p, _ in parts}) == 1)
     check('each file has its own version (sha256 of the released bytes)', all(re.fullmatch(r'[0-9a-f]{12}', v) for ps in idx['files'].values() for _, v in ps)
           and idx['files']['us-key/US-FL.json'][0][1] == __import__('hashlib').sha256((rel / 'us-key/US-FL.json').read_bytes()).hexdigest()[:12])
     check('the area row names the commit, the time and the run', idx['areas'] == {'US': {'sha': sha1, 'time': 'T1', 'run': '77', 'files': 4}})
@@ -55,7 +60,8 @@ with tempfile.TemporaryDirectory() as t:
     r = R.release(d, 'US', sha2, now='T3'); idx = json.loads((rel / 'RELEASED.json').read_text())
     check('a new US release: the changed file gets a new version, the unchanged one keeps its version',
           idx['files']['us-key/US-FL.json'][0][1] != v_fl and idx['files']['outlines/US-FL.geojson.gz'][0][1] == v_out and 'us-key/US-GA.json' in idx['files'])
-    check('old parts are removed when the file fits again', r['removed'] == len(parts) and not list((rel / 'us-key').glob('US-WI.p*')) and (rel / 'us-key/US-WI.json').exists())
+    check('old parts are removed when the file fits again', r['removed'] == len(parts) - 1 and not list((rel / 'us-key').glob('US-WI.p*')) and (rel / 'us-key/US-WI.json').exists()
+          and 'kpc_part' not in json.loads((rel / 'us-key/US-WI.json').read_text()))
     before = snap(rel)
     for area, sha, why in (('US', sha2[:12], 'a short sha'), ('US', 'f' * 40, 'a commit that does not exist'), ('fers', sha2, 'an area that is not released here')):
         rc = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_release.py'), '--repo', str(d), '--area', area, '--sha', sha], capture_output=True, text=True)
@@ -66,10 +72,11 @@ with tempfile.TemporaryDirectory() as t:
     except R.ReleaseError: bad = True
     check('a file that cannot be cut under the limit: an error and nothing written', bad and snap(rel) == before)
     # outline files are cut by features
-    R.CAP = 150; ps = R.cut('outlines/US-AK.geojson.gz', gzj({'type': 'FeatureCollection', 'kpc': {'area': 'US-AK'}, 'features': [feat(i) for i in range(40)]}))
+    R.CAP = 250; ps = R.cut('outlines/US-AK.geojson.gz', gzj({'type': 'FeatureCollection', 'kpc': {'area': 'US-AK'}, 'features': [feat(i) for i in range(40)]}))
     refs = [f['properties']['ref'] for _, b in ps for f in json.loads(gzip.decompress(b))['features']]
-    check('an outline file over the limit is cut by features: every outline once, names US-AK.pN.geojson.gz',
-          len(ps) > 1 and refs == [f'US-{i}' for i in range(40)] and all(re.fullmatch(r'outlines/US-AK\.p\d+\.geojson\.gz', p) and len(b) <= 150 for p, b in ps))
+    check('an outline file over the limit is cut by features: every outline once, names US-AK.geojson.gz then US-AK.pN.geojson.gz',
+          len(ps) > 1 and refs == [f'US-{i}' for i in range(40)] and ps[0][0] == 'outlines/US-AK.geojson.gz'
+          and all(re.fullmatch(r'outlines/US-AK\.p\d+\.geojson\.gz', p) for p, _ in ps[1:]) and all(len(b) <= 250 for _, b in ps))
 R.CAP = 1_000_000
 
 # ---- the loaders
@@ -91,7 +98,7 @@ check('only the two Map Rep pages set it', sorted(pub) == ['kpc-maprep-reps.html
 pf = (ROOT / '.github/scripts/kpc_preflight.py').read_text()
 check('preflight: a new or newly grown file over 1 MB fails; one already over on the base only warns', "old_big = [f for f in over if (_was(f) or 0) > 1_000_000]" in pf and "big = [f for f in over if f not in old_big]" in pf)
 html = ''.join(p.read_text(encoding='utf-8', errors='replace') for p in ROOT.glob('*.html'))
-check('every page loads the new loader files (version stamp bumped)', not re.search(r'kpc-(bounds|padus-layer|us-planner|gps)\.js\?v=(?!20261111rel2)', html))
+check('every page loads the new loader files (version stamp bumped)', not re.search(r'kpc-(bounds|padus-layer|us-planner|gps)\.js\?v=(?!20261111parts)', html))
 
 # ---- the helper itself, run in node with a fake fetch
 node = shutil.which('node')

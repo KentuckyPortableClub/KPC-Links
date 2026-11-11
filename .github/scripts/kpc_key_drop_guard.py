@@ -7,7 +7,8 @@ tree with the copy on main (`git show <ref>:...`) and counts the parks graded of
   drop = (official on main - official now) / official on main.   Over KPC_DROP_PCT (3) and more than KPC_DROP_MIN (1) park = FAIL.
 A drop a person expects (a batch of signed NO answers, say) is let through for that run by naming the states in KPC_DROP_OK
 ("NV" or "NV UT"; the repo variable of the same name). Exit 1 on a failed state; the workflow then saves nothing from the run.
-The outline files are held to the same limit: data/outlines/US-XX.geojson.gz may not hold more than 3% fewer outlines than main's.
+The outline files are held to the same limit: data/outlines/US-XX.geojson.gz (with its parts) may not hold more than 3% fewer outlines than
+main's; main's outlines of parks the key grades pin are not counted (the save leaves them out on purpose, Nov 11).
 Offline. A state with no file on main (new) or no official park on main is skipped.
 
   python3 .github/scripts/kpc_key_drop_guard.py [--ref HEAD] [--key data/us-key] [--mark FILE]"""
@@ -46,11 +47,21 @@ def main():
         except ValueError: unread.append(st)
     failed, allowed = judge(before, now, pct, mn, ok)
     ob, on = {}, {}
+    # Nov 11 (KPC owner, 2026-11-11): an area may be in parts (US-AK.geojson.gz + US-AK.p2.geojson.gz ...): every part is counted.
+    # Main's outlines of parks the key (this run's) grades pin are not counted: the save leaves them out on purpose
+    # (kpc_master.pin_drops), so a pin clean-up is not a drop. Any other lost outline still counts.
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import kpc_master as M  # noqa: E402
+    key_dir = pathlib.Path(a.repo) / a.key
     for f in sorted(glob.glob(os.path.join(a.repo, 'data', 'outlines', 'US-??.geojson.gz'))):
-        st = os.path.basename(f)[3:5]
-        r = subprocess.run(['git', 'show', f'{a.ref}:data/outlines/US-{st}.geojson.gz'], cwd=a.repo, capture_output=True)
-        if r.returncode != 0: continue
-        try: ob[st] = len(json.loads(gzip.decompress(r.stdout))['features']); on[st] = len(json.load(gzip.open(f))['features'])
+        st = os.path.basename(f)[3:5]; name = os.path.basename(f)
+
+        def main_read(n):
+            r = subprocess.run(['git', 'show', f'{a.ref}:data/outlines/{n}'], cwd=a.repo, capture_output=True)
+            return r.stdout if r.returncode == 0 else None
+        if main_read(name) is None: continue
+        try:
+            before_refs = set(M.recs_of_doc(M.load_doc_parts(name, main_read)))
+            ob[st] = len(before_refs - M.pin_drops(f'US-{st}', before_refs, key_dir)); on[st] = len(M.load_area(f'US-{st}', os.path.dirname(f)))
         except Exception: unread.append(st)  # noqa: BLE001
     of, oa = judge(ob, on, pct, mn, ok)
     for st, b, n, p in oa: print(f'::warning title=Drop guard US-{st}::outlines {b} -> {n} (-{p}%), let through by KPC_DROP_OK for this run')

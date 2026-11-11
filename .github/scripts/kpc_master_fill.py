@@ -383,8 +383,7 @@ def part(a):
     sts = [s for s in (a.states or '').replace(',', ' ').split() if s]
     out.mkdir(parents=True, exist_ok=True)
     for st in sts:
-        f = root / f'US-{st}.geojson.gz'
-        if f.is_file(): shutil.copy(f, out / f.name)
+        for f in M.area_files(f'US-{st}', root): M.write_if_changed(out / f.name, f.read_bytes())   # Nov 11: an area in parts goes with every part
     doc, bdoc = M.load_layers(root), M.load_layers(base)
     lay = {k: v for k, v in (doc.get('layers') or {}).items() if _states_of_area_name(k) in sts and (bdoc.get('layers') or {}).get(k) != v}
     cac = {k: v for k, v in (doc.get('caches') or {}).items() if _states_of_area_name(k) in sts and (bdoc.get('caches') or {}).get(k) != v}
@@ -421,7 +420,7 @@ def collect_parts(parts, root):
         for st in sts:
             if st in owner: raise CollectConflict(f'US-{st}: owned by both {owner[st]} and {d}')
             owner[st] = str(d)
-        for f in sorted(d.glob('US-*.geojson.gz')):
+        for f in sorted(d.glob('US-*.geojson.gz')):   # Nov 11: part files (US-AK.p2.geojson.gz) belong to their state's owner the same way
             st = _states_of_area_name(f.name)
             if st not in sts: raise CollectConflict(f'{f}: US-{st} is not one of this part\'s states ({" ".join(sts)})')
             files[f.name] = f
@@ -488,7 +487,12 @@ def collect(a):
     try: files, lay, cac, rawrows, solver, rows = collect_parts(a.parts, root)
     except CollectConflict as e:
         print('::error title=Master collect conflict::' + str(e).replace('\n', ' '), flush=True); return 1
-    for name, f in files.items(): shutil.copy(f, root / name)
+    for name, f in files.items(): M.write_if_changed(root / name, f.read_bytes())   # Nov 11: the same content is not rewritten (no change in git)
+    # Nov 11 (KPC owner, 2026-11-11): every collected area goes through save_area once, the one place that leaves out a park the key
+    # grades pin (a build part's trim had no key next to its root) and writes parts when an area is over 1 MB. Same content = no rewrite.
+    for name in sorted(n for n in files if not M.is_part_file(n)):
+        area = name[:-len('.geojson.gz')]
+        M.save_area(area, M.load_area(area, root), root, key_dir=getattr(a, 'us_key', None) or root.parent / 'us-key')
     if solver: (root / 'solver-queue').mkdir(parents=True, exist_ok=True)
     quiet = 0
     for name, f in solver.items():   # Nov 11: a queue file is copied only when its bytes differ (no empty bot commit)

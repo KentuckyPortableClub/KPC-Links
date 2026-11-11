@@ -58,14 +58,14 @@ check('every state that had no published outline file now has one',
 
 # no new data files in this change set — the test only reads existing published files
 check('stamps bumped on the US planner',
-      'kpc-padus-layer.js?v=20261111rel2' in html and 'kpc-us-planner.js?v=20261111rel2' in html
-      and 'kpc-bounds.js?v=20261111rel2' in html)
+      'kpc-padus-layer.js?v=20261111parts' in html and 'kpc-us-planner.js?v=20261111parts' in html
+      and 'kpc-bounds.js?v=20261111parts' in html)
 pages = list(ROOT.glob('*.html'))
 vs = {}
 for page in pages:
     for m in re.finditer(r'src="kpc-padus-layer\.js(\?v=[^"]*)?"', page.read_text(encoding='utf-8', errors='replace')):
         vs.setdefault(m.group(1) or '', []).append(page.name)
-check(f'kpc-padus-layer.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == ['?v=20261111rel2'])
+check(f'kpc-padus-layer.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == ['?v=20261111parts'])
 
 # commander tabs test no longer pins an old finder.js stamp (checked in its own file)
 tabs = (ROOT / 'tests/test_commander_tabs_nov10.py').read_text(encoding='utf-8')

@@ -18,6 +18,9 @@
   needs       merge rows into a needs-download list, or print how many rows are open (bot / person / never).
   save-check  before an upload of saved copies: refuse (exit 1, names the file) one that fails the gate baseline or holds fewer records,
               in total or for any layer, than the release copy (--against DIR); --ok-list FILE gets the ones that may be uploaded.
+  resave      Nov 11: write every area file again through save_area: a park the key grades pin is left out, a record graded higher
+              than the key allows is saved as approximate, and an area over 1 MB
+              is written in parts (US-AK.geojson.gz + US-AK.p2.geojson.gz ...). --dry-run says what would change and writes nothing.
   wdpa-lookup managing agency of a park from a Protected Planet / WDPA file. Private output only, no geometry.
 
 Exit codes: 0 ok | 1 check failed | 2 SHORT read | 3 cannot verify (no expected count) | 4 licence block | 5 live read not allowed | 6 shrink held | 7 short saved copy
@@ -133,6 +136,7 @@ def cmd_check(a):
     root = pathlib.Path(a.root) if a.root else M.OUTLINES; bad, suspect = [], []
     doc = M.load_layers(root)
     for p in sorted(root.glob('*.geojson.gz')):
+        if M.is_part_file(p.name): continue   # Nov 11: part 2+ of an area is read with its part 1
         try: recs = M.load_area(p.name[:-len('.geojson.gz')], root)
         except Exception as e: bad.append(f'{p.name}: unreadable ({e})'); continue
         for ref, r in recs.items():
@@ -160,6 +164,29 @@ def cmd_check(a):
     if suspect: warn('master check suspect baseline', f'{len(suspect)} layer baseline(s) lower than the records the file held (the next verified full read re-records them): ' + '; '.join(suspect))
     notice('master check', ('all clear' if not bad else f'{len(bad)} problem(s)') + (f'; {len(suspect)} suspect baseline(s): ' + ', '.join(x.split(' ')[0] for x in suspect) if suspect else ''))
     return 0 if not bad else 1
+
+
+def cmd_resave(a):
+    """Nov 11 (KPC owner, 2026-11-11): every area file through save_area once (pin-graded parks out, parts when over 1 MB)."""
+    root = pathlib.Path(a.root) if a.root else M.OUTLINES; key = pathlib.Path(a.key) if a.key else root.parent / 'us-key'
+    areas = [x for x in (a.areas or '').replace(',', ' ').split() if x] or sorted(p.name[:-len('.geojson.gz')] for p in root.glob('*.geojson.gz')
+                                                                            if not M.is_part_file(p.name) and M.AREA_RE.match(p.name[:-len('.geojson.gz')]))
+    total = lowered = 0
+    for area in areas:
+        if not M.area_path(area, root).is_file(): print(f'{area}: no outline file, nothing to do'); continue
+        recs = M.load_area(area, root); _, drop, low = M.key_fix(area, recs, key); drop, low = sorted(drop), sorted(low); total += len(drop); lowered += len(low)
+        if a.dry_run:
+            if drop: print(f'{area}: {len(recs)} outline(s); would drop {len(drop)} the key grades pin: ' + ' '.join(drop))
+            if low: print(f'{area}: would save {len(low)} as approximate (the key grades them approximate): ' + ' '.join(low))
+            continue
+        before = [f.read_bytes() for f in M.area_files(area, root)]
+        M.save_area(area, recs, root, key_dir=key)
+        after = [f.read_bytes() for f in M.area_files(area, root)]
+        if after != before: print(f'{area}: written ({len(recs) - len(drop)} outline(s) in {len(after)} file(s)' + (f'; dropped {len(drop)}: ' + ' '.join(drop) if drop else '')
+                                  + (f'; approximate now {len(low)}: ' + ' '.join(low) if low else '') + ')')
+    notice('resave', f'{len(areas)} area(s); {total} outline(s) of parks the key grades pin ' + ('would be dropped' if a.dry_run else 'dropped')
+           + f'; {lowered} outline(s) ' + ('would be saved as approximate (dry run, nothing written)' if a.dry_run else 'saved as approximate'))
+    return 0
 
 
 def cmd_gate(a):
@@ -305,6 +332,8 @@ def main(argv=None):
     t.add_argument('--area'); t.add_argument('--expected', type=int); t.add_argument('--agency'); t.add_argument('--license'); t.add_argument('--g', choices=sorted(M.RANK))
     t.add_argument('--id-fields'); t.add_argument('--name-fields'); t.add_argument('--record-id-field'); t.add_argument('--detail', type=float); t.add_argument('--circle-m', type=float)
     t.add_argument('--page', type=int, default=500); t.add_argument('--accept-shrink', action='store_true'); t.add_argument('--dry-run', action='store_true'); t.add_argument('--root')
+    rs = sp.add_parser('resave', help='write every area file again: pin-graded parks out, parts when over 1 MB (Nov 11)')
+    rs.add_argument('--root'); rs.add_argument('--key', help='the us-key folder (default: next to the outlines folder)'); rs.add_argument('--areas'); rs.add_argument('--dry-run', action='store_true')
     c = sp.add_parser('check'); c.add_argument('--root'); c.add_argument('--cache'); c.add_argument('--repo')
     p = sp.add_parser('plan'); p.add_argument('--root'); p.add_argument('--areas'); p.add_argument('--prefix'); p.add_argument('--max-days', type=float, default=30); p.add_argument('--no-probe', action='store_true'); p.add_argument('--out')
     g = sp.add_parser('gate'); g.add_argument('--cache', required=True); g.add_argument('--root'); g.add_argument('--report')
@@ -351,7 +380,7 @@ def main(argv=None):
         import kpc_master_fill as F
         a.root = a.root or str(M.OUTLINES)
         return {'fill': F.fill, 'collect': F.collect, 'part': F.part}[a.cmd](a)
-    return {'trim': cmd_trim, 'check': cmd_check, 'gate': cmd_gate, 'plan': cmd_plan, 'raw-add': cmd_raw_add, 'wdpa-lookup': cmd_wdpa, 'needs': cmd_needs, 'watch': cmd_watch, 'save-check': cmd_save_check, 'baseline': cmd_baseline}[a.cmd](a)
+    return {'trim': cmd_trim, 'check': cmd_check, 'gate': cmd_gate, 'plan': cmd_plan, 'raw-add': cmd_raw_add, 'wdpa-lookup': cmd_wdpa, 'needs': cmd_needs, 'watch': cmd_watch, 'save-check': cmd_save_check, 'baseline': cmd_baseline, 'resave': cmd_resave}[a.cmd](a)
 
 
 if __name__ == '__main__': sys.exit(main())

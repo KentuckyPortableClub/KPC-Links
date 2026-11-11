@@ -3,7 +3,11 @@
    its released file(s) and each one's own version, so a changed file shows at once and an unchanged one stays cached.
    KPCREL.get('data/outlines/US-FL.geojson.gz') -> the parsed file (parts put together), or null when it is not released.
    An area that was never released (no entry in RELEASED.json) reads the working file as before.
-   The Map Rep pages set window.KPC_WORKING_COPY = true before this file: they always read the working copy (the key being reviewed). */
+   The Map Rep pages set window.KPC_WORKING_COPY = true before this file: they always read the working copy (the key being reviewed).
+   Nov 11 (job 2): ONE part scheme for released and working files (kpc_release.split): a file over 1 MB is part 1 under its own name
+   plus <stem>.p2<ext> ... ; part 1 carries kpc_part = [1, N, tag]. The working-copy path reads part 1, then parts 2..N, and puts them
+   together with the same join; parts of two different saves (another tag) or a missing part = nothing, never half a file.
+   An outline too big for one part is in pieces (kpc_piece = [k, M], same properties): the join puts its polygons back together. */
 (function (w) {
   if (!w || w.KPCREL || typeof w.fetch !== 'function') return;
   var P = null, AREA = [[/^(outlines\/US-|us-key\/)/, 'US'], [/^ca-key\//, 'CA'], [/^world-key\//, 'world']];
@@ -19,13 +23,33 @@
       return JSON.parse(new TextDecoder().decode(ab));
     });
   }
+  function pieces(fs) {   /* Nov 11: the pieces of one big outline (kpc_piece = [k, M]) become one MultiPolygon again, in order */
+    var by = {}, out = [], ok = true;
+    fs.forEach(function (f) {
+      var k = f && f.kpc_piece; if (!k) { out.push(f); return; }
+      var r = (f.properties || {}).ref, g = by[r];
+      if (!g) { g = by[r] = { f: Object.assign({}, f, { geometry: { type: 'MultiPolygon', coordinates: [] } }), n: k[1], got: 0 }; delete g.f.kpc_piece; out.push(g.f); }
+      if (k[0] !== g.got + 1 || k[1] !== g.n) ok = false;
+      g.f.geometry.coordinates = g.f.geometry.coordinates.concat((f.geometry || {}).coordinates || []); g.got++;
+    });
+    return ok && Object.keys(by).every(function (r) { return by[r].got === by[r].n; }) ? out : null;
+  }
   function join(docs) {
     if (docs.some(function (d) { return !d; })) return null;            /* a missing part = not released (never half a file) */
+    var k0 = docs[0].kpc_part;                                          /* Nov 11: parts must all be of the same save (same N and tag) */
+    if (k0 && (docs.length !== k0[1] || docs.some(function (d, i) { var k = d.kpc_part || []; return k[0] !== i + 1 || k[1] !== k0[1] || k[2] !== k0[2]; }))) return null;
     if (docs.length === 1) return docs[0];
     var out = Object.assign({}, docs[0]); delete out.kpc_part;
-    if (Array.isArray(out.features)) out.features = [].concat.apply([], docs.map(function (d) { return d.features || []; }));
+    if (Array.isArray(out.features)) { out.features = pieces([].concat.apply([], docs.map(function (d) { return d.features || []; }))); if (!out.features) return null; }
     if (out.parks && !Array.isArray(out.parks)) out.parks = Object.assign.apply(null, [{}].concat(docs.map(function (d) { return d.parks || {}; })));
     return out;
+  }
+  function partName(path, i) { return i < 2 ? path : String(path).replace(/(\.geojson\.gz|\.json)$/, '.p' + i + '$1'); }
+  function more(path, d, one) {   /* Nov 11: a working file in parts: part 1 says how many (kpc_part), parts 2..N are read the same way */
+    var k = d && d.kpc_part, list = [Promise.resolve(d)];
+    if (!k || !(k[1] > 1)) return Promise.resolve(d);
+    for (var i = 2; i <= k[1]; i++) list.push(one(partName(path, i)));
+    return Promise.all(list).then(join);
   }
   function urls(path) {
     var rel = String(path).replace(/^data\//, '').replace(/\?.*$/, '');
@@ -38,8 +62,13 @@
   function get(path, working) {
     return urls(path).then(function (list) {
       /* nothing released for it: the working file, read exactly as before this block existed (the caller's own fetch and r.json(); only an outline .gz is unpacked) */
-      if (list === null) return working ? working(path).then(function (r) { return r && r.ok ? r.json() : null; })
-        : w.fetch(path + '?v=' + new Date().toISOString().slice(0, 10), { cache: 'force-cache' }).then(parse);
+      if (list === null) {
+        if (working) { var wk = function (p) { return working(p).then(function (r) { return r && r.ok ? r.json() : null; }); }; return wk(path).then(function (d) { return more(path, d, wk); }); }
+        var day = new Date().toISOString().slice(0, 10), rd = function (c) { return function (p) { return w.fetch(p + '?v=' + day, { cache: c }).then(parse); }; };
+        return rd('force-cache')(path).then(function (d) {   /* parts of two saves in the browser cache: read them all once more, fresh */
+          return more(path, d, rd('force-cache')).then(function (j) { return j || !(d && d.kpc_part) ? j : rd('reload')(path).then(function (d2) { return more(path, d2, rd('reload')); }); });
+        });
+      }
       if (!list.length) return null;
       return Promise.all(list.map(function (u) { return w.fetch(u, { cache: 'force-cache' }).then(parse); })).then(join);
     }).catch(function () { return null; });
