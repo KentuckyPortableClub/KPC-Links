@@ -55,8 +55,41 @@ def test_box_short_outside_box_ok(tmp_path):
 
 def test_scope_entry_for_fl_box():
     d = json.load(open(pathlib.Path(__file__).resolve().parents[1] / '.github' / 'us-key-rule-scope.json'))
-    e = d['changes'][-1]
+    e = next(c for c in d['changes'] if c['id'] == '2026-11-11-fl-box-keys')   # Nov 11 r3: a later entry follows it
     assert e['id'] == '2026-11-11-fl-box-keys' and e['from'] == '9e06aa4b4783' and e['scope'] == {'states': ['US-FL'], 'saved_ids': False}
+
+
+def test_fl_box_takes_in_the_offshore_dep_parcels():
+    """Nov 11 r3 (run 43037613117): 45 FL DEP state-owned parcels off Miami (lon -79.875 to -79.858) were outside the box, so the whole
+    hand file (79,689) counted 79,644 in the box and was refused. The east edge is -79.8; Bimini (Bahamas, -79.30) stays outside."""
+    b = K.st_box('FL')
+    for lon, lat in [(-79.875, 25.941), (-79.858, 25.927)]:
+        assert b[0] <= lon <= b[2] and b[1] <= lat <= b[3], (lon, lat, b)
+    assert b[2] < -79.30   # North Bimini
+
+
+def test_scope_entry_for_fl_box_east():
+    d = json.load(open(pathlib.Path(__file__).resolve().parents[1] / '.github' / 'us-key-rule-scope.json'))
+    e = d['changes'][-1]
+    assert e['id'] == '2026-11-11-fl-box-east' and e['from'] == 'ad47ee2ff99a' and e['scope'] == {'states': ['US-FL'], 'saved_ids': False}
+
+
+def test_hand_file_short_says_state_box(tmp_path):
+    import kpc_master as M
+    (tmp_path / 'layers.json').write_text(json.dumps({'layers': {}, 'caches': {}}))
+    f = tmp_path / 'US-FL.sgflf.geojson.gz'
+    M.write_layer_file(f, {'area': 'US-FL', 'layer': 'sgflf', 'source': 'hand', 'count_expected': 3, 'count_raw': 2}, [])
+    ok, why = F.apply_layer_file(f, tmp_path, tmp_path, tmp_path / 'parks.json')
+    assert not ok and 'SHORT' in why and 'state box' in why and '1 outside' in why
+
+
+def test_hand_refused_is_an_error(tmp_path, monkeypatch):
+    import contextlib, io
+    monkeypatch.setenv('RUNNER_TEMP', str(tmp_path))
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf): F.hand_refused('US-FL sgflf: SHORT, not merged')
+    assert buf.getvalue().startswith('::error ')
+    assert 'hand file refused' in (tmp_path / 'kpc-hidden.txt').read_text()
 
 
 class _MP:

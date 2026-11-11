@@ -89,8 +89,8 @@ fers_h = KF.rules_hash('fers', str(HERE))
 check(fers_h == PF.newest_hash('fers') and bool(fers_h), f'fers rules hash equals the newest one in docs/key-rules-change.txt ({fers_h})')
 print('FERS_RULES_HASH=' + fers_h)
 docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-# Ledger is newest-first: the Nov 10 layer-count entry, the Nov 10 master-step follow-up, the Nov 10 master-step entry, the Nov 10 refill entry, #109 (5:54 AM CST), then #108 (5:22 AM CST). Read the top six entries.
-_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:6])
+# Ledger is newest-first: the Nov 11 FL box east edge entry, the Nov 10 layer-count entry, the Nov 10 master-step follow-up, the Nov 10 master-step entry, the Nov 10 refill entry, #109 (5:54 AM CST), then #108 (5:22 AM CST). Read the top seven entries.
+_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:7])
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt Nov 10 entries declare fers v1 hash {fers_h}')
 # Public changelog keeps hashes and dates only (no quotes, no ids)

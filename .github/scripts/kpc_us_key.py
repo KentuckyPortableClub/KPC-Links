@@ -767,7 +767,10 @@ def st_box(st):
 # Florida box read missed Monroe County: FL DEP state-owned lands sent 77,144 of its 79,689 records (2,545 Keys parcels: Bahia Honda,
 # Long Key, Curry Hammock, Lignumvitae Key, Indian Key, Windley Key, Fort Zachary Taylor, Key Deer lands). The box takes in the Keys
 # and the Dry Tortugas. Only Florida's box changes.
-BOX_ADD = {'FL': (-83.2, 24.3, -80.0, 25.2)}
+# Nov 11 r3 (KPC owner, 2026-11-11; run 43037613117): the box's east edge was -80.0, so 45 FL DEP state-owned parcels off Miami
+# (lon -79.875 to -79.858, lat 25.93) were left out and the checked hand file (79,689 records) counted 79,644 in the box: SHORT, not
+# merged. The east edge is now -79.8 (Bimini, the nearest Bahamas land, is at -79.3; Cay Sal Bank is south of 24.3).
+BOX_ADD = {'FL': (-83.2, 24.3, -79.8, 25.2)}
 
 
 def fws_state(st, have):
