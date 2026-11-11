@@ -9,7 +9,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-4820 Kitjigattalik - Ramah Chert Quarries National Historic Site (National Historic Site) → on Torngat Mountains National Park Of Canada (~2,396,918 ac)
+- CA-4820 Kitjigattalik - Ramah Chert Quarries National Historic Site (National Historic Site) → on Torngat Mountains National Park (~2,360,274 ac); Torngat Mountains National Park Of Canada (~2,396,918 ac)
 
 ## Nothing found in CPCAD
 

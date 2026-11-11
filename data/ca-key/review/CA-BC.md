@@ -21,13 +21,13 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-3476 Endeavour Hydrothermal Vents Marine Protected Area (Marine Protected Area) → on Tang.ɢ̲wan — ḥačxʷiqak — Tsig̱is Marine Protected Area (~31,089,960 ac)
 - CA-3618 Hume Park (Park) → on Brunette Fraser Regional Greenway (~6 ac)
 - CA-3743 Little Cates Park (Park) → on Cates Park/ Whey-Ah-Wichen (~59 ac)
-- CA-4793 Kicking Horse Pass National Historic Site (National Historic Site) → on Yoho National Park Of Canada (~324,474 ac)
-- CA-4795 Nan Sdins National Historic Site (National Historic Site) → on Gwaii Haanas National Marine Conservation Area Reserve & Haida Heritage Site (~864,868 ac)
-- CA-4796 Rogers Pass National Historic Site (National Historic Site) → on Glacier National Park Of Canada (~333,345 ac)
+- CA-4793 Kicking Horse Pass National Historic Site (National Historic Site) → on Yoho National Park of Canada (~316,291 ac); Yoho National Park Of Canada (~324,474 ac)
+- CA-4795 Nan Sdins National Historic Site (National Historic Site) → on Gwaii Haanas National Park Reserve of Canada and Haida Heritage Site (~361,465 ac); Gwaii Haanas National Marine Conservation Area Reserve & Haida Heritage Site (~864,868 ac)
+- CA-4796 Rogers Pass National Historic Site (National Historic Site) → on Glacier National Park of Canada (~331,722 ac); Glacier National Park Of Canada (~333,345 ac)
 - CA-5326 Hatley Park National Historic Site (National Historic Site) → on Royal Roads University (~281 ac)
 - CA-5344 The West Coast Trail National Park (National Park) → on Pacific Rim National Park Reserve Of Canada (~55,599 ac)
-- CA-5483 SGang Gwaay National Heritage Site (National Heritage Site) → on Gwaii Haanas National Park Reserve Of Canada And Haida Heritage Site (~364,332 ac)
-- CA-6133 Kicking Horse River Canadian Heritage River (National Heritage Area) → on Yoho National Park Of Canada (~324,474 ac)
+- CA-5483 SGang Gwaay National Heritage Site (National Heritage Site) → on Gwaii Haanas National Park Reserve of Canada and Haida Heritage Site (~361,465 ac); Gwaii Haanas National Park Reserve Of Canada And Haida Heritage Site (~364,332 ac)
+- CA-6133 Kicking Horse River Canadian Heritage River (National Heritage Area) → on Yoho National Park of Canada (~316,291 ac); Yoho National Park Of Canada (~324,474 ac)
 
 ## Nothing found in CPCAD
 

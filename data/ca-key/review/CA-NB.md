@@ -157,7 +157,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-6448 The Church of St. Mary the Virgin Historic Site (Historic Site) → on New Brunswick #21 Wildlife Management Area (~637,335 ac)
 - CA-6450 Yorkshire Immigration National Historic Site (Historic Site) → on New Brunswick #25 Wildlife Management Area (~515,482 ac)
 - CA-6451 Battle of Petitcodiac Historic Site (Historic Site) → on New Brunswick #24 Wildlife Management Area (~482,558 ac)
-- CA-6455 Saltwater Pool and Bathhouse Historic Site (Historic Site) → on Fundy National Park Of Canada (~50,879 ac); New Brunswick #23 Wildlife Management Area (~677,684 ac)
+- CA-6455 Saltwater Pool and Bathhouse Historic Site (Historic Site) → on Fundy National Park of Canada (~50,469 ac); Fundy National Park Of Canada (~50,879 ac)
 - CA-6456 Point Escuminac Nature Reserve (Nature Reserve) → on New Brunswick #14 Wildlife Management Area (~644,671 ac)
 - CA-6457 Monseignor Marcel-François Richard Historic Site (Historic Site) → on New Brunswick #14 Wildlife Management Area (~644,671 ac)
 - CA-6460 Former St. James United Church Historic Site (Historic Site) → on New Brunswick #10 Wildlife Management Area (~664,617 ac)

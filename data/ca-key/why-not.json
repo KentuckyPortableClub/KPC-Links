@@ -1,9 +1,9 @@
 {
  "about": "R-GC8 'why not' tag for every Canada park with NO outline in the current Canada key (kpc_ca_whynot.py, after each Canada key build). Same tags as the US file: no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt.",
  "counts": {
-  "needs-parcel": 292,
-  "no-layer": 1158,
-  "name-mismatch": 27,
+  "needs-parcel": 295,
+  "no-layer": 1165,
+  "name-mismatch": 28,
   "private": 9
  },
  "parks": {
@@ -70,7 +70,7 @@
   "CA-3157": {
    "st": "AB",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Waterton Lakes"
+   "why": "the pin is inside a bigger area: Waterton Lakes National Park of Canada"
   },
   "CA-4771": {
    "st": "AB",
@@ -100,7 +100,7 @@
   "CA-4776": {
    "st": "AB",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Waterton Lakes"
+   "why": "the pin is inside a bigger area: Waterton Lakes National Park of Canada"
   },
   "CA-4777": {
    "st": "AB",
@@ -260,7 +260,7 @@
   "CA-6101": {
    "st": "AB",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Waterton Lakes"
+   "why": "the pin is inside a bigger area: Waterton Lakes National Park of Canada"
   },
   "CA-6116": {
    "st": "AB",
@@ -430,7 +430,7 @@
   "CA-4793": {
    "st": "BC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Yoho National Park Of Canada"
+   "why": "the pin is inside a bigger area: Yoho National Park of Canada"
   },
   "CA-4794": {
    "st": "BC",
@@ -440,12 +440,12 @@
   "CA-4795": {
    "st": "BC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Gwaii Haanas National Marine Conservation Area Reserve & Hai"
+   "why": "the pin is inside a bigger area: Gwaii Haanas National Park Reserve of Canada and Haida Herit"
   },
   "CA-4796": {
    "st": "BC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Glacier National Park Of Canada"
+   "why": "the pin is inside a bigger area: Glacier National Park of Canada"
   },
   "CA-5325": {
    "st": "BC",
@@ -470,7 +470,7 @@
   "CA-5483": {
    "st": "BC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Gwaii Haanas National Park Reserve Of Canada And Haida Herit"
+   "why": "the pin is inside a bigger area: Gwaii Haanas National Park Reserve of Canada and Haida Herit"
   },
   "CA-5547": {
    "st": "BC",
@@ -485,7 +485,7 @@
   "CA-6133": {
    "st": "BC",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Yoho National Park Of Canada"
+   "why": "the pin is inside a bigger area: Yoho National Park of Canada"
   },
   "CA-6369": {
    "st": "BC",
@@ -1810,7 +1810,7 @@
   "CA-6455": {
    "st": "NB",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Fundy National Park Of Canada"
+   "why": "the pin is inside a bigger area: Fundy National Park of Canada"
   },
   "CA-6456": {
    "st": "NB",
@@ -2095,7 +2095,7 @@
   "CA-4820": {
    "st": "NL",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Torngat Mountains National Park Of Canada"
+   "why": "the pin is inside a bigger area: Torngat Mountains National Park"
   },
   "CA-4823": {
    "st": "NL",
@@ -3245,7 +3245,7 @@
   "CA-5474": {
    "st": "NT",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Thaidene Nene National Park Reserve Of Canada"
+   "why": "the pin is inside a bigger area: Thaidene Nene National Park Reserve"
   },
   "CA-5475": {
    "st": "NT",
@@ -3347,6 +3347,11 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-0023": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
   "CA-0027": {
    "st": "ON",
    "tag": "no-layer",
@@ -3379,8 +3384,8 @@
   },
   "CA-1280": {
    "st": "ON",
-   "tag": "no-layer",
-   "why": "no official record found (Wilderness Area)"
+   "tag": "name-mismatch",
+   "why": "a record held for a person's check: Lake Abitibi Islands Provincial Park (Nature Reserve Class)"
   },
   "CA-1298": {
    "st": "ON",
@@ -3575,7 +3580,7 @@
   "CA-4857": {
    "st": "ON",
    "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Georgian Bay Islands National Park Of Canada"
+   "why": "the pin is inside a bigger area: Georgian Bay Islands National Park of Canada"
   },
   "CA-4858": {
    "st": "ON",
@@ -3677,11 +3682,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-4889": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
   "CA-5083": {
    "st": "ON",
    "tag": "no-layer",
@@ -3732,6 +3732,11 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-5114": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
   "CA-5115": {
    "st": "ON",
    "tag": "no-layer",
@@ -3768,6 +3773,11 @@
    "why": "the province's Fable file says so"
   },
   "CA-5294": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-5297": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -3921,6 +3931,11 @@
    "st": "ON",
    "tag": "no-layer",
    "why": "no official record found (National Heritage Site)"
+  },
+  "CA-5528": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
   },
   "CA-5535": {
    "st": "ON",
@@ -4187,6 +4202,11 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-5945": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
   "CA-5952": {
    "st": "ON",
    "tag": "no-layer",
@@ -4302,6 +4322,11 @@
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Rideau Canal National Historic Site"
   },
+  "CA-6204": {
+   "st": "ON",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Rideau Canal National Historic Site"
+  },
   "CA-6209": {
    "st": "ON",
    "tag": "no-layer",
@@ -4332,6 +4357,16 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-6256": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "no official record found (National Park)"
+  },
+  "CA-6257": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
   "CA-6317": {
    "st": "ON",
    "tag": "no-layer",
@@ -4352,7 +4387,17 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-6337": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
   "CA-6341": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6345": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -4393,6 +4438,11 @@
    "why": "the province's Fable file says so"
   },
   "CA-6511": {
+   "st": "ON",
+   "tag": "no-layer",
+   "why": "the province's Fable file says so"
+  },
+  "CA-6512": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"
@@ -4524,8 +4574,8 @@
   },
   "CA-5288": {
    "st": "PE",
-   "tag": "no-layer",
-   "why": "no official record found (National Historic Site)"
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Prince Edward Island National Park of Canada"
   },
   "CA-5414": {
    "st": "PE",
@@ -6777,11 +6827,6 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
-  "CA-2897": {
-   "st": "SK",
-   "tag": "needs-parcel",
-   "why": "the pin is inside a bigger area: Wascana Valley Natural Area Recreation Site"
-  },
   "CA-2900": {
    "st": "SK",
    "tag": "needs-parcel",
@@ -7032,6 +7077,11 @@
    "tag": "no-layer",
    "why": "the province's Fable file says so"
   },
+  "CA-4600": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kluane National Park and Reserve of Canada"
+  },
   "CA-4601": {
    "st": "YT",
    "tag": "needs-parcel",
@@ -7093,6 +7143,11 @@
    "why": "the province's Fable file says so"
   },
   "CA-4628": {
+   "st": "YT",
+   "tag": "needs-parcel",
+   "why": "the pin is inside a bigger area: Kluane"
+  },
+  "CA-4631": {
    "st": "YT",
    "tag": "needs-parcel",
    "why": "the pin is inside a bigger area: Kluane"

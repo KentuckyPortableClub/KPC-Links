@@ -1,6 +1,11 @@
 {
  "about": "Layer manifest for the outline master records. One entry per agency layer: its URL, the areas it covers, and the EXPECTED COUNT = the total the layer itself reported (returnCountOnly=true) on 2026-11-10 when a live read was allowed. A short read never changes it. Layers that could not be counted under the host and robots rules have no expected_count. caches = official expected totals for the saved copies the key builders read. US-XX uses the live key file counts.padus (the published record count; US-FL is 21993, not the 5198 index row). W-CC uses the live key file counts.areas. CA-ALL has no baseline: no live key file stores a published outline-record total (province files hold park join counts, not cache recs). A saved copy with no baseline is held and not used.",
  "caches": {
+  "CA-ALL": {
+   "expected_count": 60426,
+   "read_date": "2026-11-11",
+   "read_how": "first good full Canada build (run 43003880140)"
+  },
   "US-AK": {
    "expected_count": 3542,
    "read_date": "2026-11-10",

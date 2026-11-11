@@ -2,11 +2,11 @@
  "gate": {
   "bad": [],
   "checked": 5,
-  "date": "2026-11-09",
+  "date": "2026-11-11",
   "result": "PASS"
  },
- "previous_build": "CA-42252274247",
- "previous_built": "2026-11-06 17:05 UTC",
+ "previous_build": "CA-42689962177",
+ "previous_built": "2026-11-09 20:26 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -39,7 +39,7 @@
    "none": 84,
    "parks": 308,
    "pin_no_shape": 0,
-   "pin_outside": 80,
+   "pin_outside": 79,
    "pin_swap": 0,
    "pin_well_outside": 3,
    "site": 5
@@ -105,28 +105,28 @@
    "site": 2
   },
   "ON": {
-   "check": 9,
+   "check": 10,
    "detail": 0.02,
-   "matched": 960,
-   "none": 186,
+   "matched": 950,
+   "none": 193,
    "parks": 1180,
-   "pin_no_shape": 27,
-   "pin_outside": 398,
+   "pin_no_shape": 16,
+   "pin_outside": 387,
    "pin_swap": 0,
    "pin_well_outside": 7,
-   "site": 25
+   "site": 27
   },
   "PE": {
    "check": 1,
    "detail": 0.02,
    "matched": 18,
-   "none": 29,
+   "none": 28,
    "parks": 54,
    "pin_no_shape": 0,
-   "pin_outside": 10,
+   "pin_outside": 9,
    "pin_swap": 0,
    "pin_well_outside": 1,
-   "site": 6
+   "site": 7
   },
   "QC": {
    "check": 13,
@@ -135,7 +135,7 @@
    "none": 345,
    "parks": 834,
    "pin_no_shape": 0,
-   "pin_outside": 167,
+   "pin_outside": 166,
    "pin_swap": 0,
    "pin_well_outside": 5,
    "site": 34
@@ -155,14 +155,14 @@
   "SK": {
    "check": 0,
    "detail": 0.02,
-   "matched": 303,
+   "matched": 304,
    "none": 79,
    "parks": 411,
    "pin_no_shape": 2,
    "pin_outside": 151,
    "pin_swap": 0,
    "pin_well_outside": 17,
-   "site": 29
+   "site": 28
   },
   "SP": {
    "check": 0,
@@ -179,28 +179,29 @@
   "YT": {
    "check": 0,
    "detail": 0.02,
-   "matched": 29,
+   "matched": 27,
    "none": 76,
    "parks": 112,
-   "pin_no_shape": 2,
-   "pin_outside": 9,
+   "pin_no_shape": 0,
+   "pin_outside": 7,
    "pin_swap": 0,
    "pin_well_outside": 1,
-   "site": 7
+   "site": 9
   }
  },
- "rules": "8feccbb7d9ee",
+ "rules": "4b4176190334",
  "rules_files": [
+  ".github/ca-key-rule-scope.json",
   ".github/scripts/kpc_ca_fill_bounds.py",
   ".github/scripts/kpc_ca_hardlook.py",
   ".github/scripts/kpc_ca_key.py",
   ".github/scripts/kpc_key_facts.py",
   ".github/key-rules-version.json"
  ],
- "rules_of_run": "8feccbb7d9ee",
+ "rules_of_run": "4b4176190334",
  "inputs": {
-  "us-key": "US-42504172086"
+  "us-key": "US-42996829343"
  },
- "build": "CA-42689962177",
- "built": "2026-11-09 20:26 UTC"
+ "build": "CA-43003880140",
+ "built": "2026-11-11 10:45 UTC"
 }

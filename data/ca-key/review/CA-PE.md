@@ -1,6 +1,6 @@
 # Canada PE: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **18 of 54** joined (same name + same kind). **1** to check, **29** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **18 of 54** joined (same name + same kind). **1** to check, **28** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -13,6 +13,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-0862 Jacques Cartier Provincial Park (Provincial Park) → on PARK (~16 ac)
 - CA-0865 Linkletter Provincial Park (Provincial Park) → on PARK (~50 ac)
 - CA-0869 Northumberland Provincial Park (Provincial Park) → on PROV PARK (~54 ac)
+- CA-5288 Covehead Harbour National Historic Site (National Historic Site) → on Prince Edward Island National Park of Canada (~8,676 ac)
 - CA-6373 Fisherman's Haven Provincial Park (Provincial Park) → on TIGNISH SHORE (~2 ac)
 - CA-6594 Pinette Provincial Park (Provincial Park) → on PARK (~19 ac)
 
@@ -35,7 +36,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-4891 Ardgowan National Historic Site (National Historic Site)
 - CA-4893 Green Gables Heritage Place (L.M. Montgomery's Cavendish NHS) National Historic Site (National Historic Site)
 - CA-4894 Skmaqn-Port-la-Joye-Fort Amherst National Historic Site (National Historic Site)
-- CA-5288 Covehead Harbour National Historic Site (National Historic Site)
 - CA-5414 Farmers' Bank of Rustico National Historic Site (National Historic Site)
 - CA-5418 Jean-Pierre Roma at Three Rivers, P.E.I. National Historic Site (National Historic Site)
 - CA-5419 Kensington Railway Station National Historic Site (National Historic Site)
