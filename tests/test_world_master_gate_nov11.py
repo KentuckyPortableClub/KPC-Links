@@ -243,7 +243,15 @@ check('the proposed file lists AU and 8 hand bundles at the counts the gate read
 check('MT is not proposed (its bundle is below the records its key joins)', 'W-MT' not in P['baselines'] and 'W-MT' in P['not_proposed'])
 check('the proposed file is unsigned and its sha256 fields are placeholders', not P['approved_by'] and not P['approved_date']
       and M.load_approved_baselines(ROOT / 'data/outlines/world-baselines.proposed.json')[0] == {})
-check('no approved baselines file is shipped (the owner writes it)', not list(ROOT.glob('data/**/*baselines.approved.json')))
+# KPC owner, 2026-11-11: the owner signed data/outlines/world-baselines.approved.json. It must be read in full (signed, every entry valid),
+# list only copies it pins by sha256, and never sign MT, AU or the five stale-baseline countries.
+_A = list(ROOT.glob('data/**/*baselines.approved.json'))
+_ae, _aw = M.load_approved_baselines(ROOT / 'data/outlines/world-baselines.approved.json')
+check('the signed approved baselines file is the only one, read in full, and signs only the 8 checked hand bundles',
+      [str(x.relative_to(ROOT)) for x in _A] == ['data/outlines/world-baselines.approved.json'] and not _aw
+      and set(_ae) == {'W-AS', 'W-BS', 'W-BW', 'W-BZ', 'W-GL', 'W-NZ', 'W-UM', 'W-VI'}
+      and all(_ae[k]['expected_count'] == want[k] and _ae[k]['kind'] == 'trimmed' for k in _ae)
+      and not {'W-AU', 'W-MT', 'W-BE', 'W-CH', 'W-CZ', 'W-DE', 'W-PT'} & set(_ae))
 
 # ------------------------------------------------------------------ 6) the workflow
 import yaml  # noqa: E402
