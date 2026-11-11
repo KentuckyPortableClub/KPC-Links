@@ -1,6 +1,6 @@
 {
- "ver": "0.8.0",
- "when": "2026-11-08",
+ "ver": "0.8.2",
+ "when": "2026-11-11",
  "where": "https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build",
- "notes": "0.8.0: the iPhone page (the PC hands out the app to iPhones; Tailscale for talking), 🎛 more radio controls on the PC and the phone, band memory, tune asks first, SWR guard, help + setup wizard, log on the contest screen, voice NATURAL / PUNCH / CONTEST on the PC, quicker transmit key. "
+ "notes": "0.8.2: 🦊 Fox & Hound for FT8 DXpeditions (checked against WSJT-X), ↗ split from spots (checks your licence class first), 📻 KiwiSDR web radio, STATION settings in tabs, a friendlier help page, typed FT8 contacts log -10, a spot tap fills every op at the park. "
 }
