@@ -503,6 +503,30 @@ jobs:
             cp .mneeds/new.json .mneeds/needs-download.json && gh release upload boundary-cache .mneeds/needs-download.json -R "$GITHUB_REPOSITORY" --clobber
           fi
           rm -rf .mneeds
+      - name: Outlines from the key (KPC owner, 2026-11-11) - the automatic last step - every joined park of the states built this run gets its outline, then main is re-read so no outline file is saved older than main's
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Reads the key this run just joined and each state's saved copy (US-XX.json.gz on the boundary-cache release, this repo's own
+          # release: no map server is contacted). An outline already in the file is never replaced; a park whose joined records are not
+          # all in the saved copy is skipped and listed (no partial outline). One state at a time, so the disk holds one saved copy.
+          if [ -f /tmp/kpc-outlines-bad ]; then echo "::notice title=Outlines from the key::skipped: the master collect failed, data/outlines is not saved this run"; exit 0; fi
+          said() { echo "::error title=Outlines from the key::$1"; echo "Outlines from the key - $1" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          pip install --quiet --break-system-packages shapely || said "shapely did not install: no outline is built this run (the next run builds them)"
+          STATES=$(cat parts/us-key-part-*/states.txt 2>/dev/null | tr -s ' \n' '\n' | sort -u | tr '\n' ' ')
+          mkdir -p .okcache
+          for st in $STATES; do
+            if ! gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D .okcache --clobber 2>/dev/null; then
+              echo "::notice title=Outlines from the key $st::no saved copy on the release: its outlines wait for the next run"; continue
+            fi
+            python3 .github/scripts/kpc_outlines_from_key.py --cache .okcache --states "$st" || said "US-$st stopped with an error (exit $?): its outline file is as it was"
+            rm -f ".okcache/US-$st.json.gz"
+          done
+          rm -rf .okcache
+          # This morning's problem (run of Nov 11 15:13 UTC: started before #129 merged, saved its older US-FL file, 97 outlines lost):
+          # re-read main NOW and put every changed outline file together with main's copy; the master check below sees the result.
+          # The Save step does the same again on the newest main, at the moment of the save.
+          python3 .github/scripts/kpc_outlines_keep_main.py --fetch --ref origin/main || said "an outline file could not be put together with main's copy (exit $?): main's copy is kept for it"
       - name: Master check of the joined outlines before the save (owner rule, 2026-11-10) - a failed check keeps data/outlines out of the save
         run: |
           python3 .github/scripts/kpc_master_cli.py check --repo . || { kpc_rc=$?; touch /tmp/kpc-outlines-bad; git checkout -q HEAD -- data/outlines && git clean -fdq data/outlines; echo "::error title=Master check::the joined master outlines failed their check (exit $kpc_rc): this run's data/outlines changes are dropped, not saved"; }
@@ -572,6 +596,13 @@ jobs:
             echo "::notice title=US key stamp::parts named failed: $(tr '\n' ' ' < /tmp/kpc-build-failed.txt)"
           fi
           python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { echo "::error title=kpc_key_freeze.py::the stamp stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py stamp - stopped with an error (exit $rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+      - name: Drop guard (KPC owner, 2026-11-11) - a state that loses more than 3% of its official parks fails the run and nothing is saved
+        env:
+          KPC_DROP_OK: ${{ vars.KPC_DROP_OK }}   # states whose drop a person expects, for one run ("NV" or "NV UT"); clear it after
+        run: |
+          # After the join check and the stamp, so every hold of this run is counted. Compares each data/us-key/US-XX.json with the copy on
+          # main (this job's checkout). Offline. A failed guard stops here: no BOT C line, and the Save step sees the mark and saves nothing.
+          python3 .github/scripts/kpc_key_drop_guard.py --ref HEAD --mark /tmp/kpc-key-drop-bad
       - name: BOT C line for chat 11 (HQ Oct 30) - this build vs the LIVE key, one line in its inbox
         id: kept_green_3
         continue-on-error: true
@@ -612,6 +643,7 @@ jobs:
           # all 4 tries failed and the step still ended green. Now: the key alone first (a failed rebase is aborted and retried, and a
           # save that never lands goes red = a real issue), then the BOT C line on a fresh copy of the inbox.
           if [ -f /tmp/kpc-key-join-bad ]; then echo "::error title=Save::the US key parts did not join per state (see the join step): nothing is saved"; exit 1; fi
+          if [ -f /tmp/kpc-key-drop-bad ]; then echo "::error title=Save::the drop guard failed ($(cat /tmp/kpc-key-drop-bad)): a state lost more than 3% of its official parks, nothing is saved"; exit 1; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           # Oct 30: the states rebuilt tonight come off the 'rebuild tonight' list (BOT A / BOT W / new parks / hand fixes add to it)
@@ -644,9 +676,12 @@ jobs:
           # Nov 2 review: save by overwrite. The files THIS run built (state files, index, layers, zip files, review pages, status)
           # are copied on top of the newest main; the hand-edited files (overrides, the ledger) are never copied back, and the
           # states list is worked out again on the newest copy. Red on failure. KPC_SAVE_MODE=rebase = the old way (still loud).
-          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_TRIES=6 \
+          # Nov 11 (KPC owner): after the copy-back, on every try, the outline files are put together with the newest main's copies
+          # (HEAD here = the main just fetched), so a copy-back never saves an outline file older than main's.
+          # The two commands are joined with && and KPC_SAVE_REDO_STOP=yes: if either fails, the save stops and nothing is pushed.
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_TRIES=6 KPC_SAVE_REDO_STOP=yes \
             KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt" \
-            bash .github/scripts/kpc_save_overwrite.sh --copy 'US answer key' 'python3 /tmp/done-states.py' -- data/us-key data/status data/outlines
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'US answer key' 'python3 /tmp/done-states.py && python3 .github/scripts/kpc_outlines_keep_main.py --ref HEAD' -- data/us-key data/status data/outlines
           if [ -s /tmp/botc-line.txt ]; then
             saved=0; for i in 1 2 3 4 5; do
               git fetch -q origin main && git reset -q --hard origin/main

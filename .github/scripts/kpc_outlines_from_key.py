@@ -48,6 +48,7 @@ def build_state(st, cache, only=None, dry=False, root=None):
         ids = [str(x[0]) for x in q.get('m') or [] if isinstance(x, list) and x]
         ids = [i for i in ids if M.prefix_of(i) != 'trl']   # a trail line is drawn by the trails layer, not as an outline
         if not ids: continue
+        if q.get('g') == 'pin': continue   # KPC owner, 2026-11-11: a park the key grades pin never gets an outline
         miss = [i for i in ids if i not in recs]
         if miss: skipped.append((ref, f'{len(miss)} of {len(ids)} joined records not in the saved copy')); continue
         shapes = [s for s in (rec_shape(recs[i]) for i in ids) if s is not None]
