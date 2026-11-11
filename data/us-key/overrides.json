@@ -5565,6 +5565,16 @@
    "why": "2026-11-02 13:05: layers row YES 'Neeper CA' (chat 11; applied by kpc_key_answers)"
   },
   "US-10709": {
+   "decided_by": "KPC owner, Nov 9 2026",
+   "no": [
+    "fwsr35"
+   ],
+   "nofp": {
+    "fwsr35": [
+     "Klickitat, Washington National Wild and Scenic River",
+     4815
+    ]
+   },
    "none": true,
    "when": "2026-10-22",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
@@ -12552,6 +12562,16 @@
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Snake River' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Snake River' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Snake River' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
   "US-12234": {
+   "decided_by": "KPC owner, Nov 9 2026",
+   "no": [
+    "fwsr1"
+   ],
+   "nofp": {
+    "fwsr1": [
+     "Allegheny, Pennsylvania National Wild and Scenic River",
+     35107
+    ]
+   },
    "none": true,
    "when": "2026-10-22",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
@@ -15099,6 +15119,16 @@
    "why": "2026-11-02 12:49: aliases-oct31 row YES 'East Branch Tahquamenon River' (chat 11 (Oct 31); applied by kpc_key_answers)"
   },
   "US-12792": {
+   "decided_by": "KPC owner, Nov 9 2026",
+   "no": [
+    "fwsr44"
+   ],
+   "nofp": {
+    "fwsr44": [
+     "Manistee, Michigan National Wild and Scenic River",
+     8919
+    ]
+   },
    "none": true,
    "when": "2026-10-22",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
@@ -15151,6 +15181,21 @@
    "decided_by": "Brandon t927u"
   },
   "US-12798": {
+   "decided_by": "KPC owner, Nov 9 2026",
+   "no": [
+    "fwsr163",
+    "fwsr61"
+   ],
+   "nofp": {
+    "fwsr163": [
+     "Sturgeon, Michigan (Hiawatha NF) National Wild and Scenic River",
+     4860
+    ],
+    "fwsr61": [
+     "Sturgeon, Michigan (Hiawatha NF) National Wild and Scenic River",
+     3532
+    ]
+   },
    "none": true,
    "when": "2026-10-22",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
@@ -54188,6 +54233,21 @@
    "why": "2026-10-29 23:15: gis-hunter row NO 'Pisgah National Forest - Pisgah Ranger D' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
   "US-8015": {
+   "decided_by": "KPC owner, Nov 9 2026",
+   "no": [
+    "fwsr175",
+    "fwsr86"
+   ],
+   "nofp": {
+    "fwsr175": [
+     "Wildcat, New Hampshire National Wild and Scenic River",
+     1351
+    ],
+    "fwsr86": [
+     "Wildcat, New Hampshire National Wild and Scenic River",
+     13
+    ]
+   },
    "none": true,
    "when": "2026-10-22",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"

@@ -18,6 +18,7 @@ import kpc_host_pace  # noqa: E402
 import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind per park, 'bk')
 import kpc_source_fields as SF  # noqa: E402  (Nov 6: the one source-field table)
 import kpc_tracts as TR  # noqa: E402  (Nov 6: tract records + parks inside parks, side file)
+import kpc_master as KMASTER  # noqa: E402  (the one complete-read helper; not a rule file)
 kpc_host_pace.install()
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; same scheme as kpc_us_key.py). Every live run has fetched CPCAD and
 # the provincial layers at 0.02 degrees (~2.2 km) - coarser than many parks. GEO_CACHE_MODE: off (default, exactly as
@@ -69,30 +70,86 @@ def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25')
 
 
 # Nov 9 (Brandon t939u, 6:20 PM CST: "4 saved copies"): no live read from a host whose robots.txt answers 403; its layers come from the
-# saved copy (the 'a layer that did not answer keeps its saved records' path). Remove a host only when its robots.txt allows us again.
-SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or 'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
-# Nov 10: every services*.arcgis.com host (services2 ... services9 too, e.g. the Parks Canada layer) is never contacted, robots.txt
-# included (the same rule as kpc_master.live_ok): its layers come from the saved copy only.
-NEVER_HOSTS = {'ncnhde.natureserve.org'}   # Nov 10 (standing rule): no request of any kind; Grant County NM's org is a services.arcgis.com path, covered above
-_ARCGIS_SERVICES = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
+# saved copy (the 'a layer that did not answer keeps its saved records' path). Remove a host (kpc_master) only when its robots.txt allows us again.
+# One set of host rules (owner rule, 2026-11-10): kpc_master.live_ok over kpc_net_guard. Its saved-copy list starts as
+# services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov; KPC_SAVED_ONLY_HOSTS only adds hosts. No copy of the rules here.
+SAVED_ONLY_HOSTS = None   # the list is kpc_master.SAVED_ONLY_HOSTS
+NEVER_HOSTS = ()          # the never-contact hosts are kpc_net_guard's (services*.arcgis.com included, robots.txt too)
+
+
+def _shared(name='kpc_master'):
+    """A shared helper module. A test that runs only this part of the file finds it from the repo root."""
+    import importlib, os as _os, sys as _sys
+    try: return importlib.import_module(name)
+    except ImportError:
+        _sys.path.insert(0, _os.path.join(_os.getcwd(), '.github', 'scripts')); return importlib.import_module(name)
 
 
 def saved_only(url):
-    h = urllib.parse.urlparse(str(url)).netloc.lower().split(':')[0]
-    return h in SAVED_ONLY_HOSTS or bool(_ARCGIS_SERVICES.match(h)) or h in NEVER_HOSTS   # Nov 10: a never-contact host is never read live either
+    """True when the host rules (kpc_master.live_ok) forbid a live read of url: its layers come from the saved copy."""
+    return not _shared().live_ok(url)[0]
 
 
-def get(url, params, tries=5):
+# Owner rule, 2026-11-10: one rule for all three keys. Every live read goes through checked_open: the host rules (kpc_master.live_ok;
+# a saved-only / never-contact host gets no request at all, robots.txt included), then robots.txt (kpc_master.robots_allows: 401 / 403
+# / 5xx = no, 404 / 410 = no file, allowed), paced per host, for the first address AND every redirect hop.
+HOP_HANDLERS = ()   # extra urllib handlers (tests put a stand-in server here)
+ROBOTS = {}         # robots.txt answer per host
+_HUB_LAST = {}
+
+
+def _pace(u):
+    h = kpc_host_pace.host_of(u)
+    kpc_host_pace.wait(h)
+    if _shared().HUB_RE.search(h.split(':')[0]):   # a hub portal also keeps its 60 s crawl delay
+        w = _HUB_LAST.get(h, -1e9) + _shared().HUB_DELAY - time.monotonic()
+        if w > 0: time.sleep(w)
+        _HUB_LAST[h] = time.monotonic()
+
+
+def _host_hop(u):   # a robots.txt fetch that redirects: host rules + pace
+    ok, why = _shared().live_ok(u)
+    if not ok: raise _shared().LiveNotAllowed(f'redirect refused: {why}')
+    _pace(u)
+
+
+def _robots_get(ru):
+    _host_hop(ru)
+    try:
+        with _shared().checked_opener(_host_hop, HOP_HANDLERS).open(urllib.request.Request(ru, headers={'User-Agent': _shared().UA}), timeout=60) as r:
+            return getattr(r, 'status', 200), r.read().decode('utf-8', 'replace')
+    except urllib.error.HTTPError as e: return e.code, ''
+
+
+def _live_check(u, hop=False):
+    ok, why = _shared().live_ok(u)
+    pre = 'redirect refused: ' if hop else ''
+    if not ok: raise _shared().LiveNotAllowed(pre + why)
+    if not _shared().robots_allows(u, _robots_get, ROBOTS):
+        raise _shared().LiveNotAllowed(f'{pre}{urllib.parse.urlsplit(u).netloc}: robots.txt does not allow this read')
+    _pace(u)
+
+
+def checked_open(req, timeout):
+    """The ONLY way this script reads the network: host rules, robots.txt and the per-host pace for the first address and every hop."""
+    _live_check(getattr(req, 'full_url', None) or str(req))
+    return _shared().checked_opener(lambda u: _live_check(u, hop=True), HOP_HANDLERS).open(req, timeout=timeout)
+
+
+def get(url, params, tries=5, post=False):
     if saved_only(url): raise RuntimeError(f'saved copy only (owner rule, Nov 9): {urllib.parse.urlparse(url).netloc}')
     last = None
     for i in range(tries):
         try:
-            req = urllib.request.Request(url + '?' + urllib.parse.urlencode(params), headers={'User-Agent': UA})
-            with urllib.request.urlopen(req, timeout=180) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
+            body = urllib.parse.urlencode(params)   # a long request (an objectIds batch) goes as a POST
+            req = urllib.request.Request(url, data=body.encode(), headers={'User-Agent': UA}) if post else urllib.request.Request(url + '?' + body, headers={'User-Agent': UA})
+            with checked_open(req, timeout=180) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
             if isinstance(j, dict) and j.get('error'): raise RuntimeError(str(j['error'])[:200])
             return j
         except Exception as e:  # noqa: BLE001
-            last = e; time.sleep(8 * (i + 1))
+            last = e
+            if isinstance(e, _shared().LiveNotAllowed): break   # host rules / robots.txt said no: asking again changes nothing
+            time.sleep(8 * (i + 1))
     raise last
 
 
@@ -211,6 +268,15 @@ def rec_oid(a, li):
     oidf = li.get('objectIdField') or 'OBJECTID'
     oida = {oidf.lower(), 'objectid', 'fid'} | {str(f.get('alias') or '').lower() for f in li.get('fields', []) if f.get('name') == oidf}
     return a.get(oidf) if a.get(oidf) is not None else next((v for k, v in a.items() if k.lower() in oida and v is not None), None)
+
+
+def arc_read(lu, li, label, out_fields='*', where='1=1', extra=None):
+    """Owner rule, 2026-11-10: EVERY record of one layer or an error, never a partial layer (kpc_master.read_complete: count,
+    ids-only, records by id, else offset paging by the rows really sent). li = the layer's own ?f=json answer."""
+    fs, _how = KMASTER.read_complete(f'{lu}/query', where, None, lambda u, q, post=False: get(u, q, tries=3, post=post), out_fields,
+                                     page_hint=1000, oid_field=li.get('objectIdField') or 'OBJECTID', max_record_count=int(li.get('maxRecordCount') or 1000),
+                                     extra=extra, label=label, oid_of=lambda f: rec_oid(f.get('attributes') or {}, li))
+    return fs
 # area_ha: the agency's own area when the record has one, so acres do not come from the 0.02 degree (about 2 km) saved shape
 #   (Brookvale 1,339 vs 2,628 ac; Burnt Cape 485 vs 897). Only fields whose unit is certain; DFRP land_area is hectares.
 # Nov 3 addendum (CA-2359, Quality spot-check): 'ha_legal' = MELCCFP Aires protégées 'Superficie (ha)' (legal hectares).
@@ -236,6 +302,7 @@ def area_ha(a, url=''):
 
 
 recs = cload() if CMODE in ('use', 'only') else None
+CA_READ_FAILED = False   # owner rule, 2026-11-10: a source failed this run = no saved copy is written (like the world key)
 if recs is None and CMODE == 'only':
     notice('Canada key', 'no saved outlines yet; nothing done (saved-copy-only run)'); raise SystemExit(0)
 # Nov 2 (chat 2, Canada G-4 recheck of CA-f3d48d30899): the saved copy had NO records of 'Québec Réser' (MRNF réserves fauniques,
@@ -258,22 +325,18 @@ if recs is not None and CMODE == 'use':
                 if 'Polygon' not in str(_li.get('geometryType', '')): continue
                 _fl = [f['name'] for f in _li.get('fields', [])]
                 _nfs = name_fields(_fl)
-                _ids = sorted(get(f'{_u}/query', {'where': '1=1', 'returnIdsOnly': 'true', 'f': 'json'}, tries=3).get('objectIds') or [])[:6000]
-                _n0 = _got
-                for _o in range(0, len(_ids), 100):
-                    _j = get(f'{_u}/query', {'objectIds': ','.join(str(x) for x in _ids[_o:_o + 100]), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
-                                            'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC, 'f': 'json'}, tries=3)
-                    for _f in _j.get('features', []):
-                        _a = _f.get('attributes') or {}; _g = _f.get('geometry') or {}
-                        _nk = _nfs or name_fields(list(_a))
-                        _nm = next((str(_a[n]) for n in _nk if _a.get(n)), '')
-                        if not _nm: continue
-                        # Nov 2 evening: was 'no OBJECTID -> skip', which dropped all 21 Québec réserves fauniques (QC 440 -> 427)
-                        _ov = rec_oid(_a, _li)
-                        _lab = f'{_p} (live top-up)'
-                        _r = {'oid': f'{_p}:' + (str(_ov) if _ov is not None else 'n-' + _nm[:60]), 'n': _nm, 'nf': '', 'ty': _lab, 'ow': '', 'mg': '', 'ha': rec_ha(_a, _li, _u), '_g': _g, '_bb': bbox(_g), 'src': _lab}
-                        _r['_k'] = kinds(_nm) | ({'wma'} if re.search(r'faun|wildlife', _nm + _p, re.I) else set()); recs.append(_r); _got += 1
-                    time.sleep(.4)
+                _n0, _new = _got, []   # the layer's records join the copy only once the whole layer is read
+                for _f in arc_read(_u, _li, _p, extra={'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC}):
+                    _a = _f.get('attributes') or {}; _g = _f.get('geometry') or {}
+                    _nk = _nfs or name_fields(list(_a))
+                    _nm = next((str(_a[n]) for n in _nk if _a.get(n)), '')
+                    if not _nm: continue
+                    # Nov 2 evening: was 'no OBJECTID -> skip', which dropped all 21 Québec réserves fauniques (QC 440 -> 427)
+                    _ov = rec_oid(_a, _li)
+                    _lab = f'{_p} (live top-up)'
+                    _r = {'oid': f'{_p}:' + (str(_ov) if _ov is not None else 'n-' + _nm[:60]), 'n': _nm, 'nf': '', 'ty': _lab, 'ow': '', 'mg': '', 'ha': rec_ha(_a, _li, _u), '_g': _g, '_bb': bbox(_g), 'src': _lab}
+                    _r['_k'] = kinds(_nm) | ({'wma'} if re.search(r'faun|wildlife', _nm + _p, re.I) else set()); _new.append(_r)
+                recs += _new; _got += len(_new)
                 _msg.append(f'{_p}: {_got - _n0}')
             except Exception as _e: _msg.append(f'{_p} FAILED: {str(_e)[:80]}')  # noqa: BLE001
         if _miss: notice('Canada saved outlines', f'{len(_miss)} layers had no record in the saved copy; read live: ' + ' | '.join(_msg))
@@ -298,22 +361,19 @@ if recs is None:
     notice('CPCAD layer', f'layer {lid}, fields {F}')
     mx = int(info.get('maxRecordCount') or 1000)
     mx = min(mx, 1000 if DETAIL >= 0.02 else 250)     # finer outlines = heavier pages: ask for fewer at a time
-    recs, off = [], 0
-    while True:
-        j = get(f'{SVC}/{lid}/query', {'where': '1=1', 'outFields': ','.join(v for v in F.values() if v), 'returnGeometry': 'true', 'outSR': 4326,
-                                       'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000),
-                                       'orderByFields': F['oid']})
-        fs = j.get('features', [])
-        for f in fs:
-            a = f.get('attributes') or {}; g = f.get('geometry') or {}
-            r = {'oid': a.get(F['oid']), 'n': a.get(F['name']) or '', 'nf': a.get(F['namef']) or '', 'ty': a.get(F['type']) or '', 'ow': a.get(F['owner']) or '',
-                 'mg': a.get(F['mgr']) or '', 'ha': a.get(F['area']) or 0, '_g': g, '_bb': bbox(g),
-                 **({'SA': {k: a.get(F[q]) for q, k in (('zone', 'ZONE_ID'), ('parent', 'PARENT_ID'), ('owt', 'OWNER_TYPE'), ('owner', 'OWNER_E'), ('area', 'O_AREA_HA'))
-                            if F.get(q) and a.get(F[q]) not in (None, '')}} if F.get('zone') or F.get('parent') else {})}
-            r['_k'] = kinds(r['n']) | kinds(r['nf']) | kinds(r['ty'])
-            recs.append(r)
-        if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
-        off += len(fs); time.sleep(.5)
+    # Owner rule, 2026-11-10: the whole of CPCAD or nothing (a short read keeps the old files)
+    try: fs = arc_read(f'{SVC}/{lid}', dict(info, maxRecordCount=min(mx, 1000)), 'CPCAD', ','.join(v for v in F.values() if v),
+                       extra={'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC})
+    except Exception as e: raise SystemExit(f'CPCAD not read whole ({e}); keeping the old files.')  # noqa: BLE001
+    recs = []
+    for f in fs:
+        a = f.get('attributes') or {}; g = f.get('geometry') or {}
+        r = {'oid': a.get(F['oid']), 'n': a.get(F['name']) or '', 'nf': a.get(F['namef']) or '', 'ty': a.get(F['type']) or '', 'ow': a.get(F['owner']) or '',
+             'mg': a.get(F['mgr']) or '', 'ha': a.get(F['area']) or 0, '_g': g, '_bb': bbox(g),
+             **({'SA': {k: a.get(F[q]) for q, k in (('zone', 'ZONE_ID'), ('parent', 'PARENT_ID'), ('owt', 'OWNER_TYPE'), ('owner', 'OWNER_E'), ('area', 'O_AREA_HA'))
+                        if F.get(q) and a.get(F[q]) not in (None, '')}} if F.get('zone') or F.get('parent') else {})}
+        r['_k'] = kinds(r['n']) | kinds(r['nf']) | kinds(r['ty'])
+        recs.append(r)
     notice('CPCAD read', f'{len(recs)} areas')
     if len(recs) < 3000: raise SystemExit('Too few CPCAD areas read; keeping the old files.')
 
@@ -354,43 +414,31 @@ if recs is None:
             LAYERS.setdefault(pid, []).append(lu)
             fl = [f['name'] for f in li.get('fields', [])]
             names = name_fields(fl, nf)
-            oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
+            oidf = li.get('objectIdField') or 'OBJECTID'
             # Nov 6: the layer's stable id / acres / owner / parent (kpc_source_fields, the one table or AUTO from this field list)
             _sfm = SF.mapping(lu, label, fl); CA_SFMAP[pid] = _sfm
-            _sfx = [f for f in SF.extra_fields(_sfm) if f in fl and f not in names and f != oidf and f not in area_fields(li)]
             # Oct 25 (round 5 hand checks): Québec's MRNF MapServer answers objectIds queries with the field ALIASES as keys,
             # so a.get('OBJECTID') was None and every ZEC / réserve / parc got the id 'None' (one shared, wrong shape)
             oida = {oidf.lower(), 'objectid', 'fid'} | {str(f.get('alias') or '').lower() for f in li.get('fields', []) if f.get('name') == oidf}
             oidv = lambda a: a.get(oidf) if a.get(oidf) is not None else next((v for k, v in a.items() if k.lower() in oida and v is not None), None)
-            ids = None   # Oct 20: Québec's MRNF MapServer answers 400 to paged queries (no pagination): fall back to asking by object ids
-            while True:
-                try:
-                    if ids is None:
-                        j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names + [f for f in area_fields(li) if f not in names] + _sfx), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
-                                                'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
-                    else:
-                        if off >= len(ids): break
-                        j = get(f'{lu}/query', {'objectIds': ','.join(str(x) for x in ids[off:off + 100]), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC, 'f': 'json'}, tries=3)
-                except Exception as e:
-                    if ids is None and off == 0:
-                        try: ids = sorted(get(f'{lu}/query', {'where': '1=1', 'returnIdsOnly': 'true', 'f': 'json'}, tries=3).get('objectIds') or []); print(f'{label}: paging by {len(ids)} ids', flush=True); continue
-                        except Exception as e2: e = e2  # noqa: BLE001
-                    print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); ERRLAB.add(label); break  # noqa: BLE001
-                fs = j.get('features', [])
-                if ids is not None and fs and not any((f.get('attributes') or {}).get(n) for f in fs[:5] for n in names):
-                    at = fs[0].get('attributes') or {}; names = name_fields(list(at)) or names
-                for f in fs:
-                    a = f.get('attributes') or {}; g = f.get('geometry') or {}
-                    nm = next((str(a[n]) for n in names if a.get(n)), '')
-                    if not nm: continue
-                    r = {'oid': f'{pid}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': rec_ha(a, li, lu), '_g': g, '_bb': bbox(g), 'src': label}
-                    _sa = {f: a.get(f) for f in SF.extra_fields(_sfm) if a.get(f) not in (None, '', ' ')}
-                    if _sa: r['SA'] = _sa
-                    r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
-                    got.append(r)
-                if ids is not None: off += 100; time.sleep(.4); continue
-                if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
-                off += len(fs); time.sleep(.4)
+            # Owner rule, 2026-11-10: the whole layer or none of it (read_complete; a server that will not page is read by id).
+            # A layer that fails keeps nothing from this read: its label falls back to the saved copy (ERRLAB).
+            try: fs = arc_read(lu, li, label, '*', extra={'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': 3})
+            except Exception as e:  # noqa: BLE001
+                print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); ERRLAB.add(label); continue
+            if fs and not any((f.get('attributes') or {}).get(n) for f in fs[:5] for n in names):
+                at = fs[0].get('attributes') or {}; names = name_fields(list(at)) or names
+            part = []
+            for f in fs:
+                a = f.get('attributes') or {}; g = f.get('geometry') or {}
+                nm = next((str(a[n]) for n in names if a.get(n)), '')
+                if not nm: continue
+                r = {'oid': f'{pid}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': rec_ha(a, li, lu), '_g': g, '_bb': bbox(g), 'src': label}
+                _sa = {f: a.get(f) for f in SF.extra_fields(_sfm) if a.get(f) not in (None, '', ' ')}
+                if _sa: r['SA'] = _sa
+                r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
+                part.append(r)
+            got += part
         return got
 
 
@@ -446,7 +494,7 @@ if recs is None:
     def gj_pull(label, url, nf):
         # a plain GeoJSON download (Québec's culture ministry publishes its heritage-site outlines this way)
         if saved_only(url): raise RuntimeError(f'saved copy only: {urllib.parse.urlparse(url).netloc}')
-        with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=240) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
+        with checked_open(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=240) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
         got = []
         for i, f in enumerate(j.get('features') or []):
             P = f.get('properties') or {}; nm = str(P.get(nf) or '').strip(); geo = f.get('geometry') or {}
@@ -464,7 +512,7 @@ if recs is None:
         from pyproj import Transformer
         if saved_only(url): raise RuntimeError(f'saved copy only: {urllib.parse.urlparse(url).netloc}')
         tr = Transformer.from_crs(int(epsg), 4326, always_xy=True)
-        with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=240) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
+        with checked_open(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=240) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
         got = []
         for sp in [q for q in z.namelist() if q.lower().endswith('.shp')]:
             b = sp[:-4]
@@ -500,22 +548,24 @@ if recs is None:
     except Exception as ex: notice('Canada key layers', ex)  # noqa: BLE001
     # Oct 22: a provincial map that did not answer must not cost Canada its parks: use the last saved copy instead,
     # and never save a half-read copy over a good one
-    old = cload() if (_ERR or any('FAILED' in x for x in _mores)) else None
+    CA_READ_FAILED = bool(_ERR or any('FAILED' in x for x in _mores))
+    old = cload() if CA_READ_FAILED else None
     if old is not None and len(recs) < .97 * len(old):   # only when the read came back SHORT (Québec fails most runs)
         notice('Canada key', f'a map did not answer ({len(recs)} areas read, {len(old)} saved), so the saved copy was used (nothing dropped)'); recs = old
     else:
-        # Oct 29 (15 Québec regional parks lost their outline when 'Parc régional (MRNF)' answered 400): a layer whose query
-        # failed this run and brought back NOTHING keeps its records from the saved copy (ids moved to the layer's own prefix)
+        # Oct 29 (15 Québec regional parks lost their outline when 'Parc régional (MRNF)' answered 400): a source whose query
+        # failed this run takes ALL its records from the saved copy (owner rule, 2026-11-10: never part live, part missing)
         topped = 0
         have = {r.get('src') for r in recs}
-        _sv = (old if old is not None else cload()) if ERRLAB - have else []
+        _sv = (old if old is not None else cload()) if ERRLAB else []
         for lab in sorted(ERRLAB):
-            if lab in have: continue
             pids = [v for (l2, _u), v in _PID.items() if l2 == lab]
-            if len(pids) != 1: continue
             saved = [dict(r) for r in (_sv or []) if r.get('src') == lab]
+            if not saved: continue
+            recs = [r for r in recs if r.get('src') != lab]
             for r in saved:
-                r['oid'] = pids[0] + ':' + str(r.get('oid', '')).split(':', 1)[-1]; recs.append(r); topped += 1
+                if len(pids) == 1: r['oid'] = pids[0] + ':' + str(r.get('oid', '')).split(':', 1)[-1]
+                recs.append(r); topped += 1
         if topped: notice('Canada key', f'{topped} areas of layers that did not answer this run were taken from the saved copy ({", ".join(sorted(ERRLAB))[:200]})')
         # Nov 3 step 3 (Quality drops-27: the 13 Québec réserves fauniques are still pins in CA-41635613151; the MRNF layer answers
         # today, so the read failed in the run): a refresh run has no saved copy on disk, so a layer that did not answer simply
@@ -530,7 +580,7 @@ if recs is None:
                 _was += [r for r, q in _pk.items() if any(str(x[0]).split(':', 1)[0] in _pre for x in q.get('m') or [])]
             notice('Canada key', f"{len(_lost)} layers did not answer and there is no saved copy in this mode ({CMODE}): " + ' | '.join(_lost)[:300]
                    + (f"; parks joined to them in the last key, now likely pins until the next good read: {', '.join(sorted(_was)[:30])}" if _was else ''))
-        if CMODE in ('use', 'refresh') and not topped: csave(recs)
+        if CMODE in ('use', 'refresh') and not topped and not CA_READ_FAILED: csave(recs)
 # Oct 26 (gap hunt, HQ): POTA's 'New Brunswick #24 Wildlife Management Area' parks are New Brunswick's numbered WILDLIFE
 # MANAGEMENT ZONES (OpenData/WMZ, one number field, 27 zones). A probe found 23 of the 25 pins inside the zone of their own
 # number. No zone carries a name, so each gets the POTA-style name from its number and joins by name like any other area.
@@ -549,7 +599,7 @@ if CMODE != 'only' and not any(str(r.get('oid', '')).startswith('NB WMZ:') for r
                          'mg': 'New Brunswick Department of Natural Resources and Energy Development', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': 'NB WMZ', '_k': {'wma'}})
             _z += 1
         notice('Canada NB zones', f'{_z} New Brunswick wildlife management zones added')
-        if _z and CMODE in ('use', 'refresh'): csave(recs)
+        if _z and CMODE in ('use', 'refresh') and not CA_READ_FAILED: csave(recs)
         try:
             _L = json.load(open(OUT / 'layers.json')); _L['NB WMZ'] = [NBWMZ]; save_json(OUT / 'layers.json', _L, indent=1)
         except Exception as ex: notice('Canada key layers', ex)  # noqa: BLE001
@@ -590,7 +640,7 @@ if CA_HAND and pathlib.Path(CA_HAND).is_dir():
             _L = json.load(open(OUT / 'layers.json'))
             if _pid not in _L and _hm.get('url'): _L[_pid] = [_hm['url']]; save_json(OUT / 'layers.json', _L, indent=1)
         except Exception as ex: notice('Canada key layers', ex)  # noqa: BLE001
-    if _hch and CMODE in ('use', 'refresh'): csave(recs)
+    if _hch and CMODE in ('use', 'refresh') and not CA_READ_FAILED: csave(recs)
 PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re.I)
 
 

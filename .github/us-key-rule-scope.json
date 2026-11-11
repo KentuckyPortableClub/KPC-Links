@@ -47,6 +47,14 @@
    "scope": "all",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-10",
    "restamped": "2026-11-10: the layer count and the layer read now follow redirects only through the master step's checked opener (every hop: saved-copy-only and never-contact hosts, the host rule, then robots.txt); same scope. APPROVED, decided_by KPC owner, 2026-11-10. Re-stamped again 2026-11-10: every live read of the US key (PAD-US get and fields, resolve, zip_state, the layer count and read) goes through that checked opener, and the first address, each hop and each hop's robots.txt are paced 2 s per host (kpc_host_pace); same scope. APPROVED, decided_by KPC owner, 2026-11-10"
+  },
+  {
+    "id": "2026-11-10-review-fixes",
+    "when": "2026-11-10",
+    "from": "2c7f4be3dc36",
+    "why": "Review fixes to the readers. Every layer read is whole or it fails: the read asks the layer's own count and record ids with the same where and box, reads by id, and never keeps a partial layer (the window paging assumed the server's window size and could stop short). PAD-US has the same count check and the same per-layer time limit. One Vermont layer was listed twice and read twice; a layer listed under two prefixes is read once. A park left with no record is graded pin, not official. Host rules come from the one shared guard. Any state layer or PAD-US read could have been cut, so the scope is all.",
+    "scope": "all",
+    "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
   }
  ]
 }
