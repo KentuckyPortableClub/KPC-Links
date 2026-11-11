@@ -606,7 +606,8 @@
     for (let hz = 300; hz <= 2700 - bw; hz += 5) { if (spotTaken(hz + bw / 2)) continue; const r = avgAt(hz, hz + bw), v = r.avg + r.pk * 0.5; if (v < bestV) { bestV = v; best = hz; } }
     if (best == null) return null;
     const hz = Math.round(best + bw / 2); S.txHz = hz; saveS(); hzBoxes(); drawScale();
-    note('🎯 ' + (quiet ? 'Your spot was busy, so your' : 'Your') + ' transmit frequency is now ' + hz + ' Hz, the quietest gap.', 3500); return hz;
+    /* Nov 11: the by-itself move never talks over a note that is still showing (a refusal, the decoder hint): the gold TX mark shows the move */
+    if (!quiet || $('f8Note').hidden) note('🎯 ' + (quiet ? 'Your spot was busy, so your' : 'Your') + ' transmit frequency is now ' + hz + ' Hz, the quietest gap.', 3500); return hz;
   }
   function autoSpotTick() { if (!S.autoClear || TXING || !RUN || !avgV || !isFT() || (QS.dx && QS.state && QS.state !== 'done' && QS.state !== 'idle')) return null; if (spotTaken(S.txHz) || spotLoud(S.txHz)) return clearSpot(true); return null; }
   ['f8Band1', 'f8Rx'].forEach(i => $(i).addEventListener('click', e => { const r = e.target.closest('[data-l]'); if (r) pick(byId[r.dataset.l]); }));
