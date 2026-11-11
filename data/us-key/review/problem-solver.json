@@ -2,8 +2,7 @@
  "about": "recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)",
  "counts": {
   "pin wrong": 86,
-  "needs a person": 74,
-  "land wrong": 1,
+  "needs a person": 70,
   "wrong state": 1,
   "sliver": 2
  },
@@ -738,65 +737,6 @@
    ]
   },
   {
-   "park": "US-6327",
-   "name": "Tenoroc Wildlife Area",
-   "type": "Wildlife Area",
-   "state": "US-FL",
-   "verdict": "land wrong",
-   "confidence": "high",
-   "recommend": "join 191721 (Tenoroc Fish Management Area) and drop the held sgflf10761, sgflf8115, sgflf5903, sgflf5998, sgflf5999",
-   "reasons": [
-    "the POTA pin is inside 191721 (Tenoroc Fish Management Area, ~7,528 ac)",
-    "the held sgflf10761 (Tenoroc State Reserve) is 100.5 km away (key): a different piece of land",
-    "the held sgflf8115 (Tenoroc Fish Management Area) is 100.5 km away (key): a different piece of land",
-    "the held sgflf5903 (Tenoroc Fish Management Area) is 100.5 km away (key): a different piece of land",
-    "the held sgflf5998 (Tenoroc Fish Management Area) is 100.5 km away (key): a different piece of land",
-    "the held sgflf5999 (Tenoroc Fish Management Area) is 100.5 km away (key): a different piece of land"
-   ],
-   "records": [
-    {
-     "id": "sgflf10761",
-     "name": "Tenoroc State Reserve",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
-    },
-    {
-     "id": "sgflf8115",
-     "name": "Tenoroc Fish Management Area",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
-    },
-    {
-     "id": "sgflf5903",
-     "name": "Tenoroc Fish Management Area",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
-    },
-    {
-     "id": "sgflf5998",
-     "name": "Tenoroc Fish Management Area",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
-    },
-    {
-     "id": "sgflf5999",
-     "name": "Tenoroc Fish Management Area",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
-    }
-   ]
-  },
-  {
    "park": "US-0367",
    "name": "Northern Tallgrass Prairie National Wildlife Refuge",
    "type": "National Wildlife Refuge",
@@ -910,28 +850,6 @@
      "measured_ac": 34.4,
      "claimed_ac": 38,
      "km": 2.01
-    }
-   ]
-  },
-  {
-   "park": "US-7843",
-   "name": "Pearson Mill State Recreation Area",
-   "type": "State Recreation Area",
-   "state": "US-IN",
-   "verdict": "needs a person",
-   "confidence": "low",
-   "recommend": "a person looks (nothing changed)",
-   "reasons": [
-    "no saved outline for ind4563 in this build, so its shape could not be checked (the saved outlines are from 2026-11-11; a layer added since is not in them)"
-   ],
-   "records": [
-    {
-     "id": "ind4563",
-     "name": "",
-     "points": null,
-     "measured_ac": null,
-     "claimed_ac": null,
-     "km": null
     }
    ]
   },
@@ -2527,21 +2445,6 @@
    ]
   },
   {
-   "park": "US-0491",
-   "name": "Tishomingo National Wildlife Refuge",
-   "type": "National Wildlife Refuge",
-   "state": "US-OK",
-   "verdict": "needs a person",
-   "confidence": "low",
-   "recommend": "fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)",
-   "reasons": [
-    "overrides.json joins sgmng979, but this key's row lists no record at all",
-    "sgmng979: layer sgmng (FWSBoundaries (wild, state GIS table)) is set up only for MN in data/state-gis.json, so the OK key never reads it (add the layer for OK, limited to the joined records)"
-   ],
-   "records": [],
-   "fault": "key setup"
-  },
-  {
    "park": "US-12027",
    "name": "Altus-Lugert State Fishing Lake",
    "type": "State Fishing Lake",
@@ -2711,21 +2614,6 @@
    "fault": "key setup"
   },
   {
-   "park": "US-10610",
-   "name": "South Santiam State Fish Hatchery",
-   "type": "State Fish Hatchery",
-   "state": "US-OR",
-   "verdict": "needs a person",
-   "confidence": "low",
-   "recommend": "fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)",
-   "reasons": [
-    "overrides.json joins sgide837, but this key's row lists no record at all",
-    "sgide837: layer sgide (Recreation Area (park, state GIS table)) is set up only for ID in data/state-gis.json, so the OR key never reads it (add the layer for OR, limited to the joined records)"
-   ],
-   "records": [],
-   "fault": "key setup"
-  },
-  {
    "park": "US-12841",
    "name": "Fawn Creek BLM Recreation Management Area",
    "type": "BLM Recreation Management Area",
@@ -2754,20 +2642,6 @@
      "km": 0.03
     }
    ]
-  },
-  {
-   "park": "US-12979",
-   "name": "Bonneville State Fish Hatchery",
-   "type": "State Fish Hatchery",
-   "state": "US-OR",
-   "verdict": "needs a person",
-   "confidence": "low",
-   "recommend": "a person looks (nothing changed)",
-   "reasons": [
-    "overrides.json joins sgide861, which this key's row no longer lists",
-    "osp123 (Bonneville) leaves out 'fish hatchery' of the park's name, so it is not proven the same land"
-   ],
-   "records": []
   },
   {
    "park": "US-4383",
@@ -3926,17 +3800,17 @@
   }
  ],
  "why_counts": {
-  "PERSON_NO": 328,
+  "PERSON_NO": 327,
   "LINEAR": 64,
-  "SUB_UNIT_OF_BROADER": 531,
-  "LAYER_GAP": 182,
-  "POINT_FEATURE": 213,
-  "NAME_ALIAS": 58,
+  "SUB_UNIT_OF_BROADER": 528,
+  "LAYER_GAP": 175,
+  "POINT_FEATURE": 211,
+  "NAME_ALIAS": 59,
   "PIN_FAR_SAME_NAME": 13,
   "BORDER": 32,
-  "HELD_CHECK": 9,
+  "HELD_CHECK": 8,
   "SHARED_RECORD": 3,
-  "UNKNOWN": 1
+  "UNKNOWN": 2
  },
  "why": [
   {
@@ -5316,14 +5190,6 @@
    "next_step": "a person verifies the held record: keep it with an overrides.json join row, or find a better record. The POTA pin is never moved."
   },
   {
-   "ref": "US-6327",
-   "state": "US-FL",
-   "name": "Tenoroc Wildlife Area",
-   "code": "HELD_CHECK",
-   "why": "the join check held this join: the nearest part of the joined outline is 100.5 km from the POTA pin (over 15 km)",
-   "next_step": "a person verifies the held record: keep it with an overrides.json join row, or find a better record. The POTA pin is never moved."
-  },
-  {
    "ref": "US-7374",
    "state": "US-FL",
    "name": "Wysong Park State Conservation Area",
@@ -6700,14 +6566,6 @@
    "next_step": "nothing to do unless new evidence appears; a person re-opens it with new evidence"
   },
   {
-   "ref": "US-4154",
-   "state": "US-IL",
-   "name": "West Okaw unit of Shelbyville State Fish and Wildlife Area",
-   "code": "PERSON_NO",
-   "why": "a person already said NO to sgild149 (Shelbyville) (overrides.json)",
-   "next_step": "nothing to do unless new evidence appears; a person re-opens it with new evidence"
-  },
-  {
    "ref": "US-7917",
    "state": "US-IL",
    "name": "Pullman National Historical Park",
@@ -6772,35 +6630,11 @@
    "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
-   "ref": "US-5681",
-   "state": "US-IN",
-   "name": "Little Turtle State Recreation Area",
-   "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside ind4078 (J. Edward Roush Fish and Wildlife Area), a bigger area with another name",
-   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
-  },
-  {
    "ref": "US-5683",
    "state": "US-IN",
    "name": "Kil-So-Quah State Recreation Area",
    "code": "SUB_UNIT_OF_BROADER",
    "why": "the pin is inside ind4078 (J. Edward Roush Fish and Wildlife Area), a bigger area with another name",
-   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
-  },
-  {
-   "ref": "US-5689",
-   "state": "US-IN",
-   "name": "Pine Grove State Recreation Area",
-   "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside ind4576 (Monroe Lake), a bigger area with another name",
-   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
-  },
-  {
-   "ref": "US-5690",
-   "state": "US-IN",
-   "name": "Crooked Creek State Recreation Area",
-   "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside ind4576 (Monroe Lake), a bigger area with another name",
    "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
@@ -6834,14 +6668,6 @@
    "code": "POINT_FEATURE",
    "why": "a single site (historic site, monument, hatchery, lighthouse or similar) with no polygon candidate",
    "next_step": "a person looks for an official point to draw the labelled point-circle; it is not shown as a boundary"
-  },
-  {
-   "ref": "US-7843",
-   "state": "US-IN",
-   "name": "Pearson Mill State Recreation Area",
-   "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside ind4563 (Mississinewa Lake), a bigger area with another name",
-   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
    "ref": "US-13456",
@@ -7728,120 +7554,120 @@
    "state": "US-MS",
    "name": "Lake Claude Bennett State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12194",
    "state": "US-MS",
    "name": "Lake Lamar Bruce State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12195",
    "state": "US-MS",
    "name": "Elvis Presley State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12196",
    "state": "US-MS",
    "name": "Tippah County State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12197",
    "state": "US-MS",
    "name": "Lake Monroe State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12198",
    "state": "US-MS",
    "name": "Neshoba County State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12199",
    "state": "US-MS",
    "name": "Lake Tom Bailey State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12200",
    "state": "US-MS",
    "name": "Simpson County State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12201",
    "state": "US-MS",
    "name": "Prentiss Walker State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12202",
    "state": "US-MS",
    "name": "Lake Bogue Homa State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12203",
    "state": "US-MS",
    "name": "Lake Mary Crawford State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12205",
    "state": "US-MS",
    "name": "Lake Mike Conner State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12206",
    "state": "US-MS",
    "name": "Lake Jeff Davis State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12207",
    "state": "US-MS",
    "name": "Lake Walthall State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12208",
    "state": "US-MS",
    "name": "Lake Perry State Fishing Lake",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-12638",
@@ -7864,8 +7690,8 @@
    "state": "US-MS",
    "name": "Riverfront Wildlife Management Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7097",
@@ -7880,8 +7706,8 @@
    "state": "US-MS",
    "name": "Graham Waterfowl Wildlife Management Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7104",
@@ -7920,8 +7746,8 @@
    "state": "US-MS",
    "name": "Tallahala Wildlife Management Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7116",
@@ -7944,48 +7770,48 @@
    "state": "US-MS",
    "name": "Caston Creek Wildlife Management Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7124",
    "state": "US-MS",
    "name": "Arkabutla Lake State Recreation Area",
-   "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "code": "SUB_UNIT_OF_BROADER",
+   "why": "the pin is inside sgide344 (BAYOU POINT), a bigger area with another name",
+   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
    "ref": "US-7125",
    "state": "US-MS",
    "name": "Enid Lake State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7126",
    "state": "US-MS",
    "name": "Grenada Lake State Recreation Area",
-   "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "code": "SUB_UNIT_OF_BROADER",
+   "why": "the pin is inside sgide1361 (CEDAR POINT), a bigger area with another name",
+   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
    "ref": "US-7128",
    "state": "US-MS",
    "name": "Sardis Lake State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7129",
    "state": "US-MS",
    "name": "Columbus Lake State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7130",
@@ -7999,25 +7825,25 @@
    "ref": "US-7131",
    "state": "US-MS",
    "name": "Bay Springs Lake State Recreation Area",
-   "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "code": "NAME_ALIAS",
+   "why": "sgide575 (WHITTEN LOCK and DAM/ BAY SPRINGS SITE OFFICE) looks like the same land under another name",
+   "next_step": "a person decides whether to approve an alias row (park name = record name); nothing is applied automatically"
   },
   {
    "ref": "US-7132",
    "state": "US-MS",
    "name": "Jamie Whitten Historical Center State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7133",
    "state": "US-MS",
    "name": "Amory Recreation Area State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7134",
@@ -8032,8 +7858,8 @@
    "state": "US-MS",
    "name": "Davis Lake State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-7630",
@@ -8080,64 +7906,64 @@
    "state": "US-MS",
    "name": "Archusa Creek State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-8514",
    "state": "US-MS",
    "name": "Big Creek State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-8515",
    "state": "US-MS",
    "name": "Dry Creek State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-8516",
    "state": "US-MS",
    "name": "Dunn's Falls State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-8517",
    "state": "US-MS",
    "name": "Flint Creek State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-8518",
    "state": "US-MS",
    "name": "Maynor Creek State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-8519",
    "state": "US-MS",
    "name": "Turkey Creek State Recreation Area",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-9849",
    "state": "US-MS",
    "name": "Deer Island Coastal Park",
    "code": "LAYER_GAP",
-   "why": "no record found, and no agency layer is listed for this state",
-   "next_step": "find an agency layer for the state (research list); the master step adds it"
+   "why": "no record found in the layers read so far (the state lists an agency layer)",
+   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-0054",
@@ -8631,9 +8457,9 @@
    "ref": "US-8540",
    "state": "US-ND",
    "name": "Fort Rice State Historic Site",
-   "code": "POINT_FEATURE",
-   "why": "a single site (historic site, monument, hatchery, lighthouse or similar) with no polygon candidate",
-   "next_step": "a person looks for an official point to draw the labelled point-circle; it is not shown as a boundary"
+   "code": "UNKNOWN",
+   "why": "same name, different kind of place",
+   "next_step": "a person looks (nothing changed)"
   },
   {
    "ref": "US-8541",
@@ -10532,14 +10358,6 @@
    "next_step": "nothing to do unless new evidence appears; a person re-opens it with new evidence"
   },
   {
-   "ref": "US-2001",
-   "state": "US-NY",
-   "name": "Adirondack State Park",
-   "code": "LAYER_GAP",
-   "why": "no record found in the layers read so far (the state lists an agency layer)",
-   "next_step": "a person checks the layer list for this park, or the park has no public outline"
-  },
-  {
    "ref": "US-2081",
    "state": "US-NY",
    "name": "Iona Island Wildlife Management Area",
@@ -10560,7 +10378,7 @@
    "state": "US-NY",
    "name": "Dannemora State Forest",
    "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside sgnya65405 (Chazy Highlands State Forest), a bigger area with another name",
+   "why": "the pin is inside sgnycNone (Adirondack Park), a bigger area with another name",
    "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
@@ -10586,14 +10404,6 @@
    "code": "PERSON_NO",
    "why": "a person already said NO to sgnyb540 (Sag Harbor) (overrides.json)",
    "next_step": "nothing to do unless new evidence appears; a person re-opens it with new evidence"
-  },
-  {
-   "ref": "US-8070",
-   "state": "US-NY",
-   "name": "Catskill State Park",
-   "code": "LAYER_GAP",
-   "why": "no record found in the layers read so far (the state lists an agency layer)",
-   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-8081",
@@ -10698,14 +10508,6 @@
    "code": "POINT_FEATURE",
    "why": "a single site (historic site, monument, hatchery, lighthouse or similar) with no polygon candidate",
    "next_step": "a person looks for an official point to draw the labelled point-circle; it is not shown as a boundary"
-  },
-  {
-   "ref": "US-0491",
-   "state": "US-OK",
-   "name": "Tishomingo National Wildlife Refuge",
-   "code": "LAYER_GAP",
-   "why": "no record found in the layers read so far (the state lists an agency layer)",
-   "next_step": "a person checks the layer list for this park, or the park has no public outline"
   },
   {
    "ref": "US-10658",
@@ -10975,9 +10777,9 @@
    "ref": "US-8639",
    "state": "US-OK",
    "name": "Birch State Fishing Lake",
-   "code": "LAYER_GAP",
-   "why": "no record found in the layers read so far (the state lists an agency layer)",
-   "next_step": "a person checks the layer list for this park, or the park has no public outline"
+   "code": "NAME_ALIAS",
+   "why": "sgide233 (BIRCH COVE) looks like the same land under another name",
+   "next_step": "a person decides whether to approve an alias row (park name = record name); nothing is applied automatically"
   },
   {
    "ref": "US-8641",
@@ -11188,14 +10990,6 @@
    "next_step": "nothing to do unless new evidence appears; a person re-opens it with new evidence"
   },
   {
-   "ref": "US-10610",
-   "state": "US-OR",
-   "name": "South Santiam State Fish Hatchery",
-   "code": "POINT_FEATURE",
-   "why": "a single site (historic site, monument, hatchery, lighthouse or similar) with no polygon candidate",
-   "next_step": "a person looks for an official point to draw the labelled point-circle; it is not shown as a boundary"
-  },
-  {
    "ref": "US-10612",
    "state": "US-OR",
    "name": "Wizard Falls State Fish Hatchery",
@@ -11306,14 +11100,6 @@
    "code": "PERSON_NO",
    "why": "a person already said NO to the record(s) found for this park (overrides.json)",
    "next_step": "nothing to do unless new evidence appears; a person re-opens it with new evidence"
-  },
-  {
-   "ref": "US-12979",
-   "state": "US-OR",
-   "name": "Bonneville State Fish Hatchery",
-   "code": "NAME_ALIAS",
-   "why": "241529 (Bonneville State Scenic Corridor) looks like the same land under another name",
-   "next_step": "a person decides whether to approve an alias row (park name = record name); nothing is applied automatically"
   },
   {
    "ref": "US-12980",
@@ -14561,14 +14347,6 @@
    "name": "Chief Joesph State Wildlife Area",
    "code": "SUB_UNIT_OF_BROADER",
    "why": "the pin is inside sgwab163 (Chief Joseph), a bigger area with another name",
-   "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
-  },
-  {
-   "ref": "US-8662",
-   "state": "US-WA",
-   "name": "Chestnut Beach National Recreation Area",
-   "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside 79782 (The Greenbelt), a bigger area with another name",
    "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {

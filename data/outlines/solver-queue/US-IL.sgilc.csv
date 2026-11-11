@@ -1,5 +1,10 @@
 ref,name,lat,lon,why,candidates
+US-0986,Chain-O-Lakes State Park,42.4597,-88.1854,a same-name outline is nearby but the pin is outside it,Chain O' Lakes State Park
 US-0987,Channahon State Park,41.4231,-88.2279,pin is inside an outline but no name agrees,Illinois and Michigan Canal State Trail
+US-1000,Illinois Beach State Park,42.4237,-87.8053,a same-name outline is nearby but the pin is outside it,Adeline Jay Geo-Karis Illinois Beach State Park; Illinois Beach State Park Nature Preserve Addition #2
+US-1004,Kankakee River State Park,41.203,-87.979,a same-name outline is nearby but the pin is outside it,Kankakee River State Park; Miscellaneous property - North of Kankakee River Dam
+US-1012,Moraine Hills State Park,42.3078,-88.2286,a same-name outline is nearby but the pin is outside it,Moraine Hills State Park
+US-10280,Barnes State Nature Preserve,40.9624,-87.5057,a same-name outline is nearby but the pin is outside it,Bill Barnes Nature Preserve
 US-1032,William G. Stratton State Park,41.355,-88.418,pin is inside an outline but no name agrees,Illinois and Michigan Canal State Trail
 US-10391,Kishwaukee River State Fish and Wildlife Area,42.0964,-88.8755,pin is inside an outline but no name agrees,Kishwaukee River State Natural Area
 US-10660,Illinois and Michigan Canal State Trail,41.3525,-88.8295,pin is inside an outline but no name agrees,Fox River Park
@@ -8,6 +13,8 @@ US-12184,Heidecke Lake State Fish and Wildlife Area,41.3644,-88.327,pin is insid
 US-12314,Kankakee National Wildlife Refuge,41.0082,-87.5421,pin is inside an outline but no name agrees,Kankakee National Wildlife Refuge and Conservation Area
 US-12368,Hooper Branch Savanna State Nature Preserve,41.0026,-87.5525,pin is inside an outline but no name agrees,Iroquois County State Fish and Wildlife Area
 US-12601,Hackmatack National Wildlife Refuge,42.4258,-88.3254,pin is inside an outline but no name agrees,Glacial Park Conservation Area
-US-13298,North Point Marina State Recreation Area,42.481,-87.806,pin is inside an outline but no name agrees,Adeline Jay Geo-Karis Illinois Beach State Park
-US-7256,Midewin National Grassland,41.3787,-88.1239,pin is inside an outline but no name agrees,Midewin National Tallgrass Prairie
+US-13298,North Point Marina State Recreation Area,42.481,-87.806,a same-name outline is nearby but the pin is outside it,North Point Marina State Recreation Area
+US-4120,Des Plaines State Fish and Wildlife Area,41.3724,-88.2122,a same-name outline is nearby but the pin is outside it,Des Plaines Game Propagation Center State Fish and Wildlife Area; Des Plaines State Fish and Wildlife Area
+US-4160,Volo Bog State Natural Area,42.3509,-88.1876,a same-name outline is nearby but the pin is outside it,Volo Bog State Natural Area
+US-4233,Willow Slough State Fish and Wildlife Area,40.9993,-87.4993,a same-name outline is nearby but the pin is outside it,Willow Slough State Fish and Wildlife Preserve
 US-7839,Santa Fe Prairie State Nature Preserve,41.7577,-87.858,a same-name outline is nearby but the pin is outside it,Santa Fe Prairie Nature Preserve

@@ -2086,12 +2086,12 @@
    "areas": [
     "US-FL"
    ],
-   "expected_count": 171,
+   "expected_count": 179,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 141,
+   "matched": 149,
    "name_fields": [
     "SITE_NAME"
    ],
@@ -2099,7 +2099,7 @@
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
-   "source_count": 171,
+   "source_count": 179,
    "url": ""
   },
   "US-FL.sgflb": {
@@ -2121,6 +2121,27 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 39,
+   "url": ""
+  },
+  "US-FL.sgfle": {
+   "agency": "St. Johns River Water Management District (land, state GIS table)",
+   "areas": [
+    "US-FL"
+   ],
+   "expected_count": 133,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 50,
+   "name_fields": [
+    "CONSERVATION_AREA"
+   ],
+   "queued": 16,
+   "read_date": "2026-11-11",
+   "read_how": "geojson",
+   "record_id_field": null,
+   "source_count": 133,
    "url": ""
   },
   "US-FL.sgflf": {
@@ -2149,7 +2170,7 @@
    "areas": [
     "US-FL"
    ],
-   "expected_count": 263,
+   "expected_count": 284,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -2162,7 +2183,7 @@
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
-   "source_count": 263,
+   "source_count": 284,
    "url": ""
   },
   "US-FL.sgide": {
@@ -2637,11 +2658,11 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 17,
+   "matched": 11,
    "name_fields": [
     "site_name"
    ],
-   "queued": 12,
+   "queued": 19,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
@@ -2704,7 +2725,7 @@
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
-   "queued": 12,
+   "queued": 13,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
@@ -2964,7 +2985,7 @@
    "url": ""
   },
   "US-ME.sgmec": {
-   "agency": "Maine Conserved Lands, Ecological Reserves (Bureau of Parks and Lands)",
+   "agency": "Maine Conserved Lands, Ecological Reserves (Bureau of Parks and Lands) (preserve, state GIS table)",
    "areas": [
     "US-ME"
    ],
@@ -3352,11 +3373,11 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 2,
+   "matched": 3,
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
-   "queued": 4,
+   "queued": 5,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
@@ -4561,7 +4582,7 @@
    "url": ""
   },
   "US-NY.sgnyc": {
-   "agency": "NYS Adirondack Park Agency (Adirondack Park Blue Line)",
+   "agency": "NYS Adirondack Park Agency (Adirondack Park Blue Line) (park, state GIS table)",
    "areas": [
     "US-NY"
    ],
@@ -4582,7 +4603,7 @@
    "url": ""
   },
   "US-NY.sgnyd": {
-   "agency": "NYS DEC (Catskill Park boundary)",
+   "agency": "NYS DEC (Catskill Park boundary) (park, state GIS table)",
    "areas": [
     "US-NY"
    ],
@@ -4616,7 +4637,7 @@
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
-   "queued": 14,
+   "queued": 16,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
@@ -4717,11 +4738,11 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 5,
+   "matched": 7,
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
-   "queued": 9,
+   "queued": 10,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
@@ -4906,11 +4927,11 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 1,
+   "matched": 2,
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
-   "queued": 5,
+   "queued": 6,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
@@ -5309,7 +5330,7 @@
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
-   "queued": 9,
+   "queued": 11,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
@@ -5368,7 +5389,7 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 3,
+   "matched": 4,
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
@@ -5515,11 +5536,11 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 5,
+   "matched": 11,
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
-   "queued": 5,
+   "queued": 21,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
@@ -6040,11 +6061,11 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 5,
+   "matched": 6,
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
-   "queued": 5,
+   "queued": 6,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,
@@ -6418,11 +6439,11 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 4,
+   "matched": 6,
    "name_fields": [
     "RECPROJECTSITEAREANAME"
    ],
-   "queued": 7,
+   "queued": 10,
    "read_date": "2026-11-11",
    "read_how": "geojson",
    "record_id_field": null,

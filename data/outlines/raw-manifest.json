@@ -443,9 +443,23 @@
   {
    "date": "2026-11-11",
    "name": "US-FL.sgfla.geojson.gz",
-   "sha256": "254d5e3b709d1f554e987cd6062a9e64102566966da7a86b0abaf6632837ab7f",
-   "size": 240955,
+   "sha256": "757d963b7ff048dad52c23ffc1fb644fc5addb70ae29faece9b03714c09d3846",
+   "size": 243010,
    "source": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/0/query"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-FL.sgflb.geojson.gz",
+   "sha256": "6585547d2b13d78f12b1adfa41ae0fc2fcdcad6ba936d9c04d9b6d09ccf9d20b",
+   "size": 230337,
+   "source": "https://geodata.fdacs.gov/maps/florida-state-forests-"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-FL.sgfle.geojson.gz",
+   "sha256": "57c819ffa6ff31abdc5722bac8bfb8d2014cb529641358bdc4b0624b24d79020",
+   "size": 121428,
+   "source": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0"
   },
   {
    "date": "2026-11-11",
@@ -457,8 +471,8 @@
   {
    "date": "2026-11-11",
    "name": "US-FL.sgflg.geojson.gz",
-   "sha256": "a21349bd1fa0bba45b37d7c5f595935c6046f33b166b457d6f4c77b9aed0eda2",
-   "size": 274400,
+   "sha256": "5951a71b88ace4e34b5696cb11d887c8ac3c94191a21cf7d9c69080db2e58a28",
+   "size": 281494,
    "source": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1/query"
   },
   {
@@ -582,6 +596,27 @@
   },
   {
    "date": "2026-11-11",
+   "name": "US-IL.sgide.geojson.gz",
+   "sha256": "695a6e89981d1489b681664b932209cec03a233d2dbe83cd581fef8a289ad6d4",
+   "size": 26315,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-IL.sgilc-ProtectedLands-ChicagoWilderness.geojson",
+   "sha256": "92e1a654a7810f8d0a79f69763578b7f42672247f29d5bbea206031f7cc31f63",
+   "size": 66331697,
+   "source": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-IL.sgilc.geojson.gz",
+   "sha256": "91d5c4fcffb4b810b7a919ea8478a13e4013f3962aab15f51b0160ef96ed0168",
+   "size": 1226859,
+   "source": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-IL.sgild.geojson.gz",
    "sha256": "f723a1762baf88141a3ef91c21ea499935cd1442139caa7a51d4e92e188ae0f3",
    "size": 108756,
@@ -590,29 +625,36 @@
   {
    "date": "2026-11-11",
    "name": "US-IN.ind.geojson.gz",
-   "sha256": "205b40e941738a1c10d23df60e151b2821d368f826b57475152be72fe5add133",
+   "sha256": "9f10b94fc37652162d6eda1ec33daad3ded8c55f243c63c3c2f1ce412619b6c3",
    "size": 117901,
    "source": "svc:https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer|."
   },
   {
    "date": "2026-11-11",
+   "name": "US-IN.sgide.geojson.gz",
+   "sha256": "e845bf1362df89bdb085e41664be4016db06e00068174ea655b4a71e38b6d4e5",
+   "size": 14938,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-IN.sgina.geojson.gz",
-   "sha256": "6ee19a2e820af5afddc389c3e442aa9e58650477d4d30b0264c6b76ba5a883fe",
-   "size": 124628,
+   "sha256": "9be25651c884264685268cf97a3afa0e5215a69ec74afb29d867c827aa126a65",
+   "size": 124629,
    "source": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-IN.sginb.geojson.gz",
-   "sha256": "1bd7ce4ba826eccf37e0ec0d98b4ebed233983564f58b301274d94c57b12a6b7",
+   "sha256": "a30f8ce06e9cb63d42a756690ccc34900052871df753df72085d329a7a7cf70a",
    "size": 22162,
    "source": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_NaturePreserves/FeatureServer/0/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-IN.sginc.geojson.gz",
-   "sha256": "d4246b0c33126089dd57f53d69805dd6a1fb63e0dac76c94e991368c2ef22dfd",
-   "size": 32951,
+   "sha256": "e8a9433e819bc40f6ebcf3907f9ef141331fdd9c3bba8c4aa80847dfab9af997",
+   "size": 32953,
    "source": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_DNR_INHD_IN_SP/FeatureServer/0/query"
   },
   {
@@ -624,6 +666,13 @@
   },
   {
    "date": "2026-11-11",
+   "name": "US-KS.sgide.geojson.gz",
+   "sha256": "fcfb3ae9950c06eef2d792197f2514a5764efb19ab226296f11ef248a2698f40",
+   "size": 39229,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-MA.sgmad.geojson.gz",
    "sha256": "9e1fbc4b111ab4327df2162342bbbf2844c7881a5f1d30f736e17a9bb77379a7",
    "size": 4299536,
@@ -632,8 +681,8 @@
   {
    "date": "2026-11-11",
    "name": "US-MD.mdd.geojson.gz",
-   "sha256": "2b1aecf4719c420255b03a4f04823075aeeca1dfbb20e8cee8d9f8744444894d",
-   "size": 167687,
+   "sha256": "7e03c2defbab5712579c793418b2a704374b69ba28195ce809ec7d00a6eb1886",
+   "size": 167629,
    "source": "svc:https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer|dnr owned"
   },
   {
@@ -646,8 +695,8 @@
   {
    "date": "2026-11-11",
    "name": "US-MD.sgmda.geojson.gz",
-   "sha256": "8396d4d758e830be8576971179824b209dd95fe35f2a2ee4d3a8262e497b74a0",
-   "size": 193890,
+   "sha256": "a9e8aeb6e1e498852d87beb78ad619820b947a0ce73d3be505d1ea9da86eb6c5",
+   "size": 193892,
    "source": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0/query"
   },
   {
@@ -659,9 +708,16 @@
   },
   {
    "date": "2026-11-11",
+   "name": "US-ME.sgmec.geojson.gz",
+   "sha256": "8d84a2d87c926750385a2d2da25c1942a77604f49eb976852e17e123c477ddaa",
+   "size": 62485,
+   "source": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Eco_Reserves/FeatureServer/0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-MN.sgmna.geojson.gz",
-   "sha256": "0a2b8820e17e0fce716fbc6bca2ca7a1001bc46c6286a7263a622c58ba639dd0",
-   "size": 253275,
+   "sha256": "5918b2bd8a69bca3dde498b022ada504adeada8cd603dca46d0c6010d7507da4",
+   "size": 253278,
    "source": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer/0/query"
   },
   {
@@ -674,22 +730,22 @@
   {
    "date": "2026-11-11",
    "name": "US-MN.sgmnc.geojson.gz",
-   "sha256": "6ee3cb2d3ff57b8c0ce85d7b189e812ab78f2f55df7a906f463d103541ce127e",
-   "size": 34281,
+   "sha256": "6eaa6ec14ba91e3a88e6eceed053bebb1867a615fea9376620e5a933fc3a3829",
+   "size": 34284,
    "source": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-MN.sgmne.geojson.gz",
-   "sha256": "49fae857a2fecdae87f72521d3000fde0485971f6cbeec630418b857db826d0e",
-   "size": 642281,
+   "sha256": "20457cfb020a147b130d1980901f0ac921938638a25883154475566f9a6ed61d",
+   "size": 642284,
    "source": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-MN.sgmnf.geojson.gz",
-   "sha256": "768e19beb5a7cafa77deceff4eeb0f7d56b7f42297f44c5827af1b73e9f31b7a",
-   "size": 1036662,
+   "sha256": "2d4c41f383f985fa4fbc67917ce95bafa3994426cad6821c23d80a4e35dc7d21",
+   "size": 1036664,
    "source": "https://apps.bwsr.state.mn.us/arcgis/rest/services/DNR_Management_Units/MapServer/0/query"
   },
   {
@@ -716,8 +772,8 @@
   {
    "date": "2026-11-11",
    "name": "US-MO.sgmod.geojson.gz",
-   "sha256": "87e5439b4f04767ef28fca60819bbea312a57e2d8f411679d89ec2f01a721e45",
-   "size": 25550,
+   "sha256": "7fd3300f49a95793c1722d7581928054a684b61ec6be7d4dfbc852cebfeb5389",
+   "size": 25554,
    "source": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/3/query"
   },
   {
@@ -747,6 +803,13 @@
    "sha256": "877e4a0a15f59177e717f7151bc707100890f06d9e655e6ad5ff070a1d64a666",
    "size": 195185,
    "source": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/MapServer/5/query"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-MS.sgide.geojson.gz",
+   "sha256": "7dd882f58bef7032ecb6898c3045a338ec595fd29cda3cb78423f2f3c65af1a4",
+   "size": 30017,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
   },
   {
    "date": "2026-11-11",
@@ -859,6 +922,13 @@
    "sha256": "d6b9af4d2e498722357727c7420a66c7d5cd05ffb1c84e550562019e6e5765e7",
    "size": 1073,
    "source": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-ND.sgide.geojson.gz",
+   "sha256": "1663f5760a986d91d6dba798115b2e253d6ae790d5828eaf49db5ab864127919",
+   "size": 13676,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
   },
   {
    "date": "2026-11-11",
@@ -982,8 +1052,8 @@
   {
    "date": "2026-11-11",
    "name": "US-NV.hab.geojson.gz",
-   "sha256": "c4fa70ce69df85bcdb937afe55f34cec290d62881a77d827cc6bafe2aabf873e",
-   "size": 107592,
+   "sha256": "d8171e27ae19a17b2a08781bd0c6c305451a6dc19e87d1b64ba3dfa86333ab99",
+   "size": 107686,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/1/query"
   },
   {
@@ -1038,15 +1108,15 @@
   {
    "date": "2026-11-11",
    "name": "US-NV.sgnvb.geojson.gz",
-   "sha256": "8bfbc86315d648627c6ff77b53153bb7ccf45fa304a6875eb7dd8373a0b0b1ef",
-   "size": 84386,
+   "sha256": "31ea5e463d966a7d6af1d441c8561b8c76999ea996d344de450d9a64224f8473",
+   "size": 84389,
    "source": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-NV.sgnvd.geojson.gz",
-   "sha256": "9a7eb1ed6e8aed576f93e7498cd7cd6f7b490a55f7d6ea2aa943646cfa6e7cce",
-   "size": 81906,
+   "sha256": "ed70a6a8dcd07e4ed680933a794e1fb7509ed5edd15ba1ee417755431e3181ab",
+   "size": 81909,
    "source": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0/query"
   },
   {
@@ -1100,16 +1170,37 @@
   },
   {
    "date": "2026-11-11",
+   "name": "US-NY.sgnyc.geojson.gz",
+   "sha256": "26deedfbb94bdc7ec202e5ad9bf6f1590c8ffcc5fa3acda53329a383313f218d",
+   "size": 7261,
+   "source": "https://apa.ny.gov/planning/gis/downloads.html"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-NY.sgnyd.geojson.gz",
+   "sha256": "1afea3db770c3300ee478094c93f5512ad0df5a6ff0f0dc06330cb6a4d8ac77e",
+   "size": 8611,
+   "source": "https://data.gis.ny.gov/datasets/nysdec::catskill-park-boundary"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-OH.sgide.geojson.gz",
+   "sha256": "412f0c2d7927f5260e1f3d454febb9263d4ce66818d2d890aff0550ba150ed8a",
+   "size": 29460,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-OH.sgohf.geojson.gz",
-   "sha256": "3767c1f970b43393f38b60b4b751814f050f264adfd22850215ff97633090506",
-   "size": 180147,
+   "sha256": "5db91d9696962b106dedc2af6492afeb02a984cad34e63c57e4c1fd9d19d9979",
+   "size": 180150,
    "source": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External/MapServer/0/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-OH.sgohg.geojson.gz",
-   "sha256": "f7a60a12bc174a6dfb4e2300e05053ccd7f74f39a81f13eb4dd0f555fb391336",
-   "size": 126767,
+   "sha256": "f19e67a77b95cf1c8c9ea0e7ddfebb40c0dc9dad6b7d9c2f9f3a2b9dcb6abae5",
+   "size": 126769,
    "source": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/Ohio_Conservation_Lands/MapServer/0/query"
   },
   {
@@ -1125,6 +1216,13 @@
    "sha256": "1e2c928c223f50c3565cbadab8b0b01a64a4c3e703a6411f20d183d32881ed6c",
    "size": 926,
    "source": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-OK.sgide.geojson.gz",
+   "sha256": "b2db3238ccad44d9b173ae384a07f0818df454f8bebcabb18ef38ab4cff0f235",
+   "size": 81884,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
   },
   {
    "date": "2026-11-11",
@@ -1150,8 +1248,8 @@
   {
    "date": "2026-11-11",
    "name": "US-OR.osp.geojson.gz",
-   "sha256": "f91f7dfee306b9f7f5c53397369d238448d64bf51372e1cb703eb3d0108a2eaa",
-   "size": 53493,
+   "sha256": "d985808af454c72db168450194202bb780230ed2638db8e27ca895835db301a5",
+   "size": 45765,
    "source": "svc:https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer|."
   },
   {
@@ -1184,6 +1282,13 @@
   },
   {
    "date": "2026-11-11",
+   "name": "US-OR.sgide.geojson.gz",
+   "sha256": "8888f3b1ae5b37347e7a881b823fbe2ecdfcabfee21d56a71f23ebc1597b6d2b",
+   "size": 21773,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-OR.sgora.geojson.gz",
    "sha256": "a81ab74eae65750e63dd43dfe8587d5dc0e3a000ab2c3629da58af570d996261",
    "size": 54299,
@@ -1192,8 +1297,8 @@
   {
    "date": "2026-11-11",
    "name": "US-OR.sgore.geojson.gz",
-   "sha256": "5d5e7c471adae2525c9ea9c668c873f0f9dd55249b33b63b436953890ad6d6bf",
-   "size": 438569,
+   "sha256": "1cb5545f5298c58af2e3d9aa1819500daaf16e5e24af66ec7c281f319903f424",
+   "size": 438571,
    "source": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_Parklands/FeatureServer/0/query"
   },
   {
@@ -1296,6 +1401,13 @@
   },
   {
    "date": "2026-11-11",
+   "name": "US-SD.sgide.geojson.gz",
+   "sha256": "be11788269545dff0bddf2a5128361fbfe4aa31c5c689185608b07bbf17c7b1f",
+   "size": 12036,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-SD.sgsda.geojson.gz",
    "sha256": "91e620ec57ed3e520dfe6fc4deb8cb1d743aa03934e6920c4d2fa6e94298b567",
    "size": 18300,
@@ -1310,9 +1422,16 @@
   },
   {
    "date": "2026-11-11",
+   "name": "US-TN.sgide.geojson.gz",
+   "sha256": "0a1f4986fbba5a330ee9dbe305fa90f24a67afd538cebc6e48966bfa8e9534b8",
+   "size": 37715,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-TN.sgtni.geojson.gz",
-   "sha256": "dc2baa858c46fd2157de1321b17773f5a18c2d86fc0f53b445999a9057d0f571",
-   "size": 217786,
+   "sha256": "17e7af70ed96d563c29cb84e2db4348649d71bcbc408632ceda1fe71da333c2c",
+   "size": 217789,
    "source": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3/query"
   },
   {
@@ -1352,9 +1471,16 @@
   },
   {
    "date": "2026-11-11",
+   "name": "US-TX.sgide.geojson.gz",
+   "sha256": "724424fb2abfe53713867c3693b689ac08f16dd78e223869d194c0c3ccb8cfdb",
+   "size": 176665,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "US-TX.sgtxb.geojson.gz",
-   "sha256": "1f9a10d8f799da3a61339284d87dbc72711e482a594c3457d3a8ac2ec1e2407a",
-   "size": 82866,
+   "sha256": "7c1a78460cbccbbaf3689489beafc9893e8bba85e82fdd99c6edb52a164724b6",
+   "size": 82870,
    "source": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/TPWD_PublicHuntLocatorMap/MapServer/9/query"
   },
   {
@@ -1512,6 +1638,13 @@
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query"
   },
   {
+   "date": "2026-11-11",
+   "name": "US-WA.sgide.geojson.gz",
+   "sha256": "75cffc556d448c054e9e2a8324173bcbfe97dd42c0d5c24628c44d39199cee52",
+   "size": 35988,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
+  },
+  {
    "date": "2026-11-10",
    "name": "US-WA.sgorf.geojson.gz",
    "sha256": "ed33237bc7251319049a5de0cb8cd8998f0ce0173ba1a2c7fcac142d3f85a905",
@@ -1528,14 +1661,14 @@
   {
    "date": "2026-11-11",
    "name": "US-WA.sgwac.geojson.gz",
-   "sha256": "caaedef119cca7d57754a07d56765477800ac89f0b51c238d48e1f4aec00f585",
-   "size": 833183,
+   "sha256": "90b86f05542bd799e6b7dbf2979c47469ddcd091d1c57eea19c077c2bcd3e482",
+   "size": 833188,
    "source": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Cadastre_OpenData/MapServer/6/query"
   },
   {
    "date": "2026-11-11",
    "name": "US-WA.sgwad.geojson.gz",
-   "sha256": "89f6e4020f4a9c6a6cb86f94077888addb05f8b4e470b6fdb97f6c14d1f363dc",
+   "sha256": "0f477c6fba713a629347a23ed4c3deae49b13e11a3644193905f8702c3a177ba",
    "size": 202497,
    "source": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR/MapServer/1/query"
   },
@@ -1622,6 +1755,13 @@
    "sha256": "e3aa0217a84d9cdd4a8b3a68d4f63cf9219e605a5351c2da6ee1cd8f43189f33",
    "size": 498213,
    "source": "svc:https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer|propert"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "US-WV.sgide.geojson.gz",
+   "sha256": "22947b5f6914e0599796d6137177fa96b128332771e296e1432e233a6f33c150",
+   "size": 32995,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
   },
   {
    "date": "2026-11-11",
@@ -1759,10 +1899,52 @@
   },
   {
    "date": "2026-11-11",
+   "name": "hand-US-FL-sgflb-florida-state-forests.geojson",
+   "sha256": "f59662ae6bf2b27539595f57d166a6a88ab1562e827860114f12a27cc2fba079",
+   "size": 10163230,
+   "source": "https://geodata.fdacs.gov/maps/florida-state-forests-"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "hand-US-FL-sgfle-sjrwmd-areas.geojson",
+   "sha256": "3e78647014881e28b8a76bc4e9652694e0212206c4a71dfaa639734e46b16cb1",
+   "size": 2508523,
+   "source": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "hand-US-ME-eco-reserves.geojson",
+   "sha256": "ee012d4dedd83d2862ae82b52c69050c0c3a689fa51c6eb622005144b082255c",
+   "size": 1403770,
+   "source": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Eco_Reserves/FeatureServer/0"
+  },
+  {
+   "date": "2026-11-11",
    "name": "hand-US-MI-dnr-public-forest-inventory.geojson",
    "sha256": "4f1c3bb6f1161b00f538f7b4cffdfe30f7adcd0f6bf7c0fa8ccd2dc18bb694be",
    "size": 36098485,
    "source": "Michigan DNR Forest Inventory compartments (a person's download); FMU key: michigandnr.com stumpage price reports"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "hand-US-NY-adirondack-park-boundary.geojson",
+   "sha256": "72040ee86e7b58fae615fcc3b29860b8bd78f67320efdc339c7a44fc55c60c9b",
+   "size": 223008,
+   "source": "https://apa.ny.gov/planning/gis/downloads.html"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "hand-US-NY-catskill-park-boundary.geojson",
+   "sha256": "78954b0e96baf3bf277c739c68eb5c251f3413868f4bbbbbb346f26bbb895f83",
+   "size": 99763,
+   "source": "https://data.gis.ny.gov/datasets/nysdec::catskill-park-boundary"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "hand-US-usace-recreation-areas.geojson",
+   "sha256": "ee7aa8659d5a329a410835ba5e8f9a039cf97f414ca08ea9aca679e99388aba8",
+   "size": 10617604,
+   "source": "https://geospatial-usace.opendata.arcgis.com/datasets/e314790ee1bb4eec982f0b669accb6fc_0"
   },
   {
    "count": 116,

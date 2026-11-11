@@ -1,8 +1,8 @@
 {
- "made": "2026-11-11 10:27 UTC",
+ "made": "2026-11-11 13:36 UTC",
  "counts": {
-  "A_decided_not_in_key": 74,
-  "B_sure_area_not_asked": 7,
+  "A_decided_not_in_key": 70,
+  "B_sure_area_not_asked": 4,
   "C_sure_line_not_drawn": 17
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
@@ -13,13 +13,6 @@
    "Fort Morgan National Historic Site",
    "join",
    "2026-11-02 13:05: layers row YES 'Fort Morgan' (chat 11 (Oct 31); applied by kpc_key_answers)"
-  ],
-  [
-   "US-0491",
-   "OK",
-   "Tishomingo National Wildlife Refuge",
-   "join",
-   "2026-11-02 13:05: layers row YES 'TISHOMINGO NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-0622",
@@ -97,13 +90,6 @@
    "Walnut Woods State Conservation Area",
    "join",
    "Oct 29 5:55 PM: potamap lead + chat 11 YES (name variant; owner City of Liberty)"
-  ],
-  [
-   "US-10610",
-   "OR",
-   "South Santiam State Fish Hatchery",
-   "join",
-   "2026-11-02 13:05: layers row YES 'SOUTH SANTIAM HATCHERY' (chat 11; applied by kpc_key_answers)"
   ],
   [
    "US-10644",
@@ -237,13 +223,6 @@
    "East Branch of the Taquamenon National Wild and Scenic River",
    "alias",
    "2026-11-02 12:49: aliases-oct31 row YES 'East Branch Tahquamenon River' (chat 11 (Oct 31); applied by kpc_key_answers)"
-  ],
-  [
-   "US-12979",
-   "OR",
-   "Bonneville State Fish Hatchery",
-   "join",
-   "w YES 'BONNEVILLE FISH HATCHERY' (chat 11; applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
   ],
   [
    "US-13097",
@@ -456,13 +435,6 @@
    "2026-11-02 12:49: aliases-oct31 row YES 'Beckley Furnace Industrial Monument' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
-   "US-7843",
-   "IN",
-   "Pearson Mill State Recreation Area",
-   "join",
-   "2026-11-02 13:05: layers row YES 'PEARSON MILL' (chat 11; applied by kpc_key_answers)"
-  ],
-  [
    "US-8024",
    "NH",
    "Taylor Saw Mill State Historic Site",
@@ -535,20 +507,6 @@
    "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
   ],
   [
-   "US-10610",
-   "OR",
-   "South Santiam State Fish Hatchery",
-   "SOUTH SANTIAM HATCHERY",
-   "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
-  ],
-  [
-   "US-12979",
-   "OR",
-   "Bonneville State Fish Hatchery",
-   "BONNEVILLE FISH HATCHERY",
-   "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
-  ],
-  [
    "US-13083",
    "AL",
    "TVA Wheeler Dam Public Park National Recreation Area",
@@ -568,13 +526,6 @@
    "Galena Creek Fish Hatchery State Historical Monument",
    "GALENA CREEK REGIONAL PARK",
    "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0"
-  ],
-  [
-   "US-7843",
-   "IN",
-   "Pearson Mill State Recreation Area",
-   "PEARSON MILL",
-   "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0"
   ]
  ],
  "C": [
