@@ -10,19 +10,20 @@ def check(name, cond):
     print(('PASS ' if cond else 'FAIL ') + name); ok = ok and bool(cond)
 g = (ROOT / 'gis-overlays.js').read_text(encoding='utf-8')
 x = (ROOT / 'kpc-map-extras.js').read_text(encoding='utf-8')
-check('an outline file\'s own POTA reference (properties.ref) counts as its join', 'const ownRef=' in g and '!!ownRef(f)||matchPota(f)' in g and 'const own=ownRef(f)' in g)
-check('"no POTA reference" is not remembered before the POTA list has loaded', 'if(v||potaPts().length)f._pota=v;else whenPota()' in g)
-check('drawn layers are restyled when the POTA list arrives (forest boundary line left alone)', 'function restyleBounds()' in g and '!bounds[k].proc' in g)
+check('an outline file\'s own POTA reference (properties.ref) counts as its join', 'const ownRef=' in g and '!!ownRef(f)||keyJoin(f).length>0||matchPota(f)' in g and 'const own=ownRef(f)' in g)
+check('"no POTA reference" is not remembered before the POTA list and answer key are ready', 'if(v||joinsReady())f._pota=v;else whenJoins()' in g)
+check('drawn layers are restyled when the POTA list or answer key arrives (forest boundary line left alone)', 'function restyleBounds()' in g and '!bounds[k].proc' in g and 'delete f._pota' in g)
 check('dashed stays only for features with no join; OpenStreetMap outlines keep their dash-dot', "dashArray:'12 5 2 5'" in g and "f=>!has(f)?{color:'#ff2a2a'" in g)
 check('bottom-left map buttons are lifted above the credits line', '__kpcLiftBL' in x and "'.leaflet-bottom.leaflet-left'" in x and 'leaflet-control-attribution' in x)
 check('credits are never hidden by the lift', 'display:none' not in x.split('__kpcLiftBL')[1])
 pages = list(ROOT.glob('*.html')) + list(ROOT.glob('.claude/build/**/*.html'))
-for name in ['gis-overlays', 'kpc-map-extras']:
+want = {'gis-overlays': '?v=20261110aj', 'kpc-map-extras': '?v=20261110leg'}
+for name, stamp in want.items():
     vs = {}
     for p in pages:
         for m in re.finditer(r'src="' + re.escape(name) + r'\.js(\?v=[^"]*)?"', p.read_text(encoding='utf-8', errors='replace')):
             vs.setdefault(m.group(1), []).append(p.name)
-    check(f'{name}.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == ['?v=20261110leg'])
+    check(f'{name}.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == [stamp])
 # every PAD-US park outline carries a ref that is in the POTA list the page loads
 pad = json.loads((ROOT / 'ky-padus-parks.geojson').read_text(encoding='utf-8'))
 rows = json.loads((ROOT / 'locations-ky.json').read_text(encoding='utf-8'))['rows']
