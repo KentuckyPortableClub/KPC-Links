@@ -629,20 +629,27 @@
   "kpc-park-alerts.yml|2026-11-11T11:03:00+00:00": "2026-11-11T12:16+00:00 started",
   "kpc-pota-discord.yml|2026-11-11T11:19:00+00:00": "2026-11-11T12:16+00:00 started",
   "kpc-ses.yml|2026-11-11T10:41:00+00:00": "2026-11-11T12:16+00:00 started",
-  "kpc-us-key.yml|2026-11-11T11:46:00+00:00": "2026-11-11T12:16+00:00 started"
+  "kpc-us-key.yml|2026-11-11T11:46:00+00:00": "2026-11-11T12:16+00:00 started",
+  "kpc-band-alerts.yml|2026-11-11T13:18:00+00:00": "2026-11-11T14:02+00:00 started",
+  "kpc-boards.yml|2026-11-11T13:14:00+00:00": "2026-11-11T14:02+00:00 started",
+  "kpc-discord-watch.yml|2026-11-11T12:47:00+00:00": "2026-11-11T14:02+00:00 started",
+  "kpc-fb-comments.yml|2026-11-11T12:32:00+00:00": "2026-11-11T14:02+00:00 skipped (not restarted)",
+  "kpc-new-refs.yml|2026-11-11T12:39:00+00:00": "2026-11-11T14:02+00:00 started",
+  "kpc-park-notes.yml|2026-11-11T12:41:00+00:00": "2026-11-11T14:02+00:00 started",
+  "kpc-pota-discord.yml|2026-11-11T13:19:00+00:00": "2026-11-11T14:02+00:00 started",
+  "kpc-research-helpers.yml|2026-11-11T13:23:00+00:00": "2026-11-11T14:02+00:00 skipped (not restarted)",
+  "kpc-social.yml|2026-11-11T13:07:00+00:00": "2026-11-11T14:02+00:00 skipped (not restarted)"
  },
- "last": "2026-11-11T12:16+00:00",
+ "last": "2026-11-11T14:02+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 11 11:48 UTC)",
-  "kpc-boards.yml (missed Nov 11 11:44 UTC)",
-  "kpc-bot-health.yml (missed Nov 11 09:44 UTC)",
-  "kpc-bot-queue.yml (missed Nov 11 10:22 UTC)",
-  "kpc-discord-watch.yml (missed Nov 11 11:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 11 10:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 11 11:07 UTC)",
-  "kpc-park-alerts.yml (missed Nov 11 11:03 UTC)",
-  "kpc-pota-discord.yml (missed Nov 11 11:19 UTC)",
-  "kpc-ses.yml (missed Nov 11 10:41 UTC)",
-  "kpc-us-key.yml (missed Nov 11 11:46 UTC)"
+  "kpc-band-alerts.yml (missed Nov 11 13:18 UTC)",
+  "kpc-boards.yml (missed Nov 11 13:14 UTC)",
+  "kpc-discord-watch.yml (missed Nov 11 12:47 UTC)",
+  "kpc-fb-comments.yml (missed Nov 11 12:32 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-new-refs.yml (missed Nov 11 12:39 UTC)",
+  "kpc-park-notes.yml (missed Nov 11 12:41 UTC)",
+  "kpc-pota-discord.yml (missed Nov 11 13:19 UTC)",
+  "kpc-research-helpers.yml (missed Nov 11 13:23 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-social.yml (missed Nov 11 13:07 UTC, NOT restarted: its next scheduled run catches up)"
  ]
 }
