@@ -1,0 +1,631 @@
+{
+ "about": "The map files the public pages read. Written only by kpc_release.py (the by-hand Release workflow). files: working name -> [[released file, version]].",
+ "areas": {
+  "US": {
+   "files": 101,
+   "run": "43109409415",
+   "sha": "addf5c4e23d864a95a5c3fa7848819c93295034a",
+   "time": "2026-11-11T22:10:22Z"
+  }
+ },
+ "files": {
+  "outlines/US-AK.geojson.gz": [
+   [
+    "outlines/US-AK.geojson.gz",
+    "f77385781492"
+   ]
+  ],
+  "outlines/US-AL.geojson.gz": [
+   [
+    "outlines/US-AL.geojson.gz",
+    "6cd96668f8c4"
+   ]
+  ],
+  "outlines/US-AR.geojson.gz": [
+   [
+    "outlines/US-AR.geojson.gz",
+    "b8267a4a31de"
+   ]
+  ],
+  "outlines/US-AZ.geojson.gz": [
+   [
+    "outlines/US-AZ.geojson.gz",
+    "0893cdecb173"
+   ]
+  ],
+  "outlines/US-CA.geojson.gz": [
+   [
+    "outlines/US-CA.geojson.gz",
+    "f1919680481c"
+   ]
+  ],
+  "outlines/US-CO.geojson.gz": [
+   [
+    "outlines/US-CO.geojson.gz",
+    "8275223c8789"
+   ]
+  ],
+  "outlines/US-CT.geojson.gz": [
+   [
+    "outlines/US-CT.geojson.gz",
+    "9b9545dbeb7d"
+   ]
+  ],
+  "outlines/US-DC.geojson.gz": [
+   [
+    "outlines/US-DC.geojson.gz",
+    "13a4fa72aa3e"
+   ]
+  ],
+  "outlines/US-DE.geojson.gz": [
+   [
+    "outlines/US-DE.geojson.gz",
+    "5a57be487d21"
+   ]
+  ],
+  "outlines/US-FL.geojson.gz": [
+   [
+    "outlines/US-FL.geojson.gz",
+    "5420ce6350a0"
+   ]
+  ],
+  "outlines/US-GA.geojson.gz": [
+   [
+    "outlines/US-GA.geojson.gz",
+    "7a7c10476a75"
+   ]
+  ],
+  "outlines/US-HI.geojson.gz": [
+   [
+    "outlines/US-HI.geojson.gz",
+    "dd1b9b695472"
+   ]
+  ],
+  "outlines/US-IA.geojson.gz": [
+   [
+    "outlines/US-IA.geojson.gz",
+    "757e5e2974ca"
+   ]
+  ],
+  "outlines/US-ID.geojson.gz": [
+   [
+    "outlines/US-ID.geojson.gz",
+    "311ec5ba6055"
+   ]
+  ],
+  "outlines/US-IL.geojson.gz": [
+   [
+    "outlines/US-IL.geojson.gz",
+    "1184dd112af8"
+   ]
+  ],
+  "outlines/US-IN.geojson.gz": [
+   [
+    "outlines/US-IN.geojson.gz",
+    "4ade7945d9a9"
+   ]
+  ],
+  "outlines/US-KS.geojson.gz": [
+   [
+    "outlines/US-KS.geojson.gz",
+    "bee7ed5ea8fa"
+   ]
+  ],
+  "outlines/US-LA.geojson.gz": [
+   [
+    "outlines/US-LA.geojson.gz",
+    "d81d8ad4dda3"
+   ]
+  ],
+  "outlines/US-MA.geojson.gz": [
+   [
+    "outlines/US-MA.geojson.gz",
+    "27d78ba1de05"
+   ]
+  ],
+  "outlines/US-MD.geojson.gz": [
+   [
+    "outlines/US-MD.geojson.gz",
+    "df4cca227cc5"
+   ]
+  ],
+  "outlines/US-ME.geojson.gz": [
+   [
+    "outlines/US-ME.geojson.gz",
+    "ab221e613880"
+   ]
+  ],
+  "outlines/US-MI.geojson.gz": [
+   [
+    "outlines/US-MI.geojson.gz",
+    "501c0f3d8ddd"
+   ]
+  ],
+  "outlines/US-MN.geojson.gz": [
+   [
+    "outlines/US-MN.geojson.gz",
+    "c305c090f35d"
+   ]
+  ],
+  "outlines/US-MO.geojson.gz": [
+   [
+    "outlines/US-MO.geojson.gz",
+    "a81c8ecc0026"
+   ]
+  ],
+  "outlines/US-MS.geojson.gz": [
+   [
+    "outlines/US-MS.geojson.gz",
+    "2307d2656367"
+   ]
+  ],
+  "outlines/US-MT.geojson.gz": [
+   [
+    "outlines/US-MT.geojson.gz",
+    "62340dff0296"
+   ]
+  ],
+  "outlines/US-NC.geojson.gz": [
+   [
+    "outlines/US-NC.geojson.gz",
+    "c6de093cf932"
+   ]
+  ],
+  "outlines/US-ND.geojson.gz": [
+   [
+    "outlines/US-ND.geojson.gz",
+    "461d668d38e5"
+   ]
+  ],
+  "outlines/US-NE.geojson.gz": [
+   [
+    "outlines/US-NE.geojson.gz",
+    "e24034f48009"
+   ]
+  ],
+  "outlines/US-NH.geojson.gz": [
+   [
+    "outlines/US-NH.geojson.gz",
+    "e02db65f44c7"
+   ]
+  ],
+  "outlines/US-NJ.geojson.gz": [
+   [
+    "outlines/US-NJ.geojson.gz",
+    "0e53eb1ad5de"
+   ]
+  ],
+  "outlines/US-NM.geojson.gz": [
+   [
+    "outlines/US-NM.geojson.gz",
+    "3cf9a8bf0ce8"
+   ]
+  ],
+  "outlines/US-NV.geojson.gz": [
+   [
+    "outlines/US-NV.geojson.gz",
+    "4bca3ab4f985"
+   ]
+  ],
+  "outlines/US-NY.geojson.gz": [
+   [
+    "outlines/US-NY.geojson.gz",
+    "8649339da950"
+   ]
+  ],
+  "outlines/US-OH.geojson.gz": [
+   [
+    "outlines/US-OH.geojson.gz",
+    "bbc455873b4c"
+   ]
+  ],
+  "outlines/US-OK.geojson.gz": [
+   [
+    "outlines/US-OK.geojson.gz",
+    "a6fbc28625ee"
+   ]
+  ],
+  "outlines/US-OR.geojson.gz": [
+   [
+    "outlines/US-OR.geojson.gz",
+    "f878b56ccd59"
+   ]
+  ],
+  "outlines/US-PA.geojson.gz": [
+   [
+    "outlines/US-PA.geojson.gz",
+    "6aeac27b50c1"
+   ]
+  ],
+  "outlines/US-RI.geojson.gz": [
+   [
+    "outlines/US-RI.geojson.gz",
+    "155c534ffc1d"
+   ]
+  ],
+  "outlines/US-SC.geojson.gz": [
+   [
+    "outlines/US-SC.geojson.gz",
+    "ca09da81cfba"
+   ]
+  ],
+  "outlines/US-SD.geojson.gz": [
+   [
+    "outlines/US-SD.geojson.gz",
+    "68169b052fef"
+   ]
+  ],
+  "outlines/US-TN.geojson.gz": [
+   [
+    "outlines/US-TN.geojson.gz",
+    "6f99631adaba"
+   ]
+  ],
+  "outlines/US-TX.geojson.gz": [
+   [
+    "outlines/US-TX.geojson.gz",
+    "db08e0c94523"
+   ]
+  ],
+  "outlines/US-UT.geojson.gz": [
+   [
+    "outlines/US-UT.geojson.gz",
+    "9ae294f6ad16"
+   ]
+  ],
+  "outlines/US-VA.geojson.gz": [
+   [
+    "outlines/US-VA.geojson.gz",
+    "1500e8cf5306"
+   ]
+  ],
+  "outlines/US-VT.geojson.gz": [
+   [
+    "outlines/US-VT.geojson.gz",
+    "d811be1df463"
+   ]
+  ],
+  "outlines/US-WA.geojson.gz": [
+   [
+    "outlines/US-WA.geojson.gz",
+    "493aacd6f0c9"
+   ]
+  ],
+  "outlines/US-WI.geojson.gz": [
+   [
+    "outlines/US-WI.geojson.gz",
+    "0b9624b33f91"
+   ]
+  ],
+  "outlines/US-WV.geojson.gz": [
+   [
+    "outlines/US-WV.geojson.gz",
+    "4778d1a4fe87"
+   ]
+  ],
+  "outlines/US-WY.geojson.gz": [
+   [
+    "outlines/US-WY.geojson.gz",
+    "adf61de30b20"
+   ]
+  ],
+  "us-key/US-AK.json": [
+   [
+    "us-key/US-AK.json",
+    "08c3eaae784c"
+   ]
+  ],
+  "us-key/US-AL.json": [
+   [
+    "us-key/US-AL.json",
+    "7d18169770c2"
+   ]
+  ],
+  "us-key/US-AR.json": [
+   [
+    "us-key/US-AR.json",
+    "aa1c4caed341"
+   ]
+  ],
+  "us-key/US-AZ.json": [
+   [
+    "us-key/US-AZ.json",
+    "24abe9447d58"
+   ]
+  ],
+  "us-key/US-CA.json": [
+   [
+    "us-key/US-CA.json",
+    "e6734073a406"
+   ]
+  ],
+  "us-key/US-CO.json": [
+   [
+    "us-key/US-CO.json",
+    "95121266b405"
+   ]
+  ],
+  "us-key/US-CT.json": [
+   [
+    "us-key/US-CT.json",
+    "d4827333e75c"
+   ]
+  ],
+  "us-key/US-DC.json": [
+   [
+    "us-key/US-DC.json",
+    "0bee23c83243"
+   ]
+  ],
+  "us-key/US-DE.json": [
+   [
+    "us-key/US-DE.json",
+    "939ccc3276a8"
+   ]
+  ],
+  "us-key/US-FL.json": [
+   [
+    "us-key/US-FL.json",
+    "141d2b0fd6d9"
+   ]
+  ],
+  "us-key/US-GA.json": [
+   [
+    "us-key/US-GA.json",
+    "fdabfa44e8ff"
+   ]
+  ],
+  "us-key/US-HI.json": [
+   [
+    "us-key/US-HI.json",
+    "e6b27394f774"
+   ]
+  ],
+  "us-key/US-IA.json": [
+   [
+    "us-key/US-IA.json",
+    "06925b02eab2"
+   ]
+  ],
+  "us-key/US-ID.json": [
+   [
+    "us-key/US-ID.json",
+    "4e4b097a5a51"
+   ]
+  ],
+  "us-key/US-IL.json": [
+   [
+    "us-key/US-IL.json",
+    "abbfa25a6691"
+   ]
+  ],
+  "us-key/US-IN.json": [
+   [
+    "us-key/US-IN.json",
+    "1a421aaf3b66"
+   ]
+  ],
+  "us-key/US-KS.json": [
+   [
+    "us-key/US-KS.json",
+    "1033a0e7cb58"
+   ]
+  ],
+  "us-key/US-LA.json": [
+   [
+    "us-key/US-LA.json",
+    "eb0a067c6137"
+   ]
+  ],
+  "us-key/US-MA.json": [
+   [
+    "us-key/US-MA.json",
+    "315077b05cfb"
+   ]
+  ],
+  "us-key/US-MD.json": [
+   [
+    "us-key/US-MD.json",
+    "647b5ee0bbc2"
+   ]
+  ],
+  "us-key/US-ME.json": [
+   [
+    "us-key/US-ME.json",
+    "1530220ad0fa"
+   ]
+  ],
+  "us-key/US-MI.json": [
+   [
+    "us-key/US-MI.json",
+    "40781d7abd9b"
+   ]
+  ],
+  "us-key/US-MN.json": [
+   [
+    "us-key/US-MN.json",
+    "01a85da4943a"
+   ]
+  ],
+  "us-key/US-MO.json": [
+   [
+    "us-key/US-MO.json",
+    "de4532577720"
+   ]
+  ],
+  "us-key/US-MS.json": [
+   [
+    "us-key/US-MS.json",
+    "c93c0473e65b"
+   ]
+  ],
+  "us-key/US-MT.json": [
+   [
+    "us-key/US-MT.json",
+    "a9096de03eec"
+   ]
+  ],
+  "us-key/US-NC.json": [
+   [
+    "us-key/US-NC.json",
+    "f1837adb8a23"
+   ]
+  ],
+  "us-key/US-ND.json": [
+   [
+    "us-key/US-ND.json",
+    "8edaa4ad655d"
+   ]
+  ],
+  "us-key/US-NE.json": [
+   [
+    "us-key/US-NE.json",
+    "502681deeb9a"
+   ]
+  ],
+  "us-key/US-NH.json": [
+   [
+    "us-key/US-NH.json",
+    "f56928887d57"
+   ]
+  ],
+  "us-key/US-NJ.json": [
+   [
+    "us-key/US-NJ.json",
+    "2491f936d701"
+   ]
+  ],
+  "us-key/US-NM.json": [
+   [
+    "us-key/US-NM.json",
+    "4b5d5e03e658"
+   ]
+  ],
+  "us-key/US-NV.json": [
+   [
+    "us-key/US-NV.json",
+    "c7bc5dbe34cd"
+   ]
+  ],
+  "us-key/US-NY.json": [
+   [
+    "us-key/US-NY.json",
+    "821ce43ac869"
+   ]
+  ],
+  "us-key/US-OH.json": [
+   [
+    "us-key/US-OH.json",
+    "803f08552273"
+   ]
+  ],
+  "us-key/US-OK.json": [
+   [
+    "us-key/US-OK.json",
+    "dd6f021385cd"
+   ]
+  ],
+  "us-key/US-OR.json": [
+   [
+    "us-key/US-OR.json",
+    "06d650beb8f6"
+   ]
+  ],
+  "us-key/US-PA.json": [
+   [
+    "us-key/US-PA.json",
+    "e274ed20f619"
+   ]
+  ],
+  "us-key/US-RI.json": [
+   [
+    "us-key/US-RI.json",
+    "4683b8ff27aa"
+   ]
+  ],
+  "us-key/US-SC.json": [
+   [
+    "us-key/US-SC.json",
+    "541c489c9d4d"
+   ]
+  ],
+  "us-key/US-SD.json": [
+   [
+    "us-key/US-SD.json",
+    "46f90335b91c"
+   ]
+  ],
+  "us-key/US-TN.json": [
+   [
+    "us-key/US-TN.json",
+    "c590d2fee979"
+   ]
+  ],
+  "us-key/US-TX.json": [
+   [
+    "us-key/US-TX.json",
+    "04efb9afb12e"
+   ]
+  ],
+  "us-key/US-UT.json": [
+   [
+    "us-key/US-UT.json",
+    "01ee987fce88"
+   ]
+  ],
+  "us-key/US-VA.json": [
+   [
+    "us-key/US-VA.json",
+    "cd76b36ce917"
+   ]
+  ],
+  "us-key/US-VT.json": [
+   [
+    "us-key/US-VT.json",
+    "ccd9adc609b7"
+   ]
+  ],
+  "us-key/US-WA.json": [
+   [
+    "us-key/US-WA.json",
+    "5474a7d1600a"
+   ]
+  ],
+  "us-key/US-WI.json": [
+   [
+    "us-key/US-WI.json",
+    "1e3dc033abc2"
+   ],
+   [
+    "us-key/US-WI.p2.json",
+    "c406a7a4518a"
+   ],
+   [
+    "us-key/US-WI.p3.json",
+    "e8bd9ca9ef0b"
+   ],
+   [
+    "us-key/US-WI.p4.json",
+    "46fa8611a593"
+   ]
+  ],
+  "us-key/US-WV.json": [
+   [
+    "us-key/US-WV.json",
+    "4dc6f9aed61a"
+   ]
+  ],
+  "us-key/US-WY.json": [
+   [
+    "us-key/US-WY.json",
+    "ad09706a9949"
+   ]
+  ],
+  "us-key/layers.json": [
+   [
+    "us-key/layers.json",
+    "1009c8dc0f89"
+   ]
+  ]
+ }
+}
