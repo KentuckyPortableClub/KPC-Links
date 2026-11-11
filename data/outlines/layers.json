@@ -7763,8 +7763,9 @@
     "US-FL"
    ],
    "name_fields": [
-    "LABEL"
+    "DOF_NAME"
    ],
+   "note": "The layer now holds one row per parcel: LABEL is a number, the forest name is DOF_NAME (DOF_NAME OUT PARCEL = inholdings, not forest). The saved copy (39 forests, read 2026-11-03) is complete; a person's parcel download is kept on the bot's computer, not merged (it would replace the named forests). KPC owner, 2026-11-11.",
    "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0"
   },
   "sgflc": {
@@ -8145,6 +8146,8 @@
    "name_fields": [
     "MA_NAME"
    ],
+   "never_contact": true,
+   "note": "ncnhde.natureserve.org is a never-contact host (kpc_master.NEVER_CONTACT): nobody reads this layer, by bot or by hand. Its NC parks come from PAD-US and the other NC layers. KPC owner, 2026-11-11.",
    "url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0"
   },
   "sgncb": {
