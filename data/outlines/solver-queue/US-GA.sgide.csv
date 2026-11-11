@@ -1,0 +1,7 @@
+ref,name,lat,lon,why,candidates
+US-3747,Elbert County Wildlife Management Area,34.0649,-82.6542,pin is inside an outline but no name agrees,ELBERT RAMP
+US-7448,Lula Bridge Wildlife Management Area,34.4146,-83.7084,pin is inside an outline but no name agrees,LULA
+US-7899,Carter's Lake Wildlife Management Area,34.6141,-84.6796,pin is inside an outline but no name agrees,CARTERS LAKE POWER PLANT
+US-7910,Keg Creek Wildlife Management Area,33.6346,-82.2991,a same-name outline is nearby but the pin is outside it,KEG CREEK
+US-9774,Lower Broad River Wildlife Management Area,33.9985,-82.6597,a same-name outline is nearby but the pin is outside it,BROAD RIVER
+US-9779,Soap Creek Wildlife Management Area,33.8282,-82.4707,a same-name outline is nearby but the pin is outside it,SOAP CREEK MARINA

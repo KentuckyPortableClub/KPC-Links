@@ -13,7 +13,7 @@ WDPA = re.compile(r'(wdpa|protectedplanet|protected-?planet)[^\s\'"]*\.(zip|shp|
 PEOPLE = re.compile(r'\bt\d{3,4}u\b|\b[AKNW][A-Z]?\d[A-Z]{1,3}\b')   # ticket ids; callsigns (comment / doc lines only)
 
 def git(*a):
-    r = subprocess.run(['git', *a], cwd=ROOT, capture_output=True, text=True)
+    r = subprocess.run(['git', *a], cwd=ROOT, capture_output=True, text=True, errors='replace')   # Nov 11: a .gz in a diff is not text
     return r.stdout if r.returncode == 0 else None
 
 def changelog_hashes(text, kind):

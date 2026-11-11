@@ -36,6 +36,26 @@ def short_states(cache, states, caches):
     return out
 
 
+def layers_below_baseline(cache, states, doc, table):
+    """Nov 11 r2 (Quality post-merge note: the FL saved copy still had sgflf 77,144 while the master file records 79,689): {(st, prefix)}
+    for a bot-readable layer whose records in the state's saved copy are fewer than its own baseline in data/outlines/layers.json
+    (the 'US-XX.prefix' row's expected_count, a verified full read). The refill re-reads those layers (KPC_REFILL_FORCE). Read only."""
+    out = set()
+    rows = (doc.get('layers') or {})
+    for st in states:
+        cp = pathlib.Path(cache) / f'US-{st}.json.gz'
+        mine = {k.split('.', 1)[1]: v for k, v in rows.items() if k.startswith(f'US-{st}.') and isinstance(v, dict)}
+        if not cp.exists() or not mine: continue
+        have = None
+        for pre, v in sorted(mine.items()):
+            exp = v.get('expected_count')
+            u = (table.get(pre) or {}).get('url') or ''
+            if exp in (None, '') or not u or u.startswith('file:') or not M.live_ok(u)[0]: continue
+            if have is None: have = M.prefix_counts(M.load_saved(cp))
+            if 0 < have.get(pre, 0) < int(exp): out.add((st, pre))
+    return out
+
+
 def _u(u): return M.re.sub(r'/query/?$', '', str(u or '').replace('svc:', '', 1).split('|')[0]).rstrip('/')
 
 
@@ -101,9 +121,13 @@ def apply_layer_file(path, cache, root, parks, raw_root=None):
     import kpc_master_cli as CLI
     meta, feats = M.read_layer_file(path)
     area, pre = meta.get('area'), meta.get('layer')
-    exp = M.layer_file_expected(meta); got = int(meta.get('count_raw') if meta.get('count_raw') is not None else len(feats))
-    if exp is None: return False, f'{area} {pre}: the layer did not report its own total, so the read cannot be checked: not merged'
+    exp = M.layer_file_expected(meta, outside_box_ok(meta, root)); got = int(meta.get('count_raw') if meta.get('count_raw') is not None else len(feats))
+    if exp is None:
+        if 'count_layer' in meta: return False, f'{area} {pre}: the layer\'s own total (no state box) could not be counted, so the read cannot be checked: HELD, not merged (fail closed)'
+        return False, f'{area} {pre}: the layer did not report its own total, so the read cannot be checked: not merged'
     if got < exp: return False, f'{area} {pre}: read {got} of {exp} records: SHORT, not merged (fail closed)'
+    short = box_short(meta, got, root)
+    if short: return False, short
     key = f'{area}.{pre or "padus"}'
     rc = CLI.main(['trim', '--layer-key', key, '--input', str(path), '--expected', str(exp), '--parks', str(parks), '--area', area, '--root', str(root),
                    '--agency', str(meta.get('label') or ''), *(['--name-fields', meta['name_field']] if meta.get('name_field') else [])])
@@ -121,6 +145,31 @@ def apply_layer_file(path, cache, root, parks, raw_root=None):
     blob2, what = M.merge_saved_layer(blob, pre, new)
     if blob2 is not blob: M.save_saved(cp, blob2)
     return True, f'{area} {what}'
+
+
+def outside_box_ok(meta, root):
+    """layers.json `outside_box_ok` for this layer (area.prefix row, else the prefix row): N records a person found really lie outside
+    the state. 0 when unset."""
+    key = f"{meta.get('area')}.{meta.get('layer') or 'padus'}"
+    L = M.load_layers(root).get('layers') or {}
+    return int((L.get(key) or {}).get('outside_box_ok') or (L.get(str(meta.get('layer'))) or {}).get('outside_box_ok') or 0)
+
+
+def box_short(meta, got, root):
+    """Nov 11 (KPC owner, 2026-11-11; FL sgflf 77,144 of 79,689): '' when a live read of a one-state layer holds the layer's OWN total
+    (count_layer: its where, no state box), else why not. The state box may leave out only what layers.json allows for that layer
+    (`outside_box_ok`). count_layer present but None (the unboxed count failed) = HELD (Quality, Nov 11: a failed total must not pass).
+    No count_layer key at all (a hand file, a national layer, an older reader) = this check does not apply."""
+    if meta.get('source') != 'live' or 'count_layer' not in meta: return ''
+    tot = meta.get('count_layer')
+    if tot in (None, ''):
+        return (f"{meta.get('area')} {meta.get('layer')}: the layer's own total (no state box) could not be counted, so the box read "
+                f"cannot be checked against it: HELD, not merged (fail closed)")
+    allow = outside_box_ok(meta, root)
+    if got + allow < int(tot):
+        return (f"{meta.get('area')} {meta.get('layer')}: read {got} records in the state box, but the layer itself holds {tot}: the box left "
+                f"{int(tot) - got} out (outside_box_ok {allow}): SHORT against the layer's own total, not merged (fail closed)")
+    return ''
 
 
 def official_files(rows, dest, robots=None):
@@ -200,6 +249,8 @@ def fill(a):
         okk, what, rc = check_other(p, ar, lay, root, a.parks, getattr(a, 'checked', None) or work / 'checked', work)
         (notice if okk else warn)('Master step', what)
         if rc == 4: licence.append(what)
+        prev = next((r for r in needs['rows'] if r.get('id') == f'{ar}|{lay}'), None)
+        if okk and prev and prev.get('status') == 'done' and int(prev.get('have') or 0) >= M.layer_file_expected(meta): continue   # a person marked it done (this file, whole): not set back to held
         if okk: rows0.append({**M.needs_row(ar, lay, meta.get('url') or '', NOT_READ[ar.split('-')[0]], 'master', who='person',
                                             expected=M.layer_file_expected(meta), have=None, note=f'checked hand file: {p.name}'), 'status': 'held'})
     short = short_states(a.cache, states, caches)
@@ -211,6 +262,11 @@ def fill(a):
     if states and not a.no_key:   # the key's own layer table first (no state, no request: the key only writes xs.json and stops)
         run_key_refill(['ZZ'], lout, lin, '', set(), key=a.key)
     table = layer_table(lout / 'xs.json', a.us_layers, a.state_gis)
+    below = layers_below_baseline(a.cache, states, doc, table)
+    if below:   # Nov 11 r2: a saved layer under its own verified baseline is re-read whole (sgflf: 77,144 saved, 79,689 baseline)
+        todo = sorted(set(todo) | {st for st, _ in below})
+        if force != 'all': force = ' '.join(sorted(set(force.split()) | {p for _, p in below}))
+        notice('Master step', 'saved layers under their own baseline, re-read: ' + ', '.join(f'US-{st}.{p}' for st, p in sorted(below)))
     robots = robots_checker(a.offline)
     blocked_hosts = set()
     if robots is not None:
@@ -288,25 +344,105 @@ def fill(a):
     return 4 if licence else 0   # a licence block (WDPA / redistribute=no) = exit 4: the workflow goes red
 
 
-def collect(a):
-    """Join job: the parts' master records, layer counts, raw-manifest rows and needs rows into one place."""
-    root = pathlib.Path(a.root); doc = M.load_layers(root); raw = M.load_json(M.raw_manifest_path(root), {'format': M.FORMAT, 'files': []})
-    rows = []
-    for d in sorted(pathlib.Path(p) for p in a.parts):
+def _states_of_area_name(name):
+    """'US-HI.geojson.gz' / 'US-HI.sghia' / 'US-HI.sgaki.csv' -> 'HI'; anything else -> None."""
+    m = M.re.match(r'^US-([A-Z]{2})(?:[.]|$)', str(name or ''))
+    return m.group(1) if m else None
+
+
+def _raw_state(name):
+    """The one state a raw-manifest row belongs to ('US-HI.sgaki.geojson.gz', 'hand-US-MS.sgide.geojson.gz' -> 'HI', 'MS'); None for a
+    file of several states or of no state (shared: two parts may only write it the same way)."""
+    n = str(name or '')
+    return _states_of_area_name(n[len('hand-'):] if n.startswith('hand-') else n)
+
+
+def part(a):
+    """Build job (Nov 11 owner fix, Quality CONFIRMED): write ONLY this job's own states into its part. The master root is a copy of
+    the whole checkout, so copying every US-*.geojson.gz / layers.json / raw-manifest let a later part put a stale checkout copy
+    on top of an earlier part's new outline (last write wins in collect). Now: the outline files of this job's states, the
+    layers.json layer rows and caches of this job's states that differ from the checkout (--base), the raw-manifest rows that
+    differ from the checkout, and this job's states' solver-queue files. outlines/states.txt names the owner."""
+    root, base, out = pathlib.Path(a.root), pathlib.Path(a.base), pathlib.Path(a.out)
+    sts = [s for s in (a.states or '').replace(',', ' ').split() if s]
+    out.mkdir(parents=True, exist_ok=True)
+    for st in sts:
+        f = root / f'US-{st}.geojson.gz'
+        if f.is_file(): shutil.copy(f, out / f.name)
+    doc, bdoc = M.load_layers(root), M.load_layers(base)
+    lay = {k: v for k, v in (doc.get('layers') or {}).items() if _states_of_area_name(k) in sts and (bdoc.get('layers') or {}).get(k) != v}
+    cac = {k: v for k, v in (doc.get('caches') or {}).items() if _states_of_area_name(k) in sts and (bdoc.get('caches') or {}).get(k) != v}
+    (out / 'layers.json').write_text(json.dumps({'format': M.FORMAT, 'layers': lay, 'caches': cac}, indent=1, sort_keys=True) + '\n', encoding='utf-8')
+    braw = {r['name']: r for r in M.load_json(M.raw_manifest_path(base), {'files': []}).get('files') or []}
+    raw = [r for r in M.load_json(M.raw_manifest_path(root), {'files': []}).get('files') or [] if braw.get(r['name']) != r
+           and _raw_state(r['name']) in (None, *sts)]   # Nov 11 (Quality): a state's raw row only from the part that owns the state
+    (out / 'raw-manifest.json').write_text(json.dumps({'format': M.FORMAT, 'files': raw}, indent=1, sort_keys=True) + '\n', encoding='utf-8')
+    sq = root / 'solver-queue'
+    if sq.is_dir():
+        for f in sq.glob('*.csv'):
+            if _states_of_area_name(f.name) in sts: (out / 'solver-queue').mkdir(exist_ok=True); shutil.copy(f, out / 'solver-queue' / f.name)
+    (out / 'states.txt').write_text(' '.join(sts) + '\n', encoding='utf-8')
+    notice('Master step', f'part: {len(sts)} state(s), {sum(1 for st in sts if (out / f"US-{st}.geojson.gz").is_file())} outline file(s), {len(lay)} layer row(s), {len(raw)} raw row(s)')
+    return 0
+
+
+class CollectConflict(Exception): pass
+
+
+def collect_parts(parts, root):
+    """-> (files {name: path}, layers {key: v}, caches {key: v}, raw {name: row}, solver {name: path}, rows). Each state comes from the
+    part that owns it (its outlines/states.txt); a part that carries another state's file, two parts that own one state, or two parts
+    that write different values for one layer row / cache / raw row = CollectConflict (nothing is written)."""
+    owner, files, lay, cac, raw, solver, rows = {}, {}, {}, {}, {}, {}, []
+    def put(d, k, v, who, what):
+        if k in d and d[k][0] != v: raise CollectConflict(f'{what} {k}: written differently by {d[k][1]} and {who}')
+        d[k] = (v, who)
+    for d in sorted(pathlib.Path(p) for p in parts):
         if not d.is_dir(): continue
-        for f in sorted(d.glob('US-*.geojson.gz')): shutil.copy(f, root / f.name)
-        sq = d / 'solver-queue'
-        if sq.is_dir():
-            (root / 'solver-queue').mkdir(parents=True, exist_ok=True)
-            for f in sq.glob('*.csv'): shutil.copy(f, root / 'solver-queue' / f.name)
-        L = M.load_json(d / 'layers.json', {}).get('layers') or {}
-        for k, v in L.items():
-            if k.startswith('US-') and '.' in k: doc['layers'][k] = v   # only the layers the master step trimmed (area.prefix keys)
+        stf = d / 'states.txt'
+        if not stf.is_file(): raise CollectConflict(f'{d}: no states.txt, so the owner of its files is unknown (an old-style part): refused')
+        sts = stf.read_text().split()
+        for st in sts:
+            if st in owner: raise CollectConflict(f'US-{st}: owned by both {owner[st]} and {d}')
+            owner[st] = str(d)
+        for f in sorted(d.glob('US-*.geojson.gz')):
+            st = _states_of_area_name(f.name)
+            if st not in sts: raise CollectConflict(f'{f}: US-{st} is not one of this part\'s states ({" ".join(sts)})')
+            files[f.name] = f
+        for f in sorted((d / 'solver-queue').glob('*.csv')) if (d / 'solver-queue').is_dir() else []:
+            if _states_of_area_name(f.name) not in sts: raise CollectConflict(f'{f}: not one of this part\'s states')
+            solver[f.name] = f
+        L = M.load_json(d / 'layers.json', {}) or {}
+        for k, v in (L.get('layers') or {}).items():
+            if not (k.startswith('US-') and '.' in k): continue   # only the layers the master step trimmed (area.prefix keys)
+            if _states_of_area_name(k) not in sts: raise CollectConflict(f'layer row {k} sent by {d}, which does not own US-{_states_of_area_name(k)}')
+            put(lay, k, v, str(d), 'layer row')
+        for k, v in (L.get('caches') or {}).items():
+            if _states_of_area_name(k) not in sts: raise CollectConflict(f'cache row {k} sent by {d}, which does not own it')
+            put(cac, k, v, str(d), 'cache row')
         for r in M.load_json(d / 'raw-manifest.json', {}).get('files') or []:
-            raw['files'] = [x for x in raw['files'] if x['name'] != r['name']] + [r]
+            rs = _raw_state(r.get('name'))
+            if rs is not None and rs not in sts: raise CollectConflict(f'raw-manifest row {r.get("name")} sent by {d}, which does not own US-{rs}')
+            put(raw, r['name'], r, str(d), 'raw-manifest row')
         rows += M.load_json(d / 'needs-rows.json', {}).get('rows') or []
-    raw['files'].sort(key=lambda r: r['name'])
+    return files, {k: v for k, (v, _) in lay.items()}, {k: v for k, (v, _) in cac.items()}, {k: v for k, (v, _) in raw.items()}, solver, rows
+
+
+def collect(a):
+    """Join job: the parts' master records, layer counts, raw-manifest rows and needs rows into one place, PER STATE (Nov 11):
+    each state from its owning part, per layer row and per raw row; a conflict fails (exit 1) and writes nothing."""
+    root = pathlib.Path(a.root); doc = M.load_layers(root); raw = M.load_json(M.raw_manifest_path(root), {'format': M.FORMAT, 'files': []})
+    try: files, lay, cac, rawrows, solver, rows = collect_parts(a.parts, root)
+    except CollectConflict as e:
+        print('::error title=Master collect conflict::' + str(e).replace('\n', ' '), flush=True); return 1
+    for name, f in files.items(): shutil.copy(f, root / name)
+    if solver: (root / 'solver-queue').mkdir(parents=True, exist_ok=True)
+    for name, f in solver.items(): shutil.copy(f, root / 'solver-queue' / name)
+    doc['layers'].update(lay); doc.setdefault('caches', {}).update(cac)
+    byname = {r['name']: r for r in raw.get('files') or []}; byname.update(rawrows)
+    raw['files'] = sorted(byname.values(), key=lambda r: r['name'])
     M.save_layers(doc, root); M.raw_manifest_path(root).write_text(json.dumps(raw, indent=1, sort_keys=True) + '\n', encoding='utf-8')
+    notice('Master step', f'collect: {len(files)} outline file(s), {len(lay)} layer row(s), {len(cac)} cache row(s), {len(rawrows)} raw row(s), each from its owning part')
     if a.needs_out:
         nd = M.load_needs(a.needs_in) if a.needs_in else M.load_needs(None)
         nd, add, upd = M.merge_needs(nd, rows)

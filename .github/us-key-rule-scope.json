@@ -55,6 +55,20 @@
     "why": "Review fixes to the readers. Every layer read is whole or it fails: the read asks the layer's own count and record ids with the same where and box, reads by id, and never keeps a partial layer (the window paging assumed the server's window size and could stop short). PAD-US has the same count check and the same per-layer time limit. One Vermont layer was listed twice and read twice; a layer listed under two prefixes is read once. A park left with no record is graded pin, not official. Host rules come from the one shared guard. Any state layer or PAD-US read could have been cut, so the scope is all.",
     "scope": "all",
     "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+  },
+  {
+    "id": "2026-11-11-fl-box-keys",
+    "when": "2026-11-11",
+    "from": "9e06aa4b4783",
+    "why": "Florida's state box now takes in the Keys and the Dry Tortugas (kpc-us-states.json draws Florida without them, south edge 25.12): FL DEP state-owned lands sent 77,144 of 79,689 records, the 2,545 left out all in Monroe County. Every live layer of one state also writes the layer's own total (no box) into its layer file as count_layer, so the master step can refuse a box read that leaves records of the layer out (layer files only, no join changes outside Florida). Only Florida's box changes.",
+    "scope": {
+      "states": [
+        "US-FL"
+      ],
+      "saved_ids": false
+    },
+    "approved": "APPROVED, decided_by KPC owner, 2026-11-10",
+    "restamped": "2026-11-11 r2 (Quality NO on #126): count_layer is written only for a layer whose every key entry is this one state's (NRHP and the USACE layer are listed once per state, and their unboxed total is the whole country), and it is always written for such a layer, None when the count fails, so the master step holds that read; same scope (US-FL). APPROVED, decided_by KPC owner, 2026-11-10"
   }
  ]
 }

@@ -1,0 +1,6 @@
+ref,name,lat,lon,why,candidates
+US-3030,Lake Somerville State Park,30.3064,-96.6384,pin is inside an outline but no name agrees,BIRCH CREEK STATE PARK
+US-3037,"Martin Dies, Jr. State Park",30.848,-94.1673,pin is inside an outline but no name agrees,HEN HOUSE RIDGE
+US-3051,Ray Roberts Lake State Park,33.3688,-97.0094,pin is inside an outline but no name agrees,ISLE DUBOIS STATE PARK
+US-3053,San Angelo State Park,31.4556,-100.497,pin is inside an outline but no name agrees,RED ARROYO
+US-6591,Pat Mayse Wildlife Management Area,33.82,-95.6763,a same-name outline is nearby but the pin is outside it,PAT MAYSE EAST; PAT MAYSE WEST

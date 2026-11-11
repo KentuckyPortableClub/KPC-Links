@@ -2,6 +2,13 @@
  "about": "Raw layer downloads are NOT in git (2.76 GB and growing). One row per file: name, size, sha256, source, date. The files live on the club Google Drive folder (backup) and on the bot's computer (working copy). Add a row with: python3 .github/scripts/kpc_master_cli.py raw-add FILE --source 'Agency, layer name'",
  "files": [
   {
+   "date": "2026-11-11",
+   "name": "BLM-recreation-areas-west-3478.geojson",
+   "sha256": "0c769507a7fd1da1c562e3cb956d0087785b46cf96820215be5c015b8f8c5ff5",
+   "size": 53199668,
+   "source": "https://gis.blm.gov (person download; not used: saved copies already hold this layer)"
+  },
+  {
    "count": 7,
    "date": "2026-11-09",
    "name": "CA_MB_wildlife_lands_layer1",
@@ -42,79 +49,79 @@
    "source": "https://www.data.gov.uk/dataset/acdf4a9e-a115-41fb-bbe9-603c819aa7f7/local-nature-reserves-england1"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.nca.geojson.gz",
-   "sha256": "18e1499daed2db1d0086d562c16742863a9b4eff194957a5bc81651959e12f7a",
+   "sha256": "be1b3d21f6d34cbe5a077ed2c228051ed44e50ad859d8fe067cd2921bc484724",
    "size": 4404,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.rma.geojson.gz",
-   "sha256": "360123fad074658a7652ddca8c08e3158e4f26861c86b8e513c66c9be1e9d112",
+   "sha256": "584ad51afc5bde09691b3e6d70a6b448bbcca841dfe87d1cf81576cae0d5cceb",
    "size": 4867,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.rst.geojson.gz",
-   "sha256": "8f3c638869fee8bfaf328bc4f08bcf5acf9e6329be82495641c20445782f9421",
+   "sha256": "c2d8eb5af25dab1e20291cb7fa4071f2c7ae937d845e4b1f35ee68a1b2d7a419",
    "size": 43805,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.sgaka.geojson.gz",
-   "sha256": "a66116da267fa6d223ba3996fa60f0caa8bc0af775deeb6289b38310d72f7001",
-   "size": 65475,
+   "sha256": "6137c54220d759cc34039d7845641eb6514c5a283984ec758935c96beadb97b5",
+   "size": 65472,
    "source": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/MapServer/2/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.sgakb.geojson.gz",
-   "sha256": "5982645d2f4f5e5737a59787e4c62f39872c356488681dc4ebaa2386c4bd4ad0",
-   "size": 312024,
+   "sha256": "d1cebdb0a170f025b0764057fe73eb17f27eaa2534f0ee81ea50231d41412696",
+   "size": 313551,
    "source": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/SurfaceClassification_LegislativelyDesignatedAreas/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.sgake.geojson.gz",
-   "sha256": "f2ff2ee1f8b482008f800e062a5bf68e94de0898879269999a2f671006164201",
-   "size": 65489,
+   "sha256": "dc2cfb43cefb18acfef8da9c9bd76485c40534508ff7906562121596b0d343fa",
+   "size": 65486,
    "source": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.sgakf.geojson.gz",
-   "sha256": "dae06f2158dbd86d92934e945972b9dac0046e3f93b15fc4dd0e1e1d86a6839e",
-   "size": 65550,
+   "sha256": "d7f03a0a1d2bbf50c2844c276169cf6dfaeedaf101dd5cf0b0811b8b6a65e7e2",
+   "size": 65548,
    "source": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/2/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.sgakg.geojson.gz",
-   "sha256": "2aa743b24b379a0f16f855b17b2a896b2efd46402dc597ee2f8b214ba855c71c",
-   "size": 43839,
+   "sha256": "77bd116a890353dce89ee05e97f1fb2ea26d3be95fb13b2239c2cce7bd4d40b0",
+   "size": 43838,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.sgakh.geojson.gz",
-   "sha256": "07cf7208beb2c089d39f7e7360ad56556138508d6034dfda857d9286a0784638",
+   "sha256": "ecc23842a69a5754f699d83b6ddd4c83931104b344a35c6c4bf43d4193eee74d",
    "size": 20747,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.sgaki.geojson.gz",
-   "sha256": "264ab6dd2eeded4a0ae4b11ff2c60f951e5b083a5eb22e94d0954c67bc671521",
+   "sha256": "57bb5e10ac841bf5acafe821a37bc161d8168e5a90d6cd1d9339c617a8b6ed9d",
    "size": 9226,
    "source": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AK.wsa.geojson.gz",
-   "sha256": "d264471f03c75be23043500852153168bc4bb53267d11ae22b96c62e30ad5efb",
+   "sha256": "a5ec11d7045ed3fa09fcc330eb92787813fac66143fbc21ddebb925a9004c9ee",
    "size": 1974,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
@@ -175,72 +182,72 @@
    "source": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.hab.geojson.gz",
-   "sha256": "a3896e11e82ddd9c018712a86c7b279e9302d38ee76415bac5554d7f857f02a4",
+   "sha256": "1d3b25c7754f979f5bc3bbd639b9524c9c902c33a89da1745b8c5b3c4ea0ce85",
    "size": 23812,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.hma.geojson.gz",
-   "sha256": "0a9ab07fca737942cb87b3a564ee1c225b3f80e616843593e25cc1b57c86bad8",
+   "sha256": "fa3b124298e77956ad63a2cf2440a74853014dd7e16b9bd98f34eb7c5c5f7e0c",
    "size": 20037,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.nca.geojson.gz",
-   "sha256": "6dc5a57607a0343ad391067d5dfcea3f52e11e56534dea1ee97f54e229d36299",
-   "size": 41427,
+   "sha256": "140d0993ddc10d65f215b65909066e6009faa14deb69b691007ecbf8185d0941",
+   "size": 41428,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.rma.geojson.gz",
-   "sha256": "ae40aa19119cc8d0627ddd78bfa7ca21b2d3a101c8c0d730ba4ebfd4738db4f1",
-   "size": 14460,
+   "sha256": "5fece9a2c522602ad1dfa5a9249982a23830ed21498baa319a33658a6daa48fe",
+   "size": 14461,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.rst.geojson.gz",
-   "sha256": "30eaba1fdd4167792af588db740ed653758595799a26c049ee9804cb2aaf6ff5",
+   "sha256": "eaf60100de36db3d3203308c373415e7dd159e1dd9d679c7ba26871adb502112",
    "size": 45167,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.sgakg.geojson.gz",
-   "sha256": "9fd0ed068c05b0c626bedc69496381f7c863e5dedb1e83145185a0468b31e0b2",
-   "size": 45176,
+   "sha256": "5ff9f298a3600d12181c18cd7755eca72f2e549bd0dfa3ff958385ba90ecc977",
+   "size": 45177,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.sgakh.geojson.gz",
-   "sha256": "66f3130f92df1e9ffeceb1898347e73227fe19aa15c788e3847bc10bff86e7c4",
+   "sha256": "4f19f9c5d936a8413bb8d22a7707768238b265c4b3a18abb9633ad45a8f2408e",
    "size": 50148,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.sgazg.geojson.gz",
-   "sha256": "8a41b468b1ccea9a6db363e891a548ab3c85e704b64cf75c24eb9dbdc7136dbb",
+   "sha256": "20258399b7674f6d01c6870b0d9d0dfb95e7816daf160766c2a9d74f5642a0fa",
    "size": 17831,
    "source": "https://gis.blm.gov/azarcgis/rest/services/recreation/BLM_AZ_RECS/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.wbl.geojson.gz",
-   "sha256": "fe1486c00fe6b1f81b233a3302ce2807512271b69c8fa1518f7421e862621601",
-   "size": 47501,
+   "sha256": "154d4484745db544bc9e0371c5dfdcdf35badd5d6f404bb06690ca3e9d51a894",
+   "size": 47500,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|^(?!.*study).*wilderness"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-AZ.wsa.geojson.gz",
-   "sha256": "3954153c7634337d8d0eee71a7721f1d38264d4e761e7c6a1adf2e371be6b4c7",
+   "sha256": "00c64bf3ef0b5ab209ae427965912846edc30d6f760712c198c2a30f041bc068",
    "size": 2552,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
@@ -399,30 +406,30 @@
    "source": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_State_Lands/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-DE.sgdeb.geojson.gz",
-   "sha256": "7d844fd36ba59cf09feac2956d44262f4b826ad106c46585e7c6c6fb3544ceb9",
+   "sha256": "ee518ba260eddd73c393b34c60e4eccf77feb9a0aaa70ca33c92c0fc7377f9fb",
    "size": 6136,
    "source": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-DE.sgdec.geojson.gz",
-   "sha256": "e8ba2715bca28a267b7bec02594e981ea1879eb5d72df7fea455e7bbfd52c19b",
-   "size": 19219,
+   "sha256": "b3f25273581818bcfc6d53ead32e4994f6e36b7651c5e3eed94eadeed180459a",
+   "size": 19218,
    "source": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/17/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-DE.sgded.geojson.gz",
-   "sha256": "357bcc914b8029099dc4814008a31c886ae3cac018ffa98498a12d83b1347205",
+   "sha256": "43580e9f38c2d8d21e9818c64ab12b0cd1ee0656d686575a222d769d065b4694",
    "size": 11647,
    "source": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/8/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-DE.sgdee.geojson.gz",
-   "sha256": "bf275ee753599cdde859ea24a8df80a4a4a7e3985ea89859839f8628df61f88e",
+   "sha256": "07e5cb7e861ec6d1c1c5518f0d61e9b4d0d0f69591c45805400bf4a117dd24da",
    "size": 96722,
    "source": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/11/query"
   },
@@ -462,45 +469,45 @@
    "source": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-HI.sghia.geojson.gz",
-   "sha256": "0bee55c12f54d846984e5a0d45db5914dbf3387424dd1c85ce6a3d6e362029ae",
-   "size": 10481,
+   "sha256": "0f9ce4ca68793eb68ef58c0d35bdc970de75e1ad0e8f5d5b3e735f84dd889795",
+   "size": 10480,
    "source": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/16/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-HI.sghib.geojson.gz",
-   "sha256": "40e93a910bd6f52c26cfef179a4a56d00dab9c615605da6519afd535f8c518bb",
-   "size": 65675,
+   "sha256": "ff8281631887098306ef0edea084c4e878d67072610a56e5ba06398735797f78",
+   "size": 65673,
    "source": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-IA.sgiaa.geojson.gz",
-   "sha256": "0c02935a64e61fb118720846e4f38472af4026e6b7dbbeb7461fc9ca82a1a3ae",
-   "size": 272824,
+   "sha256": "126c151feb05a1539ce84c649ec56af22bf59383597a70ee15f3e26271564c8a",
+   "size": 272820,
    "source": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-IA.sgiab.geojson.gz",
-   "sha256": "3122d2bc815a8f3f18467622d0c9ae48af0ef53002da7e4323e3c26b6fe150f3",
-   "size": 37822,
+   "sha256": "80f5714fd14fab3af8301ac2ae7ad23648787432ada30b78a6b1f9ece1e6d143",
+   "size": 37819,
    "source": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails/MapServer/2/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-IA.sgiac.geojson.gz",
-   "sha256": "19456806a3d6cac096f6c3a1acdb2d4c00714c008ceb0da1ecf106e5b4a049bb",
-   "size": 522021,
+   "sha256": "9fecbafdca5e5d5b16a0018cc2fa45ee35e592ecee3f50ac48c5c19bff8e9f2a",
+   "size": 522020,
    "source": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-IA.sgiad.geojson.gz",
-   "sha256": "81cb1f801ab21847a53aa894b2653a224b9d6b3d2e6d150cdb395beca01b0312",
-   "size": 33592,
+   "sha256": "b59c418dfb5f820609b60a4b7080ceea133124da138e4f8ddf3a49fe246b29e3",
+   "size": 33585,
    "source": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/10/query"
   },
   {
@@ -574,10 +581,10 @@
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-IL.sgild.geojson.gz",
-   "sha256": "3d730bfba6659379eca0bb7e6eb556ac7c1c5ed5f2e6da3849150ad8fc005625",
-   "size": 108758,
+   "sha256": "f723a1762baf88141a3ef91c21ea499935cd1442139caa7a51d4e92e188ae0f3",
+   "size": 108756,
    "source": "https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/11/query"
   },
   {
@@ -623,9 +630,9 @@
    "source": "https://gis.eea.mass.gov/server/rest/services/Protected_and_Recreational_OpenSpace_Polygons/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MD.mdd.geojson.gz",
-   "sha256": "d93e66b6fd27e3dd95537e6c579b57ed8ce462fb25fc409b629fd951d2670d66",
+   "sha256": "2b1aecf4719c420255b03a4f04823075aeeca1dfbb20e8cee8d9f8744444894d",
    "size": 167687,
    "source": "svc:https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer|dnr owned"
   },
@@ -637,212 +644,212 @@
    "source": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MD.sgmda.geojson.gz",
-   "sha256": "cf84d70ceddb304404cbd0ea86167bba35fdc76745d60e71e8e76fe786ca05e8",
-   "size": 193895,
+   "sha256": "8396d4d758e830be8576971179824b209dd95fe35f2a2ee4d3a8262e497b74a0",
+   "size": 193890,
    "source": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MD.sgmdb.geojson.gz",
-   "sha256": "411a9781ec7e4b3f20e1cf450196a0837c179eefcc092f590e8598c73e0d25e0",
-   "size": 8516,
+   "sha256": "3b919429ee8746607eeff44f92771623ffda61da139c3d21ea8d829fd47cb3d6",
+   "size": 8517,
    "source": "https://dnr.geodata.md.gov/dnrdata/rest/services/Environment/MDNaturalAreasGuide/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MN.sgmna.geojson.gz",
-   "sha256": "d53fd87f7486e36cae303070271204f5f0b9bc2b2f9a53dc8d83801ef569cda1",
-   "size": 253277,
+   "sha256": "0a2b8820e17e0fce716fbc6bca2ca7a1001bc46c6286a7263a622c58ba639dd0",
+   "size": 253275,
    "source": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MN.sgmnb.geojson.gz",
-   "sha256": "24210ba986774842bcc2ad7e95e6053982eba8783b774641b93513ba470eb045",
-   "size": 64123,
+   "sha256": "c08b71323c57f1d472bb1d179b0bf52c20955040ba96a37af6beb539a351df3f",
+   "size": 64121,
    "source": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/4/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MN.sgmnc.geojson.gz",
-   "sha256": "d49dc73b1d2d9fde19f6abd34c21eec737d4fb02c5882f1de087492759ff7d0a",
-   "size": 34284,
+   "sha256": "6ee3cb2d3ff57b8c0ce85d7b189e812ab78f2f55df7a906f463d103541ce127e",
+   "size": 34281,
    "source": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MN.sgmne.geojson.gz",
-   "sha256": "8d4da51d1dc327865edeb249ee8180c169eefa3fc4e0dbfd48661897de32680f",
-   "size": 641883,
+   "sha256": "49fae857a2fecdae87f72521d3000fde0485971f6cbeec630418b857db826d0e",
+   "size": 642281,
    "source": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MN.sgmnf.geojson.gz",
-   "sha256": "f91f8a96f41275038851707bcf46881a718a695bad60e9e7a95869034d2e6f3f",
-   "size": 1036672,
+   "sha256": "768e19beb5a7cafa77deceff4eeb0f7d56b7f42297f44c5827af1b73e9f31b7a",
+   "size": 1036662,
    "source": "https://apps.bwsr.state.mn.us/arcgis/rest/services/DNR_Management_Units/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MO.sgmoa.geojson.gz",
-   "sha256": "fbf2ad220b3f335238c38e7f4cc1a8709c9ddc7769d4dee36cbc0e25458f5af1",
-   "size": 35049,
+   "sha256": "429ed487ad5b9859ad16d4bf036757cf54bc201fc6166798e48cae35115563c1",
+   "size": 35047,
    "source": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MO.sgmob.geojson.gz",
-   "sha256": "23c30f06a70452a90c8d2c966d6889985329c8e4a774cca29e671371d43d475f",
-   "size": 6333,
+   "sha256": "bfb2aa60c38c9f11885ce0119061db0987cea28f37e221a147c0f9bd6fe1cddb",
+   "size": 6332,
    "source": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/3/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MO.sgmoc.geojson.gz",
-   "sha256": "c2a048fea81f04059ec1ba89ef9508a6a239e00080a709bec393410f0bd0020c",
-   "size": 195043,
+   "sha256": "912c73234939d46c1e06c52d7ec99f31b72a3ca18b254b5b3214241d31b111ce",
+   "size": 195193,
    "source": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MO.sgmod.geojson.gz",
-   "sha256": "bc8cf61540a1cb3e5ff0bd12d9feb3c2e799e28821264bc88d3391679ceb5738",
-   "size": 25552,
+   "sha256": "87e5439b4f04767ef28fca60819bbea312a57e2d8f411679d89ec2f01a721e45",
+   "size": 25550,
    "source": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/3/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MO.sgmoe.geojson.gz",
-   "sha256": "e57dcc088c7fe65bce1b268ccdbcb9d5cd90a9da651c077be223e37ee2316da6",
-   "size": 3431,
+   "sha256": "12e372985e8420bb01c8a223bec274e409564498707db5211f7eab101da6a7c2",
+   "size": 3432,
    "source": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/2/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MO.sgmof.geojson.gz",
-   "sha256": "a828efabbe4732c1ccdcfebf4878af7f9b61fbcf3bae66251b86adff333e22e9",
-   "size": 195052,
+   "sha256": "f16471a197893ac84917aafeddf4363316e117f30af6edfbafb97907b89ffd97",
+   "size": 195199,
    "source": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MO.sgmog.geojson.gz",
-   "sha256": "c594e95098a1dac0e127387ef50242394aad7c369023d23622fd70293a794637",
-   "size": 29554,
+   "sha256": "c4694c8ab30d3e7fdb8fb8e129d87ed771c8b51d317979f3bf0dc7e84d11bb51",
+   "size": 29553,
    "source": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/3/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MO.sgmoh.geojson.gz",
-   "sha256": "381a8a1e238dc608aaa7ed669fda39673ff79c8145096c3a2e1f80e233d68e45",
-   "size": 195187,
+   "sha256": "877e4a0a15f59177e717f7151bc707100890f06d9e655e6ad5ff070a1d64a666",
+   "size": 195185,
    "source": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/MapServer/5/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.hab.geojson.gz",
-   "sha256": "f1a010453a4b7bb8c5d72e059339c918b47cdf1b50ddb2cdfe436fca92f6aa82",
-   "size": 7722,
+   "sha256": "fdebc284eb173d26759d7b394685b08f5dc4799dfb161a774408b8c7ad3d1689",
+   "size": 7721,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.hma.geojson.gz",
-   "sha256": "9ff9be336b8c16556c34236b4aa4a3f7a2767cc374c16e88fdd7ffd20269e492",
-   "size": 3121,
+   "sha256": "041a1520873af7acc83af6e7f3358890da88efa76dfbedb6408f8a4ea8e27f1c",
+   "size": 3122,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.nca.geojson.gz",
-   "sha256": "5f75d7c75376b4e3249210e10c2d25f5895944514ef594d61c12f7ea445096b2",
+   "sha256": "62e9b62d6e332391a4aeea9eab59381c25ec59794c738629965cbc3828543d09",
    "size": 7488,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.rma.geojson.gz",
-   "sha256": "21e2a501774cf79d7ed58a3873dcf967065a0e227a4dfc689032b88bac43040f",
+   "sha256": "b23e40923897d11248ec0286bc67df30f11f385d4af232aab52ffeb4f6266509",
    "size": 2883,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.rst.geojson.gz",
-   "sha256": "2c1175a555e0d0eb8482f8ccdba0e0e65bf72fff3ca16a7552d2483f23c56dcc",
-   "size": 176018,
+   "sha256": "619046ce4344745fe5e672eeaffa0bf0b027032e880da0f099819c3de71ef88d",
+   "size": 176020,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.sgakg.geojson.gz",
-   "sha256": "cd13c07fcefcffeb611e11686e0d90d8ab034feec80a56c046038be573ec03a5",
-   "size": 176074,
+   "sha256": "b2eb23f0e82cec880feba53313549aac1209fb2f41c6cc95e2b9490f72d58102",
+   "size": 176076,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.sgakh.geojson.gz",
-   "sha256": "d509882247fd8b4532b7c3c4e1eb5d850a240634d30b076d3ebde14f8ca120ea",
-   "size": 36062,
+   "sha256": "a2ab2cc5dbfef6b73a6fc458d730ca512c921afb09c7c7700b45364e1f22721d",
+   "size": 36061,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.sgmtd.geojson.gz",
-   "sha256": "3d43aed3db07cdccfd4f25cf2f535530abb74161ea3a03fc674e1cb3c1df9b68",
-   "size": 1410286,
+   "sha256": "695fc1eb3e632cbad9a3aa485e8dfc5b8a14fee2317a94d5bdc3ecb210a154a9",
+   "size": 1410281,
    "source": "https://gisservice.mt.gov/ArcGIS/rest/services/msdi_administrative_boundaries_map_v1/MapServer/70/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.sgmte.geojson.gz",
-   "sha256": "be7c75a3cefa20cf117eb01744f7dbd365de9fdd647a017eb5257bbcbc1f7f02",
-   "size": 12252,
+   "sha256": "6cf41aa2226698585be6fd115dab6f66386814a30660083a1017c8990735c008",
+   "size": 12251,
    "source": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/5/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.sgmtf.geojson.gz",
-   "sha256": "51dd048f6b2b52f57b0ee5642749c6a488dd5867af9534e0992f6760c6ee8fb4",
-   "size": 32346,
+   "sha256": "7a3a1104617f1fab6d0f8dc18a7d90bf2ce6d92ced818ea78ecba49f9441f849",
+   "size": 32343,
    "source": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/2/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.wbl.geojson.gz",
-   "sha256": "5677bb6e5bbdb326b9104c75c5bbf7e984a7ec5ea9ee7be3228e3e2f664ebfa6",
-   "size": 1049,
+   "sha256": "96dcb119105fbecd5442bc24c28e467d086f41a75324682be912b215d0a5f607",
+   "size": 1050,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|^(?!.*study).*wilderness"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-MT.wsa.geojson.gz",
-   "sha256": "b278d14571430fd7344dbd8c7c3174c571a57f544aa2d53b87dfbe143e19f5d9",
+   "sha256": "d55a328bd37e17baa0204598665aa72480c85951c8c27ee9b84cef703a99f55d",
    "size": 24535,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-ND.rma.geojson.gz",
-   "sha256": "680f4993f756043e6010dec7d5c3b4808390a485523290c494bda12aa0f4b2ea",
-   "size": 644,
+   "sha256": "0c9c4d278fd0d789599f0bbe9e34537baaaaf7bfeb1e29de351064166545aada",
+   "size": 645,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-ND.rst.geojson.gz",
-   "sha256": "80454400a695e70b346bb396923b727ca2b8eb02ace57ccae093b17ffac788e2",
+   "sha256": "1cfc23361ecf376a88527749ab386b50bdf56587f8d4e2579be86245e5ab00fc",
    "size": 11701,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-ND.sgakg.geojson.gz",
-   "sha256": "152fe7c55cae72ca74a30d4624c172a1a5a3d994ea73aeafa19c195e9cdff6a9",
+   "sha256": "811fbe4d0a8100513b0ab527d431193a50e36c7bc7dbb0e54305a86ba12e01ac",
    "size": 11730,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1/query"
   },
@@ -854,17 +861,17 @@
    "source": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-ND.sgndd.geojson.gz",
-   "sha256": "752221ee1c54d566bc3db5099513df280bf707d6fc73a5063e13308dd8e87234",
-   "size": 3078,
+   "sha256": "6c71686ec72c4c99f6b5c7faaf2834f67e5d3178fd7c00f98a1eae963c4a074d",
+   "size": 3079,
    "source": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Forest/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NE.rst.geojson.gz",
-   "sha256": "cd541d86c74d2e209942cdd7f0b77d0a83b34c84cb766c9191865b7ca0ec310e",
-   "size": 210114,
+   "sha256": "cfbfbe12e109e68bfc06a6ac9fbdaeb28abe6d3ff5acab1dfc5f47aa66e8de89",
+   "size": 210116,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query"
   },
   {
@@ -875,149 +882,149 @@
    "source": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NH.nhc.geojson.gz",
-   "sha256": "d84180ff31ea9cbb1f9876340a3888fc48855f35e167ed8326c55e50d639f030",
-   "size": 927930,
+   "sha256": "41f97b1b81328768ef5f565cf7084d477ac558cc52809a8c7c08fa4022736e86",
+   "size": 927936,
    "source": "svc:https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer|conservation|public"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NH.sgnha.geojson.gz",
-   "sha256": "6da530c4f67ef95fa2562bd68fd88ac43c78a5572c2743a1e2b2aa3ef05ad780",
-   "size": 940791,
+   "sha256": "27c79406b0a15d19efedeccdbb46e9c5a17ef9a416ad52177496b50544dd7036",
+   "size": 940794,
    "source": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NH.sgnhc.geojson.gz",
-   "sha256": "1a3297787ce62953bc3404ebcc646f0eb3403d903f99b0bf3e8e90770f61295f",
-   "size": 234783,
+   "sha256": "e7edea449b855de1d2260691a9a3764b35a4cc16342af7d076bfb632ee15a50c",
+   "size": 234774,
    "source": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/3/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NH.sgnhd.geojson.gz",
-   "sha256": "10b1918edd970cec3b963071d6f01584daa456707a375ac907aa99eb824cb381",
-   "size": 949531,
+   "sha256": "66d14ec0d461b9cf95b459a549c6922b266da4964a7a25574f062bfdc22dc725",
+   "size": 949530,
    "source": "https://nhgeodata.unh.edu/nhgeodata/rest/services/EC/Conservation/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NJ.sgnja.geojson.gz",
-   "sha256": "457c93069594d6acbaf2080fcefa1ee0fb20116ec87c9f5102643cb6a9acf589",
-   "size": 29008,
+   "sha256": "78ec147ce09d20cbb4debdba02c1696fcf42418bc9cf01eb1deef35e95d6cae5",
+   "size": 29007,
    "source": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_NLT/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NM.hab.geojson.gz",
-   "sha256": "180b90ced319208ebe95a16f57a38ec8a05b1183caf6694ca22508461a115341",
-   "size": 2150,
+   "sha256": "6fe882839e059dbb30082bc319c413f6057520c70f1d012e6e22cbb8e6ac00b5",
+   "size": 2151,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NM.hma.geojson.gz",
-   "sha256": "79eb347e406cca9b5a242488828c42b7cf5b4dc4a881a6b6b0957da57107b229",
-   "size": 665,
+   "sha256": "1954b96ee1aa4cde1f060c51d0db0fe723692a7a535060eaeaa7cbf9c5d1a0c9",
+   "size": 667,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NM.nca.geojson.gz",
-   "sha256": "f7c030722dad48ff404569b65e49f800fa6cd9e278fd45ee1edf8409c7182f28",
+   "sha256": "46616f02b2db3ea56353db85410085086783fdc7b1f9cc371c4ce131e50c6563",
    "size": 9645,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NM.rma.geojson.gz",
-   "sha256": "90462e380e6f94410c6ea633f0569929105bdabc1be8da6e90702dfcfd697fc0",
-   "size": 5899,
+   "sha256": "6ad9950ebc3bed280515c5b208716bc876d9aec652f250f86cb182e5581f0be1",
+   "size": 5900,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NM.rst.geojson.gz",
-   "sha256": "ec1054dfb201b2fd335de44ff1b521fa817fcbdda9dab3f0e0afbb7512770c6a",
-   "size": 227486,
+   "sha256": "aeaf249b5146890bc55e4e0b39a5072ed61d317be7fe759a9f3a653d6bf69800",
+   "size": 227488,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NM.sgakg.geojson.gz",
-   "sha256": "b52ff64535b683037af3de9e0cd14a60b0de69fe9aacc51e18e4d6cec4f80f72",
-   "size": 227536,
+   "sha256": "5a359eef4bb4288c28999e8f671e26e7b4684d47a7bb1b54b9f091d53d29233a",
+   "size": 227538,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NM.sgakh.geojson.gz",
-   "sha256": "90fc47abfa4c4a6d0df1c43be8332a141baf40a514dca0ff673b818fca3a641f",
+   "sha256": "e09c95030e727fe092ebccaa58ad4feba1f9dc9e4738283ec8a9613f511ffbc0",
    "size": 38703,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NM.wbl.geojson.gz",
-   "sha256": "29dfbbf2794b876bc6a73358390891f96b2b6b3a162e3af329224e197e9f4a94",
-   "size": 11621,
+   "sha256": "b97474257f63542980d933a090fc5a1fe4fa7b4c89aeeb1435c7bd8887a83643",
+   "size": 11622,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|^(?!.*study).*wilderness"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NM.wsa.geojson.gz",
-   "sha256": "75a3d9f122918776037193d619769f3bc1e7de82b12869fb98601f10835c3793",
+   "sha256": "b6f45130cbd7c248618de9000a871c1b5f82a65581065bd514d137912373763e",
    "size": 27851,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.hab.geojson.gz",
-   "sha256": "ddc58b706872878e152a5cd632bb4a940689ee63161f88e465996dd9e994fd4c",
-   "size": 107591,
+   "sha256": "c4fa70ce69df85bcdb937afe55f34cec290d62881a77d827cc6bafe2aabf873e",
+   "size": 107592,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.hma.geojson.gz",
-   "sha256": "6b52f9b36c60d8fc62722c8c6856db6608ac75a4f49334bfc5f341c30324bee9",
-   "size": 79346,
+   "sha256": "24569a7d237ef94c8781bd4f861ee1f252c5896b91d50cc52a5f647efac72256",
+   "size": 79344,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.nca.geojson.gz",
-   "sha256": "f0af9fa5029eb0185981fd73c7ae7a712ab3d21c4afd6030a5f8079a1b4479db",
-   "size": 41737,
+   "sha256": "eac09860297d5af19c8101f3ac8a14eb44c6b8537a0be4573b290f80b424c951",
+   "size": 41736,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.rma.geojson.gz",
-   "sha256": "ca86ee08f610f559a97416fe53ff061588b20e4f58d5af99850a448a0ba93d62",
+   "sha256": "6a0de9b56d09ee1ca15b236572cb85b41d0ab442d2678bce50988791d78342dc",
    "size": 12946,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.rst.geojson.gz",
-   "sha256": "a1c1452dc78726dfce13299bcaee8a80873a560ccb1e206fe6167602e1726d47",
-   "size": 179029,
+   "sha256": "941d0de71fe9490416f6d707085dc7f8cb24b664f30b2bdaaf21cb0b58e6e401",
+   "size": 179027,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.sgakg.geojson.gz",
-   "sha256": "c363fefc14c43339ad4ce2832d3ff2ae2e89918fcc489537d3b5497454737928",
-   "size": 179091,
+   "sha256": "9f987a993379a6e07c547789c2db8bd68aaadd402cd7bf9572b125243868d4ae",
+   "size": 179086,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.sgakh.geojson.gz",
-   "sha256": "802695d89c6a6451f4ffdcf032ec69816a821b617dddd20e49429b82d5459627",
+   "sha256": "7a1f55ad5bb03b1e684849ef9dd61f6f8e5d42044336571d9ecc47f3a28a0f39",
    "size": 74650,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query"
   },
@@ -1029,45 +1036,45 @@
    "source": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.sgnvb.geojson.gz",
-   "sha256": "957966ef1164c310f136d754156f023fed13ff22a89922362986eb571b2d04bf",
-   "size": 84387,
+   "sha256": "8bfbc86315d648627c6ff77b53153bb7ccf45fa304a6875eb7dd8373a0b0b1ef",
+   "size": 84386,
    "source": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.sgnvd.geojson.gz",
-   "sha256": "dc7ed112cf08f08dd7e00bf47d78512323f466f10a303d37aac990ec8cee3e43",
-   "size": 81907,
+   "sha256": "9a7eb1ed6e8aed576f93e7498cd7cd6f7b490a55f7d6ea2aa943646cfa6e7cce",
+   "size": 81906,
    "source": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.sgnve.geojson.gz",
-   "sha256": "c027b8e6fe134d929c7bd70244d225c8c75a3457a74824c2418e81c87d8c98ef",
-   "size": 10215,
+   "sha256": "68eccfb3f0478719f1a53077fdfe7a47ddb07e665ba2249f6a89972ba100543c",
+   "size": 10214,
    "source": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.sgnvf.geojson.gz",
-   "sha256": "4fd0b2c86b0693c030aca8234c7f8615df6e3bb3b8fb1d830f6b8385227d58d8",
-   "size": 16150,
+   "sha256": "95e978451e3851663c07d9dd813e10fb20098eef550d040075ae11fd1a168e8b",
+   "size": 16149,
    "source": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_National_Monument_National_Conservation_Area/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.sgnvh.geojson.gz",
-   "sha256": "c5e785cbe5084e5bdc447c858dfb51a0233c2659fded4e18e6241beb13dd43bb",
+   "sha256": "bc4f2bce540081638df94fe4d8c53ac1e3dfa0e531d83fab20ca21e103aee9ae",
    "size": 74636,
    "source": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.sgnvi.geojson.gz",
-   "sha256": "1ed2f5bdc93d8032fd8b6cc52f804d33e4487a9556ff98474e89bfb15874ab99",
-   "size": 63516,
+   "sha256": "6582064f3ab5b16505c059b86224548b84e9cee46324f00684db97e8f2522d6d",
+   "size": 63515,
    "source": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/FeatureServer/0/query"
   },
   {
@@ -1078,17 +1085,17 @@
    "source": "https://www.ndow.org/blog/gis-data/"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.wbl.geojson.gz",
-   "sha256": "fcfd4bd51ac101f17d642271a11a0ebe8a1a792e40ff70710ccf09f931950191",
-   "size": 82080,
+   "sha256": "424d857a9f0cf9c64597684b219edf2fbd50afbbbb4e8352e542883856b6dfc1",
+   "size": 82079,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|^(?!.*study).*wilderness"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-NV.wsa.geojson.gz",
-   "sha256": "a585db73cfb4ae96df8c2467e016013ce293e64e927c283718fab12bdf2d6fa1",
-   "size": 70260,
+   "sha256": "09186c06617861206c4ce0b05c7cccfe65f2885088cd3d83de6f73047834a686",
+   "size": 70259,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
   {
@@ -1218,45 +1225,45 @@
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-PA.sgpaa.geojson.gz",
-   "sha256": "2891b50cc5df4160089296523308319bdea16fc3f4e5fa0b18da939d1eb39adf",
-   "size": 44736,
+   "sha256": "cf457f2199754ac4463241b99730574169d32b7e5a0c022f87500d26940c69fe",
+   "size": 44734,
    "source": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-PA.sgpab.geojson.gz",
-   "sha256": "553bd9957438c658ea39ca11a11b885bc7e9814f0c48242670f33aa3ca1e0feb",
-   "size": 46152,
+   "sha256": "8bc5bb063436c75320c11554b1ec2add999d2dfe13dfed1fc90426e0f250fa13",
+   "size": 46150,
    "source": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-PA.sgpad.geojson.gz",
-   "sha256": "cbabb95e90db5c82dab9c65a4c72616ed2bd42e2b19dc96d908091b2575a3f0f",
-   "size": 4250,
+   "sha256": "03854f1c365d651a9f67754873a09bfacba45f0224ff254be70617697cc18e95",
+   "size": 4251,
    "source": "https://gis.dcnr.pa.gov/agsprod/rest/services/StateParks/BSP_StateParksNaturalAreas/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-PA.sgpae.geojson.gz",
-   "sha256": "ccd120e63c78430c22faa54e7d79e0a82fcc3a58fd928ba3f4f4cf592812d37e",
-   "size": 137324,
+   "sha256": "98dfc281f620374b3413091c7e89a91c9580de99e0986b029af240787dcd5fbe",
+   "size": 137319,
    "source": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/BOF/State_Forests/MapServer/4/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-RI.sgria.geojson.gz",
-   "sha256": "c41847f2121039274e3463d415ee188dd5fe3f42330418d3ff299a3fb7c14d30",
-   "size": 111619,
+   "sha256": "d660d839de60cd0cfff19042aec4a4ccce5a883872c7e936295b549f388d006c",
+   "size": 111616,
    "source": "https://risegis.ri.gov/hosting/rest/services/RIDEM/State_Conservation_Land/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-RI.sgric.geojson.gz",
-   "sha256": "5e5f78a480e71ba38136b62fcd596ea87ef6151483c0eba1e419bdc90735921b",
-   "size": 111807,
+   "sha256": "1ca754c2b7f9839ebd7d594cd34537f51a9ebbe8cf7ae308c8cfc4e507fd1eea",
+   "size": 111805,
    "source": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/3/query"
   },
   {
@@ -1309,108 +1316,108 @@
    "source": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-TX.hab.geojson.gz",
-   "sha256": "689527860e72ea5497358e7563f6389104ae97680ec81a922f4c1bda4785cd3c",
-   "size": 941,
+   "sha256": "1d0a1869b6163332b483f7bb9c171419fd95570156f3d5c899efd5c3fdb367b8",
+   "size": 942,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-TX.hma.geojson.gz",
-   "sha256": "c8152dd12d5c0b7923a13ca4a9a5e5da649f1d65d2e472df37d6466c2d0428ad",
-   "size": 666,
+   "sha256": "032ee2c41f8ad2f20de9a91c37a3b15859bfe2d946da538b13c5afce57201cd5",
+   "size": 668,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-TX.nca.geojson.gz",
-   "sha256": "50ed841da9ebdecf13af330affdc639ccc85d8f4f2f10209ab387c31ce3fd623",
-   "size": 3746,
+   "sha256": "88db4b56c7ff35fe9e418406f2a4fb9cfa28b7aff5de5a798fd325c3bbe782b4",
+   "size": 3747,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-TX.rma.geojson.gz",
-   "sha256": "0859844683045e15e402a584021839a723fcf2b67e7989e03f77d9d092fa709f",
-   "size": 3742,
+   "sha256": "280fdd8bc75ff76630aa3d97d2cf0c1c512ab7dd847bbc613df62977f4903dd5",
+   "size": 3743,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-TX.rst.geojson.gz",
-   "sha256": "ee62f96c9dc553a5ec4c3db082339bc0834801631a0db98d078a20011078c8e0",
-   "size": 202096,
+   "sha256": "c6406081e9188683bb7404ec6143a850dfd57e79500cf6615545710829a7b40b",
+   "size": 202099,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-TX.sgtxb.geojson.gz",
-   "sha256": "a39db1dcf5e09c2ad55c3a0261fc35bd00109e024ef3143b4ddf7d52d0c321e9",
-   "size": 82871,
+   "sha256": "1f9a10d8f799da3a61339284d87dbc72711e482a594c3457d3a8ac2ec1e2407a",
+   "size": 82866,
    "source": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/TPWD_PublicHuntLocatorMap/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-TX.wbl.geojson.gz",
-   "sha256": "9bc663dbc6daf854b20e47dedb6f540b4567487e2aaf60bf8ddc3f159a0651d7",
-   "size": 2452,
+   "sha256": "399a5a29b20e3c8df8984c705b70ef72289c258f84ad996002884d9945c9c622",
+   "size": 2453,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|^(?!.*study).*wilderness"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-TX.wsa.geojson.gz",
-   "sha256": "196c0ac12c13c8abf334e80b4aa636069c4789a10feae9e5fdc505b385ce58e8",
-   "size": 4726,
+   "sha256": "4b017efbf69746811f8910906ce6672f07ba0f86f3bbb62b39d51549cb9d5cb1",
+   "size": 4727,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.hab.geojson.gz",
-   "sha256": "43c76408af5fccbaceb6a3bfdad317147272aef517a54acee3831360503effb8",
-   "size": 32963,
+   "sha256": "640ab4a9507b9a0e15b4ba9f29a3264e303f7ee675b9f4fea4ed953f699e24c4",
+   "size": 32962,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.hma.geojson.gz",
-   "sha256": "317d02faa088712fb0115af469b881dd0ca432cd53845587eb3d1711c98f950d",
-   "size": 24957,
+   "sha256": "36e7a91e45ea2b90c7e5ed37b24c0e7f730e242cf4678cc26b4d60990d1616c6",
+   "size": 24955,
    "source": "https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.nca.geojson.gz",
-   "sha256": "634e6e55b22ce8bf5e793c6748b8d81405939ffba15cdfbc3beb8175b79db468",
-   "size": 18132,
+   "sha256": "566aa89eba8941431f744526ea58f45c7ef0a960fde1b17935e5b4ef7a9badf9",
+   "size": 18131,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.rma.geojson.gz",
-   "sha256": "7e42881678208c14dd5c54aea99bd4d096684768e83cb06c0e8b568b7777043c",
+   "sha256": "3bd25bcb3f57d11050507eed2d48feebfe5759652689712713feab540c3bb6b9",
    "size": 10417,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.rst.geojson.gz",
-   "sha256": "9bafd8289a85a482c8dfebef92c7f8b7677deec41680396f82d8ee155f9dbb96",
-   "size": 323827,
+   "sha256": "ce12f0fc768e6d98c1c9c896503cb770872927efa0116e952bdc6bb08b06fc6f",
+   "size": 323825,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.sgakg.geojson.gz",
-   "sha256": "c97a117aabd4d4b89717ee2554919ef00dddeabb4dcfb9e59ab5b116557c09a0",
-   "size": 323874,
+   "sha256": "a1c5076baa29e0d408532d7f18b0d1de66f503a4eea77b50d3eb989fff9d49ca",
+   "size": 323875,
    "source": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.sgakh.geojson.gz",
-   "sha256": "ed82e67baaa126a713bfd6c54036f06768a4743ec420473ac8231fb0d669ae90",
-   "size": 66172,
+   "sha256": "ab996011d035a951226f3e3d59f599453cb94ca6f062623f5dacc0e123eeed4d",
+   "size": 66171,
    "source": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0/query"
   },
   {
@@ -1421,52 +1428,52 @@
    "source": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.sgutd.geojson.gz",
-   "sha256": "4847c4194d39c86e5b1e22c162a1b580a3367ba291467c9562c8f78270c928a5",
+   "sha256": "749b90554fc5a3d349e66bfe63e9bc8de2ed3d68a5781aba2b44c50281eaacd4",
    "size": 8725,
    "source": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.wbl.geojson.gz",
-   "sha256": "c2506751ce1d94d2ef08e73ec9f3ccaf365ee5e7e3800832991f977513e2ac53",
-   "size": 33378,
+   "sha256": "5ec4bc0fb7c485abdbeb02627ec65e64af3819c843008740f763975dae8e749b",
+   "size": 33379,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|^(?!.*study).*wilderness"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-UT.wsa.geojson.gz",
-   "sha256": "43c0086a2b879ae462086d75c53924ffdfec481a39bd148a0f16e8c766134cee",
-   "size": 92522,
+   "sha256": "6558b1f61d2cc3b1950c91d9f86350282a8e14b7ffe0470b1f1a27201a9b5531",
+   "size": 92521,
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-VA.sgvag.geojson.gz",
-   "sha256": "a7a64a654f29a825d4cfc84b21c7e43116c333db8b910d3c1a2f9c7ababc9751",
-   "size": 37009,
+   "sha256": "9b7195c8c78edeb14f30a53f2ec4673890b6755d292c59b4c0c3a347a227d28e",
+   "size": 37007,
    "source": "https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-VA.sgvah.geojson.gz",
-   "sha256": "326569fe6c202ada303cbc0416a6e54f482850a81118091f15e97b169652bde8",
-   "size": 381825,
+   "sha256": "3c21880e08b9222a9b04bf1ae2965e3b53e449037f0272fa40a7ec8e1c793113",
+   "size": 381819,
    "source": "https://vcris.dhr.virginia.gov/arcgis/rest/services/dhr/dhr_public/MapServer/3/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-VT.sgvta.geojson.gz",
-   "sha256": "cf1eb3d576fde7b649b89d6e7048ffec4ea0ea2970f4023a18098fec25d3cdf4",
-   "size": 101017,
+   "sha256": "4a1ff77e42b51c7084f415102309f21f76f1f37a7162ea892cadfd0238199229",
+   "size": 101016,
    "source": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-VT.vta.geojson.gz",
-   "sha256": "4db62b60d545ccac1fb78aa8cb63c17bc2691a2ee8882dd2e089d471eb41f736",
-   "size": 22525,
+   "sha256": "43ec832bc045f1c75e430f0540ea19d4e3e31c0dff998db57787addf0fe2ed5c",
+   "size": 11612,
    "source": "svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit"
   },
   {
@@ -1568,58 +1575,58 @@
    "source": "svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-WI.sgwia.geojson.gz",
-   "sha256": "fbbdba6672cd9a34a8e9287fa65f12eb668caae92feb05d8b7604921e397f829",
-   "size": 549628,
+   "sha256": "76d73d8c2da7bddb56ac47c90f0c30a2e2e3afe6a1d02f3f0ee9d200ee706f2c",
+   "size": 549625,
    "source": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-WI.sgwib.geojson.gz",
-   "sha256": "7c4ab0eea4ea4f888df23ff91772ea72241e0f05f92cbbb4f9144444b2a52bca",
-   "size": 131349,
+   "sha256": "3bdd1d04678c006218e77e3443233cf79e0c3b72e2914b9effb02c3f68bed0eb",
+   "size": 131347,
    "source": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-WI.sgwic.geojson.gz",
-   "sha256": "130db30877e1e6eb956db02bebf519142d9eae337bb2703730b5c3bac9bd8a05",
-   "size": 137535,
+   "sha256": "4d5e9fc9d12cdc15e951f368677e08e6ecb34ff839b4c51078d239ab59ad5479",
+   "size": 137534,
    "source": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-WI.sgwid.geojson.gz",
-   "sha256": "9b037b2cd1293399dbf692c10b84c738f984b6080304c0fc93ce5a45bb30e1ce",
-   "size": 3896071,
+   "sha256": "721e7ec0e29350ba5a5d5501e6626ac45e62f5ad84e8ba852ab29db892a4da1a",
+   "size": 3896057,
    "source": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-WI.sgwie.geojson.gz",
-   "sha256": "7a13559f58a26701244b3a87370e8ebd280298697a9060016d08a775bdc4513e",
+   "sha256": "4fc7564711ab5f01e25d6c754fb35023c1257cb087c30b7414da308d6735e785",
    "size": 169827,
    "source": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/0/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-WI.sgwif.geojson.gz",
-   "sha256": "052ca50c3e7762ca71c487ab301eddd625c3582a6111c57772a0432ad8f35bd2",
-   "size": 147763,
+   "sha256": "4ee288b83c3fecd6f58168d7eb487d2eb68910fb498e9ad4c5e227655681c261",
+   "size": 147761,
    "source": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/ER_DNR_NA_StateNaturalAreas_WTM/MapServer/2/query"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-WI.wid.geojson.gz",
-   "sha256": "f022b8886249feeabb28a717d58a324bd622e4977aa80e488616dc770f747f3b",
-   "size": 498217,
+   "sha256": "e3aa0217a84d9cdd4a8b3a68d4f63cf9219e605a5351c2da6ee1cd8f43189f33",
+   "size": 498213,
    "source": "svc:https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer|propert"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-11",
    "name": "US-WV.sgwvc.geojson.gz",
-   "sha256": "d0841cfb5a74926f70e5f32bd319b1450f9231d52db2b3e3eaf17f3274bf9b49",
+   "sha256": "b226f5346e4d904037db2bb17498e9aebf19d08cc03c5505645c348c4f0b2074",
    "size": 11242,
    "source": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/10/query"
   },
@@ -1742,6 +1749,20 @@
    "sha256": "6c9bd21c65324d26d01701942b8f26ed2e09418686d4a03a04f8bc4c986bd820",
    "size": 81530669,
    "source": "https://iris.fws.gov/APPS/ServCat/DownloadFile/301500?Reference=194090"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "W-PF.h210-PGEM-AMP-TeFenua.geojson",
+   "sha256": "aca84e4f49a1edf705b4670fc239839b94a9ff81de0cfd0dbe6790a783606f86",
+   "size": 121164,
+   "source": "https://www.tefenua.data.gov.pf/datasets/ef2bdc8e55f049318a3888f8134349b0_0/about"
+  },
+  {
+   "date": "2026-11-11",
+   "name": "hand-US-MI-dnr-public-forest-inventory.geojson",
+   "sha256": "4f1c3bb6f1161b00f538f7b4cffdfe30f7adcd0f6bf7c0fa8ccd2dc18bb694be",
+   "size": 36098485,
+   "source": "Michigan DNR Forest Inventory compartments (a person's download); FMU key: michigandnr.com stumpage price reports"
   },
   {
    "count": 116,
