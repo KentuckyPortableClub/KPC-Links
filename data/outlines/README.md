@@ -24,6 +24,11 @@
 - **plan** says which layers (not whole states) need a live read: older than 30 days (`KPC_MASTER_MAX_DAYS`), changed since last read (`lastEditDate`), or a count that no longer matches.
 - **gate** runs before a key build reads its saved copies. It compares the actual saved record count (`len(recs)`) to the baseline, not the cache `seen` field. A saved copy with fewer records than the baseline is set aside, its area is not built that run, and the job turns red. A saved copy with no baseline is held and not used, unless the workflow passes `--first-ok` (Canada only, because `CA-ALL` has no baseline yet): then it is used with a notice, and a SHORT copy is still held.
 - **baseline** records a saved copy's first baseline after a good full build, only when it has none. It is the copy's record count, or the release copy's count when that is smaller. It never lowers or replaces an existing baseline.
+- **`kpc_outlines_from_key.py`** (Nov 11, run on the box, offline) adds an outline for each park the published US key joins
+  (`data/us-key/US-XX.json`, `m`) that has none in `US-XX.geojson.gz` yet, from the saved copy `US-XX.json.gz` (boundary-cache).
+  It unions the joined records, trims them with the same trim, and writes a master record with `via: key` and
+  `layer_url: file:US-XX.json.gz`. It never replaces an outline already in the file, skips trail lines (the trails layer draws
+  those) and skips a park whose joined records are not all in the saved copy. No map server is contacted.
 - **raw-add** records a downloaded raw file in `raw-manifest.json`.
 - **wdpa-lookup** finds a park's managing agency from a Protected Planet file. Output is agency fields only, written outside the repo.
 

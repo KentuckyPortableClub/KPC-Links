@@ -48,12 +48,13 @@ nh = load_out('NH')
 refs = {(f.get('properties') or {}).get('ref') for f in nh.get('features') or []}
 check('NH published outline file has official geometry (state parks / forests)',
       'US-2653' in refs and all((f.get('geometry') or {}).get('coordinates') for f in nh['features']))
-check('NH published file does not yet include White Mountain NF (US-4512) — reported, not invented',
-      'US-4512' not in refs)
-
-missing = ['CT','DC','GA','KS','LA','MA','ME','MI','MS','NC','ND','NE','NJ','NY','OK','SC']
-check('states with a US key but no published outline file are treated as missing (not generated)',
-      all(not (out_dir / f'US-{s}.geojson.gz').exists() for s in missing))
+# Nov 11 (KPC owner, 2026-11-11: 'get the shape file done'): White Mountain NF and the 11 states with no file now have outlines,
+# built offline from the published US key + the saved copies (kpc_outlines_from_key.py; via='key'), never from a live map server
+check('NH published file includes White Mountain NF (US-4512), from the key + saved copy',
+      'US-4512' in refs and next(f for f in nh['features'] if f['properties']['ref'] == 'US-4512')['properties'].get('via') == 'key')
+filled = ['CT','DC','GA','KS','LA','MA','ME','MI','MS','NC','ND','NE','NJ','NY','OK','SC']
+check('every state that had no published outline file now has one',
+      all((out_dir / f'US-{s}.geojson.gz').exists() for s in filled))
 
 # no new data files in this change set — the test only reads existing published files
 check('stamps bumped on the US planner',
