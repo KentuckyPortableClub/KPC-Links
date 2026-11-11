@@ -7,6 +7,7 @@ Time-limited, never fails."""
 import json, math, os, pathlib, re, sys, time, urllib.parse, urllib.request
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
+import kpc_net_guard; kpc_net_guard.install()
 
 T0, LIMIT = time.time(), float(os.environ.get('MINUTES') or 150) * 60
 UA = {'User-Agent': 'KPC outline lead tester (kentuckyportableclub.github.io)'}

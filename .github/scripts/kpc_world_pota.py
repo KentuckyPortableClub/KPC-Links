@@ -5,6 +5,7 @@ plus data/pota/index.json {updated, parks, tiles, programs:{prefix: count}}.
 Source: api.pota.app/locations, then /location/parks/<locationDesc> for every location. A location that fails keeps
 last month's rows (read back from the old tiles)."""
 import json, os, glob, math, time, datetime, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = {'User-Agent': 'KPC world POTA pins (kentuckyportableclub.github.io)'}
 OUT = 'data/pota/t'

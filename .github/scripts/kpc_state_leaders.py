@@ -6,6 +6,7 @@ has 10+ QSOs (POTA's rule). Calls like KZ4CP/P count as KZ4CP. A park is only re
 Writes data/leaders/US-XX.json {updated, st, parks, activated, acts:[[call, activations, parks, qsos]] (top 50 by
 activations), uniq:[...] (top 50 by different parks)} and data/leaders/index.json {st: [updated, parks]}."""
 import json, os, time, datetime, urllib.request, concurrent.futures as CF
+import kpc_net_guard; kpc_net_guard.install()
 ST = (os.environ.get('STATES') or 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY').split()
 C, OUT = '.cache/leaders', 'data/leaders'; os.makedirs(C, exist_ok=True); os.makedirs(OUT, exist_ok=True)
 UA = {'User-Agent': 'KPC state leaders (kentuckyportableclub.github.io)'}

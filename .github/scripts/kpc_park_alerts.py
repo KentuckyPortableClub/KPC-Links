@@ -35,6 +35,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 STATE_F = pathlib.Path('data/park-alerts-state.json')

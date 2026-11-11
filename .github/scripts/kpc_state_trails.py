@@ -22,6 +22,7 @@ reused, not searched again (FULL=1 searches all; OpenStreetMap and missing parks
 a new line under half the length of the saved one keeps the saved one; parks POTA no longer lists are taken out; a self-grade
 gate (Sheltowee Trace + Katy, Virginia Creeper, Greenbrier River lines) writes /tmp/kpc-gate.txt for the grade-me line."""
 import json, os, re, time, math, urllib.request, urllib.parse, datetime
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 _ALLST = ('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD '
           'TN TX UT VT VA WA WV WI WY CANADA').split()

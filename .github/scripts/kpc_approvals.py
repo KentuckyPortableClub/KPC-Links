@@ -7,6 +7,7 @@ Email goes through the club mailer (RELAY_MAIL_URL + RELAY_MAIL_KEY) to secret A
 import os, re, sys, json, datetime, urllib.request, zoneinfo
 sys.path.insert(0, os.path.dirname(__file__))
 import kpc_formtools as T, kpc_preapproved as PA
+import kpc_net_guard; kpc_net_guard.install()
 
 N = lambda m: T.notice('Approvals', m)
 CT = zoneinfo.ZoneInfo('America/Chicago')

@@ -13,6 +13,7 @@ A list that comes back much shorter than last time is skipped that day (a broken
 DRY=1 prints what would happen without writing or posting.
 """
 import csv, datetime, io, json, os, pathlib, re, subprocess, sys, time, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = 'KPC-NewRefs/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'

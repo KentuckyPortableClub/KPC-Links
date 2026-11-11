@@ -7,6 +7,7 @@ Oct 28 (HQ tune): a trail whose new line has under half the points of the saved 
 service must not cut the trail); a self-grade gate (the Sheltowee Trace + the Appalachian, Pacific Crest and North Country
 lines must be there) prints GATE PASS / FAIL and writes /tmp/kpc-gate.txt for the workflow's grade-me line."""
 import re, json, os, sys, time, urllib.request, urllib.parse
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 NPS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/'
 T = json.load(open(os.path.join(os.path.dirname(__file__), 'kpc_us_trails.json')))
 try:   # Nov 1 (chat 2): SURE line finds from the outside research for trail parks still a pin (kpc_finds_lines.py, EXTRA_TRAILS)

@@ -4,6 +4,7 @@ Rows with YES in the Approved column are used, plus rows from pre-approved call 
 Google Drive, shrunk to 1280 px and saved without location data in photos/community/."""
 import csv,io,json,os,re,hashlib,sys,urllib.request,datetime
 import kpc_preapproved as PA
+import kpc_net_guard; kpc_net_guard.install()
 PRE=PA.load()
 URL=os.environ.get('COMMUNITY_SHEET_CSV','').strip()
 def notice(m): print('::notice title=Community::'+str(m).replace('%','%25').replace('\n','%0A'))

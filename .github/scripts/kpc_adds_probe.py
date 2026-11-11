@@ -7,6 +7,7 @@ category / manager field + values (so a mixed layer can be told apart). Searches
 and name the publishing organisation (publisher test). Reads .claude/build/research/ADDS/round5.json, writes
 round5-tested.json next to it. Adds nothing to the live data. Never fails."""
 import json, os, pathlib, re, sys, time, urllib.parse, urllib.request, urllib.error
+import kpc_net_guard; kpc_net_guard.install()
 UA = {'User-Agent': 'KPC park mapping (kentuckyportableclub.github.io; ham radio club)'}
 CAND = pathlib.Path(os.environ.get('CAND') or '.claude/build/research/ADDS/round5.json')
 OUT = CAND.with_name(CAND.stem + '-tested.json')

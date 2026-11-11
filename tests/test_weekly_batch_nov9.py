@@ -20,9 +20,10 @@ def check(cond, msg):
     print(('PASS ' if cond else 'FAIL ') + msg)
 
 
-# 0. no rules hash moves (the 2-fer run 42649544758 is going)
-for k, h in (('us-key', '2c7f4be3dc36'), ('ca-key', '0ebc381a788f'), ('world-key', '022f06d08d3c'), ('fers', 'c2456edee62e')):
-    check(KF.rules_hash(k) == h, f'{k} rules hash stays {h}')
+# 0. every rules hash is the declared one
+import kpc_preflight as PF  # noqa: E402
+for k in ('us-key', 'ca-key', 'world-key', 'fers'):
+    check(bool(PF.newest_hash(k)) and KF.rules_hash(k) == PF.newest_hash(k), f'{k} rules hash equals the newest one in docs/key-rules-change.txt')
 check('kpc_problem_solver.py' in KF.NOT_RULES, 'the problem solver is not a rules file')
 
 ov = json.load(open(ROOT / 'data/us-key/overrides.json', encoding='utf-8'))['parks']

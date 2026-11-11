@@ -4,6 +4,7 @@ job can run it 12 times, 5 minutes apart). Sent alerts are remembered in .github
 every check, so the same spot is never posted twice."""
 import datetime as dt, json, os, pathlib, re, urllib.request
 from urllib.error import HTTPError
+import kpc_net_guard; kpc_net_guard.install()
 
 # KPC operators to watch: read from the club roster in kpc-tools.js (the only list)
 CALLS = {'KZ4CP', 'N4BDW', 'KQ4HZK', 'K4ZSR', 'N4KPC'}   # fallback if the roster can't be read

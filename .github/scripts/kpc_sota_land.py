@@ -18,6 +18,7 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 Q = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
 OUT = pathlib.Path('data/sota-land')

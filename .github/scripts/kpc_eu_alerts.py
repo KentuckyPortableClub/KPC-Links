@@ -11,6 +11,7 @@ import re
 import sys
 import urllib.request
 import xml.etree.ElementTree as ET
+import kpc_net_guard; kpc_net_guard.install()
 
 OUT = pathlib.Path('data/alerts/eu.json')
 FEED = 'https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-'

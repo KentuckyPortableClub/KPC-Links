@@ -22,6 +22,7 @@ data/research-inbox/needs-another-look.json (the sure rule): every park still NE
 next run after a new layer or a hand download re-checks just those parks (--retry). Never fails a build: exit 0 (selftest exits 1).
   python3 .github/scripts/kpc_research_inbox.py [--retry] [--offline] [--only FILE] [--selftest]"""
 import unicodedata, csv, glob, json, math, os, pathlib, re, sys, time, urllib.parse, urllib.request, urllib.robotparser, datetime
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -157,7 +158,8 @@ class Reader:
     def allowed(self, url):
         p = urllib.parse.urlparse(url); host = p.netloc.lower(); low = url.lower()
         if any(n in low for n in NEVER): return False, 'never read (standing rule)'
-        if host in HOLD: return False, f'{host}: saved copy only (no live reads while its robots.txt answers 403)'
+        if host in HOLD or not kpc_net_guard.host_ok(url)[0]:   # the shared rule: every services*.arcgis.com, any port / user@ / trailing dot
+            return False, f'{kpc_net_guard.host_of(url) or host}: saved copy only (no live reads while its robots.txt answers 403)'
         if self.offline: return False, 'offline run'
         if host not in self.rb:
             try:

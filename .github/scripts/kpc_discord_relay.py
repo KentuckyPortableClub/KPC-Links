@@ -32,6 +32,7 @@ import base64, csv, datetime, hashlib, hmac, io, json, os, re, shutil, smtplib, 
 import urllib.error, urllib.parse, urllib.request
 from email.message import EmailMessage
 from zoneinfo import ZoneInfo
+import kpc_net_guard; kpc_net_guard.install()
 
 TITLE = 'KPC Discord relay'
 def notice(m): print('::notice title=' + TITLE + '::' + str(m).replace('%', '%25').replace('\r', '').replace('\n', '%0A'), flush=True)

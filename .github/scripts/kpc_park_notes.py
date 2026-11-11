@@ -5,6 +5,7 @@ Google Drive, shrunk to 1280 px and saved without location data in photos/notes/
 import csv,io,json,os,re,hashlib,sys,urllib.request
 import kpc_preapproved as PA
 import kpc_formtools as T
+import kpc_net_guard; kpc_net_guard.install()
 PRE=PA.load()
 URL=os.environ.get('NOTES_SHEET_CSV','').strip()
 def notice(m): print('::notice title=Park notes::'+str(m).replace('%','%25').replace('\n','%0A'))

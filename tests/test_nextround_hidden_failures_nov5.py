@@ -83,6 +83,7 @@ if base:
         if p.returncode == 0 and cr(p.stdout) != cr(t): moved.append(n)
     check(not moved or base != 'nr-links-main', f'no cron line changed vs {base} ({moved[:3]})')
 # the check-up
+sys.path.insert(0, str(HERE / '.github/scripts'))   # the script imports its sibling kpc_net_guard
 spec = importlib.util.spec_from_file_location('bh', HERE / '.github/scripts/kpc_bot_health.py'); BH = importlib.util.module_from_spec(spec); spec.loader.exec_module(BH)
 ANN = {11: [{'title': 'Hidden failures', 'message': '2 error(s) and 1 warning(s) caught inside steps, 0 step(s) failed but kept green (job run)'}, {'title': 'x', 'message': 'y'}], 12: []}
 def fake(path, *a):

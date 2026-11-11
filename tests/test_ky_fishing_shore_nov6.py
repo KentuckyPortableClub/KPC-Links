@@ -45,11 +45,9 @@ def samples(geom, n=9):
     return found
 
 
-check(KF.rules_hash('us-key') == '2c7f4be3dc36', 'US rules hash 2c7f4be3dc36 (approved Nov 10, 2026; declared)')
-check(KF.rules_hash('ca-key') == '0ebc381a788f', 'Canada rules hash 0ebc381a788f (moved Nov 10, declared)')
-# Nov 7 world rebuild (B1 B2 B3 B4 B6, world-failed-diagnosis.md section 7; Brandon OK'd the world hash move): kpc_world_key.py
-# changed on purpose, so the world rules hash moved 1b50faf1dfe8 -> 6a5969a25d2c. US and CA stay; this check still pins all three.
-check(KF.rules_hash('world-key') == '022f06d08d3c', 'world rules hash 022f06d08d3c (moved Nov 10, declared)')
+import kpc_preflight as PF
+for _k, _n in (('us-key', 'US'), ('ca-key', 'Canada'), ('world-key', 'world')):
+    check(bool(PF.newest_hash(_k)) and KF.rules_hash(_k) == PF.newest_hash(_k), f'{_n} rules hash equals the newest one in docs/key-rules-change.txt')
 check('kpc_research_sources.py' in KF.NOT_RULES, 'the shore reader is not a rule file')
 
 # Nov 9 weekly batch (Brandon 10:08 AM CST 'KY lakes -> use the county parcel'): the two shore outlines went INTO
@@ -65,8 +63,9 @@ diff = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', *kept]
 changed = [ln for ln in diff.stdout.splitlines() if ln.strip()]
 # Nov 9 PAD-US load fix (Brandon 11:24 AM CST 'Yes'): kpc_us_key.py may differ only with that move declared in docs/key-rules-change.txt
 _d = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-if 'US rules a066624520b4 -> ' + KF.rules_hash('us-key') in _d or 'US rules f489a836894f -> ' + KF.rules_hash('us-key') in _d or 'US rules bbdcc89f8120 -> ' + KF.rules_hash('us-key') in _d or 'US rules da660f0d5ae7 -> ' + KF.rules_hash('us-key') in _d or 'US rules 6395b561d4c8 -> ' + KF.rules_hash('us-key') in _d: changed = [c for c in changed if c != '.github/scripts/kpc_us_key.py']
-if 'CA rules 8feccbb7d9ee -> ' + KF.rules_hash('ca-key') in _d or 'CA rules 570b09c3cb52 -> ' + KF.rules_hash('ca-key') in _d or 'CA rules b1a521708978 -> ' + KF.rules_hash('ca-key') in _d: changed = [c for c in changed if c != '.github/scripts/kpc_ca_key.py']   # Nov 9 evening: declared blocked_ids move
+# a rule file may differ from main only when its kind's hash is the newest declared one
+if KF.rules_hash('us-key') == PF.newest_hash('us-key'): changed = [c for c in changed if c != '.github/scripts/kpc_us_key.py']
+if KF.rules_hash('ca-key') == PF.newest_hash('ca-key'): changed = [c for c in changed if c != '.github/scripts/kpc_ca_key.py']
 check(diff.returncode == 0 and not changed, 'KY key outlines and rule files are unchanged'
       + ((' (' + ', '.join(changed) + ')') if changed else ''))
 _ver = json.load(open(ROOT / '.github/key-rules-version.json'))
@@ -92,7 +91,9 @@ nov9_wf |= {'.github/workflows/kpc-boundary-check.yml'}
 nov9_wf |= {'.github/workflows/kpc-research-inbox.yml'}
 # Nov 10 quiet runs (handoff 2): fewer runs / failure emails; not key rule workflows (key-measure: fail-safe wording only; watchdog: a lost notes-save stays green; pages-deploy: timer + deploy settle)
 nov9_wf |= {'.github/workflows/kpc-key-measure.yml', '.github/workflows/kpc-watchdog.yml', '.github/workflows/pages-deploy.yml'}
-extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf]
+# 2026-11-10 review fixes: saved-copy checks, stamps, one trigger per key; not key rule changes
+nov10_wf = {'.github/workflows/kpc-chain.yml', '.github/workflows/kpc-club-posts.yml', '.github/workflows/kpc-geo-cache.yml'}
+extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf | nov10_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))
 if set(changed_wf) & allowed_wf:

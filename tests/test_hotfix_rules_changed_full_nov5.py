@@ -46,11 +46,11 @@ j = y['jobs']['join']; stamp = next(s for s in j['steps'] if 'kpc_key_freeze.py 
 check("needs.plan.outputs.full == '1'" in stamp['env']['KPC_FULL_BUILD'], 'the join stamps the rules hash from the plan\'s full=1 (KPC_FULL_BUILD)')
 
 pc = y['jobs'].get('postcheck') or {}
-check(set(pc.get('needs') or []) >= {'join'} and "github.triggering_actor == 'github-actions[bot]'" in str(pc.get('if')) and "needs.join.result == 'success'" in str(pc.get('if')),
-      'a bot-started US key run (no workflow_run event) starts the post-key check after a finished join')
+check(set(pc.get('needs') or []) >= {'join'} and 'triggering_actor' not in str(pc.get('if')) and "needs.join.result != 'cancelled'" in str(pc.get('if')),
+      'every US key run (not cancelled, join not skipped) dispatches the post-key check')
 check((pc.get('permissions') or {}).get('actions') == 'write' and any('gh workflow run kpc-key-postcheck.yml' in str(s.get('run')) and '-f key=us' in str(s.get('run')) for s in pc.get('steps', [])),
       'it dispatches kpc-key-postcheck.yml with key=us (actions: write only in that job)')
 k = yaml.safe_load(open(W / 'kpc-key-postcheck.yml', encoding='utf-8')); on = k.get('on') or k.get(True)
-check('key' in (on['workflow_dispatch'].get('inputs') or {}) and 'KPC US answer key' in on['workflow_run']['workflows'], 'the post-key check takes key=us by hand and still follows a person\'s run through workflow_run')
+check('key' in (on['workflow_dispatch'].get('inputs') or {}) and 'workflow_run' not in on, 'the post-key check takes key=us and has no workflow_run trigger')
 check(not any('schedule' in (yaml.safe_load(open(f)).get(True) or yaml.safe_load(open(f)).get('on') or {}) for f in [W / 'kpc-key-postcheck.yml']), 'no cron added to the post-key check')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

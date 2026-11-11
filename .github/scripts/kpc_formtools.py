@@ -8,6 +8,7 @@
   ref_name(ref)    -> the park / summit / reference name, '' when it does not exist, None when it could not be checked
 Look-ups are remembered in data/kpc-form-checks.json (call signs and reference numbers only, both public)."""
 import csv, io, json, os, re, time, urllib.request, urllib.parse, datetime
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = {'User-Agent': 'KPC form sync (kentuckyportableclub.github.io)'}
 CACHE_FILE = os.environ.get('KPC_CHECKS') or 'data/kpc-form-checks.json'   # each workflow keeps its own, so jobs never clash

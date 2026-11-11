@@ -6,6 +6,7 @@ boundaries later'). Writes data/canada.json in the same row format as locations.
 Keeps last week's POTA rows if POTA can't be reached."""
 import json, os, glob, time, urllib.request, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
+import kpc_net_guard; kpc_net_guard.install()
 UA = {'User-Agent': 'KPC Canada pins (kentuckyportableclub.github.io)'}
 def note(t, m): print(f'::notice title={t}::{m}')
 def get(u):

@@ -80,7 +80,7 @@ names = {k: yaml.safe_load(open(HERE / f'.github/workflows/kpc-{k}.yml'))['name'
 for kind, want in (('ca-key', ['us-key']), ('world-key', ['us-key', 'ca-key'])):
     f = HERE / f'.github/workflows/kpc-{kind}.yml'; txt = f.read_text(); y = yaml.safe_load(txt); on = y.get(True) or y.get('on')
     wr = on.get('workflow_run') or {}
-    check(wr.get('workflows') == [names[k] for k in want] and wr.get('types') == ['completed'], f'{kind}: workflow_run on {[names[k] for k in want]} (the names match the real workflows)')
+    check(not wr, f'{kind}: no workflow_run trigger (the key before it dispatches it once)')
     main = subprocess.run(['git', 'show', f'{BASE}:.github/workflows/kpc-{kind}.yml'], cwd=HERE, capture_output=True, text=True).stdout
     om = yaml.safe_load(main); om = om.get(True) or om.get('on')
     check(on.get('schedule') == om.get('schedule'), f'{kind}: no new cron (schedule same as main)')

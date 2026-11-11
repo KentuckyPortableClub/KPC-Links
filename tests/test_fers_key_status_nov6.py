@@ -42,9 +42,10 @@ check(FKS.key_line_match(['US-0367', 'US-DUMMY'], 'area', ROOT, areas={'US-0367'
 check(FKS.key_line_match(['US-0367', 'US-DUMMY'], 'area', ROOT, areas={'US-0367': 'US-MN'}) == '' or
       FKS.status_for('US-0367', 'US-MN') == 'official',
       'US-0367 graded in MN is official (not a pin drop by itself)')
-# Fort Smith: OK pin + AR official -> weakest is pin
-check(FKS.KEY_STATUS.get('US-0822') == 'pin' or FKS.KEY_BY_AREA.get('US-0822', {}).get('US-OK') == 'pin',
-      f"US-0822 has an OK pin copy (got status={FKS.KEY_STATUS.get('US-0822')} by={FKS.KEY_BY_AREA.get('US-0822')})")
+# Weakest-status logic on a tiny fixture (no built key data)
+FKS.clear()
+FKS.KEY_BY_AREA['US-X'] = {'US-AR': 'official', 'US-OK': 'pin'}; FKS.KEY_STATUS['US-X'] = 'pin'
+check(FKS.status_for('US-X', 'US-OK') == 'pin' and FKS.status_for('US-X', 'US-AR') == 'official', 'a ref official in one state and pin in another: status_for follows the asked state')
 
 # Rule-18 selftests (Quality examples that are piece / number cases). Housatonic Southern Fields is caught above by
 # key g=approximate (the key already refused a full join); Herb Behnke is the classic unit-of-WA rule-18.

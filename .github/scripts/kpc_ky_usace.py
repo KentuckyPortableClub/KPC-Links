@@ -4,6 +4,7 @@ The PAD-US picture tiles colour land by MANAGER, so Corps land run by a state ag
 This file lists the land the Corps OWNS (USGS PAD-US Own_Name = USACE, fee land), whoever runs it, so the KY maps can draw it orange.
 PAD-US's firewall refuses long WHERE clauses, so we list KY records with a short one and filter here."""
 import json, time, urllib.parse, urllib.request, os, sys
+import kpc_net_guard; kpc_net_guard.install()
 
 Q = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
 

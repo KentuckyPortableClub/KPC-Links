@@ -26,6 +26,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 API = 'https://discord.com/api/v10/'
 CONF_F = pathlib.Path('data/discord-watch.json')

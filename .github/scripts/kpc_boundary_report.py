@@ -24,6 +24,7 @@ import pathlib
 import sys
 import urllib.error
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 REPO = os.environ.get('GITHUB_REPOSITORY') or 'KentuckyPortableClub/KPC-Links'
 TOKEN = (os.environ.get('GITHUB_TOKEN') or '').strip()

@@ -22,6 +22,7 @@ import tempfile
 import time
 import urllib.parse
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = 'Mozilla/5.0 (compatible; KPC-Links contest calendar; +https://kentuckyportableclub.github.io/KPC-Links/)'
 OUT = pathlib.Path('kpc-contests.json')

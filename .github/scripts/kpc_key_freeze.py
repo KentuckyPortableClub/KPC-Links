@@ -10,7 +10,7 @@ answers are saved and released.').
                                   'build') and chat 11 has not yet written a verdict tied to that build id in data/waiting/approved.json
                                   (item 'what' = kind, 'build' = the id, any chat11 text). Writes FROZEN=1 + FROZEN_BUILD=<id> to
                                   $GITHUB_ENV and one notice. FORCE=yes skips the freeze (by hand only).
-Never fails (a read error = not frozen, said in the notice).
+A check that stops with an error = FROZEN (fail closed) and exit 1; a stamp that stops with an error = exit 1.
 
 Nov 4 2026 (links-04; Brandon, Super Head Bot chat, 4:51 AM CST Nov 4, relayed via Super Head Bot:
 "In the new pr fix that issues so we no longer have that problem so once quality is done and we push problems solved and we on the new system"):
@@ -86,7 +86,9 @@ NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_s
              'kpc_archive.sh',
              # Nov 10: trimmed outline master records (data/outlines/): the trim tool, the completeness check, the refresh plan and the
              # raw-file manifest. They decide which layer to READ and keep a checked copy of it; they never decide a join.
-             'kpc_master.py', 'kpc_master_cli.py'}
+             'kpc_master.py', 'kpc_master_cli.py',
+             # Nov 10: network guard and pre-run checks (decide which request may go out, never a join)
+             'kpc_net_guard.py', 'kpc_preflight.py'}
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')
@@ -365,13 +367,65 @@ def stamp(kind):
         failed = sorted({l.strip() for l in open(ff, encoding='utf-8') if l.strip()})
     if failed: d['failed'] = failed; d['complete'] = False
     else: d.pop('failed', None); d.pop('complete', None)
-    # Nov 4 (links-04): the rules hash goes with a FULL build that has no failed part; otherwise the previous one stays
-    if os.environ.get('KPC_FULL_BUILD') == '1' and not failed: d['rules'] = rules_hash(kind); d['rules_files'] = sorted(RULE_FILES[kind]) + [VERSION_FILE]
+    # Owner rule, 2026-11-10: each area built green this run (planned, not failed) carries the rules it was built on, so one short area
+    # no longer forces a whole-key rebuild; the key-wide 'rules' goes with a FULL green build, or once every area row is on them.
+    cur = rules_hash(kind); rows = d.get(ROWS[kind]) if kind in ROWS else None
+    if isinstance(rows, dict):
+        for a in set((os.environ.get('KPC_PLANNED_AREAS') or '').split()) - set(failed):
+            if isinstance(rows.get(a), dict): rows[a]['rules'] = cur
+    every = isinstance(rows, dict) and bool(rows) and all(isinstance(r, dict) and r.get('rules') == cur for r in rows.values())
+    if (os.environ.get('KPC_FULL_BUILD') == '1' and not failed) or every:
+        d['rules'] = cur; d['rules_files'] = sorted(RULE_FILES[kind]) + [VERSION_FILE]
+        for r in (rows or {}).values():
+            if isinstance(r, dict): r['rules'] = cur
     os.makedirs(os.path.dirname(p), exist_ok=True)
     json.dump(d, open(p, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     notice(f'{kind} build stamped {bid} (rules {d.get("rules") or "none: not a full build"}): Brandon / KZ4CP sign off THIS build (data/status/key-check/verdicts/{bid}.json); the Quality report is data/status/key-check/'
            + (f" -- NOT a full build: {len(failed)} part(s) failed: {' '.join(failed[:20])}" if failed else ''))
     print(bid)
+
+
+ROWS = {'us-key': 'states'}   # the per-area rows of a key's index.json that carry their own 'rules' (owner rule, 2026-11-10)
+NOT_BUILT = '_not_built'      # the build job's marker on a planned row; the builder's fresh row for a built area has none
+
+
+def stale_areas(kind, idx, rules):
+    """['US-TN', ...]: the area rows NOT on `rules` when some (not all, not none) rows already are; else [] (= the whole key)."""
+    rows = (idx or {}).get(ROWS.get(kind, '')) if kind in ROWS else None
+    if not isinstance(rows, dict) or not rows: return []
+    old = sorted(a for a, r in rows.items() if not (isinstance(r, dict) and r.get('rules') == rules))
+    return [f'{PRE[kind]}-{a}' for a in old] if 0 < len(old) < len(rows) else []
+
+
+def missing(planned, built):
+    """The planned areas that were not built (one sorted list; the stamp names them failed)."""
+    return sorted(set(planned) - set(built))
+
+
+def _words(files):
+    out = set()
+    for f in files:
+        try: out |= set(open(f, encoding='utf-8').read().split())
+        except OSError: pass   # a part that never came back has no file: its areas stay missing
+    return out
+
+
+def mark_rows(path, areas):
+    """Before the builder: mark the planned rows; a row the builder rewrites (a built area) loses the mark."""
+    d = json.load(open(path, encoding='utf-8')); rows = d.setdefault('states', {})
+    for a in areas: rows[a] = dict(rows.get(a) or {}, **{NOT_BUILT: 1})
+    json.dump(d, open(path, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+
+
+def take_rows(path, areas):
+    """After the builder: the planned areas whose row still has the mark (not built); the marks are removed."""
+    d = json.load(open(path, encoding='utf-8')); rows = d.get('states') or {}; out = []
+    for a in areas:
+        r = rows.get(a)
+        if not isinstance(r, dict) or r.pop(NOT_BUILT, None) is not None: out.append(a)
+        if r == {}: rows.pop(a)   # a never-built area gets no empty row
+    json.dump(d, open(path, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+    return sorted(set(out))
 
 
 def check(kind, now=None):
@@ -388,6 +442,10 @@ def check(kind, now=None):
             notice(f"{kind}: declared park(s) {' '.join(sorted(set(_pk) - set(_pa)))} not in the key files: the whole key is rebuilt"); _ps = None
         if _ps == set() and not _pk:
             notice(f"{kind}: rules {(live or {}).get('rules')} -> {rules}: the declared changes ({SCOPE_FILES.get(kind)}) touch no area, so nothing is rebuilt for them")
+        elif _ps in (None, 'all') and stale_areas(kind, live, rules):
+            _st = stale_areas(kind, live, rules)   # owner rule, 2026-11-10: only the areas not yet built green on these rules
+            _env(RULES_CHANGED=1, RULES_SCOPE=' '.join(_st))
+            notice(f"{kind}: RULES CHANGED {(live or {}).get('rules') or 'none'} -> {rules}: {len(_st)} area(s) not yet built green on the current rules are rebuilt: {' '.join(_st)}")
         elif _ps in (None, 'all'):
             _env(RULES_CHANGED=1)
             notice(f"{kind}: RULES CHANGED: the newest build ({lbid or 'none'}) has rules {(live or {}).get('rules') or 'none'}, the current rules are {rules}: the next run builds the WHOLE key"
@@ -429,10 +487,35 @@ def check(kind, now=None):
     notice(f'{kind}: nothing blocks: building is allowed'); return (False, '', 'free')
 
 
+def main(argv):
+    mode = argv[0] if argv else ''
+    if mode == 'missing':   # missing --planned "A B" | --planned-groups JSON ; --built "X" ; --built-file F ...  -> one area per line
+        import argparse
+        ap = argparse.ArgumentParser(); ap.add_argument('--planned', default=''); ap.add_argument('--planned-groups', default='')
+        ap.add_argument('--built', default=''); ap.add_argument('--built-file', nargs='*', default=[]); a = ap.parse_args(argv[1:])
+        planned = set(a.planned.split()) | {x for g in json.loads(a.planned_groups or '[]') for k in ('states', 'countries') for x in str(g.get(k) or '').split()}
+        for x in missing(planned, set(a.built.split()) | _words(a.built_file)): print(x)
+        return 0
+    if mode in ('mark-rows', 'take-rows'):   # mark-rows|take-rows INDEX "A B C"
+        if mode == 'mark-rows': mark_rows(argv[1], argv[2].split())
+        else:
+            for x in take_rows(argv[1], argv[2].split()): print(x)
+        return 0
+    kind = argv[1]
+    if mode == 'rules': print(rules_hash(kind))
+    elif mode == 'stamp': stamp(kind)
+    elif mode == 'check': check(kind)
+    else: raise SystemExit(f'unknown mode {mode!r}')
+    return 0
+
+
 if __name__ == '__main__':
-    try:
-        mode, kind = sys.argv[1], sys.argv[2]
-        if mode == 'rules': print(rules_hash(kind))
-        else: (stamp if mode == 'stamp' else check)(kind)
-    except Exception as e: notice(f'stopped: {str(e)[:200]}')  # noqa: BLE001
-    sys.exit(0)
+    _m = sys.argv[1] if len(sys.argv) > 1 else ''
+    try: sys.exit(main(sys.argv[1:]))
+    except SystemExit: raise
+    except Exception as e:  # noqa: BLE001  owner rule, 2026-11-10: fail closed (a check error = FROZEN, a stamp error = red)
+        notice(f'stopped: {str(e)[:200]}')
+        if _m == 'check':
+            _env(FROZEN=1, FROZEN_BUILD='none-the-freeze-check-stopped')
+            print('::error title=Key build freeze::the freeze check stopped with an error, so this run builds nothing (fail closed)', flush=True)
+        sys.exit(1)

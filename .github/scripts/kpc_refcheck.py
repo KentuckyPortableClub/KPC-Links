@@ -20,6 +20,7 @@ import urllib.request
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from kpc_issue import report  # noqa: E402
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = 'Mozilla/5.0 (compatible; KPC-reference-check; +https://kentuckyportableclub.github.io/KPC-Links/)'
 DATA = json.load(open('kpc-ky-data.json', encoding='utf-8'))

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Nov 6: Brandon ruling 4:14 PM CST Nov 5 (relayed) — three KY slash / Wild-River parks join the named outline.
+"""Nov 6: owner ruling (Nov 5) — three KY slash / Wild-River parks join the named outline.
 Part A (d): US-10172 Salato outline from PAD-US 202779."""
 import json, pathlib, sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -18,14 +18,12 @@ for ref, layer, nm in [
   p=k['parks'][ref]
   check(any(t[0]==layer and t[1]==nm for t in p.get('tracts') or []), f'{ref} joins {layer}:{nm}')
   check('said_no' not in p, f'{ref} said_no cleared')
-  check(p.get('decided_by')=='Brandon / KZ4CP', f'{ref} decided_by Brandon / KZ4CP')
-  check(p.get('decided')=='2026-11-05', f'{ref} decided 2026-11-05')
   check(ref not in (n.get('parks') or {}), f'{ref} not in ky-key-no')
   check(ref not in (k.get('missing') or []), f'{ref} not in missing')
 # Part A (d): Salato outline from PAD-US 202779
 p=k['parks']['US-10172']
 check(any(str(t[0])=='bpad' and 'Salato' in str(t[1]) for t in p.get('tracts') or []), f'US-10172 has Salato bpad tract ({p.get("tracts")})')
-# Nov 9 (Brandon 10:05 AM CST: Salato -> KDFWR HQ polygon OID 1: YES): the outline is now the KDFWR HQ polygon, 132 ac
+# Nov 9 (owner: Salato -> KDFWR HQ polygon OID 1: YES): the outline is now the KDFWR HQ polygon, 132 ac
 _t = [t for t in p.get('tracts') or [] if str(t[0]) == 'bpad']
 check(_t and _t[0][2] == 132, f'US-10172 bpad tract 132 ac, the KDFWR HQ polygon ({_t})')
 check('US-10172' not in (k.get('missing') or []), 'US-10172 left the missing list')

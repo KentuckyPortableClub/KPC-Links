@@ -113,6 +113,27 @@ def parks_of(tree):
 
 
 def has_outline(p): return bool(p and p.get('m')) and p.get('g') != 'pin'
+# Nov 10: a worse grade replacing a better one (official -> approximate -> point-circle -> pin) is a regression; has_outline cannot see it
+GRADE_RANK = {'official': 3, 'approximate': 2, 'approx': 2, 'point-circle': 1, 'point_circle': 1, 'pointcircle': 1, 'circle': 1, 'pin': 0}
+OFFICIAL_DROP = 0.05   # warn when a state's official count falls by this share or more against the previous build
+
+
+def grade_rank(p):
+    if not has_outline(p): return 0
+    return GRADE_RANK.get(str(p.get('g') or 'official').strip().lower().replace(' ', '-'), 3)
+
+
+def official_drops(N, O, share=OFFICIAL_DROP):
+    """[{area, before, after}] for each state / area whose official-grade count fell by `share` or more."""
+    def count(P):
+        n = {}
+        for p in P.values():
+            if grade_rank(p) == 3: n[p['_area']] = n.get(p['_area'], 0) + 1
+        return n
+    a, b = count(O), count(N)
+    return [{'area': k, 'before': v, 'after': b.get(k, 0)} for k, v in sorted(a.items()) if v and (v - b.get(k, 0)) / v >= share]
+
+
 def ids_of(p): return {str(x[0]) for x in (p.get('m') or []) if isinstance(x, list) and x}
 def names_of(p): return {str(x[1]).strip().lower() for x in (p.get('m') or []) if isinstance(x, list) and len(x) > 1 and x[1]}
 
@@ -175,9 +196,10 @@ def released_tree(k, env, cwd='.'):
 
 def compare(new, old):
     N, O = parks_of(new), parks_of(old)
-    R = {'gained': sorted(set(N) - set(O)), 'lost': sorted(set(O) - set(N)), 'outline_to_pin': [], 'pin_to_outline': [], 'outline_changed': []}
+    R = {'gained': sorted(set(N) - set(O)), 'lost': sorted(set(O) - set(N)), 'outline_to_pin': [], 'pin_to_outline': [], 'outline_changed': [], 'grade_worse': []}
     for r in sorted(set(N) & set(O)):
         a, b = has_outline(O[r]), has_outline(N[r])
+        if 0 < grade_rank(N[r]) < grade_rank(O[r]): R['grade_worse'].append(r)   # outline -> pin is its own list
         if a and not b: R['outline_to_pin'].append(r)
         elif b and not a: R['pin_to_outline'].append(r)
         elif a and b and ids_of(O[r]) != ids_of(N[r]): R['outline_changed'].append(r)
@@ -375,6 +397,8 @@ def md(rep):
     sec('Outline -> pin', c['outline_to_pin'], lambda r: f'- {r}')
     if c.get('released'):
         sec(f"Outline -> pin against the RELEASED key ({c['released'].get('build') or 'KPC-Data'})", c['released']['outline_to_pin'], lambda r: f'- {r}')
+    sec('Worse grade than the previous build (official > approximate > point-circle; outline -> pin is listed above)', c.get('grade_worse') or [], lambda r: f'- {r}')
+    sec('States whose official count fell 5% or more', rep.get('official_drops') or [], lambda x: f"- {x['area']}: {x['before']} -> {x['after']} official outlines")
     sec('Pin -> outline', c['pin_to_outline'], lambda r: f'- {r}')
     sec('Outline changed (joined ids differ: its 2-fers need a rerun)', c['outline_changed'], lambda r: f'- {r}')
     sec("A person's signed answer the key does not follow", rep['answer_sheet']['signed_disagree'], lambda x: f"- {x['park']}: sheet {x['sheet']} {x['id']} {x['name']} by {x['who']}; key: {x['key']}")
@@ -389,6 +413,23 @@ def md(rep):
             lambda x: f"- {x['park']} {x['name']}: **{x['verdict']}** ({x['confidence']}): {x['recommend']}. Why: {'; '.join(x['reasons'])}")
     L += ['## Notes', ''] + [f'- {n}' for n in rep['notes']] + ['']
     return '\n'.join(L)
+
+
+KEEP_REPORTS = 10   # owner rule, 2026-11-10: per key, the newest N per-build reports stay (git history has the rest)
+
+
+def prune_reports(out_dir, k, keep_name, keep=KEEP_REPORTS):
+    """Delete the older <key>-<build>.json/.md pairs beyond the newest `keep` (by their 'checked' stamp); never the one just written."""
+    rows = []
+    for f in pathlib.Path(out_dir).glob(f'{k}-*.json'):
+        try: rows.append((str(json.load(open(f, encoding='utf-8')).get('checked') or ''), f.stem))
+        except Exception: continue   # noqa: BLE001  (not a report: leave it)
+    rows.sort(reverse=True)
+    for _, stem in rows[keep:]:
+        if stem + '.json' == keep_name or stem == keep_name: continue
+        for ext in ('.json', '.md'):
+            try: (pathlib.Path(out_dir) / (stem + ext)).unlink()
+            except OSError: pass
 
 
 def run(env=None, cwd='.'):
@@ -445,11 +486,12 @@ def run(env=None, cwd='.'):
            'prev_ref': (git('rev-parse', '--short=12', prev_ref, cwd=cwd) or prev_ref or '').strip() if prev_ref else '', 'changes': ch,
            'flat': flat(N, k, bounds), 'pins_outside': pins_outside(N, k, pins, bounds, edge), 'pins_at_edge': edge, 'bad_pins': bad_pins(N, pins),
            'answer_sheet': sheet, 'overrides': override_check(N, k, cwd=cwd, built=str(idx.get('built') or '')), 'precheck': pre, 'must_pin': must_pin(N, k), 'notes': notes}
+    rep['official_drops'] = official_drops(N, O)
     ft = fers_touch(ch['outline_changed'] + ch['outline_to_pin'] + ch['lost'], env.get('FERS_DIR'))
     if ft is not None: rep['fers_touched'] = ft; notes.append(f"2-fer rows naming a changed / dropped / lost park: {ft['rows']} (they were measured on the old outline)")
     newp = {r for r in ch['gained'] + ch['pin_to_outline'] + ch['outline_changed']}
     rep['summary'] = {'parks now': len(N), 'parks before': len(O), 'gained': len(ch['gained']), 'lost': len(ch['lost']), 'outline -> pin': len(ch['outline_to_pin']),
-                      'pin -> outline': len(ch['pin_to_outline']), 'outline changed': len(ch['outline_changed']), 'flat outlines': len(rep['flat']),
+                      'pin -> outline': len(ch['pin_to_outline']), 'worse grade': len(ch['grade_worse']), 'states with official -5% or more': len(rep['official_drops']), 'outline changed': len(ch['outline_changed']), 'flat outlines': len(rep['flat']),
                       'flat outlines new or changed this build': sum(1 for x in rep['flat'] if x['park'] in newp),
                       'pins outside outline': len(rep['pins_outside']), 'pins outside, new or changed this build': sum(1 for x in rep['pins_outside'] if x['park'] in newp),
                       "pins just outside, key says 'edge' (not listed)": len(rep['pins_at_edge']),
@@ -469,6 +511,8 @@ def run(env=None, cwd='.'):
         rep['summary'][f"pin -> outline vs released ({_r['build'] or 'KPC-Data'})"] = len(_r['pin_to_outline'])
         rep['summary']['gained / lost vs released'] = f"{len(_r['gained'])} / {len(_r['lost'])}"
         if _r['outline_to_pin']: note('warning', f"{k} key {build}: {len(_r['outline_to_pin'])} outline -> pin against the RELEASED key {_r['build']}: {', '.join(_r['outline_to_pin'][:15])}")
+    for d in rep['official_drops']: note('warning', f"{k} key {build}: {d['area']} official outlines {d['before']} -> {d['after']} ({OFFICIAL_DROP:.0%}+ drop vs the previous build)")
+    if ch['grade_worse']: note('warning', f"{k} key {build}: {len(ch['grade_worse'])} parks got a worse grade than the previous build: {', '.join(ch['grade_worse'][:15])}")
     rep['pin_jump'] = pj = pin_jump(ch)
     rep['summary'][f'countries with {PIN_JUMP}+ outline -> pin (a lost source layer?)'] = len(pj)
     if pj:
@@ -479,6 +523,7 @@ def run(env=None, cwd='.'):
     json.dump(rep, open(f'{base}.json', 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     open(f'{base}.md', 'w', encoding='utf-8').write(md(rep))
     json.dump({'key': k, 'build': build, 'build_commit': newest, 'report': f'{base.name}.json', 'checked': rep['checked']}, open(last_f, 'w'), indent=1)
+    prune_reports(out_dir, k, base.name)
     s = rep['summary']
     note('notice', f"{k} key {build}: +{s['gained']} / -{s['lost']} parks, {s['outline -> pin']} outline->pin, {s['pin -> outline']} pin->outline, "
                    f"{s['outline changed']} outlines changed, {s['signed sheet answers not followed']} signed answers not followed, {s['overrides not followed']} overrides not followed, "

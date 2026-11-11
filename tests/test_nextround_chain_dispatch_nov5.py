@@ -47,16 +47,16 @@ for f in ('ca', 'world'):
     check(re.search(r"BUILD ORDER[^\n]*\n(?:\s+#[^\n]*\n)?\s+env:\n(?:\s+[A-Z_]+:[^\n]*\n)*\s+KPC_CHAINED: \$\{\{ inputs\.chained \}\}", T[f]) is not None, f'{f} key: the BUILD ORDER step gets KPC_CHAINED from the input')
     check(len(on(f)['workflow_dispatch']['inputs']) <= 10, f'{f} key: at most 10 dispatch inputs')
 c = W['us']['jobs']['chain']
-check(c['needs'] == ['plan', 'join'] and "github.triggering_actor == 'github-actions[bot]'" in c['if'] and 'always()' in c['if'], 'US chain job: after plan + join, always, ONLY for a bot-started run (a person\'s run keeps workflow_run: no double start)')
+check(c['needs'] == ['plan', 'join'] and 'triggering_actor' not in c['if'] and '!cancelled()' in c['if'], 'US chain job: after plan + join, for every actor, never for a cancelled run (dispatch is the only path)')
 check(c['permissions'] == {'actions': 'write', 'contents': 'read'}, 'US chain job: actions write, contents read')
 run_ = c['steps'][0]['run']
-check('for k in ca world' in run_ and 'gh workflow run "kpc-$k-key.yml"' in run_ and '-f chained=us-key' in run_ and '--ref main' in run_, 'US chain job: dispatches kpc-ca-key.yml and kpc-world-key.yml with chained=us-key on main')
+check('gh workflow run kpc-ca-key.yml' in run_ and 'world' not in run_ and '-f chained=us-key' in run_ and '--ref main' in run_, 'US chain job: dispatches ONLY kpc-ca-key.yml with chained=us-key on main')
 c = W['ca']['jobs']['chain']
-check(c['needs'] == ['run'] and "github.triggering_actor == 'github-actions[bot]'" in c['if'] and "needs.run.outputs.skip != '1'" in c['if'], 'Canada chain job: only after a bot-started Canada run that built (not skipped)')
+check(c['needs'] == ['run'] and 'triggering_actor' not in c['if'] and 'skip' not in c['if'] and '!cancelled()' in c['if'], 'Canada chain job: after every Canada run that was not cancelled (built or skipped)')
 check('gh workflow run kpc-world-key.yml' in c['steps'][0]['run'] and '-f chained=ca-key' in c['steps'][0]['run'], 'Canada chain job: dispatches the world key with chained=ca-key')
 check(W['ca']['jobs']['run']['outputs']['skip'] == '${{ steps.skipped.outputs.skip }}' and any(s.get('id') == 'skipped' and s.get('if') == 'always()' for s in W['ca']['jobs']['run']['steps']), 'Canada run job: exposes skip from an always() step')
 check('chain' not in W['world']['jobs'], 'the world key dispatches nothing (it is last)')
 check([x['cron'] for x in on('us')['schedule']] == ['37 9 1 * *', '17 9 * * *', '46 11 * * *'] and [x['cron'] for x in on('ca')['schedule']] == ['43 10 2 * *', '49 9 * * *'] and [x['cron'] for x in on('world')['schedule']] == ['17 11 3 * *', '7 10 * * *'], 'no new cron in the three keys')
-check(on('ca')['workflow_run']['workflows'] == ['KPC US answer key'] and on('world')['workflow_run']['workflows'] == ['KPC US answer key', 'KPC Canada answer key'], 'workflow_run chains unchanged (a person\'s run)')
+check('workflow_run' not in on('ca') and 'workflow_run' not in on('world'), 'no workflow_run trigger on the Canada or world key (dispatch only)')
 check('kpc_key_order.py' in KF.NOT_RULES and all('kpc_key_order.py' not in ' '.join(v) for v in KF.RULE_FILES.values()), 'kpc_key_order.py is not a rule file (no rules hash moves)')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

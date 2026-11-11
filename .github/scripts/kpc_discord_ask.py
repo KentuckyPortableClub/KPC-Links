@@ -30,6 +30,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 API = 'https://discord.com/api/v10/'
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'

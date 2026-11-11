@@ -7,6 +7,8 @@ editing each one. KPC_HOST_GAP sets the gap in seconds (default 2.0; it is never
 The retry waits in each script (8 s x try) are on top of this. Nothing else changes: same User-Agent, same requests.
 """
 import os, threading, time, urllib.parse, urllib.request
+import kpc_net_guard
+kpc_net_guard.install()   # never-contact hosts refused before any request (every importer gets it)
 
 GAP = max(2.0, float(os.environ.get('KPC_HOST_GAP') or 2.0))
 _last, _lk, _orig = {}, threading.Lock(), None

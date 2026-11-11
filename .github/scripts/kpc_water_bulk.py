@@ -14,6 +14,7 @@ kpc_fers.nhd_water reads) for every tile under this area's spots that has NO sav
      replaced. Rule 13: the rows show 'USGS water: saved copy of USGS NHDPlus HR file <date>'.
 Env: STATES, WATER_STORE, DATA (data/fers), MAX_HU4 (default 40). Never fails the job."""
 import glob, gzip, json, math, os, pathlib, re, shutil, sys, tempfile, time, urllib.error, urllib.parse, urllib.request, zipfile
+import kpc_net_guard; kpc_net_guard.install()
 
 STATES = (os.environ.get('STATES') or '').split()
 STORE = pathlib.Path(os.environ.get('WATER_STORE') or 'bundle/water')

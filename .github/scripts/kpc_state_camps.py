@@ -19,6 +19,7 @@ POTA park in data/parkinfo/US-XX.json: nearest park within 2 miles AND a name ma
 matching a park within 15 miles. Every step is safe: a failure keeps last week's files and the job still ends green.
 Env: STATES (blank = every state but KY), DRY_RUN=1 (print, write nothing), SPEED (workers, default 6)."""
 import ast, datetime, hashlib, json, math, os, pathlib, re, subprocess, sys, time, urllib.error, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 import concurrent.futures as cf
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from kpc_save import read_dates  # noqa: E402  (Oct 27: one date helper for every fact)

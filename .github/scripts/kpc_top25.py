@@ -16,6 +16,7 @@ import pathlib
 import sys
 import time
 import urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = 'Mozilla/5.0 (compatible; KPC-top25; +https://kentuckyportableclub.github.io/KPC-Links/)'
 URL = 'https://api.pota.app/location/parks/US-KY'

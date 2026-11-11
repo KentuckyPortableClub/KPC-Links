@@ -59,6 +59,19 @@ The first line counts only the rows this helper can use: open, a person's, and a
 rows it cannot use (Canada, world, or a layer the US key has no entry for) and never-contact rows are named once on the next
 line as 'not asked here' and are not in the count.
 
+## Layers it refuses to pack
+
+Some data may not be shared further. The helper refuses to pack or upload a layer that looks like Protected Planet / WDPA data,
+or one marked `"redistribute": "no"` on its layer (`data/outlines/layers.json`) or its download source
+(`data/outlines/download-sources.json`). It reads those two files from your KPC-Links folder, so update the folder (`git pull`,
+or a fresh ZIP) before you start. The master step refuses the same files again.
+
+## Canada and world rows
+
+Not asked here. The master step checks a Canada or world hand file (`hand-CA-XX.<layer>`, `hand-CA-ALL.<layer>`,
+`hand-W-XX.<layer>`), but the Canada and world builders do not read those files yet, so those rows are held (see
+`data/outlines/README.md`).
+
 ## Rows it never opens
 
 A row marked **never** (for example `ncnhde.natureserve.org`, or the Grant County NM parcel server) is skipped. Nobody

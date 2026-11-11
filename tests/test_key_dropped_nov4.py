@@ -198,9 +198,7 @@ with tempfile.TemporaryDirectory() as t:
     check(json.load(open(D / 'index.json'))['system_warnings'] and '**System check:**' in (R / 'out/us-US-200.md').read_text(), 'the warning is in the index and the .md')
     # links-11 storage (Quality v2 item 1, YES'd via Super 7:15 AM CST Nov 4): latest/ + previous/ only; an unchanged run writes nothing
     top = R / 'out/dropped-us'
-    check(sorted(x.name for x in top.iterdir()) == ['latest', 'previous'], f"only latest/ and previous/ per key: {sorted(x.name for x in top.iterdir())}")
-    check(set(json.load(open(top / 'previous/index.json'))['precheck_join']['blank_reasons']) == {KD.NO_BK + '; no precheck output'},
-          'previous/ holds the set before the latest (the no-pre-check run), the one before that is overwritten')
+    check(sorted(x.name for x in top.iterdir()) == ['latest'], f"only latest/ per key, no previous/ (owner rule, 2026-11-10): {sorted(x.name for x in top.iterdir())}")
     snap = {str(q.relative_to(top)): q.read_bytes() for q in top.rglob('*') if q.is_file()}
     md0 = (R / 'out/us-US-200.md').read_bytes()
     p6 = run(R, TOOL, FORCE='yes', KPC_DROP_JUMP_MIN='0', KPC_DROP_JUMP_PCT='1')

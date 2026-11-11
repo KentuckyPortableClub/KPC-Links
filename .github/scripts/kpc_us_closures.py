@@ -15,6 +15,7 @@ import os
 import csv, datetime as dt, email.utils, html, io, json, pathlib, re, sys, time, types, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from kpc_save import save_json, source_clock
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = {'User-Agent': 'KPC park closures (kentuckyportableclub.github.io)'}
 OUT = pathlib.Path('data/alerts/us-parks.json')

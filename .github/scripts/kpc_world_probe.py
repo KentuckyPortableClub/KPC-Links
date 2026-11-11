@@ -3,6 +3,7 @@ have sources waiting (Brandon Oct 18 2026: 'have data waiting on you instead of 
 servers: direct services (status, layers, fields, record count) and ArcGIS Online searches (title, owner, url). Writes
 data/world-probe.json for the next step. Safe to rerun."""
 import json, re, time, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = {'User-Agent': 'KPC (kentuckyportableclub.github.io)'}
 OUT = {}

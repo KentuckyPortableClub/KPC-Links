@@ -22,7 +22,7 @@ kpc_ca_key.py, kpc_world_key.py candidate reasons, kpc_precheck.py flags, why-no
 
 Writes data/status/key-check/dropped-<key>/latest/<reason>.csv (one per reason, header-only when empty), no-boundary.csv and
 index.json (counts, columns, files, the jump check), and adds a count table to data/status/key-check/<key>-<build>.md. links-11: only
-latest/ and previous/ are kept per key (the old latest moves to previous/ when the rows change); rows equal apart from the build /
+latest/ is kept per key (git history keeps the one before; no previous/ folder); rows equal apart from the build /
 checked stamps write nothing, so an unchanged run commits nothing.
 No per-park notices: one summary notice; a ::warning only for a real system problem (a sudden jump in drops, a whole area going
 to pins, key files that do not read). Exit code is always 0 (never fails a build).
@@ -399,7 +399,7 @@ def run(env=None, cwd='.'):
     if not rep: note('notice', f'{k} key: no post-key report yet (last-{k}.json): nothing to list'); return None
     base = rep_f.with_suffix('')
     # links-11 storage (Super's 7:15 AM CST Nov 4 relay of Quality's v2 grade, item 1): ONE fixed folder per key, the latest set plus
-    # the one before it, overwritten in place: data/status/key-check/dropped-<key>/latest/ and previous/. A run whose rows are the
+    # overwritten in place: data/status/key-check/dropped-<key>/latest/ (no previous/: git history has it). A run whose rows are the
     # same apart from stamps (build, checked) writes nothing at all, so an unchanged run commits nothing.
     top = out_dir / f'dropped-{k}'
     dd, pv = top / 'latest', top / 'previous'
@@ -427,7 +427,7 @@ def run(env=None, cwd='.'):
     same = same_rows(dd, sets)
     idx = {'key': k, 'build': rep.get('build'), 'report': rep_f.name, 'report_checked': rep.get('checked'), 'checked_at': checked,
            'prev_ref': prev or 'none', 'about': 'parks this build has with NO outline, one row each, split by reason (kpc_key_dropped.py, links-07; '
-           'links-11: latest/ + previous/ only, rewritten only when the rows change)',
+           'latest/ only, rewritten only when the rows change)',
            'counts': counts, 'new_this_build': newc, 'total': len(rows), 'files': files, 'columns': COLUMNS,
            'reasons': {c: t for c, t in REASONS + [NO_BOUNDARY]}, 'jump_check': jc, 'system_warnings': warn,
            'inputs': {'pota_pins': info['pins'], 'answer_sheet_read': info['sheet_read'], 'precheck_read': info['precheck_read']},
@@ -442,9 +442,9 @@ def run(env=None, cwd='.'):
         note('notice', f"{k} key {rep.get('build')}: {len(rows)} parks with no outline, the same rows as {dd} (stamps aside): nothing written")
         idx['unchanged'] = True
         return idx
-    if dd.exists():   # rotate: the old latest becomes previous (the one before that is overwritten)
-        if pv.exists(): shutil.rmtree(pv)
-        dd.rename(pv)
+    # owner rule, 2026-11-10: no previous/ copy (git history keeps the set before); latest/ is rewritten in place
+    if pv.exists(): shutil.rmtree(pv)
+    if dd.exists(): shutil.rmtree(dd)
     dd.mkdir(parents=True, exist_ok=True)
     for fn, sel in sets.items():
         with open(dd / fn, 'w', newline='', encoding='utf-8') as f:

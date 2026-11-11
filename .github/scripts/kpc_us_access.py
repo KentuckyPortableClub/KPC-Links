@@ -17,6 +17,7 @@ last run's points from that agency; joined land whose box is nowhere near the pa
 points 270-380 km away); points at 0,0 or outside the state are dropped; a state that lost 40%+ of its points with no reason
 keeps its saved copy (GATE FAIL). The gate result goes to /tmp/kpc-gate.txt for the workflow's grade-me line."""
 import gzip, hashlib, json, math, os, pathlib, re, sys, time, types, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 from kpc_save import save_json, read_dates  # Oct 25 storage plan: write only when the content changed
 
 UA = {'User-Agent': 'KPC access points (kentuckyportableclub.github.io)'}

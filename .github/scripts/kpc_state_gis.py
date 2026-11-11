@@ -7,6 +7,7 @@ How: (1) ArcGIS Online public search for "<State> state parks" etc. (Feature Ser
 server roots listed in ROOTS are crawled (folders → services → layers). Every polygon layer whose name/fields look like a
 park or wildlife layer is queried once (count) and its fields are saved."""
 import json, re, sys, time, threading, urllib.error, urllib.request, urllib.parse, concurrent.futures as cf
+import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 
 UA = 'KPC-MapRep-state-gis/1.0 (Kentucky Portable Club; brandonwhite42166@gmail.com)'

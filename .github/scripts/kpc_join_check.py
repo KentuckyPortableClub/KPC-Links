@@ -333,7 +333,9 @@ def run(env=None, root='.', plain=False):
     d, pat = DIRS[k]
     files = None if env.get('ALL') == '1' else changed_files(d, pat, root)
     if files is None: files = sorted(os.path.relpath(x, root) for x in glob.glob(os.path.join(root, d, pat)))
-    official = official_acres(os.path.join(root, env.get('OFFICIAL_ACRES') or 'data/acres.json'))
+    acres_f = os.path.join(root, env.get('OFFICIAL_ACRES') or 'data/acres.json')
+    official = official_acres(acres_f)
+    acres_note = 'acres check on' if official else ('acres check off: no acres file' if not os.path.isfile(acres_f) else 'acres check off: the acres file has no usable rows')
     ok, sheet = approvals(root, k, env)
     # a park in several area files (US multi-state parks: Yellowstone's Idaho piece is 37 km from the WY pin) is measured to the
     # NEAREST part of its WHOLE outline: the smallest bk distance over every area file of this key, not only the changed ones
@@ -352,7 +354,7 @@ def run(env=None, root='.', plain=False):
             r, h, ch = mark_file(f, official, plain, mode, ok, dry, near, root); rows += r; held += h; n_changed += ch
         except Exception as e: print(f'::warning title=Join check::{rel} not checked ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
     rep = {'key': k, 'mode': mode, 'files_checked': len(files), 'joined_parks': joined_n, 'suspect': len(rows), 'held': len(held),
-           'files_changed': n_changed, 'official_acres_known': len(official), 'approved_parks_known': len(ok),
+           'files_changed': n_changed, 'official_acres_known': len(official), 'acres_check': acres_note, 'approved_parks_known': len(ok),
            'answer_sheet': os.path.relpath(sheet, root) if sheet else 'not found (overrides.json and reviewed joins still exempt)',
            'rule': {'hold_far_km': FAR_KM, 'distance': 'pin to the nearest part of the joined outline', 'acres_ratio': RATIO, 'zero_acres': True},
            'decided_by': DECIDED_BY, 'note': 'far joins HELD before the stamp (records kept in c), others marked; nothing deleted', 'rows': rows, 'held_rows': held}
@@ -370,7 +372,7 @@ def run(env=None, root='.', plain=False):
         with open(out / name, 'w', newline='', encoding='utf-8') as fh:
             w = csv.DictWriter(fh, fieldnames=cols); w.writeheader(); w.writerows(data)
     print(f"::notice title=Join check::{k} key ({mode}): {len(held)} far join(s) HELD before the stamp, {len(rows)} of {joined_n} joined parks "
-          f"marked suspect in {len(files)} file(s); evidence {d}/review/held-joins.csv + join-check.csv; nothing deleted")
+          f"marked suspect in {len(files)} file(s); {acres_note}; evidence {d}/review/held-joins.csv + join-check.csv; nothing deleted")
     return rep
 
 

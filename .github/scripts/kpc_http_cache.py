@@ -4,6 +4,8 @@ or a rerun after a bug fix reads it from the bundle instead of asking the agency
 HTTP_CACHE=<dir> turns it on; HTTP_CACHE_DAYS (default 21) = how old an answer may be; HTTP_OFFLINE=1 = never ask the
 server (a miss raises 'not in the bundle'). Answers that are errors are never kept. Off when HTTP_CACHE is not set."""
 import gzip, hashlib, json, os, pathlib, re, time
+import kpc_net_guard
+kpc_net_guard.install()   # never-contact hosts refused before any request (the 2-fer bot gets it here)
 
 DIR = os.environ.get('HTTP_CACHE') or ''
 DAYS = float(os.environ.get('HTTP_CACHE_DAYS') or 21)
@@ -29,7 +31,9 @@ def _layer_edit(url):
     if not m or OFFLINE: return None
     L = m.group(1)
     if L not in EDIT:
-        EDIT[L] = None; CHECKS['asked'] += 1
+        EDIT[L] = None
+        if not kpc_net_guard.host_ok(L)[0]: return None   # a saved-copy-only host: not even the edit-date request
+        CHECKS['asked'] += 1
         try:
             import urllib.request, urllib.parse
             with urllib.request.urlopen(urllib.request.Request(L + '?f=json', headers={'User-Agent': 'KPC 2-fer bot (kentuckyportableclub.github.io)'}), timeout=30) as r:
@@ -44,10 +48,11 @@ def _layer_edit(url):
 def cached(url, params, fetch):
     """fetch() = the real request (returns parsed JSON). Cached when HTTP_CACHE is set."""
     global LAST
-    if not DIR: LAST = time.time(); return fetch()
+    if not DIR: kpc_net_guard.check(url); LAST = time.time(); return fetch()
     p = _path(url, params)
     try:
         fresh = p.exists() and time.time() - p.stat().st_mtime < DAYS * 86400
+        if p.exists() and not fresh and not kpc_net_guard.host_ok(url)[0]: fresh = True; CHECKS['saved_only'] = CHECKS.get('saved_only', 0) + 1   # saved-copy-only host: the kept answer IS the saved copy, whatever its age
         if p.exists() and not fresh:   # older than the age limit: still good when the layer says it has not been edited since
             t = _layer_edit(url)
             if t and p.stat().st_mtime > t: fresh = True; CHECKS['unchanged'] += 1
@@ -59,6 +64,7 @@ def cached(url, params, fetch):
     except Exception: pass  # noqa: BLE001
     STATS['miss'] += 1
     if OFFLINE: raise RuntimeError('not in the bundle (offline stage)')
+    kpc_net_guard.check(url)   # refused before the fetch (and its retry waits); a refusal raises, so it is never kept
     j = fetch(); LAST = time.time()
     raw = json.dumps(j, separators=(',', ':')).encode()
     if TRACE is not None: TRACE.append((url, params, hashlib.sha1(raw).hexdigest()))

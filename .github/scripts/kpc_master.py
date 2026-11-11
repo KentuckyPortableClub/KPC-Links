@@ -17,6 +17,8 @@ rules hash. Standard library only (a Shapefile or GDB input needs pyshp / ogr2og
 """
 import copy, datetime, gzip, hashlib, json, math, os, pathlib, re, time, urllib.error, urllib.parse, urllib.request
 from urllib import robotparser
+import kpc_net_guard
+kpc_net_guard.install()   # process-wide: never-contact hosts are refused for every request, every redirect hop
 
 FORMAT = 1
 UA = 'KPC (kentuckyportableclub.github.io)'          # the same User-Agent the key builders use; never changed to get around a block
@@ -35,8 +37,8 @@ NEVER_CONTACT = [('services.arcgis.com', '/33TOOklri9xpic7U'), ('ncnhde.naturese
 ARCGIS_SERVICES_HOST_RE = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
 # Saved copies only, no live read (their robots.txt answers 403). Same default list as kpc_us_key.py (KPC_SAVED_ONLY_HOSTS).
 # services*.arcgis.com is also blocked in live_ok even if this list is overridden or emptied.
-SAVED_ONLY_HOSTS = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or
-                                                'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
+# KPC_SAVED_ONLY_HOSTS ADDS hosts; it can never drop a default one (owner rule, 2026-11-10).
+SAVED_ONLY_HOSTS = {'services.arcgis.com', 'services1.arcgis.com', 'apps.fs.usda.gov'} | kpc_net_guard.extra_hosts()
 HUB_RE = re.compile(r'(^|\.)(hub\.arcgis\.com|opendata\.arcgis\.com)$')   # hub portals: 60 s between requests
 HUB_DELAY, HOST_DELAY = 60.0, 2.0
 WDPA_RE = re.compile(r'wdpa|protected\s*-?planet|protectedplanet', re.I)
@@ -62,7 +64,7 @@ def is_arcgis_services_host(host):
 
 def live_ok(url):
     """(True, '') or (False, why). Checked BEFORE every request, robots.txt included."""
-    host, path = parts(url)
+    host, path = kpc_net_guard.host_of(url), parts(url)[1]   # the host really dialled: no port, user@ or trailing dot
     for h, p in NEVER_CONTACT:
         if host == h and path.lower().startswith(p.lower()):
             return False, f'never contact {h}{p}: no request of any kind, robots.txt included'
@@ -70,7 +72,7 @@ def live_ok(url):
         return False, f'{host}: services*.arcgis.com is never contacted, robots.txt included'
     if host in SAVED_ONLY_HOSTS:
         return False, f'{host}: saved copies only, no live read'
-    return True, ''
+    return kpc_net_guard.host_ok(url)
 
 
 def host_delay(host): return HUB_DELAY if HUB_RE.search(host) else HOST_DELAY
@@ -190,6 +192,99 @@ def check_complete(expected, got, label=''):
     if expected is None: raise ShortRead(f'{label}: the layer did not report a total, so the read cannot be checked: refused')
     if got < expected: raise ShortRead(f'{label}: read {got} of {expected} records the layer reports: SHORT, nothing is saved')
     return True
+
+
+# ---- one complete read of an ArcGIS layer query (every key uses it; owner rule, 2026-11-10) --------------------------------
+LAYER_MINUTES = float(os.environ.get('KPC_LAYER_MINUTES') or 60)   # one slow layer may not eat the whole job
+POST_OVER = 1800   # a request longer than this (an objectIds batch) is sent as a POST
+
+
+def _oid_of(f, field):
+    a = f.get('attributes') or f.get('properties') or {}
+    if field in a: return a[field]
+    lf = str(field).lower()
+    return next((v for k, v in a.items() if str(k).lower() == lf), None)
+
+
+def read_complete(query_url, where='1=1', box_params=None, fetch_json=None, out_fields='*', page_hint=500, oid_field=None,
+                  max_record_count=None, extra=None, id_batch=None, minutes=None, label='', order=True, clock=time.monotonic, oid_of=None):
+    """Every record of one ArcGIS query (where + the same box), or an error: never a partial list.
+    fetch_json(url, params, post=False) -> dict is the key's own paced, guarded opener. Steps:
+      1. returnCountOnly with the same where + box (no page or outline parameters): the number the read must reach;
+      2. returnIdsOnly with the same where + box; when every id comes back, the records are asked BY ID in batches of
+         min(maxRecordCount, 500) (a smaller batch when the server sends fewer), each id exactly once;
+      3. else (no ids-only, or ids-only cut to a window) offset paging that moves by the rows the server REALLY sent, and stops
+         on an empty page; a page with no new id = the server ignores resultOffset (LayerStall).
+    Finishes only when the distinct ids equal the count; else ShortRead. minutes = this layer's time limit (LayerStall).
+    oid_of(feature) -> id, for a server that keys attributes by alias (default: the object-id field, any letter case).
+    Returns (features in id / read order, how = {'count', 'mode': 'ids' | 'offset', 'short_page', 'requests'})."""
+    box, extra = dict(box_params or {}), dict(extra or {})
+    lim = LAYER_MINUTES if minutes is None else float(minutes)
+    deadline, how = clock() + lim * 60, {'count': None, 'mode': None, 'short_page': False, 'requests': 0}
+
+    def ask(params):
+        if clock() > deadline: raise LayerStall(f'{label}: over its {lim:g}-minute limit ({how["requests"]} requests): not used')
+        how['requests'] += 1
+        try: j = fetch_json(query_url, params, post=len(urllib.parse.urlencode(params)) > POST_OVER)
+        except MasterError: raise
+        except Exception as e: raise MasterError(f'{label}: {type(e).__name__}: {str(e)[:160]}') from e  # noqa: BLE001  (the step decides)
+        if not isinstance(j, dict): raise MasterError(f'{label}: not a JSON answer')
+        if j.get('error'): raise MasterError(f"{label}: the layer answered an error ({str(j['error'])[:160]})")
+        return j
+    base = dict({'where': where or '1=1'}, **box)
+    c = ask(dict(base, returnCountOnly='true', returnGeometry='false', f='json'))
+    if c.get('count') is None: raise ShortRead(f'{label}: the layer did not report its count, so the read cannot be checked: refused')
+    count = how['count'] = int(c['count'])
+    if count == 0: how['mode'] = 'ids'; return [], how
+    mx = int(max_record_count or 0) or 1000
+    ids, of = None, oid_field
+    try:
+        r = ask(dict(base, returnIdsOnly='true', f='json'))
+        if isinstance(r.get('objectIds'), list):
+            ids = sorted({x for x in r['objectIds'] if x is not None}, key=lambda x: (str(type(x)), x))
+            of = oid_field or r.get('objectIdFieldName') or 'OBJECTID'
+    except MasterError: ids = None   # no ids-only on this server: offset paging
+    got = {}
+    if ids is not None and len(ids) == count:
+        how['mode'], pending, b = 'ids', list(ids), max(1, int(id_batch or min(mx, 500)))
+        try:
+            while pending:
+                batch = pending[:b]; want = {str(x) for x in batch}
+                j = ask(dict({'objectIds': ','.join(str(x) for x in batch), 'outFields': out_fields}, **extra, f='json'))
+                n = 0
+                for f in j.get('features') or []:
+                    k = str(oid_of(f) if oid_of else _oid_of(f, of))
+                    if k in want and k not in got: got[k] = f; n += 1
+                if not n: raise LayerStall(f'{label}: a batch of {len(batch)} ids came back with none of them')
+                pending = [x for x in pending if str(x) not in got]
+                if n < len(batch): b = n   # the server's real cap is smaller than it says
+        except MasterError:
+            if got: raise
+            got, how['mode'] = {}, None   # by-id reads refused on the first batch: offset paging instead
+    if how['mode'] != 'ids':
+        how['mode'], of = 'offset', of or oid_field or 'OBJECTID'
+        page, off = max(1, min(int(page_hint or mx), mx)), 0
+        while True:
+            q = dict(base, outFields=out_fields, **extra, f='json', resultOffset=off, resultRecordCount=page)
+            if order: q['orderByFields'] = of
+            j = ask(q)
+            fs = j.get('features') or []
+            if not fs: break
+            n, here = 0, set()
+            for f in fs:
+                o = oid_of(f) if oid_of else _oid_of(f, of)
+                if o is None: raise ShortRead(f'{label}: a record without its id ({of}): the read cannot be checked: refused')
+                here.add(str(o))
+                if str(o) not in got: got[str(o)] = f; n += 1
+            if not n: raise LayerStall(f'{label}: the server sent the page at offset {off} again (resultOffset ignored?)')
+            if len(got) > count: raise ShortRead(f'{label}: {len(got)} distinct records, more than the {count} the layer reports: refused')
+            more = bool(j.get('exceededTransferLimit'))
+            if len(got) == count and not more: break
+            if not more and len(fs) < page: how['short_page'] = True   # the old end test would have stopped here
+            off += len(here)   # the distinct rows this page really sent (a row sent twice is one row)
+    if len(got) != count:
+        raise ShortRead(f'{label}: read {len(got)} of {count} records the layer reports ({how["mode"]}): SHORT, nothing is used')
+    return list(got.values()), how
 
 
 # ---- geometry (GeoJSON, longitude / latitude) -----------------------------------------------------------------------------
@@ -582,7 +677,7 @@ def who_for(url, robots_ok=None, file_url=None):
     """('bot' | 'person' | 'never', why). robots_ok(url) -> bool is only asked for a host live_ok allows (never before it).
     Nov 10: when the layer itself may not be read but its OFFICIAL DIRECT FILE (file_url) sits on a host a bot may fetch, the row
     is a bot's: the master step downloads the file through the same pre-request check, robots.txt and pacing (download_official_file)."""
-    host, path = parts(url)
+    host, path = kpc_net_guard.host_of(url), parts(url)[1]
     for h, p in NEVER_CONTACT:
         if host == h and path.lower().startswith(p.lower()): return 'never', f'never contact {h}{p}: no request of any kind, by a bot or a person'
     ok, why = live_ok(url)
@@ -610,6 +705,8 @@ class _CheckedRedirect(urllib.request.HTTPRedirectHandler):
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         newurl = urllib.parse.urljoin(req.full_url, newurl)
+        try: kpc_net_guard.check(newurl, hop_from=req.full_url)   # also refuses https -> http / ftp: / file: hops
+        except kpc_net_guard.NetGuardRefused as e: raise LiveNotAllowed(f'redirect refused: {e.reason}') from None
         self.check(newurl)
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
@@ -762,7 +859,7 @@ def merge_needs(doc, rows):
             if f == 'added': continue
             if r.get(f) not in (None, ''): new[f] = r[f]
         if new != old: have[k] = new; updated += 1
-    doc['rows'] = [have[k] for k in sorted(have)]
+    doc['rows'] = [honest_who(have[k]) for k in sorted(have)]   # every merge: an old list cannot bring back a wrong who
     doc['format'] = NEEDS_FORMAT; doc.setdefault('about', NEEDS_ABOUT)
     return doc, added, updated
 
@@ -845,3 +942,61 @@ def prefix_counts(blob):
 def geojson_to_rings(g):
     """GeoJSON (Multi)Polygon -> the key's Esri-style {'rings': [...]} (every ring, outer and holes, as the key reads them)."""
     return {'rings': [ring for poly in polys_of(g) for ring in poly]}
+
+
+# ---- hand files for any area (US-XX, CA-XX / CA-ALL, W-XX): the area and layer come from the name, nothing else ------------------
+AREA_RE = re.compile(r'^(US-[A-Z]{2}|CA-[A-Z]{2,3}|W-[A-Z]{2})$', re.ASCII)
+HAND_RE = re.compile(r'^hand-(US-[A-Z]{2}|CA-[A-Z]{2,3}|W-[A-Z]{2})\.(\w+)\.geojson\.gz$', re.ASCII)
+
+
+def parse_hand_name(name):
+    """'hand-W-AS.sgakd.geojson.gz' -> ('W-AS', 'sgakd'); anything else -> None (refused)."""
+    m = HAND_RE.match(os.path.basename(str(name or '')))
+    return (m.group(1), m.group(2)) if m else None
+
+
+def hand_file_problem(path, area, layer):
+    """'' when a hand file may be used for (area, layer) (its name already parsed); else why not. Fail closed: the file's own
+    area and layer must be the ones in its name, and it must hold at least the count it was checked against."""
+    try: meta, feats = read_layer_file(path)
+    except Exception as e: return f'{pathlib.Path(path).name}: unreadable ({e})'  # noqa: BLE001
+    if meta.get('area') != area or str(meta.get('layer') or '') != layer:
+        return f"{pathlib.Path(path).name}: the file says {meta.get('area')}|{meta.get('layer')}, its name says {area}|{layer}: refused (never applied to another area)"
+    exp = layer_file_expected(meta)
+    if exp is None: return f'{pathlib.Path(path).name}: no expected count, so the file cannot be checked: refused'
+    if len(feats) < exp: return f'{pathlib.Path(path).name}: {len(feats)} of {exp} records: SHORT, refused (fail closed)'
+    return ''
+
+
+def share_block(row, root=None):
+    """'' when a layer's checked file may be packed / uploaded / merged; else why not. Refused: anything that looks like Protected Planet /
+    WDPA, or a layer / download source marked `redistribute: "no"` in data/outlines/layers.json or download-sources.json (optional
+    field; absent = no known restriction). row: a needs row or a layer file's meta (area, layer, url, page, label, src)."""
+    r = row or {}
+    raw = r.get('raw') if isinstance(r.get('raw'), dict) else {}
+    if is_wdpa(r.get('layer'), r.get('url'), r.get('page'), r.get('label'), r.get('src'), raw.get('name'), raw.get('source')):
+        return f"{r.get('area')}|{r.get('layer')}: looks like Protected Planet / WDPA (licence): not packed, uploaded or merged"
+    root = pathlib.Path(root or OUTLINES)
+    nu = lambda u: re.sub(r'/query/?$', '', str(u or '').replace('svc:', '', 1).split('|')[0].split('?')[0]).rstrip('/').lower()
+    u, area, lay = nu(r.get('url')), r.get('area'), str(r.get('layer') or '')
+    for k, L in ((load_layers(root) or {}).get('layers') or {}).items():
+        if str((L or {}).get('redistribute', '')).lower() == 'no' and (k in (f'{area}.{lay}', lay) or (u and nu(L.get('url')) == u)):
+            return f'{area}|{lay}: layer {k} is marked redistribute=no in layers.json: not packed, uploaded or merged'
+    for sid, S in ((load_json(root / 'download-sources.json', {}) or {}).get('sources') or {}).items():
+        if str((S or {}).get('redistribute', '')).lower() != 'no': continue
+        if sid == r.get('src') or (u and nu(S.get('layer_url')) == u) or (S.get('layer') == lay and area in (S.get('areas') or [])):
+            return f'{area}|{lay}: download source {sid} is marked redistribute=no in download-sources.json: not packed, uploaded or merged'
+    return ''
+
+
+def honest_who(row):
+    """A row's who as the host rules see it (used by every merge, so an old list cannot bring a wrong row back): a bot row whose
+    layer a bot may not read and with no direct file a bot may fetch is a person's; an OPEN bot row on an allowed host with no
+    direct file is a layer the bot re-reads itself, not a download: held. Never turns a person's or a never row into a bot's."""
+    if row.get('who') != 'bot': return row
+    f = direct_file_of(row)
+    w, _ = who_for(row.get('url') or '', file_url=f)
+    if w != 'bot': return dict(row, who=w)
+    if row.get('status') == 'open' and not f:
+        return dict(row, status='held', why=(str(row.get('why') or '') + '; the bot re-reads this layer itself (allowed host): nobody downloads it').lstrip('; '))
+    return row

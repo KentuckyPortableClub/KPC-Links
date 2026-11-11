@@ -10,6 +10,7 @@ values before it is written. Only keys that are SET in this repo are checked (mi
 A key that is REFUSED (HTTP 401/403, Graph 'invalid') = problem. A timeout or a busy server = note only (no email).
 Never fails."""
 import datetime as dt, json, os, pathlib, sys, urllib.error, urllib.parse, urllib.request
+import kpc_net_guard; kpc_net_guard.install()
 
 NOW = dt.datetime.now(dt.timezone.utc)
 OUT = os.environ.get('KEYS_OUT', 'checkup-out/keys.json')

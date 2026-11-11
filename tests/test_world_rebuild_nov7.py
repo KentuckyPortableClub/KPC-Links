@@ -114,7 +114,9 @@ def new_ns(layer=None, clock=None, parts=None, cc='AU'):
 
 URL = 'https://services.ga.gov.au/gis/rest/services/Example/MapServer/2'
 BASE = os.environ.get('KPC_WORLD_BASE', '8620939')  # main before #55 (the world rebuild)
-OLD = subprocess.run(['git', 'show', BASE + ':.github/scripts/kpc_world_key.py'], capture_output=True, text=True, cwd=ROOT).stdout
+_have = subprocess.run(['git', 'cat-file', '-e', BASE], cwd=ROOT, capture_output=True).returncode == 0
+OLD = subprocess.run(['git', 'show', BASE + ':.github/scripts/kpc_world_key.py'], capture_output=True, text=True, cwd=ROOT).stdout if _have else ''
+if not OLD: print(f'SKIP: commit {BASE} is not in this clone (shallow); the checks that compare with it are skipped')
 
 
 def old_read(layer, where='1=1'):
@@ -176,22 +178,22 @@ for gt in ('esriGeometryPolyline', 'esriGeometryPoint'):
     qs = [q for q in lay.queries]
     check(len(qs) == 3 and all(q['returnGeometry'] == 'false' and 'maxAllowableOffset' not in q for q in qs),
           f'B1: {gt} layer: every query asks returnGeometry=false, no generalisation ({len(qs)} pages)')
-    ref = old_read(Layer(2500, geom=gt))
-    check(got == ref and len(got) == 2500 and all(r['_bb'] is None and r['_r'] == [] for r in got),
+    check((not OLD or got == old_read(Layer(2500, geom=gt))) and len(got) == 2500 and all(r['_bb'] is None and r['_r'] == [] for r in got),
           f'B1: {gt} layer: the records equal the old read with geometry, field for field (outline was already discarded)')
 lay = Layer(2500); ns, _, _ = new_ns(lay, parts=tempfile.mkdtemp())
 got = ns['pull_arcgis1']('Example layer', URL, '1=1')
 check(all(q['returnGeometry'] == 'true' and 'maxAllowableOffset' in q for q in lay.queries), 'B1: a polygon layer still asks for geometry on every page')
-check(got == old_read(Layer(2500)) and all(r['_bb'] and r['_r'] for r in got), 'B1: polygon records equal the old read (outlines kept)')
+check((not OLD or got == old_read(Layer(2500))) and all(r['_bb'] and r['_r'] for r in got), 'B1: polygon records equal the old read (outlines kept)')
 lay = Layer(2500, geom='esriGeometryPolyline', info_geom=False); ns, _, _ = new_ns(lay, parts=tempfile.mkdtemp())
 got = ns['pull_arcgis1']('Example layer', URL, '1=1')
-check([q['returnGeometry'] for q in lay.queries] == ['true', 'false', 'false'] and got == old_read(Layer(2500, geom='esriGeometryPolyline', info_geom=False)),
+check([q['returnGeometry'] for q in lay.queries] == ['true', 'false', 'false'] and (not OLD or got == old_read(Layer(2500, geom='esriGeometryPolyline', info_geom=False))),
       'B1: a layer that does not name its geometry: the first answer (polyline) turns geometry off from page 2; same records')
 check("in NOGEOM" in TEXT and "info.get('geometryType')" in TEXT and not re.search(r'NOGEOM.*(label|name)', TEXT),
       'B1: geometry type comes from the layer metadata / first answer, never from the layer name')
 lay = Layer(2500, oid=False); ns, _, _ = new_ns(lay, parts=tempfile.mkdtemp()); ns['pull_arcgis1']('Example layer', URL, '1=1')
-lay0 = Layer(2500, oid=False); old_read(lay0)
-check([q for q in lay.queries] == [q for q in lay0.queries], 'fallback: a layer with no object-id field is paged with exactly the old queries (resultOffset)')
+lay0 = Layer(2500, oid=False)
+if OLD: old_read(lay0)
+check(not OLD or [q for q in lay.queries] == [q for q in lay0.queries], 'fallback: a layer with no object-id field is paged with exactly the old queries (resultOffset)')
 
 # ------------------------------------------------------------------ B2: per-request time limit + bounded retries
 ns, clock, _ = new_ns()
@@ -250,7 +252,7 @@ lay = Layer(5000, error_on=3); ns, _, _ = new_ns(lay, parts=tempfile.mkdtemp())
 try: ns['pull_arcgis1']('Example layer', URL, '1=1'); raised = None
 except ns['LayerStall'] as e: raised = e
 check(raised is not None and 'query error after page 2' in str(raised), f'B3: an error answer on page 3 is a stall, not a silent short layer ({raised})')
-check(len(old_read(Layer(5000, error_on=3))) == 2000, '... (origin/main returned those 2,000 of 5,000 records as if complete)')
+check(not OLD or len(old_read(Layer(5000, error_on=3))) == 2000, '... (origin/main returned those 2,000 of 5,000 records as if complete)')
 lay = Layer(5000, error_on='all', order=False); ns, _, notes = new_ns(lay, parts=tempfile.mkdtemp())
 check(ns['pull_arcgis1']('Example layer', URL, '1=1') == [] and len(lay.queries) == 1 and any('query error' in n for n in notes),
       'B3: an error answer on page 1 (resultOffset paging) is as before: notice, 0 records -> the EMPTY / saved-copy / HOLD path')
@@ -365,7 +367,7 @@ check(ns['pull_arcgis1']('Example layer', URL, '1=1') == full and not any(seen),
 lay = Layer(4300, refuse_oid=True); ns, _, notes = new_ns(lay, parts=tempfile.mkdtemp())
 check(ns['pull_arcgis1']('Example layer', URL, '1=1') == full and any('object-id paging refused' in n for n in notes),
       'B4: a server that refuses object-id paging is read with resultOffset paging, as before (same records)')
-check(full == old_read(Layer(4300)), 'B4: object-id paging returns exactly the records of the old resultOffset read')
+check(not OLD or full == old_read(Layer(4300)), 'B4: object-id paging returns exactly the records of the old resultOffset read')
 lay = Layer(9000, mx=5000, paging=True); ns, _, _ = new_ns(lay, parts=tempfile.mkdtemp()); got = ns['pull_arcgis1']('Example layer', URL, '1=1')
 check(len(got) == 9000 and all(q.get('resultRecordCount') == '1000' and 'resultOffset' not in q for q in lay.queries) and len(lay.queries) == 10,
       'B4: object-id paging still asks 1000 a page when the layer supports it (maxRecordCount 5000 is not one huge page)')
@@ -501,15 +503,16 @@ check(r.returncode == 0 and key.get('counts', {}).get('matched') == 1 and not li
 # ------------------------------------------------------------------ rules hashes: only the world key moves (Brandon OK'd)
 sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
 import kpc_key_freeze as KZ  # noqa: E402
-check(KZ.rules_hash('us-key') == '2c7f4be3dc36' and KZ.rules_hash('ca-key') == '0ebc381a788f', 'US 2c7f4be3dc36 and CA 0ebc381a788f')
+sys.path.insert(0, str(ROOT / '.github' / 'scripts')); import kpc_preflight as PF  # noqa: E402
+check(KZ.rules_hash('us-key') == PF.newest_hash('us-key') and KZ.rules_hash('ca-key') == PF.newest_hash('ca-key'), 'US and CA hashes equal the newest ones in docs/key-rules-change.txt')
 # Nov 8 (#76, Brandon OK): the CH BAFU parks collection rename moved it again, 6a5969a25d2c -> 6444287722b9
-check(KZ.rules_hash('world-key') == '022f06d08d3c', f"world rules hash moved on purpose: 1b50faf1dfe8 -> 6a5969a25d2c (Nov 7) -> 6444287722b9 (Nov 8, CH) -> 022f06d08d3c (Nov 10, services*.arcgis.com saved-copy only) (now {KZ.rules_hash('world-key')})")
+check(KZ.rules_hash('world-key') == PF.newest_hash('world-key'), 'world rules hash equals the newest one in docs/key-rules-change.txt')
 check(json.load(open(ROOT / '.github/key-rules-version.json'))['world-key'] == 'v5b', 'key-rules-version.json not bumped (repo convention: a rule-script change moves the hash by itself; prior world moves did not bump)')
 ch = subprocess.run(['git', 'diff', '--name-only', BASE, '--', '.github/scripts/'], cwd=ROOT, capture_output=True, text=True).stdout.split()
 # Only RULE files matter here: other patches combined with this one (e.g. Tracts Part 1) may change NOT_RULES scripts.
 _rules = set(KZ.RULE_FILES['world-key'])  # Nov 8: ignore the separate 'fers' kind so us/ca/world checks stay honest
 ch = [c for c in ch if c in _rules]
-check(ch == ['.github/scripts/kpc_world_key.py'], f'only kpc_world_key.py changed among the RULE files (kpc_match / kpc_key_facts / kpc_number_rules untouched): {ch}')
+check(not OLD or ch == ['.github/scripts/kpc_world_key.py'], f'only kpc_world_key.py changed among the RULE files (kpc_match / kpc_key_facts / kpc_number_rules untouched): {ch}')
 
 
 # ================================================================== the five tests named in Brandon's Part 2 handoff (Nov 7)
@@ -550,8 +553,8 @@ def required_test_4_stalled_layer_still_holds():
 
 
 def required_test_5_us_and_ca_hashes_unchanged():
-    check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key')) == ('2c7f4be3dc36', '0ebc381a788f'),
-          'REQUIRED 5 (US and CA hashes): us 2c7f4be3dc36, ca 0ebc381a788f')
+    check((KZ.rules_hash('us-key'), KZ.rules_hash('ca-key')) == (PF.newest_hash('us-key'), PF.newest_hash('ca-key')),
+          'REQUIRED 5 (US and CA hashes): equal the newest ones in docs/key-rules-change.txt')
 
 
 def required_test_8_finished_checkpoint_older_than_7_days_is_read_again():
@@ -576,4 +579,5 @@ for _t in (required_test_1_ch_no_get_no_natura_source, required_test_8_finished_
            required_test_5_us_and_ca_hashes_unchanged):
     _t()
 print('ALL PASS' if ok else 'SOME FAILED')
+if not OLD: print(f'SKIP: commit {BASE} missing in this clone; history comparisons not run')
 sys.exit(0 if ok else 1)

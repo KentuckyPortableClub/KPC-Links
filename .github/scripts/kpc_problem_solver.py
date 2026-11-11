@@ -524,6 +524,121 @@ def todo(p):
     return bool(p.get('held')) or p.get('far') == 'well outside' or bool(p.get('pin_may_be_wrong'))
 
 
+# ---- WHY a park has no boundary (owner request, Nov 10): every unjoined park gets exactly one code, a plain why and a next step
+WHY_CODES = ('HELD_CHECK', 'PERSON_NO', 'BORDER', 'SHARED_RECORD', 'PIN_FAR_SAME_NAME', 'NAME_ALIAS', 'LINEAR', 'POINT_FEATURE',
+             'SUB_UNIT_OF_BROADER', 'LAYER_GAP', 'UNKNOWN')
+LINEAR_T = re.compile(r'\b(trail|river|parkway|byway|greenway)\b', re.I)
+LINEAR_N = re.compile(r'\b(trail|byway|parkway|greenway|(wild and |wild & )?scenic river|wild river)\b', re.I)
+POINT_RX = re.compile(r'\b(historic(al)? (site|landmark|marker)|monument|memorial|hatchery|lighthouse|battlefield|cemetery|birthplace|'
+                      r'fort)\b', re.I)
+
+
+def unjoined(p):
+    return (not p.get('m')) or p.get('g') == 'pin'
+
+
+def _reasons(p):
+    return [(k, x) for k in ('c', 'a') for x in (p.get(k) or []) if isinstance(x, list) and len(x) > 3]
+
+
+def why_code(ref, p, ctx=None):
+    """(code, why, next_step) for an unjoined park, using only what is already on disk. First match wins, in the order of WHY_CODES.
+    ctx: states (every state file listing the park), state, joined_in (other states where it is joined), override (its overrides.json row),
+    wwff_name (the WWFF list's name for this POTA ref, if kpc-data is available), has_layer (this state lists an agency layer),
+    saved_n / expected_n (this state's saved copy vs data/outlines/layers.json). Evidence only: nothing here is applied."""
+    ctx = ctx or {}; name = p.get('n') or ''; low = lambda x: str(x[3]).lower()  # noqa: E731
+    rs = _reasons(p); ov = ctx.get('override') or {}
+    pinned = 'The POTA pin is never moved.'
+    h = p.get('held') or next((x[3] for _, x in [(0, y) for _, y in rs] if low(x).startswith('held') and 'person said no' not in low(x)), None)
+    if h and 'person said no' in str((h.get('why') if isinstance(h, dict) else h) or '').lower(): h = None; ov = dict(ov, none=True)   # a person's 'none' hold is a person's NO, not a join-check hold
+    if h:
+        return 'HELD_CHECK', 'the join check held this join: ' + str((h.get('why') if isinstance(h, dict) else h) or 'too far from the POTA pin')[:160], \
+            'a person verifies the held record: keep it with an overrides.json join row, or find a better record. ' + pinned
+    no = [x for _, x in rs if 'person said no' in low(x)]
+    if no or ov.get('none') or ov.get('no'):
+        return 'PERSON_NO', 'a person already said NO to ' + (f'{no[0][0]} ({no[0][1]})' if no else 'the record(s) found for this park') + ' (overrides.json)', \
+            'nothing to do unless new evidence appears; a person re-opens it with new evidence'
+    other = sorted(set(ctx.get('joined_in') or []) | (set(ctx.get('states') or []) - {ctx.get('state')} if len(ctx.get('states') or []) > 1 else set()))
+    if other:
+        return 'BORDER', 'the park is also listed in ' + ', '.join(other) + ', where its land may be joined', \
+            'look at the other state file: the outline may already be there, otherwise each state needs its own piece'
+    sh = [x for _, x in rs if 'also joined to' in low(x)]
+    if sh:
+        return 'SHARED_RECORD', f'the only record found ({sh[0][0]}, {sh[0][1]}) is also joined to a sibling park', \
+            'a person decides whether the two parks share one outline or this park needs its own record'
+    far = [x for _, x in rs if low(x).startswith('same name far from the pin')]
+    if far:
+        return 'PIN_FAR_SAME_NAME', f'a record with the same name ({far[0][0]}, {far[0][1]}) is far from the POTA pin', \
+            'a person checks which is wrong, the pin or the record. ' + pinned
+    alias = [x for k, x in rs if (k == 'c' and ('similar name' in low(x) or 'pin is inside it' in low(x)))]
+    ww = ctx.get('wwff_name') or ''
+    wm = [x for _, x in rs if ww and same_name(ww, x[1])]
+    if alias or wm:
+        x = (wm or alias)[0]
+        ev = f'; the WWFF list calls this park "{ww}", which matches {x[1]}' if wm else ''
+        return 'NAME_ALIAS', f'{x[0]} ({x[1]}) looks like the same land under another name{ev}', \
+            'a person decides whether to approve an alias row (park name = record name); nothing is applied automatically'
+    if LINEAR_T.search(p.get('t') or '') or LINEAR_N.search(name):
+        return 'LINEAR', 'a trail, river, parkway or byway: it is a line, and a polygon layer rarely has one', \
+            'look for a line layer, or use the 100-ft line rule; a person decides'
+    hasc = any(k == 'c' and same_name(name, x[1]) for k, x in rs)
+    if (POINT_RX.search(name) or POINT_RX.search(p.get('t') or '')) and not hasc:
+        return 'POINT_FEATURE', 'a single site (historic site, monument, hatchery, lighthouse or similar) with no polygon candidate', \
+            'a person looks for an official point to draw the labelled point-circle; it is not shown as a boundary'
+    sub = [x for k, x in rs if k == 'a' and 'pin is inside it' in low(x)]
+    if sub and not hasc:
+        return 'SUB_UNIT_OF_BROADER', f'the pin is inside {sub[0][0]} ({sub[0][1]}), a bigger area with another name', \
+            'a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park\'s shape is never its outline'
+    if not rs or (p.get('bk') or [None] * 5)[4:5] == ['noshape']:
+        if (p.get('bk') or [None] * 5)[4:5] == ['noshape']: m = 'the record found has no outline in this build'; nxt = 'the next map read of that layer may bring it; a person checks the layer'
+        elif ctx.get('has_layer') is False: m = 'no record found, and no agency layer is listed for this state'; nxt = 'find an agency layer for the state (research list); the master step adds it'
+        elif ctx.get('saved_n') is not None and ctx.get('expected_n') and ctx['saved_n'] < ctx['expected_n']:
+            m = f"no record found, and the saved copy of this state is short ({ctx['saved_n']:,} of {ctx['expected_n']:,} records)"; nxt = 'refill the saved copy (master step), then rebuild'
+        else: m = 'no record found in the layers read so far (the state lists an agency layer)'; nxt = 'a person checks the layer list for this park, or the park has no public outline'
+        return 'LAYER_GAP', m, nxt
+    bk = (p.get('bk') or [None] * 5)[4:5]
+    return 'UNKNOWN', ('POTA has no usable pin' if bk and bk[0] in ('nopin', 'pin00', 'pinbad') else (str(rs[0][1][3])[:140] if rs else 'no reason on file')), \
+        'a person looks (nothing changed)'
+
+
+def wwff_names(env, root):
+    """{POTA ref: WWFF name} from kpc-data's locations-wwff.json (col 7 = the linked POTA ref). {} when the file is not there."""
+    for d in (env.get('DATA'), env.get('KPCDATA'), pathlib.Path(root).resolve().parent / 'kpc-data', pathlib.Path(root).resolve().parent / 'KPC-Data'):
+        f = pathlib.Path(d or '/nonexistent') / 'locations-wwff.json'
+        if f.is_file():
+            try: return {str(r[7]): str(r[2]) for r in json.load(open(f, encoding='utf-8')) if len(r) > 7 and r[7] and r[2]}
+            except Exception: return {}  # noqa: BLE001
+    return {}
+
+
+def why_rows(files, ov, root='.', env=None, cache=None):
+    """One row per unjoined park of every state key file: ref, state, name, code, why, next_step."""
+    env = env or os.environ; root = pathlib.Path(root); ww = wwff_names(env, root)
+    where, joined_in = {}, {}
+    for st, parks in files.items():
+        for r, p in parks.items():
+            if isinstance(p, dict):
+                where.setdefault(r, []).append('US-' + st)
+                if not unjoined(p): joined_in.setdefault(r, set()).add('US-' + st)
+    try: lay = json.load(open(root / 'data/outlines/layers.json', encoding='utf-8')).get('caches') or {}
+    except Exception: lay = {}  # noqa: BLE001
+    try: keys = json.load(open(root / 'data/us-key/layers.json', encoding='utf-8'))
+    except Exception: keys = {}  # noqa: BLE001
+    try: sg = json.load(open(root / 'data/state-gis.json', encoding='utf-8')).get('states') or {}
+    except Exception: sg = {}  # noqa: BLE001
+    rows = []
+    for st, parks in sorted(files.items()):
+        has = bool(sg.get(st)) or any(re.fullmatch(f'sg{st.lower()}[a-z]', k) for k in keys) if (sg or keys) else None
+        n_saved = len(load_recs(cache, st)) if cache else 0
+        for r, p in sorted(parks.items()):
+            if not isinstance(p, dict) or not unjoined(p): continue
+            ctx = {'states': where.get(r, []), 'state': 'US-' + st, 'joined_in': joined_in.get(r, set()) - {'US-' + st}, 'override': ov.get(r),
+                   'wwff_name': ww.get(r), 'has_layer': has, 'saved_n': n_saved or None, 'expected_n': (lay.get('US-' + st) or {}).get('expected_count')}
+            code, why, nxt = why_code(r, p, ctx)
+            rows.append({'ref': r, 'state': 'US-' + st, 'name': p.get('n') or '', 'code': code, 'why': why, 'next_step': nxt})
+    return rows
+
+
 def run(env=None, root='.'):
     env = env or os.environ; root = pathlib.Path(root)
     pi_dir = pathlib.Path(env.get('PARKINFO') or root / 'kpcdata/data/parkinfo')
@@ -564,18 +679,22 @@ def run(env=None, root='.'):
             ctx = {'states': where.get(r, []), 'joined_in': joined_in.get(r, set()) - {st}, 'known_ids': known, 'same_name_recs': sn,
                    'extra_recs': {k: recs[k] for k in sn}, 'layer_states': lay_st, 'cache_note': cache_note(cache, st)}
             out.append(solve(r, p, (row[5], row[6]) if len(row) > 6 else None, recs, ov.get(r), 'US-' + st, ctx=ctx))
+    wy = why_rows(files, ov, root, env, cache)
+    wn = {}
+    for x in wy: wn[x['code']] = wn.get(x['code'], 0) + 1
     stem = pathlib.Path(env.get('OUT') or root / 'data/us-key/review/problem-solver')
     stem.parent.mkdir(parents=True, exist_ok=True)
     n = {}
     for x in out: n[x['verdict']] = n.get(x['verdict'], 0) + 1
     json.dump({'about': 'recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)',
-               'counts': n, 'parks': out}, open(str(stem) + '.json', 'w', encoding='utf-8'), indent=1)
-    open(str(stem) + '.md', 'w', encoding='utf-8').write(md(out, n))
+               'counts': n, 'parks': out, 'why_counts': wn, 'why': wy}, open(str(stem) + '.json', 'w', encoding='utf-8'), indent=1)
+    open(str(stem) + '.md', 'w', encoding='utf-8').write(md(out, n, wy, wn))
     print(f'problem solver: {len(out)} parks; ' + ', '.join(f'{k} {v}' for k, v in sorted(n.items())))
+    print(f'why no boundary: {len(wy)} unjoined parks; ' + ', '.join(f'{k} {v}' for k, v in sorted(wn.items())))
     return out
 
 
-def md(out, n):
+def md(out, n, why=None, why_n=None):
     L = ['# Problem solver: a recommended fix for each held park', '',
          'Recommendations only. Nothing here is applied, and no POTA pin is ever moved. A person applies each one.', '',
          ', '.join(f'**{v}** {k}' for k, v in sorted(n.items())) or 'Nothing held.', '',
@@ -583,6 +702,11 @@ def md(out, n):
     for x in out:
         stx = x.get('state', '').replace('US-', '') + (f" (also {', '.join(s.replace('US-', '') for s in x['other_states'])})" if x.get('other_states') else '')
         L.append(f"| {x['park']} | {stx} | {x['name']} | {x['verdict']} | {x['confidence']} | {x['recommend']} | {'; '.join(x['reasons'])} |".replace('\n', ' '))
+    if why:
+        L += ['', '## Why each unjoined park has no boundary', '', 'Evidence only: nothing is applied.', '',
+              'Count by code: ' + ', '.join(f'{k} {v}' for k, v in sorted((why_n or {}).items())), '',
+              '| Park | State | Name | Code | Why | Next step |', '|---|---|---|---|---|---|']
+        L += [f"| {w['ref']} | {w['state'].replace('US-', '')} | {w['name']} | {w['code']} | {w['why']} | {w['next_step']} |".replace('\n', ' ') for w in why]
     return '\n'.join(L) + '\n'
 
 
@@ -639,7 +763,17 @@ NEVER_HOST = (
     'apps.fs.usda.gov',
 )
 NEVER_SUB = ('33TOOklri9xpic7U',)
-HOLD_HOST = ('services.arcgis.com', 'services1.arcgis.com')  # saved copies only; no live page fetch
+
+
+def host_allowed(url):
+    """(ok, why) from kpc_net_guard.host_ok; FAILS CLOSED (not allowed) when the guard cannot be loaded."""
+    try:
+        import kpc_net_guard as NG  # noqa: E402
+        ok, why = NG.host_ok(url)
+        return bool(ok), str(why or '')
+    except Exception as e:  # noqa: BLE001
+        return False, f'host rule unavailable ({type(e).__name__}): refused'
+
 ACRE_RX = re.compile(
     r'(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+\.\d+|\d+)\s*(acres?|hectares?|\bha\b|km[²2]|sq(?:uare)?\s*km)',
     re.I)
@@ -739,8 +873,9 @@ def official_website(park, rec=None, pin=None, rec_acres_v=None, fetch=False, ht
     if any(h == host or host.endswith('.' + h) for h in NEVER_HOST) or any(s in url for s in NEVER_SUB):
         out['status'] = 'blocked'; out['note'] = 'never-touch host; page not fetched'; out['why'] = out['note']
         return out
-    if any(host == h or host.endswith('.' + h) for h in HOLD_HOST):
-        out['status'] = 'blocked'; out['note'] = 'saved-copy host; no live page fetch'; out['why'] = out['note']
+    _ok, _why = host_allowed(url)
+    if not _ok:
+        out['status'] = 'blocked'; out['note'] = 'host not allowed (' + _why[:80] + '); no live page fetch'; out['why'] = out['note']
         return out
     if html is None:
         html, err = _fetch_site(url)

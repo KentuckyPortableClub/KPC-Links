@@ -19,6 +19,7 @@ import sys
 import urllib.parse
 import urllib.request
 from zoneinfo import ZoneInfo
+import kpc_net_guard; kpc_net_guard.install()
 
 UA = 'KPC-Hunters/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'

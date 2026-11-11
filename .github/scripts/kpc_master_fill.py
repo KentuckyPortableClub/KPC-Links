@@ -138,31 +138,77 @@ def official_files(rows, dest, robots=None):
     return out
 
 
+def area_parks(parks, area, dest):
+    """The POTA parks of one area only (W-AS -> AS-####, CA-XX -> CA-####), so a file is trimmed to its own area's parks."""
+    pre = (area[2:] if area.startswith('W-') else area[:2]) + '-'
+    rows = [r for r in M.load_json(parks, []) if isinstance(r, list) and len(r) >= 2 and str(r[1]).startswith(pre)]
+    pathlib.Path(dest).write_text(json.dumps(rows), encoding='utf-8'); return dest
+
+
+NOT_READ = {'CA': 'checked file saved; the Canada builder does not read hand files in this form yet (it reads only hand-CA.<name> files, KPC_CA_HAND)',
+            'W': 'checked file saved; the world builder does not read hand files yet'}
+
+
+def check_other(path, area, layer, root, parks, store, work):
+    """A Canada / world hand file (already name-, area- and count-checked): trim to that area's POTA parks (the same trim, fail
+    closed) and keep it in the per-area checked store. Returns (ok, what, matched)."""
+    import kpc_master_cli as CLI
+    meta, feats = M.read_layer_file(path)
+    exp = M.layer_file_expected(meta)
+    ap = area_parks(parks, area, pathlib.Path(work) / f'parks-{area}.json')
+    rc = CLI.main(['trim', '--layer-key', f'{area}.{layer}', '--input', str(path), '--expected', str(exp), '--parks', str(ap), '--area', area,
+                   '--root', str(root), '--agency', str(meta.get('label') or ''), *(['--name-fields', meta['name_field']] if meta.get('name_field') else [])])
+    if rc != 0: return False, f'{area} {layer}: trim refused it (exit {rc}): not kept', rc
+    pathlib.Path(store).mkdir(parents=True, exist_ok=True); shutil.copy(path, pathlib.Path(store) / pathlib.Path(path).name)
+    n = len(M.load_area(area, root))
+    return True, f'{area} {layer}: {len(feats)} records checked ({exp} expected), {n} park outline(s) of {area} in the master records; kept in the checked store', 0
+
+
 def fill(a):
-    states = [s for s in (a.states or '').split() if s and s != 'KY']
+    # areas: US-XX from --states (the US key job) plus any --areas ids (US-XX, CA-XX / CA-ALL, W-XX); anything else is refused
+    want = [f'US-{s}' for s in (a.states or '').split() if s and s != 'KY'] + (getattr(a, 'areas', None) or '').replace(',', ' ').split()
+    bad = [x for x in want if not M.AREA_RE.match(x)]
+    if bad: warn('Master step', 'not an area id (US-XX, CA-XX / CA-ALL, W-XX), refused: ' + ' '.join(bad))
+    areas = [x for x in dict.fromkeys(want) if M.AREA_RE.match(x)]
+    states = [x[3:] for x in areas if x.startswith('US-')]
     root = pathlib.Path(a.root); doc = M.load_layers(root); caches = doc.get('caches') or {}
     work = pathlib.Path(a.work); lin, lout = work / 'in', work / 'out'
     for d in (lin, lout):
         shutil.rmtree(d, ignore_errors=True); d.mkdir(parents=True, exist_ok=True)
     needs = M.load_needs(a.needs) if a.needs else M.load_needs(None)
     open_rows = [r for r in needs['rows'] if r.get('status') == 'open' and str(r.get('area', '')).startswith('US-') and r['area'][3:] in states]
-    # the checked downloads a person sent (PC helper): hand-US-XX.<prefix>.geojson.gz; one already recorded (same sha256) is not applied twice
+    # the checked downloads a person sent (PC helper): hand-<AREA>.<layer>.geojson.gz; the area and layer come from the name only,
+    # the file must say the same and hold its count. A US file already recorded (same sha256) is not applied twice.
     applied = {r.get('sha256') for r in M.load_json(M.raw_manifest_path(root), {'files': []}).get('files', [])}
-    hand = []
-    for p in sorted(pathlib.Path(a.hand).glob('hand-US-*.geojson.gz')) if a.hand else []:
-        nm = p.name[len('hand-'):]; st = nm[3:5]
-        if st not in states: continue
-        if M.sha256_file(p) in applied: continue
+    hand, other, licence, rows0 = [], [], [], []
+    for p in sorted(pathlib.Path(a.hand).glob('hand-*.geojson.gz')) if a.hand else []:
+        got = M.parse_hand_name(p.name)
+        if not got: warn('Master step', f'{p.name}: not named hand-<AREA>.<layer>.geojson.gz (AREA = US-XX, CA-XX / CA-ALL, W-XX): refused'); continue
+        ar, lay = got
+        if ar not in areas: continue
+        if ar.startswith('US-') and M.sha256_file(p) in applied: continue
+        why = M.hand_file_problem(p, ar, lay)
+        if why: warn('Master step', why); continue
         meta, _ = M.read_layer_file(p)
-        if (meta.get('raw') or {}).get('sha256') in applied: continue
-        shutil.copy(p, lin / nm); hand.append(nm)
+        blk = M.share_block(meta, root)
+        if blk: print('::error title=Master step licence::' + blk, flush=True); licence.append(blk); continue
+        if ar.startswith('US-'):
+            if (meta.get('raw') or {}).get('sha256') in applied: continue
+            nm = p.name[len('hand-'):]; shutil.copy(p, lin / nm); hand.append(nm)
+        else: other.append((p, ar, lay, meta))
+    for p, ar, lay, meta in other:   # Canada / world: checked into the per-area store; their builders do not read it yet (README)
+        okk, what, rc = check_other(p, ar, lay, root, a.parks, getattr(a, 'checked', None) or work / 'checked', work)
+        (notice if okk else warn)('Master step', what)
+        if rc == 4: licence.append(what)
+        if okk: rows0.append({**M.needs_row(ar, lay, meta.get('url') or '', NOT_READ[ar.split('-')[0]], 'master', who='person',
+                                            expected=M.layer_file_expected(meta), have=None, note=f'checked hand file: {p.name}'), 'status': 'held'})
     short = short_states(a.cache, states, caches)
     refresh = a.refresh == 'all'
     new = new_layer_states(a.cache, states, a.us_layers, a.state_gis)
     todo = sorted(set(short) | {st for st, us in new.items() if any(M.live_ok(u)[0] for u in us)} | {r['area'][3:] for r in open_rows} | {n[3:5] for n in hand} | (set(states) if refresh else set()))
     todo = [s for s in todo if short.get(s, (0,))[0] != 'missing']   # no saved copy at all: the build makes the first one
     force = 'all' if refresh else ' '.join(sorted({r['layer'] for r in open_rows if r.get('who') == 'bot' and r.get('layer')}))
-    if not a.no_key:   # the key's own layer table first (no state, no request: the key only writes xs.json and stops)
+    if states and not a.no_key:   # the key's own layer table first (no state, no request: the key only writes xs.json and stops)
         run_key_refill(['ZZ'], lout, lin, '', set(), key=a.key)
     table = layer_table(lout / 'xs.json', a.us_layers, a.state_gis)
     robots = robots_checker(a.offline)
@@ -226,7 +272,9 @@ def fill(a):
             if facts: M.raw_add_facts(facts, root=root); notice('Master step', f"{r['id']}: official file {facts['name']} ({facts['size']} bytes) downloaded; the PC helper's check packs it")
     for k in sorted(done):
         ar, pre = k.split('|', 1)
-        rows.append({**M.needs_row(ar, pre, (table.get(pre) or {}).get('url', ''), 'refilled and checked by the master step', 'master', who='bot'), 'status': 'done'})
+        u = (table.get(pre) or {}).get('url', '')
+        rows.append({**M.needs_row(ar, pre, u, 'refilled and checked by the master step', 'master', who=M.who_for(u)[0]), 'status': 'done'})
+    rows = [M.honest_who(r) for r in rows] + rows0   # a bot row on a host a bot may not read is a person's (fix at the source)
     try:   # Nov 10: give each row its official download source (data/outlines/download-sources.json) and whether a bot may check it
         import kpc_master_watch as W
         W.link_rows(root / 'download-sources.json', rows)
@@ -237,7 +285,7 @@ def fill(a):
     c = {}
     for r in rows: c[(r['who'], r['status'])] = c.get((r['who'], r['status']), 0) + 1
     notice('Master step', f"{sum(1 for x in results if x[0])} layer(s) merged, {sum(1 for x in results if not x[0])} refused; rows: " + (', '.join(f'{w} {s} {n}' for (w, s), n in sorted(c.items())) or 'none'))
-    return 0
+    return 4 if licence else 0   # a licence block (WDPA / redistribute=no) = exit 4: the workflow goes red
 
 
 def collect(a):
