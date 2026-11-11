@@ -1,3 +1,52 @@
+/* >>> kpc_released (KPC owner, 2026-11-11): the same block is in kpc-bounds.js, kpc-padus-layer.js, kpc-us-planner.js and kpc-gps.js (a test keeps them equal).
+   The public map reads RELEASED files only: data/released/RELEASED.json (asked for fresh every page load) lists, per working file name,
+   its released file(s) and each one's own version, so a changed file shows at once and an unchanged one stays cached.
+   KPCREL.get('data/outlines/US-FL.geojson.gz') -> the parsed file (parts put together), or null when it is not released.
+   An area that was never released (no entry in RELEASED.json) reads the working file as before.
+   The Map Rep pages set window.KPC_WORKING_COPY = true before this file: they always read the working copy (the key being reviewed). */
+(function (w) {
+  if (!w || w.KPCREL || typeof w.fetch !== 'function') return;
+  var P = null, AREA = [[/^(outlines\/US-|us-key\/)/, 'US'], [/^ca-key\//, 'CA'], [/^world-key\//, 'world']];
+  function index() { return P || (P = w.fetch('data/released/RELEASED.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })); }
+  function parse(r) {
+    if (!r || !r.ok) return null;
+    return r.arrayBuffer().then(function (ab) {
+      var u8 = new Uint8Array(ab);
+      if (u8.length >= 2 && u8[0] === 0x1f && u8[1] === 0x8b) {
+        if (typeof DecompressionStream !== 'function') throw new Error('gzip');
+        return new Response(new Blob([ab]).stream().pipeThrough(new DecompressionStream('gzip'))).text().then(JSON.parse);
+      }
+      return JSON.parse(new TextDecoder().decode(ab));
+    });
+  }
+  function join(docs) {
+    if (docs.some(function (d) { return !d; })) return null;            /* a missing part = not released (never half a file) */
+    if (docs.length === 1) return docs[0];
+    var out = Object.assign({}, docs[0]); delete out.kpc_part;
+    if (Array.isArray(out.features)) out.features = [].concat.apply([], docs.map(function (d) { return d.features || []; }));
+    if (out.parks && !Array.isArray(out.parks)) out.parks = Object.assign.apply(null, [{}].concat(docs.map(function (d) { return d.parks || {}; })));
+    return out;
+  }
+  function urls(path) {
+    var rel = String(path).replace(/^data\//, '').replace(/\?.*$/, '');
+    return index().then(function (d) {
+      var a = AREA.filter(function (x) { return x[0].test(rel); })[0];
+      if (w.KPC_WORKING_COPY === true || !a || !(d.areas || {})[a[1]]) return null;   /* a review page (Map Rep sets KPC_WORKING_COPY) or an area not released yet: the working file */
+      return ((d.files || {})[rel] || []).map(function (f) { return 'data/released/' + f[0] + '?v=' + f[1]; });
+    });
+  }
+  function get(path, working) {
+    return urls(path).then(function (list) {
+      /* nothing released for it: the working file, read exactly as before this block existed (the caller's own fetch and r.json(); only an outline .gz is unpacked) */
+      if (list === null) return working ? working(path).then(function (r) { return r && r.ok ? r.json() : null; })
+        : w.fetch(path + '?v=' + new Date().toISOString().slice(0, 10), { cache: 'force-cache' }).then(parse);
+      if (!list.length) return null;
+      return Promise.all(list.map(function (u) { return w.fetch(u, { cache: 'force-cache' }).then(parse); })).then(join);
+    }).catch(function () { return null; });
+  }
+  w.KPCREL = { get: get, urls: urls, index: index };
+})(typeof window !== 'undefined' ? window : null);
+/* <<< kpc_released */
 /* KPC shared boundary helpers (kpc-in-park.html "Am I in the Park?" and kpc-kit.html Activation Kit).
    - Kentucky: the official boundary files KPC keeps (same ones Park Commander uses), plus OpenStreetMap outlines (unofficial).
    - Anywhere in the US: USGS PAD-US (Protected Areas Database), The National Map (CORS ok, no key).
@@ -14,6 +63,9 @@
      dfetch/dget try that address first and fall back to this site's own copy, same as window.KPC.dataUrl (used
      directly where we only need the Response; dget adds jget's abort-timeout + JSON parsing on top of it). */
   function dfetch(u, opt) { return (window.KPC && KPC.dataUrl) ? KPC.dataUrl(u, opt) : fetch(u, opt); }
+  /* Nov 11 (KPC owner): a key file the map reads comes from data/released (KPCREL); an area not released yet is read as before */
+  function relKey(path, empty) { const old = p => dfetch(p + '?v=' + new Date().toISOString().slice(0, 10));
+    return (window.KPCREL ? KPCREL.get(path, old) : old(path).then(r => r.ok ? r.json() : null)).then(j => j || (empty ? {} : null)).catch(() => (empty ? {} : null)); }
   async function dget(u, opt, ms) { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 25000); try { const r = await dfetch(u, Object.assign({ signal: c.signal }, opt || {})); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.json(); } finally { clearTimeout(t); } }
 
   /* Nov 10: the US key's own matched/trimmed outlines, one FeatureCollection per state
@@ -42,8 +94,8 @@
       st = String(st || '').replace(/^US-/i, '').toUpperCase();
       if (!st || st === 'KY') return Promise.resolve(null);
       if (!cache[st]) {
-        cache[st] = fetch('data/outlines/US-' + st + '.geojson.gz?v=' + day(), { cache: 'force-cache' })
-          .then(r => r.ok ? gunzipJson(r) : null)
+        cache[st] = (window.KPCREL ? KPCREL.get('data/outlines/US-' + st + '.geojson.gz')   /* Nov 11: the released file(s), each with its own version */
+          : fetch('data/outlines/US-' + st + '.geojson.gz?v=' + day(), { cache: 'force-cache' }).then(r => r.ok ? gunzipJson(r) : null))
           .then(j => {
             if (!j || !Array.isArray(j.features)) return null;
             const by = {};
@@ -336,7 +388,7 @@
   const keyCache = {};
   /* Oct 18: state agency layers the bot found at run time (data/us-key/layers.json = {prefix: [query url, name field, label]}) */
   let LAYP = null;
-  const layers = () => LAYP || (LAYP = dfetch('data/us-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+  const layers = () => LAYP || (LAYP = relKey('data/us-key/layers.json', true)
     .then(L => { Object.entries(L || {}).forEach(([k, v]) => { if (!XMAP[k] && Array.isArray(v) && v[0]) XMAP[k] = v; }); return XMAP; }));
   /* Oct 23 (Brandon: 'add a note to the card that the park is retired until the monthly update'): parks POTA took off
      its list, written every night by the pin bots (data/retired-refs.json). retired(ref) -> {n, d, src} or null */
@@ -354,7 +406,7 @@
     let hit = null, known = false, site = null, note = '', grade = '', pinOff = false;
     const SL = (states || []).slice();   /* Oct 31 (Fable #8): 'joined_in' states are read too (a multi-state trail's line sits in one state's file) */
     for (let si = 0; si < SL.length; si++) { const st = SL[si];
-      if (!(st in keyCache)) keyCache[st] = st === 'KY' ? Promise.resolve(null) : dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+      if (!(st in keyCache)) keyCache[st] = st === 'KY' ? Promise.resolve(null) : relKey('data/us-key/US-' + st + '.json');
       const k = await keyCache[st]; const p = k && k.parks && k.parks[ref];
       if (p) { known = true; (p.joined_in || []).forEach(x => { x = String(x).replace(/^US-/, ''); if (SL.indexOf(x) < 0) SL.push(x); }); if (p.note) note = p.note; if (p.g && p.g !== 'pin' && (!grade || grade === 'pin')) grade = String(p.g); else if (p.g && !grade) grade = String(p.g); if (p.pin_may_be_wrong) pinOff = true; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [], twin: new Set() }; (p.twin || []).forEach(t => hit.twin.add(String(t))); hit.m.push(...p.m); hit.far = hit.far || p.far; if (p.read && (!hit.read || p.read < hit.read)) hit.read = p.read; } if (p.a && p.a.length) site = p.a; }
     }
@@ -430,7 +482,7 @@
   /* Oct 18 (Brandon: review the US data… tappable land): what official land is at a spot, and which POTA parks the answer key joined to it */
   const revCache = {};
   async function keyRev(st) {
-    if (!(st in revCache)) revCache[st] = (keyCache[st] = keyCache[st] || (st === 'KY' ? Promise.resolve(null) : null) || dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null))
+    if (!(st in revCache)) revCache[st] = (keyCache[st] = keyCache[st] || (st === 'KY' ? Promise.resolve(null) : null) || relKey('data/us-key/US-' + st + '.json'))
       .then(k => { const m = {}; Object.entries((k && k.parks) || {}).forEach(([ref, p]) => (p.m || []).forEach(x => (m[String(x[0])] = m[String(x[0])] || []).push({ ref, n: p.n }))); return m; });
     return revCache[st];
   }
@@ -511,10 +563,10 @@
      Info Finder and the Kit') says which official areas the checking bot joined, and they are fetched by id */
   const caCache = {}; let CAREF = null, CALAY = null;
   async function caKey(ref) {
-    CAREF = CAREF || dfetch('data/ca-key/refs.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}));
-    CALAY = CALAY || dfetch('data/ca-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}));
+    CAREF = CAREF || relKey('data/ca-key/refs.json', true);
+    CALAY = CALAY || relKey('data/ca-key/layers.json', true);
     const pv = (await CAREF)[ref]; if (!pv) return null;   /* (+ RULE SHEET G grade below) */
-    if (!(pv in caCache)) caCache[pv] = dfetch('data/ca-key/CA-' + pv + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+    if (!(pv in caCache)) caCache[pv] = relKey('data/ca-key/CA-' + pv + '.json');
     const k = await caCache[pv], p = k && k.parks && k.parks[ref]; if (!p) return null;
     const m = p.m || []; if (!m.length || p.g === 'pin') return { state: 'none', site: p.a || null, pinOff: !!p.pin_may_be_wrong };
     const L = await CALAY, by = {};
@@ -553,11 +605,11 @@
   const wkCache = {}; let WLAY = null;
   /* the licence label an NC source must show with each outline (data/CREDITS-NC.md): WA DBCA layers on SLIP, by address or label */
   const ncLabel = (url, label) => (/^https?:\/\/public-services\.slip\.wa\.gov\.au\//i.test(String(url || '')) || /\bDBCA\b/.test(String(label || ''))) ? 'CC BY-NC 4.0, DBCA' : '';
-  const wlayers = () => WLAY || (WLAY = dfetch('data/world-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({})));
+  const wlayers = () => WLAY || (WLAY = relKey('data/world-key/layers.json', true));
   async function worldKey(ref) {
     const cc = String(ref || '').split('-')[0]; if (!/^[A-Z]{2}$/.test(cc) || cc === 'US' || cc === 'CA') return null;
     const T = await tractsReady();   /* Nov 7: the tract switch, read once here (off = exactly as before) */
-    if (!(cc in wkCache)) wkCache[cc] = dfetch('data/world-key/' + cc + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+    if (!(cc in wkCache)) wkCache[cc] = relKey('data/world-key/' + cc + '.json');
     const k = await wkCache[cc], p = k && k.parks && k.parks[ref]; if (!p) return null;
     const m = p.m || []; if (!m.length) return { state: 'none' };
     const L = await wlayers(), by = {};
@@ -629,7 +681,7 @@
   async function tractDocFor(ref, states) {
     ref = String(ref || '').toUpperCase(); const cc = ref.split('-')[0];
     if (cc === 'US') { for (const st of states || []) { const d = await tractDoc(tractPath(st, 'US')); if (knows(d, ref)) return d; } return null; }
-    if (cc === 'CA') { CAREF = CAREF || dfetch('data/ca-key/refs.json?v=' + TDAY()).then(r => r.ok ? r.json() : {}).catch(() => ({})); const pv = (await CAREF)[ref]; return pv ? tractDoc(tractPath(pv, 'CA')) : null; }
+    if (cc === 'CA') { CAREF = CAREF || relKey('data/ca-key/refs.json', true); const pv = (await CAREF)[ref]; return pv ? tractDoc(tractPath(pv, 'CA')) : null; }
     return /^[A-Z]{2}$/.test(cc) ? tractDoc(tractPath(cc, 'world')) : null;
   }
   /* pieces closer than gapKm = one tract (kpc_key_rules.tracts_of, the same formula) -> groups of indexes */
