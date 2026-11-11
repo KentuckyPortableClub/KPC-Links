@@ -1,3 +1,52 @@
+/* >>> kpc_released (KPC owner, 2026-11-11): the same block is in kpc-bounds.js, kpc-padus-layer.js, kpc-us-planner.js and kpc-gps.js (a test keeps them equal).
+   The public map reads RELEASED files only: data/released/RELEASED.json (asked for fresh every page load) lists, per working file name,
+   its released file(s) and each one's own version, so a changed file shows at once and an unchanged one stays cached.
+   KPCREL.get('data/outlines/US-FL.geojson.gz') -> the parsed file (parts put together), or null when it is not released.
+   An area that was never released (no entry in RELEASED.json) reads the working file as before.
+   The Map Rep pages set window.KPC_WORKING_COPY = true before this file: they always read the working copy (the key being reviewed). */
+(function (w) {
+  if (!w || w.KPCREL || typeof w.fetch !== 'function') return;
+  var P = null, AREA = [[/^(outlines\/US-|us-key\/)/, 'US'], [/^ca-key\//, 'CA'], [/^world-key\//, 'world']];
+  function index() { return P || (P = w.fetch('data/released/RELEASED.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })); }
+  function parse(r) {
+    if (!r || !r.ok) return null;
+    return r.arrayBuffer().then(function (ab) {
+      var u8 = new Uint8Array(ab);
+      if (u8.length >= 2 && u8[0] === 0x1f && u8[1] === 0x8b) {
+        if (typeof DecompressionStream !== 'function') throw new Error('gzip');
+        return new Response(new Blob([ab]).stream().pipeThrough(new DecompressionStream('gzip'))).text().then(JSON.parse);
+      }
+      return JSON.parse(new TextDecoder().decode(ab));
+    });
+  }
+  function join(docs) {
+    if (docs.some(function (d) { return !d; })) return null;            /* a missing part = not released (never half a file) */
+    if (docs.length === 1) return docs[0];
+    var out = Object.assign({}, docs[0]); delete out.kpc_part;
+    if (Array.isArray(out.features)) out.features = [].concat.apply([], docs.map(function (d) { return d.features || []; }));
+    if (out.parks && !Array.isArray(out.parks)) out.parks = Object.assign.apply(null, [{}].concat(docs.map(function (d) { return d.parks || {}; })));
+    return out;
+  }
+  function urls(path) {
+    var rel = String(path).replace(/^data\//, '').replace(/\?.*$/, '');
+    return index().then(function (d) {
+      var a = AREA.filter(function (x) { return x[0].test(rel); })[0];
+      if (w.KPC_WORKING_COPY === true || !a || !(d.areas || {})[a[1]]) return null;   /* a review page (Map Rep sets KPC_WORKING_COPY) or an area not released yet: the working file */
+      return ((d.files || {})[rel] || []).map(function (f) { return 'data/released/' + f[0] + '?v=' + f[1]; });
+    });
+  }
+  function get(path, working) {
+    return urls(path).then(function (list) {
+      /* nothing released for it: the working file, read exactly as before this block existed (the caller's own fetch and r.json(); only an outline .gz is unpacked) */
+      if (list === null) return working ? working(path).then(function (r) { return r && r.ok ? r.json() : null; })
+        : w.fetch(path + '?v=' + new Date().toISOString().slice(0, 10), { cache: 'force-cache' }).then(parse);
+      if (!list.length) return null;
+      return Promise.all(list.map(function (u) { return w.fetch(u, { cache: 'force-cache' }).then(parse); })).then(join);
+    }).catch(function () { return null; });
+  }
+  w.KPCREL = { get: get, urls: urls, index: index };
+})(typeof window !== 'undefined' ? window : null);
+/* <<< kpc_released */
 /* kpc-gps.js - the ONE place KPC GPS files are made (GPX 1.1, KML 2.2, GeoJSON).
  * Kentucky Portable Club. Browser, no dependencies, no server. Also loads in plain node (for tests).
  *
@@ -572,6 +621,13 @@
     var f = (opts && opts.fetch) || cfg.fetch || (typeof fetch === "function" ? fetch : null);
     if (!f) return Promise.resolve(null);
     var urls = candidates(path, opts);
+    // Nov 11 (KPC owner): a US key file comes from data/released (KPCREL) unless the caller gave its own fetch or data source
+    var W = g();
+    if (W.KPCREL && /^data\/us-key\/US-[A-Z]{2}\.json$/.test(path) && !(opts && (opts.fetch || opts.dataUrl)) && !cfg.fetch && !cfg.dataUrl) {
+      var rp = W.KPCREL.get(path, function (q) { return W.KPC && typeof W.KPC.dataUrl === "function" ? W.KPC.dataUrl(q) : W.fetch(q); }).then(function (j) { return j ? { url: "data/released/" + path.slice(5), json: j } : null; });
+      cache[key] = rp; rp.then(function (x) { if (!x) delete cache[key]; });
+      return rp;
+    }
     var p = urls.reduce(function (prev, url) {
       return prev.then(function (got) {
         if (got) return got;

@@ -93,7 +93,8 @@ nov9_wf |= {'.github/workflows/kpc-research-inbox.yml'}
 nov9_wf |= {'.github/workflows/kpc-key-measure.yml', '.github/workflows/kpc-watchdog.yml', '.github/workflows/pages-deploy.yml'}
 # 2026-11-10 review fixes: saved-copy checks, stamps, one trigger per key; not key rule changes
 nov10_wf = {'.github/workflows/kpc-chain.yml', '.github/workflows/kpc-club-posts.yml', '.github/workflows/kpc-geo-cache.yml'}
-extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf | nov10_wf]
+nov11_wf = {'.github/workflows/kpc-release.yml'}   # KPC owner, 2026-11-11: the by-hand map release (new file)
+extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf | nov10_wf | nov11_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))
 if set(changed_wf) & allowed_wf:

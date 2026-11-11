@@ -1,0 +1,54 @@
+name: Release map files (by hand)
+# KPC owner, 2026-11-11: the public map reads data/released/ only. Key runs and PRs change the working folders (data/outlines, data/us-key,
+# data/ca-key, data/world-key); nothing reaches the map until a person runs this with the commit to release.
+# By hand only: no schedule, no push trigger, and no other workflow starts it. One commit per run.
+on:
+  workflow_dispatch:
+    inputs:
+      area:
+        description: Which map files to release
+        required: true
+        type: choice
+        default: US
+        options: [US, CA, world]
+      source_sha:
+        description: The full commit sha on main whose working files are released
+        required: true
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: kpc-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Copy the commit's map files into data/released and save once
+        env:
+          ACTOR: ${{ github.actor }}
+          ALLOWED: ${{ vars.KPC_RELEASE_ACTORS }}   # repo variable: the account(s) that may release, space separated. Empty = nobody.
+          AREA: ${{ inputs.area }}
+          SOURCE_SHA: ${{ inputs.source_sha }}
+        run: |
+          # only a listed account may release (fail closed: no list = no release)
+          case " $ALLOWED " in *" $ACTOR "*) ;; *) echo "::error title=Release::$ACTOR is not in the repo variable KPC_RELEASE_ACTORS. Nothing was released."; exit 1 ;; esac
+          # the commit must be on main: a sha from a branch or a fork is refused
+          git merge-base --is-ancestor "$SOURCE_SHA" origin/main || { echo "::error title=Release::$SOURCE_SHA is not a commit on main. Nothing was released."; exit 1; }
+          python3 .github/scripts/kpc_release.py --area "$AREA" --sha "$SOURCE_SHA" --run "$GITHUB_RUN_ID"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A data/released
+          if git diff --cached --quiet; then echo "::notice title=Release::nothing changed: $AREA is already released from this commit"; exit 0; fi
+          git commit -qm "Release $AREA map files from ${SOURCE_SHA:0:12}"
+          for i in 1 2 3 4; do
+            git push -q origin HEAD:main && { echo "::notice title=Release::saved (try $i)"; exit 0; }
+            git pull -q --rebase origin main || { git rebase --abort 2>/dev/null; true; }
+            sleep $((i * 5))
+          done
+          echo "::error title=Release::the release commit was not saved after 4 tries"; exit 1
