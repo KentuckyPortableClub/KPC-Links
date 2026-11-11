@@ -54,7 +54,8 @@ RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_k
 # Nov 9 evening (Brandon t915u, 4:40 PM CST; KZ4CP 5:12 PM CST): every rule change DECLARES what it touches, in a scope file that is part
 # of that key's rules hash (so a scope edit moves the hash and is visible). A rules change rebuilds only the declared states; a park
 # with saved record ids keeps its result (kpc_us_key.py); a full rebuild ('states: all' by hand) is for emergencies only.
-SCOPE_FILES = {'us-key': '.github/us-key-rule-scope.json', 'ca-key': '.github/ca-key-rule-scope.json', 'fers': '.github/fers-rule-scope.json'}
+SCOPE_FILES = {'us-key': '.github/us-key-rule-scope.json', 'ca-key': '.github/ca-key-rule-scope.json', 'fers': '.github/fers-rule-scope.json',
+               'world-key': '.github/world-key-rule-scope.json'}   # KPC owner, 2026-11-11
 for _kind, _f in SCOPE_FILES.items(): RULE_FILES[_kind].append(_f)
 NOT_RULES = {'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',

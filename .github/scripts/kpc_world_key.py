@@ -1249,6 +1249,44 @@ try:
     if __name__ == '__main__':   # not when the golden tests load this file
         save_json(OUT / 'layers.json', {x[0]: x[2] for v in SRC.values() for x in v if x[1] in ('arcgis', 'arcgis_alt')}, indent=1)
 except Exception as e: notice('World key layers', e)  # noqa: BLE001
+FELL = None   # this country's fallen-back layers: {'labels': [...], 'keep': {ref: previous park entry}} or None
+
+
+def prev_key(cc):
+    """The previous key file of a country (data/world-key/<CC>.json), or {} when there is none / it does not read."""
+    try: return json.load(open(OUT / f'{cc}.json', encoding='utf-8'))
+    except Exception: return {}  # noqa: BLE001
+
+
+def fell_back_keep(prev_parks, labels):
+    """{ref: previous entry} for the parks whose previous joins used one of the layers (m rows are [id, name, layer label, how]).
+    The key file names a layer by its label only, so when two layers of a country share a label, the parks of both keep their entry."""
+    L = set(labels)
+    return {ref: p for ref, p in (prev_parks or {}).items()
+            if isinstance(p, dict) and any(isinstance(x, list) and len(x) > 2 and x[2] in L for x in p.get('m') or [])}
+
+
+def fell_back_plan(cc, held, have_recs):
+    """None = hold the country (no layer gave any record); else what to keep. held = the source tuples that failed with no saved records."""
+    if not held: return {'labels': [], 'keep': {}}
+    prev = prev_key(cc); labels = [x[0] for x in held]
+    if not have_recs: return None            # nothing was read at all: nothing to rebuild from, the previous key stays whole (held)
+    keep = fell_back_keep(prev.get('parks'), labels)
+    for x in held:
+        n = sum(1 for p in keep.values() if any(isinstance(m, list) and len(m) > 2 and m[2] == x[0] for m in p.get('m') or []))
+        notice(f'World key {cc} layer fell back', f"{x[0]} [{x[2]}] FAILED and the saved copy has no records from it: {n} park(s) keep their previous joins, "
+                                                  f"the rest of {cc} is rebuilt from the other layers")
+    return {'labels': labels, 'keep': keep}
+
+
+def fell_back_apply(parks, plan, P=None):
+    """Put the kept previous entries over the rebuilt ones (a park POTA no longer lists is not brought back). Returns the refs kept."""
+    kept = []
+    for ref, old in ((plan or {}).get('keep') or {}).items():
+        if ref in parks and (P is None or ref in P): parks[ref] = old; kept.append(ref)
+    return sorted(kept)
+
+
 HELD = []   # next round v3 C11: countries not rebuilt because a source failed with no saved records (exit 3 at the end)
 
 
@@ -1258,6 +1296,7 @@ def src_id(s):
 
 
 for cc in COUNTRIES:
+    FELL = None   # KPC owner, 2026-11-11: no fallen-back layer carries over from the country before
     try: P = json.load(open(f'data/parkinfo/{cc}.json'))['parks']
     except Exception: notice(f'World key {cc}', 'no park list yet (data/parkinfo); skipped'); continue  # noqa: BLE001
     # Nov 2 (chat 2, HQ 10:55 AM): park numbers POTA retired (data/retired-refs.json) leave the world key too, as in the US + Canada keys
@@ -1299,13 +1338,22 @@ for cc in COUNTRIES:
             if mine:
                 recs += mine; failed = True
                 notice(f'World key {cc}', f'{s[0]} [{s[2]}] {how}: its {len(mine)} records came from the saved copy (matched by source id; nothing dropped; the saved copy is not overwritten)')
-            else: held.append(f'{s[0]} [{s[2]}]')  # Quality v3 Part 5 should-fix: EMPTY (0 records) with no saved copy HOLDs too
-        if held:
-            notice(f'World key {cc}', f"HELD: {'; '.join(held)} FAILED and the saved copy has no records from it (by source id"
-                                      f"{'' if _old else '; no saved copy'}): {cc} is not rebuilt, its previous key stays (listed as failed)")
+            else: held.append(s)  # Quality v3 Part 5 should-fix: EMPTY (0 records) with no saved copy counts as failed too
+        # KPC owner, 2026-11-11 (world rules change): a layer that failed (or came back empty, or may not be read live) with no saved
+        # records no longer HOLDS the country. The parks the PREVIOUS key joined through that layer keep their previous entry as it
+        # is, and the rest of the country is rebuilt from the layers that did answer. The layer is logged and listed in the key file
+        # ('fell_back'). Only when no layer gave any record is the country still held (its previous key stays whole).
+        FELL = fell_back_plan(cc, held, bool(recs))
+        if held and FELL is None:
+            notice(f'World key {cc}', f"HELD: {'; '.join(f'{x[0]} [{x[2]}]' for x in held)} FAILED, the saved copy has no records from it"
+                                      f"{'' if _old else ' (no saved copy)'} and no other layer gave a record: {cc} is not rebuilt, its previous key stays (listed as failed)")
             HELD.append(cc); continue
+        failed = failed or bool(held)   # a read with a fallen-back layer is never saved over the saved copy
         # Oct 22: a source that did not answer must not cost the country its parks: if the read is still SHORT, use the whole saved copy
         old = _old if failed else None
+        if old:   # KPC owner, 2026-11-11: compare like with like. Records of a layer the country no longer reads (taken out of the list) do not count and are not brought back
+            _sids = {src_id(x) for x in SRC.get(cc, [])}
+            old = [r for r in old if 'sid' not in r or r.get('sid') in _sids]
         if old and len(recs) < .97 * len(old):   # only when the read came back SHORT (see the US key)
             notice(f'World key {cc}', f'a source did not answer ({len(recs)} areas read, {len(old)} saved), so the saved copy was used (nothing dropped)'); recs = old
         elif recs and not failed and CMODE in ('use', 'refresh'): wsave(cc, recs)   # never save a read in which a source failed
@@ -1664,8 +1712,14 @@ for cc in COUNTRIES:
         _bkk, _ = KF.stamp(parks, lambda ref: tuple((P.get(ref) or [None] * 7)[5:7]) if len(P.get(ref) or []) > 6 else None, _bklook)
     except Exception as e:  # noqa: BLE001
         notice(f'World key {cc}', f'pin distance / kind (bk) skipped: {type(e).__name__}: {str(e)[:200]}')
+    _fb = FELL if isinstance(FELL, dict) and FELL.get('labels') else None; FELL = None
+    if _fb:   # KPC owner, 2026-11-11: the parks of a fallen-back layer keep their previous entry (after every rule above, so nothing re-judges them)
+        _kept = fell_back_apply(parks, _fb, P)
+        cnt['fell_back_parks'] = len(_kept)
+        cnt['matched'] = sum(1 for p in parks.values() if p.get('m')); cnt['check'] = sum(1 for p in parks.values() if not p.get('m') and p.get('c')); cnt['none'] = sum(1 for p in parks.values() if not p.get('m') and not p.get('c'))
+        notice(f'World key {cc}', f"built with {len(_fb['labels'])} layer(s) fallen back ({'; '.join(_fb['labels'])}): {len(_kept)} park(s) kept their previous joins")
     _world_tracts(cc, parks, recs)   # Nov 6: tract side file (+ KPC_WORLD_ACRES)
-    save_json(OUT / f'{cc}.json', {'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks,
+    save_json(OUT / f'{cc}.json', {'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks, **({'fell_back': _fb['labels']} if _fb else {}),
                                    'bk_about': KF.ABOUT, 'bk_kinds': {c: t for c, t in _bkk.items() if c != t}})
     L = [f'# {cc}: POTA parks vs official land', '', f"Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: {', '.join(s[0] for s in SRC[cc])}. "
          f"**{cnt['matched']} of {cnt['parks']}** joined (same name + same kind), **{cnt['check']}** to check, **{cnt['none']}** nothing found. Nothing below is joined.", '', '## To check (not joined)', '']
@@ -1676,7 +1730,7 @@ for cc in COUNTRIES:
     notice(f'World key {cc}', f"{cnt['matched']} of {cnt['parks']} joined, {cnt['check']} to check, {cnt['none']} nothing found ({cnt['areas']} official areas read); "
                               f"pin outside the joined land: {cnt['pin_outside']} ({cnt['pin_no_shape']} unmeasurable, {cnt['pin_well_outside']} well outside, {cnt['pin_swap']} same-name swap)")
     save_json(OUT / 'index.json', _with_old_stamp({'countries': idx}))
-    parts_clear_country(cc)   # Nov 7: the country's key is written, so its FINISHED layer checkpoints are no longer needed
+    if not _fb: parts_clear_country(cc)   # Nov 7: the country's key is written, so its FINISHED layer checkpoints are no longer needed (Nov 11: kept while a layer fell back, so the next run reads only that layer)
 if CMODE != 'off':
     notice('World key saved outlines', f"mode {CMODE}, detail {DETAIL}, thin {THIN_N}: loaded {len(WUSED)} ({' '.join(WUSED)}), saved {len(WSAVED)} ({' '.join(WSAVED)})")
 if HELD:   # next round v3 C11: the workflow lists a held country as failed and keeps its previous key (data/world-key/<CC>.json)

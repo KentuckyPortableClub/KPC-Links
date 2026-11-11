@@ -163,8 +163,10 @@ sys.path.insert(0, str(ROOT / 'tests')); from kpc_moved_sources import moved_sou
 # Nov 8 (#76): a declared moved source (docs/key-rules-change.txt) is the one allowed change to an origin/main row
 _el0 = json.loads(apply_moved(subprocess.run(['git', 'show', f'{BASE}:data/world-key/extra-layers.json'], cwd=ROOT, capture_output=True, text=True).stdout or '{}', moved_sources(ROOT))).get('countries') or {}
 _el = json.load(open(ROOT / 'data/world-key/extra-layers.json')).get('countries') or {}
-check(all(all(l in _el.get(c, []) for l in ls) for c, ls in _el0.items()),
-      'data/world-key/extra-layers.json keeps every origin/main row unchanged (rows may only be added, Nov 7 land-class allow list)')
+# KPC owner, 2026-11-11: a row may also be taken out when it is listed, by address, under 'dropped' (BOT W never wires it again)
+_dropped = {(c, str(x.get('url'))) for c, v in (json.load(open(ROOT / 'data/world-key/extra-layers.json')).get('dropped') or {}).items() if isinstance(v, list) for x in v}
+check(all(all(l in _el.get(c, []) or (c, str(l.get('url'))) in _dropped for l in ls) for c, ls in _el0.items()),
+      'data/world-key/extra-layers.json keeps every origin/main row unchanged (rows may only be added, or taken out and listed under dropped)')
 # no data loss: neither key joins or lists a record from the Natura 2000 source
 for base in [ROOT] + ([pathlib.Path(os.environ['DATA'])] if os.environ.get('DATA') else []):
     for cc in ('CH', 'NO'):
@@ -287,12 +289,15 @@ def source_loop(saved, tmpd):
 
 tmpd = tempfile.mkdtemp()
 ns, held, wsaved, notes, hydro = source_loop(None, tmpd)
-check(held == ['AU'] and not ns['went_on'] and wsaved == [], 'B3 -> HOLD: the stalled layer FAILS; no saved copy -> AU is HELD, nothing written, the previous key stays')
-check(any('Surface_HydroLines_National FAILED' in n and 'limit' in n for n in notes) and any('HELD' in n for n in notes),
-      'B3 -> HOLD: logged as FAILED (over its limit) and HELD')
+# KPC owner, 2026-11-11 (world rules change): a stalled layer with no saved records no longer HOLDS the country: it falls back
+check(not held and ns['went_on'] and wsaved == [] and not any(r['src'] == HYDRO[0] for r in ns['recs']) and len(ns['recs']) == 300
+      and ns['FELL']['labels'] == [HYDRO[0]],
+      'B3 -> fall back: the stalled layer FAILS; no saved copy -> AU is built from the other layer, no partial record used, the saved copy is not written')
+check(any('Surface_HydroLines_National FAILED' in n and 'limit' in n for n in notes) and any('layer fell back' in n and HYDRO[0] in n for n in notes) and not any('HELD' in n for n in notes),
+      'B3 -> fall back: logged as FAILED (over its limit) and as fallen back, by layer name')
 st = sorted((bool(x.get('done')), x['pages'], x['n']) for x in (json.load(open(f)) for f in pathlib.Path(tmpd, 'parts', 'AU').glob('*.state.json')))
 check(st == [(False, len(hydro.queries) - 1, 1000 * (len(hydro.queries) - 1)), (True, 1, 300)],
-      f'B3: the stalled layer keeps its in-progress checkpoint, NSW (complete) a finished one; the country is still held ({st})')
+      f'B3: the stalled layer keeps its in-progress checkpoint, NSW (complete) a finished one ({st})')
 sid = ns['src_id'](HYDRO)
 saved = [{'src': HYDRO[0], 'id': f'saved-{i}', 'n': f'River {i}', 'sid': sid} for i in range(40)]
 ns, held, wsaved, notes, _ = source_loop(saved, tempfile.mkdtemp())
@@ -457,10 +462,11 @@ def required_test_6_held_country_publishes_nothing_then_reuses_finished_layers()
     # run 1: layer 0 finishes (checkpoint kept, marked done), layer 2 stalls -> CL held, exit 3, nothing published
     t, r, reqs = e2e('stall'); out = r.stdout + r.stderr
     st = states(t)
-    check(r.returncode == 3 and 'HELD' in out and 'limit' in out, f'REQUIRED 6a (held with a finished layer saved): a stalled layer HOLDS CL: exit {r.returncode}')
-    check((t / 'data/world-key/CL.json').read_bytes() == PREV and (t / 'data/world-key/index.json').read_bytes() == IDX
-          and not (t / 'data/world-key/review/CL.md').exists() and not list(t.glob('cache/world/W-*')),
-          'REQUIRED 6a: previous CL key and index.json byte-identical, no review page, no saved copy: nothing published')
+    k1 = json.load(open(t / 'data/world-key/CL.json')) if r.returncode == 0 else {}
+    check(r.returncode == 0 and 'layer fell back' in out and 'limit' in out and 'HELD' not in out,
+          f'REQUIRED 6a (Nov 11: a stalled layer falls back): CL is built from the layer that answered: exit {r.returncode}' + ('' if r.returncode == 0 else ': ' + out[-400:]))
+    check(k1.get('fell_back') == ['Chile SIMBIO protected areas, layer 2 (MMA)'] and k1.get('counts', {}).get('areas') == 1 and not list(t.glob('cache/world/W-*')),
+          f"REQUIRED 6a: the key names the fallen-back layer, holds only the finished layer's records, and no saved copy is written ({k1.get('fell_back')}, {k1.get('counts', {}).get('areas')} areas)")
     check(len(st) == 2 and sorted(bool(s.get('done')) for s in st) == [False, True],
           f"REQUIRED 6a: checkpoints kept: layer 0 finished (done), layer 2 in progress ({[(s['pages'], bool(s.get('done'))) for s in st]})")
     # run 2: layer 2 completes from its checkpoint; layer 0 is reused without reading its pages
@@ -559,8 +565,15 @@ def required_test_3_checkpoint_resume_on_a_fake_3_page_layer():
 
 def required_test_4_stalled_layer_still_holds():
     ns4, held4, saved4, notes4, _ = source_loop(None, tempfile.mkdtemp())
-    check(held4 == ['AU'] and not ns4['went_on'] and saved4 == [] and not any(r['src'] == HYDRO[0] for r in ns4['recs']),
-          'REQUIRED 4 (stalled layer still HOLDs): the country is held, no partial record kept, nothing saved, previous key stays (exit 3 end to end above)')
+    check(not held4 and ns4['went_on'] and saved4 == [] and not any(r['src'] == HYDRO[0] for r in ns4['recs']),
+          'REQUIRED 4 (Nov 11: a stalled layer falls back): no partial record kept, nothing saved over the saved copy, the country is built from the other layers')
+    # the one case that still holds: no layer gave any record
+    ns5, _, n5 = new_ns(None, Clock(), parts=tempfile.mkdtemp()); h5 = []
+    def _boom(req, timeout): raise TimeoutError('no answer')
+    ns5['_open'] = _boom
+    ns5.update(cc='AU', CMODE='refresh', recs=None, SRC={'AU': [HYDRO]}, HELD=h5, print=lambda *a, **k: None, wload=lambda cc: None, wsave=lambda cc, r: None)
+    exec(compile('went_on = False\nfor _once in [0]:\n' + textwrap.indent(BLOCK, '    ') + '\n    went_on = True\n', 'source loop', 'exec'), ns5)
+    check(h5 == ['AU'] and not ns5['went_on'] and any('HELD' in n for n in n5), 'REQUIRED 4b: when no layer gives any record the country is still HELD (previous key stays)')
 
 
 def required_test_5_us_and_ca_hashes_unchanged():

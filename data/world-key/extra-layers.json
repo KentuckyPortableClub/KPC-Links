@@ -96,34 +96,6 @@
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
    },
    {
-    "label": "Walking track",
-    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/5",
-    "name_field": "name",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
-   },
-   {
-    "label": "Great walk",
-    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/6",
-    "name_field": "name",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
-   },
-   {
-    "label": "Protected Areas (CAPAD)",
-    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
-    "name_field": "NAME",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
-   },
-   {
-    "label": "Beach Presence",
-    "url": "https://biod-gis.mapshare.vic.gov.au/arcgis/rest/services/CoastKit/BOV/MapServer/14",
-    "name_field": "BEACH_NAME",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
-   },
-   {
     "label": "State Heritage Register Curtilage",
     "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/EDP/SHR_Curtilage/MapServer/0",
     "name_field": "ITEMNAME",
@@ -131,30 +103,9 @@
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
    },
    {
-    "label": "Beach Names",
-    "url": "https://maps.sa.gov.au/arcgis/rest/services/BaseMaps/Topographic_wmas/MapServer/26",
-    "name_field": "NAME",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
-   },
-   {
     "label": "CONSERVATION_NpwsaReserves levels zoomed in",
     "url": "https://maps.sa.gov.au/arcgis/rest/services/BaseMaps/Topographic_wmas/MapServer/31",
     "name_field": "resname",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
-   },
-   {
-    "label": "Forest Blocks (DBCA-025)",
-    "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Environment/MapServer/0",
-    "name_field": "sfb_block",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
-   },
-   {
-    "label": "Surface_HydroLines_National",
-    "url": "https://services.ga.gov.au/gis/rest/services/Surface_Hydrology/MapServer/2",
-    "name_field": "name",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
    },
@@ -176,13 +127,6 @@
     "label": "Queensland heritage register boundary",
     "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/MapServer/78",
     "name_field": "placename",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
-   },
-   {
-    "label": "Beach",
-    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Location/Places/FeatureServer/11",
-    "name_field": "name",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Oct 31) YES"
    },
@@ -570,27 +514,6 @@
     "name_field": "Name",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-02: auto (T1 map-match STRONG) YES"
-   },
-   {
-    "label": "INV_BLKDATA",
-    "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Blocks/FeatureServer/0",
-    "name_field": "extent",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: auto (T1 map-match STRONG) YES"
-   },
-   {
-    "label": "Forest_Blocks",
-    "url": "https://services6.arcgis.com/JF5BD4Y14a3LnPcJ/arcgis/rest/services/Forest_Blocks_WFS/FeatureServer/0",
-    "name_field": "extent",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: auto (T1 map-match STRONG) YES"
-   },
-   {
-    "label": "FE_Ownership_160726",
-    "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Forestry_England_Ownership_2024_/FeatureServer/0",
-    "name_field": "title",
-    "credit": "",
-    "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 (Nov 1, by layer) YES"
    },
    {
     "label": "Greenspace_Phase2_06052022",
@@ -1104,6 +1027,79 @@
     "name_field": "NAME",
     "credit": "",
     "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 (Nov 1, by layer) YES"
+   }
+  ]
+ },
+ "dropped": {
+  "about": "Layers taken out of the world key. BOT W (kpc_key_layers.py) never wires a URL listed here again; to bring one back, delete its row here. The world key builder does not read this part.",
+  "AU": [
+   {
+    "label": "Walking track",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/5",
+    "when": "2026-11-11",
+    "why": "matched no park in the AU key (build W-42693026407); decided_by KPC owner, 2026-11-11"
+   },
+   {
+    "label": "Great walk",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/6",
+    "when": "2026-11-11",
+    "why": "matched no park in the AU key (build W-42693026407); decided_by KPC owner, 2026-11-11"
+   },
+   {
+    "label": "Protected Areas (CAPAD)",
+    "url": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+    "when": "2026-11-11",
+    "why": "the same CAPAD records as the builder's own CAPAD (DCCEEW) source: every park it joined is joined there too; decided_by KPC owner, 2026-11-11"
+   },
+   {
+    "label": "Beach Presence",
+    "url": "https://biod-gis.mapshare.vic.gov.au/arcgis/rest/services/CoastKit/BOV/MapServer/14",
+    "when": "2026-11-11",
+    "why": "matched no park in the AU key (build W-42693026407); decided_by KPC owner, 2026-11-11"
+   },
+   {
+    "label": "Beach Names",
+    "url": "https://maps.sa.gov.au/arcgis/rest/services/BaseMaps/Topographic_wmas/MapServer/26",
+    "when": "2026-11-11",
+    "why": "matched no park in the AU key (build W-42693026407); decided_by KPC owner, 2026-11-11"
+   },
+   {
+    "label": "Forest Blocks (DBCA-025)",
+    "url": "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Environment/MapServer/0",
+    "when": "2026-11-11",
+    "why": "matched no park in the AU key (build W-42693026407); decided_by KPC owner, 2026-11-11"
+   },
+   {
+    "label": "Surface_HydroLines_National",
+    "url": "https://services.ga.gov.au/gis/rest/services/Surface_Hydrology/MapServer/2",
+    "when": "2026-11-11",
+    "why": "matched no park in the AU key (build W-42693026407); decided_by KPC owner, 2026-11-11"
+   },
+   {
+    "label": "Beach",
+    "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Location/Places/FeatureServer/11",
+    "when": "2026-11-11",
+    "why": "matched no park in the AU key (build W-42693026407); decided_by KPC owner, 2026-11-11"
+   }
+  ],
+  "GB": [
+   {
+    "label": "INV_BLKDATA",
+    "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Blocks/FeatureServer/0",
+    "when": "2026-11-11",
+    "why": "matched no park and gave no candidate in the GB key (build W-43030818751), and its host is never read live; decided_by KPC owner, 2026-11-11"
+   },
+   {
+    "label": "Forest_Blocks",
+    "url": "https://services6.arcgis.com/JF5BD4Y14a3LnPcJ/arcgis/rest/services/Forest_Blocks_WFS/FeatureServer/0",
+    "when": "2026-11-11",
+    "why": "matched no park and gave no candidate in the GB key (build W-43030818751), and its host is never read live; decided_by KPC owner, 2026-11-11"
+   },
+   {
+    "label": "FE_Ownership_160726",
+    "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/Forestry_England_Ownership_2024_/FeatureServer/0",
+    "when": "2026-11-11",
+    "why": "matched no park and gave no candidate in the GB key (build W-43030818751), and its host is never read live; decided_by KPC owner, 2026-11-11"
    }
   ]
  }

@@ -181,6 +181,29 @@ def point_in(geom, la, lo):
 
 
 # ---- the comparison
+def layer_use(new):
+    """KPC owner, 2026-11-11 (after Australia read 3.7 million records through layers no park used): per key file that lists its
+    'sources', the layers that joined NO park (with how many not-joined parks name it as a candidate), and the layers that fell
+    back this build ('fell_back': the layer failed, its parks kept their previous joins). m / c rows are [id, name, layer, how]."""
+    idle, fell = [], []
+    for area, d in sorted(new.items()):
+        src = d.get('sources') if isinstance(d, dict) else None
+        if not isinstance(src, list): continue
+        joins, cands = {}, {}
+        for p in (d.get('parks') or {}).values():
+            if not isinstance(p, dict): continue
+            for x in p.get('m') or []:
+                if isinstance(x, list) and len(x) > 2: joins[x[2]] = joins.get(x[2], 0) + 1
+            if not p.get('m'):
+                for x in p.get('c') or []:
+                    if isinstance(x, list) and len(x) > 2: cands[x[2]] = cands.get(x[2], 0) + 1
+        fb = set(d.get('fell_back') or [])
+        for s_ in dict.fromkeys(src):
+            if s_ in fb: fell.append({'area': area, 'layer': s_, 'parks_kept': sum(1 for p in (d.get('parks') or {}).values() if any(isinstance(x, list) and len(x) > 2 and x[2] == s_ for x in (p.get('m') or [])))})
+            elif not joins.get(s_): idle.append({'area': area, 'layer': s_, 'candidates': cands.get(s_, 0)})
+    return idle, fell
+
+
 def released_tree(k, env, cwd='.'):
     """Nov 8 (Quality, US-42446831487): the RELEASED key (KPC-Data data/<kind>-key, what users get), so outline -> pin is also
     measured against what shipped, not only the previous build (the waiting-room copy). RELEASED_DIR = that folder's parent
@@ -399,6 +422,10 @@ def md(rep):
         sec(f"Outline -> pin against the RELEASED key ({c['released'].get('build') or 'KPC-Data'})", c['released']['outline_to_pin'], lambda r: f'- {r}')
     sec('Worse grade than the previous build (official > approximate > point-circle; outline -> pin is listed above)', c.get('grade_worse') or [], lambda r: f'- {r}')
     sec('States whose official count fell 5% or more', rep.get('official_drops') or [], lambda x: f"- {x['area']}: {x['before']} -> {x['after']} official outlines")
+    sec('Layers that joined no park (read every build for nothing, or the read / name field is broken: drop it or fix it)', rep.get('layers_no_parks') or [],
+        lambda x: f"- {x['area']}: {x['layer']}" + (f" ({x['candidates']} not-joined park(s) list it as a candidate)" if x.get('candidates') else ''))
+    sec('Layers that fell back this build (the layer failed with no saved records; its parks kept their previous joins)', rep.get('layers_fell_back') or [],
+        lambda x: f"- {x['area']}: {x['layer']}: {x['parks_kept']} park(s) kept")
     sec('Pin -> outline', c['pin_to_outline'], lambda r: f'- {r}')
     sec('Outline changed (joined ids differ: its 2-fers need a rerun)', c['outline_changed'], lambda r: f'- {r}')
     sec("A person's signed answer the key does not follow", rep['answer_sheet']['signed_disagree'], lambda x: f"- {x['park']}: sheet {x['sheet']} {x['id']} {x['name']} by {x['who']}; key: {x['key']}")
@@ -487,6 +514,7 @@ def run(env=None, cwd='.'):
            'flat': flat(N, k, bounds), 'pins_outside': pins_outside(N, k, pins, bounds, edge), 'pins_at_edge': edge, 'bad_pins': bad_pins(N, pins),
            'answer_sheet': sheet, 'overrides': override_check(N, k, cwd=cwd, built=str(idx.get('built') or '')), 'precheck': pre, 'must_pin': must_pin(N, k), 'notes': notes}
     rep['official_drops'] = official_drops(N, O)
+    rep['layers_no_parks'], rep['layers_fell_back'] = layer_use(new)
     ft = fers_touch(ch['outline_changed'] + ch['outline_to_pin'] + ch['lost'], env.get('FERS_DIR'))
     if ft is not None: rep['fers_touched'] = ft; notes.append(f"2-fer rows naming a changed / dropped / lost park: {ft['rows']} (they were measured on the old outline)")
     newp = {r for r in ch['gained'] + ch['pin_to_outline'] + ch['outline_changed']}
@@ -499,6 +527,11 @@ def run(env=None, cwd='.'):
                       'overrides not followed': len(rep['overrides']),
                       'overrides not followed, dated before the build (a real miss)': sum(1 for x in rep['overrides'] if x.get('newer_than_build') is False), 'pre-check HOLD still outline': len(pre['hold_still_outline']), 'RULE 18 flags': len(pre['rule18']),
                       'must-be-pin not yet pin': sum(1 for x in rep['must_pin'] if x['result'] != 'PASS (pin)')}
+    if rep['layers_no_parks'] or rep['layers_fell_back'] or any(isinstance(d, dict) and 'sources' in d for d in new.values()):
+        rep['summary']['layers that joined no park'] = len(rep['layers_no_parks'])
+        rep['summary']['layers that fell back this build (their parks kept the previous joins)'] = len(rep['layers_fell_back'])
+        if rep['layers_no_parks']: note('warning', f"{k} key: {len(rep['layers_no_parks'])} layer(s) joined no park: " + '; '.join(f"{x['area']} {x['layer']}" for x in rep['layers_no_parks'][:8]) + (' ...' if len(rep['layers_no_parks']) > 8 else ''))
+        if rep['layers_fell_back']: note('warning', f"{k} key: {len(rep['layers_fell_back'])} layer(s) fell back: " + '; '.join(f"{x['area']} {x['layer']} ({x['parks_kept']} parks kept)" for x in rep['layers_fell_back'][:8]))
     # Nov 7 (Brandon 4:55 PM CST): the problem solver's recommended fix per held park (kpc_problem_solver.py, recommends only)
     try:
         ps = json.load(open(os.path.join(cwd, KEYS[k]['dir'], 'review', 'problem-solver.json'), encoding='utf-8'))

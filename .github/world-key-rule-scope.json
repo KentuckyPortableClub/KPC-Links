@@ -1,0 +1,14 @@
+{
+ "about": "World answer key rule changes and what each one touches (KPC owner, 2026-11-11). Part of the world rules hash. Same format as .github/us-key-rule-scope.json; the areas are country codes. The world key has no per-country rules rows yet, so a change that says all (or lists nothing) rebuilds every country on the next run.",
+ "changes": [
+  {
+   "id": "2026-11-11-layer-fall-back",
+   "when": "2026-11-11",
+   "from": "096a551a8cb6",
+   "why": "A layer that fails with no saved records no longer holds its country: the parks the previous key joined through it keep their previous entry and the rest is rebuilt (logged, listed as fell_back in the key file). A saved copy's records from a layer the country no longer reads are not counted or brought back. decided_by KPC owner, 2026-11-11.",
+   "scope": {
+    "all": true
+   }
+  }
+ ]
+}

@@ -70,6 +70,8 @@ def main():
         except Exception: pass  # noqa: BLE001
     WX = load('data/world-key/extra-layers.json', {}); WC = WX.setdefault('countries', {})
     wknown = (open('.github/scripts/kpc_world_key.py').read().lower() if os.path.exists('.github/scripts/kpc_world_key.py') else '')
+    # KPC owner, 2026-11-11: a layer taken out of the world key (extra-layers.json 'dropped') is never wired again
+    WDROP = {(cc, str(x.get('url') or '').rstrip('/').lower()) for cc, v in (WX.get('dropped') or {}).items() if isinstance(v, list) for x in v}
     added, skipped, states, provs, ccs = [], [], set(), set(), set()
     # Oct 31 (Fable review #11 / #19): a layer is wired only when (a) its YES answers are at least its NO answers (one record's YES is
     # not the whole layer), (b) it is not a trail / byway LINE layer (the keys read polygons; trail lines go to the trail list), and
@@ -103,6 +105,7 @@ def main():
         if area.startswith('W-') and re.fullmatch(r'[A-Z]{2}', area[2:]): area = area[2:]; r = dict(r, _world=True)   # Oct 31 (Fable review #4): a layer-collector world row (area W-MX): 894 YES were skipped as 'no state'
         if (r.get('_intake') and re.fullmatch(r'[A-Z]{2}', area) and not r.get('st')) or r.get('_world'):
             if not re.search(r'/(MapServer|FeatureServer)/\d+$', url, re.I): skipped.append(f"{area} not a layer URL: {url[:80]}"); continue
+            if (area, url.rstrip('/').lower()) in WDROP: skipped.append(f"{area} (world) dropped layer, not wired again: {url[-50:]}"); continue
             if url.lower().split('://')[-1] in wknown or any(str(x.get('url')).rstrip('/').lower() == url.lower() for x in WC.get(area, [])): continue
             WC.setdefault(area, []).append({'label': str(r.get('title') or r.get('publisher') or r.get('agency') or area + ' official layer')[:80], 'url': url,
                                             'name_field': str(r.get('name_field') or ''), 'credit': str((r.get('terms') or {}).get('credit') or '')[:200],

@@ -53,7 +53,10 @@ def _run(sources, answers, old):
     ns = {'cc': 'DE', 'CMODE': 'refresh', 'recs': None, 'SRC': {'DE': sources}, 'pull_wfs': pull, 'pull_arcgis': pull,
           'pull_find': None, 'pull_a10': None, 'pull_a10n': None, 'pull_chshp': None, 'collections': collections, 'HELD': held,
           'src_id': _src_id(), 'wload': lambda cc: [dict(r) for r in old] if old is not None else None,
-          'wsave': lambda cc, r: saved.append(list(r)), 'notice': lambda t, m: notes.append(str(m)), 'print': lambda *a, **k: None}
+          'wsave': lambda cc, r: saved.append(list(r)), 'notice': lambda t, m: notes.append(str(m)), 'print': lambda *a, **k: None, 'FELL': None,
+          # KPC owner, 2026-11-11: the fall-back decision (no previous key here): go on when some layer gave records, else hold
+          'fell_back_plan': lambda cc, h, have: ({'labels': [x[0] for x in h], 'keep': {}} if (have or not h) else None)}
+    ns['_fell'] = lambda: ns.get('FELL')
     code = 'went_on = False\nfor _once in [0]:\n' + textwrap.indent(_block(), '    ') + '\n    went_on = True\n'
     exec(compile(code, 'kpc_world_key.py (source loop)', 'exec'), ns)
     return ns['recs'], saved, notes, held, ns['went_on']
@@ -96,16 +99,25 @@ def test_a_saved_copy_without_ids_uses_a_unique_label_only():
     assert on and not held and _by(recs, NP) == 105, 'a unique label still finds its records in an old saved copy'
     recs, saved, notes, held, on = _run([NSG, NP, LUBW, NDS], {NSG: _rec(NSG, 300), NP: _rec(NP, 105), LUBW: OSError('503'),
                                                                NDS: _rec(NDS, 30, tag='ni')}, old)
-    assert held == ['DE'] and not on, 'a shared label in an old saved copy cannot be told apart: the country is held'
+    # Nov 11: no longer held: the layer falls back. (This old copy has no source ids and the read is over 3% short, so the Oct 22 rule
+    # then takes the whole saved copy; nothing is saved over it.)
+    assert not held and on and saved == [], 'a shared label in an old saved copy: the layer falls back, the country is not held'
 
 
-def test_a_failed_source_with_no_saved_records_holds_the_country():
+def test_a_failed_source_with_no_saved_records_falls_back_and_does_not_hold():
+    """KPC owner, 2026-11-11 (world rules change): the layer falls back; the country is built from the layers that answered,
+    and that read is never saved over the saved copy. (Its parks keep their previous joins: tests/test_world_layer_fall_back_nov11.py.)"""
     old = _rec(NSG, 300) + _rec(NP, 105)
     recs, saved, notes, held, on = _run([NSG, NP, NAT], {NSG: _rec(NSG, 300), NP: _rec(NP, 105), NAT: OSError('503')}, old)
-    assert held == ['DE'] and not on and saved == [], 'no file is written: the previous DE key stays'
-    assert any('HELD' in n and 'BfN Nationalparke' in n and 'previous key' in n for n in notes)
+    assert not held and on and saved == [] and _by(recs, NAT) == 0 and _by(recs, NSG) == 300
+    assert any('BfN Nationalparke' in n and 'FAILED' in n for n in notes) and not any('HELD' in n for n in notes)
     recs, saved, notes, held, on = _run([NSG, NP, NAT], {NSG: _rec(NSG, 300), NP: ValueError('bad'), NAT: _rec(NAT, 16)}, None)
-    assert held == ['DE'] and not on and any('no saved copy' in n for n in notes)
+    assert not held and on and saved == []
+
+
+def test_no_layer_gave_any_record_still_holds_the_country():
+    recs, saved, notes, held, on = _run([NP, NAT], {NP: ValueError('bad'), NAT: OSError('503')}, None)
+    assert held == ['DE'] and not on and saved == [] and any('HELD' in n and 'previous key stays' in n for n in notes)
 
 
 def test_an_empty_source_with_saved_records_uses_the_saved_copy():
@@ -115,15 +127,13 @@ def test_an_empty_source_with_saved_records_uses_the_saved_copy():
     assert on and not held and _by(recs, NAT) == 16 and any('returned 0 records' in n for n in notes)
 
 
-def test_an_empty_source_with_no_saved_records_holds_the_country():
-    """Quality v3 Part 5 should-fix: EMPTY (0 records) + no saved copy for that source = HOLD (previous key stays)."""
+def test_an_empty_source_with_no_saved_records_falls_back_too():
+    """EMPTY (0 records) + no saved records for that source: the same fall back as a failed one (Nov 11)."""
     old = _rec(NSG, 300) + _rec(NP, 105)   # no NAT in the saved copy
     recs, saved, notes, held, on = _run([NSG, NP, NAT], {NSG: _rec(NSG, 300), NP: _rec(NP, 105), NAT: []}, old)
-    assert held == ['DE'] and not on and saved == [], 'empty + no saved NAT records: hold, no file written'
-    assert any('HELD' in n and 'BfN Nationalparke' in n for n in notes)
-    # no saved copy at all
+    assert not held and on and saved == [], 'the read is not saved over the saved copy'
     recs, saved, notes, held, on = _run([NSG, NP, NAT], {NSG: _rec(NSG, 300), NP: _rec(NP, 105), NAT: []}, None)
-    assert held == ['DE'] and not on and any('no saved copy' in n for n in notes)
+    assert not held and on and saved == []
 
 
 def test_the_script_exits_3_when_a_country_is_held():
