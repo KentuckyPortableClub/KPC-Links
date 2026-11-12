@@ -1,0 +1,71 @@
+ref,pota_name,a10_005_join_key_or_official_ja_name,"park_class(A10_002: 1=国立 2=国定 3=都道府県立; U=都市公園/facility, not in A10)",prefecture_code(s),proposed_answer,note
+JP-0017,Chubusangaku National Park,中部山岳国立公園,1,16/17/20/21,match,Box candidate 'chuubu sangaku' IS this park - romanization mismatch only.
+JP-0110,Zao Quasi-National Park,蔵王国定公園,2,04/06,match,Box candidate string contains 'zaou' = 蔵王.
+JP-1047,Funagatarenpo Prefectural Nature Park,船形連峰県立自然公園,3,04,match,Candidate 'funagata renpou' = 船形連峰.
+JP-1051,Kesennuma Prefectural Nature Park,気仙沼県立自然公園,3,04,other,"Polygon at pin is 硯上山万石浦県立自然公園 / 南三陸金華山国定公園 (candidate), not 気仙沼. Pin or park name is off - person checks. Join key given."
+JP-1060,Akita Shirakami Prefectural Nature Park,秋田白神県立自然公園,3,05,match,A10 FY2010 polygon carries the PREDECESSOR name 八森岩館県立自然公園 (candidate 'hachimori iwadate'); it was redesignated/expanded as 秋田白神県立自然公園 in 2004. Same land - flag the rename.
+JP-1061,Tashirodake Prefectural Nature Park,田代岳県立自然公園,3,05,match,Candidate 'tashiro gaku' = 田代岳.
+JP-1071,Goshozan Prefectural Nature Park,御所山県立自然公園,3,06,other,御所山 (Yamagata) and 船形連峰 (Miyagi) are the two prefectures' parks on the same massif; polygon at pin is the Miyagi one (candidate). Pin may be on the wrong side of the prefecture line - person decides.
+JP-1108,Ota Prefectural Nature Park,太田県立自然公園,3,08,match,Candidate 'oota' = 太田.
+JP-1110,Oarai Prefectural Prefectural Nature Park,大洗県立自然公園,3,08,note,Box found no polygon at pin; join A10 on 大洗県立自然公園 (Ibaraki 08) and re-test the pin.
+JP-1115,Kairakuen Prefectural Park,偕楽園 (inside 水戸県立自然公園),U,08,other,"Kairakuen is an urban garden (茨城県営都市公園), not an A10 natural park; the pin sits in 水戸県立自然公園 (candidate 'mito'). Kind differs - person decides whether the natural-park polygon stands in."
+JP-1146,Okumusashi Prefectural Nature Park,奥武蔵県立自然公園,3,11,note,Join key. Candidate string lists neighbouring Saitama parks but not 奥武蔵 - re-join by exact name.
+JP-1147,Kuroyama Prefectural Nature Park,黒山県立自然公園,3,11,note,Join key; re-join by exact name.
+JP-1148,Nagatoro Tamayodo Prefectural Nature Park,長瀞玉淀県立自然公園,3,11,note,Join key; re-join by exact name.
+JP-1149,Hikikyuryo Prefectural Nature Park,比企丘陵県立自然公園,3,11,match,Candidate 'hiki kyuuryou' = 比企丘陵.
+JP-1150,Jobu Prefectural Nature Park,上武県立自然公園,3,11,note,Join key; re-join by exact name.
+JP-1164,Saitama Prefectural Forest,埼玉県県民の森,U,11,note,"県民の森 is a prefectural forest-park, not an A10 natural park. Source: Saitama Prefecture open data / 県民の森 management office. Pin lies within the 奥武蔵 area."
+JP-1175,Kodomo Dobutsu Prefectural Park,埼玉県こども動物自然公園 (inside 比企丘陵県立自然公園),U,11,other,"Zoo park (都市公園), not A10; pin is in 比企丘陵県立自然公園 (candidate). Kind differs."
+JP-1288,Ogamiyama Prefectural Park,"大神山公園 (都立, 父島)",U,13,note,"Tokyo metropolitan park on Chichijima; NOT in the Tokyo 緑のオープンデータ (mainland only) and not A10 (candidate = 小笠原国立公園, a different kind). Needs Tokyo 建設局 公園緑地部 for the park outline."
+JP-1334,Fujihokuroku Prefectural Park,富士北麓公園 (山梨県立都市公園),U,19,other,"Urban sports park, not A10; pin is inside 富士箔根伊豆国立公園 (candidate). Kind differs."
+JP-1349,Tainai Ninoji Prefectural Nature Park,胎内二王子県立自然公園,3,15,match,Candidate 'tai ka niou ko' is the box's garbled romanization of 胎内二王子.
+JP-1350,Aganogawa Line Prefectural Nature Park,阿賀野川ライン県立自然公園,3,15,match,Candidate 'agano kawa rain' = 阿賀野川ライン.
+JP-1356,Naomine Matsunoyama Oike Prefectural Nature Park,直峰松之山大池県立自然公園,3,15,match,Candidate 'choku minematsu yuki yama ren ike' = garbled 直峰松之山大池.
+JP-1544,Ako Seaside Prefectural Park,赤穂海浜公園 (兵庫県立都市公園),U,28,other,"Urban park, not A10; pin in 瀬戸内海国立公園 (candidate). Kind differs."
+JP-1626,Chomonkyo Prefectural Nature Park,長門峡県立自然公園,3,35,match,Candidate 'nagato kyou' = 長門峡.
+JP-1627,Rakanzan Prefectural Nature Park,羅漢山県立自然公園,3,35,other,"Polygon at pin is 西中国山地国定公園 (candidate) - the bigger neighbour, rule 5. Join key given; re-test pin against 羅漢山."
+JP-1628,Iwakisan Prefectural Nature Park,石城山県立自然公園,3,35,match,Candidate 'iwaki yama' = 石城山.
+JP-1653,Kinrin Prefectural Park,琴林公園 (香川県立都市公園),U,37,other,"Urban park, not A10; pin in 瀬戸内海国立公園. Kind differs."
+JP-1660,Sasayama Prefectural Nature Park,篠山県立自然公園,3,38,match,Candidate 'shinoyama' is an alternate reading of 篠山 (Sasayama).
+JP-1665,Okumonobe Prefectural Nature Park,奥物部県立自然公園,3,39,note,Candidate 'oku mononobe chiiki kenzan' suggests the A10 label is 剣山国定公園(奥物部地域) or similar; check A10_005 text before joining.
+JP-1667,Yokogurayama Prefectural Nature Park,横倉山県立自然公園,3,39,match,Candidate 'yokokura yama' = 横倉山.
+JP-1684,Tosa Seinan Daikibo Prefectural Park,土佐西南大規模公園 (高知県立都市公園),U,39,other,"Urban park, not A10; pin near 入野県立自然公園 (candidate 'irino'). Kind differs."
+JP-1709,Taradake Prefectural Nature Park,多良岳県立自然公園,3,42 (also 41),match,"Candidate 'tara gaku' = 多良岳. NOTE both Nagasaki (42) and Saga (41) have a 多良岳県立自然公園 - join by prefecture code; pin 32.977,130.09 is on the Nagasaki side."
+JP-1717,Taradake Prefectural Nature Park,多良岳県立自然公園,3,42 (also 41),match,"Second POTA ref for the same mountain; see JP-1709. Pin 32.948,130.088 Nagasaki side."
+JP-1719,Hokusho Prefectural Park,北松県立自然公園,3,42,other,Polygon at pin is 西海国立公園 (candidate) - the bigger neighbour. Join key 北松県立自然公園; re-test pin.
+JP-1720,Omurawan Prefectural Park,大村湾県立自然公園,3,42,note,Box found nothing at pin; join on 大村湾県立自然公園 and re-test.
+JP-1725,Saikaibashi Prefectural Park,西海橋公園 (長崎県立都市公園),U,42,other,"Urban park, not A10; pin in 大村湾県立自然公園 (candidate). Kind differs."
+JP-1728,Kinpozan Prefectural Nature Park,金峰山県立自然公園,3,43,note,Candidate 'mitake' does not decode to 金峰山; check what A10_005 reads at the pin (possibly 三岳?) before joining.
+JP-1729,Shotaizan Prefectural Nature Park,小岱山県立自然公園,3,43,match,Candidate 'shou tai yama' = 小岱山.
+JP-1731,Ashikita Kaigan Prefectural Nature Park,芦北海岸県立自然公園,3,43,match,Candidate 'ashi hokkai kishi' = garbled 芦北海岸.
+JP-1737,Honmyojiyama Ryokuchi Prefectural Park,本妙寺山緑地 (熊本県),U,43,other,"Urban green space, not A10; candidate 'mitake' is a natural park nearby. Kind differs."
+JP-1744,Tsue Sankei Prefectural Nature Park,津江山系県立自然公園,3,44,note,Candidate lists 阿蘇くじゅう / 耶馬日田英彦山国定公園; join on 津江山系県立自然公園 and re-test.
+JP-1768,Yoshino Prefectural Park,吉野公園 (鹿児島県立都市公園),U,46,other,"Urban park, not A10; pin in 霧島錦江湾国立公園 (candidate). Kind differs."
+JP-1828,Lake Okutama Hotori Prefectural Park,奥多摩湖畔公園 (都立),U,13,note,"Tokyo metropolitan park, mainland - IS in the Tokyo 緑のオープンデータ 公園・緑地等 shapefile (CC BY). Join there, not A10."
+JP-1830,Oshima Prefectural Park,"大島公園 (都立, 伊豆大島)",U,13,note,Tokyo metropolitan park on an island - excluded from the Tokyo dataset (本土部 only); not A10 (candidate 富士箔根伊豆国立公園 is a different kind). Needs Tokyo 建設局.
+JP-1831,Takowan Prefectural Park,"多幸湾公園 (都立, 神津島)",U,13,note,Island metropolitan park - excluded from Tokyo dataset; not A10.
+JP-1832,Habushiura Prefectural Park,"羽伏浦公園 (都立, 新島)",U,13,note,Island metropolitan park - excluded from Tokyo dataset; not A10.
+JP-1857,Midorinomura Agricultual and Forestry Prefectural Park,埼玉県 みどりの村 (小鹿野町),U,11,note,"Prefectural agri-forestry park, not A10. Source: Saitama Prefecture."
+JP-1858,Saino-Kuni Fureai Forest Prefectural Park,彩の国ふれあいの森 (埼玉県),U,11,note,"Prefectural forest park, not A10. Source: Saitama Prefecture."
+JP-1859,Tochigi Prefectual Forest Prefectural Park,栃木県県民の森,U,09,note,"県民の森, not A10 (pin area = 日光国立公園). Source: Tochigi Prefecture."
+JP-1860,Italian Embassy Villa Memorial Prefectural Park,イタリア大使館別荘記念公園 (栃木県立),U,09,other,Small prefectural park inside 日光国立公園 (candidate 'nikkou'). Kind differs; Tochigi Prefecture holds the park outline.
+JP-1861,British Embassy Villa Memorial Prefectural Park,英国大使館別荘記念公園 (栃木県立),U,09,other,As JP-1860.
+JP-1867,Yamagata Nature Museum Prefectural Park,山形県立自然博物園 (月山),U,06,note,Prefectural facility inside 磐梯朝日国立公園 (candidate); not A10. Source: Yamagata Prefecture.
+JP-1871,Showa-no-mori Prefectural Park,"昭和の森 (福島県立都市公園, 猪苗代)",U,07,note,"Urban park, not A10 (pin area = 磐梯朝日国立公園). Source: Fukushima Prefecture."
+JP-1881,Kenmin-no-mori Prefectural Park,秋田県 県民の森 (太平山周辺),U,05,note,Prefectural forest park near 太平山 / 田沢湖抱返り (candidate); not A10. Source: Akita Prefecture - confirm exact facility name.
+JP-1930,Niigata Seishonen no Mori Prefectural Park,新潟県 青少年の森 (紫雲寺記念公園?),U,15,note,"Prefectural park, not A10; exact Japanese name unverified - confirm with Niigata Prefecture."
+JP-1936,Jomon no Mori Prefectural Park,"縄文の森 (宮城県, 大崎?)",U,04,note,"Prefectural facility, not A10; exact Japanese name unverified - confirm with Miyagi Prefecture."
+JP-1947,Hinohara Tokyo Citizens' Forest Prefectural Park,檜原都民の森,U,13,note,都民の森 - IS in the Tokyo 緑のオープンデータ 条例等に基づく緑 shapefile (lists 都民の森; CC BY). Join there.
+JP-1948,Okutama Tokyo Citizens' Forest Prefectural Park,奥多摩都民の森,U,13,note,都民の森 - in the Tokyo 条例等に基づく緑 shapefile (CC BY). Join there.
+JP-1972,Senba Prefectural Park,千波公園 (水戸市) inside 水戸県立自然公園,U,08,other,Urban lakeside park; pin in 水戸県立自然公園 (candidate 'mito'). Kind differs.
+JP-2011,Tottori Sakyu Kodomonokuni Prefectural Park,鳥取砂丘こどもの国 (鳥取県立),U,31,other,Urban park inside 山陰海岸国立公園 (candidate). Kind differs.
+JP-2016,Miyajima Prefectural Park,宮島包ヶ浦自然公園 (広島県立),U,34,other,Prefectural park inside 瀬戸内海国立公園 (candidate). Kind differs; confirm the facility name with Hiroshima Prefecture.
+JP-2018,Ehime Forest Prefectural Park,愛媛県 県民の森 (皿ヶ嶺),U,38,other,県民の森 inside 皿ヶ嶺連峰県立自然公園 (candidate). Kind differs.
+JP-2023,Hinamoridai Kenmin Fureai no Mori Prefectural Park,ひなもり台県民ふれあいの森 (宮崎県),U,45,other,Inside 霧島錦江湾国立公園 (candidate). Kind differs.
+JP-2046,Kozai Nishichiku Kowan Ryokuchi Prefectural Park,"香西西地区港湾緑地 (香川県, 高松港)",U,37,note,"Port green space, not A10; pin area = 瀬戸内海国立公園. Source: Kagawa Prefecture port authority."
+JP-2090,Maruyamagawa Prefectural Park,円山川公苑 (兵庫県立),U,28,other,Prefectural facility inside 山陰海岸国立公園 (candidate). Kind differs.
+JP-0007,Towada-Hachimantai National Park,十和田八幡平国立公園,1,02/03/05,match,Name already matched by the box; pin reported outside the A10 polygon - take the distance from the box join.
+JP-0114,Suigo-Tsukuba Quasi-National Park,水郷筑波国定公園,2,08/12,match,Name matched; pin outside per box - distance from box.
+JP-0148,Genkai Quasi-National Park,玄海国定公園,2,40/41/42,match,Name matched; pin outside per box - distance from box.
+JP-0151,Kyushu Chuo Sanchi Quasi-National Park,九州中央山地国定公園,2,43/45,match,Name matched; pin outside per box - distance from box.
+JP-1114,Kasama Prefectural Nature Park,笠間県立自然公園,3,08,match,Name matched; pin outside per box - distance from box.

@@ -1264,7 +1264,7 @@ if __name__ == '__main__':
         run_check(src, fetch_site=fetch); sys.exit(0)
     if '--inbox' in sys.argv:   # research files in data/research-inbox/, just those parks (+ --retry)
         import kpc_research_inbox as RI  # noqa: E402
-        _fs = sorted(f for f in glob.glob(str(ROOT / 'data/research-inbox/*.csv')) + glob.glob(str(ROOT / 'data/research-inbox/*.json')) if not f.endswith('needs-another-look.json'))
+        _fs = RI.inbox_files(ROOT)   # straight in data/research-inbox/ only; answers/ and results/ are never batches
         try: RI.run(_fs, root=ROOT, offline='--offline' in sys.argv, retry='--retry' in sys.argv)
         except Exception as e:  # noqa: BLE001
             print(f'::warning title=Research inbox::stopped ({type(e).__name__}: {str(e)[:160]}); no key is affected')

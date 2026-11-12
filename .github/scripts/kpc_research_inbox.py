@@ -264,6 +264,157 @@ def overlay_rec(rec):
 
 WDPA = re.compile(r'wdpa|protectedplanet|protected_planet|unep-?wcmc|world_database_of_protected', re.I)
 
+# ---- Nov 11 2026: WDPA / Protected Planet is a lead only and never data in a tracked file. An ID (WDPA:123, SAPAD-WDPAID:123, "WDPA 123",
+# "WDPA id (123)") or a protectedplanet.net address is data; the word WDPA in a sentence ("WDPA is a lead only") is not.
+WDPA_MARK = '[WDPA lead removed]'
+WDPA_URL = re.compile(r'(?:https?://)?(?:[\w-]+\.)*protected[\s_-]?planet\.net[^\s,;|)\]"\']*', re.I)
+WDPA_ID = re.compile(r'(?:[A-Za-z]+-)?WDPA(?:ID|_?PID)?(?:\s+id)?\s*[:#=]?\s*(?:\(\d+\)|\d+)', re.I)
+WDPA_DATA = re.compile(r'wdpa[a-z_]*(?:\s+id)?\s*[:#=]?\s*\(?\d|protected[\s_-]?planet\.net', re.I)   # what the test hunts for
+
+
+def has_wdpa_data(text): return bool(WDPA_DATA.search(str(text or '')))
+
+
+def scrub_wdpa(text):
+    """Replace WDPA ids and Protected Planet addresses with a plain marker (the sentence around them stays)."""
+    t = WDPA_URL.sub(WDPA_MARK, str(text)); t = WDPA_ID.sub(WDPA_MARK, t)
+    return t.replace(WDPA_MARK + WDPA_MARK, WDPA_MARK)
+
+
+def scrub_obj(o):
+    """scrub_wdpa over every string in a result / retry-list structure (lists, dicts, text), so a run can never write a WDPA id or address back"""
+    if isinstance(o, str): return scrub_wdpa(o) if has_wdpa_data(o) else o
+    if isinstance(o, list): return [scrub_obj(x) for x in o]
+    if isinstance(o, dict):
+        d = {k: scrub_obj(v) for k, v in o.items()}
+        if 'wdpa_lead' in d:   # a WDPA-layer lead: its record id IS a WDPA id, so the id fields go too (the reason keeps the plain sentence)
+            d.update(wdpa_lead=WDPA_MARK, record_id='')
+        return d
+    return o
+
+
+# ---- the answers / solved ledger (Nov 11 2026): data/research-inbox/answers/solved-ledger.csv. Read only: it never writes a key, an override or a pin.
+# A sub-folder on purpose: the inbox glob (inbox_files) reads only the files straight in data/research-inbox/, so nothing under answers/ is a batch.
+ANSWERS_DIR = 'data/research-inbox/answers'
+LEDGER_REL = ANSWERS_DIR + '/solved-ledger.csv'
+ANSWER_WORDS = ('match', 'no boundary exists', 'wrong pin', 'other', '')   # the hand-back vocabulary, exactly
+
+
+def classify_solved(answer, official_id='', source_url='', key_location='', key_status='', wdpa_removed=False):
+    """(solved, basis): is this park finished, so no search list / retry list / owner short list hands it out again?
+    SOLVED:  'released-key'          the released key already grades it official;
+             'settled-match'         answer `match` AND a non-WDPA official id or official source url (a match that rested on a removed WDPA lead
+                                     and has no other official id is NOT solved);
+             'settled-no-boundary'   answer `no boundary exists` (the agency shows a road, a marker or a monument: nothing to outline).
+    NOT SOLVED: `wrong pin` (the pin is flagged, the place is not found), `other` (a person must decide), blank (nothing official found; the note
+    says what was searched). The answer words are the Nov 5 / Nov 11 vocabulary exactly."""
+    a = str(answer or '').strip(); oid = str(official_id or '').strip(); url = str(source_url or '').strip()
+    if a not in ANSWER_WORDS: return False, 'unknown-answer'
+    if str(key_location or '').startswith('released-') and str(key_status or '').strip().lower() == 'official': return True, 'released-key'
+    if a == 'no boundary exists': return True, 'settled-no-boundary'
+    if a == 'match':
+        if wdpa_removed and not oid: return False, 'match-rested-on-removed-wdpa-lead'
+        if oid or url: return True, 'settled-match'
+        return False, 'match-without-official-id'
+    return False, {'wrong pin': 'wrong-pin', 'other': 'other-needs-person', '': 'blank-nothing-found'}[a]
+
+
+# Owner answers recorded 2026-11-11. These are not pending: they have been decided.
+# US-10274: the National Register record is the whole 6,908-acre battlefield (the bigger place).
+# FR-14979: owner no to the 13 km ZNIEFF join; the live world-key join comes off on the next world key run.
+OWNER_NOT_A_MATCH = {
+    'US-10274': 'not a match, 2026-11-11: the National Register record is the whole 6,908-acre battlefield (the bigger place); needs the Texas Historical Commission site outline',
+    'FR-14979': 'owner no, 2026-11-11: the official record is 13 km from the pin; the live join comes off on the next world key run',
+}
+# ZA-0085, ZA-0156, ZA-0157: their official ids were WDPA-derived and were removed; they stay unsolved.
+OWNER_UNSOLVED_WDPA = {'ZA-0085', 'ZA-0156', 'ZA-0157'}
+OWNER_UNSOLVED_WDPA_WHY = 'owner 2026-11-11: stays unsolved; the official id was a WDPA lead and was removed; needs a non-WDPA official id'
+OWNER_YES_NOV5_WHY = 'owner settled the Nov 5 confirm on 2026-11-11'
+# Recorded owner answers (Brandon accepted the recommendations in chat on 2026-11-11 at 21:16 CT).
+# File: data/research-inbox/answers/OWNER-ANSWERS-nov11.md
+OWNER_ANSWER_CITE = {
+    'US-10274': 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 7',
+    'FR-14979': 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 2',
+}
+OWNER_ANSWER_ITEM10 = 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 10'
+
+
+def classify_row(answer, official_id='', source_url='', key_location='', key_status='', wdpa_removed=False, confirm='', match_strength='', ref=''):
+    """classify_solved split in two (Nov 11 review), with the 2026-11-11 owner answers recorded:
+    skip_search     = the research is finished, so no search list hands the park out again (the classify_solved rule, plus OWNER_NOT_A_MATCH);
+    owner_decision  = 'pending' for a finished match that still waits on an OWNER yes: a National Register listing boundary
+                      (not automatically the park). 'yes' for a Nov 5 confirm the owner settled on 2026-11-11. 'no' for a
+                      park the owner said is not a match (US-10274, FR-14979). A released-key park never waits.
+    join_ready      = 'no' for a match that is pending an owner yes or whose boundary is written in law with no map file; 'yes' for other solved matches."""
+    solved, basis = classify_solved(answer, official_id, source_url, key_location, key_status, wdpa_removed)
+    decision, why = '', ''
+    if ref in OWNER_NOT_A_MATCH:
+        # Owner said this is not a match, even if a Nov 11 row still said match with an official id.
+        solved, basis = False, 'other-needs-person' if str(answer or '').strip() in ('other', 'match', '') else basis
+        if str(answer or '').strip() == 'match' and basis == 'released-key':
+            # a released-key official grade is not undone by this (none of today's not-a-match parks are released official)
+            pass
+        decision, why = 'no', OWNER_NOT_A_MATCH[ref]
+        cite = OWNER_ANSWER_CITE.get(ref, '')
+        return {'skip_search': False, 'solved_basis': 'other-needs-person', 'owner_decision': decision,
+                'owner_decision_why': why, 'owner_answer': cite, 'join_ready': '', 'join_note': why}
+    pending = False
+    cite = ''
+    if solved and basis == 'settled-match':
+        if confirm:
+            decision, why = 'yes', f'{OWNER_YES_NOV5_WHY} ({confirm})'
+            cite = OWNER_ANSWER_ITEM10
+        elif str(match_strength).startswith('nrhp-listing-boundary'):
+            pending, why = True, 'National Register listing boundary: not automatically the park'
+            decision = 'pending'
+    if not solved and ref in OWNER_UNSOLVED_WDPA:
+        why = OWNER_UNSOLVED_WDPA_WHY
+        cite = OWNER_ANSWER_ITEM10
+    law = match_strength == 'boundary-in-law-no-map-file'
+    jr, note = '', ''
+    if solved and answer == 'match':
+        if pending: jr, note = 'no', 'owner decision pending'
+        elif law: jr, note = 'no', 'boundary written in law only, no map file'
+        else: jr, note = 'yes', ''
+    return {'skip_search': solved, 'solved_basis': basis, 'owner_decision': decision, 'owner_decision_why': why,
+            'owner_answer': cite, 'join_ready': jr, 'join_note': note}
+
+
+def load_ledger(root=ROOT, path=None):
+    """{ref: ledger row} from solved-ledger.csv; {} when the file is not there (older checkouts keep working)"""
+    p = pathlib.Path(path) if path else pathlib.Path(root) / LEDGER_REL
+    try: rows = list(csv.DictReader(open(p, encoding='utf-8-sig', newline='')))
+    except OSError: return {}
+    return {r['ref']: r for r in rows if r.get('ref')}
+
+
+def is_solved(ref, ledger): return str((ledger or {}).get(ref, {}).get('solved', '')).strip().lower() == 'yes'
+
+
+def owner_pending(ref, ledger): return str((ledger or {}).get(ref, {}).get('owner_decision', '')).strip().lower() == 'pending'
+
+
+def is_skipped(ref, ledger):
+    """solved AND no owner decision pending: only these leave the retry list, the owner short list and the inbox run"""
+    return is_solved(ref, ledger) and not owner_pending(ref, ledger)
+
+
+def solved_refs(ledger): return {r for r in (ledger or {}) if is_solved(r, ledger)}
+
+
+def filter_unsolved(rows, ledger, key='pota_ref'):
+    """(kept, skipped): rows of a retry list / batch, split by the ledger (solved and no owner decision pending go to skipped); the order is kept"""
+    kept, skipped = [], []
+    for r in rows: (skipped if is_skipped(r.get(key) or r.get('ref'), ledger) else kept).append(r)
+    return kept, skipped
+
+
+def inbox_files(root=ROOT):
+    """the research batches: *.csv / *.json straight in data/research-inbox/ (NOT sub-folders: answers/ and results/ are never batches)"""
+    d = pathlib.Path(root) / 'data/research-inbox'
+    return sorted(str(f) for f in list(d.glob('*.csv')) + list(d.glob('*.json')) if f.name != 'needs-another-look.json')
+
+
 
 def official_layers(cc, root=ROOT):
     """the country's own official layers we already know (world key lists): [(label, url)], and the agency named for it"""
@@ -450,8 +601,9 @@ def pins_and_overrides(root, kpcdata):
     return PIN, OV, SAVED
 
 
-def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
+def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False, ledger=None):
     root = pathlib.Path(root); inbox = root / 'data/research-inbox'
+    ledger = load_ledger(root) if ledger is None else ledger   # solved parks are not checked again (answers/solved-ledger.csv)
     PIN, OV, SAVED = pins_and_overrides(root, kpcdata or os.environ.get('KPCDATA') or root / 'kpcdata')
     rd = Reader(cache or os.environ.get('RESEARCH_CACHE') or root / 'cache/research', offline=offline)
     nal_f = inbox / 'needs-another-look.json'
@@ -468,6 +620,12 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
     allres = {}
     for stem, rows in jobs:
         res = []
+        rows, done = filter_unsolved(rows, ledger)   # a solved park is never handed out again: not read, not judged, off the retry list
+        for row in done:
+            L = ledger[row['pota_ref']]
+            res.append({'pota_ref': row['pota_ref'], 'park_name': row.get('park_name') or L.get('name', ''), 'status': 'SOLVED', 'record_id': L.get('official_id', ''),
+                        'reason': f"already solved in the answers ledger ({L.get('solved_basis', '')}); not checked again", 'checked': today, 'source': row.get('source')})
+            nal['parks'].pop(row['pota_ref'], None)
         for row in rows:
             ref = row['pota_ref']; pin = PIN.get(ref)
             if not pin and row.get('pin_lat') and row.get('pin_lon'):
@@ -486,6 +644,7 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
         allres[stem] = res
         if stem != 'retry' or res:
             outd = inbox / 'results'; outd.mkdir(parents=True, exist_ok=True)
+            res = scrub_obj(res); allres[stem] = res   # (a run can never write a WDPA id or address back)
             n = {}; [n.__setitem__(x['status'], n.get(x['status'], 0) + 1) for x in res]
             json.dump({'counts': n, 'rows': res}, open(outd / f'{stem}.json', 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
             L = [f'# Research inbox: {stem}', '', 'Recommendations only. SURE rows go to Quality, then are signed under the sure rule. Pins are never moved.', '',
@@ -497,6 +656,7 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
     # the sure rule (KISS): ONE short plain list for the owner: solutions over an earlier NO, and agency-alias names (rule 8)
     BL = ['# Owner short list', '', 'Each line: the park, what was found, and what you said before. Say YES to flip, or NO.', '']
     for r, v in sorted((nal.get('brandon_flip') or {}).items()):
+        if is_skipped(r, ledger): continue   # solved parks are not put on the owner short list again (a pending owner decision stays on it)
         e = v.get('earlier_no') or {}
         BL.append(f"- **{r}** {v['row'].get('park_name', '')}: found record {v.get('record_id')} \"{v.get('record_name')}\". You said before ({e.get('date') or 'no date'}): {e.get('decision')}.")
     seen = set()
@@ -504,12 +664,13 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
         try: res = json.load(open(rf, encoding='utf-8')).get('rows') or []
         except Exception: continue  # noqa: BLE001
         for x in res:
-            if x.get('alias') and x['status'] == 'NEEDS PERSON' and x['pota_ref'] not in seen and x['pota_ref'] not in SAVED:
+            if x.get('alias') and x['status'] == 'NEEDS PERSON' and x['pota_ref'] not in seen and x['pota_ref'] not in SAVED and not is_skipped(x['pota_ref'], ledger):
                 seen.add(x['pota_ref'])
                 BL.append(f"- **{x['pota_ref']}** {x['park_name']}: the agency calls it \"{x.get('record_name')}\" (record {x.get('record_id')}). Same park?")
-    open(inbox / 'brandon-list.md', 'w', encoding='utf-8').write('\n'.join(BL) + '\n')
+    open(inbox / 'brandon-list.md', 'w', encoding='utf-8').write(scrub_wdpa('\n'.join(BL)) + '\n')
     for k in ('parks', 'point_confirmed', 'brandon_flip'):   # Nov 11: no WDPA lead is kept in the public retry list
         if isinstance(nal.get(k), dict): nal[k] = {r: v for r, v in nal[k].items() if not wdpa_row(v.get('row') or v)}
+    nal = scrub_obj(nal)
     json.dump(nal, open(nal_f, 'w', encoding='utf-8'), indent=1, ensure_ascii=False, sort_keys=True)
     # the sure rule: the 100 ft circle around the OFFICIAL point of each POINT-CONFIRMED park (the 2-fer 'point-circle' tier reads it);
     # a park that turns SURE (a real boundary) loses its circle here, and the 2-fer bot never uses a circle for a park with an outline.
@@ -544,8 +705,7 @@ if __name__ == '__main__':
     if '--selftest' in sys.argv: sys.exit(1 if selftest() else 0)
     a = sys.argv[1:]
     only = a[a.index('--only') + 1] if '--only' in a else None
-    fs = [only] if only else sorted(glob.glob(str(ROOT / 'data/research-inbox/*.csv')) + glob.glob(str(ROOT / 'data/research-inbox/*.json')))
-    fs = [f for f in fs if not f.endswith('needs-another-look.json')]
+    fs = [only] if only else inbox_files(ROOT)
     try: run(fs, offline='--offline' in a, retry='--retry' in a)
     except Exception as e:  # noqa: BLE001
         print(f'::warning title=Research inbox::stopped ({type(e).__name__}: {str(e)[:160]}); no key is affected')
