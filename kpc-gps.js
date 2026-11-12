@@ -668,8 +668,11 @@
     if (list.indexOf(site) < 0) list.push(site);                   // the site's own copy, last
     return list;
   }
+  /* Nov 11 (KPC owner): a <name>.json.gz file is unpacked in the browser, the way kpc-overlap-finder.js jz() does it */
+  function unzip(r) { return new Response(r.body.pipeThrough(new DecompressionStream("gzip"))).json(); }
   function getJSON(path, opts) {
     var key = path; if (cache[key]) return cache[key];
+    var gz = /\.json\.gz$/.test(path);
     var f = (opts && opts.fetch) || cfg.fetch || (typeof fetch === "function" ? fetch : null);
     if (!f) return Promise.resolve(null);
     var urls = candidates(path, opts);
@@ -684,11 +687,23 @@
     var p = urls.reduce(function (prev, url) {
       return prev.then(function (got) {
         if (got) return got;
-        return Promise.resolve().then(function () { return f(url); }).then(function (r) { return r && r.ok ? r.json() : null; }).then(function (j) { return j ? { url: url, json: j } : null; }).catch(function () { return null; });
+        return Promise.resolve().then(function () { return f(url); }).then(function (r) { return r && r.ok ? (gz ? unzip(r) : r.json()) : null; }).then(function (j) { return j ? { url: url, json: j } : null; }).catch(function () { return null; });
       });
     }, Promise.resolve(null));
     cache[key] = p; p.then(function (x) { if (!x) delete cache[key]; });
     return p;
+  }
+  /* Nov 11 (KPC owner): the 2-fer file of an area. World areas (W-XX) are skipped: world 2-fers are off (club-room test only), no
+     request. Else <area>.json, then <area>.json.gz (US-NC, US-ID are stored gzipped), the same order as kpc-overlap-finder.js jz();
+     a browser without DecompressionStream stops at .json. One shared answer per area for the page (no file = no 2-fer spots). */
+  var FERS = {};
+  function fersFile(area, opts) {
+    if (/^W-/i.test(String(area))) return Promise.resolve(null);
+    var k = String(area);
+    if (!FERS[k]) FERS[k] = getJSON("data/fers/" + k + ".json", opts).then(function (r) {
+      return r || (typeof DecompressionStream === "undefined" ? null : getJSON("data/fers/" + k + ".json.gz", opts));
+    }).catch(function () { return null; });
+    return FERS[k];
   }
   function call(fn, a, b) { try { return Promise.resolve(fn ? fn(a, b) : null).catch(function () { return null; }); } catch (e) { return Promise.resolve(null); } }
   function defaultOutline(ref) {          // KPCB's API is not known here: try the likely names
@@ -721,7 +736,7 @@
       if (area === "US-KY") return getJSON("kpc-ky-data.json", Object.assign({}, opts, { dataUrl: function () { return null; } })).then(function (k) { return k ? { pts: readAccess(k.json.ap ? { ap: k.json.ap } : k.json)[ref] || [], url: k.url } : { pts: [] }; });
       return { pts: [] };
     }) : Promise.resolve({ pts: given.access || [] });
-    var ferP = Array.isArray(given.fers) ? Promise.resolve(given.fers) : opts.fers && area && !opts.noFers ? getJSON("data/fers/" + area + ".json", opts).then(function (r) { return r ? readFers(r.json, ref) : []; }) : Promise.resolve(given.fers || []);
+    var ferP = Array.isArray(given.fers) ? Promise.resolve(given.fers) : opts.fers && area && !opts.noFers ? fersFile(area, opts).then(function (r) { return r ? readFers(r.json, ref) : []; }) : Promise.resolve(given.fers || []);
     return Promise.all([infoP, keyP, accP, ferP]).then(function (v) {
       var info = v[0] || {}, key = v[1];
       var park = Object.assign({}, given, info, { ref: ref, area: area });
