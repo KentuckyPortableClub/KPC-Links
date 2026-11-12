@@ -1,11 +1,11 @@
 {
- "about": "The map files the public pages read. Written only by kpc_release.py (the by-hand Release workflow). files: working name -> [[released file, version]].",
+ "about": "The map files the public pages read. Written only by kpc_release.py (the by-hand Release workflow). files: working name -> [[released file, version]]. subs: a folder whose rows are in its own index file {prefix: {area, file, v, files}}.",
  "areas": {
   "CA": {
-   "files": 17,
-   "run": "43109466490",
-   "sha": "addf5c4e23d864a95a5c3fa7848819c93295034a",
-   "time": "2026-11-11T22:10:49Z"
+   "files": 2969,
+   "run": "43149759401",
+   "sha": "3d6a2800402be776c88d09c013c8969d4fae54e6",
+   "time": "2026-11-12T03:40:54Z"
   },
   "US": {
    "files": 101,
@@ -735,5 +735,13 @@
     "1009c8dc0f89"
    ]
   ]
+ },
+ "subs": {
+  "canada-bounds/": {
+   "area": "CA",
+   "file": "canada-bounds/INDEX.json",
+   "files": 2952,
+   "v": "8d82c50d87cd"
+  }
  }
 }
