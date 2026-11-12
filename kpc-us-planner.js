@@ -119,7 +119,7 @@ const dfetch=(u,o)=>(window.KPC&&KPC.dataUrl&&!/^locations(-ky)?\.json/.test(u))
 const COL={POTA:'#1d5a3a',SOTA:'#8a4b14',WWFF:'#2b6cb0',PIN:'#b5452b'};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let BIG=store.get('kpcUsBig',false),ALL=[],BYREF={},BORD=[],map=null,dots=null,ctrMk=null,ring=null,bound=null,boundRef='',road=null,center=null,radius=25,progs=store.get('kpcUsProgs',['POTA','SOTA','WWFF']);
-let trip=store.get('kpcUsTrip',[]),dropMode=false,NEAR=[];
+let trip=(t=>Array.isArray(t)?t.filter(s=>s&&typeof s.c==='string'&&isFinite(s.la)&&isFinite(s.lo)):[])(store.get('kpcUsTrip',[])),dropMode=false,NEAR=[];   /* Nov 11: a damaged saved trip no longer stops the page */
 const liveStates={};
 const TAP=matchMedia('(pointer:coarse)').matches;
 const isPhone=()=>/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)||matchMedia('(max-width:700px)').matches;
@@ -150,7 +150,7 @@ function goNear(){setTab('near');const t=$('usp-tabwrap');if(!t)return;const r=t
 function arrowTabs(list,pick){list.addEventListener('keydown',e=>{const k=e.key;if(!['ArrowLeft','ArrowRight','Home','End'].includes(k))return;
  const b=[...list.querySelectorAll('[role=tab]')],i=b.indexOf(document.activeElement);if(i<0)return;e.preventDefault();
  const j=k==='Home'?0:k==='End'?b.length-1:(i+(k==='ArrowRight'?1:-1)+b.length)%b.length;b[j].focus();pick(b[j])})}
-function tabFromHash(){const h=decodeURIComponent((location.hash||'').slice(1)).toLowerCase();return TABHASH[h]||null}
+function tabFromHash(){let h=(location.hash||'').slice(1);try{h=decodeURIComponent(h)}catch(e){}h=h.toLowerCase();   /* Nov 11: a broken %-code no longer stops the page */return TABHASH[h]||null}
 
 /* ---------- data ---------- */
 async function loadAll(){const NO={rows:[]},J=u=>dfetch(u).then(r=>r.ok?r.json():NO).catch(()=>NO);const[L,B,CA,NA]=await Promise.all([dfetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[]),J('data/canada.json'),J('data/northam.json')]);BORD=B;
@@ -290,7 +290,7 @@ function popup(s){const l=links(s),d=center?KPC.miles(center[0],center[1],s.la,s
  const what=s.p==='POTA'?'POTA park':s.p==='SOTA'?`SOTA summit${s.m?' • '+s.m.toLocaleString()+' m ('+Math.round(s.m*3.28084).toLocaleString()+' ft)':''}${s.pts?' • '+s.pts+' pts':''}`:s.p==='WWFF'?'WWFF reference':'Your pin';
  const div=`<div class="us-pop"><div class="us-top"><b>${esc(s.n)}</b><div class="meta">${s.p==='PIN'?'':esc(s.c)+' • '}${what}${d!=null?' • '+d.toFixed(1)+' mi away':''} • grid ${KPC.grid(s.la,s.lo).slice(0,6)}</div>${s.p==='POTA'?'<div class="us-grade"></div>':''}</div>
 ${kmBadge(s)?'<div style="margin:4px 0">'+kmBadge(s)+'</div>':''}<div class="pinfo"></div><div class="live"></div>
-<div class="acts"><button type="button" class="go" data-a="add">${inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}</button><a href="${l.sv}" target="_blank" rel="noopener">&#128064; STREET VIEW</a><a href="${l.dir}" target="_blank" rel="noopener">DIRECTIONS</a>${s.p==='POTA'||s.p==='WWFF'?`<a href="kpc-in-park.html?ref=${encodeURIComponent(s.c)}">📍 AM I IN THE PARK?</a>`:''}${s.p!=='PIN'&&s.p!=='SOTA'?`<a href="${/iPhone|iPad|iPod/.test(navigator.userAgent)?'https://maps.apple.com/?q=parking&sll='+s.la+','+s.lo+'&z=14':'https://www.google.com/maps/search/parking/@'+s.la+','+s.lo+',14z'}" target="_blank" rel="noopener">🅿 LOOK FOR PARKING</a>`:''}${s.p!=='PIN'&&s.p!=='SOTA'?'<button type="button" data-a="bound">SHOW THIS PARK\u2019S OUTLINE</button>':''}${l.page?`<a href="${l.page}" target="_blank" rel="noopener">${s.p} PAGE &#8599;</a>`:''}</div></div>`;
+<div class="acts"><button type="button" class="go" data-a="add">${inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}</button><a href="${l.sv}" target="_blank" rel="noopener">&#128064; STREET VIEW</a><a href="${l.dir}" target="_blank" rel="noopener">DIRECTIONS</a>${s.p==='POTA'||s.p==='WWFF'?`<a href="kpc-in-park.html?ref=${encodeURIComponent(s.c)}">📍 AM I IN THE PARK?</a>`:''}${s.p!=='PIN'&&s.p!=='SOTA'?`<a href="${/iPhone|iPad|iPod/.test(navigator.userAgent)?'https://maps.apple.com/?q=parking&sll='+s.la+','+s.lo+'&z=14':'https://www.google.com/maps/search/parking/@'+s.la+','+s.lo+',14z'}" target="_blank" rel="noopener">🅿 LOOK FOR PARKING</a>`:''}${s.p!=='PIN'&&s.p!=='SOTA'?'<button type="button" data-a="bound">SHOW THIS PARK\u2019S OUTLINE</button>':''}${l.page?`<a href="${esc(l.page)}" target="_blank" rel="noopener">${esc(s.p)} PAGE &#8599;</a>`:''}</div></div>`;
  return div}
 /* official website + park type + how you can activate, for the states around Kentucky (data/parkinfo/US-XX.json, weekly from
    POTA by kpc-state-links.yml; automatic, not checked by KPC). The state comes from where the dot is. */
@@ -311,7 +311,7 @@ const ymd=d=>{const t=new Date(d);return isNaN(t)?'':t.toLocaleDateString([],{mo
 async function sotaFacts(s){const [a,r]=s.c.split('/');if(!(s.c in SOTAI))SOTAI[s.c]=fetch('https://api2.sota.org.uk/api/summits/'+encodeURIComponent(a)+'/'+encodeURIComponent(r)).then(x=>x.ok?x.json():null).catch(()=>null);
  const j=await SOTAI[s.c];let h='';
  if(j){const n=+j.activationCount||0;
-  h+=ln(`<b>${j.points||s.pts||0} point${(j.points||s.pts)==1?'':'s'}</b>${+j.bonusPoints?` + ${j.bonusPoints} winter bonus`:''}${j.regionName?' · '+esc(j.regionName):''}`);
+  h+=ln(`<b>${esc(j.points||s.pts||0)} point${(j.points||s.pts)==1?'':'s'}</b>${+j.bonusPoints?` + ${esc(j.bonusPoints)} winter bonus`:''}${j.regionName?' · '+esc(j.regionName):''}`);
   h+=ln(n?`Activated <b>${n.toLocaleString()}</b> time${n===1?'':'s'}${j.activationDate?' · last '+esc(ymd(j.activationDate)):''}${j.activationCall?' by '+esc(j.activationCall):''}${n<=5?' · <b style="color:#b45309">RARE</b>':''}`:'<b style="color:#c2410c">Never activated: a SOTA "ATNO"!</b>')}
  else if(s.m)h+=ln(`${Math.round(s.m*3.28084).toLocaleString()} ft (${s.m.toLocaleString()} m) · ${s.pts||0} points`);
  h+=ln('Activation zone: within 25 m (82 ft) of the top, on foot (no vehicles). 4 contacts to score the points.');
@@ -433,9 +433,11 @@ async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='non
 function toMap(){const m=$('usmap');if(!m)return;const h=document.querySelector('header.site-nav,.site-nav'),hb=h?h.getBoundingClientRect().bottom:0,r=m.getBoundingClientRect();
  scrollTo({top:Math.max(0,scrollY+r.top-Math.max(0,hb)-10),behavior:'smooth'})}
 function openSpot(s,n){if(!map)return;let hit=null;dots.eachLayer(l=>{const k=l.getPopup&&l.getPopup()&&l.getPopup()._kpc;if(k&&(k===s||(k.c===s.c&&k.p===s.p)))hit=l});if(hit){if(!(hit.isPopupOpen&&hit.isPopupOpen()))hit.openPopup();else refit(hit.getPopup())}else if((n||0)<4)setTimeout(()=>openSpot(s,(n||0)+1),400)}
-async function go(la,lo,label,sw){clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
+let goSeq=0;
+async function go(la,lo,label,sw){const my=++goSeq;clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
  status(`Loading spots near ${esc(label||'there')}…`);
  const added=await addLive(la,lo,radius);try{await addWorld(la,lo,radius)}catch(e){}
+ if(my!==goSeq)return;   /* Nov 11: a newer search started while this one waited on POTA: the newer one paints */
  NEAR=ALL.filter(s=>progs.includes(s.p)).map(s=>({s,d:KPC.miles(la,lo,s.la,s.lo)})).filter(x=>x.d<=radius).sort((a,b)=>a.d-b.d).map(x=>x.s);
  const n={POTA:0,SOTA:0,WWFF:0};NEAR.forEach(s=>n[s.p]++);
  status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${radius} miles of ${esc(label||'there')}: ${progs.map(p=>n[p].toLocaleString()+' '+p).join(', ')}.${added?` (${added} newer POTA park${added===1?'':'s'} loaded live from POTA.)`:''}`);
@@ -482,15 +484,16 @@ function corridor(pts,w){const cum=[0];for(let i=1;i<pts.length;i++)cum.push(cum
   if(best<=w){out.push(s);info[s.c]={off:best,at}}});
  out.sort((a,b)=>info[a.c].at-info[b.c].at);return{list:out,info,total:cum[cum.length-1]}}
 function clearRoute(){RT=null;if(routeL){routeL.remove();routeL=null}}
-async function runRoute(){const fq=$('urf').value,tq=$('urt').value,w=+$('urw').value;store.set('kpcUsRoute',{f:fq,t:tq,w});
+async function runRoute(){const my=++goSeq;const fq=$('urf').value,tq=$('urt').value,w=+$('urw').value;store.set('kpcUsRoute',{f:fq,t:tq,w});
  if(!fq.trim()||!tq.trim()){status('Type where you start and where you finish.');return}
  status('Finding your start…');const A=await resolvePoint(fq);if(!A){status(`Couldn’t find “${esc(fq)}”. Try a town and state, a ZIP, a park number or GPS like 37.57, -84.29.`);return}
  status('Finding your finish…');const B=await resolvePoint(tq);if(!B){status(`Couldn’t find “${esc(tq)}”. Try a town and state, a ZIP, a park number or GPS like 37.57, -84.29.`);return}
  status('Working out the drive…');const R=await roadRoute(A,B);
  for(let i=0;i<R.pts.length;i+=Math.max(1,Math.floor(R.pts.length/12)))await addLive(R.pts[i][0],R.pts[i][1],w); /* newer POTA parks for the states the route crosses */
+ if(my!==goSeq)return;   /* Nov 11: a newer search or route started meanwhile */
  const C=corridor(R.pts,w);if(ctrMk){ctrMk.remove();ctrMk=null}if(ring){ring.remove();ring=null}
  RT={pts:R.pts,info:C.info,A,B,w};center=[A.la,A.lo];NEAR=C.list;
- const n={POTA:0,SOTA:0,WWFF:0};NEAR.forEach(s=>n[s.p]++);const h=R.hrs?`, about ${Math.floor(R.hrs)} h ${Math.round(R.hrs%1*60)} min`:'';
+ const n={POTA:0,SOTA:0,WWFF:0};NEAR.forEach(s=>n[s.p]++);const hm=Math.round((R.hrs||0)*60),h=R.hrs?`, about ${Math.floor(hm/60)} h ${hm%60} min`:'';   /* Nov 11: rounded once (was '2 h 60 min') */
  status(`<b>${NEAR.length.toLocaleString()}</b> spots within ${w} miles of your ${Math.round(R.road?R.mi:C.total)}-mile ${R.road?'drive'+h:'route (straight line: the road-route server was busy)'} from <b>${esc(A.label)}</b> to <b>${esc(B.label)}</b>: ${progs.map(p=>n[p].toLocaleString()+' '+p).join(', ')}. Listed in the order you reach them.`);
  if(map){if(routeL)routeL.remove();const pin=(p,t)=>L.marker([p.la,p.lo],{interactive:false,icon:L.divIcon({className:'',html:`<div class="rt-end" role="img" aria-label="${t==='A'?'Route start':'Route end'}" title="${t==='A'?'Route start':'Route end'}">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]})});
   routeL=L.featureGroup([L.polyline(R.pts,{color:'#171717',weight:8,opacity:.55,interactive:false}),L.polyline(R.pts,{color:'#f0c96b',weight:4,interactive:false,dashArray:R.road?null:'8 8'}),pin(A,'A'),pin(B,'B')]).addTo(map);
@@ -524,16 +527,17 @@ async function showBoundary(s,btn){
  /* on/off switch (Brandon Oct 16): tap again to hide this park's outline */
  if(bound&&boundRef===s.c){bound.remove();bound=null;boundRef='';btn.textContent='SHOW THIS PARK\u2019S OUTLINE';status('Outline hidden.');return}
  if(bound){bound.remove();bound=null}boundRef=s.c;btn.textContent='LOOKING…';btn.disabled=true;
+ const stale=()=>{if(boundRef===s.c)return false;btn.textContent='SHOW THIS PARK\u2019S OUTLINE';btn.disabled=false;return true};   /* Nov 11: another park was tapped while this one loaded: its outline is not drawn (it could never be hidden again) */
  /* Canada (Oct 17): the official CPCAD outline saved by kpc-canada-bounds.yml (data/canada-bounds/<REF>.json); Oct 24: with no
     saved file, KPCB.canada falls back to the Canada answer key (data/ca-key) and fetches the joined land by id */
- if(/^CA-/.test(s.c)&&window.KPCB&&KPCB.canada){try{const fs=await KPCB.canada(s.c);if(fs&&fs.length){const ap=fs.some(f=>f._approx);
-   bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,dashArray:ap?'8 6':null,fillColor:'#f0c96b',fillOpacity:ap?0:.15}}).addTo(map);
+ if(/^CA-/.test(s.c)&&window.KPCB&&KPCB.canada){try{const fs=await KPCB.canada(s.c);if(stale())return;if(fs&&fs.length){const ap=fs.some(f=>f._approx);
+   if(bound)bound.remove();bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,dashArray:ap?'8 6':null,fillColor:'#f0c96b',fillOpacity:ap?0:.15}}).addTo(map);
    const nm=fs[0]._nm||s.n;btn.textContent='HIDE OUTLINE ('+String(nm).toUpperCase().slice(0,28)+(ap?', APPROXIMATE':'')+')';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
    status(ap?`Approximate outline, not official: <b>${esc(nm)}</b> (${esc(fs[0]._src||'')}) — ${esc(fs[0]._why||'')}. Check the park's own map.`:`Official boundary shown: <b>${esc(nm)}</b> (${esc(fs[0]._src||'Canadian Protected and Conserved Areas Database, Government of Canada')}, open government data). POTA goes by the official boundary; check the park's own map too.`);return}}catch(e){}}
  /* Oct 18 (Brandon: 'make sure we show the official maps'): a Kentucky park uses KPC's checked Kentucky outlines (the same ones as Park Control) */
- if(window.KPCB&&KPCB.kyFor&&KPCB.inKY&&KPCB.inKY(s.la,s.lo)&&/^(US|KFF)-/.test(s.c)){try{const fs=await KPCB.kyFor(s.c);if(fs&&fs.length){
-   bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:f=>{const kpc=f._L&&f._L.kpc;return{color:kpc?'#ffd400':'#f0c96b',weight:3,dashArray:kpc?'12 5 2 5':null,fillColor:'#f0c96b',fillOpacity:kpc?0:.15}}}).addTo(map);
+ if(window.KPCB&&KPCB.kyFor&&KPCB.inKY&&KPCB.inKY(s.la,s.lo)&&/^(US|KFF)-/.test(s.c)){try{const fs=await KPCB.kyFor(s.c);if(stale())return;if(fs&&fs.length){
+   if(bound)bound.remove();bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:f=>{const kpc=f._L&&f._L.kpc;return{color:kpc?'#ffd400':'#f0c96b',weight:3,dashArray:kpc?'12 5 2 5':null,fillColor:'#f0c96b',fillOpacity:kpc?0:.15}}}).addTo(map);
    const kpc=fs.every(f=>f._L&&f._L.kpc);btn.textContent=kpc?'HIDE OUTLINE (APPROXIMATE)':'HIDE OUTLINE';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
    status(kpc?`OpenStreetMap outline (unofficial): no official map has this park yet. Check the park's own map.`:(fs.every(f=>f._line)?`Official trail line shown (${esc(fs[0]._src||'National Park Service')}): POTA counts within 100 ft of it. Check the trail's own map too.`:`Official Kentucky boundary shown (${fs.length} piece${fs.length>1?'s':''}, from the state and federal map files KPC keeps). Check the park's own map too.`));return}}catch(e){}}
@@ -541,11 +545,11 @@ async function showBoundary(s,btn){
     of place, every tract); parks the key doesn't know fall back to the PAD-US name search. Nothing official = no outline,
     but a separate 'SHOW UNOFFICIAL OUTLINE' button (OpenStreetMap) as a last resort. */
  if(window.KPCB&&s.p!=='SOTA'&&/^(US|KFF)-/.test(s.c)){let fs=null,src='USGS PAD-US',none=false,site=null,approx=false,approxWhy='',bnote='';
-  try{const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);const k=KPCB.usKey?await KPCB.usKey(s.c,sts):null;
+  try{const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);const k=KPCB.usKey?await KPCB.usKey(s.c,sts):null;if(stale())return;
    if(k&&k.state==='ok'){fs=k.fs;approx=!!k.approx;approxWhy=k.why||'';bnote=(k.note||'')+(k.pinOff?(k.note?' ':'')+'POTA\u2019s pin may be off for this park.':'');const u=[...new Set(fs.map(f=>f._src))];src=u.join(' + ')}else if(k&&k.state==='none'){none=true;site=k.site}}catch(e){}
   /* Nov 10: no live PAD-US name search; a missing saved outline stays "no boundary available". */
   if(fs&&fs.length){
-   bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,dashArray:approx?'10 6':null,fillColor:'#f0c96b',fillOpacity:approx?.07:.15}}).addTo(map);
+   if(bound)bound.remove();bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,dashArray:approx?'10 6':null,fillColor:'#f0c96b',fillOpacity:approx?.07:.15}}).addTo(map);
    if(KPCB.sharpLayer){if(window.__usSharp)window.__usSharp();window.__usSharp=KPCB.sharpLayer(map,bound,fs)}   /* RULE SHEET G: full detail when zoomed in */
    const nm=fs[0]._nm||s.n;btn.textContent=approx?'HIDE OUTLINE (APPROXIMATE)':'HIDE OUTLINE';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
@@ -561,12 +565,12 @@ async function osmBoundary(s,btn){
  if(bound){bound.remove();bound=null}boundRef=s.c;btn.textContent='LOOKING…';btn.disabled=true;
  const bb=`${(s.la-.3).toFixed(4)},${(s.lo-.4).toFixed(4)},${(s.la+.3).toFixed(4)},${(s.lo+.4).toFixed(4)}`; /* outline kept to ~20 miles around the park: much less data than a whole forest */
  const q=`[out:json][timeout:20];is_in(${s.la},${s.lo})->.a;(way(pivot.a)["boundary"~"protected_area|national_park"];rel(pivot.a)["boundary"~"protected_area|national_park"];way(pivot.a)["leisure"~"park|nature_reserve"];rel(pivot.a)["leisure"~"park|nature_reserve"];);out geom(${bb});`;
- try{const j=await overpass(q,s.c);const els=(j.elements||[]).filter(e=>e.tags);if(!els.length){btn.textContent='NO OUTLINE IN OPENSTREETMAP EITHER';btn.disabled=false;boundRef='';return}
+ try{const j=await overpass(q,s.c);if(boundRef!==s.c){btn.textContent='SHOW UNOFFICIAL OUTLINE';btn.disabled=false;return}const els=(j.elements||[]).filter(e=>e.tags);if(!els.length){btn.textContent='NO OUTLINE IN OPENSTREETMAP EITHER';btn.disabled=false;boundRef='';return}
   const area=e=>{const g=e.type==='way'?e.geometry:(e.members||[]).flatMap(m=>m.geometry||[]);if(!g||!g.length)return 1e9;let a=1e9,c=-1e9,d=1e9,f=-1e9;g.forEach(p=>{if(!p)return;a=Math.min(a,p.lat);c=Math.max(c,p.lat);d=Math.min(d,p.lon);f=Math.max(f,p.lon)});return(c-a)*(f-d)};
   els.sort((x,y)=>(sim(s.n,y.tags.name||'')-sim(s.n,x.tags.name||''))||(area(x)-area(y)));const e=els[0];
   const lines=[];if(e.type==='way'&&e.geometry)lines.push(e.geometry.filter(Boolean).map(p=>[p.lat,p.lon]));
   else(e.members||[]).forEach(m=>{if(m.type==='way'&&m.geometry)lines.push(m.geometry.filter(Boolean).map(p=>[p.lat,p.lon]))});
-  bound=L.featureGroup(lines.filter(l=>l.length>1).map(l=>{const closed=l.length>3&&l[0][0]===l[l.length-1][0]&&l[0][1]===l[l.length-1][1];return closed?L.polygon(l,{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.12,interactive:false}):L.polyline(l,{color:'#f0c96b',weight:3,interactive:false})})).addTo(map);
+  if(bound)bound.remove();bound=L.featureGroup(lines.filter(l=>l.length>1).map(l=>{const closed=l.length>3&&l[0][0]===l[l.length-1][0]&&l[0][1]===l[l.length-1][1];return closed?L.polygon(l,{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.12,interactive:false}):L.polyline(l,{color:'#f0c96b',weight:3,interactive:false})})).addTo(map);
   btn.textContent='HIDE UNOFFICIAL OUTLINE';btn.disabled=false;status(`UNOFFICIAL outline from OpenStreetMap (a volunteer map, not official): <b>${esc(e.tags.name||'unnamed area')}</b>${sim(s.n,e.tags.name||'')<.5?' (closest match: it may not be the exact POTA park area)':''}.`)}
  catch(err){btn.textContent='BOUNDARY NOT AVAILABLE, TAP TO TRY AGAIN';{const pop=btn.closest('.us-pop');if(pop){let w=pop.querySelector('.bwhy');if(!w){w=document.createElement('div');w.className='bwhy';w.style.cssText='font-size:11px;color:#b5452b;margin-top:6px;line-height:1.4';pop.appendChild(w)}w.textContent='Why: '+(err.why||[err.message]).join(' \u2022 ')}}status('Boundary lookup failed. What each server said: <b>'+esc((err.why||[err.message]).join(' \u2022 '))+'</b>. Send a screenshot of this to the site admin.');btn.disabled=false;return}btn.disabled=false}
 
@@ -593,7 +597,7 @@ function bestOrder(){if(trip.length<3)return;const start=trip[0],rest=trip.slice
 async function drawRoad(){if(trip.length<2||!map)return;const b=$('t-road');b.textContent='ROUTING…';
  try{const pts=trip.slice(0,25).map(s=>`${s.lo},${s.la}`).join(';');const r=await fetch(`https://router.project-osrm.org/route/v1/driving/${pts}?overview=full&geometries=geojson`);if(!r.ok)throw 0;const j=await r.json();const rt=j.routes&&j.routes[0];if(!rt)throw 0;
   if(road)road.remove();road=L.geoJSON(rt.geometry,{style:{color:'#b5452b',weight:5,opacity:.8}}).addTo(map);map.fitBounds(road.getBounds(),{padding:[20,20]});
-  const h=Math.floor(rt.duration/3600),m=Math.round(rt.duration%3600/60);b.textContent='DRAW DRIVING ROUTE';
+  const tm=Math.round(rt.duration/60),h=Math.floor(tm/60),m=tm%60;   /* Nov 11: rounded once (was '1 h 60 min') */b.textContent='DRAW DRIVING ROUTE';
   $('trip-sum').textContent=`${trip.length} stops • about ${Math.round(rt.distance/1609.34)} driving miles, ${h?h+' h ':''}${m} min${trip.length>25?' (first 25 stops)':''}.`}
  catch(e){b.textContent='ROUTE SERVICE BUSY, USE GOOGLE MAPS'}}
 function gpx(){if(window.KPCGPSW&&KPCGPSW.member()&&trip.length){KPCGPSW.tripFile(trip.map(s=>s.p==='PIN'||!s.c?{name:s.n,lat:s.la,lon:s.lo}:{ref:s.c})).catch(()=>{});return}   /* Nov 1: members get the full GPS file (notice, parking, outlines) */
@@ -606,7 +610,8 @@ function shareUrl(){const t=trip.map(s=>s.p==='PIN'?`pin:${s.la},${s.lo},${encod
 async function share(){const u=shareUrl(),b=$('t-share');try{if(navigator.share){await navigator.share({title:'KPC trip',url:u});return}}catch(e){}
  try{await navigator.clipboard.writeText(u);b.textContent='LINK COPIED';setTimeout(()=>b.textContent='SHARE LINK',2500)}catch(e){prompt('Copy this link:',u)}}
 function loadShared(){const t=new URLSearchParams(location.search).get('t');if(!t)return false;const out=[];
- t.split('~').forEach(x=>{if(/^live:/.test(x)){const[c,la,lo,...n]=x.slice(5).split(',');if(isFinite(+la)&&isFinite(+lo)){const s=BYREF[c.toUpperCase()]||{p:'POTA',c:c.toUpperCase(),n:decodeURIComponent(n.join(','))||c,la:+la,lo:+lo,url:'',live:true};if(!BYREF[s.c]){ALL.push(s);BYREF[s.c]=s}out.push({p:'POTA',c:s.c,n:s.n,la:s.la,lo:s.lo,url:'',live:true})}}else if(/^pin:/.test(x)){const[la,lo,...n]=x.slice(4).split(',');if(isFinite(+la)&&isFinite(+lo))out.push({p:'PIN',c:'PIN-'+out.length+Date.now().toString(36),n:decodeURIComponent(n.join(','))||'Pin',la:+la,lo:+lo})}else{const s=BYREF[x.toUpperCase()];if(s)out.push({p:s.p,c:s.c,n:s.n,la:s.la,lo:s.lo,url:s.url})}});
+ const dec=v=>{try{return decodeURIComponent(v).slice(0,60)}catch(e){return ''}};   /* Nov 11: a broken %-code in a shared link no longer stops the whole page */
+ t.split('~').forEach(x=>{if(/^live:/.test(x)){const[c,la,lo,...n]=x.slice(5).split(',');if(/^[A-Z0-9]{1,4}-\d{1,6}$/i.test(c||'')&&isFinite(+la)&&isFinite(+lo)){const s=BYREF[c.toUpperCase()]||{p:'POTA',c:c.toUpperCase(),n:dec(n.join(','))||c,la:+la,lo:+lo,url:'',live:true};if(!BYREF[s.c]){ALL.push(s);BYREF[s.c]=s}out.push({p:'POTA',c:s.c,n:s.n,la:s.la,lo:s.lo,url:'',live:true})}}else if(/^pin:/.test(x)){const[la,lo,...n]=x.slice(4).split(',');if(isFinite(+la)&&isFinite(+lo))out.push({p:'PIN',c:'PIN-'+out.length+Date.now().toString(36),n:dec(n.join(','))||'Pin',la:+la,lo:+lo})}else{const s=BYREF[x.toUpperCase()];if(s)out.push({p:s.p,c:s.c,n:s.n,la:s.la,lo:s.lo,url:s.url})}});
  if(out.length){trip=out;saveTrip();return true}return false}
 
 /* ---------- wire up ---------- */

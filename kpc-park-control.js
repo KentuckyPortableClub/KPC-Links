@@ -7,6 +7,7 @@
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const get = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const webU = u => /^https?:\/\//i.test(String(u || '')) ? u : '';   /* Nov 11: a park's links from the data file open only as web pages (never javascript: / data:) */
   const iOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
   const dirUrl = (la, lo) => iOS ? `https://maps.apple.com/?daddr=${la},${lo}` : `https://www.google.com/maps/dir/?api=1&destination=${la},${lo}`;
   const COL = { pota: '#2e9e52', kff: '#1aa6a0', sota: '#e07a1c' };
@@ -61,7 +62,7 @@
     if (SHOW.trails) trails();
     for (const x of ALL) { const k = kindOf(x);
       const m = L.circleMarker([x.la, x.lo], { radius: k === 'sota' ? 5 : 6.5, bubblingMouseEvents: false, color: '#fff', weight: 1.4, fillColor: COL[k], fillOpacity: .92 });
-      m.bindTooltip(`${x.c} · ${x.n}`); m.on('click', () => pick(x, false)); m.addTo(LAY[k]); x.m = m; }
+      m.bindTooltip(`${esc(x.c)} · ${esc(x.n)}`); m.on('click', () => pick(x, false)); m.addTo(LAY[k]); x.m = m; }
     count(); chips(); mineInit();
     const lb = $('pcPad'); if (lb) { if (!PAD) lb.hidden = true; else { const sync = () => { const on = map.hasLayer(PAD.layer); lb.classList.toggle('on', on); lb.setAttribute('aria-pressed', on); };
       lb.onclick = () => { const on = !map.hasLayer(PAD.layer); if (on) PAD.layer.addTo(map); else map.removeLayer(PAD.layer); put('kpcPcPad2', on ? 1 : 0); sync(); };
@@ -115,7 +116,7 @@
       Object.values(tp || {}).forEach(v => { if (v && v.ref) TP[v.ref] = v; });
       G.forEach((g, i) => { const t = TR[i]; if (!g) return; const ls = kyLines(g); if (!ls.length) return; const x = byRef(t.ref), nm = (x ? x.n : t.ref) + (t.lab ? ' · ' + t.lab : '');
         const lay = L.layerGroup([L.polyline(ls, { color: '#111', weight: 7, opacity: .55, interactive: false }), L.polyline(ls, { color: t.col, weight: 4, opacity: .95, dashArray: t.dash || null, bubblingMouseEvents: false })]);
-        lay.eachLayer(p => { if (p.options.interactive !== false) { p.bindTooltip(`🥾 ${t.ref} · ${nm}`, { sticky: true }); p.on('click', () => { const y = byRef(t.ref); if (y) pick(y); }); } });
+        lay.eachLayer(p => { if (p.options.interactive !== false) { p.bindTooltip(`🥾 ${esc(t.ref)} · ${esc(nm)}`, { sticky: true }); p.on('click', () => { const y = byRef(t.ref); if (y) pick(y); }); } });
         lay.addTo(LAY.trails); (TL[t.ref] = TL[t.ref] || []).push({ ls, t });
         /* a trail park whose POTA pin is outside Kentucky (Lewis & Clark: Omaha) gets a pin on its Kentucky line */
         if (x && !inKY(x.lo, x.la) && !x.kyPin) { const mid = ls.reduce((a, b) => b.length > a.length ? b : a); const p = mid[Math.floor(mid.length / 2)]; x.la = p[0]; x.lo = p[1]; x.kyPin = 1; if (x.m) x.m.setLatLng(p); } });
@@ -179,7 +180,7 @@
     $('pcInfo').innerHTML = `<div class="pc-k">${lab}</div><h3>${esc(x.n)}</h3>
       ${window.KPCMine && k !== 'kff' ? `<div class="pc-mineb">${KPCMine.badge(x.c)}</div>` : ''}<div class="pc-meta"><span class="pc-ref">${esc(x.c)}</span>${x.co ? ' · ' + (/^multiple$/i.test(x.co) ? 'Several counties' : esc(x.co) + (/\//.test(x.co) ? ' Counties' : ' County')) : ''}${x.t ? ' · ' + esc(x.t) : ''}${x.ft ? ' · ' + Number(x.ft).toLocaleString() + ' ft' + (x.pts ? ' · ' + x.pts + ' pts' : '') : ''}</div>
       <div class="pc-acts"><a class="gold" href="${dirUrl(x.la, x.lo)}" target="_blank" rel="noopener">🚗 DIRECTIONS</a><button type="button" id="pcAdd">${TRIP.some(t => t.c === x.c) ? '✓ ON MY TRIP' : '+ ADD TO MY TRIP'}</button>
-      ${park && park.web ? `<a href="${esc(park.web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>` : ''}${park && park.off ? `<a href="${esc(park.off)}" target="_blank" rel="noopener">OFFICIAL MAP ↗</a>` : ''}${park && park.camp ? `<a href="${esc(park.camp)}" target="_blank" rel="noopener">CAMPING ↗</a>` : ''}
+      ${park && webU(park.web) ? `<a href="${esc(park.web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>` : ''}${park && webU(park.off) ? `<a href="${esc(park.off)}" target="_blank" rel="noopener">OFFICIAL MAP ↗</a>` : ''}${park && webU(park.camp) ? `<a href="${esc(park.camp)}" target="_blank" rel="noopener">CAMPING ↗</a>` : ''}
       <a href="${page}" target="_blank" rel="noopener">${k === 'pota' ? 'POTA' : k === 'kff' ? 'WWFF' : 'SOTLAS'} PAGE ↗</a>
       <a href="kpc-park-notes.html#${encodeURIComponent(tipsRef)}">📝 PARK TIPS${tips ? ' (' + tips + ')' : ''}</a>${cg ? `<a href="kpc-campgrounds.html#park-${esc(park.c)}">⛺ PLACES TO STAY</a>` : ''}</div>
       ${also.length ? `<div class="pc-k" style="margin-top:8px">ALSO HERE</div><ul class="pc-list">${also.map(a => `<li><a href="?ref=${encodeURIComponent(a[0])}" data-ref="${esc(a[0])}">${esc(a[0])}</a> ${esc(a[1])} <span class="pc-tag">${esc(a[2])}</span></li>`).join('')}</ul>` : ''}${gSoon && !tline ? `${also.length ? '' : '<div class="pc-k" style="margin-top:8px">ALSO HERE</div>'}<p class="pc-note">${SOON}</p>` : ''}
@@ -238,7 +239,7 @@
     if (cg && cg.parks) cg.parks.forEach(p => { const n = (p.campgrounds || []).length + (p.lodging || []).length; if (p.pota && n) CG[p.pota] = n; });
     if (pn && pn.notes) pn.notes.forEach(n => { NOTES[n.ref] = (NOTES[n.ref] || 0) + 1; });
     const go = () => { if (!window.L) { setTimeout(go, 200); return; } init(); trip();
-      const P = new URLSearchParams(location.search), r = P.get('ref') || decodeURIComponent(location.hash.slice(1));
+      const P = new URLSearchParams(location.search), r = P.get('ref') || (() => { const h = location.hash.slice(1); try { return decodeURIComponent(h); } catch (e) { return h; } })();   /* Nov 11: a broken %-code no longer stops the page */
       const x = r && byRef(r.trim()); if (x) pick(x); };
     go();
   }).catch(() => { $('pcInfo').innerHTML = '<p class="pc-empty">The Kentucky park list did not load. Check your signal and reload.</p>'; });

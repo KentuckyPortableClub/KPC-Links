@@ -112,7 +112,7 @@ if(window.L){
 const rad=n=>n*Math.PI/180;
 function miles(a,b,c,d){const dl=rad(c-a),dn=rad(d-b),h=Math.sin(dl/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(dn/2)**2;return 3958.7613*2*Math.asin(Math.min(1,Math.sqrt(h)))}
 function node(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
-function link(label,url){const a=node('a','',label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a}
+function link(label,url){const a=node('a','',label);const sc=/^\s*([a-z][a-z0-9+.-]*):/i.exec(String(url||''));if(!sc||/^https?$/i.test(sc[1]))a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a}   /* Nov 11: links from the data files open only as web pages or site pages (a javascript: / data: address gets no href) */
 
 /* KPC additions: Kentucky guide data (county, park type), Maidenhead grid, shortcuts, remembered search */
 let kyGuide=new Map();fetch('kpc-ky-data.json').then(r=>r.ok?r.json():null).then(j=>{if(!j)return;for(const p of j.parks||[])kyGuide.set(p.c,p);for(const p of j.summits||[])kyGuide.set(p.c,p);for(const p of j.kff||[])kyGuide.set(p.c,p);if(data.length)render()}).catch(()=>{});
@@ -290,14 +290,15 @@ function flashTab(k){const b=$('ftab-'+k);if(!b||fTab===k)return;b.classList.rem
 function fHdr(){const h=document.querySelector('header.site-nav'),v=h&&getComputedStyle(h).position==='sticky'?Math.round(h.getBoundingClientRect().height):0;document.documentElement.style.setProperty('--fp-hdr',v+'px');return v}
 function goNear(){setTab('near');const aim=()=>{const t=$('fp-tabwrap');if(!t)return false;const r=t.getBoundingClientRect(),h=fHdr();if(r.top<h-2||r.top>innerHeight*.5){scrollTo({top:Math.max(0,scrollY+r.top-h-8),behavior:'auto'});return true}return false};
  if(aim())setTimeout(aim,350)}   /* a finished search: show the list; once more after the map/list have settled (they move the page a little) */
-function fTabFromHash(){const h=decodeURIComponent((location.hash||'').slice(1));if(!h)return null;if(FHASH[h.toLowerCase()])return FHASH[h.toLowerCase()];const e=document.getElementById(h),p=e&&e.closest('[data-fpanel]');return p?p.dataset.fpanel:null}
+const fHash=()=>{const h=(location.hash||'').slice(1);try{return decodeURIComponent(h)}catch(e){return h}};   /* Nov 11: a broken %-code in the address no longer stops the page */
+function fTabFromHash(){const h=fHash();if(!h)return null;if(FHASH[h.toLowerCase()])return FHASH[h.toLowerCase()];const e=document.getElementById(h),p=e&&e.closest('[data-fpanel]');return p?p.dataset.fpanel:null}
 function fArrows(list,pick){list.addEventListener('keydown',e=>{const k=e.key;if(!['ArrowLeft','ArrowRight','Home','End'].includes(k))return;
  const b=[...list.querySelectorAll('[role=tab]')],i=b.indexOf(document.activeElement);if(i<0)return;e.preventDefault();
  const j=k==='Home'?0:k==='End'?b.length-1:(i+(k==='ArrowRight'?1:-1)+b.length)%b.length;b[j].focus();pick(b[j])})}
 $('fp-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-ftab]');if(b)setTab(b.dataset.ftab)});
 fArrows($('fp-tabs'),b=>setTab(b.dataset.ftab));
 addEventListener('hashchange',()=>{const t=fTabFromHash();if(t)setTab(t,{nosave:true})});
-addEventListener('resize',fHdr);addEventListener('load',()=>{fHdr();const t=fTabFromHash();if(t){setTab(t,{nosave:true});const e=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(e&&e.closest('[data-fpanel]'))setTimeout(()=>e.scrollIntoView({block:'start'}),50)}});
+addEventListener('resize',fHdr);addEventListener('load',()=>{fHdr();const t=fTabFromHash();if(t){setTab(t,{nosave:true});const e=document.getElementById(fHash());if(e&&e.closest('[data-fpanel]'))setTimeout(()=>e.scrollIntoView({block:'start'}),50)}});
 {let t=fTabFromHash(),own=false;if(!t&&new URLSearchParams(location.search).get('rove')){t='trip';own=true}if(!t){try{t=localStorage.getItem('kpcCmdTab')}catch(_){}}setTab(t||'where',{nosave:!!(fTabFromHash()||own)});fHdr()}
 
 /* Jump links: land the section just under the sticky navbar, and re-aim if the page grows while scrolling (v20261010a) */

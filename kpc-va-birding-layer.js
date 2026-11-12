@@ -18,7 +18,7 @@
         const d = await ((window.KPC && KPC.dataUrl) ? KPC.dataUrl(u) : fetch(u)).then(r => r.json());
         (d.pts || []).forEach(p => {
           const m = L.circleMarker([p[1], p[0]], { pane: 'kpcVaBird', radius: 5, color: '#1b1b1b', weight: 1.5, fillColor: '#9be564', fillOpacity: .95 });
-          m.bindPopup(pop(p), { maxWidth: 300 }); m.bindTooltip(p[3] + ' · VA birding trail site'); g.addLayer(m);
+          m.bindPopup(pop(p), { maxWidth: 300 }); m.bindTooltip(esc(p[3]) + ' · VA birding trail site'); g.addLayer(m);
         });
         done = true;
       } catch (e) { /* no signal: try again next time it is turned on */ } finally { busy = false; }
