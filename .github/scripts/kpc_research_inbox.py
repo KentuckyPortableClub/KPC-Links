@@ -658,7 +658,7 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False, 
     for r, v in sorted((nal.get('brandon_flip') or {}).items()):
         if is_skipped(r, ledger): continue   # solved parks are not put on the owner short list again (a pending owner decision stays on it)
         e = v.get('earlier_no') or {}
-        BL.append(f"- **{r}** {v['row'].get('park_name', '')}: found record {v.get('record_id')} \"{v.get('record_name')}\". You said before ({e.get('date') or 'no date'}): {e.get('decision')}.")
+        BL.append(f"- **{r}** {(v.get('row') or {}).get('park_name', '')}: found record {v.get('record_id')} \"{v.get('record_name')}\". You said before ({e.get('date') or 'no date'}): {e.get('decision')}.")
     seen = set()
     for rf in sorted((inbox / 'results').glob('*.json')):
         try: res = json.load(open(rf, encoding='utf-8')).get('rows') or []
