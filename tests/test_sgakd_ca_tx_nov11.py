@@ -1,5 +1,6 @@
-"""PROPOSAL check (KPC owner, 2026-11-11): the NPS admin boundary layer (sgakd, saved copy only) wired for CA and TX in
-data/state-gis.json, so the existing overrides for US-0754 (sgakd1159, RORI), US-0915 (sgakd1220, CECH) and US-11900
+"""Owner-accepted wiring (KPC owner, 2026-11-11; OWNER-ANSWERS-nov11.md item 4, owner chat 2026-11-11 21:16 CT):
+keep the NPS admin boundary layer (sgakd, saved copy only) wired for CA and TX in data/state-gis.json, and add
+Cesar E. Chavez (CECH, US-0915). The existing overrides for US-0754 (sgakd1159, RORI), US-0915 (sgakd1220, CECH) and US-11900
 (sgakd1245, BLSC) can take effect once the owner's checked hand files are merged into the saved copies. Offline: sockets are
 refused here and in the build it runs.
 

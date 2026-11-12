@@ -1,5 +1,5 @@
 {
- "about": "Job 2 (Nov 11 2026): the 17 strong Nov 11 mystery-park matches and the 3 old pins, one row each. NOTHING in this file is read by a key builder: it is the checked record of what each park needs. status: joined-live = the live key already joins the Nov 11 record (pin-tested here from the saved outline); wiring-proposal = the override is already in the live overrides and needs only the layer wired (separate proposal commit); staged = a ready-to-apply entry, kept OUT of the live key until the listed saved copy exists and/or the owner says YES; held = an owner hold that this job does not lift; not-joined = checked and left off, with the reason. Entries for data/us-key/overrides.json are written in the repo's own held form (join_held / alias_held, which no builder reads); to apply one, move its ids / names to join / alias (+ alias_ok_names) and add decided_by. data/us-key/overrides.json is already over 1 MB, so this job did not edit it. Pins: the POTA pins are copied here only to test them; no pin is changed anywhere. Owner answers 2026-11-11: YES on US-10184, US-10195 and US-7374 (those US overrides wait for prep/nov11-split-overrides); US-13474, US-11820 and US-12735 stay held; FR-14979 owner no is applied in world-key/overrides.json.",
+ "about": "Job 2 (Nov 11 2026): the 17 strong Nov 11 mystery-park matches and the 3 old pins, one row each. NOTHING in this file is read by a key builder: it is the checked record of what each park needs. status: joined-live = the live key already joins the Nov 11 record (pin-tested here from the saved outline); wiring-proposal = the override is already in the live overrides and needs only the layer wired (separate proposal commit); staged = a ready-to-apply entry, kept OUT of the live key until the listed saved copy exists and/or the owner says YES; held = an owner hold that this job does not lift; not-joined = checked and left off, with the reason. Entries for data/us-key/overrides.json are written in the repo's own held form (join_held / alias_held, which no builder reads); to apply one, move its ids / names to join / alias (+ alias_ok_names) and add decided_by. data/us-key/overrides.json is already over 1 MB, so this job did not edit it. Pins: the POTA pins are copied here only to test them; no pin is changed anywhere. Owner answers 2026-11-11: YES on US-10184, US-10195 and US-7374 (those US overrides wait for prep/nov11-split-overrides); US-13474, US-11820 and US-12735 stay held; FR-14979 owner no is applied in world-key/overrides.json. Recorded owner answers (owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md): item 2 applies the FR-14979 no; item 4 keeps the CA/TX sgakd wiring and adds CECH (US-0915); item 6 is the YES aliases and the Kyle Ranch hold; item 1 keeps US-11820 and US-12735 held; item 7 leaves Palmito off.",
  "made": "2026-11-11",
  "base": {
   "links": "11f908d9dc05c1f2730168751ce4e97436d64a54",
@@ -541,14 +541,15 @@
       "znieff2.828"
      ],
      "when": "2026-11-11",
-     "why": "2026-11-11: the pin is 13.2 km from this 8,700 ha valley zone; exact name but not shown to be the park. Owner no: the live join comes off on the next world key run.",
+     "why": "2026-11-11: the pin is 13.2 km from this 8,700 ha valley zone; exact name but not shown to be the park. Owner no: the live join comes off on the next world key run. Owner answer: owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 2.",
      "decided_by": "KPC owner 2026-11-11"
     }
    },
    "needs": [],
-   "reason": "Owner no, 2026-11-11: applied the staged no for znieff2.828 in data/world-key/overrides.json (not a rules file; no hash moves). The live world key file FR.json still shows the join until the next world key run, which will drop it. Looked at the saved outline: an 8,700 ha type-2 valley zone (box 3.857-4.166 E, 47.330-47.494 N); the pin is 9 km north of its box and 13.2 km from its edge, nowhere near the valley. Exact name, but not clearly the park by place, so by the brief's default this job does NOT join it. NOTE: the live world key ALREADY joins it by name (shown as an outline); this job did not remove it. Owner's call: keep it (house rule G-1: an exact-name agency record joins at any distance, pin may be wrong) or apply the staged \"no\".",
+   "reason": "Owner no, 2026-11-11: applied the staged no for znieff2.828 in data/world-key/overrides.json (not a rules file; no hash moves). The live world key file FR.json still shows the join until the next world key run, which will drop it. Looked at the saved outline: an 8,700 ha type-2 valley zone (box 3.857-4.166 E, 47.330-47.494 N); the pin is 9 km north of its box and 13.2 km from its edge, nowhere near the valley. Exact name, but not clearly the park by place, so by the brief's default this job does NOT join it. NOTE: the live world key ALREADY joins it by name (shown as an outline); this job did not remove it. Answered (OWNER-ANSWERS-nov11.md item 2, owner chat 2026-11-11 21:16 CT): take it off the live key; the staged no is applied.",
    "owner_decision": "no",
-   "owner_decision_when": "2026-11-11"
+   "owner_decision_when": "2026-11-11",
+   "owner_answer": "owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 2"
   },
   "RO-0880": {
    "ref": "RO-0880",
@@ -889,7 +890,7 @@
    "entry": {
     "file": "data/us-key/overrides.json",
     "live": "already there: join sgakd1159, fp 149 ac, decided_by set (Nov 9)",
-    "wiring": "data/state-gis.json CA row for the NPS LRD layer (separate proposal commit)"
+    "wiring": "data/state-gis.json CA row for the NPS LRD layer (accepted, OWNER-ANSWERS-nov11.md item 4)"
    },
    "needs": [
     {
@@ -903,7 +904,8 @@
      "saved_copy_checked": "KPC-Data hand copy holds it (gdb_fid 285)"
     }
    ],
-   "reason": "Never took effect because data/state-gis.json lists the NPS LRD layer (sgakd) only for AK CO HI MA NE NY OH PA RI SD, so the CA key never has the layer, the master step refuses a CA sgakd hand file, and the CA saved copy never gets record 1159. Offline mini-build with the record in the CA saved copy: US-0754 grades official (reviewed, 0.01 km)."
+   "reason": "Never took effect because data/state-gis.json lists the NPS LRD layer (sgakd) only for AK CO HI MA NE NY OH PA RI SD, so the CA key never has the layer, the master step refuses a CA sgakd hand file, and the CA saved copy never gets record 1159. Offline mini-build with the record in the CA saved copy: US-0754 grades official (reviewed, 0.01 km). Owner answer: keep the CA wiring (saved copies only); owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4.",
+   "owner_answer": "owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4"
   },
   "US-11900": {
    "ref": "US-11900",
@@ -937,7 +939,7 @@
    "entry": {
     "file": "data/us-key/overrides.json",
     "live": "already there: join sgakd1245, fp 1 ac, decided_by set (Nov 9)",
-    "wiring": "data/state-gis.json TX row for the NPS LRD layer (separate proposal commit)"
+    "wiring": "data/state-gis.json TX row for the NPS LRD layer (accepted, OWNER-ANSWERS-nov11.md item 4)"
    },
    "needs": [
     {
@@ -951,7 +953,8 @@
      "saved_copy_checked": "KPC-Data hand copy holds it (gdb_fid 371)"
     }
    ],
-   "reason": "Same cause as US-0754. POTA says National Park, NPS says National Historic Site: only POTA's label differs. Offline mini-build: official (reviewed, 0.01 km)."
+   "reason": "Same cause as US-0754. POTA says National Park, NPS says National Historic Site: only POTA's label differs. Offline mini-build: official (reviewed, 0.01 km). Owner answer: keep the TX wiring (saved copies only); owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4.",
+   "owner_answer": "owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4"
   }
  },
  "counts": {
