@@ -215,18 +215,30 @@ jobs:
       - name: BUILD STAMP (Brandon Nov 2) - this build's id, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when the whole key built)
         if: ${{ env.SKIP != '1' && env.CA_KEPT != '1' }}
         id: ca_stamp   # Nov 12 (KPC owner, 2026-11-12; Quality #162): Save needs this step green (an unstamped key is not saved), as US and world
+        env:
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12 (Quality #163): shadow (default) = stamp-rows writes nothing to the key
         run: |
           # Canada always builds the whole key: it is FULL unless the build stopped early or the gate failed
           if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then export KPC_FULL_BUILD=1; fi
           python3 .github/scripts/kpc_key_freeze.py stamp ca-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc): nothing is saved"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
           # Nov 12 (part B): every province was rebuilt (one job): each row records its area hash, parts, out_sha, built_sha
-          python3 .github/scripts/kpc_area_hash.py stamp-rows ca --index data/ca-key/index.json --saved "$(python3 -c "import json; print(' '.join(sorted(json.load(open('data/ca-key/index.json')).get('provinces') or {})))")" \
+          # Nov 12 (KPC owner, 2026-11-12; Quality #163): SHADOW WRITES NOTHING: unless KPC_AREA_HASH is add / reuse, the stamp rows go to
+          # $RUNNER_TEMP/area-stamp-shadow/ (uploaded as an artifact) and the job summary; index.json is left byte for byte
+          python3 .github/scripts/kpc_area_hash.py stamp-rows ca --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/ca.json" --index data/ca-key/index.json --saved "$(python3 -c "import json; print(' '.join(sorted(json.load(open('data/ca-key/index.json')).get('provinces') or {})))")" \
             --plan "$RUNNER_TEMP/area-plan.json" --built-sha "$(git rev-parse HEAD)" || { kpc_rc=$?; echo "::warning title=Area hashes::the rows were not given their area hash: planned again next run (exit $kpc_rc)"; echo "Area hashes - the rows were not given their area hash: planned again next run (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Whole-key sanity check (Nov 12, part B; read only, reported)
         if: ${{ env.SKIP != '1' && env.CA_KEPT != '1' }}
         id: kept_green_sanity
         continue-on-error: true
         run: python3 .github/scripts/kpc_area_hash.py sanity ca
+      - name: Area hashes, shadow record (Nov 12, KPC owner, 2026-11-12) - what the stamp WOULD record, as an artifact (never committed)
+        if: ${{ !cancelled() && env.SKIP != '1' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: area-stamp-shadow-ca
+          path: ${{ runner.temp }}/area-stamp-shadow/
+          if-no-files-found: ignore
+          retention-days: 30
       - name: Save
         if: ${{ !cancelled() && env.SKIP != '1' && steps.keep_rows.outcome != 'failure' && steps.ca_stamp.outcome != 'failure' }}   # Nov 12 (KPC owner, 2026-11-11): a cancel mid-build saves nothing (was always()); Nov 12 (2026-11-12): nor a failed stamp
         # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files, deletions too); red ONLY when the save failed.

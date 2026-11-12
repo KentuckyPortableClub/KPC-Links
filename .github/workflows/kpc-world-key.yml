@@ -481,6 +481,7 @@ jobs:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
           AREA_PLAN: ${{ needs.plan.outputs.area_plan }}
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12 (Quality #163): shadow (default) = stamp-rows writes nothing to the key
         run: |
           export KPC_PLANNED_AREAS="$(python3 -c "import json; print(' '.join(json.load(open('/tmp/world-join.json')).get('joined') or []))")"
           export KPC_ASKED_AREAS="$(python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS" | tr '\n' ' ')"
@@ -489,7 +490,9 @@ jobs:
           # plan's commit); areas_rebuilt / areas_reused at the top for Quality. Kept rows are not touched.
           printf '%s' "$AREA_PLAN" > "$RUNNER_TEMP/area-plan.json"
           BS=$(cat parts/world-key-part-*/built-sha.txt 2>/dev/null | sort -u); [ "$(printf '%s\n' "$BS" | grep -c .)" = 1 ] || BS=mixed
-          python3 .github/scripts/kpc_area_hash.py stamp-rows world --index data/world-key/index.json --saved "$KPC_PLANNED_AREAS" --plan "$RUNNER_TEMP/area-plan.json" --built-sha "$BS" \
+          # Nov 12 (KPC owner, 2026-11-12; Quality #163): SHADOW WRITES NOTHING: unless KPC_AREA_HASH is add / reuse, the stamp rows go to
+          # $RUNNER_TEMP/area-stamp-shadow/ (uploaded as an artifact) and the job summary; index.json is left byte for byte
+          python3 .github/scripts/kpc_area_hash.py stamp-rows world --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/world.json" --index data/world-key/index.json --saved "$KPC_PLANNED_AREAS" --plan "$RUNNER_TEMP/area-plan.json" --built-sha "$BS" \
             || { kpc_rc=$?; echo "::warning title=Area hashes::the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)"; echo "Area hashes - the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Kept from main, checked again just before the save (Nov 12, KPC owner, 2026-11-12; fail closed)
         id: kept_check
@@ -500,6 +503,14 @@ jobs:
         continue-on-error: true
         if: ${{ !cancelled() && steps.join_verdict.outcome == 'success' && steps.tonight.outputs.built != '0' }}
         run: python3 .github/scripts/kpc_area_hash.py sanity world
+      - name: Area hashes, shadow record (Nov 12, KPC owner, 2026-11-12) - what the stamp WOULD record, as an artifact (never committed)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: area-stamp-shadow-world
+          path: ${{ runner.temp }}/area-stamp-shadow/
+          if-no-files-found: ignore
+          retention-days: 30
       - name: Save
         # Nov 11 (KPC owner, 2026-11-11): only after the join itself finished (a join that stopped part way leaves no 'built' and saves nothing)
         # Nov 12 (KPC owner, 2026-11-11): never on a cancel (a cancel mid-join skips this step: nothing half-written is committed)

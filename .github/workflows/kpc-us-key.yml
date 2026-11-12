@@ -636,6 +636,7 @@ jobs:
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12 (Quality #163): shadow (default) = stamp-rows writes nothing to the key
         run: |
           : > /tmp/kpc-build-failed.txt
           # Owner rule, 2026-11-10: a planned state whose group sent no part (or no states.txt) was never built: named failed
@@ -657,12 +658,22 @@ jobs:
           export KPC_STAMPED_SAVED="$(echo "$KPC_PLANNED_AREAS" | tr ' ' '\n' | grep -vxF -f /tmp/kpc-build-failed.txt | tr '\n' ' ')"
           python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { echo "::error title=kpc_key_freeze.py::the stamp stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py stamp - stopped with an error (exit $rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
           # Nov 12 (part B): each SAVED state's row records its area hash, parts, out_sha and built_sha from its own part (kept rows untouched)
-          python3 .github/scripts/kpc_area_hash.py stamp-rows us --index data/us-key/index.json --saved "$KPC_STAMPED_SAVED" $(for d in parts/us-key-part-*; do printf -- '--part %s ' "$d"; done) \
+          # Nov 12 (KPC owner, 2026-11-12; Quality #163): SHADOW WRITES NOTHING: unless KPC_AREA_HASH is add / reuse, the stamp rows go to
+          # $RUNNER_TEMP/area-stamp-shadow/ (uploaded as an artifact) and the job summary; index.json is left byte for byte
+          python3 .github/scripts/kpc_area_hash.py stamp-rows us --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/us.json" --index data/us-key/index.json --saved "$KPC_STAMPED_SAVED" $(for d in parts/us-key-part-*; do printf -- '--part %s ' "$d"; done) \
             || { kpc_rc=$?; echo "::warning title=Area hashes::the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)"; echo "Area hashes - the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Whole-key sanity check (Nov 12, part B; read only, reported) - rows vs files, out_sha, no key-wide claim beyond the rows
         id: kept_green_sanity
         continue-on-error: true
         run: python3 .github/scripts/kpc_area_hash.py sanity us
+      - name: Area hashes, shadow record (Nov 12, KPC owner, 2026-11-12) - what the stamp WOULD record, as an artifact (never committed)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: area-stamp-shadow-us
+          path: ${{ runner.temp }}/area-stamp-shadow/
+          if-no-files-found: ignore
+          retention-days: 30
       - name: BOT C line for chat 11 (HQ Oct 30) - this build vs the LIVE key, one line in its inbox
         id: kept_green_3
         continue-on-error: true

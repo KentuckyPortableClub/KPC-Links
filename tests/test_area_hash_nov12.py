@@ -321,6 +321,56 @@ with tempfile.TemporaryDirectory() as td:
     (R / 'data/world-key/index.json').write_text(json.dumps(ix))
     check('B sanity: a key-wide hash that claims more than its rows (complete, rows on another hash) fails (check 4)', any(b.startswith('4 ') for b in K.sanity(R, 'world')))
 
+# Quality #163 must-fix: SHADOW WRITES NOTHING. stamp-rows in shadow mode (no --mode and KPC_AREA_HASH unset, 'shadow', or an unknown
+# word) leaves index.json byte for byte and writes what it would stamp to --shadow-out and the job summary; only add / reuse write the rows.
+def mk_stamp_key(td):
+    R = pathlib.Path(td) / 'k'; (R / 'data/world-key').mkdir(parents=True)
+    for a in ('FR', 'DE'): (R / f'data/world-key/{a}.json').write_text('{"parks":{}}')
+    (R / 'data/world-key/index.json').write_text(json.dumps({'countries': {'FR': {'parks': 1, 'rules': CUR}, 'DE': {'parks': 2}}, 'rules': OLD, 'complete': False}, indent=2) + '\n')
+    (R / 'plan.json').write_text(json.dumps({'plan_sha': 'abc', 'hashes': {'FR': '111111111111', 'DE': '222222222222'}, 'parts': {'FR': {'data:x': '1'}, 'DE': {'data:x': '2'}}, 'reused': []}))
+    return R
+
+
+def stamp_cli(R, mode_args, env_mode=None, extra=()):
+    env = {k: v for k, v in os.environ.items() if k != 'KPC_AREA_HASH'}
+    if env_mode is not None: env['KPC_AREA_HASH'] = env_mode
+    env['GITHUB_STEP_SUMMARY'] = str(R / 'summary.md')
+    return subprocess.run([sys.executable, '-B', str(ROOT / '.github/scripts/kpc_area_hash.py'), 'stamp-rows', 'world', *mode_args, '--repo', str(R),
+                           '--index', str(R / 'data/world-key/index.json'), '--saved', 'FR', '--built-sha', 'abc', '--shadow-out', str(R / 'tmp/area-stamp-shadow/world.json'), *extra],
+                          capture_output=True, text=True, env=env)
+
+
+for label, margs, emode in (('no --mode, KPC_AREA_HASH unset', [], None), ('--mode shadow', ['--mode', 'shadow'], None),
+                            ("KPC_AREA_HASH='shadow'", [], 'shadow'), ("an unknown mode ('bogus')", ['--mode', 'bogus'], None)):
+    with tempfile.TemporaryDirectory() as td:
+        R = mk_stamp_key(td); before = (R / 'data/world-key/index.json').read_bytes()
+        r = stamp_cli(R, margs, emode, ['--plan', str(R / 'plan.json')])
+        rec = json.loads((R / 'tmp/area-stamp-shadow/world.json').read_text()) if (R / 'tmp/area-stamp-shadow/world.json').exists() else {}
+        check(f'B shadow ({label}): stamp-rows leaves index.json byte for byte', r.returncode == 0 and (R / 'data/world-key/index.json').read_bytes() == before)
+        check(f'B shadow ({label}): what it would stamp is in --shadow-out (FR area_hash, out_sha, built_sha; areas_rebuilt) and the job summary',
+              rec.get('mode') == 'shadow' and rec.get('written_to_index') is False and rec['rows']['FR']['area_hash'] == '111111111111'
+              and rec['rows']['FR']['out_sha'] == K.sha_file(R / 'data/world-key/FR.json') and rec['rows']['FR']['built_sha'] == 'abc'
+              and rec['areas_rebuilt'] == ['FR'] and 'DE' not in rec['rows'] and 'nothing written' in (R / 'summary.md').read_text())
+with tempfile.TemporaryDirectory() as td:
+    R = mk_stamp_key(td); before = (R / 'data/world-key/index.json').read_bytes()
+    pd = R / 'parts/world-key-part-0'; pd.mkdir(parents=True); (pd / 'states.txt').write_text('FR DE\n'); (pd / 'built-sha.txt').write_text('abc\n')
+    (pd / 'area-plan.json').write_text((R / 'plan.json').read_text())
+    r = stamp_cli(R, [], None, ['--part', str(pd)])
+    check('B shadow, per-part stamping (the US form, --part): index.json byte for byte, the record names FR',
+          r.returncode == 0 and (R / 'data/world-key/index.json').read_bytes() == before and json.loads((R / 'tmp/area-stamp-shadow/world.json').read_text())['rows']['FR']['area_hash'] == '111111111111')
+for m in ('add', 'reuse'):
+    with tempfile.TemporaryDirectory() as td:
+        R = mk_stamp_key(td)
+        r = stamp_cli(R, ['--mode', m], None, ['--plan', str(R / 'plan.json')])
+        ix = json.loads((R / 'data/world-key/index.json').read_text())
+        check(f'B mode {m}: stamp-rows writes the rows into index.json (FR area_hash, areas_rebuilt), no shadow record',
+              r.returncode == 0 and ix['countries']['FR'].get('area_hash') == '111111111111' and ix['areas_rebuilt'] == ['FR'] and ix['countries']['DE'] == {'parks': 2}
+              and not (R / 'tmp/area-stamp-shadow/world.json').exists())
+with tempfile.TemporaryDirectory() as td:
+    R = mk_stamp_key(td); before = (R / 'data/world-key/index.json').read_bytes()
+    stamp_cli(R, [], 'add', ['--plan', str(R / 'plan.json')])
+    check('B KPC_AREA_HASH=add in the environment (no --mode) writes the rows; the workflows always pass --mode "$AREA_MODE"', (R / 'data/world-key/index.json').read_bytes() != before)
+
 # the real checkout: plan in shadow mode changes nothing; the hashes do not move
 before_status = run('git', 'status', '--porcelain', '--untracked-files=all', cwd=ROOT).stdout
 for kind, lst in (('world', 'FR DE'), ('us', 'TN FL'), ('ca', '')):
@@ -341,6 +391,14 @@ for wf, kind, stampname in (('kpc-world-key.yml', 'world', 'stamp world-key'), (
           f'kpc_area_hash.py plan {kind}' in txt and "vars.KPC_AREA_HASH || 'shadow'" in txt)
     check(f'B {wf}: stamp-rows runs after the build stamp', txt.index(stampname) < txt.index(f'kpc_area_hash.py stamp-rows {kind}'))
     check(f'B {wf}: the whole-key sanity check runs (read only, kept green)', f'kpc_area_hash.py sanity {kind}' in txt)
+    calls = [st for j in W['jobs'].values() for st in j.get('steps', []) if f'kpc_area_hash.py stamp-rows {kind}' in str(st.get('run', ''))]
+    check(f'B {wf}: stamp-rows (one call) passes --mode "$AREA_MODE" (the KPC_AREA_HASH variable, default shadow) and a --shadow-out under $RUNNER_TEMP',
+          len(calls) == 1 and f'stamp-rows {kind} --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/{kind}.json"' in calls[0]['run']
+          and calls[0].get('env', {}).get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || 'shadow' }}"))
+    ups = [st for j in W['jobs'].values() for st in j.get('steps', []) if str(st.get('uses', '')).startswith('actions/upload-artifact')
+           and st.get('with', {}).get('name') == f'area-stamp-shadow-{kind}']
+    check(f'B {wf}: the shadow record is uploaded as an artifact (area-stamp-shadow-{kind}), never added to the key', len(ups) == 1
+          and ups[0]['with']['path'] == '${{ runner.temp }}/area-stamp-shadow/' and 'area-stamp-shadow' not in ' '.join(str(st.get('run', '')) for j in W['jobs'].values() for st in j.get('steps', []) if 'git add' in str(st.get('run', ''))))
 
 print('ALL PASSED' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

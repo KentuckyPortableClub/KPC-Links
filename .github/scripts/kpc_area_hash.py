@@ -5,7 +5,8 @@ tools/kpc_area_hash.py moved here). Scheme: out/nov12/AB/SHARED-SCHEME.md (one s
 Not a rule file (kpc_key_freeze.NOT_RULES): it never decides a join, it only decides WHICH areas a key run builds. Standard library only,
 no network. It never imports or writes a rule file: it reads files (from a checkout or with `git show` at a commit) and prints hashes.
 The key workflows call `plan` (which areas to build) and `stamp-rows` (record each saved area's hash); both are SHADOW by default:
-  KPC_AREA_HASH (repo variable)  shadow (default, also when unset) = compute and print the run table; the list is NOT changed
+  KPC_AREA_HASH (repo variable)  shadow (default, also when unset) = compute and print the run table; the list is NOT changed and
+                                 stamp-rows writes NOTHING to the key (its record goes to --shadow-out and the job summary)
                                  add    = rollout step 1 (D1): ADD every area whose inputs moved since its last build; nothing removed
                                  reuse  = step 3: also leave out an area whose inputs did not move (its main bytes are reused)
   input full_rebuild=yes         = every area of the list is built, reuse off (the 'force full rebuild')
@@ -1096,14 +1097,57 @@ def sanity(repo, kind, index=None):
     return bad
 
 
+STAMP_FIELDS = ('area_hash', 'area_parts', 'out_sha', 'built_sha')
+TOP_FIELDS = ('areas_rebuilt', 'areas_reused')
+
+
+def stamp_rows_cli(a, mode):
+    """stamp-rows for the workflows. add / reuse: the index rows are stamped in place. shadow: index.json is copied to a temp folder,
+    the copy is stamped, the copy's stamp fields are written to a.shadow_out (JSON) and the step summary, and the copy is removed;
+    a.index is never opened for writing (byte for byte as before)."""
+    import shutil, tempfile
+    kind, saved = a.args[0], a.saved.split()
+    def stamp(index):
+        if a.part: return stamp_rows_parts(a.repo, kind, index, saved, a.part)
+        try: plan = json.loads(pathlib.Path(a.plan).read_text(encoding='utf-8')) if a.plan else {}
+        except Exception: plan = {}  # noqa: BLE001
+        return stamp_rows(a.repo, kind, index, saved, plan, a.built_sha)
+    if mode != 'shadow':
+        done, same = stamp(a.index)
+        print(f"::notice title=Area hashes::mode {mode}: {len(done)} area row(s) carry their area hash" + ('' if same else ' (none: the build did not check out the commit the plan hashed, so no area hash is claimed)'), flush=True)
+        return 0
+    with tempfile.TemporaryDirectory() as td:
+        cp = pathlib.Path(td) / 'index.json'; shutil.copyfile(a.index, cp)
+        done, same = stamp(str(cp))
+        d = json.loads(cp.read_text(encoding='utf-8'))
+    rows = d.get(ROWS_KEY[kind]) or {}
+    rec = {'kind': kind, 'mode': 'shadow', 'index': str(a.index), 'written_to_index': False, 'built_sha': a.built_sha, 'plan_commit_matched': bool(same),
+           **{k: d.get(k) or [] for k in TOP_FIELDS},
+           'rows': {ar: {k: rows[ar][k] for k in STAMP_FIELDS if k in rows[ar]} for ar in sorted(saved) if isinstance(rows.get(ar), dict)}}
+    if a.shadow_out:
+        pathlib.Path(a.shadow_out).parent.mkdir(parents=True, exist_ok=True)
+        pathlib.Path(a.shadow_out).write_text(json.dumps(rec, indent=1, sort_keys=True, ensure_ascii=False) + '\n', encoding='utf-8')
+    dest = os.environ.get('GITHUB_STEP_SUMMARY')
+    if dest:
+        t = (f"**Area hashes ({kind}, mode shadow): nothing written to {a.index}**; {len(done)} saved area(s) would carry their area hash"
+             + ('' if same else ' (none: the build did not check out the commit the plan hashed)') + (f"; full record in the artifact ({pathlib.Path(a.shadow_out).name})" if a.shadow_out else '')
+             + '\n\n| area | area hash | out sha | built sha |\n|---|---|---|---|\n'
+             + ''.join(f"| {ar} | {r.get('area_hash', '-')} | {str(r.get('out_sha', '-'))[:12]} | {str(r.get('built_sha', '-'))[:12]} |\n" for ar, r in rec['rows'].items()))
+        open(dest, 'a', encoding='utf-8').write(t + '\n')
+    print(f"::notice title=Area hashes::mode shadow: nothing written to the key; {len(done)} saved area(s) would carry their area hash"
+          + (f" (record: {a.shadow_out})" if a.shadow_out else ''), flush=True)
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('cmd', choices=['hashes', 'table', 'diff', 'replay', 'holes', 'migrate', 'plan', 'stamp-rows', 'proof-check', 'sanity'])
     ap.add_argument('--list', default='', help='plan: the areas today\'s plan builds'); ap.add_argument('--index', default=None)
-    ap.add_argument('--mode', default=None, help='plan: shadow | add | reuse (default: the KPC_AREA_HASH variable, else shadow)')
+    ap.add_argument('--mode', default=None, help='plan / stamp-rows: shadow | add | reuse (default: the KPC_AREA_HASH variable, else shadow)')
     ap.add_argument('--full', default='', help='plan: yes = full rebuild asked (no reuse)'); ap.add_argument('--out', default=None)
     ap.add_argument('--plan', default=None, help='stamp-rows: the plan JSON'); ap.add_argument('--saved', default='')
     ap.add_argument('--part', action='append', default=[], help='stamp-rows (US): a build part with area-plan.json, built-sha.txt, states.txt')
+    ap.add_argument('--shadow-out', default=None, help='stamp-rows, shadow mode: write what would be stamped here (the index is not touched)')
     ap.add_argument('--built-sha', default=''); ap.add_argument('--from', dest='frm', default=''); ap.add_argument('--to', default='')
     ap.add_argument('args', nargs='*')
     ap.add_argument('--repo', default=str(REPO)); ap.add_argument('--data', default=None); ap.add_argument('--rev', default=None)
@@ -1165,13 +1209,12 @@ def main(argv=None):
         return 0
     if a.cmd == 'stamp-rows':
         if len(a.args) != 1 or a.args[0] not in ROWS_KEY: ap.error('stamp-rows us|ca|world'); return 2
-        if a.part: done, same = stamp_rows_parts(a.repo, a.args[0], a.index, a.saved.split(), a.part)
-        else:
-            try: plan = json.loads(pathlib.Path(a.plan).read_text(encoding='utf-8')) if a.plan else {}
-            except Exception: plan = {}  # noqa: BLE001
-            done, same = stamp_rows(a.repo, a.args[0], a.index, a.saved.split(), plan, a.built_sha)
-        print(f"::notice title=Area hashes::{len(done)} area row(s) carry their area hash" + ('' if same else ' (none: the build did not check out the commit the plan hashed, so no area hash is claimed)'), flush=True)
-        return 0
+        # Nov 12 (KPC owner, 2026-11-12; Quality #163 must-fix): SHADOW WRITES NOTHING. Only mode add / reuse writes the stamp rows into
+        # the key's index.json (which Save commits). Shadow (KPC_AREA_HASH unset, 'shadow' or anything unknown) stamps a throwaway copy
+        # and writes what WOULD be recorded to --shadow-out (a temp file the workflow uploads as an artifact) and the job summary.
+        mode = (a.mode or os.environ.get('KPC_AREA_HASH') or 'shadow').strip().lower()
+        if mode not in ('add', 'reuse'): mode = 'shadow'
+        return stamp_rows_cli(a, mode)
     if a.cmd == 'proof-check':
         if len(a.args) != 1 or a.args[0] not in KINDS: ap.error('proof-check KIND --from H --to H'); return 2
         v, why = proof_valid(a.repo, a.args[0], a.frm, a.to)
