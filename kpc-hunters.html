@@ -134,7 +134,7 @@ main#hl .ct-card a{color:#ffcf7a}
 .ct-btn.sm{padding:6px 10px;font-size:11px}.ct-pbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 </style>
 <style>#hlRadio .ct-wrap{border:1px solid rgba(240,201,107,.6);border-radius:14px;background:rgba(30,18,10,.9);padding:4px 14px}#hlRadio .ct-sum{cursor:pointer;list-style:none;padding:12px 0;font:900 13px Arial;letter-spacing:1.4px;color:#ffcf7a}#hlRadio .ct-sum span{display:block;margin-top:4px;font:400 13.5px/1.4 Arial;letter-spacing:0;color:#e9dcc6}#hlRadio .ct-sum::-webkit-details-marker{display:none}#hlRadio .ct-card{margin:0 0 12px;padding:6px 0 0;background:none;border:0;box-shadow:none}</style>
-<link rel="stylesheet" href="kpc-hunt.css?v=20261108a"><link rel="stylesheet" href="kpc-ft8.css?v=20261020c">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261111r"><link rel="stylesheet" href="kpc-ft8.css?v=20261020c">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -252,12 +252,12 @@ main#hl .ct-card a{color:#ffcf7a}
 <div class="hl-active" id="hlActive" hidden></div>
 <details class="hl-favbox" id="hlFavBox"><summary>⭐ MY FAVORITE ACTIVATORS <i id="favN"></i></summary>
 <p class="hl-p">Tap the ☆ on any spot, or type a call here. When a favorite comes on the air they're pinned to the top until you've worked them today (log them, or tap ✓ GOT THEM).</p>
-<form class="hl-row" id="favForm"><input id="favIn" placeholder="Add a call" autocapitalize="characters" autocomplete="off" style="width:160px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
+<form class="hl-row" id="favForm"><input id="favIn" aria-label="Call sign to add to my favorites" placeholder="Add a call" autocapitalize="characters" autocomplete="off" style="width:160px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
 <div class="hl-row" id="favList"></div></details>
 <div id="hlFavs"></div>
 <details class="hl-favbox" id="hlChBox"><summary>🎯 MY CHASE LIST (PARKS I WANT) <i id="chN"></i></summary>
 <p class="hl-p">Type the park numbers you're chasing: POTA (US-1234, or just 1234), WWFF/KFF (KFF-0001) or SOTA (W4K/EC-001). When one comes on the air, on any band or mode, it's pinned to the top with a sound and flames, even if your filters would hide it and even with 🔔 ALERT off. Worked it? Tap <b>✓ GOT IT</b> and it comes off the list. You can also tap 🎯 on any spot.</p>
-<form class="hl-row" id="chForm"><input id="chIn" placeholder="US-1234, KFF-0001, W4K/EC-001" autocapitalize="characters" autocomplete="off" style="width:240px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
+<form class="hl-row" id="chForm"><input id="chIn" aria-label="Park numbers to add to my chase list" placeholder="US-1234, KFF-0001, W4K/EC-001" autocapitalize="characters" autocomplete="off" style="width:240px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
 <div class="hl-row" id="chList"></div></details>
 <div id="hlChase"></div>
 <a class="hl-nolog mem-only" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a><a class="hl-nolog pub-only" id="hlNoLogP" href="#hlSetup" hidden>📄 <b>Load the parks you've worked</b> (your logbook as an ADIF file) so the new-to-you ones light up. Tap here ›</a>
@@ -430,7 +430,7 @@ main#hl .ct-card a{color:#ffcf7a}
 <label>TIME (UTC)<input id="fTime" type="time"></label>
 <label>RST SENT<input id="fRs" inputmode="numeric"></label>
 <label>RST RCVD<input id="fRr" inputmode="numeric"></label>
-<label class="w2">STATE<input id="fSt" maxlength="2" autocapitalize="characters"></label>
+<label class="w2">STATE<input id="lgSt" maxlength="2" autocapitalize="characters"></label>
 <label class="w2">NOTE<input id="fNote" maxlength="200"></label>
 </div>
 <p class="hl-dupe" id="fDupe" hidden></p>
@@ -444,7 +444,7 @@ main#hl .ct-card a{color:#ffcf7a}
 <div class="hl-modal" id="afModal" hidden role="dialog" aria-label="Alert sound filters"><div class="hl-mbox"><button type="button" class="hl-mx" data-mclose aria-label="Close">✕</button>
 <h2 class="hl-h">🔔 What makes the alert sound</h2><div id="afBody"></div></div></div>
 <section class="f8" id="cFt8" data-keep-light hidden aria-label="FT8, FT4 and CW"></section>
-<script src="kpc-lounge-tabs.js?v=20261026b"></script>
+<script src="kpc-lounge-tabs.js?v=20261111r"></script>
 <style id="kpc-rel-css">[data-rel]{display:none!important}html.kpc-rel [data-rel]:not([hidden]){display:revert!important}
 main#hl.hl-live>*:not(#hlApp){display:none!important}main#hl.hl-live #hlApp>*:not(.hl-hero):not(#kpcLTabs):not(#hlLive){display:none!important}#hlLive{max-width:1240px;margin:0 auto;padding:0 8px 20px}#hlLive iframe{display:block;width:100%;min-height:80vh;border:0;border-radius:12px;background:#111}</style>
 <script id="kpc-rel">/* Oct 26 (release prep, chat 3): Activation Board + Happening Now tabs on the public Hunters Lounge stay hidden until
@@ -454,13 +454,13 @@ main#hl.hl-live>*:not(#hlApp){display:none!important}main#hl.hl-live #hlApp>*:no
  function go(){var live=location.hash==='#live';m.classList.toggle('hl-live',live);box.hidden=!live;
   var st=document.getElementById('kpcLTabs');if(st&&st.nextElementSibling!==box)st.parentNode.insertBefore(box,st.nextSibling);if(window.KPCLTabs)KPCLTabs.lit();
   if(live&&!box.firstChild)box.innerHTML='<iframe src="kpc-live.html?embed=1" title="Happening Now"></iframe>';}
- addEventListener('hashchange',go);addEventListener('message',function(e){var d=e.data||{};if(d.kpcLiveH&&box.querySelector('iframe'))box.querySelector('iframe').style.height=Math.max(600,d.kpcLiveH)+'px'});go();}).catch(function(){})})();</script>
+ addEventListener('hashchange',go);addEventListener('message',function(e){if(e.origin!==location.origin)return;var d=e.data||{};if(+d.kpcLiveH>0&&box.querySelector('iframe'))box.querySelector('iframe').style.height=Math.max(600,+d.kpcLiveH)+'px'});go();}).catch(function(){})})();</script>
 <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261110a"></script><script src="kpc-nr.js?v=20261107a" defer></script><script src="kpc-lounge-radio.js?v=20261110a" defer></script><script src="kpc-meters.js?v=20261026a" defer></script>
-<script src="kpc-cont.js?v=20261024a"></script><script src="kpc-hunt.js?v=20261110a"></script><script src="kpc-hunt-x.js?v=20261110b" defer></script>
+<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261110a"></script><script src="kpc-nr.js?v=20261107a" defer></script><script src="kpc-lounge-radio.js?v=20261111r" defer></script><script src="kpc-meters.js?v=20261026a" defer></script>
+<script src="kpc-cont.js?v=20261024a"></script><script src="kpc-hunt.js?v=20261111r"></script><script src="kpc-hunt-x.js?v=20261111r" defer></script>
 <script id="cat-pub">
 (function(){
  const $=id=>document.getElementById(id);

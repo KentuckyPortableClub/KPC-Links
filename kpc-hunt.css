@@ -1038,3 +1038,5 @@ main#hl[data-public="1"] .hl-ptabs.pub-tabs{display:flex!important}
 .hb.htd{background:#3a3f3c;color:#d7ddd9;border-color:#59605b;font-weight:900}
 .hs.ps-before,.hr.ps-before,.hw-r.ps-before{opacity:1}
 .hs.ps-new{box-shadow:0 0 0 2px var(--gr) inset}
+/* Nov 11: iPhone zooms the page when a box under 16 px takes the cursor: the log search box and the radio-setup boxes stay at 16 px below the computer layout */
+@media(max-width:1099px){main#hl .hl-dk .dk-hd input{font-size:16px}main#hl .ct-row select,main#hl .ct-row input[type=text],main#hl .ct-row input[type=password]{font-size:16px!important}}

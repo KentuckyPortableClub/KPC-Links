@@ -260,7 +260,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 <h1>Activators Lounge</h1>
 <p class="lg-sub">Every tool an activator needs, in one room: find any park, WWFF area or summit in the world, open the right tool in one tap, and see how the bands look today.</p>
 </section>
-<section id="lgLive" hidden></section><script src="kpc-lounge-tabs.js?v=20261026b"></script>
+<section id="lgLive" hidden></section><script src="kpc-lounge-tabs.js?v=20261111r"></script>
 <div id="lgTools">
 <div id="kpc-cx"></div>
 <div class="lg-band"><div class="lg-wrap">
@@ -353,7 +353,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
  function go(){var live=location.hash==='#live';L.hidden=!live;O.hidden=live;
   if(live&&!L.firstChild)L.innerHTML='<iframe src="kpc-live.html?embed=1" title="Happening Now" loading="lazy"></iframe>';}
  addEventListener('hashchange',go);
- window.addEventListener('message',function(e){var d=e.data||{};if(d.kpcLiveH&&L.querySelector('iframe'))L.querySelector('iframe').style.height=Math.max(600,d.kpcLiveH)+'px'});
+ window.addEventListener('message',function(e){if(e.origin!==location.origin)return;var d=e.data||{};if(+d.kpcLiveH>0&&L.querySelector('iframe'))L.querySelector('iframe').style.height=Math.max(600,+d.kpcLiveH)+'px'});
  go();})();
 </script>
 </main>
@@ -362,7 +362,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 <script src="kpc-my-parks.js?v=20261024a" defer></script>
 <script src="kpc-closures.js?v=20261029f" defer></script>
 <script src="kpc-facilities.js?v=20261025b" defer></script>
-<script src="kpc-unofficial.js?v=20261031a"></script><script src="kpc-lounge.js?v=20261101f" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><link rel="stylesheet" href="kpc-band-maps.css"><script src="kpc-band-maps.js?v=20261107a" defer></script>
+<script src="kpc-unofficial.js?v=20261031a"></script><script src="kpc-lounge.js?v=20261111r" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><link rel="stylesheet" href="kpc-band-maps.css"><script src="kpc-band-maps.js?v=20261107a" defer></script>
 <script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

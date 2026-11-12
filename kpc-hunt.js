@@ -30,7 +30,7 @@
   const DESKON = () => PAGE !== 'need' && !!document.getElementById('hlDk') && matchMedia('(min-width:1100px)').matches;   /* kpc-hunters.html = the public copy */
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const get = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
-  const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };   /* Nov 11: says whether it saved (full / blocked storage) */
   const base = c => String(c || '').toUpperCase().trim().split('/').reduce((a, b) => b.length > a.length ? b : a, '');
   const ST = { AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', DC: 'District of Columbia', FL: 'Florida', GA: 'Georgia', HI: 'Hawaii', ID: 'Idaho', IL: 'Illinois', IN: 'Indiana', IA: 'Iowa', KS: 'Kansas', KY: 'Kentucky', LA: 'Louisiana', ME: 'Maine', MD: 'Maryland', MA: 'Massachusetts', MI: 'Michigan', MN: 'Minnesota', MS: 'Mississippi', MO: 'Missouri', MT: 'Montana', NE: 'Nebraska', NV: 'Nevada', NH: 'New Hampshire', NJ: 'New Jersey', NM: 'New Mexico', NY: 'New York', NC: 'North Carolina', ND: 'North Dakota', OH: 'Ohio', OK: 'Oklahoma', OR: 'Oregon', PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'South Carolina', SD: 'South Dakota', TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia', WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming' };
   const BANDS = [['160m', 1800, 2000], ['80m', 3500, 4000], ['60m', 5330, 5410], ['40m', 7000, 7300], ['30m', 10100, 10150], ['20m', 14000, 14350], ['17m', 18068, 18168], ['15m', 21000, 21450], ['12m', 24890, 24990], ['10m', 28000, 29700], ['6m', 50000, 54000], ['2m', 144000, 148000], ['70cm', 420000, 450000]];
@@ -151,8 +151,11 @@
   }
   /* POTA + SOTA come first; Spothole (about 1 MB: WWFF, DX cluster, DXpeditions, special events) arrives on its own and
      is merged in when it lands, so a slow phone still sees POTA right away. The last Spothole list is reused meanwhile. */
-  let LP = [], LS = [], LH = [], GOT = {}, holeBusy = false, holeLast = 0;
+  let LP = [], LS = [], LH = [], GOT = {}, holeBusy = false, holeLast = 0, loadBusy = false, loadFails = 0;
   async function load() {
+    if (loadBusy) return;   /* Nov 11: the 8 s re-check after a respot must not run beside the minute poll */
+    loadBusy = true;
+    try {
     const a = jget('https://api.pota.app/spot/activator', 25000).then(x => { LP = (x || []).map(fromPota).filter(Boolean); GOT.POTA = 1; }).catch(() => { GOT.POTA = 0; });
     const b = jget('https://api2.sota.org.uk/api/spots/50/all', 25000).then(x => { LS = (x || []).map(fromSota).filter(Boolean); GOT.SOTA = 1; }).catch(() => { GOT.SOTA = 0; });
     /* Spothole is a small hobby service and its list is ~1 MB (Brandon Oct 17, 250 users at once): ask it only when a list,
@@ -168,7 +171,11 @@
     }
     await Promise.all([a, b]);
     await build(!first); first = false;
-    next = Date.now() + 60e3;
+    } finally {
+      /* Nov 11: the next check is always booked (a drawing error used to stop the polling for good) and backs off while POTA and SOTA both fail: 2, 4, then 5 minutes */
+      loadBusy = false; loadFails = (GOT.POTA === 0 && GOT.SOTA === 0) ? Math.min(loadFails + 1, 3) : 0;
+      next = Date.now() + Math.min(300e3, 60e3 * (loadFails ? 2 ** loadFails : 1));
+    }
   }
   async function build(alert) {
     const now = Date.now(), seen = new Map();
@@ -341,7 +348,7 @@
     if (!on && ph) { ph.before(sec); ph.remove(); }
     sec.classList.toggle('hl-popped', on); b.setAttribute('aria-pressed', on); b.textContent = on ? '⤓ PUT BACK' : '⧉ POP OUT';
     let h = $('hlPopH');
-    if (on && !h) { h = document.createElement('header'); h.id = 'hlPopH'; h.className = 'hw-h'; h.title = 'Drag me anywhere'; h.innerHTML = '<span class="hw-grip">⠿</span><b class="hw-n">📡 MAIN SPOTS</b><i class="hw-c" id="hlPopN"></i><button type="button" class="hw-b" data-fopen title="Filters: pick what this list shows">⚙</button><button type="button" class="hw-b" data-plock>📌</button><button type="button" class="hw-b" data-popback title="Put it back">⤓</button>'; sec.prepend(h);
+    if (on && !h) { h = document.createElement('header'); h.id = 'hlPopH'; h.className = 'hw-h'; h.title = 'Drag me anywhere'; h.innerHTML = '<span class="hw-grip">⠿</span><b class="hw-n">📡 MAIN SPOTS</b><i class="hw-c" id="hlPopN"></i><button type="button" class="hw-b" data-fopen title="Filters: pick what this list shows">⚙</button><button type="button" class="hw-b" data-plock title="Lock to the page / float on the screen" aria-label="Lock to the page or float on the screen">📌</button><button type="button" class="hw-b" data-popback title="Put it back">⤓</button>'; sec.prepend(h);
       const rs = document.createElement('span'); rs.className = 'hw-rs'; rs.id = 'hlPopR'; rs.textContent = '◢'; sec.appendChild(rs); wmDrag(sec, h, rs, POP, () => put(PKEY, POP)); }
     if (!on && h) { h.remove(); const r = $('hlPopR'); if (r) r.remove(); sec.removeAttribute('style'); sec.classList.remove('fl'); }
     wmFree();
@@ -429,12 +436,15 @@
   function rlNote() { const L0 = (get('kpcSpotMeSent', []) || []).filter(x => Date.now() - x < 36e5); L0.push(Date.now()); put('kpcSpotMeSent', L0); }
   async function respot(s) {
     if (!CALL) { toast('Put your call sign in MY LOG FILES first.'); openModal('lgModal'); return; }
+    if (respot.busy) return;   /* Nov 11: a second tap while the first spot is still on its way posted a second spot */
     const dk = s.call + '|' + s.ref; if (respot.last === dk && Date.now() - respot.t < 1e4) { toast('📣 Already respotted ' + s.call + ' a moment ago.'); return; }
     const mode = /SSB|USB|LSB/.test(s.mode || '') ? 'SSB' : (s.mode || '');
     const c0 = s.ask === false ? 'Thanks! 73' : prompt(`Respot ${s.call} at ${s.ref} on ${(s.khz / 1000).toFixed(3)} ${mode}?\nComment (optional):`, 'Thanks! 73'); if (c0 === null) return;
+    respot.busy = true;
     try { const r = await fetch('https://api.pota.app/spot/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ activator: s.call, spotter: CALL, frequency: String(Math.round(s.khz * 10) / 10), reference: s.ref, mode, source: 'KPC Hunters Lounge', comments: c0.slice(0, 60) }) });
       const body = await r.text().catch(() => ''); if (r.ok) { respot.last = dk; respot.t = Date.now(); rlNote(); toast(`📣 Respotted ${s.call} at ${s.ref}.`); setTimeout(load, 8000); } else toast('✗ POTA turned it down: ' + (String(body).replace(/^"|"$/g, '').slice(0, 120) || 'error ' + r.status)); }
     catch (e) { toast('✗ POTA could not be reached. Check your signal.'); }
+    finally { respot.busy = false; }
   }
   /* tap the CALL = it goes into the log box; log it there (⬆ / Enter) or ✅ QSL → QRZ (Brandon Oct 17) */
   document.addEventListener('click', e => {
@@ -462,7 +472,8 @@
   /* ---------------- spot cards ---------------- */
   const ago = t => { if (!t) return ''; const m = Math.max(0, Math.round((Date.now() - t) / 60e3)); return m < 1 ? 'just now' : m + ' min ago'; };
   const PL = { POTA: 'POTA', WWFF: 'WWFF', SOTA: 'SOTA', DXPED: 'DXPEDITION', EVENT: 'SPECIAL EVENT', DX: 'DX CLUSTER' };
-  const pageOf = s => s.p === 'SOTA' ? 'https://sotl.as/summits/' + s.ref : s.p === 'WWFF' ? 'https://wwff.co/directory/?showRef=' + s.ref : 'https://pota.app/#/park/' + s.ref;
+  /* Nov 11: the ref comes from other people's spots (WWFF refs are read from DX-cluster comments): encoded, then escaped, because it lands inside href="..." */
+  const pageOf = s => esc(s.p === 'SOTA' ? 'https://sotl.as/summits/' + String(s.ref).split('/').map(encodeURIComponent).join('/') : s.p === 'WWFF' ? 'https://wwff.co/directory/?showRef=' + encodeURIComponent(s.ref) : 'https://pota.app/#/park/' + encodeURIComponent(s.ref));
   /* award progress right on the spot (Brandon Oct 16): times you've worked this park / this activator, N1CC new band */
   let CNT = get('kpcHuntCounts', null);
   function awardChips(s, short) {
@@ -472,7 +483,7 @@
     const out = [], pc = (CNT.pc || {})[s.ref] || 0, ac = (CNT.ac || {})[base(s.call)] || (CNT.ac || {})[s.call] || 0, n1 = (CNT.n1 || {})[s.ref];
     const lvl = (v, step) => (Math.floor(v / step) + 1) * step;
     if (pc) { const n = lvl(pc, 20), near = n - pc <= 5; out.push(`<span class="ac${near ? ' near flash' : ''}" title="Repeat Offender: every 20 QSOs with a park (tap for what the badges mean)">🔁 ${short ? '' : 'Park '}${pc}/${n}${near ? ' · ALMOST' : ''}</span>`); }
-    if (ac) { const n = lvl(ac, 50), near = n - ac <= 5; out.push(`<span class="ac${near ? ' near flash' : ''}" title="Operator to Operator: every 50 QSOs with the same activator">🤝 ${short ? '' : base(s.call) + ' '}${ac}/${n}${near ? ' · ALMOST' : ''}</span>`); }
+    if (ac) { const n = lvl(ac, 50), near = n - ac <= 5; out.push(`<span class="ac${near ? ' near flash' : ''}" title="Operator to Operator: every 50 QSOs with the same activator">🤝 ${short ? '' : esc(base(s.call)) + ' '}${ac}/${n}${near ? ' · ALMOST' : ''}</span>`); }
     if (n1 != null) { const L = n1.toUpperCase().split(',').filter(Boolean), b = bandOf(s.khz).toUpperCase(); if (L.length < 10 && !L.includes(b)) out.push(`<span class="ac near${L.length >= 8 ? ' flash' : ''}" title="N1CC: this park on 10 different bands">📶 NEW BAND ${L.length}/10${L.length >= 8 ? ' · ALMOST' : ''}</span>`); }
     return out.join('');
   }
@@ -1076,7 +1087,9 @@
      Chrome/Edge, KEEP A BACKUP FILE picks a file on the computer that is rewritten (whole log, ADIF) after every save.
      DOWNLOAD FOR QRZ = ADIF 3.1.4 (POTA_REF / WWFF_REF / SOTA_REF + SIG/SIG_INFO). RESTORE reads an ADIF back in. */
   const QK = 'kpcHuntQSO';
-  let Q = get(QK, null); if (!Q || !Array.isArray(Q.q)) Q = { v: 1, u: 0, grid: '', q: [], x: 0 };
+  let Q = get(QK, null);
+  /* Nov 11: a log that cannot be read is kept under another name before the empty one is saved over it (the IndexedDB copy still restores it in qsoInit) */
+  if (!Q || !Array.isArray(Q.q)) { try { const raw = localStorage.getItem(QK); if (raw) localStorage.setItem(QK + '-unreadable', raw); } catch (e) {} Q = { v: 1, u: 0, grid: '', q: [], x: 0 }; }
   if (Q.q.some(q => q && /[,;]/.test(q.call || ''))) { Q.q = Q.q.flatMap(splitRec); try { localStorage.setItem(QK, JSON.stringify(Q)); } catch (e) {} }   /* Nov 8: old "A, B" lines become one line per call */
   let IDB = null, FH = null, FHok = false, PERSIST = null, IDBok = false;
   const idb = () => IDB || (IDB = new Promise((res, rej) => { try { const r = indexedDB.open('kpc-hunt', 1); r.onupgradeneeded = () => r.result.createObjectStore('kv'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); } catch (e) { rej(e); } }));
@@ -1087,8 +1100,9 @@
   const fmtT = t => t ? t.slice(0, 2) + ':' + t.slice(2, 4) : '';
   async function qSave() {
     Q.u = Date.now();
-    put(QK, Q);
+    const lsOk = put(QK, Q);
     try { await idbPut('qso', JSON.parse(JSON.stringify(Q))); IDBok = true; } catch (e) { IDBok = false; }
+    if (!lsOk && !IDBok && !qSave.warned) { qSave.warned = 1; setTimeout(() => { qSave.warned = 0; }, 6e4); toast('⚠ This browser would not save your log (storage full or blocked). Download an ADIF copy now so nothing is lost.'); }
     if (PERSIST === null && navigator.storage && navigator.storage.persist) { try { PERSIST = await navigator.storage.persist(); } catch (e) { PERSIST = false; } }
     if (FH && FHok) { try { const w = await FH.createWritable(); await w.write(adif(Q.q)); await w.close(); } catch (e) { FHok = false; } }
     safe();
@@ -1152,11 +1166,18 @@
     });
     return o;
   }
+  /* Nov 11: adif() above counts BYTES (af), so a field with accents is longer in bytes than in characters: reading it back by characters ran
+     into the next field and lost it. take() cuts the text at n bytes; a file counted in characters (some other loggers) still reads right. */
+  const u8 = c => c < 0x80 ? 1 : c < 0x800 ? 2 : c < 0x10000 ? 3 : 4;
+  function take(str, n) { let b = 0, i = 0; while (i < str.length && b < n) { const c = str.codePointAt(i); b += u8(c); i += c > 0xffff ? 2 : 1; } return str.slice(0, i); }
   function parseAdif(t) {
     const out = []; t = String(t || ''); const h = t.search(/<eoh>/i); if (h >= 0) t = t.slice(h + 5);
     t.split(/<eor>/i).forEach(rec => {
       const r = {}; const re = /<(\w+):(\d+)(?::\w)?>/g; let m;
-      while ((m = re.exec(rec))) { r[m[1].toUpperCase()] = rec.substr(re.lastIndex, +m[2]); re.lastIndex += +m[2]; }
+      const E = /\s*(?:<|$)/y, edge = i => { E.lastIndex = i; return E.test(rec); };   /* a field ends where the next one (or the record's end) starts */
+      while ((m = re.exec(rec))) { let v = rec.substr(re.lastIndex, +m[2]);
+        if (/[^\x00-\x7f]/.test(v)) { const a = take(v, +m[2]); if (edge(re.lastIndex + a.length) || !edge(re.lastIndex + v.length)) v = a; }
+        r[m[1].toUpperCase()] = v; re.lastIndex += v.length; }
       if (!r.CALL || !r.QSO_DATE) return;
       const refs = [r.POTA_REF, r.WWFF_REF, r.SOTA_REF, r.SIG_INFO].filter(Boolean).join(',').toUpperCase().split(/[ ,]+/).filter(Boolean).map(nref);
       out.push({ id: 'i' + Math.random().toString(36).slice(2, 10), call: r.CALL.toUpperCase(), d: r.QSO_DATE, tm: String(r.TIME_ON || '').slice(0, 4), f: r.FREQ || '', band: (r.BAND || '').toLowerCase(), mode: r.SUBMODE || r.MODE || '',
@@ -1208,7 +1229,9 @@
     const dl = e.target.closest('[data-qd]'); if (dl) { const i = Q.q.findIndex(q => q.id === dl.dataset.qd); if (i < 0) return; if (!confirm(`Delete ${Q.q[i].call} ${fmtD(Q.q[i].d)} ${fmtT(Q.q[i].tm)}? This cannot be undone.`)) return; /* Nov 10: ask first */ const [x] = Q.q.splice(i, 1); qSave(); qList(); toast(`Deleted ${x.call}.`, () => { Q.q.splice(i, 0, x); qSave(); qList(); }); }
   });
   /* ---------- the log sheet ---------- */
-  let EDIT = null;
+  let EDIT = null, lgBusy = false;
+  /* Nov 11: the log sheet's STATE box and the spot filter's state list both used id="fSt", so $('fSt') always found the filter and the sheet's state was ignored; the sheet's box is #lgSt now (the old id still works inside the form on pages not updated yet) */
+  const shSt = () => document.getElementById('lgSt') || $('lgForm').querySelector('input#fSt');
   /* Nov 8 (Brandon t762u: "59 for ssb and 599 for cw etc"): phone 59, CW / RTTY / PSK / JS8 599, FT8 / FT4 in dB like WSJT-X (-10). Always editable. */
   function rstFor(m) { m = String(m || '').toUpperCase(); return /FT8|FT4/.test(m) ? '-10' : /^CW|RTTY|PSK|JS8|DATA|DIGI|OLIVIA|MFSK/.test(m) ? '599' : '59'; }
   /* Nov 8 (t762u): "N4BWD, KQ4HZK" in the call box = one log line per call (trimmed, upper case, no blanks, no repeats) */
@@ -1235,11 +1258,11 @@
     $('lgTitle').textContent = x ? '✏️ Edit this contact' : quick ? (splitCalls(s && s.call).length > 1 ? '📝 Quick log · ' + splitCalls(s.call).length + ' ops' : '📝 Quick log') : '📝 Log this contact';
     if (x) {
       $('fCall').value = x.call; $('fFreq').value = x.f; $('fMode').value = modePick(x.mode); $('fRef').value = x.ref; $('fName').value = x.name || ''; $('fDate').value = fmtD(x.d); $('fTime').value = fmtT(x.tm);
-      $('fRs').value = x.rs || ''; $('fRr').value = x.rr || ''; $('fSt').value = x.st || ''; $('fNote').value = x.note || '';
+      $('fRs').value = x.rs || ''; $('fRr').value = x.rr || ''; shSt().value = x.st || ''; $('fNote').value = x.note || '';
     } else {
       s = s || {};
       $('fCall').value = s.call || ''; $('fFreq').value = s.khz ? (s.khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '') : ''; $('fMode').value = modePick(s.mode); $('fRef').value = s.ref || ''; $('fName').value = s.name || '';
-      $('fRs').value = rstFor(s.mode); $('fRr').value = rstFor(s.mode); $('fSt').value = s.st || ''; $('fNote').value = ''; setNow();
+      $('fRs').value = rstFor(s.mode); $('fRr').value = rstFor(s.mode); shSt().value = s.st || ''; $('fNote').value = ''; setNow();
     }
     bandSet(); $('lgSheet').classList.add('on');
     setTimeout(() => { (s && s.call ? $('fRs') : $('fCall')).focus({ preventScroll: true }); }, 250);
@@ -1255,15 +1278,17 @@
     const RL = refList($('fRef').value); if (refBad(RL, $('fRef'))) return; const ref = RL.s;
     const CS = splitCalls(call); if (!CS.length) { $('fCall').focus(); return; }
     const rec = { id: EDIT ? EDIT.id : newId(), call: CS[0], d: $('fDate').value.replace(/-/g, ''), tm: $('fTime').value.replace(':', '').slice(0, 4),
-      f: $('fFreq').value.trim(), band: $('fBand').value, mode: $('fMode').value, ref, name: $('fName').value.trim(), st: $('fSt').value.trim().toUpperCase(), rs: $('fRs').value.trim(), rr: $('fRr').value.trim(),
+      f: $('fFreq').value.trim(), band: $('fBand').value, mode: $('fMode').value, ref, name: $('fName').value.trim(), st: shSt().value.trim().toUpperCase(), rs: $('fRs').value.trim(), rr: $('fRr').value.trim(),
       note: $('fNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
     if (!/^\d{8}$/.test(rec.d)) { const n = utc(new Date()); rec.d = n.d; rec.tm = n.t; }
     const more = CS.slice(1).map((c, i) => Object.assign({}, rec, { call: c, id: newId() + i }));   /* each call its own line, same freq/mode/park/time/reports */
+    if (lgBusy) return;   /* Nov 11: a double tap on SAVE added the contact twice */
+    lgBusy = true;
     if (EDIT) { const i = Q.q.indexOf(EDIT); if (i >= 0) Q.q[i] = rec; else Q.q.push(rec); } else Q.q.push(rec);
     more.forEach(m => Q.q.push(m)); const ids = new Set([rec.id].concat(more.map(m => m.id)));
-    await qSave();
+    try { await qSave(); } catch (x) { console.error('qSave', x); }
     ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r)) { WK.add(r); MAN.add(r); } }); saveLog(); logInfo();
-    const wasEdit = !!EDIT; closeSheet(); qList(); ticker(false); draw(); needDraw();
+    const wasEdit = !!EDIT; closeSheet(); lgBusy = false; qList(); ticker(false); draw(); needDraw();
     if (KPCQrzOn() && more.length) more.concat(wasEdit ? [] : [rec]).forEach(r => { const a = adif([r]); qzOne(a.slice(a.indexOf('<EOH>') + 5).trim()).then(x => { if (x.ok) { r.qz = x.sure ? 2 : 1; qSave(); } }); });
     toast(wasEdit && !more.length ? '✓ Changes saved.' : `✓ ${CS.join(', ')} saved on this device${CS.length > 1 ? ' (' + CS.length + ' lines)' : ''}.`, wasEdit ? null : () => { Q.q = Q.q.filter(q => !ids.has(q.id)); qSave(); qList(); });
   });
@@ -1603,7 +1628,7 @@
       const y = $('hlLtabs').getBoundingClientRect().top + scrollY - 150; if (scrollY > y + 5) scrollTo({ top: y, behavior: 'smooth' }); });
     let fBtn = null; window.kpcFPlace = b => { fBtn = b || fBtn; fPlace(); };
     function fPlace() { const f = $('hlFilters'); if (!DESKON() || !fBtn) { f.style.top = f.style.maxHeight = f.style.left = ''; return; } const r = fBtn.getBoundingClientRect(), t = $('hlTick') ? $('hlTick').getBoundingClientRect().bottom : 0; const top = Math.max(r.bottom, t) + 8; f.style.top = top + 'px'; f.style.maxHeight = (innerHeight - top - 16) + 'px'; const w = Math.min(620, innerWidth - 24); f.style.left = Math.max(12, Math.min(r.left, innerWidth - w - 12)) + 'px'; f.style.right = 'auto'; }
-    addEventListener('scroll', () => { if (DESKON() && $('hlFilters').classList.contains('open')) fPlace(); }, { passive: true });
+    let fpq = 0; addEventListener('scroll', () => { if (!fpq) fpq = requestAnimationFrame(() => { fpq = 0; if (DESKON() && $('hlFilters').classList.contains('open')) fPlace(); }); }, { passive: true });
     document.addEventListener('click', e => {   /* tap outside the pop-up closes it */
       const f = $('hlFilters'); if (!DESKON() || !f.classList.contains('open')) return;
       if (!e.target.isConnected || e.target.closest('#hlFilters,[data-fopen],#hlActive')) return;   /* a chip that was just redrawn is not 'outside' */ $('hlFtog').click();
@@ -1730,17 +1755,19 @@
   function dkActSet() { const r = $('dkRsp'); if (!r) return; const pr = String($('dRef').value || '').toUpperCase().split(/[ ,]+/).map(nref).find(x => progOf(x) === 'POTA');
     r.hidden = !(pr && $('dCall').value.trim()); r.dataset.ref = pr || ''; }
   async function dkLog(opt) {
+    if (dkLog.busy) return;   /* Nov 11: a double Enter / double tap ran this twice before the boxes were cleared = the contact logged twice */
     const CS = splitCalls($('dCall').value); if (!CS.length) { $('dCall').focus(); return; }
     const n = utc(new Date());
     const RL = refList($('dRef').value); if (refBad(RL, $('dRef'))) return; const ref = RL.s;
     const f = $('dFreq').value.trim(), recs = [];
-    for (const call of CS) {
+    dkLog.busy = true;
+    try { for (const call of CS) {
     const rec = { id: newId(), call, d: n.d, tm: n.t, f, band: $('dBand').value, mode: $('dMode').value, ref,
       name: $('dName').value.trim(), st: $('dSt').value.trim().toUpperCase(), rs: $('dRs').value.trim(), rr: $('dRr').value.trim(), note: $('dNote').value.trim(), my: CALL, grid: Q.grid, x: 0, t: Date.now() };
     if (DKS && base(DKS.call) === base(call)) { if (isFinite(DKS.la) && isFinite(DKS.lo)) { rec.la = DKS.la; rec.lo = DKS.lo; } if (DKS.cty) rec.cty = DKS.cty; }
     await whoFill(rec, DKWHO && DKWHO.call === base(call) ? DKWHO : (LKC[base(call)] || null));
     await afterLog(rec, Object.assign({}, opt, CS.length > 1 ? { many: true } : {})); recs.push(rec);
-    }
+    } } finally { dkLog.busy = false; }
     if (CS.length > 1) toast(`✓ ${CS.length} logged${recs[0].ref ? ' at ' + recs[0].ref : ''}: ${CS.join(', ')} (one line each).`, () => { const ids = new Set(recs.map(r => r.id)); Q.q = Q.q.filter(q => !ids.has(q.id)); qSave(); qList(); draw(); try { lmDraw(); } catch (e) {} });
     dkClear(); dkActSet(); $('dCall').focus({ preventScroll: true });
   }
@@ -1879,9 +1906,10 @@
     const qst = new URLSearchParams(location.search).get('st'); if (qst && ST[qst.toUpperCase()]) { $('nSt').value = qst.toUpperCase(); $('nSt').dataset.set = 1; }
     document.querySelectorAll('.hl-ptabs [data-pt]').forEach(t => { if (t.dataset.pt === PAGE) t.setAttribute('aria-current', 'page'); });
     /* each part on its own, so one problem never stops the rest of the page */
-    [stick, chips, viewChips, bell, flameBtn, lmInit, logInfo, homeInfo, mapOn, qsoInit, awDraw, fromPotaHash, load, needLoad, topDraw, myStats].forEach(f => { try { const r = f(); if (r && r.catch) r.catch(e => console.error(f.name, e)); } catch (e) { console.error(f.name, e); } });
+    /* Nov 11: the state's whole park list (a big POTA call) is only for the Park Checker page; on the two Lounge pages its section is hidden by CSS */
+    [stick, chips, viewChips, bell, flameBtn, lmInit, logInfo, homeInfo, mapOn, qsoInit, awDraw, fromPotaHash, load, ...(PAGE === 'need' ? [needLoad] : []), topDraw, myStats].forEach(f => { try { const r = f(); if (r && r.catch) r.catch(e => console.error(f.name, e)); } catch (e) { console.error(f.name, e); } });
     setInterval(() => {
-      const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load(); }
+      const s = Math.max(0, Math.round((next - Date.now()) / 1000)); $('hsAge').textContent = next ? s + 's' : '–'; if (next && Date.now() >= next) { next = 0; load().catch(e => console.error('load', e)); }
       const u = new Date(); $('hsUtc').textContent = u.toISOString().slice(11, 19);
       const n = Q.q.filter(q => q.d === today()).length; $('hsUtcL').textContent = `UTC · ${n} LOGGED TODAY`;
     }, 1000);
