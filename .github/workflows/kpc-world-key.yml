@@ -357,6 +357,7 @@ jobs:
     outputs:
       built: ${{ steps.tonight.outputs.built }}   # Nov 11: the countries saved this run (0 = nothing saved: no post-key check)
       red: ${{ steps.tonight.outputs.red }}   # Nov 12 (KPC owner, 2026-11-12): the countries kept from main (not saved) this run: the run ends red
+      bounds: ${{ steps.kept_green_1.outcome }}   # Nov 12 (KPC owner, 2026-11-12): 'failure' = the world-bounds branch was not pushed: the run ends red
     steps:
       - uses: actions/checkout@v5
         with:
@@ -487,18 +488,31 @@ jobs:
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" KPC_SAVE_WORDS="data/world-key/answers-countries.txt" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'World answer key' - -- data/world-key data/status
       - name: Saved outlines to the branch world-bounds (one commit, replaced each time; Brandon Oct 31 7:24 PM)
-        # per country: only the countries joined this run are replaced on the branch (the others stay as the branch has them)
+        # per country: the push REPLACES the whole branch, so the new tree is the branch as it is now (read in full) with only the countries
+        # joined this run (data/world-bounds/<CC>) put on top; every other country is carried over from that read, byte for byte.
+        # Nov 12 (KPC owner, 2026-11-12; Quality #162 must-fix, fail closed): if the branch cannot be read in full (fetch, archive or unpack
+        # failed, the branch is missing or holds no outlines, or what was unpacked is not every file the branch holds) NOTHING is pushed
+        # (a push would leave only this run's countries and wipe every other country's saved outlines): ::error, and the verdict job
+        # ends the run red. The key saved to main above is not affected.
         if: ${{ !cancelled() && steps.save.outcome == 'success' && steps.join_verdict.outcome == 'success' && steps.tonight.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         id: kept_green_1
         continue-on-error: true
         run: |
+          set -o pipefail
           [ -d data/world-bounds ] || exit 0
           B=/tmp/wb; rm -rf $B; mkdir -p $B
-          git fetch -q origin world-bounds 2>/dev/null && git archive FETCH_HEAD | tar -x -C $B || { kpc_rc=$?; echo "::warning title=download::a branch could not be read; this run uses what it has (exit $kpc_rc)"; echo "download - a branch could not be read; this run uses what it has (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }    # what the branch holds now
-          for d in data/world-bounds/*/; do c=$(basename $d); rm -rf $B/data/world-bounds/$c; mkdir -p $B/data/world-bounds; cp -r $d $B/data/world-bounds/$c; done
+          kpc_skip() { echo "::error title=World outlines::branch world-bounds NOT pushed: $1. A push now would keep only this run's countries and wipe every other country's saved outlines, so the branch is left as it is (rerun the world key once the branch can be read)"; echo "World outlines - branch world-bounds not pushed: $1" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
+          git fetch -q origin world-bounds || kpc_skip "the branch could not be read (git fetch exit $?)"
+          git archive FETCH_HEAD | tar -x -C $B || kpc_skip "the branch could not be unpacked (git archive / tar exit $?)"
+          want=$(git ls-tree -r --name-only FETCH_HEAD -- data/world-bounds | sort) || kpc_skip "the branch's file list could not be read (exit $?)"
+          [ -n "$want" ] || kpc_skip "the branch holds no saved outlines (data/world-bounds is missing or empty)"
+          have=$(cd $B && find data/world-bounds ! -type d | sort)
+          [ "$want" = "$have" ] || kpc_skip "what was unpacked ($(printf '%s\n' "$have" | grep -c .) files) is not every file the branch holds ($(printf '%s\n' "$want" | grep -c .))"
+          for d in data/world-bounds/*/; do c=$(basename $d); rm -rf $B/data/world-bounds/$c; cp -r $d $B/data/world-bounds/$c; done   # only this run's countries
           cd $B && git init -q && git checkout -q -b world-bounds && git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -qm "World saved outlines ($(date -u +%F)): one commit, replaced every rebuild" \
-            && git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" world-bounds && echo "::notice title=World outlines::branch world-bounds replaced ($(du -sh data/world-bounds | cut -f1))"
-          true
+            || kpc_skip "the new branch commit could not be made (exit $?)"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" world-bounds || { kpc_rc=$?; echo "::error title=World outlines::the push of branch world-bounds did not land (exit $kpc_rc); the branch is left as it was"; echo "World outlines - push did not land (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
+          echo "::notice title=World outlines::branch world-bounds replaced ($(du -sh data/world-bounds | cut -f1)): this run's countries new, every other country carried over"
       - name: Run summary (Nov 12, KPC owner, 2026-11-12) - one table, every country - area | built? | verdict | saved or kept from main | hash stamped | why
         # read-only: writes the step summary only
         if: ${{ !cancelled() }}
@@ -545,6 +559,7 @@ jobs:
           RED: ${{ needs.join.outputs.red }}
           BUILD: ${{ needs.build.result }}
           JOIN: ${{ needs.join.result }}
+          BOUNDS: ${{ needs.join.outputs.bounds }}
           GROUPS: ${{ needs.plan.outputs.groups }}
         run: |
           if [ "$GROUPS" = '[]' ] || [ -z "$GROUPS" ]; then echo "nothing was planned: green"; exit 0; fi
@@ -552,6 +567,7 @@ jobs:
           [ -z "$RED" ] || { echo "::error title=World key run::RED: not saved this run, previous join kept from main: $RED"; bad=1; }
           [ "$BUILD" = success ] || { echo "::error title=World key run::a build shard was $BUILD (its countries are listed above)"; bad=1; }
           [ "$JOIN" = success ] || { echo "::error title=World key run::the join was $JOIN: see its log (a refused join saves nothing)"; bad=1; }
+          [ "$BOUNDS" != failure ] || { echo "::error title=World key run::the saved outlines were NOT pushed to the branch world-bounds (it could not be read in full, or the push failed): see the join log"; bad=1; }
           [ "$bad" = 0 ] && echo "every planned country was saved: green"
           exit $bad
   postcheck:

@@ -15,6 +15,9 @@ five short saved copies (BE CH CZ DE PT) and #153's all-or-nothing join saved NO
      planned again (RULES_SCOPE); an old failure of a country not asked stays failed; KPC_FULL_BUILD only when everything saved.
   U1-U4 US: a failed / short state keeps main's bytes and is listed red; the drop guard keeps the state from main and the rest save;
      review rows merged per state; the US join `if` / Save conditions.  C1 Canada: a stopped build keeps every province, not stamped.
+  B1 (Quality #162 must-fix) the world-bounds step run for real against a local bare repo: a partial run keeps every other country's
+     outlines byte for byte; a branch that cannot be fetched, is empty, cannot be unpacked or unpacks short = NO push, ::error, step
+     fails and the verdict job ends the run red.  C2 Canada: a stamp error stops the save; a kept key saves no outlines / layer list.
 Run: python3 -B tests/test_per_area_join_nov12.py"""
 import collections, contextlib, io, json, os, pathlib, re, shutil, subprocess, sys, tempfile
 
@@ -550,6 +553,101 @@ with tempfile.TemporaryDirectory() as td:
     AJ.main(['record-whole', '--index', str(t / 'data/ca-key/index.json'), '--rows-key', 'provinces', '--kept', '1', '--why', 'held-gate: short CA-ALL', '--out', str(t / 'r.json')])
     rec = json.load(open(t / 'r.json'))
     check('C1 Canada record: a held build lists every province kept and red', rec['red'] == ['ON', 'QC'] and rec['areas']['ON']['code'] == 'held-gate')
+
+# ------------------------------------------------------------------ C2 (Quality #162 should-fixes): Canada stamp stops the save; a kept key saves no outlines
+cstep = cs[cst]
+check('C2 Canada: the stamp step has an id and exits 1 on a stamp error', cstep.get('id') == 'ca_stamp' and re.search(r'stamp ca-key \|\| \{[^}]*exit 1; \}', cstep['run']) is not None)
+check('C2 Canada: Save needs the stamp not failed (as US and world)', "steps.ca_stamp.outcome != 'failure'" in cs[csv_]['if'])
+sv = cs[csv_]['run']
+kept_branch = sv[sv.index('if [ "${CA_KEPT:-0}" = 1 ]; then'):sv.index('else', sv.index('if [ "${CA_KEPT:-0}" = 1 ]; then'))]
+check('C2 Canada: a key kept from main (CA_KEPT=1) saves neither data/canada-bounds nor data/outlines/layers.json',
+      'kpc_push_data.sh' in kept_branch and 'canada-bounds' not in kept_branch and 'layers.json' not in kept_branch)
+check('C2 Canada: a built key still saves data/canada-bounds and data/outlines/layers.json', sv.count('data/canada-bounds data/outlines/layers.json') == 1)
+
+# ------------------------------------------------------------------ B1 (Quality #162 must-fix): the world-bounds push fails closed
+WB = next(s for s in js if s.get('id') == 'kept_green_1')
+URL = '"https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"'
+check('B1 workflow: the world-bounds step still pushes to this repo with the job token (one push)', WB['run'].count(URL) == 1 and WB['run'].count('git push') == 1)
+check('B1 workflow: the false comment is gone; the step says the push replaces the whole branch', 'the others stay as the branch has them' not in yaml.dump(W)
+      and 'the push REPLACES the whole branch' in (ROOT / '.github/workflows/kpc-world-key.yml').read_text(encoding='utf-8'))
+check('B1 workflow: the join job hands the world-bounds outcome to the verdict job', JOIN['outputs'].get('bounds') == '${{ steps.kept_green_1.outcome }}'
+      and VER['steps'][0]['env'].get('BOUNDS') == '${{ needs.join.outputs.bounds }}')
+
+
+def verdict_with(bounds):
+    st = VER['steps'][0]; env = dict(os.environ, RED='', BUILD='success', JOIN='success', GROUPS=GROUPS, BOUNDS=bounds)
+    r = subprocess.run(['bash', '-c', st['run']], env=env, capture_output=True, text=True)
+    return r.returncode, r.stdout
+
+
+check('B1 verdict: world-bounds not pushed (failure) = the run ends red', verdict_with('failure')[0] == 1 and 'world-bounds' in verdict_with('failure')[1])
+check('B1 verdict: world-bounds pushed (success) or skipped = green', verdict_with('success')[0] == 0 and verdict_with('skipped')[0] == 0 and verdict_with('')[0] == 0)
+
+GIT_ID = ['-c', 'user.name=t', '-c', 'user.email=t@t']
+
+
+def wb_tree(bare):
+    """{path: bytes} of every file on the branch world-bounds of the bare repo (None if there is no such branch)."""
+    if git(bare, 'rev-parse', '-q', '--verify', 'refs/heads/world-bounds').returncode: return None
+    names = git(bare, 'ls-tree', '-r', '--name-only', 'world-bounds').stdout.split()
+    return {n: subprocess.run(['git', 'show', f'world-bounds:{n}'], cwd=bare, capture_output=True).stdout for n in names}
+
+
+def wb_setup(t, branch_files):
+    """a bare 'origin' whose branch world-bounds holds branch_files ({path: text}, None = no branch), and a work repo cloned from it."""
+    bare, seed, work = t / 'origin.git', t / 'seed', t / 'work'
+    subprocess.run(['git', 'init', '-q', '--bare', '--initial-branch=main', str(bare)], check=True)
+    seed.mkdir(); git(seed, 'init', '-q'); git(seed, 'checkout', '-q', '-b', 'main')
+    (seed / 'README').write_text('main\n'); git(seed, 'add', '-A'); git(seed, *GIT_ID, 'commit', '-qm', 'main'); git(seed, 'push', '-q', str(bare), 'main')
+    if branch_files is not None:
+        git(seed, 'checkout', '-q', '--orphan', 'world-bounds'); git(seed, 'rm', '-rq', '--cached', '.'); (seed / 'README').unlink()
+        for n, v in branch_files.items():
+            (seed / n).parent.mkdir(parents=True, exist_ok=True); (seed / n).write_text(v)
+        if not branch_files: (seed / 'keep.txt').write_text('no outlines\n')
+        git(seed, 'add', '-A'); git(seed, *GIT_ID, 'commit', '-qm', 'wb'); git(seed, 'push', '-q', str(bare), 'world-bounds')
+    subprocess.run(['git', 'clone', '-q', str(bare), str(work)], check=True)
+    return bare, work
+
+
+def wb_run(t, work, bare, joined, origin=None, tar_shim=None):
+    """run the step's own bash (only the push URL and the temp folder swapped for local ones) in work with this run's countries."""
+    for c, files in joined.items():
+        for n, v in files.items():
+            f = work / 'data/world-bounds' / c / n; f.parent.mkdir(parents=True, exist_ok=True); f.write_text(v)
+    if origin: git(work, 'remote', 'set-url', 'origin', origin)
+    run = WB['run'].replace(URL, str(bare)).replace('B=/tmp/wb;', f'B={t}/wb;')
+    rt = t / 'rt'; rt.mkdir(exist_ok=True)
+    env = dict(os.environ, RUNNER_TEMP=str(rt), GIT_AUTHOR_NAME='t', GIT_AUTHOR_EMAIL='t@t', GIT_COMMITTER_NAME='t', GIT_COMMITTER_EMAIL='t@t')
+    if tar_shim:
+        sb = t / 'shim'; sb.mkdir(exist_ok=True); (sb / 'tar').write_text('#!/bin/bash\n' + tar_shim + '\n'); (sb / 'tar').chmod(0o755)
+        env['PATH'] = f'{sb}:{env["PATH"]}'
+    r = subprocess.run(['bash', '-e', '-c', run], cwd=work, env=env, capture_output=True, text=True)
+    return r.returncode, r.stdout + r.stderr, (rt / 'kpc-hidden-errors.txt').read_text() if (rt / 'kpc-hidden-errors.txt').exists() else ''
+
+
+BRANCH = {'data/world-bounds/AT/a.json': '{"AT": 1}\n', 'data/world-bounds/DE/a.json': '{"DE": 1}\n', 'data/world-bounds/DE/b.json': '{"DE": 2}\n',
+          'data/world-bounds/FR/a.json': '{"FR": "old"}\n', 'data/world-bounds/CZ/a.json': '{"CZ": 1}\n'}
+with tempfile.TemporaryDirectory() as td:
+    t = pathlib.Path(td); bare, work = wb_setup(t, BRANCH)
+    rc, out, errs = wb_run(t, work, bare, {'FR': {'a.json': '{"FR": "new"}\n'}, 'BE': {'a.json': '{"BE": 1}\n'}})
+    after = wb_tree(bare)
+    check('B1 a partial run (FR + BE) pushes: exit 0, notice', rc == 0 and 'branch world-bounds replaced' in out and not errs)
+    check('B1 a partial run keeps every other country\'s outlines byte for byte (AT, DE x2, CZ)',
+          all(after.get(n) == BRANCH[n].encode() for n in BRANCH if not n.startswith('data/world-bounds/FR/')))
+    check('B1 a partial run replaces only its own countries (FR new, BE added), nothing else on the branch',
+          after.get('data/world-bounds/FR/a.json') == b'{"FR": "new"}\n' and after.get('data/world-bounds/BE/a.json') == b'{"BE": 1}\n' and len(after) == len(BRANCH) + 1)
+
+for label, branch, kw in (('the branch cannot be fetched (origin unreachable)', BRANCH, {'origin': '/nonexistent/origin.git'}),
+                          ('the branch does not exist', None, {}),
+                          ('the branch holds no saved outlines', {}, {}),
+                          ('the branch cannot be unpacked (tar fails)', BRANCH, {'tar_shim': 'cat > /dev/null; exit 2'}),
+                          ('the branch unpacks short (tar exits 0, one country missing)', BRANCH,
+                           {'tar_shim': 'cat > /dev/null; for a in "$@"; do [ "$p" = -C ] && d="$a"; p="$a"; done; mkdir -p "$d/data/world-bounds/AT"; echo \'{"AT": 1}\' > "$d/data/world-bounds/AT/a.json"'})):
+    with tempfile.TemporaryDirectory() as td:
+        t = pathlib.Path(td); bare, work = wb_setup(t, branch); before = wb_tree(bare)
+        rc, out, errs = wb_run(t, work, bare, {'BE': {'a.json': '{"BE": 1}\n'}}, **kw)
+        check(f'B1 {label}: NO push (the branch is byte for byte as before), the step fails, ::error + a caught-error line',
+              wb_tree(bare) == before and rc == 1 and '::error title=World outlines::branch world-bounds NOT pushed' in out and 'not pushed' in errs)
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
