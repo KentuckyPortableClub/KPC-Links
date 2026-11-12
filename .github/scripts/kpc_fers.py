@@ -145,12 +145,21 @@ def _arm():
 
 
 class park_clock:
-    """with park_clock('US-1+US-2', 'pass 1 pair') as c: ...   c.hit is True when the limit cut it short (skipped + listed)."""
-    def __init__(self, label, where, seconds=None): self.label, self.where, self.s, self.hit = str(label), where, (PARK_S if seconds is None else seconds), False
+    """with park_clock('US-1+US-2', 'pass 1 pair') as c: ...   c.hit is True when the limit cut it short (skipped + listed).
+    KPC owner, 2026-11-11 (Pacific hang): budget_end = when the pass's own time ends (budget_end()); the clock then rings at most
+    60 s after it, and a pair cut there is c.out_of_time (not tested, the next run carries on), never listed as too slow."""
+    def __init__(self, label, where, seconds=None, budget_end=None):
+        self.label, self.where, self.s, self.hit = str(label), where, (PARK_S if seconds is None else seconds), False
+        self.out_of_time, own = False, self.s
+        if budget_end is not None: self.s = min(self.s, max(1.0, budget_end + 60 - time.time()))
+        self._budget = self.s < own
     def __enter__(self):
         _CLOCKS.append(time.time() + self.s); _arm(); return self
     def __exit__(self, et, ev, tb):
         _CLOCKS.pop(); _arm()
+        if et is ParkTimeout and self._budget:
+            self.hit = self.out_of_time = True
+            return True
         if et is ParkTimeout:
             self.hit = True
             TIMED_OUT[self.label] = f'{self.where}: over {self.s:.0f} s, skipped (listed for a person)'
@@ -166,6 +175,69 @@ def late(screen=False, frac=None):
     step's hard end (KPC_HARD_END) is always late."""
     if HARD_END and time.time() > HARD_END - 120: return True
     return time.time() - T0 > LIMIT * (frac if frac is not None else .7 if screen else 1)
+
+
+def budget_end(screen=False, frac=None):
+    """KPC owner, 2026-11-11: the moment late() turns True (the pass's share of MINUTES, or 2 minutes before KPC_HARD_END)."""
+    e = T0 + LIMIT * (frac if frac is not None else .7 if screen else 1)
+    return min(e, HARD_END - 120) if HARD_END else e
+
+
+# KPC owner, 2026-11-11 (Pacific run 43109640166: 4.5 hours with no line after 'pass 1 downloads'): a progress line every
+# KPC_FERS_PROGRESS_N items or KPC_FERS_PROGRESS_S seconds, a 'stage start' line before each long stage, and a heartbeat when
+# nothing was printed for twice that long (it names the stage and the item in hand). Log lines only: no result changes.
+PROGRESS_N = int(os.environ.get('KPC_FERS_PROGRESS_N') or 200)
+PROGRESS_S = float(os.environ.get('KPC_FERS_PROGRESS_S') or 60)
+_BEAT = {'what': '', 'cur': '', 't': time.time(), 'on': False}
+
+
+def peak_mb():
+    try:
+        import resource
+        return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024
+    except Exception: return -1  # noqa: BLE001
+
+
+def _say(line):
+    print(line, flush=True); _BEAT['t'] = time.time()
+
+
+def _beat():
+    if _BEAT['on']: return
+    _BEAT['on'] = True
+    import threading
+    def run():
+        while True:
+            time.sleep(min(15.0, PROGRESS_S))
+            quiet = time.time() - _BEAT['t']
+            if quiet >= 2 * PROGRESS_S:
+                _say(f"progress: still working: {_BEAT['what']}, now {_BEAT['cur'] or '-'}, {quiet:.0f} s since the last line, "
+                     f"{(time.time() - T0) / 60:.0f} of {LIMIT / 60:.0f} min, peak {peak_mb()} MB")
+    threading.Thread(target=run, name='kpc-fers-heartbeat', daemon=True).start()
+
+
+def stage_start(what):
+    _BEAT['what'], _BEAT['cur'] = what, ''
+    _say(f'stage start: {what} ({(time.time() - T0) / 60:.0f} of {LIMIT / 60:.0f} min, peak {peak_mb()} MB)'); _beat()
+
+
+class Progress:
+    """p = Progress('pass 1 pair tests', n); p.step('US-1+US-2', reused=3) per item: a line every PROGRESS_N items or PROGRESS_S s."""
+    def __init__(self, what, total):
+        self.what, self.total, self.n, self.t0, self.last = what, total, 0, time.time(), time.time()
+        _BEAT['what'], _BEAT['cur'] = what, ''; _beat()
+
+    def step(self, cur='', **extra):
+        self.n += 1; _BEAT['cur'] = cur
+        if self.n % PROGRESS_N == 0 or time.time() - self.last >= PROGRESS_S: self.show(cur, **extra)
+
+    def show(self, cur='', **extra):
+        now = time.time(); self.last = now
+        bits = ''.join(f', {k.replace("_", " ")} {v}' for k, v in extra.items())
+        _say(f'progress: {self.what}: {self.n} of {self.total}{bits}, {now - self.t0:.0f} s in this stage, '
+             f'{(now - T0) / 60:.0f} of {LIMIT / 60:.0f} min, peak {peak_mb()} MB, now {cur or "-"}')
+
+
 def low(x): return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', str(x or '').lower()).split())
 
 
@@ -434,6 +506,50 @@ def official_parks(PIN):
 
 
 AREA_BOX = []   # Oct 30: the run's area (box of its own park pins, padded ~20 km); a spot outside it is another area's
+# KPC owner, 2026-11-11 (Pacific run 43109640166): the area as one or more boxes. US + Canada lie west of Greenwich, so an east
+# longitude there is past 180 (the western Aleutians: Alaska Maritime NWR's pin is at 177.5 E) and counts as lon - 360; one plain
+# box over Alaska + Hawaii + the West Coast ran from 166.7 W to 177.7 E, i.e. all of North America (15,659 parks instead of
+# 1,402 own + their neighbours). Each state's pin box (padded 0.2 degrees, as before) joins the others unless it is more than
+# AREA_GAP_DEG apart: an area of touching states keeps exactly its old single box; Alaska and Hawaii get boxes of their own.
+AREA_BOXES = []
+AREA_GAP_DEG = 5.0
+
+
+def wrap_lon(x):
+    return x - 360.0 if REGION == 'na' and x is not None and x > 0 else x
+
+
+def wrap_box(b):
+    """A part box in the same longitudes; a box that runs from west to east across 0 is left as it is (it touches every area, as before)."""
+    return [b[0] - 360.0, b[1], b[2] - 360.0, b[3]] if REGION == 'na' and b[0] > 0 else b
+
+
+def area_boxes(pins_by_state):
+    """{state: [pins]} -> the area's boxes: each state's pin box padded 0.2 degrees, joined while two are within AREA_GAP_DEG."""
+    bs = []
+    for st in sorted(pins_by_state):
+        vs = pins_by_state[st]
+        if vs: bs.append([min(wrap_lon(v[2]) for v in vs) - .2, min(v[1] for v in vs) - .2, max(wrap_lon(v[2]) for v in vs) + .2, max(v[1] for v in vs) + .2])
+    joined = True
+    while joined:
+        joined = False
+        for i in range(len(bs)):
+            for j in range(i + 1, len(bs)):
+                if inter(bs[i], bs[j], AREA_GAP_DEG / 2) is not None:
+                    a, b = bs[i], bs.pop(j)
+                    bs[i] = [min(a[0], b[0]), min(a[1], b[1]), max(a[2], b[2]), max(a[3], b[3])]; joined = True; break
+            if joined: break
+    return bs
+
+
+def in_area(lon, lat, boxes=None):
+    x = wrap_lon(lon)
+    return any(b[0] <= x <= b[2] and b[1] <= lat <= b[3] for b in (AREA_BOXES if boxes is None else boxes))
+
+
+def box_in_area(b_, boxes=None):
+    w = wrap_box(b_)
+    return any(not (w[2] < b[0] or w[0] > b[2] or w[3] < b[1] or w[1] > b[3]) for b in (AREA_BOXES if boxes is None else boxes))
 
 
 def trail_lines():
@@ -616,6 +732,7 @@ def clip(ref, rid, rs):
 
 SLOW_MAP = {}   # Nov 9 PM: map url -> requests that ran past the limit this run (2 = the map is skipped for the rest of the run)
 DL_CUT = set()  # Nov 9 PM: parks not downloaded for time
+NFER_CUT = set()  # KPC owner, 2026-11-12: parks of area spots whose n-fer (3-fer and up) test was cut for time
 
 
 # Nov 9 (Brandon t949u + t950u, 6:50-6:51 PM CST: "If we have a point shouldn't we confirm 100' circle around pin at least?"): a park
@@ -1279,10 +1396,16 @@ def evict(box):
     KO.evict(near)
     for k in [k for k in NHDC if not near(k[0], k[1], .1)]: del NHDC[k]   # keys (i, j) and (i, j, 'd')
     if big:
-        import gc; gc.collect(); EVICT_N['memory'] += 1
+        # KPC owner, 2026-11-11 (Pacific hang): when the outlines alone are over the cap, EVERY pair is over it, and a full collect
+        # after every pair (seconds each on a 5 GB heap) made pass 1 crawl. The caches are dropped as before; the collect runs at
+        # most once a minute (memory only: no answer depends on it)
+        if time.time() - _GC_T[0] >= 60:
+            import gc; gc.collect(); _GC_T[0] = time.time()
+        EVICT_N['memory'] += 1
 
 
 EVICT_N = {'memory': 0}
+_GC_T = [0.0]
 
 
 NHD = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer'
@@ -2228,28 +2351,49 @@ def find_spots(G, LN, pairs, counts):
     spots = []
     reuse_load()
     # Oct 27 (Fable #8): pairs in map order (1-degree cells), so the ownership / water tiles in memory are the ones in use
+    # KPC owner, 2026-11-11 (Pacific hang): each park's box is worked out ONCE (the sort and the loop read every vertex of both
+    # parks again for every pair: minutes before the first pair, with no line printed); the same boxes, the same order
+    _bx = {}
+    def box_of(r):
+        if r not in _bx: _bx[r] = bbox_groups(G[r]) if r in G else bbox_lines(LN[r]['lines'])
+        return _bx[r]
     def cell_of(p):
-        bx = [bbox_groups(G[r]) if r in G else bbox_lines(LN[r]['lines']) for r in p if r in G or r in LN]
+        bx = [box_of(r) for r in p if r in G or r in LN]
         bx = [x for x in bx if x]
         return (math.floor(bx[0][0]), math.floor(bx[0][1]), p) if bx else (999, 999, p)
-    for a, b in sorted(pairs, key=cell_of):
+    stage_start(f'pass {PASS} pair tests ({len(pairs)} pairs)')
+    order = sorted(pairs, key=cell_of)
+    pg = Progress(f'pass {PASS} pair tests', len(order))
+    _be = budget_end(screen=PASS == 3)
+    for a, b in order:
         if late(screen=PASS == 3): counts['stopped for time'] = True; break
+        pg.step(f'{a}+{b}', reused=counts.get('pairs reused (nothing changed)', 0), skipped_for_time=len(TIMED_PAIRS))
         counts['pairs tested'] += 1
         TESTED.add((a, b))
-        ba = bbox_groups(G[a]) if a in G else bbox_lines(LN[a]['lines'])
-        bb = bbox_groups(G[b]) if b in G else bbox_lines(LN[b]['lines'])
+        ba = box_of(a)
+        bb = box_of(b)
         box = inter(ba, bb, ROUTE_KM / 90 if (water_route(a, LN, PINS) or water_route(b, LN, PINS)) else 0.0008)
         if not box or not all(math.isfinite(v) for v in box): continue
         if box[2] - box[0] > 40 or box[3] - box[1] > 40: LOG.append(f'{a} + {b}: shared box too big (an outline crossing the date line?)'); continue
-        pk = f'{a}+{b}'; fp = pair_fp(a, b, G, LN); old = REUSE.get(pk)
+        pk = f'{a}+{b}'
+        # KPC owner, 2026-11-11: the fingerprint (every vertex of both parks) is inside the pair's time limit too
+        fp = None
+        with park_clock(pk, f'pass {PASS} pair fingerprint', budget_end=_be) as _fc: fp = pair_fp(a, b, G, LN)
+        if _fc.out_of_time:   # the pass's own time ended here: this pair is not tested, the next run carries on
+            TESTED.discard((a, b)); counts['pairs tested'] -= 1; counts['stopped for time'] = True; break
+        if _fc.hit:   # skipped for time and listed, like a pair test that ran too long
+            TIMED_PAIRS.add((a, b))
+            if PASS != 1: TESTED.discard((a, b))
+            continue
+        old = REUSE.get(pk)
         if old and old.get('fp') == fp and (not RECHECK_ANSWERS or answers_unchanged(old.get('keys') or [])):
             spots += copy.deepcopy(old['spots']); REUSE_NEW[pk] = old; counts['pairs reused (nothing changed)'] = counts.get('pairs reused (nothing changed)', 0) + 1
             fx = old.get('fx') or {}   # the pair's side notes are replayed too (a map that did not answer, a water route left unchecked, log lines)
             OWNED_FAIL.update(fx.get('owned_fail') or []); WATER_FAIL.extend(tuple(x) for x in fx.get('water_fail') or []); LOG.extend(fx.get('log') or [])
             evict(box); continue
-        n_log, of0, wf0 = len(LOG), set(OWNED_FAIL), len(WATER_FAIL)
+        n_log, of0, wf0, n_sp = len(LOG), set(OWNED_FAIL), len(WATER_FAIL), len(spots)
         HC.TRACE = []
-        _pc = park_clock(f'{a}+{b}', f'pass {PASS} pair test')
+        _pc = park_clock(f'{a}+{b}', f'pass {PASS} pair test', budget_end=_be)
         try:
           with _pc:
             if a in G and b in G: got = area_spots(G, [a, b], box)
@@ -2277,11 +2421,15 @@ def find_spots(G, LN, pairs, counts):
                              'fx': {'owned_fail': sorted(OWNED_FAIL - of0), 'water_fail': [list(x) for x in WATER_FAIL[wf0:]], 'log': LOG[n_log:]}}
         except Exception as e:  # noqa: BLE001
             LOG.append(f'{a} + {b}: {str(e)[:80]}')
+        if _pc.out_of_time:   # KPC owner, 2026-11-11: the pass's own time ended inside this pair: not tested, the next run carries on
+            TESTED.discard((a, b)); REUSE_NEW.pop(f'{a}+{b}', None); counts['pairs tested'] -= 1; counts['stopped for time'] = True
+            del spots[n_sp:]; HC.TRACE = None; break
         if _pc.hit:   # Nov 9 PM: skipped for time and listed; pass 1 carries its old rows over, passes 2-3 leave it waiting
             TIMED_PAIRS.add((a, b)); REUSE_NEW.pop(f'{a}+{b}', None)
             if PASS != 1: TESTED.discard((a, b))
         HC.TRACE = None
         evict(box)
+    pg.show('done' if not counts.get('stopped for time') else 'stopped for time', reused=counts.get('pairs reused (nothing changed)', 0), skipped_for_time=len(TIMED_PAIRS))
     # Oct 27 (chat 8): two water routes on the same bank of one park (Lewis and Clark + Trail of Tears at Ballard WMA) = a 3-fer
     wr = [x for x in spots if x.get('water_route') and not x.get('water_unchecked')]
     for i, x in enumerate(wr):
@@ -2298,19 +2446,27 @@ def find_spots(G, LN, pairs, counts):
     nb = {}
     for a, b in pairs: nb.setdefault(a, set()).add(b); nb.setdefault(b, set()).add(a)
     level = [s for s in spots if s['kind'] == 'area' and not s.get('masked_out')]
+    if level: stage_start(f'pass {PASS} n-fers ({len(level)} area spots)')
+    _cut = False
     for n in range(3, 10):   # Oct 27 (Fable #6, rule 11): up to 9-fers; a level that adds nothing ends it
-        if not level: break
+        if not level or _cut: break
         nxt = []
         for s in level:
-            if late(): break
+            if late(): _cut = True; break
             others = set.intersection(*[nb.get(r, set()) for r in s['refs']]) - set(s['refs'])
             sb = bbox_lines([s['shape']])
             for c in sorted(others):
                 if c not in G or any(x['refs'] == sorted(s['refs'] + [c]) for x in nxt): continue
                 box = inter(sb, bbox_groups(G[c]), 0.0008)
                 if not box: continue
-                try: nxt += area_spots(G, s['refs'] + [c], [box[0] - .001, box[1] - .001, box[2] + .001, box[3] + .001])
-                except Exception as e: LOG.append(f"{'+'.join(s['refs'])} + {c}: {str(e)[:60]}")  # noqa: BLE001
+                with park_clock(f"{'+'.join(s['refs'])}+{c}", 'n-fer test', seconds=1e9, budget_end=_be) as _nc:   # KPC owner, 2026-11-11: the pass's own end only
+                    try: nxt += area_spots(G, s['refs'] + [c], [box[0] - .001, box[1] - .001, box[2] + .001, box[3] + .001])
+                    except Exception as e: LOG.append(f"{'+'.join(s['refs'])} + {c}: {str(e)[:60]}")  # noqa: BLE001
+                if _nc.out_of_time: _cut = True; break
+            if _cut: break
+        if _cut:   # KPC owner, 2026-11-12 (Quality follow-up): an n-fer stage cut for time is an unfinished pass, never a finished area
+            NFER_CUT.update(r for x in level + nxt for r in x['refs']); counts['stopped for time'] = True
+            LOG.append(f'{n}-fers cut short for time: the areas of {len(level)} spots keep their previous file / wait for the next run')
         spots += nxt; level = [x for x in nxt if not x.get('masked_out')]
     reuse_save()
     return spots
@@ -2321,12 +2477,20 @@ def near_pairs(G, pairs, spots, gap_m=100.0):
     outside reason to expect a 2-fer, so the expected list says why there is none. [[a, b, metres]]"""
     have = {tuple(x['refs'][:2]) for x in spots}
     out = []
-    for a, b in sorted(pairs):
-        if time.time() - T0 > LIMIT * 1.1: LOG.append('near-pairs list cut short for time'); break   # Nov 9: never runs long past the budget
+    todo = sorted(pairs)
+    pg = Progress('near pairs for the missing check', len(todo))
+    _end = min(T0 + LIMIT * 1.1, HARD_END - 240) if HARD_END else T0 + LIMIT * 1.1
+    for a, b in todo:
+        # Nov 9: never runs long past the budget. KPC owner, 2026-11-11: and stops 4 minutes before the step's hard end, so the pass
+        # still saves its finished areas (it used to run into KPC_HARD_END: exit 3, nothing saved)
+        if time.time() - T0 > LIMIT * 1.1 or (HARD_END and time.time() > HARD_END - 240): LOG.append('near-pairs list cut short for time'); break
+        pg.step(f'{a}+{b}')
         if (a, b) in have or a not in G or b not in G: continue
         box = inter(bbox_groups(G[a]), bbox_groups(G[b]), gap_m / 90000 * 2)
         if not box: continue
-        try:
+        # KPC owner, 2026-11-11: one near pair of two many-island parks ran over 2 minutes; the list's own end rings inside it too
+        with park_clock(f'{a}+{b}', 'near pairs', seconds=1e9, budget_end=_end - 60) as _c:
+          try:
             f = Frame(box, max(10.0, math.sqrt(max(1.0, (box[2] - box[0]) * 111320 * math.cos(math.radians(box[1])) * (box[3] - box[1]) * 110574) / 4e6)), gap_m)
             if f.cell > gap_m / 2: continue
             da = dt(1 - f.area(G[a]), outside=1) * f.cell
@@ -2334,7 +2498,8 @@ def near_pairs(G, pairs, spots, gap_m=100.0):
             if mb.any():
                 d = float(da[mb > 0].min())
                 if d <= gap_m: out.append([a, b, round(d)])
-        except Exception as e: LOG.append(f'near {a}+{b}: {str(e)[:50]}')  # noqa: BLE001
+          except Exception as e: LOG.append(f'near {a}+{b}: {str(e)[:50]}')  # noqa: BLE001
+        if _c.out_of_time: LOG.append('near-pairs list cut short for time'); break
     return out
 
 
@@ -3587,22 +3752,26 @@ def main():
         # line passes through the area (the box of the area's own park pins, padded ~20 km); its rows are filed under the area's state.
         # only parks with their OWN outline set the box: a line park's POTA pin can sit far away (the Appalachian Trail is filed under
         # Maine with its pin in Georgia, which once stretched Maine's box to Georgia)
-        _in = [PIN[r] for r, p in parks.items() if (p['st'] in ONLY or p['st'][3:] in ONLY) and p.get('ids') and r not in LN and r in PIN and PIN[r][1] is not None]
-        _ab = [min(v[2] for v in _in) - .2, min(v[1] for v in _in) - .2, max(v[2] for v in _in) + .2, max(v[1] for v in _in) + .2] if _in else None
+        _in = {}
+        for r, p in parks.items():
+            if (p['st'] in ONLY or p['st'][3:] in ONLY) and p.get('ids') and r not in LN and r in PIN and PIN[r][1] is not None: _in.setdefault(p['st'], []).append(PIN[r])
+        AREA_BOXES[:] = area_boxes(_in)   # KPC owner, 2026-11-11: one box per group of touching states, longitudes past 180 wrapped
+        _ab = [min(b[0] for b in AREA_BOXES), min(b[1] for b in AREA_BOXES), max(b[2] for b in AREA_BOXES), max(b[3] for b in AREA_BOXES)] if AREA_BOXES else None
         AREA_BOX[:] = _ab or []
+        if len(AREA_BOXES) > 1: LOG.append(f'area in {len(AREA_BOXES)} boxes (states more than {AREA_GAP_DEG:g} degrees apart): ' + '; '.join(','.join(f'{v:.1f}' for v in b) for b in AREA_BOXES))
         def _crosses(r):
             if not _ab or r not in LN or (parks.get(r) or {}).get('ids'): return False
-            return any(_ab[0] <= q[0] <= _ab[2] and _ab[1] <= q[1] <= _ab[3] for l in LN[r]['lines'] for q in l[::5] + l[-1:])
+            return any(in_area(q[0], q[1]) for l in LN[r]['lines'] for q in l[::5] + l[-1:])
         # Oct 31 (chat 2, Delaware lost a cross-border area pair): a one-state area also needs its NEIGHBOURS' parks that sit at its edge,
         # or a pair across a state line (a Delaware park x a Pennsylvania park) is found by neither state's run. A park filed under
         # another state comes in when its POTA pin lies inside this area's box (its own state's run still owns its other rows).
         def _near(r):
             v = PIN.get(r)
             if not (_ab and (parks.get(r) or {}).get('ids')): return False
-            if v and v[1] is not None and _ab[0] <= v[2] <= _ab[2] and _ab[1] <= v[1] <= _ab[3]: return True
+            if v and v[1] is not None and in_area(v[2], v[1]): return True
             # Oct 31 (Fable #20): or one of its OWN record part boxes (rule B12, from the key) reaches into this area (a national forest
             # whose pin is a state away)
-            return any(not (b_[2] < _ab[0] or b_[0] > _ab[2] or b_[3] < _ab[1] or b_[1] > _ab[3]) for bs in (CLIP.get(r) or {}).values() for b_ in bs if len(b_) == 4)
+            return any(box_in_area(b_) for bs in (CLIP.get(r) or {}).values() for b_ in bs if len(b_) == 4)
         _x = [r for r, p in parks.items() if not (p['st'] in ONLY or p['st'][3:] in ONLY) and (_crosses(r) or _near(r))]
         parks = {r: p for r, p in parks.items() if p['st'] in ONLY or p['st'][3:] in ONLY or r in _x}
         if _x: LOG.append(f'{len(_x)} parks filed under another state but crossing / at the edge of this area kept: ' + ', '.join(_x[:8]))
@@ -3859,6 +4028,7 @@ def main():
         else: G.update(saved_world(parks) if REGION == 'world' else saved_ca(parks))
         notice('2-fer bot', f"pass 1: {len(G)} parks from saved outlines, {len(need)} to download, {len(LN)} official lines")
         mark('pass 1 saved outlines')
+        stage_start(f'pass 1 downloads ({len(need)} parks)')
         got, bad = download(parks, need, DET, PREC)
         G.update(got)
         if bad and not late(frac=.5):   # Oct 30 (chat 2, Iowa came out EMPTY: 180 of 491 outlines not read, Iowa DNR did not answer): one slow second try
@@ -3884,6 +4054,7 @@ def main():
             print(f"::error title=2-fer line: outlines not read::{len(bad)} of {_withids} parks' outlines could not be read (id prefixes {' '.join(hosts[:8])}): "
                   "an agency map did not answer. The area stops here, nothing is saved; try it again later.", flush=True)
             sys.exit(1)
+        stage_start(f'pass 1 box test ({len(G)} parks, {len(LN)} lines)')
         boxes = {r: bbox_groups(g) for r, g in G.items() if bbox_groups(g)}
         for r in LN:
             if r in parks and r not in boxes:
@@ -3900,6 +4071,7 @@ def main():
         mark(f"pass 1 pair tests ({counts['pairs tested']} of {len(pairs)})")
         # MISSING CHECK (HQ Oct 27 3:23 PM): what pass 1 looked at, which parks it could not look at and why, and the pairs whose
         # outlines nearly touch, so kpc_fers_expected.py can say FOUND / DROPPED / NEVER LOOKED AT for every expected pair
+        stage_start(f'pass 1 missing check ({len(TESTED)} pairs looked at)')
         try:
             area = 'ky' if REGION == 'ky' else RUN_TAG or ('-'.join(sorted(ONLY)) if ONLY else REGION)
             if PARKS: raise RuntimeError('small batch: the whole-area look-list is kept as it was')
@@ -3940,7 +4112,13 @@ def main():
         by = {}
         if AREA_BOX:   # Oct 30 (chat 2): two LINE parks meet anywhere along their whole length (the Appalachian Trail x Virginia trails
             n0 = len(spots)   # landed in US-ME.json): only spots inside this run's own area are this run's rows
-            spots = [s for s in spots if AREA_BOX[1] <= s['center'][0] <= AREA_BOX[3] and AREA_BOX[0] <= s['center'][1] <= AREA_BOX[2]]
+            # KPC owner, 2026-11-12 (Quality must-fix on #154: Tongass NF x Misty Fjords NM, US-4448+US-4538, lies east of the
+            # pin-only Alaska box): a spot whose parks with their own outline are ALL filed under this area's states is this area's
+            # row wherever its center falls (no other area files it); a line-only spot still needs its center in the area's boxes
+            def _ours(s):
+                own = [st_of(r) for r in s['refs'] if r in G]
+                return bool(own) and all(x and (x in ONLY or x[3:] in ONLY) for x in own)
+            spots = [s for s in spots if in_area(s['center'][1], s['center'][0]) or _ours(s)]   # KPC owner, 2026-11-11: the area's own boxes
             if n0 != len(spots): LOG.append(f'{n0 - len(spots)} spots outside this area left for their own area')
         for s in spots:
             s.update({'id': key_of(s) + '@%.3f,%.3f' % tuple(s['center']), 'passes': [1, 0, 0], 'status': 'pass 1', 'found': today})
@@ -3989,11 +4167,13 @@ def main():
         # Nov 9 (Quality must-fix 1, run 42594981324: US-CO 40 -> 4 candidates, CA-NB 747 -> 7 spots): a pass that stopped for time
         # never rewrites an area it did not finish. An area with any untested pair keeps its previous file; a new area is saved
         # marked incomplete. Only areas whose every pair was tested are written.
+        stage_start('pass 1 save')
         undone = set()
         if counts.get('stopped for time'):
             for p_ in pairs:
                 if p_ not in TESTED: undone |= {st_of(r) for r in p_}
             undone |= {st_of(r) for r in DL_CUT}   # Nov 9 PM: a park never downloaded makes no pair, but its area is not finished
+            undone |= {st_of(r) for r in NFER_CUT}   # KPC owner, 2026-11-12: an n-fer stage cut for time leaves its areas unfinished
             undone.discard('')
             kept = sorted(st for st in undone if st in old)
             if kept: counts['areas kept as before (pass 1 out of time)'] = kept; LOG.append(f'{len(kept)} areas kept their previous file (pass 1 out of time): ' + ' '.join(kept[:20]))
@@ -4067,6 +4247,8 @@ def main():
                     else: s.pop('masked_out', None)
                     m['_used'] = 1
                     s['status'] = f'pass {PASS}'
+                elif NFER_CUT and len(s['refs']) > 2 and set(s['refs']) & NFER_CUT:   # KPC owner, 2026-11-12: its n-fer test was cut for time
+                    s['status'] = f'waiting for pass {PASS}'; continue
                 else:
                     s['passes'][PASS - 1] = 0
                     s['status'] = f'dropped in pass {PASS}' + (' (an outline could not be downloaded)' if any(r in bad for r in s['refs']) else

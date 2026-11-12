@@ -93,7 +93,7 @@ m = re.search(r'^STRETCH = ([0-9.]+)\s*$', src, re.M)
 check(m and float(m.group(1)) == 25.0, f'the trail / river 2-fer stretch is still 25 m (STRETCH = {m.group(1) if m else None})')
 import kpc_key_freeze as F
 got = {k: F.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
-want = {'us-key': '46ef34a04ab0', 'ca-key': '4b4176190334', 'world-key': '9358c2ede2d5', 'fers': 'aa7561256260'}
+want = {'us-key': '46ef34a04ab0', 'ca-key': '4b4176190334', 'world-key': '9358c2ede2d5', 'fers': '77b31e3427a4'}
 check(got == want, f'rules hashes unchanged (got {got})')
 
 gi = (HERE / '.gitignore').read_text(encoding='utf-8').split('\n')
