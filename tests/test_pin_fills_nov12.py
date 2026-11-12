@@ -13,7 +13,7 @@ kpc_world_key.py run on SYNTHETIC saved copies (GEO_CACHE_MODE=only) in temp fol
   5. the world key: PF-0033 / PF-0034 are HELD by the owner (Nov 12; PF byte-identical), only AU changes (NZ byte-identical), same
      no-file / malformed checks;
   6. hashes: CA and world moved (declared in docs/key-rules-change.txt with scope entries CA-QC / AU PF), US and fers did not, and
-     kpc_key_facts.py / kpc_match.py are unchanged; kpc_pin_fill.py is listed in NOT_RULES (that line moves no hash);
+     kpc_key_facts.py / kpc_match.py are unchanged; kpc_pin_fill.py is in the Canada and world RULE_FILES (Quality must-fix M2);
   7. the workflows: both key workflows read the file from KPC-Data read only (a recorded warning when not read), parse, no cron change."""
 import copy, hashlib, io, json, os, pathlib, re, subprocess, sys, tempfile, contextlib
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -203,15 +203,24 @@ e_ca = next((c for c in sc['ca-key']['changes'] if c.get('id') == '2026-11-12-of
 e_w = next((c for c in sc['world-key']['changes'] if c.get('id') == '2026-11-12-official-pin-fills'), {})
 check(e_ca.get('from') == '4b4176190334' and e_ca.get('scope') == {'states': ['CA-QC']} and re.fullmatch(r'[0-9a-f]{12}', e_w.get('from') or '') and e_w.get('scope') == {'states': ['AU', 'PF']},
       'scope entries: Canada from 4b4176190334 touches CA-QC only; world (from the hash just before this change: D6 moved it first) touches AU and PF only')   # Nov 12 CHANGED (stacked after D6)
-check('kpc_pin_fill.py' in KF.NOT_RULES and not any('kpc_pin_fill' in f for v in KF.RULE_FILES.values() for f in v),
-      'kpc_pin_fill.py is listed in NOT_RULES (adding it moves no hash by itself; the builders\' hook lines are the rule change)')
-with tempfile.TemporaryDirectory() as t:   # the NOT_RULES line moves no hash: the rule files of each kind hash the same with or without kpc_key_freeze.py's edit
+check('kpc_pin_fill.py' not in KF.NOT_RULES
+      and '.github/scripts/kpc_pin_fill.py' in KF.RULE_FILES['ca-key']
+      and '.github/scripts/kpc_pin_fill.py' in KF.RULE_FILES['world-key']
+      and '.github/scripts/kpc_pin_fill.py' not in KF.RULE_FILES['us-key']
+      and '.github/scripts/kpc_pin_fill.py' not in KF.RULE_FILES['fers'],
+      'kpc_pin_fill.py is in the Canada and world RULE_FILES, not in NOT_RULES (Quality must-fix M2)')
+with tempfile.TemporaryDirectory() as t:
     import shutil
     for k in ('us-key', 'ca-key', 'world-key', 'fers'):
         for rel in list(KF.RULE_FILES[k]) + [KF.VERSION_FILE]:
             if (H.ROOT / rel).is_file(): (pathlib.Path(t) / rel).parent.mkdir(parents=True, exist_ok=True); shutil.copy(H.ROOT / rel, pathlib.Path(t) / rel)
     check(all(KF.rules_hash(k, t) == cur[k] for k in cur) and '.github/scripts/kpc_key_freeze.py' not in sum(KF.RULE_FILES.values(), []),
-          'kpc_key_freeze.py (where NOT_RULES lives) is in no rules hash: the NOT_RULES line moves nothing')
+          'kpc_key_freeze.py is in no rules hash')
+    # an edit to the pin-fill helper moves the Canada and world hashes, not US or fers
+    (pathlib.Path(t) / '.github/scripts/kpc_pin_fill.py').write_bytes((H.ROOT / '.github/scripts/kpc_pin_fill.py').read_bytes() + b'\n')
+    check(KF.rules_hash('ca-key', t) != cur['ca-key'] and KF.rules_hash('world-key', t) != cur['world-key']
+          and KF.rules_hash('us-key', t) == cur['us-key'] and KF.rules_hash('fers', t) == cur['fers'],
+          'an edit to kpc_pin_fill.py moves the Canada and world hashes only')
 base = next((r for r in ('origin/main',) if subprocess.run(['git', 'rev-parse', '-q', '--verify', r], cwd=H.ROOT, capture_output=True).returncode == 0), None)
 if base:
     same = subprocess.run(['git', 'diff', '--quiet', base, '--', '.github/scripts/kpc_key_facts.py', '.github/scripts/kpc_match.py', '.github/scripts/kpc_key_rules.py'], cwd=H.ROOT).returncode == 0

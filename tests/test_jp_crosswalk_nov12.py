@@ -12,7 +12,7 @@ refused (here and in the builder this test starts); the real kpc_world_key.py ru
      is HELD (check by hand, not joined), one name for two parks is HELD, a class U facility is never joined to the natural park
      around it, a park already joined keeps its join; a malformed crosswalk = nothing applied (warning), output as OFF;
   4. hashes: world moved again (declared, scope none: no area is due with the switch off), CA / US / fers did not; kpc_key_facts.py
-     and kpc_match.py untouched; kpc_jp_crosswalk.py is in NOT_RULES; the workflow passes the repo switch, default off."""
+     and kpc_match.py untouched; kpc_jp_crosswalk.py is in the world RULE_FILES (Quality must-fix M2); the workflow passes the repo switch, default off."""
 import contextlib, io, json, os, pathlib, re, shutil, subprocess, sys, tempfile
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_pinfill_fixture as H   # noqa: E402  (refuses every socket on import)
@@ -145,15 +145,34 @@ cur = {k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
 log = (H.ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 line = next((l for l in log.splitlines() if l.startswith('Japan A10 crosswalk in the world key')), '')
 m = re.search(r'then this commit alone ([0-9a-f]{12}) to ([0-9a-f]{12})', line)
-check(bool(m) and m.group(2) == PF.changelog_hashes(log, 'world-key')[1] and 'APPROVED, decided_by KPC owner, 2026-11-12' in line and 'FINAL' not in line and 'OFF' in line,
-      f'the ledger line: world main -> new (and this commit\'s own step), decided_by KPC owner, 2026-11-12, switch OFF, not claimed FINAL ({m.groups() if m else None})')
-check(cur['us-key'] == PF.newest_hash('us-key') and 'Japan A10' not in PF.changelog_hashes(log, 'us-key')[2] and   # Nov 12 CHANGED (stacked after D6 and the overrides split, which move US)
-       cur['ca-key'] == PF.newest_hash('ca-key') and 'Japan A10' not in PF.changelog_hashes(log, 'ca-key')[2] and cur['fers'] == PF.newest_hash('fers'),
-      'US, CA and fers do not move with this commit')
+check(bool(m) and 'APPROVED, decided_by KPC owner, 2026-11-12' in line and 'FINAL' not in line and 'OFF' in line
+      and cur['world-key'] == PF.newest_hash('world-key'),
+      f'the ledger line: world main -> new (and this commit\'s own step), decided_by KPC owner, 2026-11-12, switch OFF, not claimed FINAL; current world hash is the newest declared ({m.groups() if m else None}, now {cur["world-key"]})')
+check(cur['us-key'] == PF.newest_hash('us-key') and 'Japan A10 crosswalk in the world key' not in PF.changelog_hashes(log, 'us-key')[2] and   # Nov 12 CHANGED (stacked after D6, the overrides split, and M2)
+       cur['ca-key'] == PF.newest_hash('ca-key') and 'Japan A10 crosswalk in the world key' not in PF.changelog_hashes(log, 'ca-key')[2] and cur['fers'] == PF.newest_hash('fers'),
+      'US and fers do not move with the Japan crosswalk commit; CA may move on a later declared line (Quality M2)')
 sc = json.load(open(H.ROOT / KF.SCOPE_FILES['world-key'], encoding='utf-8'))
 e = next((c for c in sc['changes'] if c.get('id') == '2026-11-12-jp-a10-crosswalk-off'), {})
 check(bool(m) and e.get('from') == m.group(1) and e.get('scope') == 'none', 'scope entry: from the pin-fill world hash, scope none (switch OFF: no country is due for it)')
-check('kpc_jp_crosswalk.py' in KF.NOT_RULES and not any('kpc_jp_crosswalk' in f for v in KF.RULE_FILES.values() for f in v), 'kpc_jp_crosswalk.py is listed in NOT_RULES (the builder hook is the rule change)')
+check('kpc_jp_crosswalk.py' not in KF.NOT_RULES
+      and '.github/scripts/kpc_jp_crosswalk.py' in KF.RULE_FILES['world-key']
+      and '.github/scripts/kpc_jp_crosswalk.py' not in KF.RULE_FILES['us-key']
+      and '.github/scripts/kpc_jp_crosswalk.py' not in KF.RULE_FILES['ca-key']
+      and '.github/scripts/kpc_jp_crosswalk.py' not in KF.RULE_FILES['fers'],
+      'kpc_jp_crosswalk.py is in the world RULE_FILES, not in NOT_RULES (Quality must-fix M2)')
+with tempfile.TemporaryDirectory() as t:
+    for k in ('us-key', 'ca-key', 'world-key', 'fers'):
+        for rel in list(KF.RULE_FILES[k]) + [KF.VERSION_FILE]:
+            if (H.ROOT / rel).is_file():
+                dest = pathlib.Path(t) / rel
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_bytes((H.ROOT / rel).read_bytes())
+    (pathlib.Path(t) / '.github/scripts/kpc_jp_crosswalk.py').write_bytes((H.ROOT / '.github/scripts/kpc_jp_crosswalk.py').read_bytes() + b'\n')
+    check(KF.rules_hash('world-key', t) != cur['world-key']
+          and KF.rules_hash('us-key', t) == cur['us-key']
+          and KF.rules_hash('ca-key', t) == cur['ca-key']
+          and KF.rules_hash('fers', t) == cur['fers'],
+          'an edit to kpc_jp_crosswalk.py moves the world hash only')
 base = 'origin/main' if subprocess.run(['git', 'rev-parse', '-q', '--verify', 'origin/main'], cwd=H.ROOT, capture_output=True).returncode == 0 else None
 if base:
     check(subprocess.run(['git', 'diff', '--quiet', base, '--', '.github/scripts/kpc_key_facts.py', '.github/scripts/kpc_match.py', '.github/scripts/kpc_key_rules.py'], cwd=H.ROOT).returncode == 0,

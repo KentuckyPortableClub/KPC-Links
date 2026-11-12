@@ -48,6 +48,14 @@
    "why": "The world builder can read the Japan A10 crosswalk (data/research-inbox/answers/nov5/JP_A10_crosswalk.csv, kpc_jp_crosswalk.py) as official Japanese name aliases for JP parks, behind the repo variable KPC_JP_A10_CROSSWALK. The switch stays OFF until the owner signs the Japan A10 licence terms; OFF, the file is not read and every country's result is byte for byte what it was, so no country is due for this change. Turning the switch on changes JP only (that is a variable, not a code change: the JP area hash must count it).",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
+  },
+  {
+   "id": "2026-11-12-pin-crosswalk-in-hash",
+   "when": "2026-11-12",
+   "from": "92c8f4f24e70",
+   "why": "Quality must-fix M2: kpc_pin_fill.py and kpc_jp_crosswalk.py are in the world RULE_FILES (removed from NOT_RULES). A later edit to either file moves the world hash. No join result changes (the builders already called them; the Japan switch stays off); no country is rebuilt for this alone.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
   }
  ]
 }

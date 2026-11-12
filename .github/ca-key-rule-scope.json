@@ -51,6 +51,14 @@
     ]
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
+  },
+  {
+   "id": "2026-11-12-pin-fill-in-hash",
+   "when": "2026-11-12",
+   "from": "1d68ce76c98e",
+   "why": "Quality must-fix M2: kpc_pin_fill.py is in the Canada RULE_FILES (removed from NOT_RULES). A later edit to it moves the Canada hash. No join result changes (the builders already called it); no province is rebuilt for this alone.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
   }
  ]
 }
