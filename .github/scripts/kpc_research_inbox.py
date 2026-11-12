@@ -294,7 +294,8 @@ def scrub_obj(o):
 
 
 # ---- the answers / solved ledger (Nov 11 2026): data/research-inbox/answers/solved-ledger.csv. Read only: it never writes a key, an override or a pin.
-# A sub-folder on purpose: the inbox glob (inbox_files) reads only the files straight in data/research-inbox/, so nothing under answers/ is a batch.
+# Nov 12 (item 9): the answers/ files are mostly ledger / list shapes (a `ref` column), not batches; but a file under answers/ in the research-batch shape
+# (a `pota_ref` column) IS read, and every other file there is listed as 'not a batch: <reason>' (report_not_batches), never skipped in silence.
 ANSWERS_DIR = 'data/research-inbox/answers'
 LEDGER_REL = ANSWERS_DIR + '/solved-ledger.csv'
 ANSWER_WORDS = ('match', 'no boundary exists', 'wrong pin', 'other', '')   # the hand-back vocabulary, exactly
@@ -409,10 +410,80 @@ def filter_unsolved(rows, ledger, key='pota_ref'):
     return kept, skipped
 
 
-def inbox_files(root=ROOT):
-    """the research batches: *.csv / *.json straight in data/research-inbox/ (NOT sub-folders: answers/ and results/ are never batches)"""
+def batch_shape(path):
+    """KPC owner, 2026-11-12 (handoff item 9): is a file under data/research-inbox/answers/ a research batch? -> (True/False, reason).
+    The rule is the same shape the top-level batches have (docs/research-input-format.md): a .csv whose header has a `pota_ref` column, or a
+    .json whose rows (a list, or {"rows": [...]}) carry `pota_ref`. Everything else is NOT a batch and says why: the answers / list files
+    use a `ref` column (they feed the solved ledger and the hand-back vocabulary), a crosswalk or a source list is not a list of parks to
+    re-check, and a note is a note. Nothing is forced into the checker."""
+    p = pathlib.Path(path); suf = p.suffix.lower()
+    if suf == '.csv':
+        try:
+            with open(p, encoding='utf-8-sig', newline='') as fh: head = [h.strip() for h in next(csv.reader(fh), [])]
+        except Exception as e: return False, f'unreadable ({type(e).__name__})'  # noqa: BLE001
+        if 'pota_ref' in head: return True, 'a pota_ref column'
+        if not head: return False, 'empty file'
+        if {'ref', 'solved'} <= set(head): return False, 'the solved ledger (load_ledger reads it: solved parks are skipped); it is not a list of parks to check'
+        cols = f"columns: {', '.join(head[:4])}{' ...' if len(head) > 4 else ''}"
+        if 'crosswalk' in p.name.lower() or any('join_key' in h for h in head): what = 'a crosswalk (name -> source key), not a list of parks to check; wiring it into a key is a separate step'
+        elif {'url', 'layer_name'} <= set(head): what = 'a source / layer list, not a list of parks to check'
+        elif {'ref', 'answer'} <= set(head): what = 'an answers file (`ref` + `answer`, the hand-back vocabulary; it feeds solved-ledger.csv), not research-format park rows'
+        elif 'ref' in head: what = 'a park list (`ref` column), not research-format park rows with a layer or record'
+        else: what = 'not research-format park rows'
+        return False, f'no pota_ref column ({cols}): {what}'
+    if suf == '.json':
+        try: j = json.load(open(p, encoding='utf-8'))
+        except Exception as e: return False, f'unreadable ({type(e).__name__})'  # noqa: BLE001
+        rows = j.get('rows') if isinstance(j, dict) else j
+        if isinstance(rows, list) and any(isinstance(r, dict) and r.get('pota_ref') for r in rows): return True, 'rows with pota_ref'
+        return False, 'JSON without a rows list of research-format park rows (no pota_ref)'
+    return False, f"a note or other file ({suf or 'no suffix'}), not a CSV / JSON of park rows"
+
+
+def classify_inbox(root=ROOT):
+    """-> (batches, not_batches). batches = the *.csv / *.json straight in data/research-inbox/ (as before: every one is a batch, only
+    needs-another-look.json is not) PLUS every batch-shaped file anywhere under data/research-inbox/answers/ (batch_shape). not_batches =
+    [(path relative to data/research-inbox, reason)] for every other file under answers/, so a person sees what was not read and why."""
     d = pathlib.Path(root) / 'data/research-inbox'
-    return sorted(str(f) for f in list(d.glob('*.csv')) + list(d.glob('*.json')) if f.name != 'needs-another-look.json')
+    batches = sorted(str(f) for f in list(d.glob('*.csv')) + list(d.glob('*.json')) if f.name != 'needs-another-look.json')
+    notb = []
+    for f in sorted(x for x in (d / 'answers').rglob('*') if x.is_file()):
+        ok, why = batch_shape(f)
+        if ok: batches.append(str(f))
+        else: notb.append((f.relative_to(d).as_posix(), why))
+    return batches, notb
+
+
+def inbox_files(root=ROOT):
+    """the research batches: *.csv / *.json straight in data/research-inbox/, plus batch-shaped files under data/research-inbox/answers/
+    (batch_shape; Nov 12). results/ and every other file are never batches; the ones under answers/ are listed by report_not_batches."""
+    return classify_inbox(root)[0]
+
+
+def batch_stem(f, root=ROOT):
+    """results/<stem>: a top-level batch keeps its file stem; a batch under answers/ is answers-<sub-folders>-<stem> (no clash with a top-level one)."""
+    p, d = pathlib.Path(f), pathlib.Path(root) / 'data/research-inbox'
+    try: rel = p.resolve().relative_to((d / 'answers').resolve())
+    except ValueError: return p.stem
+    return '-'.join(('answers',) + rel.with_suffix('').parts)
+
+
+def report_not_batches(root=ROOT):
+    """Print one 'not a batch: <file>: <reason>' line per file under answers/ that is not read as a batch (and one 'batch:' line per answers/
+    file that is), and write the same list to results/not-batches.md (uploaded with the run). Nothing under answers/ is skipped in silence."""
+    d = pathlib.Path(root) / 'data/research-inbox'
+    batches, notb = classify_inbox(root)
+    got = [pathlib.Path(b).relative_to(d).as_posix() for b in batches if pathlib.Path(b).parent != d]
+    if not got and not notb: return 0
+    L = ['# Research inbox: files under answers/', '', f'{len(got)} read as batches, {len(notb)} not batches. A batch is a CSV with a pota_ref column, or JSON rows with pota_ref '
+         '(docs/research-input-format.md). Nothing here is skipped in silence.', '']
+    L += [f'- batch: {g} (results/{batch_stem(d / g, root)}.json)' for g in got] + [f'- not a batch: {f}: {w}' for f, w in notb]
+    for line in L[4:]: print('research inbox ' + line[2:])
+    (d / 'results').mkdir(parents=True, exist_ok=True)
+    (d / 'results' / 'not-batches.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
+    if notb: print(f'::notice title=Research inbox::{len(notb)} file(s) under answers/ are not batches (listed above and in results/not-batches.md)')
+    return len(notb)
+
 
 
 
@@ -601,6 +672,26 @@ def pins_and_overrides(root, kpcdata):
     return PIN, OV, SAVED
 
 
+def park_names(refs, root, kpcdata, ledger=None):
+    """Nov 12 (item 10): the park name for each ref in `refs`, from the park list the script already reads (KPC-Data data/parkinfo/*.json, the
+    first field of a park), else the answers ledger, else a results/*.json row of an earlier run. A ref with no name anywhere is left out."""
+    want, out = set(refs), {}
+    for f in sorted(glob.glob(str(pathlib.Path(kpcdata) / 'data/parkinfo/*.json'))) if want else []:
+        try:
+            for r, v in (json.load(open(f, encoding='utf-8')).get('parks') or {}).items():
+                if r in want and isinstance(v, list) and v and str(v[0] or '').strip(): out[r] = str(v[0]).strip()
+        except Exception: pass  # noqa: BLE001
+    for r in want - set(out):
+        n = str(((ledger or {}).get(r) or {}).get('name') or '').strip()
+        if n: out[r] = n
+    for rf in sorted((pathlib.Path(root) / 'data/research-inbox/results').glob('*.json')) if want - set(out) else []:
+        try: rows = json.load(open(rf, encoding='utf-8')).get('rows') or []
+        except Exception: continue  # noqa: BLE001
+        for x in rows:
+            if isinstance(x, dict) and x.get('pota_ref') in want - set(out) and str(x.get('park_name') or '').strip(): out[x['pota_ref']] = str(x['park_name']).strip()
+    return out
+
+
 def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False, ledger=None):
     root = pathlib.Path(root); inbox = root / 'data/research-inbox'
     ledger = load_ledger(root) if ledger is None else ledger   # solved parks are not checked again (answers/solved-ledger.csv)
@@ -609,7 +700,8 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False, 
     nal_f = inbox / 'needs-another-look.json'
     try: nal = json.load(open(nal_f, encoding='utf-8'))
     except Exception: nal = {'about': 'Retry loop: parks Quality denied or held, or the research could not settle. A new layer or a hand download re-checks just these (kpc_research_inbox.py --retry).', 'parks': {}}  # noqa: BLE001
-    jobs = [(pathlib.Path(f).stem, read_rows(f)) for f in files]
+    report_not_batches(root)
+    jobs = [(batch_stem(f, root), read_rows(f)) for f in files]
     if retry: jobs.append(('retry', [dict(v['row'], pota_ref=r) for r, v in list(nal['parks'].items()) + list((nal.get('point_confirmed') or {}).items()) + list((nal.get('brandon_flip') or {}).items()) if v.get('row')]))
     # Nov 11 2026 (owner): WDPA / Protected Planet stays private and off this public repo. A row whose lead comes from it is not
     # checked and nothing from it is written into results/ or needs-another-look.json (keep such files privately, off-repo).
@@ -655,10 +747,12 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False, 
     rd.save()
     # the sure rule (KISS): ONE short plain list for the owner: solutions over an earlier NO, and agency-alias names (rule 8)
     BL = ['# Owner short list', '', 'Each line: the park, what was found, and what you said before. Say YES to flip, or NO.', '']
-    for r, v in sorted((nal.get('brandon_flip') or {}).items()):
-        if is_skipped(r, ledger): continue   # solved parks are not put on the owner short list again (a pending owner decision stays on it)
+    flips = {r: v for r, v in (nal.get('brandon_flip') or {}).items() if not is_skipped(r, ledger)}
+    names = park_names([r for r, v in flips.items() if not (v.get('row') or {}).get('park_name')], root, kpcdata or os.environ.get('KPCDATA') or root / 'kpcdata', ledger)
+    for r, v in sorted(flips.items()):   # (solved parks are not put on the owner short list again; a pending owner decision stays on it)
         e = v.get('earlier_no') or {}
-        BL.append(f"- **{r}** {(v.get('row') or {}).get('park_name', '')}: found record {v.get('record_id')} \"{v.get('record_name')}\". You said before ({e.get('date') or 'no date'}): {e.get('decision')}.")
+        # Nov 12 (item 10): an entry with no row has no park_name of its own: the park list gives it, else '(name not found)', never a blank
+        BL.append(f"- **{r}** {(v.get('row') or {}).get('park_name') or names.get(r) or '(name not found)'}: found record {v.get('record_id')} \"{v.get('record_name')}\". You said before ({e.get('date') or 'no date'}): {e.get('decision')}.")
     seen = set()
     for rf in sorted((inbox / 'results').glob('*.json')):
         try: res = json.load(open(rf, encoding='utf-8')).get('rows') or []
