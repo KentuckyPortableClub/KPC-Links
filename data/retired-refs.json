@@ -1045,11 +1045,6 @@
    "d": "2026-11-11",
    "src": "world"
   },
-  "FR-5038": {
-   "n": "TOURBIERE ET PRAIRIE DE LA FERME DU FORBONNET Biological Reserve",
-   "d": "2026-11-11",
-   "src": "world"
-  },
   "FR-5039": {
    "n": "MARAIS AUX GOURDIS ET SOUS LES ROCHES DU SURMONTANT Biological Reserve",
    "d": "2026-11-11",
@@ -1133,6 +1128,11 @@
   "FR-5062": {
    "n": "Prairie de la Belloire Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5063": {
+   "n": "Carriere de pierre marbriere de Champied à Pratz Biological Reserve",
+   "d": "2026-11-12",
    "src": "world"
   },
   "FR-5064": {
@@ -1295,6 +1295,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-5106": {
+   "n": "Empreintes de dinosaures dans les calcaires kimmeridgiens de Villette Conservation Area",
+   "d": "2026-11-12",
+   "src": "world"
+  },
   "FR-5107": {
    "n": "Pelouses seches de Bolozon Biological Reserve",
    "d": "2026-11-11",
@@ -1333,6 +1338,11 @@
   "FR-5114": {
    "n": "Pelouses seches des pentes du mont Rosset Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5115": {
+   "n": "Grotte De Hautecourt National Nature Reserve",
+   "d": "2026-11-12",
    "src": "world"
   },
   "FR-5116": {
@@ -1555,6 +1565,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-5171": {
+   "n": "Remplissage pleistocene de la Baume de Gigny Biological Reserve",
+   "d": "2026-11-12",
+   "src": "world"
+  },
   "FR-5172": {
    "n": "LE NOELTANT Biological Reserve",
    "d": "2026-11-11",
@@ -1677,11 +1692,6 @@
   },
   "FR-5197": {
    "n": "AU CURTILLET Biological Reserve",
-   "d": "2026-11-11",
-   "src": "world"
-  },
-  "FR-5198": {
-   "n": "ILE DU LOC'H (ARCHIPEL DES GLENAN) Biological Reserve",
    "d": "2026-11-11",
    "src": "world"
   },
@@ -1845,11 +1855,6 @@
    "d": "2026-11-11",
    "src": "world"
   },
-  "FR-5242": {
-   "n": "BOCAGE ET BOIS HUMIDE DE FRONTENAUD ET SAGY Biological Reserve",
-   "d": "2026-11-11",
-   "src": "world"
-  },
   "FR-5243": {
    "n": "ETANG DU PETIT CHARDENOUX Biological Reserve",
    "d": "2026-11-11",
@@ -1970,11 +1975,6 @@
    "d": "2026-11-11",
    "src": "world"
   },
-  "FR-5287": {
-   "n": "ILES ET ILOTS DE GUIRIDEN, GUEOTEC, VIEUX GLENAN, BRILIMEC, QUIGNENEC, CIGOGNE, CASTEL BRAZ, ROC’H C’HOAR et LE GLUET (ARCHIPEL DES GLENAN) Biological Reserve",
-   "d": "2026-11-11",
-   "src": "world"
-  },
   "FR-5289": {
    "n": "Champs de Loyettes Biological Reserve",
    "d": "2026-11-11",
@@ -2087,11 +2087,6 @@
   },
   "FR-5351": {
    "n": "LA THALIE ENTRE LUX ET CHAMPFORGEUIL Biological Reserve",
-   "d": "2026-11-11",
-   "src": "world"
-  },
-  "FR-5352": {
-   "n": "VAL DE SAONE A CHALON-SUR-SAONE Biological Reserve",
    "d": "2026-11-11",
    "src": "world"
   },
@@ -2228,6 +2223,11 @@
   "FR-5395": {
    "n": "LA RENVERSURE Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5396": {
+   "n": "Grotte De Gravelle Biological Reserve",
+   "d": "2026-11-12",
    "src": "world"
   },
   "FR-5397": {
@@ -2385,6 +2385,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-5542": {
+   "n": "Lac d'Antre et sources de l'Heria Conservation Area",
+   "d": "2026-11-12",
+   "src": "world"
+  },
   "FR-5543": {
    "n": "L'ETANG, SOUS CHEVAL BLANC ET PRE CUVIER Biological Reserve",
    "d": "2026-11-11",
@@ -2470,6 +2475,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-5567": {
+   "n": "Tourbieres du Bief du Nanchez Biological Reserve",
+   "d": "2026-11-12",
+   "src": "world"
+  },
   "FR-5568": {
    "n": "LAC DE L'AUTEL ET LES COTALETS Biological Reserve",
    "d": "2026-11-11",
@@ -2550,11 +2560,6 @@
    "d": "2026-11-11",
    "src": "world"
   },
-  "FR-5595": {
-   "n": "Lac d’Aiguebelette et marais riverains Biological Reserve",
-   "d": "2026-11-11",
-   "src": "world"
-  },
   "FR-5596": {
    "n": "TOURBIERE SOUS LA HAUTE JOUX Biological Reserve",
    "d": "2026-11-11",
@@ -2610,14 +2615,14 @@
    "d": "2026-11-11",
    "src": "world"
   },
-  "FR-5609": {
-   "n": "ARCHIPEL DES GLENAN 3 Biological Reserve",
-   "d": "2026-11-11",
-   "src": "world"
-  },
   "FR-5610": {
    "n": "VALLONS DES SOURCES DE L'AIN JUSQU'A COMBETIOZ Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5611": {
+   "n": "Source de l'Ain Biological Reserve",
+   "d": "2026-11-12",
    "src": "world"
   },
   "FR-5612": {
@@ -2665,9 +2670,19 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-5624": {
+   "n": "La Glaciere Biological Reserve",
+   "d": "2026-11-12",
+   "src": "world"
+  },
   "FR-5625": {
    "n": "PRES-BOIS DE BOUJAILLES Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5626": {
+   "n": "Ecrevisse A Pattes Blanches Et Faune Patrimoniale Associee 25 Conservation Area",
+   "d": "2026-11-12",
    "src": "world"
   },
   "FR-5627": {
@@ -2765,11 +2780,6 @@
    "d": "2026-11-11",
    "src": "world"
   },
-  "FR-5665": {
-   "n": "Adrets de l'Esquirol et du Bouis Negre Biological Reserve",
-   "d": "2026-11-11",
-   "src": "world"
-  },
   "FR-5672": {
    "n": "RUISSEAU DU FROIDEAU Biological Reserve",
    "d": "2026-11-11",
@@ -2803,6 +2813,11 @@
   "FR-5680": {
    "n": "SOURCES DE LA BRENNE Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5681": {
+   "n": "Faille chevauchante et carriere de Mantry Conservation Area",
+   "d": "2026-11-12",
    "src": "world"
   },
   "FR-5683": {
@@ -2868,6 +2883,11 @@
   "FR-5707": {
    "n": "COTE DE LA TENDUE ET CIRQUE DES FOULES Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5708": {
+   "n": "Recif corallien kimmeridgien a Valfin-les-Saint-Claude Conservation Area",
+   "d": "2026-11-12",
    "src": "world"
   },
   "FR-5709": {
@@ -3087,5 +3107,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-11"
+ "updated": "2026-11-12"
 }
