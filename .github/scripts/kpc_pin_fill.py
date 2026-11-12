@@ -6,6 +6,7 @@ The file: KPC-Data data/intake/official-pins-nov12.json (KPC-Data #76), {"about"
 lat, lon, source_name, source_url, confidence, ...}]}. Its path comes from env KPC_OFFICIAL_PINS (the key workflows lay a read-only
 sparse copy of KPC-Data at .op/ and point the variable there). ONLY a row with action 'pin-fill' AND ready_to_apply true is used.
 'point-circle-candidate' and 'held' rows (and anything else) do nothing here.
+HELD (owner, Nov 12 2026): PF-0033 and PF-0034 are not filled even though their rows are ready (one shared low-confidence point).
 
 fill(P, area)  P = the builder's POTA park list (data/parkinfo/<file>.json 'parks': ref -> [name, url, type, ..., lat (5), lon (6), ...]).
                A ready fill for a park of this key ('CA' = refs CA-*, a world country 'PF' = refs PF-*) is used ONLY when POTA has no
@@ -31,6 +32,11 @@ import kpc_key_facts as KF  # noqa: E402  (pin_why: the keys' own usable-pin tes
 ENV = 'KPC_OFFICIAL_PINS'
 WHY = 'official pin (filled; POTA has none)'
 FILLABLE = ('nopin', 'pin00')   # absent / 0,0. 'pinbad' (an impossible POTA pin) is never moved.
+# Owner hold (Brandon, Nov 12 2026, 10:59 AM CT): PF-0033 and PF-0034 share ONE low-confidence official point (the Ramsar sheet of
+# 'Lagon de Moorea'). Their ready rows in the official pins file are NOT applied: POTA's own (0,0) pin stays, the run lists them as
+# held. Taking a ref off this list (after a person checks the point) is the only way to apply its fill.
+HELD = {'PF-0033': 'owner hold Nov 12: shares one low-confidence official point with PF-0034',
+        'PF-0034': 'owner hold Nov 12: shares one low-confidence official point with PF-0033'}
 
 
 def _say(notice, title, msg, loud=False):
@@ -90,8 +96,9 @@ def fill(P, area, notice=None, path=None):
     if not mine:
         _say(notice, title, 'no ready pin fill for this key in the official pins file')
         return P
-    done, kept, other = {}, [], []
+    done, kept, other, held = {}, [], [], []
     for ref, r in sorted(mine.items()):
+        if ref in HELD: held.append(f'{ref} ({HELD[ref]})'); continue
         if r is None: other.append(f'{ref} (two ready rows: not used)'); continue
         x = P.get(ref)
         if x is None: other.append(f'{ref} (not in the POTA park list)'); continue
@@ -104,6 +111,7 @@ def fill(P, area, notice=None, path=None):
         row = list(x) if len(x) > 6 else list(x) + [None] * (7 - len(x))
         row[5], row[6] = c
         done[ref] = (row, r, why)
+    if held: _say(notice, title, f"{len(held)} fill(s) HELD by the owner, not applied (POTA's pin stays): {'; '.join(held)}")
     if kept: _say(notice, title, f"{len(kept)} fill(s) IGNORED, POTA now has a usable pin (a fill never moves a pin): {' '.join(kept)}")
     if other: _say(notice, title, f"{len(other)} fill(s) not applied: {'; '.join(other)}", loud=True)
     if not done:

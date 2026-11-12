@@ -10,7 +10,8 @@ kpc_world_key.py run on SYNTHETIC saved copies (GEO_CACHE_MODE=only) in temp fol
   4. the Canada key: only CA-QC changes (CA-BC byte-identical), the filled parks are marked pf and joined by the official pin, bk still
      says pin00, a park with a usable POTA pin keeps it (its fill ignored), the POTA list file is unchanged, and with no file (or a
      malformed one) every output is byte-identical to the builder without this commit;
-  5. the world key: only PF changes (NZ byte-identical), AU's fill applies when AU is built, same no-file / malformed checks;
+  5. the world key: PF-0033 / PF-0034 are HELD by the owner (Nov 12; PF byte-identical), only AU changes (NZ byte-identical), same
+     no-file / malformed checks;
   6. hashes: CA and world moved (declared in docs/key-rules-change.txt with scope entries CA-QC / AU PF), US and fers did not, and
      kpc_key_facts.py / kpc_match.py are unchanged; kpc_pin_fill.py is listed in NOT_RULES (that line moves no hash);
   7. the workflows: both key workflows read the file from KPC-Data read only (a recorded warning when not read), parse, no cron change."""
@@ -68,7 +69,11 @@ check(out['CA-2082'] is P0['CA-2082'] and out['CA-2082'][5] == 95.0 and 'pinbad'
 check(out['CA-0001'] is P0['CA-0001'] and set(out) == set(P0), 'every other park row is the same object; no park added or dropped')
 check(isinstance(out, PINF.Filled) and set(out.fills) == {'CA-2056', 'CA-2058', 'CA-2089'} and out.pota is P0, 'the filled list remembers POTA\'s own list and what it filled')
 w, wl = run({'PF-0033': ['Est du lagon', '', 'Biological Reserve', '', '', 0.0, 0.0], 'PF-0008': ['AMP de Moorea', '', 'x', '', '', -17.5, -149.8]}, 'PF', FILE)
-check(w['PF-0033'][5:7] == [-17.5, -149.833333] and w['PF-0008'][5:7] == [-17.5, -149.8], 'world: the PF fill applies to PF-0033 only (refs of other countries are never read for PF)')
+check(not isinstance(w, PINF.Filled) and w['PF-0033'][5:7] == [0.0, 0.0] and w['PF-0008'][5:7] == [-17.5, -149.8] and 'HELD' in wl and 'PF-0033' in wl,
+      'world: PF-0033 is HELD by the owner (Nov 12): its ready fill is not applied, POTA\'s 0,0 pin stays, the run lists it held')
+check(PINF.HELD.keys() == {'PF-0033', 'PF-0034'}, 'the owner hold list is exactly PF-0033 and PF-0034 (one shared low-confidence official point)')
+au, al = run({'AU-10111': ['Cobourg', '', 'Conservation Area', '', '', 0.0, 0.0]}, 'AU', FILE)
+check(isinstance(au, PINF.Filled) and au['AU-10111'][5:7] != [0.0, 0.0] and 'HELD' not in al, 'world: the AU fill still applies (refs of other countries are never read for AU)')
 nz, _ = run({'NZ-0001': ['x', '', 'y', '', '', 0.0, 0.0]}, 'NZ', FILE)
 check(not isinstance(nz, PINF.Filled), 'a country with no ready fill gets its own list back (same object)')
 with tempfile.TemporaryDirectory() as t:
@@ -172,15 +177,14 @@ wB = H.world_build(CC, WP, WR, {PINF.ENV: bad}); os.unlink(bad)
 check(all(r.returncode == 0 for r, _ in (wO, wN, w0, wB)), f'the world builder runs offline in every case (exit {[r.returncode for r, _ in (wO, wN, w0, wB)]})')
 check(not cmp(wO[1], w0[1]) and not cmp(wO[1], wB[1]), f'no file given, or a malformed file: every world output is byte-identical to the builder without this commit ({cmp(wO[1], w0[1]) + cmp(wO[1], wB[1])})')
 ch = cmp(wO[1], wN[1])
-check(all(re.search(r'/(PF|AU)(\.json|\.md|/)', k) or k == 'data/world-key/index.json' for k in ch) and 'data/world-key/NZ.json' not in ch and not any('NZ' in k for k in ch),
-      f'with the fills only PF and AU outputs change (NZ byte-identical; index.json only in their rows): {ch}')
+check(all(re.search(r'/AU(\.json|\.md|/)', k) or k == 'data/world-key/index.json' for k in ch) and not any('NZ' in k or '/PF' in k for k in ch),
+      f'with the fills only AU outputs change (PF held and NZ byte-identical; index.json only in AU\'s row): {ch}')
 ixO, ixN = json.loads(wO[1]['data/world-key/index.json'])['countries'], json.loads(wN[1]['data/world-key/index.json'])['countries']
 check(ixO['NZ'] == ixN['NZ'], 'index.json: the NZ row is the same')
 pO, pN = json.loads(wO[1]['data/world-key/PF.json'])['parks'], json.loads(wN[1]['data/world-key/PF.json'])['parks']
-check(pN['PF-0008'] == pO['PF-0008'] and 'pf' in pN['PF-0033'] and 'pf' in pN['PF-0034'] and pN['PF-0033']['pf']['conf'] == 'low', 'PF: PF-0033 and PF-0034 are marked pf (low confidence, as the file says); PF-0008 is unchanged')
-check(not pO['PF-0033']['m'] and pN['PF-0033']['m'] and pN['PF-0033']['m'][0][1] == 'Motu Manu' and pN['PF-0033']['bk'][4:5] == ['pin00'],
-      f"PF-0033: with the official pin the existing pin + name-words rule finds Motu Manu (approximate on the website); bk still says pin00 ({pN['PF-0033']['m'][:1]})")
-check(not pN['PF-0034']['m'], 'PF-0034 (the same official point as PF-0033) is not joined to it: a different name only lists it for a person')
+check(pN == pO and 'pf' not in pN['PF-0033'] and 'pf' not in pN['PF-0034'] and not pN['PF-0033']['m'] and not pN['PF-0034']['m'],
+      'PF (owner hold, Nov 12): PF-0033 and PF-0034 are NOT filled, not marked pf, not joined; every PF park is byte-identical to the builder without this commit')
+check('HELD by the owner' in wN[0].stdout and 'PF-0033' in wN[0].stdout and 'PF-0034' in wN[0].stdout, 'the world run lists PF-0033 and PF-0034 as held')
 aO, aN = json.loads(wO[1]['data/world-key/AU.json'])['parks'], json.loads(wN[1]['data/world-key/AU.json'])['parks']
 check('pf' in aN['AU-10111'] and aN['AU-0001'] == aO['AU-0001'], 'AU-10111: its fill applies when AU is built (on main AU is a signed expected hold: kept from main until it is built again)')
 check(all(o['_parkinfo_unchanged'] for _, o in (wO, wN, w0, wB)), 'the POTA park list files are never changed by the build')
