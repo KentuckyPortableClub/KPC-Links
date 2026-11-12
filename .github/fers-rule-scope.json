@@ -68,6 +68,24 @@
       "from": "aa7561256260",
       "why": "No 2-fer rule changes and no pair is tested again: a pair's answer and its fingerprint are the same. What changes is which parks an area loads, when a pass stops and what it prints. An area is one box per group of states (a state more than 5 degrees from the others gets its own box) and a longitude east of 180 counts as past it, so Pacific loads Alaska, Hawaii and the West Coast plus their border neighbours, not all of North America (an area of touching states keeps exactly its old box). The pass prints a progress line every 200 pairs or 60 seconds, a line at the start of each stage and a heartbeat in a long stretch; the pair's fingerprint is inside its time limit; a pair cut by the pass's own time is left for the next run; the near-pairs list stops 4 minutes before the step's hard end so the pass still saves, and one near pair or n-fer test is cut when that time ends; the memory collect runs at most once a minute. KPC owner, 2026-11-12 (Quality on #154): a spot whose parks with their own outline are all filed under the area's states is the area's row even when its center is outside the pin boxes (Tongass National Forest x Misty Fjords National Monument, US-4448+US-4538, east of Misty Fjords' pin); a spot with a park of another area, or a line-only spot, still needs its center in the boxes. An n-fer stage cut for time marks the pass stopped for time: pass 1 keeps those areas' previous files (a new area is saved marked incomplete) and pass 2 / 3 leave the n-fer row waiting, never dropped.",
       "scope": "none"
+    },
+    {
+      "id": "2026-11-11-picture-trace-inside-bigger",
+      "when": "2026-11-11",
+      "from": "77b31e3427a4",
+      "why": "A picture trace (data/fers-approx-outlines.json) can be an approximate 2-fer only when it sits inside a bigger park's outline: no part of the trace more than 25 yards (SHRINK) outside the other park's own area outline (official or the key's approximate outline), and that outline reaching more than 25 yards past the trace somewhere. Otherwise the row is dropped with the reason; two traces alone never make one. KPC owner, Nov 11 2026: official pins, trails and rivers COUNT under the existing rules, so a row with a point-circle park (the 100 ft circle; the card notes no boundary for that pin), a trail or a river is never touched by this rule and is decided exactly as before. The pair stays an approximate 2-fer with the not-official note, as before. Only pairs with one of these parks are tested again.",
+      "scope": {
+        "parks": [
+          "CA-1248",
+          "CA-5205",
+          "US-11352",
+          "US-12296",
+          "US-2230",
+          "US-5216",
+          "US-5308",
+          "US-5709"
+        ]
+      }
     }
   ]
 }
