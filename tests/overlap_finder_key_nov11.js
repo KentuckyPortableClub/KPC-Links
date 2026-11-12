@@ -47,7 +47,10 @@ function fakeFetch(u) {
   if (q === 'kpc-fers-regions.json') return Promise.resolve(resp(REGIONS));
   if (q === 'kpc-fers-reviewed.json') return Promise.resolve(resp({ reviewed: {} }));
   if (q === 'kpc-us-states.json') return Promise.resolve(resp(STATES));
-  if (q === 'data/released/RELEASED.json') return Promise.resolve(resp({}));
+  /* Nov 11 (job 3, the map data rule): US and CA are released (OH, WV, SK listed; WY not), so the keys come from data/released only */
+  if (q === 'data/released/RELEASED.json') return Promise.resolve(resp({ areas: { US: { sha: 'x' }, CA: { sha: 'y' } }, files: {
+    'us-key/US-OH.json': [['us-key/US-OH.json', 'v1']], 'us-key/US-WV.json': [['us-key/US-WV.json', 'v2']], 'ca-key/CA-SK.json': [['ca-key/CA-SK.json', 'v3']] } }));
+  if (q.startsWith('data/released/')) return Promise.resolve(resp(KEYS['data/' + q.slice('data/released/'.length)] || null));
   if (q === 'data/fers-approx-outlines.json') return Promise.resolve(resp({ parks: {} }));
   const m = /^\.\.\/KPC-Data\/data\/fers\/(.+)\.json$/.exec(q); if (m) return Promise.resolve(resp(FERS[m[1]] || null));
   return Promise.resolve(resp(null));
@@ -88,9 +91,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   const pinShown = () => O.rows().some(g => g.patches.some(s => { const lines = Object.keys(s.line_source || {}); const gr = O.grades(); return gr && gr.g && s.refs.some(r => gr.g[r] === 'pin' && lines.indexOf(r) < 0 && (s.point_circle || []).indexOf(r) < 0); }));
 
   asked.length = 0; await O.load('OH');
-  check(everAsked.some(u => u.startsWith(DATA + 'data/us-key/US-OH.json?v=')), 'OH (the first region, read at page load and kept) reads data/us-key/US-OH.json from the KPC-Data site (KPC.dataUrl)');
+  check(everAsked.some(u => u.startsWith('data/released/us-key/US-OH.json?v=v1')), 'OH (the first region, read at page load and kept) reads the RELEASED US-OH key (data/released, its own version)');
+  check(!everAsked.some(u => /(^|\/)data\/(us|ca|world)-key\//.test(u)), 'no working key file read from this site or the KPC-Data site (job 3: the map data rule)');
   check(!everAsked.some(u => /\.\.\/KPC-Data\/data\/(us|ca|world)-key/.test(u)), 'no key read from the old ../KPC-Data/data/ path');
-  check(everAsked.some(u => u.startsWith(DATA + 'data/us-key/US-WV.json')), 'a park missing from the OH key is graded in the state its spot lies in (WV key read)');
+  check(everAsked.some(u => u.startsWith('data/released/us-key/US-WV.json')), 'a park missing from the OH key is graded in the state its spot lies in (released WV key read)');
   const got = ids_();
   check(JSON.stringify(ids_()) === JSON.stringify(['US-1+US-2@area', 'US-1+US-5@trail', 'US-1+US-8@area', 'US-2+US-10@area', 'US-2+US-4@area']), 'OH shows exactly the allowed rows: ' + got.join(', '));
   const H = O.held();
@@ -103,7 +107,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check(ol && !ol.patches[0]._apx, 'an official + official row is not marked approximate');
 
   asked.length = 0; await O.load('CA-SK');
-  check(asked.some(u => u.startsWith(DATA + 'data/ca-key/CA-SK.json?v=')), 'CA-SK reads data/ca-key/CA-SK.json from the KPC-Data site');
+  check(asked.some(u => u.startsWith('data/released/ca-key/CA-SK.json?v=v3')), 'CA-SK reads the released CA-SK key');
   check(JSON.stringify(ids_()) === JSON.stringify(['CA-1+CA-3@area']) && O.rows()[0].patches[0]._apx === true && O.held().pin.length === 1, 'CA-SK: the pin row is hidden, the approximate row shown as approximate');
 
   asked.length = 0; await O.load('KY');
@@ -111,7 +115,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   check(ids_().length === 1, 'Kentucky\'s list is shown as it is');
 
   asked.length = 0; await O.load('WY');
-  check(asked.some(u => u.startsWith(DATA + 'data/us-key/US-WY.json')), 'WY asks for its key');
+  check(!asked.some(u => /us-key\/US-WY/.test(u)), 'WY: its key is not in the release, so no key file is read at all (never the working copy)');
   check(O.rows().length === 0 && /Could not load the park answer key/.test(ids['ovList'].innerHTML), 'a key that does not load: nothing is listed, and the page says why (fail safe)');
 
   /* every real region in kpc-fers-regions.json maps to a key file (KY excepted) */

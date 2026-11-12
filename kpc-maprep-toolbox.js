@@ -147,7 +147,7 @@
     drawLayer = L.geoJSON({ type: 'FeatureCollection', features: feats }, {
       style: { color: '#1d5a3a', weight: 2, fillOpacity: 0.12 },
       onEachFeature: (feat, layer) => {
-        layer.bindTooltip(feat.properties.name || '', { sticky: true });
+        layer.bindTooltip(esc(feat.properties.name || ''), { sticky: true });   /* Nov 11 (job 3): agency / OSM names are text, not HTML */
         layer.on('click', e => {
           if (window.L && L.DomEvent) L.DomEvent.stopPropagation(e);
           const G = Lgc();

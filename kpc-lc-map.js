@@ -5,7 +5,7 @@
 (function(){
 const box=document.getElementById('lcMap');if(!box)return;
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const NPS='https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer/0/query?where=1%3D1&geometry=-89.6%2C36.4%2C-81.9%2C39.2&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=Exped_Seg&outSR=4326&geometryPrecision=5&maxAllowableOffset=0.0005&f=geojson';
+/* Nov 11 (job 3): no page loads this file today. The NPS route line lived on services1.arcgis.com, never asked live: it needs a saved copy on this site */
 const gm=(a,b)=>`https://www.google.com/maps/search/?api=1&query=${a},${b}`;
 const dir=(a,b)=>`https://www.google.com/maps/dir/?api=1&destination=${a},${b}&travelmode=driving`;
 const pota=r=>'https://pota.app/#/park/'+r;
@@ -21,7 +21,7 @@ async function start(){if(started)return;started=true;const st=document.getEleme
  const lay={route:L.layerGroup().addTo(map),auto:L.layerGroup().addTo(map),vc:L.layerGroup().addTo(map),spots:L.layerGroup().addTo(map)};
  let msg=[];
  // NPS trail route (the Ohio River)
- fetch(NPS).then(r=>r.json()).then(j=>{L.geoJSON(j,{style:{color:'#1f7fb0',weight:5,opacity:.85},onEachFeature:(f,l)=>l.bindPopup(`<b>Lewis &amp; Clark National Historic Trail</b><br>${esc(f.properties.Exped_Seg||'Expedition route')}<br>The trail here is the Ohio River.`)}).addTo(lay.route)}).catch(()=>{msg.push('NPS trail line did not load');show()});
+ msg.push('NPS trail line: needs a saved copy on this site (live government maps are not used)');
  // auto tour route
  fetch('ky-lecl-auto.geojson',{cache:'force-cache'}).then(r=>r.json()).then(j=>{L.geoJSON(j,{style:{color:'#8a4b16',weight:3,opacity:.9,dashArray:'6 4'},onEachFeature:(f,l)=>l.bindPopup(`<b>Lewis &amp; Clark Auto Tour Route</b><br>${esc(f.properties.NAME)}<br>Signed with brown Lewis and Clark Trail / AUTO TOUR ROUTE signs.`)}).addTo(lay.auto)}).catch(()=>{msg.push('auto tour route did not load');show()});
  // visitor centers and spots

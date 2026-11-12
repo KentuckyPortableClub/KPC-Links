@@ -98,7 +98,7 @@ check('only the two Map Rep pages set it', sorted(pub) == ['kpc-maprep-reps.html
 pf = (ROOT / '.github/scripts/kpc_preflight.py').read_text()
 check('preflight: a new or newly grown file over 1 MB fails; one already over on the base only warns', "old_big = [f for f in over if (_was(f) or 0) > 1_000_000]" in pf and "big = [f for f in over if f not in old_big]" in pf)
 html = ''.join(p.read_text(encoding='utf-8', errors='replace') for p in ROOT.glob('*.html'))
-check('every page loads the new loader files (version stamp bumped)', not re.search(r'kpc-(bounds|padus-layer|us-planner|gps)\.js\?v=(?!20261111parts)', html))
+check('every page loads the new loader files (version stamp bumped)', not re.search(r'kpc-(bounds|padus-layer|us-planner|gps)\.js\?v=(?!20261111rule)', html))
 
 # ---- the helper itself, run in node with a fake fetch
 node = shutil.which('node')
@@ -119,10 +119,13 @@ window.fetch = (u, o) => { asked.push([u, (o || {}).cache]); const k = u.split('
   out.notReleased = await KPCREL.get('data/us-key/US-GA.json');
   out.halfMissing = await KPCREL.get('data/us-key/US-TX.json');
   out.workingArea = await KPCREL.get('data/ca-key/CA-ON.json');
-  // a caller's own fetch whose answer has json() only (no arrayBuffer): the working file must still be read, as before
+  // Nov 11 (job 3): an area never released is NOT read from the working copy any more (the map data rule); the caller's own
+  // reader is used on a review page only, where it must still work with json() only (no arrayBuffer)
+  out.plainPublic = await KPCREL.get('data/ca-key/CA-BC.json', p => Promise.resolve({ ok: true, json: () => Promise.resolve({ parks: { plain: {} } }) }));
+  window.KPC_WORKING_COPY = true;
   out.plain = await KPCREL.get('data/ca-key/CA-BC.json', p => Promise.resolve({ ok: true, json: () => Promise.resolve({ parks: { plain: {} } }) }));
   out.plain404 = await KPCREL.get('data/ca-key/CA-QC.json', p => Promise.resolve({ ok: false }));
-  window.KPC_WORKING_COPY = true; out.review = await KPCREL.get('data/us-key/US-GA.json'); window.KPC_WORKING_COPY = false;
+  out.review = await KPCREL.get('data/us-key/US-GA.json'); window.KPC_WORKING_COPY = false;
   out.asked = asked;
   console.log(JSON.stringify(out));
 })();
@@ -149,8 +152,10 @@ window.fetch = (u, o) => { asked.push([u, (o || {}).cache]); const k = u.split('
     check('helper: a file not in a released area is NOT read from the working copy', o.get('notReleased') is None)
     check('helper: a missing part = nothing (never half a file)', o.get('halfMissing') is None)
     check('helper: a review page (KPC_WORKING_COPY) reads the working file even for a released area', o.get('review') == {'parks': {'working': {}}})
-    check('helper: with nothing released the caller\'s own response is read with json() as before (no arrayBuffer needed)', o.get('plain') == {'parks': {'plain': {}}} and o.get('plain404') is None)
-    check('helper: an area never released reads the working file as before', o.get('workingArea') == {'parks': {'CA-1': {}}})
+    check('helper: on a review page the caller\'s own response is read with json() as before (no arrayBuffer needed)', o.get('plain') == {'parks': {'plain': {}}} and o.get('plain404') is None)
+    # Nov 11 (job 3, the map data rule): these two used to read the working file; a public page now gets nothing
+    check('helper: an area never released is NOT read from the working file on a public page', o.get('workingArea') is None and o.get('plainPublic') is None
+          and not any(a[0].startswith('data/ca-key/') for a in asked))
 else: print('SKIP node not installed: the helper run')
 
 wf = (ROOT / '.github/workflows/kpc-release.yml').read_text()

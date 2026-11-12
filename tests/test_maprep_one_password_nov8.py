@@ -14,6 +14,6 @@ check("localStorage.getItem('kpcMapRep') === RH" in js and "GOOD.includes(localS
 check("GOOD.includes(h)" in js and "localStorage.setItem('kpcMapRep', RH)" in js, 'typing the door password in the inner card works and opens both')
 check("let ok = !!$('mrPublic');" in js, 'the public Suggest page still needs no password')
 for f in ('kpc-maprep.html', 'kpc-maprep-reps.html', '.claude/build/maprep/main.html'):
-    h = (ROOT / f).read_text(encoding='utf-8'); check('kpc-maprep.js?v=20261108p' in h, f'{f}: new script version (phones drop the cached old lock)')
+    h = (ROOT / f).read_text(encoding='utf-8'); check('kpc-maprep.js?v=20261111rule' in h, f'{f}: new script version (phones drop the cached old lock)')
 check(re.search(r'kpc-maprep-gate\.js', (ROOT / 'kpc-maprep-reps.html').read_text(encoding='utf-8')) is not None, 'reps page keeps the door')
 print('ALL PASS' if not bad else 'SOME FAILED'); sys.exit(1 if bad else 0)

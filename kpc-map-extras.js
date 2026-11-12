@@ -17,7 +17,7 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp
 const KY = 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/';
 const OFFICIAL = [
  {id:'kdfwr', label:'Kentucky Fish & Wildlife GIS', url:KY+'Ky_Fish_Wildlife_WGS84WM/MapServer/5/query'},
- {id:'wma', label:'KDFWR WMA Map Points', url:'https://services5.arcgis.com/RMHPuOW5MJ6iyTV6/ArcGIS/rest/services/WMA_Map_Points/FeatureServer/0/query'},
+ {id:'wma', label:'KDFWR WMA Map Points', nosave:true},   /* Nov 11 (job 3): its map server is services5.arcgis.com (never live): needs a saved copy on this site */
  {id:'horse', label:'KDFWR horse trailheads', url:KY+'Ky_Fish_Wildlife_WGS84WM/MapServer/3/query', kind:'trailhead'},
  {id:'boat', label:'KDFWR boat access', url:KY+'Ky_Fish_Wildlife_WGS84WM/MapServer/0/query', kind:'boat'},
  {id:'ksp', label:'Kentucky State Parks GIS', url:KY+'Ky_State_Parks_Features_WGS84WM/MapServer/0/query', kind:'trailhead'}
@@ -364,7 +364,7 @@ function attach(map, opt){
   const bb = cellBox(need, SIZE);
   const qs = new URLSearchParams({where:'1=1', geometry:[bb.w, bb.s, bb.e, bb.n].join(','), geometryType:'esriGeometryEnvelope', inSR:'4326', spatialRel:'esriSpatialRelIntersects', outFields:'*', outSR:'4326', returnGeometry:'true', f:'geojson'});
   let okAll = true;
-  await Promise.all(OFFICIAL.map(async src => {
+  await Promise.all(OFFICIAL.filter(src => !src.nosave).map(async src => {
    try {const j = await json(src.url + '?' + qs, null, 14000); delete err[src.label];
     for (const f of j.features || []) {const g = f.geometry || {}, c = g.type === 'Point' ? g.coordinates : null; if (!c) continue;
      const p = f.properties || {}, kind = classify(p, src); if (!kind) continue;
@@ -402,6 +402,7 @@ function attach(map, opt){
   if (z < ZOFF) parts.push('Zoom in closer (level ' + ZOFF + '+) to load agency GIS points. Until then only the KPC park file points show.');
   else if (z < ZOSM) parts.push('Zoom in a little more (level ' + ZOSM + '+) to add OpenStreetMap points.');
   const e = Object.keys(err); if (e.length) parts.push('Not reachable right now: ' + e.join(', ') + '.');
+  if (z >= ZOFF) OFFICIAL.filter(s => s.nosave).forEach(s => parts.push(s.label + ': this layer needs a saved copy on this site (live government maps are not used).'));
   statEl.textContent = parts.join(' ');
  }
 

@@ -185,7 +185,7 @@
     const plain = [], other = [], want = {};
     refs.forEach(r => {
       const ids = (ctx.key[r].m || []).map(x => String(x[0])), pre = id => (id.match(/^[a-z]+/) || [''])[0];
-      if (CP_LOC[code] || ids.some(id => pre(id) && !(X[pre(id)] && /^https:/.test(X[pre(id)][0]) && !BANNED.test(X[pre(id)][0])))) { other.push(r); return; }
+      if (CP_LOC[code] || ids.some(id => pre(id) && !(X[pre(id)] && /^https:/.test(X[pre(id)][0]) && !BANNED.test(X[pre(id)][0]) && !isSavedCopy({ url: X[pre(id)][0] })))) { other.push(r); return; }   /* Nov 11 (job 3): a saved-copy-only host is never asked by id */
       plain.push(r); (ctx.key[r].m || []).forEach(x => { const id = String(x[0]), a = +x[2] || 0, off = a < 20000 ? 0.00004 : a < 200000 ? 0.00015 : a < 1000000 ? 0.0003 : 0.0008;   /* same detail as the map draws (kpc-bounds usKey) */
         if (!have[id]) (want[pre(id) + '|' + off] = want[pre(id) + '|' + off] || new Set()).add(id.slice(pre(id).length)); });
     });
@@ -234,7 +234,7 @@
     return { kind: 'state', a, facts, id: L.pre + id, name: capName(a[L.field]) || L.label, manager: facts.manager ? facts.manager.v : L.label, owner: facts.owner ? facts.owner.v : '', designation: facts.designation ? facts.designation.v : '', acc: '', cat: '', acres: ac > 0 ? ac : geomAcres(f.geometry),
       access: 'not stated in this layer (check the agency)', protection: '', geom: f.geometry, source: L.label, layer: L.pre, link: L.url + '?objectIds=' + encodeURIComponent(id) + '&outFields=*&f=html' };
   }
-  const SAVED_ONLY_HOSTS = /^(?:www\.)?(?:services\.arcgis\.com|services1\.arcgis\.com|apps\.fs\.usda\.gov)$/i;
+  const SAVED_ONLY_HOSTS = /^(?:www\.)?(?:services\d*\.arcgis\.com|apps\.fs\.usda\.gov)$/i;   /* Nov 11 (job 3): services2..9 too (house rules: services*.arcgis.com) */
   function isSavedCopy(L) {
     if (!L) return false;
     if (L.live === false || L.read === 'saved copy') return true;
