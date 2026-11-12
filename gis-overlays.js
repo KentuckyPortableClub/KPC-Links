@@ -5,6 +5,9 @@
  const KY='https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/';
  const rec=KY+'Ky_Recreational_Trails_WGS84WM/MapServer/';
  const parks=KY+'Ky_State_Parks_Features_WGS84WM/MapServer/';
+ /* Nov 11 (job 3): Kentucky (and Canada) map files come from data/released through KPCREL (the block in kpc-gps.js / kpc-padus-layer.js /
+    kpc-bounds.js / kpc-us-planner.js on this page; waited for when it loads later). Not there or not loaded = null: never the working copy. */
+ const kpcRel=(p,old)=>(window.KPCREL?Promise.resolve(window.KPCREL):new Promise(r=>{const d=()=>r(window.KPCREL||null);if(document.readyState==='complete')return d();addEventListener('kpcrel',d,{once:true});addEventListener('load',d,{once:true})})).then(K=>K?K.get(p,old):null).catch(()=>null);
  /* ---------- TRAILS (loaded live for the current map view) ----------
    Nov 11 (job 3, house rules: services*.arcgis.com never live): the NPS trails with no saved copy on this site (Trail of Tears,
    Lewis & Clark route) have no url: the status line says they need a saved copy. */
@@ -106,8 +109,8 @@ function matchPota(f){const g=f.geometry,b=f._bb||(f._bb=bbox(g)),nm=norm(getNam
  const bWait={};
  function getBoundary(k){if(bData[k])return Promise.resolve(bData[k]);return bWait[k]||(bWait[k]=getBoundary1(k).finally(()=>{delete bWait[k]}))}
  async function getBoundary1(k){if(bData[k])return bData[k];const s=bounds[k];let j=null,src='KPC copy';
-  try{const r=await fetch(s.file+'?v=20261110us',{cache:'force-cache'});if(r.ok)j=await r.json()}catch(_){}
-  if(!j||!Array.isArray(j.features)){src='live from state GIS';const ctrl=new AbortController(),t=setTimeout(()=>ctrl.abort(),25000);try{const r=await fetch(s.live,{signal:ctrl.signal});if(!r.ok)throw Error('HTTP '+r.status);j=await r.json();if(j.error)throw Error(j.error.message||'GIS error')}finally{clearTimeout(t)}}
+  j=await kpcRel(s.file,p=>fetch(p+'?v=20261110us',{cache:'force-cache'}));   /* Nov 11 (job 3): the released ky/ copy (one address for every page: its ?v= version) */
+  if(!j||!Array.isArray(j.features)){if(/^ky-[a-z0-9-]+\.geojson$/.test(s.live))throw Error('the saved copy did not load');src='live from state GIS';const ctrl=new AbortController(),t=setTimeout(()=>ctrl.abort(),25000);try{const r=await fetch(s.live,{signal:ctrl.signal});if(!r.ok)throw Error('HTTP '+r.status);j=await r.json();if(j.error)throw Error(j.error.message||'GIS error')}finally{clearTimeout(t)}}
   j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);j.features.forEach(f=>{f._lk=k});j._src=src;bData[k]=j;return j}
  /* Nov 10: saved layers redraw 300 ms after the page opens, often before the POTA list (locations-ky.json) or the
    answer key has loaded. Matching then found nothing, the 'no POTA reference' answer was kept, and every park stayed
@@ -233,7 +236,7 @@ function candidates(){const host=$('gis-candidates');if(!host)return;const done=
  let busy=false,again=false;
  const fileTrail={};let trailParks=null,tpP=null;
  function loadTrailParks(){return tpP||(tpP=fetch('ky-trail-parks.json?v=20261013b').then(t=>t.ok?t.json():{}).catch(()=>({})).then(j=>{trailParks=j;return j}))}
- async function bundled(k){const s=sources[k];if(fileTrail[k])return fileTrail[k];try{const r=await fetch(s.file+'?v=20261109a',{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;
+ async function bundled(k){const s=sources[k];if(fileTrail[k])return fileTrail[k];try{const j=await kpcRel(s.file,p=>fetch(p+'?v=20261109a',{cache:'force-cache'}));if(!j||!Array.isArray(j.features))throw 0;
    await loadTrailParks();
    const render=draw(j,s);fileTrail[k]=render;return render}catch(_){return null}}
  async function load(){if(typeof map==='undefined'||!map){setAll('status','Map unavailable.');return}

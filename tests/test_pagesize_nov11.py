@@ -9,7 +9,7 @@ def ok(c, m):
     global fails
     print(('PASS ' if c else 'FAIL ') + m)
     if not c: fails += 1
-STAMP = '20261111z'
+STAMP = '20261111zr'   # Nov 11 (job 3 loaders, on top of page size): the released copies
 CHANGED = ['kpc-us-planner.js', 'kpc-padus-layer.js', 'gis-overlays.js', 'kpc-planner.js', 'kpc-bounds.js', 'kpc-park-control.js', 'kpc-gps-wire.js', 'kpc-offline.js']
 pages = glob.glob(os.path.join(ROOT, '*.html')) + glob.glob(os.path.join(ROOT, '.claude/build/**/*.html'), recursive=True)
 bad = []
@@ -22,11 +22,11 @@ ok(not bad, f'every page (and .claude/build page source) loads the changed scrip
 gw = R('kpc-gps-wire.js'); ok("kpc-bounds.js?v=" + STAMP in gw, 'kpc-gps-wire.js loads kpc-bounds.js at the same new stamp')
 # one address for the Kentucky boundary files on every page
 addr = {
- 'kpc-planner.js': re.findall(r"B\[k\]\.file\+'\?v=([^']+)'", R('kpc-planner.js')),
- 'kpc-padus-layer.js': re.findall(r"s\.file \+ '\?v=([^']+)'", R('kpc-padus-layer.js')),
- 'gis-overlays.js': re.findall(r"getBoundary1[\s\S]{0,200}?s\.file\+'\?v=([^']+)'", R('gis-overlays.js')),
- 'kpc-bounds.js': re.findall(r"jget\(L\.file \+ '\?v=([^']+)'", R('kpc-bounds.js')),
- 'kpc-park-control.js': re.findall(r"fetch\('ky-usace\.geojson\?v=([^']+)'", R('kpc-park-control.js'))}
+ 'kpc-planner.js': re.findall(r"kpcRel\(B\[k\]\.file,p=>\{const u=p\+'\?v=([^']+)'", R('kpc-planner.js')),
+ 'kpc-padus-layer.js': re.findall(r"const old = p => \{ const u = p \+ '\?v=([^']+)'", R('kpc-padus-layer.js')),
+ 'gis-overlays.js': re.findall(r"getBoundary1[\s\S]{0,200}?kpcRel\(s\.file,p=>fetch\(p\+'\?v=([^']+)'", R('gis-overlays.js')),
+ 'kpc-bounds.js': re.findall(r"relFile\(L\.file, p => fetch\(p \+ '\?v=([^']+)'", R('kpc-bounds.js')),
+ 'kpc-park-control.js': re.findall(r"kpcRel\('ky-usace\.geojson', p => fetch\(p \+ '\?v=([^']+)'", R('kpc-park-control.js'))}   # Nov 11 (job 3): public pages read the released copy (one ?v= hash on every page); this is the Map Rep working address
 ok(all(v == ['20261110us'] for v in addr.values()), 'the Kentucky boundary files have ONE address (?v=20261110us) in the KY planner, US planner, Park Commander, kpc-bounds and the Park Map: ' + str(addr))
 # US planner: the park list only through ready(); same three files, same order
 us = R('kpc-us-planner.js')
@@ -55,7 +55,9 @@ ok("if(!bReady){$('offmsg').textContent='Loading the boundaries first…';await 
 ok("function addSpot(ll){if(!canAdd())return;boundsNow();" in kp and "function addMode(v){adding=v;if(v)boundsNow();" in kp, 'kpc-planner.js: adding a spot starts the boundary files at once')
 # offline save lists still cover the files
 off = R('kpc-offline.js')
-ok(all("'" + f + "'" in off.split('const FILES = [')[1].split('];')[0] for f in ['ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson', 'ky-dbnf-owned.geojson', 'ky-nps.geojson', 'ky-wild-rivers.geojson', 'ky-wilderness.geojson', 'ky-fws.geojson', 'ky-usace.geojson', 'ky-padus-parks.geojson', 'ky-kpc-drawn.geojson', 'locations.json', 'locations-ky.json', 'ky-overlaps.geojson']), 'kpc-offline.js (Park Commander SAVE FOR OFFLINE) names every boundary layer that is on by default (incl. ky-usace, ky-fws, ky-padus-parks, ky-kpc-drawn, missing before) and locations.json')
+# Nov 11 (job 3 loaders): the Kentucky files are saved as their released copies (KY_REL through KPCREL.need), the rest from FILES
+_lists = off.split('const FILES = [')[1].split('];')[0] + off.split('const KY_REL = [')[1].split('];')[0]
+ok(all("'" + f + "'" in _lists for f in ['ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson', 'ky-dbnf-owned.geojson', 'ky-nps.geojson', 'ky-wild-rivers.geojson', 'ky-wilderness.geojson', 'ky-fws.geojson', 'ky-usace.geojson', 'ky-padus-parks.geojson', 'ky-kpc-drawn.geojson', 'locations.json', 'locations-ky.json', 'ky-overlaps.geojson']), 'kpc-offline.js (Park Commander SAVE FOR OFFLINE) names every boundary layer that is on by default (incl. ky-usace, ky-fws, ky-padus-parks, ky-kpc-drawn, missing before) and locations.json')
 sw = R('kpc-finder-sw.js'); ok("kpc-finder-v1" in sw and "kpc-tiles-v1" in sw, 'cache names kpc-finder-v1 / kpc-tiles-v1 unchanged')
 # KPCREL: four identical copies
 blk = []

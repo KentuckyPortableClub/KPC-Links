@@ -218,10 +218,16 @@ window.fetch = (u, o) => { asked.push(u); const b = body(u);
         if 'fatal' in a or 'fatal' in b: continue
         same = [x == y for x, y in zip(a['out'], b['out'])]
         check(f'[{name}] US / CA key and outline requests: the same answers and the same fetches', all(same[:6]) and all(x['urls'] for x in a['out'][:5]))
-        check(f'[{name}] world, tracts, canada-bounds/, data/ky-answer-key.json, root ky-*.geojson, ky/ paths and Map Rep reads: unchanged by the new index',
-              all(same) and len(same) == len(asks))
-        check(f'[{name}] today a Canada outline / KY file asked through KPCREL is still the working file (not blocked by the new CA / KY rows)',
-              all(x['urls'] is None for x in b['out'] if x['p'].startswith(('data/canada-bounds/', 'canada-bounds/', 'data/ky-', 'ky-', 'ky/'))))
+        # Nov 11 (job 3, loader half): the block now knows canada-bounds/ (CA, sub-index) and ky/ (KY). With KY released a public page
+        # reads the released ky/ copy, without it nothing; never a working canada-bounds / ky path (the stub has no real INDEX: nothing).
+        pub = lambda o: [x for x in o['out'] if x['how'] != 2 and x['p'].startswith(('data/canada-bounds/', 'canada-bounds/', 'data/ky-', 'ky-', 'ky/'))]
+        work = lambda x: [u for u in x['asked'] if not u.startswith('data/released/')]
+        check(f'[{name}] world, tracts and Map Rep reads: unchanged by the new index',
+              all(x == y for x, y in zip(a['out'], b['out']) if x['how'] == 2 or not x['p'].startswith(('data/canada-bounds/', 'canada-bounds/', 'data/ky-', 'ky-', 'ky/'))))
+        check(f'[{name}] a public page never reads a working Canada outline or Kentucky file (old index: nothing; new: released ky/ or nothing)',
+              all(not work(x) for x in pub(a) + pub(b))
+              and all((x['urls'] or [''])[0].startswith('data/released/ky/') if 'KY' in ix['areas'] else x['urls'] == []
+                      for o, ix in ((a, old_idx), (b, new_idx)) for x in pub(o) if 'ky' in x['p']))
         check(f'[{name}] the kept copy of RELEASED.json stays small (under 64 KB; the Canada rows are in the sub-index)', b['maxLS'] < 65_536 and len(json.dumps(new_idx)) < 65_536)
 else: print('SKIP node not installed or no data/released/RELEASED.json: the compatibility run')
 

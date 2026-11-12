@@ -220,7 +220,10 @@ function hover(layer){
 
 /* ---------- overlap data ---------- */
 let OVL = null;
-function overlapData(){if (GUEST) return Promise.resolve({type:'FeatureCollection', features:[]}); return OVL || (OVL = fetch('ky-overlaps.geojson?v=20261013g', {cache:'force-cache'}).then(r => {if(!r.ok)throw Error('HTTP ' + r.status);return r.json()}))}
+/* Nov 11 (job 3): Kentucky (and Canada) map files come from data/released through KPCREL (the block in kpc-gps.js / kpc-padus-layer.js /
+   kpc-bounds.js / kpc-us-planner.js on this page; waited for when it loads later). Not there or not loaded = null: never the working copy. */
+const kpcRel=(p,old)=>(window.KPCREL?Promise.resolve(window.KPCREL):new Promise(r=>{const d=()=>r(window.KPCREL||null);if(document.readyState==='complete')return d();addEventListener('kpcrel',d,{once:true});addEventListener('load',d,{once:true})})).then(K=>K?K.get(p,old):null).catch(()=>null);
+function overlapData(){if (GUEST) return Promise.resolve({type:'FeatureCollection', features:[]}); return OVL || (OVL = kpcRel('ky-overlaps.geojson', p => fetch(p + '?v=20261013g', {cache:'force-cache'})).then(j => {if(!j)throw Error('the saved copy did not load');return j}))}   /* Nov 11 (job 3): released ky/ky-overlaps.geojson */
 /* POTA refs → [{kind, other refs, areas}] for cards */
 function overlapIndex(){return overlapData().then(gj => {const idx = new Map();
  for (const f of gj.features) {const p = f.properties, refs = p.pota.map(r => r[0]);

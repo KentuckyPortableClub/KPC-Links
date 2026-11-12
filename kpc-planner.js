@@ -10,6 +10,9 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
 'use strict';
 (() => {
 const $ = id => document.getElementById(id);
+/* Nov 11 (job 3): Kentucky (and Canada) map files come from data/released through KPCREL (the block in kpc-gps.js / kpc-padus-layer.js /
+   kpc-bounds.js / kpc-us-planner.js on this page; waited for when it loads later). Not there or not loaded = null: never the working copy. */
+const kpcRel=(p,old)=>(window.KPCREL?Promise.resolve(window.KPCREL):new Promise(r=>{const d=()=>r(window.KPCREL||null);if(document.readyState==='complete')return d();addEventListener('kpcrel',d,{once:true});addEventListener('load',d,{once:true})})).then(K=>K?K.get(p,old):null).catch(()=>null);
 const esc = s => KPC.esc(s);
 const TAP = matchMedia('(pointer:coarse)').matches;   // touch screen: bigger dots
 const MAXSTOPS = 10;               // Google Maps: destination + 9 waypoints
@@ -140,8 +143,8 @@ function boundsSoon(){const run=()=>('requestIdleCallback' in window)?requestIdl
 async function loadBoundaries(){
  if(window.kpcAnswerKey)kpcAnswerKey.loadKey(restyleBounds);
  const stat=$('lyrStat');let n=0;const keys=Object.keys(B);
- await Promise.all(keys.map(async k=>{try{const u=B[k].file+'?v=20261110us';let r=await fetch(u,{cache:'force-cache'});if(!r.ok)r=await fetch(u,{cache:'reload'});if(!r.ok)throw 0;const j=await r.json();j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);bData[k]=j;drawB(k)}catch(e){}if(stat)stat.textContent=`Loading boundaries… ${++n} of ${keys.length}`}));
- const tk=Object.keys(T).filter(k=>T[k].file);await Promise.all(tk.map(async k=>{try{const r=await fetch(T[k].file+'?v=20261109a',{cache:'force-cache'});if(!r.ok)throw 0;const j=await r.json();if(!Array.isArray(j.features))throw 0;j.features=j.features.filter(f=>f.geometry&&linesOf(f.geometry).length);tData[k]=j;drawT(k)}catch(e){}}));
+ await Promise.all(keys.map(async k=>{try{const j=await kpcRel(B[k].file,p=>{const u=p+'?v=20261110us';return fetch(u,{cache:'force-cache'}).then(r=>r.ok?r:fetch(u,{cache:'reload'}))});if(!j)throw 0;j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);bData[k]=j;drawB(k)}catch(e){}if(stat)stat.textContent=`Loading boundaries… ${++n} of ${keys.length}`}));
+ const tk=Object.keys(T).filter(k=>T[k].file);await Promise.all(tk.map(async k=>{try{const j=await kpcRel(T[k].file,p=>fetch(p+'?v=20261109a',{cache:'force-cache'}));if(!j||!Array.isArray(j.features))throw 0;j.features=j.features.filter(f=>f.geometry&&linesOf(f.geometry).length);tData[k]=j;drawT(k)}catch(e){}}));
  bReady=true;if(stat)stat.textContent=`${Object.keys(bData).length} boundary layers and ${Object.keys(tData).length} trails loaded.`;
  tripLayer.eachLayer(m=>{if(m._stop&&m.isPopupOpen&&m.isPopupOpen())m.setPopupContent(spotPopup(m._stop))});renderTrip()}
 function shown(k){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayers')||'{}');return o[k]!==false}catch(e){return true}}

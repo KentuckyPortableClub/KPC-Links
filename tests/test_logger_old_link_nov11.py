@@ -17,7 +17,7 @@ ok((HERE / 'logger-beta/../kpc-logger.html').resolve() == (HERE / 'kpc-logger.ht
 old = (HERE / 'kpc-logger.html').read_text(encoding='utf-8')
 ok(re.search(r'if\(!/\[\?&\]old=1/\.test\(location\.se', old) is not None, 'kpc-logger.html still opens the beta unless ?old=1')
 ok('kpc-logger.js?v=20261111s' in old, 'kpc-logger.html loads kpc-logger.js?v=20261111s')
-ok('kpc-kit.js?v=20261111s' in (HERE / 'kpc-kit.html').read_text(encoding='utf-8'), 'kpc-kit.html loads kpc-kit.js?v=20261111s')
+ok('kpc-kit.js?v=20261111zr' in (HERE / 'kpc-kit.html').read_text(encoding='utf-8'), 'kpc-kit.html loads kpc-kit.js?v=20261111zr')   # Nov 11 job 3: kit saves released files
 s = (HERE / '.claude/build/logger-beta/sync.sh').read_text(encoding='utf-8')
 ok("kpc-logger.html?old=1" in s and "'kpc-logger.html?old=1' not in s" in s, 'sync.sh puts the link back after an app sync (once)')
 print('SOME FAILED' if fails else 'ALL PASSED')

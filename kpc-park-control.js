@@ -4,6 +4,9 @@
    Trip list saved on this device (localStorage kpcPcTrip); OPEN IN GOOGLE MAPS makes a multi-stop route. ?ref=US-1234 opens a park. */
 (function () {
   const $ = id => document.getElementById(id);
+  /* Nov 11 (job 3): Kentucky (and Canada) map files come from data/released through KPCREL (the block in kpc-gps.js / kpc-padus-layer.js /
+     kpc-bounds.js / kpc-us-planner.js on this page; waited for when it loads later). Not there or not loaded = null: never the working copy. */
+  const kpcRel=(p,old)=>(window.KPCREL?Promise.resolve(window.KPCREL):new Promise(r=>{const d=()=>r(window.KPCREL||null);if(document.readyState==='complete')return d();addEventListener('kpcrel',d,{once:true});addEventListener('load',d,{once:true})})).then(K=>K?K.get(p,old):null).catch(()=>null);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const get = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
@@ -70,7 +73,7 @@
       /* Oct 17 (Brandon: 'all state parks next to CoE land … same color as around US-1271'): the PAD-US pictures colour land by who RUNS it, so Corps
          land run by Kentucky (lake WMAs, some park land) looked like state land. ky-usace.geojson = land the Corps OWNS: always the same orange outline. */
       let CO = null, coP = null; const coSync = () => { const on = true;   /* Oct 18 (Brandon: the cyan PAD-US bits were confusing): land-owner picture OFF by default, Army Corps outline always on */
-        if (on && !CO && !coP) coP = fetch('ky-usace.geojson?v=20261110us').then(r => r.ok ? r.json() : null).then(j => { if (!j) return; map.createPane('pcCorps').style.zIndex = 395;
+        if (on && !CO && !coP) coP = kpcRel('ky-usace.geojson', p => fetch(p + '?v=20261110us')).then(j => { if (!j) return; map.createPane('pcCorps').style.zIndex = 395;
           CO = L.geoJSON(j, { pane: 'pcCorps', renderer: L.svg({ pane: 'pcCorps' }), style: () => ({ color: '#ff8c38', weight: 2.6, opacity: 1, fill: true, fillOpacity: 0 }),
             onEachFeature: (f, l) => { const p = f.properties || {}; l.bindTooltip(`<b>Army Corps of Engineers land</b><br>${esc(p.NAME || '')}${p.MANAGER ? '<br>Run by: ' + esc(p.MANAGER) : ''}`, { sticky: true }); } });
           window.__pcCO = CO; coSync(); }).catch(() => {}).finally(() => { coP = null; });
@@ -115,7 +118,7 @@
     (g.type === 'FeatureCollection' ? g.features : [g]).forEach(f => geo(f.geometry || f)); return out; }
   function trails() {
     const tf = u => (/^data\/trails\//.test(u) && window.KPC && KPC.dataUrl) ? KPC.dataUrl(u) : fetch(u);
-    return trP || (trP = Promise.all([tf('ky-trail-parks.json').then(r => r.json()).catch(() => ({}))].concat(TR.map(t => tf(t.f).then(r => r.json()).catch(() => null)))).then(([tp, ...G]) => {
+    return trP || (trP = Promise.all([tf('ky-trail-parks.json').then(r => r.json()).catch(() => ({}))].concat(TR.map(t => kpcRel(t.f, p => fetch(p))))).then(([tp, ...G]) => {
       Object.values(tp || {}).forEach(v => { if (v && v.ref) TP[v.ref] = v; });
       G.forEach((g, i) => { const t = TR[i]; if (!g) return; const ls = kyLines(g); if (!ls.length) return; const x = byRef(t.ref), nm = (x ? x.n : t.ref) + (t.lab ? ' · ' + t.lab : '');
         const lay = L.layerGroup([L.polyline(ls, { color: '#111', weight: 7, opacity: .55, interactive: false }), L.polyline(ls, { color: t.col, weight: 4, opacity: .95, dashArray: t.dash || null, bubblingMouseEvents: false })]);

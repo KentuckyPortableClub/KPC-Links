@@ -61,7 +61,7 @@ check('a browser without DecompressionStream: stops at .json (as the finder), em
       o2.get('US-1001@US-NC') == [] and not any('.json.gz' in u for u in o2.get('asked') or []) and o2.get('US-1001@US-OH'), o2)
 pages = {p.name: p.read_text(encoding='utf-8', errors='replace') for p in ROOT.glob('*.html')}
 vs = {m for h in pages.values() for m in re.findall(r'kpc-gps\.js\?v=(\w+)', h)}
-check(f'kpc-gps.js has one bumped ?v= on every page: {sorted(vs)}', vs == {'20261111m2'})
+check(f'kpc-gps.js has one bumped ?v= on every page: {sorted(vs)}', vs == {'20261111zr'})   # Nov 11 job 3 loaders: KPCREL learns the Canada INDEX and Kentucky
 srcs = [p for p in list(ROOT.glob('*.js')) + list(ROOT.glob('*.html')) if 'data/fers/W-' in p.read_text(encoding='utf-8', errors='replace')]
 check('no root script or page names data/fers/W-', not srcs, srcs)
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

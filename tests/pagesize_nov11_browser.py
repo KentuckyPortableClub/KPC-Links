@@ -40,6 +40,14 @@ def ok(c, m):
     global fails
     print(('PASS ' if c else 'FAIL ') + m, flush=True)
     if not c: fails += 1
+# Nov 11 (job 3 loaders, on top of this PR): the public pages read the RELEASED copy of each Kentucky file (data/released/ky/<name>,
+# part 1 keeps the name; its ?v= is the file's own version from RELEASED.json, the same on every page). A check below that asks for
+# '/ky-x.geojson' counts its released address; 'the shared address' is that released address.
+_RI = json.load(open(os.path.join(ROOT, 'data/released/RELEASED.json'), encoding='utf-8'))
+def REL(path):
+    m = re.match(r'^/(ky-[a-z0-9-]+\.geojson)$', path)
+    return '/data/released/ky/' + m.group(1) if m and ('ky/' + m.group(1)) in _RI.get('files', {}) else path
+def ADDR(f): n = f + '.geojson'; return '/data/released/ky/' + n + '?v=' + _RI['files']['ky/' + n][0][1]
 class Page:
     """one page in its own context: every same-origin request with its time (ms since navigation), and the load event time"""
     def __init__(s, b, url, w=1280, h=900, store=None, geo=None, wait=True):
@@ -58,9 +66,9 @@ class Page:
             s.p.wait_for_timeout(200)
             if len(s.req) != n: n = len(s.req); lt = time.time()
             elif time.time() - lt > quiet / 1000: break
-    def urls(s, path): return [u for _, u in s.req if u.split('?')[0] == path]
-    def dl(s, path): return sum(1 for h in HITS[s.h0:] if h.split('?')[0] == path)   # times the file was really downloaded
-    def first(s, path): t = [ms for ms, u in s.req if u.split('?')[0] == path]; return min(t) if t else None
+    def urls(s, path): path = REL(path); return [u for _, u in s.req if u.split('?')[0] == path]
+    def dl(s, path): path = REL(path); return sum(1 for h in HITS[s.h0:] if h.split('?')[0] == path)   # times the file was really downloaded
+    def first(s, path): path = REL(path); t = [ms for ms, u in s.req if u.split('?')[0] == path]; return min(t) if t else None
     def close(s): s.c.close()
 def inside_point(fc_path):
     """a point inside the first polygon of the file (fixture computed here, not by the page): returns (lat, lon, name)"""
@@ -135,7 +143,7 @@ def main():
         P.p.evaluate("()=>window.__usMap.setView([37.6,-84.3],9)"); P.settle()
         got = {f: P.urls('/' + f + '.geojson') for f in KYF}
         ok(all(P.dl('/' + k + '.geojson') == 1 for k in got), 'US planner: the map moved to Kentucky: each of the 13 Kentucky files read exactly once ' + str({k: P.dl('/' + k + '.geojson') for k in got if P.dl('/' + k + '.geojson') != 1}))
-        ok(all(v and v[0].endswith('?v=20261110us') for v in got.values()), 'US planner: Kentucky files read at the shared address ?v=20261110us')
+        ok(all(v and v[0] == ADDR(f) for f, v in got.items()), 'US planner: Kentucky files read at the shared address (the released copy, its own ?v=)')
         drawn = P.p.evaluate("()=>window.__usMap._layers.filter(l=>l.feature&&l.feature._lk).length")
         ok(drawn and drawn > 100, f'US planner: the Kentucky outlines are drawn after that ({drawn} outline shapes on the map)')
         P.p.evaluate("()=>window.__usMap.setView([38.2,-85.7],10)"); P.settle(1200)
@@ -175,7 +183,7 @@ def main():
         fb = [P.first('/' + f + '.geojson') for f in ['ky-hunting-areas', 'ky-usace', 'ky-dbnf']]
         ok(all(x is not None and x >= P.load - 50 for x in fb), f'Park Commander: hunting areas, Corps land and forest load after the page has loaded (load {P.load:.0f} ms, first ask {min(x for x in fb if x is not None) if all(fb) else None})')
         ok(all(P.dl('/' + f + '.geojson') == 1 for f in ['ky-hunting-areas', 'ky-usace', 'ky-dbnf', 'ky-state-parks']), 'Park Commander: each boundary file read once')
-        ok(all(u.endswith('?v=20261110us') for f in ['ky-hunting-areas', 'ky-usace', 'ky-state-parks'] for u in P.urls('/' + f + '.geojson')), 'Park Commander: same address as the trip planners (?v=20261110us)')
+        ok(all(u == ADDR(f) for f in ['ky-hunting-areas', 'ky-usace', 'ky-state-parks'] for u in P.urls('/' + f + '.geojson')), 'Park Commander: same address as the trip planners (the released copy, its own ?v=)')
         P.p.click('#gis-inside-btn'); P.p.wait_for_timeout(2500)
         txt = P.p.inner_text('#gis-inside')
         ok('INSIDE' in txt and pt[2] in txt and 'NOT INSIDE' not in txt, f'Park Commander: "Am I inside a park?" says INSIDE {pt[2]} for a point inside it: {txt[:90]!r}')
@@ -189,7 +197,7 @@ def main():
         addr = set()
         for pg in ['finder.html', 'kpc-planner.html', 'kpc-park-control.html']:
             P = Page(b, pg); addr |= set(P.urls('/ky-usace.geojson')); P.close()
-        ok(addr == {'/ky-usace.geojson?v=20261110us'}, f'ky-usace.geojson (2.2 MB) has ONE address on Park Commander, the KY planner and the Kentucky Park Map: {sorted(addr)}')
+        ok(addr == {ADDR('ky-usace')}, f'ky-usace.geojson (2.2 MB) has ONE address on Park Commander, the KY planner and the Kentucky Park Map: {sorted(addr)}')
         # ---------- About / Events: photos far down the page wait until scrolled to ----------
         for pg, img in [('about.html', '/KPC_Founders_Group.jpg'), ('events.html', '/KPC26-Group-Photo.jpg')]:
             for w_, h_ in [(1280, 900), (390, 844)]:

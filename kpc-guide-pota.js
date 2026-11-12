@@ -458,11 +458,16 @@
     var f = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
     f.then(function () { requestAnimationFrame(function () { root.dataset.ready = '1'; }); });
   }
+  /* Nov 11 (job 3): the wild river corridors come from data/released (KPCREL, kpc-padus-layer.js on this page); not loaded = none listed */
+  function relJSON(u) {
+    return new Promise(function (r) { if (window.KPCREL) return r(window.KPCREL); var d = function () { r(window.KPCREL || null); }; if (document.readyState === 'complete') return d(); window.addEventListener('kpcrel', d, { once: true }); window.addEventListener('load', d, { once: true }); })
+      .then(function (K) { return K ? K.get(u, function (p) { return fetch(p, { cache: 'no-cache' }); }) : null; }).catch(function () { return null; });
+  }
   function getJSON(u, optional) {
     return fetch(u, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); })
       .catch(function (e) { if (optional) return null; throw e; });
   }
-  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-guide-pota-data.json'), getJSON('kpc-ky-counties-hd.json'), getJSON('ky-wild-rivers.geojson', true), getJSON('kpc-campgrounds.json', true), window.KPCReports ? window.KPCReports.ready : null])
+  Promise.all([getJSON('kpc-ky-data.json'), getJSON('kpc-guide-pota-data.json'), getJSON('kpc-ky-counties-hd.json'), relJSON('ky-wild-rivers.geojson'), getJSON('kpc-campgrounds.json', true), window.KPCReports ? window.KPCReports.ready : null])
     .then(function (a) {
       STATE.CG = {}; ((a[4] && a[4].parks) || []).forEach(function (x) { STATE.CG[x.pota] = 1; });   // parks with a campground / cabin card
       setup(a[0], a[1], a[2], a[3]);

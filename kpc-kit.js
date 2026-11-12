@@ -317,11 +317,13 @@
     try {
       const app = await caches.open(APP);
       const scripts = [...document.querySelectorAll('script[src],link[rel=stylesheet][href]')].map(e => e.src || e.href).filter(u => u.startsWith(location.origin) || /unpkg\.com\/leaflet@1\.9\.4/.test(u));
-      const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-map-tools.js', 'kpc-padus-layer.js', 'kpc-place-suggest.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'data/ky-hunting.json', 'KPC-logo.png'].concat(B.KY.map(L => L.file), B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
+      const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-map-tools.js', 'kpc-padus-layer.js', 'kpc-place-suggest.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'data/ky-hunting.json', 'KPC-logo.png'].concat(B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
       const urls = [...new Set(files.map(f => new URL(f, location.href).href).concat(scripts).concat(['leaflet.css', 'leaflet.js', 'images/marker-icon.png', 'images/marker-icon-2x.png', 'images/marker-shadow.png', 'images/layers.png'].map(f => 'https://unpkg.com/leaflet@1.9.4/dist/' + f)))];
       /* Nov 11: the released map files this page read (the boundary and key of a park outside Kentucky) and their index, each under its own ?v= address */
       const REL = /\/data\/released\//;
       try { performance.getEntriesByType('resource').forEach(e => { if (e.name.startsWith(location.origin) && REL.test(e.name)) urls.push(e.name); }); urls.push(new URL('data/released/RELEASED.json', location.href).href); } catch (e) {}
+      /* Nov 11 (job 3): the Kentucky layers (and a Canada park's outline + the Canada INDEX) as their RELEASED copies, every part with its ?v= */
+      try { if (window.KPCREL) (await KPCREL.need(B.KY.map(L => L.file).concat(/^CA-\d/.test(p.c || '') ? ['data/canada-bounds/' + p.c + '.json'] : []))).forEach(u => urls.push(new URL(u, location.href).href)); } catch (e) {}
       let ok = 0, lost = 0;   /* lost: files that did not get saved (no signal, or the phone is out of space) */
       for (const u of [...new Set(urls)]) { try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin && !REL.test(k.pathname)) k.search = ''; await app.put(k.href, r); ok++; } else lost++; } catch (e) { lost++; } }
       const bb = geo ? geo.features.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]) : [p.lo - .03, p.la - .03, p.lo + .03, p.la + .03];
