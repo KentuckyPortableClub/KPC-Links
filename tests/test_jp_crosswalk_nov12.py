@@ -13,7 +13,7 @@ refused (here and in the builder this test starts); the real kpc_world_key.py ru
      around it, a park already joined keeps its join; a malformed crosswalk = nothing applied (warning), output as OFF;
   4. hashes: world moved again (declared, scope none: no area is due with the switch off), CA / US / fers did not; kpc_key_facts.py
      and kpc_match.py untouched; kpc_jp_crosswalk.py is in NOT_RULES; the workflow passes the repo switch, default off."""
-import contextlib, io, json, os, pathlib, re, subprocess, sys, tempfile
+import contextlib, io, json, os, pathlib, re, shutil, subprocess, sys, tempfile
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_pinfill_fixture as H   # noqa: E402  (refuses every socket on import)
 import kpc_jp_crosswalk as JPX   # noqa: E402
@@ -89,11 +89,17 @@ def cmp(a, b, skip=('data/status/', 'data/research-inbox/')):   # the build's ou
     ks = sorted(k for k in set(a) | set(b) if not k.startswith(skip) and not k.startswith('_'))
     return [k for k in ks if a.get(k) != b.get(k)]
 CC = ['JP', 'NZ']
-rW, oW = H.world_build(CC, WP, WR, {}, src=W_OLD, extra=EXTRA)
-rF, oF = H.world_build(CC, WP, WR, {JPX.ENV: None}, extra=EXTRA)
-rF2, oF2 = H.world_build(CC, WP, WR, {JPX.ENV: 'off'}, extra=EXTRA)
-rN, oN = H.world_build(CC, WP, WR, {JPX.ENV: 'on'}, extra=EXTRA)
-rB, oB = H.world_build(CC, WP, WR, {JPX.ENV: 'on'}, extra={JPX.FILE: b'ref,name\nJP-1047,x\n'})
+# Nov 12 (KPC owner, 2026-11-12, when the stack was opened): the builder romanizes Japanese layer names with pykakasi when it is installed
+# (the world workflow installs it). With pykakasi its own name join already finds JP-1047 and JP-0114, so the crosswalk has nothing left
+# to join there. The fixture below shows the crosswalk's own joins, so these builds run with pykakasi hidden (a shim that fails the
+# import, as where the test was written); the case WITH pykakasi is checked after them.
+_NOKKS = pathlib.Path(tempfile.mkdtemp(prefix='kpc-no-pykakasi-')); (_NOKKS / 'pykakasi.py').write_text("raise ImportError('pykakasi hidden for this test')\n")
+NK = {'PYTHONPATH': str(_NOKKS)}
+rW, oW = H.world_build(CC, WP, WR, dict(NK), src=W_OLD, extra=EXTRA)
+rF, oF = H.world_build(CC, WP, WR, dict(NK, **{JPX.ENV: None}), extra=EXTRA)
+rF2, oF2 = H.world_build(CC, WP, WR, dict(NK, **{JPX.ENV: 'off'}), extra=EXTRA)
+rN, oN = H.world_build(CC, WP, WR, dict(NK, **{JPX.ENV: 'on'}), extra=EXTRA)
+rB, oB = H.world_build(CC, WP, WR, dict(NK, **{JPX.ENV: 'on'}), extra={JPX.FILE: b'ref,name\nJP-1047,x\n'})
 check(all(r.returncode == 0 for r in (rW, rF, rF2, rN, rB)), f'the builder runs offline in every case (exit {[r.returncode for r in (rW, rF, rF2, rN, rB)]})')
 check(not cmp(oW, oF) and not cmp(oW, oF2), f'switch OFF (unset or off): every output, JP included, is byte-identical to the builder without this commit ({cmp(oW, oF) + cmp(oW, oF2)})')
 check('JP A10 crosswalk::OFF (licence not signed)' in rF.stdout and 'JP A10 crosswalk::OFF (licence not signed)' in rF2.stdout, "the run says 'JP A10 crosswalk: OFF (licence not signed)'")
@@ -117,6 +123,21 @@ check([q[0] for q in kN['JP-0114']['m']] == ['a10:08:t:2'] and not kO['JP-0114']
 check(kN['JP-0999'] == kO['JP-0999'], 'a JP park not in the crosswalk is unchanged')
 check(sorted(r for r in kN if kN[r] != kO[r]) == ['JP-0114', 'JP-1047', 'JP-1146', 'JP-1709', 'JP-1717'], f'switch ON changes exactly those five parks ({sorted(r for r in kN if kN[r] != kO[r])})')
 check('ON: 70 rows; joined 2 (JP-0114 JP-1047); held 3' in rN.stdout, 'the run says what the crosswalk did (joined 2, held 3)')
+try:
+    import pykakasi as _kks  # noqa: F401
+    _have_kks = True
+except Exception:  # noqa: BLE001
+    _have_kks = False
+if _have_kks:   # as on Actions: the builder's own (romanized) name join runs first; the crosswalk never replaces a join it made
+    rWk, oWk = H.world_build(CC, WP, WR, {}, src=W_OLD, extra=EXTRA); rNk, oNk = H.world_build(CC, WP, WR, {JPX.ENV: 'on'}, extra=EXTRA)
+    kOk, kNk = json.loads(oWk['data/world-key/JP.json'])['parks'], json.loads(oNk['data/world-key/JP.json'])['parks']
+    chk = cmp(oWk, oNk)
+    check(rWk.returncode == 0 and rNk.returncode == 0 and all(re.search(r'(/JP(\.json|\.md|/))|world-key/index\.json$', k) for k in chk) and not any('NZ' in k for k in chk),
+          f'with pykakasi (as the workflow installs it): switch ON changes only JP outputs ({chk})')
+    check(all(kNk[r]['m'] == kOk[r]['m'] for r in kOk if kOk[r]['m']), 'with pykakasi: every park the builder joined itself keeps exactly that join with the switch ON (never replaced)')
+    shutil.rmtree(_NOKKS, ignore_errors=True)
+else:
+    print('     (pykakasi not installed here: the with-pykakasi checks are skipped)')
 check(all(o['_parkinfo_unchanged'] for o in (oW, oF, oN, oB)), 'the POTA park list files are never changed')
 
 # ---------------------------------------------------------------- 4. hashes and the workflow
