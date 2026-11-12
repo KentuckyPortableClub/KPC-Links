@@ -95,6 +95,7 @@ nov9_wf |= {'.github/workflows/kpc-key-measure.yml', '.github/workflows/kpc-watc
 nov10_wf = {'.github/workflows/kpc-chain.yml', '.github/workflows/kpc-club-posts.yml', '.github/workflows/kpc-geo-cache.yml'}
 nov11_wf = {'.github/workflows/kpc-release.yml'}   # KPC owner, 2026-11-11: the by-hand map release (new file)
 nov11_wf |= {'.github/workflows/kpc-owned.yml'}   # KPC owner, 2026-11-11 (host guards): owned land runs the guarded runner; not a key workflow
+nov11_wf |= {'.github/workflows/kpc-layer-intake.yml'}   # KPC owner, 2026-11-11: the layer intake bot (new file, dispatch only); not a key workflow
 extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf | nov10_wf | nov11_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))

@@ -164,6 +164,35 @@ Copies made before manifests existed, and baselines recorded wrong, go through t
 proposed counts with a reason each; the gate never reads it. The gate reads only `world-baselines.approved.json`, and only when
 `approved_by` / `approved_date` is a real sign-off, and each entry only for the one copy whose sha256 it names (`copy_sha256`).
 
+## The layer intake bot (Nov 11): one raw layer in, two outputs out
+
+`python3 .github/scripts/kpc_layer_intake.py --source ... --sidecar ... --parks locations-pota.json --out DIR [--write]`
+
+A person or a finder bot drops a saved copy on the KPC-Archive release `layer-intake` (the file plus `<file>.intake.json`: area,
+layer, source_url, license, expected = the layer's own full count, the match fields). The bot never reads a layer live: the input is
+that release asset, a `boundary-cache` asset, or a direct official file that `live_ok` and robots.txt allow. WDPA / Protected Planet
+and `redistribute: "no"` layers are refused before anything is fetched or stored (exit 4). The file must hold exactly the sidecar's
+count: fewer is a short read (exit 2), more means the count is not this file's (exit 3), so a wrong count never becomes a baseline.
+
+1. **The original**, byte for byte, goes to the KPC-Archive release `layer-originals` (parts under 2 GB when bigger) with a sidecar
+   (sha256, size, record count, source, licence, date). It is never in git and never on a Pages site. Its facts (no licence text) go
+   to `raw-manifest.json`; a US original is recorded by the master step instead, when it merges a US hand file (as `import-existing`).
+2. **The trimmed copy**, in the formats the tools already read: the master records, the layer's `layers.json` entry and its
+   solver-queue CSV from `trim` on the **full** read (so the layer's baseline is its full count); a checked hand file
+   `hand-<AREA>.<layer>.geojson.gz` holding only the park-relevant records (matched, or holding a POTA pin or a same-name outline
+   near one, so a later trim of it cannot settle an ambiguity by leaving a rival out: checked on every run); for a `W-XX` area a
+   bundle `W-XX.json.gz` made with the world key's own record builder and source id (read from `kpc_world_key.py`, which is not
+   changed) at the detail `kpc-world-cache.yml` saves, stamped by `bundle-manifest`, and a row in `world-baselines.proposed.json`
+   (never the approved file); research-inbox rows for the leftovers.
+   A country the world key reads several sources for: the bundle is the `boundary-cache` copy with only this layer's records replaced
+   (never by a smaller set), so the other sources' saved records stay; with no copy there yet it is a first copy of this layer alone
+   and the report says so; if the asset list cannot be read there is no bundle. Records without a unique id: no bundle.
+
+The default is a dry run: everything is built in `--out` and nothing goes to a release or to the repo. A write run tries the trim
+as a dry run first, so a refusal (a shrink held) stops before the original is stored. A US hand file is never
+uploaded by the bot (the master step would hold a trimmed one as a shrink, or record its count as the layer's baseline). A `W-XX`
+bundle is uploaded only as a first copy, with the owner's OK; an existing `W-XX.json.gz` is never replaced by a bot.
+
 ## download-sources.json (Nov 10): the official download sources and the change check
 
 One entry per official download source from the hand-filled layer list: `areas`, `layer`, `page`, `file` (a direct file when

@@ -1,0 +1,84 @@
+name: KPC layer intake (match and trim one saved layer)
+# KPC owner, 2026-11-11. FOR THE OWNER'S OK: a new workflow. Dispatch only (no cron, no push trigger). The default is a dry run: the
+# report and the would-be files are this run's artifacts, and nothing goes to a release or to the repo. With mode=write, the original
+# goes to the KPC-Archive release layer-originals, the repo changes (master records, layers.json layer entry, solver queue,
+# raw-manifest facts, a proposed world baseline row, research-inbox rows) are pushed to a prep/ branch for the owner to merge, never
+# to main. A hand file goes to boundary-cache only with upload_hand (never a US one, never over an existing asset); a W-XX bundle only
+# as a first copy with upload_first_world (the owner's OK). Plain words: data/outlines/README.md, "The layer intake bot".
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: 'The saved copy: release:layer-intake/<asset> (KPC-Archive), release:boundary-cache/<asset>, or an allowed direct official file URL'
+        required: true
+      sidecar:
+        description: 'What the file is: release:layer-intake/<asset>.intake.json, or inline JSON (area, layer, source_url, license, expected, name_fields ...)'
+        required: true
+      mode:
+        description: 'dry-run (default: report only) or write'
+        default: dry-run
+        type: choice
+        options: [dry-run, write]
+      upload_hand:
+        description: 'write only: upload a non-US hand file to boundary-cache (never over an existing one)'
+        type: boolean
+        default: false
+      upload_first_world:
+        description: "write only, the owner's OK: upload the W-XX bundle when boundary-cache has no W-XX.json.gz"
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: kpc-layer-intake
+  cancel-in-progress: false
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: POTA pins (KPC-Data locations-pota.json, read only)
+        run: |
+          git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .mdata
+          git -C .mdata sparse-checkout set --no-cone locations-pota.json && git -C .mdata checkout -q
+      - name: Match and trim
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          KPC_ARCHIVE_TOKEN: ${{ secrets.KPC_ARCHIVE_TOKEN }}
+          SRC: ${{ inputs.source }}
+          SIDE: ${{ inputs.sidecar }}
+          MODE: ${{ inputs.mode }}
+          UP_HAND: ${{ inputs.upload_hand }}
+          UP_WORLD: ${{ inputs.upload_first_world }}
+        run: |
+          set -o pipefail
+          mkdir -p "$RUNNER_TEMP/intake"
+          extra=()
+          if [ "$MODE" = write ]; then
+            extra+=(--write)
+            [ "$UP_HAND" = true ] && extra+=(--upload-hand)
+            [ "$UP_WORLD" = true ] && extra+=(--upload-first-world)
+          fi
+          python3 .github/scripts/kpc_layer_intake.py --source "$SRC" --sidecar "$SIDE" --parks .mdata/locations-pota.json \
+            --out "$RUNNER_TEMP/intake" "${extra[@]}" 2>&1 | tee "$RUNNER_TEMP/intake/run.log" || { rc=$?; echo "::error title=Layer intake::stopped (exit $rc, named above)"; exit $rc; }
+      - name: Check the master records
+        if: inputs.mode == 'write'
+        run: python3 .github/scripts/kpc_master_cli.py check --repo .
+      - name: Report and files (artifacts)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: layer-intake-${{ github.run_id }}
+          retention-days: 30
+          path: ${{ runner.temp }}/intake/
+      - name: Push the repo changes to a prep branch (never main)
+        if: inputs.mode == 'write'
+        run: |
+          git add -A data/outlines data/research-inbox
+          if git diff --cached --quiet; then echo "::notice title=Layer intake::no repo change"; exit 0; fi
+          b="prep/layer-intake-${{ github.run_id }}"; d=$(date -u +%Y-%m-%d)
+          git -c user.name='KPC owner' -c user.email='KentuckyPortableClub@users.noreply.github.com' commit -q \
+            -m "Layer intake: master records and leftovers for one saved layer (run ${{ github.run_id }})" -m "KPC owner, $d"
+          git push -q origin "HEAD:refs/heads/$b"
+          echo "::notice title=Layer intake::pushed $b for the owner to merge"
