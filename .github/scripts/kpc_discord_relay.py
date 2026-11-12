@@ -62,6 +62,14 @@ if not TOKEN or not CHAN:
     notice('No DISCORD_BOT_TOKEN / KPC_RELAY_CHANNEL secret yet; nothing to do.'); sys.exit(0)
 
 # ---------------------------------------------------------------- web helpers
+def no_addr(msg, url=''):
+    """Nov 11: an error text with the address taken out. A webhook, the mailer or the subscriber sheet address IS a secret, and a
+    cut-off copy of a secret is not masked in the log, so no address goes into a notice."""
+    m = str(msg)
+    for part in sorted({str(url or ''), str(url or '').split('?')[0]}, key=len, reverse=True):
+        if len(part) > 8: m = m.replace(part, '<address>')
+    return re.sub(r'(?i)\b(?:https?://|www\.)\S+', '<address>', m)
+
 def http(url, data=None, headers=None, method=None, timeout=60):
     h = {'User-Agent': UA}; h.update(headers or {})
     req = urllib.request.Request(url, data=data, headers=h, method=method)
@@ -76,7 +84,7 @@ def http(url, data=None, headers=None, method=None, timeout=60):
                 time.sleep(min(wait, 30) + .5); continue
             return e.code, body
         except Exception as e:
-            if i == 3: return 0, str(e).encode()
+            if i == 3: return 0, no_addr(f'{type(e).__name__}: {e}', url).encode()   # Nov 11: never the address itself
             time.sleep(3 * (i + 1))
 
 def dc(path, method='GET', body=None):
@@ -322,7 +330,7 @@ def get_photos(m, folder):
         if c != 200: continue
         f = os.path.join(folder, f"{m['id']}-{n}.jpg")
         try: shrink(data, f); out.append(f)
-        except Exception as e: notice(f'Picture skipped ({e}).')
+        except Exception as e: notice(f'Picture skipped ({no_addr(e)}).')
     return out
 
 def other_files(m):
@@ -451,7 +459,7 @@ def flush_mail():
                 if room() < 1: break
                 try: mail(GIO_TO, [], GIO_SUBJECT, it['body'], files); spent(1); it['gio'] = False
                 except Exception as e:
-                    bad.append('groups.io: ' + str(e)[:150])
+                    bad.append('groups.io: ' + no_addr(e)[:150])
                     if re.search(r'too many|quota|limit', str(e), re.I): break
             elif it.get('gio'): it['gio'] = False
             if it.get('list'):
@@ -463,7 +471,7 @@ def flush_mail():
                     if n < 1: break
                     part = todo[:n]
                     try: mail('' if MAIL_URL else SMTP_USER, part, it['subject'], it['body'] + '\n\n' + spam_tip() + '\n\n' + unsub_line(), files)
-                    except Exception as e: bad.append('email list: ' + str(e)[:150]); break
+                    except Exception as e: bad.append('email list: ' + no_addr(e)[:150]); break
                     spent(len(part) + 1); it['done'] += [fp(e) for e in part]; todo = todo[n:]
                 if not todo: it['list'] = False
             if bad:
@@ -591,7 +599,7 @@ def unpublish(mid):
     feed_remove(mid)
     if rec.get('fb') and FB_TOKEN and not DRY:
         try: fb_call(rec['fb'], {}, method='DELETE')
-        except Exception as e: notice('Could not delete the Facebook post: ' + str(e)[:150])
+        except Exception as e: notice('Could not delete the Facebook post: ' + no_addr(e)[:150])
     for i, hid in rec.get('dc', []):
         if i < len(HOOKS) and not DRY: hook_delete(HOOKS[i], hid)
     state.get('conds', {}).pop(mid, None); state.get('events', {}).pop(mid, None)
@@ -643,10 +651,10 @@ def sync(m, first):
             try:
                 if rec.get('fb'): fb_call(rec['fb'], {'message': plain}); res['facebook'] = 'updated'
                 else: rec['fb'] = fb_new(plain, files); res['facebook'] = 'posted' + (f' with {len(files)} photo(s)' if files else '')
-            except Exception as e: problems.append('Facebook: ' + str(e)[:150])
+            except Exception as e: problems.append('Facebook: ' + no_addr(e)[:150])
         elif rec.get('fb') and FB_TOKEN:
             try: fb_call(rec.pop('fb'), {}, method='DELETE'); res['facebook'] = 'removed'
-            except Exception as e: problems.append('Facebook delete: ' + str(e)[:150])
+            except Exception as e: problems.append('Facebook delete: ' + no_addr(e)[:150])
         # other Discord server(s)
         hooks_text = plain + ('\n\n' + SITE + PAGE_URL[p['pages'][0]] if 'web' in p['dest'] else '')
         have = dict((i, h) for i, h in rec.get('dc', []))
@@ -656,7 +664,7 @@ def sync(m, first):
         if 'dc' in p['dest'] and rooms:
             for i, url in enumerate(rooms):
                 try: have[i] = hook_send(url, hooks_text, files, have.get(i))
-                except Exception as e: problems.append('Discord room: ' + str(e)[:150])
+                except Exception as e: problems.append('Discord room: ' + no_addr(e)[:150])
             res['other Discord'] = f'{len(HOOKS)} server(s)' + (' + the campout room' if len(rooms) > len(HOOKS) else '')
         elif have:
             allr = list(HOOKS) + ([CAMP_HOOK] if CAMP_HOOK else [])

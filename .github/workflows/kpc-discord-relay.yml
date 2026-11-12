@@ -29,19 +29,43 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v5
+      # Nov 11 (fewer, shorter runs): a started run whose look ends it ('nothing new') used to check out the whole site (~420 MB) first.
+      # The look now gets only the four files it reads (its script, the host guard, the guard's layer list, the relay state) in its
+      # own folder, and the whole site is checked out only when the full run goes ahead. Scheduled and practice runs: as before.
+      - name: Check out what the quick look reads (started runs only)
+        if: github.event_name == 'workflow_dispatch' && !inputs.dry_run
+        uses: actions/checkout@v5
+        with:
+          path: .peek
+          persist-credentials: false
+          sparse-checkout: |
+            .github/scripts/kpc_relay_peek.py
+            .github/scripts/kpc_net_guard.py
+            data/outlines/layers.json
+            kpc-relay-state.json
+          sparse-checkout-cone-mode: false
       # PR3 (Nov 2): the Apps Script starts this relay every few minutes; most starts find nothing new. On those STARTED runs
       # a few-second look decides: a new Discord message, a waiting email, a due post, or 29+ min since the last full run (Nov 4: was 14+) =
       # the full run; else the run ends here (the heartbeat below still runs). Scheduled runs and practice runs always go full.
+      # Nov 11: a look that fails or hangs (4 min) counts as 'go full' (its own rule: when in doubt, do the full run).
       - name: Anything new? (started runs only, PR3)
         id: peek
         if: github.event_name == 'workflow_dispatch' && !inputs.dry_run
+        continue-on-error: true
+        timeout-minutes: 4
+        working-directory: .peek
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           KPC_RELAY_CHANNEL: ${{ secrets.KPC_RELAY_CHANNEL }}
           GH_TOKEN: ${{ github.token }}
           FULL: ${{ inputs.full && '1' || '' }}
         run: python3 .github/scripts/kpc_relay_peek.py
+      - name: Put away the quick look's folder
+        if: always()
+        run: rm -rf .peek
+      - name: Check out the site (full runs only)
+        if: steps.peek.outputs.skip != '1'
+        uses: actions/checkout@v5
       - name: Install image tools
         if: steps.peek.outputs.skip != '1'
         run: pip install --quiet pillow
