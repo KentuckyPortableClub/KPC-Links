@@ -1085,12 +1085,16 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
   }
   const oldForm = $('mrForm'); if (oldForm) oldForm.addEventListener('submit', e => { e.preventDefault(); search(); });
   /* simple password lock (keeps casual visitors out; it is not bank-grade security on a public website) */
-  const HASH = '04801b98a434eac10dc37a3bb1a503b473e7a97687e982dff47e6b20266f565e';
+  /* Nov 11 2026 (owner): both values are PBKDF2-SHA256 (200,000 rounds, salt PS) of the hex SHA-256 used before; still a soft lock */
+  const PS = 'kpc-maprep-pbkdf2-salt-v1';
+  const HASH = '8434d195558b7868f86ac72277738c2059573829795ef84d4a87b2fddb46bf0b';
   /* Nov 8 (Brandon 3:39 PM CST, t759u: one password): the rep door's hash (kpc-maprep-gate.js RH) opens this lock too, and a page
      whose door already let the rep in skips this card. Only hashes are here, never the password. */
-  const RH = (window.KPCRepGate && window.KPCRepGate.hash) || 'b36efa5ab2718f715ea105ece66b600d914fb0be36ee52de48363e5727d92b73';
+  const RH = (window.KPCRepGate && window.KPCRepGate.hash) || 'f9f2be57c06d88fe6d03a3fe59b7b3b9394be1a63993d74a2ddd65a5b1bf2c80';
   const GOOD = [RH, HASH];
   const sha = async t => { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); };
+  const slow = async h => { const e = new TextEncoder(), k = await crypto.subtle.importKey('raw', e.encode(h), { name: 'PBKDF2' }, false, ['deriveBits']);
+    const b = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: e.encode(PS), iterations: 200000, hash: 'SHA-256' }, k, 256); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); };
   function start() {
     if ($('mrLock')) $('mrLock').hidden = true; $('mrApp').hidden = false;
     if (window.KPCMapCheck) KPCMapCheck.mount();
@@ -1108,9 +1112,14 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
   if (!ok) try { ok = !!(window.KPCRepGate && window.KPCRepGate.ok()); } catch (e) {}
   if (!ok) try { ok = GOOD.includes(localStorage.getItem('kpcMrOK')) || localStorage.getItem('kpcMapRep') === RH || localStorage.getItem('kpcMember') === 'ed00a12021b4460be189b4120e93d5f740408d2f769e108d332dcc4aa528ca61'; } catch (e) {} /* one member sign-in opens it too */
   if (ok) start();
-  else $('mrLockForm').addEventListener('submit', async e => {
+  else {
+    /* a device let in before Nov 11 remembers the old fast value: stretch it once; if it matches, keep the new value */
+    (async () => { try { const v = localStorage.getItem('kpcMrOK'); if (/^[0-9a-f]{64}$/.test(v || '') && !GOOD.includes(v)) { const s = await slow(v);
+      if (GOOD.includes(s)) { localStorage.setItem('kpcMrOK', s); if (s === RH) localStorage.setItem('kpcMapRep', RH); start(); } } } catch (x) {} })();
+  }
+  if (!ok) $('mrLockForm').addEventListener('submit', async e => {
     e.preventDefault();
-    const h = await sha('kpc-maprep:' + $('mrPw').value.trim().toLowerCase());
+    const h = await slow(await sha('kpc-maprep:' + $('mrPw').value.trim().toLowerCase()));
     if (GOOD.includes(h)) { try { localStorage.setItem('kpcMrOK', h); if (h === RH) localStorage.setItem('kpcMapRep', RH); } catch (x) {} start(); }
     else { $('mrPwMsg').textContent = 'That password is not right.'; $('mrPw').select(); }
   });

@@ -19,6 +19,9 @@ s=re.sub(r'<script src="kpc-remote\.js[^"]*"></script>\n?','',s)
 s=re.sub(r'<script>[^<\n]*document\.write\(\'<script src="kpc-remote\.js[^\n]*</script>\n?','',s)   # Nov 7: the app loads it with document.write now
 s=re.sub(r'<script src="capacitor\.js"></script>\n?','',s)   # Nov 7: Android-only bridge, a 404 on the website
 s=s.replace('</body>','<script src="kpc-web.js?v=W"></script>\n</body>',1)
+# Nov 11 2026 (owner): the beta has no offline save yet, so the Log files card links the old logger (website copy only)
+i=s.find('<h2>Log files</h2>'); j=s.find('  </section>',i)
+if i>0 and j>0 and 'kpc-logger.html?old=1' not in s: s=s[:j]+'    <div class="row"><a class="b" href="../kpc-logger.html?old=1">🗂 OFFLINE / OLD LOGGER</a></div>\n    <p class="hint">Saving the logger for use with no signal lives in the old logger for now.</p>\n'+s[j:]
 open(sys.argv[2],'w').write(s)
 PY
 V=$(date +%Y%m%d%H%M); sed -i "s/?v=W\"/?v=$V\"/g" "$OUT/kpc-logger-beta.html"

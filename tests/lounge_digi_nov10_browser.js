@@ -8,7 +8,7 @@ let fails = 0, passes = 0; const ok = (c, m) => { console.log((c ? '  ✓ ' : ' 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const until = async (fn, ms) => { const t = Date.now(); while (Date.now() - t < (ms || 5000)) { try { if (await fn()) return true; } catch (e) {} await sleep(100); } return false; };
 const NET = /Failed to load resource|ERR_|net::|CORS|fetch|unpkg|leaflet|L is not defined|tile|googleapis|gstatic|geolocation|Geolocation/i;
-const VIP = '2053c7c0ae91be40fd2816d87b55adca15e478c076973648e9e0bb42ffedf8b2';
+const VIP = 'dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab';
 const ARGS = ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream', '--autoplay-policy=no-user-gesture-required'];
 async function mk(b, vp, grid, extra) {
   const ctx = await b.newContext({ viewport: vp || { width: 1280, height: 900 }, permissions: ['microphone'] });

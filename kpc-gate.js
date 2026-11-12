@@ -8,7 +8,9 @@
    - Only the PBKDF2-SHA256 (200,000 rounds) of 'kpc-member:' + the lowercase password is here, never the password (hardened Oct 27
      2026; was a single SHA-256 pass, per Fable's review). Client-side only: it keeps the public out, it is not real security
      (the files are in a public GitHub repo).
-   - The PDF printer (Playwright on GitHub Actions) passes through so the guide PDFs keep printing. */
+   - The PDF printer (Playwright on GitHub Actions) passes through so the guide PDFs keep printing.
+   - Nov 11 2026 (owner): this is a soft lock that keeps honest people out. Every file is public by its address, so private data
+     must never be put in this public repo. */
 (function () {
   var MH = 'ed00a12021b4460be189b4120e93d5f740408d2f769e108d332dcc4aa528ca61', KEY = 'kpcMember';
   var PUBLIC = ['index.html', 'videos.html', 'campout.html', 'events.html', 'news.html', 'photos.html', 'kpc-guestbook.html', 'join.html', 'about.html',

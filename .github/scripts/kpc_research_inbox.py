@@ -415,6 +415,14 @@ def _judge(row, pin, ov, saved, rd):
 
 
 # ---- files
+WDPA = re.compile(r'wdpa|protected\s*planet|protectedplanet|unep-wcmc', re.I)
+
+
+def wdpa_row(row):
+    """True when a research row's lead comes from WDPA / Protected Planet (its layer, record source, name or notes say so)."""
+    return bool(WDPA.search(' '.join(str(row.get(c) or '') for c in ('layer_url', 'official_name', 'owner', 'notes', 'source'))))
+
+
 def read_rows(path):
     p = pathlib.Path(path)
     if p.suffix.lower() == '.json':
@@ -451,6 +459,11 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
     except Exception: nal = {'about': 'Retry loop: parks Quality denied or held, or the research could not settle. A new layer or a hand download re-checks just these (kpc_research_inbox.py --retry).', 'parks': {}}  # noqa: BLE001
     jobs = [(pathlib.Path(f).stem, read_rows(f)) for f in files]
     if retry: jobs.append(('retry', [dict(v['row'], pota_ref=r) for r, v in list(nal['parks'].items()) + list((nal.get('point_confirmed') or {}).items()) + list((nal.get('brandon_flip') or {}).items()) if v.get('row')]))
+    # Nov 11 2026 (owner): WDPA / Protected Planet stays private and off this public repo. A row whose lead comes from it is not
+    # checked and nothing from it is written into results/ or needs-another-look.json (keep such files privately, off-repo).
+    nw = sum(1 for _, rows in jobs for r in rows if wdpa_row(r))
+    jobs = [(s, [r for r in rows if not wdpa_row(r)]) for s, rows in jobs if not (rows and all(wdpa_row(r) for r in rows))]
+    if nw: print(f'research inbox: {nw} WDPA / Protected Planet row(s) skipped (never written to this public repo)')
     today = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
     allres = {}
     for stem, rows in jobs:
@@ -495,6 +508,8 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False):
                 seen.add(x['pota_ref'])
                 BL.append(f"- **{x['pota_ref']}** {x['park_name']}: the agency calls it \"{x.get('record_name')}\" (record {x.get('record_id')}). Same park?")
     open(inbox / 'brandon-list.md', 'w', encoding='utf-8').write('\n'.join(BL) + '\n')
+    for k in ('parks', 'point_confirmed', 'brandon_flip'):   # Nov 11: no WDPA lead is kept in the public retry list
+        if isinstance(nal.get(k), dict): nal[k] = {r: v for r, v in nal[k].items() if not wdpa_row(v.get('row') or v)}
     json.dump(nal, open(nal_f, 'w', encoding='utf-8'), indent=1, ensure_ascii=False, sort_keys=True)
     # the sure rule: the 100 ft circle around the OFFICIAL point of each POINT-CONFIRMED park (the 2-fer 'point-circle' tier reads it);
     # a park that turns SURE (a real boundary) loses its circle here, and the 2-fer bot never uses a circle for a park with an outline.
