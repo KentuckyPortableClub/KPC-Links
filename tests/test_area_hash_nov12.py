@@ -396,20 +396,20 @@ check('B real checkout: the four rules hashes did not move and git status is unc
       and run('git', 'status', '--porcelain', '--untracked-files=all', cwd=ROOT).stdout == before_status)
 check('B the tool is not a rule file and is listed in NOT_RULES', 'kpc_area_hash.py' in open(ROOT / K.FREEZE).read() and not any('kpc_area_hash' in f for v in K.freeze_lists(K.Tree(ROOT))[0].values() for f in v))
 
-# the workflows: plan in shadow by default, a full-rebuild input, rows stamped after the build stamp
+# the workflows: plan in add by default (D7), a full-rebuild input, rows stamped after the build stamp
 import yaml
 for wf, kind, stampname in (('kpc-world-key.yml', 'world', 'stamp world-key'), ('kpc-us-key.yml', 'us', 'stamp us-key'), ('kpc-ca-key.yml', 'ca', 'stamp ca-key')):
     W = yaml.safe_load((ROOT / '.github/workflows' / wf).read_text(encoding='utf-8'))
     txt = (ROOT / '.github/workflows' / wf).read_text(encoding='utf-8')
     check(f'B {wf}: a full_rebuild input exists', 'full_rebuild' in W[True]['workflow_dispatch']['inputs'])
-    check(f'B {wf}: the plan calls kpc_area_hash.py plan {kind} with the KPC_AREA_HASH variable, default shadow',
-          f'kpc_area_hash.py plan {kind}' in txt and "vars.KPC_AREA_HASH || 'shadow'" in txt)
+    check(f'B {wf}: the plan calls kpc_area_hash.py plan {kind} with the KPC_AREA_HASH variable, default add',
+          f'kpc_area_hash.py plan {kind}' in txt and "vars.KPC_AREA_HASH || 'add'" in txt)
     check(f'B {wf}: stamp-rows runs after the build stamp', txt.index(stampname) < txt.index(f'kpc_area_hash.py stamp-rows {kind}'))
     check(f'B {wf}: the whole-key sanity check runs (read only, kept green)', f'kpc_area_hash.py sanity {kind}' in txt)
     calls = [st for j in W['jobs'].values() for st in j.get('steps', []) if f'kpc_area_hash.py stamp-rows {kind}' in str(st.get('run', ''))]
-    check(f'B {wf}: stamp-rows (one call) passes --mode "$AREA_MODE" (the KPC_AREA_HASH variable, default shadow) and a --shadow-out under $RUNNER_TEMP',
+    check(f'B {wf}: stamp-rows (one call) passes --mode "$AREA_MODE" (the KPC_AREA_HASH variable, default add) and a --shadow-out under $RUNNER_TEMP',
           len(calls) == 1 and f'stamp-rows {kind} --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/{kind}.json"' in calls[0]['run']
-          and calls[0].get('env', {}).get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || 'shadow' }}"))
+          and calls[0].get('env', {}).get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || 'add' }}"))
     ups = [st for j in W['jobs'].values() for st in j.get('steps', []) if str(st.get('uses', '')).startswith('actions/upload-artifact')
            and st.get('with', {}).get('name') == f'area-stamp-shadow-{kind}']
     check(f'B {wf}: the shadow record is uploaded as an artifact (area-stamp-shadow-{kind}), never added to the key', len(ups) == 1

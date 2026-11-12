@@ -74,7 +74,7 @@ jobs:
         # when NO province's inputs moved (main's files stay). Never over a freeze or a build-order wait. full_rebuild=yes = no reuse.
         if: ${{ env.SKIP != '1' || env.NIGHT_EMPTY == '1' }}
         env:
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed D1-D9): default add = record each area's hash; reuse stays off
           FULL_REBUILD: ${{ inputs.full_rebuild }}
         run: |
           rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
@@ -222,7 +222,7 @@ jobs:
         if: ${{ env.SKIP != '1' && env.CA_KEPT != '1' }}
         id: ca_stamp   # Nov 12 (KPC owner, 2026-11-12; Quality #162): Save needs this step green (an unstamped key is not saved), as US and world
         env:
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12 (Quality #163): shadow (default) = stamp-rows writes nothing to the key
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed): default add = stamp-rows writes the area hash; KPC_AREA_HASH=shadow writes nothing; reuse stays off
         run: |
           # Canada always builds the whole key: it is FULL unless the build stopped early or the gate failed
           if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then export KPC_FULL_BUILD=1; fi
