@@ -5,7 +5,13 @@ on:
     - cron: '10 8 * * 1'   # G9 Nov 2: was '11 8 * * 1' (spread the start times; now 1 min earlier)
   push:
     branches: [main]
-    paths: ['ky-*.geojson', 'kpc-ky-data.json', 'kpc-bounds.js', '.github/scripts/kpc_ky_key*']
+    # Nov 11 (trigger only; the key logic is untouched): the files this run reads, not every ky-*.geojson. kpc-bounds.js loads these
+    # twelve KY layers (its KY list) and kpc_ky_tracts.py also reads ky-usace.geojson; ky-dawkins, ky-lecl-auto, ky-overlaps,
+    # ky-pine-mountain and ky-sheltowee are read by neither, so a push that changes only them no longer starts a key run.
+    paths: ['ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson',
+            'ky-dbnf-owned.geojson', 'ky-dbnf.geojson', 'ky-nps.geojson', 'ky-wild-rivers.geojson', 'ky-wilderness.geojson',
+            'ky-fws.geojson', 'ky-padus-parks.geojson', 'ky-kpc-drawn.geojson', 'ky-usace.geojson',
+            'kpc-ky-data.json', 'kpc-bounds.js', '.github/scripts/kpc_ky_key*']
   workflow_dispatch:
 permissions:
   contents: write

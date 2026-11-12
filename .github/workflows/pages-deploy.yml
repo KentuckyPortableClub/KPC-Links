@@ -16,6 +16,11 @@ on:
       - '.claude/**'
       - '.github/**'   # PR2 (Nov 2): a bot or workflow change is not a site change (Nov 2: 160 such commits in a day each rebuilt the site)
       - 'data/status/**'   # Nov 3: bot bookkeeping
+      # Nov 11 (fewer runs: 476 push deploys in two weeks): tests and review notes. Jekyll still copies both folders into the site
+      # (_config.yml does not exclude them) but no page fetches them, so a push that changes ONLY these waits for the next real site
+      # change (push or the 2-hour timer) instead of a full deploy of its own.
+      - 'tests/**'
+      - 'docs/**'
   schedule:
     - cron: '41 */2 * * *'   # Nov 3: every 2 hours; publishes only when the site's files changed since the live copy (Nov 10: kept at 2 h, it is the only publisher of bot saves)
   workflow_dispatch:
@@ -56,11 +61,11 @@ jobs:
           if [ "$LIVE" = "$HEAD_SHA" ]; then echo "::notice title=Pages timer::the live copy is main (${HEAD_SHA:0:8}): nothing to publish"; echo "go=no" >> "$GITHUB_OUTPUT"; exit 0; fi
           gh api "repos/$R/compare/$LIVE...$HEAD_SHA?per_page=300" --jq '.files[].filename' > /tmp/files.txt 2>/dev/null || { echo "::notice title=Pages timer::could not compare ${LIVE:0:8}...${HEAD_SHA:0:8}: publishing"; echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; }
           N=$(wc -l < /tmp/files.txt)
-          # bookkeeping = not a site change (same list as the push filter above)
-          SITE=$(grep -v -E '^(\.claude/|\.github/|data/status/)' /tmp/files.txt | wc -l)
+          # bookkeeping = not a site change (same list as the push filter above; Nov 11: + tests/, docs/)
+          SITE=$(grep -v -E '^(\.claude/|\.github/|data/status/|tests/|docs/)' /tmp/files.txt | wc -l)
           if [ "$N" -ge 300 ] || [ "$SITE" -gt 0 ]; then
             echo "::notice title=Pages timer::$SITE site file(s) changed since the live copy (${LIVE:0:8}): publishing ${HEAD_SHA:0:8}"
-            grep -v -E '^(\.claude/|\.github/|data/status/)' /tmp/files.txt | head -20
+            grep -v -E '^(\.claude/|\.github/|data/status/|tests/|docs/)' /tmp/files.txt | head -20
             echo "go=yes" >> "$GITHUB_OUTPUT"
           else
             echo "::notice title=Pages timer::only bookkeeping changed since the live copy (${LIVE:0:8}; $N file(s)): nothing to publish"
