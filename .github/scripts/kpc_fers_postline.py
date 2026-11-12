@@ -87,7 +87,9 @@ def area_report(area, new, old, data, links, near):
     try: kb = datetime.datetime.strptime(str(idx.get('built')), '%Y-%m-%d %H:%M UTC').replace(tzinfo=datetime.timezone.utc)
     except Exception: kb = None  # noqa: BLE001
     if last and kb and kb.date() > last.date(): stale.append(f"the key build {idx.get('build')} ({idx.get('built')}) is newer than this output's last pass ({last:%Y-%m-%d})")
-    ot = git_time(f'data/{kind}/overrides.json', links)
+    # Nov 12 2026 (KPC-Links #151): the US overrides are a manifest + parts; the newest of them counts
+    ot = max([t for t in (git_time(f'data/{kind}/{n}', links) for n in ['overrides.json'] + sorted(p.name for p in (pathlib.Path(links) / f'data/{kind}').glob('overrides-parks-*.json'))) if t] or [None],
+             key=lambda t: t or datetime.datetime.min.replace(tzinfo=datetime.timezone.utc))
     if last and ot and ot.date() > last.date(): stale.append(f'the key answers (overrides.json, {ot:%Y-%m-%d}) are newer than this output')
     pre = [json.load(open(f, encoding='utf-8')) for f in glob.glob(str(pathlib.Path(data) / 'data/status/fers-preline/*.json'))]
     pre = [p for p in pre if area in (p.get('states') or [])]

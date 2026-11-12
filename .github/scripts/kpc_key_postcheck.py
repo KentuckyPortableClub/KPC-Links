@@ -328,7 +328,8 @@ def sheet_check(N, k, sheet_dir, who):
 
 def override_check(N, k, cwd='.', built=''):
     """Overrides the key does not follow. 'newer' = the override's 'when' date is after the build date: expected until the next build."""
-    ov = (PC.load(os.path.join(cwd, KEYS[k]['dir'], 'overrides.json'), {}) if PC else {}).get('parks') or {}
+    import kpc_overrides   # Nov 12 2026 (KPC-Links #151): manifest + parts; a missing part stops here (never an empty set)
+    ov = kpc_overrides.load(os.path.join(cwd, KEYS[k]['dir'], 'overrides.json'), missing_ok=True).get('parks') or {}
     out = []
     for r, o in sorted(ov.items()):
         p = N.get(r)

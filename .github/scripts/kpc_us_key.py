@@ -1464,8 +1464,8 @@ SITE = re.compile(r'airstrip|interpretive site|historic preservation site|trail 
 # 'join' adds that official land (it must be within ~0.6° of the pin), 'no' keeps a piece out; the bot follows it on every rerun.
 def _nf(t):   # hand decisions match names whatever way the accents are stored (Oct 18: SG̲áan K̲ínghlas-Bowie never matched)
     import unicodedata; return unicodedata.normalize('NFC', str(t or '')).strip().casefold()
-try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
-except Exception: OVR = {}  # noqa: BLE001
+import kpc_overrides as _KOVR   # Nov 12 2026 (KPC-Links #151): the manifest + its parts; a missing or bad part stops the build (never an empty set)
+_OVRDOC = _KOVR.load(OUT / 'overrides.json', missing_ok=True); OVR = _OVRDOC.get('parks', {})
 # Nov 9 evening (Brandon t919u, 4:48 PM CST: pins and names are only sanity checks, the official boundary is right most of the time;
 # 'a bad ID block list'): overrides.json 'blocked_ids' = [{ref, id, reason, decided_by}]. A listed id is never used for that park:
 # it leaves the park's saved joins (join / fp) and becomes a NO, so the park goes back to normal matching (or to a person).

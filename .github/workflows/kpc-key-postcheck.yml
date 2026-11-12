@@ -65,9 +65,10 @@ jobs:
       - name: Pre-check (REVIEW_PILE, RULE 18, bad-pin flags) into a temp folder
         continue-on-error: true
         run: |
+          # Nov 12 2026 (KPC-Links #151): kpc_precheck_whole.py = kpc_precheck.py with the US overrides read whole (manifest + parts)
           # the world keys the pre-check reads are THIS repo's new ones (kpcdata/data/world-key -> data/world-key); nothing is held here
           mkdir -p kpcdata/data && ln -sfn "$GITHUB_WORKSPACE/data/world-key" kpcdata/data/world-key
-          OUT=/tmp/kpc-precheck DATA=kpcdata python3 .github/scripts/kpc_precheck.py > /tmp/kpc-precheck.log 2>&1 || echo "::warning title=Key check::the pre-check stopped (exit $?); its flags are left out of the report"
+          OUT=/tmp/kpc-precheck DATA=kpcdata python3 .github/scripts/kpc_precheck_whole.py > /tmp/kpc-precheck.log 2>&1 || echo "::warning title=Key check::the pre-check stopped (exit $?); its flags are left out of the report"
           grep '^::' /tmp/kpc-precheck.log | tail -n 3 || true   # ok: only shows the pre-check's own summary line
       - name: Queued pre-check re-runs (fix bundle item 11b; the first is due now - the German build ddd815b34 counts)
         # Nov 4 PM fix bundle item 11b (Brandon's yes relayed via Super Head Bot 4:53 PM CST): no new cron; keeps the pre-check

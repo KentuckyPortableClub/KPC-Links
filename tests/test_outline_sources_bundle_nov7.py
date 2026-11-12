@@ -83,7 +83,8 @@ check('no trail layer added today went into the polygon list', not ({u.rstrip('/
 check('trail list keys are US state letters or CA-XX', all(re.fullmatch(r'[A-Z]{2}|CA-[A-Z]{2}', k) for k in TL['layers']))
 
 # 4. overrides
-O = json.load(open(ROOT / 'data/us-key/overrides.json', encoding='utf-8'))['parks']
+sys.path.insert(0, str(ROOT / '.github/scripts')); import kpc_overrides as _KOVR  # Nov 12 (KPC-Links #151): manifest + parts
+O = _KOVR.load(ROOT / 'data/us-key/overrides.json')['parks']
 S15 = 'US-0150 US-10281 US-11401 US-12028 US-4894 US-4933 US-4934 US-4955 US-13039 US-5789 US-5869 US-6197 US-6202 US-9678 US-3917'.split()
 check('15 signed overrides, each with decided_by Brandon Nov 7 4:54 PM CST and a join',
       all('4:54 PM' in str(O.get(r, {}).get('decided_by')) and O[r].get('join') for r in S15))

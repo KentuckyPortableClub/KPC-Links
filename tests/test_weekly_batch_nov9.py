@@ -26,7 +26,8 @@ for k in ('us-key', 'ca-key', 'world-key', 'fers'):
     check(bool(PF.newest_hash(k)) and KF.rules_hash(k) == PF.newest_hash(k), f'{k} rules hash equals the newest one in docs/key-rules-change.txt')
 check('kpc_problem_solver.py' in KF.NOT_RULES, 'the problem solver is not a rules file')
 
-ov = json.load(open(ROOT / 'data/us-key/overrides.json', encoding='utf-8'))['parks']
+sys.path.insert(0, str(ROOT / '.github/scripts')); import kpc_overrides as _KOVR  # Nov 12 (KPC-Links #151): manifest + parts
+ov = _KOVR.load(ROOT / 'data/us-key/overrides.json')['parks']
 # 1. the 14 WSR corridor joins (Brandon Nov 8) are back
 WSR = {'US-0197': ['fwsr208', 'fwsr41'], 'US-0894': ['fwsr149', 'fwsr252', 'fwsr79'], 'US-12786': ['fwsr88'], 'US-12794': ['fwsr51'],
        'US-12796': ['fwsr143'], 'US-0684': ['wsrc20'], 'US-0886': ['wsrc23'], 'US-9758': ['fwsr180', 'fwsr6', 'fwsr95'],

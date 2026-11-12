@@ -38,7 +38,8 @@ for st, units in WIRE.items():
 check(sorted(s for s, ls in sg.items() if any(x.get('url') == NPS for x in ls)) == ['AK', 'CA', 'CO', 'HI', 'MA', 'NE', 'NY', 'OH', 'PA', 'RI', 'SD', 'TX'], 'the other ten states are unchanged')
 lj = load(ROOT / 'data/us-key/layers.json')
 check(lj['sgakd'][0].split('/query')[0] == NPS, 'layers.json gives that layer the prefix sgakd (the key keys prefixes by address), so the ids stay sgakd1159 / sgakd1245')
-ov = load(ROOT / 'data/us-key/overrides.json')['parks']
+sys.path.insert(0, str(ROOT / '.github/scripts')); import kpc_overrides as _KOVR  # Nov 12 (KPC-Links #151): manifest + parts
+ov = _KOVR.load(ROOT / 'data/us-key/overrides.json')['parks']
 check(all(ov[ref]['join'] == [rid] for units in WIRE.values() for _, ref, rid in units), 'the existing overrides still join the wired ids')
 check(all(str(ov[ref].get('decided_by') or '').strip() for ref in ('US-0754', 'US-11900')), 'the Nov 9 overrides for US-0754 and US-11900 stay signed')
 
@@ -106,7 +107,7 @@ finally:
 # 4.
 import kpc_key_freeze as KF
 # KPC owner, 2026-11-11 (job 6, world rules change approved): the world hash moved 9358c2ede2d5 -> 889d37136cf8 (three French PatriNat layers); US and CA are as before; fers is main's cef323de4c9a (#157)
-# Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: later declared moves (US 46ef34a04ab0 -> c141c2201481, world 889d37136cf8 -> 1e262d7d3c0a) are the
+# Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: later declared moves (US 46ef34a04ab0 -> d4ebfafce438, world 889d37136cf8 -> 1e262d7d3c0a) are the
 # newest; each hash must equal the one its newest changelog line names (no literal to edit when a later change of the set moves it again).
 check((KF.rules_hash('us-key'), KF.rules_hash('ca-key'), KF.rules_hash('world-key'), KF.rules_hash('fers')) == tuple(__import__('kpc_preflight').newest_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')),
       'US / CA / world / fers rules hashes unchanged (data/state-gis.json is not a rule file)')

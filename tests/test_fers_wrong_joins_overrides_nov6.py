@@ -22,6 +22,7 @@ check(any(i.startswith('arw') for i in ids), f'US-7322 keeps an AR WMA (arw) rec
 check((us.get('ac') or 0) > 0 or any((x[2] or 0) > 0 for x in us['m'] if isinstance(x[2], (int,float))),
       f'US-7322 not left with only 0-ac join (ac={us.get("ac")} m={us["m"]})')
 # No US-7322 override stripping River Bend
-uov=(json.load(open(ROOT/'data/us-key/overrides.json'))['parks'].get('US-7322') or {})
+sys.path.insert(0, str(ROOT / '.github/scripts')); import kpc_overrides as _KOVR  # Nov 12 (KPC-Links #151): manifest + parts
+uov=(_KOVR.load(ROOT/'data/us-key/overrides.json')['parks'].get('US-7322') or {})
 check('166815' not in {str(x) for x in uov.get('no') or []}, 'US-7322 has no override no on PAD-US River Bend')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

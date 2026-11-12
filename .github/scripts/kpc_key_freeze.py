@@ -65,6 +65,8 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',
              'kpc_join_check.py',
+             # Nov 11 / Nov 12 2026 (KPC owner, KPC-Links #151): reads / writes data/us-key/overrides.json and its parts; never decides a join
+             'kpc_overrides.py', 'kpc_precheck_whole.py',
              # Nov 11 r2 (KPC owner, 2026-11-11): the US key join puts the build parts together per state and fails closed on a conflict;
              # it copies the parts' files, never decides a join
              'kpc_us_key_join.py',

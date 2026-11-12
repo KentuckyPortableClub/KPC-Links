@@ -289,7 +289,8 @@ def rows_for(k, N, O, cwd, env, build, checked, built=''):
     try:
         os.chdir(cwd); pins = PC.pota_pins() if PC else {}
     finally: os.chdir(here)
-    ov = (load(os.path.join(kd, 'overrides.json'), {}) or {}).get('parks') or {}
+    import kpc_overrides   # Nov 12 2026 (KPC-Links #151): manifest + parts; a missing part stops here (never an empty set)
+    ov = kpc_overrides.load(os.path.join(kd, 'overrides.json'), missing_ok=True).get('parks') or {}
     layers = load(os.path.join(kd, 'layers.json'), {}) or {}
     whynot = (load(os.path.join(kd, 'why-not.json'), {}) or {}).get('parks') or {}
     web = (load(os.path.join(cwd, 'data/parkinfo-web.json'), {}) or {}).get('parks') or {}

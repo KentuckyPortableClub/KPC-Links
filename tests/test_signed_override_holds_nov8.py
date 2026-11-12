@@ -19,7 +19,8 @@ def check(cond, msg):
 
 FIFTEEN = ['US-0150', 'US-10281', 'US-11401', 'US-12028', 'US-13039', 'US-4894', 'US-4933', 'US-4934', 'US-4955',
            'US-5789', 'US-5869', 'US-6197', 'US-6202', 'US-3917', 'US-9678']
-ov = json.load(open(ROOT / 'data/us-key/overrides.json', encoding='utf-8'))['parks']
+sys.path.insert(0, str(ROOT / '.github/scripts')); import kpc_overrides as _KOVR  # Nov 12 (KPC-Links #151): manifest + parts
+ov = _KOVR.load(ROOT / 'data/us-key/overrides.json')['parks']
 okmap, _ = J.approvals(str(ROOT), 'us', {'ANSWER_SHEET': '/nonexistent'})
 for r in FIFTEEN:
     v = ov.get(r) or {}

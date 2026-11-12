@@ -18,7 +18,8 @@ for name in ('kpc-guide-pdf.yml', 'kpc-bot-health.yml'):   # KPC owner, 2026-11-
     check('runs-on: ubuntu-24.04' in (HERE / '.github/workflows' / name).read_text(encoding='utf-8'), f'{name} pinned to ubuntu-24.04')
 
 # 2) hand joins carry the record id (join + fp) and no 'none' flag
-o = json.load(open(HERE / 'data/us-key/overrides.json', encoding='utf-8'))['parks']
+sys.path.insert(0, str(HERE / '.github/scripts')); import kpc_overrides as _KOVR  # Nov 12 (KPC-Links #151): manifest + parts
+o = _KOVR.load(HERE / 'data/us-key/overrides.json')['parks']
 WANT = {'US-11316': 'sgakg13903', 'US-12471': 'sgakg13505', 'US-11003': 'sgakg9736',
         'US-12060': 'sgnya64818', 'US-5308': 'sgnya66353', 'US-3140': 'sgvta430', 'US-0754': 'sgakd1159', 'US-11900': 'sgakd1245', 'US-0822': 'sgakd1122'}
 for ref, rid in WANT.items():

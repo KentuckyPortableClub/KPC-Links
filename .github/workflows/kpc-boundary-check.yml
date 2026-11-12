@@ -187,7 +187,7 @@ jobs:
           git add data/us-key data/boundary-report.json data/boundary-score.json 2>/dev/null || true   # ok: an optional path may not exist
           git add data/status 2>/dev/null || true   # ok: an optional file or tidy step (Oct 25 storage plan: when each file last changed)
           # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
-          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/index.json data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" \
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/index.json data/us-key/overrides.json data/us-key/overrides-parks-*.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'Boundary check: are the joins in the right place?' - -- data/us-key data/boundary-report.json data/boundary-score.json data/status
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()

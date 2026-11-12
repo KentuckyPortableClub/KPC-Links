@@ -83,13 +83,39 @@
   if (D) D.addEventListener('change', e => { const t = e.target; if (t && (t.id === 'mrCheckSt' || t.id === 'mrDeskPlace')) drawClub(t.value); });
 
   /* ---------- 3. Research on this place ---------- */
+  /* Nov 12 2026 (KPC-Links #151): data/us-key/overrides.json is a MANIFEST. Its own 'parks' hold the parks with a 'no' list; its
+     'parts' name the files (same folder) that hold every other park. The manifest and each part are read the same way (this page's
+     working copy, the day's ?v= like the site's other working reads) and put together. A missing or unreadable manifest or part, a
+     part name with a slash, a ref in two files, or a part park with a 'no' list = { failed } (the card says the signed decisions
+     could not be read), never an empty set. A file with no 'parts' (Canada) is used as it is. */
+  const day = () => new Date().toISOString().slice(0, 10);
+  async function overrides(R) {
+    const base = 'data/' + R + '-key/', m = await once(base + 'overrides.json?v=' + day());
+    if (!m || typeof m !== 'object') return { failed: 'overrides.json did not load' };
+    if (!Array.isArray(m.parts) || !m.parts.length) return m;
+    if (m.parts.some(n => typeof n !== 'string' || !n || /[\/]/.test(n))) return { failed: 'a part name is not a plain file name' };
+    const docs = await Promise.all(m.parts.map(n => once(base + n + '?v=' + day())));
+    const parks = Object.assign({}, m.parks || {}), from = {};
+    Object.keys(parks).forEach(r => { from[r] = 'overrides.json'; });
+    for (let i = 0; i < docs.length; i++) {
+      const c = docs[i] && docs[i].parks;
+      if (!c || typeof c !== 'object' || Array.isArray(c)) return { failed: m.parts[i] + ' did not load' };
+      for (const r of Object.keys(c)) {
+        if (from[r]) return { failed: r + ' is in both ' + from[r] + ' and ' + m.parts[i] };
+        if (c[r] && Array.isArray(c[r].no) && c[r].no.some(x => x != null)) return { failed: r + ' in ' + m.parts[i] + ' has a no list' };
+        from[r] = m.parts[i]; parks[r] = c[r];
+      }
+    }
+    return Object.assign({}, m, { parks: parks });
+  }
   async function research(ref) {
     const R = /^CA-/.test(ref) ? 'ca' : 'us';
-    const [ps, hj, ov, pn] = await Promise.all([once('data/' + R + '-key/review/problem-solver.json'), once('data/' + R + '-key/review/held-joins.json'), once('data/' + R + '-key/overrides.json'), once('data/review/precheck-notes.json')]);
+    const [ps, hj, ov, pn] = await Promise.all([once('data/' + R + '-key/review/problem-solver.json'), once('data/' + R + '-key/review/held-joins.json'), overrides(R), once('data/review/precheck-notes.json')]);
     const items = [];
+    if (ov && ov.failed) items.push(['Signed decision', 'could not be read right now (' + ov.failed + '); reload the page before relying on this card']);
     ((ps && ps.parks) || []).filter(p => p.park === ref).forEach(p => items.push(['Recommended next step', (p.verdict ? p.verdict + ': ' : '') + (p.recommend || '') + (p.reasons && p.reasons.length ? ' (' + p.reasons.slice(0, 2).join('; ') + ')' : '')]));
     const hp = hj && hj.parks; (Array.isArray(hp) ? hp.filter(x => x && (x.park === ref || x.ref === ref)) : (hp && hp[ref] ? [hp[ref]] : [])).forEach(h => items.push(['Outline on hold', h.why || h.reason || 'held for a person to check']));
-    const o = ov && ov.parks && ov.parks[ref];
+    const o = ov && !ov.failed && ov.parks && ov.parks[ref];
     if (o) items.push(['Signed decision', [o.join ? 'outline: ' + o.join.join(', ') : '', o.no ? 'not: ' + o.no.join(', ') : '', o.decided_by ? 'by ' + o.decided_by : '', o.when || ''].filter(Boolean).join(' · ')]);
     ['mapping_checked', 'ask_brandon', 'trail_check'].forEach(k => { const v = pn && pn[k] && pn[k][ref]; if (v) items.push([k === 'ask_brandon' ? 'Open question' : k === 'trail_check' ? 'Trail line check' : 'Mapping check', v.result || v.ask || v.keep || JSON.stringify(v).slice(0, 200)]); });
     return items;
@@ -240,6 +266,6 @@
       + (blank(a.IUCN_CAT) || !CP.iucn[a.IUCN_CAT] ? '' : ' · IUCN ' + String(CP.iucn[a.IUCN_CAT]).split(' = ')[0]);
   }
 
-  W.KPCMapExtras = { clipFC: clipFC, clubLayers: clubLayers, drawClub: drawClub, research: research, padCard: padCard, padLine: padLine, padHint: padHint, padSource: padSource, PAD: PAD, caCard: caCard, caLine: caLine, caHint: caHint, caSource: caSource, CP: CP, BIG_PARTS: BIG_PARTS, NEAR_KM: NEAR_KM };
+  W.KPCMapExtras = { clipFC: clipFC, clubLayers: clubLayers, drawClub: drawClub, research: research, overrides: overrides, padCard: padCard, padLine: padLine, padHint: padHint, padSource: padSource, PAD: PAD, caCard: caCard, caLine: caLine, caHint: caHint, caSource: caSource, CP: CP, BIG_PARTS: BIG_PARTS, NEAR_KM: NEAR_KM };
   if (typeof module !== 'undefined' && module.exports) module.exports = W.KPCMapExtras;
 })();

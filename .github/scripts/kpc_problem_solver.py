@@ -643,9 +643,8 @@ def run(env=None, root='.'):
     env = env or os.environ; root = pathlib.Path(root)
     pi_dir = pathlib.Path(env.get('PARKINFO') or root / 'kpcdata/data/parkinfo')
     cache = env.get('GEO_CACHE') or str(root / 'cache/us')
-    ov = {}
-    try: ov = json.load(open(root / 'data/us-key/overrides.json', encoding='utf-8')).get('parks') or {}
-    except Exception: pass  # noqa: BLE001
+    import kpc_overrides   # Nov 12 2026 (KPC-Links #151): manifest + parts; a missing part stops here (never an empty set)
+    ov = kpc_overrides.load(root / 'data/us-key/overrides.json', missing_ok=True).get('parks') or {}
     out = []
     files = {}
     for f in sorted(glob.glob(str(root / 'data/us-key/US-??.json'))):

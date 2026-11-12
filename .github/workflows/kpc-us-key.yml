@@ -87,7 +87,7 @@ jobs:
           # Oct 31: ONE missing path made the whole 'git add' fail; Oct 30-Nov 2: 'git pull --rebase' failed on unstaged files and
           # '|| true' hid it, so chat 11's answers were never saved. Now: save by overwrite (fresh main + the writers again), red on failure.
           # KPC_SAVE_MODE (repo variable) = overwrite (default) | rebase (the old way, still loud).
-          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" bash .github/scripts/kpc_save_overwrite.sh "Key: chat 11's answers applied (BOT A)" 'bash /tmp/bota.sh' -- data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/state-gis.json data/ca-key/answers-provinces.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/world-key/answers-countries.txt data/world-key/extra-layers.json data/world-key/overrides.json data/world-key/answers-applied.json
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" bash .github/scripts/kpc_save_overwrite.sh "Key: chat 11's answers applied (BOT A)" 'bash /tmp/bota.sh' -- data/us-key/overrides.json 'data/us-key/overrides-parks-*.json' data/us-key/answers-applied.json data/us-key/answers-states.txt data/state-gis.json data/ca-key/answers-provinces.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/world-key/answers-countries.txt data/world-key/extra-layers.json data/world-key/overrides.json data/world-key/answers-applied.json
           rm -rf kpcdata
       - name: Area hashes - the POTA pins (KPC-Data, public, read only; Nov 12, KPC owner, 2026-11-12)
         run: |
@@ -614,7 +614,7 @@ jobs:
           # release (only the states with a held or far park). Writes data/us-key/review/problem-solver.json + .md, nothing else.
           GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { kpc_rc=$?; echo "::warning title=Problem solver::KPC-Data pins not read (exit $kpc_rc): every park goes to a person this build"; echo "Problem solver - KPC-Data pins not read (exit $kpc_rc): every park goes to a person this build" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           mkdir -p .solver-cache
-          for st in $(python3 -c "import glob,json,os,sys; sys.path.insert(0,'.github/scripts'); import kpc_problem_solver as S; ov=json.load(open('data/us-key/overrides.json')).get('parks',{}); print(' '.join(sorted({os.path.basename(f)[3:5] for f in glob.glob('data/us-key/US-??.json') for r,p in (json.load(open(f)).get('parks') or {}).items() if isinstance(p,dict) and (S.todo(p) or S.drift(p, ov.get(r)))})))" 2>/dev/null); do
+          for st in $(python3 -c "import glob,json,os,sys; sys.path.insert(0,'.github/scripts'); import kpc_problem_solver as S; import kpc_overrides as KO; ov=KO.load('data/us-key/overrides.json').get('parks',{}); print(' '.join(sorted({os.path.basename(f)[3:5] for f in glob.glob('data/us-key/US-??.json') for r,p in (json.load(open(f)).get('parks') or {}).items() if isinstance(p,dict) and (S.todo(p) or S.drift(p, ov.get(r)))})))" 2>/dev/null); do
             gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D .solver-cache --clobber 2>/dev/null || { kpc_rc=$?; echo "::notice title=Problem solver::no saved outlines for $st (exit $kpc_rc; its parks go to a person)"; echo "Problem solver - no saved outlines for $st (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           done
           python3 .github/scripts/kpc_problem_solver.py || { kpc_rc=$?; echo "::warning title=Problem solver::stopped (exit $kpc_rc); the key build is not affected"; echo "Problem solver - stopped (exit $kpc_rc); the key build is not affected" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
@@ -756,7 +756,7 @@ jobs:
           # (HEAD here = the main just fetched), so a copy-back never saves an outline file older than main's.
           # The two commands are joined with && and KPC_SAVE_REDO_STOP=yes: if either fails, the save stops and nothing is pushed.
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_TRIES=6 KPC_SAVE_REDO_STOP=yes \
-            KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt" \
+            KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/overrides-parks-*.json data/us-key/answers-applied.json data/us-key/answers-states.txt" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'US answer key' 'python3 /tmp/done-states.py && python3 .github/scripts/kpc_outlines_keep_main.py --ref HEAD' -- data/us-key data/status data/outlines
           if [ -s /tmp/botc-line.txt ]; then
             saved=0; for i in 1 2 3 4 5; do

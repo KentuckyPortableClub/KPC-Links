@@ -90,6 +90,14 @@
    "why": "D6, tables out of the rule scripts (KPC owner, 2026-11-12): BOX_ADD and the agency layers read for listed states only (the state-limited XS entries) move, unchanged, from kpc_us_key.py into data/us-key/area-tables.json, read at start (fail closed on a missing or malformed file); a park's read date falls back to one run date (KPC_BUILD_DATE, else today read once) instead of a per-park clock call. No result changes: the loaded tables equal the old ones (XS in the same order), and the builder gives byte-identical key files before and after on the same saved copy (tests/test_area_tables_nov12.py). So no state is rebuilt for it; an area-hash add run rebuilds every state once (the code hash moved: the D7 switch-over run).",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
+  },
+  {
+   "id": "2026-11-12-overrides-split-readers",
+   "when": "2026-11-12",
+   "from": "c141c2201481",
+   "why": "KPC-Links #151 on today's data: data/us-key/overrides.json (1,527,615 bytes, over the 1 MB cap) becomes a manifest (parks with a 'no' list, blocked_ids, the parts list) plus data/us-key/overrides-parks-01.json and -02.json. kpc_us_key.py loads them through kpc_overrides.load, which stops the build on a missing or bad part instead of reading an empty set. The loaded parks and blocked_ids are identical to the single file (5,038 parks, canonical sha256 0dc041b8dc76984b740edab31ca093cad6400c1704284f0e4002a7321c8ac93a). No join rule changes and no key rebuild is required.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
   }
  ]
 }

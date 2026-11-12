@@ -321,10 +321,11 @@ def classify_solved(answer, official_id='', source_url='', key_location='', key_
 
 
 # Owner answers recorded 2026-11-11. These are not pending: they have been decided.
-# US-10274: the National Register record is the whole 6,908-acre battlefield (the bigger place).
+# US-10274 (Palmito) and US-4376 (Manhattan): owner answers item 7 says they stay off (left off the key; item 7 says stay off, not a
+# 'no' override). US-10274: the National Register record is the whole 6,908-acre battlefield (the bigger place).
 # FR-14979: owner no to the 13 km ZNIEFF join; the live world-key join comes off on the next world key run.
 OWNER_NOT_A_MATCH = {
-    'US-10274': 'not a match, 2026-11-11: the National Register record is the whole 6,908-acre battlefield (the bigger place); needs the Texas Historical Commission site outline',
+    'US-10274': 'not a match, stays off (owner answers item 7), 2026-11-11: the National Register record is the whole 6,908-acre battlefield (the bigger place); needs the Texas Historical Commission site outline',
     'FR-14979': 'owner no, 2026-11-11: the official record is 13 km from the pin; the live join comes off on the next world key run',
 }
 # ZA-0085, ZA-0156, ZA-0157: their official ids were WDPA-derived and were removed; they stay unsolved.
@@ -334,7 +335,7 @@ OWNER_YES_NOV5_WHY = 'owner settled the Nov 5 confirm on 2026-11-11'
 # Recorded owner answers (Brandon accepted the recommendations in chat on 2026-11-11 at 21:16 CT).
 # File: data/research-inbox/answers/OWNER-ANSWERS-nov11.md
 OWNER_ANSWER_CITE = {
-    'US-10274': 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 7',
+    'US-10274': 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 7 (Palmito US-10274 and Manhattan US-4376 stay off)',
     'FR-14979': 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 2',
 }
 OWNER_ANSWER_ITEM10 = 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 10'
@@ -345,7 +346,7 @@ def classify_row(answer, official_id='', source_url='', key_location='', key_sta
     skip_search     = the research is finished, so no search list hands the park out again (the classify_solved rule, plus OWNER_NOT_A_MATCH);
     owner_decision  = 'pending' for a finished match that still waits on an OWNER yes: a National Register listing boundary
                       (not automatically the park). 'yes' for a Nov 5 confirm the owner settled on 2026-11-11. 'no' for a
-                      park the owner said is not a match (US-10274, FR-14979). A released-key park never waits.
+                      park the owner said is not a match or left off (US-10274 stays off, item 7; FR-14979 owner no). A released-key park never waits.
     join_ready      = 'no' for a match that is pending an owner yes or whose boundary is written in law with no map file; 'yes' for other solved matches."""
     solved, basis = classify_solved(answer, official_id, source_url, key_location, key_status, wdpa_removed)
     decision, why = '', ''
@@ -662,9 +663,9 @@ def pins_and_overrides(root, kpcdata):
                 if isinstance(v, list) and len(v) > 6 and v[5] is not None and v[6] is not None and not (abs(v[5]) < .01 and abs(v[6]) < .01): PIN[r] = (v[5], v[6])
         except Exception: pass  # noqa: BLE001
     OV, SAVED = {}, {}
+    import kpc_overrides   # Nov 12 2026 (KPC-Links #151): the US file is a manifest + parts; read whole or stop loudly
     for kind in ('us', 'ca', 'world'):
-        try: O = json.load(open(pathlib.Path(root) / f'data/{kind}-key/overrides.json', encoding='utf-8'))
-        except Exception: continue  # noqa: BLE001
+        O = kpc_overrides.load(pathlib.Path(root) / f'data/{kind}-key/overrides.json', missing_ok=True)
         for r, v in (O.get('parks') or {}).items():
             OV[r] = dict(v)
             if v.get('join') and (kind != 'world' or v.get('ids')): SAVED[r] = ', '.join(map(str, v.get('ids') or v['join']))[:80]

@@ -10,6 +10,9 @@
 #   --copy   the files THIS run changed under <paths> (git status) are kept aside and copied back on top of the newest main
 #            (for generated-only files: the US key state files, index, layers, review pages). Names in KPC_SAVE_SKIP
 #            (space list, e.g. "data/us-key/overrides.json") are never copied back: hand-edited files are not overwritten.
+#            Nov 12 2026 (KPC-Links #151): an entry may be a shell pattern ("data/us-key/overrides-parks-*.json": the override
+#            parts, however many there are). A path to save may be a git pathspec pattern the same way (quoted, so git matches it,
+#            deletions included).
 #   redo     a command run after the copy-back on top of the newest main. BOT A passes its answers writers here, so a hand edit
 #            to overrides.json made while the run was going is KEPT and the answers are applied on top of it. '-' = none.
 #
@@ -35,6 +38,7 @@ fi
 if [ "$copy" = 1 ]; then
   git status --porcelain --untracked-files=all -- "$@" | sed -E 's/^.. //; s/^"(.*)"$/\1/; s/.* -> //' | while IFS= read -r f; do
     case "$skip" in *" $f "*) continue ;; esac
+    set -f; hit=0; for s in $skip; do case "$f" in $s) hit=1 ;; esac; done; set +f; [ "$hit" = 1 ] && continue
     [ -f "$f" ] && mkdir -p "$stash/$(dirname "$f")" && cp -p "$f" "$stash/$f"
   done
 fi
@@ -227,7 +231,7 @@ if __name__ == '__main__':
 KPC_QUIET_PY
 }
 # <<< kpc_quiet_gate
-add_paths() { for p in "$@"; do [ -e "$p" ] && git add -A -- "$p"; done; return 0; }
+add_paths() { for p in "$@"; do if [ -e "$p" ]; then git add -A -- "$p"; else case "$p" in *[*?[]*) git add -A -- "$p" 2>/dev/null ;; esac; fi; done; return 0; }
 for i in $(seq 1 "$tries"); do
   if [ "$mode" = rebase ]; then
     add_paths "$@"; [ "$i" = 1 ] && kpc_stamp_filter
