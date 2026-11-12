@@ -2,9 +2,9 @@
    To change the password: open any page with ?newpass=YourNewPassword, copy the code it shows, paste it below. */
 (function(){
 if(window.KPCGate)return; /* Oct 17 2026: kpc-gate.js (on every page) does the members lock now, with the new password */
-const HASH='af9a50b3b6a03acfaed05b33cd9d2cfec5bd0f3e257745b403928e6930ebcc3c'; // set by the build — see note above
+const HASH='d418e23294fd467806712474b9ef8e208d4b0c2d92804da0881c5dd58557c158'; // Nov 11 2026: PBKDF2-SHA256 (200,000 rounds) of the old SHA-256 value; a soft lock, private data never goes in this public repo
 const KEY='kpcMember';
-async function sha(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t.trim()));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function sha(t){const e=new TextEncoder(),hx=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join(''),h=hx(await crypto.subtle.digest('SHA-256',e.encode(t.trim())));const k=await crypto.subtle.importKey('raw',e.encode(h),{name:'PBKDF2'},false,['deriveBits']);return hx(await crypto.subtle.deriveBits({name:'PBKDF2',salt:e.encode('kpc-members-legacy-pbkdf2-salt-v1'),iterations:200000,hash:'SHA-256'},k,256))}
 const css=`#kpcGate{position:fixed;inset:0;z-index:5000;background:#070707;display:flex;align-items:center;justify-content:center;padding:24px;font-family:Arial,Helvetica,sans-serif}
 #kpcGate .box{width:min(420px,100%);padding:34px;background:#111;border:1px solid #d5a63a;box-shadow:12px 12px 0 #d5a63a;color:#fff;text-align:center}
 #kpcGate img{width:96px;height:96px;border-radius:50%;object-fit:contain}

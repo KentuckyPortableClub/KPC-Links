@@ -118,7 +118,7 @@
 <section class="kit-sec"><h3>🗺 MAP${P.prog === 'SOTA' ? ': SUMMIT' : ': BOUNDARY'}${kp && (kp.ap || []).length ? ', PARKING &amp; TRAILHEADS' : ''}</h3><div id="kitMap"></div><p class="kit-small">👆 Tap the map to drop a pin for Street View or directions. ◎ ME shows where you are (with your GPS numbers), ⛶ FULL opens the map full screen. The layers button has Satellite + streets, Topo, Terrain and Hillshade.</p><p class="kit-small" id="kitBnd">Loading…</p>
 <div class="kit-btns"><a class="gold" href="kpc-in-park.html?ref=${encodeURIComponent(P.c)}">📍 ${P.prog === 'SOTA' ? 'AM I IN THE ACTIVATION ZONE?' : 'AM I IN THE PARK?'} ›</a></div><div class="kit-btns" id="kitFiles"></div></section>
 <section class="kit-sec"><h3>⛺ WHERE TO STAY</h3>${stay(P)}</section>
-<section class="kit-sec kit-off"><h3>📴 SAVE FOR NO SIGNAL</h3><p>Saves this kit, the boundary, the map around it and today's forecast on this phone, so it opens with no signal. Weather and spots still need signal to update.</p><div class="kit-btns"><button type="button" id="kitSave" class="gold">${saved ? 'UPDATE THE SAVED COPY' : 'SAVE THIS FOR OFFLINE'}</button></div><p class="kit-small" id="kitSaveMsg">${saved ? 'Saved ' + new Date(saved.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) + '.' : ''}</p></section>`;
+<section class="kit-sec kit-off"><h3>📴 SAVE FOR NO SIGNAL</h3><p>Saves this kit, the boundary, the park data and today's forecast on this phone, so it opens with no signal. Map pictures: only the areas you have already looked at while online are kept. Weather and spots still need signal to update.</p><div class="kit-btns"><button type="button" id="kitSave" class="gold">${saved ? 'UPDATE THE SAVED COPY' : 'SAVE THIS FOR OFFLINE'}</button></div><p class="kit-small" id="kitSaveMsg">${saved ? 'Saved ' + new Date(saved.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) + '.' : ''}</p></section>`;
     $('kitSave').onclick = () => saveOffline(P);
     drawMap(P);
     weather(P, saved);
@@ -205,7 +205,7 @@
     geo = null;
     if (!window.L) { $('kitMap').innerHTML = '<p class="kit-msg">Map unavailable.</p>'; return; }
     map = L.map('kitMap').setView([P.la, P.lo], P.prog === 'SOTA' ? 15 : 13);
-    if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+    if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap', crossOrigin: true }).addTo(map);
     if (window.KPCPin) KPCPin(map, { on: 'contextmenu' }); if (window.KPCHere) KPCHere(map, { onRef: r => { location.href = 'kpc-kit.html?ref=' + encodeURIComponent(r); } });
     if (window.KPCLocate) KPCLocate(map);
     if (window.KPCFull) KPCFull(map);
@@ -309,15 +309,7 @@
   function autoRefresh(P) { clearInterval(timer); timer = setInterval(() => { if (document.hidden || cur !== P) return; weather(P, null); sun(P, null); }, 15 * 60 * 1000); }
 
   /* ---------- save for offline ---------- */
-  function tileList(p, bb) {
-    const t = [], tx = (lo, z) => Math.floor((lo + 180) / 360 * 2 ** z), ty = (la, z) => { const r = la * Math.PI / 180; return Math.floor((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * 2 ** z); };
-    for (let z = 10; z <= 16; z++) {
-      const pad = z <= 12 ? 0.08 : 0.01, x0 = tx(bb[0] - pad, z), x1 = tx(bb[2] + pad, z), y0 = ty(bb[3] + pad, z), y1 = ty(bb[1] - pad, z);
-      const n = (x1 - x0 + 1) * (y1 - y0 + 1); if (t.length + n > 900) break;
-      for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) t.push(`https://tile.openstreetmap.org/${z}/${x}/${y}.png`);
-    }
-    return t;
-  }
+  /* Nov 11 (owner): no map pictures are fetched ahead of time (the OpenStreetMap tile policy does not allow it). The map keeps only what was looked at while online (kpc-finder-sw.js). */
   async function saveOffline(p) {
     const msg = $('kitSaveMsg'), btn = $('kitSave');
     if (!('caches' in window)) { msg.textContent = 'This browser cannot save pages for offline.'; return; }
@@ -327,18 +319,16 @@
       const scripts = [...document.querySelectorAll('script[src],link[rel=stylesheet][href]')].map(e => e.src || e.href).filter(u => u.startsWith(location.origin) || /unpkg\.com\/leaflet@1\.9\.4/.test(u));
       const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-map-tools.js', 'kpc-padus-layer.js', 'kpc-place-suggest.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'data/ky-hunting.json', 'KPC-logo.png'].concat(B.KY.map(L => L.file), B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
       const urls = [...new Set(files.map(f => new URL(f, location.href).href).concat(scripts).concat(['leaflet.css', 'leaflet.js', 'images/marker-icon.png', 'images/marker-icon-2x.png', 'images/marker-shadow.png', 'images/layers.png'].map(f => 'https://unpkg.com/leaflet@1.9.4/dist/' + f)))];
-      let ok = 0;
-      for (const u of urls) { try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin) k.search = ''; await app.put(k.href, r); ok++; } } catch (e) {} }
+      /* Nov 11: the released map files this page read (the boundary and key of a park outside Kentucky) and their index, each under its own ?v= address */
+      const REL = /\/data\/released\//;
+      try { performance.getEntriesByType('resource').forEach(e => { if (e.name.startsWith(location.origin) && REL.test(e.name)) urls.push(e.name); }); urls.push(new URL('data/released/RELEASED.json', location.href).href); } catch (e) {}
+      let ok = 0, lost = 0;   /* lost: files that did not get saved (no signal, or the phone is out of space) */
+      for (const u of [...new Set(urls)]) { try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin && !REL.test(k.pathname)) k.search = ''; await app.put(k.href, r); ok++; } else lost++; } catch (e) { lost++; } }
       const bb = geo ? geo.features.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]) : [p.lo - .03, p.la - .03, p.lo + .03, p.la + .03];
       if (bb[2] - bb[0] > 0.6 || bb[3] - bb[1] > 0.6) { bb[0] = p.lo - .08; bb[2] = p.lo + .08; bb[1] = p.la - .08; bb[3] = p.la + .08; }
-      const tiles = tileList(p, bb), tc = await caches.open(TILES); let done = 0;
-      for (let i = 0; i < tiles.length; i += 6) {
-        await Promise.all(tiles.slice(i, i + 6).map(async u => { try { if (await tc.match(u)) { done++; return; } const r = await fetch(u, { mode: 'cors' }); if (r.ok) { await tc.put(u, r); done++; } } catch (e) {} }));
-        msg.textContent = `Saving the map around the park… ${Math.min(100, Math.round((i + 6) / tiles.length * 100))}%`;
-      }
       const wx = await fetchWx(p);
       const S = store.get(SAVEKEY) || {}; S[p.c] = { t: Date.now(), name: p.n, wx: wx || (S[p.c] && S[p.c].wx) || null, sun: (await fetchSun()) || (S[p.c] && S[p.c].sun) || null }; store.set(SAVEKEY, S);
-      msg.innerHTML = `✓ Saved ${new Date().toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}: the kit, ${done} map pieces and today's forecast. To test it, turn on airplane mode and open this page again.`;
+      msg.innerHTML = `✓ Saved ${new Date().toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}: the kit, the park data and today's forecast (map pictures: only the areas you looked at while online). To test it, turn on airplane mode and open this page again.` + (lost ? ` <b>${lost} file${lost === 1 ? '' : 's'} could not be saved</b> (the signal dropped, or the phone is out of space): tap the button again to fill the gaps.` : '');
       btn.textContent = 'UPDATE THE SAVED COPY';
     } catch (e) { msg.textContent = 'Saving stopped: ' + (e.message || 'storage full?'); }
     btn.disabled = false;

@@ -45,7 +45,8 @@
   const acres = p => p && p.GIS_Acres ? ' · ' + Math.round(+p.GIS_Acres).toLocaleString() + ' acres' : '';
   function label(x) {
     const p = x.f.properties || {};
-    if (x.src === 'padus') return { name: x.f._nm, what: (p.Loc_Mang || p.Mang_Name || 'public land') + (p.Des_Tp ? ' · ' + p.Des_Tp : '') + acres(p), src: 'Official (USGS PAD-US)', access: p.Pub_Access, ease: p.Category === 'Easement' };
+    if (x.src === 'padus') { const apx = !!(x.f._approx || (x.tgt && st.target && st.target.approx));   /* Nov 11: an approximate outline is never called official */
+      return { name: x.f._nm, what: (p.Loc_Mang || p.Mang_Name || 'public land') + (p.Des_Tp ? ' · ' + p.Des_Tp : '') + acres(p), src: apx ? 'Approximate outline, not official' : 'Official (USGS PAD-US)', access: p.Pub_Access, ease: p.Category === 'Easement' }; }
     if (x.src === 'osm') return { name: x.f._nm, what: x.f._op || 'OpenStreetMap outline', src: 'OpenStreetMap (NOT official)' };
     if (x.f._unofficial) return { name: x.f._nm, what: 'Unofficial line (OpenStreetMap)', src: 'Unofficial line (OpenStreetMap): no official line found yet' };   /* Nov 2 (PR 4) */
     return { name: x.f._nm, what: x.f._L.name + ' · ' + x.f._L.agency, src: x.src === 'kpc' ? 'OpenStreetMap outline (unofficial)' : 'Official (' + x.f._L.agency + ')', note: x.f._L.note, proc: x.f._L.proc, own: x.f._L.own };
@@ -56,9 +57,11 @@
     st.here = { la, lo, acc: acc || 0, how, alt: isFinite(alt) && alt !== null ? alt : null };
     initMap(la, lo, 14);
     const far = !st.area || B.km(la, lo, st.area.la, st.area.lo) > 1.2;
-    if (far && !st.busy) {
+    if (far) {
+      if (st.busy) return;   /* Nov 11: a load is already on its way: it re-checks the newest spot when it lands (never judge this spot against far-away boundaries) */
       st.busy = true; say('wait', 'Checking the official boundaries around you…');
       try { st.area = await gather(la, lo); } finally { st.busy = false; }
+      const h = st.here; if (h && (h.la !== la || h.lo !== lo)) return check(h.la, h.lo, h.acc, h.how, h.alt);   /* the spot moved while loading: check the newest one */
     }
     if (!st.area) return;
     judge();
@@ -205,6 +208,8 @@
 
   /* ---------- one park (?ref= or the box) ---------- */
   async function setTarget(q) {
+    const tok = st.tgtTok = (st.tgtTok || 0) + 1;   /* Nov 11: only the newest reference typed may paint (a slow answer for an older one is dropped) */
+    if (st.tgLay) { st.tgLay.remove(); st.tgLay = null; }   /* the last park's outline leaves the map */
     q = String(q || '').trim().toUpperCase(); if (!q) { st.target = null; $('ipTgt').innerHTML = ''; if (st.here) judge(); return; }
     if (!/^[A-Z0-9]{1,4}(\/[A-Z0-9]{2})?-\d{1,5}$/.test(q.replace(/\s+/g, ''))) { $('ipTgt').innerHTML = '<p class="ip-small">Type a reference like US-1271 (POTA), KFF-1271 (WWFF) or W4K/EC-001 (SOTA).</p>'; return; }
     $('ipTgt').innerHTML = '<p class="ip-small">Loading ' + esc(q) + '…</p>';
@@ -221,7 +226,8 @@
       }
       if (T && T.prog === 'SOTA' && !T.ft) { const o = await B.lookup(q).catch(() => null); if (o) T.ft = o.ft; }
     } catch (e) {}
-    if (!T) { $('ipTgt').innerHTML = '<p class="ip-small">Could not find ' + esc(ref) + '. Check the number (and your signal).</p>'; return; }
+    if (tok !== st.tgtTok) return;
+    if (!T) { $('ipTgt').innerHTML = '<p class="ip-small">Could not find ' + esc(q) + '. Check the number (and your signal).</p>'; return; }
     st.target = T; $('ipTgt').innerHTML = `<p class="ip-small">Checking against <b>${esc(T.ref)} ${esc(T.name)}</b> (${esc(T.prog)})${T.prog === 'SOTA' ? ' · summit ' + (T.ft ? T.ft.toLocaleString() + ' ft' : '') : T.feats.length ? (T.approx ? ` · <b>approximate outline, not official</b> (${esc(T.why)}): check the park's own map` : '') : ' (no boundary file found)'} · <a href="#" id="ipClr">check any reference instead</a></p>`;
     $('ipClr').onclick = e => { e.preventDefault(); $('ipRef').value = ''; setTarget(''); };
     if (T.prog === 'POTA') $('ipTgt').insertAdjacentHTML('beforeend', '<div data-gps-ref="' + esc(T.ref) + '" style="margin:6px 0 0"></div>');   /* ⬇ GPS (members first) */

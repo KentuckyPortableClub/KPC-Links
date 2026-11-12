@@ -19,5 +19,5 @@ js = (ROOT / 'kpc-maprep-research.js').read_text(encoding='utf-8')
 check('skipped layers stay silent' in js and 'S.skipped.length + \' skipped\'' not in js, 'status panel does not say N skipped')
 check("if (S.skipped.length) stLine" not in js, 'no skipped why line on the status panel')
 for f in ('kpc-maprep.html', 'kpc-maprep-reps.html', '.claude/build/maprep/main.html'):
-    check('kpc-maprep-research.js?v=20261109z' in (ROOT / f).read_text(encoding='utf-8'), f + ': script version')
+    check('kpc-maprep-research.js?v=20261111rule' in (ROOT / f).read_text(encoding='utf-8'), f + ': script version')
 sys.exit(0 if ok else 1)

@@ -66,7 +66,7 @@ async function init(){
  if(KR)await KR.ready;
  try{const j=await (await fetch('kpc-park-notes.json',{cache:'no-cache'})).json();N=Array.isArray(j.notes)?j.notes:[]}catch(e){N=[]}
  try{const f=await (await fetch('kpc-park-notes-form.json',{cache:'no-cache'})).json();if(f&&f.url&&/^entry\.\d+$/.test(f.parkEntry||'')){FORM.url=f.url;FORM.parkEntry=f.parkEntry}}catch(e){}
- const h=decodeURIComponent(location.hash.slice(1)).toUpperCase();
+ let h='';try{h=decodeURIComponent(location.hash.slice(1)).toUpperCase()}catch(e){h=location.hash.slice(1).toUpperCase()}   /* a bad %-code in the address must not stop the list (Nov 11) */
  if(h){const p=/^US-/.test(h)?'pota':/^KFF-/.test(h)?'kff':/\//.test(h)?'sota':null;if(p)tab=p}
  drawGen();draw();
  if(h){const el=[...document.querySelectorAll('.pn-item')].find(e=>e.dataset.ref===h);if(el){el.open=true;el.scrollIntoView({block:'center'})}}

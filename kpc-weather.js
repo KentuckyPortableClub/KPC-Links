@@ -341,7 +341,7 @@
   function mapTo(p) {
     initMap(); if (!map) return;
     if (mk) map.removeLayer(mk);
-    mk = L.circleMarker([p.la, p.lo], { radius: 8, color: '#fff', weight: 3, fillColor: '#1378ff', fillOpacity: 1 }).addTo(map).bindTooltip((p.ref ? p.ref + ' ' : '') + p.name);
+    mk = L.circleMarker([p.la, p.lo], { radius: 8, color: '#fff', weight: 3, fillColor: '#1378ff', fillOpacity: 1 }).addTo(map).bindTooltip(esc((p.ref ? p.ref + ' ' : '') + p.name));
     map.setView([p.la, p.lo], 8);
   }
   function drawWarn(features) { if (!warnLayer) return; warnLayer.clearLayers(); features.filter(f => f.geometry).forEach(f => { try { warnLayer.addData(Object.assign({ type: 'Feature' }, f)); } catch (e) {} }); }

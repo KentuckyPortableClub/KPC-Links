@@ -35,7 +35,7 @@ const COUNTS = { t: Date.now(),
         localStorage.setItem('kpcHuntCounts', JSON.stringify(c));
         localStorage.setItem('kpcHuntF', JSON.stringify({ v: 3, view: 'cards', p: ['POTA'], hide: false, qrt: false, nw: false, rg: false, bands: [], modes: [], where: 'all', st: '', q: '', sort: 'new' }));
         localStorage.setItem('kpcMyCall', '"Q4LNG"');
-        localStorage.setItem('kpcVipOK', '2053c7c0ae91be40fd2816d87b55adca15e478c076973648e9e0bb42ffedf8b2');   /* the unlock hash already in kpc-vip.js (not a password) */
+        localStorage.setItem('kpcVipOK', 'dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab');   /* the unlock hash already in kpc-vip.js (not a password) */
       }, COUNTS);
       await P.goto(BASE + page);
       const VIP = page === 'kpc-hunt.html';

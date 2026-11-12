@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261029b"></script><script id="kpc-data-url">window.KPC=window.KPC||{};KPC.dataUrl=KPC.dataUrl||function(p,o){return fetch('https://kentuckyportableclub.github.io/KPC-Data/'+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return /^data\/(us|ca|world)-key\//.test(p)?Promise.resolve(new Response('',{status:404})):fetch(p,o)})};</script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261111f3"></script><script id="kpc-data-url">window.KPC=window.KPC||{};KPC.dataUrl=KPC.dataUrl||function(p,o){return fetch('https://kentuckyportableclub.github.io/KPC-Data/'+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return /^data\/(us|ca|world)-key\//.test(p)?Promise.resolve(new Response('',{status:404})):fetch(p,o)})};</script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Live: Happening Now | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
@@ -18,8 +18,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <!-- /KPC icons -->
 <meta name="description" content="Kentucky right now: band activity, POTA spots, space weather, field weather, radar and lightning on one page.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="stylesheet" href="kpc-tools.css">
 <script src="kpc-tools.js?v=20261027a"></script>
 <link rel="stylesheet" href="kpc-band-maps.css">
@@ -366,7 +366,7 @@ setInterval(function(){kySun();moon()},60000);
 setInterval(loadNOAA,15*60000);
 })();
 </script>
-<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-looks.js?v=20261017p" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><script src="kpc-band-maps.js?v=20261107a" defer></script><script src="kpc-live.js?v=20261026a" defer></script><script src="kpc-hunters-card.js?v=20261028b" defer></script><script src="kpc-radio.js?v=20261015c" defer></script><script src="kpc-radar-plus.js?v=20261027a" defer></script><script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261111f3" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-looks.js?v=20261017p" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><script src="kpc-band-maps.js?v=20261111a" defer></script><script src="kpc-live.js?v=20261111rule" defer></script><script src="kpc-hunters-card.js?v=20261028b" defer></script><script src="kpc-radio.js?v=20261015c" defer></script><script src="kpc-radar-plus.js?v=20261027a" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

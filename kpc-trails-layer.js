@@ -50,7 +50,7 @@
             const casing = L.geoJSON(f, { renderer: rend, interactive: false, style: { color: '#1b1b1b', weight: 6, opacity: .55 } });
             const k = KIND[t.kind] || KIND.ST, un = UNOFF(t), col = t.water ? '#4fc3f7' : k[1];
             const line = L.geoJSON(f, { renderer: rend, style: { color: col, weight: 3, opacity: un ? .8 : .95, dashArray: un ? '1 7' : t.water ? '10 6' : k[2], lineCap: 'round' } });
-            line.bindPopup(pop(t), { maxWidth: 300 }); line.bindTooltip(t.name + (un ? ' · Unofficial line (OpenStreetMap)' : t.water ? ' · water trail' : ''), { sticky: true });
+            line.bindPopup(pop(t), { maxWidth: 300 }); line.bindTooltip(esc(t.name) + (un ? ' · Unofficial line (OpenStreetMap)' : t.water ? ' · water trail' : ''), { sticky: true });
             g.addLayer(casing); g.addLayer(line);
           }).catch(() => { delete done[t.ref]; });
         }

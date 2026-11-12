@@ -143,7 +143,7 @@
 #lrBox canvas{display:block;width:100%;height:190px;border-radius:10px;border:1px solid rgba(240,201,107,.35);background:#050302;cursor:crosshair;touch-action:pan-y}
 #lrBox ul.lr-g{margin:6px 0 10px 18px;padding:0;color:#e9dcc6;font-size:13.5px;line-height:1.45}#lrBox [hidden]{display:none!important}
 #lrMsg{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:99999;max-width:min(560px,92vw);padding:12px 16px;border-radius:12px;background:#1d1208;border:1px solid #f0c96b;color:#fff;font:700 14px Arial;box-shadow:0 6px 24px rgba(0,0,0,.5)}#lrMsg.bad{border-color:#ff8a7a;background:#2a0e0a}
-#lrSwr{margin:8px 0;padding:10px 12px;border-radius:10px;background:#3a0f0a;border:1px solid #ff8a7a;color:#fff;font:700 13.5px Arial}
+#lrSwrHold{margin:8px 0;padding:10px 12px;border-radius:10px;background:#3a0f0a;border:1px solid #ff8a7a;color:#fff;font:700 13.5px Arial}
 #lrBox .nrbox .chip{min-height:34px;padding:5px 11px;border:1px solid rgba(240,201,107,.5);border-radius:999px;background:#140d06;color:#f3e6c8;font:800 12px Arial;margin:2px;cursor:pointer}#lrBox .nrbox .chip.on{background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05}
 #lrBox .nrbox .nrh{font:900 11px Arial;letter-spacing:1px;color:#e9c77d;margin:8px 0}#lrBox .nrbox .nrh small{font-weight:400;letter-spacing:0;color:#cdbb98}#lrBox .nrbox .nrrow{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:4px 0}#lrBox .nrbox .nrrow span{min-width:120px;font:900 11px Arial;color:#e9c77d}`;
   document.head.appendChild(css);
@@ -183,13 +183,13 @@
         <div class="lr-row">${bm}</div><p class="lr-n">A band button goes back to the last frequency and mode you used on that band (• = remembered).</p>
         <label class="lr-t"><input type="checkbox" id="lrBm"${X.bandMem ? ' checked' : ''}> Band memory on</label>
         <div class="lr-row">${C.proto && (EXTRA[C.proto] || {}).atu && !(C.proto === 'kenwood' && K.get().model === 'elecraft') ? '<button type="button" class="lr-c" id="lrTune">🔧 TUNE THE ANTENNA</button>' : '<span class="lr-n">This radio has no tuner command over CAT.</span>'}<label class="lr-t"><input type="checkbox" id="lrAsk"${X.tuneAsk ? ' checked' : ''}> ask first (it transmits a carrier)</label></div>
-        <div class="lr-row"><span class="lr-k">SWR GUARD</span><select id="lrSwr"><option value="2">2 : 1</option><option value="2.5">2.5 : 1</option><option value="3">3 : 1</option><option value="0">off</option></select><select id="lrSwrA"><option value="warn">warn me</option><option value="power">warn + power to 25 %</option><option value="stop">warn + stop transmitting</option></select></div>
+        <div class="lr-row"><span class="lr-k">SWR GUARD</span><select id="lrSwr" aria-label="SWR guard limit"><option value="2">2 : 1</option><option value="2.5">2.5 : 1</option><option value="3">3 : 1</option><option value="0">off</option></select><select id="lrSwrA" aria-label="What the SWR guard does"><option value="warn">warn me</option><option value="power">warn + power to 25 %</option><option value="stop">warn + stop transmitting</option></select></div>
         <p class="lr-n">The SWR guard watches the radio's SWR meter while this page keys the radio by CAT (voice keyer, FT8). With VOX the page does not know you are transmitting.</p><div id="lrSwrNote"></div></details>
       ${scopeOk ? `<details id="lrScope"${X.oScope ? ' open' : ''}><summary>📡 SCOPE <small>your Icom's own scope over the USB cable: tap it to tune</small></summary>
         <div class="lr-row"><button type="button" class="lr-c${X.scope ? ' on' : ''}" id="lrScOn">${X.scope ? 'SCOPE ON' : 'SCOPE OFF'}</button>${[5000, 10000, 25000, 50000, 100000].map(h => `<button type="button" class="lr-c${X.span === h ? ' on' : ''}" data-span="${h}">±${h / 1000} kHz</button>`).join('')}</div>
         <canvas id="lrScCv"></canvas><p class="lr-n" id="lrScSt">${on ? '' : 'Connect the radio first.'}</p></details>` : ''}
       <details id="lrHear"${X.oHear ? ' open' : ''}><summary>🎧 HEAR THE RADIO HERE <small>its USB sound through this computer, with noise clean-up</small></summary>
-        <div class="lr-row"><span class="lr-k">FROM</span><select id="lrIn"><option value="">the radio's USB sound (pick)…</option></select><span class="lr-k">TO</span><select id="lrOut"><option value="">this computer's speakers</option></select></div>
+        <div class="lr-row"><span class="lr-k">FROM</span><select id="lrIn" aria-label="Sound from the radio"><option value="">the radio's USB sound (pick)…</option></select><span class="lr-k">TO</span><select id="lrOut" aria-label="Where the radio sound plays"><option value="">this computer's speakers</option></select></div>
         <div class="lr-row"><button type="button" class="lr-c" id="lrListen">${AU.ctx ? '⏹ STOP LISTENING' : '🎧 LISTEN'}</button><span class="lr-k">VOLUME</span><input type="range" id="lrVol" min="0" max="200" step="5" value="${X.vol == null ? 100 : X.vol}"></div>
         <div id="lrNrHost"></div><p class="lr-n">Pick the radio's own USB sound (USB Audio CODEC on Icom and Yaesu). Noise clean-up only changes what you hear; FT8 and the other decoders always get the untouched sound.</p></details>
       <details id="lrGuide"${X.oGuide ? ' open' : ''}><summary>📖 SETUP GUIDE + 📝 WORKS ON MY RADIO <small>what to set in the radio's own menus</small></summary>${guideHtml(K.get().radio)}
@@ -308,7 +308,7 @@
     LAST = { s, t: new Date().toISOString().slice(11, 16) + ' UTC' }; swrNote();
   }
   let LAST = null;
-  function swrNote() { const n = $('lrSwrNote'); if (!n) return; n.innerHTML = HOLD ? `<div id="lrSwr">⚠ HIGH SWR (${LAST ? LAST.s.toFixed(1) + ' : 1 at ' + LAST.t : ''}): transmitting is on hold. <button type="button" class="lr-c" id="lrResume">OK, TRANSMIT AGAIN</button></div>` : LAST ? `<p class="lr-n">Last warning: SWR about ${LAST.s.toFixed(1)} : 1 at ${LAST.t}.</p>` : ''; }
+  function swrNote() { const n = $('lrSwrNote'); if (!n) return; n.innerHTML = HOLD ? `<div id="lrSwrHold">⚠ HIGH SWR (${LAST ? LAST.s.toFixed(1) + ' : 1 at ' + LAST.t : ''}): transmitting is on hold. <button type="button" class="lr-c" id="lrResume">OK, TRANSMIT AGAIN</button></div>` : LAST ? `<p class="lr-n">Last warning: SWR about ${LAST.s.toFixed(1)} : 1 at ${LAST.t}.</p>` : ''; }
 
   /* ================================================================ 📡 THE ICOM SCOPE (CI-V 27 00, the same reader as the app's kpc-scope.js) */
   const SCOPE_RIGS = { ic7300: 1, ic705: 1, ic9700: 1, ic7610: 1, ic905: 1 };
@@ -367,7 +367,7 @@
 
   /* ================================================================ 🎧 HEAR THE RADIO HERE (+ the app's noise clean-up) */
   const AU = { ctx: null, src: null, gain: null, stream: null, ch: null, el: null };
-  if (G.KPCNR && !localStorage.getItem('kpcAppNr')) KPCNR.set({ nr: 'light' });   /* the handoff: clean-up ON by default */
+  if (G.KPCNR && !LS('kpcAppNr', null)) KPCNR.set({ nr: 'light' });   /* the handoff: clean-up ON by default */
   async function fillDev() {
     const i = $('lrIn'), o = $('lrOut'); if (!i || !navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return;
     try { const ds = await navigator.mediaDevices.enumerateDevices();

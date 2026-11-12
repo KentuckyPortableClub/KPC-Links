@@ -191,7 +191,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
  function go(){var live=location.hash==='#live';L.hidden=!live;O.hidden=live;
   if(live&&!L.firstChild)L.innerHTML='<iframe src="kpc-live.html?embed=1" title="Happening Now" loading="lazy"></iframe>';}
  addEventListener('hashchange',go);
- window.addEventListener('message',function(e){var d=e.data||{};if(d.kpcLiveH&&L.querySelector('iframe'))L.querySelector('iframe').style.height=Math.max(600,d.kpcLiveH)+'px'});
+ window.addEventListener('message',function(e){if(e.origin!==location.origin)return;var d=e.data||{};if(+d.kpcLiveH>0&&L.querySelector('iframe'))L.querySelector('iframe').style.height=Math.max(600,+d.kpcLiveH)+'px'});
  go();})();
 </script>
 </main>
@@ -200,4 +200,4 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 <script src="kpc-my-parks.js?v=20261024a" defer></script>
 <script src="kpc-closures.js?v=20261027b6" defer></script>
 <script src="kpc-facilities.js?v=20261025b" defer></script>
-<script src="kpc-lounge.js?v=20261027v" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><link rel="stylesheet" href="kpc-band-maps.css"><script src="kpc-band-maps.js?v=20261107a" defer></script>
+<script src="kpc-lounge.js?v=20261027v" defer></script><script src="kpc-cx.js?v=20261017c" defer></script><link rel="stylesheet" href="kpc-band-maps.css"><script src="kpc-band-maps.js?v=20261111a" defer></script>

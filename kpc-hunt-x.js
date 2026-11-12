@@ -169,7 +169,7 @@
     bar.addEventListener('pointerup', up); bar.addEventListener('pointercancel', up);
     addEventListener('resize', () => { if (POP && !POP.hidden) place(); });
   }
-  function stat() { const s = $('hxSt'); if (!s) return; const k = K(); s.textContent = !k ? 'radio control not on this page' : conn() ? '● ' + ((k.RADIO || {})[k.get().radio] || {}).label || '● connected' : '○ not connected'; s.className = conn() ? 'on' : ''; }
+  function stat() { const s = $('hxSt'); if (!s) return; const k = K(); s.textContent = !k ? 'radio control not on this page' : conn() ? '● ' + (((k.RADIO || {})[k.get().radio] || {}).label || 'connected') : '○ not connected'; s.className = conn() ? 'on' : ''; }
 
   /* ---- 📻 Radio: pick, connect, frequency, mode ---- */
   function radioPane(p) {
@@ -263,6 +263,8 @@
     cool(); if (t.key) { await t.key; await K().ptt(false, 'cat'); }
   }
   G.addEventListener('blur', () => talkUp());
+  /* Nov 11: the radio must also unkey when the tab is hidden or closed while the talk button is held */
+  G.addEventListener('pagehide', () => talkUp()); document.addEventListener('visibilitychange', () => { if (document.hidden) talkUp(); });
 
   /* ---- 📟 CW memory keyer ---- */
   const CW = Object.assign({ m: ['CQ POTA DE {MY} {MY} K', '{CALL} TU 5NN KY', '{MY}', 'TU 73', 'AGN?', 'QRZ?'], wpm: 22 }, LS('kpcHuntCw', {}));

@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261019l"><link rel="stylesheet" href="kpc-ft8.css?v=20261110d">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261111r"><link rel="stylesheet" href="kpc-ft8.css?v=20261110d">
 @@HEADER@@
 <main id="hl" data-keep-light data-theme="lodge">
 <nav class="hl-ptabs mem-only" aria-label="Hunters Lounge pages"><a href="kpc-hunt.html" data-pt="lounge">🎯 SPOTS &amp; LOG</a><a href="kpc-hunt-need.html" data-pt="need">📋 PARKS I NEED</a><a href="kpc-top50.html" data-pt="top50">🏆 TOP 50</a><a href="kpc-hunt-cat.html" data-pt="cat">📻 CAT &amp; QRZ</a></nav>
@@ -62,12 +62,12 @@
 <div class="hl-active" id="hlActive" hidden></div>
 <details class="hl-favbox" id="hlFavBox"><summary>⭐ MY FAVORITE ACTIVATORS <i id="favN"></i></summary>
 <p class="hl-p">Tap the ☆ on any spot, or type a call here. When a favorite comes on the air they're pinned to the top until you've worked them today (log them, or tap ✓ GOT THEM).</p>
-<form class="hl-row" id="favForm"><input id="favIn" placeholder="Add a call" autocapitalize="characters" autocomplete="off" style="width:160px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
+<form class="hl-row" id="favForm"><input id="favIn" aria-label="Call sign to add to my favorites" placeholder="Add a call" autocapitalize="characters" autocomplete="off" style="width:160px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
 <div class="hl-row" id="favList"></div></details>
 <div id="hlFavs"></div>
 <details class="hl-favbox" id="hlChBox"><summary>🎯 MY CHASE LIST (PARKS I WANT) <i id="chN"></i></summary>
 <p class="hl-p">Type the park numbers you're chasing: POTA (US-1234, or just 1234), WWFF/KFF (KFF-0001) or SOTA (W4K/EC-001). When one comes on the air, on any band or mode, it's pinned to the top with a sound and flames, even if your filters would hide it and even with 🔔 ALERT off. Worked it? Tap <b>✓ GOT IT</b> and it comes off the list. You can also tap 🎯 on any spot.</p>
-<form class="hl-row" id="chForm"><input id="chIn" placeholder="US-1234, KFF-0001, W4K/EC-001" autocapitalize="characters" autocomplete="off" style="width:240px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
+<form class="hl-row" id="chForm"><input id="chIn" aria-label="Park numbers to add to my chase list" placeholder="US-1234, KFF-0001, W4K/EC-001" autocapitalize="characters" autocomplete="off" style="width:240px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
 <div class="hl-row" id="chList"></div></details>
 <div id="hlChase"></div>
 <a class="hl-nolog mem-only" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a><a class="hl-nolog pub-only" id="hlNoLogP" href="#hlSetup" hidden>📄 <b>Load the parks you've worked</b> (your logbook as an ADIF file) so the new-to-you ones light up. Tap here ›</a>
@@ -190,7 +190,7 @@
 <label>TIME (UTC)<input id="fTime" type="time"></label>
 <label>RST SENT<input id="fRs" inputmode="numeric"></label>
 <label>RST RCVD<input id="fRr" inputmode="numeric"></label>
-<label class="w2">STATE<input id="fSt" maxlength="2" autocapitalize="characters"></label>
+<label class="w2">STATE<input id="lgSt" maxlength="2" autocapitalize="characters"></label>
 <label class="w2">NOTE<input id="fNote" maxlength="200"></label>
 </div>
 <p class="hl-dupe" id="fDupe" hidden></p>
@@ -207,6 +207,6 @@
 <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
 </main>
 @@FOOTER@@
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261110a"></script><script src="kpc-nr.js?v=20261107a" defer></script><script src="kpc-lounge-radio.js?v=20261110a" defer></script><script src="kpc-meters.js?v=20261026a" defer></script>
-<script src="kpc-hunt.js?v=20261110a"></script><script src="kpc-hunt-x.js?v=20261110b" defer></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261111a"></script><script src="kpc-digi.js?v=20261018h"></script><script src="kpc-digi-ui.js?v=20261018h"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261110a"></script><script src="kpc-nr.js?v=20261107a" defer></script><script src="kpc-lounge-radio.js?v=20261111r" defer></script><script src="kpc-meters.js?v=20261026a" defer></script>
+<script src="kpc-hunt.js?v=20261111r"></script><script src="kpc-hunt-x.js?v=20261111r" defer></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261111a"></script><script src="kpc-digi.js?v=20261018h"></script><script src="kpc-digi-ui.js?v=20261018h"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>

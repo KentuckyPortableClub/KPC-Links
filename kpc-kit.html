@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261029b"></script><script id="kpc-data-url">window.KPC=window.KPC||{};KPC.dataUrl=KPC.dataUrl||function(p,o){return fetch('https://kentuckyportableclub.github.io/KPC-Data/'+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return /^data\/(us|ca|world)-key\//.test(p)?Promise.resolve(new Response('',{status:404})):fetch(p,o)})};</script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261111f3"></script><script id="kpc-data-url">window.KPC=window.KPC||{};KPC.dataUrl=KPC.dataUrl||function(p,o){return fetch('https://kentuckyportableclub.github.io/KPC-Data/'+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return /^data\/(us|ca|world)-key\//.test(p)?Promise.resolve(new Response('',{status:404})):fetch(p,o)})};</script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Activation Kit | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
@@ -107,8 +107,8 @@ body.field .page-jump-nav{display:none!important}
 <link rel="stylesheet" href="kpc-dress.css?v=20261017c">
 <link rel="stylesheet" href="kpc-nav.css?v=20261030a">
 <link rel="stylesheet" href="kpc-tools.css?v=20261017p">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <style>
 .kit-wrap{max-width:900px;margin:0 auto;padding:24px 16px 40px;box-sizing:border-box}
 .kit-card{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);border-radius:10px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.05)}
@@ -216,10 +216,10 @@ body.field .page-jump-nav{display:none!important}
 <p class="kpc-infoline" style="max-width:1100px;margin:8px auto 18px;padding:0 16px;font-size:13px;line-height:1.5;text-align:center;color:#6b4a10">⚠️ Parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it.</p>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
-<script src="kpc-bounds.js?v=20261111parts" defer></script>
-<script src="kpc-padus-layer.js?v=20261111parts"></script><script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-map-tools.js?v=20261027a" defer></script>
-<script src="kpc-unofficial.js?v=20261031a"></script><script src="kpc-gps.js?v=20261111parts"></script><script src="kpc-gps-wire.js?v=20261109am2"></script><script src="kpc-kit.js?v=20261109am2" defer></script>
-<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-bounds.js?v=20261111rule" defer></script>
+<script src="kpc-padus-layer.js?v=20261111rule"></script><script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-map-tools.js?v=20261027a" defer></script>
+<script src="kpc-unofficial.js?v=20261031a"></script><script src="kpc-gps.js?v=20261111m2"></script><script src="kpc-gps-wire.js?v=20261109am2"></script><script src="kpc-kit.js?v=20261111s" defer></script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261111f3" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261029b"></script><script id="kpc-data-url">window.KPC=window.KPC||{};KPC.dataUrl=KPC.dataUrl||function(p,o){return fetch('https://kentuckyportableclub.github.io/KPC-Data/'+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return /^data\/(us|ca|world)-key\//.test(p)?Promise.resolve(new Response('',{status:404})):fetch(p,o)})};</script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261111f3"></script><script id="kpc-data-url">window.KPC=window.KPC||{};KPC.dataUrl=KPC.dataUrl||function(p,o){return fetch('https://kentuckyportableclub.github.io/KPC-Data/'+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return /^data\/(us|ca|world)-key\//.test(p)?Promise.resolve(new Response('',{status:404})):fetch(p,o)})};</script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Park Checker | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
@@ -105,7 +105,7 @@ body.field .page-jump-nav{display:none!important}
 
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261030a">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <style id="cat-look-pub">
 main#hl[data-page=cat]{max-width:980px;margin:0 auto;padding:0 12px 40px}
 main#hl .ct-head{margin:6px 0 14px;padding:22px 20px;border-radius:14px;border:1px solid rgba(240,201,107,.6);box-shadow:0 0 22px rgba(240,201,107,.18);background:linear-gradient(90deg,rgba(18,10,4,.92),rgba(18,10,4,.55)),url(hero-lodge.jpg) center/cover;color:#f6e9d6}
@@ -134,7 +134,7 @@ main#hl .ct-card a{color:#ffcf7a}
 .ct-btn.sm{padding:6px 10px;font-size:11px}.ct-pbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 </style>
 
-<link rel="stylesheet" href="kpc-hunt.css?v=20261108a"><link rel="stylesheet" href="kpc-ft8.css?v=20261020c">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261111r"><link rel="stylesheet" href="kpc-ft8.css?v=20261020c">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -407,15 +407,15 @@ main#hl.hl-live>*:not(#hlApp){display:none!important}main#hl.hl-live #hlApp>*:no
  function go(){var live=location.hash==='#live';m.classList.toggle('hl-live',live);box.hidden=!live;
   var st=document.getElementById('kpcLTabs');if(st&&st.nextElementSibling!==box)st.parentNode.insertBefore(box,st.nextSibling);if(window.KPCLTabs)KPCLTabs.lit();
   if(live&&!box.firstChild)box.innerHTML='<iframe src="kpc-live.html?embed=1" title="Happening Now"></iframe>';}
- addEventListener('hashchange',go);addEventListener('message',function(e){var d=e.data||{};if(d.kpcLiveH&&box.querySelector('iframe'))box.querySelector('iframe').style.height=Math.max(600,d.kpcLiveH)+'px'});go();}).catch(function(){})})();</script>
+ addEventListener('hashchange',go);addEventListener('message',function(e){if(e.origin!==location.origin)return;var d=e.data||{};if(+d.kpcLiveH>0&&box.querySelector('iframe'))box.querySelector('iframe').style.height=Math.max(600,+d.kpcLiveH)+'px'});go();}).catch(function(){})})();</script>
 <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261110a"></script><script src="kpc-nr.js?v=20261107a" defer></script><script src="kpc-lounge-radio.js?v=20261110a" defer></script><script src="kpc-meters.js?v=20261026a" defer></script>
-<script src="kpc-cont.js?v=20261024a"></script><script src="kpc-hunt.js?v=20261110a"></script><script src="kpc-hunt-x.js?v=20261110b" defer></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261110a"></script><script src="kpc-nr.js?v=20261107a" defer></script><script src="kpc-lounge-radio.js?v=20261111r" defer></script><script src="kpc-meters.js?v=20261026a" defer></script>
+<script src="kpc-cont.js?v=20261024a"></script><script src="kpc-hunt.js?v=20261111r"></script><script src="kpc-hunt-x.js?v=20261111r" defer></script>
 <script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261020d"></script><script src="kpc-digi.js?v=20261018h"></script><script src="kpc-digi-ui.js?v=20261018h"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>
-<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261111f3" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

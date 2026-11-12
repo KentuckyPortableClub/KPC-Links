@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex,nofollow">
 <script src="kpc-vip.js?v=20261018d"></script>
-<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261029b"></script><script id="kpc-data-url">window.KPC=window.KPC||{};KPC.dataUrl=KPC.dataUrl||function(p,o){return fetch('https://kentuckyportableclub.github.io/KPC-Data/'+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return /^data\/(us|ca|world)-key\//.test(p)?Promise.resolve(new Response('',{status:404})):fetch(p,o)})};</script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261111f3"></script><script id="kpc-data-url">window.KPC=window.KPC||{};KPC.dataUrl=KPC.dataUrl||function(p,o){return fetch('https://kentuckyportableclub.github.io/KPC-Data/'+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return /^data\/(us|ca|world)-key\//.test(p)?Promise.resolve(new Response('',{status:404})):fetch(p,o)})};</script><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>VIP Hunters Lounge | KPC</title>
 <!-- KPC icons & share preview -->
 <link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
@@ -107,8 +107,8 @@ body.field .page-jump-nav{display:none!important}
 
 </style>
 <link rel="stylesheet" href="kpc-nav.css?v=20261030a">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="kpc-hunt.css?v=20261108a"><link rel="stylesheet" href="kpc-ft8.css?v=20261110d">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="kpc-hunt.css?v=20261111r"><link rel="stylesheet" href="kpc-ft8.css?v=20261110d">
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
@@ -226,12 +226,12 @@ body.field .page-jump-nav{display:none!important}
 <div class="hl-active" id="hlActive" hidden></div>
 <details class="hl-favbox" id="hlFavBox"><summary>⭐ MY FAVORITE ACTIVATORS <i id="favN"></i></summary>
 <p class="hl-p">Tap the ☆ on any spot, or type a call here. When a favorite comes on the air they're pinned to the top until you've worked them today (log them, or tap ✓ GOT THEM).</p>
-<form class="hl-row" id="favForm"><input id="favIn" placeholder="Add a call" autocapitalize="characters" autocomplete="off" style="width:160px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
+<form class="hl-row" id="favForm"><input id="favIn" aria-label="Call sign to add to my favorites" placeholder="Add a call" autocapitalize="characters" autocomplete="off" style="width:160px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
 <div class="hl-row" id="favList"></div></details>
 <div id="hlFavs"></div>
 <details class="hl-favbox" id="hlChBox"><summary>🎯 MY CHASE LIST (PARKS I WANT) <i id="chN"></i></summary>
 <p class="hl-p">Type the park numbers you're chasing: POTA (US-1234, or just 1234), WWFF/KFF (KFF-0001) or SOTA (W4K/EC-001). When one comes on the air, on any band or mode, it's pinned to the top with a sound and flames, even if your filters would hide it and even with 🔔 ALERT off. Worked it? Tap <b>✓ GOT IT</b> and it comes off the list. You can also tap 🎯 on any spot.</p>
-<form class="hl-row" id="chForm"><input id="chIn" placeholder="US-1234, KFF-0001, W4K/EC-001" autocapitalize="characters" autocomplete="off" style="width:240px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
+<form class="hl-row" id="chForm"><input id="chIn" aria-label="Park numbers to add to my chase list" placeholder="US-1234, KFF-0001, W4K/EC-001" autocapitalize="characters" autocomplete="off" style="width:240px"><button type="submit" class="hl-btn gold sm">＋ ADD</button></form>
 <div class="hl-row" id="chList"></div></details>
 <div id="hlChase"></div>
 <a class="hl-nolog mem-only" id="hlNoLog" href="#hPota" hidden>⭐ <b>Load your hunted parks from POTA</b> so the new-to-you ones light up. Tap here ›</a><a class="hl-nolog pub-only" id="hlNoLogP" href="#hlSetup" hidden>📄 <b>Load the parks you've worked</b> (your logbook as an ADIF file) so the new-to-you ones light up. Tap here ›</a>
@@ -354,7 +354,7 @@ body.field .page-jump-nav{display:none!important}
 <label>TIME (UTC)<input id="fTime" type="time"></label>
 <label>RST SENT<input id="fRs" inputmode="numeric"></label>
 <label>RST RCVD<input id="fRr" inputmode="numeric"></label>
-<label class="w2">STATE<input id="fSt" maxlength="2" autocapitalize="characters"></label>
+<label class="w2">STATE<input id="lgSt" maxlength="2" autocapitalize="characters"></label>
 <label class="w2">NOTE<input id="fNote" maxlength="200"></label>
 </div>
 <p class="hl-dupe" id="fDupe" hidden></p>
@@ -376,14 +376,14 @@ body.field .page-jump-nav{display:none!important}
   document.querySelectorAll('.hl-ptabs a').forEach(function(a){var pt=a.getAttribute('data-pt');if(pt==='live'||pt==='lounge'){if((pt==='live')===live)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');}});
   if(live&&!box.firstChild)box.innerHTML='<iframe src="kpc-live.html?embed=1" title="Happening Now"></iframe>';}
  document.querySelectorAll('.hl-ptabs a[data-pt="live"]').forEach(function(a){a.addEventListener('click',function(e){if(location.pathname.split('/').pop()!=='kpc-hunt.html')return;e.preventDefault();if(location.hash!=='#live'){history.pushState(null,'','#live');}go();scrollTo({top:0,behavior:'smooth'});});});
- addEventListener('hashchange',go);addEventListener('popstate',go);addEventListener('message',function(e){var d=e.data||{};if(d.kpcLiveH&&box.querySelector('iframe'))box.querySelector('iframe').style.height=Math.max(600,d.kpcLiveH)+'px'});
+ addEventListener('hashchange',go);addEventListener('popstate',go);addEventListener('message',function(e){if(e.origin!==location.origin)return;var d=e.data||{};if(+d.kpcLiveH>0&&box.querySelector('iframe'))box.querySelector('iframe').style.height=Math.max(600,+d.kpcLiveH)+'px'});
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(go,0)});else setTimeout(go,0);})();</script>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261110a"></script><script src="kpc-nr.js?v=20261107a" defer></script><script src="kpc-lounge-radio.js?v=20261110a" defer></script><script src="kpc-meters.js?v=20261026a" defer></script>
-<script src="kpc-cont.js?v=20261024a"></script><script src="kpc-hunt.js?v=20261110a"></script><script src="kpc-hunt-x.js?v=20261110b" defer></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261111a"></script><script src="kpc-digi.js?v=20261018h"></script><script src="kpc-digi-ui.js?v=20261018h"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>
-<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="kpc-ambient.js?v=20261017a"></script><script src="kpc-cat.js?v=20261110a"></script><script src="kpc-nr.js?v=20261107a" defer></script><script src="kpc-lounge-radio.js?v=20261111r" defer></script><script src="kpc-meters.js?v=20261026a" defer></script>
+<script src="kpc-cont.js?v=20261024a"></script><script src="kpc-hunt.js?v=20261111r"></script><script src="kpc-hunt-x.js?v=20261111r" defer></script><script src="kpc-ft8.js?v=20261017a"></script><script src="kpc-logger-ft8.js?v=20261111a"></script><script src="kpc-digi.js?v=20261018h"></script><script src="kpc-digi-ui.js?v=20261018h"></script><script src="kpc-voicekeyer.js?v=20261018a"></script><script src="kpc-gdrive.js?v=20261018a"></script>
+<script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261107a" defer></script><script src="kpc-count.js?v=20261111f3" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

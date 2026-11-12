@@ -625,17 +625,17 @@
     ML.clearLayers(); const me = myLL(), now = nowS(); let n = 0, m = 0;
     if (me) L.marker(me, { icon: L.divIcon({ className: 'f8-star', html: '★', iconSize: [22, 22] }) }).addTo(ML).bindTooltip('You · ' + myGrid());
     if (S.mode === 'WSPR') { /* WSPR: stations I decoded (green) + stations that heard me on wspr.live (orange ▲) */
-      if (S.mm !== 'me') for (const x of XH) { const ll = g2ll(x.grid); if (!ll) continue; n++; L.circleMarker(ll, { radius: 5 + Math.max(0, Math.min(6, (x.snr + 30) / 5)), color: '#3ddc84', weight: 1, fillColor: '#3ddc84', fillOpacity: .8 }).addTo(ML).bindTooltip(`${x.call} ${x.snr} dB${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''}`); }
-      if (S.mm !== 'hear') for (const x of XM) { const ll = g2ll(x.grid); if (!ll) continue; m++; L.marker(ll, { icon: L.divIcon({ className: 'f8-tri', html: '▲', iconSize: [16, 16] }) }).addTo(ML).bindTooltip(`${x.call} heard you ${x.snr} dB${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''}`); }
+      if (S.mm !== 'me') for (const x of XH) { const ll = g2ll(x.grid); if (!ll) continue; n++; L.circleMarker(ll, { radius: 5 + Math.max(0, Math.min(6, (x.snr + 30) / 5)), color: '#3ddc84', weight: 1, fillColor: '#3ddc84', fillOpacity: .8 }).addTo(ML).bindTooltip(`${esc(x.call)} ${esc(x.snr)} dB${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''}`); }
+      if (S.mm !== 'hear') for (const x of XM) { const ll = g2ll(x.grid); if (!ll) continue; m++; L.marker(ll, { icon: L.divIcon({ className: 'f8-tri', html: '▲', iconSize: [16, 16] }) }).addTo(ML).bindTooltip(`${esc(x.call)} heard you ${esc(x.snr)} dB${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''}`); }
       $('f8MapT').textContent = (S.mm !== 'me' ? n + ' heard' : '') + (S.mm === 'both' ? ' · ' : '') + (S.mm !== 'hear' ? m + ' heard you (wspr.live)' : ''); return; }
     if (S.mm !== 'me') { const seen = {};
       for (let i = LINES.length - 1; i >= 0; i--) { const x = LINES[i]; if (x.sep != null || x.tx || !x.fr || seen[x.fr] || now - x.t > 1800 || /\.\.\./.test(x.fr)) continue; seen[x.fr] = 1;
         const ll = g2ll(x.grid || gridOf(x.fr)); if (!ll) continue; idOf(x); n++;
         const sp = spotRef(x.fr), col = x.me ? '#ff4d4d' : x.cq ? '#3ddc84' : '#4da3ff', age = Math.min(1, (now - x.t) / 1800);
         L.circleMarker(ll, { radius: 5 + Math.max(0, Math.min(6, (x.db + 20) / 5)), color: sp || x.cqw ? '#fff' : col, weight: sp || x.cqw ? 3 : 1, fillColor: col, fillOpacity: .85 - age * .55, lid: x.id })
-          .addTo(ML).bindTooltip(`${x.fr} ${fmtDb(x.db)}${sp ? ' · 🌲 ' + sp.reference : ''}${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''}`); } }
+          .addTo(ML).bindTooltip(`${esc(x.fr)} ${fmtDb(x.db)}${sp ? ' · 🌲 ' + esc(sp.reference) : ''}${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''}`); } }
     if (S.mm !== 'hear') for (const [rc, h] of Object.entries(HEARD)) { if (now - h.t > 1800) { delete HEARD[rc]; continue; } const ll = g2ll(h.g); if (!ll) continue; m++;
-      L.marker(ll, { icon: L.divIcon({ className: 'f8-tri', html: '▲', iconSize: [16, 16] }) }).addTo(ML).bindTooltip(`${rc} heard you ${fmtDb(h.snr)}${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''} · ${utc(h.t)}z`); }
+      L.marker(ll, { icon: L.divIcon({ className: 'f8-tri', html: '▲', iconSize: [16, 16] }) }).addTo(ML).bindTooltip(`${esc(rc)} heard you ${fmtDb(h.snr)}${me ? ' · ' + distB(me, ll).mi.toLocaleString() + ' mi' : ''} · ${utc(h.t)}z`); }
     $('f8MapT').textContent = (S.mm !== 'me' ? n + ' heard' : '') + (S.mm === 'both' ? ' · ' : '') + (S.mm !== 'hear' ? m + ' heard you' + (pskT ? '' : ' (after you transmit)') : '');
   }
   $('f8MapW').addEventListener('toggle', () => { if ($('f8MapW').open) { setTimeout(() => { mapInit(); if (MAP) { MAP.invalidateSize(); mapDraw(); } }, 60); if (S.mm !== 'hear' && S.mode !== 'WSPR') psk(); if (S.mode === 'WSPR' && DG()) DG().mapOpen(); } });

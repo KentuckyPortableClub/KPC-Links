@@ -6,7 +6,7 @@ for(const vp of [[1280,900],[390,844]]){const c=await b.newContext({viewport:{wi
 P.on('pageerror',e=>E.push(e.message));
 await P.route(/version\.json/,r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ver:'0.8.1',when:'2026-11-12',notes:'test',where:'https://example.org/'})}));
 await P.route(/worldtimeapi|timeapi/,r=>r.abort());
-await P.addInitScript(()=>{localStorage.setItem('kpcVipOK','2053c7c0ae91be40fd2816d87b55adca15e478c076973648e9e0bb42ffedf8b2');localStorage.setItem('kpcUpdLast',JSON.stringify({ver:'0.8.1',when:'2026-11-12',notes:'test notes',where:'https://example.org/'}));});
+await P.addInitScript(()=>{localStorage.setItem('kpcVipOK','dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab');localStorage.setItem('kpcUpdLast',JSON.stringify({ver:'0.8.1',when:'2026-11-12',notes:'test notes',where:'https://example.org/'}));});
 await P.goto((process.env.BASE||'http://127.0.0.1:8794/')+'logger-beta/kpc-logger-beta.html');await P.waitForTimeout(4000);
 const r=await P.evaluate(()=>({upd:(document.getElementById('stUpd')||{}).textContent||'',bar:(document.querySelector('.updbar')||{}).textContent||'',clk:(document.getElementById('stClk')||{}).textContent||'',ver:document.body.innerText.match(/0\.8\.\d/)?1:0}));
 console.log(vp[0],JSON.stringify(r).slice(0,400));

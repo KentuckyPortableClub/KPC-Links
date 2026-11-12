@@ -18,7 +18,7 @@
   };
   var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   var set = /^kpc-hunters(-need)?\.html$/.test(page) ? 'hunters' : page === 'kpc-activators-lounge.html' ? 'activators' : '';
-  if (!set) { var q = new URLSearchParams(location.search).get('from'); set = SETS[q] ? q : ''; }
+  if (!set) { var q = new URLSearchParams(location.search).get('from'); set = Object.prototype.hasOwnProperty.call(SETS, q) ? q : ''; }   /* Nov 11: ?from=constructor / toString used to pass the old test and break the build below */
   if (!set) { var r = document.referrer || ''; set = /kpc-hunters(-need)?\.html/.test(r) ? 'hunters' : /kpc-activators-lounge\.html/.test(r) ? 'activators' : ''; }
   if (!set) return;
   var S = SETS[set];

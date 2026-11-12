@@ -2,7 +2,11 @@
    The public map reads RELEASED files only: data/released/RELEASED.json (asked for fresh every page load) lists, per working file name,
    its released file(s) and each one's own version, so a changed file shows at once and an unchanged one stays cached.
    KPCREL.get('data/outlines/US-FL.geojson.gz') -> the parsed file (parts put together), or null when it is not released.
-   An area that was never released (no entry in RELEASED.json) reads the working file as before.
+   Nov 11 (job 3, the map data rule): a public page NEVER reads a working key or outline file. A released area whose file is not
+   listed = nothing (the same "no saved outline yet" a park with no outline shows). An area never released (world today) = nothing
+   too, unless the owner names it in UNRELEASED_WORKING below (four copies, a test keeps them equal). RELEASED.json that does not
+   load (offline, 404, bad JSON) = the last good RELEASED.json this browser read (still released files), else nothing; it is asked
+   for again after a minute. KPCREL.state(path) -> 'released' | 'not listed' | 'not released' | 'no index' | 'working' for a page note.
    The Map Rep pages set window.KPC_WORKING_COPY = true before this file: they always read the working copy (the key being reviewed).
    Nov 11 (job 2): ONE part scheme for released and working files (kpc_release.split): a file over 1 MB is part 1 under its own name
    plus <stem>.p2<ext> ... ; part 1 carries kpc_part = [1, N, tag]. The working-copy path reads part 1, then parts 2..N, and puts them
@@ -11,7 +15,17 @@
 (function (w) {
   if (!w || w.KPCREL || typeof w.fetch !== 'function') return;
   var P = null, AREA = [[/^(outlines\/US-|us-key\/)/, 'US'], [/^ca-key\//, 'CA'], [/^world-key\//, 'world']];
-  function index() { return P || (P = w.fetch('data/released/RELEASED.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })); }
+  var UNRELEASED_WORKING = [];   /* the owner's switch: areas ('world') whose WORKING files public pages still read until their first release. [] = the rule */
+  var LAST = 'kpcReleasedIndex', failedAt = 0;
+  function good(d) { return !!(d && typeof d === 'object' && d.areas && typeof d.areas === 'object' && !Array.isArray(d.areas)); }
+  function lastGood() { try { var d = JSON.parse(w.localStorage.getItem(LAST) || 'null'); return good(d) ? d : null; } catch (e) { return null; } }
+  function index() {
+    if (P && !(failedAt && Date.now() - failedAt > 60000)) return P;
+    failedAt = 0;
+    return (P = w.fetch('data/released/RELEASED.json', { cache: 'no-cache' }).then(function (r) { if (!r || !r.ok) throw new Error('index'); return r.json(); })
+      .then(function (d) { if (!good(d)) throw new Error('index'); try { w.localStorage.setItem(LAST, JSON.stringify(d)); } catch (e) {} return d; })
+      .catch(function () { failedAt = Date.now(); return lastGood() || { failed: true }; }));   /* never {}: a blip must not look like "nothing released" */
+  }
   function parse(r) {
     if (!r || !r.ok) return null;
     return r.arrayBuffer().then(function (ab) {
@@ -51,17 +65,26 @@
     for (var i = 2; i <= k[1]; i++) list.push(one(partName(path, i)));
     return Promise.all(list).then(join);
   }
-  function urls(path) {
+  function state(path) {
     var rel = String(path).replace(/^data\//, '').replace(/\?.*$/, '');
     return index().then(function (d) {
       var a = AREA.filter(function (x) { return x[0].test(rel); })[0];
-      if (w.KPC_WORKING_COPY === true || !a || !(d.areas || {})[a[1]]) return null;   /* a review page (Map Rep sets KPC_WORKING_COPY) or an area not released yet: the working file */
-      return ((d.files || {})[rel] || []).map(function (f) { return 'data/released/' + f[0] + '?v=' + f[1]; });
+      if (w.KPC_WORKING_COPY === true || !a) return { s: 'working', rel: rel };      /* a review page (Map Rep sets KPC_WORKING_COPY), or not a released kind of file */
+      if (d.failed) return { s: 'no index', rel: rel };                              /* RELEASED.json did not load and none was kept: nothing */
+      if (!(d.areas || {})[a[1]]) return { s: UNRELEASED_WORKING.indexOf(a[1]) >= 0 ? 'working' : 'not released', rel: rel };
+      var fs = (d.files || {})[rel];
+      return Array.isArray(fs) && fs.length ? { s: 'released', rel: rel, fs: fs } : { s: 'not listed', rel: rel };
+    });
+  }
+  function urls(path) {   /* null = read the working file; [] = nothing; else the released file(s), each with its own version */
+    return state(path).then(function (x) {
+      if (x.s === 'working') return null;
+      return (x.fs || []).map(function (f) { return 'data/released/' + f[0] + '?v=' + f[1]; });
     });
   }
   function get(path, working) {
     return urls(path).then(function (list) {
-      /* nothing released for it: the working file, read exactly as before this block existed (the caller's own fetch and r.json(); only an outline .gz is unpacked) */
+      /* a review page (or an area the owner's switch names): the working file, read as before this block existed (the caller's own fetch and r.json(); only an outline .gz is unpacked) */
       if (list === null) {
         if (working) { var wk = function (p) { return working(p).then(function (r) { return r && r.ok ? r.json() : null; }); }; return wk(path).then(function (d) { return more(path, d, wk); }); }
         var day = new Date().toISOString().slice(0, 10), rd = function (c) { return function (p) { return w.fetch(p + '?v=' + day, { cache: c }).then(parse); }; };
@@ -73,7 +96,7 @@
       return Promise.all(list.map(function (u) { return w.fetch(u, { cache: 'force-cache' }).then(parse); })).then(join);
     }).catch(function () { return null; });
   }
-  w.KPCREL = { get: get, urls: urls, index: index };
+  w.KPCREL = { get: get, urls: urls, index: index, state: function (p) { return state(p).then(function (x) { return x.s; }, function () { return 'no index'; }); } };
 })(typeof window !== 'undefined' ? window : null);
 /* <<< kpc_released */
 /* kpc-gps.js - the ONE place KPC GPS files are made (GPX 1.1, KML 2.2, GeoJSON).
@@ -645,14 +668,18 @@
     if (list.indexOf(site) < 0) list.push(site);                   // the site's own copy, last
     return list;
   }
+  /* Nov 11 (KPC owner): a <name>.json.gz file is unpacked in the browser, the way kpc-overlap-finder.js jz() does it */
+  function unzip(r) { return new Response(r.body.pipeThrough(new DecompressionStream("gzip"))).json(); }
   function getJSON(path, opts) {
     var key = path; if (cache[key]) return cache[key];
+    var gz = /\.json\.gz$/.test(path);
     var f = (opts && opts.fetch) || cfg.fetch || (typeof fetch === "function" ? fetch : null);
     if (!f) return Promise.resolve(null);
     var urls = candidates(path, opts);
-    // Nov 11 (KPC owner): a US key file comes from data/released (KPCREL) unless the caller gave its own fetch or data source
+    // Nov 11 (KPC owner): a US key file comes from data/released (KPCREL) unless this one call gave its own fetch or data source
+    // (job 3: the page-wide config of kpc-gps-wire.js no longer sends it to the working copy on the KPC-Data site)
     var W = g();
-    if (W.KPCREL && /^data\/us-key\/US-[A-Z]{2}\.json$/.test(path) && !(opts && (opts.fetch || opts.dataUrl)) && !cfg.fetch && !cfg.dataUrl) {
+    if (W.KPCREL && /^data\/us-key\/US-[A-Z]{2}\.json$/.test(path) && !(opts && (opts.fetch || opts.dataUrl))) {
       var rp = W.KPCREL.get(path, function (q) { return W.KPC && typeof W.KPC.dataUrl === "function" ? W.KPC.dataUrl(q) : W.fetch(q); }).then(function (j) { return j ? { url: "data/released/" + path.slice(5), json: j } : null; });
       cache[key] = rp; rp.then(function (x) { if (!x) delete cache[key]; });
       return rp;
@@ -660,11 +687,23 @@
     var p = urls.reduce(function (prev, url) {
       return prev.then(function (got) {
         if (got) return got;
-        return Promise.resolve().then(function () { return f(url); }).then(function (r) { return r && r.ok ? r.json() : null; }).then(function (j) { return j ? { url: url, json: j } : null; }).catch(function () { return null; });
+        return Promise.resolve().then(function () { return f(url); }).then(function (r) { return r && r.ok ? (gz ? unzip(r) : r.json()) : null; }).then(function (j) { return j ? { url: url, json: j } : null; }).catch(function () { return null; });
       });
     }, Promise.resolve(null));
     cache[key] = p; p.then(function (x) { if (!x) delete cache[key]; });
     return p;
+  }
+  /* Nov 11 (KPC owner): the 2-fer file of an area. World areas (W-XX) are skipped: world 2-fers are off (club-room test only), no
+     request. Else <area>.json, then <area>.json.gz (US-NC, US-ID are stored gzipped), the same order as kpc-overlap-finder.js jz();
+     a browser without DecompressionStream stops at .json. One shared answer per area for the page (no file = no 2-fer spots). */
+  var FERS = {};
+  function fersFile(area, opts) {
+    if (/^W-/i.test(String(area))) return Promise.resolve(null);
+    var k = String(area);
+    if (!FERS[k]) FERS[k] = getJSON("data/fers/" + k + ".json", opts).then(function (r) {
+      return r || (typeof DecompressionStream === "undefined" ? null : getJSON("data/fers/" + k + ".json.gz", opts));
+    }).catch(function () { return null; });
+    return FERS[k];
   }
   function call(fn, a, b) { try { return Promise.resolve(fn ? fn(a, b) : null).catch(function () { return null; }); } catch (e) { return Promise.resolve(null); } }
   function defaultOutline(ref) {          // KPCB's API is not known here: try the likely names
@@ -697,7 +736,7 @@
       if (area === "US-KY") return getJSON("kpc-ky-data.json", Object.assign({}, opts, { dataUrl: function () { return null; } })).then(function (k) { return k ? { pts: readAccess(k.json.ap ? { ap: k.json.ap } : k.json)[ref] || [], url: k.url } : { pts: [] }; });
       return { pts: [] };
     }) : Promise.resolve({ pts: given.access || [] });
-    var ferP = Array.isArray(given.fers) ? Promise.resolve(given.fers) : opts.fers && area && !opts.noFers ? getJSON("data/fers/" + area + ".json", opts).then(function (r) { return r ? readFers(r.json, ref) : []; }) : Promise.resolve(given.fers || []);
+    var ferP = Array.isArray(given.fers) ? Promise.resolve(given.fers) : opts.fers && area && !opts.noFers ? fersFile(area, opts).then(function (r) { return r ? readFers(r.json, ref) : []; }) : Promise.resolve(given.fers || []);
     return Promise.all([infoP, keyP, accP, ferP]).then(function (v) {
       var info = v[0] || {}, key = v[1];
       var park = Object.assign({}, given, info, { ref: ref, area: area });

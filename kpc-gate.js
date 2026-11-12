@@ -8,7 +8,9 @@
    - Only the PBKDF2-SHA256 (200,000 rounds) of 'kpc-member:' + the lowercase password is here, never the password (hardened Oct 27
      2026; was a single SHA-256 pass, per Fable's review). Client-side only: it keeps the public out, it is not real security
      (the files are in a public GitHub repo).
-   - The PDF printer (Playwright on GitHub Actions) passes through so the guide PDFs keep printing. */
+   - The PDF printer (Playwright on GitHub Actions) passes through so the guide PDFs keep printing.
+   - Nov 11 2026 (owner): this is a soft lock that keeps honest people out. Every file is public by its address, so private data
+     must never be put in this public repo. */
 (function () {
   var MH = 'ed00a12021b4460be189b4120e93d5f740408d2f769e108d332dcc4aa528ca61', KEY = 'kpcMember';
   var PUBLIC = ['index.html', 'videos.html', 'campout.html', 'events.html', 'news.html', 'photos.html', 'kpc-guestbook.html', 'join.html', 'about.html',
@@ -47,8 +49,14 @@
     '.nav-dropdown a.kpc-signout{color:#f6d58a!important}';
   var st = document.createElement('style'); st.textContent = css; (document.head || de).appendChild(st);
   async function sha(t) { var enc = new TextEncoder(); var km = await crypto.subtle.importKey('raw', enc.encode(t), { name: 'PBKDF2' }, false, ['deriveBits']); var b = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: enc.encode('kpc-member-pbkdf2-salt-v1'), iterations: 200000, hash: 'SHA-256' }, km, 256); return Array.prototype.map.call(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0'); }).join(''); }
+  /* Nov 11 2026 (owner: no outside script on a page while a password is typed): if the visitor counter is already on this page,
+     the optional sign-in box is not drawn here; the page reloads as #members (kpc-count.js skips that state) with the box open. */
+  function counterOn() { return !!document.querySelector('script[src*="gc.zgo.at"]'); }
+  function toMembers() { var u = location.pathname + location.search + '#members'; if (location.hash !== '#members') location.replace(u); location.reload(); }
   function door(closable) {
-    if (document.getElementById('kpcDoor')) return; de.classList.add('kpc-door');
+    if (document.getElementById('kpcDoor')) return;
+    if (closable && counterOn()) { toMembers(); return; }
+    de.classList.add('kpc-door');
     var d = document.createElement('div'); d.id = 'kpcDoor'; d.setAttribute('data-keep-light', ''); d.setAttribute('role', 'dialog'); d.setAttribute('aria-label', 'Members sign in');
     d.innerHTML = '<form class="box">' + (closable ? '<button type="button" class="x" aria-label="Close">✕</button>' : '') + '<img src="KPC-logo.png" alt=""><div class="k">KENTUCKY PORTABLE CLUB</div><h2>Members Only</h2>' +
       '<p>' + (closable ? 'Club members: type the member password to open every page and tool on this device.' : 'This part of the KPC website is for club members. Type the member password to come in. You only need it once on this device.') + '</p>' +
@@ -57,7 +65,7 @@
     document.body.appendChild(d); var f = d.querySelector('form'), i = d.querySelector('input'); setTimeout(function () { i.focus(); }, 30);
     var x = d.querySelector('.x'); if (x) x.onclick = function () { d.remove(); de.classList.remove('kpc-door'); };
     f.onsubmit = function (e) { e.preventDefault(); sha('kpc-member:' + i.value.trim().toLowerCase()).then(function (h) {
-      if (h === MH) { try { localStorage.setItem(KEY, MH); } catch (x2) {} location.reload(); }
+      if (h === MH) { try { localStorage.setItem(KEY, MH); } catch (x2) {} if (location.hash === '#members') location.replace(location.pathname + location.search); else location.reload(); }
       else { d.querySelector('.err').textContent = 'That password is not right. Try again.'; i.select(); } }); };
   }
   /* guests: hide links to members-only pages, send swapped ones to the public version */

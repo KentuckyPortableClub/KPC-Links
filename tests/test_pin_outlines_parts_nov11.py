@@ -327,6 +327,7 @@ window.fetch = (u, o) => { asked.push(u); const f = path.join(web, String(u).spl
   return Promise.resolve({ ok: true, status: 200, arrayBuffer: () => Promise.resolve(ab), json: () => Promise.resolve(JSON.parse(b.toString())) }); };
 globalThis.document = { createElement: () => ({ style: {} }), head: { appendChild() {} }, addEventListener() {}, querySelector: () => null, querySelectorAll: () => [] };
 globalThis.localStorage = { getItem: () => null, setItem() {} };
+if (mode === 'working') window.KPC_WORKING_COPY = true;   /* Nov 11 (job 3): the working-copy path is the Map Rep path now; a public page never reads it */
 require(script);
 (async () => {
   const out = {};
@@ -355,9 +356,9 @@ if node:
         M.save_area('US-ZZ', rs, root, cap=12_000)
         nparts = len(M.area_files('US-ZZ', root))
         want = sorted(set(rs) - {'US-9004'})
-        def run(script, wd=web):
+        def run(script, wd=web, mode='working'):
             hp = d / 'h.js'; hp.write_text(HARNESS)
-            r = subprocess.run([node, str(hp), str(wd), str(ROOT / script)], capture_output=True, text=True, timeout=120)
+            r = subprocess.run([node, str(hp), str(wd), str(ROOT / script), mode], capture_output=True, text=True, timeout=120)
             try: return json.loads(r.stdout.strip().splitlines()[-1])
             except Exception: return {'err': (r.stdout + r.stderr)[-500:]}
         for script in ('kpc-bounds.js', 'kpc-padus-layer.js'):
@@ -377,7 +378,7 @@ if node:
         # the released path: the release lists the same parts; the pages read them from data/released
         git_repo(web); sha = commit(web, 'zz'); R.release(web, 'US', sha)
         shutil.rmtree(root)                                                                  # only the released copy is left
-        o = run('kpc-bounds.js')
+        o = run('kpc-bounds.js', mode='public')
         check('released path: the same parts from data/released, joined the same way',
               o.get('n') == len(want) and o.get('bigPolys') == 12 and o.get('US-9002') == ['approx', 1] and o.get('US-9004') == ['none', 0]
               and all(a.startswith('data/released/outlines/US-ZZ') for a in o.get('asked', [])), o)
@@ -388,7 +389,7 @@ pages = {'kpc-planner-us.html': ('kpc-bounds.js', 'kpc-padus-layer.js', 'kpc-us-
          'kpc-overlap-finder.html': ('kpc-bounds.js', 'kpc-padus-layer.js')}
 for h, js in pages.items():
     hs = (ROOT / h).read_text(encoding='utf-8', errors='replace')
-    check(f'{h} loads the part-aware loaders ({", ".join(js)}, ?v=20261111parts)', all(f'{j}?v=20261111parts' in hs for j in js))
+    check(f'{h} loads the part-aware loaders ({", ".join(js)}, ?v=20261111rule)', all(f'{j}?v=20261111rule' in hs for j in js))
 blk = lambda s: s[s.index('/* >>> kpc_released'):s.index('/* <<< kpc_released */')]
 srcs = [(ROOT / n).read_text(encoding='utf-8') for n in ('kpc-bounds.js', 'kpc-padus-layer.js', 'kpc-us-planner.js', 'kpc-gps.js')]
 check('the four KPCREL copies are the same and read parts on the working path', len({blk(s) for s in srcs}) == 1 and 'more(path, d, wk)' in blk(srcs[0]) and 'pieces(' in blk(srcs[0]))

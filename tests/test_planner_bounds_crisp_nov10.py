@@ -43,14 +43,14 @@ check('planner does not load a PAD-US raster / image overlay script',
       'kpc-padus-layer.js' not in html)
 
 check('kpc-planner.js cache stamp is bumped',
-      'kpc-planner.js?v=20261110us' in html)
+      'kpc-planner.js?v=20261111p' in html)
 # one stamp everywhere this file is included
 pages = list(ROOT.glob('*.html'))
 vs = {}
 for p in pages:
     for m in re.finditer(r'src="kpc-planner\.js(\?v=[^"]*)?"', p.read_text(encoding='utf-8', errors='replace')):
         vs.setdefault(m.group(1) or '', []).append(p.name)
-check(f'kpc-planner.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == ['?v=20261110us'])
+check(f'kpc-planner.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == ['?v=20261111p'])
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
