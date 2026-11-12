@@ -2,7 +2,7 @@
 """Nov 12 (KPC owner, 2026-11-12; D4): the proof job. .github/scripts/kpc_key_proof.py (sample, frozen inputs, two clean trees, network
 denied and counted, fixed clock, compare, the UNSIGNED record), the reader's extra checks (kpc_area_hash.proof_valid ->
 kpc_key_proof.record_problems), the plan with a valid signed proof (rebuilds nothing; stamp-rows moves the reused rows to the new code
-hash, naming the proof) and .github/workflows/kpc-key-proof.yml. Offline: a throwaway git repo in /tmp with a small deterministic
+hash, naming the proof; US too, through the plan job's plan in the --part form) and .github/workflows/kpc-key-proof.yml. Offline: a throwaway git repo in /tmp with a small deterministic
 stand-in world builder; the real checkout is only read (its rules hashes are computed before and after and must not move).
 Run: python3 -B tests/test_key_proof_nov12.py"""
 import datetime, gzip, json, os, pathlib, shutil, signal, subprocess, sys, tempfile, time
@@ -270,6 +270,96 @@ try:
           not (outS / P.PROOF_DIR).exists() and not (outS / 'stamp-entry.json').exists() and not (outS / 'result.txt').exists())
 finally:
     shutil.rmtree(td, ignore_errors=True)
+
+# ---------------------------------------------------------------- US: reuse under a proof (Brandon, Nov 12 10:59 AM CT: wire the US too)
+# The US join stamps each SAVED state from its own build part (--part); a state the PLAN JOB reused under a valid proof was built by no
+# part, so stamp-rows now also takes the plan job's plan (--plan) and moves those rows (kpc_area_hash.move_reused), as world / Canada do.
+import contextlib, io  # noqa: E402
+_real_pv = K.proof_valid
+OLDC, NEWC = 'c0de0000old0', 'c0de0000new0'
+
+
+def us_fixture(t):
+    t = pathlib.Path(t); d = t / 'data/us-key'; d.mkdir(parents=True)
+    rows, hs, pt = {}, {}, {}
+    for st in ('TN', 'FL', 'OR', 'KY'):
+        (d / f'US-{st}.json').write_text(json.dumps({'st': st, 'parks': {}}))
+        own = {'data:overrides': 'o' * 11 + st[0], 'code:.github/scripts/kpc_us_key.py': OLDC}
+        rows[st] = {'parks': 1, 'rules': OLDC, 'area_hash': 'old-' + st, 'area_parts': dict(own), 'out_sha': K.sha_file(d / f'US-{st}.json')}
+        pt[st] = dict(own, **{'code:.github/scripts/kpc_us_key.py': NEWC}); hs[st] = 'new-' + st
+    (d / 'index.json').write_text(json.dumps({'states': rows}, indent=1))
+    job = {'mode': 'reuse', 'code_hash': NEWC, 'plan_sha': 'abc', 'hashes': hs, 'parts': pt, 'reused': ['FL', 'OR', 'KY'], 'list': ['TN']}
+    part = t / 'parts/us-key-part-0'; part.mkdir(parents=True)
+    (part / 'states.txt').write_text('TN\n'); (part / 'built-sha.txt').write_text('abc\n')
+    (part / 'area-plan.json').write_text(json.dumps(dict(job, mode='shadow', reused=[], hashes={'TN': hs['TN']}, parts={'TN': pt['TN']})))
+    (t / 'plan-job.json').write_text(json.dumps(job))
+    return t, d / 'index.json', job, part
+
+
+try:
+    with tempfile.TemporaryDirectory() as t:
+        t, idx, job, part = us_fixture(t)
+        (t / 'data/us-key/US-KY.json').write_text('{"edited": 1}')                      # KY: its key file is not the recorded bytes
+        r0 = json.loads(idx.read_text())['states']
+        f, tb, _, reu = K.decide('us', ['TN', 'FL', 'OR', 'KY'], job['hashes'], job['parts'], r0, NEWC, 'reuse', False, t, proof=lambda *a: (True, 'p-us-1'))
+        check('US1 the plan (kind us) reuses a state whose only move is shared code under a valid proof; a state whose key file was edited is rebuilt',
+              sorted(reu) == ['FL', 'OR', 'TN'] and f == ['KY'] and all('proven no result change (p-us-1)' in x[3] for x in tb if x[0] in ('FL', 'OR', 'TN')))
+        f2, _, _, reu2 = K.decide('us', ['TN', 'FL', 'OR', 'KY'], job['hashes'], job['parts'], r0, NEWC, 'shadow', False, t, proof=lambda *a: (True, 'p-us-1'))
+        check('US1 ... in shadow (the default) the US list is unchanged, nothing reused', not reu2 and sorted(f2) == ['FL', 'KY', 'OR', 'TN'])
+        K.proof_valid = lambda *a, **k: (True, 'p-us-1')
+        done, same = K.stamp_rows_parts(t, 'us', idx, ['TN'], [str(part)], reuse_plan=job)
+        d = json.loads(idx.read_text()); s_ = d['states']
+        check('US2 stamp-rows (US --part form) with the plan job\'s plan: FL and OR (reused under a valid proof) move to the new code hash, naming the proof, no rebuild',
+              all(s_[x]['rules'] == NEWC and s_[x]['proved_by'] == 'p-us-1' and s_[x]['proved_from'] == OLDC and s_[x]['area_hash'] == 'new-' + x for x in ('FL', 'OR')))
+        check('US2 ... their recorded bytes stay (out_sha unchanged, no built_sha claimed)', all(s_[x]['out_sha'] == r0[x]['out_sha'] and 'built_sha' not in s_[x] for x in ('FL', 'OR')))
+        check('US2 ... KY (key file edited) is NOT moved; TN (saved) is stamped from its own part, not by the proof',
+              s_['KY']['rules'] == OLDC and 'proved_by' not in s_['KY'] and done == ['TN'] and s_['TN']['area_hash'] == 'new-TN' and s_['TN']['built_sha'] == 'abc' and 'proved_by' not in s_['TN'])
+        check('US2 ... areas_reused is the plan job\'s list, areas_rebuilt the saved states', d['areas_reused'] == ['FL', 'KY', 'OR'] and d['areas_rebuilt'] == ['TN'])
+    with tempfile.TemporaryDirectory() as t:
+        t, idx, job, part = us_fixture(t)
+        K.proof_valid = lambda *a, **k: (False, 'no valid proof')
+        K.stamp_rows_parts(t, 'us', idx, ['TN'], [str(part)], reuse_plan=job)
+        check('US3 no valid proof at stamp time: no US row moves', all(json.loads(idx.read_text())['states'][x]['rules'] == OLDC for x in ('FL', 'OR', 'KY')))
+    with tempfile.TemporaryDirectory() as t:
+        t, idx, job, part = us_fixture(t)
+        job['parts']['OR'] = dict(job['parts']['OR'], **{'data:overrides': 'moved'}); (t / 'plan-job.json').write_text(json.dumps(job))
+        K.proof_valid = lambda *a, **k: (True, 'p-us-1')
+        K.stamp_rows_parts(t, 'us', idx, [], [str(part)], reuse_plan=job)
+        s_ = json.loads(idx.read_text())['states']
+        check('US3 a reused state whose OWN data moved is not moved (a proof covers shared code only); FL still moves', s_['OR']['rules'] == OLDC and s_['FL']['rules'] == NEWC)
+        K.stamp_rows_parts(t, 'us', idx, [], [str(part)], reuse_plan=job)
+        check('US3 running it again changes nothing (FL already on the new code hash)', json.loads(idx.read_text())['states'] == s_)
+    for mode, writes in (('reuse', True), ('add', True), ('shadow', False), (None, False)):
+        with tempfile.TemporaryDirectory() as t:
+            t, idx, job, part = us_fixture(t); before = idx.read_bytes()
+            K.proof_valid = lambda *a, **k: (True, 'p-us-1')
+            args = ['stamp-rows', 'us', '--repo', str(t), '--index', str(idx), '--saved', 'TN', '--part', str(part), '--plan', str(t / 'plan-job.json'),
+                    '--shadow-out', str(t / 'tmp/us.json')] + (['--mode', mode] if mode else [])
+            env0 = os.environ.pop('KPC_AREA_HASH', None)
+            with contextlib.redirect_stdout(io.StringIO()): rc = K.main(args)
+            if env0 is not None: os.environ['KPC_AREA_HASH'] = env0
+            s_ = json.loads(idx.read_text())['states']
+            if writes:
+                check(f'US4 CLI stamp-rows us --part ... --plan (mode {mode}): FL / OR moved under the proof, TN stamped', rc == 0 and s_['FL']['rules'] == NEWC and s_['OR']['proved_by'] == 'p-us-1' and s_['TN']['area_hash'] == 'new-TN')
+            else:
+                check(f'US4 CLI stamp-rows us --part ... --plan (mode {mode or "unset"}): shadow writes nothing, index.json byte for byte', rc == 0 and idx.read_bytes() == before)
+    with tempfile.TemporaryDirectory() as t:
+        t, idx, job, part = us_fixture(t); (t / 'plan-job.json').write_text('')      # the plan job had no plan (an empty output)
+        K.proof_valid = lambda *a, **k: (True, 'p-us-1')
+        with contextlib.redirect_stdout(io.StringIO()): rc = K.main(['stamp-rows', 'us', '--repo', str(t), '--index', str(idx), '--saved', 'TN', '--part', str(part), '--plan', str(t / 'plan-job.json'), '--mode', 'reuse'])
+        s_ = json.loads(idx.read_text())
+        check('US4 an empty plan-job plan: no crash, nothing reused or moved, TN still stamped from its part', rc == 0 and s_['states']['FL']['rules'] == OLDC and s_['states']['TN']['area_hash'] == 'new-TN' and s_['areas_reused'] == [])
+finally:
+    K.proof_valid = _real_pv
+
+import yaml as _y  # noqa: E402
+_us_txt = (ROOT / '.github/workflows/kpc-us-key.yml').read_text(encoding='utf-8'); _us = _y.safe_load(_us_txt)
+_st = [s for s in _us['jobs']['join']['steps'] if 'kpc_area_hash.py stamp-rows us' in str(s.get('run', ''))]
+check('US5 workflow: the plan job hands its per-state plan to the join (outputs.area_plan, printed by the plan step)',
+      _us['jobs']['plan']['outputs'].get('area_plan') == '${{ steps.p.outputs.area_plan }}' and "print('area_plan=' + json.dumps(" in _us_txt)
+check('US5 workflow: the join\'s stamp-rows passes --part per build part AND --plan (the plan job\'s plan), with AREA_MODE (default shadow)',
+      len(_st) == 1 and '--plan "$RUNNER_TEMP/area-plan-job.json"' in _st[0]['run'] and 'printf \'%s\' "$AREA_PLAN" > "$RUNNER_TEMP/area-plan-job.json"' in _st[0]['run']
+      and _st[0]['env'].get('AREA_PLAN') == '${{ needs.plan.outputs.area_plan }}' and _st[0]['env'].get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || 'shadow' }}"))
 
 # ---------------------------------------------------------------- the workflow
 import yaml  # noqa: E402
