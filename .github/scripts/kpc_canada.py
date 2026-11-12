@@ -7,6 +7,7 @@ Keeps last week's POTA rows if POTA can't be reached."""
 import json, os, glob, time, urllib.request, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pin_guard as PG   # Nov 11: a POTA pin that changed is recorded; an unusable one keeps the last good pin
 UA = {'User-Agent': 'KPC Canada pins (kentuckyportableclub.github.io)'}
 def note(t, m): print(f'::notice title={t}::{m}')
 def get(u):
@@ -17,19 +18,25 @@ def get(u):
     raise err
 try: old = json.load(open('data/canada.json'))
 except Exception: old = {'rows': []}
-pota, prov, bad = {}, {}, []
+oldp = {r[1]: r for r in old.get('rows', []) if r[0] == 'POTA'}
+pota, prov, bad, events = {}, {}, [], []
 for pv in 'AB BC MB NB NL NS NT NU ON PE QC SK YT'.split():
     try:
         L = get(f'https://api.pota.app/location/parks/CA-{pv}')
         for p in L:
             ref = p.get('reference', '')
-            try: la, lo = round(float(p['latitude']), 5), round(float(p['longitude']), 5)
-            except Exception: continue
-            if ref.startswith('CA-') and ref not in pota:
-                pota[ref] = ['POTA', ref, (p.get('name') or '').strip(), la, lo, 'https://pota.app/#/park/' + ref]; prov[pv] = prov.get(pv, 0) + 1
+            if not ref.startswith('CA-') or ref in pota: continue
+            name = (p.get('name') or '').strip()
+            try: raw = (round(float(p['latitude']), 5), round(float(p['longitude']), 5))
+            except Exception: raw = None   # POTA listed the park without a number: still listed (never 'retired'); the guard keeps the last good pin
+            o = oldp.get(ref)
+            pin, ev = PG.decide(ref, (o[3], o[4]) if o else None, raw, 'canada', name)   # the pin follows POTA; a change is recorded, junk keeps the last good pin
+            if ev: events.append(ev)
+            if pin is None: pin = raw          # no earlier pin: as before (a 0,0 is passed on for the key to mark pin00; nothing at all = skipped)
+            if pin is None: continue
+            pota[ref] = ['POTA', ref, name, pin[0], pin[1], 'https://pota.app/#/park/' + ref]; prov[pv] = prov.get(pv, 0) + 1
         time.sleep(.5)
     except Exception as e: bad.append(pv); note(f'CA-{pv}', f'failed: {str(e)[:100]}')
-oldp = {r[1]: r for r in old.get('rows', []) if r[0] == 'POTA'}
 if not pota:
     pota = dict(oldp); note('POTA', 'no answer: kept last copy')
 elif bad or len(pota) < 0.9 * len(oldp):
@@ -54,4 +61,5 @@ for f in glob.glob('data/sota/t/*.json'):
             seen.add(r[0]); rows.append(['SOTA', r[0], r[1], r[4], r[5], 'https://sotl.as/summits/' + r[0], r[3], r[6]])
 if rows != old.get('rows'):   # nightly: no commit when nothing changed
     save_json('data/canada.json', {'rows': rows})
+PG.record(events)
 note('Canada pins', f"{len(pota)} POTA parks ({', '.join(f'{k} {v}' for k, v in sorted(prov.items()))}), {sum(1 for r in rows if r[0]=='WWFF')} WWFF, {len(seen)} SOTA")

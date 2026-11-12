@@ -3,6 +3,7 @@ Needs secret RIDB_API_KEY (free key from ridb.recreation.gov, Profile). Writes d
 {state, updated, camps:[[id, name, lat, lon, agency, reservable(0/1), url, kind c=campground s=picnic shelter/day use]]}. Keeps last week's file if RIDB fails.
 The key is never printed or saved."""
 import json, os, re, time, urllib.request, urllib.parse, datetime
+import kpc_net_guard; kpc_net_guard.install()   # Nov 11: before the first request (it was installed after the whole RIDB read, near the end of the file)
 KEY = os.environ.get('RIDB_API_KEY', '').strip()
 STATES = (os.environ.get('STATES') or 'KY TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SD SC TX UT VT WA WY').split()
 OUT = 'data/campfed'; os.makedirs(OUT, exist_ok=True)
@@ -149,7 +150,6 @@ note('Federal campgrounds done', f'{total} campgrounds in {len(STATES)} states' 
 # partial run (or a file kept from last month) left doubles behind. FINAL SWEEP over EVERY saved state file: one campground,
 # one file = the state its pin is in (else the first file); then COUNT what is left and say it (the self-check HQ asked for).
 import glob as _glob
-import kpc_net_guard; kpc_net_guard.install()
 try:
     _shapes = [(b['a'], [pl[0] for pl in b['p']]) for b in json.load(open('kpc-us-states.json'))]
 except Exception: _shapes = []  # noqa: BLE001

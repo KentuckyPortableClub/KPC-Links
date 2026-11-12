@@ -102,6 +102,7 @@ nov11_wf |= {'.github/workflows/kpc-layer-intake.yml'}   # KPC owner, 2026-11-11
 # 2026-11-11 fewer runs (package B): the relay's quick look checks out four files; the KY key's push paths list the files it reads
 # (trigger only, no key logic). Neither is a key rule file; tests/test_fewer_runs_nov11.py checks both.
 nov11_wf |= {'.github/workflows/kpc-discord-relay.yml', '.github/workflows/kpc-ky-key.yml'}
+nov11_wf |= {'.github/workflows/kpc-canada.yml', '.github/workflows/kpc-world-pota.yml'}   # KPC owner, 2026-11-11: each adds one 'git add' line for the pin change log; not key rules
 extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf | nov10_wf | nov11_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))
