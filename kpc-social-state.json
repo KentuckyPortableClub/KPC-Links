@@ -173,7 +173,7 @@
   "K4ZSR": {
    "parks": 58,
    "counties": 40,
-   "acts": 280
+   "acts": 281
   },
   "N4KPC": {
    "parks": 2,
@@ -1117,7 +1117,8 @@
   "N4BDW|20261030",
   "KQ4HZK|20261031",
   "K4ZSR|20261103",
-  "K4ZSR|20261105"
+  "K4ZSR|20261105",
+  "K4ZSR|20261111"
  ],
  "pages": [
   "about.html",
