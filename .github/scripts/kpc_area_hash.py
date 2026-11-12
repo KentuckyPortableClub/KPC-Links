@@ -131,7 +131,24 @@ class Tree:
         return f.read_bytes() if f.is_file() else None
 
     def json(self, path):
-        """(object, ok). ok False = missing (None) or unreadable (the text '!unreadable')."""
+        """(object, ok). ok False = missing (None) or unreadable (the text '!unreadable').
+        Nov 12 2026 (KPC-Links #151): an overrides.json that names 'parts' is read WHOLE, the parts from this same tree, in the
+        single-file shape (kpc_overrides.merge, keep_parts=False), so an area's overrides slice is the same before and after the
+        split. A missing or bad part = unreadable (every area of the kind due), never an empty set."""
+        v = self._json1(path)
+        if v[1] and path.endswith('overrides.json') and isinstance(v[0], dict) and v[0].get('parts'):
+            try:
+                import kpc_overrides as KOV
+
+                def part(name):
+                    pv, pok = self._json1(path.rsplit('/', 1)[0] + '/' + name if '/' in path else name)
+                    if not pok: raise ValueError(f'{name}: missing or unreadable')
+                    return pv
+                return KOV.merge(v[0], part, keep_parts=False), True
+            except Exception: return '!unreadable', False  # noqa: BLE001
+        return v
+
+    def _json1(self, path):
         o = self.oid(path)
         if o is None: return None, False
         if o in self._json: return self._json[o]
@@ -834,7 +851,7 @@ def replay(repo, data, since, csv_path, kinds=None):
     return rows
 
 
-INPUT_PATHS = ['data/us-key/overrides.json', 'data/ca-key/overrides.json', 'data/world-key/overrides.json', 'data/state-gis.json',
+INPUT_PATHS = ['data/us-key/overrides.json', 'data/us-key/overrides-parks-*.json', 'data/ca-key/overrides.json', 'data/world-key/overrides.json', 'data/state-gis.json',
                'data/world-key/extra-layers.json', 'data/world-key/sheet-countries.json', 'data/world-key/eea-designations.json',
                'data/world-key/jp-wikidata.json', 'data/ca-key/layers.json', 'data/ca-key/hardlook-joins.json', 'kpc-us-states.json',
                'data/retired-refs.json', 'data/park-transfers.json', 'data/nps-units.json', 'data/outlines/layers.json',

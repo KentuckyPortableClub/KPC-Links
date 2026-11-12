@@ -21,6 +21,7 @@ import datetime as dt, json, os, pathlib, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from kpc_json_any import MissingInput, glob_json_any, load_json_any  # noqa: E402
+import kpc_overrides  # noqa: E402  Nov 12 2026 (KPC-Links #151): overrides.json is a manifest + parts, read and written only here
 try: from kpc_save import save_json
 except Exception:  # noqa: BLE001
     def save_json(p, o, indent=1): json.dump(o, open(p, 'w'), indent=indent, ensure_ascii=False); return True
@@ -135,7 +136,7 @@ def main():
     if D is None:
         print('::notice title=Key answers::no KPC-Data checkout with data/waiting/questions: nothing applied'); return
     lmap = layer_map()
-    ovr = load(OVR, {'parks': {}}); P = ovr.setdefault('parks', {})
+    ovr = kpc_overrides.load(OVR, missing_ok=True); P = ovr.setdefault('parks', {})   # a broken part stops BOT A (never a write over a partial set)
     led = load(LEDGER, {})
     today = dt.date.today().isoformat(); stamp = dt.datetime.now().strftime('%Y-%m-%d %H:%M')
     n_yes = n_no = n_alias = n_skip = n_same = n_none = n_bot = 0; skipped = []; bot_held = []; states = set(); touched = set(); sheet_rows = {}
@@ -254,7 +255,7 @@ def main():
         save_json(LEDGER, led, 1)
         msg += f"; written to {SHEET_OUT} for the answer sheet (overrides.json not touched)"
     elif touched:
-        save_json(OVR, ovr, 1); save_json(LEDGER, led, 1)
+        kpc_overrides.save(OVR, ovr); save_json(LEDGER, led, 1)   # Nov 12: manifest + parts, each under 1 MB
     # Oct 30 (chat 2): ADD to tonight's list, never replace it (other bots and hand fixes put states there too); the key's join
     # job takes the states it rebuilt off the list after saving
     old = set(STATES.read_text().split()) if STATES.exists() else set()

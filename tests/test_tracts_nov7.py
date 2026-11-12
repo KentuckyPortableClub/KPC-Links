@@ -76,7 +76,7 @@ try:
     sys.path.insert(0, str(ROOT / 'tests')); from kpc_moved_sources import moved_sources, apply_moved
     _MOVES = moved_sources(ROOT)
     d = subprocess.run(['git', 'diff', '--quiet', BASE, '--', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/ky-answer-key.json',
-                        ':!data/us-key/overrides.json',   # round 3: the hand-override ledger may gain a declared row (US-3917)
+                        ':!data/us-key/overrides.json', ':!data/us-key/overrides-parks-*.json',   # Nov 12: its parts (#151); round 3: the hand-override ledger may gain a declared row (US-3917)
                         ':!data/ca-key/overrides.json', ':!data/world-key/overrides.json',   # amendment 2: declared ledger rows
                         ':!data/ca-key/hardlook-joins.json',  # Nov 9 PR: declared CA-1280 hardlook-joins ledger row
                         # Nov 7 evening bundle: the layer lists and 'rebuild tonight' lists are inputs, not answer keys
