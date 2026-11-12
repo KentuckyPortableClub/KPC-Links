@@ -23,7 +23,8 @@ function when(e) {
   if (en && +en !== +s) t += en.getMonth() === s.getMonth() ? `–${en.getDate()}` : ` – ${MN[en.getMonth()]} ${en.getDate()}`;
   return t;
 }
-const notice = m => console.log('::notice title=Discord events post::' + String(m).replace(/%/g, '%25').replace(/\n/g, '%0A'));
+const { noticeText } = require('./kpc_scrub.js');   // Nov 12: log lines are scrubbed (the webhook links are secrets)
+const notice = m => console.log('::notice title=Discord events post::' + noticeText(m, 20000));
 const clean = s => String(s || '').replace(/[*_`~|>]/g, '').split(' — ')[0].slice(0, 90);
 
 const lines = list.map(e => {
@@ -56,4 +57,4 @@ fetch(webhook, {
 }).then(r => {
   notice('Discord replied HTTP ' + r.status + ' after posting ' + list.length + ' event(s)');
   if (!r.ok) process.exit(1);
-}).catch(e => { console.error(e); process.exit(1); });
+}).catch(e => { console.error(noticeText(String(e && e.stack || e), 2000)); process.exit(1); });   // Nov 12: a fetch error can repeat the webhook address

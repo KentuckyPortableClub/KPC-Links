@@ -99,13 +99,51 @@ check(not leaks(res['k']) and res['h'] == 'see https://discord.com/api/webhooks/
 
 # ------------------------------------------------------------------ 3. no cut-then-scrub shape left in the bots
 BOTS = ['kpc_club_posts.py', 'kpc_discord_mod.py', 'kpc_discord_watch.py', 'kpc_eu_alerts.py', 'kpc_fb_comments.py', 'kpc_new_refs.py',
-        'kpc_park_alerts.py', 'kpc_pota_spotter.py', 'kpc_community.py', 'kpc_formtools.py', 'kpc_hunters.py', 'kpc_park_notes.py', 'kpc_reports.py']
-bad = []
+        'kpc_park_alerts.py', 'kpc_pota_spotter.py', 'kpc_community.py', 'kpc_formtools.py', 'kpc_hunters.py', 'kpc_park_notes.py', 'kpc_reports.py',
+        # Nov 12 regrade: the other scripts a workflow hands a secret to
+        'kpc_whats_new.py', 'kpc_discord_ask.py', 'kpc_discord_relay.py', 'kpc_approvals.py', 'kpc_bot_health.py', 'kpc_campground_notes.py',
+        'kpc_fed_camps.py', 'kpc_link_harvest.py', 'kpc_master_cli.py', 'kpc_layer_intake.py', 'kpc_activations.py', 'kpc_cwboard.py',
+        'kpc_guestbook.py', 'kpc_key_check.py', 'kpc_relay_peek.py']
+
+
+def secret_scripts():
+    """every .github/scripts file a workflow step runs with a secret in its env (GITHUB_TOKEN aside): the list can't fall behind"""
+    import yaml
+    found = set()
+    for wf in (HERE / '.github/workflows').glob('*.y*ml'):
+        d = yaml.safe_load(wf.read_text(encoding='utf-8')) or {}
+        for j in (d.get('jobs') or {}).values():
+            for s in j.get('steps') or []:
+                env = {**(j.get('env') or {}), **(s.get('env') or {})}
+                if not any('secrets.' in str(v) and 'GITHUB_TOKEN' not in str(v) for v in env.values()): continue
+                found |= set(re.findall(r'kpc_[\w-]+\.(?:py|js)', str(s.get('run') or '')))
+    return found
+
+
+SECRET_FILES = sorted(f for f in secret_scripts() if (SCRIPTS / f).is_file())
+wf_secrets = set()   # the env NAMES a secret is handed to (kpc_scrub looks values up by env name)
+for wf in (HERE / '.github/workflows').glob('*.y*ml'):
+    for m in re.finditer(r'^\s*([A-Za-z_][A-Za-z0-9_]*):\s*\$\{\{[^}]*secrets\.', wf.read_text(encoding='utf-8'), re.M): wf_secrets.add(m.group(1))
+uncaught = sorted(n for n in wf_secrets if n not in S.NAMES and not S.LOOKS.search(n) and n != 'GITHUB_TOKEN')
+check(not uncaught, f'every secret a workflow reads is a kpc_scrub NAME or caught by LOOKS ({uncaught})')
+missing = [f for f in SECRET_FILES if f.endswith('.py') and f not in BOTS]
+check(not missing, f'every Python script a workflow hands a secret to is in the BOTS list ({missing})')
+CUT = re.compile(r'str\(e\)\[:\d+\]|\b(?:r|raw|t|body|e)\.?(?:strip\(\))?\[:\d+\]|\(r or b""\)\[:\d+\]|\.decode\([^)]*\)\[:\d+\]|\.read\(\)\[:\d+\]'
+                 r"|_error'\)\)\[:\d+\]|message'\)\)\[:\d+\]|no_addr\(e\)\[:\d+\]|str\(j\[[^]]+\]\)\[:\d+\]")
+RAW_LOG = re.compile(r'::(?:notice|warning|error)[^\n]*(?:\{e\}|\{e!r\}|str\(e\)|\{m\}|str\(m\)|\{msg\}|str\(msg\))')
+bad, raw_logs = [], []
 for f in BOTS:
     for i, ln in enumerate((SCRIPTS / f).read_text(encoding='utf-8').splitlines(), 1):
-        if re.search(r'str\(e\)\[:\d+\]|\{r\[:\d+\]\}|\.decode\([^)]*\)\[:\d+\]|\.read\(\)\[:\d+\]|_error\'\)\)\[:\d+\]|message\'\)\)\[:\d+\]', ln):
-            bad.append(f'{f}:{i}')
-check(not bad, f'no bot cuts an error or answer text before scrubbing it ({bad[:6]})')
+        code = ln.split('  # ')[0]
+        if re.search(r"title\[:250\]|\[:4000\]|\[:1990\]", code) and not re.search(r'notice|print|raise|append\(|_error', code): continue   # post field limits
+        if CUT.search(code): bad.append(f'{f}:{i}')
+        if RAW_LOG.search(code) and not re.search(r'scrub|notice_text|clip', code): raw_logs.append(f'{f}:{i}')
+check(not bad, f'no script that holds a secret cuts an error or answer text before scrubbing it ({bad[:8]})')
+check(not raw_logs, f'no ::notice / ::warning / ::error line of those scripts prints an error or message text unscrubbed ({raw_logs[:8]})')
+for f in SECRET_FILES:
+    if not f.endswith('.js'): continue
+    js_src = (SCRIPTS / f).read_text(encoding='utf-8')
+    check('kpc_scrub.js' in js_src and not re.search(r'console\.(?:error|log)\(e\)', js_src), f'{f}: its log lines go through kpc_scrub.js (no raw error printed)')
 
 
 # ------------------------------------------------------------------ 4. the real call sites, secret falling across the cut
@@ -163,6 +201,17 @@ try:
         except Exception as e: o = str(e)  # noqa: BLE001
         check(not leaks(o), f'club_posts.{name}: a YouTube key across the 160-character cut does not print')
 
+    # Nov 12 regrade: what's new + the ask bot (their notice() used to print str(msg)[:800] with no scrub)
+    wn = importlib.import_module('kpc_whats_new')
+    _, o = capture(wn.notice, f'Discord HTTP 400: {"y" * 760} {FB}'); check(not leaks(o), "whats_new.notice: a token across its 800-character cut does not print")
+    _, o = capture(wn.notice, f'stopped early: ValueError: {GH[:20]}'); check(not leaks(o), 'whats_new.notice: a GH token already cut at 20 is hidden')
+    da = importlib.import_module('kpc_discord_ask')
+    urllib.request.urlopen = refuse_with(160 - 9 - 12 - 15, BOT)
+    r, o = capture(da.call, '/channels/1/messages')
+    check(isinstance(r, dict) and not leaks(json.dumps(r) + o), 'discord_ask.call: a bot token across the 160-character cut of an HTTP error is hidden')
+    urllib.request.urlopen = fail_with('y' * (160 - 1 - 20) + ' ' + GH)
+    r, o = capture(da.call, '/channels/1/messages')
+    check(isinstance(r, dict) and not leaks(json.dumps(r) + o), "discord_ask.call: 'str(e)[:160]' with a GH token across the cut is hidden")
     nr_src = (SCRIPTS / 'kpc_new_refs.py').read_text(encoding='utf-8')
     tree = ast.parse(nr_src)
     uses = [n for n in ast.walk(tree) if isinstance(n, ast.Call) and getattr(n.func, 'id', '') == 'clip']

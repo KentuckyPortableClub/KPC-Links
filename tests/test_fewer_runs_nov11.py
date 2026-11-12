@@ -140,7 +140,7 @@ for msg in (f"unknown url type: '{fake}'", f'<urlopen error {fake[:30]}>', f'URL
     o = ns['no_addr'](msg, fake)
     check('example.invalid' not in o and 'not-a-real' not in o and '<address>' in o, f'no_addr takes the address out: {o!r}')
 check(ns['no_addr']('HTTP Error 400: Bad Request', fake) == 'HTTP Error 400: Bad Request', 'no_addr keeps a plain error as it is')
-check(src.count('no_addr(e)[:150]') == 6 and 'str(e)[:150]' not in src and "return 0, no_addr(" in src, 'every problem note and the network helper use no_addr')
+check(src.count('clip(no_addr(e), 150)') == 6 and 'no_addr(e)[:150]' not in src and 'str(e)[:150]' not in src and "return 0, no_addr(" in src, 'every problem note and the network helper use no_addr')
 
 # ---------------------------------------------------------------- 3. KY key trigger
 ky, ky0 = load('kpc-ky-key.yml'), main_yaml('kpc-ky-key.yml')

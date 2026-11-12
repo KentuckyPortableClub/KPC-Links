@@ -33,7 +33,7 @@ MAX_STALE_RUNS = 3      # failed runs in a row (every 6 h) before a country's ol
 
 
 def note(m):
-    print(f'::notice title=EU weather warnings::{m}', flush=True)
+    print(f'::notice title=EU weather warnings::{scrub(m)}', flush=True)   # Nov 12: scrubbed
 
 
 def get(u):

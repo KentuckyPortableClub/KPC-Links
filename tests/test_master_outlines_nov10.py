@@ -288,7 +288,7 @@ try:
     snip = run[run.index('# Nov 10 (master outlines'):run.index('python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-')]
     with tempfile.TemporaryDirectory() as t:
         t = pathlib.Path(t); (t / 'cache/us').mkdir(parents=True); (t / '.github/scripts').mkdir(parents=True); (t / 'data/outlines').mkdir(parents=True)
-        for fn in ('kpc_master.py', 'kpc_master_cli.py', 'kpc_net_guard.py'): (t / '.github/scripts' / fn).write_bytes((HERE / '.github/scripts' / fn).read_bytes())
+        for fn in ('kpc_master.py', 'kpc_master_cli.py', 'kpc_net_guard.py', 'kpc_scrub.py'): (t / '.github/scripts' / fn).write_bytes((HERE / '.github/scripts' / fn).read_bytes())   # Nov 12: + kpc_scrub.py (the cli's log lines are scrubbed)
         json.dump({'format': 1, 'layers': {}, 'caches': {'US-FL': {'expected_count': 21993}, 'US-TN': {'expected_count': 100}, 'US-KY': {'expected_count': 5}}}, open(t / 'data/outlines/layers.json', 'w'))
         # FL is short (199 recs vs 21993) even though seen is high; TN and KY match len(recs)
         for st, seen, nrecs in (('FL', 8681, 199), ('TN', 500, 100), ('KY', 50, 5)):

@@ -4,10 +4,11 @@ Needs secret RIDB_API_KEY (free key from ridb.recreation.gov, Profile). Writes d
 The key is never printed or saved."""
 import json, os, re, time, urllib.request, urllib.parse, datetime
 import kpc_net_guard; kpc_net_guard.install()   # Nov 11: before the first request (it was installed after the whole RIDB read, near the end of the file)
+from kpc_scrub import notice_text, clip   # Nov 12: every log line scrubbed first, then cut
 KEY = os.environ.get('RIDB_API_KEY', '').strip()
 STATES = (os.environ.get('STATES') or 'KY TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SD SC TX UT VT WA WY').split()
 OUT = 'data/campfed'; os.makedirs(OUT, exist_ok=True)
-def note(t, m): print(f'::notice title={t}::{m}')
+def note(t, m): print(f'::notice title={t}::{notice_text(m, 4000)}')   # Nov 12: scrubbed (RIDB key)
 if not KEY: note('RIDB_API_KEY missing', 'Add the secret RIDB_API_KEY (GitHub Settings > Secrets and variables > Actions).'); raise SystemExit(0)
 API = 'https://ridb.recreation.gov/api/v1/'
 def get(path, q):
@@ -21,7 +22,7 @@ def get(path, q):
             err = f'HTTP {e.code}'
             if e.code in (401, 403): break
             time.sleep(3 + i * 5)
-        except Exception as e: err = str(e)[:120]; time.sleep(3 + i * 5)
+        except Exception as e: err = clip(e, 120); time.sleep(3 + i * 5)
     raise RuntimeError(err)
 # agency names
 ORG = {}
@@ -108,7 +109,7 @@ try:
         for st in sts:
             if st != (home if home in sts else sts[0]): del BY[st][fid]; moved += 1
     note('Pin check', f'{moved} campgrounds moved to the state their pin is in (or listed once instead of twice)')
-except Exception as e: note('Nationwide pass FAILED', str(e)[:150])
+except Exception as e: note('Nationwide pass FAILED', clip(e, 150))
 # SELF-GRADE GATE (Oct 28, HQ): Kentucky's federal campgrounds in the hand-checked kpc-campgrounds.json (Recreation.gov ones
 # with a pin) must be in the KY list, same name within 2 km (the hand pins sit at the entrance, RIDB's at the middle: Zilpo
 # is 1.5 km apart). A FAIL keeps last month's Kentucky file and says so.
@@ -129,7 +130,7 @@ if 'KY' in BY:
         GATE = {'result': 'FAIL' if (miss or not want) else 'PASS', 'checked': len(want), 'missing': miss, 'date': datetime.date.today().isoformat()}
         note('Federal camps GATE ' + GATE['result'], f"{len(want) - len(miss)} of {len(want)} known Kentucky federal campgrounds found within 2 km" + (f"; missing: {', '.join(miss)}" if miss else '')
              + f" · grade me: federal campgrounds {GATE['result']}")
-    except Exception as e: note('Federal camps GATE', f'not run: {str(e)[:120]}')
+    except Exception as e: note('Federal camps GATE', f'not run: {clip(e, 120)}')
 total = kept = 0
 for st in STATES:
     if st not in ok and not BY.get(st): continue

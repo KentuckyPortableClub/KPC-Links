@@ -30,11 +30,12 @@ Exit codes: 0 ok | 1 check failed | 2 SHORT read | 3 cannot verify (no expected 
 import argparse, csv, datetime, glob, gzip, json, os, pathlib, shutil, subprocess, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_master as M  # noqa: E402
+from kpc_scrub import notice_text, clip   # Nov 12: every log line scrubbed first, then cut
 
 
-def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
-def warn(t, m): print('::warning title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
-def err(t, m): print('::error title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
+def notice(t, m): print('::notice title=%s::%s' % (t, notice_text(m, 20000)), flush=True)   # Nov 12: scrubbed (archive token)
+def warn(t, m): print('::warning title=%s::%s' % (t, notice_text(m, 20000)), flush=True)
+def err(t, m): print('::error title=%s::%s' % (t, notice_text(m, 20000)), flush=True)
 
 
 def read_parks(path):
@@ -338,7 +339,7 @@ def cmd_plan(a):
     def probe(L):
         if fetch is None: return None
         try: i = M.layer_info(L['url'], fetch); return {'count': i['count'], 'last_edit': i['last_edit']}
-        except Exception as e: warn('plan probe', f"{L.get('url')}: {str(e)[:120]}"); return None   # noqa: BLE001
+        except Exception as e: warn('plan probe', f"{L.get('url')}: {clip(e, 120)}"); return None   # noqa: BLE001
     areas = a.areas.split(',') if a.areas else None
     if a.prefix: areas = sorted({x for L in doc['layers'].values() for x in L.get('areas') or [] if x.startswith(a.prefix)}) or ['(none)']
     rows = M.plan(doc, datetime.datetime.now(datetime.timezone.utc), max_days, probe, areas=areas)

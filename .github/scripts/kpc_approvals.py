@@ -8,6 +8,7 @@ import os, re, sys, json, datetime, urllib.request, zoneinfo
 sys.path.insert(0, os.path.dirname(__file__))
 import kpc_formtools as T, kpc_preapproved as PA
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import clip   # Nov 12: every log line scrubbed first, then cut
 
 N = lambda m: T.notice('Approvals', m)
 CT = zoneinfo.ZoneInfo('America/Chicago')
@@ -226,7 +227,7 @@ def to_discord():
         with urllib.request.urlopen(rq, timeout=60) as f: f.read()
         N('Posted the waiting list to Discord.')
     except Exception as e:  # noqa: BLE001
-        N(f'Discord failed: {str(e)[:160]}')
+        N(f'Discord failed: {clip(e, 160)}')
 
 if os.environ.get('DRY', '').lower() not in ('true', '1', 'yes'):
     to_discord()
@@ -243,4 +244,4 @@ try:
     with urllib.request.urlopen(req, timeout=90) as f: t = f.read().decode('utf8', 'replace')
     ok = '"ok":true' in t.replace(' ', '')
 except Exception as e: ok, t = False, str(e)
-N(f'Approval email {"sent" if ok else "FAILED: " + t[:150]} ({total} waiting)' + ('' if os.environ.get('APPROVAL_EMAIL') else ' to the club mailer inbox (APPROVAL_EMAIL not set)') + '.')
+N(f'Approval email {"sent" if ok else "FAILED: " + clip(t, 150)} ({total} waiting)' + ('' if os.environ.get('APPROVAL_EMAIL') else ' to the club mailer inbox (APPROVAL_EMAIL not set)') + '.')

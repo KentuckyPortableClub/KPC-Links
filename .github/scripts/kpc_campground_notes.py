@@ -14,10 +14,11 @@ Every note also carries st (2-letter state) and ref (park number) when they can 
 show on their state's list in the Activators Lounge (park number, then GPS point-in-state, then the Town or county words)."""
 import csv, io, json, os, re, hashlib, sys, urllib.request, datetime
 import kpc_net_guard; kpc_net_guard.install()   # Nov 11: before the first request (it used to sit below the sheet download)
+from kpc_scrub import notice_text   # Nov 12: every log line scrubbed first, then cut
 import kpc_preapproved as PA
 PRE = PA.load()
 URL = os.environ.get('CAMPGROUND_SHEET_CSV', '').strip()
-def notice(m): print('::notice title=Campground reviews::' + str(m).replace('%', '%25').replace('\n', '%0A'))
+def notice(m): print('::notice title=Campground reviews::' + notice_text(m, 4000))   # Nov 12: scrubbed (the sheet link is a secret)
 if not URL: notice('CAMPGROUND_SHEET_CSV secret not set yet; nothing to do.'); sys.exit(0)
 def get(u):
     with urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC campground reviews'}), timeout=60) as f: return f.read()

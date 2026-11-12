@@ -25,6 +25,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import notice_text, clip   # Nov 12: every log line scrubbed first, then cut
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 F = pathlib.Path('data/kpc-whats-new.json')
@@ -37,7 +38,7 @@ MAX_AT_ONCE = 4          # more than a handful at once reads like a changelog, n
 
 
 def notice(msg):
-    print(f"::notice title=What's new::{str(msg)[:800]}", flush=True)
+    print(f"::notice title=What's new::{notice_text(msg, 800)}", flush=True)   # Nov 12: scrubbed (webhook, FB token / page id)
 
 
 def http(url, data=None, headers=None):
@@ -90,7 +91,7 @@ def main():
                                         'url': todo[0].get('link') or SITE}]}).encode()
             c, r = http(DISCORD, d, {'Content-Type': 'application/json'})
             if c >= 300:
-                notice(f'Discord HTTP {c}: {r[:200]}')
+                notice(f'Discord HTTP {c}: {clip(r, 200)}')
                 ok = False
         else:
             notice('No Discord webhook set; skipped Discord.')
@@ -101,7 +102,7 @@ def main():
                 q['link'] = todo[0]['link']
             c, r = http(f'https://graph.facebook.com/{FB_ID}/feed', urllib.parse.urlencode(q).encode())
             if c >= 300:
-                notice(f'Facebook HTTP {c}: {r[:200]}')
+                notice(f'Facebook HTTP {c}: {clip(r, 200)}')
                 ok = False
         else:
             notice('No Facebook secrets; skipped Facebook.')
@@ -123,5 +124,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        notice(f'stopped early: {type(e).__name__}: {str(e)[:300]}')
+        notice(f'stopped early: {type(e).__name__}: {clip(e, 300)}')
         sys.exit(0)          # never fail the job: a failed run emails Brandon

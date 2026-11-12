@@ -15,6 +15,7 @@ import json, math, os, pathlib, re, sys, time, urllib.error, urllib.parse, urlli
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json, read_dates
+from kpc_scrub import scrub, clip   # Nov 12: every log line scrubbed first, then cut
 
 T0, LIMIT = time.time(), float(os.environ.get('MINUTES') or 150) * 60
 UA = {'User-Agent': 'KPC park links (kentuckyportableclub.github.io)'}
@@ -24,7 +25,7 @@ WEB = pathlib.Path('data/parkinfo-web.json')
 LOG = []
 
 
-def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', ' ')[:900]), flush=True)
+def notice(t, m): print('::notice title=%s::%s' % (t, scrub(m).replace('\n', ' ')[:900].replace('%', '%25')), flush=True)   # Nov 12: scrubbed first (NPS / RIDB keys), then cut
 def late(): return time.time() - T0 > LIMIT
 def low(x): return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', str(x or '').lower().replace('&', ' and ')).split())
 KINDW = re.compile(r'\b(national|state|park|parks|forest|wildlife|management|area|refuge|recreation|recreational|historic|historical|site|preserve|'
@@ -84,8 +85,8 @@ def from_layers(P, found):
             try:
                 j = get(url, {'objectIds': ','.join(map(str, oids[k:k + 100])), 'outFields': '*', 'returnGeometry': 'false', 'f': 'json'})
             except Exception as e:  # noqa: BLE001
-                LOG.append(f'{pre}: not read ({str(e)[:60]})'); break
-            if j.get('error'): LOG.append(f"{pre}: {str(j['error'])[:80]}"); break
+                LOG.append(f'{pre}: not read ({clip(e, 60)})'); break
+            if j.get('error'): LOG.append(f"{pre}: {clip(j['error'], 80)}"); break
             oidf = j.get('objectIdFieldName') or 'OBJECTID'
             for ft in j.get('features') or []:
                 a = ft.get('attributes') or {}
@@ -109,7 +110,7 @@ def from_nps(P, found):
     while not late():
         try: j = get('https://developer.nps.gov/api/v1/parks', {'limit': 200, 'start': start, 'fields': 'url,operatingHours,entranceFees'}, headers={'X-Api-Key': NPS_KEY})
         except Exception as e:  # noqa: BLE001
-            LOG.append(f'NPS API: {str(e)[:80]}'); break
+            LOG.append(f'NPS API: {clip(e, 80)}'); break
         d = j.get('data') or []
         units += d; start += len(d)
         if not d or start >= int(j.get('total') or 0): break
@@ -141,7 +142,7 @@ def from_ridb(P, found):
     while not late():
         try: j = get('https://ridb.recreation.gov/api/v1/recareas', {'limit': 50, 'offset': off, 'full': 'true'}, headers={'apikey': RIDB_KEY})
         except Exception as e:  # noqa: BLE001
-            LOG.append(f'RIDB: {str(e)[:80]}'); break
+            LOG.append(f'RIDB: {clip(e, 80)}'); break
         R = j.get('RECDATA') or []
         areas += R; off += len(R)
         if not R or off >= int((j.get('METADATA') or {}).get('RESULTS', {}).get('TOTAL_COUNT', 0)): break

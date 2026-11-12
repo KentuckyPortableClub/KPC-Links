@@ -33,9 +33,10 @@ import urllib.error, urllib.parse, urllib.request
 from email.message import EmailMessage
 from zoneinfo import ZoneInfo
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import notice_text, clip   # Nov 12: every log line scrubbed first, then cut
 
 TITLE = 'KPC Discord relay'
-def notice(m): print('::notice title=' + TITLE + '::' + str(m).replace('%', '%25').replace('\r', '').replace('\n', '%0A'), flush=True)
+def notice(m): print('::notice title=' + TITLE + '::' + notice_text(m, 4000), flush=True)   # Nov 12: scrubbed (bot token, webhooks, mailer, SMTP, groups.io)
 
 ENV = lambda k: (os.environ.get(k) or '').strip()
 TOKEN, CHAN = ENV('DISCORD_BOT_TOKEN'), ENV('KPC_RELAY_CHANNEL')
@@ -365,7 +366,7 @@ def hook_send(url, text, files, mid=None):
     else:
         body, hd = multipart({'payload_json': json.dumps(payload)}, files[:10], field='files')
         c, r = http(url + ('&' if '?' in url else '?') + 'wait=true', body, hd, 'POST')
-    if c not in (200, 204): raise RuntimeError(f'webhook HTTP {c}: {(r or b"")[:120]!r}')
+    if c not in (200, 204): raise RuntimeError(f'webhook HTTP {c}: {clip(r or b"", 120)!r}')
     return (json.loads(r).get('id') if r else mid)
 
 def hook_delete(url, mid):
@@ -379,7 +380,7 @@ def mail(to, bcc, subject, text, files):
                            'images': [{'name': os.path.basename(f), 'b64': base64.b64encode(open(f, 'rb').read()).decode()} for f in files]}).encode()
         c, r = http(MAIL_URL, body, {'Content-Type': 'application/json'}, 'POST', timeout=90)
         t = (r or b'').decode('utf8', 'replace')
-        if c != 200 or '"ok":true' not in t.replace(' ', ''): raise RuntimeError(f'mailer said HTTP {c}: {t[:150]}')
+        if c != 200 or '"ok":true' not in t.replace(' ', ''): raise RuntimeError(f'mailer said HTTP {c}: {clip(t, 150)}')
         return
     if not SMTP_PASS: raise RuntimeError('no email secrets')
     em = EmailMessage(); em['From'] = f'Kentucky Portable Club <{SMTP_USER}>'; em['To'] = to or SMTP_USER
@@ -459,7 +460,7 @@ def flush_mail():
                 if room() < 1: break
                 try: mail(GIO_TO, [], GIO_SUBJECT, it['body'], files); spent(1); it['gio'] = False
                 except Exception as e:
-                    bad.append('groups.io: ' + no_addr(e)[:150])
+                    bad.append('groups.io: ' + clip(no_addr(e), 150))
                     if re.search(r'too many|quota|limit', str(e), re.I): break
             elif it.get('gio'): it['gio'] = False
             if it.get('list'):
@@ -471,7 +472,7 @@ def flush_mail():
                     if n < 1: break
                     part = todo[:n]
                     try: mail('' if MAIL_URL else SMTP_USER, part, it['subject'], it['body'] + '\n\n' + spam_tip() + '\n\n' + unsub_line(), files)
-                    except Exception as e: bad.append('email list: ' + no_addr(e)[:150]); break
+                    except Exception as e: bad.append('email list: ' + clip(no_addr(e), 150)); break
                     spent(len(part) + 1); it['done'] += [fp(e) for e in part]; todo = todo[n:]
                 if not todo: it['list'] = False
             if bad:
@@ -503,7 +504,7 @@ sched = state.setdefault('sched', {})      # mid -> due time (ISO, Central)
 
 code, raw = dc(f'/channels/{CHAN}/messages?limit=100')
 if code != 200:
-    notice(f'Discord said HTTP {code}: {raw[:200]!r}. Check the bot is in the server, can see the channel, and has Read Message History.')
+    notice(f'Discord said HTTP {code}: {clip(raw, 200)!r}. Check the bot is in the server, can see the channel, and has Read Message History.')
     sys.exit(1)
 window = sorted(json.loads(raw), key=lambda m: int(m['id']))
 byid = {m['id']: m for m in window}
@@ -599,7 +600,7 @@ def unpublish(mid):
     feed_remove(mid)
     if rec.get('fb') and FB_TOKEN and not DRY:
         try: fb_call(rec['fb'], {}, method='DELETE')
-        except Exception as e: notice('Could not delete the Facebook post: ' + no_addr(e)[:150])
+        except Exception as e: notice('Could not delete the Facebook post: ' + clip(no_addr(e), 150))
     for i, hid in rec.get('dc', []):
         if i < len(HOOKS) and not DRY: hook_delete(HOOKS[i], hid)
     state.get('conds', {}).pop(mid, None); state.get('events', {}).pop(mid, None)
@@ -651,10 +652,10 @@ def sync(m, first):
             try:
                 if rec.get('fb'): fb_call(rec['fb'], {'message': plain}); res['facebook'] = 'updated'
                 else: rec['fb'] = fb_new(plain, files); res['facebook'] = 'posted' + (f' with {len(files)} photo(s)' if files else '')
-            except Exception as e: problems.append('Facebook: ' + no_addr(e)[:150])
+            except Exception as e: problems.append('Facebook: ' + clip(no_addr(e), 150))
         elif rec.get('fb') and FB_TOKEN:
             try: fb_call(rec.pop('fb'), {}, method='DELETE'); res['facebook'] = 'removed'
-            except Exception as e: problems.append('Facebook delete: ' + no_addr(e)[:150])
+            except Exception as e: problems.append('Facebook delete: ' + clip(no_addr(e), 150))
         # other Discord server(s)
         hooks_text = plain + ('\n\n' + SITE + PAGE_URL[p['pages'][0]] if 'web' in p['dest'] else '')
         have = dict((i, h) for i, h in rec.get('dc', []))
@@ -664,7 +665,7 @@ def sync(m, first):
         if 'dc' in p['dest'] and rooms:
             for i, url in enumerate(rooms):
                 try: have[i] = hook_send(url, hooks_text, files, have.get(i))
-                except Exception as e: problems.append('Discord room: ' + no_addr(e)[:150])
+                except Exception as e: problems.append('Discord room: ' + clip(no_addr(e), 150))
             res['other Discord'] = f'{len(HOOKS)} server(s)' + (' + the campout room' if len(rooms) > len(HOOKS) else '')
         elif have:
             allr = list(HOOKS) + ([CAMP_HOOK] if CAMP_HOOK else [])
