@@ -70,7 +70,7 @@ def test_fl_box_takes_in_the_offshore_dep_parcels():
 
 def test_scope_entry_for_fl_box_east():
     d = json.load(open(pathlib.Path(__file__).resolve().parents[1] / '.github' / 'us-key-rule-scope.json'))
-    e = d['changes'][-1]
+    e = next(c for c in d['changes'] if c['id'] == '2026-11-11-fl-box-east')
     assert e['id'] == '2026-11-11-fl-box-east' and e['from'] == 'ad47ee2ff99a' and e['scope'] == {'states': ['US-FL'], 'saved_ids': False}
 
 
