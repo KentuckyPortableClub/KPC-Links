@@ -75,7 +75,7 @@ jobs:
         if: ${{ env.SKIP != '1' || env.NIGHT_EMPTY == '1' }}
         env:
           AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed D1-D9): default add = record each area's hash; reuse stays off
-          FULL_REBUILD: ${{ inputs.full_rebuild || (github.event.schedule == '43 10 2 * *' && 'yes') || '' }}
+          FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && 'yes') || '' }}
         run: |
           rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
             && git -C .pi sparse-checkout set --no-cone data/parkinfo data/intake/official-pins-nov12.json 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }

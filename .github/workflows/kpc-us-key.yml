@@ -98,7 +98,7 @@ jobs:
         env:
           STATES: ${{ inputs.states || (inputs.refresh == 'all' && 'all' || '') }}   # Nov 10: refresh=all with no states = every state
           AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed D1-D9): default add = record each area's hash; reuse stays off
-          FULL_REBUILD: ${{ inputs.full_rebuild || (github.event.schedule == '37 9 1 * *' && 'yes') || '' }}
+          FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '37 9 1 * *' && 'yes') || '' }}
           FORCE: ${{ inputs.force }}
           NJOBS: ${{ inputs.jobs }}
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}

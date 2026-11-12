@@ -184,7 +184,7 @@ for wf, cron in MONTHLY.items():
     on = W.get(True) or W.get('on') or {}
     crons = [c.get('cron') if isinstance(c, dict) else c for c in (on.get('schedule') or [])]
     check(f'R3 {wf} still has its existing monthly cron {cron!r} (no new cron added)', cron in crons)
-    want = "FULL_REBUILD: ${{ inputs.full_rebuild || (github.event.schedule == '%s' && 'yes') || '' }}" % cron
+    want = "FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '%s' && 'yes') || '' }}" % cron
     check(f'R3 {wf} forces a full rebuild on that monthly schedule (and only that string)', want in txt)
     # the same monthly string is the one in the schedule, not a made-up one
     check(f'R3 {wf} FULL_REBUILD cron string equals the schedule entry exactly',
