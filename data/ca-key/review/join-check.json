@@ -1,7 +1,7 @@
 {
  "key": "ca",
  "mode": "hold",
- "files_checked": 11,
+ "files_checked": 26,
  "joined_parks": 4350,
  "suspect": 50,
  "held": 19,
@@ -572,5 +572,17 @@
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   }
+ ],
+ "kept_from_main": [
+  "CA-AB",
+  "CA-BC",
+  "CA-MB",
+  "CA-NB",
+  "CA-NL",
+  "CA-NS",
+  "CA-NT",
+  "CA-ON",
+  "CA-SK",
+  "CA-YT"
  ]
 }

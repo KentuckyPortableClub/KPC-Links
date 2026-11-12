@@ -232,5 +232,17 @@
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
   }
+ ],
+ "kept_from_main": [
+  "CA-AB",
+  "CA-BC",
+  "CA-MB",
+  "CA-NB",
+  "CA-NL",
+  "CA-NS",
+  "CA-NT",
+  "CA-ON",
+  "CA-SK",
+  "CA-YT"
  ]
 }

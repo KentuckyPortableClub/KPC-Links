@@ -2,11 +2,11 @@
  "gate": {
   "bad": [],
   "checked": 5,
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "result": "PASS"
  },
- "previous_build": "CA-43003880140",
- "previous_built": "2026-11-11 10:45 UTC",
+ "previous_build": "CA-43049790907",
+ "previous_built": "2026-11-11 15:52 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -18,7 +18,28 @@
    "pin_outside": 172,
    "pin_swap": 0,
    "pin_well_outside": 5,
-   "site": 20
+   "site": 20,
+   "area_hash": "7430f4039089",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "71624acf4a0f",
+    "data:data/ca-key/layers.json": "a040b0f1e994",
+    "data:data/ca-key/overrides.json": "c1a8e34f5f19",
+    "data:data/canada-bounds/*": "73fc5cacb69c",
+    "data:data/state-gis.json": "b072028a4fd4",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "bf040651b122",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "a783f924c92c",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "807d8728b0b58a61a7b1b105035db1366c3d9f6081a817949fff0b4fb508f99a",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "BC": {
    "check": 8,
@@ -30,7 +51,28 @@
    "pin_outside": 350,
    "pin_swap": 0,
    "pin_well_outside": 6,
-   "site": 13
+   "site": 13,
+   "area_hash": "79fd3ac4fe47",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "b71d592a8900",
+    "data:data/ca-key/layers.json": "a34f698b835b",
+    "data:data/ca-key/overrides.json": "19b6c06ad7d2",
+    "data:data/canada-bounds/*": "f12d1702b5bf",
+    "data:data/state-gis.json": "2af7b7501a31",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "9a535546411b",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "13ae16b4226b",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "e118bb7d09e8685521da41daf764fb0756f4b355888a316928d624bd200737a0",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "MB": {
    "check": 0,
@@ -42,7 +84,26 @@
    "pin_outside": 79,
    "pin_swap": 0,
    "pin_well_outside": 3,
-   "site": 5
+   "site": 5,
+   "area_hash": "ce4e57463700",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/layers.json": "44136fa355b3",
+    "data:data/ca-key/overrides.json": "eb4a57e1ec8e",
+    "data:data/canada-bounds/*": "ed4803d32f8a",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "4f53cda18c2b",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "f8b877040ced",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "fe344f83cd6ecc8a71d858c77bdd4b769678b045d1abddc042e16ca3bcfd185c",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "NB": {
    "check": 8,
@@ -54,7 +115,29 @@
    "pin_outside": 163,
    "pin_swap": 0,
    "pin_well_outside": 27,
-   "site": 185
+   "site": 185,
+   "area_hash": "5bd260fa97a9",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "ad3c8c03fb8d",
+    "data:data/ca-key/layers.json": "b0b659b9f727",
+    "data:data/ca-key/overrides.json": "8cd2a47aea36",
+    "data:data/canada-bounds/*": "fbdc336516a3",
+    "data:data/intake/official-pins-nov12.json": "6dc1086ed9c1",
+    "data:data/state-gis.json": "51a55f7cfbce",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "80342f62fa88",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "e92113cff587",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "742a98f4bf97d1aed88c9d90d64dd398f205d9e86bc5f34b13e7eb98daef7d8f",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "NL": {
    "check": 1,
@@ -66,7 +149,28 @@
    "pin_outside": 28,
    "pin_swap": 0,
    "pin_well_outside": 1,
-   "site": 1
+   "site": 1,
+   "area_hash": "a46cc8863e08",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "859418b4517d",
+    "data:data/ca-key/layers.json": "f2d371033cfe",
+    "data:data/ca-key/overrides.json": "de0082dc0d3d",
+    "data:data/canada-bounds/*": "5e2be79d2f19",
+    "data:data/state-gis.json": "6781e89a69f9",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "dec36778c5bd",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "4889e831cd1a",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "00f00dbaaf2eed23b43e82d96047f79a8be2fe69f8efbf630e63730185e33261",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "NS": {
    "check": 11,
@@ -78,7 +182,28 @@
    "pin_outside": 107,
    "pin_swap": 0,
    "pin_well_outside": 2,
-   "site": 11
+   "site": 11,
+   "area_hash": "fe15c7c22530",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "0b2587da4195",
+    "data:data/ca-key/layers.json": "e40e5964e20e",
+    "data:data/ca-key/overrides.json": "5f6a1c894ba9",
+    "data:data/canada-bounds/*": "7c39f9633014",
+    "data:data/state-gis.json": "f6c0c854c706",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "2e01f3cd2ad3",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "8cab02b5ef30",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "6c1035d3075e0d39e884afa2fba2ebf65c59557a345a0ec442e3ee2a69b34798",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "NT": {
    "check": 0,
@@ -90,7 +215,28 @@
    "pin_outside": 4,
    "pin_swap": 0,
    "pin_well_outside": 1,
-   "site": 4
+   "site": 4,
+   "area_hash": "f6978ad2e2dc",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "e64f12d104eb",
+    "data:data/ca-key/layers.json": "feb5fc6dd326",
+    "data:data/ca-key/overrides.json": "084b7e195a64",
+    "data:data/canada-bounds/*": "e2a37b9b18d7",
+    "data:data/state-gis.json": "bd933410d4b3",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "7abf6c40295d",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "70c0ab766e1d",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "f3db611d9d383d90d07c572881a1d92b17c9d13610f2a5d99fdf565e36088550",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "NU": {
    "check": 0,
@@ -102,7 +248,27 @@
    "pin_outside": 5,
    "pin_swap": 0,
    "pin_well_outside": 0,
-   "site": 2
+   "site": 2,
+   "area_hash": "8979836d77f7",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/layers.json": "e008de0afcf0",
+    "data:data/ca-key/overrides.json": "7770408df10a",
+    "data:data/canada-bounds/*": "2d823b1cd8e4",
+    "data:data/state-gis.json": "6e1f7ab20b38",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "76ee5deeb5df",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "f9f45e4a059c",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "b4488ea111db85f69aa928ba2208fb279d667e89ba221ad3e0540870a4bbc53d",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "ON": {
    "check": 10,
@@ -114,7 +280,29 @@
    "pin_outside": 387,
    "pin_swap": 0,
    "pin_well_outside": 7,
-   "site": 27
+   "site": 27,
+   "area_hash": "bd93eedbb98b",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "5a0445eb4c72",
+    "data:data/ca-key/layers.json": "769a0318db4b",
+    "data:data/ca-key/overrides.json": "b1fdbf619d90",
+    "data:data/canada-bounds/*": "e9073db2a795",
+    "data:data/intake/official-pins-nov12.json": "7ca02fe25936",
+    "data:data/state-gis.json": "085a3bd88d51",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "0567ed19698d",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "e5be22f555f1",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "7c42f38032719c2690544397d86b819c12070dc1a625d424cd45b45f1ac3ba5c",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "PE": {
    "check": 1,
@@ -126,19 +314,61 @@
    "pin_outside": 9,
    "pin_swap": 0,
    "pin_well_outside": 1,
-   "site": 7
+   "site": 7,
+   "area_hash": "8ee19368107c",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/layers.json": "1baed852a179",
+    "data:data/ca-key/overrides.json": "48effb64d270",
+    "data:data/canada-bounds/*": "a6dca07b904d",
+    "data:data/state-gis.json": "2b569a88d796",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "45beec4356c9",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "b3a7abab8b7b",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "0995edce4e823abafb98f521d229ab9c16cd2dfbb8519846e3090f3f484991ff",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "QC": {
-   "check": 13,
+   "check": 29,
    "detail": 0.02,
    "matched": 442,
-   "none": 345,
+   "none": 327,
    "parks": 834,
    "pin_no_shape": 0,
    "pin_outside": 166,
    "pin_swap": 0,
    "pin_well_outside": 5,
-   "site": 34
+   "site": 36,
+   "area_hash": "3e8f650c0361",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "afc2cb38edb5",
+    "data:data/ca-key/layers.json": "5c0208c8c5ea",
+    "data:data/ca-key/overrides.json": "2ed1aa3e6ce3",
+    "data:data/canada-bounds/*": "04b67a4cf99e",
+    "data:data/intake/official-pins-nov12.json": "14f5244823fe",
+    "data:data/state-gis.json": "1850a75550e7",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "904a679d9fc8",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "d2063d2a996e",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "59913d44a4e1a6db3943166d4542523b03ff80b8e611a910bf7118d4bc94c481",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "SI": {
    "check": 0,
@@ -150,7 +380,25 @@
    "pin_outside": 0,
    "pin_swap": 0,
    "pin_well_outside": 0,
-   "site": 0
+   "site": 0,
+   "area_hash": "f0dda33c4458",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/layers.json": "44136fa355b3",
+    "data:data/canada-bounds/*": "ae06146209ef",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "4f53cda18c2b",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "3e4145ba2d49",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "1716b4259d87a8eee9e5772f30072dbe0003c1744684ecd1883771019bcdf1d5",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "SK": {
    "check": 0,
@@ -162,7 +410,28 @@
    "pin_outside": 151,
    "pin_swap": 0,
    "pin_well_outside": 17,
-   "site": 28
+   "site": 28,
+   "area_hash": "b76b71b442f7",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "169e274e9975",
+    "data:data/ca-key/layers.json": "9c59fe85a578",
+    "data:data/ca-key/overrides.json": "7ef8bc04b57d",
+    "data:data/canada-bounds/*": "f4720ae8270d",
+    "data:data/state-gis.json": "6c2eb75d3e27",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "a05c25f1cf46",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "ad1bfcd3b001",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "5f8cf0288853c6184753868b1627d89dd6682936eda8978189c2e8b3f25b231e",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "SP": {
    "check": 0,
@@ -174,7 +443,24 @@
    "pin_outside": 0,
    "pin_swap": 0,
    "pin_well_outside": 0,
-   "site": 0
+   "site": 0,
+   "area_hash": "68edea5447cd",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/layers.json": "44136fa355b3",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "4f53cda18c2b",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "cbb03c9bacbb",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "d2012eb41f1135316907ac95eb5e311683b96a25a1dca93b9c5c29063559965c",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   },
   "YT": {
    "check": 0,
@@ -186,22 +472,62 @@
    "pin_outside": 7,
    "pin_swap": 0,
    "pin_well_outside": 1,
-   "site": 9
+   "site": 9,
+   "area_hash": "61d8c2b4d85e",
+   "area_parts": {
+    "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
+    "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
+    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
+    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "data:data/ca-key/hardlook-joins.json": "2929ed532fc7",
+    "data:data/ca-key/layers.json": "44136fa355b3",
+    "data:data/ca-key/overrides.json": "9294adc8df0f",
+    "data:data/canada-bounds/*": "1fef003bf4fc",
+    "data:data/intake/official-pins-nov12.json": "7ba480f68cb9",
+    "gate:CA-ALL": "031b8db275d4",
+    "hosts": "4f53cda18c2b",
+    "hosts:shared-code-urls": "df70238ba6aa",
+    "pins": "5a504d54195a",
+    "shared:data/ca-key/layers.json": "56393f0b75be",
+    "version": "8ef3d3e0d5ca"
+   },
+   "out_sha": "345f929d4a001aa5159a79d83c3798d3d35b45cbd83802f7131536fa4d506f51",
+   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
   }
  },
- "rules": "4b4176190334",
+ "rules": "2a4d0154d95c",
  "rules_files": [
   ".github/ca-key-rule-scope.json",
   ".github/scripts/kpc_ca_fill_bounds.py",
   ".github/scripts/kpc_ca_hardlook.py",
   ".github/scripts/kpc_ca_key.py",
   ".github/scripts/kpc_key_facts.py",
+  ".github/scripts/kpc_pin_fill.py",
   ".github/key-rules-version.json"
  ],
- "rules_of_run": "4b4176190334",
+ "rules_of_run": "2a4d0154d95c",
  "inputs": {
-  "us-key": "US-43037613117"
+  "us-key": "US-43293787778"
  },
- "build": "CA-43049790907",
- "built": "2026-11-11 15:52 UTC"
+ "build": "CA-43311979456",
+ "built": "2026-11-12 21:54 UTC",
+ "areas_rebuilt": [
+  "AB",
+  "BC",
+  "MB",
+  "NB",
+  "NL",
+  "NS",
+  "NT",
+  "NU",
+  "ON",
+  "PE",
+  "QC",
+  "SI",
+  "SK",
+  "SP",
+  "YT"
+ ],
+ "areas_reused": []
 }
