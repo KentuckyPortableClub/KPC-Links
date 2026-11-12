@@ -6,6 +6,7 @@
 (function () {
   'use strict';
   const APP = 'kpc-finder-v1', TILES = 'kpc-tiles-v1';       // never rename (house rule)
+  const REL = /\/data\/released\//;   /* a released map file is saved under its own ?v= address (see kpc-finder-sw.js) */
   const LEAF = /(unpkg\.com\/leaflet@1\.9\.4|cdnjs\.cloudflare\.com\/ajax\/libs\/leaflet\/1\.9\.4)/;
   function sw() { try { if ('serviceWorker' in navigator && window.isSecureContext) return navigator.serviceWorker.register('kpc-finder-sw.js'); } catch (e) {} return Promise.resolve(null); }
   sw();
@@ -34,18 +35,18 @@
       const used = performance.getEntriesByType('resource').map(e => e.name)
         .filter(u => (u.startsWith(location.origin) && !/goatcounter|kpc-count/.test(u)) || LEAF.test(u));
       const urls = [...new Set([location.href.split('#')[0]].concat(used, (o.files || []).map(f => new URL(f, location.href).href)))];
-      let ok = 0;
+      let ok = 0, lost = 0;   /* lost: pieces that did not get saved (no signal, or the phone is out of space) */
       for (const u of urls) {
-        try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin) { k.search = ''; k.hash = ''; } await app.put(k.href, r); ok++; } } catch (e) {}
+        try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin) { if (!REL.test(k.pathname)) k.search = ''; k.hash = ''; } await app.put(k.href, r); ok++; } else lost++; } catch (e) { lost++; }
       }
       const T = tiles(o.stops || []), tc = await caches.open(TILES); let done = 0;
       for (let i = 0; i < T.length; i += 6) {
-        await Promise.all(T.slice(i, i + 6).map(async u => { try { if (await tc.match(u)) { done++; return; } const r = await fetch(u, { mode: 'cors' }); if (r.ok) { await tc.put(u, r); done++; } } catch (e) {} }));
+        await Promise.all(T.slice(i, i + 6).map(async u => { try { if (await tc.match(u)) { done++; return; } const r = await fetch(u, { mode: 'cors' }); if (r.ok) { await tc.put(u, r); done++; } else lost++; } catch (e) { lost++; } }));
         say(`Saving the street map around your stops… ${Math.min(100, Math.round((i + 6) / Math.max(1, T.length) * 100))}%`);
       }
       const when = new Date().toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
       try { localStorage.setItem(o.key || 'kpcTripSaved', JSON.stringify({ t: Date.now(), n: (o.stops || []).length })); } catch (e) {}
-      say(`✓ Saved ${when}: the planner, your ${(o.stops || []).length} stop${(o.stops || []).length === 1 ? '' : 's'} and ${done} street-map pieces around them. With no signal, open this page again: the <b>Street</b> map works around your stops. To test it, turn on airplane mode.`);
+      say(`✓ Saved ${when}: the planner, your ${(o.stops || []).length} stop${(o.stops || []).length === 1 ? '' : 's'} and ${done} street-map pieces around them. With no signal, open this page again: the <b>Street</b> map works around your stops. To test it, turn on airplane mode.` + (lost ? ` <b>${lost} piece${lost === 1 ? '' : 's'} could not be saved</b> (the signal dropped, or the phone is out of space): tap the button again to fill the gaps.` : ''));
       if (o.btn) o.btn.textContent = '📴 UPDATE THE SAVED COPY';
     } catch (e) { say('Saving stopped: ' + esc(e.message || 'the phone may be out of space')); }
     if (o.btn) o.btn.disabled = false;

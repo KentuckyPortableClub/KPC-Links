@@ -327,18 +327,21 @@
       const scripts = [...document.querySelectorAll('script[src],link[rel=stylesheet][href]')].map(e => e.src || e.href).filter(u => u.startsWith(location.origin) || /unpkg\.com\/leaflet@1\.9\.4/.test(u));
       const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-map-tools.js', 'kpc-padus-layer.js', 'kpc-place-suggest.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'data/ky-hunting.json', 'KPC-logo.png'].concat(B.KY.map(L => L.file), B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
       const urls = [...new Set(files.map(f => new URL(f, location.href).href).concat(scripts).concat(['leaflet.css', 'leaflet.js', 'images/marker-icon.png', 'images/marker-icon-2x.png', 'images/marker-shadow.png', 'images/layers.png'].map(f => 'https://unpkg.com/leaflet@1.9.4/dist/' + f)))];
-      let ok = 0;
-      for (const u of urls) { try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin) k.search = ''; await app.put(k.href, r); ok++; } } catch (e) {} }
+      /* Nov 11: the released map files this page read (the boundary and key of a park outside Kentucky) and their index, each under its own ?v= address */
+      const REL = /\/data\/released\//;
+      try { performance.getEntriesByType('resource').forEach(e => { if (e.name.startsWith(location.origin) && REL.test(e.name)) urls.push(e.name); }); urls.push(new URL('data/released/RELEASED.json', location.href).href); } catch (e) {}
+      let ok = 0, lost = 0;   /* lost: pieces that did not get saved (no signal, or the phone is out of space) */
+      for (const u of [...new Set(urls)]) { try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin && !REL.test(k.pathname)) k.search = ''; await app.put(k.href, r); ok++; } else lost++; } catch (e) { lost++; } }
       const bb = geo ? geo.features.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]) : [p.lo - .03, p.la - .03, p.lo + .03, p.la + .03];
       if (bb[2] - bb[0] > 0.6 || bb[3] - bb[1] > 0.6) { bb[0] = p.lo - .08; bb[2] = p.lo + .08; bb[1] = p.la - .08; bb[3] = p.la + .08; }
       const tiles = tileList(p, bb), tc = await caches.open(TILES); let done = 0;
       for (let i = 0; i < tiles.length; i += 6) {
-        await Promise.all(tiles.slice(i, i + 6).map(async u => { try { if (await tc.match(u)) { done++; return; } const r = await fetch(u, { mode: 'cors' }); if (r.ok) { await tc.put(u, r); done++; } } catch (e) {} }));
+        await Promise.all(tiles.slice(i, i + 6).map(async u => { try { if (await tc.match(u)) { done++; return; } const r = await fetch(u, { mode: 'cors' }); if (r.ok) { await tc.put(u, r); done++; } else lost++; } catch (e) { lost++; } }));
         msg.textContent = `Saving the map around the park… ${Math.min(100, Math.round((i + 6) / tiles.length * 100))}%`;
       }
       const wx = await fetchWx(p);
       const S = store.get(SAVEKEY) || {}; S[p.c] = { t: Date.now(), name: p.n, wx: wx || (S[p.c] && S[p.c].wx) || null, sun: (await fetchSun()) || (S[p.c] && S[p.c].sun) || null }; store.set(SAVEKEY, S);
-      msg.innerHTML = `✓ Saved ${new Date().toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}: the kit, ${done} map pieces and today's forecast. To test it, turn on airplane mode and open this page again.`;
+      msg.innerHTML = `✓ Saved ${new Date().toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}: the kit, ${done} map pieces and today's forecast. To test it, turn on airplane mode and open this page again.` + (lost ? ` <b>${lost} piece${lost === 1 ? '' : 's'} could not be saved</b> (the signal dropped, or the phone is out of space): tap the button again to fill the gaps.` : '');
       btn.textContent = 'UPDATE THE SAVED COPY';
     } catch (e) { msg.textContent = 'Saving stopped: ' + (e.message || 'storage full?'); }
     btn.disabled = false;

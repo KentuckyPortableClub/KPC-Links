@@ -92,7 +92,11 @@
   /* one box for every park number now (Brandon Oct 16): fold old separate WWFF / SOTA boxes into it once */
   if (SET.wf || SET.so) { const have = String(SET.park || ''); [SET.wf, SET.so].forEach(r => { if (r && !have.toUpperCase().includes(String(r).toUpperCase())) SET.park = [SET.park, r].filter(Boolean).join(', '); }); SET.wf = ''; SET.so = ''; saveSet(); }
   const LK = 'kpcLogger';
-  let L = get(LK, null); if (!L || !Array.isArray(L.q)) L = { v: 1, u: 0, q: [] };
+  let L = get(LK, null);
+  if (!L || !Array.isArray(L.q)) {   /* Nov 11: a saved log that cannot be read is never written over: its text is kept aside under kpcLoggerBad-... first */
+    try { const raw = localStorage.getItem(LK); if (raw) { let h = 5381; for (let i = 0; i < raw.length; i++) h = ((h * 33) ^ raw.charCodeAt(i)) >>> 0; localStorage.setItem(LK + 'Bad-' + raw.length + '-' + h.toString(36), raw); } } catch (e) {}
+    L = { v: 1, u: 0, q: [] };
+  }
   let IDB = null, IDBok = false, PERSIST = null;
   const idb = () => IDB || (IDB = new Promise((res, rej) => { try { const r = indexedDB.open('kpc-logger', 1); r.onupgradeneeded = () => r.result.createObjectStore('kv'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); } catch (e) { rej(e); } }));
   const idbGet = k => idb().then(db => new Promise((res, rej) => { const t = db.transaction('kv').objectStore('kv').get(k); t.onsuccess = () => res(t.result); t.onerror = () => rej(t.error); }));
@@ -560,7 +564,7 @@
       $('xQzAct').onclick = () => qzSend(L.q.filter(inAct).sort((a, b) => a.t - b.t));
       $('xQzNew').onclick = () => qzSend(L.q.filter(q => !q.qz).sort((a, b) => a.t - b.t));
       $('xQzSee').onclick = () => { if (!KPCQrz.get().key) { qm('Save your QRZ key first.'); return; } const q = L.q.slice().sort((a, b) => b.t - a.t)[0]; if (!q) { qm('Nothing logged yet.'); return; }
-        KPCQrz.showAnswer('INSERT', one(q)); qm(`A new tab opened with QRZ's own answer for <b>${q.call}</b>: <b>OK</b> = it's in, <b>duplicate</b> = it was already there, <b>FAIL</b> = the REASON says why (often the key is for a different logbook than the call you were on).`); };
+        KPCQrz.showAnswer('INSERT', one(q)); qm(`A new tab opened with QRZ's own answer for <b>${esc(q.call)}</b>: <b>OK</b> = it's in, <b>duplicate</b> = it was already there, <b>FAIL</b> = the REASON says why (often the key is for a different logbook than the call you were on).`); };
       showKey(); qzCount();
     }
     $('xAll').onclick = async () => { if (!L.q.length) { toast('Nothing logged yet.'); return; } const Q = L.q.slice().sort((a, b) => a.t - b.t); const ok = await files([[`KPC-activator-log-${myCall().replace(/\//g, '-') || 'mine'}-${ymd(new Date())}.adi`, adif(Q)]]); if (ok !== false) { Q.forEach(q => q.x = 1); save(); } };
@@ -994,7 +998,7 @@
       if (!window.caches) { m.className = 'lg-msg bad'; m.textContent = 'This browser can’t save pages for offline use.'; return; }
       try { await sw(); } catch (e) {}
       const strip = u => { const x = new URL(u, location.href); x.search = ''; x.hash = ''; return x.href; };
-      const urls = new Set([location.href, 'kpc-logger.html', 'kpc-logger.webmanifest', 'data/parkinfo/index.json', 'kpc-ky-data.json', 'kpc-icon-192.png', 'kpc-icon-512.png', 'kpc-icon-180.png', 'bg-group.jpg', 'bg-group-mobile.jpg', 'KPC26-Group-Photo.jpg', 'KPC26-Group-Photo-web.jpg', 'kpc-ft8.wasm?v=20261017a', 'kpc-ft8.js?v=20261017a', 'kpc-digi.js?v=20261018b', 'kpc-digi-ui.js?v=20261018b', 'kpc-voicekeyer.js?v=20261018a', 'kpc-us-states.json',
+      const urls = new Set([location.href, 'kpc-logger.html', 'kpc-logger.webmanifest', 'https://kentuckyportableclub.github.io/KPC-Data/data/parkinfo/index.json', 'kpc-ky-data.json', 'kpc-icon-192.png', 'kpc-icon-512.png', 'kpc-icon-180.png', 'bg-group.jpg', 'bg-group-mobile.jpg', 'KPC26-Group-Photo.jpg', 'KPC26-Group-Photo-web.jpg', 'kpc-ft8.wasm?v=20261017a', 'kpc-ft8.js?v=20261017a', 'kpc-digi.js?v=20261018b', 'kpc-digi-ui.js?v=20261018b', 'kpc-voicekeyer.js?v=20261018a', 'kpc-us-states.json',
         'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js']);
       try { performance.getEntriesByType('resource').forEach(r => { const u = new URL(r.name); if (u.origin === location.origin) urls.add(r.name); }); } catch (e) {}
       const c = await caches.open('kpc-finder-v1'); let ok = 0, bad = 0;
