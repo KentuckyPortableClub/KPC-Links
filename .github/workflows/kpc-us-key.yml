@@ -97,7 +97,7 @@ jobs:
       - id: p
         env:
           STATES: ${{ inputs.states || (inputs.refresh == 'all' && 'all' || '') }}   # Nov 10: refresh=all with no states = every state
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12: shadow (default) | add (D1 step 1) | reuse (step 3): not before the owner signs D1-D9
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed D1-D9): default add = record each area's hash; reuse stays off
           FULL_REBUILD: ${{ inputs.full_rebuild }}
           FORCE: ${{ inputs.force }}
           NJOBS: ${{ inputs.jobs }}
@@ -641,7 +641,7 @@ jobs:
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12 (Quality #163): shadow (default) = stamp-rows writes nothing to the key
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed): default add = stamp-rows writes the area hash; KPC_AREA_HASH=shadow writes nothing; reuse stays off
           AREA_PLAN: ${{ needs.plan.outputs.area_plan }}   # Nov 12 (D4, US): the plan job's plan (empty = nothing reused)
         run: |
           : > /tmp/kpc-build-failed.txt

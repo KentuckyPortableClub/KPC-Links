@@ -97,7 +97,7 @@ jobs:
           # build step's 335). Two slow jobs at most; the other countries are split as before.
           SLOW: ${{ vars.KPC_WORLD_SLOW || 'AU' }}
           SLOW_MIN: ${{ vars.KPC_WORLD_SLOW_MIN || '300' }}
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12: shadow (default) | add (D1 step 1) | reuse (step 3): not before the owner signs D1-D9
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed D1-D9): default add = record each area's hash; reuse stays off
           FULL_REBUILD: ${{ inputs.full_rebuild }}
           KPC_SAVED_ONLY_HOSTS: ${{ vars.KPC_SAVED_ONLY_HOSTS }}
         run: |
@@ -488,7 +488,7 @@ jobs:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
           AREA_PLAN: ${{ needs.plan.outputs.area_plan }}
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12 (Quality #163): shadow (default) = stamp-rows writes nothing to the key
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed): default add = stamp-rows writes the area hash; KPC_AREA_HASH=shadow writes nothing; reuse stays off
         run: |
           export KPC_PLANNED_AREAS="$(python3 -c "import json; print(' '.join(json.load(open('/tmp/world-join.json')).get('joined') or []))")"
           export KPC_ASKED_AREAS="$(python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS" | tr '\n' ' ')"

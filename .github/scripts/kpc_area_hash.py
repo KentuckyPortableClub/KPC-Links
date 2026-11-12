@@ -4,13 +4,13 @@ tools/kpc_area_hash.py moved here). Scheme: out/nov12/AB/SHARED-SCHEME.md (one s
 
 Not a rule file (kpc_key_freeze.NOT_RULES): it never decides a join, it only decides WHICH areas a key run builds. Standard library only,
 no network. It never imports or writes a rule file: it reads files (from a checkout or with `git show` at a commit) and prints hashes.
-The key workflows call `plan` (which areas to build) and `stamp-rows` (record each saved area's hash); both are SHADOW by default:
-  KPC_AREA_HASH (repo variable)  shadow (default, also when unset) = compute and print the run table; the list is NOT changed and
+The key workflows call `plan` (which areas to build) and `stamp-rows` (record each saved area's hash).
+  KPC_AREA_HASH (repo variable)  shadow (also when this script is run with the variable unset) = compute and print the run table; the list is NOT changed and
                                  stamp-rows writes NOTHING to the key (its record goes to --shadow-out and the job summary)
-                                 add    = rollout step 1 (D1): ADD every area whose inputs moved since its last build; nothing removed
-                                 reuse  = step 3: also leave out an area whose inputs did not move (its main bytes are reused)
+                                 add    = D7 switch-over (owner signed D1-D9 on Nov 12, 2026): ADD every area whose inputs moved or was never recorded; nothing removed. The key workflows default to add.
+                                 reuse  = later step: also leave out an area whose inputs did not move (its main bytes are reused). Stays off until the proof job is reviewed and the switch-over runs are graded.
   input full_rebuild=yes         = every area of the list is built, reuse off (the 'force full rebuild')
-Owner decisions D1-D9 (brief 4) are NOT signed: add / reuse must not be switched on before they are. The four region hashes it prints are worked out the same way as
+This script itself still defaults to shadow when --mode and KPC_AREA_HASH are unset, so a local run writes nothing. The four region hashes it prints are worked out the same way as
 .github/scripts/kpc_key_freeze.py rules_hash(kind) (its RULE_FILES are read from that file as text), so they can be compared.
 
 What an AREA HASH is (the proposed composition, see DESIGN.md section 3): sha256 over named parts, each part a sha256 itself:
