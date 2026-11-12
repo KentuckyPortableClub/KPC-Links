@@ -1,134 +1,6 @@
 {
- "updated": "2026-11-11T18:03:57Z",
+ "updated": "2026-11-12T12:33:57Z",
  "week": [
-  {
-   "name": "VHF-UHF FT8 Activity Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g9tma",
-   "when": "1700Z-2100Z, Nov 11",
-   "segs": [
-    [
-     "2026-11-11T17:00Z",
-     "2026-11-11T21:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 40",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gs987",
-   "when": "1700Z-1759Z, Nov 11",
-   "segs": [
-    [
-     "2026-11-11T17:00Z",
-     "2026-11-11T17:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 80",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gt43c",
-   "when": "1800Z-1859Z, Nov 11",
-   "segs": [
-    [
-     "2026-11-11T18:00Z",
-     "2026-11-11T18:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gh3tu",
-   "when": "1900Z-2000Z, Nov 11",
-   "segs": [
-    [
-     "2026-11-11T19:00Z",
-     "2026-11-11T20:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "RSGB 80m Autumn Series, SSB",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g8bfv",
-   "when": "2000Z-2130Z, Nov 11",
-   "segs": [
-    [
-     "2026-11-11T20:00Z",
-     "2026-11-11T21:30Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "VHF-UHF FT8 Activity Contest-NA",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gaguo",
-   "when": "0000Z-0500Z, Nov 12",
-   "segs": [
-    [
-     "2026-11-12T00:00Z",
-     "2026-11-12T05:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ghyoy",
-   "when": "0300Z-0400Z, Nov 12",
-   "segs": [
-    [
-     "2026-11-12T03:00Z",
-     "2026-11-12T04:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gitk2",
-   "when": "0700Z-0800Z, Nov 12",
-   "segs": [
-    [
-     "2026-11-12T07:00Z",
-     "2026-11-12T08:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "NCCC FT4 Sprint",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gutud",
@@ -450,6 +322,130 @@
     ]
    ],
    "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QRP Fox Hunt",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gxlza",
+   "when": "0200Z-0330Z, Nov 18",
+   "segs": [
+    [
+     "2026-11-18T02:00Z",
+     "2026-11-18T03:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Phone Weekly Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gqr4h",
+   "when": "0230Z-0300Z, Nov 18",
+   "segs": [
+    [
+     "2026-11-18T02:30Z",
+     "2026-11-18T03:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "A1Club AWT",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003grm2z",
+   "when": "1145Z-1300Z, Nov 18",
+   "segs": [
+    [
+     "2026-11-18T11:45Z",
+     "2026-11-18T13:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gggoi",
+   "when": "1300Z-1400Z, Nov 18",
+   "segs": [
+    [
+     "2026-11-18T13:00Z",
+     "2026-11-18T14:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ga1c2",
+   "when": "1700Z-2100Z, Nov 18",
+   "segs": [
+    [
+     "2026-11-18T17:00Z",
+     "2026-11-18T21:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 40",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gsgxz",
+   "when": "1700Z-1759Z, Nov 18",
+   "segs": [
+    [
+     "2026-11-18T17:00Z",
+     "2026-11-18T17:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 80",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gtbt4",
+   "when": "1800Z-1859Z, Nov 18",
+   "segs": [
+    [
+     "2026-11-18T18:00Z",
+     "2026-11-18T18:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ghbjm",
+   "when": "1900Z-2000Z, Nov 18",
+   "segs": [
+    [
+     "2026-11-18T19:00Z",
+     "2026-11-18T20:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
    "kinds": [],
    "src": "WA7BNM"
   }
@@ -1213,44 +1209,6 @@
    "src": "CORRAL",
    "bands": "3.5-28",
    "exch": "RS(T), age (avg age for multiops)"
-  },
-  {
-   "name": "RSGB 80m Autumn Series, SSB",
-   "url": "https://www.rsgbcc.org",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-11T20:00Z",
-     "2026-11-11T21:31Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5",
-   "exch": "RS, serial"
-  },
-  {
-   "name": "VHF-UHF FT8 Activity Contest-NA",
-   "url": "https://ft8activity-na.net",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-12T00:00Z",
-     "2026-11-12T05:01Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "CORRAL",
-   "bands": "432",
-   "exch": "4-char grid"
   },
   {
    "name": "WAE DX Contest, RTTY",
@@ -2552,6 +2510,6 @@
  ],
  "status": {
   "WA7BNM": "ok (29)",
-  "CORRAL": "ok (70)"
+  "CORRAL": "ok (68)"
  }
 }

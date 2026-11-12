@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T12:11:40Z",
+ "updated": "2026-11-12T12:33:50Z",
  "stations": [
   {
    "title": "51st Anniversary, Sinking of the SS Edmund Fitzgerald",
@@ -36,23 +36,6 @@
    "note": ", Greenville, TX. Sabine Valley Amateur Radio Association. 7.250 14.250 21.350 28.350. QSL. SVARA 50th Birthday, PO BOX 843, Greenville, TX 75403."
   },
   {
-   "title": "100th ANNIVERSARY OF ROUTE 66",
-   "start": "2026-11-11",
-   "end": "2026-11-11",
-   "times": "1700Z-2100Z",
-   "call": "WE7GV",
-   "calls": [
-    "WE7GV"
-   ],
-   "where": "Sahuarita, AZ",
-   "st": "AZ",
-   "by": "Green Valley Amateur Radio Club",
-   "freqs": "14.242 14.246 14.248",
-   "qsl": "Certificate & QSL",
-   "url": "http://www.gvarc.us",
-   "note": ", Sahuarita, AZ. Green Valley Amateur Radio Club. 14.242 14.246 14.248 . Certificate & QSL. Tom Lang K7VOA, 1085 W EL TORO RD, , Sahuarita, AZ 85629."
-  },
-  {
    "title": "Adoption of the Articles of Confederation and Perpetual Union",
    "start": "2026-11-11",
    "end": "2026-11-18",
@@ -85,57 +68,6 @@
    "qsl": "QSL",
    "url": "https://www.qrz.com/db/W3A",
    "note": ", Harleysville, PA. WV2M. 7.030 7.074 14.030 14.074. QSL. Frank Gallo, 106 Tweed Way, Harleysville, PA 19438."
-  },
-  {
-   "title": "USS Orleck Amateur Radio Society (OARS) Veteran's Day Event",
-   "start": "2026-11-11",
-   "end": "2026-11-11",
-   "times": "1400Z-2100Z",
-   "call": "WJ4DD",
-   "calls": [
-    "WJ4DD"
-   ],
-   "where": "Jacksonville, FL",
-   "st": "FL",
-   "by": "USS Orleck Amateur Radio Society (OARS)",
-   "freqs": "7.190 7.250 14.250 14.320",
-   "qsl": "Certificate",
-   "url": "https://fhnsa.org/oars",
-   "note": ", Jacksonville, FL. USS Orleck Amateur Radio Society (OARS). 7.190 7.250 14.250 14.320. Certificate. Kenneth Krull, 6143 Winding Bridge Dr, Jacksonville, FL 32099."
-  },
-  {
-   "title": "Veteran's Day, National DDay Memorial",
-   "start": "2026-11-11",
-   "end": "2026-11-11",
-   "times": "1430Z-1900Z",
-   "call": "W2B",
-   "calls": [
-    "W2B"
-   ],
-   "where": "CHRISTIANSBURG, VA",
-   "st": "VA",
-   "by": "New River Valley Amateur Radio Club",
-   "freqs": "14.262",
-   "qsl": "QSL",
-   "url": "",
-   "note": ", CHRISTIANSBURG, VA. New River Valley Amateur Radio Club. 14.262. QSL. Danny Wylam, 710 McDaniel Drive Southeast, CHRISTIANSBURG, VA 24073-3848. Veteran's Day from the National DDay Memorial in Bedford VA"
-  },
-  {
-   "title": "Veterans Day",
-   "start": "2026-11-11",
-   "end": "2026-11-11",
-   "times": "1500Z-2130Z",
-   "call": "W4V",
-   "calls": [
-    "W4V"
-   ],
-   "where": "Tampa, FL",
-   "st": "FL",
-   "by": "American Victory ARC",
-   "freqs": "14.265",
-   "qsl": "QSL",
-   "url": "",
-   "note": ", Tampa, FL. American Victory ARC. 14.265. QSL. Rick Burbes - KE9VS, 5224 Franklin Woodland Dr, Plant City, FL 33565."
   },
   {
    "title": "Guns on the Air (GOTA) 65th Anniversary of the WVARC",
@@ -637,6 +569,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (34)"
+  "ARRL": "ok (30)"
  }
 }
