@@ -8,6 +8,11 @@ Drop a file in `data/research-inbox/` (CSV or JSON). The checker is `.github/scr
 with `python3 .github/scripts/kpc_problem_solver.py --inbox`. It checks **only the parks in the file**. It never rebuilds a key, never
 writes an override, and never moves a POTA pin.
 
+Files filed under `data/research-inbox/answers/` (any sub-folder) follow one rule (Nov 12): a CSV with a `pota_ref` column, or JSON rows with
+`pota_ref`, is a batch and is checked like a file in the top folder (its results are `results/answers-<folders>-<name>.json`). Every other file
+there (answers and list files with a `ref` column, the solved ledger, the Japan crosswalk, source lists, notes) is not a batch: each run prints
+`not a batch: <file>: <reason>` and writes the list to `results/not-batches.md`, so nothing under `answers/` is skipped in silence.
+
 ## Columns (one row per park and candidate)
 | column | needed | what it is | from the owner xlsx |
 |---|---|---|---|
