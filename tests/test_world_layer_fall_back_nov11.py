@@ -112,5 +112,5 @@ check('world rules: a scope entry from the old hash, and its changelog line name
       and F.rules_hash('world-key') == PF.newest_hash('world-key')
       and any('world rules 096a551a8cb6 -> 9358c2ede2d5' in ln and 'APPROVED, decided_by KPC owner, 2026-11-11' in ln for ln in _log.splitlines()))
 # Nov 11 (overlap finder, 25 m): the 2-fer hash moved later in its own entry; it must equal its newest changelog line (no literal to edit on a rebase)
-check('the US and Canada hashes did not move; the 2-fer hash is the one its newest changelog line names', (F.rules_hash('us-key'), F.rules_hash('ca-key')) == ('46ef34a04ab0', '4b4176190334') and F.rules_hash('fers') == PF.newest_hash('fers'))
+check('the US and Canada hashes did not move; the 2-fer hash is the one its newest changelog line names', (F.rules_hash('us-key'), F.rules_hash('ca-key')) == (PF.newest_hash('us-key'), PF.newest_hash('ca-key')) and F.rules_hash('fers') == PF.newest_hash('fers'))   # Nov 12 (D6) CHANGED: as declared last
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

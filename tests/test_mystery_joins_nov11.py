@@ -101,11 +101,14 @@ check(all(r not in uo or 'Deer Park SHA-WPRA' not in ((uo.get(r) or {}).get('ali
 APPLIED = {'FR-10548': ('IGN Géoplateforme ZNIEFF type II sea', 'znieff2_mer.7'), 'FR-10432': ('IGN Géoplateforme Conservatoire du littoral', 'cdl.502'),
            'FR-11106': ('IGN Géoplateforme RNN protection perimeters', 'pprnn.1')}
 _wk = (ROOT / '.github/scripts/kpc_world_key.py').read_text(encoding='utf-8')
+# Nov 12 (KPC owner, 2026-11-12; D6) CHANGED: France's built-in layers are data now (data/world-key/area-tables.json SRC.FR)
+_fr = json.load(open(ROOT / 'data/world-key/area-tables.json', encoding='utf-8'))['SRC']['FR']
 check({r for r, p in P.items() if p['status'] == 'applied'} == set(APPLIED), 'job 6: exactly FR-10548, FR-10432 and FR-11106 are applied')
 for r, (lab, rid) in APPLIED.items():
     e = (P[r].get('entry') or {}).get('live') or {}
     check(e == wo.get(r) and e.get('ids') == [[lab, rid]] and P[r].get('needs') == [], f'{r}: the applied entry is the live world override (ids {rid}), no hand download left')
-check("('type II sea', 'patrinat_znieff2_mer:znieff2_mer')" in _wk and "('Conservatoire du littoral', 'patrinat_cdl:cdl')" in _wk and "('RNN protection perimeters', 'patrinat_pprnn:pprnn')" in _wk,
+check(all(any(s[0] == 'IGN Géoplateforme ' + n and s[1] == 'wfs' and s[3] == t for s in _fr) for n, t in
+          (('ZNIEFF type II sea', 'patrinat_znieff2_mer:znieff2_mer'), ('Conservatoire du littoral', 'patrinat_cdl:cdl'), ('RNN protection perimeters', 'patrinat_pprnn:pprnn'))),
       'job 6: kpc_world_key.py reads the three layers those ids name')
 check(wo['FR-10548'].get('no') == ['znieff1.16597', 'Corniche Varoise'], 'FR-10548: the land zone of the same name and Corniche Varoise are refused')
 check(all(P[r]['until_next_run'] == 'joined-live' for r in ('FR-10432', 'FR-11106')) and P['FR-10548']['until_next_run'] == 'no join (as now)', 'job 6: until_next_run says what the live key shows until the next run')
@@ -157,7 +160,9 @@ for r in ('US-10184', 'US-10195'):
 # 7. hashes
 import kpc_key_freeze as KF
 # KPC owner, 2026-11-11 (job 6, world rules change approved): the world hash moved 9358c2ede2d5 -> 889d37136cf8 (three French PatriNat layers); US and CA are as before; fers is main's cef323de4c9a (#157)
-check((KF.rules_hash('us-key'), KF.rules_hash('ca-key'), KF.rules_hash('world-key'), KF.rules_hash('fers')) == ('46ef34a04ab0', '4b4176190334', '889d37136cf8', 'cef323de4c9a'),
+# Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: later declared moves (US 46ef34a04ab0 -> c141c2201481, world 889d37136cf8 -> 1e262d7d3c0a) are the
+# newest; each hash must equal the one its newest changelog line names (no literal to edit when a later change of the set moves it again).
+check((KF.rules_hash('us-key'), KF.rules_hash('ca-key'), KF.rules_hash('world-key'), KF.rules_hash('fers')) == tuple(__import__('kpc_preflight').newest_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')),
       'US / CA / world / fers rules hashes unchanged')
 print(f'{"ALL PASS" if not bad else str(bad) + " FAILED"}')
 sys.exit(1 if bad else 0)

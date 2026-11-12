@@ -15,7 +15,7 @@ outline that was there is unchanged (a park the key grades pin may be gone), eve
   python3 .github/scripts/kpc_outlines_from_key.py --cache DIR --states "CT DC ..." [--only-refs US-4512 ...] [--dry-run]
   python3 .github/scripts/kpc_outlines_from_key.py --verify --states AK [--ref HEAD]
 KPC owner, 2026-11-11 (planner: shape files for the states with none)."""
-import argparse, datetime, gzip, json, pathlib, shutil, subprocess, sys, tempfile
+import argparse, datetime, gzip, json, os, pathlib, shutil, subprocess, sys, tempfile
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_master as M  # noqa: E402
 
@@ -59,7 +59,11 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
     with gzip.open(pathlib.Path(cache) / f'US-{st}.json.gz', 'rt', encoding='utf-8') as f: blob = json.load(f)
     recs = {str(r.get('OBJECTID')): r for r in blob.get('recs') or []}
     counts = M.saved_counts(pathlib.Path(cache) / f'US-{st}.json.gz')
-    have = M.load_area(area, root); today = datetime.date.today().isoformat()
+    have = M.load_area(area, root)
+    # Nov 12 (KPC owner, 2026-11-12; D6): an outline's date_read comes from the INPUT, not the clock: the park's 'read' date in the key
+    # (the oldest day its joined records were read), else the saved copy's 'saved' stamp, else the run's one date (KPC_BUILD_DATE),
+    # else today. So the same key + copy give the same outline file bytes on any day.
+    today = str(blob.get('saved') or '').strip() or (os.environ.get('KPC_BUILD_DATE') or '').strip() or datetime.date.today().isoformat()
     added, skipped = [], []
     for ref, q in sorted((key.get('parks') or {}).items()):
         if only and ref not in only: continue
@@ -78,7 +82,7 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         agency = '; '.join(sorted({str(recs[i].get('Loc_Mang') or recs[i].get('Mang_Name') or '') for i in ids} - {''}))[:300]
         gk = q.get('g') if q.get('g') in M.RANK else 'official'
         r = M.make_record(ref, q.get('n') or ref, gk, g, agency, f'file:US-{st}.json.gz', ids,
-                          sum(counts.get(M.prefix_of(i), 0) for i in set(map(M.prefix_of, ids))), today, '', 'key', layers=lay)
+                          sum(counts.get(M.prefix_of(i), 0) for i in set(map(M.prefix_of, ids))), str(q.get('read') or today), '', 'key', layers=lay)
         M.assert_public_safe(r); added.append(r)
         say(f'  {"would write" if dry else "write"} {ref} {gk:<11} {len(ids)} record(s) {npts(g):>8,} points  {(q.get("n") or "")[:60]}')
     if added:

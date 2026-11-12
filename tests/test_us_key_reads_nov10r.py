@@ -124,10 +124,13 @@ pns['COUNT'][0] = 1200
 
 # 3. Vermont ANR listed once; distinct ids in the layer file
 xs = chunk('XS = [', '# Oct 24 (Brandon')
-check('XS lists the Vermont ANR lands layer (vta) once', xs.count("('vta', ") == 1)
-check('XS has no prefix twice', len(re.findall(r"^\s*\('([a-z]+)',", xs, re.M)) == len(set(re.findall(r"^\s*\('([a-z]+)',", xs, re.M))))
+# Nov 12 (KPC owner, 2026-11-12; D6) CHANGED: the state-limited layers (vta among them) are data now, in data/us-key/area-tables.json
+_at = json.load(open(ROOT / 'data/us-key/area-tables.json', encoding='utf-8'))['XS']
+_pres = re.findall(r"^\s*\('([a-z]+)',", xs, re.M) + [e['prefix'] for e in _at]
+check('XS lists the Vermont ANR lands layer (vta) once', xs.count("('vta', ") + sum(1 for e in _at if e['prefix'] == 'vta') == 1)
+check('XS has no prefix twice', len(_pres) == len(set(_pres)))
 written = []
-wns = {'XS': [LAY], 'RAWF': {'sgvtz': [{'attributes': {'OBJECTID': i}, 'geometry': None} for i in (1, 2, 3)] * 2}, 'RESOLVED': {}, 'time': types.SimpleNamespace(strftime=lambda f: '2026-11-10'),
+wns = {'XS': [LAY], 'RAWF': {'sgvtz': [{'attributes': {'OBJECTID': i}, 'geometry': None} for i in (1, 2, 3)] * 2}, 'RESOLVED': {}, 'time': types.SimpleNamespace(strftime=lambda f: '2026-11-10'), 'BUILD_DATE': '2026-11-10',   # Nov 12 (D6) CHANGED: the run date
        '_layer_in': lambda st, pre: None, '_save_row': lambda a: a, 'layer_live_count': lambda *a: 3, 'layer_total_count': lambda *a: None, '_one_state_layer': lambda *a: False, 'notice': lambda t, m: None, 'LAYER_OUT': '/x', 'st_box': lambda st: None,
        'KMASTER': types.SimpleNamespace(prefix_of=lambda o: re.match(r'[a-z]*', str(o)).group(0), esri_to_geojson=lambda g: None, layer_file_path=lambda *a: a,
                                         write_layer_file=lambda p, meta, feats: written.append((meta, feats)))}

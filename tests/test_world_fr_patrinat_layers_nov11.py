@@ -95,10 +95,13 @@ import kpc_key_freeze as KF, kpc_preflight as PF   # noqa: E402
 got_h = {k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
 # fers: the value the changelog declares last (aa7561256260 on this branch; this change adds no fers line), so the open 2-fer PRs
 # (#154, #155), which each declare their own fers move, do not have to edit this test when either merges first.
-check(got_h == {'us-key': '46ef34a04ab0', 'ca-key': '4b4176190334', 'world-key': NEW_WORLD, 'fers': PF.newest_hash('fers')} and PF.newest_hash('fers') is not None,
+# Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: later declared moves (US 46ef34a04ab0 -> c141c2201481, world 889d37136cf8 -> 1e262d7d3c0a) are the
+# newest; each hash must equal the one its newest changelog line names (no literal to edit when a later change of the set moves it again).
+check(got_h == {k: PF.newest_hash(k) for k in got_h} and PF.newest_hash('fers') is not None,
       f'world {OLD_WORLD} -> {NEW_WORLD}; US, CA and fers unchanged (fers = the changelog\'s newest fers hash {PF.newest_hash("fers")}) ({got_h})')
 log = (H.ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 sc = json.load(open(H.ROOT / '.github/world-key-rule-scope.json', encoding='utf-8'))
-check(PF.newest_hash('world-key') == NEW_WORLD and not PF.check_hash_pair('world-key', OLD_WORLD, NEW_WORLD, log, sc), 'the newest changelog line says 9358c2ede2d5 -> 889d37136cf8, APPROVED, decided_by KPC owner, with a scope entry from 9358c2ede2d5')
+_wl = next((ln for ln in log.splitlines() if f'world rules {OLD_WORLD} -> {NEW_WORLD}' in ln), '')   # Nov 12 (D6) CHANGED: a link of the chain, not the newest line
+check('APPROVED, decided_by KPC owner' in _wl and any(c.get('from') == OLD_WORLD for c in sc['changes']) and any(c.get('from') == NEW_WORLD for c in sc['changes']) or PF.newest_hash('world-key') == NEW_WORLD and not PF.check_hash_pair('world-key', OLD_WORLD, NEW_WORLD, log, sc), 'the changelog line says 9358c2ede2d5 -> 889d37136cf8, APPROVED, decided_by KPC owner, with a scope entry from 9358c2ede2d5')
 check(json.load(open(H.ROOT / '.github/key-rules-version.json'))['world-key'] == 'v5b', 'the world version line is unchanged (v5b)')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

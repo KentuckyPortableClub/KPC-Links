@@ -82,6 +82,8 @@ try:
                         # Nov 7 evening bundle: the layer lists and 'rebuild tonight' lists are inputs, not answer keys
                         ':!data/*/answers-states.txt', ':!data/*/answers-provinces.txt', ':!data/*/answers-countries.txt',
                         ':!data/world-key/extra-layers.json',
+                        # Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: the per-area tables moved out of the rule scripts are inputs, not answer keys
+                        ':!data/us-key/area-tables.json', ':!data/world-key/area-tables.json',
                         # Nov 8 (#76): a declared moved source (docs/key-rules-change.txt) is checked just below
                         *([':!data/world-key/layers.json', ':!data/world-key/sheet-countries.json'] if _MOVES else [])], cwd=ROOT)
     for _f in (['data/world-key/layers.json', 'data/world-key/sheet-countries.json'] if _MOVES else []):

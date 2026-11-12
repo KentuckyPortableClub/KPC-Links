@@ -326,7 +326,8 @@ def coverage(park_tracts):
 
 
 def doc(area, park_tracts, nested, note='', same=None):
-    return {'schema': SCHEMA, 'area': area, 'built': time.strftime('%Y-%m-%d'), 'same_area': same if same is not None else same_area(park_tracts),
+    return {'schema': SCHEMA, 'area': area, 'built': (os.environ.get('KPC_BUILD_DATE') or '').strip() or time.strftime('%Y-%m-%d'),   # Nov 12 (KPC owner, 2026-11-12; D6): the run's one date
+            'same_area': same if same is not None else same_area(park_tracts),
             'about': 'Tract records (one per official record joined to the park) + parks inside parks. Side file: the key file is unchanged. '
                      'See .github/scripts/kpc_tracts.py. ' + note,
             'coverage': coverage(park_tracts), 'nested': nested,

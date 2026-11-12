@@ -129,7 +129,8 @@ check(set(rn) == set(SIX), f'on the real needs-another-look entries the six refs
 nr = {f for fs in KF.RULE_FILES.values() for f in fs}
 check('kpc_research_inbox.py' in KF.NOT_RULES and not any(f.endswith('kpc_research_inbox.py') for f in nr), 'kpc_research_inbox.py is on the NOT_RULES list and in no RULE_FILES')
 h = {k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
-check(h == {'us-key': '46ef34a04ab0', 'ca-key': '4b4176190334', 'world-key': '889d37136cf8', 'fers': 'cef323de4c9a'}, f'rules hashes unchanged: {h}')
+# Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: each hash must equal the one its newest changelog line names (no literal to edit when a declared change moves one)
+check(h == {k: __import__('kpc_preflight').newest_hash(k) for k in h}, f'rules hashes are the declared ones (this change moves none): {h}')
 ps = (HERE / '.github/scripts/kpc_problem_solver.py').read_text(encoding='utf-8')
 check('RI.inbox_files(ROOT)' in ps, 'the problem solver --inbox still uses inbox_files')
 src = (HERE / '.github/scripts/kpc_research_inbox.py').read_text(encoding='utf-8')

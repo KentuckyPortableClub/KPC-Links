@@ -93,7 +93,8 @@ docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 # KPC owner, 2026-11-11 (job 6): + the French PatriNat world entry and the three French overrides entry on top: the top twelve.
 # Nov 12 (rebased onto main with #154): + the Nov 11 Pacific area boxes entry (fers) under the French entries: the top thirteen.
 # Nov 12 (rebased onto main with #157): + the picture-trace entry (fers 77b31e3427a4 -> cef323de4c9a) under the French entries: the top fourteen.
-_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:14])
+# Nov 12 (KPC owner, 2026-11-12; D6 tables out): + the D6 entry (US / world) on top: the top fifteen.
+_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:15])
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt Nov 10 entries declare fers v1 hash {fers_h}')
 # Public changelog keeps hashes and dates only (no quotes, no ids)

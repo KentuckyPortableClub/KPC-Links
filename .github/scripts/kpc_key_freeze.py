@@ -57,6 +57,10 @@ RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_k
 SCOPE_FILES = {'us-key': '.github/us-key-rule-scope.json', 'ca-key': '.github/ca-key-rule-scope.json', 'fers': '.github/fers-rule-scope.json',
                'world-key': '.github/world-key-rule-scope.json'}   # KPC owner, 2026-11-11
 for _kind, _f in SCOPE_FILES.items(): RULE_FILES[_kind].append(_f)
+# Nov 12 (KPC owner, 2026-11-12; Quality must-fix M1): the per-area tables are part of each
+# key's rules. A later edit to them would change key results, so they belong in the hash.
+RULE_FILES['us-key'].append('data/us-key/area-tables.json')
+RULE_FILES['world-key'].append('data/world-key/area-tables.json')
 NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_keep_main.py', 'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',

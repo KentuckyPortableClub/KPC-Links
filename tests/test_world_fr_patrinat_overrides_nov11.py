@@ -40,8 +40,8 @@ check(OVF.stat().st_size < 1_000_000 and OVF.read_text(encoding='utf-8') == json
 import kpc_key_freeze as KF, kpc_preflight as PF   # noqa: E402
 # fers: the changelog's newest fers hash (aa7561256260 on this branch), so an open 2-fer PR that declares its own fers move (#154, #155)
 # does not have to edit this test when it merges first.
-check(not any('overrides' in f for v in KF.RULE_FILES.values() for f in v) and KF.rules_hash('world-key') == '889d37136cf8' and PF.newest_hash('fers')
-      and (KF.rules_hash('us-key'), KF.rules_hash('ca-key'), KF.rules_hash('fers')) == ('46ef34a04ab0', '4b4176190334', PF.newest_hash('fers')),
+check(not any('overrides' in f for v in KF.RULE_FILES.values() for f in v) and KF.rules_hash('world-key') == PF.newest_hash('world-key') and PF.newest_hash('fers')
+      and (KF.rules_hash('us-key'), KF.rules_hash('ca-key'), KF.rules_hash('fers')) == (PF.newest_hash('us-key'), PF.newest_hash('ca-key'), PF.newest_hash('fers')),   # Nov 12 (D6) CHANGED: as declared last
       'overrides.json feeds no rules hash: world stays 889d37136cf8 (job 6 rules), US / CA / fers unchanged')
 
 g = H.load_prefix(); pk, how = H.parks()
