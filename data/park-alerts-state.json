@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12 15:25",
+ "updated": "2026-11-12 17:54",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -147,80 +147,6 @@
    "missing": 0,
    "announced": true
   },
-  "kdfwr-kentucky-fish-and-wildlife-public-hunting-areas-affected-by-": {
-   "who": "Kentucky Fish and Wildlife",
-   "title": "Kentucky Fish and Wildlife public hunting areas affected by storms",
-   "text": "Kentucky Fish and Wildlife public hunting areas affected by storms",
-   "link": "https://fw.ky.gov/Alerts/Pages/Kentucky-Fish-and-Wildlife-public-hunting-areas-affected-by-storms.aspx",
-   "routine": false,
-   "first": "2026-10-22",
-   "runs": 2,
-   "missing": 1,
-   "announced": true,
-   "refs": []
-  },
-  "kdfwr-buckhorn-lake-dam-ramp-access-closed-until-feb-2027": {
-   "who": "Kentucky Fish and Wildlife",
-   "title": "Buckhorn Lake Dam Ramp Access closed until Feb. 2027",
-   "text": "Buckhorn Lake Dam Ramp Access closed until Feb. 2027",
-   "link": "https://fw.ky.gov/Alerts/Pages/Buckhorn-Lake-Dam-Ramp-Access-closed-until-Feb-2027.aspx",
-   "routine": false,
-   "first": "2026-10-22",
-   "runs": 2,
-   "missing": 1,
-   "announced": true,
-   "refs": [
-    "US-1275"
-   ]
-  },
-  "kdfwr-sympson-lake-will-be-closed-to-all-boating-activity-in-2026": {
-   "who": "Kentucky Fish and Wildlife",
-   "title": "Sympson Lake will be closed to all boating activity in 2026",
-   "text": "Sympson Lake will be closed to all boating activity in 2026",
-   "link": "https://fw.ky.gov/Alerts/Pages/Sympson-Lake-will-be-closed-to-all-boating-activity-in-2026.aspx",
-   "routine": false,
-   "first": "2026-10-22",
-   "runs": 2,
-   "missing": 1,
-   "announced": true,
-   "refs": []
-  },
-  "kdfwr-aj-jolly-lake-is-closed-for-2026-due-to-repairs-for-all-recr": {
-   "who": "Kentucky Fish and Wildlife",
-   "title": "AJ Jolly Lake is closed for 2026 due to repairs for all recreational activities",
-   "text": "AJ Jolly Lake is closed for 2026 due to repairs for all recreational activities",
-   "link": "https://fw.ky.gov/Alerts/Pages/AJ-Jolly-Lake-is-closed-for-2026-due-to-repairs-for-all-recreational-activities-.aspx",
-   "routine": false,
-   "first": "2026-10-22",
-   "runs": 2,
-   "missing": 1,
-   "announced": true,
-   "refs": []
-  },
-  "kdfwr-west-point-boat-ramp-closure": {
-   "who": "Kentucky Fish and Wildlife",
-   "title": "West Point Boat Ramp Closure",
-   "text": "West Point Boat Ramp Closure",
-   "link": "https://fw.ky.gov/Alerts/Pages/WestPointBoatRampClosure.aspx",
-   "routine": false,
-   "first": "2026-10-22",
-   "runs": 2,
-   "missing": 1,
-   "announced": true,
-   "refs": []
-  },
-  "kdfwr-laurel-bridge-boat-ramp-on-laurel-river-lake-temporarily-clo": {
-   "who": "Kentucky Fish and Wildlife",
-   "title": "Laurel Bridge Boat Ramp on Laurel River Lake Temporarily Closed",
-   "text": "Laurel Bridge Boat Ramp on Laurel River Lake Temporarily Closed",
-   "link": "https://fw.ky.gov/Alerts/Pages/Laurel-Bridge-Boat-Ramp-on-Laurel-River-Lake-Temporarily-Closed.aspx",
-   "routine": false,
-   "first": "2026-10-22",
-   "runs": 2,
-   "missing": 1,
-   "announced": true,
-   "refs": []
-  },
   "kdfwr-regulatory-amendments-filed-pending-and-recently-enacted": {
    "who": "Kentucky Fish and Wildlife",
    "title": "Regulatory Amendments Filed, Pending and Recently Enacted",
@@ -230,18 +156,6 @@
    "first": "2026-10-22",
    "runs": 2,
    "missing": 0,
-   "announced": true,
-   "refs": []
-  },
-  "kdfwr-bridge-construction-crossing-cumberland-river-downstream-of-": {
-   "who": "Kentucky Fish and Wildlife",
-   "title": "Bridge construction crossing Cumberland River downstream of Wolf Creek Dam",
-   "text": "Bridge construction crossing Cumberland River downstream of Wolf Creek Dam",
-   "link": "https://fw.ky.gov/Alerts/Pages/Bridge-construction-crossing-Cumberland-River-downstream-of-Wolf-Creek-Dam.aspx",
-   "routine": false,
-   "first": "2026-10-22",
-   "runs": 2,
-   "missing": 1,
    "announced": true,
    "refs": []
   },

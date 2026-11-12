@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11",
+ "updated": "2026-11-12",
  "items": [
   {
    "id": "pa-lbl-x-wildlife-refuges-will-be-closed-from-nov-US-3792",
@@ -8,7 +8,7 @@
    "details": "Wildlife Refuges will be closed from November 1, 2026 through March 15, 2027, seasonal wildlife refuge closures include: — Wildlife Refuges will be closed from November 1, 2026 through March 15, 2027, seasonal wildlife refuge closures include:",
    "seen": "2026-10-30",
    "call": "KPC BOT",
-   "expires": "2026-12-11"
+   "expires": "2026-12-12"
   },
   {
    "id": "hc-US-4687-2026-11-07",
@@ -251,22 +251,13 @@
    "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38"
   },
   {
-   "id": "pa-kdfwr-buckhorn-lake-dam-ramp-access-closed-until-feb-2027-US-1275",
-   "ref": "US-1275",
-   "kind": "Park alert",
-   "details": "Buckhorn Lake Dam Ramp Access closed until Feb. 2027 — Buckhorn Lake Dam Ramp Access closed until Feb. 2027",
-   "seen": "2026-10-22",
-   "call": "KPC BOT",
-   "expires": "2026-12-11"
-  },
-  {
    "id": "pa-nps-3FDA6968-C4B7-4A28-8169-B0E4B1272765-US-0050",
    "ref": "US-0050",
    "kind": "Burn or forest work",
    "details": "Tickets are required to enter Mammoth Cave — Reservations are strongly recommended. Reservations are the only way to ensure a spot is available for your party. Please plan accordingly by visiting Recreation.gov to secure your tickets in advance. Availability of walk-up tickets is not guaranteed.",
    "seen": "2026-10-21",
    "call": "KPC BOT",
-   "expires": "2026-11-25"
+   "expires": "2026-11-26"
   },
   {
    "id": "pa-lbl-x-road-214-temporary-closure-between-roads-US-3792",
@@ -275,7 +266,7 @@
    "details": "Road 214 Temporary closure between roads 215 and 372 due to a failing culvert. — Road 214 Temporary closure between roads 215 and 372 due to a failing culvert.",
    "seen": "2026-10-21",
    "call": "KPC BOT",
-   "expires": "2026-12-11"
+   "expires": "2026-12-12"
   },
   {
    "id": "pa-lbl-x-fort-henry-trail-is-closed-from-point-1-US-3792",
@@ -284,7 +275,7 @@
    "details": "Fort Henry Trail is Closed from Point 1-23 and Picket Loop from tornado damage. — Fort Henry Trail is Closed from Point 1-23 and Picket Loop from tornado damage.",
    "seen": "2026-10-21",
    "call": "KPC BOT",
-   "expires": "2026-12-11"
+   "expires": "2026-12-12"
   }
  ]
 }
