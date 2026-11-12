@@ -81,6 +81,7 @@ jobs:
         id: p
         env:
           COUNTRIES: ${{ inputs.countries }}
+          GH_TOKEN: ${{ github.token }}
           # Nov 4 PM fix bundle (item 5; Brandon's yes relayed via Super Head Bot, 4:53 PM CST Nov 4): W-41895532587 was not a full build
           # because AU ran over the 100-min country limit in a job shared with 26 other countries. A SLOW country now gets a job of its
           # own and its own limit (repo variables KPC_WORLD_SLOW = space list, default AU; KPC_WORLD_SLOW_MIN, default 300 = under the
@@ -93,9 +94,15 @@ jobs:
           SHEETC=$(jq -r '.countries|keys|join(" ")' data/world-key/sheet-countries.json 2>/dev/null || true)   # ok: an optional file or tidy step (Nov 1: Brandon's filled sheet)
           export ALL="${COUNTRIES:-AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL $SHEETC}"
           # Nov 12 (KPC owner, 2026-11-11): a country on the owner-signed expected-hold list is decided HERE, before any build: it is left out
-          # of the groups and keeps its previous join (one notice each). An unsigned / unknown / expired entry is ignored (built as normal);
-          # a hold with no joined park on main (nothing to keep) stops the run red. Not the full list = not a full build (no rules stamp).
-          EXPECTED=$(python3 .github/scripts/kpc_world_key_join.py expected --file data/outlines/world-expected-holds.approved.json --countries "$ALL" --key data/world-key) || exit 1
+          # of the groups and keeps its previous join (one notice each). An unsigned / unknown / expired / sourceless entry, or one whose
+          # saved copy no longer matches the bound copy_sha256, is ignored (built as normal); a hold with no joined park on main (nothing
+          # to keep) stops the run red. Not the full list = not a full build (no rules stamp).
+          mkdir -p cache/world
+          HOLD_CCS=$(python3 -c "import json; print(' '.join((json.load(open('data/outlines/world-expected-holds.approved.json')).get('holds') or {})))" 2>/dev/null || true)
+          for c in $HOLD_CCS; do
+            gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "W-$c.json.gz" -D cache/world --clobber 2>/dev/null || echo "::notice title=World key $c::no saved copy W-$c.json.gz on the boundary-cache release to check the hold against"
+          done
+          EXPECTED=$(python3 .github/scripts/kpc_world_key_join.py expected --file data/outlines/world-expected-holds.approved.json --countries "$ALL" --key data/world-key --cache cache/world) || exit 1
           export EXPECTED; echo "expected=$EXPECTED" >> "$GITHUB_OUTPUT"
           if [ -z "${COUNTRIES:-}" ] && [ -z "$EXPECTED" ]; then echo 'full=1' >> "$GITHUB_OUTPUT"; else echo 'full=0' >> "$GITHUB_OUTPUT"; fi   # Nov 4 (links-04)
           python3 - <<'PY' >> "$GITHUB_OUTPUT"

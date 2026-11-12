@@ -9,7 +9,8 @@ index.json. Checked here:
   2) the join script: a missing / short part or a country not built = exit 1 and nothing written (tonight's shape: 4 planned groups,
      2 parts); replay of a6c493c on the real tree of its parent: nothing written, every row survives; the old path reproduces the wipe;
   3) expected holds (owner-signed list): kept from main byte for byte (key, index row, review rows), summary row, complete false;
-     unsigned / unknown / expired = ignored; no previous join = red; a real failure in the same shard = red; not on the list + short = red;
+     unsigned / 'KPC owner' / no source / unknown / expired = ignored; sha match = held, sha mismatch = ignored; no previous join = red;
+     a real failure in the same shard = red; not on the list + short = red;
   4) a complete green run writes the same bytes as the script on main.
 Offline: temp folders only. Run: python3 -B tests/test_world_join_cancel_nov12.py"""
 import contextlib, datetime, io, json, os, pathlib, re, shutil, subprocess, sys, tempfile
@@ -197,6 +198,8 @@ plan_run = next(s for s in W['jobs']['plan']['steps'] if s.get('id') == 'p')['ru
 check('plan: expected holds are decided before the build, from the APPROVED file only, and a hold means not a full build',
       'kpc_world_key_join.py expected --file data/outlines/world-expected-holds.approved.json' in plan_run and '|| exit 1' in plan_run
       and """[ -z "$EXPECTED" ]; then echo 'full=1'""" in plan_run and W['jobs']['plan']['outputs']['expected'] == '${{ steps.p.outputs.expected }}')
+check('plan: each hold is checked against the current W-<CC> copy sha (--cache cache/world)',
+      '--cache cache/world' in plan_run and 'gh release download boundary-cache' in plan_run and 'W-$c.json.gz' in plan_run)
 tn = next(s for s in js if s.get('id') == 'tonight')
 check('join: --planned-groups and --expected go to the join', '--planned-groups "$PLAN_GROUPS" --expected "$EXPECTED"' in tn['run'] and tn['env']['EXPECTED'] == '${{ needs.plan.outputs.expected }}')
 st = next(s for s in js if 'stamp world-key' in str(s.get('run', '')))
@@ -348,14 +351,22 @@ def holds_file(t, entries, name='world-expected-holds.approved.json'):
     p = t / name; p.write_text(json.dumps({'holds': entries})); return p
 
 
+AU_COPY_SHA = '8c8b75795c77ee02ceb01360548258ba93f8b47f44a8c26ded55ba3080052598'
+MT_COPY_SHA = '9c94cb55777d417b1fcf92aae95308dcd539415d0e833ca1ff8af574908f3b7b'
+
+
 with tempfile.TemporaryDirectory() as td:
     t = pathlib.Path(td); mkrepo(t)
     today = datetime.date.today().isoformat(); past = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
-    sig = {'reason': 'short copy', 'approved_by': 'KPC owner', 'approved_date': today}
+    sig = {'reason': 'short copy', 'approved_by': 'Brandon (KZ4CP)', 'approved_date': today,
+           'source': 'test', 'copy_sha256': 'ab' * 32}
     h, n, e = J.load_expected(holds_file(t, {'AU': sig}), 'AU DE FR', t / 'data/world-key')
     check('a signed entry for a country of this run with a previous join: held (expected)', list(h) == ['AU'] and not e)
-    cases = {'unsigned': dict(sig, approved_by=''), 'not a person': dict(sig, approved_by='waiting for KPC owner'), 'future date': dict(sig, approved_date='2999-01-01'),
-             'no reason': dict(sig, reason=''), 'expired review_by': dict(sig, review_by=past), 'bad review_by': dict(sig, review_by='soon')}
+    cases = {'unsigned': dict(sig, approved_by=''), 'not a person': dict(sig, approved_by='waiting for KPC owner'),
+             'kpc owner alias': dict(sig, approved_by='KPC owner'), 'future date': dict(sig, approved_date='2999-01-01'),
+             'no reason': dict(sig, reason=''), 'no source': dict(sig, source=''), 'no copy sha': dict(sig, copy_sha256=''),
+             'bad copy sha': dict(sig, copy_sha256='FILL IN'), 'expired review_by': dict(sig, review_by=past),
+             'bad review_by': dict(sig, review_by='soon')}
     for k, ent in cases.items():
         h, n, e = J.load_expected(holds_file(t, {'AU': ent}), 'AU DE FR', t / 'data/world-key')
         check(f'{k} entry: ignored (AU built as a normal country) and the run says so', h == {} and n and not e)
@@ -373,14 +384,34 @@ with tempfile.TemporaryDirectory() as td:
                         '--key', str(t / 'data/world-key')], capture_output=True, text=True)
     check('the plan step prints the list and one notice "AU held (expected): keeping the previous join"', r.returncode == 0 and r.stdout.strip() == 'AU'
           and r.stderr.count('AU held (expected): keeping the previous join') == 1)
+    # sha match / mismatch (a hold is for one saved copy)
+    cache = t / 'cache'; cache.mkdir()
+    (cache / 'W-AU.json.gz').write_bytes(b'W-AU fixture copy')
+    match_sha = J._sha(cache / 'W-AU.json.gz')
+    h, n, e = J.load_expected(holds_file(t, {'AU': dict(sig, copy_sha256=match_sha)}), 'AU DE FR', t / 'data/world-key', cache_dir=cache)
+    check('sha match: the hold applies', list(h) == ['AU'] and not e)
+    h, n, e = J.load_expected(holds_file(t, {'AU': dict(sig, copy_sha256='cd' * 32)}), 'AU DE FR', t / 'data/world-key', cache_dir=cache)
+    check('sha mismatch: ignored (a changed copy does not inherit the hold) and the run says so',
+          h == {} and any('sha mismatch' in x for x in n) and not e)
+    r = subprocess.run([sys.executable, '-B', str(SCRIPTS / 'kpc_world_key_join.py'), 'expected', '--file', str(holds_file(t, {'AU': dict(sig, copy_sha256=match_sha)})),
+                        '--countries', 'AU DE FR', '--key', str(t / 'data/world-key'), '--cache', str(cache)], capture_output=True, text=True)
+    check('plan step with --cache and a matching copy: AU held', r.returncode == 0 and r.stdout.strip() == 'AU')
+    r = subprocess.run([sys.executable, '-B', str(SCRIPTS / 'kpc_world_key_join.py'), 'expected', '--file', str(holds_file(t, {'AU': dict(sig, copy_sha256='cd' * 32)})),
+                        '--countries', 'AU DE FR', '--key', str(t / 'data/world-key'), '--cache', str(cache)], capture_output=True, text=True)
+    check('plan step with --cache and a mismatched copy: nothing held, sha mismatch said', r.returncode == 0 and r.stdout.strip() == '' and 'sha mismatch' in r.stderr)
 shipped = json.loads((ROOT / 'data/outlines/world-expected-holds.approved.json').read_text(encoding='utf-8'))
 prop = json.loads((ROOT / 'data/outlines/world-expected-holds.proposed.json').read_text(encoding='utf-8'))
 h, n, e = J.load_expected(ROOT / 'data/outlines/world-expected-holds.approved.json', 'AU DE GB MT', ROOT / 'data/world-key')
 au, mt = shipped['holds']['AU'], shipped['holds']['MT']
 check('shipped: AU and MT are active owner-signed holds (both have joined parks on main)',
       sorted(h) == ['AU', 'MT'] and not e
-      and au['approved_by'] == mt['approved_by'] == 'KPC owner'
+      and au['approved_by'] == 'Brandon (KZ4CP), decided by Quality per his delegation'
+      and mt['approved_by'] == 'Brandon (KZ4CP)'
       and au['approved_date'] == mt['approved_date'] == '2026-11-11'
+      and au['source'] == 'Quality chat t184u, 11:02 PM CT'
+      and mt['source'] == 'Super chat t1419u 10:49 PM CT; Quality chat t181u 10:56 PM CT'
+      and au['copy'] == 'W-AU' and mt['copy'] == 'W-MT'
+      and au['copy_sha256'] == AU_COPY_SHA and mt['copy_sha256'] == MT_COPY_SHA
       and 'review_by' in au and 'review_by' in mt
       and 't1419u' in mt['reason'] and '14-record baseline is not signed' in mt['reason']
       and 'MT' not in (prop.get('holds') or {})

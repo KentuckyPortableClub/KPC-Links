@@ -35,10 +35,12 @@ Nov 12 (KPC owner, 2026-11-11; run 43148551915 was cancelled and its join still 
     run); a missing or short part, or a country not built, = exit 1, built=0, NOTHING written (no partial save). --expected "AU MT"
     (the plan's checked expected holds) are not planned and are named "kept from main" in the step summary table
     (country | part present | verdict | joined or kept from main | why).
-  - expected --file data/outlines/world-expected-holds.approved.json --countries "$ALL" --key data/world-key: the owner-signed
-    expected holds for this run's list (stdout: "AU MT"). An entry is used only when its country is in the list, it has a reason, a
-    person's sign-off (approved_by / approved_date, kpc_answer_words.signed_off) and no passed review_by date; anything else is
-    ignored and said (the country is built as a normal country). An expected hold with NO joined park on main (nothing to keep) =
+  - expected --file data/outlines/world-expected-holds.approved.json --countries "$ALL" --key data/world-key [--cache cache/world]:
+    the owner-signed expected holds for this run's list (stdout: "AU MT"). An entry is used only when its country is in the list,
+    it has a reason, a real person's sign-off (approved_by / approved_date; 'Brandon (KZ4CP)' counts; 'KPC owner' is not a
+    signature), a source, a copy_sha256 (the sha256 of W-<CC>.json.gz), and no passed review_by date; anything else is ignored
+    and said (the country is built as a normal country). With --cache, the hold applies only when the saved copy's sha matches;
+    a changed or missing copy does not inherit the hold. An expected hold with NO joined park on main (nothing to keep) =
     exit 1 (the plan stops, nothing is built or saved).
   - keep-rows --countries "AU MT" --review data/world-key/review [--ref HEAD]: after the join check, the rows of the expected-hold
     countries in held-joins.json / .csv, held-joins-ledger.csv, join-check.json / .csv come back from main byte for byte (the join
@@ -263,9 +265,43 @@ def has_previous_join(key_dir, c):
     return any(isinstance(p, dict) and p.get('m') and p.get('g') != 'pin' for p in (d.get('parks') or {}).values())
 
 
-def load_expected(path, countries, key_dir, persons=None, today=None):
+def _hold_signed(approved_by, approved_date, who, today=None):
+    """A real person's sign-off. 'KPC owner' is not a signature. The display form 'Brandon (KZ4CP)' counts when Brandon or
+    KZ4CP is a listed person (kpc_answer_words.signed_off requires an exact name, so the parenthetical form is accepted here)."""
+    import datetime, kpc_answer_words as AW
+    who = {str(w).strip().lower() for w in (who or []) if str(w).strip().lower() != 'kpc owner'}
+    if AW.signed_off(approved_by, approved_date, who, today=today):
+        return True
+    tokens = set()
+    for part in re.split(r'[,;+&]|\band\b', str(approved_by or '')):
+        part = part.strip()
+        if not part:
+            continue
+        m = re.fullmatch(r'(.+?)\s*\(([^)]+)\)', part)
+        if m:
+            tokens.add(m.group(1).strip().lower()); tokens.add(m.group(2).strip().lower())
+        else:
+            tokens.add(part.lower())
+    if not tokens & who:
+        return False
+    try: d = datetime.date.fromisoformat(str(approved_date or '').strip()[:10])
+    except ValueError: return False
+    return d <= (today or datetime.date.today())
+
+
+def _copy_file_sha(cache_dir, c):
+    """sha256 of cache/W-<CC>.json.gz, or '' if the file is not there. None when no cache was given (no live check)."""
+    if not cache_dir:
+        return None
+    p = pathlib.Path(cache_dir) / f'W-{c}.json.gz'
+    return _sha(p) if p.is_file() else ''
+
+
+def load_expected(path, countries, key_dir, persons=None, today=None, cache_dir=None):
     """(held {CC: why}, notes [ignored entries], errors [held with nothing to keep]). Fail closed: only a file named *.approved.json is
-    read; an entry is used only when it is signed, has a reason, its country is in this run's list and its review_by is not past."""
+    read; an entry is used only when it is signed by a real person, has a reason and a source, its copy_sha256 is the sha256 of one
+    saved copy, its country is in this run's list and its review_by is not past. With cache_dir, the hold applies only when the
+    copy's sha matches (a changed or missing copy does not inherit the hold). 'KPC owner' is not a signature."""
     import datetime
     today = today or _today()
     p = pathlib.Path(path) if path else None
@@ -274,15 +310,27 @@ def load_expected(path, countries, key_dir, persons=None, today=None):
     doc = _load(p)
     if not isinstance(doc, dict) or not isinstance(doc.get('holds'), dict): return {}, [f'{p.name}: unreadable or no "holds" object: not read'], []
     import kpc_answer_words as AW
-    who = {w.lower() for w in (persons if persons is not None else AW.persons(os.environ.get('KPC_PERSONS')))} | {'kpc owner'}
+    who = {w.lower() for w in (persons if persons is not None else AW.persons(os.environ.get('KPC_PERSONS')))}
     mine = set(str(countries or '').upper().split())
     held, notes, errors = {}, [], []
     for c, e in doc['holds'].items():
         if not CC_RE.match(str(c)) or not isinstance(e, dict): notes.append(f'{c}: not a country entry: ignored'); continue
-        if c not in mine: notes.append(f'{c}: not in this run\'s countries: ignored'); continue
+        if c not in mine: notes.append(f"{c}: not in this run's countries: ignored"); continue
         if not str(e.get('reason') or '').strip(): notes.append(f'{c}: no reason: ignored, built as a normal country'); continue
-        if not AW.signed_off(e.get('approved_by'), e.get('approved_date'), who, today=today):
+        if not _hold_signed(e.get('approved_by'), e.get('approved_date'), who, today=today):
             notes.append(f"{c}: not signed (approved_by {e.get('approved_by')!r}, approved_date {e.get('approved_date')!r}): ignored, built as a normal country"); continue
+        if not str(e.get('source') or '').strip():
+            notes.append(f'{c}: no source: ignored, built as a normal country'); continue
+        want = str(e.get('copy_sha256') or '').strip().lower()
+        if not re.fullmatch(r'[0-9a-f]{64}', want):
+            notes.append(f'{c}: no copy_sha256 (the hold is for one saved copy): ignored, built as a normal country'); continue
+        got = _copy_file_sha(cache_dir, c)
+        if got is not None and got != want:
+            if not got:
+                notes.append(f'{c}: no saved copy W-{c}.json.gz in the cache to check the hold against: ignored, built as a normal country')
+            else:
+                notes.append(f'{c}: copy sha mismatch (hold is for {want[:12]}, this copy {got[:12]}): ignored, built as a normal country')
+            continue
         rb = str(e.get('review_by') or '').strip()
         if rb:
             try: rbd = datetime.date.fromisoformat(rb[:10])
@@ -297,8 +345,9 @@ def main_expected(argv):
     ap = argparse.ArgumentParser(description='the owner-signed expected holds of this run (the plan job)')
     ap.add_argument('expected'); ap.add_argument('--file', required=True); ap.add_argument('--countries', required=True)
     ap.add_argument('--key', default='data/world-key')
+    ap.add_argument('--cache', default='', help='folder of W-<CC>.json.gz copies; a hold applies only when the copy sha matches')
     a = ap.parse_args(argv)
-    held, notes, errors = load_expected(a.file, a.countries, a.key)
+    held, notes, errors = load_expected(a.file, a.countries, a.key, cache_dir=(a.cache or None))
     for n in notes: print(f'::warning title=Expected holds::{n}', file=sys.stderr, flush=True)
     for c, why in held.items(): print(f'::notice title=World key {c}::{c} held (expected): keeping the previous join. {why}', file=sys.stderr, flush=True)
     if errors:

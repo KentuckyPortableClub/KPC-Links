@@ -1,16 +1,22 @@
 {
- "about": "Expected holds of the world answer key (KPC owner, 2026-11-11). Read ONLY by `kpc_world_key_join.py expected` in the plan job of kpc-world-key.yml, and only from a file named *.approved.json. A country listed here with a reason, approved_by naming the KPC owner or a person in KPC_PERSONS, an approved_date that is a real date not in the future, and no passed review_by date, is NOT built: it keeps its previous join on main (key, review, tracts, outlines, index row and review-file rows) and the run can finish green. Any other entry is ignored and the country is built as normal. A country with no joined park on main cannot be held (the run stops red). Remove a country here to rebuild it.",
+ "about": "Expected holds of the world answer key (KPC owner, 2026-11-11). Read ONLY by `kpc_world_key_join.py expected` in the plan job of kpc-world-key.yml, and only from a file named *.approved.json. A country listed here is NOT built when it has a reason, a real person's sign-off (approved_by names Brandon / KZ4CP or another person in KPC_PERSONS; the display form 'Brandon (KZ4CP)' counts; 'KPC owner' is not a signature), a source, an approved_date that is a real date not in the future, a copy_sha256 that is the sha256 of that country's saved copy W-<CC>.json.gz, and no passed review_by date: it keeps its previous join on main (key, review, tracts, outlines, index row and review-file rows) and the run can finish green. The plan job checks the bound sha against the current boundary-cache copy; a changed or missing copy does not inherit the hold. Any other entry is ignored and the country is built as normal. A country with no joined park on main cannot be held (the run stops red). Remove a country here to rebuild it.",
  "holds": {
   "AU": {
    "reason": "Saved copy W-AU is short: 365,915 of the 3,743,432 records its layers report, so the master gate moves it aside and the AU shard goes red. Its baseline is not signed, pending a check of the trimmed size against the AU parks list.",
-   "approved_by": "KPC owner",
+   "approved_by": "Brandon (KZ4CP), decided by Quality per his delegation",
    "approved_date": "2026-11-11",
+   "source": "Quality chat t184u, 11:02 PM CT",
+   "copy": "W-AU",
+   "copy_sha256": "8c8b75795c77ee02ceb01360548258ba93f8b47f44a8c26ded55ba3080052598",
    "review_by": ""
   },
   "MT": {
    "reason": "Saved copy W-MT holds 14 N2K records, but the current MT key joins 39 (27 Ambjent Malta FeatureServer/36, which is not on the box, plus 12 N2K SPA), so the master gate moves the copy aside. Its 14-record baseline is not signed. Owner decision t1419u (Nov 11, 2026): sign MT as an expected hold; do not sign a 14-record baseline.",
-   "approved_by": "KPC owner",
+   "approved_by": "Brandon (KZ4CP)",
    "approved_date": "2026-11-11",
+   "source": "Super chat t1419u 10:49 PM CT; Quality chat t181u 10:56 PM CT",
+   "copy": "W-MT",
+   "copy_sha256": "9c94cb55777d417b1fcf92aae95308dcd539415d0e833ca1ff8af574908f3b7b",
    "review_by": ""
   }
  }
