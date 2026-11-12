@@ -13,7 +13,9 @@
   5. area hashes (kpc_area_hash.py on this tree): a table change for ONE area moves only that area's hash, for each kind; an entry
      shared by a state set moves exactly those states; a change to a code-valued shared entry moves every area; unattributable
      table data (an unknown area code, an entry with no areas, another shape, an unreadable file) moves every area (fail closed);
-     header texts move nothing; the US / world composition is ah2, Canada / 2-fers keep ah1.
+     header texts move nothing; the US / world composition is ah2, Canada / 2-fers keep ah1;
+  6. the table files are in the rules hash (Quality must-fix M1): data/us-key/area-tables.json is in the US RULE_FILES,
+     data/world-key/area-tables.json is in the world RULE_FILES; a later edit to either file moves that key's hash.
 Prints PASS / FAIL lines; the last line is ALL PASS or SOME FAILED (exit 1). SKIP lines when commit OLD is not in a shallow clone."""
 import ast, gzip, hashlib, json, os, pathlib, re, shutil, socket, subprocess, sys, tempfile
 
@@ -401,4 +403,32 @@ check(not any(k.startswith('code-area:') for p in K.Kind(K.Tree(ROOT), 'world').
 check(not any(k.startswith('shared:') and 'area-tables' in k for k in K.Kind(K.Tree(ROOT), 'us').parts()['AL'])
       and not any(k.startswith('shared:') and 'area-tables' in k for k in K.Kind(K.Tree(ROOT), 'world').parts()['DE']),
       'the shipped table files have nothing unattributable (no shared part from them)')
+# ================================================================ 6. the table files are in the rules hash (Quality M1)
+check('data/us-key/area-tables.json' in F.RULE_FILES['us-key'] and (ROOT / 'data/us-key/area-tables.json').is_file(),
+      'data/us-key/area-tables.json is in the US RULE_FILES and exists')
+check('data/world-key/area-tables.json' in F.RULE_FILES['world-key'] and (ROOT / 'data/world-key/area-tables.json').is_file(),
+      'data/world-key/area-tables.json is in the world RULE_FILES and exists')
+check('data/us-key/area-tables.json' not in F.RULE_FILES['ca-key'] + F.RULE_FILES['fers']
+      and 'data/world-key/area-tables.json' not in F.RULE_FILES['ca-key'] + F.RULE_FILES['fers']
+      and 'data/us-key/area-tables.json' not in F.RULE_FILES['world-key']
+      and 'data/world-key/area-tables.json' not in F.RULE_FILES['us-key'],
+      'each table file is only in its own key\'s RULE_FILES')
+
+
+def _hash_with(kind, patches):
+    with tempfile.TemporaryDirectory() as t:
+        root = pathlib.Path(t)
+        for rel in list(F.RULE_FILES[kind]) + [F.VERSION_FILE]:
+            src, dest = ROOT / rel, root / rel
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(patches[rel] if rel in patches else src.read_bytes())
+        return F.rules_hash(kind, root)
+
+
+check(_hash_with('us-key', {}) == F.rules_hash('us-key') and _hash_with('world-key', {}) == F.rules_hash('world-key'),
+      'a copied tree hashes the same as this checkout')
+check(_hash_with('us-key', {'data/us-key/area-tables.json': (ROOT / 'data/us-key/area-tables.json').read_bytes() + b'\n'}) != F.rules_hash('us-key'),
+      'US: an edit to data/us-key/area-tables.json moves the US rules hash')
+check(_hash_with('world-key', {'data/world-key/area-tables.json': (ROOT / 'data/world-key/area-tables.json').read_bytes() + b'\n'}) != F.rules_hash('world-key'),
+      'world: an edit to data/world-key/area-tables.json moves the world rules hash')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)
