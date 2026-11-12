@@ -5,6 +5,7 @@
   canonical JSON, taken at that base). A key run that re-grades one of them makes this fail on purpose: look before you accept it.
 - The trail / river 2-fer minimum stretch is still 25 m (kpc_fers.STRETCH, read from the source) and the four rules hashes are
   the ones the handoff names (US 46ef34a04ab0, CA 4b4176190334, world 9358c2ede2d5, fers aa7561256260): no trail join moved one.
+  (KPC owner, 2026-11-11: job 6 later moved the world hash to 889d37136cf8, approved; the US, CA and fers hashes are still these.)
 - No trail line geometry lives in KPC-Links: data/trails/ stays git-ignored (KPC-Data holds the one true copy, laid over at build
   time by kpc_overlay.sh) and no tracked file is a trail line copy (data/trails/* or *trail-lines*.geojson.gz)."""
 import hashlib, json, pathlib, re, subprocess, sys
@@ -93,7 +94,8 @@ m = re.search(r'^STRETCH = ([0-9.]+)\s*$', src, re.M)
 check(m and float(m.group(1)) == 25.0, f'the trail / river 2-fer stretch is still 25 m (STRETCH = {m.group(1) if m else None})')
 import kpc_key_freeze as F
 got = {k: F.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
-want = {'us-key': '46ef34a04ab0', 'ca-key': '4b4176190334', 'world-key': '9358c2ede2d5', 'fers': 'cef323de4c9a'}
+# KPC owner, 2026-11-11 (job 6, world rules change approved): the world hash moved 9358c2ede2d5 -> 889d37136cf8 (three French PatriNat layers); US and CA are as before; fers is main's cef323de4c9a (#157)
+want = {'us-key': '46ef34a04ab0', 'ca-key': '4b4176190334', 'world-key': '889d37136cf8', 'fers': 'cef323de4c9a'}
 check(got == want, f'rules hashes unchanged (got {got})')
 
 gi = (HERE / '.gitignore').read_text(encoding='utf-8').split('\n')

@@ -149,8 +149,12 @@ if OLD:
     if _ren and 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung' in str(_ren[0]) and '_perimeter' not in str(_ren[0]):
         diff['CH'] = [x for x in diff.get('CH', []) if x != 'BAFU parks of national importance']
         added['CH'] = [x for x in added.get('CH', []) if x != 'BAFU parks of national importance']
+    # KPC owner, 2026-11-11 (French PatriNat layers, world rules 9358c2ede2d5 -> 889d37136cf8 APPROVED): France reads three more IGN
+    # Geoplateforme layers; those three additions, and only those, are allowed here. Every other source is as before.
+    _fr_new = ['IGN Géoplateforme ZNIEFF type II sea', 'IGN Géoplateforme Conservatoire du littoral', 'IGN Géoplateforme RNN protection perimeters']
+    if sorted(added.get('FR', [])) == sorted(_fr_new): added['FR'] = []
     check(diff == {'CH': ['EEA Natura 2000'], 'NO': ['EEA Natura 2000']} and not any(added.values()) and set(g0['SRC']) == set(g['SRC']),
-          f'B6: vs origin/main only CH and NO lose one source, EEA Natura 2000; nothing else changes ({diff})')
+          f'B6: vs origin/main only CH and NO lose one source, EEA Natura 2000, and France gains only its three new PatriNat layers; nothing else changes ({diff}; added {added})')
     # Nov 7 evening (Brandon: the 72 approved land-class layers go in): extra-layers.json may GROW, only with layers from
     # data/key-layers-landclass-approved.json; every layer listed on origin/main is still read the same way
     _ok = {str(x.get('url') or '').rstrip('/').lower() for x in (json.load(open(ROOT / 'data/key-layers-landclass-approved.json')).get('approved') or [])} \

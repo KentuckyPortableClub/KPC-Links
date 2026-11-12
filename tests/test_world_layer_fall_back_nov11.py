@@ -101,11 +101,16 @@ check('post-check: both lists reach the report, its summary and a warning line',
 # the rules hash and its declaration
 import kpc_key_freeze as F, kpc_preflight as PF
 sc = json.load(open(ROOT / '.github/world-key-rule-scope.json'))
-check('world rules: a scope entry from the old hash, and the newest changelog line names old -> new, approved', sc['changes'][-1]['from'] == '096a551a8cb6'
+# KPC owner, 2026-11-11 (job 6): a later world change (three French PatriNat layers, 9358c2ede2d5 -> 889d37136cf8) is now the newest one,
+# so this change is checked as a link of the chain: its scope entry from 096a551a8cb6 is kept, its approved changelog line still names
+# 096a551a8cb6 -> 9358c2ede2d5, and the next entry starts from 9358c2ede2d5. The current hash must equal the newest changelog line.
+_log = open(ROOT / 'docs/key-rules-change.txt').read()
+_ids = [c.get('from') for c in sc['changes']]
+check('world rules: a scope entry from the old hash, and its changelog line names old -> new, approved (the chain goes on from it)',
+      '096a551a8cb6' in _ids and (_ids.index('096a551a8cb6') == len(_ids) - 1 or _ids[_ids.index('096a551a8cb6') + 1] == '9358c2ede2d5')
       and F.SCOPE_FILES['world-key'] == '.github/world-key-rule-scope.json' and '.github/world-key-rule-scope.json' in F.RULE_FILES['world-key']
       and F.rules_hash('world-key') == PF.newest_hash('world-key')
-      and f"world rules 096a551a8cb6 -> {F.rules_hash('world-key')}" in PF.changelog_hashes(open(ROOT / 'docs/key-rules-change.txt').read(), 'world-key')[2]
-      and 'APPROVED, decided_by KPC owner, 2026-11-11' in PF.changelog_hashes(open(ROOT / 'docs/key-rules-change.txt').read(), 'world-key')[2])
+      and any('world rules 096a551a8cb6 -> 9358c2ede2d5' in ln and 'APPROVED, decided_by KPC owner, 2026-11-11' in ln for ln in _log.splitlines()))
 # Nov 11 (overlap finder, 25 m): the 2-fer hash moved later in its own entry; it must equal its newest changelog line (no literal to edit on a rebase)
 check('the US and Canada hashes did not move; the 2-fer hash is the one its newest changelog line names', (F.rules_hash('us-key'), F.rules_hash('ca-key')) == ('46ef34a04ab0', '4b4176190334') and F.rules_hash('fers') == PF.newest_hash('fers'))
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

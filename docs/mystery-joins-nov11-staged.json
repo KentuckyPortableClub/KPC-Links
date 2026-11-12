@@ -1,5 +1,5 @@
 {
- "about": "Job 2 (Nov 11 2026): the 17 strong Nov 11 mystery-park matches and the 3 old pins, one row each. NOTHING in this file is read by a key builder: it is the checked record of what each park needs. status: joined-live = the live key already joins the Nov 11 record (pin-tested here from the saved outline); wiring-proposal = the override is already in the live overrides and needs only the layer wired (separate proposal commit); staged = a ready-to-apply entry, kept OUT of the live key until the listed saved copy exists and/or the owner says YES; held = an owner hold that this job does not lift; not-joined = checked and left off, with the reason. Entries for data/us-key/overrides.json are written in the repo's own held form (join_held / alias_held, which no builder reads); to apply one, move its ids / names to join / alias (+ alias_ok_names) and add decided_by. data/us-key/overrides.json is already over 1 MB, so this job did not edit it. Pins: the POTA pins are copied here only to test them; no pin is changed anywhere. Owner answers 2026-11-11: YES on US-10184, US-10195 and US-7374 (those US overrides wait for prep/nov11-split-overrides); US-13474, US-11820 and US-12735 stay held; FR-14979 owner no is applied in world-key/overrides.json. Recorded owner answers (owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md): item 2 applies the FR-14979 no; item 4 keeps the CA/TX sgakd wiring and adds CECH (US-0915); item 6 is the YES aliases and the Kyle Ranch hold; item 1 keeps US-11820 and US-12735 held; item 7 leaves Palmito off.",
+ "about": "Job 2 (Nov 11 2026): the 17 strong Nov 11 mystery-park matches and the 3 old pins, one row each. NOTHING in this file is read by a key builder: it is the checked record of what each park needs. status: joined-live = the live key already joins the Nov 11 record (pin-tested here from the saved outline); wiring-proposal = the override is already in the live overrides and needs only the layer wired (separate proposal commit); staged = a ready-to-apply entry, kept OUT of the live key until the listed saved copy exists and/or the owner says YES; held = an owner hold that this job does not lift; not-joined = checked and left off, with the reason. Entries for data/us-key/overrides.json are written in the repo's own held form (join_held / alias_held, which no builder reads); to apply one, move its ids / names to join / alias (+ alias_ok_names) and add decided_by. data/us-key/overrides.json is already over 1 MB, so this job did not edit it. Pins: the POTA pins are copied here only to test them; no pin is changed anywhere. Owner answers 2026-11-11: YES on US-10184, US-10195 and US-7374 (those US overrides wait for prep/nov11-split-overrides); US-13474, US-11820 and US-12735 stay held; FR-14979 owner no is applied in world-key/overrides.json. Recorded owner answers (owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md): item 2 applies the FR-14979 no; item 4 keeps the CA/TX sgakd wiring and adds CECH (US-0915); item 6 is the YES aliases and the Kyle Ranch hold; item 1 keeps US-11820 and US-12735 held; item 7 leaves Palmito off. Job 6 (KPC owner, 2026-11-11): applied = the entry is in the live data/world-key/overrides.json and takes effect at the next world key run, after the world key reads the three French PatriNat layers (world rules 9358c2ede2d5 -> 889d37136cf8); until_next_run says what the live key file shows until then (joined-live = it still joins the record in saved_copy).",
  "made": "2026-11-11",
  "base": {
   "links": "11f908d9dc05c1f2730168751ce4e97436d64a54",
@@ -201,7 +201,7 @@
     43.2662,
     6.72905
    ],
-   "status": "staged",
+   "status": "applied",
    "nov11": {
     "record": "marine type-2 ZNIEFF 93M000091, patrinat_znieff2_mer:znieff2_mer feature znieff2_mer.7, 3,214 ha",
     "pin": "inside (WFS, Nov 11)"
@@ -223,7 +223,7 @@
    },
    "entry": {
     "file": "data/world-key/overrides.json",
-    "staged": {
+    "live": {
      "ids": [
       [
        "IGN Géoplateforme ZNIEFF type II sea",
@@ -234,23 +234,14 @@
       "znieff1.16597",
       "Corniche Varoise"
      ],
-     "why": "2026-11-11 Nov 11 mystery answers: the marine type-2 ZNIEFF 93M000091 holds the pin; the land ZNIEFF-1 of the same name and the Natura site Corniche Varoise are not this park."
+     "when": "2026-11-11",
+     "why": "2026-11-11 Nov 11 mystery answers: the marine type-2 ZNIEFF 93M000091 (feature znieff2_mer.7) holds the pin; the land ZNIEFF-1 of the same name (znieff1.16597, 2.6 km from the pin) and the Natura site Corniche Varoise are not this park. Joins by source + record id from the first world key run that reads the marine layer (job 6); until then the live key joins nothing, as now."
     },
-    "source_note": "kpc_world_key.py reads ZNIEFF type I, type II and type I sea from the Géoplateforme, not type II sea: adding that source changes a rule file (world hash 9358c2ede2d5 moves): owner OK first"
+    "source_note": "job 6: kpc_world_key.py reads patrinat_znieff2_mer:znieff2_mer as IGN Géoplateforme ZNIEFF type II sea (world hash 9358c2ede2d5 -> 889d37136cf8)"
    },
-   "needs": [
-    {
-     "host": "data.geopf.fr",
-     "service": "WFS",
-     "layer": "patrinat_znieff2_mer:znieff2_mer",
-     "feature": "znieff2_mer.7 (93M000091)",
-     "refs": [
-      "FR-10548"
-     ],
-     "saved_copy_checked": "KPC-Links and KPC-Data: no znieff2_mer records (the live Links world key has no m for this park; KPC-Data's older world key joined the land zone znieff1.16597)"
-    }
-   ],
-   "reason": "The Nov 11 record is in a layer the world key does not read and that is not saved. Do not take Corniche Varoise (Natura, in \"c\") or the land zone of the same name."
+   "needs": [],
+   "reason": "The Nov 11 record is in a layer the world key does not read and that is not saved. Do not take Corniche Varoise (Natura, in \"c\") or the land zone of the same name. Job 6 (2026-11-11): the world key now reads the marine type-2 layer live from the Géoplateforme (no hand download needed) and the staged entry is applied: ids znieff2_mer.7, no for the land zone znieff1.16597 and for Corniche Varoise. It joins at the next world key run.",
+   "until_next_run": "no join (as now)"
   },
   "FR-10432": {
    "ref": "FR-10432",
@@ -261,7 +252,7 @@
     45.9395,
     -1.27479
    ],
-   "status": "joined-live",
+   "status": "applied",
    "nov11": {
     "record": "INPN FR1100689 (Conservatoire du littoral), patrinat_cdl:cdl feature cdl.502, 5.29 ha",
     "pin": "outside, 2.81 km"
@@ -281,20 +272,23 @@
     "box_km": 2.85,
     "key_bk_km": 2.85
    },
-   "entry": null,
-   "needs": [
-    {
-     "host": "data.geopf.fr",
-     "service": "WFS",
-     "layer": "patrinat_cdl:cdl",
-     "feature": "cdl.502 (FR1100689)",
-     "refs": [
-      "FR-10432"
+   "entry": {
+    "file": "data/world-key/overrides.json",
+    "live": {
+     "ids": [
+      [
+       "IGN Géoplateforme Conservatoire du littoral",
+       "cdl.502"
+      ]
      ],
-     "saved_copy_checked": "none in either checkout"
-    }
-   ],
-   "reason": "Already joined live to the EEA copy of the SAME national record (site I056FR1100689 = FR1100689), graded approx (W-2: EU compilation until France's own layer is read). To become official the world key needs patrinat_cdl as a source = a rule-file change (world hash moves): owner OK. Nothing written."
+     "when": "2026-11-11",
+     "why": "2026-11-11 Nov 11 mystery answers: Conservatoire du littoral site FR1100689 (feature cdl.502) is this park; the pin is 2.8 km outside it. The live key joins the EEA copy of the same record (5816, I056FR1100689, approximate). From the first world key run that reads the CdL layer (job 6) the national record joins and W-2 drops the EEA copy; the EEA copy is not refused, so it stays the outline if that layer cannot be read."
+    },
+    "source_note": "job 6: kpc_world_key.py reads patrinat_cdl:cdl as IGN Géoplateforme Conservatoire du littoral (world hash 9358c2ede2d5 -> 889d37136cf8)"
+   },
+   "needs": [],
+   "reason": "Already joined live to the EEA copy of the SAME national record (site I056FR1100689 = FR1100689), graded approx (W-2: EU compilation until France's own layer is read). To become official the world key needs patrinat_cdl as a source = a rule-file change (world hash moves): owner OK. Nothing written. Job 6 (2026-11-11): the world key now reads that layer live from the Géoplateforme (no hand download needed) and the entry ids cdl.502 is applied. At the next world key run the national record joins (official) and W-2 drops the EEA copy 5816; until then the live key still joins the EEA copy (approximate). The EEA copy is not refused, so it stays the outline if the new layer cannot be read.",
+   "until_next_run": "joined-live"
   },
   "FR-11106": {
    "ref": "FR-11106",
@@ -305,7 +299,7 @@
     45.52,
     2.77
    ],
-   "status": "joined-live",
+   "status": "applied",
    "nov11": {
     "record": "FR9500105 protection perimeter, patrinat_pprnn:pprnn feature pprnn.1, 26.2 ha",
     "pin": "outside, 3.55 km"
@@ -325,20 +319,23 @@
     "box_km": 3.43,
     "key_bk_km": 3.54
    },
-   "entry": null,
-   "needs": [
-    {
-     "host": "data.geopf.fr",
-     "service": "WFS",
-     "layer": "patrinat_pprnn:pprnn",
-     "feature": "pprnn.1 (FR9500105)",
-     "refs": [
-      "FR-11106"
+   "entry": {
+    "file": "data/world-key/overrides.json",
+    "live": {
+     "ids": [
+      [
+       "IGN Géoplateforme RNN protection perimeters",
+       "pprnn.1"
+      ]
      ],
-     "saved_copy_checked": "none in either checkout"
-    }
-   ],
-   "reason": "Already joined live to the EEA copy of the same record (I056FR9500105), approx. Official needs patrinat_pprnn as a world source (world hash moves): owner OK. The RNN itself (FR3600105) is not this park."
+     "when": "2026-11-11",
+     "why": "2026-11-11 Nov 11 mystery answers: the protection perimeter FR9500105 of the Vallée de Chaudefour national nature reserve (feature pprnn.1) is this park; the pin is about 3.5 km outside it. The reserve itself (FR3600105) is not this park. The live key joins the EEA copy of the same record (3819, I056FR9500105, approximate). From the first world key run that reads the perimeter layer (job 6) the national record joins and W-2 drops the EEA copy; the EEA copy is not refused, so it stays the outline if that layer cannot be read."
+    },
+    "source_note": "job 6: kpc_world_key.py reads patrinat_pprnn:pprnn as IGN Géoplateforme RNN protection perimeters (world hash 9358c2ede2d5 -> 889d37136cf8)"
+   },
+   "needs": [],
+   "reason": "Already joined live to the EEA copy of the same record (I056FR9500105), approx. Official needs patrinat_pprnn as a world source (world hash moves): owner OK. The RNN itself (FR3600105) is not this park. Job 6 (2026-11-11): the world key now reads that layer live from the Géoplateforme (no hand download needed) and the entry ids pprnn.1 is applied. At the next world key run the national record joins (official) and W-2 drops the EEA copy 3819; until then the live key still joins the EEA copy (approximate). The EEA copy is not refused, so it stays the outline if the new layer cannot be read.",
+   "until_next_run": "joined-live"
   },
   "FR-11650": {
    "ref": "FR-11650",
@@ -959,8 +956,8 @@
  },
  "counts": {
   "owner-yes": 3,
-  "staged": 1,
-  "joined-live": 8,
+  "applied": 3,
+  "joined-live": 6,
   "owner-no-applied": 1,
   "held": 3,
   "not-joined": 2,

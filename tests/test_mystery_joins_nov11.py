@@ -56,7 +56,7 @@ WANT = {'US-10184', 'US-10195', 'US-7374', 'FR-10548', 'FR-10432', 'FR-11106', '
         'US-13474', 'US-11820', 'US-12735', 'US-10274', 'US-4376', 'US-0754', 'US-11900'}
 # 1.
 check(set(P) == WANT and len(P) == 20, 'the file names exactly the 20 parks')
-check(all(p['status'] in ('joined-live', 'wiring-proposal', 'staged', 'held', 'not-joined', 'owner-yes', 'owner-no-applied') and len(p.get('reason') or '') > 20 for p in P.values()), 'each has a known status and a reason')
+check(all(p['status'] in ('joined-live', 'wiring-proposal', 'staged', 'held', 'not-joined', 'owner-yes', 'owner-no-applied', 'applied') and len(p.get('reason') or '') > 20 for p in P.values()), 'each has a known status and a reason')
 check(P['US-11820']['status'] == 'held' and P['US-12735']['status'] == 'held' and P['US-13474']['status'] == 'held', 'US-11820, US-12735 and US-13474 stay held')
 check(P['US-10274']['status'] == 'not-joined', 'Palmito (the battlefield is the bigger place) is not joined')
 check(all(P[r]['status'] == 'owner-yes' and P[r]['owner_decision'] == 'yes' for r in ('US-10184', 'US-10195', 'US-7374')), 'US-10184, US-10195 and US-7374 are owner YES')
@@ -96,10 +96,23 @@ check(any(str(x[0]) == 'znieff2.828' for x in load(ROOT / 'data/world-key/FR.jso
       'FR-14979: the live world key file still joins znieff2.828 until the next world key run')
 check(all(r not in uo or 'Deer Park SHA-WPRA' not in ((uo.get(r) or {}).get('alias') or []) for r in ('US-10184',)),
       'the owner-YES aliases are not yet in data/us-key/overrides.json')
+# KPC owner, 2026-11-11 (job 6): the three French parks are 'applied': their entry is live in data/world-key/overrides.json and names, by
+# source label and record id, a layer kpc_world_key.py now reads; the live key file still shows the old state until the next world key run.
+APPLIED = {'FR-10548': ('IGN Géoplateforme ZNIEFF type II sea', 'znieff2_mer.7'), 'FR-10432': ('IGN Géoplateforme Conservatoire du littoral', 'cdl.502'),
+           'FR-11106': ('IGN Géoplateforme RNN protection perimeters', 'pprnn.1')}
+_wk = (ROOT / '.github/scripts/kpc_world_key.py').read_text(encoding='utf-8')
+check({r for r, p in P.items() if p['status'] == 'applied'} == set(APPLIED), 'job 6: exactly FR-10548, FR-10432 and FR-11106 are applied')
+for r, (lab, rid) in APPLIED.items():
+    e = (P[r].get('entry') or {}).get('live') or {}
+    check(e == wo.get(r) and e.get('ids') == [[lab, rid]] and P[r].get('needs') == [], f'{r}: the applied entry is the live world override (ids {rid}), no hand download left')
+check("('type II sea', 'patrinat_znieff2_mer:znieff2_mer')" in _wk and "('Conservatoire du littoral', 'patrinat_cdl:cdl')" in _wk and "('RNN protection perimeters', 'patrinat_pprnn:pprnn')" in _wk,
+      'job 6: kpc_world_key.py reads the three layers those ids name')
+check(wo['FR-10548'].get('no') == ['znieff1.16597', 'Corniche Varoise'], 'FR-10548: the land zone of the same name and Corniche Varoise are refused')
+check(all(P[r]['until_next_run'] == 'joined-live' for r in ('FR-10432', 'FR-11106')) and P['FR-10548']['until_next_run'] == 'no join (as now)', 'job 6: until_next_run says what the live key shows until the next run')
 
 # 4. joined-live: the live world key joins the record; the saved outline gives the documented distance
 for r, p in P.items():
-    if not r.startswith(('FR-', 'RO-')) or p['status'] not in ('joined-live', 'not-joined'): continue
+    if not r.startswith(('FR-', 'RO-')) or (p['status'] not in ('joined-live', 'not-joined') and p.get('until_next_run') != 'joined-live'): continue
     k = load(ROOT / p['key'])['parks'][r]
     rid = p['saved_copy']['records'][0][0]
     check(any(str(x[0]) == str(rid) for x in k.get('m') or []), f'{r}: the live world key joins {rid}')
@@ -143,7 +156,8 @@ for r in ('US-10184', 'US-10195'):
 
 # 7. hashes
 import kpc_key_freeze as KF
-check((KF.rules_hash('us-key'), KF.rules_hash('ca-key'), KF.rules_hash('world-key'), KF.rules_hash('fers')) == ('46ef34a04ab0', '4b4176190334', '9358c2ede2d5', 'cef323de4c9a'),
+# KPC owner, 2026-11-11 (job 6, world rules change approved): the world hash moved 9358c2ede2d5 -> 889d37136cf8 (three French PatriNat layers); US and CA are as before; fers is main's cef323de4c9a (#157)
+check((KF.rules_hash('us-key'), KF.rules_hash('ca-key'), KF.rules_hash('world-key'), KF.rules_hash('fers')) == ('46ef34a04ab0', '4b4176190334', '889d37136cf8', 'cef323de4c9a'),
       'US / CA / world / fers rules hashes unchanged')
 print(f'{"ALL PASS" if not bad else str(bad) + " FAILED"}')
 sys.exit(1 if bad else 0)

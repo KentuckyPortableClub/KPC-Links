@@ -9,6 +9,16 @@
    "scope": {
     "all": true
    }
+  },
+  {
+   "id": "2026-11-11-fr-patrinat-layers",
+   "when": "2026-11-11",
+   "from": "9358c2ede2d5",
+   "why": "France reads three more PatriNat layers from the IGN Géoplateforme WFS it already reads the ZNIEFF layers from: marine ZNIEFF type II (patrinat_znieff2_mer), Conservatoire du littoral sites (patrinat_cdl) and the protection perimeters of national nature reserves (patrinat_pprnn); only France reads them. With them, the saved-outline step judges a park by the pieces W-2 keeps (the agency pieces when a park also has EEA pieces), so a park joined to an agency WFS record and its EEA copy gets a saved outline the page can draw. That step runs for every country, so the scope is all; no join changes outside France. decided_by KPC owner, 2026-11-11.",
+   "scope": {
+    "all": true
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-11"
   }
  ]
 }
