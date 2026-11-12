@@ -1,8 +1,74 @@
 {
- "updated": "2026-11-11T14:03:14+00:00",
+ "updated": "2026-11-12T15:06:56+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13660",
+   "prog": "pota",
+   "name": "Hidden Splendor BLM Backcountry Airstrip",
+   "st": [
+    "UT"
+   ],
+   "la": 38.5686,
+   "lo": -110.957,
+   "found": "2026-11-12"
+  },
+  {
+   "ref": "US-13659",
+   "prog": "pota",
+   "name": "Red Canyon USFS Recreation Park",
+   "st": [
+    "UT"
+   ],
+   "la": 37.7456,
+   "lo": -112.319,
+   "found": "2026-11-12"
+  },
+  {
+   "ref": "US-13658",
+   "prog": "pota",
+   "name": "Wild Rose Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 45.6292,
+   "lo": -92.9611,
+   "found": "2026-11-12"
+  },
+  {
+   "ref": "US-13657",
+   "prog": "pota",
+   "name": "Nessel Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 45.7061,
+   "lo": -93.1146,
+   "found": "2026-11-12"
+  },
+  {
+   "ref": "US-13656",
+   "prog": "pota",
+   "name": "Rush Lake Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 45.683,
+   "lo": -93.0298,
+   "found": "2026-11-12"
+  },
+  {
+   "ref": "US-13655",
+   "prog": "pota",
+   "name": "Janet Johnson Memorial Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 45.4976,
+   "lo": -92.9513,
+   "found": "2026-11-12"
+  },
   {
    "ref": "US-12237",
    "prog": "pota",
