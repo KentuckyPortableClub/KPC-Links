@@ -217,7 +217,7 @@
    "recommend": "fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)",
    "reasons": [
     "overrides.json joins sgakd1125, but this key's row lists no record at all",
-    "sgakd1125: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CO, HI, MA, NE, NY, OH, PA, RI, SD in data/state-gis.json, so the AZ key never reads it (add the layer for AZ, limited to the joined records)"
+    "sgakd1125: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CA, CO, HI, MA, NE, NY, OH, PA, RI, SD, TX in data/state-gis.json, so the AZ key never reads it (add the layer for AZ, limited to the joined records)"
    ],
    "records": [],
    "fault": "key setup"
@@ -280,7 +280,7 @@
    "recommend": "fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)",
    "reasons": [
     "overrides.json joins sgakd1159, but this key's row lists no record at all",
-    "sgakd1159: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CO, HI, MA, NE, NY, OH, PA, RI, SD in data/state-gis.json, so the CA key never reads it (add the layer for CA, limited to the joined records)"
+    "sgakd1159: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up for CA in data/state-gis.json, but this key's row does not list the record: the key was built before the layer was set up for CA, its 'where' filter leaves the record out, or the record is gone"
    ],
    "records": [],
    "fault": "key setup"
@@ -295,7 +295,7 @@
    "recommend": "fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)",
    "reasons": [
     "overrides.json joins sgakd1220, but this key's row lists no record at all",
-    "sgakd1220: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CO, HI, MA, NE, NY, OH, PA, RI, SD in data/state-gis.json, so the CA key never reads it (add the layer for CA, limited to the joined records)"
+    "sgakd1220: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up for CA in data/state-gis.json, but this key's row does not list the record: the key was built before the layer was set up for CA, its 'where' filter leaves the record out, or the record is gone"
    ],
    "records": [],
    "fault": "key setup"
@@ -863,7 +863,7 @@
    "recommend": "fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)",
    "reasons": [
     "overrides.json joins sgakd1143, but this key's row lists no record at all",
-    "sgakd1143: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CO, HI, MA, NE, NY, OH, PA, RI, SD in data/state-gis.json, so the LA key never reads it (add the layer for LA, limited to the joined records)"
+    "sgakd1143: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CA, CO, HI, MA, NE, NY, OH, PA, RI, SD, TX in data/state-gis.json, so the LA key never reads it (add the layer for LA, limited to the joined records)"
    ],
    "records": [],
    "fault": "key setup"
@@ -2310,7 +2310,7 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for nca22323 in this build, so its shape could not be checked (the saved outlines are from 2026-11-11; a layer added since is not in them)"
+    "no saved outline for nca22323 in this build, so its shape could not be checked (the saved outlines are from 2026-11-12; a layer added since is not in them)"
    ],
    "records": [
     {
@@ -2605,7 +2605,7 @@
    "recommend": "fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)",
    "reasons": [
     "overrides.json joins sgakd1189, but this key's row lists no record at all",
-    "sgakd1189: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CO, HI, MA, NE, NY, OH, PA, RI, SD in data/state-gis.json, so the OR key never reads it (add the layer for OR, limited to the joined records)"
+    "sgakd1189: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CA, CO, HI, MA, NE, NY, OH, PA, RI, SD, TX in data/state-gis.json, so the OR key never reads it (add the layer for OR, limited to the joined records)"
    ],
    "records": [],
    "other_states": [
@@ -2857,7 +2857,7 @@
    "recommend": "fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)",
    "reasons": [
     "overrides.json joins sgakd1245, but this key's row lists no record at all",
-    "sgakd1245: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CO, HI, MA, NE, NY, OH, PA, RI, SD in data/state-gis.json, so the TX key never reads it (add the layer for TX, limited to the joined records)"
+    "sgakd1245: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up for TX in data/state-gis.json, but this key's row does not list the record: the key was built before the layer was set up for TX, its 'where' filter leaves the record out, or the record is gone"
    ],
    "records": [],
    "fault": "key setup"
@@ -2871,7 +2871,7 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for wld280 in this build, so its shape could not be checked (the saved outlines are from 2026-11-11; a layer added since is not in them)"
+    "no saved outline for wld280 in this build, so its shape could not be checked (the saved outlines are from 2026-11-12; a layer added since is not in them)"
    ],
    "records": [
     {
@@ -2897,7 +2897,7 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for wbl281 in this build, so its shape could not be checked (the saved outlines are from 2026-11-11; a layer added since is not in them)"
+    "no saved outline for wbl281 in this build, so its shape could not be checked (the saved outlines are from 2026-11-12; a layer added since is not in them)"
    ],
    "records": [
     {
@@ -2933,7 +2933,7 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for rst9147 in this build, so its shape could not be checked (the saved outlines are from 2026-11-11; a layer added since is not in them)"
+    "no saved outline for rst9147 in this build, so its shape could not be checked (the saved outlines are from 2026-11-12; a layer added since is not in them)"
    ],
    "records": [
     {
@@ -2955,7 +2955,7 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for wbl303 in this build, so its shape could not be checked (the saved outlines are from 2026-11-11; a layer added since is not in them)"
+    "no saved outline for wbl303 in this build, so its shape could not be checked (the saved outlines are from 2026-11-12; a layer added since is not in them)"
    ],
    "records": [
     {
@@ -3235,7 +3235,7 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for 2097 in this build, so its shape could not be checked (the saved outlines are from 2026-11-11; a layer added since is not in them)"
+    "no saved outline for 2097 in this build, so its shape could not be checked (the saved outlines are from 2026-11-12; a layer added since is not in them)"
    ],
    "records": [
     {
@@ -3280,7 +3280,7 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for wbl259 in this build, so its shape could not be checked (the saved outlines are from 2026-11-11; a layer added since is not in them)"
+    "no saved outline for wbl259 in this build, so its shape could not be checked (the saved outlines are from 2026-11-12; a layer added since is not in them)"
    ],
    "records": [
     {
@@ -3302,7 +3302,7 @@
    "confidence": "low",
    "recommend": "a person looks (nothing changed)",
    "reasons": [
-    "no saved outline for 2117 in this build, so its shape could not be checked (the saved outlines are from 2026-11-11; a layer added since is not in them)"
+    "no saved outline for 2117 in this build, so its shape could not be checked (the saved outlines are from 2026-11-12; a layer added since is not in them)"
    ],
    "records": [
     {
@@ -3441,7 +3441,7 @@
    "recommend": "fix the key setup named below (nothing changed; the hand join stays, the POTA pin is never moved)",
    "reasons": [
     "overrides.json joins sgakd1186, but this key's row lists no record at all",
-    "sgakd1186: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CO, HI, MA, NE, NY, OH, PA, RI, SD in data/state-gis.json, so the WA key never reads it (add the layer for WA, limited to the joined records)"
+    "sgakd1186: layer sgakd (National Park Service (legal boundary) (park, state GIS table)) is set up only for AK, CA, CO, HI, MA, NE, NY, OH, PA, RI, SD, TX in data/state-gis.json, so the WA key never reads it (add the layer for WA, limited to the joined records)"
    ],
    "records": [],
    "other_states": [
@@ -9362,7 +9362,7 @@
    "state": "US-NV",
    "name": "Fairview Peak Earthquake Faults BLM Interpretive Site",
    "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside sgakh1249 (Numu Newe Special Management Area), a bigger area with another name",
+   "why": "the pin is inside sgnvh1249 (Numu Newe Special Management Area), a bigger area with another name",
    "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {
@@ -9994,7 +9994,7 @@
    "state": "US-NV",
    "name": "Wonder, Nevada BLM Historic Preservation Site",
    "code": "SUB_UNIT_OF_BROADER",
-   "why": "the pin is inside sgakh1249 (Numu Newe Special Management Area), a bigger area with another name",
+   "why": "the pin is inside sgnvh1249 (Numu Newe Special Management Area), a bigger area with another name",
    "next_step": "a park inside a bigger park is allowed and may be a 2-fer with it; it needs its own official boundary map (research list). Until then it stays on the Missing boundary list; the bigger park's shape is never its outline"
   },
   {

@@ -1150,7 +1150,7 @@
     "fname"
    ],
    "queued": 89,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 143,
@@ -1234,7 +1234,7 @@
     "HA_NAME"
    ],
    "queued": 13,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 17,
@@ -1276,7 +1276,7 @@
     "NCA_NAME"
    ],
    "queued": 11,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 25,
@@ -1360,7 +1360,7 @@
     "ACEC_NAME"
    ],
    "queued": 13,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 98,
@@ -1444,7 +1444,7 @@
     "HA_NAME"
    ],
    "queued": 105,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 185,
@@ -1486,7 +1486,7 @@
     "NCA_NAME"
    ],
    "queued": 30,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 982,
@@ -1570,7 +1570,7 @@
     "ACEC_NAME"
    ],
    "queued": 31,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 303,
@@ -1675,7 +1675,7 @@
     "HA_NAME"
    ],
    "queued": 5,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 14,
@@ -2348,7 +2348,7 @@
     "AREA_NAME"
    ],
    "queued": 59,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1846,
@@ -2369,7 +2369,7 @@
     "NAME"
    ],
    "queued": 17,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 344,
@@ -2390,7 +2390,7 @@
     "NAME"
    ],
    "queued": 50,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 5450,
@@ -2411,7 +2411,7 @@
     "NameUnit"
    ],
    "queued": 15,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 326,
@@ -2453,7 +2453,7 @@
     "HA_NAME"
    ],
    "queued": 11,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 17,
@@ -2495,7 +2495,7 @@
     "NCA_NAME"
    ],
    "queued": 10,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 3,
@@ -2579,7 +2579,7 @@
     "ACEC_NAME"
    ],
    "queued": 24,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 134,
@@ -2726,7 +2726,7 @@
     "unitname"
    ],
    "queued": 84,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 654,
@@ -2768,7 +2768,7 @@
     "unitname"
    ],
    "queued": 84,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 654,
@@ -2789,7 +2789,7 @@
     "unitname"
    ],
    "queued": 10,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 196,
@@ -2810,7 +2810,7 @@
     "unitname"
    ],
    "queued": 40,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 102,
@@ -2915,7 +2915,7 @@
     "DNRName"
    ],
    "queued": 55,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 580,
@@ -2978,7 +2978,7 @@
     "DNRName"
    ],
    "queued": 55,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 580,
@@ -3100,12 +3100,12 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 62,
+   "matched": 66,
    "name_fields": [
     "name"
    ],
    "queued": 43,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1753,
@@ -3146,8 +3146,8 @@
    "name_fields": [
     "unit_name"
    ],
-   "queued": 12,
-   "read_date": "2026-11-11",
+   "queued": 13,
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 239,
@@ -3167,8 +3167,8 @@
    "name_fields": [
     "mgtprjname"
    ],
-   "queued": 39,
-   "read_date": "2026-11-11",
+   "queued": 40,
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 13490,
@@ -3184,12 +3184,12 @@
    "id_fields": [],
    "last_edit": null,
    "license": "",
-   "matched": 200,
+   "matched": 204,
    "name_fields": [
     "UNIT_NAME"
    ],
    "queued": 69,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 6715,
@@ -3294,7 +3294,7 @@
     "Area_Name"
    ],
    "queued": 62,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 192,
@@ -3441,7 +3441,7 @@
     "HA_NAME"
    ],
    "queued": 8,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 13,
@@ -3483,7 +3483,7 @@
     "NCA_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 3,
@@ -3567,7 +3567,7 @@
     "ACEC_NAME"
    ],
    "queued": 10,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 83,
@@ -3966,7 +3966,7 @@
     "site"
    ],
    "queued": 77,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2718,
@@ -4029,7 +4029,7 @@
     "HA_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 4,
@@ -4155,7 +4155,7 @@
     "ACEC_NAME"
    ],
    "queued": 5,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 114,
@@ -4197,7 +4197,7 @@
     "NLCS_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 111,
@@ -4218,7 +4218,7 @@
     "HA_NAME"
    ],
    "queued": 99,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 176,
@@ -4344,7 +4344,7 @@
     "ACEC_NAME"
    ],
    "queued": 24,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 165,
@@ -4407,7 +4407,7 @@
     "name"
    ],
    "queued": 21,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 759,
@@ -4428,7 +4428,7 @@
     "name"
    ],
    "queued": 21,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 756,
@@ -4575,7 +4575,7 @@
     "NLCS_NAME"
    ],
    "queued": 6,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 148,
@@ -4680,7 +4680,7 @@
     "Name_Label"
    ],
    "queued": 98,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 865,
@@ -4701,7 +4701,7 @@
     "FIRST_NAME"
    ],
    "queued": 4,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 623,
@@ -4785,7 +4785,7 @@
     "HA_NAME"
    ],
    "queued": 17,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 46,
@@ -4848,7 +4848,7 @@
     "NAME"
    ],
    "queued": 60,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 422,
@@ -4932,7 +4932,7 @@
     "ACEC_NAME"
    ],
    "queued": 29,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 226,
@@ -4995,7 +4995,7 @@
     "PARK_NAME"
    ],
    "queued": 109,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 6345,
@@ -5079,7 +5079,7 @@
     "NLCS_NAME"
    ],
    "queued": 15,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 150,
@@ -5436,7 +5436,7 @@
     "NAME"
    ],
    "queued": 66,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 228,
@@ -5457,7 +5457,7 @@
     "HA_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2,
@@ -5499,7 +5499,7 @@
     "NCA_NAME"
    ],
    "queued": 3,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 5,
@@ -5583,7 +5583,7 @@
     "Name"
    ],
    "queued": 21,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 463,
@@ -5645,8 +5645,8 @@
    "name_fields": [
     "HA_NAME"
    ],
-   "queued": 85,
-   "read_date": "2026-11-11",
+   "queued": 86,
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 46,
@@ -5771,8 +5771,8 @@
    "name_fields": [
     "ACEC_NAME"
    ],
-   "queued": 82,
-   "read_date": "2026-11-11",
+   "queued": 83,
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 100,
@@ -5856,7 +5856,7 @@
     "NLCS_NAME"
    ],
    "queued": 44,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 430,
@@ -5940,7 +5940,7 @@
     "NAME"
    ],
    "queued": 45,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 515,
@@ -5961,7 +5961,7 @@
     "NAME"
    ],
    "queued": 73,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 484,
@@ -6066,7 +6066,7 @@
     "ACEC_NAME"
    ],
    "queued": 1,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 22,
@@ -6149,8 +6149,8 @@
    "name_fields": [
     "PARCEL_LABEL_NM"
    ],
-   "queued": 69,
-   "read_date": "2026-11-11",
+   "queued": 70,
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 18844,
@@ -6171,7 +6171,7 @@
     "NAME"
    ],
    "queued": 167,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2148,
@@ -6276,7 +6276,7 @@
     "NLCS_NAME"
    ],
    "queued": 0,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 1,
@@ -6507,7 +6507,7 @@
     "HA_NAME"
    ],
    "queued": 51,
-   "read_date": "2026-11-11",
+   "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 39,
