@@ -211,8 +211,8 @@ US = yaml.safe_load((ROOT / '.github/workflows/kpc-us-key.yml').read_text(encodi
 CA = yaml.safe_load((ROOT / '.github/workflows/kpc-ca-key.yml').read_text(encoding='utf-8'))
 usave = next(s for s in US['jobs']['join']['steps'] if s.get('name') == 'Save'); csave = next(s for s in CA['jobs']['run']['steps'] if s.get('name') == 'Save')
 check('US key: the join job and its Save need !cancelled() (not always())', '!cancelled()' in US['jobs']['join']['if'] and 'always()' not in US['jobs']['join']['if']
-      and usave['if'] == '${{ !cancelled() }}')
-check('Canada key: its Save needs !cancelled() (not always())', csave['if'] == "${{ !cancelled() && env.SKIP != '1' }}")
+      and usave['if'].startswith('${{ !cancelled()') and 'always()' not in usave['if'])   # Nov 12 (#161 must-fix): + the review-file merge step must not have failed
+check('Canada key: its Save needs !cancelled() (not always())', csave['if'].startswith("${{ !cancelled() && env.SKIP != '1'") and 'always()' not in csave['if'])   # Nov 12 (#161 must-fix): + the review-file merge step must not have failed
 for nm, wf in (('kpc-us-key.yml', US), ('kpc-ca-key.yml', CA)):
     bad2 = [s.get('name') for jb in wf['jobs'].values() for s in jb.get('steps', []) if 'always()' in str(s.get('if', '')) and WRITE_RE.search(str(s.get('run', '')))]
     check(f'{nm}: no step that saves or commits is guarded by always()', not bad2)

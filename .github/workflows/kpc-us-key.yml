@@ -559,13 +559,18 @@ jobs:
           python3 .github/scripts/kpc_join_check.py || { kpc_rc=$?; echo "::warning title=Join check::stopped (exit $kpc_rc); the key build is not affected"; }
           rm -rf .as
       - name: Review files - every state not rebuilt this run keeps its rows from main (Nov 12, KPC owner, 2026-11-12)
+        id: keep_rows   # Quality #161 must-fix: Save is gated on this step
         # the join check writes held-joins.* / join-check.* whole from this run's changed state files only (a states= or nightly run dropped
         # every other state's rows): every state whose key file this run did not change keeps its rows byte for byte
         run: |
           # if the merge itself fails, main's review files are put back whole: a later save can never carry the partial rewrite
           if ! python3 .github/scripts/kpc_area_join.py keep-rows --unchanged --key-dir data/us-key --review data/us-key/review; then
-            git checkout -- data/us-key/review 2>/dev/null || true   # ok: the error line below is raised either way
-            echo "::error title=Review files::the review rows could not be merged: main's review files are kept whole"
+            if ! git checkout -- data/us-key/review; then
+              echo "::error title=Review files::the review rows could not be merged and main's review files could not be put back: nothing is saved"
+              exit 1
+            fi
+            echo "::error title=Review files::the review rows could not be merged: main's review files were put back whole and nothing is saved"
+            exit 1   # Save is gated on this step (steps.keep_rows.outcome != 'failure')
           fi
       - name: Problem solver (Brandon 4:55 PM CST Nov 7) - a RECOMMENDED fix for each held park (pin wrong / land wrong / same land new ID / sliver / wrong state / needs a person); recommends only, never applies, never moves a pin
         id: kept_green_solver
@@ -645,7 +650,7 @@ jobs:
           PY
           rm -rf live
       - name: Save
-        if: ${{ !cancelled() }}   # Nov 12 (KPC owner, 2026-11-11): a cancel mid-join saves nothing (was always())
+        if: ${{ !cancelled() && steps.keep_rows.outcome != 'failure' }}   # Nov 12 (KPC owner, 2026-11-11): a cancel mid-join saves nothing (was always())
         env:
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
         run: |

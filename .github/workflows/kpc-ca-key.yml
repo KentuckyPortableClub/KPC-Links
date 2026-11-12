@@ -166,13 +166,18 @@ jobs:
           python3 .github/scripts/kpc_join_check.py || { kpc_rc=$?; echo "::warning title=Join check::stopped (exit $kpc_rc); the key build is not affected"; }
           rm -rf .as
       - name: Review files - every province not rebuilt this run keeps its rows from main (Nov 12, KPC owner, 2026-11-12)
+        id: keep_rows   # Quality #161 must-fix: Save is gated on this step
         # the join check writes the review files whole from the province files git shows changed; an unchanged province keeps main's rows
         if: ${{ env.SKIP != '1' }}
         run: |
           # if the merge itself fails, main's review files are put back whole: a later save can never carry the partial rewrite
           if ! python3 .github/scripts/kpc_area_join.py keep-rows --unchanged --key-dir data/ca-key --review data/ca-key/review; then
-            git checkout -- data/ca-key/review 2>/dev/null || true   # ok: the error line below is raised either way
-            echo "::error title=Review files::the review rows could not be merged: main's review files are kept whole"
+            if ! git checkout -- data/ca-key/review; then
+              echo "::error title=Review files::the review rows could not be merged and main's review files could not be put back: nothing is saved"
+              exit 1
+            fi
+            echo "::error title=Review files::the review rows could not be merged: main's review files were put back whole and nothing is saved"
+            exit 1   # Save is gated on this step (steps.keep_rows.outcome != 'failure')
           fi
       - name: BUILD STAMP (Brandon Nov 2) - this build's id, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when the whole key built)
         if: ${{ env.SKIP != '1' }}
@@ -181,7 +186,7 @@ jobs:
           if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then export KPC_FULL_BUILD=1; fi
           python3 .github/scripts/kpc_key_freeze.py stamp ca-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
-        if: ${{ !cancelled() && env.SKIP != '1' }}   # Nov 12 (KPC owner, 2026-11-11): a cancel mid-build saves nothing (was always())
+        if: ${{ !cancelled() && env.SKIP != '1' && steps.keep_rows.outcome != 'failure' }}   # Nov 12 (KPC owner, 2026-11-11): a cancel mid-build saves nothing (was always())
         # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files, deletions too); red ONLY when the save failed.
         # Only this bot's own status file (the others belong to other bots; kpc_state_links.json is KPC-Data's)
         env:
