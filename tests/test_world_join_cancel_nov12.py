@@ -133,7 +133,7 @@ JOIN, POST = W['jobs']['join'], W['jobs']['postcheck']
 js = JOIN['steps']
 names = [s.get('name', '') for s in js]
 WRITERS = {'kept_green_joincheck': 'join check (writes key + review files)', 'keep_rows': 'review rows of expected holds', 'stamp': 'BUILD STAMP (index + status)',
-           'Save': 'Save (the commit to main)', 'kept_green_1': 'world-bounds push'}
+           'save': 'Save (the commit to main)', 'kept_green_1': 'world-bounds push'}
 
 
 def wkey(s): return 'stamp' if 'stamp world-key' in str(s.get('run', '')) else (s.get('id') or s.get('name'))
@@ -157,27 +157,32 @@ def nothing_written(r): return not any(r[1].get(k) for k in WRITERS) and not r[3
 
 r = scenario('success')
 check('all green: join, join check, review rows, stamp, Save, world-bounds and the post-key check all run', r[0] and all(r[1].get(k) for k in WRITERS) and r[3])
-check('a failed shard (needs.build.result failure): no join, nothing written, no post-key check', nothing_written(scenario('failure')) and not scenario('failure')[0])
+# Nov 12 (KPC owner, 2026-11-12) CHANGED: each country stands alone (handoff part A): a red shard on a run that was NOT cancelled no longer stops the join
+r = scenario('failure')
+check('a failed shard (needs.build.result failure, run not cancelled): the join runs and saves the green countries (was: no join)', r[0] and r[1]['save'] and r[1]['stamp'])
 check('tonight\'s shape (AU failed, the others cancelled, the run cancelled): no join, nothing written', nothing_written(scenario('failure', run_cancelled=True)))
 check('a cancelled build: nothing written', nothing_written(scenario('cancelled', run_cancelled=True)))
 check('a cancel that arrives after the builds finished green, before the join: no join', not scenario('success', run_cancelled=True)[0])
 for at in ('tonight', 'join_verdict', 'kept_green_joincheck', 'keep_rows'):
     rr = scenario('success', cancel_after=at)
     check(f'a cancel mid-join (after step {at}): no Save, no world-bounds push, no stamp, no post-key check',
-          not rr[1]['Save'] and not rr[1]['kept_green_1'] and (at in ('kept_green_joincheck', 'keep_rows') or not rr[1]['stamp']) and not rr[3])
+          not rr[1]['save'] and not rr[1]['kept_green_1'] and (at in ('kept_green_joincheck', 'keep_rows') or not rr[1]['stamp']) and not rr[3])
 rr = scenario('success', outcome={'join_verdict': 'failure'})
-check('the join verdict red (a held country): no join check, stamp, Save, world-bounds, post-key check', nothing_written(rr))
+# Nov 12 (KPC owner, 2026-11-12) CHANGED: the verdict step is now "May we save the green set?" (a held country no longer makes it red; a kept country that is not main's does)
+check('"May we save the green set?" red: no join check, stamp, Save, world-bounds, post-key check', nothing_written(rr))
 rr = scenario('success', outcome={'tonight': 'failure'}, built='0')
 check('the join stopped (a missing / short part, exit 1, built=0): nothing written', nothing_written(rr))
 rr = scenario('success', outcome={'keep_rows': 'failure'})
-check('the review rows could not be put back: no Save, no world-bounds push, no post-key check', not rr[1]['Save'] and not rr[1]['kept_green_1'] and not rr[3])
-vi = names.index(next(n for n in names if n.startswith('Master gate verdict of the join')))
+check('the review rows could not be put back: no Save, no world-bounds push, no post-key check', not rr[1]['save'] and not rr[1]['kept_green_1'] and not rr[3])
+vi = names.index(next(n for n in names if n.startswith('May we save the green set?')))   # Nov 12 CHANGED: was 'Master gate verdict of the join'
 wi = [i for i, s in enumerate(js) if wkey(s) in WRITERS]
 check('the join verdict runs BEFORE every writing step', wi and vi < min(wi) and js[vi].get('id') == 'join_verdict')
-G = ["!cancelled()", "needs.build.result == 'success'", "steps.join_verdict.outcome == 'success'"]
-check('every writing step needs !cancelled(), a green build and the passed verdict (in its own if:)', all(all(g in str(js[i].get('if', '')) for g in G) for i in wi))
-check('the join job: !cancelled() and needs.build.result == \'success\', the not-skipped and has-groups checks kept, no always()',
-      all(g in JOIN['if'] for g in G[:2]) and "needs.build.result != 'skipped'" in JOIN['if'] and "needs.plan.outputs.groups != '[]'" in JOIN['if'] and 'always()' not in JOIN['if'])
+# Nov 12 (KPC owner, 2026-11-12) CHANGED: a green build of EVERY shard is no longer required (that was the all-or-nothing join); !cancelled() and the verdict stay
+G = ["!cancelled()", "steps.join_verdict.outcome == 'success'"]
+check('every writing step needs !cancelled() and the passed verdict (in its own if:), not a green build of every shard', all(all(g in str(js[i].get('if', '')) for g in G)
+      and "needs.build.result == 'success'" not in str(js[i].get('if', '')) for i in wi))
+check('the join job: !cancelled(), not needs.build.result == \'success\' (Nov 12 CHANGED), the not-skipped and has-groups checks kept, no always()',
+      '!cancelled()' in JOIN['if'] and "needs.build.result == 'success'" not in JOIN['if'] and "needs.build.result != 'skipped'" in JOIN['if'] and "needs.plan.outputs.groups != '[]'" in JOIN['if'] and 'always()' not in JOIN['if'])
 check('the post-key check (the key-check commit) needs a green join', "needs.join.result == 'success'" in POST['if'] and '!cancelled()' in POST['if'])
 WRITE_RE = re.compile(r'git push|git commit|kpc_save_overwrite|kpc_push_data|save_json|stamp world-key|kpc_join_check|keep-rows|gh workflow run')
 bare = [(j, s.get('name')) for j, jb in W['jobs'].items() for s in jb.get('steps', []) if 'always()' in str(s.get('if', '')) and WRITE_RE.search(str(s.get('run', '')))]
@@ -211,7 +216,7 @@ US = yaml.safe_load((ROOT / '.github/workflows/kpc-us-key.yml').read_text(encodi
 CA = yaml.safe_load((ROOT / '.github/workflows/kpc-ca-key.yml').read_text(encoding='utf-8'))
 usave = next(s for s in US['jobs']['join']['steps'] if s.get('name') == 'Save'); csave = next(s for s in CA['jobs']['run']['steps'] if s.get('name') == 'Save')
 check('US key: the join job and its Save need !cancelled() (not always())', '!cancelled()' in US['jobs']['join']['if'] and 'always()' not in US['jobs']['join']['if']
-      and usave['if'].startswith('${{ !cancelled()') and 'always()' not in usave['if'])   # Nov 12 (#161 must-fix): + the review-file merge step must not have failed
+      and usave['if'].startswith('${{ !cancelled()') and 'always()' not in usave['if'])   # Nov 12: + the stamp step must be green and (#161 must-fix) the review-file merge step must not have failed
 check('Canada key: its Save needs !cancelled() (not always())', csave['if'].startswith("${{ !cancelled() && env.SKIP != '1'") and 'always()' not in csave['if'])   # Nov 12 (#161 must-fix): + the review-file merge step must not have failed
 for nm, wf in (('kpc-us-key.yml', US), ('kpc-ca-key.yml', CA)):
     bad2 = [s.get('name') for jb in wf['jobs'].values() for s in jb.get('steps', []) if 'always()' in str(s.get('if', '')) and WRITE_RE.search(str(s.get('run', '')))]
@@ -304,31 +309,36 @@ with tempfile.TemporaryDirectory() as td:
     groups = json.dumps([{'i': 0, 'countries': 'DE MT', 'cmin': ''}, {'i': 1, 'countries': 'FR', 'cmin': ''}, {'i': 2, 'countries': 'NO SE', 'cmin': ''}, {'i': 3, 'countries': 'AU', 'cmin': '300'}])
     p1, p2 = mkpart(t, 1, ['FR']), mkpart(t, 2, ['NO', 'SE'])
     os.environ['GITHUB_STEP_SUMMARY'] = str(t / 'summary.md'); go = t / 'out'; go.write_text(''); os.environ['GITHUB_OUTPUT'] = str(go)
-    try: rc, log = run_join(t, [p1, p2], '--planned-groups', groups)
+    try: rc, log = run_join(t, [p1, p2], '--planned-groups', groups, '--record', str(t / 'rec.json'))
     finally: os.environ.pop('GITHUB_STEP_SUMMARY'); os.environ.pop('GITHUB_OUTPUT')
-    check('tonight\'s shape (4 groups, 2 parts): the join stops (exit 1, built=0) and says nothing is saved', rc == 1 and 'built=0' in go.read_text() and 'NOTHING written' in log)
-    check('tonight\'s shape: not one file changed (keys, review rows, index, tracts of every country)', snapshot(t) == before)
-    sm = (t / 'summary.md').read_text()
-    check('the step summary has one table: country | part present | verdict | joined or kept from main | why, one row per country',
-          sm.count('| country | part present | verdict | joined or kept from main | why |') == 1 and all(f'| {c} |' in sm for c in ('AU', 'DE', 'FR', 'MT', 'NO', 'SE'))
-          and '| AU | no |' in sm and '| FR | yes | green | joined |' in sm)
+    # Nov 12 (KPC owner, 2026-11-12) CHANGED: (was: exit 1, built=0, nothing written) each country stands alone: FR NO SE saved, the others kept from main and red
+    rec = json.loads((t / 'rec.json').read_text()); aft = snapshot(t)
+    check('tonight\'s shape (4 groups, 2 parts): FR NO SE joined (built=3), AU DE MT kept from main and red', rc == 0 and 'built=3' in go.read_text()
+          and rec['joined'] == ['FR', 'NO', 'SE'] and rec['red'] == ['AU', 'DE', 'MT'])
+    check('tonight\'s shape: AU DE MT files byte-identical to main', all(aft[f'data/world-key/{c}.json'] == before[f'data/world-key/{c}.json'] for c in ('AU', 'DE', 'MT')))
+    # Nov 12 (KPC owner, 2026-11-12) CHANGED: the one summary table is written after the stamp by kpc_area_join.py summary (tests/test_per_area_join_nov12.py)
     # the same parts through the old path (no --planned-groups) still join FR NO SE: what this patch stops in the workflow
-    rc, _ = run_join(t, [p1, p2])
-    check('(the old path, no --planned-groups, joins the 3 present countries: the partial save this patch stops)', rc == 0 and snapshot(t) != before)
+    pass
 
 # 2b) a missing / short part when every build is green; a country not built in its part (a real failure in the same shard)
 with tempfile.TemporaryDirectory() as td:
     t = pathlib.Path(td); mkrepo(t); before = snapshot(t)
     g2 = json.dumps([{'i': 0, 'countries': 'DE FR', 'cmin': ''}, {'i': 1, 'countries': 'AU', 'cmin': '300'}])
     rc, log = run_join(t, [mkpart(t, 0, ['DE', 'FR'])], '--planned-groups', g2)
-    check('a lost part (all builds green, AU\'s artifact missing): exit 1, nothing written', rc == 1 and snapshot(t) == before and 'AU: no part' in log)
+# Nov 12 (KPC owner, 2026-11-12) CHANGED: (was: exit 1, nothing written)
+    check('a lost part (all builds green, AU\'s artifact missing): DE FR saved, AU kept from main', rc == 0 and snapshot(t)['data/world-key/AU.json'] == before['data/world-key/AU.json']
+          and snapshot(t)['data/world-key/DE.json'] != before['data/world-key/DE.json'] and 'RED, kept from main (not saved): AU' in log)
+    subprocess.run(['git', 'checkout', '-q', '--', '.'], cwd=t); subprocess.run(['git', 'clean', '-fdq', 'data'], cwd=t)
     shutil.rmtree(t / 'parts')
     rc, log = run_join(t, [mkpart(t, 0, ['DE', 'FR'], done=['DE']), mkpart(t, 1, ['AU'])], '--planned-groups', g2)
-    check('a real failure in the same shard (FR not built, DE built): exit 1, nothing written, not even DE', rc == 1 and snapshot(t) == before and 'FR: not built' in log)
+# Nov 12 (KPC owner, 2026-11-12) CHANGED: (was: exit 1, nothing written, not even DE)
+    check('a real failure in the same shard (FR not built, DE built): DE saved, FR kept from main', rc == 0 and snapshot(t)['data/world-key/FR.json'] == before['data/world-key/FR.json']
+          and snapshot(t)['data/world-key/DE.json'] != before['data/world-key/DE.json'])
+    subprocess.run(['git', 'checkout', '-q', '--', '.'], cwd=t); subprocess.run(['git', 'clean', '-fdq', 'data'], cwd=t)
     shutil.rmtree(t / 'parts')
     d = mkpart(t, 0, ['DE', 'FR']); (d / 'world-key' / 'FR.json').write_text('{"cut')
     rc, log = run_join(t, [d, mkpart(t, 1, ['AU'])], '--planned-groups', g2, '--held-out', str(t / 'held.txt'))
-    check('a part cut short after its verdict (half download): its countries are held, so the join verdict goes red (Save needs it)',
+    check('a part cut short after its verdict (half download): its countries are held (not joined, kept from main)',
           rc == 0 and {'DE', 'FR'} <= set((t / 'held.txt').read_text().split()))
 
 # 2c) the AU shard of tonight: gate exit 7, short W-AU, part built, verdict red
@@ -340,9 +350,9 @@ with tempfile.TemporaryDirectory() as td:
     vstep = next(s for s in B if s.get('name', '').startswith('Master gate verdict'))['run']
     (t / 'master-gate.rc').write_text('7\n'); (t / 'master-short.txt').write_text('W-AU\n')
     r = subprocess.run(['bash', '-e', '-c', vstep], env=dict(os.environ, RUNNER_TEMP=str(t)), capture_output=True, text=True)
-    check('AU-shaped shard: the build job\'s verdict step goes red (so needs.build.result is not success: no join)', r.returncode == 1)
+    check('AU-shaped shard: the build job\'s verdict step goes red (the shard is red; Nov 12: its countries are kept, the others still save)', r.returncode == 1)
     rc, _ = run_join(t, [d], '--planned-groups', json.dumps([{'i': 3, 'countries': 'AU', 'cmin': '300'}]))
-    check('AU not on the list, its copy short: even if its part reached a join, AU is held and the join verdict is red',
+    check('AU not on the list, its copy short: AU is held (not joined, main\'s file kept)',
           rc == 0 and (t / 'held.txt').read_text().startswith('AU ') and (t / 'data/world-key/AU.json').read_bytes() == before['data/world-key/AU.json'])
 
 
@@ -455,10 +465,9 @@ with tempfile.TemporaryDirectory() as td:
     check('index.json: AU\'s row unchanged, DE FR re-stamped, held_expected [AU], complete false, AU not named failed',
           idx['countries']['AU'] == oidx['countries']['AU'] and idx['countries']['DE'] != oidx['countries']['DE'] and idx.get('held_expected') == ['AU']
           and idx.get('complete') is False and 'AU' not in (idx.get('failed') or []) and idx['build'] == 'W-99' and idx.get('previous_build') == 'W-1')
-    sm = (t / 'summary.md').read_text()
-    check('summary: AU\'s row says held (expected), kept from main', '| AU | no (not built) | - | kept from main | held (expected): keeping the previous join |' in sm)
+    # Nov 12 (KPC owner, 2026-11-12) CHANGED: the join no longer writes the summary table itself (one table per run, after the stamp: kpc_area_join.py summary)
     rr = scenario('success', plan_out={'expected': 'AU', 'full': '0'})
-    check('workflow: a run with an expected hold and every shard green saves (green)', rr[2] == 'success' and rr[1]['Save'] and rr[1]['keep_rows'])
+    check('workflow: a run with an expected hold and every shard green saves (green)', rr[2] == 'success' and rr[1]['save'] and rr[1]['keep_rows'])
 
 # 3c) keep-rows: a file whose rows cannot be split per country is not written (main's copy kept) and the run says so
 with tempfile.TemporaryDirectory() as td:
@@ -488,6 +497,7 @@ with tempfile.TemporaryDirectory() as td:
         r = subprocess.run(args, cwd=t, capture_output=True, text=True, env={k: v for k, v in os.environ.items() if k not in ('GITHUB_OUTPUT', 'GITHUB_STEP_SUMMARY', 'GITHUB_WORKFLOW')})
         if which == 'new':
             subprocess.run([sys.executable, '-B', str(SCRIPTS / 'kpc_world_key_join.py'), 'keep-rows', '--countries', '', '--review', 'data/world-key/review'], cwd=t, capture_output=True)
+            (t / 'rec.json').unlink(missing_ok=True)
         outs.append((r.returncode, snapshot(t), (t / 'failed.txt').read_bytes()))
     if len(outs) == 2:
         check('a complete green run: byte-identical tree to the join script of a6c493c (keys, index, review, tracts, status)', outs[0][0] == outs[1][0] == 0 and outs[0][1] == outs[1][1] and outs[0][2] == outs[1][2])
@@ -517,7 +527,12 @@ if have:
         groups = json.dumps([{'i': 0, 'countries': ' '.join(rest[::2]), 'cmin': ''}, {'i': 1, 'countries': ' '.join(rest[1::2]), 'cmin': ''},
                              {'i': 2, 'countries': 'NO', 'cmin': ''}, {'i': 3, 'countries': 'SE AU', 'cmin': ''}])
         rc, log = run_join(t, parts, '--planned-groups', groups)
-        check(f'replay a6c493c ({len(planned)} planned countries, parts only for NO SE): the join stops and writes nothing', rc == 1 and snapshot(t) == before)
+        # Nov 12 (KPC owner, 2026-11-12) CHANGED: (was: the join stops and writes nothing) NO SE are joined, every other country is kept from main; the rows oracle with the
+        # join check + the per-country review merge is in tests/test_per_area_join_nov12.py (W4)
+        aft = snapshot(t)
+        check(f'replay a6c493c ({len(planned)} planned countries, parts only for NO SE): only NO SE files change; every other key file is main\'s',
+              rc == 0 and all(aft[k] == v for k, v in before.items() if k.startswith('data/world-key/') and k.count('/') == 2 and k.endswith('.json') and k[-7:-5] not in ('NO', 'SE') and not k.endswith('index.json')))
+        subprocess.run(['git', 'checkout', '-q', '--', '.'], cwd=t); subprocess.run(['git', 'clean', '-fdq', 'data'], cwd=t)
         diff = git(ROOT, 'diff', 'a6c493c^', 'a6c493c', '--', 'data/world-key/review').stdout
         gone = [ln[1:] for ln in diff.splitlines() if ln.startswith('-') and not ln.startswith('---')]
         hj = before['data/world-key/review/held-joins.csv'].decode()

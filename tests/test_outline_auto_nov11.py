@@ -99,8 +99,9 @@ wf = (ROOT / '.github/workflows/kpc-us-key.yml').read_text(encoding='utf-8'); st
 names = [s.get('name', '') for s in steps]
 def at(word): return next(i for i, n in enumerate(names) if n.startswith(word))
 build = steps[at('Outlines from the key')]['run']
-check('order: collect -> outlines from the key -> master check -> stamp -> drop guard -> BOT C -> save',
-      at('Master step') < at('Outlines from the key') < at('Master check of the joined') < at('BUILD STAMP') < at('Drop guard') < at('BOT C line') < at('Save'))
+# Nov 12 (KPC owner, 2026-11-12): the drop guard now runs BEFORE the stamp (a state it keeps from main is named failed in the stamp)
+check('order: collect -> outlines from the key -> master check -> drop guard -> stamp -> BOT C -> save',
+      at('Master step') < at('Outlines from the key') < at('Master check of the joined') < at('Drop guard') < at('BUILD STAMP') < at('BOT C line') < at('Save'))
 check('the outline step builds each built state from the release copy, then re-reads main',
       'kpc_outlines_from_key.py --cache .okcache --states "$st"' in build and 'gh release download boundary-cache' in build
       and build.index('kpc_outlines_from_key.py') < build.index('kpc_outlines_keep_main.py --fetch --ref origin/main') and '--dry-run' not in build)

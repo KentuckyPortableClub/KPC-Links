@@ -444,7 +444,9 @@ jobs:
   join:
     needs: [plan, build]
     # Nov 12 (KPC owner, 2026-11-11; the world join saved a6c493c on a cancelled run): never on a cancelled run (!cancelled(), not always())
-    if: ${{ !cancelled() && needs.build.result != 'cancelled' && needs.build.result != 'skipped' }}
+    # Nov 12 (KPC owner, 2026-11-12; each state stands alone): a shard that ended 'cancelled' on its own (its job time limit) while the
+    # run was not cancelled no longer stops the join: its states keep main's files (no part = named failed), the others are saved
+    if: ${{ !cancelled() && needs.build.result != 'skipped' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -560,8 +562,8 @@ jobs:
           rm -rf .as
       - name: Review files - every state not rebuilt this run keeps its rows from main (Nov 12, KPC owner, 2026-11-12)
         id: keep_rows   # Quality #161 must-fix: Save is gated on this step
-        # the join check writes held-joins.* / join-check.* whole from this run's changed state files only (a states= or nightly run dropped
-        # every other state's rows): every state whose key file this run did not change keeps its rows byte for byte
+        # the join check writes held-joins.* / join-check.* whole from this run's changed state files only (the a6c493c wipe, US side):
+        # every state whose key file this run did not change keeps its rows byte for byte; a file that cannot be split is not written
         run: |
           # if the merge itself fails, main's review files are put back whole: a later save can never carry the partial rewrite
           if ! python3 .github/scripts/kpc_area_join.py keep-rows --unchanged --key-dir data/us-key --review data/us-key/review; then
@@ -589,7 +591,20 @@ jobs:
           done
           python3 .github/scripts/kpc_problem_solver.py || { kpc_rc=$?; echo "::warning title=Problem solver::stopped (exit $kpc_rc); the key build is not affected"; echo "Problem solver - stopped (exit $kpc_rc); the key build is not affected" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           rm -rf .pi .solver-cache
+      - name: Drop guard (KPC owner, 2026-11-11) - a state that loses more than 3% of its official parks is kept from main (Nov 12) and the run ends red
+        env:
+          KPC_DROP_OK: ${{ vars.KPC_DROP_OK }}   # states whose drop a person expects, for one run ("NV" or "NV UT"); clear it after
+        run: |
+          # After the join check, so every hold of this run is counted; BEFORE the stamp, so a kept state is named failed. Compares each
+          # data/us-key/US-XX.json with the copy on main (this job's checkout). Offline. Nov 12 (KPC owner, 2026-11-12; each state stands
+          # alone): a failed state is put back to main byte for byte (key, tracts, outlines, index row) and named failed; the other states
+          # are saved; the verdict step at the end goes red. Only a state that cannot be put back leaves the mark (nothing saved).
+          : > /tmp/kpc-drop-failed.txt
+          python3 .github/scripts/kpc_key_drop_guard.py --ref HEAD --mark /tmp/kpc-key-drop-bad --restore --failed-out /tmp/kpc-drop-failed.txt
+          # a kept state's review rows come back from main too (its key file is main's again)
+          if [ -s /tmp/kpc-drop-failed.txt ]; then python3 .github/scripts/kpc_area_join.py keep-rows --unchanged --key-dir data/us-key --review data/us-key/review; fi
       - name: BUILD STAMP (Brandon Nov 2) - this build's id in data/us-key/index.json, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when every state built)
+        id: us_stamp   # Nov 12 (KPC owner, 2026-11-12): Save needs this step green (an unstamped key is not saved)
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
@@ -605,19 +620,13 @@ jobs:
           for f in parts/us-key-part-*/master-short.txt; do
             [ -s "$f" ] && sed 's/^US-//' "$f" >> /tmp/kpc-build-failed.txt
           done
+          cat /tmp/kpc-drop-failed.txt >> /tmp/kpc-build-failed.txt 2>/dev/null || true   # ok: Nov 12, the drop guard's kept states (none = no file)
           if [ -s /tmp/kpc-build-failed.txt ]; then
             sort -u /tmp/kpc-build-failed.txt -o /tmp/kpc-build-failed.txt
             export KPC_BUILD_FAILED_FILE=/tmp/kpc-build-failed.txt
             echo "::notice title=US key stamp::parts named failed: $(tr '\n' ' ' < /tmp/kpc-build-failed.txt)"
           fi
-          python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { echo "::error title=kpc_key_freeze.py::the stamp stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py stamp - stopped with an error (exit $rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
-      - name: Drop guard (KPC owner, 2026-11-11) - a state that loses more than 3% of its official parks fails the run and nothing is saved
-        env:
-          KPC_DROP_OK: ${{ vars.KPC_DROP_OK }}   # states whose drop a person expects, for one run ("NV" or "NV UT"); clear it after
-        run: |
-          # After the join check and the stamp, so every hold of this run is counted. Compares each data/us-key/US-XX.json with the copy on
-          # main (this job's checkout). Offline. A failed guard stops here: no BOT C line, and the Save step sees the mark and saves nothing.
-          python3 .github/scripts/kpc_key_drop_guard.py --ref HEAD --mark /tmp/kpc-key-drop-bad
+          python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { echo "::error title=kpc_key_freeze.py::the stamp stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py stamp - stopped with an error (exit $rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
       - name: BOT C line for chat 11 (HQ Oct 30) - this build vs the LIVE key, one line in its inbox
         id: kept_green_3
         continue-on-error: true
@@ -650,7 +659,10 @@ jobs:
           PY
           rm -rf live
       - name: Save
-        if: ${{ !cancelled() && steps.keep_rows.outcome != 'failure' }}   # Nov 12 (KPC owner, 2026-11-11): a cancel mid-join saves nothing (was always())
+        # Nov 12 (KPC owner, 2026-11-11): a cancel mid-join saves nothing (was always())
+        # Nov 12 (KPC owner, 2026-11-12): and only after the stamp itself was green (an earlier failed step skips the stamp, so nothing
+        # unstamped is saved); the states kept from main by the join or the drop guard are main's bytes, the others are saved
+        if: ${{ !cancelled() && steps.us_stamp.outcome == 'success' && steps.keep_rows.outcome != 'failure' }}
         env:
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
         run: |
@@ -734,6 +746,15 @@ jobs:
               print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
               sys.exit(1)
           PY
+      - name: Run summary (Nov 12, KPC owner, 2026-11-12) - one table, every planned state - area | built? | verdict | saved or kept from main | hash stamped | why
+        # read-only (the step summary); red AFTER the save when a state was kept from main
+        if: ${{ !cancelled() }}
+        env:
+          PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
+        run: |
+          python3 .github/scripts/kpc_us_key_join.py record parts/us-key-part-* --planned-groups "$PLAN_GROUPS" --failed /tmp/kpc-build-failed.txt --drop /tmp/kpc-drop-failed.txt --out /tmp/us-join.json
+          python3 .github/scripts/kpc_area_join.py summary --record /tmp/us-join.json --index data/us-key/index.json --title 'US key join'
+          python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')).get('red'); sys.exit(1 if r else 0)" || { echo "::error title=US key run::RED: the states above were kept from main (not saved this run); the others were saved"; exit 1; }
       - name: Master check verdict (owner rule, 2026-11-10) - data/outlines was kept out of the save; go red
         if: ${{ always() }}
         run: |

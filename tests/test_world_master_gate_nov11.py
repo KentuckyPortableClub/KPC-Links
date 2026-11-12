@@ -291,9 +291,14 @@ tn = next(s for s in js if s.get('id') == 'tonight')['run']
 check('join: the parts are put together with --gate and the held list', 'kpc_world_key_join.py parts/world-key-part-* --gate --held-out /tmp/world-held.txt' in tn)
 save = next(s for s in js if s.get('name') == 'Save')
 check('join: Save only after a finished join with something built', "steps.tonight.outcome == 'success'" in save['if'] and "steps.tonight.outputs.built != '0'" in save['if'])
-jg = next(s for s in js if s.get('name', '').startswith('Master gate verdict of the join'))
+jg = next(s for s in js if s.get('id') == 'join_verdict')
 # Nov 12 (KPC owner, 2026-11-11): the join verdict now runs before Save (never on a cancel), and Save needs it to have passed
-check('join: a held country makes the join red (the run ends red)', "!cancelled()" in jg['if'] and jg.get('id') == 'join_verdict' and '/tmp/world-held.txt' in jg['run'] and 'exit 1' in jg['run'])
+# Nov 12 (KPC owner, 2026-11-12) CHANGED (each country stands alone): a held country no longer stops the save of the others; it is kept
+# from main, listed red (join output red), and the verdict job AFTER the save makes the run red. join_verdict now asks "may we save the green set?"
+vj = W['jobs']['verdict']
+check('join: a held country makes the RUN red (verdict job after the save), not the save of the others',
+      "!cancelled()" in jg['if'] and 'check-saved' in jg['run'] and "steps.join_verdict.outcome == 'success'" in save['if']
+      and W['jobs']['join']['outputs']['red'] == '${{ steps.tonight.outputs.red }}' and 'RED' in vj['steps'][0]['env'] and 'exit $bad' in vj['steps'][0]['run'])
 pc = W['jobs']['postcheck']['if']
 check('postcheck (the "Key check after the key build" commit): only when the join saved a country', "needs.join.outputs.built != '0'" in pc and "needs.join.outputs.built != ''" in pc
       and W['jobs']['join']['outputs']['built'] == '${{ steps.tonight.outputs.built }}')

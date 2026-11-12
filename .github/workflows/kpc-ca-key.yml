@@ -179,8 +179,19 @@ jobs:
             echo "::error title=Review files::the review rows could not be merged: main's review files were put back whole and nothing is saved"
             exit 1   # Save is gated on this step (steps.keep_rows.outcome != 'failure')
           fi
-      - name: BUILD STAMP (Brandon Nov 2) - this build's id, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when the whole key built)
+      - name: A Canada build that stopped keeps main's key (Nov 12, KPC owner, 2026-11-12) - no stamp, data/ca-key not saved
+        # Canada builds as ONE job from ONE saved copy (CA-ALL) and writes its province files only at the end, so a province cannot fail
+        # alone today: a short copy, a stopped build or a GATE FAIL keeps EVERY province from main. Before, the stamp still gave the
+        # unchanged files a new build id and the join check's whole-file rewrite emptied the review rows; now data/ca-key is put back.
         if: ${{ env.SKIP != '1' }}
+        run: |
+          if [ -f /tmp/ca-key-stopped ] || grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then
+            git checkout -q HEAD -- data/ca-key && git clean -fdq data/ca-key
+            echo "CA_KEPT=1" >> "$GITHUB_ENV"
+            echo "::error title=Canada key::the build stopped or was held: every province keeps its previous key from main (not stamped, not saved)"
+          fi
+      - name: BUILD STAMP (Brandon Nov 2) - this build's id, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when the whole key built)
+        if: ${{ env.SKIP != '1' && env.CA_KEPT != '1' }}
         run: |
           # Canada always builds the whole key: it is FULL unless the build stopped early or the gate failed
           if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then export KPC_FULL_BUILD=1; fi
@@ -192,8 +203,14 @@ jobs:
         env:
           STRICT: '1'
         run: |
-          if [ -n "$NIGHT_LIST" ] && [ ! -s "$RUNNER_TEMP/master-short.txt" ]; then : > data/ca-key/answers-provinces.txt; fi   # tonight's list done (Nov 10: kept when the master gate held the build)
+          if [ -n "$NIGHT_LIST" ] && [ ! -s "$RUNNER_TEMP/master-short.txt" ] && [ "${CA_KEPT:-0}" != 1 ]; then : > data/ca-key/answers-provinces.txt; fi   # tonight's list done (Nov 10: kept when the master gate held the build)
           bash .github/scripts/kpc_push_data.sh . 'Canada answer key' data/ca-key data/status/kpc_ca_key.json data/canada-bounds data/outlines/layers.json
+      - name: Run summary (Nov 12, KPC owner, 2026-11-12) - one table, every province - area | built? | verdict | saved or kept from main | hash stamped | why
+        if: ${{ !cancelled() && env.SKIP != '1' }}
+        run: |
+          python3 .github/scripts/kpc_area_join.py record-whole --index data/ca-key/index.json --rows-key provinces --kept "${CA_KEPT:-0}" \
+            --why "$([ -s "$RUNNER_TEMP/master-short.txt" ] && echo 'held-gate: the CA-ALL saved copy is short (refresh it, then rerun the Canada key)' || echo 'failed: the Canada build stopped or its gate failed (see the build step)')" --out /tmp/ca-join.json
+          python3 .github/scripts/kpc_area_join.py summary --record /tmp/ca-join.json --index data/ca-key/index.json --title 'Canada key (one job: every province saved or every province kept)'
       - name: Master gate verdict (Nov 10, fail closed) - a short saved copy was moved aside and its area not built; say so and go red
         if: ${{ always() }}
         run: |
