@@ -667,6 +667,8 @@ jobs:
         continue-on-error: true
         run: python3 .github/scripts/kpc_area_hash.py sanity us
       - name: Area hashes, shadow record (Nov 12, KPC owner, 2026-11-12) - what the stamp WOULD record, as an artifact (never committed)
+        id: kept_green_area_shadow   # Quality #163 must-fix: an upload that fails is reported by 'Report hidden failures', never blocks the key
+        continue-on-error: true
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:

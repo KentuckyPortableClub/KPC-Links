@@ -399,6 +399,12 @@ for wf, kind, stampname in (('kpc-world-key.yml', 'world', 'stamp world-key'), (
            and st.get('with', {}).get('name') == f'area-stamp-shadow-{kind}']
     check(f'B {wf}: the shadow record is uploaded as an artifact (area-stamp-shadow-{kind}), never added to the key', len(ups) == 1
           and ups[0]['with']['path'] == '${{ runner.temp }}/area-stamp-shadow/' and 'area-stamp-shadow' not in ' '.join(str(st.get('run', '')) for j in W['jobs'].values() for st in j.get('steps', []) if 'git add' in str(st.get('run', ''))))
+    jobs_up = [(jn, j['steps']) for jn, j in W['jobs'].items() for st in j.get('steps', []) if st in ups]
+    jn, steps = jobs_up[0] if jobs_up else ('', [])
+    k = steps.index(ups[0]) if ups else -1
+    check(f'B {wf}: the shadow-record upload is kept green and REPORTED (continue-on-error, a kept_green_* id, a later "Report hidden failures" step that runs always)',
+          len(ups) == 1 and ups[0].get('continue-on-error') is True and str(ups[0].get('id', '')).startswith('kept_green_')
+          and any(st.get('name', '').startswith('Report hidden failures') and str(st.get('if', '')).strip() in ('always()', '${{ always() }}') for st in steps[k + 1:]))
 
 print('ALL PASSED' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
