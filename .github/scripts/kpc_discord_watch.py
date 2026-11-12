@@ -16,6 +16,10 @@ and never what anybody wrote.
 
 Needs: DISCORD_BOT_TOKEN (the relay bot; it must have View Channel + Read Message History in those rooms) and
 KPC_ADMIN_WEBHOOK (or KPC_DISCORD_WEBHOOK). DRY_RUN=1 prints instead of posting.
+
+Nov 11 2026 (bots review): only the messages that were actually nudged are remembered. Before, every message found was marked
+done, so with more than MAX_NUDGES (5) unanswered questions the extra ones were never nudged and never came back. Everything
+printed goes through kpc_scrub.
 """
 import datetime
 import hashlib
@@ -27,6 +31,7 @@ import sys
 import urllib.error
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, notice_text
 
 API = 'https://discord.com/api/v10/'
 CONF_F = pathlib.Path('data/discord-watch.json')
@@ -40,7 +45,7 @@ MAX_NUDGES = 5          # never more than a handful in one go
 
 
 def notice(msg):
-    print(f"::notice title=Discord watch::{str(msg)[:800]}", flush=True)
+    print(f"::notice title=Discord watch::{notice_text(msg)}", flush=True)
 
 
 def call(path, token=True):
@@ -52,9 +57,9 @@ def call(path, token=True):
             return json.loads(r.read().decode('utf-8', 'replace'))
     except urllib.error.HTTPError as e:
         body = e.read().decode('utf-8', 'replace')[:200]
-        return {'_error': f'HTTP {e.code} {body}'}
+        return {'_error': scrub(f'HTTP {e.code} {body}', 200)}
     except Exception as e:  # noqa: BLE001
-        return {'_error': str(e)[:200]}
+        return {'_error': type(e).__name__ + ': ' + scrub(e, 150)}
 
 
 def say(title, text):
@@ -211,7 +216,7 @@ def main():
             if fp in done:
                 continue
             done.add(fp)
-            found.append({'room': name, 'who': ((m.get('author') or {}).get('global_name')
+            found.append({'fp': fp, 'room': name, 'who': ((m.get('author') or {}).get('global_name')
                                                 or (m.get('author') or {}).get('username') or 'Someone'),
                           'text': re.sub(r'\s+', ' ', text)[:600], 'hours': round(age / 60, 1),
                           'link': f"https://discord.com/channels/{conf.get('guild')}/{rid}/{m.get('id')}"})
@@ -220,13 +225,17 @@ def main():
         notice(f'First run: noted {len(found)} older message(s), nothing sent. New ones from now on.')
         found = []
     elif found:
+        for f in found[MAX_NUDGES:]:
+            done.discard(f['fp'])            # not nudged this time: it stays on the list for the next run
         for f in found[:MAX_NUDGES]:
             body = (f"**{f['who']}** asked in **#{f['room']}** about {f['hours']} hour(s) ago and nobody has "
                     f"replied:\n> {f['text']}\n\n[Go and answer →]({f['link']})")
             if DRY:
                 print(body + '\n---')
             else:
-                say('Somebody asked and nobody answered', body)
+                code = say('Somebody asked and nobody answered', body)
+                if not (isinstance(code, int) and 200 <= code < 300):
+                    done.discard(f['fp'])    # Discord refused it (or no webhook): not remembered as nudged, tried again next run
         notice(f'Nudged about {min(len(found), MAX_NUDGES)} message(s).')
     else:
         notice('Nothing unanswered.')

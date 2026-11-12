@@ -29,8 +29,8 @@ FB_ID, FB_TOKEN = (os.environ.get('FB_PAGE_ID') or '').strip(), (os.environ.get(
 
 
 def notice(t, m=''):
-    m = str(m).replace('%', '%25').replace('\r', '').replace('\n', '%0A')
-    print(f'::notice title={t}::{m}', flush=True)
+    from kpc_scrub import notice_text   # Nov 11: every log line is checked for webhook links and tokens first
+    print(f'::notice title={t}::{notice_text(m, 4000)}', flush=True)
 
 
 def get(url, tries=3, timeout=90, raw=False):
@@ -145,6 +145,7 @@ def http(url, data=None, headers=None, method=None):
     try:
         with urllib.request.urlopen(req, timeout=60) as r: return r.status, r.read().decode('utf-8', 'replace')
     except urllib.error.HTTPError as e: return e.code, e.read().decode('utf-8', 'replace')
+    except Exception as e: return 0, type(e).__name__   # Nov 11: a dropped connection used to end the program here, after Discord had been posted and before 'posted' was written down (a second post next day); and the text of an error can hold the address
 
 
 def post_discord(title, text, link):

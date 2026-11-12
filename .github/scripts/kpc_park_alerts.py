@@ -24,6 +24,12 @@ SOURCES
 
 STATE: data/park-alerts-state.json. Secrets: KPC_DISCORD_WEBHOOK, FB_PAGE_ID, FB_PAGE_TOKEN, NPS_API_KEY (optional).
 Run with DRY_RUN=1 to see what it would say and change nothing.
+
+Nov 11 2026 (bots review): a source that did not ANSWER is no longer counted as 'its alerts are gone'. The old test did the
+opposite of its own comment: when one source failed, the alerts of the failed source were counted as missing, so two failed
+checks in a row cleared the red warnings from the park pages (and would have announced 'looks open again'), and the flapping
+'missing' counters made a commit most days. Now the failed source's alerts are left exactly as they were and the run says so as a
+::warning. Everything printed goes through kpc_scrub.
 """
 import datetime
 import html as _html
@@ -36,6 +42,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, notice_text
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 STATE_F = pathlib.Path('data/park-alerts-state.json')
@@ -70,7 +77,7 @@ MASS = 5                               # G11: this many closures at once = one m
 
 
 def notice(title, msg):
-    print(f"::notice title={title}::{str(msg)[:800]}", flush=True)
+    print(f"::notice title={title}::{notice_text(msg)}", flush=True)
 
 
 def ky_now():
@@ -472,7 +479,7 @@ def http(url, data=None, headers=None):
     except urllib.error.HTTPError as e:
         return e.code, e.read().decode('utf-8', 'replace')
     except Exception as e:  # noqa: BLE001
-        return 0, str(e)
+        return 0, type(e).__name__      # the kind of error only: some errors repeat the address (a webhook link)
 
 
 STAFF = ((os.environ.get('KPC_ADMIN_WEBHOOK') or '').strip().split() or [''])[0]
@@ -533,6 +540,9 @@ def post_facebook(title, text):
 
 
 # ---------------------------------------------------------------- the run
+SOURCES = (('ky', 'ky_state_parks'), ('nps', 'nps_alerts'), ('fs', 'forest_alerts'), ('lbl', 'lbl_alerts'), ('kdfwr', 'kdfwr_alerts'))   # looked up by name when run
+
+
 def main():
     now = ky_now()
     today = now.strftime('%Y-%m-%d')
@@ -543,12 +553,17 @@ def main():
 
     live = {}
     broke = False
-    for src in (ky_state_parks, nps_alerts, forest_alerts, lbl_alerts, kdfwr_alerts):
-        got = src()
+    failed = set()     # the alert-id prefixes of the sources that did not answer (a source returns None when it failed)
+    for prefix, src in SOURCES:
+        got = globals()[src]()
         if got is None:          # the source itself failed: do not treat its alerts as 'gone'
             broke = True
+            failed.add(prefix)
             continue
         live.update(got)
+    if failed:
+        print(f"::warning title=Park alerts::{', '.join(sorted(failed))} did not answer this time: its alerts are shown as they were, "
+              f"not counted as gone. Park pages may be out of date until it answers.", flush=True)
     if broke and not live:
         notice('Park alerts', 'No source answered this time; nothing changed.')
         return
@@ -611,8 +626,8 @@ def main():
         if aid in live:
             continue
         rec = seen[aid]
-        if broke and aid.split('-')[0] in {k.split('-')[0] for k in live}:
-            continue            # that source answered, so 'gone' is real; otherwise leave it alone
+        if aid.split('-')[0] in failed:
+            continue            # that source did not answer, so 'gone' proves nothing: leave the alert exactly as it was
         rec['missing'] = int(rec.get('missing', 0)) + 1
         if rec['missing'] >= CONFIRM:
             if rec.get('announced') and not rec.get('routine'):
@@ -767,5 +782,5 @@ if __name__ == '__main__':
     except Exception as e:  # noqa: BLE001
         # PR3 (Nov 2): was a quiet ::notice; a crash is a real failure, so it is an ::error now (the KPC-Data watchdog's key-bot
         # sweep turns it red on the status board). Still exit 0: no failure email.
-        print(f'::error title=Park alerts::stopped early: {type(e).__name__}: {str(e)[:300]}', flush=True)
+        print(f'::error title=Park alerts::stopped early: {type(e).__name__}: {scrub(e, 300)}', flush=True)
         sys.exit(0)           # never fail the job: a failed run emails Brandon

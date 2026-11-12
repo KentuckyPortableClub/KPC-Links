@@ -9,6 +9,7 @@
 Look-ups are remembered in data/kpc-form-checks.json (call signs and reference numbers only, both public)."""
 import csv, io, json, os, re, time, urllib.request, urllib.parse, datetime
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import notice_text
 
 UA = {'User-Agent': 'KPC form sync (kentuckyportableclub.github.io)'}
 CACHE_FILE = os.environ.get('KPC_CHECKS') or 'data/kpc-form-checks.json'   # each workflow keeps its own, so jobs never clash
@@ -17,7 +18,7 @@ except Exception: CACHE = {}
 CACHE.setdefault('calls', {}); CACHE.setdefault('refs', {})
 DAY = 86400
 
-def notice(title, m): print(f'::notice title={title}::' + str(m).replace('%', '%25').replace('\n', '%0A'))
+def notice(title, m): print(f'::notice title={title}::' + notice_text(m, 4000))   # Nov 11: scrubbed (a sheet link is a secret)
 
 def get(u, timeout=30):
     with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=timeout) as f: return f.read()
@@ -28,7 +29,11 @@ def getj(u):
     except Exception: return None, False                                    # could not reach it
 
 def sheet(url):
-    rows = list(csv.reader(io.StringIO(get(url, 60).decode('utf-8-sig'))))
+    try: raw = get(url, 60)
+    except Exception as e:   # Nov 11: say what kind of failure, never the address (a published sheet link is a secret; it grants read access)
+        code = getattr(e, 'code', None)
+        raise RuntimeError('could not read the sheet (' + type(e).__name__ + (f' HTTP {code}' if code else '') + ')') from None
+    rows = list(csv.reader(io.StringIO(raw.decode('utf-8-sig'))))
     return ([h.strip() for h in rows[0]], rows[1:]) if rows else ([], [])
 
 def col(H, name):

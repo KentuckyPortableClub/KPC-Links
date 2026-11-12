@@ -5,9 +5,10 @@ Google Drive, shrunk to 1280 px and saved without location data in photos/commun
 import csv,io,json,os,re,hashlib,sys,urllib.request,datetime
 import kpc_preapproved as PA
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import notice_text
 PRE=PA.load()
 URL=os.environ.get('COMMUNITY_SHEET_CSV','').strip()
-def notice(m): print('::notice title=Community::'+str(m).replace('%','%25').replace('\n','%0A'))
+def notice(m): print('::notice title=Community::'+notice_text(m,4000))   # Nov 11: scrubbed
 if not URL: notice('COMMUNITY_SHEET_CSV secret not set yet; nothing to do.'); sys.exit(0)
 def get(u):
   with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC community'}),timeout=60) as f: return f.read()

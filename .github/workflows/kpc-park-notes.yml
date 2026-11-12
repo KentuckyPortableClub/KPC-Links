@@ -18,7 +18,7 @@ jobs:
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - name: Install image tools
-        run: pip install --quiet pillow
+        run: python3 -c 'import PIL' 2>/dev/null || pip install --quiet pillow   # Nov 11: install only when the runner lacks it (same guard as kpc-social.yml)
       - name: Copy approved tips
         env:
           NOTES_SHEET_CSV: ${{ secrets.NOTES_SHEET_CSV }}

@@ -3,7 +3,10 @@
 // spaces or new lines; can be rooms in other servers too). Empty = #general (KPC_GENERAL_WEBHOOK), then the usual room.
 // Remembers what it shared in kpc-discord-videos.json. The first run only marks the videos already
 // there, so Discord isn't flooded with old ones; at most 3 new videos post per run.
+// Nov 11 2026 (bots review): a dropped connection while posting no longer ends the program before the videos already shared are
+// written down; log lines go through kpc_scrub.js (the webhook links are secrets).
 const fs = require('fs');
+const { noticeText } = require('./kpc_scrub.js');
 const SITE = 'https://kentuckyportableclub.github.io/KPC-Links/';
 const POSTED = 'kpc-discord-videos.json';
 const HOOKRX = /^https:\/\/(?:\w+\.)?(discord|discordapp)\.com\/api\/webhooks\/\d+\/[\w-]+(\?\S*)?$/;
@@ -11,7 +14,7 @@ const HOOKRX = /^https:\/\/(?:\w+\.)?(discord|discordapp)\.com\/api\/webhooks\/\
 // ever set (it can hold several rooms, even in other servers).
 const hooks = ((process.env.KPC_YOUTUBE_WEBHOOK || '').trim() || (process.env.KPC_GENERAL_WEBHOOK || '').trim()
   || (process.env.KPC_DISCORD_WEBHOOK || '').trim()).split(/\s+/).filter(u => HOOKRX.test(u));
-const notice = m => console.log('::notice title=Discord videos::' + String(m).replace(/%/g, '%25').replace(/\n/g, '%0A'));
+const notice = m => console.log('::notice title=Discord videos::' + noticeText(m, 20000));
 
 (async () => {
   if (!hooks.length) { notice('No Discord webhook set (secret KPC_YOUTUBE_WEBHOOK or KPC_DISCORD_WEBHOOK); nothing posted.'); return; }
@@ -33,10 +36,13 @@ const notice = m => console.log('::notice title=Discord videos::' + String(m).re
     const title = String(v.title || '').replace(/[*_`~|>@]/g, '');
     let ok = true;
     for (const h of hooks) {
-      const r = await fetch(h, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: 'KPC Videos', content: `🎥 **New from ${v.channel}:** ${title}\n${url}\nMore club videos: <${SITE}videos.html>`, allowed_mentions: { parse: [] } }),
-      });
+      let r;
+      try {
+        r = await fetch(h, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: 'KPC Videos', content: `🎥 **New from ${v.channel}:** ${title}\n${url}\nMore club videos: <${SITE}videos.html>`, allowed_mentions: { parse: [] } }),
+        });
+      } catch (e) { notice('Discord post failed (' + (e && e.name || 'error') + ') for ' + title); ok = false; break; }
       if (!r.ok) { notice('Discord replied HTTP ' + r.status + ' for ' + title); ok = false; }
       await new Promise(res => setTimeout(res, 800));
     }

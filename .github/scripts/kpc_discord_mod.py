@@ -42,6 +42,7 @@ import sys
 import urllib.error
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, notice_text
 
 API = 'https://discord.com/api/v10/'
 CONF_F = pathlib.Path('data/discord-mod.json')
@@ -57,7 +58,7 @@ MAX_ACTIONS = 5          # if more than a handful trips at once it is a raid: te
 
 
 def notice(msg):
-    print(f"::notice title=Mod::{str(msg)[:800]}", flush=True)
+    print(f"::notice title=Mod::{notice_text(msg)}", flush=True)
 
 
 def call(path, method='GET', body=None):
