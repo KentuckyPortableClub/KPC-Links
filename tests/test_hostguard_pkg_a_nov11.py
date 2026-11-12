@@ -114,7 +114,20 @@ moved = subprocess.run(['git', 'diff', '--name-only', base, '--', *sorted({f for
 # only the 2-fer hash moves; US / CA / world stay put.
 DECLARED = {'.github/scripts/kpc_fers.py', '.github/fers-rule-scope.json'}
 moved = [f for f in moved if f not in DECLARED]
-check(not moved, f'no rule file differs from {base} (so no rules hash moves), past the declared 2-fer batch: {moved}')
+# KPC owner, 2026-11-11 (job 6, world rules change approved): a rule file may differ from origin/main only when EVERY key it feeds has its
+# hash move declared and approved (kpc_preflight.check_hash_pair: the newest changelog line old -> new, APPROVED, decided_by KPC owner, and a
+# scope entry from old). The 2-fer rules never may here (this package touches owned land, a 2-fer input).
+import kpc_preflight as PF
+_log = (ROOT / 'docs' / 'key-rules-change.txt').read_text(encoding='utf-8')
+def _declared(kind):
+    old, new = (PF.base_hash(kind, KF) if base == 'origin/main' else None), KF.rules_hash(kind)
+    if old is None or kind == 'fers': return False
+    sc = json.load(open(ROOT / KF.SCOPE_FILES[kind], encoding='utf-8')) if kind in KF.SCOPE_FILES else None
+    return old != new and not PF.check_hash_pair(kind, old, new, _log, sc)
+_dec = {k: _declared(k) for k in KF.RULE_FILES}
+undeclared = [f for f in moved if not all(_dec[k] for k, v in KF.RULE_FILES.items() if f in v)]
+check(not undeclared, f'no rule file differs from {base} unless its rules hash move is declared and approved (so no hash moves silently): {undeclared}'
+      + (f' (declared moves: {[k for k, v in _dec.items() if v]})' if moved else ''))
 wf = (ROOT / '.github' / 'workflows' / 'kpc-owned.yml').read_text(encoding='utf-8')
 check('kpc_owned_run.py ky' in wf and 'python3 .github/scripts/kpc_owned.py' not in wf and 'git add data/status/kpc_owned.json' in wf, 'owned: the workflow runs the guarded runner and saves its note')
 

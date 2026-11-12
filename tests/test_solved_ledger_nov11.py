@@ -285,7 +285,8 @@ check('by an outside agent (Fable)' in (ANS / 'nov5/HANDOFF.md').read_text(encod
 big = [f for f in ANS.rglob('*') if f.is_file() and f.stat().st_size >= 1_000_000]
 check(not big, 'every file under answers/ is under 1,000,000 bytes')
 import kpc_key_freeze as KF  # noqa: E402
-want = {'us-key': '46ef34a04ab0', 'ca-key': '4b4176190334', 'world-key': '9358c2ede2d5', 'fers': 'cef323de4c9a'}
+# KPC owner, 2026-11-11 (job 6, world rules change approved): the world hash moved 9358c2ede2d5 -> 889d37136cf8 (three French PatriNat layers); US and CA are as before; fers is main's cef323de4c9a (#157)
+want = {'us-key': '46ef34a04ab0', 'ca-key': '4b4176190334', 'world-key': '889d37136cf8', 'fers': 'cef323de4c9a'}
 check({k: KF.rules_hash(k) for k in want} == want, f'rules hashes unchanged: {want}')
 fed = {pathlib.Path(x).name for v in KF.RULE_FILES.values() for x in v}
 check('kpc_research_inbox.py' not in fed and 'kpc_problem_solver.py' not in fed and 'kpc_build_solved_ledger.py' not in fed, 'no file this job touches feeds a rules hash')

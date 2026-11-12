@@ -171,8 +171,18 @@ CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], '
 # France's ZNIEFF wildlife zones (MNHN / INPN inventory). IGN Géoplateforme first; the Esri France copy of the same INPN data only
 # when the Géoplateforme answers nothing. Australia: CAPAD leaves state forests out, so each state's own forestry map.
 SRC['FR'] = SRC['FR'] + [('IGN Géoplateforme ZNIEFF ' + n, 'wfs', 'https://data.geopf.fr/wfs/ows', t) for n, t in
-                         (('type I', 'patrinat_znieff1:znieff1'), ('type II', 'patrinat_znieff2:znieff2'), ('type I sea', 'patrinat_znieff1_mer:znieff1_mer'))] \
+                         (('type I', 'patrinat_znieff1:znieff1'), ('type II', 'patrinat_znieff2:znieff2'), ('type I sea', 'patrinat_znieff1_mer:znieff1_mer'),
+                          ('type II sea', 'patrinat_znieff2_mer:znieff2_mer'))] \
                       + [('ZNIEFF (INPN data, Esri France) layer ' + str(i), 'arcgis_alt', 'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/' + str(i)) for i in (0, 1)]
+# KPC owner, 2026-11-11 (world rules change, approved for this job): three more PatriNat layers from the same Géoplateforme WFS, read
+# the same way as the ZNIEFF layers above (pull_wfs; record id = the WFS feature id, e.g. znieff2_mer.7, cdl.502, pprnn.1; name nom_site):
+# marine ZNIEFF type II (type I sea was already read, so the land / sea and type I / II pairs are now whole), Conservatoire du littoral
+# sites, and the protection perimeters of national nature reserves. They are national records of France's own inventory, so a park they
+# join is no longer outlined only from the EU compilation (W-2 below drops the EEA copy of the same record). Licence as the research
+# ledger records it for these layers (data/research-inbox/answers/sources/research-sources-nov11-additions.csv): Licence Ouverte (not
+# re-read 2026-11-11).
+SRC['FR'] = SRC['FR'] + [('IGN Géoplateforme ' + n, 'wfs', 'https://data.geopf.fr/wfs/ows', t) for n, t in
+                         (('Conservatoire du littoral', 'patrinat_cdl:cdl'), ('RNN protection perimeters', 'patrinat_pprnn:pprnn'))]
 # Next round C7 (Nov 5; Brandon's yes relayed via Super; outside research round 2): Queensland's state forests are in the layer KPC
 # already has, 'Protected areas and forests of Queensland' (DESI, CC BY 4.0; fields estatename / esttype), as esttype='SF' (402
 # features on Nov 5). The old source searched the cadastre map service (LandParcelPropertyFramework) for a layer NAMED 'state forest |
@@ -1639,6 +1649,10 @@ for cc in COUNTRIES:
         shards = {}
         for ref, pk in parks.items():
             mm = pk.get('m') or []
+            # KPC owner, 2026-11-11 (job 6): W-2 below keeps only the agency pieces of a park that also has EEA pieces, so judge (and save)
+            # the pieces it keeps. Before, such a park was skipped here (the EEA layer is an ArcGIS layer the page can ask by id), then lost
+            # its EEA pieces, and the page had nothing it could draw (e.g. a Conservatoire du littoral site joined with its EEA copy).
+            if any(not str(x[2]).startswith('EEA') for x in mm): mm = [x for x in mm if not str(x[2]).startswith('EEA')]
             if not mm or any(x[2] in LAY and x[0] is not None for x in mm): continue
             la, lo = P[ref][5], P[ref][6]
             polys = []

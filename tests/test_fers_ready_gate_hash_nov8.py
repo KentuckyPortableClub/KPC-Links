@@ -89,8 +89,10 @@ fers_h = KF.rules_hash('fers', str(HERE))
 check(fers_h == PF.newest_hash('fers') and bool(fers_h), f'fers rules hash equals the newest one in docs/key-rules-change.txt ({fers_h})')
 print('FERS_RULES_HASH=' + fers_h)
 docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-# Ledger is newest-first: the Nov 11 Pacific area boxes entry (fers, top ten now), the Nov 11 overlap finder / 25 m entry, the Nov 11 world layer fall back entry, the Nov 11 FL box east edge entry, the Nov 10 layer-count entry, the Nov 10 master-step follow-up, the Nov 10 master-step entry, the Nov 10 refill entry, #109 (5:54 AM CST), then #108 (5:22 AM CST). Read the top ten entries. (Nov 11: plus the FR-14979 world-override declaration, which moves no hash: the window is 12 entries.)
-_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:12])
+# Ledger is newest-first: the Nov 11 FR-14979 world-override declaration (no hash move), then the Nov 11 overlap finder / 25 m entry (fers), the Nov 11 world layer fall back entry, the Nov 11 FL box east edge entry, the Nov 10 layer-count entry, the Nov 10 master-step follow-up, the Nov 10 master-step entry, the Nov 10 refill entry, #109 (5:54 AM CST), then #108 (5:22 AM CST). Read the top ten entries so the new top declaration does not push the Nov 10 fers-v1 / hash lines out of the window.
+# KPC owner, 2026-11-11 (job 6): + the French PatriNat world entry on top: the top eleven.
+# Nov 12 (rebased onto main with #154): + the Nov 11 Pacific area boxes entry (fers) under the French entry: the top thirteen.
+_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:13])
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt Nov 10 entries declare fers v1 hash {fers_h}')
 # Public changelog keeps hashes and dates only (no quotes, no ids)

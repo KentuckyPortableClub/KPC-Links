@@ -1,0 +1,55 @@
+{
+ "type": "FeatureCollection",
+ "_synthetic": "SYNTHETIC TEST FIXTURE (KPC owner, 2026-11-11). NOT agency data: the ids, names and INPN links are the real ones named in docs/mystery-joins-nov11-staged.json, but every geometry is a made-up rectangle placed relative to the POTA pin (inside / about 2.8 km / about 3.5 km) to reproduce the Nov 11 pin tests offline. Never use it as an outline.",
+ "_layer": "patrinat_znieff2_mer:znieff2_mer",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "znieff2_mer.7",
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        6.7,
+        43.24
+       ],
+       [
+        6.76,
+        43.24
+       ],
+       [
+        6.76,
+        43.29
+       ],
+       [
+        6.7,
+        43.29
+       ],
+       [
+        6.7,
+        43.24
+       ]
+      ]
+     ]
+    ]
+   },
+   "geometry_name": "the_geom",
+   "properties": {
+    "id_mnhn": "93M000091",
+    "nom_site": "CAP DE SAINT-TROPEZ 2",
+    "url_fiche": "https://inpn.mnhn.fr/zone/znieffMer/93M000091"
+   }
+  }
+ ],
+ "totalFeatures": 1,
+ "numberMatched": 1,
+ "numberReturned": 1,
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4326"
+  }
+ }
+}

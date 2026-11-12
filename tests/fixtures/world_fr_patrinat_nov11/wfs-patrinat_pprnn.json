@@ -1,0 +1,55 @@
+{
+ "type": "FeatureCollection",
+ "_synthetic": "SYNTHETIC TEST FIXTURE (KPC owner, 2026-11-11). NOT agency data: the ids, names and INPN links are the real ones named in docs/mystery-joins-nov11-staged.json, but every geometry is a made-up rectangle placed relative to the POTA pin (inside / about 2.8 km / about 3.5 km) to reproduce the Nov 11 pin tests offline. Never use it as an outline.",
+ "_layer": "patrinat_pprnn:pprnn",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "pprnn.1",
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        2.767,
+        45.55165
+       ],
+       [
+        2.773,
+        45.55165
+       ],
+       [
+        2.773,
+        45.55615
+       ],
+       [
+        2.767,
+        45.55615
+       ],
+       [
+        2.767,
+        45.55165
+       ]
+      ]
+     ]
+    ]
+   },
+   "geometry_name": "the_geom",
+   "properties": {
+    "id_mnhn": "FR9500105",
+    "nom_site": "Périmètre de protection de la réserve naturelle de la vallée de Chaudefour",
+    "url_fiche": "https://inpn.mnhn.fr/espace/protege/FR9500105"
+   }
+  }
+ ],
+ "totalFeatures": 1,
+ "numberMatched": 1,
+ "numberReturned": 1,
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4326"
+  }
+ }
+}

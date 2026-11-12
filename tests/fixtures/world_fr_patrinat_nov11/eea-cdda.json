@@ -1,0 +1,79 @@
+{
+ "_synthetic": "SYNTHETIC TEST FIXTURE (KPC owner, 2026-11-11). NOT agency data: the ids, names and INPN links are the real ones named in docs/mystery-joins-nov11-staged.json, but every geometry is a made-up rectangle placed relative to the POTA pin (inside / about 2.8 km / about 3.5 km) to reproduce the Nov 11 pin tests offline. Never use it as an outline.",
+ "_layer": "EEA nationally designated areas (CDDA_Dyna_WM/MapServer/4)",
+ "objectIdFieldName": "OBJECTID",
+ "features": [
+  {
+   "attributes": {
+    "OBJECTID": 5816,
+    "siteName": "Tannes d'arceau",
+    "cddaId": "I056FR1100689",
+    "nationalId": "FR1100689",
+    "designationTypeCode": "SYNTH",
+    "countryCode": "FR"
+   },
+   "geometry": {
+    "rings": [
+     [
+      [
+       -1.23849,
+       45.9385
+      ],
+      [
+       -1.23849,
+       45.9405
+      ],
+      [
+       -1.23549,
+       45.9405
+      ],
+      [
+       -1.23549,
+       45.9385
+      ],
+      [
+       -1.23849,
+       45.9385
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID": 3819,
+    "siteName": "Périmètre De Protection De La Réserve Naturelle De La Vallée De Chaudefour",
+    "cddaId": "I056FR9500105",
+    "nationalId": "FR9500105",
+    "designationTypeCode": "SYNTH",
+    "countryCode": "FR"
+   },
+   "geometry": {
+    "rings": [
+     [
+      [
+       2.767,
+       45.55165
+      ],
+      [
+       2.767,
+       45.55615
+      ],
+      [
+       2.773,
+       45.55615
+      ],
+      [
+       2.773,
+       45.55165
+      ],
+      [
+       2.767,
+       45.55165
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}
