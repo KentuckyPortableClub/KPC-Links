@@ -19,7 +19,8 @@ NODE = r"""
 const fs = require('fs'), vm = require('vm'); const [src, cases] = [fs.readFileSync(process.argv[1], 'utf8'), JSON.parse(process.argv[2])]; const out = [];
 for (const c of cases) {
   const added = [];
-  const doc = { head: { appendChild: s => added.push(s) }, documentElement: { hasAttribute: a => a === 'data-kpc-public' && !!c.attrPublic },
+  const doc = { head: { appendChild: s => added.push(s) }, documentElement: { hasAttribute: a => a === 'data-kpc-public' && !!c.attrPublic, classList: { contains: k => k === 'kpc-door' && !!c.boxOpen } },
+    getElementById: id => id === 'kpcDoor' && c.boxOpen ? {} : null,
     createElement: () => { const s = { attrs: {}, setAttribute(k, v) { this.attrs[k] = v; } }; return s; },
     querySelector: sel => (c.scripts || []).some(n => sel.includes(n)) ? {} : null };
   const pub = c.public;
@@ -34,7 +35,7 @@ console.log(JSON.stringify(out));
 cases = [dict(page='index.html', public=PUBLIC), dict(page='kpc-club.html', public=PUBLIC), dict(page='kpc-hunt.html', public=PUBLIC + ['kpc-hunt.html'], scripts=['kpc-vip.js']),
          dict(page='kpc-beta-room.html', public=PUBLIC, scripts=['kpc-vip.js']), dict(page='kpc-maprep-reps.html', public=PUBLIC, attrPublic=True, scripts=['kpc-maprep-gate.js']),
          dict(page='kpc-tracker.html', public=PUBLIC + ['kpc-tracker.html'], scripts=['kpc-members.js']), dict(page='about.html', public=PUBLIC, hash='#members'),
-         dict(page='about.html', public=PUBLIC, noGate=True), dict(page='', public=PUBLIC)]
+         dict(page='about.html', public=PUBLIC, noGate=True), dict(page='', public=PUBLIC), dict(page='about.html', public=PUBLIC, boxOpen=True)]
 try:
     r = subprocess.run(['node', '-e', NODE, str(HERE / 'kpc-count.js'), json.dumps(cases)], capture_output=True, text=True, timeout=120)
     res = json.loads(r.stdout.strip().split('\n')[-1])
@@ -50,6 +51,7 @@ if res is not None:
                                                          'old members door page', '#members opens the sign-in box', 'no kpc-gate.js on the page']):
         ok(got == [], 'no counter on %s (%s)' % (c['page'], why))
     ok(len(res[8]) == 1, 'the site root (/KPC-Links/) counts as index.html')
+    ok(res[9] == [], 'no counter while the members sign-in box is open (Nov 11, third round)')
 src = (HERE / 'kpc-count.js').read_text(encoding='utf-8')
 ok("gc.zgo.at/count.js'" not in src and 'count.v4.js' in src and SRI in src, 'kpc-count.js: no unpinned count.js left')
 loads, bad, order = [], [], []

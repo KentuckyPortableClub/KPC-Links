@@ -15,7 +15,8 @@
      and an address that opens the sign-in box (#members). Pages without kpc-gate.js are skipped too (this cannot tell). */
   var f = (location.pathname.split('/').pop() || 'index.html').toLowerCase(); if (!/\.html?$/.test(f)) f = 'index.html';
   var G = window.KPCGate, pub = !!G && (G.isPublic(f) || document.documentElement.hasAttribute('data-kpc-public'));
-  if (!pub || location.hash === '#members' || document.querySelector('script[src*="kpc-vip.js"],script[src*="kpc-maprep-gate.js"],script[src*="kpc-members.js"]')) return;
+  /* ...and never while the members sign-in box is open (Nov 11: kpc-gate.js draws it as #kpcDoor) */
+  if (!pub || location.hash === '#members' || document.getElementById('kpcDoor') || document.documentElement.classList.contains('kpc-door') || document.querySelector('script[src*="kpc-vip.js"],script[src*="kpc-maprep-gate.js"],script[src*="kpc-members.js"]')) return;
   var s = document.createElement('script');
   /* pinned version with an integrity check (GoatCounter's "Use SRI with count.js" help page, count.v4.js) */
   s.async = true; s.src = 'https://gc.zgo.at/count.v4.js'; s.crossOrigin = 'anonymous';
