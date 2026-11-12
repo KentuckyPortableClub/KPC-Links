@@ -1,36 +1,36 @@
 {
  "key": "world",
- "build": "W-43082247085",
- "report": "world-W-43082247085.json",
- "report_checked": "2026-11-11 20:59",
- "checked_at": "2026-11-11 20:59 UTC",
- "prev_ref": "54308a1f7199",
+ "build": "W-43271823913",
+ "report": "world-W-43271823913.json",
+ "report_checked": "2026-11-12 18:54",
+ "checked_at": "2026-11-12 18:54 UTC",
+ "prev_ref": "a6c493c7713e",
  "about": "parks this build has with NO outline, one row each, split by reason (kpc_key_dropped.py, links-07; latest/ only, rewritten only when the rows change)",
  "counts": {
   "joined_in_other_area": 0,
   "pota_bad_pin": 9,
-  "override_no": 1457,
-  "rule18_doubt": 295,
+  "override_no": 1458,
+  "rule18_doubt": 298,
   "pin_too_far": 0,
   "wrong_kind": 9,
-  "name_mismatch": 1651,
-  "inside_other_land": 3637,
+  "name_mismatch": 1628,
+  "inside_other_land": 3595,
   "private_or_picture_map": 0,
-  "no_boundary": 10498
+  "no_boundary": 10486
  },
  "new_this_build": {
   "joined_in_other_area": 0,
   "pota_bad_pin": 0,
-  "override_no": 0,
+  "override_no": 1,
   "rule18_doubt": 1,
   "pin_too_far": 0,
   "wrong_kind": 0,
-  "name_mismatch": 5,
+  "name_mismatch": 2,
   "inside_other_land": 0,
   "private_or_picture_map": 0,
   "no_boundary": 0
  },
- "total": 17556,
+ "total": 17483,
  "files": {
   "joined_in_other_area": "joined-in-other-area.csv",
   "pota_bad_pin": "pota-bad-pin.csv",
@@ -94,26 +94,26 @@
  },
  "jump_check": {
   "checked": true,
-  "new_drops": 6,
-  "outlined_before": 43451,
-  "limit": 2172.6
+  "new_drops": 4,
+  "outlined_before": 43447,
+  "limit": 2172.3
  },
  "system_warnings": [],
  "inputs": {
-  "pota_pins": 99208,
+  "pota_pins": 99215,
   "answer_sheet_read": true,
   "precheck_read": true
  },
  "precheck_join": {
   "state": "used",
-  "rows": 17556,
-  "rows_with_km": 6939,
-  "rows_with_kind": 1215,
-  "km_from_key": 6939,
-  "kind_from_key": 1215,
+  "rows": 17483,
+  "rows_with_km": 6878,
+  "rows_with_kind": 1212,
+  "km_from_key": 6878,
+  "kind_from_key": 1212,
   "blank_reasons": {
-   "key distance blank: the key names no candidate record; key kind blank: no designation field and no kind word in the record's name; distance: the pre-check row has no distance (no county-check row); kind: no kind problem in the pre-check row (it checks joined records only)": 10617,
-   "key kind blank: no designation field and no kind word in the record's name; kind: no kind problem in the pre-check row (it checks joined records only)": 5724
+   "key distance blank: the key names no candidate record; key kind blank: no designation field and no kind word in the record's name; distance: the pre-check row has no distance (no county-check row); kind: no kind problem in the pre-check row (it checks joined records only)": 10605,
+   "key kind blank: no designation field and no kind word in the record's name; kind: no kind problem in the pre-check row (it checks joined records only)": 5666
   }
  }
 }
