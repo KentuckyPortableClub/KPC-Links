@@ -76,8 +76,12 @@ def same_land_doubt(park_a, park_b, record):
 
 
 def override_no(path):
-    try: d = json.load(open(path, encoding='utf-8'))
-    except Exception: return {}  # noqa: BLE001
+    try:
+        import kpc_overrides as _KOVR
+        d = _KOVR.load(path)
+    except Exception:
+        try: d = json.load(open(path, encoding='utf-8'))
+        except Exception: return {}  # noqa: BLE001
     out = {}
     for ref, o in ((d.get('parks') if isinstance(d, dict) else None) or {}).items():
         no = [x for x in (o or {}).get('no') or [] if x is not None]

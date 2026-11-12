@@ -107,5 +107,5 @@ check('world rules: a scope entry from the old hash, and the newest changelog li
       and f"world rules 096a551a8cb6 -> {F.rules_hash('world-key')}" in PF.changelog_hashes(open(ROOT / 'docs/key-rules-change.txt').read(), 'world-key')[2]
       and 'APPROVED, decided_by KPC owner, 2026-11-11' in PF.changelog_hashes(open(ROOT / 'docs/key-rules-change.txt').read(), 'world-key')[2])
 # Nov 11 (overlap finder, 25 m): the 2-fer hash moved later in its own entry; it must equal its newest changelog line (no literal to edit on a rebase)
-check('the US and Canada hashes did not move; the 2-fer hash is the one its newest changelog line names', (F.rules_hash('us-key'), F.rules_hash('ca-key')) == ('46ef34a04ab0', '4b4176190334') and F.rules_hash('fers') == PF.newest_hash('fers'))
+check('US, Canada and 2-fer hashes equal the newest ones in docs/key-rules-change.txt', (F.rules_hash('us-key'), F.rules_hash('ca-key'), F.rules_hash('fers')) == (PF.newest_hash('us-key'), PF.newest_hash('ca-key'), PF.newest_hash('fers')))
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

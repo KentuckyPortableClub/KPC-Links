@@ -644,7 +644,9 @@ def run(env=None, root='.'):
     pi_dir = pathlib.Path(env.get('PARKINFO') or root / 'kpcdata/data/parkinfo')
     cache = env.get('GEO_CACHE') or str(root / 'cache/us')
     ov = {}
-    try: ov = json.load(open(root / 'data/us-key/overrides.json', encoding='utf-8')).get('parks') or {}
+    try:
+        import kpc_overrides as _KOVR
+        ov = _KOVR.load(root / 'data/us-key/overrides.json').get('parks') or {}
     except Exception: pass  # noqa: BLE001
     out = []
     files = {}

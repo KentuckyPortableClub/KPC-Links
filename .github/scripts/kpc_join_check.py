@@ -87,7 +87,7 @@ def approvals(root, kind, env):
     """{ref: set(ids and names)} a person approved: overrides.json 'join' + signed answer-sheet rows. (map, sheet file or None)"""
     ok = {}; SIGNED.clear(); SIGNED_BY.clear(); NOS.clear()
     try:
-        for r, v in ((json.load(open(os.path.join(root, DIRS[kind][0], 'overrides.json'), encoding='utf-8')).get('parks')) or {}).items():
+        for r, v in ((__import__('kpc_overrides').load(os.path.join(root, DIRS[kind][0], 'overrides.json')).get('parks')) or {}).items():
             if isinstance(v, dict) and (v.get('no') or v.get('nofp')):   # Nov 8: a person's NO, by name (+ acres) as well as by id
                 nf_ = v.get('nofp') if isinstance(v.get('nofp'), dict) else {}
                 NOS[r] = [(z[0], z[1] if len(z) > 1 else None, k) for k, z in nf_.items() if isinstance(z, list) and z and z[0]]

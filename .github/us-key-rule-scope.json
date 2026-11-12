@@ -82,6 +82,14 @@
     "saved_ids": false
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+  },
+  {
+   "id": "2026-11-11-split-overrides",
+   "when": "2026-11-11",
+   "from": "46ef34a04ab0",
+   "why": "data/us-key/overrides.json is over the 1 MB cap (1,527,615 bytes). Parks are split across part files under 1 MB; kpc_us_key.py loads them through kpc_overrides.load. The loaded parks are identical to the single file. No join rule changes and no key rebuild is required.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-11"
   }
  ]
 }

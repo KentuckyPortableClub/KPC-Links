@@ -7,7 +7,8 @@ HERE = pathlib.Path(__file__).resolve().parent.parent
 ok = True
 def check(c, m):
     global ok; print(('ok   ' if c else 'FAIL ') + m); ok &= bool(c)
-P = json.load(open(HERE / 'data/us-key/overrides.json', encoding='utf-8'))['parks']
+sys.path.insert(0, str(HERE / '.github/scripts')); import kpc_overrides as _KOVR
+P = _KOVR.load(HERE / 'data/us-key/overrides.json')['parks']
 NOW = 'US-0197 US-0822 US-0894 US-4370 US-12235 US-12791 US-3722 US-3000 US-3498 US-8745 US-8911 US-3732 US-7463 US-7464 US-7465 US-7466 US-0754 US-11900'.split()
 for r in NOW:
     v = P.get(r) or {}; e = v.get('evidence') or {}

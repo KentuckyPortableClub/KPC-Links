@@ -311,8 +311,10 @@ def keys():
 
 def overrides():
     ov = {}
+    import kpc_overrides as _KOVR
     for f in ('data/us-key/overrides.json', 'data/ca-key/overrides.json'):
-        ov.update(load(f, {}).get('parks') or {})
+        try: ov.update(_KOVR.load(f).get('parks') or {})
+        except Exception: ov.update(load(f, {}).get('parks') or {})  # noqa: BLE001
     return ov
 
 

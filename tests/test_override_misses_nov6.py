@@ -31,7 +31,8 @@ for r in ('US-0822', 'US-4342', 'US-8209', 'US-8679'):
   check(r not in by, f"{r} is not an override miss (got {by.get(r)})")
 
 # Root-cause notes are recorded on the overrides
-ov = json.load(open(ROOT / 'data/us-key/overrides.json'))['parks']
+sys.path.insert(0, str(ROOT / '.github/scripts')); import kpc_overrides as _KOVR
+ov = _KOVR.load(ROOT / 'data/us-key/overrides.json')['parks']
 check('wid702688' not in (ov['US-4342'].get('join') or []), 'US-4342 dead wid join cleared')
 check('sgwic6887' in (ov['US-8209'].get('join') or []), 'US-8209 join is the live SNA id')
 check('190969' in (ov['US-8679'].get('join') or []) and 'sgfld222' in ov['US-8679']['join'], 'US-8679 keeps PAD-US + agency ids')
