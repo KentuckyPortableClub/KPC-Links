@@ -105,7 +105,7 @@ finally:
 
 # 4.
 import kpc_key_freeze as KF
-check((KF.rules_hash('us-key'), KF.rules_hash('ca-key'), KF.rules_hash('world-key'), KF.rules_hash('fers')) == ('46ef34a04ab0', '4b4176190334', '9358c2ede2d5', '77b31e3427a4'),
+check((KF.rules_hash('us-key'), KF.rules_hash('ca-key'), KF.rules_hash('world-key'), KF.rules_hash('fers')) == ('46ef34a04ab0', '4b4176190334', '9358c2ede2d5', 'cef323de4c9a'),
       'US / CA / world / fers rules hashes unchanged (data/state-gis.json is not a rule file)')
 print(f'{"ALL PASS" if not bad else str(bad) + " FAILED"}')
 sys.exit(1 if bad else 0)

@@ -896,6 +896,34 @@ def add_approx_outlines(parks, PIN, skip, region=None, root=None):
     return parks
 
 
+# KPC owner's Nov 10 call (relayed for the Nov 11 batch): a picture trace (data/fers-approx-outlines.json, record id 'apx|<ref>')
+# can be an approximate 2-fer ONLY when it sits inside a bigger park's outline. Read conservatively: 'inside' = no part of the trace
+# lies more than SHRINK (the builder's own 25-yard edge allowance) outside the other park's outline; 'bigger' = some of that
+# outline lies more than SHRINK outside the trace (an outline the same as the trace is not bigger). It narrows ONLY a trace
+# against area outlines (official or the key's approximate outline; two traces alone never make one). KPC owner, Nov 11 2026:
+# official pins, trails and rivers COUNT under the existing rules: a row with a point-circle park (the 100 ft circle, card notes
+# no boundary for that pin), a trail or a river (100 ft from the line / the water) is never touched by this rule and is decided
+# exactly as before. The pair stays an approximate 2-fer with the not-official note, exactly as before.
+def is_picture_trace(r, parks):
+    return any(str(i).startswith('apx|') for i in ((parks or {}).get(r) or {}).get('ids') or [])
+
+
+def trace_inside_bigger(r, o, G):
+    """True when picture trace r lies inside park o's outline (within SHRINK) and o's outline is bigger than the trace."""
+    tb = bbox_groups(G.get(r) or [])
+    if not tb or not G.get(o): return False
+    pad = 3 * SHRINK
+    F = Frame(tb, CELL, pad)
+    if F.W * F.H > MAXPX: F = Frame(tb, CELL * math.sqrt(F.W * F.H / MAXPX) * 1.01, pad)
+    T = F.area(G[r]); O = F.area(G[o])
+    if not T.any(): return False
+    tol = max(SHRINK, F.cell)
+    if (T.astype(bool) & (dt(1 - O, outside=1) * F.cell > tol)).any(): return False      # pokes out of the other park
+    ob, fb = bbox_groups(G[o]), F.bounds()
+    if ob and (ob[0] < fb[0] or ob[1] < fb[1] or ob[2] > fb[2] or ob[3] > fb[3]): return True   # reaches well past the trace
+    return bool((O.astype(bool) & (dt(1 - T, outside=1) * F.cell > tol)).any())
+
+
 def inject_apx_geom(G, parks, refs=None):
     """Use picture-trace rings only when this park has no official outline."""
     for r, p in (parks or {}).items():
@@ -3386,6 +3414,17 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     _held = [WSR_HELD.get(r) or saved_missing_why(r) for r in refs if WSR_HELD.get(r) or saved_missing_why(r)]
     if _held:   # owner rule, 2026-11-10: no saved copy for a saved-copy-only map = held, never tested without it
         s['status'] = 'not sure: ' + '; '.join(sorted(set(_held))); s['names'] = {r: (PIN[r][0] if r in PIN else r) for r in refs}; return
+    _pic = [r for r in refs if is_picture_trace(r, parks)]
+    # KPC owner, Nov 11 2026: official pins (100 ft circle), trails and rivers count under the existing rules, so a row with one
+    # of them (or a trail / river row) is left exactly as the builder treats it; the rule below narrows trace-vs-outline only.
+    _pin_line = s.get('kind') in ('river', 'trail') or any(o in PCT or o in LN for o in refs if o not in _pic)
+    if _pic and not _pin_line:   # KPC owner's Nov 10 call: a picture trace is an approximate 2-fer only inside a bigger park's outline
+        _hosts = [o for o in refs if o in G and o not in PCT and o not in _pic]
+        _out = [r for r in _pic if r in G and not any(trace_inside_bigger(r, o, G) for o in _hosts)] + [r for r in _pic if r not in G]
+        if _out:
+            s['status'] = ('dropped: a picture trace is an approximate 2-fer only when it sits inside a bigger park\'s outline ('
+                           + ', '.join((PIN[r][0] if r in PIN else r) for r in _out) + ' does not)')
+            s['names'] = {r: (PIN[r][0] if r in PIN else r) for r in refs}; return
     # Approximate or point-circle halves stay in the approximate 2-fer tier (they are not held).
     # pc_tag writes the public note and thinner-card fields.
     load_key_status()
