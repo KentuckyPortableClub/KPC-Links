@@ -290,8 +290,12 @@ with tempfile.TemporaryDirectory() as td:
         (R / '.github/no-result-change.json').write_text(json.dumps({'format': 1, 'stamps': [e]}))
         (R / 'data/status/no-result-change/p1.json').write_text(json.dumps(r))
     stamp()
+    smp = set(json.loads((R / 'data/status/no-result-change/p1.json').read_text())['sample'])
     f, t, add, reu = K.decide('world', want, HSn, Pn, rows_old, CUR, 'reuse', False, R)
-    check('B7 shared code moved, a VALID signed proof (OLD -> CUR, pass, no network, equal files): reused', f == [] and reu == want and all('proven no result change (p1)' in r[3] for r in t))
+    proven, unproven = [a for a in want if a in smp], [a for a in want if a not in smp]
+    check('B7 shared code moved, a VALID signed proof (OLD -> CUR, pass, no network, equal files): only areas the proof built are reused (R1)',
+          f == unproven and reu == proven and all('proven no result change (p1)' in r[3] for r in t if r[0] in proven)
+          and all('did not build' in r[3] for r in t if r[0] in unproven))
     f, t, add, reu = K.decide('world', want, HSn, Pn, rows_old, CUR, 'shadow', False, R)
     check('B7 ... and in shadow mode only reported', f == want and not reu)
     for nm, e, r in (('a failed proof (result fail)', None, {'result': 'fail'}), ('a stale proof (to is not the current code hash)', {'to': 'c0de000other'}, {'to': 'c0de000other'}),
@@ -308,7 +312,8 @@ with tempfile.TemporaryDirectory() as td:
     stamp()
     inp3 = json.loads(json.dumps(inp)); inp3['FR']['layers'].append('x'); Pn3 = {a: parts_of(inp3, a, CUR) for a in inp3}
     f, t, add, reu = K.decide('world', want, hashes_of(Pn3), Pn3, rows_old, CUR, 'reuse', False, R)
-    check('B7 valid proof, but FR\'s own data moved too: FR rebuilt, DE GB reused', f == ['FR'] and reu == ['DE', 'GB'])
+    check('B7 valid proof, but FR\'s own data moved too: FR rebuilt, and only DE/GB that the proof built are reused (R1)',
+          f == [a for a in want if a == 'FR' or a not in smp] and reu == [a for a in ['DE', 'GB'] if a in smp])
     r = run(sys.executable, '-B', str(ROOT / '.github/scripts/kpc_area_hash.py'), 'proof-check', 'world', '--repo', str(R), '--from', OLD, '--to', CUR)
     check('B7 proof-check CLI: VALID p1', r.returncode == 0 and r.stdout.startswith('VALID p1'))
 

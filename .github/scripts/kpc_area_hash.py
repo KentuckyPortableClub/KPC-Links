@@ -1031,17 +1031,24 @@ def _signed(by, date, persons, today=None):
     return d <= (today or datetime.date.today())
 
 
-def proof_valid(repo, kind, frm, to, persons=None, today=None):
+# R2: the only people who can sign a no-result-change stamp. Not read from KPC_PERSONS (an env cannot widen this).
+PROOF_PERSONS = ('Brandon', 'KZ4CP')
+PLAN_WARN_BYTES = 1024 * 1024   # warn when the plan JSON is over 1 MB (a GitHub job output that big can be dropped)
+
+
+def proof_valid(repo, kind, frm, to, persons=None, today=None, area=None):
     """(True, id) when a VALID 'no result change' stamp (D4) covers the code-hash move frm -> to of this kind; else (False, why).
     Valid only when: an entry of .github/no-result-change.json names this kind, from, to, claim no-result-change and a proof id, and is
-    signed by a real person; its proof record data/status/no-result-change/<id>.json has format 1, the same id / kind / from / to,
-    result pass, network_attempts 0, a non-empty sample and every compared file pair equal (two sha256 values). Missing, failed,
-    unsigned or stale (to is not the current code hash) = not valid: the shared-code change rebuilds every area (fail closed)."""
+    signed by a real person (PROOF_PERSONS: Brandon, KZ4CP; KPC_PERSONS cannot widen this); its proof record
+    data/status/no-result-change/<id>.json has format 1, the same id / kind / from / to, result pass, network_attempts 0, a non-empty
+    sample and every compared file pair equal (two sha256 values). If area is given, it must also be in the proof's sample (R1: a
+    sample-only proof cannot reuse an area it did not build). Missing, failed, unsigned, stale (to is not the current code hash) or
+    an area the proof did not build = not valid. Same-code-hash reuse ('inputs and code unchanged') does not call this."""
     repo = pathlib.Path(repo)
     if not frm or not to: return False, 'no code hash recorded for the area\'s last build'
     if frm == to: return True, 'same code hash'
     if persons is None:
-        persons = [x.strip() for x in (os.environ.get('KPC_PERSONS') or 'Brandon,KZ4CP').split(',') if x.strip()]
+        persons = list(PROOF_PERSONS)
     try: doc = json.loads((repo / STAMP_FILE).read_text(encoding='utf-8'))
     except FileNotFoundError: return False, f'no proof stamp file ({STAMP_FILE})'
     except Exception as e: return False, f'{STAMP_FILE} unreadable ({type(e).__name__})'  # noqa: BLE001
@@ -1069,6 +1076,8 @@ def proof_valid(repo, kind, frm, to, persons=None, today=None):
                 bad = _kp.record_problems(rec, kind, COMPOSITION)
             except Exception as ex: bad = [f'the proof checker could not run ({type(ex).__name__})']  # noqa: BLE001
             if bad: why = f'proof {pid}: {bad[0]}'; continue
+        if area is not None and area not in rec['sample']:
+            why = f'proof {pid} did not build {area}'; continue
         return True, pid
     return False, why
 
@@ -1096,7 +1105,7 @@ def decide(kind, wanted, hashes, parts, rows, cur_code, mode='shadow', force_ful
             if not moved and row.get('rules') == cur_code: can, how = True, 'inputs and code unchanged'
             elif op is not None and new is not None and row.get('rules') and row.get('rules') != cur_code \
                     and all(op.get(k) == np.get(k) for k in set(op) | set(np) if not k.startswith(CODE_PARTS)):
-                pv, pid = proof(repo, kind, row.get('rules'), cur_code)
+                pv, pid = proof(repo, kind, row.get('rules'), cur_code, area=a)
                 if pv: can, how = True, f'only shared code moved, proven no result change ({pid})'
                 else: reason += f' (shared code only; no valid proof: {pid})'
         if a in wanted:
@@ -1119,6 +1128,10 @@ def run_plan(repo, kind, wanted, index, mode, force_full, data=None, env=None, o
     rows = idx.get(ROWS_KEY[kind]) or {}
     hs, parts = compute(repo, None, kind, 3, data, None, 'verdict', env)
     cur = code_hash(repo, kind)
+    mode = (mode or 'shadow').strip().lower() if isinstance(mode, str) else 'shadow'
+    if mode == 'reuse' and not data:
+        print('::warning title=Area hashes::KPC-Data pins not read: no reuse this run', file=sys.stderr)
+        mode = 'add'
     final, table, added, reused = decide(kind, wanted, hs, parts, rows, cur, mode, force_full, repo)
     head = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=repo, capture_output=True, text=True).stdout.strip()
     t = (f'**Area hashes ({kind}, mode {mode}{", full rebuild asked: no reuse" if force_full else ""}; code hash {cur}; composition {composition(kind)})**'
@@ -1129,7 +1142,13 @@ def run_plan(repo, kind, wanted, index, mode, force_full, data=None, env=None, o
     if dest: open(dest, 'a', encoding='utf-8').write(t + '\n')
     rec = {'kind': kind, 'mode': mode, 'force_full': bool(force_full), 'code_hash': cur, 'composition': composition(kind), 'plan_sha': head, 'pins': bool(data),
            'list': final, 'added': added, 'reused': reused, 'hashes': {a: hs[a] for a in sorted(hs)}, 'parts': {a: short(parts[a]) for a in sorted(parts)}}
-    if out_json: pathlib.Path(out_json).write_text(json.dumps(rec, sort_keys=True, separators=(',', ':')), encoding='utf-8')
+    if out_json:
+        op = pathlib.Path(out_json)
+        op.write_text(json.dumps(rec, sort_keys=True, separators=(',', ':')), encoding='utf-8')
+        n = op.stat().st_size
+        if n > PLAN_WARN_BYTES:
+            print(f'::warning title=Area hashes::plan is {n} bytes (over 1 MB): GitHub may drop a job output this big', file=sys.stderr)
+
     return rec, t
 
 
@@ -1145,7 +1164,7 @@ def move_reused(repo, kind, rows, plan, saved):
         if a in saved or not isinstance(r, dict) or not ph or not r.get('rules') or r['rules'] == plan.get('code_hash') or not isinstance(r.get('area_parts'), dict): continue
         np = (plan.get('parts') or {}).get(a) or {}
         if r.get('out_sha') != sha_file(repo / KEY_PATH[kind].format(a=a)) or any(r['area_parts'].get(k) != np.get(k) for k in set(np) | set(r['area_parts']) if not k.startswith(CODE_PARTS)): continue
-        pv, pid = proof_valid(repo, kind, r['rules'], plan['code_hash'])
+        pv, pid = proof_valid(repo, kind, r['rules'], plan['code_hash'], area=a)
         if pv: r.update(proved_from=r['rules'], proved_by=pid, rules=plan['code_hash'], area_hash=ph, area_parts=np); moved.append(a)
     return moved
 
