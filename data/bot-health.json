@@ -1,24 +1,23 @@
 {
  "open": [
+  "KPC-Data/kpc-collector.yml",
   "KPC-Data/kpc-docs-merge.yml",
-  "KPC-Data/kpc-intake.yml",
   "KPC-Data/kpc-pile-solver.yml",
   "KPC-Data/kpc-storage.yml",
-  "KPC-Data/kpc-waiting-room.yml",
-  "KPC-Data/kpc-wdpa-phonebook.yml",
   "kpc-band-alerts.yml",
   "kpc-boards.yml",
-  "kpc-bot-queue.yml",
-  "kpc-fb-comments.yml",
+  "kpc-discord-relay.yml",
+  "kpc-discord-watch.yml",
   "kpc-guide-pdf.yml",
   "kpc-hunters.json",
   "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
+  "out:shrank:L:data/ky-answer-key.json",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:US-AZ:US-13337",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324"
  ],
- "checked": "2026-11-11T17:28+00:00",
+ "checked": "2026-11-12T12:33+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -118,10 +117,11 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2914
+   "b": 2912
   },
   "L:data/ky-answer-key.json": {
-   "b": 31658
+   "b": 31658,
+   "since": "2026-11-12"
   },
   "L:data/us-key": {
    "b": 50101352
@@ -130,10 +130,10 @@
    "b": 5791754
   },
   "L:data/world-key": {
-   "b": 38079528
+   "b": 34756887
   },
   "L:data/pota": {
-   "b": 5703454
+   "b": 5703574
   },
   "L:data/canada.json": {
    "b": 2494163
@@ -148,10 +148,10 @@
    "b": 583380
   },
   "L:data/state-gis.json": {
-   "b": 127262
+   "b": 128874
   },
   "L:data/boundary-score.json": {
-   "b": 965729
+   "b": 965717
   },
   "L:data/campfed": {
    "b": 643240
@@ -169,7 +169,7 @@
    "b": 20937
   },
   "L:kpc-special-events.json": {
-   "b": 21959
+   "b": 19859
   },
   "L:kpc-youtube.json": {
    "b": 2948
@@ -200,13 +200,13 @@
    "b": 11701686
   },
   "D:data/review/scoreboard.json": {
-   "b": 137200
+   "b": 137366
   },
   "D:data/truth": {
    "b": 20045555
   },
   "D:data/alerts/eu.json": {
-   "b": 150684
+   "b": 172065
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -222,7 +222,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1154216
+   "b": 1112916
   }
  }
 }
