@@ -1,5 +1,5 @@
 {
- "about": "Job 2 (Nov 11 2026): the 17 strong Nov 11 mystery-park matches and the 3 old pins, one row each. NOTHING in this file is read by a key builder: it is the checked record of what each park needs. status: joined-live = the live key already joins the Nov 11 record (pin-tested here from the saved outline); wiring-proposal = the override is already in the live overrides and needs only the layer wired (separate proposal commit); staged = a ready-to-apply entry, kept OUT of the live key until the listed saved copy exists and/or the owner says YES; held = an owner hold that this job does not lift; not-joined = checked and left off, with the reason. Entries for data/us-key/overrides.json are written in the repo's own held form (join_held / alias_held, which no builder reads); to apply one, move its ids / names to join / alias (+ alias_ok_names) and add decided_by. data/us-key/overrides.json is already over 1 MB, so this job did not edit it. Pins: the POTA pins are copied here only to test them; no pin is changed anywhere.",
+ "about": "Job 2 (Nov 11 2026): the 17 strong Nov 11 mystery-park matches and the 3 old pins, one row each. NOTHING in this file is read by a key builder: it is the checked record of what each park needs. status: joined-live = the live key already joins the Nov 11 record (pin-tested here from the saved outline); wiring-proposal = the override is already in the live overrides and needs only the layer wired (separate proposal commit); staged = a ready-to-apply entry, kept OUT of the live key until the listed saved copy exists and/or the owner says YES; held = an owner hold that this job does not lift; not-joined = checked and left off, with the reason. Entries for data/us-key/overrides.json are written in the repo's own held form (join_held / alias_held, which no builder reads); to apply one, move its ids / names to join / alias (+ alias_ok_names) and add decided_by. data/us-key/overrides.json is already over 1 MB, so this job did not edit it. Pins: the POTA pins are copied here only to test them; no pin is changed anywhere. Owner answers 2026-11-11: YES on US-10184, US-10195 and US-7374 (those US overrides wait for prep/nov11-split-overrides); US-13474, US-11820 and US-12735 stay held; FR-14979 owner no is applied in world-key/overrides.json.",
  "made": "2026-11-11",
  "base": {
   "links": "11f908d9dc05c1f2730168751ce4e97436d64a54",
@@ -16,7 +16,7 @@
     45.2019,
     -92.4214
    ],
-   "status": "staged",
+   "status": "owner-yes",
    "nov11": {
     "record": "WI DNR Managed Lands \"Deer Park SHA-WPRA\" (DNR rename of the former Johnson Wildlife Area), OBJECTID 3200850, 213.18 ac",
     "pin": "inside (browser, Nov 11)"
@@ -58,11 +58,13 @@
      "alias_ok_names": [
       "Deer Park SHA-WPRA"
      ],
-     "decided_by": "(owner, on YES)"
+     "decided_by": "KPC owner, 2026-11-11 YES"
     }
    },
    "needs": [],
-   "reason": "Renamed unit (DNR page). The alias path joins only DNR records named exactly \"Deer Park SHA-WPRA\" whose outline holds the pin, so the build re-tests the pin itself. An agency alias needs the owner's YES to that exact name (rule 8 / R-G2), and this job could not pin-test the saved geometry itself, so it is staged, not live. No download needed: the DNR layers sgwia / sgwid are already in the saved copy. Not the bigger place: the WPRA project area is never named."
+   "reason": "Owner YES 2026-11-11 on the name \"Deer Park SHA-WPRA\" (WI DNR rename of the former Johnson Wildlife Area). The alias goes live in data/us-key/overrides.json once the overrides-split PR (prep/nov11-split-overrides) merges; nothing is written to overrides.json in this PR (that file is already over the 1 MB cap). Renamed unit (DNR page). The alias path joins only DNR records named exactly \"Deer Park SHA-WPRA\" whose outline holds the pin, so the build re-tests the pin itself. An agency alias needs the owner's YES to that exact name (rule 8 / R-G2), and this job could not pin-test the saved geometry itself, so it is staged, not live. No download needed: the DNR layers sgwia / sgwid are already in the saved copy. Not the bigger place: the WPRA project area is never named.",
+   "owner_decision": "yes",
+   "owner_decision_when": "2026-11-11"
   },
   "US-10195": {
    "ref": "US-10195",
@@ -73,7 +75,7 @@
     45.1622,
     -92.5082
    ],
-   "status": "staged",
+   "status": "owner-yes",
    "nov11": {
     "record": "WI DNR Managed Lands \"New Richmond SHA-WPRA\" (DNR rename of the former Sette Wildlife Area), OBJECTID 3200855, 77.21 ac",
     "pin": "inside (browser, Nov 11)"
@@ -115,11 +117,13 @@
      "alias_ok_names": [
       "New Richmond SHA-WPRA"
      ],
-     "decided_by": "(owner, on YES)"
+     "decided_by": "KPC owner, 2026-11-11 YES"
     }
    },
    "needs": [],
-   "reason": "As US-10184. WIDNR-PROP:8840 is shared with Johnson, so the entry uses the unit name, never the property number."
+   "reason": "Owner YES 2026-11-11 on the name \"New Richmond SHA-WPRA\" (WI DNR rename of the former Sette Wildlife Area). The alias goes live in data/us-key/overrides.json once the overrides-split PR (prep/nov11-split-overrides) merges; nothing is written to overrides.json in this PR (that file is already over the 1 MB cap). As US-10184. WIDNR-PROP:8840 is shared with Johnson, so the entry uses the unit name, never the property number.",
+   "owner_decision": "yes",
+   "owner_decision_when": "2026-11-11"
   },
   "US-7374": {
    "ref": "US-7374",
@@ -130,7 +134,7 @@
     28.823,
     -82.1821
    ],
-   "status": "staged",
+   "status": "owner-yes",
    "nov11": {
     "record": "SWFWMD Acquired District Lands, project \"Wysong Lock And Dam\", Fee Simple 4.31 ac, OBJECTID 135 (OBJECTID 136 is a 1.25 ac easement: not the park)",
     "pin": "0.01 km (browser, Nov 11)"
@@ -168,7 +172,7 @@
        4.31
       ]
      },
-     "decided_by": "(owner, on YES)"
+     "decided_by": "KPC owner, 2026-11-11 YES"
     },
     "prefix_note": "kpc_us_key.py gives a new FL state-GIS layer the next free sgfl<letter> (sgflh if it is the next one); read it from data/us-key/layers.json after the wiring run"
    },
@@ -184,7 +188,9 @@
      "saved_copy_checked": "KPC-Links and KPC-Data: no SWFWMD layer (not in data/state-gis.json, no file)"
     }
    ],
-   "reason": "Layer not saved; name differs between the land record and the recreation page. The FL saved copy does hold FL DEP state-lands pieces also named \"Wysong Lock And Dam\" (sgflf67773, sgflf25482, sgflf28331, sgflf78579; 0.2-2.4 ac, 0.01-0.03 km, KPC-Data outline-leads/near-miss.json), but the research desk marked that lead doubtful; not used."
+   "reason": "Owner YES 2026-11-11 on the name \"Wysong Lock And Dam\", fee record 135 only (record 136 is an easement, not the park). The join still needs the SWFWMD acquired-lands layer saved and wired, and then a row in data/us-key/overrides.json after the overrides-split PR merges. Nothing is written to overrides.json in this PR. Layer not saved; name differs between the land record and the recreation page. The FL saved copy does hold FL DEP state-lands pieces also named \"Wysong Lock And Dam\" (sgflf67773, sgflf25482, sgflf28331, sgflf78579; 0.2-2.4 ac, 0.01-0.03 km, KPC-Data outline-leads/near-miss.json), but the research desk marked that lead doubtful; not used.",
+   "owner_decision": "yes",
+   "owner_decision_when": "2026-11-11"
   },
   "FR-10548": {
    "ref": "FR-10548",
@@ -508,7 +514,7 @@
     47.576,
     4.09604
    ],
-   "status": "not-joined",
+   "status": "owner-no-applied",
    "nov11": {
     "record": "ZNIEFF 260014888",
     "pin": "outside, 13.06 km (WFS, Nov 11)"
@@ -530,15 +536,19 @@
    },
    "entry": {
     "file": "data/world-key/overrides.json",
-    "staged": {
+    "live": {
      "no": [
       "znieff2.828"
      ],
-     "why": "2026-11-11: the pin is 13.2 km from this 8,700 ha valley zone; exact name but not shown to be the park (job 2 check). Owner decision."
+     "when": "2026-11-11",
+     "why": "2026-11-11: the pin is 13.2 km from this 8,700 ha valley zone; exact name but not shown to be the park. Owner no: the live join comes off on the next world key run.",
+     "decided_by": "KPC owner 2026-11-11"
     }
    },
    "needs": [],
-   "reason": "Looked at the saved outline: an 8,700 ha type-2 valley zone (box 3.857-4.166 E, 47.330-47.494 N); the pin is 9 km north of its box and 13.2 km from its edge, nowhere near the valley. Exact name, but not clearly the park by place, so by the brief's default this job does NOT join it. NOTE: the live world key ALREADY joins it by name (shown as an outline); this job did not remove it. Owner's call: keep it (house rule G-1: an exact-name agency record joins at any distance, pin may be wrong) or apply the staged \"no\"."
+   "reason": "Owner no, 2026-11-11: applied the staged no for znieff2.828 in data/world-key/overrides.json (not a rules file; no hash moves). The live world key file FR.json still shows the join until the next world key run, which will drop it. Looked at the saved outline: an 8,700 ha type-2 valley zone (box 3.857-4.166 E, 47.330-47.494 N); the pin is 9 km north of its box and 13.2 km from its edge, nowhere near the valley. Exact name, but not clearly the park by place, so by the brief's default this job does NOT join it. NOTE: the live world key ALREADY joins it by name (shown as an outline); this job did not remove it. Owner's call: keep it (house rule G-1: an exact-name agency record joins at any distance, pin may be wrong) or apply the staged \"no\".",
+   "owner_decision": "no",
+   "owner_decision_when": "2026-11-11"
   },
   "RO-0880": {
    "ref": "RO-0880",
@@ -582,7 +592,7 @@
     36.2033,
     -115.14
    ],
-   "status": "staged",
+   "status": "held",
    "nov11": {
     "record": "NRHP:75001107 listing polygon \"Kyle Ranch\" (NRHP layer 1 OBJECTID 378910, about 17 ac per the Oct 30 layer collector)",
     "pin": "inside (browser)"
@@ -638,7 +648,9 @@
      "saved_copy_checked": "KPC-Links and KPC-Data: only names / ids (KPC-Data waiting/questions/layers.json.gz), no geometry"
     }
    ],
-   "reason": "A listing boundary is not automatically the park (the city-run ranch park); not on the hold list, but nobody has confirmed it, and no saved geometry to pin-test. tests/test_weekly_batch_nov9.py pins the NV NRHP id list, so the wiring commit must update that test too."
+   "reason": "Owner 2026-11-11: stays held. The National Register listing boundary (record 378910) is not confirmed as the park boundary. A listing boundary is not automatically the park (the city-run ranch park); not on the hold list, but nobody has confirmed it, and no saved geometry to pin-test. tests/test_weekly_batch_nov9.py pins the NV NRHP id list, so the wiring commit must update that test too.",
+   "owner_decision": "held",
+   "owner_decision_when": "2026-11-11"
   },
   "US-11820": {
    "ref": "US-11820",
@@ -692,7 +704,9 @@
      "saved_copy_checked": "none in either checkout"
     }
    ],
-   "reason": "Owner hold on data/research-inbox/needs-another-look.json (agency alias). Not lifted. The listing is the 101 Ranch National Historic Landmark; whether that boundary is the historic site is the owner's question."
+   "reason": "Owner 2026-11-11: stays held. Owner hold on data/research-inbox/needs-another-look.json (agency alias). Not lifted. The listing is the 101 Ranch National Historic Landmark; whether that boundary is the historic site is the owner's question.",
+   "owner_decision": "held",
+   "owner_decision_when": "2026-11-11"
   },
   "US-12735": {
    "ref": "US-12735",
@@ -746,7 +760,9 @@
      "saved_copy_checked": "none in either checkout"
     }
    ],
-   "reason": "Owner hold (agency alias), not lifted. The Nov 11 notes say the site is the Cherokee Nation's museum on 14 acres; whether the NRHP listing line is that site is for the owner."
+   "reason": "Owner 2026-11-11: stays held. Owner hold (agency alias), not lifted. The Nov 11 notes say the site is the Cherokee Nation's museum on 14 acres; whether the NRHP listing line is that site is for the owner.",
+   "owner_decision": "held",
+   "owner_decision_when": "2026-11-11"
   },
   "US-10274": {
    "ref": "US-10274",
@@ -939,10 +955,12 @@
   }
  },
  "counts": {
-  "staged": 5,
-  "held": 2,
-  "not-joined": 3,
-  "wiring-proposal": 2,
-  "joined-live": 8
+  "owner-yes": 3,
+  "staged": 1,
+  "joined-live": 8,
+  "owner-no-applied": 1,
+  "held": 3,
+  "not-joined": 2,
+  "wiring-proposal": 2
  }
 }

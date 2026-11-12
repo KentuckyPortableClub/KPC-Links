@@ -1,13 +1,14 @@
 """PROPOSAL check (KPC owner, 2026-11-11): the NPS admin boundary layer (sgakd, saved copy only) wired for CA and TX in
-data/state-gis.json, so the Nov 9 overrides for US-0754 (sgakd1159, RORI) and US-11900 (sgakd1245, BLSC) can take effect once the
-owner's checked hand files are merged into the saved copies. Offline: sockets are refused here and in the build it runs.
+data/state-gis.json, so the existing overrides for US-0754 (sgakd1159, RORI), US-0915 (sgakd1220, CECH) and US-11900
+(sgakd1245, BLSC) can take effect once the owner's checked hand files are merged into the saved copies. Offline: sockets are
+refused here and in the build it runs.
 
-  1. CA and TX each list the NPS LRD layer once, limited to their unit, and the layer keeps its prefix (sgakd, from layers.json);
+  1. CA lists the NPS LRD layer once for RORI and CECH, TX lists it once for BLSC, and the layer keeps its prefix (sgakd);
   2. the master step's own check (kpc_master_fill.new_layer_states) now asks for the CA / TX layer (a person's hand file), and
      stops asking once a saved copy holds it;
   3. an offline single-state build (kpc_us_key.py, GEO_CACHE_MODE=only, in a temp copy; needs KPC-Data for the park files and the
-     NPS hand copy): with the wired units in the saved copies, US-0754 and US-11900 grade official through their existing
-     overrides; US-0915 (CECH, not wired here) stays a pin;
+     NPS hand copy): with the wired units in the saved copies, US-0754, US-0915 and US-11900 grade official through their existing
+     overrides;
   4. no rules hash moved (data/state-gis.json is not a rule file).
 KPC-Data: KPC_DATA=<dir>, else ../kpc-data or ../kpcdata. Without it check 3 prints SKIP."""
 import gzip, json, os, pathlib, re, shutil, socket, subprocess, sys, tempfile
@@ -23,20 +24,22 @@ def check(ok, msg):
 def load(p): return json.load(open(p, encoding='utf-8'))
 DATA = next((pathlib.Path(d) for d in (os.environ.get('KPC_DATA'), ROOT.parent / 'kpc-data', ROOT.parent / 'kpcdata') if d and (pathlib.Path(d) / 'data').is_dir()), None)
 NPS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2'
-WIRE = {'CA': ('RORI', 'US-0754', 'sgakd1159'), 'TX': ('BLSC', 'US-11900', 'sgakd1245')}
+WIRE = {'CA': [('RORI', 'US-0754', 'sgakd1159'), ('CECH', 'US-0915', 'sgakd1220')], 'TX': [('BLSC', 'US-11900', 'sgakd1245')]}
 
 # 1.
 sg = load(ROOT / 'data/state-gis.json')['states']
 codes = {}
-for st, (code, ref, rid) in WIRE.items():
+for st, units in WIRE.items():
+    want = {u[0] for u in units}
     rows = [x for x in sg.get(st, []) if x.get('url') == NPS]
     codes[st] = set(re.findall(r"'([A-Z]{4})'", rows[0].get('where', ''))) if len(rows) == 1 else set()
-    check(len(rows) == 1 and rows[0]['nm'] == 'UNIT_NAME' and codes[st] == {code}, f'{st}: the NPS LRD layer is listed once, for {code} only')
+    check(len(rows) == 1 and rows[0]['nm'] == 'UNIT_NAME' and codes[st] == want, f'{st}: the NPS LRD layer is listed once, for {"+".join(sorted(want))}')
 check(sorted(s for s, ls in sg.items() if any(x.get('url') == NPS for x in ls)) == ['AK', 'CA', 'CO', 'HI', 'MA', 'NE', 'NY', 'OH', 'PA', 'RI', 'SD', 'TX'], 'the other ten states are unchanged')
 lj = load(ROOT / 'data/us-key/layers.json')
 check(lj['sgakd'][0].split('/query')[0] == NPS, 'layers.json gives that layer the prefix sgakd (the key keys prefixes by address), so the ids stay sgakd1159 / sgakd1245')
 ov = load(ROOT / 'data/us-key/overrides.json')['parks']
-check(all(ov[ref]['join'] == [rid] and str(ov[ref].get('decided_by') or '').strip() for _, ref, rid in WIRE.values()), 'the Nov 9 overrides are unchanged and signed')
+check(all(ov[ref]['join'] == [rid] for units in WIRE.values() for _, ref, rid in units), 'the existing overrides still join the wired ids')
+check(all(str(ov[ref].get('decided_by') or '').strip() for ref in ('US-0754', 'US-11900')), 'the Nov 9 overrides for US-0754 and US-11900 stay signed')
 
 # 2. the master step asks for the hand files
 import kpc_master as M, kpc_master_fill as F
@@ -91,12 +94,11 @@ try:
         r = subprocess.run([sys.executable, str(run), str(S)], env=env, capture_output=True, text=True, timeout=900)
         out = r.stdout + r.stderr
         check(r.returncode == 0 and 'NETWORK REFUSED' not in out, f'the offline build ran with no network attempt (exit {r.returncode})')
-        for st, (code, ref, rid) in WIRE.items():
-            p = load(k / f'US-{st}.json')['parks'][ref]
-            check(p.get('g') == 'official' and [x[0] for x in p.get('m') or []] == [rid] and p['m'][0][3] == 'reviewed' and (p.get('bk') or [None, 9])[1] <= 0.5,
-                  f'{ref}: official through its existing override ({rid}, {p.get("bk", [None, None])[1]} km)')
-        p = load(k / 'US-CA.json')['parks']['US-0915']
-        check(p.get('g') == 'pin', 'US-0915 (CECH, not in the CA where) stays a pin: only the wired units join')
+        for st, units in WIRE.items():
+            for code, ref, rid in units:
+                p = load(k / f'US-{st}.json')['parks'][ref]
+                check(p.get('g') == 'official' and [x[0] for x in p.get('m') or []] == [rid] and p['m'][0][3] == 'reviewed' and (p.get('bk') or [None, 9])[1] <= 0.5,
+                      f'{ref}: official through its existing override ({rid}, {p.get("bk", [None, None])[1]} km)')
 finally:
     shutil.rmtree(T, ignore_errors=True)
 

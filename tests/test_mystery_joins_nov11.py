@@ -56,9 +56,12 @@ WANT = {'US-10184', 'US-10195', 'US-7374', 'FR-10548', 'FR-10432', 'FR-11106', '
         'US-13474', 'US-11820', 'US-12735', 'US-10274', 'US-4376', 'US-0754', 'US-11900'}
 # 1.
 check(set(P) == WANT and len(P) == 20, 'the file names exactly the 20 parks')
-check(all(p['status'] in ('joined-live', 'wiring-proposal', 'staged', 'held', 'not-joined') and len(p.get('reason') or '') > 20 for p in P.values()), 'each has a known status and a reason')
-check(P['US-11820']['status'] == 'held' and P['US-12735']['status'] == 'held', 'the two agency-alias holds stay held')
-check(P['FR-14979']['status'] == 'not-joined' and P['US-10274']['status'] == 'not-joined', 'FR-14979 (13 km) and Palmito (the battlefield is the bigger place) are not joined')
+check(all(p['status'] in ('joined-live', 'wiring-proposal', 'staged', 'held', 'not-joined', 'owner-yes', 'owner-no-applied') and len(p.get('reason') or '') > 20 for p in P.values()), 'each has a known status and a reason')
+check(P['US-11820']['status'] == 'held' and P['US-12735']['status'] == 'held' and P['US-13474']['status'] == 'held', 'US-11820, US-12735 and US-13474 stay held')
+check(P['US-10274']['status'] == 'not-joined', 'Palmito (the battlefield is the bigger place) is not joined')
+check(all(P[r]['status'] == 'owner-yes' and P[r]['owner_decision'] == 'yes' for r in ('US-10184', 'US-10195', 'US-7374')), 'US-10184, US-10195 and US-7374 are owner YES')
+check(P['FR-14979']['status'] == 'owner-no-applied' and P['FR-14979']['owner_decision'] == 'no', 'FR-14979 owner no is applied')
+check('overrides.json' in (P['US-10184'].get('reason') or '') and 'split' in (P['US-10184'].get('reason') or '').lower(), 'the YES aliases wait for the overrides-split PR; nothing is written to us-key/overrides.json here')
 check(all(n['host'] and n['feature'] and n['refs'] and n['saved_copy_checked'] for p in P.values() for n in p.get('needs') or []), 'every hand-download item names host, feature, park and the saved copies checked')
 check(all('arcgis.com' not in str(n['host']) for p in P.values() for n in p.get('needs') or []), 'no hand-download item asks for a live services*.arcgis.com read')
 
@@ -79,13 +82,20 @@ else: skip('KPC-Data park files: no KPC-Data checkout')
 uo = load(ROOT / 'data/us-key/overrides.json')['parks']; wo = load(ROOT / 'data/world-key/overrides.json')['parks']
 for r, p in P.items():
     st = ((p.get('entry') or {}).get('staged') or {})
-    if not st or p['status'] not in ('staged', 'held', 'not-joined'): continue
+    if p['status'] not in ('staged', 'held', 'not-joined', 'owner-yes'): continue
+    if not st and p['status'] != 'owner-yes': continue
     live = (uo if r.startswith('US-') else wo).get(r) or {}
     names = set(st.get('alias_held') or []) | set((st.get('join_held') or {}).get('ids') or []) | {x[1] for x in st.get('ids') or []} | set(st.get('no') or [])
     used = set(map(str, live.get('join') or [])) | set(live.get('alias') or []) | set(live.get('alias_ok_names') or []) | set(map(str, live.get('no') or [])) | {str(x[1]) for x in live.get('ids') or []}
     check(not (names & used), f'{r}: the staged entry is not in the live overrides')
 nal = load(ROOT / 'data/research-inbox/needs-another-look.json')['parks']
 check(all(nal.get(r, {}).get('wait_on') == 'person' for r in ('US-11820', 'US-12735')), 'US-11820 / US-12735 still wait on a person (hold not lifted)')
+check(((P['FR-14979'].get('entry') or {}).get('live') or {}).get('no') == ['znieff2.828'] and (wo.get('FR-14979') or {}).get('no') == ['znieff2.828'],
+      'FR-14979: the staged no is now live in data/world-key/overrides.json')
+check(any(str(x[0]) == 'znieff2.828' for x in load(ROOT / 'data/world-key/FR.json')['parks']['FR-14979'].get('m') or []),
+      'FR-14979: the live world key file still joins znieff2.828 until the next world key run')
+check(all(r not in uo or 'Deer Park SHA-WPRA' not in ((uo.get(r) or {}).get('alias') or []) for r in ('US-10184',)),
+      'the owner-YES aliases are not yet in data/us-key/overrides.json')
 
 # 4. joined-live: the live world key joins the record; the saved outline gives the documented distance
 for r, p in P.items():
