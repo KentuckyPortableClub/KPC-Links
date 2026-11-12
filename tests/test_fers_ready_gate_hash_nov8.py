@@ -96,6 +96,7 @@ docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 # Nov 12 (KPC owner, 2026-11-12; D6 tables out): + the D6 entry (US / world) on top: the top fifteen.
 # Nov 12 (KPC-Links #151 readers, E4): + the US overrides split entry (US hash move) on top: the top fifteen.
 # KPC owner, 2026-11-12 (official pin fills, CA / world): + that entry on top: (stacked set: the window is the top twenty).
+# KPC owner, 2026-11-12 (Japan A10 crosswalk, world, switch off): + that entry on top: (inside the same window).
 _head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:20])
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt Nov 10 entries declare fers v1 hash {fers_h}')

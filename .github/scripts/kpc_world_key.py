@@ -1452,6 +1452,8 @@ for cc in COUNTRIES:
                 m = [[x[0], x[1], x[2], 'same name (POTA writes the kind into the name)'] for x in sn]
                 c = [x for x in c if x not in sn]
         parks[ref] = {'n': name, 't': typ, 'm': m, 'c': c}
+    # Nov 12 (KPC owner, 2026-11-12; kpc_jp_crosswalk.py): the Japan A10 crosswalk, JP only, behind the repo switch KPC_JP_A10_CROSSWALK (OFF until the A10 terms are signed)
+    import kpc_jp_crosswalk as JPX; JPX.apply(cc, parks, P, recs, jstrip, near, inside, notice)  # noqa: E402,E702
     # IS THE BOUNDARY WHERE IT SHOULD BE? (Oct 24: the US key's Oct 21-22 check, ported.) A name can match and still
     # be the wrong place, so: does the park's own pin fall inside the land it was joined to? Sorted the same three
     # ways as the US ('no shape to check against' = the check is blind, not the join; 'edge' = within about a mile;

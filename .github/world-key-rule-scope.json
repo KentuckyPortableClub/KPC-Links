@@ -40,6 +40,14 @@
     ]
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
+  },
+  {
+   "id": "2026-11-12-jp-a10-crosswalk-off",
+   "when": "2026-11-12",
+   "from": "9613774326a4",
+   "why": "The world builder can read the Japan A10 crosswalk (data/research-inbox/answers/nov5/JP_A10_crosswalk.csv, kpc_jp_crosswalk.py) as official Japanese name aliases for JP parks, behind the repo variable KPC_JP_A10_CROSSWALK. The switch stays OFF until the owner signs the Japan A10 licence terms; OFF, the file is not read and every country's result is byte for byte what it was, so no country is due for this change. Turning the switch on changes JP only (that is a variable, not a code change: the JP area hash must count it).",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
   }
  ]
 }
