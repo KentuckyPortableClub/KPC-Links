@@ -100,7 +100,7 @@ function drawZone() {
     }
   }
   const e = $('azEdge'); if (e) e.hidden = !edge;
-  L.circleMarker([cur.la, cur.lo], { radius: 8, color: '#111', weight: 2, fillColor: '#d5a63a', fillOpacity: 1 }).bindTooltip(`${cur.c} ${cur.n}`).addTo(zLayer);
+  L.circleMarker([cur.la, cur.lo], { radius: 8, color: '#111', weight: 2, fillColor: '#d5a63a', fillOpacity: 1 }).bindTooltip(`${esc(cur.c)} ${esc(cur.n)}`).addTo(zLayer);
 }
 
 /* ---------------- choosing a summit ---------------- */

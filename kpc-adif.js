@@ -189,8 +189,8 @@
   /* ---------- map ---------- */
   const BCOL = { '160m': '#7b3294', '80m': '#c2a5cf', '60m': '#9e9ac8', '40m': '#2c7fb8', '30m': '#41b6c4', '20m': '#d7301f', '17m': '#fc8d59', '15m': '#fdae61', '12m': '#a6d96a', '10m': '#1a9850', '6m': '#e7298a', '2m': '#666', '70cm': '#333' };
   /* Leaflet from unpkg, the same copy every other KPC map uses (the cdnjs '.min' name did not exist: Brandon Oct 31 'the map is not working') */
-  function leaflet() { return window.L ? Promise.resolve() : new Promise((res, rej) => { const c = document.createElement('link'); c.rel = 'stylesheet'; c.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(c);
-    const s = document.createElement('script'); s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
+  function leaflet() { return window.L ? Promise.resolve() : new Promise((res, rej) => { const c = document.createElement('link'); c.rel = 'stylesheet'; c.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; c.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY='; c.crossOrigin = ''; document.head.appendChild(c);
+    const s = document.createElement('script'); s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; s.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo='; s.crossOrigin = ''; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
   /* the bar on top of the map (Brandon Oct 31 4:43 PM: 'club logo then the operator's call sign, date, qso total, states worked, dx worked, park info … hide dx if it does not apply') */
   const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const fd = d => /^\d{8}$/.test(d) ? MON[+d.slice(4, 6) - 1] + ' ' + (+d.slice(6)) + ', ' + d.slice(0, 4) : d;

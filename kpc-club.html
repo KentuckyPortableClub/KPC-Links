@@ -20,8 +20,8 @@
 <meta name="description" content="KPC members-only club stats, Kentucky County Challenge, Park of the Month and badges.">
 <meta name="robots" content="noindex,nofollow">
 <script src="kpc-members.js?v=20261018a"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="stylesheet" href="kpc-tools.css">
 <script src="kpc-padus-layer.js?v=20261111parts"></script><script>window.KPC_COUNTY_FILE='kpc-ky-counties-hd.json'</script><script src="kpc-tools.js?v=20261027a"></script>
 <link rel="stylesheet" href="kpc-nav.css?v=20261030a">
@@ -310,7 +310,7 @@ function statsFor(m){const mine=A.filter(a=>a.c===m&&a.ok),parks=new Set(mine.ma
  return{n:mine.length,parks:parks.size,cty:cty.size,first:mine.filter(a=>a.prior===0).length,rare:new Set(mine.filter(a=>a.prior<5).map(a=>a.ref)).size,two,max:Math.max(0,...A.filter(a=>a.c===m).map(a=>a.q)),crowns,seasons:seasons.size}}
 function badges(){$('badgeGrid').innerHTML=M.map(m=>{const s=statsFor(m),won=BADGES.filter(b=>b[3](s)).length;
  return`<div class="cr-mem"><h3>${m}</h3><div class="sub">${won} of ${BADGES.length} badges • ${s.parks} parks • ${s.cty} counties • ${s.n} activations</div><div class="cr-bl">${BADGES.map(([ic,t,d,f,pr])=>`<div class="bdg${f(s)?' on':''}" title="${esc(d)}"><div class="ic">${ic}</div><b>${t}</b><small>${f(s)?esc(d):pr(s)}</small></div>`).join('')}</div></div>`}).join('')}
-$('refresh').onclick=()=>go(true);go();
+$('refresh').onclick=()=>go(true);if(!window.KPCGate||KPCGate.member())go();   /* Nov 11: guests only see the members door, so skip the ~190 POTA look-ups behind it */
 </script>
 
 </main>
