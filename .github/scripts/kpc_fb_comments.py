@@ -35,7 +35,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
-from kpc_scrub import scrub, notice_text
+from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 STATE_F = pathlib.Path('data/fb-comments-state.json')
@@ -216,7 +216,7 @@ def main():
         notice('Token can: ' + ', '.join(sc) + ('. MISSING: ' + ', '.join(need) if need else '. Everything needed is there.')
                + f" Expires: {d.get('expires_at') or 'never'}.")
     else:
-        notice('Could not read the token details: ' + str(j.get('error', {}).get('message'))[:160])
+        notice('Could not read the token details: ' + clip(j.get('error', {}).get('message'), 160))
     # whose token is it? a Page token answers /me with the Page's own name
     c, who = graph('me', fields='id,name')
     if who.get('id'):
@@ -224,14 +224,14 @@ def main():
         notice(f"Token belongs to: {who.get('name')} (id {who['id']}) · type {d.get('type') or '?'} · "
                + ('this IS the Page we post to.' if same else f'NOT our Page id {FB_ID} - posting would go to the wrong place.'))
     else:
-        notice('Could not see who the token belongs to: ' + str(who.get('error', {}).get('message'))[:160])
+        notice('Could not see who the token belongs to: ' + clip(who.get('error', {}).get('message'), 160))
 
     since = int((datetime.datetime.now(datetime.timezone.utc)
                  - datetime.timedelta(days=LOOK_BACK_DAYS)).timestamp())
     c, j = graph(f'{FB_ID}/posts', fields='id,created_time,permalink_url', limit='25', since=str(since))
     posts = j.get('data') or []
     if not posts:
-        notice('Could not read the Page posts: ' + str(j.get('error', {}).get('message'))[:200])
+        notice('Could not read the Page posts: ' + clip(j.get('error', {}).get('message'), 200))
         return
 
     fresh = []
@@ -242,7 +242,7 @@ def main():
         if 'data' not in j:
             e = j.get('error') or {}
             if e.get('code') in (10, 200, 190):
-                blocked = str(e.get('message'))[:300]
+                blocked = clip(e.get('message'), 300)
                 break
             continue
         for cm in j['data']:
@@ -330,5 +330,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        notice(f'stopped early: {type(e).__name__}: {str(e)[:300]}')
+        notice(f'stopped early: {type(e).__name__}: {clip(e, 300)}')
         sys.exit(0)          # never fail the job: a failed run emails Brandon

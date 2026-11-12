@@ -31,7 +31,7 @@ import sys
 import urllib.error
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
-from kpc_scrub import scrub, notice_text
+from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
 API = 'https://discord.com/api/v10/'
 CONF_F = pathlib.Path('data/discord-watch.json')
@@ -56,8 +56,8 @@ def call(path, token=True):
         with urllib.request.urlopen(urllib.request.Request(API + path, headers=h), timeout=60) as r:
             return json.loads(r.read().decode('utf-8', 'replace'))
     except urllib.error.HTTPError as e:
-        body = e.read().decode('utf-8', 'replace')[:200]
-        return {'_error': scrub(f'HTTP {e.code} {body}', 200)}
+        body = e.read().decode('utf-8', 'replace')   # Nov 12: whole body, scrubbed, then cut (a cut-off token slipped past)
+        return {'_error': clip(f'HTTP {e.code} {body}', 200)}
     except Exception as e:  # noqa: BLE001
         return {'_error': type(e).__name__ + ': ' + scrub(e, 150)}
 
@@ -75,10 +75,10 @@ def say(title, text):
             r.read()
             return r.status
     except urllib.error.HTTPError as e:
-        notice(f'Discord refused it: HTTP {e.code} {e.read().decode("utf-8", "replace")[:160]}')
+        notice(f'Discord refused it: HTTP {e.code} {clip(e.read().decode("utf-8", "replace"), 160)}')
         return e.code
     except Exception as e:  # noqa: BLE001
-        notice(f'Could not post: {str(e)[:200]}')
+        notice(f'Could not post: {clip(e, 200)}')
         return 0
 
 
@@ -121,7 +121,7 @@ def main():
             except urllib.error.HTTPError as e:
                 notice(f'{name}: HTTP {e.code}')
             except Exception as e:  # noqa: BLE001
-                notice(f'{name}: {str(e)[:120]}')
+                notice(f'{name}: {clip(e, 120)}')
         notice('Could not delete it with any of our webhooks.')
         return
 
@@ -152,7 +152,7 @@ def main():
             return
         chans = call(f'guilds/{gid}/channels')
         if isinstance(chans, dict):
-            notice('Could not list the rooms: ' + str(chans.get('_error'))[:200])
+            notice('Could not list the rooms: ' + clip(chans.get('_error'), 200))
             return
         kinds = {0: 'text', 2: 'voice', 4: 'category', 5: 'news', 15: 'forum'}
         rooms = [c for c in chans if c.get('type') in (0, 5, 15)]
@@ -168,7 +168,7 @@ def main():
         else:
             say(f'Discord rooms I can see ({len(rooms)})', text)
         notice(f'Listed {len(rooms)} room(s).')
-        notice('rooms: ' + ' | '.join(f"{c.get('name')}={c.get('id')}" for c in rooms)[:700])
+        notice('rooms: ' + clip(' | '.join(f"{c.get('name')}={c.get('id')}" for c in rooms), 700))
         return
 
     rooms = conf.get('rooms') or []
@@ -191,7 +191,7 @@ def main():
         name = (room.get('name') if isinstance(room, dict) else '') or rid
         msgs = call(f'channels/{rid}/messages?limit=50')
         if isinstance(msgs, dict):
-            notice(f'Cannot read #{name}: ' + str(msgs.get('_error'))[:160])
+            notice(f'Cannot read #{name}: ' + clip(msgs.get('_error'), 160))
             continue
         msgs = sorted(msgs, key=lambda m: m.get('timestamp', ''))
         for i, m in enumerate(msgs):
@@ -251,5 +251,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        notice(f'stopped early: {type(e).__name__}: {str(e)[:300]}')
+        notice(f'stopped early: {type(e).__name__}: {clip(e, 300)}')
         sys.exit(0)          # never fail the job: a failed run emails Brandon

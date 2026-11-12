@@ -42,7 +42,7 @@ import sys
 import urllib.error
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
-from kpc_scrub import scrub, notice_text
+from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
 API = 'https://discord.com/api/v10/'
 CONF_F = pathlib.Path('data/discord-mod.json')
@@ -73,9 +73,9 @@ def call(path, method='GET', body=None):
             t = r.read().decode('utf-8', 'replace')
             return json.loads(t) if t.strip() else {}
     except urllib.error.HTTPError as e:
-        return {'_error': f'HTTP {e.code} {e.read().decode("utf-8", "replace")[:200]}'}
+        return {'_error': f'HTTP {e.code} {clip(e.read().decode("utf-8", "replace"), 200)}'}
     except Exception as e:  # noqa: BLE001
-        return {'_error': str(e)[:200]}
+        return {'_error': clip(e, 200)}
 
 
 def say(title, text, colour=0xC0392B):
@@ -94,7 +94,7 @@ def say(title, text, colour=0xC0392B):
         notice(f'Discord refused the staff post: HTTP {e.code}')
         return e.code
     except Exception as e:  # noqa: BLE001
-        notice(f'Could not post to the staff room: {str(e)[:160]}')
+        notice(f'Could not post to the staff room: {clip(e, 160)}')
         return 0
 
 
@@ -482,5 +482,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        notice(f'stopped early: {type(e).__name__}: {str(e)[:300]}')
+        notice(f'stopped early: {type(e).__name__}: {clip(e, 300)}')
         sys.exit(0)          # never fail the job: a failed run emails Brandon

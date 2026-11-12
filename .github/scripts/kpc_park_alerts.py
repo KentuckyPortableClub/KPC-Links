@@ -42,7 +42,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
-from kpc_scrub import scrub, notice_text
+from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 STATE_F = pathlib.Path('data/park-alerts-state.json')
@@ -121,7 +121,7 @@ def ky_state_parks():
     try:
         j = json.loads(fetch('https://parks.ky.gov/api/default/alerts?$top=100'))
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'Kentucky State Parks did not answer: {str(e)[:200]}')
+        notice('Park alerts', f'Kentucky State Parks did not answer: {clip(e, 200)}')
         return None
     for a in j.get('value') or []:
         aid = str(a.get('Id') or a.get('UrlName') or '')
@@ -144,7 +144,7 @@ def nps_alerts():
         j = json.loads(fetch('https://developer.nps.gov/api/v1/alerts?stateCode=KY&limit=200',
                              headers={'X-Api-Key': NPS_KEY}))
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'National Park Service did not answer: {str(e)[:200]}')
+        notice('Park alerts', f'National Park Service did not answer: {clip(e, 200)}')
         return None
     for a in j.get('data') or []:
         aid = str(a.get('id') or '')
@@ -173,7 +173,7 @@ def forest_alerts():
         try:
             html = fetch(f'https://www.fs.usda.gov/alerts/{code}/alerts-notices', timeout=90)
         except Exception as e:  # noqa: BLE001
-            notice('Park alerts', f'{who} did not answer: {str(e)[:160]}')
+            notice('Park alerts', f'{who} did not answer: {clip(e, 160)}')
             continue
         ok = True
         n = 0
@@ -257,7 +257,7 @@ def lbl_alerts():
     try:
         page = fetch('https://www.landbetweenthelakes.us/alerts/', timeout=90)
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'Land Between the Lakes did not answer: {str(e)[:160]}')
+        notice('Park alerts', f'Land Between the Lakes did not answer: {clip(e, 160)}')
         page = ''
     for m in re.finditer(r'jet-listing-dynamic-field__content"?\s*>\s*<p>(.*?)</p>', page, re.S):
         txt = clean(re.sub(r'<[^>]+>', ' ', m.group(1)), 600)
@@ -291,7 +291,7 @@ def lbl_alerts():
             rows = json.loads(fetch(url, timeout=60))
         except Exception as e:  # noqa: BLE001
             if os.environ.get('LBL_LOOK') == '1':
-                notice('Park alerts', f'LBL api {url.split("?")[0][-28:]}: {str(e)[:90]}')
+                notice('Park alerts', f'LBL api {scrub(url.split("?")[0])[-28:]}: {clip(e, 90)}')
             continue
         if isinstance(rows, list) and rows:
             for p in rows:
@@ -308,7 +308,7 @@ def lbl_alerts():
             xml = fetch(url, timeout=60)
         except Exception as e:  # noqa: BLE001
             if os.environ.get('LBL_LOOK') == '1':
-                notice('Park alerts', f'LBL feed {url[-16:]}: {str(e)[:90]}')
+                notice('Park alerts', f'LBL feed {scrub(url)[-16:]}: {clip(e, 90)}')
             continue
         items = re.findall(r'<item>(.*?)</item>', xml, re.S)
         if items:
@@ -327,7 +327,7 @@ def lbl_alerts():
     try:
         html = fetch('https://landbetweenthelakes.us/alerts/', timeout=90)
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'Land Between the Lakes did not answer: {str(e)[:160]}')
+        notice('Park alerts', f'Land Between the Lakes did not answer: {clip(e, 160)}')
         return None
     for m in re.finditer(r'<h\d[^>]*>\s*<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', html, re.S):
         link, title = m.group(1), re.sub(r'<[^>]+>', ' ', m.group(2))
@@ -356,10 +356,10 @@ def lbl_alerts():
         for u in ('https://landbetweenthelakes.us/alerts/feed/', 'https://landbetweenthelakes.us/feed/'):
             try:
                 x = fetch(u, timeout=45)
-                notice('Park alerts', f'LBL feed {u[-14:]} -> {len(x)} chars, starts: '
+                notice('Park alerts', f'LBL feed {scrub(u)[-14:]} -> {len(x)} chars, starts: '
                        + re.sub(r'\s+', ' ', x[:120]))
             except Exception as e:  # noqa: BLE001
-                notice('Park alerts', f'LBL feed {u[-14:]} -> {str(e)[:70]}')
+                notice('Park alerts', f'LBL feed {scrub(u)[-14:]} -> {clip(e, 70)}')
     notice('Park alerts', 'Land Between the Lakes: the page answered but nothing looked like an alert '
                           '(may simply be that nothing is closed right now)')
     return out
@@ -377,7 +377,7 @@ def kdfwr_alerts():
     try:
         page = fetch(base + '/Alerts/Pages/default.aspx', timeout=90)
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'Fish and Wildlife did not answer: {str(e)[:160]}')
+        notice('Park alerts', f'Fish and Wildlife did not answer: {clip(e, 160)}')
         return None
     out = {}
     for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', page, re.S):
@@ -399,7 +399,7 @@ def kdfwr_alerts():
         }
     if os.environ.get('LBL_LOOK') == '1' and not out:
         heads = [clean(re.sub(r'<[^>]+>', ' ', x), 70) for x in re.findall(r'<h\d[^>]*>(.*?)</h\d>', page, re.S)]
-        notice('Park alerts', f'KDFWR page {len(page)} chars; headings: ' + ' | '.join(h for h in heads if h)[:500])
+        notice('Park alerts', f'KDFWR page {len(page)} chars; headings: ' + clip(' | '.join(h for h in heads if h), 500))
     notice('Park alerts', f'Kentucky Fish and Wildlife: {len(out)} alert(s) listed')
     return out
 
@@ -495,7 +495,7 @@ def post_staff(title, text):
             'embeds': [{'title': title[:250], 'color': 0x8a8a8a, 'description': text[:4000]}]}
     c, r = http(STAFF, json.dumps(body).encode(), {'Content-Type': 'application/json'})
     if c >= 300:
-        notice('Park alerts', f'Staff room HTTP {c}: {r[:200]}')
+        notice('Park alerts', f'Staff room HTTP {c}: {clip(r, 200)}')
 
 
 # PAUSE (Brandon Oct 29 10:18 AM: 'Park closure social media announcements turn off for one week till it is working
@@ -522,7 +522,7 @@ def post_discord(title, text):
             'embeds': [{'title': title[:250], 'color': 0xd5a63a, 'description': text[:4000]}]}
     c, r = http(DISCORD, json.dumps(body).encode(), {'Content-Type': 'application/json'})
     if c >= 300:
-        notice('Park alerts', f'Discord HTTP {c}: {r[:200]}')
+        notice('Park alerts', f'Discord HTTP {c}: {clip(r, 200)}')
 
 
 def post_facebook(title, text):
@@ -536,7 +536,7 @@ def post_facebook(title, text):
     data = urllib.parse.urlencode({'access_token': FB_TOKEN, 'message': msg[:5000]}).encode()
     c, r = http(f'https://graph.facebook.com/{FB_ID}/feed', data)
     if c >= 300:
-        notice('Park alerts', f'Facebook HTTP {c}: {r[:200]}')
+        notice('Park alerts', f'Facebook HTTP {c}: {clip(r, 200)}')
 
 
 # ---------------------------------------------------------------- the run

@@ -38,7 +38,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
-from kpc_scrub import scrub, notice_text
+from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 INFO = ('ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. '
@@ -95,7 +95,7 @@ def to_discord(where, title, body, colour=0x2E7D32, url=None):
     c, r = http(h, json.dumps({'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
                                'embeds': [embed]}).encode(), {'Content-Type': 'application/json'})
     if c >= 300:
-        notice(f'Discord said HTTP {c}: {r[:160]}')
+        notice(f'Discord said HTTP {c}: {clip(r, 160)}')
         return False
     return True
 
@@ -109,7 +109,7 @@ def to_facebook(message, link=None):
         q['link'] = link
     c, r = http(f'https://graph.facebook.com/{FB_ID}/feed', urllib.parse.urlencode(q).encode())
     if c >= 300:
-        notice(f'Facebook said HTTP {c}: {r[:160]}')
+        notice(f'Facebook said HTTP {c}: {clip(r, 160)}')
         return False
     return True
 
@@ -403,7 +403,7 @@ def holiday_post(state, today, force=False):
             c, r = http(dh, body, hd)
             ok = c < 300
             if not ok:
-                notice(f'Discord said HTTP {c}: {r[:160]}')
+                notice(f'Discord said HTTP {c}: {clip(r, 160)}')
         else:
             notice('No webhook for the holiday post; nothing sent to Discord.')
         if FB_ID and FB_TOKEN:
@@ -411,7 +411,7 @@ def holiday_post(state, today, force=False):
             body = body.replace(b'name="file"', b'name="source"')
             c, r = http(f'https://graph.facebook.com/{FB_ID}/photos', body, hd)
             if c >= 300:
-                notice(f'Facebook said HTTP {c}: {r[:160]}')
+                notice(f'Facebook said HTTP {c}: {clip(r, 160)}')
             ok = ok or c < 300
         else:
             notice('No Facebook secrets; skipped Facebook.')
@@ -650,5 +650,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        notice(f'stopped early: {type(e).__name__}: {str(e)[:300]}')
+        notice(f'stopped early: {type(e).__name__}: {clip(e, 300)}')
         sys.exit(0)          # never fail the job: a failed run emails Brandon

@@ -17,7 +17,7 @@ import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 import kpc_net_guard; kpc_net_guard.install()
-from kpc_scrub import scrub
+from kpc_scrub import scrub, clip   # Nov 12: clip = scrub first, then cut
 
 OUT = pathlib.Path('data/alerts/eu.json')
 FEED = 'https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-'
@@ -94,7 +94,7 @@ def main():
         out[iso] = {'name': slug.replace('republic-of-', '').replace('-', ' ').title(), 'link': 'https://meteoalarm.org/', 'items': items[:300]}
         n += len(items)
     if bad or dropped:
-        print(f"::warning title=EU weather warnings::{len(bad)} of {len(C)} feeds did not answer this time ({', '.join(bad)[:200]})"
+        print(f"::warning title=EU weather warnings::{len(bad)} of {len(C)} feeds did not answer this time ({clip(', '.join(bad), 200)})"
               + (f'; no longer shown (older than {MAX_STALE_RUNS} runs): {", ".join(dropped)}' if dropped else ''), flush=True)
     if old.get('countries') == out:
         note(f'no change ({n} warnings, {len(bad)} feeds did not answer)')

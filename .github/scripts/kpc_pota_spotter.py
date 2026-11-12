@@ -9,7 +9,7 @@ them again), and everything this script prints goes through kpc_scrub (a Faceboo
 import datetime as dt, json, os, pathlib, re, urllib.request
 from urllib.error import HTTPError
 import kpc_net_guard; kpc_net_guard.install()
-from kpc_scrub import scrub
+from kpc_scrub import scrub, clip   # Nov 12: clip = scrub first, then cut
 
 # KPC operators to watch: read from the club roster in kpc-tools.js (the only list)
 CALLS = {'KZ4CP', 'N4BDW', 'KQ4HZK', 'K4ZSR', 'N4KPC'}   # fallback if the roster can't be read
@@ -91,7 +91,7 @@ def fb_post(message, link):
             r.read()
         print('::notice title=Facebook spot::Posted ' + scrub(message.split('\n')[0], 200))
     except HTTPError as error:
-        print('::warning title=Facebook spot::Facebook said HTTP', error.code, scrub(error.read()[:200].decode('utf-8', 'replace'), 200))
+        print('::warning title=Facebook spot::Facebook said HTTP', error.code, clip(error.read(), 200))
     except Exception as error:
         print('::warning title=Facebook spot::', type(error).__name__, scrub(error, 200))
 
