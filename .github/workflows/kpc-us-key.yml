@@ -49,6 +49,7 @@ jobs:
       only_states: ${{ steps.p.outputs.only_states }}   # Nov 9 evening: states where only the named parks are re-matched
       only_parks: ${{ steps.p.outputs.only_parks }}
       full: ${{ steps.p.outputs.full }}   # Nov 4 (links-04): 1 = every state is built (the join stamps the rules hash only then)
+      area_plan: ${{ steps.p.outputs.area_plan }}   # Nov 12 (KPC owner, 2026-11-12; D4, US): the plan job's per-state plan (its reused states), for the join's stamp-rows
     steps:
       - uses: actions/checkout@v5
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 4 links-04, Brandon 4:51 AM CST, relayed via Super Head Bot) - a held build on the CURRENT rules, at most 3 days old, with no person's sign-off (Brandon / KZ4CP, after the Nov 2 restart; or signed YES and not yet released) means no new build
@@ -173,6 +174,10 @@ jobs:
           print('groups=' + json.dumps([{'i': i, 'states': ' '.join(sorted(x))} for i, x in enumerate(g) if x]))
           print('full=' + ('1' if set(st) >= set(ALL) or (_rules and _scope and set(st) >= set(_scope)) else '0'))   # 1 = this build may stamp the current rules
           print('rematch=' + ('1' if os.environ.get('RULES_REMATCH_IDS') == '1' else ''))
+          # Nov 12 (KPC owner, 2026-11-12; D4 reuse wired for the US, Brandon 10:59 AM CT): the plan that chose the reuse goes to the join, so
+          # a state reused under a valid proof moves to the new code hash there (stamp-rows --plan); one compact line, nothing when no plan
+          try: print('area_plan=' + json.dumps(json.load(open(os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'area-plan.json'))), sort_keys=True, separators=(',', ':')))
+          except Exception: pass   # no plan file (the hash step failed): the join reuses nothing  # noqa: BLE001
           # Nov 9 evening (KZ4CP 5:41 PM CST): a park-scoped change reads its states again, but only the named parks get a fresh result
           # there; a state given by hand, 'all' and the monthly run are rebuilt in full
           _ost = [] if set(st) >= set(ALL) else [x[3:] if x.startswith('US-') else x for x in (os.environ.get('RULES_ONLY_STATES') or '').split() if (x[3:] if x.startswith('US-') else x) not in want]
@@ -637,6 +642,7 @@ jobs:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
           AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12 (Quality #163): shadow (default) = stamp-rows writes nothing to the key
+          AREA_PLAN: ${{ needs.plan.outputs.area_plan }}   # Nov 12 (D4, US): the plan job's plan (empty = nothing reused)
         run: |
           : > /tmp/kpc-build-failed.txt
           # Owner rule, 2026-11-10: a planned state whose group sent no part (or no states.txt) was never built: named failed
@@ -660,7 +666,9 @@ jobs:
           # Nov 12 (part B): each SAVED state's row records its area hash, parts, out_sha and built_sha from its own part (kept rows untouched)
           # Nov 12 (KPC owner, 2026-11-12; Quality #163): SHADOW WRITES NOTHING: unless KPC_AREA_HASH is add / reuse, the stamp rows go to
           # $RUNNER_TEMP/area-stamp-shadow/ (uploaded as an artifact) and the job summary; index.json is left byte for byte
-          python3 .github/scripts/kpc_area_hash.py stamp-rows us --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/us.json" --index data/us-key/index.json --saved "$KPC_STAMPED_SAVED" $(for d in parts/us-key-part-*; do printf -- '--part %s ' "$d"; done) \
+          # D4, US (KPC owner, 2026-11-12): --plan = the plan job's plan; its reused states (mode reuse, a valid proof) move to the new code hash
+          printf '%s' "$AREA_PLAN" > "$RUNNER_TEMP/area-plan-job.json"
+          python3 .github/scripts/kpc_area_hash.py stamp-rows us --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/us.json" --index data/us-key/index.json --saved "$KPC_STAMPED_SAVED" $(for d in parts/us-key-part-*; do printf -- '--part %s ' "$d"; done) --plan "$RUNNER_TEMP/area-plan-job.json" \
             || { kpc_rc=$?; echo "::warning title=Area hashes::the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)"; echo "Area hashes - the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Whole-key sanity check (Nov 12, part B; read only, reported) - rows vs files, out_sha, no key-wide claim beyond the rows
         id: kept_green_sanity

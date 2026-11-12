@@ -1063,6 +1063,12 @@ def proof_valid(repo, kind, frm, to, persons=None, today=None):
             why = f'proof {pid} has no sample or no compared files'; continue
         if not all(isinstance(v, list) and len(v) == 2 and re.fullmatch(r'[0-9a-f]{64}', str(v[0])) and v[0] == v[1] for v in files.values()):
             why = f'proof {pid}: a compared file differs'; continue
+        if kind != 'fers':   # D4 (KPC owner, 2026-11-12): the proof job's own checks (composition, sample rule, inputs, key files); fail closed
+            try:
+                sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import kpc_key_proof as _kp
+                bad = _kp.record_problems(rec, kind, COMPOSITION)
+            except Exception as ex: bad = [f'the proof checker could not run ({type(ex).__name__})']  # noqa: BLE001
+            if bad: why = f'proof {pid}: {bad[0]}'; continue
         return True, pid
     return False, why
 
@@ -1127,9 +1133,27 @@ def run_plan(repo, kind, wanted, index, mode, force_full, data=None, env=None, o
     return rec, t
 
 
-def stamp_rows_parts(repo, kind, index, saved, part_dirs):
+def move_reused(repo, kind, rows, plan, saved):
+    """D4 (KPC owner, 2026-11-12): an area the plan REUSED across a shared-code move (a valid proof) moves to the plan's code hash with no
+    rebuild: its bytes are the recorded ones, its own parts did not move, the proof is checked again here, and the row names the proof.
+    US too (Brandon, Nov 12 10:59 AM CT): stamp_rows_parts calls this with the PLAN JOB's plan (the one that chose the reuse), not a part's.
+    Returns the areas moved."""
+    repo = pathlib.Path(repo); moved = []
+    plan = plan or {}
+    for a in plan.get('reused') or []:
+        r, ph = rows.get(a), (plan.get('hashes') or {}).get(a)
+        if a in saved or not isinstance(r, dict) or not ph or not r.get('rules') or r['rules'] == plan.get('code_hash') or not isinstance(r.get('area_parts'), dict): continue
+        np = (plan.get('parts') or {}).get(a) or {}
+        if r.get('out_sha') != sha_file(repo / KEY_PATH[kind].format(a=a)) or any(r['area_parts'].get(k) != np.get(k) for k in set(np) | set(r['area_parts']) if not k.startswith(CODE_PARTS)): continue
+        pv, pid = proof_valid(repo, kind, r['rules'], plan['code_hash'])
+        if pv: r.update(proved_from=r['rules'], proved_by=pid, rules=plan['code_hash'], area_hash=ph, area_parts=np); moved.append(a)
+    return moved
+
+
+def stamp_rows_parts(repo, kind, index, saved, part_dirs, reuse_plan=None):
     """The US: each build job hashed its own states on its own checkout (part/area-plan.json, part/built-sha.txt). A saved state is
-    stamped from the part that owns it; the rest as stamp_rows."""
+    stamped from the part that owns it; the rest as stamp_rows. reuse_plan = the PLAN JOB's plan (the one that left the reused states
+    out of the build): its reused states move to its code hash under a valid proof (move_reused) and areas_reused is its list."""
     done_all, same_all, owner = [], True, {}
     for d in sorted(pathlib.Path(x) for x in part_dirs):
         try: sts = (d / 'states.txt').read_text().split()
@@ -1145,6 +1169,11 @@ def stamp_rows_parts(repo, kind, index, saved, part_dirs):
         done, same = stamp_rows(repo, kind, index, mine, dict(plan, reused=[]), bs, rebuilt=saved)
         done_all += done; same_all = same_all and same
     if not owner: stamp_rows(repo, kind, index, [], {}, '', rebuilt=saved)
+    if reuse_plan and reuse_plan.get('reused'):   # D4, US: the plan job's reuse (no part built these states)
+        ip = pathlib.Path(index); d = json.loads(ip.read_text(encoding='utf-8')); rows = d.setdefault(ROWS_KEY[kind], {})
+        move_reused(repo, kind, rows, reuse_plan, saved)
+        d['areas_reused'] = sorted(reuse_plan.get('reused') or [])
+        ip.write_text(json.dumps(d, indent=1, ensure_ascii=False), encoding='utf-8')   # the stamp's own format (json.dump indent 1)
     return sorted(done_all), same_all
 
 
@@ -1165,6 +1194,7 @@ def stamp_rows(repo, kind, index, saved, plan, built_sha, rebuilt=None):
         if same and a in (plan.get('hashes') or {}):
             r['area_hash'] = plan['hashes'][a]; r['area_parts'] = (plan.get('parts') or {}).get(a) or {}
             r['out_sha'] = sha_file(repo / KEY_PATH[kind].format(a=a)); r['built_sha'] = built_sha; done.append(a)
+    move_reused(repo, kind, rows, plan, saved)
     d['areas_rebuilt'] = sorted(rebuilt if rebuilt is not None else saved)
     d['areas_reused'] = sorted(plan.get('reused') or [])
     ip.write_text(json.dumps(d, indent=1, ensure_ascii=False), encoding='utf-8')   # the stamp's own format (json.dump indent 1)
@@ -1214,9 +1244,10 @@ def stamp_rows_cli(a, mode):
     import shutil, tempfile
     kind, saved = a.args[0], a.saved.split()
     def stamp(index):
-        if a.part: return stamp_rows_parts(a.repo, kind, index, saved, a.part)
         try: plan = json.loads(pathlib.Path(a.plan).read_text(encoding='utf-8')) if a.plan else {}
         except Exception: plan = {}  # noqa: BLE001
+        if not isinstance(plan, dict): plan = {}
+        if a.part: return stamp_rows_parts(a.repo, kind, index, saved, a.part, reuse_plan=plan)   # US: --plan = the plan job's plan (reuse)
         return stamp_rows(a.repo, kind, index, saved, plan, a.built_sha)
     if mode != 'shadow':
         done, same = stamp(a.index)
@@ -1251,7 +1282,7 @@ def main(argv=None):
     ap.add_argument('--list', default='', help='plan: the areas today\'s plan builds'); ap.add_argument('--index', default=None)
     ap.add_argument('--mode', default=None, help='plan / stamp-rows: shadow | add | reuse (default: the KPC_AREA_HASH variable, else shadow)')
     ap.add_argument('--full', default='', help='plan: yes = full rebuild asked (no reuse)'); ap.add_argument('--out', default=None)
-    ap.add_argument('--plan', default=None, help='stamp-rows: the plan JSON'); ap.add_argument('--saved', default='')
+    ap.add_argument('--plan', default=None, help='stamp-rows: the plan JSON (with --part, US: the plan job\'s plan, for its reused states)'); ap.add_argument('--saved', default='')
     ap.add_argument('--part', action='append', default=[], help='stamp-rows (US): a build part with area-plan.json, built-sha.txt, states.txt')
     ap.add_argument('--shadow-out', default=None, help='stamp-rows, shadow mode: write what would be stamped here (the index is not touched)')
     ap.add_argument('--built-sha', default=''); ap.add_argument('--from', dest='frm', default=''); ap.add_argument('--to', default='')

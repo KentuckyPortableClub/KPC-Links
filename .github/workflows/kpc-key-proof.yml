@@ -1,0 +1,159 @@
+name: KPC key proof (no result change)
+# D4 (owner YES, Nov 12; KPC owner, 2026-11-12). Started BY HAND only. It proves that a code-only change between two commits (old -> new)
+# does not change a key's results: it builds a fixed sample of areas (the biggest and the weirdest, every area whose own inputs also moved,
+# 3 more drawn from the commit shas, and any extra areas asked for) with the OLD and with the NEW code, each in its own clean tree, from the
+# SAME frozen inputs (this repo's boundary-cache saved copies, KPC-Data at one commit), with the network denied and every attempt counted,
+# a fixed clock, a fixed locale / time zone / hash seed and the same Python; then it compares the sha256 of every file the builds wrote.
+# PASS = an UNSIGNED proof record + its stamp entry, as an artifact. The owner signs by adding both to main in a reviewed PR
+# (data/status/no-result-change/<id>.json and the entry, with approved_by / approved_date, in .github/no-result-change.json): only then
+# does the plan (kpc_area_hash.py proof_valid) let that code change rebuild nothing. FAIL or a cancelled run = no stamp: full rebuild.
+# It never saves a key or outline file, never pushes, never starts a key run, and has no schedule.
+on:
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: 'Which key: us, ca or world'
+        type: choice
+        options: [us, ca, world]
+        default: us
+        required: true
+      old:
+        description: 'The OLD commit (sha or ref): the code before the change'
+        required: true
+      new:
+        description: 'The NEW commit (sha or ref): the code after the change'
+        required: true
+      areas:
+        description: 'Extra areas to ADD to the sample, e.g. "OR WA" (the rule sample is always built; nothing here removes an area)'
+        required: false
+        default: ''
+      data_ref:
+        description: 'KPC-Data commit for the park lists and pin fills (blank = KPC-Data main now; the commit used is recorded)'
+        required: false
+        default: ''
+permissions:
+  contents: read
+concurrency:   # one proof of a kind at a time; a second start waits
+  group: kpc-key-proof-${{ inputs.kind }}
+  cancel-in-progress: false
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0   # both commits and their history (the per-area parts of old and new are read from git)
+      - name: The two commits and the sample (nothing is built yet)
+        id: sample
+        env:
+          KIND: ${{ inputs.kind }}
+          OLD: ${{ inputs.old }}
+          NEW: ${{ inputs.new }}
+          AREAS: ${{ inputs.areas }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git fetch -q origin "$OLD" "$NEW" 2>/dev/null || true   # ok: a commit already in the full clone needs no fetch; rev-parse below fails closed
+          if ! O=$(git rev-parse --verify -q "$OLD^{commit}") || ! N=$(git rev-parse --verify -q "$NEW^{commit}"); then echo "::error title=Key proof::old ($OLD) or new ($NEW) is not a commit of this repository: no proof"; exit 1; fi
+          if [ "$O" = "$N" ]; then echo "::error title=Key proof::old and new are the same commit: nothing to prove"; exit 1; fi
+          echo "old=$O" >> "$GITHUB_OUTPUT"; echo "new=$N" >> "$GITHUB_OUTPUT"
+          if ! gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > "$RUNNER_TEMP/assets.txt"; then echo "::error title=Key proof::the boundary-cache asset list could not be read: no proof"; exit 1; fi
+          python3 .github/scripts/kpc_key_proof.py sample "$KIND" --old "$O" --new "$N" --areas "$AREAS" --assets "$RUNNER_TEMP/assets.txt" --json "$RUNNER_TEMP/sample.json"
+          python3 -c "import json,sys; s=json.load(open(sys.argv[1])); print(' '.join(sorted(s['why'])))" "$RUNNER_TEMP/sample.json" > "$RUNNER_TEMP/areas.txt"
+      - name: Fetch the frozen inputs - the ONLY network use (GitHub only - this repo's boundary-cache assets, KPC-Data at one commit, the Python packages)
+        id: fetch
+        env:
+          KIND: ${{ inputs.kind }}
+          DATA_REF: ${{ inputs.data_ref }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          IN="$RUNNER_TEMP/inputs"; mkdir -p "$IN"
+          # the saved copies (saved copy only: no map server is contacted by this job, ever)
+          case "$KIND" in
+            us) want=$(for a in $(cat "$RUNNER_TEMP/areas.txt"); do printf 'US-%s.json.gz ' "$a"; done) ;;
+            world) want=$(for a in $(cat "$RUNNER_TEMP/areas.txt"); do printf 'W-%s.json.gz ' "$a"; done) ;;
+            ca) want='CA-ALL.json.gz' ;;
+          esac
+          for f in $want; do
+            if ! grep -qx "$f" "$RUNNER_TEMP/assets.txt"; then echo "::error title=Key proof::$f is not on the boundary-cache release: that sample area cannot be built offline, so there is no proof"; exit 1; fi
+            if ! gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "$f" -D "$IN" --clobber; then echo "::error title=Key proof::$f could not be downloaded: no proof"; exit 1; fi
+          done
+          if [ "$KIND" = ca ] && grep -q '^hand-CA[.].*[.]geojson[.]gz$' "$RUNNER_TEMP/assets.txt"; then
+            mkdir -p "$IN/hand"
+            if ! gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'hand-CA.*.geojson.gz' -D "$IN/hand" --clobber; then echo "::error title=Key proof::the Canada hand files could not be downloaded: no proof"; exit 1; fi
+          fi
+          # KPC-Data at ONE commit (public, read only): the moved park data (.github/kpc-moved.txt), the pin fills, the Recreation.gov copy
+          KD="$RUNNER_TEMP/kpcdata"; rm -rf "$KD"
+          paths="$(grep -v '^\s*#' .github/kpc-moved.txt | grep -v '^\s*$' | tr '\n' ' ') data/intake data/access-leads/keyed-pull-raw.json.gz"
+          if ! { GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data "$KD" \
+                 && git -C "$KD" sparse-checkout set --no-cone $paths && git -C "$KD" checkout -q "${DATA_REF:-HEAD}"; }; then
+            echo "::error title=Key proof::KPC-Data could not be read at ${DATA_REF:-main}: no proof"; exit 1
+          fi
+          echo "::notice title=Key proof inputs::KPC-Data at $(git -C "$KD" rev-parse HEAD); $(ls "$IN" | grep -c 'json.gz$') saved cop(ies)"
+          # the builders' packages, installed now (no install can happen once the network is denied)
+          pip install --quiet --break-system-packages pyshp pyproj shapely pykakasi || pip install --quiet pyshp pyproj shapely pykakasi
+          # a second guard where the runner allows it: builds in a network namespace with no network at all (the in-Python guard counts either way)
+          sudo sysctl -q -w kernel.apparmor_restrict_unprivileged_userns=0 2>/dev/null || echo "::notice title=Key proof::no network namespace on this runner: the in-Python guard alone denies and counts"
+      - name: The proof - each sample area built with the OLD and the NEW code (network DENIED and counted, fixed clock), files compared
+        id: proof
+        env:
+          KIND: ${{ inputs.kind }}
+          OLD: ${{ steps.sample.outputs.old }}
+          NEW: ${{ steps.sample.outputs.new }}
+          AREAS: ${{ inputs.areas }}
+          KPC_SAVED_ONLY_HOSTS: ${{ vars.KPC_SAVED_ONLY_HOSTS }}
+        run: |
+          # no token in this step: it reaches nothing. Exit 0 = PASS, 1 = FAIL (record written, result fail), 2 = could not run (no record)
+          rc=0; python3 .github/scripts/kpc_key_proof.py run "$KIND" --old "$OLD" --new "$NEW" --areas "$AREAS" --assets "$RUNNER_TEMP/assets.txt" \
+            --inputs "$RUNNER_TEMP/inputs" --kpc-data "$RUNNER_TEMP/kpcdata" --out "$RUNNER_TEMP/proof" --work "$RUNNER_TEMP/work" --minutes 300 || rc=$?
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          if [ -f "$RUNNER_TEMP/proof/result.txt" ]; then echo "result=$(sed -n 1p "$RUNNER_TEMP/proof/result.txt")" >> "$GITHUB_OUTPUT"; echo "id=$(sed -n 2p "$RUNNER_TEMP/proof/result.txt")" >> "$GITHUB_OUTPUT"; fi
+          rm -rf "$RUNNER_TEMP/work"
+      - name: Upload the proof record and its UNSIGNED stamp entry (PASS only; the owner signs it in a reviewed PR)
+        if: ${{ !cancelled() && steps.proof.outputs.result == 'pass' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-result-change-${{ steps.proof.outputs.id }}
+          path: ${{ runner.temp }}/proof/
+          retention-days: 30
+      - name: Upload the FAILED record (evidence only; the plan treats it as no proof)
+        if: ${{ !cancelled() && steps.proof.outputs.result == 'fail' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-result-change-FAILED-${{ steps.proof.outputs.id }}
+          path: ${{ runner.temp }}/proof/
+          retention-days: 30
+      - name: Verdict (red unless the proof passed)
+        if: ${{ !cancelled() }}
+        env:
+          RESULT: ${{ steps.proof.outputs.result }}
+          RC: ${{ steps.proof.outputs.rc }}
+        run: |
+          if [ "$RESULT" = pass ]; then echo "::notice title=Key proof::PASS. Next: download the artifact, then in a reviewed PR add the record under data/status/no-result-change/ and the entry (approved_by, approved_date) to .github/no-result-change.json"; exit 0; fi
+          echo "::error title=Key proof::${RESULT:-not run} (exit ${RC:-none}): no stamp; this code change rebuilds every area of the key"; exit 1
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
+          PY
