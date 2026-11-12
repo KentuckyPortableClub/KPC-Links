@@ -376,8 +376,15 @@ with tempfile.TemporaryDirectory() as td:
 shipped = json.loads((ROOT / 'data/outlines/world-expected-holds.approved.json').read_text(encoding='utf-8'))
 prop = json.loads((ROOT / 'data/outlines/world-expected-holds.proposed.json').read_text(encoding='utf-8'))
 h, n, e = J.load_expected(ROOT / 'data/outlines/world-expected-holds.approved.json', 'AU DE GB MT', ROOT / 'data/world-key')
-check('shipped: AU is an active owner-signed hold (and AU has joined parks on main); MT is only proposed and never read', list(h) == ['AU'] and not e
-      and 'MT' not in shipped['holds'] and prop['holds']['MT']['approved_by'] == '' and not (ROOT / 'data/world-key/expected-holds.json').exists())
+au, mt = shipped['holds']['AU'], shipped['holds']['MT']
+check('shipped: AU and MT are active owner-signed holds (both have joined parks on main)',
+      sorted(h) == ['AU', 'MT'] and not e
+      and au['approved_by'] == mt['approved_by'] == 'KPC owner'
+      and au['approved_date'] == mt['approved_date'] == '2026-11-11'
+      and 'review_by' in au and 'review_by' in mt
+      and 't1419u' in mt['reason'] and '14-record baseline is not signed' in mt['reason']
+      and 'MT' not in (prop.get('holds') or {})
+      and not (ROOT / 'data/world-key/expected-holds.json').exists())
 
 # 3b) expected hold + all else green: run green, saved, AU's files and rows byte-identical to main, summary row, complete false
 with tempfile.TemporaryDirectory() as td:

@@ -6,6 +6,12 @@
    "approved_by": "KPC owner",
    "approved_date": "2026-11-11",
    "review_by": ""
+  },
+  "MT": {
+   "reason": "Saved copy W-MT holds 14 N2K records, but the current MT key joins 39 (27 Ambjent Malta FeatureServer/36, which is not on the box, plus 12 N2K SPA), so the master gate moves the copy aside. Its 14-record baseline is not signed. Owner decision t1419u (Nov 11, 2026): sign MT as an expected hold; do not sign a 14-record baseline.",
+   "approved_by": "KPC owner",
+   "approved_date": "2026-11-11",
+   "review_by": ""
   }
  }
 }
