@@ -26,6 +26,9 @@ on:
       force:
         description: "yes = build even while chat 11 grades a held build (Brandon's freeze, Nov 2: by hand only)"
         default: 'no'
+      full_rebuild:
+        description: "yes = build Canada even when no province's inputs moved (per-area hashes, Nov 12; reuse is off unless the repo variable KPC_AREA_HASH=reuse)"
+        default: ''
 permissions:
   contents: write
   issues: write
@@ -63,7 +66,26 @@ jobs:
           if [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ]; then echo "::notice title=Canada key tonight::RULES CHANGED since the newest build: the whole key is built on the current rules (no force needed)"
           elif [ "$SCHED" = "49 9 * * *" ]; then
             L=$(cat data/ca-key/answers-provinces.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
-            if [ -z "$L" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::new approved layers for: $L"; fi
+            if [ -z "$L" ]; then [ "${SKIP:-}" = 1 ] || echo "NIGHT_EMPTY=1" >> "$GITHUB_ENV"; echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::new approved layers for: $L"; fi
+          fi
+      - name: Area hashes (Nov 12, KPC owner, 2026-11-12; per-province input hashes, handoff part B) - shadow by default
+        # Canada builds as ONE job, so the unit that is built is the whole country; the hash, the table and the grading are per province.
+        # shadow (default) = the table only; add = a quiet nightly builds when a province's inputs moved; reuse = a planned build is left out
+        # when NO province's inputs moved (main's files stay). Never over a freeze or a build-order wait. full_rebuild=yes = no reuse.
+        if: ${{ env.SKIP != '1' || env.NIGHT_EMPTY == '1' }}
+        env:
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}
+          FULL_REBUILD: ${{ inputs.full_rebuild }}
+        run: |
+          rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
+            && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
+          ALLP=$(python3 -c "import json; print(' '.join(sorted(json.load(open('data/ca-key/index.json')).get('provinces') or {})))")
+          WANT=$([ "${SKIP:-}" = 1 ] || echo "$ALLP")
+          OUT=$(python3 .github/scripts/kpc_area_hash.py plan ca --list "$WANT" --mode "$AREA_MODE" --full "$FULL_REBUILD" $([ -d .pi ] && echo --data .pi) --out "$RUNNER_TEMP/area-plan.json") || OUT="$WANT"
+          rm -rf .pi
+          if [ "$AREA_MODE" = add ] || [ "$AREA_MODE" = reuse ]; then
+            if [ "${NIGHT_EMPTY:-}" = 1 ] && [ -n "$OUT" ]; then echo "SKIP=0" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::a province's inputs moved since its last build ($OUT): Canada is built"; fi
+            if [ "${SKIP:-}" != 1 ] && [ -z "$OUT" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::no province's inputs moved: nothing is rebuilt (main's files are reused)"; fi
           fi
       - name: Read the moved data from KPC-Data (Step B, read only)
         if: ${{ env.SKIP != '1' }}
@@ -197,6 +219,14 @@ jobs:
           # Canada always builds the whole key: it is FULL unless the build stopped early or the gate failed
           if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then export KPC_FULL_BUILD=1; fi
           python3 .github/scripts/kpc_key_freeze.py stamp ca-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc): nothing is saved"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
+          # Nov 12 (part B): every province was rebuilt (one job): each row records its area hash, parts, out_sha, built_sha
+          python3 .github/scripts/kpc_area_hash.py stamp-rows ca --index data/ca-key/index.json --saved "$(python3 -c "import json; print(' '.join(sorted(json.load(open('data/ca-key/index.json')).get('provinces') or {})))")" \
+            --plan "$RUNNER_TEMP/area-plan.json" --built-sha "$(git rev-parse HEAD)" || { kpc_rc=$?; echo "::warning title=Area hashes::the rows were not given their area hash: planned again next run (exit $kpc_rc)"; echo "Area hashes - the rows were not given their area hash: planned again next run (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+      - name: Whole-key sanity check (Nov 12, part B; read only, reported)
+        if: ${{ env.SKIP != '1' && env.CA_KEPT != '1' }}
+        id: kept_green_sanity
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_area_hash.py sanity ca
       - name: Save
         if: ${{ !cancelled() && env.SKIP != '1' && steps.keep_rows.outcome != 'failure' && steps.ca_stamp.outcome != 'failure' }}   # Nov 12 (KPC owner, 2026-11-11): a cancel mid-build saves nothing (was always()); Nov 12 (2026-11-12): nor a failed stamp
         # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files, deletions too); red ONLY when the save failed.
