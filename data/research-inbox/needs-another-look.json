@@ -13890,6 +13890,466 @@
    "since": "2026-11-09 20:27",
    "status": "needs another look",
    "wait_on": "layer"
+  },
+  "AT-0029": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'wrong pin' (wrong-pin): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "AT-0029",
+    "park_name": "Kaunergrat Nature Reserve",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'wrong pin' (wrong-pin); The POTA pin is well outside the land we matched it to. (Our bot also could not open the matched record to double-check.); next: Official record may already be named in the Nov 5 notes. Standing rule: never move the POTA pin. If the official name matches, keep the official outline and fla",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "AU-10293": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "AU-10293",
+    "park_name": "North Waterloo Bay State Beach",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We matched it to land that may be a different piece or unit (e.g. No. 2, K26, Unit 3) than the POTA park.; next: An official record was found by name but the pin is more than 15 km from the polygon. Do not guess and do not move the pin. A person decides whether this is the",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "AU-10572": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "AU-10572",
+    "park_name": "North Johnstone National Wild and Scenic River",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We matched it to land that may be a different piece or unit (e.g. No. 2, K26, Unit 3) than the POTA park.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "AU-11394": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "AU-11394",
+    "park_name": "Turtle Creek South State Beach",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We matched it to land that may be a different piece or unit (e.g. No. 2, K26, Unit 3) than the POTA park.; next: An official record was found by name but the pin is more than 15 km from the polygon. Do not guess and do not move the pin. A person decides whether this is the",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "AU-8958": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "AU-8958",
+    "park_name": "Campbells Cove Beach State Beach",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We matched it to land that may be a different piece or unit (e.g. No. 2, K26, Unit 3) than the POTA park.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "AU-8961": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "AU-8961",
+    "park_name": "Clifton Springs Beach State Beach",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We matched it to land that may be a different piece or unit (e.g. No. 2, K26, Unit 3) than the POTA park.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "AU-8981": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "AU-8981",
+    "park_name": "Frankston South Beach State Beach",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We matched it to land that may be a different piece or unit (e.g. No. 2, K26, Unit 3) than the POTA park.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "AU-9003": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "AU-9003",
+    "park_name": "Point Richards Beach State Beach",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We matched it to land that may be a different piece or unit (e.g. No. 2, K26, Unit 3) than the POTA park.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "DO-0117": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "DO-0117",
+    "park_name": "Autopista Juan Bosch Protected Landscape",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); The POTA pin is well outside the land we matched it to. (Our bot also could not open the matched record to double-check.); next: ",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "JP-1288": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'none' (blank-nothing-found): nothing found yet; back to Research",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "research",
+   "row": {
+    "pota_ref": "JP-1288",
+    "park_name": "Ogamiyama Prefectural Park",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'none' (blank-nothing-found); The official record we found has a different name than POTA.; next: Keep the official id already found; Tokyo parks: match and record the id with the approximate-boundary flag; no Tokyo outlines in the public repo. Do not retrac",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "JP-1544": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "JP-1544",
+    "park_name": "Ako Seaside Prefectural Park",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); The official record we found has a different name than POTA.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "JP-1768": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "JP-1768",
+    "park_name": "Yoshino Prefectural Park",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); The official record we found has a different name than POTA.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "MX-0140": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'wrong pin' (wrong-pin): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "MX-0140",
+    "park_name": "Arrecife de Puerto Morelos National Park",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'wrong pin' (wrong-pin); The POTA pin is well outside the land we matched it to. (Our bot also could not open the matched record to double-check.); next: ",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "MX-0145": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'wrong pin' (wrong-pin): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "MX-0145",
+    "park_name": "Banco Chinchorro Biosphere Reserve",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'wrong pin' (wrong-pin); The POTA pin is well outside the land we matched it to. (Our bot also could not open the matched record to double-check.); next: ",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "MX-0176": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'wrong pin' (wrong-pin): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "MX-0176",
+    "park_name": "Lacan-Tun Biosphere Reserve",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'wrong pin' (wrong-pin); The POTA pin is well outside the land we matched it to. (Our bot also could not open the matched record to double-check.); next: ",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "MX-0181": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'wrong pin' (wrong-pin): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "MX-0181",
+    "park_name": "Los Petenes Biosphere Reserve",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'wrong pin' (wrong-pin); The POTA pin is well outside the land we matched it to. (Our bot also could not open the matched record to double-check.); next: ",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "MX-0186": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "MX-0186",
+    "park_name": "Marismas Nacionales Biosphere Reserve",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); The POTA pin is well outside the land we matched it to. (Our bot also could not open the matched record to double-check.); next: ",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "NL-0204": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "NL-0204",
+    "park_name": "de Voorde Historic Site",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); The official record we found has a different name than POTA. (Our bot also could not open the matched record to double-check.); next: ",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "NZ-0720": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'wrong pin' (wrong-pin): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "NZ-0720",
+    "park_name": "Waituhi-Kuratau Scenic Reserve",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'wrong pin' (wrong-pin); The POTA pin is well outside the land we matched it to. (Our bot also could not open the matched record to double-check.); next: An official record was found by name but the pin is more than 15 km from the polygon. Do not guess and do not move the pin. A person decides whether this is the",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "US-10471": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "US-10471",
+    "park_name": "Maupin Section Foreman House BLM Historic Area",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We found no official outline with this name at or near the pin.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "US-3129": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "US-3129",
+    "park_name": "Little River State Park",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We found no official outline with this name at or near the pin.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "US-8329": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 11 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "US-8329",
+    "park_name": "Choctawhatchee & Holmes Creek State Conservation Area",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); We found no official outline with this name at or near the pin.; next: Still a person question (kind, piece, or whole-park-vs-unit). The candidate and id are in the Nov 5 notes. Don't take the bigger surrounding place. If in doubt,",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
+  },
+  "ZA-0075": {
+   "status": "needs another look",
+   "reason": "mystery park, Nov 5 answer 'other' (other-needs-person): a person decides (wrong pin, kind or piece); the candidate is in the answers ledger",
+   "since": "2026-11-12",
+   "last": "2026-11-12",
+   "wait_on": "person",
+   "row": {
+    "pota_ref": "ZA-0075",
+    "park_name": "Baviaanskloof Conservation Area",
+    "layer_url": "",
+    "record_id": "",
+    "official_name": "",
+    "owner": "",
+    "confidence": "held",
+    "notes": "mystery park, answer 'other' (other-needs-person); The POTA pin is well outside the land we matched it to. (Our bot also could not open the matched record to double-check.); next: Keep the official id already found; matching-only: ZA SAPAD/DFFE non-commercial — record the id, no public outline; do not touch the expired-cert host. Do not r",
+    "source": "Nov 5 / Nov 11 mystery-park answers (filed in answers/ by #148), entered in the retry loop by KPC owner, Nov 12 2026",
+    "pin_lat": "",
+    "pin_lon": ""
+   }
   }
  },
  "point_confirmed": {
