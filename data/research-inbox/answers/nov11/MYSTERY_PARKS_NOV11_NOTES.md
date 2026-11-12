@@ -96,11 +96,11 @@ Official points: **53 rows have official coordinates and 7 more have an official
 - US-10184 Johnson SWA = WI DNR "Deer Park SHA-WPRA", 213.18 ac, **pin inside**. DNR's page states the rename; acreage agrees.
 - US-10195 Sette SWA = WI DNR "New Richmond SHA-WPRA", 77.21 ac, **pin inside**. Same evidence.
 - US-7374 Wysong Park = SWFWMD "Wysong Lock And Dam", 4.31 ac fee, pin 0.01 km. Name differs between the land record and the recreation page – flag.
-- France, all nine: FR-10548 (marine ZNIEFF 93M000091, **pin inside**), FR-10432 (Conservatoire du littoral FR1100689, 2.8 km), FR-11106 (protection perimeter FR9500105, 3.6 km), FR-11650 (ZNIEFF 410030308, 2.6 km), FR-12366 (910030146, 3.3 km), FR-13422 (260030337, 7.0 km), FR-14049 (820032056, 2.8 km), FR-14482 (830005446, 2.6 km), FR-14979 (260014888, **13.1 km – look**).
+- France, all nine: FR-10548 (marine ZNIEFF 93M000091, **pin inside**), FR-10432 (Conservatoire du littoral FR1100689, 2.8 km), FR-11106 (protection perimeter FR9500105, 3.6 km), FR-11650 (ZNIEFF 410030308, 2.6 km), FR-12366 (910030146, 3.3 km), FR-13422 (260030337, 7.0 km), FR-14049 (820032056, 2.8 km), FR-14482 (830005446, 2.6 km), FR-14979 (260014888, **13.1 km – owner no, 2026-11-11**: the live join comes off; not a match).
 - RO-0880 Pădurea Homița = Natura **ROSAC0159** in the 2024 data (61 ha, 2.4 km). The management plan calls it ROSCI0159; use the current code.
 
 **National Register listing boundary (official, but a listing boundary is not automatically the park – confirm each; the layer has no acreage)**
-- Pin inside: US-13474 Kyle Ranch, US-11820 Miller Brothers 101 Ranch, US-12735 Saline Courthouse, US-10274 Palmito Ranch Battlefield.
+- Pin inside: US-13474 Kyle Ranch, US-11820 Miller Brothers 101 Ranch, US-12735 Saline Courthouse. US-10274 Palmito Ranch Battlefield is **not a match** (owner, 2026-11-11): the National Register record is the whole 6,908-acre battlefield (the bigger place); it needs the Texas Historical Commission site outline.
 - Within 0.45 km: US-8142 Fort Washita, US-3493 Nine-Mile Prairie, US-10521 Garnet, US-7975 Glen Echo.
 
 **Official record found; pin not tested against a polygon**

@@ -77,9 +77,10 @@ workbooks (and the "KPC held (19)" sheet style) into this format. First real inp
 
 A solved park (`released-key`, `settled-match`, `settled-no-boundary`: `classify_solved` in `kpc_research_inbox.py`) is finished research and is never on a search list
 (`answers/search-list.csv`). If it has no owner decision pending it is also not read, not judged and not handed out again: the run reports it as `SOLVED` with its
-official id, drops it from the retry list and leaves it off `brandon-list.md`. A solved match that still waits on an owner yes (`owner_decision` = pending: the Nov 5 row
-asked the owner to confirm, a National Register listing boundary, FR-14979) is not re-researched but stays on the retry list and the short list with its hold intact.
-`other`, `wrong pin`, blank, and a match that rested only on a removed WDPA lead stay open.
+official id, drops it from the retry list and leaves it off `brandon-list.md`. A solved match that still waits on an owner yes (`owner_decision` = pending: a
+National Register listing boundary still held) is not re-researched but stays on the retry list and the short list with its hold intact.
+The 56 Nov 5 confirms were settled (`owner_decision` = yes) on 2026-11-11. US-10274 and FR-14979 are owner no (not a match) and stay open, as do
+`other`, `wrong pin`, blank, and a match that rested only on a removed WDPA lead (ZA-0085, ZA-0156, ZA-0157 stay unsolved).
 Rebuild both files after new answers are filed: `python3 tools/kpc_build_solved_ledger.py ledger data/research-inbox/answers`.
 
 WDPA / Protected Planet is a lead only. No id or address of it may sit in a tracked file; a run also scrubs any such id or address from what it writes.

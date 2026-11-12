@@ -134,8 +134,8 @@ def stage(inp, out):
 # ---- strength of a Nov 11 match, from the Nov 11 notes section 5 (how strong each match is)
 STRENGTH = {}
 for _tier, _refs in {
-    'agency-layer-pin-tested': 'US-10184 US-10195 US-7374 FR-10548 FR-10432 FR-11106 FR-11650 FR-12366 FR-13422 FR-14049 FR-14482 FR-14979 RO-0880',
-    'nrhp-listing-boundary-pin-inside': 'US-13474 US-11820 US-12735 US-10274',
+    'agency-layer-pin-tested': 'US-10184 US-10195 US-7374 FR-10548 FR-10432 FR-11106 FR-11650 FR-12366 FR-13422 FR-14049 FR-14482 RO-0880',
+    'nrhp-listing-boundary-pin-inside': 'US-13474 US-11820 US-12735',
     'nrhp-listing-boundary-within-0.45km': 'US-8142 US-3493 US-10521 US-7975',
     'official-record-pin-not-tested': 'CA-2506 MX-0016 MX-0141 MX-0147 MX-0180 MX-0191 MX-0221 CL-0012 CL-0037 CL-0049 PT-0382 NZ-0051',
     'boundary-in-law-no-map-file': 'DO-0027 DO-0085 DO-0095 DO-0132 BZ-0033 BZ-0034 GT-0005 LK-0026 UY-0049',

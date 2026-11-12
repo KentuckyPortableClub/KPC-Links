@@ -319,26 +319,53 @@ def classify_solved(answer, official_id='', source_url='', key_location='', key_
     return False, {'wrong pin': 'wrong-pin', 'other': 'other-needs-person', '': 'blank-nothing-found'}[a]
 
 
-OWNER_LOOK_REFS = {'FR-14979': 'the official record is 13 km from the pin'}   # a Nov 11 match the owner should look at before any join
+# Owner answers recorded 2026-11-11. These are not pending: they have been decided.
+# US-10274: the National Register record is the whole 6,908-acre battlefield (the bigger place).
+# FR-14979: owner no to the 13 km ZNIEFF join; the live world-key join comes off on the next world key run.
+OWNER_NOT_A_MATCH = {
+    'US-10274': 'not a match, 2026-11-11: the National Register record is the whole 6,908-acre battlefield (the bigger place); needs the Texas Historical Commission site outline',
+    'FR-14979': 'owner no, 2026-11-11: the official record is 13 km from the pin; the live join comes off on the next world key run',
+}
+# ZA-0085, ZA-0156, ZA-0157: their official ids were WDPA-derived and were removed; they stay unsolved.
+OWNER_UNSOLVED_WDPA = {'ZA-0085', 'ZA-0156', 'ZA-0157'}
+OWNER_UNSOLVED_WDPA_WHY = 'owner 2026-11-11: stays unsolved; the official id was a WDPA lead and was removed; needs a non-WDPA official id'
+OWNER_YES_NOV5_WHY = 'owner settled the Nov 5 confirm on 2026-11-11'
 
 
 def classify_row(answer, official_id='', source_url='', key_location='', key_status='', wdpa_removed=False, confirm='', match_strength='', ref=''):
-    """classify_solved split in two (Nov 11 review):
-    skip_search     = the research is finished, so no search list hands the park out again (the classify_solved rule, unchanged);
-    owner_decision  = 'pending' for a finished match that still waits on an OWNER yes: the Nov 5 row still asked the owner to confirm, the match is a
-                      National Register listing boundary (not automatically the park), or it is on OWNER_LOOK_REFS. Such a park is not re-researched
-                      but is NOT dropped from the retry list or the owner short list. A released-key park never waits (the key already grades it).
+    """classify_solved split in two (Nov 11 review), with the 2026-11-11 owner answers recorded:
+    skip_search     = the research is finished, so no search list hands the park out again (the classify_solved rule, plus OWNER_NOT_A_MATCH);
+    owner_decision  = 'pending' for a finished match that still waits on an OWNER yes: a National Register listing boundary
+                      (not automatically the park). 'yes' for a Nov 5 confirm the owner settled on 2026-11-11. 'no' for a
+                      park the owner said is not a match (US-10274, FR-14979). A released-key park never waits.
     join_ready      = 'no' for a match that is pending an owner yes or whose boundary is written in law with no map file; 'yes' for other solved matches."""
     solved, basis = classify_solved(answer, official_id, source_url, key_location, key_status, wdpa_removed)
-    pending, why = False, ''
+    decision, why = '', ''
+    if ref in OWNER_NOT_A_MATCH:
+        # Owner said this is not a match, even if a Nov 11 row still said match with an official id.
+        solved, basis = False, 'other-needs-person' if str(answer or '').strip() in ('other', 'match', '') else basis
+        if str(answer or '').strip() == 'match' and basis == 'released-key':
+            # a released-key official grade is not undone by this (none of today's not-a-match parks are released official)
+            pass
+        decision, why = 'no', OWNER_NOT_A_MATCH[ref]
+        return {'skip_search': False, 'solved_basis': 'other-needs-person', 'owner_decision': decision,
+                'owner_decision_why': why, 'join_ready': '', 'join_note': why}
+    pending = False
     if solved and basis == 'settled-match':
-        if confirm: pending, why = True, f'the Nov 5 row still asked the owner to confirm ({confirm})'
-        elif str(match_strength).startswith('nrhp-listing-boundary'): pending, why = True, 'National Register listing boundary: not automatically the park'
-        elif ref in OWNER_LOOK_REFS: pending, why = True, OWNER_LOOK_REFS[ref]
+        if confirm:
+            decision, why = 'yes', f'{OWNER_YES_NOV5_WHY} ({confirm})'
+        elif str(match_strength).startswith('nrhp-listing-boundary'):
+            pending, why = True, 'National Register listing boundary: not automatically the park'
+            decision = 'pending'
+    if not solved and ref in OWNER_UNSOLVED_WDPA:
+        why = OWNER_UNSOLVED_WDPA_WHY
     law = match_strength == 'boundary-in-law-no-map-file'
     jr, note = '', ''
-    if solved and answer == 'match': jr, note = ('no', 'owner decision pending') if pending else (('no', 'boundary written in law only, no map file') if law else ('yes', ''))
-    return {'skip_search': solved, 'solved_basis': basis, 'owner_decision': 'pending' if pending else '', 'owner_decision_why': why, 'join_ready': jr, 'join_note': note}
+    if solved and answer == 'match':
+        if pending: jr, note = 'no', 'owner decision pending'
+        elif law: jr, note = 'no', 'boundary written in law only, no map file'
+        else: jr, note = 'yes', ''
+    return {'skip_search': solved, 'solved_basis': basis, 'owner_decision': decision, 'owner_decision_why': why, 'join_ready': jr, 'join_note': note}
 
 
 def load_ledger(root=ROOT, path=None):

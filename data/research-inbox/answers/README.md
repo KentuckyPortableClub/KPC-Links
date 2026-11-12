@@ -7,7 +7,7 @@ Where the Nov 5 and Nov 11 mystery-park hand-backs are filed, so a solved park i
 | File | What it is |
 |---|---|
 | `solved-ledger.csv` | One row per park (832). `solved` yes/no, why (`solved_basis`), `owner_decision`, `join_ready`, the official id for a join, the official point, how strong the match is. Built by `tools/kpc_build_solved_ledger.py ledger`. |
-| `search-list.csv` | The 276 parks that are NOT solved: what a search list may hand out. Rebuilt with the ledger. |
+| `search-list.csv` | The parks that are NOT solved: what a search list may hand out. Rebuilt with the ledger. |
 | `settled-negatives.json` / `.md` | Dead ends not to search again (and layers where a miss proves nothing). |
 | `nov11/` | The Nov 11 answers (256 rows, official point columns kept) and the notes that explain them. |
 | `nov5/` | The Nov 5 answers (832 rows), the held-for-owner extras (`held-for-brandon-nov5.csv`: intake flags and decided_by only), the Japan A10 crosswalk (47 parks still open; filed, no Japan join made), the Nov 5 hand-off notes. |
@@ -29,9 +29,16 @@ Two separate ideas, both in `classify_row` (which wraps `classify_solved`) in `.
 
 Not solved: `wrong pin`, `other`, blank, and a match with no official id or url. The latest answer is the Nov 11 answer when the park is in the Nov 11 file, else the Nov 5 answer. `search-list.csv` is exactly the parks that are not solved.
 
-**2. `owner_decision` = `pending`: research is finished but the owner has not said yes.** `owner_decision_why` says why. Pending when the Nov 5 row still asked the owner to confirm (`confirm` column), the match is a National Register listing boundary (a listing boundary is not automatically the park), or the ref is FR-14979 (official record 13 km from the pin). A released-key park never waits. A pending park is not re-researched (it is off `search-list.csv`) but it is NOT dropped from `needs-another-look.json` or `brandon-list.md`, and the inbox still judges it, so an existing hold (for example the agency-alias holds US-11820 and US-12735) stays intact. Only solved parks with no pending owner decision leave the retry list, the short list and the inbox run.
+**2. `owner_decision`:** `pending`, `yes`, `no`, or blank. `owner_decision_why` says why.
 
-**3. `join_ready`** (solved matches only): `yes`, or `no` when an owner decision is pending or the boundary is written in law with no map file (9 parks; they need no owner yes but there is nothing to join yet, `join_note` says so).
+- `pending`: research is finished but the owner has not said yes. Today this is the National Register listing-boundary matches that are still held (US-11820, US-12735, US-13474, US-8142, US-3493, US-10521, US-7975). A listing boundary is not automatically the park. A pending park is not re-researched (it is off `search-list.csv`) but it is NOT dropped from `needs-another-look.json` or `brandon-list.md`, and the inbox still judges it, so an existing hold stays intact.
+- `yes`: the 56 Nov 5 matches that still asked the owner to confirm, settled on 2026-11-11. They are join ready (unless a released-key park, which never waits).
+- `no`: the owner said this is not a match. US-10274 Palmito Ranch (the National Register record is the whole 6,908-acre battlefield, the bigger place; it needs the Texas Historical Commission site outline) and FR-14979 (the official record is 13 km from the pin; the live join comes off on the next world key run). These are not solved and they go on `search-list.csv`.
+- Blank, with a why only: ZA-0085, ZA-0156 and ZA-0157 stay unsolved (their official ids were WDPA-derived and were removed; they need a non-WDPA official id). Recorded 2026-11-11.
+
+A released-key park never waits. Only solved parks with no pending owner decision leave the retry list, the short list and the inbox run.
+
+**3. `join_ready`** (solved matches only): `yes` (including the 56 Nov 5 confirms the owner settled), or `no` when an owner decision is pending or the boundary is written in law with no map file (9 parks; they need no owner yes but there is nothing to join yet, `join_note` says so).
 
 Solved does not mean joined. `official_id`, `official_id_type` and `official_source_url` are what a join reads (match rows only; leads on other rows sit in `candidate_id`). `match_strength` carries the Nov 11 notes section 5 tiers.
 

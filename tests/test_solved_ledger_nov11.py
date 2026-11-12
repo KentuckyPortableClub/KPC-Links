@@ -57,9 +57,13 @@ bad = [r['ref'] for r in L if not _again(r)]
 check(not bad, f'solved, owner_decision and join_ready in the file equal the rule recomputed from the row ({bad[:3]})')
 # the split: skip_search (research finished) is not the same as "no owner decision waiting"
 K = RI.classify_row
-check(K('match', 'X:1', '', '', '', False, 'needs_brandon', 'nov5-proposed', 'US-1')['owner_decision'] == 'pending', 'a Nov 5 match that still asked the owner to confirm: pending')
-check(K('match', 'NRHP:1', '', '', '', False, '', 'nrhp-listing-boundary-pin-inside', 'US-2')['owner_decision'] == 'pending', 'a National Register listing boundary: pending')
-check(K('match', '260014888', '', '', '', False, '', 'agency-layer-pin-tested', 'FR-14979')['owner_decision'] == 'pending', 'FR-14979 (record 13 km from the pin): pending')
+k = K('match', 'X:1', '', '', '', False, 'needs_brandon', 'nov5-proposed', 'US-1')
+check(k['owner_decision'] == 'yes' and k['skip_search'] and k['join_ready'] == 'yes', 'a Nov 5 match that asked the owner to confirm is now settled yes, join ready')
+check(K('match', 'NRHP:1', '', '', '', False, '', 'nrhp-listing-boundary-pin-inside', 'US-2')['owner_decision'] == 'pending', 'a National Register listing boundary still held: pending')
+k = K('other', '260014888', '', '', '', False, '', '', 'FR-14979')
+check(k['owner_decision'] == 'no' and k['skip_search'] is False, 'FR-14979: owner no, not solved')
+k = K('other', 'NRHP:93000266', '', '', '', False, '', '', 'US-10274')
+check(k['owner_decision'] == 'no' and k['skip_search'] is False and '6,908-acre' in k['owner_decision_why'], 'US-10274 Palmito: owner no, needs the THC site outline')
 k = K('match', 'DO-Ley:202-04', '', '', '', False, '', 'boundary-in-law-no-map-file', 'DO-0027')
 check(k['skip_search'] and k['owner_decision'] == '' and k['join_ready'] == 'no', 'a law-only match: no owner yes needed, but join_ready = no')
 k = K('match', 'ZNIEFF:1', '', '', '', False, '', 'agency-layer-pin-tested', 'FR-1')
@@ -67,16 +71,21 @@ check(k['skip_search'] and k['owner_decision'] == '' and k['join_ready'] == 'yes
 k = K('match', 'X:1', '', 'released-US', 'official', False, 'needs_brandon', 'nov5-proposed', 'US-3')
 check(k['solved_basis'] == 'released-key' and k['owner_decision'] == '', 'a released-key park never waits on the owner')
 check(K('other', '', '', '', '', False, 'needs_brandon', '', 'US-4')['owner_decision'] == '', 'an unsolved park has no owner_decision flag (it is still on the search list)')
-for ref in ('US-11820', 'US-12735', 'US-13474', 'US-10274', 'US-8142', 'US-3493', 'US-10521', 'US-7975', 'FR-14979'):
+for ref in ('US-11820', 'US-12735', 'US-13474', 'US-8142', 'US-3493', 'US-10521', 'US-7975'):
     check(LD[ref]['solved'] == 'yes' and LD[ref]['owner_decision'] == 'pending', f'{ref}: research finished AND owner decision pending')
-check(sum(r['owner_decision'] == 'pending' for r in L if r['match_strength'].startswith('nrhp-listing')) == 8, 'all 8 National Register listing-boundary matches are pending')
+check(sum(r['owner_decision'] == 'pending' for r in L if r['match_strength'].startswith('nrhp-listing')) == 7, 'the 7 still-held National Register listing-boundary matches are pending')
+check(LD['US-10274']['solved'] == 'no' and LD['US-10274']['owner_decision'] == 'no' and LD['US-10274']['answer'] == 'other', 'US-10274 Palmito is not a match; needs the THC site outline')
+check(LD['FR-14979']['solved'] == 'no' and LD['FR-14979']['owner_decision'] == 'no', 'FR-14979: owner no to the 13 km join')
+check(sum(r['owner_decision'] == 'yes' for r in L) == 56 and all(r['solved'] == 'yes' and r['join_ready'] == 'yes' for r in L if r['owner_decision'] == 'yes'), 'the 56 Nov 5 confirms are settled yes and join ready')
+for ref in ('ZA-0085', 'ZA-0156', 'ZA-0157'):
+    check(LD[ref]['solved'] == 'no' and LD[ref]['solved_basis'] == 'match-rested-on-removed-wdpa-lead' and 'stays unsolved' in LD[ref]['owner_decision_why'], f'{ref}: stays unsolved (WDPA id removed)')
 law = [r for r in L if r['match_strength'] == 'boundary-in-law-no-map-file']
 check(len(law) == 9 and all(r['join_ready'] == 'no' and not r['owner_decision'] for r in law), 'the 9 law-only matches: join_ready = no, no owner decision')
 check(all(r['owner_decision'] == '' for r in L if r['solved_basis'] == 'released-key'), 'no released-key park is pending')
 n11 = rd(ANS / 'nov11/answers-nov11.csv')
 cnt = {}
 for r in n11: cnt[r['answer']] = cnt.get(r['answer'], 0) + 1
-check(len(n11) == 256 and cnt == {'match': 49, 'no boundary exists': 15, 'wrong pin': 5, 'other': 172, '': 15}, f'Nov 11 answers filed whole: {cnt}')
+check(len(n11) == 256 and cnt == {'match': 47, 'no boundary exists': 15, 'wrong pin': 5, 'other': 174, '': 15}, f'Nov 11 answers filed whole: {cnt}')
 check({'official_point_lat', 'official_point_lon', 'official_point_kind', 'official_point_id', 'official_point_source_url', 'official_point_km_from_pota_pin'} <= set(n11[0]),
       'Nov 11 official_point_* columns kept')
 check(sum(1 for r in n11 if r['official_point_lat']) == 53, 'Nov 11 official points kept (53 rows with coordinates)')
@@ -104,7 +113,8 @@ S = rd(ANS / 'search-list.csv'); SD = {r['ref'] for r in S}
 ledger = RI.load_ledger(HERE)
 check(len(ledger) == 832 and RI.solved_refs(ledger) == {r['ref'] for r in L if r['solved'] == 'yes'}, 'load_ledger / solved_refs read the filed ledger')
 check(not (SD & RI.solved_refs(ledger)), 'no solved ref is on the search list')
-check(SD == {r['ref'] for r in L if r['solved'] == 'no'} and len(S) == 276, 'the search list is exactly the unsolved parks (276)')
+check(SD == {r['ref'] for r in L if r['solved'] == 'no'} and len(S) == 278, 'the search list is exactly the unsolved parks (278)')
+check({'US-10274', 'FR-14979'} <= SD, 'Palmito and FR-14979 are on the search list (not a match / owner no)')
 open_rows = rd(ANS / 'lists/mystery-parks-open.csv')
 kept, skipped = RI.filter_unsolved(open_rows, ledger, key='ref')
 check(len(kept) + len(skipped) == 366 and skipped and all(RI.is_skipped(r['ref'], ledger) for r in skipped) and not any(RI.is_skipped(r['ref'], ledger) for r in kept),
