@@ -1,0 +1,60 @@
+{
+ "about": "SIGNED baselines for the world master gate (KPC owner, 2026-11-11; owner OK Nov 11, numbers at the manager's discretion). The gate (kpc_master_cli.py gate --approved) reads ONLY this file and checks each listed copy EXACTLY against expected_count, and only for the one W-XX.json.gz whose sha256 is copy_sha256 (any other copy of that country falls back to the layers.json baseline). Each sha256 was computed from the boundary-cache release asset (it equals the release page digest); each count is that copy's record count (kpc_master_cli.py bundle-manifest --show) and equals the gate's 'read N' line in run 43082247085. Every record the current key joins or lists as a candidate, for each layer the copy holds, is in the copy (checked by layer + record id). Not signed, kept held: see not_signed.",
+ "approved_by": "KPC owner",
+ "approved_date": "2026-11-11",
+ "baselines": {
+  "W-AS": {
+   "expected_count": 3,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (NPS + FWS realty layers, both on a saved-copy-only host); 1,711 is the full-layer count. The AS key joins 2 distinct records; 3 >= 2. Checked 2026-11-11: the copy holds 3 records; all 2 joined and 0 candidate records of its layers are in it.",
+   "copy_sha256": "fa66a74f4639908a60ac903d198b1a7dc14d1feb855b131a3cfc4d9f0f953538"
+  },
+  "W-BS": {
+   "expected_count": 53,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (1 layer, saved-copy-only host); 76 is the full layer. The BS key joins 24 distinct records, 29 with candidates; 53 >= 29. Checked 2026-11-11: the copy holds 53 records; all 24 joined and 5 candidate records of its layers are in it.",
+   "copy_sha256": "7a29180d4e13487589c179fc8aa579a76e9376f58e679134d5bf017c0dd40c2b"
+  },
+  "W-BW": {
+   "expected_count": 9,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (1 layer, saved-copy-only host); 53 is the full layer. The BW key joins 6 distinct records; 9 >= 6. BW was held in run 43082247085 for want of this copy. Checked 2026-11-11: the copy holds 9 records; all 6 joined and 0 candidate records of its layers are in it.",
+   "copy_sha256": "151f85ea5d46c81d9f3fd46ddea1b412d36ed2ff3bd12ece1a1fabd3c34a44ad"
+  },
+  "W-BZ": {
+   "expected_count": 503,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (2 layers, saved-copy-only host); 647 is both full layers. The BZ key joins 230 distinct records, 248 with candidates; 503 >= 248. Checked 2026-11-11: the copy holds 503 records; all 230 joined and 20 candidate records of its layers are in it.",
+   "copy_sha256": "93ac49ab0e9ae3e80d1c485044bc5ba70b548a0f865e72a525cf2d4119f8aa66"
+  },
+  "W-GL": {
+   "expected_count": 63,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (1 layer, saved-copy-only host); 2,679 is the full layer. The GL key joins 16 distinct records, 23 with candidates; 63 >= 23. GL was held in run 43082247085 for want of this copy. Checked 2026-11-11: the copy holds 63 records; all 16 joined and 7 candidate records of its layers are in it.",
+   "copy_sha256": "67e7c3462c303eac80fad309b7a8c9f5c5abd883f23e841442b0d3302858ea61"
+  },
+  "W-NZ": {
+   "expected_count": 2837,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features; 23,385 is all 3 layers in full (this run read 19,406 + 10 live; Park Extents, on a saved-copy-only host, failed). The NZ key joins 1,044 distinct records; 2,837 >= 1,044. Checked 2026-11-11: the copy holds 2837 records; all 5 joined and 0 candidate records of its layers are in it.",
+   "copy_sha256": "a7587e0706b8ae49b2a4106cd0e371342f57a6e4b10373186684593afe17b81c"
+  },
+  "W-UM": {
+   "expected_count": 10,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (FWS realty, saved-copy-only host); 1,274 is the full layer. The UM key joins 7 distinct records, 10 with candidates; 10 >= 10. UM was held in run 43082247085 for want of this copy. Checked 2026-11-11: the copy holds 10 records; all 7 joined and 3 candidate records of its layers are in it.",
+   "copy_sha256": "8655e77bbd15ac3d479904312056c947d47e7198dd4a10eae35d1eeca75a3255"
+  },
+  "W-VI": {
+   "expected_count": 11,
+   "kind": "trimmed",
+   "reason": "Hand bundle trimmed to park features (3 US national layers, saved-copy-only hosts); 2,796 is the full layers. The VI key joins 9 distinct records; 11 >= 9. Checked 2026-11-11: the copy holds 11 records; all 9 joined and 0 candidate records of its layers are in it.",
+   "copy_sha256": "62d9bcadfc8c48fc662c4ec935f5848a90638f0a328e741dad5637a8873d80ed"
+  }
+ },
+ "not_signed": {
+  "W-AU": "NOT signed, kept held: the copy (sha256 8c8b7579..., 365,915 records over 26 layers) lacks the current layer 'QLD State Forest (Queensland Government)' (402 records in run 43082247085), and 8 of its layers are no longer read (#135 dropped them; Surface_HydroLines_National alone is 276,000 records), so 365,915 is not a count of the current layer set. 3,743,432 is not signed either. Refresh W-AU once save-check skips dropped layers.",
+  "W-MT": "NOT proposed, keep held: the bundle holds 14 records, but the current MT key joins 39 distinct records of its 2 layers (27 Ambjent Malta + 12 N2K SPA), both on a saved-copy-only host, so the bundle cannot carry the joins the key has. Check it with `kpc_master_cli.py bundle-manifest W-MT.json.gz --show`, re-make it with both layers in full or trimmed to every joined record, stamp it with bundle-manifest.",
+  "W-BE W-CH W-CZ W-DE W-PT": "NOT proposed: these copies are whole for the layers they were made with; the baselines count layers added after them. Refresh the copies with the saved shapes workflow (countries BE CH CZ DE PT) instead of lowering anything."
+ }
+}
