@@ -1,0 +1,4 @@
+{
+ "about": "PROPOSED expected holds (KPC owner, 2026-11-11). Never read by any workflow. To use an entry, move it into world-expected-holds.approved.json with approved_by and approved_date filled, in a reviewed PR.",
+ "holds": {}
+}

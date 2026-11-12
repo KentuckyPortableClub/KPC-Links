@@ -374,6 +374,10 @@ def stamp(kind):
         failed = sorted({l.strip() for l in open(ff, encoding='utf-8') if l.strip()})
     if failed: d['failed'] = failed; d['complete'] = False
     else: d.pop('failed', None); d.pop('complete', None)
+    # Nov 12 (KPC owner, 2026-11-11): owner-signed expected holds (KPC_HELD_EXPECTED) were kept from main, not rebuilt: not complete
+    held = sorted(set((os.environ.get('KPC_HELD_EXPECTED') or '').split()) - set(failed))
+    if held: d['held_expected'] = held; d['complete'] = False
+    else: d.pop('held_expected', None)
     # Owner rule, 2026-11-10: each area built green this run (planned, not failed) carries the rules it was built on, so one short area
     # no longer forces a whole-key rebuild; the key-wide 'rules' goes with a FULL green build, or once every area row is on them.
     cur = rules_hash(kind); rows = d.get(ROWS[kind]) if kind in ROWS else None

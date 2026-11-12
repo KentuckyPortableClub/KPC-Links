@@ -172,7 +172,7 @@ jobs:
           if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then export KPC_FULL_BUILD=1; fi
           python3 .github/scripts/kpc_key_freeze.py stamp ca-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
-        if: ${{ always() && env.SKIP != '1' }}
+        if: ${{ !cancelled() && env.SKIP != '1' }}   # Nov 12 (KPC owner, 2026-11-11): a cancel mid-build saves nothing (was always())
         # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files, deletions too); red ONLY when the save failed.
         # Only this bot's own status file (the others belong to other bots; kpc_state_links.json is KPC-Data's)
         env:

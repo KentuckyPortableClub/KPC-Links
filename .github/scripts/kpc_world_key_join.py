@@ -28,7 +28,24 @@ untouched; it is named failed (the stamp then says complete=false) and listed in
 not even its shared files; a part with some held gives its shared files minus the keys that name a held country (CC or CC-...), and no
 whole-file write. A missing part (no artifact) is already not joined, and `kpc_key_freeze.py missing` names its countries failed.
 
-  python3 .github/scripts/kpc_world_key_join.py verdict --part part --countries "AU DE" --rc-file F --short-file F"""
+  python3 .github/scripts/kpc_world_key_join.py verdict --part part --countries "AU DE" --rc-file F --short-file F
+
+Nov 12 (KPC owner, 2026-11-11; run 43148551915 was cancelled and its join still saved a6c493c, which emptied the review files):
+  - --planned-groups JSON (the plan's groups): every planned country must be in a part's countries.txt AND its done.txt (built this
+    run); a missing or short part, or a country not built, = exit 1, built=0, NOTHING written (no partial save). --expected "AU MT"
+    (the plan's checked expected holds) are not planned and are named "kept from main" in the step summary table
+    (country | part present | verdict | joined or kept from main | why).
+  - expected --file data/outlines/world-expected-holds.approved.json --countries "$ALL" --key data/world-key [--cache cache/world]:
+    the owner-signed expected holds for this run's list (stdout: "AU MT"). An entry is used only when its country is in the list,
+    it has a reason, a real person's sign-off (approved_by / approved_date; 'Brandon (KZ4CP)' counts; 'KPC owner' is not a
+    signature), a source, a copy_sha256 (the sha256 of W-<CC>.json.gz), and no passed review_by date; anything else is ignored
+    and said (the country is built as a normal country). With --cache, the hold applies only when the saved copy's sha matches;
+    a changed or missing copy does not inherit the hold. An expected hold with NO joined park on main (nothing to keep) =
+    exit 1 (the plan stops, nothing is built or saved).
+  - keep-rows --countries "AU MT" --review data/world-key/review [--ref HEAD]: after the join check, the rows of the expected-hold
+    countries in held-joins.json / .csv, held-joins-ledger.csv, join-check.json / .csv come back from main byte for byte (the join
+    check writes those files whole from this run's changed key files only). A file whose rows cannot be split per country is put
+    back from main whole (not written this run) and the run says so. No countries = nothing touched."""
 import argparse, hashlib, json, os, pathlib, re, shutil, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -233,16 +250,265 @@ def main_verdict(argv):
     return 0
 
 
+# ---- Nov 12 (KPC owner, 2026-11-11): no partial save; owner-signed expected holds; their review rows kept from main -------------------
+EXPECTED_SUFFIX = '.approved.json'
+
+
+def _today():
+    import datetime
+    return datetime.date.today()
+
+
+def has_previous_join(key_dir, c):
+    """True when main's data/world-key/<c>.json has at least one joined park (an 'm' list, not graded 'pin'): something to keep."""
+    d = _load(pathlib.Path(key_dir) / f'{c}.json', {}) or {}
+    return any(isinstance(p, dict) and p.get('m') and p.get('g') != 'pin' for p in (d.get('parks') or {}).values())
+
+
+def _hold_signed(approved_by, approved_date, who, today=None):
+    """A real person's sign-off. 'KPC owner' is not a signature. The display form 'Brandon (KZ4CP)' counts when Brandon or
+    KZ4CP is a listed person (kpc_answer_words.signed_off requires an exact name, so the parenthetical form is accepted here)."""
+    import datetime, kpc_answer_words as AW
+    who = {str(w).strip().lower() for w in (who or []) if str(w).strip().lower() != 'kpc owner'}
+    if AW.signed_off(approved_by, approved_date, who, today=today):
+        return True
+    tokens = set()
+    for part in re.split(r'[,;+&]|\band\b', str(approved_by or '')):
+        part = part.strip()
+        if not part:
+            continue
+        m = re.fullmatch(r'(.+?)\s*\(([^)]+)\)', part)
+        if m:
+            tokens.add(m.group(1).strip().lower()); tokens.add(m.group(2).strip().lower())
+        else:
+            tokens.add(part.lower())
+    if not tokens & who:
+        return False
+    try: d = datetime.date.fromisoformat(str(approved_date or '').strip()[:10])
+    except ValueError: return False
+    return d <= (today or datetime.date.today())
+
+
+def _copy_file_sha(cache_dir, c):
+    """sha256 of cache/W-<CC>.json.gz, or '' if the file is not there. None when no cache was given (no live check)."""
+    if not cache_dir:
+        return None
+    p = pathlib.Path(cache_dir) / f'W-{c}.json.gz'
+    return _sha(p) if p.is_file() else ''
+
+
+def load_expected(path, countries, key_dir, persons=None, today=None, cache_dir=None):
+    """(held {CC: why}, notes [ignored entries], errors [held with nothing to keep]). Fail closed: only a file named *.approved.json is
+    read; an entry is used only when it is signed by a real person, has a reason and a source, its copy_sha256 is the sha256 of one
+    saved copy, its country is in this run's list and its review_by is not past. With cache_dir, the hold applies only when the
+    copy's sha matches (a changed or missing copy does not inherit the hold). 'KPC owner' is not a signature."""
+    import datetime
+    today = today or _today()
+    p = pathlib.Path(path) if path else None
+    if p is None or not p.is_file(): return {}, [], []
+    if not p.name.endswith(EXPECTED_SUFFIX): return {}, [f'{p.name}: only a file named *{EXPECTED_SUFFIX} is read'], []
+    doc = _load(p)
+    if not isinstance(doc, dict) or not isinstance(doc.get('holds'), dict): return {}, [f'{p.name}: unreadable or no "holds" object: not read'], []
+    import kpc_answer_words as AW
+    who = {w.lower() for w in (persons if persons is not None else AW.persons(os.environ.get('KPC_PERSONS')))}
+    mine = set(str(countries or '').upper().split())
+    held, notes, errors = {}, [], []
+    for c, e in doc['holds'].items():
+        if not CC_RE.match(str(c)) or not isinstance(e, dict): notes.append(f'{c}: not a country entry: ignored'); continue
+        if c not in mine: notes.append(f"{c}: not in this run's countries: ignored"); continue
+        if not str(e.get('reason') or '').strip(): notes.append(f'{c}: no reason: ignored, built as a normal country'); continue
+        if not _hold_signed(e.get('approved_by'), e.get('approved_date'), who, today=today):
+            notes.append(f"{c}: not signed (approved_by {e.get('approved_by')!r}, approved_date {e.get('approved_date')!r}): ignored, built as a normal country"); continue
+        if not str(e.get('source') or '').strip():
+            notes.append(f'{c}: no source: ignored, built as a normal country'); continue
+        want = str(e.get('copy_sha256') or '').strip().lower()
+        if not re.fullmatch(r'[0-9a-f]{64}', want):
+            notes.append(f'{c}: no copy_sha256 (the hold is for one saved copy): ignored, built as a normal country'); continue
+        got = _copy_file_sha(cache_dir, c)
+        if got is not None and got != want:
+            if not got:
+                notes.append(f'{c}: no saved copy W-{c}.json.gz in the cache to check the hold against: ignored, built as a normal country')
+            else:
+                notes.append(f'{c}: copy sha mismatch (hold is for {want[:12]}, this copy {got[:12]}): ignored, built as a normal country')
+            continue
+        rb = str(e.get('review_by') or '').strip()
+        if rb:
+            try: rbd = datetime.date.fromisoformat(rb[:10])
+            except ValueError: notes.append(f'{c}: review_by {rb!r} is not a date: ignored, built as a normal country'); continue
+            if rbd < today: notes.append(f'{c}: review_by {rb} has passed: ignored, built as a normal country'); continue
+        if not has_previous_join(key_dir, c): errors.append(f'{c}: an expected hold, but main has no joined park for {c} (nothing to keep)'); continue
+        held[c] = f"{str(e['reason']).strip()[:160]} (signed {e.get('approved_by')} {e.get('approved_date')}" + (f', review by {rb}' if rb else '') + ')'
+    return dict(sorted(held.items())), notes, errors
+
+
+def main_expected(argv):
+    ap = argparse.ArgumentParser(description='the owner-signed expected holds of this run (the plan job)')
+    ap.add_argument('expected'); ap.add_argument('--file', required=True); ap.add_argument('--countries', required=True)
+    ap.add_argument('--key', default='data/world-key')
+    ap.add_argument('--cache', default='', help='folder of W-<CC>.json.gz copies; a hold applies only when the copy sha matches')
+    a = ap.parse_args(argv)
+    held, notes, errors = load_expected(a.file, a.countries, a.key, cache_dir=(a.cache or None))
+    for n in notes: print(f'::warning title=Expected holds::{n}', file=sys.stderr, flush=True)
+    for c, why in held.items(): print(f'::notice title=World key {c}::{c} held (expected): keeping the previous join. {why}', file=sys.stderr, flush=True)
+    if errors:
+        for x in errors: print(f'::error title=Expected holds::{x}: fix data/outlines/world-expected-holds.approved.json (the run stops, nothing is built)', file=sys.stderr, flush=True)
+        return 1
+    print(' '.join(held))
+    return 0
+
+
+REVIEW_FILES = ('held-joins.json', 'join-check.json', 'held-joins.csv', 'join-check.csv', 'held-joins-ledger.csv')
+
+
+def _csv_records(text):
+    """[(raw text of the record, {column: value})] after the header, and the header's raw text; the raw text keeps its own bytes."""
+    import csv, io
+    lines = io.StringIO(text, newline='').readlines()
+    it = iter(lines); pos = [0]
+    def feed():
+        for ln in it:
+            pos[0] += 1; yield ln
+    rd = csv.reader(feed()); out = []
+    try: head = next(rd)
+    except StopIteration: return None, []
+    head_raw = ''.join(lines[:pos[0]]); last = pos[0]
+    for row in rd:
+        out.append((''.join(lines[last:pos[0]]), dict(zip(head, row)))); last = pos[0]
+    return (head_raw, head), out
+
+
+def _row_cc(row, name):
+    cc = str(row.get('area') or '') if name != 'held-joins-ledger.csv' else str(row.get('park') or '').split('-')[0]
+    return cc if CC_RE.match(cc) else None
+
+
+def merge_rows(name, main_text, cur_text, keep):
+    """New text of one review file: this run's rows of every other country + main's rows of the `keep` countries (byte for byte),
+    in country order. None = the rows cannot be split per country safely (the caller puts main's file back whole)."""
+    keep = set(keep)
+    if name.endswith('.json'):
+        lk = 'parks' if name == 'held-joins.json' else 'rows'
+        try: m, c = json.loads(main_text) if main_text else {lk: []}, json.loads(cur_text) if cur_text else None
+        except ValueError: return None
+        if c is None: c = dict(m)
+        if not (isinstance(m.get(lk), list) and isinstance(c.get(lk), list)): return None
+        rows = []
+        for src, take in ((c[lk], lambda x: x not in keep), (m[lk], lambda x: x in keep)):
+            for r in src:
+                cc = _row_cc(r, name) if isinstance(r, dict) else None
+                if cc is None: return None
+                if take(cc): rows.append((cc, r))
+        rows.sort(key=lambda t: t[0])   # stable: each country's rows keep their order
+        c[lk] = [r for _, r in rows]
+        if name == 'held-joins.json': c['count'] = len(c[lk])
+        else: c['suspect'] = len(c[lk])   # 'held' stays this run's count (held-joins.json 'count' is the merged one)
+        c['kept_from_main'] = sorted(keep)
+        return json.dumps(c, indent=1, ensure_ascii=False)   # the join check's own format (json.dump, indent 1, no newline at the end)
+    mh, mr = _csv_records(main_text or '')
+    ch, cr = _csv_records(cur_text or '') if cur_text else (mh, [])
+    if mh is None and ch is None: return cur_text
+    if mh is not None and ch is not None and mh[1] != ch[1]: return None   # another header: the columns cannot be lined up
+    rows = []
+    for src, take in ((cr, lambda x: x not in keep), (mr, lambda x: x in keep)):
+        for raw, r in src:
+            cc = _row_cc(r, name)
+            if cc is None: return None
+            if take(cc): rows.append((cc, raw))
+    rows.sort(key=lambda t: t[0])
+    return (ch or mh)[0] + ''.join(raw for _, raw in rows)
+
+
+def _git_show(ref, rel, cwd):
+    import subprocess
+    r = subprocess.run(['git', 'show', f'{ref}:{rel}'], cwd=cwd, capture_output=True)
+    return r.stdout.decode('utf-8') if r.returncode == 0 else None
+
+
+def keep_rows(review, keep, ref='HEAD'):
+    """Write the merged review files; returns [(file, what happened)]."""
+    import subprocess
+    review = pathlib.Path(review); keep = sorted(set(keep))
+    if not keep: return []
+    top = subprocess.run(['git', 'rev-parse', '--show-toplevel'], cwd=review if review.is_dir() else review.parent, capture_output=True, text=True).stdout.strip()
+    done = []
+    for name in REVIEW_FILES:
+        f = review / name
+        rel = os.path.relpath(f.resolve(), top).replace(os.sep, '/')
+        main_text = _git_show(ref, rel, top)
+        cur_text = f.read_text(encoding='utf-8') if f.is_file() else None
+        if main_text is None and cur_text is None: continue
+        new = merge_rows(name, main_text, cur_text, keep)
+        if new is None:
+            if main_text is None: f.unlink(missing_ok=True)
+            else: f.write_text(main_text, encoding='utf-8')
+            done.append((name, 'NOT written this run: its rows cannot be split per country; main\'s copy kept whole')); continue
+        if new != cur_text:
+            f.parent.mkdir(parents=True, exist_ok=True); f.write_bytes(new.encode('utf-8'))
+        done.append((name, f"rows of {' '.join(keep)} kept from main"))
+    return done
+
+
+def main_keep_rows(argv):
+    ap = argparse.ArgumentParser(description='keep the review rows of the expected-hold countries from main (after the join check)')
+    ap.add_argument('keep_rows'); ap.add_argument('--countries', default=''); ap.add_argument('--review', default='data/world-key/review')
+    ap.add_argument('--ref', default='HEAD')
+    a = ap.parse_args(argv)
+    for name, what in keep_rows(a.review, a.countries.split(), a.ref):
+        print(f"::{'warning' if what.startswith('NOT') else 'notice'} title=Review files::{name}: {what}", flush=True)
+    return 0
+
+
+def completeness(parts, planned_groups, expected=''):
+    """(problems, table rows). Every planned country must be in a part's countries.txt and its done.txt (no missing or short part)."""
+    try: groups = json.loads(planned_groups or '[]')
+    except ValueError: return ['the plan\'s groups are not JSON'], []
+    planned = sorted({c for g in groups for c in str((g or {}).get('countries') or '').split()})
+    seen = {}
+    for d in sorted(pathlib.Path(p) for p in parts):
+        if not d.is_dir(): continue
+        mine = set(_words(d / 'countries.txt')); done = set(_words(d / 'done.txt'))
+        held, why = read_verdict(d, mine)
+        for c in mine: seen[c] = (d.name, c in done, 'green' if c not in held else 'held', why if c in held else '')
+    problems, rows = [], []
+    for c in planned:
+        if c not in seen: problems.append(f'{c}: no part'); rows.append((c, 'no', '-', 'kept from main (nothing saved)', 'its part is missing: the run saves nothing')); continue
+        part, built, v, why = seen[c]
+        if not built: problems.append(f'{c}: not built in {part}'); rows.append((c, 'yes', v, 'kept from main (nothing saved)', 'not built this run (failed, timed out or held by its build): the run saves nothing')); continue
+        rows.append((c, 'yes', v, 'joined' if v == 'green' else 'kept from main (nothing saved)', why or 'built, gate green'))
+    for c in sorted(set(seen) - set(planned)): problems.append(f'{c}: in a part but not planned'); rows.append((c, 'yes', seen[c][2], 'kept from main (nothing saved)', 'not in the plan'))
+    for c in sorted(set(str(expected or '').split()) - set(planned)): rows.append((c, 'no (not built)', '-', 'kept from main', 'held (expected): keeping the previous join'))
+    return problems, sorted(rows)
+
+
+def write_summary(rows, problems):
+    s = os.environ.get('GITHUB_STEP_SUMMARY')
+    if not s: return
+    t = '**World key join**' + (f" - NOTHING SAVED: {'; '.join(problems[:20])}" if problems else '') + '\n\n| country | part present | verdict | joined or kept from main | why |\n|---|---|---|---|---|\n'
+    t += ''.join(f'| {" | ".join(str(x).replace("|", "/") for x in r)} |\n' for r in rows)
+    open(s, 'a', encoding='utf-8').write(t + '\n')
+
+
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     if argv[:1] == ['verdict']: return main_verdict(argv)
+    if argv[:1] == ['expected']: return main_expected(argv)
+    if argv[:1] == ['keep-rows']: return main_keep_rows(argv)
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('parts', nargs='*'); ap.add_argument('--out', default='data/world-key'); ap.add_argument('--bounds', default='data/world-bounds')
     ap.add_argument('--failed-out', default='/tmp/world-failed.txt')
     ap.add_argument('--gate', action='store_true', help='each part must carry its master gate verdict; held countries are not joined (fail closed)')
     ap.add_argument('--held-out', help='write the held countries here (one per line: CC why)')
+    ap.add_argument('--planned-groups', help="the plan's groups (JSON): every planned country must be built in a part, else nothing is written")
+    ap.add_argument('--expected', default='', help="the plan's expected holds (kept from main, not built)")
     a = ap.parse_args(argv)
     if a.held_out: pathlib.Path(a.held_out).write_text('')   # never a stale list from an earlier run
+    if a.planned_groups is not None:   # Nov 12 (KPC owner, 2026-11-11): no partial save
+        problems, rows = completeness(a.parts, a.planned_groups, a.expected)
+        write_summary(rows, problems)
+        if problems:
+            print(f"::error title=World key join::a part is missing or short ({'; '.join(problems[:20])}): NOTHING written or saved this run (no partial save)", flush=True)
+            if os.environ.get('GITHUB_OUTPUT'): open(os.environ['GITHUB_OUTPUT'], 'a').write('built=0\n')
+            return 1
     try:
         p = plan(a.parts, a.out, gate=a.gate)
     except JoinConflict as e:

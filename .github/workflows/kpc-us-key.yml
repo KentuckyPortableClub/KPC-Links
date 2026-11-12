@@ -443,7 +443,8 @@ jobs:
           fi
   join:
     needs: [plan, build]
-    if: ${{ always() && needs.build.result != 'cancelled' && needs.build.result != 'skipped' }}
+    # Nov 12 (KPC owner, 2026-11-11; the world join saved a6c493c on a cancelled run): never on a cancelled run (!cancelled(), not always())
+    if: ${{ !cancelled() && needs.build.result != 'cancelled' && needs.build.result != 'skipped' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -635,7 +636,7 @@ jobs:
           PY
           rm -rf live
       - name: Save
-        if: always()
+        if: ${{ !cancelled() }}   # Nov 12 (KPC owner, 2026-11-11): a cancel mid-join saves nothing (was always())
         env:
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
         run: |
