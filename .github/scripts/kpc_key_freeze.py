@@ -67,8 +67,9 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              # Nov 11 (KPC owner, 2026-11-11): the world key join, same rule per country: copies the parts' files, fails closed on a conflict,
              # never decides a join (the world rules hash does not move)
              'kpc_world_key_join.py',
-             # Nov 12 (KPC owner, 2026-11-12): per-area join helpers (review rows merged per area); never decides a join
-             'kpc_area_join.py',
+             # Nov 12 (KPC owner, 2026-11-12): per-area join helpers (review rows merged per area, the run summary table, the kept-from-main
+             # check) and the per-area input hashes (plan / stamp / proof-stamp reader); neither decides a join
+             'kpc_area_join.py', 'kpc_area_hash.py',
              # Nov 7 (Brandon 4:55 PM CST): recommends a fix for each held park, writes only data/us-key/review/problem-solver.*
              'kpc_problem_solver.py',
              # Nov 9 amendment 2 (Brandon t943u/t942u): the research inbox + its xlsx converter recommend only, never decide a join
@@ -374,6 +375,16 @@ def stamp(kind):
     ff = os.environ.get('KPC_BUILD_FAILED_FILE')
     if ff and os.path.exists(ff):
         failed = sorted({l.strip() for l in open(ff, encoding='utf-8') if l.strip()})
+    # Nov 12 (KPC owner, 2026-11-12; each area stands alone): KPC_ASKED_AREAS = every area this run was asked to build. An area that
+    # was already failed on main and was NOT asked this run stays failed (a partial run does not clear another area's failure); the
+    # owner-signed expected holds are named in held_expected instead. Unset = this run's list only (as before; the US and Canada).
+    asked = os.environ.get('KPC_ASKED_AREAS')
+    if asked is not None:
+        rc, out = _git('show', f'HEAD:{p}')
+        try: old_failed = (json.loads(out.decode('utf-8')) if rc == 0 else {}).get('failed') or []
+        except Exception: old_failed = []  # noqa: BLE001
+        carry = set(old_failed) - set(asked.split()) - set((os.environ.get('KPC_HELD_EXPECTED') or '').split())
+        failed = sorted(set(failed) | carry)
     if failed: d['failed'] = failed; d['complete'] = False
     else: d.pop('failed', None); d.pop('complete', None)
     # Nov 12 (KPC owner, 2026-11-11): owner-signed expected holds (KPC_HELD_EXPECTED) were kept from main, not rebuilt: not complete
@@ -389,7 +400,10 @@ def stamp(kind):
     every = isinstance(rows, dict) and bool(rows) and all(isinstance(r, dict) and r.get('rules') == cur for r in rows.values())
     if (os.environ.get('KPC_FULL_BUILD') == '1' and not failed) or every:
         d['rules'] = cur; d['rules_files'] = sorted(RULE_FILES[kind]) + [VERSION_FILE]
-        for r in (rows or {}).values():
+        for a, r in (rows or {}).items():
+            # Nov 12 (KPC owner, 2026-11-12): the world stamps only the rows of the countries saved this run (a row of a country not
+            # built this run keeps main's value, so an index row never claims a build it did not have)
+            if kind == 'world-key' and a not in set((os.environ.get('KPC_PLANNED_AREAS') or '').split()): continue
             if isinstance(r, dict): r['rules'] = cur
     os.makedirs(os.path.dirname(p), exist_ok=True)
     json.dump(d, open(p, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
@@ -398,7 +412,8 @@ def stamp(kind):
     print(bid)
 
 
-ROWS = {'us-key': 'states'}   # the per-area rows of a key's index.json that carry their own 'rules' (owner rule, 2026-11-10)
+ROWS = {'us-key': 'states', 'world-key': 'countries'}   # the per-area rows of a key's index.json that carry their own 'rules' (owner rule, 2026-11-10;
+# the world's country rows from Nov 12, KPC owner, 2026-11-12: a country saved this run carries the code hash it was built on, a kept one keeps main's row)
 NOT_BUILT = '_not_built'      # the build job's marker on a planned row; the builder's fresh row for a built area has none
 
 

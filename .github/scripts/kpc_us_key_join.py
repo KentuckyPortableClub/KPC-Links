@@ -4,6 +4,10 @@ the part that OWNS each state, and fails closed on any conflict (exit 1, nothing
 
   python3 .github/scripts/kpc_us_key_join.py parts/us-key-part-* [--out data/us-key] [--key-src .github/scripts/kpc_us_key.py]
 
+Nov 12 (KPC owner, 2026-11-12): a state in a part's failed-states.txt is not joined (main's bytes stay). `record` writes the per-state
+record for the one run summary table (kpc_area_join.py summary):
+  python3 .github/scripts/kpc_us_key_join.py record parts/us-key-part-* --planned-groups JSON --failed FILE [--drop FILE] --out F
+
 A part is one build group's artifact: states.txt (the states it built) + index.json (a red group without them is skipped; its states
 are named failed by the stamp), US-ST.json and tracts/US-ST.json for its states, layers.json (its whole copy), zip-<prefix>.json
 (only the zipped-shapefile copies that build WROTE, newer than its build start).
@@ -58,7 +62,12 @@ def plan(parts, out, owners):
             st = f.stem[3:]
             if st not in mine: raise JoinConflict(f'{d.name} carries {f.relative_to(d)} but does not own {st}')
         pi = (_load(d / 'index.json', {}) or {}).get('states', {})
+        # Nov 12 (KPC owner, 2026-11-12; each state stands alone): a state the part names failed (planned but not built, or a short shape
+        # source the shape guard could not refill) is NOT joined: its key file, tracts and index row stay main's bytes (before, the part's
+        # copy of an older checkout or of the live key was joined). It is named failed by the stamp and listed red in the run summary.
+        bad = set(open(d / 'failed-states.txt', encoding='utf-8').read().split()) if (d / 'failed-states.txt').exists() else set()
         for st in sts:
+            if st in bad: continue
             if (d / f'US-{st}.json').exists(): files.append((d / f'US-{st}.json', out / f'US-{st}.json'))
             if (d / 'tracts' / f'US-{st}.json').exists(): files.append((d / 'tracts' / f'US-{st}.json', out / 'tracts' / f'US-{st}.json'))
             if st in pi: idx_rows[st] = pi[st]
@@ -103,7 +112,38 @@ def apply(p, out):
     return len([f for f in p['files'] if f[1].parent == out])
 
 
+def record(parts, planned_groups, failed_file='', drop_file='', out_key='data/us-key'):
+    """{rows_key, areas: {ST: {built, verdict, action, code, why}}} for the run summary (after the stamp and the drop guard)."""
+    planned = sorted({s for g in json.loads(planned_groups or '[]') for s in str((g or {}).get('states') or '').split()})
+    rd = lambda f: set(open(f, encoding='utf-8').read().split()) if f and os.path.exists(f) else set()
+    failed, drop = rd(failed_file), rd(drop_file)
+    have, short, notb = set(), set(), set()
+    for d in sorted(pathlib.Path(x) for x in parts):
+        have |= rd(d / 'states.txt')
+        short |= {x.split('-', 1)[-1] for x in rd(d / 'master-short.txt')}
+        notb |= rd(d / 'failed-states.txt')
+    areas = {}
+    for st in planned:
+        if st in drop: r = ('yes', 'green', 'drop-guard', 'lost more than 3% of its official parks or outlines: kept from main')
+        elif st in short: r = ('no', 'held', 'held-gate', 'short saved copy moved aside by the master gate')
+        elif st in notb: r = ('no', 'green', 'failed', 'planned but not built, or a short shape source the saved copy could not refill')
+        elif st not in have: r = ('no', '-', 'not-built', 'its part is missing (no artifact came back) or it was not given to a part')
+        elif st in failed: r = ('no', '-', 'failed', 'named failed in the stamp')
+        else: r = ('yes', 'green', 'built', 'built and saved')
+        areas[st] = {'built': r[0], 'verdict': r[1], 'code': r[2], 'why': r[3], 'action': 'saved' if r[2] == 'built' else 'kept'}
+    return {'rows_key': 'states', 'areas': areas, 'red': sorted(a for a, x in areas.items() if x['action'] != 'saved'), 'problems': []}
+
+
 def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
+    if argv[:1] == ['record']:
+        ap = argparse.ArgumentParser(); ap.add_argument('record'); ap.add_argument('parts', nargs='*'); ap.add_argument('--planned-groups', default='[]')
+        ap.add_argument('--failed', default=''); ap.add_argument('--drop', default=''); ap.add_argument('--out', required=True)
+        a = ap.parse_args(argv)
+        rec = record(a.parts, a.planned_groups, a.failed, a.drop)
+        pathlib.Path(a.out).write_text(json.dumps(rec, indent=1, sort_keys=True) + '\n', encoding='utf-8')
+        if rec['red']: print(f"::error title=US key run::RED: not saved this run, previous join kept from main: {' '.join(rec['red'])}", flush=True)
+        return 0
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('parts', nargs='*'); ap.add_argument('--out', default='data/us-key')
     ap.add_argument('--key-src', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'kpc_us_key.py'))

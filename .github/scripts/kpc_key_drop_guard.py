@@ -7,6 +7,9 @@ tree with the copy on main (`git show <ref>:...`) and counts the parks graded of
   drop = (official on main - official now) / official on main.   Over KPC_DROP_PCT (3) and more than KPC_DROP_MIN (1) park = FAIL.
 A drop a person expects (a batch of signed NO answers, say) is let through for that run by naming the states in KPC_DROP_OK
 ("NV" or "NV UT"; the repo variable of the same name). Exit 1 on a failed state; the workflow then saves nothing from the run.
+Nov 12 (KPC owner, 2026-11-12; each state stands alone): with --restore a failed state is put back to --ref byte for byte (key file,
+tracts, outline files, index row), written to --failed-out (the stamp names it failed) and the guard exits 0: the other states are
+saved and the run ends red. A state that cannot be put back = exit 1 and nothing is saved (as before).
 The outline files are held to the same limit: data/outlines/US-XX.geojson.gz (with its parts) may not hold more than 3% fewer outlines than
 main's; main's outlines of parks the key grades pin are not counted (the save leaves them out on purpose, Nov 11).
 Offline. A state with no file on main (new) or no official park on main is skipped.
@@ -35,6 +38,8 @@ def judge(before, now, pct=3.0, min_parks=1, ok_states=()):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--ref', default='HEAD'); ap.add_argument('--key', default='data/us-key')
     ap.add_argument('--repo', default=str(ROOT)); ap.add_argument('--mark')
+    ap.add_argument('--restore', action='store_true', help='Nov 12: put a failed state back to --ref byte for byte and go on (the others are saved)')
+    ap.add_argument('--failed-out', help='with --restore: write the kept states here (one per line), for the stamp')
     a = ap.parse_args()
     pct = float(os.environ.get('KPC_DROP_PCT') or 3); mn = int(os.environ.get('KPC_DROP_MIN') or 1)
     ok = set((os.environ.get('KPC_DROP_OK') or '').replace(',', ' ').upper().split())
@@ -76,9 +81,48 @@ def main():
               f'If the drop is expected, set the repo variable KPC_DROP_OK to "{st}" for one run.')
     print(f'drop guard: {len(before)} state(s) compared with {a.ref}; {len(failed) + len(unread)} failed, {len(allowed)} let through')
     if failed or unread:
-        if a.mark: pathlib.Path(a.mark).write_text(' '.join([r[0] for r in failed] + unread) + '\n')
+        bad = sorted(set([r[0] for r in failed] + unread))
+        if a.restore:   # Nov 12 (KPC owner, 2026-11-12): each state stands alone
+            try:
+                restore(a.repo, a.key, a.ref, bad)
+            except Exception as e:  # noqa: BLE001  a state that cannot be put back = the old rule: nothing is saved
+                print(f'::error title=Drop guard::could not keep {" ".join(bad)} from {a.ref} ({type(e).__name__}: {str(e)[:160]}): the run saves nothing')
+                if a.mark: pathlib.Path(a.mark).write_text(' '.join(bad) + '\n')
+                return 1
+            if a.failed_out: pathlib.Path(a.failed_out).write_text(''.join(st + '\n' for st in bad))
+            print(f'::error title=Drop guard::{" ".join(bad)} kept from {a.ref} byte for byte (key file, tracts, outlines, index row) and named failed; '
+                  'the other states are saved; the run ends red')
+            return 0
+        if a.mark: pathlib.Path(a.mark).write_text(' '.join(bad) + '\n')
         return 1
     return 0
+
+
+def restore(repo, key, ref, states):
+    """Nov 12 (KPC owner, 2026-11-12): put each dropped state back to `ref` byte for byte: data/us-key/US-XX.json, tracts/US-XX.json,
+    data/outlines/US-XX*.geojson.gz (every part), and its index row. A file that is not on ref is removed (a new state's short read)."""
+    repo = pathlib.Path(repo)
+    def show(rel):
+        r = subprocess.run(['git', 'show', f'{ref}:{rel}'], cwd=repo, capture_output=True)
+        return r.stdout if r.returncode == 0 else None
+    for st in states:
+        rels = [f'{key}/US-{st}.json', f'{key}/tracts/US-{st}.json']
+        ls = subprocess.run(['git', 'ls-tree', '--name-only', ref, 'data/outlines/'], cwd=repo, capture_output=True, text=True).stdout.split()
+        rels += [x for x in ls if os.path.basename(x).startswith(f'US-{st}.') and x.endswith('.geojson.gz')]
+        rels += [os.path.relpath(f, repo) for f in glob.glob(str(repo / 'data' / 'outlines' / f'US-{st}.*geojson.gz'))]
+        for rel in sorted(set(rels)):
+            b = show(rel); f = repo / rel
+            if b is None: f.unlink(missing_ok=True)
+            else: f.parent.mkdir(parents=True, exist_ok=True); f.write_bytes(b)
+    ip = repo / key / 'index.json'
+    old = json.loads(show(f'{key}/index.json') or b'{}')
+    d = json.load(open(ip, encoding='utf-8'))
+    for st in states:
+        if st in (old.get('states') or {}): d.setdefault('states', {})[st] = old['states'][st]
+        else: (d.get('states') or {}).pop(st, None)
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    from kpc_save import save_json   # the join's own writer (same bytes as the join wrote the index)
+    save_json(str(ip), d)
 
 
 if __name__ == '__main__': sys.exit(main())
