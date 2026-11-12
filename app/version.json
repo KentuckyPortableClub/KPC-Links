@@ -1,6 +1,6 @@
 {
- "ver": "0.8.2",
- "when": "2026-11-11",
+ "ver": "0.8.4",
+ "when": "2026-11-12",
  "where": "https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build",
- "notes": "0.8.2: 🦊 Fox & Hound for FT8 DXpeditions (checked against WSJT-X), ↗ split from spots (checks your licence class first), 📻 KiwiSDR web radio, STATION settings in tabs, a friendlier help page, typed FT8 contacts log -10, a spot tap fills every op at the park. "
+ "notes": "0.8.4: 🗣 FreeDV digital voice on the PC (700D / 700E / 1600), 🎯 CW PEAK filter + CW pitch, 🦊 Fox & Hound for FT8 DXpeditions (checked against WSJT-X), ↗ split from spots (checks your licence class first), 📻 KiwiSDR web radio, STATION settings in tabs, a friendlier help page, typed FT8 contacts log -10, a spot tap fills every op at the park. "
 }
