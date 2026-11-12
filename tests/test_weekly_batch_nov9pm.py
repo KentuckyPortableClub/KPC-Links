@@ -14,7 +14,7 @@ for wf in sorted((HERE / '.github/workflows').glob('*.yml')):
     if not re.search(r'playwright', t, re.I): continue
     bad = [l.strip() for l in t.splitlines() if re.match(r'\s*runs-on:\s*ubuntu-latest', l)]
     check(not bad, f'{wf.name}: no ubuntu-latest runner in a Playwright workflow')
-for name in ('kpc-guide-pdf.yml', 'kpc-adds-probe.yml', 'kpc-bot-health.yml'):
+for name in ('kpc-guide-pdf.yml', 'kpc-bot-health.yml'):   # KPC owner, 2026-11-11: kpc-adds-probe.yml was removed (a temporary probe, see the probes-removed test)
     check('runs-on: ubuntu-24.04' in (HERE / '.github/workflows' / name).read_text(encoding='utf-8'), f'{name} pinned to ubuntu-24.04')
 
 # 2) hand joins carry the record id (join + fp) and no 'none' flag

@@ -19,7 +19,7 @@ def check(msg, cond):
 INSTALLERS = {'kpc_net_guard', 'kpc_host_pace', 'kpc_http_cache', 'kpc_master'}
 FETCH = re.compile(r'urlopen\(|build_opener\(|urlretrieve\(|http\.client\.|\brequests\.(get|post|head|Session)\(')
 # The standalone fetchers that read map layers / agency pages: each carries the one-line install itself.
-DIRECT = ['kpc_state_trails', 'kpc_us_trails', 'kpc_state_gis', 'kpc_checkup', 'kpc_state_camps', 'kpc_state_camps_probe', 'kpc_link_harvest',
+DIRECT = ['kpc_state_trails', 'kpc_us_trails', 'kpc_state_gis', 'kpc_checkup', 'kpc_state_camps', 'kpc_link_harvest',
           'kpc_parking_explorer', 'kpc_us_access', 'kpc_canada_bounds', 'kpc_research_inbox']
 # Rule files (never edited here) that fetch: guarded through an installer module they already import.
 RULES = {'kpc_us_key': 'kpc_host_pace', 'kpc_ca_key': 'kpc_host_pace', 'kpc_world_key': 'kpc_host_pace', 'kpc_fers': 'kpc_http_cache', 'kpc_owned': 'kpc_http_cache'}
