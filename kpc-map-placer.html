@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<script src="kpc-theme.js?v=20261017p"></script><script src="kpc-gate.js?v=20261029b"></script><script id="kpc-data-url">window.KPC=window.KPC||{};KPC.dataUrl=KPC.dataUrl||function(p,o){return fetch('https://kentuckyportableclub.github.io/KPC-Data/'+p,o).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return /^data\/(us|ca|world)-key\//.test(p)?Promise.resolve(new Response('',{status:404})):fetch(p,o)})};</script><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Map Placer (beta, members) | KPC</title>
+<meta name="description" content="Members-only beta: place a park's saved picture map on the real map by hand.">
+<link rel="icon" type="image/png" sizes="32x32" href="kpc-icon-32.png">
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+<style>
+body{margin:0;background:#0e100e;color:#efe9da;font:15px/1.5 Arial,Helvetica,sans-serif}
+#mp *{box-sizing:border-box}
+#mp .mp-top{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 16px;background:#070707;border-bottom:2px solid #d5a63a}
+#mp .mp-top a{color:#f0c96b;font-weight:700}
+#mp h1{margin:0;font:700 26px Georgia,serif;color:#fff}
+#mp .mp-beta{padding:10px 16px;background:repeating-linear-gradient(135deg,#7a1d0e 0 18px,#8f2412 18px 36px);color:#fff;font-weight:700}
+#mp .mp-wrap{max-width:1500px;margin:auto;padding:12px 16px}
+#mp .mp-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+#mp select,#mp input[type=text],#mp input[type=file]{min-height:38px;border-radius:8px;border:1px solid #8a8270;padding:6px 10px;font:14px Arial;background:#fff;color:#111}
+#mp button{min-height:38px;padding:6px 14px;border-radius:999px;border:1px solid rgba(240,201,107,.6);background:transparent;color:#f0c96b;font:900 12px Arial;letter-spacing:.8px;cursor:pointer}
+#mp button[aria-pressed=true]{background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05}
+#mp button:disabled{opacity:.45;cursor:default}
+#mp .mp-panes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:900px){#mp .mp-panes{grid-template-columns:1fr}}
+#mp .mp-pane{height:min(62vh,640px);border:1px solid #3a3a33;border-radius:12px;overflow:hidden;background:#d9d4c7}
+#mp .mp-cap{font:900 11px Arial;letter-spacing:1.4px;color:#f0c96b;margin:4px 0}
+#mp .mp-say{margin:8px 0;padding:8px 12px;border-radius:8px;background:#1d2620;border:1px solid #d5a63a}
+#mp .mp-say.bad{background:#3a1a12;border-color:#ff9a7a}
+#mp .mp-box{background:#161a16;border:1px solid #33372f;border-radius:12px;padding:12px;margin:10px 0}
+#mp table{border-collapse:collapse;width:100%;font-size:13px}#mp td,#mp th{border-top:1px solid #2a2e28;padding:4px 6px;text-align:left}
+#mp ul.mp-gates{list-style:none;margin:0;padding:0}#mp ul.mp-gates li{padding:3px 0}#mp li.ok{color:#7ff0b0}#mp li.no{color:#ff9a7a}#mp li.later{color:#cfc8b8}
+#mp .mp-note{font-size:13px;color:#bdb6a5;margin:6px 0 0}
+#mp .mp-apx{color:#ffd9a8}
+.mp-num span{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#ffd34d;color:#111;border:2px solid #111;font:900 12px Arial}
+img.mp-ghost{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none;z-index:250}
+</style>
+</head>
+<body>
+<div id="mp">
+<div class="mp-top"><a href="index.html">← KPC home</a><h1>Map Placer</h1><span class="mp-note">place a saved picture map by hand</span></div>
+<div class="mp-beta">BETA · MEMBERS ONLY · An outline placed here is APPROXIMATE, never official: not the official boundary.</div>
+<div class="mp-wrap">
+<div class="mp-row">
+  <select id="mpSt" aria-label="State or province"></select>
+  <select id="mpPark" aria-label="Park with a saved picture map"><option value="">Pick a state first</option></select>
+  <label class="mp-note">or the same picture file: <input type="file" id="mpFile" accept="image/jpeg,image/png"></label>
+</div>
+<div class="mp-row">
+  <button type="button" id="mpModePairs" aria-pressed="true">1 · POINT PAIRS</button>
+  <button type="button" id="mpModeShape" aria-pressed="false">2 · TRACE</button>
+  <select id="mpKind" aria-label="What to trace"><option value="area">the park boundary</option><option value="trail">a trail line</option></select>
+  <button type="button" id="mpUndo">UNDO CORNER</button><button type="button" id="mpClear">CLEAR TRACE</button>
+  <button type="button" id="mpRing" hidden>USE THE TRACER'S BOUNDARY</button>
+  <label class="mp-note">map <select id="mpBase" aria-label="Real map layer"><option value="usgs-topo">USGS Topo</option><option value="usgs-imagery-topo">USGS Imagery Topo</option><option value="osm">OpenStreetMap (look only)</option></select></label>
+  <label class="mp-note">picture on map <input type="range" id="mpOp" min="0" max="100" value="50" aria-label="Picture opacity on the map"></label>
+</div>
+<div id="mpSay" class="mp-say">Pick a state, then a park with a saved picture map.</div>
+<div class="mp-panes">
+  <div><div class="mp-cap">THE PARK'S PICTURE MAP</div><div id="mpPic" class="mp-pane"></div></div>
+  <div><div class="mp-cap">THE REAL MAP (USGS) · RED DOT = POTA PIN, NEVER MOVED</div><div id="mpMap" class="mp-pane"></div></div>
+</div>
+<div class="mp-box"><div class="mp-cap">POINT PAIRS</div><div id="mpPairs"></div><p id="mpFit" class="mp-note"></p><p id="mpAcres" class="mp-note mp-apx"></p></div>
+<div class="mp-box"><div class="mp-cap">GATES (the same ones the picture tracer uses, plus the hand-point checks)</div><ul id="mpGates" class="mp-gates"></ul></div>
+<div class="mp-box">
+  <div class="mp-row"><label class="mp-note">your handle (no real name needed) <input type="text" id="mpBy" maxlength="40" autocomplete="off"></label>
+  <button type="button" id="mpSave" disabled>SAVE CLICK SET</button></div>
+  <p class="mp-note"><b>Hand it in:</b> the file <code>&lt;ref&gt;.clicks.json</code> goes on KPC-Data's <code>intake-files</code> branch in the folder <code>hand-placer/</code>.
+  Nothing is sent from this page. The KPC-Data checker (<code>.github/scripts/draft/kpc_hand_place.py</code>) works everything out again from your points,
+  applies the picture tracer's gates, and only then writes an approximate trace. Click spots that are on both maps and do not move: road junctions,
+  bridge ends, building corners, dam ends. Spread them around the park. Points can only be placed on the USGS layers.</p>
+  <p class="mp-note mp-apx">Not the official boundary. A hand placement is a picture trace: approximate only.</p>
+</div>
+</div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="kpc-map-placer-math.js?v=20261111a"></script>
+<script src="kpc-map-placer.js?v=20261111a"></script>
+</body>
+</html>
