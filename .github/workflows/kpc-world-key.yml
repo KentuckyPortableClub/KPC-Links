@@ -428,15 +428,17 @@ jobs:
           GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .as 2>/dev/null && git -C .as sparse-checkout set --no-cone data/answer-sheet 2>/dev/null && git -C .as checkout -q 2>/dev/null || { kpc_rc=$?; echo "::error title=Join check::KPC-Data answer sheet (public, read-only) not read (exit $kpc_rc): its exemptions are empty this build (more joins held)"; echo "Join check - KPC-Data answer sheet not read (exit $kpc_rc): its exemptions are empty this build (more joins held)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           python3 .github/scripts/kpc_join_check.py || { kpc_rc=$?; echo "::warning title=Join check::stopped (exit $kpc_rc); the key build is not affected"; }
           rm -rf .as
-      - name: Review files - the expected holds' rows come back from main (Nov 12, KPC owner, 2026-11-11)
-        # the join check writes held-joins.* / join-check.* whole from this run's changed key files only; a country kept from main
-        # (expected hold) keeps its rows byte for byte; a file that cannot be split per country is not written (main's copy kept)
+      - name: Review files - every country not rebuilt this run keeps its rows from main (Nov 12, KPC owner, 2026-11-12)
+        # the join check writes held-joins.* / join-check.* whole from this run's changed key files only (a6c493c wiped every other
+        # country's rows that way; so would a green run of only some countries): every country whose key file this run did not change
+        # (not requested, held, failed, expected, or rebuilt to the same bytes) keeps its rows byte for byte; a file that cannot be split
+        # per country is not written (main's copy kept)
         id: keep_rows
         if: ${{ !cancelled() && needs.build.result == 'success' && steps.join_verdict.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         env:
           EXPECTED: ${{ needs.plan.outputs.expected }}
         run: |
-          [ -z "$EXPECTED" ] || python3 .github/scripts/kpc_world_key_join.py keep-rows --countries "$EXPECTED" --review data/world-key/review
+          python3 .github/scripts/kpc_area_join.py keep-rows --unchanged --areas "$EXPECTED" --key-dir data/world-key --review data/world-key/review
       - name: BUILD STAMP (Brandon Nov 2) - this build's id, chat 11 grades only this id
         if: ${{ !cancelled() && needs.build.result == 'success' && steps.join_verdict.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         env:
