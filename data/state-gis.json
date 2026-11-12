@@ -168,6 +168,15 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park US-10402"
+   },
+   {
+    "kind": "park",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "UNIT_CODE IN ('RORI', 'CECH')",
+    "note": "2026-11-11 (KPC owner, 2026-11-11): saved copy only (no live read). Wires the NPS admin boundary hand file for US-0754 (RORI) and US-0915 (CECH); the existing overrides (sgakd1159, sgakd1220) never took effect because this layer was listed only for AK CO HI MA NE NY OH PA RI SD. Takes effect when hand-US-CA.sgakd.geojson.gz is merged into the saved copy. Owner answer: keep this wiring (saved copies only) and add CECH; owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4."
    }
   ],
   "CO": [
@@ -1468,6 +1477,15 @@
     "host": "agency",
     "lic": "see layer",
     "note": "KPC owner, 2026-11-11: checked hand file hand-US-TX.sgide (person download, saved copies only host); its matches to National Wildlife Refuges are left out of the master outlines"
+   },
+   {
+    "kind": "park",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "UNIT_CODE IN ('BLSC')",
+    "note": "2026-11-11 (KPC owner, 2026-11-11): saved copy only (no live read). Wires the NPS admin boundary hand file for US-11900 (BLSC); its overrides join sgakd1245 (Nov 9) never took effect because this layer was listed only for AK CO HI MA NE NY OH PA RI SD. Takes effect when hand-US-TX.sgakd.geojson.gz is merged into the saved copy. Owner answer: keep this wiring (saved copies only); owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4."
    }
   ],
   "UT": [

@@ -11386,6 +11386,14 @@
    "when": "2026-11-05",
    "why": "2026-11-05 verify-then-fix: QLD Places FeatureServer/11 objectid 805 is official Godwin Beach, not Scarborough State Beach; pin -27.1987,153.117 is 11.7 km from record 805. The chat-11 approved join keyed Scarborough Beach is wrong (Mapping improvements v2 sample, Quality v2 grade MUST-ADD).",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix"
+  },
+  "FR-14979": {
+   "no": [
+    "znieff2.828"
+   ],
+   "when": "2026-11-11",
+   "why": "2026-11-11: the pin is 13.2 km from this 8,700 ha valley zone; exact name but not shown to be the park. Owner no: the live join comes off on the next world key run. Owner answer: owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 2.",
+   "decided_by": "KPC owner 2026-11-11"
   }
  }
 }

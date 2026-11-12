@@ -1,0 +1,969 @@
+{
+ "about": "Job 2 (Nov 11 2026): the 17 strong Nov 11 mystery-park matches and the 3 old pins, one row each. NOTHING in this file is read by a key builder: it is the checked record of what each park needs. status: joined-live = the live key already joins the Nov 11 record (pin-tested here from the saved outline); wiring-proposal = the override is already in the live overrides and needs only the layer wired (separate proposal commit); staged = a ready-to-apply entry, kept OUT of the live key until the listed saved copy exists and/or the owner says YES; held = an owner hold that this job does not lift; not-joined = checked and left off, with the reason. Entries for data/us-key/overrides.json are written in the repo's own held form (join_held / alias_held, which no builder reads); to apply one, move its ids / names to join / alias (+ alias_ok_names) and add decided_by. data/us-key/overrides.json is already over 1 MB, so this job did not edit it. Pins: the POTA pins are copied here only to test them; no pin is changed anywhere. Owner answers 2026-11-11: YES on US-10184, US-10195 and US-7374 (those US overrides wait for prep/nov11-split-overrides); US-13474, US-11820 and US-12735 stay held; FR-14979 owner no is applied in world-key/overrides.json. Recorded owner answers (owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md): item 2 applies the FR-14979 no; item 4 keeps the CA/TX sgakd wiring and adds CECH (US-0915); item 6 is the YES aliases and the Kyle Ranch hold; item 1 keeps US-11820 and US-12735 held; item 7 leaves Palmito off.",
+ "made": "2026-11-11",
+ "base": {
+  "links": "11f908d9dc05c1f2730168751ce4e97436d64a54",
+  "data": "6d838ea22905ea5984305d1512869b73e375ecb8"
+ },
+ "pin_test": "offline, this job: even-odd point in polygon over every ring; distance = pin to the nearest edge, local metres. World-bounds shards are the coarse saved copies (about 50 points a ring, 4 decimals), so their distances can differ from the full layer by a few hundred metres.",
+ "parks": {
+  "US-10184": {
+   "ref": "US-10184",
+   "name": "Johnson State Wildlife Area",
+   "area": "US-WI",
+   "key": "data/us-key/US-WI.json",
+   "pin": [
+    45.2019,
+    -92.4214
+   ],
+   "status": "owner-yes",
+   "nov11": {
+    "record": "WI DNR Managed Lands \"Deer Park SHA-WPRA\" (DNR rename of the former Johnson Wildlife Area), OBJECTID 3200850, 213.18 ac",
+    "pin": "inside (browser, Nov 11)"
+   },
+   "saved_copy": {
+    "where": "the US-WI saved copy (boundary-cache release; not on this machine)",
+    "records": [
+     [
+      "sgwid19798023",
+      "Deer Park SHA-WPRA",
+      40
+     ],
+     [
+      "272516",
+      "Deer Park State Habitat Area-Western Prairie Habitat Restoration Area",
+      210
+     ]
+    ],
+    "also": "the master step solver queue (data/outlines/solver-queue/US-WI.sgwia.csv, .sgwid.csv, .wid.csv): pin inside \"Deer Park SHA-WPRA\" in all three layers"
+   },
+   "pin_result": {
+    "by": "the Nov 11 key build (data/us-key/US-WI.json \"a\": \"the POTA pin is inside it\") on the saved copy",
+    "inside": true,
+    "this_job": "not repeatable here: the saved geometry is not on this machine"
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json",
+    "staged": {
+     "alias_held": [
+      "Deer Park SHA-WPRA"
+     ],
+     "when": "2026-11-11",
+     "why": "2026-11-11 Nov 11 mystery answers: WI DNR renamed the former Johnson Wildlife Area to Deer Park SHA-WPRA (213 ac on the DNR page; the DNR layer record holds the pin). Alias with the pin-inside test, the DNR's own layer (R-G1); not the Western Prairie Habitat Restoration Area as a whole."
+    },
+    "apply": {
+     "alias": [
+      "Deer Park SHA-WPRA"
+     ],
+     "alias_ok_names": [
+      "Deer Park SHA-WPRA"
+     ],
+     "decided_by": "KPC owner, 2026-11-11 YES"
+    }
+   },
+   "needs": [],
+   "reason": "Owner YES 2026-11-11 on the name \"Deer Park SHA-WPRA\" (WI DNR rename of the former Johnson Wildlife Area). The alias goes live in data/us-key/overrides.json once the overrides-split PR (prep/nov11-split-overrides) merges; nothing is written to overrides.json in this PR (that file is already over the 1 MB cap). Renamed unit (DNR page). The alias path joins only DNR records named exactly \"Deer Park SHA-WPRA\" whose outline holds the pin, so the build re-tests the pin itself. An agency alias needs the owner's YES to that exact name (rule 8 / R-G2), and this job could not pin-test the saved geometry itself, so it is staged, not live. No download needed: the DNR layers sgwia / sgwid are already in the saved copy. Not the bigger place: the WPRA project area is never named.",
+   "owner_decision": "yes",
+   "owner_decision_when": "2026-11-11"
+  },
+  "US-10195": {
+   "ref": "US-10195",
+   "name": "Sette State Wildlife Area",
+   "area": "US-WI",
+   "key": "data/us-key/US-WI.json",
+   "pin": [
+    45.1622,
+    -92.5082
+   ],
+   "status": "owner-yes",
+   "nov11": {
+    "record": "WI DNR Managed Lands \"New Richmond SHA-WPRA\" (DNR rename of the former Sette Wildlife Area), OBJECTID 3200855, 77.21 ac",
+    "pin": "inside (browser, Nov 11)"
+   },
+   "saved_copy": {
+    "where": "the US-WI saved copy (boundary-cache release; not on this machine)",
+    "records": [
+     [
+      "sgwid19800089",
+      "New Richmond SHA-WPRA",
+      37
+     ],
+     [
+      "272686",
+      "New Richmond State Habitat Area-Western Prairie Habitat Restoration Area",
+      77
+     ]
+    ],
+    "also": "solver queue: pin inside \"New Richmond SHA-WPRA\" in sgwia, sgwid and wid"
+   },
+   "pin_result": {
+    "by": "the Nov 11 key build (data/us-key/US-WI.json \"a\") on the saved copy",
+    "inside": true,
+    "this_job": "not repeatable here: the saved geometry is not on this machine"
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json",
+    "staged": {
+     "alias_held": [
+      "New Richmond SHA-WPRA"
+     ],
+     "when": "2026-11-11",
+     "why": "2026-11-11 Nov 11 mystery answers: WI DNR renamed the former Sette Wildlife Area to New Richmond SHA-WPRA (77 ac, same as the DNR record). Alias with the pin-inside test, the DNR's own layer."
+    },
+    "apply": {
+     "alias": [
+      "New Richmond SHA-WPRA"
+     ],
+     "alias_ok_names": [
+      "New Richmond SHA-WPRA"
+     ],
+     "decided_by": "KPC owner, 2026-11-11 YES"
+    }
+   },
+   "needs": [],
+   "reason": "Owner YES 2026-11-11 on the name \"New Richmond SHA-WPRA\" (WI DNR rename of the former Sette Wildlife Area). The alias goes live in data/us-key/overrides.json once the overrides-split PR (prep/nov11-split-overrides) merges; nothing is written to overrides.json in this PR (that file is already over the 1 MB cap). As US-10184. WIDNR-PROP:8840 is shared with Johnson, so the entry uses the unit name, never the property number.",
+   "owner_decision": "yes",
+   "owner_decision_when": "2026-11-11"
+  },
+  "US-7374": {
+   "ref": "US-7374",
+   "name": "Wysong Park State Conservation Area",
+   "area": "US-FL",
+   "key": "data/us-key/US-FL.json",
+   "pin": [
+    28.823,
+    -82.1821
+   ],
+   "status": "owner-yes",
+   "nov11": {
+    "record": "SWFWMD Acquired District Lands, project \"Wysong Lock And Dam\", Fee Simple 4.31 ac, OBJECTID 135 (OBJECTID 136 is a 1.25 ac easement: not the park)",
+    "pin": "0.01 km (browser, Nov 11)"
+   },
+   "saved_copy": null,
+   "pin_result": {
+    "this_job": "no saved copy of the SWFWMD layer in either checkout; not tested"
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json (+ a data/state-gis.json FL row for the layer)",
+    "staged": {
+     "join_held": {
+      "ids": [
+       "<FL prefix>135"
+      ],
+      "fp": {
+       "<FL prefix>135": [
+        "Wysong Lock And Dam",
+        4.31
+       ]
+      },
+      "reason": "needs the SWFWMD layer saved and wired; the record name differs from the park name (owner YES)",
+      "held": "2026-11-11: staged by job 2, not joined"
+     },
+     "when": "2026-11-11",
+     "why": "2026-11-11 Nov 11 mystery answers: SWFWMD fee record 135 \"Wysong Lock And Dam\", 4.31 ac, pin 0.01 km; SWFWMD's recreation page calls the same 5 ac site Wysong Park."
+    },
+    "apply": {
+     "join": [
+      "<FL prefix>135"
+     ],
+     "fp": {
+      "<FL prefix>135": [
+       "Wysong Lock And Dam",
+       4.31
+      ]
+     },
+     "decided_by": "KPC owner, 2026-11-11 YES"
+    },
+    "prefix_note": "kpc_us_key.py gives a new FL state-GIS layer the next free sgfl<letter> (sgflh if it is the next one); read it from data/us-key/layers.json after the wiring run"
+   },
+   "needs": [
+    {
+     "host": "www25.swfwmd.state.fl.us",
+     "service": "arcgis12/rest/services/OpenData/LandResources/MapServer",
+     "layer": 0,
+     "feature": "OBJECTID 135 (fee)",
+     "refs": [
+      "US-7374"
+     ],
+     "saved_copy_checked": "KPC-Links and KPC-Data: no SWFWMD layer (not in data/state-gis.json, no file)"
+    }
+   ],
+   "reason": "Owner YES 2026-11-11 on the name \"Wysong Lock And Dam\", fee record 135 only (record 136 is an easement, not the park). The join still needs the SWFWMD acquired-lands layer saved and wired, and then a row in data/us-key/overrides.json after the overrides-split PR merges. Nothing is written to overrides.json in this PR. Layer not saved; name differs between the land record and the recreation page. The FL saved copy does hold FL DEP state-lands pieces also named \"Wysong Lock And Dam\" (sgflf67773, sgflf25482, sgflf28331, sgflf78579; 0.2-2.4 ac, 0.01-0.03 km, KPC-Data outline-leads/near-miss.json), but the research desk marked that lead doubtful; not used.",
+   "owner_decision": "yes",
+   "owner_decision_when": "2026-11-11"
+  },
+  "FR-10548": {
+   "ref": "FR-10548",
+   "name": "CAP DE SAINT-TROPEZ 2 Marine Conservation Area",
+   "area": "W-FR",
+   "key": "data/world-key/FR.json",
+   "pin": [
+    43.2662,
+    6.72905
+   ],
+   "status": "staged",
+   "nov11": {
+    "record": "marine type-2 ZNIEFF 93M000091, patrinat_znieff2_mer:znieff2_mer feature znieff2_mer.7, 3,214 ha",
+    "pin": "inside (WFS, Nov 11)"
+   },
+   "saved_copy": {
+    "where": "KPC-Data data/world-bounds/FR/105.json",
+    "records": [
+     [
+      "znieff1.16597",
+      "IGN Géoplateforme ZNIEFF type I (the LAND zone of the same name, not the Nov 11 record)"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline",
+    "inside": false,
+    "edge_km": 2.61,
+    "note": "the land zone is 2.6 km from the pin: it is not the zone the pin is in"
+   },
+   "entry": {
+    "file": "data/world-key/overrides.json",
+    "staged": {
+     "ids": [
+      [
+       "IGN Géoplateforme ZNIEFF type II sea",
+       "znieff2_mer.7"
+      ]
+     ],
+     "no": [
+      "znieff1.16597",
+      "Corniche Varoise"
+     ],
+     "why": "2026-11-11 Nov 11 mystery answers: the marine type-2 ZNIEFF 93M000091 holds the pin; the land ZNIEFF-1 of the same name and the Natura site Corniche Varoise are not this park."
+    },
+    "source_note": "kpc_world_key.py reads ZNIEFF type I, type II and type I sea from the Géoplateforme, not type II sea: adding that source changes a rule file (world hash 9358c2ede2d5 moves): owner OK first"
+   },
+   "needs": [
+    {
+     "host": "data.geopf.fr",
+     "service": "WFS",
+     "layer": "patrinat_znieff2_mer:znieff2_mer",
+     "feature": "znieff2_mer.7 (93M000091)",
+     "refs": [
+      "FR-10548"
+     ],
+     "saved_copy_checked": "KPC-Links and KPC-Data: no znieff2_mer records (the live Links world key has no m for this park; KPC-Data's older world key joined the land zone znieff1.16597)"
+    }
+   ],
+   "reason": "The Nov 11 record is in a layer the world key does not read and that is not saved. Do not take Corniche Varoise (Natura, in \"c\") or the land zone of the same name."
+  },
+  "FR-10432": {
+   "ref": "FR-10432",
+   "name": "Tannes d'arceau Conservation Park",
+   "area": "W-FR",
+   "key": "data/world-key/FR.json",
+   "pin": [
+    45.9395,
+    -1.27479
+   ],
+   "status": "joined-live",
+   "nov11": {
+    "record": "INPN FR1100689 (Conservatoire du littoral), patrinat_cdl:cdl feature cdl.502, 5.29 ha",
+    "pin": "outside, 2.81 km"
+   },
+   "saved_copy": {
+    "where": "data/world-key/tracts/FR.json (box only; EEA outlines are read live by id, no shard)",
+    "records": [
+     [
+      5816,
+      "EEA nationally designated areas, site I056FR1100689"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline (pin to the saved record box: a lower bound)",
+    "inside": false,
+    "box_km": 2.85,
+    "key_bk_km": 2.85
+   },
+   "entry": null,
+   "needs": [
+    {
+     "host": "data.geopf.fr",
+     "service": "WFS",
+     "layer": "patrinat_cdl:cdl",
+     "feature": "cdl.502 (FR1100689)",
+     "refs": [
+      "FR-10432"
+     ],
+     "saved_copy_checked": "none in either checkout"
+    }
+   ],
+   "reason": "Already joined live to the EEA copy of the SAME national record (site I056FR1100689 = FR1100689), graded approx (W-2: EU compilation until France's own layer is read). To become official the world key needs patrinat_cdl as a source = a rule-file change (world hash moves): owner OK. Nothing written."
+  },
+  "FR-11106": {
+   "ref": "FR-11106",
+   "name": "Perimetre De Protection De La Reserve Naturelle De La Vallee De Chaudefour Biological Reserve",
+   "area": "W-FR",
+   "key": "data/world-key/FR.json",
+   "pin": [
+    45.52,
+    2.77
+   ],
+   "status": "joined-live",
+   "nov11": {
+    "record": "FR9500105 protection perimeter, patrinat_pprnn:pprnn feature pprnn.1, 26.2 ha",
+    "pin": "outside, 3.55 km"
+   },
+   "saved_copy": {
+    "where": "data/world-key/tracts/FR.json (box only; EEA outlines are read live by id, no shard)",
+    "records": [
+     [
+      3819,
+      "EEA nationally designated areas, site I056FR9500105"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline (pin to the saved record box: a lower bound)",
+    "inside": false,
+    "box_km": 3.43,
+    "key_bk_km": 3.54
+   },
+   "entry": null,
+   "needs": [
+    {
+     "host": "data.geopf.fr",
+     "service": "WFS",
+     "layer": "patrinat_pprnn:pprnn",
+     "feature": "pprnn.1 (FR9500105)",
+     "refs": [
+      "FR-11106"
+     ],
+     "saved_copy_checked": "none in either checkout"
+    }
+   ],
+   "reason": "Already joined live to the EEA copy of the same record (I056FR9500105), approx. Official needs patrinat_pprnn as a world source (world hash moves): owner OK. The RNN itself (FR3600105) is not this park."
+  },
+  "FR-11650": {
+   "ref": "FR-11650",
+   "name": "GITE A CHIROPTERES DE DIEPPE-SOUS-DOUAUMONT Biological Reserve",
+   "area": "W-FR",
+   "key": "data/world-key/FR.json",
+   "pin": [
+    49.234,
+    5.499
+   ],
+   "status": "joined-live",
+   "nov11": {
+    "record": "ZNIEFF 410030308",
+    "pin": "outside, 2.56 km (WFS, Nov 11)"
+   },
+   "saved_copy": {
+    "where": "KPC-Data data/world-bounds/FR/116.json",
+    "records": [
+     [
+      "znieff1.6778",
+      "IGN Géoplateforme ZNIEFF type I"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline (coarse saved shard)",
+    "inside": false,
+    "edge_km": 2.58,
+    "key_bk_km": 2.58
+   },
+   "entry": null,
+   "needs": [],
+   "reason": "The live world key already joins exactly this record by its exact name (m, how \"name\"; no g = not graded down). The saved outline gives the same distance as the key and the Nov 11 test. Nothing to write."
+  },
+  "FR-12366": {
+   "ref": "FR-12366",
+   "name": "Foret de Rebenty Biological Reserve",
+   "area": "W-FR",
+   "key": "data/world-key/FR.json",
+   "pin": [
+    42.782,
+    1.978
+   ],
+   "status": "joined-live",
+   "nov11": {
+    "record": "ZNIEFF 910030146",
+    "pin": "outside, 3.25 km (WFS, Nov 11)"
+   },
+   "saved_copy": {
+    "where": "KPC-Data data/world-bounds/FR/123.json",
+    "records": [
+     [
+      "znieff1.16153",
+      "IGN Géoplateforme ZNIEFF type I"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline (coarse saved shard)",
+    "inside": false,
+    "edge_km": 3.27,
+    "key_bk_km": 3.27
+   },
+   "entry": null,
+   "needs": [],
+   "reason": "Already joined live to this type-1 zone by exact name. Not the bigger place: the type-2 Haute Vallee du Rebenty (910030633) holds the pin and is NOT joined. Nothing to write."
+  },
+  "FR-13422": {
+   "ref": "FR-13422",
+   "name": "VALLEE DE L'OZE ENTRE BOUX-SOUS-SALMAISE ET GISSEY-SOUS-FLAVIGNY Biological Reserve",
+   "area": "W-FR",
+   "key": "data/world-key/FR.json",
+   "pin": [
+    47.589,
+    4.594
+   ],
+   "status": "joined-live",
+   "nov11": {
+    "record": "ZNIEFF 260030337",
+    "pin": "outside, 7.03 km (WFS, Nov 11)"
+   },
+   "saved_copy": {
+    "where": "KPC-Data data/world-bounds/FR/134.json",
+    "records": [
+     [
+      "znieff1.5483",
+      "IGN Géoplateforme ZNIEFF type I"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline (coarse saved shard)",
+    "inside": false,
+    "edge_km": 7.4,
+    "key_bk_km": 7.41
+   },
+   "entry": null,
+   "needs": [],
+   "reason": "Already joined live by exact name; a linear valley zone 7.0-7.4 km from the pin (the shard is coarse). Nothing to write; the pin is POTA's."
+  },
+  "FR-14049": {
+   "ref": "FR-14049",
+   "name": "Carriere de la Cote de l'etang Biological Reserve",
+   "area": "W-FR",
+   "key": "data/world-key/FR.json",
+   "pin": [
+    45.6912,
+    5.42226
+   ],
+   "status": "joined-live",
+   "nov11": {
+    "record": "ZNIEFF 820032056",
+    "pin": "outside, 2.75 km (WFS, Nov 11)"
+   },
+   "saved_copy": {
+    "where": "KPC-Data data/world-bounds/FR/140.json",
+    "records": [
+     [
+      "znieff1.14404",
+      "IGN Géoplateforme ZNIEFF type I"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline (coarse saved shard)",
+    "inside": false,
+    "edge_km": 2.75,
+    "key_bk_km": 2.75
+   },
+   "entry": null,
+   "needs": [],
+   "reason": "The live world key already joins exactly this record by its exact name (m, how \"name\"; no g = not graded down). The saved outline gives the same distance as the key and the Nov 11 test. Nothing to write."
+  },
+  "FR-14482": {
+   "ref": "FR-14482",
+   "name": "HAUTES CHAUMES PEYRE - MAYOU / PIERRE - SUR - HAUTE Biological Reserve",
+   "area": "W-FR",
+   "key": "data/world-key/FR.json",
+   "pin": [
+    45.608,
+    3.836
+   ],
+   "status": "joined-live",
+   "nov11": {
+    "record": "ZNIEFF 830005446",
+    "pin": "outside, 2.58 km (WFS, Nov 11)"
+   },
+   "saved_copy": {
+    "where": "KPC-Data data/world-bounds/FR/144.json",
+    "records": [
+     [
+      "znieff1.14878",
+      "IGN Géoplateforme ZNIEFF type I"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline (coarse saved shard)",
+    "inside": false,
+    "edge_km": 2.62,
+    "key_bk_km": 2.62
+   },
+   "entry": null,
+   "needs": [],
+   "reason": "The live world key already joins exactly this record by its exact name (m, how \"name\"; no g = not graded down). The saved outline gives the same distance as the key and the Nov 11 test. Nothing to write."
+  },
+  "FR-14979": {
+   "ref": "FR-14979",
+   "name": "VALLEE DU COUSIN AVAL, ROMANEE ET LEURS ABORDS Biological Reserve",
+   "area": "W-FR",
+   "key": "data/world-key/FR.json",
+   "pin": [
+    47.576,
+    4.09604
+   ],
+   "status": "owner-no-applied",
+   "nov11": {
+    "record": "ZNIEFF 260014888",
+    "pin": "outside, 13.06 km (WFS, Nov 11)"
+   },
+   "saved_copy": {
+    "where": "KPC-Data data/world-bounds/FR/149.json",
+    "records": [
+     [
+      "znieff2.828",
+      "IGN Géoplateforme ZNIEFF type II"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline (coarse saved shard)",
+    "inside": false,
+    "edge_km": 13.24,
+    "key_bk_km": 13.24
+   },
+   "entry": {
+    "file": "data/world-key/overrides.json",
+    "live": {
+     "no": [
+      "znieff2.828"
+     ],
+     "when": "2026-11-11",
+     "why": "2026-11-11: the pin is 13.2 km from this 8,700 ha valley zone; exact name but not shown to be the park. Owner no: the live join comes off on the next world key run. Owner answer: owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 2.",
+     "decided_by": "KPC owner 2026-11-11"
+    }
+   },
+   "needs": [],
+   "reason": "Owner no, 2026-11-11: applied the staged no for znieff2.828 in data/world-key/overrides.json (not a rules file; no hash moves). The live world key file FR.json still shows the join until the next world key run, which will drop it. Looked at the saved outline: an 8,700 ha type-2 valley zone (box 3.857-4.166 E, 47.330-47.494 N); the pin is 9 km north of its box and 13.2 km from its edge, nowhere near the valley. Exact name, but not clearly the park by place, so by the brief's default this job does NOT join it. NOTE: the live world key ALREADY joins it by name (shown as an outline); this job did not remove it. Answered (OWNER-ANSWERS-nov11.md item 2, owner chat 2026-11-11 21:16 CT): take it off the live key; the staged no is applied.",
+   "owner_decision": "no",
+   "owner_decision_when": "2026-11-11",
+   "owner_answer": "owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 2"
+  },
+  "RO-0880": {
+   "ref": "RO-0880",
+   "name": "Pădurea Homița Protected Area",
+   "area": "W-RO",
+   "key": "data/world-key/RO.json",
+   "pin": [
+    47.2972,
+    26.5999
+   ],
+   "status": "joined-live",
+   "nov11": {
+    "record": "Natura 2000 ROSAC0159 (2024 code; the management plan says ROSCI0159), 61 ha",
+    "pin": "outside, 2.44 km"
+   },
+   "saved_copy": {
+    "where": "data/world-key/tracts/RO.json (box only; EEA outlines are read live by id, no shard)",
+    "records": [
+     [
+      21469,
+      "EEA Natura 2000, site ROSAC0159"
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline (pin to the saved record box: a lower bound)",
+    "inside": false,
+    "box_km": 2.39,
+    "key_bk_km": 2.39
+   },
+   "entry": null,
+   "needs": [],
+   "reason": "Already joined live to ROSAC0159, the current code the brief asks for, graded approx (EU compilation). No Romanian agency layer is in the sources. Nothing written."
+  },
+  "US-13474": {
+   "ref": "US-13474",
+   "name": "Kyle (Kiel) Ranch National Historic Site",
+   "area": "US-NV",
+   "key": "data/us-key/US-NV.json",
+   "pin": [
+    36.2033,
+    -115.14
+   ],
+   "status": "held",
+   "nov11": {
+    "record": "NRHP:75001107 listing polygon \"Kyle Ranch\" (NRHP layer 1 OBJECTID 378910, about 17 ac per the Oct 30 layer collector)",
+    "pin": "inside (browser)"
+   },
+   "saved_copy": null,
+   "pin_result": {
+    "this_job": "no saved copy of NRHP record 378910 in either checkout; not tested"
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json + data/state-gis.json (NV NRHP row: add 378910 to its OBJECTID IN list)",
+    "staged": {
+     "join_held": {
+      "ids": [
+       "sgaki378910"
+      ],
+      "fp": {
+       "sgaki378910": [
+        "Kyle Ranch",
+        17
+       ]
+      },
+      "reason": "NRHP listing boundary: the owner confirms it is the park; record not saved yet",
+      "held": "2026-11-11: staged by job 2, not joined"
+     },
+     "when": "2026-11-11",
+     "why": "2026-11-11 Nov 11 mystery answers: NRHP 75001107 Kyle Ranch listing polygon, pin inside (browser)."
+    },
+    "apply": {
+     "join": [
+      "sgaki378910"
+     ],
+     "fp": {
+      "sgaki378910": [
+       "Kyle Ranch",
+       17
+      ]
+     },
+     "decided_by": "(owner, on YES)"
+    },
+    "state_gis": {
+     "NV": "OBJECTID IN (397680) -> OBJECTID IN (397680,378910)"
+    }
+   },
+   "needs": [
+    {
+     "host": "mapservices.nps.gov",
+     "service": "cultural_resources/nrhp_locations/MapServer",
+     "layer": 1,
+     "feature": "OBJECTID 378910 (Kyle Ranch, NRHP 75001107)",
+     "refs": [
+      "US-13474"
+     ],
+     "saved_copy_checked": "KPC-Links and KPC-Data: only names / ids (KPC-Data waiting/questions/layers.json.gz), no geometry"
+    }
+   ],
+   "reason": "Owner 2026-11-11: stays held. The National Register listing boundary (record 378910) is not confirmed as the park boundary. A listing boundary is not automatically the park (the city-run ranch park); not on the hold list, but nobody has confirmed it, and no saved geometry to pin-test. tests/test_weekly_batch_nov9.py pins the NV NRHP id list, so the wiring commit must update that test too.",
+   "owner_decision": "held",
+   "owner_decision_when": "2026-11-11"
+  },
+  "US-11820": {
+   "ref": "US-11820",
+   "name": "Miller Brothers 101 Ranch Historic Site",
+   "area": "US-OK",
+   "key": "data/us-key/US-OK.json",
+   "pin": [
+    36.6128,
+    -97.1393
+   ],
+   "status": "held",
+   "nov11": {
+    "record": "NRHP:73001560 listing polygon \"One-hundred-and-one Ranch\" (NRHP layer 1 OBJECTID 386945)",
+    "pin": "inside (browser; research inbox Nov 9: 0 km)"
+   },
+   "saved_copy": null,
+   "pin_result": {
+    "this_job": "no saved copy of record 386945; not tested"
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json + data/state-gis.json (OK NRHP row: add 386945)",
+    "staged": {
+     "alias_held": [
+      "One-hundred-and-one Ranch"
+     ],
+     "when": "2026-11-11",
+     "why": "2026-11-11: held (needs-another-look, Nov 9): agency alias, joins only on an owner YES to this exact name with the pin inside."
+    },
+    "apply": {
+     "alias": [
+      "One-hundred-and-one Ranch"
+     ],
+     "alias_ok_names": [
+      "One-hundred-and-one Ranch"
+     ],
+     "decided_by": "(owner, on YES)"
+    },
+    "state_gis": {
+     "OK": "OBJECTID IN (386929,387660,400282,400286) -> add 386945"
+    }
+   },
+   "needs": [
+    {
+     "host": "mapservices.nps.gov",
+     "service": "cultural_resources/nrhp_locations/MapServer",
+     "layer": 1,
+     "feature": "OBJECTID 386945",
+     "refs": [
+      "US-11820"
+     ],
+     "saved_copy_checked": "none in either checkout"
+    }
+   ],
+   "reason": "Owner 2026-11-11: stays held. Owner hold on data/research-inbox/needs-another-look.json (agency alias). Not lifted. The listing is the 101 Ranch National Historic Landmark; whether that boundary is the historic site is the owner's question.",
+   "owner_decision": "held",
+   "owner_decision_when": "2026-11-11"
+  },
+  "US-12735": {
+   "ref": "US-12735",
+   "name": "Saline Courthouse State Historic Site",
+   "area": "US-OK",
+   "key": "data/us-key/US-OK.json",
+   "pin": [
+    36.208,
+    -95.0096
+   ],
+   "status": "held",
+   "nov11": {
+    "record": "NRHP:76001561 listing polygon \"Saline District Courthouse\" (NRHP layer 1 OBJECTID 379303)",
+    "pin": "inside (browser; research inbox Nov 9: 0 km)"
+   },
+   "saved_copy": null,
+   "pin_result": {
+    "this_job": "no saved copy of record 379303; not tested"
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json + data/state-gis.json (OK NRHP row: add 379303)",
+    "staged": {
+     "alias_held": [
+      "Saline District Courthouse"
+     ],
+     "when": "2026-11-11",
+     "why": "2026-11-11: held (needs-another-look, Nov 9): agency alias, joins only on an owner YES to this exact name with the pin inside."
+    },
+    "apply": {
+     "alias": [
+      "Saline District Courthouse"
+     ],
+     "alias_ok_names": [
+      "Saline District Courthouse"
+     ],
+     "decided_by": "(owner, on YES)"
+    },
+    "state_gis": {
+     "OK": "add 379303"
+    }
+   },
+   "needs": [
+    {
+     "host": "mapservices.nps.gov",
+     "service": "cultural_resources/nrhp_locations/MapServer",
+     "layer": 1,
+     "feature": "OBJECTID 379303",
+     "refs": [
+      "US-12735"
+     ],
+     "saved_copy_checked": "none in either checkout"
+    }
+   ],
+   "reason": "Owner 2026-11-11: stays held. Owner hold (agency alias), not lifted. The Nov 11 notes say the site is the Cherokee Nation's museum on 14 acres; whether the NRHP listing line is that site is for the owner.",
+   "owner_decision": "held",
+   "owner_decision_when": "2026-11-11"
+  },
+  "US-10274": {
+   "ref": "US-10274",
+   "name": "Palmito Ranch Battlefield State Historic Site",
+   "area": "US-TX",
+   "key": "data/us-key/US-TX.json",
+   "pin": [
+    25.9593,
+    -97.3033
+   ],
+   "status": "not-joined",
+   "nov11": {
+    "record": "NRHP:93000266 listing polygon \"Palmito Ranch Battlefield\" (NRHP layer 1 OBJECTID 400216)",
+    "pin": "inside (browser)"
+   },
+   "saved_copy": null,
+   "pin_result": {
+    "this_job": "no saved geometry; the Nov 2 read of OBJECTID 400216 (KPC-Data waiting/questions/hardlook.json.gz) gives 6,907.8 ac, pin inside"
+   },
+   "entry": null,
+   "needs": [
+    {
+     "host": "Texas Historical Commission",
+     "service": "THC state historic site boundary polygons (the THC download the Nov 11 notes mention; not confirmed to hold Palmito)",
+     "layer": null,
+     "feature": "Palmito Ranch Battlefield State Historic Site",
+     "refs": [
+      "US-10274"
+     ],
+     "saved_copy_checked": "none in either checkout"
+    }
+   ],
+   "reason": "The listing is the whole battlefield National Historic Landmark (6,907.8 ac), which also covers Lower Rio Grande Valley NWR land: that is the bigger surrounding place, not the THC site. The NWR (sgtxd9250 / 4060) is never the park either. Pin stays; nothing joined. Needs THC's own site polygon."
+  },
+  "US-4376": {
+   "ref": "US-4376",
+   "name": "Manhattan Project National Historical Park",
+   "area": "US-NM US-TN US-WA",
+   "key": "data/us-key/US-NM.json, US-TN.json, US-WA.json",
+   "pin": [
+    36.0236,
+    -84.2717
+   ],
+   "status": "not-joined",
+   "nov11": {
+    "record": "PADUS-PAID:MAPR (PAD-US 4.1 Proclamation, Oak Ridge piece 57 ac, pin 4.38 km outside, browser Nov 5); NPS admin boundary record 1232 (Nov 9 research, 4.39 km)",
+    "pin": "4.38 km outside the Oak Ridge piece"
+   },
+   "saved_copy": null,
+   "pin_result": {
+    "this_job": "no saved copy holds any MAPR unit: the KPC-Data NPS hand copy keeps 9 units, not MAPR; no PAD-US Proclamation layer is saved"
+   },
+   "entry": {
+    "design": "One POTA pin (Oak Ridge, TN) is in all three state files. (1) TN: overrides \"US-4376\" join of the Oak Ridge unit by id (sgakd1232 once the NPS admin boundary hand file for TN is wired the same way as CA / TX; or the PAD-US Proclamation id) with fp [name, acres]: 4.4 km, inside the 0.6 deg join box and under the 5 km new-join check. (2) NM and WA: an overrides join can never reach them, because every join path tests the record against the ONE pin (0.6 deg box) and the G-1 far-piece path needs a join at the pin in that same state file. If the NPS record is ONE multipart feature for all three units (as RORI is: 3 parts in one record), the TN join draws all three units and NM / WA get \"joined_in\": TN, with no rules change. If the units are separate records (PAD-US is per site), a no-state / park-code join needs a kpc_us_key.py change = US rules hash moves: not done.",
+    "staged_tn": {
+     "join_held": {
+      "ids": [
+       "sgakd1232"
+      ],
+      "fp": {
+       "sgakd1232": [
+        "Manhattan Project National Historical Park",
+        null
+       ]
+      },
+      "reason": "no saved copy of the record; acres to fill from the copy",
+      "held": "2026-11-11: staged by job 2, not joined"
+     }
+    }
+   },
+   "needs": [
+    {
+     "host": "irma.nps.gov (NPS DataStore, the NPS Administrative Boundaries file; data/outlines/download-sources.json h133)",
+     "service": "NPS Administrative Boundaries of National Park System Units (file geodatabase)",
+     "layer": null,
+     "feature": "UNIT_CODE MAPR (live record 1232)",
+     "refs": [
+      "US-4376"
+     ],
+     "saved_copy_checked": "KPC-Data hand-layers/us-nps-admin-boundaries-nov9.geojson: 9 units, no MAPR"
+    },
+    {
+     "host": "USGS PAD-US 4.1 (edits.nationalmap.gov PAD_US_gaz_combined, Proclamation records)",
+     "service": "PAD-US Proclamation",
+     "layer": null,
+     "feature": "Source_PAID MAPR (all three sites)",
+     "refs": [
+      "US-4376"
+     ],
+     "saved_copy_checked": "none: the key's saved copies hold Fee / Designation, not Proclamation"
+    }
+   ],
+   "reason": "No saved copy of any MAPR unit, and the per-site NM / WA pieces need a rules change unless the NPS record is one multipart feature. Pin never moved."
+  },
+  "US-0754": {
+   "ref": "US-0754",
+   "name": "Rosie the Riveter WWII Home Front National Historical Park",
+   "area": "US-CA",
+   "key": "data/us-key/US-CA.json",
+   "pin": [
+    37.9097,
+    -122.357
+   ],
+   "status": "wiring-proposal",
+   "nov11": {
+    "record": "PADUS-PAID:RORI (Proclamation, not saved); the live overrides already join sgakd1159 (NPS admin boundary RORI)",
+    "pin": "0.02 km (Nov 5)"
+   },
+   "saved_copy": {
+    "where": "KPC-Data data/waiting/outline-sources/hand-layers/us-nps-admin-boundaries-nov9.geojson",
+    "records": [
+     [
+      "sgakd1159",
+      "Rosie the Riveter/World War II Home Front National Historical Park",
+      149.1
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline",
+    "inside": false,
+    "edge_km": 0.005
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json",
+    "live": "already there: join sgakd1159, fp 149 ac, decided_by set (Nov 9)",
+    "wiring": "data/state-gis.json CA row for the NPS LRD layer (accepted, OWNER-ANSWERS-nov11.md item 4)"
+   },
+   "needs": [
+    {
+     "host": "boundary-cache release (the owner's PC helper)",
+     "service": "hand-US-CA.sgakd.geojson.gz packed from the NPS admin boundary hand copy (RORI only)",
+     "layer": "sgakd",
+     "feature": "OBJECTID 1159",
+     "refs": [
+      "US-0754"
+     ],
+     "saved_copy_checked": "KPC-Data hand copy holds it (gdb_fid 285)"
+    }
+   ],
+   "reason": "Never took effect because data/state-gis.json lists the NPS LRD layer (sgakd) only for AK CO HI MA NE NY OH PA RI SD, so the CA key never has the layer, the master step refuses a CA sgakd hand file, and the CA saved copy never gets record 1159. Offline mini-build with the record in the CA saved copy: US-0754 grades official (reviewed, 0.01 km). Owner answer: keep the CA wiring (saved copies only); owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4.",
+   "owner_answer": "owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4"
+  },
+  "US-11900": {
+   "ref": "US-11900",
+   "name": "Blackwell School National Park",
+   "area": "US-TX",
+   "key": "data/us-key/US-TX.json",
+   "pin": [
+    30.3059,
+    -104.022
+   ],
+   "status": "wiring-proposal",
+   "nov11": {
+    "record": "PADUS-PAID:BLSC (Proclamation, not saved); the live overrides already join sgakd1245 (NPS admin boundary BLSC)",
+    "pin": "0.02 km (Nov 5)"
+   },
+   "saved_copy": {
+    "where": "KPC-Data data/waiting/outline-sources/hand-layers/us-nps-admin-boundaries-nov9.geojson",
+    "records": [
+     [
+      "sgakd1245",
+      "Blackwell School National Historic Site",
+      0.8
+     ]
+    ]
+   },
+   "pin_result": {
+    "by": "this job, offline",
+    "inside": false,
+    "edge_km": 0.013
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json",
+    "live": "already there: join sgakd1245, fp 1 ac, decided_by set (Nov 9)",
+    "wiring": "data/state-gis.json TX row for the NPS LRD layer (accepted, OWNER-ANSWERS-nov11.md item 4)"
+   },
+   "needs": [
+    {
+     "host": "boundary-cache release (the owner's PC helper)",
+     "service": "hand-US-TX.sgakd.geojson.gz packed from the NPS admin boundary hand copy (BLSC only)",
+     "layer": "sgakd",
+     "feature": "OBJECTID 1245",
+     "refs": [
+      "US-11900"
+     ],
+     "saved_copy_checked": "KPC-Data hand copy holds it (gdb_fid 371)"
+    }
+   ],
+   "reason": "Same cause as US-0754. POTA says National Park, NPS says National Historic Site: only POTA's label differs. Offline mini-build: official (reviewed, 0.01 km). Owner answer: keep the TX wiring (saved copies only); owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4.",
+   "owner_answer": "owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 4"
+  }
+ },
+ "counts": {
+  "owner-yes": 3,
+  "staged": 1,
+  "joined-live": 8,
+  "owner-no-applied": 1,
+  "held": 3,
+  "not-joined": 2,
+  "wiring-proposal": 2
+ }
+}
