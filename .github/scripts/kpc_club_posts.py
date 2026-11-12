@@ -22,6 +22,10 @@ late or repeated run never posts twice.
 Secrets: KPC_PARKS_WEBHOOK / KPC_GENERAL_WEBHOOK / KPC_CAMPOUT_WEBHOOK / KPC_DISCORD_WEBHOOK, and
 FB_PAGE_ID + FB_PAGE_TOKEN for the Facebook side of Park of the Week. DRY_RUN=1 prints instead of posting.
 ONLY=park|lonely|weather|contests forces one of them, for testing (contests = the busy-bands post for the coming weekend, sent now).
+
+Nov 11 2026 (bots review): the state file is now written even when a later step in the same run stops with an error (it used to be
+written only at the very end, so a crash after Park of the Week had gone out left no record and a second run the same day
+posted it again). Everything printed goes through kpc_scrub (a Facebook or Discord answer can repeat a token or a link).
 """
 import datetime
 import json
@@ -34,6 +38,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 INFO = ('ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. '
@@ -58,7 +63,7 @@ def hook(*names):
 
 
 def notice(msg):
-    print(f"::notice title=Club posts::{str(msg)[:800]}", flush=True)
+    print(f"::notice title=Club posts::{notice_text(msg)}", flush=True)
 
 
 def load(p, d):
@@ -76,7 +81,7 @@ def http(url, data=None, headers=None, timeout=45):
     except urllib.error.HTTPError as e:
         return e.code, e.read().decode('utf-8', 'replace')
     except Exception as e:  # noqa: BLE001
-        return 0, str(e)
+        return 0, type(e).__name__      # the kind of error only: some errors repeat the address (a webhook link)
 
 
 def to_discord(where, title, body, colour=0x2E7D32, url=None):
@@ -90,7 +95,7 @@ def to_discord(where, title, body, colour=0x2E7D32, url=None):
     c, r = http(h, json.dumps({'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
                                'embeds': [embed]}).encode(), {'Content-Type': 'application/json'})
     if c >= 300:
-        notice(f'Discord said HTTP {c}: {r[:160]}')
+        notice(f'Discord said HTTP {c}: {clip(r, 160)}')
         return False
     return True
 
@@ -104,7 +109,7 @@ def to_facebook(message, link=None):
         q['link'] = link
     c, r = http(f'https://graph.facebook.com/{FB_ID}/feed', urllib.parse.urlencode(q).encode())
     if c >= 300:
-        notice(f'Facebook said HTTP {c}: {r[:160]}')
+        notice(f'Facebook said HTTP {c}: {clip(r, 160)}')
         return False
     return True
 
@@ -398,7 +403,7 @@ def holiday_post(state, today, force=False):
             c, r = http(dh, body, hd)
             ok = c < 300
             if not ok:
-                notice(f'Discord said HTTP {c}: {r[:160]}')
+                notice(f'Discord said HTTP {c}: {clip(r, 160)}')
         else:
             notice('No webhook for the holiday post; nothing sent to Discord.')
         if FB_ID and FB_TOKEN:
@@ -406,7 +411,7 @@ def holiday_post(state, today, force=False):
             body = body.replace(b'name="file"', b'name="source"')
             c, r = http(f'https://graph.facebook.com/{FB_ID}/photos', body, hd)
             if c >= 300:
-                notice(f'Facebook said HTTP {c}: {r[:160]}')
+                notice(f'Facebook said HTTP {c}: {clip(r, 160)}')
             ok = ok or c < 300
         else:
             notice('No Facebook secrets; skipped Facebook.')
@@ -597,50 +602,53 @@ def main():
     state = load(STATE_F, {})
     did = []
 
-    want_park = ONLY == 'park' or (not ONLY and today.weekday() == POST_DAY
-                                   and state.get('park_on') != today.isoformat())
-    want_lonely = ONLY == 'lonely' or (not ONLY and today.weekday() == LONELY_DAY
-                                       and state.get('lonely_on') != today.isoformat())
-    want_wx = ONLY == 'weather' or not ONLY
-    if ONLY in ('wma', 'holiday'):
-        want_wx = False
-
-    if want_park and park_of_the_week(state):
-        state['park_on'] = today.isoformat()
-        did.append('Park of the Week')
-    if want_lonely and lonely_parks(state):
-        state['lonely_on'] = today.isoformat()
-        did.append('the quiet ones')
-    if ONLY in ('contests', 'busy') or (not ONLY and today.weekday() == POST_DAY):
-        did += busy_bands(state, today, force=ONLY in ('contests', 'busy'))
-    if holiday_post(state, today, force=ONLY == 'holiday'):
-        did.append('holiday post')
     try:
-        from zoneinfo import ZoneInfo
-        ct_hour = datetime.datetime.now(ZoneInfo('America/Chicago')).hour
-    except Exception:  # noqa: BLE001
-        ct_hour = 9
-    wait = state.get('holiday_on') == today.isoformat() and ct_hour < 12     # G6: holiday + closure posts hours apart
-    # PAUSE (Brandon Oct 29 10:18 + 11:43 AM): no automatic WMA closure heads-up until the switch to the new closures
-    # bot (one week after KY closures are fully fixed); HQ hand-makes the Wednesday heads-up for Brandon's GO meanwhile.
-    if today.isoformat() < '2099-01-01':
-        notice('WMA closure heads-up off until the switch to the new closures bot (Brandon): HQ hand-makes it.')
-    elif wma_closures(state, today, force=ONLY == 'wma', wait=wait):
-        did.append('WMA closure heads-up')
-    if want_wx:
-        r = event_weather(state, today)
-        if r:
-            did.append('event weather')
+        want_park = ONLY == 'park' or (not ONLY and today.weekday() == POST_DAY
+                                       and state.get('park_on') != today.isoformat())
+        want_lonely = ONLY == 'lonely' or (not ONLY and today.weekday() == LONELY_DAY
+                                           and state.get('lonely_on') != today.isoformat())
+        want_wx = ONLY == 'weather' or not ONLY
+        if ONLY in ('wma', 'holiday'):
+            want_wx = False
 
-    notice('Posted: ' + ', '.join(did) if did else 'Nothing due today.')
-    if not DRY:
-        STATE_F.parent.mkdir(parents=True, exist_ok=True)
-        STATE_F.write_text(json.dumps(state, indent=1) + '\n', encoding='utf-8')
+        if want_park and park_of_the_week(state):
+            state['park_on'] = today.isoformat()
+            did.append('Park of the Week')
+        if want_lonely and lonely_parks(state):
+            state['lonely_on'] = today.isoformat()
+            did.append('the quiet ones')
+        if ONLY in ('contests', 'busy') or (not ONLY and today.weekday() == POST_DAY):
+            did += busy_bands(state, today, force=ONLY in ('contests', 'busy'))
+        if holiday_post(state, today, force=ONLY == 'holiday'):
+            did.append('holiday post')
+        try:
+            from zoneinfo import ZoneInfo
+            ct_hour = datetime.datetime.now(ZoneInfo('America/Chicago')).hour
+        except Exception:  # noqa: BLE001
+            ct_hour = 9
+        wait = state.get('holiday_on') == today.isoformat() and ct_hour < 12     # G6: holiday + closure posts hours apart
+        # PAUSE (Brandon Oct 29 10:18 + 11:43 AM): no automatic WMA closure heads-up until the switch to the new closures
+        # bot (one week after KY closures are fully fixed); HQ hand-makes the Wednesday heads-up for Brandon's GO meanwhile.
+        if today.isoformat() < '2099-01-01':
+            notice('WMA closure heads-up off until the switch to the new closures bot (Brandon): HQ hand-makes it.')
+        elif wma_closures(state, today, force=ONLY == 'wma', wait=wait):
+            did.append('WMA closure heads-up')
+        if want_wx:
+            r = event_weather(state, today)
+            if r:
+                did.append('event weather')
+
+        notice('Posted: ' + ', '.join(did) if did else 'Nothing due today.')
+    finally:
+        # written whatever happened above (a crash after a post must not forget the post)
+        if not DRY:
+            STATE_F.parent.mkdir(parents=True, exist_ok=True)
+            STATE_F.write_text(json.dumps(state, indent=1) + '\n', encoding='utf-8')
 
 
 if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        notice(f'stopped early: {type(e).__name__}: {str(e)[:300]}')
+        notice(f'stopped early: {type(e).__name__}: {clip(e, 300)}')
         sys.exit(0)          # never fail the job: a failed run emails Brandon

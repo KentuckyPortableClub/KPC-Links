@@ -39,6 +39,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import kpc_master as M        # noqa: E402  (installs kpc_net_guard: never-contact hosts are refused process-wide)
 import kpc_master_cli as CLI  # noqa: E402
+from kpc_scrub import scrub, clip   # Nov 12: every log line scrubbed first, then cut
 
 REPO = HERE.parent.parent
 ARCHIVE, LINKS = 'KentuckyPortableClub/KPC-Archive', 'KentuckyPortableClub/KPC-Links'
@@ -80,13 +81,13 @@ class Gh:
 
     def download(self, tag, asset, dest, repo):
         rc, _, e = self.run(['release', 'download', tag, '-p', asset, '-D', str(dest), '--clobber'], repo)
-        if rc != 0: raise Refused(f'{tag}/{asset}: could not be downloaded from {repo} ({e.strip()[:200]})')
+        if rc != 0: raise Refused(f'{tag}/{asset}: could not be downloaded from {repo} ({clip(e.strip(), 200)})')
         return pathlib.Path(dest) / asset
 
     def upload(self, tag, paths, repo):
         """Never --clobber: an asset of the same name already there makes gh fail, so nothing is replaced, even in a race."""
         rc, _, e = self.run(['release', 'upload', tag, *map(str, paths)], repo)
-        if rc != 0: raise Refused(f'upload to {repo} {tag} failed (exit {rc}): {e.strip()[:200]}')
+        if rc != 0: raise Refused(f'upload to {repo} {tag} failed (exit {rc}): {clip(e.strip(), 200)}')
 
 
 # ---- the sidecar: what the file is ------------------------------------------------------------------------------------------------
@@ -424,7 +425,7 @@ def run(a, gh=None):
     root = pathlib.Path(a.root) if a.root else M.OUTLINES
     out = pathlib.Path(a.out); out.mkdir(parents=True, exist_ok=True); work = out / '.work'; work.mkdir(exist_ok=True)
     rep = {'mode': 'dry run (nothing goes to a release or to the repo)' if dry else 'write', 'steps': []}
-    say = lambda m: (rep['steps'].append(m), print(m, flush=True))
+    say = lambda m: (rep['steps'].append(scrub(m)), print(scrub(m), flush=True))   # Nov 12: scrubbed (archive token)
     try:
         sc = check_sidecar(load_sidecar(a.sidecar, gh, work), M.load_layers(root))
         rep['sidecar'] = sc
@@ -481,7 +482,7 @@ def run(a, gh=None):
                     f'manifest stamped, sha256 {sha}' + (f'; {note}' if note else ''))
                 say(propose_row(root / 'world-baselines.proposed.json', area, tot, sha, sc, dry=True, note=note))
             except Refused as e:
-                rep['bundle'] = {'refused': str(e)}; say(f'no world bundle: {e}')
+                rep['bundle'] = {'refused': scrub(e)}; say(f'no world bundle: {e}')
 
         # leftovers
         rows = inbox_rows(queue, parks, mine, cfg, sc, asset)
@@ -532,10 +533,10 @@ def run(a, gh=None):
                 elif b['file'] in have: say(f"{b['file']}: {CACHE_TAG} has a copy already: never replaced by a bot (save-check's rule); left in the artifacts")
                 else: gh.upload(CACHE_TAG, [out / b['file']], LINKS); say(f"{b['file']}: first trimmed copy uploaded to {CACHE_TAG} (the owner's OK)")
         return 0, rep
-    except M.ShortRead as e: err('layer intake SHORT READ', e); rep['error'] = str(e); return 2, rep
-    except M.LicenseBlocked as e: err('layer intake licence', e); rep['error'] = str(e); return 4, rep
-    except M.LiveNotAllowed as e: err('layer intake live read', e); rep['error'] = str(e); return 5, rep
-    except (Refused, M.MasterError, ValueError) as e: err('layer intake refused', e); rep['error'] = str(e); return 1, rep
+    except M.ShortRead as e: err('layer intake SHORT READ', e); rep['error'] = scrub(e); return 2, rep
+    except M.LicenseBlocked as e: err('layer intake licence', e); rep['error'] = scrub(e); return 4, rep
+    except M.LiveNotAllowed as e: err('layer intake live read', e); rep['error'] = scrub(e); return 5, rep
+    except (Refused, M.MasterError, ValueError) as e: err('layer intake refused', e); rep['error'] = scrub(e); return 1, rep
     finally:
         (out / 'REPORT.json').write_text(json.dumps(rep, indent=1, ensure_ascii=False, default=str) + '\n', encoding='utf-8')
         shutil.rmtree(work, ignore_errors=True)

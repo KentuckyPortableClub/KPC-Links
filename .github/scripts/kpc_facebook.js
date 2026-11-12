@@ -3,15 +3,19 @@
 //   node kpc_facebook.js videos  -> any new public video on the club YouTube channels
 // Needs two GitHub secrets: FB_PAGE_ID and FB_PAGE_TOKEN (a Page access token with pages_manage_posts).
 // Without them it does nothing.
+// Nov 11 2026 (bots review): a refused post no longer ends the program before the list of videos already shared is written (the
+// 2nd of 3 videos failing used to leave the 1st unrecorded, so it was posted again at the next run); the list is written after every
+// post. Log lines go through kpc_scrub.js (a Graph error can repeat the token).
 const fs = require('fs');
 const path = require('path');
+const { noticeText } = require('./kpc_scrub.js');
 
 const mode = process.argv[2] || 'events';
 const PAGE_ID = (process.env.FB_PAGE_ID || '').trim();
 const TOKEN = (process.env.FB_PAGE_TOKEN || '').trim();
 const SITE = 'https://kentuckyportableclub.github.io/KPC-Links/';
 const POSTED = 'kpc-fb-posted.json';
-const notice = m => console.log('::notice title=Facebook ' + mode + '::' + String(m).replace(/%/g, '%25').replace(/\n/g, '%0A'));
+const notice = m => console.log('::notice title=Facebook ' + mode + '::' + noticeText(m, 20000));
 
 if (!PAGE_ID || !TOKEN) { notice('FB_PAGE_ID / FB_PAGE_TOKEN secrets not set yet; nothing posted.'); process.exit(0); }
 
@@ -23,7 +27,7 @@ async function post(message, link) {
   if (!r.ok || j.error) {
     const e = j.error || {};
     notice(`Facebook said no (HTTP ${r.status}): ${e.message || 'unknown error'}${e.code === 190 ? ' (the Page token expired or was revoked; make a new one)' : ''}`);
-    process.exit(1);
+    const err = new Error('Facebook refused the post'); err.refused = true; throw err;
   }
   return j.id;
 }
@@ -59,13 +63,16 @@ async function videos() {
   }
   const seen = new Set(done.videos || []);
   const fresh = all.filter(v => !seen.has(v.id)).sort((a, b) => String(a.published).localeCompare(String(b.published))).slice(0, 3); // oldest first, 3 per run; the rest wait for the next run (2 h)
+  const remember = () => fs.writeFileSync(POSTED, JSON.stringify({ videos: [...seen] }, null, 1) + '\n');
   for (const v of fresh) {
     const url = v.short ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}`;
-    await post(`🎥 New from ${v.channel}: ${v.title}\n\nMore club videos: ${SITE}videos.html`, url);
+    try { await post(`🎥 New from ${v.channel}: ${v.title}\n\nMore club videos: ${SITE}videos.html`, url); }
+    catch (e) { remember(); throw e; }       // what already went out stays recorded; this one is tried again at the next run
     seen.add(v.id);
+    remember();
     notice('Shared video: ' + v.title);
   }
-  fs.writeFileSync(POSTED, JSON.stringify({ videos: [...seen] }, null, 1) + '\n');
+  remember();
   if (!fresh.length) notice('No new videos.');
 }
 

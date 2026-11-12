@@ -24,6 +24,12 @@ SOURCES
 
 STATE: data/park-alerts-state.json. Secrets: KPC_DISCORD_WEBHOOK, FB_PAGE_ID, FB_PAGE_TOKEN, NPS_API_KEY (optional).
 Run with DRY_RUN=1 to see what it would say and change nothing.
+
+Nov 11 2026 (bots review): a source that did not ANSWER is no longer counted as 'its alerts are gone'. The old test did the
+opposite of its own comment: when one source failed, the alerts of the failed source were counted as missing, so two failed
+checks in a row cleared the red warnings from the park pages (and would have announced 'looks open again'), and the flapping
+'missing' counters made a commit most days. Now the failed source's alerts are left exactly as they were and the run says so as a
+::warning. Everything printed goes through kpc_scrub.
 """
 import datetime
 import html as _html
@@ -36,6 +42,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 STATE_F = pathlib.Path('data/park-alerts-state.json')
@@ -70,7 +77,7 @@ MASS = 5                               # G11: this many closures at once = one m
 
 
 def notice(title, msg):
-    print(f"::notice title={title}::{str(msg)[:800]}", flush=True)
+    print(f"::notice title={title}::{notice_text(msg)}", flush=True)
 
 
 def ky_now():
@@ -114,7 +121,7 @@ def ky_state_parks():
     try:
         j = json.loads(fetch('https://parks.ky.gov/api/default/alerts?$top=100'))
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'Kentucky State Parks did not answer: {str(e)[:200]}')
+        notice('Park alerts', f'Kentucky State Parks did not answer: {clip(e, 200)}')
         return None
     for a in j.get('value') or []:
         aid = str(a.get('Id') or a.get('UrlName') or '')
@@ -137,7 +144,7 @@ def nps_alerts():
         j = json.loads(fetch('https://developer.nps.gov/api/v1/alerts?stateCode=KY&limit=200',
                              headers={'X-Api-Key': NPS_KEY}))
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'National Park Service did not answer: {str(e)[:200]}')
+        notice('Park alerts', f'National Park Service did not answer: {clip(e, 200)}')
         return None
     for a in j.get('data') or []:
         aid = str(a.get('id') or '')
@@ -166,7 +173,7 @@ def forest_alerts():
         try:
             html = fetch(f'https://www.fs.usda.gov/alerts/{code}/alerts-notices', timeout=90)
         except Exception as e:  # noqa: BLE001
-            notice('Park alerts', f'{who} did not answer: {str(e)[:160]}')
+            notice('Park alerts', f'{who} did not answer: {clip(e, 160)}')
             continue
         ok = True
         n = 0
@@ -250,7 +257,7 @@ def lbl_alerts():
     try:
         page = fetch('https://www.landbetweenthelakes.us/alerts/', timeout=90)
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'Land Between the Lakes did not answer: {str(e)[:160]}')
+        notice('Park alerts', f'Land Between the Lakes did not answer: {clip(e, 160)}')
         page = ''
     for m in re.finditer(r'jet-listing-dynamic-field__content"?\s*>\s*<p>(.*?)</p>', page, re.S):
         txt = clean(re.sub(r'<[^>]+>', ' ', m.group(1)), 600)
@@ -284,7 +291,7 @@ def lbl_alerts():
             rows = json.loads(fetch(url, timeout=60))
         except Exception as e:  # noqa: BLE001
             if os.environ.get('LBL_LOOK') == '1':
-                notice('Park alerts', f'LBL api {url.split("?")[0][-28:]}: {str(e)[:90]}')
+                notice('Park alerts', f'LBL api {scrub(url.split("?")[0])[-28:]}: {clip(e, 90)}')
             continue
         if isinstance(rows, list) and rows:
             for p in rows:
@@ -301,7 +308,7 @@ def lbl_alerts():
             xml = fetch(url, timeout=60)
         except Exception as e:  # noqa: BLE001
             if os.environ.get('LBL_LOOK') == '1':
-                notice('Park alerts', f'LBL feed {url[-16:]}: {str(e)[:90]}')
+                notice('Park alerts', f'LBL feed {scrub(url)[-16:]}: {clip(e, 90)}')
             continue
         items = re.findall(r'<item>(.*?)</item>', xml, re.S)
         if items:
@@ -320,7 +327,7 @@ def lbl_alerts():
     try:
         html = fetch('https://landbetweenthelakes.us/alerts/', timeout=90)
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'Land Between the Lakes did not answer: {str(e)[:160]}')
+        notice('Park alerts', f'Land Between the Lakes did not answer: {clip(e, 160)}')
         return None
     for m in re.finditer(r'<h\d[^>]*>\s*<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', html, re.S):
         link, title = m.group(1), re.sub(r'<[^>]+>', ' ', m.group(2))
@@ -349,10 +356,10 @@ def lbl_alerts():
         for u in ('https://landbetweenthelakes.us/alerts/feed/', 'https://landbetweenthelakes.us/feed/'):
             try:
                 x = fetch(u, timeout=45)
-                notice('Park alerts', f'LBL feed {u[-14:]} -> {len(x)} chars, starts: '
+                notice('Park alerts', f'LBL feed {scrub(u)[-14:]} -> {len(x)} chars, starts: '
                        + re.sub(r'\s+', ' ', x[:120]))
             except Exception as e:  # noqa: BLE001
-                notice('Park alerts', f'LBL feed {u[-14:]} -> {str(e)[:70]}')
+                notice('Park alerts', f'LBL feed {scrub(u)[-14:]} -> {clip(e, 70)}')
     notice('Park alerts', 'Land Between the Lakes: the page answered but nothing looked like an alert '
                           '(may simply be that nothing is closed right now)')
     return out
@@ -370,7 +377,7 @@ def kdfwr_alerts():
     try:
         page = fetch(base + '/Alerts/Pages/default.aspx', timeout=90)
     except Exception as e:  # noqa: BLE001
-        notice('Park alerts', f'Fish and Wildlife did not answer: {str(e)[:160]}')
+        notice('Park alerts', f'Fish and Wildlife did not answer: {clip(e, 160)}')
         return None
     out = {}
     for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', page, re.S):
@@ -392,7 +399,7 @@ def kdfwr_alerts():
         }
     if os.environ.get('LBL_LOOK') == '1' and not out:
         heads = [clean(re.sub(r'<[^>]+>', ' ', x), 70) for x in re.findall(r'<h\d[^>]*>(.*?)</h\d>', page, re.S)]
-        notice('Park alerts', f'KDFWR page {len(page)} chars; headings: ' + ' | '.join(h for h in heads if h)[:500])
+        notice('Park alerts', f'KDFWR page {len(page)} chars; headings: ' + clip(' | '.join(h for h in heads if h), 500))
     notice('Park alerts', f'Kentucky Fish and Wildlife: {len(out)} alert(s) listed')
     return out
 
@@ -472,7 +479,7 @@ def http(url, data=None, headers=None):
     except urllib.error.HTTPError as e:
         return e.code, e.read().decode('utf-8', 'replace')
     except Exception as e:  # noqa: BLE001
-        return 0, str(e)
+        return 0, type(e).__name__      # the kind of error only: some errors repeat the address (a webhook link)
 
 
 STAFF = ((os.environ.get('KPC_ADMIN_WEBHOOK') or '').strip().split() or [''])[0]
@@ -488,7 +495,7 @@ def post_staff(title, text):
             'embeds': [{'title': title[:250], 'color': 0x8a8a8a, 'description': text[:4000]}]}
     c, r = http(STAFF, json.dumps(body).encode(), {'Content-Type': 'application/json'})
     if c >= 300:
-        notice('Park alerts', f'Staff room HTTP {c}: {r[:200]}')
+        notice('Park alerts', f'Staff room HTTP {c}: {clip(r, 200)}')
 
 
 # PAUSE (Brandon Oct 29 10:18 AM: 'Park closure social media announcements turn off for one week till it is working
@@ -515,7 +522,7 @@ def post_discord(title, text):
             'embeds': [{'title': title[:250], 'color': 0xd5a63a, 'description': text[:4000]}]}
     c, r = http(DISCORD, json.dumps(body).encode(), {'Content-Type': 'application/json'})
     if c >= 300:
-        notice('Park alerts', f'Discord HTTP {c}: {r[:200]}')
+        notice('Park alerts', f'Discord HTTP {c}: {clip(r, 200)}')
 
 
 def post_facebook(title, text):
@@ -529,10 +536,13 @@ def post_facebook(title, text):
     data = urllib.parse.urlencode({'access_token': FB_TOKEN, 'message': msg[:5000]}).encode()
     c, r = http(f'https://graph.facebook.com/{FB_ID}/feed', data)
     if c >= 300:
-        notice('Park alerts', f'Facebook HTTP {c}: {r[:200]}')
+        notice('Park alerts', f'Facebook HTTP {c}: {clip(r, 200)}')
 
 
 # ---------------------------------------------------------------- the run
+SOURCES = (('ky', 'ky_state_parks'), ('nps', 'nps_alerts'), ('fs', 'forest_alerts'), ('lbl', 'lbl_alerts'), ('kdfwr', 'kdfwr_alerts'))   # looked up by name when run
+
+
 def main():
     now = ky_now()
     today = now.strftime('%Y-%m-%d')
@@ -543,12 +553,17 @@ def main():
 
     live = {}
     broke = False
-    for src in (ky_state_parks, nps_alerts, forest_alerts, lbl_alerts, kdfwr_alerts):
-        got = src()
+    failed = set()     # the alert-id prefixes of the sources that did not answer (a source returns None when it failed)
+    for prefix, src in SOURCES:
+        got = globals()[src]()
         if got is None:          # the source itself failed: do not treat its alerts as 'gone'
             broke = True
+            failed.add(prefix)
             continue
         live.update(got)
+    if failed:
+        print(f"::warning title=Park alerts::{', '.join(sorted(failed))} did not answer this time: its alerts are shown as they were, "
+              f"not counted as gone. Park pages may be out of date until it answers.", flush=True)
     if broke and not live:
         notice('Park alerts', 'No source answered this time; nothing changed.')
         return
@@ -611,8 +626,8 @@ def main():
         if aid in live:
             continue
         rec = seen[aid]
-        if broke and aid.split('-')[0] in {k.split('-')[0] for k in live}:
-            continue            # that source answered, so 'gone' is real; otherwise leave it alone
+        if aid.split('-')[0] in failed:
+            continue            # that source did not answer, so 'gone' proves nothing: leave the alert exactly as it was
         rec['missing'] = int(rec.get('missing', 0)) + 1
         if rec['missing'] >= CONFIRM:
             if rec.get('announced') and not rec.get('routine'):
@@ -767,5 +782,5 @@ if __name__ == '__main__':
     except Exception as e:  # noqa: BLE001
         # PR3 (Nov 2): was a quiet ::notice; a crash is a real failure, so it is an ::error now (the KPC-Data watchdog's key-bot
         # sweep turns it red on the status board). Still exit 0: no failure email.
-        print(f'::error title=Park alerts::stopped early: {type(e).__name__}: {str(e)[:300]}', flush=True)
+        print(f'::error title=Park alerts::stopped early: {type(e).__name__}: {scrub(e, 300)}', flush=True)
         sys.exit(0)           # never fail the job: a failed run emails Brandon

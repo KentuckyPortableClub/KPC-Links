@@ -13,9 +13,11 @@
 //   bandtimes  weekly best band times from Kentucky (WSPR beacon reports, last 7 days)            Discord + Facebook
 // --dry prints what would be posted without posting or saving anything.
 // State lives in kpc-social-state.json so nothing is posted twice.
+// Nov 11 2026 (bots review): every log line goes through kpc_scrub.js; the band-alert memory keeps only the alerts that matter (see bandalert).
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const { noticeText } = require('./kpc_scrub.js');
 
 const task = process.argv[2];
 const DRY = process.argv.includes('--dry') || process.env.DRY_RUN === 'true';
@@ -37,7 +39,7 @@ const FB_TOKEN = (process.env.FB_PAGE_TOKEN || '').trim();
 const PAGES_START = '2026-10-22'; // the first announcement is sent by the go-live job (Oct 21, 5 PM Central) right after the HOLD pages go live
 const API = 'https://api.pota.app';
 
-const notice = m => console.log(`::notice title=Social ${task}${DRY ? ' (dry run)' : ''}::` + String(m).replace(/%/g, '%25').replace(/\r/g, '').replace(/\n/g, '%0A'));
+const notice = m => console.log(`::notice title=Social ${task}${DRY ? ' (dry run)' : ''}::` + noticeText(m, 20000));
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 let state = {};
 try { state = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8')); } catch (e) { state = {}; }
@@ -265,25 +267,26 @@ tasks.pages = async () => {
 
 tasks.bandalert = async () => {
   const alerts = await getJSON('https://services.swpc.noaa.gov/products/alerts.json');
+  if (!Array.isArray(alerts)) throw new Error('NOAA alerts: not a list (the feed changed or answered with an error page); nothing changed');
   state.alerts = state.alerts || { seen: [], last: {} };
   const seen = new Set(state.alerts.seen);
-  const first = state.alerts.seen.length === 0;
+  // 'init' is new (Nov 11): the first run used to be "nothing remembered yet", which only worked because EVERY alert was remembered
+  const first = !state.alerts.init && state.alerts.seen.length === 0;
   const fresh = [];
   for (const a of alerts) {
     const msg = String(a.message || '');
     const serial = (msg.match(/Serial Number:\s*(\d+)/) || [])[1] || (a.product_id + a.issue_datetime);
     if (seen.has(serial)) continue;
-    seen.add(serial);
     const sc = msg.match(/NOAA Scale:\s*([RGS])([1-5])/);
-    if (!sc || /^(CANCEL|SUMMARY)/m.test(msg)) continue;
-    const kind = sc[1], lvl = +sc[2];
-    if ((kind === 'R' && lvl < 3) || (kind === 'G' && lvl < 3) || (kind === 'S' && lvl < 3)) continue;
+    const strong = sc && !/^(CANCEL|SUMMARY)/m.test(msg) && +sc[2] >= 3;       // R3+, G3+, S3+ only
+    if (first) seen.add(serial);                  // the very first run remembers everything that is up, so nothing old is posted
+    if (!strong) continue;                        // Nov 11: a weak alert is judged the same way every time, so it is NOT written to the state file (that was a commit for every flare and K-index notice)
     const ageH = (Date.now() - Date.parse(String(a.issue_datetime).replace(' ', 'T') + 'Z')) / 36e5;
     if (ageH > 6) continue;
-    fresh.push({ kind, lvl, msg, head: (msg.match(/^(ALERT|WARNING|WATCH|EXTENDED WARNING)[^\n]*/m) || [''])[0] });
+    fresh.push({ serial, kind: sc[1], lvl: +sc[2], msg, head: (msg.match(/^(ALERT|WARNING|WATCH|EXTENDED WARNING)[^\n]*/m) || [''])[0] });
   }
-  state.alerts.seen = [...seen].slice(-300);
-  if (first) { save(); return notice(`First run: remembered ${seen.size} existing NOAA alerts.`); }
+  const remember = () => { state.alerts.seen = [...seen].slice(-300); state.alerts.init = true; save(); };
+  if (first) { remember(); return notice(`First run: remembered ${seen.size} existing NOAA alerts.`); }
   const words = {
     R: lvl => ({ title: `📡 HF radio blackout (R${lvl})`, text: `A strong solar flare is knocking out HF on the sunlit side of the Earth. Expect weak or no signals, especially on the lower bands, for up to an hour or so. If you're activating, wait it out or try a higher band.` }),
     G: lvl => ({ title: `🌌 Geomagnetic storm (G${lvl})`, text: `The bands may be noisy and weak, especially on northern paths. The fun side: **aurora is possible**. Listen on 6 m and 2 m (CW and SSB) for that buzzy aurora sound, and look north after dark.` }),
@@ -292,13 +295,18 @@ tasks.bandalert = async () => {
   let posted = 0;
   for (const f of fresh) {
     const last = state.alerts.last[f.kind];
-    if (last && Date.now() - last.t < 6 * 36e5 && last.lvl >= f.lvl) continue; // no repeats for 6 hours unless it gets worse
+    if (last && Date.now() - last.t < 6 * 36e5 && last.lvl >= f.lvl) { seen.add(f.serial); continue; } // no repeats for 6 hours unless it gets worse
     const w = words[f.kind](f.lvl);
-    await post({ title: w.title, text: `${w.text}\n\n_NOAA: ${f.head.trim()}_`, link: SITE + 'kpc-space-weather.html', color: 0xd2693c }, ['discord']);
-    state.alerts.last[f.kind] = { t: Date.now(), lvl: f.lvl }; posted++;
+    try {
+      await post({ title: w.title, text: `${w.text}\n\n_NOAA: ${f.head.trim()}_`, link: SITE + 'kpc-space-weather.html', color: 0xd2693c }, ['discord']);
+    } catch (e) {
+      remember();          // the posts already sent stay recorded; this one is NOT recorded, so the next check (while it is under 6 hours old) tries it again
+      throw e;
+    }
+    state.alerts.last[f.kind] = { t: Date.now(), lvl: f.lvl }; seen.add(f.serial); posted++;
+    remember();            // written after every post, not once at the end
   }
-  save();
-  if (!posted) notice('No new strong alerts.');
+  if (!posted) notice('No new strong alerts.');   // nothing posted = nothing written: a quiet check leaves the state file alone
 };
 
 // Member activation recap: a member finished a valid activation (10+ contacts) at a Kentucky park.

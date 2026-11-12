@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 """KPC POTA Discord spotter: one check of the POTA spot feed (moved out of kpc-pota-discord.yml Oct 28 2026 so the hourly
 job can run it 12 times, 5 minutes apart). Sent alerts are remembered in .github/kpc-pota-spot-state.json, written after
-every check, so the same spot is never posted twice."""
+every check, so the same spot is never posted twice.
+
+Nov 11 2026 (bots review): the state file is now written right after EVERY post (it used to be written once at the end, so a
+Discord refusal half way through a check left the posts already sent unrecorded and the next check, five minutes later, sent
+them again), and everything this script prints goes through kpc_scrub (a Facebook error body can repeat the token)."""
 import datetime as dt, json, os, pathlib, re, urllib.request
 from urllib.error import HTTPError
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, clip   # Nov 12: clip = scrub first, then cut
 
 # KPC operators to watch: read from the club roster in kpc-tools.js (the only list)
 CALLS = {'KZ4CP', 'N4BDW', 'KQ4HZK', 'K4ZSR', 'N4KPC'}   # fallback if the roster can't be read
@@ -14,7 +19,7 @@ try:
     if _calls:
         CALLS = _calls
 except Exception as _e:
-    print('Roster read failed, using fallback:', _e)
+    print('Roster read failed, using fallback:', scrub(_e, 200))
 print('Watching', len(CALLS), 'calls:', ', '.join(sorted(CALLS)))
 LOOKBACK_MIN = 60                              # how far back a spot can be and still alert
 KEEP_DAYS = 2                                  # how long sent alerts are remembered
@@ -68,7 +73,9 @@ def post(title, description, color):
         with urllib.request.urlopen(r, timeout=20) as resp:
             resp.read()
     except HTTPError as error:
-        raise SystemExit(f'Discord returned HTTP {error.code}; spot state not saved for failed post.')
+        raise SystemExit(f'Discord returned HTTP {error.code}; this spot is not recorded, the next check tries it again.')
+    except Exception as error:  # noqa: BLE001  (a dropped connection: say what kind, never the address)
+        raise SystemExit(f'Discord post failed ({type(error).__name__}); this spot is not recorded, the next check tries it again.')
 
 fb_id, fb_token = os.getenv('FB_PAGE_ID', '').strip(), os.getenv('FB_PAGE_TOKEN', '').strip()
 SPOTTER = 'https://kentuckyportableclub.github.io/KPC-Links/kpc-spots.html'
@@ -82,11 +89,16 @@ def fb_post(message, link):
     try:
         with urllib.request.urlopen(urllib.request.Request(f'https://graph.facebook.com/{fb_id}/feed', data=data, method='POST'), timeout=20) as r:
             r.read()
-        print('::notice title=Facebook spot::Posted ' + message.split('\n')[0])
+        print('::notice title=Facebook spot::Posted ' + scrub(message.split('\n')[0], 200))
     except HTTPError as error:
-        print('::warning title=Facebook spot::Facebook said HTTP', error.code, error.read()[:200])
+        print('::warning title=Facebook spot::Facebook said HTTP', error.code, clip(error.read(), 200))
     except Exception as error:
-        print('::warning title=Facebook spot::', error)
+        print('::warning title=Facebook spot::', type(error).__name__, scrub(error, 200))
+
+def save_state():
+    """Written after every post, not once at the end (see the docstring)."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n')
 
 posted = 0
 for spot in sorted((s for s in spots if isinstance(s, dict)), key=lambda s: str(s.get('spotTime', ''))):
@@ -139,7 +151,7 @@ for spot in sorted((s for s in spots if isinstance(s, dict)), key=lambda s: str(
     state[act_key] = state.get(act_key) or now.isoformat()
     state[bm_key] = now.isoformat()
     posted += 1
+    save_state()
 
-path.parent.mkdir(parents=True, exist_ok=True)
-path.write_text(json.dumps(state, indent=2, sort_keys=True) + '\n')
+save_state()
 print(f'Checked {len(spots)} spots, posted {posted} alerts.')

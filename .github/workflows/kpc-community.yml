@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Install image tools
-        run: pip install --quiet pillow
+        run: python3 -c 'import PIL' 2>/dev/null || pip install --quiet pillow   # Nov 11: install only when the runner lacks it (same guard as kpc-social.yml)
       - name: Copy approved posts
         env:
           COMMUNITY_SHEET_CSV: ${{ secrets.COMMUNITY_SHEET_CSV }}

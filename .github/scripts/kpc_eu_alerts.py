@@ -3,7 +3,12 @@
 Brandon: weather alerts for Canada and Europe). MeteoAlarm publishes every national weather service's warnings as one
 Atom feed per country; a web page can't be sure of reading those directly, so this job copies them every 3 hours into
 data/alerts/eu.json = {updated, countries: {ISO2: {name, link, items: [{area, event, level, sev, onset, expires}]}}}.
-Only writes when something changed, keeps a country's last list when its feed fails, never fails (exit 0)."""
+Only writes when something changed, keeps a country's last list when its feed fails, never fails (exit 0).
+
+Nov 11 2026 (bots review): a country whose feed fails is no longer shown for ever as if it were current. Its last list is kept
+for up to MAX_STALE_RUNS failed runs in a row (3 = 18 hours) marked {"stale": true, "failed_runs": N}, with any warning that has
+since run out taken off; after that the country is left out of the file, and the Field Weather page then says 'our copy did not
+load' and links to MeteoAlarm, instead of showing an old '✅ no warnings'. The run says so as a ::warning. Printed text is scrubbed."""
 import datetime as dt
 import json
 import pathlib
@@ -12,6 +17,7 @@ import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, clip   # Nov 12: clip = scrub first, then cut
 
 OUT = pathlib.Path('data/alerts/eu.json')
 FEED = 'https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-'
@@ -23,16 +29,25 @@ C = {'AT': 'austria', 'BE': 'belgium', 'BA': 'bosnia-herzegovina', 'BG': 'bulgar
      'ES': 'spain', 'SE': 'sweden', 'CH': 'switzerland', 'GB': 'united-kingdom', 'UA': 'ukraine'}
 NS = {'a': 'http://www.w3.org/2005/Atom', 'cap': 'urn:oasis:names:tc:emergency:cap:1.2'}
 LEVEL = {'Minor': 'yellow', 'Moderate': 'yellow', 'Severe': 'orange', 'Extreme': 'red'}
+MAX_STALE_RUNS = 3      # failed runs in a row (every 6 h) before a country's old list is no longer shown
 
 
 def note(m):
-    print(f'::notice title=EU weather warnings::{m}', flush=True)
+    print(f'::notice title=EU weather warnings::{scrub(m)}', flush=True)   # Nov 12: scrubbed
 
 
 def get(u):
     req = urllib.request.Request(u, headers={'User-Agent': 'KPC weather (kentuckyportableclub.github.io)'})
     with urllib.request.urlopen(req, timeout=40) as f:
         return f.read()
+
+
+def _over(expires, now):
+    """True when a warning's end time has passed (unreadable = still shown)."""
+    try:
+        return bool(expires) and dt.datetime.fromisoformat(str(expires).replace('Z', '+00:00')) < now
+    except ValueError:
+        return False
 
 
 def txt(e, tag):
@@ -46,14 +61,20 @@ def main():
     except (OSError, ValueError):
         old = {'countries': {}}
     now = dt.datetime.now(dt.timezone.utc)
-    out, bad, n = {}, [], 0
+    out, bad, dropped, n = {}, [], [], 0
     for iso, slug in C.items():
         try:
             root = ET.fromstring(get(FEED + slug))
         except Exception as e:  # noqa: BLE001
             bad.append(iso)
-            if iso in old.get('countries', {}):
-                out[iso] = old['countries'][iso]
+            prev = old.get('countries', {}).get(iso)
+            if prev:
+                fails = int(prev.get('failed_runs') or 0) + 1
+                if fails > MAX_STALE_RUNS:
+                    dropped.append(iso)        # too old to show: left out, so the page says it did not load
+                else:
+                    live = [i for i in prev.get('items') or [] if not _over(i.get('expires'), now)]
+                    out[iso] = {**prev, 'items': live, 'stale': True, 'failed_runs': fails}
             continue
         items = []
         for en in root.findall('a:entry', NS):
@@ -72,17 +93,20 @@ def main():
         items.sort(key=lambda x: (order.get(x['sev'], 9), x['area']))
         out[iso] = {'name': slug.replace('republic-of-', '').replace('-', ' ').title(), 'link': 'https://meteoalarm.org/', 'items': items[:300]}
         n += len(items)
+    if bad or dropped:
+        print(f"::warning title=EU weather warnings::{len(bad)} of {len(C)} feeds did not answer this time ({clip(', '.join(bad), 200)})"
+              + (f'; no longer shown (older than {MAX_STALE_RUNS} runs): {", ".join(dropped)}' if dropped else ''), flush=True)
     if old.get('countries') == out:
         note(f'no change ({n} warnings, {len(bad)} feeds did not answer)')
         return
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({'updated': now.isoformat(timespec='minutes'), 'countries': out}, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
-    note(f'{n} warnings in {len(out)} countries' + (f'; no answer from {", ".join(bad)} (kept their last list)' if bad else ''))
+    note(f'{n} warnings in {len(out)} countries' + (f'; no answer from {", ".join(bad)} (kept their last list, marked stale)' if bad else ''))
 
 
 if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        note(f'stopped early: {e}')
+        note(f'stopped early: {type(e).__name__}: {scrub(e, 200)}')
     sys.exit(0)

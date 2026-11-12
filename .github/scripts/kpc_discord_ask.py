@@ -31,6 +31,7 @@ import sys
 import urllib.error
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import notice_text, clip   # Nov 12: every log line scrubbed first, then cut
 
 API = 'https://discord.com/api/v10/'
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
@@ -43,7 +44,7 @@ MAX_REPLIES = 6          # never flood a room
 
 
 def notice(msg):
-    print(f"::notice title=Ask::{str(msg)[:800]}", flush=True)
+    print(f"::notice title=Ask::{notice_text(msg, 800)}", flush=True)   # Nov 12: scrubbed (bot token)
 
 
 def call(path, method='GET', body=None):
@@ -58,9 +59,9 @@ def call(path, method='GET', body=None):
             t = r.read().decode('utf-8', 'replace')
             return json.loads(t) if t.strip() else {}
     except urllib.error.HTTPError as e:
-        return {'_error': f'HTTP {e.code} {e.read().decode("utf-8", "replace")[:160]}'}
+        return {'_error': clip(f'HTTP {e.code} {e.read().decode("utf-8", "replace")}', 160)}
     except Exception as e:  # noqa: BLE001
-        return {'_error': str(e)[:160]}
+        return {'_error': clip(e, 160)}
 
 
 def load(p, d):
@@ -725,5 +726,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        notice(f'stopped early: {type(e).__name__}: {str(e)[:300]}')
+        notice(f'stopped early: {type(e).__name__}: {clip(e, 300)}')
         sys.exit(0)          # never fail the job: a failed run emails Brandon

@@ -20,6 +20,7 @@ import re
 import subprocess
 import sys
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, notice_text   # Nov 12: every log line scrubbed first, then cut
 
 REPO = os.environ.get('GITHUB_REPOSITORY', 'KentuckyPortableClub/KPC-Links')
 NOW = dt.datetime.now(dt.timezone.utc)
@@ -283,14 +284,14 @@ def main():
     try:
         oi, on, table = outputs(st)
     except Exception as e:  # noqa: BLE001
-        oi, on, table = [], [{'chat': 5, 'msg': f'output check stopped: {e}'}], ''
+        oi, on, table = [], [{'chat': 5, 'msg': f'output check stopped: {scrub(e)}'}], ''
     items += oi; notes += on
     try:
         write_hidden(HC[0], HC[1])
         for x in HIDDEN[:40]:
             notes.append({'chat': owner(x['workflow']), 'msg': f"{x['workflow']} (job {x['job']}): {x['errors']} error(s), {x['warnings']} warning(s) caught inside steps, {x['kept_green_steps']} step(s) kept green in its last timed run {x['run']}"})
     except Exception as e:  # noqa: BLE001
-        notes.append({'chat': 5, 'msg': f'hidden-failure list stopped: {e}'})
+        notes.append({'chat': 5, 'msg': f'hidden-failure list stopped: {scrub(e)}'})
     keys = sorted({x['key'] for x in items})
     new = [k for k in keys if k not in st.get('open', [])]
     st['open'] = keys; st['checked'] = NOW.isoformat(timespec='minutes')
@@ -313,7 +314,7 @@ def main():
     body += table
     body += '<details><summary>What was checked</summary>\n\n' + '\n'.join(f'- {x}' for x in oks) + '\n\n' + '\n'.join(f'- {x}' for x in ok) + '\n\n</details>\n'
     problems = [(x['key'], x['msg']) for x in items]
-    body = body[:60000]
+    body = scrub(body, 60000)   # Nov 12: scrubbed first, then cut (it is printed and saved as an issue)
     print(body)
     print(f'::notice title=Check-up::{len(problems)} problem(s), {len(new)} new, {len(notes)} note(s)', flush=True)
     if not os.environ.get('GITHUB_ACTIONS'): return
@@ -338,12 +339,12 @@ def main():
                 urllib.request.urlopen(urllib.request.Request(hook[0], data=json.dumps({'username': 'KPC Check-up', 'content': msg[:1900],
                                        'allowed_mentions': {'parse': []}}).encode(), headers={'Content-Type': 'application/json'}), timeout=30)
             except Exception as e:  # noqa: BLE001
-                print(f'::notice title=Check-up::staff room not reached ({e})')
+                print(f'::notice title=Check-up::staff room not reached ({notice_text(e)})')
 
 
 if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        print(f'::notice title=Check-up::stopped early: {e}')
+        print(f'::notice title=Check-up::stopped early: {notice_text(e)}')
     sys.exit(0)

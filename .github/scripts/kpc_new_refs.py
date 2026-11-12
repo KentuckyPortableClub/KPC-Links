@@ -29,8 +29,13 @@ FB_ID, FB_TOKEN = (os.environ.get('FB_PAGE_ID') or '').strip(), (os.environ.get(
 
 
 def notice(t, m=''):
-    m = str(m).replace('%', '%25').replace('\r', '').replace('\n', '%0A')
-    print(f'::notice title={t}::{m}', flush=True)
+    from kpc_scrub import notice_text   # Nov 11: every log line is checked for webhook links and tokens first
+    print(f'::notice title={t}::{notice_text(m, 4000)}', flush=True)
+
+
+def clip(x, n):
+    from kpc_scrub import clip as _clip   # Nov 12: scrub first, then cut (a cut-off secret no longer slips past)
+    return _clip(x, n)
 
 
 def get(url, tries=3, timeout=90, raw=False):
@@ -145,6 +150,7 @@ def http(url, data=None, headers=None, method=None):
     try:
         with urllib.request.urlopen(req, timeout=60) as r: return r.status, r.read().decode('utf-8', 'replace')
     except urllib.error.HTTPError as e: return e.code, e.read().decode('utf-8', 'replace')
+    except Exception as e: return 0, type(e).__name__   # Nov 11: a dropped connection used to end the program here, after Discord had been posted and before 'posted' was written down (a second post next day); and the text of an error can hold the address
 
 
 def post_discord(title, text, link):
@@ -152,7 +158,7 @@ def post_discord(title, text, link):
     body = {'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
             'embeds': [{'title': title[:250], 'url': link, 'color': 0xd5a63a, 'description': (text + f'\n\n[See them on our site →]({link})')[:4000]}]}
     c, r = http(DISCORD, json.dumps(body).encode(), {'Content-Type': 'application/json'})
-    if c >= 300: notice('New references', f'Discord HTTP {c}: {r[:200]}'); return False
+    if c >= 300: notice('New references', f'Discord HTTP {c}: {clip(r, 200)}'); return False
     return True
 
 
@@ -160,7 +166,7 @@ def post_facebook(title, text, link):
     if not FB_ID or not FB_TOKEN: notice('New references', 'No Facebook secrets; skipped Facebook.'); return True
     data = urllib.parse.urlencode({'access_token': FB_TOKEN, 'message': f'{title}\n\n{text}', 'link': link}).encode()
     c, r = http(f'https://graph.facebook.com/{FB_ID}/feed', data)
-    if c >= 300: notice('New references', f'Facebook HTTP {c}: {r[:200]}'); return False
+    if c >= 300: notice('New references', f'Facebook HTTP {c}: {clip(r, 200)}'); return False
     return True
 
 

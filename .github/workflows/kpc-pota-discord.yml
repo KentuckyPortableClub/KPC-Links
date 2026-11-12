@@ -51,10 +51,13 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Nov 11 (bots review, package E): the shared helper (this run's file copied on top of the newest main, five tries) instead of
+          # 'pull --rebase' four times. A lost push race here meant the next hour's job started without the sent-spot list and posted the
+          # same operators again (the look-back is 60 minutes). Nothing changed = nothing committed, as before. The state file is not
+          # bookkeeping for the quiet gate (it is outside data/status), so a save is never skipped.
           git add .github/kpc-pota-spot-state.json
-          git diff --cached --quiet && exit 0
-          git commit -qm 'Update KPC POTA spot notification state'
-          { for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i*10)); done; echo "::error title=Save::not saved after every try; the next run tries again"; }; exit 0
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
+            bash .github/scripts/kpc_save_overwrite.sh --copy 'Update KPC POTA spot notification state' - -- .github/kpc-pota-spot-state.json
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:

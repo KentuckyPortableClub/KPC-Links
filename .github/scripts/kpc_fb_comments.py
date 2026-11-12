@@ -18,6 +18,11 @@ NEEDS: the Page token must have pages_read_user_content (reading what visitors w
 permission from posting). Without it this says so once in Discord and then stays quiet. Replying needs
 pages_manage_engagement as well; without it the bot keeps suggesting and says so once.
 Secrets: FB_PAGE_ID, FB_PAGE_TOKEN, KPC_DISCORD_WEBHOOK. DRY_RUN=1 prints instead of sending.
+
+Nov 11 2026 (bots review): (1) everything printed goes through kpc_scrub (the Graph address carries the token in its query and a
+Graph error can repeat it); a failed request now says what kind of error, never the address. (2) the state file is written
+BEFORE each Facebook reply and after each Discord post, so a crash or a lost run cannot send the same comment, or answer it on
+Facebook, a second time; a comment cut off by the per-run cap is no longer marked as sent (it waits for the next run).
 """
 import datetime
 import hashlib
@@ -30,6 +35,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 STATE_F = pathlib.Path('data/fb-comments-state.json')
@@ -89,7 +95,7 @@ ANSWERS = [
 
 
 def notice(msg):
-    print(f"::notice title=Facebook comments::{str(msg)[:800]}", flush=True)
+    print(f"::notice title=Facebook comments::{notice_text(msg)}", flush=True)
 
 
 def http(url, data=None, headers=None):
@@ -100,16 +106,19 @@ def http(url, data=None, headers=None):
     except urllib.error.HTTPError as e:
         return e.code, e.read().decode('utf-8', 'replace')
     except Exception as e:  # noqa: BLE001
-        return 0, str(e)
+        return 0, type(e).__name__      # never str(e): some errors repeat the address, and the address carries the token
 
 
 def graph(path, **q):
     q['access_token'] = FB_TOKEN
     c, body = http(GRAPH + path + '?' + urllib.parse.urlencode(q))
     try:
-        return c, json.loads(body)
+        j = json.loads(body)
     except Exception:  # noqa: BLE001
-        return c, {'error': {'message': body[:200]}}
+        return c, {'error': {'message': scrub(body, 200)}}
+    if isinstance(j, dict) and isinstance(j.get('error'), dict) and 'message' in j['error']:
+        j['error']['message'] = scrub(j['error']['message'], 300)       # a Graph error can repeat the token it refused
+    return c, j
 
 
 def fingerprint(s):
@@ -161,7 +170,7 @@ def fb_reply(comment_id, text):
         j = {}
     if c < 300 and j.get('id'):
         return True, ''
-    return False, str((j.get('error') or {}).get('message') or body)[:300]
+    return False, scrub(str((j.get('error') or {}).get('message') or body), 300)
 
 
 def discord(title, text):
@@ -172,7 +181,7 @@ def discord(title, text):
             'embeds': [{'title': title[:250], 'color': 0x4267B2, 'description': text[:4000]}]}
     c, r = http(DISCORD, json.dumps(body).encode(), {'Content-Type': 'application/json'})
     if c >= 300:
-        notice(f'Discord HTTP {c}: {r[:200]}')
+        notice(f'Discord HTTP {c}: {scrub(r, 200)}')
 
 
 def main():
@@ -186,6 +195,16 @@ def main():
         pass
     done = set(state.get('sent') or [])
     first_time = not state.get('updated')
+    waiting = set()      # comments found this run that are not handled yet: never written to the state file until they are
+
+    def persist():
+        """Write the memory now (nothing found-but-unhandled in it), so a crash later cannot make this run repeat itself."""
+        if DRY:
+            return
+        state['sent'] = sorted(done - waiting)[-4000:]
+        state['updated'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M')
+        STATE_F.parent.mkdir(parents=True, exist_ok=True)
+        STATE_F.write_text(json.dumps(state, indent=1) + '\n', encoding='utf-8')
 
     # say plainly what this token can do, so a swapped token can be checked in one run
     c, j = graph('debug_token', input_token=FB_TOKEN)
@@ -197,7 +216,7 @@ def main():
         notice('Token can: ' + ', '.join(sc) + ('. MISSING: ' + ', '.join(need) if need else '. Everything needed is there.')
                + f" Expires: {d.get('expires_at') or 'never'}.")
     else:
-        notice('Could not read the token details: ' + str(j.get('error', {}).get('message'))[:160])
+        notice('Could not read the token details: ' + clip(j.get('error', {}).get('message'), 160))
     # whose token is it? a Page token answers /me with the Page's own name
     c, who = graph('me', fields='id,name')
     if who.get('id'):
@@ -205,14 +224,14 @@ def main():
         notice(f"Token belongs to: {who.get('name')} (id {who['id']}) · type {d.get('type') or '?'} · "
                + ('this IS the Page we post to.' if same else f'NOT our Page id {FB_ID} - posting would go to the wrong place.'))
     else:
-        notice('Could not see who the token belongs to: ' + str(who.get('error', {}).get('message'))[:160])
+        notice('Could not see who the token belongs to: ' + clip(who.get('error', {}).get('message'), 160))
 
     since = int((datetime.datetime.now(datetime.timezone.utc)
                  - datetime.timedelta(days=LOOK_BACK_DAYS)).timestamp())
     c, j = graph(f'{FB_ID}/posts', fields='id,created_time,permalink_url', limit='25', since=str(since))
     posts = j.get('data') or []
     if not posts:
-        notice('Could not read the Page posts: ' + str(j.get('error', {}).get('message'))[:200])
+        notice('Could not read the Page posts: ' + clip(j.get('error', {}).get('message'), 200))
         return
 
     fresh = []
@@ -223,7 +242,7 @@ def main():
         if 'data' not in j:
             e = j.get('error') or {}
             if e.get('code') in (10, 200, 190):
-                blocked = str(e.get('message'))[:300]
+                blocked = clip(e.get('message'), 300)
                 break
             continue
         for cm in j['data']:
@@ -234,7 +253,7 @@ def main():
             who = ((cm.get('from') or {}).get('name') or 'Someone').strip()
             if who.lower() == 'kentucky portable club':
                 continue
-            fresh.append({'id': cm.get('id'), 'who': who, 'msg': re.sub(r'\s+', ' ', cm.get('message') or '').strip(),
+            fresh.append({'id': cm.get('id'), 'fp': fp, 'who': who, 'msg': re.sub(r'\s+', ' ', cm.get('message') or '').strip(),
                           'link': cm.get('permalink_url') or p.get('permalink_url') or '',
                           'when': cm.get('created_time', ''), 'parent': bool(cm.get('parent'))})
 
@@ -256,11 +275,16 @@ def main():
     else:
         fresh.sort(key=lambda x: x['when'])
         if len(fresh) > MAX_PER_RUN:
-            notice(f'{len(fresh)} new comments; sending the first {MAX_PER_RUN}.')
+            notice(f'{len(fresh)} new comments; sending the first {MAX_PER_RUN}, the rest wait for the next run.')
+            for f in fresh[MAX_PER_RUN:]:
+                done.discard(f['fp'])       # Nov 11: they used to be marked as sent and never came
             fresh = fresh[:MAX_PER_RUN]
+        waiting = {f['fp'] for f in fresh}
         auto = auto_on()
         replied = 0
         for f in fresh:
+            waiting.discard(f['fp'])
+            persist()      # remembered BEFORE any reply on Facebook: one reply per comment, ever
             body = f"**{f['who']}** wrote:\n> {f['msg'][:900] or '(a photo or sticker)'}\n"
             tip = suggest(f['msg'])
             answer = can_auto_reply(f) if auto and replied < MAX_REPLIES_PER_RUN else None
@@ -298,16 +322,13 @@ def main():
         else:
             notice('No new comments.')
 
-    state['sent'] = sorted(done)[-4000:]
-    state['updated'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M')
-    if not DRY:
-        STATE_F.parent.mkdir(parents=True, exist_ok=True)
-        STATE_F.write_text(json.dumps(state, indent=1) + '\n', encoding='utf-8')
+    waiting = set()
+    persist()
 
 
 if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        notice(f'stopped early: {type(e).__name__}: {str(e)[:300]}')
+        notice(f'stopped early: {type(e).__name__}: {clip(e, 300)}')
         sys.exit(0)          # never fail the job: a failed run emails Brandon

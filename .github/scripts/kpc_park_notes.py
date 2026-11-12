@@ -6,9 +6,10 @@ import csv,io,json,os,re,hashlib,sys,urllib.request
 import kpc_preapproved as PA
 import kpc_formtools as T
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import notice_text
 PRE=PA.load()
 URL=os.environ.get('NOTES_SHEET_CSV','').strip()
-def notice(m): print('::notice title=Park notes::'+str(m).replace('%','%25').replace('\n','%0A'))
+def notice(m): print('::notice title=Park notes::'+notice_text(m,4000))   # Nov 11: scrubbed
 FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLSc6jTku8aIPejOVridQ19ChA5ACYsFK56n7Nk9WpIgAiLGTMw/viewform'
 def find_form_entry():
   """Reads the public form and finds the hidden entry number of the 'Park number' question, so the site's

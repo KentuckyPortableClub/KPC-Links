@@ -9,7 +9,12 @@ Facebook also?'). POTA does not publish when hunters are on, so we count it ours
            grid in Central time, the busiest windows, the best band in each) + app/hunters.json for the app's
            'Hunters are out' alert ({windows:[{days:[1-7], from, to, note}]}, 1 = Monday).
   post     (Fridays)       once there are 14+ days of counts: one post to Discord (park news) and the Facebook Page.
-Every step exits 0: a POTA hiccup skips that run quietly (no email)."""
+Every step exits 0: a POTA hiccup skips that run quietly (no email).
+
+Nov 11 2026 (bots review): the Friday post is remembered per channel and per ISO week in the work file (data/hunters/work.json,
+which the workflow keeps in the Actions cache), so a second Friday run (the cron arriving late after the watchdog already started one)
+does not post it again; a by-hand run with 'post' ticked still posts (KPC_HUNTERS_FORCE=1). Errors and HTTP answers are printed
+through kpc_scrub, never as raw text."""
 import datetime as dt
 import json
 import os
@@ -20,6 +25,7 @@ import urllib.parse
 import urllib.request
 from zoneinfo import ZoneInfo
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import scrub, notice_text
 
 UA = 'KPC-Hunters/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
@@ -35,7 +41,7 @@ BANDS = [(1800, 2000, '160m'), (3500, 4000, '80m'), (5330, 5410, '60m'), (7000, 
 
 
 def notice(t, m=''):
-    print(f'::notice title={t}::' + str(m).replace('%', '%25').replace('\n', '%0A'), flush=True)
+    print(f'::notice title={t}::' + notice_text(m, 4000), flush=True)
 
 
 def band(khz):
@@ -231,14 +237,32 @@ def post():
     link = SITE + 'kpc-live.html#hunters'
     hook = ((os.environ.get('KPC_PARKS_WEBHOOK') or os.environ.get('DISCORD_WEBHOOK_URL') or '').strip().split() or [''])[0]
     sent = []
-    if hook.startswith('https://'):
+    week = '%d-W%02d' % tuple(dt.datetime.now(CT).isocalendar())[:2]
+    w = _j(W, {'open': {}, 'ids': [], 'cnt': {}})
+    done_wk = w.setdefault('posted', {})
+    force = os.environ.get('KPC_HUNTERS_FORCE') == '1'
+
+    def mark(channel, status):
+        if status in (200, 201, 204):       # only a real success is remembered: a refusal is tried again at the next run
+            done_wk[channel] = week
+            if W.exists():      # no work file (a cold cache) = no memory; never create one here: the next count would think it has seen no spots
+                W.write_text(json.dumps(w, separators=(',', ':')), encoding='utf-8')
+    if hook.startswith('https://') and done_wk.get('discord') == week and not force:
+        sent.append('Discord already posted this week')
+    elif hook.startswith('https://'):
         body = {'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
                 'embeds': [{'title': title, 'url': link, 'color': 0xd5a63a, 'description': text[:4000]}]}
-        sent.append('Discord ' + str(_http(hook, json.dumps(body).encode(), {'Content-Type': 'application/json'})))
+        st = _http(hook, json.dumps(body).encode(), {'Content-Type': 'application/json'})
+        mark('discord', st)
+        sent.append('Discord ' + str(st))
     fid, tok = (os.environ.get('FB_PAGE_ID') or '').strip(), (os.environ.get('FB_PAGE_TOKEN') or '').strip()
-    if fid and tok:
+    if fid and tok and done_wk.get('facebook') == week and not force:
+        sent.append('Facebook already posted this week')
+    elif fid and tok:
         data = urllib.parse.urlencode({'access_token': tok, 'message': f'{title}\n\n{text}', 'link': link}).encode()
-        sent.append('Facebook ' + str(_http(f'https://graph.facebook.com/{fid}/feed', data)))
+        st = _http(f'https://graph.facebook.com/{fid}/feed', data)
+        mark('facebook', st)
+        sent.append('Facebook ' + str(st))
     notice('Hunters post', ', '.join(sent) or 'no Discord/Facebook secrets here; nothing sent')
 
 
@@ -247,7 +271,7 @@ def _http(url, data, headers=None):
         req = urllib.request.Request(url, data=data, headers={'User-Agent': UA, **(headers or {})})
         with urllib.request.urlopen(req, timeout=60) as r: return r.status
     except Exception as e:  # noqa: BLE001
-        return getattr(e, 'code', str(e)[:80])
+        return getattr(e, 'code', type(e).__name__)     # a number, or the kind of error: never the text (it can hold the address)
 
 
 if __name__ == '__main__':
@@ -259,5 +283,5 @@ if __name__ == '__main__':
     except Exception as e:  # noqa: BLE001
         # PR3 (Nov 2): POTA being down is handled inside collect(); getting here means the bot itself broke, so say it as an
         # ::error (the KPC-Data watchdog's key-bot sweep turns that red on the status board). Still exit 0: no failure email.
-        print(f'::error title=Hunters::stopped early: {type(e).__name__}: {str(e)[:300]}', flush=True)
+        print(f'::error title=Hunters::stopped early: {type(e).__name__}: {scrub(e, 300)}', flush=True)
     sys.exit(0)

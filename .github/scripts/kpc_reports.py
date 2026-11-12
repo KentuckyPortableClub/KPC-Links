@@ -27,9 +27,10 @@ import csv, datetime, hashlib, io, json, os, re, shutil, subprocess, sys, urllib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_preapproved as PA
 import kpc_net_guard; kpc_net_guard.install()
+from kpc_scrub import notice_text
 
 TITLE = 'KPC Reports'
-def notice(m): print('::notice title=' + TITLE + '::' + str(m).replace('%', '%25').replace('\r', '').replace('\n', '%0A'), flush=True)
+def notice(m): print('::notice title=' + TITLE + '::' + notice_text(m, 4000), flush=True)   # Nov 11: scrubbed
 URL = os.environ.get('KPC_REPORTS_CSV', '').strip()
 if not URL: notice('KPC_REPORTS_CSV secret not set yet; nothing to do.'); sys.exit(0)
 TODAY = datetime.date.today()

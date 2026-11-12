@@ -113,13 +113,16 @@ jobs:
           fi
           # G7: post from the newest main; if it cannot be fetched, do not post (a stale state file could post twice)
           git fetch -q origin main && git reset -q --hard origin/main || { echo '::error title=Posting::could not fetch the newest main, so nothing was posted this time'; exit 0; }
-          node .github/scripts/kpc_facebook.js videos
+          # Nov 11 (bots review, package E): a refused post must not skip the save below (the videos already shared would be posted
+          # again at the next run). The step still ends red afterwards when Facebook refused, as before.
+          node .github/scripts/kpc_facebook.js videos || fb_rc=$?
           if [ -f kpc-fb-posted.json ]; then
             git add kpc-fb-posted.json
             # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
             KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
               bash .github/scripts/kpc_save_overwrite.sh --copy 'Remember videos shared on Facebook' - -- kpc-fb-posted.json
           fi
+          exit "${fb_rc:-0}"
       - name: Share new videos in the KPC Discord
         if: ${{ !cancelled() }}
         env:
@@ -134,10 +137,11 @@ jobs:
           fi
           # G7: post from the newest main; if it cannot be fetched, do not post (a stale state file could post twice)
           git fetch -q origin main && git reset -q --hard origin/main || { echo '::error title=Posting::could not fetch the newest main, so nothing was posted this time'; exit 0; }
-          node .github/scripts/kpc_discord_videos.js
+          node .github/scripts/kpc_discord_videos.js || dv_rc=$?   # Nov 11: save first, then end red if it failed
           if [ -f kpc-discord-videos.json ]; then
             git add kpc-discord-videos.json
             # Nov 2 review (G7): save with the shared helper (this run's files copied on top of the newest main). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
             KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
               bash .github/scripts/kpc_save_overwrite.sh --copy 'Remember videos shared on Discord' - -- kpc-discord-videos.json
           fi
+          exit "${dv_rc:-0}"
