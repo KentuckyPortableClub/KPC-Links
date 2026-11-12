@@ -1,0 +1,11 @@
+{
+ "about": "Expected holds of the world answer key (KPC owner, 2026-11-11). Read ONLY by `kpc_world_key_join.py expected` in the plan job of kpc-world-key.yml, and only from a file named *.approved.json. A country listed here with a reason, approved_by naming the KPC owner or a person in KPC_PERSONS, an approved_date that is a real date not in the future, and no passed review_by date, is NOT built: it keeps its previous join on main (key, review, tracts, outlines, index row and review-file rows) and the run can finish green. Any other entry is ignored and the country is built as normal. A country with no joined park on main cannot be held (the run stops red). Remove a country here to rebuild it.",
+ "holds": {
+  "AU": {
+   "reason": "Saved copy W-AU is short: 365,915 of the 3,743,432 records its layers report, so the master gate moves it aside and the AU shard goes red. Its baseline is not signed, pending a check of the trimmed size against the AU parks list.",
+   "approved_by": "KPC owner",
+   "approved_date": "2026-11-11",
+   "review_by": ""
+  }
+ }
+}

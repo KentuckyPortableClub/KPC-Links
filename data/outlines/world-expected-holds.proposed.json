@@ -1,0 +1,11 @@
+{
+ "about": "PROPOSED expected holds (KPC owner, 2026-11-11). Never read by any workflow. To use an entry, move it into world-expected-holds.approved.json with approved_by and approved_date filled, in a reviewed PR.",
+ "holds": {
+  "MT": {
+   "reason": "Saved copy W-MT holds 14 records, but the current MT key joins 39 distinct records of its 2 layers (27 Ambjent Malta + 12 N2K SPA), both on a saved-copy-only host, so no baseline was proposed and the master gate moves the copy aside (reasoned from the code and the Nov 11 baselines; no MT log was read).",
+   "approved_by": "",
+   "approved_date": "",
+   "review_by": ""
+  }
+ }
+}

@@ -49,6 +49,7 @@ jobs:
     outputs:
       groups: ${{ steps.p.outputs.groups }}
       full: ${{ steps.p.outputs.full }}   # Nov 4 (links-04): 1 = the default ALL list was built (the join stamps the rules hash only then)
+      expected: ${{ steps.p.outputs.expected }}   # Nov 12 (KPC owner, 2026-11-11): owner-signed expected holds, left out of the build, kept from main
     steps:
       - uses: actions/checkout@v5
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 4 links-04) - a held build on the CURRENT rules, at most 3 days old, with no person's sign-off (Brandon / KZ4CP, after the Nov 2 restart; or signed YES and not yet released) means no new build
@@ -89,12 +90,17 @@ jobs:
         run: |
           if [ "${SKIP:-}" = 1 ]; then echo 'groups=[]' >> "$GITHUB_OUTPUT"; exit 0; fi
           [ -n "${NIGHT_LIST:-}" ] && COUNTRIES="$NIGHT_LIST"
-          if [ -z "${COUNTRIES:-}" ]; then echo 'full=1' >> "$GITHUB_OUTPUT"; else echo 'full=0' >> "$GITHUB_OUTPUT"; fi   # Nov 4 (links-04)
           SHEETC=$(jq -r '.countries|keys|join(" ")' data/world-key/sheet-countries.json 2>/dev/null || true)   # ok: an optional file or tidy step (Nov 1: Brandon's filled sheet)
           export ALL="${COUNTRIES:-AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU CO ZA CL $SHEETC}"
+          # Nov 12 (KPC owner, 2026-11-11): a country on the owner-signed expected-hold list is decided HERE, before any build: it is left out
+          # of the groups and keeps its previous join (one notice each). An unsigned / unknown / expired entry is ignored (built as normal);
+          # a hold with no joined park on main (nothing to keep) stops the run red. Not the full list = not a full build (no rules stamp).
+          EXPECTED=$(python3 .github/scripts/kpc_world_key_join.py expected --file data/outlines/world-expected-holds.approved.json --countries "$ALL" --key data/world-key) || exit 1
+          export EXPECTED; echo "expected=$EXPECTED" >> "$GITHUB_OUTPUT"
+          if [ -z "${COUNTRIES:-}" ] && [ -z "$EXPECTED" ]; then echo 'full=1' >> "$GITHUB_OUTPUT"; else echo 'full=0' >> "$GITHUB_OUTPUT"; fi   # Nov 4 (links-04)
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
-          cs = list(dict.fromkeys(os.environ['ALL'].upper().split()))
+          cs = [c for c in dict.fromkeys(os.environ['ALL'].upper().split()) if c not in set((os.environ.get('EXPECTED') or '').split())]   # Nov 12: expected holds are not built
           try: idx = json.load(open('data/world-key/index.json', encoding='utf-8')).get('countries', {})
           except Exception: idx = {}
           w = {c: ((idx.get(c) or {}).get('parks') or 200) + ((idx.get(c) or {}).get('areas') or 0) // 20 for c in cs}   # rough size: parks + official areas read
@@ -151,7 +157,7 @@ jobs:
           # data/outlines/world-baselines.approved.json is read too (never the .proposed.json). The exit code is kept for the part's verdict:
           # no code = the join holds every country of this job (fail closed).
           rm -f "$RUNNER_TEMP/master-short.txt" "$RUNNER_TEMP/master-gate.rc"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/world --report "$RUNNER_TEMP/master-short.txt" --allow-trimmed --approved data/outlines/world-baselines.approved.json && mg=0 || mg=$?
-          echo "$mg" > "$RUNNER_TEMP/master-gate.rc"
+          echo "$mg" > "$RUNNER_TEMP/master-gate.rc"; echo "rc=$mg" >> "$GITHUB_OUTPUT"
           [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; echo "$mg" > "$RUNNER_TEMP/master-short.txt"; }
       - name: Bring back this country's layer checkpoints (Nov 7, world fix part A; inert until kpc_world_key.py writes cache/world/parts)
         # Slow (own-job) countries only. A stopped AU read can resume from the last saved page of each layer once part B of the
@@ -165,6 +171,9 @@ jobs:
           key: world-parts-${{ matrix.g.countries }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: world-parts-${{ matrix.g.countries }}-
       - name: Build (this job's countries)
+        # Nov 12 (KPC owner, 2026-11-11; run 43148551915 built AU for 13 minutes after the gate had already held it): a gate that did not
+        # say green (or left no exit code) makes this shard red and nothing of a red shard is joined, so the build is not started
+        if: ${{ steps.kept_green_master.outputs.rc == '0' }}
         timeout-minutes: 335   # the step stops before the job's limit, so the part below is still uploaded
         continue-on-error: true
         id: kept_green_b
@@ -323,7 +332,9 @@ jobs:
           PY
   join:
     needs: [plan, build]
-    if: ${{ always() && needs.build.result != 'skipped' && needs.plan.outputs.groups != '[]' && needs.plan.outputs.groups != '' }}
+    # Nov 12 (KPC owner, 2026-11-11; run 43148551915 was CANCELLED, AU's shard red, and this job still saved a6c493c): never on a
+    # cancelled run, and only when EVERY build shard is green (no partial save)
+    if: ${{ !cancelled() && needs.build.result == 'success' && needs.build.result != 'skipped' && needs.plan.outputs.groups != '[]' && needs.plan.outputs.groups != '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     outputs:
@@ -366,15 +377,27 @@ jobs:
         id: tonight
         env:
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
+          EXPECTED: ${{ needs.plan.outputs.expected }}
         run: |
+          # Nov 12 (KPC owner, 2026-11-11): --planned-groups = every planned country built in a part, else NOTHING is written (exit 1); the
+          # step summary gets one table: country | part present | verdict | joined or kept from main | why
           # Nov 11 (KPC owner, 2026-11-11): per country from its owning part, fail closed (kpc_world_key_join.py): one country in two parts,
           # a part carrying a country it does not own, or two parts changing one key of a shared file differently = exit 1, nothing written.
           # Nov 11 (KPC owner, 2026-11-11, run 43082247085 saved on a red gate): --gate = only the countries of a part whose verdict says green, or
           # that are not among its moved-aside copies, are joined; no verdict / an unknown gate / changed files = that part's countries held.
-          python3 .github/scripts/kpc_world_key_join.py parts/world-key-part-* --gate --held-out /tmp/world-held.txt --out data/world-key --bounds data/world-bounds --failed-out /tmp/world-failed.txt
+          python3 .github/scripts/kpc_world_key_join.py parts/world-key-part-* --gate --held-out /tmp/world-held.txt --out data/world-key --bounds data/world-bounds --failed-out /tmp/world-failed.txt --planned-groups "$PLAN_GROUPS" --expected "$EXPECTED"
           # Owner rule, 2026-11-10: a planned country with no part (or not in its part's done.txt) was not built: named failed
           python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS" --built-file parts/world-key-part-*/done.txt >> /tmp/world-failed.txt
           sort -u -o /tmp/world-failed.txt /tmp/world-failed.txt
+      - name: Master gate verdict of the join (Nov 11, fail closed) - a held country was not saved; go red
+        # Nov 12 (KPC owner, 2026-11-11): BEFORE every step that writes or saves; each of them needs this step to have passed
+        id: join_verdict
+        if: ${{ !cancelled() && needs.build.result == 'success' && steps.tonight.outcome == 'success' }}
+        run: |
+          if [ -s /tmp/world-held.txt ]; then
+            echo "::error title=Master gate::held, NOTHING saved this run (main keeps every previous key file): $(cut -d' ' -f1 /tmp/world-held.txt | tr '\n' ' ')"
+            exit 1
+          fi
       - name: Tonight's list (the plan job's, again)
         env:
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
@@ -384,7 +407,7 @@ jobs:
           fi
           true
       - name: Join check (Nov 6 improvements 4, v2) - HOLD joins whose nearest outline part is over 15 km from the pin (not person-approved, not a trail) before the stamp; mark acres outside 0.5x-2x 'suspect'
-        if: ${{ steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
+        if: ${{ !cancelled() && needs.build.result == 'success' && steps.join_verdict.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         id: kept_green_joincheck
         continue-on-error: true
         env:
@@ -398,15 +421,27 @@ jobs:
           GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .as 2>/dev/null && git -C .as sparse-checkout set --no-cone data/answer-sheet 2>/dev/null && git -C .as checkout -q 2>/dev/null || { kpc_rc=$?; echo "::error title=Join check::KPC-Data answer sheet (public, read-only) not read (exit $kpc_rc): its exemptions are empty this build (more joins held)"; echo "Join check - KPC-Data answer sheet not read (exit $kpc_rc): its exemptions are empty this build (more joins held)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           python3 .github/scripts/kpc_join_check.py || { kpc_rc=$?; echo "::warning title=Join check::stopped (exit $kpc_rc); the key build is not affected"; }
           rm -rf .as
+      - name: Review files - the expected holds' rows come back from main (Nov 12, KPC owner, 2026-11-11)
+        # the join check writes held-joins.* / join-check.* whole from this run's changed key files only; a country kept from main
+        # (expected hold) keeps its rows byte for byte; a file that cannot be split per country is not written (main's copy kept)
+        id: keep_rows
+        if: ${{ !cancelled() && needs.build.result == 'success' && steps.join_verdict.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
+        env:
+          EXPECTED: ${{ needs.plan.outputs.expected }}
+        run: |
+          [ -z "$EXPECTED" ] || python3 .github/scripts/kpc_world_key_join.py keep-rows --countries "$EXPECTED" --review data/world-key/review
       - name: BUILD STAMP (Brandon Nov 2) - this build's id, chat 11 grades only this id
-        if: ${{ steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
+        if: ${{ !cancelled() && needs.build.result == 'success' && steps.join_verdict.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         env:
           KPC_BUILD_FAILED_FILE: /tmp/world-failed.txt
+          KPC_HELD_EXPECTED: ${{ needs.plan.outputs.expected }}   # Nov 12: kept from main, not rebuilt: complete false, held_expected
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
         run: python3 .github/scripts/kpc_key_freeze.py stamp world-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         # Nov 11 (KPC owner, 2026-11-11): only after the join itself finished (a join that stopped part way leaves no 'built' and saves nothing)
-        if: ${{ always() && steps.tonight.outcome == 'success' && steps.tonight.outputs.built != '0' }}
+        # Nov 12 (KPC owner, 2026-11-11): never on a cancel (a cancel mid-join skips this step: nothing half-written is committed), only after
+        # a green build of every shard, the join's gate verdict passed, and the review rows of expected holds were put back
+        if: ${{ !cancelled() && needs.build.result == 'success' && steps.join_verdict.outcome == 'success' && steps.keep_rows.outcome != 'failure' && steps.tonight.outcome == 'success' && steps.tonight.outputs.built != '0' }}
         run: |
           # Nov 3: only the countries built tonight come off the list (a failed one, or one BOT W added during the build, stays for next night)
           if [ -n "$NIGHT_LIST" ] && [ -f data/world-key/answers-countries.txt ]; then
@@ -420,7 +455,7 @@ jobs:
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" KPC_SAVE_SKIP="data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/ca-key/answers-provinces.txt data/world-key/overrides.json data/world-key/answers-applied.json data/world-key/extra-layers.json" KPC_SAVE_WORDS="data/world-key/answers-countries.txt" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'World answer key' - -- data/world-key data/status
       - name: Saved outlines to the branch world-bounds (one commit, replaced each time; Brandon Oct 31 7:24 PM)
-        if: ${{ always() && steps.tonight.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
+        if: ${{ !cancelled() && needs.build.result == 'success' && steps.join_verdict.outcome == 'success' && steps.keep_rows.outcome != 'failure' && steps.tonight.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
         id: kept_green_1
         continue-on-error: true
         run: |
@@ -431,13 +466,6 @@ jobs:
           cd $B && git init -q && git checkout -q -b world-bounds && git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -qm "World saved outlines ($(date -u +%F)): one commit, replaced every rebuild" \
             && git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" world-bounds && echo "::notice title=World outlines::branch world-bounds replaced ($(du -sh data/world-bounds | cut -f1))"
           true
-      - name: Master gate verdict of the join (Nov 11, fail closed) - a held country was not saved; go red
-        if: always()
-        run: |
-          if [ -s /tmp/world-held.txt ]; then
-            echo "::error title=Master gate::held, NOT saved this run (main keeps their previous key files): $(cut -d' ' -f1 /tmp/world-held.txt | tr '\n' ' ')"
-            exit 1
-          fi
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
@@ -471,7 +499,8 @@ jobs:
     # owner rule, 2026-11-10: dispatch is the ONLY path to the post-key check. Not for a cancelled or skipped build.
     needs: [plan, join]
     # Nov 11 (KPC owner, 2026-11-11): and only when the join saved a country (a1b6d54 checked a red run's save); nothing saved = no check
-    if: ${{ !cancelled() && needs.join.result != 'cancelled' && needs.join.result != 'skipped' && needs.join.outputs.built != '0' && needs.join.outputs.built != '' }}
+    # Nov 12 (KPC owner, 2026-11-11): and only when the join job was green (a join red on its gate verdict saved nothing)
+    if: ${{ !cancelled() && needs.join.result == 'success' && needs.join.result != 'cancelled' && needs.join.result != 'skipped' && needs.join.outputs.built != '0' && needs.join.outputs.built != '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:

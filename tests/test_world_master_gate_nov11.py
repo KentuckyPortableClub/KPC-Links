@@ -292,7 +292,8 @@ check('join: the parts are put together with --gate and the held list', 'kpc_wor
 save = next(s for s in js if s.get('name') == 'Save')
 check('join: Save only after a finished join with something built', "steps.tonight.outcome == 'success'" in save['if'] and "steps.tonight.outputs.built != '0'" in save['if'])
 jg = next(s for s in js if s.get('name', '').startswith('Master gate verdict of the join'))
-check('join: a held country makes the join red (the run ends red)', jg['if'] == 'always()' and '/tmp/world-held.txt' in jg['run'] and 'exit 1' in jg['run'])
+# Nov 12 (KPC owner, 2026-11-11): the join verdict now runs before Save (never on a cancel), and Save needs it to have passed
+check('join: a held country makes the join red (the run ends red)', "!cancelled()" in jg['if'] and jg.get('id') == 'join_verdict' and '/tmp/world-held.txt' in jg['run'] and 'exit 1' in jg['run'])
 pc = W['jobs']['postcheck']['if']
 check('postcheck (the "Key check after the key build" commit): only when the join saved a country', "needs.join.outputs.built != '0'" in pc and "needs.join.outputs.built != ''" in pc
       and W['jobs']['join']['outputs']['built'] == '${{ steps.tonight.outputs.built }}')
