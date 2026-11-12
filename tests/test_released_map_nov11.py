@@ -164,5 +164,5 @@ import yaml
 y = yaml.safe_load(wf); on = y.get('on') or y.get(True)
 check('only an account in KPC_RELEASE_ACTORS may release; an empty list releases nothing', 'ALLOWED: ${{ vars.KPC_RELEASE_ACTORS }}' in wf and wf.index('KPC_RELEASE_ACTORS. Nothing was released') < wf.index('kpc_release.py --area'))
 check('the release workflow is by hand only, one commit, and takes a commit on main', list(on) == ['workflow_dispatch'] and wf.count('git commit') == 1
-      and 'merge-base --is-ancestor "$SOURCE_SHA" origin/main' in wf and on['workflow_dispatch']['inputs']['area']['options'] == ['US', 'CA', 'world'])
+      and 'merge-base --is-ancestor "$SOURCE_SHA" origin/main' in wf and on['workflow_dispatch']['inputs']['area']['options'] == ['US', 'CA', 'KY', 'world'])   # Nov 11 job 3: + KY (owner's OK patch)
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

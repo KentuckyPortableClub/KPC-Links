@@ -1,6 +1,8 @@
 name: Release map files (by hand)
 # KPC owner, 2026-11-11: the public map reads data/released/ only. Key runs and PRs change the working folders (data/outlines, data/us-key,
 # data/ca-key, data/world-key); nothing reaches the map until a person runs this with the commit to release.
+# Nov 11 (job 3, needs the owner's OK): CA also releases the Canada park outlines (data/canada-bounds, listed in
+# data/released/canada-bounds/INDEX.json); KY releases data/ky-answer-key.json and the root ky-*.geojson layers (data/released/ky/).
 # By hand only: no schedule, no push trigger, and no other workflow starts it. One commit per run.
 on:
   workflow_dispatch:
@@ -10,7 +12,7 @@ on:
         required: true
         type: choice
         default: US
-        options: [US, CA, world]
+        options: [US, CA, KY, world]
       source_sha:
         description: The full commit sha on main whose working files are released
         required: true
