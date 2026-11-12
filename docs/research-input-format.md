@@ -69,3 +69,18 @@ SURE goes to Quality; one still stuck stays on the owner short list with its rea
 ## Converter
 `python3 .github/scripts/kpc_research_from_xlsx.py <book.xlsx> <out.csv> --sheets US,Canada --source "..."` turns the owner no-ID
 workbooks (and the "KPC held (19)" sheet style) into this format. First real input: `data/research-inbox/nov9-brandon-no-id-*.csv`.
+
+## Answers and solved ledger (Nov 11 2026)
+`data/research-inbox/answers/` holds the Nov 5 and Nov 11 mystery-park answers, the prepared lists, the sources ledger, the settled negatives and
+`solved-ledger.csv` (one row per park; read `answers/README.md` first). It is a sub-folder on purpose: the checker reads only the batches straight in
+`data/research-inbox/` (`inbox_files()`), so nothing under `answers/` or `results/` is ever treated as a batch.
+
+A solved park (`released-key`, `settled-match`, `settled-no-boundary`: `classify_solved` in `kpc_research_inbox.py`) is finished research and is never on a search list
+(`answers/search-list.csv`). If it has no owner decision pending it is also not read, not judged and not handed out again: the run reports it as `SOLVED` with its
+official id, drops it from the retry list and leaves it off `brandon-list.md`. A solved match that still waits on an owner yes (`owner_decision` = pending: the Nov 5 row
+asked the owner to confirm, a National Register listing boundary, FR-14979) is not re-researched but stays on the retry list and the short list with its hold intact.
+`other`, `wrong pin`, blank, and a match that rested only on a removed WDPA lead stay open.
+Rebuild both files after new answers are filed: `python3 tools/kpc_build_solved_ledger.py ledger data/research-inbox/answers`.
+
+WDPA / Protected Planet is a lead only. No id or address of it may sit in a tracked file; a run also scrubs any such id or address from what it writes.
+`tests/test_solved_ledger_nov11.py` fails if one comes back.
