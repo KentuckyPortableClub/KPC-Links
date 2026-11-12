@@ -187,11 +187,20 @@ def main():
     except Exception:  # noqa: BLE001
         old = {}
     status = {}
+    def kept():
+        return [x for x in old.get('stations', []) if x.get('end', '') >= TODAY.isoformat()]
     try:
         st = arrl()
         status['ARRL'] = 'ok (%d)' % len(st)
+        # Nov 11: page 1 with no listing in it (ARRL changed its page, a block page, an empty answer) ends arrl() quietly with an empty list,
+        # and that used to be saved as 'ARRL ok (0)': every special event station vanished from the Events page. A 75-day window with
+        # nothing in it is not real, so with stations on file the answer is treated like a failed read: the old stations stay, and it says so.
+        if not st and kept():
+            st = kept()
+            status['ARRL'] = 'returned no stations (page changed or blocked?), kept %d' % len(st)
+            notice('Special events', 'ARRL returned no stations; kept the %d on file' % len(st))
     except Exception as e:  # noqa: BLE001
-        st = [x for x in old.get('stations', []) if x.get('end', '') >= TODAY.isoformat()]
+        st = kept()
         status['ARRL'] = 'failed, kept %d: %s' % (len(st), e)
         log('ARRL FAILED', e)
     data = {'stations': st, 'yearly': yearly(), 'status': status}

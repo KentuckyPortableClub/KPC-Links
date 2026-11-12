@@ -9,6 +9,7 @@ a program POTA doesn't answer for."""
 import json, glob, time, urllib.request, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pin_guard as PG   # Nov 11: a POTA pin that changed is recorded; an unusable one keeps the last good pin
 
 UA = {'User-Agent': 'KPC North America pins (kentuckyportableclub.github.io)'}
 # POTA program prefixes (ISO codes since POTA's 2025 change) for North America outside US + Canada
@@ -45,11 +46,12 @@ except Exception:
     old = {'rows': []}
 oldpota = {r[1]: r for r in old.get('rows', []) if r[0] == 'POTA'}
 
-pota, byprog, failed = {}, {}, set()
+pota, byprog, failed, events, locs_failed = {}, {}, set(), [], False
 try:
     locs = get('https://api.pota.app/locations')
 except Exception as e:
-    locs = []; note('POTA locations', f'failed: {str(e)[:100]}')
+    locs = []; locs_failed = True; note('POTA locations', f'failed: {str(e)[:100]}')
+if not locs_failed and not isinstance(locs, list): locs, locs_failed = [], True   # an answer that is not a list is a failed read, not 'no locations'
 want = [l['locationDesc'] for l in locs if str(l.get('locationDesc', '')).split('-')[0] in POTA_NA
         or l.get('locationDesc') in ('US-PR', 'US-VI')]  # Puerto Rico + US Virgin Islands sit in POTA's US program
 for desc in sorted(set(want)):
@@ -57,19 +59,40 @@ for desc in sorted(set(want)):
     try:
         for p in get(f'https://api.pota.app/location/parks/{desc}'):
             ref = p.get('reference', '')
+            if not ref or ref in pota: continue
+            name = (p.get('name') or '').strip()
             try:
-                la, lo = round(float(p['latitude']), 5), round(float(p['longitude']), 5)
+                raw = (round(float(p['latitude']), 5), round(float(p['longitude']), 5))
             except Exception:
-                continue
-            if ref and ref not in pota:
-                pota[ref] = ['POTA', ref, (p.get('name') or '').strip(), la, lo, 'https://pota.app/#/park/' + ref]
-                byprog[pre] = byprog.get(pre, 0) + 1
+                raw = None   # listed without a number: the guard keeps the last good pin if there is one
+            o = oldpota.get(ref)
+            pin, ev = PG.decide(ref, (o[3], o[4]) if o else None, raw, 'northam', name)   # the pin follows POTA; a change is recorded, junk keeps the last good pin
+            if ev: events.append(ev)
+            if pin is None: pin = raw          # no earlier pin: as before (a 0,0 goes on for the key to mark; nothing at all = skipped)
+            if pin is None: continue
+            pota[ref] = ['POTA', ref, name, pin[0], pin[1], 'https://pota.app/#/park/' + ref]
+            byprog[pre] = byprog.get(pre, 0) + 1
         time.sleep(.4)
     except Exception as e:
         failed.add(pre); note(desc, f'failed: {str(e)[:100]}')
-for ref, r in oldpota.items():  # keep last week's parks for a program that failed this time
-    if ref not in pota and (ref.split('-')[0] in failed or any(f.startswith('US-') for f in failed) and ref.startswith('US-')):
-        pota[ref] = r
+# Nov 11: POTA's list of locations did not come (or was not a list): every program is a failed read, so last night's POTA pins stay.
+# Before this, the file was rewritten with no POTA rows at all.
+if locs_failed:
+    pota.update(oldpota); note('POTA', f'locations list not read: kept all {len(oldpota)} last pins')
+else:
+    for ref, r in oldpota.items():  # keep last week's parks for a program that failed this time
+        if ref not in pota and (ref.split('-')[0] in failed or any(f.startswith('US-') for f in failed) and ref.startswith('US-')):
+            pota[ref] = r
+    # Nov 11: a program that answered but came back much shorter (the same 50% rule kpc_world_pota.py uses) is a bad read, not retirements
+    _pre = lambda ref: ref.split('-')[0]
+    oc, nc = {}, {}
+    for ref in oldpota: oc[_pre(ref)] = oc.get(_pre(ref), 0) + 1
+    for ref in pota: nc[_pre(ref)] = nc.get(_pre(ref), 0) + 1
+    short = sorted(k for k, n in oc.items() if n >= 10 and nc.get(k, 0) < 0.5 * n)
+    if short:
+        note('Short programs', 'kept last pins for ' + ', '.join(short))
+        for ref, r in oldpota.items():
+            if ref not in pota and _pre(ref) in short: pota[ref] = r
 rows = sorted(pota.values(), key=lambda r: r[1])
 
 nw = 0
@@ -101,4 +124,5 @@ try: _was = json.load(open('data/northam.json')).get('rows')
 except Exception: _was = None
 if rows != _was:   # nightly (Oct 23): no commit when nothing changed
     save_json('data/northam.json', {'rows': rows})
+PG.record(events)
 note('North America pins', f"{len(pota)} POTA parks ({', '.join(f'{k} {v}' for k, v in sorted(byprog.items()))}), {nw} WWFF, {len(seen)} SOTA")

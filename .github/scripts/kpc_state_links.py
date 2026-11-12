@@ -7,6 +7,7 @@ Park details are fetched once and reused; RECHECK=1 fetches them all again. STAT
 import json, os, re, time, urllib.request, urllib.parse, datetime, collections
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pin_guard as PG   # Nov 11: a POTA pin that changed is recorded (data/parkinfo/pin-changes.json); an unusable one keeps the last good pin
 STATES = [] if (os.environ.get('STATES') or '').strip().upper() == 'NONE' else (os.environ.get('STATES') or 'TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SC SD TX UT VT WA WY').split()  # STATES=NONE = only the PROGS programs
 UA = {'User-Agent': 'KPC park links (kentuckyportableclub.github.io)'}
 OUT = 'data/parkinfo'; os.makedirs(OUT, exist_ok=True)
@@ -31,6 +32,18 @@ def fixurl(u):
     u = clean(u)
     if u and not re.match(r'^https?://', u, re.I) and re.match(r'^[\w.-]+\.[a-z]{2,}(/|$)', u, re.I): u = 'https://' + u
     return u if re.match(r'^https?://', u, re.I) else ''
+PIN_EVENTS = []
+def pin_of(ref, p, o, name=''):
+    """Nov 11: the pin follows POTA's park list (rounded to 5 decimals, as before). A pin POTA sent that cannot be one (none, 0,0, past 90 /
+    180, or the old pin turned around) keeps the row's last good pin; a pin that moved is recorded. No earlier pin: as before."""
+    try: raw = (round(float(p.get('latitude')), 5), round(float(p.get('longitude')), 5))
+    except Exception: raw = None  # noqa: BLE001
+    oldpin = (o[5], o[6]) if o and len(o) > 6 and o[5] is not None and o[6] is not None else None
+    pin, ev = PG.decide(ref, oldpin, raw, 'parkinfo', name)
+    if ev: PIN_EVENTS.append(ev)
+    if pin is None: pin = raw
+    if pin is None: return (o[5], o[6]) if o and len(o) > 6 else (None, None)
+    return pin
 total = 0
 COORD = {}
 MISSED = {'HI': ['US-0121']}   # Kure Atoll: in POTA's park data, missing from api.pota.app/location/parks/US-HI (checked Nov 8)
@@ -55,8 +68,7 @@ for st in STATES:
                 web = web or fixurl(d.get('website'))
             except Exception: typ, act, acc = (o[2], o[3], o[4]) if o else ('', '', '')
             time.sleep(.25)
-        try: la, lo = round(float(p.get('latitude')), 5), round(float(p.get('longitude')), 5)
-        except Exception: la, lo = (o[5], o[6]) if o and len(o) > 6 else (None, None)
+        la, lo = pin_of(ref, p, o, clean(p.get('name')))
         n_act = p.get('activations'); n_try = p.get('attempts'); n_q = p.get('qsos')
         web = web or HANDWEB.get(ref, {}).get('web', '')   # Oct 25: official pages found by hand for parks POTA lists with no website (data/parkinfo-web.json, chat 2)
         parks[ref] = [clean(p.get('name')), web, typ, act, acc, la, lo,
@@ -69,8 +81,7 @@ for st in STATES:
             d = get('https://api.pota.app/park/' + urllib.parse.quote(ref)); fetched += 1
             if not d or str(d.get('active', 1)) == '0': continue
             o = old.get(ref) or []
-            try: la, lo = round(float(d.get('latitude')), 5), round(float(d.get('longitude')), 5)
-            except Exception: la, lo = (o[5], o[6]) if len(o) > 6 else (None, None)
+            la, lo = pin_of(ref, d, o or None, clean(d.get('name')))
             parks[ref] = [clean(d.get('name')), fixurl(d.get('website')) or HANDWEB.get(ref, {}).get('web', ''), clean(d.get('parktypeDesc')),
                           clean(d.get('activationMethods')), clean(d.get('accessMethods')), la, lo, None, None, None]
         except Exception as e: note(f'{ref} FAILED', e)
@@ -79,6 +90,8 @@ for st in STATES:
     if doms:
         dom, n = doms.most_common(1)[0]
         if n >= 3: site = 'https://' + dom
+    if len(old) >= 10 and len(parks) < 0.5 * len(old):   # Nov 11: an answer of a state under half its size (an empty list with a 200) is a bad read, not retirements
+        note(f'US-{st} kept', f'{len(parks)} parks read vs {len(old)} last time: last week\'s file kept'); continue
     data = {'state': st, 'updated': datetime.date.today().isoformat(), 'stateSite': site, 'parks': parks}
     save_json(path, data)
     withweb = sum(1 for v in parks.values() if v[1])
@@ -122,8 +135,7 @@ for pre in PROGS:
                     web = web or fixurl(d.get('website'))
                 except Exception: typ, act, acc = (o[2], o[3], o[4]) if o else ('', '', '')
                 time.sleep(.25)
-            try: la, lo = round(float(p.get('latitude')), 5), round(float(p.get('longitude')), 5)
-            except Exception: la, lo = (o[5], o[6]) if o and len(o) > 6 else (None, None)
+            la, lo = pin_of(ref, p, o, clean(p.get('name')))
             n_act = p.get('activations'); n_try = p.get('attempts'); n_q = p.get('qsos')
             web = web or HANDWEB.get(ref, {}).get('web', '')   # Oct 25: official pages found by hand (data/parkinfo-web.json)
             parks[ref] = [clean(p.get('name')), web, typ, act, acc, la, lo,
@@ -133,6 +145,8 @@ for pre in PROGS:
         if doms:
             dom, n = doms.most_common(1)[0]
             if n >= 3: sites[sub] = 'https://' + dom
+    if len(old) >= 10 and len(parks) < 0.5 * len(old):   # Nov 11: same rule for a program
+        note(f'{pre} kept', f'{len(parks)} parks read vs {len(old)} last time: last week\'s file kept'); continue
     save_json(path, {'program': pre, 'sites': sites, 'parks': parks})
     note(f'{pre} parks', f'{len(parks)} parks in {len(descs)} areas, {sum(1 for v in parks.values() if v[1])} with a website, {fetched} details fetched{f", {failed} areas failed" if failed else ""}; park sites {sites}')
 # small index for the site search box (kpc-search.js), built from EVERY state file on disk.
@@ -154,4 +168,5 @@ for f in sorted(os.listdir(OUT)):
         rows.append([ref, v[0], d['state'], round(la, 3) if la is not None else None, round(lo, 3) if lo is not None else None, ti[t], v[7] if len(v) > 7 else None])
 rows.sort(key=lambda r: (r[2], r[1]))
 save_json(f'{OUT}/index.json', {'v': 2, 'types': types, 'rows': rows})
+PG.record(PIN_EVENTS, path=OUT + '/pin-changes.json')   # Nov 11: POTA pins that moved, or that POTA sent unusable (kept at the last good pin)
 note('Park links done', f'{total} parks in {len(STATES)} states')

@@ -13,6 +13,7 @@ Anything that doesn't match a place in kpc-campgrounds.json is shown in the "Sta
 Every note also carries st (2-letter state) and ref (park number) when they can be worked out, so places outside Kentucky
 show on their state's list in the Activators Lounge (park number, then GPS point-in-state, then the Town or county words)."""
 import csv, io, json, os, re, hashlib, sys, urllib.request, datetime
+import kpc_net_guard; kpc_net_guard.install()   # Nov 11: before the first request (it used to sit below the sheet download)
 import kpc_preapproved as PA
 PRE = PA.load()
 URL = os.environ.get('CAMPGROUND_SHEET_CSV', '').strip()
@@ -35,8 +36,18 @@ C = {'ts': col('timestamp'), 'call': col('call sign'), 'kind': col('what are you
      'ant': col('room for antennas', 'antenna'), 'shade': col('shade'), 'amen': col('other amenities', 'amenities'), 'photo': col('photo'), 'app': col('approved')}
 _miss = [k for k, v in C.items() if v is None and k not in ('app',)]
 if _miss: notice('Sheet columns not found (check the question names start with these words): ' + ', '.join(_miss) + '. Columns seen: ' + ' | '.join(h[:30] for h in H))
+# Nov 11: a sheet that does not have the review columns (a form question renamed, 'Publish to web' turned off so Google sends a web page,
+# the wrong link) used to give ZERO reviews, and the run then saved that: every published review vanished from the site. The file on the
+# site is kept and the run says why. A person has to fix the link or the question name, so this is the one red exit of this bot.
+_core = [n for n, ok_ in (('Call sign', C['call'] is not None), ('Campground or cabin / Campground name', C['place'] is not None or C['oname'] is not None),
+                          ('Your review / Rating', C['text'] is not None or C['rating'] is not None)) if not ok_]
+if _core:
+    print('::error title=Campground reviews::the sheet has no column for: ' + ', '.join(_core) + '. Columns seen: ' + ' | '.join(h[:30] for h in H[:12])
+          + '. Nothing was changed; the reviews already on the site stay. Check the CAMPGROUND_SHEET_CSV link and the form question names.')
+    sys.exit(1)
 PARKCOLS = [i for i, h in enumerate(H) if 'park number' in h]   # 'Park number' (inside a park) / 'Near by park number' (outside one)
 def parkno(r):
+    parkno.near = False   # Nov 11: set before the loop (a form with no park-number column crashed 'if ref and parkno.near')
     for i in PARKCOLS:
         parkno.near = 'near' in H[i]
         m = re.search(r'\b([A-Z]{1,3})-?0*(\d{1,5})\b', (r[i] if i < len(r) else '').upper())
@@ -68,7 +79,6 @@ def find_place(txt):
 # ---- state (st) and park number (ref) for every review / new place, so a place outside Kentucky shows on its state's list
 # (Brandon Oct 24: state park camping for every state). Order: park number -> GPS (point in state) -> the "Town or county" words.
 import glob
-import kpc_net_guard; kpc_net_guard.install()
 REF_ST = {r: 'KY' for r, _, _ in PLACES}
 for _f in glob.glob('data/parkinfo/US-??.json'):
     try:

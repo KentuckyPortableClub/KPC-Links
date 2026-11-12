@@ -280,6 +280,8 @@ if TODAYS and not DRY:
     try:
         import kpc_search_lists as SL
         notice('Search lists', json.dumps(SL.update(None if POTA_FAILED else TODAYS.get('pota'), TODAYS.get('kff'), TODAYS.get('sota'))))
+        import kpc_pin_guard as PG   # Nov 11: POTA pins that moved upstream, or that the Kentucky club pin differs from, are written to data/pota-pin-changes.json
+        PG.record(SL.PINLOG)
         if 'POTA' in SL.GONE:   # a US park POTA took off its list: the card says 'Retired by POTA' (data/retired-refs.json)
             import kpc_retired_refs as RR
             RR.record(SL.GONE['POTA'], set(TODAYS['pota']), 'us', TODAY)

@@ -6,6 +6,7 @@ Source: api.pota.app/locations, then /location/parks/<locationDesc> for every lo
 last month's rows (read back from the old tiles)."""
 import json, os, glob, math, time, datetime, urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pin_guard as PG   # Nov 11: a POTA pin that changed is recorded; an unusable one keeps the last good pin
 
 UA = {'User-Agent': 'KPC world POTA pins (kentuckyportableclub.github.io)'}
 OUT = 'data/pota/t'
@@ -37,19 +38,28 @@ for f in glob.glob(OUT + '/*.json'):
 locs = get('https://api.pota.app/locations')
 want = sorted({l['locationDesc'] for l in locs if l.get('locationDesc') and not str(l['locationDesc']).startswith(('US-', 'CA-'))})
 note('Locations', f'{len(want)} POTA locations outside the US and Canada')
-rows, failed, byp = {}, [], {}
+rows, failed, byp, events = {}, [], {}, []
 t0 = time.time()
 for i, desc in enumerate(want):
     try:
         for p in get(f'https://api.pota.app/location/parks/{desc}') or []:
             ref = str(p.get('reference') or '').upper()
+            if not ref:
+                continue
             try:
-                la, lo = round(float(p['latitude']), 5), round(float(p['longitude']), 5)
+                raw = (round(float(p['latitude']), 5), round(float(p['longitude']), 5))
             except Exception:
+                raw = None
+            # Nov 11: a pin POTA sent that cannot be a pin (none, 0,0, past 90 / 180, swapped) used to DROP the park for the night, which
+            # then looked like a retirement ('Retired by POTA' card, pin gone). Now the last good pin stays and the glitch is recorded;
+            # a park that never had a good pin is skipped as before. A pin that changed is published (it follows POTA) and recorded.
+            o = old.get(ref)
+            pin, ev = PG.decide(ref, (o[2], o[3]) if o else None, raw, 'world', (p.get('name') or '').strip())
+            if ev:
+                events.append(ev)
+            if pin is None:
                 continue
-            if not ref or (la == 0 and lo == 0) or abs(la) > 90 or abs(lo) > 180:
-                continue
-            rows[ref] = [ref, (p.get('name') or '').strip(), la, lo]
+            rows[ref] = [ref, (p.get('name') or '').strip(), pin[0], pin[1]]
     except Exception as e:
         failed.append(desc)
     time.sleep(.25)
@@ -72,6 +82,7 @@ if short:
         if ref not in rows and pre(ref) in short: rows[ref] = r
 if len(rows) < 0.8 * len(old):
     note('Refused', f'only {len(rows)} parks this time vs {len(old)} last time: kept the old files'); raise SystemExit(0)
+PG.record(events)
 # parks POTA took off its list: the pin goes tonight, the card says 'Retired by POTA' (data/retired-refs.json)
 if old:
     import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

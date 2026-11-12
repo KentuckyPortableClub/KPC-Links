@@ -23,6 +23,8 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A data/pota data/retired-refs.json 2>/dev/null || git add -A data/pota
+          git add data/pota-pin-changes.json 2>/dev/null || true   # ok: only exists once a POTA pin has changed (Nov 11, kpc_pin_guard.py)
+          git add data/status 2>/dev/null || true   # ok: an optional file (the pin log's status stamp)
           if git diff --cached --quiet; then exit 0; fi
           git commit -q -m 'World POTA pins'
           { for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q origin HEAD:main && exit 0; echo "push try $i failed"; sleep $((i*15)); done; echo "::error title=Save::not saved after every try; the next run tries again"; }

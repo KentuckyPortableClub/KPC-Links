@@ -23,6 +23,27 @@ for r in csv.DictReader(io.StringIO(raw)):
         la = lo = None
     out.setdefault(ref.split('-')[0], []).append([ref, f('name'), la, lo, f('website'), f('state'), f('county')])
 d = pathlib.Path('data/wwff'); d.mkdir(parents=True, exist_ok=True)
+# Nov 11: the download comes back with status 200 even when it is a web page, an empty file or a cut-off list, and this script then
+# DELETED every program file and tile that was not in the answer (and kpc_canada.py / kpc_northam.py read these files for their WWFF rows).
+# Same rules as the world POTA bot: a list under 80% of what is on disk is refused (nothing is touched, and the log says so); a program
+# with 10+ references that comes back under half its size, or not at all, keeps its last file.
+def _on_disk():
+    have = {}
+    for fn in d.glob('*.json'):
+        if fn.name == 'index.json': continue
+        try: have[fn.stem] = json.loads(fn.read_text(encoding='utf-8'))
+        except Exception: pass  # noqa: BLE001
+    return have
+_have = _on_disk()
+_old_n, _new_n = sum(len(v) for v in _have.values()), sum(len(v) for v in out.values())
+if _old_n >= 1000 and _new_n < 0.8 * _old_n:
+    print('::warning title=WWFF directory::only %d active references read vs %d on file: the download looks cut off or is not the list. Nothing was changed; last week\'s files stay.' % (_new_n, _old_n))
+    sys.exit(0)
+_kept = []
+for _p, _rows in _have.items():
+    if len(_rows) >= 10 and len(out.get(_p, [])) < 0.5 * len(_rows):
+        out[_p] = _rows; _kept.append(_p)
+if _kept: print('::warning title=WWFF directory::program(s) %s came back much smaller or missing: last week\'s file kept.' % ', '.join(sorted(_kept)))
 keep = set()
 for p, rows in out.items():
     rows.sort()

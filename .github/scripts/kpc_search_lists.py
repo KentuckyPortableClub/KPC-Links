@@ -14,10 +14,12 @@ import json
 import pathlib
 import re
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
+import kpc_pin_guard as PG  # Nov 11: a POTA pin that changed (or that the site's club pin differs from) is recorded
 
 LOC, LKY, KY = pathlib.Path('locations.json'), pathlib.Path('locations-ky.json'), pathlib.Path('kpc-ky-data.json')
 US_SOTA = re.compile(r'^(W\d|K[HLP]\d)')
 GONE = {}   # after update(): {prog: {ref: name}} that left the official list today
+PINLOG = []   # after update(): pin events (kpc_pin_guard) the caller records with PG.record(); the Finder rows themselves are unchanged in shape
 
 
 def _ok(la, lo):
@@ -34,6 +36,7 @@ def update(pota=None, kff=None, sota=None, write=True):
     KS = {s['c']: s for s in ky.get('summits', [])}
     old = {(r[0], r[1]): r for r in rows}
     out, summary = [], {}
+    del PINLOG[:]
 
     def mine(r):   # is this row one of the programs being refreshed?
         if r[0] == 'POTA' and pota is not None and str(r[1]).startswith('US-'): return 'POTA'
@@ -58,7 +61,17 @@ def update(pota=None, kff=None, sota=None, write=True):
         def mk_p(ref, c, o):
             k = KP.get(ref)
             name = (k or {}).get('n') or c.get('name') or (o[2] if o else '')
-            la, lo = ((k['la'], k['lo']) if k else (c.get('la'), c.get('lo')))
+            raw = (c.get('la'), c.get('lo'))
+            if k:   # Kentucky: the club's own pin shows (Oct 23 design). When POTA's pin is a different place, say so (nothing is changed here)
+                ev = PG.club_pin_event(ref, (k['la'], k['lo']), raw, 'search-list', name)
+                if ev: PINLOG.append(ev)
+                la, lo = k['la'], k['lo']
+            else:
+                # Nov 11: the pin follows POTA; a change is recorded, and a pin POTA sent that cannot be one (past 90 / 180, or the old pin
+                # turned around) keeps the row's last good pin. Before: only a missing or 0,0 pin did.
+                pin, ev = PG.decide(ref, (o[3], o[4]) if o else None, raw, 'search-list', name)
+                if ev: PINLOG.append(ev)
+                la, lo = pin if pin else raw
             if not _ok(la, lo) and o: la, lo = o[3], o[4]
             if not _ok(la, lo): return None
             return ['POTA', ref, name, la, lo, 'https://next.pota.app/park/' + ref]
