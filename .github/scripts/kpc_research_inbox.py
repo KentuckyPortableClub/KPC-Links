@@ -330,6 +330,13 @@ OWNER_NOT_A_MATCH = {
 OWNER_UNSOLVED_WDPA = {'ZA-0085', 'ZA-0156', 'ZA-0157'}
 OWNER_UNSOLVED_WDPA_WHY = 'owner 2026-11-11: stays unsolved; the official id was a WDPA lead and was removed; needs a non-WDPA official id'
 OWNER_YES_NOV5_WHY = 'owner settled the Nov 5 confirm on 2026-11-11'
+# Recorded owner answers (Brandon accepted the recommendations in chat on 2026-11-11 at 21:16 CT).
+# File: data/research-inbox/answers/OWNER-ANSWERS-nov11.md
+OWNER_ANSWER_CITE = {
+    'US-10274': 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 7',
+    'FR-14979': 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 2',
+}
+OWNER_ANSWER_ITEM10 = 'owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 10'
 
 
 def classify_row(answer, official_id='', source_url='', key_location='', key_status='', wdpa_removed=False, confirm='', match_strength='', ref=''):
@@ -348,24 +355,29 @@ def classify_row(answer, official_id='', source_url='', key_location='', key_sta
             # a released-key official grade is not undone by this (none of today's not-a-match parks are released official)
             pass
         decision, why = 'no', OWNER_NOT_A_MATCH[ref]
+        cite = OWNER_ANSWER_CITE.get(ref, '')
         return {'skip_search': False, 'solved_basis': 'other-needs-person', 'owner_decision': decision,
-                'owner_decision_why': why, 'join_ready': '', 'join_note': why}
+                'owner_decision_why': why, 'owner_answer': cite, 'join_ready': '', 'join_note': why}
     pending = False
+    cite = ''
     if solved and basis == 'settled-match':
         if confirm:
             decision, why = 'yes', f'{OWNER_YES_NOV5_WHY} ({confirm})'
+            cite = OWNER_ANSWER_ITEM10
         elif str(match_strength).startswith('nrhp-listing-boundary'):
             pending, why = True, 'National Register listing boundary: not automatically the park'
             decision = 'pending'
     if not solved and ref in OWNER_UNSOLVED_WDPA:
         why = OWNER_UNSOLVED_WDPA_WHY
+        cite = OWNER_ANSWER_ITEM10
     law = match_strength == 'boundary-in-law-no-map-file'
     jr, note = '', ''
     if solved and answer == 'match':
         if pending: jr, note = 'no', 'owner decision pending'
         elif law: jr, note = 'no', 'boundary written in law only, no map file'
         else: jr, note = 'yes', ''
-    return {'skip_search': solved, 'solved_basis': basis, 'owner_decision': decision, 'owner_decision_why': why, 'join_ready': jr, 'join_note': note}
+    return {'skip_search': solved, 'solved_basis': basis, 'owner_decision': decision, 'owner_decision_why': why,
+            'owner_answer': cite, 'join_ready': jr, 'join_note': note}
 
 
 def load_ledger(root=ROOT, path=None):

@@ -168,3 +168,13 @@ MX-0140, MX-0145, MX-0176, MX-0181 (28–40 km) · NZ-0720 (33 km) · US-11309 (
 - Mexico: the id field holds the official category and name, not CONANP's numeric id.
 - Wisconsin unit pages (Pleasant Valley, Swinging Gate, Adell): the DNR map PDFs were linked but not opened.
 - France: the licence text of the extra Géoplateforme layers was not re-read tonight.
+
+## 13. Owner answers recorded Nov 11, 2026, 9:16 PM CT
+
+These questions are no longer open. Brandon accepted all 10 recommendations in chat at about 9:16 PM CT (America/Chicago) with the widget choice Yes, go with your answers. The accepted recommendations are filed at `data/research-inbox/answers/OWNER-ANSWERS-nov11.md`. The original owner-question notes, now marked Answered, are at `data/research-inbox/answers/OWNER-QUESTIONS.md`.
+
+Relevant items for this hand-back:
+
+- Item 2: FR-14979 (Vallée du Cousin, 13 km off) is taken off the live key until someone explains the pin. Ledger: `owner_decision=no`, `owner_answer` cites item 2.
+- Item 7: Palmito Ranch (US-10274) stays off. The National Register record is the whole 6,908-acre battlefield (the bigger place). Ledger: `owner_decision=no`, `owner_answer` cites item 7.
+- Item 10: the 56 Nov 5 matches that still asked the owner to confirm are settled yes and join ready; ZA-0085, ZA-0156 and ZA-0157 go back to unsolved. Ledger: `owner_answer` cites item 10.

@@ -6,7 +6,9 @@ Where the Nov 5 and Nov 11 mystery-park hand-backs are filed, so a solved park i
 
 | File | What it is |
 |---|---|
-| `solved-ledger.csv` | One row per park (832). `solved` yes/no, why (`solved_basis`), `owner_decision`, `join_ready`, the official id for a join, the official point, how strong the match is. Built by `tools/kpc_build_solved_ledger.py ledger`. |
+| `solved-ledger.csv` | One row per park (832). `solved` yes/no, why (`solved_basis`), `owner_decision`, `owner_answer` (the recorded owner-answer citation), `join_ready`, the official id for a join, the official point, how strong the match is. Built by `tools/kpc_build_solved_ledger.py ledger`. |
+| `OWNER-ANSWERS-nov11.md` | The recorded owner answers of Nov 11, 2026, about 9:16 PM CT (America/Chicago). Brandon accepted all 10 recommendations with the widget choice Yes, go with your answers. |
+| `OWNER-QUESTIONS.md` | The filed owner-question notes, now marked Answered, each citing the item in OWNER-ANSWERS-nov11.md. |
 | `search-list.csv` | The parks that are NOT solved: what a search list may hand out. Rebuilt with the ledger. |
 | `settled-negatives.json` / `.md` | Dead ends not to search again (and layers where a miss proves nothing). |
 | `nov11/` | The Nov 11 answers (256 rows, official point columns kept) and the notes that explain them. |
@@ -29,12 +31,12 @@ Two separate ideas, both in `classify_row` (which wraps `classify_solved`) in `.
 
 Not solved: `wrong pin`, `other`, blank, and a match with no official id or url. The latest answer is the Nov 11 answer when the park is in the Nov 11 file, else the Nov 5 answer. `search-list.csv` is exactly the parks that are not solved.
 
-**2. `owner_decision`:** `pending`, `yes`, `no`, or blank. `owner_decision_why` says why.
+**2. `owner_decision`:** `pending`, `yes`, `no`, or blank. `owner_decision_why` says why. `owner_answer` cites the recorded owner answer in `OWNER-ANSWERS-nov11.md` (Brandon accepted all 10 recommendations in chat on Nov 11, 2026, at about 9:16 PM CT, America/Chicago, widget Yes, go with your answers).
 
-- `pending`: research is finished but the owner has not said yes. Today this is the National Register listing-boundary matches that are still held (US-11820, US-12735, US-13474, US-8142, US-3493, US-10521, US-7975). A listing boundary is not automatically the park. A pending park is not re-researched (it is off `search-list.csv`) but it is NOT dropped from `needs-another-look.json` or `brandon-list.md`, and the inbox still judges it, so an existing hold stays intact.
-- `yes`: the 56 Nov 5 matches that still asked the owner to confirm, settled on 2026-11-11. They are join ready (unless a released-key park, which never waits).
-- `no`: the owner said this is not a match. US-10274 Palmito Ranch (the National Register record is the whole 6,908-acre battlefield, the bigger place; it needs the Texas Historical Commission site outline) and FR-14979 (the official record is 13 km from the pin; the live join comes off on the next world key run). These are not solved and they go on `search-list.csv`.
-- Blank, with a why only: ZA-0085, ZA-0156 and ZA-0157 stay unsolved (their official ids were WDPA-derived and were removed; they need a non-WDPA official id). Recorded 2026-11-11.
+- `pending`: research is finished but the owner has not said yes. Today this is the National Register listing-boundary matches that are still held (US-11820, US-12735, US-13474, US-8142, US-3493, US-10521, US-7975). A listing boundary is not automatically the park. A pending park is not re-researched (it is off `search-list.csv`) but it is NOT dropped from `needs-another-look.json` or `brandon-list.md`, and the inbox still judges it, so an existing hold stays intact. US-11820 and US-12735 were confirmed held under item 1; US-13474 under item 6.
+- `yes`: the 56 Nov 5 matches that still asked the owner to confirm, settled on 2026-11-11 (item 10). They are join ready (unless a released-key park, which never waits).
+- `no`: the owner said this is not a match. US-10274 Palmito Ranch (item 7: the National Register record is the whole 6,908-acre battlefield, the bigger place; it needs the Texas Historical Commission site outline) and FR-14979 (item 2: the official record is 13 km from the pin; the live join comes off on the next world key run). These are not solved and they go on `search-list.csv`.
+- Blank, with a why only: ZA-0085, ZA-0156 and ZA-0157 stay unsolved (item 10: their official ids were WDPA-derived and were removed; they need a non-WDPA official id). Recorded 2026-11-11.
 
 A released-key park never waits. Only solved parks with no pending owner decision leave the retry list, the short list and the inbox run.
 

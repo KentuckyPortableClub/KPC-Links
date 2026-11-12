@@ -143,7 +143,7 @@ for _tier, _refs in {
 }.items():
     for _r in _refs.split(): STRENGTH[_r] = _tier
 
-LEDGER_COLS = ['ref', 'name', 'country', 'state_province', 'answer', 'answer_from', 'solved', 'solved_basis', 'owner_decision', 'owner_decision_why', 'join_ready', 'join_note', 'source_list', 'key_status', 'key_location',
+LEDGER_COLS = ['ref', 'name', 'country', 'state_province', 'answer', 'answer_from', 'solved', 'solved_basis', 'owner_decision', 'owner_decision_why', 'owner_answer', 'join_ready', 'join_note', 'source_list', 'key_status', 'key_location',
                'key_joined_record', 'official_id', 'official_id_type', 'official_source_url', 'match_strength', 'confirm', 'candidate_id', 'candidate_id_type',
                'official_point_lat', 'official_point_lon', 'official_point_kind', 'official_point_id', 'official_point_source_url',
                'official_point_km_from_pota_pin', 'pin_vs_polygon', 'pin_distance_km', 'flags']
@@ -187,7 +187,7 @@ def build_ledger(ans):
         row = {
             'ref': ref, 'name': n5['name'], 'country': n5['country'], 'state_province': n5['state_province'], 'answer': answer, 'answer_from': frm,
             'solved': 'yes' if solved else 'no', 'solved_basis': basis, 'owner_decision': K['owner_decision'],
-            'owner_decision_why': K['owner_decision_why'], 'join_ready': K['join_ready'], 'join_note': K['join_note'], 'source_list': lst, 'key_status': key_status, 'key_location': key_loc,
+            'owner_decision_why': K['owner_decision_why'], 'owner_answer': K.get('owner_answer', ''), 'join_ready': K['join_ready'], 'join_note': K['join_note'], 'source_list': lst, 'key_status': key_status, 'key_location': key_loc,
             'key_joined_record': L.get('joined_record', ''),
             'official_id': oid if is_match else '', 'official_id_type': oty if is_match else '', 'official_source_url': url if is_match else '',
             'match_strength': strength, 'confirm': confirm,

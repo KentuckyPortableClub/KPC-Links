@@ -51,8 +51,8 @@ check(len(L) == 832 and len(LD) == 832, f'ledger has the 832 Nov 5 parks once ea
 check(all(r['answer'] in RI.ANSWER_WORDS for r in L), 'every ledger answer uses the exact vocabulary')
 def _again(r):
     K = RI.classify_row(r['answer'], r['official_id'], r['official_source_url'], r['key_location'], r['key_status'], 'WDPA lead removed' in r['flags'], r['confirm'], r['match_strength'], r['ref'])
-    return (r['solved'] == 'yes', r['solved_basis'], r['owner_decision'], r['owner_decision_why'], r['join_ready'], r['join_note']) == \
-           (K['skip_search'], K['solved_basis'], K['owner_decision'], K['owner_decision_why'], K['join_ready'], K['join_note'])
+    return (r['solved'] == 'yes', r['solved_basis'], r['owner_decision'], r['owner_decision_why'], r.get('owner_answer', ''), r['join_ready'], r['join_note']) == \
+           (K['skip_search'], K['solved_basis'], K['owner_decision'], K['owner_decision_why'], K.get('owner_answer', ''), K['join_ready'], K['join_note'])
 bad = [r['ref'] for r in L if not _again(r)]
 check(not bad, f'solved, owner_decision and join_ready in the file equal the rule recomputed from the row ({bad[:3]})')
 # the split: skip_search (research finished) is not the same as "no owner decision waiting"
@@ -79,6 +79,18 @@ check(LD['FR-14979']['solved'] == 'no' and LD['FR-14979']['owner_decision'] == '
 check(sum(r['owner_decision'] == 'yes' for r in L) == 56 and all(r['solved'] == 'yes' and r['join_ready'] == 'yes' for r in L if r['owner_decision'] == 'yes'), 'the 56 Nov 5 confirms are settled yes and join ready')
 for ref in ('ZA-0085', 'ZA-0156', 'ZA-0157'):
     check(LD[ref]['solved'] == 'no' and LD[ref]['solved_basis'] == 'match-rested-on-removed-wdpa-lead' and 'stays unsolved' in LD[ref]['owner_decision_why'], f'{ref}: stays unsolved (WDPA id removed)')
+ANS_FILE = ANS / 'OWNER-ANSWERS-nov11.md'
+Q_FILE = ANS / 'OWNER-QUESTIONS.md'
+check(ANS_FILE.is_file() and 'Yes, go with your answers' in ANS_FILE.read_text(encoding='utf-8'),
+      'OWNER-ANSWERS-nov11.md is filed and records the widget answer')
+check(Q_FILE.is_file() and Q_FILE.read_text(encoding='utf-8').count('**Answered**') >= 10,
+      'OWNER-QUESTIONS.md is filed and marks the questions as answered')
+check(all('item 10' in r['owner_answer'] and r['owner_answer'].startswith('owner chat 2026-11-11 21:16 CT') for r in L if r['owner_decision'] == 'yes'),
+      'the 56 Nov 5 yes rows cite OWNER-ANSWERS-nov11.md item 10')
+check('item 7' in LD['US-10274']['owner_answer'] and 'item 2' in LD['FR-14979']['owner_answer'],
+      'Palmito cites item 7 and FR-14979 cites item 2')
+check(all('item 10' in LD[ref]['owner_answer'] for ref in ('ZA-0085', 'ZA-0156', 'ZA-0157')),
+      'ZA-0085/0156/0157 cite item 10')
 law = [r for r in L if r['match_strength'] == 'boundary-in-law-no-map-file']
 check(len(law) == 9 and all(r['join_ready'] == 'no' and not r['owner_decision'] for r in law), 'the 9 law-only matches: join_ready = no, no owner decision')
 check(all(r['owner_decision'] == '' for r in L if r['solved_basis'] == 'released-key'), 'no released-key park is pending')
