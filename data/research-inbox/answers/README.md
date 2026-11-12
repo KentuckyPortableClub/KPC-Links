@@ -7,7 +7,7 @@ Where the Nov 5 and Nov 11 mystery-park hand-backs are filed, so a solved park i
 | File | What it is |
 |---|---|
 | `solved-ledger.csv` | One row per park (832). `solved` yes/no, why (`solved_basis`), `owner_decision`, `owner_answer` (the recorded owner-answer citation), `join_ready`, the official id for a join, the official point, how strong the match is. Built by `tools/kpc_build_solved_ledger.py ledger`. |
-| `OWNER-ANSWERS-nov11.md` | The recorded owner answers of Nov 11, 2026, about 9:16 PM CT (America/Chicago). Brandon accepted all 10 recommendations with the widget choice Yes, go with your answers. |
+| `OWNER-ANSWERS-nov11.md` | The recorded owner answers of Nov 11, 2026, about 9:16 PM CT (America/Chicago). The owner accepted all 10 recommendations with the widget choice Yes, go with your answers. The source record in that file names the chat. |
 | `OWNER-QUESTIONS.md` | The filed owner-question notes, now marked Answered, each citing the item in OWNER-ANSWERS-nov11.md. |
 | `search-list.csv` | The parks that are NOT solved: what a search list may hand out. Rebuilt with the ledger. |
 | `settled-negatives.json` / `.md` | Dead ends not to search again (and layers where a miss proves nothing). |
@@ -31,7 +31,7 @@ Two separate ideas, both in `classify_row` (which wraps `classify_solved`) in `.
 
 Not solved: `wrong pin`, `other`, blank, and a match with no official id or url. The latest answer is the Nov 11 answer when the park is in the Nov 11 file, else the Nov 5 answer. `search-list.csv` is exactly the parks that are not solved.
 
-**2. `owner_decision`:** `pending`, `yes`, `no`, or blank. `owner_decision_why` says why. `owner_answer` cites the recorded owner answer in `OWNER-ANSWERS-nov11.md` (Brandon accepted all 10 recommendations in chat on Nov 11, 2026, at about 9:16 PM CT, America/Chicago, widget Yes, go with your answers).
+**2. `owner_decision`:** `pending`, `yes`, `no`, or blank. `owner_decision_why` says why. `owner_answer` cites the recorded owner answer in `OWNER-ANSWERS-nov11.md` (the owner accepted all 10 recommendations in chat on Nov 11, 2026, at about 9:16 PM CT, America/Chicago, widget Yes, go with your answers).
 
 - `pending`: research is finished but the owner has not said yes. Today this is the National Register listing-boundary matches that are still held (US-11820, US-12735, US-13474, US-8142, US-3493, US-10521, US-7975). A listing boundary is not automatically the park. A pending park is not re-researched (it is off `search-list.csv`) but it is NOT dropped from `needs-another-look.json` or `brandon-list.md`, and the inbox still judges it, so an existing hold stays intact. US-11820 and US-12735 were confirmed held under item 1; US-13474 under item 6.
 - `yes`: the 56 Nov 5 matches that still asked the owner to confirm, settled on 2026-11-11 (item 10). They are join ready (unless a released-key park, which never waits).

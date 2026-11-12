@@ -171,7 +171,7 @@ MX-0140, MX-0145, MX-0176, MX-0181 (28–40 km) · NZ-0720 (33 km) · US-11309 (
 
 ## 13. Owner answers recorded Nov 11, 2026, 9:16 PM CT
 
-These questions are no longer open. Brandon accepted all 10 recommendations in chat at about 9:16 PM CT (America/Chicago) with the widget choice Yes, go with your answers. The accepted recommendations are filed at `data/research-inbox/answers/OWNER-ANSWERS-nov11.md`. The original owner-question notes, now marked Answered, are at `data/research-inbox/answers/OWNER-QUESTIONS.md`.
+These questions are no longer open. The owner accepted all 10 recommendations in chat at about 9:16 PM CT (America/Chicago) with the widget choice Yes, go with your answers. The accepted recommendations are filed at `data/research-inbox/answers/OWNER-ANSWERS-nov11.md`. The original owner-question notes, now marked Answered, are at `data/research-inbox/answers/OWNER-QUESTIONS.md`.
 
 Relevant items for this hand-back:
 

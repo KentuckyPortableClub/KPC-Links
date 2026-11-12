@@ -271,8 +271,11 @@ for f in sorted(p.relative_to(HERE).as_posix() for p in (HERE / 'data/research-i
     check(n <= BASE.get(f, 0), f'{f}: WDPA data count {n} not above its Nov 11 baseline {BASE.get(f, 0)}')
 
 # ---------------------------------------------------------------- 8b. no sentence attributes words to the owner
-named = [f.relative_to(ANS).as_posix() for f in ANS.rglob('*') if f.is_file() and re.search(r'\bBrandon\b|\bKZ4CP\b', f.read_text(encoding='utf-8-sig'))]
+# OWNER-ANSWERS-nov11.md is the recorded source (the owner accepted the recommendations in chat) and may name him; nothing else under answers/ may.
+named = [f.relative_to(ANS).as_posix() for f in ANS.rglob('*') if f.is_file() and f.name != 'OWNER-ANSWERS-nov11.md' and re.search(r'\bBrandon\b|\bKZ4CP\b', f.read_text(encoding='utf-8-sig'))]
 check(not named, f'no filed text names the owner, or quotes him ({named[:3]}); file names such as held-for-brandon are convention')
+check(re.search(r'\bBrandon\b', ANS_FILE.read_text(encoding='utf-8')) and 'Yes, go with your answers' in ANS_FILE.read_text(encoding='utf-8'),
+      'the recorded answers file names the source chat and the widget choice')
 SRCN = [r['notes'] for r in SRC + ADD if 'BLM' in r['place_or_agency'] and 'OFFICIAL POINTS' in r['notes']]
 check(SRCN and all('(club rule: where no outline is published, record the official point)' in n for n in SRCN), 'the BLM official-points sources row uses the club-rule wording')
 

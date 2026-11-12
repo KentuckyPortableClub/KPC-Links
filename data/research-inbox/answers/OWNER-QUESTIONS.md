@@ -2,7 +2,7 @@
 
 ## Answers recorded
 
-Brandon accepted all 10 recommendations in chat on Wednesday, Nov 11, 2026, at about 9:16 PM CT (America/Chicago), with the widget choice **Yes, go with your answers**. The accepted recommendations, verbatim, are filed at `OWNER-ANSWERS-nov11.md` in this folder. Citation form used in the ledger: `owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item N`.
+The owner accepted all 10 recommendations in chat on Wednesday, Nov 11, 2026, at about 9:16 PM CT (America/Chicago), with the widget choice Yes, go with your answers. The accepted recommendations, verbatim, are filed at `OWNER-ANSWERS-nov11.md` in this folder. Citation form used in the ledger: `owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item N`.
 
 | Item | Question | Status | Citation |
 |---|---|---|---|
