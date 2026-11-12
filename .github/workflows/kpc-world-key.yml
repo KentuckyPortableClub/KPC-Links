@@ -98,7 +98,7 @@ jobs:
           # saved copy no longer matches the bound copy_sha256, is ignored (built as normal); a hold with no joined park on main (nothing
           # to keep) stops the run red. Not the full list = not a full build (no rules stamp).
           mkdir -p cache/world
-          HOLD_CCS=$(python3 -c "import json; print(' '.join((json.load(open('data/outlines/world-expected-holds.approved.json')).get('holds') or {})))" 2>/dev/null || true)
+          HOLD_CCS=$(python3 -c "import json; print(' '.join((json.load(open('data/outlines/world-expected-holds.approved.json')).get('holds') or {})))" 2>/dev/null || true)   # ok: no approved holds file means an empty hold list; an expected --cache check still fails closed
           for c in $HOLD_CCS; do
             gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "W-$c.json.gz" -D cache/world --clobber 2>/dev/null || echo "::notice title=World key $c::no saved copy W-$c.json.gz on the boundary-cache release to check the hold against"
           done
