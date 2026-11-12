@@ -431,4 +431,6 @@ check(_hash_with('us-key', {'data/us-key/area-tables.json': (ROOT / 'data/us-key
       'US: an edit to data/us-key/area-tables.json moves the US rules hash')
 check(_hash_with('world-key', {'data/world-key/area-tables.json': (ROOT / 'data/world-key/area-tables.json').read_bytes() + b'\n'}) != F.rules_hash('world-key'),
       'world: an edit to data/world-key/area-tables.json moves the world rules hash')
+check(all(K.region_hash(K.Tree(ROOT), k) == F.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')),
+      'kpc_area_hash region hashes equal the freeze rules hashes (literal RULE_FILES appends are counted)')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

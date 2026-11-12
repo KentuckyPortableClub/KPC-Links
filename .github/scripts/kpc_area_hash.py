@@ -152,13 +152,14 @@ class Tree:
 
 # ---------------------------------------------------------------- today's region hash (kpc_key_freeze.rules_hash, read as text)
 def freeze_lists(tree):
-    """RULE_FILES / SCOPE_FILES / VERSION_FILE of kpc_key_freeze.py at this tree, with its two append loops applied."""
+    """RULE_FILES / SCOPE_FILES / VERSION_FILE of kpc_key_freeze.py at this tree, with its appends applied
+    (the SCOPE_FILES loop, the key_facts loop, and every RULE_FILES['kind'].append('path') line)."""
     src = (tree.read(FREEZE) or b'').decode('utf-8', 'replace')
     mod = ast.parse(src)
     vals = {}
-    for s in mod.body:
-        if isinstance(s, ast.Assign) and len(s.targets) == 1 and isinstance(s.targets[0], ast.Name) and s.targets[0].id in ('RULE_FILES', 'SCOPE_FILES', 'VERSION_FILE'):
-            vals[s.targets[0].id] = ast.literal_eval(s.value)
+    for stmt in mod.body:
+        if isinstance(stmt, ast.Assign) and len(stmt.targets) == 1 and isinstance(stmt.targets[0], ast.Name) and stmt.targets[0].id in ('RULE_FILES', 'SCOPE_FILES', 'VERSION_FILE'):
+            vals[stmt.targets[0].id] = ast.literal_eval(stmt.value)
     rf = {k: list(v) for k, v in vals['RULE_FILES'].items()}
     sf = vals.get('SCOPE_FILES', {})
     if re.search(r'for _kind, _f in SCOPE_FILES\.items\(\): RULE_FILES\[_kind\]\.append\(_f\)', src):
@@ -166,6 +167,11 @@ def freeze_lists(tree):
     if "RULE_FILES[_kind].append('.github/scripts/kpc_key_facts.py')" in src:
         for k in rf:
             if k != 'fers': rf[k].append('.github/scripts/kpc_key_facts.py')
+    # Quality M1 / M2 and any later literal appends (area-tables, pin_fill, jp_crosswalk, ...)
+    for m in re.finditer(r"RULE_FILES\['([^']+)'\]\.append\('([^']+)'\)", src):
+        k, rel = m.group(1), m.group(2)
+        if k in rf and rel not in rf[k]:
+            rf[k].append(rel)
     return rf, sf, vals.get('VERSION_FILE', '.github/key-rules-version.json')
 
 
@@ -340,6 +346,9 @@ class Kind:
         rf, sf, vf = freeze_lists(self.t)
         k = KINDS[self.kind]
         keep = [f for f in rf.get(k, []) if f not in sf.values() or f == SCOPE_READ.get(self.kind)]
+        # Area table files are in RULE_FILES (Quality M1, part of the region / rules hash) but are
+        # sliced per area as data parts, not hashed whole as shared code.
+        keep = [f for f in keep if f not in AREA_TABLES.values()]
         return sorted(set(keep) | set(CLOSURE_ADD.get(self.kind, []))), vf
 
     def shared_parts(self):
