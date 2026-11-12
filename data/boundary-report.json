@@ -2,9 +2,9 @@
  "United States": {
   "totals": {
    "matched": 11735,
-   "far": 2338,
+   "far": 2336,
    "noshape": 0,
-   "edge": 2226,
+   "edge": 2224,
    "out": 112,
    "swap": 1
   },
@@ -120,14 +120,14 @@
    {
     "st": "FL",
     "matched": 437,
-    "far": 65,
+    "far": 63,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 64
+    "edge": 62
    },
    {
     "st": "GA",
@@ -1276,10 +1276,10 @@
  "World": {
   "totals": {
    "matched": 43525,
-   "far": 9700,
+   "far": 9678,
    "noshape": 0,
-   "edge": 9378,
-   "out": 322,
+   "edge": 9349,
+   "out": 329,
    "swap": 1
   },
   "states": [
@@ -1321,15 +1321,15 @@
    },
    {
     "st": "AU",
-    "matched": 8161,
+    "matched": 8163,
     "far": 1558,
     "noshape": 0,
-    "out": 24,
+    "out": 32,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 1534
+    "edge": 1526
    },
    {
     "st": "AX",
@@ -1633,7 +1633,7 @@
    },
    {
     "st": "FR",
-    "matched": 12587,
+    "matched": 12589,
     "far": 3456,
     "noshape": 0,
     "out": 150,
@@ -1657,15 +1657,15 @@
    },
    {
     "st": "GB",
-    "matched": 3719,
-    "far": 865,
+    "matched": 3715,
+    "far": 847,
     "noshape": 0,
     "out": 15,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": 250,
-    "edge": 850
+    "edge": 832
    },
    {
     "st": "GE",
@@ -1927,8 +1927,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
+    "detail": "~110 m",
+    "thin": 250,
     "edge": 0
    },
    {
@@ -2030,14 +2030,14 @@
    {
     "st": "NZ",
     "matched": 814,
-    "far": 102,
+    "far": 98,
     "noshape": 0,
-    "out": 12,
+    "out": 11,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 90
+    "edge": 87
    },
    {
     "st": "OM",
@@ -2316,6 +2316,12 @@
    ],
    [
     "AU",
+    "AU-0340",
+    "Maryborough Regional Park",
+    ""
+   ],
+   [
+    "AU",
     "AU-0345",
     "Macedon Regional Park",
     "Macedon F.R"
@@ -2433,6 +2439,12 @@
     "AU-7261",
     "Squirrel Creek State Forest",
     "Squirrel Creek State Forest"
+   ],
+   [
+    "AU",
+    "AU-7323",
+    "Creswick Regional Park",
+    "Creswick N.F.R"
    ],
    [
     "AU",
@@ -3914,7 +3926,7 @@
     "NZ",
     "NZ-0720",
     "Waituhi-Kuratau Scenic Reserve",
-    "Waituhi-Kuratau Scenic Reserve"
+    ""
    ],
    [
     "NZ",
