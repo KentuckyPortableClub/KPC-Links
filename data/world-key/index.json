@@ -15,12 +15,13 @@
    "shadow_add": 1,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "AS": {
-   "areas": 1711,
+   "areas": 3,
    "check": 0,
-   "detail": 0.01,
+   "detail": 0.002,
    "matched": 2,
    "none": 2,
    "parks": 4,
@@ -32,7 +33,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 250,
+   "rules": "a47e0479ad41"
   },
   "AT": {
    "areas": 3102,
@@ -84,7 +86,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "BE": {
    "areas": 3713,
@@ -114,12 +117,12 @@
    "pin_outside": 7,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "BS": {
    "areas": 76,
@@ -149,12 +152,12 @@
    "pin_outside": 1,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 1,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "BW": {
    "areas": 9,
@@ -167,12 +170,12 @@
    "pin_outside": 0,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 250,
-   "rules": "889d37136cf8"
+   "thin": 250
   },
   "BZ": {
    "areas": 647,
@@ -253,12 +256,12 @@
    "pin_outside": 30,
    "pin_swap": 1,
    "pin_well_outside": 2,
+   "rules": "889d37136cf8",
    "saved_outlines": 226,
    "shadow_add": 0,
    "shadow_demote": 2,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "CL": {
    "areas": 1160,
@@ -275,7 +278,8 @@
    "shadow_add": 14,
    "shadow_demote": 9,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "CM": {
    "areas": 38,
@@ -326,7 +330,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "CX": {
    "areas": 14492,
@@ -339,12 +344,12 @@
    "pin_outside": 0,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "CZ": {
    "areas": 3923,
@@ -396,7 +401,8 @@
    "shadow_add": 6,
    "shadow_demote": 20,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "DO": {
    "areas": 192,
@@ -447,7 +453,8 @@
    "shadow_add": 1,
    "shadow_demote": 1,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "ES": {
    "areas": 3658,
@@ -494,12 +501,12 @@
    "pin_outside": 0,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "FR": {
    "areas": 30942,
@@ -512,12 +519,12 @@
    "pin_outside": 3406,
    "pin_swap": 0,
    "pin_well_outside": 149,
+   "rules": "889d37136cf8",
    "saved_outlines": 10349,
    "shadow_add": 208,
    "shadow_demote": 78,
    "shadow_other_place": 9,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "GA": {
    "areas": 23,
@@ -530,12 +537,12 @@
    "pin_outside": 2,
    "pin_swap": 0,
    "pin_well_outside": 1,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 1,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "GB": {
    "areas": 58931,
@@ -552,7 +559,8 @@
    "shadow_add": 115,
    "shadow_demote": 114,
    "shadow_other_place": 2,
-   "thin": 250
+   "thin": 250,
+   "rules": "a47e0479ad41"
   },
   "GE": {
    "areas": 224,
@@ -565,12 +573,12 @@
    "pin_outside": 14,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "GL": {
    "areas": 63,
@@ -583,12 +591,12 @@
    "pin_outside": 2,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 2,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 250,
-   "rules": "889d37136cf8"
+   "thin": 250
   },
   "GR": {
    "areas": 1249,
@@ -618,12 +626,12 @@
    "pin_outside": 6,
    "pin_swap": 0,
    "pin_well_outside": 1,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "GU": {
    "areas": 1711,
@@ -674,7 +682,8 @@
    "shadow_add": 1,
    "shadow_demote": 6,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "HU": {
    "areas": 1206,
@@ -687,12 +696,12 @@
    "pin_outside": 6,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 3,
    "shadow_demote": 1,
    "shadow_other_place": 1,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "ID": {
    "areas": 35780,
@@ -756,12 +765,12 @@
    "pin_outside": 226,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 13,
    "shadow_demote": 24,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "JE": {
    "areas": 27,
@@ -893,12 +902,12 @@
    "pin_outside": 0,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "MK": {
    "areas": 91,
@@ -928,12 +937,12 @@
    "pin_outside": 0,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 1,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 250,
-   "rules": "889d37136cf8"
+   "thin": 250
   },
   "MT": {
    "areas": 44,
@@ -980,12 +989,12 @@
    "pin_outside": 43,
    "pin_swap": 0,
    "pin_well_outside": 11,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 11,
    "shadow_demote": 16,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "NC": {
    "areas": 36,
@@ -1002,7 +1011,8 @@
    "shadow_add": 1,
    "shadow_demote": 1,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "NF": {
    "areas": 14492,
@@ -1019,7 +1029,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "NI": {
    "areas": 74,
@@ -1032,12 +1043,12 @@
    "pin_outside": 11,
    "pin_swap": 0,
    "pin_well_outside": 3,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 3,
    "shadow_demote": 2,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "NL": {
    "areas": 396,
@@ -1074,22 +1085,22 @@
    "thin": 60
   },
   "NZ": {
-   "areas": 19416,
+   "areas": 22253,
    "check": 40,
-   "detail": 0.01,
-   "fell_back_parks": 4,
-   "matched": 814,
-   "none": 54,
+   "detail": 0.002,
+   "matched": 831,
+   "none": 37,
    "parks": 908,
    "pin_no_shape": 0,
-   "pin_outside": 98,
+   "pin_outside": 99,
    "pin_swap": 0,
-   "pin_well_outside": 11,
+   "pin_well_outside": 10,
    "saved_outlines": 0,
    "shadow_add": 13,
-   "shadow_demote": 8,
+   "shadow_demote": 7,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 250,
+   "rules": "a47e0479ad41"
   },
   "OM": {
    "areas": 62,
@@ -1136,12 +1147,12 @@
    "pin_outside": 4,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 1,
    "shadow_demote": 1,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "PF": {
    "areas": 8,
@@ -1188,12 +1199,12 @@
    "pin_outside": 10,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 4,
    "shadow_demote": 1,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "PT": {
    "areas": 777,
@@ -1227,7 +1238,8 @@
    "shadow_add": 2,
    "shadow_demote": 3,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "QA": {
    "areas": 13,
@@ -1244,7 +1256,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "RO": {
    "areas": 1552,
@@ -1278,7 +1291,8 @@
    "shadow_add": 1,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "SE": {
    "areas": 36963,
@@ -1308,12 +1322,12 @@
    "pin_outside": 45,
    "pin_swap": 0,
    "pin_well_outside": 1,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 14,
    "shadow_demote": 10,
    "shadow_other_place": 3,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "SJ": {
    "areas": 3514,
@@ -1330,7 +1344,8 @@
    "shadow_add": 0,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60
+   "thin": 60,
+   "rules": "a47e0479ad41"
   },
   "SK": {
    "areas": 1882,
@@ -1343,12 +1358,12 @@
    "pin_outside": 27,
    "pin_swap": 0,
    "pin_well_outside": 1,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 10,
    "shadow_demote": 2,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "SV": {
    "areas": 297,
@@ -1378,12 +1393,12 @@
    "pin_outside": 0,
    "pin_swap": 0,
    "pin_well_outside": 0,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 1,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 250,
-   "rules": "889d37136cf8"
+   "thin": 250
   },
   "UY": {
    "areas": 24,
@@ -1396,12 +1411,12 @@
    "pin_outside": 3,
    "pin_swap": 0,
    "pin_well_outside": 1,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 1,
    "shadow_demote": 0,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   },
   "VI": {
    "areas": 2796,
@@ -1431,16 +1446,16 @@
    "pin_outside": 28,
    "pin_swap": 0,
    "pin_well_outside": 4,
+   "rules": "889d37136cf8",
    "saved_outlines": 0,
    "shadow_add": 8,
    "shadow_demote": 5,
    "shadow_other_place": 0,
-   "thin": 60,
-   "rules": "889d37136cf8"
+   "thin": 60
   }
  },
- "previous_build": "W-43082247085",
- "previous_built": "2026-11-11 20:57 UTC",
+ "previous_build": "W-43271823913",
+ "previous_built": "2026-11-12 18:53 UTC",
  "rules": "487a51327b86",
  "rules_files": [
   ".github/scripts/kpc_key_facts.py",
@@ -1448,41 +1463,32 @@
   ".github/scripts/kpc_world_key.py",
   ".github/key-rules-version.json"
  ],
- "rules_of_run": "889d37136cf8",
+ "rules_of_run": "a47e0479ad41",
  "inputs": {
   "us-key": "US-43056604383",
   "ca-key": "CA-43049790907"
  },
- "build": "W-43271823913",
- "built": "2026-11-12 18:53 UTC",
+ "build": "W-43277453464",
+ "built": "2026-11-12 20:10 UTC",
  "failed": [
-  "AE",
-  "AS",
   "AT",
-  "AX",
   "BE",
   "BS",
   "BZ",
   "CC",
   "CD",
   "CG",
-  "CL",
   "CM",
   "CO",
-  "CV",
   "CZ",
   "DE",
-  "DK",
   "DO",
   "EC",
-  "EE",
   "ES",
   "FI",
-  "GB",
   "GR",
   "GU",
   "GY",
-  "HR",
   "ID",
   "IE",
   "IM",
@@ -1495,22 +1501,15 @@
   "LU",
   "MK",
   "MV",
-  "NC",
-  "NF",
   "NL",
   "NO",
-  "NZ",
   "OM",
   "PA",
   "PF",
   "PL",
   "PT",
-  "PY",
-  "QA",
   "RO",
-  "RW",
   "SE",
-  "SJ",
   "SV",
   "VI"
  ],

@@ -1,15 +1,14 @@
 # NZ: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Public conservation land, Regional Parks and Forests, Park Extents. **814 of 908** joined (same name + same kind), **40** to check, **54** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Public conservation land, Regional Parks and Forests, Park Extents. **831 of 908** joined (same name + same kind), **40** to check, **37** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
-- **NZ-0001** Ambury Regional Park (Regional Park) → West Coast North Island Marine Mammal Sanctuary (Public conservation land, the POTA pin is inside it (different name))
-- **NZ-0004** Awhitu Regional Park (Regional Park) → West Coast North Island Marine Mammal Sanctuary (Public conservation land, the POTA pin is inside it (different name))
-- **NZ-0007** Hunua Regional Park (Regional Park) → Hunua Falls Scenic Reserve (Public conservation land, similar name)
-- **NZ-0008** Long Bay Regional Park (Regional Park) → Long Bay-Okura Marine Reserve (Public conservation land, similar name); Schedule 4 Land - Long Bay-Okura Marine Reserve (Public conservation land, similar name)
-- **NZ-0011** Muriwai Regional Park (Regional Park) → Muriwai Local Purpose Access Reserve (Public conservation land, similar name); Muriwai Marginal Strip (Public conservation land, similar name)
-- **NZ-0024** Te Rau Puriri Regional Park (Regional Park) → West Coast North Island Marine Mammal Sanctuary (Public conservation land, the POTA pin is inside it (different name))
+- **NZ-0003** Auckland Botanic Regional Park (Regional Park) → Botanic Gardens Regional Park (Park Extents, the POTA pin is inside it (different name))
+- **NZ-0008** Long Bay Regional Park (Regional Park) → Long Bay-Okura Marine Reserve (Public conservation land, similar name); Schedule 4 Land - Long Bay-Okura Marine Reserve (Public conservation land, similar name); Long Bay Beach Road Reserve (Park Extents, similar name); Te Oneroa o Kahu/Long Bay Regional Park (Park Extents, similar name)
+- **NZ-0013** Mutukaroa Regional Park (Regional Park) → Hamlins Hill Regional Park (Park Extents, the POTA pin is inside it (different name))
+- **NZ-0014** Omana Regional Park (Regional Park) → Omana Esplanade (Park Extents, similar name); O Manawatere Regional Park (Park Extents, the POTA pin is inside it (different name))
+- **NZ-0026** Waitakere Ranges Regional Park (Regional Park) → Waitakere West Regional Park (Park Extents, the POTA pin is inside it (different name))
 - **NZ-0052** Ashley/Rakahuri River Regional Park (Regional Park) → Ashley River Endowment Reserve (Public conservation land, similar name); River Conservation Reserve Ashley River (Public conservation land, similar name); River Protection Reserve Ashley River (Public conservation land, similar name); River Control Reserve Ashley River (Public conservation land, similar name); River Conservation Reserve Ashley River (Public conservation land, similar name)
 - **NZ-0166** Molesworth Regional Reserve (Regional Reserve) → Molesworth Recreation Reserve (Public conservation land, similar name)
 - **NZ-0173** Mt.Thomas Forest Conservation Area (Conservation Area) → Mt. Thomas Forest Conservation Area (Public conservation land, the POTA pin is inside it (different name)); Oxford Recreational Hunting Area (Public conservation land, the POTA pin is inside it (different name))
@@ -28,7 +27,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **NZ-0595** Kemadec Islands Marine Reserve (Marine Reserve) → Kermadec Islands Marine Reserve (Public conservation land, the POTA pin is inside it (different name)); Schedule 4 Land - Kermadec Islands Marine Reserve (Public conservation land, the POTA pin is inside it (different name))
 - **NZ-0598** Moutere Hariri / Bounty Islands Marine Reserve (Marine Reserve) → Bounty Islands Nature Reserve (Public conservation land, similar name); Moutere Hauriri / Bounty Islands Marine Reserve (Public conservation land, similar name); Schedule 4 Land - Moutere Hauriri / Bounty Islands Marine Reserve (Public conservation land, similar name)
 - **NZ-0599** Subantarctic Islands National Reserve (National Reserve) → Subantarctic Islands National Reserves (Public conservation land, similar name); Auckland Islands Nature Reserve (Public conservation land, the POTA pin is inside it (different name)); Auckland Islands Marine Mammal Sanctuary (Public conservation land, the POTA pin is inside it (different name)); Schedule 4 Land - Auckland Islands Nature Reserve (Public conservation land, the POTA pin is inside it (different name))
-- **NZ-0621** Whatipu Scenic Reserve (Scenic Reserve) → Whatipu Scientific Reserve (Public conservation land, similar name); Schedule 4 Land - Whatipu Scientific Reserve (Public conservation land, similar name); West Coast North Island Marine Mammal Sanctuary (Public conservation land, the POTA pin is inside it (different name))
+- **NZ-0621** Whatipu Scenic Reserve (Scenic Reserve) → Whatipu Scientific Reserve (Public conservation land, similar name); Schedule 4 Land - Whatipu Scientific Reserve (Public conservation land, similar name); West Coast North Island Marine Mammal Sanctuary (Public conservation land, the POTA pin is inside it (different name)); Waitakere South Regional Park (Park Extents, the POTA pin is inside it (different name))
 - **NZ-0654** North Cape Scenic Reserve (Scenic Reserve) → North Cape Scientific Reserve (Public conservation land, similar name); Schedule 4 Land - North Cape Scientific Reserve (Public conservation land, similar name)
 - **NZ-0670** The Wolds Conservation Area (Conservation Area) → Conservation Area A- The Wolds (Public conservation land, similar name)
 - **NZ-0675** The Wolds (B) Conservation Area (Conservation Area) → Conservation Area B - The Wolds (Public conservation land, similar name)
@@ -36,6 +35,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **NZ-0786** Robertson FHF Acquisition Conservation Area (Conservation Area) → Conservation Area - Robertson FHF Aquisition (Public conservation land, similar name)
 - **NZ-0873** Aotea Heads Scenic Reserve (Scenic Reserve) → Aotea Heads Scientific Reserve (Public conservation land, similar name); Schedule 4 Land - Aotea Heads Scientific Reserve (Public conservation land, similar name); West Coast North Island Marine Mammal Sanctuary (Public conservation land, the POTA pin is inside it (different name))
 - **NZ-0875** Enderby Island Conservation Area (Conservation Area) → Auckland Islands Nature Reserve (Public conservation land, the POTA pin is inside it (different name)); Subantarctic Islands National Reserves (Public conservation land, the POTA pin is inside it (different name)); Auckland Islands Marine Mammal Sanctuary (Public conservation land, the POTA pin is inside it (different name)); Schedule 4 Land - Auckland Islands Nature Reserve (Public conservation land, the POTA pin is inside it (different name))
+- **NZ-0878** Kiripaka Wildlife Reserve (Wildlife Reserve) → Hunua Ranges Regional Park (Park Extents, the POTA pin is inside it (different name))
 - **NZ-0882** Whironaki Te Pua-a-Tahe Conservation Park (Conservation Park) → Whirinaki Te Pua-a-Tane Conservation Park (Public conservation land, the POTA pin is inside it (different name)); Schedule 4 - Te Whaiti (Public conservation land, the POTA pin is inside it (different name)); Whirinaki Te Pua-a-Tāne Conservation Park (Part) (Public conservation land, the POTA pin is inside it (different name)); Te Whaiti - Conservation Area (Public conservation land, the POTA pin is inside it (different name))
 - **NZ-0891** Te Whanganui-o-Hei Cathedral Coce Extension Marine Reserve (Marine Reserve) → Whanganui A Hei (Cathedral Cove) Marine Reserve (Public conservation land, similar name); Schedule 4 Land - Coromandel Internal Waters (Public conservation land, the POTA pin is inside it (different name))
 - **NZ-0899** North West Nelson Foreest Park - Takaka Riveer - Cobb Damn Road Conservation Park (Conservation Park) → North West Nelson Forest Park (Public conservation land, similar name); Schedule 4 Land - Kahurangi National Park (Public conservation land, the POTA pin is inside it (different name))
@@ -47,24 +47,8 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 
 ## Nothing found
 
-- NZ-0002 Atiu Regional Park (Regional Park)
-- NZ-0003 Auckland Botanic Regional Park (Regional Park)
-- NZ-0005 Duder Regional Park (Regional Park)
-- NZ-0006 Glenfern Sanctuary Regional Park (Regional Park)
-- NZ-0013 Mutukaroa Regional Park (Regional Park)
-- NZ-0014 Omana Regional Park (Regional Park)
-- NZ-0019 Tapapakanga Regional Park (Regional Park)
-- NZ-0021 Tawhitokino Regional Park (Regional Park)
-- NZ-0023 Te Muri Regional Park (Regional Park)
-- NZ-0025 Waharau Regional Park (Regional Park)
-- NZ-0026 Waitakere Ranges Regional Park (Regional Park)
-- NZ-0027 Waitawa Regional Park (Regional Park)
-- NZ-0028 Wenderholm Regional Park (Regional Park)
-- NZ-0029 Whakanewha Regional Park (Regional Park)
-- NZ-0030 Whakatiwai Regional Park (Regional Park)
 - NZ-0044 Onekawa Te Mawhai Regional Park (Regional Park)
 - NZ-0045 Papamoa Hills Regional Park (Regional Park)
-- NZ-0241 Musick Point Esplanade Reserve (Reserve)
 - NZ-0286 Kermadec Island Nature Reserve (Nature Reserve)
 - NZ-0382 Stoney Creek Conservation Area (Conservation Area)
 - NZ-0740 Hutt River Regional Park (Regional Park)
@@ -72,7 +56,6 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - NZ-0811 Hautai Marine Reserve (Marine Reserve)
 - NZ-0874 Motupohue Scenic Reserve (Scenic Reserve)
 - NZ-0877 Okaihae Marine Reserve (Marine Reserve)
-- NZ-0878 Kiripaka Wildlife Reserve (Wildlife Reserve)
 - NZ-0880 Bell Hill Farm Scenic Reserve (Scenic Reserve)
 - NZ-0881 Hakinikini Marine Reserve (Marine Reserve)
 - NZ-0885 Tiritiri Matangi Recreation Park (Recreation Park)
