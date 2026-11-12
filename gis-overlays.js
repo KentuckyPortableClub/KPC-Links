@@ -100,8 +100,13 @@ function matchPota(f){const g=f.geometry,b=f._bb||(f._bb=bbox(g)),nm=norm(getNam
  function refLinks(m){const more=m.length>6?m.length-6:0;m=m.slice(0,6);return m.map(({d,why})=>{const gp=guide&&guide.get(d[1]);return `<div style="margin-top:6px"><a href="https://pota.app/#/park/${encodeURIComponent(d[1])}" target="_blank" rel="noopener">${safe(d[1])}</a> ${safe(d[2])} <span style="color:#68635a;font-size:12px">(${why})</span>${gp&&gp.off?`<br><a href="${safe(gp.off)}" target="_blank" rel="noopener">${gp.offl?safe(gp.offl):'Official map'} ↗</a>`:''}${gp&&gp.off2?` · <a href="${safe(gp.off2)}" target="_blank" rel="noopener">${safe(gp.off2l||'Second official map')} ↗</a>`:''}${gp&&gp.web&&gp.web!==gp.off?` · <a href="${safe(gp.web)}" target="_blank" rel="noopener">Website ↗</a>`:''}</div>`}).join('')+(more?`<div style="margin-top:6px;font-size:12px">…and ${more} more POTA references inside this boundary.</div>`:'')}
  function boundaryPopup(f,s){const nm=getName(f)||s.name,m=matchPota(f);
   const P=f.properties||{};return `<strong>${safe(nm)}</strong><br><span style="font-size:13px">${safe(P.TYPE||s.name)} • ${safe(s.agency)}${P.ACCESS?' • access: '+safe(P.ACCESS):''}</span>${P.URL?`<br><a href="${safe(P.URL)}" target="_blank" rel="noopener">Official page ↗</a>`:''}${s.corps?(m.length?`<div style="margin-top:6px;font-weight:800">Park pin inside this Corps land:</div>${refLinks(m)}`:''):!m.some(x=>x.why.startsWith('name'))?noNumBox(otherRefs(f,KYD,nm,inside),safe)+(m.length?`<div style="margin-top:6px;font-weight:800">Park pin inside it:</div>${refLinks(m)}`:''):m.length?`<div style="margin-top:6px;font-weight:800">POTA reference${m.length>1?'s':''}:</div>${refLinks(m)}`:'<div style="margin-top:6px">No POTA reference matched to this boundary.</div>'}${s.note?`<div style="margin-top:8px;font-size:12px;font-weight:700">⚠ ${safe(s.note)}</div>`:''}${s.kpc&&P.NOTE?`<div style="margin-top:6px;font-size:12px">${safe(P.NOTE)}</div>`:''}${s.kpc?`<div style="margin-top:6px;font-size:11px;color:#68635a">Outline source: ${safe(P.SOURCE||'KPC')}. Map data © OpenStreetMap contributors.</div>`:''}<div style="margin-top:8px;font-size:12px">GIS boundaries can be out of date — confirm on the agency’s official map before activating. <a href="${s.info}" target="_blank" rel="noopener">Agency info ↗</a></div>`}
- async function getBoundary(k){if(bData[k])return bData[k];const s=bounds[k];let j=null,src='KPC copy';
-  try{const r=await fetch(s.file+'?v=20261109a',{cache:'force-cache'});if(r.ok)j=await r.json()}catch(_){}
+ /* Nov 11 (page size): one shared request per layer (the pre-ticked layers, "Am I inside a park?" and a box ticked at the same
+    moment no longer each download the file), and the same address as the trip planners (?v=20261110us) so a member who has
+    opened a planner already has these files and does not download them a second time. Failure: the next ask tries again. */
+ const bWait={};
+ function getBoundary(k){if(bData[k])return Promise.resolve(bData[k]);return bWait[k]||(bWait[k]=getBoundary1(k).finally(()=>{delete bWait[k]}))}
+ async function getBoundary1(k){if(bData[k])return bData[k];const s=bounds[k];let j=null,src='KPC copy';
+  try{const r=await fetch(s.file+'?v=20261110us',{cache:'force-cache'});if(r.ok)j=await r.json()}catch(_){}
   if(!j||!Array.isArray(j.features)){src='live from state GIS';const ctrl=new AbortController(),t=setTimeout(()=>ctrl.abort(),25000);try{const r=await fetch(s.live,{signal:ctrl.signal});if(!r.ok)throw Error('HTTP '+r.status);j=await r.json();if(j.error)throw Error(j.error.message||'GIS error')}finally{clearTimeout(t)}}
   j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);j.features.forEach(f=>{f._lk=k});j._src=src;bData[k]=j;return j}
  /* Nov 10: saved layers redraw 300 ms after the page opens, often before the POTA list (locations-ky.json) or the
@@ -250,7 +255,11 @@ function candidates(){const host=$('gis-candidates');if(!host)return;const done=
  $('gis-load')?.addEventListener('click',load);
  $('gis-inside-btn')?.addEventListener('click',insideCheck);
  /* layers pre-checked in the HTML: draw them once the map exists */
- setTimeout(()=>{Object.keys(bounds).forEach(k=>{if($('gis-'+k)?.checked)toggleBoundary(k)});if(Object.keys(sources).some(k=>$('gis-'+k)?.checked))load()},300);
+ /* Nov 11 (page size): they are still on by default; they start after the page has loaded and gone idle (was: 300 ms in), so
+    the park search, map and park list come first on a slow phone. Same layers, same end state. */
+ {const draw=()=>{Object.keys(bounds).forEach(k=>{if($('gis-'+k)?.checked)toggleBoundary(k)});if(Object.keys(sources).some(k=>$('gis-'+k)?.checked))load()};
+  const run=()=>('requestIdleCallback' in window)?requestIdleCallback(()=>draw(),{timeout:2000}):setTimeout(draw,300);
+  if(document.readyState==='complete'||typeof window.addEventListener!=='function')setTimeout(run,300);else window.addEventListener('load',()=>setTimeout(run,300),{once:true})}
  /* Thick boundaries switched: restyle what is already drawn */
  if(window.KPCX&&KPCX.onLook)KPCX.onLook((lk,k)=>{if(k!=='thick')return;Object.values(bLayers).forEach(l=>{if(l._kst)l.setStyle(l._kst)});
   const re=g=>g&&g.eachLayer&&g.eachLayer(l=>{if(l._kw)l.setStyle({weight:LW(l._kw)})});Object.values(overlays).forEach(re);Object.values(fileTrail).forEach(r=>re(r.layer))});

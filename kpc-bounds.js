@@ -284,7 +284,7 @@
     if (!kyData) kyData = await jget('kpc-ky-data.json').catch(() => ({ parks: [], kff: [], summits: [] }));
     if (kyFeat) return kyFeat;
     const out = [];
-    let bad = 0; await Promise.all(KY.map(async L => { try { const j = await jget(L.file + '?v=20261109a', { cache: 'force-cache' }); (j.features || []).forEach(f => { if (!ringsOf(f.geometry).length) return; f._L = L; f._bb = bbox(f.geometry); f._nm = (f.properties || {}).NAME || L.name; out.push(f); }); } catch (e) { bad++; } }));
+    let bad = 0; await Promise.all(KY.map(async L => { try { const j = await jget(L.file + '?v=20261110us', { cache: 'force-cache' });   /* Nov 11: the same address as the trip planners and Park Commander: one download for all of them */ (j.features || []).forEach(f => { if (!ringsOf(f.geometry).length) return; f._L = L; f._bb = bbox(f.geometry); f._nm = (f.properties || {}).NAME || L.name; out.push(f); }); } catch (e) { bad++; } }));
     KYBAD = bad; if (!out.length) return out;   /* Oct 31 (Fable #29): nothing loaded = try again next time, and the tools can say so */
     kyFeat = out; byName = null; return out;
   }

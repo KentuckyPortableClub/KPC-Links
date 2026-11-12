@@ -98,8 +98,8 @@ check('only the two Map Rep pages set it', sorted(pub) == ['kpc-maprep-reps.html
 pf = (ROOT / '.github/scripts/kpc_preflight.py').read_text()
 check('preflight: a new or newly grown file over 1 MB fails; one already over on the base only warns', "old_big = [f for f in over if (_was(f) or 0) > 1_000_000]" in pf and "big = [f for f in over if f not in old_big]" in pf)
 html = ''.join(p.read_text(encoding='utf-8', errors='replace') for p in ROOT.glob('*.html'))
-check('every page loads the new loader files (version stamp bumped)', not re.search(r'kpc-(bounds|padus-layer|us-planner)\.js\?v=(?!20261111rule)', html)
-      and not re.search(r'kpc-gps\.js\?v=(?!20261111m2)', html))   # Nov 11 (M2): kpc-gps.js changed again (world 2-fers off, .json.gz)
+check('every page loads the new loader files (version stamp bumped)', not re.search(r'kpc-(bounds|padus-layer|us-planner)\.js\?v=(?!20261111z)', html)
+      and not re.search(r'kpc-gps\.js\?v=(?!20261111m2)', html))   # Nov 11: page size bumped bounds / padus / us-planner; M2 bumped kpc-gps.js
 
 # ---- the helper itself, run in node with a fake fetch
 node = shutil.which('node')

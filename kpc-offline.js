@@ -7,6 +7,7 @@
     'kpc-ky-data.json', 'ky-trail-parks.json',
     'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson', 'ky-dbnf-owned.geojson',
     'ky-wild-rivers.geojson', 'ky-nps.geojson', 'ky-wilderness.geojson', 'ky-sheltowee.geojson', 'ky-pine-mountain.geojson', 'ky-dawkins.geojson',
+    'ky-fws.geojson', 'ky-usace.geojson', 'ky-padus-parks.geojson', 'ky-kpc-drawn.geojson', 'ky-lecl-auto.geojson',   // Nov 11: the other layers that are on by default (they now start after the page is idle, so a quick save still gets them)
     'KPC-logo.png', 'kpc-icon-32.png',
     'kpc-card-polish.css', 'kpc-card-polish.js'];   // Nov 8: park card polish (the trip planners save every loaded file already)
   /* Storage plan Step B (Oct 27): locations.json + locations-ky.json now also live on KPC-Data. Save both

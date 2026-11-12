@@ -31,7 +31,7 @@ check('drawn layers restyle after the key loads, and a cached no-join answer is 
       'function restyleBounds()' in js and 'delete f._pota' in js and 'delete f._named' in js
       and 'kpcAnswerKey.loadKey(restyleBounds)' in js)
 check('kpc-planner.js and kpc-answer-key.js cache stamps are bumped',
-      'kpc-planner.js?v=20261111p' in html and 'kpc-answer-key.js?v=20261110key' in html)
+      'kpc-planner.js?v=20261111z' in html and 'kpc-answer-key.js?v=20261110key' in html)
 
 # The two Green River SNA tracts (and Fort Heiman) are alias joins in the key
 key = json.loads((ROOT / 'data/ky-answer-key.json').read_text(encoding='utf-8'))

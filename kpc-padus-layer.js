@@ -426,7 +426,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     }
     if (opts.legend !== false) { layer.on('add', () => legend.addTo(map)); layer.on('remove', () => legend.remove()); }
     if (opts.usOfficial) attachUsOfficial(map, layer, { minz: MINZ_, parksInView: opts.parksInView, onMissing: names => { missingNames = names || []; tellStatus(); } });
-    if (opts.kyOfficial) attachKyOfficial(map, layer);
+    if (opts.kyOfficial) attachKyOfficial(map, layer, opts.kyStart);
     return { layer, legend };
   };
 
@@ -451,7 +451,13 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     bpad:{name:'More official park outlines',file:'ky-padus-parks.geojson',color:'#e8b04a'},
     bkpc:{name:'OpenStreetMap outlines (unofficial)',file:'ky-kpc-drawn.geojson',color:'#ffd400',kpc:true}
   };
-  function attachKyOfficial(map, host) {
+  /* Nov 11 (page size): the 13 saved Kentucky files (about 7 MB, ky-hunting-areas and ky-usace are most of it) are read
+     the first time the boundary layer is on AND the map shows any part of Kentucky (same files, same drawing; nothing to
+     see outside Kentucky). Checked when the page's first view is settled (start: a promise from the page; else after the
+     page has loaded and gone idle), on every map move after that, and on the member's first touch of the map. Each file
+     is fetched once (one shared start). */
+  const KY_BOX = [[36.45, -89.6], [39.2, -81.9]];   /* same box as kpc-bounds.js inKY */
+  function attachKyOfficial(map, host, start) {
     if (!window.L || !map || !map.createPane) return;
     if (!map.getPane('kyoff')) {
       const p = map.createPane('kyoff');
@@ -469,7 +475,16 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
         if (l.eachLayer) l.eachLayer(x => { if (x.setStyle && x.options && x.options.style) x.setStyle(x.options.style); });
       });
     }
-    if (window.kpcAnswerKey) kpcAnswerKey.loadKey(restyle);
+    let began = false, go = false;
+    const showsKY = () => { try { const b = map.getBounds(); return !b || !b.intersects || b.intersects(L.latLngBounds(KY_BOX)); } catch (e) { return true; } };
+    const check = () => { if (began || !go || !map.hasLayer(host) || !showsKY()) return; began = true; loadAll(); };
+    const begin = () => { go = true; check(); };
+    if (start && typeof start.then === 'function') start.then(begin, begin);
+    else { const run = () => ('requestIdleCallback' in window) ? requestIdleCallback(begin, { timeout: 2000 }) : setTimeout(begin, 300); if (document.readyState === 'complete' || typeof window.addEventListener !== 'function') run(); else window.addEventListener('load', run, { once: true }); }
+    map.on('moveend zoomend', check);
+    { const c = map.getContainer && map.getContainer(); if (c && c.addEventListener) { const touch = () => { ['pointerdown', 'wheel', 'touchstart', 'keydown'].forEach(t => c.removeEventListener(t, touch)); begin(); }; ['pointerdown', 'wheel', 'touchstart', 'keydown'].forEach(t => c.addEventListener(t, touch, { passive: true })); } }
+    if (window.kpcAnswerKey) kpcAnswerKey.loadKey(restyle);   /* the answer key itself is still read at once, as before */
+    function loadAll() {
     Object.keys(KY_OFFICIAL).forEach(k => {
       const s = KY_OFFICIAL[k];
       const url = s.file + '?v=20261110us';
@@ -495,7 +510,8 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
         group.addLayer(lay);
       }).catch(() => {});
     });
-    const sync = () => { if (map.hasLayer(host)) { if (!map.hasLayer(group)) group.addTo(map); } else if (map.hasLayer(group)) map.removeLayer(group); };
+    }
+    const sync = () => { if (map.hasLayer(host)) { if (!map.hasLayer(group)) group.addTo(map); } else if (map.hasLayer(group)) map.removeLayer(group); check(); };
     host.on('add', sync); host.on('remove', sync);
     map.whenReady(sync);
     if (map.hasLayer(host)) group.addTo(map);

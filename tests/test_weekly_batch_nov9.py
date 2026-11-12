@@ -93,7 +93,7 @@ for r in ('US-13598', 'US-13601', 'US-13606', 'US-13607'):
 ky = json.load(open(ROOT / 'data/ky-answer-key.json', encoding='utf-8'))['parks']
 check(ky['US-10172']['tracts'][0][2] == 132 and ky['US-13599']['tracts'][0][2] == 41 and ky['US-13600']['tracts'][0][2] == 79, 'the KY answer key has the new acres')
 txt = (ROOT / 'kpc-bounds.js').read_text(encoding='utf-8')
-check("?v=20261109a'" in txt and "?v=20261018q'" not in txt, 'the KY outline cache string moved (the new outlines load)')
+check("?v=20261110us'" in txt and "?v=20261109a'" not in txt and "?v=20261018q'" not in txt, 'the KY outline cache string moved (the new outlines load)')   # Nov 11 (page size): moved on to the trip planners' ?v=20261110us (one address for every page)
 # 7. problem solver: why a hand join is missing
 lay = PS.layer_states(ROOT)
 check(lay.get('sgaki', {}).get('states', set()) >= set(want) | {'AK'}, 'layer_states reads the NRHP states')

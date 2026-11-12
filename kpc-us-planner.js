@@ -153,10 +153,19 @@ function arrowTabs(list,pick){list.addEventListener('keydown',e=>{const k=e.key;
 function tabFromHash(){let h=(location.hash||'').slice(1);try{h=decodeURIComponent(h)}catch(e){}h=h.toLowerCase();   /* Nov 11: a broken %-code no longer stops the page */return TABHASH[h]||null}
 
 /* ---------- data ---------- */
-async function loadAll(){const NO={rows:[]},J=u=>dfetch(u).then(r=>r.ok?r.json():NO).catch(()=>NO);const[L,B,CA,NA]=await Promise.all([dfetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[]),J('data/canada.json'),J('data/northam.json')]);BORD=B;
+async function loadAll(){const NO={rows:[]},J=u=>dfetch(u).then(r=>r.ok?r.json():NO).catch(()=>NO);const[L,B,CA,NA]=await Promise.all([dfetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[]),J('data/canada.json?v='+new Date().toISOString().slice(0,10)),J('data/northam.json')]);BORD=B;
+ /* Nov 11: data/canada.json at the same address the official-outline layer asks for (kpc-padus-layer.js canadaRows), so the 2.4 MB file comes down once, not twice */
  /* Canada (Brandon Oct 16: pins now, boundaries later): CA- POTA parks, VEFF WWFF, VE/VA/VY/VO SOTA from data/canada.json */
  /* + the rest of North America (Brandon Oct 17: Mexico, Central America, Caribbean, Greenland) from data/northam.json */
  const nL=L.length;L.concat((CA&&CA.rows)||[],(NA&&NA.rows)||[]).forEach((r,i)=>{if(!['POTA','SOTA','WWFF'].includes(r[0]))return;if(r[0]==='POTA'&&i<nL&&!/^(US|CA)-/.test(r[1]))return;if(BYREF[String(r[1]).toUpperCase()])return;const s={p:r[0],c:r[1],n:r[2],la:r[3],lo:r[4],url:r[5]||'',m:r[0]==='SOTA'?+r[6]||0:0,pts:r[0]==='SOTA'?+(String(r[7]||'').match(/\d+/)||[0])[0]:0};ALL.push(s);BYREF[s.c.toUpperCase()]=s})}
+/* Nov 11 (page size): the park list above (locations.json + data/canada.json + data/northam.json, about 10 MB) is read ONCE,
+   on first need: straight away when the page has something to show (your last search, a shared trip ?t=, a ?q= search),
+   otherwise when you start typing a search or a route, zoom the map in, or save the trip for no signal. Same files, same
+   order, same results; everything that reads the list waits for it (one shared promise, never fetched twice). */
+let DATA=null,LOADED=false,afterLoad=()=>{},firstRes=()=>{};
+const FIRST=new Promise(r=>{firstRes=r});   /* the first view is settled (last search drawn, or nothing to draw): Kentucky's own outlines may look at the map from then on */
+const idle=f=>{const run=()=>('requestIdleCallback' in window)?requestIdleCallback(()=>f(),{timeout:2000}):setTimeout(f,300);if(document.readyState==='complete'||typeof window.addEventListener!=='function')run();else window.addEventListener('load',run,{once:true})};
+function ready(){if(!DATA){status('Loading the park list&hellip;');DATA=loadAll().then(()=>{LOADED=true;return afterLoad()}).catch(()=>{LOADED=true;firstRes();status('Could not load the park list. Check your connection and refresh.')})}return DATA}
 function statesNear(la,lo,mi){const dLa=mi/69,dLo=mi/(69*Math.cos(la*Math.PI/180));const out=[];
  BORD.forEach(b=>{let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;b.p.forEach(pl=>pl[0].forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}));
   if(lo+dLo>=x0&&lo-dLo<=x1&&la+dLa>=y0&&la-dLa<=y1)out.push(b.a)});return out}
@@ -195,7 +204,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  const terrain=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:19,attribution:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors'});
  /* Official boundaries (USGS PAD-US, kpc-padus-layer.js): federal + state land outlined over any map */
  function pinsInView(){if(!map||!map.getBounds)return [];const b=map.getBounds();return ALL.filter(s=>s&&s.p==='POTA'&&isFinite(s.la)&&isFinite(s.lo)&&b.contains([s.la,s.lo])).map(s=>({ref:s.c,la:s.la,lo:s.lo}))}
- const pad=window.KPCPad?KPCPad(map,{keyPos:'bottomleft',minz:7,skipKY:true,kyOfficial:true,usOfficial:true,parksInView:pinsInView}):null;
+ const pad=window.KPCPad?KPCPad(map,{keyPos:'bottomleft',minz:7,skipKY:true,kyOfficial:true,kyStart:FIRST,usOfficial:true,parksInView:pinsInView}):null;   /* Nov 11: Kentucky's saved outlines load when the map shows Kentucky */
  const offi=L.layerGroup([L.tileLayer(esri+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
   L.tileLayer(esri+'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,zIndex:8}),kpcPlaceLabels(9)]);   /* streets + names above the boundary outlines (zIndex 6) */
  const OFF='Satellite + Streets + Official Boundaries';
@@ -230,6 +239,7 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
   const upd=async()=>{const q=++seq,z=map.getZoom();
    if(RT){VIEW=[];nt.hidden=true;redraw();return}
    if(z<VZ){const had=VIEW.length;VIEW=[];nt.textContent=center?'🔎 Zoom in to see every spot on the map':'🔎 Zoom in to see spots on the map';nt.hidden=false;if(had)redraw();return}
+   if(!LOADED){await ready();if(q!==seq)return}   /* Nov 11: zoomed in before the park list was needed: read it now */
    const b=map.getBounds().pad(.15),c=map.getCenter();
    try{await addTiles(b.getSouth(),b.getWest(),b.getNorth(),b.getEast(),c.lat,c.lng,60)}catch(e){}
    if(q!==seq)return;
@@ -416,7 +426,7 @@ function drawDots(){if(!map)return;
 
 /* ---------- search ---------- */
 function normRef(q){q=q.trim().toUpperCase().replace(/\s+/g,'');if(/^K-\d{4,5}$/.test(q))q='US-'+q.slice(2);return q}
-async function search(q){q=q.trim();if(!q)return;$('us-hits').style.display='none';
+async function search(q){q=q.trim();if(!q)return;if(!LOADED)await ready();$('us-hits').style.display='none';
  const ll=parseLL(q);if(ll){go(ll.la,ll.lo,ll.label,true);return}
  const ref=normRef(q);if(BYREF[ref]){const s=BYREF[ref];await go(s.la,s.lo,s.n,true);openSpot(s);return}
  const lq=q.toLowerCase();const parks=ALL.filter(s=>progs.includes(s.p)&&s.n.toLowerCase().includes(lq)).slice(0,8);
@@ -434,7 +444,7 @@ function toMap(){const m=$('usmap');if(!m)return;const h=document.querySelector(
  scrollTo({top:Math.max(0,scrollY+r.top-Math.max(0,hb)-10),behavior:'smooth'})}
 function openSpot(s,n){if(!map)return;let hit=null;dots.eachLayer(l=>{const k=l.getPopup&&l.getPopup()&&l.getPopup()._kpc;if(k&&(k===s||(k.c===s.c&&k.p===s.p)))hit=l});if(hit){if(!(hit.isPopupOpen&&hit.isPopupOpen()))hit.openPopup();else refit(hit.getPopup())}else if((n||0)<4)setTimeout(()=>openSpot(s,(n||0)+1),400)}
 let goSeq=0;
-async function go(la,lo,label,sw){const my=++goSeq;clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
+async function go(la,lo,label,sw){if(!LOADED)await ready();const my=++goSeq;clearRoute();center=[la,lo];radius=+$('usr').value;store.set('kpcUsLast',{la,lo,label,r:radius});
  status(`Loading spots near ${esc(label||'there')}…`);
  const added=await addLive(la,lo,radius);try{await addWorld(la,lo,radius)}catch(e){}
  if(my!==goSeq)return;   /* Nov 11: a newer search started while this one waited on POTA: the newer one paints */
@@ -484,7 +494,7 @@ function corridor(pts,w){const cum=[0];for(let i=1;i<pts.length;i++)cum.push(cum
   if(best<=w){out.push(s);info[s.c]={off:best,at}}});
  out.sort((a,b)=>info[a.c].at-info[b.c].at);return{list:out,info,total:cum[cum.length-1]}}
 function clearRoute(){RT=null;if(routeL){routeL.remove();routeL=null}}
-async function runRoute(){const my=++goSeq;const fq=$('urf').value,tq=$('urt').value,w=+$('urw').value;store.set('kpcUsRoute',{f:fq,t:tq,w});
+async function runRoute(){if(!LOADED)await ready();const my=++goSeq;const fq=$('urf').value,tq=$('urt').value,w=+$('urw').value;store.set('kpcUsRoute',{f:fq,t:tq,w});
  if(!fq.trim()||!tq.trim()){status('Type where you start and where you finish.');return}
  status('Finding your start…');const A=await resolvePoint(fq);if(!A){status(`Couldn’t find “${esc(fq)}”. Try a town and state, a ZIP, a park number or GPS like 37.57, -84.29.`);return}
  status('Finding your finish…');const B=await resolvePoint(tq);if(!B){status(`Couldn’t find “${esc(tq)}”. Try a town and state, a ZIP, a park number or GPS like 37.57, -84.29.`);return}
@@ -652,8 +662,9 @@ $('trip-list').onclick=e=>{const b=e.target.closest('button');if(!b)return;const
  if(b.dataset.x!=null)return removeStop(trip[i].c);const j=b.dataset.u!=null?i-1:i+1;if(j<0||j>=trip.length)return;[trip[i],trip[j]]=[trip[j],trip[i]];saveTrip();drawTrip()};
 $('t-order').onclick=bestOrder;
 /* 📴 SAVE TRIP FOR NO SIGNAL (kpc-trip-offline.js): page, data for the stops' states and the street map around each stop */
-if($('t-off'))$('t-off').onclick=()=>{if(!window.KPCTripOffline)return;const stops=trip.filter(s=>isFinite(s.la)&&isFinite(s.lo));
+if($('t-off'))$('t-off').onclick=async()=>{if(!window.KPCTripOffline)return;const stops=trip.filter(s=>isFinite(s.la)&&isFinite(s.lo));
  if(!stops.length){$('t-offmsg').textContent='Add some stops first.';return}
+ if(!LOADED){$('t-offmsg').textContent='Loading the park list first…';await ready()}   /* Nov 11: the saved copy keeps the park list (and the state lookup below needs it) */
  const st=[...new Set(stops.flatMap(s=>[stateAt(s.la,s.lo),...statesNear(s.la,s.lo,10)]).filter(Boolean))];
  const files=['locations.json','kpc-us-states.json','kpc-park-notes.json','kpc-park-notes-us.json','data/trails/index.json','KPC-logo.png'].concat(st.flatMap(x=>['data/parkinfo/US-'+x+'.json','data/campfed/US-'+x+'.json']));
  KPCTripOffline.save({stops,files,msg:$('t-offmsg'),btn:$('t-off'),key:'kpcUsTripSaved'})};
@@ -666,14 +677,19 @@ initMap();
 if(KM){KM.bar($('km-bar'));let pend=false;
  window.addEventListener('kpcmine',()=>{if(!center){if(VIEW.length&&window.__usView)window.__usView();return}drawNear();drawDots()});
  if(map)map.on('popupclose',()=>{if(pend){pend=false;setTimeout(()=>{if(map._popup&&map.hasLayer(map._popup))pend=true;else drawDots()},60)}})}
-loadAll().then(()=>{const shared=loadShared();drawTrip();if(shared&&trip.length)setTab('trip',{nosave:true});if(window.__usView)window.__usView();
+afterLoad=()=>{setTimeout(firstRes,15000);const shared=loadShared();drawTrip();if(shared&&trip.length)setTab('trip',{nosave:true});if(window.__usView)window.__usView();
+ if(map&&map.getZoom()>=7)map.fire('moveend');   /* Nov 11: zoomed in while the list loaded: outlines and dots for this view look again */
  /* ?q=… (sent by the Kentucky Trip Planner for an out-of-state place): search it straight away */
- const qp=new URLSearchParams(location.search).get('q');if(qp&&!shared){$('usq').value=qp;search(qp);return}
- const last=store.get('kpcUsLast',null);if(last&&isFinite(last.la)){$('usr').value=String(last.r||25);go(last.la,last.lo,last.label)}
- else if(shared&&trip.length){go(trip[0].la,trip[0].lo,trip[0].n)}
- else status(`${ALL.length.toLocaleString()} POTA parks, SOTA summits and WWFF references ready. Search a town, ZIP or park to start.`);
- if(shared&&map&&trip.length)map.fitBounds(L.latLngBounds(trip.map(s=>[s.la,s.lo])),{padding:[30,30],maxZoom:11})})
- .catch(()=>status('Could not load the park list. Check your connection and refresh.'));
+ const qp=new URLSearchParams(location.search).get('q');if(qp&&!shared){$('usq').value=qp;search(qp).finally(firstRes);return}
+ const last=store.get('kpcUsLast',null);if(last&&isFinite(last.la)){$('usr').value=String(last.r||25);go(last.la,last.lo,last.label).finally(firstRes)}
+ else if(shared&&trip.length){go(trip[0].la,trip[0].lo,trip[0].n).finally(firstRes)}
+ else{status(`${ALL.length.toLocaleString()} POTA parks, SOTA summits and WWFF references ready. Search a town, ZIP or park to start.`);firstRes()}
+ if(shared&&map&&trip.length)map.fitBounds(L.latLngBounds(trip.map(s=>[s.la,s.lo])),{padding:[30,30],maxZoom:11})};
+/* Nov 11 (page size): read the park list now only when there is something to show; else on the first search / route / zoom-in */
+{const qs=new URLSearchParams(location.search),last=store.get('kpcUsLast',null);
+ if(qs.get('t')||qs.get('q')||(last&&isFinite(last.la)))ready();
+ else{drawTrip();status('Search a town, ZIP or park to start.');idle(firstRes);
+  const first=()=>ready();['usq','urf','urt'].forEach(id=>{const el=$(id);if(el)['focus','pointerdown','keydown','input'].forEach(t=>el.addEventListener(t,first,{once:true}))})}}
 })();
 
 /* ⛶ FULL / ✕ EXIT button (same as the Kit / Info Finder / In-Park maps; Esc exits) */

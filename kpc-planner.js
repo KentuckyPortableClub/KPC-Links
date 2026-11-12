@@ -131,6 +131,12 @@ function whereHtml(w){
  if(w.trails.length)h+=w.trails.map(t=>`<div class="pw-in">🥾 ${t.d<0.03?'On':'Near'} <b>${esc(t.name)}</b> · POTA <b>${t.ref}</b> · ${fmtMi(t.d)} from the trail</div>`).join('');
  return h+'<div class="pw-muted">Map outlines can differ from POTA’s boundary, so confirm on the POTA map.</div>'}
 
+/* Nov 11 (page size): the boundary and trail files (about 7 MB) start after the page has loaded and gone idle, so the
+   park list, map and search come first on a slow phone; a spot, the add-a-spot button or SAVE FOR NO SIGNAL start them
+   at once. Same files, same layers on by default, same end state; loaded once (one shared promise). */
+let bLoad=null;
+const boundsNow=()=>bLoad||(bLoad=loadBoundaries());
+function boundsSoon(){const run=()=>('requestIdleCallback' in window)?requestIdleCallback(()=>boundsNow(),{timeout:2000}):setTimeout(boundsNow,300);if(document.readyState==='complete'||typeof window.addEventListener!=='function')run();else window.addEventListener('load',run,{once:true})}
 async function loadBoundaries(){
  if(window.kpcAnswerKey)kpcAnswerKey.loadKey(restyleBounds);
  const stat=$('lyrStat');let n=0;const keys=Object.keys(B);
@@ -207,7 +213,7 @@ function makeMap(){
 function full(force){const w=$('mapwrap');const onNow=typeof force==='boolean'?force:!w.classList.contains('pl-full');w.classList.toggle('pl-full',onNow);if(LB){onNow?LB.dock(w):LB.undock()}document.documentElement.classList.toggle('pl-noscroll',onNow);
  const b=$('plFull');if(b){b.textContent=onNow?'✕':'⛶';b.title=onNow?'Close full screen':'Full-screen map'}setTimeout(()=>map.invalidateSize(),60)}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.querySelector('.kx-lpanel:not([hidden])'))return;if(adding)addMode(false);else if($('mapwrap').classList.contains('pl-full'))full(false)}});
-function addMode(v){adding=v;$('mapwrap').classList.toggle('pl-adding',v);$('addSpot').setAttribute('aria-pressed',String(v));$('addSpot').textContent=v?'✕ CANCEL ADDING':'📍 ADD A SPOT';const b=$('plPin');if(b)b.classList.toggle('on',v);if(v)map.closePopup()}
+function addMode(v){adding=v;if(v)boundsNow();$('mapwrap').classList.toggle('pl-adding',v);$('addSpot').setAttribute('aria-pressed',String(v));$('addSpot').textContent=v?'✕ CANCEL ADDING':'📍 ADD A SPOT';const b=$('plPin');if(b)b.classList.toggle('on',v);if(v)map.closePopup()}
 
 /* ---------------- trip ---------------- */
 const uid = () => Math.random().toString(36).slice(2,9);
@@ -219,7 +225,7 @@ function removeStop(id){trip=trip.filter(s=>s.id!==id);changed()}
 function spotName(w){if(w.trails.length&&!w.hits.length)return 'Spot on '+w.trails[0].name;if(w.hits.length)return 'Spot at '+w.hits[0].name;
  let best=null;if(D)for(const p of D.parks){const d=KPC.miles(lastLL.lat,lastLL.lng,p.la,p.lo);if(!best||d<best.d)best={p,d}}return best?'Spot near '+best.p.n:'My spot'}
 let lastLL=null;
-function addSpot(ll){if(!canAdd())return;lastLL=ll;const w=whereIs(ll.lat,ll.lng);
+function addSpot(ll){if(!canAdd())return;boundsNow();lastLL=ll;const w=whereIs(ll.lat,ll.lng);
  const s={id:uid(),t:'spot',n:bReady?spotName(w):'My spot '+(trip.filter(x=>x.t==='spot').length+1),la:+ll.lat.toFixed(6),lo:+ll.lng.toFixed(6),note:''};
  trip.push(s);changed();const m=tripLayer.getLayers().find(x=>x._stop&&x._stop.id===s.id);if(m)m.openPopup()}
 function spotPopup(s){const d=L.DomUtil.create('div','pl-pop');const w=whereIs(s.la,s.lo);
@@ -444,7 +450,7 @@ function pickTown(){const v=$('town').value,p=findPlace(v);if(!p){if(v.trim().le
  else if(origin){$('town').value=origin[2]==='your location'?'':origin[2];run()}
  renderTrip();
  if(trip.length&&!origin){map.fitBounds(L.latLngBounds(trip.map(s=>[s.la,s.lo])).pad(.3),{maxZoom:15})}
- loadBoundaries();
+ boundsSoon();
  /* new checker answers: redraw (fit kept); wait while a popup is open so it doesn't vanish */
  if(KM){KM.bar($('km-bar'));let pend=false;const redo=()=>{if(origin){run(false);refreshInfo()}};
   window.addEventListener('kpcmine',()=>{if(map._popup&&map.hasLayer(map._popup)){pend=true;return}redo()});
@@ -495,7 +501,8 @@ $('rtClear').onclick=()=>$('newSearch').click();
 {let r=null;try{r=JSON.parse(localStorage.getItem('kpcPlanRoute')||'null')}catch(e){}if(r){$('rtFrom').value=r.f||'';$('rtTo').value=r.t||'';if(r.w)$('rtW').value=String(r.w)}let m='town';try{m=localStorage.getItem('kpcPlanMode')||'town'}catch(e){}planMode(m)}
 $('addSpot').onclick=()=>{addMode(!adding);if(adding){$('mapwrap').scrollIntoView({behavior:'smooth',block:'center'});if(map.getZoom()<12)flash('Zoom in close, then tap the exact spot. Satellite + Roads (top-right) is best for spotting pull-offs.')}};
 /* 📴 SAVE TRIP FOR NO SIGNAL (kpc-trip-offline.js; Brandon Oct 16) */
-if($('offsave'))$('offsave').onclick=()=>{if(!window.KPCTripOffline||!trip.length)return;
+if($('offsave'))$('offsave').onclick=async()=>{if(!window.KPCTripOffline||!trip.length)return;
+ if(!bReady){$('offmsg').textContent='Loading the boundaries first…';await boundsNow()}   /* Nov 11: the saved copy keeps the boundary files */
  KPCTripOffline.save({stops:trip.filter(s=>isFinite(s.la)&&isFinite(s.lo)),files:['kpc-ky-data.json','kpc-park-notes.json','kpc-campgrounds.json','kpc-conditions.json','KPC-logo.png'],msg:$('offmsg'),btn:$('offsave'),key:'kpcKyTripSaved'})};
 $('clear').onclick=()=>{if(trip.length&&!confirm('Remove all '+trip.length+' stops from this trip?'))return;trip=[];changed()};
 $('sortd').onclick=()=>{const o=origin||(trip[0]&&[trip[0].la,trip[0].lo]);if(!o)return;const left=[...trip],out=[];let cur=o;
