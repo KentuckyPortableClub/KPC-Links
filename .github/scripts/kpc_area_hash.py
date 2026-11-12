@@ -59,7 +59,13 @@ HEADER_KEYS = {'about', 'note', 'notes', 'updated', 'when', 'date', 'from', 'for
 # Rule modules a builder imports that today's RULE_FILES leave out, found by reading the imports (DESIGN.md 2.4). They decide
 # results: kpc_fers_far_hold.hold_spots holds live 2-fer rows (kpc_fers.py pass 5); kpc_precheck.name_how is the name test of
 # kpc_fers_guard.py. In the design they are rule files of the kind.
-CLOSURE_ADD = {'fers': ['.github/scripts/kpc_fers_far_hold.py', '.github/scripts/kpc_precheck.py']}
+CLOSURE_ADD = {'fers': ['.github/scripts/kpc_fers_far_hold.py', '.github/scripts/kpc_precheck.py'],
+               # Nov 12 (KPC owner, 2026-11-12; E67): the official pin fills and the Japan A10 crosswalk decide results (which pin a park is
+               # joined by; which A10 record a JP park joins) but are NOT_RULES modules: counted here as code of the kinds that run them
+               'ca': ['.github/scripts/kpc_pin_fill.py'], 'world': ['.github/scripts/kpc_pin_fill.py', '.github/scripts/kpc_jp_crosswalk.py']}
+OFFICIAL_PINS = 'data/intake/official-pins-nov12.json'   # E67: a KPC-Data file (read from --data), rows by park ref
+JP_CROSSWALK = 'data/research-inbox/answers/nov5/JP_A10_crosswalk.csv'   # E67: read by the world key for JP only, when the switch is on
+JP_SWITCH = 'KPC_JP_A10_CROSSWALK'   # E67: a repo variable passed to the world build; it counts for JP only
 # Scope files the BUILDER reads (an input); the other scope files are read only by the freeze check (a record, not an input).
 SCOPE_READ = {'fers': '.github/fers-rule-scope.json'}
 # Step 1 of the design (close the hole): the modules every key build runs that decide WHICH layer is read live, read from the saved
@@ -398,7 +404,8 @@ class Kind:
                 if b is not None: sh['reader:' + f] = H(tokens(b) if self.level >= 2 else b)
         # repo variables the key workflow passes to the build (KPC_KEY_LIVE, KPC_SAVED_ONLY_HOSTS, ...): not in git, so the plan job
         # must hash the values it was given. --var NAME=VALUE.
-        if self.env: sh['vars'] = H(canon(self.env))
+        env = {k: v for k, v in self.env.items() if k != JP_SWITCH}   # E67: the Japan switch counts for JP only (see parts())
+        if env: sh['vars'] = H(canon(env))
         return sh, per
 
     def area_tables(self, parts, shared):
@@ -429,6 +436,29 @@ class Kind:
                 parts[a][f'data:{path}:{name}'] = H(canon(x)); self.urls.setdefault(a, set()).update(URL_RE.findall(canon(x).decode('utf-8', 'replace')))
             if rest:
                 shared[f'shared:{path}:{name}#unattributed'] = H(canon(rest)); self.urls.setdefault('*', set()).update(URL_RE.findall(canon(rest).decode('utf-8', 'replace')))
+
+    def official_pins(self, parts, shared):
+        """E67: the official pin fills (KPC-Data data/intake/official-pins-nov12.json, given by --data): each row counts for the area of its
+        park (Canada: the province from the key / pin files; world: the ref's country prefix). No --data = not counted (like the pins part);
+        --data given but the file missing or unreadable = a shared part (every area of the kind moves: fail closed)."""
+        if not self.data: return
+        f = pathlib.Path(self.data) / OFFICIAL_PINS
+        try: rows = json.loads(f.read_text(encoding='utf-8')).get('rows')
+        except Exception as e: shared[f'shared:{OFFICIAL_PINS}!unreadable'] = H(type(e).__name__); return  # noqa: BLE001
+        if not isinstance(rows, list): shared[f'shared:{OFFICIAL_PINS}!unreadable'] = H(b'!'); return
+        by, un = {}, []
+        for r in rows:
+            ref = str(r.get('ref') or '') if isinstance(r, dict) else ''
+            if self.kind == 'ca':
+                if not ref.startswith('CA-'): continue
+                own = [a for a in (self.ref_area.get(ref) or ()) if a in self.areas_set]
+            else:
+                if ref.split('-')[0] in ('US', 'CA', 'KY') or '-' not in ref: continue
+                own = [ref.split('-')[0]] if ref.split('-')[0] in self.areas_set else []
+            if not own: un.append(r); continue
+            for a in own: by.setdefault(a, []).append(r)
+        for a, x in by.items(): parts[a][f'data:{OFFICIAL_PINS}'] = H(canon(x))
+        if un: shared[f'shared:{OFFICIAL_PINS}#rows-of-no-area'] = H(canon(un))
 
     def slice_file(self, path, parts, shared, key_of=None, label=None):
         """Slice one data file into the areas' parts. key_of(obj) -> {area: slice} for files keyed by area; else ref rows."""
@@ -494,6 +524,7 @@ class Kind:
                 if a in self.areas_set: parts[a]['data:data/canada-bounds/*'] = H(canon(x))
                 else: sh['shared:data/canada-bounds#rows-in-no-key'] = H(canon(x))
             self.gate(parts, sh, lambda a: 'CA-ALL', shared=True)   # one saved copy for all of Canada
+            self.official_pins(parts, sh)   # E67
         elif self.kind == 'world':
             self.slice_file('data/world-key/overrides.json', parts, sh)
             self.area_tables(parts, sh)   # D6: SRC, EU, GEN, LOC, KINDS, SIDE_NOT, TYPE_PREFER, SPLIT_LAYERS
@@ -504,6 +535,10 @@ class Kind:
             for f in ('data/world-key/jp-wikidata.json', 'data/retired-refs.json'): self.slice_file(f, parts, sh)
             self.locations(parts, sh, None)
             self.gate(parts, sh, lambda a: f'W-{a}')
+            self.official_pins(parts, sh)   # E67
+            if 'JP' in self.areas_set:   # E67: the Japan A10 crosswalk (a CSV, by bytes) and its switch, JP only
+                parts['JP'][f'data:{JP_CROSSWALK}'] = H(t.read(JP_CROSSWALK) or b'missing')
+                parts['JP'][f'vars:{JP_SWITCH}'] = H(canon({JP_SWITCH: 'on' if str(self.env.get(JP_SWITCH) or '').strip().lower() == 'on' else 'off'}))
         else:
             self.fers_parts(parts, sh)
         if self.data and self.kind in ('us', 'ca', 'world'):
@@ -856,6 +891,8 @@ INPUT_PATHS = ['data/us-key/overrides.json', 'data/us-key/overrides-parks-*.json
                'data/world-key/jp-wikidata.json', 'data/ca-key/layers.json', 'data/ca-key/hardlook-joins.json', 'kpc-us-states.json',
                'data/retired-refs.json', 'data/park-transfers.json', 'data/nps-units.json', 'data/outlines/layers.json',
                'data/outlines/world-baselines.approved.json', 'data/us-key/layers.json'] + READER + sorted(AREA_TABLES.values())   # + D6 tables
+
+INPUT_PATHS.append(JP_CROSSWALK)   # E67: the Japan A10 crosswalk is a world input (JP)
 
 
 def build_marks(repo, kind):

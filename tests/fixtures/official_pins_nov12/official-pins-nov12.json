@@ -1,0 +1,1561 @@
+{
+ "about": "OFFICIAL PINS from the Nov 11 outside search (Brandon, Nov 12 2026), staged here because no bot reads pin fills yet and data/point-circles.json feeds the running 2-fer rules. action: pin-fill = POTA has no usable pin (0,0 or absent), this fills it and moves nothing; point-circle-candidate = official point within 0.5 km of the POTA pin and the park has no outline (100 ft circle; card notes there is no boundary); held = the official point is more than 0.5 km away (never moves a pin, a person checks). Never a boundary, never a key outline. OWNER CALL: when shares_pota_pin_with is not empty, two parks would get the same circle and the 2-fer finder would pair them, so a person decides before any of these go into data/point-circles.json.",
+ "rows": [
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -11.346944,
+   "lon": 132.229722,
+   "name": "Cobourg Peninsula Conservation Area",
+   "note": "Official Ramsar Information Sheet states the coordinate as 11 deg 20min 49sec S, 132 deg 13min 47sec E, converted here to decimal degrees. NT Government park page itself gave no coordinates, but the Ramsar listing (same protected area/peninsula) does.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "AU-10111",
+   "shares_pota_pin_with": [],
+   "source_name": "Ramsar Sites Information Service - Cobourg Peninsula (Ramsar Site No. 1, the first site ever listed under the Convention)",
+   "source_url": "https://rsis.ramsar.org/ris/1",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "world key rules 889d37136cf8 (kpc_world_key.py reads the POTA pin)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -38.401989,
+   "lon": 141.530012,
+   "name": "Murrells Beach State Beach",
+   "note": "Same official Parks Victoria site page as AU-9916; this ref appears to be a duplicate/alternate POTA listing for the same physical beach.",
+   "pin_km": 0.208,
+   "pota_pin": [
+    -38.403,
+    141.528
+   ],
+   "ref": "AU-10289",
+   "shares_pota_pin_with": [
+    "AU-9916"
+   ],
+   "source_name": "Parks Victoria (parks.vic.gov.au) - Murrells Beach site page",
+   "source_url": "https://www.parks.vic.gov.au/places-to-see/sites/murrells-beach",
+   "why": "official point 0.21 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -38.401989,
+   "lon": 141.530012,
+   "name": "Murrells State Beach",
+   "note": "Coordinate taken from the Google Maps 'how to get there' link embedded on Parks Victoria's official site page for Murrells Beach (Discovery Bay Coastal Park area). Matches closely with POTA's shared pin, confirming identity of this beach.",
+   "pin_km": 0.208,
+   "pota_pin": [
+    -38.403,
+    141.528
+   ],
+   "ref": "AU-9916",
+   "shares_pota_pin_with": [
+    "AU-10289"
+   ],
+   "source_name": "Parks Victoria (parks.vic.gov.au) - Murrells Beach site page",
+   "source_url": "https://www.parks.vic.gov.au/places-to-see/sites/murrells-beach",
+   "why": "official point 0.21 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "held",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -23.45,
+   "lon": -51.25,
+   "name": "Mata dos Godoy State Conservation",
+   "note": "Official Paraná state environmental agency (IAT) management-plan Capítulo III, Quadro III.01 'Coordenadas Geográficas do Centro da UC': 23° 27' latitude S; 51° 15' longitude W, converted to decimal degrees (-23.45, -51.25). Also stated in prose: 'tem como centro as coordenadas 23º 27' de latitude S e 51º 15' de longitude W'",
+   "pin_km": 1.489,
+   "pota_pin": [
+    -23.4396,
+    -51.2408
+   ],
+   "ref": "BR-0085",
+   "shares_pota_pin_with": [
+    "BR-0301"
+   ],
+   "source_name": "Instituto Água e Terra (IAT-PR) – Plano de Manejo do Parque Estadual Mata dos Godoy",
+   "source_url": "https://www.iat.pr.gov.br/sites/agua-terra/arquivos_restritos/files/documento/2020-07/pe_mata_godoy_cap_iii.pdf",
+   "why": "official point 1.5 km from the POTA pin: would move a pin, not allowed; person checks"
+  },
+  {
+   "action": "held",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -23.45,
+   "lon": -51.25,
+   "name": "Mata dos Godoy State Park",
+   "note": "Same official source/coordinate as BR-0085 (this is the same park under a different POTA listing)",
+   "pin_km": 1.489,
+   "pota_pin": [
+    -23.4396,
+    -51.2408
+   ],
+   "ref": "BR-0301",
+   "shares_pota_pin_with": [
+    "BR-0085"
+   ],
+   "source_name": "Instituto Água e Terra (IAT-PR) – Plano de Manejo do Parque Estadual Mata dos Godoy",
+   "source_url": "https://www.iat.pr.gov.br/sites/agua-terra/arquivos_restritos/files/documento/2020-07/pe_mata_godoy_cap_iii.pdf",
+   "why": "official point 1.5 km from the POTA pin: would move a pin, not allowed; person checks"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 50.25,
+   "lon": -59.845833,
+   "name": "Ile Marianne (282) Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2056",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Colonie d oiseaux, Iles Mariannes (282)",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 49.552639,
+   "lon": -70.795083,
+   "name": "Ile Poirier Old-Growth Forest Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2058",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret ancienne de l Ile-Poirier",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 49.417611,
+   "lon": -68.674528,
+   "name": "Lac a Jos Old Growth Forest Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2080",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret ancienne du Lac-a-Jos",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 49.768167,
+   "lon": -71.859528,
+   "name": "Lac Ancelin Old Growth Forest Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2082",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret ancienne du Lac-Ancelin",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.082167,
+   "lon": -74.302444,
+   "name": "Lac-Brule Natrue Reserve Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2089",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Reserve naturelle du Lac-Brule",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 47.095944,
+   "lon": -74.322972,
+   "name": "Lac des Faucons Old-Growth Forest Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2092",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret ancienne du Lac-des-Faucons",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 48.398444,
+   "lon": -79.495056,
+   "name": "Lac Despres Old-Growth Forest Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2093",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret ancienne du Lac-Despres",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 47.099667,
+   "lon": -74.281056,
+   "name": "Lac Hastel Old-Growth Forest Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2097",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret ancienne du Lac-Hastel",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 49.172194,
+   "lon": -68.741694,
+   "name": "Lac Kanistukamat Rare Forest Ecosystem Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2099",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret rare des Lacs-Kanistukamat",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 48.661194,
+   "lon": -69.757556,
+   "name": "Lac Teton Old-Growth Forest Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2103",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret ancienne du Lac-Teton",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 49.384194,
+   "lon": -62.061,
+   "name": "Pointe a la Battrie Cap de la Table Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2198",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Aire de concentration d oiseaux aquatiques, pointe a la Battrie-Cap de la Table",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 47.850611,
+   "lon": -72.352333,
+   "name": "Riviere Bostonnais Old Growth Forest Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2223",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret ancienne de la Riviere-Bostonnais",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 48.611722,
+   "lon": -64.340167,
+   "name": "Riviere Malbaie (CNC/Stallman) Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2227",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Reserve naturelle de la Riviere-Malbaie (Sec. SCCN / Par. Stallman)",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 48.042056,
+   "lon": -71.420361,
+   "name": "Riviere Pikauba Rare Forest Ecosystem Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2228",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret rare de la Riviere-Pikauba",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 47.500361,
+   "lon": -68.469278,
+   "name": "Ruisseau Teed Old Growth Forest Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2238",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Foret ancienne du Ruisseau-Teed",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.4333,
+   "lon": -73.95,
+   "name": "Senneville Migratory Bird Sanctuary",
+   "note": "Official ECCC page states the sanctuary is at 45 26' 00\\ N",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2246",
+   "shares_pota_pin_with": [],
+   "source_name": "Environment and Climate Change Canada - Migratory Bird Sanctuaries locations",
+   "source_url": "https://www.canada.ca/en/environment-climate-change/services/migratory-bird-sanctuaries/locations/senneville.html",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.5194,
+   "lon": -70.0417,
+   "name": "Thomas-Sterry-Hunt International Ecological Reserve",
+   "note": "Official Quebec ecological reserve registry PDF lists coordinates 46 31' 10\\ N",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2261",
+   "shares_pota_pin_with": [],
+   "source_name": "Registre des aires protegees - reserve ecologique (MELCCFP)",
+   "source_url": "https://www.environnement.gouv.qc.ca/biodiversite/aires_protegees/registre/reg-design/reserve-ecologique.pdf",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.139944,
+   "lon": -72.369194,
+   "name": "Tyre Macfa Natrue Reserve Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2274",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Reserve naturelle Tyre-Macfarlane",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 60.019,
+   "lon": -128.58,
+   "name": "Liard Canyon Recreation Park",
+   "note": "Yukon government campsite page states GPS coordinates 60.019N, 128.580W, at Alaska Highway km 971.0.",
+   "pin_km": 0.0,
+   "pota_pin": [
+    60.019,
+    -128.58
+   ],
+   "ref": "CA-4613",
+   "shares_pota_pin_with": [
+    "CA-5739"
+   ],
+   "source_name": "Yukon.ca - Liard Canyon Recreation Site",
+   "source_url": "https://yukon.ca/en/outdoor-recreation-and-wildlife/camping/site/liard-canyon-recreation-site",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.42502,
+   "lon": -75.69975,
+   "name": "Parliament Buildings National Historic Site",
+   "note": "Coordinates listed directly in the official Canadian Register of Historic Places entry named 'Parliament Buildings National Historic Site of Canada'.",
+   "pin_km": 0.163,
+   "pota_pin": [
+    45.4238,
+    -75.7009
+   ],
+   "ref": "CA-5113",
+   "shares_pota_pin_with": [
+    "CA-5115"
+   ],
+   "source_name": "Canadian Register of Historic Places",
+   "source_url": "https://www.historicplaces.ca/en/rep-reg/place-lieu.aspx?id=18470",
+   "why": "official point 0.16 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.4246,
+   "lon": -75.69946,
+   "name": "Public Grounds of the Parliament Buildings National Historic Site",
+   "note": "Coordinates listed directly in the official Canadian Register of Historic Places entry named 'Public Grounds of the Parliament Buildings National Historic Site of Canada'.",
+   "pin_km": 0.143,
+   "pota_pin": [
+    45.4238,
+    -75.7009
+   ],
+   "ref": "CA-5115",
+   "shares_pota_pin_with": [
+    "CA-5113"
+   ],
+   "source_name": "Canadian Register of Historic Places",
+   "source_url": "https://www.historicplaces.ca/en/rep-reg/place-lieu.aspx?id=17422",
+   "why": "official point 0.14 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 60.019,
+   "lon": -128.58,
+   "name": "Lucky Lake Recreation Site",
+   "note": "Yukon government campsite page states GPS coordinates 60.019N 128.58W. Note: this is identical to the Liard Canyon Recreation Site coordinate on Yukon.ca (both pages reference Alaska Hwy km 971.0), an apparent duplication in the source agency's own data rather than our error; reported as officially stated.",
+   "pin_km": 0.0,
+   "pota_pin": [
+    60.019,
+    -128.58
+   ],
+   "ref": "CA-5739",
+   "shares_pota_pin_with": [
+    "CA-4613"
+   ],
+   "source_name": "Yukon.ca - Lucky Lake Recreation Area",
+   "source_url": "https://yukon.ca/en/outdoor-recreation-and-wildlife/camping/site/lucky-lake-recreation-area",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 44.51027,
+   "lon": -66.78222,
+   "name": "Gannet Rock Light Tower Historic Site",
+   "note": "Coordinates listed directly in the official Canadian Register of Historic Places entry for Gannet Rock Lighthouse.",
+   "pin_km": 0.055,
+   "pota_pin": [
+    44.5105,
+    -66.7816
+   ],
+   "ref": "CA-6459",
+   "shares_pota_pin_with": [
+    "CA-6458"
+   ],
+   "source_name": "Canadian Register of Historic Places",
+   "source_url": "https://www.historicplaces.ca/en/rep-reg/place-lieu.aspx?id=4738",
+   "why": "official point 0.06 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 43.832,
+   "lon": 6.984,
+   "name": "Reserve biologique integrale du Ch",
+   "note": "Official INPN protected-area page for site FR2300248 states a centre coordinate of 43.832°N, 6.984°E. (This matches the POTA shared pin, confirming that value is in fact correct/official for this site.)",
+   "pin_km": 0.0,
+   "pota_pin": [
+    43.832,
+    6.984
+   ],
+   "ref": "FR-2482",
+   "shares_pota_pin_with": [
+    "FR-4491"
+   ],
+   "source_name": "INPN (Inventaire National du Patrimoine Naturel, Muséum national d'Histoire naturelle) – espace protégé FR2300248 \"Cheiron (Du)\"",
+   "source_url": "https://inpn.mnhn.fr/espace/protege/FR2300248",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 43.832,
+   "lon": 6.984,
+   "name": "Du Cheiron Biological Reserve",
+   "note": "Same official INPN record as FR-2482; both POTA refs correspond to the same real-world Réserve Biologique Intégrale du Cheiron.",
+   "pin_km": 0.0,
+   "pota_pin": [
+    43.832,
+    6.984
+   ],
+   "ref": "FR-4491",
+   "shares_pota_pin_with": [
+    "FR-2482"
+   ],
+   "source_name": "INPN (Muséum national d'Histoire naturelle) – espace protégé FR2300248/FR2400262 \"Cheiron (Du)\"",
+   "source_url": "https://inpn.mnhn.fr/espace/protege/FR2400262?lg=en",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 48.54468,
+   "lon": 4.68222,
+   "name": "Etangs De La Champagne Humide Biol",
+   "note": "Official INPN protected-area page for site FR7200004 states a centre coordinate of 48.54468°N, 4.68222°E (matches the POTA shared pin, confirming it is correct for this specific site).",
+   "pin_km": 0.002,
+   "pota_pin": [
+    48.5447,
+    4.68222
+   ],
+   "ref": "FR-7265",
+   "shares_pota_pin_with": [
+    "FR-7375"
+   ],
+   "source_name": "INPN (Muséum national d'Histoire naturelle) – espace protégé FR7200004 \"Etangs De La Champagne Humide\"",
+   "source_url": "https://inpn.mnhn.fr/espace/protege/FR7200004?lg=en",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -21.13647,
+   "lon": 55.25859,
+   "name": "MARINE DE LA REUNION  FR3600164 Ma",
+   "note": "INPN code FR3600164 matches the code quoted in this POTA park's own name; INPN's official centroid for 'Marine De La Réunion' is -21.13647, 55.25859 (identical to the POTA shared_pin, confirming this value traces to the correct official source for this specific protected area).",
+   "pin_km": 0.003,
+   "pota_pin": [
+    -21.1365,
+    55.2586
+   ],
+   "ref": "RE-0019",
+   "shares_pota_pin_with": [
+    "RE-0022"
+   ],
+   "source_name": "INPN (Inventaire National du Patrimoine Naturel — French national biodiversity/protected-areas registry, Muséum national d'Histoire naturelle)",
+   "source_url": "https://inpn.mnhn.fr/espace/protege/FR3600164?lg=en",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -21.13647,
+   "lon": 55.25859,
+   "name": "Marine De La Reunion Marine Reserv",
+   "note": "Name and description match the same single INPN-registered protected area FR3600164 as RE-0019 (i.e., this appears to be the same marine reserve entered twice under two POTA references, not two distinct reserves); same official INPN coordinate applies.",
+   "pin_km": 0.003,
+   "pota_pin": [
+    -21.1365,
+    55.2586
+   ],
+   "ref": "RE-0022",
+   "shares_pota_pin_with": [
+    "RE-0019"
+   ],
+   "source_name": "INPN (Inventaire National du Patrimoine Naturel — French national biodiversity/protected-areas registry, Muséum national d'Histoire naturelle)",
+   "source_url": "https://inpn.mnhn.fr/espace/protege/FR3600164?lg=en",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.12798,
+   "lon": 13.649135,
+   "name": "KAMBREŠKO-PLAVE - STAGE 6A SI  WAL",
+   "note": "Official Walk of Peace trail page states 'Start (Kambresko): 46.127980, 13.649135' as the stage start GPS coordinate; matches POTA's shared pin almost exactly, confirming it as the real waypoint for the Kambreško trailhead shared by stages 6 and 6A.",
+   "pin_km": 0.003,
+   "pota_pin": [
+    46.128,
+    13.6491
+   ],
+   "ref": "SI-0048",
+   "shares_pota_pin_with": [
+    "SI-0052"
+   ],
+   "source_name": "Walk of Peace Foundation (Fundacija Poti miru v Posočju) - Stage 6A Kambreško-Plave",
+   "source_url": "https://www.turismofvg.it/en/walk-of-peace/wop-06a-kambresko-plave",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.12798,
+   "lon": 13.649135,
+   "name": "KAMBREŠKO-ŠMARTNO STAGE 6SI WALK O",
+   "note": "Same official Kambreško trailhead start point used by both stage 6 and 6A per thewalkofpeace.com; coordinate matches POTA's shared pin.",
+   "pin_km": 0.003,
+   "pota_pin": [
+    46.128,
+    13.6491
+   ],
+   "ref": "SI-0052",
+   "shares_pota_pin_with": [
+    "SI-0048"
+   ],
+   "source_name": "Walk of Peace Foundation - Stage 6 Kambreško-Šmartno",
+   "source_url": "https://www.turismofvg.it/en/walk-of-peace/wop-06-kambresko-smartno",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.166576,
+   "lon": 13.723383,
+   "name": "MENGORE TRIAL - STAGE 5a WALK OF P",
+   "note": "Official site page for the Mengore WWI outdoor museum/hill states GPS 46.166576, 13.723383 (alt. 452 m); matches POTA's shared pin almost exactly. A related official brochure gives a very slightly different rounded value (46.166621, 13.721516).",
+   "pin_km": 0.003,
+   "pota_pin": [
+    46.1666,
+    13.7234
+   ],
+   "ref": "SI-0054",
+   "shares_pota_pin_with": [
+    "SI-1146"
+   ],
+   "source_name": "Walk of Peace Foundation - Outdoor Museum Mengore page",
+   "source_url": "https://thewalkofpeace.com/?p=281",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.247513,
+   "lon": 13.578997,
+   "name": "KOBARID-KOLOVRAT K-C1SI  WALK OF P",
+   "note": "Official stage page gives 'Start: 46.247513, 13.578997 (parking area in front of Kulturni dom Kobarid)'; matches POTA's shared pin. Stage end at Mt. Kolovrat outdoor museum is 46.183630, 13.659498.",
+   "pin_km": 0.001,
+   "pota_pin": [
+    46.2475,
+    13.579
+   ],
+   "ref": "SI-0061",
+   "shares_pota_pin_with": [
+    "SI-0063"
+   ],
+   "source_name": "Walk of Peace Foundation - Stage K-C1 Kobarid-Kolovrat",
+   "source_url": "https://thewalkofpeace.com/?p=1794",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.247513,
+   "lon": 13.578997,
+   "name": "KOBARID-MOUNT HUT KUHINJA 3 SI - W",
+   "note": "Official stage page gives start point at Kobarid as 46.247513, 13.578997, matching POTA's shared pin (same Kobarid trailhead as SI-0061). Stage's own end point near Mountain Hut Kuhinja is 46.241412, 13.659947, which may better represent this specific site.",
+   "pin_km": 0.001,
+   "pota_pin": [
+    46.2475,
+    13.579
+   ],
+   "ref": "SI-0063",
+   "shares_pota_pin_with": [
+    "SI-0061"
+   ],
+   "source_name": "Walk of Peace Foundation - Stage 3 Kobarid-Mountain Hut Kuhinja",
+   "source_url": "https://www.turismofvg.it/en/walk-of-peace/wop-03-kobarid-mountain-hut-kuhinja",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.915196,
+   "lon": 13.657503,
+   "name": "Sv.Ot - spominski park in učna pot",
+   "note": "Official page for the Sveti Ot hill (site of the WWII partisan memorial and educational trail) states GPS 45.915196, 13.657503; matches POTA's shared pin almost exactly.",
+   "pin_km": 0.024,
+   "pota_pin": [
+    45.9154,
+    13.6576
+   ],
+   "ref": "SI-0081",
+   "shares_pota_pin_with": [
+    "SI-1027"
+   ],
+   "source_name": "Walk of Peace Foundation - Sveti Ot hill page",
+   "source_url": "https://thewalkofpeace.com/?p=205",
+   "why": "official point 0.02 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.955305,
+   "lon": 13.634807,
+   "name": "Trg Evrope Historic Site",
+   "note": "Official page states GPS coordinates as 45.955305, 13.634807 for Trg Evrope/Piazza della Transalpina; matches POTA's shared pin almost exactly.",
+   "pin_km": 0.007,
+   "pota_pin": [
+    45.9553,
+    13.6349
+   ],
+   "ref": "SI-0476",
+   "shares_pota_pin_with": [
+    "SI-0607"
+   ],
+   "source_name": "Walk of Peace Foundation - Trg Evrope / Transalpina Square page",
+   "source_url": "https://thewalkofpeace.com/?p=53",
+   "why": "official point 0.01 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.98278,
+   "lon": 13.643024,
+   "name": "Cerkev sv. Valentina na Sabotinu H",
+   "note": "Official page states GPS coordinates as 45.982780, 13.643024; matches POTA's shared pin almost exactly.",
+   "pin_km": 0.011,
+   "pota_pin": [
+    45.9827,
+    13.6431
+   ],
+   "ref": "SI-0613",
+   "shares_pota_pin_with": [
+    "SI-0612"
+   ],
+   "source_name": "Walk of Peace Foundation - Church of St. Valentine on Sabotin page",
+   "source_url": "https://thewalkofpeace.com/?p=52",
+   "why": "official point 0.01 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.166576,
+   "lon": 13.723383,
+   "name": "Mengore - Sistem utrdb,bunkerjev,k",
+   "note": "Same official Mengore hill coordinate as SI-0054; this ref covers the fortification/bunker system on the same hill.",
+   "pin_km": 0.003,
+   "pota_pin": [
+    46.1666,
+    13.7234
+   ],
+   "ref": "SI-1146",
+   "shares_pota_pin_with": [
+    "SI-0054"
+   ],
+   "source_name": "Walk of Peace Foundation - Outdoor Museum Mengore page",
+   "source_url": "https://thewalkofpeace.com/?p=281",
+   "why": "official point 0.00 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 37.019134,
+   "lon": -112.025197,
+   "name": "Buckskin, White House, Wire Pass Day Use Area",
+   "note": "Official BLM page's embedded map centers/marks this day-use area at this coordinate, essentially the same trailhead location as Wire Pass.",
+   "pin_km": 0.018,
+   "pota_pin": [
+    37.0191,
+    -112.025
+   ],
+   "ref": "US-10968",
+   "shares_pota_pin_with": [
+    "US-5964"
+   ],
+   "source_name": "BLM.gov Visit Utah - Buckskin/White House/Wire Pass Day Use",
+   "source_url": "https://www.blm.gov/visit/buckskin-white-house-wire-pass-day-use-paria-canyon-vermilion-cliffs-wilderness",
+   "why": "official point 0.02 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 40.625278,
+   "lon": -112.213056,
+   "name": "North Oquirrh Management Area BLM",
+   "note": "Same official BLM page/coordinate as the North Oquirrh Wildlife Management Area entry (same area, two POTA listings).",
+   "pin_km": 0.005,
+   "pota_pin": [
+    40.6253,
+    -112.213
+   ],
+   "ref": "US-11161",
+   "shares_pota_pin_with": [
+    "US-5972"
+   ],
+   "source_name": "BLM.gov Visit Utah - North Oquirrh Management Area (NOMA)",
+   "source_url": "https://blm.gov/visit/north-oquirrh-management-area-noma",
+   "why": "official point 0.01 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 37.524446,
+   "lon": -109.895777,
+   "name": "Cedar Mesa BLM Special Recreation Management Area",
+   "note": "Coordinates stated directly under 'Geographic Coordinates' on the official BLM Cedar Mesa SRMA page; identical to Kane Gulch Ranger Station, which is BLM's own designated access point for this SRMA.",
+   "pin_km": 0.02,
+   "pota_pin": [
+    37.5244,
+    -109.896
+   ],
+   "ref": "US-11748",
+   "shares_pota_pin_with": [
+    "US-11749",
+    "US-5825"
+   ],
+   "source_name": "BLM.gov Visit Utah - Cedar Mesa SRMA",
+   "source_url": "https://www.blm.gov/visit/cedar-mesa-srma",
+   "why": "official point 0.02 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 37.524446,
+   "lon": -109.895777,
+   "name": "Grand Gulch BLM Special Recreation Management Area",
+   "note": "Official BLM page's embedded map centers/marks Grand Gulch at this coordinate (Kane Gulch trailhead, the primary access point).",
+   "pin_km": 0.02,
+   "pota_pin": [
+    37.5244,
+    -109.896
+   ],
+   "ref": "US-11749",
+   "shares_pota_pin_with": [
+    "US-11748",
+    "US-5825"
+   ],
+   "source_name": "BLM.gov Visit Utah - Grand Gulch",
+   "source_url": "https://www.blm.gov/visit/grand-gulch",
+   "why": "official point 0.02 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 37.100776,
+   "lon": -113.904316,
+   "name": "Welcome Spring BLM Special Recreation Management Area",
+   "note": "Same official BLM page/coordinate as the Welcome Spring Recreation Management entry (same site, two POTA listings).",
+   "pin_km": 0.028,
+   "pota_pin": [
+    37.1008,
+    -113.904
+   ],
+   "ref": "US-11764",
+   "shares_pota_pin_with": [
+    "US-6095"
+   ],
+   "source_name": "BLM.gov Visit Utah - Welcome Spring",
+   "source_url": "https://www.blm.gov/visit/welcome-spring",
+   "why": "official point 0.03 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 47.49917,
+   "lon": -119.91242,
+   "name": "Douglas Creek BLM Recreation Management Area",
+   "note": "Official BLM page's embedded map centers/marks Douglas Creek at this coordinate.",
+   "pin_km": 0.071,
+   "pota_pin": [
+    47.4986,
+    -119.912
+   ],
+   "ref": "US-12563",
+   "shares_pota_pin_with": [
+    "US-12829"
+   ],
+   "source_name": "BLM.gov Visit Washington - Douglas Creek",
+   "source_url": "https://www.blm.gov/visit/douglas-creek",
+   "why": "official point 0.07 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 37.565308,
+   "lon": -109.252075,
+   "name": "Montezuma Canyon BLM Recreation Management Area",
+   "note": "Official BLM page's embedded map centers/marks Montezuma Canyon at this coordinate.",
+   "pin_km": 0.007,
+   "pota_pin": [
+    37.5653,
+    -109.252
+   ],
+   "ref": "US-5764",
+   "shares_pota_pin_with": [
+    "US-5765"
+   ],
+   "source_name": "BLM.gov Visit Utah - Montezuma Canyon",
+   "source_url": "https://www.blm.gov/visit/montezuma-canyon",
+   "why": "official point 0.01 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 37.565308,
+   "lon": -109.252075,
+   "name": "Three Kiva Pueblo BLM Historic Preserve",
+   "note": "Official BLM page's embedded map centers/marks Three Kiva Pueblo at this coordinate (located within Montezuma Canyon, hence identical to that site's coordinate).",
+   "pin_km": 0.007,
+   "pota_pin": [
+    37.5653,
+    -109.252
+   ],
+   "ref": "US-5765",
+   "shares_pota_pin_with": [
+    "US-5764"
+   ],
+   "source_name": "BLM.gov Visit Utah - Three Kiva Pueblo",
+   "source_url": "https://www.blm.gov/visit/three-kiva-pueblo",
+   "why": "official point 0.01 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 37.524446,
+   "lon": -109.895777,
+   "name": "Kane Gulch Ranger Station",
+   "note": "Coordinates stated directly on the official BLM visit page.",
+   "pin_km": 0.02,
+   "pota_pin": [
+    37.5244,
+    -109.896
+   ],
+   "ref": "US-5825",
+   "shares_pota_pin_with": [
+    "US-11748",
+    "US-11749"
+   ],
+   "source_name": "BLM.gov Visit Utah - Kane Gulch Ranger Station",
+   "source_url": "https://www.blm.gov/visit/kane-gulch-ranger-station",
+   "why": "official point 0.02 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 37.019069,
+   "lon": -112.024783,
+   "name": "Wire Pass BLM Recreation Management Area",
+   "note": "Official BLM page's embedded map centers/marks Wire Pass at this coordinate (WGS84).",
+   "pin_km": 0.02,
+   "pota_pin": [
+    37.0191,
+    -112.025
+   ],
+   "ref": "US-5964",
+   "shares_pota_pin_with": [
+    "US-10968"
+   ],
+   "source_name": "BLM.gov Visit Utah - Wire Pass",
+   "source_url": "https://www.blm.gov/visit/wire-pass",
+   "why": "official point 0.02 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 40.625278,
+   "lon": -112.213056,
+   "name": "North Oquirrh BLM Wildlife Management Area",
+   "note": "Official BLM page's embedded map centers/marks NOMA at this coordinate.",
+   "pin_km": 0.005,
+   "pota_pin": [
+    40.6253,
+    -112.213
+   ],
+   "ref": "US-5972",
+   "shares_pota_pin_with": [
+    "US-11161"
+   ],
+   "source_name": "BLM.gov Visit Utah - North Oquirrh Management Area (NOMA)",
+   "source_url": "https://blm.gov/visit/north-oquirrh-management-area-noma",
+   "why": "official point 0.01 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "high",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 37.100776,
+   "lon": -113.904316,
+   "name": "Welcome Spring BLM Recreation Management Area",
+   "note": "Coordinates stated directly under 'Geographic Coordinates' on the official BLM Welcome Spring page.",
+   "pin_km": 0.028,
+   "pota_pin": [
+    37.1008,
+    -113.904
+   ],
+   "ref": "US-6095",
+   "shares_pota_pin_with": [
+    "US-11764"
+   ],
+   "source_name": "BLM.gov Visit Utah - Welcome Spring",
+   "source_url": "https://www.blm.gov/visit/welcome-spring",
+   "why": "official point 0.03 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -19.947622,
+   "lon": -43.90395,
+   "name": "Mangabeiras Park",
+   "note": "Found via built-in browser (fetch tool could not reach ckan.pbh.gov.br): downloaded the live Oct 2026 CSV, matched the park by exact official name, and computed the area-weighted centroid of its MULTIPOLYGON boundary (shoelace formula) in EPSG:31983, then converted to WGS84. Marked medium, not high, because the coordinate is derived from the geometry rather than a number the source states outright",
+   "pin_km": 0.461,
+   "pota_pin": [
+    -19.9515,
+    -43.9055
+   ],
+   "ref": "BR-0577",
+   "shares_pota_pin_with": [
+    "BR-0578"
+   ],
+   "source_name": "PBH/FPMZB open-data \"Parques Municipais\" dataset, Parque das Mangabeiras - Maurício Campos (ID 142) — centroid computed from the official GEOMETRIA polygon (SIRGAS2000/UTM 23S, EPSG:31983), not a stated point",
+   "source_url": "https://ckan.pbh.gov.br/dataset/177bc027-7451-42f5-bdf5-5d0464a192e5/resource/a176ccd1-1a8c-474c-a5a3-6d118dfcb827/download/20261001_parques_municipais.csv",
+   "why": "official point 0.46 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -19.83493,
+   "lon": -43.95963,
+   "name": "Municipal Fazenda Lagoa do Nado Pa",
+   "note": "Found via built-in browser (fetch tool could not reach ckan.pbh.gov.br): downloaded the live Oct 2026 CSV, matched the park by exact official name, and computed the area-weighted centroid of its MULTIPOLYGON boundary (shoelace formula) in EPSG:31983, then converted to WGS84. Marked medium, not high, because the coordinate is derived from the geometry rather than a number the source states outright",
+   "pin_km": 0.299,
+   "pota_pin": [
+    -19.8333,
+    -43.9619
+   ],
+   "ref": "BR-0579",
+   "shares_pota_pin_with": [
+    "BR-0580"
+   ],
+   "source_name": "PBH/FPMZB open-data \"Parques Municipais\" dataset, Parque Municipal Fazenda Lagoa do Nado (ID 387) — centroid computed from the official GEOMETRIA polygon (SIRGAS2000/UTM 23S, EPSG:31983), not a stated point",
+   "source_url": "https://ckan.pbh.gov.br/dataset/177bc027-7451-42f5-bdf5-5d0464a192e5/resource/a176ccd1-1a8c-474c-a5a3-6d118dfcb827/download/20261001_parques_municipais.csv",
+   "why": "official point 0.30 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.508599,
+   "lon": -73.555302,
+   "name": "Champ de Mars (Regional) Nature Reserve",
+   "note": "Browser pass Nov 11: centre computed from the city boundary polygon, not a stated point.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-1974",
+   "shares_pota_pin_with": [],
+   "source_name": "Ville de Montreal open data, Grands parcs, parcs d arrondissements et espaces publics (CC-BY 4.0), record: Champ-de-Mars (OBJECTID 5622)",
+   "source_url": "https://donnees.montreal.ca/dataset/grands-parcs-parcs-d-arrondissements-et-espaces-publics",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.499544,
+   "lon": -73.570813,
+   "name": "Dorchester Square Nature Reserve",
+   "note": "Browser pass Nov 11: centre computed from the city boundary polygon, not a stated point.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-1997",
+   "shares_pota_pin_with": [],
+   "source_name": "Ville de Montreal open data, Grands parcs, parcs d arrondissements et espaces publics (CC-BY 4.0), record: Square Dorchester (OBJECTID 4893)",
+   "source_url": "https://donnees.montreal.ca/dataset/grands-parcs-parcs-d-arrondissements-et-espaces-publics",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 48.108333,
+   "lon": -69.683333,
+   "name": "Ilet aux Alouettes Preserve Nature Reserve",
+   "note": "Browser pass Nov 11: LATDMS/LONDMS fields stated in the official registry record (CC-BY 4.0), matched by name. Medium: the registry has several Alouettes records; the wildlife refuge is the likeliest match.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2064",
+   "shares_pota_pin_with": [],
+   "source_name": "Quebec Registre des aires protegees et des AMCE (MELCCFP), layer 23, record: Refuge faunique de l Ilet-aux-Alouettes",
+   "source_url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 44.51027,
+   "lon": -66.78222,
+   "name": "Former Lightkeeper's Residence (Gannet Rock)",
+   "note": "Parks Canada FHBRO record gives only the address 'Grand Manan Island, Gannet Rock, New Brunswick' with no coordinates; the residence adjoins the light tower on the same tiny rock island, so the tower's Canadian Register of Historic Places coordinate (44.510270,-66.782220) is used as a close proxy.",
+   "pin_km": 0.055,
+   "pota_pin": [
+    44.5105,
+    -66.7816
+   ],
+   "ref": "CA-6458",
+   "shares_pota_pin_with": [
+    "CA-6459"
+   ],
+   "source_name": "Parks Canada FHBRO + Canadian Register of Historic Places (proxy: adjoining Gannet Rock Light Tower)",
+   "source_url": "https://www.pc.gc.ca/apps/dfhd/page_fhbro_eng.aspx?id=8853",
+   "why": "official point 0.06 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "held",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 20.45,
+   "lon": -75.0,
+   "name": "Alejandro de Humboldt National Par",
+   "note": "Spot-check: site-level rounded point, 27-39 km from the POTA pin; the POTA pin is probably the better location. | UNESCO WHC document for WH Site 839 lists a central geographic coordinate of 20.45N / -75W for the park (bounding corners also given, one with an apparent typo in the minutes field). This is the government-submitted official coordinate in the international register, not OSM/Wikipedia.",
+   "pin_km": 27.564,
+   "pota_pin": [
+    20.4724,
+    -74.7365
+   ],
+   "ref": "CU-0293",
+   "shares_pota_pin_with": [
+    "CU-0546"
+   ],
+   "source_name": "UNESCO World Heritage Centre (official nomination/decision document submitted by the Cuban government agency)",
+   "source_url": "https://whc.unesco.org/document/217350",
+   "why": "official point 27.6 km from the POTA pin: would move a pin, not allowed; person checks"
+  },
+  {
+   "action": "held",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 20.55,
+   "lon": -77.2,
+   "name": "Llanuras del cauto-Guacanayabo Eco",
+   "note": "Spot-check: site-level rounded point, 27-39 km from the POTA pin; the POTA pin is probably the better location. | Ramsar RIS gives 20°33'N 77°12'W (a nearby summary field gives 20°34'N); this is the officially-submitted government coordinate for the Cauto delta/Guacanayabo wetland ecosystem, close to but not perfectly identical to the ANP's own boundary centroid.",
+   "pin_km": 39.023,
+   "pota_pin": [
+    20.6366,
+    -76.8367
+   ],
+   "ref": "CU-0541",
+   "shares_pota_pin_with": [
+    "CU-0545"
+   ],
+   "source_name": "Ramsar Information Sheet for Humedal Delta del Cauto (Site 1236) — Cuban national Ramsar Administrative Authority submission",
+   "source_url": "https://rsis.ramsar.org/es/ris/1236",
+   "why": "official point 39.0 km from the POTA pin: would move a pin, not allowed; person checks"
+  },
+  {
+   "action": "held",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 20.55,
+   "lon": -77.2,
+   "name": "Llanuras del cauto-Guacanayabo Eco",
+   "note": "Spot-check: site-level rounded point, 27-39 km from the POTA pin; the POTA pin is probably the better location. | Same ecosystem/area as CU-0541 (duplicate POTA entry); same official Ramsar-registered coordinate used.",
+   "pin_km": 39.023,
+   "pota_pin": [
+    20.6366,
+    -76.8367
+   ],
+   "ref": "CU-0545",
+   "shares_pota_pin_with": [
+    "CU-0541"
+   ],
+   "source_name": "Ramsar Information Sheet for Humedal Delta del Cauto (Site 1236) — Cuban national Ramsar Administrative Authority submission",
+   "source_url": "https://rsis.ramsar.org/es/ris/1236",
+   "why": "official point 39.0 km from the POTA pin: would move a pin, not allowed; person checks"
+  },
+  {
+   "action": "held",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 20.45,
+   "lon": -75.0,
+   "name": "Alejandro de Humboldt National Par",
+   "note": "Spot-check: site-level rounded point, 27-39 km from the POTA pin; the POTA pin is probably the better location. | Same park as CU-0293 (duplicate POTA entry); same official UNESCO-registered coordinate used.",
+   "pin_km": 27.564,
+   "pota_pin": [
+    20.4724,
+    -74.7365
+   ],
+   "ref": "CU-0546",
+   "shares_pota_pin_with": [
+    "CU-0293"
+   ],
+   "source_name": "UNESCO World Heritage Centre (official nomination/decision document submitted by the Cuban government agency)",
+   "source_url": "https://whc.unesco.org/document/217350",
+   "why": "official point 27.6 km from the POTA pin: would move a pin, not allowed; person checks"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.955305,
+   "lon": 13.634807,
+   "name": "TransAlpina muzej in muzej na pros",
+   "note": "TransAlpina open-air museum/station sits on the same Trg Evrope/Piazza della Transalpina square; using the official square coordinate as the best available official value since no separate museum-specific coordinate was found.",
+   "pin_km": 0.007,
+   "pota_pin": [
+    45.9553,
+    13.6349
+   ],
+   "ref": "SI-0607",
+   "shares_pota_pin_with": [
+    "SI-0476"
+   ],
+   "source_name": "Walk of Peace Foundation - Trg Evrope / Transalpina Square page",
+   "source_url": "https://thewalkofpeace.com/?p=53",
+   "why": "official point 0.01 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.48518,
+   "lon": 13.785291,
+   "name": "AAT e7 Kranjska Gora-Faaker See/Ba",
+   "note": "The official AAT (Alpe-Adria-Trail) tourenbuch PDF gives no coordinates for its stages. As a cross-check, the Walk of Peace Foundation's own official stage page for a different trail ending at Kranjska Gora/Lake Jasna states GPS 46.485180, 13.785291, which closely matches POTA's shared pin for the Kranjska Gora trailhead area; used as the best available official value, but it is not AAT's own publ",
+   "pin_km": 0.169,
+   "pota_pin": [
+    46.4844,
+    13.7834
+   ],
+   "ref": "SI-0833",
+   "shares_pota_pin_with": [
+    "SI-0835"
+   ],
+   "source_name": "Walk of Peace Foundation - Stage B-KG2 Trenta-Kranjska Gora (endpoint)",
+   "source_url": "https://thewalkofpeace.com/?p=1807",
+   "why": "official point 0.17 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 46.48518,
+   "lon": 13.785291,
+   "name": "AAT e23 Kranjska Gora - Trenta Rec",
+   "note": "Same Kranjska Gora trailhead coordinate and same caveat as SI-0833 (sourced from an official page for a different, overlapping trail network, since the AAT's own tourenbuch has no coordinates).",
+   "pin_km": 0.169,
+   "pota_pin": [
+    46.4844,
+    13.7834
+   ],
+   "ref": "SI-0835",
+   "shares_pota_pin_with": [
+    "SI-0833"
+   ],
+   "source_name": "Walk of Peace Foundation - Stage B-KG2 Trenta-Kranjska Gora (endpoint)",
+   "source_url": "https://thewalkofpeace.com/?p=1807",
+   "why": "official point 0.17 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "point-circle-candidate",
+   "added": "2026-11-12",
+   "confidence": "medium",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.915196,
+   "lon": 13.657503,
+   "name": "Sv.Ot - Bazara/Šemepeter -Utrjeni",
+   "note": "Same official Sveti Ot hill coordinate as SI-0081; this ref covers a specific fortified-line feature (Bazara/Šemepeter) on the same hill, not separately geolocated by the source.",
+   "pin_km": 0.024,
+   "pota_pin": [
+    45.9154,
+    13.6576
+   ],
+   "ref": "SI-1027",
+   "shares_pota_pin_with": [
+    "SI-0081"
+   ],
+   "source_name": "Walk of Peace Foundation - Sveti Ot hill page",
+   "source_url": "https://thewalkofpeace.com/?p=205",
+   "why": "official point 0.02 km from the POTA pin, no outline: 100 ft circle candidate (pin not moved)"
+  },
+  {
+   "action": "held",
+   "added": "2026-11-12",
+   "confidence": "low",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 11.3325,
+   "lon": -1.3769,
+   "name": "Kabore-Tambi National Park",
+   "note": "Ramsar RIS gives 11°19'57''N 01°22'37''W for the whole protected-area complex that includes Parc National Kaboré Tambi (PNKT); it is not a coordinate for the park alone, so treated as low confidence/approximate.",
+   "pin_km": 22.81,
+   "pota_pin": [
+    11.52,
+    -1.292
+   ],
+   "ref": "BF-0001",
+   "shares_pota_pin_with": [
+    "BF-0007"
+   ],
+   "source_name": "Ramsar Information Sheet for the Complexe d'Aires Protégées Pô-Nazinga-Sissili (Site 492) — Burkina Faso national Ramsar authority submission",
+   "source_url": "https://rsisd10.unepgrid.ch/RISapp/files/RISrep/BF492RIS_1809_fr.pdf",
+   "why": "official point 22.8 km from the POTA pin: would move a pin, not allowed; person checks"
+  },
+  {
+   "action": "held",
+   "added": "2026-11-12",
+   "confidence": "low",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 11.3325,
+   "lon": -1.3769,
+   "name": "Kabore-Tambi National Park",
+   "note": "Same park as BF-0001 (duplicate POTA entry); same approximate official coordinate used.",
+   "pin_km": 22.81,
+   "pota_pin": [
+    11.52,
+    -1.292
+   ],
+   "ref": "BF-0007",
+   "shares_pota_pin_with": [
+    "BF-0001"
+   ],
+   "source_name": "Ramsar Information Sheet for the Complexe d'Aires Protégées Pô-Nazinga-Sissili (Site 492) — Burkina Faso national Ramsar authority submission",
+   "source_url": "https://rsisd10.unepgrid.ch/RISapp/files/RISrep/BF492RIS_1809_fr.pdf",
+   "why": "official point 22.8 km from the POTA pin: would move a pin, not allowed; person checks"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "low",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 45.514121,
+   "lon": -73.534079,
+   "name": "Saint Helen's Island Nature Reserve",
+   "note": "Browser pass Nov 11: centre computed from the city boundary polygon, not a stated point. Low: the layer names both islands Jean-Drapeau; I took the north-east part as Ile Sainte-Helene by position.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "CA-2241",
+   "shares_pota_pin_with": [],
+   "source_name": "Ville de Montreal open data, Grands parcs, parcs d arrondissements et espaces publics (CC-BY 4.0), record: Parc Jean-Drapeau, 75.5 ha part (OBJECTID 4725)",
+   "source_url": "https://donnees.montreal.ca/dataset/grands-parcs-parcs-d-arrondissements-et-espaces-publics",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "CA key rules 4b4176190334 (kpc_ca_key.py reads data/parkinfo/CA.json pins)"
+  },
+  {
+   "action": "held",
+   "added": "2026-11-12",
+   "confidence": "low",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": 28.953099,
+   "lon": 48.180605,
+   "name": "Turoob Nature Reserve",
+   "note": "Spot-check: 144 km from the POTA pin, and the EPA value is boundary point P01, not a centre. Treat as unconfirmed. | Official EPA reserve-coordinates table lists this single point (P01) for Turoob Natural Reserve.",
+   "pin_km": 144.05,
+   "pota_pin": [
+    29.9936,
+    47.2941
+   ],
+   "ref": "KW-0018",
+   "shares_pota_pin_with": [
+    "KW-0013"
+   ],
+   "source_name": "Kuwait Environment Public Authority (EPA) - Turoob Natural Reserve official page",
+   "source_url": "https://epa.gov.kw/en-us/PA/PA19",
+   "why": "official point 144.0 km from the POTA pin: would move a pin, not allowed; person checks"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "low",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -17.5,
+   "lon": -149.833333,
+   "name": "Est du lagon et Motu Manu Biological Reserve",
+   "note": "This reserve (Motu Manu is a small islet in Moorea's lagoon) sits within the Ramsar-designated Moorea Lagoon wetland complex, but the RIS only gives a whole-site centre point (17°30'S 149°50'W) plus three boundary markers (Tiahura, Aroa, Maatea) - it does not pinpoint this specific biological reserve. Caveat: wetland-complex-level coordinate, not a site-specific pin; low confidence.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "PF-0033",
+   "shares_pota_pin_with": [],
+   "source_name": "Ramsar Information Sheet - 'Lagon de Moorea' (Ramsar Site No. 1834, French Polynesia)",
+   "source_url": "https://rsisd10.unepgrid.ch/RISapp/files/RISrep/FR1834RIS.pdf",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "world key rules 889d37136cf8 (kpc_world_key.py reads the POTA pin)"
+  },
+  {
+   "action": "pin-fill",
+   "added": "2026-11-12",
+   "confidence": "low",
+   "from": "outside search Nov 11 (Brandon, Nov 12): Official pins (Nov 11)",
+   "lat": -17.5,
+   "lon": -149.833333,
+   "name": "Village de Pahua Biological Reserve",
+   "note": "Pahua is a locality in Haapiti, Moorea, within the Ramsar-designated Moorea Lagoon wetland complex (near the Tiahura boundary marker). Same caveat as PF-0033: the RIS gives only the whole-site centre point (17°30'S 149°50'W), not a pin for this specific small reserve; low confidence.",
+   "pin_km": null,
+   "pota_pin": null,
+   "ready_to_apply": true,
+   "ref": "PF-0034",
+   "shares_pota_pin_with": [],
+   "source_name": "Ramsar Information Sheet - 'Lagon de Moorea' (Ramsar Site No. 1834, French Polynesia)",
+   "source_url": "https://rsisd10.unepgrid.ch/RISapp/files/RISrep/FR1834RIS.pdf",
+   "why": "POTA has no usable pin (0,0 or absent): fills it, moves nothing",
+   "would_move": "world key rules 889d37136cf8 (kpc_world_key.py reads the POTA pin)"
+  }
+ ]
+}

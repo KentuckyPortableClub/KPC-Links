@@ -690,6 +690,8 @@ P = json.load(open('data/parkinfo/CA.json'))['parks']
 # Oct 29 (chat 5 check-up, issue #17): park numbers POTA retired (data/retired-refs.json) leave the answer key
 try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}
 except Exception: pass  # noqa: BLE001
+# Nov 12 (KPC owner, 2026-11-12; kpc_pin_fill.py): an OFFICIAL pin fills a park POTA has no usable pin for (absent or 0,0); a POTA pin is never moved
+import kpc_pin_fill as PINF; P = PINF.fill(P, 'CA', notice)  # noqa: E402,E702
 RID = {str(r['oid']): r for r in recs}
 # Oct 28 (tune + speed-up pass): the join below compared every park with every saved area (5,900 parks x 48,000 areas, ~13 min
 # of the run). A 1-degree grid of the areas' boxes (+0.6 degree, the widest search used) hands each park only the areas
@@ -907,6 +909,8 @@ for _r, _p in _all.items():
         _p['g'] = 'official'; _p['line'] = 1
     if _m and _p.get('far') == 'well outside': _p['pin_may_be_wrong'] = 1; _pw.append(_r)
 if _pw: notice('Canada key', f"{len(_pw)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(_pw[:12])}")
+# Nov 12 (KPC owner, 2026-11-12; kpc_pin_fill.py): a filled park is marked 'pf' (official pin, POTA has none); 'bk' still measures from POTA's own pin
+P = PINF.mark(_all, P, BKPIN)
 # Nov 4 (links-10; per Brandon via Super Head Bot (relayed), 7:13 AM CST Nov 4: 'Yes, add distance and kind to the keys in this rebuild'):
 # every park gets 'bk' = [best record id, km from the POTA pin, the record's kind (CPCAD TYPE_E, else its name's kind tags), src]
 # (kpc_key_facts.py). Only CPCAD records carry a designation field here; a provincial layer's label is not one. Measures only.

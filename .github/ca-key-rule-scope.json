@@ -39,6 +39,26 @@
     "why": "Review fixes to the readers. CPCAD and every provincial layer are read whole or not at all (count and ids checked; a stalled or ignored page offset is an error); a source that fails takes its records from the saved copy and nothing is saved in a run where a source failed. robots.txt is asked for the first address and every redirect hop, as the US key does. Host rules come from the one shared guard. One Canada-wide file, so the scope is all.",
     "scope": "all",
     "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+  },
+  {
+   "id": "2026-11-12-official-pin-fills",
+   "when": "2026-11-12",
+   "from": "4b4176190334",
+   "why": "Official pin fills (kpc_pin_fill.py; KPC-Data data/intake/official-pins-nov12.json, the pin-fill rows marked ready): a park POTA has no usable pin for (absent or 0,0) is joined by its official pin and marked pf; a POTA pin is never moved and a fill is ignored once POTA has a usable pin. The 22 ready Canada fills are all Quebec parks (CA-1974 CA-1997 CA-2056 CA-2058 CA-2064 CA-2080 CA-2082 CA-2089 CA-2092 CA-2093 CA-2097 CA-2099 CA-2103 CA-2198 CA-2223 CA-2227 CA-2228 CA-2238 CA-2241 CA-2246 CA-2261 CA-2274), so only CA-QC results change; no other province has a ready fill.",
+   "scope": {
+    "states": [
+     "CA-QC"
+    ]
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
+  },
+  {
+   "id": "2026-11-12-pin-fill-in-hash",
+   "when": "2026-11-12",
+   "from": "1d68ce76c98e",
+   "why": "Quality must-fix M2: kpc_pin_fill.py is in the Canada RULE_FILES (removed from NOT_RULES). A later edit to it moves the Canada hash. No join result changes (the builders already called it); no province is rebuilt for this alone.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
   }
  ]
 }

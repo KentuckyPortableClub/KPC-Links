@@ -124,10 +124,10 @@ jobs:
           # add = also build every country whose inputs moved since its last build (nothing removed); reuse = also leave out a country whose
           # inputs did not move (main's bytes stay); full_rebuild=yes = no reuse. The POTA pins come from KPC-Data (public, read only).
           rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
-            && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
+            && git -C .pi sparse-checkout set --no-cone data/parkinfo data/intake/official-pins-nov12.json 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
           WANT=$(for c in $ALL; do case " $EXPECTED " in *" $c "*) ;; *) printf '%s ' "$c" ;; esac; done)
           ALL=$(python3 .github/scripts/kpc_area_hash.py plan world --list "$WANT" --mode "$AREA_MODE" --full "$FULL_REBUILD" $([ -d .pi ] && echo --data .pi) \
-                --var "KPC_SAVED_ONLY_HOSTS=$KPC_SAVED_ONLY_HOSTS" --out "$RUNNER_TEMP/area-plan.json") || ALL="$WANT"; export ALL
+                --var "KPC_SAVED_ONLY_HOSTS=$KPC_SAVED_ONLY_HOSTS" --var "KPC_JP_A10_CROSSWALK=${{ vars.KPC_JP_A10_CROSSWALK || 'off' }}" --out "$RUNNER_TEMP/area-plan.json") || ALL="$WANT"; export ALL
           rm -rf .pi
           echo "area_plan=$(cat "$RUNNER_TEMP/area-plan.json" 2>/dev/null || echo '{}')" >> "$GITHUB_OUTPUT"
           REUSED=$(python3 -c "import json; print(' '.join(json.load(open('$RUNNER_TEMP/area-plan.json')).get('reused') or []))" 2>/dev/null || true)   # ok: no plan file = nothing reused
@@ -221,8 +221,15 @@ jobs:
           RETRIES: ${{ vars.KPC_WORLD_HELD_RETRIES || '1' }}
           WAITMIN: ${{ vars.KPC_WORLD_HELD_WAIT_MIN || '10' }}
           STEP_MIN: '335'   # = this step's timeout-minutes
+          KPC_OFFICIAL_PINS: .op/data/intake/official-pins-nov12.json   # Nov 12 (KPC owner, 2026-11-12): official pin fills (kpc_pin_fill.py), read only from KPC-Data
+          # Nov 12 (KPC owner, 2026-11-12): the Japan A10 crosswalk (kpc_jp_crosswalk.py) is OFF until the owner signs the A10 licence terms; only the
+          # repo variable KPC_JP_A10_CROSSWALK=on turns it on (JP only). Unset = off; the JP build says 'JP A10 crosswalk: OFF (licence not signed)'.
+          KPC_JP_A10_CROSSWALK: ${{ vars.KPC_JP_A10_CROSSWALK || 'off' }}
         run: |
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          # Nov 12 (KPC owner, 2026-11-12): official pin fills (KPC-Data data/intake/official-pins-nov12.json, read only, sparse) for parks POTA has no usable
+          # pin for. Not read = NO fill this run (kpc_pin_fill.py fails closed and says so); every country is still built.
+          rm -rf .op; git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .op 2>/dev/null && git -C .op sparse-checkout set --no-cone data/intake/official-pins-nov12.json 2>/dev/null && git -C .op checkout -q 2>/dev/null || { kpc_rc=$?; echo "::warning title=Official pin fills::KPC-Data could not be read (exit $kpc_rc): no official pin fill this run; every country is still built"; echo "official pin fills - KPC-Data could not be read (exit $kpc_rc); no fill applied" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           # Oct 20: one country at a time, so a problem in one country never stops the others or fails the run
           # Nov 2 review (Mapping #18): a country that stops is written down, and the build stamp names it (chat 11 must not grade it as a full build)
           # Nov 3: each country also has its own time limit (CMIN minutes); one that hangs is stopped and written down the same way

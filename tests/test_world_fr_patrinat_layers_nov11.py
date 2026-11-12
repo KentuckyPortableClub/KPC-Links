@@ -95,7 +95,7 @@ import kpc_key_freeze as KF, kpc_preflight as PF   # noqa: E402
 got_h = {k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
 # fers: the value the changelog declares last (aa7561256260 on this branch; this change adds no fers line), so the open 2-fer PRs
 # (#154, #155), which each declare their own fers move, do not have to edit this test when either merges first.
-# Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: later declared moves (US 46ef34a04ab0 -> d4ebfafce438, world 889d37136cf8 -> 1e262d7d3c0a) are the
+# Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: later declared moves (US 46ef34a04ab0 -> d4ebfafce438, world 889d37136cf8 -> a47e0479ad41) are the
 # newest; each hash must equal the one its newest changelog line names (no literal to edit when a later change of the set moves it again).
 check(got_h == {k: PF.newest_hash(k) for k in got_h} and PF.newest_hash('fers') is not None,
       f'world {OLD_WORLD} -> {NEW_WORLD}; US, CA and fers unchanged (fers = the changelog\'s newest fers hash {PF.newest_hash("fers")}) ({got_h})')

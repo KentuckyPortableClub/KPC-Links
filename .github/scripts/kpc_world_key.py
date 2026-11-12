@@ -1212,6 +1212,8 @@ for cc in COUNTRIES:
     # (FR-16712 / FR-3744 / FR-14241 / GB-2511 kept outlines and held the France + Britain files)
     try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}
     except Exception: pass  # noqa: BLE001
+    # Nov 12 (KPC owner, 2026-11-12; kpc_pin_fill.py): an OFFICIAL pin fills a park POTA has no usable pin for (absent or 0,0); a POTA pin is never moved
+    import kpc_pin_fill as PINF; P = PINF.fill(P, cc, notice)  # noqa: E402,E702
     recs = wload(cc) if CMODE in ('use', 'only') else None
     if recs is None and CMODE == 'only':
         print(f'{cc}: no saved outlines yet; skipped (saved-copy-only run)', flush=True); continue
@@ -1450,6 +1452,8 @@ for cc in COUNTRIES:
                 m = [[x[0], x[1], x[2], 'same name (POTA writes the kind into the name)'] for x in sn]
                 c = [x for x in c if x not in sn]
         parks[ref] = {'n': name, 't': typ, 'm': m, 'c': c}
+    # Nov 12 (KPC owner, 2026-11-12; kpc_jp_crosswalk.py): the Japan A10 crosswalk, JP only, behind the repo switch KPC_JP_A10_CROSSWALK (OFF until the A10 terms are signed)
+    import kpc_jp_crosswalk as JPX; JPX.apply(cc, parks, P, recs, jstrip, near, inside, notice)  # noqa: E402,E702
     # IS THE BOUNDARY WHERE IT SHOULD BE? (Oct 24: the US key's Oct 21-22 check, ported.) A name can match and still
     # be the wrong place, so: does the park's own pin fall inside the land it was joined to? Sorted the same three
     # ways as the US ('no shape to check against' = the check is blind, not the join; 'edge' = within about a mile;
@@ -1611,6 +1615,8 @@ for cc in COUNTRIES:
         if all(_eu(q) for q in _m): _p['g'] = 'approx'; _p['gsrc'] = 'EU compilation of national data'; n_eu += 1
         else: _p['m'] = [q for q in _m if not _eu(q)]; n_rep += 1
     if n_eu or n_rep: notice(f'World key {cc}', f'W-2: {n_eu} parks outlined from the EU compilation (Approximate); {n_rep} had an agency outline that replaced it')
+    # Nov 12 (KPC owner, 2026-11-12; kpc_pin_fill.py): a filled park is marked 'pf' (official pin, POTA has none); 'bk' still measures from POTA's own pin
+    P = PINF.mark(parks, P)
     # Nov 4 (links-10; per Brandon via Super Head Bot (relayed), 7:13 AM CST Nov 4: 'Yes, add distance and kind to the keys in this
     # rebuild'): every park gets 'bk' = [best record id, km from the POTA pin, the record's kind (the layer's own type field, else
     # its name's kind tags), src] (kpc_key_facts.py). A layer label standing in for the type ('ty' = the source) is not a field.
