@@ -16,6 +16,21 @@ STATES = (os.environ.get('STATES') or '').upper().replace(',', ' ').split() or A
 if os.environ.get('FINISH_ONLY'): STATES = []   # Oct 28 (key speed-up): the join job after the split jobs: only the all-state steps at the end
 OUT = pathlib.Path('data/us-key'); OUT.mkdir(parents=True, exist_ok=True)
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
+# Nov 12 (KPC owner, 2026-11-12; D6): the ONE date of this run, for the places where an input carries no date of its own (a record read
+# live this run, a saved copy with no 'saved' stamp). KPC_BUILD_DATE=YYYY-MM-DD (the proof job gives a fixed one), else today's date read
+# once here: never a per-park clock call, so the same inputs and the same KPC_BUILD_DATE give byte-identical key files. A malformed
+# value stops the build (nothing written). A park's 'read' date still comes from its records' own 'rd' / the saved copy's 'saved' first.
+def _build_date():
+    v = (os.environ.get('KPC_BUILD_DATE') or '').strip()
+    if not v: return time.strftime('%Y-%m-%d')
+    import datetime as _d
+    try: ok = bool(re.fullmatch(r'\d{4}-\d{2}-\d{2}', v)) and _d.date.fromisoformat(v) is not None
+    except ValueError: ok = False
+    if not ok: raise SystemExit(f'::error title=Build date::KPC_BUILD_DATE={v!r} is not YYYY-MM-DD: nothing is built')
+    return v
+
+
+BUILD_DATE = _build_date()
 import gzip
 # Nov 3 (code review vs the proposed rules, rule 29): every request in this script waits for 2 s per host (kpc_host_pace.py)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -763,14 +778,54 @@ def st_box(st):
     return b
 
 
-# Nov 11 (KPC owner, 2026-11-11): kpc-us-states.json draws Florida as one polygon without the Keys (south edge 25.12), so every
-# Florida box read missed Monroe County: FL DEP state-owned lands sent 77,144 of its 79,689 records (2,545 Keys parcels: Bahia Honda,
-# Long Key, Curry Hammock, Lignumvitae Key, Indian Key, Windley Key, Fort Zachary Taylor, Key Deer lands). The box takes in the Keys
-# and the Dry Tortugas. Only Florida's box changes.
-# Nov 11 r3 (KPC owner, 2026-11-11; run 43037613117): the box's east edge was -80.0, so 45 FL DEP state-owned parcels off Miami
-# (lon -79.875 to -79.858, lat 25.93) were left out and the checked hand file (79,689 records) counted 79,644 in the box: SHORT, not
-# merged. The east edge is now -79.8 (Bimini, the nearest Bahamas land, is at -79.3; Cay Sal Bank is south of 24.3).
-BOX_ADD = {'FL': (-83.2, 24.3, -79.8, 25.2)}
+# Nov 12 (KPC owner, 2026-11-12; D6 'tables out of the rule scripts'): the per-state tables are DATA in data/us-key/area-tables.json:
+# BOX_ADD (land the drawn state outline leaves out, e.g. the Florida Keys) and the agency layers read for listed states only (the
+# state-limited XS entries; the national layers stay in XS below). Same content as the code held before; an edit for one state now
+# moves only that state's area hash (kpc_area_hash.py); an entry listing several states is stored once and counts for each. Each
+# entry's history is in that file's 'notes'. Read from this script's own checkout; a missing or malformed file stops the build
+# before anything is written (fail closed: an empty table would change results).
+_ME = globals().get('__file__')
+AREA_TABLES_FILE = (pathlib.Path(_ME).resolve().parents[2] if _ME else pathlib.Path.cwd()) / 'data/us-key/area-tables.json'
+
+
+def area_tables(path=None):
+    """The per-state tables, checked. Raises SystemExit (exit 1, nothing written) on a missing or malformed file."""
+    path = pathlib.Path(path or AREA_TABLES_FILE)
+    def bad(why): raise SystemExit(f'::error title=US key tables::{path}: {why}. Nothing is built (D6: the per-state tables fail closed).')
+    try: t = json.loads(path.read_text(encoding='utf-8'))
+    except Exception as e: bad(f'missing or unreadable ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
+    if not isinstance(t, dict) or t.get('format') != 1: bad('not a format-1 table file')
+    bx, xs = t.get('BOX_ADD'), t.get('XS')
+    if not isinstance(bx, dict) or not isinstance(xs, list) or not xs: bad('table BOX_ADD or XS missing or empty')
+    for st, b in bx.items():
+        if st not in ALL or not (isinstance(b, list) and len(b) == 4 and all(isinstance(v, (int, float)) and not isinstance(v, bool) for v in b)): bad(f'BOX_ADD {st!r} is not [west, south, east, north] of a state')
+    seen = set()
+    for e in xs:
+        ok = isinstance(e, dict) and all(isinstance(e.get(k), str) for k in ('prefix', 'url', 'name_field', 'acres_field', 'label', 'owner')) \
+            and isinstance(e.get('kinds'), list) and all(isinstance(k, str) for k in e['kinds']) and isinstance(e.get('areas'), list) and e['areas'] \
+            and all(a in ALL for a in e['areas']) and isinstance(e.get('options', {}), dict) and isinstance(e.get('after', ''), str) \
+            and re.fullmatch(r'[a-z]+', e.get('prefix') or '') and not set(e) - {'prefix', 'url', 'name_field', 'acres_field', 'kinds', 'label', 'owner', 'areas', 'options', 'after'}
+        if not ok: bad(f"XS entry {str(e.get('prefix') if isinstance(e, dict) else e)[:40]!r} is not in the expected form")
+        if e['prefix'] in seen: bad(f"XS prefix {e['prefix']!r} listed twice (store an entry once and list its states in 'areas')")
+        seen.add(e['prefix'])
+    return t
+
+
+def with_state_layers(national, entries):
+    """XS: the national layers in their order, each state-limited entry right after the national layer its 'after' names, the rest at
+    the end in file order: the exact list (and read order) the code held before D6. (prefix, url, name field, acres field, {kinds},
+    label, owner, {states}[, options])."""
+    tup = lambda e: (e['prefix'], e['url'], e['name_field'], e['acres_field'], set(e['kinds']), e['label'], e['owner'], set(e['areas'])) + ((e['options'],) if 'options' in e else ())
+    pres = [x[0] for x in national]
+    if any(e.get('after') and e['after'] not in pres for e in entries): raise SystemExit(f"::error title=US key tables::{AREA_TABLES_FILE}: an XS 'after' names no national layer. Nothing is built.")
+    if {e['prefix'] for e in entries} & set(pres): raise SystemExit(f'::error title=US key tables::{AREA_TABLES_FILE}: an XS prefix is also a national layer. Nothing is built.')
+    out = []
+    for x in national: out += [x] + [tup(e) for e in entries if e.get('after') == x[0]]
+    return out + [tup(e) for e in entries if not e.get('after')]
+
+
+_AT = area_tables()
+BOX_ADD = {st: tuple(b) for st, b in _AT['BOX_ADD'].items()}   # [west, south, east, north] added to the state's box (st_box)
 
 
 def fws_state(st, have):
@@ -780,7 +835,7 @@ def fws_state(st, have):
 
 # Official maps of the agencies themselves (Oct 18, Brandon: 'anything you can be working on in the US trip planner'): PAD-US stores wilderness,
 # BLM herd areas and BLM recreation areas only as the forest / BLM office around them, so those parks never matched by name.
-XS = [  # prefix, query url, name field, acres field, kinds
+XS = [  # prefix, query url, name field, acres field, kinds  (national layers; the state-limited ones are in data/us-key/area-tables.json)
     ('wld', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_02/MapServer/0/query', 'wildernessname', 'gis_acres', {'wild'}, 'National Wilderness Preservation System (Forest Service map)'),
     ('hma', 'https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query', 'HMA_NAME', 'BLM_ACRES', {'hma'}, 'BLM herd management areas'),
     # Oct 26 (gap hunt, HQ): the same BLM service's layer 1 = HERD AREAS (327; where horses were found in 1971). POTA lists some
@@ -799,38 +854,12 @@ XS = [  # prefix, query url, name field, acres field, kinds
     # Service's other national designated areas (monuments, NRAs, scenic areas); 'fullname' carries the type word. US federal data.
     ('fwsr', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiver_01/MapServer/0/query', 'designatedname', 'gis_acres', {'wsr'}, 'Forest Service Wild and Scenic River corridor (official boundary)'),
     ('fsod', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_OtherNationalDesignatedArea_01/MapServer/0/query', 'fullname', 'gis_acres', set(), 'Forest Service national designated areas (monuments, NRAs, scenic areas)'),
-    ('akht', 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Ala_Kahakai_National_Historic_Trail_Official_Corridor/FeatureServer/0/query', 'TrailName', '', set(), 'NPS Ala Kahakai National Historic Trail corridor (official)', 'FED', {'HI'}),
     ('nca', 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query', 'NCA_NAME', '', set(), 'BLM national monuments / conservation areas'),
     # Oct 18: layer id + name field looked up at run time ('?' = find it); found by probe 2
     ('wsa', 'svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study', '?', '?', {'wsa'}, 'BLM wilderness study areas'),
     ('wbl', 'svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|^(?!.*study).*wilderness', '?', '?', {'wild'}, 'BLM wilderness'),
-    ('odw', 'svc:https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer|.', '?', '?', {'wma'}, 'Oklahoma Dept. of Wildlife Conservation WMA map', 'STAT', {'OK'}),
-    # Oct 18 (Brandon: 'go ahead'): state agencies' own land maps (found on ArcGIS Online, owner = the agency) for states with many unmatched parks
-    ('ncg', 'svc:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer|.', '?', '?', {'wma'}, 'NC Wildlife Resources Commission game lands', 'STAT', {'NC'}),
-    ('wdw', 'svc:https://geodataservices.wdfw.wa.gov/arcgis/rest/services/MapServices/WildlifeAreas/MapServer|wildlife', '?', '?', {'wma'}, 'WDFW wildlife areas', 'STAT', {'WA'}),
-    ('idw', 'svc:https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer|.', '?', '?', {'wma'}, 'Idaho Fish and Game WMAs', 'STAT', {'ID'}),
-    ('law', 'svc:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer|.', '?', '?', set(), 'Louisiana Dept. of Wildlife and Fisheries WMAs and refuges', 'STAT', {'LA'}),   # Oct 18: LDWF_WMA moved (empty); probe 2 found these on LDWF's own account
-    ('lar', 'svc:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WildlifeRefuge/FeatureServer|.', '?', '?', set(), 'Louisiana Dept. of Wildlife and Fisheries wildlife refuges', 'STAT', {'LA'}),
-    ('maw', 'svc:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/MassWildlifeLands/FeatureServer|.', '?', '?', {'wma'}, 'MassWildlife lands', 'STAT', {'MA'}),
-    ('utw', 'svc:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer|.', '?', '?', {'wma'}, 'Utah DWR public access properties', 'STAT', {'UT'}),
-    ('ctd', 'svc:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Property/FeatureServer|.', '?', '?', set(), 'Connecticut DEEP property', 'STAT', {'CT'}),
-    ('ind', 'svc:https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer|.', '?', '?', set(), 'Indiana DNR properties', 'STAT', {'IN'}),
-    ('wid', 'svc:https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer|propert', '?', '?', set(), 'Wisconsin DNR managed properties', 'STAT', {'WI'}),
-    ('tnd', 'svc:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Access_Lands/FeatureServer|.', '?', '?', set(), 'TDEC public access lands', 'STAT', {'TN'}),
-    ('osp', 'svc:https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer|.', '?', '?', set(), 'Oregon State Parks', 'STAT', {'OR'}),
-    # Oct 20 (Brandon: 'keep working on the boundaries'): probe round 2, owner = the agency itself
-    ('fnl', 'svc:https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services/FL_Conservation_Lands_web/FeatureServer|.', '?', '?', set(), 'Florida Natural Areas Inventory conservation lands', 'STAT', {'FL'}),
-    ('cow', 'svc:https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer|managed propert', '?', '?', set(), 'Colorado Parks and Wildlife properties', 'STAT', {'CO'}),
-    ('nep', 'svc:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer|.', '?', '?', set(), 'Nebraska Game and Parks areas', 'STAT', {'NE'}),
-    # Oct 20 probe round 4 (owner = the state agency / state GIS office)
-    ('arw', 'svc:https://gisec2.agfc.com/arcgis/rest/services/APP_AGFC/MapServer|wma boundar', '?', '?', {'wma'}, 'Arkansas Game and Fish Commission WMAs', 'STAT', {'AR'}),
-    ('nhc', 'svc:https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer|conservation|public', '?', '?', set(), 'NH GRANIT conservation and public lands', 'STAT', {'NH'}),
-    ('mid', 'svc:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRLOTSParcelsOPENDATA/FeatureServer|project boundar', '?', '?', set(), 'Michigan DNR project boundaries', 'STAT', {'MI'}),
-    ('ndw', 'svc:https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer|.', '?', '?', {'wma'}, 'North Dakota Game and Fish WMAs', 'STAT', {'ND'}),
-    ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
-    ('mol', 'svc:https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_Missouri_Department_of_Conservation_Lands/FeatureServer|.', '?', '?', set(), 'Missouri Dept. of Conservation lands (MSDIS)', 'STAT', {'MO'}),
-    ('mdd', 'svc:https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer|dnr owned', '?', '?', set(), 'Maryland DNR lands', 'STAT', {'MD'}),
 ]
+XS = with_state_layers(XS, _AT['XS'])   # D6: + the layers read for listed states only (data/us-key/area-tables.json), in the old read order
 # Oct 24 (Brandon: 'they a new state level gis fable set up you can use as needed'): the Map Rep Tool Box's table of
 # each state's OWN park / wildlife / forest / preserve layers (data/state-gis.json, 60 layers in 37 states, kept by
 # kpc-state-gis.yml) feeds the key too. Layers already in XS by address are skipped; a layer that does not answer is
@@ -1299,7 +1328,7 @@ def outline_dates(p, recs):
     if not p.get('m'): return
     if not RD:
         if CMODE != 'only' and FIELDS is None: fields()   # reads the PAD-US version once
-        RD.update({_oid(a): a.get('rd') or time.strftime('%Y-%m-%d') for a in recs}); RD['_'] = ''
+        RD.update({_oid(a): a.get('rd') or BUILD_DATE for a in recs}); RD['_'] = ''
     ds = [RD.get(str(x[0])) for x in p['m'] if RD.get(str(x[0]))]
     if ds: p['read'] = min(ds)
     p['src'] = sorted({PADVER[0] if isinstance(x[0], int) else (re.match(r'[a-z]+', str(x[0])) or [''])[0] for x in p['m']})
@@ -1346,7 +1375,7 @@ def _save_row(a):
     r = {k: v for k, v in a.items() if not k.startswith('_')}
     r['_r'] = [[[round(pt[0], 5), round(pt[1], 5)] for pt in ring if len(pt) >= 2] for ring in rings(a.get('_g'))]
     r['_k'] = sorted(a.get('_k') or [])
-    r['rd'] = a.get('rd') or time.strftime('%Y-%m-%d')   # the day this record was read from its agency (rule B7)
+    r['rd'] = a.get('rd') or BUILD_DATE   # the day this record was read from its agency (rule B7)
     return r
 
 
@@ -1373,7 +1402,7 @@ def _write_layer_files(st, want, add):
             feats.append({'type': 'Feature', 'properties': dict(at, _kpc=kept.get(pre, {}).get(f'{pre}{oid}')), 'geometry': geo})
         meta = {'area': f'US-{st}', 'layer': pre, 'url': url, 'label': x[5] if x else '', 'oid_field': oidf, 'count_raw': len(feats),
                 'name_field': (RESOLVED.get(pre) or (None, x[2] if x else ''))[1] if lf is None else lf[0].get('name_field'),
-                'source': 'live' if lf is None else 'hand', 'read': time.strftime('%Y-%m-%d')}
+                'source': 'live' if lf is None else 'hand', 'read': BUILD_DATE}
         if lf is None:
             meta['count_live'] = layer_live_count(st, pre, url, x[2], x[3], x[8] if len(x) > 8 else {}) if x else None
             # Nov 11: a layer of this state only (a state-GIS row) is also counted WITHOUT the box: the master step refuses a read
@@ -1395,7 +1424,7 @@ def save_cache(st, recs, seen):
     """Everything the matcher needs, so a rule can be tested without the network. Outlines to ~1 m."""
     CACHE.mkdir(parents=True, exist_ok=True)
     rows = [_save_row(a) for a in recs]
-    blob = {'st': st, 'saved': time.strftime('%Y-%m-%d'), 'detail': DETAIL, 'seen': seen, 'recs': rows}
+    blob = {'st': st, 'saved': BUILD_DATE, 'detail': DETAIL, 'seen': seen, 'recs': rows}
     with gzip.open(cache_file(st), 'wt', encoding='utf-8') as f:
         json.dump(blob, f, separators=(',', ':'))
     CACHE_SAVED.append(st)
@@ -1422,7 +1451,7 @@ def load_cache(st):
     return recs, blob.get('seen', len(recs)), blob.get('detail')
 
 
-def out_date(): return time.strftime('%Y-%m-%d')
+def out_date(): return BUILD_DATE
 
 
 # Sites (Oct 18 review): an airstrip, trailhead, hatchery, byway, BLM recreation site… has no outline of its own in any official map;
@@ -2571,7 +2600,7 @@ def run(st):
         _bkk, _bkn = KF.stamp(parks, _bkpin, _bklook)
     except Exception as _e:  # noqa: BLE001
         _bkk, _bkn = {}, None; notice(f'US key {st}', f'pin distance / kind (bk) skipped: {type(_e).__name__}: {str(_e)[:120]}')
-    out = {'updated': time.strftime('%Y-%m-%d'), 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
+    out = {'updated': BUILD_DATE, 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
            'counts': counts, 'parks': parks, 'nonum': nonum[:300],
            'bk_about': KF.ABOUT, 'bk_kinds': {c: t for c, t in _bkk.items() if c != t}}   # links-10
     # plain-words review page for this state (GitHub shows .md files nicely)
@@ -2656,7 +2685,7 @@ for st in STATES:
         elif not x[1].startswith('svc:'): LJ[x[0]] = [x[1], x[2], x[5]]
     # Oct 28: zipped-shapefile layers: the map pages and the 2-fer bot read the outlines from our own simplified copy
     for pre, recs_ in ZIPGEO.items():
-        fc = {'type': 'FeatureCollection', 'about': f'{LAYERS_ZIP[pre][2]}; from {LAYERS_ZIP[pre][0]}; read {time.strftime("%Y-%m-%d")}',
+        fc = {'type': 'FeatureCollection', 'about': f'{LAYERS_ZIP[pre][2]}; from {LAYERS_ZIP[pre][0]}; read {BUILD_DATE}',
               'features': [{'type': 'Feature', 'properties': {'OBJECTID': i, 'Unit_Nm': v[0]}, 'geometry': {'type': 'Polygon' if len(v[1]) == 1 else 'MultiPolygon',
                             'coordinates': [v[1][0]] if len(v[1]) == 1 else [[r] for r in v[1]]}} for i, v in sorted(recs_.items()) if v[1]]}
         save_json(OUT / f'zip-{pre}.json', fc)

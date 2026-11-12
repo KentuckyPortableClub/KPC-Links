@@ -95,7 +95,9 @@ check(m and float(m.group(1)) == 25.0, f'the trail / river 2-fer stretch is stil
 import kpc_key_freeze as F
 got = {k: F.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
 # KPC owner, 2026-11-11 (job 6, world rules change approved): the world hash moved 9358c2ede2d5 -> 889d37136cf8 (three French PatriNat layers); US and CA are as before; fers is main's cef323de4c9a (#157)
-want = {'us-key': '46ef34a04ab0', 'ca-key': '4b4176190334', 'world-key': '889d37136cf8', 'fers': 'cef323de4c9a'}
+# Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: later declared moves (US 46ef34a04ab0 -> 37a6c87cc829, world 889d37136cf8 -> 09144e6eee8f) are the
+# newest; each hash must equal the one its newest changelog line names (no literal to edit when a later change of the set moves it again).
+want = {k: __import__('kpc_preflight').newest_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
 check(got == want, f'rules hashes unchanged (got {got})')
 
 gi = (HERE / '.gitignore').read_text(encoding='utf-8').split('\n')

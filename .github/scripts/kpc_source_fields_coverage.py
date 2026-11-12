@@ -17,6 +17,11 @@ PROV = set('AB BC MB NB NL NS NT NU ON PE QC SK YT'.split())
 
 
 def world_src():
+    # Nov 12 (KPC owner, 2026-11-12; D6): the built-in world sources are data now (data/world-key/area-tables.json 'SRC'); a tree from
+    # before D6 still has them as the SRC literal in kpc_world_key.py (read below)
+    at = pathlib.Path(__file__).resolve().parents[2] / 'data/world-key/area-tables.json'
+    if at.is_file():
+        return {cc: [tuple(x) for x in v] for cc, v in (json.loads(at.read_text(encoding='utf-8')).get('SRC') or {}).items()}
     t = (pathlib.Path(__file__).parent / 'kpc_world_key.py').read_text(encoding='utf-8')
     tree = ast.parse(t)
     for node in tree.body:

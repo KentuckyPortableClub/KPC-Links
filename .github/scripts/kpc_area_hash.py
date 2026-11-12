@@ -42,6 +42,13 @@ import argparse, ast, csv, gzip, hashlib, io, json, os, pathlib, re, subprocess,
 
 REPO = pathlib.Path(__file__).resolve().parents[2]
 COMPOSITION = 'ah1'   # the area-hash composition id: it is in the `version` part, so a composition change moves every area once
+# Nov 12 (KPC owner, 2026-11-12; D6): the US and world compositions changed (their per-area tables left the rule code for
+# data/<kind>/area-tables.json: 'code-area:' parts became 'data:' parts), so they are 'ah2'. That move rides on the US / world
+# code-hash move of the same patch (every US / world area moves once anyway: no extra rebuild). Canada and 2-fers are unchanged ('ah1').
+COMPOSITION_OF = {'us': 'ah2', 'world': 'ah2'}
+
+
+def composition(kind): return COMPOSITION_OF.get(kind, COMPOSITION)
 FREEZE = '.github/scripts/kpc_key_freeze.py'
 KINDS = {'us': 'us-key', 'ca': 'ca-key', 'world': 'world-key', 'fers': 'fers'}
 US_ALL = ('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC '
@@ -64,12 +71,17 @@ URL_RE = re.compile(r'(?:svc:)?https?://[^\s\'"\]\)|,]+')
 # Level 3: per-area tables inside the rule code (the 'move to data files' list of DESIGN.md 2.2). dict = NAME = {area: ...};
 # sub = NAME['XX'] = ... statements; manual = whole statements that belong to named areas; listset = list entries whose item
 # [i] is a set of area codes.
+# Nov 12 (KPC owner, 2026-11-12; D6): BOX_ADD, the state-limited XS entries and the world SRC / EU / GEN / LOC / KINDS / SIDE_NOT /
+# CHPREF / QLD tables are DATA now (AREA_TABLES below, sliced per area as 'data:' parts). What is left here: the Mississippi zipped-
+# shapefile layers (SZ_US, MS_TK), kept in the code because kpc_us_key_join.zip_owners reads SZ_US from the code as its join-safety
+# check. Any other per-area table in a rule file is now SHARED code (every area moves; fail closed) and
+# tests/test_area_tables_nov12.py fails the rule file.
 TABLES = {
-    '.github/scripts/kpc_us_key.py': {'dict': ['BOX_ADD'], 'listset': {'XS': 7}},
-    '.github/scripts/kpc_world_key.py': {'dict': ['SRC', 'GEN', '_LOC', 'KINDS', 'SIDE_NOT'], 'sub': ['SRC', 'KINDS'],
-                                         'manual': {'CHB': ['CH'], 'CHPREF': ['CH'], 'QLD_PAF': ['AU'], 'QLD_SF': ['AU'],
-                                                    'QLD_REST': ['AU'], 'QLD_LAYERS': ['AU'], 'NO_N2K': ['CH', 'NO']}},
+    '.github/scripts/kpc_us_key.py': {'listset': {'SZ_US': 6}, 'manual': {'MS_TK': ['MS']}},
 }
+# D6: one per-area table file per kind (read by the builder at start, from its own checkout). Top level: header texts (about, notes,
+# format; not counted) and tables, each {area: value} or [entry with 'areas': [...]] (an entry counts for every area it lists).
+AREA_TABLES = {'us': 'data/us-key/area-tables.json', 'world': 'data/world-key/area-tables.json'}
 
 
 def H(b): return hashlib.sha256(b if isinstance(b, bytes) else str(b).encode()).hexdigest()
@@ -353,7 +365,7 @@ class Kind:
                         self.urls.setdefault(a, set()).update(URL_RE.findall(tb.decode('utf-8', 'replace')))
                 self.urls.setdefault('*', set()).update(URL_RE.findall(s.decode('utf-8', 'replace')))
         v, ok = self.t.json(vf)
-        sh['version'] = H(COMPOSITION + '\0' + str(v.get(KINDS[self.kind]) if ok and isinstance(v, dict) else None))
+        sh['version'] = H(composition(self.kind) + '\0' + str(v.get(KINDS[self.kind]) if ok and isinstance(v, dict) else None))
         if self.kind != 'fers' and self.reader == 'shared':
             for f in READER:
                 b = self.t.read(f)
@@ -362,6 +374,35 @@ class Kind:
         # must hash the values it was given. --var NAME=VALUE.
         if self.env: sh['vars'] = H(canon(self.env))
         return sh, per
+
+    def area_tables(self, parts, shared):
+        """D6: the kind's per-area table file, one part per (table, area): 'data:<file>:<TABLE>'. A dict table's value under an area code
+        counts for that area; a list table's entry counts for every area in its 'areas' (stored once). Anything that cannot be attributed
+        (an area code that is not an area of this kind, an entry with no 'areas', another shape) is a SHARED part: every area moves (fail
+        closed). Header texts (about, notes, format) do not count. A missing / unreadable file is shared too (the builder stops on it)."""
+        path = AREA_TABLES.get(self.kind)
+        if not path: return
+        v, ok = self.t.json(path)
+        if not ok or not isinstance(v, dict):
+            shared[f'shared:{path}' + ('!missing' if v is None else '!unreadable')] = H(self.t.read(path) or b'missing'); return
+        for name, tab in v.items():
+            if name in HEADER_KEYS: continue
+            per, rest = {}, []
+            if isinstance(tab, dict):
+                for a, x in tab.items():
+                    if a in self.areas_set: per[a] = x
+                    else: rest.append([a, x])
+            elif isinstance(tab, list):
+                for e in tab:
+                    own = e.get('areas') if isinstance(e, dict) else None
+                    if isinstance(own, list) and own and all(isinstance(a, str) and a in self.areas_set for a in own):
+                        for a in own: per.setdefault(a, []).append(e)
+                    else: rest.append(e)
+            else: rest.append(tab)
+            for a, x in per.items():
+                parts[a][f'data:{path}:{name}'] = H(canon(x)); self.urls.setdefault(a, set()).update(URL_RE.findall(canon(x).decode('utf-8', 'replace')))
+            if rest:
+                shared[f'shared:{path}:{name}#unattributed'] = H(canon(rest)); self.urls.setdefault('*', set()).update(URL_RE.findall(canon(rest).decode('utf-8', 'replace')))
 
     def slice_file(self, path, parts, shared, key_of=None, label=None):
         """Slice one data file into the areas' parts. key_of(obj) -> {area: slice} for files keyed by area; else ref rows."""
@@ -401,6 +442,7 @@ class Kind:
         t = self.t
         if self.kind == 'us':
             self.slice_file('data/us-key/overrides.json', parts, sh)
+            self.area_tables(parts, sh)   # D6: BOX_ADD, the state-limited XS layers
             self.slice_file('data/state-gis.json', parts, sh, lambda v: ({k: x for k, x in (v.get('states') or {}).items() if k in self.areas_set} if isinstance(v, dict) else {}, {}),
                             label='data/state-gis.json(states; other codes are not read by this key)')
             # data/us-key/layers.json is NOT an input: the US key writes it (kpc_us_key.py:2652-2665) and reads it back only so a state
@@ -428,6 +470,7 @@ class Kind:
             self.gate(parts, sh, lambda a: 'CA-ALL', shared=True)   # one saved copy for all of Canada
         elif self.kind == 'world':
             self.slice_file('data/world-key/overrides.json', parts, sh)
+            self.area_tables(parts, sh)   # D6: SRC, EU, GEN, LOC, KINDS, SIDE_NOT, TYPE_PREFER, SPLIT_LAYERS
             self.slice_file('data/world-key/extra-layers.json', parts, sh, lambda v: ((v.get('countries') or {}) if isinstance(v, dict) else {}, {}),
                             label='data/world-key/extra-layers.json(countries; dropped is not read)')
             self.slice_file('data/world-key/sheet-countries.json', parts, sh, lambda v: ((v.get('countries') or {}) if isinstance(v, dict) else {}, {}))
@@ -786,7 +829,7 @@ INPUT_PATHS = ['data/us-key/overrides.json', 'data/ca-key/overrides.json', 'data
                'data/world-key/extra-layers.json', 'data/world-key/sheet-countries.json', 'data/world-key/eea-designations.json',
                'data/world-key/jp-wikidata.json', 'data/ca-key/layers.json', 'data/ca-key/hardlook-joins.json', 'kpc-us-states.json',
                'data/retired-refs.json', 'data/park-transfers.json', 'data/nps-units.json', 'data/outlines/layers.json',
-               'data/outlines/world-baselines.approved.json', 'data/us-key/layers.json'] + READER
+               'data/outlines/world-baselines.approved.json', 'data/us-key/layers.json'] + READER + sorted(AREA_TABLES.values())   # + D6 tables
 
 
 def build_marks(repo, kind):
@@ -1009,13 +1052,13 @@ def run_plan(repo, kind, wanted, index, mode, force_full, data=None, env=None, o
     cur = code_hash(repo, kind)
     final, table, added, reused = decide(kind, wanted, hs, parts, rows, cur, mode, force_full, repo)
     head = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=repo, capture_output=True, text=True).stdout.strip()
-    t = (f'**Area hashes ({kind}, mode {mode}{", full rebuild asked: no reuse" if force_full else ""}; code hash {cur}; composition {COMPOSITION})**'
+    t = (f'**Area hashes ({kind}, mode {mode}{", full rebuild asked: no reuse" if force_full else ""}; code hash {cur}; composition {composition(kind)})**'
          + (f' - added {len(added)}: {" ".join(added)}' if added else '') + (f' - reused {len(reused)}: {" ".join(reused)}' if reused else '')
          + '\n\n| area | old hash | new hash | reason | action |\n|---|---|---|---|---|\n'
          + ''.join('| ' + ' | '.join(str(x).replace('|', '/') for x in r) + ' |\n' for r in table if r[4] != 'not planned' or r[3] != 'no input changed'))
     dest = summary or os.environ.get('GITHUB_STEP_SUMMARY')
     if dest: open(dest, 'a', encoding='utf-8').write(t + '\n')
-    rec = {'kind': kind, 'mode': mode, 'force_full': bool(force_full), 'code_hash': cur, 'composition': COMPOSITION, 'plan_sha': head, 'pins': bool(data),
+    rec = {'kind': kind, 'mode': mode, 'force_full': bool(force_full), 'code_hash': cur, 'composition': composition(kind), 'plan_sha': head, 'pins': bool(data),
            'list': final, 'added': added, 'reused': reused, 'hashes': {a: hs[a] for a in sorted(hs)}, 'parts': {a: short(parts[a]) for a in sorted(parts)}}
     if out_json: pathlib.Path(out_json).write_text(json.dumps(rec, sort_keys=True, separators=(',', ':')), encoding='utf-8')
     return rec, t

@@ -105,11 +105,15 @@ def same(a, b):
     w('.github/scripts/kpc_us_key.py', US_KEY.replace('-80.0, 25.2', '-79.8, 25.2'))
     c2 = commit('FL box')
     d = moved('us', c1, c2)
-    check('BOX_ADD[FL] edit: level 3 moves FL only, reason names the table entry', set(d) == {'FL'} and any('BOX_ADD[FL]' in x for x in d['FL']))
+    # Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: a per-area table left IN the rule code is shared code now (the tables are data in
+    # data/<kind>/area-tables.json; tests/test_area_tables_nov12.py covers their slicing and fails a rule file that keeps one): every area moves
+    check('BOX_ADD[FL] edit in the rule code: level 3 moves every state (fail closed)', len(d) == 50 and any(x.startswith('code:') for x in d['FL']))
     check('BOX_ADD[FL] edit: level 2 moves every state (the table is still code there)', len(moved('us', c1, c2, 2)) == 50)
     w('.github/scripts/kpc_us_key.py', US_KEY.replace('-80.0, 25.2', '-79.8, 25.2').replace("'Vermont', 'STAT', {'VT'}", "'Vermont ANR', 'STAT', {'VT'}"))
     c2b = commit('VT XS entry')
-    check('an XS entry limited to {VT}: level 3 moves VT only', set(moved('us', c2, c2b)) == {'VT'})
+    # Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: a per-area table left IN the rule code is shared code now (the tables are data in
+    # data/<kind>/area-tables.json; tests/test_area_tables_nov12.py covers their slicing and fails a rule file that keeps one): every area moves
+    check('an XS entry limited to {VT} in the rule code: level 3 moves every state (fail closed)', len(moved('us', c2, c2b)) == 50)
 
     # 3. data slices: an override row moves its park's state only; key order and spacing move nothing
     ov = json.loads((R / 'data/us-key/overrides.json').read_text()); ov['parks']['US-0019']['join'] = [3198]
@@ -136,7 +140,9 @@ def same(a, b):
     check('world: a new AU layer in extra-layers.json countries moves AU only', set(moved('world', c6, c7)) == {'AU'})
     w('.github/scripts/kpc_world_key.py', (R / '.github/scripts/kpc_world_key.py').read_text().replace("('NE', 'arcgis'", "('Natural England', 'arcgis'"))
     c7b = commit('GB source label')
-    check('world: one country\'s SRC entry in the code moves that country only (level 3)', set(moved('world', c7, c7b)) == {'GB'})
+    # Nov 12 (KPC owner, 2026-11-12; D6 tables out) CHANGED: a per-area table left IN the rule code is shared code now (the tables are data in
+    # data/<kind>/area-tables.json; tests/test_area_tables_nov12.py covers their slicing and fails a rule file that keeps one): every area moves
+    check('world: one country\'s SRC entry in the rule code moves every country (level 3, fail closed)', len(moved('world', c7, c7b)) == len(K.compute(R, c7b, 'world')[0]))
 
     # 5. host rules (the soundness hole): a saved-copy-only host added
     w('.github/scripts/kpc_master.py', MASTER.replace("{'apps.example.gov'}", "{'apps.example.gov', 'apps2.example.gov'}"))

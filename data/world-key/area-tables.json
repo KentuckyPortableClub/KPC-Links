@@ -1,0 +1,1326 @@
+{
+ "about": "Per-country tables of the world answer key (kpc_world_key.py reads this file at start; a missing or malformed file stops the build: nothing is written). Moved out of the rule script on Nov 12 (KPC owner, 2026-11-12; D6), unchanged in content. Each table is keyed by country code, so an edit here moves only that country's area hash (kpc_area_hash.py slices this file per country). SRC = the country's built-in official layers, read in this order [label, reader, address, where-list or WFS type name]; layers from extra-layers.json and sheet-countries.json come after. EU = true: an EEA country (EU name rules: Natura codes in names, n2k kinds). GEN = the generic words dropped from names (regular expression), LOC = the same for EEA countries (the EU and English words are added in code). KINDS = [kind code, regular expression] read from a name. SIDE_NOT = words that are NOT a side (north / upper ...) in that country. TYPE_PREFER = POTA park type -> the layer labels preferred when several hold the pin. SPLIT_LAYERS = layers of extra-layers.json that are read WITHOUT the records a built-in source already reads (rest_where). notes = where each entry came from (not read by the builder, not in any hash).",
+ "format": 1,
+ "notes": {
+  "AU": [
+   "CAPAD 2024 terrestrial (DCCEEW, Australian Government).",
+   "Next round C7 (Nov 5; owner's yes): Queensland state forests are read from the DESI layer 'Protected areas and forests of Queensland' (CC BY 4.0) with where esttype='SF'; the same layer as listed in extra-layers.json is read WITHOUT its SF (SPLIT_LAYERS.AU.rest_where), so no record comes twice.",
+   "Oct 25: NSW Forestry Corporation, VIC DEECA (same data as DataVic PLM25, CC BY 4.0) and WA DBCA (CC BY-NC 4.0) state forest tenure. WA 'forest blocks' left out: management units, not the legal forest boundary."
+  ],
+  "DE": [
+   "BfN Schutzgebiete WFS (Bundesamt fuer Naturschutz)."
+  ],
+  "GB": [
+   "Natural England open data, NatureScot WFS, NRW Wales WFS. Northern Ireland (DAERA) left out: its terms forbid publishing maps without NIEA's written permission."
+  ],
+  "JP": [
+   "Ministry of the Environment national parks via Esri Japan (nps_all, 34 national parks) + MLIT National Land Numerical Information A10 natural park areas (per prefecture; national file FY2010 A10-10 for the park-name codes; non-commercial licence, KPC is a non-commercial club)."
+  ],
+  "PL": [
+   "Oct 25: the Slaskie voivodeship ORSIP copy of the GDOS register (nature and landscape complexes); no licence stated (regional copy of the national register)."
+  ],
+  "CH": [
+   "Nov 7 world rebuild B6 (owner's yes): no EEA Natura 2000 source (Switzerland reports none; the empty source held CH every build). EEA nationally designated areas stay.",
+   "Oct 18 (probe 2): the federal BAFU inventories (data.geo.admin.ch STAC, shapefiles in LV95); POTA's 151 CH 'Natural Monument' parks are BLN objects. Nov 8 (#76): the parks collection lost its _perimeter suffix.",
+   "TYPE_PREFER.CH: the federal inventory of the park's POTA type decides when several records hold the pin."
+  ],
+  "NO": [
+   "Nov 7 world rebuild B6 (owner's yes): no EEA Natura 2000 source (Norway reports none). EEA nationally designated areas stay."
+  ],
+  "FR": [
+   "Oct 20: POTA's 'Biological Reserve' parks are ZNIEFF zones (MNHN / INPN): IGN Geoplateforme first, the Esri France copy only when the Geoplateforme answers nothing.",
+   "2026-11-11 (KPC owner, world rules change approved): three more PatriNat layers (ZNIEFF type II sea, Conservatoire du littoral, RNN protection perimeters); Licence Ouverte as the research ledger records it."
+  ],
+  "CO": [
+   "Oct 30 (owner's yes): RUNAP, the national register of protected areas (DNP)."
+  ],
+  "ZA": [
+   "Oct 30 (owner's yes): DPME (from DFFE SAPAD) and SAPAD (DFFE)."
+  ],
+  "CL": [
+   "Oct 30 (owner's yes): SIMBIO protected areas (MMA)."
+  ],
+  "*": [
+   "EU countries (EU = true): the European Environment Agency layers (Natura 2000 sites + nationally designated areas, ex-CDDA), each filtered to the country; Oct 18 / Oct 19 (owner: 'go ahead')."
+  ]
+ },
+ "SRC": {
+  "AU": [
+   [
+    "CAPAD (DCCEEW)",
+    "arcgis",
+    "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/MapServer/0"
+   ],
+   [
+    "NSW State Forest (Forestry Corporation NSW)",
+    "arcgis",
+    "https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer/0"
+   ],
+   [
+    "QLD State Forest (Queensland Government)",
+    "arcgis",
+    "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/FeatureServer/77",
+    [
+     "esttype='SF'"
+    ]
+   ],
+   [
+    "VIC DEECA state forests",
+    "arcgis",
+    "https://enterprise.mapshare.vic.gov.au/server/rest/services/Hosted/Public_Land___DEECA_Managed/FeatureServer/0",
+    [
+     "mmtgen='STATE FOREST' AND name<>' '"
+    ]
+   ],
+   [
+    "WA DBCA state forests (legislated lands)",
+    "arcgis",
+    "https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Property_and_Planning/MapServer/15",
+    [
+     "leg_category='State Forest'"
+    ]
+   ]
+  ],
+  "DE": [
+   [
+    "BfN Nationalparke",
+    "wfs",
+    "https://geodienste.bfn.de/ogc/wfs/schutzgebiet",
+    "schutzgebiet:Nationalparke"
+   ],
+   [
+    "BfN Naturparke",
+    "wfs",
+    "https://geodienste.bfn.de/ogc/wfs/schutzgebiet",
+    "schutzgebiet:Naturparke"
+   ],
+   [
+    "BfN Naturschutzgebiete",
+    "wfs",
+    "https://geodienste.bfn.de/ogc/wfs/schutzgebiet",
+    "schutzgebiet:Naturschutzgebiete"
+   ],
+   [
+    "BfN Biosphaerenreservate",
+    "wfs",
+    "https://geodienste.bfn.de/ogc/wfs/schutzgebiet",
+    "schutzgebiet:Biosphaerenreservate"
+   ],
+   [
+    "BfN Nationale_Naturmonumente",
+    "wfs",
+    "https://geodienste.bfn.de/ogc/wfs/schutzgebiet",
+    "schutzgebiet:Nationale_Naturmonumente"
+   ],
+   [
+    "BfN Fauna_Flora_Habitat_Gebiete",
+    "wfs",
+    "https://geodienste.bfn.de/ogc/wfs/schutzgebiet",
+    "schutzgebiet:Fauna_Flora_Habitat_Gebiete"
+   ],
+   [
+    "BfN Vogelschutzgebiete",
+    "wfs",
+    "https://geodienste.bfn.de/ogc/wfs/schutzgebiet",
+    "schutzgebiet:Vogelschutzgebiete"
+   ],
+   [
+    "BfN Landschaftsschutzgebiete",
+    "wfs",
+    "https://geodienste.bfn.de/ogc/wfs/schutzgebiet",
+    "schutzgebiet:Landschaftsschutzgebiete"
+   ]
+  ],
+  "GB": [
+   [
+    "Natural England NNR",
+    "arcgis",
+    "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/National_Nature_Reserves_England/FeatureServer/0"
+   ],
+   [
+    "Natural England LNR",
+    "arcgis",
+    "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Local_Nature_Reserves_England/FeatureServer/0"
+   ],
+   [
+    "Natural England Country Parks",
+    "arcgis",
+    "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Country_Parks_England/FeatureServer/0"
+   ],
+   [
+    "Natural England SSSI",
+    "arcgis",
+    "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_England/FeatureServer/0"
+   ],
+   [
+    "Natural England National Parks",
+    "arcgis",
+    "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/National_Parks_England/FeatureServer/0"
+   ],
+   [
+    "Natural England National Landscapes",
+    "arcgis",
+    "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/Areas_of_Outstanding_Natural_Beauty_England/FeatureServer/0"
+   ],
+   [
+    "NatureScot cpk",
+    "wfs",
+    "https://ogc.nature.scot/geoserver/protectedareas/wfs",
+    "protectedareas:cpk"
+   ],
+   [
+    "NatureScot nnr",
+    "wfs",
+    "https://ogc.nature.scot/geoserver/protectedareas/wfs",
+    "protectedareas:nnr"
+   ],
+   [
+    "NatureScot lnr",
+    "wfs",
+    "https://ogc.nature.scot/geoserver/protectedareas/wfs",
+    "protectedareas:lnr"
+   ],
+   [
+    "NatureScot sssi",
+    "wfs",
+    "https://ogc.nature.scot/geoserver/protectedareas/wfs",
+    "protectedareas:sssi"
+   ],
+   [
+    "NatureScot rp",
+    "wfs",
+    "https://ogc.nature.scot/geoserver/protectedareas/wfs",
+    "protectedareas:rp"
+   ],
+   [
+    "NatureScot sac",
+    "wfs",
+    "https://ogc.nature.scot/geoserver/protectedareas/wfs",
+    "protectedareas:sac"
+   ],
+   [
+    "NatureScot spa",
+    "wfs",
+    "https://ogc.nature.scot/geoserver/protectedareas/wfs",
+    "protectedareas:spa"
+   ],
+   [
+    "NRW Wales SSSI",
+    "wfs",
+    "https://datamap.gov.wales/geoserver/ows",
+    "inspire-nrw:NRW_SSSI"
+   ],
+   [
+    "NRW Wales NNR",
+    "wfs",
+    "https://datamap.gov.wales/geoserver/ows",
+    "inspire-nrw:NRW_NNR"
+   ],
+   [
+    "NRW Wales LNR",
+    "wfs",
+    "https://datamap.gov.wales/geoserver/ows",
+    "inspire-nrw:NRW_LNR"
+   ],
+   [
+    "NRW Wales National Parks",
+    "wfs",
+    "https://datamap.gov.wales/geoserver/ows",
+    "inspire-nrw:NRW_NATIONAL_PARK"
+   ],
+   [
+    "NRW Wales National Landscapes",
+    "wfs",
+    "https://datamap.gov.wales/geoserver/ows",
+    "inspire-nrw:NRW_AONB"
+   ],
+   [
+    "NRW Wales Country Parks",
+    "wfs",
+    "https://datamap.gov.wales/geoserver/ows",
+    "geonode:country_parks"
+   ],
+   [
+    "NRW Wales SAC",
+    "wfs",
+    "https://datamap.gov.wales/geoserver/ows",
+    "inspire-nrw:NRW_SAC"
+   ],
+   [
+    "NRW Wales SPA",
+    "wfs",
+    "https://datamap.gov.wales/geoserver/ows",
+    "inspire-nrw:NRW_SPA"
+   ]
+  ],
+  "JP": [
+   [
+    "Ministry of the Environment national parks (Esri Japan)",
+    "arcgis",
+    "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0"
+   ],
+   [
+    "MLIT natural park areas (A10)",
+    "a10",
+    "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v3_1.html"
+   ],
+   [
+    "MLIT natural park areas, national file FY2010 (A10-10)",
+    "a10n",
+    "https://nlftp.mlit.go.jp/ksj/gml/data/A10/A10-10/A10-10_GML.zip"
+   ]
+  ],
+  "PL": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='PL'",
+     "SITECODE LIKE 'PL%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='PL'",
+     "countryCode LIKE 'PL%'"
+    ]
+   ],
+   [
+    "Śląskie ORSIP nature and landscape complexes (GDOŚ register)",
+    "arcgis",
+    "https://geoportal.orsip.pl/site1/rest/services/DaneRegionalne/FormyOchronyPrzyrodyZieloneSlaskie/MapServer/5"
+   ]
+  ],
+  "ES": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='ES'",
+     "SITECODE LIKE 'ES%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='ES'",
+     "countryCode LIKE 'ES%'"
+    ]
+   ]
+  ],
+  "FR": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='FR'",
+     "SITECODE LIKE 'FR%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='FR'",
+     "countryCode LIKE 'FR%'"
+    ]
+   ],
+   [
+    "IGN Géoplateforme ZNIEFF type I",
+    "wfs",
+    "https://data.geopf.fr/wfs/ows",
+    "patrinat_znieff1:znieff1"
+   ],
+   [
+    "IGN Géoplateforme ZNIEFF type II",
+    "wfs",
+    "https://data.geopf.fr/wfs/ows",
+    "patrinat_znieff2:znieff2"
+   ],
+   [
+    "IGN Géoplateforme ZNIEFF type I sea",
+    "wfs",
+    "https://data.geopf.fr/wfs/ows",
+    "patrinat_znieff1_mer:znieff1_mer"
+   ],
+   [
+    "IGN Géoplateforme ZNIEFF type II sea",
+    "wfs",
+    "https://data.geopf.fr/wfs/ows",
+    "patrinat_znieff2_mer:znieff2_mer"
+   ],
+   [
+    "ZNIEFF (INPN data, Esri France) layer 0",
+    "arcgis_alt",
+    "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/0"
+   ],
+   [
+    "ZNIEFF (INPN data, Esri France) layer 1",
+    "arcgis_alt",
+    "https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/1"
+   ],
+   [
+    "IGN Géoplateforme Conservatoire du littoral",
+    "wfs",
+    "https://data.geopf.fr/wfs/ows",
+    "patrinat_cdl:cdl"
+   ],
+   [
+    "IGN Géoplateforme RNN protection perimeters",
+    "wfs",
+    "https://data.geopf.fr/wfs/ows",
+    "patrinat_pprnn:pprnn"
+   ]
+  ],
+  "CH": [
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='CH'",
+     "countryCode LIKE 'CH%'"
+    ]
+   ],
+   [
+    "BAFU landscapes and natural monuments (BLN)",
+    "chshp",
+    "ch.bafu.bundesinventare-bln"
+   ],
+   [
+    "BAFU hunting reserves",
+    "chshp",
+    "ch.bafu.bundesinventare-jagdbanngebiete"
+   ],
+   [
+    "BAFU water and migratory bird reserves",
+    "chshp",
+    "ch.bafu.bundesinventare-vogelreservate"
+   ],
+   [
+    "BAFU mire landscapes",
+    "chshp",
+    "ch.bafu.bundesinventare-moorlandschaften"
+   ],
+   [
+    "BAFU floodplains",
+    "chshp",
+    "ch.bafu.bundesinventare-auen"
+   ],
+   [
+    "BAFU raised bogs",
+    "chshp",
+    "ch.bafu.bundesinventare-hochmoore"
+   ],
+   [
+    "BAFU fens",
+    "chshp",
+    "ch.bafu.bundesinventare-flachmoore"
+   ],
+   [
+    "BAFU Ramsar sites",
+    "chshp",
+    "ch.bafu.schutzgebiete-ramsar"
+   ],
+   [
+    "BAFU parks of national importance",
+    "chshp",
+    "ch.bafu.schutzgebiete-paerke_nationaler_bedeutung"
+   ],
+   [
+    "BAFU Emerald sites",
+    "chshp",
+    "ch.bafu.schutzgebiete-smaragd"
+   ]
+  ],
+  "AT": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='AT'",
+     "SITECODE LIKE 'AT%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='AT'",
+     "countryCode LIKE 'AT%'"
+    ]
+   ]
+  ],
+  "NL": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='NL'",
+     "SITECODE LIKE 'NL%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='NL'",
+     "countryCode LIKE 'NL%'"
+    ]
+   ]
+  ],
+  "PT": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='PT'",
+     "SITECODE LIKE 'PT%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='PT'",
+     "countryCode LIKE 'PT%'"
+    ]
+   ]
+  ],
+  "SE": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='SE'",
+     "SITECODE LIKE 'SE%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='SE'",
+     "countryCode LIKE 'SE%'"
+    ]
+   ]
+  ],
+  "CZ": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='CZ'",
+     "SITECODE LIKE 'CZ%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='CZ'",
+     "countryCode LIKE 'CZ%'"
+    ]
+   ]
+  ],
+  "SI": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='SI'",
+     "SITECODE LIKE 'SI%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='SI'",
+     "countryCode LIKE 'SI%'"
+    ]
+   ]
+  ],
+  "NO": [
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='NO'",
+     "countryCode LIKE 'NO%'"
+    ]
+   ]
+  ],
+  "RO": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='RO'",
+     "SITECODE LIKE 'RO%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='RO'",
+     "countryCode LIKE 'RO%'"
+    ]
+   ]
+  ],
+  "IT": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='IT'",
+     "SITECODE LIKE 'IT%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='IT'",
+     "countryCode LIKE 'IT%'"
+    ]
+   ]
+  ],
+  "BE": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='BE'",
+     "SITECODE LIKE 'BE%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='BE'",
+     "countryCode LIKE 'BE%'"
+    ]
+   ]
+  ],
+  "DK": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='DK'",
+     "SITECODE LIKE 'DK%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='DK'",
+     "countryCode LIKE 'DK%'"
+    ]
+   ]
+  ],
+  "FI": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='FI'",
+     "SITECODE LIKE 'FI%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='FI'",
+     "countryCode LIKE 'FI%'"
+    ]
+   ]
+  ],
+  "HU": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='HU'",
+     "SITECODE LIKE 'HU%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='HU'",
+     "countryCode LIKE 'HU%'"
+    ]
+   ]
+  ],
+  "SK": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='SK'",
+     "SITECODE LIKE 'SK%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='SK'",
+     "countryCode LIKE 'SK%'"
+    ]
+   ]
+  ],
+  "HR": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='HR'",
+     "SITECODE LIKE 'HR%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='HR'",
+     "countryCode LIKE 'HR%'"
+    ]
+   ]
+  ],
+  "IE": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='IE'",
+     "SITECODE LIKE 'IE%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='IE'",
+     "countryCode LIKE 'IE%'"
+    ]
+   ]
+  ],
+  "LT": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='LT'",
+     "SITECODE LIKE 'LT%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='LT'",
+     "countryCode LIKE 'LT%'"
+    ]
+   ]
+  ],
+  "LV": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='LV'",
+     "SITECODE LIKE 'LV%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='LV'",
+     "countryCode LIKE 'LV%'"
+    ]
+   ]
+  ],
+  "EE": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='EE'",
+     "SITECODE LIKE 'EE%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='EE'",
+     "countryCode LIKE 'EE%'"
+    ]
+   ]
+  ],
+  "LU": [
+   [
+    "EEA Natura 2000",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2",
+    [
+     "MS='LU'",
+     "SITECODE LIKE 'LU%'"
+    ]
+   ],
+   [
+    "EEA nationally designated areas",
+    "arcgis",
+    "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/CDDA_Dyna_WM/MapServer/4",
+    [
+     "countryCode='LU'",
+     "countryCode LIKE 'LU%'"
+    ]
+   ]
+  ],
+  "CO": [
+   [
+    "Colombia RUNAP (national register of protected areas, DNP)",
+    "arcgis",
+    "https://mapasdnp.dnp.gov.co/server/rest/services/Hosted/RUNAP_Registro_%C3%9Anico_Nacional_de_%C3%81reas_Protegidas/FeatureServer/0"
+   ]
+  ],
+  "ZA": [
+   [
+    "South Africa protected areas (DPME, from DFFE SAPAD)",
+    "arcgis",
+    "https://dpmegis.dpme.gov.za/arcgis/rest/services/Environmental2/MapServer/1"
+   ],
+   [
+    "South Africa SAPAD (DFFE)",
+    "arcgis",
+    "https://dffeportal.environment.gov.za/hosting/rest/services/PACA/SAPAD/MapServer/2"
+   ]
+  ],
+  "CL": [
+   [
+    "Chile SIMBIO protected areas (MMA)",
+    "arcgis",
+    "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/0"
+   ],
+   [
+    "Chile SIMBIO protected areas, layer 2 (MMA)",
+    "arcgis",
+    "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/2"
+   ]
+  ]
+ },
+ "EU": {
+  "PL": true,
+  "ES": true,
+  "FR": true,
+  "CH": true,
+  "AT": true,
+  "NL": true,
+  "PT": true,
+  "SE": true,
+  "CZ": true,
+  "SI": true,
+  "NO": true,
+  "RO": true,
+  "IT": true,
+  "BE": true,
+  "DK": true,
+  "FI": true,
+  "HU": true,
+  "SK": true,
+  "HR": true,
+  "IE": true,
+  "LT": true,
+  "LV": true,
+  "EE": true,
+  "LU": true
+ },
+ "GEN": {
+  "AU": "nature conservation reserve|flora and fauna reserve|flora fauna reserve|nature recreation area|state recreation area|marine national park|national park|state park|wilderness park|wildlife reserve|state reserve|regional reserve|nature refuge|nature park|bushland reserve|historic reserve|resources reserve|resources area|coastal reserve|scenic reserve|regional park|conservation park|conservation reserve|state conservation area|conservation area|nature reserve|flora reserve|state forest|forest reserve|historic site|historical reserve|game reserve|karst conservation reserve|aboriginal area|recreation park|recreation area|indigenous protected area|marine park|reserve|park|area",
+  "DE": "nationalpark|naturpark|naturschutzgebiet|landschaftsschutzgebiet|biospharenreservat|biospharengebiet|nationales naturmonument|ffh gebiet|vogelschutzgebiet|europaisches vogelschutzgebiet|fauna flora habitat gebiet|schutzgebiet|gebiet|nsg|lsg|ffh|spa|und|im|am|an|der|die|das|des|von|bei|zum|zur|national park|nature park|nature reserve|biosphere reserve|landscape protection area|flora and fauna reserve|flora fauna reserve|recreation park|natura 2000|special protection area|bird sanctuary|national natural monument|protected area|reserve|park|area",
+  "GB": "national nature reserve|local nature reserve|site of special scientific interest|site of significant scientific interest|sssi|nnr|lnr|country park|national park|regional park|nature reserve|area of outstanding natural beauty|national landscape|aonb|conservation reserve|protected area|natural area|special area of conservation|special protection area|sac|spa|ramsar|rspb|inc|reserve|park|area",
+  "JP": "quasi national park|national park|prefectural natural park|prefectural nature park|prefectural park|prefectural forest|prefectural|natural park|nature park|kokuritsu koen|kokutei koen|kenritsu|touritsu|douritsu|furitsu|shizenkouen|kokuteikouen|kokuritsu|kokutei|kouen|chiiki|park"
+ },
+ "LOC": {
+  "PL": "park narodowy|park krajobrazowy|rezerwat przyrody|rezerwat|obszar chronionego krajobrazu|zespol przyrodniczo krajobrazowy|uzytek ekologiczny|pomnik przyrody|stanowisko dokumentacyjne|ostoja|obszar|plb\\d*|plh\\d*|i|w|na|nad|pod|im",
+  "ES": "parque nacional|parque natural|parque regional|parque rural|reserva natural|reserva natural parcial|paraje natural|monumento natural|paisaje protegido|espacio natural protegido|espacio natural|zona especial de conservacion|zec|lic|zepa|humedal|de|del|la|las|los|el|y|en",
+  "FR": "parc national|parc naturel regional|parc naturel|reserve naturelle nationale|reserve naturelle regionale|reserve naturelle|reserve biologique integrale|reserve biologique dirigee|reserve biologique|site classe|zps|zsc|sic|de|du|des|la|le|les|et|d|l|en|sur|aux|au",
+  "CH": "naturschutzgebiete|naturschutzgebiet|nsg|wasser und zugvogelreservat|zugvogelreservat|jagdbanngebiet|waldreservat|naturpark|regionaler naturpark|nationalpark|naturdenkmal|moorlandschaft|auengebiet|reserve naturelle|parc naturel|parco naturale|riserva naturale|parco|monumento naturale|zona|und|im|am|an|der|die|das|des|von|bei|de|du|des|la|le|les|et|d|l|e|di|del|della|dei|e dintorni",
+  "AT": "naturschutzgebiete|landschaftsschutzgebiete|europaschutzgebiete|vogelschutzgebiet|naturschutzgebiet|landschaftsschutzgebiet|europaschutzgebiet|nsg|lsg|esg|naturpark|nationalpark|naturdenkmal|geschutzter landschaftsteil|ramsar|und|im|am|an|der|die|das|des|von|bei|zum|zur",
+  "NL": "nationaal park|natuurgebied|natuurreservaat|natuurmonument|beschermd natuurmonument|staatsnatuurmonument|landgoed|bos|boswachterij|duinen|vogelrichtlijngebied|habitatrichtlijngebied|natura 2000 gebied|gebied|park|het|de|en|van|der|den|op|aan|bij|in",
+  "PT": "parque nacional|parque natural|reserva natural|paisagem protegida|monumento natural|area protegida|area de paisagem protegida|sitio de interesse comunitario|zona especial de conservacao|zona de protecao especial|zec|zpe|sic|ptcon\\d*|ptzpe\\d*|mata nacional|perimetro florestal|de|da|do|das|dos|e|em",
+  "SE": "nationalpark|naturreservat|naturvardsomrade|kulturreservat|djurskyddsomrade|fagelskyddsomrade|biotopskyddsomrade|naturminne|vattenskyddsomrade|ekopark|reservat|omradet|omrade|och|i|vid|pa",
+  "CZ": "narodni park|chranena krajinna oblast|narodni prirodni rezervace|prirodni rezervace|narodni prirodni pamatka|prirodni pamatka|prirodni park|ptaci oblast|evropsky vyznamna lokalita|evl|chko|nprp|nprr|pr|pp|np|a|v|na|u|pod|nad",
+  "SI": "narodni park|krajinski park|regijski park|naravni rezervat|strogi naravni rezervat|naravni spomenik|zavarovano obmocje|obmocje|pri|in|na|v|pod|nad",
+  "NO": "nasjonalpark|naturreservat|landskapsvernomrade|landskapsvernomradet|naturvernomrade|naturminne|biotopvernomrade|dyrelivsfredning|plantelivsfredning|fuglefredningsomrade|marint verneomrade|verneomrade|omradet|og|i|pa|ved",
+  "RO": "parcul national|parc national|parcul natural|parc natural|rezervatia naturala|rezervatie naturala|rezervatia|rezervatie|monument al naturii|sit de importanta comunitara|arie de protectie speciala avifaunistica|arie naturala protejata|rosci\\d*|rospa\\d*|sci|spa|parcul|lacul|de|din|si|la|al",
+  "IT": "parco nazionale|parco naturale regionale|parco naturale|parco regionale|riserva naturale statale|riserva naturale regionale|riserva naturale orientata|riserva naturale|oasi|monumento naturale|area marina protetta|area naturale protetta|zona speciale di conservazione|zona di protezione speciale|sito di importanza comunitaria|zsc|zps|sic|di|del|della|dei|delle|degli|dello|e|ed|in|al|alla|sul|lago|monte|valle",
+  "BE": "nationaal park|natuurreservaat|erkend natuurreservaat|vlaams natuurreservaat|bosreservaat|natuurpark|parc naturel|reserve naturelle domaniale|reserve naturelle agreee|reserve naturelle|reserve forestiere|zone humide d interet biologique|site de grand interet biologique|habitatrichtlijngebied|vogelrichtlijngebied|het|de|en|van|der|du|des|la|le|les|et|d|l",
+  "DK": "nationalpark|naturpark|naturreservat|vildtreservat|fredning|fredet omrade|habitatomrade|fuglebeskyttelsesomrade|natura 2000 omrade|omrade|og|ved|i|pa",
+  "FI": "kansallispuisto|luonnonpuisto|luonnonsuojelualue|yksityinen luonnonsuojelualue|soidensuojelualue|lehtojensuojelualue|vanhojen metsien suojelualue|harjujensuojelualue|lintuvesiensuojelualue|kansallinen kaupunkipuisto|retkeilyalue|eramaa alue|eramaa|natura alue|suojelualue|alue|ja",
+  "HU": "nemzeti park|tajvedelmi korzet|termeszetvedelmi terulet|termeszeti emlek|kiemelt jelentosegu termeszetmegorzesi terulet|kulonleges madarvedelmi terulet|kulonleges termeszetmegorzesi terulet|natura 2000 terulet|terulet|es",
+  "SK": "narodny park|chranena krajinna oblast|narodna prirodna rezervacia|prirodna rezervacia|narodna prirodna pamiatka|prirodna pamiatka|chraneny areal|chranene vtacie uzemie|uzemie europskeho vyznamu|chku|npr|pr|pp|np|a|v|na|pod|nad|pri",
+  "HR": "nacionalni park|park prirode|strogi rezervat|posebni rezervat|park suma|znacajni krajobraz|spomenik prirode|spomenik parkovne arhitekture|podrucje ocuvanja znacajno za ptice|podrucje ocuvanja znacajno za vrste i stanisne tipove|i|na|u|kod",
+  "IE": "special area of conservation|special protection area|natural heritage area|proposed natural heritage area|statutory nature reserve|sac|spa|nha|pnha",
+  "LT": "nacionalinis parkas|regioninis parkas|valstybinis rezervatas|gamtinis rezervatas|biosferos poligonas|draustinis|rezervatas|ir|prie",
+  "LV": "nacionalais parks|dabas parks|dabas liegums|dabas rezervats|aizsargajamo ainavu apvidus|dabas piemineklis|biosferas rezervats|mikroliegums|un",
+  "EE": "rahvuspark|looduskaitseala|maastikukaitseala|hoiuala|kaitseala|looduspark|loodusala|linnuala|ja",
+  "LU": "zone protegee d interet national|zone protegee|reserve naturelle|reserve forestiere|naturschutzgebiet|naturpark|parc naturel|zone habitat|zone oiseaux|de|du|des|la|le|les|et|d|l|an|der|vum|am"
+ },
+ "KINDS": {
+  "AU": [
+   [
+    "np",
+    "national park"
+   ],
+   [
+    "cp",
+    "conservation park|conservation reserve|conservation area|n\\.\\s?c\\.\\s?r|\\bc\\.\\s?a\\."
+   ],
+   [
+    "nr",
+    "nature reserve|flora reserve|game reserve|\\bn\\.\\s?r\\.|f\\.\\s?f\\.\\s?r|\\bf\\.\\s?r\\b"
+   ],
+   [
+    "sf",
+    "state forest|forest reserve"
+   ],
+   [
+    "rp",
+    "regional park|recreation"
+   ],
+   [
+    "hist",
+    "historic"
+   ],
+   [
+    "mp",
+    "marine"
+   ]
+  ],
+  "DE": [
+   [
+    "np",
+    "nationalpark|national park"
+   ],
+   [
+    "nat",
+    "naturpark|nature park"
+   ],
+   [
+    "nsg",
+    "naturschutzgebiet|\\bnsg\\b|nature reserve"
+   ],
+   [
+    "lsg",
+    "landschaftsschutzgebiet|\\blsg\\b|landscape protection"
+   ],
+   [
+    "br",
+    "biospharen|biosphere"
+   ],
+   [
+    "ffh",
+    "\\bffh\\b|fauna flora habitat|flora and fauna|natura 2000"
+   ],
+   [
+    "spa",
+    "vogelschutz|special protection area|bird sanctuary|natura 2000"
+   ],
+   [
+    "nnm",
+    "naturmonument|natural monument"
+   ]
+  ],
+  "GB": [
+   [
+    "nnr",
+    "national nature reserve|\\bnnr\\b"
+   ],
+   [
+    "lnr",
+    "local nature reserve|\\blnr\\b"
+   ],
+   [
+    "cp",
+    "country park"
+   ],
+   [
+    "sssi",
+    "scientific interest|\\bsssi\\b"
+   ],
+   [
+    "np",
+    "national park"
+   ],
+   [
+    "rp",
+    "regional park"
+   ],
+   [
+    "aonb",
+    "national landscape|outstanding natural beauty|\\baonb\\b"
+   ],
+   [
+    "sac",
+    "special area of conservation|\\bsac\\b"
+   ],
+   [
+    "spa",
+    "special protection area|\\bspa\\b"
+   ]
+  ],
+  "JP": [
+   [
+    "np",
+    "(?<!quasi.)national park|国立公園"
+   ],
+   [
+    "qnp",
+    "quasi.?national park|国定公園"
+   ],
+   [
+    "pnp",
+    "prefectural|県立"
+   ]
+  ],
+  "PL": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "ES": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "FR": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "CH": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "AT": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "NL": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "PT": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "SE": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "CZ": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "SI": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "NO": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "RO": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "IT": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "BE": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "DK": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "FI": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "HU": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "SK": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "HR": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "IE": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "LT": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "LV": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "EE": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "LU": [
+   [
+    "n2k",
+    "natura 2000|\\bzps\\b|\\bzsc\\b|\\bzepa\\b|\\bzec\\b"
+   ]
+  ],
+  "CO": [
+   [
+    "pnn",
+    "parque nacional|national (natural )?park|national nature reserve|reserva nacional natural|santuario|sanctuary"
+   ],
+   [
+    "pnr",
+    "parque natural regional|regional (natural )?park"
+   ],
+   [
+    "rn",
+    "reserva natural|nature reserve|reserva forestal|forest reserve"
+   ],
+   [
+    "dmi",
+    "distrito|management district|conservation area|area de recreacion|recreation area"
+   ]
+  ],
+  "ZA": [
+   [
+    "np",
+    "national park"
+   ],
+   [
+    "nr",
+    "nature reserve|game reserve|provincial park|reserve"
+   ],
+   [
+    "pe",
+    "protected environment"
+   ],
+   [
+    "mpa",
+    "marine protected area|marine reserve"
+   ],
+   [
+    "wa",
+    "wilderness|world heritage"
+   ]
+  ],
+  "CL": [
+   [
+    "pn",
+    "parque nacional|national park"
+   ],
+   [
+    "rn",
+    "reserva nacional|national reserve|reserva forestal"
+   ],
+   [
+    "mn",
+    "monumento natural|natural monument"
+   ],
+   [
+    "sn",
+    "santuario|sanctuary|conservation area|humedal|wetland|area marina|marine"
+   ]
+  ]
+ },
+ "SIDE_NOT": {
+  "FR": [
+   "sur"
+  ],
+  "CH": [
+   "sur"
+  ],
+  "BE": [
+   "sur"
+  ],
+  "LU": [
+   "sur"
+  ],
+  "NO": [
+   "alta",
+   "alto"
+  ],
+  "SE": [
+   "alta",
+   "alto"
+  ],
+  "FI": [
+   "alta",
+   "alto"
+  ],
+  "DK": [
+   "alta",
+   "alto"
+  ]
+ },
+ "TYPE_PREFER": {
+  "CH": {
+   "Natural Monument": [
+    "BAFU landscapes and natural monuments (BLN)"
+   ],
+   "Game Reserve": [
+    "BAFU hunting reserves"
+   ],
+   "Wildlife Reserve": [
+    "BAFU water and migratory bird reserves",
+    "BAFU hunting reserves"
+   ],
+   "Wildlife Refuge": [
+    "BAFU water and migratory bird reserves"
+   ],
+   "Wetland Reserve": [
+    "BAFU water and migratory bird reserves",
+    "BAFU mire landscapes",
+    "BAFU floodplains",
+    "BAFU raised bogs",
+    "BAFU fens"
+   ],
+   "Ramsar Site": [
+    "BAFU Ramsar sites"
+   ],
+   "Nature Park": [
+    "BAFU parks of national importance"
+   ],
+   "Wilderness Park": [
+    "BAFU parks of national importance"
+   ],
+   "National Park": [
+    "BAFU parks of national importance"
+   ],
+   "Landscape Park": [
+    "BAFU parks of national importance",
+    "BAFU landscapes and natural monuments (BLN)"
+   ]
+  }
+ },
+ "SPLIT_LAYERS": {
+  "AU": {
+   "layers": [
+    "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/boundaries/adminboundariesframework/featureserver/77",
+    "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/environment/parksterrestrialprotectedareas/mapserver/10"
+   ],
+   "rest_where": "esttype<>'SF' OR esttype IS NULL",
+   "sf_where": "esttype='SF'"
+  }
+ }
+}

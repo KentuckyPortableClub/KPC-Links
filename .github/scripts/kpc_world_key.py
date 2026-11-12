@@ -44,6 +44,21 @@ THIN_N = int(os.environ.get('GEO_THIN') or 60)
 WCACHE = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/world')
 CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
 WUSED, WSAVED, WMETA = [], [], {}
+# Nov 12 (KPC owner, 2026-11-12; D6): the ONE date of this run, for the places where an input carries no date of its own (a saved copy
+# written from a live read this run). KPC_BUILD_DATE=YYYY-MM-DD (the proof job gives a fixed one), else today's date read
+# once here: never a per-park clock call, so the same inputs and the same KPC_BUILD_DATE give byte-identical key files. A malformed
+# value stops the build (nothing written). The world key files carry no per-park date.
+def _build_date():
+    v = (os.environ.get('KPC_BUILD_DATE') or '').strip()
+    if not v: return time.strftime('%Y-%m-%d')
+    import datetime as _d
+    try: ok = bool(re.fullmatch(r'\d{4}-\d{2}-\d{2}', v)) and _d.date.fromisoformat(v) is not None
+    except ValueError: ok = False
+    if not ok: raise SystemExit(f'::error title=Build date::KPC_BUILD_DATE={v!r} is not YYYY-MM-DD: nothing is built')
+    return v
+
+
+BUILD_DATE = _build_date()
 
 
 def wcache_file(cc): return WCACHE / f'W-{cc}.json.gz'
@@ -102,7 +117,7 @@ def wsave(cc, recs):
         o['_r'] = [[[round(pt[0], 5), round(pt[1], 5)] for pt in ring if len(pt) >= 2] for ring in (r.get('_r') or [])]
         rows.append(o)
     with gzip.open(wcache_file(cc), 'wt', encoding='utf-8') as f:
-        json.dump({'cc': cc, 'saved': time.strftime('%Y-%m-%d'), 'detail': DETAIL, 'thin': THIN_N, 'recs': rows}, f,
+        json.dump({'cc': cc, 'saved': BUILD_DATE, 'detail': DETAIL, 'thin': THIN_N, 'recs': rows}, f,
                   separators=(',', ':'), default=lambda o: sorted(o) if isinstance(o, (set, frozenset)) else str(o))
     WSAVED.append(cc)
 
@@ -122,96 +137,53 @@ def wload(cc):
         if r.get('id') is None and isinstance(r.get('_a'), dict): r['id'] = wfs_id({}, r['_a'])   # links-10: a copy saved before the WFS id fix
     WUSED.append(cc)
     return recs
-SRC = {
-    'AU': [('CAPAD (DCCEEW)', 'arcgis', 'https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/MapServer/0')],
-    'DE': [('BfN ' + t, 'wfs', 'https://geodienste.bfn.de/ogc/wfs/schutzgebiet', 'schutzgebiet:' + t) for t in
-           ('Nationalparke', 'Naturparke', 'Naturschutzgebiete', 'Biosphaerenreservate', 'Nationale_Naturmonumente', 'Fauna_Flora_Habitat_Gebiete', 'Vogelschutzgebiete', 'Landschaftsschutzgebiete')],
-    'GB': [('Natural England ' + n, 'arcgis', f'https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/{s}/FeatureServer/0') for n, s in
-           (('NNR', 'National_Nature_Reserves_England'), ('LNR', 'Local_Nature_Reserves_England'), ('Country Parks', 'Country_Parks_England'), ('SSSI', 'SSSI_England'),
-            ('National Parks', 'National_Parks_England'), ('National Landscapes', 'Areas_of_Outstanding_Natural_Beauty_England'))]
-          + [('NatureScot ' + t, 'wfs', 'https://ogc.nature.scot/geoserver/protectedareas/wfs', 'protectedareas:' + t) for t in ('cpk', 'nnr', 'lnr', 'sssi', 'rp', 'sac', 'spa')]
-          + [('NRW Wales ' + n, 'wfs', 'https://datamap.gov.wales/geoserver/ows', t) for n, t in
-             (('SSSI', 'inspire-nrw:NRW_SSSI'), ('NNR', 'inspire-nrw:NRW_NNR'), ('LNR', 'inspire-nrw:NRW_LNR'), ('National Parks', 'inspire-nrw:NRW_NATIONAL_PARK'),
-              ('National Landscapes', 'inspire-nrw:NRW_AONB'), ('Country Parks', 'geonode:country_parks'), ('SAC', 'inspire-nrw:NRW_SAC'), ('SPA', 'inspire-nrw:NRW_SPA'))],
-    'JP': [('Ministry of the Environment national parks (Esri Japan)', 'arcgis', 'https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer/0'),
-           # Oct 18 (probe 2): nps_all has only the 34 national parks; MLIT's National Land Numerical Information A10 'natural park areas'
-           # (all national, quasi-national and prefectural natural parks, one zip per prefecture, shapefiles) covers the rest
-           ('MLIT natural park areas (A10)', 'a10', 'https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A10-v3_1.html')],
-}
-# Oct 18 (Brandon: 'go ahead'): PL ES FR CH AT from the European Environment Agency (official EU inventory, one place for all five):
-# Natura 2000 sites + Nationally designated areas (ex-CDDA; Switzerland reports there too, it has no Natura 2000).
-EEA = 'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'
-EU = ('PL', 'ES', 'FR', 'CH', 'AT', 'NL', 'PT', 'SE', 'CZ', 'SI', 'NO', 'RO', 'IT', 'BE', 'DK', 'FI', 'HU', 'SK', 'HR', 'IE', 'LT', 'LV', 'EE', 'LU')   # Oct 19 PM: + the other Latin-alphabet EEA countries   # Oct 19: the next 8 busiest POTA programs (NO has no Natura 2000, CDDA only)
+# Nov 12 (KPC owner, 2026-11-12; D6 'tables out of the rule scripts'): the per-country tables are DATA in
+# data/world-key/area-tables.json: the built-in official layers of each country (SRC; the European Environment Agency layers of the
+# EU countries included, filtered to each), the EEA country list (EU), the type preference (TYPE_PREFER, Switzerland), the layers read
+# without their state forests (SPLIT_LAYERS, Queensland) and, further down, GEN / LOC / KINDS / SIDE_NOT. Same content as the code
+# held before; an edit for one country now moves only that country's area hash (kpc_area_hash.py). Each entry's history (approvals,
+# licences) is in that file's 'notes'. Read from this script's own checkout (so two checkouts never mix tables); a missing or malformed
+# file stops the build before anything is written (fail closed: an empty table would change every result).
+_ME = globals().get('__file__')   # .github/scripts/kpc_world_key.py of this checkout (tests that run the file's prefix give it too)
+AREA_TABLES_FILE = (pathlib.Path(_ME).resolve().parents[2] if _ME else pathlib.Path.cwd()) / 'data/world-key/area-tables.json'
+
+
+def area_tables(path=None):
+    """The per-country tables, checked. Raises SystemExit (exit 1, nothing written) on a missing or malformed file."""
+    path = pathlib.Path(path or AREA_TABLES_FILE)
+    def bad(why): raise SystemExit(f'::error title=World key tables::{path}: {why}. Nothing is built (D6: the per-country tables fail closed).')
+    try: t = json.loads(path.read_text(encoding='utf-8'))
+    except Exception as e: bad(f'missing or unreadable ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
+    if not isinstance(t, dict) or t.get('format') != 1: bad('not a format-1 table file')
+    s_, l_ = lambda x: isinstance(x, str), lambda x, f: isinstance(x, list) and all(f(y) for y in x)
+    shape = {'SRC': lambda v: l_(v, lambda x: isinstance(x, list) and len(x) in (3, 4) and all(map(s_, x[:3])) and (len(x) == 3 or s_(x[3]) or l_(x[3], s_))),
+             'EU': lambda v: isinstance(v, bool), 'GEN': s_, 'LOC': s_,
+             'KINDS': lambda v: l_(v, lambda x: isinstance(x, list) and len(x) == 2 and all(map(s_, x))), 'SIDE_NOT': lambda v: l_(v, s_),
+             'TYPE_PREFER': lambda v: isinstance(v, dict) and all(s_(k) and l_(x, s_) for k, x in v.items()),
+             'SPLIT_LAYERS': lambda v: isinstance(v, dict) and l_(v.get('layers'), s_) and s_(v.get('rest_where'))}
+    for name, ok in shape.items():
+        v = t.get(name)
+        if not isinstance(v, dict) or (not v and name in ('SRC', 'EU', 'GEN', 'LOC', 'KINDS')): bad(f'table {name} missing or empty')
+        for cc, x in v.items():
+            if not re.fullmatch(r'[A-Z]{2}', str(cc)) or not ok(x): bad(f'table {name}: entry {cc!r} is not in the expected form')
+    for name in ('GEN', 'LOC', 'KINDS'):
+        for cc, x in t[name].items():
+            for rx in ([x] if isinstance(x, str) else [k[1] for k in x]):
+                try: re.compile(rx)
+                except re.error as e: bad(f'table {name}[{cc}]: not a regular expression ({e})')
+    if any(cc not in t['LOC'] for cc, v in t['EU'].items() if v): bad('an EU country has no LOC words')
+    return t
+
+
+_AT = area_tables()
+SRC = {cc: [tuple(x) for x in v] for cc, v in _AT['SRC'].items()}   # (label, reader, address[, where list or WFS type name])
+EU = tuple(cc for cc, v in _AT['EU'].items() if v is True)
+TYPE_PREFER = _AT['TYPE_PREFER']   # {CC: {POTA park type: [layer labels preferred]}}
+SPLIT_LAYERS = {cc: (frozenset(v['layers']), v['rest_where']) for cc, v in _AT['SPLIT_LAYERS'].items()}   # {CC: ({layer address lower}, where)}
 # Countries where the official names are written differently from POTA's, so a pin inside one area is the join
 # (Oct 21: Japan had 30,420 areas loaded and only 102 parks joined because the names never matched).
 NAME_JOIN = (os.environ.get('NAME_JOIN') or '1') != '0'
 PIN_JOIN = {x.strip().upper() for x in (os.environ.get('PIN_JOIN') or 'JP').split(',') if x.strip()}
-# Nov 7 world rebuild B6 (Brandon's yes, world-failed-diagnosis.md section 7): Switzerland and Norway report no Natura 2000, so that
-# source always came back EMPTY and, with no saved records for it, HELD both countries every build (W-42205818250, W-42259043963).
-# They get no Natura 2000 source; their EEA nationally designated areas source stays (CH also keeps its BAFU sources, NO its
-# naturvern layer). No data is lost: neither CH.json nor NO.json holds a single joined or candidate record from 'EEA Natura 2000'.
-NO_N2K = ('CH', 'NO')
-for _c in EU:
-    SRC[_c] = ([] if _c in NO_N2K else [('EEA Natura 2000', 'arcgis', EEA + 'Natura2000Sites/MapServer/2', [f"MS='{_c}'", f"SITECODE LIKE '{_c}%'"])]) + \
-              [('EEA nationally designated areas', 'arcgis', EEA + 'CDDA_Dyna_WM/MapServer/4', [f"countryCode='{_c}'", f"countryCode LIKE '{_c}%'"])]
-# Oct 18 (probe 2): Switzerland's own federal inventories (BAFU, data.geo.admin.ch STAC, shapefiles in Swiss LV95): POTA's 151 CH
-# 'Natural Monument' parks are BLN objects, which the EEA list files under several designation codes at once.
-CHB = [('BAFU landscapes and natural monuments (BLN)', 'ch.bafu.bundesinventare-bln'), ('BAFU hunting reserves', 'ch.bafu.bundesinventare-jagdbanngebiete'),
-       ('BAFU water and migratory bird reserves', 'ch.bafu.bundesinventare-vogelreservate'), ('BAFU mire landscapes', 'ch.bafu.bundesinventare-moorlandschaften'),
-       ('BAFU floodplains', 'ch.bafu.bundesinventare-auen'), ('BAFU raised bogs', 'ch.bafu.bundesinventare-hochmoore'), ('BAFU fens', 'ch.bafu.bundesinventare-flachmoore'),
-       ('BAFU Ramsar sites', 'ch.bafu.schutzgebiete-ramsar'), ('BAFU parks of national importance', 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung'),
-       ('BAFU Emerald sites', 'ch.bafu.schutzgebiete-smaragd')]
-SRC['CH'] = SRC['CH'] + [(a, 'chshp', b) for a, b in CHB]
-CHPREF = {'Natural Monument': ['BAFU landscapes and natural monuments (BLN)'], 'Game Reserve': ['BAFU hunting reserves'],
-          'Wildlife Reserve': ['BAFU water and migratory bird reserves', 'BAFU hunting reserves'], 'Wildlife Refuge': ['BAFU water and migratory bird reserves'],
-          'Wetland Reserve': ['BAFU water and migratory bird reserves', 'BAFU mire landscapes', 'BAFU floodplains', 'BAFU raised bogs', 'BAFU fens'],
-          'Ramsar Site': ['BAFU Ramsar sites'], 'Nature Park': ['BAFU parks of national importance'], 'Wilderness Park': ['BAFU parks of national importance'],
-          'National Park': ['BAFU parks of national importance'], 'Landscape Park': ['BAFU parks of national importance', 'BAFU landscapes and natural monuments (BLN)']}
-# Oct 20 (Brandon: 'keep working on building the database for boundaries'): POTA's 10,400 French 'Biological Reserve' parks are
-# France's ZNIEFF wildlife zones (MNHN / INPN inventory). IGN Géoplateforme first; the Esri France copy of the same INPN data only
-# when the Géoplateforme answers nothing. Australia: CAPAD leaves state forests out, so each state's own forestry map.
-SRC['FR'] = SRC['FR'] + [('IGN Géoplateforme ZNIEFF ' + n, 'wfs', 'https://data.geopf.fr/wfs/ows', t) for n, t in
-                         (('type I', 'patrinat_znieff1:znieff1'), ('type II', 'patrinat_znieff2:znieff2'), ('type I sea', 'patrinat_znieff1_mer:znieff1_mer'),
-                          ('type II sea', 'patrinat_znieff2_mer:znieff2_mer'))] \
-                      + [('ZNIEFF (INPN data, Esri France) layer ' + str(i), 'arcgis_alt', 'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/' + str(i)) for i in (0, 1)]
-# KPC owner, 2026-11-11 (world rules change, approved for this job): three more PatriNat layers from the same Géoplateforme WFS, read
-# the same way as the ZNIEFF layers above (pull_wfs; record id = the WFS feature id, e.g. znieff2_mer.7, cdl.502, pprnn.1; name nom_site):
-# marine ZNIEFF type II (type I sea was already read, so the land / sea and type I / II pairs are now whole), Conservatoire du littoral
-# sites, and the protection perimeters of national nature reserves. They are national records of France's own inventory, so a park they
-# join is no longer outlined only from the EU compilation (W-2 below drops the EEA copy of the same record). Licence as the research
-# ledger records it for these layers (data/research-inbox/answers/sources/research-sources-nov11-additions.csv): Licence Ouverte (not
-# re-read 2026-11-11).
-SRC['FR'] = SRC['FR'] + [('IGN Géoplateforme ' + n, 'wfs', 'https://data.geopf.fr/wfs/ows', t) for n, t in
-                         (('Conservatoire du littoral', 'patrinat_cdl:cdl'), ('RNN protection perimeters', 'patrinat_pprnn:pprnn'))]
-# Next round C7 (Nov 5; Brandon's yes relayed via Super; outside research round 2): Queensland's state forests are in the layer KPC
-# already has, 'Protected areas and forests of Queensland' (DESI, CC BY 4.0; fields estatename / esttype), as esttype='SF' (402
-# features on Nov 5). The old source searched the cadastre map service (LandParcelPropertyFramework) for a layer NAMED 'state forest |
-# timber reserve' and matched no park in the last AU build (332 QLD state-forest parks without an outline). The same layer, approved
-# whole in extra-layers.json, is then read for everything ELSE (QLD_REST), so no record comes twice.
-QLD_PAF = 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/FeatureServer/77'
-QLD_SF = "esttype='SF'"
-QLD_REST = "esttype<>'SF' OR esttype IS NULL"
-# the same DESI layer is published twice (MapServer/10 under ParksTerrestrialProtectedAreas: 402 SF too) and extra-layers.json lists
-# both: each is read without its SF, so a state forest is read once, from QLD_PAF
-QLD_LAYERS = {QLD_PAF.lower(), 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/environment/parksterrestrialprotectedareas/mapserver/10'}
-SRC['AU'] = SRC['AU'] + [('NSW State Forest (Forestry Corporation NSW)', 'arcgis', 'https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer/0'),
-                         ('QLD State Forest (Queensland Government)', 'arcgis', QLD_PAF, [QLD_SF])]
-# Oct 25 (outside research bot, other countries round 2): Victoria DEECA + Western Australia DBCA state forest tenure, the
-# Śląskie voivodeship copy of Poland's nature-and-landscape complexes, and Japan's NATIONAL A10 file (FY2010) whose park-name
-# CODES (A10_005 -> KSJ codelist NaturalParkNameCd) name the areas the per-prefecture A10 files leave blank. Licences: VIC = same
-# data as DataVic PLM25 (CC BY 4.0); WA = CC BY-NC 4.0; JP FY2010 = non-commercial (KPC is a non-commercial club); PL = none stated
-# (regional copy of the national GDOŚ register). Northern Ireland (DAERA) left out: its terms forbid publishing maps without NIEA's
-# written permission. WA 'forest blocks' left out: management units, not the legal forest boundary.
-SRC['AU'] = SRC['AU'] + [('VIC DEECA state forests', 'arcgis', 'https://enterprise.mapshare.vic.gov.au/server/rest/services/Hosted/Public_Land___DEECA_Managed/FeatureServer/0', ["mmtgen='STATE FOREST' AND name<>' '"]),
-                         ('WA DBCA state forests (legislated lands)', 'arcgis', 'https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Property_and_Planning/MapServer/15', ["leg_category='State Forest'"])]
-SRC['PL'] = SRC['PL'] + [('Śląskie ORSIP nature and landscape complexes (GDOŚ register)', 'arcgis', 'https://geoportal.orsip.pl/site1/rest/services/DaneRegionalne/FormyOchronyPrzyrodyZieloneSlaskie/MapServer/5')]
-SRC['JP'] = SRC['JP'] + [('MLIT natural park areas, national file FY2010 (A10-10)', 'a10n', 'https://nlftp.mlit.go.jp/ksj/gml/data/A10/A10-10/A10-10_GML.zip')]
-# Oct 30 (chat 2; chat 10 ask, Brandon 12:05 PM 'Yes to 2'): Colombia, South Africa, Chile = the national agencies' own registers
-SRC['CO'] = [('Colombia RUNAP (national register of protected areas, DNP)', 'arcgis', 'https://mapasdnp.dnp.gov.co/server/rest/services/Hosted/RUNAP_Registro_%C3%9Anico_Nacional_de_%C3%81reas_Protegidas/FeatureServer/0')]
-SRC['ZA'] = [('South Africa protected areas (DPME, from DFFE SAPAD)', 'arcgis', 'https://dpmegis.dpme.gov.za/arcgis/rest/services/Environmental2/MapServer/1'),
-             ('South Africa SAPAD (DFFE)', 'arcgis', 'https://dffeportal.environment.gov.za/hosting/rest/services/PACA/SAPAD/MapServer/2')]
-SRC['CL'] = [('Chile SIMBIO protected areas (MMA)', 'arcgis', 'https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/0'),
-             ('Chile SIMBIO protected areas, layer 2 (MMA)', 'arcgis', 'https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/2')]
 # Oct 30 (chat 2, Brandon 9:48 'Yes'): approved world layers (chat 11 YES / chat 10 AUTO-2), wired by kpc_key_layers.py (BOT W)
 # into data/world-key/extra-layers.json {CC: [{label, url, where?}]}; ArcGIS layers only, a URL already listed above is skipped.
 EXTRA_URLS = {}   # Nov 4 PM fix bundle (item 6): (CC, url lower) -> the url as listed in SRC, for the layers added from extra-layers.json
@@ -220,8 +192,8 @@ try:
         _have = {str(s[2]).rstrip('/').lower() for s in SRC.get(_cc, [])}
         for _l in _ls:
             _u = str(_l.get('url') or '').rstrip('/')
-            if _cc == 'AU' and _u.lower() in QLD_LAYERS and not _l.get('where'):   # next round C7: the rest of the QLD layer (its SF are above)
-                SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u, [QLD_REST])]
+            if _cc in SPLIT_LAYERS and _u.lower() in SPLIT_LAYERS[_cc][0] and not _l.get('where'):   # next round C7: the rest of the QLD layer (its SF are a built-in source)
+                SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u, [SPLIT_LAYERS[_cc][1]])]
                 EXTRA_URLS[(_cc, _u.lower())] = _u
             elif _u and _u.lower() not in _have:
                 SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or 'approved layer')[:80], 'arcgis', _u) + (([_l['where']],) if _l.get('where') else ())]
@@ -437,68 +409,12 @@ def fetch(u, tries=None, timeout=None, deadline=None):
 def flat(s): return ''.join(c for c in unicodedata.normalize('NFKD', str(s or '')) if not unicodedata.combining(c)).lower().replace('ß', 'ss')
 
 
-GEN = {
-    'AU': r"nature conservation reserve|flora and fauna reserve|flora fauna reserve|nature recreation area|state recreation area|marine national park|national park|state park|wilderness park|wildlife reserve|state reserve|regional reserve|nature refuge|nature park|bushland reserve|historic reserve|resources reserve|resources area|coastal reserve|scenic reserve|regional park|conservation park|conservation reserve|state conservation area|conservation area|nature reserve|flora reserve|"
-          r"state forest|forest reserve|historic site|historical reserve|game reserve|karst conservation reserve|aboriginal area|recreation park|recreation area|"
-          r"indigenous protected area|marine park|reserve|park|area",
-    'DE': r"nationalpark|naturpark|naturschutzgebiet|landschaftsschutzgebiet|biospharenreservat|biospharengebiet|nationales naturmonument|ffh gebiet|"
-          r"vogelschutzgebiet|europaisches vogelschutzgebiet|fauna flora habitat gebiet|schutzgebiet|gebiet|nsg|lsg|ffh|spa|und|im|am|an|der|die|das|des|von|bei|zum|zur|"
-          r"national park|nature park|nature reserve|biosphere reserve|landscape protection area|flora and fauna reserve|flora fauna reserve|recreation park|natura 2000|"
-          r"special protection area|bird sanctuary|national natural monument|protected area|reserve|park|area",
-    'GB': r"national nature reserve|local nature reserve|site of special scientific interest|site of significant scientific interest|sssi|nnr|lnr|country park|national park|regional park|nature reserve|"
-          r"area of outstanding natural beauty|national landscape|aonb|conservation reserve|protected area|natural area|special area of conservation|"
-          r"special protection area|sac|spa|ramsar|rspb|inc|reserve|park|area",
-    'JP': r"quasi national park|national park|prefectural natural park|prefectural nature park|prefectural park|prefectural forest|prefectural|natural park|nature park|"
-          r"kokuritsu koen|kokutei koen|kenritsu|touritsu|douritsu|furitsu|shizenkouen|kokuteikouen|kokuritsu|kokutei|kouen|chiiki|park",   # Oct 19: 'Prefectural Nature Park' left 'prefectural nature' in every name
-}
+GEN = dict(_AT['GEN'])   # D6: the generic words of AU DE GB JP (data/world-key/area-tables.json); the EU and sheet countries' are made below
 _EN = (r"natura 2000|protected landscape area|nature and landscape complex|landscape park|ecological site|national park|natural monument|wetland reserve|"
        r"nature park|national recreation trail|biosphere reserve|world heritage site|protected landscape|state trail|biological reserve|marine conservation area|"
        r"conservation area|recreation park|conservation park|national nature reserve|regional park|forest reserve|ramsar site|game reserve|mire landscapes?|"
        r"landscape reserve|protected area|national reserve|nature conservation reserve|historic site|bird sanctuary|recreation site|nature reserve|park|reserve|area")
-_LOC = {'PL': r"park narodowy|park krajobrazowy|rezerwat przyrody|rezerwat|obszar chronionego krajobrazu|zespol przyrodniczo krajobrazowy|uzytek ekologiczny|"
-              r"pomnik przyrody|stanowisko dokumentacyjne|ostoja|obszar|plb\d*|plh\d*|i|w|na|nad|pod|im",
-        'ES': r"parque nacional|parque natural|parque regional|parque rural|reserva natural|reserva natural parcial|paraje natural|monumento natural|paisaje protegido|"
-              r"espacio natural protegido|espacio natural|zona especial de conservacion|zec|lic|zepa|humedal|de|del|la|las|los|el|y|en",
-        'FR': r"parc national|parc naturel regional|parc naturel|reserve naturelle nationale|reserve naturelle regionale|reserve naturelle|reserve biologique integrale|"
-              r"reserve biologique dirigee|reserve biologique|site classe|zps|zsc|sic|de|du|des|la|le|les|et|d|l|en|sur|aux|au",
-        'CH': r"naturschutzgebiete|naturschutzgebiet|nsg|wasser und zugvogelreservat|zugvogelreservat|jagdbanngebiet|waldreservat|naturpark|regionaler naturpark|nationalpark|naturdenkmal|moorlandschaft|auengebiet|reserve naturelle|parc naturel|parco naturale|"
-              r"riserva naturale|parco|monumento naturale|zona|und|im|am|an|der|die|das|des|von|bei|de|du|des|la|le|les|et|d|l|e|di|del|della|dei|e dintorni",
-        'AT': r"naturschutzgebiete|landschaftsschutzgebiete|europaschutzgebiete|vogelschutzgebiet|naturschutzgebiet|landschaftsschutzgebiet|europaschutzgebiet|nsg|lsg|esg|naturpark|nationalpark|naturdenkmal|geschutzter landschaftsteil|ramsar|"
-              r"und|im|am|an|der|die|das|des|von|bei|zum|zur",
-        # Oct 19: next 8 busiest programs (official words in each language; longer phrases first)
-        'NL': r"nationaal park|natuurgebied|natuurreservaat|natuurmonument|beschermd natuurmonument|staatsnatuurmonument|landgoed|bos|boswachterij|duinen|"
-              r"vogelrichtlijngebied|habitatrichtlijngebied|natura 2000 gebied|gebied|park|het|de|en|van|der|den|op|aan|bij|in",
-        'PT': r"parque nacional|parque natural|reserva natural|paisagem protegida|monumento natural|area protegida|area de paisagem protegida|sitio de interesse comunitario|"
-              r"zona especial de conservacao|zona de protecao especial|zec|zpe|sic|ptcon\d*|ptzpe\d*|mata nacional|perimetro florestal|de|da|do|das|dos|e|em",
-        'SE': r"nationalpark|naturreservat|naturvardsomrade|kulturreservat|djurskyddsomrade|fagelskyddsomrade|biotopskyddsomrade|naturminne|"
-              r"vattenskyddsomrade|ekopark|reservat|omradet|omrade|och|i|vid|pa",
-        'CZ': r"narodni park|chranena krajinna oblast|narodni prirodni rezervace|prirodni rezervace|narodni prirodni pamatka|prirodni pamatka|prirodni park|"
-              r"ptaci oblast|evropsky vyznamna lokalita|evl|chko|nprp|nprr|pr|pp|np|a|v|na|u|pod|nad",
-        'SI': r"narodni park|krajinski park|regijski park|naravni rezervat|strogi naravni rezervat|naravni spomenik|zavarovano obmocje|obmocje|pri|in|na|v|pod|nad",
-        'NO': r"nasjonalpark|naturreservat|landskapsvernomrade|landskapsvernomradet|naturvernomrade|naturminne|biotopvernomrade|dyrelivsfredning|plantelivsfredning|"
-              r"fuglefredningsomrade|marint verneomrade|verneomrade|omradet|og|i|pa|ved",
-        'RO': r"parcul national|parc national|parcul natural|parc natural|rezervatia naturala|rezervatie naturala|rezervatia|rezervatie|monument al naturii|"
-              r"sit de importanta comunitara|arie de protectie speciala avifaunistica|arie naturala protejata|rosci\d*|rospa\d*|sci|spa|parcul|lacul|de|din|si|la|al",
-        'IT': r"parco nazionale|parco naturale regionale|parco naturale|parco regionale|riserva naturale statale|riserva naturale regionale|riserva naturale orientata|"
-              r"riserva naturale|oasi|monumento naturale|area marina protetta|area naturale protetta|zona speciale di conservazione|zona di protezione speciale|"
-              r"sito di importanza comunitaria|zsc|zps|sic|di|del|della|dei|delle|degli|dello|e|ed|in|al|alla|sul|lago|monte|valle",
-        # Oct 19 PM (Brandon: 'give them something to do'): the rest of the EEA countries that use the Latin alphabet
-        'BE': r"nationaal park|natuurreservaat|erkend natuurreservaat|vlaams natuurreservaat|bosreservaat|natuurpark|parc naturel|reserve naturelle domaniale|reserve naturelle agreee|reserve naturelle|"
-              r"reserve forestiere|zone humide d interet biologique|site de grand interet biologique|habitatrichtlijngebied|vogelrichtlijngebied|het|de|en|van|der|du|des|la|le|les|et|d|l",
-        'DK': r"nationalpark|naturpark|naturreservat|vildtreservat|fredning|fredet omrade|habitatomrade|fuglebeskyttelsesomrade|natura 2000 omrade|omrade|og|ved|i|pa",
-        'FI': r"kansallispuisto|luonnonpuisto|luonnonsuojelualue|yksityinen luonnonsuojelualue|soidensuojelualue|lehtojensuojelualue|vanhojen metsien suojelualue|"
-              r"harjujensuojelualue|lintuvesiensuojelualue|kansallinen kaupunkipuisto|retkeilyalue|eramaa alue|eramaa|natura alue|suojelualue|alue|ja",
-        'HU': r"nemzeti park|tajvedelmi korzet|termeszetvedelmi terulet|termeszeti emlek|kiemelt jelentosegu termeszetmegorzesi terulet|kulonleges madarvedelmi terulet|"
-              r"kulonleges termeszetmegorzesi terulet|natura 2000 terulet|terulet|es",
-        'SK': r"narodny park|chranena krajinna oblast|narodna prirodna rezervacia|prirodna rezervacia|narodna prirodna pamiatka|prirodna pamiatka|chraneny areal|"
-              r"chranene vtacie uzemie|uzemie europskeho vyznamu|chku|npr|pr|pp|np|a|v|na|pod|nad|pri",
-        'HR': r"nacionalni park|park prirode|strogi rezervat|posebni rezervat|park suma|znacajni krajobraz|spomenik prirode|spomenik parkovne arhitekture|"
-              r"podrucje ocuvanja znacajno za ptice|podrucje ocuvanja znacajno za vrste i stanisne tipove|i|na|u|kod",
-        'IE': r"special area of conservation|special protection area|natural heritage area|proposed natural heritage area|statutory nature reserve|sac|spa|nha|pnha",
-        'LT': r"nacionalinis parkas|regioninis parkas|valstybinis rezervatas|gamtinis rezervatas|biosferos poligonas|draustinis|rezervatas|ir|prie",
-        'LV': r"nacionalais parks|dabas parks|dabas liegums|dabas rezervats|aizsargajamo ainavu apvidus|dabas piemineklis|biosferas rezervats|mikroliegums|un",
-        'EE': r"rahvuspark|looduskaitseala|maastikukaitseala|hoiuala|kaitseala|looduspark|loodusala|linnuala|ja",
-        'LU': r"zone protegee d interet national|zone protegee|reserve naturelle|reserve forestiere|naturschutzgebiet|naturpark|parc naturel|zone habitat|zone oiseaux|de|du|des|la|le|les|et|d|l|an|der|vum|am"}
+_LOC = dict(_AT['LOC'])   # D6: the EEA countries' own generic words, longer phrases first (data/world-key/area-tables.json)
 for _c in EU: GEN[_c] = _LOC[_c] + r'|parc|parco|parque|krajobrazowy|naturalny|nacional|regional|' + _EN   # local (longer) words first
 # Nov 1: countries without their own word list (CO / ZA / CL crashed here: GEN[cc] missing) + the sheet countries: the sheet's
 # local kind words first (longest first), then common Spanish / French / Portuguese / other generic words, then English.
@@ -514,21 +430,7 @@ for _c in set(COUNTRIES) | set(SHEET):
     if _c in GEN: continue
     _loc = sorted({_flatw(w) for w in (SHEET.get(_c) or {}).get('kinds') or [] if len(_flatw(w)) >= 4}, key=len, reverse=True)
     GEN[_c] = '|'.join(re.escape(w) for w in _loc) + ('|' if _loc else '') + _MULTI + '|' + _EN
-KINDS = {
-    'AU': [('np', r'national park'), ('cp', r'conservation park|conservation reserve|conservation area|n\.\s?c\.\s?r|\bc\.\s?a\.'), ('nr', r'nature reserve|flora reserve|game reserve|\bn\.\s?r\.|f\.\s?f\.\s?r|\bf\.\s?r\b'),
-           ('sf', r'state forest|forest reserve'), ('rp', r'regional park|recreation'), ('hist', r'historic'), ('mp', r'marine')],
-    'DE': [('np', r'nationalpark|national park'), ('nat', r'naturpark|nature park'), ('nsg', r'naturschutzgebiet|\bnsg\b|nature reserve'),
-           ('lsg', r'landschaftsschutzgebiet|\blsg\b|landscape protection'), ('br', r'biospharen|biosphere'),
-           ('ffh', r'\bffh\b|fauna flora habitat|flora and fauna|natura 2000'), ('spa', r'vogelschutz|special protection area|bird sanctuary|natura 2000'),
-           ('nnm', r'naturmonument|natural monument')],
-    'GB': [('nnr', r'national nature reserve|\bnnr\b'), ('lnr', r'local nature reserve|\blnr\b'), ('cp', r'country park'), ('sssi', r'scientific interest|\bsssi\b'),
-           ('np', r'national park'), ('rp', r'regional park'), ('aonb', r'national landscape|outstanding natural beauty|\baonb\b'), ('sac', r'special area of conservation|\bsac\b'), ('spa', r'special protection area|\bspa\b')],
-    'JP': [('np', r'(?<!quasi.)national park|国立公園'), ('qnp', r'quasi.?national park|国定公園'), ('pnp', r'prefectural|県立')],
-}
-for _c in EU: KINDS[_c] = [('n2k', r'natura 2000|\bzps\b|\bzsc\b|\bzepa\b|\bzec\b')]
-KINDS['CO'] = [('pnn', r'parque nacional|national (natural )?park|national nature reserve|reserva nacional natural|santuario|sanctuary'), ('pnr', r'parque natural regional|regional (natural )?park'),
-               ('rn', r'reserva natural|nature reserve|reserva forestal|forest reserve'), ('dmi', r'distrito|management district|conservation area|area de recreacion|recreation area')]
-KINDS['ZA'] = [('np', r'national park'), ('nr', r'nature reserve|game reserve|provincial park|reserve'), ('pe', r'protected environment'), ('mpa', r'marine protected area|marine reserve'), ('wa', r'wilderness|world heritage')]
+KINDS = {cc: [tuple(x) for x in v] for cc, v in _AT['KINDS'].items()}   # D6: [(kind, regex)] per country (data/world-key/area-tables.json; the EU countries' n2k rule included)
 # Nov 1: one kind list for every sheet country (several languages in one): a park only joins a record of the same kind when
 # both sides name a kind (an unnamed side never blocks, as before).
 KINDS_ANY = [('np', r'national park|parque nacional|parc national|parco nazionale|nationalpark|ethniko parko|kokuritsu'),
@@ -539,8 +441,6 @@ KINDS_ANY = [('np', r'national park|parque nacional|parc national|parco nazional
              ('bio', r'biosphere|biosfera'), ('mpa', r'marine|area marina|marinho|reserve marine|arrecife'),
              ('wet', r'ramsar|humedal|wetland|zone humide'), ('hist', r'historic|historico|historique|heritage site|archaeolog|arqueolog')]
 for _c in SHEET: KINDS.setdefault(_c, KINDS_ANY)
-KINDS['CL'] = [('pn', r'parque nacional|national park'), ('rn', r'reserva nacional|national reserve|reserva forestal'), ('mn', r'monumento natural|natural monument'),
-               ('sn', r'santuario|sanctuary|conservation area|humedal|wetland|area marina|marine')]
 
 
 ABBR = [(r'\bn\.\s?c\.\s?r\b\.?', ' nature conservation reserve '), (r'\bf\.\s?f\.\s?r\b\.?', ' flora fauna reserve '),
@@ -598,8 +498,7 @@ SIDEW = {'n': 'north northern nord nordre norra noord norte nordlich polnocny se
          'e': 'east eastern est ost ostre ostra oost este leste oriental ostlich wschodni vychodni', 'w': 'west western ouest vestre vastra oeste occidental westlich zachodni zapadni',
          'u': 'upper ober obere oberer haut haute alto alta gorny horni ovre ylinen', 'l': 'lower unter untere unterer bas basse bajo baja basso bassa dolny dolni nedre alinen', 'm': 'middle mittel mittlere'}
 SIDE = {w: k for k, ws in SIDEW.items() for w in ws.split()}
-SIDE_NOT = {'FR': {'sur'}, 'CH': {'sur'}, 'BE': {'sur'}, 'LU': {'sur'},   # French-speaking countries: 'sur' is a preposition, not a side
-            'NO': {'alta', 'alto'}, 'SE': {'alta', 'alto'}, 'FI': {'alta', 'alto'}, 'DK': {'alta', 'alto'}}   # Alta is a Norwegian town
+SIDE_NOT = {cc: set(v) for cc, v in _AT['SIDE_NOT'].items()}   # D6: words that are not a side in that country ('sur' in French, the town Alta) (data/world-key/area-tables.json)
 
 
 def _side(cc, s):
@@ -1436,7 +1335,7 @@ for cc in COUNTRIES:
                 for r in nearby(la, lo):
                     if r['src'] == sid[0] and str(r['id']) == str(sid[1]) and not _isno(r['id'], r['n']) and not any(q[0] == r['id'] and q[2] == r['src'] for q in m):
                         m.append([r['id'], r['n'], r['src'], 'reviewed (saved id)'])
-        pref = [q for q in m if q[2] in CHPREF.get(typ, [])] if cc == 'CH' else []
+        pref = [q for q in m if q[2] in TYPE_PREFER[cc].get(typ, [])] if cc in TYPE_PREFER else []   # D6: data/world-key/area-tables.json (CH only)
         if pref: m = pref                                                          # the federal inventory of that kind decides
         if cc == 'CH' and m:                                                       # Oct 19: '(südlicher Teil)', '(Teilraum 2)': parts of one BLN area
             pp, keep = chpart(name), []
@@ -1697,7 +1596,7 @@ for cc in COUNTRIES:
             _t = load_json('data/world-key/outline-test.json', {}) if 'load_json' in globals() else {}
             try: _t = json.load(open('data/world-key/outline-test.json'))
             except Exception: _t = {}  # noqa: BLE001
-            _t[cc] = {'date': time.strftime('%Y-%m-%d'), 'outlines': cnt['saved_outlines'], 'mb_3m': round(_sz / 1e6, 2), 'mb_now': round(_old / 1e6, 2), 'tol': FINE_TOL}
+            _t[cc] = {'date': BUILD_DATE, 'outlines': cnt['saved_outlines'], 'mb_3m': round(_sz / 1e6, 2), 'mb_now': round(_old / 1e6, 2), 'tol': FINE_TOL}
             json.dump(_t, open('data/world-key/outline-test.json', 'w'), indent=1)
     except Exception as e:  # noqa: BLE001
         notice(f'World key {cc}', f'saving outlines for the website stopped: {type(e).__name__}: {str(e)[:200]}')

@@ -8,13 +8,19 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 _SRC = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
 
 
+import ast as _ast
+_ALL = next(_ast.literal_eval(n.value.func.value) for n in _ast.parse(_SRC).body if isinstance(n, _ast.Assign) and getattr(n.targets[0], 'id', '') == 'ALL').split()   # Nov 12 (D6)
+
+
 def _chunk(a, b):
     i = _SRC.index(a); return _SRC[i:_SRC.index(b, i)]
 
 
 class K:   # st_box and BOX_ADD only, run from the source (importing kpc_us_key runs a key build and writes key files)
     import os as _os
-    _ns = {'json': json, 'os': _os}
+    import re as _re   # Nov 12 (KPC owner, 2026-11-12; D6) CHANGED: BOX_ADD is read from data/us-key/area-tables.json by the
+    # builder's own loader (in the same chunk), which needs these names
+    _ns = {'json': json, 'os': _os, 'pathlib': pathlib, 're': _re, '__file__': str(ROOT / '.github/scripts/kpc_us_key.py'), 'ALL': _ALL}
     _cwd = _os.getcwd()
     _os.chdir(ROOT)
     try:
@@ -70,7 +76,7 @@ def test_fl_box_takes_in_the_offshore_dep_parcels():
 
 def test_scope_entry_for_fl_box_east():
     d = json.load(open(pathlib.Path(__file__).resolve().parents[1] / '.github' / 'us-key-rule-scope.json'))
-    e = d['changes'][-1]
+    e = next(c for c in d['changes'] if c.get('id') == '2026-11-11-fl-box-east')   # Nov 12 (KPC owner, 2026-11-12; D6) CHANGED: no longer the last entry
     assert e['id'] == '2026-11-11-fl-box-east' and e['from'] == 'ad47ee2ff99a' and e['scope'] == {'states': ['US-FL'], 'saved_ids': False}
 
 

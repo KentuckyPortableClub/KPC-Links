@@ -71,6 +71,7 @@ def make_ns(server, xs, maxrec=1000, layer_out=True):
     kmaster = types.SimpleNamespace(checked_opener=lambda check, handlers=(): types.SimpleNamespace(open=lambda u, timeout=0: Resp(json.dumps(server.answer(u)).encode())),
                                     live_ok=lambda u: (True, ''), LiveNotAllowed=type('LiveNotAllowed', (Exception,), {}), HUB_RE=re.compile(r'(^|\.)hub\.arcgis\.com$'), HUB_DELAY=60.0)
     ns = {'urllib': urllib_ns, 'json': json, 're': re, 'time': types.SimpleNamespace(sleep=lambda s: None, strftime=lambda f: '2026-11-10', monotonic=lambda: 0.0),
+          'BUILD_DATE': '2026-11-10',   # Nov 12 (KPC owner, 2026-11-12; D6) CHANGED: the builder's one run date replaces its clock calls
           'kpc_host_pace': types.SimpleNamespace(host_of=lambda u: urllib.parse.urlsplit(str(u)).netloc.lower(), wait=lambda h: None),
           'saved_only': lambda u: False, 'DETAIL': 0.001, 'PREC': 5, 'PAGE': 200, 'st_box': lambda st: [-87.6, 25.1, -80.0, 31.0],
           'XS': xs, 'KMASTER': kmaster, 'HOP_HANDLERS': (), 'resolve': lambda pre, url, nf, af: (url, nf, af, 'OBJECTID'), 'LAYER_MAXREC': {x[0]: maxrec for x in xs},

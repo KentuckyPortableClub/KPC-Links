@@ -65,11 +65,13 @@ def main():
     have = {str(x.get('url', '')).rstrip('/').lower() for v in S.values() for x in v}
     # a layer the keys already read another way (US layers.json, the Canada builder's own EXTRA list) is never added twice
     known = ''
-    for f in ('data/us-key/layers.json', 'data/ca-key/layers.json', '.github/scripts/kpc_canada_bounds.py', '.github/scripts/kpc_us_key.py'):
+    for f in ('data/us-key/layers.json', 'data/ca-key/layers.json', '.github/scripts/kpc_canada_bounds.py', '.github/scripts/kpc_us_key.py',
+              'data/us-key/area-tables.json'):   # Nov 12 (D6): the state-limited layers moved out of kpc_us_key.py into this file
         try: known += open(f).read().lower()
         except Exception: pass  # noqa: BLE001
     WX = load('data/world-key/extra-layers.json', {}); WC = WX.setdefault('countries', {})
-    wknown = (open('.github/scripts/kpc_world_key.py').read().lower() if os.path.exists('.github/scripts/kpc_world_key.py') else '')
+    wknown = ''.join(open(f, encoding='utf-8').read().lower() for f in ('.github/scripts/kpc_world_key.py', 'data/world-key/area-tables.json')
+                     if os.path.exists(f))   # Nov 12 (D6): the built-in world sources moved out of kpc_world_key.py into area-tables.json
     # KPC owner, 2026-11-11: a layer taken out of the world key (extra-layers.json 'dropped') is never wired again
     WDROP = {(cc, str(x.get('url') or '').rstrip('/').lower()) for cc, v in (WX.get('dropped') or {}).items() if isinstance(v, list) for x in v}
     added, skipped, states, provs, ccs = [], [], set(), set(), set()
