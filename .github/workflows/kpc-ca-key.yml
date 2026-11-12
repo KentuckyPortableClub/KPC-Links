@@ -75,7 +75,7 @@ jobs:
         if: ${{ env.SKIP != '1' || env.NIGHT_EMPTY == '1' }}
         env:
           AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed D1-D9): default add = record each area's hash; reuse stays off
-          FULL_REBUILD: ${{ inputs.full_rebuild }}
+          FULL_REBUILD: ${{ inputs.full_rebuild || (github.event.schedule == '43 10 2 * *' && 'yes') || '' }}
         run: |
           rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
             && git -C .pi sparse-checkout set --no-cone data/parkinfo data/intake/official-pins-nov12.json 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
@@ -83,7 +83,8 @@ jobs:
           WANT=$([ "${SKIP:-}" = 1 ] || echo "$ALLP")
           OUT=$(python3 .github/scripts/kpc_area_hash.py plan ca --list "$WANT" --mode "$AREA_MODE" --full "$FULL_REBUILD" $([ -d .pi ] && echo --data .pi) --out "$RUNNER_TEMP/area-plan.json") || OUT="$WANT"
           rm -rf .pi
-          if [ "$AREA_MODE" = add ] || [ "$AREA_MODE" = reuse ]; then
+          MODE=$(printf '%s' "$AREA_MODE" | tr '[:upper:]' '[:lower:]')
+          if [ "$MODE" = add ] || [ "$MODE" = reuse ]; then
             if [ "${NIGHT_EMPTY:-}" = 1 ] && [ -n "$OUT" ]; then echo "SKIP=0" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::a province's inputs moved since its last build ($OUT): Canada is built"; fi
             if [ "${SKIP:-}" != 1 ] && [ -z "$OUT" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::no province's inputs moved: nothing is rebuilt (main's files are reused)"; fi
           fi

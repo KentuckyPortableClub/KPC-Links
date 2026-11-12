@@ -301,10 +301,10 @@ try:
         t, idx, job, part = us_fixture(t)
         (t / 'data/us-key/US-KY.json').write_text('{"edited": 1}')                      # KY: its key file is not the recorded bytes
         r0 = json.loads(idx.read_text())['states']
-        f, tb, _, reu = K.decide('us', ['TN', 'FL', 'OR', 'KY'], job['hashes'], job['parts'], r0, NEWC, 'reuse', False, t, proof=lambda *a: (True, 'p-us-1'))
+        f, tb, _, reu = K.decide('us', ['TN', 'FL', 'OR', 'KY'], job['hashes'], job['parts'], r0, NEWC, 'reuse', False, t, proof=lambda *a, **k: (True, 'p-us-1'))
         check('US1 the plan (kind us) reuses a state whose only move is shared code under a valid proof; a state whose key file was edited is rebuilt',
               sorted(reu) == ['FL', 'OR', 'TN'] and f == ['KY'] and all('proven no result change (p-us-1)' in x[3] for x in tb if x[0] in ('FL', 'OR', 'TN')))
-        f2, _, _, reu2 = K.decide('us', ['TN', 'FL', 'OR', 'KY'], job['hashes'], job['parts'], r0, NEWC, 'shadow', False, t, proof=lambda *a: (True, 'p-us-1'))
+        f2, _, _, reu2 = K.decide('us', ['TN', 'FL', 'OR', 'KY'], job['hashes'], job['parts'], r0, NEWC, 'shadow', False, t, proof=lambda *a, **k: (True, 'p-us-1'))
         check('US1 ... in shadow (the default) the US list is unchanged, nothing reused', not reu2 and sorted(f2) == ['FL', 'KY', 'OR', 'TN'])
         K.proof_valid = lambda *a, **k: (True, 'p-us-1')
         done, same = K.stamp_rows_parts(t, 'us', idx, ['TN'], [str(part)], reuse_plan=job)
