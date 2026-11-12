@@ -78,7 +78,7 @@ jobs:
           FULL_REBUILD: ${{ inputs.full_rebuild }}
         run: |
           rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
-            && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
+            && git -C .pi sparse-checkout set --no-cone data/parkinfo data/intake/official-pins-nov12.json 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
           ALLP=$(python3 -c "import json; print(' '.join(sorted(json.load(open('data/ca-key/index.json')).get('provinces') or {})))")
           WANT=$([ "${SKIP:-}" = 1 ] || echo "$ALLP")
           OUT=$(python3 .github/scripts/kpc_area_hash.py plan ca --list "$WANT" --mode "$AREA_MODE" --full "$FULL_REBUILD" $([ -d .pi ] && echo --data .pi) --out "$RUNNER_TEMP/area-plan.json") || OUT="$WANT"
@@ -107,6 +107,7 @@ jobs:
           KPC_KEY_ONLY_PARKS: ${{ !((github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && !inputs.saved) && env.RULES_ONLY_PARKS || '' }}   # Nov 9 evening (KZ4CP 5:41 PM CST): a park-scoped rule change re-matches only those parks (never on the monthly live re-read)
           GH_TOKEN: ${{ github.token }}
           KPC_CA_HAND: cache/ca-hand
+          KPC_OFFICIAL_PINS: .op/data/intake/official-pins-nov12.json   # Nov 12 (KPC owner, 2026-11-12): official pin fills (kpc_pin_fill.py), read only from KPC-Data
         id: kept_green_1
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)
         run: |
@@ -128,6 +129,9 @@ jobs:
           # Nov 6: hardlook.json is .gz in KPC-Data. kpc_ca_hardlook.py stays as it is (it is part of the Canada rules hash).
           # --materialize writes the preferred bytes (.gz wins) to the plain path that script already opens, and exits 1 if neither file is there.
           git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .hl 2>/dev/null && git -C .hl sparse-checkout set --no-cone data/waiting/questions/hardlook.json data/waiting/questions/hardlook.json.gz 2>/dev/null && git -C .hl checkout -q 2>/dev/null && python3 .github/scripts/kpc_json_any.py --materialize .hl/data/waiting/questions/hardlook.json && DATA=.hl python3 .github/scripts/kpc_ca_hardlook.py || { kpc_rc=$?; echo "::error title=kpc_ca_hardlook.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_ca_hardlook.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; rm -rf .hl
+          # Nov 12 (KPC owner, 2026-11-12): official pin fills (KPC-Data data/intake/official-pins-nov12.json, read only, sparse) for parks POTA has no usable
+          # pin for. Not read = NO fill this run (kpc_pin_fill.py fails closed and says so); the Canada build goes on either way.
+          rm -rf .op; git clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .op 2>/dev/null && git -C .op sparse-checkout set --no-cone data/intake/official-pins-nov12.json 2>/dev/null && git -C .op checkout -q 2>/dev/null || { kpc_rc=$?; echo "::warning title=Official pin fills::KPC-Data could not be read (exit $kpc_rc): no official pin fill this run; the Canada build goes on"; echo "official pin fills - KPC-Data could not be read (exit $kpc_rc); no fill applied" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           # Nov 10 (master outlines, read master first): a saved copy shorter than its baseline is moved aside and Canada is NOT built tonight (the old
           # key files are kept, same as 'stopped early'); the Master gate verdict step goes red so a short read never becomes the key.
           # owner rule, 2026-11-10: CA-ALL has no baseline yet (no offline total exists): --first-ok lets it pass with a notice; a SHORT copy is still held
@@ -139,6 +143,8 @@ jobs:
           # Oct 28 (tune pass): the script's own notices went only into ca-key.log, so a provincial map that FAILED or a
           # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).
           grep '^::notice' ca-key.log | grep -v 'title=CPCAD layer::' | tail -n 9 | cut -c1-900 || true   # ok: a pipeline (its exit status is the last command; follow-up: pipefail)
+          grep '^::warning title=Official pin fills' ca-key.log | cut -c1-900 || true   # ok: shows the pin-fill warnings from the log (none = nothing to show); also in the run summary
+          rm -rf .op
       - name: Keep the saved copy current (a full read that finished)
         if: ${{ env.SKIP != '1' && !inputs.saved && (github.event.schedule || inputs.as_schedule) != '49 9 * * *' }}
         id: kept_green_2

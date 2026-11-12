@@ -76,6 +76,11 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              # Nov 12 (KPC owner, 2026-11-12): per-area join helpers (review rows merged per area, the run summary table, the kept-from-main
              # check) and the per-area input hashes (plan / stamp / proof-stamp reader); neither decides a join
              'kpc_area_join.py', 'kpc_area_hash.py',
+             # Nov 12 (KPC owner, 2026-11-12): the official pin fills helper the Canada / world builders call. Listed here so that adding it
+             # moves no hash by itself (the builders' hook lines that call it are rule-file edits: CA / world moved, declared in
+             # docs/key-rules-change.txt). It decides which pin a park is joined by: a later change to it is declared like a rule change,
+             # and the per-area hash is to count it as ca / world code (kpc_area_hash.py CLOSURE_ADD)
+             'kpc_pin_fill.py',
              # Nov 7 (Brandon 4:55 PM CST): recommends a fix for each held park, writes only data/us-key/review/problem-solver.*
              'kpc_problem_solver.py',
              # Nov 9 amendment 2 (Brandon t943u/t942u): the research inbox + its xlsx converter recommend only, never decide a join

@@ -27,6 +27,19 @@
    "why": "D6, tables out of the rule scripts (KPC owner, 2026-11-12): the per-country tables (built-in sources SRC with the EEA layers of each EU country, the EU list, GEN, LOC, KINDS, SIDE_NOT, the Swiss type preference, the Queensland split layers) move, unchanged, from kpc_world_key.py into data/world-key/area-tables.json, read at start (fail closed on a missing or malformed file); the saved copy's date is the one run date (KPC_BUILD_DATE, else today read once). No result changes: the loaded tables equal the old ones (SRC in the same order), and the builder gives byte-identical key files before and after on the same saved copy (tests/test_area_tables_nov12.py). So no country is rebuilt for it; an area-hash add run rebuilds every country once (the D7 run).",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
+  },
+  {
+   "id": "2026-11-12-official-pin-fills",
+   "when": "2026-11-12",
+   "from": "1e262d7d3c0a",
+   "why": "Official pin fills (kpc_pin_fill.py; KPC-Data data/intake/official-pins-nov12.json, the pin-fill rows marked ready): a park POTA has no usable pin for (absent or 0,0) is joined by its official pin and marked pf; a POTA pin is never moved and a fill is ignored once POTA has a usable pin. The ready world fills are PF-0033 and PF-0034 (French Polynesia) and AU-10111 (Australia, on the signed expected-hold list: it waits until AU is built again), so only PF and AU results change.",
+   "scope": {
+    "states": [
+     "AU",
+     "PF"
+    ]
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
   }
  ]
 }
