@@ -1,0 +1,5 @@
+{
+ "about": "No-result-change stamps (D4; KPC owner, 2026-11-12). Read by kpc_area_hash.py proof_valid() in the key plans. An entry lets a shared-code change (code hash from -> to of one key) rebuild nothing ONLY when: it is signed by a real person (approved_by names Brandon / KZ4CP or another person in KPC_PERSONS; 'KPC owner' alone is not a signature; approved_date a real date, not in the future), and its proof record data/status/no-result-change/<proof>.json was written by the proof job (.github/workflows/kpc-key-proof.yml, started by hand) with result pass, no network attempt, the whole sample, the same inputs on both sides, and every compared file byte-identical. The job never signs: it hands over the record and an unsigned entry as an artifact; the owner adds both here in a reviewed PR. Missing, failed, unsigned or stale (the code moved again, another composition) = the full rebuild.",
+ "format": 1,
+ "stamps": []
+}

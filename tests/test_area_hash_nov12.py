@@ -277,6 +277,15 @@ with tempfile.TemporaryDirectory() as td:
         e.update(entry or {})
         r = {'format': 1, 'id': 'p1', 'kind': 'world-key', 'from': OLD, 'to': CUR, 'result': 'pass', 'old_commit': 'a', 'new_commit': 'b', 'sample': ['FR', 'DE'],
              'files': {'data/world-key/FR.json': ['ab' * 32, 'ab' * 32]}, 'network_attempts': 0}
+        # Nov 12 D4 (KPC owner, 2026-11-12) CHANGED: the reader also runs the proof job's own record checks (kpc_key_proof.record_problems),
+        # so a valid record carries what the job writes: writer, composition, full shas, the whole sample rule, inputs, the fixed clock
+        import kpc_key_proof as KP
+        o40, n40, uni, tid = 'a' * 40, 'b' * 40, sorted(K.WORLD_DEFAULT), 'cd' * 32
+        smp = sorted(set(KP.rule_sample('world', o40, n40, uni)) | {'FR', 'DE'}); inp = {'boundary-cache:W-FR.json.gz': 'ab' * 32}
+        r.update({'old_commit': o40, 'new_commit': n40, 'sample': smp, 'files': {f'data/world-key/{a}.json': ['ab' * 32, 'ab' * 32] for a in smp},
+                  'writer': KP.WRITER, 'composition': K.COMPOSITION, 'universe': uni, 'inputs': inp, 'inputs_id': KP.inputs_id(inp),
+                  'inputs_id_old': KP.inputs_id(dict(inp, tree=tid)), 'inputs_id_new': KP.inputs_id(dict(inp, tree=tid)), 'tree_inputs_old': tid,
+                  'tree_inputs_new': tid, 'fixed_instant': '2026-11-12T00:00:00Z'})
         r.update(rec or {})
         (R / '.github/no-result-change.json').write_text(json.dumps({'format': 1, 'stamps': [e]}))
         (R / 'data/status/no-result-change/p1.json').write_text(json.dumps(r))
