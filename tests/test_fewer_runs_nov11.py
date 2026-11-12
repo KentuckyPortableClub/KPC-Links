@@ -72,6 +72,9 @@ peek_files = [x.strip() for x in sp['with']['sparse-checkout'].split('\n') if x.
 check(sp.get('uses', '').startswith('actions/checkout') and sp['with'].get('path') == '.peek' and sp.get('if') == pk.get('if') and pk.get('working-directory') == '.peek',
       'started runs: a small checkout in its own folder, then the look runs there')
 check(pk.get('continue-on-error') is True and 0 < int(pk.get('timeout-minutes') or 99) <= 5, 'a look that fails or hangs is cut off and counts as a full run')
+_rl_text = (HERE / '.github' / 'workflows' / 'kpc-discord-relay.yml').read_text(encoding='utf-8')
+_peek_coe = re.search(r'id: peek\n(?:[^\n]*\n){0,3}?\s*continue-on-error: true\s*# ok: \S', _rl_text)
+check(bool(_peek_coe), "the look's continue-on-error carries an '# ok: <why>' marker (G8 reports a failed look)")
 check(full.get('if') == "steps.peek.outputs.skip != '1'" and not full.get('with'), 'the whole site is checked out only when the full run goes ahead')
 i_full = st.index(full)
 reads_tree = [s for s in st if re.search(r'\.github/scripts/|kpc_save|git add', str(s.get('run') or ''))]

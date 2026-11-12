@@ -51,7 +51,7 @@ jobs:
       - name: Anything new? (started runs only, PR3)
         id: peek
         if: github.event_name == 'workflow_dispatch' && !inputs.dry_run
-        continue-on-error: true
+        continue-on-error: true   # ok: a failed or hung look counts as go-full; G8 reports it
         timeout-minutes: 4
         working-directory: .peek
         env:
