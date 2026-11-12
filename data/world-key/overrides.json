@@ -11394,6 +11394,40 @@
    "when": "2026-11-11",
    "why": "2026-11-11: the pin is 13.2 km from this 8,700 ha valley zone; exact name but not shown to be the park. Owner no: the live join comes off on the next world key run. Owner answer: owner chat 2026-11-11 21:16 CT, OWNER-ANSWERS-nov11.md item 2.",
    "decided_by": "KPC owner 2026-11-11"
+  },
+  "FR-10548": {
+   "ids": [
+    [
+     "IGN Géoplateforme ZNIEFF type II sea",
+     "znieff2_mer.7"
+    ]
+   ],
+   "no": [
+    "znieff1.16597",
+    "Corniche Varoise"
+   ],
+   "when": "2026-11-11",
+   "why": "2026-11-11 Nov 11 mystery answers: the marine type-2 ZNIEFF 93M000091 (feature znieff2_mer.7) holds the pin; the land ZNIEFF-1 of the same name (znieff1.16597, 2.6 km from the pin) and the Natura site Corniche Varoise are not this park. Joins by source + record id from the first world key run that reads the marine layer (job 6); until then the live key joins nothing, as now."
+  },
+  "FR-10432": {
+   "ids": [
+    [
+     "IGN Géoplateforme Conservatoire du littoral",
+     "cdl.502"
+    ]
+   ],
+   "when": "2026-11-11",
+   "why": "2026-11-11 Nov 11 mystery answers: Conservatoire du littoral site FR1100689 (feature cdl.502) is this park; the pin is 2.8 km outside it. The live key joins the EEA copy of the same record (5816, I056FR1100689, approximate). From the first world key run that reads the CdL layer (job 6) the national record joins and W-2 drops the EEA copy; the EEA copy is not refused, so it stays the outline if that layer cannot be read."
+  },
+  "FR-11106": {
+   "ids": [
+    [
+     "IGN Géoplateforme RNN protection perimeters",
+     "pprnn.1"
+    ]
+   ],
+   "when": "2026-11-11",
+   "why": "2026-11-11 Nov 11 mystery answers: the protection perimeter FR9500105 of the Vallée de Chaudefour national nature reserve (feature pprnn.1) is this park; the pin is about 3.5 km outside it. The reserve itself (FR3600105) is not this park. The live key joins the EEA copy of the same record (3819, I056FR9500105, approximate). From the first world key run that reads the perimeter layer (job 6) the national record joins and W-2 drops the EEA copy; the EEA copy is not refused, so it stays the outline if that layer cannot be read."
   }
  }
 }

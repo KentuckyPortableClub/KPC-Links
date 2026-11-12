@@ -16,6 +16,7 @@ socket.socket.connect = _no_net; socket.create_connection = _no_net; socket.geta
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / '.github/scripts/kpc_world_key.py'
+if str(SCRIPT.parent) not in sys.path: sys.path.insert(0, str(SCRIPT.parent))   # kpc_key_freeze / kpc_preflight for the hash checks
 FX = ROOT / 'tests/fixtures/world_fr_patrinat_nov11'
 WFS = 'https://data.geopf.fr/wfs/ows'
 EEA = 'https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/'
