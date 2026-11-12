@@ -20,7 +20,7 @@ check('planner and finder share kpc-answer-key.js',
       'kpc-answer-key.js' in html and 'kpc-answer-key.js' in (ROOT / 'finder.html').read_text(encoding='utf-8')
       and 'window.kpcAnswerKey' in g and 'kpcAnswerKey.keyJoin(f,fName)' in js)
 check('answer key is loaded once, lazily, from the saved copy',
-      'function loadKey' in ak and 'if (keyTried) return keyReadyP' in ak and "data/ky-answer-key.json?v=20261110aj" in ak)
+      'function loadKey' in ak and 'if (keyTried) return keyReadyP' in ak and "kpcRel('data/ky-answer-key.json'" in ak and "'?v=20261110aj'" in ak)   # Nov 11 job 3: the released copy (KPCREL)
 check('planner lookup order is properties.ref, then the answer key, then name/alias fallback',
       js.index('const own=ownRef(f)') < js.index('kpcAnswerKey.keyJoin(f,fName)') < js.index('ALIAS[fName(f)]'))
 check('lookup is by layer + outline name',
@@ -31,7 +31,7 @@ check('drawn layers restyle after the key loads, and a cached no-join answer is 
       'function restyleBounds()' in js and 'delete f._pota' in js and 'delete f._named' in js
       and 'kpcAnswerKey.loadKey(restyleBounds)' in js)
 check('kpc-planner.js and kpc-answer-key.js cache stamps are bumped',
-      'kpc-planner.js?v=20261111z' in html and 'kpc-answer-key.js?v=20261110key' in html)
+      'kpc-planner.js?v=20261111zr' in html and 'kpc-answer-key.js?v=20261111zr' in html)
 
 # The two Green River SNA tracts (and Fort Heiman) are alias joins in the key
 key = json.loads((ROOT / 'data/ky-answer-key.json').read_text(encoding='utf-8'))

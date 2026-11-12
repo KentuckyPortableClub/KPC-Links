@@ -2,14 +2,17 @@
 (function () {
   'use strict';
   const APP = 'kpc-finder-v1', TILES = 'kpc-tiles-v1', KEY = 'kpcFinderOffline';
-  const FILES = ['finder.html', 'finder.css', 'finder.js', 'kpc-answer-key.js', 'gis-overlays.js', 'data/ky-answer-key.json', 'kpc-offline.js', 'kpc-map-extras.js', 'kpc-my-parks.js', 'kpc-us-states.json', 'ky-overlaps.geojson',
+  const FILES = ['finder.html', 'finder.css', 'finder.js', 'kpc-answer-key.js', 'gis-overlays.js', 'kpc-offline.js', 'kpc-map-extras.js', 'kpc-my-parks.js', 'kpc-us-states.json',
     'locations-ky.json', 'locations.json', 'official-2fer-evidence.json', 'official-park-access.json', 'official-trail-maps.json', 'wwff-unmapped.json',
     'kpc-ky-data.json', 'ky-trail-parks.json',
+    'KPC-logo.png', 'kpc-icon-32.png', 'kpc-gps.js', 'kpc-padus-layer.js',   // Nov 11 (job 3): the KPCREL block (the released Kentucky files need it with no signal)
+    'kpc-card-polish.css', 'kpc-card-polish.js'];   // Nov 8: park card polish (the trip planners save every loaded file already)
+  /* Nov 11 (job 3): the Kentucky map files are saved as their RELEASED copies (KPCREL.need: every part with its ?v=, plus RELEASED.json),
+     the same addresses the page reads; the working copies are never saved or read. Same files as before. */
+  const KY_REL = ['data/ky-answer-key.json', 'ky-overlaps.geojson',
     'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson', 'ky-dbnf-owned.geojson',
     'ky-wild-rivers.geojson', 'ky-nps.geojson', 'ky-wilderness.geojson', 'ky-sheltowee.geojson', 'ky-pine-mountain.geojson', 'ky-dawkins.geojson',
-    'ky-fws.geojson', 'ky-usace.geojson', 'ky-padus-parks.geojson', 'ky-kpc-drawn.geojson', 'ky-lecl-auto.geojson',   // Nov 11: the other layers that are on by default (they now start after the page is idle, so a quick save still gets them)
-    'KPC-logo.png', 'kpc-icon-32.png',
-    'kpc-card-polish.css', 'kpc-card-polish.js'];   // Nov 8: park card polish (the trip planners save every loaded file already)
+    'ky-fws.geojson', 'ky-usace.geojson', 'ky-padus-parks.geojson', 'ky-kpc-drawn.geojson', 'ky-lecl-auto.geojson'];   // Nov 11 (page size): the other layers on by default (they start after the page is idle, so a quick save still gets them)
   /* Storage plan Step B (Oct 27): locations.json + locations-ky.json now also live on KPC-Data. Save both
      the KPC-Data copy and this site's own relative address under the same cache, so the page finds its
      saved copy offline whichever address it asks for (now, or once the old copy is retired later). */
@@ -73,6 +76,7 @@
     saveBtn.disabled = clearBtn.disabled = true; bar.style.display = 'block';
     const cache = await caches.open(APP);
     const list = FILES.map(f => ({ rel: new URL(f, location.href).href, tries: DATA_MOVED.includes(f) ? [KPC_DATA + f, new URL(f, location.href).href] : [new URL(f, location.href).href] }))
+      .concat(window.KPCREL ? (await KPCREL.need(KY_REL).catch(() => [])).map(f => { const u = new URL(f, location.href).href; return { rel: u, tries: [u] }; }) : [])
       .concat(CDN.map(url => ({ rel: url, tries: [url] })));
     let done = 0, bytes = 0, miss = 0;
     for (const item of list) {

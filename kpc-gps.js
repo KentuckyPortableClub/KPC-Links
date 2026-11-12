@@ -11,10 +11,32 @@
    Nov 11 (job 2): ONE part scheme for released and working files (kpc_release.split): a file over 1 MB is part 1 under its own name
    plus <stem>.p2<ext> ... ; part 1 carries kpc_part = [1, N, tag]. The working-copy path reads part 1, then parts 2..N, and puts them
    together with the same join; parts of two different saves (another tag) or a missing part = nothing, never half a file.
-   An outline too big for one part is in pieces (kpc_piece = [k, M], same properties): the join puts its polygons back together. */
+   An outline too big for one part is in pieces (kpc_piece = [k, M], same properties): the join puts its polygons back together.
+   Nov 11 (job 3, Canada outlines + Kentucky): data/canada-bounds/<REF>.json is area CA and is listed in a SUB-INDEX
+   (RELEASED.json subs["canada-bounds/"] = {area, file, v, files}): data/released/canada-bounds/INDEX.json?v=<v> is read once per
+   page, only when a Canada outline is first asked for, and used only when its sha / time equal areas.CA (an INDEX of another
+   release is never paired with this RELEASED.json). It is kept by the browser's HTTP cache under its own ?v= (and by the saved
+   copy of kpc-finder-sw.js), not in localStorage (230 KB). It fails = 'no index' (no outline for that park now, never the working
+   file), asked for again after a minute. Kentucky: data/ky-answer-key.json and the root ky-*.geojson layers are area KY, released
+   as ky/<name>; a .geojson in parts (<stem>.p2.geojson ...) is joined like any other file. KPCREL.need(paths) -> every released URL
+   (all parts, with ?v=), the sub-index and RELEASED.json a saved offline copy needs. A 'kpcrel' event says KPCREL is ready. */
 (function (w) {
   if (!w || w.KPCREL || typeof w.fetch !== 'function') return;
-  var P = null, AREA = [[/^(outlines\/US-|us-key\/)/, 'US'], [/^ca-key\//, 'CA'], [/^world-key\//, 'world']];
+  var P = null, AREA = [[/^(outlines\/US-|us-key\/)/, 'US'], [/^(ca-key|canada-bounds)\//, 'CA'], [/^world-key\//, 'world'], [/^ky\//, 'KY']], SUB = {};
+  function relOf(path) { return String(path).replace(/^data\//, '').replace(/\?.*$/, '').replace(/^(ky-[a-z0-9-]+\.geojson|ky-answer-key\.json)$/, 'ky/$1'); }   /* Kentucky files are released as ky/<name> */
+  function subOf(d, rel) { var s = d && d.subs && typeof d.subs === 'object' ? d.subs : {}, k = Object.keys(s).filter(function (p) { return rel.indexOf(p) === 0 && s[p] && typeof s[p].file === 'string'; })[0]; return k ? [k, s[k]] : null; }
+  function subIndex(d, ks) {   /* the sub-index of this release: one shared read per page; a failed read is tried again after a minute */
+    var k = ks[0], s = ks[1], a = (d.areas || {})[s.area] || {}, key = k + '|' + s.v + '|' + a.sha + '|' + a.time, c = SUB[key];
+    if (c && !(c.at && Date.now() - c.at > 60000)) return c.p;
+    var one = function (mode) {
+      return w.fetch('data/released/' + s.file + '?v=' + s.v, { cache: mode }).then(function (r) { if (!r || !r.ok) throw new Error('sub'); return r.json(); }).then(function (x) {
+        if (!x || x.prefix !== k || x.area !== s.area || !a.sha || x.sha !== a.sha || x.time !== a.time || !x.files || typeof x.files !== 'object') throw new Error('sub');
+        return x;
+      });
+    };
+    c = SUB[key] = { at: 0 };
+    return (c.p = one('force-cache').catch(function () { return one('reload'); }).catch(function () { c.at = Date.now(); return { failed: true }; }));
+  }
   var UNRELEASED_WORKING = [];   /* the owner's switch: areas ('world') whose WORKING files public pages still read until their first release. [] = the rule */
   var LAST = 'kpcReleasedIndex', failedAt = 0;
   function good(d) { return !!(d && typeof d === 'object' && d.areas && typeof d.areas === 'object' && !Array.isArray(d.areas)); }
@@ -58,7 +80,7 @@
     if (out.parks && !Array.isArray(out.parks)) out.parks = Object.assign.apply(null, [{}].concat(docs.map(function (d) { return d.parks || {}; })));
     return out;
   }
-  function partName(path, i) { return i < 2 ? path : String(path).replace(/(\.geojson\.gz|\.json)$/, '.p' + i + '$1'); }
+  function partName(path, i) { return i < 2 ? path : String(path).replace(/(\.geojson\.gz|\.geojson|\.json)$/, '.p' + i + '$1'); }
   function more(path, d, one) {   /* Nov 11: a working file in parts: part 1 says how many (kpc_part), parts 2..N are read the same way */
     var k = d && d.kpc_part, list = [Promise.resolve(d)];
     if (!k || !(k[1] > 1)) return Promise.resolve(d);
@@ -66,13 +88,14 @@
     return Promise.all(list).then(join);
   }
   function state(path) {
-    var rel = String(path).replace(/^data\//, '').replace(/\?.*$/, '');
+    var rel = relOf(path);
     return index().then(function (d) {
       var a = AREA.filter(function (x) { return x[0].test(rel); })[0];
       if (w.KPC_WORKING_COPY === true || !a) return { s: 'working', rel: rel };      /* a review page (Map Rep sets KPC_WORKING_COPY), or not a released kind of file */
       if (d.failed) return { s: 'no index', rel: rel };                              /* RELEASED.json did not load and none was kept: nothing */
       if (!(d.areas || {})[a[1]]) return { s: UNRELEASED_WORKING.indexOf(a[1]) >= 0 ? 'working' : 'not released', rel: rel };
-      var fs = (d.files || {})[rel];
+      var fs = (d.files || {})[rel], ks = !(Array.isArray(fs) && fs.length) && subOf(d, rel);
+      if (ks) return subIndex(d, ks).then(function (x) { if (x.failed) return { s: 'no index', rel: rel }; var f = x.files[rel]; return Array.isArray(f) && f.length ? { s: 'released', rel: rel, fs: f } : { s: 'not listed', rel: rel }; });
       return Array.isArray(fs) && fs.length ? { s: 'released', rel: rel, fs: fs } : { s: 'not listed', rel: rel };
     });
   }
@@ -96,7 +119,15 @@
       return Promise.all(list.map(function (u) { return w.fetch(u, { cache: 'force-cache' }).then(parse); })).then(join);
     }).catch(function () { return null; });
   }
-  w.KPCREL = { get: get, urls: urls, index: index, state: function (p) { return state(p).then(function (x) { return x.s; }, function () { return 'no index'; }); } };
+  function need(paths) {   /* what a saved offline copy needs: RELEASED.json, each file's released part(s) with ?v=, and their sub-index */
+    return index().then(function (d) {
+      return Promise.all((paths || []).map(function (p) {
+        return urls(p).then(function (u) { var ks = u && u.length && subOf(d, relOf(p)); return (u || []).concat(ks ? ['data/released/' + ks[1].file + '?v=' + ks[1].v] : []); }, function () { return []; });
+      })).then(function (ls) { var out = ['data/released/RELEASED.json']; ls.forEach(function (l) { l.forEach(function (u) { if (out.indexOf(u) < 0) out.push(u); }); }); return out; });
+    });
+  }
+  w.KPCREL = { get: get, urls: urls, index: index, need: need, state: function (p) { return state(p).then(function (x) { return x.s; }, function () { return 'no index'; }); } };
+  try { if (typeof w.dispatchEvent === 'function' && typeof Event === 'function') w.dispatchEvent(new Event('kpcrel')); } catch (e) {}
 })(typeof window !== 'undefined' ? window : null);
 /* <<< kpc_released */
 /* kpc-gps.js - the ONE place KPC GPS files are made (GPX 1.1, KML 2.2, GeoJSON).

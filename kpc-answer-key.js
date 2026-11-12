@@ -5,6 +5,9 @@
 (function (w) {
   'use strict';
   let keyIdx = null, keyTried = false, keyReadyP = null;
+  /* Nov 11 (job 3): Kentucky (and Canada) map files come from data/released through KPCREL (the block in kpc-gps.js / kpc-padus-layer.js /
+     kpc-bounds.js / kpc-us-planner.js on this page; waited for when it loads later). Not there or not loaded = null: never the working copy. */
+  const kpcRel=(p,old)=>(window.KPCREL?Promise.resolve(window.KPCREL):new Promise(r=>{const d=()=>r(window.KPCREL||null);if(document.readyState==='complete')return d();addEventListener('kpcrel',d,{once:true});addEventListener('load',d,{once:true})})).then(K=>K?K.get(p,old):null).catch(()=>null);
   function outlineName(f) {
     const p = (f && f.properties) || {};
     const n = p.NAME || p.Name || p.name || p.UNIT_NAME || p.UNITNAME || '';
@@ -28,8 +31,7 @@
   function loadKey(onReady) {
     if (keyTried) return keyReadyP;
     keyTried = true;
-    keyReadyP = fetch('data/ky-answer-key.json?v=20261110aj', { cache: 'force-cache' })
-      .then(r => r.ok ? r.json() : null)
+    keyReadyP = kpcRel('data/ky-answer-key.json', p => fetch(p + '?v=20261110aj', { cache: 'force-cache' }))   /* Nov 11 (job 3): released ky/ky-answer-key.json */
       .then(j => { keyIdx = buildKeyIdx(j); if (typeof onReady === 'function') onReady(keyIdx); return keyIdx; })
       .catch(() => { keyIdx = new Map(); if (typeof onReady === 'function') onReady(keyIdx); return keyIdx; });
     return keyReadyP;

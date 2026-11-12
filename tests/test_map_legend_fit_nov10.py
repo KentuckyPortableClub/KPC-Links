@@ -33,7 +33,7 @@ check('full screen reparents the map wrap to the page body so a parent cannot cl
       "document.body.appendChild(wrap)" in js and "createComment('kpc-mapfull')" in js)
 
 pages = list(ROOT.glob('*.html')) + list(ROOT.glob('.claude/build/**/*.html'))
-want = {'gis-overlays.js': '?v=20261111z', 'kpc-answer-key.js': '?v=20261110key', 'kpc-map-extras.js': '?v=20261111rule', 'finder.js': '?v=20261111p', 'finder.css': '?v=20261110fit'}
+want = {'gis-overlays.js': '?v=20261111zr', 'kpc-answer-key.js': '?v=20261111zr', 'kpc-map-extras.js': '?v=20261111zr', 'finder.js': '?v=20261111p', 'finder.css': '?v=20261110fit'}
 for name, stamp in want.items():
     vs = {}
     attr = 'href="' if name.endswith('.css') else 'src="'
