@@ -202,7 +202,8 @@ check('build: the gate step hands its exit code to the Build step (rc output)', 
 plan_run = next(s for s in W['jobs']['plan']['steps'] if s.get('id') == 'p')['run']
 check('plan: expected holds are decided before the build, from the APPROVED file only, and a hold means not a full build',
       'kpc_world_key_join.py expected --file data/outlines/world-expected-holds.approved.json' in plan_run and '|| exit 1' in plan_run
-      and """[ -z "$EXPECTED" ]; then echo 'full=1'""" in plan_run and W['jobs']['plan']['outputs']['expected'] == '${{ steps.p.outputs.expected }}')
+      and """[ -z "$EXPECTED" ] && [ -z "$REUSED" ]; then echo 'full=1'""" in plan_run   # Nov 12 (part B) CHANGED: a reused country = not a full build either
+      and W['jobs']['plan']['outputs']['expected'] == '${{ steps.p.outputs.expected }}')
 check('plan: each hold is checked against the current W-<CC> copy sha (--cache cache/world)',
       '--cache cache/world' in plan_run and 'gh release download boundary-cache' in plan_run and 'W-$c.json.gz' in plan_run)
 tn = next(s for s in js if s.get('id') == 'tonight')

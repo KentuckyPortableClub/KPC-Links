@@ -37,6 +37,9 @@ on:
       force:
         description: "yes = build even while chat 11 grades a held build (Brandon's freeze, Nov 2: by hand only)"
         default: 'no'
+      full_rebuild:
+        description: "yes = build every listed country, never reuse one (per-area hashes, Nov 12; reuse is off unless the repo variable KPC_AREA_HASH=reuse)"
+        default: ''
 permissions:
   contents: write
 concurrency:   # PR2 (Nov 2): one run of this bot at a time; a second start waits instead of piling up
@@ -50,6 +53,7 @@ jobs:
       groups: ${{ steps.p.outputs.groups }}
       full: ${{ steps.p.outputs.full }}   # Nov 4 (links-04): 1 = the default ALL list was built (the join stamps the rules hash only then)
       expected: ${{ steps.p.outputs.expected }}   # Nov 12 (KPC owner, 2026-11-11): owner-signed expected holds, left out of the build, kept from main
+      area_plan: ${{ steps.p.outputs.area_plan }}   # Nov 12 (KPC owner, 2026-11-12): per-country input hashes of this plan (kpc_area_hash.py), stamped on the saved rows
     steps:
       - uses: actions/checkout@v5
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 4 links-04) - a held build on the CURRENT rules, at most 3 days old, with no person's sign-off (Brandon / KZ4CP, after the Nov 2 restart; or signed YES and not yet released) means no new build
@@ -93,6 +97,9 @@ jobs:
           # build step's 335). Two slow jobs at most; the other countries are split as before.
           SLOW: ${{ vars.KPC_WORLD_SLOW || 'AU' }}
           SLOW_MIN: ${{ vars.KPC_WORLD_SLOW_MIN || '300' }}
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12: shadow (default) | add (D1 step 1) | reuse (step 3): not before the owner signs D1-D9
+          FULL_REBUILD: ${{ inputs.full_rebuild }}
+          KPC_SAVED_ONLY_HOSTS: ${{ vars.KPC_SAVED_ONLY_HOSTS }}
         run: |
           if [ "${SKIP:-}" = 1 ]; then echo 'groups=[]' >> "$GITHUB_OUTPUT"; exit 0; fi
           [ -n "${NIGHT_LIST:-}" ] && COUNTRIES="$NIGHT_LIST"
@@ -112,7 +119,19 @@ jobs:
           done
           EXPECTED=$(python3 .github/scripts/kpc_world_key_join.py expected --file data/outlines/world-expected-holds.approved.json --countries "$ALL" --key data/world-key --cache cache/world) || exit 1
           export EXPECTED; echo "expected=$EXPECTED" >> "$GITHUB_OUTPUT"
-          if [ -z "${COUNTRIES:-}" ] && [ -z "$EXPECTED" ]; then echo 'full=1' >> "$GITHUB_OUTPUT"; else echo 'full=0' >> "$GITHUB_OUTPUT"; fi   # Nov 4 (links-04)
+          # Nov 12 (KPC owner, 2026-11-12; per-area input hashes, handoff part B): each country's input hash (its layers, overrides, signed
+          # baseline, host verdicts, POTA pins, the shared code). SHADOW by default: the table is printed and the list is NOT changed.
+          # add = also build every country whose inputs moved since its last build (nothing removed); reuse = also leave out a country whose
+          # inputs did not move (main's bytes stay); full_rebuild=yes = no reuse. The POTA pins come from KPC-Data (public, read only).
+          rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
+            && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
+          WANT=$(for c in $ALL; do case " $EXPECTED " in *" $c "*) ;; *) printf '%s ' "$c" ;; esac; done)
+          ALL=$(python3 .github/scripts/kpc_area_hash.py plan world --list "$WANT" --mode "$AREA_MODE" --full "$FULL_REBUILD" $([ -d .pi ] && echo --data .pi) \
+                --var "KPC_SAVED_ONLY_HOSTS=$KPC_SAVED_ONLY_HOSTS" --out "$RUNNER_TEMP/area-plan.json") || ALL="$WANT"; export ALL
+          rm -rf .pi
+          echo "area_plan=$(cat "$RUNNER_TEMP/area-plan.json" 2>/dev/null || echo '{}')" >> "$GITHUB_OUTPUT"
+          REUSED=$(python3 -c "import json; print(' '.join(json.load(open('$RUNNER_TEMP/area-plan.json')).get('reused') or []))" 2>/dev/null || true)   # ok: no plan file = nothing reused
+          if [ -z "${COUNTRIES:-}" ] && [ -z "$EXPECTED" ] && [ -z "$REUSED" ]; then echo 'full=1' >> "$GITHUB_OUTPUT"; else echo 'full=0' >> "$GITHUB_OUTPUT"; fi   # Nov 4 (links-04); Nov 12: a reused country = not a full build
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
           cs = [c for c in dict.fromkeys(os.environ['ALL'].upper().split()) if c not in set((os.environ.get('EXPECTED') or '').split())]   # Nov 12: expected holds are not built
@@ -258,6 +277,7 @@ jobs:
             [ -d data/world-bounds/$c ] && cp -r data/world-bounds/$c part/world-bounds/
           done
           for f in index.json layers.json eea-designations.json jp-wikidata.json outline-test.json; do [ -f data/world-key/$f ] && cp data/world-key/$f part/world-key/; done
+          git rev-parse HEAD > part/built-sha.txt   # Nov 12 (KPC owner, 2026-11-12): the commit this job built from (an area hash is stamped only when it is the plan's)
           # Nov 11 (KPC owner, 2026-11-11): the master gate verdict goes INTO the part, last, with the sha256 of every file in it. The join
           # holds (does not save) every country of a part with no verdict, a gate that did not say green, or files that are not the listed ones.
           python3 .github/scripts/kpc_world_key_join.py verdict --part part --countries "$MINE" --rc-file "$RUNNER_TEMP/master-gate.rc" --short-file "$RUNNER_TEMP/master-short.txt" || { kpc_rc=$?; echo "::error title=Master gate verdict::not written (exit $kpc_rc): the join holds this job's countries"; echo "Master gate verdict - not written (exit $kpc_rc): the join holds this job's countries" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
@@ -460,14 +480,39 @@ jobs:
           KPC_HELD_EXPECTED: ${{ needs.plan.outputs.expected }}   # Nov 12: kept from main, not rebuilt: complete false, held_expected
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
+          AREA_PLAN: ${{ needs.plan.outputs.area_plan }}
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12 (Quality #163): shadow (default) = stamp-rows writes nothing to the key
         run: |
           export KPC_PLANNED_AREAS="$(python3 -c "import json; print(' '.join(json.load(open('/tmp/world-join.json')).get('joined') or []))")"
           export KPC_ASKED_AREAS="$(python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS" | tr '\n' ' ')"
           python3 .github/scripts/kpc_key_freeze.py stamp world-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc): nothing is saved"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
+          # Nov 12 (part B): each SAVED country's row records its area hash, parts, out_sha and built_sha (only when the build checked out the
+          # plan's commit); areas_rebuilt / areas_reused at the top for Quality. Kept rows are not touched.
+          printf '%s' "$AREA_PLAN" > "$RUNNER_TEMP/area-plan.json"
+          BS=$(cat parts/world-key-part-*/built-sha.txt 2>/dev/null | sort -u); [ "$(printf '%s\n' "$BS" | grep -c .)" = 1 ] || BS=mixed
+          # Nov 12 (KPC owner, 2026-11-12; Quality #163): SHADOW WRITES NOTHING: unless KPC_AREA_HASH is add / reuse, the stamp rows go to
+          # $RUNNER_TEMP/area-stamp-shadow/ (uploaded as an artifact) and the job summary; index.json is left byte for byte
+          python3 .github/scripts/kpc_area_hash.py stamp-rows world --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/world.json" --index data/world-key/index.json --saved "$KPC_PLANNED_AREAS" --plan "$RUNNER_TEMP/area-plan.json" --built-sha "$BS" \
+            || { kpc_rc=$?; echo "::warning title=Area hashes::the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)"; echo "Area hashes - the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Kept from main, checked again just before the save (Nov 12, KPC owner, 2026-11-12; fail closed)
         id: kept_check
         if: ${{ !cancelled() && steps.join_verdict.outcome == 'success' && steps.tonight.outputs.built != '0' }}
         run: python3 .github/scripts/kpc_area_join.py assert-kept --record /tmp/world-join.json --key-dir data/world-key
+      - name: Whole-key sanity check (Nov 12, part B; read only, reported) - rows vs files, out_sha, no key-wide claim beyond the rows
+        id: kept_green_sanity
+        continue-on-error: true
+        if: ${{ !cancelled() && steps.join_verdict.outcome == 'success' && steps.tonight.outputs.built != '0' }}
+        run: python3 .github/scripts/kpc_area_hash.py sanity world
+      - name: Area hashes, shadow record (Nov 12, KPC owner, 2026-11-12) - what the stamp WOULD record, as an artifact (never committed)
+        id: kept_green_area_shadow   # Quality #163 must-fix: an upload that fails is reported by 'Report hidden failures', never blocks the key
+        continue-on-error: true
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: area-stamp-shadow-world
+          path: ${{ runner.temp }}/area-stamp-shadow/
+          if-no-files-found: ignore
+          retention-days: 30
       - name: Save
         # Nov 11 (KPC owner, 2026-11-11): only after the join itself finished (a join that stopped part way leaves no 'built' and saves nothing)
         # Nov 12 (KPC owner, 2026-11-11): never on a cancel (a cancel mid-join skips this step: nothing half-written is committed)

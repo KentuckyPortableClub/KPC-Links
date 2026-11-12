@@ -31,6 +31,9 @@ on:
       refresh:
         description: "all = the FRESH START (Nov 10): the master step walks every layer of every state (layers.json + state-gis.json) and refills or verifies it from allowed sources; what a bot may not fetch goes on the needs-download list; a smaller re-read never replaces the saved copy. Blank = the normal run. By hand only (no cron)."
         default: ''
+      full_rebuild:
+        description: "yes = build every listed state, never reuse one (per-area hashes, Nov 12; reuse is off unless the repo variable KPC_AREA_HASH=reuse)"
+        default: ''
 permissions:
   contents: write
   issues: write
@@ -86,9 +89,15 @@ jobs:
           # KPC_SAVE_MODE (repo variable) = overwrite (default) | rebase (the old way, still loud).
           KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" bash .github/scripts/kpc_save_overwrite.sh "Key: chat 11's answers applied (BOT A)" 'bash /tmp/bota.sh' -- data/us-key/overrides.json data/us-key/answers-applied.json data/us-key/answers-states.txt data/state-gis.json data/ca-key/answers-provinces.txt data/ca-key/overrides.json data/ca-key/answers-applied.json data/world-key/answers-countries.txt data/world-key/extra-layers.json data/world-key/overrides.json data/world-key/answers-applied.json
           rm -rf kpcdata
+      - name: Area hashes - the POTA pins (KPC-Data, public, read only; Nov 12, KPC owner, 2026-11-12)
+        run: |
+          rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
+            && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
       - id: p
         env:
           STATES: ${{ inputs.states || (inputs.refresh == 'all' && 'all' || '') }}   # Nov 10: refresh=all with no states = every state
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12: shadow (default) | add (D1 step 1) | reuse (step 3): not before the owner signs D1-D9
+          FULL_REBUILD: ${{ inputs.full_rebuild }}
           FORCE: ${{ inputs.force }}
           NJOBS: ${{ inputs.jobs }}
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
@@ -141,8 +150,20 @@ jobs:
           else:                                                                                               # BOT B: only the states new answers touched
               try: st = [x for x in open('data/us-key/answers-states.txt').read().split() if x != 'KY']
               except Exception: st = []
-              if not st:
+              if not st and (os.environ.get('AREA_MODE') or 'shadow') not in ('add', 'reuse'):
                   print('groups=[]'); print('::notice title=US key plan::no new answers and no states given: nothing to rebuild', file=__import__('sys').stderr); raise SystemExit(0)
+          # Nov 12 (KPC owner, 2026-11-12; per-area input hashes, handoff part B): each state's input hash (its layers, overrides, boxes,
+          # host verdicts, POTA pins, the shared code). SHADOW by default: the table is printed and the list is NOT changed. add = also build
+          # every state whose inputs moved since its last build (nothing removed); reuse = also leave out a state whose inputs did not move;
+          # full_rebuild=yes = no reuse. An error here = the list as planned (never a reuse).
+          import subprocess as _sp, sys as _sys
+          _ah = _sp.run([_sys.executable, '.github/scripts/kpc_area_hash.py', 'plan', 'us', '--list', ' '.join(st), '--mode', os.environ.get('AREA_MODE') or 'shadow',
+                         '--full', os.environ.get('FULL_REBUILD') or '', *(['--data', '.pi'] if os.path.isdir('.pi') else []),
+                         '--out', os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'area-plan.json')], capture_output=True, text=True)
+          _sys.stderr.write(_ah.stderr)
+          if _ah.returncode == 0: st = [x for x in _ah.stdout.split() if x in ALL]
+          if not st:
+              print('groups=[]'); print('::notice title=US key plan::nothing to rebuild (no new answers, no states given, no state whose inputs moved, or every state reused)', file=__import__('sys').stderr); raise SystemExit(0)
           n = max(1, min(3, int(os.environ.get('NJOBS') or 3), len(st)))
           try: sec = {k: (v.get('seconds') or 60) for k, v in json.load(open('data/us-key/index.json'))['states'].items()}
           except Exception: sec = {}
@@ -365,6 +386,13 @@ jobs:
           # Nov 11: only the zip copies THIS build wrote (a stale checkout copy sent by a later group replaced a new one); the join checks the owner
           find data/us-key -maxdepth 1 -name 'zip-*.json' -newer "$RUNNER_TEMP/key-t0" -exec cp {} part/ \;
           echo "$STATES" > part/states.txt; cp us-key-${{ matrix.g.i }}.log part/
+          # Nov 12 (KPC owner, 2026-11-12; part B): this job's own checkout and its states' input hashes (the plan job's checkout can be older:
+          # BOT A saves in the plan job), so a saved state is stamped with the hash of what it was built from. Shadow: nothing is decided here.
+          git rev-parse HEAD > part/built-sha.txt
+          rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
+            && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || rm -rf .pi
+          python3 .github/scripts/kpc_area_hash.py plan us --list "$STATES" --mode shadow $([ -d .pi ] && echo --data .pi) --out part/area-plan.json > /dev/null || { kpc_rc=$?; echo "::warning title=Area hashes::not computed for this job's states (they are planned again) (exit $kpc_rc)"; echo "Area hashes - not computed for this job's states (they are planned again) (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          rm -rf .pi
           if [ -s /tmp/shape-guard-fail ]; then cp /tmp/shape-guard-fail part/shape-guard-fail; fi
           { cat /tmp/shape-guard-failed-states 2>/dev/null; cat /tmp/not-built-states.txt 2>/dev/null; true; } | sort -u | grep . > part/failed-states.txt || rm -f part/failed-states.txt   # ok: none failed = no file
           if [ -s "$RUNNER_TEMP/master-short.txt" ]; then cp "$RUNNER_TEMP/master-short.txt" part/master-short.txt; fi   # Nov 10: states NOT built (short saved copy); the join keeps them on the rebuild list
@@ -608,6 +636,7 @@ jobs:
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'shadow' }}   # Nov 12 (Quality #163): shadow (default) = stamp-rows writes nothing to the key
         run: |
           : > /tmp/kpc-build-failed.txt
           # Owner rule, 2026-11-10: a planned state whose group sent no part (or no states.txt) was never built: named failed
@@ -626,7 +655,27 @@ jobs:
             export KPC_BUILD_FAILED_FILE=/tmp/kpc-build-failed.txt
             echo "::notice title=US key stamp::parts named failed: $(tr '\n' ' ' < /tmp/kpc-build-failed.txt)"
           fi
+          export KPC_STAMPED_SAVED="$(echo "$KPC_PLANNED_AREAS" | tr ' ' '\n' | grep -vxF -f /tmp/kpc-build-failed.txt | tr '\n' ' ')"
           python3 .github/scripts/kpc_key_freeze.py stamp us-key | tail -1 > /tmp/build-id.txt; rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { echo "::error title=kpc_key_freeze.py::the stamp stopped with an error (exit $rc), see the log above"; echo "kpc_key_freeze.py stamp - stopped with an error (exit $rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
+          # Nov 12 (part B): each SAVED state's row records its area hash, parts, out_sha and built_sha from its own part (kept rows untouched)
+          # Nov 12 (KPC owner, 2026-11-12; Quality #163): SHADOW WRITES NOTHING: unless KPC_AREA_HASH is add / reuse, the stamp rows go to
+          # $RUNNER_TEMP/area-stamp-shadow/ (uploaded as an artifact) and the job summary; index.json is left byte for byte
+          python3 .github/scripts/kpc_area_hash.py stamp-rows us --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/us.json" --index data/us-key/index.json --saved "$KPC_STAMPED_SAVED" $(for d in parts/us-key-part-*; do printf -- '--part %s ' "$d"; done) \
+            || { kpc_rc=$?; echo "::warning title=Area hashes::the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)"; echo "Area hashes - the saved rows were not given their area hash: they are planned again next run (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+      - name: Whole-key sanity check (Nov 12, part B; read only, reported) - rows vs files, out_sha, no key-wide claim beyond the rows
+        id: kept_green_sanity
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_area_hash.py sanity us
+      - name: Area hashes, shadow record (Nov 12, KPC owner, 2026-11-12) - what the stamp WOULD record, as an artifact (never committed)
+        id: kept_green_area_shadow   # Quality #163 must-fix: an upload that fails is reported by 'Report hidden failures', never blocks the key
+        continue-on-error: true
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: area-stamp-shadow-us
+          path: ${{ runner.temp }}/area-stamp-shadow/
+          if-no-files-found: ignore
+          retention-days: 30
       - name: BOT C line for chat 11 (HQ Oct 30) - this build vs the LIVE key, one line in its inbox
         id: kept_green_3
         continue-on-error: true
