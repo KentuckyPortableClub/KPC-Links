@@ -1,0 +1,192 @@
+{
+ "about": "Settled negatives: dead ends from the Nov 11 2026 mystery-parks pass. Do not search them again. Entries with miss_proves_nothing=true are the reverse: a miss there is no evidence, so look elsewhere. Human note: settled-negatives.md. Read only; nothing here writes a key, an override or a pin.",
+ "source": "Nov 11 2026 notes (nov11/MYSTERY_PARKS_NOV11_NOTES.md), section 9; layer rows in sources/research-sources-all.csv",
+ "date": "2026-11-11",
+ "vocabulary": [
+  "match",
+  "no boundary exists",
+  "wrong pin",
+  "other",
+  ""
+ ],
+ "negatives": [
+  {
+   "id": "blm-no-site-polygons",
+   "kind": "no-site-level-polygons",
+   "scope": "BLM state offices: Idaho, Wyoming, Utah, Nevada, California",
+   "statement": "BLM publishes no site-level polygons at state level. Idaho has only SRMAs (the bigger place, never taken); Wyoming has points; Utah has congressional recreation areas only; Nevada has nothing; California has nothing at Laguna Mountain (US-13513, nothing within 8 km). An official BLM point may be recorded as an official point, never as a boundary.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-ID",
+    "US-WY",
+    "US-UT",
+    "US-NV",
+    "US-CA"
+   ],
+   "hosts": [
+    "gis.blm.gov"
+   ],
+   "layers": [
+    "https://gis.blm.gov/idarcgis/rest/services/recreation/BLM_ID_Recreation_Area_Polygons",
+    "https://gis.blm.gov/caarcgis/rest/services/Recreation/BLM_CA_RMA/MapServer/0",
+    "https://gis.blm.gov/utarcgis/rest/services/Recreation"
+   ],
+   "refs": [
+    "US-13513"
+   ],
+   "do_not": "search these BLM state layers again for a site polygon"
+  },
+  {
+   "id": "no-named-polygon-wa-dnr",
+   "kind": "no-named-polygon",
+   "scope": "Washington DNR",
+   "statement": "Washington DNR has no polygon named for the mystery unit (points only; the pins sit in unnamed trust parcels). Parcels or parent units are not the park.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-WA"
+   ],
+   "do_not": "search this agency layer again for the same mystery unit"
+  },
+  {
+   "id": "no-named-polygon-sfwmd",
+   "kind": "no-named-polygon",
+   "scope": "South Florida Water Management District",
+   "statement": "South Florida Water Management District has no polygon named for the mystery unit (parcel and point evidence only). Parcels or parent units are not the park.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-FL"
+   ],
+   "do_not": "search this agency layer again for the same mystery unit"
+  },
+  {
+   "id": "no-named-polygon-ar-gf",
+   "kind": "no-named-polygon",
+   "scope": "Arkansas Game and Fish Commission",
+   "statement": "Arkansas Game and Fish Commission has no polygon named for the mystery unit. Parcels or parent units are not the park.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-AR"
+   ],
+   "do_not": "search this agency layer again for the same mystery unit"
+  },
+  {
+   "id": "no-named-polygon-nj-dep",
+   "kind": "no-named-polygon",
+   "scope": "New Jersey DEP",
+   "statement": "New Jersey DEP has no polygon named for the mystery unit. Parcels or parent units are not the park.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-NJ"
+   ],
+   "do_not": "search this agency layer again for the same mystery unit"
+  },
+  {
+   "id": "no-named-polygon-mo-mdc",
+   "kind": "no-named-polygon",
+   "scope": "Missouri Department of Conservation",
+   "statement": "Missouri Department of Conservation has no polygon named for the mystery unit. Parcels or parent units are not the park.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-MO"
+   ],
+   "do_not": "search this agency layer again for the same mystery unit"
+  },
+  {
+   "id": "no-named-polygon-mi-state",
+   "kind": "no-named-polygon",
+   "scope": "Michigan state layers",
+   "statement": "Michigan state layers has no polygon named for the mystery unit. Parcels or parent units are not the park.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-MI"
+   ],
+   "do_not": "search this agency layer again for the same mystery unit"
+  },
+  {
+   "id": "no-named-polygon-vt-anr",
+   "kind": "no-named-polygon",
+   "scope": "Vermont ANR",
+   "statement": "Vermont ANR has no polygon named for the mystery unit (points only (units 7132 Boulder Beach and 7111 Little River are points)). Parcels or parent units are not the park.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-VT"
+   ],
+   "do_not": "search this agency layer again for the same mystery unit"
+  },
+  {
+   "id": "no-named-polygon-ut-dwr",
+   "kind": "no-named-polygon",
+   "scope": "Utah Division of Wildlife Resources",
+   "statement": "Utah Division of Wildlife Resources has no polygon named for the mystery unit. Parcels or parent units are not the park.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-UT"
+   ],
+   "do_not": "search this agency layer again for the same mystery unit"
+  },
+  {
+   "id": "nv-dot-scenic-byways",
+   "kind": "no-layer",
+   "scope": "Nevada DOT",
+   "statement": "Nevada DOT has no scenic-byway layer.",
+   "miss_proves_nothing": false,
+   "states": [
+    "US-NV"
+   ],
+   "do_not": "look for a Nevada DOT byway layer again"
+  },
+  {
+   "id": "no-boundary-exists-15",
+   "kind": "settled-answer-rows",
+   "scope": "Nov 11 answers file: the 15 rows answered \"no boundary exists\"",
+   "statement": "All 15 stand. The official source shows a road, a roadside marker, a route or a single monument: there is no land unit to outline. A second look (follow-up pass) added ids and points and kept every answer.",
+   "miss_proves_nothing": false,
+   "refs": [
+    "US-10861",
+    "US-11769",
+    "US-13260",
+    "US-13261",
+    "US-13263",
+    "US-13264",
+    "US-13268",
+    "US-13277",
+    "US-13302",
+    "US-13452",
+    "US-13466",
+    "US-13468",
+    "US-6043",
+    "US-6047",
+    "US-7436"
+   ],
+   "do_not": "search these parks for a boundary again"
+  },
+  {
+   "id": "tn-natural-areas-incomplete",
+   "kind": "incomplete-layer",
+   "scope": "Tennessee TDEC Division of Natural Areas layer",
+   "statement": "The layer is incomplete (no Ozone Falls, Window Cliffs or Sellars Farm; Pogue Creek Canyon has only a 58-acre piece 6.7 km away). A miss on this layer proves nothing: use PAD-US from USGS, the other official polygon.",
+   "miss_proves_nothing": true,
+   "states": [
+    "US-TN"
+   ],
+   "hosts": [
+    "tdeconline.tn.gov"
+   ],
+   "layers": [
+    "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/MapServer/0"
+   ],
+   "do_not": "treat a miss on this layer as \"no boundary\""
+  },
+  {
+   "id": "nrhp-withholds-sensitive-sites",
+   "kind": "withheld-sensitive-sites",
+   "scope": "National Park Service National Register public layer",
+   "statement": "The public layer withholds sensitive sites (Spiro Mounds and Fort Towson are absent). A miss there proves nothing for such sites.",
+   "miss_proves_nothing": true,
+   "hosts": [
+    "mapservices.nps.gov"
+   ],
+   "do_not": "treat a National Register miss as \"no boundary\" for a sensitive site"
+  }
+ ]
+}
