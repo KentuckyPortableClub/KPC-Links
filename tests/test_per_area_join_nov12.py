@@ -589,7 +589,7 @@ GIT_ID = ['-c', 'user.name=t', '-c', 'user.email=t@t']
 def wb_tree(bare):
     """{path: bytes} of every file on the branch world-bounds of the bare repo (None if there is no such branch)."""
     if git(bare, 'rev-parse', '-q', '--verify', 'refs/heads/world-bounds').returncode: return None
-    names = git(bare, 'ls-tree', '-r', '--name-only', 'world-bounds').stdout.split()
+    names = [n for n in git(bare, 'ls-tree', '-r', '-z', '--name-only', 'world-bounds').stdout.split('\0') if n]
     return {n: subprocess.run(['git', 'show', f'world-bounds:{n}'], cwd=bare, capture_output=True).stdout for n in names}
 
 
@@ -648,6 +648,23 @@ for label, branch, kw in (('the branch cannot be fetched (origin unreachable)', 
         rc, out, errs = wb_run(t, work, bare, {'BE': {'a.json': '{"BE": 1}\n'}}, **kw)
         check(f'B1 {label}: NO push (the branch is byte for byte as before), the step fails, ::error + a caught-error line',
               wb_tree(bare) == before and rc == 1 and '::error title=World outlines::branch world-bounds NOT pushed' in out and 'not pushed' in errs)
+
+# Quality #162 should-fix: the file lists are compared NUL-separated
+check('B1 workflow: the two file lists are NUL-separated (git ls-tree -z, find -print0, sort -z, cmp)',
+      all(x in WB['run'] for x in ('git ls-tree -r -z --name-only FETCH_HEAD', 'find data/world-bounds ! -type d -print0', 'LC_ALL=C sort -z', 'cmp -s "$W" "$H"')))
+ODD = {'data/world-bounds/AT/p\ndata/world-bounds/AT/q': '{"odd": 1}\n', 'data/world-bounds/DE/a b.json': '{"DE": 1}\n'}
+with tempfile.TemporaryDirectory() as td:
+    t = pathlib.Path(td); bare, work = wb_setup(t, ODD)
+    rc, out, errs = wb_run(t, work, bare, {'BE': {'a.json': '{"BE": 1}\n'}})
+    after = wb_tree(bare)
+    check('B1 names with a newline or a space: a partial run pushes and keeps them byte for byte',
+          rc == 0 and all(after.get(n) == v.encode() for n, v in ODD.items()) and after.get('data/world-bounds/BE/a.json') == b'{"BE": 1}\n')
+with tempfile.TemporaryDirectory() as td:
+    t = pathlib.Path(td); bare, work = wb_setup(t, {'data/world-bounds/AT/p\ndata/world-bounds/AT/q': '{"odd": 1}\n'}); before = wb_tree(bare)
+    rc, out, errs = wb_run(t, work, bare, {'BE': {'a.json': '{"BE": 1}\n'}},
+                           tar_shim='cat > /dev/null; for a in "$@"; do [ "$p" = -C ] && d="$a"; p="$a"; done; mkdir -p "$d/data/world-bounds/AT"; echo x > "$d/data/world-bounds/AT/p"; echo x > "$d/data/world-bounds/AT/q"')
+    check('B1 one file named "p<newline>…/q" unpacked as two files p and q (equal line by line): NOT equal NUL-separated, no push',
+          wb_tree(bare) == before and rc == 1 and 'NOT pushed' in out)
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

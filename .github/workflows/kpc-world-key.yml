@@ -504,10 +504,12 @@ jobs:
           kpc_skip() { echo "::error title=World outlines::branch world-bounds NOT pushed: $1. A push now would keep only this run's countries and wipe every other country's saved outlines, so the branch is left as it is (rerun the world key once the branch can be read)"; echo "World outlines - branch world-bounds not pushed: $1" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
           git fetch -q origin world-bounds || kpc_skip "the branch could not be read (git fetch exit $?)"
           git archive FETCH_HEAD | tar -x -C $B || kpc_skip "the branch could not be unpacked (git archive / tar exit $?)"
-          want=$(git ls-tree -r --name-only FETCH_HEAD -- data/world-bounds | sort) || kpc_skip "the branch's file list could not be read (exit $?)"
-          [ -n "$want" ] || kpc_skip "the branch holds no saved outlines (data/world-bounds is missing or empty)"
-          have=$(cd $B && find data/world-bounds ! -type d | sort)
-          [ "$want" = "$have" ] || kpc_skip "what was unpacked ($(printf '%s\n' "$have" | grep -c .) files) is not every file the branch holds ($(printf '%s\n' "$want" | grep -c .))"
+          # Quality #162 should-fix: the two file lists are compared NUL-separated (a name with a newline or a space cannot fool the check)
+          W="$RUNNER_TEMP/wb-want.z"; H="$RUNNER_TEMP/wb-have.z"
+          git ls-tree -r -z --name-only FETCH_HEAD -- data/world-bounds | LC_ALL=C sort -z > "$W" || kpc_skip "the branch's file list could not be read (exit $?)"
+          [ -s "$W" ] || kpc_skip "the branch holds no saved outlines (data/world-bounds is missing or empty)"
+          if [ -d $B/data/world-bounds ]; then (cd $B && find data/world-bounds ! -type d -print0 | LC_ALL=C sort -z) > "$H" || kpc_skip "the unpacked file list could not be read (exit $?)"; else : > "$H"; fi
+          cmp -s "$W" "$H" || kpc_skip "what was unpacked ($(tr -cd '\0' < "$H" | wc -c) files) is not every file the branch holds ($(tr -cd '\0' < "$W" | wc -c))"
           for d in data/world-bounds/*/; do c=$(basename $d); rm -rf $B/data/world-bounds/$c; cp -r $d $B/data/world-bounds/$c; done   # only this run's countries
           cd $B && git init -q && git checkout -q -b world-bounds && git add -A && git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -qm "World saved outlines ($(date -u +%F)): one commit, replaced every rebuild" \
             || kpc_skip "the new branch commit could not be made (exit $?)"
