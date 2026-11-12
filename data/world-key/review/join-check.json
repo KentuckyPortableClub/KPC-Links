@@ -1,11 +1,11 @@
 {
  "key": "world",
  "mode": "hold",
- "files_checked": 18,
- "joined_parks": 26421,
+ "files_checked": 32,
+ "joined_parks": 13221,
  "suspect": 35,
- "held": 66,
- "files_changed": 10,
+ "held": 32,
+ "files_changed": 5,
  "official_acres_known": 0,
  "acres_check": "acres check off: no acres file",
  "approved_parks_known": 13514,
@@ -407,5 +407,17 @@
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   }
+ ],
+ "kept_from_main": [
+  "AT",
+  "AU",
+  "GB",
+  "JP",
+  "MT",
+  "MX",
+  "NI",
+  "NL",
+  "NZ",
+  "ZA"
  ]
 }

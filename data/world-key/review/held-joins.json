@@ -1,6 +1,6 @@
 {
  "key": "world",
- "count": 66,
+ "count": 69,
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
  "parks": [
@@ -157,6 +157,18 @@
    "held_ids": "znieff2.1517",
    "held_names": "Coteaux du Sousson de Samaran à Pavie",
    "reason": "the nearest part of the joined outline is 20.2 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "FR-16532",
+   "area": "FR",
+   "name": "agriates Biological Reserve",
+   "pin_km": 5.11,
+   "was_g": null,
+   "held_ids": "cdl.122",
+   "held_names": "AGRIATE",
+   "reason": "a new join (cdl.122): the nearest part is 5.1 km from the POTA pin (over 5 km for a new join)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
   },
@@ -325,6 +337,30 @@
    "held_ids": "znieff1.11094",
    "held_names": "La Garonne de Montréjeau jusqu'à Lamagistère",
    "reason": "the nearest part of the joined outline is 15.2 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "FR-9180",
+   "area": "FR",
+   "name": "Bancs d'Ophiothrix fragilis de la baie de Seine Biological Reserve",
+   "pin_km": 5.19,
+   "was_g": null,
+   "held_ids": "znieff2_mer.96",
+   "held_names": "Bancs d'Ophiothrix fragilis de la baie de Seine",
+   "reason": "a new join (znieff2_mer.96): the nearest part is 5.2 km from the POTA pin (over 5 km for a new join)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "FR-9184",
+   "area": "FR",
+   "name": "Fonds a Sabellaria spinulosa Biological Reserve",
+   "pin_km": 11.22,
+   "was_g": null,
+   "held_ids": "znieff2_mer.73",
+   "held_names": "Fonds à Sabellaria spinulosa",
+   "reason": "a new join (znieff2_mer.73): the nearest part is 11.2 km from the POTA pin (over 5 km for a new join)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
   },
@@ -796,5 +832,17 @@
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
   }
+ ],
+ "kept_from_main": [
+  "AT",
+  "AU",
+  "GB",
+  "JP",
+  "MT",
+  "MX",
+  "NI",
+  "NL",
+  "NZ",
+  "ZA"
  ]
 }
