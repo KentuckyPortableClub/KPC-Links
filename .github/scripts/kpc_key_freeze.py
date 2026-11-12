@@ -67,6 +67,8 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              # Nov 11 (KPC owner, 2026-11-11): the world key join, same rule per country: copies the parts' files, fails closed on a conflict,
              # never decides a join (the world rules hash does not move)
              'kpc_world_key_join.py',
+             # Nov 12 (KPC owner, 2026-11-12): per-area join helpers (review rows merged per area); never decides a join
+             'kpc_area_join.py',
              # Nov 7 (Brandon 4:55 PM CST): recommends a fix for each held park, writes only data/us-key/review/problem-solver.*
              'kpc_problem_solver.py',
              # Nov 9 amendment 2 (Brandon t943u/t942u): the research inbox + its xlsx converter recommend only, never decide a join

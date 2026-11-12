@@ -558,6 +558,15 @@ jobs:
           GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .as 2>/dev/null && git -C .as sparse-checkout set --no-cone data/answer-sheet 2>/dev/null && git -C .as checkout -q 2>/dev/null || { kpc_rc=$?; echo "::error title=Join check::KPC-Data answer sheet (public, read-only) not read (exit $kpc_rc): its exemptions are empty this build (more joins held)"; echo "Join check - KPC-Data answer sheet not read (exit $kpc_rc): its exemptions are empty this build (more joins held)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           python3 .github/scripts/kpc_join_check.py || { kpc_rc=$?; echo "::warning title=Join check::stopped (exit $kpc_rc); the key build is not affected"; }
           rm -rf .as
+      - name: Review files - every state not rebuilt this run keeps its rows from main (Nov 12, KPC owner, 2026-11-12)
+        # the join check writes held-joins.* / join-check.* whole from this run's changed state files only (a states= or nightly run dropped
+        # every other state's rows): every state whose key file this run did not change keeps its rows byte for byte
+        run: |
+          # if the merge itself fails, main's review files are put back whole: a later save can never carry the partial rewrite
+          if ! python3 .github/scripts/kpc_area_join.py keep-rows --unchanged --key-dir data/us-key --review data/us-key/review; then
+            git checkout -- data/us-key/review 2>/dev/null || true   # ok: the error line below is raised either way
+            echo "::error title=Review files::the review rows could not be merged: main's review files are kept whole"
+          fi
       - name: Problem solver (Brandon 4:55 PM CST Nov 7) - a RECOMMENDED fix for each held park (pin wrong / land wrong / same land new ID / sliver / wrong state / needs a person); recommends only, never applies, never moves a pin
         id: kept_green_solver
         continue-on-error: true
