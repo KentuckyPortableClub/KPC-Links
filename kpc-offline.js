@@ -7,6 +7,7 @@
     'kpc-ky-data.json', 'ky-trail-parks.json',
     'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson', 'ky-dbnf-owned.geojson',
     'ky-wild-rivers.geojson', 'ky-nps.geojson', 'ky-wilderness.geojson', 'ky-sheltowee.geojson', 'ky-pine-mountain.geojson', 'ky-dawkins.geojson',
+    'ky-fws.geojson', 'ky-usace.geojson', 'ky-padus-parks.geojson', 'ky-kpc-drawn.geojson', 'ky-lecl-auto.geojson',   // Nov 11: the other layers that are on by default (they now start after the page is idle, so a quick save still gets them)
     'KPC-logo.png', 'kpc-icon-32.png',
     'kpc-card-polish.css', 'kpc-card-polish.js'];   // Nov 8: park card polish (the trip planners save every loaded file already)
   /* Storage plan Step B (Oct 27): locations.json + locations-ky.json now also live on KPC-Data. Save both
@@ -49,7 +50,7 @@
 <p class="meta">Save Park Commander on this phone or computer before you leave home. After saving, these work with <b>no signal</b>:</p>
 <ul class="meta"><li>Park, summit and KFF search by name or reference, with park details</li><li>Your favorites and trip stops</li><li>“Am I inside a park?” with GPS — Kentucky boundaries, trails and wilderness</li></ul>
 <p class="meta"><b>Map tip:</b> before you go, open the map and zoom in around the park you’re heading to. Map areas you look at while online are kept for offline use (the whole map can’t be downloaded). Town search, live POTA spots and live GIS layers still need a signal.</p>
-<div class="toolbuttons"><button id="kpcOffSave" type="button">Save for offline (about 10 MB)</button><button id="kpcOffClear" class="secondary" type="button">Remove offline copy</button></div>
+<div class="toolbuttons"><button id="kpcOffSave" type="button">Save for offline (about 15 MB)</button><button id="kpcOffClear" class="secondary" type="button">Remove offline copy</button></div>
 <div class="kpc-off-bar" id="kpcOffBar"><i></i></div><p class="meta" id="kpcOffStatus" aria-live="polite"></p>`;
   const below = document.querySelector('#finder-planner') || document.querySelector('.mapgrid') || document.querySelector('#finder-results') || document.querySelector('#finder-map');
   const anchor = document.querySelector('#finder-search') || document.querySelector('main');
@@ -65,7 +66,7 @@
     try { have = !!(await caches.match('locations.json', { ignoreSearch: true })) || !!(await (await caches.open(APP)).match(new URL('locations.json', location.href).href)); } catch (_) {}
     const t = await tileCount();
     if (s && have) { stat.innerHTML = `<span class="kpc-off-ok">✓ Saved for offline</span> on ${when(s.t)} • ${mb(s.b)}${s.miss ? ` • ${s.miss} item${s.miss > 1 ? 's' : ''} couldn’t be saved` : ''} • ${t} map tile${t === 1 ? '' : 's'} kept. Tap Save again any time to refresh it.`; saveBtn.textContent = 'Refresh offline copy'; }
-    else { stat.textContent = t ? `Not saved yet • ${t} map tiles kept from browsing.` : 'Not saved yet.'; saveBtn.textContent = 'Save for offline (about 10 MB)'; if (s && !have) set(null); }
+    else { stat.textContent = t ? `Not saved yet • ${t} map tiles kept from browsing.` : 'Not saved yet.'; saveBtn.textContent = 'Save for offline (about 15 MB)'; if (s && !have) set(null); }
   }
   saveBtn.addEventListener('click', async () => {
     if (!navigator.onLine) { stat.textContent = 'You need a signal to save. Try again when you’re connected.'; return; }

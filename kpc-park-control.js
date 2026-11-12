@@ -70,12 +70,15 @@
       /* Oct 17 (Brandon: 'all state parks next to CoE land … same color as around US-1271'): the PAD-US pictures colour land by who RUNS it, so Corps
          land run by Kentucky (lake WMAs, some park land) looked like state land. ky-usace.geojson = land the Corps OWNS: always the same orange outline. */
       let CO = null, coP = null; const coSync = () => { const on = true;   /* Oct 18 (Brandon: the cyan PAD-US bits were confusing): land-owner picture OFF by default, Army Corps outline always on */
-        if (on && !CO && !coP) coP = fetch('ky-usace.geojson').then(r => r.ok ? r.json() : null).then(j => { if (!j) return; map.createPane('pcCorps').style.zIndex = 395;
+        if (on && !CO && !coP) coP = fetch('ky-usace.geojson?v=20261110us').then(r => r.ok ? r.json() : null).then(j => { if (!j) return; map.createPane('pcCorps').style.zIndex = 395;
           CO = L.geoJSON(j, { pane: 'pcCorps', renderer: L.svg({ pane: 'pcCorps' }), style: () => ({ color: '#ff8c38', weight: 2.6, opacity: 1, fill: true, fillOpacity: 0 }),
             onEachFeature: (f, l) => { const p = f.properties || {}; l.bindTooltip(`<b>Army Corps of Engineers land</b><br>${esc(p.NAME || '')}${p.MANAGER ? '<br>Run by: ' + esc(p.MANAGER) : ''}`, { sticky: true }); } });
           window.__pcCO = CO; coSync(); }).catch(() => {}).finally(() => { coP = null; });
         if (CO) { if (on && !map.hasLayer(CO)) CO.addTo(map); if (!on && map.hasLayer(CO)) map.removeLayer(CO); } };
-      map.on('layeradd layerremove', e => { if (e.layer === PAD.layer) coSync(); }); map.whenReady(() => setTimeout(coSync, 80)); } }
+      map.on('layeradd layerremove', e => { if (e.layer === PAD.layer) coSync(); });
+      /* Nov 11 (page size): the Corps outline (ky-usace.geojson, 2.2 MB) is still always on; it starts after the page has loaded and gone idle
+         (was 80 ms in), at the same address as the trip planners and Park Commander so a member who opened one of them does not download it again */
+      map.whenReady(() => { const run = () => ('requestIdleCallback' in window) ? requestIdleCallback(() => coSync(), { timeout: 2000 }) : setTimeout(coSync, 80); if (document.readyState === 'complete' || typeof window.addEventListener !== 'function') run(); else window.addEventListener('load', run, { once: true }); }); } }
   }
   /* Oct 18 (Brandon: 'add a spot to enter call sign and show me new to me parks'): the shared call sign panel (kpc-my-parks.js, same call as the
      other map tools). Faded dot = you activated it, orange ring = nobody has; NEW TO ME / ATNO / RARE hide the rest; list = Kentucky parks still new to you. */

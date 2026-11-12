@@ -18,7 +18,7 @@ html = (ROOT / 'kpc-planner-us.html').read_text(encoding='utf-8')
 finder = (ROOT / 'finder.html').read_text(encoding='utf-8')
 
 check('US planner turns on usOfficial (and keeps Kentucky official vectors)',
-      "KPCPad(map,{keyPos:'bottomleft',minz:7,skipKY:true,kyOfficial:true,usOfficial:true,parksInView:pinsInView})" in us)
+      "KPCPad(map,{keyPos:'bottomleft',minz:7,skipKY:true,kyOfficial:true,kyStart:FIRST,usOfficial:true,parksInView:pinsInView})" in us)
 check('Park Commander turns on usOfficial for other-state outlines',
       'KPCPad(map,{skipKY:true,legend:false,usOfficial:true,parksInView:function' in finder)
 check('usOfficial skips the PAD-US raster GridLayer',
@@ -58,14 +58,14 @@ check('every state that had no published outline file now has one',
 
 # no new data files in this change set — the test only reads existing published files
 check('stamps bumped on the US planner',
-      'kpc-padus-layer.js?v=20261111rule' in html and 'kpc-us-planner.js?v=20261111rule' in html
-      and 'kpc-bounds.js?v=20261111rule' in html)
+      'kpc-padus-layer.js?v=20261111z' in html and 'kpc-us-planner.js?v=20261111z' in html
+      and 'kpc-bounds.js?v=20261111z' in html)
 pages = list(ROOT.glob('*.html'))
 vs = {}
 for page in pages:
     for m in re.finditer(r'src="kpc-padus-layer\.js(\?v=[^"]*)?"', page.read_text(encoding='utf-8', errors='replace')):
         vs.setdefault(m.group(1) or '', []).append(page.name)
-check(f'kpc-padus-layer.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == ['?v=20261111rule'])
+check(f'kpc-padus-layer.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == ['?v=20261111z'])
 
 # commander tabs test no longer pins an old finder.js stamp (checked in its own file)
 tabs = (ROOT / 'tests/test_commander_tabs_nov10.py').read_text(encoding='utf-8')
@@ -91,7 +91,7 @@ check('no new outline files were added to data/outlines or data/world-bounds in 
 us = (ROOT / 'kpc-us-planner.js').read_text(encoding='utf-8')
 check('US planner park loader still skips non-US/CA POTA rows in locations.json',
       "if(r[0]==='POTA'&&i<nL&&!/^(US|CA)-/.test(r[1]))return;" in us
-      and "J('data/canada.json')" in us)
+      and "J('data/canada.json?v='" in us)   # Nov 11 (page size): same address as the outline layer's canadaRows
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

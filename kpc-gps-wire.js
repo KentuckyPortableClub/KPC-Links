@@ -13,7 +13,7 @@
   let BP = null;
   function needB() {   /* pages without kpc-bounds.js (the KY trip planner) load it the first time a file is made */
     if (window.KPCB) return Promise.resolve(window.KPCB);
-    return BP || (BP = new Promise(res => { const s = document.createElement('script'); s.src = 'kpc-bounds.js?v=20261111parts'; s.onload = () => res(window.KPCB || null); s.onerror = () => res(null); document.head.appendChild(s); }));
+    return BP || (BP = new Promise(res => { const s = document.createElement('script'); s.src = 'kpc-bounds.js?v=20261111z'; s.onload = () => res(window.KPCB || null); s.onerror = () => res(null); document.head.appendChild(s); }));
   }
   const LK = {};
   const look = ref => LK[ref] || (LK[ref] = needB().then(K => K && K.lookup ? K.lookup(ref) : null).catch(() => null));

@@ -389,7 +389,7 @@ pages = {'kpc-planner-us.html': ('kpc-bounds.js', 'kpc-padus-layer.js', 'kpc-us-
          'kpc-overlap-finder.html': ('kpc-bounds.js', 'kpc-padus-layer.js')}
 for h, js in pages.items():
     hs = (ROOT / h).read_text(encoding='utf-8', errors='replace')
-    check(f'{h} loads the part-aware loaders ({", ".join(js)}, ?v=20261111rule)', all(f'{j}?v=20261111rule' in hs for j in js))
+    check(f'{h} loads the part-aware loaders ({", ".join(js)}, ?v=20261111z)', all(f'{j}?v=20261111z' in hs for j in js))   # Nov 11 (page size): bumped again
 blk = lambda s: s[s.index('/* >>> kpc_released'):s.index('/* <<< kpc_released */')]
 srcs = [(ROOT / n).read_text(encoding='utf-8') for n in ('kpc-bounds.js', 'kpc-padus-layer.js', 'kpc-us-planner.js', 'kpc-gps.js')]
 check('the four KPCREL copies are the same and read parts on the working path', len({blk(s) for s in srcs}) == 1 and 'more(path, d, wk)' in blk(srcs[0]) and 'pieces(' in blk(srcs[0]))
