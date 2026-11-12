@@ -15,7 +15,7 @@ def ok(c, m):
 rd = lambda f: open(os.path.join(R, f), encoding='utf8').read()
 sw, off, trip, kit, lg = (rd(f) for f in ['kpc-finder-sw.js', 'kpc-offline.js', 'kpc-trip-offline.js', 'kpc-kit.js', 'kpc-logger.js'])
 for name, src in [('kpc-finder-sw.js', sw), ('kpc-offline.js', off), ('kpc-trip-offline.js', trip), ('kpc-kit.js', kit), ('kpc-logger.js', lg)]:
-    ok("kpc-finder-v1" in src and "kpc-tiles-v1" in src, f'{name} uses the cache names kpc-finder-v1 and kpc-tiles-v1')
+    ok("kpc-finder-v1" in src and ("kpc-tiles-v1" in src or name in ('kpc-logger.js', 'kpc-trip-offline.js') and "TILES" in src or name == 'kpc-logger.js'), f'{name} uses the cache name kpc-finder-v1 (and kpc-tiles-v1 where it still names it)')
     ok(not re.search(r"kpc-(finder|tiles)-v[02-9]", src), f'{name} has no renamed cache name')
 ok("k !== APP && k !== TILES" in sw, 'the worker only ever deletes caches other than the two named ones')
 ok(not re.search(r"caches\.delete\((?!APP\)|TILES\)|k\))", sw), 'the worker has no other cache delete')
@@ -41,6 +41,15 @@ ok("<b>${esc(q.call)}</b>: <b>OK</b>" in lg and "<b>${q.call}</b>" not in lg, 'l
 ok("'Bad-' + raw.length" in lg, 'logger: a saved log that cannot be read is copied aside before the empty one is started')
 # packers keep released ?v=
 ok("REL.test(k.pathname)" in trip and "REL.test(k.pathname)" in kit, 'kit and trip planner save a released file under its own ?v=')
+# Nov 11 (owner): no tile prefetch in any packer
+for n, src in [('kpc-kit.js', kit), ('kpc-trip-offline.js', trip), ('kpc-logger.js', lg), ('kpc-offline.js', off)]:
+    code = re.sub(r"/\*.*?\*/", "", src, flags=re.S)
+    hits = [l for l in code.splitlines() if 'tile.openstreetmap' in l and 'tileLayer' not in l]
+    ok(not hits, f'{n}: no code builds or fetches tile.openstreetmap.org addresses outside the map layer ({len(hits)})')
+    ok('tileList' not in code and 'saveTiles' not in code and 'map pieces' not in code and 'street-map pieces' not in code, f'{n}: no tile list, tile saver or "map pieces" count left')
+ok('tc.put' not in kit and 'tc.put' not in trip and "caches.open('kpc-tiles-v1')" not in lg, 'packers never write to the tile cache')
+ok('crossOrigin: true' in kit and 'crossOrigin: true' in lg, 'kit and logger map layers ask for tiles with CORS so a tile the member looked at can be kept')
+ok('already looked at while online' in kit and 'already looked at while online' in trip and 'already looked at while online' in lg, 'save messages say honestly that only viewed map areas are kept')
 # node worker test
 if shutil.which('node'):
     r = subprocess.run(['node', os.path.join(R, 'tests', 'sw_sim_nov11.js')], capture_output=True, text=True, cwd=R)

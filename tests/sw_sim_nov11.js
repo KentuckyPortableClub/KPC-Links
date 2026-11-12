@@ -106,5 +106,13 @@ const ok200 = (body, extra) => new Response(body, Object.assign({ status: 200 },
   { const e = env(); e.net = async () => ({ ok: false, status: 0, type: 'opaque', clone() { return this; } });
     await e.fire('https://a.tile.openstreetmap.org/3/1/1.png'); await new Promise(r => setTimeout(r, 30));
     ok((await e.keys('kpc-tiles-v1')).length === 0, 'an opaque (no-cors) tile answer is not saved (it could count for megabytes)'); }
+  /* Nov 11 (owner): the worker only keeps tiles the page asked for; it never fetches on its own */
+  { const e = env(); const seen = []; e.net = async req => { seen.push(req.url); return ok200('png'); };
+    await e.fire('https://a.tile.openstreetmap.org/12/100/200.png'); await new Promise(r => setTimeout(r, 60));
+    ok(seen.length === 1 && /12\/100\/200/.test(seen[0]), 'a viewed tile causes exactly one request: no neighbours, no refresh, no prefetch (' + seen.length + ')');
+    await new Promise(r => setTimeout(r, 200)); ok(seen.length === 1, 'and nothing is requested later on its own');
+    e.net = async () => { throw new TypeError('offline'); };
+    const hit = await e.fire('https://tile.openstreetmap.org/12/100/200.png'); ok(await e.text(hit) === 'png', 'offline: the tile the member viewed online is served from the cache');
+    const miss = await e.fire('https://tile.openstreetmap.org/12/101/200.png'); ok(miss.res.type === 'error', 'offline: a tile never viewed is a plain network error (the map shows its empty tile)'); }
   console.log(bad ? bad + ' FAILED' : 'ALL PASSED'); process.exit(bad ? 1 : 0);
 })().catch(e => { console.log('FAIL worker test crashed: ' + e.stack); process.exit(1); });

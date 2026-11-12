@@ -117,6 +117,21 @@ def main():
         inj = p.evaluate("document.querySelectorAll('img[src=x],img[src=X]').length"); pwn = p.evaluate("window.__pwn")
         ok(inj == 0 and pwn == 0, f'an imported ADIF with HTML in CALL / NAME / QTH / NOTES / STATE / RST / COMMENT injects nothing (injected images {inj}, ran {pwn})'); c.close()
         os.remove('/tmp/_kpc_xss_test.adi')
+        # --- 9. the save buttons fetch no map tiles at all, but still save the files ---
+        import re as _re
+        data = json.load(open(os.path.join(ROOT, 'kpc-ky-data.json'))); ref = data['parks'][0]['c']
+        for pg, act in [('kpc-kit.html?ref=' + ref, "document.getElementById('kitSave').click()"),
+                        ('kpc-planner-us.html', "KPCTripOffline.save({stops:[{la:37.18,lo:-86.1},{la:38.2,lo:-85.7}], files:['kpc-us-states.json'], msg:document.body.appendChild(document.createElement('p')), key:'t'})"),
+                        ('kpc-logger.html?old=1', "(localStorage.setItem('kpcLgSet',JSON.stringify({me:[37.18,-86.1]})),document.getElementById('aSave').click())")]:
+            c = ctx(b); tried = []
+            c.on('request', lambda r: tried.append(r.url) if not r.url.startswith(BASE) and not r.url.startswith(('data:', 'blob:')) else None)
+            p = load(c, pg, 2500); sw_ready(p); p.evaluate(act); p.wait_for_timeout(6000)
+            tiles = [u for u in tried if 'openstreetmap.org' in u]; names = p.evaluate("caches.keys()")
+            kf = cache_keys(p, 'kpc-finder-v1') if 'kpc-finder-v1' in names else []
+            tk = cache_keys(p, 'kpc-tiles-v1') if 'kpc-tiles-v1' in names else []
+            ok(not tiles and not tk, f'{pg.split("?")[0]}: a save run makes ZERO requests to tile.openstreetmap.org and puts nothing in the tile cache ({len(tiles)} tried, {len(tk)} stored)')
+            ok(len(kf) > 3, f'{pg.split("?")[0]}: the save still stores the pages / scripts / data ({len(kf)} files)')
+            c.close()
         b.close()
     print('ALL PASSED' if not fails else f'{fails} FAILED'); sys.exit(1 if fails else 0)
 main()

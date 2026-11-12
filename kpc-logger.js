@@ -771,7 +771,7 @@
     MAP = window.L.map('mMap', { worldCopyJump: true, zoomControl: true }).setView([37.8, -85.7], 5);
     const SAT = window.L.layerGroup([window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }),
       window.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18 })]);
-    const STR = window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
+    const STR = window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap', crossOrigin: true });
     const base = b => { [SAT, STR].forEach(l => MAP.removeLayer(l)); (b === 'street' ? STR : SAT).addTo(MAP); document.querySelectorAll('[data-mb]').forEach(x => x.classList.toggle('on', x.dataset.mb === b)); };
     document.querySelectorAll('[data-mb]').forEach(x => x.onclick = () => { put('kpcLgBase', x.dataset.mb); base(x.dataset.mb); });
     base(navigator.onLine === false ? 'street' : get('kpcLgBase', 'sat'));
@@ -926,21 +926,7 @@
     };
   }
 
-  function tileList(bb, z) { const n = 2 ** z, X = lo => Math.floor((lo + 180) / 360 * n), Y = la => { const r = la * Math.PI / 180; return Math.floor((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * n); };
-    const out = []; const x0 = Math.max(0, X(bb[0])), x1 = Math.min(n - 1, X(bb[2])), y0 = Math.max(0, Y(bb[3])), y1 = Math.min(n - 1, Y(bb[1]));
-    for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) out.push(`https://tile.openstreetmap.org/${z}/${x}/${y}.png`); return out; }
-  async function saveTiles(m) {
-    const me = meLL(); if (!me) return 0; const [la, lo] = me;
-    let T = tileList([-180, -70, 180, 75], 2).concat(tileList([-130, 15, -60, 55], 3), tileList([-128, 22, -64, 51], 4), tileList([lo - 12, la - 7, lo + 12, la + 7], 5), tileList([lo - 6, la - 3.5, lo + 6, la + 3.5], 6));
-    [[7, 1.5], [8, .8], [9, .4], [10, .2], [11, .1], [12, .05], [13, .03]].forEach(([z, d]) => { T = T.concat(tileList([lo - d * 1.4, la - d, lo + d * 1.4, la + d], z)); });
-    T = [...new Set(T)].slice(0, 1200);
-    const c = await caches.open('kpc-tiles-v1'); let done = 0;
-    for (let i = 0; i < T.length; i += 6) {
-      await Promise.all(T.slice(i, i + 6).map(async u => { try { if (await c.match(u)) { done++; return; } const r = await fetch(u, { mode: 'cors' }); if (r.ok) { await c.put(u, r); done++; } } catch (e) {} }));
-      m.textContent = `Saving the map around you… ${Math.min(100, Math.round((i + 6) / T.length * 100))}%`;
-    }
-    return done;
-  }
+  /* Nov 11 (owner): no map pictures are fetched ahead of time (the OpenStreetMap tile policy does not allow it); the map keeps only what was looked at while online (kpc-finder-sw.js) */
 
   /* ---------------- 📸 share my activation (a picture for Facebook / Discord / texts) ---------------- */
   const img = src => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });
@@ -1004,8 +990,7 @@
       const c = await caches.open('kpc-finder-v1'); let ok = 0, bad = 0;
       for (const u of urls) { try { const abs = new URL(u, location.href); const r = await fetch(abs.href, { cache: 'no-cache' }); if (r.ok) { await c.put(abs.origin === location.origin ? strip(abs.href) : abs.href, r.clone()); ok++; } else bad++; } catch (e) { bad++; } }
       PK = null; parkList();
-      let tl = 0; try { tl = await saveTiles(m); } catch (e) {}
-      m.className = 'lg-msg ' + (bad && !ok ? 'bad' : 'ok'); m.textContent = ok ? `✓ Saved (${ok} files${tl ? ' and ' + tl + ' map pieces around ' + (myParks()[0] || 'you') : ''}). The logger now opens and works with no signal on this device.${bad ? ' ' + bad + ' extra file(s) could not be saved.' : ''}` : 'Could not save (no signal?). Try again with signal.';
+      m.className = 'lg-msg ' + (bad && !ok ? 'bad' : 'ok'); m.textContent = ok ? `✓ Saved (${ok} files, the park list and your settings). The logger now opens and works with no signal on this device. Map pictures: only the areas you have already looked at while online are kept.${bad ? ' ' + bad + ' extra file(s) could not be saved.' : ''}` : 'Could not save (no signal?). Try again with signal.';
       put('kpcLgSaved', Date.now());
     };
     const t = get('kpcLgSaved', 0); if (t && !$('aMsg').textContent) { $('aMsg').className = 'lg-msg ok'; $('aMsg').textContent = '✓ Saved for no signal on ' + new Date(t).toLocaleDateString([], { month: 'short', day: 'numeric' }) + '. Tap again to refresh it.'; }
