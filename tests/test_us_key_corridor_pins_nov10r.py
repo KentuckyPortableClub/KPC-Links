@@ -8,7 +8,8 @@ import gzip, json, os, pathlib, subprocess, sys, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 KEY = ROOT / '.github/scripts/kpc_us_key.py'
-OVR = json.loads((ROOT / 'data/us-key/overrides.json').read_text(encoding='utf-8'))['parks']
+sys.path.insert(0, str(ROOT / '.github/scripts')); import kpc_overrides as _KOVR
+OVR = _KOVR.load(ROOT / 'data/us-key/overrides.json')['parks']
 ok = True
 
 

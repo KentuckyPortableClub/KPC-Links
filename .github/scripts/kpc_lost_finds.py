@@ -29,7 +29,11 @@ def main():
             state.setdefault(r, st); name[r] = p.get('n') or name.get(r, '')
             if p.get('m'): joined.add(r)
     pin = lambda r: r in state and r not in joined   # noqa: E731
-    ov = load('data/us-key/overrides.json', {}).get('parks') or {}
+    try:
+        import kpc_overrides as _KOVR
+        ov = _KOVR.load('data/us-key/overrides.json').get('parks') or {}
+    except Exception:
+        ov = load('data/us-key/overrides.json', {}).get('parks') or {}
     A = [[r, state[r], name[r], ', '.join(k for k in ('join', 'alias', 'alias_all') if v.get(k)), str(v.get('why', ''))[-160:]]
          for r, v in sorted(ov.items()) if pin(r) and (v.get('join') or v.get('alias') or v.get('alias_all')) and not v.get('none')]
     # Nov 6: question files and external-results.json may be .gz (.gz wins). external-results is

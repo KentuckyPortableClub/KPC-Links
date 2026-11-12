@@ -26,6 +26,7 @@ except Exception:  # noqa: BLE001
     def save_json(p, o, indent=1): json.dump(o, open(p, 'w'), indent=indent, ensure_ascii=False); return True
 
 KEY = pathlib.Path(os.environ.get('KEY_DIR') or 'data/us-key')
+import kpc_overrides  # noqa: E402
 OVR, LEDGER, STATES = KEY / 'overrides.json', KEY / 'answers-applied.json', KEY / 'answers-states.txt'
 PAD = 'edits.nationalmap.gov/arcgis/rest/services/pad-us/pad_us/mapserver/0'
 FWS = 'fwsinterest_simplified_authoritative/featureserver/0'
@@ -135,7 +136,7 @@ def main():
     if D is None:
         print('::notice title=Key answers::no KPC-Data checkout with data/waiting/questions: nothing applied'); return
     lmap = layer_map()
-    ovr = load(OVR, {'parks': {}}); P = ovr.setdefault('parks', {})
+    ovr = kpc_overrides.load(OVR) if OVR.exists() else {'parks': {}}; P = ovr.setdefault('parks', {})
     led = load(LEDGER, {})
     today = dt.date.today().isoformat(); stamp = dt.datetime.now().strftime('%Y-%m-%d %H:%M')
     n_yes = n_no = n_alias = n_skip = n_same = n_none = n_bot = 0; skipped = []; bot_held = []; states = set(); touched = set(); sheet_rows = {}
@@ -254,7 +255,7 @@ def main():
         save_json(LEDGER, led, 1)
         msg += f"; written to {SHEET_OUT} for the answer sheet (overrides.json not touched)"
     elif touched:
-        save_json(OVR, ovr, 1); save_json(LEDGER, led, 1)
+        kpc_overrides.save(OVR, ovr); save_json(LEDGER, led, 1)
     # Oct 30 (chat 2): ADD to tonight's list, never replace it (other bots and hand fixes put states there too); the key's join
     # job takes the states it rebuilt off the list after saving
     old = set(STATES.read_text().split()) if STATES.exists() else set()

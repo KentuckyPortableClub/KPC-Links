@@ -25,7 +25,10 @@ for name in ('kpc_us_key.py', 'kpc_ca_key.py'):
         check(OVR['US-1']['join'] == ['78'] and '77' not in OVR['US-1']['fp'] and '77' in OVR['US-1']['no'] and '5' in OVR['US-1']['no'], f'{name}: a blocked saved id leaves join/fp and is a NO; the rest stays')
         check(OVR['US-2'] == {'join': [], 'no': ['sgx5']}, f'{name}: a park with no override gets the block as a NO (normal matching otherwise)')
         check(OVR['US-3'] == {'join': ['9']}, f'{name}: an entry without decided_by is ignored')
-    check(src.index('BLOCKED = {}') > src.index("OVR = json.load(open(OUT / 'overrides.json'))"), f'{name}: the block list runs right after the overrides load (before any join)')
+    if name == 'kpc_us_key.py':
+        check(src.index('BLOCKED = {}') > src.index('OVR = _KOVR.load'), f'{name}: the block list runs right after the overrides load (before any join)')
+    else:
+        check(src.index('BLOCKED = {}') > src.index("OVR = json.load(open(OUT / 'overrides.json'))"), f'{name}: the block list runs right after the overrides load (before any join)')
 for p in ('data/us-key/overrides.json', 'data/ca-key/overrides.json'):
     d = json.load(open(HERE / p))
     check(isinstance(d.get('blocked_ids'), list) and all(b.get('ref') and b.get('id') and b.get('reason') and b.get('decided_by') for b in d['blocked_ids']),

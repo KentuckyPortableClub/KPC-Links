@@ -61,6 +61,14 @@
         ]
       },
       "approved": "APPROVED, decided_by KPC owner, 2026-11-11"
+    },
+    {
+      "id": "2026-11-11-split-overrides-reader",
+      "when": "2026-11-11",
+      "from": "aa7561256260",
+      "why": "kpc_fers_guard.override_no loads US overrides through kpc_overrides.load so a split overrides.json still supplies every 'no'. The loaded 'no' lists are identical. No 2-fer rule change.",
+      "scope": "none",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-11"
     }
   ]
 }

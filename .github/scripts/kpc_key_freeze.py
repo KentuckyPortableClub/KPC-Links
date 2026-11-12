@@ -58,6 +58,8 @@ SCOPE_FILES = {'us-key': '.github/us-key-rule-scope.json', 'ca-key': '.github/ca
                'world-key': '.github/world-key-rule-scope.json'}   # KPC owner, 2026-11-11
 for _kind, _f in SCOPE_FILES.items(): RULE_FILES[_kind].append(_f)
 NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_keep_main.py', 'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
+             # Nov 11 (KPC owner): splits / loads data/us-key/overrides.json parts; does not decide a join
+             'kpc_overrides.py',
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',
              'kpc_join_check.py',
