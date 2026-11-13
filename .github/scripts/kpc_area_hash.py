@@ -1361,7 +1361,7 @@ def run_plan(repo, kind, wanted, index, mode, force_full, data=None, env=None, o
     return rec, t
 
 
-def move_reused(repo, kind, rows, plan, saved):
+def move_reused(repo, kind, rows, plan, saved, restamp=False):
     """D4 (KPC owner, 2026-11-12): an area the plan REUSED across a shared-code move (a valid proof) moves to the plan's code hash with no
     rebuild: its bytes are the recorded ones, its own parts did not move, the proof is checked again here, and the row names the proof.
     US too (Brandon, Nov 12 10:59 AM CT): stamp_rows_parts calls this with the PLAN JOB's plan (the one that chose the reuse), not a part's.
@@ -1381,7 +1381,28 @@ def move_reused(repo, kind, rows, plan, saved):
         if any(r['area_parts'].get(k) != np.get(k) for k in set(np) | set(r['area_parts']) if not k.startswith(CODE_PARTS)): continue
         pv, pid = proof_valid(repo, kind, r['rules'], plan['code_hash'], area=a)
         if pv: r.update(proved_from=r['rules'], proved_by=pid, rules=plan['code_hash'], area_hash=ph, area_parts=np); moved.append(a)
+    # Quality regrade 4 LD (KPC owner, 2026-11-13): a composition migration is one-time. Every other area of the plan whose key
+    # file is the recorded one and whose parts differ only by format or a declared migration gets its parts recorded now (no
+    # rebuild; rules and bytes kept), so the next plan compares the new part (e.g. a later trail edit rebuilds that area).
+    reused_set = set(plan.get('reused') or [])
+    for a, np in ((plan.get('parts') or {}).items() if restamp else ()):   # only when the build used the plan's commit
+        r, ph = rows.get(a), (plan.get('hashes') or {}).get(a)
+        if a in saved or a in reused_set or not isinstance(r, dict) or not ph or not isinstance(np, dict): continue
+        op = r.get('area_parts')
+        if not isinstance(op, dict) or op == np or not r.get('out_sha'): continue
+        if r.get('out_sha') != sha_file(repo / KEY_PATH[kind].format(a=a)): continue
+        if not real_inputs_moved(op, np, plan.get('composition') or composition(kind)):
+            r.update(area_hash=ph, area_parts=np)
     return moved
+
+
+def part_shas(part_dirs):
+    """The set of commits the US build parts checked out (part/built-sha.txt); missing = ''."""
+    out = set()
+    for x in part_dirs:
+        try: out.add((pathlib.Path(x) / 'built-sha.txt').read_text().strip())
+        except OSError: out.add('')
+    return out
 
 
 def stamp_rows_parts(repo, kind, index, saved, part_dirs, reuse_plan=None):
@@ -1403,9 +1424,9 @@ def stamp_rows_parts(repo, kind, index, saved, part_dirs, reuse_plan=None):
         done, same = stamp_rows(repo, kind, index, mine, dict(plan, reused=[]), bs, rebuilt=saved)
         done_all += done; same_all = same_all and same
     if not owner: stamp_rows(repo, kind, index, [], {}, '', rebuilt=saved)
-    if reuse_plan and reuse_plan.get('reused'):   # D4, US: the plan job's reuse (no part built these states)
+    if reuse_plan:   # D4, US: the plan job's reuse (no part built these states); LD: also records migration-only parts
         ip = pathlib.Path(index); d = json.loads(ip.read_text(encoding='utf-8')); rows = d.setdefault(ROWS_KEY[kind], {})
-        moved = move_reused(repo, kind, rows, reuse_plan, saved)
+        moved = move_reused(repo, kind, rows, reuse_plan, saved, restamp=bool(reuse_plan.get('plan_sha')) and part_shas(part_dirs) == {reuse_plan.get('plan_sha')})
         # Union with verified-same areas already recorded by stamp_rows; only areas that actually moved
         # (not a plan-list name whose key file was edited and so was not restamped).
         d['areas_reused'] = sorted(set(d.get('areas_reused') or []) | set(moved))
@@ -1442,7 +1463,7 @@ def stamp_rows(repo, kind, index, saved, plan, built_sha, rebuilt=None):
             else:
                 r['built_sha'] = built_sha
             done.append(a)
-    move_reused(repo, kind, rows, plan, saved)
+    move_reused(repo, kind, rows, plan, saved, restamp=same)
     reused = sorted(set(plan.get('reused') or []) | set(verified))
     d['areas_rebuilt'] = sorted(set(rebuilt if rebuilt is not None else saved) - set(reused))
     d['areas_reused'] = reused
