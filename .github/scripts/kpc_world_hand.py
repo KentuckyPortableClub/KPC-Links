@@ -410,12 +410,16 @@ def world_current_rec_count(name, blob, root=None):
     A copy whose src labels are not in the current or dropped key lists (test fixtures, unlabeled recs)
     is also counted in full, so the filter only applies to a real world-key saved copy."""
     recs = (blob or {}).get('recs') if isinstance((blob or {}).get('recs'), list) else []
-    recs = [r for r in recs if rec_has_geometry(r)]
     stem = str(name or '')
     if stem.endswith('.json.gz'):
         stem = stem[:-len('.json.gz')]
     if not stem.startswith('W-') or len(stem) != 4:
+        # Nov 13 (KPC owner): a US / CA copy is counted in FULL, as this docstring says and as its baseline was recorded
+        # (layers.json caches, e.g. CA-ALL 60,426 on Nov 11 = every record). The no-outline filter below is for world copies
+        # only: applied here it dropped CA-ALL's 475 records that are official point sites with no outline (Quebec heritage
+        # sites), so a complete copy of 60,479 records counted as 60,004 and the master gate held every Canada build as SHORT.
         return len(recs)
+    recs = [r for r in recs if rec_has_geometry(r)]
     current, dropped = _world_label_sets(stem[2:], root)
     if not current:
         return len(recs)
