@@ -1,0 +1,3438 @@
+{
+ "key": "ca",
+ "build": "CA-43524444769",
+ "built": "2026-11-13 23:20 UTC",
+ "checked": "2026-11-13 23:21",
+ "new_ref": "13209aea1bdf",
+ "new_what": "the checked-out files (main as the build left it, plus any later commits)",
+ "prev_ref": "cf363e999625",
+ "changes": {
+  "gained": [],
+  "lost": [],
+  "outline_to_pin": [],
+  "pin_to_outline": [],
+  "outline_changed": [
+   "CA-4865",
+   "CA-4890"
+  ],
+  "grade_worse": [],
+  "released": {
+   "build": "CA-43049790907",
+   "dir": "./released/data/ca-key",
+   "parks": 5901,
+   "gained": [],
+   "lost": [],
+   "outline_to_pin": [],
+   "pin_to_outline": []
+  }
+ },
+ "flat": [
+  {
+   "park": "CA-1771",
+   "area": "CA-NS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-1867",
+   "area": "CA-NS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-3376",
+   "area": "CA-BC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-3422",
+   "area": "CA-BC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-3518",
+   "area": "CA-BC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-3860",
+   "area": "CA-BC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-3882",
+   "area": "CA-BC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-4106",
+   "area": "CA-BC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-4798",
+   "area": "CA-BC",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-5388",
+   "area": "CA-NL",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-5438",
+   "area": "CA-NS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-5711",
+   "area": "CA-NB",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  },
+  {
+   "park": "CA-5822",
+   "area": "CA-NS",
+   "why": "acres 0 in the key (under half an acre, or the layer gave no area; no outline file to measure)"
+  }
+ ],
+ "pins_outside": [
+  {
+   "park": "CA-0012",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0032",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0056",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0157",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0163",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0318",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0328",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0335",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0336",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0350",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0366",
+   "area": "CA-ON",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-0375",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0378",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0387",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0395",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0452",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0454",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0530",
+   "area": "CA-MB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0621",
+   "area": "CA-SK",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0625",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-0653",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0770",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-0784",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0790",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0892",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-0954",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1006",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1164",
+   "area": "CA-AB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-1165",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1184",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1187",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1194",
+   "area": "CA-AB",
+   "far": "no shape to check against",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far='no shape to check against')"
+  },
+  {
+   "park": "CA-1197",
+   "area": "CA-AB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-1228",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1251",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1259",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1283",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1379",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1476",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1592",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1724",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1741",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1744",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1752",
+   "area": "CA-NS",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-1804",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1809",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1814",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1819",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1824",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1842",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1861",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1933",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-1981",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2013",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2086",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2169",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2177",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2291",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2295",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2301",
+   "area": "CA-QC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2313",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2317",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2320",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2321",
+   "area": "CA-QC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2324",
+   "area": "CA-QC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2370",
+   "area": "CA-QC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2439",
+   "area": "CA-MB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2441",
+   "area": "CA-MB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2471",
+   "area": "CA-MB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2501",
+   "area": "CA-MB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2534",
+   "area": "CA-MB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2536",
+   "area": "CA-MB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2540",
+   "area": "CA-MB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2547",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2550",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2573",
+   "area": "CA-SK",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2581",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2582",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2584",
+   "area": "CA-SK",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2614",
+   "area": "CA-SK",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2633",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2641",
+   "area": "CA-SK",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2658",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2679",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2687",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2713",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2778",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2816",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2826",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2860",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2904",
+   "area": "CA-SK",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2907",
+   "area": "CA-SK",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2919",
+   "area": "CA-SK",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-2933",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-2968",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3032",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3062",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3064",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3085",
+   "area": "CA-AB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-3270",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3282",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3307",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3427",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3454",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3537",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3591",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3635",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3666",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-3900",
+   "area": "CA-BC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-3905",
+   "area": "CA-BC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-3937",
+   "area": "CA-BC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4002",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4024",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4094",
+   "area": "CA-BC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4153",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4189",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4232",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4344",
+   "area": "CA-NT",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4356",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4360",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4362",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4365",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4366",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4367",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4374",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4382",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4390",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4420",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4423",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4425",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4426",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4434",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4435",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4453",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4457",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4459",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4470",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4472",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4478",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4481",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4486",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4496",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4502",
+   "area": "CA-NB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-4547",
+   "area": "CA-NL",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-4663",
+   "area": "CA-PE",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-5042",
+   "area": "CA-QC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-5111",
+   "area": "CA-ON",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-5235",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-5345",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-5370",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-5439",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-5540",
+   "area": "CA-BC",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-5586",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-5587",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-5592",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-5633",
+   "area": "CA-ON",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-5651",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-5665",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-5830",
+   "area": "CA-NS",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-5997",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-6008",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-6103",
+   "area": "CA-NB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-6112",
+   "area": "CA-AB",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-6131",
+   "area": "CA-BC",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-6154",
+   "area": "CA-ON",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-6225",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-6362",
+   "area": "CA-ON",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-6561",
+   "area": "CA-NS",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-6603",
+   "area": "CA-AB",
+   "far": "",
+   "why": "POTA pin is outside the data/canada-bounds outline, but the key does not flag it (far=None)"
+  },
+  {
+   "park": "CA-6620",
+   "area": "CA-ON",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  },
+  {
+   "park": "CA-6629",
+   "area": "CA-ON",
+   "far": "well outside",
+   "why": "key says the POTA pin is 'well outside' the joined land; key says pin_may_be_wrong"
+  }
+ ],
+ "pins_at_edge": [
+  "CA-0036",
+  "CA-0050",
+  "CA-0053",
+  "CA-0068",
+  "CA-0113",
+  "CA-0116",
+  "CA-0128",
+  "CA-0137",
+  "CA-0147",
+  "CA-0148",
+  "CA-0152",
+  "CA-0158",
+  "CA-0159",
+  "CA-0165",
+  "CA-0169",
+  "CA-0176",
+  "CA-0178",
+  "CA-0182",
+  "CA-0183",
+  "CA-0184",
+  "CA-0199",
+  "CA-0205",
+  "CA-0214",
+  "CA-0218",
+  "CA-0256",
+  "CA-0261",
+  "CA-0270",
+  "CA-0271",
+  "CA-0274",
+  "CA-0276",
+  "CA-0279",
+  "CA-0280",
+  "CA-0282",
+  "CA-0283",
+  "CA-0293",
+  "CA-0316",
+  "CA-0327",
+  "CA-0330",
+  "CA-0331",
+  "CA-0332",
+  "CA-0338",
+  "CA-0341",
+  "CA-0344",
+  "CA-0345",
+  "CA-0347",
+  "CA-0348",
+  "CA-0349",
+  "CA-0354",
+  "CA-0360",
+  "CA-0371",
+  "CA-0373",
+  "CA-0374",
+  "CA-0382",
+  "CA-0385",
+  "CA-0392",
+  "CA-0403",
+  "CA-0405",
+  "CA-0418",
+  "CA-0420",
+  "CA-0428",
+  "CA-0431",
+  "CA-0434",
+  "CA-0436",
+  "CA-0442",
+  "CA-0444",
+  "CA-0447",
+  "CA-0450",
+  "CA-0466",
+  "CA-0485",
+  "CA-0487",
+  "CA-0526",
+  "CA-0539",
+  "CA-0551",
+  "CA-0564",
+  "CA-0574",
+  "CA-0584",
+  "CA-0585",
+  "CA-0590",
+  "CA-0606",
+  "CA-0612",
+  "CA-0615",
+  "CA-0624",
+  "CA-0627",
+  "CA-0633",
+  "CA-0647",
+  "CA-0650",
+  "CA-0659",
+  "CA-0704",
+  "CA-0769",
+  "CA-0771",
+  "CA-0772",
+  "CA-0781",
+  "CA-0833",
+  "CA-0835",
+  "CA-0848",
+  "CA-0881",
+  "CA-0895",
+  "CA-0899",
+  "CA-0912",
+  "CA-0926",
+  "CA-0934",
+  "CA-0946",
+  "CA-0952",
+  "CA-0953",
+  "CA-0972",
+  "CA-1005",
+  "CA-1008",
+  "CA-1013",
+  "CA-1025",
+  "CA-1027",
+  "CA-1030",
+  "CA-1034",
+  "CA-1035",
+  "CA-1043",
+  "CA-1111",
+  "CA-1117",
+  "CA-1128",
+  "CA-1129",
+  "CA-1130",
+  "CA-1135",
+  "CA-1136",
+  "CA-1138",
+  "CA-1141",
+  "CA-1169",
+  "CA-1174",
+  "CA-1175",
+  "CA-1176",
+  "CA-1189",
+  "CA-1246",
+  "CA-1284",
+  "CA-1292",
+  "CA-1313",
+  "CA-1317",
+  "CA-1385",
+  "CA-1419",
+  "CA-1440",
+  "CA-1528",
+  "CA-1561",
+  "CA-1689",
+  "CA-1719",
+  "CA-1723",
+  "CA-1745",
+  "CA-1749",
+  "CA-1755",
+  "CA-1762",
+  "CA-1766",
+  "CA-1779",
+  "CA-1782",
+  "CA-1796",
+  "CA-1805",
+  "CA-1811",
+  "CA-1820",
+  "CA-1828",
+  "CA-1846",
+  "CA-1853",
+  "CA-1855",
+  "CA-1862",
+  "CA-1873",
+  "CA-1876",
+  "CA-1882",
+  "CA-1894",
+  "CA-1901",
+  "CA-1902",
+  "CA-1903",
+  "CA-1904",
+  "CA-1907",
+  "CA-1919",
+  "CA-1925",
+  "CA-1938",
+  "CA-1950",
+  "CA-1956",
+  "CA-1969",
+  "CA-1971",
+  "CA-2012",
+  "CA-2020",
+  "CA-2024",
+  "CA-2032",
+  "CA-2050",
+  "CA-2074",
+  "CA-2081",
+  "CA-2085",
+  "CA-2087",
+  "CA-2096",
+  "CA-2102",
+  "CA-2120",
+  "CA-2158",
+  "CA-2162",
+  "CA-2173",
+  "CA-2178",
+  "CA-2189",
+  "CA-2201",
+  "CA-2202",
+  "CA-2211",
+  "CA-2215",
+  "CA-2242",
+  "CA-2252",
+  "CA-2253",
+  "CA-2268",
+  "CA-2285",
+  "CA-2288",
+  "CA-2289",
+  "CA-2293",
+  "CA-2294",
+  "CA-2297",
+  "CA-2298",
+  "CA-2300",
+  "CA-2310",
+  "CA-2312",
+  "CA-2314",
+  "CA-2315",
+  "CA-2316",
+  "CA-2318",
+  "CA-2323",
+  "CA-2327",
+  "CA-2335",
+  "CA-2338",
+  "CA-2339",
+  "CA-2342",
+  "CA-2365",
+  "CA-2366",
+  "CA-2367",
+  "CA-2368",
+  "CA-2371",
+  "CA-2392",
+  "CA-2400",
+  "CA-2417",
+  "CA-2420",
+  "CA-2473",
+  "CA-2495",
+  "CA-2497",
+  "CA-2535",
+  "CA-2571",
+  "CA-2576",
+  "CA-2608",
+  "CA-2635",
+  "CA-2644",
+  "CA-2647",
+  "CA-2657",
+  "CA-2672",
+  "CA-2676",
+  "CA-2709",
+  "CA-2718",
+  "CA-2719",
+  "CA-2729",
+  "CA-2748",
+  "CA-2759",
+  "CA-2763",
+  "CA-2781",
+  "CA-2790",
+  "CA-2834",
+  "CA-2836",
+  "CA-2877",
+  "CA-2884",
+  "CA-2888",
+  "CA-2901",
+  "CA-2902",
+  "CA-2910",
+  "CA-2916",
+  "CA-2917",
+  "CA-2937",
+  "CA-2945",
+  "CA-2947",
+  "CA-2960",
+  "CA-2980",
+  "CA-3000",
+  "CA-3017",
+  "CA-3021",
+  "CA-3023",
+  "CA-3030",
+  "CA-3031",
+  "CA-3035",
+  "CA-3047",
+  "CA-3075",
+  "CA-3106",
+  "CA-3108",
+  "CA-3117",
+  "CA-3122",
+  "CA-3127",
+  "CA-3134",
+  "CA-3140",
+  "CA-3142",
+  "CA-3143",
+  "CA-3150",
+  "CA-3155",
+  "CA-3178",
+  "CA-3183",
+  "CA-3197",
+  "CA-3241",
+  "CA-3258",
+  "CA-3304",
+  "CA-3313",
+  "CA-3339",
+  "CA-3352",
+  "CA-3356",
+  "CA-3385",
+  "CA-3388",
+  "CA-3390",
+  "CA-3394",
+  "CA-3407",
+  "CA-3410",
+  "CA-3445",
+  "CA-3453",
+  "CA-3469",
+  "CA-3477",
+  "CA-3508",
+  "CA-3509",
+  "CA-3514",
+  "CA-3515",
+  "CA-3528",
+  "CA-3532",
+  "CA-3538",
+  "CA-3550",
+  "CA-3562",
+  "CA-3616",
+  "CA-3617",
+  "CA-3624",
+  "CA-3633",
+  "CA-3636",
+  "CA-3642",
+  "CA-3661",
+  "CA-3699",
+  "CA-3712",
+  "CA-3741",
+  "CA-3773",
+  "CA-3775",
+  "CA-3786",
+  "CA-3792",
+  "CA-3800",
+  "CA-3801",
+  "CA-3826",
+  "CA-3918",
+  "CA-3943",
+  "CA-3966",
+  "CA-3968",
+  "CA-3973",
+  "CA-4022",
+  "CA-4031",
+  "CA-4043",
+  "CA-4068",
+  "CA-4071",
+  "CA-4128",
+  "CA-4165",
+  "CA-4173",
+  "CA-4209",
+  "CA-4235",
+  "CA-4260",
+  "CA-4268",
+  "CA-4313",
+  "CA-4354",
+  "CA-4359",
+  "CA-4364",
+  "CA-4368",
+  "CA-4370",
+  "CA-4371",
+  "CA-4372",
+  "CA-4383",
+  "CA-4391",
+  "CA-4394",
+  "CA-4395",
+  "CA-4396",
+  "CA-4400",
+  "CA-4401",
+  "CA-4411",
+  "CA-4416",
+  "CA-4419",
+  "CA-4427",
+  "CA-4433",
+  "CA-4442",
+  "CA-4445",
+  "CA-4447",
+  "CA-4449",
+  "CA-4451",
+  "CA-4458",
+  "CA-4461",
+  "CA-4464",
+  "CA-4468",
+  "CA-4469",
+  "CA-4474",
+  "CA-4476",
+  "CA-4477",
+  "CA-4479",
+  "CA-4484",
+  "CA-4485",
+  "CA-4491",
+  "CA-4495",
+  "CA-4497",
+  "CA-4498",
+  "CA-4499",
+  "CA-4500",
+  "CA-4501",
+  "CA-4503",
+  "CA-4505",
+  "CA-4509",
+  "CA-4510",
+  "CA-4513",
+  "CA-4514",
+  "CA-4515",
+  "CA-4520",
+  "CA-4525",
+  "CA-4538",
+  "CA-4787",
+  "CA-4828",
+  "CA-4834",
+  "CA-4844",
+  "CA-4849",
+  "CA-4931",
+  "CA-4932",
+  "CA-4967",
+  "CA-4969",
+  "CA-4971",
+  "CA-5022",
+  "CA-5089",
+  "CA-5091",
+  "CA-5092",
+  "CA-5102",
+  "CA-5103",
+  "CA-5104",
+  "CA-5142",
+  "CA-5204",
+  "CA-5226",
+  "CA-5291",
+  "CA-5295",
+  "CA-5317",
+  "CA-5319",
+  "CA-5320",
+  "CA-5323",
+  "CA-5324",
+  "CA-5327",
+  "CA-5330",
+  "CA-5337",
+  "CA-5341",
+  "CA-5343",
+  "CA-5349",
+  "CA-5353",
+  "CA-5372",
+  "CA-5373",
+  "CA-5374",
+  "CA-5436",
+  "CA-5459",
+  "CA-5464",
+  "CA-5485",
+  "CA-5490",
+  "CA-5495",
+  "CA-5497",
+  "CA-5499",
+  "CA-5500",
+  "CA-5508",
+  "CA-5511",
+  "CA-5512",
+  "CA-5513",
+  "CA-5516",
+  "CA-5520",
+  "CA-5533",
+  "CA-5539",
+  "CA-5541",
+  "CA-5542",
+  "CA-5544",
+  "CA-5552",
+  "CA-5559",
+  "CA-5561",
+  "CA-5571",
+  "CA-5573",
+  "CA-5575",
+  "CA-5578",
+  "CA-5581",
+  "CA-5582",
+  "CA-5588",
+  "CA-5591",
+  "CA-5594",
+  "CA-5597",
+  "CA-5598",
+  "CA-5599",
+  "CA-5600",
+  "CA-5602",
+  "CA-5603",
+  "CA-5604",
+  "CA-5627",
+  "CA-5632",
+  "CA-5643",
+  "CA-5649",
+  "CA-5652",
+  "CA-5653",
+  "CA-5654",
+  "CA-5655",
+  "CA-5661",
+  "CA-5668",
+  "CA-5670",
+  "CA-5877",
+  "CA-5887",
+  "CA-5895",
+  "CA-5901",
+  "CA-5939",
+  "CA-5943",
+  "CA-5947",
+  "CA-5955",
+  "CA-5956",
+  "CA-5959",
+  "CA-5983",
+  "CA-5984",
+  "CA-5990",
+  "CA-6004",
+  "CA-6011",
+  "CA-6092",
+  "CA-6125",
+  "CA-6135",
+  "CA-6161",
+  "CA-6212",
+  "CA-6250",
+  "CA-6329",
+  "CA-6344",
+  "CA-6352",
+  "CA-6354",
+  "CA-6355",
+  "CA-6356",
+  "CA-6357",
+  "CA-6371",
+  "CA-6377",
+  "CA-6378",
+  "CA-6397",
+  "CA-6497",
+  "CA-6562",
+  "CA-6588",
+  "CA-6627"
+ ],
+ "bad_pins": [
+  {
+   "park": "CA-1930",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1932",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1934",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1935",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1939",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1940",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1942",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1943",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1946",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1948",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1951",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1953",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1959",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1964",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1967",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1968",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1974",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1977",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1978",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1986",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1989",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1990",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1992",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1994",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1996",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1997",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1998",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-1999",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2000",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2001",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2002",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2003",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2004",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2005",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2006",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2007",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2008",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2010",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2011",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2014",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2018",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2019",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2022",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2023",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2030",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2031",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2035",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2036",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2037",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2038",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2040",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2047",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2051",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2055",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2056",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2058",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2059",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2060",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2061",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2062",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2063",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2064",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2065",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2066",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2067",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2070",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2072",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2075",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2076",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2077",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2078",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2079",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2080",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2082",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2084",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2089",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2092",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2093",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2094",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2095",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2097",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2098",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2099",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2100",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2101",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2103",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2104",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2105",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2110",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2111",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2112",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2113",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2114",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2115",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2117",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2118",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2119",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2123",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2125",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2127",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2128",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2129",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2130",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2131",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2132",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2133",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2134",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2136",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2137",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2138",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2141",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2152",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2157",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2164",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2166",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2167",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2168",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2170",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2171",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2175",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2184",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2185",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2187",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2188",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2195",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2197",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2198",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2200",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2207",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2210",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2212",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2213",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2214",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2221",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2223",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2225",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2226",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2227",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2228",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2229",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2230",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2231",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2232",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2234",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2235",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2236",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2237",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2238",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2239",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2240",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2241",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2243",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2244",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2245",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2246",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2254",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2255",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2256",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2257",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2258",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2259",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2260",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2261",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2262",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2267",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2272",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2273",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2274",
+   "area": "CA-QC",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2276",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2277",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2278",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2279",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2280",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2281",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2282",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2283",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2284",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2308",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2334",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2337",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2340",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2347",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2348",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2349",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2351",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2352",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2353",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2354",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2355",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2356",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2357",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2358",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2359",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2360",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2361",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2362",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2363",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2364",
+   "area": "CA-QC",
+   "outline": "yes",
+   "why": "0,0 pin (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2395",
+   "area": "CA-MB",
+   "outline": "yes",
+   "why": "impossible pin 92.595,-57.056 (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2456",
+   "area": "CA-MB",
+   "outline": "yes",
+   "why": "impossible pin 100.856,-49.514 (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-2538",
+   "area": "CA-MB",
+   "outline": "yes",
+   "why": "impossible pin 99.364,-51.308 (POTA's error: never moved)"
+  },
+  {
+   "park": "CA-4319",
+   "area": "CA-NT",
+   "outline": "no",
+   "why": "0,0 pin (POTA's error: never moved)"
+  }
+ ],
+ "answer_sheet": {
+  "read": true,
+  "rows": 465,
+  "signed": 0,
+  "signed_disagree": [],
+  "proposed_disagree": 332
+ },
+ "overrides": [
+  {
+   "park": "CA-0881",
+   "area": "CA-NS",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Nova Scotia :26"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "CA-1280",
+   "area": "CA-ON",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "ABITIBI LAKE NARROWS WILDERNESS AREA"
+   ],
+   "when": "2026-11-09",
+   "newer_than_build": false
+  },
+  {
+   "park": "CA-3186",
+   "area": "CA-BC",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "Anhluut'ukwsim Laxmihl Angwinga'asanskwhl Nisga'a Park",
+    "Anhluut'ukwsim Laxmihl Angwinga'asanskwhl Nisga'a Park [a.k.a. Nisga'a Memorial Lava Bed Park]"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "CA-4074",
+   "area": "CA-BC",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "SG̲áan K̲ínghlas-Bowie Marine Protected Area"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "CA-4605",
+   "area": "CA-NT",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Ezǫdzìtì"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "CA-4902",
+   "area": "CA-QC",
+   "problem": "overrides 'join' but the key has no outline (pin)",
+   "ids": [
+    "Coteau-du-Lac National Historic Site"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "CA-6161",
+   "area": "CA-NB",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "New Brunswic:79",
+    "New Brunswic:80"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "CA-6437",
+   "area": "CA-NS",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Nova Scotia :69"
+   ],
+   "when": "",
+   "newer_than_build": null
+  },
+  {
+   "park": "CA-6600",
+   "area": "CA-NS",
+   "problem": "overrides 'join' not found in the key",
+   "ids": [
+    "Nova Scotia :55"
+   ],
+   "when": "",
+   "newer_than_build": null
+  }
+ ],
+ "precheck": {
+  "read": true,
+  "counts": {
+   "ASK_BRANDON": 2,
+   "BAD_POTA_PIN_NO_OUTLINE": 1,
+   "NAME_MISMATCH": 2,
+   "NO_OFFICIAL_BOUNDARY": 2,
+   "PIN_WAY_OUT": 60,
+   "POTA_0_0": 1,
+   "RULE18_PIECE": 7,
+   "WRONG_KIND": 1
+  },
+  "hold_still_outline": [
+   {
+    "park": "CA-0037",
+    "area": "CA-QC",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: 22160 Estuary Islands National Wildlife Area"
+   },
+   {
+    "park": "CA-0366",
+    "area": "CA-ON",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-0625",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-0770",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-1164",
+    "area": "CA-AB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-1187",
+    "area": "CA-AB",
+    "flags": "NAME_MISMATCH",
+    "why": "joined record shares no real word with the park name: Alberta Park:394 Park Lake"
+   },
+   {
+    "park": "CA-1197",
+    "area": "CA-AB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-1752",
+    "area": "CA-NS",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2301",
+    "area": "CA-QC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2324",
+    "area": "CA-QC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2370",
+    "area": "CA-QC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2439",
+    "area": "CA-MB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2441",
+    "area": "CA-MB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2547",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2550",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2581",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2582",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2633",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2656",
+    "area": "CA-SK",
+    "flags": "WRONG_KIND",
+    "why": "layer kind: Fishing Lake is another kind of place than a Wildlife Refuge"
+   },
+   {
+    "park": "CA-2658",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2679",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2687",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2713",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2778",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2816",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2826",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2860",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-2919",
+    "area": "CA-SK",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-3085",
+    "area": "CA-AB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-3900",
+    "area": "CA-BC",
+    "flags": "PIN_WAY_OUT RULE18_PIECE",
+    "why": "the POTA pin is well outside the joined land | rule 18: the joined record may be another piece: 20335 NISGA'A MEMORIAL LAVA BED CORRIDOR PROTECTED AREA (No.2) ("
+   },
+   {
+    "park": "CA-3905",
+    "area": "CA-BC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-3937",
+    "area": "CA-BC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4094",
+    "area": "CA-BC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4344",
+    "area": "CA-NT",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4356",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4360",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4362",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4365",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4367",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4382",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4420",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4434",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4435",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4453",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4457",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4459",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4470",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4472",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4486",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4496",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4547",
+    "area": "CA-NL",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-4663",
+    "area": "CA-PE",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-5111",
+    "area": "CA-ON",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-5235",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-5633",
+    "area": "CA-ON",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-5830",
+    "area": "CA-NS",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-6103",
+    "area": "CA-NB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-6112",
+    "area": "CA-AB",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-6131",
+    "area": "CA-BC",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-6154",
+    "area": "CA-ON",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-6620",
+    "area": "CA-ON",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   },
+   {
+    "park": "CA-6629",
+    "area": "CA-ON",
+    "flags": "PIN_WAY_OUT",
+    "why": "the POTA pin is well outside the joined land"
+   }
+  ],
+  "rule18": [
+   {
+    "park": "CA-3328",
+    "area": "CA-BC",
+    "why": "rule 18: the joined record may be another piece: BC recreatio:1508869 CHILLIWACK RIVER #4 (number 4 is in one name only ('Chilliwack River Provincial Park' vs '"
+   },
+   {
+    "park": "CA-3534",
+    "area": "CA-BC",
+    "why": "rule 18: the joined record may be another piece: BC local and:3613021 Galiano Is. Ecological Reserve #128 (Shaw's Bog) (number 128 is in one name only ('Galiano"
+   },
+   {
+    "park": "CA-3899",
+    "area": "CA-BC",
+    "why": "rule 18: the joined record may be another piece: 20335 NISGA'A MEMORIAL LAVA BED CORRIDOR PROTECTED AREA (No.2) (rule 18: 'No. 2' names a piece in one name only"
+   },
+   {
+    "park": "CA-3900",
+    "area": "CA-BC",
+    "why": "the POTA pin is well outside the joined land | rule 18: the joined record may be another piece: 20335 NISGA'A MEMORIAL LAVA BED CORRIDOR PROTECTED AREA (No.2) ("
+   },
+   {
+    "park": "CA-4030",
+    "area": "CA-BC",
+    "why": "rule 18: the joined record may be another piece: BC recreatio:1014986 ROCHE LAKE NE. (rule 18: 'northeast' names only one piece)"
+   },
+   {
+    "park": "CA-4369",
+    "area": "CA-NB",
+    "why": "rule 18: the joined record may be another piece: New Brunswic~1:84 Black River 1 (number 1 is in one name only ('Black River Protected Area' vs 'Black River 1')"
+   },
+   {
+    "park": "CA-4932",
+    "area": "CA-SK",
+    "why": "rule 18: the joined record may be another piece: SK-ALL Gover:3305 Fort Pelly #1 Historic Site (number 1 is in one name only ('Fort Pelly National Historic Site"
+   }
+  ],
+  "bad_pin_flags": {
+   "BAD_POTA_PIN_NAME_ONLY": 9,
+   "BAD_POTA_PIN_NAME_MATCH": 164,
+   "BAD_POTA_PIN_NO_OUTLINE": 31
+  }
+ },
+ "must_pin": [
+  {
+   "park": "CA-2218",
+   "result": "PASS (pin)"
+  },
+  {
+   "park": "CA-2227",
+   "result": "PASS (pin)"
+  }
+ ],
+ "notes": [
+  "answer sheet: 465 rows, 0 signed by a person; 332 PROPOSED rows name another record (bot proposals: counted, not used)"
+ ],
+ "official_drops": [],
+ "layers_no_parks": [],
+ "layers_fell_back": [],
+ "summary": {
+  "parks now": 5901,
+  "parks before": 5901,
+  "gained": 0,
+  "lost": 0,
+  "outline -> pin": 0,
+  "pin -> outline": 0,
+  "worse grade": 0,
+  "states with official -5% or more": 0,
+  "outline changed": 2,
+  "flat outlines": 13,
+  "flat outlines new or changed this build": 0,
+  "pins outside outline": 171,
+  "pins outside, new or changed this build": 0,
+  "pins just outside, key says 'edge' (not listed)": 523,
+  "0,0 / impossible pins": 202,
+  "signed sheet answers not followed": 0,
+  "overrides not followed": 9,
+  "overrides not followed, dated before the build (a real miss)": 1,
+  "pre-check HOLD still outline": 62,
+  "RULE 18 flags": 7,
+  "must-be-pin not yet pin": 0,
+  "outline -> pin vs released (CA-43049790907)": 0,
+  "pin -> outline vs released (CA-43049790907)": 0,
+  "gained / lost vs released": "0 / 0",
+  "countries with 10+ outline -> pin (a lost source layer?)": 0
+ },
+ "problem_solver": null,
+ "pin_jump": {}
+}

@@ -1,10 +1,10 @@
 {
  "key": "ca",
- "build": "CA-43311979456",
- "report": "ca-CA-43311979456.json",
- "report_checked": "2026-11-12 21:55",
- "checked_at": "2026-11-12 21:55 UTC",
- "prev_ref": "968dc0062be2",
+ "build": "CA-43524444769",
+ "report": "ca-CA-43524444769.json",
+ "report_checked": "2026-11-13 23:21",
+ "checked_at": "2026-11-13 23:21 UTC",
+ "prev_ref": "cf363e999625",
  "about": "parks this build has with NO outline, one row each, split by reason (kpc_key_dropped.py, links-07; latest/ only, rewritten only when the rows change)",
  "counts": {
   "joined_in_other_area": 0,
@@ -100,7 +100,7 @@
  },
  "system_warnings": [],
  "inputs": {
-  "pota_pins": 99215,
+  "pota_pins": 98710,
   "answer_sheet_read": true,
   "precheck_read": true
  },
@@ -113,9 +113,9 @@
   "kind_from_key": 79,
   "blank_reasons": {
    "key kind blank: no designation field and no kind word in the record's name; kind: no kind problem in the pre-check row (it checks joined records only)": 333,
-   "key distance blank: the key names no candidate record; key kind blank: no designation field and no kind word in the record's name; distance: the pre-check row has no distance (no county-check row); kind: no kind problem in the pre-check row (it checks joined records only)": 1100,
-   "key distance blank: the POTA pin is 0,0 (never moved); key kind blank: no designation field and no kind word in the record's name; distance: the pre-check row has no distance (no county-check row); kind: no kind problem in the pre-check row (it checks joined records only)": 2,
-   "key distance blank: the POTA pin is 0,0 (never moved); distance: the pre-check row has no distance (no county-check row)": 16
+   "key distance blank: the key names no candidate record; key kind blank: no designation field and no kind word in the record's name; distance: the pre-check row has no distance (no county-check row); kind: no kind problem in the pre-check row (it checks joined records only)": 1101,
+   "key distance blank: the POTA pin is 0,0 (never moved); distance: the pre-check row has no distance (no county-check row)": 16,
+   "key distance blank: the POTA pin is 0,0 (never moved); key kind blank: no designation field and no kind word in the record's name; distance: the pre-check row has no distance (no county-check row); kind: no kind problem in the pre-check row (it checks joined records only)": 1
   }
  }
 }
