@@ -56,6 +56,14 @@
    "why": "Quality must-fix M2: kpc_pin_fill.py and kpc_jp_crosswalk.py are in the world RULE_FILES (removed from NOT_RULES). A later edit to either file moves the world hash. No join result changes (the builders already called them; the Japan switch stays off); no country is rebuilt for this alone.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
+  },
+  {
+   "id": "2026-11-13-hold-ca-2241-1974-1997",
+   "when": "2026-11-13",
+   "from": "a47e0479ad41",
+   "why": "Owner hold of CA-2241, CA-1974 and CA-1997 in kpc_pin_fill.py (Quality, delegated by Brandon 4:43 AM CT). The file is in the world RULE_FILES so this edit moves the world hash; no world country result changes (the new holds are Canada refs; PF-0033/34 stay held; the AU fill still applies), so no country is rebuilt.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-13"
   }
  ]
 }

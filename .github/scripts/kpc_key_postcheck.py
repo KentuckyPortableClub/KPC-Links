@@ -479,9 +479,9 @@ def run(env=None, cwd='.'):
     last = {}
     try: last = json.load(open(last_f))
     except Exception: pass  # noqa: BLE001
-    if newest and last.get('build_commit') == newest and (env.get('FORCE') or '').lower() != 'yes':
-        note('notice', f'{k} key: newest build commit {newest[:9]} was already checked ({last.get("checked")}): no new build, nothing written')
-        return {'key': k, 'no_new_build': True, 'build_commit': newest}
+    if newest and last.get('build_commit') == newest:
+        note('notice', f'{k} key: newest build commit {newest[:9]} was already checked ({last.get("checked")}): writing the report again so the must-save can land')
+        # X5/P1: do not return. A previous check whose save failed (or was skipped) must still write last-<key> and <key>-<build>.
     new = load_tree(k, new_ref, cwd=cwd)
     old = load_tree(k, prev_ref, cwd=cwd) if prev_ref else {}
     if any(v.get('_bad') for v in new.values()): notes.append('some NEW key files did not read as JSON: ' + ', '.join(a for a, v in new.items() if v.get('_bad'))[:300])

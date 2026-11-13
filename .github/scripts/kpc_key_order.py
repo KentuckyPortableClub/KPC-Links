@@ -42,7 +42,18 @@ def on_current(kind, root='.'):
     st = _index(kind, root)
     cur = KF.rules_hash(kind, root) if root != '.' else KF.rules_hash(kind)
     have = str(st.get('rules') or '')
-    return have == cur, f"build {st.get('build') or 'none'} rules {have or 'none'} vs current {cur}"
+    if have == cur:
+        return True, f"build {st.get('build') or 'none'} rules {have or 'none'} vs current {cur}"
+    # Nov 12 (KPC owner, 2026-11-12; Quality #179 M2): a verify / reuse restamp writes per-area 'rules' and may
+    # not yet write the top-level full stamp. Every area row on the current hash is current enough for the 2-fer
+    # gate and for the keys after this one. A key-rules-version bump is a real input (kpc_area_hash.move_reused):
+    # it does not restamp those rows without a rebuild or a valid proof, so the 2-fer preline cannot pass on a
+    # plain restamp of a version bump. kpc_fers_preline.state_not_green already requires each row's rules == cur
+    # and is a RULE_FILE, so it is left unchanged.
+    rows = st.get(KF.ROWS[kind]) if kind in getattr(KF, 'ROWS', {}) else None
+    if isinstance(rows, dict) and rows and all(isinstance(r, dict) and r.get('rules') == cur for r in rows.values()):
+        return True, f"build {st.get('build') or 'none'} every area row on current {cur} (no top-level full stamp yet)"
+    return False, f"build {st.get('build') or 'none'} rules {have or 'none'} vs current {cur}"
 
 
 def _index(kind, root='.'):

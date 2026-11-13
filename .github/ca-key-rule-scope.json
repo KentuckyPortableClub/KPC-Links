@@ -33,12 +33,12 @@
    "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
   },
   {
-    "id": "2026-11-10-review-fixes",
-    "when": "2026-11-10",
-    "from": "0ebc381a788f",
-    "why": "Review fixes to the readers. CPCAD and every provincial layer are read whole or not at all (count and ids checked; a stalled or ignored page offset is an error); a source that fails takes its records from the saved copy and nothing is saved in a run where a source failed. robots.txt is asked for the first address and every redirect hop, as the US key does. Host rules come from the one shared guard. One Canada-wide file, so the scope is all.",
-    "scope": "all",
-    "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
+   "id": "2026-11-10-review-fixes",
+   "when": "2026-11-10",
+   "from": "0ebc381a788f",
+   "why": "Review fixes to the readers. CPCAD and every provincial layer are read whole or not at all (count and ids checked; a stalled or ignored page offset is an error); a source that fails takes its records from the saved copy and nothing is saved in a run where a source failed. robots.txt is asked for the first address and every redirect hop, as the US key does. Host rules come from the one shared guard. One Canada-wide file, so the scope is all.",
+   "scope": "all",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-10"
   },
   {
    "id": "2026-11-12-official-pin-fills",
@@ -59,6 +59,18 @@
    "why": "Quality must-fix M2: kpc_pin_fill.py is in the Canada RULE_FILES (removed from NOT_RULES). A later edit to it moves the Canada hash. No join result changes (the builders already called it); no province is rebuilt for this alone.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-12"
+  },
+  {
+   "id": "2026-11-13-hold-ca-2241-1974-1997",
+   "when": "2026-11-13",
+   "from": "2a4d0154d95c",
+   "why": "Owner hold (Quality, delegated by Brandon 4:43 AM CT): CA-2241, CA-1974 and CA-1997 are held like PF-0033/34. Their Ville de Montréal city-polygon pin fills are not applied, and CA-1974's 'Site patrimonial de Montréal' site note (which rested on that fill) is not applied either. The other 19 ready Canada fills still apply, and CA-2274 keeps its Tyre-Macfarlane site note. All three parks are Quebec, so only CA-QC results change.",
+   "scope": {
+    "states": [
+     "CA-QC"
+    ]
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-13"
   }
  ]
 }

@@ -203,6 +203,32 @@ with tempfile.TemporaryDirectory() as t:
     sh(f'bash {PUSH} . "board: engine" data', work, {'KPC_QUIET_HOURS': '3'})
     check(h_f != h_e and old_head() != h_f, "'board: engine' is not held back by a 'flow board' save (the bot name must start the subject)")
 
+    # g) Nov 13: last-<key>.json and the <key>-<build> report always save through
+    # kpc_save_overwrite.sh (the postcheck call). A same-prefix bookkeeping save
+    # within 3 hours must not skip them. Other key-check files stay bookkeeping.
+    SAVE = str(HERE / '.github/scripts/kpc_save_overwrite.sh')
+    kc = work / 'data/status/key-check'
+    kc.mkdir(parents=True, exist_ok=True)
+    (kc / 'pin-cover-us.json').write_text(json.dumps({'key': 'us', 'checked': '2026-11-13T01:00Z'}))
+    r = sh(f"bash {SAVE} --copy 'Key check after the key build' - -- data/status/key-check", work, {'KPC_QUIET_HOURS': '3'})
+    h_kc = old_head()
+    check(h_kc != h2 and 'saved' in r.stdout + r.stderr,
+          f"first key-check pin-cover save lands {r.stdout[-200:]}{r.stderr[-200:]}")
+
+    (kc / 'pin-cover-us.json').write_text(json.dumps({'key': 'us', 'checked': '2026-11-13T01:10Z', 'n': 1}))
+    r = sh(f"bash {SAVE} --copy 'Key check after the key build' - -- data/status/key-check", work, {'KPC_QUIET_HOURS': '3'})
+    check(old_head() == h_kc and 'Quiet save' in r.stdout + r.stderr,
+          f'key-check pin-cover only, same prefix within 3h: skipped {r.stdout[-200:]}{r.stderr[-200:]}')
+    sh('git checkout -q -- .', work)
+
+    (kc / 'last-us.json').write_text(json.dumps({'key': 'us', 'build': 'US-43293787778', 'report': 'us-US-43293787778.json', 'checked': '2026-11-13T04:00Z'}))
+    (kc / 'us-US-43293787778.json').write_text(json.dumps({'key': 'us', 'build': 'US-43293787778', 'checked': '2026-11-13T04:00Z'}))
+    (kc / 'us-US-43293787778.md').write_text('# US key check US-43293787778\n')
+    r = sh(f"bash {SAVE} --copy 'Key check after the key build' - -- data/status/key-check", work, {'KPC_QUIET_HOURS': '3'})
+    names = sh('git ls-tree -r --name-only origin/main data/status/key-check', work).stdout
+    check(old_head() != h_kc and 'last-us.json' in names and 'us-US-43293787778.json' in names and 'us-US-43293787778.md' in names,
+          f'last-us.json and the us-<build> report still save after a same-prefix 3h bookkeeping save {r.stdout[-200:]}{r.stderr[-200:]}')
+
     # f) KPC_QUIET_HOURS=0 switches the gate off
     h3 = old_head()
     (work / 'data/status/bots/park-truth-checker.json').write_text(json.dumps({'last_run': '2026-11-10', 'run': 'x/actions/runs/6', 'areas': 'left: 1'}))

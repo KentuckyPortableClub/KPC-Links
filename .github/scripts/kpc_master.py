@@ -41,7 +41,7 @@ ARCGIS_SERVICES_HOST_RE = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com
 SAVED_ONLY_HOSTS = {'services.arcgis.com', 'services1.arcgis.com', 'apps.fs.usda.gov'} | kpc_net_guard.extra_hosts()
 HUB_RE = re.compile(r'(^|\.)(hub\.arcgis\.com|opendata\.arcgis\.com)$')   # hub portals: 60 s between requests
 HUB_DELAY, HOST_DELAY = 60.0, 2.0
-WDPA_RE = re.compile(r'wdpa|protected\s*-?planet|protectedplanet', re.I)
+WDPA_RE = re.compile(r'wdpa|protected\s*-?planet|protectedplanet|sprep|pacificdata', re.I)
 
 
 class MasterError(Exception): pass
@@ -456,10 +456,15 @@ def load_area(area, root=None):
 # Nov 11 (KPC owner, 2026-11-11): a park the US key grades pin has no outline. save_area leaves it out of the state's file, so every
 # writer (the master step trim / collect / part, kpc_outlines_from_key, kpc_outlines_keep_main) and every reader agree without
 # reading the key. The rule: the park is dropped from a state's file when every US key that lists it grades it pin, whichever
-# state's file holds the record (a record in a neighbour's file counts the same); a park no US key lists is left alone. A park that is pin in one state but official in another (US-4514: pin in TX and OK, official in
+# state's file holds the record (a record in a neighbour's file counts the same). Nov 13 (Quality M2, US-43293787778): a park no US
+# key lists is dropped too (no licence, no key row). A park that is pin in one state but official in another (US-4514: pin in TX and OK, official in
 # NM) keeps its outline wherever it has one: the planner's lookup (KPCB.usKey) takes the best grade over the states it reads, so it
 # would still draw that outline. No key file (or one that cannot be read) = nothing is dropped.
+# Nov 13 (Quality M1): an outline that still holds a record the key did not join (an id in record_ids that is not in the key's m,
+# e.g. held record 2165 in AK US-10281) is a problem: save-time check fails and release refuses that area. It is not silently dropped
+# (that would lose the official park); the outline must be rebuilt from the key's m.
 _KEYS = {}
+_KEY_M = {}
 
 
 def _key_grades(key_dir):
@@ -482,14 +487,91 @@ def _key_ready(area, key_dir):
     return key_dir if (key_dir / f'{area}.json').is_file() else None
 
 
+def _key_joined(key_dir):
+    """{ref: set of joined record ids} over every data/us-key/US-XX.json in key_dir, from the key's m only (held candidates in c
+    are left out). Read once per file version."""
+    key_dir = pathlib.Path(key_dir); out = {}
+    for f in sorted(key_dir.glob('US-??.json')):
+        try: st = f.stat(); sig = (st.st_mtime_ns, st.st_size)
+        except OSError: continue
+        if _KEY_M.get(f) is None or _KEY_M[f][0] != sig:
+            try: parks = json.loads(f.read_text(encoding='utf-8')).get('parks') or {}
+            except (OSError, ValueError, AttributeError): parks = {}
+            ids = {}
+            for r, p in parks.items():
+                if not isinstance(p, dict): continue
+                ids[r] = {str(x[0]) for x in (p.get('m') or []) if isinstance(x, list) and x}
+            _KEY_M[f] = (sig, ids)
+        for r, s in _KEY_M[f][1].items():
+            out.setdefault(r, set()).update(s)
+    return out
+
+
 def pin_drops(area, refs, key_dir=None):
     """The refs of `refs` that may not have an outline in `area`'s file: every US key that lists the park grades it pin, whichever
-    state's file the record sits in (a park in a neighbour's file counts the same). A park no US key lists is left alone.
+    state's file the record sits in (a park in a neighbour's file counts the same).
     US areas only; no key file for the area = nothing (as before)."""
     key_dir = _key_ready(area, key_dir)
     if key_dir is None: return set()
     grades = _key_grades(key_dir)
     return {r for r in refs if grades.get(r) and all(g == 'pin' for g in grades[r].values())}
+
+
+def not_in_key_drops(area, refs, key_dir=None):
+    """The refs of `refs` that no US key lists (Nov 13 Quality M2). They have no licence in the key and must not have an outline.
+    US areas only; no key file for the area = nothing (as before). A park listed in a neighbour's key is kept."""
+    key_dir = _key_ready(area, key_dir)
+    if key_dir is None: return set()
+    grades = _key_grades(key_dir)
+    return {r for r in refs if r not in grades}
+
+
+def outline_record_ids(rec):
+    """The record ids an outline says it was built from (record_ids), as strings. Trail ids (trl...) and master-trim row
+    indexes (row12) are ignored: those are not key/cache OBJECTIDs, so they are not compared to the key's m."""
+    ids = rec.get('record_ids') if isinstance(rec, dict) else None
+    if not ids: return []
+    out = []
+    for i in ids:
+        s = str(i)
+        if prefix_of(s) == 'trl': continue
+        if re.fullmatch(r"row[0-9]+", s): continue
+        out.append(s)
+    return out
+
+
+def held_record_refs(area, recs, key_dir=None):
+    """{ref: [extra ids]} for outlines that still hold a record the key did not join (id not in any listing's m). Parks the key
+    does not list are not in this dict (they are not_in_key_drops). US areas only."""
+    key_dir = _key_ready(area, key_dir)
+    if key_dir is None: return {}
+    joined = _key_joined(key_dir); out = {}
+    for r, v in recs.items():
+        if r not in joined: continue
+        allow = {i for i in joined[r] if prefix_of(i) != 'trl'}
+        if not allow: continue
+        have = outline_record_ids(v)
+        # Only when the outline was clearly built from the key's m (it already carries at least one joined id). A master-trim
+        # outline (row12) or a synthetic record that never used those ids is not a held-record leak.
+        if not (set(have) & allow): continue
+        extra = [i for i in have if i not in allow]
+        if extra: out[r] = extra
+    return out
+
+
+def outline_key_problems(area, recs, key_dir=None):
+    """Plain-word problems when the area's outlines do not agree with the US key: a PIN-graded park, a ref no key lists, or an
+    outline that holds a record missing from the key's m. Empty when the area is not US or there is no key file."""
+    key_dir = _key_ready(area, key_dir)
+    if key_dir is None: return []
+    msgs = []
+    for r in sorted(pin_drops(area, recs, key_dir)):
+        msgs.append(f'{r}: the key grades the park PIN; it must not have an outline')
+    for r in sorted(not_in_key_drops(area, recs, key_dir)):
+        msgs.append(f'{r}: not in any US key file; the outline must be dropped')
+    for r, extra in sorted(held_record_refs(area, recs, key_dir).items()):
+        msgs.append(f"{r}: holds record(s) {', '.join(extra)} not in the key's m")
+    return msgs
 
 
 def grade_lowers(area, recs, key_dir=None):
@@ -504,8 +586,11 @@ def grade_lowers(area, recs, key_dir=None):
 
 
 def key_fix(area, recs, key_dir=None):
-    """(records as the key allows them, dropped pin refs, lowered refs): the ONE place both rules are applied (save_area, keep_main)."""
-    drop = pin_drops(area, recs, key_dir); low = grade_lowers(area, {r: v for r, v in recs.items() if r not in drop}, key_dir)
+    """(records as the key allows them, dropped refs, lowered refs): the ONE place the pin / not-in-key / approximate rules are
+    applied (save_area, keep_main, from_key). Dropped = pin-graded in every listing, or listed by no US key. Held-record extras
+    are not dropped here (rebuild or refuse)."""
+    drop = pin_drops(area, recs, key_dir) | not_in_key_drops(area, recs, key_dir)
+    low = grade_lowers(area, {r: v for r, v in recs.items() if r not in drop}, key_dir)
     out = {}
     for r, v in recs.items():
         if r in drop: continue
@@ -550,7 +635,10 @@ def save_area(area, recs, root=None, key_dir=None, cap=None):
     for r in recs.values(): assert_public_safe(r)
     root = pathlib.Path(root or OUTLINES)
     recs, drop, low = key_fix(area, recs, key_dir or root.parent / 'us-key')
-    if drop: print(f"::notice title=Outlines {area}::{len(drop)} outline(s) not saved: the key grades the park pin ({' '.join(sorted(drop)[:8])}{' ...' if len(drop) > 8 else ''})", flush=True)
+    kd = key_dir or root.parent / 'us-key'
+    pin, unk = pin_drops(area, drop, kd), not_in_key_drops(area, drop, kd)
+    if pin: print(f"::notice title=Outlines {area}::{len(pin)} outline(s) not saved: the key grades the park pin ({' '.join(sorted(pin)[:8])}{' ...' if len(pin) > 8 else ''})", flush=True)
+    if unk: print(f"::notice title=Outlines {area}::{len(unk)} outline(s) not saved: not in any US key ({' '.join(sorted(unk)[:8])}{' ...' if len(unk) > 8 else ''})", flush=True)
     if low: print(f"::notice title=Outlines {area}::{len(low)} outline(s) saved as approximate: the key grades the park approximate ({' '.join(sorted(low)[:8])}{' ...' if len(low) > 8 else ''})", flush=True)
     feats = [{'type': 'Feature', 'id': ref, 'properties': {k: v for k, v in recs[ref].items() if k != 'geometry'}, 'geometry': recs[ref]['geometry']}
              for ref in sorted(recs)]
@@ -1284,9 +1372,32 @@ def hand_file_problem(path, area, layer):
     return ''
 
 
+
+def owner_licence_accepted(area, layer, root):
+    """True only when data/outlines/hand/owner-licence-acceptance.json records an owner acceptance for this area+layer.
+    The file is not created here (do not invent an acceptance)."""
+    p = pathlib.Path(root) / 'hand' / 'owner-licence-acceptance.json'
+    try:
+        doc = json.loads(p.read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        return False
+    rows = doc.get('accepted') if isinstance(doc, dict) else doc
+    if not isinstance(rows, list):
+        return False
+    want = (str(area or ''), str(layer or ''))
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        if (str(r.get('area') or ''), str(r.get('layer') or '')) != want:
+            continue
+        if str(r.get('by') or r.get('accepted_by') or '').strip() and str(r.get('words') or r.get('text') or r.get('acceptance') or '').strip():
+            return True
+    return False
+
+
 def share_block(row, root=None):
     """'' when a layer's checked file may be packed / uploaded / merged; else why not. Refused: anything that looks like Protected Planet /
-    WDPA, or a layer / download source marked `redistribute: "no"` in data/outlines/layers.json or download-sources.json (optional
+    WDPA or SPREP, a layer / download source marked `redistribute: "no"`, or a row with no licence or terms in data/outlines/layers.json or download-sources.json (optional
     field; absent = no known restriction). row: a needs row or a layer file's meta (area, layer, url, page, label, src)."""
     r = row or {}
     raw = r.get('raw') if isinstance(r.get('raw'), dict) else {}
@@ -1302,6 +1413,31 @@ def share_block(row, root=None):
         if str((S or {}).get('redistribute', '')).lower() != 'no': continue
         if sid == r.get('src') or (u and nu(S.get('layer_url')) == u) or (S.get('layer') == lay and area in (S.get('areas') or [])):
             return f'{area}|{lay}: download source {sid} is marked redistribute=no in download-sources.json: not packed, uploaded or merged'
+    lic = ''
+    for k in ('license', 'licence', 'terms'):
+        v = str(r.get(k) or raw.get(k) or '').strip()
+        if v:
+            lic = v
+            break
+    if not lic:
+        # catalogue licence counts (a hand/import row may name the layer only)
+        for k, L in ((load_layers(root) or {}).get('layers') or {}).items():
+            if k in (f'{area}.{lay}', lay) or (u and nu((L or {}).get('url')) == u):
+                for kk in ('license', 'licence', 'terms'):
+                    if str((L or {}).get(kk) or '').strip():
+                        lic = str(L.get(kk)).strip(); break
+            if lic: break
+    if not lic:
+        for sid, S in ((load_json(root / 'download-sources.json', {}) or {}).get('sources') or {}).items():
+            if sid == r.get('src') or (u and nu(S.get('layer_url')) == u) or (S.get('layer') == lay and area in (S.get('areas') or [])):
+                for kk in ('license', 'licence', 'terms'):
+                    if str((S or {}).get(kk) or '').strip():
+                        lic = str(S.get(kk)).strip(); break
+            if lic: break
+    if not lic:
+        return f"{area}|{lay}: no licence or terms recorded: not packed, uploaded or merged"
+    if re.match(r'not\s+stated\b', lic, re.I) and not owner_licence_accepted(area, lay, root):
+        return f"{area}|{lay}: licence is 'not stated' and no recorded owner acceptance file: not packed, uploaded or merged"
     return ''
 
 

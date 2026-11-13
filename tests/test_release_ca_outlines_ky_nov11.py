@@ -5,6 +5,7 @@ The page loaders are NOT switched yet (that half waits for the site review): thi
 new subs / KY rows changes nothing a page does today. Offline: temp repos and node with a stub fetch only.
 KPC_COMPAT_BLOCKS=<file>[:<file>...] runs the compatibility check against other copies of the KPCREL block too (e.g. a review stack)."""
 import gzip, hashlib, json, os, pathlib, re, shutil, subprocess, sys, tempfile
+import os as _os; _os.environ.setdefault('GITHUB_TRIGGERING_ACTOR', 'KentuckyPortableClub')   # kpc_release.py checks the release login (regrade 3 LC)
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.github/scripts'))
 import kpc_release as R
@@ -105,7 +106,7 @@ with tempfile.TemporaryDirectory() as t:
     check('the area row keeps its form {files, run, sha, time}', idx['areas']['CA'] == {'sha': sha1, 'time': 'T2', 'run': '2', 'files': 6})
     s_ca = snap(rel); i_ca = idx
     # dry run: lists, writes nothing
-    r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_release.py'), '--repo', str(d), '--area', 'KY', '--sha', sha1, '--dry-run'], capture_output=True, text=True)
+    r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_release.py'), '--repo', str(d), '--all-of-kind', '--area', 'KY', '--sha', sha1, '--dry-run'], capture_output=True, text=True)
     lines = [ln for ln in r.stdout.splitlines() if ln.startswith('would write')]
     check('--dry-run lists the KY files with sizes and writes nothing',
           r.returncode == 0 and 'Nothing was written' in r.stdout and snap(rel) == s_ca and any(ln.split()[-1] == 'data/released/ky/ky-answer-key.json' and ln.split()[3] == '23' for ln in lines)

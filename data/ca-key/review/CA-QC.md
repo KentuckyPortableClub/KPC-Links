@@ -2,6 +2,14 @@
 
 Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **442 of 834** joined (same name + same kind). **29** to check, **327** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
+## Owner hold (pin fills not applied)
+
+Quality, delegated by Brandon, 4:43 AM CT Nov 13 2026: these three parks are held like PF-0033/34. Their pin fills are not applied on the next CA-QC key, and CA-1974's 'Site patrimonial de Montréal' site note (which rested on that fill) is dropped then too. The other 19 ready Quebec fills still apply, and CA-2274 keeps its Tyre-Macfarlane note. Taking a ref off the hold list in kpc_pin_fill.py is the only way to apply its fill.
+
+- **CA-2241** Saint Helen's Island Nature Reserve (Nature Reserve): owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): low-confidence Ville de Montréal city-polygon fill (Parc Jean-Drapeau part); held like PF-0033/34
+- **CA-1974** Champ de Mars (Regional) Nature Reserve (Nature Reserve): owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): medium-confidence Ville de Montréal city-polygon fill; the 'Site patrimonial de Montréal' site note that rested on it is held too
+- **CA-1997** Dorchester Square Nature Reserve (Nature Reserve): owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): medium-confidence Ville de Montréal city-polygon fill; held like PF-0033/34
+
 ## To check (not joined)
 
 - **CA-0511** Mount Royal Regional Park (Regional Park) → Édifice du Mount Royal Club (~0 ac, similar name); Site patrimonial du Mont-Royal (~1,814 ac, the POTA pin is inside it (different name)); Parc du Mont-Royal Natural Area Under Private Stewardship (~469 ac, the POTA pin is inside it (different name)); Milieu naturel de conservation volontaire Parc du Mont-Royal (~469 ac, the POTA pin is inside it (different name))

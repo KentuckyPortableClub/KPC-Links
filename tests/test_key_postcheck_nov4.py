@@ -3,7 +3,7 @@
 builds and one 'World answer key' build. Checks: gained / lost / outline->pin / pin->outline / outline changed; CA-2218 and SE-0797
 'must be pins' (NOT YET PIN, then PASS); 0,0 pin; pin outside the outline file (listed) vs 'edge' (counted only); a flat outline vs a
 1-acre park; a person's signed sheet answer the key ignores (listed) vs a PROPOSED row and a fake sign-off (not); overrides 'no' still
-joined (listed) vs an old 'join' a later 'no' replaced (not); no new build -> nothing written; a broken key file or no key never fails
+joined (listed) vs an old 'join' a later 'no' replaced (not); already-checked build still writes the must-save report; a broken key file or no key never fails
 (exit 0); only the report folder is written."""
 import csv, json, os, pathlib, subprocess, sys, tempfile
 
@@ -112,7 +112,7 @@ with tempfile.TemporaryDirectory() as t:
     check(after.replace('?? out/\n', '') == before, f'only out/ was written: {after!r}')
 
     p = run(R, KEY='ca')
-    check(p.returncode == 0 and 'no new build' in p.stdout, 'second run on the same build: no new build, nothing written')
+    check(p.returncode == 0 and 'writing the report again' in p.stdout and (R / 'out/ca-CA-2.json').exists(), 'second run on the same build: still writes the must-save report')
     p = run(R, WORKFLOW_NAME='KPC Canada answer key', FORCE='yes', BUILD='41739774609')
     check(p.returncode == 0 and (R / 'out/ca-CA-2.json').exists() and not (R / 'out/ca-run-41739774609.json').exists(), "WORKFLOW_NAME maps to the key; the key's own build stamp names the files")
 

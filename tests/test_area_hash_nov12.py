@@ -406,13 +406,13 @@ check('B real checkout: the four rules hashes did not move and git status is unc
       and run('git', 'status', '--porcelain', '--untracked-files=all', cwd=ROOT).stdout == before_status)
 check('B the tool is not a rule file and is listed in NOT_RULES', 'kpc_area_hash.py' in open(ROOT / K.FREEZE).read() and not any('kpc_area_hash' in f for v in K.freeze_lists(K.Tree(ROOT))[0].values() for f in v))
 
-# the workflows: world plan in reuse by default; US/CA stay on add (Quality #178); a full-rebuild input, rows stamped after the build stamp
+# the workflows: US, CA and world plan in reuse by default (Nov 12, no full rebuild); a full-rebuild input, rows stamped after the build stamp
 import yaml
 for wf, kind, stampname in (('kpc-world-key.yml', 'world', 'stamp world-key'), ('kpc-us-key.yml', 'us', 'stamp us-key'), ('kpc-ca-key.yml', 'ca', 'stamp ca-key')):
     W = yaml.safe_load((ROOT / '.github/workflows' / wf).read_text(encoding='utf-8'))
     txt = (ROOT / '.github/workflows' / wf).read_text(encoding='utf-8')
     check(f'B {wf}: a full_rebuild input exists', 'full_rebuild' in W[True]['workflow_dispatch']['inputs'])
-    default = 'reuse' if kind == 'world' else 'add'
+    default = 'reuse'
     check(f'B {wf}: the plan calls kpc_area_hash.py plan {kind} with the KPC_AREA_HASH variable, default {default}',
           f'kpc_area_hash.py plan {kind}' in txt and f"vars.KPC_AREA_HASH || '{default}'" in txt)
     check(f'B {wf}: stamp-rows runs after the build stamp', txt.index(stampname) < txt.index(f'kpc_area_hash.py stamp-rows {kind}'))

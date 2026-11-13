@@ -26,7 +26,7 @@ def sq(x, y, d=0.05): return {'type': 'Polygon', 'coordinates': [[[x - d, y - d]
 
 def hand(dir_, name, area, layer, feats, expected=None, **meta):
     m = dict({'area': area, 'layer': layer, 'url': 'https://example.gov/fws/national', 'name_field': 'ORGNAME', 'source': 'hand',
-              'count_expected': len(feats) if expected is None else expected}, **meta)
+              'license': 'CC BY 4.0 (test fixture)', 'count_expected': len(feats) if expected is None else expected}, **meta)
     return M.write_layer_file(pathlib.Path(dir_) / name, m, feats)
 
 
@@ -105,12 +105,13 @@ with tempfile.TemporaryDirectory() as t:
     check('redistribute=no on the layer: fill exits 4 and keeps nothing', rc == 4 and not (store / 'hand-W-AS.h172.geojson.gz').exists())
     doc['layers']['W-AS.h172'].pop('redistribute'); M.save_layers(doc, root)
     (root / 'download-sources.json').write_text(json.dumps({'format': 1, 'sources': {'h172': {'areas': ['W-AS'], 'layer': 'h172', 'redistribute': 'no'}}}))
-    check('redistribute=no on the download source (by src id, and by layer + area) is refused', M.share_block({'area': 'W-UM', 'layer': 'x', 'src': 'h172'}, root)
-          and M.share_block({'area': 'W-AS', 'layer': 'h172'}, root) and not M.share_block({'area': 'W-GU', 'layer': 'h172'}, root))
+    check('redistribute=no on the download source (by src id, and by layer + area) is refused', M.share_block({'area': 'W-UM', 'layer': 'x', 'src': 'h172', 'license': 'CC BY 4.0'}, root)
+          and M.share_block({'area': 'W-AS', 'layer': 'h172', 'license': 'CC BY 4.0'}, root) and not M.share_block({'area': 'W-GU', 'layer': 'h172', 'license': 'CC BY 4.0'}, root))
     rc, out = run_fill('W-AS')
     check('... and fill exits 4 for it', rc == 4)
-    check('no field = no known restriction', not M.share_block({'area': 'W-VI', 'layer': 'sgakd', 'url': 'https://example.gov/nps'}, root))
-    check('a WDPA-looking layer is refused', M.share_block({'area': 'W-AS', 'layer': 'x', 'url': 'https://www.protectedplanet.net/x'}, root))
+    check('X4/M6: a row with no licence or terms is refused', 'licence' in (M.share_block({'area': 'W-VI', 'layer': 'sgakd', 'url': 'https://example.gov/nps'}, root) or '').lower())
+    check('a WDPA-looking layer is refused', M.share_block({'area': 'W-AS', 'layer': 'x', 'url': 'https://www.protectedplanet.net/x', 'license': 'x'}, root))
+    check('X4: a SPREP-labelled layer is refused', M.share_block({'area': 'W-AS', 'layer': 'x', 'label': 'SPREP protected areas', 'license': 'CC BY 4.0'}, root))
 
 # 2. the PC helper refuses the same (stdlib only, no request)
 import importlib.util  # noqa: E402
@@ -121,7 +122,7 @@ with tempfile.TemporaryDirectory() as t:
     f.write_text(json.dumps({'type': 'FeatureCollection', 'features': [{'type': 'Feature', 'properties': {'OBJECTID': i, 'NAME': f'N{i}'}, 'geometry': sq(x, y, .01)}
                                                                       for i, (x, y) in enumerate([(-86.8, 33.0), (-86.5, 32.5), (-83.5, 33.5)])]}))
     lt = {'zzn': ['https://example.gov/national/MapServer/0', 'NAME', 'National']}
-    res = {st: H.check_and_pack({'area': f'US-{st}', 'layer': 'zzn', 'url': lt['zzn'][0], 'expected': 0}, [f], parks, t, lt) for st in ('AL', 'GA')}
+    res = {st: H.check_and_pack({'area': f'US-{st}', 'layer': 'zzn', 'url': lt['zzn'][0], 'expected': 0, 'license': 'CC BY 4.0 (test fixture)'}, [f], parks, t, lt) for st in ('AL', 'GA')}
     cnt = {st: len(M.read_layer_file(v[2])[1]) if v[0] else None for st, v in res.items()}
     check(f'PC helper: one national file -> one checked file per state, each with its own count {cnt}', cnt == {'AL': 2, 'GA': 1}
           and res['AL'][2].name == 'hand-US-AL.zzn.geojson.gz' and res['GA'][2].name == 'hand-US-GA.zzn.geojson.gz')

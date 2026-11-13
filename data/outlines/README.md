@@ -132,13 +132,15 @@ same shaping and names as a live read. The Canada and world saved copies cannot 
   `fill` keeps no second path. A `hand-CA-XX.<layer>` file is checked (name, area, count, licence, trim to Canada's POTA parks) into the
   per-area checked store (`fill --checked`), and its row is held for a person.
 - **World** (`W-XX.json.gz`): each record's name `n` and type `ty` come from the world key's own field rules (`pick_name`, `TYPEF`, the
-  sheet's name field), and its `sid` decides the fallback. The world key reads a saved copy only for a source that fails (every
-  `services*.arcgis.com` layer). It reads no hand files. So `fill` checks a `hand-W-XX.<layer>` file into the checked store (trimmed
-  to that country's POTA parks) and its row is held: who=person, "checked file saved; the world builder does not read hand files yet".
-- The builder change still needed (a rules-hash move): in `kpc_world_key.py`, in the per-source loop (`for s in SRC.get(cc, [])`,
-  where a failed or saved-only source takes its saved records), read `hand-W-<CC>.*.geojson.gz` from a `KPC_WORLD_HAND` folder whose
-  `kpc.url` is that source's address. Build each record with the key's own `arcgis_rec(label, url, oid field, feature)`, check the count
-  (fail closed), and keep the bigger set. In `kpc_ca_key.py`, at the `KPC_CA_HAND` reader, also read `hand-CA-*.<layer>` names.
+  sheet's name field), and its `sid` decides the fallback. The world key itself still does not read hand files (that change would
+  move the world rules hash). Since 2026-11-12 `fill` keep-bigger merges a `hand-W-XX.<layer>` file into the saved copy (`kpc_world_hand.py`,
+  not a rule file) by source id, then still checks the file into the per-area store (trimmed to that country's POTA parks). A
+  smaller re-read never replaces a saved layer. The next saved-shapes run (`kpc-world-cache.yml`) applies repo (and release)
+  `hand-W-<CC>.*.geojson.gz` files after T0, so a blocked live refresh that does not rewrite the copy still leaves a fuller file
+  for save-check / upload. Owner hand files live in `data/outlines/hand/`.
+- The builder change still possible later (a rules-hash move): in `kpc_world_key.py`, in the per-source loop (`for s in SRC.get(cc, [])`,
+  where a failed or saved-only source takes its saved records), also read `hand-W-<CC>.*.geojson.gz` from a `KPC_WORLD_HAND` folder whose
+  `kpc.url` is that source's address. In `kpc_ca_key.py`, at the `KPC_CA_HAND` reader, also read `hand-CA-*.<layer>` names. A file is merged only after `check_other` passes, and only when its meta records a licence or terms and is not share_block / WDPA flagged. A record with no `_bb` / `_r` (or zero-area geometry) is not merged or counted. `hand-W-XX.<layer>.chunkN.geojson.gz` groups are concatenated before the merge. World-cache fill writes an empty parks list so this job can merge a licensed file offline; pin / 5 km checks then run at key build. Release hand files are staged and never `--clobber` a repo copy of the same name, or a file whose country is not the job's `W-$CC`.
 
 **Baselines.** Every `W-XX` copy the world key builds has a baseline (`caches`). `CA-ALL` has none, because no file offline records
 its total. The Canada build runs `gate --first-ok`, and after a good full build `baseline` records the first one in `layers.json`

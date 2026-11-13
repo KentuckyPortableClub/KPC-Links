@@ -423,18 +423,9 @@ with tempfile.TemporaryDirectory() as td:
 shipped = json.loads((ROOT / 'data/outlines/world-expected-holds.approved.json').read_text(encoding='utf-8'))
 prop = json.loads((ROOT / 'data/outlines/world-expected-holds.proposed.json').read_text(encoding='utf-8'))
 h, n, e = J.load_expected(ROOT / 'data/outlines/world-expected-holds.approved.json', 'AU DE GB MT', ROOT / 'data/world-key')
-au, mt = shipped['holds']['AU'], shipped['holds']['MT']
-check('shipped: AU and MT are active owner-signed holds (both have joined parks on main)',
-      sorted(h) == ['AU', 'MT'] and not e
-      and au['approved_by'] == 'Brandon (KZ4CP), decided by Quality per his delegation'
-      and mt['approved_by'] == 'Brandon (KZ4CP)'
-      and au['approved_date'] == mt['approved_date'] == '2026-11-11'
-      and au['source'] == 'Quality chat t184u, 11:02 PM CT'
-      and mt['source'] == 'Super chat t1419u 10:49 PM CT; Quality chat t181u 10:56 PM CT'
-      and au['copy'] == 'W-AU' and mt['copy'] == 'W-MT'
-      and au['copy_sha256'] == AU_COPY_SHA and mt['copy_sha256'] == MT_COPY_SHA
-      and 'review_by' in au and 'review_by' in mt
-      and 't1419u' in mt['reason'] and '14-record baseline is not signed' in mt['reason']
+check('shipped: AU is off the expected-holds list; MT is back on (Quality #179, Brandon gave Quality that call)',
+      'AU' not in (shipped.get('holds') or {}) and 'MT' in (shipped.get('holds') or {})
+      and 'AU' in str(shipped.get('removed') or {})
       and 'MT' not in (prop.get('holds') or {})
       and not (ROOT / 'data/world-key/expected-holds.json').exists())
 

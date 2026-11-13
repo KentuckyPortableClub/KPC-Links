@@ -78,10 +78,13 @@ jobs:
           # Nov 4 (links-04): RULES_CHANGED=1 (the newest world build was not a full build on the current rules) = build ALL tonight
           # Nov 12 (KPC owner, 2026-11-12): each country row carries the code hash it was built on; RULES_SCOPE (from the freeze check) = the
           # countries NOT yet built on the current rules (a kept country is planned again); empty = every country, as before
-          if [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ] && [ -n "${RULES_SCOPE:-}" ]; then
+          if [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ] && [ "${RULES_VERIFY:-}" = 1 ]; then
+            S=$(echo "$RULES_SCOPE" | tr ' ' '\n' | sed 's/^W-//' | tr '\n' ' ' | sed 's/ *$//'); echo "SCOPE_LIST=$S" >> "$GITHUB_ENV"
+            echo "::notice title=World key tonight::RULES CHANGED since the newest build: existing keys are verified against the new rules; only a country whose output actually changes is rebuilt; not a full rebuild${S:+ ($S)}"
+          elif [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ] && [ -n "${RULES_SCOPE:-}" ]; then
             S=$(echo "$RULES_SCOPE" | tr ' ' '\n' | sed 's/^W-//' | tr '\n' ' ' | sed 's/ *$//'); echo "SCOPE_LIST=$S" >> "$GITHUB_ENV"
             echo "::notice title=World key tonight::RULES CHANGED since the newest build: only the countries not yet built on the current rules are built: $S"
-          elif [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ]; then echo "::notice title=World key tonight::RULES CHANGED since the newest build: every country is built on the current rules (no force needed)"
+          elif [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ]; then echo "::notice title=World key tonight::RULES CHANGED since the newest build: every country is considered on the current rules (no force needed)"
           elif [ "$SCHED" = "7 10 * * *" ]; then
             L=$(cat data/world-key/answers-countries.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
             if [ -z "$L" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::new approved layer(s) for: $L"; fi
@@ -101,6 +104,13 @@ jobs:
           FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '17 11 3 * *' && 'yes') || '' }}
           KPC_SAVED_ONLY_HOSTS: ${{ vars.KPC_SAVED_ONLY_HOSTS }}
         run: |
+          # Quality #179 M9: honour REBUILD_LEVEL when the owner set it, or when this checkout still differs from origin/main.
+          # After merge, a nightly on main has an empty diff, so hashes / RULES_VERIFY decide. The level never sets KPC_FULL_BUILD.
+          if [ -z "${REBUILD_LEVEL:-}" ]; then
+            _rl_out=$(python3 .github/scripts/kpc_rebuild_level.py diff --base origin/main 2>/dev/null) || _rl_out=   # ok: origin/main may be missing in a shallow checkout; the level stays unset and hashes decide
+            _rl=$(printf '%s\n' "$_rl_out" | awk 'NF{print $1}' | tail -1)
+            case "$_rl" in [1-5]) export REBUILD_LEVEL="$_rl" ;; esac
+          fi
           if [ "${SKIP:-}" = 1 ]; then echo 'groups=[]' >> "$GITHUB_OUTPUT"; exit 0; fi
           [ -n "${NIGHT_LIST:-}" ] && COUNTRIES="$NIGHT_LIST"
           SHEETC=$(jq -r '.countries|keys|join(" ")' data/world-key/sheet-countries.json 2>/dev/null || true)   # ok: an optional file or tidy step (Nov 1: Brandon's filled sheet)

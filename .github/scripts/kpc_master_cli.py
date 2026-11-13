@@ -29,13 +29,32 @@ Exit codes: 0 ok | 1 check failed | 2 SHORT read | 3 cannot verify (no expected 
 """
 import argparse, csv, datetime, glob, gzip, json, os, pathlib, shutil, subprocess, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import kpc_master as M  # noqa: E402
+import kpc_master as M
 from kpc_scrub import notice_text, clip   # Nov 12: every log line scrubbed first, then cut
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, notice_text(m, 20000)), flush=True)   # Nov 12: scrubbed (archive token)
 def warn(t, m): print('::warning title=%s::%s' % (t, notice_text(m, 20000)), flush=True)
 def err(t, m): print('::error title=%s::%s' % (t, notice_text(m, 20000)), flush=True)
+
+
+def _world_count(name, blob):
+    """Current-layer count when kpc_world_hand.py is next to this file (the checkout).
+    A copy of only this CLI (some tests) falls back to the full rec list."""
+    try:
+        import kpc_world_hand as _kwh
+        return _kwh.world_current_rec_count(name, blob)
+    except ImportError:
+        recs = (blob or {}).get('recs')
+        return len(recs) if isinstance(recs, list) else 0
+
+
+def _world_labels(cc):
+    try:
+        import kpc_world_hand as _kwh
+        return _kwh.world_source_labels(cc)
+    except ImportError:
+        return []
 
 
 def read_parks(path):
@@ -163,6 +182,19 @@ def cmd_check(a):
             except M.ShortRead as e: bad.append(str(e))
     if a.repo:
         for f in M.raw_in_repo(tracked_files(a.repo)): bad.append(f'{f}: a raw layer file must not be tracked (use the raw manifest)')
+    # Nov 13 (Quality M1/M2): outlines must agree with the US key at save time (no PIN outlines, no refs the key does not list,
+    # no outline that holds a record missing from the key's m). --areas limits the check so a state can be saved or released alone.
+    key = pathlib.Path(a.key) if getattr(a, 'key', None) else root.parent / 'us-key'
+    want = [x for x in (getattr(a, 'areas', None) or '').replace(',', ' ').split() if x]
+    if key.is_dir():
+        for pth in sorted(root.glob('US-??.geojson.gz')):
+            if M.is_part_file(pth.name): continue
+            area = pth.name[:-len('.geojson.gz')]
+            if want and area not in want: continue
+            try: recs = M.load_area(area, root)
+            except Exception: continue
+            for msg in M.outline_key_problems(area, recs, key):
+                bad.append(f'{pth.name}: {msg}')
     for b in bad: err('master check', b)
     if suspect: warn('master check suspect baseline', f'{len(suspect)} layer baseline(s) lower than the records the file held (the next verified full read re-records them): ' + '; '.join(suspect))
     notice('master check', ('all clear' if not bad else f'{len(bad)} problem(s)') + (f'; {len(suspect)} suspect baseline(s): ' + ', '.join(x.split(' ')[0] for x in suspect) if suspect else ''))
@@ -216,7 +248,7 @@ def cmd_gate(a):
             err('master gate NO BASELINE' if 'no baseline' in why else 'master gate REFUSED', why); aside(f, stem); continue
         try:
             if how == 'manifest': M.check_against_manifest(f.name, blob)
-            else: M.check_complete(exp, len(blob.get('recs') or []) if isinstance(blob.get('recs'), list) else 0, str(f))
+            else: M.check_complete(exp, _world_count(f.name, blob), str(f))
             if how != 'full': notice('master gate', why + ('' if (caches.get(stem) or {}).get('expected_count') is None else f"; the full baseline {caches[stem]['expected_count']} is not used here and not changed"))
         except M.ShortRead as e: err('master gate SHORT', e); aside(f, stem)
         except M.MasterError as e: err('master gate REFUSED', e); aside(f, stem)
@@ -244,9 +276,16 @@ def save_check(path, against_dir, caches, assets=None, first_ok=False):
         if assets is None: return f'{name}: the release asset list could not be read, so a first copy cannot be told from a failed download'
         if name in assets: return f'{name}: the release has this copy but its download failed: held, not replaced'
         return ''
-    try: tot_old = len(M.load_saved(old_p).get('recs') or [])
+    try:
+        old_blob = M.load_saved(old_p)
+        tot_old = _world_count(name, old_blob)
     except Exception as e: return f'{name}: the release copy could not be read to compare ({e})'  # noqa: BLE001
     new, old = M.saved_counts(path), M.saved_counts(old_p)
+    if stem.startswith('W-'):
+        keep = {'src:' + lab for lab in _world_labels(stem[2:])}
+        if keep:
+            new = {k: v for k, v in new.items() if k in keep}
+            old = {k: v for k, v in old.items() if k in keep}
     if tot_new < tot_old: return f'{name}: {tot_new} records, fewer than the release copy ({tot_old})'
     less = sorted(k for k in old if new.get(k, 0) < old[k])
     if less: return f'{name}: fewer records than the release copy for ' + ', '.join(f"{k or 'PAD-US'} ({new.get(k, 0)} < {old[k]})" for k in less[:10])
@@ -394,7 +433,7 @@ def main(argv=None):
     t.add_argument('--page', type=int, default=500); t.add_argument('--accept-shrink', action='store_true'); t.add_argument('--dry-run', action='store_true'); t.add_argument('--root')
     rs = sp.add_parser('resave', help='write every area file again: pin-graded parks out, parts when over 1 MB (Nov 11)')
     rs.add_argument('--root'); rs.add_argument('--key', help='the us-key folder (default: next to the outlines folder)'); rs.add_argument('--areas'); rs.add_argument('--dry-run', action='store_true')
-    c = sp.add_parser('check'); c.add_argument('--root'); c.add_argument('--cache'); c.add_argument('--repo')
+    c = sp.add_parser('check'); c.add_argument('--root'); c.add_argument('--cache'); c.add_argument('--repo'); c.add_argument('--key', help='the us-key folder (default: next to the outlines folder)'); c.add_argument('--areas', help='only these US-XX areas (default: every US outline file)')
     p = sp.add_parser('plan'); p.add_argument('--root'); p.add_argument('--areas'); p.add_argument('--prefix'); p.add_argument('--max-days', type=float, default=30); p.add_argument('--no-probe', action='store_true'); p.add_argument('--out')
     g = sp.add_parser('gate'); g.add_argument('--cache', required=True); g.add_argument('--root'); g.add_argument('--report')
     g.add_argument('--first-ok', action='store_true', help='a saved copy with NO baseline yet passes (notice); a short one is still held')

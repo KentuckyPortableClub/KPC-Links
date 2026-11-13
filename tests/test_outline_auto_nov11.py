@@ -82,6 +82,11 @@ with tempfile.TemporaryDirectory() as t:
     check('4% down and 50% down: exit 1, both named in the mark', rc == 1 and mark == ['AA', 'DD'] and 'US-AA::official parks 100 -> 96' in o)
     rc, o, mark = guard({'KPC_DROP_OK': 'dd'})
     check('KPC_DROP_OK lets only the named state through', rc == 1 and mark == ['AA'] and 'let through by KPC_DROP_OK' in o)
+    # M2 drops outlines the key does not list, so these 50 refs have to be in US-AA.json or save_area would write an empty file
+    kf('AA', 96)
+    more = json.loads((key / 'US-AA.json').read_text())
+    more['parks'].update({f'US-{i}': {'g': 'official'} for i in range(50)})
+    (key / 'US-AA.json').write_text(json.dumps(more))
     M.save_area('US-AA', {f'US-{i}': rec(f'US-{i}') for i in range(50)}, root); sh(d, 'git', 'add', '-A'); sh(d, 'git', 'commit', '-qm', 'outlines')
     M.save_area('US-AA', {f'US-{i}': rec(f'US-{i}') for i in range(40)}, root)
     rc, o, mark = guard({'KPC_DROP_OK': 'DD'})
@@ -100,8 +105,8 @@ names = [s.get('name', '') for s in steps]
 def at(word): return next(i for i, n in enumerate(names) if n.startswith(word))
 build = steps[at('Outlines from the key')]['run']
 # Nov 12 (KPC owner, 2026-11-12): the drop guard now runs BEFORE the stamp (a state it keeps from main is named failed in the stamp)
-check('order: collect -> outlines from the key -> master check -> drop guard -> stamp -> BOT C -> save',
-      at('Master step') < at('Outlines from the key') < at('Master check of the joined') < at('Drop guard') < at('BUILD STAMP') < at('BOT C line') < at('Save'))
+check('order: collect -> join check (far-join hold) -> outlines from the key -> master check -> drop guard -> stamp -> BOT C -> save',
+      at('Master step') < at('Join check') < at('Outlines from the key') < at('Master check of the joined') < at('Drop guard') < at('BUILD STAMP') < at('BOT C line') < at('Save'))
 check('the outline step builds each built state from the release copy, then re-reads main',
       'kpc_outlines_from_key.py --cache .okcache --states "$st"' in build and 'gh release download boundary-cache' in build
       and build.index('kpc_outlines_from_key.py') < build.index('kpc_outlines_keep_main.py --fetch --ref origin/main') and '--dry-run' not in build)

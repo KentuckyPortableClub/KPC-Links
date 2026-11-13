@@ -113,6 +113,40 @@ jobs:
           fi
           touch .against/T0
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          # Nov 12 (KPC owner, 2026-11-12): owner hand-W-$CC.<layer>.geojson.gz files (repo checkout, and any on the
+          # boundary-cache release) are keep-bigger merged into the saved copy AFTER T0, so a blocked live refresh that
+          # does not wsave still leaves a fuller copy for save-check / upload. The world key is not edited (no rules-hash move).
+          if [ "$CC" != "CA" ]; then
+            mkdir -p "$RUNNER_TEMP/world-hand" "$RUNNER_TEMP/world-hand-release"
+            if ls "data/outlines/hand/hand-W-${CC}."*.geojson.gz >/dev/null 2>&1; then
+              cp "data/outlines/hand/hand-W-${CC}."*.geojson.gz "$RUNNER_TEMP/world-hand/"
+            fi
+            # Quality #179 M7: download release hand files to a staging dir. Prefer the repo copy of the
+            # same name; never let --clobber replace it, and never place a file whose area is not W-$CC.
+            if [ -f .against/ASSETS.txt ] && grep -E -q "^hand-W-$CC\." .against/ASSETS.txt; then
+              gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "hand-W-$CC.*.geojson.gz" -D "$RUNNER_TEMP/world-hand-release" --clobber || { kpc_rc=$?; echo "::warning title=Saved shapes $CC::release hand files could not be downloaded (exit $kpc_rc): repo hand files, if any, are still applied"; echo "Saved shapes $CC - release hand files not downloaded (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+              for f in "$RUNNER_TEMP/world-hand-release"/"hand-W-${CC}."*.geojson.gz; do
+                [ -f "$f" ] || continue
+                bn=$(basename "$f")
+                case "$bn" in
+                  hand-W-"$CC".*)
+                    if [ -e "$RUNNER_TEMP/world-hand/$bn" ]; then
+                      echo "::notice title=Saved shapes $CC::kept the repo copy of $bn (release file not clobbered)"
+                    else
+                      cp "$f" "$RUNNER_TEMP/world-hand/"
+                    fi
+                    ;;
+                  *)
+                    echo "::warning title=Saved shapes $CC::ignored $bn: not a W-$CC hand file"
+                    ;;
+                esac
+              done
+            fi
+            if ls "$RUNNER_TEMP/world-hand"/"hand-W-${CC}."*.geojson.gz >/dev/null 2>&1; then
+              echo '[]' > "$RUNNER_TEMP/world-hand-parks.json"
+              python3 .github/scripts/kpc_master_cli.py fill --cache "$d" --states '' --areas "W-$CC" --hand "$RUNNER_TEMP/world-hand" --root data/outlines --parks "$RUNNER_TEMP/world-hand-parks.json" --work "$RUNNER_TEMP/world-hand-work" --offline --no-key || { kpc_rc=$?; echo "::warning title=Saved shapes $CC::owner hand files were not merged (exit $kpc_rc)"; echo "Saved shapes $CC - owner hand files were not merged (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+            fi
+          fi
           if [ "$CC" = "CA" ]; then
             python3 .github/scripts/kpc_ca_key.py || echo "::notice title=Saved shapes CA::stopped with an error"
           else
@@ -127,9 +161,9 @@ jobs:
           f=$(find cache/world/W-${{ matrix.cc }}.json.gz cache/ca/CA-ALL.json.gz -newer .against/T0 2>/dev/null | head -1)
           [ -n "$f" ] || { echo "::notice title=Saved shapes ${{ matrix.cc }}::nothing new saved"; exit 0; }
           # owner rule, 2026-11-10: only a copy that passes the gate baseline and holds at least the release copy's records
-          python3 .github/scripts/kpc_master_cli.py save-check --against .against --assets .against/ASSETS.txt --first-ok "$f" || { kpc_rc=$?; echo "::error title=Saved shapes ${{ matrix.cc }}::save-check refused $(basename $f) (named above): not uploaded"; echo "Saved shapes ${{ matrix.cc }} - save-check refused $(basename $f)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 0; }
+          python3 .github/scripts/kpc_master_cli.py save-check --against .against --assets .against/ASSETS.txt --first-ok "$f" || { kpc_rc=$?; echo "::error title=Saved shapes ${{ matrix.cc }}::save-check refused $(basename "$f") (named above): not uploaded"; echo "Saved shapes ${{ matrix.cc }} - save-check refused $(basename "$f")" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 0; }
           gh release upload boundary-cache "$f" -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
-          echo "::notice title=Saved shapes ${{ matrix.cc }}::uploaded $(basename $f) ($(du -h $f | cut -f1))"
+          echo "::notice title=Saved shapes ${{ matrix.cc }}::uploaded $(basename "$f") ($(du -h "$f" | cut -f1))"
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:

@@ -205,7 +205,7 @@ try:
     K.compute = lambda *a, **k: ({}, {})
     K.code_hash = lambda *a, **k: 'c0de'
     seen = []
-    def dec(kind, wanted, hashes, parts, rows, cur, mode, force_full, repo):
+    def dec(kind, wanted, hashes, parts, rows, cur, mode, force_full, repo, **_k):
         seen.append(mode)
         return [], [], [], []
     K.decide = dec

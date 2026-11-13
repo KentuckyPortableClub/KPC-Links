@@ -33,6 +33,13 @@ man = json.loads(path.read_text(encoding='utf-8'))
 parts = man.get('parts') or []
 check(path.stat().st_size < KO.CAP, f'the manifest is under 1 MB ({path.stat().st_size} bytes)')
 check(len(parts) >= 2 and set(man.get('parts_sha256') or {}) == set(parts), f'parks are in {len(parts)} part files, each with its digest in the manifest')
+check(parts == ['overrides-parks-01.json', 'overrides-parks-02.json'],
+      'overrides.json lists overrides-parks-01.json and overrides-parks-02.json so the hash part is readable')
+# the hasher merges the named parts (a missing name would be !unreadable and move every US area)
+import kpc_area_hash as KAH
+_obj, _ok = KAH.Tree(HERE, None).json('data/us-key/overrides.json')
+check(_ok is True and isinstance(_obj, dict) and not _obj.get('parts') and len((_obj.get('parks') or {})) == len(parks),
+      f'area-hash reads the listed override parts whole ({len((_obj or {}).get("parks") or {})} parks, ok={_ok})')
 for name in parts:
     p = path.parent / name
     check(p.stat().st_size <= KO.CAP, f'{name} is under 1 MB ({p.stat().st_size} bytes)')

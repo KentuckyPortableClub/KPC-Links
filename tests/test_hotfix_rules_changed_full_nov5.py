@@ -25,7 +25,7 @@ code = re.search(r"<<'PY' >> \"\$GITHUB_OUTPUT\"\n(.*?)\nPY", p['run'], re.S).gr
 
 def plan(**env):
     with tempfile.TemporaryDirectory() as t:
-        e = {k: v for k, v in os.environ.items() if k not in ('RULES_CHANGED', 'STATES', 'SCHED', 'FROZEN')}; e.update(env)
+        e = {k: v for k, v in os.environ.items() if k not in ('RULES_CHANGED', 'STATES', 'SCHED', 'FROZEN', 'FULL_REBUILD', 'RULES_VERIFY', 'RULES_SCOPE')}; e.update(env)
         r = subprocess.run([sys.executable, '-B', '-c', code], cwd=t, env=e, capture_output=True, text=True)
     out = dict(l.split('=', 1) for l in r.stdout.splitlines() if '=' in l and not l.startswith('::'))
     st = {s for g in json.loads(out.get('groups') or '[]') for s in g['states'].split()}
@@ -34,10 +34,14 @@ def plan(**env):
 
 Q = 'CT ID ME ND OH TN WV'
 full, st, log = plan(RULES_CHANGED='1', STATES=Q, NJOBS='3', SCHED='')
-check(full == '1' and st == ALL, f"rules changed + states '{Q}' (41984527710): ALL {len(ALL)} states, full=1 (got full={full}, {len(st)} states)")
+check(full == '0' and st == ALL, f"rules changed + states '{Q}' (41984527710): ALL {len(ALL)} states are considered, full=0 (verify, not a full rebuild; got full={full}, {len(st)} states)")
 check("is OVERRIDDEN" in log and Q in log, 'the plan says the states input was overridden, and names it')
 full, st, _ = plan(RULES_CHANGED='1', STATES='', NJOBS='3', SCHED='17 9 * * *')
-check(full == '1' and st == ALL, 'rules changed, no states (the nightly): all states, as before')
+check(full == '0' and st == ALL, 'rules changed, no states (the nightly): every state is considered, full=0 (not a full rebuild)')
+full, st, _ = plan(RULES_CHANGED='1', STATES='', NJOBS='3', SCHED='37 9 1 * *')
+check(full == '1' and st == ALL, 'the monthly cron is still a full rebuild (full=1, every state)')
+full, st, _ = plan(FULL_REBUILD='yes', STATES='', NJOBS='3', SCHED='')
+check(full == '1' and st == ALL, 'an explicit owner full_rebuild=yes is still a full rebuild')
 full, st, _ = plan(STATES=Q, NJOBS='3', SCHED='')
 check(full == '0' and st == set(Q.split()), 'rules NOT changed + states given: only those states (by-hand runs unchanged)')
 full, st, _ = plan(FROZEN='1', RULES_CHANGED='1', STATES=Q, NJOBS='3', SCHED='')

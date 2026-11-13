@@ -171,20 +171,20 @@ def plan(**env):
         os.makedirs(f'{t}/data/us-key'); today = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d')
         json.dump({'built': today + ' 23:59 UTC', 'states': {}}, open(f'{t}/data/us-key/index.json', 'w'))   # 'a build already finished today'
         open(f'{t}/data/us-key/answers-states.txt', 'w').write('TN\n')
-        e = {k: v for k, v in os.environ.items() if k not in ('FROZEN', 'RULES_CHANGED', 'STATES', 'SCHED')}; e.update(env)
+        e = {k: v for k, v in os.environ.items() if k not in ('FROZEN', 'RULES_CHANGED', 'STATES', 'SCHED', 'FULL_REBUILD', 'RULES_VERIFY', 'RULES_SCOPE')}; e.update(env)
         out = subprocess.run([sys.executable, '-c', code], cwd=t, env=e, capture_output=True, text=True).stdout
         g = re.search(r'^groups=(.*)$', out, re.M); f = re.search(r'^full=(.*)$', out, re.M)
         sts = sorted(sum((x['states'].split() for x in json.loads(g.group(1))), [])) if g else []
         return sts, (f.group(1) if f else ''), out
 sts, full, out = plan(RULES_CHANGED='1', SCHED='17 9 * * *', NJOBS='3')
-check(len(sts) == 50 and 'KY' not in sts and full == '1', f'US plan, rules changed, nightly start, a build already finished today: ALL {len(sts)} states (not skipped), full=1')
+check(len(sts) == 50 and 'KY' not in sts and full == '0', f'US plan, rules changed, nightly start, a build already finished today: ALL {len(sts)} states (not skipped), full=0 (verify, not a full rebuild)')
 sts, full, out = plan(SCHED='17 9 * * *', NJOBS='3')
 check(sts == [] or sts == ['TN'], f'US plan, same rules: the old nightly behaviour (skip / answers-states only): {sts}')
 # Key hotfix 3 (Nov 5; follows hotfix 2, Brandon's approval relayed via Super Head Bot 4:21 AM CST): when the rules changed, the
 # states input no longer wins; the plan builds ALL states as a full build and warns (in the run log = stderr) that it overrode it.
 sts, full, out = plan(RULES_CHANGED='1', STATES='TN OH', NJOBS='3')
-check(len(sts) == 50 and 'KY' not in sts and full == '1', f'US plan, rules changed + states given by hand: ALL {len(sts)} states, full=1 (the states input is overridden)')
-_e = {k: v for k, v in os.environ.items() if k not in ('FROZEN', 'RULES_CHANGED', 'STATES', 'SCHED')}; _e.update(RULES_CHANGED='1', STATES='TN OH', NJOBS='3')
+check(len(sts) == 50 and 'KY' not in sts and full == '0', f'US plan, rules changed + states given by hand: ALL {len(sts)} states are considered, full=0 (the states input is overridden; not a full rebuild)')
+_e = {k: v for k, v in os.environ.items() if k not in ('FROZEN', 'RULES_CHANGED', 'STATES', 'SCHED', 'FULL_REBUILD', 'RULES_VERIFY', 'RULES_SCOPE')}; _e.update(RULES_CHANGED='1', STATES='TN OH', NJOBS='3')
 with tempfile.TemporaryDirectory() as _t: _r = subprocess.run([sys.executable, '-c', code], cwd=_t, env=_e, capture_output=True, text=True)
 check("states input 'TN OH' is OVERRIDDEN" in _r.stderr and '::warning' in _r.stderr and 'OVERRIDDEN' not in _r.stdout,
       'US plan: the override is a ::warning in the run log (stderr), naming the states input; not written into GITHUB_OUTPUT')

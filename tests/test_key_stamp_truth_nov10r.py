@@ -95,7 +95,7 @@ with tempfile.TemporaryDirectory() as t:
     out = subprocess.run([sys.executable, '-c', plan_py], cwd=t, env=env, capture_output=True, text=True).stdout
     o = dict(l.split('=', 1) for l in out.splitlines() if '=' in l)
     sts = sorted(x for g in json.loads(o.get('groups', '[]')) for x in g['states'].split())
-    check(sts == ['OH', 'WI'] and o.get('full') == '1', f'the backup start builds only the stale states, not every state ({sts}, full={o.get("full")})')
+    check(sts == ['OH', 'WI'] and o.get('full') == '0', f'the backup start builds only the stale states, not every state ({sts}, full={o.get("full")}); full=0 because this is not the monthly run or full_rebuild')
 
 # --- order (KPC owner, 2026-11-10): Canada / world wait for a FULL US key on the current rules, never a partial run
 def _order(stamp, kind='ca-key', ca_full=False):
