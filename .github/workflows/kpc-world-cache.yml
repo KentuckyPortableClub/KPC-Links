@@ -117,12 +117,30 @@ jobs:
           # boundary-cache release) are keep-bigger merged into the saved copy AFTER T0, so a blocked live refresh that
           # does not wsave still leaves a fuller copy for save-check / upload. The world key is not edited (no rules-hash move).
           if [ "$CC" != "CA" ]; then
-            mkdir -p "$RUNNER_TEMP/world-hand"
+            mkdir -p "$RUNNER_TEMP/world-hand" "$RUNNER_TEMP/world-hand-release"
             if ls data/outlines/hand/hand-W-$CC.*.geojson.gz >/dev/null 2>&1; then
               cp data/outlines/hand/hand-W-$CC.*.geojson.gz "$RUNNER_TEMP/world-hand/"
             fi
+            # Quality #179 M7: download release hand files to a staging dir. Prefer the repo copy of the
+            # same name; never let --clobber replace it, and never place a file whose area is not W-$CC.
             if [ -f .against/ASSETS.txt ] && grep -E -q "^hand-W-$CC\." .against/ASSETS.txt; then
-              gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "hand-W-$CC.*.geojson.gz" -D "$RUNNER_TEMP/world-hand" --clobber || { kpc_rc=$?; echo "::warning title=Saved shapes $CC::release hand files could not be downloaded (exit $kpc_rc): repo hand files, if any, are still applied"; echo "Saved shapes $CC - release hand files not downloaded (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+              gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "hand-W-$CC.*.geojson.gz" -D "$RUNNER_TEMP/world-hand-release" --clobber || { kpc_rc=$?; echo "::warning title=Saved shapes $CC::release hand files could not be downloaded (exit $kpc_rc): repo hand files, if any, are still applied"; echo "Saved shapes $CC - release hand files not downloaded (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+              for f in "$RUNNER_TEMP/world-hand-release"/hand-W-$CC.*.geojson.gz; do
+                [ -f "$f" ] || continue
+                bn=$(basename "$f")
+                case "$bn" in
+                  hand-W-"$CC".*)
+                    if [ -e "$RUNNER_TEMP/world-hand/$bn" ]; then
+                      echo "::notice title=Saved shapes $CC::kept the repo copy of $bn (release file not clobbered)"
+                    else
+                      cp "$f" "$RUNNER_TEMP/world-hand/"
+                    fi
+                    ;;
+                  *)
+                    echo "::warning title=Saved shapes $CC::ignored $bn: not a W-$CC hand file"
+                    ;;
+                esac
+              done
             fi
             if ls "$RUNNER_TEMP/world-hand"/hand-W-$CC.*.geojson.gz >/dev/null 2>&1; then
               echo '[]' > "$RUNNER_TEMP/world-hand-parks.json"

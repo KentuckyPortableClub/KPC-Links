@@ -423,9 +423,9 @@ with tempfile.TemporaryDirectory() as td:
 shipped = json.loads((ROOT / 'data/outlines/world-expected-holds.approved.json').read_text(encoding='utf-8'))
 prop = json.loads((ROOT / 'data/outlines/world-expected-holds.proposed.json').read_text(encoding='utf-8'))
 h, n, e = J.load_expected(ROOT / 'data/outlines/world-expected-holds.approved.json', 'AU DE GB MT', ROOT / 'data/world-key')
-check('shipped: AU and MT are off the expected-holds list (Brandon, KZ4CP, signed off 2026-11-12 9:06 PM CT)',
-      not (shipped.get('holds') or {}) and not h and not e
-      and 'AU' in str(shipped.get('removed') or {}) and 'MT' in str(shipped.get('removed') or {})
+check('shipped: AU is off the expected-holds list; MT is back on (Quality #179, Brandon gave Quality that call)',
+      'AU' not in (shipped.get('holds') or {}) and 'MT' in (shipped.get('holds') or {})
+      and 'AU' in str(shipped.get('removed') or {})
       and 'MT' not in (prop.get('holds') or {})
       and not (ROOT / 'data/world-key/expected-holds.json').exists())
 

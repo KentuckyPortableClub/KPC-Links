@@ -215,10 +215,21 @@ NOT_READ = {'CA': 'checked file saved; the Canada builder does not read hand fil
 
 def check_other(path, area, layer, root, parks, store, work):
     """A Canada / world hand file (already name-, area- and count-checked): trim to that area's POTA parks (the same trim, fail
-    closed) and keep it in the per-area checked store. Returns (ok, what, matched)."""
+    closed) and keep it in the per-area checked store. Returns (ok, what, matched).
+
+    When the parks list is empty or missing (world-cache fill writes `[]` so this job can merge a licensed
+    file offline), trim is skipped and the file is kept after the licence / share_block checks the caller
+    already ran. Pin / 5 km checks then run at key build (Quality #179 M6).
+    """
     import kpc_master_cli as CLI
     meta, feats = M.read_layer_file(path)
     exp = M.layer_file_expected(meta)
+    raw_parks = M.load_json(parks, None) if parks else None
+    parks_empty = (not parks) or (not pathlib.Path(parks).exists()) or raw_parks in ([], None, {})
+    if parks_empty:
+        pathlib.Path(store).mkdir(parents=True, exist_ok=True); shutil.copy(path, pathlib.Path(store) / pathlib.Path(path).name)
+        n = len(M.load_area(area, root))
+        return True, f'{area} {layer}: {len(feats)} records licence-checked (no parks list in this fill; pin/5 km at key build), {n} park outline(s) of {area} in the master records; kept in the checked store', 0
     ap = area_parks(parks, area, pathlib.Path(work) / f'parks-{area}.json')
     rc = CLI.main(['trim', '--layer-key', f'{area}.{layer}', '--input', str(path), '--expected', str(exp), '--parks', str(ap), '--area', area,
                    '--root', str(root), '--agency', str(meta.get('label') or ''), *(['--name-fields', meta['name_field']] if meta.get('name_field') else [])])
@@ -245,7 +256,24 @@ def fill(a):
     # the file must say the same and hold its count. A US file already recorded (same sha256) is not applied twice.
     applied = {r.get('sha256') for r in M.load_json(M.raw_manifest_path(root), {'files': []}).get('files', [])}
     hand, other, licence, rows0 = [], [], [], []
-    for p in sorted(pathlib.Path(a.hand).glob('hand-*.geojson.gz')) if a.hand else []:
+    import kpc_world_hand as WH
+    hand_files = []
+    if a.hand:
+        hand_dir = pathlib.Path(a.hand)
+        hand_files = sorted(hand_dir.glob('hand-*.geojson.gz'))
+        # Merge hand-W-XX.<layer>.chunkN.geojson.gz groups into one complete file in work, then process that.
+        chunk_dest = work / 'hand-chunks'
+        for (ar, lay), paths in (WH.discover_hand_chunks(hand_dir) or {}).items():
+            if ar not in areas:
+                continue
+            dest = chunk_dest / f'hand-{ar}.{lay}.geojson.gz'
+            first_meta, _ = WH.merge_geojson_chunks(paths)
+            WH.write_merged_chunks(paths, dest, first_meta)
+            notice('Master step', f'{ar} {lay}: merged {len(paths)} chunk file(s) into {dest.name}')
+            hand_files.append(dest)
+    for p in hand_files:
+        if WH.parse_hand_chunk_name(p.name):
+            continue   # processed as a merged group, not as a complete file
         got = M.parse_hand_name(p.name)
         if not got: warn('Master step', f'{p.name}: not named hand-<AREA>.<layer>.geojson.gz (AREA = US-XX, CA-XX / CA-ALL, W-XX): refused'); continue
         ar, lay = got
@@ -256,19 +284,20 @@ def fill(a):
         meta, _ = M.read_layer_file(p)
         blk = M.share_block(meta, root)
         if blk: print('::error title=Master step licence::' + blk, flush=True); licence.append(blk); continue
+        # Missing licence/terms does not skip check_other (pin/trim). apply_world_hand_file refuses
+        # a merge into the public saved copy when licence is missing (Quality #179 M6).
         if ar.startswith('US-'):
             if (meta.get('raw') or {}).get('sha256') in applied: continue
             nm = p.name[len('hand-'):]; shutil.copy(p, lin / nm); hand.append(nm)
         else: other.append((p, ar, lay, meta))
-    for p, ar, lay, meta in other:   # Canada / world: checked into the per-area store; world files are also keep-bigger merged into W-XX.json.gz
-        if ar.startswith('W-') and a.cache:
-            import kpc_world_hand as WH
-            okm, whatm = WH.apply_world_hand_file(p, a.cache)
-            (notice if okm else warn)('Master step', whatm)
-            if not okm and meta.get('source') == 'hand': hand_refused(whatm)
+    for p, ar, lay, meta in other:   # Canada / world: check_other first; world files merge only after that check passes (Quality #179 M6)
         okk, what, rc = check_other(p, ar, lay, root, a.parks, getattr(a, 'checked', None) or work / 'checked', work)
         (notice if okk else warn)('Master step', what)
         if rc == 4: licence.append(what)
+        if okk and ar.startswith('W-') and a.cache:
+            okm, whatm = WH.apply_world_hand_file(p, a.cache, root)
+            (notice if okm else warn)('Master step', whatm)
+            if not okm and meta.get('source') == 'hand': hand_refused(whatm)
         prev = next((r for r in needs['rows'] if r.get('id') == f'{ar}|{lay}'), None)
         if okk and prev and prev.get('status') == 'done' and int(prev.get('have') or 0) >= M.layer_file_expected(meta): continue   # a person marked it done (this file, whole): not set back to held
         if okk: rows0.append({**M.needs_row(ar, lay, meta.get('url') or '', NOT_READ[ar.split('-')[0]], 'master', who='person',

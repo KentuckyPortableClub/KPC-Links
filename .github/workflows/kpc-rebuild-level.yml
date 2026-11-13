@@ -34,7 +34,7 @@ jobs:
           for lab in $cur; do
             [ "$lab" = "rebuild:$LEVEL" ] || gh api -X DELETE "repos/${GITHUB_REPOSITORY}/issues/${{ github.event.pull_request.number }}/labels/${lab}" >/dev/null
           done
-          echo "rebuild:$LEVEL" | gh api -X POST "repos/${GITHUB_REPOSITORY}/issues/${{ github.event.pull_request.number }}/labels" --input - -f name="rebuild:$LEVEL" >/dev/null 2>&1 || \
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/issues/${{ github.event.pull_request.number }}/labels" -f name="rebuild:$LEVEL" >/dev/null 2>&1 || \
             gh pr edit ${{ github.event.pull_request.number }} --add-label "rebuild:$LEVEL" || echo "::warning title=Rebuild level::could not add label rebuild:$LEVEL"
           echo "::notice title=Rebuild level::level $LEVEL ($REASON)"
           if [ -n "$GITHUB_STEP_SUMMARY" ]; then

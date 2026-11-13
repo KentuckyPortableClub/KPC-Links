@@ -140,7 +140,7 @@ same shaping and names as a live read. The Canada and world saved copies cannot 
   for save-check / upload. Owner hand files live in `data/outlines/hand/`.
 - The builder change still possible later (a rules-hash move): in `kpc_world_key.py`, in the per-source loop (`for s in SRC.get(cc, [])`,
   where a failed or saved-only source takes its saved records), also read `hand-W-<CC>.*.geojson.gz` from a `KPC_WORLD_HAND` folder whose
-  `kpc.url` is that source's address. In `kpc_ca_key.py`, at the `KPC_CA_HAND` reader, also read `hand-CA-*.<layer>` names.
+  `kpc.url` is that source's address. In `kpc_ca_key.py`, at the `KPC_CA_HAND` reader, also read `hand-CA-*.<layer>` names. A file is merged only after `check_other` passes, and only when its meta records a licence or terms and is not share_block / WDPA flagged. A record with no `_bb` / `_r` (or zero-area geometry) is not merged or counted. `hand-W-XX.<layer>.chunkN.geojson.gz` groups are concatenated before the merge. World-cache fill writes an empty parks list so this job can merge a licensed file offline; pin / 5 km checks then run at key build. Release hand files are staged and never `--clobber` a repo copy of the same name, or a file whose country is not the job's `W-$CC`.
 
 **Baselines.** Every `W-XX` copy the world key builds has a baseline (`caches`). `CA-ALL` has none, because no file offline records
 its total. The Canada build runs `gate --first-ok`, and after a good full build `baseline` records the first one in `layers.json`

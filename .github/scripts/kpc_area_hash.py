@@ -400,7 +400,10 @@ class Kind:
                         self.urls.setdefault(a, set()).update(URL_RE.findall(tb.decode('utf-8', 'replace')))
                 self.urls.setdefault('*', set()).update(URL_RE.findall(s.decode('utf-8', 'replace')))
         v, ok = self.t.json(vf)
-        sh['version'] = H(composition(self.kind) + '\0' + str(v.get(KINDS[self.kind]) if ok and isinstance(v, dict) else None))
+        ver = v.get(KINDS[self.kind]) if ok and isinstance(v, dict) else None
+        sh['composition'] = H(composition(self.kind))
+        sh['rules-version'] = H(str(ver))
+        sh['version'] = H(composition(self.kind) + '\0' + str(ver))  # legacy combined; format-only (Quality #179 M2)
         if self.kind != 'fers' and self.reader == 'shared':
             for f in READER:
                 b = self.t.read(f)
@@ -581,7 +584,7 @@ class Kind:
             cb = {}
             for p in t.ls('data/canada-bounds/', r'^CA-\d+\.json$'):
                 r = p.split('/')[-1][:-5]
-                for a in self.ref_area.get(r) or {'?'}: cb.setdefault(a, {})[r] = t.oid(p) if t.rev else H(t.read(p) or b'')
+                for a in self.ref_area.get(r) or {'?'}: cb.setdefault(a, {})[r] = H(t.read(p) or b'')  # always file bytes (Quality #179: git blob OIDs vs sha256 disagreed)
             for a, x in cb.items():
                 if a in self.areas_set: parts[a]['data:data/canada-bounds/*'] = H(canon(x))
                 else: sh['shared:data/canada-bounds#rows-in-no-key'] = H(canon(x))
@@ -1067,18 +1070,53 @@ def index_path(repo, kind):
     Not KEY_PATH.format(a='index'), which is the non-existent US-index.json / CA-index.json."""
     return pathlib.Path(repo) / KEY_DIR[kind] / 'index.json'
 # parts that only a shared-code change moves (the same for every area): the D4 proof stamp may bridge these, nothing else
-CODE_PARTS = ('code:', 'version', 'hosts:shared', 'reader:')
-# Nov 12 (KPC owner, 2026-11-12): a composition / format bump lives in the 'version' part (and in newly recorded or dropped part
-# names). Those must not force a rebuild when every previously recorded real input still matches.
+CODE_PARTS = ('code:', 'rules-version', 'hosts:shared', 'reader:')
+# Quality #179 M1/M2 (KPC owner, 2026-11-12): 'composition' is format-only. The key-rules-version line lives in
+# 'rules-version' and is a real input (a person bump rebuilds, or is reused only under proof_valid). The legacy
+# 'version' part is still written as composition+'\0'+rules-version so already-recorded values stay comparable; it
+# is format-only. An added or removed part other than a format-only name, or a name on the declared
+# composition-migration list, counts as moved.
+
+FORMAT_ONLY_PARTS = frozenset({'composition', 'version'})
+# Declared composition migrations: part names that may first appear or drop at this composition id without
+# counting as a real-input change (the #178 trails / access-leads slices). A first override, pins, or
+# official-pins part is NOT listed and does rebuild.
+COMPOSITION_MIGRATIONS = {
+    'ah3': frozenset({
+        'data:data/trails/index',
+        'data:data/trails/*',
+        'data:data/access-leads/keyed-pull-raw.json.gz',
+    }),
+    'ah2': frozenset({
+        'data:data/trails/index',
+        'data:data/trails/*',
+    }),
+}
 
 
-def real_inputs_moved(op, np):
-    """True when a previously recorded real input changed. A composition ('version') bump, or a part recorded for the first time
-    or dropped (a format change), is not a real input change: the area's old key bytes stay."""
+def real_inputs_moved(op, np, composition_id=None):
+    """True when a real input changed, including a part that appears or disappears (other than a format-only
+    part or a named, declared composition migration). A key-rules-version change is real. The first appearance
+    of 'composition' / 'rules-version' (the M2 split) is format-only."""
     if not isinstance(op, dict) or not isinstance(np, dict):
         return True
-    common = set(op) & set(np)
-    return any(op.get(k) != np.get(k) for k in common if k != 'version')
+    if composition_id is None:
+        composition_id = np.get('composition') or op.get('composition')
+        # composition part is stored hashed; callers should pass the kind's composition id
+    def exempt(k):
+        if k in FORMAT_ONLY_PARTS:
+            return True
+        if k in (COMPOSITION_MIGRATIONS.get(composition_id) or ()):
+            return True
+        # the M2 split: 'rules-version' may first appear next to the legacy 'version'
+        if k == 'rules-version' and k not in op:
+            return True
+        return False
+    keys_o = {k for k in op if not exempt(k)}
+    keys_n = {k for k in np if not exempt(k)}
+    if keys_o != keys_n:
+        return True
+    return any(op.get(k) != np.get(k) for k in keys_o)
 
 STAMP_FILE = '.github/no-result-change.json'
 PROOF_DIR = 'data/status/no-result-change'
@@ -1179,9 +1217,9 @@ def decide(kind, wanted, hashes, parts, rows, cur_code, mode='shadow', force_ful
         elif not old: reason = 'no area hash recorded (never built with one): moved'
         elif old == new: reason = 'no input changed'
         elif op is None: reason = 'area hash moved (no parts recorded)'
-        elif not real_inputs_moved(op, np): reason = 'format or composition only (real inputs match)'
+        elif not real_inputs_moved(op, np, composition(kind)): reason = 'format or composition only (real inputs match)'
         else: reason = 'moved: ' + '; '.join(sorted({k for k in set(op) | set(np) if op.get(k) != np.get(k)}))[:300]
-        format_only = bool(old and new and old != new and isinstance(op, dict) and not real_inputs_moved(op, np))
+        format_only = bool(old and new and old != new and isinstance(op, dict) and not real_inputs_moved(op, np, composition(kind)))
         moved = new is None or (old != new and not format_only)
         ok_file = row.get('out_sha') and row.get('out_sha') == sha_file(pathlib.Path(repo) / KEY_PATH[kind].format(a=a))
         can = False; how = ''
@@ -1251,8 +1289,9 @@ def move_reused(repo, kind, rows, plan, saved):
         if a in saved or not isinstance(r, dict) or not ph or not isinstance(r.get('area_parts'), dict): continue
         np = (plan.get('parts') or {}).get(a) or {}
         if r.get('out_sha') != sha_file(repo / KEY_PATH[kind].format(a=a)): continue
-        # Real inputs match (including a format / composition-only move): restamp the current hash, parts and code hash; keep bytes.
-        if not real_inputs_moved(r.get('area_parts'), np):
+        # Format / composition-only (not a rules-version bump): restamp hash and parts; keep bytes. A rules-version
+        # change is a real input and only moves under a valid proof, below.
+        if not real_inputs_moved(r.get('area_parts'), np, plan.get('composition') or composition(kind)):
             r.update(rules=plan.get('code_hash'), area_hash=ph, area_parts=np); moved.append(a); continue
         if not r.get('rules') or r['rules'] == plan.get('code_hash'): continue
         if any(r['area_parts'].get(k) != np.get(k) for k in set(np) | set(r['area_parts']) if not k.startswith(CODE_PARTS)): continue

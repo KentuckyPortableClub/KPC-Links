@@ -103,6 +103,13 @@ jobs:
           NJOBS: ${{ inputs.jobs }}
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
         run: |
+          # Quality #179 M9: honour REBUILD_LEVEL when the owner set it, or when this checkout still differs from origin/main.
+          # After merge, a nightly on main has an empty diff, so hashes / RULES_VERIFY decide. The level never sets KPC_FULL_BUILD.
+          if [ -z "${REBUILD_LEVEL:-}" ]; then
+            _rl_out=$(python3 .github/scripts/kpc_rebuild_level.py diff --base origin/main 2>/dev/null) || _rl_out=   # ok: origin/main may be missing in a shallow checkout; the level stays unset and hashes decide
+            _rl=$(printf '%s\n' "$_rl_out" | awk 'NF{print $1}' | tail -1)
+            case "$_rl" in [1-5]) export REBUILD_LEVEL="$_rl" ;; esac
+          fi
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
           if os.environ.get('FROZEN') == '1':
@@ -147,7 +154,11 @@ jobs:
           _scope = [x[3:] if x.startswith('US-') else x for x in (os.environ.get('RULES_SCOPE') or '').split()]
           _monthly = (os.environ.get('FULL_REBUILD') or '').strip().lower() in ('yes', 'true', '1') or (not want and os.environ.get('SCHED') == '37 9 1 * *')
           _verify = os.environ.get('RULES_VERIFY') == '1'
-          if want == ['ALL'] or _monthly or (_rules and not _scope) or (_rules and _verify and not want): st = ALL      # 'all' / monthly / undeclared-or-verify with no states input = consider every state
+          try: _level = int(os.environ.get('REBUILD_LEVEL') or 0)
+          except Exception: _level = 0
+          if _level == 5: _verify = True   # Quality #179 M9: level 5 is verify, never KPC_FULL_BUILD
+          _level_blocks_all = (_level == 1 and not _monthly and want != ['ALL'])
+          if want == ['ALL'] or _monthly or (not _level_blocks_all and ((_rules and not _scope) or (_rules and _verify and not want))): st = ALL      # 'all' / monthly / undeclared-or-verify with no states input = consider every state
           elif _rules: st = sorted(set(_scope) | {x for x in want if x not in ('KY', 'ALL')})
           elif want: st = [x for x in want if x != 'KY']
           else:                                                                                               # BOT B: only the states new answers touched

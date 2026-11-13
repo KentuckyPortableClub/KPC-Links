@@ -64,7 +64,7 @@ check('the unfiltered rec list is 65 and would hide a shortfall against 16; curr
       len(recs) == 65 and got == 15)
 
 holds = json.loads((ROOT / 'data/outlines/world-expected-holds.approved.json').read_text())
-check('AU and MT are off the expected-holds list', not (holds.get('holds') or {}))
+check('AU is off the expected-holds list; MT is back on (Quality #179)', 'AU' not in (holds.get('holds') or {}) and 'MT' in (holds.get('holds') or {}))
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

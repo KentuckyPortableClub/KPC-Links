@@ -736,12 +736,12 @@
    "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3"
   },
   "QC-nature-reserves": {
-   "agency": "Qu\u00e9bec recognized nature reserves (MELCCFP)",
+   "agency": "Québec recognized nature reserves (MELCCFP)",
    "areas": [
     "CA-QC"
    ],
    "expected_count": 271,
-   "layer_name": "AP - R\u00e9serves naturelles reconnues - MELCCFP",
+   "layer_name": "AP - Réserves naturelles reconnues - MELCCFP",
    "read_date": "2026-11-10",
    "read_how": "returnCountOnly",
    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12"
@@ -800,7 +800,7 @@
    "url": ""
   },
   "US-AK.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-AK"
    ],
@@ -1304,7 +1304,7 @@
    "url": ""
   },
   "US-AZ.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-AZ"
    ],
@@ -1514,7 +1514,7 @@
    "url": ""
   },
   "US-CA.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-CA"
    ],
@@ -2523,7 +2523,7 @@
    "url": ""
   },
   "US-ID.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-ID"
    ],
@@ -3511,7 +3511,7 @@
    "url": ""
   },
   "US-MT.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-MT"
    ],
@@ -3742,7 +3742,7 @@
    "url": ""
   },
   "US-ND.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-ND"
    ],
@@ -3847,7 +3847,7 @@
    "url": ""
   },
   "US-NE.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-NE"
    ],
@@ -4099,7 +4099,7 @@
    "url": ""
   },
   "US-NM.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-NM"
    ],
@@ -4288,7 +4288,7 @@
    "url": ""
   },
   "US-NV.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-NV"
    ],
@@ -4708,7 +4708,7 @@
    "url": ""
   },
   "US-OK.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-OK"
    ],
@@ -4876,7 +4876,7 @@
    "url": ""
   },
   "US-OR.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-OR"
    ],
@@ -5275,7 +5275,7 @@
    "url": ""
   },
   "US-SD.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-SD"
    ],
@@ -5527,7 +5527,7 @@
    "url": ""
   },
   "US-TX.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-TX"
    ],
@@ -5716,7 +5716,7 @@
    "url": ""
   },
   "US-UT.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-UT"
    ],
@@ -6010,7 +6010,7 @@
    "url": ""
   },
   "US-WA.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-WA"
    ],
@@ -6556,7 +6556,7 @@
    "url": ""
   },
   "US-WY.rst": {
-   "agency": "BLM recreation management areas \u00b7 official (BLM planning area)",
+   "agency": "BLM recreation management areas · official (BLM planning area)",
    "areas": [
     "US-WY"
    ],
@@ -6639,50 +6639,6 @@
    "source_count": 55,
    "url": ""
   },
-  "W-CZ.h212": {
-   "agency": "Ptačí oblast (PO)",
-   "areas": [
-    "W-CZ"
-   ],
-   "expected_count": 42,
-   "g": "official",
-   "id_fields": [],
-   "last_edit": null,
-   "license": "",
-   "matched": 0,
-   "name_fields": [
-    "NAZEV"
-   ],
-   "note": "KPC owner, 2026-11-12: owner hand-download of the blocked gis.nature.cz Natura 2000 layer 0 (42 Ptačí oblast), saved as hand-W-CZ.h212.geojson.gz. Geometry simplified to ~3.3 m so the file stays under 1 MB; all 42 features kept.",
-   "queued": 0,
-   "read_date": "2026-11-12",
-   "read_how": "geojson",
-   "record_id_field": "OBJECTID",
-   "source_count": 42,
-   "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0"
-  },
-  "W-CZ.h213": {
-   "agency": "Evropsky významná lokalita (EVL)",
-   "areas": [
-    "W-CZ"
-   ],
-   "expected_count": 1111,
-   "g": "official",
-   "id_fields": [],
-   "last_edit": null,
-   "license": "",
-   "matched": 0,
-   "name_fields": [
-    "NAZEV"
-   ],
-   "note": "KPC owner, 2026-11-12: owner hand-download of the blocked gis.nature.cz Natura 2000 layer 1 (1,111 EVL), saved as hand-W-CZ.h213.geojson.gz. The download used maxAllowableOffset=5 on a WGS84 layer, so rings collapsed to integer-degree points; names and counts are intact.",
-   "queued": 0,
-   "read_date": "2026-11-12",
-   "read_how": "geojson",
-   "record_id_field": "OBJECTID",
-   "source_count": 1111,
-   "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1"
-  },
   "W-DE.h214": {
    "agency": "Naturschutzgebiete (Land Bremen)",
    "areas": [
@@ -6692,18 +6648,22 @@
    "g": "official",
    "id_fields": [],
    "last_edit": null,
-   "license": "",
+   "license": "Creative Commons Attribution (CC BY). Attribution: Freie Hansestadt Bremen, Die Senatorin für Umwelt, Klima und Wissenschaft. Recorded from https://umwelt.bremen.de/umwelt/natur/gis-dienste-geodaten-48536 and https://data.gov.de/suche/daten/schutzgebiete-naturschutz-land-bremen (2026-11-12). gis-hub.bremen.de was not contacted from this box.",
    "matched": 0,
    "name_fields": [
     "Gebietsname"
    ],
-   "note": "KPC owner, 2026-11-12: owner hand-download of the blocked Bremen Naturschutzgebiete layer (20 records, the Bremen gap), saved as hand-W-DE.h214.geojson.gz. This fills the Bremen layer only; it does not by itself bring W-DE up to the 30,616 full baseline.",
+   "note": "KPC owner, 2026-11-12: owner hand-download of Land Bremen Naturschutzgebiete (20). Official pages umwelt.bremen.de and data.gov.de (CC BY; Freie Hansestadt Bremen, Die Senatorin für Umwelt, Klima und Wissenschaft). gis-hub.bremen.de was not contacted from this box.",
    "queued": 0,
    "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": "OBJECTID",
    "source_count": 20,
-   "url": "https://gis-hub.bremen.de/ags1/rest/services/inspire/Schutzgebiete_Land_Bremen/MapServer/2"
+   "url": "https://gis-hub.bremen.de/ags1/rest/services/inspire/Schutzgebiete_Land_Bremen/MapServer/2",
+   "page": "https://umwelt.bremen.de/umwelt/natur/gis-dienste-geodaten-48536",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12"
   },
   "W-MT.h215": {
    "agency": "Malta: Ambjent Malta (government agency; Natura 2000 data from ERA)",
@@ -6716,45 +6676,25 @@
     "site_code"
    ],
    "last_edit": null,
-   "license": "",
+   "license": "not stated. Official ERA / Malta SDI pages (https://era.org.mt/topic/natura-2000-datasheets-maps/ and https://msdi.data.gov.mt) do not declare a licence for this dataset. Accepted by Brandon (KPC owner) on 2026-11-12 for this person-saved copy. The Ambjent Malta service URL is on services-eu1.arcgis.com; that host was not contacted from this box.",
    "matched": 0,
    "name_fields": [
     "site_name"
    ],
-   "note": "KPC owner, 2026-11-12: owner hand-download of Ambjent Malta FeatureServer/36 (30 N2K SAC/SCI), saved as hand-W-MT.h215.geojson.gz. 7 site_code values also appear in layer 37; the saved copy keeps both layers (30+14=44, the W-MT baseline) and the world key keeps its own site_code dedupe.",
+   "note": "KPC owner, 2026-11-12: person-saved copy of Ambjent Malta FeatureServer/36 (30 N2K SAC/SCI). Official pages ERA / Malta SDI (licence not stated; accepted by Brandon (KPC owner)). services-eu1.arcgis.com was not contacted from this box.",
    "queued": 0,
    "read_date": "2026-11-12",
    "read_how": "geojson",
    "record_id_field": "objectid",
    "source_count": 30,
-   "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/36"
-  },
-  "W-MT.h216": {
-   "agency": "N2K Special Protected Areas",
-   "areas": [
-    "W-MT"
-   ],
-   "expected_count": 14,
-   "g": "official",
-   "id_fields": [
-    "site_code"
-   ],
-   "last_edit": null,
-   "license": "",
-   "matched": 0,
-   "name_fields": [
-    "site_name"
-   ],
-   "note": "KPC owner, 2026-11-12: owner hand-download of Ambjent Malta FeatureServer/37 (14 N2K SPA), saved as hand-W-MT.h216.geojson.gz. 7 site_code values also appear in layer 36; the saved copy is not pre-deduped.",
-   "queued": 0,
-   "read_date": "2026-11-12",
-   "read_how": "geojson",
-   "record_id_field": "objectid",
-   "source_count": 14,
-   "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/37"
+   "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/36",
+   "page": "https://era.org.mt/topic/natura-2000-datasheets-maps/",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12"
   },
   "W-PF.h210": {
-   "agency": "French Polynesia: Gouvernement de la Polyn\u00e9sie fran\u00e7aise, Te Fenua open data (DSI); PGEM",
+   "agency": "French Polynesia: Gouvernement de la Polynésie française, Te Fenua open data (DSI); PGEM",
    "areas": [
     "W-PF"
    ],
@@ -7553,8 +7493,8 @@
    ],
    "url": "https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0"
   },
-  "ca:Qu\u00e9bec Aire ": {
-   "agency": "Qu\u00e9bec Aire ",
+  "ca:Québec Aire ": {
+   "agency": "Québec Aire ",
    "areas": [
     "CA"
    ],
@@ -7564,8 +7504,8 @@
    "read_how": "returnCountOnly",
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/0"
   },
-  "ca:Qu\u00e9bec Parc ": {
-   "agency": "Qu\u00e9bec Parc ",
+  "ca:Québec Parc ": {
+   "agency": "Québec Parc ",
    "areas": [
     "CA"
    ],
@@ -7575,8 +7515,8 @@
    "read_how": "returnCountOnly",
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/3"
   },
-  "ca:Qu\u00e9bec Parc ~1": {
-   "agency": "Qu\u00e9bec Parc ~1",
+  "ca:Québec Parc ~1": {
+   "agency": "Québec Parc ~1",
    "areas": [
     "CA"
    ],
@@ -7586,30 +7526,30 @@
    "read_how": "returnCountOnly",
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/4"
   },
-  "ca:Qu\u00e9bec Parc ~2": {
-   "agency": "Qu\u00e9bec Parc ~2",
+  "ca:Québec Parc ~2": {
+   "agency": "Québec Parc ~2",
    "areas": [
     "CA"
    ],
    "expected_count": 28,
-   "layer_name": "Parc national du Qu\u00e9bec",
+   "layer_name": "Parc national du Québec",
    "read_date": "2026-11-10",
    "read_how": "returnCountOnly",
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/5"
   },
-  "ca:Qu\u00e9bec Parc ~3": {
-   "agency": "Qu\u00e9bec Parc ~3",
+  "ca:Québec Parc ~3": {
+   "agency": "Québec Parc ~3",
    "areas": [
     "CA"
    ],
    "expected_count": 16,
-   "layer_name": "Parc r\u00e9gional",
+   "layer_name": "Parc régional",
    "read_date": "2026-11-10",
    "read_how": "returnCountOnly",
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/6"
   },
-  "ca:Qu\u00e9bec Refug": {
-   "agency": "Qu\u00e9bec Refug",
+  "ca:Québec Refug": {
+   "agency": "Québec Refug",
    "areas": [
     "CA"
    ],
@@ -7619,57 +7559,57 @@
    "read_how": "returnCountOnly",
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/10"
   },
-  "ca:Qu\u00e9bec R\u00e9ser": {
-   "agency": "Qu\u00e9bec R\u00e9ser",
+  "ca:Québec Réser": {
+   "agency": "Québec Réser",
    "areas": [
     "CA"
    ],
    "expected_count": 21,
-   "layer_name": "R\u00e9serve faunique",
+   "layer_name": "Réserve faunique",
    "read_date": "2026-11-10",
    "read_how": "returnCountOnly",
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/11"
   },
-  "ca:Qu\u00e9bec Zone ": {
-   "agency": "Qu\u00e9bec Zone ",
+  "ca:Québec Zone ": {
+   "agency": "Québec Zone ",
    "areas": [
     "CA"
    ],
    "expected_count": 86,
-   "layer_name": "Zone d exploitation contr\u00f4l\u00e9e",
+   "layer_name": "Zone d exploitation contrôlée",
    "read_date": "2026-11-10",
    "read_how": "returnCountOnly",
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/16"
   },
-  "ca:Qu\u00e9bec ecolo": {
-   "agency": "Qu\u00e9bec ecolo",
+  "ca:Québec ecolo": {
+   "agency": "Québec ecolo",
    "areas": [
     "CA"
    ],
    "expected_count": 75,
-   "layer_name": "AP - R\u00e9serves \u00e9cologiques - MELCCFP",
+   "layer_name": "AP - Réserves écologiques - MELCCFP",
    "read_date": "2026-11-10",
    "read_how": "returnCountOnly",
    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/10"
   },
-  "ca:Qu\u00e9bec prote": {
-   "agency": "Qu\u00e9bec prote",
+  "ca:Québec prote": {
+   "agency": "Québec prote",
    "areas": [
     "CA"
    ],
    "expected_count": 5611,
-   "layer_name": "Ensemble des aires prot\u00e9g\u00e9es et autres mesures de conservation efficaces",
+   "layer_name": "Ensemble des aires protégées et autres mesures de conservation efficaces",
    "read_date": "2026-11-10",
    "read_how": "returnCountOnly",
    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23"
   },
-  "ca:Qu\u00e9bec recog": {
-   "agency": "Qu\u00e9bec recog",
+  "ca:Québec recog": {
+   "agency": "Québec recog",
    "areas": [
     "CA"
    ],
    "expected_count": 271,
-   "layer_name": "AP - R\u00e9serves naturelles reconnues - MELCCFP",
+   "layer_name": "AP - Réserves naturelles reconnues - MELCCFP",
    "read_date": "2026-11-10",
    "read_how": "returnCountOnly",
    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12"
@@ -8331,7 +8271,7 @@
    "url": "https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0"
   },
   "caqubecaire": {
-   "agency": "Qu\u00e9bec Aire",
+   "agency": "Québec Aire",
    "areas": [
     "CA-QC"
    ],
@@ -8345,12 +8285,12 @@
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/0"
   },
   "caqubececolo": {
-   "agency": "Qu\u00e9bec ecolo",
+   "agency": "Québec ecolo",
    "areas": [
     "CA-QC"
    ],
    "expected_count": 75,
-   "layer_name": "AP - R\u00e9serves \u00e9cologiques - MELCCFP",
+   "layer_name": "AP - Réserves écologiques - MELCCFP",
    "name_fields": [
     "DESIGNOM"
    ],
@@ -8359,12 +8299,12 @@
    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/10"
   },
   "caqubecparc": {
-   "agency": "Qu\u00e9bec Parc",
+   "agency": "Québec Parc",
    "areas": [
     "CA-QC"
    ],
    "expected_count": 16,
-   "layer_name": "Parc r\u00e9gional",
+   "layer_name": "Parc régional",
    "name_fields": [
     "NOM_OFFICIEL"
    ],
@@ -8373,12 +8313,12 @@
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/6"
   },
   "caqubecprote": {
-   "agency": "Qu\u00e9bec prote",
+   "agency": "Québec prote",
    "areas": [
     "CA-QC"
    ],
    "expected_count": 5611,
-   "layer_name": "Ensemble des aires prot\u00e9g\u00e9es et autres mesures de conservation efficaces",
+   "layer_name": "Ensemble des aires protégées et autres mesures de conservation efficaces",
    "name_fields": [
     "DESIGNOM"
    ],
@@ -8387,12 +8327,12 @@
    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23"
   },
   "caqubecrecog": {
-   "agency": "Qu\u00e9bec recog",
+   "agency": "Québec recog",
    "areas": [
     "CA-QC"
    ],
    "expected_count": 271,
-   "layer_name": "AP - R\u00e9serves naturelles reconnues - MELCCFP",
+   "layer_name": "AP - Réserves naturelles reconnues - MELCCFP",
    "name_fields": [
     "DESIGNOM"
    ],
@@ -8401,7 +8341,7 @@
    "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12"
   },
   "caqubecrefug": {
-   "agency": "Qu\u00e9bec Refug",
+   "agency": "Québec Refug",
    "areas": [
     "CA-QC"
    ],
@@ -8415,12 +8355,12 @@
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/10"
   },
   "caqubecrser": {
-   "agency": "Qu\u00e9bec R\u00e9ser",
+   "agency": "Québec Réser",
    "areas": [
     "CA-QC"
    ],
    "expected_count": 21,
-   "layer_name": "R\u00e9serve faunique",
+   "layer_name": "Réserve faunique",
    "name_fields": [
     "NOM_OFFICIEL"
    ],
@@ -8429,12 +8369,12 @@
    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/11"
   },
   "caqubeczone": {
-   "agency": "Qu\u00e9bec Zone",
+   "agency": "Québec Zone",
    "areas": [
     "CA-QC"
    ],
    "expected_count": 86,
-   "layer_name": "Zone d exploitation contr\u00f4l\u00e9e",
+   "layer_name": "Zone d exploitation contrôlée",
    "name_fields": [
     "NOM_OFFICIEL"
    ],
@@ -8555,7 +8495,7 @@
    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WildlifeRefuge/FeatureServer/0"
   },
   "lauslastat": {
-   "agency": "Louisiana Public Lands \u2014 historic-site POINTS, not the polygon public-lands layer (saved copy)",
+   "agency": "Louisiana Public Lands — historic-site POINTS, not the polygon public-lands layer (saved copy)",
    "areas": [
     "US-LA"
    ],
@@ -8648,7 +8588,7 @@
    "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0"
   },
   "sgazb": {
-   "agency": "Arizona Game and Fish Department (AZGFD_GIS org) \u00b7 Wildlife Areas",
+   "agency": "Arizona Game and Fish Department (AZGFD_GIS org) · Wildlife Areas",
    "areas": [
     "US-AZ"
    ],
@@ -8658,7 +8598,7 @@
    "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0"
   },
   "sgazc": {
-   "agency": "Arizona Game and Fish Department (AZGFD_GIS org) \u00b7 Hatchery Polys",
+   "agency": "Arizona Game and Fish Department (AZGFD_GIS org) · Hatchery Polys",
    "areas": [
     "US-AZ"
    ],
@@ -8712,7 +8652,7 @@
    "url": "https://gis.blm.gov/azarcgis/rest/services/recreation/BLM_AZ_RECS/MapServer/1"
   },
   "sgcoa": {
-   "agency": "Colorado Parks & Wildlife \u00b7 Colorado State Basemap 30",
+   "agency": "Colorado Parks & Wildlife · Colorado State Basemap 30",
    "areas": [
     "US-CO"
    ],
@@ -8726,7 +8666,7 @@
    "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/30"
   },
   "sgcob": {
-   "agency": "Colorado Parks & Wildlife \u00b7 Colorado State Basemap 41",
+   "agency": "Colorado Parks & Wildlife · Colorado State Basemap 41",
    "areas": [
     "US-CO"
    ],
@@ -8740,7 +8680,7 @@
    "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/41"
   },
   "sgcoc": {
-   "agency": "Colorado Parks & Wildlife \u00b7 CPWAdminData 5",
+   "agency": "Colorado Parks & Wildlife · CPWAdminData 5",
    "areas": [
     "US-CO"
    ],
@@ -9197,7 +9137,7 @@
    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/MapServer/5"
   },
   "sgmta": {
-   "agency": "Montana Fish, Wildlife & Parks \u00b7 FWPLND STATEPARKS",
+   "agency": "Montana Fish, Wildlife & Parks · FWPLND STATEPARKS",
    "areas": [
     "US-MT"
    ],
@@ -9207,7 +9147,7 @@
    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0"
   },
   "sgmtb": {
-   "agency": "Montana Fish, Wildlife & Parks \u00b7 FWPLND WMA",
+   "agency": "Montana Fish, Wildlife & Parks · FWPLND WMA",
    "areas": [
     "US-MT"
    ],
@@ -9217,7 +9157,7 @@
    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0"
   },
   "sgmtc": {
-   "agency": "Montana Fish, Wildlife & Parks \u00b7 FWPLND FAS",
+   "agency": "Montana Fish, Wildlife & Parks · FWPLND FAS",
    "areas": [
     "US-MT"
    ],
@@ -9442,7 +9382,7 @@
    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0"
   },
   "sgnvc": {
-   "agency": "Nevada Division of State Parks \u00b7 VS Boundary Map 2 WFL1 2",
+   "agency": "Nevada Division of State Parks · VS Boundary Map 2 WFL1 2",
    "areas": [
     "US-NV"
    ],
@@ -9467,7 +9407,7 @@
    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0"
   },
   "sgnve": {
-   "agency": "Nevada Division of State Parks \u00b7 NDSP State Park Bondaries 1",
+   "agency": "Nevada Division of State Parks · NDSP State Park Bondaries 1",
    "areas": [
     "US-NV"
    ],
@@ -9858,7 +9798,7 @@
    "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0"
   },
   "sgwyc": {
-   "agency": "Wyoming Game and Fish Department \u00b7 WHMA Boundaries 4",
+   "agency": "Wyoming Game and Fish Department · WHMA Boundaries 4",
    "areas": [
     "US-WY"
    ],
@@ -9868,7 +9808,7 @@
    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4"
   },
   "sgwyd": {
-   "agency": "Wyoming Game and Fish Department \u00b7 PAA Boundaries 1",
+   "agency": "Wyoming Game and Fish Department · PAA Boundaries 1",
    "areas": [
     "US-WY"
    ],
@@ -9964,6 +9904,114 @@
     "NAME"
    ],
    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0"
+  },
+  "W-GL.h212": {
+   "agency": "Protected or Important Areas of Greenland Display Layer",
+   "areas": [
+    "W-GL"
+   ],
+   "expected_count": 63,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "not stated. No open-data licence for this Greenland display layer was found on an allowed host. Accepted by Brandon (KPC owner) for this person-saved copy (hand download, 2026-11-11; registered 2026-11-12). The service URL is on services-eu1.arcgis.com; that host was not contacted from this box.",
+   "matched": 0,
+   "name_fields": [
+    "name"
+   ],
+   "note": "KPC owner, 2026-11-12: registered the existing boundary-cache release file hand-W-GL.h212 (63; person-saved 2026-11-11). Licence not stated on an allowed host; accepted by Brandon (KPC owner). services-eu1.arcgis.com was not contacted from this box.",
+   "queued": 0,
+   "read_date": "2026-11-12",
+   "read_how": "geojson",
+   "record_id_field": "fid0",
+   "source_url": "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Protected_Areas_of_Greenland_DisplayLayer/FeatureServer/0",
+   "page": "https://en.nunagis.gl",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-11"
+  },
+  "W-MT.h213": {
+   "agency": "N2K Special Protected Areas",
+   "areas": [
+    "W-MT"
+   ],
+   "expected_count": 14,
+   "g": "official",
+   "id_fields": [
+    "site_code"
+   ],
+   "last_edit": null,
+   "matched": 0,
+   "name_fields": [
+    "site_name"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-12",
+   "read_how": "geojson",
+   "record_id_field": "objectid",
+   "source_count": 14,
+   "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/37",
+   "license": "not stated. Official ERA / Malta SDI pages (https://era.org.mt/topic/natura-2000-datasheets-maps/ and https://msdi.data.gov.mt) do not declare a licence for this dataset. Accepted by Brandon (KPC owner) on 2026-11-12 for this person-saved copy. The Ambjent Malta service URL is on services-eu1.arcgis.com; that host was not contacted from this box.",
+   "note": "KPC owner, 2026-11-12: person-saved copy of Ambjent Malta FeatureServer/37 (14 N2K SPA). Official pages ERA / Malta SDI (licence not stated; accepted by Brandon (KPC owner)). Registered as h213 to match the existing boundary-cache asset. services-eu1.arcgis.com was not contacted from this box.",
+   "source_url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/37",
+   "page": "https://era.org.mt/topic/natura-2000-datasheets-maps/",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12"
+  },
+  "W-CZ.h217": {
+   "agency": "Ptačí oblast (PO)",
+   "areas": [
+    "W-CZ"
+   ],
+   "expected_count": 42,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "matched": 0,
+   "name_fields": [
+    "NAZEV"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-12",
+   "read_how": "geojson",
+   "record_id_field": "OBJECTID",
+   "source_count": 42,
+   "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0",
+   "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Attribution: (c) AOPK ČR. Recorded from https://data.nature.cz/ds/7 and https://portal.nature.cz/w/poskytovani-dat-aopk-cr (2026-11-12). gis.nature.cz was not contacted from this box.",
+   "note": "KPC owner, 2026-11-12: owner hand-download of AOPK ČR Natura 2000 Ptačí oblast (42). Official page https://data.nature.cz/ds/7 (CC BY 4.0, (c) AOPK ČR). Geometry simplified to stay under 1 MB. Renumbered from h212 so the boundary-cache hand-W-GL.h212 asset is free. gis.nature.cz was not contacted from this box.",
+   "source_url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0",
+   "page": "https://data.nature.cz/ds/7",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12"
+  },
+  "W-CZ.h218": {
+   "agency": "Evropsky významná lokalita (EVL)",
+   "areas": [
+    "W-CZ"
+   ],
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "matched": 0,
+   "name_fields": [
+    "NAZEV"
+   ],
+   "queued": 0,
+   "read_date": "2026-11-12",
+   "read_how": "geojson",
+   "record_id_field": "OBJECTID",
+   "source_count": 1111,
+   "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1",
+   "expected_count": 1111,
+   "license": "Creative Commons Attribution 4.0 International (CC BY 4.0). Attribution: (c) AOPK ČR. Recorded from https://data.nature.cz/ds/7 and https://portal.nature.cz/w/poskytovani-dat-aopk-cr (2026-11-12). gis.nature.cz was not contacted from this box.",
+   "note": "KPC owner, 2026-11-12: h218 reserved for a full-precision AOPK ČR EVL hand file. The Nov 12 offset=5 collapsed download (1,111 features, no usable geometry) is not shipped and is not merged or counted. Brandon is re-downloading EVL in 8 chunks; the loader merges hand-W-CZ.h218.chunkN.geojson.gz. Until those files arrive, W-CZ stays honestly short of the 7,938 baseline (saved copy current-layer count 6,785 + 42 PO = 6,827). Official terms: CC BY 4.0, (c) AOPK ČR, https://data.nature.cz/ds/INSPIRE-PS-Natura2000/ and https://portal.nature.cz/w/poskytovani-dat-aopk-cr. gis.nature.cz was not contacted from this box. Renumbered from h213 so the boundary-cache hand-W-MT.h213 asset is free (Quality #179 M4/M7).",
+   "source_url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1",
+   "page": "https://data.nature.cz/ds/INSPIRE-PS-Natura2000/",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12"
   }
  }
 }

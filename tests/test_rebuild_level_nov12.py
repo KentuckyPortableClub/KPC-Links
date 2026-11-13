@@ -12,7 +12,7 @@ def check(msg, cond):
     print(('PASS ' if cond else 'FAIL ') + msg)
 
 check('docs and tests are level 1', L.auto_level(['tests/test_foo.py', '.github/rebuild-levels.md', 'data/outlines/README.md'], ROOT)[0] == 1)
-check('a world hand file is level 2', L.auto_level(['data/outlines/hand/hand-W-CZ.h212.geojson.gz'], ROOT)[0] == 2)
+check('a world hand file is level 2', L.auto_level(['data/outlines/hand/hand-W-CZ.h217.geojson.gz'], ROOT)[0] == 2)
 check('taking a country off expected-holds is level 2', L.auto_level(['data/outlines/world-expected-holds.approved.json'], ROOT)[0] == 2)
 check('shared outlines catalog is level 4', L.auto_level(['data/outlines/layers.json'], ROOT)[0] == 4)
 KF = L._freeze(ROOT)

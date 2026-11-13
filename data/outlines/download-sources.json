@@ -4442,44 +4442,6 @@
    "terms": "see the source page",
    "version": ""
   },
-  "h212": {
-   "areas": [
-    "W-CZ"
-   ],
-   "changed": null,
-   "check": "person",
-   "file": "data/outlines/hand/hand-W-CZ.h212.geojson.gz",
-   "format": "geojson",
-   "fp": {},
-   "fp_seen": null,
-   "kind": "first-party",
-   "layer": "h212",
-   "layer_url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0",
-   "name": "Ptačí oblast (PO)",
-   "page": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0",
-   "stated_count": 42,
-   "terms": "see the source page",
-   "version": ""
-  },
-  "h213": {
-   "areas": [
-    "W-CZ"
-   ],
-   "changed": null,
-   "check": "person",
-   "file": "data/outlines/hand/hand-W-CZ.h213.geojson.gz",
-   "format": "geojson",
-   "fp": {},
-   "fp_seen": null,
-   "kind": "first-party",
-   "layer": "h213",
-   "layer_url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1",
-   "name": "Evropsky významná lokalita (EVL)",
-   "page": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1",
-   "stated_count": 1111,
-   "terms": "see the source page",
-   "version": ""
-  },
   "h214": {
    "areas": [
     "W-DE"
@@ -4494,10 +4456,13 @@
    "layer": "h214",
    "layer_url": "https://gis-hub.bremen.de/ags1/rest/services/inspire/Schutzgebiete_Land_Bremen/MapServer/2",
    "name": "Naturschutzgebiete (Land Bremen)",
-   "page": "https://gis-hub.bremen.de/ags1/rest/services/inspire/Schutzgebiete_Land_Bremen/MapServer/2",
+   "page": "https://umwelt.bremen.de/umwelt/natur/gis-dienste-geodaten-48536",
    "stated_count": 20,
    "terms": "see the source page",
-   "version": ""
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12"
   },
   "h215": {
    "areas": [
@@ -4513,28 +4478,100 @@
    "layer": "h215",
    "layer_url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/36",
    "name": "Malta: Ambjent Malta (government agency; Natura 2000 data from ERA)",
-   "page": "",
+   "page": "https://era.org.mt/topic/natura-2000-datasheets-maps/",
    "stated_count": 30,
    "terms": "see the source page",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12"
+  },
+  "h212": {
+   "areas": [
+    "W-GL"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "data/outlines/hand/hand-W-GL.h212.geojson.gz",
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h212",
+   "layer_url": "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Protected_Areas_of_Greenland_DisplayLayer/FeatureServer/0",
+   "name": "Protected or Important Areas of Greenland Display Layer",
+   "page": "https://en.nunagis.gl",
+   "stated_count": 63,
+   "terms": "see the source page",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-11",
    "version": ""
   },
-  "h216": {
+  "h213": {
    "areas": [
     "W-MT"
    ],
    "changed": null,
    "check": "person",
-   "file": "data/outlines/hand/hand-W-MT.h216.geojson.gz",
+   "file": "data/outlines/hand/hand-W-MT.h213.geojson.gz",
    "format": "geojson",
    "fp": {},
    "fp_seen": null,
    "kind": "first-party",
-   "layer": "h216",
+   "layer": "h213",
    "layer_url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/37",
    "name": "N2K Special Protected Areas",
-   "page": "",
+   "page": "https://era.org.mt/topic/natura-2000-datasheets-maps/",
    "stated_count": 14,
    "terms": "see the source page",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12",
+   "version": ""
+  },
+  "h217": {
+   "areas": [
+    "W-CZ"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "data/outlines/hand/hand-W-CZ.h217.geojson.gz",
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h217",
+   "layer_url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0",
+   "name": "Ptačí oblast (PO)",
+   "page": "https://data.nature.cz/ds/7",
+   "stated_count": 42,
+   "terms": "see the source page",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12",
+   "version": ""
+  },
+  "h218": {
+   "areas": [
+    "W-CZ"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "format": "",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h218",
+   "layer_url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1",
+   "name": "Evropsky významná lokalita (EVL)",
+   "page": "https://data.nature.cz/ds/INSPIRE-PS-Natura2000/",
+   "stated_count": 1111,
+   "terms": "see the source page",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-12",
    "version": ""
   }
  }
