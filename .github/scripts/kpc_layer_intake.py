@@ -133,6 +133,7 @@ def licence_block(sc, *more, root=None):
     if M.is_wdpa(*[v for v in sc.values() if isinstance(v, str)], *more):
         return 'this looks like Protected Planet / WDPA: it is never stored here (not in git, not on KPC-Archive, which is public)'
     return M.share_block({'area': sc.get('area'), 'layer': sc.get('layer'), 'url': sc.get('source_url'), 'page': sc.get('page'), 'label': sc.get('label'),
+                          'license': sc.get('license'), 'licence': sc.get('licence'), 'terms': sc.get('terms'),
                           'raw': {'name': ' '.join(str(x) for x in more)}}, root)
 
 
