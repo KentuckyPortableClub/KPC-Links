@@ -1,13 +1,5 @@
 {
  "restarted": {
-  "kpc-band-alerts.yml|2026-11-06T18:48:00+00:00": "2026-11-06T19:16+00:00 started",
-  "kpc-boards.yml|2026-11-06T18:44:00+00:00": "2026-11-06T19:16+00:00 started",
-  "kpc-bot-queue.yml|2026-11-06T18:22:00+00:00": "2026-11-06T19:16+00:00 started",
-  "kpc-discord-watch.yml|2026-11-06T18:47:00+00:00": "2026-11-06T19:16+00:00 started",
-  "kpc-fb-comments.yml|2026-11-06T18:32:00+00:00": "2026-11-06T19:16+00:00 skipped (not restarted)",
-  "kpc-park-notes.yml|2026-11-06T18:41:00+00:00": "2026-11-06T19:16+00:00 started",
-  "kpc-pota-discord.yml|2026-11-06T18:19:00+00:00": "2026-11-06T19:16+00:00 started",
-  "pages-deploy.yml|2026-11-06T18:41:00+00:00": "2026-11-06T19:16+00:00 started",
   "kpc-approvals.yml|2026-11-06T22:02:00+00:00": "2026-11-06T22:35+00:00 started",
   "kpc-band-alerts.yml|2026-11-06T21:48:00+00:00": "2026-11-06T22:35+00:00 started",
   "kpc-boards.yml|2026-11-06T21:44:00+00:00": "2026-11-06T22:35+00:00 started",
@@ -643,16 +635,11 @@
   "kpc-hunters.yml|2026-11-13T18:07:00+00:00": "2026-11-13T19:11+00:00 started",
   "kpc-park-notes.yml|2026-11-13T18:41:00+00:00": "2026-11-13T19:11+00:00 started",
   "kpc-pota-discord.yml|2026-11-13T18:19:00+00:00": "2026-11-13T19:11+00:00 started",
-  "pages-deploy.yml|2026-11-13T18:41:00+00:00": "2026-11-13T19:11+00:00 started"
+  "pages-deploy.yml|2026-11-13T18:41:00+00:00": "2026-11-13T19:11+00:00 started",
+  "kpc-discord-watch.yml|2026-11-13T18:47:00+00:00": "2026-11-13T19:37+00:00 started"
  },
- "last": "2026-11-13T19:11+00:00",
+ "last": "2026-11-13T19:37+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 13 18:18 UTC)",
-  "kpc-bot-queue.yml (missed Nov 13 18:22 UTC)",
-  "kpc-fb-comments.yml (missed Nov 13 18:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 13 18:07 UTC)",
-  "kpc-park-notes.yml (missed Nov 13 18:41 UTC)",
-  "kpc-pota-discord.yml (missed Nov 13 18:19 UTC)",
-  "pages-deploy.yml (missed Nov 13 18:41 UTC)"
+  "kpc-discord-watch.yml (missed Nov 13 18:47 UTC)"
  ]
 }
