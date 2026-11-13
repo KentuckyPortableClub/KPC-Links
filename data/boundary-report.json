@@ -1275,11 +1275,11 @@
  },
  "World": {
   "totals": {
-   "matched": 43525,
-   "far": 9678,
+   "matched": 43614,
+   "far": 9627,
    "noshape": 0,
-   "edge": 9349,
-   "out": 329,
+   "edge": 9301,
+   "out": 326,
    "swap": 1
   },
   "states": [
@@ -1303,8 +1303,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
+    "detail": "~110 m",
+    "thin": 250,
     "edge": 0
    },
    {
@@ -1399,8 +1399,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
+    "detail": "~110 m",
+    "thin": 250,
     "edge": 0
    },
    {
@@ -1633,15 +1633,15 @@
    },
    {
     "st": "FR",
-    "matched": 12589,
-    "far": 3456,
+    "matched": 12661,
+    "far": 3406,
     "noshape": 0,
-    "out": 150,
+    "out": 149,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 3306
+    "edge": 3257
    },
    {
     "st": "GA",
@@ -1687,8 +1687,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
+    "detail": "~110 m",
+    "thin": 250,
     "edge": 2
    },
    {
@@ -2029,15 +2029,15 @@
    },
    {
     "st": "NZ",
-    "matched": 814,
-    "far": 98,
+    "matched": 831,
+    "far": 99,
     "noshape": 0,
-    "out": 11,
+    "out": 10,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 87
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 89
    },
    {
     "st": "OM",
@@ -2239,8 +2239,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
+    "detail": "~110 m",
+    "thin": 250,
     "edge": 0
    },
    {
@@ -2258,14 +2258,14 @@
    {
     "st": "VI",
     "matched": 7,
-    "far": 2,
+    "far": 0,
     "noshape": 0,
-    "out": 1,
+    "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 1
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 0
    },
    {
     "st": "ZA",
@@ -2732,7 +2732,7 @@
     "FR",
     "FR-11106",
     "Perimetre De Protection De La Reserve Naturelle De La Vallee De Chaudefour Biological Reserve",
-    "P\u00e9rim\u00e8tre De Protection De La R\u00e9serve Naturelle De La Vall\u00e9e De Chaudefour"
+    "P\u00e9rim\u00e8tre De Protection De La R\u00e9serve Naturelle De La Vall\u00e9e De Chaudefour\r\n"
    ],
    [
     "FR",
@@ -3432,12 +3432,6 @@
    ],
    [
     "FR",
-    "FR-14979",
-    "VALLEE DU COUSIN AVAL, ROMANEE ET LEURS ABORDS Biological Reserve",
-    "VALLEE DU COUSIN AVAL, ROMANEE ET LEURS ABORDS"
-   ],
-   [
-    "FR",
     "FR-14994",
     "VALLON ET COTEAUX ENTRE CHAMOUX ET CHATEL-CENSOIR Biological Reserve",
     "VALLON ET COTEAUX ENTRE CHAMOUX ET CHATEL-CENSOIR"
@@ -3488,7 +3482,7 @@
     "FR",
     "FR-16532",
     "agriates Biological Reserve",
-    "AGRIATE"
+    ""
    ],
    [
     "FR",
@@ -3870,18 +3864,6 @@
    ],
    [
     "NZ",
-    "NZ-0015",
-    "Orere Point Regional Park",
-    "Orere Point Road"
-   ],
-   [
-    "NZ",
-    "NZ-0022",
-    "Te Arai Regional Park",
-    "Te Arai Scenic Reserve"
-   ],
-   [
-    "NZ",
     "NZ-0051",
     "Waimakariri River Regional Park",
     "Waimakariri River Endowment"
@@ -4143,12 +4125,6 @@
     "UY-0049",
     "Montes del Queguay Protected Landscape Area",
     "Montes del Queguay"
-   ],
-   [
-    "VI",
-    "VI-0006",
-    "Christiansted National Historic Site",
-    "Christiansted National Historic Site"
    ],
    [
     "ZA",
