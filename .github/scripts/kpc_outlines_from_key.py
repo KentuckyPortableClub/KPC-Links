@@ -4,8 +4,9 @@ and the saved copy of that state (US-XX.json.gz on the boundary-cache release, r
 
 For each park with joined records (`m`) and no outline yet in data/outlines/US-XX.geojson.gz, the joined records' shapes are
 put together (shapely union), trimmed with the master's own trim (5 decimals, 0.0001 deg) and written as a master record
-(g = the key's g, layer_url = file:US-XX.json.gz, via = key). An outline already in the file is never replaced.
-A park whose records are not all in the saved copy is skipped and listed (fail closed: no partial outline).
+(g = the key's g, layer_url = file:US-XX.json.gz, via = key). An outline already in the file is kept when it already agrees with the key (grade not PIN, record_ids are the key's m).
+A PIN leftover, a ref no key lists, or an outline that holds a record the key did not join is rebuilt from the key (or dropped
+on save). A park whose records are not all in the saved copy is skipped and listed (fail closed: no partial outline).
 Nov 11 (job 2): the area is saved by kpc_master.save_area, so a state whose outlines pass 1 MB is written in parts
 (US-AK.geojson.gz + US-AK.p2.geojson.gz ..., the release's part scheme) at full default precision: no extra simplification.
 --dry-run builds everything in memory, prints per park what would be written, and the part files the save would make (with sizes)
@@ -56,22 +57,33 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
     root = pathlib.Path(root or M.OUTLINES); area = f'US-{st}'
     key_dir = pathlib.Path(key_dir or (ROOT / 'data' / 'us-key'))
     key = json.loads((key_dir / f'US-{st}.json').read_text())
-    with gzip.open(pathlib.Path(cache) / f'US-{st}.json.gz', 'rt', encoding='utf-8') as f: blob = json.load(f)
-    recs = {str(r.get('OBJECTID')): r for r in blob.get('recs') or []}
-    counts = M.saved_counts(pathlib.Path(cache) / f'US-{st}.json.gz')
+    cache_path = pathlib.Path(cache) / f'US-{st}.json.gz' if cache else pathlib.Path()
+    blob, recs, counts = {}, {}, {}
+    if cache_path.is_file():
+        with gzip.open(cache_path, 'rt', encoding='utf-8') as f: blob = json.load(f)
+        recs = {str(r.get('OBJECTID')): r for r in blob.get('recs') or []}
+        counts = M.saved_counts(cache_path)
     have = M.load_area(area, root)
     # Nov 12 (KPC owner, 2026-11-12; D6): an outline's date_read comes from the INPUT, not the clock: the park's 'read' date in the key
     # (the oldest day its joined records were read), else the saved copy's 'saved' stamp, else the run's one date (KPC_BUILD_DATE),
     # else today. So the same key + copy give the same outline file bytes on any day.
     today = str(blob.get('saved') or '').strip() or (os.environ.get('KPC_BUILD_DATE') or '').strip() or datetime.date.today().isoformat()
-    added, skipped = [], []
+    def stale(ref, rec, q):
+        """True when the existing outline must be rebuilt or will be dropped: PIN, or record_ids are not the key's m."""
+        if q.get('g') == 'pin': return True
+        ids = [str(x[0]) for x in (q.get('m') or []) if isinstance(x, list) and x]
+        ids = [i for i in ids if M.prefix_of(i) != 'trl']
+        have_ids = M.outline_record_ids(rec)
+        return sorted(have_ids) != sorted(ids)
+    added, skipped, replaced = [], [], []
     for ref, q in sorted((key.get('parks') or {}).items()):
         if only and ref not in only: continue
-        if ref in have: continue
+        if ref in have and not stale(ref, have[ref], q): continue
         ids = [str(x[0]) for x in q.get('m') or [] if isinstance(x, list) and x]
         ids = [i for i in ids if M.prefix_of(i) != 'trl']   # a trail line is drawn by the trails layer, not as an outline
         if not ids: continue
         if q.get('g') == 'pin': continue   # KPC owner, 2026-11-11: a park the key grades pin never gets an outline
+        if not recs: skipped.append((ref, 'no saved copy (cannot rebuild this outline this run)')); continue
         miss = [i for i in ids if i not in recs]
         if miss: skipped.append((ref, f'{len(miss)} of {len(ids)} joined records not in the saved copy ({" ".join(miss[:4])})')); continue
         g, why = union_geometry([recs[i] for i in ids])
@@ -84,9 +96,14 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         r = M.make_record(ref, q.get('n') or ref, gk, g, agency, f'file:US-{st}.json.gz', ids,
                           sum(counts.get(M.prefix_of(i), 0) for i in set(map(M.prefix_of, ids))), str(q.get('read') or today), '', 'key', layers=lay)
         M.assert_public_safe(r); added.append(r)
+        if ref in have: replaced.append(ref)
         say(f'  {"would write" if dry else "write"} {ref} {gk:<11} {len(ids)} record(s) {npts(g):>8,} points  {(q.get("n") or "")[:60]}')
-    if added:
-        out = dict(have); out.update({r['ref']: r for r in added})
+    out = dict(have); out.update({r['ref']: r for r in added})
+    # Always run save_area when there is something to drop (PIN leftovers, refs not in any key) or something to write, even
+    # if this pass added no new park: an outline already in the file is otherwise never cleaned.
+    drop_pin = M.pin_drops(area, out, key_dir)
+    drop_unk = M.not_in_key_drops(area, out, key_dir)
+    if added or drop_pin or drop_unk:
         if dry:   # the same save into a scratch copy: which files it would make, and how big
             with tempfile.TemporaryDirectory() as t:
                 tr = pathlib.Path(t) / 'outlines'; tr.mkdir()
@@ -96,6 +113,9 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         else:
             M.save_area(area, out, root, key_dir=key_dir)
             for f in M.area_files(area, root): say(f'  saved {f.name}: {f.stat().st_size:,} bytes')
+        if drop_pin: say(f'  dropped {len(drop_pin)} PIN outline(s): {" ".join(sorted(drop_pin)[:8])}')
+        if drop_unk: say(f'  dropped {len(drop_unk)} outline(s) not in any key: {" ".join(sorted(drop_unk)[:8])}')
+        if replaced: say(f'  rebuilt {len(replaced)} outline(s) to match the key: {" ".join(replaced[:8])}')
     return added, skipped
 
 
@@ -112,12 +132,13 @@ def verify(st, ref='HEAD', root=None, repo=None):
         r = subprocess.run(['git', 'show', f'{ref}:{rel}/{n}'], cwd=repo, capture_output=True)
         return r.stdout if r.returncode == 0 else None
     before = M.recs_of_doc(M.load_doc_parts(f'{area}.geojson.gz', at_ref)); now = M.load_area(area, root)
-    pins = M.pin_drops(area, before, root.parent / 'us-key')
+    key_dir = root.parent / 'us-key'
+    pins = M.pin_drops(area, before, key_dir) | M.not_in_key_drops(area, before, key_dir)
     changed = sorted(r for r in before if r in now and now[r].get('hash') != before[r].get('hash'))
     lost = sorted(set(before) - set(now) - pins)
     files = M.area_files(area, root); big = [f.name for f in files if f.stat().st_size > M.PART_CAP]
     bad_hash = sorted(r for r, v in now.items() if M.content_hash(v) != v.get('hash'))
-    lines = [f'{area}: {len(before)} outline(s) at {ref}, {len(now)} now ({len(set(now) - set(before))} new, {len(set(before) & pins)} dropped as pin)',
+    lines = [f'{area}: {len(before)} outline(s) at {ref}, {len(now)} now ({len(set(now) - set(before))} new, {len(set(before) & pins)} dropped as pin or not in the key)',
              *(f'  {f.name}: {f.stat().st_size:,} bytes' for f in files),
              f'  changed: {" ".join(changed) or "none"}; lost: {" ".join(lost) or "none"}; over 1 MB: {" ".join(big) or "none"}; bad hash: {" ".join(bad_hash) or "none"}']
     return not (changed or lost or big or bad_hash), lines

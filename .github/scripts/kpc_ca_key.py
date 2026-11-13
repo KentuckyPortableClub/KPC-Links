@@ -875,7 +875,14 @@ for pv, parks_in in sorted(by.items()):
     PENDING.append((pv, out))
     R = OUT / 'review'
     L = [f'# Canada {pv}: POTA parks vs official land (CPCAD)', '', f"Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **{cnt['matched']} of {cnt['parks']}** joined (same name + same kind). "
-         f"**{cnt['check']}** to check, **{cnt['none']}** nothing found in CPCAD (provincial maps come next). Nothing below is joined.", '', '## To check (not joined)', '']
+         f"**{cnt['check']}** to check, **{cnt['none']}** nothing found in CPCAD (provincial maps come next). Nothing below is joined."]
+    # Nov 13: owner-held pin fills of this province go on the review list (not applied; POTA's pin stays).
+    import kpc_pin_fill as _PFHOLD
+    _held = [(r, _PFHOLD.HELD[r]) for r in parks if r in _PFHOLD.HELD]
+    if _held:
+        L += ['', '## Owner hold (pin fills not applied)', '']
+        L += [f"- **{r}** {parks[r].get('n') or r} ({parks[r].get('t') or ''}): {why}" for r, why in _held]
+    L += ['', '## To check (not joined)', '']
     L += [f"- **{r}** {p['n']} ({p['t']}) → " + '; '.join(f"{q[1]} (~{q[2]:,} ac, {q[3]})" for q in p['c']) for r, p in parks.items() if not p['m'] and p['c']]
     L += ['', '## Sites on bigger land (no outline of their own; the land around the pin)', ''] + [f"- {r} {p['n']} ({p['t']}) → on " + '; '.join(f"{q[1]} (~{q[2]:,} ac)" for q in p['a']) for r, p in parks.items() if p.get('a')]
     L += ['', '## Nothing found in CPCAD', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c'] and not p.get('a')]

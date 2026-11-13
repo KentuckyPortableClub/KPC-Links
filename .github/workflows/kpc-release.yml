@@ -4,19 +4,32 @@ name: Release map files (by hand)
 # Nov 11 (job 3, needs the owner's OK): CA also releases the Canada park outlines (data/canada-bounds, listed in
 # data/released/canada-bounds/INDEX.json); KY releases data/ky-answer-key.json and the root ky-*.geojson layers (data/released/ky/).
 # By hand only: no schedule, no push trigger, and no other workflow starts it. One commit per run.
+# Nov 13 (KPC owner): release is per area (country, state or province). A green, graded, no-worse-than-live
+# area is promoted alone; a held or failed area keeps its live data and never blocks the others. The live
+# record in RELEASED.json says which build each area came from. US-42797939226 is never released.
 on:
   workflow_dispatch:
     inputs:
       area:
-        description: Which map files to release
+        description: Which kind to consider, one area at a time, when 'areas' is empty (US = every state, CA = every province, world = every country, KY = the Kentucky map pack)
         required: true
         type: choice
         default: US
         options: [US, CA, KY, world]
+      areas:
+        description: 'Optional. One or more areas, space separated (e.g. DE FR US-KY). Each is promoted on its own if it is green, Quality has said RELEASE-READY: YES, and it is no worse than live. A held or failed area keeps its live data and does not block the others. Empty = every area of the kind above, still one by one.'
+        required: false
+        type: string
+        default: ''
       source_sha:
         description: The full commit sha on main whose working files are released
         required: true
         type: string
+      grade:
+        description: 'Path to a Quality verdicts.json (RELEASE-READY). Empty = data/status/quality/verdicts.json on this checkout. An area without a YES is not released.'
+        required: false
+        type: string
+        default: ''
 permissions:
   contents: write
 concurrency:
@@ -36,13 +49,17 @@ jobs:
           ACTOR: ${{ github.actor }}
           ALLOWED: ${{ vars.KPC_RELEASE_ACTORS }}   # repo variable: the account(s) that may release, space separated. Empty = nobody.
           AREA: ${{ inputs.area }}
+          AREAS: ${{ inputs.areas }}
           SOURCE_SHA: ${{ inputs.source_sha }}
+          GRADE: ${{ inputs.grade }}
         run: |
-          # only a listed account may release (fail closed: no list = no release)
+          # only a listed account may release (fail closed: no list = no release). Owner-run only.
           case " $ALLOWED " in *" $ACTOR "*) ;; *) echo "::error title=Release::$ACTOR is not in the repo variable KPC_RELEASE_ACTORS. Nothing was released."; exit 1 ;; esac
           # the commit must be on main: a sha from a branch or a fork is refused
           git merge-base --is-ancestor "$SOURCE_SHA" origin/main || { echo "::error title=Release::$SOURCE_SHA is not a commit on main. Nothing was released."; exit 1; }
-          python3 .github/scripts/kpc_release.py --area "$AREA" --sha "$SOURCE_SHA" --run "$GITHUB_RUN_ID"
+          GRADE_ARG=()
+          [ -n "$GRADE" ] && GRADE_ARG=(--grade "$GRADE")
+          python3 .github/scripts/kpc_release.py --area "$AREA" --areas "$AREAS" --sha "$SOURCE_SHA" --run "$GITHUB_RUN_ID" "${GRADE_ARG[@]}"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A data/released

@@ -82,6 +82,11 @@ with tempfile.TemporaryDirectory() as t:
     check('4% down and 50% down: exit 1, both named in the mark', rc == 1 and mark == ['AA', 'DD'] and 'US-AA::official parks 100 -> 96' in o)
     rc, o, mark = guard({'KPC_DROP_OK': 'dd'})
     check('KPC_DROP_OK lets only the named state through', rc == 1 and mark == ['AA'] and 'let through by KPC_DROP_OK' in o)
+    # M2 drops outlines the key does not list, so these 50 refs have to be in US-AA.json or save_area would write an empty file
+    kf('AA', 96)
+    more = json.loads((key / 'US-AA.json').read_text())
+    more['parks'].update({f'US-{i}': {'g': 'official'} for i in range(50)})
+    (key / 'US-AA.json').write_text(json.dumps(more))
     M.save_area('US-AA', {f'US-{i}': rec(f'US-{i}') for i in range(50)}, root); sh(d, 'git', 'add', '-A'); sh(d, 'git', 'commit', '-qm', 'outlines')
     M.save_area('US-AA', {f'US-{i}': rec(f'US-{i}') for i in range(40)}, root)
     rc, o, mark = guard({'KPC_DROP_OK': 'DD'})

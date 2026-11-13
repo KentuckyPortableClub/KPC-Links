@@ -140,7 +140,9 @@ Exit code 0 = go on and save as before. Exit code 3 = skip this save (everything
 Nothing here ever fails a run: any doubt = save as before.
 
 A staged change is BOOKKEEPING when it is only:
-  - a file under data/status/ (boards, bot lines, grade queue, inbox lists)
+  - a file under data/status/ (boards, bot lines, grade queue, inbox lists),
+    except data/status/key-check/last-<key>.json and data/status/key-check/<key>-<build>.json/.md
+    (the key-check save the 2-fer run waits on; these always land)
   - data/waiting/heartbeat.json, verdicts-last.json, held-since.json (the waiting room's own notes; NOT the append-only verdicts log)
   - data/waiting/verdicts.json when no file's verdict changed (same path -> same verdict; only the check time / re-test counts moved)
 Anything else staged (data, answer keys, waiting-room files, a new or deleted file) is MATERIAL: the save goes ahead at once,
@@ -153,6 +155,12 @@ import json, os, re, subprocess, sys
 
 # data/waiting/verdicts.jsonl(.gz) is NOT on this list: it is an append-only log, a skipped save would lose its new lines
 BOOK = re.compile(r'^data/status/|^data/waiting/(heartbeat|verdicts-last|held-since)\.json$')
+# Nov 13: last-<key>.json and the <key>-<build> report must always save. Yesterday the 3-hour
+# bookkeeping skip dropped last-us.json for US-43293787778 and the US 2-fers sat waiting.
+# Other key-check files (pin-cover, also-in, health, dropped) stay bookkeeping.
+KEY_CHECK_MUST_SAVE = re.compile(
+    r'^data/status/key-check/(last-(?:us|ca|world)\.json|(?:us|ca|world)-[^/]+\.(?:json|md))$')
+
 
 
 def git(*a):
@@ -172,6 +180,7 @@ def verdicts(d):
 
 
 def is_book(f):
+    if KEY_CHECK_MUST_SAVE.match(f): return False
     if BOOK.match(f): return True
     if f == 'data/waiting/verdicts.json':
         a, b = verdicts(load(f'HEAD:{f}')), verdicts(load(f':{f}'))

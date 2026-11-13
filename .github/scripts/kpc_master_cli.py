@@ -182,6 +182,19 @@ def cmd_check(a):
             except M.ShortRead as e: bad.append(str(e))
     if a.repo:
         for f in M.raw_in_repo(tracked_files(a.repo)): bad.append(f'{f}: a raw layer file must not be tracked (use the raw manifest)')
+    # Nov 13 (Quality M1/M2): outlines must agree with the US key at save time (no PIN outlines, no refs the key does not list,
+    # no outline that holds a record missing from the key's m). --areas limits the check so a state can be saved or released alone.
+    key = pathlib.Path(a.key) if getattr(a, 'key', None) else root.parent / 'us-key'
+    want = [x for x in (getattr(a, 'areas', None) or '').replace(',', ' ').split() if x]
+    if key.is_dir():
+        for pth in sorted(root.glob('US-??.geojson.gz')):
+            if M.is_part_file(pth.name): continue
+            area = pth.name[:-len('.geojson.gz')]
+            if want and area not in want: continue
+            try: recs = M.load_area(area, root)
+            except Exception: continue
+            for msg in M.outline_key_problems(area, recs, key):
+                bad.append(f'{pth.name}: {msg}')
     for b in bad: err('master check', b)
     if suspect: warn('master check suspect baseline', f'{len(suspect)} layer baseline(s) lower than the records the file held (the next verified full read re-records them): ' + '; '.join(suspect))
     notice('master check', ('all clear' if not bad else f'{len(bad)} problem(s)') + (f'; {len(suspect)} suspect baseline(s): ' + ', '.join(x.split(' ')[0] for x in suspect) if suspect else ''))
@@ -420,7 +433,7 @@ def main(argv=None):
     t.add_argument('--page', type=int, default=500); t.add_argument('--accept-shrink', action='store_true'); t.add_argument('--dry-run', action='store_true'); t.add_argument('--root')
     rs = sp.add_parser('resave', help='write every area file again: pin-graded parks out, parts when over 1 MB (Nov 11)')
     rs.add_argument('--root'); rs.add_argument('--key', help='the us-key folder (default: next to the outlines folder)'); rs.add_argument('--areas'); rs.add_argument('--dry-run', action='store_true')
-    c = sp.add_parser('check'); c.add_argument('--root'); c.add_argument('--cache'); c.add_argument('--repo')
+    c = sp.add_parser('check'); c.add_argument('--root'); c.add_argument('--cache'); c.add_argument('--repo'); c.add_argument('--key', help='the us-key folder (default: next to the outlines folder)'); c.add_argument('--areas', help='only these US-XX areas (default: every US outline file)')
     p = sp.add_parser('plan'); p.add_argument('--root'); p.add_argument('--areas'); p.add_argument('--prefix'); p.add_argument('--max-days', type=float, default=30); p.add_argument('--no-probe', action='store_true'); p.add_argument('--out')
     g = sp.add_parser('gate'); g.add_argument('--cache', required=True); g.add_argument('--root'); g.add_argument('--report')
     g.add_argument('--first-ok', action='store_true', help='a saved copy with NO baseline yet passes (notice); a short one is still held')

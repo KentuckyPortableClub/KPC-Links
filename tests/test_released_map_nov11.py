@@ -24,7 +24,7 @@ with tempfile.TemporaryDirectory() as t:
     (d / 'data/outlines/US-FL.geojson.gz').write_bytes(gzj({'type': 'FeatureCollection', 'kpc': {'area': 'US-FL'}, 'features': [feat(i) for i in range(3)]}))
     (d / 'data/outlines/US-FL.sgfla.geojson.gz').write_bytes(b'a layer file')
     (d / 'data/outlines/layers.json').write_text('{}')
-    (d / 'data/us-key/US-FL.json').write_text(json.dumps({'st': 'FL', 'parks': {'US-1': {'g': 'official'}}}))
+    (d / 'data/us-key/US-FL.json').write_text(json.dumps({'st': 'FL', 'parks': {f'US-{i}': {'g': 'official'} for i in range(3)}}))
     big = {'st': 'WI', 'parks': {f'US-{i:04d}': {'g': 'official', 'm': ['x' * 900]} for i in range(60)}}
     (d / 'data/us-key/US-WI.json').write_text(json.dumps(big))
     for n in ('layers.json', 'overrides.json', 'index.json'): (d / 'data/us-key' / n).write_text('{"a":1}')
@@ -50,7 +50,8 @@ with tempfile.TemporaryDirectory() as t:
           and idx['files']['us-key/US-FL.json'][0][1] == __import__('hashlib').sha256((rel / 'us-key/US-FL.json').read_bytes()).hexdigest()[:12])
     check('the area row names the commit, the time and the run', idx['areas'] == {'US': {'sha': sha1, 'time': 'T1', 'run': '77', 'files': 4}})
     # main moves on: FL changes, WI shrinks under the limit, a new state appears
-    (d / 'data/us-key/US-FL.json').write_text(json.dumps({'st': 'FL', 'parks': {'US-1': {'g': 'pin'}}}))
+    # keep the three parks official so the outline is not trimmed; adding US-9 is enough to bump the key file version
+    (d / 'data/us-key/US-FL.json').write_text(json.dumps({'st': 'FL', 'parks': {f'US-{i}': {'g': 'official'} for i in range(3)} | {'US-9': {'g': 'official'}}}))
     (d / 'data/us-key/US-WI.json').write_text('{"parks":{}}'); (d / 'data/us-key/US-GA.json').write_text('{"parks":{}}')
     sh(d, 'git', 'add', '-A'); sh(d, 'git', 'commit', '-qm', 'two'); sha2 = sh(d, 'git', 'rev-parse', 'HEAD').stdout.strip()
     v_out = idx['files']['outlines/US-FL.geojson.gz'][0][1]; v_fl = idx['files']['us-key/US-FL.json'][0][1]

@@ -105,7 +105,7 @@ with tempfile.TemporaryDirectory() as t:
     check('the area row keeps its form {files, run, sha, time}', idx['areas']['CA'] == {'sha': sha1, 'time': 'T2', 'run': '2', 'files': 6})
     s_ca = snap(rel); i_ca = idx
     # dry run: lists, writes nothing
-    r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_release.py'), '--repo', str(d), '--area', 'KY', '--sha', sha1, '--dry-run'], capture_output=True, text=True)
+    r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_release.py'), '--repo', str(d), '--all-of-kind', '--area', 'KY', '--sha', sha1, '--dry-run'], capture_output=True, text=True)
     lines = [ln for ln in r.stdout.splitlines() if ln.startswith('would write')]
     check('--dry-run lists the KY files with sizes and writes nothing',
           r.returncode == 0 and 'Nothing was written' in r.stdout and snap(rel) == s_ca and any(ln.split()[-1] == 'data/released/ky/ky-answer-key.json' and ln.split()[3] == '23' for ln in lines)

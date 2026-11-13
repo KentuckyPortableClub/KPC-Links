@@ -71,7 +71,7 @@ check(isinstance(out, PINF.Filled) and set(out.fills) == {'CA-2056', 'CA-2058', 
 w, wl = run({'PF-0033': ['Est du lagon', '', 'Biological Reserve', '', '', 0.0, 0.0], 'PF-0008': ['AMP de Moorea', '', 'x', '', '', -17.5, -149.8]}, 'PF', FILE)
 check(not isinstance(w, PINF.Filled) and w['PF-0033'][5:7] == [0.0, 0.0] and w['PF-0008'][5:7] == [-17.5, -149.8] and 'HELD' in wl and 'PF-0033' in wl,
       'world: PF-0033 is HELD by the owner (Nov 12): its ready fill is not applied, POTA\'s 0,0 pin stays, the run lists it held')
-check(PINF.HELD.keys() == {'PF-0033', 'PF-0034'}, 'the owner hold list is exactly PF-0033 and PF-0034 (one shared low-confidence official point)')
+check(set(PINF.held_of('PF')) == {'PF-0033', 'PF-0034'} and set(PINF.HELD) >= {'PF-0033', 'PF-0034'}, 'the world owner hold list still includes PF-0033 and PF-0034 (one shared low-confidence official point); Nov 13 also holds three CA parks')
 au, al = run({'AU-10111': ['Cobourg', '', 'Conservation Area', '', '', 0.0, 0.0]}, 'AU', FILE)
 check(isinstance(au, PINF.Filled) and au['AU-10111'][5:7] != [0.0, 0.0] and 'HELD' not in al, 'world: the AU fill still applies (refs of other countries are never read for AU)')
 nz, _ = run({'NZ-0001': ['x', '', 'y', '', '', 0.0, 0.0]}, 'NZ', FILE)
@@ -124,7 +124,7 @@ CREC = [crec(1, 'Ile Marianne (282) Nature Reserve', 50.25, -59.845833), crec(2,
 CA_SRC = (H.SCRIPTS / 'kpc_ca_key.py').read_text(encoding='utf-8')
 CA_OLD = H.strip_hook(H.strip_hook(CA_SRC, '# Nov 12 (KPC owner, 2026-11-12; kpc_pin_fill.py): an OFFICIAL pin', 'PINF.fill(P,'),
                       "# Nov 12 (KPC owner, 2026-11-12; kpc_pin_fill.py): a filled park is marked 'pf'", 'P = PINF.mark(')
-check('kpc_pin_fill' not in CA_OLD and CA_SRC.count('kpc_pin_fill') == 3, 'the Canada builder without this commit = the builder minus its two pin-fill hooks')
+check('PINF.fill' not in CA_OLD and 'PINF.mark' not in CA_OLD and CA_SRC.count('import kpc_pin_fill') == 2 and 'kpc_pin_fill as _PFHOLD' in CA_OLD, 'the Canada builder without the fill/mark hooks keeps the Nov 13 review-list import; two pin-fill imports in the live builder')
 def cmp(a, b, skip=('data/status/',)):
     ks = sorted(k for k in set(a) | set(b) if not k.startswith(skip) and not k.startswith('_'))
     return [k for k in ks if a.get(k) != b.get(k)]

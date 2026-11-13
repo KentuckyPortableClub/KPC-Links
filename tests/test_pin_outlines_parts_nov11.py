@@ -22,8 +22,8 @@ def git_repo(d):
 def commit(d, m='c'): sh(d, 'git', 'add', '-A'); sh(d, 'git', 'commit', '-qm', m); return sh(d, 'git', 'rev-parse', 'HEAD').stdout.strip()
 
 SQ = lambda x=0: {'type': 'Polygon', 'coordinates': [[[x, 0], [x, 1], [x + 1, 1], [x + 1, 0], [x, 0]]]}
-def rec(ref, g='official', geom=None, layer='file:US-ZZ.json.gz'):
-    return M.make_record(ref, ref, g, geom or SQ(), 'agency', layer, ['1'], 10, '2026-11-11', '', 'key')
+def rec(ref, g='official', geom=None, layer='file:US-ZZ.json.gz', ids=None):
+    return M.make_record(ref, ref, g, geom or SQ(), 'agency', layer, ids or ['1'], 10, '2026-11-11', '', 'key')
 rnd = random.Random(7)
 def island(cx, cy, n, r=0.05):
     import math
@@ -53,8 +53,8 @@ with tempfile.TemporaryDirectory() as t:
     keyfile(kd, 'NM', {'US-4514': {'g': 'official'}, 'US-5': {'g': 'pin'}})
     keyfile(kd, 'DC', {'US-0657': {'g': 'pin'}, 'US-0658': {'g': 'official'}})
     M.save_area('US-TX', {r: rec(r) for r in ('US-4514', 'US-1', 'US-2', 'US-3', 'US-5')}, root)
-    check('save_area: a pin-graded park is left out; one official in another state\'s key (US-4514) and one the key does not know stay',
-          sorted(M.load_area('US-TX', root)) == ['US-2', 'US-3', 'US-4514'])
+    check('save_area: a pin-graded park is left out; one official in another state\'s key (US-4514) stays; one the key does not know is dropped',
+          sorted(M.load_area('US-TX', root)) == ['US-2', 'US-4514'])
     check('save_area: pin in every key that knows it (US-5, two states) = dropped', 'US-5' not in M.load_area('US-TX', root))
     M.save_area('US-OK', {'US-1': rec('US-1')}, root)
     check('save_area: no key file for the state = nothing dropped', sorted(M.load_area('US-OK', root)) == ['US-1'])
@@ -62,16 +62,27 @@ with tempfile.TemporaryDirectory() as t:
     check('save_area: no key folder = nothing dropped (as before)', sorted(M.load_area('US-TX', root)) == ['US-1'])
     # A2. keep_main never brings a dropped pin outline back from main's copy; DC is small and the drop guard does not trip
     git_repo(d)
-    (kd / 'US-DC.json').write_text(json.dumps({'parks': {'US-0657': {'g': 'official'}, 'US-0658': {'g': 'official'}}}))
     dc = {f'US-06{i:02d}': rec(f'US-06{i:02d}') for i in range(50, 60)}
+    def dckey(pin=False, extra=None):
+        parks = {f'US-06{i:02d}': {'g': 'official'} for i in range(50, 60)}
+        if pin: parks['US-0657'] = {'g': 'pin'}
+        if extra: parks.update(extra)
+        return parks
+    (kd / 'US-DC.json').write_text(json.dumps({'parks': dckey(False, {'US-0659': {'g': 'official'}})}))
+    # AL lists the same parks (so M2 does not drop them); 0659 will become pin-only on AL later
+    keyfile(kd, 'AL', {r: {'g': 'official'} for r in dc})
     M.save_area('US-DC', dc, root); M.save_area('US-AL', dc, root); commit(d, 'main: US-0657 official')
-    keyfile(kd, 'DC', {'US-0657': {'g': 'pin'}, 'US-0658': {'g': 'official'}})          # this run's key: US-0657 is pin now
-    M.save_area('US-DC', dc, root); (root / 'US-AL.geojson.gz').unlink(); keyfile(kd, 'AL', {'US-0659': {'g': 'pin'}})
+    keyfile(kd, 'DC', dckey(True, {'US-0659': {'g': 'official'}}))          # this run's key: US-0657 is pin now
+    M.save_area('US-DC', dc, root); (root / 'US-AL.geojson.gz').unlink()
+    # 0659 is pin in AL and not listed by DC, so it is dropped from AL; 0657 is pin in DC only
+    keyfile(kd, 'DC', dckey(True))   # 0659 no longer in DC
+    keyfile(kd, 'AL', dict({r: {'g': 'official'} for r in dc if r not in ('US-0657', 'US-0659')}, **{'US-0659': {'g': 'pin'}}))
+    M.save_area('US-DC', dc, root)   # 0657 is pin in the only key that lists it (DC); AL no longer lists it official
     check('this run\'s save drops US-0657', 'US-0657' not in M.load_area('US-DC', root) and len(M.load_area('US-DC', root)) == 9)
     rc = K.run(d, root, 'HEAD')
     check('keep_main: US-0657 is not brought back from main\'s copy, nothing else lost', rc == 0 and sorted(M.load_area('US-DC', root)) == sorted(set(dc) - {'US-0657'}))
-    check('keep_main: a file the run lost is put back from main without the pin-graded parks (US-0659 by AL\'s key, US-0657 by DC\'s: the only key listing it)',
-          rc == 0 and sorted(M.load_area('US-AL', root)) == sorted(set(dc) - {'US-0657', 'US-0659'}))
+    check('keep_main: a file the run lost is put back from main without the pin-graded park (US-0657 is pin in every key that lists it; US-0659 stays, official in DC)',
+          rc == 0 and sorted(M.load_area('US-AL', root)) == sorted(set(dc) - {'US-0657'}))
     sh(d, 'git', 'add', 'data/us-key'); sh(d, 'git', 'commit', '-qm', 'key')
     g = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_key_drop_guard.py'), '--repo', str(d), '--ref', 'HEAD'], capture_output=True, text=True,
                        env=dict(os.environ, KPC_DROP_PCT='3', KPC_DROP_MIN='0'))
@@ -79,7 +90,7 @@ with tempfile.TemporaryDirectory() as t:
     M.save_area('US-DC', {r: v for r, v in dc.items() if r not in ('US-0657', 'US-0658')}, root)
     g = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_key_drop_guard.py'), '--repo', str(d), '--ref', 'HEAD'], capture_output=True, text=True,
                        env=dict(os.environ, KPC_DROP_PCT='3', KPC_DROP_MIN='0'))
-    check('drop guard: losing a park that is NOT pin still counts', g.returncode == 1 and 'US-DC::outlines 8 -> 7' in g.stdout)
+    check('drop guard: losing a park that is NOT pin still counts', g.returncode == 1 and 'US-DC::outlines 9 -> 8' in g.stdout)
 
 # ================================================================ A'. the key's approximate grade: a record is lowered, never raised
 for area, ref in (('US-AK', 'US-7239'), ('US-AK', 'US-12678'), ('US-IN', 'US-4162')):
@@ -98,15 +109,15 @@ for area, ref in (('US-CO', 'US-4553'), ('US-TX', 'US-4553'), ('US-MT', 'US-7816
     check(f'{ref} in the {area} file (its key does not list it; best grade anywhere approximate): saved approximate',
           area not in grades.get(ref, {}) and r_.get('g') == 'approximate' and r_.get('hash') == M.content_hash(r_))
 r_ = M.load_area('US-TN').get('US-1278') or {}
-check('US-1278 (in the TN file, listed by no US key): left alone', 'US-1278' not in grades and r_.get('g') == 'official')
+check('US-1278 (listed by no US key): not in the TN outline file', 'US-1278' not in grades and 'US-1278' not in M.load_area('US-TN'))
 nokey = [(p.name[:5], r) for p in sorted((ROOT / 'data/outlines').glob('US-??.geojson.gz')) for r in M.load_area(p.name[:5]) if r not in grades]
-check(f'exactly one outline record whose park no US key lists ({nokey})', nokey == [('US-TN', 'US-1278')])
+check(f'no outline record whose park no US key lists ({nokey})', nokey == [])
 with tempfile.TemporaryDirectory() as t:
     d = pathlib.Path(t); root = d / 'data/outlines'; kd = d / 'data/us-key'; root.mkdir(parents=True)
     keyfile(kd, 'CO', {'US-0': {'g': 'official'}}); keyfile(kd, 'NM', {'US-1': {'g': 'approximate'}, 'US-2': {'g': 'pin'}, 'US-3': {'g': 'official'}})
     M.save_area('US-CO', {r: rec(r) for r in ('US-0', 'US-1', 'US-2', 'US-3', 'US-9')}, root); got = M.load_area('US-CO', root)
-    check('neighbour file: a pin park out, an approximate park approximate, an official park and a park in no key left alone',
-          sorted(got) == ['US-0', 'US-1', 'US-3', 'US-9'] and got['US-1']['g'] == 'approximate' and got['US-3']['g'] == 'official' and got['US-9']['g'] == 'official')
+    check('neighbour file: a pin park out, an approximate park approximate, an official park kept; a park in no key is dropped',
+          sorted(got) == ['US-0', 'US-1', 'US-3'] and got['US-1']['g'] == 'approximate' and got['US-3']['g'] == 'official')
 lay = (ROOT / 'kpc-padus-layer.js').read_text(encoding='utf-8')
 check('the map layer draws a record whose g is not official dashed (so these 87 are dashed now)',
       "if (g && g !== 'official') return { color: '#c47a12', weight: W, opacity: 0.9, fill: false, dashArray: '6 6'" in lay)
@@ -183,7 +194,8 @@ with tempfile.TemporaryDirectory() as t:
     R.release(d, 'US', sha); idx = json.loads((d / 'data/released/RELEASED.json').read_text())
     check('release: a released file with the same content is not rewritten and keeps its version',
           rf.read_bytes() == before and idx['files']['outlines/US-AK.geojson.gz'][0][1] == __import__('hashlib').sha256(before).hexdigest()[:12])
-    # a real change IS written
+    # a real change IS written (the new park is in the key, or M2 would drop it)
+    keyfile(kd, 'AK', {'US-7000': {'g': 'official', 'm': [['sgaka1', 'x', 1, 'name']]}, 'US-7001': {'g': 'approximate'}, 'US-7002': {'g': 'pin'}, 'US-7009': {'g': 'official'}})
     have = M.load_area('US-AK', root); have['US-7009'] = rec('US-7009'); M.save_area('US-AK', have, root)
     check('a real content change IS written (git sees it)', 'US-7009' in M.load_area('US-AK', root) and 'data/outlines/US-AK.geojson.gz' in sh(d, 'git', 'status', '--porcelain', '--', 'data/outlines').stdout)
     check('... and keep_main keeps it', K.run(d, root, 'HEAD') == 0 and 'US-7009' in M.load_area('US-AK', root) and (root / 'US-AK.geojson.gz').read_bytes() != ci['US-AK.geojson.gz'])
@@ -191,8 +203,10 @@ with tempfile.TemporaryDirectory() as t:
 # ================================================================ B. parts
 with tempfile.TemporaryDirectory() as t:
     d = pathlib.Path(t); root = d / 'data/outlines'; kd = d / 'data/us-key'; root.mkdir(parents=True)
-    keyfile(kd, 'AK', {'US-0156': {'g': 'official'}, 'US-0999': {'g': 'pin'}})
     small = {f'US-7{i:03d}': rec(f'US-7{i:03d}', geom=SQ(i)) for i in range(30)}
+    mid_names = {f'US-8{i:03d}': {'g': 'official'} for i in range(25)}
+    keyfile(kd, 'AK', dict({'US-0156': {'g': 'official'}, 'US-0999': {'g': 'pin'}},
+                           **{r: {'g': 'official'} for r in small}, **mid_names))
     M.save_area('US-AK', small, root); one = (root / 'US-AK.geojson.gz').read_bytes()
     check('an area under 1 MB stays one file with no part fields', M.area_files('US-AK', root) == [root / 'US-AK.geojson.gz'] and 'kpc_part' not in json.loads(gzip.decompress(one)))
     huge = rec('US-0156', geom=big_multi(100, 4000))                                     # one park far over 1 MB on its own
@@ -272,7 +286,7 @@ with tempfile.TemporaryDirectory() as t:
     recs, parks = [], {}
     for i in range(30):                                                                   # parks already in the file
         parks[f'US-7{i:03d}'] = {'g': 'official', 'm': [[f'sgaka{i}', 'x', 1, 'name']]}
-    M.save_area('US-AK', {f'US-7{i:03d}': rec(f'US-7{i:03d}', geom=SQ(i)) for i in range(30)}, root, key_dir=kd)
+    M.save_area('US-AK', {f'US-7{i:03d}': rec(f'US-7{i:03d}', geom=SQ(i), ids=[f'sgaka{i}']) for i in range(30)}, root, key_dir=kd)
     existing = M.load_area('US-AK', root)
     yk = big_multi(60, 4000, -165.0)
     recs += [{'OBJECTID': 5457, '_r': [r for p in yk['coordinates'][:30] for r in esri(p)]}, {'OBJECTID': 4496, '_r': [r for p in yk['coordinates'][30:] for r in esri(p)]}]
@@ -304,13 +318,13 @@ with tempfile.TemporaryDirectory() as t:
           len(got['US-0156']['geometry']['coordinates']) == 60 and yk_pts > 200_000 and got['US-0156']['detail'] == M.DEFAULT_DETAIL)
 with tempfile.TemporaryDirectory() as t:     # --verify: the check to run afterwards (against the commit before the build)
     d = pathlib.Path(t); root = d / 'data/outlines'; kd = d / 'data/us-key'; root.mkdir(parents=True); git_repo(d)
-    keyfile(kd, 'AK', {'US-7000': {'g': 'official'}, 'US-7001': {'g': 'pin'}})
+    keyfile(kd, 'AK', {'US-7000': {'g': 'official'}, 'US-7001': {'g': 'pin'}, 'US-7002': {'g': 'official'}, 'US-0156': {'g': 'official'}})
     M.save_area('US-AK', {r: rec(r) for r in ('US-7000', 'US-7001', 'US-7002')}, root, key_dir=d / 'none'); commit(d, 'before')
-    M.save_area('US-AK', dict({r: rec(r) for r in ('US-7000', 'US-7001', 'US-7002')}, **{'US-0156': rec('US-0156', geom=big_multi(100, 4000))}), root)
+    M.save_area('US-AK', dict({r: rec(r) for r in ('US-7000', 'US-7001', 'US-7002')}, **{'US-0156': rec('US-0156', geom=big_multi(100, 4000))}), root, key_dir=kd)
     FK = str(ROOT / '.github/scripts/kpc_outlines_from_key.py')
     v = subprocess.run([sys.executable, FK, '--verify', '--states', 'AK', '--root', str(root)], capture_output=True, text=True, cwd=d)
     check('--verify: in parts, the old outlines unchanged, the pin-graded one dropped, every file under 1 MB = OK',
-          v.returncode == 0 and 'US-AK: OK' in v.stdout and '1 new, 1 dropped as pin' in v.stdout and 'US-AK.p2.geojson.gz' in v.stdout, v.stdout + v.stderr)
+          v.returncode == 0 and 'US-AK: OK' in v.stdout and '1 new,' in v.stdout and 'dropped as pin' in v.stdout and 'US-AK.p2.geojson.gz' in v.stdout, v.stdout + v.stderr)
     d2 = M.load_area('US-AK', root); d2['US-7000'] = rec('US-7000', geom=SQ(5)); M.save_area('US-AK', d2, root)
     v = subprocess.run([sys.executable, FK, '--verify', '--states', 'AK', '--root', str(root)], capture_output=True, text=True, cwd=d)
     check('--verify: an old outline that changed = PROBLEM, exit 1', v.returncode == 1 and 'changed: US-7000' in v.stdout)
@@ -349,6 +363,7 @@ if node:
         d = pathlib.Path(t); web = d / 'web'; root = web / 'data/outlines'; kd = web / 'data/us-key'; root.mkdir(parents=True)
         parks = {'US-9001': {'g': 'official', 'n': 'One', 'm': [['a1', 'One', 1, 'name']]}, 'US-9002': {'g': 'approximate', 'n': 'Two', 'm': [['a2', 'Two', 1, 'name']]},
                  'US-9003': {'g': 'official', 'n': 'Big', 'm': [['a3', 'Big', 1, 'name']]}, 'US-9004': {'g': 'pin', 'n': 'Pin', 'm': [['a4', 'Pin', 1, 'name']]}}
+        parks.update({f'US-95{i:02d}': {'g': 'official', 'n': f'Fill {i}', 'm': [[f'a95{i:02d}', 'x', 1, 'name']]} for i in range(20)})
         keyfile(kd, 'ZZ', parks)
         rs = {'US-9001': rec('US-9001', geom=big_multi(2, 400, -150)), 'US-9002': rec('US-9002', 'approximate', geom=big_multi(2, 400, -149)),
               'US-9003': rec('US-9003', geom=big_multi(12, 400, -148)), 'US-9004': rec('US-9004')}

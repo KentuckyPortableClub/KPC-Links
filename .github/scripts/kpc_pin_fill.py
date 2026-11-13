@@ -6,7 +6,7 @@ The file: KPC-Data data/intake/official-pins-nov12.json (KPC-Data #76), {"about"
 lat, lon, source_name, source_url, confidence, ...}]}. Its path comes from env KPC_OFFICIAL_PINS (the key workflows lay a read-only
 sparse copy of KPC-Data at .op/ and point the variable there). ONLY a row with action 'pin-fill' AND ready_to_apply true is used.
 'point-circle-candidate' and 'held' rows (and anything else) do nothing here.
-HELD (owner, Nov 12 2026): PF-0033 and PF-0034 are not filled even though their rows are ready (one shared low-confidence point).
+HELD (owner, Nov 12 2026): PF-0033 and PF-0034 are not filled even though their rows are ready (one shared low-confidence point). Nov 13 (Quality, delegated by Brandon 4:43 AM CT): CA-2241, CA-1974 and CA-1997 are held the same way (Ville de Montréal city-polygon fills; CA-1974's 'Site patrimonial de Montréal' site note rested on that fill and is not applied either). The other 19 ready Canada fills, and the CA-2274 note, still apply.
 
 fill(P, area)  P = the builder's POTA park list (data/parkinfo/<file>.json 'parks': ref -> [name, url, type, ..., lat (5), lon (6), ...]).
                A ready fill for a park of this key ('CA' = refs CA-*, a world country 'PF' = refs PF-*) is used ONLY when POTA has no
@@ -35,8 +35,23 @@ FILLABLE = ('nopin', 'pin00')   # absent / 0,0. 'pinbad' (an impossible POTA pin
 # Owner hold (Brandon, Nov 12 2026, 10:59 AM CT): PF-0033 and PF-0034 share ONE low-confidence official point (the Ramsar sheet of
 # 'Lagon de Moorea'). Their ready rows in the official pins file are NOT applied: POTA's own (0,0) pin stays, the run lists them as
 # held. Taking a ref off this list (after a person checks the point) is the only way to apply its fill.
+# Nov 13 (Quality, delegated by Brandon 4:43 AM CT): hold CA-2241, CA-1974 and CA-1997 the same way. Their official pins are centres
+# computed from a Ville de Montréal city-boundary polygon, not a stated point (CA-2241 low; CA-1974 and CA-1997 medium). CA-1974's
+# 'Site patrimonial de Montréal' site note rested on that fill and is not applied either. The other 19 ready Canada fills still apply
+# (Quebec only), and CA-2274 keeps its Tyre-Macfarlane site note.
 HELD = {'PF-0033': 'owner hold Nov 12: shares one low-confidence official point with PF-0034',
-        'PF-0034': 'owner hold Nov 12: shares one low-confidence official point with PF-0033'}
+        'PF-0034': 'owner hold Nov 12: shares one low-confidence official point with PF-0033',
+        'CA-2241': "owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): low-confidence Ville de Montréal city-polygon fill (Parc Jean-Drapeau part); held like PF-0033/34",
+        'CA-1974': "owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): medium-confidence Ville de Montréal city-polygon fill; the 'Site patrimonial de Montréal' site note that rested on it is held too",
+        'CA-1997': "owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): medium-confidence Ville de Montréal city-polygon fill; held like PF-0033/34"}
+
+
+def held_of(area):
+    """{ref: reason} of owner-held fills that belong to this key (area 'CA' = refs CA-*, 'PF' = refs PF-*, ...)."""
+    pre = f'{area}-'
+    return {ref: why for ref, why in HELD.items() if ref.startswith(pre)}
+
+
 
 
 def _say(notice, title, msg, loud=False):
