@@ -228,3 +228,15 @@ A held row (fallback only / none found) stays held unless its source changes.
   (`KPC_CA_HAND`); the world key does not read hand files yet. A checked file is noted only on rows of the area in its name.
 - Point layers (hatcheries, river access points) have a table entry in `data/state-gis.json` without `nm`: the outline key
   skips them (a point is not an outline); their checked hand files are kept for the point tier.
+
+## Hand-placed picture traces (Nov 11, KPC owner, 2026-11-11)
+
+Not master records. The members' beta page `kpc-map-placer.html` (not linked from any menu) lets a person place a park's saved picture map by
+hand: matching spots clicked in pairs on the picture and on a USGS map, then the boundary or trail traced on the picture. It saves a
+click set (`<ref>.clicks.json`) and sends nothing. The person puts it on KPC-Data's `intake-files` branch in `hand-placer/`; KPC-Data's
+`.github/scripts/draft/kpc_hand_place.py` re-computes it, applies the picture tracer's gates, and writes an approximate picture trace
+(with `via: "hand points"` and the click set inside it). Re-check any of them with
+`python3 .github/scripts/draft/kpc_hand_place.py --check <trace.json> --base <fixtures>` (KPC-Data). A hand placement is a picture trace:
+approximate, never official, never in these master files; it reaches the 2-fers only the way every picture trace does (graded, then an
+entry in `data/fers-approx-outlines.json`, approximate tier with the not-official note). The gates in plain words are in KPC-Data
+`.github/scripts/draft/README.md` ("placing a picture by hand").
