@@ -532,7 +532,9 @@ class Kind:
                 for a in areas: files.setdefault(a, {})[ref] = digest
         for a, xs in by.items(): parts[a]['data:data/trails/index'] = H(canon(xs))
         for a, x in files.items(): parts[a]['data:data/trails/*'] = H(canon(x))
-        if un: shared['shared:data/trails#rows-in-no-key'] = H(canon(un))
+        # Quality regrade 3 LB (KPC owner, 2026-11-13): a trail row whose park is in no key file cannot change any
+        # area's output, so it is not a shared part (that rebuilt all 50 states on any such row). If its park is later
+        # keyed, that area's own trails part moves and only it rebuilds.
 
     def access_leads(self, parts, shared):
         """Recreation.gov saved copy the US builder reads (data/access-leads/keyed-pull-raw.json.gz, given by --data): ridb_rec +
@@ -1097,6 +1099,7 @@ COMPOSITION_MIGRATIONS = {
         'data:data/trails/index',
         'data:data/trails/*',
         'data:data/access-leads/keyed-pull-raw.json.gz',
+        'shared:data/trails#rows-in-no-key',   # regrade 3 LB: no longer a part (rows in no key reach no area)
     }),
     'ah2': frozenset({
         'data:data/trails/index',
@@ -1315,7 +1318,8 @@ def decide(kind, wanted, hashes, parts, rows, cur_code, mode='shadow', force_ful
         elif moved and new is not None:
             # Quality regrade: a declared scope limits code-only adds (CA-QC-only hold must not plan CA 15/15 or world 84/84)
             code_only = only_shared_code_moved(op or {}, np, composition(kind))
-            scope = declared_scope_states(kind, rows, repo, row.get('rules') or prev_rules) if code_only else None   # this area's own last rules hash first (the index top stamp can be stale, e.g. world 487a51327b86)
+            own_rules = row.get('rules') or prev_rules   # regrade 3 LA: never borrow another row's hash; none = rebuild
+            scope = declared_scope_states(kind, rows, repo, own_rules) if code_only and own_rules else None   # this area's own last rules hash first (the index top stamp can be stale, e.g. world 487a51327b86)
             if code_only and scope is not None and scope != 'all' and not area_in_declared_scope(kind, a, scope):
                 action = 'not planned (shared code only; outside declared scope)'
             elif mode in ('add', 'reuse'): action = 'rebuild (added: inputs moved since its last build)'; added.append(a)

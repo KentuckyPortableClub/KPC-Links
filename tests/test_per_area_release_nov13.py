@@ -8,6 +8,7 @@ Offline: temp repos only.
   python3 tests/test_per_area_release_nov13.py
 """
 import json, os, pathlib, re, subprocess, sys, tempfile
+import os as _os; _os.environ.setdefault('GITHUB_TRIGGERING_ACTOR', 'KentuckyPortableClub')   # kpc_release.py checks the release login (regrade 3 LC)
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.github/scripts'))
 import kpc_release as R
@@ -58,8 +59,8 @@ check('kpc-release.yml is workflow_dispatch only (no schedule, no push)',
       'workflow_dispatch:' in wf and 'schedule:' not in wf and 'pull_request:' not in wf and not re.search(r'^\s+push:', wf, re.M))
 check('kpc-release.yml has an areas input (e.g. DE FR US-KY) and a grade input',
       'areas:' in wf and 'DE FR US-KY' in wf and 'grade:' in wf and '--areas' in wf and '--grade' in wf)
-check('releases stay owner-run (KPC_RELEASE_ACTORS, fail closed) and the sha must be on main',
-      'KPC_RELEASE_ACTORS' in wf and 'is not in the repo variable' in wf and 'is not a commit on main' in wf)
+check('releases stay owner-run (KentuckyPortableClub triggering_actor, fail closed) and the sha must be on main',
+      'github.triggering_actor' in wf and 'is not KentuckyPortableClub' in wf and 'is not a commit on main' in wf)
 check('the owner-run workflow does not pass --all-of-kind (that skips the per-area grade)',
       '--all-of-kind' not in wf)
 md = (ROOT / '.github/rebuild-levels.md').read_text()
@@ -469,6 +470,15 @@ with tempfile.TemporaryDirectory() as t:
     check('R2: a missing key-check is refused',
           not r['promoted'] and 'missing check' in r['kept'][0]['why']
           and rb('us-key/US-KY.json') == ky_before, r)
+
+# regrade 3 LC: kpc_release.py itself refuses anyone but KentuckyPortableClub (triggering actor, no variable)
+sys.path.insert(0, str(ROOT / '.github/scripts'))
+import kpc_release as _REL
+check('kpc_release.py allows a run triggered by KentuckyPortableClub', _REL.release_actor_ok({'GITHUB_TRIGGERING_ACTOR': 'KentuckyPortableClub'})[0])
+check('kpc_release.py refuses another account even if KPC_RELEASE_ACTORS lists it', not _REL.release_actor_ok({'GITHUB_TRIGGERING_ACTOR': 'x', 'KPC_RELEASE_ACTORS': 'x'})[0])
+check('kpc_release.py refuses a run with no triggering actor', not _REL.release_actor_ok({})[0])
+_bad = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_release.py'), '--area', 'US-KY', '--sha', 'x'], capture_output=True, text=True, env={k: v for k, v in _os.environ.items() if k != 'GITHUB_TRIGGERING_ACTOR'})
+check('kpc_release.py CLI exits 1 with no release login', _bad.returncode == 1 and 'is not KentuckyPortableClub' in _bad.stdout)
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

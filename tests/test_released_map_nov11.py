@@ -3,6 +3,7 @@
 cuts a file over 1 MB into parts, lists every file with its own version, and writes nothing when anything is wrong. The four
 loaders carry the same KPCREL block and no longer read the working outline / key files directly."""
 import gzip, json, pathlib, re, shutil, subprocess, sys, tempfile
+import os as _os; _os.environ.setdefault('GITHUB_TRIGGERING_ACTOR', 'KentuckyPortableClub')   # kpc_release.py checks the release login (regrade 3 LC)
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.github/scripts'))
 import kpc_release as R
@@ -162,7 +163,7 @@ else: print('SKIP node not installed: the helper run')
 wf = (ROOT / '.github/workflows/kpc-release.yml').read_text()
 import yaml
 y = yaml.safe_load(wf); on = y.get('on') or y.get(True)
-check('only an account in KPC_RELEASE_ACTORS may release; an empty list releases nothing', 'ALLOWED: ${{ vars.KPC_RELEASE_ACTORS }}' in wf and wf.index('KPC_RELEASE_ACTORS. Nothing was released') < wf.index('kpc_release.py --area'))
+check('only KentuckyPortableClub (triggering_actor) may release, checked before kpc_release.py', 'github.triggering_actor' in wf and 'KPC_RELEASE_ACTORS' not in wf and wf.index('is not KentuckyPortableClub') < wf.index('kpc_release.py --area'))
 check('the release workflow is by hand only, one commit, and takes a commit on main', list(on) == ['workflow_dispatch'] and wf.count('git commit') == 1
       and 'merge-base --is-ancestor "$SOURCE_SHA" origin/main' in wf and on['workflow_dispatch']['inputs']['area']['options'] == ['US', 'CA', 'KY', 'world'])   # Nov 11 job 3: + KY (owner's OK patch)
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

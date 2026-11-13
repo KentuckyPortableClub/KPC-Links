@@ -4,6 +4,7 @@ and reader agrees; the repo's outline files are clean. (B) an area over 1 MB is 
 (US-AK.geojson.gz + US-AK.p2.geojson.gz ...), every tool reads every part, and the pages' KPCREL block puts the parts together on the
 working-copy path and the released path alike."""
 import gzip, json, os, pathlib, random, shutil, subprocess, sys, tempfile, types
+import os as _os; _os.environ.setdefault('GITHUB_TRIGGERING_ACTOR', 'KentuckyPortableClub')   # kpc_release.py checks the release login (regrade 3 LC)
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.github/scripts'))
 import kpc_master as M

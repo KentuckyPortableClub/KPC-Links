@@ -46,15 +46,14 @@ jobs:
           fetch-depth: 0
       - name: Copy the commit's map files into data/released and save once
         env:
-          ACTOR: ${{ github.actor }}
-          ALLOWED: ${{ vars.KPC_RELEASE_ACTORS }}   # repo variable: the account(s) that may release, space separated. Empty = nobody.
+          GITHUB_TRIGGERING_ACTOR: ${{ github.triggering_actor }}   # Brandon, Nov 13 2026 8:34 AM CT: KentuckyPortableClub only, no variable
           AREA: ${{ inputs.area }}
           AREAS: ${{ inputs.areas }}
           SOURCE_SHA: ${{ inputs.source_sha }}
           GRADE: ${{ inputs.grade }}
         run: |
-          # only a listed account may release (fail closed: no list = no release). Owner-run only.
-          case " $ALLOWED " in *" $ACTOR "*) ;; *) echo "::error title=Release::$ACTOR is not in the repo variable KPC_RELEASE_ACTORS. Nothing was released."; exit 1 ;; esac
+          # only Brandon's login may release (kpc_release.py checks it again)
+          if [ "$GITHUB_TRIGGERING_ACTOR" != "KentuckyPortableClub" ]; then echo "::error title=Release::${GITHUB_TRIGGERING_ACTOR:-no actor} is not KentuckyPortableClub (the only release login). Nothing was released."; exit 1; fi
           # the commit must be on main: a sha from a branch or a fork is refused
           git merge-base --is-ancestor "$SOURCE_SHA" origin/main || { echo "::error title=Release::$SOURCE_SHA is not a commit on main. Nothing was released."; exit 1; }
           GRADE_ARG=()

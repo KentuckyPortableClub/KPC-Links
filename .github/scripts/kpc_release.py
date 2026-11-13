@@ -881,7 +881,20 @@ def release_areas(repo, sha, units, run='', now=None, dry_run=False, grade=None)
             'kept': kept, 'kinds': wrote, 'wrote': bool(wrote)}
 
 
+RELEASE_LOGINS = ('KentuckyPortableClub',)   # Brandon, Nov 13 2026 8:34 AM CT (Quality regrade 3 LC)
+
+
+def release_actor_ok(env=None):
+    """(ok, why): only a run triggered by Brandon's login may release. Reads GITHUB_TRIGGERING_ACTOR; no variable."""
+    actor = str((env if env is not None else __import__('os').environ).get('GITHUB_TRIGGERING_ACTOR') or '')
+    if actor in RELEASE_LOGINS: return True, actor
+    return False, f'{actor or "no triggering actor"} is not KentuckyPortableClub (the only release login): nothing was released'
+
+
 def main():
+    ok, why = release_actor_ok()
+    if not ok:
+        print(f'::error title=Release::{why}'); sys.exit(1)
     ap = argparse.ArgumentParser()
     ap.add_argument('--area', default='', help='US, CA, KY or world: every area of this kind is considered one by one when --areas is empty')
     ap.add_argument('--areas', default='', help='space-separated areas to consider (e.g. DE FR US-KY). A held area keeps its live data and does not block the others')
