@@ -110,7 +110,10 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              'kpc_archive.sh',
              # Nov 10: trimmed outline master records (data/outlines/): the trim tool, the completeness check, the refresh plan and the
              # raw-file manifest. They decide which layer to READ and keep a checked copy of it; they never decide a join.
-             'kpc_master.py', 'kpc_master_cli.py',
+             'kpc_master.py', 'kpc_master_cli.py', 'kpc_master_fill.py',
+             # Nov 12 (KPC owner, 2026-11-12): owner world hand files keep-bigger merged into W-XX.json.gz; the PR rebuild
+             # level check. Neither decides a join (the world rules hash does not move).
+             'kpc_world_hand.py', 'kpc_rebuild_level.py',
              # Nov 10: network guard and pre-run checks (decide which request may go out, never a join)
              'kpc_net_guard.py', 'kpc_preflight.py'}
 MAX_DAYS_DEFAULT = 3
@@ -426,7 +429,7 @@ def stamp(kind):
     print(bid)
 
 
-ROWS = {'us-key': 'states', 'world-key': 'countries'}   # the per-area rows of a key's index.json that carry their own 'rules' (owner rule, 2026-11-10;
+ROWS = {'us-key': 'states', 'ca-key': 'provinces', 'world-key': 'countries'}   # the per-area rows of a key's index.json that carry their own 'rules' (owner rule, 2026-11-10;
 # the world's country rows from Nov 12, KPC owner, 2026-11-12: a country saved this run carries the code hash it was built on, a kept one keeps main's row)
 NOT_BUILT = '_not_built'      # the build job's marker on a planned row; the builder's fresh row for a built area has none
 
@@ -437,6 +440,13 @@ def stale_areas(kind, idx, rules):
     if not isinstance(rows, dict) or not rows: return []
     old = sorted(a for a, r in rows.items() if not (isinstance(r, dict) and r.get('rules') == rules))
     return [f'{PRE[kind]}-{a}' for a in old] if 0 < len(old) < len(rows) else []
+
+
+def all_area_ids(kind, idx):
+    """['US-AK', ...]: every area row of this key's index, or [] when the index has no per-area rows."""
+    rows = (idx or {}).get(ROWS.get(kind, '')) if kind in ROWS else None
+    if not isinstance(rows, dict) or not rows: return []
+    return sorted(f'{PRE[kind]}-{a}' for a in rows)
 
 
 def missing(planned, built):
@@ -489,8 +499,13 @@ def check(kind, now=None):
             _env(RULES_CHANGED=1, RULES_SCOPE=' '.join(_st))
             notice(f"{kind}: RULES CHANGED {(live or {}).get('rules') or 'none'} -> {rules}: {len(_st)} area(s) not yet built green on the current rules are rebuilt: {' '.join(_st)}")
         elif _ps in (None, 'all'):
-            _env(RULES_CHANGED=1)
-            notice(f"{kind}: RULES CHANGED: the newest build ({lbid or 'none'}) has rules {(live or {}).get('rules') or 'none'}, the current rules are {rules}: the next run builds the WHOLE key"
+            # Nov 12 (KPC owner, 2026-11-12): an undeclared change or scope 'all' is a VERIFY, not a silent WHOLE-key
+            # full rebuild. Every area is considered; existing keys are checked against the new rules and only
+            # an area whose output actually changes is rebuilt. KPC_FULL_BUILD stays off unless the monthly run
+            # or an explicit owner full_rebuild.
+            _all = all_area_ids(kind, live)
+            _env(RULES_CHANGED=1, RULES_VERIFY=1, RULES_SCOPE=' '.join(_all))
+            notice(f"{kind}: RULES CHANGED: the newest build ({lbid or 'none'}) has rules {(live or {}).get('rules') or 'none'}, the current rules are {rules}: existing keys are verified against the new rules; only an area whose output actually changes is rebuilt; not a full rebuild"
                    + (' (a declared change says all)' if _ps == 'all' else f' (not declared in {SCOPE_FILES.get(kind)})'))
         else:
             _only = set(_pa.values()) - _ps   # areas read again only for the named parks (every other park there keeps its result)

@@ -1068,6 +1068,18 @@ def index_path(repo, kind):
     return pathlib.Path(repo) / KEY_DIR[kind] / 'index.json'
 # parts that only a shared-code change moves (the same for every area): the D4 proof stamp may bridge these, nothing else
 CODE_PARTS = ('code:', 'version', 'hosts:shared', 'reader:')
+# Nov 12 (KPC owner, 2026-11-12): a composition / format bump lives in the 'version' part (and in newly recorded or dropped part
+# names). Those must not force a rebuild when every previously recorded real input still matches.
+
+
+def real_inputs_moved(op, np):
+    """True when a previously recorded real input changed. A composition ('version') bump, or a part recorded for the first time
+    or dropped (a format change), is not a real input change: the area's old key bytes stay."""
+    if not isinstance(op, dict) or not isinstance(np, dict):
+        return True
+    common = set(op) & set(np)
+    return any(op.get(k) != np.get(k) for k in common if k != 'version')
+
 STAMP_FILE = '.github/no-result-change.json'
 PROOF_DIR = 'data/status/no-result-change'
 
@@ -1167,12 +1179,17 @@ def decide(kind, wanted, hashes, parts, rows, cur_code, mode='shadow', force_ful
         elif not old: reason = 'no area hash recorded (never built with one): moved'
         elif old == new: reason = 'no input changed'
         elif op is None: reason = 'area hash moved (no parts recorded)'
+        elif not real_inputs_moved(op, np): reason = 'format or composition only (real inputs match)'
         else: reason = 'moved: ' + '; '.join(sorted({k for k in set(op) | set(np) if op.get(k) != np.get(k)}))[:300]
-        moved = new is None or old != new
+        format_only = bool(old and new and old != new and isinstance(op, dict) and not real_inputs_moved(op, np))
+        moved = new is None or (old != new and not format_only)
         ok_file = row.get('out_sha') and row.get('out_sha') == sha_file(pathlib.Path(repo) / KEY_PATH[kind].format(a=a))
         can = False; how = ''
         if not force_full and a in wanted and ok_file and row.get('complete', True) is not False:
-            if not moved and row.get('rules') == cur_code: can, how = True, 'inputs and code unchanged'
+            # Nov 12 (KPC owner, 2026-11-12): reuse when this area's real inputs match, even if the kind-wide rules hash or the
+            # composition id moved. The row is restamped with the current code hash (and the current parts). A full rebuild is only
+            # the monthly run or full_rebuild=yes.
+            if not moved: can, how = True, ('inputs and code unchanged' if old == new else 'format or composition only (real inputs match)')
             elif op is not None and new is not None and row.get('rules') and row.get('rules') != cur_code \
                     and all(op.get(k) == np.get(k) for k in set(op) | set(np) if not k.startswith(CODE_PARTS)):
                 pv, pid = proof(repo, kind, row.get('rules'), cur_code, area=a)
@@ -1231,9 +1248,14 @@ def move_reused(repo, kind, rows, plan, saved):
     plan = plan or {}
     for a in plan.get('reused') or []:
         r, ph = rows.get(a), (plan.get('hashes') or {}).get(a)
-        if a in saved or not isinstance(r, dict) or not ph or not r.get('rules') or r['rules'] == plan.get('code_hash') or not isinstance(r.get('area_parts'), dict): continue
+        if a in saved or not isinstance(r, dict) or not ph or not isinstance(r.get('area_parts'), dict): continue
         np = (plan.get('parts') or {}).get(a) or {}
-        if r.get('out_sha') != sha_file(repo / KEY_PATH[kind].format(a=a)) or any(r['area_parts'].get(k) != np.get(k) for k in set(np) | set(r['area_parts']) if not k.startswith(CODE_PARTS)): continue
+        if r.get('out_sha') != sha_file(repo / KEY_PATH[kind].format(a=a)): continue
+        # Real inputs match (including a format / composition-only move): restamp the current hash, parts and code hash; keep bytes.
+        if not real_inputs_moved(r.get('area_parts'), np):
+            r.update(rules=plan.get('code_hash'), area_hash=ph, area_parts=np); moved.append(a); continue
+        if not r.get('rules') or r['rules'] == plan.get('code_hash'): continue
+        if any(r['area_parts'].get(k) != np.get(k) for k in set(np) | set(r['area_parts']) if not k.startswith(CODE_PARTS)): continue
         pv, pid = proof_valid(repo, kind, r['rules'], plan['code_hash'], area=a)
         if pv: r.update(proved_from=r['rules'], proved_by=pid, rules=plan['code_hash'], area_hash=ph, area_parts=np); moved.append(a)
     return moved
@@ -1260,8 +1282,11 @@ def stamp_rows_parts(repo, kind, index, saved, part_dirs, reuse_plan=None):
     if not owner: stamp_rows(repo, kind, index, [], {}, '', rebuilt=saved)
     if reuse_plan and reuse_plan.get('reused'):   # D4, US: the plan job's reuse (no part built these states)
         ip = pathlib.Path(index); d = json.loads(ip.read_text(encoding='utf-8')); rows = d.setdefault(ROWS_KEY[kind], {})
-        move_reused(repo, kind, rows, reuse_plan, saved)
-        d['areas_reused'] = sorted(reuse_plan.get('reused') or [])
+        moved = move_reused(repo, kind, rows, reuse_plan, saved)
+        # Union with verified-same areas already recorded by stamp_rows; only areas that actually moved
+        # (not a plan-list name whose key file was edited and so was not restamped).
+        d['areas_reused'] = sorted(set(d.get('areas_reused') or []) | set(moved))
+        d['areas_rebuilt'] = sorted(set(d.get('areas_rebuilt') or []) - set(d['areas_reused']))
         ip.write_text(json.dumps(d, indent=1, ensure_ascii=False), encoding='utf-8')   # the stamp's own format (json.dump indent 1)
     return sorted(done_all), same_all
 
@@ -1275,17 +1300,29 @@ def stamp_rows(repo, kind, index, saved, plan, built_sha, rebuilt=None):
     d = json.loads(ip.read_text(encoding='utf-8')); rows = d.setdefault(ROWS_KEY[kind], {})
     plan = plan or {}
     same = bool(plan.get('plan_sha')) and plan.get('plan_sha') == built_sha
-    done = []
+    done, verified = [], []
     for a in saved:
         r = rows.get(a)
         if not isinstance(r, dict): continue
+        prev_sha, prev_built = r.get('out_sha'), r.get('built_sha')
         for k in ('area_hash', 'area_parts', 'out_sha', 'built_sha'): r.pop(k, None)
         if same and a in (plan.get('hashes') or {}):
+            new_sha = sha_file(repo / KEY_PATH[kind].format(a=a))
             r['area_hash'] = plan['hashes'][a]; r['area_parts'] = (plan.get('parts') or {}).get(a) or {}
-            r['out_sha'] = sha_file(repo / KEY_PATH[kind].format(a=a)); r['built_sha'] = built_sha; done.append(a)
+            r['out_sha'] = new_sha
+            # Nov 12 (KPC owner, 2026-11-12): a verify check whose output is byte-identical keeps the old build commit and counts
+            # as reused, not rebuilt (Quality grades only areas whose key actually changed).
+            if prev_sha and prev_sha == new_sha:
+                r['built_sha'] = prev_built or built_sha
+                if plan.get('code_hash'): r['rules'] = plan['code_hash']
+                verified.append(a)
+            else:
+                r['built_sha'] = built_sha
+            done.append(a)
     move_reused(repo, kind, rows, plan, saved)
-    d['areas_rebuilt'] = sorted(rebuilt if rebuilt is not None else saved)
-    d['areas_reused'] = sorted(plan.get('reused') or [])
+    reused = sorted(set(plan.get('reused') or []) | set(verified))
+    d['areas_rebuilt'] = sorted(set(rebuilt if rebuilt is not None else saved) - set(reused))
+    d['areas_reused'] = reused
     ip.write_text(json.dumps(d, indent=1, ensure_ascii=False), encoding='utf-8')   # the stamp's own format (json.dump indent 1)
     return done, same
 

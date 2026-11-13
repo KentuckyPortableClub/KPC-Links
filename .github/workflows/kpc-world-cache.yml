@@ -113,6 +113,22 @@ jobs:
           fi
           touch .against/T0
           pip install --quiet --break-system-packages pykakasi pyshp || pip install --quiet pykakasi pyshp || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          # Nov 12 (KPC owner, 2026-11-12): owner hand-W-$CC.<layer>.geojson.gz files (repo checkout, and any on the
+          # boundary-cache release) are keep-bigger merged into the saved copy AFTER T0, so a blocked live refresh that
+          # does not wsave still leaves a fuller copy for save-check / upload. The world key is not edited (no rules-hash move).
+          if [ "$CC" != "CA" ]; then
+            mkdir -p "$RUNNER_TEMP/world-hand"
+            if ls data/outlines/hand/hand-W-$CC.*.geojson.gz >/dev/null 2>&1; then
+              cp data/outlines/hand/hand-W-$CC.*.geojson.gz "$RUNNER_TEMP/world-hand/"
+            fi
+            if [ -f .against/ASSETS.txt ] && grep -E -q "^hand-W-$CC\." .against/ASSETS.txt; then
+              gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "hand-W-$CC.*.geojson.gz" -D "$RUNNER_TEMP/world-hand" --clobber || { kpc_rc=$?; echo "::warning title=Saved shapes $CC::release hand files could not be downloaded (exit $kpc_rc): repo hand files, if any, are still applied"; echo "Saved shapes $CC - release hand files not downloaded (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+            fi
+            if ls "$RUNNER_TEMP/world-hand"/hand-W-$CC.*.geojson.gz >/dev/null 2>&1; then
+              echo '[]' > "$RUNNER_TEMP/world-hand-parks.json"
+              python3 .github/scripts/kpc_master_cli.py fill --cache "$d" --states '' --areas "W-$CC" --hand "$RUNNER_TEMP/world-hand" --root data/outlines --parks "$RUNNER_TEMP/world-hand-parks.json" --work "$RUNNER_TEMP/world-hand-work" --offline --no-key || { kpc_rc=$?; echo "::warning title=Saved shapes $CC::owner hand files were not merged (exit $kpc_rc)"; echo "Saved shapes $CC - owner hand files were not merged (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+            fi
+          fi
           if [ "$CC" = "CA" ]; then
             python3 .github/scripts/kpc_ca_key.py || echo "::notice title=Saved shapes CA::stopped with an error"
           else

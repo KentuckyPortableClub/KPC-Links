@@ -314,7 +314,7 @@ try:
         check('US2 ... their recorded bytes stay (out_sha unchanged, no built_sha claimed)', all(s_[x]['out_sha'] == r0[x]['out_sha'] and 'built_sha' not in s_[x] for x in ('FL', 'OR')))
         check('US2 ... KY (key file edited) is NOT moved; TN (saved) is stamped from its own part, not by the proof',
               s_['KY']['rules'] == OLDC and 'proved_by' not in s_['KY'] and done == ['TN'] and s_['TN']['area_hash'] == 'new-TN' and s_['TN']['built_sha'] == 'abc' and 'proved_by' not in s_['TN'])
-        check('US2 ... areas_reused is the plan job\'s list, areas_rebuilt the saved states', d['areas_reused'] == ['FL', 'KY', 'OR'] and d['areas_rebuilt'] == ['TN'])
+        check('US2 ... areas_reused is FL/OR (moved under the proof) plus TN (byte-identical, verified-same); KY is not claimed; nothing was rebuilt', d['areas_reused'] == ['FL', 'OR', 'TN'] and d['areas_rebuilt'] == [])
     with tempfile.TemporaryDirectory() as t:
         t, idx, job, part = us_fixture(t)
         K.proof_valid = lambda *a, **k: (False, 'no valid proof')
@@ -348,7 +348,7 @@ try:
         K.proof_valid = lambda *a, **k: (True, 'p-us-1')
         with contextlib.redirect_stdout(io.StringIO()): rc = K.main(['stamp-rows', 'us', '--repo', str(t), '--index', str(idx), '--saved', 'TN', '--part', str(part), '--plan', str(t / 'plan-job.json'), '--mode', 'reuse'])
         s_ = json.loads(idx.read_text())
-        check('US4 an empty plan-job plan: no crash, nothing reused or moved, TN still stamped from its part', rc == 0 and s_['states']['FL']['rules'] == OLDC and s_['states']['TN']['area_hash'] == 'new-TN' and s_['areas_reused'] == [])
+        check('US4 an empty plan-job plan: no crash, FL is not moved, TN is stamped from its part and counted reused (verified-same bytes)', rc == 0 and s_['states']['FL']['rules'] == OLDC and s_['states']['TN']['area_hash'] == 'new-TN' and s_['areas_reused'] == ['TN'] and s_['areas_rebuilt'] == [])
 finally:
     K.proof_valid = _real_pv
 
@@ -357,9 +357,9 @@ _us_txt = (ROOT / '.github/workflows/kpc-us-key.yml').read_text(encoding='utf-8'
 _st = [s for s in _us['jobs']['join']['steps'] if 'kpc_area_hash.py stamp-rows us' in str(s.get('run', ''))]
 check('US5 workflow: the plan job hands its per-state plan to the join (outputs.area_plan, printed by the plan step)',
       _us['jobs']['plan']['outputs'].get('area_plan') == '${{ steps.p.outputs.area_plan }}' and "print('area_plan=' + json.dumps(" in _us_txt)
-check('US5 workflow: the join\'s stamp-rows passes --part per build part AND --plan (the plan job\'s plan), with AREA_MODE (default add)',
+check('US5 workflow: the join\'s stamp-rows passes --part per build part AND --plan (the plan job\'s plan), with AREA_MODE (default reuse)',
       len(_st) == 1 and '--plan "$RUNNER_TEMP/area-plan-job.json"' in _st[0]['run'] and 'printf \'%s\' "$AREA_PLAN" > "$RUNNER_TEMP/area-plan-job.json"' in _st[0]['run']
-      and _st[0]['env'].get('AREA_PLAN') == '${{ needs.plan.outputs.area_plan }}' and _st[0]['env'].get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || 'add' }}"))
+      and _st[0]['env'].get('AREA_PLAN') == '${{ needs.plan.outputs.area_plan }}' and _st[0]['env'].get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || 'reuse' }}"))
 
 # ---------------------------------------------------------------- the workflow
 import yaml  # noqa: E402

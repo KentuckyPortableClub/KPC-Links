@@ -1,0 +1,42 @@
+name: KPC rebuild level
+# Nov 12 (KPC owner, 2026-11-12): every PR gets a level 1-5 from its changed files.
+# A body line "Rebuild-level: N" wins over a label rebuild:N, which wins over the auto level.
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled]
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  level:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Auto level from the changed files (owner body / label can override)
+        id: lv
+        env:
+          BODY: ${{ github.event.pull_request.body }}
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          python3 .github/scripts/kpc_rebuild_level.py pr --body-text "$BODY" --labels "$LABELS" --base "$BASE"
+      - name: Label the PR rebuild:N (and drop any other rebuild:X)
+        if: ${{ steps.lv.outputs.level }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LEVEL: ${{ steps.lv.outputs.level }}
+          REASON: ${{ steps.lv.outputs.reason }}
+        run: |
+          # replace any previous rebuild:N label with the winning level
+          cur=$(gh api "repos/${GITHUB_REPOSITORY}/issues/${{ github.event.pull_request.number }}/labels" --jq '.[].name' | grep -E '^rebuild:[1-5]$' || true)   # ok: no existing rebuild:N label is fine; the next lines add the winning one
+          for lab in $cur; do
+            [ "$lab" = "rebuild:$LEVEL" ] || gh api -X DELETE "repos/${GITHUB_REPOSITORY}/issues/${{ github.event.pull_request.number }}/labels/${lab}" >/dev/null
+          done
+          echo "rebuild:$LEVEL" | gh api -X POST "repos/${GITHUB_REPOSITORY}/issues/${{ github.event.pull_request.number }}/labels" --input - -f name="rebuild:$LEVEL" >/dev/null 2>&1 || \
+            gh pr edit ${{ github.event.pull_request.number }} --add-label "rebuild:$LEVEL" || echo "::warning title=Rebuild level::could not add label rebuild:$LEVEL"
+          echo "::notice title=Rebuild level::level $LEVEL ($REASON)"
+          if [ -n "$GITHUB_STEP_SUMMARY" ]; then
+            echo "**Rebuild level $LEVEL** — $REASON" >> "$GITHUB_STEP_SUMMARY"
+          fi

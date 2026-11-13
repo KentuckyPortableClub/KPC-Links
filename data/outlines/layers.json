@@ -272,9 +272,9 @@
    "read_how": "live key file counts.areas (complete published total)"
   },
   "W-AU": {
-   "expected_count": 3743432,
-   "read_date": "2026-11-10",
-   "read_how": "live key file counts.areas (complete published total)"
+   "expected_count": 65838,
+   "read_date": "2026-11-12",
+   "read_how": "current-layer count of the Nov 4 saved copy: 365,915 total minus 300,077 records of 8 layers dropped in #135 (Surface_HydroLines_National 276,000, Protected Areas (CAPAD) 14,492, Walking track 5,992, Beach Names 1,035, Beach Presence 818, Forest Blocks (DBCA-025) 772, Great walk 716, Beach 252). The key still reads 19 sources. The copy has no records labelled QLD State Forest, but its 2,020 Protected areas and forests of Queensland records already include that split (804 esttype=SF, 1,216 rest)."
   },
   "W-AX": {
    "expected_count": 124,
@@ -6638,6 +6638,120 @@
    "record_id_field": null,
    "source_count": 55,
    "url": ""
+  },
+  "W-CZ.h212": {
+   "agency": "Ptačí oblast (PO)",
+   "areas": [
+    "W-CZ"
+   ],
+   "expected_count": 42,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NAZEV"
+   ],
+   "note": "KPC owner, 2026-11-12: owner hand-download of the blocked gis.nature.cz Natura 2000 layer 0 (42 Ptačí oblast), saved as hand-W-CZ.h212.geojson.gz. Geometry simplified to ~3.3 m so the file stays under 1 MB; all 42 features kept.",
+   "queued": 0,
+   "read_date": "2026-11-12",
+   "read_how": "geojson",
+   "record_id_field": "OBJECTID",
+   "source_count": 42,
+   "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0"
+  },
+  "W-CZ.h213": {
+   "agency": "Evropsky významná lokalita (EVL)",
+   "areas": [
+    "W-CZ"
+   ],
+   "expected_count": 1111,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "NAZEV"
+   ],
+   "note": "KPC owner, 2026-11-12: owner hand-download of the blocked gis.nature.cz Natura 2000 layer 1 (1,111 EVL), saved as hand-W-CZ.h213.geojson.gz. The download used maxAllowableOffset=5 on a WGS84 layer, so rings collapsed to integer-degree points; names and counts are intact.",
+   "queued": 0,
+   "read_date": "2026-11-12",
+   "read_how": "geojson",
+   "record_id_field": "OBJECTID",
+   "source_count": 1111,
+   "url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1"
+  },
+  "W-DE.h214": {
+   "agency": "Naturschutzgebiete (Land Bremen)",
+   "areas": [
+    "W-DE"
+   ],
+   "expected_count": 20,
+   "g": "official",
+   "id_fields": [],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "Gebietsname"
+   ],
+   "note": "KPC owner, 2026-11-12: owner hand-download of the blocked Bremen Naturschutzgebiete layer (20 records, the Bremen gap), saved as hand-W-DE.h214.geojson.gz. This fills the Bremen layer only; it does not by itself bring W-DE up to the 30,616 full baseline.",
+   "queued": 0,
+   "read_date": "2026-11-12",
+   "read_how": "geojson",
+   "record_id_field": "OBJECTID",
+   "source_count": 20,
+   "url": "https://gis-hub.bremen.de/ags1/rest/services/inspire/Schutzgebiete_Land_Bremen/MapServer/2"
+  },
+  "W-MT.h215": {
+   "agency": "Malta: Ambjent Malta (government agency; Natura 2000 data from ERA)",
+   "areas": [
+    "W-MT"
+   ],
+   "expected_count": 30,
+   "g": "official",
+   "id_fields": [
+    "site_code"
+   ],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "site_name"
+   ],
+   "note": "KPC owner, 2026-11-12: owner hand-download of Ambjent Malta FeatureServer/36 (30 N2K SAC/SCI), saved as hand-W-MT.h215.geojson.gz. 7 site_code values also appear in layer 37; the saved copy keeps both layers (30+14=44, the W-MT baseline) and the world key keeps its own site_code dedupe.",
+   "queued": 0,
+   "read_date": "2026-11-12",
+   "read_how": "geojson",
+   "record_id_field": "objectid",
+   "source_count": 30,
+   "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/36"
+  },
+  "W-MT.h216": {
+   "agency": "N2K Special Protected Areas",
+   "areas": [
+    "W-MT"
+   ],
+   "expected_count": 14,
+   "g": "official",
+   "id_fields": [
+    "site_code"
+   ],
+   "last_edit": null,
+   "license": "",
+   "matched": 0,
+   "name_fields": [
+    "site_name"
+   ],
+   "note": "KPC owner, 2026-11-12: owner hand-download of Ambjent Malta FeatureServer/37 (14 N2K SPA), saved as hand-W-MT.h216.geojson.gz. 7 site_code values also appear in layer 36; the saved copy is not pre-deduped.",
+   "queued": 0,
+   "read_date": "2026-11-12",
+   "read_how": "geojson",
+   "record_id_field": "objectid",
+   "source_count": 14,
+   "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/37"
   },
   "W-PF.h210": {
    "agency": "French Polynesia: Gouvernement de la Polyn\u00e9sie fran\u00e7aise, Te Fenua open data (DSI); PGEM",

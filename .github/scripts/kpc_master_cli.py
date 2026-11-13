@@ -29,13 +29,32 @@ Exit codes: 0 ok | 1 check failed | 2 SHORT read | 3 cannot verify (no expected 
 """
 import argparse, csv, datetime, glob, gzip, json, os, pathlib, shutil, subprocess, sys, tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import kpc_master as M  # noqa: E402
+import kpc_master as M
 from kpc_scrub import notice_text, clip   # Nov 12: every log line scrubbed first, then cut
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, notice_text(m, 20000)), flush=True)   # Nov 12: scrubbed (archive token)
 def warn(t, m): print('::warning title=%s::%s' % (t, notice_text(m, 20000)), flush=True)
 def err(t, m): print('::error title=%s::%s' % (t, notice_text(m, 20000)), flush=True)
+
+
+def _world_count(name, blob):
+    """Current-layer count when kpc_world_hand.py is next to this file (the checkout).
+    A copy of only this CLI (some tests) falls back to the full rec list."""
+    try:
+        import kpc_world_hand as _kwh
+        return _kwh.world_current_rec_count(name, blob)
+    except ImportError:
+        recs = (blob or {}).get('recs')
+        return len(recs) if isinstance(recs, list) else 0
+
+
+def _world_labels(cc):
+    try:
+        import kpc_world_hand as _kwh
+        return _kwh.world_source_labels(cc)
+    except ImportError:
+        return []
 
 
 def read_parks(path):
@@ -216,7 +235,7 @@ def cmd_gate(a):
             err('master gate NO BASELINE' if 'no baseline' in why else 'master gate REFUSED', why); aside(f, stem); continue
         try:
             if how == 'manifest': M.check_against_manifest(f.name, blob)
-            else: M.check_complete(exp, len(blob.get('recs') or []) if isinstance(blob.get('recs'), list) else 0, str(f))
+            else: M.check_complete(exp, _world_count(f.name, blob), str(f))
             if how != 'full': notice('master gate', why + ('' if (caches.get(stem) or {}).get('expected_count') is None else f"; the full baseline {caches[stem]['expected_count']} is not used here and not changed"))
         except M.ShortRead as e: err('master gate SHORT', e); aside(f, stem)
         except M.MasterError as e: err('master gate REFUSED', e); aside(f, stem)
@@ -244,9 +263,16 @@ def save_check(path, against_dir, caches, assets=None, first_ok=False):
         if assets is None: return f'{name}: the release asset list could not be read, so a first copy cannot be told from a failed download'
         if name in assets: return f'{name}: the release has this copy but its download failed: held, not replaced'
         return ''
-    try: tot_old = len(M.load_saved(old_p).get('recs') or [])
+    try:
+        old_blob = M.load_saved(old_p)
+        tot_old = _world_count(name, old_blob)
     except Exception as e: return f'{name}: the release copy could not be read to compare ({e})'  # noqa: BLE001
     new, old = M.saved_counts(path), M.saved_counts(old_p)
+    if stem.startswith('W-'):
+        keep = {'src:' + lab for lab in _world_labels(stem[2:])}
+        if keep:
+            new = {k: v for k, v in new.items() if k in keep}
+            old = {k: v for k, v in old.items() if k in keep}
     if tot_new < tot_old: return f'{name}: {tot_new} records, fewer than the release copy ({tot_old})'
     less = sorted(k for k in old if new.get(k, 0) < old[k])
     if less: return f'{name}: fewer records than the release copy for ' + ', '.join(f"{k or 'PAD-US'} ({new.get(k, 0)} < {old[k]})" for k in less[:10])

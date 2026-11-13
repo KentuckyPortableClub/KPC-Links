@@ -78,10 +78,13 @@ jobs:
           # Nov 4 (links-04): RULES_CHANGED=1 (the newest world build was not a full build on the current rules) = build ALL tonight
           # Nov 12 (KPC owner, 2026-11-12): each country row carries the code hash it was built on; RULES_SCOPE (from the freeze check) = the
           # countries NOT yet built on the current rules (a kept country is planned again); empty = every country, as before
-          if [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ] && [ -n "${RULES_SCOPE:-}" ]; then
+          if [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ] && [ "${RULES_VERIFY:-}" = 1 ]; then
+            S=$(echo "$RULES_SCOPE" | tr ' ' '\n' | sed 's/^W-//' | tr '\n' ' ' | sed 's/ *$//'); echo "SCOPE_LIST=$S" >> "$GITHUB_ENV"
+            echo "::notice title=World key tonight::RULES CHANGED since the newest build: existing keys are verified against the new rules; only a country whose output actually changes is rebuilt; not a full rebuild${S:+ ($S)}"
+          elif [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ] && [ -n "${RULES_SCOPE:-}" ]; then
             S=$(echo "$RULES_SCOPE" | tr ' ' '\n' | sed 's/^W-//' | tr '\n' ' ' | sed 's/ *$//'); echo "SCOPE_LIST=$S" >> "$GITHUB_ENV"
             echo "::notice title=World key tonight::RULES CHANGED since the newest build: only the countries not yet built on the current rules are built: $S"
-          elif [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ]; then echo "::notice title=World key tonight::RULES CHANGED since the newest build: every country is built on the current rules (no force needed)"
+          elif [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ]; then echo "::notice title=World key tonight::RULES CHANGED since the newest build: every country is considered on the current rules (no force needed)"
           elif [ "$SCHED" = "7 10 * * *" ]; then
             L=$(cat data/world-key/answers-countries.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
             if [ -z "$L" ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=World key tonight::new approved layer(s) for: $L"; fi

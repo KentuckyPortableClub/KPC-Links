@@ -260,7 +260,12 @@ def fill(a):
             if (meta.get('raw') or {}).get('sha256') in applied: continue
             nm = p.name[len('hand-'):]; shutil.copy(p, lin / nm); hand.append(nm)
         else: other.append((p, ar, lay, meta))
-    for p, ar, lay, meta in other:   # Canada / world: checked into the per-area store; their builders do not read it yet (README)
+    for p, ar, lay, meta in other:   # Canada / world: checked into the per-area store; world files are also keep-bigger merged into W-XX.json.gz
+        if ar.startswith('W-') and a.cache:
+            import kpc_world_hand as WH
+            okm, whatm = WH.apply_world_hand_file(p, a.cache)
+            (notice if okm else warn)('Master step', whatm)
+            if not okm and meta.get('source') == 'hand': hand_refused(whatm)
         okk, what, rc = check_other(p, ar, lay, root, a.parks, getattr(a, 'checked', None) or work / 'checked', work)
         (notice if okk else warn)('Master step', what)
         if rc == 4: licence.append(what)

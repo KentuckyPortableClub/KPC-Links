@@ -97,7 +97,7 @@ jobs:
       - id: p
         env:
           STATES: ${{ inputs.states || (inputs.refresh == 'all' && 'all' || '') }}   # Nov 10: refresh=all with no states = every state
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 (Quality #178): US stays on add until a later PR turns reuse on; trail / access-leads parts are recorded now. The repo variable still wins if set
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (KPC owner, 2026-11-12): default reuse; format/composition-only is restamped, not rebuilt; the repo variable still wins if set
           FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '37 9 1 * *' && 'yes') || '' }}
           FORCE: ${{ inputs.force }}
           NJOBS: ${{ inputs.jobs }}
@@ -145,7 +145,9 @@ jobs:
           # (.github/us-key-rule-scope.json, in the rules hash; the freeze check puts them in RULES_SCOPE); building them all is enough
           # to stamp the new rules. An undeclared change (or scope 'all') still builds every state. 'all' by hand = emergency full rebuild.
           _scope = [x[3:] if x.startswith('US-') else x for x in (os.environ.get('RULES_SCOPE') or '').split()]
-          if want == ['ALL'] or (_rules and not _scope) or (not want and os.environ.get('SCHED') == '37 9 1 * *'): st = ALL      # 'all' / undeclared rules change / the MONTHLY cron = every state
+          _monthly = (os.environ.get('FULL_REBUILD') or '').strip().lower() in ('yes', 'true', '1') or (not want and os.environ.get('SCHED') == '37 9 1 * *')
+          _verify = os.environ.get('RULES_VERIFY') == '1'
+          if want == ['ALL'] or _monthly or (_rules and not _scope) or (_rules and _verify and not want): st = ALL      # 'all' / monthly / undeclared-or-verify with no states input = consider every state
           elif _rules: st = sorted(set(_scope) | {x for x in want if x not in ('KY', 'ALL')})
           elif want: st = [x for x in want if x != 'KY']
           else:                                                                                               # BOT B: only the states new answers touched
@@ -172,7 +174,8 @@ jobs:
           for s in sorted(st, key=lambda s: -sec.get(s, 60)):   # biggest first, each to the lightest job
               i = load.index(min(load)); g[i].append(s); load[i] += sec.get(s, 60)
           print('groups=' + json.dumps([{'i': i, 'states': ' '.join(sorted(x))} for i, x in enumerate(g) if x]))
-          print('full=' + ('1' if set(st) >= set(ALL) or (_rules and _scope and set(st) >= set(_scope)) else '0'))   # 1 = this build may stamp the current rules
+          # Nov 12 (KPC owner, 2026-11-12): states=all means consider every state; KPC_FULL_BUILD stays off unless the monthly run or an explicit owner full_rebuild. A verify restamp writes top-level rules once every area row is current.
+          print('full=' + ('1' if _monthly else '0'))
           print('rematch=' + ('1' if os.environ.get('RULES_REMATCH_IDS') == '1' else ''))
           # Nov 12 (KPC owner, 2026-11-12; D4 reuse wired for the US, Brandon 10:59 AM CT): the plan that chose the reuse goes to the join, so
           # a state reused under a valid proof moves to the new code hash there (stamp-rows --plan); one compact line, nothing when no plan
@@ -641,7 +644,7 @@ jobs:
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 (Quality #178): US stays on add until a later PR turns reuse on; KPC_AREA_HASH=shadow writes nothing; =reuse would leave unchanged states out
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (KPC owner, 2026-11-12): default reuse; KPC_AREA_HASH=shadow writes nothing; =add records hashes but does not leave states out
           AREA_PLAN: ${{ needs.plan.outputs.area_plan }}   # Nov 12 (D4, US): the plan job's plan (empty = nothing reused)
         run: |
           : > /tmp/kpc-build-failed.txt

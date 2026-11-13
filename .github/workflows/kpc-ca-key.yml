@@ -62,8 +62,10 @@ jobs:
         env:
           SCHED: ${{ (github.event.schedule || inputs.as_schedule) }}
         run: |
-          # Nov 4 (links-04): RULES_CHANGED=1 (the newest Canada build was not a full build on the current rules) = build tonight anyway
-          if [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ]; then echo "::notice title=Canada key tonight::RULES CHANGED since the newest build: the whole key is built on the current rules (no force needed)"
+          # Nov 12 (KPC owner, 2026-11-12): RULES_CHANGED with RULES_VERIFY (or a scope) is not a full rebuild
+          if [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ] && [ "${RULES_VERIFY:-}" = 1 ]; then echo "::notice title=Canada key tonight::RULES CHANGED since the newest build: existing keys are verified against the new rules; only a province whose output actually changes is rebuilt; not a full rebuild"
+          elif [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ] && [ -n "${RULES_SCOPE:-}" ]; then echo "::notice title=Canada key tonight::RULES CHANGED since the newest build: only the declared provinces (${RULES_SCOPE}) are built on the current rules"
+          elif [ "${RULES_CHANGED:-}" = 1 ] && [ "${SKIP:-}" != 1 ]; then echo "::notice title=Canada key tonight::RULES CHANGED since the newest build: every province is considered on the current rules (no force needed)"
           elif [ "$SCHED" = "49 9 * * *" ]; then
             L=$(cat data/ca-key/answers-provinces.txt 2>/dev/null | tr -s ' \n' ' ' | sed 's/^ *//;s/ *$//')
             if [ -z "$L" ]; then [ "${SKIP:-}" = 1 ] || echo "NIGHT_EMPTY=1" >> "$GITHUB_ENV"; echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::no new approved layer: nothing to rebuild tonight"; else echo "NIGHT_LIST=$L" >> "$GITHUB_ENV"; echo "::notice title=Canada key tonight::new approved layers for: $L"; fi
@@ -74,7 +76,7 @@ jobs:
         # when NO province's inputs moved (main's files stay). Never over a freeze or a build-order wait. full_rebuild=yes = no reuse.
         if: ${{ env.SKIP != '1' || env.NIGHT_EMPTY == '1' }}
         env:
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 (Quality #178): Canada stays on add until a later PR turns reuse on; trail parts are recorded now. The repo variable still wins if set
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (KPC owner, 2026-11-12): default reuse; format/composition-only is restamped, not rebuilt; the repo variable still wins if set
           FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && 'yes') || '' }}
         run: |
           rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
@@ -223,10 +225,15 @@ jobs:
         if: ${{ env.SKIP != '1' && env.CA_KEPT != '1' }}
         id: ca_stamp   # Nov 12 (KPC owner, 2026-11-12; Quality #162): Save needs this step green (an unstamped key is not saved), as US and world
         env:
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 (Quality #178): Canada stays on add until a later PR turns reuse on; KPC_AREA_HASH=shadow writes nothing; =reuse would leave unchanged provinces out
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (KPC owner, 2026-11-12): default reuse; KPC_AREA_HASH=shadow writes nothing; =add records hashes but does not leave provinces out
         run: |
-          # Canada always builds the whole key: it is FULL unless the build stopped early or the gate failed
-          if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then export KPC_FULL_BUILD=1; fi
+          # Nov 12 (KPC owner, 2026-11-12): KPC_FULL_BUILD only for the monthly run or an explicit owner full_rebuild.
+          # A green run still writes per-province rules; the top-level stamp is written once every province row is current.
+          if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then
+            case "$(printf '%s' "${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && 'yes') || '' }}" | tr '[:upper:]' '[:lower:]')" in
+              yes|true|1) export KPC_FULL_BUILD=1 ;;
+            esac
+          fi
           python3 .github/scripts/kpc_key_freeze.py stamp ca-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc): nothing is saved"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
           # Nov 12 (part B): every province was rebuilt (one job): each row records its area hash, parts, out_sha, built_sha
           # Nov 12 (KPC owner, 2026-11-12; Quality #163): SHADOW WRITES NOTHING: unless KPC_AREA_HASH is add / reuse, the stamp rows go to
