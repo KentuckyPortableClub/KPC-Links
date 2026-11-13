@@ -13,7 +13,7 @@
   5. area hashes (kpc_area_hash.py on this tree): a table change for ONE area moves only that area's hash, for each kind; an entry
      shared by a state set moves exactly those states; a change to a code-valued shared entry moves every area; unattributable
      table data (an unknown area code, an entry with no areas, another shape, an unreadable file) moves every area (fail closed);
-     header texts move nothing; the US / world composition is ah2, Canada / 2-fers keep ah1;
+     header texts move nothing; the US composition is ah3, Canada and world ah2, 2-fers keep ah1;
   6. the table files are in the rules hash (Quality must-fix M1): data/us-key/area-tables.json is in the US RULE_FILES,
      data/world-key/area-tables.json is in the world RULE_FILES; a later edit to either file moves that key's hash.
 Prints PASS / FAIL lines; the last line is ALL PASS or SOME FAILED (exit 1). SKIP lines when commit OLD is not in a shallow clone."""
@@ -396,8 +396,8 @@ check(not d, 'world: an edit to the notes moves nothing')
 wsrc = (S / 'kpc_world_key.py').read_text(encoding='utf-8')
 d = moved('world', {'.github/scripts/kpc_world_key.py': wsrc.replace('_EN = (r"natura 2000|', '_EN = (r"natura 2000|natura|', 1).encode()})
 check(len(d) == N_W, 'world: the shared English words (_EN, code) edited -> every country moves')
-check(K.composition('us') == 'ah2' and K.composition('world') == 'ah2' and K.composition('ca') == 'ah1' and K.composition('fers') == 'ah1',
-      'composition: US and world ah2 (their parts changed with D6), Canada and 2-fers ah1 (unchanged)')
+check(K.composition('us') == 'ah3' and K.composition('world') == 'ah2' and K.composition('ca') == 'ah2' and K.composition('fers') == 'ah1',
+      'composition: US ah3 (trails + access-leads), Canada ah2 (trails), world ah2, 2-fers ah1')
 check(not any(k.startswith('code-area:') for p in K.Kind(K.Tree(ROOT), 'world').parts().values() for k in p),
       'world: no code-area part is left (every per-country table is a data part)')
 check(not any(k.startswith('shared:') and 'area-tables' in k for k in K.Kind(K.Tree(ROOT), 'us').parts()['AL'])
