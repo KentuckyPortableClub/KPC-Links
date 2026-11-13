@@ -1,8 +1,8 @@
 {
 "about": "When each park-data file last CHANGED (the files themselves carry no time stamps, so unchanged runs save nothing). Written by .github/scripts/kpc_save.py.",
 "changed": {
-"data/pota-pin-changes.json": "2026-11-12",
+"data/pota-pin-changes.json": "2026-11-13",
 "locations-ky.json": "2026-10-26",
-"locations.json": "2026-11-12"
+"locations.json": "2026-11-13"
 }
 }
