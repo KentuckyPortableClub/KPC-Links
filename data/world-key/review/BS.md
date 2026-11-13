@@ -1,18 +1,14 @@
 # BS: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Protected_Areas_of_The_Bahamas. **23 of 49** joined (same name + same kind), **9** to check, **17** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Protected_Areas_of_The_Bahamas. **24 of 49** joined (same name + same kind), **5** to check, **20** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
 - **BS-0004** Pelican Cays National Park (National Park) → Pelican Cays Land And Sea Park (Protected_Areas_of_The_Bahamas, similar name)
 - **BS-0010** West Side National Park (National Park) → Westside National Park (Protected_Areas_of_The_Bahamas, the POTA pin is inside it (different name))
-- **BS-0025** The Retreat Garden National Park (National Park) → The Retreat (Protected_Areas_of_The_Bahamas, similar name)
 - **BS-0026** Graham's Harbour Iguana & Seabird National Park (National Park) → Graham's Harbour (Protected_Areas_of_The_Bahamas, similar name)
 - **BS-0027** Clifton Heritage National Park (National Park) → Southwest New Providence Marine Managed Area (Protected_Areas_of_The_Bahamas, the POTA pin is inside it (different name))
-- **BS-0040** Patrol Squadron Twenty Three National Memorial (National Memorial) → Southwest New Providence Marine Managed Area (Protected_Areas_of_The_Bahamas, the POTA pin is inside it (different name))
-- **BS-0042** Garden of Rememberance National Memorial (National Memorial) → Southwest New Providence Marine Managed Area (Protected_Areas_of_The_Bahamas, the POTA pin is inside it (different name))
 - **BS-0047** Jaws Beach Recreation Park (Recreation Park) → Southwest New Providence Marine Managed Area (Protected_Areas_of_The_Bahamas, the POTA pin is inside it (different name))
-- **BS-0048** Mother Louise Sweeting Park National Recreation Area (National Recreation Area) → Southwest New Providence Marine Managed Area (Protected_Areas_of_The_Bahamas, the POTA pin is inside it (different name))
 
 ## Nothing found
 
@@ -27,9 +23,12 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - BS-0037 Goodman's Bay Recreation Park (Recreation Park)
 - BS-0038 Saunder's Beach Recreation Park (Recreation Park)
 - BS-0039 Montagu Beach Recreation Park (Recreation Park)
+- BS-0040 Patrol Squadron Twenty Three National Memorial (National Memorial)
 - BS-0041 Pompey Square National Historic Site (National Historic Site)
+- BS-0042 Garden of Rememberance National Memorial (National Memorial)
 - BS-0043 Rawson Square National Historic Site (National Historic Site)
 - BS-0044 The Queen's Baths Natural Features Reserve (Natural Features Reserve)
 - BS-0045 The Caves Historic Site (Historic Site)
 - BS-0046 Hog Island Lighthouse Historic Site (Historic Site)
+- BS-0048 Mother Louise Sweeting Park National Recreation Area (National Recreation Area)
 - BS-0049 Edmund Moxey Recreation Park (Recreation Park)

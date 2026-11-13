@@ -1,11 +1,11 @@
 {
  "key": "world",
  "mode": "hold",
- "files_checked": 12,
- "joined_parks": 13289,
- "suspect": 35,
- "held": 33,
- "files_changed": 6,
+ "files_checked": 57,
+ "joined_parks": 19791,
+ "suspect": 36,
+ "held": 57,
+ "files_changed": 7,
  "official_acres_known": 0,
  "acres_check": "acres check off: no acres file",
  "approved_parks_known": 13514,
@@ -107,6 +107,17 @@
    "official_ac": "",
    "pin_km": 49.94,
    "suspect": "the nearest joined record is 49.9 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "BZ-0034",
+   "area": "BZ",
+   "name": "Sibun Forest Reserve",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 22.46,
+   "suspect": "the nearest joined record is 22.5 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
@@ -412,14 +423,13 @@
   "AT",
   "AU",
   "CH",
-  "FR",
   "GB",
   "JP",
   "MT",
-  "MX",
   "NI",
   "NL",
   "NZ",
+  "SE",
   "ZA"
  ]
 }
