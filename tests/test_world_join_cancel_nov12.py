@@ -4,8 +4,9 @@ and the join still committed a6c493c, which emptied held-joins.* / join-check.* 
 index.json. Checked here:
   1) the workflow (parsed YAML + a small evaluator of the `if:` expressions, GitHub's rules: no status function = success() && ...):
      a cancelled run, a failed shard, a cancel mid-join, a red join verdict, a missing part = no join check, no stamp, no Save, no
-     world-bounds push, no post-key check; all green = all of them run; the verdict runs before every writing step; the build is not
-     started after a red gate; the old workflow is shown saving on tonight's shape (the cause);
+     world-bounds push, no post-key check; all green = all of them run; the verdict runs before every writing step; the build still
+     runs on a short-copy gate (exit 7) so the other countries of the shard are built, and is not started when the gate left no exit
+     code or another error; the old workflow is shown saving on tonight's shape (the cause);
   2) the join script: a missing / short part or a country not built = exit 1 and nothing written (tonight's shape: 4 planned groups,
      2 parts); replay of a6c493c on the real tree of its parent: nothing written, every row survives; the old path reproduces the wipe;
   3) expected holds (owner-signed list): kept from main byte for byte (key, index row, review rows), summary row, complete false;
@@ -194,9 +195,18 @@ check('always() is left only on build-job part / upload / checkpoint / verdict s
       alw and all(j == 'build' or n.startswith('Report hidden failures') for j, n, _ in alw) and not any(n == '(job)' for _, n, _ in alw))
 B = W['jobs']['build']['steps']
 bstep = next(s for s in B if s.get('id') == 'kept_green_b')
-for rc, want in (('0', True), ('7', False), ('', False), ('1', False)):
-    check(f'build: the Build step runs only on a green gate (gate rc {rc or "none"} -> {"build" if want else "not started"})',
+for rc, want in (('0', True), ('7', True), ('', False), ('1', False)):
+    check(f'build: the Build step runs on a green or short-copy gate (gate rc {rc or "none"} -> {"build" if want else "not started"})',
           evaluate(f"success() && ({bstep['if']})", {'steps.kept_green_master.outputs.rc': rc}, {'always': True, 'success': True, 'failure': False, 'cancelled': False}) == want)
+check('build: a short saved copy is left out of the build loop (held, not retried); countries.txt still names the whole shard',
+      'for c in $BUILD; do' in bstep['run'] and 'master-short.txt' in bstep['run']
+      and 'echo "$MINE" > part/countries.txt' in bstep['run'] and 'part/held.txt' in bstep['run']
+      and 'short saved copy moved aside: held (not built, not joined)' in bstep['run'])
+check('build: a missing or non-0/7 gate rc fails closed (mg=none, nobody built)',
+      '|| mg=none' in bstep['run'] and 'elif [ "$mg" != 0 ]; then' in bstep['run']
+      and 'master-gate.rc" 2>/dev/null) || mg=none' in bstep['run']
+      and 'master-gate.rc" 2>/dev/null || true' not in bstep['run']
+      and '# ok:' in bstep['run'][bstep['run'].find('BUILD="$MINE"'):bstep['run'].find('for c in $BUILD')])
 gate = next(s for s in B if s.get('id') == 'kept_green_master')
 check('build: the gate step hands its exit code to the Build step (rc output)', 'echo "rc=$mg" >> "$GITHUB_OUTPUT"' in gate['run'])
 plan_run = next(s for s in W['jobs']['plan']['steps'] if s.get('id') == 'p')['run']

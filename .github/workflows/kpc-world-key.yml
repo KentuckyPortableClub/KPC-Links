@@ -205,9 +205,10 @@ jobs:
           key: world-parts-${{ matrix.g.countries }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: world-parts-${{ matrix.g.countries }}-
       - name: Build (this job's countries)
-        # Nov 12 (KPC owner, 2026-11-11; run 43148551915 built AU for 13 minutes after the gate had already held it): a gate that did not
-        # say green (or left no exit code) makes this shard red and nothing of a red shard is joined, so the build is not started
-        if: ${{ steps.kept_green_master.outputs.rc == '0' }}
+        # Nov 12 (KPC owner, 2026-11-12): a short saved copy (gate exit 7) holds ONLY that country (not built, not joined; previous
+        # key kept). The rest of this shard still builds and can be saved. A gate with no exit code, or any exit other than 0 or 7,
+        # still skips the whole shard (fail closed). Do not build the short country itself (run 43148551915 spent 13 minutes on AU after the gate had already held it).
+        if: ${{ steps.kept_green_master.outputs.rc == '0' || steps.kept_green_master.outputs.rc == '7' }}
         timeout-minutes: 335   # the step stops before the job's limit, so the part below is still uploaded
         continue-on-error: true
         id: kept_green_b
@@ -235,7 +236,45 @@ jobs:
           # Nov 3: each country also has its own time limit (CMIN minutes); one that hangs is stopped and written down the same way
           T0=$(date +%s)
           mkdir -p part; : > part/failed.txt; : > part/held.txt; echo "$MINE" > part/countries.txt
-          for c in $MINE; do
+          # Nov 12 (KPC owner, 2026-11-12): build every country of this shard except those whose saved copy the gate moved aside
+          # (W-XX in master-short.txt). Those are held, not built, and not retried (held.txt is only for a source that failed, exit 3).
+          # Exit 7 with an empty or foreign short list: build no one (fail closed). countries.txt and the verdict still name every country of the shard.
+          BUILD="$MINE"
+          # ok: no rc file or a read error sets mg=none so this step builds nobody; the step itself only starts when the gate reported 0 or 7
+          mg=$(cat "${RUNNER_TEMP:-/}/master-gate.rc" 2>/dev/null) || mg=none
+          if [ "$mg" = 7 ]; then
+            ok=1; short_cc=""
+            if [ ! -s "${RUNNER_TEMP:-/}/master-short.txt" ]; then ok=0
+            else
+              for x in $(tr '\n' ' ' < "$RUNNER_TEMP/master-short.txt"); do
+                case "$x" in W-[A-Z][A-Z]) ;; *) ok=0; break ;; esac
+                c=${x#W-}
+                case " $MINE " in *" $c "*) ;; *) ok=0; break ;; esac
+                short_cc="$short_cc $c"
+              done
+            fi
+            if [ "$ok" != 1 ]; then
+              echo "::error title=Master gate::exit 7 but the short list is not this job's saved copies: no country of this shard is built (old keys kept)"
+              BUILD=""
+            else
+              new=""
+              for c in $MINE; do
+                skip=0
+                for s in $short_cc; do [ "$c" = "$s" ] && skip=1 && break; done
+                if [ "$skip" = 1 ]; then
+                  echo "::notice title=World key $c::short saved copy moved aside: held (not built, not joined); previous key kept"
+                  echo "$c" >> part/failed.txt
+                else
+                  new="$new $c"
+                fi
+              done
+              BUILD="${new# }"
+            fi
+          elif [ "$mg" != 0 ]; then
+            echo "::error title=Master gate::gate exit is $mg (not 0 or 7): no country of this shard is built (old keys kept)"
+            BUILD=""
+          fi
+          for c in $BUILD; do
             echo "::group::World key $c (limit ${CMIN} min)"
             rc=0; COUNTRIES=$c timeout --kill-after=60 "${CMIN}m" python3 .github/scripts/kpc_world_key.py || rc=$?
             echo "::endgroup::"
