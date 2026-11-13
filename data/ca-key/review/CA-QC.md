@@ -1,14 +1,12 @@
 # Canada QC: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **442 of 834** joined (same name + same kind). **29** to check, **327** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **442 of 834** joined (same name + same kind). **29** to check, **328** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## Owner hold (pin fills not applied)
 
-Quality, delegated by Brandon, 4:43 AM CT Nov 13 2026: these three parks are held like PF-0033/34. Their pin fills are not applied on the next CA-QC key, and CA-1974's 'Site patrimonial de Montréal' site note (which rested on that fill) is dropped then too. The other 19 ready Quebec fills still apply, and CA-2274 keeps its Tyre-Macfarlane note. Taking a ref off the hold list in kpc_pin_fill.py is the only way to apply its fill.
-
-- **CA-2241** Saint Helen's Island Nature Reserve (Nature Reserve): owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): low-confidence Ville de Montréal city-polygon fill (Parc Jean-Drapeau part); held like PF-0033/34
 - **CA-1974** Champ de Mars (Regional) Nature Reserve (Nature Reserve): owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): medium-confidence Ville de Montréal city-polygon fill; the 'Site patrimonial de Montréal' site note that rested on it is held too
 - **CA-1997** Dorchester Square Nature Reserve (Nature Reserve): owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): medium-confidence Ville de Montréal city-polygon fill; held like PF-0033/34
+- **CA-2241** Saint Helen's Island Nature Reserve (Nature Reserve): owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): low-confidence Ville de Montréal city-polygon fill (Parc Jean-Drapeau part); held like PF-0033/34
 
 ## To check (not joined)
 
@@ -54,7 +52,6 @@ Quality, delegated by Brandon, 4:43 AM CT Nov 13 2026: these three parks are hel
 - CA-1929 Baie Comeau Important Bird Area Nature Reserve (Nature Reserve) → on Baie Comeau Water Fowl Gathering Area (~1,428 ac); Aire de concentration d'oiseaux aquatiques Baie Comeau (~1,428 ac)
 - CA-1945 Château Frontenac National Historic Site (National Historic Site) → on Site patrimonial du Vieux-Québec (~342 ac)
 - CA-1954 Parc de la Maison-des-Gouverneurs National Historic Site (National Historic Site) → on Aire faunique communautaire du Lac Saint-Pierre (~105,736 ac)
-- CA-1974 Champ de Mars (Regional) Nature Reserve (Nature Reserve) → on Site patrimonial de Montréal (~255 ac)
 - CA-2043 Perce UNESCO Global Geopark (Geopark) → on Site patrimonial de Percé (~10,387 ac)
 - CA-2165 Montreal Archipelago Ecological Park Nature Reserve (Nature Reserve) → on fleuve Saint-Laurent (Emb Rdp) Water Fowl Gathering Area (~804 ac); Aire de concentration d'oiseaux aquatiques Fleuve Saint-Laurent (Emb Rdp) (~804 ac)
 - CA-2233 Parc de la Maison-Valois Recreation Park (Recreation Park) → on Maison Joachim-Génus (~5 ac)
@@ -138,6 +135,7 @@ Quality, delegated by Brandon, 4:43 AM CT Nov 13 2026: these three parks are hel
 - CA-1962 Parc des pionniers (Abercorn) Recreation Park (Recreation Park)
 - CA-1964 Canal de l'Aqueduc (Regional) Nature Reserve (Nature Reserve)
 - CA-1972 Centre recreatif du lac Echo Nature Reserve (Nature Reserve)
+- CA-1974 Champ de Mars (Regional) Nature Reserve (Nature Reserve)
 - CA-1983 Espace vert Louis-Morin Recreation Park (Recreation Park)
 - CA-1984 Parc Basler Recreation Park (Recreation Park)
 - CA-1997 Dorchester Square Nature Reserve (Nature Reserve)

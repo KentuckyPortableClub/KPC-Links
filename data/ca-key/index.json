@@ -2,11 +2,11 @@
  "gate": {
   "bad": [],
   "checked": 5,
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "result": "PASS"
  },
- "previous_build": "CA-43049790907",
- "previous_built": "2026-11-11 15:52 UTC",
+ "previous_build": "CA-43311979456",
+ "previous_built": "2026-11-12 21:54 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -19,13 +19,15 @@
    "pin_swap": 0,
    "pin_well_outside": 5,
    "site": 20,
-   "area_hash": "7430f4039089",
+   "rules": "ba480fa34fb6",
+   "area_hash": "094503e30da5",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "71624acf4a0f",
     "data:data/ca-key/layers.json": "a040b0f1e994",
     "data:data/ca-key/overrides.json": "c1a8e34f5f19",
@@ -35,11 +37,13 @@
     "hosts": "bf040651b122",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "a783f924c92c",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "807d8728b0b58a61a7b1b105035db1366c3d9f6081a817949fff0b4fb508f99a",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "BC": {
    "check": 8,
@@ -52,27 +56,33 @@
    "pin_swap": 0,
    "pin_well_outside": 6,
    "site": 13,
-   "area_hash": "79fd3ac4fe47",
+   "rules": "ba480fa34fb6",
+   "area_hash": "6e1098f0ed4d",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "b71d592a8900",
     "data:data/ca-key/layers.json": "a34f698b835b",
     "data:data/ca-key/overrides.json": "19b6c06ad7d2",
     "data:data/canada-bounds/*": "f12d1702b5bf",
     "data:data/state-gis.json": "2af7b7501a31",
+    "data:data/trails/*": "127143d987ca",
+    "data:data/trails/index": "ae4b9b46cf99",
     "gate:CA-ALL": "031b8db275d4",
     "hosts": "9a535546411b",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "13ae16b4226b",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "e118bb7d09e8685521da41daf764fb0756f4b355888a316928d624bd200737a0",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "MB": {
    "check": 0,
@@ -85,13 +95,15 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "site": 5,
-   "area_hash": "ce4e57463700",
+   "rules": "ba480fa34fb6",
+   "area_hash": "f4676d9b7e46",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/layers.json": "44136fa355b3",
     "data:data/ca-key/overrides.json": "eb4a57e1ec8e",
     "data:data/canada-bounds/*": "ed4803d32f8a",
@@ -99,11 +111,13 @@
     "hosts": "4f53cda18c2b",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "f8b877040ced",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "fe344f83cd6ecc8a71d858c77bdd4b769678b045d1abddc042e16ca3bcfd185c",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "NB": {
    "check": 8,
@@ -116,28 +130,34 @@
    "pin_swap": 0,
    "pin_well_outside": 27,
    "site": 185,
-   "area_hash": "5bd260fa97a9",
+   "rules": "ba480fa34fb6",
+   "area_hash": "a27000f1ad12",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "ad3c8c03fb8d",
     "data:data/ca-key/layers.json": "b0b659b9f727",
     "data:data/ca-key/overrides.json": "8cd2a47aea36",
     "data:data/canada-bounds/*": "fbdc336516a3",
     "data:data/intake/official-pins-nov12.json": "6dc1086ed9c1",
     "data:data/state-gis.json": "51a55f7cfbce",
+    "data:data/trails/*": "a2fb3a23ed27",
+    "data:data/trails/index": "ed71f7d3833e",
     "gate:CA-ALL": "031b8db275d4",
     "hosts": "80342f62fa88",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "e92113cff587",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "742a98f4bf97d1aed88c9d90d64dd398f205d9e86bc5f34b13e7eb98daef7d8f",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "NL": {
    "check": 1,
@@ -150,13 +170,15 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "site": 1,
-   "area_hash": "a46cc8863e08",
+   "rules": "ba480fa34fb6",
+   "area_hash": "b94ee100825b",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "859418b4517d",
     "data:data/ca-key/layers.json": "f2d371033cfe",
     "data:data/ca-key/overrides.json": "de0082dc0d3d",
@@ -166,11 +188,13 @@
     "hosts": "dec36778c5bd",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "4889e831cd1a",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "00f00dbaaf2eed23b43e82d96047f79a8be2fe69f8efbf630e63730185e33261",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "NS": {
    "check": 11,
@@ -183,13 +207,15 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "site": 11,
-   "area_hash": "fe15c7c22530",
+   "rules": "ba480fa34fb6",
+   "area_hash": "812ee7c057e2",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "0b2587da4195",
     "data:data/ca-key/layers.json": "e40e5964e20e",
     "data:data/ca-key/overrides.json": "5f6a1c894ba9",
@@ -199,11 +225,13 @@
     "hosts": "2e01f3cd2ad3",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "8cab02b5ef30",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "6c1035d3075e0d39e884afa2fba2ebf65c59557a345a0ec442e3ee2a69b34798",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "NT": {
    "check": 0,
@@ -216,13 +244,15 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "site": 4,
-   "area_hash": "f6978ad2e2dc",
+   "rules": "ba480fa34fb6",
+   "area_hash": "25358050ca8d",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "e64f12d104eb",
     "data:data/ca-key/layers.json": "feb5fc6dd326",
     "data:data/ca-key/overrides.json": "084b7e195a64",
@@ -232,11 +262,13 @@
     "hosts": "7abf6c40295d",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "70c0ab766e1d",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "f3db611d9d383d90d07c572881a1d92b17c9d13610f2a5d99fdf565e36088550",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "NU": {
    "check": 0,
@@ -249,13 +281,15 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "site": 2,
-   "area_hash": "8979836d77f7",
+   "rules": "ba480fa34fb6",
+   "area_hash": "a53561f2185a",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/layers.json": "e008de0afcf0",
     "data:data/ca-key/overrides.json": "7770408df10a",
     "data:data/canada-bounds/*": "2d823b1cd8e4",
@@ -264,11 +298,13 @@
     "hosts": "76ee5deeb5df",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "f9f45e4a059c",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "b4488ea111db85f69aa928ba2208fb279d667e89ba221ad3e0540870a4bbc53d",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "ON": {
    "check": 10,
@@ -281,28 +317,34 @@
    "pin_swap": 0,
    "pin_well_outside": 7,
    "site": 27,
-   "area_hash": "bd93eedbb98b",
+   "rules": "ba480fa34fb6",
+   "area_hash": "f634898d384a",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "5a0445eb4c72",
     "data:data/ca-key/layers.json": "769a0318db4b",
     "data:data/ca-key/overrides.json": "b1fdbf619d90",
     "data:data/canada-bounds/*": "e9073db2a795",
     "data:data/intake/official-pins-nov12.json": "7ca02fe25936",
     "data:data/state-gis.json": "085a3bd88d51",
+    "data:data/trails/*": "c6d0c5baa2f4",
+    "data:data/trails/index": "a2e67c278a49",
     "gate:CA-ALL": "031b8db275d4",
     "hosts": "0567ed19698d",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "e5be22f555f1",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
-   "out_sha": "7c42f38032719c2690544397d86b819c12070dc1a625d424cd45b45f1ac3ba5c",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "out_sha": "ab9e03a9968810fda01640d9587b1e26e2dfd4f6c05a4f1049ca7e804c3017ce",
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "PE": {
    "check": 1,
@@ -315,13 +357,15 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "site": 7,
-   "area_hash": "8ee19368107c",
+   "rules": "ba480fa34fb6",
+   "area_hash": "383612515a42",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/layers.json": "1baed852a179",
     "data:data/ca-key/overrides.json": "48effb64d270",
     "data:data/canada-bounds/*": "a6dca07b904d",
@@ -330,30 +374,34 @@
     "hosts": "45beec4356c9",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "b3a7abab8b7b",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "0995edce4e823abafb98f521d229ab9c16cd2dfbb8519846e3090f3f484991ff",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "QC": {
    "check": 29,
    "detail": 0.02,
    "matched": 442,
-   "none": 327,
+   "none": 328,
    "parks": 834,
    "pin_no_shape": 0,
    "pin_outside": 166,
    "pin_swap": 0,
    "pin_well_outside": 5,
-   "site": 36,
-   "area_hash": "3e8f650c0361",
+   "site": 35,
+   "rules": "ba480fa34fb6",
+   "area_hash": "a92c9e0670b4",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "afc2cb38edb5",
     "data:data/ca-key/layers.json": "5c0208c8c5ea",
     "data:data/ca-key/overrides.json": "2ed1aa3e6ce3",
@@ -364,11 +412,13 @@
     "hosts": "904a679d9fc8",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "d2063d2a996e",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
-   "out_sha": "59913d44a4e1a6db3943166d4542523b03ff80b8e611a910bf7118d4bc94c481",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "out_sha": "c39cefb6118bcf1f3a3eeb1500668e8b9c167236cdad7442189f45b3871d0df1",
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "SI": {
    "check": 0,
@@ -381,24 +431,28 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "site": 0,
-   "area_hash": "f0dda33c4458",
+   "rules": "ba480fa34fb6",
+   "area_hash": "79ec25ec2b82",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/layers.json": "44136fa355b3",
     "data:data/canada-bounds/*": "ae06146209ef",
     "gate:CA-ALL": "031b8db275d4",
     "hosts": "4f53cda18c2b",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "3e4145ba2d49",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "1716b4259d87a8eee9e5772f30072dbe0003c1744684ecd1883771019bcdf1d5",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "SK": {
    "check": 0,
@@ -411,27 +465,33 @@
    "pin_swap": 0,
    "pin_well_outside": 17,
    "site": 28,
-   "area_hash": "b76b71b442f7",
+   "rules": "ba480fa34fb6",
+   "area_hash": "3023bc253707",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "169e274e9975",
     "data:data/ca-key/layers.json": "9c59fe85a578",
     "data:data/ca-key/overrides.json": "7ef8bc04b57d",
     "data:data/canada-bounds/*": "f4720ae8270d",
     "data:data/state-gis.json": "6c2eb75d3e27",
+    "data:data/trails/*": "a95f0230e826",
+    "data:data/trails/index": "acf5bf14e95b",
     "gate:CA-ALL": "031b8db275d4",
     "hosts": "a05c25f1cf46",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "ad1bfcd3b001",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "5f8cf0288853c6184753868b1627d89dd6682936eda8978189c2e8b3f25b231e",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "SP": {
    "check": 0,
@@ -444,23 +504,27 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "site": 0,
-   "area_hash": "68edea5447cd",
+   "rules": "ba480fa34fb6",
+   "area_hash": "f62b48ac32e4",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/layers.json": "44136fa355b3",
     "gate:CA-ALL": "031b8db275d4",
     "hosts": "4f53cda18c2b",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "cbb03c9bacbb",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "d2012eb41f1135316907ac95eb5e311683b96a25a1dca93b9c5c29063559965c",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   },
   "YT": {
    "check": 0,
@@ -473,13 +537,15 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "site": 9,
-   "area_hash": "61d8c2b4d85e",
+   "rules": "ba480fa34fb6",
+   "area_hash": "c17f62596843",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "8b7845b36eac",
+    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
-    "code:.github/scripts/kpc_pin_fill.py": "8e7caf6f818d",
+    "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
+    "composition": "292f8bff4e84",
     "data:data/ca-key/hardlook-joins.json": "2929ed532fc7",
     "data:data/ca-key/layers.json": "44136fa355b3",
     "data:data/ca-key/overrides.json": "9294adc8df0f",
@@ -489,14 +555,16 @@
     "hosts": "4f53cda18c2b",
     "hosts:shared-code-urls": "df70238ba6aa",
     "pins": "5a504d54195a",
+    "rules-version": "a7da912f6586",
+    "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
-    "version": "8ef3d3e0d5ca"
+    "version": "37c450043f9e"
    },
    "out_sha": "345f929d4a001aa5159a79d83c3798d3d35b45cbd83802f7131536fa4d506f51",
-   "built_sha": "7dcc86cb61309add073a373dd1ce680e961688cd"
+   "built_sha": "1bc667f5feee1f4ea81940bf68d5a885afa76cd0"
   }
  },
- "rules": "2a4d0154d95c",
+ "rules": "ba480fa34fb6",
  "rules_files": [
   ".github/ca-key-rule-scope.json",
   ".github/scripts/kpc_ca_fill_bounds.py",
@@ -506,12 +574,12 @@
   ".github/scripts/kpc_pin_fill.py",
   ".github/key-rules-version.json"
  ],
- "rules_of_run": "2a4d0154d95c",
+ "rules_of_run": "ba480fa34fb6",
  "inputs": {
   "us-key": "US-43293787778"
  },
- "build": "CA-43311979456",
- "built": "2026-11-12 21:54 UTC",
+ "build": "CA-43524444769",
+ "built": "2026-11-13 23:20 UTC",
  "areas_rebuilt": [
   "AB",
   "BC",
