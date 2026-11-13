@@ -1,10 +1,12 @@
 {
  "open": [
   "KPC-Data/kpc-collector.yml",
-  "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-world-finder.yml",
-  "kpc-fb-comments.yml",
+  "kpc-band-alerts.yml",
+  "kpc-boards.yml",
+  "kpc-bot-queue.yml",
+  "kpc-discord-watch.yml",
   "kpc-guide-pdf.yml",
   "kpc-hunters.json",
   "kpc-world-key.yml",
@@ -15,7 +17,7 @@
   "refs:gone:US-AZ:US-13337",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324"
  ],
- "checked": "2026-11-13T12:05+00:00",
+ "checked": "2026-11-13T17:23+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -125,13 +127,13 @@
    "b": 50363704
   },
   "L:data/ca-key": {
-   "b": 5823284
+   "b": 5825378
   },
   "L:data/world-key": {
-   "b": 34886713
+   "b": 34940579
   },
   "L:data/pota": {
-   "b": 5702661
+   "b": 5659646
   },
   "L:data/canada.json": {
    "b": 2494163
@@ -204,7 +206,7 @@
    "b": 20045555
   },
   "D:data/alerts/eu.json": {
-   "b": 226269
+   "b": 201371
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
@@ -220,7 +222,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1113783
+   "b": 1113859
   }
  }
 }
