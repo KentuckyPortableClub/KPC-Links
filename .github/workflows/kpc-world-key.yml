@@ -240,7 +240,8 @@ jobs:
           # (W-XX in master-short.txt). Those are held, not built, and not retried (held.txt is only for a source that failed, exit 3).
           # Exit 7 with an empty or foreign short list: build no one (fail closed). countries.txt and the verdict still name every country of the shard.
           BUILD="$MINE"
-          mg=$(cat "${RUNNER_TEMP:-/}/master-gate.rc" 2>/dev/null || true)
+          # ok: no rc file or a read error sets mg=none so this step builds nobody; the step itself only starts when the gate reported 0 or 7
+          mg=$(cat "${RUNNER_TEMP:-/}/master-gate.rc" 2>/dev/null) || mg=none
           if [ "$mg" = 7 ]; then
             ok=1; short_cc=""
             if [ ! -s "${RUNNER_TEMP:-/}/master-short.txt" ]; then ok=0
@@ -269,6 +270,9 @@ jobs:
               done
               BUILD="${new# }"
             fi
+          elif [ "$mg" != 0 ]; then
+            echo "::error title=Master gate::gate exit is $mg (not 0 or 7): no country of this shard is built (old keys kept)"
+            BUILD=""
           fi
           for c in $BUILD; do
             echo "::group::World key $c (limit ${CMIN} min)"

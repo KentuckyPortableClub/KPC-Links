@@ -202,6 +202,11 @@ check('build: a short saved copy is left out of the build loop (held, not retrie
       'for c in $BUILD; do' in bstep['run'] and 'master-short.txt' in bstep['run']
       and 'echo "$MINE" > part/countries.txt' in bstep['run'] and 'part/held.txt' in bstep['run']
       and 'short saved copy moved aside: held (not built, not joined)' in bstep['run'])
+check('build: a missing or non-0/7 gate rc fails closed (mg=none, nobody built)',
+      '|| mg=none' in bstep['run'] and 'elif [ "$mg" != 0 ]; then' in bstep['run']
+      and 'master-gate.rc" 2>/dev/null) || mg=none' in bstep['run']
+      and 'master-gate.rc" 2>/dev/null || true' not in bstep['run']
+      and '# ok:' in bstep['run'][bstep['run'].find('BUILD="$MINE"'):bstep['run'].find('for c in $BUILD')])
 gate = next(s for s in B if s.get('id') == 'kept_green_master')
 check('build: the gate step hands its exit code to the Build step (rc output)', 'echo "rc=$mg" >> "$GITHUB_OUTPUT"' in gate['run'])
 plan_run = next(s for s in W['jobs']['plan']['steps'] if s.get('id') == 'p')['run']

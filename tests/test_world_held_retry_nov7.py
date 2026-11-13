@@ -30,14 +30,14 @@ sys.exit(rc)
 '''
 
 
-def run(mine, plan, retries='1', waitmin='0', cmin='5', step_min='335', gate_rc=None, short=None):
+def run(mine, plan, retries='1', waitmin='0', cmin='5', step_min='335', gate_rc=0, short=None, write_rc=True):
     with tempfile.TemporaryDirectory() as t:
         tp = pathlib.Path(t); (tp / '.github/scripts').mkdir(parents=True); (tp / '.github/scripts/kpc_world_key.py').write_text(FAKE)
         (tp / 'bin').mkdir(); pip = tp / 'bin/pip'; pip.write_text('#!/bin/sh\nexit 0\n'); pip.chmod(pip.stat().st_mode | stat.S_IEXEC)
         env = dict(os.environ, PATH=f"{tp / 'bin'}:{os.environ['PATH']}", MINE=mine, FAKE_PLAN=plan, RETRIES=retries, WAITMIN=waitmin,
                    CMIN=cmin, STEP_MIN=step_min, PIN_JOIN='', WB_DIR='')
         rt = tp / 'runner'; rt.mkdir()
-        if gate_rc is not None: (rt / 'master-gate.rc').write_text(str(gate_rc) + '\n')
+        if write_rc: (rt / 'master-gate.rc').write_text(str(gate_rc) + '\n')
         if short is not None: (rt / 'master-short.txt').write_text(short)
         env['RUNNER_TEMP'] = str(rt)   # always isolated: a leftover box/CI RUNNER_TEMP must not trip the short-copy filter
         r = subprocess.run(['bash', '--noprofile', '--norc', '-eo', 'pipefail', '-c', b['run']], cwd=t, env=env, capture_output=True, text=True, timeout=120)
@@ -71,6 +71,11 @@ rc, failed, tries, out = run('DE AX', 'DE=0 AX=0', gate_rc=7, short='')
 check(tries == {} and 'not this job' in out, 'exit 7 with an empty short list: no country is built (fail closed)')
 rc, failed, tries, out = run('DE AX', 'DE=0 AX=0', gate_rc=7, short='W-FR\n')
 check(tries == {} and 'not this job' in out, 'exit 7 with a short copy the job does not own: no country is built (fail closed)')
+# Quality M1: a missing or non-0/7 gate rc must not fall through to build everyone (fail closed).
+rc, failed, tries, out = run('DE AX', 'DE=0 AX=0', write_rc=False)
+check(tries == {} and 'not 0 or 7' in out and 'none' in out, 'missing gate rc (mg=none): no country is built (fail closed)' + ('' if tries == {} else ': ' + out[-400:]))
+rc, failed, tries, out = run('DE AX', 'DE=0 AX=0', gate_rc=1)
+check(tries == {} and 'not 0 or 7' in out, 'gate exit 1: no country is built (fail closed)' + ('' if tries == {} else ': ' + out[-400:]))
 check(b['env']['RETRIES'] == "${{ vars.KPC_WORLD_HELD_RETRIES || '1' }}" and b['env']['WAITMIN'] == "${{ vars.KPC_WORLD_HELD_WAIT_MIN || '10' }}",
       'retries and wait are repo variables (defaults 1 and 10 min)')
 check(int(b['env']['STEP_MIN']) == int(b['timeout-minutes']), "STEP_MIN matches the build step's timeout-minutes")
