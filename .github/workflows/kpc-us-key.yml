@@ -32,7 +32,7 @@ on:
         description: "all = the FRESH START (Nov 10): the master step walks every layer of every state (layers.json + state-gis.json) and refills or verifies it from allowed sources; what a bot may not fetch goes on the needs-download list; a smaller re-read never replaces the saved copy. Blank = the normal run. By hand only (no cron)."
         default: ''
       full_rebuild:
-        description: "yes = build every listed state, never reuse one (per-area hashes, Nov 12; reuse is off unless the repo variable KPC_AREA_HASH=reuse)"
+        description: "yes = build every listed state, never reuse one (per-area hashes; default is reuse)"
         default: ''
 permissions:
   contents: write
@@ -97,7 +97,7 @@ jobs:
       - id: p
         env:
           STATES: ${{ inputs.states || (inputs.refresh == 'all' && 'all' || '') }}   # Nov 10: refresh=all with no states = every state
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed D1-D9): default add = record each area's hash; reuse stays off
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (owner signed): default reuse = leave out an area whose inputs did not move; an area with no recorded hash is rebuilt; the repo variable still wins if set
           FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '37 9 1 * *' && 'yes') || '' }}
           FORCE: ${{ inputs.force }}
           NJOBS: ${{ inputs.jobs }}
@@ -641,7 +641,7 @@ jobs:
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed): default add = stamp-rows writes the area hash; KPC_AREA_HASH=shadow writes nothing; reuse stays off
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (owner signed): default reuse; KPC_AREA_HASH=shadow writes nothing; =add records hashes but does not leave areas out
           AREA_PLAN: ${{ needs.plan.outputs.area_plan }}   # Nov 12 (D4, US): the plan job's plan (empty = nothing reused)
         run: |
           : > /tmp/kpc-build-failed.txt

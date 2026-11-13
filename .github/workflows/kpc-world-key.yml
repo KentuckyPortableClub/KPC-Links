@@ -38,7 +38,7 @@ on:
         description: "yes = build even while chat 11 grades a held build (Brandon's freeze, Nov 2: by hand only)"
         default: 'no'
       full_rebuild:
-        description: "yes = build every listed country, never reuse one (per-area hashes, Nov 12; reuse is off unless the repo variable KPC_AREA_HASH=reuse)"
+        description: "yes = build every listed country, never reuse one (per-area hashes; default is reuse)"
         default: ''
 permissions:
   contents: write
@@ -97,7 +97,7 @@ jobs:
           # build step's 335). Two slow jobs at most; the other countries are split as before.
           SLOW: ${{ vars.KPC_WORLD_SLOW || 'AU' }}
           SLOW_MIN: ${{ vars.KPC_WORLD_SLOW_MIN || '300' }}
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed D1-D9): default add = record each area's hash; reuse stays off
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (owner signed): default reuse = leave out an area whose inputs did not move; an area with no recorded hash is rebuilt; the repo variable still wins if set
           FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '17 11 3 * *' && 'yes') || '' }}
           KPC_SAVED_ONLY_HOSTS: ${{ vars.KPC_SAVED_ONLY_HOSTS }}
         run: |
@@ -488,7 +488,7 @@ jobs:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}   # Nov 4 (links-04): a failed country keeps the old rules hash (stamp)
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
           AREA_PLAN: ${{ needs.plan.outputs.area_plan }}
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 D7 (owner signed): default add = stamp-rows writes the area hash; KPC_AREA_HASH=shadow writes nothing; reuse stays off
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (owner signed): default reuse; KPC_AREA_HASH=shadow writes nothing; =add records hashes but does not leave areas out
         run: |
           export KPC_PLANNED_AREAS="$(python3 -c "import json; print(' '.join(json.load(open('/tmp/world-join.json')).get('joined') or []))")"
           export KPC_ASKED_AREAS="$(python3 .github/scripts/kpc_key_freeze.py missing --planned-groups "$PLAN_GROUPS" | tr '\n' ' ')"
