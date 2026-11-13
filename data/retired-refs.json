@@ -560,6 +560,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-4503": {
+   "n": "Gare D'Argol Biological Reserve",
+   "d": "2026-11-13",
+   "src": "world"
+  },
   "FR-4597": {
    "n": "Tourbiere de Sommand Biological Reserve",
    "d": "2026-11-11",
@@ -573,6 +578,11 @@
   "FR-4609": {
    "n": "Versant rocheux en rive droite de l Arve, de Balme a la Tete Louis Philippe Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4610": {
+   "n": "Haut Fauciny Biological Reserve",
+   "d": "2026-11-13",
    "src": "world"
   },
   "FR-4612": {
@@ -688,6 +698,11 @@
   "FR-4827": {
    "n": "massif de bollene-uchaux Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-4835": {
+   "n": "plateau d'albion Biological Reserve",
+   "d": "2026-11-13",
    "src": "world"
   },
   "FR-4845": {
@@ -1043,6 +1058,11 @@
   "FR-5036": {
    "n": "SUR LES GRES Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5038": {
+   "n": "Tourbière et Prairie de la Ferme du Forbonnet Biological Reserve",
+   "d": "2026-11-13",
    "src": "world"
   },
   "FR-5039": {
@@ -1695,6 +1715,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-5198": {
+   "n": "Ile du Loc'h (Archipel des Glénan) Biological Reserve",
+   "d": "2026-11-13",
+   "src": "world"
+  },
   "FR-5199": {
    "n": "Pelouses seches de Saint Maurice de Chasaux Biological Reserve",
    "d": "2026-11-11",
@@ -1855,6 +1880,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-5242": {
+   "n": "Bocage et Bois Humide de Frontenaud et Sagy Biological Reserve",
+   "d": "2026-11-13",
+   "src": "world"
+  },
   "FR-5243": {
    "n": "ETANG DU PETIT CHARDENOUX Biological Reserve",
    "d": "2026-11-11",
@@ -1975,6 +2005,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-5287": {
+   "n": "Îles et Ilots de Guiriden, Gueotec, Vieux Glénan, Brimilec, Quignenec, Cigogne, Castel Braz, Roc'h C'Hoar et Le Gluet (Archipel des Glénan) Biological Reserve",
+   "d": "2026-11-13",
+   "src": "world"
+  },
   "FR-5289": {
    "n": "Champs de Loyettes Biological Reserve",
    "d": "2026-11-11",
@@ -2088,6 +2123,11 @@
   "FR-5351": {
    "n": "LA THALIE ENTRE LUX ET CHAMPFORGEUIL Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5352": {
+   "n": "Val de Saône à Chalon-sur-Saône Biological Reserve",
+   "d": "2026-11-13",
    "src": "world"
   },
   "FR-5353": {
@@ -2560,6 +2600,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-5595": {
+   "n": "Lac d’Aiguebelette et Marais Riverains Biological Reserve",
+   "d": "2026-11-13",
+   "src": "world"
+  },
   "FR-5596": {
    "n": "TOURBIERE SOUS LA HAUTE JOUX Biological Reserve",
    "d": "2026-11-11",
@@ -2613,6 +2658,11 @@
   "FR-5608": {
    "n": "ETANG ET MARAIS DE CONTE Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5609": {
+   "n": "Archipel des Glénan Biological Reserve",
+   "d": "2026-11-13",
    "src": "world"
   },
   "FR-5610": {
@@ -2778,6 +2828,11 @@
   "FR-5663": {
    "n": "MARE DU GRAND BOURGEON Biological Reserve",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "FR-5665": {
+   "n": "Adrets de l'Esquirol et du Bouis Negre Biological Reserve",
+   "d": "2026-11-13",
    "src": "world"
   },
   "FR-5672": {
@@ -3107,5 +3162,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-12"
+ "updated": "2026-11-13"
 }
