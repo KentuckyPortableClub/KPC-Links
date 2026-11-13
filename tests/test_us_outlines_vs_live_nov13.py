@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""U1 (Quality Nov 13): working US outlines agree with the key. 0 PIN-graded leftovers,
+"""U1 (Quality Nov 13, X2): working US outlines agree with the key. 0 PIN-graded leftovers,
 0 held records (AK US-10281 no longer carries record 2165), MN US-13655-13658 gone,
-and AK official/approximate outlines are 63 more than the live released file."""
-import sys, pathlib
+TN US-1278 gone (listed by no US key; also still on the live released file until a promote),
+and AK official/approximate outlines are 63 more than the live released file.
+Outlines from the key run after the far-join check (kpc-us-key.yml)."""
+import json, sys, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '.github/scripts'))
 import kpc_master as M
@@ -41,6 +43,10 @@ check('U1: AK US-10281 no longer holds record 2165',
 mn = recs(ol, 'US-MN')
 check('U1: MN US-13655-13658 are gone',
       not any(r in mn for r in ('US-13655', 'US-13656', 'US-13657', 'US-13658')))
+tn = recs(ol, 'US-TN')
+tn_key = (json.loads((kd / 'US-TN.json').read_text()).get('parks') or {}) if (kd / 'US-TN.json').is_file() else {}
+check('U1/X2: TN US-1278 is not in the US key and is gone from working outlines',
+      'US-1278' not in tn_key and 'US-1278' not in tn)
 live = recs(rel, 'US-AK')
 n_work = sum(1 for v in ak.values() if isinstance(v, dict) and v.get('g') in ('official', 'approximate'))
 n_live = sum(1 for v in live.values() if isinstance(v, dict) and v.get('g') in ('official', 'approximate'))

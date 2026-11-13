@@ -553,33 +553,6 @@ jobs:
             cp .mneeds/new.json .mneeds/needs-download.json && gh release upload boundary-cache .mneeds/needs-download.json -R "$GITHUB_REPOSITORY" --clobber
           fi
           rm -rf .mneeds
-      - name: Outlines from the key (KPC owner, 2026-11-11) - the automatic last step - every joined park of the states built this run gets its outline, then main is re-read so no outline file is saved older than main's
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # Reads the key this run just joined and each state's saved copy (US-XX.json.gz on the boundary-cache release, this repo's own
-          # release: no map server is contacted). An outline already in the file is never replaced; a park whose joined records are not
-          # all in the saved copy is skipped and listed (no partial outline). One state at a time, so the disk holds one saved copy.
-          if [ -f /tmp/kpc-outlines-bad ]; then echo "::notice title=Outlines from the key::skipped: the master collect failed, data/outlines is not saved this run"; exit 0; fi
-          said() { echo "::error title=Outlines from the key::$1"; echo "Outlines from the key - $1" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
-          pip install --quiet --break-system-packages shapely || said "shapely did not install: no outline is built this run (the next run builds them)"
-          STATES=$(cat parts/us-key-part-*/states.txt 2>/dev/null | tr -s ' \n' '\n' | sort -u | tr '\n' ' ')
-          mkdir -p .okcache
-          for st in $STATES; do
-            if ! gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D .okcache --clobber 2>/dev/null; then
-              echo "::notice title=Outlines from the key $st::no saved copy on the release: its outlines wait for the next run"; continue
-            fi
-            python3 .github/scripts/kpc_outlines_from_key.py --cache .okcache --states "$st" || said "US-$st stopped with an error (exit $?): its outline file is as it was"
-            rm -f ".okcache/US-$st.json.gz"
-          done
-          rm -rf .okcache
-          # This morning's problem (run of Nov 11 15:13 UTC: started before #129 merged, saved its older US-FL file, 97 outlines lost):
-          # re-read main NOW and put every changed outline file together with main's copy; the master check below sees the result.
-          # The Save step does the same again on the newest main, at the moment of the save.
-          python3 .github/scripts/kpc_outlines_keep_main.py --fetch --ref origin/main || said "an outline file could not be put together with main's copy (exit $?): main's copy is kept for it"
-      - name: Master check of the joined outlines before the save (owner rule, 2026-11-10) - a failed check keeps data/outlines out of the save
-        run: |
-          python3 .github/scripts/kpc_master_cli.py check --repo . || { kpc_rc=$?; touch /tmp/kpc-outlines-bad; git checkout -q HEAD -- data/outlines && git clean -fdq data/outlines; echo "::error title=Master check::the joined master outlines failed their check (exit $kpc_rc): this run's data/outlines changes are dropped, not saved"; }
       - name: Lost finds check (chat 2, Nov 1; Brandon 'we are finding stuff but it never makes it in')
         id: kept_green_2
         continue-on-error: true
@@ -607,6 +580,33 @@ jobs:
           GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .as 2>/dev/null && git -C .as sparse-checkout set --no-cone data/answer-sheet 2>/dev/null && git -C .as checkout -q 2>/dev/null || { kpc_rc=$?; echo "::error title=Join check::KPC-Data answer sheet (public, read-only) not read (exit $kpc_rc): its exemptions are empty this build (more joins held)"; echo "Join check - KPC-Data answer sheet not read (exit $kpc_rc): its exemptions are empty this build (more joins held)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           python3 .github/scripts/kpc_join_check.py || { kpc_rc=$?; echo "::warning title=Join check::stopped (exit $kpc_rc); the key build is not affected"; }
           rm -rf .as
+      - name: Outlines from the key (KPC owner, 2026-11-11) - the automatic last step - every joined park of the states built this run gets its outline, then main is re-read so no outline file is saved older than main's
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Reads the key this run just joined and each state's saved copy (US-XX.json.gz on the boundary-cache release, this repo's own
+          # release: no map server is contacted). An outline already in the file is never replaced; a park whose joined records are not
+          # all in the saved copy is skipped and listed (no partial outline). One state at a time, so the disk holds one saved copy.
+          if [ -f /tmp/kpc-outlines-bad ]; then echo "::notice title=Outlines from the key::skipped: the master collect failed, data/outlines is not saved this run"; exit 0; fi
+          said() { echo "::error title=Outlines from the key::$1"; echo "Outlines from the key - $1" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+          pip install --quiet --break-system-packages shapely || said "shapely did not install: no outline is built this run (the next run builds them)"
+          STATES=$(cat parts/us-key-part-*/states.txt 2>/dev/null | tr -s ' \n' '\n' | sort -u | tr '\n' ' ')
+          mkdir -p .okcache
+          for st in $STATES; do
+            if ! gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D .okcache --clobber 2>/dev/null; then
+              echo "::notice title=Outlines from the key $st::no saved copy on the release: its outlines wait for the next run"; continue
+            fi
+            python3 .github/scripts/kpc_outlines_from_key.py --cache .okcache --states "$st" || said "US-$st stopped with an error (exit $?): its outline file is as it was"
+            rm -f ".okcache/US-$st.json.gz"
+          done
+          rm -rf .okcache
+          # This morning's problem (run of Nov 11 15:13 UTC: started before #129 merged, saved its older US-FL file, 97 outlines lost):
+          # re-read main NOW and put every changed outline file together with main's copy; the master check below sees the result.
+          # The Save step does the same again on the newest main, at the moment of the save.
+          python3 .github/scripts/kpc_outlines_keep_main.py --fetch --ref origin/main || said "an outline file could not be put together with main's copy (exit $?): main's copy is kept for it"
+      - name: Master check of the joined outlines before the save (owner rule, 2026-11-10) - a failed check keeps data/outlines out of the save
+        run: |
+          python3 .github/scripts/kpc_master_cli.py check --repo . || { kpc_rc=$?; touch /tmp/kpc-outlines-bad; git checkout -q HEAD -- data/outlines && git clean -fdq data/outlines; echo "::error title=Master check::the joined master outlines failed their check (exit $kpc_rc): this run's data/outlines changes are dropped, not saved"; }
       - name: Review files - every state not rebuilt this run keeps its rows from main (Nov 12, KPC owner, 2026-11-12)
         id: keep_rows   # Quality #161 must-fix: Save is gated on this step
         # the join check writes held-joins.* / join-check.* whole from this run's changed state files only (the a6c493c wipe, US side):

@@ -41,7 +41,7 @@ ARCGIS_SERVICES_HOST_RE = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com
 SAVED_ONLY_HOSTS = {'services.arcgis.com', 'services1.arcgis.com', 'apps.fs.usda.gov'} | kpc_net_guard.extra_hosts()
 HUB_RE = re.compile(r'(^|\.)(hub\.arcgis\.com|opendata\.arcgis\.com)$')   # hub portals: 60 s between requests
 HUB_DELAY, HOST_DELAY = 60.0, 2.0
-WDPA_RE = re.compile(r'wdpa|protected\s*-?planet|protectedplanet', re.I)
+WDPA_RE = re.compile(r'wdpa|protected\s*-?planet|protectedplanet|sprep', re.I)
 
 
 class MasterError(Exception): pass
@@ -1374,7 +1374,7 @@ def hand_file_problem(path, area, layer):
 
 def share_block(row, root=None):
     """'' when a layer's checked file may be packed / uploaded / merged; else why not. Refused: anything that looks like Protected Planet /
-    WDPA, or a layer / download source marked `redistribute: "no"` in data/outlines/layers.json or download-sources.json (optional
+    WDPA or SPREP, a layer / download source marked `redistribute: "no"`, or a row with no licence or terms in data/outlines/layers.json or download-sources.json (optional
     field; absent = no known restriction). row: a needs row or a layer file's meta (area, layer, url, page, label, src)."""
     r = row or {}
     raw = r.get('raw') if isinstance(r.get('raw'), dict) else {}
@@ -1390,6 +1390,29 @@ def share_block(row, root=None):
         if str((S or {}).get('redistribute', '')).lower() != 'no': continue
         if sid == r.get('src') or (u and nu(S.get('layer_url')) == u) or (S.get('layer') == lay and area in (S.get('areas') or [])):
             return f'{area}|{lay}: download source {sid} is marked redistribute=no in download-sources.json: not packed, uploaded or merged'
+    lic = ''
+    for k in ('license', 'licence', 'terms'):
+        v = str(r.get(k) or raw.get(k) or '').strip()
+        if v:
+            lic = v
+            break
+    if not lic:
+        # catalogue licence counts (a hand/import row may name the layer only)
+        for k, L in ((load_layers(root) or {}).get('layers') or {}).items():
+            if k in (f'{area}.{lay}', lay) or (u and nu((L or {}).get('url')) == u):
+                for kk in ('license', 'licence', 'terms'):
+                    if str((L or {}).get(kk) or '').strip():
+                        lic = str(L.get(kk)).strip(); break
+            if lic: break
+    if not lic:
+        for sid, S in ((load_json(root / 'download-sources.json', {}) or {}).get('sources') or {}).items():
+            if sid == r.get('src') or (u and nu(S.get('layer_url')) == u) or (S.get('layer') == lay and area in (S.get('areas') or [])):
+                for kk in ('license', 'licence', 'terms'):
+                    if str((S or {}).get(kk) or '').strip():
+                        lic = str(S.get(kk)).strip(); break
+            if lic: break
+    if not lic:
+        return f"{area}|{lay}: no licence or terms recorded: not packed, uploaded or merged"
     return ''
 
 

@@ -248,6 +248,46 @@ def _ls(repo, sha, folder):
     return r.stdout.decode().split('\n') if r.returncode == 0 else None
 
 
+
+def build_source_refuse_why(repo, area, sha, units=None):
+    """Why this source commit must not be built for release, or ''.
+    X3: the refuse-list (US-42797939226) and the key/outlines agree check (R4/U1)
+    run here in build() so a blocked or disagreeing sha cannot be packed, even if
+    a caller skipped why_not_promote."""
+    if area not in ('US', 'CA', 'world', 'KY'):
+        return ''
+    kind = area
+    try:
+        idx = index_at(repo, sha, kind)
+    except Exception as e:  # noqa: BLE001
+        return f'cannot read the {kind} key index at {sha[:12]} ({type(e).__name__})'
+    builds = set()
+    if isinstance(idx, dict):
+        if idx.get('build'):
+            builds.add(str(idx.get('build')))
+        rows = idx.get('states') if isinstance(idx.get('states'), dict) else {}
+        for v in rows.values():
+            if isinstance(v, dict) and v.get('build'):
+                builds.add(str(v.get('build')))
+    hit = sorted(builds & BLOCKED_BUILDS)
+    if hit:
+        return f'{hit[0]} is never released'
+    if kind != 'US':
+        return ''
+    want = {u.upper() for u in units} if units else None
+    if want:
+        check_units = sorted(want)
+    else:
+        names = _ls(repo, sha, 'data/outlines') or []
+        check_units = sorted({n[:-len('.geojson.gz')] for n in names
+                              if re.fullmatch(r'US-[A-Z]{2}\.geojson\.gz', n)})
+    for u in check_units:
+        why = outline_refuse_why(repo, kind, u, sha)
+        if why:
+            return why if why.startswith(u) else f'{u}: {why}'
+    return ''
+
+
 def build(repo, area, sha, missing=None, units=None):
     """{released rel name of the whole file: [(released rel name, bytes)]} for the area at the commit. A folder of a regex source
     that is not there at the commit adds nothing and is named in `missing` (release() refuses it when files from it were
@@ -257,6 +297,8 @@ def build(repo, area, sha, missing=None, units=None):
     if area not in AREAS: raise ReleaseError(f"area must be one of {', '.join(AREAS)} (2-fers are not released from this repo)")
     if not re.fullmatch(r'[0-9a-f]{40}', sha or ''): raise ReleaseError('source_sha must be the full 40-character commit sha')
     git(repo, 'cat-file', '-e', f'{sha}^{{commit}}')
+    why = build_source_refuse_why(repo, area, sha, units)
+    if why: raise ReleaseError(why)
     want = {u.upper() for u in units} if units else None
     pmap = parks_to_ca_unit(repo, sha) if area == 'CA' else None
     out = {}

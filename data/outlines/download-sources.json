@@ -4559,20 +4559,409 @@
    "changed": null,
    "check": "person",
    "file": "",
-   "format": "",
+   "files": [
+    "data/outlines/hand/hand-W-CZ.h218.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk02.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk03.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk04.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk05.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk06.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk07.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk08.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk09.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk10.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk11.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk12.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk13.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk14.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk15.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk16.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk17.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk18.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk19.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk20.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk21.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk22.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk23.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk24.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk25.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk26.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk27.geojson.gz",
+    "data/outlines/hand/hand-W-CZ.h218.chunk28.geojson.gz"
+   ],
+   "format": "geojson",
    "fp": {},
    "fp_seen": null,
    "kind": "first-party",
    "layer": "h218",
    "layer_url": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1",
-   "name": "Evropsky významná lokalita (EVL)",
+   "name": "AOPK ČR — Evropsky významná lokalita (EVL)",
    "page": "https://data.nature.cz/ds/INSPIRE-PS-Natura2000/",
    "stated_count": 1111,
-   "terms": "see the source page",
+   "terms": "Creative Commons Attribution 4.0 International (CC BY 4.0). Attribution: (c) AOPK ČR. Recorded from https://data.nature.cz/ds/INSPIRE-PS-Natura2000/ and https://portal.nature.cz/w/poskytovani-dat-aopk-cr (2026-11-13). gis.nature.cz was not contacted from this box.",
+   "version": "",
    "person": "Brandon (KPC owner)",
    "route": "owner hand download",
-   "date": "2026-11-12",
-   "version": ""
+   "date": "2026-11-13"
+  },
+  "h219": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h219.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h219.chunk02.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h219.chunk03.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h219.chunk04.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h219",
+   "layer_url": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Naturschutzgebiet/MapServer/0",
+   "name": "LUBW Landesanstalt für Umwelt Baden-Württemberg — Naturschutzgebiet",
+   "page": "https://rips-metadaten.lubw.de/trefferanzeige?docuuid=1a6a350d-97b6-4c73-8558-704d9fe8a29e",
+   "stated_count": 1062,
+   "terms": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0, https://www.govdata.de/dl-de/zero-2-0). Agency: LUBW Landesanstalt für Umwelt Baden-Württemberg. Recorded from https://rips-metadaten.lubw.de/trefferanzeige?docuuid=1a6a350d-97b6-4c73-8558-704d9fe8a29e and https://metadaten.geoportal-bw.de/geonetwork/srv/api/records/73f3dfdc-6c6e-4edc-b6fe-1d557ab10001 (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h220": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h220.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h220.chunk02.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h220.chunk03.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h220.chunk04.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h220.chunk05.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h220.chunk06.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h220.chunk07.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h220",
+   "layer_url": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Vogelschutzgebiet_SPA/MapServer/0",
+   "name": "LUBW Landesanstalt für Umwelt Baden-Württemberg — Vogelschutzgebiet (SPA)",
+   "page": "https://metadaten.geoportal-bw.de/geonetwork/srv/api/records/73f3dfdc-6c6e-4edc-b6fe-1d557ab10001",
+   "stated_count": 90,
+   "terms": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0, https://www.govdata.de/dl-de/zero-2-0). Agency: LUBW Landesanstalt für Umwelt Baden-Württemberg. Recorded from https://rips-metadaten.lubw.de/trefferanzeige?docuuid=1a6a350d-97b6-4c73-8558-704d9fe8a29e and https://metadaten.geoportal-bw.de/geonetwork/srv/api/records/73f3dfdc-6c6e-4edc-b6fe-1d557ab10001 (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h221": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h221.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h221.chunk02.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h221",
+   "layer_url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/1",
+   "name": "HLNUG — Naturschutzgebiete (Hessen)",
+   "page": "https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz",
+   "stated_count": 775,
+   "terms": "Creative Commons Attribution 4.0 International (CC BY 4.0). Attribution: Hessisches Landesamt für Naturschutz, Umwelt und Geologie (HLNUG); Quellenvermerk for data: „Darstellung auf der Grundlage von Daten des Hessischen Landesamtes für Naturschutz, Umwelt und Geologie (HLNUG)“. Recorded from https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h222": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "data/outlines/hand/hand-W-DE.h222.geojson.gz",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h222.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h222",
+   "layer_url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/2",
+   "name": "HLNUG — Nationalpark (Hessen)",
+   "page": "https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz",
+   "stated_count": 1,
+   "terms": "Creative Commons Attribution 4.0 International (CC BY 4.0). Attribution: Hessisches Landesamt für Naturschutz, Umwelt und Geologie (HLNUG); Quellenvermerk for data: „Darstellung auf der Grundlage von Daten des Hessischen Landesamtes für Naturschutz, Umwelt und Geologie (HLNUG)“. Recorded from https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h223": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h223.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h223.chunk02.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h223.chunk03.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h223",
+   "layer_url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/3",
+   "name": "HLNUG — Vogelschutzgebiete (Hessen)",
+   "page": "https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz",
+   "stated_count": 60,
+   "terms": "Creative Commons Attribution 4.0 International (CC BY 4.0). Attribution: Hessisches Landesamt für Naturschutz, Umwelt und Geologie (HLNUG); Quellenvermerk for data: „Darstellung auf der Grundlage von Daten des Hessischen Landesamtes für Naturschutz, Umwelt und Geologie (HLNUG)“. Recorded from https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h224": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h224.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk02.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk03.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk04.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk05.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk06.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk07.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk08.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk09.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk10.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk11.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk12.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk13.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h224.chunk14.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h224",
+   "layer_url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/4",
+   "name": "HLNUG — Fauna-Flora-Habitate (Hessen)",
+   "page": "https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz",
+   "stated_count": 582,
+   "terms": "Creative Commons Attribution 4.0 International (CC BY 4.0). Attribution: Hessisches Landesamt für Naturschutz, Umwelt und Geologie (HLNUG); Quellenvermerk for data: „Darstellung auf der Grundlage von Daten des Hessischen Landesamtes für Naturschutz, Umwelt und Geologie (HLNUG)“. Recorded from https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h225": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "data/outlines/hand/hand-W-DE.h225.geojson.gz",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h225.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h225",
+   "layer_url": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/6",
+   "name": "HLNUG — Naturparke (Hessen)",
+   "page": "https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz",
+   "stated_count": 13,
+   "terms": "Creative Commons Attribution 4.0 International (CC BY 4.0). Attribution: Hessisches Landesamt für Naturschutz, Umwelt und Geologie (HLNUG); Quellenvermerk for data: „Darstellung auf der Grundlage von Daten des Hessischen Landesamtes für Naturschutz, Umwelt und Geologie (HLNUG)“. Recorded from https://www.hlnug.de/themen/geografische-informationssysteme/geodienste/naturschutz (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h226": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h226.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h226.chunk02.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h226.chunk03.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h226",
+   "layer_url": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/14",
+   "name": "NLWKN — Fauna-Flora-Habitat-Gebiete (FFH) in Niedersachsen",
+   "page": "https://www.govdata.de/suche/daten/fauna-flora-habitat-gebiete-ffh-in-niedersachsen1c253",
+   "stated_count": 390,
+   "terms": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0). Quellenvermerk: Niedersächsischer Landesbetrieb für Wasserwirtschaft, Küsten- und Naturschutz (NLWKN). Recorded from https://numis.niedersachsen.de/portal/search-detail.psml?docuuid=EE85FE8F-BD05-4A6D-813B-6ABC4514B18B and https://www.govdata.de/suche/daten/fauna-flora-habitat-gebiete-ffh-in-niedersachsen1c253 (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h227": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h227.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h227.chunk02.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h227.chunk03.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h227.chunk04.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h227.chunk05.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h227.chunk06.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h227",
+   "layer_url": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/4",
+   "name": "NLWKN — Naturschutzgebiet (Niedersachsen)",
+   "page": "https://numis.niedersachsen.de/portal/search-detail.psml?docuuid=EE85FE8F-BD05-4A6D-813B-6ABC4514B18B",
+   "stated_count": 850,
+   "terms": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0). Quellenvermerk: Niedersächsischer Landesbetrieb für Wasserwirtschaft, Küsten- und Naturschutz (NLWKN). Recorded from https://numis.niedersachsen.de/portal/search-detail.psml?docuuid=EE85FE8F-BD05-4A6D-813B-6ABC4514B18B and https://www.govdata.de/suche/daten/fauna-flora-habitat-gebiete-ffh-in-niedersachsen1c253 (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h228": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h228.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h228.chunk02.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h228",
+   "layer_url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/2",
+   "name": "LfULG — Flächennaturdenkmäler (Sachsen)",
+   "page": "https://luis.sachsen.de/natur/schutzgebiete.html",
+   "stated_count": 2498,
+   "terms": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0). Quellenvermerk: Sächsisches Landesamt für Umwelt, Landwirtschaft und Geologie. Recorded from https://luis.sachsen.de/natur/schutzgebiete.html and https://gdk.gdi-de.org/geonetwork/srv/api/records/9490f0e1-331d-4dd7-81b4-398f07fb64ab (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h229": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "data/outlines/hand/hand-W-DE.h229.geojson.gz",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h229.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h229",
+   "layer_url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/3",
+   "name": "LfULG — Nationalpark (Sachsen)",
+   "page": "https://luis.sachsen.de/natur/schutzgebiete.html",
+   "stated_count": 2,
+   "terms": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0). Quellenvermerk: Sächsisches Landesamt für Umwelt, Landwirtschaft und Geologie. Recorded from https://luis.sachsen.de/natur/schutzgebiete.html and https://gdk.gdi-de.org/geonetwork/srv/api/records/9490f0e1-331d-4dd7-81b4-398f07fb64ab (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h230": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "data/outlines/hand/hand-W-DE.h230.geojson.gz",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h230.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h230",
+   "layer_url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/1",
+   "name": "LfULG — Naturpark (Sachsen)",
+   "page": "https://luis.sachsen.de/natur/schutzgebiete.html",
+   "stated_count": 3,
+   "terms": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0). Quellenvermerk: Sächsisches Landesamt für Umwelt, Landwirtschaft und Geologie. Recorded from https://luis.sachsen.de/natur/schutzgebiete.html and https://gdk.gdi-de.org/geonetwork/srv/api/records/9490f0e1-331d-4dd7-81b4-398f07fb64ab (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
+  },
+  "h231": {
+   "areas": [
+    "W-DE"
+   ],
+   "changed": null,
+   "check": "person",
+   "file": "",
+   "files": [
+    "data/outlines/hand/hand-W-DE.h231.chunk01.geojson.gz",
+    "data/outlines/hand/hand-W-DE.h231.chunk02.geojson.gz"
+   ],
+   "format": "geojson",
+   "fp": {},
+   "fp_seen": null,
+   "kind": "first-party",
+   "layer": "h231",
+   "layer_url": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/4",
+   "name": "LfULG — Naturschutzgebiete (Sachsen)",
+   "page": "https://luis.sachsen.de/natur/schutzgebiete.html",
+   "stated_count": 366,
+   "terms": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0). Quellenvermerk: Sächsisches Landesamt für Umwelt, Landwirtschaft und Geologie. Recorded from https://luis.sachsen.de/natur/schutzgebiete.html and https://gdk.gdi-de.org/geonetwork/srv/api/records/9490f0e1-331d-4dd7-81b4-398f07fb64ab (2026-11-13). The GIS REST host was not contacted from this box.",
+   "version": "",
+   "person": "Brandon (KPC owner)",
+   "route": "owner hand download",
+   "date": "2026-11-13"
   }
  }
 }

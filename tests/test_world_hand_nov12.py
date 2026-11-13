@@ -18,7 +18,7 @@ def check(msg, cond):
 
 
 HAND = ROOT / 'data/outlines/hand'
-# Usable Nov 12 inbox layers (the collapsed CZ EVL file is not shipped; h218 is reserved).
+# Usable Nov 12 inbox layers. Full-precision CZ EVL is shipped as h218 chunks (test_world_hand_nov13.py).
 INBOX = [
     ('CZ-Natura2000-layer0-PO.geojson', 'hand-W-CZ.h217.geojson.gz', 'W-CZ', 'h217', 42, 'NAZEV', 'Ptačí oblast (PO)'),
     ('DE-HB-Naturschutzgebiete-layer2.geojson', 'hand-W-DE.h214.geojson.gz', 'W-DE', 'h214', 20, 'Gebietsname', 'Naturschutzgebiete'),
@@ -29,8 +29,10 @@ GL = ('hand-W-GL.h212.geojson.gz', 'W-GL', 'h212', 63)
 
 check('usable Nov 12 inbox layers have a wired hand file in data/outlines/hand/',
       all((HAND / dest).is_file() for _, dest, *_ in INBOX))
-check('the collapsed CZ EVL file is not shipped (h218 reserved until full-precision chunks arrive)',
-      not (HAND / 'hand-W-CZ.h213.geojson.gz').exists() and not (HAND / 'hand-W-CZ.h218.geojson.gz').exists())
+check('the collapsed CZ EVL file is not shipped; full-precision EVL is chunked under h218 (no merged file in the repo)',
+      not (HAND / 'hand-W-CZ.h213.geojson.gz').exists()
+      and not (HAND / 'hand-W-CZ.h218.geojson.gz').exists()
+      and bool(list(HAND.glob('hand-W-CZ.h218.chunk*.geojson.gz'))))
 check('hand-W-GL.h212 is registered in the repo', (HAND / GL[0]).is_file())
 
 PROV = ('person', 'route', 'date', 'license', 'page')
@@ -170,9 +172,13 @@ check('h212 is W-GL (release hand-W-GL.h212), not W-CZ',
       (src.get('h212') or {}).get('areas') == ['W-GL'] and 'W-GL.h212' in lay)
 check('h213 is W-MT SPA (release hand-W-MT.h213), not W-CZ',
       (src.get('h213') or {}).get('areas') == ['W-MT'] and 'W-MT.h213' in lay)
-check('h218 is reserved for W-CZ EVL and has no filling file path',
-      (src.get('h218') or {}).get('areas') == ['W-CZ'] and not (src.get('h218') or {}).get('file')
-      and 'W-CZ.h218' in lay)
+check('h218 is W-CZ EVL, stated_count 1111, shipped as chunks (no single merged file in the repo)',
+      (src.get('h218') or {}).get('areas') == ['W-CZ']
+      and (src.get('h218') or {}).get('stated_count') == 1111
+      and not (src.get('h218') or {}).get('file')
+      and bool((src.get('h218') or {}).get('files'))
+      and 'W-CZ.h218' in lay
+      and (lay.get('W-CZ.h218') or {}).get('expected_count') == 1111)
 
 wf = (ROOT / '.github/workflows/kpc-world-cache.yml').read_text()
 check('world-cache merges data/outlines/hand/hand-W-$CC.*.geojson.gz after T0 via fill',

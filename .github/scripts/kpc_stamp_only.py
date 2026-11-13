@@ -13,7 +13,7 @@ Anything else (new file, deleted file, unreadable, a real change) is left alone.
 import json, os, re, subprocess, sys
 
 STAMP = {'updated', 'updated_at', 'generated', 'generated_at', 'last_checked', 'checked_at', 'built', 'made', 'last_run'}   # Nov 3: + built, made, last_run
-IDS = {'build'}   # Nov 3: a build id (US-<run id>) changes on every run: ignored whole (it moves with the key's real changes)
+IDS = set()   # X5: a build id is material (key-check / key index); not ignored as a stamp
 RUN = re.compile(r'actions/runs/\d+(/jobs?/\d+)?(/attempts/\d+)?')
 CLOCK = [(re.compile(r'(\d{4}-\d\d-\d\d)[T ]\d\d:\d\d(:\d\d(\.\d+)?)?(Z|[+-]\d\d:?\d\d| ?UTC| ?CST| ?CDT| ?CT)?'), r'\1'),
          (re.compile(r'\b\d{1,2}:\d\d(:\d\d)?( ?[AaPp]\.?[Mm]\.?)?( ?(UTC|CST|CDT|CT|Z))?\b'), 'HH:MM'),
@@ -77,6 +77,9 @@ def main():
 
 
 if __name__ == '__main__':
-    try: main()
-    except Exception as e: print(f'stamp filter: left everything alone ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
+    try:
+        main()
+    except Exception as e:  # noqa: BLE001
+        print(f'stamp filter: failed ({type(e).__name__}: {str(e)[:120]}): the save stops')
+        sys.exit(1)
     sys.exit(0)

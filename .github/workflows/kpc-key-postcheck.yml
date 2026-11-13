@@ -6,7 +6,7 @@ name: KPC key check (after a key build)
 # bad-pin flags, and CA-2218 / CA-2227 / SE-0797 must be pins (Brandon 7:33 PM CST Nov 3).
 # READ-ONLY: no web request (only this repo, a read-only copy of KPC-Data's answer sheet + world outlines, and git history).
 # No schedule and no workflow_run (owner rule, 2026-11-10): each key's own postcheck job dispatches it once, or by hand.
-# Never red: every step continues on error, the save is KPC_SAVE_RED=no.
+# The report-only steps may continue on error. The Save step must land (default KPC_SAVE_RED=yes); a failed save is red.
 # Default GITHUB_TOKEN only (contents: write, for the one status save per run). No secrets. Never posts or emails.
 # Not triggered by 'KPC Canada pins' (kpc-canada.yml): that writes POTA's pins (data/canada.json), not the Canada key.
 on:
@@ -127,9 +127,8 @@ jobs:
           python3 .github/scripts/kpc_pin_cover.py || echo "::warning title=Pin cover::stopped (exit $?); report only"
           python3 .github/scripts/kpc_also_in.py || echo "::warning title=Also in::stopped (exit $?); report only"
       - name: Save the report (one save per run)
-        continue-on-error: true
         run: |
           git config user.name kpc-bot; git config user.email bot@kpc.local
           [ -d data/status/key-check ] || { echo "::notice title=Key check::nothing to save"; exit 0; }
-          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED=no \
+          KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" \
             bash .github/scripts/kpc_save_overwrite.sh --copy 'Key check after the key build' - -- data/status/key-check

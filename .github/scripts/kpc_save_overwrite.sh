@@ -45,7 +45,7 @@ fi
 # PR2 (fewer saves, Nov 2): a save whose only changes are time stamps / run links is skipped (KPC_SAVE_STAMPS=keep = off).
 # The same code is .github/scripts/kpc_stamp_only.py; it is inline here because the KPC-Data bots fetch only this one file.
 kpc_stamp_filter() {
-python3 - <<'KPC_STAMP_PY' || true
+python3 - <<'KPC_STAMP_PY'
 """PR2 (fewer saves, Nov 2 2026): put back every STAGED file whose only change is a time stamp, so a quiet run commits nothing.
 Run inside the repo after 'git add' and before 'git diff --cached --quiet' / 'git commit'.
 A file counts as stamp-only when, compared with HEAD:
@@ -60,7 +60,7 @@ Anything else (new file, deleted file, unreadable, a real change) is left alone.
 import json, os, re, subprocess, sys
 
 STAMP = {'updated', 'updated_at', 'generated', 'generated_at', 'last_checked', 'checked_at', 'built', 'made', 'last_run'}   # Nov 3: + built, made, last_run
-IDS = {'build'}   # Nov 3: a build id (US-<run id>) changes on every run: ignored whole (it moves with the key's real changes)
+IDS = set()   # X5: a build id is material (key-check / key index); not ignored as a stamp
 RUN = re.compile(r'actions/runs/\d+(/jobs?/\d+)?(/attempts/\d+)?')
 CLOCK = [(re.compile(r'(\d{4}-\d\d-\d\d)[T ]\d\d:\d\d(:\d\d(\.\d+)?)?(Z|[+-]\d\d:?\d\d| ?UTC| ?CST| ?CDT| ?CT)?'), r'\1'),
          (re.compile(r'\b\d{1,2}:\d\d(:\d\d)?( ?[AaPp]\.?[Mm]\.?)?( ?(UTC|CST|CDT|CT|Z))?\b'), 'HH:MM'),
@@ -124,8 +124,11 @@ def main():
 
 
 if __name__ == '__main__':
-    try: main()
-    except Exception as e: print(f'stamp filter: left everything alone ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
+    try:
+        main()
+    except Exception as e:
+        print(f'stamp filter: failed ({type(e).__name__}: {str(e)[:120]}): the save stops')
+        sys.exit(1)
     sys.exit(0)
 KPC_STAMP_PY
 }
@@ -243,7 +246,7 @@ KPC_QUIET_PY
 add_paths() { for p in "$@"; do if [ -e "$p" ]; then git add -A -- "$p"; else case "$p" in *[*?[]*) git add -A -- "$p" 2>/dev/null ;; esac; fi; done; return 0; }
 for i in $(seq 1 "$tries"); do
   if [ "$mode" = rebase ]; then
-    add_paths "$@"; [ "$i" = 1 ] && kpc_stamp_filter
+    add_paths "$@"; if [ "$i" = 1 ]; then kpc_stamp_filter || { echo "::error title=Save::$msg was NOT saved: the stamp filter failed"; exit 1; }; fi
     # Nov 2 review: after a lost race the commit is already made (nothing staged), so 'nothing staged' alone is not 'nothing changed'
     if git diff --cached --quiet && [ -z "$(git rev-list origin/main..HEAD 2>/dev/null)" ]; then echo "::notice title=Save::$msg: nothing changed"; exit 0; fi
     git diff --cached --quiet || git commit -qm "$msg" >/dev/null 2>&1 || echo "::warning title=Save::$msg: git commit said no (try $i)"
@@ -260,7 +263,7 @@ for i in $(seq 1 "$tries"); do
         if [ "${KPC_SAVE_REDO_STOP:-no}" = yes ]; then git reset -q --hard origin/main; echo "::error title=Save::$msg was NOT saved: the redo step failed and this save stops on that"; exit 1; fi
       fi
     fi
-    add_paths "$@"; kpc_stamp_filter
+    add_paths "$@"; kpc_stamp_filter || { echo "::error title=Save::$msg was NOT saved: the stamp filter failed"; exit 1; }
     if git diff --cached --quiet; then echo "::notice title=Save::$msg: nothing to change on top of main"; exit 0; fi
     # Nov 10 (quiet runs): bookkeeping-only and this bot saved a few hours ago -> not saved this time (KPC_QUIET_HOURS=0 = off)
     KPC_QUIET_MSG="$msg" kpc_quiet_gate; [ $? -eq 3 ] && { git reset -q --hard origin/main; exit 0; }

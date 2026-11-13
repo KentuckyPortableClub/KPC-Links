@@ -202,6 +202,7 @@ def merge_geojson_chunks(paths):
     meta = dict(meta)
     meta['chunks'] = [p.name for p in paths]
     meta['count'] = len(feats)
+    meta['count_expected'] = len(feats)
     return meta, feats
 
 
@@ -236,6 +237,8 @@ def write_merged_chunks(paths, dest, meta_extra=None):
     meta, feats = merge_geojson_chunks(paths)
     if meta_extra:
         meta.update(meta_extra)
+    meta['count'] = len(feats)
+    meta['count_expected'] = len(feats)
     dest = pathlib.Path(dest)
     dest.parent.mkdir(parents=True, exist_ok=True)
     M.write_layer_file(dest, meta, feats) if hasattr(M, 'write_layer_file') else _write_hand(dest, meta, feats)
