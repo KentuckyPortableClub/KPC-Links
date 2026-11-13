@@ -1275,10 +1275,10 @@
  },
  "World": {
   "totals": {
-   "matched": 43614,
-   "far": 9627,
+   "matched": 43607,
+   "far": 9624,
    "noshape": 0,
-   "edge": 9301,
+   "edge": 9298,
    "out": 326,
    "swap": 1
   },
@@ -1369,15 +1369,15 @@
    },
    {
     "st": "BS",
-    "matched": 23,
-    "far": 7,
+    "matched": 24,
+    "far": 8,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 7
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 8
    },
    {
     "st": "BT",
@@ -1405,15 +1405,15 @@
    },
    {
     "st": "BZ",
-    "matched": 53,
-    "far": 15,
+    "matched": 55,
+    "far": 12,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 10
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 7
    },
    {
     "st": "CC",
@@ -1633,15 +1633,15 @@
    },
    {
     "st": "FR",
-    "matched": 12661,
-    "far": 3406,
+    "matched": 12651,
+    "far": 3405,
     "noshape": 0,
     "out": 149,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": 60,
-    "edge": 3257
+    "edge": 3256
    },
    {
     "st": "GA",
@@ -2474,7 +2474,7 @@
     "BZ",
     "BZ-0034",
     "Sibun Forest Reserve",
-    "Sibun"
+    ""
    ],
    [
     "BZ",
