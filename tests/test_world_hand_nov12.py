@@ -22,10 +22,9 @@ HAND = ROOT / 'data/outlines/hand'
 INBOX = [
     ('CZ-Natura2000-layer0-PO.geojson', 'hand-W-CZ.h217.geojson.gz', 'W-CZ', 'h217', 42, 'NAZEV', 'Ptačí oblast (PO)'),
     ('DE-HB-Naturschutzgebiete-layer2.geojson', 'hand-W-DE.h214.geojson.gz', 'W-DE', 'h214', 20, 'Gebietsname', 'Naturschutzgebiete'),
-    ('MT-N2K-SAC-layer36.geojson', 'hand-W-MT.h215.geojson.gz', 'W-MT', 'h215', 30, 'site_name', 'Malta: Ambjent Malta (government agency; Natura 2000 data from ERA)'),
-    ('MT-N2K-SPA-layer37.geojson', 'hand-W-MT.h213.geojson.gz', 'W-MT', 'h213', 14, 'site_name', 'N2K Special Protected Areas'),
 ]
-GL = ('hand-W-GL.h212.geojson.gz', 'W-GL', 'h212', 63)
+# Brandon, Nov 13 2026 7:45 AM CT: GL h212 and MT h213/h215 have no stated licence, so they stay off the public repo (internal only).
+OFF = ('hand-W-GL.h212.geojson.gz', 'hand-W-MT.h213.geojson.gz', 'hand-W-MT.h215.geojson.gz')
 
 check('usable Nov 12 inbox layers have a wired hand file in data/outlines/hand/',
       all((HAND / dest).is_file() for _, dest, *_ in INBOX))
@@ -33,10 +32,14 @@ check('the collapsed CZ EVL file is not shipped; full-precision EVL is chunked u
       not (HAND / 'hand-W-CZ.h213.geojson.gz').exists()
       and not (HAND / 'hand-W-CZ.h218.geojson.gz').exists()
       and bool(list(HAND.glob('hand-W-CZ.h218.chunk*.geojson.gz'))))
-check('hand-W-GL.h212 is registered in the repo', (HAND / GL[0]).is_file())
+check('no-licence GL/MT hand files are not in the public repo', not any((HAND / f).exists() for f in OFF))
+_lay = json.loads((ROOT / 'data/outlines/layers.json').read_text(encoding='utf-8'))['layers']
+_src = json.loads((ROOT / 'data/outlines/download-sources.json').read_text(encoding='utf-8'))['sources']
+check('GL/MT no-licence layers are not registered (layers.json, download-sources.json)',
+      not any(k in _lay for k in ('W-GL.h212', 'W-MT.h213', 'W-MT.h215')) and not any(k in _src for k in ('h212', 'h213', 'h215')))
 
 PROV = ('person', 'route', 'date', 'license', 'page')
-for src, dest, area, layer, n, nf, label in INBOX + [(None, GL[0], GL[1], GL[2], GL[3], None, None)]:
+for src, dest, area, layer, n, nf, label in INBOX:
     p = HAND / dest
     check(f'{dest} is under 1 MB ({p.stat().st_size} bytes)', p.stat().st_size < 1024 * 1024)
     check(f'{dest} name parses to {area}|{layer}', M.parse_hand_name(p.name) == (area, layer))
@@ -62,59 +65,25 @@ for src, dest, area, layer, n, nf, label in INBOX + [(None, GL[0], GL[1], GL[2],
           and 'gis-hub.bremen.de' not in str(meta.get('page') or '')
           and 'arcgis.com' not in str(meta.get('page') or ''))
 
-# Quality regrade: "not stated" is not a licence unless a recorded owner acceptance file exists (do not invent one)
-with tempfile.TemporaryDirectory() as _td_ns:
-    _td_ns = pathlib.Path(_td_ns)
-    for dest, area, layer in (('hand-W-GL.h212.geojson.gz', 'W-GL', 'h212'),
-                              ('hand-W-MT.h213.geojson.gz', 'W-MT', 'h213'),
-                              ('hand-W-MT.h215.geojson.gz', 'W-MT', 'h215')):
-        meta, _ = M.read_layer_file(HAND / dest)
-        why = M.share_block(meta, HAND)
-        check(f'{dest} is refused by share_block (licence is not stated, no owner acceptance)',
-              bool(why) and 'not stated' in why.lower())
-        M.save_saved(_td_ns / f'{area}.json.gz', {'cc': area.replace('W-', ''), 'recs': []})
-        applied, what = WH.apply_world_hand_file(HAND / dest, _td_ns)
-        check(f'{dest} is not merged', (not applied) and 'not stated' in what.lower())
+# Quality regrade: "not stated" is not a licence unless a recorded owner acceptance file exists
+_ns = M.share_block({'area': 'W-MT', 'layer': 'h213', 'license': 'not stated (no licence text on the source page)'}, HAND)
+check('a not-stated licence is refused by share_block', bool(_ns) and 'not stated' in _ns.lower())
 
 _, po = WH.recs_from_hand(HAND / 'hand-W-CZ.h217.geojson.gz')
 check('CZ PO: 42 named records with usable rings', len(po) == 42 and all(r.get('n') and r.get('_r') for r in po))
 _, de = WH.recs_from_hand(HAND / 'hand-W-DE.h214.geojson.gz')
 check('DE Bremen: 20 named records with usable rings', len(de) == 20 and all(r.get('n') and r.get('_r') for r in de))
-_, sac = WH.recs_from_hand(HAND / 'hand-W-MT.h215.geojson.gz')
-_, spa = WH.recs_from_hand(HAND / 'hand-W-MT.h213.geojson.gz')
-sac_c, spa_c = {r.get('code') for r in sac}, {r.get('code') for r in spa}
-check('MT: 30 + 14 recs, 7 shared site_codes, union 37 (the saved copy is not pre-deduped)',
-      len(sac) == 30 and len(spa) == 14 and len(sac_c & spa_c) == 7 and len(sac_c | spa_c) == 37
-      and all(r.get('n') and r.get('_r') and r.get('code') for r in sac + spa))
-
 # merge: CZ +42 only (no EVL), DE +20, MT 44; keep-bigger
 with tempfile.TemporaryDirectory() as td:
     td = pathlib.Path(td)
     def empty(cc):
         M.save_saved(td / f'W-{cc}.json.gz', {'cc': cc, 'saved': '2026-11-10', 'detail': 0.002, 'thin': 250, 'recs': []})
-    empty('CZ'); empty('DE'); empty('MT')
+    empty('CZ'); empty('DE')
     ok1, what1 = WH.apply_world_hand_file(HAND / 'hand-W-CZ.h217.geojson.gz', td)
     cz = M.load_saved(td / 'W-CZ.json.gz')['recs']
     check(f'fill-merge W-CZ: 42 usable PO records, no EVL ({what1})', ok1 and len(cz) == 42)
     okd, _ = WH.apply_world_hand_file(HAND / 'hand-W-DE.h214.geojson.gz', td)
     check('fill-merge W-DE: 20 Bremen records', okd and len(M.load_saved(td / 'W-DE.json.gz')['recs']) == 20)
-    okm1, whatm1 = WH.apply_world_hand_file(HAND / 'hand-W-MT.h215.geojson.gz', td)
-    okm2, whatm2 = WH.apply_world_hand_file(HAND / 'hand-W-MT.h213.geojson.gz', td)
-    check('fill-merge W-MT h213/h215 is refused: licence is not stated and no owner acceptance file',
-          (not okm1) and (not okm2)
-          and 'not stated' in whatm1.lower() and 'not stated' in whatm2.lower()
-          and len(M.load_saved(td / 'W-MT.json.gz')['recs']) == 0)
-    # counting / keep-bigger still work on records read from the file; the file itself is not packed or merged
-    mt = list(sac) + list(spa)
-    M.save_saved(td / 'W-MT.json.gz', {'cc': 'MT', 'saved': '2026-11-10', 'detail': 0.002, 'thin': 250, 'recs': mt})
-    one = WH.recs_from_hand(HAND / 'hand-W-MT.h213.geojson.gz')[1][:1]
-    blob, what = WH.merge_world_saved_layer(M.load_saved(td / 'W-MT.json.gz'), one)
-    check('keep-bigger: a smaller SPA re-read is refused, 44 records stay',
-          'kept the saved' in what and len(blob['recs']) == 44 and blob is not False)
-    # current-layer count honours sheet-countries labels (Quality #179 M5)
-    got = WH.world_current_rec_count('W-MT', {'recs': mt}, ROOT)
-    check(f'W-MT current-layer count is 44 (got {got}); sheet-countries label is honoured',
-          got == 44 and 'Malta: Ambjent Malta (government agency; Natura 2000 data from ERA)' in WH.world_source_labels('MT', ROOT))
 
 # no-geometry records are not counted
 check('a record with no _bb and no _r is not counted',
@@ -186,10 +155,8 @@ for _, dest, area, layer, n, nf, label in INBOX:
     check(f'layers.json has {key} expected_count={n}', (lay.get(key) or {}).get('expected_count') == n)
     check(f'download-sources.json has {layer} for {area}',
           (src.get(layer) or {}).get('stated_count') == n and area in ((src.get(layer) or {}).get('areas') or []))
-check('h212 is W-GL (release hand-W-GL.h212), not W-CZ',
-      (src.get('h212') or {}).get('areas') == ['W-GL'] and 'W-GL.h212' in lay)
-check('h213 is W-MT SPA (release hand-W-MT.h213), not W-CZ',
-      (src.get('h213') or {}).get('areas') == ['W-MT'] and 'W-MT.h213' in lay)
+check('h212 / h213 are not reused for W-CZ (GL/MT ids stay retired off the public repo)',
+      all('W-CZ' not in ((src.get(k) or {}).get('areas') or []) for k in ('h212', 'h213')) and 'W-CZ.h212' not in lay and 'W-CZ.h213' not in lay)
 check('h218 is W-CZ EVL, stated_count 1111, shipped as chunks (no single merged file in the repo)',
       (src.get('h218') or {}).get('areas') == ['W-CZ']
       and (src.get('h218') or {}).get('stated_count') == 1111

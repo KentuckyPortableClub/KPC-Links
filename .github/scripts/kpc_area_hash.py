@@ -1315,7 +1315,7 @@ def decide(kind, wanted, hashes, parts, rows, cur_code, mode='shadow', force_ful
         elif moved and new is not None:
             # Quality regrade: a declared scope limits code-only adds (CA-QC-only hold must not plan CA 15/15 or world 84/84)
             code_only = only_shared_code_moved(op or {}, np, composition(kind))
-            scope = declared_scope_states(kind, rows, repo, prev_rules) if code_only else None
+            scope = declared_scope_states(kind, rows, repo, row.get('rules') or prev_rules) if code_only else None   # this area's own last rules hash first (the index top stamp can be stale, e.g. world 487a51327b86)
             if code_only and scope is not None and scope != 'all' and not area_in_declared_scope(kind, a, scope):
                 action = 'not planned (shared code only; outside declared scope)'
             elif mode in ('add', 'reuse'): action = 'rebuild (added: inputs moved since its last build)'; added.append(a)

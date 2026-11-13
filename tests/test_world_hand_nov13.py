@@ -225,9 +225,8 @@ for layer, area, n, nf, label in NEW:
     check(f'{layer} does not collide with h212-h217 (GL/MT/Bremen/PO)',
           layer not in ('h212', 'h213', 'h214', 'h215', 'h217'))
 check('h216 stays unused (no collision with a retired MT id)', 'h216' not in src and 'h216' not in ids)
-check('h212 remains W-GL, h213 remains W-MT, h214 remains W-DE Bremen, h217 remains W-CZ PO',
-      (src.get('h212') or {}).get('areas') == ['W-GL']
-      and (src.get('h213') or {}).get('areas') == ['W-MT']
+check('h212/h213/h215 (GL/MT, no licence) are not in the catalogue; h214 remains W-DE Bremen, h217 remains W-CZ PO',
+      not any(k in src for k in ('h212', 'h213', 'h215'))
       and (src.get('h214') or {}).get('areas') == ['W-DE']
       and (src.get('h217') or {}).get('areas') == ['W-CZ'])
 

@@ -6665,34 +6665,6 @@
    "route": "owner hand download",
    "date": "2026-11-12"
   },
-  "W-MT.h215": {
-   "agency": "Malta: Ambjent Malta (government agency; Natura 2000 data from ERA)",
-   "areas": [
-    "W-MT"
-   ],
-   "expected_count": 30,
-   "g": "official",
-   "id_fields": [
-    "site_code"
-   ],
-   "last_edit": null,
-   "license": "not stated. Official ERA / Malta SDI pages (https://era.org.mt/topic/natura-2000-datasheets-maps/ and https://msdi.data.gov.mt) do not declare a licence for this dataset. Accepted by Brandon (KPC owner) on 2026-11-12 for this person-saved copy. The Ambjent Malta service URL is on services-eu1.arcgis.com; that host was not contacted from this box.",
-   "matched": 0,
-   "name_fields": [
-    "site_name"
-   ],
-   "note": "KPC owner, 2026-11-12: person-saved copy of Ambjent Malta FeatureServer/36 (30 N2K SAC/SCI). Official pages ERA / Malta SDI (licence not stated; accepted by Brandon (KPC owner)). services-eu1.arcgis.com was not contacted from this box.",
-   "queued": 0,
-   "read_date": "2026-11-12",
-   "read_how": "geojson",
-   "record_id_field": "objectid",
-   "source_count": 30,
-   "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/36",
-   "page": "https://era.org.mt/topic/natura-2000-datasheets-maps/",
-   "person": "Brandon (KPC owner)",
-   "route": "owner hand download",
-   "date": "2026-11-12"
-  },
   "W-PF.h210": {
    "agency": "French Polynesia: Gouvernement de la Polynésie française, Te Fenua open data (DSI); PGEM",
    "areas": [
@@ -9904,60 +9876,6 @@
     "NAME"
    ],
    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0"
-  },
-  "W-GL.h212": {
-   "agency": "Protected or Important Areas of Greenland Display Layer",
-   "areas": [
-    "W-GL"
-   ],
-   "expected_count": 63,
-   "g": "official",
-   "id_fields": [],
-   "last_edit": null,
-   "license": "not stated. No open-data licence for this Greenland display layer was found on an allowed host. Accepted by Brandon (KPC owner) for this person-saved copy (hand download, 2026-11-11; registered 2026-11-12). The service URL is on services-eu1.arcgis.com; that host was not contacted from this box.",
-   "matched": 0,
-   "name_fields": [
-    "name"
-   ],
-   "note": "KPC owner, 2026-11-12: registered the existing boundary-cache release file hand-W-GL.h212 (63; person-saved 2026-11-11). Licence not stated on an allowed host; accepted by Brandon (KPC owner). services-eu1.arcgis.com was not contacted from this box.",
-   "queued": 0,
-   "read_date": "2026-11-12",
-   "read_how": "geojson",
-   "record_id_field": "fid0",
-   "source_url": "https://services-eu1.arcgis.com/0uK40YtWoUkQMlYW/arcgis/rest/services/Protected_Areas_of_Greenland_DisplayLayer/FeatureServer/0",
-   "page": "https://en.nunagis.gl",
-   "person": "Brandon (KPC owner)",
-   "route": "owner hand download",
-   "date": "2026-11-11"
-  },
-  "W-MT.h213": {
-   "agency": "N2K Special Protected Areas",
-   "areas": [
-    "W-MT"
-   ],
-   "expected_count": 14,
-   "g": "official",
-   "id_fields": [
-    "site_code"
-   ],
-   "last_edit": null,
-   "matched": 0,
-   "name_fields": [
-    "site_name"
-   ],
-   "queued": 0,
-   "read_date": "2026-11-12",
-   "read_how": "geojson",
-   "record_id_field": "objectid",
-   "source_count": 14,
-   "url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/37",
-   "license": "not stated. Official ERA / Malta SDI pages (https://era.org.mt/topic/natura-2000-datasheets-maps/ and https://msdi.data.gov.mt) do not declare a licence for this dataset. Accepted by Brandon (KPC owner) on 2026-11-12 for this person-saved copy. The Ambjent Malta service URL is on services-eu1.arcgis.com; that host was not contacted from this box.",
-   "note": "KPC owner, 2026-11-12: person-saved copy of Ambjent Malta FeatureServer/37 (14 N2K SPA). Official pages ERA / Malta SDI (licence not stated; accepted by Brandon (KPC owner)). Registered as h213 to match the existing boundary-cache asset. services-eu1.arcgis.com was not contacted from this box.",
-   "source_url": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/37",
-   "page": "https://era.org.mt/topic/natura-2000-datasheets-maps/",
-   "person": "Brandon (KPC owner)",
-   "route": "owner hand download",
-   "date": "2026-11-12"
   },
   "W-CZ.h217": {
    "agency": "Ptačí oblast (PO)",
