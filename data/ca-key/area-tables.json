@@ -1,0 +1,10 @@
+{
+ "about": "Per-area Canada tables counted by kpc_area_hash (Quality regrade, 2026-11-13). PIN_FILL_HELD is kpc_pin_fill.HELD sliced by province so only CA-QC moves for the Nov 13 hold. Header texts do not count.",
+ "PIN_FILL_HELD": {
+  "QC": {
+   "CA-2241": "owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): low-confidence Ville de Montréal city-polygon fill (Parc Jean-Drapeau part); held like PF-0033/34",
+   "CA-1974": "owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): medium-confidence Ville de Montréal city-polygon fill; the 'Site patrimonial de Montréal' site note that rested on it is held too",
+   "CA-1997": "owner hold Nov 13 (Quality, delegated by Brandon 4:43 AM CT): medium-confidence Ville de Montréal city-polygon fill; held like PF-0033/34"
+  }
+ }
+}

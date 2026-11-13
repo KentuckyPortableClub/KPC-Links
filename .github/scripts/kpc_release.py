@@ -272,15 +272,21 @@ def build_source_refuse_why(repo, area, sha, units=None):
     hit = sorted(builds & BLOCKED_BUILDS)
     if hit:
         return f'{hit[0]} is never released'
-    if kind != 'US':
+    if kind not in ('US', 'CA', 'world'):
         return ''
     want = {u.upper() for u in units} if units else None
     if want:
         check_units = sorted(want)
     else:
-        names = _ls(repo, sha, 'data/outlines') or []
-        check_units = sorted({n[:-len('.geojson.gz')] for n in names
-                              if re.fullmatch(r'US-[A-Z]{2}\.geojson\.gz', n)})
+        # the units of this kind at this sha (the index), not every outline file that happens to be in the tree
+        idx = index_at(repo, sha, kind)
+        rows = (idx or {}).get({'US': 'states', 'CA': 'provinces', 'world': 'countries'}[kind]) or {}
+        if kind == 'US':
+            check_units = sorted(u if str(u).startswith('US-') else f'US-{u}' for u in rows)
+        elif kind == 'CA':
+            check_units = sorted(u if str(u).startswith('CA-') else f'CA-{u}' for u in rows)
+        else:
+            check_units = sorted(str(u) for u in rows)
     for u in check_units:
         why = outline_refuse_why(repo, kind, u, sha)
         if why:
@@ -379,6 +385,53 @@ def unit_build(idx, kind, unit):
     return str(idx.get('build') or '')
 
 
+
+def key_dir_and_name(kind, unit):
+    """(folder under data/, key file name) for the area, or ('','') if the kind has no key file."""
+    if kind == 'US':
+        u = unit if str(unit).startswith('US-') else f'US-{unit}'
+        return 'data/us-key', f'{u}.json'
+    if kind == 'CA':
+        u = unit if str(unit).startswith('CA-') else f'CA-{unit}'
+        return 'data/ca-key', f'{u}.json'
+    if kind == 'world':
+        u = str(unit).replace('W-', '')
+        return 'data/world-key', f'{u}.json'
+    return '', ''
+
+
+def key_dir_at(repo, sha, kind, dest):
+    """Write this kind's key files at sha into dest. None when the folder is missing."""
+    folder, _ = key_dir_and_name(kind, 'x')
+    if not folder: return None
+    names = _ls(repo, sha, folder)
+    if names is None: return None
+    dest = pathlib.Path(dest); dest.mkdir(parents=True, exist_ok=True)
+    rx = {'US': r'US-[A-Z]{2}\.json', 'CA': r'CA-[A-Z]{2}\.json', 'world': r'[A-Z]{2}\.json'}[kind]
+    import re as _re
+    for n in names:
+        if _re.fullmatch(rx, n):
+            (dest / n).write_bytes(git(repo, 'show', f'{sha}:{folder}/{n}'))
+    return dest
+
+
+def area_outline_recs_at(repo, sha, kind, unit):
+    """Outline records for CA / world at sha, or None when there is no area outline file (canada-bounds are per-park, not checked here)."""
+    import kpc_master as M
+    if kind == 'world':
+        name = unit if str(unit).startswith('W-') else f'W-{unit}'
+    elif kind == 'CA':
+        name = unit if str(unit).startswith('CA-') else f'CA-{unit}'
+    else:
+        return None
+    def read(n):
+        r = subprocess.run(['git', 'show', f'{sha}:data/outlines/{n}'], cwd=repo, capture_output=True)
+        return r.stdout if r.returncode == 0 else None
+    if read(f'{name}.geojson.gz') is None:
+        return None
+    return M.recs_of_doc(M.load_doc_parts(f'{name}.geojson.gz', read))
+
+
 def us_key_dir_at(repo, sha, dest):
     """Write the US key files at sha into dest (for outline-key agreement). Returns dest."""
     dest = pathlib.Path(dest); dest.mkdir(parents=True, exist_ok=True)
@@ -402,13 +455,27 @@ def outline_refuse_why(repo, kind, unit, sha):
     """Why this area's outlines must not be released, or '' when they can be trimmed and shipped.
     PIN and not-in-key features are trimmed at release; an outline that still holds a record not in the key's m refuses the area
     (live data stays). Per-area: a dirty neighbour does not block a clean state."""
-    if kind != 'US': return ''
     import kpc_master as M
+    # KY (the map pack) and other non-key kinds have no per-area key file: they are not refused here.
+    key_dir, key_name = key_dir_and_name(kind, unit)
+    if not key_dir:
+        return ''
     with tempfile.TemporaryDirectory() as t:
-        kd = us_key_dir_at(repo, sha, pathlib.Path(t) / 'us-key')
-        if not (kd / f'{unit}.json').is_file(): return ''
-        recs = us_outline_recs_at(repo, sha, unit)
-        recs, _, _ = M.key_fix(unit, recs, kd)          # PIN / not-in-key would be trimmed; judge what would remain
+        kd = key_dir_at(repo, sha, kind, pathlib.Path(t) / 'key')
+        if kd is None or not (kd / key_name).is_file():
+            return f'{unit}: no key file {key_name} at {sha[:12]}: refused'
+        if kind == 'US':
+            recs = us_outline_recs_at(repo, sha, unit)
+            recs, _, _ = M.key_fix(unit, recs, kd)
+            held = M.held_record_refs(unit, recs, kd)
+            if not held: return ''
+            bits = [f"{r} holds {', '.join(ids)}" for r, ids in sorted(held.items())]
+            return 'outline holds record(s) the key did not join: ' + '; '.join(bits)
+        # CA / world: missing key already refused; held-record check when an area outline exists
+        recs = area_outline_recs_at(repo, sha, kind, unit)
+        if recs is None:
+            return ''
+        recs, _, _ = M.key_fix(unit, recs, kd)
         held = M.held_record_refs(unit, recs, kd)
         if not held: return ''
         bits = [f"{r} holds {', '.join(ids)}" for r, ids in sorted(held.items())]
@@ -560,8 +627,13 @@ def grade_allows(grade, unit, sha, build):
     if build in BLOCKED_BUILDS or (grade.get('build') in BLOCKED_BUILDS):
         return False, f'{next(b for b in (build, grade.get("build")) if b in BLOCKED_BUILDS)} is never released'
     gsha = str(grade.get('sha') or grade.get('head_sha') or '')
-    if gsha and len(gsha) >= 12 and sha and not sha.startswith(gsha) and not gsha.startswith(sha):
+    if not gsha:
+        return False, 'the grade has no sha: refused'
+    if sha and not sha.startswith(gsha) and not gsha.startswith(sha):
         return False, f'the grade is for another commit ({gsha[:12]})'
+    gbuild = str(grade.get('build') or '')
+    if gbuild and build and gbuild != build:
+        return False, f'the grade is for build {gbuild}, not {build}'
     per = (grade.get('areas') or {}).get(unit) or (grade.get('per_area') or {}).get(unit)
     if isinstance(per, dict):
         ready = str(per.get('RELEASE-READY') or per.get('release_ready') or '').strip().upper()
@@ -605,7 +677,9 @@ def key_check_why(repo, kind, unit, sha, build):
     if got != build:
         return f'key-check is for {got or "an empty build"}, not {build} (older or other check is refused)'
     gate = str((doc or {}).get('gate') or (doc or {}).get('GATE') or '').strip().upper()
-    if gate and gate not in ('PASS', 'OK', 'YES', 'ALL CLEAR'):
+    if not gate:
+        return f'key-check has no gate field for {build}: refused'
+    if gate not in ('PASS', 'OK', 'YES', 'ALL CLEAR'):
         return f'key-check gate is {gate}, not PASS, for {build}'
     return ''
 
@@ -616,11 +690,11 @@ def expected_hold_why(repo, kind, unit, sha):
     if unit in HELD_UNTIL_GRADED:
         return f'{unit} is not released until a graded world build'
     raw = _git_show(repo, sha, EXPECTED_HOLDS_AT)
-    if raw is None: return ''
+    if raw is None: return f'expected-holds file is missing at {sha[:12]}: refused'
     try:
         doc = json.loads(raw.decode('utf-8'))
     except (ValueError, UnicodeDecodeError):
-        return ''
+        return 'expected-holds file is unreadable: refused'
     holds = (doc or {}).get('holds') or {}
     if unit in holds or unit.replace('W-', '') in holds:
         return f'{unit} is an expected hold: live data stays'
@@ -657,10 +731,10 @@ def stamp_live(idx, kind, units, sha, run, t, repo):
     live = idx.get('live')
     if not isinstance(live, dict): live = {}
     idx_src = index_at(repo, sha, kind)
-    rules = str((idx_src or {}).get('rules') or '') if isinstance(idx_src, dict) else ''
     for u in units:
+        row = unit_row(idx_src, kind, u) or {}
         live[u] = {'kind': kind, 'sha': sha, 'build': unit_build(idx_src, kind, u),
-                   'rules': rules, 'time': t, 'run': str(run or '')}
+                   'rules': str(row.get('rules') or ''), 'time': t, 'run': str(run or '')}
     idx['live'] = live
     return idx
 

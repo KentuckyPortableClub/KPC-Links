@@ -41,7 +41,7 @@ ARCGIS_SERVICES_HOST_RE = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com
 SAVED_ONLY_HOSTS = {'services.arcgis.com', 'services1.arcgis.com', 'apps.fs.usda.gov'} | kpc_net_guard.extra_hosts()
 HUB_RE = re.compile(r'(^|\.)(hub\.arcgis\.com|opendata\.arcgis\.com)$')   # hub portals: 60 s between requests
 HUB_DELAY, HOST_DELAY = 60.0, 2.0
-WDPA_RE = re.compile(r'wdpa|protected\s*-?planet|protectedplanet|sprep', re.I)
+WDPA_RE = re.compile(r'wdpa|protected\s*-?planet|protectedplanet|sprep|pacificdata', re.I)
 
 
 class MasterError(Exception): pass
@@ -1372,6 +1372,29 @@ def hand_file_problem(path, area, layer):
     return ''
 
 
+
+def owner_licence_accepted(area, layer, root):
+    """True only when data/outlines/hand/owner-licence-acceptance.json records an owner acceptance for this area+layer.
+    The file is not created here (do not invent an acceptance)."""
+    p = pathlib.Path(root) / 'hand' / 'owner-licence-acceptance.json'
+    try:
+        doc = json.loads(p.read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        return False
+    rows = doc.get('accepted') if isinstance(doc, dict) else doc
+    if not isinstance(rows, list):
+        return False
+    want = (str(area or ''), str(layer or ''))
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        if (str(r.get('area') or ''), str(r.get('layer') or '')) != want:
+            continue
+        if str(r.get('by') or r.get('accepted_by') or '').strip() and str(r.get('words') or r.get('text') or r.get('acceptance') or '').strip():
+            return True
+    return False
+
+
 def share_block(row, root=None):
     """'' when a layer's checked file may be packed / uploaded / merged; else why not. Refused: anything that looks like Protected Planet /
     WDPA or SPREP, a layer / download source marked `redistribute: "no"`, or a row with no licence or terms in data/outlines/layers.json or download-sources.json (optional
@@ -1413,6 +1436,8 @@ def share_block(row, root=None):
             if lic: break
     if not lic:
         return f"{area}|{lay}: no licence or terms recorded: not packed, uploaded or merged"
+    if re.match(r'not\s+stated\b', lic, re.I) and not owner_licence_accepted(area, lay, root):
+        return f"{area}|{lay}: licence is 'not stated' and no recorded owner acceptance file: not packed, uploaded or merged"
     return ''
 
 

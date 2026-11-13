@@ -34,6 +34,12 @@ check('a first override (undeclared new part) IS a real input change',
       AH.real_inputs_moved(op, dict(AH.short(np_fmt), **{'data:data/overrides/world/AE-0001.json': 'new000000000'}), 'ah2'))
 check('a declared trails composition-migration first appearance is not a real input change',
       not AH.real_inputs_moved(op, dict(AH.short(np_fmt), **{'data:data/trails/*': 'trail00000000'}), 'ah2'))
+# Quality regrade: when both sides have the trails / access-leads part, a changed value is moved
+both = dict(AH.short(np_fmt), **{'data:data/trails/*': 'trail00000000'})
+check('a changed trails/access-leads value (part present on both sides) is a real input change',
+      AH.real_inputs_moved(both, dict(both, **{'data:data/trails/*': 'trail11111111'}), 'ah2'))
+check('the same trails value on both sides is not a real input change',
+      not AH.real_inputs_moved(both, dict(both), 'ah2'))
 op_ver = dict(op, **{'rules-version': 'aaaa00000000'})
 np_ver = dict(AH.short(np_fmt), **{'rules-version': 'bbbb00000000'})
 check('a key-rules-version bump IS a real input change', AH.real_inputs_moved(op_ver, np_ver, 'ah2'))
@@ -135,8 +141,8 @@ check('US and CA default AREA_MODE is reuse', "vars.KPC_AREA_HASH || 'reuse'" in
 check("US plan prints full=1 only for the monthly run or owner full_rebuild", "print('full=' + ('1' if _monthly else '0'))" in us)
 check('CA stamp does not set KPC_FULL_BUILD=1 on every green run', 'Canada always builds the whole key: it is FULL unless' not in ca)
 check('CA stamp exports KPC_PLANNED_AREAS (the built provinces) before stamp ca-key',
-      'export KPC_PLANNED_AREAS=' in ca and 'stamp ca-key' in ca
-      and ca.index('export KPC_PLANNED_AREAS=') < ca.index('stamp ca-key')
+      'KPC_PLANNED_AREAS=' in ca and 'export KPC_PLANNED_AREAS' in ca and 'stamp ca-key' in ca
+      and ca.index('KPC_PLANNED_AREAS=') < ca.index('stamp ca-key')
       and 'A green run still writes per-province rules' not in ca)
 check('world tonight mentions verify, not a forced full rebuild, when RULES_VERIFY=1', 'RULES_VERIFY' in wo and 'not a full rebuild' in wo)
 check('US, CA and world plan jobs honour REBUILD_LEVEL',

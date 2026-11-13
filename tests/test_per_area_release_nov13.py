@@ -40,6 +40,10 @@ def write_outline(d, name):
     p = d / 'data/outlines' / name; p.parent.mkdir(parents=True, exist_ok=True)
     p.write_bytes(R.gz(json.dumps({'type': 'FeatureCollection', 'features': []}).encode()))
 
+def write_holds(d, holds=None):
+    """Quality regrade: a missing expected-holds file refuses every world area. Fixtures must ship the file."""
+    write_key(d, 'data/outlines/world-expected-holds.approved.json', {'holds': holds or {}})
+
 # 1. parse_areas and the blocked-build constant
 check('parse_areas reads mixed kinds (DE FR US-KY)', R.parse_areas('DE FR US-KY') == [('world', 'DE'), ('world', 'FR'), ('US', 'US-KY')])
 check('KY alone is the Kentucky map pack; the US state is US-KY', R.parse_areas('KY') == [('KY', 'KY')] and R.parse_areas('US-KY') == [('US', 'US-KY')])
@@ -68,6 +72,7 @@ with tempfile.TemporaryDirectory() as t:
     sh(d, 'git', 'init', '-q'); sh(d, 'git', 'config', 'user.name', 't'); sh(d, 'git', 'config', 'user.email', 't@t')
     for f in ('data/outlines', 'data/us-key', 'data/world-key', 'data/status/quality'): (d / f).mkdir(parents=True)
     write_outline(d, 'US-KY.geojson.gz'); write_outline(d, 'US-FL.geojson.gz')
+    write_holds(d)
     write_key(d, 'data/us-key/US-KY.json', parks(5))
     write_key(d, 'data/us-key/US-FL.json', parks(5))
     write_key(d, 'data/us-key/layers.json', {'layers': []})
@@ -203,6 +208,7 @@ with tempfile.TemporaryDirectory() as t:
     sh(d, 'git', 'init', '-q'); sh(d, 'git', 'config', 'user.name', 't'); sh(d, 'git', 'config', 'user.email', 't@t')
     for f in ('data/outlines', 'data/us-key', 'data/ca-key', 'data/world-key', 'data/status/quality'): (d / f).mkdir(parents=True)
     write_outline(d, 'US-KY.geojson.gz'); write_outline(d, 'US-AK.geojson.gz')
+    write_holds(d)
     write_key(d, 'data/us-key/US-KY.json', parks(5))
     write_key(d, 'data/us-key/US-AK.json', parks(5))
     write_key(d, 'data/us-key/layers.json', {'layers': []})
@@ -333,7 +339,7 @@ with tempfile.TemporaryDirectory() as t:
     write_key(d, 'pages/index.html', {'note': 'a page file release must not touch'})
     write_key(d, 'data/us-key/index.json', {
         'build': 'US-44000000001', 'rules': 'd4ebfafce438',
-        'states': {s: {'check': 'ok', 'parks': 3} for s in ('KY', 'FL', 'AK')},
+        'states': {s: {'check': 'ok', 'parks': 3, 'rules': 'd4ebfafce438'} for s in ('KY', 'FL', 'AK')},
         'failed': [], 'held_expected': [],
     })
     write_key(d, 'data/world-key/DE.json', wparks('DE', 3))
@@ -345,7 +351,7 @@ with tempfile.TemporaryDirectory() as t:
     })
     write_key(d, 'data/world-key/index.json', {
         'build': 'W-44000000001', 'rules': 'a47e0479ad41',
-        'countries': {c: {'check': 'ok', 'parks': 3} for c in ('DE', 'MT', 'AU')},
+        'countries': {c: {'check': 'ok', 'parks': 3, 'rules': 'a47e0479ad41'} for c in ('DE', 'MT', 'AU')},
         'failed': [], 'held_expected': [],
     })
     sha1 = commit(d, 'live')
@@ -364,12 +370,12 @@ with tempfile.TemporaryDirectory() as t:
     write_key(d, 'data/world-key/DE.json', wparks('DE', 5))
     write_key(d, 'data/us-key/index.json', {
         'build': 'US-44000000002', 'rules': 'd4ebfafce438',
-        'states': {s: {'check': 'ok', 'parks': 5 if s == 'KY' else 3} for s in ('KY', 'FL', 'AK')},
+        'states': {s: {'check': 'ok', 'parks': 5 if s == 'KY' else 3, 'rules': 'd4ebfafce438'} for s in ('KY', 'FL', 'AK')},
         'failed': [], 'held_expected': ['FL'],
     })
     write_key(d, 'data/world-key/index.json', {
         'build': 'W-44000000002', 'rules': 'a47e0479ad41',
-        'countries': {c: {'check': 'ok', 'parks': 5 if c == 'DE' else 3} for c in ('DE', 'MT', 'AU')},
+        'countries': {c: {'check': 'ok', 'parks': 5 if c == 'DE' else 3, 'rules': 'a47e0479ad41'} for c in ('DE', 'MT', 'AU')},
         'failed': [], 'held_expected': [],
     })
     sha2 = commit(d, 'next')

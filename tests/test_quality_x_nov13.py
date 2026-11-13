@@ -39,6 +39,10 @@ why = M.share_block({'area': 'W-AS', 'layer': 'x', 'label': 'ok parks'})
 check('X4/M6: share_block refuses a missing licence', 'licence' in (why or '').lower())
 why_s = M.share_block({'area': 'W-AS', 'layer': 'x', 'label': 'SPREP islands', 'license': 'CC BY 4.0'})
 check('X4: share_block refuses SPREP even with a licence', bool(why_s) and 'WDPA' in why_s or 'SPREP' in (why_s or '').upper() or bool(why_s))
+check('X4: WDPA_RE matches pacificdata', bool(M.WDPA_RE.search('https://pacificdata.org/data')))
+why_ns = M.share_block({'area': 'W-GL', 'layer': 'h212', 'license': 'not stated (no licence text on the source page)'})
+check("X4: share_block refuses a 'not stated' licence with no owner acceptance file",
+      bool(why_ns) and 'not stated' in why_ns.lower())
 
 # X5 stamp filter + postcheck save
 sh = (ROOT / '.github/scripts/kpc_save_overwrite.sh').read_text()
@@ -49,6 +53,14 @@ check('X5: kpc_save_overwrite.sh stamp filter has no unmarked || true',
 check('X5: stamp filter does not ignore the build id',
       "IDS = set()" in sh and "IDS = {'build'}" not in sh
       and "IDS = set()" in (ROOT / '.github/scripts/kpc_stamp_only.py').read_text())
+pd = (ROOT / '.github/scripts/kpc_push_data.sh').read_text()
+check('X5: kpc_push_data.sh stamp filter has no unmarked || true and does not ignore the build id',
+      "python3 - <<'KPC_STAMP_PY' || true" not in pd
+      and "IDS = set()" in pd and "IDS = {'build'}" not in pd
+      and "stamp filter failed" in pd)
+check('X5: kpc_push_data.sh merge has no unmarked || true; a merge failure aborts the save',
+      "<<'KPC_MERGE_PY' || true" not in pd
+      and 'the merge of shared files failed' in pd)
 pc = (ROOT / '.github/scripts/kpc_key_postcheck.py').read_text()
 check('X5: kpc_key_postcheck.py no longer returns early on an already-checked build',
       'nothing written' not in pc and 'writing the report again so the must-save can land' in pc)

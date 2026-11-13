@@ -242,9 +242,11 @@ jobs:
               yes|true|1) export KPC_FULL_BUILD=1 ;;
             esac
           fi
-          export KPC_PLANNED_AREAS="$(python3 -c "import json; print(' '.join(sorted(json.load(open('data/ca-key/index.json')).get('provinces') or {})))")"
+          KPC_PLANNED_AREAS="$(python3 -c "import json; print(' '.join(sorted(json.load(open('data/ca-key/index.json')).get('provinces') or {})))")"
+          export KPC_PLANNED_AREAS
           if [ -s /tmp/ca-failed.txt ]; then
-            export KPC_PLANNED_AREAS="$(python3 -c "import os; failed=set(open('/tmp/ca-failed.txt').read().split()); print(' '.join(x for x in os.environ['KPC_PLANNED_AREAS'].split() if x not in failed))")"
+            KPC_PLANNED_AREAS="$(python3 -c "import os; failed=set(open('/tmp/ca-failed.txt').read().split()); print(' '.join(x for x in os.environ['KPC_PLANNED_AREAS'].split() if x not in failed))")"
+            export KPC_PLANNED_AREAS
           fi
           python3 .github/scripts/kpc_key_freeze.py stamp ca-key || { kpc_rc=$?; echo "::error title=kpc_key_freeze.py::stopped with an error (exit $kpc_rc): nothing is saved"; echo "kpc_key_freeze.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; exit 1; }
           # Nov 12 (part B): every province was rebuilt (one job): each row records its area hash, parts, out_sha, built_sha

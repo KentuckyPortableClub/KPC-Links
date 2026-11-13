@@ -9,7 +9,7 @@ git config user.name 'github-actions[bot]'; git config user.email '41898282+gith
 # PR2 (fewer saves, Nov 2): a save whose only changes are time stamps / run links is skipped (KPC_SAVE_STAMPS=keep = off).
 # The same code is .github/scripts/kpc_stamp_only.py; it is inline here because the KPC-Data bots fetch only this one file.
 kpc_stamp_filter() {
-python3 - <<'KPC_STAMP_PY' || true
+python3 - <<'KPC_STAMP_PY'
 """PR2 (fewer saves, Nov 2 2026): put back every STAGED file whose only change is a time stamp, so a quiet run commits nothing.
 Run inside the repo after 'git add' and before 'git diff --cached --quiet' / 'git commit'.
 A file counts as stamp-only when, compared with HEAD:
@@ -23,7 +23,7 @@ Anything else (new file, deleted file, unreadable, a real change) is left alone.
 import json, os, re, subprocess, sys
 
 STAMP = {'updated', 'updated_at', 'generated', 'generated_at', 'last_checked', 'checked_at', 'built', 'made', 'last_run'}   # Nov 3: + built, made, last_run
-IDS = {'build'}   # Nov 3: a build id (US-<run id>) changes on every run: ignored whole (it moves with the real changes)
+IDS = set()   # X5: a build id is material (key-check / key index); not ignored as a stamp
 # Nov 2 review (Quality 5b): the waiting room's verdicts.json says 'checked' and heartbeat.json says 'ok'. They count as stamps only
 # when the value is a date / time, so a 'checked' or 'ok' that holds a real answer is still a change.
 STAMP_IF_TIME = {'checked', 'ok'}
@@ -92,7 +92,9 @@ def main():
 
 if __name__ == '__main__':
     try: main()
-    except Exception as e: print(f'stamp filter: left everything alone ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
+    except Exception as e:
+        print(f'stamp filter: failed ({type(e).__name__}: {str(e)[:120]}): the save stops')
+        sys.exit(1)
     sys.exit(0)
 KPC_STAMP_PY
 }
@@ -216,7 +218,7 @@ KPC_QUIET_PY
 #                                       judged and did not hold, drops out
 # Anything that cannot be read is copied as before (this job's copy). KPC_SAVE_MERGE=off switches it off.
 kpc_merge_shared() {   # $1 = dir holding main's copies; run in the repo after this job's files are copied on top
-KPC_MAIN="$1" python3 - "${CH[@]}" <<'KPC_MERGE_PY' || true
+KPC_MAIN="$1" python3 - "${CH[@]}" <<'KPC_MERGE_PY'
 import gzip, json, os, sys
 M = os.environ['KPC_MAIN']
 def load(p):
@@ -298,10 +300,12 @@ for i in 1 2 3 4 5 6; do
     fi
     cp -a "$T"/. . 2>/dev/null
     for f in "${DEL[@]}"; do git rm -q --ignore-unmatch -- "$f" >/dev/null 2>&1; done
-    [ "${KPC_SAVE_MERGE:-on}" != off ] && kpc_merge_shared "$M"
+    if [ "${KPC_SAVE_MERGE:-on}" != off ]; then
+      kpc_merge_shared "$M" || { echo "::error title=Save::the merge of shared files failed: not saved"; exit 1; }
+    fi
     rm -rf "$M"
     [ ${#CH[@]} -gt 0 ] && git add -A -- "${CH[@]}" 2>/dev/null
-    kpc_stamp_filter
+    kpc_stamp_filter || { echo "::error title=Save::the stamp filter failed: not saved"; exit 1; }
     git diff --cached --quiet && { echo "nothing new to save"; exit 0; }
     # Nov 10 (quiet runs): bookkeeping-only and this bot saved a few hours ago -> not saved this time (KPC_QUIET_HOURS=0 = off)
     KPC_QUIET_MSG="$MSG" kpc_quiet_gate; [ $? -eq 3 ] && { git reset -q --hard FETCH_HEAD; exit 0; }

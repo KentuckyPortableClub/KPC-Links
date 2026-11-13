@@ -62,6 +62,20 @@ for src, dest, area, layer, n, nf, label in INBOX + [(None, GL[0], GL[1], GL[2],
           and 'gis-hub.bremen.de' not in str(meta.get('page') or '')
           and 'arcgis.com' not in str(meta.get('page') or ''))
 
+# Quality regrade: "not stated" is not a licence unless a recorded owner acceptance file exists (do not invent one)
+with tempfile.TemporaryDirectory() as _td_ns:
+    _td_ns = pathlib.Path(_td_ns)
+    for dest, area, layer in (('hand-W-GL.h212.geojson.gz', 'W-GL', 'h212'),
+                              ('hand-W-MT.h213.geojson.gz', 'W-MT', 'h213'),
+                              ('hand-W-MT.h215.geojson.gz', 'W-MT', 'h215')):
+        meta, _ = M.read_layer_file(HAND / dest)
+        why = M.share_block(meta, HAND)
+        check(f'{dest} is refused by share_block (licence is not stated, no owner acceptance)',
+              bool(why) and 'not stated' in why.lower())
+        M.save_saved(_td_ns / f'{area}.json.gz', {'cc': area.replace('W-', ''), 'recs': []})
+        applied, what = WH.apply_world_hand_file(HAND / dest, _td_ns)
+        check(f'{dest} is not merged', (not applied) and 'not stated' in what.lower())
+
 _, po = WH.recs_from_hand(HAND / 'hand-W-CZ.h217.geojson.gz')
 check('CZ PO: 42 named records with usable rings', len(po) == 42 and all(r.get('n') and r.get('_r') for r in po))
 _, de = WH.recs_from_hand(HAND / 'hand-W-DE.h214.geojson.gz')
@@ -84,11 +98,15 @@ with tempfile.TemporaryDirectory() as td:
     check(f'fill-merge W-CZ: 42 usable PO records, no EVL ({what1})', ok1 and len(cz) == 42)
     okd, _ = WH.apply_world_hand_file(HAND / 'hand-W-DE.h214.geojson.gz', td)
     check('fill-merge W-DE: 20 Bremen records', okd and len(M.load_saved(td / 'W-DE.json.gz')['recs']) == 20)
-    okm1, _ = WH.apply_world_hand_file(HAND / 'hand-W-MT.h215.geojson.gz', td)
-    okm2, _ = WH.apply_world_hand_file(HAND / 'hand-W-MT.h213.geojson.gz', td)
-    mt = M.load_saved(td / 'W-MT.json.gz')['recs']
-    check('fill-merge W-MT: 30 + 14 = 44 (baseline), 7 site_codes in both layers',
-          okm1 and okm2 and len(mt) == 44 and sum(1 for c in {r.get('code') for r in mt} if sum(1 for r in mt if r.get('code') == c) == 2) == 7)
+    okm1, whatm1 = WH.apply_world_hand_file(HAND / 'hand-W-MT.h215.geojson.gz', td)
+    okm2, whatm2 = WH.apply_world_hand_file(HAND / 'hand-W-MT.h213.geojson.gz', td)
+    check('fill-merge W-MT h213/h215 is refused: licence is not stated and no owner acceptance file',
+          (not okm1) and (not okm2)
+          and 'not stated' in whatm1.lower() and 'not stated' in whatm2.lower()
+          and len(M.load_saved(td / 'W-MT.json.gz')['recs']) == 0)
+    # counting / keep-bigger still work on records read from the file; the file itself is not packed or merged
+    mt = list(sac) + list(spa)
+    M.save_saved(td / 'W-MT.json.gz', {'cc': 'MT', 'saved': '2026-11-10', 'detail': 0.002, 'thin': 250, 'recs': mt})
     one = WH.recs_from_hand(HAND / 'hand-W-MT.h213.geojson.gz')[1][:1]
     blob, what = WH.merge_world_saved_layer(M.load_saved(td / 'W-MT.json.gz'), one)
     check('keep-bigger: a smaller SPA re-read is refused, 44 records stay',

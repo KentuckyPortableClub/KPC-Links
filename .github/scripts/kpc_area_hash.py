@@ -90,7 +90,7 @@ TABLES = {
 }
 # D6: one per-area table file per kind (read by the builder at start, from its own checkout). Top level: header texts (about, notes,
 # format; not counted) and tables, each {area: value} or [entry with 'areas': [...]] (an entry counts for every area it lists).
-AREA_TABLES = {'us': 'data/us-key/area-tables.json', 'world': 'data/world-key/area-tables.json'}
+AREA_TABLES = {'us': 'data/us-key/area-tables.json', 'ca': 'data/ca-key/area-tables.json', 'world': 'data/world-key/area-tables.json'}
 
 
 def H(b): return hashlib.sha256(b if isinstance(b, bytes) else str(b).encode()).hexdigest()
@@ -575,6 +575,7 @@ class Kind:
             self.gate(parts, sh, lambda a: f'US-{a}')
         elif self.kind == 'ca':
             self.slice_file('data/ca-key/overrides.json', parts, sh)
+            self.area_tables(parts, sh)   # Quality regrade: kpc_pin_fill.HELD is a per-area table (CA-QC only)
             self.slice_file('data/ca-key/hardlook-joins.json', parts, sh)
             self.slice_file('data/state-gis.json', parts, sh, lambda v: ({k: x for k, x in (v.get('states') or {}).items() if k in self.areas_set} if isinstance(v, dict) else {}, {}))
             self.slice_file('data/ca-key/layers.json', parts, sh, key_of=lambda v: (
@@ -601,6 +602,16 @@ class Kind:
             for f in ('data/world-key/jp-wikidata.json', 'data/retired-refs.json'): self.slice_file(f, parts, sh)
             self.locations(parts, sh, None)
             self.gate(parts, sh, lambda a: f'W-{a}')
+            # Quality regrade: owner hand files are area-hash inputs for their country
+            hand = {}
+            for rel in t.ls('data/outlines/hand/', r'^hand-W-[A-Z]{2}\..+\.geojson\.gz$'):
+                name = rel.split('/')[-1]
+                m = re.match(r'hand-W-([A-Z]{2})\.', name)
+                cc = m.group(1) if m else ''
+                if cc in self.areas_set:
+                    hand.setdefault(cc, {})[name] = H(t.read(rel) or b'missing')
+            for a, x in hand.items():
+                parts[a]['data:data/outlines/hand/hand-W-%s.*' % a] = H(canon(x))
             self.official_pins(parts, sh)   # E67
             if 'JP' in self.areas_set:   # E67: the Japan A10 crosswalk (a CSV, by bytes) and its switch, JP only
                 parts['JP'][f'data:{JP_CROSSWALK}'] = H(t.read(JP_CROSSWALK) or b'missing')
@@ -1106,10 +1117,12 @@ def real_inputs_moved(op, np, composition_id=None):
     def exempt(k):
         if k in FORMAT_ONLY_PARTS:
             return True
-        if k in (COMPOSITION_MIGRATIONS.get(composition_id) or ()):
-            return True
         # the M2 split: 'rules-version' may first appear next to the legacy 'version'
         if k == 'rules-version' and k not in op:
+            return True
+        # Quality regrade: a composition-migration part is exempt only when it is absent on one side
+        # (first appear or drop). A changed value on a part both sides have is a real input.
+        if k in (COMPOSITION_MIGRATIONS.get(composition_id) or ()) and (k in op) != (k in np):
             return True
         return False
     keys_o = {k for k in op if not exempt(k)}
@@ -1202,7 +1215,69 @@ def proof_valid(repo, kind, frm, to, persons=None, today=None, area=None):
     return False, why
 
 
-def decide(kind, wanted, hashes, parts, rows, cur_code, mode='shadow', force_full=False, repo=REPO, proof=proof_valid):
+
+def only_shared_code_moved(op, np, composition_id=None):
+    """True when every remaining real data change is a shared CODE_PARTS name.
+
+    Format-only parts and composition-migration first appear/drop are ignored (same as real_inputs_moved).
+    A first appearance of a schema part (gate, hosts, pins, shared:, vars, …) is also ignored so a hasher
+    schema split versus an older recorded row is not treated as 84 countries of new data. A first
+    appearance or drop of a data: part (hand files, overrides, area-tables, trails both sides, …) is real."""
+    if not isinstance(op, dict) or not isinstance(np, dict):
+        return False
+    def skip(k):
+        if k in FORMAT_ONLY_PARTS:
+            return True
+        if k == 'rules-version' and k not in op:
+            return True
+        if k in (COMPOSITION_MIGRATIONS.get(composition_id) or ()) and (k in op) != (k in np):
+            return True
+        return False
+    both = {k for k in set(op) | set(np) if not skip(k) and k in op and k in np and op.get(k) != np.get(k)}
+    first = {k for k in set(op) | set(np) if not skip(k) and (k in op) != (k in np)}
+    real = both | {k for k in first if k.startswith('data:')}
+    if not real:
+        return any((k == c or k.startswith(c)) and op.get(k) != np.get(k) for c in CODE_PARTS for k in set(op) | set(np))
+    return all(any(k == c or k.startswith(c) for c in CODE_PARTS) for k in real)
+
+
+def declared_scope_states(kind, rows, repo, prev_rules=''):
+    """Pending scope for this kind's previous rules hash: 'all', a set of area ids, or None if no declaration constrains the plan."""
+    if kind not in ('us', 'ca', 'world'):
+        return None
+    prev = str(prev_rules or '') or next((str(r.get('rules') or '') for r in (rows or {}).values() if isinstance(r, dict) and r.get('rules')), '')
+    if not prev:
+        return None
+    try:
+        import kpc_key_freeze as KF
+        key = {'us': 'us-key', 'ca': 'ca-key', 'world': 'world-key'}[kind]
+        states, _ids, _parks = KF.pending_scope(key, prev, repo)
+    except Exception:
+        return None
+    if states is None:
+        return None
+    if states == 'all':
+        return 'all'
+    if isinstance(states, set):
+        return states
+    return None
+
+
+def area_in_declared_scope(kind, area, states):
+    """CA/US hasher areas are 'QC' / 'KY'; scope files list 'CA-QC' / 'US-KY'."""
+    if states is None or states == 'all':
+        return True
+    if area in states:
+        return True
+    pref = {'us': 'US-', 'ca': 'CA-'}.get(kind, '')
+    if pref and (pref + area) in states:
+        return True
+    if pref and area.startswith(pref) and area[len(pref):] in states:
+        return True
+    return False
+
+
+def decide(kind, wanted, hashes, parts, rows, cur_code, mode='shadow', force_full=False, repo=REPO, proof=proof_valid, prev_rules=''):
     """The plan's per-area decision. wanted = the areas today's plan builds. Returns (final list, table rows
     [(area, old hash, new hash, reason, action)], added, reused). Step 1 (add) only ADDS areas whose inputs moved; reuse leaves out a
     wanted area whose inputs did not move (or moved only in shared code covered by a valid D4 proof), whose key file is still the
@@ -1238,7 +1313,12 @@ def decide(kind, wanted, hashes, parts, rows, cur_code, mode='shadow', force_ful
             elif can: action = 'rebuild (would reuse: ' + how + ')'
             else: action = 'rebuild'
         elif moved and new is not None:
-            if mode in ('add', 'reuse'): action = 'rebuild (added: inputs moved since its last build)'; added.append(a)
+            # Quality regrade: a declared scope limits code-only adds (CA-QC-only hold must not plan CA 15/15 or world 84/84)
+            code_only = only_shared_code_moved(op or {}, np, composition(kind))
+            scope = declared_scope_states(kind, rows, repo, prev_rules) if code_only else None
+            if code_only and scope is not None and scope != 'all' and not area_in_declared_scope(kind, a, scope):
+                action = 'not planned (shared code only; outside declared scope)'
+            elif mode in ('add', 'reuse'): action = 'rebuild (added: inputs moved since its last build)'; added.append(a)
             else: action = 'would add (shadow)'
         else: action = 'not planned'
         table.append((a, old or '-', new or '-', reason, action))
@@ -1257,7 +1337,7 @@ def run_plan(repo, kind, wanted, index, mode, force_full, data=None, env=None, o
     if mode == 'reuse' and not data:
         print('::warning title=Area hashes::KPC-Data pins not read: no reuse this run', file=sys.stderr)
         mode = 'add'
-    final, table, added, reused = decide(kind, wanted, hs, parts, rows, cur, mode, force_full, repo)
+    final, table, added, reused = decide(kind, wanted, hs, parts, rows, cur, mode, force_full, repo, prev_rules=str((idx or {}).get('rules') or ''))
     head = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=repo, capture_output=True, text=True).stdout.strip()
     t = (f'**Area hashes ({kind}, mode {mode}{", full rebuild asked: no reuse" if force_full else ""}; code hash {cur}; composition {composition(kind)})**'
          + (f' - added {len(added)}: {" ".join(added)}' if added else '') + (f' - reused {len(reused)}: {" ".join(reused)}' if reused else '')

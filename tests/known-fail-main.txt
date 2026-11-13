@@ -1,3 +1,17 @@
 # Known failures of KPC-Links main, read by .github/scripts/kpc_full_suite.py (the handoff gate).
 # A failure listed here does not fail the gate; anything else does. A listed test that now PASSES fails the gate (stale baseline): remove its line.
 # One entry per line: a test path (tests/test_x.py) or selftest:<script path>.
+# These 12 still fail on this PR (data drift / live-key / script-version checks vs origin/main). They also fail on main c0bdc1d8.
+# tests/test_pin_outlines_parts_nov11.py fails on main and is fixed here — listing it would make the gate stale-red.
+tests/test_ky_brandon_slash_nov6.py              # live KY slash-park joins (US-7957/7958) still drift vs the answer
+tests/test_loaders_released_ca_ky_nov11.py       # released ky-usace / ky-overlaps / trail line not yet matching working files
+tests/test_map_alias_join_nov10.py               # Fort Heiman / Little South Fork / Lake Barkley WMA alias joins vs live key
+tests/test_maprep_state_search_fast_nov8.py      # maprep html script versions have moved past the pinned check
+tests/test_mystery_joins_nov11.py                # FR-14979 / FR-10432 still as in the live world key until the next world run
+tests/test_planner_answer_key_nov10.py           # Green River SNA / Fort Heiman planner joins vs the answer key
+tests/test_tracts_nov7.py                        # world-key layers / answer keys / RI guest+member packs differ from origin/main
+tests/test_trail_join_guard_nov11.py             # official-line park US-12959 in US-OR.json moved past 11f908d9
+tests/test_us_planner_ky_outlines_nov10.py       # KY answer key not yet on the six official bpad outlines
+tests/test_weekly_batch_nov9.py                  # weekly batch snapshot still mismatches main
+tests/test_world_fr_patrinat_layers_nov11.py     # FR-10432 / FR-11106 / FR-10548 still as in the live key until the next world run
+tests/test_world_fr_patrinat_overrides_nov11.py  # same three parks stay as in the live key without the new layers
