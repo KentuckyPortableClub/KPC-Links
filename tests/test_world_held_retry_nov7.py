@@ -3,7 +3,7 @@
 a country HELD by kpc_world_key.py (exit 3: a source failed or came back empty with no saved records) is tried again at the end of
 the job after a wait, never past the step's own limit; a timeout (124) or an error is NOT retried; a held country that builds on the
 retry leaves failed.txt. The slow (own-job) country restores / saves cache/world/parts (the layer checkpoints part B writes); the save
-only runs when there is something to save. Runs the build step's real bash with a stand-in kpc_world_key.py. No network."""
+only runs when there is something to save. A short saved copy (gate exit 7) is not built or retried; the other countries of the shard still are. Runs the build step's real bash with a stand-in kpc_world_key.py. No network."""
 import os, pathlib, stat, subprocess, sys, tempfile
 import yaml
 
@@ -30,12 +30,16 @@ sys.exit(rc)
 '''
 
 
-def run(mine, plan, retries='1', waitmin='0', cmin='5', step_min='335'):
+def run(mine, plan, retries='1', waitmin='0', cmin='5', step_min='335', gate_rc=None, short=None):
     with tempfile.TemporaryDirectory() as t:
         tp = pathlib.Path(t); (tp / '.github/scripts').mkdir(parents=True); (tp / '.github/scripts/kpc_world_key.py').write_text(FAKE)
         (tp / 'bin').mkdir(); pip = tp / 'bin/pip'; pip.write_text('#!/bin/sh\nexit 0\n'); pip.chmod(pip.stat().st_mode | stat.S_IEXEC)
         env = dict(os.environ, PATH=f"{tp / 'bin'}:{os.environ['PATH']}", MINE=mine, FAKE_PLAN=plan, RETRIES=retries, WAITMIN=waitmin,
                    CMIN=cmin, STEP_MIN=step_min, PIN_JOIN='', WB_DIR='')
+        rt = tp / 'runner'; rt.mkdir()
+        if gate_rc is not None: (rt / 'master-gate.rc').write_text(str(gate_rc) + '\n')
+        if short is not None: (rt / 'master-short.txt').write_text(short)
+        env['RUNNER_TEMP'] = str(rt)   # always isolated: a leftover box/CI RUNNER_TEMP must not trip the short-copy filter
         r = subprocess.run(['bash', '--noprofile', '--norc', '-eo', 'pipefail', '-c', b['run']], cwd=t, env=env, capture_output=True, text=True, timeout=120)
         failed = (tp / 'part/failed.txt').read_text().split()
         tries = {c: int((tp / f'tries-{c}').read_text()) for c in mine.split() if (tp / f'tries-{c}').exists()}
@@ -56,6 +60,17 @@ rc, failed, tries, out = run('AX', 'AX=3,0', step_min='8')
 check(tries == {'AX': 1} and failed == ['AX'] and 'no time left' in out, 'no retry when the step has no time left')
 rc, failed, tries, out = run('AX', 'AX=1')
 check(tries == {'AX': 1} and failed == ['AX'], 'an error (exit 1) is not retried')
+# Nov 12 (KPC owner, 2026-11-12): a short saved copy holds only that country; the rest of the shard still builds.
+# AX would be retried if it were a source-held (exit 3); a short copy must not be built or retried.
+rc, failed, tries, out = run('DE AX CH', 'DE=0 AX=3,0 CH=0', gate_rc=7, short='W-AX\n')
+check(rc == 0, 'short-copy gate: the build step itself ends cleanly' + ('' if rc == 0 else ': ' + out[-600:]))
+check(tries.get('DE') == 1 and tries.get('CH') == 1 and 'AX' not in tries, 'short-copy gate: only the short country is not built')
+check(failed == ['AX'], 'short-copy gate: only the short country is listed failed (held, not joined)')
+check('short saved copy moved aside' in out, 'short-copy gate: the short country is named held')
+rc, failed, tries, out = run('DE AX', 'DE=0 AX=0', gate_rc=7, short='')
+check(tries == {} and 'not this job' in out, 'exit 7 with an empty short list: no country is built (fail closed)')
+rc, failed, tries, out = run('DE AX', 'DE=0 AX=0', gate_rc=7, short='W-FR\n')
+check(tries == {} and 'not this job' in out, 'exit 7 with a short copy the job does not own: no country is built (fail closed)')
 check(b['env']['RETRIES'] == "${{ vars.KPC_WORLD_HELD_RETRIES || '1' }}" and b['env']['WAITMIN'] == "${{ vars.KPC_WORLD_HELD_WAIT_MIN || '10' }}",
       'retries and wait are repo variables (defaults 1 and 10 min)')
 check(int(b['env']['STEP_MIN']) == int(b['timeout-minutes']), "STEP_MIN matches the build step's timeout-minutes")
