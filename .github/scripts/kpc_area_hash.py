@@ -22,7 +22,8 @@ What an AREA HASH is (the proposed composition, see DESIGN.md section 3): sha256
   version       the kind's line in .github/key-rules-version.json (a person bumps it = every area moves, as today)
   code-area:*   level 3 only: this area's entries of the per-area tables in the code
   data:*        this area's slice of each data file the builder reads (overrides by park ref, state-gis.json by state,
-                extra-layers.json by country, layers.json prefixes, state boxes, retired refs, POTA pins ...), as canonical JSON
+                extra-layers.json by country, layers.json prefixes, state boxes, retired refs, POTA pins,
+                trail lines by park ref, Recreation.gov access-leads by state ...), as canonical JSON
                 (key order and spacing do not count; 'about' / 'note' / 'updated' texts do not count)
   shared:*      inputs no slice can be proven for (a whole file; rows whose park is in no key file): every area of the kind
   gate:*        the saved-copy baseline / signed copy checksum of this area (decides whether its saved copy may be used)
@@ -43,9 +44,11 @@ import argparse, ast, csv, gzip, hashlib, io, json, os, pathlib, re, subprocess,
 REPO = pathlib.Path(__file__).resolve().parents[2]
 COMPOSITION = 'ah1'   # the area-hash composition id: it is in the `version` part, so a composition change moves every area once
 # Nov 12 (KPC owner, 2026-11-12; D6): the US and world compositions changed (their per-area tables left the rule code for
-# data/<kind>/area-tables.json: 'code-area:' parts became 'data:' parts), so they are 'ah2'. That move rides on the US / world
-# code-hash move of the same patch (every US / world area moves once anyway: no extra rebuild). Canada and 2-fers are unchanged ('ah1').
-COMPOSITION_OF = {'us': 'ah2', 'world': 'ah2'}
+# data/<kind>/area-tables.json: 'code-area:' parts became 'data:' parts), so they became 'ah2'. That move rides on the US / world
+# code-hash move of the same patch (every US / world area moves once anyway: no extra rebuild).
+# Nov 12 (Quality #178 M3): US also hashes data/trails and data/access-leads (KPC-Data, via --data), Canada hashes data/trails,
+# so US is 'ah3' and Canada is 'ah2'. World stays 'ah2'; 2-fers stay 'ah1'.
+COMPOSITION_OF = {'us': 'ah3', 'world': 'ah2', 'ca': 'ah2'}
 
 
 def composition(kind): return COMPOSITION_OF.get(kind, COMPOSITION)
@@ -490,6 +493,63 @@ class Kind:
         if un and not self.data: shared[f'shared:{label}#rows-in-no-key'] = H(canon(un))
         if rest: shared[f'shared:{label}#other'] = H(canon(rest))
 
+    def trails(self, parts, shared):
+        """Official trail lines the US / Canada builders read from KPC-Data (data/trails, given by --data). Sliced by park ref
+        the same way the builders look them up (kpc_us_key.py:1279, 1284, 2417; kpc_ca_key.py:900, 907). No --data = not counted
+        (like the pins part); --data given but an index missing or unreadable = a shared part (every area moves: fail closed)."""
+        if not self.data or self.kind not in ('us', 'ca'): return
+        root = pathlib.Path(self.data) / 'data/trails'
+        def load_idx(name, keep):
+            f = root / name
+            try:
+                rows = json.loads(f.read_text(encoding='utf-8'))
+            except Exception as e:  # noqa: BLE001
+                shared[f'shared:data/trails/{name}' + ('' if not f.is_file() else '!unreadable')] = H(b'missing' if not f.is_file() else type(e).__name__.encode())
+                return []
+            if not isinstance(rows, list):
+                shared[f'shared:data/trails/{name}!unreadable'] = H(b'!'); return []
+            return [x for x in rows if isinstance(x, dict) and keep(x)]
+        if self.kind == 'us':
+            nat = load_idx('index.json', lambda x: str(x.get('kind') or '') != 'WSR' and bool(re.search(r'service|bureau|agency|department|usfs|nps|blm|fws', str(x.get('by') or ''), re.I)))
+            have = {str(x.get('ref') or '') for x in nat}
+            st = load_idx('index-state.json', lambda x: bool(x.get('official')) and str(x.get('kind') or '') != 'WSR' and str(x.get('ref') or '') not in have)
+            chosen = nat + st
+        else:
+            chosen = load_idx('index-state.json', lambda x: str(x.get('ref') or '').startswith('CA-') and x.get('official') and x.get('kind') != 'WSR')
+        by, files, un = {}, {}, []
+        for x in chosen:
+            ref = str(x.get('ref') or '')
+            areas = [a for a in (self.ref_area.get(ref) or ()) if a in self.areas_set]
+            if not areas:
+                un.append(x); continue
+            for a in areas: by.setdefault(a, []).append(x)
+            fp = root / f'{ref}.json'
+            if fp.is_file():
+                digest = H(fp.read_bytes())
+                for a in areas: files.setdefault(a, {})[ref] = digest
+        for a, xs in by.items(): parts[a]['data:data/trails/index'] = H(canon(xs))
+        for a, x in files.items(): parts[a]['data:data/trails/*'] = H(canon(x))
+        if un: shared['shared:data/trails#rows-in-no-key'] = H(canon(un))
+
+    def access_leads(self, parts, shared):
+        """Recreation.gov saved copy the US builder reads (data/access-leads/keyed-pull-raw.json.gz, given by --data): ridb_rec +
+        ridb_fac points with lat/lon, already keyed by state (kpc_us_key.py:1290). No --data = not counted; missing / unreadable
+        with --data = a shared part (every US area moves: fail closed)."""
+        if not self.data or self.kind != 'us': return
+        f = pathlib.Path(self.data) / 'data/access-leads/keyed-pull-raw.json.gz'
+        try:
+            d = json.load(gzip.open(f, 'rt', encoding='utf-8'))
+        except Exception as e:  # noqa: BLE001
+            shared['shared:data/access-leads/keyed-pull-raw.json.gz'] = H(b'missing' if not f.is_file() else type(e).__name__.encode())
+            return
+        if not isinstance(d, dict):
+            shared['shared:data/access-leads/keyed-pull-raw.json.gz!unreadable'] = H(b'!'); return
+        for a in self.areas:
+            recs = []
+            for k in ('ridb_rec', 'ridb_fac'):
+                recs.extend(x for x in (d.get(k) or {}).get(a, []) if isinstance(x, dict) and x.get('la') and x.get('lo'))
+            parts[a]['data:data/access-leads/keyed-pull-raw.json.gz'] = H(canon(recs))
+
     def parts(self):
         """{area: {part: digest}} for every area of the kind."""
         self.areas_set = set(self.areas)
@@ -507,6 +567,8 @@ class Kind:
             for f in ('data/retired-refs.json', 'data/park-transfers.json'): self.slice_file(f, parts, sh)
             self.locations(parts, sh, 'US-')
             for f in ('data/nps-units.json',): self.slice_file(f, parts, sh)
+            self.trails(parts, sh)
+            self.access_leads(parts, sh)
             self.gate(parts, sh, lambda a: f'US-{a}')
         elif self.kind == 'ca':
             self.slice_file('data/ca-key/overrides.json', parts, sh)
@@ -525,6 +587,7 @@ class Kind:
                 else: sh['shared:data/canada-bounds#rows-in-no-key'] = H(canon(x))
             self.gate(parts, sh, lambda a: 'CA-ALL', shared=True)   # one saved copy for all of Canada
             self.official_pins(parts, sh)   # E67
+            self.trails(parts, sh)
         elif self.kind == 'world':
             self.slice_file('data/world-key/overrides.json', parts, sh)
             self.area_tables(parts, sh)   # D6: SRC, EU, GEN, LOC, KINDS, SIDE_NOT, TYPE_PREFER, SPLIT_LAYERS
@@ -898,7 +961,7 @@ INPUT_PATHS.append(JP_CROSSWALK)   # E67: the Japan A10 crosswalk is a world inp
 def build_marks(repo, kind):
     """[(commit time, commit, {areas built})] of the key builds on first-parent history, oldest first. US: a state's index row
     changed (its 'seconds' change every build); Canada / world: the index 'build' stamp changed (every area not named failed)."""
-    ix = {'us': 'data/us-key/index.json', 'ca': 'data/ca-key/index.json', 'world': 'data/world-key/index.json'}[kind]
+    ix = f"{KEY_DIR[kind]}/index.json"
     out, prev = [], None
     for line in git(repo, 'log', '--first-parent', '--reverse', '--format=%H %ct', '--', ix).split('\n'):
         if not line.strip(): continue
@@ -995,7 +1058,14 @@ def migrate(repo, data, kind, reader, window_h=6.0, csv_path=None, quiet=False):
 # ================================================================ Nov 12 (KPC owner, 2026-11-12): the key workflows' side (part B)
 ROWS_KEY = {'us': 'states', 'ca': 'provinces', 'world': 'countries'}
 KEY_PATH = {'us': 'data/us-key/US-{a}.json', 'ca': 'data/ca-key/CA-{a}.json', 'world': 'data/world-key/{a}.json'}
+KEY_DIR = {'us': 'data/us-key', 'ca': 'data/ca-key', 'world': 'data/world-key'}
 MODES_RUN = ('shadow', 'add', 'reuse')
+
+
+def index_path(repo, kind):
+    """The per-kind key index stamp-rows writes (data/us-key/index.json, data/ca-key/index.json, data/world-key/index.json).
+    Not KEY_PATH.format(a='index'), which is the non-existent US-index.json / CA-index.json."""
+    return pathlib.Path(repo) / KEY_DIR[kind] / 'index.json'
 # parts that only a shared-code change moves (the same for every area): the D4 proof stamp may bridge these, nothing else
 CODE_PARTS = ('code:', 'version', 'hosts:shared', 'reader:')
 STAMP_FILE = '.github/no-result-change.json'
@@ -1229,7 +1299,7 @@ def sanity(repo, kind, index=None):
         another code hash;
       5 areas_rebuilt and areas_reused do not overlap."""
     repo = pathlib.Path(repo)
-    ip = pathlib.Path(index) if index else repo / {'us': 'data/us-key', 'ca': 'data/ca-key', 'world': 'data/world-key'}[kind] / 'index.json'
+    ip = pathlib.Path(index) if index else index_path(repo, kind)
     try: d = json.loads(ip.read_text(encoding='utf-8'))
     except Exception as e: return [f'index unreadable ({type(e).__name__})']  # noqa: BLE001
     rows = d.get(ROWS_KEY[kind]) or {}
@@ -1262,6 +1332,8 @@ def stamp_rows_cli(a, mode):
     a.index is never opened for writing (byte for byte as before)."""
     import shutil, tempfile
     kind, saved = a.args[0], a.saved.split()
+    if not a.index:
+        a.index = str(index_path(a.repo, kind))
     def stamp(index):
         try: plan = json.loads(pathlib.Path(a.plan).read_text(encoding='utf-8')) if a.plan else {}
         except Exception: plan = {}  # noqa: BLE001
@@ -1354,7 +1426,7 @@ def main(argv=None):
         mode = (a.mode or os.environ.get('KPC_AREA_HASH') or 'shadow').strip().lower()
         if mode not in MODES_RUN: print(f'::warning title=Area hashes::unknown mode {mode!r}: shadow', file=sys.stderr); mode = 'shadow'
         try:
-            rec, t = run_plan(a.repo, a.args[0], a.list.split(), a.index or str(pathlib.Path(a.repo) / KEY_PATH[a.args[0]].format(a='index')), mode,
+            rec, t = run_plan(a.repo, a.args[0], a.list.split(), a.index or str(index_path(a.repo, a.args[0])), mode,
                               a.full.strip().lower() in ('yes', 'true', '1', 'full'), a.data, env, a.out)
         except Exception as e:  # noqa: BLE001  shadow / add: the plan's own list stands; reuse is never applied on an error
             print(f'::warning title=Area hashes::not computed ({type(e).__name__}: {str(e)[:160]}): the plan\'s own list is built (nothing reused)', file=sys.stderr)

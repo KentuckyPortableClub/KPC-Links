@@ -406,20 +406,21 @@ check('B real checkout: the four rules hashes did not move and git status is unc
       and run('git', 'status', '--porcelain', '--untracked-files=all', cwd=ROOT).stdout == before_status)
 check('B the tool is not a rule file and is listed in NOT_RULES', 'kpc_area_hash.py' in open(ROOT / K.FREEZE).read() and not any('kpc_area_hash' in f for v in K.freeze_lists(K.Tree(ROOT))[0].values() for f in v))
 
-# the workflows: plan in reuse by default (owner signed Nov 12), a full-rebuild input, rows stamped after the build stamp
+# the workflows: world plan in reuse by default; US/CA stay on add (Quality #178); a full-rebuild input, rows stamped after the build stamp
 import yaml
 for wf, kind, stampname in (('kpc-world-key.yml', 'world', 'stamp world-key'), ('kpc-us-key.yml', 'us', 'stamp us-key'), ('kpc-ca-key.yml', 'ca', 'stamp ca-key')):
     W = yaml.safe_load((ROOT / '.github/workflows' / wf).read_text(encoding='utf-8'))
     txt = (ROOT / '.github/workflows' / wf).read_text(encoding='utf-8')
     check(f'B {wf}: a full_rebuild input exists', 'full_rebuild' in W[True]['workflow_dispatch']['inputs'])
-    check(f'B {wf}: the plan calls kpc_area_hash.py plan {kind} with the KPC_AREA_HASH variable, default reuse',
-          f'kpc_area_hash.py plan {kind}' in txt and "vars.KPC_AREA_HASH || 'reuse'" in txt)
+    default = 'reuse' if kind == 'world' else 'add'
+    check(f'B {wf}: the plan calls kpc_area_hash.py plan {kind} with the KPC_AREA_HASH variable, default {default}',
+          f'kpc_area_hash.py plan {kind}' in txt and f"vars.KPC_AREA_HASH || '{default}'" in txt)
     check(f'B {wf}: stamp-rows runs after the build stamp', txt.index(stampname) < txt.index(f'kpc_area_hash.py stamp-rows {kind}'))
     check(f'B {wf}: the whole-key sanity check runs (read only, kept green)', f'kpc_area_hash.py sanity {kind}' in txt)
     calls = [st for j in W['jobs'].values() for st in j.get('steps', []) if f'kpc_area_hash.py stamp-rows {kind}' in str(st.get('run', ''))]
-    check(f'B {wf}: stamp-rows (one call) passes --mode "$AREA_MODE" (the KPC_AREA_HASH variable, default reuse) and a --shadow-out under $RUNNER_TEMP',
+    check(f'B {wf}: stamp-rows (one call) passes --mode "$AREA_MODE" (the KPC_AREA_HASH variable, default {default}) and a --shadow-out under $RUNNER_TEMP',
           len(calls) == 1 and f'stamp-rows {kind} --mode "$AREA_MODE" --shadow-out "$RUNNER_TEMP/area-stamp-shadow/{kind}.json"' in calls[0]['run']
-          and calls[0].get('env', {}).get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || 'reuse' }}"))
+          and calls[0].get('env', {}).get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || '%s' }}" % default))
     ups = [st for j in W['jobs'].values() for st in j.get('steps', []) if str(st.get('uses', '')).startswith('actions/upload-artifact')
            and st.get('with', {}).get('name') == f'area-stamp-shadow-{kind}']
     check(f'B {wf}: the shadow record is uploaded as an artifact (area-stamp-shadow-{kind}), never added to the key', len(ups) == 1
@@ -430,6 +431,111 @@ for wf, kind, stampname in (('kpc-world-key.yml', 'world', 'stamp world-key'), (
     check(f'B {wf}: the shadow-record upload is kept green and REPORTED (continue-on-error, a kept_green_* id, a later "Report hidden failures" step that runs always)',
           len(ups) == 1 and ups[0].get('continue-on-error') is True and str(ups[0].get('id', '')).startswith('kept_green_')
           and any(st.get('name', '').startswith('Report hidden failures') and str(st.get('if', '')).strip() in ('always()', '${{ always() }}') for st in steps[k + 1:]))
+
+
+# Quality #178 M2: plan with no --index must read the same per-kind index stamp-rows writes
+# (data/us-key/index.json, not KEY_PATH.format(a='index') which is the non-existent US-index.json / CA-index.json).
+import json as _json, gzip as _gzip
+for kind in ('us', 'ca', 'world'):
+    got = K.index_path('/repo', kind)
+    want = pathlib.Path('/repo') / {'us': 'data/us-key', 'ca': 'data/ca-key', 'world': 'data/world-key'}[kind] / 'index.json'
+    check(f'M2 index_path({kind}) is the per-kind index stamp-rows writes', got == want)
+    decoy = pathlib.Path('/repo') / K.KEY_PATH[kind].format(a='index')
+    if kind != 'world':
+        check(f'M2 index_path({kind}) is not KEY_PATH.format(a="index") ({decoy.name})', got != decoy)
+    else:
+        check('M2 world: KEY_PATH.format(a="index") already is index.json', decoy == want)
+
+with tempfile.TemporaryDirectory() as _td:
+    R = pathlib.Path(_td)
+    subprocess.run(['git', 'init', '-q'], cwd=R, check=True)
+    subprocess.run(['git', '-c', 'user.email=t@t', '-c', 'user.name=t', 'commit', '--allow-empty', '-q', '-m', 'i'], cwd=R, check=True)
+    dummy = R / 'pins'; dummy.mkdir()
+    _fr = R / '.github/scripts/kpc_key_freeze.py'
+    _fr.parent.mkdir(parents=True, exist_ok=True)
+    _fr.write_bytes((ROOT / '.github/scripts/kpc_key_freeze.py').read_bytes())
+    kinds_m2 = (
+        ('us', ['TN', 'FL'], 'states'),
+        ('ca', ['ON', 'BC'], 'provinces'),
+        ('world', ['FR', 'DE'], 'countries'),
+    )
+    for kind, areas, rowkey in kinds_m2:
+        for a in areas:
+            fp = R / K.KEY_PATH[kind].format(a=a)
+            fp.parent.mkdir(parents=True, exist_ok=True)
+            fp.write_text(_json.dumps({'parks': {f'X-{a}': {}}}), encoding='utf-8')
+        hs, parts = K.compute(str(R), None, kind, 3, str(dummy), None, 'verdict')
+        for a in hs:
+            fp = R / K.KEY_PATH[kind].format(a=a)
+            fp.parent.mkdir(parents=True, exist_ok=True)
+            if not fp.is_file():
+                fp.write_text('{}', encoding='utf-8')
+        hs, parts = K.compute(str(R), None, kind, 3, str(dummy), None, 'verdict')
+        cur = K.code_hash(str(R), kind)
+        rows = {a: {'rules': cur, 'area_hash': hs[a], 'area_parts': K.short(parts[a]), 'out_sha': K.sha_file(R / K.KEY_PATH[kind].format(a=a)), 'complete': True} for a in hs}
+        good = K.index_path(R, kind)
+        good.parent.mkdir(parents=True, exist_ok=True)
+        good.write_text(_json.dumps({rowkey: rows}), encoding='utf-8')
+        decoy = R / K.KEY_PATH[kind].format(a='index')
+        if decoy.resolve() != good.resolve():
+            decoy.write_text(_json.dumps({rowkey: {}}), encoding='utf-8')
+        outp = R / f'plan-{kind}.json'
+        r = subprocess.run([sys.executable, '-B', str(ROOT / '.github/scripts/kpc_area_hash.py'),
+                            'plan', kind, '--repo', str(R), '--list', ' '.join(areas), '--mode', 'reuse',
+                            '--data', str(dummy), '--out', str(outp)], capture_output=True, text=True)
+        rec = _json.loads(outp.read_text()) if outp.is_file() else {}
+        check(f'M2 plan {kind} with no --index reuses the areas stamp-rows would have written to {good.relative_to(R)}'
+              + ('' if r.returncode == 0 and set(rec.get('reused') or []) >= set(areas) else f': rc={r.returncode} reused={rec.get("reused")} err={r.stderr[-300:]}'),
+              r.returncode == 0 and set(rec.get('reused') or []) >= set(areas) and rec.get('mode') == 'reuse')
+
+# Quality #178 M3: US hashes trails + access-leads, CA hashes trails, sliced so a change moves only that area.
+with tempfile.TemporaryDirectory() as _td:
+    R = pathlib.Path(_td)
+    data = R / 'kdata'
+    _fr = R / '.github/scripts/kpc_key_freeze.py'
+    _fr.parent.mkdir(parents=True, exist_ok=True)
+    _fr.write_bytes((ROOT / '.github/scripts/kpc_key_freeze.py').read_bytes())
+    (R / 'data/us-key').mkdir(parents=True)
+    (R / 'data/us-key/US-TN.json').write_text(_json.dumps({'parks': {'US-10912': {'n': 'trail'}}}), encoding='utf-8')
+    (R / 'data/us-key/US-FL.json').write_text(_json.dumps({'parks': {'US-9999': {'n': 'x'}}}), encoding='utf-8')
+    (R / 'data/ca-key').mkdir(parents=True)
+    (R / 'data/ca-key/CA-ON.json').write_text(_json.dumps({'parks': {'CA-1234': {'n': 'bruce'}}}), encoding='utf-8')
+    (R / 'data/ca-key/CA-BC.json').write_text(_json.dumps({'parks': {'CA-9999': {'n': 'x'}}}), encoding='utf-8')
+    trails = data / 'data/trails'; trails.mkdir(parents=True)
+    (trails / 'index.json').write_text('[]', encoding='utf-8')
+    (trails / 'index-state.json').write_text(_json.dumps([
+        {'ref': 'US-10912', 'official': True, 'kind': 'ST', 'by': 'agency', 'name': 'x'},
+        {'ref': 'CA-1234', 'official': True, 'kind': 'ST', 'by': 'agency', 'name': 'bruce'},
+    ]), encoding='utf-8')
+    (trails / 'US-10912.json').write_text('{"line":[1]}', encoding='utf-8')
+    (trails / 'CA-1234.json').write_text('{"line":[1]}', encoding='utf-8')
+    leads = data / 'data/access-leads'; leads.mkdir(parents=True)
+    raw = {'ridb_rec': {'TN': [{'id': 1, 'n': 'a', 'la': 1, 'lo': 2}], 'FL': [{'id': 2, 'n': 'b', 'la': 3, 'lo': 4}]}, 'ridb_fac': {}}
+    with _gzip.open(leads / 'keyed-pull-raw.json.gz', 'wt', encoding='utf-8') as _f:
+        _json.dump(raw, _f)
+    hs1, p1 = K.compute(str(R), None, 'us', 3, str(data))
+    check('M3 US: TN has trail and access-leads parts', 'data:data/trails/index' in p1['TN'] and 'data:data/trails/*' in p1['TN']
+          and 'data:data/access-leads/keyed-pull-raw.json.gz' in p1['TN'])
+    check('M3 US: FL has access-leads and no trail-file part', 'data:data/access-leads/keyed-pull-raw.json.gz' in p1['FL']
+          and 'data:data/trails/*' not in p1['FL'])
+    (trails / 'US-10912.json').write_text('{"line":[2]}', encoding='utf-8')
+    hs2, _p2 = K.compute(str(R), None, 'us', 3, str(data))
+    moved = {a for a in ('TN', 'FL') if hs1[a] != hs2[a]}
+    check('M3 US: a trail file change moves only that state', moved == {'TN'})
+    (trails / 'US-10912.json').write_text('{"line":[1]}', encoding='utf-8')
+    raw['ridb_rec']['FL'].append({'id': 3, 'n': 'c', 'la': 5, 'lo': 6})
+    with _gzip.open(leads / 'keyed-pull-raw.json.gz', 'wt', encoding='utf-8') as _f:
+        _json.dump(raw, _f)
+    hs3, _p3 = K.compute(str(R), None, 'us', 3, str(data))
+    moved = {a for a in ('TN', 'FL') if hs1[a] != hs3[a]}
+    check('M3 US: an access-leads change moves only that state', moved == {'FL'})
+    hs_c1, p_c1 = K.compute(str(R), None, 'ca', 3, str(data))
+    check('M3 CA: ON has trail parts; BC does not have a trail-file part', 'data:data/trails/index' in p_c1['ON'] and 'data:data/trails/*' in p_c1['ON']
+          and 'data:data/trails/*' not in p_c1.get('BC', {}))
+    (trails / 'CA-1234.json').write_text('{"line":[2]}', encoding='utf-8')
+    hs_c2, _p_c2 = K.compute(str(R), None, 'ca', 3, str(data))
+    moved = {a for a in hs_c1 if hs_c1[a] != hs_c2[a]}
+    check('M3 CA: a trail file change moves only that province', moved == {'ON'})
 
 print('ALL PASSED' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

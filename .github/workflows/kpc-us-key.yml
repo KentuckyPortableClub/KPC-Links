@@ -93,11 +93,11 @@ jobs:
       - name: Area hashes - the POTA pins (KPC-Data, public, read only; Nov 12, KPC owner, 2026-11-12)
         run: |
           rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
-            && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
+            && git -C .pi sparse-checkout set --no-cone data/parkinfo data/trails data/access-leads 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
       - id: p
         env:
           STATES: ${{ inputs.states || (inputs.refresh == 'all' && 'all' || '') }}   # Nov 10: refresh=all with no states = every state
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (owner signed): default reuse = leave out an area whose inputs did not move; an area with no recorded hash is rebuilt; the repo variable still wins if set
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 (Quality #178): US stays on add until a later PR turns reuse on; trail / access-leads parts are recorded now. The repo variable still wins if set
           FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '37 9 1 * *' && 'yes') || '' }}
           FORCE: ${{ inputs.force }}
           NJOBS: ${{ inputs.jobs }}
@@ -395,7 +395,7 @@ jobs:
           # BOT A saves in the plan job), so a saved state is stamped with the hash of what it was built from. Shadow: nothing is decided here.
           git rev-parse HEAD > part/built-sha.txt
           rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
-            && git -C .pi sparse-checkout set --no-cone data/parkinfo 2>/dev/null && git -C .pi checkout -q 2>/dev/null || rm -rf .pi
+            && git -C .pi sparse-checkout set --no-cone data/parkinfo data/trails data/access-leads 2>/dev/null && git -C .pi checkout -q 2>/dev/null || rm -rf .pi
           python3 .github/scripts/kpc_area_hash.py plan us --list "$STATES" --mode shadow $([ -d .pi ] && echo --data .pi) --out part/area-plan.json > /dev/null || { kpc_rc=$?; echo "::warning title=Area hashes::not computed for this job's states (they are planned again) (exit $kpc_rc)"; echo "Area hashes - not computed for this job's states (they are planned again) (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           rm -rf .pi
           if [ -s /tmp/shape-guard-fail ]; then cp /tmp/shape-guard-fail part/shape-guard-fail; fi
@@ -641,7 +641,7 @@ jobs:
         env:
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (owner signed): default reuse; KPC_AREA_HASH=shadow writes nothing; =add records hashes but does not leave areas out
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 (Quality #178): US stays on add until a later PR turns reuse on; KPC_AREA_HASH=shadow writes nothing; =reuse would leave unchanged states out
           AREA_PLAN: ${{ needs.plan.outputs.area_plan }}   # Nov 12 (D4, US): the plan job's plan (empty = nothing reused)
         run: |
           : > /tmp/kpc-build-failed.txt

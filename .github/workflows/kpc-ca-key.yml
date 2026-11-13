@@ -74,11 +74,11 @@ jobs:
         # when NO province's inputs moved (main's files stay). Never over a freeze or a build-order wait. full_rebuild=yes = no reuse.
         if: ${{ env.SKIP != '1' || env.NIGHT_EMPTY == '1' }}
         env:
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (owner signed): default reuse = leave out an area whose inputs did not move; an area with no recorded hash is rebuilt; the repo variable still wins if set
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 (Quality #178): Canada stays on add until a later PR turns reuse on; trail parts are recorded now. The repo variable still wins if set
           FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && 'yes') || '' }}
         run: |
           rm -rf .pi; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pi 2>/dev/null \
-            && git -C .pi sparse-checkout set --no-cone data/parkinfo data/intake/official-pins-nov12.json 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
+            && git -C .pi sparse-checkout set --no-cone data/parkinfo data/intake/official-pins-nov12.json data/trails 2>/dev/null && git -C .pi checkout -q 2>/dev/null || { rm -rf .pi; echo "::warning title=Area hashes::KPC-Data pins not read: the pins part is left out this run"; }
           ALLP=$(python3 -c "import json; print(' '.join(sorted(json.load(open('data/ca-key/index.json')).get('provinces') or {})))")
           WANT=$([ "${SKIP:-}" = 1 ] || echo "$ALLP")
           OUT=$(python3 .github/scripts/kpc_area_hash.py plan ca --list "$WANT" --mode "$AREA_MODE" --full "$FULL_REBUILD" $([ -d .pi ] && echo --data .pi) --out "$RUNNER_TEMP/area-plan.json") || OUT="$WANT"
@@ -223,7 +223,7 @@ jobs:
         if: ${{ env.SKIP != '1' && env.CA_KEPT != '1' }}
         id: ca_stamp   # Nov 12 (KPC owner, 2026-11-12; Quality #162): Save needs this step green (an unstamped key is not saved), as US and world
         env:
-          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (owner signed): default reuse; KPC_AREA_HASH=shadow writes nothing; =add records hashes but does not leave areas out
+          AREA_MODE: ${{ vars.KPC_AREA_HASH || 'add' }}   # Nov 12 (Quality #178): Canada stays on add until a later PR turns reuse on; KPC_AREA_HASH=shadow writes nothing; =reuse would leave unchanged provinces out
         run: |
           # Canada always builds the whole key: it is FULL unless the build stopped early or the gate failed
           if [ ! -f /tmp/ca-key-stopped ] && ! grep -q 'GATE FAIL' ca-key.log 2>/dev/null; then export KPC_FULL_BUILD=1; fi

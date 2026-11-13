@@ -357,9 +357,9 @@ _us_txt = (ROOT / '.github/workflows/kpc-us-key.yml').read_text(encoding='utf-8'
 _st = [s for s in _us['jobs']['join']['steps'] if 'kpc_area_hash.py stamp-rows us' in str(s.get('run', ''))]
 check('US5 workflow: the plan job hands its per-state plan to the join (outputs.area_plan, printed by the plan step)',
       _us['jobs']['plan']['outputs'].get('area_plan') == '${{ steps.p.outputs.area_plan }}' and "print('area_plan=' + json.dumps(" in _us_txt)
-check('US5 workflow: the join\'s stamp-rows passes --part per build part AND --plan (the plan job\'s plan), with AREA_MODE (default reuse)',
+check('US5 workflow: the join\'s stamp-rows passes --part per build part AND --plan (the plan job\'s plan), with AREA_MODE (default add)',
       len(_st) == 1 and '--plan "$RUNNER_TEMP/area-plan-job.json"' in _st[0]['run'] and 'printf \'%s\' "$AREA_PLAN" > "$RUNNER_TEMP/area-plan-job.json"' in _st[0]['run']
-      and _st[0]['env'].get('AREA_PLAN') == '${{ needs.plan.outputs.area_plan }}' and _st[0]['env'].get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || 'reuse' }}"))
+      and _st[0]['env'].get('AREA_PLAN') == '${{ needs.plan.outputs.area_plan }}' and _st[0]['env'].get('AREA_MODE', '').startswith("${{ vars.KPC_AREA_HASH || 'add' }}"))
 
 # ---------------------------------------------------------------- the workflow
 import yaml  # noqa: E402
