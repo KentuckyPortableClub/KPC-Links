@@ -1,0 +1,590 @@
+﻿state,park,name,matcher_doubt_code,key_records_joined,matcher_records,matcher_review_state
+AK,US-4593,Southeast State Forest,far-twin-in-join,sgakc43 sgakc51 sgakc53 sgakc123 sgakc64 sgakc55 sgakc124 sgakc52 +4 more,sgakc64 sgakc56 sgakc55,DIFFERENT-RECORD
+AL,US-9919,Dallas County Wildlife Management Area,kinds-differ,sgalb131 sgalb147 sgald11,sgalb131 sgalb147,DIFFERENT-RECORD
+CA,US-0206,Sacramento River National Wildlife Refuge,bigger-park-record,5244 4287 4288 5245,4288 5245,DIFFERENT-RECORD
+CA,US-0209,San Diego Bay National Wildlife Refuge,bigger-park-record,5255 4298 167834 4297 5254 183101,4297 5254 167834,DIFFERENT-RECORD
+CA,US-11125,North Table Mountain Ecological Reserve,bigger-park-record,183541 sgakh576 sgcaa58 sgcac25 sgcac26 sgcac40,183541 sgcaa58 sgcac25 sgcac26 sgcac40,DIFFERENT-RECORD
+CA,US-1203,Tomales Bay State Park,kinds-differ,184100 sgcab734 183702 184101 184102,184100 sgcab734 184101 184102,DIFFERENT-RECORD
+CA,US-3580,Torrey Pines State Beach,kinds-differ,sgcab653 183836 sgcab652 184105,sgcab653 sgcab652 184105,DIFFERENT-RECORD
+CA,US-4546,Santa Rosa and San Jacinto Mountains National Monument,bigger-park-record,fsod43 169946 183191 183192 167995,169946 183191 183192 167995,DIFFERENT-RECORD
+CO,US-11890,Colorado River Island State Wildlife Area,bigger-park-record,189099 sgcoa76 3740 4676 sgcod90 sgcoc234,189099 sgcoa76 sgcod90 sgcoc234,DIFFERENT-RECORD
+CO,US-9609,Basalt State Wildlife Area,far-twin-in-join,sgcoa12 189043 sgcoc91 sgcoa13 sgcoc92 sgcod14 sgcod15,sgcoa12 189043 sgcoc91 sgcod14,DIFFERENT-RECORD
+CO,US-9648,Escalante State Wildlife Area,far-twin-in-join,189135 sgcoa116 sgcoc326 189137 sgcoa119 sgcoc329 189136 sgcoa114 +29 more,189135 189134 sgcoa120 sgcoc330 sgcod138 189136 sgcoa114 sgcoc324 +13 more,DIFFERENT-RECORD
+CO,US-9663,Pony Express State Wildlife Area,far-twin-in-join,189214 sgcoa230 sgcoc637 sgcod276,189214 sgcoa230 sgcod276,DIFFERENT-RECORD
+FL,US-0237,Crystal River National Wildlife Refuge,far-twin-in-join,3757 4695 sgflf8301 sgflf8302 sgflf10654,3757 4695,DIFFERENT-RECORD
+FL,US-0256,St. Marks National Wildlife Refuge,far-twin-in-join,5311 4353 sgflf6045,5311 4353,DIFFERENT-RECORD
+FL,US-1838,Big Shoals State Park,far-twin-in-join,191836 sgfla85 sgfld233 sgfld908 sgfld1090 sgfld627 sgflf5347 sgflf2743 +11 more,191836 sgfla85 sgfld908 sgfld1090 sgfld627,DIFFERENT-RECORD
+FL,US-3614,Crystal River Preserve State Park,bigger-park-record,sgfla144 191774 sgflf7126 sgflf13253 sgflf47841 sgflf48061 sgflf2819 sgflf3175 +10 more,sgfla144 191774 sgflf13253 sgflf2819 sgflf3175 sgflf3412 sgflf18837 sgflf48492 +3 more,DIFFERENT-RECORD
+FL,US-5513,Halpata Tatanaki Preserve State Conservation Area,far-twin-in-join,190279 sgflf13573 sgflf15008 sgflf14177 sgflf13575 sgflf13574,190279,DIFFERENT-RECORD
+FL,US-6331,Watermelon Pond Wildlife Area,far-twin-in-join,191725 sgflf8231 sgflf817 sgflf12028 sgflf5185 fnl3197 sgflf5359 sgflf5360 +7 more,191725 sgflg121,DIFFERENT-RECORD
+IA,US-4661,Shimek State Forest,far-twin-in-join,198482 sgiaa34308 sgiab107793 sgiac107793 198484 sgiaa34309 sgiab107794 sgiac107794 +38 more,198482 sgiaa34308 sgiab107793 sgiac107793 198484 sgiaa34309 sgiab107794 sgiac107794 +33 more,DIFFERENT-RECORD
+IA,US-9324,Elm Lake Wildlife Management Area,kinds-differ,sgiaa33778 199078 sgiac107667 198758 sgiac107666 sgiaa34164 sgiac108154 sgiaa35122 +1 more,sgiaa33778 198758 sgiac107666 sgiac107665 sgiac108154,DIFFERENT-RECORD
+ID,US-0274,Bear Lake National Wildlife Refuge,far-twin-in-join,4547 3617 3616 4546,4547 3617,DIFFERENT-RECORD
+ID,US-2248,Thousand Springs State Park,far-twin-in-join,199749 199748 199750 199270 199269 199751 199752,199749 199270 199269 199750 199751 199748,DIFFERENT-RECORD
+ID,US-5595,Camas Prairie Centennial Marsh Wildlife Management Area,far-twin-in-join,199376 199381 199380 199378 199377 199379 199375,199376 199381 199380 199378 199377 199379,DIFFERENT-RECORD
+ID,US-5599,CJ Strike Wildlife Management Area,bigger-park-record,sgakg13808 sgidc815 sgida73156 sgidb1937412 3678 4612 199374 199370 +3 more,sgida73156 3678 4612 199370 199373 199371 199372 199374,DIFFERENT-RECORD
+MA,US-11473,Montague Wildlife Management Area,bigger-park-record,sgmaa653588 sgmad1363603 sgmaa653483 sgmad1363591 55783 55780 sgmaa647805 sgmad1375290 +176 more,55783 55780 sgmaa647805 sgmad1375290 55781 sgmaa644798 sgmad1372363 55784 +167 more,DIFFERENT-RECORD
+MA,US-11491,Westfield Wildlife Management Area,far-twin-in-join,56311 sgmaa693186 sgmad1371747 sgmad1386175 sgmad1386178 56315 sgmaa693150 sgmad1372411 +18 more,56311 sgmaa693186 sgmad1371747 56315 sgmaa693150 sgmad1372411 56314 sgmaa644651 +13 more,DIFFERENT-RECORD
+MA,US-11550,Moose Brook Wildlife Management Area,kinds-differ,55807 sgmaa655538 55809 sgmaa644769 55810 sgmaa700130 55811 sgmaa654700 +15 more,55810 sgmaa700130 55808 sgmaa645157 sgmaa654442 54756 sgmaa649862 55806 +14 more,DIFFERENT-RECORD
+MA,US-11620,Cooks Pond Wildlife Management Area,kinds-differ; far-twin-in-join,55280 sgmaa700083 55274 55275 sgmaa646486 sgmaa646487 9395 55276 +10 more,55280 sgmaa700083 sgmaa646488 55279 sgmaa700076 55273 sgmaa665197 55277 +8 more,DIFFERENT-RECORD
+MD,US-0335,Susquehanna National Wildlife Refuge,kinds-differ,4378 5335 56736 56734 mdd203 sgmda203,4378 5335,DIFFERENT-RECORD
+MD,US-7779,Pocomoke River Wildlife Management Area,kinds-differ,56803 56568 56701 56699 56700 sgmda130 sgmda139 sgmda210 +3 more,56568 sgmda331,DIFFERENT-RECORD
+MN,US-10724,Falls Creek SNA Scenic Reserve,far-twin-in-join,207680 sgmnc132,207680,DIFFERENT-RECORD
+MO,US-13253,Sappington African American Cemetery State Historic Site,bigger-park-record,sgmoa1586 210087 sgmoa1479,sgmoa1586,DIFFERENT-RECORD
+MO,US-6512,Locust Creek State Conservation Area,far-twin-in-join,sgmoc497 sgmoh497 210449 sgmog145 sgmob146 210037,210449,DIFFERENT-RECORD
+NV,US-9263,Little High Rock Canyon Wilderness Area,bigger-park-record,wbl155 wbl156 wbl198 wbl202,wbl156 wbl202,DIFFERENT-RECORD
+OH,US-1977,Mohican State Park,kinds-differ,sgohe304 sgohf849 sgoha519 sgohf79 71970 sgohe303 71971,sgoha519 sgohf79 71970 71971,DIFFERENT-RECORD
+OH,US-3516,Wingfoot Lake State Park,kinds-differ,sgohe556 sgohf619 sgoha384 sgohe555 sgohf63 sgohf638,sgoha384 sgohf63,DIFFERENT-RECORD
+OH,US-3520,Muskingum River State Park,far-twin-in-join,158441 71977 sgohe321 sgoha844 sgoha560 sgohf97 sgoha558 sgohf98 +7 more,158441 71977 sgoha560 sgohf99 sgohf97 sgoha558 sgoha597 sgohf109 +3 more,DIFFERENT-RECORD
+OH,US-5444,Mohican-Memorial State Forest,kinds-differ,sgohe304 71583 sgohc520 sgohf849 sgohf79 sgohe303,71583 sgohc520 sgohf849,DIFFERENT-RECORD
+OH,US-8636,Paint Creek State Wildlife Area,kinds-differ; far-twin-in-join,sgohb819 sgohf507 sgohe618 sgohf48 sgohe352 sgohf49 sgohe353 sgohe354 +8 more,sgohb819 sgohf507 sgohb223 sgohf508 71806 sgohf804 sgohb224 sgohf750,DIFFERENT-RECORD
+OH,US-9413,Hueston Woods State Nature Preserve,kinds-differ,sgohe704 sgohf94 sgohf24 sgohe182 sgohd764 sgohf408 71637 sgohe703 +6 more,sgohd764 sgohd108 sgohd765,DIFFERENT-RECORD
+OH,US-9420,Lawrence Woods State Nature Preserve,kinds-differ; bigger-park-record,71646 sgohd133 sgohe230 sgohf225 71763 sgohe231 sgohf472,71646 sgohd133,DIFFERENT-RECORD
+OH,US-9438,Tinkers Creek State Nature Preserve,kinds-differ,sgohd465 sgohe695 sgohf360 sgohe693 sgohf68 71833 sgohd464 sgohe694 +2 more,sgohd465 sgohd464 158102,DIFFERENT-RECORD
+OH,US-9456,Delaware State Wildlife Area,kinds-differ,sgohb56 sgohe105 sgohf436 sgohe103 sgohf9 sgohb57 sgohe106 sgohf437 +12 more,sgohb56 sgohf436 sgohb57 sgohf437 sgohb817 sgohf640 sgohb58 sgohf438 +3 more,DIFFERENT-RECORD
+OH,US-9458,Dillon State Wildlife Area,kinds-differ; bigger-park-record,sgohf724 sgohb691 sgohe116 sgohe113 sgohf11 sgohe115 sgohf722 sgohb689 +6 more,sgohf724 sgohb691 sgohb885 sgohf440 sgohf722 sgohb689 sgohb690,DIFFERENT-RECORD
+OR,US-10482,Riverside BLM Recreation Management Area,bigger-park-record,sgord2661 sgord5947 sgord4850 sgord6239 sgord627 sgord626 sgord264 sgord2516 +11 more,rma11312 rst11312 sgakg11312,DIFFERENT-RECORD
+OR,US-11969,Umpqua State Scenic Corridor State Park,bigger-park-record; far-twin-in-join,241543 sgorb14 sgora16 sgorb296 sgorb301 sgora353 241544 sgorb297 +15 more,sgorb301 sgorb302 sgorb297 sgorb15 sgorb298 sgorb300 sgorb14 sgorb299 +2 more,DIFFERENT-RECORD
+OR,US-12843,The North Spit BLM Recreation Management Area,kinds-differ,rst11675 sgakh1811 rst12338 rst11632 rst12956,rst12956,DIFFERENT-RECORD
+OR,US-13069,Dry Creek Buttes BLM Wilderness Area,bigger-park-record,wsa1365 wsa1366,wsa1365,DIFFERENT-RECORD
+OR,US-9154,Unity Lake State Recreation Area,kinds-differ; far-twin-in-join,2366 sgorb72 osp91 sgora91 241521 sgord1029 sgora46463 sgord1030 +5 more,sgora91 sgore21714,DIFFERENT-RECORD
+OR,US-9573,Seal Rock State Recreation Area,kinds-differ,sgord2756 sgord261 241517 sgorb74 osp93 sgora93 sgore21538,sgora93 sgore21538,DIFFERENT-RECORD
+OR,US-9585,Winchuck State Recreation Area,kinds-differ; far-twin-in-join,sgord3393 osp410 sgora410 241523 sgorb354 sgore21914 sgore23432,sgora410 sgore21914,DIFFERENT-RECORD
+TN,US-2928,Bicentennial Capitol Mall State Park,bigger-park-record,255587 sgtnf10 tnd10 sgtna360 sgtng1 sgtnj247,sgtnf10 tnd10 sgtna360 sgtng1 sgtnj247,DIFFERENT-RECORD
+TN,US-2939,Cumberland Mountain State Park,far-twin-in-join,255600 sgtnf37 sgtnf36 tnd36 256170 sgtna349 sgtng14 sgtng15 +1 more,255600 sgtnf37 sgtna349 sgtng15 sgtnj447 sgtng14 sgtnf36 tnd36,DIFFERENT-RECORD
+TN,US-2949,Harpeth River State Park,far-twin-in-join,sgtnf80 255617 255618 sgtnf76 255615 sgtnf78 255614 sgtnf73 +18 more,sgtnf74 tnd74 sgtna412 sgtng34 sgtnj437 sgtnf80 sgtnf76 sgtnf73 +12 more,DIFFERENT-RECORD
+TN,US-2971,Reelfoot Lake State Park,bigger-park-record,sgtnf128 255640 255740 sgtna382 sgtng71 sgtnj275,sgtnf128 sgtna382 sgtng71 sgtnj275,DIFFERENT-RECORD
+TN,US-2973,Rock Island State Park,far-twin-in-join,255641 sgtnf132 255642 sgtna384 sgtng73 sgtng74 sgtnj277 sgide1644,255641 sgtnf132 sgtna384 sgtng74 sgtnj277 sgide1644,DIFFERENT-RECORD
+TN,US-2978,Standing Stone State Park,bigger-park-record,sgtnf156 255644 sgtna389 sgtng88 sgtnj284,sgtnf156 sgtna389 sgtng88 sgtnj284,DIFFERENT-RECORD
+TN,US-3960,Reelfoot State Wildlife Area,kinds-differ,sgtni8 255640 sgtnc680 sgtne297 255740 sgtne324 sgtne292 sgtne293 +9 more,sgtni8 sgtnc680 sgtne297 sgtne324 sgtne292 sgtne295 sgtne291 sgtne290 +6 more,DIFFERENT-RECORD
+TN,US-7611,Owl Hollow Mill Wildlife Management Area,bigger-park-record,255736 sgtne125 sgtnc601 sgtni194,255736 sgtne125 sgtnc601,DIFFERENT-RECORD
+TX,US-0540,Jocelyn Nungaray National Wildlife Refuge,far-twin-in-join,fws5676 fws5677 fws5675,fws5676 fws5677,DIFFERENT-RECORD
+TX,US-3011,Fort Richardson State Park,kinds-differ,263499 263471 sgtxa541,263499 sgtxa541,DIFFERENT-RECORD
+TX,US-3498,Devils River Natural State Conservation Area,far-twin-in-join,sgtxd516 263477 263470 sgtxa536 sgtxa109,263477,DIFFERENT-RECORD
+TX,US-6535,Angelina-Neches/Dam B Wildlife Management Area,bigger-park-record,sgtxd1366 261814 sgtxc140 sgtxb1564,sgtxc140 sgtxb1564,DIFFERENT-RECORD
+UT,US-10068,Powell Slough WMA State Wildlife Area,kinds-differ,utw481 utw184,utw481,DIFFERENT-RECORD
+UT,US-10996,Escalante Canyon WSA BLM Wilderness Area,far-twin-in-join,wsa762 wsa825,wsa762,DIFFERENT-RECORD
+UT,US-5886,Strawberry River State Wildlife Management Area,kinds-differ,263987 sgutb225 utw472,263987 sgutb225,DIFFERENT-RECORD
+UT,US-5933,Hardware Ranch Wildlife Management Area,bigger-park-record,utw350 263942 sgutb88,263942 sgutb88,DIFFERENT-RECORD
+VA,US-0563,Elizabeth Hartwell Mason Neck National Wildlife Refuge,bigger-park-record,3808 4748 sgvae492286 sgvae490435 sgvae490441 sgvae490444 sgvae492287 sgvae490445 +31 more,3808 4748,DIFFERENT-RECORD
+VA,US-0577,Clinch River State Park,far-twin-in-join,sgvad370 sgvae487092 54557 271078 sgvad299 sgvae486998 54556 271077 +35 more,54557 271078 sgvad299 sgvae486998 54559 271080 sgvad306 sgvae487022 +33 more,DIFFERENT-RECORD
+VA,US-11719,Culpeper Battlefield State Park,far-twin-in-join,sgvad407 sgvae487164 sgvad371 sgvae487096 sgvad372 sgvae487097,sgvad371 sgvae487096 sgvad372 sgvae487097,DIFFERENT-RECORD
+VA,US-1314,Sailor's Creek Battlefield State Park,far-twin-in-join,270666 sgvac33 sgvad29 sgvae486281 54648 54650 sgvac16 sgvad28 +18 more,270666 sgvac33 sgvae486281 54648 54650 sgvac16 sgvae486280 sgvae486921 +7 more,DIFFERENT-RECORD
+VA,US-9940,Brush Mountain Wilderness Area,bigger-park-record,wld46 sgvae500421 wld45 sgvae500504,wld46 sgvae500421,DIFFERENT-RECORD
+WA,US-12550,Milltown Island State Wildlife Area,bigger-park-record,158350 sgwab1371 sgwab1508 sgwaf1371 sgwaf1508,sgwab1508 sgwaf1508,DIFFERENT-RECORD
+WA,US-12552,Skagit Bay Estuary State Wildlife Area,bigger-park-record,sgwab183 sgwab1437 sgwaf1437 sgwag183 wdw110 wdw111 wdw112 wdw118 +19 more,sgwab1437 sgwaf1437 sgwad495 sgwad4768 sgwad525,DIFFERENT-RECORD
+WA,US-3172,Clark Island Marine State Park,bigger-park-record,271414 sgwaa23 sgwad6032,sgwad6032,DIFFERENT-RECORD
+WI,US-11930,Sand Creek State Fish and Wildlife Area,far-twin-in-join,272849 sgwia712706 272848 sgwia712707 sgwia713952 sgwid19788891 sgwid19759336 sgwid19788892 +68 more,272848 sgwia712707 sgwia713952 sgwid19788891 sgwid19788892 sgwid19788893 sgwid19784387 sgwid19765443 +28 more,DIFFERENT-RECORD
+WY,US-6140,Middle Fork Powder River BLM Recreation Management Area,bigger-park-record,rst10724 sgakg10724 rst10762 sgakg10762 rst11344 sgakg11344,rst11344 sgakg11344 rst10724 sgakg10724,DIFFERENT-RECORD
+WY,US-6180,Red Canyon State Wildlife Habitat Management Area,bigger-park-record,sgwyc14079 273814 sgwyc14103,273814,DIFFERENT-RECORD
+AK,US-0150,Kodiak National Wildlife Refuge,pin-far,4005 4957,,KEEP-FLAGGED
+AK,US-11839,Chena Pump Wayside State Recreation Site,bigger-park-record,sgaka58 sgake58 sgakf58,,KEEP-FLAGGED
+AK,US-6332,Hatcher Pass State Natural Area,pin-outside-allowance,sgakb140,,KEEP-FLAGGED
+AK,US-7191,Anchor River State Recreation Area,kinds-differ; pin-far,sgaka153 sgake153 sgakf153 sgaka81 sgake81 sgakf81,,KEEP-FLAGGED
+AK,US-7242,Portage Cove State Recreation Site,pin-far,sgaka100 sgake100 sgakf100,,KEEP-FLAGGED
+AL,US-0869,Tuskegee Institute National Historic Site,pin-outside-allowance,3177,,KEEP-FLAGGED
+AL,US-3681,Blowing Springs Cave Preserve State Conservation Area,bigger-park-record,166095,,KEEP-FLAGGED
+AL,US-3684,Coon Creek Preserve State Conservation Area,bigger-park-record,166091,,KEEP-FLAGGED
+AL,US-3696,Lillian Swamp Complex Preserve State Conservation Area,bigger-park-record,166068 166173 sgalb79 166067 166066 sgalb227,,KEEP-FLAGGED
+AL,US-3701,Pike County Pocosin Complex State Fish and Wildlife Area,pin-far,166070,,KEEP-FLAGGED
+AL,US-3707,Sipsey River Complex Preserve State Conservation Area,bigger-park-record,166078 166077 166076 166075 166045 166080,,KEEP-FLAGGED
+AL,US-3708,Splinter Hill Bog Complex Preserve State Conservation Area,bigger-park-record,166174 166081 166082 sgalb40,,KEEP-FLAGGED
+AL,US-3711,Weeks Bay Reserve National Conservation Area,pin-outside-allowance,166175 166088 sgalb94 166176 sgalb141 166085 166084 sgalb155 +8 more,,KEEP-FLAGGED
+AR,US-11713,Dale Bumpers White River National Wildlife Refuge National Wildlife Area,bigger-park-record,4704 3765,,KEEP-FLAGGED
+AR,US-12331,Greers Ferry Lake Tailwater State Recreation Area,bigger-park-record,2500,,KEEP-FLAGGED
+AR,US-12766,Saratoga Blackland Prairie State Natural Area,pin-outside-allowance,sgara64,,KEEP-FLAGGED
+AR,US-7160,Cave Springs State Natural Area,pin-outside-allowance,166733 sgara14,,KEEP-FLAGGED
+AR,US-7161,Chesney Prairie State Natural Area,pin-outside-allowance,sgara17,,KEEP-FLAGGED
+AR,US-7163,Cutoff Creek State Natural Area,bigger-park-record,166784,,KEEP-FLAGGED
+AR,US-7182,Kingsland Prairie State Natural Area,pin-outside-allowance,arw1812 sgara11,,KEEP-FLAGGED
+AR,US-7185,Pine City State Natural Area,pin-outside-allowance,166755 arw1829 sgara53,,KEEP-FLAGGED
+AR,US-7271,Camp Robinson Wildlife Management Area,pin-outside-allowance,arw1801,,KEEP-FLAGGED
+AR,US-7274,Cedar Creek Wildlife Management Area,pin-far,arw1846,,KEEP-FLAGGED
+AR,US-7329,Sweden Creek Falls Wildlife Management Area,kinds-differ; bigger-park-record,166762 arw1826 sgara73,,KEEP-FLAGGED
+AZ,US-12160,Hot Well Dunes BLM Recreation Management Area,kinds-differ,rma10768 rst10768,,KEEP-FLAGGED
+CA,US-0193,Guadalupe-Nipomo Dunes National Wildlife Refuge,pin-outside-allowance,3903 4848,,KEEP-FLAGGED
+CA,US-3429,Emeryville Crescent State Marine Reserve,pin-outside-allowance,183784,,KEEP-FLAGGED
+CA,US-3473,Martial Cottle Park State Recreation Area,pin-outside-allowance,183815 sgcab746,,KEEP-FLAGGED
+CA,US-4606,Mount Zion Demonstration State Forest,bigger-park-record,183256 183262,,KEEP-FLAGGED
+CO,US-0183,Penrose Commons National Recreation Area,kinds-differ,sgcoe3126 sgakg13932 sgcoe2643,,KEEP-FLAGGED
+CO,US-0191,Brush Hollow State Wildlife Area,pin-outside-allowance,cow169 sgcoa49 sgcod56 sgcoc169,,KEEP-FLAGGED
+CO,US-0195,Ogden-Treat State Wildlife Area,pin-outside-allowance,cow584 sgcoc584 cow585 sgcoc585,,KEEP-FLAGGED
+CO,US-12185,Grand Junction: West Lake State Wildlife Area,bigger-park-record; pin-far,cow368 sgcoa136 sgcod156 sgcoc369,,KEEP-FLAGGED
+CO,US-12187,Roaring Fork State Wildlife Area,pin-outside-allowance,189236,,KEEP-FLAGGED
+CO,US-12758,La Jara Creek State Wildlife Area,pin-outside-allowance,sgcoa175 sgcoc474 sgcod209,,KEEP-FLAGGED
+CO,US-9594,Gunnison Gorge BLM National Conservation Area,pin-outside-allowance,nca21287,,KEEP-FLAGGED
+CO,US-9596,North Sand Hills BLM National Recreation Area,kinds-differ,sgcoe168 rst9516 sgakg9516 sgcoe69 rst10515 sgakg10515 sgcoe68 rst10523 +2 more,,KEEP-FLAGGED
+CO,US-9603,Adobe Creek State Wildlife Area,pin-outside-allowance,sgcoa3 sgcod3,,KEEP-FLAGGED
+CO,US-9605,Alma State Wildlife Area,pin-outside-allowance,189038 sgcoa5 sgcod5 sgcoc12,,KEEP-FLAGGED
+CO,US-9612,Bellaire Lake State Wildlife Area,pin-outside-allowance,184881 sgcoa18 sgcod20 sgcoc103,,KEEP-FLAGGED
+CO,US-9617,Bitter Brush State Wildlife Area,pin-outside-allowance,sgcoa32 189052 189053 sgcod34 sgcoc124,,KEEP-FLAGGED
+CO,US-9624,Brown Lakes State Wildlife Area,pin-outside-allowance,189068 sgcoa43 sgcod49 sgcoc156,,KEEP-FLAGGED
+CO,US-9635,Colorow Mountain State Wildlife Area,pin-outside-allowance,sgcoa77 189100 sgcod91 sgcoc236,,KEEP-FLAGGED
+CO,US-9639,Deadman State Wildlife Area,pin-outside-allowance,sgcoa87 189109 sgcod103 sgcoc261,,KEEP-FLAGGED
+CO,US-9659,Huerfano State Wildlife Area,pin-outside-allowance,sgcoa156 188936 sgcod179 sgcoc415,,KEEP-FLAGGED
+CO,US-9660,Joe Moore Reservoir State Wildlife Area,pin-outside-allowance,sgcoa166 189161 sgcod199,,KEEP-FLAGGED
+CO,US-9674,Totten Reservoir State Wildlife Area,pin-outside-allowance,cow846 sgcoa298 sgcoc846 sgcod356,,KEEP-FLAGGED
+CO,US-9677,Williams Creek Reservoir State Wildlife Area,pin-outside-allowance,189287 sgcoa317 sgcod378 sgcoc904,,KEEP-FLAGGED
+DE,US-12939,Barr Industrial Forest Land State Wildlife Area,bigger-park-record,sgdec28,,KEEP-FLAGGED
+DE,US-1744,Wilmington State Park,pin-far,76430,,KEEP-FLAGGED
+DE,US-7645,Assawoman Bay State Wildlife Area,bigger-park-record,57490 sgdec56 sgdec55 sgdec68 57491 57492 sgdec70 57493 +8 more,,KEEP-FLAGGED
+FL,US-0007,Biscayne Bay National Park,bigger-park-record,3423,,KEEP-FLAGGED
+FL,US-10565,Stuart's Landing North State Conservation Area,bigger-park-record,190447 sgfld454,,KEEP-FLAGGED
+FL,US-3619,Fernandina Plaza State Historic Site,kinds-differ,191806 sgfla28,,KEEP-FLAGGED
+FL,US-3620,Florida Keys Overseas Heritage Trail State Park,pin-outside-allowance,sgfla128 9556 fnl945,,KEEP-FLAGGED
+FL,US-3660,Suwannee River Wilderness State Trail,pin-far,sgfla109,,KEEP-FLAGGED
+FL,US-6744,Terra Ceia Preserve Frog Creek State Conservation Area,bigger-park-record; pin-outside-allowance,sgfla42,,KEEP-FLAGGED
+FL,US-8328,Chipola River Water Management Area,bigger-park-record; pin-far,190224 sgflg82,,KEEP-FLAGGED
+HI,US-2213,Kaumahina Wayside State Park,bigger-park-record,195382 sghic25 sghia25,,KEEP-FLAGGED
+HI,US-2218,Nu'uanu Pali Wayside State Park,bigger-park-record,sghic12 sghia12 195397,,KEEP-FLAGGED
+HI,US-2221,Puaa Kaa Wayside State Park,bigger-park-record,195402 sghic71 sghic72 sghia70,,KEEP-FLAGGED
+HI,US-2227,Wailua Valley Wayside State Park,bigger-park-record,195413 sghic26 sghia26,,KEEP-FLAGGED
+HI,US-6401,Mauna Kea State Recreation Area,pin-far,195252 195395,,KEEP-FLAGGED
+HI,US-6420,Kiholo  Reserve State Reserve,kinds-differ,sghic65 sghia65 sghib264,,KEEP-FLAGGED
+ID,US-0279,Minidoka National Wildlife Refuge,pin-outside-allowance,4121 5077,,KEEP-FLAGGED
+ID,US-10530,Coeur d'Alene Parkway State Park,pin-outside-allowance,199721,,KEEP-FLAGGED
+ID,US-11387,Lake Cascade Reservoir Management Area,bigger-park-record,sgidb1939824 2309,,KEEP-FLAGGED
+ID,US-11389,Long Tom Reservoir State Fishing Lake,pin-outside-allowance,sgidb1939360,,KEEP-FLAGGED
+ID,US-12233,CJ Strike Reservoir State Fishing Lake,kinds-differ,rst13808 sgakg13808 sgidc815 sgida73156 sgidb1937412,,KEEP-FLAGGED
+ID,US-12298,Gamlin Lake Recreation Site BLM Recreation Management Area,bigger-park-record,rst13877 rst13918,,KEEP-FLAGGED
+ID,US-12303,Wilson Springs Pond Complex State Fishing Lake,bigger-park-record,199706 199705,,KEEP-FLAGGED
+ID,US-2229,Bruneau Dunes State Park,pin-outside-allowance,199720,,KEEP-FLAGGED
+ID,US-2232,Dworshak State Park,pin-outside-allowance,sgide2198,,KEEP-FLAGGED
+ID,US-2243,Massacre Rocks State Park,pin-outside-allowance,199738,,KEEP-FLAGGED
+ID,US-5616,Red River Wildlife Management Area,pin-outside-allowance,199504 sgida73133,,KEEP-FLAGGED
+IL,US-0376,Great River National Wildlife Refuge,pin-far,sgila1215,,KEEP-FLAGGED
+IL,US-1026,Spitler Woods State Park,kinds-differ,sgila1063 157620,,KEEP-FLAGGED
+IL,US-12601,Hackmatack National Wildlife Refuge,pin-outside-allowance,4851 3907 4852 3906 sgila1627 sgila1218 sgilc8532 sgilc8994 +1 more,,KEEP-FLAGGED
+IL,US-4125,Goode's Woods State Nature Preserve,pin-outside-allowance,70810 sgila1143 sgilb683,,KEEP-FLAGGED
+IN,US-10229,Tefft Savanna State Nature Preserve,pin-outside-allowance,200899,,KEEP-FLAGGED
+IN,US-10231,Limberlost Swamp State Nature Preserve,bigger-park-record,sginb4338 200800,,KEEP-FLAGGED
+IN,US-11998,Lake Wawasee State Fishing Lake,bigger-park-record,201041,,KEEP-FLAGGED
+IN,US-4220,Pipewort Pond Lieber Memorial State Nature Preserve,bigger-park-record,200815 sgina4833 sginb4833,,KEEP-FLAGGED
+IN,US-7370,Ravinia Woods State Forest,bigger-park-record,sgina4917,,KEEP-FLAGGED
+MA,US-0322,Mashpee National Wildlife Refuge,pin-outside-allowance,5039 4085 sgmaa700088 sgmaa670063 sgmaa669617 sgmaa700116 sgmaa700102 sgmaa668729,,KEEP-FLAGGED
+MA,US-0728,Boston National Historical Park,pin-outside-allowance,3187 sgmac13,,KEEP-FLAGGED
+MA,US-11399,Bullock Ledge Wildlife Management Area,pin-far,sgmaa642740 maw52,,KEEP-FLAGGED
+MA,US-11401,Cummington Wildlife Management Area,pin-far,55327 sgmaa644046 sgmad1372038 sgmaa700516 sgmad1378313 sgmaa700291 sgmad1372470 55331 +11 more,,KEEP-FLAGGED
+MA,US-11631,Hartley Reservoir Wildlife Management Area,pin-far,55515 sgmaa645472,,KEEP-FLAGGED
+MA,US-2452,Pearl Hill State Park,pin-outside-allowance,59078 sgmaa695961 sgmab297,,KEEP-FLAGGED
+MA,US-8386,Fort Revere Park State Park,pin-outside-allowance,59169 sgmaa692318 sgmad1345974 59167 59168 59171 sgmaa692136 sgmaa692141 +23 more,,KEEP-FLAGGED
+MA,US-8393,Stodder's Neck & Abigail Adams State Park,bigger-park-record; pin-outside-allowance,59334 59335 sgmaa665637 sgmaa671813 59336 sgmaa697518 sgmab1,,KEEP-FLAGGED
+MA,US-8405,Charles River State Reserve,kinds-differ; pin-outside-allowance,sgmaa700303 sgmad1371885 59476 sgmaa700316 sgmad1372779 59471 sgmaa688425 sgmad1357580 +372 more,,KEEP-FLAGGED
+MA,US-8414,Middlesex Fells State Reserve,bigger-park-record,59672 59676 sgmaa663587 sgmaa688434 sgmaa665746 59678 sgmaa661585 59674 +54 more,,KEEP-FLAGGED
+MA,US-8427,Rumney Marsh State Reserve,pin-outside-allowance,59093 sgmaa672142 59089 59099 59097 59111 sgmaa697473 59110 +115 more,,KEEP-FLAGGED
+MA,US-8433,Winthrop Shore State Reserve,pin-outside-allowance,sgmad1345857 59161 sgmaa662439 sgmad1352742 59160 sgmaa663733 sgmad1356748 sgmab434,,KEEP-FLAGGED
+MD,US-6390,South Mountain State Battlefield State Park,bigger-park-record; pin-outside-allowance,9247 9246 9245,,KEEP-FLAGGED
+MD,US-7749,Pocomoke Sound Wildlife Management Area,pin-far,sgmda332 sgmda333,,KEEP-FLAGGED
+MD,US-7751,Tar Bay Wildlife Management Area,pin-outside-allowance,56582 sgmda339,,KEEP-FLAGGED
+MN,US-0361,Hamden Slough National Wildlife Refuge,pin-outside-allowance,4860 sgmng415,,KEEP-FLAGGED
+MN,US-10723,Crystal Spring SNA Scenic Reserve,pin-outside-allowance,sgmnc178,,KEEP-FLAGGED
+MN,US-10725,St. Croix Savanna SNA Scenic Reserve,pin-outside-allowance,sgmnc72 sgmnc94,,KEEP-FLAGGED
+MN,US-11023,Egret Island SNA State Conservation Area,pin-far,sgmnc57,,KEEP-FLAGGED
+MN,US-11699,Savage FEN SNA State Sanctuary,bigger-park-record,207772 sgmnc148,,KEEP-FLAGGED
+MN,US-11700,Wolsfeld Woods SNA State Sanctuary,bigger-park-record,207799 sgmnc114,,KEEP-FLAGGED
+MN,US-12685,Mallard Marsh:Gombold Unit Wildlife Management Area,bigger-park-record; pin-outside-allowance,sgmna1445 sgmnf5469,,KEEP-FLAGGED
+MN,US-13354,Pelican Lake Wildlife Management Area,pin-outside-allowance,sgmna1423 209291 sgmnf5623,,KEEP-FLAGGED
+MN,US-9383,Goodhue-Pioneer State Trail,pin-outside-allowance,sgmnf4231 sgmne5200 sgmne5733 sgmne5735 sgmne5196 sgmne7461 sgmne7742 sgmne5734 +9 more,,KEEP-FLAGGED
+MO,US-0831,Harry S. Truman Family Farm National Historic Site,bigger-park-record,3141,,KEEP-FLAGGED
+MO,US-10386,Compton Hollow State Recreation Area,kinds-differ,210264 sgmoc183 sgmoh183 mol201,,KEEP-FLAGGED
+MO,US-10867,Wayne Helton Memorial State Conservation Area,kinds-differ,sgmoc237 sgmof237 sgmoh237 210768 sgmod2,,KEEP-FLAGGED
+MO,US-11775,Archangel Access State Conservation Area,pin-outside-allowance,sgmoc366 sgmof366 sgmoh366 210808,,KEEP-FLAGGED
+MO,US-12676,Holly Ridge State Conservation Area,pin-outside-allowance,sgmoh248 210382 sgmog23 sgmod23 210721 sgmod154 mol409,,KEEP-FLAGGED
+MO,US-5697,Atlanta Wildlife Area,kinds-differ,210166 sgmoc113 sgmoh113 sgmof113 mol29,,KEEP-FLAGGED
+MO,US-6514,Big Buffalo Creek State Conservation Area,pin-outside-allowance,sgmoh148 210184 sgmod9 210689 sgmog9 210690 mol59,,KEEP-FLAGGED
+MO,US-7673,Liberty Bend Conservation Reserve,pin-outside-allowance,sgmoh891 210432 mol536,,KEEP-FLAGGED
+MO,US-7680,Upper Mississippi Conservation Reserve,pin-far,sgmoc125 sgmoh125 sgmod72,,KEEP-FLAGGED
+MO,US-8239,Black Island State Conservation Area,pin-outside-allowance,sgmoc982 sgmoh982 210195 sgmoc589 sgmoh589 210194 sgmoc926 sgmoh926 +4 more,,KEEP-FLAGGED
+MO,US-8511,White River Balds Natural Area State Conservation Area,pin-outside-allowance,sgmog30 210764,,KEEP-FLAGGED
+MT,US-10525,Coal Banks Landing (BLM) Recreation Site,bigger-park-record,rma13966 rst13966,,KEEP-FLAGGED
+MT,US-12630,Upper Missouri River BLM Wild and Scenic River,bigger-park-record,sgmtd1197,,KEEP-FLAGGED
+MT,US-12926,Tony Schonen State Beach,kinds-differ,211600,,KEEP-FLAGGED
+NH,US-4882,Carroll State Forest,pin-outside-allowance,56952 sgnhc2095 sgnha3925 sgnhd3925,,KEEP-FLAGGED
+NH,US-4893,Davisville State Forest,pin-outside-allowance,56964 sgnhc1929 56965 sgnha4775 sgnha4776 sgnha4777 sgnhd4775 sgnhd4776 +1 more,,KEEP-FLAGGED
+NH,US-4894,Davis-White State Forest,pin-far,56963 sgnhc644 sgnha990 sgnhd990,,KEEP-FLAGGED
+NH,US-4913,Hodgman State Forest,pin-outside-allowance,sgnhc2405 nhc10104 sgnha10104 sgnhd10104,,KEEP-FLAGGED
+NH,US-4921,Leighton State Forest,pin-outside-allowance,56990 sgnhc2327 sgnhc2428 sgnha7042 sgnha7807 sgnhd7042 sgnhd7807,,KEEP-FLAGGED
+NH,US-4926,Lovewell Mountain State Forest,pin-outside-allowance,nhc4669 sgnha4669 sgnhd4669,,KEEP-FLAGGED
+NH,US-4928,Marshall State Forest,pin-outside-allowance,56996 sgnhc2266 sgnha10285 sgnhd10285,,KEEP-FLAGGED
+NH,US-4932,Meadow Pond State Forest,pin-outside-allowance,56998 sgnhc1012 sgnha3799 sgnhd3799,,KEEP-FLAGGED
+NH,US-4933,Merrimack River State Forest,pin-far,56999 sgnhc2075 sgnha4054 sgnha4139 sgnhd4054 sgnhd4139,,KEEP-FLAGGED
+NH,US-4934,Merriman State Forest,pin-far,sgnhc317 57000 sgnha1069 sgnhd1069,,KEEP-FLAGGED
+NH,US-4935,Mount Major State Forest,pin-outside-allowance,57003 sgnha3437 sgnhd3437,,KEEP-FLAGGED
+NH,US-4937,Nottingham State Forest,pin-outside-allowance,57005 sgnhc1443 sgnha4706 sgnhd4706,,KEEP-FLAGGED
+NH,US-4946,Powwow River State Forest,pin-outside-allowance,sgnhc1723 nhc9392 sgnha9392 sgnhd9392 nhc9407 nhc9544 sgnha9407 sgnha9544 +2 more,,KEEP-FLAGGED
+NH,US-4949,Ragged Mountain State Forest,pin-outside-allowance,57013 sgnhc1852 sgnha3680 sgnhd3680 nhc2121 sgnha2121 sgnha4094 sgnhd2121 +1 more,,KEEP-FLAGGED
+NH,US-4951,Rock Rimmon State Forest,pin-outside-allowance,sgnhc1490 sgnhc1143 nhc7172 nhc8918 sgnha7172 sgnha8918 sgnhd7172 sgnhd8918,,KEEP-FLAGGED
+NH,US-4955,Saltmarsh Pond State Forest,pin-far,sgnhc2115 nhc3433 sgnha3433 sgnhd3433,,KEEP-FLAGGED
+NH,US-4960,Shadow Hill State Forest,pin-outside-allowance,sgnhc1991 nhc4136 sgnha4136 sgnhd4136,,KEEP-FLAGGED
+NH,US-4962,Shieling State Forest,pin-outside-allowance,57022 sgnhc2256 sgnha7548 sgnhd7548,,KEEP-FLAGGED
+NH,US-4970,Taylor State Forest,pin-outside-allowance,57030 sgnhc1935 sgnhc1969 sgnha4848 sgnha4849 sgnha4853 sgnhd4848 sgnhd4849 +2 more,,KEEP-FLAGGED
+NH,US-4977,Walker State Forest,pin-outside-allowance,sgnhc1437 sgnhc2090 nhc4899 sgnha4899 sgnhd4899 nhc11491 sgnha11491 sgnhd11491,,KEEP-FLAGGED
+NH,US-8018,Fort Constitution State Historic Site,pin-outside-allowance,sgnhc1429 nhc7996 sgnha7996 sgnhd7996,,KEEP-FLAGGED
+NH,US-8396,Nashua River Rail Trail State Trail,pin-far,59025,,KEEP-FLAGGED
+NM,US-0678,Valles Caldera Preserve National Conservation Area,bigger-park-record,3313,,KEEP-FLAGGED
+NM,US-11782,Dunes BLM Recreation Management Area,kinds-differ,rst14014,,KEEP-FLAGGED
+NM,US-11866,"Rio Bonito Acquired Lands: Salazar Tract, BLM Recreation Management Area",bigger-park-record,rst13994 rst14069 rst14010 rst14006,,KEEP-FLAGGED
+NM,US-2706,Morphy Lake State Park,pin-outside-allowance,sgnmb17 229285,,KEEP-FLAGGED
+NV,US-13152,Mill Creek-NV BLM Recreation Management Area,kinds-differ; bigger-park-record,rma9911 rst9911,,KEEP-FLAGGED
+NV,US-13154,Illipah Reservoir BLM Recreation Management Area,kinds-differ,rma9762 rst9762,,KEEP-FLAGGED
+NV,US-13162,Hickison Petroglyph BLM Recreation Management Area,kinds-differ,rst9800 rma9904 rst9904,,KEEP-FLAGGED
+NV,US-13175,Copper Basin BLM Recreation Management Area,kinds-differ,rma10001 rst10001,,KEEP-FLAGGED
+NV,US-13188,Garnet Hill BLM Recreation Management Area,kinds-differ,rma9887 rst9887,,KEEP-FLAGGED
+NV,US-13191,Tabor Creek Campground BLM Recreation Management Area,bigger-park-record,rst9582,,KEEP-FLAGGED
+NV,US-13194,Egan Crest Trailhead BLM Recreation Management Area,pin-far,rma9641 rst9641 sgakg9641,,KEEP-FLAGGED
+NV,US-13224,South Fork Owyhee River - Nevada BLM Recreation Management Area,bigger-park-record,rst9628,,KEEP-FLAGGED
+NV,US-13226,Ward Mountain BLM Recreation Management Area,kinds-differ,rma9777 rst9777,,KEEP-FLAGGED
+NV,US-4440,Elgin School House State Park,kinds-differ,sgnve23 sgnvb38 sgnvd38,,KEEP-FLAGGED
+NV,US-4442,Walker Lake State Recreation Area,pin-outside-allowance,230204,,KEEP-FLAGGED
+OH,US-1986,Pymatuning of Ohio State Park,bigger-park-record,sgoha240 251679,,KEEP-FLAGGED
+OH,US-9433,Shoemaker State Nature Preserve,pin-outside-allowance,71820 sgohe419 sgohd516 sgohf376,,KEEP-FLAGGED
+OH,US-9440,Tummonds State Nature Preserve,pin-outside-allowance,71675 sgohd307 sgohe458 sgohf287,,KEEP-FLAGGED
+OH,US-9475,Liberty State Wildlife Area,pin-outside-allowance,71765 sgohe233 sgohf474 sgohb135,,KEEP-FLAGGED
+OR,US-0199,Lower Klamath National Wildlife Refuge,pin-outside-allowance,5014 4059,,KEEP-FLAGGED
+OR,US-0499,Cold Springs National Wildlife Refuge,pin-outside-allowance,3736 4672,,KEEP-FLAGGED
+OR,US-0503,McKay Creek National Wildlife Refuge,pin-outside-allowance,4098 5054,,KEEP-FLAGGED
+OR,US-0596,Umatilla National Wildlife Refuge,pin-outside-allowance,4423 5380,,KEEP-FLAGGED
+OR,US-0731,Columbia River Gorge National Forest,pin-outside-allowance,239375,,KEEP-FLAGGED
+OR,US-10240,Kenneth Denman State Wildlife Area,bigger-park-record,241319,,KEEP-FLAGGED
+OR,US-10496,Sharps Creek BLM Recreation Management Area,kinds-differ,rma11233 rst11233 rst13609,,KEEP-FLAGGED
+OR,US-10753,Woodrat Mountain Paragliding BLM Recreation Management Area,bigger-park-record,rst11759 rma9931 rst9931,,KEEP-FLAGGED
+OR,US-12510,South Slough Reserve State Park Preserve,bigger-park-record,sgord9233 sgord9217 sgord9244 sgord10253 sgord9229 sgord634 sgord2405 sgord488 +97 more,,KEEP-FLAGGED
+OR,US-12838,Loon Lake BLM Recreation Management Area,kinds-differ,rst13724 rma11216 rst11216 sgakg11216 rst12534 sgore23754,,KEEP-FLAGGED
+OR,US-2810,Alderwood Wayside State Park,bigger-park-record,241569 sgorb35 sgora41 sgord107 sgore21529,,KEEP-FLAGGED
+OR,US-2823,Chandler Wayside State Park,bigger-park-record,241570 sgorb404 sgora43251 sgore21921,,KEEP-FLAGGED
+OR,US-2846,Oregon State Capitol State Park,bigger-park-record,241375 sgorb333 sgora387 sgore21656,,KEEP-FLAGGED
+OR,US-4383,Rogue River-Siskiyou National Forest,pin-far,2918 2631,,KEEP-FLAGGED
+OR,US-4457,Klamath National Forest,pin-far,2842 2629,,KEEP-FLAGGED
+OR,US-5461,Tillamook State Forest,pin-far,241270 242102,,KEEP-FLAGGED
+OR,US-9159,Lower Deschutes National Wild and Scenic River,bigger-park-record; pin-far,sgord5150,,KEEP-FLAGGED
+OR,US-9538,Darlingtonia State Natural Site,bigger-park-record,241406 sgorb288 sgora338 sgord2133 sgord2131 sgord2132,,KEEP-FLAGGED
+OR,US-9551,"Government, Lemon, and McGuire Islands State Recreation Area",bigger-park-record,241472 sgorb3 sgora3 sgore21739 sgore25313,,KEEP-FLAGGED
+OR,US-9561,Luckiamute Landing State Natural Area,bigger-park-record,241395,,KEEP-FLAGGED
+OR,US-9993,Nestucca River OHV BLM Recreation Management Area,bigger-park-record; pin-far,rst12674 rst13391,,KEEP-FLAGGED
+RI,US-10546,Eight Rod Farm Wildlife Management Area,pin-outside-allowance,57291,,KEEP-FLAGGED
+RI,US-2874,Fort Adams State Park,pin-outside-allowance,57171,,KEEP-FLAGGED
+RI,US-2880,Snake Den/Dame Farm State Park,bigger-park-record,sgria754 57202 57203 57204 57201,,KEEP-FLAGGED
+RI,US-6986,Simmons Mill Wildlife Management Area,pin-outside-allowance,57361 57360,,KEEP-FLAGGED
+TN,US-12070,Garrett Lake State Fishing Lake,kinds-differ,255799 sgtne271,,KEEP-FLAGGED
+TN,US-12715,Gibson County State Fishing Lake,kinds-differ,255800 sgtne274,,KEEP-FLAGGED
+TN,US-2952,Hiwassee Ocoee State Park,bigger-park-record,256174 sgtnf84 255384 sgtng44,,KEEP-FLAGGED
+TN,US-2955,Wilson Cumberland Trail State Park,bigger-park-record,sgtnf44 tnd44 256171 255602 sgtnf40 tnd40 sgtnf38 tnd38 +4 more,,KEEP-FLAGGED
+TN,US-3928,Bridgestone/firestone Centennial Wilderness Wildlife Management Area,bigger-park-record,sgtne109 255691 sgtni197 255697 sgtne126 sgtni169 255692 sgtne110 +3 more,,KEEP-FLAGGED
+TN,US-3961,South Fork Waterfowl State Wildlife Area,refuge-word; kinds-differ; bigger-park-record,sgtnc174 sgtne237 255650 sgtne69 sgtni104 255780,,KEEP-FLAGGED
+TN,US-5493,Franklin-Marion State Forest,bigger-park-record,sgtnd10 256181,,KEEP-FLAGGED
+TN,US-6266,Savage Gulf State Natural Area,pin-outside-allowance,256182,,KEEP-FLAGGED
+TN,US-6270,Stinging Fork Falls State Natural Area,bigger-park-record,256186,,KEEP-FLAGGED
+TN,US-6277,Washmorgan Hollow State Natural Area,pin-outside-allowance,sgtnf173,,KEEP-FLAGGED
+TX,US-0689,Big Thicket Preserve National Conservation Area,bigger-park-record,sgtxd6961 3298,,KEEP-FLAGGED
+TX,US-3510,Powderhorn Ranch State Wildlife Area,bigger-park-record,263464 sgtxc116,,KEEP-FLAGGED
+TX,US-6545,Candy Cain Abshier Wildlife Management Area,bigger-park-record,261771 sgtxd1228 sgtxc91,,KEEP-FLAGGED
+UT,US-0921,Dinosaur National Monument,pin-outside-allowance,3362,,KEEP-FLAGGED
+UT,US-10813,Ouray National Fish Hatchery,pin-outside-allowance,4190 5146,,KEEP-FLAGGED
+UT,US-10990,Topaz Mountain BLM Special Recreation Management Area,pin-outside-allowance,rst9580 sgakg9580,,KEEP-FLAGGED
+UT,US-11000,Desert Experimental Range Biosphere Reserve,bigger-park-record,1788,,KEEP-FLAGGED
+UT,US-11007,White River BLM Recreation Management Area,pin-outside-allowance,rst11027 sgakg11027,,KEEP-FLAGGED
+UT,US-11092,Midway Utah State Fish Hatchery,bigger-park-record,sgutb151,,KEEP-FLAGGED
+UT,US-11093,Egan State Fish Hatchery,pin-outside-allowance,sgutb60,,KEEP-FLAGGED
+UT,US-11096,Whiterocks State Fish Hatchery,pin-outside-allowance,264189 sgutb257,,KEEP-FLAGGED
+UT,US-11104,Brigham Face State Wildlife Habitat Management Area,bigger-park-record,264124 sgutb26 263921,,KEEP-FLAGGED
+UT,US-11105,Coldwater Canyon State Wildlife Habitat Management Area,bigger-park-record,263927 sgutb44,,KEEP-FLAGGED
+UT,US-11106,Kamas West Hills State Wildlife Habitat Management Area,bigger-park-record,utw369 sgutb109,,KEEP-FLAGGED
+UT,US-11126,Public Shooting Grounds State Waterfowl Management Area,bigger-park-record,utw189 sgutb189,,KEEP-FLAGGED
+UT,US-11168,Little Hole State Wildlife Habitat Management Area,bigger-park-record,utw386 sgutb127,,KEEP-FLAGGED
+UT,US-11177,Stewart Lake State Wildlife Habitat Management Area,bigger-park-record,263985 sgutb222,,KEEP-FLAGGED
+UT,US-11180,Rabbit Gulch State Wildlife Habitat Management Area,bigger-park-record,263978 sgutb190,,KEEP-FLAGGED
+UT,US-11645,Utah Lake Access - Swede's Lane Wildlife Management Area,kinds-differ,utw227,,KEEP-FLAGGED
+UT,US-11702,Santaquin West Hills Wildlife Management Area,bigger-park-record,264187 sgutb254,,KEEP-FLAGGED
+UT,US-11724,Kingston Canyon WMA State Wildlife Habitat Management Area,bigger-park-record,utw374 sgutb115,,KEEP-FLAGGED
+UT,US-12145,Doc's Beach OHV Staging Area BLM Recreation Management Area,bigger-park-record,rma10016 rst10016 sgakg10016,,KEEP-FLAGGED
+UT,US-12149,Rainbow Ghost Town Site BLM Special Recreation Management Area,bigger-park-record,rma9835 rst9835,,KEEP-FLAGGED
+UT,US-12236,Provo River Delta - Utah State Fish and Wildlife Area,bigger-park-record,utw464,,KEEP-FLAGGED
+UT,US-12677,Swan Creek Utah State Wildlife Area,bigger-park-record,263988 sgutb226,,KEEP-FLAGGED
+UT,US-3064,Camp Floyd/Stagecoach Inn State Park,bigger-park-record,264198 264230 sguta115 sguta116 sguta117 sguta164 sgutf8 sgutf39,,KEEP-FLAGGED
+UT,US-3070,Escalante Petrified Forest State Park,bigger-park-record,264205 sguta114 sgutf16,,KEEP-FLAGGED
+UT,US-5756,Browns Park National Wildlife Management Area,bigger-park-record,utw293 sgutb27,,KEEP-FLAGGED
+UT,US-5758,Dolores River BLM Recreation Management Area,pin-outside-allowance,rst9851 rst10892,,KEEP-FLAGGED
+UT,US-5779,Willard Spur State Waterfowl Management Area,bigger-park-record,utw261 sgutb261,,KEEP-FLAGGED
+UT,US-5828,Dark Canyon BLM Special Recreation Management Area,pin-far,rst14461 sgakg14461,,KEEP-FLAGGED
+UT,US-5877,Desert Lake State Waterfowl Management Area,bigger-park-record,utw318 sgutb54,,KEEP-FLAGGED
+UT,US-5897,Lower Last Chance BLM Wilderness Area,pin-outside-allowance,wbl264,,KEEP-FLAGGED
+UT,US-5923,Henefer-Echo UDWR Wildlife Management Area,bigger-park-record,263944 sgutb94,,KEEP-FLAGGED
+UT,US-5930,Bicknell Bottoms State Waterfowl Management Area,bigger-park-record,utw432,,KEEP-FLAGGED
+UT,US-5938,Mount Timpanogos USFS Wilderness Area,bigger-park-record,wld321,,KEEP-FLAGGED
+UT,US-5941,Mount Naomi USFS Wilderness Area,bigger-park-record,wld313,,KEEP-FLAGGED
+UT,US-5942,Mount Olympus USFS Wilderness Area,bigger-park-record,wld315,,KEEP-FLAGGED
+UT,US-5943,Lone Peak USFS Wilderness Area,bigger-park-record,wld262,,KEEP-FLAGGED
+UT,US-5944,Twin Peaks USFS Wilderness Area,bigger-park-record,wld415,,KEEP-FLAGGED
+UT,US-5948,Mount Nebo USFS Wilderness Area,bigger-park-record,wld314,,KEEP-FLAGGED
+UT,US-5955,Farmington Bay State Waterfowl Management Area,bigger-park-record,263937 sgutb67,,KEEP-FLAGGED
+UT,US-5963,Wellsville Mountain USFS Wilderness Area,bigger-park-record,wld430,,KEEP-FLAGGED
+UT,US-5967,Ogden Bay State Waterfowl Management Area,bigger-park-record,263974 sgutb170,,KEEP-FLAGGED
+UT,US-5968,Howard Slough State Waterfowl Management Area,bigger-park-record,utw361 sgutb100,,KEEP-FLAGGED
+UT,US-5971,Harold S. Crane State Waterfowl Management Area,bigger-park-record,263943 sgutb89,,KEEP-FLAGGED
+UT,US-5973,Salt Creek State Waterfowl Management Area,bigger-park-record,263980 sgutb206,,KEEP-FLAGGED
+UT,US-5990,Timpie Springs State Waterfowl Management Area,bigger-park-record,utw231 sgutb231,,KEEP-FLAGGED
+UT,US-5991,Clear Lake State Waterfowl Management Area,bigger-park-record,263926 sgutb41,,KEEP-FLAGGED
+UT,US-5994,Deseret Peak USFS Wilderness Area,bigger-park-record,wld103,,KEEP-FLAGGED
+UT,US-6006,Ashdown Gorge USFS Wilderness Area,bigger-park-record,wld24,,KEEP-FLAGGED
+UT,US-6009,Locomotive Springs State Waterfowl Management Area,bigger-park-record,utw390 sgutb132,,KEEP-FLAGGED
+UT,US-6065,Cottonwood Forest USFS Wilderness Area,bigger-park-record,wld94,,KEEP-FLAGGED
+UT,US-6066,Pine Valley Mountain USFS Wilderness Area,bigger-park-record,wld148,,KEEP-FLAGGED
+VA,US-0573,Wallops Island National Wildlife Refuge,pin-outside-allowance,sgvae490625 4448 5405,,KEEP-FLAGGED
+VA,US-0671,Assateague Island National Seashore,pin-far,3322 sgvae490557,,KEEP-FLAGGED
+VA,US-5509,Chilton Woods State Forest,pin-outside-allowance,57426 270414 sgvaa34 sgvae486632,,KEEP-FLAGGED
+VA,US-9899,Fort Hunt National Historical Site,pin-far,sgvae488032,,KEEP-FLAGGED
+VA,US-9970,Marion Trout State Fish Hatchery,bigger-park-record,270532 58215 sgvae486790 58214 sgvae486788 sgvae486789,,KEEP-FLAGGED
+VA,US-9973,Wytheville Trout State Fish Hatchery,bigger-park-record,sgvae486472 58219 270536,,KEEP-FLAGGED
+VT,US-10302,Atherton Meadows State Wildlife Habitat Management Area,bigger-park-record,sgvta279 58228 58229 58230 58231,,KEEP-FLAGGED
+VT,US-3128,Lake Shaftsbury State Park,bigger-park-record,61159 61160 61161,,KEEP-FLAGGED
+VT,US-3138,Quechee State Park,pin-outside-allowance,61152 sgvta451,,KEEP-FLAGGED
+VT,US-5532,Hapgood State Forest,pin-outside-allowance,61290 sgvta4,,KEEP-FLAGGED
+VT,US-5538,Lower Clarendon Gorge State Forest,pin-outside-allowance,sgvta478 9798 61332,,KEEP-FLAGGED
+VT,US-5541,Calvin Coolidge State Forest,bigger-park-record,61205 61214 61234 61230 61207 61231 61225 61229 +17 more,,KEEP-FLAGGED
+VT,US-5553,Camels Hump State Forest,pin-outside-allowance,sgvta5 61198 61199 61194 61195 61196 61197 61193,,KEEP-FLAGGED
+VT,US-5559,Cambridge State Forest,pin-outside-allowance,61192 sgvta32,,KEEP-FLAGGED
+WA,US-0054,Nez Perce National Historical Park,pin-far,3233,,KEEP-FLAGGED
+WA,US-0061,San Juan Island American Camp National Historical Park,bigger-park-record,3244,,KEEP-FLAGGED
+WA,US-11903,San Juan Island English Camp National Historical Park,bigger-park-record,3244,,KEEP-FLAGGED
+WA,US-12284,Camas Meadows Natural Area State Preserve,bigger-park-record,271296,,KEEP-FLAGGED
+WA,US-12318,Dishman Hills State Conservation Area,pin-outside-allowance,271347,,KEEP-FLAGGED
+WA,US-12413,Spokane Plains Battlefield State Heritage Area,bigger-park-record,271397 sgwaa174 sgwad4289,,KEEP-FLAGGED
+WA,US-12830,Old Ruby State Park State Heritage Area,bigger-park-record,271501 sgwaa128,,KEEP-FLAGGED
+WA,US-13371,Marcellus Shrub Steppe State Natural Area,pin-outside-allowance,271319,,KEEP-FLAGGED
+WA,US-3184,Eagle Island Marine State Park,bigger-park-record,271430 sgwaa44,,KEEP-FLAGGED
+WA,US-3229,Matia Island Marine State Park,bigger-park-record,sgwaa108,,KEEP-FLAGGED
+WA,US-3235,Mystery Bay Marine State Park,bigger-park-record,271493 sgwaa119,,KEEP-FLAGGED
+WA,US-3251,Posey Island Marine State Park,bigger-park-record,271516 sgwaa145,,KEEP-FLAGGED
+WA,US-3277,Stretch Point Marine State Park,bigger-park-record,271544 sgwaa184,,KEEP-FLAGGED
+WA,US-3283,Turn Island Marine State Park,bigger-park-record,sgwaa192,,KEEP-FLAGGED
+WA,US-5640,Lewis and Clark National Historical Park,pin-far,3221,,KEEP-FLAGGED
+WA,US-8664,Fishtrap National Recreation Area,pin-outside-allowance,sgwae30756,,KEEP-FLAGGED
+WI,US-13535,La Crosse Area Comprehensive State Fish and Wildlife Area,pin-outside-allowance,272605 sgwia712643 sgwia713917 sgwid19789227 sgwid19775639 sgwid19790556 sgwid19790557 sgwid19791053 +474 more,,KEEP-FLAGGED
+WI,US-9800,Hank Aaron State Trail,pin-outside-allowance,272331 sgwia713605 sgwia714283 sgwid19806107 sgwid19806098 sgwid19806099 sgwid19806101 sgwid19806104 +30 more,,KEEP-FLAGGED
+WV,US-0015,Chesapeake and Ohio Canal National Historical Park,pin-far,3194,,KEEP-FLAGGED
+WV,US-0608,Ohio River Islands National Wildlife Refuge,pin-far,4181 5136,,KEEP-FLAGGED
+WV,US-4526,George Washington & Jefferson National Forest,pin-far,2976 2985 2636 2638,,KEEP-FLAGGED
+WV,US-7027,Slatyfork Wildlife Management Area,pin-far,273191 sgwva21 57461,,KEEP-FLAGGED
+WV,US-7043,Tate Lohr Wildlife Management Area,pin-outside-allowance,sgwva106 273200,,KEEP-FLAGGED
+WY,US-10778,Sand Creek State Wildlife Habitat Management Area,bigger-park-record,sgwyc14129,,KEEP-FLAGGED
+WY,US-10789,North Glendo State Wildlife Habitat Management Area,bigger-park-record,sgwyc14141 sgwyc14142,,KEEP-FLAGGED
+WY,US-10791,Pilot Hill State Wildlife Habitat Management Area,bigger-park-record,sgwyc14133 sgwyc14144,,KEEP-FLAGGED
+WY,US-10792,John/Annie Woodhouse State Wildlife Habitat Management Area,bigger-park-record,sgwyc14140,,KEEP-FLAGGED
+WY,US-10798,Viva Naughton State Wildlife Habitat Management Area,bigger-park-record,sgwyd10276,,KEEP-FLAGGED
+WY,US-10805,Sinks Canyon State Wildlife Habitat Management Area,bigger-park-record,sgwyc14128,,KEEP-FLAGGED
+WY,US-10807,Black Butte State Wildlife Habitat Management Area,bigger-park-record,sgwyc14131,,KEEP-FLAGGED
+WY,US-10809,Luke Lynch State Wildlife Habitat Management Area,bigger-park-record,sgwyc14125,,KEEP-FLAGGED
+WY,US-10815,Jackson National Fish Hatchery,pin-outside-allowance,3971 4917,,KEEP-FLAGGED
+WY,US-10816,Saratoga National Fish Hatchery,pin-outside-allowance,4312 5268,,KEEP-FLAGGED
+WY,US-10849,CCC Ponds/Pinedale Pathway BLM Recreation Management Area,bigger-park-record,rst11299 sgakg11299,,KEEP-FLAGGED
+WY,US-10881,Pine Creek Camp Area BLM Recreation Management Area,bigger-park-record,rst11316 sgakg11316,,KEEP-FLAGGED
+WY,US-10890,Sinks Canyon BLM Recreation Management Area,pin-far,292692,,KEEP-FLAGGED
+WY,US-11741,Palisades WSA USFS Recreation Area,bigger-park-record,fsod173,,KEEP-FLAGGED
+WY,US-12726,Camp Creek State Wildlife Habitat Management Area,bigger-park-record,sgwyc14117,,KEEP-FLAGGED
+WY,US-12727,Patrol Cabin State Wildlife Habitat Management Area,bigger-park-record,sgwyc14134,,KEEP-FLAGGED
+WY,US-4394,Ashley National Forest,pin-far,2767 2619,,KEEP-FLAGGED
+WY,US-4403,Medicine Bow - Routt National Forest,pin-far,2701 2709,,KEEP-FLAGGED
+WY,US-4475,Caribou-Targhee National Forest,pin-far,2809 2781 2624 2621,,KEEP-FLAGGED
+WY,US-6121,Fort Fetterman State Historic Site,pin-outside-allowance,292676,,KEEP-FLAGGED
+WY,US-6135,Pennock Mountain Wildlife Management Area,pin-outside-allowance,273812 sgwyc14095 sgwyc14150,,KEEP-FLAGGED
+WY,US-6150,Medicine Lodge Archaeological Site State Park,bigger-park-record,sgwyb69,,KEEP-FLAGGED
+WY,US-6218,Boulder Lake BLM Recreation Management Area,pin-outside-allowance,rst11332 sgakg11332,,KEEP-FLAGGED
+AK,US-12381,Delta BLM Wild and Scenic River,kinds-differ,rst11370,,KEPT-PERSON-DECIDED
+AL,US-0384,Grand Bay National Wildlife Refuge,pin-outside-allowance,3871 4815,,KEPT-PERSON-DECIDED
+AL,US-11027,Big Canoe Creek Nature Reserve,bigger-park-record,sgalb181,,KEPT-PERSON-DECIDED
+AL,US-13081,Fort Toulouse Forever Wild Tract State Wildlife Area,bigger-park-record,sgalb56,,KEPT-PERSON-DECIDED
+AL,US-13088,Choctaw Nation Wildlife Refuge National Wildlife Area,bigger-park-record,fws4879,,KEPT-PERSON-DECIDED
+AR,US-11165,Chalk Bluff Battlefield Park Recreation Park,bigger-park-record,166734 sgara15,,KEPT-PERSON-DECIDED
+AR,US-12765,Logoly State Natural Area,kinds-differ; bigger-park-record,166851 sgara31,sgara31,KEPT-PERSON-DECIDED
+AR,US-7308,Nacatosh Ravines Wildlife Management Area,kinds-differ,166754 arw1809 sgara61,arw1809,KEPT-PERSON-DECIDED
+CA,US-0650,Mojave Preserve National Conservation Area,bigger-park-record,3307,,KEPT-PERSON-DECIDED
+CA,US-10401,Merced National Wildlife Area,kinds-differ; bigger-park-record,4108 5065,,KEPT-PERSON-DECIDED
+CA,US-3415,California State Railroad Museum State Park,bigger-park-record,183878,,KEPT-PERSON-DECIDED
+CA,US-3452,Kings Beach State Recreation Park,bigger-park-record,184137 sgcab690,,KEPT-PERSON-DECIDED
+CA,US-3523,Oceano Dunes State Recreation Area,pin-outside-allowance,184146 184147,,KEPT-PERSON-DECIDED
+CA,US-6448,William Randolph Hearst Memorial State Beach,bigger-park-record,sgcab798,,KEPT-PERSON-DECIDED
+CO,US-10539,Rifle Falls State Fish Hatchery,bigger-park-record,189329 sgcoc682,,KEPT-PERSON-DECIDED
+CO,US-10540,Bellevue-Watson State Fish Hatchery,bigger-park-record,189331,,KEPT-PERSON-DECIDED
+CO,US-1208,Arkansas River Headwaters Recreation Park,bigger-park-record; pin-far,cow29 184168,,KEPT-PERSON-DECIDED
+CO,US-9590,Leadville National Fish Hatchery National Wildlife Management Area,bigger-park-record,4036 4990,,KEPT-PERSON-DECIDED
+CO,US-9599,Wolford Mountain and Dam Site BLM National Recreation Area,kinds-differ; bigger-park-record,rst10545 sgakg10545 sgcoe1374 rst9511 sgakg9511 sgcoe973 rst10522 sgakg10522 +4 more,,KEPT-PERSON-DECIDED
+CO,US-9678,Windy Gap Watchable State Wildlife Area,pin-far,cow910,,KEPT-PERSON-DECIDED
+DE,US-7648,Chesapeake and Delaware Canal Conservation Area,kinds-differ,sgdea518 75971 76248 sgdec61 sgdec43 sgdec44 sgdec42 sgdec45 +2 more,,KEPT-PERSON-DECIDED
+FL,US-8326,Apalachicola River State Conservation Area,kinds-differ; bigger-park-record,190217,,KEPT-PERSON-DECIDED
+FL,US-8327,Blackwater River State Conservation Area,kinds-differ,190218,,KEPT-PERSON-DECIDED
+FL,US-8333,Garcon Point State Conservation Area,kinds-differ,190221,,KEPT-PERSON-DECIDED
+FL,US-8692,"Lamont, Mt. Gilead State Conservation Area",bigger-park-record,sgfld639 sgfld947 sgfld180 sgfld1107 sgfld392 sgfld886 sgfld162 sgfld280 +41 more,,KEPT-PERSON-DECIDED
+HI,US-10913,Diamond Head Summit State Trail,bigger-park-record,195365,,KEPT-PERSON-DECIDED
+HI,US-2216,Makapuʻu  Point Wayside State Trail,bigger-park-record,195390,,KEPT-PERSON-DECIDED
+IA,US-4236,Upper Mississippi River National Wildlife Refuge,pin-far,sgiaa34365 5387 4430 sgiac105685 sgiac105686,,KEPT-PERSON-DECIDED
+IA,US-8283,Glenwood Archaeological State Historic Site,kinds-differ,sgiac108339,,KEPT-PERSON-DECIDED
+ID,US-10536,Roswell Marsh Wildlife Habitat Area Habitat Protection Area,bigger-park-record,199339 199338,,KEPT-PERSON-DECIDED
+ID,US-10657,Milner Historic Recreation Area BLM Historic Area,bigger-park-record,rst13871,,KEPT-PERSON-DECIDED
+ID,US-11089,Ted Trueblood Wildlife Habitat Area State Wildlife Habitat Management Area,bigger-park-record,199756,,KEPT-PERSON-DECIDED
+ID,US-11239,Chilly Slough Wetland Conservation Area BLM Interpretive Site,kinds-differ,199326 199325 199327,,KEPT-PERSON-DECIDED
+ID,US-11308,Blackfoot Reservoir Recreation Site BLM Recreation Management Area,bigger-park-record,sgakg13878,,KEPT-PERSON-DECIDED
+IL,US-0990,Donnelley/DePue State Park,kinds-differ,70866,,KEPT-PERSON-DECIDED
+IL,US-10093,Rock Island Trail State Park,bigger-park-record,sgild336 157623,,KEPT-PERSON-DECIDED
+IL,US-11351,Weinberg-King Spunky Bottoms Unit State Park,kinds-differ; bigger-park-record,70886,,KEPT-PERSON-DECIDED
+IL,US-4138,Manito PHA State Park,kinds-differ; bigger-park-record,70867 sgila1000,,KEPT-PERSON-DECIDED
+IL,US-4236,Upper Mississippi River National Wildlife Refuge,pin-far,5387,,KEPT-PERSON-DECIDED
+IN,US-0782,Lincoln Boyhood Home National Memorial,bigger-park-record,3267,,KEPT-PERSON-DECIDED
+IN,US-10237,Mongoquinong State Nature Preserve,pin-far,200897 200896,,KEPT-PERSON-DECIDED
+IN,US-10561,Indiana War Memorial Plaza National Historical Site,bigger-park-record,157431 200686,,KEPT-PERSON-DECIDED
+IN,US-4208,J. E. Roush Lake State Fish and Wildlife Area,kinds-differ,2525,,KEPT-PERSON-DECIDED
+MA,US-7971,Blackstone River Valley National Historical Park,pin-outside-allowance,sgakd1227 sgmac7,,KEPT-PERSON-DECIDED
+MD,US-10784,Deep Creek Lake Natural Resource Management Area,kinds-differ; bigger-park-record,56629 9173,9173,KEPT-PERSON-DECIDED
+MD,US-4365,North Point Battlefield State Park,bigger-park-record,56687,,KEPT-PERSON-DECIDED
+MD,US-6391,Merkle Wildlife Sanctuary State Natural Area,bigger-park-record,56674 mdd108 mdd109 sgmda108 sgmda109,,KEPT-PERSON-DECIDED
+MN,US-11152,Heartland State Trail,bigger-park-record,sgmne1648,,KEPT-PERSON-DECIDED
+MN,US-11788,Toad River AMA State Conservation Area,kinds-differ,208366,,KEPT-PERSON-DECIDED
+MN,US-13545,Horseshoe Bay Protected Area,bigger-park-record,sgmna1533 sgmnf6713,,KEPT-PERSON-DECIDED
+MO,US-11015,Harry S Truman Home National Historical Site,bigger-park-record,3141,,KEPT-PERSON-DECIDED
+MO,US-11138,Roaring River State Conservation Area,kinds-differ,sgmoc595 sgmoh595 210560 sgmoa1578 mol788,210560,KEPT-PERSON-DECIDED
+MO,US-7516,White Memorial State Conservation Area,kinds-differ,210661,,KEPT-PERSON-DECIDED
+MO,US-7656,Ralph and Martha Perry Memorial State Wildlife Area,kinds-differ,210521,,KEPT-PERSON-DECIDED
+MT,US-4475,Caribou-Targhee National Forest,pin-far,2809 2781,,KEPT-PERSON-DECIDED
+NH,US-2650,Eisenhower Memorial Wayside State Park,bigger-park-record,nhc1030,,KEPT-PERSON-DECIDED
+NM,US-11789,Fort Selden Historic Site,kinds-differ,229527,,KEPT-PERSON-DECIDED
+NV,US-13039,Owyhee River Wilderness Area,pin-far,wbl171,,KEPT-PERSON-DECIDED
+NV,US-13178,Mt. Irish Archaeological Site Archeological Reserve,bigger-park-record,sgnvh1238,,KEPT-PERSON-DECIDED
+NV,US-13279,Dayton State Historical Monument,kinds-differ; bigger-park-record; pin-outside-allowance,230196,,KEPT-PERSON-DECIDED
+OR,US-10009,Row River National Recreation Trail,bigger-park-record,sgorf3624 rst12124 sgakg12124 sgorf3623 rst12162 sgakg12162 sgorf3626 rst13073 +8 more,,KEPT-PERSON-DECIDED
+OR,US-10027,Millican Valley OHV BLM Recreation Management Area,kinds-differ,rma9519 rst9519 sgakg9519 rma10608 rst10608 sgakg10608 rma10609 rst10609 +7 more,,KEPT-PERSON-DECIDED
+OR,US-10356,Mountain of the Rogue Trail System BLM Recreation Management Area,bigger-park-record,rst13678 sgakg13678 sgorf1079 rst13654 sgakg13654 sgorf1002 rst13576 sgakg13576 +16 more,,KEPT-PERSON-DECIDED
+OR,US-10357,Shotgun Creek OHV BLM Recreation Management Area,kinds-differ,rst11646 rma10612 rst10612,,KEPT-PERSON-DECIDED
+OR,US-10733,Bolt Mountain BLM Historic Trail,bigger-park-record,sgorf854 rst12168 sgakg12168,,KEPT-PERSON-DECIDED
+OR,US-10734,East Applegate Ridge Trail BLM Historic Trail,bigger-park-record,sgorf701 sgakg12029 rst12029,,KEPT-PERSON-DECIDED
+OR,US-13080,Booth State Recreation Site,bigger-park-record,osp250 241530 sgora250,,KEPT-PERSON-DECIDED
+OR,US-9541,Dexter State Recreation Area,kinds-differ,osp49 sgora49 sgorb42 241493 sgide2070 sgore21808,sgora49 sgide2070 sgore21808,KEPT-PERSON-DECIDED
+OR,US-9553,Heritage Landing - Deschutes State Recreation Area,bigger-park-record,241434,,KEPT-PERSON-DECIDED
+OR,US-9557,Jasper State Recreation Area,kinds-differ,osp121 sgora121 sgorb96 241500 sgord4121 sgore21849,sgora121 sgore21849,KEPT-PERSON-DECIDED
+OR,US-9560,Lowell State Recreation Area,kinds-differ,241505 osp136 sgora136 sgorb110 osp2889 sgora2889 sgorb395 sgide2071 +2 more,sgora136 sgide2071 sgore21727 sgora2889 sgore11310,KEPT-PERSON-DECIDED
+PA,US-0733,First State National Historical Park,pin-far,3201,,KEPT-PERSON-DECIDED
+RI,US-7971,Blackstone River Valley National Historical Park,pin-far,sgakd1227,,KEPT-PERSON-DECIDED
+TN,US-12064,Henderson Swamp State Wilderness Area,kinds-differ,255796,,KEPT-PERSON-DECIDED
+TN,US-6275,Walls of Jericho State Natural Area,pin-outside-allowance,sgtnh17 255681,,KEPT-PERSON-DECIDED
+UT,US-10069,Jordan River Fishing Access WMA State Wildlife Area,kinds-differ,utw366 sgutb105,,KEPT-PERSON-DECIDED
+UT,US-10972,Beartrap Canyon BLM Wild and Scenic River,pin-far,wbl301,,KEPT-PERSON-DECIDED
+UT,US-11003,Glenwood Open OHV Area BLM Recreation Management Area,bigger-park-record,sgakg9736,,KEPT-PERSON-DECIDED
+UT,US-11091,Lee Kay Public Shooting Grounds Utah DWR State Recreation Area,kinds-differ,utw382,,KEPT-PERSON-DECIDED
+UT,US-11107,Kamas State Wildlife Habitat Management Area,bigger-park-record,263950,,KEPT-PERSON-DECIDED
+UT,US-11115,North Fork Virgin River BLM Wild and Scenic River,pin-outside-allowance,sgakg9557 rst9557 wsa827,,KEPT-PERSON-DECIDED
+UT,US-11343,Upper San Rafael River State Wilderness Area,kinds-differ,263993,,KEPT-PERSON-DECIDED
+UT,US-11711,Elbow Ranch BLM Recreation Management Area,kinds-differ,263935,,KEPT-PERSON-DECIDED
+UT,US-11761,Quail Creek Reservoir Designated Dispersed Camping Area BLM Special Recreation Management Area,kinds-differ,157844,,KEPT-PERSON-DECIDED
+UT,US-12137,Kennedy Stage Coach Station BLM Historic Area,bigger-park-record,rma9570 rst9570 sgakg9570,,KEPT-PERSON-DECIDED
+UT,US-4475,Caribou-Targhee National Forest,pin-far,2809 2781,,KEPT-PERSON-DECIDED
+UT,US-5753,Fort Deseret State Historic Site,kinds-differ,264207,,KEPT-PERSON-DECIDED
+UT,US-5789,Behind the Rocks Wilderness Area,pin-far,wsa967 wsa968,,KEPT-PERSON-DECIDED
+UT,US-5821,Mountain Meadows Massacre National Historic Site,bigger-park-record,sgutc12,,KEPT-PERSON-DECIDED
+UT,US-5869,9 Mile Canyon BLM Recreation Management Area,pin-far,rst9652,,KEPT-PERSON-DECIDED
+UT,US-5904,North Caineville Mesa Trail BLM Recreation Management Area,bigger-park-record,sgakh1571,,KEPT-PERSON-DECIDED
+UT,US-5926,Fort Douglas National Historical Park,bigger-park-record,sgutc20,,KEPT-PERSON-DECIDED
+UT,US-5950,This Is The Place Heritage Park,bigger-park-record,sgutf43 sguta157,,KEPT-PERSON-DECIDED
+UT,US-6027,Topaz Mountain Rockhound Area BLM Recreation Management Area,bigger-park-record; pin-outside-allowance,rst9580,,KEPT-PERSON-DECIDED
+UT,US-6035,Zion NPS Wilderness Area,kinds-differ,3485,,KEPT-PERSON-DECIDED
+VA,US-9907,First Landing National Recreation Trail,kinds-differ; bigger-park-record,54565,,KEPT-PERSON-DECIDED
+VA,US-9957,Shenandoah Wilderness Area,kinds-differ,3474,,KEPT-PERSON-DECIDED
+WA,US-10695,Coffeepot Lake Nature Recreation Area,kinds-differ,rma9874 rst9874,,KEPT-PERSON-DECIDED
+WA,US-12317,Rocky Lake State Recreation Site,bigger-park-record,sgwae65041,,KEPT-PERSON-DECIDED
+WA,US-13392,Massey Bar State Recreation Site,bigger-park-record,sgwab472,,KEPT-PERSON-DECIDED
+WA,US-13396,Steel Bridge State Recreation Site,bigger-park-record,sgwab699,,KEPT-PERSON-DECIDED
+WA,US-13400,Puget Island State Recreation Site,bigger-park-record,sgwab554,,KEPT-PERSON-DECIDED
+WA,US-13402,Highway 4 State Recreation Site,bigger-park-record,sgwab502,,KEPT-PERSON-DECIDED
+WA,US-13404,Palix River State Recreation Site,bigger-park-record; pin-outside-allowance,158363,,KEPT-PERSON-DECIDED
+WA,US-5574,Tiger Mountain State Forest,kinds-differ,271371,,KEPT-PERSON-DECIDED
+WI,US-10650,Nevin Springs State Fish and Wildlife Area,kinds-differ; bigger-park-record,272683,,KEPT-PERSON-DECIDED
+WI,US-12601,Hackmatack National Wildlife Refuge,pin-far,3907 4852,,KEPT-PERSON-DECIDED
+WI,US-4238,Ice Age National Scenic Trail,bigger-park-record,72062 272343,,KEPT-PERSON-DECIDED
+WI,US-4288,Germania Marsh State Wildlife Area,bigger-park-record,sgwia713353 wid713353 272557 sgwid19756082 sgwia714187 wid714187 sgwid19756006 sgwid19756007 +91 more,,KEPT-PERSON-DECIDED
+WI,US-4296,Kickapoo River State Wildlife Area,bigger-park-record,272597 sgwia713379 wid713379 sgwia714202 wid714202 sgwid19766120 sgwid19766129 sgwid19766131 +73 more,,KEPT-PERSON-DECIDED
+WI,US-4309,McMillan Marsh State Wildlife Area,bigger-park-record,272658 sgwia713401 wid713401 sgwia714368 wid714368 sgwid19755797 sgwid19755716 sgwid19755723 +175 more,,KEPT-PERSON-DECIDED
+WI,US-4332,Theresa Marsh State Wildlife Area,bigger-park-record,sgwia713507 wid713507 272948 sgwia714247 wid714247 sgwid19752967 sgwid19753132 sgwid19753178 +282 more,,KEPT-PERSON-DECIDED
+WI,US-4339,Waunakee Marsh State Wildlife Area,bigger-park-record,sgwia713521 wid713521 272989 sgwid19752893 sgwid19752895 sgwid19752896 sgwid19752899 sgwid19752900 +17 more,,KEPT-PERSON-DECIDED
+WI,US-5579,Havenwoods State Forest,kinds-differ,273040,,KEPT-PERSON-DECIDED
+WI,US-9831,Allenton Marsh State Wildlife Area,bigger-park-record,272417 sgwia713306 wid713306 sgwid19758251 sgwid19790093 sgwid19758221 sgwid19758228 sgwid19758229 +53 more,,KEPT-PERSON-DECIDED
+WI,US-9846,Hook Lake Bog - Grass Lake State Wildlife Area,kinds-differ,sgwia713366 wid713366 272583 sgwid19792785 sgwid19787617 sgwid19787618 sgwid19787622 sgwid19787625 +34 more,,KEPT-PERSON-DECIDED
+WY,US-10776,Packers Lake Public Access Area BLM Special Recreation Management Area,bigger-park-record,sgwyd10131,,KEPT-PERSON-DECIDED
+WY,US-10790,Laramie Peak State Wildlife Habitat Management Area,bigger-park-record,sgwyc14137 273806 sgwyc14157 sgwyc14158 sgwyc14159 sgwyc14161 sgwyc14162,273806,KEPT-PERSON-DECIDED
+WY,US-10830,Wagon Box Fight National Battlefield,bigger-park-record,292695 sgwyb24,,KEPT-PERSON-DECIDED
+WY,US-12719,Newton Lakes BOR Recreation Site,bigger-park-record,sgwyd10145,,KEPT-PERSON-DECIDED
+WY,US-4524,Black Hills National Forest,pin-far,2697 2617,,KEPT-PERSON-DECIDED
+WY,US-6124,Old Fort Reno State Historic Site,bigger-park-record,292679,,KEPT-PERSON-DECIDED
+WY,US-6132,Dry Creek Petrified Tree BLM Interpretive Site,bigger-park-record,rst11356 sgakg11356,,KEPT-PERSON-DECIDED
+WY,US-6178,Legend Rock State Petroglyph Site State Historic Site,bigger-park-record,292684 sgwyb29,,KEPT-PERSON-DECIDED
+WY,US-6188,Point of Rocks Cemetery State Historic Site,bigger-park-record,292667,,KEPT-PERSON-DECIDED
+WY,US-6197,Popo Agie Wilderness Area,pin-far,wld346,,KEPT-PERSON-DECIDED
+WY,US-6202,North Absaroka Wilderness Area,pin-far,wld335,,KEPT-PERSON-DECIDED
+WY,US-6228,Piedmont Charcoal Kilns State Historic Site,bigger-park-record,292687 sgwyb21,,KEPT-PERSON-DECIDED
+AL,US-12964,Dallas County State Public Fishing Lake,bigger-park-record,166206 sgald11,166206 sgald11,UNCHANGED
+AR,US-7348,Longview Saline Wildlife Management Area,bigger-park-record,arw1766,arw1766,UNCHANGED
+IN,US-12019,Shakamak Prairie State Nature Preserve,bigger-park-record,201114,201114,UNCHANGED
+NH,US-4923,Little Pine River State Forest,bigger-park-record,56991 sgnhc943 sgnha2581 sgnhd2581,56991 sgnhc943 sgnha2581 sgnhd2581,UNCHANGED
+TN,US-2936,Chickasaw State Park,bigger-park-record,255597 sgtnf30 sgtna346 sgtng11 sgtnj228,255597 sgtnf30 sgtna346 sgtng11 sgtnj228,UNCHANGED
+TX,US-3015,Goliad State Park,bigger-park-record,263504 sgtxa4142,263504 sgtxa4142,UNCHANGED
+VA,US-0064,Shenandoah National Park,bigger-park-record,3474 sgvae492329 sgvae492450 sgvae492344 sgvae492460 sgvae492332 sgvae492495 sgvae492489 +186 more,3474 sgvae492329 sgvae492450 sgvae492344 sgvae492460 sgvae492332 sgvae492495 sgvae492489 +186 more,UNCHANGED
+AR,US-7326,Stateline Sand Ponds Wildlife Management Area,kinds-differ,166760 arw1855 sgara58,arw1855,UNCHANGED-SAME-LAND
+AR,US-7351,Railroad Prairie Wildlife Management Area,kinds-differ,166756 arw1743 sgara55,arw1743,UNCHANGED-SAME-LAND
+AZ,US-11984,Quigley-Achee State Wildlife Area,bigger-park-record,167486 sgazb22,sgazb22,UNCHANGED-SAME-LAND
+CA,US-11143,Battle Creek Wildlife Management Area,kinds-differ,183385 183386 sgcaa110 sgcaa197 sgcac654 sgcac655 sgcac1237 sgcac1238 +6 more,183385 183386 sgcaa197 sgcac1237 sgcac1238 sgcac1239 sgcac1240 sgcac1241 +3 more,UNCHANGED-SAME-LAND
+CA,US-1125,Año Nuevo State Park,kinds-differ,sgcab711 183920 183922 183820 183921 183821,sgcab711 183920 183922 183921,UNCHANGED-SAME-LAND
+CA,US-1132,Burton Creek State Park,kinds-differ,sgcab489 183941 sgcab790 183791 183942 sgcab792,sgcab489 183941 sgcab792 183791 183942,UNCHANGED-SAME-LAND
+CA,US-3395,Anderson Marsh State Historical Park,kinds-differ,183838 sgcab859 sgcab807 sgcab858,183838 sgcab859 sgcab858,UNCHANGED-SAME-LAND
+CA,US-3399,Asilomar State State Beach,kinds-differ,sgcab766 183930 183929 sgcab761,sgcab766 183930 183929,UNCHANGED-SAME-LAND
+CA,US-3471,Marina State Beach,kinds-differ,sgcab567 184013 sgcab675,sgcab567 184013,UNCHANGED-SAME-LAND
+CA,US-3530,Pescadero State Beach,kinds-differ,sgcab593 sgcab673 184047,sgcab593 184047,UNCHANGED-SAME-LAND
+CA,US-3537,Point Dume State Beach,kinds-differ,sgcab601 183809 sgcab783,sgcab601 183809,UNCHANGED-SAME-LAND
+CA,US-3542,Point Sur State Historical Park,kinds-differ,183887 sgcab606 183888 sgcab903 sgcab762 sgcab904 sgcab902,183887 sgcab606 183888 sgcab903 sgcab902 sgcab904,UNCHANGED-SAME-LAND
+CA,US-3551,Salinas River State Beach,kinds-differ,sgcab804 184070 sgcab805 sgcab803 184069,sgcab804 184070 184069,UNCHANGED-SAME-LAND
+CA,US-3568,Silver Strand State Beach,kinds-differ,sgcab680 183357 sgcab686 184083 167837 sgcab841,sgcab680 183357 sgcab686 184083 167837,UNCHANGED-SAME-LAND
+CA,US-3574,Sunset State Beach,kinds-differ,sgcab644 184094 sgcab840 184093,sgcab644 184094 184093,UNCHANGED-SAME-LAND
+CA,US-3598,Woodson Bridge State Recreation Area,kinds-differ,184164 sgcab722 sgcab723,184164 sgcab722,UNCHANGED-SAME-LAND
+FL,US-3633,Koreshan State Historic Site,kinds-differ,191811 sgfla50,191811,UNCHANGED-SAME-LAND
+FL,US-3663,Terra Ceia Preserve State Park,bigger-park-record,191790 sgfla42 sgflf26419 sgflf46066 sgflf44955 sgflf52719 sgflf55338 sgflf6917 +26 more,191790 sgfla42,UNCHANGED-SAME-LAND
+FL,US-6307,Herky Huffman/Bull Creek Wildlife Management Area,bigger-park-record,190409 sgfle10377 sgflg251,190409 sgflg251,UNCHANGED-SAME-LAND
+IA,US-12680,Long Wildlife Management Area,refuge-word; kinds-differ,199062 sgiaa35324 sgiac106452,sgiaa35324,UNCHANGED-SAME-LAND
+MD,US-6400,Youghiogheny Wild River State Natural Area,bigger-park-record,56757 56756 9200 9201 mdd91 sgmda89 sgmda90 sgmda91,56757 56756 9201 mdd91 sgmda89 sgmda90 sgmda91,UNCHANGED-SAME-LAND
+MN,US-0673,Saint Croix National Wild and Scenic River,kinds-differ,wsrc9 3560,wsrc9,UNCHANGED-SAME-LAND
+NV,US-13015,Bruneau River Wildlife Management Area,bigger-park-record,sgnva5 230589 sgnvj14,sgnva5 230589,UNCHANGED-SAME-LAND
+NV,US-13124,Calico Mountains BLM Herd Management Area,bigger-park-record,hma67 sgnvi411,hma67,UNCHANGED-SAME-LAND
+NV,US-4443,Old Las Vegas Mormon Fort State Park,kinds-differ; bigger-park-record,230126 sgnve22 sgnvd37,230126,UNCHANGED-SAME-LAND
+OH,US-9401,Cooperrider-Kent Bog State Nature Preserve,bigger-park-record,sgohd44 sgohe83 sgohf202 157747,sgohd44,UNCHANGED-SAME-LAND
+OH,US-9518,Wingfoot State Wildlife Area,kinds-differ; bigger-park-record,72031 sgohb385 sgohe556 sgohf619 sgohe555 sgohf63 sgohb517 sgohf638,72031 sgohb385 sgohf619 sgohb517 sgohf638,UNCHANGED-SAME-LAND
+OR,US-0213,Maud Williamson State Recreation Area,kinds-differ,241507 sgorb104 osp130 sgora130 sgord6198 sgord6197 sgore21544,sgora130 sgore21544,UNCHANGED-SAME-LAND
+OR,US-9149,Ontario State Recreation Area,kinds-differ,osp222 sgora222 sgorb190 241512 sgord5653 sgord5650 sgord5651 sgord5652 +2 more,sgora222 sgore21580 sgore16578,UNCHANGED-SAME-LAND
+OR,US-9153,Clyde Holliday State Recreation Area,kinds-differ,241487 sgorb219 osp258 sgora258 sgord9003 sgord9004 sgord9002 sgore21686,sgora258 sgore21686,UNCHANGED-SAME-LAND
+OR,US-9529,Beachside State Recreation Area,kinds-differ,osp74 sgora74 sgorb60 sgord10165 241485 sgore21815,sgora74 sgore21815,UNCHANGED-SAME-LAND
+OR,US-9559,Lost Creek State Park,kinds-differ,241504 sgorb332 osp386 sgora386 sgord1892 sgord1650 sgord10192 sgord2010 +10 more,sgora386 sgore21655,UNCHANGED-SAME-LAND
+OR,US-9565,Mongold State Park,bigger-park-record,sgora189 osp189 sgore21566,sgora189 sgore21566,UNCHANGED-SAME-LAND
+OR,US-9569,Oceanside Beach State Recreation Area,kinds-differ,241510 sgorb24 osp30 sgora30 sgord5390 sgord5391 sgord5392 sgord5389 +1 more,sgora30 sgore21521,UNCHANGED-SAME-LAND
+OR,US-9581,Tolovana Beach State Recreation Area,kinds-differ,241519 sgorb279 sgord4689 osp329 sgora329 sgore21630,sgora329 sgore21630,UNCHANGED-SAME-LAND
+SD,US-10331,Bailey State Recreation Area,bigger-park-record,255274 sgsda905 sgsdb905,255274 sgsda905,UNCHANGED-SAME-LAND
+TN,US-11858,Middle Fork Bottoms State Park,refuge-word; kinds-differ,255778 sgtna369 sgtnj259,sgtna369 sgtnj259,UNCHANGED-SAME-LAND
+TN,US-11879,North Chickamauga Creek Gorge State Park,kinds-differ; bigger-park-record,255602 sgtnj265,sgtnj265,UNCHANGED-SAME-LAND
+TN,US-2935,Cedars of Lebanon State Park,kinds-differ,sgtnf29 255595 255596 sgtna407 sgtnf321 sgtng10 sgtnj431,sgtnf29 sgtna407 sgtnf321 sgtng10 sgtnj431,UNCHANGED-SAME-LAND
+TN,US-2937,Cordell Hull Birthplace State Park,bigger-park-record,sgtnf33 tnd33 255598 sgtna347 sgtng12 sgtnj229,sgtnf33 tnd33 sgtna347 sgtng12 sgtnj229,UNCHANGED-SAME-LAND
+TN,US-2975,Seven Islands Birding State Park,bigger-park-record,255643 sgtnf139 tnd139 sgtna387 sgtng76 sgtnj281,sgtna387 sgtng76 sgtnj281,UNCHANGED-SAME-LAND
+TN,US-2976,Sgt. Alvin C. York State Park,bigger-park-record,sgtnf140 tnd140 255586 sgtnf141 tnd141 sgtna388 sgtng77 sgtng78 +1 more,sgtnf140 tnd140 sgtna388 sgtng77 sgtnj282 sgtnf141 tnd141 sgtng78,UNCHANGED-SAME-LAND
+TN,US-3956,Murfree Springs State Wildlife Area,refuge-word; kinds-differ,sgtne59 sgtni89,sgtni89,UNCHANGED-SAME-LAND
+TN,US-6241,Devil's Backbone State Park,kinds-differ,tnd48 sgtnf48 sgtna399 sgtnj412,tnd48 sgtna399 sgtnj412,UNCHANGED-SAME-LAND
+TX,US-3025,Lake Casa Blanca International State Park,bigger-park-record,261693 sgtxa932,sgtxa932,UNCHANGED-SAME-LAND
+TX,US-3044,Old Tunnel State Park,kinds-differ,sgtxd1653 261780 sgtxa101,sgtxa101,UNCHANGED-SAME-LAND
+TX,US-3502,Goliad State Historic Site,kinds-differ,sgtxd11599 263504,sgtxd11599,UNCHANGED-SAME-LAND
+TX,US-6550,Cooper Wildlife Management Area,kinds-differ,sgtxd1158 261821 sgtxd9621 sgtxc161 sgtxb1806,sgtxd1158 261821 sgtxc161 sgtxb1806,UNCHANGED-SAME-LAND
+TX,US-6593,"Playa Lakes, Dimmitt Unit Wildlife Management Area",bigger-park-record,261781 sgtxd1174 sgtxc113,261781 sgtxd1174,UNCHANGED-SAME-LAND
+UT,US-3092,Fred Hayes at Starvation State Park,bigger-park-record,264231 sguta119,sguta119,UNCHANGED-SAME-LAND
+VA,US-1294,Chippokes Plantation State Park,bigger-park-record,270616 54553 sgvad410 sgvae487028 270615 54552 270614 sgvad184 +2 more,270616 54553 sgvad410 270615 54552 270614 sgvad184 sgvad411,UNCHANGED-SAME-LAND
+WA,US-10409,Jackson House State Park Heritage State Historic Site,bigger-park-record,271460 sgwaa78 sgwad2184,sgwad2184,UNCHANGED-SAME-LAND
+WA,US-3162,Blind Island Marine State Park,bigger-park-record,271405 sgwaa11 sgwad237,sgwad237,UNCHANGED-SAME-LAND
+WI,US-0673,Saint Croix National Wild and Scenic River,kinds-differ,wsrc9 3561 72037 72038,wsrc9,UNCHANGED-SAME-LAND
+WY,US-10797,Half Moon State Wildlife Habitat Management Area,bigger-park-record,273801 sgwyc14078,273801,UNCHANGED-SAME-LAND
+WY,US-10800,Red Rim - Daley State Wildlife Habitat Management Area,bigger-park-record,273815 sgwyc14093,273815,UNCHANGED-SAME-LAND
+WY,US-10804,Chain Lakes State Wildlife Habitat Management Area,bigger-park-record,273795 sgwyc14082 sgwyc14111 sgwyc14083,273795,UNCHANGED-SAME-LAND
+WY,US-10806,Sunshine State Wildlife Habitat Management Area,bigger-park-record,273824 sgwyc14069,273824,UNCHANGED-SAME-LAND
+WY,US-10808,Soda Lake State Wildlife Habitat Management Area,bigger-park-record,sgwyc14121 273819,273819,UNCHANGED-SAME-LAND
+WY,US-12728,Fall Creek State Wildlife Habitat Management Area,bigger-park-record,273798 sgwyc14132,273798,UNCHANGED-SAME-LAND
+WY,US-6154,Renner State Wildlife Habitat Management Area,bigger-park-record,273817 sgwyc14104 sgwyc14105 sgwyc14165,273817,UNCHANGED-SAME-LAND
+WY,US-6205,Kirk Inberg/ Kevin Roy State Wildlife Habitat Management Area,bigger-park-record,273805 sgwyc14085,273805,UNCHANGED-SAME-LAND
+WY,US-6206,Spence/ Moriarity State Wildlife Habitat Management Area,bigger-park-record,273821 sgwyc14130,273821,UNCHANGED-SAME-LAND
+WY,US-6229,South Park State Wildlife Habitat Management Area,bigger-park-record,273820 sgwyc14127,273820,UNCHANGED-SAME-LAND

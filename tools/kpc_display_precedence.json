@@ -1,0 +1,5 @@
+{
+ "about": "Which layer wins when a park's layers disagree (KPC owner, 2026-11-14: the state / agency's own layer over PAD-US). Best first, one list per area; '*' = every layer not named; 'default' is used for an area with no list. Edit freely: tools/kpc_display_copy.py reads this file. The winner per park is written into the display copy's INDEX.json ('won').",
+ "default": ["*", "PAD-US"],
+ "US-NH": ["sgnha", "sgnhd", "nhc", "sgnhc", "*", "PAD-US"]
+}
