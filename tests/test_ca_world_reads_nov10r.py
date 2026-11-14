@@ -144,11 +144,11 @@ for fn, a, b in (('kpc_ca_key.py', 'SAVED_ONLY_HOSTS = ', 'def get('), ('kpc_wor
         ns = {'os': os, 're': re, 'urllib': __import__('urllib.parse')}
         exec(compile(s[s.index(sys.argv[2]):s.index(sys.argv[3])], 'k', 'exec'), ns)
         so = ns['saved_only']
-        print(so('https://apps.fs.usda.gov/x'), so('https://gis.example.net/x'), so('https://services-eu1.arcgis.com/x'), so('https://maps.gov.bc.ca/x'))''')
+        print(so('https://services1.arcgis.com/x'), so('https://gis.example.net/x'), so('https://services-eu1.arcgis.com/x'), so('https://maps.gov.bc.ca/x'))''')
     r = subprocess.run([sys.executable, '-c', code, str(ROOT / '.github/scripts' / fn), a, b], capture_output=True, text=True, cwd=ROOT,
                        env=dict(os.environ, KPC_SAVED_ONLY_HOSTS='gis.example.net'))
     src = CA if fn == 'kpc_ca_key.py' else WK
-    check(f'{fn}: KPC_SAVED_ONLY_HOSTS adds a host, never drops apps.fs.usda.gov; no copy of the rules is left ({r.stdout.strip() or r.stderr[-200:]})',
+    check(f'{fn}: KPC_SAVED_ONLY_HOSTS adds a host, never drops services1.arcgis.com (apps.fs.usda.gov is off the list since 2026-11-13); no copy of the rules is left ({r.stdout.strip() or r.stderr[-200:]})',
           r.stdout.split() == ['True', 'True', 'True', 'False'] and '_ARCGIS_SERVICES' not in src and 'NEVER_HOSTS = {' not in src)
 
 print('ALL PASS' if ok else 'SOME FAILED')

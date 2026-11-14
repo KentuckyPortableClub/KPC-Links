@@ -52,7 +52,7 @@ BAD = (('services2.arcgis.com', 'https://services2.arcgis.com/AbC/arcgis/rest/se
        ('services-eu1.arcgis.com', 'https://services-eu1.arcgis.com/AbC/arcgis/rest/services/x/FeatureServer/0/query'),
        ('the Grant County NM org', 'https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/Parcels/FeatureServer/0/query'),
        ('ncnhde.natureserve.org', 'https://ncnhde.natureserve.org/arcgis/rest/services/x/MapServer/0/query'),
-       ('apps.fs.usda.gov (saved copy only)', 'https://apps.fs.usda.gov/arcx/rest/services/x/MapServer/0/query'))
+       ('services1.arcgis.com (saved copy only)', 'https://services1.arcgis.com/AbC/arcgis/rest/services/x/MapServer/0/query'))   # apps.fs.usda.gov left the list 2026-11-13
 CQ = {'where': '1=1', 'geometry': '1,2,3,4', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects'}
 GQ = dict(CQ, outFields='OBJECTID', returnGeometry='true', outSR=4326, f='json', resultOffset=0)
 

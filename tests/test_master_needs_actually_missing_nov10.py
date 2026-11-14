@@ -64,7 +64,7 @@ class P(M.Pacer):
 
 
 OKF = 'https://irma.nps.gov/DataStore/DownloadFile/1'
-for bad in ('https://services2.arcgis.com/x/file.zip', 'https://services-eu1.arcgis.com/x/f.zip', 'https://ncnhde.natureserve.org/f.zip', 'https://apps.fs.usda.gov/f.zip'):
+for bad in ('https://services2.arcgis.com/x/file.zip', 'https://services-eu1.arcgis.com/x/f.zip', 'https://ncnhde.natureserve.org/f.zip', 'https://services1.arcgis.com/f.zip'):
     st_ = Stand({})
     try: M.download_official_file(bad, T / 'f.bin', handlers=[st_]); check(f'download refuses {bad}', False)
     except M.LiveNotAllowed: check(f'download refuses {bad.split("/")[2]} before any request (robots.txt included)', not st_.calls)

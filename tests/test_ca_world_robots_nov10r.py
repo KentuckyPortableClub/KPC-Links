@@ -74,7 +74,7 @@ for name, ns, read in (('Canada', ca.__dict__, CA_GET), ('world', wk, W_GET)):
             check(f'{name}: robots.txt {st} = NOT allowed: the layer is blocked, no data request ({err})',
                   err is not None and 'robots.txt' in str(err) and LOG == [(host, '/robots.txt')] and not SLEPT)   # no retry waits either
     # saved-only / never-contact hosts: no request at all, robots.txt included
-    for u in ('https://apps.fs.usda.gov/arcx/rest/services/x/MapServer/0/query', 'https://services7.arcgis.com/abc/arcgis/rest/services/x/FeatureServer/0/query'):
+    for u in ('https://services1.arcgis.com/arcx/rest/services/x/MapServer/0/query', 'https://services7.arcgis.com/abc/arcgis/rest/services/x/FeatureServer/0/query'):
         setup(ns); LOG.clear(); PACED.clear()
         try: ns['checked_open'](urllib.request.Request(u), 30); err = None
         except Exception as e: err = e  # noqa: BLE001

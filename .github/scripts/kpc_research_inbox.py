@@ -30,7 +30,7 @@ UA = 'KPC (kentuckyportableclub.github.io)'
 SURE_KM = 0.5
 COLS = ['pota_ref', 'park_name', 'layer_url', 'record_id', 'official_name', 'owner', 'confidence', 'notes', 'source', 'pin_lat', 'pin_lon']
 HOLD = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or
-        'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
+        'services.arcgis.com,services1.arcgis.com').split(',') if h.strip()}   # KPC owner, 2026-11-13: apps.fs.usda.gov off (robots.txt 403)
 NEVER = ('services.arcgis.com/33tooklri9xpic7u', 'ncnhde.natureserve.org')   # standing rules: never any request
 GENERIC = set(('state park parks wildlife management area areas wma national forest forests refuge nwr recreation natural wild scenic river rivers '
                'the of and at on sp sra wilderness preserve nature conservation game lands land public fishing lake historic historical site monument '

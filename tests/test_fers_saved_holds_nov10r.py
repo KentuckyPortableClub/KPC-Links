@@ -132,7 +132,7 @@ with tempfile.TemporaryDirectory() as td:
     check("polys = []; LOG.append(f'PAD-US {nm}" in src, 'a failed Kentucky PAD-US read keeps nothing (no partial park)')
     CALLS.clear(); LN2 = {}
     K.live_lines(LN2)
-    check(not any('apps.fs.usda.gov' in c for c in CALLS), 'the Forest Service live line is not asked (saved-copy-only host); the saved line stays')
+    check(any('apps.fs.usda.gov' in c for c in CALLS), 'the Forest Service live line is asked (stub; KPC owner, 2026-11-13: apps.fs.usda.gov is no longer saved-copy only)')
 
     # 'none' is no blanket hold; unlabelled outlines are not official
     root = td / 'tree'; (root / 'data/us-key').mkdir(parents=True); (root / 'data/ca-key').mkdir(parents=True); (root / 'data/world-key').mkdir(parents=True)

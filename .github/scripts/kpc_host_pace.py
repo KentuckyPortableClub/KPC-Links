@@ -4,6 +4,7 @@ Nov 3, 2026 (Mapping, code review of the key builders against the proposed rules
 request every 2 s per host"): kpc_us_key, kpc_ca_key and kpc_world_key paged with 0.25-0.6 s pauses (PAD-US, FWS, CPCAD,
 the state GIS tables). install() wraps urllib.request.urlopen once, so every call site in those scripts is paced by host without
 editing each one. KPC_HOST_GAP sets the gap in seconds (default 2.0; it is never set lower than 2.0).
+KPC owner, 2026-11-13: a slow host (kpc_net_guard.SLOW_HOSTS, apps.fs.usda.gov) waits its own longer gap (10 s).
 The retry waits in each script (8 s x try) are on top of this. Nothing else changes: same User-Agent, same requests.
 """
 import os, threading, time, urllib.parse, urllib.request
@@ -23,7 +24,7 @@ def host_of(req):
 def wait(host):
     with _lk:
         now = time.monotonic()
-        w = _last.get(host, -1e9) + GAP - now
+        w = _last.get(host, -1e9) + max(GAP, kpc_net_guard.min_gap(host)) - now
         if w > 0:
             time.sleep(w); stat['waited_s'] += w
         _last[host] = time.monotonic(); stat['requests'] += 1

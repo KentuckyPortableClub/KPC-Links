@@ -159,7 +159,7 @@ try:
     f = M.http_fetcher(M.Pacer(clock=lambda: 0, sleep=lambda s: None), max_tries=1)
     for u in ('https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/x/FeatureServer/0', 'https://ncnhde.natureserve.org/arcgis/x/0', 'https://services.arcgis.com/ABC/x/0',
               'https://services1.arcgis.com/ABC/x/0', 'https://services2.arcgis.com/ABC/x/0', 'https://services5.arcgis.com/ABC/x/0',
-              'https://services9.arcgis.com/ABC/x/0', 'https://apps.fs.usda.gov/arcx/x/0'):
+              'https://services9.arcgis.com/ABC/x/0'):   # apps.fs.usda.gov left the list on 2026-11-13 (KPC owner)
         check(raises(M.LiveNotAllowed, f, u, {'f': 'json'}), f'hosts: {u.split("/")[2]}{"/" + u.split("/")[3] if "33TOO" in u else ""} is refused')
     check(not calls, 'hosts: no request of any kind (robots.txt included) was made for any of them')
 finally: urllib.request.urlopen = real; urllib.request.OpenerDirector.open = real_open

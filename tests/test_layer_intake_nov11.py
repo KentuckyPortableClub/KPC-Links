@@ -228,7 +228,7 @@ for side, why in ((dict(SIDE, label='WDPA Bahamas'), 'label'), (dict(SIDE, sourc
 wd = layer(t, BS, 'WDPA_Nov2026_BS.geojson'); gh = FakeGh(); rc, _ = I.run(args(t, root, parks, wd, SIDE, write=True), gh)
 check('WDPA (file name): exit 4, nothing stored', rc == 4 and gh.calls == [] and snap(root) == r0)
 for u in ('https://services1.arcgis.com/abc/arcgis/rest/services/x/FeatureServer/0/query', 'https://services.arcgis.com/33TOOklri9xpic7U/x.zip',
-          'https://services-eu1.arcgis.com/x.geojson', 'https://apps.fs.usda.gov/arcx/rest/x.zip', 'https://ncnhde.natureserve.org/x.zip',
+          'https://services-eu1.arcgis.com/x.geojson', 'https://services5.arcgis.com/arcx/rest/x.zip', 'https://ncnhde.natureserve.org/x.zip',
           'https://example.org/arcgis/rest/services/x/MapServer/3'):
     gh = FakeGh(); rc, _ = I.run(args(t, root, parks, u, SIDE, write=True), gh)
     check(f'refused before any request (exit 5): {u[:60]}', rc == 5 and gh.calls == [])

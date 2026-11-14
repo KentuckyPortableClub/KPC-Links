@@ -29,7 +29,7 @@ so = ns['saved_only']
 for h in ['services', 'services1', 'services2', 'services3', 'services5', 'services6', 'services7', 'services8', 'services9', 'services12']:
     check(f'{h}.arcgis.com is saved-copy only', so(f'https://{h}.arcgis.com/abc/arcgis/rest/services/x/FeatureServer/0/query'))
 check('svc: form on services3 is saved-copy only', so('svc:https://services3.arcgis.com/x/arcgis/rest/services/y/FeatureServer|.'))
-check('apps.fs.usda.gov stays saved-copy only', so('https://apps.fs.usda.gov/arcx/rest/services/x/MapServer/0/query'))
+check('apps.fs.usda.gov is read live since 2026-11-13 (a slow host, not saved-copy only)', not so('https://apps.fs.usda.gov/arcx/rest/services/x/MapServer/0/query'))
 for u in ['https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0/query',
           'https://gis.blm.gov/azarcgis/rest/services/recreation/BLM_AZ_RECS/MapServer/1/query',
           'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query',

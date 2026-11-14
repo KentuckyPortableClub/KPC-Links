@@ -55,12 +55,15 @@ os.environ.pop('GITHUB_STEP_SUMMARY', None); os.environ.pop('HTTP_CACHE', None);
 time_sleep = time.sleep; time.sleep = lambda s: None   # no real waits in this test
 
 # ---------------------------------------------------------------- owned land
+# KPC owner, 2026-11-13: apps.fs.usda.gov is no longer a default blocked host; this section adds it back through the variable
+# (KPC_SAVED_ONLY_HOSTS only adds hosts) so the blocked-source path below is still tested with the Forest Service map.
+os.environ['KPC_SAVED_ONLY_HOSTS'] = 'apps.fs.usda.gov'
 import kpc_key_freeze as KF  # noqa: E402
 fers_before = KF.rules_hash('fers')
 import kpc_owned_run as OR  # noqa: E402
 import kpc_owned as KO, kpc_net_guard as NG, kpc_http_cache as HC  # noqa: E402,E401
 check('owned: importing the runner installs the guard before kpc_owned', NG.installed())
-check('owned: the job reads the Forest Service map on apps.fs.usda.gov (a never-contact host)', NG.host_of(OR.JOBS['ky'][2][0][1]) == 'apps.fs.usda.gov')
+check('owned: the job reads the Forest Service map on apps.fs.usda.gov (blocked here through KPC_SAVED_ONLY_HOSTS)', NG.host_of(OR.JOBS['ky'][2][0][1]) == 'apps.fs.usda.gov')
 w = tmp / 'owned'; w.mkdir()
 shutil.copy(ROOT / 'ky-dbnf.geojson', w / 'ky-dbnf.geojson')
 kept = json.dumps({'type': 'FeatureCollection', 'read': '2026-10-27', 'features': [{'type': 'Feature', 'properties': {'NAME': 'x'}, 'geometry': None}]})
@@ -130,6 +133,8 @@ check(not undeclared, f'no rule file differs from {base} unless its rules hash m
       + (f' (declared moves: {[k for k, v in _dec.items() if v]})' if moved else ''))
 wf = (ROOT / '.github' / 'workflows' / 'kpc-owned.yml').read_text(encoding='utf-8')
 check('kpc_owned_run.py ky' in wf and 'python3 .github/scripts/kpc_owned.py' not in wf and 'git add data/status/kpc_owned.json' in wf, 'owned: the workflow runs the guarded runner and saves its note')
+
+os.environ.pop('KPC_SAVED_ONLY_HOSTS', None)
 
 # ---------------------------------------------------------------- US closures
 os.environ['FORCE_RUN'] = '1'
