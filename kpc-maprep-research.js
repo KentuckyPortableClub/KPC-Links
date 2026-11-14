@@ -232,12 +232,13 @@
     if (!facts.manager && facts.agency) facts.manager = Object.assign({}, facts.agency);
     const ac = facts.acres ? parseFloat(String(facts.acres.v).replace(/,/g, '')) : NaN;
     return { kind: 'state', a, facts, id: L.pre + id, name: capName(a[L.field]) || L.label, manager: facts.manager ? facts.manager.v : L.label, owner: facts.owner ? facts.owner.v : '', designation: facts.designation ? facts.designation.v : '', acc: '', cat: '', acres: ac > 0 ? ac : geomAcres(f.geometry),
-      access: 'not stated in this layer (check the agency)', protection: '', geom: f.geometry, source: L.label, layer: L.pre, link: L.url + '?objectIds=' + encodeURIComponent(id) + '&outFields=*&f=html' };
+      access: 'not stated in this layer (check the agency)', protection: '', geom: f.geometry, source: L.label + (L.private ? ' (private lookup: licence not read yet)' : ''), layer: L.pre, link: L.url + '?objectIds=' + encodeURIComponent(id) + '&outFields=*&f=html' };
   }
   const SAVED_ONLY_HOSTS = /^(?:www\.)?(?:services\d*\.arcgis\.com|apps\.fs\.usda\.gov)$/i;   /* Nov 11 (job 3): services2..9 too (house rules: services*.arcgis.com) */
   function isSavedCopy(L) {
     if (!L) return false;
     if (L.live === false || L.read === 'saved copy') return true;
+    if (L.verified === true) return false;   /* Nov 14: on the verified-layers list (licence checked, or a private live lookup): read live in the member's browser */
     try { return SAVED_ONLY_HOSTS.test(new URL(L.url).hostname); } catch (e) { return false; }
   }
   async function slQuery(L, params, ms) {
