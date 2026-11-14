@@ -25,6 +25,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_refcheck.py
+      - name: WWFF to POTA links (KFF + VEFF cross reference, Nov 14)
+        # kpc_wwff_links.py: reads the WWFF and park lists laid over above, writes data/wwff-xref-*.json and the person list
+        # data/wwff-xref-review.csv. Only CONFIRMED links reach the site (kpc_search_lists.py / kpc_canada.py). Fails closed.
+        run: |
+          python3 .github/scripts/kpc_wwff_links.py build || { kpc_rc=$?; echo "::error title=kpc_wwff_links.py::stopped with an error (exit $kpc_rc), see the log above; last week's links stay"; echo "kpc_wwff_links.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save what was taken off
         id: kept_green_1
         continue-on-error: true
@@ -32,9 +37,9 @@ jobs:
           git config user.name "KPC bot"
           git config user.email "kpc-bot@users.noreply.github.com"
           python3 .github/scripts/kpc_refcheck_guard.py || { kpc_rc=$?; echo "::error title=kpc_refcheck_guard.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_refcheck_guard.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Nov 2 (chat 5's WRONG list): a park lost that POTA did not retire / an emptied map file = put back
-          git add -A kpc-ky-data.json locations-ky.json locations.json kpc-guide-*-data.json wwff-unmapped.json ky-*.geojson app/packs KPC_Kentucky_*.kml KPC_Kentucky_*.gpx kpc-top25.json data/ky-retired.json || true   # ok: an optional path may not exist
+          git add -A kpc-ky-data.json locations-ky.json locations.json kpc-guide-*-data.json wwff-unmapped.json ky-*.geojson app/packs KPC_Kentucky_*.kml KPC_Kentucky_*.gpx kpc-top25.json data/ky-retired.json data/wwff-xref-KFF-1.json data/wwff-xref-KFF-2.json data/wwff-xref-VEFF.json data/wwff-xref-review.csv || true   # ok: an optional path may not exist
           if git diff --cached --quiet; then echo "nothing to save"; exit 0; fi
-          git commit -q -m "Retired parks taken off every list (reference check)"
+          git commit -q -m "Retired parks taken off every list; WWFF to POTA links (reference check)"
           { saved=0; for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && { saved=1; break; }; sleep 10; done; [ "$saved" = 1 ] || { kpc_rc=$?; echo "::error title=Save::not saved after every try; the next run tries again"; echo "Save - not saved after every try; the next run tries again" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; }
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
