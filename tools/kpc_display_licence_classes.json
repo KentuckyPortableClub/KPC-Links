@@ -1,0 +1,46 @@
+{
+ "store_format_version": "kpc-outline-store-index/3",
+ "about": "The only licence_class strings the outline store writes. publishable can be true only for a class marked can_be_publishable, and only with publish_basis verified-row (a verified-layers.csv row with an evidence URL) or owner-confirmed (the owner recorded the licence).",
+ "classes": {
+  "OPEN": {
+   "can_be_publishable": true,
+   "meaning": "a named open licence that is not share-alike (CC BY, CC0, OGL, Licence Ouverte, dl-de/by, NLOD ...)"
+  },
+  "PUBLIC DOMAIN": {
+   "can_be_publishable": true,
+   "meaning": "public domain, stated by the agency"
+  },
+  "NO TERMS STATED": {
+   "can_be_publishable": true,
+   "meaning": "a public government layer with no terms posted (owner rule 3: credit the agency, take down on request)"
+  },
+  "DISCLAIMER ONLY": {
+   "can_be_publishable": true,
+   "meaning": "only a no-warranty disclaimer, no use terms (treated like NO TERMS STATED)"
+  },
+  "NON-COMMERCIAL": {
+   "can_be_publishable": true,
+   "meaning": "a non-commercial licence without a ban on redistribution (owner decision 2)"
+  },
+  "SHARE-ALIKE": {
+   "can_be_publishable": false,
+   "meaning": "CC BY-SA / ODbL / other share-alike: NOT publishable until the owner decides on share-alike"
+  },
+  "RESTRICTED IN WRITING": {
+   "can_be_publishable": false,
+   "meaning": "written terms forbid redistribution or copying"
+  },
+  "DO NOT SHARE": {
+   "can_be_publishable": false,
+   "meaning": "the owner read the page: do not share / no redistribution / private use"
+  },
+  "RESTRICTED OR HELD": {
+   "can_be_publishable": false,
+   "meaning": "restricted-layers.csv or an owner hold"
+  },
+  "PRIVATE UNTIL LICENCE READ": {
+   "can_be_publishable": false,
+   "meaning": "no licence recorded by a person yet (the default)"
+  }
+ }
+}

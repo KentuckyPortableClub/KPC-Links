@@ -14,9 +14,11 @@ A level drops rings smaller than its tolerance only when that tolerance is over 
 complete). The store files are only read, never changed.
 
 What is drawn (in this order, per park; all of a park's areas together):
-  1. LICENCE GATE (strict; see gate()): only records the store tool (full 3 or later) marks publishable in its index AND in the
-     record itself, with an allowed licence class and a publish basis of a verified row or the owner's confirmation. WDPA /
-     Protected Planet / SPREP / UNEP-WCMC anywhere in the record = never. One record that fails keeps the WHOLE park on today's
+  1. LICENCE GATE (strict; see gate()): a store in index format kpc-outline-store-index/3 or later, read from its PER-AREA
+     index, every file's sha256 checked. A record is drawn only if the index's record_meta AND the record itself say publishable,
+     with the same licence class (one the store's licence-classes.json allows; SHARE-ALIKE stays off; an unknown class stops
+     the build), a basis of a verified row or the owner's confirmation, and the same plain credit line. wdpa_derived true, or
+     WDPA / Protected Planet / SPREP / UNEP-WCMC in any value = never. One record that fails keeps the WHOLE park on today's
      outline.
   2. Doubtful joins (lists, the store's check-join flag, or tracts 10 km apart): today's outline.
   3. Records with the same geometry are drawn once: the copy from the highest-ranked layer.
@@ -51,7 +53,7 @@ Standard library only, Python 3.9+. No network.
   python3 kpc_display_copy.py check --out DIR --area US-NH [--public]
 Exit 0 = done; 1 = stopped or a check failed; 2 = usage error.
 """
-import argparse, csv, gzip, hashlib, json, math, pathlib, re, sys, time
+import argparse, csv, gzip, hashlib, json, math, pathlib, re, sys, time, urllib.parse
 
 FORMAT = 'kpc-display-3'
 CAP = 3000                      # OVERVIEW points per park (owner decision 2)
@@ -73,13 +75,37 @@ LOST_TOL_CELLS = 4              # invariant I2: more than this many lost cells (
 I2_CELLS = 250_000              # the park's store land (reported): about this many cells per cluster
 LADDER = [0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 30, 40, 50, 60, 80, 100, 120, 150, 200, 250, 300, 400, 500,
           750, 1000, 1500, 2000, 3000, 5000, 7500, 10000, 20000]
-# Licence classes that may be drawn: exact names the store tool writes (full 3: a verified-layers.csv row's class, or the owner's
-# hand-helper answer). Anything else fails, whatever 'publishable' says. SHARE-ALIKE is NOT here (an owner question).
-ALLOW_CLASSES = {'OPEN', 'NO TERMS STATED', 'DISCLAIMER ONLY', 'NON-COMMERCIAL', 'NON-COMMERCIAL ONLY', 'OWNER CONFIRMED',
-                 'OPEN (OWNER READ THE PAGE)', 'NO TERMS STATED (OWNER READ THE PAGE)', 'NON-COMMERCIAL (USABLE: OWNER DECISION 2)'}
+# Licence classes: the store tool's own list (licence-classes.json of store tool full 3, copied word for word to
+# tools/kpc_display_licence_classes.json). A class may be drawn only if that list says can_be_publishable: true AND it is not
+# held back here (SHARE-ALIKE stays off until the owner decides; it is can_be_publishable false in full 3 anyway). A store that
+# names a class this list does not know stops the build (the list must be updated first, by a person).
+HELD_CLASSES = {'SHARE-ALIKE'}
 BASIS_OK = {'verified-row', 'owner-confirmed'}
-STORE_TOOL_MIN = 3              # store tool "full 3" or later (publishable only from verified rows or the owner)
-WDPA = re.compile(r'wdpa(?!_cd\b)|protected ?planet|sprep|unep[- ]?wcmc|world database on protected areas', re.I)
+STORE_FORMAT_MIN = 3            # store index 'kpc-outline-store-index/3' or later
+STORE_FORMAT_RX = re.compile(r'kpc-outline-store-index/(\d+)')
+META_KEYS = ('publishable', 'licence_class', 'publish_basis', 'publish_basis_detail', 'credit_line', 'source_layer', 'source_url',
+             'terms_text_sha256', 'terms_text_file', 'wdpa_derived', 'private_reason')
+# WDPA words, searched in VALUES only (never in field names: every v3 record has a field NAMED wdpa_derived)
+WDPA = re.compile(r'wdpa|protected ?planet|\bsprep\b|unep[- ]?wcmc|world database on protected areas', re.I)
+WDPA_SKIP_ATTRS = {'wdpa_cd'}   # PAD-US's own code field (a number or a code, never a WDPA source)
+LICENCE_CLASSES_FILE = pathlib.Path(__file__).resolve().parent / 'kpc_display_licence_classes.json'
+
+
+def load_licence_classes(path=None):
+    """{class name: can be drawn (bool)} from the store tool's licence-classes.json semantics."""
+    d = json.loads(pathlib.Path(path or LICENCE_CLASSES_FILE).read_text(encoding='utf-8'))
+    cl = d.get('classes')
+    if not isinstance(cl, dict) or not cl: raise DisplayError('licence class list has no classes')
+    out = {}
+    for name, v in cl.items():
+        if not isinstance(v, dict) or not isinstance(v.get('can_be_publishable'), bool):
+            raise DisplayError(f'licence class {name!r}: can_be_publishable must be true or false')
+        out[str(name).strip().upper()] = v['can_be_publishable'] and str(name).strip().upper() not in HELD_CLASSES
+    return out
+
+
+LICENCE_CLASSES = load_licence_classes()
+ALLOW_CLASSES = frozenset(k for k, v in LICENCE_CLASSES.items() if v)
 PREVIEW_STAMP = 'PRIVATE PREVIEW - licence gate skipped - never publish'
 FALLBACK_CODE = "kept today's outline"
 JOIN_LINK_KM, JOIN_FLAG_KM = 5.0, 10.0
@@ -127,17 +153,19 @@ def _member_json(raw):
     return json.loads(txt)
 
 
-def read_index(store_dir, area):
+def read_index(store_dir, area, preview=False):
+    """The PER-AREA index index-<AREA>.json. The combined index.json (store tool full 3) merges the entries of parks that span
+    areas into one, so it is read only for a private preview of an older store that has no per-area index."""
     d = pathlib.Path(store_dir)
-    for name in (f'index-{area}.json', 'index.json'):
-        p = d / name
-        if p.is_file():
-            idx = json.loads(p.read_text(encoding='utf-8'))
-            if idx.get('area') == area or name != 'index.json':
-                return idx, p
-            parks = {k: v for k, v in (idx.get('parks') or {}).items() if str(v.get('file', '')).startswith(area + '.')}
-            if parks: return dict(idx, parks=parks, area=area), p
-    raise DisplayError(f'no index for {area} in {d}')
+    p = d / f'index-{area}.json'
+    if p.is_file(): return json.loads(p.read_text(encoding='utf-8')), p
+    p = d / 'index.json'
+    if preview and p.is_file():
+        idx = json.loads(p.read_text(encoding='utf-8'))
+        if idx.get('area') == area: return idx, p
+        parks = {k: v for k, v in (idx.get('parks') or {}).items() if str(v.get('file', '')).startswith(area + '.')}
+        if parks: return dict(idx, parks=parks, area=area), p
+    raise DisplayError(f'no per-area index index-{area}.json in {d}' + ('' if preview else ' (a public build never reads the combined index.json)'))
 
 
 def read_park(store_dir, ref, e, handles):
@@ -337,23 +365,37 @@ def samples(xs, ys, step=5.0):
 
 
 # ---- licence gate ---------------------------------------------------------------------------------------------------------
-def store_tool_version(idx):
-    """'kpc-outline-store full 3 (2026-11-14)' -> 3; anything else -> 0."""
-    m = re.search(r'\bfull\s+(\d+)\b', str(idx.get('tool') or ''))
+def store_format(idx):
+    """'kpc-outline-store-index/3' -> 3; anything else -> 0."""
+    m = STORE_FORMAT_RX.fullmatch(str(idx.get('store_format_version') or '').strip())
     return int(m.group(1)) if m else 0
 
 
-def require_public_index(idx, area):
-    """A public build needs an index from store tool full 3 or later, with the per-record licence maps and file checksums."""
-    if store_tool_version(idx) < STORE_TOOL_MIN:
-        raise DisplayError(f'{area}: the store index is from {idx.get("tool")!r}; a public build needs store tool full {STORE_TOOL_MIN} or later')
+def check_classes(names, where, known=None):
+    known = LICENCE_CLASSES if known is None else known
+    bad = sorted({str(n) for n in names if str(n or '').strip().upper() not in known})
+    if bad: raise DisplayError(f'{where}: the store names licence class(es) this builder does not know: {bad} '
+                               f'(update tools/kpc_display_licence_classes.json from the store tool first)')
+
+
+def require_public_index(idx, area, known=None):
+    """A public build needs a PER-AREA index in store format 3 or later, with file checksums and, per record, the record_meta block."""
+    v = store_format(idx)
+    if v < STORE_FORMAT_MIN:
+        raise DisplayError(f'{area}: store_format_version is {idx.get("store_format_version")!r}; a public build needs '
+                           f'kpc-outline-store-index/{STORE_FORMAT_MIN} or later')
+    if idx.get('area') != area:
+        raise DisplayError(f'{area}: a public build reads the per-area index index-{area}.json (the combined index.json merges parks '
+                           f'that span areas)')
     files = idx.get('files') or {}
-    if not files or not all((m or {}).get('sha256') for m in files.values()):
+    if not files or not all(re.fullmatch(r'[0-9a-f]{64}', str((m or {}).get('sha256') or '')) for m in files.values()):
         raise DisplayError(f'{area}: the store index has no file checksums')
+    check_classes(idx.get('licence_classes') or [], f'{area} index', known)
     for ref, e in (idx.get('parks') or {}).items():
-        for k in ('publishable', 'licence_class', 'credit'):
-            if not isinstance(e.get(k), dict):
-                raise DisplayError(f'{area}: park {ref} has no {k!r} map in the store index')
+        if e.get('file') not in files: raise DisplayError(f'{area}: park {ref} is in {e.get("file")!r}, which the index does not list')
+        rm = e.get('record_meta')
+        if not isinstance(rm, dict) or not rm: raise DisplayError(f'{area}: park {ref} has no record_meta in the store index')
+        check_classes([m.get('licence_class') for m in rm.values() if isinstance(m, dict)], f'{area} park {ref}', known)
 
 
 def clean_credit(t):
@@ -370,53 +412,74 @@ def clean_credit(t):
 
 
 def norm_layer_url(u):
-    u = str(u or '').strip().lower().rstrip('/')
-    return re.sub(r'/query$', '', u)
+    """The store tool's layer-table key (its norm_layer): host lower case (with a port other than 443), path unquoted and lower
+    case, no /query, no trailing slash, no scheme, no query string. A key already in that form maps to itself."""
+    u = str(u or '').strip()
+    if not re.match(r'[a-z][a-z0-9+.-]*://', u, re.I): u = 'https://' + u
+    sp = urllib.parse.urlsplit(u)
+    path = re.sub(r'/query/?$', '', urllib.parse.unquote(sp.path or ''), flags=re.I).rstrip('/')
+    host = (sp.hostname or '').lower().rstrip('.')
+    try: port = sp.port
+    except ValueError: port = -1
+    if port not in (None, 443): host = f'{host}:{port}'
+    return f'{host}{path.lower()}'
 
 
-def publish_basis(rec, e, key):
-    """'verified-row' | 'owner-confirmed' | '' from the index (publish_basis map) or, in store tool full 3, the record's own words."""
-    b = (e.get('publish_basis') or {}).get(key) if isinstance(e.get('publish_basis'), dict) else None
-    if b is None: b = rec.get('publish_basis')
-    if b: return str(b)
-    why = str(rec.get('publish_why') or '')
-    if why.startswith('verified-layers.csv'): return 'verified-row'
-    if why.startswith('the licence answer the owner recorded'): return 'owner-confirmed'
-    return ''
+def _values(x, skip_keys=()):
+    """Every string / number VALUE inside x (dicts and lists walked); keys are never returned; skip_keys (lower case) are skipped."""
+    if isinstance(x, dict):
+        for k, v in x.items():
+            if str(k).lower() in skip_keys: continue
+            yield from _values(v, skip_keys)
+    elif isinstance(x, (list, tuple)):
+        for v in x: yield from _values(v, skip_keys)
+    elif isinstance(x, str): yield x
 
 
-def wdpa_hit(rec, e, key, layer_row):
-    """WDPA / Protected Planet / SPREP / UNEP-WCMC anywhere: the record (all but its rings), the index fields for it, its layer row."""
-    blob = [json.dumps({k: v for k, v in rec.items() if k not in ('rings', 'sha256')}, ensure_ascii=False, default=str)]
-    for k, v in e.items():
-        if isinstance(v, dict) and key in v: blob.append(json.dumps(v[key], ensure_ascii=False, default=str))
-    blob.append(json.dumps(layer_row or {}, ensure_ascii=False, default=str))
-    for k in (rec.get('attributes') or {}):   # an attribute named like WDPAID, WDPA_PID = a WDPA record (PAD-US's WDPA_Cd is a code field)
+def wdpa_hit(rec, meta, layer_row):
+    """True = a WDPA / Protected Planet / SPREP / UNEP-WCMC record. First the store's own boolean wdpa_derived (index record_meta
+    and record: anything but False on either is a hit), then the words, in VALUES only (record without rings, its record_meta,
+    its layer row), skipping PAD-US's WDPA_Cd field. An attribute named WDPAID / WDPA_PID is a WDPA feature id."""
+    for d in (rec, meta):
+        if d is not None and 'wdpa_derived' in d and d['wdpa_derived'] is not False: return True
+    for k in (rec.get('attributes') or {}):
         if re.fullmatch(r'wdpa_?(pid|id)|wdpaid', str(k), re.I): return True
-    return bool(WDPA.search(' '.join(blob)))
+    body = {k: v for k, v in rec.items() if k not in ('rings', 'sha256')}
+    for part in (body, meta or {}, layer_row or {}):
+        for v in _values(part, WDPA_SKIP_ATTRS):
+            if WDPA.search(v): return True
+    return False
 
 
 def gate(rec, e, layers_tbl):
-    """(passes, private reason, credit) for one record. The stricter answer wins: the index AND the record must say publishable
-    (boolean true), with the same allowed class, a verified-row or owner-confirmed basis, the layer row (if any) must agree, the
-    park must be publishable as a whole, and a plain credit line must exist. WDPA never."""
+    """(passes, private reason, credit) for one record. The stricter answer wins: the index's record_meta AND the record itself
+    must say publishable (boolean true) with the same allowed class, the same verified-row / owner-confirmed basis and the same
+    plain credit line; the layer row (if the index has one) must agree; the park must be publishable as a whole. WDPA never."""
     key = rec.get('key')
-    row = (layers_tbl or {}).get(norm_layer_url(rec.get('layer_url'))) if isinstance(layers_tbl, dict) else None
-    if wdpa_hit(rec, e, key, row): return False, 'WDPA / Protected Planet / SPREP / UNEP-WCMC source', ''
-    pub_i = (e.get('publishable') or {}).get(key) if isinstance(e.get('publishable'), dict) else None
-    if pub_i is not True: return False, f'index publishable is {pub_i!r}', ''
+    meta = ((e.get('record_meta') or {}).get(key)) if isinstance(e.get('record_meta'), dict) else None
+    if not isinstance(meta, dict): return False, 'no record_meta for it in the index', ''
+    tbl = {norm_layer_url(k): v for k, v in layers_tbl.items()} if isinstance(layers_tbl, dict) else {}
+    row = tbl.get(norm_layer_url(rec.get('source_url') or rec.get('layer_url'))) if tbl else None
+    if wdpa_hit(rec, meta, row) or meta.get('wdpa_derived') is not False or rec.get('wdpa_derived') is not False:
+        return False, 'WDPA / Protected Planet / SPREP / UNEP-WCMC source (or wdpa_derived is not false)', ''
+    for k in META_KEYS:
+        if k in rec and rec.get(k) != meta.get(k): return False, f'index and record differ on {k}', ''
+    if meta.get('publishable') is not True: return False, f"index publishable is {meta.get('publishable')!r}", ''
     if rec.get('publishable') is not True: return False, f"record publishable is {rec.get('publishable')!r}", ''
     if e.get('park_publishable') is not True: return False, 'park_publishable is not true', ''
-    cls_i = str((e.get('licence_class') or {}).get(key) or '').strip()
-    cls_r = str(rec.get('licence_class') or '').strip()
-    if cls_i.upper() != cls_r.upper(): return False, f'licence class differs: index {cls_i!r}, record {cls_r!r}', ''
-    if cls_i.upper() not in ALLOW_CLASSES: return False, f'licence class {cls_i!r} is not on the allow list', ''
-    basis = publish_basis(rec, e, key)
-    if basis not in BASIS_OK: return False, f'publish basis {basis!r} is not a verified row or the owner\'s confirmation', ''
-    if row is not None and (row.get('publishable') is not True or str(row.get('class') or '').upper() != cls_i.upper()):
+    if meta.get('private_reason'): return False, 'the store gives a private reason', ''
+    cls_i = str(meta.get('licence_class') or '').strip().upper()
+    cls_r = str(rec.get('licence_class') or '').strip().upper()
+    if cls_i != cls_r: return False, f'licence class differs: index {cls_i!r}, record {cls_r!r}', ''
+    if cls_i not in LICENCE_CLASSES: raise DisplayError(f'{key}: licence class {cls_i!r} is not one this builder knows')
+    if cls_i not in ALLOW_CLASSES: return False, f'licence class {cls_i!r} may not be drawn', ''
+    basis = str(meta.get('publish_basis') or '')
+    if basis not in BASIS_OK or str(rec.get('publish_basis') or '') != basis:
+        return False, f'publish basis {basis!r} is not a verified row or the owner\'s confirmation (in both)', ''
+    if row is not None and (row.get('publishable') is not True or str(row.get('class') or '').strip().upper() != cls_i):
         return False, 'the index layer table disagrees', ''
-    credit = clean_credit((e.get('credit') or {}).get(key))
-    if not credit or credit != clean_credit(rec.get('credit')): return False, 'no plain credit line (or index and record differ)', ''
+    credit = clean_credit(meta.get('credit_line'))
+    if not credit or credit != clean_credit(rec.get('credit_line')): return False, 'no plain credit line (or index and record differ)', ''
     return True, '', credit
 
 
@@ -913,10 +976,12 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
     prec = dict(DEFAULT_PRECEDENCE, **(precedence_table or {}))
     idx, sha = {}, {}
     for a in areas:
-        ix, p = read_index(store_dir, a)
+        ix, p = read_index(store_dir, a, preview)
         if not preview: require_public_index(ix, a)
         idx[a] = (ix, p)
-        for f in sorted({e['file'] for e in ix['parks'].values()}):
+        for f in sorted({e['file'] for e in ix['parks'].values()} | (set() if preview else set(ix.get('files') or {}))):
+            if not re.fullmatch(r'[A-Za-z0-9_.-]+\.kpcstore\.json\.gz', str(f)): raise DisplayError(f'{a}: odd store file name {f!r}')
+            if not (pathlib.Path(store_dir) / f).is_file(): raise DisplayError(f'{a}: the index lists {f}, which is not in the store folder')
             sha[f] = file_sha256(pathlib.Path(store_dir) / f)
             meta = (ix.get('files') or {}).get(f) or {}
             if not preview and not meta.get('sha256'): raise DisplayError(f'{f}: the index has no checksum for it')
@@ -952,7 +1017,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                 for r in p.get('records') or []:
                     if preview:
                         ok, why, cr = True, '', clean_credit(r.get('credit') or r.get('agency_label')) or str(r.get('layer') or '')
-                        if wdpa_hit(r, e, r.get('key'), None): ok, why = False, 'WDPA / Protected Planet / SPREP / UNEP-WCMC source'
+                        if wdpa_hit(r, None, None): ok, why = False, 'WDPA / Protected Planet / SPREP / UNEP-WCMC source'
                     else:
                         ok, why, cr = gate(r, e, lt)
                     if not ok: why_not.append(f"{r.get('key')}: {why}"); continue

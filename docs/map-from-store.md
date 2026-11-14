@@ -18,10 +18,12 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
 | `tools/kpc_display_doubtful.csv` | The matcher's list of doubtful joins (KEEP-FLAGGED, 589 rows): these parks keep today's outline. |
 | `tools/kpc_display_publish.sh` | Publishes built areas to the `map-display` branch safely (see below). |
 | `kpc-outline-display.js` | The browser loader (details below). **No page includes it yet.** |
-| `tests/test_display_copy_nov13.py` | 66 checks on synthetic stores, including the grade's cases (no real outlines, no network). |
+| `tests/test_display_copy_nov13.py` | 77 checks on synthetic stores, including the grade's cases (no real outlines, no network). |
 | `tests/test_display_copy_huge_nov14.py` | 13 checks: a 503,789-point synthetic park across two states. |
 | `tests/test_display_publish_nov14.py` | 11 checks: the publish script against a local bare repository. |
-| `tests/display_copy_fixture.py` | The synthetic store writer the tests use. |
+| `tests/display_copy_fixture.py` | The synthetic store writer the tests use (store index format 3 shape). |
+| `tests/test_display_copy_v3store_nov14.py` | Opt-in (set `KPC_STORE_TOOL_DIR` to the unzipped store tool): 16 checks on stores the real store tool builds offline from its own test answers in a temporary folder; otherwise it says SKIP. |
+| `tools/kpc_display_licence_classes.json` | Word-for-word copy of the store tool's `licence-classes.json`. |
 
 ### The loader (`kpc-outline-display.js`)
 
@@ -32,19 +34,25 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
 
 ## What the builder does
 
-1. **Licence gate (strict).** A public build needs an index from store tool **full 3 or later**, with file checksums. A record
-   passes only if all of these hold:
-   - the index AND the record both say `publishable` is exactly `true`;
-   - the park is publishable as a whole;
-   - both carry the same class, and that class is on the allow list: OPEN, NO TERMS STATED, DISCLAIMER ONLY,
-     NON-COMMERCIAL (ONLY), OWNER CONFIRMED, or the owner's hand answers for those;
-   - the publish basis is a verified-layers row or the owner's confirmation;
-   - the index's layer table (if any) agrees;
-   - a plain credit line exists (e-mails, web addresses and account notes are removed).
+1. **Licence gate (strict).** A public build reads only the store's PER-AREA index (`index-<AREA>.json`; the combined
+   `index.json` merges parks that span areas, so it is never read for a public build), which must say
+   `store_format_version: kpc-outline-store-index/3` (or later) and list a sha256 for every area file; every listed file is
+   checked against it. A record passes only if all of these hold:
+   - the index's `record_meta` for the record and the record itself agree on every licence field, and both say
+     `publishable` is exactly `true`, with no private reason;
+   - the park is publishable as a whole (`park_publishable`);
+   - the class is one the store's `licence-classes.json` allows (`can_be_publishable: true`: OPEN, PUBLIC DOMAIN, NO TERMS
+     STATED, DISCLAIMER ONLY, NON-COMMERCIAL). SHARE-ALIKE stays off. The list is a word-for-word copy in
+     `tools/kpc_display_licence_classes.json`; a class the builder does not know (in a record or in the index's
+     `licence_classes`) stops the build;
+   - the publish basis is `verified-row` or `owner-confirmed`;
+   - the index's layer table agrees (its keys are the store's form, `host/path` with no `https://`; both sides are
+     normalised the same way);
+   - a plain credit line (`credit_line`) exists (e-mails, web addresses and account notes are removed).
 
-   WDPA / Protected Planet / SPREP / UNEP-WCMC is searched in the whole record (all but its rings), the index fields and the
-   layer row, and is never drawn. One failing record keeps the whole park on today's outline. Nothing is ever decided from
-   licence text.
+   WDPA: the store's boolean `wdpa_derived` must be `false` in the index and in the record; then the words WDPA / Protected
+   Planet / SPREP / UNEP-WCMC are searched in VALUES only (never in field names; PAD-US's `WDPA_Cd` field is skipped). One
+   failing record keeps the whole park on today's outline. Nothing is ever decided from licence text.
 2. **Doubtful joins** (`--doubtful`, a list that must exist), the store's check-join flag, or tracts 10 km apart: today's outline.
 3. **The same geometry is drawn once**, using the copy from the highest-ranked layer.
 4. **One layer per park.**

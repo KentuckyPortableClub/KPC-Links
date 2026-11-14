@@ -6,7 +6,7 @@ Everything here is SYNTHETIC: small fake stores are written into a temporary fol
 tests/display_copy_fixture.py), in the store's format 1 with a store-tool "full 3" index. No real outline, no network (sockets
 are blocked), no repo file written. The 500,000-point two-state park is in tests/test_display_copy_huge_nov14.py and the publish
 script in tests/test_display_publish_nov14.py. Prints PASS / FAIL lines and ends ALL PASS or SOME FAILED."""
-import gzip, json, math, os, pathlib, shutil, socket, subprocess, sys, tempfile
+import gzip, hashlib, json, math, os, pathlib, shutil, socket, subprocess, sys, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'tools')); sys.path.insert(0, str(ROOT / 'tests'))
@@ -83,12 +83,12 @@ try:
         park('US-0001', [record('a1', 'lay1', [circle(0.1, 0.1, 0.01, 200, wobble=0.03)])]),
         park('US-0002', [record('b1', 'lay1', [circle(0.2, 0.1, 0.01, 120)]), record('b2', 'lay2', [circle(0.2, 0.1, 0.01, 120)]),
                          record('b3', 'lay1', [circle(0.2, 0.1, 0.0100001, 97)])]),
-        park('US-0003', [record('c1', 'lay1', [circle(0.3, 0.1, 0.01, 80)]), record('c2', 'lay2', [circle(0.31, 0.1, 0.004, 60)], publishable=False, cls='NOT RECORDED')]),
+        park('US-0003', [record('c1', 'lay1', [circle(0.3, 0.1, 0.01, 80)]), record('c2', 'lay2', [circle(0.31, 0.1, 0.004, 60)], publishable=False, cls='PRIVATE UNTIL LICENCE READ')]),
         park('US-0004', [record('d1', 'lay1', [circle(0.4, 0.1, 0.01, 60)]), record('d2', 'lay1', [circle(0.9, 0.1, 0.01, 60)])]),
         park('US-0005', [record('e%d' % k, 'lay1', [r]) for k, r in enumerate(big)]),
         park('US-0007', [record('g1', 'lay1', [circle(0.7, 0.2, 0.02, 100), circle(0.7, 0.2, 0.005, 40, clockwise=False)])]),
         park('US-0009', [record('i1', 'lay1', [circle(0.1, 0.3, 0.01, 50)])]),
-        park('US-0010', [record('j1', 'lay5', [circle(0.2, 0.3, 0.01, 50)], cls='NON-COMMERCIAL ONLY', credit='County Parks')]),
+        park('US-0010', [record('j1', 'lay5', [circle(0.2, 0.3, 0.01, 50)], cls='NON-COMMERCIAL', credit='County Parks')]),
         park('US-0011', [record('k%d' % k, 'lay1', [circle(0.3 + 0.005 * (k % 26), 0.4 + 0.005 * (k // 26), 0.002, 8, phase=k)]) for k in range(650)]),
     ]
     dcsv = tmp / 'doubtful.csv'
@@ -106,7 +106,7 @@ try:
           rows['US-0005']['points'] <= 3000 and one['US-0005']['properties']['detail_m'] == rows['US-0005']['detail_m'] and rows['US-0005']['worst_m'] <= rows['US-0005']['detail_m'] + 0.7)
     check('a hole stays a hole', len(one['US-0007']['geometry']['coordinates']) == 1 and len(one['US-0007']['geometry']['coordinates'][0]) == 2)
     check("a park in the doubtful-joins list keeps today's outline (another state's row is ignored)", 'US-0009' in idx['fallback'] and 'US-0001' in feats)
-    check("NON-COMMERCIAL ONLY is publishable; the credit line is the park's own", one['US-0010']['properties']['cr'] == ['County Parks'])
+    check("NON-COMMERCIAL is publishable; the credit line is the park's own", one['US-0010']['properties']['cr'] == ['County Parks'])
     check('every park is drawn or listed under fallback, never both', set(feats) | set(idx['fallback']) == {p['ref'] for p in parks} and not set(feats) & set(idx['fallback']))
     check('the 650-tract park: overview within the cap, middle level when the overview is over 25 m off',
           rows['US-0011']['points'] <= 3000 and ((rows['US-0011']['worst_m'] <= 25) == ('US-0011' not in idx['mid'])))
@@ -160,39 +160,71 @@ try:
         rr, oo = build('gate-' + name, [park('G1', [rec])], ws=ws)
         return 'G1' in json.loads((oo / 'US-ZZ' / 'INDEX.json').read_text())['fallback']
     odd = ['yes', 'TRUE', 1, None, '', [], {}]
-    check("'publishable' must be exactly true: 'yes', 'TRUE', 1, None, '', [], {} in the index are all refused",
-          all(gate_run(f'pv{i}', record('r1', 'lay1', C), ws={'index_override': {'G1': {'publishable': {'r1': v}}}}) for i, v in enumerate(odd)))
-    check('...and in the record', all(gate_run(f'pr{i}', record('r1', 'lay1', C, publishable=v), ws={'index_override': {'G1': {'publishable': {'r1': True}, 'park_publishable': True}}})
+    check("'publishable' must be exactly true: 'yes', 'TRUE', 1, None, '', [], {} in the index's record_meta are all refused",
+          all(gate_run(f'pv{i}', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': {'publishable': v}}}}}) for i, v in enumerate(odd)))
+    check('...and in the record', all(gate_run(f'pr{i}', record('r1', 'lay1', C, publishable=v, publish_basis='verified-row', private_reason=''),
+                                               ws={'index_override': {'G1': {'record_meta': {'r1': {'publishable': True, 'publish_basis': 'verified-row', 'private_reason': ''}},
+                                                                          'park_publishable': True}}})
                                       for i, v in enumerate(odd)))
-    bad_classes = ['SHARE-ALIKE', 'SHARE-ALIKE (owner read the page)', 'CC BY-NC-ND', 'TERMS FORBID COPYING', 'NO COPYING', 'DO NOT SHARE',
-                   'INTERNAL ONLY', 'TRACER INPUT', 'INCOMPLETE', 'NOT OPEN', 'ALL RIGHTS RESERVED', 'PERMISSION REQUIRED', 'US FEDERAL (public domain)',
-                   'OPEN; credit: X; do not copy', 'LOOKS RESTRICTED', 'PRIVATE UNTIL LICENCE READ']
-    leaked = [c for i, c in enumerate(bad_classes) if not gate_run(f'cls{i}', record('r1', 'lay1', C, cls=c))]
-    check(f'ALLOW LIST: {len(bad_classes)} classes outside it are refused even when marked publishable (drawn: {leaked or "none"})', not leaked)
-    ok_classes = ['OPEN', 'NO TERMS STATED', 'DISCLAIMER ONLY', 'NON-COMMERCIAL ONLY', 'OPEN (owner read the page)']
-    check('...and the allowed classes pass', all(not gate_run(f'ok{i}', record('r1', 'lay1', C, cls=c)) for i, c in enumerate(ok_classes)))
+    no_draw = [c for c, ok in K.LICENCE_CLASSES.items() if not ok]
+    leaked = [c for i, c in enumerate(no_draw) if not gate_run(f'cls{i}', record('r1', 'lay1', C, cls=c))]
+    check(f"LICENCE CLASSES from the store's licence-classes.json: the {len(no_draw)} classes it does not allow (incl. SHARE-ALIKE) are refused "
+          f"even when marked publishable (drawn: {leaked or 'none'})", not leaked and 'SHARE-ALIKE' in no_draw and len(no_draw) == 5)
+    ok_classes = sorted(K.ALLOW_CLASSES)
+    check(f'...and the allowed ones pass, PUBLIC DOMAIN included ({", ".join(ok_classes)})',
+          'PUBLIC DOMAIN' in ok_classes and len(ok_classes) == 5 and all(not gate_run(f'ok{i}', record('r1', 'lay1', C, cls=c)) for i, c in enumerate(ok_classes)))
+    lc = json.loads(K.LICENCE_CLASSES_FILE.read_text(encoding='utf-8'))
+    check("...the builder's class list is the store tool's licence-classes.json (store_format_version kpc-outline-store-index/3)",
+          lc.get('store_format_version') == 'kpc-outline-store-index/3' and set(K.LICENCE_CLASSES) == set(lc['classes'])
+          and all(K.LICENCE_CLASSES[c] == (v['can_be_publishable'] and c != 'SHARE-ALIKE') for c, v in lc['classes'].items()))
+    unk = []
+    for label, rec_, ws_ in (('a record class', record('r1', 'lay1', C, cls='LOOKS RESTRICTED'), None),
+                             ("the index's licence_classes list", record('r1', 'lay1', C), {'classes': sorted(K.LICENCE_CLASSES) + ['NEW CLASS']})):
+        try: build('unk' + str(len(unk)), [park('G1', [rec_])], ws=ws_); unk.append(False)
+        except K.DisplayError as ex: unk.append('does not know' in str(ex))
+    check('a licence class the builder does not know (in a record, or in the index list) STOPS the build', all(unk))
     wd = {'key "wdpa123"': record('wdpa123', 'lay1', C), 'record_id "WDPA-1234"': record('r1', 'lay1', C, record_id='WDPA-1234'),
           'attribute WDPAID': record('r1', 'lay1', C, attributes={'WDPAID': 555}), 'agency UNEP-WCMC': record('r1', 'lay1', C, agency_label='UNEP-WCMC'),
           'agency "World Database on Protected Areas"': record('r1', 'lay1', C, agency_label='World Database on Protected Areas'),
           'credit "Protected Planet"': record('r1', 'lay1', C, credit='Protected Planet'),
-          'WDPA after 3,000 characters of source_detail': record('r1', 'lay1', C, source_detail={'note': 'x' * 3000 + ' from WDPA'})}
+          'WDPA after 3,000 characters of source_detail': record('r1', 'lay1', C, source_detail={'note': 'x' * 3000 + ' from WDPA'}),
+          'wdpa_derived true (record and index)': record('r1', 'lay1', C, wdpa_derived=True),
+          'wdpa_derived "false" (a string)': record('r1', 'lay1', C, wdpa_derived='false'),
+          'wdpa_derived missing': {k: v for k, v in record('r1', 'lay1', C).items() if k != 'wdpa_derived'}}
     leaked = [k for i, (k, rec) in enumerate(wd.items()) if not gate_run(f'wd{i}', rec)]
-    check(f'WDPA / Protected Planet / UNEP-WCMC caught everywhere ({len(wd)} placements; drawn: {leaked or "none"})', not leaked)
-    check("...but PAD-US's own WDPA_Cd code field does not make a record WDPA",
-          not gate_run('wdcd', record('r1', 'PAD-US', C, attributes={'WDPA_Cd': 0, 'Own_Name': 'FWS'})))
+    check(f'WDPA: the boolean wdpa_derived first, then the words in VALUES ({len(wd)} placements; drawn: {leaked or "none"})', not leaked)
+    check('...wdpa_derived true in the index only (record false) = refused',
+          gate_run('wdi', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': {'wdpa_derived': True}}}}}))
+    plain = record('r1', 'lay1', C)
+    check("...a plain v3 record (it HAS a field named wdpa_derived, false) is NOT WDPA: field names are never searched",
+          'wdpa_derived' in plain and not K.wdpa_hit(plain, {k: plain[k] for k in K.META_KEYS}, None) and not gate_run('wdplain', plain))
+    check("...and PAD-US's own WDPA_Cd code field does not make a record WDPA",
+          not gate_run('wdcd', record('r1', 'PAD-US', C, attributes={'WDPA_Cd': 'WDPA 0', 'Own_Name': 'FWS'})))
     check('the stricter answer wins: index and record classes differ = refused',
-          gate_run('dis2', record('r1', 'lay1', C), ws={'index_override': {'G1': {'licence_class': {'r1': 'NO TERMS STATED'}}}}))
+          gate_run('dis2', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': {'licence_class': 'NO TERMS STATED'}}}}}))
+    check('...index and record credit lines differ = refused',
+          gate_run('dis4', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': {'credit_line': 'Someone Else'}}}}}))
+    check('...a record with no record_meta entry in the index = refused',
+          gate_run('dis5', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': None}}}}))
     check('...park_publishable false = refused', gate_run('dis3', record('r1', 'lay1', C), ws={'index_override': {'G1': {'park_publishable': False}}}))
-    check("...a publish basis other than a verified row or the owner's confirmation (a terms-reader guess) = refused",
-          gate_run('basis', record('r1', 'lay1', C, why="recorded from the layer's own metadata: OPEN")))
-    check('...the index layers table saying no = refused', gate_run('lt', record('r1', 'lay1', C),
-          ws={'layers': {'https://example.invalid/arcgis/rest/services/x/mapserver/0': {'publishable': False, 'class': 'OPEN'}}}))
-    for label, ws in (('store tool full 2 or older', {'tool': 'kpc-outline-store full 2 (2026-11-14)'}),
-                      ('no licence maps (nothing is ever guessed from licence text)', {'maps': False})):
+    check("...a publish basis other than a verified row or the owner's confirmation = refused",
+          gate_run('basis', record('r1', 'lay1', C, basis='none')) and gate_run('basis2', record('r1', 'lay1', C, basis='layer metadata')))
+    lt_no = {'publishable': False, 'class': 'OPEN'}
+    check("...the index layers table saying no = refused, whether its key is the store's own form (no https://) or a full address",
+          gate_run('lt', record('r1', 'lay1', C), ws={'layers': {'example.invalid/arcgis/rest/services/x/mapserver/0': lt_no}})
+          and gate_run('lt2', record('r1', 'lay1', C), ws={'layers': {'https://example.invalid/arcgis/rest/services/x/MapServer/0/query': lt_no}}))
+    check('...and a layers table row saying yes (store form) lets it pass',
+          not gate_run('lt3', record('r1', 'lay1', C), ws={'layers': {'example.invalid/arcgis/rest/services/x/mapserver/0': {'publishable': True, 'class': 'OPEN'}}}))
+    check("layer keys are normalised like the store tool's norm_layer (scheme, case, /query, slash, port)",
+          K.norm_layer_url('https://Example.invalid/A/MapServer/0/query') == K.norm_layer_url('example.invalid/a/mapserver/0') == 'example.invalid/a/mapserver/0'
+          and K.norm_layer_url('http://127.0.0.1:8080/x/') == '127.0.0.1:8080/x' and K.norm_layer_url('https://h.gov:443/x') == 'h.gov/x')
+    for label, ws in (('store_format_version kpc-outline-store-index/2', {'fmt': 'kpc-outline-store-index/2'}),
+                      ('no store_format_version (store tool before full 3)', {'fmt': None}),
+                      ('no record_meta (nothing is ever guessed from licence text)', {'maps': False})):
         try: build('old' + str(len(label)), [park('G1', [record('r1', 'lay1', C)])], ws=ws); refused = False
         except K.DisplayError: refused = True
-        check(f'an index from {label} is refused for a public build', refused)
-    rp, op = build('oldprev', [park('G1', [record('r1', 'lay1', C)])], ws={'tool': 'kpc-outline-store pilot 3', 'maps': False}, preview=True)
+        check(f'an index with {label} is refused for a public build', refused)
+    rp, op = build('oldprev', [park('G1', [record('r1', 'lay1', C)])], ws={'fmt': None, 'maps': False}, preview=True)
     check('...a PRIVATE PREVIEW may still read an older index (for measuring on the PC), stamped',
           json.loads((op / 'US-ZZ' / 'INDEX.json').read_text()).get('stamp') == K.PREVIEW_STAMP)
     st_nf = tmp / 'st-nofiles'; write_store(st_nf, 'US-ZZ', [park('G1', [record('r1', 'lay1', C)])])
@@ -200,9 +232,24 @@ try:
     try: K.build(st_nf, 'US-ZZ', tmp / 'out-nofiles', log=NOLOG); nf_refused = False
     except K.DisplayError: nf_refused = True
     check('an index without file checksums is refused for a public build', nf_refused)
+    st_bad = tmp / 'st-badsha'; write_store(st_bad, 'US-ZZ', [park('G1', [record('r1', 'lay1', C)])])
+    ixp = st_bad / 'index-US-ZZ.json'; ix = json.loads(ixp.read_text())
+    ix['files']['US-ZZ.kpcstore.json.gz']['sha256'] = '0' * 64; ixp.write_text(json.dumps(ix))
+    try: K.build(st_bad, 'US-ZZ', tmp / 'out-badsha', log=NOLOG); bad_refused = False
+    except K.DisplayError as ex: bad_refused = 'sha256' in str(ex)
+    ix['files']['US-ZZ.kpcstore.json.gz']['sha256'] = hashlib.sha256((st_bad / 'US-ZZ.kpcstore.json.gz').read_bytes()).hexdigest()
+    ix['files']['US-ZZ-extra.kpcstore.json.gz'] = {'sha256': 'f' * 64}; ixp.write_text(json.dumps(ix))
+    try: K.build(st_bad, 'US-ZZ', tmp / 'out-badsha2', log=NOLOG); bad2 = False
+    except K.DisplayError: bad2 = True
+    check("every area file the index lists is checked: a wrong sha256, or a listed file that is missing, stops a public build", bad_refused and bad2)
+    st_c = tmp / 'st-combined'; write_store(st_c, 'US-ZZ', [park('G1', [record('r1', 'lay1', C)])])
+    (st_c / 'index-US-ZZ.json').rename(st_c / 'index.json')
+    try: K.build(st_c, 'US-ZZ', tmp / 'out-combined', log=NOLOG); comb = False
+    except K.DisplayError as ex: comb = 'per-area' in str(ex)
+    check("a public build reads only the PER-AREA index (the combined index.json merges parks that span areas)", comb)
 
     # ---- must-fix 4: nothing private in the public files; credits per park --------------------------------------------------
-    sec = [park('S1', [record('sgPRIVATEKEY77', 'lay1', C, cls='LOOKS RESTRICTED')]), park('S2', [record('r2', 'lay1', [circle(0.8, 0.6, 0.01, 40)], publishable=False)]),
+    sec = [park('S1', [record('sgPRIVATEKEY77', 'lay1', C, cls='RESTRICTED IN WRITING')]), park('S2', [record('r2', 'lay1', [circle(0.8, 0.6, 0.01, 40)], publishable=False)]),
            park('S3', [record('r3', 'PAD-US', [circle(0.6, 0.8, 0.01, 40)], credit='National Park Service')]),
            park('S4', [record('r4', 'PAD-US', [circle(0.8, 0.8, 0.01, 40)], credit='US Forest Service')]),
            park('S5', [record('r5', 'lay2', [circle(0.6, 0.95, 0.01, 40)], credit='Town GIS (owner nancy.x@town.gov)')])]
@@ -211,7 +258,7 @@ try:
     check('public INDEX.json carries no record keys, licence classes, reasons or store names (fallback = "kept today\'s outline" only)',
           'sgPRIVATEKEY77' not in raw and 'RESTRICTED' not in raw.upper() and 'WDPA' not in raw.upper() and set(json.loads(raw)['fallback'].values()) == {K.FALLBACK_CODE}
           and 'kpcstore' not in raw and 'made' not in json.loads(raw))
-    check('...the detailed reasons are in the private report only', 'LOOKS RESTRICTED' in rs['fallback_reasons'].get('S1', ''))
+    check('...the detailed reasons are in the private report only', 'RESTRICTED IN WRITING' in rs['fallback_reasons'].get('S1', ''))
     f2 = by_ref(feats_of(os_, 'US-ZZ')[1])
     check('credits are per park: two PAD-US parks keep their own agency (no last-park-wins)',
           f2['S3'][0]['properties']['cr'] == ['National Park Service'] and f2['S4'][0]['properties']['cr'] == ['US Forest Service'])

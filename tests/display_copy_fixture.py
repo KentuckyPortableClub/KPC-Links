@@ -1,5 +1,6 @@
 """Synthetic outline stores for the display-copy tests (KPC owner, 2026-11-14). Made-up shapes near 0 N 0 E, store format 1, index
-as store tool "full 3" writes it (per record: publishable, licence class, credit; publish_why in the record; file checksums).
+in the shape store tool full 3 (final) writes: store_format_version kpc-outline-store-index/3, licence_classes, file checksums,
+per park record_meta {key: the 11 licence fields} mirrored in each record, park_publishable.
 Not a test itself (the suite runs tests/test_*.py only)."""
 import gzip, hashlib, io, json, math, pathlib, sys
 
@@ -45,13 +46,18 @@ def square(x0, y0, x1, y1, n_side=20, clockwise=True):
     return pts + [pts[0]]
 
 
-def record(key, layer, rings, cls='OPEN', credit=None, publishable=True, why=VERIFIED_WHY,
+def record(key, layer, rings, cls='OPEN', credit=None, publishable=True, why=VERIFIED_WHY, basis='verified-row',
            url='https://example.invalid/arcgis/rest/services/x/MapServer/0', **extra):
     er = [enc(r) for r in rings]
+    cr = credit if credit is not None else 'Test Agency ' + layer
     rec = {'key': key, 'layer': layer, 'record_id': key, 'layer_url': url + '/query', 'agency_label': 'Test Agency ' + layer,
            'record_name': key, 'source': 'live', 'rings': er, 'points': sum(len(r) for r in rings),
            'sha256': K.geometry_sha256(er), 'q': 6, 'use': True,
-           'publishable': publishable, 'licence_class': cls, 'credit': credit if credit is not None else 'Test Agency ' + layer, 'publish_why': why}
+           'publishable': publishable, 'licence_class': cls, 'credit': cr, 'publish_why': why,
+           'publish_basis': basis if publishable is True else 'none',
+           'publish_basis_detail': {'evidence_url': 'https://example.invalid/terms', 'date_read': '2026-11-14'} if publishable is True else {},
+           'credit_line': cr, 'source_layer': layer, 'source_url': url, 'terms_text_sha256': '', 'terms_text_file': '',
+           'wdpa_derived': False, 'private_reason': '' if publishable is True else 'no licence recorded by a person yet'}
     rec.update(extra)
     return rec
 
@@ -60,9 +66,19 @@ def park(ref, recs, name=None):
     return {'ref': ref, 'name': name or ('Test Park ' + ref), 'grade': 'official', 'circle': False, 'pin': None, 'records': recs}
 
 
-def write_store(d, area, parks, tool='kpc-outline-store full 3 (test)', index_override=None, layers=None, maps=True):
-    """One area store + index-<AREA>.json. index_override: {ref: {field: value}} written over the index entry (to make the index
-    disagree with the store). maps=False: an index with no licence maps (an older tool)."""
+def _merge(e, over):
+    for k, v in over.items():
+        if isinstance(v, dict) and isinstance(e.get(k), dict):
+            for k2, v2 in v.items():
+                if isinstance(v2, dict) and isinstance(e[k].get(k2), dict): e[k][k2] = dict(e[k][k2], **v2)
+                else: e[k][k2] = v2
+        else: e[k] = v
+
+
+def write_store(d, area, parks, fmt='kpc-outline-store-index/3', index_override=None, layers=None, maps=True, classes=None, top=None):
+    """One area store + index-<AREA>.json. index_override: {ref: {field: value}} merged over the index entry (two levels deep, so
+    {'record_meta': {'r1': {'publishable': False}}} changes one field) to make the index disagree with the store. maps=False: an
+    index with no record_meta (an older tool). top: fields written over the top of the index."""
     d = pathlib.Path(d); d.mkdir(parents=True, exist_ok=True)
     fname = f'{area}.kpcstore.json.gz'
     buf, idx = io.BytesIO(), {}
@@ -72,19 +88,19 @@ def write_store(d, area, parks, tool='kpc-outline-store full 3 (test)', index_ov
         e = {'file': fname, 'o': buf.tell(), 'n': len(m), 'grade': p['grade'], 'circle': False, 'records': [r['key'] for r in p['records']],
              'points': sum(r['points'] for r in p['records']), 'fp': hashlib.sha256('|'.join(r['sha256'] for r in p['records']).encode()).hexdigest()}
         if maps:
-            e['licence_class'] = {r['key']: r.get('licence_class', 'NOT RECORDED') for r in p['records']}
-            e['credit'] = {r['key']: r.get('credit', '') for r in p['records']}
-            e['publishable'] = {r['key']: r.get('publishable') for r in p['records']}
+            e['record_meta'] = {r['key']: {k: r.get(k) for k in K.META_KEYS} for r in p['records']}
             e['park_publishable'] = all(r.get('publishable') is True for r in p['records'])
-        for k, v in ((index_override or {}).get(p['ref']) or {}).items():
-            if isinstance(v, dict) and isinstance(e.get(k), dict): e[k].update(v)
-            else: e[k] = v
+        _merge(e, (index_override or {}).get(p['ref']) or {})
         idx[p['ref']] = e
         buf.write(m)
     buf.write(gzip.compress(b']}\n', 9, mtime=0))
     (d / fname).write_bytes(buf.getvalue())
-    doc = {'format': 1, 'area': area, 'tool': tool, 'files': {fname: {'sha256': hashlib.sha256(buf.getvalue()).hexdigest()}}, 'parks': idx}
+    doc = {'format': 1, 'store_format_version': fmt, 'licence_classes': sorted(classes if classes is not None else K.LICENCE_CLASSES),
+           'area': area, 'tool': 'kpc-outline-store full 3 (test)',
+           'files': {fname: {'sha256': hashlib.sha256(buf.getvalue()).hexdigest(), 'bytes': len(buf.getvalue())}}, 'parks': idx}
+    if fmt is None: del doc['store_format_version']
     if layers is not None: doc['layers'] = layers
+    doc.update(top or {})
     (d / f'index-{area}.json').write_text(json.dumps(doc))
     return d / fname
 
