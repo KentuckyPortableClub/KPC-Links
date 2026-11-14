@@ -1,7 +1,8 @@
 """Canadian pins for the KPC US Trip Planner (Brandon Oct 16: 'Canada you can go ahead and drop the pins, we work on
 boundaries later'). Writes data/canada.json in the same row format as locations.json:
   ['POTA', 'CA-0001', name, lat, lon, url]   from api.pota.app (all Canadian POTA parks, by province)
-  ['WWFF', 'VEFF-0001', name, lat, lon, url] from our weekly WWFF copy (data/wwff/VEFF.json)
+  ['WWFF', 'VEFF-0001', name, lat, lon, url, None, potaRef] from our weekly WWFF copy (data/wwff/VEFF.json); potaRef = the
+    confirmed link of data/wwff-xref-VEFF.json ('' when none)
   ['SOTA', 'VE7/..', name, lat, lon, url, altM, points] from our weekly SOTA tiles (VE/VA/VY/VO associations)
 Keeps last week's POTA rows if POTA can't be reached."""
 import json, os, glob, time, urllib.request, datetime
@@ -48,9 +49,16 @@ elif oldp:
     import kpc_retired_refs as RR
     RR.record({r: row[2] for r, row in oldp.items() if r not in pota}, set(pota), 'canada')
 rows = sorted(pota.values(), key=lambda r: r[1])
+# Nov 14 (KPC owner, 2026-11-14): a VEFF row also gets [None, potaRef] like locations.json, potaRef = the CONFIRMED link of
+# data/wwff-xref-VEFF.json (kpc_wwff_links.py; '' when none). Every reader of this file reads POTA rows only, or columns 1-6.
+# No file = the rows stay 6 long, as before.
+import kpc_wwff_links as WL   # same folder as this script (like kpc_save)
+XR = WL.load_confirmed('VEFF')
+if XR is None: note('WWFF links', 'data/wwff-xref-VEFF.json missing or unreadable: VEFF rows without a POTA link')
 try:
     for x in json.load(open('data/wwff/VEFF.json')):
-        try: rows.append(['WWFF', x[0], x[1], round(float(x[2]), 5), round(float(x[3]), 5), 'https://wwff.co/directory/?showRef=' + x[0]])
+        try: rows.append(['WWFF', x[0], x[1], round(float(x[2]), 5), round(float(x[3]), 5), 'https://wwff.co/directory/?showRef=' + x[0]]
+                         + ([None, WL.pick_link('', XR.get(x[0]))] if XR is not None else []))
         except Exception: pass
 except Exception as e: note('WWFF', str(e)[:100])
 seen = set()
