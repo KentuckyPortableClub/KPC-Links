@@ -1,41 +1,48 @@
 # 2-fers from the outline store (prep, switch OFF)
 
-KPC owner, 2026-11-13. Status: prepared, not wired in. Nothing runs it, so no 2-fer answer changes and no rules hash moves.
+KPC owner, 2026-11-13. Status: prepared, not wired in. `kpc_fers.py` does not call it, so no 2-fer answer changes and no rules
+hash moves.
 
 ## What it is
 
-`.github/scripts/kpc_fers_store.py` lets the 2-fer bot take park outlines from the outline store (about 2 m detail, one
-gzip piece per park) instead of downloading them from agency map servers. Owner decision "one door in": bots do not download
-boundaries; a park the store does not have is held and flagged, and only the store filler fetches it.
+`.github/scripts/kpc_fers_store.py` lets the 2-fer bot take park outlines from the outline store (about 2 m detail, one gzip
+piece per park) instead of downloading them. Owner decision "one door in": bots do not download boundaries; a park the store
+does not have is held and listed, and only the store filler fetches it.
 
 ## The switch
 
-`KPC_FERS_FROM_STORE` (default off). With it off, `install()` does nothing and `kpc_fers.py` runs exactly as today.
-With it on (switch-over PR only), for one process:
+`KPC_FERS_FROM_STORE` (default off). Off: `install()` does nothing and `kpc_fers.py` runs exactly as today. The Kentucky and
+world runs never use the store: with the switch on they run as today (downloads included). On, for a US + Canada run:
 
-- `download()` reads the store: the outline of every record the key joins, in the key's order, with the same read-time rules
-  as today (use=false records left out and listed, rings of 2 points or fewer dropped, part boxes applied). A park with a
-  missing record, a park not in the store, an area store that is missing or older than `KPC_FERS_STORE_MAX_DAYS` (45), or a
-  WDPA-looking record is held with the reason, never downloaded. The list goes to `data/fers/store-missing-<tag>.json`.
-- `saved_us()` returns nothing: the national saved key copy (measured: about 2.4 GB in memory, loaded in every pass) is not read.
-- `saved_ca()` reads the store for Canadian parks.
-- `live_load()` reads nothing: the bot's own saved-live copy is not a second door.
-- Point circles (100 ft around the agency's official point) and picture traces are made by `kpc_fers.py` exactly as today.
-- Kentucky (own files) and the world (world 2-fers wait) are refused.
-
-Settings: `KPC_FERS_STORE_DIR` (default `store`: `index-<AREA>.json` or `index.json` plus the area files it names).
+1. **Area gate, before pass 1.** Every member state needs a readable store no older than `KPC_FERS_STORE_MAX_DAYS` (45). If one
+   is missing, stale, of another format or damaged, the run stops with exit 87 before anything is read or saved; the area keeps
+   its previous files.
+2. **Memory gate.** From the store index's own point counts: the bot's base, a tile floor, the packed store and the unpacked
+   outlines must fit `KPC_FERS_STORE_LIMIT_MB` (3000, the whole process). Otherwise exit 88 with a plain reason. Until
+   `kpc_fers.py` keeps its passes lazy (switch-over), the gate counts every outline as unpacked.
+3. **Outlines.** `download()` returns a `LazyOutlines` map: each park checked once (checksums, every joined record present and
+   usable), kept packed, unpacked on use with a points budget (`KPC_FERS_STORE_BUDGET`, 2,000,000).
+4. **Held parks** (with the reason; never half a park, never a download): not in the store, a joined record missing or with no
+   usable ring, WDPA-looking text anywhere in the record or park, any damage to the index or the piece, and on a PUBLIC store
+   (`KPC_FERS_STORE_KIND=public`, the default) any record not marked `publishable` ("needs the private store").
+5. **No live pair vanishes.** On every save, each live row of the previous file that the run did not make again comes back as a
+   row: "not sure: held: <why>" when a park of it is held, otherwise "dropped: not found again ..." for the change list.
+6. **Club room only.** A row that used an outline whose record is not publishable is tagged `club_room_only`.
+7. `saved_us()` keeps only the Wild and Scenic corridor records of the saved key copy (the whole national copy is about 2.4 GB
+   in memory); `live_load()` reads nothing (no second door).
+8. `data/fers/store-missing-<tag>.json` is written on every store run: one row per area and every held park.
 
 ## Commands (no network)
 
-- `kpc_fers_store.py check <store_dir> <AREA> ...`: read and verify every park; points, memory estimate, age.
-- `kpc_fers_store.py diff --old <today's file> --new <store run's file> --out <stem>`: the change list a person signs
-  before anything new is published (ids, names, kinds, statuses only; no shapes). Old answers stay until then.
-- `kpc_fers_store.py run`: install with the switch on, then `kpc_fers.main()` (same environment as `kpc_fers.py`).
+- `kpc_fers_store.py check <store_dir> <AREA> ...`: read and verify every park; points, memory, age.
+- `kpc_fers_store.py fit <store_dir> <AREA> ...`: the memory gate alone (exit 88 when it will not fit).
+- `kpc_fers_store.py diff --old FILE --new FILE --out STEM`: the change list a person signs before new answers are saved.
+- `kpc_fers_store.py run`: only with the switch on (refuses otherwise): install, then `kpc_fers.main()`.
 
-## Switch-over (a later PR, bundled with the shared matcher switch-over)
+## Not in this module (switch-over and later)
 
-Adds the hook to `kpc_fers.py`, moves `kpc_fers_store.py` from `NOT_RULES` into the 2-fer `RULE_FILES`, rewords the held-park
-text, and lets `find_spots` keep outlines packed (`LazyOutlines`). That PR moves the 2-fer rules hash once and is declared in
-`docs/key-rules-change.txt` with a scope entry in `.github/fers-rule-scope.json`.
+The hook and the lazy passes in `kpc_fers.py`; moving this file into the 2-fer `RULE_FILES` (one declared rules-hash move);
+the matcher "join under review" rule (`join_review()` exists, not wired); `pad_closed()` and the trail-status reads, which still
+go out live; the KPC-Data workflow step that fetches the store.
 
-Tests: `tests/test_fers_store_nov13.py` (synthetic store; no network).
+Tests: `tests/test_fers_store_nov13.py` (synthetic stores; no network).
