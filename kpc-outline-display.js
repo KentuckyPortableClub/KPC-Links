@@ -15,7 +15,10 @@
                no more than one pixel;
      middle    mid/<REF>.geojson.gz, one file, at most 30,000 points: used up to zoom 13 (and later while it is within a pixel);
      fine      fine/<REF>/<ix>_<iy>.geojson.gz pieces (T x T degree tiles, each under 128 KB): from zoom 14, only the pieces
-               the screen touches (at most MAX_PIECES per look), within 5 m of the store.
+               the screen touches. Hard limits per look: at most MAX_PIECES (48) pieces and MAX_LOOK_BYTES (1 MB); a look that would
+               need more stays on the middle level. Measured: 4 pieces / 55 KB at zoom 16 on a 504,000-point test park; a very
+               dense park (500,000 points in 3 km) can need 18 pieces / 546 KB on a desktop screen at zoom 16.
+   Memory: area files stay for the visit (one per state); fine pieces are kept in a small cache (the last FINE_KEEP).
    Each file is asked for with ?v=<its sha12> and kept by the browser; INDEX.json is asked for fresh (like RELEASED.json).
    A park across areas (properties.areas) is drawn new only when every one of its areas is wanted AND their indexes come from
    the same build (gen); otherwise today's outline, in every area. Anything wrong (no index, a PRIVATE PREVIEW stamp, a part
@@ -24,10 +27,11 @@
   'use strict';
   var root = w || (typeof globalThis !== 'undefined' ? globalThis : {});
   if (root.kpcDisplayOutlines) return;
-  var FORMAT = 'kpc-display-2', ROOT = 'data/display/', KEY = 'kpcOutlineStore', FINE_MIN_Z = 14, MID_MAX_Z = 13, MAX_PIECES = 48;
+  var FORMAT = 'kpc-display-3', ROOT = 'data/display/', KEY = 'kpcOutlineStore', FINE_MIN_Z = 14, MID_MAX_Z = 13, MAX_PIECES = 48,
+      MAX_LOOK_BYTES = 1000000, FINE_KEEP = 60;
   var LIVE_AREAS = [];   /* the owner's go-live list, e.g. ['US-NH', 'US-ME'] once proven. [] = nobody unless they ask */
   var AREA_RX = /^(US|CA)-[A-Z]{2,3}$|^W-[A-Z]{2}$/;
-  var idxCache = {}, areaCache = {}, fileCache = {};
+  var idxCache = {}, areaCache = {}, fileCache = {}, fineCache = {}, fineOrder = [];
 
   function ls(k, v) { try { if (v === undefined) return root.localStorage ? root.localStorage.getItem(k) : null; if (root.localStorage) { if (v === null) root.localStorage.removeItem(k); else root.localStorage.setItem(k, v); } } catch (e) {} return null; }
   function param() { try { return new URLSearchParams((root.location && root.location.search) || '').get('outlines') || ''; } catch (e) { return ''; } }
@@ -54,6 +58,14 @@
   }
   function get(url, mode) { return root.fetch(url, { cache: mode }).then(function (r) { if (!r || !r.ok) throw new Error('http'); return gunzipJson(r); }); }
   function cached(url) { if (!fileCache[url]) fileCache[url] = get(url, 'force-cache').catch(function (e) { delete fileCache[url]; throw e; }); return fileCache[url]; }
+  function cachedPiece(url) {   /* fine pieces: a small cache, the oldest dropped first (a long pan does not pile up) */
+    if (!fineCache[url]) {
+      fineCache[url] = get(url, 'force-cache').catch(function (e) { delete fineCache[url]; throw e; });
+      fineOrder.push(url);
+      while (fineOrder.length > FINE_KEEP) delete fineCache[fineOrder.shift()];
+    }
+    return fineCache[url];
+  }
   var SHA = /^[0-9a-f]{12}$/, NAME = /^[A-Z0-9-]+(\.p\d+)?\.geojson\.gz$/;
   function goodIndex(x, area) {
     return !!(x && x.format === FORMAT && x.area === area && !x.stamp && SHA.test(x.gen || '') && Array.isArray(x.parts) && x.parts.length > 0 &&
@@ -85,14 +97,17 @@
   function pack(feats, area, x) {
     var by = {};
     feats.forEach(function (f) { var r = f.properties.ref; if (!by[r] || f.properties.role !== 'hit') by[r] = f; });
-    return { features: feats, by: by, area: area, credits: x.credits || {}, index: x, source: 'store' };
+    return { features: feats, by: by, area: area, index: x, source: 'store' };
   }
   /* load(area, oldPack): oldPack = today's {features} (or a promise of it). -> a pack like kpcKeyOutlines.load gives, or null. */
   function load(area, oldPack) {
     area = String(area || '').toUpperCase();
     if (!wanted(area)) return Promise.resolve(null);
-    if (!areaCache[area]) {
-      areaCache[area] = index(area).then(function (x) {
+    var ac = areaCache[area];
+    if (ac && ac.failedAt && Date.now() - ac.failedAt > 60000) ac = null;   /* a failed load is tried again after a minute */
+    if (!ac) {
+      ac = areaCache[area] = { failedAt: 0 };
+      ac.p = index(area).then(function (x) {
         if (!x) return null;
         return Promise.all(x.parts.map(function (p) { return cached(ROOT + area + '/' + p[0] + '?v=' + p[1]); })).then(function (docs) {
           var n = x.parts.length, feats = [];
@@ -107,9 +122,9 @@
             return { feats: feats, x: x };
           });
         });
-      }).catch(function () { return null; });
+      }).catch(function () { return null; }).then(function (d) { if (!d) ac.failedAt = Date.now(); return d; });
     }
-    return Promise.all([areaCache[area], Promise.resolve(oldPack).catch(function () { return null; })]).then(function (r) {
+    return Promise.all([ac.p, Promise.resolve(oldPack).catch(function () { return null; })]).then(function (r) {
       var d = r[0], old = r[1];
       if (!d) return null;
       return pack(merge(d.feats, old && old.features), area, d.x);
@@ -142,30 +157,32 @@
     return index(area).then(function (x) {
       var e = x && x.fine && x.fine[ref];
       if (!e || !(e.t > 0) || !e.tiles || !Array.isArray(box)) return [];
-      var T = e.t, keys = [];
+      var T = e.t, keys = [], bytes = 0;
+      if ((Math.floor(box[2] / T) - Math.floor(box[0] / T) + 1) * (Math.floor(box[3] / T) - Math.floor(box[1] / T) + 1) > 4 * MAX_PIECES) return [];
       for (var ix = Math.floor(box[0] / T); ix <= Math.floor(box[2] / T); ix++)
         for (var iy = Math.floor(box[1] / T); iy <= Math.floor(box[3] / T); iy++) {
           var k = ix + '_' + iy;
-          if (e.tiles[k] && SHA.test(e.tiles[k][0])) keys.push(k);
-          if (keys.length > MAX_PIECES) return [];      /* too many for one look: stay on the middle level */
+          if (e.tiles[k] && SHA.test(e.tiles[k][0])) { keys.push(k); bytes += +e.tiles[k][1] || 0; }
+          if (keys.length > MAX_PIECES || bytes > MAX_LOOK_BYTES) return [];   /* too much for one look: stay on the middle level */
         }
       return Promise.all(keys.map(function (k) {
-        return cached(ROOT + area + '/fine/' + ref + '/' + k + '.geojson.gz?v=' + e.tiles[k][0]).then(function (d) {
+        return cachedPiece(ROOT + area + '/fine/' + ref + '/' + k + '.geojson.gz?v=' + e.tiles[k][0]).then(function (d) {
           var kk = (d && d.kpc) || {};
           return kk.format === FORMAT && kk.gen === x.gen && !kk.stamp && kk.fine === ref && d.features && d.features[0] ? d.features[0] : null;
         }, function () { return null; });
       })).then(function (fs) { return fs.filter(Boolean); });
     }).catch(function () { return []; });
   }
-  /* popup line: "Outline: <agency credit>" for a drawn park (credits come from the store index, per layer) */
+  /* popup line: "Outline: <agency credit>" for a drawn park (the park's own credit lines, from the store index per record) */
   function creditLine(pk, f) {
     var p = (f && f.properties) || {};
     if (!pk || pk.source !== 'store' || !Array.isArray(p.cr) || !p.cr.length) return '';
-    var seen = {}, names = p.cr.map(function (c) { return (pk.credits || {})[c] || c; }).filter(function (t) { return seen[t] ? false : (seen[t] = 1); });
-    return 'Outline: ' + names.join('; ') + '. Check the official map before you set up.';
+    var seen = {}, names = p.cr.map(String).filter(function (t) { return t && !/@|https?:/i.test(t) && (seen[t] ? false : (seen[t] = 1)); });
+    return names.length ? 'Outline: ' + names.join('; ') + '. Check the official map before you set up.' : '';
   }
   var api = { load: load, mid: mid, fine: fine, level: level, wanted: wanted, merge: merge, creditLine: creditLine, mpp: mpp,
-              FORMAT: FORMAT, FINE_MIN_Z: FINE_MIN_Z, MID_MAX_Z: MID_MAX_Z, MAX_PIECES: MAX_PIECES, LIVE_AREAS: LIVE_AREAS.slice() };
+              FORMAT: FORMAT, FINE_MIN_Z: FINE_MIN_Z, MID_MAX_Z: MID_MAX_Z, MAX_PIECES: MAX_PIECES, MAX_LOOK_BYTES: MAX_LOOK_BYTES,
+              FINE_KEEP: FINE_KEEP, LIVE_AREAS: LIVE_AREAS.slice() };
   root.kpcDisplayOutlines = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : null);

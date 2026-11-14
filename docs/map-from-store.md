@@ -1,7 +1,9 @@
 # Map outlines from the outline store (prep, 2026-11-13 / 14)
 
-Status: **prep only. Nothing here changes what the public map shows.** No page loads the new loader, no workflow runs the
-builder, and the go-live list is empty.
+Status: **prep only. Nothing here changes what the public map shows.**
+- No page loads the new loader.
+- No workflow runs the builder or the publish script.
+- The go-live list is empty.
 
 ## What it is
 
@@ -12,61 +14,92 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
 | File | What |
 |---|---|
 | `tools/kpc_display_copy.py` | Builds the **display copy** of one or more store areas, for drawing only (details below). Standard library only, no network. The store is only read. |
-| `tools/kpc_display_precedence.json` | The small editable table of which layer wins per area when a park's layers disagree. The state / agency's own layer comes before PAD-US. |
-| `kpc-outline-display.js` | The browser loader. **Off by default:** it is on only with `?outlines=store` (remembered in that browser; `?outlines=old` turns it off), the club-room toggle (`localStorage kpcOutlineStore = '1'`), or an area named in its `LIVE_AREAS` list (empty). It keeps today's outline for every park the display copy does not hold; any failure means today's outline. **No page includes it yet.** |
-| `tests/test_display_copy_nov13.py` | 64 checks on synthetic stores (no real outlines, no network). |
-| `tests/test_display_copy_huge_nov14.py` | 12 checks: a 503,789-point synthetic park across two states (memory, sizes, levels, state-line seam, what one screen loads). |
-| `tests/display_copy_fixture.py` | The synthetic store writer both tests use. |
+| `tools/kpc_display_precedence.json` | The small editable table of which layer wins per area when a park's layers disagree. The state or agency layer comes before PAD-US. |
+| `tools/kpc_display_doubtful.csv` | The matcher's list of doubtful joins (KEEP-FLAGGED, 589 rows): these parks keep today's outline. |
+| `tools/kpc_display_publish.sh` | Publishes built areas to the `map-display` branch safely (see below). |
+| `kpc-outline-display.js` | The browser loader (details below). **No page includes it yet.** |
+| `tests/test_display_copy_nov13.py` | 66 checks on synthetic stores, including the grade's cases (no real outlines, no network). |
+| `tests/test_display_copy_huge_nov14.py` | 13 checks: a 503,789-point synthetic park across two states. |
+| `tests/test_display_publish_nov14.py` | 11 checks: the publish script against a local bare repository. |
+| `tests/display_copy_fixture.py` | The synthetic store writer the tests use. |
+
+### The loader (`kpc-outline-display.js`)
+
+- **Off by default.** It is on only with `?outlines=store` (remembered in that browser; `?outlines=old` turns it off), the
+  club-room toggle (`localStorage kpcOutlineStore = '1'`), or an area named in its `LIVE_AREAS` list (empty).
+- It keeps today's outline for every park the display copy does not hold, and any failure means today's outline.
+- **Limits per look:** at most 48 fine pieces and 1 MB, else it stays on the middle level. It keeps the last 60 fine pieces.
 
 ## What the builder does
 
-- **Licence gate.**
-  - Store tool full 2 indexes: only records marked `publishable`, with their own licence class and credit line.
-  - Older indexes: the licence text `CLASS; credit: X` if present, else not publishable.
-  - WDPA never goes in.
-  - One record that does not pass keeps the whole park on today's outline (`fallback` in the index, with the reason).
-- **Doubtful joins** (a CSV list, the store's check-join flag, or tracts 10 km apart): today's outline.
-- **One layer per park.**
-  - A lower layer's tract that lies 90% or more inside the land a higher layer draws (or within 30 m of its line) is not drawn.
-  - Any other lower-layer tract draws only the stretches of its line outside that land.
-  - The same land is never drawn from two layers. The winner per park is written into the index (`won`).
-- **Draw once:** a tract whose whole line is within 3 m of a drawn line is not drawn again; it stays listed.
-- **Parks across states** are built in one run with all their states:
-  - a tract held in two states' stores is drawn once;
-  - the line where the park's own tracts meet at the state line is not drawn (only where the two tracts lie on opposite sides);
-  - such a park carries `areas` and the run's `gen`, and the map draws it new only when all its states are on and from the same run;
-  - with `--key-dir data/us-key`, a park whose other state is not in the run keeps today's outline.
-- **Three levels:**
+1. **Licence gate (strict).** A public build needs an index from store tool **full 3 or later**, with file checksums. A record
+   passes only if all of these hold:
+   - the index AND the record both say `publishable` is exactly `true`;
+   - the park is publishable as a whole;
+   - both carry the same class, and that class is on the allow list: OPEN, NO TERMS STATED, DISCLAIMER ONLY,
+     NON-COMMERCIAL (ONLY), OWNER CONFIRMED, or the owner's hand answers for those;
+   - the publish basis is a verified-layers row or the owner's confirmation;
+   - the index's layer table (if any) agrees;
+   - a plain credit line exists (e-mails, web addresses and account notes are removed).
+
+   WDPA / Protected Planet / SPREP / UNEP-WCMC is searched in the whole record (all but its rings), the index fields and the
+   layer row, and is never drawn. One failing record keeps the whole park on today's outline. Nothing is ever decided from
+   licence text.
+2. **Doubtful joins** (`--doubtful`, a list that must exist), the store's check-join flag, or tracts 10 km apart: today's outline.
+3. **The same geometry is drawn once**, using the copy from the highest-ranked layer.
+4. **One layer per park.**
+   - The winning layer is drawn in full.
+   - A lower layer is judged per segment, by points every 5 m. A segment whose points all lie inside land a higher layer draws,
+     or within 30 m of its line, is not drawn. Holes are not land.
+   - Every uncovered stretch is drawn.
+   - A ring covered all round is still drawn whole if hiding it would lose any land.
+   - The 30 m strip is the "layers disagree" allowance: a lower-layer copy offset by less than 30 m adds a strip that is not
+     drawn. Its area is reported privately.
+5. **Draw once:** a segment within 3 m of a segment **already drawn** is not drawn again.
+6. **Parks across states** are built with all their states (`--key-dir` makes a park with a missing state keep today's
+   outline). Where the park's own tracts meet at the state line, on opposite sides, no line is drawn.
+7. **Levels:**
 
 | Level | File | Size | When the map uses it |
 |---|---|---|---|
 | Overview | `<AREA>.geojson.gz` (+ `.pN`) | at most 3,000 points per park | zoomed out |
-| Middle | `mid/<REF>.geojson.gz` | at most 30,000 points; only when the overview is more than 25 m off | to zoom 13 |
-| Fine | `fine/<REF>/<ix>_<iy>.geojson.gz` | lines at 1 m in square pieces, each under 128 KB; only when the coarser levels are more than 5 m off | from zoom 14, only the pieces on screen |
+| Middle | `mid/<REF>.geojson.gz` | at most 30,000 points | to zoom 13 |
+| Fine | `fine/<REF>/<ix>_<iy>.geojson.gz` | lines at 1 m in pieces under 128 KB each | from zoom 14 |
 
-  A level drops rings smaller than its own tolerance (under a pixel where it is used). The fine level drops nothing. Whatever is
-  on screen at street level is within 5 m of the store.
-- **Files.** Every file is gzip with mtime 0 (byte-identical rebuilds), and overview parts and middle files stay under 1 MB.
-  - A park with hidden stretches has a `line` feature (drawn) and a `hit` feature (its tracts, for clicks only, never drawn).
+   A level drops rings smaller than its tolerance only when that tolerance is over 5 m.
+8. **Invariants, for every park, on its finest level.** A park that fails keeps today's outline:
+   - **I1:** every metre of boundary that must be drawn lies within 5 m of a drawn line;
+   - **I2:** no store land is lost (each covered tract is checked on its own grid of cells of 50 m or less).
+9. **Public files carry no record keys, licence words, reasons or store names.** `fallback` says only "kept today's outline",
+   and credits are per park. The reasons go to the private `--report` file, which must be outside the output folder.
 
 ## Commands
 
 ```
 python3 tools/kpc_display_copy.py build --store STORE_DIR --area US-NH [--area US-ME] --out OUT_DIR \
-        [--doubtful doubtful-joins.csv] [--key-dir data/us-key] [--precedence table.json]
+        --doubtful tools/kpc_display_doubtful.csv --key-dir data/us-key --report /private/report.json
 python3 tools/kpc_display_copy.py check --out OUT_DIR --area US-NH --public
+tools/kpc_display_publish.sh https://github.com/<owner>/<repo>.git OUT_DIR US-NH US-ME
 ```
 
-`--private-preview` skips the licence gate for a person's own look on their PC. Its output is stamped PRIVATE PREVIEW in every
-file, which `check --public` and the browser loader both refuse, and the tool will not write it into a folder named
-`data/display`.
+`--private-preview` skips the licence gate (and may read an older index) for a person's own look on their PC. Its output is
+stamped PRIVATE PREVIEW in every file, which `check --public`, the publish script and the loader all refuse.
+
+**The publish script:**
+- tells "branch missing" (first publish) from "cannot read the remote" (stop);
+- fetches the published commit and checks it is the one it listed;
+- replaces only this run's areas and checks every area of the new tree with `check --public`;
+- then makes one atomic push: `map-display` moves only if it still points at the old commit, and `map-display-prev` moves to
+  that old commit.
+
+Any problem stops it before the push.
 
 ## What is NOT in this change
 
-- **The hook in `kpc-padus-layer.js`** that asks the loader first and switches levels. It needs `?v=` bumps on 21 pages and in
-  the tests that pin them, and it comes in a separate pass after an independent grade.
-- **The Pages step** that copies the display copy into the site from its own branch.
-- **Any real display data.** Store licences are not recorded yet.
+- **The hook in `kpc-padus-layer.js`** (with `?v=` bumps on 21 pages and the tests that pin them). It comes in a separate pass
+  after an independent grade.
+- **Workflow changes:** the Pages step, the publish workflow, and `filter: blob:none` on the five `fetch-depth: 0` checkouts.
+- **Any real display data.**
 
 Rules hashes: unchanged (no rule file, scope file or key data is touched). Rebuild level 1.
 

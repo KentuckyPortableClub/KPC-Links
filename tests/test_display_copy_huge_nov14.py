@@ -22,7 +22,7 @@ socket.create_connection = _no_net
 import kpc_display_copy as K  # noqa: E402
 import display_copy_fixture as F  # noqa: E402
 
-MEM_LIMIT_MB = 450          # measured about 225 MB on Python 3.13 (Linux); the limit leaves room for other Pythons
+MEM_LIMIT_MB = 450          # measured about 320 MB on Python 3.13 (Linux) with the invariants; the limit leaves room for other Pythons
 SCREEN_LIMIT = 512_000      # bytes of FINE pieces one street-level screen may touch
 FAILS = []
 
@@ -51,7 +51,9 @@ try:
     rep = json.loads((tmp / 'rep.json').read_text()) if p.returncode == 0 else {'rows': [{}], 'per_area': {}}
     row = rep['rows'][0] if rep['rows'] else {}
     print('   ', {k: row.get(k) for k in ('store_points', 'points', 'detail_m', 'worst_m', 'mid_points', 'mid_detail_m', 'mid_worst_m', 'mid_bytes',
-                                       'fine_points', 'fine_worst_m', 'fine_t', 'fine_pieces', 'fine_bytes', 'fine_piece_max', 'seam_vertices')})
+                                       'fine_points', 'fine_worst_m', 'fine_t', 'fine_pieces', 'fine_bytes', 'fine_piece_max', 'seam_m', 'must_draw_m', 'missing_m', 'lost_m2')})
+    check(f"invariants: every metre that must be drawn is within 5 m ({row.get('missing_m')} m missing of {row.get('must_draw_m')}), no land lost",
+          row.get('missing_m') == 0 and row.get('lost_fail') is False and not rep.get('invariant_failures'))
     check('both states pass the public check (every file under its cap, sha as listed, nothing unlisted)',
           all(K.check(tmp / 'out', a, public=True) == [] for a in ('US-ZA', 'US-ZB')))
     check(f"OVERVIEW at most 3,000 points ({row.get('points')}) and its error is measured ({row.get('worst_m')} m at a {row.get('detail_m')} m step)",
@@ -66,9 +68,11 @@ try:
     for f in (tmp / 'out').rglob('*.geojson.gz'):
         for ft in json.loads(gzip.decompress(f.read_bytes()))['features']:
             if ft['properties'].get('role') == 'hit': continue
-            if 'both1' in (ft['properties'].get('records') or []): shared += 1
             g = ft['geometry']
-            for l in (g['coordinates'] if g['type'] == 'MultiLineString' else [r for q in g['coordinates'] for r in q]):
+            ls_ = g['coordinates'] if g['type'] == 'MultiLineString' else [r for q in g['coordinates'] for r in q]
+            if f.parent.name in ('US-ZA', 'US-ZB') and any(abs(math.hypot(x - 1.0, y - 0.34) - 0.002) < 0.0002 for l in ls_ for x, y in l):
+                shared += 1                                  # the overview of one state draws the shared tract (a ring of r = 0.002 at 1.0, 0.34)
+            for l in ls_:
                 for a, b in zip(l, l[1:]):
                     segs += 1
                     if a[0] == 1.0 and b[0] == 1.0: on_line += 1
