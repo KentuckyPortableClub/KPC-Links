@@ -15,11 +15,14 @@ Sources (link_source):
   community-KFF-2018    KFF-POTA cross reference (2018): KFF-n = US-n for 0001-4446 except 3791, plus its explicit rows
   rule-name-distance    same normalised name (full or core), POTA park in the same state / province, exactly one such park
                         within 5 km of the WWFF pin (the Nov 14 offline method)
+  rule-same-name-close-pin  owner decision, 2026-11-14: the same normalised name (full, or both sides with the type words dropped),
+                        the same state / province, pins within 1.0 km, and exactly ONE such POTA park: enough ALONE to confirm
+                        (the park must still be active; a source naming another park still makes a conflict)
   hand                  a decision written in data/wwff-xref-sources.json 'hand' (who decided, when, why), or a person's answer in
                         the person_decision column of data/wwff-xref-review.csv: yes (the row's single pota_ref), a POTA ref (that
                         park), or no (never written to the site). Answers are kept from one build to the next.
 Status:
-  confirmed  two or more sources name the same POTA park, it is on today's POTA list and POTA lists it in the WWFF area's state /
+  confirmed  two or more sources name the same POTA park (or rule-same-name-close-pin alone), it is on today's POTA list and POTA lists it in the WWFF area's state /
              province (a park POTA lists in several states, such as a trail or a forest, counts in each of them); or a hand decision
   proposed   one source only, or the park fails the active / same state check (the reason is in note)
   conflict   sources name different POTA parks, or one source gives one WWFF ref several POTA parks (all are listed, '|' between)
@@ -54,6 +57,7 @@ CREDIT = 'VEFF-POTA cross reference list by VE3ZN (Aug 2025); KFF-POTA cross ref
 MIN_ROWS = {'KFF': 6000, 'VEFF': 4000}           # the WWFF copy had 7,450 / 5,264 on Nov 14
 MIN_POTA = {'KFF': 10000, 'VEFF': 4500}          # POTA had 13,040 US / 5,899 CA parks on Nov 14
 NEAR_KM = 5.0
+CLOSE_KM = 1.0   # owner decision, 2026-11-14: same name + pins within 1 km + one such park = the same place
 KST = {'KL': 'AK', 'KH6': 'HI', 'KH5': 'HI', 'KH7K': 'HI', 'KH8': 'AS', 'KH8S': 'AS', 'KP4': 'PR', 'KP2': 'VI', 'KP5': 'PR'}
 VPROV = {'VE-MN': 'MB', 'VE-MB': 'MB', 'VE-ON': 'ON', 'VE-QC': 'QC', 'VE-BC': 'BC', 'VE-NB': 'NB', 'VE-NS': 'NS', 'VE-AB': 'AB',
          'VE-SK': 'SK', 'VE-PE': 'PE', 'VE-NL': 'NL', 'VE-YT': 'YT', 'VE-NT': 'NT', 'VE-NU': 'NU', 'CY0': 'NS', 'CY9': 'NS'}
@@ -166,15 +170,16 @@ def community(src, pre):
 
 
 def name_rule(W, P, regions_of):
-    """{wwff_ref: (pota_ref, km)} where exactly one same-name POTA park of the same state / province is within 5 km
-    (or the nearest under 1 km and every other one at 5 km or more)."""
+    """({wwff_ref: (pota_ref, km)}, {wwff_ref: (pota_ref, km)}). First: exactly one same-name POTA park of the same state / province
+    within 5 km (or the nearest under 1 km and every other one at 5 km or more). Second (rule-same-name-close-pin): exactly one
+    same-name park of the same state / province within CLOSE_KM."""
     by = collections.defaultdict(list)
     for p in P.values():
         if not pin_ok(p['la'], p['lo']): continue
         for r in p['st']:
             by[(r, 'F', strip(p['name']))].append(p)
             by[(r, 'C', core(p['name']))].append(p)
-    out = {}
+    out, close = {}, {}
     for w in W.values():
         if not pin_ok(w['la'], w['lo']): continue
         cand = {}
@@ -186,7 +191,9 @@ def name_rule(W, P, regions_of):
         near = sorted((d, ref) for ref, d in cand.items() if d < NEAR_KM)
         if len(near) == 1 or (len(near) > 1 and near[0][0] < 1 and near[1][0] >= NEAR_KM):
             out[w['ref']] = (near[0][1], near[0][0])
-    return out
+        cl = [x for x in near if x[0] <= CLOSE_KM]
+        if cl: close[w['ref']] = [(ref, d) for d, ref in cl]   # two or more = several parks: a conflict for a person, never confirmed
+    return out, close
 
 
 # ---------------------------------------------------------------- the cross reference
@@ -225,7 +232,7 @@ def build_rows(pre, src, wwff, pota, kyp, prev, today, decisions=None):
         def regions_of(w): return [r for r in dict.fromkeys(us_region(c) for c in w['codes']) if r]
     else:
         def regions_of(w): return [r for r in dict.fromkeys(ca_region(c) for c in w['codes']) if r]
-    rule = name_rule(W, P, regions_of)
+    rule, close = name_rule(W, P, regions_of)
     comm, comm_name = community(src, pre)
     repo = dict(src.get('repo_baseline') or {}) if pre == 'KFF' else {}
     if pre == 'KFF':
@@ -248,7 +255,11 @@ def build_rows(pre, src, wwff, pota, kyp, prev, today, decisions=None):
             if p and s not in cands[p]: cands[p].append(s)
         add(repo.get(ref), 'repo')
         for p in comm.get(ref, []): add(p, comm_name)
-        if ref in rule: add(rule[ref][0], 'rule-name-distance')
+        cl = close.get(ref, [])
+        if len(cl) == 1: add(cl[0][0], 'rule-same-name-close-pin')   # the stronger form of the name rule (same evidence: one label)
+        if ref in rule and not (len(cl) == 1 and cl[0][0] == rule[ref][0]): add(rule[ref][0], 'rule-name-distance')
+        if len(cl) > 1 and not cands:   # several same-name parks within 1 km and no other source: all listed for a person (a conflict)
+            for p, _d in cl: add(p, 'rule-same-name-close-pin')
 
         def km(p):
             q = P.get(p)
@@ -283,7 +294,7 @@ def build_rows(pre, src, wwff, pota, kyp, prev, today, decisions=None):
         else:
             pota_ref, s = next(iter(cands.items())); srcs = '+'.join(s)
             pr = problems(pota_ref); note += pr
-            if len(s) >= 2 and not pr: status = 'confirmed'
+            if (len(s) >= 2 or 'rule-same-name-close-pin' in s) and not pr: status = 'confirmed'
             else:
                 status = 'proposed'
                 if len(s) < 2: note.append('one source only')

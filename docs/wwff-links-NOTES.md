@@ -21,8 +21,15 @@ Only the ref-to-ref pairs from those two lists are in this repo (`data/wwff-xref
   - **community-VEFF-2025**: 3,766 live pairs. The 232 struck-through (deactivated) rows are left out.
   - **community-KFF-2018**: KFF-n = US-n for 0001 to 4446, except 3791, plus 81 explicit pairs. The PDF prints its 162 explicit rows twice, so they come to 81 pairs.
   - **rule-name-distance**: same normalised name, POTA park in the same state or province, and exactly one such park within 5 km.
+  - **rule-same-name-close-pin** (owner decision, 2026-11-14):
+    - the same normalised name (type words such as State Park or WMA may be dropped only if both sides then match exactly);
+    - the same state or province;
+    - pins within 1.0 km;
+    - exactly ONE such POTA park.
+
+    This is enough on its own to confirm. The park must still be active. If another source names a different park, it is a conflict, never confirmed. Two or more such parks never confirm: they are listed as a conflict when no other source names a park.
   - **hand**: a line in the sources file, or a person's answer in the review list.
-- **confirmed** needs all of these:
+- **confirmed** needs all of these (or the close-pin rule alone, as above):
   - two sources name the same park;
   - the park is on today's POTA list;
   - POTA lists the park in the WWFF area's state or province.
@@ -37,30 +44,37 @@ Only the ref-to-ref pairs from those two lists are in this repo (`data/wwff-xref
 ## Counts (real data, Nov 14)
 | | confirmed | proposed | conflict | none |
 |---|---|---|---|---|
-| US (KFF) | 5,477 | 1,590 | 45 | 338 |
-| Canada (VEFF) | 3,108 | 813 | 7 | 1,336 |
+| US (KFF) | 5,918 | 1,153 | 53 | 326 |
+| Canada (VEFF) | 3,252 | 667 | 11 | 1,334 |
+
+Before the close-pin rule the counts were US 5,477 / 1,590 / 45 / 338 and Canada 3,108 / 813 / 7 / 1,336.
 
 - **US confirmed, by sources:**
-  - repo + 2018 + rule: 3,405
-  - repo + rule: 1,289
-  - repo + 2018: 745
-  - 2018 + rule: 35
+  - repo + 2018 + close pin: 2,963
+  - repo + close pin: 1,070
+  - repo + 2018: 709
+  - repo + 2018 + rule: 476
+  - close pin alone: 420
+  - repo + rule: 241
+  - 2018 + close pin: 26
+  - 2018 + rule: 10
   - hand: 3
-- **Canada confirmed:** all 3,108 are community + rule.
-- **US proposed:**
-  - 913 have only the repo link (they are already on the site and stay there);
-  - 456 have only the name rule;
-  - 216 have only the 2018 list (160 of them point to a POTA number that is not on today's list);
-  - 5 others.
-- **Review list:** 2,458 rows (52 conflict, 2,403 proposed, 3 hand).
+- **Canada confirmed:**
+  - community + close pin: 2,737
+  - community + rule: 393
+  - close pin alone: 122
+- **Review list:** 1,888 rows.
 
 ## What changes on the site
 - **locations.json** (next kpc-new-refs run after merge):
-  - 35 KFF rows gain a link: KFF-0037, 0119, 0121, 0124-0128, 0147, 0902, 0971, 1639, 1642, 1643, 2208-2211, 2213-2215, 2217-2227, 3092, 3391, 3548. All 35 are 2018 + rule.
+  - 455 KFF rows gain a link:
+    - 420 by the close-pin rule alone;
+    - 35 by the 2018 list plus a name rule.
   - 3 rows change: KFF-4642, KFF-4643 and KFF-4645 go from US-4575 (Old Spanish National Historic Trail) to US-4475 (Caribou-Targhee National Forest). This is the hand fix.
   - Nothing else changes. Conflicts keep the link they have.
-- **data/canada.json** (next kpc-canada run): 3,108 of 5,264 VEFF rows get a POTA link. Every reader of the file reads only POTA rows, or only columns 1-6 of a WWFF row, so the extra columns break nothing. That covers kpc-bounds.js, kpc-padus-layer.js, kpc-hunt.js and kpc-us-planner.js, the Python readers here, and the KPC-Data readers. KPC-Data gets the file through kpc-copy-from-links.yml.
-- **New refs (7000 and up):** none of them gains a link yet. Of the 575, 364 unlinked refs have only the name rule (most with the WWFF pin on the POTA pin), and nothing else knows them. Under the two-source rule they wait for a person: write `yes` in `person_decision`.
+- **data/canada.json** (next kpc-canada run): 3,252 of 5,264 VEFF rows get a POTA link. Every reader of the file reads only POTA rows, or only columns 1-6 of a WWFF row, so the extra columns break nothing. That covers kpc-bounds.js, kpc-padus-layer.js, kpc-hunt.js and kpc-us-planner.js, the Python readers here, and the KPC-Data readers. KPC-Data gets the file through kpc-copy-from-links.yml.
+- **New refs (7000 and up):** 499 had no link. 346 of them are now confirmed, all by the close-pin rule; that is 346 of the 364 that had only the name rule. The rest: 27 proposed, 2 conflict, 124 none.
+- **Kentucky:** KFF-6863 is confirmed, but the site takes Kentucky links from kpc-ky-data.json, where `p` is blank. It is on the review list to add there by hand.
 
 ## For a person (data/wwff-xref-review.csv)
 - **person_decision:**

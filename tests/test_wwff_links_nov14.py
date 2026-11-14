@@ -62,6 +62,9 @@ POTA_US = [['POTA', 'US-0001', 'Alpha State Park', 37.0, -90.0, 'u'],        # M
            ['POTA', 'US-0006', 'Foxtrot National Trail', 36.5, -89.5, 'u'],  # MO + TN (POTA lists it in both)
            ['POTA', 'US-7001', 'Golf Wildlife Area', 37.5, -90.5, 'u'],      # MO
            ['POTA', 'US-0099', 'Wrong Park', 30.0, -95.0, 'u'],              # TX
+           ['POTA', 'US-7005', 'Kilo Lake State Park', 37.0, -91.0, 'u'],    # MO
+           ['POTA', 'US-7006', 'Lima Creek Wildlife Management Area', 38.5, -91.5, 'u'], ['POTA', 'US-7007', 'Lima Creek State Park', 38.503, -91.5, 'u'],
+           ['POTA', 'US-0007', 'November Hill', 38.0, -92.0, 'u'], ['POTA', 'US-7008', 'Mike Marsh Conservation Area', 38.703, -91.7, 'u'],
            ['POTA', 'US-1001', 'Kentucky Park', 37.5, -85.0, 'u']]           # KY
 # (US-0004 is NOT on the POTA list: retired)
 WWFF_ROWS = [['WWFF', 'KFF-0001', 'Alpha', 37.0, -90.0, 'https://wwff.co/directory/', None, 'US-0001'],   # repo + 2018 + rule
@@ -70,7 +73,10 @@ WWFF_ROWS = [['WWFF', 'KFF-0001', 'Alpha', 37.0, -90.0, 'https://wwff.co/directo
              ['WWFF', 'KFF-0004', 'Delta', 39.5, -92.5, 'https://wwff.co/directory/', None, ''],         # 2018 says US-0004: retired
              ['WWFF', 'KFF-0005', 'Echo Lake', 36.0, -88.0, 'https://wwff.co/directory/', None, ''],     # 2018 says US-0005: other state
              ['WWFF', 'KFF-0006', 'Foxtrot Trail (MO)', 36.5, -89.5, 'https://wwff.co/directory/', None, ''],   # multi-state park
-             ['WWFF', 'KFF-7001', 'Golf Wildlife Area', 37.501, -90.5, 'https://wwff.co/directory/', None, ''],  # new ref: rule only
+             ['WWFF', 'KFF-7001', 'Golf Wildlife Area', 37.5135, -90.5, 'https://wwff.co/directory/', None, ''],  # new ref: name rule only, pins 1.5 km apart
+             ['WWFF', 'KFF-7005', 'Kilo Lake', 37.0045, -91.0, 'https://wwff.co/directory/', None, ''],  # same name, pins 0.5 km: confirmed alone
+             ['WWFF', 'KFF-7006', 'Lima Creek', 38.5, -91.5, 'https://wwff.co/directory/', None, ''],    # two same-name parks within 1 km
+             ['WWFF', 'KFF-0007', 'Mike Marsh', 38.7, -91.7, 'https://wwff.co/directory/', None, ''],    # 2018 says US-0007, close pin says US-7008
              ['WWFF', 'KFF-7002', 'Hotel', 37.6, -90.6, 'https://wwff.co/directory/', None, 'US-0002'],  # repo only
              ['WWFF', 'KFF-7003', 'India', 37.7, -90.7, 'https://wwff.co/directory/', None, 'US-0099'],  # hand fix (US-0099 -> US-0003)
              ['WWFF', 'KFF-7004', 'Juliet', 37.8, -90.8, 'https://wwff.co/directory/', None, ''],        # nothing
@@ -91,14 +97,14 @@ wj('locations-ky.json', {'box': [36, 39, -90, -81], 'rows': [], 'total': 0})
 wj('data/canada.json', CAN)
 wj('data/wwff/KFF.json', KFF); wj('data/wwff/VEFF.json', VEFF)
 park = lambda ref, n, la, lo, *extra: [n, '', '', '', '', la, lo, 0, 0, 0, *extra]
-wj('data/parkinfo/US-MO.json', {'parks': {r: park(r, '', 0, 0) for r in ('US-0001', 'US-0002', 'US-0003', 'US-0006', 'US-7001')}})
+wj('data/parkinfo/US-MO.json', {'parks': {r: park(r, '', 0, 0) for r in ('US-0001', 'US-0002', 'US-0003', 'US-0006', 'US-7001', 'US-7005', 'US-7006', 'US-7007', 'US-0007', 'US-7008')}})
 wj('data/parkinfo/US-TN.json', {'parks': {r: park(r, '', 0, 0) for r in ('US-0005', 'US-0006')}})
 wj('data/parkinfo/US-TX.json', {'parks': {'US-0099': park('US-0099', '', 0, 0)}})
 wj('data/parkinfo/CA.json', {'parks': {r[1]: park(r[1], r[2], r[3], r[4], 'QC' if r[1] in ('CA-0003', 'CA-0009') else 'ON') for r in CAN['rows']}})
 SRC = {'repo_baseline': {r[1]: r[7] for r in WWFF_ROWS if r[7]},
        'community_veff_2025': {'pairs': [['VEFF-0001', 'CA-0001'], ['VEFF-0002', 'CA-0002'], ['VEFF-0003', 'CA-0009'],
                                          ['VEFF-0004', 'CA-0004'], ['VEFF-0004', 'CA-0005']]},
-       'community_kff_2018': {'direct_from': 1, 'direct_to': 6, 'direct_except': [], 'pairs': []},
+       'community_kff_2018': {'direct_from': 1, 'direct_to': 7, 'direct_except': [], 'pairs': []},
        'hand': [{'wwff': 'KFF-7003', 'pota': 'US-0003', 'decided_by': 'KPC owner', 'date': '2026-11-14', 'why': 'test'}]}
 wj(WL.SOURCES, SRC)
 
@@ -106,13 +112,16 @@ r, out = quiet(WL.main, ['build', '--date', '2026-11-14'])
 check(r == 0, 'build runs on the sandbox')
 K, V = rows_of('KFF'), rows_of('VEFF')
 st = lambda R, ref: (R[ref][5], R[ref][3])
-check(st(K, 'KFF-0001') == ('confirmed', 'US-0001') and K['KFF-0001'][4] == 'repo+community-KFF-2018+rule-name-distance', 'repo + 2018 + rule agree: confirmed, all three sources named')
+check(st(K, 'KFF-0001') == ('confirmed', 'US-0001') and K['KFF-0001'][4] == 'repo+community-KFF-2018+rule-same-name-close-pin', 'repo + 2018 + rule agree: confirmed, all three sources named')
 check(st(K, 'KFF-0002') == ('confirmed', 'US-0002'), '2018 direct range + name rule agree: confirmed (no site link yet)')
 check(st(K, 'KFF-0003') == ('conflict', 'US-0099|US-0003') and K['KFF-0003'][4].startswith('repo|community-KFF-2018'), 'repo and 2018 disagree: conflict, both parks and both sources listed')
 check(st(K, 'KFF-0004')[0] == 'proposed' and 'not on today' in K['KFF-0004'][8], 'a retired POTA park is never confirmed')
 check(st(K, 'KFF-0005')[0] == 'proposed' and 'POTA lists the park in TN' in K['KFF-0005'][8], 'a park POTA lists only in another state is never confirmed (no link across states)')
 check(st(K, 'KFF-0006') == ('confirmed', 'US-0006'), 'a park POTA lists in several states (a trail) is confirmed in each of them')
-check(st(K, 'KFF-7001') == ('proposed', 'US-7001') and K['KFF-7001'][4] == 'rule-name-distance', 'a new ref with the name rule only: proposed')
+check(st(K, 'KFF-7001') == ('proposed', 'US-7001') and K['KFF-7001'][4] == 'rule-name-distance', 'same name but pins 1.5 km apart, no other source: proposed (not confirmed)')
+check(st(K, 'KFF-7005') == ('confirmed', 'US-7005') and K['KFF-7005'][4] == 'rule-same-name-close-pin', 'owner rule: same name + same state + pins within 1 km + one such park: confirmed alone')
+check(K['KFF-7006'][5] == 'conflict' and set(K['KFF-7006'][3].split('|')) == {'US-7006', 'US-7007'}, 'owner rule: two same-name parks within 1 km: not confirmed (a conflict listing both)')
+check(st(K, 'KFF-0007') == ('conflict', 'US-0007|US-7008'), 'owner rule: another source naming a different park: conflict, never confirmed over the disagreement')
 check(st(K, 'KFF-7002') == ('proposed', 'US-0002') and K['KFF-7002'][4] == 'repo', 'repo only: proposed')
 check(st(K, 'KFF-7003') == ('confirmed', 'US-0003') and K['KFF-7003'][4] == 'hand' and 'other sources: repo US-0099' in K['KFF-7003'][8], 'a hand decision is confirmed and names the other source')
 check(st(K, 'KFF-7004') == ('none', ''), 'no source: none')
@@ -183,9 +192,10 @@ WL.MIN_ROWS = {'KFF': 100, 'VEFF': 1}
 r, out = quiet(WL.main, ['build'])
 check(r == 1 and 'nothing written' in out and before == {p: open(p).read() for p in before}, 'a short WWFF copy: nothing written, exit 1')
 WL.MIN_ROWS = {'KFF': 1, 'VEFF': 1}
-SRC2 = dict(SRC, repo_baseline={}, community_kff_2018={'pairs': []}, hand=[])
-wj(WL.SOURCES, SRC2)
+SRC2 = dict(SRC, repo_baseline={}, community_kff_2018={'pairs': []}, community_veff_2025={'pairs': []}, hand=[])
+wj(WL.SOURCES, SRC2); WL.CLOSE_KM = -1
 r, out = quiet(WL.main, ['build'])
+WL.CLOSE_KM = 1.0
 check(r == 1 and 'would drop' in out and before == {p: open(p).read() for p in before}, 'losing over a fifth of the confirmed links: nothing written, exit 1')
 wj(WL.SOURCES, SRC)
 txt = ''.join(open(p).read() for p in before).lower()
@@ -216,7 +226,7 @@ else:
     loc = json.load(open('locations.json'))
     P = {x[1] for x in loc if x[0] == 'POTA'} | {x[1] for x in json.load(open('data/canada.json'))['rows'] if x[0] == 'POTA'}
     check(all(x[3] in P for R in (K, V) for x in R.values() if x[5] == 'confirmed'), 'real: every confirmed link is a park on today\'s POTA list')
-    check(all(x[5] != 'confirmed' or x[4] == 'hand' or '+' in x[4] for R in (K, V) for x in R.values()), 'real: every confirmed link has two sources (or a hand decision)')
+    check(all(x[5] != 'confirmed' or x[4] in ('hand', 'rule-same-name-close-pin') or '+' in x[4] for R in (K, V) for x in R.values()), 'real: every confirmed link has two sources, the close-pin rule or a hand decision')
     check(len(K) == 7450 and len(V) == 5264, f'real: one row per WWFF ref ({len(K)} KFF, {len(V)} VEFF)')
     check(all(os.path.getsize(p) < 1_000_000 for p in (WL.XREF['KFF'], WL.XREF['VEFF'], WL.REVIEW)), 'real: every output under 1 MB')
     r, out = quiet(WL.main, ['preview'])
