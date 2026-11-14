@@ -115,7 +115,10 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              # level check. Neither decides a join (the world rules hash does not move).
              'kpc_world_hand.py', 'kpc_rebuild_level.py',
              # Nov 10: network guard and pre-run checks (decide which request may go out, never a join)
-             'kpc_net_guard.py', 'kpc_preflight.py'}
+             'kpc_net_guard.py', 'kpc_preflight.py',
+             # Nov 13 (KPC owner, 2026-11-13): 2-fer outlines from the outline store, OFF by default and called by nothing yet; the
+             # switch-over PR adds the hook to kpc_fers.py and moves this file into the 2-fer RULE_FILES (one declared hash move)
+             'kpc_fers_store.py'}
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')
