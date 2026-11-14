@@ -52,14 +52,14 @@ rb = lambda u: (asked.append(u), False)[1]
 check('who_for: Grant County NM parcel server = never', M.who_for('https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/P/FeatureServer/0')[0] == 'never')
 check('who_for: ncnhde = never', M.who_for('https://ncnhde.natureserve.org/x')[0] == 'never')
 check('who_for: services-eu1 = person (no robots asked)', M.who_for('https://services-eu1.arcgis.com/x/FeatureServer/0', rb)[0] == 'person' and not asked)
-check('who_for: apps.fs.usda.gov = person', M.who_for('https://apps.fs.usda.gov/arcx/rest/services/EDW/x/MapServer/0', rb)[0] == 'person' and not asked)
+check('who_for: apps.fs.usda.gov is not a blocked host (2026-11-13): robots.txt decides (asked)', M.who_for('https://apps.fs.usda.gov/arcx/rest/services/EDW/x/MapServer/0', rb)[0] == 'person' and asked); asked.clear()
 check('who_for: robots says no (403) = person', M.who_for('https://gis.example.gov/arcgis/rest/services/x/MapServer/0', rb)[0] == 'person' and asked)
 check('who_for: allowed = bot', M.who_for('https://gis.example.gov/arcgis/rest/services/x/MapServer/0', lambda u: True)[0] == 'bot')
 get = lambda u: (403, '')
 check('robots_allows: a robots.txt 403 is a disallow', M.robots_allows('https://gis.example.gov/arcgis/rest/services/x', get, {}) is False)
 
 # 3. the ONE needs list: schema, merge by area|layer, done stays done, no change = no save
-r1 = M.needs_row('US-AZ', 'fsod', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/X/MapServer/0/query', 'short', 'master', expected=12, have=12, date='2026-11-10')
+r1 = M.needs_row('US-AZ', 'fsod', 'https://services1.arcgis.com/EDW/arcgis/rest/services/X/MapServer/0/query', 'short', 'master', expected=12, have=12, date='2026-11-10')
 check('needs row has exactly the schema fields', set(r1) == set(M.NEEDS_FIELDS) and r1['who'] == 'person' and r1['id'] == 'US-AZ|fsod' and r1['status'] == 'open')
 check('needs row page for a hosted layer is the hub search, not the services host', M.needs_row('US-AZ', 'x', 'https://services2.arcgis.com/a/arcgis/rest/services/AZ_Parks/FeatureServer/0', 'w', 'm')['page'].startswith('https://hub.arcgis.com/search?q=AZ%20Parks'))
 doc = M.load_needs(None)

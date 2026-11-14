@@ -35,10 +35,12 @@ NEVER_CONTACT = [('services.arcgis.com', '/33TOOklri9xpic7U'), ('ncnhde.naturese
 # services.arcgis.com and services<digits>.arcgis.com: no live read of any kind, robots.txt included.
 # This is hard-coded (not only the env list) so a count run cannot reach those hosts.
 ARCGIS_SERVICES_HOST_RE = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
-# Saved copies only, no live read (their robots.txt answers 403). Same default list as kpc_us_key.py (KPC_SAVED_ONLY_HOSTS).
+# Saved copies only, no live read. Same default list as kpc_us_key.py (KPC_SAVED_ONLY_HOSTS).
 # services*.arcgis.com is also blocked in live_ok even if this list is overridden or emptied.
 # KPC_SAVED_ONLY_HOSTS ADDS hosts; it can never drop a default one (owner rule, 2026-11-10).
-SAVED_ONLY_HOSTS = {'services.arcgis.com', 'services1.arcgis.com', 'apps.fs.usda.gov'} | kpc_net_guard.extra_hosts()
+# KPC owner, 2026-11-13: apps.fs.usda.gov is off this list (robots.txt answered 403 = no rules file, not a Disallow line); it is a
+# slow host (kpc_net_guard.SLOW_HOSTS: 10 s between requests). gis.blm.gov (robots.txt 404) was never on it.
+SAVED_ONLY_HOSTS = {'services.arcgis.com', 'services1.arcgis.com'} | kpc_net_guard.extra_hosts()
 HUB_RE = re.compile(r'(^|\.)(hub\.arcgis\.com|opendata\.arcgis\.com)$')   # hub portals: 60 s between requests
 HUB_DELAY, HOST_DELAY = 60.0, 2.0
 WDPA_RE = re.compile(r'wdpa|protected\s*-?planet|protectedplanet|sprep|pacificdata', re.I)
@@ -75,7 +77,7 @@ def live_ok(url):
     return kpc_net_guard.host_ok(url)
 
 
-def host_delay(host): return HUB_DELAY if HUB_RE.search(host) else HOST_DELAY
+def host_delay(host): return max(HUB_DELAY if HUB_RE.search(host) else HOST_DELAY, kpc_net_guard.min_gap(host))   # slow hosts: 10 s
 
 
 def is_wdpa(*texts): return any(WDPA_RE.search(str(t or '')) for t in texts)
@@ -83,7 +85,7 @@ def is_wdpa(*texts): return any(WDPA_RE.search(str(t or '')) for t in texts)
 
 # ---- pacing and robots --------------------------------------------------------------------------------------------------
 class Pacer:
-    """At least host_delay(host) seconds between two requests to the same host (60 s for hub portals). Clock and sleep can be swapped for tests."""
+    """At least host_delay(host) seconds between two requests to the same host (60 s for hub portals, 10 s for slow hosts). Clock and sleep can be swapped for tests."""
     def __init__(self, clock=time.monotonic, sleep=time.sleep): self.clock, self.sleep, self.last = clock, sleep, {}
 
     def wait(self, host):

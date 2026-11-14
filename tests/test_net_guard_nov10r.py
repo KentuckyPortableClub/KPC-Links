@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One shared, fail-closed network guard (owner rule, 2026-11-10): no bot process contacts services*.arcgis.com, apps.fs.usda.gov
+"""One shared, fail-closed network guard (owner rule, 2026-11-10): no bot process contacts services*.arcgis.com
 or ncnhde.natureserve.org: not data, not robots.txt, not HEAD, not a redirect hop. Port / user@ / trailing-dot forms are the same
 host; KPC_SAVED_ONLY_HOSTS only ADDS hosts; an https -> http (or ftp:/file:) hop is refused. Offline: a 127.0.0.1 stand-in server."""
 import http.client, http.server, os, pathlib, socket, subprocess, sys, tempfile, threading, urllib.error, urllib.request
@@ -44,7 +44,8 @@ import kpc_master as M      # noqa: E402
 
 # --- 1) the bypass forms are refused, by the shared check and by kpc_master.live_ok
 BAD = ['https://services1.arcgis.com:443/x', 'https://u@services1.arcgis.com/x', 'https://services1.arcgis.com./x',
-       'https://apps.fs.usda.gov:443/x', 'https://u:p@apps.fs.usda.gov./x', 'https://Services7.ArcGIS.com/robots.txt',
+       'https://ncnhde.natureserve.org:443/x', 'https://u:p@ncnhde.natureserve.org./x',   # apps.fs.usda.gov left the list 2026-11-13
+       'https://Services7.ArcGIS.com/robots.txt',
        'https://services-eu1.arcgis.com/x', 'https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/x',
        'https://ncnhde.natureserve.org/', 'svc:https://services3.arcgis.com/a/FeatureServer|layer', 'https://services1%2earcgis.com/x']
 for u in BAD:
@@ -58,10 +59,10 @@ for u in ('https://api.pota.app/park/US-0001', 'https://raw.githubusercontent.co
 
 # --- 2) KPC_SAVED_ONLY_HOSTS adds hosts; it never drops a default one (kpc_master read in a fresh process)
 code = ("import sys; sys.path.insert(0, sys.argv[1]); import kpc_master as M, kpc_net_guard as G; "
-        "print(M.live_ok('https://apps.fs.usda.gov/x')[0], M.live_ok('https://services1.arcgis.com/x')[0], M.live_ok('https://gis.example.net/x')[0], "
-        "G.host_ok('https://apps.fs.usda.gov/x')[0], G.host_ok('https://gis.example.net/x')[0], 'apps.fs.usda.gov' in M.SAVED_ONLY_HOSTS)")
+        "print(M.live_ok('https://ncnhde.natureserve.org/x')[0], M.live_ok('https://services1.arcgis.com/x')[0], M.live_ok('https://gis.example.net/x')[0], "
+        "G.host_ok('https://ncnhde.natureserve.org/x')[0], G.host_ok('https://gis.example.net/x')[0], 'services1.arcgis.com' in M.SAVED_ONLY_HOSTS)")
 r = subprocess.run([sys.executable, '-B', '-c', code, str(S)], capture_output=True, text=True, env=dict(os.environ, KPC_SAVED_ONLY_HOSTS='gis.example.net'))
-check('KPC_SAVED_ONLY_HOSTS=gis.example.net: apps.fs.usda.gov and services1 stay refused, the extra host is refused too',
+check('KPC_SAVED_ONLY_HOSTS=gis.example.net: ncnhde and services1 stay refused, the extra host is refused too',
       r.stdout.split() == ['False', 'False', 'False', 'False', 'False', 'True'])
 if r.returncode: print(r.stderr[-500:])
 
@@ -78,7 +79,7 @@ class H(http.server.BaseHTTPRequestHandler):
     def do_HEAD(self): self._go()
     def _go(self):
         to = {'/to-services': 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/x/FeatureServer/0?f=json',
-              '/to-port': 'https://services2.arcgis.com:443/x', '/to-dot': 'https://apps.fs.usda.gov./robots.txt',
+              '/to-port': 'https://services2.arcgis.com:443/x', '/to-dot': 'https://ncnhde.natureserve.org./robots.txt',
               '/to-ftp': 'ftp://example.org/x', '/to-rel': '//services9.arcgis.com/robots.txt'}.get(self.path)
         if to: self.send_response(302); self.send_header('Location', to); self.end_headers(); return
         self.send_response(200); self.send_header('Content-Type', 'text/plain'); self.end_headers()

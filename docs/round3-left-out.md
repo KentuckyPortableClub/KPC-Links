@@ -158,6 +158,8 @@ NY OPRHP on gisportaldev.dot.ny.gov stays on do_not_ingest. NCNHP and AU-WA stay
 
 A person downloads these. Bots do not. No user-agent trick is used. A robots 403 on services*.arcgis.com is a disallow.
 
+Note, 2026-11-13 (KPC owner): for `apps.fs.usda.gov` and `gis.blm.gov` the robots reasoning above was wrong. A robots.txt that answers 403 or 404 serves no rules file, so it is not a Disallow (RFC 9309, section 2.3.1.3: a 4xx answer means no rule is stated). On 2026-11-13 `apps.fs.usda.gov/robots.txt` answered 403 ("You don't have permission") and `gis.blm.gov/robots.txt` answered 404. Neither host is on this list. Bots may read `gis.blm.gov`. Bots may read `apps.fs.usda.gov` slowly: at least 10 seconds between requests, one at a time, the club's User-Agent, Retry-After honoured, stop after a run of 403 / 429 answers. (The robots check in the code still counts any robots.txt 401 / 403 as a no, for every host; that was left as it is, so the master step still will not read `apps.fs.usda.gov` until the owner decides on that rule.) The one BLM Nevada service that needs a sign-in (`gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_SNPLMA_Disposal_Boundary`) stays blocked as sign-in only. This note changes nothing for `services*.arcgis.com`, `ncnhde.natureserve.org` (its robots.txt disallows AI crawlers) or the Grant County NM server.
+
 1. ScienceBase PAD-US 4.1 state downloads (US-OK, KS, SC, NY fallback). robots disallow.
 2. LINZ Protected Areas export (NZ layer 53564). robots disallow /e/ and /*/download/.
 3. NI / DAERA ASSI and National Nature Reserves zips. robots disallow *.zip, and NIEA asks for written permission before display.

@@ -60,7 +60,8 @@ d = json.load(open(tmp / 'o.json'))
 check({'about', 'counts', 'parks', 'why', 'why_counts'} <= set(d) and d['why_counts'] == {'HELD_CHECK': 1, 'LAYER_GAP': 1}, f"json keeps about / counts / parks and adds why: {d['why_counts']}")
 check('Count by code' in (tmp / 'o.md').read_text(encoding='utf-8'), 'the text report has the count-by-code line')
 # host check: the guard decides; a missing guard fails closed
-check(S.host_allowed('https://example.org/x')[0] and not S.host_allowed('https://services1.arcgis.com/a')[0] and not S.host_allowed('https://apps.fs.usda.gov/a')[0],
+check(S.host_allowed('https://example.org/x')[0] and not S.host_allowed('https://services1.arcgis.com/a')[0] and not S.host_allowed('https://ncnhde.natureserve.org/a')[0]
+      and S.host_allowed('https://apps.fs.usda.gov/a')[0],   # KPC owner, 2026-11-13: apps.fs.usda.gov allowed (slow host)
       'host_allowed follows kpc_net_guard')
 real = sys.modules.pop('kpc_net_guard', None); sys.modules['kpc_net_guard'] = None   # makes the import fail
 check(S.host_allowed('https://example.org/x')[0] is False, 'guard missing -> not allowed (fail closed)')

@@ -758,8 +758,7 @@ TYPE_CLASH = {
     frozenset(('lighthouse', 'fortress')),
 }
 NEVER_HOST = (
-    'ncnhde.natureserve.org',
-    'apps.fs.usda.gov',
+    'ncnhde.natureserve.org',   # KPC owner, 2026-11-13: apps.fs.usda.gov removed (robots.txt 403 = no rules file); kpc_net_guard paces it
 )
 NEVER_SUB = ('33TOOklri9xpic7U',)
 

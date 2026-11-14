@@ -1,7 +1,7 @@
 # KPC PC helper: the downloads a bot may not make
 
 Some map layers can't be read by a bot. Their server says no (robots.txt or a 403), or the server is on the "saved copies only"
-list (every `services*.arcgis.com` host and `apps.fs.usda.gov`). A person can still download them in a normal browser. This
+list (every `services*.arcgis.com` host). A person can still download them in a normal browser. This
 helper walks you through them one at a time, checks each file, and sends it to the bots.
 
 It never contacts an agency server itself. Your browser opens the page and you click Download. The helper only reads the list

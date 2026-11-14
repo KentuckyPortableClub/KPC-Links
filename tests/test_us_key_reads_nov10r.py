@@ -162,8 +162,8 @@ code = textwrap.dedent('''
     print(so('https://apps.fs.usda.gov/arcx/rest/services/x/MapServer/0'), so('https://gis.example.net/x'), so('https://services7.arcgis.com/x'), so('https://gis.blm.gov/x'))''')
 r = subprocess.run([sys.executable, '-c', code, str(ROOT / '.github/scripts/kpc_us_key.py')], capture_output=True, text=True, cwd=ROOT,
                    env=dict(os.environ, KPC_SAVED_ONLY_HOSTS='gis.example.net'))
-check(f'KPC_SAVED_ONLY_HOSTS=gis.example.net: apps.fs.usda.gov stays saved-copy only, the extra host is added ({r.stdout.strip() or r.stderr[-200:]})',
-      r.stdout.split() == ['True', 'True', 'True', 'False'])
+check(f'KPC_SAVED_ONLY_HOSTS=gis.example.net: the extra host is added; apps.fs.usda.gov is read live since 2026-11-13 ({r.stdout.strip() or r.stderr[-200:]})',
+      r.stdout.split() == ['False', 'True', 'True', 'False'])
 check('no copy of the host rules is left in the key (no services regex, no never-contact list)',
       'arcgis\\.com$' not in SRC and "NEVER_HOSTS = {" not in SRC and "_ARCGIS_SERVICES" not in SRC)
 

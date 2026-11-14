@@ -221,7 +221,9 @@ with tempfile.TemporaryDirectory() as t:
 # ---------------------------------------------------------------- 5 a normal area: byte for byte what main's code wrote
 # made by running normal_area() with main 11f908d9's kpc_fers.py (KPC_FERS_TEST_SCRIPTS=<main>/.github/scripts KPC_FERS_PRINT_GOLDEN=1);
 # every data/fers file it writes, today's date written as TODAY and the report's fers_rules hash left out
-GOLDEN = '17ebca8a53004e16'
+# KPC owner, 2026-11-13: was '17ebca8a53004e16'. The ONLY difference is one report line: apps.fs.usda.gov is no longer saved-copy only,
+# so the US-11181 live line is now asked (the offline stub refuses it) instead of 'saved-copy-only map, saved copy kept'. Same spots.
+GOLDEN = '0971fba6e3a4b203'
 
 
 def normal_area(script_dir):
