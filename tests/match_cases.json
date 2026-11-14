@@ -355,5 +355,2154 @@
    "same": false,
    "why": "Nov 3 step 3: a named unit stays a piece even on a layer whose type word is 'units'."
   }
+ ],
+ "matcher_note": "Nov 13 (KPC owner, 2026-11-13): cases for the shared matcher .github/scripts/kpc_matcher.py, run by tests/test_kpc_matcher_nov13.py (NOT by tests/run_match_tests.py, so the key builders' start-up check is unchanged). sq = [lon, lat, half side in degrees] square outline; box = [w, s, e, n] rectangle outline. expect: outcome, likely, records (exact set), not_records (never in records), maybe, flags (all present), far_same_name (id sets), path, auto_confirmed. Default layer {\"source\": \"test\"}. A case with \"key\" runs decide_with_key().",
+ "matcher_cases": [
+  {
+   "id": "F1",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar SP",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes",
+    "records": []
+   },
+   "why": "Survey F1: a State Park never joins a State Forest of the same name by itself (owner rule: UNCLEAR likely yes, a person confirms)."
+  },
+  {
+   "id": "F1-blank-type",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar SP",
+    "type": "",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes"
+   },
+   "why": "F1 with a blank POTA type: \"SP\" alone is now a State Park kind word."
+  },
+  {
+   "id": "F2-NF",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar NF",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes"
+   },
+   "why": "Survey F2: NF short form is a National Forest."
+  },
+  {
+   "id": "F2-NP",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar NP",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes"
+   },
+   "why": "Survey F2: NP short form is a National Park."
+  },
+  {
+   "id": "F2-Refuge",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar Refuge",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes"
+   },
+   "why": "Survey F2: \"Refuge\" alone is a refuge (the live key joined it)."
+  },
+  {
+   "id": "F2-far",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.36
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "NO"
+   },
+   "why": "Different kind and the pin 30 km away: not this park."
+  },
+  {
+   "id": "F3-bare",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes"
+   },
+   "why": "Survey F3: a bare name never MATCHes when nothing states its kind."
+  },
+  {
+   "id": "F3-bare-sf-layer",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes"
+   },
+   "why": "Survey F3: a bare name in a state-forest layer takes the layer kind: a different kind, so UNCLEAR.",
+   "layer": {
+    "source": "sf",
+    "kind": "State Forest"
+   }
+  },
+  {
+   "id": "F3-bare-sp-layer",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ]
+   },
+   "why": "A bare name in a state-park layer takes the layer kind: MATCH.",
+   "layer": {
+    "source": "sp",
+    "kind": "State Park"
+   }
+  },
+  {
+   "id": "F3-padus-des-SP",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "des": "SP"
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ]
+   },
+   "why": "PAD-US: the designation code supplies the kind of a bare name.",
+   "layer": {
+    "source": "padus",
+    "padus": true
+   }
+  },
+  {
+   "id": "F3-padus-des-NF",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "des": "NF"
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes"
+   },
+   "why": "PAD-US: designation NF against a State Park: UNCLEAR.",
+   "layer": {
+    "source": "padus",
+    "padus": true
+   }
+  },
+  {
+   "id": "F3-des-not-padus",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "des": "SP"
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes"
+   },
+   "why": "A designation code is only read on a PAD-US layer.",
+   "layer": {
+    "source": "st"
+   }
+  },
+  {
+   "id": "F3-class-field",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "kind": "State Park"
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ]
+   },
+   "why": "The record's own class field states the kind."
+  },
+  {
+   "id": "unknown-kind-word",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar Lake State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar Lake State",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes"
+   },
+   "why": "\"Cedar Lake State\" carries a kind-ish word that is no recognised kind: UNCLEAR."
+  },
+  {
+   "id": "F4-gate",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0234
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ],
+    "pin": "edge"
+   },
+   "why": "Survey F4: pin 150 m outside a 3,800 acre park (a gate): within max(0.25 km, half the width) -> MATCH."
+  },
+  {
+   "id": "F4-5km",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0767
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes",
+    "pin": "near"
+   },
+   "why": "Pin 5 km outside a 3,800 acre park: over the allowance, under 3 widths: UNCLEAR likely yes."
+  },
+  {
+   "id": "F4-30km",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.36
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "no"
+   },
+   "why": "Pin 30 km away: UNCLEAR likely no (over 15 km, kpc_join_check)."
+  },
+  {
+   "id": "F4-very-far",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -86.72
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "NO"
+   },
+   "why": "Pin 150 km away: NO (over 10 widths and over 20 km, kpc_match)."
+  },
+  {
+   "id": "F4-small-land",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar Wildlife Area",
+    "type": "Wildlife Area",
+    "lat": 38.0,
+    "lon": -85.0057
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar Wildlife Area",
+     "sq": [
+      -85.0,
+      38.0,
+      0.0007
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR"
+   },
+   "why": "A 40-acre site: 0.4 km outside is more than the 0.25 km allowance: UNCLEAR."
+  },
+  {
+   "id": "F5-tracts",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Cedar State Park",
+     "sq": [
+      -84.95,
+      38.0,
+      0.01
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1,
+     2
+    ]
+   },
+   "why": "Survey F5: a park in two tracts gets both records."
+  },
+  {
+   "id": "F5-bare-tract",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Cedar",
+     "sq": [
+      -84.97,
+      38.0,
+      0.005
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ],
+    "maybe": [
+     2
+    ]
+   },
+   "why": "A same-name tract with no kind word is not passed and not dropped silently: MATCH on the named one, the other in maybe."
+  },
+  {
+   "id": "gap3-unit2-pin-in-unit1",
+   "park": {
+    "ref": "US-T1",
+    "name": "Pine Ridge State Park - Unit 2",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Pine Ridge State Park - Unit 1",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Pine Ridge State Park - Unit 2",
+     "sq": [
+      -84.95,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": [],
+    "not_records": [
+     1
+    ]
+   },
+   "why": "Gap 3: a park named Unit 2 never takes Unit 1, even with the pin in Unit 1."
+  },
+  {
+   "id": "gap3-unit2",
+   "park": {
+    "ref": "US-T1",
+    "name": "Pine Ridge State Park - Unit 2",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -84.95
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Pine Ridge State Park - Unit 1",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Pine Ridge State Park - Unit 2",
+     "sq": [
+      -84.95,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     2
+    ]
+   },
+   "why": "The Unit 2 park with its pin in Unit 2 takes only Unit 2."
+  },
+  {
+   "id": "gap3-whole",
+   "park": {
+    "ref": "US-T1",
+    "name": "Pine Ridge State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Pine Ridge State Park - Unit 1",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Pine Ridge State Park - Unit 2",
+     "sq": [
+      -84.95,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1,
+     2
+    ]
+   },
+   "why": "The whole park (no unit in its name) takes every unit."
+  },
+  {
+   "id": "F6-far-twin",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Cedar State Park",
+     "sq": [
+      -84.55,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ],
+    "far_same_name": [
+     [
+      2
+     ]
+    ]
+   },
+   "why": "Survey F6: two same-name parks 40 km apart: the park keeps the one at its pin, the other is listed, never both."
+  },
+  {
+   "id": "F6-midpoint",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -84.775
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Cedar State Park",
+     "sq": [
+      -84.55,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": []
+   },
+   "why": "Pin halfway between two same-name places: a person decides."
+  },
+  {
+   "id": "F6-belongs-to",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Cedar State Park",
+     "sq": [
+      -84.55,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ],
+    "far_belongs_to": "US-T2"
+   },
+   "why": "The far one is named as the other POTA park's.",
+   "other_parks": [
+    {
+     "ref": "US-T2",
+     "name": "Cedar State Park",
+     "lat": 38.0,
+     "lon": -84.55
+    }
+   ]
+  },
+  {
+   "id": "F7-own-present",
+   "park": {
+    "ref": "US-T1",
+    "name": "Big Woods Beach State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Big Woods State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.1
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Big Woods Beach State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.01
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     2
+    ],
+    "not_records": [
+     1
+    ]
+   },
+   "why": "Survey F7 (gap 4): the small park inside a bigger same-agency park takes its OWN outline, never the big one."
+  },
+  {
+   "id": "F7-own-missing",
+   "park": {
+    "ref": "US-T1",
+    "name": "Big Woods Beach State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Big Woods State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.1
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "no",
+    "records": [],
+    "flags": [
+     "bigger_place"
+    ]
+   },
+   "why": "Gap 4: its own outline absent: UNCLEAR likely no, never the big one."
+  },
+  {
+   "id": "F7-never-auto",
+   "park": {
+    "ref": "US-T1",
+    "name": "Big Woods Beach State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "official_acres": 61400
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Big Woods State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.1
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": [],
+    "auto_confirmed": false
+   },
+   "why": "Gap 4: even with official acres agreeing, the bigger outline is never auto-confirmed for the small park."
+  },
+  {
+   "id": "F7-big-park",
+   "park": {
+    "ref": "US-T1",
+    "name": "Big Woods State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Big Woods State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.1
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Big Woods Beach State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.01
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ],
+    "not_records": [
+     2
+    ]
+   },
+   "why": "Gap 4 the other way: the big park does not take the small park inside it (90% nesting, kpc_tracts)."
+  },
+  {
+   "id": "side-word",
+   "park": {
+    "ref": "US-T1",
+    "name": "Yates Lake Wildlife Management Area",
+    "type": "Wildlife Management Area",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Yates Lake West Wildlife Management Area",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "no"
+   },
+   "why": "Yates Lake vs Yates Lake West: may be the whole or a part: a person looks (kpc_match)."
+  },
+  {
+   "id": "office-second-name",
+   "park": {
+    "ref": "US-T1",
+    "name": "Steese National Conservation Area",
+    "type": "National Conservation Area",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Eastern Interior Field Office",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "name2": "Steese National Conservation Area"
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ]
+   },
+   "why": "An office record is tested by its place name (kpc_us_key.join_how)."
+  },
+  {
+   "id": "office-only",
+   "park": {
+    "ref": "US-T1",
+    "name": "Eastern Interior Field Office",
+    "type": "",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Eastern Interior Field Office",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "NO"
+   },
+   "why": "An office with no place name is never a park."
+  },
+  {
+   "id": "gap6-owner-rule",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar Wildlife Management Area",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes",
+    "flags": [
+     "kind_differs"
+    ]
+   },
+   "why": "Gap 6 (owner 2026-11-13): same name, different kind, pin inside: UNCLEAR likely yes; it never joins on its own."
+  },
+  {
+   "id": "auto-confirm",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "official_acres": 3800
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     1
+    ],
+    "auto_confirmed": true
+   },
+   "why": "Second opinion: official acres within 15%, pin inside, only place, nothing contradicting: auto-confirmed MATCH."
+  },
+  {
+   "id": "auto-acres-off",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "official_acres": 2000
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "auto_confirmed": false
+   },
+   "why": "Second opinion: acres off by more than 15%: stays UNCLEAR."
+  },
+  {
+   "id": "auto-agency",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "official_acres": 3800,
+    "web": "https://www.nps.gov/cedr/index.htm"
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "agency": "STAT"
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "auto_confirmed": false
+   },
+   "why": "Second opinion: the official page is nps.gov, the record is state land: stays UNCLEAR."
+  },
+  {
+   "id": "auto-page-kind",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "official_acres": 3800,
+    "page_kind": "National Forest"
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "auto_confirmed": false
+   },
+   "why": "Second opinion: the official page says National Forest, the record is a State Forest: stays UNCLEAR."
+  },
+  {
+   "id": "auto-twin-near",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "official_acres": 3800
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Cedar State Forest",
+     "sq": [
+      -84.85,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "auto_confirmed": false
+   },
+   "why": "Second opinion: another same-name place 10 km away: stays UNCLEAR."
+  },
+  {
+   "id": "auto-pin-near",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0767,
+    "official_acres": 3800
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "auto_confirmed": false
+   },
+   "why": "Second opinion: pin outside (5 km): stays UNCLEAR."
+  },
+  {
+   "id": "match-acres-band",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "official_acres": 700
+   },
+   "candidates": [
+    {
+     "id": 1,
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "likely": "yes",
+    "flags": [
+     "acres_disagree"
+    ]
+   },
+   "why": "A name MATCH whose outline is 5x the official acres goes back to a person (kpc_join_check RATIO 0.5-2.0)."
+  },
+  {
+   "id": "US-2678-silver-lake",
+   "park": {
+    "ref": "US-2678",
+    "name": "Silver Lake State Park",
+    "type": "State Park",
+    "lat": 42.7611,
+    "lon": -71.5957
+   },
+   "candidates": [
+    {
+     "id": "sgnhc2674",
+     "name": "Silver Lake State Park",
+     "box": [
+      -71.5978,
+      42.7593,
+      -71.5864,
+      42.7685
+     ]
+    },
+    {
+     "id": "nhc9626",
+     "name": "Silver Lake State Park",
+     "box": [
+      -71.5983,
+      42.7595,
+      -71.5935,
+      42.7647
+     ]
+    },
+    {
+     "id": "nhc9707",
+     "name": "Silver Lake State Park",
+     "box": [
+      -71.5952,
+      42.7595,
+      -71.5872,
+      42.7683
+     ]
+    },
+    {
+     "id": "nhc3947",
+     "name": "Silver Lake Recreation Area",
+     "box": [
+      -71.8364,
+      43.2699,
+      -71.8323,
+      43.2746
+     ]
+    },
+    {
+     "id": "sgnha3947",
+     "name": "Silver Lake Recreation Area",
+     "box": [
+      -71.8364,
+      43.2699,
+      -71.8323,
+      43.2746
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "sgnhc2674",
+     "nhc9626",
+     "nhc9707"
+    ],
+    "not_records": [
+     "nhc3947",
+     "sgnha3947"
+    ],
+    "far_same_name": [
+     [
+      "nhc3947",
+      "sgnha3947"
+     ]
+    ]
+   },
+   "why": "Owner NH run: US-2678 Silver Lake State Park (Hollis) was joined to 10 records across 59.7 km, including \"Silver Lake Recreation Area\" near Franklin. Boxes from data/us-key/tracts/US-NH.json. The far same-name place must not be accepted into this park."
+  },
+  {
+   "id": "US-2679-umbagog-key-ids",
+   "park": {
+    "ref": "US-2679",
+    "name": "Umbagog Lake State Park",
+    "type": "State Park",
+    "lat": 44.7022,
+    "lon": -71.0553
+   },
+   "candidates": [
+    {
+     "id": "row832",
+     "name": "Umbagog Lake State Park",
+     "box": [
+      -71.13711,
+      44.67468,
+      -71.04792,
+      44.70886
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": [],
+    "flags": [
+     "key_ids_missing"
+    ]
+   },
+   "why": "Owner NH run: US-2679 Umbagog Lake State Park: the stored map outline (row832) is not one of the key's records and sits about 5 km from them. Cutting by the key's ids must not silently take that outline.",
+   "layer": {
+    "source": "nh-granit"
+   },
+   "key": {
+    "source": "nh-granit",
+    "ids": [
+     "sgnhc45",
+     "56926",
+     "sgnhc47",
+     "56925"
+    ]
+   }
+  },
+  {
+   "id": "US-2679-umbagog-records",
+   "park": {
+    "ref": "US-2679",
+    "name": "Umbagog Lake State Park",
+    "type": "State Park",
+    "lat": 44.7022,
+    "lon": -71.0553
+   },
+   "candidates": [
+    {
+     "id": "sgnhc45",
+     "name": "Umbagog State Park",
+     "box": [
+      -71.1126,
+      44.7344,
+      -71.057,
+      44.7844
+     ]
+    },
+    {
+     "id": "56926",
+     "name": "Umbagog State Park",
+     "box": [
+      -71.087,
+      44.7107,
+      -71.0347,
+      44.78
+     ]
+    },
+    {
+     "id": "sgnhc47",
+     "name": "Umbagog State Park",
+     "box": [
+      -71.0712,
+      44.7452,
+      -71.0509,
+      44.78
+     ]
+    },
+    {
+     "id": "56925",
+     "name": "Umbagog State Park",
+     "box": [
+      -71.0771,
+      44.7021,
+      -71.0542,
+      44.7203
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "sgnhc45",
+     "56926",
+     "sgnhc47",
+     "56925"
+    ],
+    "path": "key ids"
+   },
+   "why": "The same park against the key's own records (same source): selected by id, sanity-checked, MATCH.",
+   "layer": {
+    "source": "nh-granit"
+   },
+   "key": {
+    "source": "nh-granit",
+    "ids": [
+     "sgnhc45",
+     "56926",
+     "sgnhc47",
+     "56925"
+    ]
+   }
+  },
+  {
+   "id": "key-ids-good",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": "a1",
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": "a2",
+     "name": "Cedar State Park",
+     "sq": [
+      -84.97,
+      38.0,
+      0.005
+     ]
+    },
+    {
+     "id": "x9",
+     "name": "Cedar State Park",
+     "sq": [
+      -84.55,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "a1",
+     "a2"
+    ],
+    "path": "key ids"
+   },
+   "why": "Key ids present in this source and sane: MATCH by id.",
+   "layer": {
+    "source": "st-a"
+   },
+   "key": {
+    "source": "st-a",
+    "ids": [
+     "a1",
+     "a2"
+    ]
+   }
+  },
+  {
+   "id": "key-ids-missing",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": "b1",
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": [],
+    "flags": [
+     "key_ids_missing"
+    ]
+   },
+   "why": "Key ids present but the records are not in the file: UNCLEAR, never a silent name fallback.",
+   "layer": {
+    "source": "st-a"
+   },
+   "key": {
+    "source": "st-a",
+    "ids": [
+     "a1"
+    ]
+   }
+  },
+  {
+   "id": "key-ids-partial",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": "a1",
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": [],
+    "flags": [
+     "key_ids_partial"
+    ]
+   },
+   "why": "Only part of the key's records are in the file: half a park is not the park.",
+   "layer": {
+    "source": "st-a"
+   },
+   "key": {
+    "source": "st-a",
+    "ids": [
+     "a1",
+     "a2"
+    ]
+   }
+  },
+  {
+   "id": "key-ids-other-source",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": "a1",
+     "name": "Cedar State Forest",
+     "sq": [
+      -84.55,
+      38.0,
+      0.02
+     ]
+    },
+    {
+     "id": "z5",
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "z5"
+    ]
+   },
+   "why": "The file is from another source: its ids mean nothing; matched by name.",
+   "layer": {
+    "source": "padus"
+   },
+   "key": {
+    "source": "st-a",
+    "ids": [
+     "a1"
+    ]
+   }
+  },
+  {
+   "id": "key-ids-kind-contradicts",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": "a1",
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": [],
+    "flags": [
+     "key_ids_contradict",
+     "kind_differs"
+    ]
+   },
+   "why": "Key id found but the record is now a State Forest: UNCLEAR with the reason.",
+   "layer": {
+    "source": "st-a"
+   },
+   "key": {
+    "source": "st-a",
+    "ids": [
+     "a1"
+    ]
+   }
+  },
+  {
+   "id": "key-ids-renamed",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": "a1",
+     "name": "Oak Hollow Wildlife Area",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": [],
+    "flags": [
+     "key_ids_contradict"
+    ]
+   },
+   "why": "Key id found but the record now carries another name: UNCLEAR.",
+   "layer": {
+    "source": "st-a"
+   },
+   "key": {
+    "source": "st-a",
+    "ids": [
+     "a1"
+    ],
+    "names": {
+     "a1": "Cedar State Park"
+    }
+   }
+  },
+  {
+   "id": "key-ids-person",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": "a1",
+     "name": "Big Oak Recreation Lands",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "a1"
+    ]
+   },
+   "why": "A person approved an alias join: the saved name still fits, kept by id.",
+   "layer": {
+    "source": "st-a"
+   },
+   "key": {
+    "source": "st-a",
+    "ids": [
+     "a1"
+    ],
+    "names": {
+     "a1": "Big Oak Recreation Lands"
+    },
+    "by_person": true
+   }
+  },
+  {
+   "id": "key-ids-far",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0
+   },
+   "candidates": [
+    {
+     "id": "a1",
+     "name": "Cedar State Park",
+     "sq": [
+      -84.3,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": []
+   },
+   "why": "Key id found but the record is 60 km from the pin: UNCLEAR.",
+   "layer": {
+    "source": "st-a"
+   },
+   "key": {
+    "source": "st-a",
+    "ids": [
+     "a1"
+    ]
+   }
+  },
+  {
+   "id": "wdpa-private-match",
+   "why": "Owner 2026-11-13: on the PRIVATE WDPA layer an exact WDPA id equality with POTA's id is strong evidence (names there are often not English). The result is private.",
+   "park": {
+    "ref": "IT-T1",
+    "name": "Parco Naturale Cedro",
+    "type": "Natural Park",
+    "lat": 45.0,
+    "lon": 10.0,
+    "wdpa_id": 555123
+   },
+   "candidates": [
+    {
+     "id": "w1",
+     "name": "Riserva Cedro",
+     "sq": [
+      10.0,
+      45.0,
+      0.02
+     ],
+     "WDPAID": 555123
+    },
+    {
+     "id": "w2",
+     "name": "Riserva Cedro Nord",
+     "sq": [
+      10.03,
+      45.0,
+      0.01
+     ],
+     "WDPAID": 999
+    }
+   ],
+   "layer": {
+    "source": "wdpa",
+    "wdpa": true
+   },
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "w1"
+    ],
+    "flags": [
+     "wdpa_id"
+    ],
+    "private": true
+   }
+  },
+  {
+   "id": "wdpa-private-from-url",
+   "why": "POTA stores the id as a Protected Planet address on the park website.",
+   "park": {
+    "ref": "IT-T1",
+    "name": "Parco Naturale Cedro",
+    "type": "Natural Park",
+    "lat": 45.0,
+    "lon": 10.0,
+    "web": "https://www.protectedplanet.net/555123"
+   },
+   "candidates": [
+    {
+     "id": "w1",
+     "name": "Riserva Cedro",
+     "sq": [
+      10.0,
+      45.0,
+      0.02
+     ],
+     "WDPA_PID": "555123"
+    }
+   ],
+   "layer": {
+    "source": "wdpa",
+    "wdpa": true
+   },
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "w1"
+    ],
+    "private": true
+   }
+  },
+  {
+   "id": "wdpa-private-far",
+   "why": "Same WDPA id but the pin 150 km away: a person checks.",
+   "park": {
+    "ref": "IT-T1",
+    "name": "Parco Naturale Cedro",
+    "type": "Natural Park",
+    "lat": 45.0,
+    "lon": 11.9,
+    "wdpa_id": 555123
+   },
+   "candidates": [
+    {
+     "id": "w1",
+     "name": "Riserva Cedro",
+     "sq": [
+      10.0,
+      45.0,
+      0.02
+     ],
+     "WDPAID": 555123
+    }
+   ],
+   "layer": {
+    "source": "wdpa",
+    "wdpa": true
+   },
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": [],
+    "private": true
+   }
+  },
+  {
+   "id": "wdpa-private-no-id",
+   "why": "No id equality on the WDPA layer: the normal rules decide, and the result is still private.",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "wdpa_id": 1
+   },
+   "candidates": [
+    {
+     "id": "w1",
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "layer": {
+    "source": "wdpa",
+    "wdpa": true
+   },
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "w1"
+    ],
+    "private": true
+   }
+  },
+  {
+   "id": "wdpa-public-same",
+   "why": "A public record carrying the same WDPA id: a cross-check only; the name rules still decide (MATCH here), not private.",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "wdpa_id": 777
+   },
+   "candidates": [
+    {
+     "id": "p1",
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "attrs": {
+      "WDPAID": 777
+     }
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "p1"
+    ],
+    "private": false,
+    "checks": {
+     "wdpa": true
+    }
+   }
+  },
+  {
+   "id": "wdpa-public-same-no-join",
+   "why": "A public record with the same WDPA id but another kind of place: the id never joins by itself on a public layer.",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "wdpa_id": 777
+   },
+   "candidates": [
+    {
+     "id": "p1",
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "attrs": {
+      "WDPAID": 777
+     }
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": []
+   }
+  },
+  {
+   "id": "wdpa-public-differs",
+   "why": "A public record whose own WDPA id differs from POTA's: the name MATCH goes back to a person.",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "wdpa_id": 777
+   },
+   "candidates": [
+    {
+     "id": "p1",
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "WDPAID": 888
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "records": [],
+    "flags": [
+     "wdpa_differs"
+    ]
+   }
+  },
+  {
+   "id": "wdpa-public-no-field",
+   "why": "A public record with no WDPA id field: POTA's id is not used at all.",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "wdpa_id": 777
+   },
+   "candidates": [
+    {
+     "id": "p1",
+     "name": "Cedar State Park",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ]
+    }
+   ],
+   "expect": {
+    "outcome": "MATCH",
+    "records": [
+     "p1"
+    ],
+    "private": false
+   }
+  },
+  {
+   "id": "wdpa-differs-blocks-auto",
+   "why": "A different WDPA id on the public record also blocks the auto-confirm second opinion.",
+   "park": {
+    "ref": "US-T1",
+    "name": "Cedar State Park",
+    "type": "State Park",
+    "lat": 38.0,
+    "lon": -85.0,
+    "wdpa_id": 777,
+    "official_acres": 3800
+   },
+   "candidates": [
+    {
+     "id": "p1",
+     "name": "Cedar State Forest",
+     "sq": [
+      -85.0,
+      38.0,
+      0.02
+     ],
+     "WDPAID": 888
+    }
+   ],
+   "expect": {
+    "outcome": "UNCLEAR",
+    "auto_confirmed": false,
+    "flags": [
+     "wdpa_differs"
+    ]
+   }
+  }
+ ],
+ "matcher_us_names_changes": [
+  {
+   "a": "Taylorsville Lake State Park",
+   "b": "Taylorsville Lake",
+   "old": "same",
+   "new": "UNCLEAR likely yes",
+   "why": "gap 2: a bare record name never MATCHes by name alone. It MATCHes when PAD-US's designation (SP), the record's class field or the layer's declared kind says State Park."
+  }
  ]
 }
