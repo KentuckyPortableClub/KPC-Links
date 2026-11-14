@@ -16,7 +16,7 @@ official page and read date). Nothing is fetched from the internet here.
 
   python3 kpc_fers_publish.py layer|gpx|pdf|hours [--data <KPC-Data dir>] [--repo <KPC-Links dir>]
 Exit 0 always for 'nothing to do'; exit 1 (loud) when a guard refuses (a file would shrink or could not be read)."""
-import datetime as dt, json, os, pathlib, shutil, subprocess, sys, tempfile
+import datetime as dt, json, os, pathlib, re, shutil, subprocess, sys, tempfile
 
 MODES = ('off', 'preview', 'on')
 SWITCH = {'layer': 'KPC_FERS_LAYER', 'gpx': 'KPC_FERS_GPX', 'pdf': 'KPC_FERS_PDF', 'hours': 'KPC_HOURS_PUBLISH'}
@@ -66,8 +66,24 @@ def reviewed_spots(repo, data):
         elif not str(s.get('status', '')).startswith(('candidate', 'very tight')):
             say('warning', 'reviewed list', f"'{sid}' is reviewed but KPC-Data now says: {s.get('status')}; skipped")
         else:
+            why = not_public_why(s)
+            if why:   # never published, whatever the review says: the whole publish stops loudly
+                say('error', 'reviewed list', f"'{sid}': {why}; nothing was published")
+                sys.exit(1)
             got.append(s)
     return got, rev
+
+
+BLOCKED_BUILDS = ('US-42797939226',)   # = kpc_release.BLOCKED_BUILDS
+
+
+def not_public_why(s):
+    """'' when a spot may go on the public site; else why not: a club-room-only row (its outline came from records that are not
+    publishable), a park outside the US and Canada (world 2-fers stay off the public site), or a build that is never released."""
+    if s.get('club_room_only') or 'club_room_why' in s: return 'marked club_room_only (club room only, never public)'
+    if any(not re.fullmatch(r'(US|CA)-\d+', str(r)) for r in s.get('refs') or []): return 'a park outside the US and Canada (world 2-fers stay off the public site)'
+    if any(b in json.dumps(s, default=str) for b in BLOCKED_BUILDS): return 'it names a build that is never released'
+    return ''
 
 
 def ring(pts):

@@ -70,8 +70,12 @@ check("(ref in G)" in _ml and "'Missing boundary: check the official map'" in _m
 
 # 5 public docs unchanged + hashes
 import subprocess
-_d = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.claude/RULES-NOW.md', '.claude/notes/mapping.md'], cwd=HERE, capture_output=True, text=True)
-check(_d.returncode != 0 or not _d.stdout.strip(), 'the public rules docs (RULES-NOW.md, mapping.md) are not changed by this PR')
+# KPC owner, 2026-11-14: was 'RULES-NOW.md and mapping.md are not changed by this PR' (a git diff against origin/main, true only for
+# the Nov 9 PR itself). The R12 text was corrected on 2026-11-14 to match the code; what must always hold is that RULES-NOW.md is
+# still a word-for-word copy of mapping.md (rules_now.py) and that R12 still sends a point-only park to the Missing boundary list.
+_m = (HERE / '.claude/notes/mapping.md').read_text(encoding='utf-8'); _rn = (HERE / '.claude/RULES-NOW.md').read_text(encoding='utf-8').split('\n')
+check(all(l in _m for l in _rn[4:] if l.strip() and not l.startswith('## ')) and "never tested as a 2-fer" in '\n'.join(_rn) and "'Missing boundary: check the official map' list" in '\n'.join(_rn),
+      'the rules docs agree: RULES-NOW.md is word for word from mapping.md, and R12 sends a park with no outline to the Missing boundary list')
 import kpc_key_freeze as F
 sys.path.insert(0, str(HERE / '.github/scripts'))
 import kpc_preflight as PF

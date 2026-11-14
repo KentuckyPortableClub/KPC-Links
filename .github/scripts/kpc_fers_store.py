@@ -19,10 +19,21 @@ returns False. On, US + Canada runs (REGION na) only: for one process,
   - pc_tag()    -> today's pc_tag, then: every live row of the previous file that this run did not make again comes back as a
                    row (held park: 'not sure: held: <why>'; otherwise 'dropped: not found again ...'), so no live pair vanishes
                    without a row; a row is tagged club_room_only when an outline it used is not publishable.
+  - the shut door (shut_door): NO network request at all. pad_closed() (the live PAD-US closed-area read) asks nothing; an area
+    spot whose closed-area check could not run is NOT SURE ('closed areas not checked'), never confirmed. Every fetch of
+    kpc_fers.py / kpc_owned.py / the answer cache is refused before it is sent, and the process's sockets are shut;
+  - the write guard (guard_write, at kpc_fers.py's write step _save_json_raw and on the store-missing list): the run FAILS
+    (exit 89) rather than write a club_room_only row, a park whose outline came from unpublishable records, a world 2-fer or a
+    never-released build (US-42797939226) to a public file. A PRIVATE store run writes every file into KPC_FERS_PRIVATE_OUT,
+    which must be outside every git work tree (else exit 89 before anything is read): its files are club room only.
+  - store format 4 (tool 3.5): only geometry_kind 'area' records make outlines; 'line' records give line parks their line for
+    today's unchanged line rule (store_lines; trail_lines() in a store run); pins and unknown kinds are never used; water tiles
+    from the store first (store_water); the river centre-line fallback behind KPC_FERS_RIVER_NO_BANK (default unchanged);
   Kentucky and world runs: install() returns False and the bot runs AS TODAY (downloads included): nothing here refuses them.
 Settings: KPC_FERS_STORE_DIR (default 'store'), KPC_FERS_STORE_MAX_DAYS (45), KPC_FERS_STORE_KIND = public | private (default
-public: a park with any record not marked publishable is held 'needs the private store'), KPC_FERS_STORE_LIMIT_MB (3000, the
-whole process), KPC_FERS_STORE_BUDGET (2,000,000 unpacked points), KPC_FERS_STORE_NEIGHBOURS (1.5: border parks from other areas).
+public: a park with any record not marked publishable is held 'needs the private store'), KPC_FERS_PRIVATE_OUT (private only),
+KPC_FERS_STORE_LIMIT_MB (3000, the whole process), KPC_FERS_STORE_BUDGET (2,000,000 unpacked points), KPC_FERS_STORE_NEIGHBOURS
+(1.5: border parks from other areas).
 
 The store: index contract 'kpc-outline-store-index/3' (outline store tool full 3; format 1 pieces). Only that version is read;
 another is refused (the area is NOT READY). Only the per-area index-<AREA>.json is read (the combined index.json keeps one entry
@@ -47,6 +58,7 @@ import array, atexit, collections.abc, datetime, gzip, hashlib, json, math, os, 
 
 FORMAT = 1
 STORE_FORMAT_VERSION = 'kpc-outline-store-index/3'   # the outline store tool 'full 3' index contract this reader was written for
+STORE_FORMAT_VERSIONS = ('kpc-outline-store-index/3', 'kpc-outline-store-index/4')   # /4 = tool 3.5: records carry geometry_kind
 PUBLISH_BASES = ('verified-row', 'owner-confirmed')
 SCALE = 10 ** 6
 SWITCH = 'KPC_FERS_FROM_STORE'
@@ -61,6 +73,52 @@ STORE_ON = False   # set True by install() (the switch-over hook in kpc_fers.mai
 FLAGS = {}         # ref -> why the park is held
 PRIVATE = {}       # ref -> the licence classes of the records it used that are not publishable
 AREA_ROWS = {}     # area -> {'verdict', 'why', 'points', 'estimate_mb', 'limit_mb'}
+BLOCKED_BUILDS = frozenset({'US-42797939226'})   # = kpc_release.BLOCKED_BUILDS: never released, never in any file this run writes
+EXIT_LEAK = 89     # the write guard refused a file (or a private store run has no safe private folder): nothing more is written
+PRIVATE_OUT = None  # private store runs only: the one folder every file of the run goes to (outside any git work tree)
+NET_TRIES = []     # store runs: every socket connection the shut door refused (the finder must make none)
+ASKED = []         # store runs: every fetch kpc_fers.py asked for and the door refused before it was sent (never an outline)
+CLOSED_NOT_CHECKED = {'n': 0}   # store runs: area spots whose PAD-US closed-area check could not run (no download)
+PUBLIC_REF = re.compile(r'(US|CA)-\d+')
+GEOM_SKIPPED = {}  # format 4: ref -> {geometry kind: records} left out of the park's AREA outline (lines, pins, unknown kinds)
+STORE_LINES = {}   # format 4: ref -> the line entry (kpc_fers.py LN form) whose geometry came from the store
+LINE_ROWS = {}     # area -> live trail / river rows (pairs that depend on the 100-ft line rule) in this run's files
+WATER_READ = {'store': 0, 'not in store': 0, 'store tile damaged': 0}
+RIVER_SWITCH = 'KPC_FERS_RIVER_NO_BANK'   # centreline (default: today's rule, unchanged) | tiers (PROVISIONAL, the owner's Nov 14 ruling)
+RIVER_NO_BANK = {'mode': 'centreline', 'catch_m': 250.0, 'half_m': 150.0, 'along_m': 50.0}
+RIVER_TIERS = {}   # tier -> stretches / rows this run (tiers mode)
+RIVER_TODO = []    # tiers mode: river + park stretches the bank store must fetch (ids, distances, signs; no geometry)
+TIER_BANK, TIER_CENTRE = 'bank', 'park reaches the river centre line'
+TIER_ALONG, TIER_LINE = 'bank assumed from the park boundary (no official bank shape yet)', 'about 100 ft from the centre line'
+
+
+def river_mode(env=None):
+    env = os.environ if env is None else env
+    v = str(env.get(RIVER_SWITCH) or '').strip().lower()
+    for k, e in (('catch_m', 'KPC_FERS_RIVER_CATCH_M'), ('half_m', 'KPC_FERS_RIVER_HALF_M')):
+        try: RIVER_NO_BANK[k] = float(env.get(e) or RIVER_NO_BANK[k])
+        except ValueError: pass
+    return 'tiers' if v == 'tiers' else 'centreline'
+
+
+def kind_of(r):
+    """A record's geometry kind (format 4). Absent = 'area' (every format-3 record); an unknown value is NOT an area."""
+    k = r.get('geometry_kind') if isinstance(r, dict) else None
+    return 'area' if k in (None, '') else str(k)
+
+
+class NoDownload(OSError):
+    """Store run: the outline store is the only door. Raised instead of any network request (an OSError, so every existing
+    'the map did not answer' path in kpc_fers.py takes it: held / NOT SURE, never a guess)."""
+
+
+class LeakRefused(SystemExit):
+    """The write guard refused a file. A SystemExit (not an Exception) so no 'except Exception' in kpc_fers.py can swallow it:
+    the run fails rather than write a club-room-only row, a private park, a world 2-fer or a blocked build to a public file."""
+    def __init__(self, why):
+        print(f'::error title=2-fer outline store: write refused::{why}. Nothing more is written; the area keeps its previous files.', flush=True)
+        super().__init__(EXIT_LEAK)
+        self.why = why
 
 
 def mode(env=None):
@@ -138,10 +196,12 @@ class AreaStore:
         try: idx = json.loads(p.read_text(encoding='utf-8'))
         except Exception as e: raise StoreError(f'index {p.name} cannot be read ({_err(e)})')  # noqa: BLE001
         if not isinstance(idx, dict) or not isinstance(idx.get('parks'), dict): raise StoreError(f'index {p.name} is not a store index')
-        if idx.get('store_format_version') != STORE_FORMAT_VERSION:
-            raise StoreError(f'store format version {idx.get("store_format_version")!r}; this reader reads {STORE_FORMAT_VERSION!r} only')
+        if idx.get('store_format_version') not in STORE_FORMAT_VERSIONS:
+            raise StoreError(f'store format version {idx.get("store_format_version")!r}; this reader reads {" and ".join(map(repr, STORE_FORMAT_VERSIONS))} only')
         if str(idx.get('format')) != str(FORMAT): raise StoreError(f'store format {idx.get("format")!r}; this reader reads {FORMAT}')
         if idx.get('area') not in (None, area): raise StoreError(f'index-{area}.json says it is area {idx.get("area")!r}')
+        hit = sorted(b for b in BLOCKED_BUILDS if any(b in str(v) for k, v in idx.items() if k not in ('parks', 'files')))
+        if hit: raise StoreError(f'the index names build {hit[0]}, which is never released')
         self.dir, self.area, self.idx = d, area, idx
         allp = idx['parks']
         mine = {r: e for r, e in allp.items() if isinstance(e, dict) and str(e.get('file') or '').startswith(area + '.')}
@@ -194,6 +254,10 @@ class AreaStore:
                 rs = enc_rings(r, p)
                 if geometry_sha256(rs) != r.get('sha256'): raise StoreError(f"record {r.get('key')} checksum does not match")
                 if sum(len(x) // 2 for x in rs) != int(r.get('points') or 0): raise StoreError(f"record {r.get('key')} point count does not match")
+                if kind_of(r) == 'line':   # format 4: an open path, checked like a ring (never closed, never buffered here)
+                    ls = r.get('lines') or []
+                    if geometry_sha256(ls) != r.get('line_sha256') or sum(len(x) // 2 for x in ls) != int(r.get('line_points') or 0):
+                        raise StoreError(f"record {r.get('key')} line checksum or point count does not match")
             fp = hashlib.sha256('|'.join(str(r.get('sha256')) for r in p.get('records') or []).encode()).hexdigest()
             if e.get('fp') and fp != e['fp']: raise StoreError('park fingerprint differs from the index')
             return p
@@ -262,13 +326,16 @@ class Store:
                 if isinstance(m, dict) and any(m.get(k) != r.get(k) for k in ('publishable', 'licence_class', 'publish_basis', 'wdpa_derived')):
                     return None, [], f'record {r.get("key")} of {ref}: the index and the store disagree on its licence fields', {}
                 by.setdefault(str(r.get('key')), (r, p))
-        groups, left, private, pts, box = [], [], {}, 0, None
+        groups, left, private, pts, box, skipped = [], [], {}, 0, None, {}
         for rid in ids:
             r, p = by.get(str(rid), (None, None))
             if r is None: return None, [], f'the outline store has no record {rid} for {ref} (the key joins it)', {}
             if r.get('wdpa_derived') is not False:   # the store's own flag first (true, or not stated): never a 2-fer source
                 return None, [], f'record {rid} of {ref} is marked WDPA derived by the store (or does not say): never a 2-fer source', {}
             if wdpa_text(r): return None, [], f'record {rid} of {ref} looks WDPA / Protected Planet derived: never a 2-fer source', {}
+            k = kind_of(r)
+            if k != 'area':   # format 4: only AREA records are outlines. A line is tested by the line rule (store_lines), a pin never
+                skipped[k] = skipped.get(k, 0) + 1; continue
             if r.get('use') is False:
                 left.append(f"{r.get('record_name') or rid}: {r.get('use_why') or 'not public land (store use flag)'}"); continue
             if not (r.get('publishable') is True and r.get('publish_basis') in PUBLISH_BASES):
@@ -284,10 +351,13 @@ class Store:
                 box = b if box is None else (min(box[0], b[0]), min(box[1], b[1]), max(box[2], b[2]), max(box[3], b[3]))
                 pts += len(x)
             if keep: groups.append(rs)
-        if box is None: return None, left, (f'every record of {ref} is left out by its use flag' if left else f'{ref} has no rings in the store'), {}
+        if box is None:
+            if skipped: return None, left, (f'{ref} has no area record in the outline store (' + ', '.join(f'{v} {k}' for k, v in sorted(skipped.items()))
+                                             + '): a line is tested by the line rule, a pin is never a boundary'), {'skipped': skipped, 'no_area': True}
+            return None, left, (f'every record of {ref} is left out by its use flag' if left else f'{ref} has no rings in the store'), {}
         if private and self.kind == 'public':
             return None, left, f'{ref} needs the private store (records not publishable: ' + ', '.join(f"{k} {v['licence_class']}" for k, v in sorted(private.items())[:4]) + ')', {}
-        return (groups if keep else None), left, '', {'points': pts, 'box': box, 'private': private}
+        return (groups if keep else None), left, '', {'points': pts, 'box': box, 'private': private, 'skipped': skipped}
 
     def groups_for(self, ref, area, ids, clip=None):
         g, left, why, _ = self.examine(ref, area, ids, clip, keep=True)
@@ -437,6 +507,16 @@ def tag_club_room(doc, private):
     return n
 
 
+def closed_status(doc):
+    """Store run: an area spot whose closed-area check could not run is NOT SURE with that reason (land_check said 'not checked',
+    which kpc_fers.py words as a water reason)."""
+    n = 0
+    for s in (doc or {}).get('spots') or []:
+        if s.get('closed_check') and str(s.get('status') or '').startswith('not sure: water not checked'):
+            s['status'] = 'not sure: closed areas not checked (' + s['closed_check'][len('not checked: '):] + '): the store must carry them first'; n += 1
+    return n
+
+
 def join_review(row, flags, joined):
     """The matcher-flag rule (a proposal for the owner; not wired): a row with a park whose join the matcher doubts
     ('bigger-park-record' / 'bigger_place') is KEPT and tagged 'join under review' with the reason; it is HELD only when the two
@@ -491,6 +571,9 @@ def store_download(KF, store, parks, refs, budget=2_000_000):
         clips[ref] = (lambda rid, rs, _r=ref: KF.clip(_r, rid, rs))
         _, left, why, info = store.examine(ref, p['st'], ids, clips[ref], keep=False)
         if left: KF.LEFT.setdefault(ref, []).extend(left)
+        if info.get('skipped'): GEOM_SKIPPED[ref] = dict(info['skipped'])
+        if why and info.get('no_area') and ref in STORE_LINES:   # a line park: tested by its store line (LN), not held
+            FLAGS.pop(ref, None); continue
         if why:
             bad.add(ref); FLAGS[ref] = why
             KF.MISSING_SAVED[ref] = f'the outline store ({why}; flagged for the store filler)'
@@ -510,6 +593,295 @@ def store_download(KF, store, parks, refs, budget=2_000_000):
     return got, bad
 
 
+# ------------------------------------------------------------------ the write guard: club room only never reaches a public file
+def _inside(p, root):
+    try: pathlib.Path(p).resolve().relative_to(pathlib.Path(root).resolve()); return True
+    except ValueError: return False
+
+
+def in_git_tree(p):
+    """True when p (or a folder above it) is a git work tree: a file there could be committed and pushed to a public repo."""
+    p = pathlib.Path(p).resolve()
+    return any((q / '.git').exists() for q in (p, *p.parents))
+
+
+def _dicts(obj, depth=0):
+    if depth > 14: return
+    if isinstance(obj, dict):
+        yield obj
+        for v in obj.values(): yield from _dicts(v, depth + 1)
+    elif isinstance(obj, (list, tuple)):
+        for v in obj: yield from _dicts(v, depth + 1)
+
+
+def guard_write(path, doc, private=None):
+    """THE WRITE STEP of a store run: every file kpc_fers.py saves (spot files, reuse, report, looked, missing, same-outline ...)
+    and the store-missing list pass here first. Raises LeakRefused (the run fails, nothing is written) when the file
+      - names a build that is never released (BLOCKED_BUILDS), in any file;
+      - is outside the private folder, on a private store run (every file of such a run is club room only);
+      - is a public file and holds a row marked club_room_only, a 2-fer row with a park that is not US / Canada (world 2-fers
+        stay off the public site), or ANY mention of a park whose outline came from records that are not publishable (with
+        or without its shape, width, centre or area)."""
+    private = PRIVATE if private is None else private
+    txt = json.dumps(doc, default=str, ensure_ascii=False)
+    hit = sorted(b for b in BLOCKED_BUILDS if b in txt)
+    if hit: raise LeakRefused(f'{path}: it names {hit[0]}, which is never released')
+    if PRIVATE_OUT is not None:
+        if not _inside(path, PRIVATE_OUT): raise LeakRefused(f'{path}: a private store run writes only into its private folder')
+        return
+    for d in _dicts(doc):
+        if d.get('club_room_only') or 'club_room_why' in d:
+            raise LeakRefused(f"{path}: a row marked club_room_only ({'+'.join(map(str, d.get('refs') or [])) or '?'}) would go into a public file")
+        refs = d.get('refs')
+        if isinstance(refs, list) and d.get('kind') is not None and any(not PUBLIC_REF.fullmatch(str(r)) for r in refs):
+            raise LeakRefused(f"{path}: a 2-fer row with a park outside the US and Canada ({'+'.join(map(str, refs))}) would go into a public file")
+    for r in sorted(private):
+        if re.search(r'(?<![\w-])' + re.escape(str(r)) + r'(?!\d)', txt):
+            raise LeakRefused(f'{path}: it names {r}, whose outline came from records that are not publishable')
+
+
+# ------------------------------------------------------------------ the shut door: a store run makes no network request at all
+def _refuse_fetch(url='', *a, **k):
+    ASKED.append(str(url)[:120])
+    raise NoDownload(f'store run: no download of {str(url)[:60] or "anything"} (the outline store is the only door)')
+
+
+def _refuse_socket(*a, **k):
+    NET_TRIES.append(str(a[1:2] or a[:1])[:120])
+    raise NoDownload('store run: no network connection (the outline store is the only door)')
+
+
+CLOSED_WHY = ('PAD-US closed areas are not in the outline store and a store run downloads nothing, so rule 10 (no-entry areas) '
+              'could not be checked here')
+
+
+def shut_door(KF):
+    """Store run: (1) pad_closed() asks nothing (it was a live PAD-US read inside the decide step); an area spot whose closed-area
+    check could not run is 'not checked' -> NOT SURE, never confirmed; (2) every fetch kpc_fers.py, kpc_owned.py and the answer
+    cache can make is refused before it is sent (live water, ownership tiles, trail status, layer dates, bundle answers); (3) the
+    sockets of this process are shut as the last line. A refused fetch is listed in ASKED, a refused socket in NET_TRIES."""
+    import socket
+    def _no_closed(box):
+        raise NoDownload('PAD-US closed areas are not in the outline store (no download)')
+    KF.pad_closed = _no_closed
+    orig_lc = getattr(KF, 'land_check', None)
+    if orig_lc is not None and not getattr(orig_lc, '_store', False):
+        def land_check(s, G, live=True):
+            asked = []
+            def no_closed(box): asked.append(1); raise NoDownload('PAD-US closed areas are not in the outline store (no download)')
+            KF.pad_closed = no_closed
+            try: r = orig_lc(s, G, live=live)
+            finally: KF.pad_closed = _no_closed
+            if asked:   # the overlap needed the closed-area check and it could not run: never confirmed
+                CLOSED_NOT_CHECKED['n'] += 1
+                s['closed_check'] = 'not checked: ' + CLOSED_WHY + ('; the water was not checked either' if r == 'not checked' else '')
+                return 'not checked'
+            return r
+        land_check._store = True
+        KF.land_check = land_check
+    for mod in (KF, getattr(KF, 'KO', None)):
+        if mod is not None and hasattr(mod, '_get'): mod._get = _refuse_fetch
+    if hasattr(KF, '_wlive'): KF._wlive = lambda i, jt, *a, **k: _refuse_fetch(f'USGS water tile {i},{jt} (live)')
+    for name in ('_wsave', 'live_save'):
+        if hasattr(KF, name): setattr(KF, name, lambda *a, **k: None)
+    hc = getattr(KF, 'HC', None)
+    if hc is not None:
+        hc.OFFLINE = True
+        hc.cached = lambda url, params, fetch: _refuse_fetch(url)
+    socket.socket.connect = lambda self, *a, **k: _refuse_socket(self, *a)
+    socket.socket.connect_ex = lambda self, *a, **k: _refuse_socket(self, *a)
+    socket.create_connection = _refuse_socket
+    socket.getaddrinfo = _refuse_socket
+    raw = getattr(KF, '_save_json_raw', None)
+    if raw is not None and not getattr(raw, '_store', False):
+        def guarded(p, d, *a, **k):
+            if isinstance(d, dict) and pathlib.Path(p).name.startswith('report') and STORE_ON: d = dict(d, outline_store=store_counts())
+            guard_write(p, d); out = raw(p, d, *a, **k)
+            ks = sys.modules.get('kpc_save')   # its exit-time status file (data/status/<bot>.json) must not list private files
+            if PRIVATE_OUT is not None and ks is not None and isinstance(getattr(ks, '_changed', None), dict): ks._changed.pop(str(pathlib.Path(p)), None); ks._changed.pop(str(p), None)
+            return out
+        guarded._store = True
+        KF._save_json_raw = guarded
+
+
+# ------------------------------------------------------------------ format 4: lines (trails, rivers) and water tiles from the store
+def store_lines(KF, st, areas, base):
+    """kpc_fers.trail_lines() in a store run. base = today's lines from data/trails ({ref: {'lines', 'kind', 'by', 'type',
+    'water_parts'}}). The line GEOMETRY now comes from the store's line records; what the line rule needs to know about the
+    park (trail or river, who drew it, NHT type, which pieces are water) still comes from data/trails as today, so the rule and
+    its widths are unchanged (100 ft: 25.48 m from a centre line with the station 5 m inside the other park, 30.48 m from a
+    river's bank; a 25 m stretch). A line park whose line is not in the store is HELD (one door in); a line park the store has
+    and data/trails does not is added (kind from its record). Line records of a park that also has area records are not used:
+    the park is tested as an area, as today."""
+    out, seen = {}, set()
+    names = sorted({a for a in areas} | {pp.name[6:-5] for pp in pathlib.Path(st.dir).glob('index-*.json')})
+    cand = {}
+    for ar in areas:
+        a = st.area(ar)
+        for ref, e in ((a.entries.items()) if a is not None else ()):
+            if e.get('geometry_kind') == 'line': cand.setdefault(ref, ar)
+    for ref in base: cand.setdefault(ref, (areas or names or [''])[0])
+    for ref, ar in sorted(cand.items()):
+        stores, why = st.locate_all(ref, ar)
+        rec, park, bad = [], None, ''
+        for a in stores:
+            try: pk = a.park(ref)
+            except StoreError as e: bad = f'{ref} in the outline store ({a.area}) failed its check ({str(e)[:100]})'; break
+            if pk is None: continue
+            park = park or pk
+            if wdpa_text(pk): bad = f'{ref}: the store park looks WDPA / Protected Planet derived: never a 2-fer source'; break
+            if any(kind_of(r) == 'area' and r.get('use') is not False for r in pk.get('records') or []): rec = None; break   # an area park: tested as an area
+            for r in pk.get('records') or []:
+                if kind_of(r) != 'line' or r.get('use') is False: continue
+                if r.get('wdpa_derived') is not False or wdpa_text(r): bad = f'line record {r.get("key")} of {ref} is WDPA derived (or does not say): never a 2-fer source'; break
+                rec.append(r)
+            if bad: break
+        if rec is None: continue
+        if not bad and not rec: bad = (why or f'{ref}: its official line is not in the outline store') if ref in base else ''
+        if not bad and rec:
+            priv = {str(r.get('key')): {'licence_class': str(r.get('licence_class') or 'NOT RECORDED'), 'publish_basis': str(r.get('publish_basis') or 'none'),
+                                        'private_reason': str(r.get('private_reason') or '')} for r in rec if not (r.get('publishable') is True and r.get('publish_basis') in PUBLISH_BASES)}
+            if priv and st.kind == 'public': bad = f'{ref} needs the private store (line records not publishable: ' + ', '.join(f"{k} {v['licence_class']}" for k, v in sorted(priv.items())[:4]) + ')'
+            elif priv: PRIVATE[ref] = priv
+        if bad:
+            FLAGS[ref] = bad; KF.LOG.append(f'outline store line: {bad[:120]}'); continue
+        if not rec: continue
+        ls = [ring_floats(e) for r in rec for e in (r.get('lines') or [])]
+        ls = [x for x in ls if len(x) > 1]
+        if not ls:
+            if ref in base: FLAGS[ref] = f'{ref}: its line records in the outline store have no usable path'
+            continue
+        meta = base.get(ref) or {}
+        txt = ' '.join(str(r.get(k) or '') for r in rec for k in ('record_name', 'boundary_kind', 'layer')) + ' ' + str((park or {}).get('name') or '')
+        e = {'lines': ls, 'kind': meta.get('kind') or ('river' if re.search(r'river', txt, re.I) else 'trail'),
+             'by': meta.get('by') or '; '.join(sorted({str(r.get('credit_line') or '') for r in rec} - {''})) or 'outline store',
+             'type': meta.get('type') or str(rec[0].get('boundary_kind') or ''), 'date': min(str(r.get('date') or (park or {}).get('date') or '') for r in rec) or st.today,
+             'from': 'outline store', **({'bank_missing': True} if any(r.get('bank_missing') is True for r in rec) else {}),   # kept for the reader; the tiers test the water itself
+             **({'boundary_rule': str(rec[0].get('boundary_rule'))} if rec[0].get('boundary_rule') else {})}
+        if meta.get('water_parts'):
+            if len(meta['lines']) == len(ls): e['water_parts'] = meta['water_parts']
+            else: KF.LOG.append(f'{ref}: the store line has {len(ls)} pieces, data/trails {len(meta["lines"])}: its water / land split is not carried (bank test only, not sure)')
+        out[ref] = e; STORE_LINES[ref] = e; FLAGS.pop(ref, None); seen.add(ref)
+    return out
+
+
+def store_counts():
+    """What the run report and the store-missing list say about format-4 records (counts and ids only, no geometry)."""
+    tot = {}
+    for v in GEOM_SKIPPED.values():
+        for k, n in v.items(): tot[k] = tot.get(k, 0) + n
+    return {'records left out of area outlines (not area)': dict(sorted(tot.items())), 'parks with records left out': len(GEOM_SKIPPED),
+            'line parks read from the store': len(STORE_LINES), 'live pairs on the 100-ft line rule': dict(sorted(LINE_ROWS.items())),
+            'water tiles': dict(WATER_READ), 'river rule with no bank data': dict(RIVER_NO_BANK), 'river tiers': dict(RIVER_TIERS),
+            'river bank to-do (stretches)': len(RIVER_TODO)}
+
+
+def river_bank_guard(KF, mode):
+    """The river rule where there is NO bank data, behind ONE switch (KPC_FERS_RIVER_NO_BANK). Today (kpc_fers.line_spots) a
+    US river stretch is measured 30.48 m from the BANK where a water area covers the line, and 25.48 m from the CENTRE LINE (100 ft
+    less the 5 m station) where none does; Canada always from the centre line (no bank source wired).
+    'centreline' (the default) = exactly today. 'tiers' = PROVISIONAL (the owner's Nov 14 ruling, store runs, US rivers only):
+      1 bank: every point of the stretch lies in mapped water: today's bank test (solid);
+      2 park reaches the river centre line: the other park's outline holds a centre-line point: certain whatever the width (counts);
+      3 bank assumed from the park boundary / 4 about 100 ft from the centre line: no bank data and the park lies within the catch
+        distance (KPC_FERS_RIVER_CATCH_M, 250 m) of the centre line: a CANDIDATE, never a 2-fer ('river candidate: needs bank
+        shape', with the distance and the signs: 3 = a park edge runs along the river within KPC_FERS_RIVER_HALF_M, 150 m, for 50 m),
+        and the stretch goes on the bank store's to-do list. A private strip between bank and park does not matter: only whether
+        the 30.48 m-from-bank strip reaches the park, which needs the bank shape.
+    Trails, Canada and pass 1 are untouched. Each row says which tier decided it (river_tier)."""
+    RIVER_NO_BANK['mode'] = mode
+    orig = getattr(KF, 'line_spots', None)
+    if mode != 'tiers' or orig is None or getattr(orig, '_store', False): return
+    def line_spots(lref, ls, oref, other, other_is_line, box, kind):
+        got = orig(lref, ls, oref, other, other_is_line, box, kind)
+        if kind != 'river' or other_is_line or not str(lref).startswith('US-') or int(getattr(KF, 'PASS', 3)) < 2: return got
+        return river_tiers(KF, lref, ls, oref, other, box, got)
+    line_spots._store = True
+    KF.line_spots = line_spots
+
+
+def _tier(t): RIVER_TIERS[t] = RIVER_TIERS.get(t, 0) + 1
+
+
+def river_tiers(KF, lref, ls, oref, other, box, got):
+    np = KF.np
+    catch, half, along = RIVER_NO_BANK['catch_m'], RIVER_NO_BANK['half_m'], RIVER_NO_BANK['along_m']
+    cell = float(KF.CELL)
+    ob = KF.bbox_groups(other)
+    if not ob: return got
+    m = catch / 111000.0
+    pts = [tuple(q[:2]) for l in ls for q in (KF.sample(l, cell) or l) if ob[0] - 2 * m <= q[0] <= ob[2] + 2 * m and ob[1] - 2 * m <= q[1] <= ob[3] + 2 * m]
+    if not pts: return got
+    xs, ys = [q[0] for q in pts], [q[1] for q in pts]
+    F = KF.Frame([min(xs), min(ys), max(xs), max(ys)], cell, catch + 2 * cell)
+    park = F.area(other)
+    dpark = np.minimum(KF.dt(1 - park, outside=1), 1e7) * cell        # metres from each pixel to the park (0 inside it)
+    wg = KF.nhd_water(F.bounds(), rivers_only=True)
+    wet = F.area(wg) if wg else np.zeros_like(park)
+    P = F.px(pts).astype(int); P[:, 0] = P[:, 0].clip(0, F.W - 1); P[:, 1] = P[:, 1].clip(0, F.H - 1)
+    dd, ww = dpark[P[:, 1], P[:, 0]], wet[P[:, 1], P[:, 0]] > 0
+    dry = ~ww                                                     # no bank data at these centre-line points
+    for x in got:
+        sp = x.get('shape') or []
+        if sp:
+            Q = F.px(sp).astype(int); Q[:, 0] = Q[:, 0].clip(0, F.W - 1); Q[:, 1] = Q[:, 1].clip(0, F.H - 1)
+            inw, inp = wet[Q[:, 1], Q[:, 0]] > 0, park[Q[:, 1], Q[:, 0]] > 0
+        else: inw = inp = np.zeros(1, bool)
+        x['river_tier'] = TIER_BANK if inw.all() else TIER_CENTRE if inp.any() else TIER_LINE
+        _tier(x['river_tier'])
+    if any(x['river_tier'] in (TIER_BANK, TIER_CENTRE) for x in got) or not dry.any(): return got
+    dmin = float(dd[dry].min())
+    if dmin > catch: return got
+    run, best, prev = 0.0, 0.0, None   # sign of tier 3: a park edge along the river (within half_m of the centre line for along_m)
+    for i, q in enumerate(pts):
+        ok = dry[i] and dd[i] <= half
+        if ok and prev is not None: run += KF.close_m(prev, q)
+        elif not ok: run = 0.0
+        prev = q if ok else None; best = max(best, run)
+    signs = (['park reaches the river centre line'] if dmin == 0 else []) + ([f'a park edge runs along the river for {round(best)} m within {round(half)} m of the centre line'] if best >= along else [])
+    tier = TIER_ALONG if best >= along else TIER_LINE
+    k = int(np.argmin(np.where(dry, dd, 1e9)))
+    near = [pts[i] for i in range(len(pts)) if dry[i] and dd[i] <= dmin + cell][:200] or [pts[k]]
+    row = {'refs': sorted([lref, oref]), 'kind': 'river', 'center': [round(pts[k][1], 6), round(pts[k][0], 6)], 'len_m': 0,
+           'shape': [[round(q[0], 6), round(q[1], 6)] for q in (near if len(near) > 1 else near * 2)], 'river_tier': tier,
+           'river_candidate': {'centre_line_m': round(dmin), 'signs': signs, 'catch_m': catch}}
+    for x in got: x['river_tier'] = tier
+    _tier(tier)
+    RIVER_TODO.append({'refs': row['refs'], 'river': lref, 'park': oref, 'centre_line_m': round(dmin), 'signs': signs, 'tier': tier,
+                       'box': [round(min(q[0] for q in near), 4), round(min(q[1] for q in near), 4), round(max(q[0] for q in near), 4), round(max(q[1] for q in near), 4)]})
+    return got if got else [row]
+
+
+def bank_status(doc):
+    """tiers mode: a live river row decided by tier 3 or 4 is a CANDIDATE, never a 2-fer, until a bank shape exists."""
+    n = 0
+    for s in (doc or {}).get('spots') or []:
+        if s.get('river_tier') in (TIER_ALONG, TIER_LINE) and not str(s.get('status') or '').startswith(('dropped', 'merged')):
+            c = s.get('river_candidate') or {}
+            s['status'] = ('river candidate: needs bank shape (' + s['river_tier'] + (f"; {c['centre_line_m']} m from the centre line" if 'centre_line_m' in c else '')
+                           + (('; ' + '; '.join(c['signs'])) if c.get('signs') else '') + ')')
+            s.pop('list', None); n += 1
+    return n
+
+
+def store_water(st, areas, i, jt):
+    """A 0.1-degree water tile from the store's water section (store/water/<AREA>/<i>_<jt>.json.gz, the SAME tile form as the
+    bot's WATER_STORE: {'d': date, 'f': [[layer, rings], ...]}), or None. The run's areas first, then every other area folder."""
+    root = pathlib.Path(st.dir) / 'water'
+    if not root.is_dir(): return None
+    dirs = [root / a for a in areas] + sorted(d for d in root.iterdir() if d.is_dir() and d.name not in areas)
+    for d in dirs:
+        f = d / f'{i}_{jt}.json.gz'
+        if not f.is_file(): continue
+        try:
+            t = json.loads(gzip.decompress(f.read_bytes()))
+            if isinstance(t, dict) and isinstance(t.get('f'), list) and t.get('d'): WATER_READ['store'] += 1; return t
+        except Exception: pass  # noqa: BLE001
+        WATER_READ['store tile damaged'] += 1   # a damaged tile is never 'no water': the next copy, else NOT SURE
+    WATER_READ['not in store'] += 1
+    return None
+
+
 def install(KF, env=None, store=None):
     """Switch the imported kpc_fers module to the store for this process. False (nothing changed; the bot runs as today) when
     the switch is off or the run is not US + Canada. Exits 87 / 88 (after writing the area rows) when an area is not ready or
@@ -520,17 +892,35 @@ def install(KF, env=None, store=None):
     if getattr(KF, 'REGION', 'na') != 'na':
         print(f'::notice title=2-fer outline store::{SWITCH} is on, but this is the {KF.REGION} run: the outline store is not used and the bot runs as today', flush=True)
         return False
+    global PRIVATE_OUT
     st = store or Store.from_env(env)
+    if st.kind == 'private':
+        # a private store holds records that are not publishable: every file of the run is club room only, so it goes to ONE
+        # folder outside every git work tree (never the KPC-Data checkout); without one the run does not start
+        po = str(env.get('KPC_FERS_PRIVATE_OUT') or '').strip()
+        why = ('KPC_FERS_PRIVATE_OUT is not set' if not po else
+               'KPC_FERS_PRIVATE_OUT is inside a git work tree' if in_git_tree(po) else
+               'KPC_FERS_PRIVATE_OUT overlaps the working folder' if _inside(po, os.getcwd()) or _inside(os.getcwd(), po) else '')
+        if why:
+            print(f'::error title=2-fer outline store::private store run refused: {why}. A private store run writes only into a '
+                  'private folder outside every git work tree (club room only); nothing was read or saved.', flush=True)
+            raise SystemExit(EXIT_LEAK)
+        PRIVATE_OUT = pathlib.Path(po).resolve(); PRIVATE_OUT.mkdir(parents=True, exist_ok=True)
+        KF.OUT = PRIVATE_OUT
     out_dir = pathlib.Path(getattr(KF, 'OUT', 'data/fers')).resolve()
     tag = getattr(KF, 'area_name', lambda: 'run')()
 
     def write_rows():
+        doc = {'about': 'Outline store use by the 2-fer bot: one row per area (ready / not ready / will not fit) and every held park with its reason. One door in: only the store filler fetches.',
+               'date': st.today, 'store': str(st.dir), 'kind': st.kind, 'areas': dict(sorted(AREA_ROWS.items())), 'parks': dict(sorted(FLAGS.items())),
+               **store_counts()}
+        if st.kind == 'private': doc['private_records'] = dict(sorted(PRIVATE.items()))
+        if RIVER_TODO: doc['river_bank_todo'] = RIVER_TODO   # the stretches the bank store must fetch (tiers mode)
+        p = out_dir / f'store-missing-{tag}.json'
+        guard_write(p, doc)
         try:
             out_dir.mkdir(parents=True, exist_ok=True)
-            (out_dir / f'store-missing-{tag}.json').write_text(json.dumps({
-                'about': 'Outline store use by the 2-fer bot: one row per area (ready / not ready / will not fit) and every held park with its reason. One door in: only the store filler fetches.',
-                'date': st.today, 'store': str(st.dir), 'kind': st.kind, 'areas': dict(sorted(AREA_ROWS.items())), 'parks': dict(sorted(FLAGS.items())),
-                'club_room_only': dict(sorted(PRIVATE.items()))}, indent=1, ensure_ascii=False), encoding='utf-8')
+            p.write_text(json.dumps(doc, indent=1, ensure_ascii=False), encoding='utf-8')
         except OSError: pass
     areas = sorted(a for a in (getattr(KF, 'ONLY', None) or ()) if re.fullmatch(r'(US|CA)-[A-Z]{2}', a))
     lazy = bool(getattr(KF, 'FERS_LAZY_OK', False))   # set by the switch-over in kpc_fers.py once every pass keeps G lazy
@@ -567,12 +957,24 @@ def install(KF, env=None, store=None):
                 n = carry_rows(d, old, FLAGS, st.today)
                 if n: KF.LOG.append(f"{d['st']}: {n} live rows of the last file carried with their reason (held park or not found again)")
                 tag_club_room(d, PRIVATE)
-        except Exception as e: KF.LOG.append(f'outline store row carry: {str(e)[:80]}')  # noqa: BLE001
+                closed_status(d)
+                if RIVER_NO_BANK['mode'] == 'tiers': bank_status(d)
+                LINE_ROWS[d['st']] = sum(1 for x in d.get('spots') or [] if x.get('kind') in ('trail', 'river') and _live(x))
+        except Exception as e: KF.LOG.append(f'outline store row carry: {str(e)[:80]}')  # noqa: BLE001  (the write guard still checks the file)
         return d
 
+    shut_door(KF)
+    river_bank_guard(KF, river_mode(env))
+    orig_lines, orig_wload = getattr(KF, 'trail_lines', None), getattr(KF, '_wload', None)
+    if orig_lines is not None: KF.trail_lines = lambda: store_lines(KF, st, areas, orig_lines())
+    if orig_wload is not None:   # the store's water tile first; else the bot's own last good copy (WATER_STORE) as today; else None = NOT SURE
+        KF._wload = lambda i, jt: store_water(st, areas, i, jt) or orig_wload(i, jt)
     KF.download, KF.saved_us, KF.saved_ca, KF.live_load, KF.pc_tag = download, (lambda parks: saved_corridors(KF)), saved_ca, live_load, pc_tag
     KF.STORE = st; STORE_ON = True
-    atexit.register(write_rows)   # written on every run, so an old list never outlives a filled gap
+    def rows_at_exit():
+        try: write_rows()
+        except LeakRefused: sys.stdout.flush(); sys.stderr.flush(); os._exit(EXIT_LEAK)   # at exit too: the run fails, nothing written
+    atexit.register(rows_at_exit)   # written on every run, so an old list never outlives a filled gap
     print(f"::notice title=2-fer outline store::{SWITCH}=on: outlines from {st.dir} ({st.kind} store); no boundary downloads; memory gate "
           + ', '.join(f"{a} {r.get('estimate_mb')} MB" for a, r in sorted(rows.items())) + ('' if lazy else ' (outlines all unpacked until the bot keeps them lazy)'), flush=True)
     return True
