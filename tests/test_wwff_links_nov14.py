@@ -40,7 +40,7 @@ def wj(p, v):
 
 
 def rows_of(pre):
-    return {r[0]: r for r in json.load(open(WL.XREF[pre]))['rows']}
+    return {r[0]: r for r in WL.read_xref(pre)['rows']}
 
 
 def quiet(f, *a, **k):
@@ -106,6 +106,24 @@ SRC = {'repo_baseline': {r[1]: r[7] for r in WWFF_ROWS if r[7]},
                                          ['VEFF-0004', 'CA-0004'], ['VEFF-0004', 'CA-0005']]},
        'community_kff_2018': {'direct_from': 1, 'direct_to': 7, 'direct_except': [], 'pairs': []},
        'hand': [{'wwff': 'KFF-7003', 'pota': 'US-0003', 'decided_by': 'KPC owner', 'date': '2026-11-14', 'why': 'test'}]}
+# the KFF 2025 list (the main US community list)
+WWFF_ROWS += [['WWFF', 'KFF-0008', 'Oscar Bend', 39.2, -92.2, 'https://wwff.co/directory/', None, 'US-0099'],     # site US-0099; 2025 + 2018 say US-0008
+              ['WWFF', 'KFF-7010', 'Papa Pond', 39.3, -92.3, 'https://wwff.co/directory/', None, 'US-0099'],      # site US-0099; 2025 alone says US-7010
+              ['WWFF', 'KFF-7011', 'Quebec Hill', 39.4, -92.4, 'https://wwff.co/directory/', None, 'US-7011'],    # 2025: not in POTA
+              ['WWFF', 'KFF-0009', 'Romeo Unit', 39.5, -92.5, 'https://wwff.co/directory/', None, ''],            # 2025: US-0009 + US-7012 (primary = same number)
+              ['WWFF', 'KFF-7013', 'Sierra Group', 39.6, -92.6, 'https://wwff.co/directory/', None, ''],          # 2025: two parks, no primary
+              ['WWFF', 'KFF-0010', 'Tango Flat', 39.7, -92.7, 'https://wwff.co/directory/', None, '']]            # 2018 US-0010, 2025 US-7016
+POTA_US += [['POTA', r, n, la, -92.0, 'u'] for r, n, la in (('US-0008', 'Ninth Hill', 39.0), ('US-7010', 'Tenth Hill', 39.0), ('US-7011', 'Quebec Hill Park', 39.4),
+            ('US-0009', 'Romeo Unit Park', 39.5), ('US-7012', 'Romeo Annex', 39.5), ('US-7014', 'Sierra One', 39.6), ('US-7015', 'Sierra Two', 39.6),
+            ('US-0010', 'Uniform', 39.7), ('US-7016', 'Victor', 39.7))]
+KFF += [[r[1], r[2], r[3], r[4], '', 'K-MO', 'K-MO'] for r in WWFF_ROWS[-6:]]
+wj('locations.json', POTA_US + WWFF_ROWS); wj('data/wwff/KFF.json', KFF)
+mo = json.load(open('data/parkinfo/US-MO.json')); mo['parks'].update({r: park(r, '', 0, 0) for r in ('US-0008', 'US-7010', 'US-7011', 'US-0009', 'US-7012', 'US-7014', 'US-7015', 'US-0010', 'US-7016')})
+wj('data/parkinfo/US-MO.json', mo)
+SRC['repo_baseline'] = {r[1]: r[7] for r in WWFF_ROWS if r[7]}
+SRC['community_kff_2018']['direct_to'] = 10
+SRC['community_kff_2025'] = {'pairs': [['KFF-0008', 'US-0008'], ['KFF-7010', 'US-7010'], ['KFF-0009', 'US-7012'], ['KFF-0009', 'US-0009'],
+                                       ['KFF-7013', 'US-7014'], ['KFF-7013', 'US-7015'], ['KFF-0010', 'US-7016']], 'not_in_pota': ['KFF-7011'], 'deleted': []}
 wj(WL.SOURCES, SRC)
 
 r, out = quiet(WL.main, ['build', '--date', '2026-11-14'])
@@ -125,6 +143,12 @@ check(st(K, 'KFF-0007') == ('conflict', 'US-0007|US-7008'), 'owner rule: another
 check(st(K, 'KFF-7002') == ('proposed', 'US-0002') and K['KFF-7002'][4] == 'repo', 'repo only: proposed')
 check(st(K, 'KFF-7003') == ('confirmed', 'US-0003') and K['KFF-7003'][4] == 'hand' and 'other sources: repo US-0099' in K['KFF-7003'][8], 'a hand decision is confirmed and names the other source')
 check(st(K, 'KFF-7004') == ('none', ''), 'no source: none')
+check(st(K, 'KFF-0008') == ('confirmed', 'US-0008') and K['KFF-0008'][8].startswith(WL.REPLACES + 'US-0099'), '2025 + 2018 against the site link alone: the 2025 value is confirmed, marked as replacing it')
+check(st(K, 'KFF-7010')[0] == 'conflict', '2025 alone against the site link: conflict (no change on one source)')
+check(st(K, 'KFF-7011') == ('conflict', 'US-7011') and 'not in POTA' in K['KFF-7011'][8], "2025 'not in POTA' against a site link: conflict, never confirmed")
+check(st(K, 'KFF-0009') == ('confirmed', 'US-0009') and 'US-7012' in K['KFF-0009'][8], '2025 with several parks: the same-number primary counts (with 2018), the others are noted')
+check(st(K, 'KFF-7013')[0] == 'conflict' and set(K['KFF-7013'][3].split('|')) == {'US-7014', 'US-7015'}, '2025 with several parks and no clear primary: conflict listing all')
+check(st(K, 'KFF-0010') == ('proposed', 'US-7016') and 'the 2018 list said US-0010' in K['KFF-0010'][8], 'the 2018 list is weaker: a 2018 value the 2025 list contradicts is left out (noted)')
 check(st(V, 'VEFF-0001') == ('confirmed', 'CA-0001'), 'VEFF community + rule: confirmed')
 check(st(V, 'VEFF-0002')[0] == 'proposed', 'VEFF community only: proposed')
 check(st(V, 'VEFF-0003') == ('conflict', 'CA-0009|CA-0003'), 'VEFF community vs rule: conflict')
@@ -145,16 +169,18 @@ check(L['KFF-0003'][7] == 'US-0099', 'mk_k: a conflict never changes the link th
 check(L['KFF-7001'][7] == '' and L['KFF-0004'][7] == '' and L['KFF-0005'][7] == '', 'mk_k: proposed links are not written')
 check(L['KFF-7002'][7] == 'US-0002', 'mk_k: a link the row already has is kept')
 check(L['KFF-7003'][7] == 'US-0003', 'mk_k: a hand decision replaces the old link')
+check(L['KFF-0008'][7] == 'US-0008' and L['KFF-7010'][7] == 'US-0099' and L['KFF-7011'][7] == 'US-7011', 'mk_k: two sources replace the site link; one source (or a 2025 none) never does')
+check(L['KFF-0009'][7] == 'US-0009' and L['KFF-7013'][7] == '', 'mk_k: one-to-many: the clear primary is written; no primary = nothing written')
 check(L['KFF-6001'][7] == 'US-1001', 'mk_k: Kentucky still comes from kpc-ky-data.json')
 check(all(len(r) == 8 and r[6] is None for r in L.values()), 'mk_k: row shape unchanged (8 columns, column 7 None)')
 check({r[1]: r[3:5] for r in json.load(open('locations.json')) if r[0] == 'POTA'} == {r[1]: r[3:5] for r in POTA_US}, 'POTA rows untouched (no pin moved)')
 # no cross reference file: exactly as before (old link carried forward only)
 wj('locations.json', POTA_US + WWFF_ROWS)
-os.rename(WL.XREF['KFF'], 'x.json')
+os.rename(WL.XREF['KFF'][0], 'x.json')
 _, out = quiet(SL.update, kff=kff)
 L = {r[1]: r for r in json.load(open('locations.json')) if r[0] == 'WWFF'}
 check({k: v[7] for k, v in L.items()} == {r[1]: r[7] for r in WWFF_ROWS} and 'missing or unreadable' in out, 'mk_k without the file: links carried forward only, as before (and said)')
-os.rename('x.json', WL.XREF['KFF'])
+os.rename('x.json', WL.XREF['KFF'][0])
 
 # ---- data/canada.json (kpc_canada.py)
 for pv in 'AB BC MB NB NL NS NT NU ON PE QC SK YT'.split(): CA_API[f'https://api.pota.app/location/parks/CA-{pv}'] = []
@@ -164,10 +190,10 @@ C = json.load(open('data/canada.json'))['rows']
 CW = {r[1]: r for r in C if r[0] == 'WWFF'}
 check(CW['VEFF-0001'][6:] == [None, 'CA-0001'] and CW['VEFF-0002'][6:] == [None, ''] and CW['VEFF-0003'][6:] == [None, ''], 'canada.json: VEFF rows get [None, confirmed link], blank otherwise')
 check({r[1]: r[:5] for r in C if r[0] == 'POTA'} == {r[1]: r[:5] for r in CAN['rows']}, 'canada.json: POTA rows unchanged (name, pin)')
-os.rename(WL.XREF['VEFF'], 'x.json')
+os.rename(WL.XREF['VEFF'][0], 'x.json')
 quiet(runpy.run_path, str(SCR / 'kpc_canada.py'), run_name='__main__')
 check(all(len(r) == 6 for r in json.load(open('data/canada.json'))['rows'] if r[0] == 'WWFF'), 'canada.json without the file: VEFF rows stay 6 long, as before')
-os.rename('x.json', WL.XREF['VEFF'])
+os.rename('x.json', WL.XREF['VEFF'][0])
 
 # ---- a person's answers in the review list
 rv = list(csv.DictReader(open(WL.REVIEW)))
@@ -187,7 +213,7 @@ check(rev['KFF-7001']['person_decision'] == 'yes' and rev['VEFF-0002']['person_d
 check(K['KFF-0001'][7] == '2026-11-14' and K['KFF-7001'][7] == '2026-11-21', 'checked_date: kept when the answer is the same, new when it changed')
 
 # ---- fail closed
-before = {p: open(p).read() for p in (WL.XREF['KFF'], WL.XREF['VEFF'], WL.REVIEW)}
+before = {p: open(p).read() for p in WL.XREF['KFF'] + WL.XREF['VEFF'] + [WL.REVIEW]}
 WL.MIN_ROWS = {'KFF': 100, 'VEFF': 1}
 r, out = quiet(WL.main, ['build'])
 check(r == 1 and 'nothing written' in out and before == {p: open(p).read() for p in before}, 'a short WWFF copy: nothing written, exit 1')
@@ -218,8 +244,12 @@ else:
     print('     ' + ' | '.join(x for x in out.splitlines() if 'WWFF links' in x))
     for ref in ('KFF-4642', 'KFF-4643', 'KFF-4645'):
         check(st(K, ref) == ('confirmed', 'US-4475') and K[ref][4] == 'hand', f'real: {ref} -> US-4475 Caribou-Targhee (hand fix of US-4575)')
-    ten = ['KFF-0302', 'KFF-2357', 'KFF-0465', 'KFF-0646', 'KFF-0680', 'KFF-1542', 'KFF-2776', 'KFF-2805', 'KFF-4255', 'KFF-4304']
-    check(all(K[x][5] == 'conflict' and 'repo' in K[x][4] and 'community-KFF-2018' in K[x][4] for x in ten), 'real: the 10 direct-range disagreements are conflicts with both sides')
+    CHG = {'KFF-0302': 'US-0302', 'KFF-2357': 'US-2357', 'KFF-0465': 'US-0465', 'KFF-0646': 'US-0646', 'KFF-0680': 'US-0680', 'KFF-1542': 'US-1542',
+           'KFF-2776': 'US-2776', 'KFF-2805': 'US-2805', 'KFF-4666': 'US-8163', 'KFF-4800': 'US-6344', 'KFF-6705': 'US-6444'}
+    check(all(K[x][5] == 'confirmed' and K[x][3] == p and K[x][8].startswith(WL.REPLACES) for x, p in CHG.items()),
+          'real: site link against the 2025 list + 2018 / close pin: the 2025 value is confirmed and marked as replacing the site link (11)')
+    check(K['KFF-4255'][3] == 'US-4304' and K['KFF-4304'][5] == 'conflict', 'real: KFF-4255 / 4304: the 2025 list sides with the site; the 2018 value is left out')
+    check(K['KFF-0680'][3] == 'US-0680' and 'US-8090' in K['KFF-0680'][8], 'real: KFF-0680 (11 POTA parks in the 2025 list): the same-number primary, the others noted')
     six = ['VEFF-0871', 'VEFF-1246', 'VEFF-2137', 'VEFF-2176', 'VEFF-2379', 'VEFF-4287']
     check(all(V[x][5] == 'conflict' for x in six), 'real: the 6 Canada disagreements are conflicts with both sides')
     check(V['VEFF-2501'][5] == 'conflict', 'real: VEFF-2501 (two POTA parks in the community list) is flagged')
@@ -228,10 +258,12 @@ else:
     check(all(x[3] in P for R in (K, V) for x in R.values() if x[5] == 'confirmed'), 'real: every confirmed link is a park on today\'s POTA list')
     check(all(x[5] != 'confirmed' or x[4] in ('hand', 'rule-same-name-close-pin') or '+' in x[4] for R in (K, V) for x in R.values()), 'real: every confirmed link has two sources, the close-pin rule or a hand decision')
     check(len(K) == 7450 and len(V) == 5264, f'real: one row per WWFF ref ({len(K)} KFF, {len(V)} VEFF)')
-    check(all(os.path.getsize(p) < 1_000_000 for p in (WL.XREF['KFF'], WL.XREF['VEFF'], WL.REVIEW)), 'real: every output under 1 MB')
+    check(all(os.path.getsize(p) < 1_000_000 for p in WL.XREF['KFF'] + WL.XREF['VEFF'] + [WL.REVIEW]), 'real: every output under 1 MB')
     r, out = quiet(WL.main, ['preview'])
     print('     ' + out.replace('\n', ' / '))
-    check('3 change' in out and out.count('  change') == 3 and 'US-4575 US-4475' in out, 'real: the only links that change are the 3 Caribou-Targhee fixes')
+    chg = {l.split()[1]: (l.split()[2], l.split()[3]) for l in out.splitlines() if l.startswith('  change')}
+    want = {k: v for k, v in CHG.items()}; want.update({'KFF-4642': 'US-4475', 'KFF-4643': 'US-4475', 'KFF-4645': 'US-4475'})
+    check({k: v[1] for k, v in chg.items()} == want, f'real: the only links that change are the 11 two-source fixes and the 3 Caribou-Targhee fixes ({len(chg)})')
     shutil.rmtree(t, ignore_errors=True)
 
 os.chdir(tempfile.mkdtemp(prefix='kpc-wwff-end-'))   # kpc_save writes its status file at exit, relative to here: never into this checkout

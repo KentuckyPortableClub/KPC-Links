@@ -12,7 +12,12 @@ Sources (link_source):
   repo                  locations.json column 8 as it stood on 2026-11-14 (frozen in data/wwff-xref-sources.json, so a link this
                         writer adds is never counted back as a second source), plus Kentucky's own 'p' in kpc-ky-data.json
   community-VEFF-2025   VEFF-POTA cross reference list by VE3ZN (Aug 2025), deactivated (struck through) rows left out
-  community-KFF-2018    KFF-POTA cross reference (2018): KFF-n = US-n for 0001-4446 except 3791, plus its explicit rows
+  community-KFF-2025    KFF County Database, KA2LHO et al., 2025-02-08 (the main US community list). A ref it lists with several
+                        POTA parks counts only for its clear primary (same number, else the one same-name park); with no clear
+                        primary all are listed (a conflict). A ref it lists with no POTA park (deleted / not in POTA) is evidence
+                        against any link: a source that still names a park makes it a conflict.
+  community-KFF-2018    KFF-POTA cross reference (2018): KFF-n = US-n for 0001-4446 except 3791, plus its explicit rows. The weaker
+                        list: where the 2025 list covers the ref and says otherwise, the 2018 value is left out (said in note).
   rule-name-distance    same normalised name (full or core), POTA park in the same state / province, exactly one such park
                         within 5 km of the WWFF pin (the Nov 14 offline method)
   rule-same-name-close-pin  owner decision, 2026-11-14: the same normalised name (full, or both sides with the type words dropped),
@@ -25,7 +30,8 @@ Status:
   confirmed  two or more sources name the same POTA park (or rule-same-name-close-pin alone), it is on today's POTA list and POTA lists it in the WWFF area's state /
              province (a park POTA lists in several states, such as a trail or a forest, counts in each of them); or a hand decision
   proposed   one source only, or the park fails the active / same state check (the reason is in note)
-  conflict   sources name different POTA parks, or one source gives one WWFF ref several POTA parks (all are listed, '|' between)
+  conflict   sources name different POTA parks (one exception: the site's link alone against the 2025 list backed by the
+             2018 list or the close-pin rule is confirmed for the 2025 value, note 'replaces site link ..'), or one source gives one WWFF ref several POTA parks (all are listed, '|' between)
   none       no source names a POTA park
 Only confirmed links are written to the site. proposed and conflict rows go to data/wwff-xref-review.csv for a person.
 
@@ -50,10 +56,26 @@ import unicodedata
 
 ROOT = pathlib.Path('.')
 SOURCES = 'data/wwff-xref-sources.json'
-XREF = {'KFF': 'data/wwff-xref-KFF.json', 'VEFF': 'data/wwff-xref-VEFF.json'}
+# KFF is split by number so each file stays well under the 1 MB cap: part 1 = KFF-0001..3999, part 2 = KFF-4000 and up
+XREF = {'KFF': ['data/wwff-xref-KFF-1.json', 'data/wwff-xref-KFF-2.json'], 'VEFF': ['data/wwff-xref-VEFF.json']}
+
+
+def part_of(pre, ref):
+    return 0 if pre != 'KFF' or int(ref.split('-')[1]) < 4000 else 1
+
+
+def read_xref(pre, root=None):
+    """The cross reference of a prefix with every part's rows together, or None when a part is missing or unreadable."""
+    rows = []
+    for f in XREF[pre]:
+        d = load_json(pathlib.Path(root or ROOT) / f)
+        if not isinstance(d, dict) or not isinstance(d.get('rows'), list) or d.get('columns', [])[:6] != COLUMNS[:6]: return None
+        rows += d['rows']
+    return {'columns': COLUMNS, 'rows': rows}
 REVIEW = 'data/wwff-xref-review.csv'
+REPLACES = 'replaces site link '   # note marker: a confirmed link that the writers put in place of the site's own (two sources against one)
 COLUMNS = ['wwff_ref', 'wwff_name', 'region', 'pota_ref', 'link_source', 'status', 'distance_km', 'checked_date', 'note']
-CREDIT = 'VEFF-POTA cross reference list by VE3ZN (Aug 2025); KFF-POTA cross reference (2018)'
+CREDIT = 'VEFF-POTA cross reference list by VE3ZN (Aug 2025); KFF-POTA cross reference (2018); KFF County Database, KA2LHO et al., 2025-02-08'
 MIN_ROWS = {'KFF': 6000, 'VEFF': 4000}           # the WWFF copy had 7,450 / 5,264 on Nov 14
 MIN_POTA = {'KFF': 10000, 'VEFF': 4500}          # POTA had 13,040 US / 5,899 CA parks on Nov 14
 NEAR_KM = 5.0
@@ -169,6 +191,17 @@ def community(src, pre):
     return out, 'community-KFF-2018'
 
 
+def community25(src):
+    """({wwff_ref: [pota_ref, ...]} in the list's order, {wwff_ref: 'deleted' | 'not in POTA'}) of the KFF 2025 list."""
+    c = src.get('community_kff_2025') or {}
+    out = collections.defaultdict(list)
+    for w, p in c.get('pairs') or []:
+        if p not in out[w]: out[w].append(p)
+    none = {w: 'not in POTA' for w in c.get('not_in_pota') or [] if w not in out}
+    for w in c.get('deleted') or []: none[w] = 'deleted'
+    return out, none
+
+
 def name_rule(W, P, regions_of):
     """({wwff_ref: (pota_ref, km)}, {wwff_ref: (pota_ref, km)}). First: exactly one same-name POTA park of the same state / province
     within 5 km (or the nearest under 1 km and every other one at 5 km or more). Second (rule-same-name-close-pin): exactly one
@@ -234,6 +267,7 @@ def build_rows(pre, src, wwff, pota, kyp, prev, today, decisions=None):
         def regions_of(w): return [r for r in dict.fromkeys(ca_region(c) for c in w['codes']) if r]
     rule, close = name_rule(W, P, regions_of)
     comm, comm_name = community(src, pre)
+    c25, none25 = community25(src) if pre == 'KFF' else ({}, {})
     repo = dict(src.get('repo_baseline') or {}) if pre == 'KFF' else {}
     if pre == 'KFF':
         for r, p in kyp.items():
@@ -253,8 +287,18 @@ def build_rows(pre, src, wwff, pota, kyp, prev, today, decisions=None):
         def add(p, s):
             if p: cands.setdefault(p, [])
             if p and s not in cands[p]: cands[p].append(s)
+        note = []
         add(repo.get(ref), 'repo')
-        for p in comm.get(ref, []): add(p, comm_name)
+        l25 = c25.get(ref, [])
+        prim = l25[:1] if len(l25) == 1 else [p for p in l25 if p.split('-')[1].lstrip('0') == ref.split('-')[1].lstrip('0')]
+        if len(l25) > 1 and len(prim) != 1:
+            prim = [p for p in l25 if P.get(p) and core(P[p]['name']) == core(w['name'])]
+        if len(l25) > 1 and len(prim) == 1: note.append('the 2025 list also gives ' + ', '.join(p for p in l25 if p != prim[0]) + ' (several POTA parks; primary ' + prim[0] + ')')
+        for p in (prim if len(prim) == 1 else l25): add(p, 'community-KFF-2025')
+        for p in comm.get(ref, []):
+            if pre == 'KFF' and (ref in none25 or (l25 and p not in l25)):
+                note.append('the 2018 list said %s; the 2025 list replaces it' % p); continue
+            add(p, comm_name)
         cl = close.get(ref, [])
         if len(cl) == 1: add(cl[0][0], 'rule-same-name-close-pin')   # the stronger form of the name rule (same evidence: one label)
         if ref in rule and not (len(cl) == 1 and cl[0][0] == rule[ref][0]): add(rule[ref][0], 'rule-name-distance')
@@ -268,12 +312,17 @@ def build_rows(pre, src, wwff, pota, kyp, prev, today, decisions=None):
 
         def problems(p):
             q = P.get(p)
+            if not q and pre == 'KFF' and not p.startswith('US-'): return ['territory POTA park (%s): not on the US list the site reads' % p.split('-')[0]]
             if not q: return ['POTA park not on today\'s POTA list']
             if not regs: return ['WWFF area has no state / province']
             if not q['st']: return ['no state / province for the POTA park']
             if not set(regs) & q['st']: return ['POTA lists the park in %s, the WWFF area is in %s' % ('/'.join(sorted(q['st'])), '/'.join(regs))]
             return []
-        note = []
+        replaced = ''
+        if len(cands) == 2 and ref not in hand:   # the site's link alone against the 2025 list + another source: the two sources win
+            (pa, sa), (pb, sb) = cands.items()
+            if sa == ['repo'] and 'community-KFF-2025' in sb and {'community-KFF-2018', 'rule-same-name-close-pin'} & set(sb) and not problems(pb):
+                replaced = pa; del cands[pa]
         if ref in hand:
             h = hand[ref]; pota_ref, srcs, status = h['pota'], 'hand', 'confirmed'
             note.append('hand: %s, %s: %s' % (h.get('decided_by', '?'), h.get('date', '?'), h.get('why', '')))
@@ -283,6 +332,11 @@ def build_rows(pre, src, wwff, pota, kyp, prev, today, decisions=None):
             dist = km(pota_ref)
         elif not cands:
             pota_ref, srcs, status, dist = '', '', 'none', ''
+            if ref in none25: note.append('the 2025 list: %s (no POTA park)' % none25[ref])
+        elif ref in none25:
+            pota_ref = '|'.join(cands); srcs = '|'.join('+'.join(s) for s in cands.values()); status = 'conflict'
+            note.append('the 2025 list: %s (no POTA park), but a source names one' % none25[ref])
+            dist = '|'.join(str(km(p)) for p in cands)
         elif len(cands) > 1:
             pota_ref = '|'.join(cands); srcs = '|'.join('+'.join(s) for s in cands.values()); status = 'conflict'
             one_src = len({s for v in cands.values() for s in v}) == 1
@@ -294,7 +348,9 @@ def build_rows(pre, src, wwff, pota, kyp, prev, today, decisions=None):
         else:
             pota_ref, s = next(iter(cands.items())); srcs = '+'.join(s)
             pr = problems(pota_ref); note += pr
-            if (len(s) >= 2 or 'rule-same-name-close-pin' in s) and not pr: status = 'confirmed'
+            if (len(s) >= 2 or 'rule-same-name-close-pin' in s) and not pr:
+                status = 'confirmed'
+                if replaced: note.insert(0, REPLACES + replaced + ' (repo; the 2025 list and a second source agree on ' + pota_ref + ')')
             else:
                 status = 'proposed'
                 if len(s) < 2: note.append('one source only')
@@ -317,14 +373,17 @@ def build_rows(pre, src, wwff, pota, kyp, prev, today, decisions=None):
 def write_outputs(results, pota, site, today, decisions=None):
     decisions = decisions or {}
     texts = {}
-    for pre, rows in results.items():
-        doc = {'about': 'WWFF -> POTA cross reference (%s), written by .github/scripts/kpc_wwff_links.py; only status confirmed is used by the '
-                        'site (locations.json column 8 / data/canada.json). checked_date = the day this row last got its current answer.' % pre,
-               'credit': CREDIT, 'checked': today, 'columns': COLUMNS,
-               'counts': dict(collections.Counter(r[5] for r in rows)), 'rows': rows}
-        s = json.dumps(doc, ensure_ascii=False, separators=(',', ':'))
-        s = s.replace(',"rows":[[', ',"rows":[\n[').replace('],[', '],\n[')   # one row per line: a small diff each week
-        texts[pre] = s + '\n'
+    for pre, allrows in results.items():
+        for i, f in enumerate(XREF[pre]):
+            rows = [r for r in allrows if part_of(pre, r[0]) == i]
+            doc = {'about': 'WWFF -> POTA cross reference (%s, part %d of %d), written by .github/scripts/kpc_wwff_links.py; only status confirmed is '
+                            'used by the site (locations.json column 8 / data/canada.json). checked_date = the day this row last got its current '
+                            'answer.' % (pre, i + 1, len(XREF[pre])),
+                   'credit': CREDIT, 'checked': today, 'columns': COLUMNS,
+                   'counts': dict(collections.Counter(r[5] for r in rows)), 'rows': rows}
+            s = json.dumps(doc, ensure_ascii=False, separators=(',', ':'))
+            s = s.replace(',"rows":[[', ',"rows":[\n[').replace('],[', '],\n[')   # one row per line: a small diff each week
+            texts[f] = s + '\n'
     names = {r: p['name'] for P in pota.values() for r, p in P.items()}
     order = {'conflict': 0, 'proposed': 1, 'confirmed': 2}
     out = []
@@ -342,28 +401,29 @@ def write_outputs(results, pota, site, today, decisions=None):
     texts['review'] = buf.getvalue()
     big = [k for k, t in texts.items() if len(t.encode('utf-8')) > 1_000_000]
     if big: raise SystemExit('::error title=WWFF links::over the 1 MB file cap, nothing written: ' + ', '.join(big))
-    for pre in results: (ROOT / XREF[pre]).write_text(texts[pre], encoding='utf-8')
+    for f, t in texts.items():
+        if f != 'review': (ROOT / f).write_text(t, encoding='utf-8')
     (ROOT / REVIEW).write_text(texts['review'], encoding='utf-8')
     return len(out)
 
 
 # ---------------------------------------------------------------- what the site writers use
 def load_confirmed(pre, root=None):
-    """{wwff_ref: (pota_ref, link_source)} of the CONFIRMED rows of data/wwff-xref-<pre>.json, or None when the file is missing or
+    """{wwff_ref: (pota_ref, link_source, replaces_site_link)} of the CONFIRMED rows of data/wwff-xref-<pre>*.json, or None when the file is missing or
     unreadable (the caller then behaves exactly as before this file existed)."""
-    d = load_json(pathlib.Path(root or ROOT) / XREF[pre])
-    if not isinstance(d, dict) or not isinstance(d.get('rows'), list) or d.get('columns', [])[:6] != COLUMNS[:6]: return None
+    d = read_xref(pre, root)
+    if d is None: return None
     out = {}
     for r in d['rows']:
         if isinstance(r, list) and len(r) > 5 and r[5] == 'confirmed' and re.fullmatch(r'(US|CA)-\d{4,5}', str(r[3])):
-            out[r[0]] = (r[3], r[4])
+            out[r[0]] = (r[3], r[4], str(r[8] if len(r) > 8 else '').startswith(REPLACES))
     return out
 
 
 def pick_link(old, conf):
-    """Column 8 of a WWFF row (not Kentucky). A hand decision wins; otherwise a link the row already has is kept (a conflict is for a
+    """Column 8 of a WWFF row (not Kentucky). A hand decision, or a confirmed link marked 'replaces site link', wins; otherwise a link the row already has is kept (a conflict is for a
     person, never changed here); a row with no link gets the confirmed one. conf = load_confirmed(...).get(ref) or None."""
-    if conf and conf[1] == 'hand': return conf[0]
+    if conf and (conf[1] == 'hand' or (len(conf) > 2 and conf[2])): return conf[0]   # a hand decision, or two sources against the site's one
     if old: return old
     return conf[0] if conf else ''
 
@@ -376,7 +436,7 @@ def cmd_build(a):
         say('error', 'WWFF links', 'not built, nothing written: ' + '; '.join(bad)); return 1
     results, decisions = {}, read_decisions()
     for pre in ('KFF', 'VEFF'):
-        prevd = load_json(ROOT / XREF[pre], {}) or {}
+        prevd = read_xref(pre) or {}
         prev = {r[0]: r for r in prevd.get('rows') or [] if isinstance(r, list) and len(r) >= 8}
         results[pre] = build_rows(pre, src, wwff, pota, kyp, prev, today, decisions)
         n_old = sum(1 for r in prev.values() if r[5] == 'confirmed')
