@@ -9,6 +9,15 @@ hash moves.
 piece per park) instead of downloading them. Owner decision "one door in": bots do not download boundaries; a park the store
 does not have is held and listed, and only the store filler fetches it.
 
+## The store it reads
+
+Index contract `kpc-outline-store-index/3` (outline store tool full 3). Another version is refused (the area is not ready). Only the
+per-area `index-<AREA>.json` is read: the combined `index.json` keeps one entry for a park that sits in two areas. Each area file
+must match its sha256 and size in the index before use. A park with tracts in two area files is assembled from both. Per record:
+`publishable` (trusted only with `publish_basis` verified-row or owner-confirmed), `licence_class`, `publish_basis`, `wdpa_derived`
+(must be false; a scan of every text value is a second check, field names are not read), `private_reason` (kept for the owner and
+the club-room tag, never shown). Test fixture: `tests/fixtures/fers-store-v3/` (synthetic squares written by the tool itself).
+
 ## The switch
 
 `KPC_FERS_FROM_STORE` (default off). Off: `install()` does nothing and `kpc_fers.py` runs exactly as today. The Kentucky and
@@ -42,7 +51,7 @@ world runs never use the store: with the switch on they run as today (downloads 
 ## Not in this module (switch-over and later)
 
 The hook and the lazy passes in `kpc_fers.py`; moving this file into the 2-fer `RULE_FILES` (one declared rules-hash move);
-the matcher "join under review" rule (`join_review()` exists, not wired); `pad_closed()` and the trail-status reads, which still
+the matcher "join under review" rule (`join_review()` exists, not wired; keep and tag, hold only on shared records, is the recommendation, not yet the owner's decision); `pad_closed()` and the trail-status reads, which still
 go out live; the KPC-Data workflow step that fetches the store.
 
 Tests: `tests/test_fers_store_nov13.py` (synthetic stores; no network).

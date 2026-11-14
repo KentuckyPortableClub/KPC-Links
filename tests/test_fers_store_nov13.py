@@ -42,7 +42,8 @@ def sq(x0, y0, d):
 def rec(key, rings, use=True, **kw):
     e = [enc(r) for r in rings]
     return {'key': key, 'layer': kw.pop('layer', 'sgzza'), 'record_id': key, 'record_name': kw.pop('name', key), 'licence_class': kw.pop('licence_class', 'OPEN'),
-            'publishable': kw.pop('publishable', True), 'source': 'live', 'use': use, 'q': 6, 'rings': e, 'points': sum(len(x) // 2 for x in e), 'sha256': S.geometry_sha256(e), **kw}
+            'publishable': kw.pop('publishable', True), 'publish_basis': kw.pop('publish_basis', 'verified-row'), 'wdpa_derived': kw.pop('wdpa_derived', False),
+            'private_reason': kw.pop('private_reason', ''), 'source': 'live', 'use': use, 'q': 6, 'rings': e, 'points': sum(len(x) // 2 for x in e), 'sha256': S.geometry_sha256(e), **kw}
 
 def build(d, area, parks, made='2026-11-13', member=None, index_edit=None):
     d.mkdir(parents=True, exist_ok=True)
@@ -57,7 +58,9 @@ def build(d, area, parks, made='2026-11-13', member=None, index_edit=None):
         raw += b
     raw += gzip.compress(b']}', mtime=0)
     (d / fn).write_bytes(bytes(raw))
-    doc = {'format': 1, 'area': area, 'made': made + 'T00:00:00-06:00', 'parks': idx}
+    blob = (d / fn).read_bytes()
+    doc = {'format': 1, 'store_format_version': S.STORE_FORMAT_VERSION, 'area': area, 'made': made + 'T00:00:00-06:00', 'parks': idx,
+           'files': {fn: {'bytes': len(blob), 'sha256': hashlib.sha256(blob).hexdigest()}}}
     if index_edit: doc = index_edit(doc)
     (d / f'index-{area}.json').write_text(json.dumps(doc), encoding='utf-8')
     return d
@@ -71,7 +74,7 @@ P = [{'ref': 'US-9001', 'name': 'Big Test Forest', 'grade': 'official', 'records
      {'ref': 'US-9006', 'name': 'Half Park', 'grade': 'official', 'records': [rec('sgzza6', [sq(-78.0, 41.0, 0.001)]), rec('sgzzb6', [[[-78, 41], [-78.001, 41]]])]},
      {'ref': 'US-9007', 'name': 'Hidden Words', 'grade': 'official', 'records': [rec('sgzza7', [sq(-78.5, 41.0, 0.001)], attributes={'SRC': 'from Protected Planet'})]},
      {'ref': 'US-9008', 'name': 'Park Note', 'grade': 'official', 'note': 'copied from wdpa', 'records': [rec('sgzza8', [sq(-78.6, 41.0, 0.001)])]},
-     {'ref': 'US-9009', 'name': 'Private Park', 'grade': 'official', 'records': [rec('sgzza9', [sq(-79.995, 40.005, 0.001)], publishable=False, licence_class='NO TERMS STATED')]}]
+     {'ref': 'US-9009', 'name': 'Private Park', 'grade': 'official', 'records': [rec('sgzza9', [sq(-79.995, 40.005, 0.001)], publishable=False, licence_class='NO TERMS STATED', publish_basis='none', private_reason='licence not read yet')]}]
 build(tmp / 'store', 'US-ZZ', P)
 whole = json.loads(gzip.decompress((tmp / 'store' / 'US-ZZ.kpcstore.json.gz').read_bytes()))
 check(whole['kpcstore'] == 1 and len(whole['parks']) == len(P), 'fixture: the synthetic area file is one valid JSON document (format 1)')
@@ -130,7 +133,7 @@ pub = S.Store(tmp / 'store', 45, today='2026-11-14', kind='public')
 check('needs the private store' in held(pub, 'US-9009', ['sgzza9']), 'licence: on a PUBLIC store a park with a record not marked publishable is held "needs the private store"')
 check(not held(pub, 'US-9001', ['sgzza1', 901]), 'licence: on a public store a publishable park is read')
 _, _, w, info = st.examine('US-9009', 'US-ZZ', ['sgzza9'])
-check(not w and info['private'] == {'sgzza9': 'NO TERMS STATED'}, 'licence: on the private store the park is used and its unpublishable records are named')
+check(not w and info['private']['sgzza9']['licence_class'] == 'NO TERMS STATED' and info['private']['sgzza9']['private_reason'] == 'licence not read yet', 'licence: on the private store the park is used and its unpublishable records are named')
 doc = {'spots': [{'refs': ['US-9001', 'US-9009'], 'kind': 'area', 'status': 'candidate'}, {'refs': ['US-9001', 'US-9002'], 'kind': 'area', 'status': 'candidate'}]}
 check(S.tag_club_room(doc, {'US-9009': info['private']}) == 1 and doc['spots'][0]['club_room_only'] and 'club_room_only' not in doc['spots'][1], 'licence: a row that used an unpublishable outline is tagged club_room_only')
 
@@ -243,6 +246,37 @@ r = subprocess.run([sys.executable, str(prog)], capture_output=True, text=True)
 fl2 = tmp / 'out' / 'store-missing-zz.json'
 check(r.stdout.strip().endswith('True') and fl2.is_file() and json.loads(fl2.read_text())['parks'] == {} and json.loads(fl2.read_text())['areas']['US-ZZ']['verdict'] == 'READY',
       'the store-missing list is written at exit even with nothing held')
+
+# ---------------------------------------------------------------- a real v3 store (made by the outline store tool full 3, synthetic squares)
+import shutil  # noqa: E402
+V3 = ROOT / 'tests' / 'fixtures' / 'fers-store-v3'
+def v3(kind='private', edit=None, files=None):
+    d = tmp / f'v3-{len(list(tmp.glob("v3-*")))}'; d.mkdir()
+    for f in (files or [p.name for p in V3.iterdir() if p.name != 'README.md']): shutil.copy(V3 / f, d / f)
+    if edit: edit(d)
+    return S.Store(d, 100000, today='2026-11-14', kind=kind)
+s3 = v3()
+a3 = s3.area('US-ZA')
+check(a3 is not None and s3.area('US-ZB') is not None and a3.idx['store_format_version'] == 'kpc-outline-store-index/3', 'v3: both area indexes open; the contract version is the one this reader reads')
+g3, _, w3 = s3.groups_for('US-9150', 'US-ZA', ['sgzz50a', 'sgzz50b'])
+check(not w3 and len(g3) == 2, f'v3: a park with tracts in two area files is assembled whole ({w3 or len(g3)} groups)')
+check(sorted(json.load(open(V3 / 'index.json'))['parks']['US-9150']['records']) == ['sgzz50b'], "v3: (the tool's combined index.json keeps only one area's entry for that park: it is not read)")
+check('index-US-ZA.json' in held(v3(files=['index.json', 'US-ZA.kpcstore.json.gz', 'US-ZB.kpcstore.json.gz']), 'US-9101', ['sgzz1'], 'US-ZA'), 'v3: only a combined index.json -> the area is refused with a plain reason')
+def _ver(d):
+    j = json.loads((d / 'index-US-ZA.json').read_text()); j['store_format_version'] = 'kpc-outline-store-index/4'; (d / 'index-US-ZA.json').write_text(json.dumps(j))
+check('this reader reads' in held(v3(edit=_ver), 'US-9101', ['sgzz1'], 'US-ZA'), 'v3: another store_format_version is refused (area held with the reason)')
+def _flip(d):
+    f = d / 'US-ZA.kpcstore.json.gz'; b = bytearray(f.read_bytes()); b[-3] ^= 1; f.write_bytes(bytes(b))
+check('sha256' in held(v3(edit=_flip), 'US-9101', ['sgzz1'], 'US-ZA'), 'v3: an area file that does not match its sha256 in the index is refused before use')
+check('marked WDPA derived' in held(s3, 'US-9103', ['sgzz3'], 'US-ZA'), 'v3: wdpa_derived true holds the park (the store flag, with no WDPA words in any value)')
+pub3 = v3('public')
+check('needs the private store' in held(pub3, 'US-9102', ['sgzz2']) and not held(pub3, 'US-9101', ['sgzz1'], 'US-ZA'), 'v3: public store: publishable false is held, publishable true is read')
+_, _, w9, i9 = s3.examine('US-9102', 'US-ZA', ['sgzz2'])
+check(not w9 and i9['private']['sgzz2'] == {'licence_class': 'NO TERMS STATED', 'publish_basis': 'none', 'private_reason': 'licence not read yet'}, 'v3: private store: the record is used and its licence class, basis and private reason are kept for the club-room tag')
+ok3, rows3 = S.fit_check(s3, ['US-ZA', 'US-ZB'], 3000)
+check(ok3 and rows3['US-ZA']['verdict'] == rows3['US-ZB']['verdict'] == 'READY', 'v3: the memory gate reads the v3 indexes')
+pb = build(tmp / 'basis', 'US-ZZ', [{'ref': 'US-9301', 'name': 'x', 'records': [rec('b1', [sq(-80, 40, 0.01)], publishable=True, publish_basis='none')]}])
+check('needs the private store' in held(S.Store(pb, 45, today='2026-11-14', kind='public'), 'US-9301', ['b1']), 'v3: publishable true without a verified-row / owner-confirmed basis is not trusted')
 
 # ---------------------------------------------------------------- change list
 o = {'spots': [{'refs': ['US-1', 'US-2'], 'kind': 'area', 'status': 'candidate', 'center': [40.0, -80.0]}, {'refs': ['US-1', 'US-3'], 'kind': 'area', 'status': 'candidate', 'center': [40, -80]},

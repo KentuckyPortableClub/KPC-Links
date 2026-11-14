@@ -24,6 +24,12 @@ Settings: KPC_FERS_STORE_DIR (default 'store'), KPC_FERS_STORE_MAX_DAYS (45), KP
 public: a park with any record not marked publishable is held 'needs the private store'), KPC_FERS_STORE_LIMIT_MB (3000, the
 whole process), KPC_FERS_STORE_BUDGET (2,000,000 unpacked points), KPC_FERS_STORE_NEIGHBOURS (1.5: border parks from other areas).
 
+The store: index contract 'kpc-outline-store-index/3' (outline store tool full 3; format 1 pieces). Only that version is read;
+another is refused (the area is NOT READY). Only the per-area index-<AREA>.json is read (the combined index.json keeps one entry
+for a park that sits in two areas), and each area file must match its sha256 and size in the index before it is used. A park
+with tracts in two area files is assembled from both. Per record: publishable (true only with publish_basis verified-row or
+owner-confirmed), licence_class, publish_basis, wdpa_derived (must be false; the text-value scan is a second check), private_reason.
+
 What the store gives, record by record, as download() would after its own read-time rules: only the record ids the KEY joins;
 use=false records left out and listed; rings of 2 points or fewer dropped; the park's part boxes applied (clip, rule B12).
 The park is HELD with its reason, never half a park and never a download, when: it is not in the store; a joined record is
@@ -40,6 +46,8 @@ Command line (no network in any of them):
 import array, atexit, collections.abc, datetime, gzip, hashlib, json, math, os, pathlib, re, sys
 
 FORMAT = 1
+STORE_FORMAT_VERSION = 'kpc-outline-store-index/3'   # the outline store tool 'full 3' index contract this reader was written for
+PUBLISH_BASES = ('verified-row', 'owner-confirmed')
 SCALE = 10 ** 6
 SWITCH = 'KPC_FERS_FROM_STORE'
 EXIT_NOT_READY, EXIT_WONT_FIT = 87, 88
@@ -124,16 +132,16 @@ class AreaStore:
 
     def __init__(self, store_dir, area):
         d = pathlib.Path(store_dir)
-        idx = None
-        for p in (d / f'index-{area}.json', d / 'index.json'):
-            if not p.is_file(): continue
-            try: j = json.loads(p.read_text(encoding='utf-8'))
-            except Exception as e: raise StoreError(f'index {p.name} cannot be read ({_err(e)})')  # noqa: BLE001
-            if not isinstance(j, dict) or not isinstance(j.get('parks'), dict): raise StoreError(f'index {p.name} is not a store index')
-            if j.get('area') == area or any(isinstance(e, dict) and str(e.get('file') or '').startswith(area + '.') for e in j['parks'].values()):
-                idx = j; break
-        if idx is None: raise StoreError(f'no outline store index for {area}')
+        p = d / f'index-{area}.json'   # the per-area index only: the combined index.json keeps one entry for a park in two areas
+        if not p.is_file():
+            raise StoreError(f'no per-area index index-{area}.json' + (' (the combined index.json is not read: it loses parks that span areas)' if (d / 'index.json').is_file() else ''))
+        try: idx = json.loads(p.read_text(encoding='utf-8'))
+        except Exception as e: raise StoreError(f'index {p.name} cannot be read ({_err(e)})')  # noqa: BLE001
+        if not isinstance(idx, dict) or not isinstance(idx.get('parks'), dict): raise StoreError(f'index {p.name} is not a store index')
+        if idx.get('store_format_version') != STORE_FORMAT_VERSION:
+            raise StoreError(f'store format version {idx.get("store_format_version")!r}; this reader reads {STORE_FORMAT_VERSION!r} only')
         if str(idx.get('format')) != str(FORMAT): raise StoreError(f'store format {idx.get("format")!r}; this reader reads {FORMAT}')
+        if idx.get('area') not in (None, area): raise StoreError(f'index-{area}.json says it is area {idx.get("area")!r}')
         self.dir, self.area, self.idx = d, area, idx
         allp = idx['parks']
         mine = {r: e for r, e in allp.items() if isinstance(e, dict) and str(e.get('file') or '').startswith(area + '.')}
@@ -148,6 +156,14 @@ class AreaStore:
             except Exception as ex: self.bad[r] = f'index entry damaged ({_err(ex)})'  # noqa: BLE001
         if not self.entries: raise StoreError('no readable park in the index')
         files = idx.get('files') if isinstance(idx.get('files'), dict) else {}
+        for f in sorted({str(e['file']) for e in self.entries.values()}):   # each area file checked whole against the index before any use
+            want = files.get(f) if isinstance(files.get(f), dict) else None
+            if not want or not want.get('sha256'): raise StoreError(f'the index gives no sha256 for {f}')
+            h, n = hashlib.sha256(), 0
+            with open(d / f, 'rb') as fh:
+                for chunk in iter(lambda: fh.read(1 << 20), b''): h.update(chunk); n += len(chunk)
+            if h.hexdigest() != want['sha256'] or (want.get('bytes') is not None and int(want['bytes']) != n):
+                raise StoreError(f'{f} does not match its sha256 / size in the index (changed or damaged)')
         self.made = str(idx.get('made') or (next(iter(files.values()), {}) or {}).get('date') or '')[:10]
 
     def age_days(self, today):
@@ -214,43 +230,50 @@ class Store:
         except Exception as e:  # noqa: BLE001
             return None, [], f'{ref} in the outline store failed its check ({_err(e)})', {}
 
-    def locate(self, ref, area):
-        """The area store that holds ref: the key's own state first, then any other area store in the folder (a park the key
-        files under one state can sit in a neighbour's store, e.g. a forest across a state line). (AreaStore, '') or (None, why)."""
+    def locate_all(self, ref, area):
+        """Every area store that holds a piece of ref: the key's own state first, then every other per-area index in the folder
+        (a park can have tracts in two area files, or be filed by the key under a neighbour's state). ([AreaStore], why)."""
         a = self.area(area)
-        if a is not None and (ref in a.entries or ref in a.bad): return a, ''
-        if not hasattr(self, '_names'):
-            names = {p.name[6:-5] for p in self.dir.glob('index-*.json')}
-            try:   # a combined index.json names its area(s) itself
-                j = json.loads((self.dir / 'index.json').read_text(encoding='utf-8')) if (self.dir / 'index.json').is_file() else {}
-                if isinstance(j, dict) and j.get('area'): names.add(str(j['area']))
-            except Exception: pass  # noqa: BLE001
-            self._names = sorted(names)
+        if not hasattr(self, '_names'): self._names = sorted(p.name[6:-5] for p in self.dir.glob('index-*.json'))
+        found = [a] if a is not None and (ref in a.entries or ref in a.bad) else []
         for other in self._names:
             if other == area: continue
             b = self.area(other)
-            if b is not None and (ref in b.entries or ref in b.bad): return b, ''
-        if a is None: return None, self.why[area]
-        return a, ''
+            if b is not None and (ref in b.entries or ref in b.bad): found.append(b)
+        if not found and a is None: return [], self.why[area]
+        return found, ''
 
     def _examine(self, ref, area, ids, clip, keep):
-        a, why = self.locate(ref, area)
-        if a is None: return None, [], why, {}
-        try: p = a.park(ref)
-        except StoreError as e: return None, [], f'{ref} in the outline store failed its check ({str(e)[:120]})', {}
-        if p is None: return None, [], f'{ref} is not in the outline store for {area}', {}
-        if p.get('circle') or p.get('grade') == 'point-circle':
-            return None, [], f'{ref} has only a point circle in the store (the 2-fer bot makes its own circle)', {}
-        if wdpa_text(p): return None, [], f'{ref}: the store park looks WDPA / Protected Planet derived: never a 2-fer source', {}
-        by = {str(r.get('key')): r for r in p.get('records') or [] if isinstance(r, dict)}
+        stores, why = self.locate_all(ref, area)
+        if not stores and why: return None, [], why, {}
+        if not stores: return None, [], f'{ref} is not in the outline store for {area}', {}
+        by = {}   # record key -> (record, its park piece): a park with tracts in two area files is assembled whole
+        for a in stores:
+            try: p = a.park(ref)
+            except StoreError as e: return None, [], f'{ref} in the outline store ({a.area}) failed its check ({str(e)[:120]})', {}
+            if p is None: continue
+            if p.get('circle') or p.get('grade') == 'point-circle':
+                return None, [], f'{ref} has only a point circle in the store (the 2-fer bot makes its own circle)', {}
+            if wdpa_text(p): return None, [], f'{ref}: the store park looks WDPA / Protected Planet derived: never a 2-fer source', {}
+            meta = (a.entries.get(ref) or {}).get('record_meta') if isinstance((a.entries.get(ref) or {}).get('record_meta'), dict) else {}
+            for r in p.get('records') or []:
+                if not isinstance(r, dict): continue
+                m = meta.get(str(r.get('key')))
+                if isinstance(m, dict) and any(m.get(k) != r.get(k) for k in ('publishable', 'licence_class', 'publish_basis', 'wdpa_derived')):
+                    return None, [], f'record {r.get("key")} of {ref}: the index and the store disagree on its licence fields', {}
+                by.setdefault(str(r.get('key')), (r, p))
         groups, left, private, pts, box = [], [], {}, 0, None
         for rid in ids:
-            r = by.get(str(rid))
+            r, p = by.get(str(rid), (None, None))
             if r is None: return None, [], f'the outline store has no record {rid} for {ref} (the key joins it)', {}
+            if r.get('wdpa_derived') is not False:   # the store's own flag first (true, or not stated): never a 2-fer source
+                return None, [], f'record {rid} of {ref} is marked WDPA derived by the store (or does not say): never a 2-fer source', {}
             if wdpa_text(r): return None, [], f'record {rid} of {ref} looks WDPA / Protected Planet derived: never a 2-fer source', {}
             if r.get('use') is False:
                 left.append(f"{r.get('record_name') or rid}: {r.get('use_why') or 'not public land (store use flag)'}"); continue
-            if r.get('publishable') is not True: private[str(rid)] = str(r.get('licence_class') or 'NOT RECORDED')
+            if not (r.get('publishable') is True and r.get('publish_basis') in PUBLISH_BASES):
+                private[str(rid)] = {'licence_class': str(r.get('licence_class') or 'NOT RECORDED'), 'publish_basis': str(r.get('publish_basis') or 'none'),
+                                     'private_reason': str(r.get('private_reason') or '')}
             rs = [ring_floats(e) for e in enc_rings(r, p)]
             rs = [x for x in rs if len(x) > 2]
             if clip is not None and rs: rs = clip(rid, rs)
@@ -263,7 +286,7 @@ class Store:
             if keep: groups.append(rs)
         if box is None: return None, left, (f'every record of {ref} is left out by its use flag' if left else f'{ref} has no rings in the store'), {}
         if private and self.kind == 'public':
-            return None, left, f'{ref} needs the private store (records not publishable: ' + ', '.join(f'{k} {v}' for k, v in sorted(private.items())[:4]) + ')', {}
+            return None, left, f'{ref} needs the private store (records not publishable: ' + ', '.join(f"{k} {v['licence_class']}" for k, v in sorted(private.items())[:4]) + ')', {}
         return (groups if keep else None), left, '', {'points': pts, 'box': box, 'private': private}
 
     def groups_for(self, ref, area, ids, clip=None):
@@ -271,8 +294,8 @@ class Store:
         return g, left, why
 
     def read_date(self, ref, area):
-        a = self.locate(ref, area)[0]
-        return str((a.entries.get(ref) or {}).get('date') or a.made) if a else ''
+        st = self.locate_all(ref, area)[0]
+        return min((str((a.entries.get(ref) or {}).get('date') or a.made) for a in st), default='')
 
 
 # ------------------------------------------------------------------ compact holding
@@ -410,7 +433,7 @@ def tag_club_room(doc, private):
     for s in (doc or {}).get('spots') or []:
         pr = {r: private[r] for r in s.get('refs') or [] if r in private}
         if pr:
-            s['club_room_only'] = True; s['club_room_why'] = {r: sorted(set(v.values())) for r, v in pr.items()}; n += 1
+            s['club_room_only'] = True; s['club_room_why'] = {r: sorted({str(x.get('licence_class') if isinstance(x, dict) else x) for x in v.values()}) for r, v in pr.items()}; n += 1
     return n
 
 
