@@ -1,15 +1,15 @@
 {
  "open": [
   "KPC-Data/kpc-collector.yml",
+  "KPC-Data/kpc-pile-solver.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-world-finder.yml",
-  "kpc-band-alerts.yml",
   "kpc-boards.yml",
-  "kpc-bot-queue.yml",
+  "kpc-ca-key.yml",
   "kpc-discord-watch.yml",
   "kpc-guide-pdf.yml",
   "kpc-hunters.json",
-  "kpc-world-key.yml",
+  "kpc-pota-discord.yml",
   "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
   "out:shrank:L:data/ky-answer-key.json",
   "refs:gone:CA-SI:CA-0120",
@@ -17,7 +17,7 @@
   "refs:gone:US-AZ:US-13337",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324"
  ],
- "checked": "2026-11-13T17:23+00:00",
+ "checked": "2026-11-14T11:27+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -117,7 +117,7 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2911
+   "b": 2909
   },
   "L:data/ky-answer-key.json": {
    "b": 31658,
@@ -127,13 +127,13 @@
    "b": 50363704
   },
   "L:data/ca-key": {
-   "b": 5825378
+   "b": 5826519
   },
   "L:data/world-key": {
-   "b": 34940579
+   "b": 38466663
   },
   "L:data/pota": {
-   "b": 5659646
+   "b": 5660183
   },
   "L:data/canada.json": {
    "b": 2494163
@@ -163,7 +163,7 @@
    "b": 334294
   },
   "L:locations.json": {
-   "b": 5422286
+   "b": 5422285
   },
   "L:kpc-events-auto.json": {
    "b": 20937
@@ -206,13 +206,13 @@
    "b": 20045555
   },
   "D:data/alerts/eu.json": {
-   "b": 201371
+   "b": 147575
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 185615
+   "b": 184002
   },
   "D:data/intake": {
    "b": 39695215,
