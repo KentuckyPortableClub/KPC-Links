@@ -18,8 +18,14 @@ What is drawn (in this order, per park; all of a park's areas together):
      index, every file's sha256 checked. A record is drawn only if the index's record_meta AND the record itself say publishable,
      with the same licence class (one the store's licence-classes.json allows; SHARE-ALIKE stays off; an unknown class stops
      the build), a basis of a verified row or the owner's confirmation, and the same plain credit line. wdpa_derived true, or
-     WDPA / Protected Planet / SPREP / UNEP-WCMC in any value = never. One record that fails keeps the WHOLE park on today's
-     outline.
+     WDPA / Protected Planet / SPREP / UNEP-WCMC in any value = never. Each RECORD is judged on its own (the park-level flag
+     park_publishable is not read): the records that pass are drawn, with their credit lines; a record that fails is never
+     drawn, never measured against and never named in a public file. A park with NO record that passes draws nothing here
+     (it keeps today's outline; its POTA pin is never touched).
+     Geometry kinds (index format 4): the same gate for every kind; an 'area' is drawn as before (an area with role
+     water_surface is the water, never the outline); a 'line' (official trail / river) is drawn AS GIVEN, open, every point,
+     in every level, never buffered or made a polygon, no zone band drawn (LINE_RULE); a 'pin' (and a stand-in circle) is not
+     an outline and is not drawn (the display copy has no place for an official point; counted in the private report).
   2. Doubtful joins (lists, the store's check-join flag, or tracts 10 km apart): today's outline.
   3. Records with the same geometry are drawn once: the copy from the highest-ranked layer.
   4. ONE LAYER PER PARK. tools/kpc_display_precedence.json ranks the layers per area. The WINNING layer (the best present) is
@@ -39,11 +45,12 @@ What is written is public: no record keys, licence words, reasons or store names
 go only into the private report (--report FILE, which must be outside the output folder).
 
 Files (folder OUT/<AREA>/), every file gzip level 9 with mtime 0 (same store = byte-identical files):
-  INDEX.json                      format, area, gen, built_with, caps, parts, mid, fine, fallback {ref: "kept today's outline"}
+  INDEX.json                      format, area, gen, built_with, caps, parts, mid, fine, fallback {ref: "kept today's outline"}, line_rule
   <AREA>.geojson.gz (+ .pN)       OVERVIEW: one feature per park (MultiPolygon). A park with stretches not drawn has two
                                   features: role 'line' (MultiLineString, drawn) and role 'hit' (its drawn tracts, clicks only).
                                   Properties: ref, name, g, detail_m, worst_m, points, layers, won, cr (credit lines), mid,
-                                  fine, and for a park across areas 'areas' and 'gen'.
+                                  fine, and for a park across areas 'areas' and 'gen'; a park with an official line has
+                                  'line': true and, when the store gives one, 'zone' [[feet, measured from], ...] as given.
   mid/<REF>.geojson.gz            MIDDLE: one MultiLineString feature (this area's part of the park).
   fine/<REF>/<ix>_<iy>.geojson.gz FINE pieces: MultiLineString inside tile ix,iy (T x T degrees, T in INDEX fine[ref].t).
 Standard library only, Python 3.9+. No network.
@@ -146,6 +153,23 @@ def enc_rings(rec, park):
     return rec.get('rings') or []
 
 
+KINDS = ('area', 'line', 'pin')     # store index format 4: a record's geometry_kind (absent = area)
+LINE_CAP = 30000     # official line points per park drawn as given; a park over it keeps today's outline
+LINE_ROUND_M = 0.8   # an official line is drawn as given: its only error is the rounding to DECIMALS (5: under 0.8 m)
+LINE_RULE = ('official trail and river lines are drawn as the store gives them (open lines, rounded to 5 decimals); no '
+             'zone band is drawn around them; the 100 ft zone either side is the map\'s own rule, applied by its own test')
+
+
+def kind_of(rec):
+    """The record's geometry kind (index format 4): 'area' when absent; a stand-in circle is a pin (its ring is ignored);
+    anything not area / line / pin = 'unknown' (never drawn)."""
+    if rec.get('ring_is_stand_in_circle') is True: return 'pin'
+    k = rec.get('geometry_kind')
+    if k is None or k == '': return 'area'
+    k = str(k).strip().lower()
+    return k if k in KINDS else 'unknown'
+
+
 def _member_json(raw):
     txt = gzip.decompress(raw).decode('utf-8').strip()
     if txt.startswith(','): txt = txt[1:].strip()
@@ -179,6 +203,10 @@ def read_park(store_dir, ref, e, handles):
         er = enc_rings(r, p)
         if geometry_sha256(er) != r.get('sha256'): raise DisplayError(f'{ref}: record {r.get("key")} checksum does not match')
         if sum(len(x) // 2 for x in er) != r.get('points'): raise DisplayError(f'{ref}: record {r.get("key")} point count')
+        if kind_of(r) == 'line':      # format 4: an official line's own checksum and point count (the store never buffers it)
+            ln = r.get('lines') or []
+            if geometry_sha256(ln) != r.get('line_sha256'): raise DisplayError(f'{ref}: line record {r.get("key")} checksum does not match')
+            if sum(len(x) // 2 for x in ln) != r.get('line_points'): raise DisplayError(f'{ref}: line record {r.get("key")} point count')
     fp = hashlib.sha256('|'.join(str(r.get('sha256')) for r in p.get('records') or []).encode()).hexdigest()
     if e.get('fp') and fp != e['fp']: raise DisplayError(f'{ref}: park fingerprint differs from the index')
     return p
@@ -454,7 +482,9 @@ def wdpa_hit(rec, meta, layer_row):
 def gate(rec, e, layers_tbl):
     """(passes, private reason, credit) for one record. The stricter answer wins: the index's record_meta AND the record itself
     must say publishable (boolean true) with the same allowed class, the same verified-row / owner-confirmed basis and the same
-    plain credit line; the layer row (if the index has one) must agree; the park must be publishable as a whole. WDPA never."""
+    plain credit line; the layer row (if the index has one) must agree. WDPA never. Each record is judged ON ITS OWN: the park
+    is not judged as a whole, so a PAD-US record passes even where a state record of the same park is
+    private; the park-level flag park_publishable is not read, and a record that does not pass is never drawn."""
     key = rec.get('key')
     meta = ((e.get('record_meta') or {}).get(key)) if isinstance(e.get('record_meta'), dict) else None
     if not isinstance(meta, dict): return False, 'no record_meta for it in the index', ''
@@ -466,7 +496,6 @@ def gate(rec, e, layers_tbl):
         if k in rec and rec.get(k) != meta.get(k): return False, f'index and record differ on {k}', ''
     if meta.get('publishable') is not True: return False, f"index publishable is {meta.get('publishable')!r}", ''
     if rec.get('publishable') is not True: return False, f"record publishable is {rec.get('publishable')!r}", ''
-    if e.get('park_publishable') is not True: return False, 'park_publishable is not true', ''
     if meta.get('private_reason'): return False, 'the store gives a private reason', ''
     cls_i = str(meta.get('licence_class') or '').strip().upper()
     cls_r = str(rec.get('licence_class') or '').strip().upper()
@@ -994,7 +1023,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
         for ref in idx[a][0]['parks']: in_areas.setdefault(ref, []).append(a)
     handles = {}
     res = {a: {'feats': [], 'mid': {}, 'fine': {}, 'fallback': {}} for a in areas}
-    rows, why_private = [], {}
+    rows, why_private, held_private, kinds_private = [], {}, {}, {}
     try:
         for ref in sorted(in_areas):
             mine = in_areas[ref]
@@ -1005,12 +1034,14 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                 for a in mine: res[a]['fallback'][ref] = FALLBACK_CODE
             if others:
                 fall(f"also in {', '.join(others)}, which is not in this run (a park's areas are built together)"); continue
-            parks, why_not, credit_of, name = {}, [], {}, ref
+            parks, why_not, not_official, credit_of, name = {}, [], [], {}, ref
+            kinds = {'line': 0, 'pin': 0, 'water_surface': 0, 'unknown': 0}   # passing records of each kind (private report)
+            line_keys = set()
             for a in mine:
                 e = idx[a][0]['parks'][ref]
                 p = read_park(store_dir, ref, e, handles); parks[a] = (e, p); name = p.get('name') or name
                 if p.get('circle') or p.get('grade') != 'official':
-                    why_not.append(f'{a}: not an official outline in the store'); continue
+                    not_official.append(f'{a}: not an official outline in the store'); continue
                 if e.get('check_join'):
                     cj = e['check_join']; doubt.setdefault(ref, f"check join (tracts in {cj.get('groups')} groups {cj.get('gap_km')} km apart)")
                 lt = idx[a][0].get('layers')
@@ -1019,54 +1050,97 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                         ok, why, cr = True, '', clean_credit(r.get('credit') or r.get('agency_label')) or str(r.get('layer') or '')
                         if wdpa_hit(r, None, None): ok, why = False, 'WDPA / Protected Planet / SPREP / UNEP-WCMC source'
                     else:
-                        ok, why, cr = gate(r, e, lt)
+                        ok, why, cr = gate(r, e, lt)      # the SAME gate for every geometry kind
                     if not ok: why_not.append(f"{r.get('key')}: {why}"); continue
+                    k = kind_of(r)
+                    if k == 'area' and str(r.get('role') or '').strip().lower() == 'water_surface':
+                        kinds['water_surface'] += 1; continue      # the water itself, not the park's boundary: never the outline
+                    if k in ('pin', 'unknown'):
+                        kinds[k] += 1; continue                    # an official point is not an outline (the display copy has no
+                    if k == 'line':                                # place for one); the POTA pin is never touched
+                        kinds['line'] += 1; line_keys.add((a, r.get('key')))
                     credit_of[(a, r.get('key'))] = cr
-            if why_not:
-                fall('licence gate: ' + '; '.join(why_not[:3]) + (f' (+{len(why_not) - 3} more)' if len(why_not) > 3 else '')); continue
-            # 3. the same geometry once: the copy from the highest-ranked layer (then area, key)
+            if any(kinds.values()): kinds_private[ref] = dict(kinds)
+            if not_official:
+                fall('; '.join(not_official)); continue
+            # Records are judged one by one: the park keeps today's outline only when NO record passes
+            # the licence gate. The records that did not pass are never drawn, and the private report keeps their reasons.
+            held = ('licence gate: ' + '; '.join(why_not[:3]) + (f' (+{len(why_not) - 3} more)' if len(why_not) > 3 else '')) if why_not else ''
+            if why_not and not credit_of and not (kinds['pin'] or kinds['water_surface'] or kinds['unknown']):
+                fall(held); continue
+            if held: held_private[ref] = held
+            # 3. the same geometry once: the copy from the highest-ranked layer (then area, key); ONLY records that passed the gate
             cand = []
             for a in mine:
                 e, p = parks[a]
                 for r in p.get('records') or []:
+                    if (a, r.get('key')) not in credit_of: continue      # private: never drawn, never measured against
                     cand.append((rank_of(prec, a, r.get('layer') or ''), a, r.get('key'), r, p))
-            seen, recs = set(), []
+            seen, recs, lrecs = set(), [], []
             for rk, a, key, r, p in sorted(cand, key=lambda c: (c[0], c[1], str(c[2]))):
+                if (a, key) in line_keys:     # an official line (format 4): drawn AS GIVEN, open, never buffered, never a polygon
+                    if key in seen or r.get('line_sha256') in seen: continue
+                    seen.update((key, r.get('line_sha256')))
+                    paths = [[(x / SCALE, y / SCALE) for x, y in ring_ints(el)] for el in (r.get('lines') or [])]
+                    paths = [pt for pt in paths if len(pt) >= 2]
+                    if paths:
+                        z = (r.get('corridor_ft'), r.get('corridor_from'))
+                        lrecs.append((a, key, r.get('layer') or '', paths, rk, z if z != (None, None) else None))
+                    continue
                 if key in seen or r.get('sha256') in seen: continue
                 seen.update((key, r.get('sha256')))
                 rings = [[(x / SCALE, y / SCALE) for x, y in ring_ints(er)] for er in enc_rings(r, p)]
                 rings = [rg for rg in rings if len(rg) >= 2]
                 if rings: recs.append(Rec(a, key, r.get('layer') or '', rings, r.get('sha256'), rk))
             n_records = sum(len(parks[a][1].get('records') or []) for a in mine)
-            if not recs: fall('no drawable rings in the store'); continue
-            ng, sep = clusters(recs)
-            if ng > 1 and sep >= JOIN_FLAG_KM: doubt.setdefault(ref, f'check join (tracts in {ng} groups {sep:.1f} km apart)')
+            if not recs and not lrecs:
+                skipped = ', '.join(f'{v} {k}' for k, v in kinds.items() if v and k != 'line')
+                fall('nothing to draw as an outline' + (f' ({skipped} record(s) passed but are not outlines)' if skipped else '')
+                     + (f'; {held}' if held else '')); continue
+            line_pts = sum(len(pt) for l in lrecs for pt in l[3])
+            if line_pts > LINE_CAP:
+                fall(f'official line of {line_pts} points, over the {LINE_CAP} drawn as given (no line levels yet)'); continue
+            if recs:
+                ng, sep = clusters(recs)
+                if ng > 1 and sep >= JOIN_FLAG_KM: doubt.setdefault(ref, f'check join (tracts in {ng} groups {sep:.1f} km apart)')
             if ref in doubt: fall(doubt[ref]); continue
             store_pts = sum(len(x) for r in recs for x in r.rings)
             multi = len(mine) > 1
-            stp = process_park(recs, prec, merge_m, multi)
-            drawn = [r for r in recs if r.drawn_any()]
-            won = min((r.rank, r.layer) for r in recs)[1]
-            ov = level(drawn, cap, decimals=decimals)
-            mid = fine = None
-            if ov['worst'] > MID_OVER_M:
-                mid = level(drawn, mid_cap, decimals=decimals)
-                for a in mine:   # each area's middle file stays under the part limit: raise the tolerance until it does
-                    while len(gz({'type': 'Feature', 'geometry': {'type': 'MultiLineString', 'coordinates': rnd(lines_of(mid, a), decimals)}})) > max_part:
-                        nxt = [s for s in LADDER if s > mid['tol']]
-                        if not nxt: raise DisplayError(f'{ref}: the middle level is over {max_part} bytes even at the largest step')
-                        mid = level(drawn, 0, fixed=nxt[0], decimals=decimals)
-            if (mid or ov)['worst'] > FINE_OVER_M:
-                fine = level(drawn, 0, fixed=FINE_TOL_M, decimals=decimals)
-            finest = fine or mid or ov
-            inv = invariants(recs, lines_of(finest))
-            row = {'ref': ref, 'name': name, 'areas': mine, 'records': n_records, 'distinct_records': len(recs),
-                   'drawn_records': len(drawn), 'won': won, 'store_points': store_pts, **stp,
-                   'points': ov['points'], 'detail_m': ov['tol'], 'worst_m': round(ov['worst'], 2), 'hidden_rings': ov['hidden'],
+
+            def lines_in(a):          # this area's official lines, as given (rounded like every other coordinate)
+                return [pt for l in lrecs if l[0] == a for pt in l[3]]
+            if recs:
+                stp = process_park(recs, prec, merge_m, multi)
+                drawn = [r for r in recs if r.drawn_any()]
+                ov = level(drawn, cap, decimals=decimals)
+                mid = fine = None
+                if ov['worst'] > MID_OVER_M:
+                    mid = level(drawn, mid_cap, decimals=decimals)
+                    for a in mine:   # each area's middle file stays under the part limit: raise the tolerance until it does
+                        while len(gz({'type': 'Feature', 'geometry': {'type': 'MultiLineString', 'coordinates': rnd(lines_of(mid, a) + lines_in(a), decimals)}})) > max_part:
+                            nxt = [s for s in LADDER if s > mid['tol']]
+                            if not nxt: raise DisplayError(f'{ref}: the middle level is over {max_part} bytes even at the largest step')
+                            mid = level(drawn, 0, fixed=nxt[0], decimals=decimals)
+                if (mid or ov)['worst'] > FINE_OVER_M:
+                    fine = level(drawn, 0, fixed=FINE_TOL_M, decimals=decimals)
+                finest = fine or mid or ov
+                inv = invariants(recs, lines_of(finest))
+            else:                     # a park of official lines only: no area to simplify, nothing to measure land against
+                stp, drawn, ov, mid, fine, finest = {'once_m': 0.0}, [], None, None, None, None
+                inv = {'missing_m': 0.0, 'lost_fail': False, 'max_gap_m': 0.0, 'lost_m2': 0.0}
+            won = min([(r.rank, r.layer) for r in recs] + [(l[4], l[2]) for l in lrecs])[1]
+            row = {'ref': ref, 'name': name, 'areas': mine, 'records': n_records, 'held_records': len(why_not),
+                   'public_records': len(credit_of), 'distinct_records': len(recs) + len(lrecs),
+                   'drawn_records': len(drawn) + len(lrecs), 'won': won, 'store_points': store_pts,
+                   'line_records': len(lrecs), 'line_points': line_pts, 'pin_records_not_drawn': kinds['pin'],
+                   'water_surface_records_not_drawn': kinds['water_surface'], 'unknown_kind_records_not_drawn': kinds['unknown'], **stp,
+                   'points': (ov['points'] if ov else 0) + line_pts, 'detail_m': ov['tol'] if ov else 0,
+                   'worst_m': round(ov['worst'], 2) if ov else 0.0, 'hidden_rings': ov['hidden'] if ov else 0,
                    'mid_points': mid['points'] if mid else None, 'mid_detail_m': mid['tol'] if mid else None,
                    'mid_worst_m': round(mid['worst'], 2) if mid else None,
                    'fine_points': fine['points'] if fine else None, 'fine_worst_m': round(fine['worst'], 2) if fine else None,
-                   'street_worst_m': round(finest['worst'], 2), **{k: (round(v, 1) if isinstance(v, float) else v) for k, v in inv.items()}}
+                   'street_worst_m': round(finest['worst'], 2) if finest else 0.0,
+                   **{k: (round(v, 1) if isinstance(v, float) else v) for k, v in inv.items()}}
             rows.append(row)
             if inv['missing_m'] > 0 or inv['lost_fail']:
                 fall(f"invariant failed: {inv['missing_m']:.0f} m of boundary to draw not drawn (max gap {inv['max_gap_m']:.0f} m), "
@@ -1074,27 +1148,40 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                 row['failed'] = True
                 continue
             merged_add = merge_m if stp['once_m'] else 0.0
-            as_lines = multi or any(s != DRAWN for r in drawn for ring in r.seg for s in ring)
+            as_lines = multi or bool(lrecs) or any(s != DRAWN for r in drawn for ring in r.seg for s in ring)
             for a in mine:
-                lay = sorted({r.layer for r in drawn if r.area == a})
-                cr = sorted({credit_of.get((r.area, r.key), '') for r in drawn if r.area == a} - {''})
-                base = {'ref': ref, 'name': name, 'g': 'official', 'detail_m': ov['tol'], 'worst_m': round(ov['worst'] + merged_add, 1),
-                        'points': sum(len(k) for r, i, k, q in ov['rings'] if r.area == a), 'layers': lay, 'won': won, 'cr': cr,
-                        'mid': bool(mid), 'fine': bool(fine)}
+                la = lines_in(a)
+                lay = sorted({r.layer for r in drawn if r.area == a} | {l[2] for l in lrecs if l[0] == a})
+                cr = sorted(({credit_of.get((r.area, r.key), '') for r in drawn if r.area == a}
+                             | {credit_of.get((l[0], l[1]), '') for l in lrecs if l[0] == a}) - {''})
+                if not lay or not cr:      # this area draws nothing of its own (its records are copies kept under another area
+                    res[a]['fallback'][ref] = FALLBACK_CODE   # of the same park): today's outline here, never an empty shape
+                    held_private[ref] = (held + '; ' if held else '') + f'{a}: nothing of its own to draw (every record it holds is a copy drawn under another area)'
+                    continue
+                base = {'ref': ref, 'name': name, 'g': 'official', 'detail_m': ov['tol'] if ov else 0,
+                        'worst_m': round(ov['worst'] + merged_add, 1) if ov else LINE_ROUND_M,
+                        'points': sum(len(k) for r, i, k, q in (ov['rings'] if ov else []) if r.area == a) + sum(len(pt) for pt in la),
+                        'layers': lay, 'won': won, 'cr': cr, 'mid': bool(mid), 'fine': bool(fine)}
                 if multi: base.update({'areas': mine, 'gen': gen})
+                if la:                     # official trail / river line(s) in this park, drawn as given; no corridor is drawn
+                    base['line'] = True
+                    zs = sorted({l[5] for l in lrecs if l[0] == a and l[5]}, key=str)
+                    if zs: base['zone'] = [list(z) for z in zs]   # the store's own zone note (feet, measured from), as given
+                polys = polys_of(ov, a) if ov else []
                 if as_lines:
                     res[a]['feats'].append({'type': 'Feature', 'properties': dict(base, role='line'),
-                                            'geometry': {'type': 'MultiLineString', 'coordinates': rnd(lines_of(ov, a), decimals)}})
-                    res[a]['feats'].append({'type': 'Feature', 'properties': dict(base, role='hit'),
-                                            'geometry': {'type': 'MultiPolygon', 'coordinates': polys_of(ov, a)}})
+                                            'geometry': {'type': 'MultiLineString', 'coordinates': rnd((lines_of(ov, a) if ov else []) + la, decimals)}})
+                    if polys:
+                        res[a]['feats'].append({'type': 'Feature', 'properties': dict(base, role='hit'),
+                                                'geometry': {'type': 'MultiPolygon', 'coordinates': polys}})
                 else:
-                    res[a]['feats'].append({'type': 'Feature', 'properties': base, 'geometry': {'type': 'MultiPolygon', 'coordinates': polys_of(ov, a)}})
+                    res[a]['feats'].append({'type': 'Feature', 'properties': base, 'geometry': {'type': 'MultiPolygon', 'coordinates': polys}})
                 if mid:
                     res[a]['mid'][ref] = (mid['tol'], {'type': 'Feature', 'properties': {'ref': ref, 'level': 'mid', 'detail_m': mid['tol'],
                                                                                          'worst_m': round(mid['worst'] + merged_add, 1)},
-                                                       'geometry': {'type': 'MultiLineString', 'coordinates': rnd(lines_of(mid, a), decimals)}})
+                                                       'geometry': {'type': 'MultiLineString', 'coordinates': rnd(lines_of(mid, a) + la, decimals)}})
                 if fine:
-                    lines = lines_of(fine, a)
+                    lines = lines_of(fine, a) + la
                     T = TILE_START
                     while True:
                         tiles = cut_tiles(lines, T)
@@ -1106,8 +1193,8 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                         T /= 2
                     res[a]['fine'][ref] = (fine['tol'], T, blobs)
             fb = [len(b) for a in mine for b in (res[a]['fine'].get(ref, (0, 0, {}))[2].values())]
-            row.update({'mid_bytes': sum(len(gz(res[a]['mid'][ref][1])) for a in mine) if mid else None,
-                        'fine_t': {a: res[a]['fine'][ref][1] for a in mine} if fine else None,
+            row.update({'mid_bytes': sum(len(gz(res[a]['mid'][ref][1])) for a in mine if ref in res[a]['mid']) if mid else None,
+                        'fine_t': {a: res[a]['fine'][ref][1] for a in mine if ref in res[a]['fine']} if fine else None,
                         'fine_pieces': len(fb) if fine else None, 'fine_bytes': sum(fb) if fine else None,
                         'fine_piece_max': max(fb, default=0) if fine else None})
     finally:
@@ -1120,7 +1207,11 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
             f"{reps[a]['bytes_fine']:,} B fine")
     rep = {'PRIVATE': 'build report: reasons and numbers per park. Never publish this file.', 'areas': areas, 'gen': gen,
            'made': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'store': sha, 'seconds': round(time.time() - t0, 2),
-           'per_area': reps, 'rows': rows, 'fallback_reasons': why_private,
+           'per_area': reps, 'rows': rows, 'fallback_reasons': why_private, 'held_records_reasons': held_private,
+           'kinds_not_outlines': kinds_private, 'pin_records_not_drawn': sum(v['pin'] for v in kinds_private.values()),
+           'water_surface_records_not_drawn': sum(v['water_surface'] for v in kinds_private.values()),
+           'unknown_kind_records_not_drawn': sum(v['unknown'] for v in kinds_private.values()),
+           'line_records_drawn': sum(r.get('line_records', 0) for r in rows if not r.get('failed')),
            'invariant_failures': [r['ref'] for r in rows if r.get('failed')]}
     for k in ('fallback', 'bytes_parts', 'bytes_mid', 'bytes_fine', 'pieces'): rep[k] = sum(r[k] for r in reps.values())
     rep['parks_drawn'] = len([r for r in rows if not r.get('failed')])
@@ -1177,7 +1268,8 @@ def write_area(out_dir, area, R, gen, built_with, cap, decimals, merge_m, previe
              'parks': len({f['properties']['ref'] for f in R['feats']}), 'parts': plist, 'mid': mlist, 'fine': flist,
              'fallback': dict(sorted(R['fallback'].items())),
              'about': 'Display copy for drawing only (overview / middle / fine pieces). A park listed under fallback, or not '
-                      'listed, keeps its old outline on the map. Never used for "am I in the park" or 2-fers.'}
+                      'listed, keeps its old outline on the map. Never used for "am I in the park" or 2-fers.',
+             'line_rule': LINE_RULE}
     if preview: index['stamp'] = PREVIEW_STAMP
     (out / 'INDEX.json').write_text(json.dumps(index, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     return {'parks': index['parks'], 'fallback': len(R['fallback']), 'mid': len(mlist), 'fine': len(flist),

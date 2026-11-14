@@ -1,6 +1,7 @@
 """Synthetic outline stores for the display-copy tests (KPC owner, 2026-11-14). Made-up shapes near 0 N 0 E, store format 1, index
 in the shape store tool full 3 (final) writes: store_format_version kpc-outline-store-index/3, licence_classes, file checksums,
-per park record_meta {key: the 11 licence fields} mirrored in each record, park_publishable.
+per park record_meta {key: the 11 licence fields} mirrored in each record, park_publishable; line_record / pin_record add the
+index-format-4 geometry kinds (full 3.5).
 Not a test itself (the suite runs tests/test_*.py only)."""
 import gzip, hashlib, io, json, math, pathlib, sys
 
@@ -60,6 +61,27 @@ def record(key, layer, rings, cls='OPEN', credit=None, publishable=True, why=VER
            'wdpa_derived': False, 'private_reason': '' if publishable is True else 'no licence recorded by a person yet'}
     rec.update(extra)
     return rec
+
+
+def line_record(key, layer, paths, **kw):
+    """an index-format-4 LINE record (store tool full 3.5): open paths in `lines`, no rings, sha256 of []"""
+    rec = record(key, layer, [], **kw)
+    el = [enc(pt) for pt in paths]
+    rec.update({'geometry_kind': 'line', 'lines': el, 'line_points': sum(len(pt) for pt in paths), 'line_sha256': K.geometry_sha256(el),
+                'corridor_rule': 'no corridor in the store; the reader applies its own'})
+    return rec   # corridor_ft / corridor_from / role, when given, are kept as given (record() keeps extra fields)
+
+
+def pin_record(key, layer, lon, lat, **kw):
+    """an index-format-4 PIN record: the agency's own point, no rings"""
+    rec = record(key, layer, [], **kw)
+    rec.update({'geometry_kind': 'pin', 'pin_point': [lon, lat], 'pin_source': 'example.invalid/arcgis/rest/services/x/MapServer/0'})
+    return rec
+
+
+def wiggle_line(x0, y0, x1, n, amp=0.0004):
+    """an open, wiggly path from (x0, y0) eastwards to x1 (a made-up trail)"""
+    return [(round(x0 + (x1 - x0) * i / (n - 1), 6), round(y0 + amp * math.sin(i * 0.7), 6)) for i in range(n)]
 
 
 def park(ref, recs, name=None):

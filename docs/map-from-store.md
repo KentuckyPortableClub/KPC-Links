@@ -40,7 +40,6 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
    checked against it. A record passes only if all of these hold:
    - the index's `record_meta` for the record and the record itself agree on every licence field, and both say
      `publishable` is exactly `true`, with no private reason;
-   - the park is publishable as a whole (`park_publishable`);
    - the class is one the store's `licence-classes.json` allows (`can_be_publishable: true`: OPEN, PUBLIC DOMAIN, NO TERMS
      STATED, DISCLAIMER ONLY, NON-COMMERCIAL). SHARE-ALIKE stays off. The list is a word-for-word copy in
      `tools/kpc_display_licence_classes.json`; a class the builder does not know (in a record or in the index's
@@ -51,8 +50,29 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
    - a plain credit line (`credit_line`) exists (e-mails, web addresses and account notes are removed).
 
    WDPA: the store's boolean `wdpa_derived` must be `false` in the index and in the record; then the words WDPA / Protected
-   Planet / SPREP / UNEP-WCMC are searched in VALUES only (never in field names; PAD-US's `WDPA_Cd` field is skipped). One
-   failing record keeps the whole park on today's outline. Nothing is ever decided from licence text.
+   Planet / SPREP / UNEP-WCMC are searched in VALUES only (never in field names; PAD-US's `WDPA_Cd` field is skipped).
+   Nothing is ever decided from licence text.
+
+   **Each record is judged on its own** (the park-level `park_publishable` flag is not read). The records that pass are
+   drawn, with their own credit lines; a record that fails (not publishable, WDPA-derived, a class that may not be drawn ...)
+   is never drawn, never measured against and never named in a public file, and its reason goes to the private report. A
+   park with no record that passes draws nothing from the store: it keeps today's outline, and its POTA pin is never moved.
+   **Geometry kinds (store index format 4, store tool full 3.5).** A record's `geometry_kind` is `area`, `line` or `pin`
+   (absent = `area`). The licence gate above is the same for every kind, so a line or pin that is not publishable, or is
+   WDPA-derived, is never drawn. Then:
+   - `area`: drawn as an area, as before. An area record with `role: water_surface` is the water, not the park's boundary:
+     it is never drawn as the outline (counted in the private report).
+   - `line` (official trail or river): drawn **as the store gives it**, an open line with every point, only rounded to 5
+     decimals, in every level (overview, middle, fine). It is never simplified, buffered, joined or made into a polygon, and
+     no zone band is drawn. The map today draws a trail park as its official line and applies POTA's 100 ft each side only in
+     its own "am I in the park" test (`kpc-bounds.js`, 0.03048 km); this change keeps that and draws no band. The store's
+     `corridor_ft` / `corridor_from` (centreline or waters_edge) are carried as given in the feature's `zone`; the feature
+     says `line: true`, and `INDEX.json` names the rule in `line_rule`. A park whose lines hold more than 30,000 points keeps
+     today's outline (no line levels yet).
+   - `pin` (an official agency point) and stand-in circles (`ring_is_stand_in_circle`): the display copy has no place for an
+     official point, so they are not drawn (counted in the private report). A pin is never an outline and never moves or
+     replaces the POTA pin. A park with only pins keeps today's outline.
+   - Any other kind is left out (counted).
 2. **Doubtful joins** (`--doubtful`, a list that must exist), the store's check-join flag, or tracts 10 km apart: today's outline.
 3. **The same geometry is drawn once**, using the copy from the highest-ranked layer.
 4. **One layer per park.**

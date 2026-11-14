@@ -75,13 +75,25 @@ def main():
             wd = [r for r, why in rep[mode]['fallback_reasons'].items() if 'WDPA' in why]
             check(not wd, f'{mode}: no record is taken for WDPA (every v3 record has a field NAMED wdpa_derived; it is false)')
         check(rep['none']['parks_drawn'] == 0, 'nothing verified: nothing drawn, every park keeps today\'s outline')
+        # the gate is per RECORD (park_publishable is not read): a park is drawn when at least one of its records passes,
+        # i.e. exactly the parks with a publishable record, less those kept back for a reason that is not the licence gate
+        def drawn(mode): return {r['ref'] for r in rep[mode]['rows'] if not r.get('failed') and 'US-NH' in r['areas']}   # US-NH's parks
+        def expect(ixm, mode):
+            pub = {r for r, e in ixm['parks'].items() if any(m.get('publishable') is True for m in e['record_meta'].values())}
+            other = {r for r, why in rep[mode]['fallback_reasons'].items() if not why.startswith('licence gate')}
+            return pub - other
         ixn = {r: e for r, e in ix['parks'].items() if e.get('park_publishable')}
-        check(rep['state']['parks_drawn'] == len(ixn) > 0, f'state layers verified, PAD-US not: exactly the parks the store calls publishable as a whole are drawn ({len(ixn)})')
+        exs = expect(ix, 'state')
+        check(drawn('state') == exs and len(exs) >= len(ixn) > 0,
+              f'state layers verified, PAD-US not: exactly the US-NH parks with at least one publishable record are drawn ({len(exs)}; '
+              f'{len(ixn)} of them publishable as a whole)')
         pd = [r for r, e in ix['parks'].items() if e.get('park_publishable') and any(m['licence_class'] == 'PUBLIC DOMAIN' for m in e['record_meta'].values())]
         check(pd and not set(pd) & set(rep['state']['fallback_reasons']), f'PUBLIC DOMAIN records are drawn ({len(pd)} park(s))')
         ixa = json.loads((stores['all'] / 'index-US-NH.json').read_text(encoding='utf-8'))
         na = sum(1 for e in ixa['parks'].values() if e.get('park_publishable'))
-        check(rep['all']['parks_drawn'] >= na > rep['state']['parks_drawn'], f'PAD-US verified too: more parks drawn ({rep["all"]["parks_drawn"]}, store says {na} in US-NH)')
+        exa = expect(ixa, 'all')
+        check(drawn('all') == exa and exa >= drawn('state') and len(exa) >= na,
+              f'PAD-US verified too: exactly the US-NH parks with a publishable record are drawn ({len(exa)}; store says {na} publishable as a whole)')
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     print('ALL PASS' if all(RESULTS) else f'FAILED {RESULTS.count(False)} of {len(RESULTS)}')
