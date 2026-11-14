@@ -1,8 +1,52 @@
 {
- "updated": "2026-11-12T15:06:56+00:00",
+ "updated": "2026-11-14T13:56:38+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13664",
+   "prog": "pota",
+   "name": "Hunters Campground Recreation Site",
+   "st": [
+    "WA"
+   ],
+   "la": 48.1259,
+   "lo": -118.229,
+   "found": "2026-11-14"
+  },
+  {
+   "ref": "US-13663",
+   "prog": "pota",
+   "name": "Fort Spokane Campground Recreation Site",
+   "st": [
+    "WA"
+   ],
+   "la": 47.9089,
+   "lo": -118.31,
+   "found": "2026-11-14"
+  },
+  {
+   "ref": "US-13662",
+   "prog": "pota",
+   "name": "Pioneer Park Campground Recreation Site",
+   "st": [
+    "WA"
+   ],
+   "la": 48.2114,
+   "lo": -117.054,
+   "found": "2026-11-14"
+  },
+  {
+   "ref": "US-13661",
+   "prog": "pota",
+   "name": "Panhandle Campground Recreation Site",
+   "st": [
+    "WA"
+   ],
+   "la": 48.5086,
+   "lo": -117.269,
+   "found": "2026-11-14"
+  },
   {
    "ref": "US-13660",
    "prog": "pota",
