@@ -10284,6 +10284,13 @@
    "decided_by": "KPC owner",
    "date": "2026-11-14",
    "why": "Caribou-Targhee National Forest segment (fs.usda.gov/ctnf, like KFF-4466 and KFF-4644, both US-4475); the site had US-4575 (Old Spanish National Historic Trail) by mistake. POTA lists US-4475 in ID, MT, UT and WY."
+  },
+  {
+   "wwff": "KFF-6863",
+   "pota": "US-1286",
+   "decided_by": "KPC owner",
+   "date": "2026-11-14",
+   "why": "Natural Bridge (Powell County) sits inside Natural Bridge State Park; same name, pins 0.45 km apart. KFF-1286 is the state park itself; KFF-6863 is the same place listed as a nature preserve."
   }
  ],
  "community_kff_2025": {
