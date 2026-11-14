@@ -24,6 +24,7 @@ for code, lst in (sl.get('areas') or {}).items():
     for L in lst:
         if host(L.get('url')) in SAVED_HOSTS:
             saved.append((code, L))
+            if L.get('verified'): continue   # Nov 14: a layer on the verified-layers list is read live in the member's browser
             if L.get('ok'):
                 bad_ok.append((code, L.get('label'), L.get('url')))
             if L.get('read') != 'saved copy' or L.get('live') is not False or 'saved copy' not in str(L.get('why') or '').lower():

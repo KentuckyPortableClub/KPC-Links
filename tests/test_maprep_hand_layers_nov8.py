@@ -15,7 +15,7 @@ for st, ks in need.items():
         check(len(json.load(open(ROOT / x['url']))['features']) == x['count'], x['url'] + ' count')
 js = (ROOT / 'kpc-maprep-research.js').read_text(encoding='utf-8')
 check('o.L.local ? await slLocal' in js, 'local layers are read by slLocal')
-check(not any(x['ok'] and 'services1.arcgis.com/1mtXwieMId59thmg' in x.get('url','') for a in reg['areas'].values() for x in a), 'no live TPWD services1.arcgis.com layer is used')
+check(not any(x['ok'] and not x.get('verified') and 'services1.arcgis.com/1mtXwieMId59thmg' in x.get('url','') for a in reg['areas'].values() for x in a), 'no live TPWD services1.arcgis.com layer is used unless on the verified list (Nov 14)')
 for f in ('kpc-maprep.html', 'kpc-maprep-reps.html', '.claude/build/maprep/main.html'):
     h = (ROOT / f).read_text(encoding='utf-8')
     check(re.search(r'kpc-maprep-research\.js\?v=(\w+)', h).group(1) >= '20261108y', f + ': script version')
