@@ -40,6 +40,8 @@ a recommendation only), NO (with why), or ONLY-PERSON. This file still writes no
                --retry re-checks data/research-inbox/needs-another-look.json; see docs/research-input-format.md
   --selftest              the 17 Research Bot calls of Nov 7
 
+Nov 14: every written record ends with by / when / run_id; a candidate whose name does not fit is not proposed
+('name does not fit'); a person's NO (overrides 'no' / 'none' / blocked_ids) always wins ('blocked by a person's no').
 Never fails the build: exit 0 (the selftest exits 1 on a wrong verdict)."""
 import glob, gzip, json, math, os, pathlib, re, sys, unicodedata, urllib.parse, urllib.request
 
@@ -144,6 +146,85 @@ def kinds(s):
 def kind_clash(park_txt, rec_txt):
     a, b = kinds(park_txt), kinds(rec_txt)
     return sorted(a), sorted(b), bool(a and b and not (a & b))
+
+
+# ---- Nov 14 2026 (Job 2, item 4a): who / when / run id on every written record; the name test on every proposed candidate;
+# a person's NO in the overrides always wins. Recommends only, as before: nothing is applied and no POTA pin is moved.
+# US-SPECIFIC, in this one place: only the US key's overrides are read (Canada / world keys are a later change: add them here).
+OVERRIDE_FILES = {'US': 'data/us-key/overrides.json'}
+BY = 'kpc_problem_solver'
+STAMP_KEYS = ('by', 'when', 'run_id')
+
+
+def stamp(rows, mode, when=None, env=None):
+    """Adds by / when / run_id at the END of each record (existing fields and their order are kept; a record that already has
+    'by' keeps its own). when = one UTC ISO time for the whole run; run_id = GITHUB_RUN_ID, else blank."""
+    env = os.environ if env is None else env
+    import datetime
+    when = when or datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    for r in rows or []:
+        if isinstance(r, dict) and 'by' not in r:
+            r.update(by=f'{BY}:{mode}', when=when, run_id=str(env.get('GITHUB_RUN_ID') or ''))
+    return rows
+
+
+def candidate_name_fits(park_name, park_type, cand_name):
+    """The solver's own name test, the one its proposals already use (same core words, kind of place does not clash).
+    -> '' when the candidate fits, else the plain reason it does not."""
+    if not same_name(park_name, cand_name):
+        return f"name does not fit: {cand_name!r} does not have the park's core name ({park_name!r})"
+    pk, rk, clash = kind_clash(f'{park_name} {park_type or ""}', cand_name)
+    if clash:
+        return f"name does not fit: same core name but the kinds clash ({'/'.join(pk)} park vs {'/'.join(rk)} record {cand_name!r})"
+    return ''
+
+
+def sure_name_fits(park_name, park_kind, cand_name):
+    """The sure rule's name test (kpc_research_inbox.name_ok + kind_clash, reused: core words match, a typo-level difference,
+    or the agency's own name with the park's number; the kind of place does not clash). -> '' when it fits, else the reason."""
+    import kpc_research_inbox as RI  # noqa: E402  (lazy: only the candidate check needs it)
+    if not str(cand_name or '').strip():
+        return 'name does not fit: the record has no name'
+    if not RI.name_ok(park_name, cand_name):
+        return f"name does not fit: {cand_name!r} is not the park's name ({park_name!r}) under the sure rule"
+    if RI.kind_clash(f'{park_name} {park_kind or ""}', cand_name):
+        return f"name does not fit: same core name but a different kind of place ({cand_name!r} vs {park_name!r})"
+    return ''
+
+
+def load_person_no(root=None, kind='US'):
+    """{'parks': {ref: override}, 'blocked': {ref: {id}}} read with kpc_overrides' own reader (fails closed; a missing file
+    with no parts = nothing blocked). blocked_ids count only with decided_by (the file's own rule, blocked_ids_about)."""
+    import kpc_overrides
+    d = kpc_overrides.load(pathlib.Path(root or ROOT) / OVERRIDE_FILES[kind], missing_ok=True)
+    bl = {}
+    for b in d.get('blocked_ids') or []:
+        if isinstance(b, dict) and b.get('ref') and b.get('id') is not None and b.get('decided_by'):
+            bl.setdefault(str(b['ref']), set()).add(str(b['id']))
+    return {'parks': d.get('parks') or {}, 'blocked': bl}
+
+
+def person_no(cid, cname, override=None, blocked=()):
+    """'' when no person's NO blocks candidate cid (name cname) for this park; else the reason. A NO = the park's override
+    'none': true (no outline of its own), its 'no' list (record ids or names; kpc_overrides.has_no), or a blocked_ids entry."""
+    import kpc_overrides
+    ov = override if isinstance(override, dict) else {}
+    cid, cname = str(cid if cid is not None else ''), str(cname or '')
+    if ov.get('none'):
+        return f"blocked by a person's no: overrides none: true (no outline of its own) for this park, so {cid or cname} is not proposed"
+    if kpc_overrides.has_no(ov):
+        no = {str(x).strip().lower() for x in ov.get('no') or [] if x is not None}
+        if (cid and cid.lower() in no) or (cname and cname.strip().lower() in no):
+            return f"blocked by a person's no: overrides 'no' lists {cid or cname}" + (f' ({cname})' if cid and cname else '')
+    if cid and cid in {str(x) for x in blocked or ()}:
+        return f"blocked by a person's no: {cid} is on the blocked_ids list for this park"
+    return ''
+
+
+def not_proposed(R, cid, cname, why):
+    """Lists a candidate that is NOT proposed (name does not fit / blocked by a person's no) on the verdict, with its reason."""
+    R.setdefault('not_proposed', []).append({'id': str(cid), 'name': cname or '', 'why': why})
+    R['reasons'].append(f'{cid} not proposed: {why}')
 
 
 def rings(rec): return (rec or {}).get('_r') or []
@@ -254,6 +335,7 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
             and any(same_name(x[1], recs[str(x[0])].get(k)) for k in ('Unit_Nm', 'Loc_Nm'))}
     km_bk = (p.get('bk') or [None, None])[1]
     ctx = ctx or {}
+    blocked = ctx.get('blocked_ids') or ()   # Nov 14: this park's blocked_ids (a person's NO), with override's 'no' / 'none'
     others_st = sorted(set(ctx.get('states') or []) - {listed_state})
     if others_st: R['other_states'] = others_st
     # 1. same land, new id
@@ -262,6 +344,10 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
     joined = bool(p.get('m')) and p.get('g') != 'pin'
     if ov_ids and not joined and not (set(ov_ids) & have):
         new = [x for x in cands if same_name(p.get('n'), x[1])]
+        for y in list(new):   # Nov 14: each candidate passes the name test (kind too) and no person's NO blocks it
+            stop = candidate_name_fits(p.get('n'), R['type'], y[1]) or person_no(y[0], y[1], override, blocked)
+            if stop: new.remove(y); not_proposed(R, y[0], y[1], stop)
+        if not new and R.get('not_proposed'): return R
         bk_id = str((p.get('bk') or [None])[0])
         new.sort(key=lambda x: str(x[0]) != bk_id)
         kn = ctx.get('known_ids') or {}
@@ -314,7 +400,12 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
                    f"so the key's {km_bk} km came from its coarse working copy; a person checks the held record")
         return R
     if others and held:
-        others.sort(key=lambda t: t[:3]); x = others[0][3]
+        others.sort(key=lambda t: t[:3])
+        for t in list(others):   # Nov 14: the name test (kind too) and a person's NO, before any candidate is proposed
+            stop = candidate_name_fits(p.get('n'), R['type'], t[3][1]) or person_no(t[3][0], t[3][1], override, blocked)
+            if stop: others.remove(t); not_proposed(R, t[3][0], t[3][1], stop)
+        if not others: return R
+        x = others[0][3]
         R.update(verdict='land wrong', confidence='high', recommend=f"join {x[0]} ({x[1]}) and drop the held {', '.join(held)}")
         why.append(f"the POTA pin is {'inside' if others[0][0] == 0 else f'{others[0][0]:.1f} km from'} {x[0]} ({x[1]}, ~{x[2]:,} ac)")
         for h, rec in hrec:
@@ -392,6 +483,10 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
     pac = float(p.get('ac') or 0)   # the park's own acres in the key (official or POTA), when it has them
     if pac > 0 and mac > 0 and mac / pac < 1 / ACRE_RATIO:
         why.append(f"{h}'s outline is {mac:,.0f} acres but the park is ~{pac:,.0f} acres, so it is only part of the land"); return R
+    # Nov 14: a person's NO on the held record wins: it is never proposed to keep
+    for hh in held:
+        stop = person_no(hh, next((x[1] for x in cands if str(x[0]) == hh), ''), override, blocked)
+        if stop: not_proposed(R, hh, next((x[1] for x in cands if str(x[0]) == hh), ''), stop); return R
     # 6. wrong state
     c = centre(rec)
     land_st = state_of(*c, path=states_path) if c else None
@@ -643,8 +738,8 @@ def run(env=None, root='.'):
     env = env or os.environ; root = pathlib.Path(root)
     pi_dir = pathlib.Path(env.get('PARKINFO') or root / 'kpcdata/data/parkinfo')
     cache = env.get('GEO_CACHE') or str(root / 'cache/us')
-    import kpc_overrides   # Nov 12 2026 (KPC-Links #151): manifest + parts; a missing part stops here (never an empty set)
-    ov = kpc_overrides.load(root / 'data/us-key/overrides.json', missing_ok=True).get('parks') or {}
+    # Nov 12 2026 (KPC-Links #151): manifest + parts; a missing part stops here (never an empty set). Nov 14: + blocked_ids
+    PN = load_person_no(root, 'US'); ov = PN['parks']
     out = []
     files = {}
     for f in sorted(glob.glob(str(root / 'data/us-key/US-??.json'))):
@@ -676,7 +771,8 @@ def run(env=None, root='.'):
             sn = {k: v for k, v in by_name.get(' '.join(sorted(core(hn))), {}).items()
                   if k != hid and re.match(r'[a-z]*', k).group(0) == pre} if core(hn) else {}
             ctx = {'states': where.get(r, []), 'joined_in': joined_in.get(r, set()) - {st}, 'known_ids': known, 'same_name_recs': sn,
-                   'extra_recs': {k: recs[k] for k in sn}, 'layer_states': lay_st, 'cache_note': cache_note(cache, st)}
+                   'extra_recs': {k: recs[k] for k in sn}, 'layer_states': lay_st, 'cache_note': cache_note(cache, st),
+                   'blocked_ids': PN['blocked'].get(r, set())}
             out.append(solve(r, p, (row[5], row[6]) if len(row) > 6 else None, recs, ov.get(r), 'US-' + st, ctx=ctx))
     wy = why_rows(files, ov, root, env, cache)
     wn = {}
@@ -685,6 +781,7 @@ def run(env=None, root='.'):
     stem.parent.mkdir(parents=True, exist_ok=True)
     n = {}
     for x in out: n[x['verdict']] = n.get(x['verdict'], 0) + 1
+    stamp(out, 'key', env=env); stamp(wy, 'key', when=(out[0]['when'] if out else None), env=env)   # Nov 14: who / when / run id
     json.dump({'about': 'recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)',
                'counts': n, 'parks': out, 'why_counts': wn, 'why': wy}, open(str(stem) + '.json', 'w', encoding='utf-8'), indent=1)
     open(str(stem) + '.md', 'w', encoding='utf-8').write(md(out, n, wy, wn))
@@ -693,19 +790,22 @@ def run(env=None, root='.'):
     return out
 
 
+def _sw(x): return ' | '.join(str(x.get(k) or '') for k in STAMP_KEYS)   # Nov 14: the by / when / run id cells
+
+
 def md(out, n, why=None, why_n=None):
     L = ['# Problem solver: a recommended fix for each held park', '',
          'Recommendations only. Nothing here is applied, and no POTA pin is ever moved. A person applies each one.', '',
          ', '.join(f'**{v}** {k}' for k, v in sorted(n.items())) or 'Nothing held.', '',
-         '| Park | State | Name | Verdict | Confidence | Recommended fix | Why |', '|---|---|---|---|---|---|---|']
+         '| Park | State | Name | Verdict | Confidence | Recommended fix | Why | By | When | Run ID |', '|---|---|---|---|---|---|---|---|---|---|']
     for x in out:
         stx = x.get('state', '').replace('US-', '') + (f" (also {', '.join(s.replace('US-', '') for s in x['other_states'])})" if x.get('other_states') else '')
-        L.append(f"| {x['park']} | {stx} | {x['name']} | {x['verdict']} | {x['confidence']} | {x['recommend']} | {'; '.join(x['reasons'])} |".replace('\n', ' '))
+        L.append(f"| {x['park']} | {stx} | {x['name']} | {x['verdict']} | {x['confidence']} | {x['recommend']} | {'; '.join(x['reasons'])} | {_sw(x)} |".replace('\n', ' '))
     if why:
         L += ['', '## Why each unjoined park has no boundary', '', 'Evidence only: nothing is applied.', '',
               'Count by code: ' + ', '.join(f'{k} {v}' for k, v in sorted((why_n or {}).items())), '',
-              '| Park | State | Name | Code | Why | Next step |', '|---|---|---|---|---|---|']
-        L += [f"| {w['ref']} | {w['state'].replace('US-', '')} | {w['name']} | {w['code']} | {w['why']} | {w['next_step']} |".replace('\n', ' ') for w in why]
+              '| Park | State | Name | Code | Why | Next step | By | When | Run ID |', '|---|---|---|---|---|---|---|---|---|']
+        L += [f"| {w['ref']} | {w['state'].replace('US-', '')} | {w['name']} | {w['code']} | {w['why']} | {w['next_step']} | {_sw(w)} |".replace('\n', ' ') for w in why]
     return '\n'.join(L) + '\n'
 
 
@@ -1015,17 +1115,31 @@ def _fetch_site(url):
         return None, f'not fetched ({type(e).__name__})'
 
 
-def check_candidate(park, recs, official_acres=None, earlier_no=None, fetch_site=False, page_html=None):
+def check_candidate(park, recs, official_acres=None, earlier_no=None, fetch_site=False, page_html=None, override=None, blocked=()):
     """Standing check for every candidate. park = {ref, name, pin=(lat,lon), website?, kind?, agency?}.
     recs = list of records {id, name, rings/_r, acres?, layer_url?, attrs?, agency?, type?}.
     Official acres may also come from a record attribute. YES is a bot-rule recommendation only
-    (this function writes no override)."""
+    (this function writes no override). Nov 14: override = the park's overrides entry and blocked = its blocked_ids: a record a
+    person said NO to is dropped (always: no new evidence lifts it; nothing left = NO, 'blocked by a person's no'); a YES needs
+    the sure rule's name test too (else ONLY-PERSON, 'name does not fit')."""
     park = park or {}
     recs = list(recs or [])
     ref = park.get('ref') or park.get('pota_ref') or ''
     name = park.get('name') or park.get('park_name') or ''
     pin = park.get('pin')
     why = []
+    nprop = []
+    if override or blocked:
+        keep = []
+        for r in recs:
+            stop = person_no(r.get('id') or r.get('record_id'), r.get('name') or r.get('record_name'), override, blocked) if isinstance(r, dict) else ''
+            if stop: nprop.append({'id': str(r.get('id') or r.get('record_id') or ''), 'name': str(r.get('name') or r.get('record_name') or ''), 'why': stop})
+            else: keep.append(r)
+        if nprop and not keep:
+            return {'ref': ref, 'name': name, 'verdict': 'NO', 'signed_by': None, 'why': '; '.join(x['why'] for x in nprop),
+                    'merged': False, 'not_proposed': nprop}
+        recs = keep
+        why.extend(f"{x['id'] or x['name']} {x['why']}" for x in nprop)
     recs, was_piece = _merge_parts(name, recs)
     park_wid = pota_wdpa_id(park)
     match_how = None
@@ -1171,17 +1285,25 @@ def check_candidate(park, recs, official_acres=None, earlier_no=None, fetch_site
         verd = 'NO'
         why.append('official page describes a different place or size')
 
+    if verd == 'YES':   # Nov 14: a candidate is proposed only when its name fits (the sure rule; a merge is read without its piece words)
+        nfit = sure_name_fits(name, park.get('kind'), PIECE_RX.sub(' ', rname.split(' + ')[0]) if rec.get('merged_from') else rname)
+        if nfit:
+            verd = 'ONLY-PERSON'; why.append(nfit + '; not proposed, a person compares')
+            nprop.append({'id': rid, 'name': rname, 'why': nfit})
     signed = 'candidate-check rule, Nov 9 2026' if verd == 'YES' else None
     out = {'ref': ref, 'name': name, 'verdict': verd, 'signed_by': signed, 'why': '; '.join(why) or verd,
             'pin_km': dkm, 'record_id': rid, 'record_name': rname, 'record_acres': rac, 'official_acres': off,
             'merged': bool(rec.get('merged_from')), 'piece': bool(piece), 'site': site,
             'wdpa_id': park_wid, 'match_how': match_how}
+    if nprop: out['not_proposed'] = nprop
     return out
 
 
-def run_check(path, fetch_site=False, out_dir=None):
-    """Run check_candidate on a CSV or JSON of candidates (the LOOK list or a research-inbox results file)."""
+def run_check(path, fetch_site=False, out_dir=None, root=None, env=None):
+    """Run check_candidate on a CSV or JSON of candidates (the LOOK list or a research-inbox results file). Nov 14: a person's NO in
+    the US overrides (root's data/us-key/overrides.json, read whole or not at all) always wins; every row gets by / when / run_id."""
     path = pathlib.Path(path)
+    PN = load_person_no(root, 'US')
     rows = []
     if path.suffix.lower() == '.json':
         data = json.loads(path.read_text(encoding='utf-8'))
@@ -1234,8 +1356,11 @@ def run_check(path, fetch_site=False, out_dir=None):
     for park, recs, earlier, raw in rows:
         # skip empty refs
         if not park.get('ref'): continue
+        ref = str(park.get('ref'))
         out.append(check_candidate(park, recs, official_acres=park.get('official_acres'),
-                                   earlier_no=earlier, fetch_site=fetch_site))
+                                   earlier_no=earlier, fetch_site=fetch_site,
+                                   override=PN['parks'].get(ref), blocked=PN['blocked'].get(ref, set())))
+    stamp(out, 'check', env=env)
     n = {}
     for x in out: n[x['verdict']] = n.get(x['verdict'], 0) + 1
     dest = pathlib.Path(out_dir or path.with_name(path.stem + '-solver-check'))
@@ -1245,11 +1370,27 @@ def run_check(path, fetch_site=False, out_dir=None):
     lines = [f"# Candidate check: {path.name}", '',
              ', '.join(f'**{v}** {k}' for k, v in sorted(n.items())) or 'No rows.', '']
     for x in out:
-        lines.append(f"- **{x.get('ref')}** {x.get('name') or ''}: **{x['verdict']}** — {x['why']}")
+        lines.append(f"- **{x.get('ref')}** {x.get('name') or ''}: **{x['verdict']}** — {x['why']} (by {x['by']}, {x['when']}, run {x['run_id'] or '-'})")
     open(str(dest) + '.md', 'w', encoding='utf-8').write('\n'.join(lines) + '\n')
     print(f'candidate check: {len(out)} parks; ' + ', '.join(f'{k} {v}' for k, v in sorted(n.items())))
     print('wrote', str(dest) + '.json', 'and', str(dest) + '.md')
     return out
+
+
+def stamp_inbox(allres, root=ROOT, env=None):
+    """Nov 14: by / when / run_id on every row of the results/<stem>.json files this --inbox run wrote (only the stems it returned
+    with rows; written back the way kpc_research_inbox writes them). A row that already carries 'by' keeps its own."""
+    when = None
+    for stem, res in sorted((allres or {}).items()):
+        f = pathlib.Path(root) / 'data/research-inbox/results' / f'{stem}.json'
+        if not res or not f.is_file(): continue
+        try: d = json.load(open(f, encoding='utf-8'))
+        except Exception: continue  # noqa: BLE001
+        rows = d.get('rows') if isinstance(d, dict) else None
+        if not isinstance(rows, list): continue
+        stamp(rows, 'inbox', when=when, env=env); when = when or next((r.get('when') for r in rows if isinstance(r, dict) and r.get('when')), None)
+        json.dump(d, open(f, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+    return allres
 
 
 if __name__ == '__main__':
@@ -1264,7 +1405,7 @@ if __name__ == '__main__':
     if '--inbox' in sys.argv:   # research files in data/research-inbox/, just those parks (+ --retry)
         import kpc_research_inbox as RI  # noqa: E402
         _fs = RI.inbox_files(ROOT)   # straight in data/research-inbox/ only; answers/ and results/ are never batches
-        try: RI.run(_fs, root=ROOT, offline='--offline' in sys.argv, retry='--retry' in sys.argv)
+        try: stamp_inbox(RI.run(_fs, root=ROOT, offline='--offline' in sys.argv, retry='--retry' in sys.argv), ROOT)
         except Exception as e:  # noqa: BLE001
             print(f'::warning title=Research inbox::stopped ({type(e).__name__}: {str(e)[:160]}); no key is affected')
         sys.exit(0)
