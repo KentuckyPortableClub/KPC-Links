@@ -88,6 +88,9 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              'kpc_problem_solver.py',
              # Nov 9 amendment 2 (Brandon t943u/t942u): the research inbox + its xlsx converter recommend only, never decide a join
              'kpc_research_inbox.py', 'kpc_research_from_xlsx.py',
+             # Nov 14 (KPC owner, 2026-11-14): the research inbox's request manners (robots.txt rule, 2 s, 200 per hour, 1500 per day);
+             # it decides which request may go out, never a join
+             'kpc_inbox_manners.py',
              # Nov 6: after the US builder. A state whose shape read is zero or under half the live key fails
              # the job instead of publishing pins. It does not decide a join (US rules hash stays a066624520b4).
              'kpc_shape_guard.py',
