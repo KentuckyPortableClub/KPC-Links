@@ -21,7 +21,8 @@ put back from main whole (not written this run) and the run says so.
 import argparse, csv, io, json, os, pathlib, re, subprocess, sys
 
 AREA_RE = re.compile(r'^(?:[A-Z]{2}|(?:US|CA)-[A-Z]{2})$')
-REVIEW_FILES = ('held-joins.json', 'join-check.json', 'held-joins.csv', 'join-check.csv', 'held-joins-ledger.csv')
+REVIEW_FILES = ('held-joins.json', 'join-check.json', 'held-joins.csv', 'join-check.csv', 'held-joins-ledger.csv',
+                'held-parks-todo.csv')   # Nov 14 (KPC owner, 2026-11-14): the keeper's to-do of the join check, split per area by its 'area' column
 # Reason codes of the run summary table (the 'why' column starts with one of these; SHARED-SCHEME.md section 7)
 REASONS = ('built', 'reused', 'held-expected', 'held-gate', 'failed', 'not-built', 'drop-guard', 'not-planned', 'join-refused', 'cancelled')
 KEY_FILE = {'world': re.compile(r'^([A-Z]{2})\.json$'), 'us': re.compile(r'^(US-[A-Z]{2})\.json$'), 'ca': re.compile(r'^(CA-[A-Z]{2})\.json$')}

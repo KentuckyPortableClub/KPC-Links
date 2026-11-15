@@ -301,7 +301,11 @@ def mkrepo(t, countries=('AU', 'DE', 'FR')):
     (wk / 'review/held-joins.json').write_text(json.dumps({'key': 'world', 'count': len(held), 'parks': held}, indent=1, ensure_ascii=False))
     (wk / 'review/join-check.json').write_text(json.dumps({'key': 'world', 'files_checked': 3, 'suspect': len(rows), 'held': len(held), 'rows': rows}, indent=1, ensure_ascii=False))
     for name, cols, data in (('held-joins.csv', list(held[0]), held), ('join-check.csv', list(rows[0]), rows),
-                             ('held-joins-ledger.csv', ['park', 'kind', 'proposal'], [{'park': h['park'], 'kind': 'pile-enter', 'proposal': 'p\nmulti-line'} for h in held])):
+                             ('held-joins-ledger.csv', ['park', 'kind', 'proposal'], [{'park': h['park'], 'kind': 'pile-enter', 'proposal': 'p\nmulti-line'} for h in held]),
+                             # Nov 14 (KPC owner, 2026-11-14): the keeper's to-do, as the join check now writes it next to held-joins
+                             ('held-parks-todo.csv', ['ref', 'name', 'kind', 'area', 'reason', 'pin_km', 'outline_ids', 'todo_kind', 'source', 'run_id', 'date', 'rules_version'],
+                              [{'ref': h['park'], 'name': h['name'], 'kind': 'world', 'area': h['area'], 'reason': 'held: ' + h['reason'], 'pin_km': h['pin_km'], 'outline_ids': '2',
+                                'todo_kind': 'join_held', 'source': 'kpc_join_check', 'run_id': '1', 'date': '2026-11-11', 'rules_version': ''} for h in held])):
         with open(wk / 'review' / name, 'w', newline='', encoding='utf-8') as fh:
             w = csv.DictWriter(fh, fieldnames=cols); w.writeheader(); w.writerows(data)
     git(t, 'init', '-q'); git(t, 'add', '-A'); git(t, '-c', 'user.name=t', '-c', 'user.email=t@t', 'commit', '-qm', 'main')
