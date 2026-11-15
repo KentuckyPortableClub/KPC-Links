@@ -81,7 +81,8 @@
    },
    "why": "World: the top countries again",
    "every": 14,
-   "next": "2026-11-29T17:17+00:00"
+   "next": "2026-11-16T17:17+00:00",
+   "fails": 1
   }
  ]
 }
