@@ -706,14 +706,16 @@ check(all(x in _ml for x in ('(ref in G)', 'pip_groups(G[r], lo, la)', 'ref in K
 
 # ---------------------------------------------------------------- hashes
 import kpc_key_freeze as KFZ  # noqa: E402
-check('kpc_fers_store.py' in KFZ.NOT_RULES and not any('kpc_fers_store' in f for v in KFZ.RULE_FILES.values() for f in v), 'kpc_fers_store.py is listed in NOT_RULES and is in no rule list (no rules hash moves)')
+# Nov 15 (KPC owner, 2026-11-15; the switch-over): kpc_fers.main() calls this module, so it left NOT_RULES for the 2-fer RULE_FILES (one declared move)
+check('kpc_fers_store.py' not in KFZ.NOT_RULES and '.github/scripts/kpc_fers_store.py' in KFZ.RULE_FILES['fers'] and '.github/fers-store-areas.json' in KFZ.RULE_FILES['fers']
+      and not any('kpc_fers_store' in f for k, v in KFZ.RULE_FILES.items() if k != 'fers' for f in v), 'kpc_fers_store.py and its area list are 2-fer rule files only (not in NOT_RULES, in no key rule list)')
 want = {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce', 'fers': 'cef323de4c9a'}
 try:
     import kpc_preflight as PF
     want = {k: PF.newest_hash(k) or v for k, v in want.items()}
 except Exception: pass  # noqa: BLE001
 got = {k: KFZ.rules_hash(k) for k in want}
-check(got == want, f'rules hashes are the newest changelog hashes, unchanged by this module ({got})')
+check(got == want, f'rules hashes are the newest changelog hashes ({got})')
 src = (ROOT / '.github' / 'scripts' / 'kpc_fers_store.py').read_text(encoding='utf-8')
 check('urlopen' not in src and 'requests' not in src and 'http.client' not in src and '://' not in src, 'the module has no network code and names no host')
 print('ALL PASS' if not FAILS else 'SOME FAILED')

@@ -1,7 +1,42 @@
-# 2-fers from the outline store (prep, switch OFF)
+# 2-fers from the outline store (wired in, switch OFF)
 
-KPC owner, 2026-11-13. Status: prepared, not wired in. `kpc_fers.py` does not call it, so no 2-fer answer changes and no rules
-hash moves.
+KPC owner, 2026-11-13; switch-over 2026-11-15. Status: `kpc_fers.main()` calls `kpc_fers_store.install()` right after the hard-end
+clock is armed, only when `KPC_FERS_FROM_STORE` is on (off: nothing is imported and the run is exactly as before). This file and
+`.github/fers-store-areas.json` are 2-fer rule files (fers rules d0064c860cba -> d71d343a2272, scope `2026-11-15-store-switch`).
+No workflow turns the switch on yet (KPC-Store PR 2).
+
+## Which areas (`.github/fers-store-areas.json`, KPC owner 2026-11-15)
+
+- `"areas": "all-us-ca"`: every US state and Canadian province area the store holds (a list of area codes also works).
+- `"except": []`: an area pulled back to the old path without a code change. A store run that names it leaves it out with that
+  reason (it keeps its previous files; run it with the switch off). A run whose every area is excepted runs as before.
+- US-KY never: the Kentucky run (REGION ky) reads Kentucky's own files (`ky_geom`, name-joined `src|NAME` ids, its own owner and
+  drop rules); the store's US-KY area is keyed by layer record ids and the Kentucky name joins, so using it needs a crosswalk and a
+  new Kentucky owner step: not a small change, left out on purpose.
+- An area named for the run that the store does not hold (no index, another format, stale, damaged) is left out of the run with a
+  plain reason (its row in `store-missing-<tag>.json`, a warning) and the run goes on for the other areas. No area left = exit 87.
+  A run that names no area (STATES) is refused (exit 87): a whole-region store run could rewrite an excepted area's files. A
+  broken list = exit 87. Parks filed under an area that does not use the store are held, never downloaded.
+  The spot file of an area that does not use the store in this run (excepted, not held, stale; also a border area whose parks
+  were only loaded as neighbours) is never rewritten by a store run: it stays as it was (counted in the report and listed by
+  area code in `store-missing-<tag>.json`).
+- `"world": "off"` (default): a world run never reads the store, exactly as before. `"on"`: a world run with the switch on reads
+  world areas `index-W-<CC>.json` (record keys = the world key's record ids), and only as a PRIVATE store run
+  (`KPC_FERS_STORE_KIND=private`; a public one exits 89): world 2-fers are club room only. Every guard stays: WDPA-derived records
+  or WDPA-looking text are held, never read; the write guard and `kpc_fers_publish.py` refuse world rows in public files; a world
+  area the store does not hold is left out with its reason. World 2-fers still need their areas in `.github/fers-ready-areas.json`
+  before any world pair runs (unchanged). Lines and water tiles are not read from the store for world areas.
+
+## Keep the old row (rule R11; DEFAULT for owner question 1)
+
+A store run downloads nothing, so the PAD-US closed-area check (rule 10) and the ownership map cannot run. A live candidate row
+that the store run would turn NOT SURE only for that reason keeps its old row, tagged `kept: not checked in a store run` (with
+`kept_why` and `kept_on`). "Only for that reason": the closed-area check could not run and the rest of the land check said ok
+(water checked from the store tile), or the row's status is `not sure: the agency ownership map did not answer`. A row the store
+run decides (water only, dropped, any other not-sure reason, the water not checked either) is never kept, and an old row that was
+not a live candidate is never brought back. Passes 1 and 2 rewrite every row before pass 3 decides it, so each row of a store run
+carries the good copy it would fall back to in `store_prev` until pass 3; the final file has none. Saved PAD-US answers are not
+used yet.
 
 ## What it is
 
@@ -20,12 +55,13 @@ the club-room tag, never shown). Test fixture: `tests/fixtures/fers-store-v3/` (
 
 ## The switch
 
-`KPC_FERS_FROM_STORE` (default off). Off: `install()` does nothing and `kpc_fers.py` runs exactly as today. The Kentucky and
-world runs never use the store: with the switch on they run as today (downloads included). On, for a US + Canada run:
+`KPC_FERS_FROM_STORE` (default off). Off: `install()` does nothing and `kpc_fers.py` runs exactly as today. The Kentucky run
+never uses the store, and the world run only with `"world": "on"` (above): otherwise with the switch on they run as today
+(downloads included). On, for a US + Canada run:
 
-1. **Area gate, before pass 1.** Every member state needs a readable store no older than `KPC_FERS_STORE_MAX_DAYS` (45). If one
-   is missing, stale, of another format or damaged, the run stops with exit 87 before anything is read or saved; the area keeps
-   its previous files.
+1. **Area gate, before pass 1.** Every member state needs a readable store no older than `KPC_FERS_STORE_MAX_DAYS` (45). One that
+   is missing, stale, of another format or damaged is left out of the run with its reason and keeps its previous files (since
+   2026-11-15; before, the whole run stopped); when none is left the run stops with exit 87 before anything is read or saved.
 2. **Memory gate.** From the store index's own point counts: the bot's base, a tile floor, the packed store and the unpacked
    outlines must fit `KPC_FERS_STORE_LIMIT_MB` (3000, the whole process). Otherwise exit 88 with a plain reason. Until
    `kpc_fers.py` keeps its passes lazy (switch-over), the gate counts every outline as unpacked.
@@ -111,10 +147,12 @@ file the workflow commits there is public.
 - `kpc_fers_store.py diff --old FILE --new FILE --out STEM`: the change list a person signs before new answers are saved.
 - `kpc_fers_store.py run`: only with the switch on (refuses otherwise): install, then `kpc_fers.main()`.
 
-## Not in this module (switch-over and later)
+## Not in this module (later)
 
-The hook and the lazy passes in `kpc_fers.py`; moving this file into the 2-fer `RULE_FILES` (one declared rules-hash move);
-the matcher "join under review" rule (`join_review()` exists, not wired; keep and tag, hold only on shared records, is the recommendation, not yet the owner's decision); PAD-US closed areas, ownership tiles and water
+The lazy passes in `kpc_fers.py` (the hook and the move into the 2-fer `RULE_FILES` are done, 2026-11-15); `kpc_fers_store.py run`
+now only calls `kpc_fers.main()` (the hook installs, once); the matcher "join under review" rule (`join_review()` exists, not wired; keep and tag, hold only on shared records, is the recommendation, not yet the owner's decision); PAD-US closed areas, ownership tiles and water
 inside the store (until then those checks are NOT SURE in a store run); the KPC-Data workflow step that fetches the store.
 
-Tests: `tests/test_fers_store_nov13.py` (synthetic stores; no network).
+Tests: `tests/test_fers_store_nov13.py` (synthetic stores; no network); `tests/test_fers_store_switch_nov15.py` (the hook off = main's
+files byte for byte; on = zero sockets under an audit hook; keep the old row; exit 89; the area list; Kentucky and world) on
+`tests/fixtures/fers-store-v4/` (made-up format-4 store: area, line, pin, one water tile).

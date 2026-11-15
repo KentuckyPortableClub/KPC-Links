@@ -224,7 +224,10 @@ with tempfile.TemporaryDirectory() as t:
 # Nov 14 (the full 100 ft ruling): the missing-boundary list's about text was corrected, and that text is in missing-testwa.json, so the
 # golden moved 17ebca8a53004e16 -> aaf56aa08bd907bb. Proof: main 0a7df54's kpc_fers.py with ONLY that text changed gives aaf56aa08bd907bb too
 # (this area has no line park, so the 100 ft change itself does not touch it).
-GOLDEN = 'aaf56aa08bd907bb'
+# Nov 15 (the outline store switch-over, scope 2026-11-15-store-switch: every US and Canadian area): the declared scope re-stamps this
+# area's pairs, so the reuse file's pair fingerprints move and the golden moved aaf56aa08bd907bb -> 309a16f74ceb0d06. Proof: this
+# change's code with main's .github/fers-rule-scope.json gives aaf56aa08bd907bb (the spot, looked and missing files do not move).
+GOLDEN = '309a16f74ceb0d06'
 
 
 def normal_area(script_dir):
@@ -253,5 +256,5 @@ def normal_area(script_dir):
 rc, hv, names, nsp = normal_area(pathlib.Path(os.environ.get('KPC_FERS_TEST_SCRIPTS') or S))
 if os.environ.get('KPC_FERS_PRINT_GOLDEN'): print('GOLDEN=' + hv, names, nsp)
 check(rc == 0 and nsp >= 2, f'the normal area runs and finds its spots (exit {rc}, {nsp} rows in {len(names)} files)')
-check(hv == GOLDEN, f'its files are byte for byte the ones main (11f908d9) wrote, with the Nov 14 about text ({hv} == {GOLDEN})')
+check(hv == GOLDEN, f'its files are byte for byte the ones main (11f908d9) wrote, with the Nov 14 about text and the Nov 15 scope stamp ({hv} == {GOLDEN})')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)
