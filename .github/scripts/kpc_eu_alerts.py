@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Europe's weather warnings for the KPC Field Weather page (Opus Oct 24 2026; Activators Lounge step 5,
 Brandon: weather alerts for Canada and Europe). MeteoAlarm publishes every national weather service's warnings as one
-Atom feed per country; a web page can't be sure of reading those directly, so this job copies them every 3 hours into
+Atom feed per country; a web page can't be sure of reading those directly, so this job copies them every 6 hours into
 data/alerts/eu.json = {updated, countries: {ISO2: {name, link, items: [{area, event, level, sev, onset, expires}]}}}.
 Only writes when something changed, keeps a country's last list when its feed fails, never fails (exit 0).
 
@@ -17,6 +17,7 @@ import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_host_pace; kpc_host_pace.install()   # Nov 14: 2 s pause between requests to the same host (39 feeds, one host: about 80 s)
 from kpc_scrub import scrub, clip   # Nov 12: clip = scrub first, then cut
 
 OUT = pathlib.Path('data/alerts/eu.json')
