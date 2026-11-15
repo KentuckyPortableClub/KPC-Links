@@ -30,22 +30,25 @@
     "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0/query",
     "field": "forestname",
     "label": "Alaska DNR Division of Forestry",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "State of Alaska, Department of Natural Resources, Division of Forestry & Fire Protection. Modified for the KPC park map (outlines simplified); not approved by the State of Alaska.",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgakd",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query",
     "field": "UNIT_NAME",
     "label": "National Park Service (legal boundary)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "",
+    "licence": "NOT RECORDED"
    },
    {
     "pre": "sgake",
@@ -208,7 +211,7 @@
     "field": "fisheries_name",
     "label": "Arkansas Game and Fish Commission",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -220,58 +223,76 @@
     "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0/query",
     "field": "NAME",
     "label": "Arizona State Parks & Trails",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Arizona State Parks & Trails",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgazb",
     "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0/query",
     "field": "MasterName",
     "label": "Arizona Game and Fish Department (AZGFD_GIS org) · Wildlife Areas",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Arizona Game and Fish Department",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgazc",
     "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0/query",
     "field": "Prop_name",
     "label": "Arizona Game and Fish Department (AZGFD_GIS org) · Hatchery Polys",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Arizona Game and Fish Department",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgazd",
     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0/query",
     "field": "ORGNAME",
     "label": "US Fish and Wildlife Service (approved boundary)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "U.S. Fish and Wildlife Service",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgaze",
     "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0/query",
     "field": "NAME",
     "label": "Arizona State Parks and Trails (park boundaries)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Arizona State Parks and Trails",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgazf",
     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0/query",
     "field": "NCA_NAME",
     "label": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Bureau of Land Management",
+    "licence": "OPEN"
    },
    {
     "pre": "sgazg",
@@ -293,9 +314,12 @@
     "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0/query",
     "field": "PROP_NAME",
     "label": "California Department of Fish & Wildlife",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "California Department of Fish and Wildlife (CDFW), Biogeographic Data Branch (BIOS), CDFW Public Access Lands [ds3077]. Licensed CC BY 4.0. Modified for the KPC park map.",
+    "licence": "OPEN"
    },
    {
     "pre": "sgcab",
@@ -303,7 +327,7 @@
     "field": "UNITNAME",
     "label": "California State Parks",
     "ok": false,
-    "why": "not available for this tool",
+    "why": "agency terms forbid sharing: hidden",
     "count": null
    },
    {
@@ -311,9 +335,12 @@
     "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3092_fpu/FeatureServer/0/query",
     "field": "Name",
     "label": "California Department of Fish and Wildlife",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "California Department of Fish and Wildlife (CDFW), Biogeographic Data Branch (BIOS), CDFW Owned and Operated Lands and Conservation Easements [ds3092]. Licensed CC BY 4.0. Modified for the KPC park map.",
+    "licence": "OPEN"
    },
    {
     "pre": "sgcad",
@@ -359,17 +386,20 @@
     "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5/query",
     "field": "PropName",
     "label": "Colorado Parks & Wildlife · CPWAdminData 5",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Colorado Parks and Wildlife",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgcod",
     "url": "https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9/query",
     "field": "PropName",
     "label": "Colorado Parks and Wildlife",
-    "ok": true,
-    "why": "available",
+    "ok": false,
+    "why": "service no longer answers (Nov 14 review)",
     "count": 386,
     "facts": {}
    },
@@ -390,11 +420,12 @@
     "pre": "couscocpwa",
     "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/5",
     "field": "NAME",
-    "label": "Colorado Parks and Wildlife admin data (saved copy)",
-    "ok": false,
-    "why": "saved copy — not queried live",
-    "read": "saved copy",
-    "live": false
+    "label": "Colorado Parks and Wildlife admin data",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "verified": true,
+    "credit": "Colorado Parks and Wildlife",
+    "licence": "NO TERMS STATED"
    }
   ],
   "CT": [
@@ -403,33 +434,37 @@
     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0/query",
     "field": "PROPERTY",
     "label": "Connecticut DEEP",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Connecticut Department of Energy and Environmental Protection (DEEP)",
+    "licence": "OPEN"
    },
    {
     "pre": "sgctb",
     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0/query",
     "field": "OFFIC_NAME",
     "label": "CT DEEP (deepgis account)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Connecticut Department of Energy and Environmental Protection (CT DEEP)",
+    "licence": "OPEN"
    },
    {
     "pre": "sgctc",
     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer/0/query",
     "field": "HuntAName",
     "label": "CT DEEP",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "Connecticut DEEP",
+    "licence": "NOT FOUND"
    }
   ],
   "DE": [
@@ -521,9 +556,13 @@
     "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0/query",
     "field": "LABEL",
     "label": "Florida Forest Service",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Florida Department of Agriculture and Consumer Services, Florida Forest Service",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgflc",
@@ -539,22 +578,24 @@
     "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0/query",
     "field": "TRACT_NAME",
     "label": "Suwannee River Water Management District",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Suwannee River Water Management District",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgfle",
     "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0/query",
     "field": "CONSERVATION_AREA",
     "label": "St. Johns River Water Management District",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "St. Johns River Water Management District",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgflf",
@@ -621,49 +662,63 @@
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9/query",
     "field": "PropName",
     "label": "Georgia DNR Wildlife Resources Division · Georgia Licenses by District 9",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Georgia DNR Wildlife Resources Division",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sggab",
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0/query",
     "field": "PropName",
     "label": "Georgia State Parks (DNR)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Georgia State Parks",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sggac",
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14/query",
     "field": "PropName",
     "label": "Georgia DNR Wildlife Resources Division · WRD WMA Public 14",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Georgia DNR Wildlife Resources Division",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sggad",
     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0/query",
     "field": "areaname",
     "label": "BdyDesg_LSRS_SpecialInterestManagementArea",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "U.S. Forest Service, Enterprise Data Warehouse (EDW), Special Interest Management Areas. Licensed CC BY 4.0. Modified for the KPC park map.",
+    "licence": "OPEN"
    },
    {
     "pre": "sggae",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0/query",
     "field": "RESNAME",
     "label": "National_Heritage_Areas_Updated2023",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "National Park Service",
+    "licence": "DISCLAIMER ONLY"
    }
   ],
   "HI": [
@@ -672,8 +727,8 @@
     "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/16/query",
     "field": "name",
     "label": "Hawaii Division of State Parks (DLNR)",
-    "ok": true,
-    "why": "available",
+    "ok": false,
+    "why": "agency terms forbid sharing: hidden",
     "count": 70,
     "facts": {
      "manager": "managedby",
@@ -686,8 +741,8 @@
     "url": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1/query",
     "field": "name",
     "label": "Hawaii DLNR reserves (DOFAW)",
-    "ok": true,
-    "why": "available",
+    "ok": false,
+    "why": "agency terms forbid sharing: hidden",
     "count": 381,
     "facts": {
      "manager": "managedby",
@@ -701,7 +756,7 @@
     "field": "NAME",
     "label": "Hawaii State Parks (DLNR)",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -777,7 +832,7 @@
     "field": "Name",
     "label": "Idaho Fish & Game",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -788,7 +843,7 @@
     "field": "NAME",
     "label": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame)",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -811,20 +866,25 @@
     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0/query",
     "field": "forestname",
     "label": "BdyOwn_LSRS_BasicOwnership",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "U.S. Forest Service, Enterprise Data Warehouse (EDW), Basic Ownership. Modified for the KPC park map.",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgide",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0/query",
     "field": "RECPROJECTSITEAREANAME",
     "label": "Recreation Area",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Recreation Area",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "idusidfish",
@@ -843,33 +903,36 @@
     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0/query",
     "field": "Site_Name",
     "label": "Illinois Department of Natural Resources · IllinoisProtectedLandsDH 1 22",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Illinois Department of Natural Resources",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgilb",
     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3/query",
     "field": "Site_Name",
     "label": "Illinois Department of Natural Resources · IllinoisProtectedLandsDH 1 22 3",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Illinois Department of Natural Resources",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgilc",
     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2/query",
     "field": "Site_Name",
     "label": "Illinois DNR (public conservation lands)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Illinois Department of Natural Resources",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgild",
@@ -944,22 +1007,24 @@
     "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0/query",
     "field": "Label_Name",
     "label": "KDWPT · KDWPT Wildlife Areas",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Kansas Department of Wildlife and Parks",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgksc",
     "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/protected_areas/FeatureServer/0/query",
     "field": "Unit_Name",
     "label": "KDWPT · protected areas",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Kansas Biological Survey",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "ksuskspark",
@@ -988,33 +1053,36 @@
     "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0/query",
     "field": "NAME",
     "label": "Louisiana Department of Wildlife & Fisheries",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Louisiana Department of Wildlife and Fisheries",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sglab",
     "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0/query",
     "field": "Name_Short",
     "label": "LDWF, Sep 2025 edition",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Louisiana Department of Wildlife and Fisheries",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sglac",
     "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0/query",
     "field": "NAME",
     "label": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Louisiana Department of Wildlife and Fisheries",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "lauslastat",
@@ -1047,22 +1115,24 @@
     "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0/query",
     "field": "SITE_NAME",
     "label": "Massachusetts DCR (DCRStateParks account, mass-eoeea org)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Commonwealth of Massachusetts (DCR / MassWildlife via MassGIS)",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgmac",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0/query",
     "field": "UNIT_NAME",
     "label": "National Park Service (property boundaries)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "National Park Service, Land Resources Division",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgmad",
@@ -1113,22 +1183,25 @@
     "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0/query",
     "field": "PARCEL_NAME",
     "label": "State of Maine conserved lands (Bureau of Parks and Lands / IFW)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Maine Office of GIS / Bureau of Parks and Lands",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgmeb",
     "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFWWildlifeManagementAreas/FeatureServer/0/query",
     "field": "PROJECT",
     "label": "WMA_Boundaries",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "Maine Department of Inland Fisheries and Wildlife",
+    "licence": "NO TERMS STATED"
    }
   ],
   "MI": [
@@ -1137,27 +1210,36 @@
     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8/query",
     "field": "Facility",
     "label": "Michigan DNR Parks & Recreation",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Michigan Department of Natural Resources",
+    "licence": "OPEN"
    },
    {
     "pre": "sgmib",
     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2/query",
     "field": "OfficialWLDProjectAreaName",
     "label": "Michigan Department of Natural Resources (AGOL owner MichiganDNR)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Michigan Department of Natural Resources",
+    "licence": "OPEN"
    },
    {
     "pre": "sgmic",
     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/5/query",
     "field": "FACILITY",
     "label": "Michigan State Park Boundaries",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Michigan Department of Natural Resources",
+    "licence": "OPEN"
    },
    {
     "pre": "miusmidnrr",
@@ -1183,11 +1265,12 @@
     "pre": "miusmidnrr",
     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
     "field": "DESCRIP",
-    "label": "Michigan DNR harbors — points are in the reference-assets file, not a separate harbor-polygon layer (saved copy)",
-    "ok": false,
-    "why": "saved copy — not queried live",
-    "read": "saved copy",
-    "live": false
+    "label": "Michigan DNR harbors — points are in the reference-assets file, not a separate harbor-polygon layer",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "verified": true,
+    "credit": "Michigan Department of Natural Resources",
+    "licence": "OPEN"
    }
   ],
   "MN": [
@@ -1196,8 +1279,8 @@
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer/0/query",
     "field": "name",
     "label": "Minnesota DNR · bdry dnr wildlife mgmt areas pub",
-    "ok": true,
-    "why": "available",
+    "ok": false,
+    "why": "agency terms forbid sharing: hidden",
     "count": 1753,
     "facts": {
      "manager": "managing_admin_office",
@@ -1209,8 +1292,8 @@
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/4/query",
     "field": "name",
     "label": "Minnesota DNR · bdry state forest 4",
-    "ok": true,
-    "why": "available",
+    "ok": false,
+    "why": "agency terms forbid sharing: hidden",
     "count": 60,
     "facts": {
      "acres": "acres"
@@ -1221,8 +1304,8 @@
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4/query",
     "field": "unit_name",
     "label": "Minnesota DNR · bdry scientific and nat areas 4",
-    "ok": true,
-    "why": "available",
+    "ok": false,
+    "why": "agency terms forbid sharing: hidden",
     "count": 239,
     "facts": {
      "designation": "unit_type",
@@ -1235,7 +1318,7 @@
     "field": "AREA_NAME",
     "label": "Minnesota State Parks (DNR)",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -1245,8 +1328,8 @@
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10/query",
     "field": "mgtprjname",
     "label": "Minnesota DNR (state land admin: parks and trails)",
-    "ok": true,
-    "why": "available",
+    "ok": false,
+    "why": "agency terms forbid sharing: hidden",
     "count": 13490,
     "facts": {
      "manager": "administrator",
@@ -1259,8 +1342,8 @@
     "url": "https://apps.bwsr.state.mn.us/arcgis/rest/services/DNR_Management_Units/MapServer/0/query",
     "field": "UNIT_NAME",
     "label": "DNR Management Units",
-    "ok": true,
-    "why": "available",
+    "ok": false,
+    "why": "agency terms forbid sharing: hidden",
     "count": 6715,
     "facts": {
      "manager": "ADMINISTRATING_DIVISION",
@@ -1273,11 +1356,12 @@
     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0/query",
     "field": "ORGNAME",
     "label": "FWSBoundaries",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "U.S. Fish and Wildlife Service",
+    "licence": "NO TERMS STATED"
    }
   ],
   "MO": [
@@ -1397,27 +1481,39 @@
     "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0/query",
     "field": "NAME",
     "label": "Montana Fish, Wildlife & Parks · FWPLND STATEPARKS",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Montana Fish, Wildlife & Parks",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgmtb",
     "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0/query",
     "field": "NAME",
     "label": "Montana Fish, Wildlife & Parks · FWPLND WMA",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Montana Fish, Wildlife & Parks",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgmtc",
     "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0/query",
     "field": "NAME",
     "label": "Montana Fish, Wildlife & Parks · FWPLND FAS",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Montana Fish, Wildlife & Parks",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgmtd",
@@ -1475,31 +1571,37 @@
     "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21/query",
     "field": "GML_HAB",
     "label": "NCWRC",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "North Carolina Wildlife Resources Commission",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgncc",
     "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22/query",
     "field": "GML_HAB",
     "label": "Game Lands - detail",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "North Carolina Wildlife Resources Commission",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgncd",
     "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/NC_State_Parks_System/FeatureServer/0/query",
     "field": "PK_NAME",
     "label": "ParkBoundaries",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "ParkBoundaries",
+    "licence": "NOT FOUND"
    }
   ],
   "ND": [
@@ -1509,7 +1611,7 @@
     "field": "Unit_Name",
     "label": "North Dakota Game & Fish",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -1519,20 +1621,24 @@
     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0/query",
     "field": "UNIT_NAME",
     "label": "North Dakota Parks & Recreation",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "North Dakota GIS Hub / North Dakota Parks and Recreation",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgndc",
     "url": "https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer/0/query",
     "field": "Name",
     "label": "North Dakota Parks and Recreation Department",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "North Dakota Parks and Recreation Department",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgndd",
@@ -1563,7 +1669,7 @@
     "field": "NAME",
     "label": "North Dakota WMAs (saved copy)",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "read": "saved copy",
     "live": false
    }
@@ -1574,27 +1680,36 @@
     "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0/query",
     "field": "AreaName",
     "label": "Nebraska Game and Parks Commission · Conservation Partner Lands",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Nebraska Game and Parks Commission",
+    "licence": "OPEN"
    },
    {
     "pre": "sgneb",
     "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268/query",
     "field": "AreaName",
     "label": "NGPC",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Nebraska Game and Parks Commission",
+    "licence": "OPEN"
    },
    {
     "pre": "sgnec",
     "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0/query",
     "field": "AreaName",
     "label": "Nebraska Game and Parks Commission · Park Areas",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Nebraska Game and Parks Commission",
+    "licence": "OPEN"
    }
   ],
   "NH": [
@@ -1616,9 +1731,12 @@
     "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2/query",
     "field": "NAME",
     "label": "New Hampshire Fish and Game Department",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "New Hampshire Fish and Game Department",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgnhc",
@@ -1652,8 +1770,8 @@
     "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_NLT/MapServer/1/query",
     "field": "FACILITY",
     "label": "New Jersey DEP (Natural Lands Trust preserves)",
-    "ok": true,
-    "why": "available",
+    "ok": false,
+    "why": "agency terms forbid sharing: hidden",
     "count": 118,
     "facts": {
      "owner": "OWNERSHIP",
@@ -1669,7 +1787,7 @@
     "field": "FEATURE_NAME",
     "label": "New Jersey DEP (state-owned open space)",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -1681,29 +1799,37 @@
     "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6/query",
     "field": "NAME",
     "label": "New Mexico Department of Game & Fish",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "New Mexico Department of Game & Fish",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgnmb",
     "url": "https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0/query",
     "field": "Name",
     "label": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "New Mexico EMNRD State Parks Division",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgnmc",
     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2/query",
     "field": "FET_NAME",
     "label": "BLM Natl Recreation Site Polygons",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.",
+    "licence": "PUBLIC DOMAIN"
    }
   ],
   "NV": [
@@ -1712,11 +1838,12 @@
     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0/query",
     "field": "LandName",
     "label": "Nevada Department of Wildlife",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Map services and data available from the Nevada Department of Wildlife.",
+    "licence": "OPEN"
    },
    {
     "pre": "sgnvb",
@@ -1736,9 +1863,13 @@
     "url": "https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2/query",
     "field": "LandName",
     "label": "Nevada Division of State Parks · VS Boundary Map 2 WFL1 2",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Nevada Division of State Parks",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgnvd",
@@ -1782,11 +1913,12 @@
     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0/query",
     "field": "forestname",
     "label": "Administrative Forest Boundaries - National Extent",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "USDA Forest Service",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgnvh",
@@ -1819,11 +1951,13 @@
     "pre": "nvusnvndow",
     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/ArcGIS/rest/services/NDOWWMAs/FeatureServer/0",
     "field": "NAME",
-    "label": "Nevada DOW WMAs (saved copy)",
-    "ok": false,
-    "why": "saved copy — not queried live",
-    "read": "saved copy",
-    "live": false
+    "label": "Nevada DOW WMAs",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "verified": true,
+    "private": true,
+    "credit": "Nevada Department of Wildlife",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "nvusnvfish",
@@ -1843,7 +1977,7 @@
     "field": "FACILITY",
     "label": "New York State DEC",
     "ok": false,
-    "why": "not available for this tool",
+    "why": "agency terms forbid sharing: hidden",
     "count": null
    },
    {
@@ -1852,7 +1986,7 @@
     "field": "Name",
     "label": "New York State Parks",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -1938,39 +2072,48 @@
     "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3/query",
     "field": "PARK_NAME",
     "label": "Oklahoma State Parks (ODOT GIS)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Oklahoma Tourism and Recreation Department",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgokb",
     "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0/query",
     "field": "NAME",
     "label": "Oklahoma Department of Wildlife Conservation (ODOT GIS)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Oklahoma Department of Wildlife Conservation",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgokc",
     "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1/query",
     "field": "SHORTNAME",
     "label": "ODWC",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Oklahoma Department of Wildlife Conservation (ODWC), Wildlife Management Area boundaries",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "okuspublic",
     "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1",
     "field": "NAME",
-    "label": "Public WMA Boundaries (Oklahoma) (saved copy)",
-    "ok": false,
-    "why": "saved copy — not queried live",
-    "read": "saved copy",
-    "live": false
+    "label": "Public WMA Boundaries (Oklahoma)",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "verified": true,
+    "credit": "Oklahoma Department of Wildlife Conservation (ODWC), Wildlife Management Area boundaries",
+    "licence": "DISCLAIMER ONLY"
    }
   ],
   "OR": [
@@ -1992,33 +2135,38 @@
     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Parks_view/FeatureServer/0/query",
     "field": "FULL_NAME",
     "label": "Oregon Parks and Recreation Department (AGOL owner orstateparks)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "Oregon Parks and Recreation Department / State of Oregon",
+    "licence": "OPEN"
    },
    {
     "pre": "sgorc",
     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0/query",
     "field": "AreaName",
     "label": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Oregon Department of Fish and Wildlife",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgord",
     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0/query",
     "field": "NAME",
     "label": "State of Oregon (all state owned and managed lands)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "Oregon Parks and Recreation Department / State of Oregon",
+    "licence": "OPEN"
    },
    {
     "pre": "sgore",
@@ -2124,11 +2272,12 @@
     "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300/query",
     "field": "sgl_name",
     "label": "Pennsylvania Game Commission",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Pennsylvania Game Commission",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgpad",
@@ -2171,9 +2320,12 @@
     "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0/query",
     "field": "NAME",
     "label": "Rhode Island DEM · ENV Conservation Lands State spf",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Rhode Island Geographic Information System (RIGIS) and RIDEM. Disclaimer to print on maps: These data were created by RIDEM for informational, planning and guidance use only. They are meant for use as a general reference, not a legally authoritative source for the location of natural or manmade features.",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgric",
@@ -2194,42 +2346,51 @@
     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4/query",
     "field": "PropertyName",
     "label": "South Carolina DNR (WMAs, heritage preserves)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "South Carolina Department of Natural Resources",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgscb",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0/query",
     "field": "NAME",
     "label": "South Carolina State Parks (PRT)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "South Carolina Parks, Recreation and Tourism",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgscc",
     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0/query",
     "field": "PropertyName",
     "label": "South Carolina DNR (heritage preserves)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "South Carolina Department of Natural Resources",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgscd",
     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3/query",
     "field": "PropertyName",
     "label": "South Carolina Department of Natural Resources",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "South Carolina Department of Natural Resources",
+    "licence": "NOT FOUND"
    }
   ],
   "SD": [
@@ -2265,47 +2426,61 @@
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0/query",
     "field": "PARK_NAME",
     "label": "Tennessee State Parks (TDEC)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Tennessee State Parks, Tennessee Department of Environment and Conservation",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgtnb",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Boundaries_(Public_View)/FeatureServer/0/query",
     "field": "SITE_NAME",
     "label": "Tennessee State Natural Areas (TDEC)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Tennessee State Natural Areas",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgtnc",
     "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0/query",
     "field": "NAME",
     "label": "Tennessee Wildlife Resources Agency · Hunting Allowed",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Tennessee Wildlife Resources Agency",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgtnd",
     "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0/query",
     "field": "StateForestName",
     "label": "Tennessee Department of Agriculture, Division of Forestry",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Tennessee Department of Agriculture, Division of Forestry (Forest Data and Analysis Unit)",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgtne",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49/query",
     "field": "NAME",
     "label": "Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation in Tennessee State and Federal Lands map",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Tennessee Wildlife Resources Agency",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgtnf",
@@ -2321,18 +2496,25 @@
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0/query",
     "field": "PRIMARY_NAME__LONG_",
     "label": "Tennessee State Parks (TDEC state park boundaries)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Tennessee State Parks, Tennessee Department of Environment and Conservation",
+    "licence": "NON-COMMERCIAL"
    },
    {
     "pre": "sgtnh",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10/query",
     "field": "NaturalAreaName",
     "label": "Tennessee Natural Areas (TDEC, non-state-park natural areas)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Tennessee Natural Areas",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgtni",
@@ -2353,9 +2535,13 @@
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331/query",
     "field": "PRIMARY_NAME__LONG_",
     "label": "Tennessee Department of Environment and Conservation (State Park Boundaries, Public View; multi-site parks dissolved)",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Tennessee Department of Environment and Conservation, Tennessee State Parks",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "tnustntdec",
@@ -2412,11 +2598,12 @@
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0/query",
     "field": "ParkName",
     "label": "Texas Parks & Wildlife Department (state parks)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Texas Parks and Wildlife Department",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgtxb",
@@ -2436,32 +2623,35 @@
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0/query",
     "field": "LoName",
     "label": "TPWD Wildlife Division",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Texas Parks and Wildlife Department",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgtxd",
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0/query",
     "field": "P_Loc_Nm",
     "label": "Texas Parks and Wildlife (public conservation lands)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Texas Parks and Wildlife Department",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "txustxstat",
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/ArcGIS/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0",
     "field": "NAME",
-    "label": "Texas State Parks Boundaries (saved copy)",
-    "ok": false,
-    "why": "saved copy — not queried live",
-    "read": "saved copy",
-    "live": false
+    "label": "Texas State Parks Boundaries",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "verified": true,
+    "credit": "Texas Parks and Wildlife Department",
+    "licence": "DISCLAIMER ONLY"
    }
   ],
   "UT": [
@@ -2470,33 +2660,37 @@
     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0/query",
     "field": "name",
     "label": "Utah State Parks",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Utah Division of State Parks",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgutb",
     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0/query",
     "field": "Property_N",
     "label": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Utah Division of Wildlife Resources",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgutc",
     "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0/query",
     "field": "L_Name",
     "label": "Utah (National Historic Landmarks)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "Utah",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgutd",
@@ -2525,21 +2719,24 @@
     "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/state_park_boundaries_dissolved/FeatureServer/0/query",
     "field": "truncated_name",
     "label": "state_park_boundaries_dissolved",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "state_park_boundaries_dissolved",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "utusutultr",
     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer/0",
     "field": "NAME",
-    "label": "Utah ULTRA properties (saved copy)",
-    "ok": false,
-    "why": "saved copy — not queried live",
-    "read": "saved copy",
-    "live": false
+    "label": "Utah ULTRA properties",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "verified": true,
+    "credit": "Utah Division of Wildlife Resources",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "utusutgeoh",
@@ -2555,11 +2752,12 @@
     "pre": "utusutwmas",
     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0",
     "field": "NAME",
-    "label": "Utah WMAs WFL1 (saved copy)",
-    "ok": false,
-    "why": "saved copy — not queried live",
-    "read": "saved copy",
-    "live": false
+    "label": "Utah WMAs WFL1",
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "verified": true,
+    "credit": "Utah Division of Wildlife Resources",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "utusutstat",
@@ -2578,11 +2776,12 @@
     "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0/query",
     "field": "Name",
     "label": "Virginia Department of Forestry",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Virginia Department of Forestry",
+    "licence": "OPEN"
    },
    {
     "pre": "sgvab",
@@ -2590,7 +2789,7 @@
     "field": "MANAME",
     "label": "Virginia DCR Natural Heritage",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -2600,22 +2799,26 @@
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0/query",
     "field": "LABEL",
     "label": "Virginia State Parks (DCR)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "Virginia State Parks",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgvad",
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0/query",
     "field": "MANAME",
     "label": "Virginia DCR State Parks (tracts)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "Virginia DCR State Parks",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgvae",
@@ -2623,7 +2826,7 @@
     "field": "LABEL",
     "label": "Virginia DCR (Virginia's conservation lands)",
     "ok": false,
-    "why": "saved copy — not queried live",
+    "why": "saved copy — not queried live (agency terms forbid sharing: hidden)",
     "count": null,
     "read": "saved copy",
     "live": false
@@ -2633,11 +2836,13 @@
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0/query",
     "field": "NAME",
     "label": "Virginia DCR (local parks 2023)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "Virginia DCR",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgvag",
@@ -2686,9 +2891,12 @@
     "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2/query",
     "field": "ParkName",
     "label": "Washington State Parks",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Washington State Parks and Recreation Commission",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgwab",
@@ -2730,11 +2938,13 @@
     "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/NHD/FeatureServer/6/query",
     "field": "GNIS_Name",
     "label": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices)",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "private": true,
+    "credit": "Washington State Department of Ecology (link to source data page)",
+    "licence": "NON-COMMERCIAL ONLY"
    },
    {
     "pre": "sgwaf",
@@ -2761,9 +2971,13 @@
     "url": "https://services9.arcgis.com/EGheeB0VDT6EarZv/ArcGIS/rest/services/MonumentParks1_WFL1/FeatureServer/29/query",
     "field": "NAME",
     "label": "Hanford Reach",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Hanford Reach",
+    "licence": "NOT FOUND"
    }
   ],
   "WI": [
@@ -2845,9 +3059,12 @@
     "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1/query",
     "field": "NAME",
     "label": "West Virginia DNR",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "West Virginia Division of Natural Resources",
+    "licence": "NO TERMS STATED"
    },
    {
     "pre": "sgwvb",
@@ -2855,7 +3072,7 @@
     "field": "Name",
     "label": "West Virginia State Forests (DNR)",
     "ok": false,
-    "why": "not available for this tool",
+    "why": "agency terms forbid sharing: hidden",
     "count": null
    },
    {
@@ -2888,38 +3105,49 @@
     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0/query",
     "field": "Park_Name",
     "label": "Wyoming State Parks",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence not read yet: live lookup only, never saved or published",
+    "count": null,
+    "verified": true,
+    "private": true,
+    "credit": "Wyoming State Parks",
+    "licence": "NOT FOUND"
    },
    {
     "pre": "sgwyb",
     "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0/query",
     "field": "site_name",
     "label": "Wyoming State Parks, Historic Sites & Trails",
-    "ok": false,
-    "why": "saved copy — not queried live",
+    "ok": true,
+    "why": "licence checked 2026-11-14: read live in the browser",
     "count": null,
-    "read": "saved copy",
-    "live": false
+    "verified": true,
+    "credit": "Wyoming State Parks, Historic Sites and Trails (WYSPHST)",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgwyc",
     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4/query",
     "field": "WHMA_Name",
     "label": "Wyoming Game and Fish Department · WHMA Boundaries 4",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Wyoming Game and Fish Department",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "sgwyd",
     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1/query",
     "field": "PAA_Name",
     "label": "Wyoming Game and Fish Department · PAA Boundaries 1",
-    "ok": false,
-    "why": "not available for this tool",
-    "count": null
+    "ok": true,
+    "why": "licence checked 2026-11-13: read live in the browser",
+    "count": null,
+    "verified": true,
+    "credit": "Wyoming Game and Fish Department",
+    "licence": "DISCLAIMER ONLY"
    },
    {
     "pre": "wyuswyhatc",
@@ -3607,7 +3835,7 @@
     "field": null,
     "label": "NL Provincia",
     "ok": false,
-    "why": "not available for this tool",
+    "why": "agency terms forbid sharing: hidden",
     "count": null
    }
   ],

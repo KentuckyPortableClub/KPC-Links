@@ -5,8 +5,10 @@ Source = the layers the answer keys already use (KPC-Data data/us-key/layers.jso
 Only layers whose host robots.txt allows the query path (a 401/403 robots answer counts as a disallow, so every
 services*.arcgis.com layer is left out), never a banned host, never a hub portal. Each kept layer is asked once
 (returnCountOnly) with an Origin header to see if a browser may read it (CORS). Run by hand only:
-  DATA=<KPC-Data checkout> python3 .github/scripts/kpc_maprep_state_layers.py"""
-import json, os, re, sys, time, urllib.request, urllib.robotparser, urllib.parse, gzip
+  DATA=<KPC-Data checkout> [VERIFIED=<verified-layers csv>] python3 .github/scripts/kpc_maprep_state_layers.py
+  python3 .github/scripts/kpc_maprep_state_layers.py --verified-only <verified-layers csv>   (no requests)
+Without VERIFIED a rebuild keeps the last verified rulings."""
+import csv, json, os, re, sys, time, urllib.request, urllib.robotparser, urllib.parse, gzip
 import kpc_net_guard; kpc_net_guard.install()
 D = os.environ.get('DATA', '../KPC-Data'); OUT = 'data/maprep-state-layers.json'
 BANNED = re.compile(r'ncnhde\.natureserve\.org|services\.arcgis\.com/33TOOklri9xpic7U|maps\.gov\.bc\.ca', re.I)
@@ -20,7 +22,7 @@ def load(p):
     if os.path.exists(f + '.gz'): return json.load(gzip.open(f + '.gz', 'rt', encoding='utf-8'))
     return {}
 def get(u, hdr=None, t=20):
-    r = urllib.request.Request(u, headers=dict({'User-Agent': UA}, **(hdr or {})))
+    r = urllib.request.Request(u, headers=dict({'User-Agent': UA, 'Accept': 'application/json, */*'}, **(hdr or {})))   # Nov 14: some servers answer HTTP 406 without an Accept header
     with urllib.request.urlopen(r, timeout=t) as x: return x.status, dict(x.headers), x.read()
 RB = {}
 def robots_ok(u):
@@ -143,9 +145,52 @@ def main():
         kyr.append(r)
     if kyr: out['KY'] = kyr
     doc = {'about': __doc__.split('\n')[0] + ' Built by .github/scripts/kpc_maprep_state_layers.py (by hand).', 'built': time.strftime('%Y-%m-%d'), 'areas': out}
+    if os.environ.get('VERIFIED'): print('verified list:', apply_verified(doc, os.environ['VERIFIED']))
+    else:   # Nov 14: no list given = keep the last build's verified rulings, so a plain rerun never brings hidden layers back
+        try: prev = {norm_url(x['url']): x for a in json.load(open(OUT, encoding='utf-8'))['areas'].values() for x in a}
+        except Exception: prev = {}
+        for a in out.values():
+            for x in a:
+                p = prev.get(norm_url(x['url']))
+                if p and (p.get('verified') or 'forbid sharing' in str(p.get('why')) or 'no longer answers' in str(p.get('why'))):
+                    for k in ('ok', 'why', 'verified', 'private', 'credit', 'licence'):
+                        if k in p: x[k] = p[k]
+                        else: x.pop(k, None)
+                    if p.get('verified'): live_now(x)
     with open(OUT, 'w', encoding='utf-8', newline='') as f: json.dump(doc, f, indent=1, ensure_ascii=False); f.write('\n')
     n = sum(1 for a in out.values() for x in a if x['ok']); print(f'{n} layers OK of {len(rows)}')
     for a in ('GA', 'KY', 'IA', 'PA', 'TX'): print(a, [(x['label'][:40], x['ok'], x['why'][:50]) for x in out.get(a, [])])
+
+
+# Nov 14 review (owner answers): a layer on a services*.arcgis.com or apps.fs.usda.gov server is read LIVE IN THE MEMBER'S BROWSER only
+# when the verified-layers list says so (the bots never contact those hosts: kpc_net_guard.py is unchanged). Applied offline, no requests.
+#   publish yes                    -> shown, credit + licence class carried
+#   private until licence read     -> shown on this members page as a live lookup only (never saved, never published)
+#   terms forbid sharing / copying -> hidden, even for live lookups
+# NO_SHARE_LIVE = layers on other servers whose agency forbids sharing (Minnesota DNR, NJDEP, Hawaii): hidden too.
+NO_SHARE_LIVE = {'sgmna', 'sgmnb', 'sgmnc', 'sgmne', 'sgmnf', 'sgnja', 'sghia', 'sghib'}
+DEAD = {'sgcod': 'service no longer answers (Nov 14 review)'}
+def norm_url(u): return re.sub(r'/query$', '', u.split('?')[0].rstrip('/')).lower()
+def live_now(x):   # a verified row is read live: drop the old saved-copy marks so the page and the label agree
+    for k in ('read', 'live'): x.pop(k, None)
+    x['label'] = re.sub(r'\s*\(saved copy\)', '', x.get('label') or '')
+def apply_verified(doc, path):
+    rows = {norm_url(r['layer address']): r for r in csv.DictReader(open(path, encoding='utf-8'))}
+    n = {'live': 0, 'private': 0, 'hidden': 0, 'kept': 0}
+    for layers in doc['areas'].values():
+        for x in layers:
+            r = rows.get(norm_url(x['url'])); pub = (r or {}).get('publish', '')
+            if x['pre'] in DEAD: x.update(ok=False, why=DEAD[x['pre']] if x.get('read') != 'saved copy' else 'saved copy — not queried live (' + DEAD[x['pre']] + ')'); x.pop('verified', None); n['hidden'] += 1
+            elif x['pre'] in NO_SHARE_LIVE: x.update(ok=False, why='saved copy — not queried live (agency terms forbid sharing: hidden)' if x.get('read') == 'saved copy' else 'agency terms forbid sharing: hidden'); x.pop('verified', None); n['hidden'] += 1
+            elif not r: continue
+            elif r['fetch'] != 'yes' or pub.startswith('no (terms forbid'): x.update(ok=False, why='saved copy — not queried live (agency terms forbid sharing: hidden)' if x.get('read') == 'saved copy' else 'agency terms forbid sharing: hidden'); x.pop('verified', None); n['hidden'] += 1
+            elif BANNED.search(x['url']) or not x.get('field'): n['kept'] += 1   # banned host or no name field: left as it was
+            elif pub == 'yes':
+                x.update(ok=True, verified=True, why='licence checked ' + (r.get('date read') or '') + ': read live in the browser', credit=r.get('credit line') or '', licence=r.get('licence class') or ''); x.pop('private', None); live_now(x); n['live'] += 1
+            elif pub.startswith('no (private until'):
+                x.update(ok=True, verified=True, private=True, why='licence not read yet: live lookup only, never saved or published', credit=r.get('credit line') or '', licence=r.get('licence class') or ''); live_now(x); n['private'] += 1
+            else: n['kept'] += 1
+    return n
 
 
 def facts_only():
@@ -156,5 +201,10 @@ def facts_only():
             if x.get('ok'): u = x['url']; x['facts'] = fact_fields(u[:-6] if u.endswith('/query') else u) or {}; time.sleep(1)
     with open(OUT, 'w', encoding='utf-8', newline='') as f: json.dump(doc, f, indent=1, ensure_ascii=False); f.write('\n')
 
+def verified_only(path):
+    """re-apply the verified-layers list to the file as it is (no requests): --verified-only <csv>"""
+    doc = json.load(open(OUT, encoding='utf-8')); print('verified list:', apply_verified(doc, path))
+    with open(OUT, 'w', encoding='utf-8', newline='') as f: json.dump(doc, f, indent=1, ensure_ascii=False); f.write('\n')
+
 if __name__ == '__main__':
-    facts_only() if '--facts-only' in sys.argv else main()
+    verified_only(sys.argv[sys.argv.index('--verified-only') + 1]) if '--verified-only' in sys.argv else facts_only() if '--facts-only' in sys.argv else main()

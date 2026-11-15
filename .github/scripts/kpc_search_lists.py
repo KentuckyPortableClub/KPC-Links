@@ -9,12 +9,13 @@ full official lists every morning; it now calls update() with them:
   SOTA  US rows     = the SOTA summits valid today (W4K from kpc-ky-data.json)
 A program whose read failed or came back short is passed as None and its rows are left exactly as they are.
 Rows of other kinds (world parks, anything else) are never touched. locations-ky.json = the rows inside its 'box'.
-Row shapes (unchanged): POTA [prog, ref, name, la, lo, url]; WWFF [.., url, None, potaRef]; SOTA [.., url, 'metres', 'SOTA<pts>']."""
+Row shapes (unchanged): POTA [prog, ref, name, la, lo, url]; WWFF [.., url, None, potaRef] (potaRef: kept, else the confirmed link of data/wwff-xref-KFF-*.json); SOTA [.., url, 'metres', 'SOTA<pts>']."""
 import json
 import pathlib
 import re
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 import kpc_pin_guard as PG  # Nov 11: a POTA pin that changed (or that the site's club pin differs from) is recorded
+import kpc_wwff_links as WL  # Nov 14: confirmed WWFF -> POTA links (data/wwff-xref-KFF-*.json)
 
 LOC, LKY, KY = pathlib.Path('locations.json'), pathlib.Path('locations-ky.json'), pathlib.Path('kpc-ky-data.json')
 US_SOTA = re.compile(r'^(W\d|K[HLP]\d)')
@@ -77,13 +78,19 @@ def update(pota=None, kff=None, sota=None, write=True):
             return ['POTA', ref, name, la, lo, 'https://next.pota.app/park/' + ref]
         out += build('POTA', pota, mk_p)
     if kff is not None:
+        # Nov 14 (KPC owner, 2026-11-14): column 8 also takes the CONFIRMED link of data/wwff-xref-KFF-*.json (kpc_wwff_links.py), so a
+        # new KFF area gets its POTA park; a link the row already has is kept, a hand decision wins. No file = exactly as before.
+        XR = WL.load_confirmed('KFF', LOC.parent)
+        if XR is None: print('::notice title=Search lists::data/wwff-xref-KFF-*.json missing or unreadable: WWFF links carried forward only')
+        XR = XR or {}
+
         def mk_k(ref, c, o):
             k = KK.get(ref)
             name = (k or {}).get('n') or c.get('name') or (o[2] if o else '')
             la, lo = ((k['la'], k['lo']) if k else (c.get('la'), c.get('lo')))
             if not _ok(la, lo) and o: la, lo = o[3], o[4]
             if not _ok(la, lo): return None
-            p = (k or {}).get('p') if k else (o[7] if o and len(o) > 7 else '')
+            p = (k or {}).get('p') if k else WL.pick_link(o[7] if o and len(o) > 7 else '', XR.get(ref))
             return ['WWFF', ref, name, la, lo, 'https://wwff.co/directory/', None, p or '']
         out += build('WWFF', kff, mk_k)
     if sota is not None:

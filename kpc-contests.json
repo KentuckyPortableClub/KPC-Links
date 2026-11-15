@@ -1,20 +1,6 @@
 {
- "updated": "2026-11-13T12:06:21Z",
+ "updated": "2026-11-14T11:27:01Z",
  "week": [
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gkr55",
-   "when": "2000Z-2100Z, Nov 13",
-   "segs": [
-    [
-     "2026-11-13T20:00Z",
-     "2026-11-13T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "WAE DX Contest, RTTY",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003dw2tj",
@@ -487,6 +473,82 @@
    "kinds": [
     "QSOPARTY"
    ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC FT4 Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gv1k5",
+   "when": "0100Z-0130Z, Nov 20",
+   "segs": [
+    [
+     "2026-11-20T01:00Z",
+     "2026-11-20T01:30Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Weekly RTTY Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gvwfl",
+   "when": "0145Z-0215Z, Nov 20",
+   "segs": [
+    [
+     "2026-11-20T01:45Z",
+     "2026-11-20T02:15Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QRP Fox Hunt",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gz3zq",
+   "when": "0200Z-0330Z, Nov 20",
+   "segs": [
+    [
+     "2026-11-20T02:00Z",
+     "2026-11-20T03:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gu65o",
+   "when": "0230Z-0300Z, Nov 20",
+   "segs": [
+    [
+     "2026-11-20T02:30Z",
+     "2026-11-20T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gkyux",
+   "when": "2000Z-2100Z, Nov 20",
+   "segs": [
+    [
+     "2026-11-20T20:00Z",
+     "2026-11-20T21:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
    "src": "WA7BNM"
   }
  ],
@@ -2549,7 +2611,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (31)",
+  "WA7BNM": "ok (35)",
   "CORRAL": "ok (68)"
  }
 }

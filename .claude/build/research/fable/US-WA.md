@@ -100,3 +100,7 @@ Chat 8 (Oct 30): confirmed chat 2's existing US-5572 Olympic Peninsula/Olympic N
 
 RETEST (chat 9, Oct 30): WA State Parks 'Parks_Administrative_Boundaries' has only management areas / sub-regions / regions (layers 3-5), no park outlines: 16 of 20 pins inside a management area with no park name. Not a park outline source. WA State Parks outlines still to find.
 | US-12237 | Pinecroft Natural Area State Preserve | new park (POTA, found 2026-11-11); pin 47.6821, -117.232 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-11 |
+| US-13664 | Hunters Campground Recreation Site | new park (POTA, found 2026-11-14); pin 48.1259, -118.229 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-14 |
+| US-13663 | Fort Spokane Campground Recreation Site | new park (POTA, found 2026-11-14); pin 47.9089, -118.31 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-14 |
+| US-13662 | Pioneer Park Campground Recreation Site | new park (POTA, found 2026-11-14); pin 48.2114, -117.054 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-14 |
+| US-13661 | Panhandle Campground Recreation Site | new park (POTA, found 2026-11-14); pin 48.5086, -117.269 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-14 |

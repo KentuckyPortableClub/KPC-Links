@@ -1275,11 +1275,11 @@
  },
  "World": {
   "totals": {
-   "matched": 43607,
-   "far": 9624,
+   "matched": 43143,
+   "far": 8807,
    "noshape": 0,
-   "edge": 9298,
-   "out": 326,
+   "edge": 8488,
+   "out": 319,
    "swap": 1
   },
   "states": [
@@ -1321,15 +1321,15 @@
    },
    {
     "st": "AU",
-    "matched": 8163,
-    "far": 1558,
+    "matched": 8190,
+    "far": 808,
     "noshape": 0,
-    "out": 32,
+    "out": 25,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 1526
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 783
    },
    {
     "st": "AX",
@@ -1633,15 +1633,15 @@
    },
    {
     "st": "FR",
-    "matched": 12651,
-    "far": 3405,
+    "matched": 12160,
+    "far": 3338,
     "noshape": 0,
     "out": 149,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 3256
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 3189
    },
    {
     "st": "GA",
@@ -2316,12 +2316,6 @@
    ],
    [
     "AU",
-    "AU-0340",
-    "Maryborough Regional Park",
-    ""
-   ],
-   [
-    "AU",
     "AU-0345",
     "Macedon Regional Park",
     "Macedon F.R"
@@ -2430,6 +2424,12 @@
    ],
    [
     "AU",
+    "AU-6995",
+    "Glen Rock State Forest",
+    "Glen Rock State Forest"
+   ],
+   [
+    "AU",
     "AU-7029",
     "Ellis Creek State Forest",
     "Ellis Creek State Forest"
@@ -2439,12 +2439,6 @@
     "AU-7261",
     "Squirrel Creek State Forest",
     "Squirrel Creek State Forest"
-   ],
-   [
-    "AU",
-    "AU-7323",
-    "Creswick Regional Park",
-    "Creswick N.F.R"
    ],
    [
     "AU",
@@ -3482,7 +3476,7 @@
     "FR",
     "FR-16532",
     "agriates Biological Reserve",
-    ""
+    "AGRIATE"
    ],
    [
     "FR",

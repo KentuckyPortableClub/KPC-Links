@@ -1,0 +1,1235 @@
+{
+ "about": "Job 5 (Nov 11 2026): corridor-outline joins for the 39 wild and scenic river parks that have a saved river line but grade pin. NOTHING in this file is read by a key builder. status: staged-ready = passes the corridor rule below; 'entry.apply' is the exact data/us-key/overrides.json entry (the same form as the signed Kern / Tuolumne / Michigan river joins) to write once the overrides split lands, with 'decided_by' added by the owner; held = a person's hold (overrides none, needs-another-look.json) or a far-off pin, not lifted and not joined; needs-saved-copy = a corridor record may exist but the saved evidence does not show the whole river or any record (see 'needs'); left = checked, cannot be joined under the rule (pin test fails or no corridor polygon of its own). data/us-key/overrides.json is already over 1 MB, so this job did not edit it. No pin is changed anywhere.",
+ "made": "2026-11-11",
+ "base": {
+  "links": "e567f6be7ac53b4f594ec1c25262a91ec1f551c7",
+  "data": "da499abb53457129e764efde0688d35b2c1e0b3d"
+ },
+ "rule": "Job 5 corridor rule (Nov 11 2026; no looser than the signed Nov 9 river joins: their sure rule and whole-river rule): (1) the record is in a wild and scenic river CORRIDOR layer the US key reads (fwsr = USFS EDW WildScenicRiver_01, wsrc = NPS WildScenicRiverBoundaries, sgorg = BLM Oregon WSR corridors), never the forest / park / refuge / SRMA / ACEC / wilderness around it; (2) the record's own name is this river in this state; (3) the pin is inside or within 0.5 km of at least one joined record, by a distance the last key build or the nightly near-miss list measured on the saved copy; (4) every joined record is within 0.6 deg of the pin (the builder's join test); (5) whole river: every same-river corridor record in the evidence is joined, no saved compare says partial, and the joined acres (sum) are 0.5x-2x the saved official river line's miles x 320 ac/mi (the Act's average cap; 0.5x-2x is kpc_join_check.RATIO); (6) no person's hold (overrides none, needs-another-look.json) and no far-off pin (over 5 km from the saved official line, kpc_join_check.NEW_KM).",
+ "pin_test": "Not repeatable here for the corridor polygons: their geometry is only in the per-state saved copies (cache/us/US-XX.json.gz), which are in neither checkout. Distances are the ones the last key build (Links data/us-key) and the nightly near-miss list (KPC-Data, measured on the saved copy) recorded. Pin-to-line distances were recomputed here from the saved official river lines.",
+ "how_to_apply": [
+  "after the overrides split: for each staged-ready park, write entry.apply as parks[<ref>] in the overrides file, plus decided_by",
+  "run the US key for MI and OR (by hand or the monthly run), never while a key or 2-fer run is running",
+  "expect US-12788, US-10249 and US-10251 to grade official with these ids tagged reviewed"
+ ],
+ "parks": {
+  "US-0877": {
+   "ref": "US-0877",
+   "name": "Alatna National Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    66.5452,
+    -152.678
+   ],
+   "status": "held",
+   "reason": "far-off pin: 90.4 km from the saved official river line (over 5 km); no corridor record in any saved evidence",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0877.json",
+    "km": 146.52,
+    "pin_to_line_km": 90.377
+   },
+   "override_now": {
+    "no": [
+     "1368"
+    ],
+    "when": "2026-10-29"
+   }
+  },
+  "US-0878": {
+   "ref": "US-0878",
+   "name": "Aniakchak National Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    56.8076,
+    -157.83
+   ],
+   "status": "held",
+   "reason": "person's hold: overrides none: true (Oct 22 / Oct 29, 'a different place'); on needs-another-look.json",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0878.json",
+    "km": 117.68,
+    "pin_to_line_km": 0.021
+   },
+   "override_now": {
+    "none": true,
+    "no": [
+     "sgakd1197",
+     "3294"
+    ],
+    "when": "2026-10-29"
+   }
+  },
+  "US-0879": {
+   "ref": "US-0879",
+   "name": "Charley National Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    65.3144,
+    -142.794
+   ],
+   "status": "held",
+   "reason": "person's hold: overrides none: true (Oct 22 / Oct 29); on needs-another-look.json",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0879.json",
+    "km": 377.88,
+    "pin_to_line_km": 0.58
+   },
+   "override_now": {
+    "none": true,
+    "no": [
+     "sgakd1218",
+     "3315"
+    ],
+    "when": "2026-10-29"
+   }
+  },
+  "US-0880": {
+   "ref": "US-0880",
+   "name": "Chilikadrotna National Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    60.6634,
+    -154.05
+   ],
+   "status": "needs-saved-copy",
+   "reason": "no corridor record in any saved evidence: the only land at the pin is Lake Clark National Park (3461, the bigger place); the AK saved copy names one NPS corridor (wsrc28 Alagnak) and no FS corridor",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0880.json",
+    "km": 22.47,
+    "pin_to_line_km": 0.029
+   },
+   "override_now": null,
+   "needs": [
+    {
+     "host": "NPS DataStore (irma.nps.gov) hand download, or the AK saved copy",
+     "feature": "an NPS corridor polygon for the Chilikadrotna River, if NPS publishes one (the AK saved copy names only wsrc28 Alagnak)",
+     "refs": [
+      "US-0880"
+     ],
+     "saved_copy_checked": "Links US-AK key, KPC-Data near-miss, ledger.json.gz"
+    }
+   ]
+  },
+  "US-0887": {
+   "ref": "US-0887",
+   "name": "Mulchatna National Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    59.7336,
+    -157.22
+   ],
+   "status": "held",
+   "reason": "far-off pin: 197.0 km from the saved official river line; Nov 11 answer NEEDS-PERSON (segment inside Lake Clark NP&P, no separate boundary)",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0887.json",
+    "km": 41.76,
+    "pin_to_line_km": 197.048
+   },
+   "override_now": null
+  },
+  "US-0889": {
+   "ref": "US-0889",
+   "name": "Noatak National Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    67.9165,
+    -162.355
+   ],
+   "status": "held",
+   "reason": "person's hold: overrides none: true (Oct 22 / Oct 29); on needs-another-look.json",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0889.json",
+    "km": 567.69,
+    "pin_to_line_km": 0.268
+   },
+   "override_now": {
+    "none": true,
+    "no": [
+     "sgakd1214",
+     "3310"
+    ],
+    "when": "2026-10-29"
+   }
+  },
+  "US-0892": {
+   "ref": "US-0892",
+   "name": "Tinayguk National Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    66.9205,
+    -151.527
+   ],
+   "status": "held",
+   "reason": "far-off pin: 74.6 km from the saved official river line; Nov 11 answer NEEDS-PERSON",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0892.json",
+    "km": 88.91,
+    "pin_to_line_km": 74.6
+   },
+   "override_now": null
+  },
+  "US-0893": {
+   "ref": "US-0893",
+   "name": "Tlikakila National Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    60.3989,
+    -153.813
+   ],
+   "status": "needs-saved-copy",
+   "reason": "no corridor record in any saved evidence: the only land at the pin is Lake Clark National Park (3461, the bigger place)",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0893.json",
+    "km": 87.11,
+    "pin_to_line_km": 0.107
+   },
+   "override_now": null,
+   "needs": [
+    {
+     "host": "NPS DataStore (irma.nps.gov) hand download, or the AK saved copy",
+     "feature": "an NPS corridor polygon for the Tlikakila River, if NPS publishes one",
+     "refs": [
+      "US-0893"
+     ],
+     "saved_copy_checked": "Links US-AK key, KPC-Data near-miss, ledger.json.gz"
+    }
+   ]
+  },
+  "US-11804": {
+   "ref": "US-11804",
+   "name": "Gulkana BLM Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    62.856,
+    -145.612
+   ],
+   "status": "needs-saved-copy",
+   "reason": "no corridor record: the only candidates are Gulkana River SRMA (rst11429 / sgakg11429, a management area: rule 'never the SRMA / ACEC around a WSR') and Glennallen Field Office (person NO); BLM's national WSR layer is a line",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-11804.json",
+    "km": 274.23,
+    "pin_to_line_km": 0.02
+   },
+   "override_now": {
+    "no": [
+     "Glennallen Field Office"
+    ],
+    "when": "2026-10-22"
+   },
+   "needs": [
+    {
+     "host": "BLM Alaska (a person names the layer; none is wired or saved)",
+     "feature": "a BLM corridor polygon for the Gulkana WSR (the national BLM NLCS WSR layer is a line)",
+     "refs": [
+      "US-11804"
+     ],
+     "saved_copy_checked": "Links US-AK key, KPC-Data near-miss, ledger.json.gz"
+    }
+   ]
+  },
+  "US-11828": {
+   "ref": "US-11828",
+   "name": "Fortymile BLM Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    64.4604,
+    -142.216
+   ],
+   "status": "needs-saved-copy",
+   "reason": "no corridor record: candidates are the Fortymile SRMA / ACEC / Eastern Interior Field Office, all person NO (Nov 1-2); BLM national WSR layer is a line",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-11828.json",
+    "km": 626.03,
+    "pin_to_line_km": 0.102
+   },
+   "override_now": {
+    "no": [
+     "2170",
+     "Eastern Interior Field Office",
+     "Fortymile SRMA",
+     "rst10850",
+     "sgakg10850",
+     "sgakh1293",
+     "Fortymile ACEC"
+    ],
+    "when": "2026-11-01"
+   },
+   "needs": [
+    {
+     "host": "BLM Alaska (a person names the layer; none is wired or saved)",
+     "feature": "a BLM corridor polygon for the Fortymile WSR (not the SRMA / ACEC / field office, all person NO)",
+     "refs": [
+      "US-11828"
+     ],
+     "saved_copy_checked": "Links US-AK key, KPC-Data near-miss, ledger.json.gz"
+    }
+   ]
+  },
+  "US-11852": {
+   "ref": "US-11852",
+   "name": "Beaver Creek BLM Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    66.2377,
+    -147.532
+   ],
+   "status": "held",
+   "reason": "far-off pin: 55.4 km from the saved official river line",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-11852.json",
+    "km": 180.37,
+    "pin_to_line_km": 55.41
+   },
+   "override_now": {
+    "no": [
+     "Eastern Interior Field Office"
+    ],
+    "when": "2026-10-22"
+   }
+  },
+  "US-3382": {
+   "ref": "US-3382",
+   "name": "John National Wild and Scenic River",
+   "area": "US-AK",
+   "pin": [
+    66.9144,
+    -151.656
+   ],
+   "status": "held",
+   "reason": "far-off pin: 73.7 km from the saved official river line; Nov 11 answer NEEDS-PERSON",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-3382.json",
+    "km": 100.87,
+    "pin_to_line_km": 73.721
+   },
+   "override_now": null
+  },
+  "US-0884": {
+   "ref": "US-0884",
+   "name": "Kings River National Wild and Scenic River",
+   "area": "US-CA",
+   "pin": [
+    36.8423,
+    -118.875
+   ],
+   "status": "needs-saved-copy",
+   "reason": "fwsr209 \"Kings, California National Wild and Scenic River\" (4,772 ac) is 0.04 km from the pin and passes name, layer and pin rules, but the whole-river rule is not shown: it is the only Kings segment in any saved evidence, its acres are 0.17x the saved 86.7-mile line at 320 ac/mi (below every signed river, lowest Tuolumne 0.31), and the Nov 8 area compare could not run. Needs the list of every Kings fwsr (and wsrc) record in the CA saved copy before a join",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0884.json",
+    "km": 139.65,
+    "pin_to_line_km": 0.412
+   },
+   "override_now": null,
+   "records": {
+    "fwsr209": {
+     "name": "Kings, California National Wild and Scenic River",
+     "acres": 4772,
+     "km": 0.04,
+     "how_listed": "shares kings",
+     "source": "KPC-Data data/outline-leads/near-miss.json (nightly, saved copy, made 2026-11-11)",
+     "near_miss_km": 0.04,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    }
+   },
+   "needs": [
+    {
+     "host": "saved copy: boundary-cache release asset US-CA.json.gz (cache/us); publisher download: data.fs.usda.gov (USFS EDW Wild and Scenic River boundaries)",
+     "feature": "every fwsr record named 'Kings, California National Wild and Scenic River' (fwsr209 known, 4,772 ac) plus any wsrc record for the Kings",
+     "refs": [
+      "US-0884"
+     ],
+     "saved_copy_checked": "Links data/us-key/US-CA.json (key of Nov 3: no Kings corridor record), KPC-Data near-miss (fwsr209 only, within 1 km), wild-river-bounds-nov8 (no compare)"
+    }
+   ]
+  },
+  "US-0881": {
+   "ref": "US-0881",
+   "name": "Eightmile National Wild and Scenic River",
+   "area": "US-CT",
+   "pin": [
+    41.4805,
+    -72.3412
+   ],
+   "status": "needs-saved-copy",
+   "reason": "no corridor record in any saved evidence (Devils Hopyard State Park holds the pin: the bigger place); NPS partnership river: check the NPS corridor layer (wsrc) in the CT saved copy",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0881.json",
+    "km": 39.0,
+    "pin_to_line_km": 0.006
+   },
+   "override_now": null,
+   "needs": [
+    {
+     "host": "saved copy: boundary-cache release asset US-CT.json.gz; publisher: NPS DataStore (irma.nps.gov)",
+     "feature": "a wsrc (NPS WSR corridor) record named 'Eightmile Wild and Scenic River', if the layer has one (wsrc ids 1, 5, 13, 27, 29 are named in no tracked file)",
+     "refs": [
+      "US-0881"
+     ],
+     "saved_copy_checked": "Links US-CT key (no wsrc record), KPC-Data near-miss"
+    }
+   ]
+  },
+  "US-0882": {
+   "ref": "US-0882",
+   "name": "Farmington National Wild and Scenic River",
+   "area": "US-CT",
+   "pin": [
+    41.8745,
+    -72.9672
+   ],
+   "status": "held",
+   "reason": "person's hold: overrides none: true (Oct 22); on needs-another-look.json",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0882.json",
+    "km": 23.75,
+    "pin_to_line_km": 0.235
+   },
+   "override_now": {
+    "none": true,
+    "when": "2026-10-22"
+   }
+  },
+  "US-0896": {
+   "ref": "US-0896",
+   "name": "Wekiva National Wild and Scenic River",
+   "area": "US-FL",
+   "pin": [
+    28.8289,
+    -81.4125
+   ],
+   "status": "held",
+   "reason": "person's hold: overrides none: true (Oct 22 / Oct 29); on needs-another-look.json",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0896.json",
+    "km": 69.2,
+    "pin_to_line_km": 0.1
+   },
+   "override_now": {
+    "none": true,
+    "no": [
+     "sgfla101",
+     "191780"
+    ],
+    "when": "2026-10-29"
+   }
+  },
+  "US-10430": {
+   "ref": "US-10430",
+   "name": "St Joe River National Wild and Scenic River",
+   "area": "US-ID",
+   "pin": [
+    47.3215,
+    -116.571
+   ],
+   "status": "held",
+   "reason": "person's hold: overrides none: true (Oct 22) and far-off pin 58.9 km from the saved line",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-10430.json",
+    "km": 113.75,
+    "pin_to_line_km": 58.858
+   },
+   "override_now": {
+    "none": true,
+    "when": "2026-10-22"
+   }
+  },
+  "US-12224": {
+   "ref": "US-12224",
+   "name": "Bruneau River Access BLM Wild and Scenic River",
+   "area": "US-ID",
+   "pin": [
+    42.7919,
+    -115.718
+   ],
+   "status": "held",
+   "reason": "held on needs-another-look.json (Nov 9 retry loop, wait_on layer: 'no polygon whose name fits within 0.5 km'); the Nov 8 corridor compare puts 'Bruneau, Idaho Wild and Scenic River' 4.2 km from the pin (fails the 0.5 km rule); BLM layer is a line",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-12224.json",
+    "km": 62.88,
+    "pin_to_line_km": 4.184
+   },
+   "override_now": null
+  },
+  "US-0891": {
+   "ref": "US-0891",
+   "name": "Taunton National Wild and Scenic River",
+   "area": "US-MA",
+   "pin": [
+    41.783,
+    -71.118
+   ],
+   "status": "needs-saved-copy",
+   "reason": "no corridor record in any saved evidence (only Taunton River CR, a 131-ac conservation restriction, not the corridor); NPS partnership river: check wsrc in the MA saved copy",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0891.json",
+    "km": 60.26,
+    "pin_to_line_km": 0.051
+   },
+   "override_now": null,
+   "needs": [
+    {
+     "host": "saved copy: boundary-cache release asset US-MA.json.gz; publisher: NPS DataStore (irma.nps.gov)",
+     "feature": "a wsrc record named 'Taunton Wild and Scenic River', if the layer has one",
+     "refs": [
+      "US-0891"
+     ],
+     "saved_copy_checked": "Links US-MA key (no wsrc record), KPC-Data near-miss"
+    }
+   ]
+  },
+  "US-0897": {
+   "ref": "US-0897",
+   "name": "Westfield National Wild and Scenic River",
+   "area": "US-MA",
+   "pin": [
+    42.0842,
+    -72.5856
+   ],
+   "status": "held",
+   "reason": "far-off pin: 28.0 km from the saved official river line (over 5 km)",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0897.json",
+    "km": 135.51,
+    "pin_to_line_km": 27.998
+   },
+   "override_now": null
+  },
+  "US-8014": {
+   "ref": "US-8014",
+   "name": "Nashua, Squannacook, and Nissitissit National Wild and Scenic River",
+   "area": "US-MA, US-NH",
+   "pin": [
+    42.736,
+    -71.6715
+   ],
+   "status": "needs-saved-copy",
+   "reason": "no corridor record in any saved evidence (MA and NH both nocand); Nov 9 research found only the NPS river LINE (record 235); check wsrc in the MA / NH saved copies",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-8014.json",
+    "km": 80.3,
+    "pin_to_line_km": 0.049
+   },
+   "override_now": null,
+   "needs": [
+    {
+     "host": "saved copies: boundary-cache release assets US-MA.json.gz and US-NH.json.gz; publisher: NPS DataStore (irma.nps.gov)",
+     "feature": "a wsrc record for the Nashua, Squannacook and Nissitissit rivers, if the layer has one (Nov 9 research found only the NPS line, record 235)",
+     "refs": [
+      "US-8014"
+     ],
+     "saved_copy_checked": "Links US-MA and US-NH keys, KPC-Data near-miss, research-inbox Nov 9 lists"
+    }
+   ]
+  },
+  "US-12788": {
+   "ref": "US-12788",
+   "name": "Black River National Wild and Scenic River",
+   "area": "US-MI",
+   "pin": [
+    46.6663,
+    -90.047
+   ],
+   "status": "staged-ready",
+   "reason": "fwsr93 \"Black, Michigan National Wild and Scenic River\" (4,346 ac): FS corridor layer; pin inside (key a-list, near-miss 0.0 km); the only Black River corridor record in the evidence; 4,346 ac = 1.01x the saved 13.5-mile line at 320 ac/mi (one segment, whole river)",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-12788.json",
+    "km": 21.66,
+    "pin_to_line_km": 0.021
+   },
+   "override_now": null,
+   "records": {
+    "fwsr93": {
+     "name": "Black, Michigan National Wild and Scenic River",
+     "acres": 4346,
+     "how_listed": "the POTA pin is inside it (different name)",
+     "km": 0.0,
+     "source": "Links data/us-key/US-MI.json (last key build)",
+     "near_miss_km": 0.0,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    }
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json",
+    "key": "parks['US-12788']",
+    "staged": {
+     "join_held": {
+      "ids": [
+       "fwsr93"
+      ],
+      "fp": {
+       "fwsr93": [
+        "Black, Michigan National Wild and Scenic River",
+        4346
+       ]
+      },
+      "reason": "job 5: passes the corridor rule on saved / tracked evidence",
+      "held": "staged: waits for the overrides split and the owner"
+     }
+    },
+    "apply": {
+     "join": [
+      "fwsr93"
+     ],
+     "fp": {
+      "fwsr93": [
+       "Black, Michigan National Wild and Scenic River",
+       4346
+      ]
+     },
+     "source_kind": "corridor",
+     "when": "2026-11-11",
+     "why": "2026-11-11 job 5 (wild and scenic river corridors, KPC owner approved the corridor-outline job): official corridor polygon(s) = this park (wild rivers are bounded parks, rule R6) · USFS EDW WildScenicRiver_01 (saved copy): pin inside fwsr93 (0.0 km: Links US-MI key a-list 'the POTA pin is inside it', KPC-Data near-miss 0.0 km); the only Black River corridor record in the evidence; 4,346 ac = 1.01x the saved 13.5-mile official line at 320 ac/mi; US-13166 Black River National Recreation Area also has its pin inside fwsr93 but is not joined to it (another designation), so the record serves one park",
+     "evidence": {
+      "ids": [
+       "fwsr93"
+      ],
+      "detail": "USFS EDW WildScenicRiver_01 (saved copy): pin inside fwsr93 (0.0 km: Links US-MI key a-list 'the POTA pin is inside it', KPC-Data near-miss 0.0 km); the only Black River corridor record in the evidence; 4,346 ac = 1.01x the saved 13.5-mile official line at 320 ac/mi; US-13166 Black River National Recreation Area also has its pin inside fwsr93 but is not joined to it (another designation), so the record serves one park",
+      "rule": "Job 5 corridor rule (Nov 11 2026; no looser than the signed Nov 9 river joins: their sure rule and whole-river rule): (1) the record is in a wild and scenic river CORRIDOR layer the US key reads (fwsr = USFS EDW WildScenicRiver_01, wsrc = NPS WildScenicRiverBoundaries, sgorg = BLM Oregon WSR corridors), never the forest / park / refuge / SRMA / ACEC / wilderness around it; (2) the record's own name is this river in this state; (3) the pin is inside or within 0.5 km of at least one joined record, by a distance the last key build or the nightly near-miss list measured on the saved copy; (4) every joined record is within 0.6 deg of the pin (the builder's join test); (5) whole river: every same-river corridor record in the evidence is joined, no saved compare says partial, and the joined acres (sum) are 0.5x-2x the saved official river line's miles x 320 ac/mi (the Act's average cap; 0.5x-2x is kpc_join_check.RATIO); (6) no person's hold (overrides none, needs-another-look.json) and no far-off pin (over 5 km from the saved official line, kpc_join_check.NEW_KM)."
+     }
+    },
+    "add_on_apply": {
+     "decided_by": "KPC owner, <date of apply>"
+    }
+   }
+  },
+  "US-12789": {
+   "ref": "US-12789",
+   "name": "Carp National Wild and Scenic River",
+   "area": "US-MI",
+   "pin": [
+    46.0242,
+    -84.6929
+   ],
+   "status": "needs-saved-copy",
+   "reason": "fwsr5 \"Carp, Michigan NWSR\" holds the pin but is 1,254 of 6,014 ac (Nov 8 compare: partial, not joined); the other Carp segment ids are not in any saved evidence",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-12789.json",
+    "km": 45.42,
+    "pin_to_line_km": 0.005
+   },
+   "override_now": {
+    "alias": [
+     "Carp River"
+    ],
+    "when": "2026-11-02"
+   },
+   "records": {
+    "fwsr5": {
+     "name": "Carp, Michigan National Wild and Scenic River",
+     "acres": 1254,
+     "how_listed": "similar name",
+     "km": 0.0,
+     "source": "Links data/us-key/US-MI.json (last key build)",
+     "near_miss_km": 0.0,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    }
+   },
+   "needs": [
+    {
+     "host": "saved copy: boundary-cache release asset US-MI.json.gz; publisher download: data.fs.usda.gov",
+     "feature": "every fwsr record named 'Carp, Michigan National Wild and Scenic River' (fwsr5 known: 1,254 of the 6,014 ac)",
+     "refs": [
+      "US-12789"
+     ],
+     "saved_copy_checked": "Links US-MI key, KPC-Data near-miss, wild-river-bounds-nov8 (partial)"
+    }
+   ]
+  },
+  "US-12790": {
+   "ref": "US-12790",
+   "name": "East Branch of the Taquamenon National Wild and Scenic River",
+   "area": "US-MI",
+   "pin": [
+    46.3706,
+    -85.0353
+   ],
+   "status": "needs-saved-copy",
+   "reason": "fwsr8 \"East Branch Tahquamenon, Michigan NWSR\" holds the pin but is 2,501 of 2,992 ac (Nov 8 compare: partial, not joined); the rest is not in any saved evidence",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-12790.json",
+    "km": 21.32,
+    "pin_to_line_km": 0.027
+   },
+   "override_now": {
+    "alias": [
+     "East Branch Tahquamenon River"
+    ],
+    "when": "2026-11-02"
+   },
+   "records": {
+    "fwsr8": {
+     "name": "East Branch Tahquamenon, Michigan National Wild and Scenic River",
+     "acres": 2501,
+     "how_listed": "similar name",
+     "km": 0.0,
+     "source": "Links data/us-key/US-MI.json (last key build)",
+     "near_miss_km": 0.0,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    }
+   },
+   "needs": [
+    {
+     "host": "saved copy: boundary-cache release asset US-MI.json.gz; publisher download: data.fs.usda.gov",
+     "feature": "every fwsr record named 'East Branch Tahquamenon, Michigan National Wild and Scenic River' (fwsr8 known: 2,501 of 2,992 ac)",
+     "refs": [
+      "US-12790"
+     ],
+     "saved_copy_checked": "Links US-MI key, KPC-Data near-miss, wild-river-bounds-nov8 (partial)"
+    }
+   ]
+  },
+  "US-0885": {
+   "ref": "US-0885",
+   "name": "Lamprey National Wild and Scenic River",
+   "area": "US-NH",
+   "pin": [
+    43.0796,
+    -70.9335
+   ],
+   "status": "held",
+   "reason": "person's hold: overrides none: true (Oct 22); on needs-another-look.json",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-0885.json",
+    "km": 35.67,
+    "pin_to_line_km": 1.324
+   },
+   "override_now": {
+    "none": true,
+    "when": "2026-10-22"
+   }
+  },
+  "US-10249": {
+   "ref": "US-10249",
+   "name": "Salmon River National Wild and Scenic River",
+   "area": "US-OR",
+   "pin": [
+    45.2716,
+    -121.941
+   ],
+   "status": "staged-ready",
+   "reason": "four corridor records named for the Salmon River (Oregon), all at the pin (near-miss, saved copy Nov 11): fwsr73 5,353 ac 0.0 km, fwsr247 3,328 ac 0.01 km, sgorg526 Segment B 3,326 ac 0.01 km, sgorg527 Segment C 246 ac 0.0 km; FS + BLM Oregon corridor layers (Nestucca precedent); 8,927 ac without the likely FS/BLM duplicate of Segment B = 0.81x the saved 34.5-mile line",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-10249.json",
+    "km": 55.58,
+    "pin_to_line_km": 0.197
+   },
+   "override_now": null,
+   "records": {
+    "fwsr73": {
+     "name": "Salmon, Oregon National Wild and Scenic River",
+     "acres": 5353,
+     "how_listed": "the POTA pin is inside it (different name)",
+     "km": 0.0,
+     "source": "Links data/us-key/US-OR.json (last key build)",
+     "near_miss_km": 0.0,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    },
+    "fwsr247": {
+     "name": "Salmon, Oregon National Wild and Scenic River",
+     "acres": 3328,
+     "km": 0.01,
+     "how_listed": "shares salmon",
+     "source": "KPC-Data data/outline-leads/near-miss.json (nightly, saved copy, made 2026-11-11)",
+     "near_miss_km": 0.01,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    },
+    "sgorg526": {
+     "name": "Salmon River Segment B",
+     "acres": 3326,
+     "how_listed": "similar name",
+     "km": 0.01,
+     "source": "Links data/us-key/US-OR.json (last key build)",
+     "near_miss_km": 0.01,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    },
+    "sgorg527": {
+     "name": "Salmon River Segment C",
+     "acres": 246,
+     "how_listed": "similar name",
+     "km": 0.0,
+     "source": "Links data/us-key/US-OR.json (last key build)",
+     "near_miss_km": 0.0,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    }
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json",
+    "key": "parks['US-10249']",
+    "staged": {
+     "join_held": {
+      "ids": [
+       "fwsr73",
+       "fwsr247",
+       "sgorg526",
+       "sgorg527"
+      ],
+      "fp": {
+       "fwsr73": [
+        "Salmon, Oregon National Wild and Scenic River",
+        5353
+       ],
+       "fwsr247": [
+        "Salmon, Oregon National Wild and Scenic River",
+        3328
+       ],
+       "sgorg526": [
+        "Salmon River Segment B",
+        3326
+       ],
+       "sgorg527": [
+        "Salmon River Segment C",
+        246
+       ]
+      },
+      "reason": "job 5: passes the corridor rule on saved / tracked evidence",
+      "held": "staged: waits for the overrides split and the owner"
+     }
+    },
+    "apply": {
+     "join": [
+      "fwsr73",
+      "fwsr247",
+      "sgorg526",
+      "sgorg527"
+     ],
+     "fp": {
+      "fwsr73": [
+       "Salmon, Oregon National Wild and Scenic River",
+       5353
+      ],
+      "fwsr247": [
+       "Salmon, Oregon National Wild and Scenic River",
+       3328
+      ],
+      "sgorg526": [
+       "Salmon River Segment B",
+       3326
+      ],
+      "sgorg527": [
+       "Salmon River Segment C",
+       246
+      ]
+     },
+     "source_kind": "corridor",
+     "when": "2026-11-11",
+     "why": "2026-11-11 job 5 (wild and scenic river corridors, KPC owner approved the corridor-outline job): official corridor polygon(s) = this park (wild rivers are bounded parks, rule R6) · USFS EDW WildScenicRiver_01 + BLM Oregon WSR corridor layer (saved copy, KPC-Data near-miss Nov 11): fwsr73 0.0 km (pin inside, Links US-OR key), fwsr247 0.01 km, sgorg526 Segment B 0.01 km, sgorg527 Segment C 0.0 km; all four corridor records named for the Salmon River (Oregon); 8,927 ac (fwsr247 and sgorg526 are 3,328 / 3,326 ac, likely one segment in both layers) = 0.81x the saved 34.5-mile line at 320 ac/mi",
+     "evidence": {
+      "ids": [
+       "fwsr73",
+       "fwsr247",
+       "sgorg526",
+       "sgorg527"
+      ],
+      "detail": "USFS EDW WildScenicRiver_01 + BLM Oregon WSR corridor layer (saved copy, KPC-Data near-miss Nov 11): fwsr73 0.0 km (pin inside, Links US-OR key), fwsr247 0.01 km, sgorg526 Segment B 0.01 km, sgorg527 Segment C 0.0 km; all four corridor records named for the Salmon River (Oregon); 8,927 ac (fwsr247 and sgorg526 are 3,328 / 3,326 ac, likely one segment in both layers) = 0.81x the saved 34.5-mile line at 320 ac/mi",
+      "rule": "Job 5 corridor rule (Nov 11 2026; no looser than the signed Nov 9 river joins: their sure rule and whole-river rule): (1) the record is in a wild and scenic river CORRIDOR layer the US key reads (fwsr = USFS EDW WildScenicRiver_01, wsrc = NPS WildScenicRiverBoundaries, sgorg = BLM Oregon WSR corridors), never the forest / park / refuge / SRMA / ACEC / wilderness around it; (2) the record's own name is this river in this state; (3) the pin is inside or within 0.5 km of at least one joined record, by a distance the last key build or the nightly near-miss list measured on the saved copy; (4) every joined record is within 0.6 deg of the pin (the builder's join test); (5) whole river: every same-river corridor record in the evidence is joined, no saved compare says partial, and the joined acres (sum) are 0.5x-2x the saved official river line's miles x 320 ac/mi (the Act's average cap; 0.5x-2x is kpc_join_check.RATIO); (6) no person's hold (overrides none, needs-another-look.json) and no far-off pin (over 5 km from the saved official line, kpc_join_check.NEW_KM)."
+     }
+    },
+    "add_on_apply": {
+     "decided_by": "KPC owner, <date of apply>"
+    }
+   }
+  },
+  "US-10251": {
+   "ref": "US-10251",
+   "name": "White River National Wild and Scenic River",
+   "area": "US-OR",
+   "pin": [
+    45.3032,
+    -121.674
+   ],
+   "status": "staged-ready",
+   "reason": "three corridor records named for the White River (Oregon): fwsr69 5,159 ac pin inside, sgorg522 Segment B 18,068 ac 0.0 km, sgorg520 Segment A 2,414 ac (OR key check list: within 0.02 deg of the pin); fwsr73 (Salmon, 0.77 km) is a different river and is not taken",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-10251.json",
+    "km": 75.91,
+    "pin_to_line_km": 0.108
+   },
+   "override_now": {
+    "alias": [
+     "White River (Oregon)"
+    ],
+    "when": "2026-11-02"
+   },
+   "records": {
+    "fwsr69": {
+     "name": "White, Oregon National Wild and Scenic River",
+     "acres": 5159,
+     "how_listed": "the POTA pin is inside it (different name)",
+     "km": 0.0,
+     "source": "Links data/us-key/US-OR.json (last key build)",
+     "near_miss_km": 0.0,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    },
+    "sgorg522": {
+     "name": "White River Segment B",
+     "acres": 18068,
+     "how_listed": "similar name",
+     "km": 0.0,
+     "source": "Links data/us-key/US-OR.json (last key build)",
+     "near_miss_km": 0.0,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    },
+    "sgorg520": {
+     "name": "White River Segment A",
+     "acres": 2414,
+     "how_listed": "similar name",
+     "km": null,
+     "source": "Links data/us-key/US-OR.json (last key build)"
+    }
+   },
+   "entry": {
+    "file": "data/us-key/overrides.json",
+    "key": "parks['US-10251']",
+    "staged": {
+     "join_held": {
+      "ids": [
+       "fwsr69",
+       "sgorg522",
+       "sgorg520"
+      ],
+      "fp": {
+       "fwsr69": [
+        "White, Oregon National Wild and Scenic River",
+        5159
+       ],
+       "sgorg522": [
+        "White River Segment B",
+        18068
+       ],
+       "sgorg520": [
+        "White River Segment A",
+        2414
+       ]
+      },
+      "reason": "job 5: passes the corridor rule on saved / tracked evidence",
+      "held": "staged: waits for the overrides split and the owner"
+     }
+    },
+    "apply": {
+     "alias": [
+      "White River (Oregon)"
+     ],
+     "alias_ok_names": [
+      "White River (Oregon)"
+     ],
+     "when": "2026-11-11",
+     "why": "2026-11-02 12:49: aliases-oct31 row YES 'White River (Oregon)' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-11 job 5 (wild and scenic river corridors, KPC owner approved the corridor-outline job): official corridor polygon(s) = this park (wild rivers are bounded parks, rule R6) · USFS EDW WildScenicRiver_01 + BLM Oregon WSR corridor layer: fwsr69 pin inside (Links US-OR key, near-miss 0.0 km), sgorg522 Segment B 0.0 km (near-miss), sgorg520 Segment A within 0.02 deg (Links US-OR key check list); sum 25,641 ac = 1.70x the saved 47.2-mile line at 320 ac/mi (FS and BLM records overlap at the pin; union is smaller); fwsr73 (Salmon, 0.77 km) is another river and is left out",
+     "join": [
+      "fwsr69",
+      "sgorg522",
+      "sgorg520"
+     ],
+     "fp": {
+      "fwsr69": [
+       "White, Oregon National Wild and Scenic River",
+       5159
+      ],
+      "sgorg522": [
+       "White River Segment B",
+       18068
+      ],
+      "sgorg520": [
+       "White River Segment A",
+       2414
+      ]
+     },
+     "source_kind": "corridor",
+     "evidence": {
+      "ids": [
+       "fwsr69",
+       "sgorg522",
+       "sgorg520"
+      ],
+      "detail": "USFS EDW WildScenicRiver_01 + BLM Oregon WSR corridor layer: fwsr69 pin inside (Links US-OR key, near-miss 0.0 km), sgorg522 Segment B 0.0 km (near-miss), sgorg520 Segment A within 0.02 deg (Links US-OR key check list); sum 25,641 ac = 1.70x the saved 47.2-mile line at 320 ac/mi (FS and BLM records overlap at the pin; union is smaller); fwsr73 (Salmon, 0.77 km) is another river and is left out",
+      "rule": "Job 5 corridor rule (Nov 11 2026; no looser than the signed Nov 9 river joins: their sure rule and whole-river rule): (1) the record is in a wild and scenic river CORRIDOR layer the US key reads (fwsr = USFS EDW WildScenicRiver_01, wsrc = NPS WildScenicRiverBoundaries, sgorg = BLM Oregon WSR corridors), never the forest / park / refuge / SRMA / ACEC / wilderness around it; (2) the record's own name is this river in this state; (3) the pin is inside or within 0.5 km of at least one joined record, by a distance the last key build or the nightly near-miss list measured on the saved copy; (4) every joined record is within 0.6 deg of the pin (the builder's join test); (5) whole river: every same-river corridor record in the evidence is joined, no saved compare says partial, and the joined acres (sum) are 0.5x-2x the saved official river line's miles x 320 ac/mi (the Act's average cap; 0.5x-2x is kpc_join_check.RATIO); (6) no person's hold (overrides none, needs-another-look.json) and no far-off pin (over 5 km from the saved official line, kpc_join_check.NEW_KM)."
+     }
+    },
+    "add_on_apply": {
+     "decided_by": "KPC owner, <date of apply>"
+    }
+   }
+  },
+  "US-12348": {
+   "ref": "US-12348",
+   "name": "Wallowa BLM Wild and Scenic River",
+   "area": "US-OR",
+   "pin": [
+    45.7243,
+    -117.784
+   ],
+   "status": "held",
+   "reason": "person's hold: overrides none: true (Oct 22). Evidence noted for the owner, not joined: sgorg424 'Wallowa River' 3,116 ac at 0.0 km",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-12348.json",
+    "km": 15.85,
+    "pin_to_line_km": 0.053
+   },
+   "override_now": {
+    "none": true,
+    "when": "2026-10-22"
+   }
+  },
+  "US-9156": {
+   "ref": "US-9156",
+   "name": "Crooked River National Wild and Scenic River",
+   "area": "US-OR",
+   "pin": [
+    44.1582,
+    -120.834
+   ],
+   "status": "needs-saved-copy",
+   "reason": "sgorg464 \"Crooked River Segment B\" (2,606 ac) holds the pin, but no other Crooked River segment is in the evidence (no Segment A); 2,606 ac = 0.35x the saved 23.3-mile line: whole river not shown",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-9156.json",
+    "km": 37.56,
+    "pin_to_line_km": 0.045
+   },
+   "override_now": null,
+   "records": {
+    "sgorg464": {
+     "name": "Crooked River Segment B",
+     "acres": 2606,
+     "how_listed": "similar name",
+     "km": 0.0,
+     "source": "Links data/us-key/US-OR.json (last key build)",
+     "near_miss_km": 0.0,
+     "near_miss": "KPC-Data data/outline-leads/near-miss.json (made 2026-11-11)"
+    }
+   },
+   "needs": [
+    {
+     "host": "gis.blm.gov (BLM_OR_Wild_and_Scenic_River_Corridor MapServer/3, the sgorg layer the OR key already reads)",
+     "feature": "every record with WSR_NAME 'Crooked River Segment ...' (Segment B = sgorg464 known), plus any fwsr record for the Crooked River",
+     "refs": [
+      "US-9156"
+     ],
+     "saved_copy_checked": "Links US-OR key (check list within 0.02 deg), KPC-Data near-miss (sgorg464 only)"
+    }
+   ]
+  },
+  "US-9157": {
+   "ref": "US-9157",
+   "name": "Donner und Blitzen National Wild and Scenic River",
+   "area": "US-OR",
+   "pin": [
+    42.8277,
+    -118.887
+   ],
+   "status": "left",
+   "reason": "pin test fails: the pin is 2.93 km from the saved river line and the Nov 8 corridor compare puts the corridor 2.94 km away (sure rule: inside or within 0.5 km); only Malheur NWR holds the pin (bigger place)",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-9157.json",
+    "km": 141.4,
+    "pin_to_line_km": 2.928
+   },
+   "override_now": null
+  },
+  "US-9158": {
+   "ref": "US-9158",
+   "name": "John Day National Wild and Scenic River",
+   "area": "US-OR",
+   "pin": [
+    44.796,
+    -120.002
+   ],
+   "status": "held",
+   "reason": "person's hold: overrides none: true (Oct 22). Evidence noted for the owner, not joined: sgorg461 'John Day River' 51,282 ac at 0.0 km",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-9158.json",
+    "km": 233.92,
+    "pin_to_line_km": 0.008
+   },
+   "override_now": {
+    "none": true,
+    "when": "2026-10-22"
+   }
+  },
+  "US-6597": {
+   "ref": "US-6597",
+   "name": "Rio Grande National Wild and Scenic River",
+   "area": "US-TX",
+   "pin": [
+    29.4509,
+    -102.823
+   ],
+   "status": "needs-saved-copy",
+   "reason": "no corridor record in any saved evidence (Black Gap WMA holds the pin: the bigger place); NPS-managed river: check wsrc in the TX saved copy",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-6597.json",
+    "km": 312.83,
+    "pin_to_line_km": 0.126
+   },
+   "override_now": null,
+   "needs": [
+    {
+     "host": "saved copy: boundary-cache release asset US-TX.json.gz; publisher: NPS DataStore (irma.nps.gov)",
+     "feature": "a wsrc record named 'Rio Grande Wild and Scenic River', if the layer has one",
+     "refs": [
+      "US-6597"
+     ],
+     "saved_copy_checked": "Links US-TX key (no wsrc record), KPC-Data near-miss"
+    }
+   ]
+  },
+  "US-10971": {
+   "ref": "US-10971",
+   "name": "Smith Creek BLM Wild and Scenic River",
+   "area": "US-UT",
+   "pin": [
+    37.3697,
+    -113.175
+   ],
+   "status": "left",
+   "reason": "no corridor polygon of its own: BLM's NLCS WSR layer (sgute) is line-only, the UT key read 0 sgute records, so the existing Nov 2 join to sgute9214 never applies; the only corridor polygon at the pin is wsrc12, the whole Virgin system (bigger place, US-0895's). Existing override not touched",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-10971.json",
+    "km": 3.21,
+    "pin_to_line_km": 0.015
+   },
+   "override_now": {
+    "join": [
+     "sgute9214"
+    ],
+    "when": "2026-11-02"
+   }
+  },
+  "US-10973": {
+   "ref": "US-10973",
+   "name": "Middle Fork Taylor Creek BLM Wild and Scenic River",
+   "area": "US-UT",
+   "pin": [
+    37.4543,
+    -113.145
+   ],
+   "status": "left",
+   "reason": "no corridor polygon of its own (Nov 9 hand-layers: 'held: needs a polygon'; BLM UT WSR is a line); existing join to sgute9254 never applies; wsrc12 Virgin system holds the pin (bigger place). Existing override not touched",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-10973.json",
+    "km": 4.68,
+    "pin_to_line_km": 0.328
+   },
+   "override_now": {
+    "join": [
+     "sgute9254"
+    ],
+    "when": "2026-11-02"
+   }
+  },
+  "US-10975": {
+   "ref": "US-10975",
+   "name": "Oak Creek BLM Wild and Scenic River",
+   "area": "US-UT",
+   "pin": [
+    37.3985,
+    -112.993
+   ],
+   "status": "left",
+   "reason": "no corridor polygon of its own (BLM layer line-only); existing join to sgute9266 never applies; existing override not touched",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-10975.json",
+    "km": 7.27,
+    "pin_to_line_km": 0.008
+   },
+   "override_now": {
+    "join": [
+     "sgute9266"
+    ],
+    "when": "2026-11-02"
+   }
+  },
+  "US-10976": {
+   "ref": "US-10976",
+   "name": "Kolob Creek BLM Wild and Scenic River",
+   "area": "US-UT",
+   "pin": [
+    37.371,
+    -112.971
+   ],
+   "status": "left",
+   "reason": "no corridor polygon of its own (BLM layer line-only); existing join to sgute9695 never applies; existing override not touched",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-10976.json",
+    "km": 11.59,
+    "pin_to_line_km": 0.009
+   },
+   "override_now": {
+    "join": [
+     "sgute9695"
+    ],
+    "when": "2026-11-02"
+   }
+  },
+  "US-5835": {
+   "ref": "US-5835",
+   "name": "Green River Utah BLM Wild and Scenic River",
+   "area": "US-UT",
+   "pin": [
+    38.76,
+    -110.085
+   ],
+   "status": "left",
+   "reason": "pin test fails: the Nov 8 corridor compare puts 'Green Wild and Scenic River' 2.42 km from the pin (sure rule 0.5 km); BLM layer is a line (Nov 9 research)",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-5835.json",
+    "km": 99.91,
+    "pin_to_line_km": 2.414
+   },
+   "override_now": {
+    "no": [
+     "268643"
+    ],
+    "when": "2026-10-29"
+   }
+  },
+  "US-6012": {
+   "ref": "US-6012",
+   "name": "Shunes Creek BLM Wild and Scenic River",
+   "area": "US-UT",
+   "pin": [
+    37.1411,
+    -112.935
+   ],
+   "status": "left",
+   "reason": "no corridor polygon of its own (BLM layer line-only); existing join to sgute9208 never applies; existing override not touched",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-6012.json",
+    "km": 4.67,
+    "pin_to_line_km": 0.017
+   },
+   "override_now": {
+    "join": [
+     "sgute9208"
+    ],
+    "when": "2026-11-02"
+   }
+  },
+  "US-6025": {
+   "ref": "US-6025",
+   "name": "Willis Creek BLM Wild and Scenic River",
+   "area": "US-UT",
+   "pin": [
+    37.4472,
+    -113.091
+   ],
+   "status": "left",
+   "reason": "no corridor polygon of its own (BLM layer line-only, Nov 9 research); existing join to sgute9216 never applies; existing override not touched",
+   "saved_line": {
+    "file": "KPC-Data data/trails/US-6025.json",
+    "km": 3.31,
+    "pin_to_line_km": 0.001
+   },
+   "override_now": {
+    "join": [
+     "sgute9216"
+    ],
+    "when": "2026-11-02"
+   }
+  }
+ },
+ "counts": {
+  "held": 16,
+  "needs-saved-copy": 12,
+  "staged-ready": 3,
+  "left": 8
+ }
+}
