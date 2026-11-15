@@ -40,6 +40,8 @@ What is drawn (in this order, per park; all of a park's areas together):
        I2 no land is lost: every point of the park's publishable land in the store is inside a tract that is shown (not covered
           all round by a higher layer), or within 30 m of a drawn line (the 30 m strip is the "layers disagree" allowance; its area
           is reported).
+  8. NO WORSE THAN RELEASED (2026-11-15): a park whose drawn land would lose more than a few cells of TODAY'S released outline
+     (data/released/outlines/<AREA>.geojson.gz, beyond a 30 m allowance) keeps today's outline and is listed (no_worse()).
 What is written is public: no record keys, licence words, reasons or store names go into it. The detailed reasons, per park,
 go only into the private report (--report FILE, which must be outside the output folder).
 
@@ -58,6 +60,7 @@ Standard library only, Python 3.9+. No network.
 
   python3 kpc_display_copy.py build --store DIR --area US-NH [--area US-ME ...] --out DIR [--doubtful CSV ...]
                                     [--precedence JSON] [--key-dir data/us-key] [--report private.json] [--private-preview]
+                                    [--released data/released]   (default: this repository's data/released; 2026-11-15)
   python3 kpc_display_copy.py check --out DIR --area US-NH [--public]
 Exit 0 = done; 1 = stopped or a check failed; 2 = usage error.
 """
@@ -1066,6 +1069,99 @@ def key_areas(key_dir):
     return out
 
 
+# ---- "no worse than released" (2026-11-15) -----------------------------------------------------------------------------------
+# A park drawn from the store must not lose land compared with TODAY'S released outline (data/released/outlines/US-XX.geojson.gz,
+# what the public map draws now). Today's file is simplified (its features say how much in 'detail', degrees), so a released
+# point counts as lost only when it is outside every store tract the park draws AND farther than NO_WORSE_TOL_M (or 1.5 x the
+# released detail, whichever is more) from the store's own boundary. More than LOST_TOL_CELLS lost cells = the park keeps today's
+# outline, and it is listed (report 'no_worse_kept_today'; the reason is private like every other). Only official released
+# outlines are compared (an 'approximate' one, or a pin, is not land the map promises).
+RELEASED_DEFAULT = pathlib.Path(__file__).resolve().parent.parent / 'data' / 'released'
+NO_WORSE_TOL_M = 30.0
+NO_WORSE_CELLS = 40_000         # about this many cells per released polygon (cells of 2 m or more; 10 m for a 1 km park)
+
+
+def released_land(released_dir, area):
+    """Today's released outline file of one area -> {ref: [polygon, ...]} (GeoJSON polygons, lon/lat), {ref: detail m}.
+    No file = {} (nothing released to compare with). A file that is there but broken (bad gzip, a part missing or of another
+    save) stops the build: a check that cannot read today's outline must never pass."""
+    if not released_dir or not pathlib.Path(released_dir).is_dir():   # a wrong folder must never mean "nothing to compare with"
+        raise DisplayError(f'the released folder {released_dir!r} is not a folder (data/released): the no-worse check cannot run')
+    base = pathlib.Path(released_dir) / 'outlines'
+    p1 = base / f'{area}.geojson.gz'
+    if not p1.is_file(): return {}, {}
+
+    def rd(p):
+        try:
+            b = p.read_bytes()
+            return json.loads(gzip.decompress(b) if b[:2] == b'\x1f\x8b' else b)
+        except Exception as e: raise DisplayError(f'{p}: today\'s released outline is unreadable ({e}); the no-worse check cannot run')
+    docs = [rd(p1)]
+    k = docs[0].get('kpc_part')
+    if k:
+        if not (isinstance(k, list) and len(k) >= 2 and k[0] == 1 and isinstance(k[1], int) and k[1] >= 1):
+            raise DisplayError(f'{p1}: odd kpc_part {k!r}')
+        for i in range(2, k[1] + 1):
+            q = base / f'{area}.p{i}.geojson.gz'
+            if not q.is_file(): raise DisplayError(f'{q}: a part of today\'s released outline is missing')
+            d = rd(q); kk = d.get('kpc_part') or []
+            if len(kk) < 2 or kk[0] != i or kk[1] != k[1] or (len(k) > 2 and (len(kk) < 3 or kk[2] != k[2])):
+                raise DisplayError(f'{q}: a part of another save of today\'s released outline')
+            docs.append(d)
+    land, detail = {}, {}
+    for d in docs:
+        for f in d.get('features') or []:
+            pr = (f or {}).get('properties') or {}; g = (f or {}).get('geometry') or {}
+            ref = pr.get('ref')
+            if not isinstance(ref, str) or pr.get('g', 'official') != 'official': continue
+            cs = [g.get('coordinates')] if g.get('type') == 'Polygon' else (g.get('coordinates') or []) if g.get('type') == 'MultiPolygon' else []
+            polys = [[[(float(x), float(y)) for x, y, *_ in ring] for ring in poly if isinstance(ring, list) and len(ring) >= 4]
+                     for poly in cs if isinstance(poly, list)]
+            polys = [pl for pl in polys if pl]
+            if not polys: continue
+            land.setdefault(ref, []).extend(polys)
+            dt = pr.get('detail')
+            if isinstance(dt, (int, float)) and 0 < dt < 0.05: detail[ref] = max(detail.get(ref, 0.0), dt * 111320.0)
+    return land, detail
+
+
+def no_worse(recs, rel_polys, rel_detail_m=0.0):
+    """Land of today's released outline that the store's drawn tracts would lose. recs = the park's store records that passed
+    the gate (their rings are the land the display copy draws; I2 holds that none is hidden). -> dict (private report)."""
+    pts = [p for poly in rel_polys for ring in poly for p in ring] + [p for r in recs for rg in r.rings for p in rg]
+    pr = Proj(pts)
+    land, edge = Land(), SegGrid()
+    for r in recs:
+        xy = [pr.xy(rg) for rg in r.rings]
+        land.add(xy)
+        for xs, ys in xy: edge.add_ring(xs, ys)
+    tol = max(NO_WORSE_TOL_M, 1.5 * float(rel_detail_m or 0.0))
+    lost = cells = 0
+    lost_m2 = 0.0
+    worst_cell = 0.0
+    for poly in rel_polys:
+        rings = [pr.xy(rg) for rg in poly]
+        xs0, ys0 = rings[0]
+        x0, y0, x1, y1 = min(xs0), min(ys0), max(xs0), max(ys0)
+        cell = max(2.0, math.sqrt(max(1.0, (x1 - x0) * (y1 - y0)) / NO_WORSE_CELLS))
+        worst_cell = max(worst_cell, cell)
+        nx, ny = max(1, int(math.ceil((x1 - x0) / cell))), max(1, int(math.ceil((y1 - y0) / cell)))
+        mask = raster([rings], x0, y0, cell, nx, ny)     # even-odd over the polygon's rings: its holes are not land
+        n = 0
+        for j in range(ny):
+            yc = y0 + (j + 0.5) * cell
+            for i in range(nx):
+                if not mask[j * nx + i]: continue
+                cells += 1
+                xc = x0 + (i + 0.5) * cell
+                if land.inside(xc, yc): continue
+                if recs and edge.dist(xc, yc, tol * 1.2) <= tol: continue
+                n += 1
+        lost += n; lost_m2 += n * cell * cell
+    return {'released_cells': cells, 'lost_cells': lost, 'lost_m2': round(lost_m2, 1), 'tol_m': round(tol, 1),
+            'cell_m': round(worst_cell, 1), 'worse': lost > LOST_TOL_CELLS}
+
+
 def in_git_tree(path):
     """True when path (or the folder it would be made in) is inside a git work tree: it or a parent holds .git."""
     q = pathlib.Path(path).resolve()
@@ -1075,9 +1171,13 @@ def in_git_tree(path):
 
 
 def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, decimals=DECIMALS, merge_m=MERGE_M,
-          precedence_table=None, park_areas=None, max_part=MAX_PART, piece_cap=PIECE_CAP, mid_cap=MID_CAP, log=print):
+          precedence_table=None, park_areas=None, max_part=MAX_PART, piece_cap=PIECE_CAP, mid_cap=MID_CAP, log=print,
+          released=RELEASED_DEFAULT):
     """Build the display copy of one or more areas in one run (a park in two areas needs both in the same run).
-    -> the PRIVATE report (reasons, numbers per park). What is written under out_dir is public."""
+    -> the PRIVATE report (reasons, numbers per park). What is written under out_dir is public.
+    released: the folder of today's released files (data/released; its outlines/<AREA>.geojson.gz is what the map draws now). A
+    park whose store outline would lose land against it keeps today's outline (no_worse); an area with no released file has
+    nothing to compare with."""
     t0 = time.time()
     areas = [areas] if isinstance(areas, str) else sorted(set(areas))
     for a in areas:
@@ -1103,6 +1203,8 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
             if meta.get('sha256') and meta['sha256'] != sha[f]:
                 raise DisplayError(f'{f}: sha256 differs from the index (store and index are not from the same build)')
     gen = hashlib.sha256(json.dumps(sorted(sha.items())).encode()).hexdigest()[:12]
+    rel = {a: released_land(released, a) for a in areas}   # today's released outlines (read before anything is written)
+    no_worse_kept = []
     doubt = dict(doubtful or {})
     in_areas = {}
     for a in areas:
@@ -1242,6 +1344,15 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                      f"{inv['lost_m2']:.0f} m2 of land lost")
                 row['failed'] = True
                 continue
+            rel_polys = [pl for a in mine for pl in rel[a][0].get(ref, [])]
+            if rel_polys:             # no worse than released: a park must not lose land against today's outline
+                nw = no_worse(recs, rel_polys, max(rel[a][1].get(ref, 0.0) for a in mine))
+                row['no_worse'] = nw
+                if nw['worse']:
+                    fall(f"no worse than released: {nw['lost_m2']:.0f} m2 of today's released outline ({nw['lost_cells']} cells of "
+                         f"{nw['cell_m']} m) is outside the store's drawn land by more than {nw['tol_m']} m")
+                    row['kept_today_no_worse'] = True; no_worse_kept.append(ref)
+                    continue
             merged_add = merge_m if stp['once_m'] else 0.0
             as_lines = multi or bool(lrecs) or any(s != DRAWN for r in drawn for ring in r.seg for s in ring)
             for a in mine:
@@ -1309,10 +1420,12 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
            'zone_values_dropped': sum(r.get('zone_values_dropped', 0) for r in rows),
            'refs_not_pota_left_out': bad_refs, 'malformed_records_left_out': malformed,
            'unknown_kind_records_not_drawn': sum(v['unknown'] for v in kinds_private.values()),
-           'line_records_drawn': sum(r.get('line_records', 0) for r in rows if not r.get('failed')),
-           'invariant_failures': [r['ref'] for r in rows if r.get('failed')]}
+           'line_records_drawn': sum(r.get('line_records', 0) for r in rows if not r.get('failed') and not r.get('kept_today_no_worse')),
+           'invariant_failures': [r['ref'] for r in rows if r.get('failed')],
+           'no_worse_kept_today': sorted(no_worse_kept),
+           'no_worse_checked': len([r for r in rows if 'no_worse' in r])}
     for k in ('fallback', 'bytes_parts', 'bytes_mid', 'bytes_fine', 'pieces'): rep[k] = sum(r[k] for r in reps.values())
-    rep['parks_drawn'] = len([r for r in rows if not r.get('failed')])
+    rep['parks_drawn'] = len([r for r in rows if not r.get('failed') and not r.get('kept_today_no_worse')])
     return rep
 
 
@@ -1466,6 +1579,9 @@ def main(argv=None):
     b.add_argument('--key-dir', help="data/us-key: a park that is also in an area not in this run keeps today's outline")
     b.add_argument('--decimals', type=int, default=DECIMALS); b.add_argument('--merge-m', type=float, default=MERGE_M)
     b.add_argument('--private-preview', action='store_true')
+    b.add_argument('--released', default=str(RELEASED_DEFAULT),
+                   help="today's released files (default: this repository's data/released); a park that would lose land against "
+                        "its released outline keeps today's outline and is listed")
     b.add_argument('--report', '--json', dest='report', help='the PRIVATE build report (reasons per park); must be outside --out and outside every git work tree')
     c = sub.add_parser('check'); c.add_argument('--out', required=True); c.add_argument('--area', required=True)
     c.add_argument('--public', action='store_true', help='also refuse a PRIVATE PREVIEW, unlisted files and private words')
@@ -1478,10 +1594,14 @@ def main(argv=None):
                 raise DisplayError('the private report (record keys, reasons) is written only OUTSIDE every git work tree')
             pt = json.loads(pathlib.Path(a.precedence).read_text(encoding='utf-8')) if a.precedence else None
             rep = build(a.store, a.area, a.out, cap=a.cap, doubtful=read_doubtful(a.doubtful, a.area), preview=a.private_preview,
-                        decimals=a.decimals, merge_m=a.merge_m, precedence_table=pt, park_areas=key_areas(a.key_dir))
+                        decimals=a.decimals, merge_m=a.merge_m, precedence_table=pt, park_areas=key_areas(a.key_dir),
+                        released=a.released)
             if a.report: pathlib.Path(a.report).write_text(json.dumps(rep, indent=1), encoding='utf-8')
             probs = [f'{ar}: {p}' for ar in rep['areas'] for p in check(a.out, ar, public=not a.private_preview)]
             for p in probs: print('PROBLEM', p)
+            if rep['no_worse_kept_today']:
+                print(f"{len(rep['no_worse_kept_today'])} park(s) would lose land against today's released outline and keep it: "
+                      + ', '.join(rep['no_worse_kept_today'][:20]) + (' ...' if len(rep['no_worse_kept_today']) > 20 else ''))
             if rep['invariant_failures']: print(f"{len(rep['invariant_failures'])} park(s) failed an invariant and keep today's outline (see the private report)")
             return 1 if probs else 0
         if a.cmd == 'check':

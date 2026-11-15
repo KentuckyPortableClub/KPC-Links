@@ -1,8 +1,8 @@
 # Map outlines from the outline store (prep, 2026-11-13 / 14)
 
-Status: **prep only. Nothing here changes what the public map shows.**
-- No page loads the new loader.
-- No workflow runs the builder or the publish script.
+Status: **prep only. Nothing here changes what the public map shows** (Nov 15: the map hook is in, still OFF for everyone).
+- No page includes the new loader: `kpc-padus-layer.js` fetches it only for a visitor who asks (`?outlines=store`).
+- No workflow runs the builder or the publish script. The Pages deploy copies the `map-display` branch in when it exists.
 - The go-live list is empty.
 
 ## What it is
@@ -23,6 +23,9 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
 | `tests/test_display_publish_nov14.py` | 11 checks: the publish script against a local bare repository. |
 | `tests/display_copy_fixture.py` | The synthetic store writer the tests use (store index format 3 shape). |
 | `tests/test_display_copy_v3store_nov14.py` | Opt-in (set `KPC_STORE_TOOL_DIR` to the unzipped store tool): 16 checks on stores the real store tool builds offline from its own test answers in a temporary folder; otherwise it says SKIP. |
+| `tests/test_display_no_worse_nov15.py` | Nov 15: the "no worse than released" check on a made-up store and released folder. |
+| `tests/test_pages_display_step_nov15.py` | Nov 15: the Pages step's own script against a local bare repository (no branch, unreadable, good + bad area). |
+| `tests/test_map_store_hook_nov15.py` + `tests/map_store_hook_nov15_browser.py` | Nov 15: the hook's wiring, and headless Chromium on made-up display data (off by default, `?outlines=store`, fallbacks, the line-park click target, levels). |
 | `tools/kpc_display_licence_classes.json` | Word-for-word copy of the store tool's `licence-classes.json`. |
 
 ### The loader (`kpc-outline-display.js`)
@@ -31,6 +34,41 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
   club-room toggle (`localStorage kpcOutlineStore = '1'`), or an area named in its `LIVE_AREAS` list (empty).
 - It keeps today's outline for every park the display copy does not hold, and any failure means today's outline.
 - **Limits per look:** at most 48 fine pieces and 1 MB, else it stays on the middle level. It keeps the last 60 fine pieces.
+
+### The map hook (`kpc-padus-layer.js`, Nov 15)
+
+- **Where.** The US official-outline drawing (`attachUsOfficial`): each state on screen asks `storeOr('US-XX', today's pack)`.
+  `kpcKeyOutlines` itself is NOT changed: kpc-bounds.js shares it for "am I in the park", and the display copy is for drawing only.
+- **Off by default.** The loader (`kpc-outline-display.js?v=20261115ms`) is fetched only when the page already has it, or the
+  address says `?outlines=store` / `?outlines=old`, or this browser has `localStorage kpcOutlineStore = '1'`. Everybody else makes
+  no new request. The loader's own `wanted()` then decides (its `LIVE_AREAS` is still `[]`). Going live for everybody later means
+  adding the area to `LIVE_AREAS` AND including the loader on the pages (one `<script>` tag before `kpc-padus-layer.js`).
+- **Fallback.** The loader not loading (10 s at most), no index, a part missing or of another build, a bad file, an empty pack:
+  today's pack, drawn exactly as before. A park the display copy does not hold is drawn from today's file (`merge()`).
+- **Drawing.** `role: line` = the drawn line (no fill); `role: hit` = the park's drawn tracts, clicks only (no stroke); a plain
+  park feature as today. The popup adds the park's credit line (`creditLine()`).
+- **Click target.** A park with a `role: line` feature and no `role: hit` feature gets a second Leaflet polyline over the same
+  line: weight 12, opacity 0, no fill, interactive, carrying the popup. No band is drawn.
+- **Levels.** After each look, a store park in view whose `level()` says `mid` or `fine` has that level's lines drawn (at most
+  12 parks per look) and its overview line hidden (its popup and click target stay). A fine look that is too big uses the middle
+  level; any failure keeps the overview.
+
+### The Pages step (`pages-deploy.yml`, Nov 15)
+
+After the Jekyll build: if branch `map-display` exists, it is fetched (depth 1), every area folder is checked again with
+`check --public`, and the areas that pass are copied to `_site/data/display/`. No branch, a branch that cannot be read, or an area
+that fails = nothing added for it; the step is `continue-on-error` and never fails the deploy. A change on `map-display` alone does
+not start a deploy: it goes live with the next deploy (a push to main or the 2-hour timer when the site changed).
+
+### No worse than released (`kpc_display_copy.py`, Nov 15)
+
+A park drawn from the store must not lose land against today's released outline (`--released`, default this repository's
+`data/released`; its `outlines/<AREA>.geojson.gz` and parts are what the map draws now). Today's polygons are rastered (about
+40,000 cells per polygon, cells of 2 m or more); a cell is lost when it is outside every store tract the park draws and more than
+30 m (or 1.5 x the released `detail`) from the store's boundary. More than 4 lost cells: the park keeps today's outline, its
+reason goes to the private report and it is listed under `no_worse_kept_today` (the command line prints the refs). Only official
+released outlines are compared (not `approximate`, not pins); a line-only store park against a released area keeps today's
+outline. A released folder that is not there, or a released file that is broken or missing a part, stops the build.
 
 ## What the builder does
 
@@ -83,7 +121,7 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
      property that is not on its public list and a zone value that is not on the allow-list.
    - **Click target for a line-only park.** Such a park has one `role: line` feature and no `role: hit` polygon (a polygon
      would be an invented band). `kpc-outline-display.js` needs no change (its `pack()` keeps the line feature as the park's
-     feature); the map hook that draws the pack (not in this PR) must make that line itself clickable: when a park has no
+     feature); the map hook that draws the pack (kpc-padus-layer.js, Nov 15) makes that line itself clickable: when a park has no
      `hit` feature, bind the popup to its `line` feature, drawn with a wider invisible stroke (for example a second Leaflet
      polyline, weight 12, opacity 0, interactive).
    - `pin` (an official agency point) and stand-in circles in any form (`ring_is_stand_in_circle` or a record-level
@@ -157,15 +195,12 @@ Any problem stops it before the push.
   `attrs`, is not recognised as a stand-in circle (neither form is in FORMAT-4.md).
 - `use` absent is drawn; once every store writes `use` on every record, require `use` to be exactly `true`.
 - Two records with one key are both left out (safe); the store tool should never write that.
-- The map hook must make a line-only park's line clickable (see "Click target" above).
 
 ## What is NOT in this change
 
-- **The hook in `kpc-padus-layer.js`** (with `?v=` bumps on 21 pages and the tests that pin them). It comes in a separate pass
-  after an independent grade.
-- **Workflow changes:** the Pages step, the publish workflow, and `filter: blob:none` on the five `fetch-depth: 0` checkouts.
+- **Workflow changes** other than the Pages step: the publish workflow, and `filter: blob:none` on the five `fetch-depth: 0` checkouts.
 - **Any real display data.**
 
 Rules hashes: unchanged (no rule file, scope file or key data is touched). Rebuild level 1.
 
-KPC owner, 2026-11-14
+KPC owner, 2026-11-14; map hook, Pages step and no-worse check 2026-11-15

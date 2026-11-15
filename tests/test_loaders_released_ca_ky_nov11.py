@@ -54,7 +54,7 @@ check('every non-block reader waits for KPCREL (never the working copy when it i
       all("addEventListener('kpcrel'" in pages[n] for n in ('gis-overlays.js', 'kpc-planner.js', 'kpc-map-extras.js', 'kpc-answer-key.js', 'kpc-park-control.js', 'kpc-map-tools.js', 'kpc-guide-pota.js'))
       and "w.dispatchEvent(new Event('kpcrel'))" in B)
 check('the POTA guide page loads a KPCREL file before its script (it reads the wild river corridors)',
-      pages['kpc-guide-pota.html'].index(f'kpc-padus-layer.js?v={STAMP}') < pages['kpc-guide-pota.html'].index(f'kpc-guide-pota.js?v={STAMP}'))
+      pages['kpc-guide-pota.html'].index(f"kpc-padus-layer.js?v=20261115ms") < pages['kpc-guide-pota.html'].index(f'kpc-guide-pota.js?v={STAMP}'))
 check('gis-overlays: a layer whose released copy did not load never falls back to the working file name',
       "if(/^ky-[a-z0-9-]+\\.geojson$/.test(s.live))throw Error('the saved copy did not load')" in pages['gis-overlays.js'])
 check('kpc-ky-data.json is read as before (not through KPCREL)', "fetch('kpc-ky-data.json')" in pages['kpc-park-control.js'] and 'kpcRel(\'kpc-ky-data' not in ''.join(pages.values()))
@@ -79,7 +79,8 @@ vs = {n: set() for n in TOUCHED}
 for p in srcs:
     t = p.read_text(encoding='utf-8', errors='replace')
     for n in TOUCHED: vs[n] |= set(re.findall(r'(?<![\w.-])' + re.escape(n) + r'\?v=([A-Za-z0-9_-]+)', t))
-LATER = {'kpc-gps.js': '20261114a'}   # Nov 14: bumped again by a later change (2-fer export: candidate rows only)
+LATER = {'kpc-gps.js': '20261114a', 'kpc-padus-layer.js': '20261115ms'}   # Nov 15: kpc-padus-layer.js bumped by the map store hook
+   # Nov 14: bumped again by a later change (2-fer export: candidate rows only)
 check(f'every touched script is loaded with ?v={STAMP} everywhere (or its later stamp)', all(v == {LATER.get(n, STAMP)} for n, v in vs.items()) and all(vs.values()))
 
 # ---- 5. the block in node against this checkout's real released files

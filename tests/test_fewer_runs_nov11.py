@@ -59,7 +59,9 @@ for f in list(HERE.glob('*.html')) + list(HERE.glob('*.js')) + list(HERE.glob('a
     for m in re.finditer(r"""(?:fetch\(|src=|href=|import\(|new Worker\()\s*['"`](?:\./|/KPC-Links/|/)?(tests|docs)/""", f.read_text(encoding='utf-8', errors='replace')):
         fetches.append(f'{f.name}:{m.group(0)[:60]}')
 check(fetches == [], f'no page or script of the site loads anything under tests/ or docs/ {fetches[:5]}')
-check(on_of(pd).get('schedule') == on_of(pd0).get('schedule') and pd.get('concurrency') == pd0.get('concurrency') and pd['jobs']['deploy'] == pd0['jobs']['deploy'] and pd['jobs']['build'] == pd0['jobs']['build'],
+# Nov 15 (map store hook): the build job may add ONE step, the display copy from map-display (tests/test_pages_display_step_nov15.py)
+_no_display = lambda j: dict(j, steps=[x for x in j.get('steps', []) if not str(x.get('name', '')).startswith('Display copy from the map-display branch')])
+check(on_of(pd).get('schedule') == on_of(pd0).get('schedule') and pd.get('concurrency') == pd0.get('concurrency') and pd['jobs']['deploy'] == pd0['jobs']['deploy'] and _no_display(pd['jobs']['build']) == _no_display(pd0['jobs']['build']),
       'timer, concurrency (cancel-in-progress false), build and deploy + Settle unchanged vs main')
 check(not pd['jobs']['changed'].get('if') and set(pd['jobs']) == {'changed', 'build', 'deploy'}, 'the first job has no if: a run never starts with zero jobs')
 

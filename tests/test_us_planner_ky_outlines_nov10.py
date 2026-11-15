@@ -45,7 +45,7 @@ check('no new services*.arcgis.com calls added',
       all('edits.nationalmap.gov' not in u for u in new) and not any('FeatureServer' in u and 'PAD' in u for u in new))
 
 check('US planner loads the shared answer key and bumped stamps',
-      'kpc-answer-key.js?v=20261111zr' in html and 'kpc-padus-layer.js?v=20261111zr' in html
+      'kpc-answer-key.js?v=20261111zr' in html and 'kpc-padus-layer.js?v=20261115ms' in html
       and 'kpc-us-planner.js?v=20261111zr' in html)
 
 pages = list(ROOT.glob('*.html'))
@@ -53,7 +53,7 @@ vs = {}
 for p in pages:
     for m in re.finditer(r'src="kpc-padus-layer\.js(\?v=[^"]*)?"', p.read_text(encoding='utf-8', errors='replace')):
         vs.setdefault(m.group(1) or '', []).append(p.name)
-check(f'kpc-padus-layer.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == ['?v=20261111zr'])
+check(f'kpc-padus-layer.js has one bumped ?v= everywhere: {sorted(vs)}', list(vs) == ['?v=20261115ms'])   # Nov 15 (map store hook): kpc-padus-layer.js bumped alone to 20261115ms
 
 # US planner KY official set matches Park Commander (including unofficial traces) and retries a failed fetch
 # so a large file like hunting-areas is not silently dropped. Joined official parks use a visible stroke.

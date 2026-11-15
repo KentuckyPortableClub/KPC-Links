@@ -83,6 +83,41 @@ jobs:
         with:
           source: ./
           destination: ./_site
+      - name: Display copy from the map-display branch (only when it exists; never fails the deploy)
+        # Nov 15 (map store hook, docs/map-from-store.md): kpc-outline-display.js reads data/display/<AREA>/ (drawn only for a
+        # visitor who asks, ?outlines=store, until the owner fills its LIVE_AREAS list). Pages deploys main only, so the display
+        # copy published on the map-display branch (tools/kpc_display_publish.sh) is copied in here. Each area folder must pass
+        # tools/kpc_display_copy.py check --public again; an area that fails is left out (the map draws today's outline there).
+        # No branch yet, or it cannot be read = no display copy: the site deploys exactly as before.
+        continue-on-error: true
+        run: |
+          say() { echo "$1"; echo "- $1" >> "$GITHUB_STEP_SUMMARY"; }
+          W=$(mktemp -d); mkdir "$W/tree" "$W/ok"
+          set +e; git ls-remote --exit-code origin refs/heads/map-display > "$W/ls.txt" 2> "$W/ls.err"; RC=$?; set -e
+          if [ "$RC" -eq 2 ]; then say "Display copy: no map-display branch yet, nothing added (the map draws today's outlines)."; exit 0; fi
+          if [ "$RC" -ne 0 ]; then echo "::warning title=Display copy::could not read map-display (git ls-remote exit $RC): nothing added"; say "Display copy: map-display could not be read, nothing added."; exit 0; fi
+          if ! git fetch -q --no-tags --depth 1 origin refs/heads/map-display; then echo "::warning title=Display copy::could not fetch map-display: nothing added"; exit 0; fi
+          git archive FETCH_HEAD | tar -x -C "$W/tree"
+          GOOD=""; BAD=""
+          for D in "$W"/tree/*; do
+            [ -d "$D" ] || continue
+            N=$(basename "$D")
+            [[ "$N" =~ ^((US|CA)-[A-Z]{2,3}|W-[A-Z]{2})$ ]] || { BAD="$BAD $N"; continue; }
+            if python3 -B tools/kpc_display_copy.py check --out "$W/tree" --area "$N" --public > "$W/check-$N.txt" 2>&1; then
+              cp -R "$D" "$W/ok/$N"; GOOD="$GOOD $N"
+            else
+              BAD="$BAD $N"; echo "::warning title=Display copy::$N fails check --public: left out"; tail -5 "$W/check-$N.txt"
+            fi
+          done
+          if [ -z "$GOOD" ]; then say "Display copy: no area passed its check, nothing added.${BAD:+ Left out:$BAD}"; exit 0; fi
+          SUDO=""; T=_site; [ -d _site/data ] && T=_site/data
+          if ! ( : > "$T/.kpc-w" ) 2>/dev/null; then SUDO=sudo; else rm -f "$T/.kpc-w"; fi   # the Jekyll step may leave _site owned by root
+          trap '$SUDO rm -rf _site/data/display' ERR   # never half a copy: any failure below removes it all
+          $SUDO rm -rf _site/data/display
+          $SUDO mkdir -p _site/data/display
+          $SUDO cp -R "$W/ok/." _site/data/display/
+          trap - ERR
+          say "Display copy: added$GOOD from map-display $(git rev-parse --short FETCH_HEAD).${BAD:+ Left out:$BAD}"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site

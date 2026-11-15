@@ -100,7 +100,7 @@ check('only the two Map Rep pages set it', sorted(pub) == ['kpc-maprep-reps.html
 pf = (ROOT / '.github/scripts/kpc_preflight.py').read_text()
 check('preflight: a new or newly grown file over 1 MB fails; one already over on the base only warns', "old_big = [f for f in over if (_was(f) or 0) > 1_000_000]" in pf and "big = [f for f in over if f not in old_big]" in pf)
 html = ''.join(p.read_text(encoding='utf-8', errors='replace') for p in ROOT.glob('*.html'))
-check('every page loads the new loader files (version stamp bumped)', not re.search(r'kpc-(bounds|padus-layer|us-planner)\.js\?v=(?!20261111zr)|kpc-gps\.js\?v=(?!20261114a)', html))   # Nov 14: kpc-gps.js bumped again (2-fer export: candidate rows only)   # Nov 11: page size, then the job 3 loaders (one new stamp for the four)
+check('every page loads the new loader files (version stamp bumped)', not re.search(r'kpc-(bounds|us-planner)\.js\?v=(?!20261111zr)|kpc-padus-layer\.js\?v=(?!20261115ms)|kpc-gps\.js\?v=(?!20261114a)', html))   # Nov 14: kpc-gps.js bumped again (2-fer export: candidate rows only)   # Nov 11: page size, then the job 3 loaders (one new stamp for the four)
 
 # ---- the helper itself, run in node with a fake fetch
 node = shutil.which('node')
