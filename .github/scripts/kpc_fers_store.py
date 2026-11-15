@@ -15,8 +15,10 @@ run reads Kentucky's own files (REGION ky). An area of a store run that is on th
 keeps its previous files; the other areas go on. No area left = exit 87. Parks filed under such an area are held, never downloaded.
 Keep the old row (DEFAULT, owner question 1): a live candidate row that the store run would turn NOT SURE only because the PAD-US
 closed areas or the ownership map could not be checked (a store run downloads nothing) keeps its old row, tagged
-'kept: not checked in a store run'; a row the store run positively decides (water only, dropped, any other not-sure reason, water
-not checked too) is never kept. Saved PAD-US answers are not used yet.
+'kept: not checked in a store run', only when the old row is the same spot (same_spot: place and size); a row the store run
+positively decides (water only, dropped, any other not-sure reason, water not checked too) is never kept. The good copies wait
+between passes in a side file outside the data folder (store_prev_file), never in a row. Saved PAD-US answers are not used yet.
+Rule scope 'none': a switch-off run re-tests nothing; a store run stamps its own areas' parks (STORE_STAMP) so they are re-tested once.
 
 Switch: KPC_FERS_FROM_STORE = on | off (default off; anything but 1 / on / yes / true is off). Off: install() does nothing and
 returns False. On, US + Canada runs (REGION na) only: for one process,
@@ -108,6 +110,7 @@ STORE_AREA_RX = re.compile(r'(US|CA)-[A-Z]{2}')
 STORE_ALL = 'all-us-ca'
 NEVER_STORE = {'US-KY': 'Kentucky runs on its own files (the REGION ky run), never on the outline store'}
 KEPT_TAG = 'kept: not checked in a store run'
+STORE_STAMP = '2026-11-15-store-switch'   # the declared rule change (.github/fers-rule-scope.json): stamped only in a store run
 KEPT = {'n': 0}    # rows kept by the keep-the-old-row rule this run
 AREA_FILE = re.compile(r'((?:US|CA|W)-[A-Z]{2})\.json(?:\.gz)?')
 AREA_OFF = {'fn': None}    # install(): area -> '' or why it does not use the store in this run (its spot file is never written)
@@ -378,6 +381,7 @@ class Store:
             try: p = a.park(ref)
             except StoreError as e: return None, [], f'{ref} in the outline store ({a.area}) failed its check ({str(e)[:120]})', {}
             if p is None: continue
+            if isinstance(p.get('name'), str): NAMES.setdefault(ref, p['name'])
             if p.get('circle') or p.get('grade') == 'point-circle':
                 return None, [], f'{ref} has only a point circle in the store (the 2-fer bot makes its own circle)', {}
             if wdpa_text(p): return None, [], f'{ref}: the store park looks WDPA / Protected Planet derived: never a 2-fer source', {}
@@ -608,46 +612,121 @@ def _old_match(s, by_id, by_pk):
 
 
 def _prev_of(o):
-    """The good copy an old row stands for: the copy it already carries (store_prev), else the row itself when it is a live candidate."""
-    if o is None: return None
-    if isinstance(o.get('store_prev'), dict): return o['store_prev']
-    if _good(o) and not o.get('club_room_only'): return {k: v for k, v in o.items() if k != 'store_prev'}
+    """The good copy an old row stands for: the row itself when it is a live candidate (never a club-room row)."""
+    if o is None or not _good(o) or o.get('club_room_only'): return None
+    return {k: v for k, v in o.items() if k != 'store_prev'}
+
+
+def _extent(s):
+    """[lon0, lat0, lon1, lat1] of a row: its box, else its shape's box; None when the row has neither."""
+    b = s.get('box')
+    if isinstance(b, (list, tuple)) and len(b) == 4 and all(isinstance(v, (int, float)) for v in b): return [float(v) for v in b]
+    pts = [q for q in s.get('shape') or [] if isinstance(q, (list, tuple)) and len(q) >= 2 and all(isinstance(v, (int, float)) for v in q[:2])]
+    if not pts: return None
+    return [min(q[0] for q in pts), min(q[1] for q in pts), max(q[0] for q in pts), max(q[1] for q in pts)]
+
+
+def _centre(s):
+    c = s.get('center')   # kpc_fers.py rows: [lat, lon]
+    if isinstance(c, (list, tuple)) and len(c) == 2 and all(isinstance(v, (int, float)) for v in c): return float(c[1]), float(c[0])
     return None
 
 
-def keep_old_rows(new, old, today=None, final=True):
+def _in_box(pt, b, pad=1e-6):
+    return pt is not None and b is not None and b[0] - pad <= pt[0] <= b[2] + pad and b[1] - pad <= pt[1] <= b[3] + pad
+
+
+SAME_SIZE = 0.25   # the old and new spot sizes (acres; metres of line for a trail / river row) may differ by at most a quarter
+
+
+def same_spot(new, old):
+    """'' when the old row is the SAME spot as the new one (grade of #201, defect 1): the old centre lies inside the new spot's extent
+    or the new centre inside the old one's, AND the sizes agree within SAME_SIZE (acres for an area row, len_m for a line row). Else
+    the reason it is not. A row that carries no place or no size is never the same spot. The rows carry no outline checksum, so this
+    place + size test is the whole rule."""
+    if _pk(new) != _pk(old): return 'another pair or kind'
+    nc, oc, ne, oe = _centre(new), _centre(old), _extent(new), _extent(old)
+    if not (_in_box(oc, ne) or _in_box(nc, oe)): return 'the spot moved' if (nc and oc and (ne or oe)) else 'no place to compare'
+    key = 'acres' if new.get('kind') == 'area' else 'len_m'
+    a, b = new.get(key), old.get(key)
+    if not (isinstance(a, (int, float)) and isinstance(b, (int, float)) and a > 0 and b > 0): return f'no {key} to compare'
+    if abs(a - b) > SAME_SIZE * max(a, b): return f'the spot changed size ({b} -> {a} {key})'
+    return ''
+
+
+def keep_old_rows(new, old, today=None, final=True, carry=None):
     """KPC owner, 2026-11-15 (DEFAULT, owner question 1: keep the old row; saved PAD-US answers are not used yet). Never replace a good
     copy with a worse one: a row this store run left NOT SURE only because closed areas / ownership were not checked
-    ('store_not_checked', set by closed_status() / owner_status()) is replaced by the last good copy of the same spot (same id, else the
-    only live row of the same pair and kind in the previous file), tagged 'kept: not checked in a store run' with the reason. A row the
-    store run decided (water only, dropped, any other not-sure reason, the water not checked either) carries no mark and is never
-    replaced; a row that was not a live candidate is never brought back.
-    Passes 1 and 2 rewrite every row ('pass 1', 'pass 2') before pass 3 decides it, so each row of a store run carries the good copy it
-    replaces in 'store_prev' until the final pass (final=True) has used it; the final file has no store_prev. Returns rows kept."""
+    ('store_not_checked', set by closed_status() / owner_status()) is replaced by the last good copy of the SAME spot, tagged
+    'kept: not checked in a store run' with the reason. The good copy is the previous file's live candidate row of the same id (else
+    the only live row of the same pair and kind), and it is used only when same_spot() says it is the same place and size: a spot
+    that moved or changed size keeps this run's NOT SURE row. A row the store run decided (water only, dropped, any other not-sure
+    reason, the water not checked either) carries no mark and is never replaced; a row that was not a live candidate is never
+    brought back (so a row not kept once is never kept by a later run).
+    carry = {row id: good copy}: passes 1 and 2 rewrite every row ('pass 1', 'pass 2') before pass 3 decides it, so the good copies
+    travel from pass to pass in a side file outside the data folder (install: store_prev_file), never in a row; carry is filled for
+    the next pass (final=False) and not used after the final pass. Returns the number of rows kept."""
     if not isinstance(new, dict): return 0
+    carry_in = dict(carry or {})
+    if carry is not None: carry.clear()
     olds = [x for x in (old or {}).get('spots') or [] if isinstance(x, dict) and _live(x)] if isinstance(old, dict) else []
     by_id = {x.get('id'): x for x in olds if x.get('id')}
     by_pk = {}
     for x in olds: by_pk.setdefault(_pk(x), []).append(x)
+    c_pk = {}
+    for v in carry_in.values():
+        if isinstance(v, dict): c_pk.setdefault(_pk(v), []).append(v)
     used, n, spots = set(), 0, new.get('spots') or []
     for i, x in enumerate(spots):
         if not isinstance(x, dict): continue
-        prev = x.get('store_prev') if isinstance(x.get('store_prev'), dict) else None
+        x.pop('store_prev', None)
+        prev = carry_in.get(x.get('id')) if isinstance(carry_in.get(x.get('id')), dict) and _pk(carry_in[x.get('id')]) == _pk(x) else None
+        if prev is None and len(c_pk.get(_pk(x)) or []) == 1: prev = c_pk[_pk(x)][0]
         if prev is None:
             o = _old_match(x, by_id, by_pk)
             prev = _prev_of(o) if o is not None and id(o) not in used else None
             if prev is not None: used.add(id(o))
         if prev is not None and x.get('store_not_checked') and str(x.get('status') or '').startswith('not sure') and _good(prev):
-            k = json.loads(json.dumps(prev))
-            k['kept'] = KEPT_TAG
-            k['kept_why'] = f"{x['store_not_checked']} not checked in a store run (this run said: {str(x.get('status'))[:160]})"
-            k['kept_on'] = today or True
-            if not final: k['store_prev'] = prev
-            spots[i] = k; n += 1; continue
-        if final: x.pop('store_prev', None)
-        elif prev is not None and _live(x): x['store_prev'] = prev
+            why = same_spot(x, prev)
+            if why: x['not_kept'] = f'the last candidate row is not this spot ({why}): this run\'s answer stands'
+            else:
+                k = json.loads(json.dumps(prev))
+                k['kept'] = KEPT_TAG
+                k['kept_why'] = f"{x['store_not_checked']} not checked in a store run (this run said: {str(x.get('status'))[:160]})"
+                k['kept_on'] = today or True
+                spots[i] = k; n += 1
+                if carry is not None and not final and k.get('id'): carry[k['id']] = prev
+                continue
+        if carry is not None and not final and prev is not None and _live(x) and x.get('id'): carry[x['id']] = prev
     KEPT['n'] += n
     return n
+
+
+def store_prev_file(KF, area):
+    """Where the good copies of a store run's rows wait between passes: the private folder (a private run's own folder, or
+    KPC_FERS_PRIVATE_LOG on a public run), else KPC_FERS_LIVE_DIR (cache/fers), never under the data folder kpc_fers.py writes
+    (data/fers is published). None when no such folder exists (then only the previous file is compared, as in pass 3)."""
+    if PRIVATE_OUT is not None: return pathlib.Path(PRIVATE_OUT) / 'store-prev' / f'{area}.json'   # a private run: its own folder only
+    out = pathlib.Path(getattr(KF, 'OUT', 'data/fers')).resolve()
+    for base in (PRIVATE_LOG_DIR, os.environ.get('KPC_FERS_LIVE_DIR') or 'cache/fers'):
+        if not base: continue
+        d = pathlib.Path(base).resolve() / 'store-prev'
+        if _inside(d, out) or _inside(out, d): continue
+        return d / f'{area}.json'
+    return None
+
+
+def _read_json(p):
+    try: return json.loads(pathlib.Path(p).read_text(encoding='utf-8'))
+    except Exception: return {}  # noqa: BLE001
+
+
+def _write_carry(p, carry):
+    p = pathlib.Path(p)
+    try:
+        if not carry: p.unlink(missing_ok=True); return
+        p.parent.mkdir(parents=True, exist_ok=True); p.write_text(json.dumps(carry, ensure_ascii=False), encoding='utf-8')
+    except OSError: pass
 
 
 def join_review(row, flags, joined):
@@ -764,6 +843,31 @@ def secret_refs():
     return (HELD_PRIVATE | set(PRIVATE)) - READ_OK
 
 
+NAMES = {}          # ref -> the park's name as the store gives it (index entry or park piece): to find a secret park's NAME in text
+KF_REF = {'kf': None}   # install(): the kpc_fers module (its POTA pin list gives the other names)
+
+
+def secret_names(refs=None):
+    """The names of the parks a public file must never name (secret_refs): from the store and from kpc_fers.py's POTA pin list.
+    Names shorter than 4 characters are not matched (too likely to be part of other words)."""
+    pins = getattr(KF_REF['kf'], 'PINS', None) or {}
+    out = set()
+    for r in (secret_refs() if refs is None else refs):
+        for n in (NAMES.get(r), (pins.get(r) or [None])[0] if isinstance(pins.get(r), (list, tuple)) else None):
+            if isinstance(n, str) and len(n.strip()) >= 4: out.add(n.strip())
+    return out
+
+
+def _no_ref_names(obj):
+    """obj without the ref-keyed 'names' maps of rows ({ref: name}): those are checked by ref (a public park whose name equals a
+    secret park's must not stop the run); every other text is scanned for secret names."""
+    if isinstance(obj, dict):
+        return {k: _no_ref_names(v) for k, v in obj.items()
+                if not (k == 'names' and isinstance(v, dict) and all(REFLIKE.match(str(x)) for x in v))}
+    if isinstance(obj, (list, tuple)): return [_no_ref_names(v) for v in obj]
+    return obj
+
+
 def _ref_rx(refs):
     refs = sorted({str(r) for r in refs if r}, key=len, reverse=True)
     return re.compile('(?:' + '|'.join(re.escape(r) for r in refs) + r')(?!\d)', re.I) if refs else None
@@ -828,6 +932,14 @@ def guard_write(path, doc, private=None):
     if rx is not None:
         for m in sorted({m.group(0).upper() for m in rx.finditer(txt)}):
             probs.append(f'{path}: it names {m}, held or used for records that are not publishable'); kinds.add('park with unpublishable records')
+    # grade of #201 (item 3): a secret park's NAME in any text (a note of a carried old row, a log line), not only its ref
+    nm = sorted(secret_names(private), key=len, reverse=True)
+    if nm:
+        nrx = re.compile(r'(?<!\w)(?:' + '|'.join(re.escape(n) for n in nm) + r')(?!\w)', re.I)
+        for m in sorted({m.group(0).lower() for m in nrx.finditer(json.dumps(_no_ref_names(doc), default=str, ensure_ascii=False))}):
+            probs.append(f'{path}: it names the park "{m}", held or used for records that are not publishable'); kinds.add('park name with unpublishable records')
+    if any('store_prev' in d for d in _dicts(doc)):
+        probs.append(f'{path}: a row carries a store_prev copy (it stays in the side file)'); kinds.add('carried copy in a row')
     if probs: raise LeakRefused(probs, kinds)
 
 
@@ -1178,6 +1290,7 @@ def scan_private(st, areas):
         if a is None: continue
         for ref, e in list(a.entries.items()) + [(r, None) for r in a.bad]:
             if e is None: continue
+            if isinstance(e.get('name'), str): NAMES.setdefault(ref, e['name'])
             rm = e.get('record_meta') if isinstance(e.get('record_meta'), dict) else None
             secret = e.get('park_publishable') is False
             if rm:
@@ -1299,6 +1412,7 @@ def install(KF, env=None, store=None):
         print(f'::notice title=2-fer outline store::{SWITCH} is on, but this is the {KF.REGION} run: the outline store is not used and the bot runs as today', flush=True)
         return False
     global PRIVATE_OUT, PRIVATE_LOG_DIR
+    KF_REF['kf'] = KF
     st = store or Store.from_env(env)
     if world_on and st.kind != 'private':
         # world 2-fers are club room only (kpc_fers_publish.py and the write guard refuse world rows in a public file): a world
@@ -1398,6 +1512,19 @@ def install(KF, env=None, store=None):
         if a in areas: return ''
         return area_use(a, cfg) or ('' if st.area(a) is not None else st.why.get(a) or 'not read')
     AREA_OFF['fn'] = area_off
+    # grade of #201 (item 5): the declared scope is 'none' (an ordinary switch-off run re-tests nothing). A store run stamps the parks
+    # of the areas it runs from the store with this change's id, so their pairs are tested again on the first store run only
+    orig_stamp = getattr(KF, 'rule_stamp', None)
+    if orig_stamp is not None and not getattr(orig_stamp, '_store', False):
+        def rule_stamp(r):
+            out = list(orig_stamp(r))
+            p_ = (getattr(KF, 'PINS', None) or {}).get(r) or ()
+            a_ = str(p_[5]) if len(p_) > 5 else ''
+            a_ = a_ if a_.startswith(('CA-', 'W-', 'US-')) else ('US-' + a_ if a_ else '')
+            if a_ in areas: out.append(STORE_STAMP)
+            return out
+        rule_stamp._store = True
+        KF.rule_stamp = rule_stamp
     orig_tag = KF.pc_tag
 
     def download(parks, refs, det, prec):   # det / prec are ignored: the store's detail (about 2 m, 6 decimals) in every pass
@@ -1424,7 +1551,11 @@ def install(KF, env=None, store=None):
                 owner_status(d)
                 line_status(KF, d)
                 if RIVER_NO_BANK['mode'] == 'tiers': bank_status(d)
-                k = keep_old_rows(d, old, st.today, final=int(getattr(KF, 'PASS', 3)) >= 3)
+                final = int(getattr(KF, 'PASS', 3)) >= 3
+                cf = store_prev_file(KF, d['st'])
+                carry = _read_json(cf) if cf is not None else {}
+                k = keep_old_rows(d, old, st.today, final=final, carry=carry)
+                if cf is not None: _write_carry(cf, carry if not final else None)
                 if k: KF.LOG.append(f"{d['st']}: {k} candidate rows kept from the last file ({KEPT_TAG}: closed areas / ownership)")
                 LINE_ROWS[d['st']] = sum(1 for x in d.get('spots') or [] if x.get('kind') in ('trail', 'river') and _live(x))
         except Exception as e: KF.LOG.append(f'outline store row carry: {str(e)[:80]}')  # noqa: BLE001  (the write guard still checks the file)

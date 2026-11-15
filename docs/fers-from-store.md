@@ -2,8 +2,19 @@
 
 KPC owner, 2026-11-13; switch-over 2026-11-15. Status: `kpc_fers.main()` calls `kpc_fers_store.install()` right after the hard-end
 clock is armed, only when `KPC_FERS_FROM_STORE` is on (off: nothing is imported and the run is exactly as before). This file and
-`.github/fers-store-areas.json` are 2-fer rule files (fers rules d0064c860cba -> d71d343a2272, scope `2026-11-15-store-switch`).
+`.github/fers-store-areas.json` are 2-fer rule files (fers rules d0064c860cba -> fc5aa2abfe17, entry `2026-11-15-store-switch`).
 No workflow turns the switch on yet (KPC-Store PR 2).
+
+**Scope `none`, and a stamp only in store runs.** With the switch off no answer and no pair fingerprint changes, so an ordinary
+run re-tests nothing (it reuses every saved pair answer). A store run adds the id `2026-11-15-store-switch` to the rule stamp of
+every park of the areas it runs from the store (`install()` wraps `kpc_fers.rule_stamp`), so exactly those pairs are tested again,
+once, on the area's first store run; later store runs reuse them as usual.
+
+**The area list is a rule input.** `.github/fers-store-areas.json` stays in the 2-fer rules hash on purpose: `areas` and `world`
+can make the bot read MORE from the store (another area, the world), not only less. So every edit of it (`areas`, `except`,
+`world`) moves the fers rules hash and needs its own declared line in `docs/key-rules-change.txt` and an entry in
+`.github/fers-rule-scope.json` (an `except` change usually with scope `none`: an excepted area simply runs the old path). It needs
+no code change.
 
 ## Which areas (`.github/fers-store-areas.json`, KPC owner 2026-11-15)
 
@@ -34,9 +45,22 @@ that the store run would turn NOT SURE only for that reason keeps its old row, t
 `kept_why` and `kept_on`). "Only for that reason": the closed-area check could not run and the rest of the land check said ok
 (water checked from the store tile), or the row's status is `not sure: the agency ownership map did not answer`. A row the store
 run decides (water only, dropped, any other not-sure reason, the water not checked either) is never kept, and an old row that was
-not a live candidate is never brought back. Passes 1 and 2 rewrite every row before pass 3 decides it, so each row of a store run
-carries the good copy it would fall back to in `store_prev` until pass 3; the final file has none. Saved PAD-US answers are not
-used yet.
+not a live candidate is never brought back.
+**Same spot only** (grade of #201): the old row is used only when it is the same spot: the old centre lies inside the new spot's
+box (or the new centre inside the old row's box) AND the size agrees within 25 % (acres for an area row, metres of line for a
+trail / river row). A spot that moved or changed size keeps this run's NOT SURE row (with `not_kept` saying why), and since its
+last row is then NOT SURE, a later store run never brings the old candidate back. The rows carry no outline checksum, so this place
++ size test is the whole rule.
+Passes 1 and 2 rewrite every row before pass 3 decides it, so the good copies wait between passes in a side file OUTSIDE the data
+folder (the private folder, else `KPC_FERS_LIVE_DIR`/`cache/fers`, as `store-prev/<area>.json`), never in a row: a run that stops
+after pass 1 or 2, a HardStop or a crash leaves no copy in `data/fers`. The final pass empties the side file. The write guard
+refuses any public file with a `store_prev` copy in a row. Saved PAD-US answers are not used yet.
+**A pair that is all water in the store tile** stays `not sure: closed areas not checked` (never kept). The store run cannot call it
+`water only` by itself: rule 10 is checked before the water (a permanent no-entry area on the water, a dam security zone, cannot be
+the spot, and main would then say `dropped: only inside an area closed to the public`), and the closed areas are not in the store.
+**Names too:** on a public store run the write guard also refuses a withheld park's NAME (from the store or the POTA pin list,
+4 characters or more, whole words, any case) in any text of a public file, not only its ref; the ref-keyed `names` map of a row is
+checked by ref (a public park that shares a withheld park's name does not stop the run).
 
 ## What it is
 
@@ -51,7 +75,8 @@ per-area `index-<AREA>.json` is read: the combined `index.json` keeps one entry 
 must match its sha256 and size in the index before use. A park with tracts in two area files is assembled from both. Per record:
 `publishable` (trusted only with `publish_basis` verified-row or owner-confirmed), `licence_class`, `publish_basis`, `wdpa_derived`
 (must be false; a scan of every text value is a second check, field names are not read), `private_reason` (kept for the owner and
-the club-room tag, never shown). Test fixture: `tests/fixtures/fers-store-v3/` (synthetic squares written by the tool itself).
+the club-room tag, never shown). Test fixtures: `tests/fixtures/fers-store-v3/` (synthetic squares written by the tool itself) and
+`tests/fixtures/fers-store-v4/` (made-up format 4: area, line, pin, one water tile). Since 2026-11-15 index `/4` is read too (item 11).
 
 ## The switch
 

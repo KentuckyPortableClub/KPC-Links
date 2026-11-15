@@ -2,14 +2,16 @@
 """KPC owner, 2026-11-15: the 2-fer switch-over to the outline store (kpc_fers.main() hook, kpc_fers_store.py in the 2-fer rules).
 Offline: proxy variables dropped; the real kpc_fers.py runs in subprocesses on made-up fixtures (tests/fixtures/fers-store-v4: an
 area, a line, a pin and one water tile; made-up squares and made-up park refs US-99001..US-99006 filed under US-RI).
-1 switch OFF: kpc_fers.py's files are byte for byte main's on the fixture (passes 1-3): with main's scope file, every file (the
-  report's own fers_rules hash aside); with this change's declared scope entry, every spot / looked / missing file (only the pair
-  fingerprints in the reuse files move: the declared rule change re-stamps US and Canadian pairs)
+1 switch OFF: kpc_fers.py's files are byte for byte main's on the fixture (passes 1-3; the report's own fers_rules hash aside), pair
+  fingerprints included (the declared scope is none); the next ordinary run reuses every pair main tested; the first STORE run of an
+  area tests its pairs again (its parks carry the 2026-11-15-store-switch stamp)
 2 switch ON (passes 1-3): zero sockets (a Python audit hook sees every connect / name lookup / urllib request at C level, whatever
   is patched), the store's area, line and water tile are used, the pin is never a boundary
 3 keep the old row: a live candidate that the store run leaves NOT SURE only because closed areas were not checked keeps its old
-  row, tagged 'kept: not checked in a store run'; a pair the store run decides (water only from the store's water tile) is never
-  kept; unit checks for ownership, ids, ambiguous pairs, non-candidates
+  row, tagged 'kept: not checked in a store run', only when it is the same spot (place, size within 25 %); a moved or resized spot is
+  never kept, nor re-kept by a later run; a pair the store run decides (water only from the store's water tile) is never kept; the
+  good copies wait between passes in a side file outside data/ (no store_prev in any data file, also when a run stops after pass 1);
+  the write guard refuses a withheld park's NAME in any text and any store_prev in a row
 4 the leak guard still exits 89 (a never-released build carried from the last file)
 5 the area list: all US + Canadian areas, an except list, US-KY never; an area the store does not hold is left out with its reason
   and the run goes on; a broken list or a run naming no area stops (exit 87)
@@ -58,38 +60,58 @@ for bad, what in (('{', 'not JSON'), ({'areas': 'everything'}, 'an unknown areas
     cb, wb = ST.store_areas(cfg_file(bad))
     check(cb is None and wb, f'a broken area list fails closed ({what}: {wb[:70]})')
 
-# ---------------------------------------------------------------- unit: keep the old row
-old = {'spots': [{'id': 'A@1', 'refs': ['US-1', 'US-2'], 'kind': 'area', 'status': 'candidate', 'passes': [1, 1, 1], 'checked': '2026-11-01'},
-                 {'id': 'B@1', 'refs': ['US-3', 'US-4'], 'kind': 'area', 'status': 'candidate', 'passes': [1, 1, 1]},
-                 {'id': 'C@1', 'refs': ['US-5', 'US-6'], 'kind': 'area', 'status': 'not sure: low-confidence outline'},
-                 {'id': 'D@1', 'refs': ['US-7', 'US-8'], 'kind': 'area', 'status': 'candidate'}, {'id': 'D@2', 'refs': ['US-7', 'US-8'], 'kind': 'area', 'status': 'candidate'},
-                 {'id': 'E@1', 'refs': ['US-9', 'US-10'], 'kind': 'trail', 'status': 'very tight: could be map error: check both official maps on the ground'},
-                 {'id': 'F@1', 'refs': ['US-11', 'US-12'], 'kind': 'area', 'status': 'candidate'}]}
+# ---------------------------------------------------------------- unit: keep the old row (same spot only: grade of #201, defect 1)
+def sp(i, refs, status, kind='area', c=(41.6, -71.6), acres=50.0, d=0.004, **kw):
+    r = {'id': i, 'refs': refs, 'kind': kind, 'status': status, 'center': [c[0], c[1]], 'box': [c[1] - d, c[0] - d, c[1] + d, c[0] + d], **kw}
+    if kind == 'area': r['acres'] = acres
+    else: r['len_m'] = acres
+    return r
+old = {'spots': [sp('A@1', ['US-1', 'US-2'], 'candidate', passes=[1, 1, 1], checked='2026-11-01'),
+                 sp('B@1', ['US-3', 'US-4'], 'candidate'), sp('C@1', ['US-5', 'US-6'], 'not sure: low-confidence outline'),
+                 sp('D@1', ['US-7', 'US-8'], 'candidate'), sp('D@2', ['US-7', 'US-8'], 'candidate'),
+                 sp('E@1', ['US-9', 'US-10'], 'very tight: could be map error: check both official maps on the ground', kind='trail', acres=300),
+                 sp('F@1', ['US-11', 'US-12'], 'candidate'),
+                 sp('M@1', ['US-13', 'US-14'], 'candidate', c=(41.9, -71.1), acres=900),          # the grader's case: 20 km away, 900 acres
+                 sp('R@1', ['US-15', 'US-16'], 'candidate', acres=200),                            # same place, four times the size
+                 sp('N@1', ['US-17', 'US-18'], 'candidate', acres=40)]}                            # same place, size within 25 %
 cl = 'not sure: closed areas not checked (x): the store must carry them first'
-new = {'spots': [{'id': 'A@2', 'refs': ['US-2', 'US-1'], 'kind': 'area', 'status': cl, 'store_not_checked': 'closed areas'},       # pair match
-                 {'id': 'B@1', 'refs': ['US-3', 'US-4'], 'kind': 'area', 'status': 'water only: boat or kayak'},                     # decided: not kept
-                 {'id': 'C@1', 'refs': ['US-5', 'US-6'], 'kind': 'area', 'status': cl, 'store_not_checked': 'closed areas'},          # old not a candidate
-                 {'id': 'D@9', 'refs': ['US-7', 'US-8'], 'kind': 'area', 'status': cl, 'store_not_checked': 'closed areas'},          # two old rows: no guess
-                 {'id': 'E@1', 'refs': ['US-9', 'US-10'], 'kind': 'trail', 'status': 'not sure: the agency ownership map did not answer'},
-                 {'id': 'F@1', 'refs': ['US-11', 'US-12'], 'kind': 'area', 'status': 'not sure: closed areas not checked (x; the water was not checked either)'}]}
+mk = lambda i, refs, st=cl, **kw: sp(i, refs, st, store_not_checked='closed areas', **kw)
+new = {'spots': [mk('A@2', ['US-2', 'US-1'], c=(41.601, -71.601), acres=52),      # pair match, same spot
+                 sp('B@1', ['US-3', 'US-4'], 'water only: boat or kayak'),        # decided: not kept
+                 mk('C@1', ['US-5', 'US-6']),                                     # old not a candidate
+                 mk('D@9', ['US-7', 'US-8']),                                     # two old rows: no guess
+                 sp('E@1', ['US-9', 'US-10'], 'not sure: the agency ownership map did not answer', kind='trail', acres=290),
+                 sp('F@1', ['US-11', 'US-12'], 'not sure: closed areas not checked (x; the water was not checked either)'),
+                 mk('M@2', ['US-13', 'US-14'], c=(41.628, -71.572), acres=58),
+                 mk('R@1', ['US-15', 'US-16'], acres=50), mk('N@1', ['US-17', 'US-18'], acres=48)]}
 ST.owner_status(new)
 n = ST.keep_old_rows(new, old, '2026-11-15')
 by = {x['id']: x for x in new['spots']}
-check(n == 2 and by['A@1']['status'] == 'candidate' and by['A@1']['kept'] == 'kept: not checked in a store run' and 'closed areas' in by['A@1']['kept_why']
+check(n == 3 and by['A@1']['status'] == 'candidate' and by['A@1']['kept'] == 'kept: not checked in a store run' and 'closed areas' in by['A@1']['kept_why']
       and by['A@1']['checked'] == '2026-11-01' and by['A@1']['passes'] == [1, 1, 1],
-      'keep: a candidate left NOT SURE only because closed areas were not checked keeps its old row (old date and passes), tagged')
+      f'keep: the SAME spot (place inside, size within 25 %) left NOT SURE only because closed areas were not checked keeps its old row, tagged ({n})')
+check(by['N@1']['status'] == 'candidate' and by['N@1'].get('kept'), 'keep: same spot, 48 vs 40 acres (within 25 %): kept')
 check(by['E@1']['status'].startswith('very tight') and by['E@1']['kept'] == ST.KEPT_TAG and 'ownership' in by['E@1']['kept_why'],
-      'keep: the same when only the ownership map could not be read')
+      'keep: the same when only the ownership map could not be read (a line row: compared by its length)')
+check(by['M@2']['status'] == cl and 'moved' in by['M@2'].get('not_kept', '') and 'M@1' not in by,
+      "keep: a MOVED spot (the old row 20 km away, 900 acres; this run's spot 58 acres) is NOT kept: this run's NOT SURE row stands")
+check(by['R@1']['status'] == cl and 'size' in by['R@1'].get('not_kept', ''), 'keep: a RESIZED spot (200 -> 50 acres, same place) is NOT kept')
 check(by['B@1']['status'] == 'water only: boat or kayak' and by['C@1']['status'] == cl and by['D@9']['status'] == cl and by['F@1']['status'].startswith('not sure: closed')
-      and not any('kept' in by[k] for k in ('B@1', 'C@1', 'D@9', 'F@1')),
+      and not any('kept' in by[k] for k in ('B@1', 'C@1', 'D@9', 'F@1', 'M@2', 'R@1')),
       'keep: never a row the run decided (water only), never an old row that was not a candidate, never a guess between two old rows, never when the water was not checked either')
-check(not any('store_prev' in x for x in new['spots']), 'keep: the final pass leaves no carried copy in the file')
-d1 = {'spots': [{'id': 'A@2', 'refs': ['US-1', 'US-2'], 'kind': 'area', 'status': 'pass 1', 'passes': [1, 0, 0]}]}
-ST.keep_old_rows(d1, old, '2026-11-15', final=False)
-d3 = {'spots': [{'id': 'A@3', 'refs': ['US-1', 'US-2'], 'kind': 'area', 'status': cl, 'store_not_checked': 'closed areas'}]}
-ST.keep_old_rows(d3, {'spots': [dict(d1['spots'][0], status='pass 2')]}, '2026-11-15')
-check(d1['spots'][0]['store_prev']['status'] == 'candidate' and d3['spots'][0]['status'] == 'candidate' and d3['spots'][0]['kept'] == ST.KEPT_TAG,
-      'keep: passes 1-2 rewrite every row, so the row carries its good copy (store_prev) until pass 3 decides it')
+again = json.loads(json.dumps(new)); again['spots'] = [dict(x, store_not_checked=x.get('store_not_checked') or 'closed areas') if x['id'] in ('M@2', 'R@1') else x for x in again['spots']]
+n2 = ST.keep_old_rows(again, new, '2026-11-16')
+check(n2 >= 0 and {x['id']: x for x in again['spots']}['M@2']['status'] == cl and {x['id']: x for x in again['spots']}['R@1']['status'] == cl,
+      'keep: a second store run does not re-keep a row that was not kept (its last row is NOT SURE, not a candidate)')
+check(not any('store_prev' in x for x in new['spots']), 'keep: no carried copy is ever put in a row')
+carry = {}
+d1 = {'spots': [sp('A@2', ['US-1', 'US-2'], 'pass 1', passes=[1, 0, 0])]}
+ST.keep_old_rows(d1, old, '2026-11-15', final=False, carry=carry)
+d3 = {'spots': [mk('A@2', ['US-1', 'US-2'])]}
+c3 = dict(carry)
+ST.keep_old_rows(d3, {'spots': [dict(d1['spots'][0], status='pass 2')]}, '2026-11-15', final=True, carry=c3)
+check(carry.get('A@2', {}).get('status') == 'candidate' and 'store_prev' not in d1['spots'][0] and d3['spots'][0]['status'] == 'candidate' and d3['spots'][0]['kept'] == ST.KEPT_TAG and c3 == {},
+      'keep: passes 1-2 rewrite every row, so the good copy waits in the side file (never in the row) until pass 3 decides it; the final pass empties it')
 lc = {'refs': ['US-1', 'US-2'], 'kind': 'area', 'status': 'not sure: water not checked (the USGS water map did not answer): run pass 5'}
 for wr, want in (('ok', 'closed areas'), ('water', None), ('not checked', None)):
     s = dict(lc, closed_check='not checked: x', closed_check_water=wr); ST.closed_status({'spots': [s]})
@@ -179,8 +201,10 @@ def report_wo_hash(b):
 
 
 OLD_RI = {'st': 'US-RI', 'pass3': '2026-11-01', 'spots': [
-    {'id': 'old-a', 'refs': ['US-99001', 'US-99002'], 'kind': 'area', 'status': 'candidate', 'passes': [1, 1, 1], 'checked': '2026-11-01', 'center': [41.6275, -71.5725], 'wide_m': 400},
-    {'id': 'old-b', 'refs': ['US-99003', 'US-99004'], 'kind': 'area', 'status': 'candidate', 'passes': [1, 1, 1], 'checked': '2026-11-01', 'center': [41.6675, -71.5325], 'wide_m': 400}]}
+    {'id': 'old-a', 'refs': ['US-99001', 'US-99002'], 'kind': 'area', 'status': 'candidate', 'passes': [1, 1, 1], 'checked': '2026-11-01', 'center': [41.6275, -71.5725],
+     'box': [-71.575, 41.625, -71.57, 41.63], 'acres': 57.0, 'wide_m': 400},
+    {'id': 'old-b', 'refs': ['US-99003', 'US-99004'], 'kind': 'area', 'status': 'candidate', 'passes': [1, 1, 1], 'checked': '2026-11-01', 'center': [41.6675, -71.5325],
+     'box': [-71.535, 41.665, -71.53, 41.67], 'acres': 57.0, 'wide_m': 400}]}
 
 if not HAVE:
     print('SKIP the real kpc_fers.py runs (numpy / cv2 not installed here)')
@@ -220,8 +244,18 @@ else:
         check([rc for _, rc, _ in oc] == [0, 0, 0] and differ(fm, fc) == [],
               f'switch off, this code with main\'s scope file: every file byte for byte main\'s (the report\'s own fers_rules hash aside) ({differ(fm, fc)})')
         dd = differ(fm, fb)
-        check(all(k.startswith('reuse-') for k in dd) and fm['US-RI.json'] == fb['US-RI.json'],
-              f'switch off, as merged: the spot, looked and missing files byte for byte main\'s; only the reuse fingerprints move (the declared scope re-stamps US / CA pairs) ({dd})')
+        check(dd == [] and fm['US-RI.json'] == fb['US-RI.json'],
+              f'switch off, as merged: every file byte for byte main\'s, reuse fingerprints included (the declared scope is none: no pair is re-stamped) ({dd})')
+        # the next ordinary run after this change: main's saved pair answers are reused, none is tested again
+        ro = run(tm, SCR, {}, WRAP_OFF, passes=(1,))
+        rp = json.loads((tm / 'data/fers/report-testri.json').read_text()).get('pass1') or {}
+        check(ro[0][1] == 0 and rp.get('pairs tested', 0) > 0 and rp.get('pairs reused (nothing changed)') == rp.get('pairs tested'),
+              f"switch off after main: every pair main tested is reused, none tested again ({rp.get('pairs reused (nothing changed)')} of {rp.get('pairs tested')})")
+        ra = run(tm, SCR, {'KPC_FERS_FROM_STORE': 'on', 'KPC_FERS_STORE_DIR': str(tm / 'store-copy' / 'store'), 'KPC_FERS_STORE_MAX_DAYS': '100000',
+                           'TRIES_OUT': str(TMP / 'tries-stamp.json')}, WRAP_ON, passes=(1,))
+        rs = json.loads((tm / 'data/fers/report-testri.json').read_text()).get('pass1') or {}
+        check(ra[0][1] == 0 and rs.get('pairs tested', 0) > 0 and not rs.get('pairs reused (nothing changed)'),
+              f"the first STORE run of the area tests its pairs again (its parks carry the 2026-11-15-store-switch stamp) ({rs.get('pairs reused (nothing changed)')} of {rs.get('pairs tested')})")
 
     # ------------------------------------------------------------ 2 + 3 switch ON: zero sockets, keep the old row
     tn = TMP / 'on'; tn.mkdir(); layout(tn, {'US-RI': OLD_RI})
@@ -249,6 +283,22 @@ else:
           'switch on: the pin-only park is never a boundary (held with its reason, no row)')
     check(not any('store_prev' in json.dumps(x) for x in ri.get('spots') or []), 'switch on: the final file carries no store_prev copy')
     check('US-RI' in (json.loads(fo.get('store-missing-testri.json', b'{}')).get('areas') or {}), 'switch on: the area row is written')
+
+    # ------------------------------------------------------------ keep: a moved spot is not kept; store_prev never in a data file
+    tv = TMP / 'moved'; tv.mkdir()
+    moved = json.loads(json.dumps(OLD_RI)); moved['spots'][0].update(center=[41.9, -71.1], box=[-71.15, 41.85, -71.05, 41.95], acres=900.0)
+    layout(tv, {'US-RI': moved})
+    ov = run(tv, SCR, dict(env_on, KPC_FERS_STORE_DIR=str(tv / 'store-copy' / 'store'), TRIES_OUT=str(TMP / 'tries-mv.json')), WRAP_ON, passes=(1,))
+    r1 = json.loads((tv / 'data/fers/US-RI.json').read_text())
+    side = tv / 'cache/fers/store-prev/US-RI.json'
+    check(ov[0][1] == 0 and 'store_prev' not in json.dumps(r1) and side.is_file() and not list((tv / 'data').rglob('*store-prev*')),
+          'a run that stops after pass 1: no store_prev in any data file; the good copies wait in cache/fers/store-prev (outside data/)')
+    ov = run(tv, SCR, dict(env_on, KPC_FERS_STORE_DIR=str(tv / 'store-copy' / 'store'), TRIES_OUT=str(TMP / 'tries-mv.json')), WRAP_ON, passes=(2, 3))
+    rv = {tuple(sorted(x['refs'])) + (x['kind'],): x for x in json.loads((tv / 'data/fers/US-RI.json').read_text()).get('spots') or []}
+    av = rv.get(('US-99001', 'US-99002', 'area')) or {}
+    check([rc for _, rc, _ in ov] == [0, 0] and str(av.get('status')).startswith('not sure: closed areas') and not av.get('kept') and 'moved' in str(av.get('not_kept'))
+          and av.get('center') != [41.9, -71.1] and not side.exists(),
+          f"keep (end to end): an old candidate 20 km away at 900 acres is NOT kept; this run's own spot stands as NOT SURE; the side file is gone after pass 3 ({av.get('status', '')[:40]}, {av.get('not_kept', '')[:50]})")
 
     # ------------------------------------------------------------ 4 the leak guard still exits 89
     tl = TMP / 'leak'; tl.mkdir()
@@ -364,6 +414,21 @@ else:
     except ST.LeakRefused as e: g = e.code == 89
     check(g, 'world: the write guard still refuses a world row in a public file (exit 89)')
 
+# ---------------------------------------------------------------- the write guard: a withheld park's NAME, and store_prev
+_po = ST.PRIVATE_OUT; ST.PRIVATE_OUT = None
+ST.HELD_PRIVATE.add('US-77001'); ST.NAMES['US-77001'] = 'Hidden Test Marsh'
+def refused(doc):
+    try: ST.guard_write('data/fers/US-RI.json', doc); return None
+    except ST.LeakRefused as e: return e.code
+row = {'refs': ['US-1', 'US-2'], 'kind': 'area', 'status': 'candidate', 'names': {'US-1': 'Open Park', 'US-2': 'Other Park'}}
+check(refused({'spots': [row]}) is None, 'write guard: a clean public row is written')
+check(refused({'spots': [dict(row, note='shares a fence with hidden test marsh')]}) == 89 and refused({'spots': [dict(row, info={'names': ['Hidden Test Marsh']})]}) == 89,
+      "write guard: a withheld park's NAME in any text of a row (a carried note, a list of names), any case, stops the run (exit 89)")
+check(refused({'spots': [dict(row, note='Hidden Test Marshland trail')]}) is None and refused({'spots': [dict(row, names={'US-1': 'Hidden Test Marsh', 'US-2': 'x'})]}) is None,
+      "write guard: a longer word is not the name, and a PUBLIC park's own name map (checked by ref) does not stop the run")
+check(refused({'spots': [dict(row, store_prev={'status': 'candidate'})]}) == 89, 'write guard: a row carrying a store_prev copy is refused (exit 89)')
+ST.HELD_PRIVATE.discard('US-77001'); ST.NAMES.pop('US-77001', None); ST.PRIVATE_OUT = _po
+
 # ---------------------------------------------------------------- 7 the hook and the hashes
 src = (SCR / 'kpc_fers.py').read_text(encoding='utf-8')
 mn = src[src.index('def main():'):]
@@ -379,11 +444,8 @@ o, nw, ln = PF.changelog_hashes(log, 'fers')
 check(o == 'd0064c860cba' and nw == KFZ.rules_hash('fers') and 'APPROVED, decided_by KPC owner, 2026-11-15' in ln and log.startswith(ln),
       f'the 2-fer hash moves only by the newest changelog line, on top (d0064c860cba -> {KFZ.rules_hash("fers")})')
 sc = json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'][-1]
-us = {p.stem for p in (ROOT / 'data/us-key').glob('US-*.json') if re.fullmatch(r'US-[A-Z]{2}', p.stem)}
-ca = {p.stem for p in (ROOT / 'data/ca-key').glob('CA-*.json') if re.fullmatch(r'CA-[A-Z]{2}', p.stem)}
-check(sc['id'] == '2026-11-15-store-switch' and sc['from'] == 'd0064c860cba' and set(sc['scope']['states']) == us | ca and 'US-KY' not in sc['scope']['states']
-      and not any(s.startswith('W-') for s in sc['scope']['states']) and sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
-      f"scope entry 2026-11-15-store-switch: every US and Canadian area of the keys, Kentucky's own run and the world (switched off) not in it ({len(sc['scope']['states'])} areas)")
+check(sc['id'] == '2026-11-15-store-switch' == ST.STORE_STAMP and sc['from'] == 'd0064c860cba' and sc['scope'] == 'none' and sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
+      "scope entry 2026-11-15-store-switch: scope none (an ordinary run re-tests nothing); a store run stamps its own areas' parks with the same id")
 print('ALL PASS' if not FAILS else 'SOME FAILED')
 shutil.rmtree(TMP, ignore_errors=True)
 sys.exit(1 if FAILS else 0)

@@ -621,8 +621,8 @@ _direct = sorted({_owner(m.start()) for m in _re.finditer(r"\.write_text\(|\.wri
 check(_direct == ['_wsave', 'live_save'] and _src.count('def save_json') == 1 and 'return _save_json_raw(p, FCOUNT.apply(p, d)' in _src,
       f'writer trace: kpc_fers.py writes files only through save_json -> _save_json_raw, plus live_save / _wsave (turned off in a store run) ({_direct})')
 _ss = (ROOT / '.github/scripts/kpc_fers_store.py').read_text(encoding='utf-8')
-check(len(_re.findall(r'\.write_text\(', _ss)) == 3 and 'guard_write(p, doc)' in _ss and "if hasattr(KF, name): setattr(KF, name, lambda *a, **k: None)" in _ss,
-      'writer trace: the store module writes the store-missing list (guarded) and the diff command output (ids, names, statuses only)')
+check(len(_re.findall(r'\.write_text\(', _ss)) == 4 and 'guard_write(p, doc)' in _ss and "if hasattr(KF, name): setattr(KF, name, lambda *a, **k: None)" in _ss,
+      'writer trace: the store module writes the store-missing list (guarded), the diff command output (ids, names, statuses only) and the between-pass side file (outside the data folder, Nov 15)')
 try:
     import kpc_release as _REL
     check(S.BLOCKED_BUILDS == _REL.BLOCKED_BUILDS, 'the never-released list is the release tool\'s own (US-42797939226)')
