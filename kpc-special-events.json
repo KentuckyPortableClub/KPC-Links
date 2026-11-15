@@ -1,23 +1,6 @@
 {
- "updated": "2026-11-12T12:33:50Z",
+ "updated": "2026-11-15T12:26:58Z",
  "stations": [
-  {
-   "title": "51st Anniversary, Sinking of the SS Edmund Fitzgerald",
-   "start": "2026-11-01",
-   "end": "2026-11-14",
-   "times": "0000Z-2359Z",
-   "call": "W8F",
-   "calls": [
-    "W8F"
-   ],
-   "where": "Livonia, MI",
-   "st": "MI",
-   "by": "Livonia Amateur Radio Club",
-   "freqs": "14.260 7.260 7.050 14.050",
-   "qsl": "Certificate",
-   "url": "https://livoniaarc.com",
-   "note": ", Livonia, MI. Livonia Amateur Radio Club. 14.260 7.260 7.050 14.050. Certificate. Electronic Only See QRZ page, 145.350 MHz, Livonia, MI 48151."
-  },
   {
    "title": "SVARA 50th Birthday",
    "start": "2026-11-01",
@@ -87,23 +70,6 @@
    "note": ", Sun City, AZ. West Valley Amateur Radio Club . 14.250 147.300. QSL. WVARC GOTA, PO Box 1573, Sun City, AZ 85372."
   },
   {
-   "title": "1st Transatlantic QSO",
-   "start": "2026-11-14",
-   "end": "2026-11-14",
-   "times": "1400Z-2200Z",
-   "call": "K3S",
-   "calls": [
-    "K3S"
-   ],
-   "where": "Baltimore, MD",
-   "st": "MD",
-   "by": "Nuclear Ship Savannah ARC",
-   "freqs": "7000",
-   "qsl": "QSL",
-   "url": "http://qrz.com/db/k3s",
-   "note": ", Baltimore, MD. Nuclear Ship Savannah ARC. 7000. QSL. Ulis Fleming, 980 Patuxent Road, Odenton, MD 21113."
-  },
-  {
    "title": "USS Cobia Veterans Day Special Event",
    "start": "2026-11-14",
    "end": "2026-11-15",
@@ -119,23 +85,6 @@
    "qsl": "Certificate",
    "url": "",
    "note": ", Manitowoc, WI. NB9QV Cobia Club. 7.240 14.240. Certificate. E-certificate only , kc9yl@arrl.net, Manitowoc, WI 54220. Send contact information to kc9yl@arrl.net to receive PDF certificate via email."
-  },
-  {
-   "title": "Veterans Day (11-11-1919) & USMC Birthday (11-10-1775)",
-   "start": "2026-11-14",
-   "end": "2026-11-14",
-   "times": "1700Z-2359Z",
-   "call": "NI6IW",
-   "calls": [
-    "NI6IW"
-   ],
-   "where": "San Diego, CA",
-   "st": "CA",
-   "by": "USS Midway Museum Ship CV-41 COMEDTRA NI6IW",
-   "freqs": "7.250 14.320 14.070 PSK31 DStar on PAPA System Repeaters",
-   "qsl": "QSL",
-   "url": "",
-   "note": ", San Diego, CA. USS Midway Museum Ship CV-41 COMEDTRA NI6IW. 7.250 14.320 14.070 PSK31 DStar on PAPA System Repeaters. QSL. USS Midway Ship Museum CV-41 COMEDTRA NI6IW, 910 N Harbor Drive, San Diego, CA 92101. See www.qrz.com/db/ni6iw for details."
   },
   {
    "title": "NRA Birthday Celebration",
@@ -569,6 +518,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (30)"
+  "ARRL": "ok (27)"
  }
 }
