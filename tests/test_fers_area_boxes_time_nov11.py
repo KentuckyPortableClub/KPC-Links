@@ -224,6 +224,7 @@ with tempfile.TemporaryDirectory() as t:
 # Nov 14 (the full 100 ft ruling): the missing-boundary list's about text was corrected, and that text is in missing-testwa.json, so the
 # golden moved 17ebca8a53004e16 -> aaf56aa08bd907bb. Proof: main 0a7df54's kpc_fers.py with ONLY that text changed gives aaf56aa08bd907bb too
 # (this area has no line park, so the 100 ft change itself does not touch it).
+# Nov 15 (the outline store switch-over): its scope is 'none', so a switch-off run's files do not move (the golden stays).
 GOLDEN = 'aaf56aa08bd907bb'
 
 

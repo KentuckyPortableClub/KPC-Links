@@ -3725,6 +3725,9 @@ def water_prefetch():
 
 def main():
     if HARD_END: _arm()   # Nov 9 PM: the step's hard end is armed from the start (exit 3 = red, never a silent time-out)
+    if str(os.environ.get('KPC_FERS_FROM_STORE') or '').strip().lower() in ('1', 'on', 'yes', 'true'):   # KPC owner, 2026-11-15: outlines from the
+        import kpc_fers_store   # outline store (switch-over; off = nothing imported, the run as before; areas: .github/fers-store-areas.json)
+        kpc_fers_store.install(sys.modules[__name__])
     if os.environ.get('WATER_PREFETCH') == '1': return water_prefetch()
     # Nov 8 (Brandon t808u): only areas declared ready (ownership + management). Skip others with a clear log; no silent world run.
     global ONLY

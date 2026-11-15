@@ -1,0 +1,19 @@
+{
+ "sources": {
+  "us-nhdplus-hr": {
+   "licence_class": "PUBLIC DOMAIN",
+   "publishable": true,
+   "credit_line": "made-up test tile"
+  }
+ },
+ "tiles": {
+  "us-nhdplus-hr": {
+   "-716_416.json.gz": {
+    "sha256": "13c6737530d6e598138f47b1505d32afb3ed28916edce7d89f28ec79d17598f6",
+    "date": "2026-11-01",
+    "features": 1,
+    "bytes": 102
+   }
+  }
+ }
+}

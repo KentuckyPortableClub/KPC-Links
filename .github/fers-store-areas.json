@@ -1,0 +1,6 @@
+{
+  "about": "Which areas the 2-fer bot reads from the outline store when KPC_FERS_FROM_STORE is on (KPC owner, 2026-11-15; kpc_fers_store.py, a 2-fer rule file: an edit here moves the 2-fer rules hash). areas: \"all-us-ca\" = every US state and Canadian province area the store holds (or a list of area codes). except: area codes pulled back to the old path without a code change (a store run leaves them out with that reason; they keep their previous files; run them with the switch off). An area the store does not hold (no index, another format, stale, damaged) is left out of a store run with its reason. US-KY never: the Kentucky run reads Kentucky's own files. world: \"off\" (default) = a world run never reads the store, exactly as before; \"on\" = a world run with KPC_FERS_FROM_STORE on reads the world areas W-<CC> of a PRIVATE store only (world 2-fers are club room only; WDPA-derived records are never read; world areas still need .github/fers-ready-areas.json before any world 2-fer runs).",
+  "areas": "all-us-ca",
+  "except": [],
+  "world": "off"
+}

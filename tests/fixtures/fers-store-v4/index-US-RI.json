@@ -1,0 +1,103 @@
+{
+ "format": 1,
+ "store_format_version": "kpc-outline-store-index/4",
+ "geometry_kinds": [
+  "area",
+  "line",
+  "pin"
+ ],
+ "area": "US-RI",
+ "made": "2026-11-15T00:00:00-06:00",
+ "parks": {
+  "US-99001": {
+   "file": "US-RI.kpcstore.json.gz",
+   "o": 59,
+   "n": 354,
+   "grade": "official",
+   "circle": false,
+   "records": [
+    "99010"
+   ],
+   "points": 5,
+   "fp": "8039e8aad416060b9d99c6041ace4c11380cda414cab8aa0696c00159880ec10",
+   "date": "2026-11-15",
+   "geometry_kind": "area"
+  },
+  "US-99002": {
+   "file": "US-RI.kpcstore.json.gz",
+   "o": 413,
+   "n": 359,
+   "grade": "official",
+   "circle": false,
+   "records": [
+    "99020"
+   ],
+   "points": 5,
+   "fp": "21721d0a963dcba1b6cc25fbfe4c2c1cfcfc5fd036edfb893ffecee734fd6092",
+   "date": "2026-11-15",
+   "geometry_kind": "area"
+  },
+  "US-99003": {
+   "file": "US-RI.kpcstore.json.gz",
+   "o": 772,
+   "n": 358,
+   "grade": "official",
+   "circle": false,
+   "records": [
+    "99030"
+   ],
+   "points": 5,
+   "fp": "5f1594fa8119de2d2f8a4432d6eb19dc5c462d95940a478c140b464ea9df970d",
+   "date": "2026-11-15",
+   "geometry_kind": "area"
+  },
+  "US-99004": {
+   "file": "US-RI.kpcstore.json.gz",
+   "o": 1130,
+   "n": 358,
+   "grade": "official",
+   "circle": false,
+   "records": [
+    "99040"
+   ],
+   "points": 5,
+   "fp": "821eeffc02c51e23bdfe01c7428d3c8068ee9ae12daaf230bab5894e40103fbe",
+   "date": "2026-11-15",
+   "geometry_kind": "area"
+  },
+  "US-99005": {
+   "file": "US-RI.kpcstore.json.gz",
+   "o": 1488,
+   "n": 456,
+   "grade": "official",
+   "circle": false,
+   "records": [
+    "99050"
+   ],
+   "points": 0,
+   "fp": "a117288688ad59388f308b82aa30755bcd67d6461625521d70a42c11912dcc05",
+   "date": "2026-11-15",
+   "geometry_kind": "line"
+  },
+  "US-99006": {
+   "file": "US-RI.kpcstore.json.gz",
+   "o": 1944,
+   "n": 353,
+   "grade": "official",
+   "circle": false,
+   "records": [
+    "99060"
+   ],
+   "points": 0,
+   "fp": "a117288688ad59388f308b82aa30755bcd67d6461625521d70a42c11912dcc05",
+   "date": "2026-11-15",
+   "geometry_kind": "pin"
+  }
+ },
+ "files": {
+  "US-RI.kpcstore.json.gz": {
+   "bytes": 2319,
+   "sha256": "df43a1443e0c12caa9b967112f517bce62f914576ae1bd275ae1f3932ff8677a"
+  }
+ }
+}

@@ -35,10 +35,21 @@ def base_hash(kind, KF):
     """rules_hash of origin/main: its rule files copied out with git show; None when origin/main is not in this clone."""
     if git('rev-parse', '--verify', BASE) is None: return None
     with tempfile.TemporaryDirectory() as td:
-        for rel in list(KF.RULE_FILES[kind]) + [KF.VERSION_FILE]:
+        # KPC owner, 2026-11-15: origin/main's hash is worked out with origin/main's OWN list of rule files (its kpc_key_freeze.py),
+        # so a change that adds a file to RULE_FILES (the outline store switch-over) is compared with the hash main reports
+        KB, src = KF, subprocess.run(['git', 'show', f'{BASE}:.github/scripts/kpc_key_freeze.py'], cwd=ROOT, capture_output=True).stdout
+        if src:
+            import importlib.util
+            (pathlib.Path(td) / '_kf_base.py').write_bytes(src)
+            sp = importlib.util.spec_from_file_location('_kf_base', str(pathlib.Path(td) / '_kf_base.py'))
+            try:
+                KB = importlib.util.module_from_spec(sp); sp.loader.exec_module(KB)
+                if kind not in KB.RULE_FILES: KB = KF
+            except Exception: KB = KF  # noqa: BLE001
+        for rel in list(KB.RULE_FILES[kind]) + [KB.VERSION_FILE]:
             b = subprocess.run(['git', 'show', f'{BASE}:{rel}'], cwd=ROOT, capture_output=True).stdout
             if b: (pathlib.Path(td) / rel).parent.mkdir(parents=True, exist_ok=True); (pathlib.Path(td) / rel).write_bytes(b)
-        return KF.rules_hash(kind, td)
+        return KB.rules_hash(kind, td)
 
 def check_hash_pair(kind, old, new, text, scope=None):
     """FAIL text or '': a moved hash needs the newest changelog line `old -> new` + APPROVED, decided_by KPC owner, and a scope entry from=old."""

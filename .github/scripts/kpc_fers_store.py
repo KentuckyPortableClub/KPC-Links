@@ -1,11 +1,24 @@
 #!/usr/bin/env python3
-"""2-fer outlines from the OUTLINE STORE instead of downloads (KPC owner, 2026-11-13). PREP ONLY: OFF by default, wired into nothing.
+"""2-fer outlines from the OUTLINE STORE instead of downloads (KPC owner, 2026-11-13). OFF by default.
 
 Why: the 2-fer bot runs out of memory in its download passes (Southeast, Great Lakes). Owner decision 'one door in': bots stop
 downloading boundaries; a park the store does not have is HELD and listed, and only the store filler fetches.
 
-NOT a rule file (kpc_key_freeze.NOT_RULES): nothing calls it yet, so no 2-fer answer can change and no rules hash moves. The
-switch-over PR adds the hook to kpc_fers.py and moves this file into the 2-fer RULE_FILES (one declared hash move).
+Switch-over (KPC owner, 2026-11-15; fers rules d0064c860cba -> the next declared hash, scope 2026-11-15-store-switch): kpc_fers.main()
+calls install() right after the hard-end clock is armed when the switch is on, and this file and .github/fers-store-areas.json are
+2-fer RULE_FILES (kpc_key_freeze.py), so a later edit to either moves the 2-fer rules hash. Switch off: the hook imports nothing and
+kpc_fers.py runs exactly as before.
+Which areas (.github/fers-store-areas.json): "areas": "all-us-ca" = every US state and Canadian province area the store holds
+(or a list of area codes), minus "except" (an area pulled back to the old path without a code change). US-KY never: the Kentucky
+run reads Kentucky's own files (REGION ky). An area of a store run that is on the except list, or that the store does not hold
+(no index, another format, stale, damaged), is left out of THIS run with a plain reason (its row in store-missing-<tag>.json) and
+keeps its previous files; the other areas go on. No area left = exit 87. Parks filed under such an area are held, never downloaded.
+Keep the old row (DEFAULT, owner question 1): a live candidate row that the store run would turn NOT SURE only because the PAD-US
+closed areas or the ownership map could not be checked (a store run downloads nothing) keeps its old row, tagged
+'kept: not checked in a store run', only when the old row is the same spot (same_spot: place and size); a row the store run
+positively decides (water only, dropped, any other not-sure reason, water not checked too) is never kept. The good copies wait
+between passes in a side file outside the data folder (store_prev_file), never in a row. Saved PAD-US answers are not used yet.
+Rule scope 'none': a switch-off run re-tests nothing; a store run stamps its own areas' parks (STORE_STAMP) so they are re-tested once.
 
 Switch: KPC_FERS_FROM_STORE = on | off (default off; anything but 1 / on / yes / true is off). Off: install() does nothing and
 returns False. On, US + Canada runs (REGION na) only: for one process,
@@ -30,6 +43,8 @@ returns False. On, US + Canada runs (REGION na) only: for one process,
     today's unchanged line rule (store_lines; trail_lines() in a store run); pins and unknown kinds are never used; water tiles
     from the store first (store_water); the river centre-line fallback behind KPC_FERS_RIVER_NO_BANK (default unchanged);
   Kentucky and world runs: install() returns False and the bot runs AS TODAY (downloads included): nothing here refuses them.
+  Every area named for the run must be on the store list or be left out with its reason; a run that names no area (STATES) is
+  refused (exit 87): a whole-region store run could rewrite the files of an area that is pulled back to the old path.
 Settings: KPC_FERS_STORE_DIR (default 'store'), KPC_FERS_STORE_MAX_DAYS (45), KPC_FERS_STORE_KIND = public | private (default
 public: a park with any record not marked publishable is held 'needs the private store'), KPC_FERS_PRIVATE_OUT (private only),
 KPC_FERS_STORE_LIMIT_MB (3000, the whole process), KPC_FERS_STORE_BUDGET (2,000,000 unpacked points), KPC_FERS_STORE_NEIGHBOURS
@@ -52,7 +67,7 @@ Command line (no network in any of them):
   kpc_fers_store.py check <store_dir> <AREA> [...]          read + verify every park; points, memory estimate, age
   kpc_fers_store.py fit <store_dir> <AREA> [...]            the memory gate alone (exit 88 when it will not fit)
   kpc_fers_store.py diff --old FILE --new FILE [--out STEM] the reviewed change list (ids, names and statuses only)
-  kpc_fers_store.py run                                     KPC_FERS_FROM_STORE=on only: install, then kpc_fers.main()
+  kpc_fers_store.py run                                     KPC_FERS_FROM_STORE=on only: kpc_fers.main() (its hook installs the store)
 """
 import array, atexit, collections.abc, datetime, gzip, hashlib, json, math, os, pathlib, re, sys
 
@@ -89,6 +104,18 @@ WATER_READ = {'store': 0, 'not in store': 0, 'store tile refused': 0}
 RIVER_SWITCH = 'KPC_FERS_RIVER_NO_BANK'   # centreline (default: today's rule, unchanged) | tiers (PROVISIONAL, the owner's Nov 14 ruling)
 RIVER_NO_BANK = {'mode': 'centreline', 'catch_m': 250.0, 'half_m': 150.0, 'along_m': 50.0}
 RIVER_TIERS = {}   # tier -> stretches / rows this run (tiers mode)
+# KPC owner, 2026-11-15 (switch-over): which areas use the store. A 2-fer rule file (kpc_key_freeze.RULE_FILES['fers']).
+STORE_AREAS_FILE = pathlib.Path(__file__).resolve().parents[1] / 'fers-store-areas.json'
+STORE_AREA_RX = re.compile(r'(US|CA)-[A-Z]{2}')
+STORE_ALL = 'all-us-ca'
+NEVER_STORE = {'US-KY': 'Kentucky runs on its own files (the REGION ky run), never on the outline store'}
+KEPT_TAG = 'kept: not checked in a store run'
+STORE_STAMP = '2026-11-15-store-switch'   # the declared rule change (.github/fers-rule-scope.json): stamped only in a store run
+KEPT = {'n': 0}    # rows kept by the keep-the-old-row rule this run
+AREA_FILE = re.compile(r'((?:US|CA|W)-[A-Z]{2})\.json(?:\.gz)?')
+AREA_OFF = {'fn': None}    # install(): area -> '' or why it does not use the store in this run (its spot file is never written)
+SKIPPED_FILES = {}         # area -> why its spot file was left as it was (a border area that does not use the store)
+WORLD_ON = {'on': False}   # a world store run ("world": "on" in .github/fers-store-areas.json, a private store run only)
 RIVER_TODO = []    # tiers mode: river + park stretches the bank store must fetch (ids, distances, signs; no geometry)
 TIER_BANK, TIER_CENTRE = 'bank', 'park reaches the river centre line'
 TIER_ALONG, TIER_LINE = 'bank assumed from the park boundary (no official bank shape yet)', 'about 100 ft from the centre line'
@@ -307,6 +334,7 @@ class Store:
         self.dir, self.max_days, self.kind = pathlib.Path(store_dir), int(max_days), (kind if kind in ('public', 'private') else 'public')
         self.today = today or datetime.date.today().isoformat()
         self.areas, self.why = {}, {}
+        self.allow = None   # install(): area -> '' (the store may be read) or the plain reason it is not (.github/fers-store-areas.json)
 
     @classmethod
     def from_env(cls, env):
@@ -314,6 +342,8 @@ class Store:
 
     def area(self, area):
         if area in self.areas or area in self.why: return self.areas.get(area)
+        no = self.allow(area) if self.allow is not None else ''
+        if no: self.why[area] = f'the outline store for {area} is not used ({no})'; return None
         try:
             a = AreaStore(self.dir, area)
             age = a.age_days(self.today)
@@ -333,7 +363,7 @@ class Store:
         """Every area store that holds a piece of ref: the key's own state first, then every other per-area index in the folder
         (a park can have tracts in two area files, or be filed by the key under a neighbour's state). ([AreaStore], why)."""
         a = self.area(area)
-        if not hasattr(self, '_names'): self._names = sorted(p.name[6:-5] for p in self.dir.glob('index-*.json'))
+        if not hasattr(self, '_names'): self._names = sorted(n for n in (p.name[6:-5] for p in self.dir.glob('index-*.json')) if self.allow is None or not self.allow(n))
         found = [a] if a is not None and (ref in a.entries or ref in a.bad) else []
         for other in self._names:
             if other == area: continue
@@ -351,6 +381,7 @@ class Store:
             try: p = a.park(ref)
             except StoreError as e: return None, [], f'{ref} in the outline store ({a.area}) failed its check ({str(e)[:120]})', {}
             if p is None: continue
+            if isinstance(p.get('name'), str): NAMES.setdefault(ref, p['name'])
             if p.get('circle') or p.get('grade') == 'point-circle':
                 return None, [], f'{ref} has only a point circle in the store (the 2-fer bot makes its own circle)', {}
             if wdpa_text(p): return None, [], f'{ref}: the store park looks WDPA / Protected Planet derived: never a 2-fer source', {}
@@ -551,7 +582,157 @@ def closed_status(doc):
         if s.get('check_failed'): s['status'] = 'not sure: ' + s['check_failed'] + ': run again'; n += 1
         elif s.get('closed_check'):
             s['status'] = 'not sure: closed areas not checked (' + s['closed_check'][len('not checked: '):] + '): the store must carry them first'; n += 1
+            if s.get('closed_check_water') == 'ok': s['store_not_checked'] = 'closed areas'   # land, open, water checked: only rule 10 could not run
     return n
+
+
+OWNER_NOT_CHECKED = ('not sure: the agency ownership map did not answer',)   # kpc_fers.decide(): a store run asks no ownership map
+
+
+def owner_status(doc):
+    """Store run: a row NOT SURE only because the ownership map could not be read (the shut door refuses it) is marked for the
+    keep-the-old-row rule. decide() stops at that check, so nothing else decided the row."""
+    n = 0
+    for s in (doc or {}).get('spots') or []:
+        if str(s.get('status') or '').startswith(OWNER_NOT_CHECKED) and not s.get('store_not_checked'): s['store_not_checked'] = 'ownership'; n += 1
+    return n
+
+
+def _good(s):
+    st = str(s.get('status') or '')
+    return st.startswith(('candidate', 'very tight'))
+
+
+def _old_match(s, by_id, by_pk):
+    o = by_id.get(s.get('id')) if s.get('id') else None
+    if o is None or _pk(o) != _pk(s):
+        c = by_pk.get(_pk(s)) or []
+        o = c[0] if len(c) == 1 else None
+    return o
+
+
+def _prev_of(o):
+    """The good copy an old row stands for: the row itself when it is a live candidate (never a club-room row)."""
+    if o is None or not _good(o) or o.get('club_room_only'): return None
+    return {k: v for k, v in o.items() if k != 'store_prev'}
+
+
+def _extent(s):
+    """[lon0, lat0, lon1, lat1] of a row: its box, else its shape's box; None when the row has neither."""
+    b = s.get('box')
+    if isinstance(b, (list, tuple)) and len(b) == 4 and all(isinstance(v, (int, float)) for v in b): return [float(v) for v in b]
+    pts = [q for q in s.get('shape') or [] if isinstance(q, (list, tuple)) and len(q) >= 2 and all(isinstance(v, (int, float)) for v in q[:2])]
+    if not pts: return None
+    return [min(q[0] for q in pts), min(q[1] for q in pts), max(q[0] for q in pts), max(q[1] for q in pts)]
+
+
+def _centre(s):
+    c = s.get('center')   # kpc_fers.py rows: [lat, lon]
+    if isinstance(c, (list, tuple)) and len(c) == 2 and all(isinstance(v, (int, float)) for v in c): return float(c[1]), float(c[0])
+    return None
+
+
+def _in_box(pt, b, pad=1e-6):
+    return pt is not None and b is not None and b[0] - pad <= pt[0] <= b[2] + pad and b[1] - pad <= pt[1] <= b[3] + pad
+
+
+SAME_SIZE = 1.25   # the larger size (acres; metres of line for a trail / river row) at most 1.25 times the smaller, both ways
+SAME_BOX = 2.0     # the old and new boxes: width and height each within a factor of 2 (a huge old box never matches a small spot)
+BOX_FLOOR = 1e-4   # degrees (about 10 m): a box side below this counts as this (a straight east-west line has no height)
+
+
+def same_spot(new, old):
+    """'' when the old row is the SAME spot as the new one (grade of #201): the old centre lies inside the new spot's extent or the new
+    centre inside the old one's; the boxes have the same size (width and height each within SAME_BOX); AND the sizes agree (the
+    larger at most SAME_SIZE times the smaller: acres for an area row, len_m for a line row). Else the reason it is not. A row that
+    carries no place, no box or no size is never the same spot. The rows carry no outline checksum, so this test is the rule."""
+    if _pk(new) != _pk(old): return 'another pair or kind'
+    nc, oc, ne, oe = _centre(new), _centre(old), _extent(new), _extent(old)
+    if not (_in_box(oc, ne) or _in_box(nc, oe)): return 'the spot moved' if (nc and oc and (ne or oe)) else 'no place to compare'
+    if ne is None or oe is None: return 'no box to compare'
+    for i, side in ((0, 'width'), (1, 'height')):
+        a_, b_ = max(ne[i + 2] - ne[i], BOX_FLOOR), max(oe[i + 2] - oe[i], BOX_FLOOR)
+        if max(a_, b_) > SAME_BOX * min(a_, b_): return f'the spot changed shape (box {side})'
+    key = 'acres' if new.get('kind') == 'area' else 'len_m'
+    a, b = new.get(key), old.get(key)
+    if not (isinstance(a, (int, float)) and isinstance(b, (int, float)) and a > 0 and b > 0): return f'no {key} to compare'
+    if max(a, b) > SAME_SIZE * min(a, b): return f'the spot changed size ({b} -> {a} {key})'
+    return ''
+
+
+def keep_old_rows(new, old, today=None, final=True, carry=None):
+    """KPC owner, 2026-11-15 (DEFAULT, owner question 1: keep the old row; saved PAD-US answers are not used yet). Never replace a good
+    copy with a worse one: a row this store run left NOT SURE only because closed areas / ownership were not checked
+    ('store_not_checked', set by closed_status() / owner_status()) is replaced by the last good copy of the SAME spot, tagged
+    'kept: not checked in a store run' with the reason. The good copy is the previous file's live candidate row of the same id (else
+    the only live row of the same pair and kind), and it is used only when same_spot() says it is the same place and size: a spot
+    that moved or changed size keeps this run's NOT SURE row. A row the store run decided (water only, dropped, any other not-sure
+    reason, the water not checked either) carries no mark and is never replaced; a row that was not a live candidate is never
+    brought back (so a row not kept once is never kept by a later run).
+    carry = {row id: good copy}: passes 1 and 2 rewrite every row ('pass 1', 'pass 2') before pass 3 decides it, so the good copies
+    travel from pass to pass in a side file outside the data folder (install: store_prev_file), never in a row; carry is filled for
+    the next pass (final=False) and not used after the final pass. Returns the number of rows kept."""
+    if not isinstance(new, dict): return 0
+    carry_in = dict(carry or {})
+    if carry is not None: carry.clear()
+    olds = [x for x in (old or {}).get('spots') or [] if isinstance(x, dict) and _live(x)] if isinstance(old, dict) else []
+    by_id = {x.get('id'): x for x in olds if x.get('id')}
+    by_pk = {}
+    for x in olds: by_pk.setdefault(_pk(x), []).append(x)
+    c_pk = {}
+    for v in carry_in.values():
+        if isinstance(v, dict): c_pk.setdefault(_pk(v), []).append(v)
+    used, n, spots = set(), 0, new.get('spots') or []
+    for i, x in enumerate(spots):
+        if not isinstance(x, dict): continue
+        x.pop('store_prev', None)
+        prev = carry_in.get(x.get('id')) if isinstance(carry_in.get(x.get('id')), dict) and _pk(carry_in[x.get('id')]) == _pk(x) else None
+        if prev is None and len(c_pk.get(_pk(x)) or []) == 1: prev = c_pk[_pk(x)][0]
+        if prev is None:
+            o = _old_match(x, by_id, by_pk)
+            prev = _prev_of(o) if o is not None and id(o) not in used else None
+            if prev is not None: used.add(id(o))
+        if prev is not None and x.get('store_not_checked') and str(x.get('status') or '').startswith('not sure') and _good(prev):
+            why = same_spot(x, prev)
+            if why: x['not_kept'] = f'the last candidate row is not this spot ({why}): this run\'s answer stands'
+            else:
+                k = json.loads(json.dumps(prev))
+                k['kept'] = KEPT_TAG
+                k['kept_why'] = f"{x['store_not_checked']} not checked in a store run (this run said: {str(x.get('status'))[:160]})"
+                k['kept_on'] = today or True
+                spots[i] = k; n += 1
+                if carry is not None and not final and k.get('id'): carry[k['id']] = prev
+                continue
+        if carry is not None and not final and prev is not None and _live(x) and x.get('id'): carry[x['id']] = prev
+    KEPT['n'] += n
+    return n
+
+
+def store_prev_file(KF, area):
+    """Where the good copies of a store run's rows wait between passes: the private folder (a private run's own folder, or
+    KPC_FERS_PRIVATE_LOG on a public run), else KPC_FERS_LIVE_DIR (cache/fers), never under the data folder kpc_fers.py writes
+    (data/fers is published). None when no such folder exists (then only the previous file is compared, as in pass 3)."""
+    if PRIVATE_OUT is not None: return pathlib.Path(PRIVATE_OUT) / 'store-prev' / f'{area}.json'   # a private run: its own folder only
+    out = pathlib.Path(getattr(KF, 'OUT', 'data/fers')).resolve()
+    for base in (PRIVATE_LOG_DIR, os.environ.get('KPC_FERS_LIVE_DIR') or 'cache/fers'):
+        if not base: continue
+        d = pathlib.Path(base).resolve() / 'store-prev'
+        if _inside(d, out) or _inside(out, d): continue
+        return d / f'{area}.json'
+    return None
+
+
+def _read_json(p):
+    try: return json.loads(pathlib.Path(p).read_text(encoding='utf-8'))
+    except Exception: return {}  # noqa: BLE001
+
+
+def _write_carry(p, carry):
+    p = pathlib.Path(p)
+    try:
+        if not carry: p.unlink(missing_ok=True); return
+        p.parent.mkdir(parents=True, exist_ok=True); p.write_text(json.dumps(carry, ensure_ascii=False), encoding='utf-8')
+    except OSError: pass
 
 
 def join_review(row, flags, joined):
@@ -600,7 +781,7 @@ def store_download(KF, store, parks, refs, budget=2_000_000):
     ok, bad, boxes, corr, clips = [], set(), {}, {}, {}
     for ref in [r for r in refs if r not in KF.PCT and r not in _apx]:
         p = parks[ref]
-        if 'm' in p:
+        if 'm' in p and not WORLD_ON['on']:
             bad.add(ref); FLAGS[ref] = 'world park: not read from the outline store'; KF.MISSING_SAVED[ref] = 'the outline store (world parks are not read from it)'; continue
         ids = list(p['ids'])
         if ids and all(re.fullmatch(r'wsrc\d+', str(i)) and str(i) in KF.SAVED_STR for i in ids):   # a corridor park: the saved copy, as today
@@ -668,6 +849,95 @@ def secret_refs():
     return (HELD_PRIVATE | set(PRIVATE)) - READ_OK
 
 
+# the name guard (grade of #201): words that never make a name distinctive on their own (park kinds and plain place words)
+COMMON_NAME_WORDS = frozenset((
+    'the of and at on in de du des la le les el los las st saint ste mt mount fort ft '
+    'park parks state national provincial regional county city municipal community memorial historic historical heritage site sites '
+    'area areas recreation recreational wildlife management wma game fish land lands forest forests nf woods wood preserve reserve '
+    'nature natural conservation refuge sanctuary wilderness scenic monument battlefield trail trails greenway river rivers creek '
+    'lake lakes pond reservoir dam island islands beach bay coast shore marsh swamp wetland wetlands mountain mountains hill hills '
+    'valley canyon falls spring springs north south east west upper lower big little new old grand great green').split())
+
+
+def norm_name(t):
+    """Case, accents, hyphens, spacing and punctuation all fold away: 'Zxsecret-Inner  Park' -> 'zxsecret inner park'."""
+    import unicodedata
+    t = unicodedata.normalize('NFKD', str(t or ''))
+    t = ''.join(c for c in t if not unicodedata.combining(c)).lower()
+    return ' '.join(re.findall(r'[a-z0-9]+', t))
+
+
+def distinctive(n):
+    """A name the guard looks for: at least two words, and at least one word that is not a common park / place word (so 'Park',
+    'Lake Park' or 'State Park' never stop a run)."""
+    w = n.split()
+    return len(w) >= 2 and any(x not in COMMON_NAME_WORDS and not x.isdigit() for x in w)
+
+
+NAMES = {}          # ref -> the park's name as the store gives it (index entry or park piece): to find a secret park's NAME in text
+KF_REF = {'kf': None}   # install(): the kpc_fers module (its POTA pin list gives the other names)
+_NAME_CACHE = {}
+
+
+def _all_names():
+    """ref -> normalised names, for every park known to this run (the store and kpc_fers.py's POTA pin list)."""
+    pins = getattr(KF_REF['kf'], 'PINS', None) or {}
+    out = {}
+    for r, v in pins.items():
+        if isinstance(v, (list, tuple)) and v and isinstance(v[0], str): out.setdefault(r, set()).add(norm_name(v[0]))
+    for r, n in NAMES.items(): out.setdefault(r, set()).add(norm_name(n))
+    return out
+
+
+def secret_names(refs=None):
+    """(the normalised names a public file must never carry, the public names that contain one of them). A name is looked for only
+    when it is distinctive() and NO park outside the secret set has the same name (a public namesake: the ref guard still protects
+    the withheld park). Public names that contain a secret name (secret 'Pine Ridge', public 'Pine Ridge Forest') are masked before
+    the scan, so they never stop a run."""
+    sec = set(secret_refs() if refs is None else refs)
+    if not sec: return set(), set()
+    key = (frozenset(sec), len(NAMES), len(getattr(KF_REF['kf'], 'PINS', None) or {}))
+    if key in _NAME_CACHE: return _NAME_CACHE[key]
+    allm = _all_names()
+    pub = {n for r, ns in allm.items() if r not in sec for n in ns if n}
+    out = {n for r in sec for n in allm.get(r, ()) if n and distinctive(n) and n not in pub}
+    mask = {p for p in pub for n in out if f' {n} ' in f' {p} '}
+    _NAME_CACHE.clear(); _NAME_CACHE[key] = (out, mask)
+    return out, mask
+
+
+def _no_ref_names(obj):
+    """obj without the ref-keyed 'names' maps of rows ({ref: name}): those are checked by ref (a public park whose name equals a
+    secret park's must not stop the run); every other text is scanned for secret names."""
+    if isinstance(obj, dict):
+        return {k: _no_ref_names(v) for k, v in obj.items()
+                if not (k == 'names' and isinstance(v, dict) and all(REFLIKE.match(str(x)) for x in v))}
+    if isinstance(obj, (list, tuple)): return [_no_ref_names(v) for v in obj]
+    return obj
+
+
+def _strings(obj):
+    st = [obj]
+    while st:
+        o = st.pop()
+        if isinstance(o, str): yield o
+        elif isinstance(o, dict): st.extend(o.values()); st.extend(k for k in o if isinstance(k, str))
+        elif isinstance(o, (list, tuple)): st.extend(o)
+
+
+def name_hits(doc, names, mask):
+    """The secret names found in any text of doc: whole words, after norm_name on both sides, masked public names taken out first."""
+    hits = set()
+    if not names: return hits
+    for t in _strings(_no_ref_names(doc)):
+        n = f' {norm_name(t)} '
+        for m in sorted(mask, key=len, reverse=True):
+            while f' {m} ' in n: n = n.replace(f' {m} ', ' ')
+        for x in names:
+            if f' {x} ' in n: hits.add(x)
+    return hits
+
+
 def _ref_rx(refs):
     refs = sorted({str(r) for r in refs if r}, key=len, reverse=True)
     return re.compile('(?:' + '|'.join(re.escape(r) for r in refs) + r')(?!\d)', re.I) if refs else None
@@ -732,6 +1002,12 @@ def guard_write(path, doc, private=None):
     if rx is not None:
         for m in sorted({m.group(0).upper() for m in rx.finditer(txt)}):
             probs.append(f'{path}: it names {m}, held or used for records that are not publishable'); kinds.add('park with unpublishable records')
+    # grade of #201 (item 3): a secret park's NAME in any text (a note of a carried old row, a log line), not only its ref
+    nm, mask = secret_names(private)
+    for m in sorted(name_hits(doc, nm, mask)):
+        probs.append(f'{path}: it names the park "{m}", held or used for records that are not publishable'); kinds.add('park name with unpublishable records')
+    if any('store_prev' in d for d in _dicts(doc)):
+        probs.append(f'{path}: a row carries a store_prev copy (it stays in the side file)'); kinds.add('carried copy in a row')
     if probs: raise LeakRefused(probs, kinds)
 
 
@@ -772,6 +1048,7 @@ def shut_door(KF):
             finally: KF.pad_closed = _no_closed
             if asked:   # the overlap needed the closed-area check and it could not run: never confirmed
                 CLOSED_NOT_CHECKED['n'] += 1
+                s['closed_check_water'] = r   # what the rest of the land check said ('ok' / 'water' / 'not checked'): only 'ok' may keep an old row
                 s['closed_check'] = 'not checked: ' + CLOSED_WHY + ('; the water was not checked either' if r == 'not checked' else '')
                 return 'not checked'
             return r
@@ -793,6 +1070,10 @@ def shut_door(KF):
     raw = getattr(KF, '_save_json_raw', None)
     if raw is not None and not getattr(raw, '_store', False):
         def guarded(p, d, *a, **k):
+            m = AREA_FILE.fullmatch(pathlib.Path(p).name)
+            off = AREA_OFF['fn'](m.group(1)) if m and AREA_OFF['fn'] is not None else ''
+            if off:   # an area that does not use the store in this run (except list, not held, stale ...): its file stays as it was
+                SKIPPED_FILES[m.group(1)] = off; return None
             if isinstance(d, dict) and pathlib.Path(p).name.startswith('report') and STORE_ON: d = dict(d, outline_store=store_counts())
             if PRIVATE_OUT is None:   # a public file: a park held or used for unpublishable / WDPA records is left out (counted only)
                 d, n = redact(d); WITHHELD['items'] += n
@@ -909,7 +1190,8 @@ def store_counts():
     return {'records left out of area outlines (not area)': dict(sorted(tot.items())), 'parks with records left out': len(GEOM_SKIPPED),
             'line parks read from the store': len(STORE_LINES), 'line parks skipped (by-name / coarse / no bank status)': len(LINE_SKIPPED), 'line parks as on main (coarse NPS routes)': len(MAIN_LINES), 'live pairs on the 100-ft line rule': dict(sorted(LINE_ROWS.items())),
             'water tiles': dict(WATER_READ), 'river rule with no bank data': dict(RIVER_NO_BANK), 'river tiers': dict(RIVER_TIERS),
-            'river bank to-do (stretches)': len(RIVER_TODO)}
+            'river bank to-do (stretches)': len(RIVER_TODO), 'rows kept (kept: not checked in a store run)': KEPT['n'],
+            'area files left as they were (area does not use the store)': len(SKIPPED_FILES)}
 
 
 def river_bank_guard(KF, mode):
@@ -1076,6 +1358,7 @@ def scan_private(st, areas):
         if a is None: continue
         for ref, e in list(a.entries.items()) + [(r, None) for r in a.bad]:
             if e is None: continue
+            if isinstance(e.get('name'), str): NAMES.setdefault(ref, e['name'])
             rm = e.get('record_meta') if isinstance(e.get('record_meta'), dict) else None
             secret = e.get('park_publishable') is False
             if rm:
@@ -1152,18 +1435,59 @@ def bank_check(KF):
     KF.line_spots = line_spots
 
 
+def store_areas(path=None):
+    """.github/fers-store-areas.json -> {'all': bool, 'list': set, 'except': {area: why}, 'world': bool}, or None with the reason
+    when the file is missing or not in the one shape this reader knows (fail closed: then no area uses the store)."""
+    p = pathlib.Path(path or STORE_AREAS_FILE)
+    try: doc = json.loads(p.read_text(encoding='utf-8'))
+    except Exception as e: return None, f'{p.name} cannot be read ({_err(e)})'  # noqa: BLE001
+    if not isinstance(doc, dict): return None, f'{p.name} is not an object'
+    a, ex, w = doc.get('areas'), doc.get('except', []), doc.get('world', 'off')
+    if not (a == STORE_ALL or (isinstance(a, list) and all(isinstance(x, str) and STORE_AREA_RX.fullmatch(x) for x in a))):
+        return None, f'{p.name}: "areas" must be "{STORE_ALL}" or a list of US / Canadian area codes'
+    if not (isinstance(ex, list) and all(isinstance(x, str) and re.fullmatch(r'(US|CA|W)-[A-Z]{2}', x) for x in ex)):
+        return None, f'{p.name}: "except" must be a list of area codes'
+    if w not in ('on', 'off'): return None, f'{p.name}: "world" must be "on" or "off"'
+    return {'all': a == STORE_ALL, 'list': set(a) if isinstance(a, list) else set(), 'except': set(ex), 'world': w == 'on'}, ''
+
+
+def area_use(area, cfg):
+    """'' when this area may be read from the store, else the plain reason it is not."""
+    if area in NEVER_STORE: return NEVER_STORE[area]
+    if area in cfg['except']: return 'on the except list of .github/fers-store-areas.json: it stays on the old path (run it with the switch off)'
+    if re.fullmatch(r'W-[A-Z]{2}', area):
+        return '' if cfg['world'] else 'world areas are switched off in .github/fers-store-areas.json ("world": "off")'
+    if not STORE_AREA_RX.fullmatch(area): return 'not a US, Canadian or world area code'
+    if cfg['all'] or area in cfg['list']: return ''
+    return 'not listed in .github/fers-store-areas.json'
+
+
 def install(KF, env=None, store=None):
     """Switch the imported kpc_fers module to the store for this process. False (nothing changed; the bot runs as today) when
-    the switch is off or the run is not US + Canada. Exits 87 / 88 (after writing the area rows) when an area is not ready or
-    will not fit. Nothing is unpacked here."""
+    the switch is off, the run is Kentucky's, the run is the world's with the world switch off, or every named area is on the
+    except list. An area of the run that may not use the store, or that the store does not hold (no index, another format, stale,
+    damaged), is left out of this run with its reason (its row in store-missing-<tag>.json; it keeps its previous files). Exits
+    87 when no area is left (or the list cannot be read, or the run names no area), 88 when the run will not fit, 89 when a world
+    store run is not a private store run. Nothing is unpacked here."""
     global STORE_ON
     env = os.environ if env is None else env
     if mode(env) != 'on': return False
-    if getattr(KF, 'REGION', 'na') != 'na':
+    if getattr(KF, '_STORE_INSTALLED', False): return True   # once per process (kpc_fers_store.py run + the hook in kpc_fers.main())
+    region = getattr(KF, 'REGION', 'na')
+    cfg, cfg_why = store_areas()
+    world_on = region == 'world' and cfg is not None and cfg['world']
+    if region != 'na' and not world_on:
         print(f'::notice title=2-fer outline store::{SWITCH} is on, but this is the {KF.REGION} run: the outline store is not used and the bot runs as today', flush=True)
         return False
     global PRIVATE_OUT, PRIVATE_LOG_DIR
+    KF_REF['kf'] = KF
     st = store or Store.from_env(env)
+    if world_on and st.kind != 'private':
+        # world 2-fers are club room only (kpc_fers_publish.py and the write guard refuse world rows in a public file): a world
+        # store run is a private store run or nothing
+        public_print('::error title=2-fer outline store::a world store run must be a private store run (KPC_FERS_STORE_KIND=private): world 2-fers '
+                     'are club room only. Nothing was read or saved.')
+        raise SystemExit(EXIT_LEAK)
     if st.kind == 'private' and str(env.get('GITHUB_ACTIONS') or '').strip().lower() == 'true' and str(env.get('KPC_FERS_PRIVATE_RUNNER') or '').strip() != '1':
         # the log of a GitHub Actions run of a public repo is public: a private store run there only on a runner named private
         public_print('::error title=2-fer outline store::private store run refused under GitHub Actions: set KPC_FERS_PRIVATE_RUNNER=1 '
@@ -1197,7 +1521,7 @@ def install(KF, env=None, store=None):
         doc = {'about': 'Outline store use by the 2-fer bot: one row per area (ready / not ready / will not fit) and every held park with its reason. '
                         'A park held or used for records that are not publishable (licence) or are WDPA-derived is never named here: only counted. One door in: only the store filler fetches.',
                'date': st.today, 'kind': st.kind, 'areas': dict(sorted(AREA_ROWS.items())), 'parks': dict(sorted(FLAGS.items())),
-               **store_counts()}
+               **store_counts(), 'area files left as they were': dict(sorted(SKIPPED_FILES.items()))}
         if st.kind == 'private': doc['store'] = str(st.dir); doc['private_records'] = dict(sorted(PRIVATE.items())); doc['river_bank_todo'] = RIVER_TODO
         else:
             doc, n = redact(doc); WITHHELD['items'] += n
@@ -1210,20 +1534,65 @@ def install(KF, env=None, store=None):
             out_dir.mkdir(parents=True, exist_ok=True)
             p.write_text(json.dumps(doc, indent=1, ensure_ascii=False), encoding='utf-8')
         except OSError: pass
-    areas = sorted(a for a in (getattr(KF, 'ONLY', None) or ()) if re.fullmatch(r'(US|CA)-[A-Z]{2}', a))
-    if st.kind != 'private': scan_private(st, areas)   # every park of the areas, read or not
+    area_rx = r'W-[A-Z]{2}' if world_on else r'(US|CA)-[A-Z]{2}'
+    named = sorted(getattr(KF, 'ONLY', None) or ())
+    areas = sorted(a for a in named if re.fullmatch(area_rx, a))
+    if cfg is None or not areas:
+        why = (f'the store area list cannot be used: {cfg_why}' if cfg is None else
+               'no area named (STATES): a store run names its areas, so an area on the old path is never rewritten from the store')
+        for a in areas or ['(none)']: AREA_ROWS[a] = {'verdict': 'NOT READY', 'why': why}
+        write_rows()
+        public_print(f'::error title=2-fer outline store::{why}. Nothing of this run is read or saved.')
+        raise SystemExit(EXIT_NOT_READY)
+    st.allow = lambda a: area_use(a, cfg)
+    off = {a: area_use(a, cfg) for a in areas if area_use(a, cfg)}
+    if len(off) == len(areas):   # every named area stays on the old path: the bot runs as today for all of them
+        st.allow = None
+        public_print(f'::notice title=2-fer outline store::{SWITCH} is on, but no area of this run uses the store (' + '; '.join(f'{a}: {w}' for a, w in sorted(off.items()))
+                     + '): the bot runs as today')
+        return False
+    for a, w in off.items(): AREA_ROWS[a] = {'verdict': 'NOT USED', 'why': w}
+    for a in areas:   # an area the store does not hold (or cannot be read / is stale / another format) is left out with its reason
+        if a not in off and st.area(a) is None: AREA_ROWS[a] = {'verdict': 'NOT READY', 'why': st.why[a]}
+    ready = [a for a in areas if a not in AREA_ROWS]
+    if not ready:
+        write_rows()
+        for a, r in sorted(AREA_ROWS.items()): public_print(f"::error title=2-fer outline store::{a}: {r['verdict']}: {r['why']}. Nothing of this run is read or saved; the area keeps its previous files.")
+        raise SystemExit(EXIT_NOT_READY)
+    if st.kind != 'private': scan_private(st, ready)   # every park of the areas, read or not
     lazy = bool(getattr(KF, 'FERS_LAZY_OK', False))   # set by the switch-over in kpc_fers.py once every pass keeps G lazy
     budget = int(env.get('KPC_FERS_STORE_BUDGET') or 2_000_000)
-    ok, rows = fit_check(st, areas, int(env.get('KPC_FERS_STORE_LIMIT_MB') or 3000), budget,
-                         env_float(env, 'KPC_FERS_STORE_NEIGHBOURS', 1.5, 10.0), lazy) if areas else (True, {})
+    ok, rows = fit_check(st, ready, int(env.get('KPC_FERS_STORE_LIMIT_MB') or 3000), budget, env_float(env, 'KPC_FERS_STORE_NEIGHBOURS', 1.5, 10.0), lazy)
     AREA_ROWS.update(rows)
-    if not areas: public_print('::warning title=2-fer outline store::no member states named (STATES): the memory gate could not run')
-    bad_area = {a: r for a, r in rows.items() if r['verdict'] == 'NOT READY'}
-    if bad_area or not ok:
+    if not ok:
         write_rows()
         for a, r in sorted(rows.items()):
             if r['verdict'] != 'READY': public_print(f"::error title=2-fer outline store::{a}: {r['verdict']}: {r['why']}. Nothing of this run is read or saved; the area keeps its previous files.")
-        raise SystemExit(EXIT_NOT_READY if bad_area else EXIT_WONT_FIT)
+        raise SystemExit(EXIT_WONT_FIT)
+    if len(ready) < len(areas):   # this run goes on with the areas the store can serve; the others keep their previous files
+        if not str(getattr(KF, 'RUN_TAG', '') or ''): KF.RUN_TAG = tag   # the run's file names do not move
+        KF.ONLY = set(ready) | (set(named) - set(areas))
+        for a in sorted(set(areas) - set(ready)):
+            public_print(f"::warning title=2-fer outline store::{a}: {AREA_ROWS[a]['verdict']}: {AREA_ROWS[a]['why']}. Left out of this run; the area keeps its previous files.")
+    areas = ready
+    WORLD_ON['on'] = world_on
+    def area_off(a):   # also a border area of this run: a spot file of an area that does not use the store is never rewritten
+        if a in areas: return ''
+        return area_use(a, cfg) or ('' if st.area(a) is not None else st.why.get(a) or 'not read')
+    AREA_OFF['fn'] = area_off
+    # grade of #201 (item 5): the declared scope is 'none' (an ordinary switch-off run re-tests nothing). A store run stamps the parks
+    # of the areas it runs from the store with this change's id, so their pairs are tested again on the first store run only
+    orig_stamp = getattr(KF, 'rule_stamp', None)
+    if orig_stamp is not None and not getattr(orig_stamp, '_store', False):
+        def rule_stamp(r):
+            out = list(orig_stamp(r))
+            p_ = (getattr(KF, 'PINS', None) or {}).get(r) or ()
+            a_ = str(p_[5]) if len(p_) > 5 else ''
+            a_ = a_ if a_.startswith(('CA-', 'W-', 'US-')) else ('US-' + a_ if a_ else '')
+            if a_ in areas: out.append(STORE_STAMP)
+            return out
+        rule_stamp._store = True
+        KF.rule_stamp = rule_stamp
     orig_tag = KF.pc_tag
 
     def download(parks, refs, det, prec):   # det / prec are ignored: the store's detail (about 2 m, 6 decimals) in every pass
@@ -1247,8 +1616,15 @@ def install(KF, env=None, store=None):
                 if n: KF.LOG.append(f"{d['st']}: {n} live rows of the last file carried with their reason (held park or not found again)")
                 tag_club_room(d, PRIVATE)
                 closed_status(d)
+                owner_status(d)
                 line_status(KF, d)
                 if RIVER_NO_BANK['mode'] == 'tiers': bank_status(d)
+                final = int(getattr(KF, 'PASS', 3)) >= 3
+                cf = store_prev_file(KF, d['st'])
+                carry = _read_json(cf) if cf is not None else {}
+                k = keep_old_rows(d, old, st.today, final=final, carry=carry)
+                if cf is not None: _write_carry(cf, carry if not final else None)
+                if k: KF.LOG.append(f"{d['st']}: {k} candidate rows kept from the last file ({KEPT_TAG}: closed areas / ownership)")
                 LINE_ROWS[d['st']] = sum(1 for x in d.get('spots') or [] if x.get('kind') in ('trail', 'river') and _live(x))
         except Exception as e: KF.LOG.append(f'outline store row carry: {str(e)[:80]}')  # noqa: BLE001  (the write guard still checks the file)
         return d
@@ -1258,7 +1634,7 @@ def install(KF, env=None, store=None):
     bank_check(KF)
     river_bank_guard(KF, river_mode(env))
     orig_lines, orig_wload = getattr(KF, 'trail_lines', None), getattr(KF, '_wload', None)
-    if orig_lines is not None: KF.trail_lines = lambda: store_lines(KF, st, areas, orig_lines())
+    if orig_lines is not None and not world_on: KF.trail_lines = lambda: store_lines(KF, st, areas, orig_lines())   # world: no store lines (no line rule wired for world store areas)
     if orig_wload is not None:   # the store's water tile first; else the bot's own last good copy (WATER_STORE) as today; damaged = NOT SURE
         KF._wload = water_reader(st, areas, orig_wload)
     orig_ml = getattr(KF, 'missing_list', None)
@@ -1270,7 +1646,7 @@ def install(KF, env=None, store=None):
             return out
         KF.missing_list = missing_list
     KF.download, KF.saved_us, KF.saved_ca, KF.live_load, KF.pc_tag = download, (lambda parks: saved_corridors(KF)), saved_ca, live_load, pc_tag
-    KF.STORE = st; STORE_ON = True
+    KF.STORE = st; STORE_ON = True; KF._STORE_INSTALLED = True
     def rows_at_exit():
         try: write_rows()
         except LeakRefused: sys.stdout.flush(); sys.stderr.flush(); os._exit(EXIT_LEAK)   # at exit too: the run fails, nothing written
@@ -1403,9 +1779,9 @@ def main(argv=None):
         if mode() != 'on': print(f'{SWITCH} is not on: this command runs only the store path (use kpc_fers.py for the normal run)'); return 2
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import kpc_fers as KF
-        if KF.REGION != 'na': print(f'the {KF.REGION} run does not use the outline store: use kpc_fers.py'); return 2
-        install(KF)
-        KF.main()
+        cfg, _ = store_areas()
+        if KF.REGION != 'na' and not (KF.REGION == 'world' and cfg and cfg['world']): print(f'the {KF.REGION} run does not use the outline store: use kpc_fers.py'); return 2
+        KF.main()   # the hook at the top of kpc_fers.main() installs the store (once)
         return 0
     print(f'unknown command {cmd!r}'); return 2
 

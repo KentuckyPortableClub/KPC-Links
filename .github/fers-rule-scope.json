@@ -98,6 +98,14 @@
         ]
       },
       "approved": "APPROVED, decided_by KPC owner, 2026-11-14"
+    },
+    {
+      "id": "2026-11-15-store-switch",
+      "when": "2026-11-15",
+      "from": "d0064c860cba",
+      "why": "The outline store switch-over. With KPC_FERS_FROM_STORE off (every ordinary run) no 2-fer answer and no pair fingerprint changes, so no pair is tested again (scope none, like 2026-11-11-area-boxes-time). With it on, a US or Canadian run reads park outlines, line parks' lines and water tiles from the outline store for the areas .github/fers-store-areas.json allows (all US and Canadian areas, an except list, US-KY never); an area the store does not hold is left out of the run with its reason. A store run stamps the parks of the areas it runs from the store with this id (kpc_fers_store.install wraps rule_stamp), so exactly those pairs are tested again, once, on their first store run. A live candidate row that a store run would turn NOT SURE only because the PAD-US closed areas or the ownership map could not be checked keeps its old row when it is the same spot (same place, size within 25 percent), tagged 'kept: not checked in a store run'. World areas are in the code behind their own switch, off (\"world\": \"off\"): no world pair is touched.",
+      "scope": "none",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-15"
     }
   ]
 }

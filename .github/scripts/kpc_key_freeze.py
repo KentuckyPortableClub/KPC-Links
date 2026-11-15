@@ -50,7 +50,9 @@ RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_k
               'fers': ['.github/scripts/kpc_fers.py', '.github/scripts/kpc_owned.py', '.github/scripts/kpc_fers_key_status.py',
                        '.github/scripts/kpc_fers_guard.py', '.github/scripts/kpc_fers_count.py', '.github/scripts/kpc_fers_ready.py',
                        '.github/scripts/kpc_fers_preline.py',  # Nov 8 Quality should-fix: preline HOLDs non-ready areas (affects which pairs count)
-                       '.github/fers-ready-areas.json']}
+                       '.github/fers-ready-areas.json',
+                       # Nov 15 (KPC owner, 2026-11-15; switch-over): the store reader kpc_fers.main() now calls, and its area list
+                       '.github/scripts/kpc_fers_store.py', '.github/fers-store-areas.json']}
 # Nov 9 evening (Brandon t915u, 4:40 PM CST; KZ4CP 5:12 PM CST): every rule change DECLARES what it touches, in a scope file that is part
 # of that key's rules hash (so a scope edit moves the hash and is visible). A rules change rebuilds only the declared states; a park
 # with saved record ids keeps its result (kpc_us_key.py); a full rebuild ('states: all' by hand) is for emergencies only.
@@ -121,10 +123,8 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              'kpc_net_guard.py', 'kpc_preflight.py',
              # Nov 13 (KPC owner, 2026-11-13): the shared park-to-outline matcher, stage 1: added alongside, imported by no key, bot or
              # workflow yet, so it decides no join today. Wiring it into a key is a later PR that must move it into that key's RULE_FILES.
-             'kpc_matcher.py',
-             # Nov 13 (KPC owner, 2026-11-13): 2-fer outlines from the outline store, OFF by default and called by nothing yet; the
-             # switch-over PR adds the hook to kpc_fers.py and moves this file into the 2-fer RULE_FILES (one declared hash move)
-             'kpc_fers_store.py'}
+             'kpc_matcher.py'}
+             # Nov 15 (KPC owner, 2026-11-15): kpc_fers_store.py left this list for the 2-fer RULE_FILES (the switch-over hook)
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
 NOT_PERSONS = ('quality', 'super', 'mapping', 'chat 11', 'chat11', 'bot')
