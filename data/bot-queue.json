@@ -3,15 +3,6 @@
  "until": "2027-06-30T00:00:00Z",
  "jobs": [
   {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
-    "states": "CA HI MA MT NV SC WA"
-   },
-   "why": "US outlines, live refresh: CA HI MA MT NV SC WA",
-   "every": 14,
-   "next": "2026-11-15T09:28+00:00"
-  },
-  {
    "wf": "kpc-world-key.yml",
    "inputs": {
     "countries": "AU DE GB JP PL ES FR CH AT IT SE HU DK PT EE",
@@ -81,6 +72,15 @@
    "why": "US outlines, live refresh: AZ GA LA MS NM RI VT",
    "every": 14,
    "next": "2026-11-27T07:04+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "CA HI MA MT NV SC WA"
+   },
+   "why": "US outlines, live refresh: CA HI MA MT NV SC WA",
+   "every": 14,
+   "next": "2026-11-29T09:38+00:00"
   }
  ]
 }
