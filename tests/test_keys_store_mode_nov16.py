@@ -137,13 +137,13 @@ for wf, script in KEYS.items():
     geo = [str((st.get('env') or {}).get('GEO_CACHE_MODE')) for st in steps_calling if (st.get('env') or {}).get('GEO_CACHE_MODE')]
     check(f'{wf}: the build step sets GEO_CACHE_MODE=only in store mode', geo and all(g.startswith("${{ vars.KPC_KEY_SOURCE == 'store' && 'only' ||") for g in geo))
     # (e) unset = as today (838fee6), while this change is the only edit to the file since
-    r = subprocess.run(['git', 'log', '--format=%H', '838fee6..HEAD', '--', f'.github/workflows/{wf}'], cwd=ROOT, capture_output=True, text=True)
+    r = subprocess.run(['git', 'log', '--format=%s', '838fee6..HEAD', '--', f'.github/workflows/{wf}'], cwd=ROOT, capture_output=True, text=True)
     old = subprocess.run(['git', 'show', f'838fee6:.github/workflows/{wf}'], cwd=ROOT, capture_output=True, text=True)
-    edits = len(r.stdout.split()) + (1 if subprocess.run(['git', 'diff', '--quiet', 'HEAD', '--', f'.github/workflows/{wf}'], cwd=ROOT).returncode else 0)
+    edits = sum(1 for x in r.stdout.splitlines() if 'store mode' not in x.lower()) + 1   # edits since 838fee6 that are not this change (+1 = this change)
     if r.returncode != 0 or old.returncode != 0:
         print(f'note {wf}: 838fee6 is not in this clone; the unset-equals-before check is left out')
     elif edits > 1:
-        print(f'note {wf}: edited again after the store-mode change ({edits} edits); the unset-equals-before check was made at that change')
+        print(f'note {wf}: edited by {edits - 1} other change(s) since 838fee6; the unset-equals-before check was made at the store-mode change')
     else:
         a = norm_if(yaml.safe_load(old.stdout)); b = norm_if(strip_added(yaml.safe_load(unset(raw))))
         same = a == b
