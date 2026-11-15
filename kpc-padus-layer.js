@@ -548,6 +548,80 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     if (map.hasLayer(host)) group.addTo(map);
   }
 
+  /* Nov 15 (map store hook, docs/map-from-store.md): the US state outlines may be drawn from the DISPLAY COPY (data/display/,
+     tools/kpc_display_copy.py) through kpc-outline-display.js. OFF BY DEFAULT: its LIVE_AREAS list is [], so only a visitor who
+     asks (?outlines=store, remembered; ?outlines=old turns it off) sees it. Drawing only: kpcKeyOutlines (shared with
+     kpc-bounds.js, "am I in the park") is never changed; the hook is used by the drawing below and nowhere else.
+     No page includes the loader: it is fetched only when the page already has it, or when the address / this browser asks
+     (?outlines=store | old, or localStorage kpcOutlineStore = '1'). Everybody else gets no new request at all.
+     Anything wrong (the loader does not load, no index, a part missing, a bad file) = today's pack, exactly as before. */
+  const STORE_JS = 'kpc-outline-display.js?v=20261115ms', STORE_KEY = 'kpcOutlineStore';
+  let storeJsP = null;
+  function storeAsked() {
+    try { const q = new URLSearchParams(location.search || '').get('outlines'); if (q === 'store' || q === 'old') return true; } catch (e) {}
+    try { return localStorage.getItem(STORE_KEY) === '1'; } catch (e) { return false; }
+  }
+  function storeLoader() {
+    if (window.kpcDisplayOutlines) return Promise.resolve(window.kpcDisplayOutlines);
+    if (!storeAsked()) return Promise.resolve(null);
+    return storeJsP || (storeJsP = new Promise(res => {
+      let t = 0;
+      const end = () => { clearTimeout(t); res(window.kpcDisplayOutlines || null); };
+      try {
+        const s = document.createElement('script'); s.src = STORE_JS; s.async = true; s.onload = end; s.onerror = end;
+        t = setTimeout(end, 10000); (document.head || document.documentElement).appendChild(s);
+      } catch (e) { end(); }
+    }));
+  }
+  /* today's pack (a promise) -> the store pack when the loader wants this area and has it, else today's pack, unchanged */
+  /* Nov 15 (grade fix): every store feature is checked before it is drawn: a plain-text ref, a geometry of an allowed type, and
+     every position two finite numbers in range (lines too). A park with ANY bad store feature is drawn from today's pack (all of
+     its store features left out, today's features put back); a pack that is not a list of features = today's pack, whole. */
+  const GEO_DEPTH = { Polygon: 3, MultiPolygon: 4, LineString: 2, MultiLineString: 3 };
+  function goodCoords(c, depth) {
+    if (!Array.isArray(c)) return false;
+    if (depth === 1) return c.length >= 2 && typeof c[0] === 'number' && typeof c[1] === 'number' && isFinite(c[0]) && isFinite(c[1]) && Math.abs(c[0]) <= 540 && Math.abs(c[1]) <= 90;
+    if (!c.length) return false;
+    for (let i = 0; i < c.length; i++) if (!goodCoords(c[i], depth - 1)) return false;
+    return true;
+  }
+  function goodFeat(f) {
+    const g = f && f.geometry, p = f && f.properties;
+    return !!(p && typeof p === 'object' && typeof p.ref === 'string' && p.ref && g && typeof g === 'object' &&
+              Object.prototype.hasOwnProperty.call(GEO_DEPTH, g.type) && goodCoords(g.coordinates, GEO_DEPTH[g.type]));
+  }
+  function cleanStorePack(p, old) {
+    const oldFs = (old && Array.isArray(old.features)) ? old.features : [], oldSet = new Set(oldFs);
+    if (!p || !Array.isArray(p.features)) return null;
+    const bad = {};
+    let nStore = 0;
+    for (const f of p.features) {
+      if (oldSet.has(f)) continue;                                   /* today's own feature, put in by merge() */
+      const r = f && f.properties && f.properties.ref;
+      if (typeof r !== 'string' || !r) return null;                   /* a store feature with no ref: the whole pack is suspect */
+      if (!goodFeat(f)) bad[r] = 1;
+      nStore++;
+    }
+    if (!nStore) return null;
+    if (!Object.keys(bad).length) return p;
+    const feats = p.features.filter(f => oldSet.has(f) || !bad[f.properties.ref]);
+    oldFs.forEach(f => { const r = f && f.properties && f.properties.ref; if (r && bad[r] && (f.properties.g !== 'pin') && feats.indexOf(f) < 0) feats.push(f); });
+    if (!feats.some(f => !oldSet.has(f))) return null;              /* nothing of the store left: today's pack as it is */
+    return Object.assign({}, p, { features: feats, by: undefined });
+  }
+  function storeOr(area, oldP) {
+    return storeLoader().then(D => {
+      if (!D || typeof D.wanted !== 'function' || !D.wanted(area)) return oldP;
+      return Promise.all([Promise.resolve(D.load(area, oldP)).catch(() => null), Promise.resolve(oldP).catch(() => null)]).then(([p, old]) => {
+        let q = null;
+        try { q = cleanStorePack(p, old); } catch (e) { q = null; }
+        if (!q) return old;
+        try { Object.defineProperty(q, '_old', { value: old, enumerable: false }); } catch (e) { return old; }
+        return q;
+      }, () => oldP);
+    }, () => oldP).catch(() => oldP);
+  }
+
   /* Nov 10: official outlines outside Kentucky come from published saved files only,
      drawn as thin SVG, never the PAD-US raster, and no new outline files are generated.
      US: data/outlines/US-XX.geojson.gz (states in view). Canada: data/canada-bounds/<REF>.json
@@ -567,8 +641,63 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     const group = useHost ? host : L.layerGroup();
     const loaded = {};
     const W = 2;
+    /* Nov 15: display-copy levels. drawn = the store features on the map (overview); when kpcDisplayOutlines.level() says a
+       park in view needs its middle or fine level, that level's lines are drawn and the overview line is hidden (its popup and
+       click target stay). Any failure, or a look that needs too much, = the overview stays, as drawn. */
+    const drawn = [], DETAIL_MAX = 12, HIDE = { opacity: 0 }, SHOW = { opacity: 0.95 };
+    let detailReq = 0;
+    function boxOf(g) {
+      let x0 = 180, y0 = 90, x1 = -180, y1 = -90;
+      const walk = o => { if (!Array.isArray(o)) return; if (typeof o[0] === 'number') { if (o[0] < x0) x0 = o[0]; if (o[0] > x1) x1 = o[0]; if (o[1] < y0) y0 = o[1]; if (o[1] > y1) y1 = o[1]; return; } o.forEach(walk); };
+      walk(g && g.coordinates);
+      return x0 <= x1 ? [x0, y0, x1, y1] : null;
+    }
+    function undetail(d) {
+      if (d.detail) { group.removeLayer(d.detail); d.detail = null; }
+      if (d.hidden) { try { d.l.setStyle(SHOW); } catch (e) {} d.hidden = false; }
+    }
+    function detail() {
+      const D = window.kpcDisplayOutlines;
+      if (!drawn.length || !D || !D.level || !map.getBounds) return;
+      const id = ++detailReq, z = map.getZoom(), b = map.getBounds(), c = map.getCenter();
+      const box = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
+      const inView = d => d.box && !(d.box[0] > box[2] || d.box[2] < box[0] || d.box[1] > box[3] || d.box[3] < box[1]);
+      let n = 0;
+      drawn.forEach(d => {
+        const want = inView(d) && n < DETAIL_MAX ? (function () { try { return D.level(d.pack, d.f, z, c.lat); } catch (e) { return 'overview'; } })() : 'overview';
+        if (want === 'overview') { undetail(d); return; }
+        n++;
+        const ref = (d.f.properties || {}).ref;
+        const got = want === 'mid' ? D.mid(d.area, ref).then(f => (f ? [f] : [])) : D.fine(d.area, ref, box);
+        Promise.resolve(got).then(fs => {
+          if (id !== detailReq) return;
+          fs = (fs || []).filter(f => goodFeat(f) && /LineString$/.test(f.geometry.type));
+          if (!fs.length) {
+            if (want === 'fine') return D.mid(d.area, ref).then(f => { if (id === detailReq) put(d, goodFeat(f) ? [f] : []); });   /* too much for one look: the middle level */
+            return put(d, []);
+          }
+          put(d, fs);
+        }).catch(() => { if (id === detailReq) undetail(d); });
+      });
+    }
+    function put(d, fs) {
+      undetail(d);
+      if (!fs.length) return;
+      try { putNow(d, fs); } catch (e) { undetail(d); }
+    }
+    function putNow(d, fs) {
+      d.detail = L.geoJSON({ type: 'FeatureCollection', features: fs }, { pane: 'usoff', renderer: rend, interactive: false,
+        style: () => ({ color: '#c9a227', weight: W, opacity: 0.95, fill: false, interactive: false, className: 'kpc-usoff' }) });
+      group.addLayer(d.detail);
+      try { d.l.setStyle(HIDE); } catch (e) {}
+      d.hidden = true;
+    }
     const style = f => {
-      const g = (f.properties || {}).g;
+      const g = (f.properties || {}).g, role = (f.properties || {}).role;
+      /* Nov 15: display-copy features (only in a store pack): 'hit' = the park's drawn tracts, clicks only (no line of its own);
+         'line' = the drawn boundary or official line (no fill) */
+      if (role === 'hit') return { stroke: false, fill: true, fillColor: '#c9a227', fillOpacity: 0, className: 'kpc-usoff' };
+      if (role === 'line') return { color: '#c9a227', weight: W, opacity: 0.95, fill: false, className: 'kpc-usoff' };
       if (g && g !== 'official') return { color: '#c47a12', weight: W, opacity: 0.9, fill: false, dashArray: '6 6', className: 'kpc-usoff' };
       return { color: '#c9a227', weight: W, opacity: 0.95, fillColor: '#c9a227', fillOpacity: 0, className: 'kpc-usoff' };
     };
@@ -639,24 +768,62 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
         if (id !== req) return;
         const sts = statesInView();
         const missing = [];
+        /* Nov 15 (grade fix): a store pack that throws while it is drawn is taken off again and the state is drawn from
+           today's pack instead (never a blank state) */
         function addPack(key, pack) {
           if (!pack || loaded[key]) return;
+          if (pack.source !== 'store') return drawPack(key, pack, []);
+          const mark = drawn.length, added = [];
+          try { return drawPack(key, pack, added); }
+          catch (e) {
+            added.forEach(l => { try { group.removeLayer(l); } catch (x) {} });
+            drawn.splice(mark); loaded[key] = false;
+            return pack._old ? drawPack(key, pack._old, []) : false;
+          }
+        }
+        function drawPack(key, pack, added) {
+          const add = l => { group.addLayer(l); added.push(l); };
           const feats = (pack.features || []).filter(f => f && f.geometry && (f.properties || {}).g !== 'pin');
           if (!feats.length) return false;
           const fc = { type: 'FeatureCollection', features: feats };
+          const store = pack.source === 'store', D = window.kpcDisplayOutlines;
+          const popup = f => () => {
+            const p = f.properties || {};
+            const ref = (p.ref || '').replace(/[<>]/g, '');
+            let cr = '';
+            if (store && D && D.creditLine) { try { cr = String(D.creditLine(pack, f) || '').replace(/[<>]/g, ''); } catch (e) { cr = ''; } }
+            return '<b>' + nm(f).replace(/[<>]/g, '') + '</b>' + (ref ? '<div style="font-size:12px;color:#555">' + ref + '</div>' : '') +
+              (cr ? '<div style="font-size:11px;color:#555;margin-top:4px">' + cr + '</div>' : '');
+          };
+          /* Nov 15: a store park with a 'hit' feature is clicked on its tracts; a park with a 'line' feature and NO 'hit' feature
+             (an official trail / river line only) gets a second, invisible, wider polyline that carries the popup (no band drawn) */
+          const hasHit = {};
+          if (store) feats.forEach(f => { const p = f.properties || {}; if (p.role === 'hit' && p.ref) hasHit[p.ref] = 1; });
           const lay = L.geoJSON(fc, { pane: 'usoff', renderer: rend, style, className: 'kpc-usoff',
-            onEachFeature: (f, l) => l.bindPopup(() => {
+            onEachFeature: (f, l) => {
+              l.bindPopup(popup(f), { maxWidth: 260 });
               const p = f.properties || {};
-              const ref = (p.ref || '').replace(/[<>]/g, '');
-              return '<b>' + nm(f).replace(/[<>]/g, '') + '</b>' + (ref ? '<div style="font-size:12px;color:#555">' + ref + '</div>' : '');
-            }, { maxWidth: 260 })
+              if (store) {
+                if (p.role !== 'hit' && typeof p.detail_m === 'number') drawn.push({ area: pack.area, pack, f, l, box: boxOf(f.geometry), detail: null });
+                if (p.role === 'line' && p.ref && !hasHit[p.ref]) {
+                  const g = f.geometry || {}, cs = g.type === 'MultiLineString' ? g.coordinates : g.type === 'LineString' ? [g.coordinates] : [];
+                  const lls = (cs || []).map(path => (path || []).map(c => [c[1], c[0]])).filter(path => path.length > 1);
+                  if (lls.length) {
+                    const t = L.polyline(lls, { pane: 'usoff', renderer: rend, weight: 12, opacity: 0, fill: false, interactive: true, className: 'kpc-usoff-hit' });
+                    t.bindPopup(popup(f), { maxWidth: 260 });
+                    add(t);
+                  }
+                }
+              }
+            }
           });
-          group.addLayer(lay);
+          add(lay);
           loaded[key] = true;
           return true;
         }
         const KO = window.kpcKeyOutlines;
-        const jobs = sts.map(s => (KO ? KO.load(s.a) : Promise.resolve(null)).then(pack => {
+        /* Nov 15: the US state load goes through storeOr(): today's pack unless the display-copy loader wants this area */
+        const jobs = sts.map(s => (KO ? storeOr('US-' + String(s.a).toUpperCase(), KO.load(s.a)) : Promise.resolve(null)).then(pack => {
           if (!pack) { missing.push(s.n || s.a); return; }
           if (addPack(s.a, pack) === false) missing.push(s.n || s.a);
         }).catch(() => { missing.push(s.n || s.a); }));
@@ -690,7 +857,7 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
           wSeen[key] = true;
           jobs.push(KO.loadWorldRef(ref).then(pack => addPack(key, pack)).catch(() => {}));
         });
-        Promise.all(jobs).then(() => { if (id === req && cfg.onMissing) cfg.onMissing(missing); });
+        Promise.all(jobs).then(() => { if (id === req && cfg.onMissing) cfg.onMissing(missing); if (id === req && drawn.length) detail(); });   /* Nov 15: store levels (nothing when no store pack is drawn) */
       });
     }
     const hostOn = () => map.hasLayer(host) || (useHost === false && map.hasLayer(group));

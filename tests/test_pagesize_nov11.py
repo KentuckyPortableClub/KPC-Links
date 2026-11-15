@@ -10,6 +10,7 @@ def ok(c, m):
     print(('PASS ' if c else 'FAIL ') + m)
     if not c: fails += 1
 STAMP = '20261111zr'   # Nov 11 (job 3 loaders, on top of page size): the released copies
+STAMPS = {'kpc-padus-layer.js': '20261115ms'}   # Nov 15 (map store hook): kpc-padus-layer.js bumped alone to 20261115ms
 CHANGED = ['kpc-us-planner.js', 'kpc-padus-layer.js', 'gis-overlays.js', 'kpc-planner.js', 'kpc-bounds.js', 'kpc-park-control.js', 'kpc-gps-wire.js', 'kpc-offline.js']
 pages = glob.glob(os.path.join(ROOT, '*.html')) + glob.glob(os.path.join(ROOT, '.claude/build/**/*.html'), recursive=True)
 bad = []
@@ -17,8 +18,8 @@ for f in pages:
     t = open(f, encoding='utf8').read()
     for s in CHANGED:
         for v in re.findall(r'(?<![A-Za-z0-9_-])' + re.escape(s) + r'\?v=([A-Za-z0-9_.-]+)', t):
-            if v != STAMP: bad.append((os.path.relpath(f, ROOT), s, v))
-ok(not bad, f'every page (and .claude/build page source) loads the changed scripts at ?v={STAMP}: ' + str(bad[:6]))
+            if v != STAMPS.get(s, STAMP): bad.append((os.path.relpath(f, ROOT), s, v))
+ok(not bad, f'every page (and .claude/build page source) loads the changed scripts at ?v={STAMP} (kpc-padus-layer.js {STAMPS["kpc-padus-layer.js"]}): ' + str(bad[:6]))
 gw = R('kpc-gps-wire.js'); ok("kpc-bounds.js?v=" + STAMP in gw, 'kpc-gps-wire.js loads kpc-bounds.js at the same new stamp')
 # one address for the Kentucky boundary files on every page
 addr = {
