@@ -10,6 +10,10 @@ New ones go in kpc-new-refs.json for 7 days:
   Other states -> 'NEW THIS WEEK' box on Park Notes: Other States only (no Facebook, Brandon).
 Posting starts 2026-10-21 5 PM Central (START). The first run only remembers the lists.
 A list that comes back much shorter than last time is skipped that day (a broken download must not look like 'everything is new').
+Nov 14 (KPC owner, 2026-11-14): seen.json also keeps each ref's name (seen['names']). A known ref whose name changed (compared with
+  kpc_name_match.norm_name) is a RENAME: never posted, never in 'NEW THIS WEEK'. An old seen.json with no names only learns them
+  (no renames that run). More renames at once than the hiccup gate allows = a bad download: none recorded, names kept.
+  data/new-refs/keeper-list.csv (overwritten each run) lists every ref new or renamed in the last 7 days for the keeper.
 DRY=1 prints what would happen without writing or posting.
 """
 import csv, datetime, io, json, os, pathlib, re, subprocess, sys, time, urllib.parse, urllib.request
@@ -209,6 +213,29 @@ feed = load(OUT, {'items': []})
 items = [i for i in feed.get('items', []) if i.get('found', '') >= (NOW.date() - datetime.timedelta(days=KEEP_DAYS - 1)).isoformat()]
 have = {(i['prog'], i['ref']) for i in items}
 changed, summary = False, []
+# Nov 14 (KPC owner, 2026-11-14): renamed refs + the keeper's list (first-seen date per ref, kept 7 days like 'new')
+KEEPER = pathlib.Path('data/new-refs/keeper-list.csv')
+KEEPER_COLS = ('ref', 'name', 'pin_lat', 'pin_lon', 'type', 'change', 'old_name', 'date', 'run_id', 'source')
+RUN_ID = os.environ.get('GITHUB_RUN_ID', '')
+KROWS = seen.setdefault('keeper', {})
+
+
+def same_name(a, b):
+    sys.path.insert(0, str(pathlib.Path(__file__).parent))
+    import kpc_name_match as NM
+    na, nb = NM.norm_name(a), NM.norm_name(b)
+    if not na and not nb: na, nb = (re.sub(r'[^a-z0-9]+', ' ', NM.fold(x).lower()).strip() for x in (a, b))
+    return na == nb
+
+
+def keeper_row(prog, ref, c, change, old_name='', date=None, run_id=None):
+    k = f'{prog}|{ref}'; r = KROWS.get(k)
+    if r and r.get('change') == 'new' and change == 'renamed':   # new this week and renamed since: still 'new', newest name
+        r['name'] = c.get('name') or r.get('name', ''); return
+    pin = lambda v: '' if v is None else v
+    KROWS[k] = {'ref': ref, 'name': c.get('name') or '', 'pin_lat': pin(c.get('la')), 'pin_lon': pin(c.get('lo')),
+                'type': prog.upper(), 'change': change, 'old_name': old_name, 'date': date or TODAY,
+                'run_id': RUN_ID if run_id is None else run_id, 'source': 'kpc_new_refs'}
 TODAYS = {}   # today's official lists that passed the checks (search lists + retired check)
 # Oct 28 GATE (HQ tune pass): POTA API hiccup guard. Yesterday's exact list = everything seen minus seen['off'] (refs that were
 # missing yesterday). FAIL (nothing saved for that program today, one notice): the 3 known Kentucky parks missing, or more than
@@ -262,6 +289,18 @@ for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota
     cur = gate(prog, fn, cur, floor)
     if cur is None: continue
     TODAYS[prog] = cur
+    # Nov 14: renames. Only after the gate passed (a short list never gets here). Old seen.json (no names) = learn only.
+    NAMES = seen.setdefault('names', {}); prevnm = NAMES.get(prog)
+    ren = ([(r, prevnm[r]) for r in sorted(set(cur) & old) if prevnm.get(r) and cur[r].get('name') and not same_name(prevnm[r], cur[r]['name'])]
+           if isinstance(prevnm, dict) and old else [])
+    cap = max(25, int(DROP_MAX * len(old)))
+    if len(ren) > cap:
+        notice(f'New references: {prog.upper()}', f'{len(ren)} names changed at once (> {cap}): looks like a bad download; no renames recorded, names kept.')
+    else:
+        NAMES[prog] = {**(prevnm if isinstance(prevnm, dict) else {}), **{r: c['name'] for r, c in cur.items() if c.get('name')}}
+        for r, a in ren: keeper_row(prog, r, cur[r], 'renamed', a)
+        if ren: summary.append(f'{prog.upper()}: {len(ren)} renamed ({", ".join(r for r, _ in ren[:8])}{"…" if len(ren) > 8 else ""}), not posted as new')
+        elif not isinstance(prevnm, dict): summary.append(f'{prog.upper()}: names learned ({len(NAMES[prog])}), no renames reported this run')
     new = sorted(set(cur) - old)
     if not old:
         summary.append(f'{prog.upper()}: first run, remembered {len(cur)}')
@@ -272,6 +311,7 @@ for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota
             it = {'ref': ref, 'prog': prog, 'name': c['name'], 'st': c['st'], 'la': c['la'], 'lo': c['lo'], 'found': TODAY}
             if prog == 'sota': it.update(ft=c.get('ft'), pts=c.get('pts'))
             items.append(it)
+            keeper_row(prog, ref, c, 'new')
         summary.append(f'{prog.upper()}: {len(cur)} today, {len(new)} new' + (f" ({', '.join(new[:8])}{'…' if len(new) > 8 else ''})" if new else ''))
     # keep refs that dropped off too (a park that comes back is not 'new')
     seen[prog] = sorted(old | set(cur))
@@ -402,11 +442,20 @@ elif ky:
 keep = {f"{i['prog']}|{i['ref']}" for i in items} | set(TP)
 seen['posted'] = sorted(set(seen.get('posted', [])) & keep)
 
+# Nov 14: the keeper's list keeps 7 days like 'new'; a new item from before this change gets its row (no run id)
+KCUT = (NOW.date() - datetime.timedelta(days=KEEP_DAYS - 1)).isoformat()
+for i in items:
+    if f"{i['prog']}|{i['ref']}" not in KROWS: keeper_row(i['prog'], i['ref'], i, 'new', '', i.get('found'), '')
+for k in [k for k, r in KROWS.items() if str(r.get('date', '')) < KCUT]: KROWS.pop(k)
+
 if DRY:
     notice('New references (dry run)', f'{len(items)} item(s) in the 7-day list; nothing written.')
     sys.exit(0)
 SEEN.parent.mkdir(parents=True, exist_ok=True)
 SEEN.write_text(json.dumps(seen, separators=(',', ':')), encoding='utf-8')
+with open(KEEPER, 'w', encoding='utf-8', newline='') as f:
+    w = csv.DictWriter(f, KEEPER_COLS, lineterminator='\n'); w.writeheader()
+    for k in sorted(KROWS, key=lambda k: (KROWS[k]['date'], k), reverse=True): w.writerow({c: KROWS[k].get(c, '') for c in KEEPER_COLS})
 s = json.dumps(feed, indent=1, ensure_ascii=False)
 old = OUT.read_text(encoding='utf-8') if OUT.exists() else ''
 if json.loads(old or '{}').get('items') != items or not old:
