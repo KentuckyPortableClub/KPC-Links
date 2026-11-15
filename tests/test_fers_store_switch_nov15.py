@@ -115,7 +115,9 @@ def layout(t, old=None, extra_area=None):
             key[ref] = {'g': 'official', 'm': [[REC[ref], nm, 1, 'name']]}
             g, _, w = st_fix.groups_for(ref, 'US-RI', [REC[ref]])
             recs.append({'OBJECTID': REC[ref], 'Unit_Nm': nm, 'Category': 'Fee', 'Pub_Access': 'OA', 'Own_Type': 'FED', '_r': g[0]})
-        elif ref == 'US-99006': key[ref] = {'g': 'official', 'm': [[99060, nm, 1, 'name']]}
+        elif ref == 'US-99006':   # the saved key copy has a record for it (the old path reads it; no slow second try); the store has only a pin
+            key[ref] = {'g': 'official', 'm': [[99060, nm, 1, 'name']]}
+            recs.append({'OBJECTID': 99060, 'Unit_Nm': nm, 'Category': 'Fee', 'Pub_Access': 'OA', 'Own_Type': 'STAT', '_r': [[[lo - .001, la - .001], [lo + .001, la - .001], [lo + .001, la + .001], [lo - .001, la + .001], [lo - .001, la - .001]]]})
         else: key[ref] = {'g': 'pin', 'm': []}
     (t / 'data/parkinfo/US-RI.json').write_text(json.dumps({'parks': pins}))
     (t / 'data/us-key/US-RI.json').write_text(json.dumps({'parks': key}))

@@ -112,7 +112,9 @@ moved = subprocess.run(['git', 'diff', '--name-only', base, '--', *sorted({f for
 # Declared rule-file changes of the 2-fer batch on top of this package (Pacific area boxes #154, fers aa7561256260 -> 77b31e3427a4,
 # then the picture-trace rule #155, 77b31e3427a4 -> cef323de4c9a, each by its own changelog line, awaiting the KPC owner's decision):
 # only the 2-fer hash moves; US / CA / world stay put.
-DECLARED = {'.github/scripts/kpc_fers.py', '.github/fers-rule-scope.json'}
+DECLARED = {'.github/scripts/kpc_fers.py', '.github/fers-rule-scope.json',
+            # KPC owner, 2026-11-15 (the outline store switch-over, fers d0064c860cba -> its newest changelog line): the store reader and its area list
+            '.github/scripts/kpc_fers_store.py', '.github/fers-store-areas.json'}
 moved = [f for f in moved if f not in DECLARED]
 # KPC owner, 2026-11-11 (job 6, world rules change approved): a rule file may differ from origin/main only when EVERY key it feeds has its
 # hash move declared and approved (kpc_preflight.check_hash_pair: the newest changelog line old -> new, APPROVED, decided_by KPC owner, and a

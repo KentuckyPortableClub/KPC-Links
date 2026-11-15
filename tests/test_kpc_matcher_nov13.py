@@ -140,10 +140,19 @@ if base:
         sys.path.insert(0, str(HERE / '.github/scripts'))
         import kpc_preflight as _PF
         _log = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
+        # Nov 15 (the outline store switch-over moved kpc_fers_store.py into the 2-fer RULE_FILES): base's own hash is worked out with
+        # base's own list of rule files (its kpc_key_freeze.py), so a change that adds a rule file is compared with the hash main reports
+        import importlib.util as _ilu
+        _kb = subprocess.run(['git', 'show', f'{base}:.github/scripts/kpc_key_freeze.py'], cwd=HERE, capture_output=True).stdout
+        _KB = None
+        if _kb:
+            (pathlib.Path(t) / '_kf_base.py').write_bytes(_kb)
+            _sp = _ilu.spec_from_file_location('_kf_base', str(pathlib.Path(t) / '_kf_base.py')); _KB = _ilu.module_from_spec(_sp); _sp.loader.exec_module(_KB)
         for k in KF.RULE_FILES:
             _now, _base = KF.rules_hash(k), KF.rules_hash(k, root=t)
+            _own = _KB.rules_hash(k, root=t) if _KB is not None and k in _KB.RULE_FILES else _base
             _o, _n, _ln = _PF.changelog_hashes(_log, k)
-            check(_now == _base or (_o == _base and _n == _now and 'APPROVED' in _ln),
+            check(_now == _base or (_o in (_base, _own) and _n == _now and 'APPROVED' in _ln),
                   f'{k} rules hash unchanged against {base}, or moved only by its newest declared changelog line ({_base} -> {_now})')
 else:
     print('SKIP-NOTE no main ref in this clone: rules hash comparison not run')
