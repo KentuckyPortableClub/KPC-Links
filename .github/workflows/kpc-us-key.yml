@@ -44,7 +44,7 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     outputs:
-      groups: ${{ steps.p.outputs.groups }}
+      groups: ${{ steps.store_plan.outputs.groups || steps.p.outputs.groups }}
       rematch: ${{ steps.p.outputs.rematch }}   # Nov 9 evening: 1 = a declared change asks to re-match parks with saved ids
       only_states: ${{ steps.p.outputs.only_states }}   # Nov 9 evening: states where only the named parks are re-matched
       only_parks: ${{ steps.p.outputs.only_parks }}
@@ -198,6 +198,28 @@ jobs:
           print('only_states=' + ' '.join(_ost)); print('only_parks=' + (' '.join((os.environ.get('RULES_PARKS') or '').split()) if _ost else ''))
           print(f'::notice title=US key plan::{n} jobs: ' + ' | '.join(f'{" ".join(sorted(x))} (~{l // 60} min)' for x, l in zip(g, load)), file=__import__('sys').stderr)
           PY
+      - name: Store mode (KPC owner, 2026-11-15) - a state with no saved copy on the boundary-cache release is left out with a plain line (its key is left as it is)
+        # Only when the repo variable KPC_KEY_SOURCE=store. A store-mode key reads saved copies only (GEO_CACHE_MODE=only), so a state with no
+        # saved copy cannot be built: it is not planned (never emptied, never named failed). A failed asset listing changes nothing here
+        # (the build job holds every state it cannot download).
+        id: store_plan
+        if: ${{ vars.KPC_KEY_SOURCE == 'store' && steps.p.outputs.groups != '' && steps.p.outputs.groups != '[]' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GROUPS: ${{ steps.p.outputs.groups }}
+        run: |
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > "$RUNNER_TEMP/store-assets.txt" || { echo "::warning title=Store mode::the boundary-cache asset list could not be read: the plan is kept as it is (the build holds what it cannot download)"; exit 0; }
+          python3 - <<'PY'
+          import json, os, sys
+          have = set(open(os.path.join(os.environ['RUNNER_TEMP'], 'store-assets.txt')).read().split())
+          out, skip = [], []
+          for g in json.loads(os.environ['GROUPS']):
+              keep = [s for s in g['states'].split() if f'US-{s}.json.gz' in have]
+              skip += [s for s in g['states'].split() if f'US-{s}.json.gz' not in have]
+              if keep: out.append({'i': g['i'], 'states': ' '.join(keep)})
+          for s in skip: print(f'US key {s}: no saved copy on the boundary-cache release; left out of this store-mode run, its key is left as it is', file=sys.stderr)
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f: f.write('groups=' + json.dumps(out) + '\n')
+          PY
   build:
     needs: plan
     if: ${{ needs.plan.outputs.groups != '[]' && needs.plan.outputs.groups != '' }}
@@ -221,11 +243,28 @@ jobs:
         continue-on-error: true
         env:
           STATES: ${{ matrix.g.states }}
-          KPC_MASTER_PROBE: ${{ vars.KPC_MASTER_PROBE || '0' }}
+          KPC_MASTER_PROBE: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || vars.KPC_MASTER_PROBE || '0' }}
         run: |
           python3 .github/scripts/kpc_master_cli.py check || { kpc_rc=$?; echo "::error title=Master check::the master outlines failed their check (exit $kpc_rc)"; echo "Master check - failed (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           areas=$(for st in $STATES; do printf 'US-%s,' "$st"; done); areas="${areas%,}"
           python3 .github/scripts/kpc_master_cli.py plan --areas "$areas" $([ "$KPC_MASTER_PROBE" = 1 ] || echo --no-probe) > /dev/null
+      - name: Store mode (KPC owner, 2026-11-15) - download this job's saved copies from the boundary-cache release (GitHub; before the key step, no map server)
+        # Only when the repo variable KPC_KEY_SOURCE=store: THE MASTER STEP below is skipped (no refill, no live read, no needs-download rows),
+        # so this step is the one place a store-mode build gets its whole-layer saved copies: release assets of this repo, read from GitHub.
+        # A copy the release has but that failed to download holds its state (not built, key left as it is, named failed).
+        if: ${{ vars.KPC_KEY_SOURCE == 'store' }}
+        env:
+          STATES: ${{ matrix.g.states }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p cache/us .against; touch "$RUNNER_TEMP/cache-t0"; : > "$RUNNER_TEMP/download-held.txt"
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > .against/ASSETS.txt || { rm -f .against/ASSETS.txt; echo "::error title=Store mode::the boundary-cache asset list could not be read: every state of this job is held"; }
+          for st in $STATES; do
+            if [ ! -f .against/ASSETS.txt ]; then echo "US-$st" >> "$RUNNER_TEMP/download-held.txt"
+            elif ! grep -qx "US-$st.json.gz" .against/ASSETS.txt; then echo "US key $st: no saved copy on the boundary-cache release; skipped in store mode, its key is left as it is"
+            elif gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "US-$st.json.gz" -D cache/us --clobber; then cp "cache/us/US-$st.json.gz" .against/
+            else echo "::error title=US key $st::US-$st.json.gz is on the release but its download failed: $st is held (not built, key left as it is)"; echo "US-$st" >> "$RUNNER_TEMP/download-held.txt"; fi
+          done
       - name: THE MASTER STEP (Nov 10) - refill / verify the saved copies before the gate (the one writer of the saved copies)
         # Between the plan (above) and the gate (next step). kpc_master_cli.py fill: the needs-download rows for these states + the copies
         # that are short against their gate baseline or missing a layer + the checked downloads a person sent (hand-*.geojson.gz, the PC
@@ -236,6 +275,7 @@ jobs:
         # when the live key joins records of it that the copy does not hold. refresh=all (the fresh-start run) also downloads the official
         # direct files of the open bot rows (same pre-request check, robots.txt and pacing).
         id: master_fill
+        if: ${{ vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode = no refill, no live read (the step above downloads)
         env:
           STATES: ${{ matrix.g.states }}
           REFRESH: ${{ inputs.refresh }}
@@ -296,8 +336,9 @@ jobs:
           # the boundary-cache release; only a layer / record id the copy does not have is read live, and that read is saved
           # (the same 'use' mode and detail the nightly boundary check has used since Oct 22). The re-read of every outline about
           # once a month stays with kpc-boundary-check.yml (two states a night, oldest first). KPC_KEY_LIVE=1 = the old all-live read.
-          GEO_CACHE_MODE: ${{ vars.KPC_KEY_LIVE == '1' && 'off' || 'use' }}
-          GEO_DETAIL: ${{ vars.KPC_KEY_LIVE == '1' && '' || '0.001' }}
+          GEO_CACHE_MODE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'only' || (vars.KPC_KEY_LIVE == '1' && 'off' || 'use') }}   # KPC owner, 2026-11-15: store mode = saved copies only, no network
+          GEO_DETAIL: ${{ vars.KPC_KEY_SOURCE == 'store' && '0.001' || (vars.KPC_KEY_LIVE == '1' && '' || '0.001') }}
+          KPC_KEY_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && '1' || '' }}   # KPC owner, 2026-11-15: store mode = the key opens no connection (kpc_key_offline.py via kpc_host_pace; a refusal = exit 89, the area keeps its key)
           GEO_PAGE: '200'
         run: |
           set -o pipefail
@@ -435,7 +476,7 @@ jobs:
         # only after a good build and a passed shape guard; only the state copies this job wrote (newer than the download)
         # Nov 10: the master step's checked copies are saved even when the build after it failed (they passed its count check and the
         # keep-bigger merge); a failed build's own first copies are not.
-        if: ${{ !cancelled() && vars.KPC_KEY_LIVE != '1' && (success() || steps.master_fill.outcome == 'success') }}
+        if: ${{ (!cancelled() && vars.KPC_KEY_LIVE != '1' && (success() || steps.master_fill.outcome == 'success')) && vars.KPC_KEY_SOURCE != 'store' }}
         env:
           GH_TOKEN: ${{ github.token }}
           KPC_ARCHIVE_TOKEN: ${{ secrets.KPC_ARCHIVE_TOKEN }}   # Nov 9 evening: KPC-Archive = the store (outlines as release assets + a small git index); the KPC-Links release stays as the mirror the readers use
@@ -507,6 +548,8 @@ jobs:
           pattern: us-key-part-*
           path: parts
       - name: Put the parts together + the all-state steps
+        env:
+          KPC_KEY_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && '1' || '' }}   # KPC owner, 2026-11-15: store mode = the key opens no connection (kpc_key_offline.py via kpc_host_pace; a refusal = exit 89, the area keeps its key)
         run: |
           # Nov 11 (KPC owner, 2026-11-11): per state from its owning part, fail closed (kpc_us_key_join.py): one state in two parts, a file
           # for a state a part does not own, one layers.json prefix written differently by two parts, a zip from a part that does not own
@@ -535,6 +578,7 @@ jobs:
         # KPC-Links cannot push to KPC-Data, so this build's rows go up as the release asset needs-download.json (same schema);
         # KPC-Data's hourly kpc-copy-from-links merges it into data/needs-download.json (pushes only on a change).
         id: kept_green_master_collect
+        if: ${{ vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode = no master records, no download-source check, no upload
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
@@ -581,6 +625,7 @@ jobs:
           python3 .github/scripts/kpc_join_check.py || { kpc_rc=$?; echo "::warning title=Join check::stopped (exit $kpc_rc); the key build is not affected"; }
           rm -rf .as
       - name: Outlines from the key (KPC owner, 2026-11-11) - the automatic last step - every joined park of the states built this run gets its outline, then main is re-read so no outline file is saved older than main's
+        if: ${{ vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode = outlines come from the outline store, not from a key run
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -641,6 +686,8 @@ jobs:
       - name: Drop guard (KPC owner, 2026-11-11) - a state that loses more than 3% of its official parks is kept from main (Nov 12) and the run ends red
         env:
           KPC_DROP_OK: ${{ vars.KPC_DROP_OK }}   # states whose drop a person expects, for one run ("NV" or "NV UT"); clear it after
+          KPC_DROP_PCT: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}   # KPC owner, 2026-11-15: store mode = never worse (any lost official park or outline keeps the state from main)
+          KPC_DROP_MIN: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}
         run: |
           # After the join check, so every hold of this run is counted; BEFORE the stamp, so a kept state is named failed. Compares each
           # data/us-key/US-XX.json with the copy on main (this job's checkout). Offline. Nov 12 (KPC owner, 2026-11-12; each state stands
@@ -834,7 +881,7 @@ jobs:
     # owner rule, 2026-11-10: dispatch is the ONLY path to the post-key check (a GITHUB_TOKEN run fires no workflow_run, so a
     # workflow_run trigger would start it for some runs and not others). Not for a cancelled or skipped build.
     needs: [plan, join]
-    if: ${{ !cancelled() && needs.join.result != 'cancelled' && needs.join.result != 'skipped' }}
+    if: ${{ (!cancelled() && needs.join.result != 'cancelled' && needs.join.result != 'skipped') && vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode starts no other workflow
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -851,7 +898,7 @@ jobs:
     # from its own chain job), by dispatch only, so each key is started once per run of the key before it. chained=us-key makes it
     # a catch-up start (kpc_key_order.py: a duplicate or an up-to-date key skips cleanly). Not for a cancelled run.
     needs: [plan, join]
-    if: ${{ !cancelled() }}
+    if: ${{ (!cancelled()) && vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode starts no other workflow
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:

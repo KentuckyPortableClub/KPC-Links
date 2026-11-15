@@ -9,6 +9,8 @@ The retry waits in each script (8 s x try) are on top of this. Nothing else chan
 import os, threading, time, urllib.parse, urllib.request
 import kpc_net_guard
 kpc_net_guard.install()   # never-contact hosts refused before any request (every importer gets it)
+if os.environ.get('KPC_KEY_OFFLINE') == '1':   # Nov 15 (KPC owner, 2026-11-15): a store-mode key step = no network at all (kpc_key_offline.py)
+    import kpc_key_offline; kpc_key_offline.install_from_env()
 
 GAP = max(2.0, float(os.environ.get('KPC_HOST_GAP') or 2.0))
 _last, _lk, _orig = {}, threading.Lock(), None

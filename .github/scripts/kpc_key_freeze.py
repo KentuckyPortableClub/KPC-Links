@@ -123,7 +123,10 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              'kpc_net_guard.py', 'kpc_preflight.py',
              # Nov 13 (KPC owner, 2026-11-13): the shared park-to-outline matcher, stage 1: added alongside, imported by no key, bot or
              # workflow yet, so it decides no join today. Wiring it into a key is a later PR that must move it into that key's RULE_FILES.
-             'kpc_matcher.py'}
+             'kpc_matcher.py',
+             # Nov 15 (KPC owner, 2026-11-15; keys in store mode): the no-network runner of a store-mode key step and the store-mode
+             # never-worse check (an area with fewer joined / official parks than main keeps main's key); neither decides a join
+             'kpc_key_offline.py', 'kpc_key_never_worse.py'}
              # Nov 15 (KPC owner, 2026-11-15): kpc_fers_store.py left this list for the 2-fer RULE_FILES (the switch-over hook)
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
