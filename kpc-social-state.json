@@ -166,19 +166,19 @@
    "acts": 483
   },
   "KQ4HZK": {
-   "parks": 74,
-   "counties": 49,
-   "acts": 114
+   "parks": 89,
+   "counties": 55,
+   "acts": 147
   },
   "K4ZSR": {
-   "parks": 58,
-   "counties": 40,
-   "acts": 281
+   "parks": 81,
+   "counties": 47,
+   "acts": 313
   },
   "N4KPC": {
-   "parks": 2,
-   "counties": 2,
-   "acts": 2
+   "parks": 3,
+   "counties": 3,
+   "acts": 3
   }
  },
  "photos": [
@@ -1120,7 +1120,12 @@
   "K4ZSR|20261105",
   "K4ZSR|20261111",
   "N4BDW|20261112",
-  "N4BDW|20261113"
+  "N4BDW|20261113",
+  "K4ZSR|20261113",
+  "K4ZSR|20261114",
+  "KQ4HZK|20261113",
+  "KQ4HZK|20261114",
+  "N4KPC|20261113"
  ],
  "pages": [
   "about.html",
