@@ -809,8 +809,8 @@ def store_lines(KF, st, areas, base):
     """kpc_fers.trail_lines() in a store run. base = today's lines from data/trails ({ref: {'lines', 'kind', 'by', 'type',
     'water_parts'}}). The line GEOMETRY now comes from the store's line records; what the line rule needs to know about the
     park (trail or river, who drew it, NHT type, which pieces are water) still comes from data/trails as today, so the rule and
-    its widths are unchanged (100 ft: 25.48 m from a centre line with the station 5 m inside the other park, 30.48 m from a
-    river's bank; a 25 m stretch). A line park whose line is not in the store is HELD (one door in); a line park the store has
+    its widths are kpc_fers.py's (100 ft: 30.48 m from a centre line or from a river's bank, Nov 14, with the station 5 m inside
+    the other park; a 25 m stretch). A line park whose line is not in the store is HELD (one door in); a line park the store has
     and data/trails does not is added (kind from its record). Line records of a park that also has area records are not used:
     the park is tested as an area, as today."""
     out, seen = {}, set()
@@ -914,8 +914,8 @@ def store_counts():
 
 def river_bank_guard(KF, mode):
     """The river rule where there is NO bank data, behind ONE switch (KPC_FERS_RIVER_NO_BANK). Today (kpc_fers.line_spots) a
-    US river stretch is measured 30.48 m from the BANK where a water area covers the line, and 25.48 m from the CENTRE LINE (100 ft
-    less the 5 m station) where none does; Canada always from the centre line (no bank source wired).
+    US river stretch is measured 30.48 m from the BANK where a water area covers the line, and 30.48 m from the CENTRE LINE (the full
+    100 ft since Nov 14) where none does; Canada always from the centre line (no bank source wired).
     'centreline' (the default) = exactly today. 'tiers' = PROVISIONAL (the owner's Nov 14 ruling, store runs, US rivers only):
       1 bank: every point of the stretch lies in mapped water: today's bank test (solid);
       2 park reaches the river centre line: the other park's outline holds a centre-line point: certain whatever the width (counts);

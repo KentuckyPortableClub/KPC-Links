@@ -95,8 +95,11 @@ VERY_TIGHT = 'very tight: could be map error: check both official maps on the gr
 STRETCH = 25.0
 # POTA's trail rule (Activator Guide, docs.pota.app): 'Your station must be located entirely within 100 feet (30.5m) of the
 # trail'; KPC's guide applies the same to river parks (within 100 ft of the water). So a trail / river counts with another
-# park where a station spot sits INSIDE that park (5 m in) and within 100 ft of the line (5 m to spare): 25 m.
-ZONE = 30.48 - 5.0
+# park where a station spot sits INSIDE that park (STATION_IN, 5 m in from its line) and within 100 ft of the line.
+# KPC owner, 2026-11-14 (rule R5): the FULL 100 ft (30.48 m) from a trail's centre line, and the full 100 ft from a river's
+# bank (BANK below): no margin is taken off either one (it was 25.48 m: 5 m was held back from the 100 ft).
+ZONE = 30.48
+# The station spot must be at least this far inside the other park (unchanged; not part of the Nov 14 ruling: one line to change).
 STATION_IN = 5.0
 MAXPX = 9_000_000         # pixels per raster tile
 OUT = pathlib.Path('data/fers'); OUT.mkdir(parents=True, exist_ok=True)
@@ -2219,7 +2222,7 @@ def line_spots(lref, ls, oref, other, other_is_line, box, kind):
             P = F.px([pts[i] for i in idx]).astype(int)
             P[:, 0] = P[:, 0].clip(0, F.W - 1); P[:, 1] = P[:, 1].clip(0, F.H - 1)
             if wd is not None and okd is not None:
-                ins[idx] = okd[P[:, 1], P[:, 0]] <= ZONE + wd[P[:, 1], P[:, 0]]   # 100 ft from the BANK, the centre line sits wd from it
+                ins[idx] = okd[P[:, 1], P[:, 0]] <= BANK + wd[P[:, 1], P[:, 0]]   # the full 100 ft from the BANK (Nov 14), the centre line sits wd from it
             else:
                 ins[idx] = ok[P[:, 1], P[:, 0]] > 0
         run = []
@@ -2944,7 +2947,7 @@ def line_zone(x, G, PIN):
     # Oct 28 (pass-5 speed-up): the zone lies within 100 ft of THIS stretch's own line, but a main row's box covers every stretch
     # folded into it (Sheltowee x Daniel Boone: a 961-million-pixel frame, 4 GB). So the same global pixel grid is used, but only a
     # window around the stretch's line (+ a margin far wider than the pen and the 5-m distance test) is drawn: the same pixels.
-    w = F.window(F.px(x['shape']), int(math.ceil((ZONE + STATION_IN) / CELL)) + 24)
+    w = F.window(F.px(x['shape']), int(math.ceil((ZONE + STATION_IN) / CELL)) + 24)   # a window margin only (wider than the pen), not the rule
     # land: each ring is filled in its own box on the WHOLE frame's grid and edges (fillPoly gives other pixels when the picture
     # edge cuts a polygon somewhere else: tested), then only the window is kept
     m = F.area_in(G[oref], w)
@@ -2958,16 +2961,16 @@ def line_zone(x, G, PIN):
                 if pub: keep |= F.area_in(pub, w)
             m &= keep
     own = (dt(m) * CELL >= STATION_IN).astype(np.uint8)
-    z = (w.lines([x['shape']], ZONE + STATION_IN) & own).astype(np.uint8)
+    z = (w.lines([x['shape']], ZONE) & own).astype(np.uint8)   # the 100-ft band (ZONE = 30.48 m since Nov 14; was ZONE + STATION_IN = the same 30.48 m)
     if os.environ.get('ZONE_CHECK') and F.W * F.H < 200e6:   # proof hook: the old whole-frame zone, pixel by pixel
         own0 = (dt(pmask(F, oref, G)) * CELL >= STATION_IN).astype(np.uint8)
-        z0 = (F.lines([x['shape']], ZONE + STATION_IN) & own0).astype(np.uint8)
+        z0 = (F.lines([x['shape']], ZONE) & own0).astype(np.uint8)
         zz = np.zeros_like(z0); zz[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = z
         d = np.argwhere(zz != z0)
         print(f"ZONECHECK {x.get('id')} frame {F.W}x{F.H} win {w.c0},{w.r0},{w.W}x{w.H} old {int(z0.sum())} new {int(z.sum())} diff {len(d)} at {d[:5].tolist()}", flush=True)
         if len(d):
-            l0 = F.lines([x['shape']], ZONE + STATION_IN); m0 = pmask(F, oref, G)
-            lw = np.zeros_like(l0); lw[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = w.lines([x['shape']], ZONE + STATION_IN)
+            l0 = F.lines([x['shape']], ZONE); m0 = pmask(F, oref, G)
+            lw = np.zeros_like(l0); lw[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = w.lines([x['shape']], ZONE)
             mw = np.zeros_like(m0); mw[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = m
             print(f"ZONECHECK   lines differ {int((lw != l0).sum())}, land differ (inside window) {int((mw != m0)[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W].sum())}", flush=True)
     if not z.any(): return {'zone': [], 'zone_acres': 0, 'zone_wide_m': 0}
@@ -4133,7 +4136,7 @@ def main():
         try:   # rule 12: parks with no official boundary whose pin sits inside another park = 'Missing boundary' list
             if PARKS: raise RuntimeError('small batch: the missing-boundary list is kept as it was')
             miss = missing_list(PIN, parks, SKIPWHY, G, LN, today)
-            save_json(OUT / f'missing-{RUN_TAG or REGION}.json', {'about': "Missing boundary: check the official map. A park with no official boundary (or only an approximate one) whose POTA pin sits inside another park's official outline. Never in the main list; members first.", 'parks': miss}, indent=1)
+            save_json(OUT / f'missing-{RUN_TAG or REGION}.json', {'about': "Missing boundary: check the official map. A park with no outline at all (an approximate outline or a 100 ft pin circle is tested like any outline, so it is not listed here) whose POTA pin sits inside another park's outline. Never in the main list. Listed in POTA pin order.", 'parks': miss}, indent=1)
             if WDPA_SKIP:
                 save_json(OUT / f'wdpa-internal-{RUN_TAG or REGION}.json',
                           {'about': 'Internal only. WDPA / Protected Planet outlines are never a public 2-fer source.',

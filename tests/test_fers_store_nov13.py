@@ -355,7 +355,7 @@ else:
         g9401 = G4['US-9401']; bx = [-77.52, 41.49, -77.47, 41.52]
         cross = KF.line_spots('US-9402', LN4['US-9402']['lines'], 'US-9401', g9401, False, bx, 'trail')
         check(cross and all(x['kind'] == 'trail' for x in cross) and max(x['len_m'] for x in cross) > 500, f'line rule: a trail that crosses the park is a pair (100 ft rule, {[x["len_m"] for x in cross]} m)')
-        check(KF.line_spots('US-9405', LN4['US-9405']['lines'], 'US-9401', g9401, False, bx, 'trail') == [], 'line rule: a trail 40 m outside the park is no pair (25.48 m from the line, station 5 m inside)')
+        check(KF.line_spots('US-9405', LN4['US-9405']['lines'], 'US-9401', g9401, False, bx, 'trail') == [], 'line rule: a trail 40 m outside the park is no pair (30.48 m from the line since Nov 14, station 5 m inside)')
         wpoly = [[[-77.51, 41.4955], [-77.47, 41.4955], [-77.47, bank_n], [-77.51, bank_n], [-77.51, 41.4955]]]
         wdir = tmp / 's4' / 'water' / 'us-nhdplus-hr'; wdir.mkdir(parents=True, exist_ok=True); widx = {'sources': {'us-nhdplus-hr': {'publishable': True, 'licence_class': 'PUBLIC DOMAIN'}}, 'tiles': {'us-nhdplus-hr': {}}}
         for i in range(int(_m.floor(-77.9 / .1)), int(_m.floor(-77.1 / .1)) + 1):

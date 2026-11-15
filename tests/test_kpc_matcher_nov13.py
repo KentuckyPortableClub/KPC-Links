@@ -136,8 +136,15 @@ if base:
             g = subprocess.run(['git', 'show', f'{base}:{f}'], cwd=HERE, capture_output=True)
             if g.returncode == 0:
                 (pathlib.Path(t) / f).parent.mkdir(parents=True, exist_ok=True); (pathlib.Path(t) / f).write_bytes(g.stdout)
+        # Nov 14: a hash may move only by a declared change (the newest changelog line names base's hash -> this hash), never through kpc_matcher
+        sys.path.insert(0, str(HERE / '.github/scripts'))
+        import kpc_preflight as _PF
+        _log = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
         for k in KF.RULE_FILES:
-            check(KF.rules_hash(k) == KF.rules_hash(k, root=t), f'{k} rules hash unchanged against {base} ({KF.rules_hash(k)})')
+            _now, _base = KF.rules_hash(k), KF.rules_hash(k, root=t)
+            _o, _n, _ln = _PF.changelog_hashes(_log, k)
+            check(_now == _base or (_o == _base and _n == _now and 'APPROVED' in _ln),
+                  f'{k} rules hash unchanged against {base}, or moved only by its newest declared changelog line ({_base} -> {_now})')
 else:
     print('SKIP-NOTE no main ref in this clone: rules hash comparison not run')
 sys.path.insert(0, str(SCRIPTS))

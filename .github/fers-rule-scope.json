@@ -86,6 +86,18 @@
           "US-5709"
         ]
       }
+    },
+    {
+      "id": "2026-11-14-full-100ft",
+      "when": "2026-11-14",
+      "from": "cef323de4c9a",
+      "why": "Rule R5 measured in full: a trail or water trail counts with another park within the full 100 ft (30.48 m) of the trail's centre line, or of the river's bank (no 5 m margin taken off; was 25.48 m). The station spot must still be 5 m inside the other park (STATION_IN, unchanged). Every pair with a line park is tested again.",
+      "scope": {
+        "flags": [
+          "line"
+        ]
+      },
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-14"
     }
   ]
 }
