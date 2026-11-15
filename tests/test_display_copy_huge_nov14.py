@@ -85,7 +85,7 @@ try:
         w, h = 1280 * mpp / (111320 * math.cos(math.radians(lat))), 800 * mpp / 110574
         worst, worst_n, typical = 0, 0, []
         for a in ('US-ZA', 'US-ZB'):
-            fe = json.loads((tmp / 'out' / a / 'INDEX.json').read_text())['fine']['SYN-HUGE']
+            fe = json.loads((tmp / 'out' / a / 'INDEX.json').read_text())['fine']['US-7999']
             T, tiles = fe['t'], fe['tiles']
             x = 0.2
             while x < 1.8:

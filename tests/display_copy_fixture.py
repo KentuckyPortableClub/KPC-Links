@@ -107,11 +107,14 @@ def write_store(d, area, parks, fmt='kpc-outline-store-index/3', index_override=
     buf.write(gzip.compress(json.dumps({'kpcstore': 1, 'area': area})[:-1].encode() + b',"parks":[\n', 9, mtime=0))
     for i, p in enumerate(parks):
         m = gzip.compress(((',\n' if i else '') + json.dumps(p, separators=(',', ':'))).encode(), 9, mtime=0)
-        e = {'file': fname, 'o': buf.tell(), 'n': len(m), 'grade': p['grade'], 'circle': False, 'records': [r['key'] for r in p['records']],
-             'points': sum(r['points'] for r in p['records']), 'fp': hashlib.sha256('|'.join(r['sha256'] for r in p['records']).encode()).hexdigest()}
+        ok = [r for r in p['records'] if isinstance(r, dict) and isinstance(r.get('key'), str)]   # malformed test records allowed
+        e = {'file': fname, 'o': buf.tell(), 'n': len(m), 'grade': p['grade'], 'circle': False,
+             'records': [r.get('key') if isinstance(r, dict) else None for r in p['records']],
+             'points': sum(r.get('points') or 0 for r in ok),
+             'fp': hashlib.sha256('|'.join(str(r.get('sha256')) if isinstance(r, dict) else 'None' for r in p['records']).encode()).hexdigest()}
         if maps:
-            e['record_meta'] = {r['key']: {k: r.get(k) for k in K.META_KEYS} for r in p['records']}
-            e['park_publishable'] = all(r.get('publishable') is True for r in p['records'])
+            e['record_meta'] = {r['key']: {k: r.get(k) for k in K.META_KEYS} for r in ok}
+            e['park_publishable'] = all(r.get('publishable') is True for r in ok)
         _merge(e, (index_override or {}).get(p['ref']) or {})
         idx[p['ref']] = e
         buf.write(m)
@@ -144,7 +147,7 @@ def corridor(x0, x1, ymid, half_w, step_deg, split_x):
 
 
 def huge_two_area_stores(d, n_tracts=330, tract_pts=1000):
-    """US-ZA (x < 1.0) and US-ZB (x > 1.0): one park SYN-HUGE with a 180 km corridor cut at the state line, n_tracts rough
+    """US-ZA (x < 1.0) and US-ZB (x > 1.0): one park US-7999 with a 180 km corridor cut at the state line, n_tracts rough
     tracts and one record stored in both areas. About 504,000 points."""
     left, right = corridor(0.2, 1.8, 0.3, 0.002, 0.0000185, 1.0)
     za, zb = [record('cor-w', 'synst', [left], credit='Synthetic State Lands')], [record('cor-e', 'synst', [right], credit='Synthetic State Lands')]
@@ -155,6 +158,6 @@ def huge_two_area_stores(d, n_tracts=330, tract_pts=1000):
         (za if cx < 1.0 else zb).append(r)
     both = record('both1', 'synst', [circle(1.0, 0.34, 0.002, 400, wobble=0.05)], credit='Synthetic State Lands')
     za.append(both); zb.append(dict(both))
-    write_store(d, 'US-ZA', [park('SYN-HUGE', za, 'Synthetic Long Corridor Forest')])
-    write_store(d, 'US-ZB', [park('SYN-HUGE', zb, 'Synthetic Long Corridor Forest')])
+    write_store(d, 'US-ZA', [park('US-7999', za, 'Synthetic Long Corridor Forest')])
+    write_store(d, 'US-ZB', [park('US-7999', zb, 'Synthetic Long Corridor Forest')])
     return sum(r['points'] for r in za) + sum(r['points'] for r in zb) - both['points']

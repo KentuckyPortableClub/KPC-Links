@@ -36,6 +36,12 @@ def feats_of(out, area):
     return idx, fs
 
 
+def LAY(rep, ref):
+    """the layers drawn for a park, from the PRIVATE report (public files carry no layer names)"""
+    row = next((r for r in rep['rows'] if r['ref'] == ref), None)
+    return sorted({l for v in (row or {}).get('layers_by_area', {}).values() for l in v})
+
+
 def by_ref(fs):
     d = {}
     for f in fs: d.setdefault(f['properties']['ref'], []).append(f)
@@ -103,7 +109,7 @@ try:
           rows['US-0002']['drawn_records'] == 1 and rows['US-0002']['once_m'] > 0)
     check("a park with one publishable and one unpublishable tract is DRAWN from the publishable tract alone (each record judged on its own): "
           "only its layer is named, the private tract's land is not drawn, and no land is called lost",
-          'US-0003' in feats and 'US-0003' not in idx['fallback'] and one['US-0003']['properties']['layers'] == ['lay1']
+          'US-0003' in feats and 'US-0003' not in idx['fallback'] and LAY(rep, 'US-0003') == ['lay1']
           and one['US-0003']['properties']['cr'] == ['Test Agency lay1'] and rows['US-0003']['held_records'] == 1
           and rows['US-0003']['public_records'] == 1 and rows['US-0003']['lost_m2'] == 0 and rows['US-0003']['missing_m'] == 0
           and max(x for l in drawn_lines(feats['US-0003']) for x, y in l) < 0.3105)
@@ -123,30 +129,30 @@ try:
     D = 0.009                                                              # about 1 km
     A = square(0.1, 0.1, 0.1 + D, 0.1 + D, 40)
     extra = square(0.1 + D + 0.002, 0.1, 0.1 + D + 0.006, 0.104, 20)
-    r1, o1 = build('g1', [park('P1', [record('a', 'stl', [A]), record('p', 'PAD-US', [A, extra])])])
-    l1 = drawn_lines(by_ref(feats_of(o1, 'US-ZZ')[1]).get('P1', []))
+    r1, o1 = build('g1', [park('US-7024', [record('a', 'stl', [A]), record('p', 'PAD-US', [A, extra])])])
+    l1 = drawn_lines(by_ref(feats_of(o1, 'US-ZZ')[1]).get('US-7024', []))
     check('GRADER CASE: state tract A + a PAD-US record holding a copy of A and an extra parcel: ALL of A is drawn',
           bool(l1) and ring_drawn(A, l1) and r1['rows'][0]['missing_m'] == 0)
     check('...and the extra parcel is drawn', ring_drawn(extra, l1))
-    r5, o5 = build('twin', [park('P5', [record('p', 'PAD-US', [A]), record('a', 'stl', [A])])])
+    r5, o5 = build('twin', [park('US-7028', [record('p', 'PAD-US', [A]), record('a', 'stl', [A])])])
     check("GRADER CASE: identical geometry with the lower layer first in the store: the winning layer's copy is the one kept",
-          r5['rows'][0]['won'] == 'stl' and by_ref(feats_of(o5, 'US-ZZ')[1])['P5'][0]['properties']['layers'] == ['stl'])
+          r5['rows'][0]['won'] == 'stl' and 'US-7028' in by_ref(feats_of(o5, 'US-ZZ')[1]) and LAY(r5, 'US-7028') == ['stl'])
     # ---- must-fix 2: lower layers judged per part and per stretch; holes are not land -------------------------------------
     dense = square(0.1, 0.1, 0.1 + D, 0.1 + D, 400)
     for size, name in ((0.00054, '60 m'), (0.0036, '400 m')):
         par = square(0.1 + D + 0.001, 0.1, 0.1 + D + 0.001 + size, 0.1 + size, 8)
-        rr, oo = build('g2-' + name[:-2].strip(), [park('P2', [record('a', 'stl', [A]), record('p', 'PAD-US', [dense, par])])])
-        ll = drawn_lines(by_ref(feats_of(oo, 'US-ZZ')[1]).get('P2', []))
+        rr, oo = build('g2-' + name[:-2].strip(), [park('US-7025', [record('a', 'stl', [A]), record('p', 'PAD-US', [dense, par])])])
+        ll = drawn_lines(by_ref(feats_of(oo, 'US-ZZ')[1]).get('US-7025', []))
         check(f'GRADER CASE: a {name} extra parcel inside a multipart PAD-US record (dense copy of the state tract) is kept and drawn',
               bool(ll) and ring_drawn(par, ll) and rr['rows'][0]['lost_m2'] == 0)
     outer = square(0.1, 0.1, 0.1 + D, 0.1 + D, 40); hole = square(0.103, 0.103, 0.1066, 0.1066, 10, clockwise=False)
     holeland = square(0.103, 0.103, 0.1066, 0.1066, 10)
-    rh, oh = build('hole', [park('P4', [record('a', 'stl', [outer, hole]), record('p', 'PAD-US', [holeland])])])
+    rh, oh = build('hole', [park('US-7027', [record('a', 'stl', [outer, hole]), record('p', 'PAD-US', [holeland])])])
     check("GRADER CASE: land a lower layer has inside the winner's HOLE is not 'covered': it is kept (no land lost)",
-          'P4' not in rh['fallback_reasons'] and rh['rows'][0]['lost_m2'] == 0 and rh['rows'][0]['kept_whole_for_land'] == 1)
+          'US-7027' not in rh['fallback_reasons'] and rh['rows'][0]['lost_m2'] == 0 and rh['rows'][0]['kept_whole_for_land'] == 1)
     for off, kept in ((10, False), (25, False), (29, False), (31, True), (45, True)):
         B = [(round(x + off / 111320, 6), y) for x, y in A]
-        ro, oo = build(f'off{off}', [park('P6', [record('a', 'stl', [A]), record('p', 'PAD-US', [B])])])
+        ro, oo = build(f'off{off}', [park('US-7029', [record('a', 'stl', [A]), record('p', 'PAD-US', [B])])])
         rw = ro['rows'][0]
         check(f'a lower-layer copy offset {off} m is ' + ('kept (drawn where outside the 30 m strip)' if kept else
                                                           f'not drawn; the strip it adds is reported ({rw["band_m2"]:.0f} m2), never lost'),
@@ -164,13 +170,13 @@ try:
     # ---- must-fix 3: the licence gate ------------------------------------------------------------------------------------
     C = [circle(0.6, 0.6, 0.01, 40)]
     def gate_run(name, rec, ws=None):
-        rr, oo = build('gate-' + name, [park('G1', [rec])], ws=ws)
-        return 'G1' in json.loads((oo / 'US-ZZ' / 'INDEX.json').read_text())['fallback']
+        rr, oo = build('gate-' + name, [park('US-7014', [rec])], ws=ws)
+        return 'US-7014' in json.loads((oo / 'US-ZZ' / 'INDEX.json').read_text())['fallback']
     odd = ['yes', 'TRUE', 1, None, '', [], {}]
     check("'publishable' must be exactly true: 'yes', 'TRUE', 1, None, '', [], {} in the index's record_meta are all refused",
-          all(gate_run(f'pv{i}', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': {'publishable': v}}}}}) for i, v in enumerate(odd)))
+          all(gate_run(f'pv{i}', record('r1', 'lay1', C), ws={'index_override': {'US-7014': {'record_meta': {'r1': {'publishable': v}}}}}) for i, v in enumerate(odd)))
     check('...and in the record', all(gate_run(f'pr{i}', record('r1', 'lay1', C, publishable=v, publish_basis='verified-row', private_reason=''),
-                                               ws={'index_override': {'G1': {'record_meta': {'r1': {'publishable': True, 'publish_basis': 'verified-row', 'private_reason': ''}},
+                                               ws={'index_override': {'US-7014': {'record_meta': {'r1': {'publishable': True, 'publish_basis': 'verified-row', 'private_reason': ''}},
                                                                           'park_publishable': True}}})
                                       for i, v in enumerate(odd)))
     no_draw = [c for c, ok in K.LICENCE_CLASSES.items() if not ok]
@@ -184,16 +190,16 @@ try:
     check("...the builder's class list is the store tool's licence-classes.json (store_format_version kpc-outline-store-index/3)",
           lc.get('store_format_version') == 'kpc-outline-store-index/3' and set(K.LICENCE_CLASSES) == set(lc['classes'])
           and all(K.LICENCE_CLASSES[c] == (v['can_be_publishable'] and c != 'SHARE-ALIKE') for c, v in lc['classes'].items()))
-    try: build('unkidx', [park('G1', [record('r1', 'lay1', C)])], ws={'classes': sorted(K.LICENCE_CLASSES) + ['NEW CLASS']}); unk_idx = False
+    try: build('unkidx', [park('US-7014', [record('r1', 'lay1', C)])], ws={'classes': sorted(K.LICENCE_CLASSES) + ['NEW CLASS']}); unk_idx = False
     except K.DisplayError as ex: unk_idx = 'does not know' in str(ex)
     check("a licence class the builder does not know in the INDEX's licence_classes list stops the build", unk_idx)
-    ru, ou = build('unkrec', [park('G1', [record('r1', 'lay1', C, cls='LOOKS RESTRICTED')]),
-                              park('G2', [record('r2', 'lay1', [circle(0.6, 0.8, 0.01, 40)]),
+    ru, ou = build('unkrec', [park('US-7014', [record('r1', 'lay1', C, cls='LOOKS RESTRICTED')]),
+                              park('US-7015', [record('r2', 'lay1', [circle(0.6, 0.8, 0.01, 40)]),
                                           record('r3', 'lay2', [circle(0.62, 0.8, 0.01, 40)], cls='BRAND NEW CLASS')])])   # marked publishable, class unknown
     iu, fu = feats_of(ou, 'US-ZZ'); bu = by_ref(fu)
     check("...but an unknown class on ONE record drops that record only (the private report says why); the area is built",
-          'G1' not in bu and iu['fallback'].get('G1') == K.FALLBACK_CODE and 'builder knows' in ru['fallback_reasons']['G1']
-          and 'G2' in bu and bu['G2'][0]['properties']['layers'] == ['lay1'] and 'builder knows' in ru['held_records_reasons']['G2']
+          'US-7014' not in bu and iu['fallback'].get('US-7014') == K.FALLBACK_CODE and 'builder knows' in ru['fallback_reasons']['US-7014']
+          and 'US-7015' in bu and LAY(ru, 'US-7015') == ['lay1'] and 'builder knows' in ru['held_records_reasons']['US-7015']
           and K.check(ou, 'US-ZZ', public=True) == [])
     wd = {'key "wdpa123"': record('wdpa123', 'lay1', C), 'record_id "WDPA-1234"': record('r1', 'lay1', C, record_id='WDPA-1234'),
           'attribute WDPAID': record('r1', 'lay1', C, attributes={'WDPAID': 555}), 'agency UNEP-WCMC': record('r1', 'lay1', C, agency_label='UNEP-WCMC'),
@@ -206,20 +212,20 @@ try:
     leaked = [k for i, (k, rec) in enumerate(wd.items()) if not gate_run(f'wd{i}', rec)]
     check(f'WDPA: the boolean wdpa_derived first, then the words in VALUES ({len(wd)} placements; drawn: {leaked or "none"})', not leaked)
     check('...wdpa_derived true in the index only (record false) = refused',
-          gate_run('wdi', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': {'wdpa_derived': True}}}}}))
+          gate_run('wdi', record('r1', 'lay1', C), ws={'index_override': {'US-7014': {'record_meta': {'r1': {'wdpa_derived': True}}}}}))
     plain = record('r1', 'lay1', C)
     check("...a plain v3 record (it HAS a field named wdpa_derived, false) is NOT WDPA: field names are never searched",
           'wdpa_derived' in plain and not K.wdpa_hit(plain, {k: plain[k] for k in K.META_KEYS}, None) and not gate_run('wdplain', plain))
     check("...and PAD-US's own WDPA_Cd code field does not make a record WDPA",
           not gate_run('wdcd', record('r1', 'PAD-US', C, attributes={'WDPA_Cd': 'WDPA 0', 'Own_Name': 'FWS'})))
     check('the stricter answer wins: index and record classes differ = refused',
-          gate_run('dis2', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': {'licence_class': 'NO TERMS STATED'}}}}}))
+          gate_run('dis2', record('r1', 'lay1', C), ws={'index_override': {'US-7014': {'record_meta': {'r1': {'licence_class': 'NO TERMS STATED'}}}}}))
     check('...index and record credit lines differ = refused',
-          gate_run('dis4', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': {'credit_line': 'Someone Else'}}}}}))
+          gate_run('dis4', record('r1', 'lay1', C), ws={'index_override': {'US-7014': {'record_meta': {'r1': {'credit_line': 'Someone Else'}}}}}))
     check('...a record with no record_meta entry in the index = refused',
-          gate_run('dis5', record('r1', 'lay1', C), ws={'index_override': {'G1': {'record_meta': {'r1': None}}}}))
+          gate_run('dis5', record('r1', 'lay1', C), ws={'index_override': {'US-7014': {'record_meta': {'r1': None}}}}))
     check("...but the park-level flag park_publishable is NOT read: a record that passes on its own is drawn",
-          not gate_run('dis3', record('r1', 'lay1', C), ws={'index_override': {'G1': {'park_publishable': False}}}))
+          not gate_run('dis3', record('r1', 'lay1', C), ws={'index_override': {'US-7014': {'park_publishable': False}}}))
     check("...a publish basis other than a verified row or the owner's confirmation = refused",
           gate_run('basis', record('r1', 'lay1', C, basis='none')) and gate_run('basis2', record('r1', 'lay1', C, basis='layer metadata')))
     lt_no = {'publishable': False, 'class': 'OPEN'}
@@ -238,24 +244,24 @@ try:
                       ('store_format_version bogus/4', {'fmt': 'bogus/4'}),
                       ('no store_format_version (store tool before full 3)', {'fmt': None}),
                       ('no record_meta (nothing is ever guessed from licence text)', {'maps': False})):
-        try: build('old' + str(len(label)), [park('G1', [record('r1', 'lay1', C)])], ws=ws); refused = False
+        try: build('old' + str(len(label)), [park('US-7014', [record('r1', 'lay1', C)])], ws=ws); refused = False
         except K.DisplayError: refused = True
         check(f'an index with {label} is refused for a public build', refused)
-    try: build('prev5', [park('G1', [record('r1', 'lay1', C)])], ws={'fmt': 'kpc-outline-store-index/5'}, preview=True); pv5 = False
-    except K.DisplayError as ex: pv5 = 'newer' in str(ex)
+    try: build('prev5', [park('US-7014', [record('r1', 'lay1', C)])], ws={'fmt': 'kpc-outline-store-index/5'}, preview=True); pv5 = False
+    except K.DisplayError as ex: pv5 = 'reader knows' in str(ex)
     check('...and a PRIVATE PREVIEW refuses a newer format too (/5)', pv5)
     for n in (3, 4):
-        r34, o34 = build(f'fmt{n}ok', [park('G1', [record('r1', 'lay1', C)])], ws={'fmt': f'kpc-outline-store-index/{n}'})
+        r34, o34 = build(f'fmt{n}ok', [park('US-7014', [record('r1', 'lay1', C)])], ws={'fmt': f'kpc-outline-store-index/{n}'})
         check(f'kpc-outline-store-index/{n} is read', r34['parks_drawn'] == 1)
-    rp, op = build('oldprev', [park('G1', [record('r1', 'lay1', C)])], ws={'fmt': None, 'maps': False}, preview=True)
+    rp, op = build('oldprev', [park('US-7014', [record('r1', 'lay1', C)])], ws={'fmt': None, 'maps': False}, preview=True)
     check('...a PRIVATE PREVIEW may still read an older index (for measuring on the PC), stamped',
           json.loads((op / 'US-ZZ' / 'INDEX.json').read_text()).get('stamp') == K.PREVIEW_STAMP)
-    st_nf = tmp / 'st-nofiles'; write_store(st_nf, 'US-ZZ', [park('G1', [record('r1', 'lay1', C)])])
+    st_nf = tmp / 'st-nofiles'; write_store(st_nf, 'US-ZZ', [park('US-7014', [record('r1', 'lay1', C)])])
     ixp = st_nf / 'index-US-ZZ.json'; ix = json.loads(ixp.read_text()); ix['files'] = {}; ixp.write_text(json.dumps(ix))
     try: K.build(st_nf, 'US-ZZ', tmp / 'out-nofiles', log=NOLOG); nf_refused = False
     except K.DisplayError: nf_refused = True
     check('an index without file checksums is refused for a public build', nf_refused)
-    st_bad = tmp / 'st-badsha'; write_store(st_bad, 'US-ZZ', [park('G1', [record('r1', 'lay1', C)])])
+    st_bad = tmp / 'st-badsha'; write_store(st_bad, 'US-ZZ', [park('US-7014', [record('r1', 'lay1', C)])])
     ixp = st_bad / 'index-US-ZZ.json'; ix = json.loads(ixp.read_text())
     ix['files']['US-ZZ.kpcstore.json.gz']['sha256'] = '0' * 64; ixp.write_text(json.dumps(ix))
     try: K.build(st_bad, 'US-ZZ', tmp / 'out-badsha', log=NOLOG); bad_refused = False
@@ -265,7 +271,7 @@ try:
     try: K.build(st_bad, 'US-ZZ', tmp / 'out-badsha2', log=NOLOG); bad2 = False
     except K.DisplayError: bad2 = True
     check("every area file the index lists is checked: a wrong sha256, or a listed file that is missing, stops a public build", bad_refused and bad2)
-    st_c = tmp / 'st-combined'; write_store(st_c, 'US-ZZ', [park('G1', [record('r1', 'lay1', C)])])
+    st_c = tmp / 'st-combined'; write_store(st_c, 'US-ZZ', [park('US-7014', [record('r1', 'lay1', C)])])
     (st_c / 'index-US-ZZ.json').rename(st_c / 'index.json')
     try: K.build(st_c, 'US-ZZ', tmp / 'out-combined', log=NOLOG); comb = False
     except K.DisplayError as ex: comb = 'per-area' in str(ex)
@@ -276,45 +282,45 @@ try:
             '(PAD-US) 4.1')
     def priv(key, rings):   # a state record whose own terms are private: never drawn, never named
         return record(key, 'nhgranit', rings, publishable=False, cls='PRIVATE UNTIL LICENCE READ', credit='NH GRANIT conservation lands')
-    mix = [park('M1', [priv('nh1', [circle(0.5, 0.2, 0.012, 60)]), record('pad1', 'PAD-US', [circle(0.5, 0.2, 0.01, 60)], cls='PUBLIC DOMAIN', credit=USGS)]),
-           park('M2', [priv('nh2', [circle(0.8, 0.2, 0.01, 60)])]),
-           park('M3', [priv('nh3', [circle(0.5, 0.45, 0.012, 60)]), record('sa3', 'PAD-US', [circle(0.5, 0.45, 0.01, 60)], cls='SHARE-ALIKE', credit=USGS)]),
-           park('M4', [priv('nh4', [circle(0.8, 0.45, 0.012, 60)]), record('wd4', 'PAD-US', [circle(0.8, 0.45, 0.01, 60)], cls='PUBLIC DOMAIN', credit=USGS, wdpa_derived=True)])]
+    mix = [park('US-7016', [priv('nh1', [circle(0.5, 0.2, 0.012, 60)]), record('pad1', 'PAD-US', [circle(0.5, 0.2, 0.01, 60)], cls='PUBLIC DOMAIN', credit=USGS)]),
+           park('US-7017', [priv('nh2', [circle(0.8, 0.2, 0.01, 60)])]),
+           park('US-7018', [priv('nh3', [circle(0.5, 0.45, 0.012, 60)]), record('sa3', 'PAD-US', [circle(0.5, 0.45, 0.01, 60)], cls='SHARE-ALIKE', credit=USGS)]),
+           park('US-7019', [priv('nh4', [circle(0.8, 0.45, 0.012, 60)]), record('wd4', 'PAD-US', [circle(0.8, 0.45, 0.01, 60)], cls='PUBLIC DOMAIN', credit=USGS, wdpa_derived=True)])]
     rmx, omx = build('mixed', mix)
     imx, fmx = feats_of(omx, 'US-ZZ'); bmx = by_ref(fmx); rwx = {r['ref']: r for r in rmx['rows']}
-    far = max(math.hypot(x - 0.5, y - 0.2) for l in drawn_lines(bmx.get('M1', [])) for x, y in l) if 'M1' in bmx else 9
+    far = max(math.hypot(x - 0.5, y - 0.2) for l in drawn_lines(bmx.get('US-7016', [])) for x, y in l) if 'US-7016' in bmx else 9
     blob = b''.join(gzip.decompress(q.read_bytes()) if q.suffix == '.gz' else q.read_bytes() for q in sorted((omx / 'US-ZZ').rglob('*')) if q.is_file())
     check("PER-RECORD GATE: a park whose state record is private and whose PAD-US record is public is drawn from PAD-US, "
           "with the USGS credit, although the store calls the park not publishable as a whole",
-          'M1' in bmx and bmx['M1'][0]['properties']['layers'] == ['PAD-US'] and bmx['M1'][0]['properties']['won'] == 'PAD-US'
-          and bmx['M1'][0]['properties']['cr'] == [USGS] and not imx['fallback'].get('M1'))
+          'US-7016' in bmx and LAY(rmx, 'US-7016') == ['PAD-US'] and rwx['US-7016']['won'] == 'PAD-US'
+          and bmx['US-7016'][0]['properties']['cr'] == [USGS] and not imx['fallback'].get('US-7016'))
     check('...the private state shape is NOT drawn (only the PAD-US ring) and no land is reported lost or missing',
-          far < 0.0105 and rwx['M1']['lost_m2'] == 0 and rwx['M1']['missing_m'] == 0 and not rwx['M1']['lost_fail']
-          and rwx['M1']['held_records'] == 1 and rwx['M1']['public_records'] == 1 and rwx['M1']['distinct_records'] == 1)
+          far < 0.0105 and rwx['US-7016']['lost_m2'] == 0 and rwx['US-7016']['missing_m'] == 0 and not rwx['US-7016']['lost_fail']
+          and rwx['US-7016']['held_records'] == 1 and rwx['US-7016']['public_records'] == 1 and rwx['US-7016']['distinct_records'] == 1)
     check('...and the private layer, its credit and its record key are nowhere in the public files',
           not any(w in blob for w in (b'nhgranit', b'NH GRANIT', b'nh1', b'PRIVATE UNTIL')) and b'PAD-US' in blob)
-    check("a park whose only record is private keeps today's outline", 'M2' not in bmx and imx['fallback'].get('M2') == K.FALLBACK_CODE)
+    check("a park whose only record is private keeps today's outline", 'US-7017' not in bmx and imx['fallback'].get('US-7017') == K.FALLBACK_CODE)
     check("a private record beside a SHARE-ALIKE one keeps today's outline (no record passes the gate)",
-          'M3' not in bmx and imx['fallback'].get('M3') == K.FALLBACK_CODE and 'SHARE-ALIKE' in rmx['fallback_reasons']['M3'])
+          'US-7018' not in bmx and imx['fallback'].get('US-7018') == K.FALLBACK_CODE and 'SHARE-ALIKE' in rmx['fallback_reasons']['US-7018'])
     check("a private record beside a WDPA-derived one keeps today's outline (no record passes the gate)",
-          'M4' not in bmx and imx['fallback'].get('M4') == K.FALLBACK_CODE and 'WDPA' in rmx['fallback_reasons']['M4'])
+          'US-7019' not in bmx and imx['fallback'].get('US-7019') == K.FALLBACK_CODE and 'WDPA' in rmx['fallback_reasons']['US-7019'])
     check('the reasons the private records were held are kept in the PRIVATE report for the park that was drawn',
-          'nh1' in rmx['held_records_reasons'].get('M1', '') and 'M2' not in rmx['held_records_reasons'])
+          'nh1' in rmx['held_records_reasons'].get('US-7016', '') and 'US-7017' not in rmx['held_records_reasons'])
 
     # a WDPA-derived record that is otherwise perfect (publishable, PUBLIC DOMAIN, verified row, plain credit) beside a passing
     # record; and a record with good geometry and every other field good but publishable false, beside two passing records
     # that carry different credits. Only the passing records are drawn, and only their credits are carried.
     def good_but(key, layer, rings, credit, **kw):
         return record(key, layer, rings, cls='PUBLIC DOMAIN', credit=credit, **kw)
-    mix2 = [park('M5', [record('st5', 'lay1', [circle(0.2, 0.7, 0.01, 60)], credit='State Parks Office'),
+    mix2 = [park('US-7020', [record('st5', 'lay1', [circle(0.2, 0.7, 0.01, 60)], credit='State Parks Office'),
                         good_but('wd5', 'lay3', [circle(0.215, 0.7, 0.004, 40)], 'Global Areas Credit', wdpa_derived=True)]),
-            park('M6', [record('st6', 'lay1', [circle(0.5, 0.7, 0.008, 60)], credit='State Parks Office'),
+            park('US-7021', [record('st6', 'lay1', [circle(0.5, 0.7, 0.008, 60)], credit='State Parks Office'),
                         record('co6', 'lay3', [circle(0.53, 0.7, 0.005, 50)], credit='County Lands Office'),
                         good_but('np6', 'lay2', [circle(0.515, 0.715, 0.004, 40)], 'Hidden Town Office', publishable=False,
                                  publish_basis='verified-row', private_reason='',
                                  publish_basis_detail={'evidence_url': 'https://example.invalid/terms', 'date_read': '2026-11-14'})]),
-            park('M7', [good_but('wd7', 'lay1', [circle(0.8, 0.7, 0.01, 60)], 'Global Areas Credit', wdpa_derived=True)]),
-            park('M8', [good_but('np8', 'lay1', [circle(0.8, 0.9, 0.01, 60)], 'Hidden Town Office', publishable=False,
+            park('US-7022', [good_but('wd7', 'lay1', [circle(0.8, 0.7, 0.01, 60)], 'Global Areas Credit', wdpa_derived=True)]),
+            park('US-7023', [good_but('np8', 'lay1', [circle(0.8, 0.9, 0.01, 60)], 'Hidden Town Office', publishable=False,
                                  publish_basis='verified-row', private_reason='')])]
     rm2, om2 = build('mixed2', mix2)
     im2, fm2 = feats_of(om2, 'US-ZZ'); bm2 = by_ref(fm2); rw2 = {r['ref']: r for r in rm2['rows']}
@@ -325,41 +331,41 @@ try:
         return any(math.hypot(x - px, y - py) < tol for l in drawn_lines(bm2.get(ref, [])) for x, y in l)
     check('the public check of the mixed-park build finds no problem', K.check(om2, 'US-ZZ', public=True) == [])
     check('WDPA-DERIVED beside a passing record: the park is drawn from the passing record only, with its credit only',
-          'M5' in bm2 and bm2['M5'][0]['properties']['layers'] == ['lay1'] and bm2['M5'][0]['properties']['cr'] == ['State Parks Office']
-          and rw2['M5']['public_records'] == 1 and rw2['M5']['held_records'] == 1 and not im2['fallback'].get('M5'))
+          'US-7020' in bm2 and LAY(rm2, 'US-7020') == ['lay1'] and bm2['US-7020'][0]['properties']['cr'] == ['State Parks Office']
+          and rw2['US-7020']['public_records'] == 1 and rw2['US-7020']['held_records'] == 1 and not im2['fallback'].get('US-7020'))
     check('...the WDPA-derived ring (which reaches about 1 km outside the state ring) is not drawn',
-          max_from('M5', 0.2, 0.7) < 0.0105 and not near_pt('M5', 0.219, 0.7, 0.0003))
+          max_from('US-7020', 0.2, 0.7) < 0.0105 and not near_pt('US-7020', 0.219, 0.7, 0.0003))
     check('...and nothing of the WDPA-derived record (its credit, its key, the word WDPA) is in any public file',
           not any(w in blob2 for w in (b'Global Areas', b'wd5', b'wd7', b'wdpa', b'WDPA')))
     check('NOT PUBLISHABLE but good geometry and every other field good: not drawn; the two passing records are drawn with BOTH credits',
-          'M6' in bm2 and sorted(bm2['M6'][0]['properties']['layers']) == ['lay1', 'lay3']
-          and bm2['M6'][0]['properties']['cr'] == ['County Lands Office', 'State Parks Office']
-          and rw2['M6']['public_records'] == 2 and rw2['M6']['held_records'] == 1
-          and 'np6' in rm2['held_records_reasons'].get('M6', '') and 'publishable' in rm2['held_records_reasons'].get('M6', ''))
+          'US-7021' in bm2 and LAY(rm2, 'US-7021') == ['lay1', 'lay3']
+          and bm2['US-7021'][0]['properties']['cr'] == ['County Lands Office', 'State Parks Office']
+          and rw2['US-7021']['public_records'] == 2 and rw2['US-7021']['held_records'] == 1
+          and 'np6' in rm2['held_records_reasons'].get('US-7021', '') and 'publishable' in rm2['held_records_reasons'].get('US-7021', ''))
     check("...the not-publishable record's ring (outside both passing rings) is not drawn, and its credit and key are in no public file",
-          not near_pt('M6', 0.515, 0.719, 0.0005) and b'Hidden Town' not in blob2 and b'np6' not in blob2 and b'np8' not in blob2)
+          not near_pt('US-7021', 0.515, 0.719, 0.0005) and b'Hidden Town' not in blob2 and b'np6' not in blob2 and b'np8' not in blob2)
     check('ALL FAIL, WDPA-derived only: nothing drawn from the store (today\'s outline kept; the pin is not touched)',
-          'M7' not in bm2 and im2['fallback'].get('M7') == K.FALLBACK_CODE and 'WDPA' in rm2['fallback_reasons']['M7']
-          and 'M7' not in rw2)
+          'US-7022' not in bm2 and im2['fallback'].get('US-7022') == K.FALLBACK_CODE and 'WDPA' in rm2['fallback_reasons']['US-7022']
+          and 'US-7022' not in rw2)
     check("ALL FAIL, not-publishable only (good geometry): nothing drawn from the store (today's outline kept)",
-          'M8' not in bm2 and im2['fallback'].get('M8') == K.FALLBACK_CODE and 'publishable' in rm2['fallback_reasons']['M8'])
+          'US-7023' not in bm2 and im2['fallback'].get('US-7023') == K.FALLBACK_CODE and 'publishable' in rm2['fallback_reasons']['US-7023'])
     check('...the public INDEX lists the all-fail parks only as "kept today\'s outline" (no reason, no record key)',
-          set(im2['fallback']) == {'M7', 'M8'} and set(im2['fallback'].values()) == {K.FALLBACK_CODE})
+          set(im2['fallback']) == {'US-7022', 'US-7023'} and set(im2['fallback'].values()) == {K.FALLBACK_CODE})
 
     # ---- store index format 4 (full 3.5): geometry kinds area / line / pin, the same per-record gate for every kind ----------
     T1 = wiggle_line(0.32, 0.3, 0.36, 80); T4 = wiggle_line(0.6, 0.6, 0.66, 120)
     TRAIL = dict(boundary_rule='trail_100ft', corridor_ft=100, corridor_m=30.48, corridor_from='centreline')
     RIVER = dict(boundary_rule='river_100ft_from_bank', corridor_from='waters_edge', bank_status='bank_missing', river_class='big river')
-    f4 = [park('F1', [record('a1', 'lay1', [circle(0.3, 0.3, 0.01, 60)], credit='State Parks Office'),
+    f4 = [park('US-7005', [record('a1', 'lay1', [circle(0.3, 0.3, 0.01, 60)], credit='State Parks Office'),
                       line_record('t1', 'lay3', [T1], credit='Trail Office', **TRAIL),
                       pin_record('p1', 'lay2', 0.305, 0.305, credit='Point Office'),
                       line_record('t2', 'lay3', [wiggle_line(0.3, 0.33, 0.34, 40)], credit='Hidden Trail Office', publishable=False),
                       line_record('t3', 'lay3', [wiggle_line(0.3, 0.27, 0.34, 40)], cls='PUBLIC DOMAIN', credit='Global Line Credit', wdpa_derived=True)]),
-          park('F2', [line_record('t4', 'lay1', [T4], credit='Trail Office', **RIVER)]),
-          park('F3', [pin_record('p3', 'lay1', 0.9, 0.9, credit='Point Office')]),
-          park('F4', [line_record('t5', 'lay1', [wiggle_line(0.1, 0.9, 0.15, 40)], credit='Hidden Trail Office', publishable=False)]),
-          park('F5', [record('a5', 'lay1', [circle(0.5, 0.9, 0.006, 40)]), record('u5', 'lay1', [circle(0.52, 0.9, 0.006, 40)], geometry_kind='blob')]),
-          park('F6', [record('a6', 'lay1', [circle(0.81, 0.3, 0.004, 40)]),
+          park('US-7006', [line_record('t4', 'lay1', [T4], credit='Trail Office', **RIVER)]),
+          park('US-7007', [pin_record('p3', 'lay1', 0.9, 0.9, credit='Point Office')]),
+          park('US-7008', [line_record('t5', 'lay1', [wiggle_line(0.1, 0.9, 0.15, 40)], credit='Hidden Trail Office', publishable=False)]),
+          park('US-7009', [record('a5', 'lay1', [circle(0.5, 0.9, 0.006, 40)]), record('u5', 'lay1', [circle(0.52, 0.9, 0.006, 40)], geometry_kind='blob')]),
+          park('US-7010', [record('a6', 'lay1', [circle(0.81, 0.3, 0.004, 40)]),
                       record('c6', 'lay1', [circle(0.8, 0.3, 0.0003, 16)], geometry_kind='pin', pin_point=[0.8, 0.3], ring_is_stand_in_circle=True)])]
     r4, o4 = build('fmt4', f4, ws={'fmt': 'kpc-outline-store-index/4'})
     i4, fs4 = feats_of(o4, 'US-ZZ'); b4 = by_ref(fs4); rw4 = {r['ref']: r for r in r4['rows']}
@@ -368,58 +374,58 @@ try:
     has = lambda lines, path: [l for l in lines if same(l, path)]
     check('FORMAT 4: a /4 store is read and its public files pass the public check; INDEX.json names the line rule (no band drawn)',
           K.check(o4, 'US-ZZ', public=True) == [] and 'no zone band is drawn' in i4.get('line_rule', ''))
-    f1 = {f['properties']['role']: f for f in b4.get('F1', [])}
+    f1 = {f['properties']['role']: f for f in b4.get('US-7005', [])}
     l1 = f1['line']['geometry']['coordinates'] if 'line' in f1 else []
     check('MIXED /4 park: the area is drawn as an area (its hit polygon) and the official line AS GIVEN (open, every point, '
           'only rounded), both credits carried, the zone note from allow-listed values only',
           set(f1) == {'line', 'hit'} and len(has(l1, T1)) == 1 and has(l1, T1)[0][0] != has(l1, T1)[0][-1]
           and len(f1['hit']['geometry']['coordinates']) == 1 and f1['line']['properties']['cr'] == ['State Parks Office', 'Trail Office']
-          and f1['line']['properties']['layers'] == ['lay1', 'lay3'] and f1['line']['properties'].get('line') is True
-          and f1['line']['properties'].get('zone') == [{'rule': 'trail_100ft', 'from': 'centreline', 'ft': 100}] and not i4['fallback'].get('F1'))
+          and LAY(r4, 'US-7005') == ['lay1', 'lay3'] and f1['line']['properties'].get('line') is True
+          and f1['line']['properties'].get('zone') == [{'rule': 'trail_100ft', 'from': 'centreline', 'ft': 100}] and not i4['fallback'].get('US-7005'))
     check('...the line is never turned into a polygon: no line point is in the hit polygon\'s rings',
           bool(has(l1, T1)) and 'hit' in f1 and not {tuple(p) for p in has(l1, T1)[0]} & {tuple(p) for poly in f1['hit']['geometry']['coordinates'] for ring in poly for p in ring})
     ys = [y for l in l1 for x, y in l] + [y for poly in (f1['hit']['geometry']['coordinates'] if 'hit' in f1 else []) for ring in poly for x, y in ring]
     check('...the private line and the WDPA-derived line are not drawn (every drawn point is on the park area or the public line)',
           ys and all(0.2895 <= y <= 0.3105 for y in ys))
     check('...the pin record is not drawn; the private report counts each kind',
-          rw4['F1']['line_records'] == 1 and rw4['F1']['pin_records_not_drawn'] == 1
-          and rw4['F1']['held_records'] == 2 and r4['kinds_not_outlines']['F1'] == {'line': 1, 'pin': 1, 'unknown': 0})
+          rw4['US-7005']['line_records'] == 1 and rw4['US-7005']['pin_records_not_drawn'] == 1
+          and rw4['US-7005']['held_records'] == 2 and r4['kinds_not_outlines']['US-7005'] == {'line': 1, 'pin': 1, 'unknown': 0})
     check('...nothing of the records that were not drawn (credit lines, keys) is in a public file',
           not any(w in blob4 for w in (b'Hidden Trail', b'Global Line', b'Point Office', b'"t2"', b'"t3"', b'"p1"')))
-    f2 = b4.get('F2', [])
+    f2 = b4.get('US-7006', [])
     check('A RIVER park of one official line: drawn as that line only (one open line, every point), no polygon, no band; '
           "the zone note says 100 ft from the bank, banks missing; river_class (not on the allow-list) is not passed on",
           len(f2) == 1 and f2[0]['geometry']['type'] == 'MultiLineString' and len(f2[0]['geometry']['coordinates']) == 1
           and same(f2[0]['geometry']['coordinates'][0], T4) and f2[0]['properties']['role'] == 'line' and f2[0]['properties']['points'] == len(T4)
           and f2[0]['properties'].get('zone') == [{'rule': 'river_100ft_from_bank', 'from': 'waters_edge', 'bank': 'bank_missing'}]
-          and 'F2' not in i4['fallback'] and b'big river' not in blob4 and b'river_class' not in blob4)
+          and 'US-7006' not in i4['fallback'] and b'big river' not in blob4 and b'river_class' not in blob4)
     check("A PIN-only park (publishable official point): not drawn as an outline, today's outline kept, the POTA pin untouched; counted",
-          'F3' not in b4 and i4['fallback'].get('F3') == K.FALLBACK_CODE and '1 pin' in r4['fallback_reasons']['F3']
+          'US-7007' not in b4 and i4['fallback'].get('US-7007') == K.FALLBACK_CODE and '1 pin' in r4['fallback_reasons']['US-7007']
           and r4['pin_records_not_drawn'] == 3 and b'0.9, 0.9' not in blob4 and b'[0.9,0.9]' not in blob4)
     check("a park whose only line is not publishable: nothing drawn, today's outline",
-          'F4' not in b4 and i4['fallback'].get('F4') == K.FALLBACK_CODE and 'publishable' in r4['fallback_reasons']['F4'])
-    xs5 = [x for f in b4.get('F5', []) for l in drawn_lines([f]) for x, y in l]
+          'US-7008' not in b4 and i4['fallback'].get('US-7008') == K.FALLBACK_CODE and 'publishable' in r4['fallback_reasons']['US-7008'])
+    xs5 = [x for f in b4.get('US-7009', []) for l in drawn_lines([f]) for x, y in l]
     check('an UNKNOWN geometry kind is left out (counted); the area beside it is drawn',
           xs5 and max(xs5) < 0.5065 and r4['unknown_kind_records_not_drawn'] == 1)
-    xs6 = [x for f in b4.get('F6', []) for l in drawn_lines([f]) for x, y in l]
+    xs6 = [x for f in b4.get('US-7010', []) for l in drawn_lines([f]) for x, y in l]
     check("a stand-in circle (geometry_kind pin, ring_is_stand_in_circle) is never drawn as an outline; the real area is",
-          xs6 and min(xs6) > 0.8055 and rw4['F6']['pin_records_not_drawn'] == 1)
+          xs6 and min(xs6) > 0.8055 and rw4['US-7010']['pin_records_not_drawn'] == 1)
 
     # stand-in circles in ANY form, the store's use flag, bad checksums: each drops ONE record, never the area
     def beside(ref, bad_rec):
         return park(ref, [record(ref.lower() + 'ok', 'lay1', [circle(0.81, 0.6, 0.004, 40)], credit='Good Office'), bad_rec])
     SMALL = [circle(0.8, 0.6, 0.0003, 16)]
-    odd_recs = {'SC1': record('sc1', 'lay1', SMALL, credit='Circle One', ring_is_stand_in_circle='true'),
-                'SC2': record('sc2', 'lay1', SMALL, credit='Circle Two', ring_is_stand_in_circle=1),
-                'SC3': record('sc3', 'lay1', SMALL, credit='Circle Three', circle=True),
-                'SC4': record('sc4', 'lay1', SMALL, credit='Circle Four', grade='point-circle'),
-                'SC5': record('sc5', 'lay1', SMALL, credit='Circle Five', circle='yes'),
-                'US1': record('us1', 'lay1', SMALL, credit='Unused Office', use=False, use_why='proclamation line (not land)'),
-                'US2': record('us2', 'lay1', SMALL, credit='Unused Office', use='false'),
-                'CK1': dict(record('ck1', 'lay1', SMALL, credit='Moved Point Office'), sha256='0' * 64),
-                'CK2': dict(line_record('ck2', 'lay1', [T4], credit='Moved Line Office'), line_sha256='0' * 64),
-                'CK3': dict(line_record('ck3', 'lay1', [T4], credit='Moved Line Office', publishable=False), line_points=3)}
-    ro, oo = build('oddrecs', [beside(k, v) for k, v in odd_recs.items()] + [park('US3', [record('us3', 'lay1', [circle(0.81, 0.6, 0.004, 40)])])],
+    odd_recs = {'US-7035': record('sc1', 'lay1', SMALL, credit='Circle One', ring_is_stand_in_circle='true'),
+                'US-7036': record('sc2', 'lay1', SMALL, credit='Circle Two', ring_is_stand_in_circle=1),
+                'US-7037': record('sc3', 'lay1', SMALL, credit='Circle Three', circle=True),
+                'US-7038': record('sc4', 'lay1', SMALL, credit='Circle Four', grade='point-circle'),
+                'US-7039': record('sc5', 'lay1', SMALL, credit='Circle Five', circle='yes'),
+                'US-7040': record('us1', 'lay1', SMALL, credit='Unused Office', use=False, use_why='proclamation line (not land)'),
+                'US-7041': record('us2', 'lay1', SMALL, credit='Unused Office', use='false'),
+                'US-7002': dict(record('ck1', 'lay1', SMALL, credit='Moved Point Office'), sha256='0' * 64),
+                'US-7003': dict(line_record('ck2', 'lay1', [T4], credit='Moved Line Office'), line_sha256='0' * 64),
+                'US-7004': dict(line_record('ck3', 'lay1', [T4], credit='Moved Line Office', publishable=False), line_points=3)}
+    ro, oo = build('oddrecs', [beside(k, v) for k, v in odd_recs.items()] + [park('US-7042', [record('us3', 'lay1', [circle(0.81, 0.6, 0.004, 40)])])],
                    ws={'fmt': 'kpc-outline-store-index/4'})
     io, fo = feats_of(oo, 'US-ZZ'); bo = by_ref(fo)
     blobo = b''.join(gzip.decompress(q.read_bytes()) if q.suffix == '.gz' else q.read_bytes() for q in sorted((oo / 'US-ZZ').rglob('*')) if q.is_file())
@@ -427,14 +433,14 @@ try:
         xs = [x for f in bo.get(ref, []) for l in drawn_lines([f]) for x, y in l]
         return bool(xs) and min(xs) > 0.8055 and bo[ref][0]['properties']['cr'] == ['Good Office']
     check('STAND-IN CIRCLES in any form (ring_is_stand_in_circle "true" or 1, record-level circle true or "yes", grade point-circle) '
-          'are never drawn; the real area beside each is', all(only_good(k) for k in ('SC1', 'SC2', 'SC3', 'SC4', 'SC5'))
+          'are never drawn; the real area beside each is', all(only_good(k) for k in ('US-7035', 'US-7036', 'US-7037', 'US-7038', 'US-7039'))
           and b'Circle ' not in blobo)
     check("the store's use flag: use false (or anything but true) is never drawn, and the reason is private; use missing is drawn",
-          only_good('US1') and only_good('US2') and 'do not use' in ro['held_records_reasons']['US1'] and 'proclamation' in ro['held_records_reasons']['US1']
-          and b'Unused' not in blobo and 'US3' in bo)
+          only_good('US-7040') and only_good('US-7041') and 'do not use' in ro['held_records_reasons']['US-7040'] and 'proclamation' in ro['held_records_reasons']['US-7040']
+          and b'Unused' not in blobo and 'US-7042' in bo)
     check('a BAD CHECKSUM on one record (rings, or a line, publishable or not) drops that record only; the area is built and passes',
-          only_good('CK1') and only_good('CK2') and only_good('CK3') and 'checksum' in ro['held_records_reasons']['CK1']
-          and 'line checksum' in ro['held_records_reasons']['CK2'] and 'point count' in ro['held_records_reasons']['CK3']
+          only_good('US-7002') and only_good('US-7003') and only_good('US-7004') and 'checksum' in ro['held_records_reasons']['US-7002']
+          and 'line checksum' in ro['held_records_reasons']['US-7003'] and 'point count' in ro['held_records_reasons']['US-7004']
           and b'Moved' not in blobo and K.check(oo, 'US-ZZ', public=True) == [])
 
     # HOSTILE STRINGS in every field that could reach the public zone note: only allow-listed values ever pass
@@ -445,7 +451,7 @@ try:
                                 ('corridor_ft', '100'), ('corridor_from', ['centreline']), ('boundary_rule', {'x': 1}),
                                 ('river_class', EVIL), ('corridor_rule', EVIL), ('bank_source', EVIL), ('line_extent', EVIL),
                                 ('boundary_kind', EVIL), ('bank_near_parks', [EVIL]), ('corridor_m', EVIL)]):
-        hostile.append(park(f'H{i}', [line_record(f'h{i}', 'lay1', [wiggle_line(0.1, 0.1 + 0.02 * i, 0.12, 20)], credit='Trail Office',
+        hostile.append(park(f'US-{7700 + i}', [line_record(f'h{i}', 'lay1', [wiggle_line(0.1, 0.1 + 0.02 * i, 0.12, 20)], credit='Trail Office',
                                                   **dict({kk: vv for kk, vv in TRAIL.items() if kk != k}, **{k: v}))]))
     rh, oh = build('hostile', hostile, ws={'fmt': 'kpc-outline-store-index/4'})
     ih, fh = feats_of(oh, 'US-ZZ')
@@ -468,44 +474,122 @@ try:
     check('check --public refuses a zone value that is not on the allow-list, and a property that is not on the public list',
           any('allow-list' in x for x in pt) and any('not on the public list' in x for x in pt))
 
-    lv = [park('F9', [record('a9', 'lay1', [circle(0.5, 0.5, 0.01, 900, wobble=0.05)], credit='State Parks Office'),
+    lv = [park('US-7013', [record('a9', 'lay1', [circle(0.5, 0.5, 0.01, 900, wobble=0.05)], credit='State Parks Office'),
                       line_record('t9', 'lay3', [T1], credit='Trail Office')])]
     r9, o9 = build('fmt4lv', lv, ws={'fmt': 'kpc-outline-store-index/4'}, cap=40, mid_cap=30)
     i9, fs9 = feats_of(o9, 'US-ZZ')
-    mid9 = json.loads(gzip.decompress((o9 / 'US-ZZ' / i9['mid']['F9'][0]).read_bytes()))['features'][0]['geometry']['coordinates'] if 'F9' in i9['mid'] else []
-    fine9 = [l for t in (i9['fine'].get('F9') or {}).get('tiles', {})
-             for l in json.loads(gzip.decompress((o9 / 'US-ZZ' / 'fine' / 'F9' / (t + '.geojson.gz')).read_bytes()))['features'][0]['geometry']['coordinates']]
+    mid9 = json.loads(gzip.decompress((o9 / 'US-ZZ' / i9['mid']['US-7013'][0]).read_bytes()))['features'][0]['geometry']['coordinates'] if 'US-7013' in i9['mid'] else []
+    fine9 = [l for t in (i9['fine'].get('US-7013') or {}).get('tiles', {})
+             for l in json.loads(gzip.decompress((o9 / 'US-ZZ' / 'fine' / 'US-7013' / (t + '.geojson.gz')).read_bytes()))['features'][0]['geometry']['coordinates']]
     check('...an area simplified into middle and fine levels: the official line is in every level, never simplified '
           '(whole in the overview and the middle file; every one of its points in the fine pieces)',
-          'F9' in i9['mid'] and 'F9' in i9['fine'] and fine9
+          'US-7013' in i9['mid'] and 'US-7013' in i9['fine'] and fine9
           and len(has([l for f in fs9 for l in drawn_lines([f])], T1)) == 1 and len(has(mid9, T1)) == 1
           and all(any(abs(x - p[0]) <= 0.6e-5 and abs(y - p[1]) <= 0.6e-5 for l in fine9 for x, y in l) for p in T1))
-    long_line = [park('F8', [line_record('t8', 'lay1', [wiggle_line(0.1, 0.5, 0.9, K.LINE_CAP + 10, amp=0.00001)], credit='Trail Office')])]
+    long_line = [park('US-7012', [line_record('t8', 'lay1', [wiggle_line(0.1, 0.5, 0.9, K.LINE_CAP + 10, amp=0.00001)], credit='Trail Office')])]
     r8, o8 = build('fmt4long', long_line, ws={'fmt': 'kpc-outline-store-index/4'})
     check("an official line over the points drawn as given keeps today's outline (never simplified into something else here)",
-          'over the' in r8['fallback_reasons'].get('F8', '') and r8['parks_drawn'] == 0)
+          'over the' in r8['fallback_reasons'].get('US-7012', '') and r8['parks_drawn'] == 0)
     gw = tmp / 'a-git-work-tree'; (gw / '.git').mkdir(parents=True)
-    stg = tmp / 'st-prevgit'; write_store(stg, 'US-ZZ', [park('G1', [record('r1', 'lay1', C)])])
+    stg = tmp / 'st-prevgit'; write_store(stg, 'US-ZZ', [park('US-7014', [record('r1', 'lay1', C)])])
     try: K.build(stg, 'US-ZZ', gw / 'preview', preview=True, log=NOLOG); pg = False
     except K.DisplayError as ex: pg = 'git work tree' in str(ex)
     check('a PRIVATE PREVIEW is never written inside a git work tree (any folder with .git above it), and nothing is written there',
           pg and not (gw / 'preview').exists())
 
+    # ---- re-grade: no free store text in public files except scrubbed names and credits; refs are POTA refs --------------
+    base_blob = b''.join(gzip.decompress(q.read_bytes()) if q.suffix == '.gz' else q.read_bytes() for q in sorted((out / 'US-ZZ').rglob('*')) if q.is_file())
+    check("public features carry no layer names ('layers' / 'won' are in the private report only; the loader never read them)",
+          not any('layers' in f['properties'] or 'won' in f['properties'] for f in fs) and b'"layers"' not in base_blob and b'"won"' not in base_blob
+          and LAY(rep, 'US-0001') == ['lay1'])
+    EVIL2 = 'owner@example.com password=abc licence restricted <script>alert(1)</script>'
+    def drawn_rec(key, **kw): return record(key, 'lay1', [circle(0.5, 0.5, 0.01, 40)], **kw)
+    fr = [park('owner@example.com', [drawn_rec('x1')]), park('../../evil', [drawn_rec('x2')]), park('us-0001', [drawn_rec('x3')]),
+          park('US-0001x', [drawn_rec('x4')]), park('US-01', [drawn_rec('x5')]),
+          park('US-7801', [record('x6', EVIL2, [circle(0.5, 0.5, 0.01, 40)], credit='Good Office')], name=EVIL2),
+          park('US-7802', [drawn_rec('x7', credit='<script>alert(1)</script>')]),
+          park('US-7803', [drawn_rec('x8', credit='Town GIS password=abc')]), park('US-7804', [drawn_rec('x9', credit='Town GIS token 77')]),
+          park('US-7805', [drawn_rec('x10', credit='Town GIS secret note')]), park('US-7806', [drawn_rec('x11', credit='Town GIS key=abc')]),
+          park('US-7807', [drawn_rec('x12', credit='Town <b>GIS</b>')]),
+          park('US-7808', [None, 'just a string', {'key': ['a', 'list']}, {'key': None}, drawn_rec('x13'),
+                           drawn_rec('dupkey'), record('dupkey', 'lay2', [circle(0.9, 0.9, 0.01, 40)], publishable=False)])]
+    rf, of_ = build('freetext', fr)
+    i_f, f_f = feats_of(of_, 'US-ZZ'); b_f = by_ref(f_f)
+    blobf = b''.join(gzip.decompress(q.read_bytes()) if q.suffix == '.gz' else q.read_bytes() for q in sorted((of_ / 'US-ZZ').rglob('*')) if q.is_file())
+    check('a park ref that is not a POTA reference (e-mail, path, lower case, extra text, short) is left out of EVERY public file, '
+          'not even listed as fallback; the private report lists it',
+          not any(r in i_f['fallback'] or r in b_f for r in ('owner@example.com', '../../evil', 'us-0001', 'US-0001x', 'US-01'))
+          and sorted(rf['refs_not_pota_left_out']) == sorted(['owner@example.com', '../../evil', 'us-0001', 'US-0001x', 'US-01'])
+          and b'evil' not in blobf and b'0001x' not in blobf)
+    check("a hostile park name is replaced by the park's ref; a hostile layer name is in no public file",
+          'US-7801' in b_f and b_f['US-7801'][0]['properties']['name'] == 'US-7801' and b'script' not in blobf and b'password' not in blobf
+          and b'owner@' not in blobf and b'restricted' not in blobf)
+    check("credit lines with < or >, password, token, secret or key= are not plain: those records do not pass (today's outline)",
+          all(r not in b_f and i_f['fallback'].get(r) == K.FALLBACK_CODE for r in ('US-7802', 'US-7803', 'US-7804', 'US-7805', 'US-7806', 'US-7807'))
+          and not any(w in blobf for w in (b'Town GIS', b'<b>', b'token', b'secret', b'key=')))
+    check('MALFORMED records (null, a string, a list key, no key, a key twice) are left out and counted, never a traceback; the good record draws',
+          'US-7808' in b_f and rf['malformed_records_left_out'].get('US-7808') == 6 and b_f['US-7808'][0]['properties']['cr'] == ['Test Agency lay1']
+          and 'malformed' in rf['held_records_reasons'].get('US-7808', '') and K.check(of_, 'US-ZZ', public=True) == [])
+
+    def tamper(src, name, edit_feature=None, edit_index=None):
+        """copy a written public copy, change one thing (re-listing the part's sha so only the change itself is judged)"""
+        dst = tmp / ('out-tamper-' + name); shutil.copytree(src, dst)
+        ixt = json.loads((dst / 'US-ZZ' / 'INDEX.json').read_text()); part = ixt['parts'][0]
+        if edit_feature:
+            d = json.loads(gzip.decompress((dst / 'US-ZZ' / part[0]).read_bytes())); edit_feature(d['features'][0]['properties'])
+            b_ = K.gz(d); (dst / 'US-ZZ' / part[0]).write_bytes(b_); part[1] = hashlib.sha256(b_).hexdigest()[:12]; part[3] = len(b_)
+        if edit_index: edit_index(ixt)
+        (dst / 'US-ZZ' / 'INDEX.json').write_text(json.dumps(ixt))
+        return K.check(dst, 'US-ZZ', public=True)
+    cases = {'a hostile name': (lambda pr: pr.update(name='Park <script>'), None, 'name'),
+             'a credit with password=': (lambda pr: pr.update(cr=['Town GIS password=abc']), None, 'credit'),
+             'a credit with token': (lambda pr: pr.update(cr=['Town GIS token 99']), None, 'credit'),
+             'a credit with key=': (lambda pr: pr.update(cr=['Town key=abc']), None, 'credit'),
+             'a layers property': (lambda pr: pr.update(layers=['nhgranit']), None, 'public list'),
+             'a ref that is not a POTA ref': (lambda pr: pr.update(ref='../../evil'), None, 'POTA'),
+             'an INDEX key not on the list': (None, lambda ix: ix.update(note='from the store'), 'INDEX keys'),
+             'an INDEX about text changed': (None, lambda ix: ix.update(about='owner notes'), 'fixed text'),
+             'an INDEX fallback ref that is not a POTA ref': (None, lambda ix: ix['fallback'].update({'owner@example.com': K.FALLBACK_CODE}), 'POTA')}
+    caught = {k: any(w in x for x in tamper(out, str(i), ef, ei)) for i, (k, (ef, ei, w)) in enumerate(cases.items())}
+    check(f'check --public refuses each of {len(cases)} tampered public files (missed: {[k for k, v in caught.items() if not v] or "none"})', all(caught.values()))
+
+    for iv, v in enumerate(('kpc-outline-store-index/04', ' kpc-outline-store-index/4 ', 'kpc-outline-store-index/\u0664',
+                            'kpc-outline-store-index/4 ', 'KPC-OUTLINE-STORE-INDEX/4', 4)):
+        try: build(f'fmtx{iv}', [park('US-7811', [record('r1', 'lay1', C)])], ws={'fmt': None, 'top': {'store_format_version': v}}); rx = False
+        except K.DisplayError: rx = True
+        check(f'public format parsing is exact: {v!r} is refused', rx)
+    pvok, pvbad = [], []
+    for v in (None, 'kpc-outline-store-index/3', 'kpc-outline-store-index/4'):
+        try: build('pvok' + str(len(pvok)), [park('US-7812', [record('r1', 'lay1', C)])], ws={'fmt': None, 'top': {'store_format_version': v}} if v else {'fmt': None}, preview=True); pvok.append(True)
+        except K.DisplayError: pvok.append(False)
+    for v in ('4x', 'junk', 'kpc-outline-store-index/1', 'kpc-outline-store-index/2', 'kpc-outline-store-index/3.5', 'bogus/4', 'kpc-outline-store-index/0'):
+        try: build('pvbad' + str(len(pvbad)), [park('US-7812', [record('r1', 'lay1', C)])], ws={'fmt': None, 'top': {'store_format_version': v}}, preview=True); pvbad.append(False)
+        except K.DisplayError as ex: pvbad.append('reader knows' in str(ex) and 'no format' in str(ex))
+    check('a PRIVATE PREVIEW reads only an index with no format, /3 or /4; every other format string (4x, junk, /1, /2, /3.5, bogus/4, /0) '
+          'is refused with a message that says so', all(pvok) and all(pvbad))
+    gw2 = tmp / 'another-git-tree'; (gw2 / '.git').mkdir(parents=True)
+    st_r = tmp / 'st-reportgit'; write_store(st_r, 'US-ZZ', [park('US-7813', [record('r1', 'lay1', C)])])
+    import io, contextlib
+    with contextlib.redirect_stdout(io.StringIO()) as so:
+        rc = K.main(['build', '--store', str(st_r), '--area', 'US-ZZ', '--out', str(tmp / 'out-reportgit'), '--doubtful', str(dcsv),
+                     '--precedence', str(tmp / 'prec.json'), '--report', str(gw2 / 'report.json')]) if (tmp / 'prec.json').write_text(json.dumps(PREC)) else 9
+    check('--report inside a git work tree is refused, and nothing is written there', rc == 1 and 'git work tree' in so.getvalue() and not (gw2 / 'report.json').exists())
+
     # ---- must-fix 4: nothing private in the public files; credits per park --------------------------------------------------
-    sec = [park('S1', [record('sgPRIVATEKEY77', 'lay1', C, cls='RESTRICTED IN WRITING')]), park('S2', [record('r2', 'lay1', [circle(0.8, 0.6, 0.01, 40)], publishable=False)]),
-           park('S3', [record('r3', 'PAD-US', [circle(0.6, 0.8, 0.01, 40)], credit='National Park Service')]),
-           park('S4', [record('r4', 'PAD-US', [circle(0.8, 0.8, 0.01, 40)], credit='US Forest Service')]),
-           park('S5', [record('r5', 'lay2', [circle(0.6, 0.95, 0.01, 40)], credit='Town GIS (owner nancy.x@town.gov)')])]
+    sec = [park('US-7030', [record('sgPRIVATEKEY77', 'lay1', C, cls='RESTRICTED IN WRITING')]), park('US-7031', [record('r2', 'lay1', [circle(0.8, 0.6, 0.01, 40)], publishable=False)]),
+           park('US-7032', [record('r3', 'PAD-US', [circle(0.6, 0.8, 0.01, 40)], credit='National Park Service')]),
+           park('US-7033', [record('r4', 'PAD-US', [circle(0.8, 0.8, 0.01, 40)], credit='US Forest Service')]),
+           park('US-7034', [record('r5', 'lay2', [circle(0.6, 0.95, 0.01, 40)], credit='Town GIS (owner nancy.x@town.gov)')])]
     rs, os_ = build('secret', sec)
     raw = (os_ / 'US-ZZ' / 'INDEX.json').read_text()
     check('public INDEX.json carries no record keys, licence classes, reasons or store names (fallback = "kept today\'s outline" only)',
           'sgPRIVATEKEY77' not in raw and 'RESTRICTED' not in raw.upper() and 'WDPA' not in raw.upper() and set(json.loads(raw)['fallback'].values()) == {K.FALLBACK_CODE}
           and 'kpcstore' not in raw and 'made' not in json.loads(raw))
-    check('...the detailed reasons are in the private report only', 'RESTRICTED IN WRITING' in rs['fallback_reasons'].get('S1', ''))
+    check('...the detailed reasons are in the private report only', 'RESTRICTED IN WRITING' in rs['fallback_reasons'].get('US-7030', ''))
     f2 = by_ref(feats_of(os_, 'US-ZZ')[1])
     check('credits are per park: two PAD-US parks keep their own agency (no last-park-wins)',
-          f2['S3'][0]['properties']['cr'] == ['National Park Service'] and f2['S4'][0]['properties']['cr'] == ['US Forest Service'])
-    check('an e-mail and an owner note in a credit line are removed before it is written', f2['S5'][0]['properties']['cr'] == ['Town GIS'] and '@' not in raw)
+          f2['US-7032'][0]['properties']['cr'] == ['National Park Service'] and f2['US-7033'][0]['properties']['cr'] == ['US Forest Service'])
+    check('an e-mail and an owner note in a credit line are removed before it is written', f2['US-7034'][0]['properties']['cr'] == ['Town GIS'] and '@' not in raw)
     (os_ / 'US-ZZ' / 'INDEX.json').write_text(raw.replace('"about"', '"note": "licence class OPEN", "about"'))
     check('check --public refuses a private word in INDEX.json', any('private word' in x for x in K.check(os_, 'US-ZZ', public=True)))
 
@@ -519,11 +603,11 @@ try:
     check('a --key-dir that does not exist stops the build', kmiss)
     many = [record('m%d' % k, 'lay1', [square(round(0.3 * (k % 30), 6), round(1.0 + 0.3 * (k // 30), 6), round(0.3 * (k % 30) + 0.001, 6), round(1.0 + 0.3 * (k // 30) + 0.001, 6), 2)])
             for k in range(451)]
-    rm, om = build('far451', [park('F1', many)])
-    check("451 tracts 30 km apart: check join (today's outline), even with more than 400 groups", 'check join' in rm['fallback_reasons'].get('F1', ''))
+    rm, om = build('far451', [park('US-7005', many)])
+    check("451 tracts 30 km apart: check join (today's outline), even with more than 400 groups", 'check join' in rm['fallback_reasons'].get('US-7005', ''))
     am = [record('w1', 'lay1', [square(179.993, 52.0, 179.9995, 52.006, 5)]), record('e1', 'lay1', [square(-179.9995, 52.0, -179.993, 52.006, 5)])]
-    ra, oa = build('am', [park('A1', am)])
-    check('two tracts 1 km apart across 180 degrees are one park (not "20,000 km apart")', 'A1' not in ra['fallback_reasons'] and ra['rows'][0]['missing_m'] == 0)
+    ra, oa = build('am', [park('US-7001', am)])
+    check('two tracts 1 km apart across 180 degrees are one park (not "20,000 km apart")', 'US-7001' not in ra['fallback_reasons'] and ra['rows'][0]['missing_m'] == 0)
     rb1, ob1 = build('rep1', parks[:3]); rb2, ob2 = build('rep2', parks[:3])
     names = ['INDEX.json'] + [x[0] for x in json.loads((ob1 / 'US-ZZ' / 'INDEX.json').read_text())['parts']]
     check('the same store gives byte-identical files, INDEX.json included', all((ob1 / 'US-ZZ' / n).read_bytes() == (ob2 / 'US-ZZ' / n).read_bytes() for n in names))

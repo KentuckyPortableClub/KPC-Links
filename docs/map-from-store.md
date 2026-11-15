@@ -116,8 +116,17 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
 8. **Invariants, for every park, on its finest level.** A park that fails keeps today's outline:
    - **I1:** every metre of boundary that must be drawn lies within 5 m of a drawn line;
    - **I2:** no store land is lost (each covered tract is checked on its own grid of cells of 50 m or less).
-9. **Public files carry no record keys, licence words, reasons or store names.** `fallback` says only "kept today's outline",
-   and credits are per park. The reasons go to the private `--report` file, which must be outside the output folder.
+9. **Public files carry no record keys, licence words, reasons, layer names or store names.** `fallback` says only "kept
+   today's outline", and credits are per park. The only store text in a public file is the park's `name` and the credit
+   lines, both scrubbed the same way (e-mails, web addresses and owner notes removed; anything with `<`, `>`, password,
+   token, secret, `key=` or a private word is refused: a credit line then does not pass, a name becomes the park's ref). The
+   layer names (`layers`, `won`) are in the private report only (the loader never read them). A park whose ref is not a POTA
+   reference (`[A-Z0-9]{1,4}-[0-9]{4,5}`) is left out of every public file, even the fallback list. A record that is not an
+   object, has no plain text key or shares its key with another is left out and counted. `check --public` refuses any of
+   these, any feature property or INDEX key not on its fixed list, and an INDEX `about` / `line_rule` that is not the fixed
+   text. The reasons go to the private `--report` file, which must be outside the output folder AND outside every git work
+   tree. The index format must be written exactly `kpc-outline-store-index/3` or `/4` (no padding, spaces or other digits).
+   A record with no `use` field is drawn when it passes the gate (the field is optional in older stores).
 
 ## Commands
 
@@ -141,6 +150,14 @@ tree (any folder with a `.git` above it is refused). Its output is stamped PRIVA
   that old commit.
 
 Any problem stops it before the push.
+
+## Follow-ups (open, not in this change)
+
+- A ringed record that has only a `pin_point` (no `geometry_kind`, no circle flag), or a `circle` / `grade` flag only inside
+  `attrs`, is not recognised as a stand-in circle (neither form is in FORMAT-4.md).
+- `use` absent is drawn; once every store writes `use` on every record, require `use` to be exactly `true`.
+- Two records with one key are both left out (safe); the store tool should never write that.
+- The map hook must make a line-only park's line clickable (see "Click target" above).
 
 ## What is NOT in this change
 

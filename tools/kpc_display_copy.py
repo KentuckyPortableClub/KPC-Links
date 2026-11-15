@@ -47,7 +47,8 @@ Files (folder OUT/<AREA>/), every file gzip level 9 with mtime 0 (same store = b
   INDEX.json                      format, area, gen, built_with, caps, parts, mid, fine, fallback {ref: "kept today's outline"}, line_rule
   <AREA>.geojson.gz (+ .pN)       OVERVIEW: one feature per park (MultiPolygon). A park with stretches not drawn has two
                                   features: role 'line' (MultiLineString, drawn) and role 'hit' (its drawn tracts, clicks only).
-                                  Properties: ref, name, g, detail_m, worst_m, points, layers, won, cr (credit lines), mid,
+                                  Properties: ref, name (scrubbed like a credit line, else the ref), g, detail_m, worst_m,
+                                  points, cr (credit lines), mid,
                                   fine, and for a park across areas 'areas' and 'gen'; a park with an official line has
                                   'line': true and, when the store gives one, 'zone' [{rule, ft, from, bank}, ...]: only the
                                   allow-listed values of ZONE_ENUMS / ZONE_FT, anything else dropped (counted privately).
@@ -91,7 +92,8 @@ HELD_CLASSES = {'SHARE-ALIKE'}
 BASIS_OK = {'verified-row', 'owner-confirmed'}
 STORE_FORMATS = (3, 4)          # the store index formats this reader knows: 'kpc-outline-store-index/3' and '/4' ONLY. A newer
                                 # format stops the build until a person has read its spec and updated this reader (fail closed)
-STORE_FORMAT_RX = re.compile(r'kpc-outline-store-index/(\d+)')
+STORE_FORMAT_RX = re.compile(r'kpc-outline-store-index/([1-9][0-9]*)', re.ASCII)   # exact: no padding, spaces or other digits
+POTA_REF_RX = re.compile(r'[A-Z0-9]{1,4}-[0-9]{4,5}', re.ASCII)   # a park reference as POTA writes it (US-0001, FR-10432, ...)
 META_KEYS = ('publishable', 'licence_class', 'publish_basis', 'publish_basis_detail', 'credit_line', 'source_layer', 'source_url',
              'terms_text_sha256', 'terms_text_file', 'wdpa_derived', 'private_reason')
 # WDPA words, searched in VALUES only (never in field names: every v3 record has a field NAMED wdpa_derived)
@@ -215,8 +217,7 @@ def zone_ok(z):
     return True
 
 
-PUBLIC_PROPS = {'ref', 'name', 'g', 'detail_m', 'worst_m', 'points', 'layers', 'won', 'cr', 'mid', 'fine', 'areas', 'gen', 'role',
-                'line', 'zone'}
+PUBLIC_PROPS = {'ref', 'name', 'g', 'detail_m', 'worst_m', 'points', 'cr', 'mid', 'fine', 'areas', 'gen', 'role', 'line', 'zone'}
 
 
 def _member_json(raw):
@@ -242,16 +243,26 @@ def read_index(store_dir, area, preview=False):
 
 
 def read_park(store_dir, ref, e, handles):
-    """One park, its record checksums recomputed (a moved coordinate never passes). -> (park, {key: why}) where the dict names
+    """One park, its record checksums recomputed (a moved coordinate never passes). -> (park, {key: why}, n_malformed) where the dict names
     the records whose geometry does not match its own checksum or point count: those records are left out (never drawn), the
-    rest of the park and the area go on. A park that does not match the index (place, ref, fingerprint) still stops the build."""
+    rest of the park and the area go on. A record that is not an object, has no plain text key or shares its key with another
+    is left out too (n_malformed). A park that does not match the index (place, ref, fingerprint) still stops the build."""
     f = handles.get(e['file']) or handles.setdefault(e['file'], open(pathlib.Path(store_dir) / e['file'], 'rb'))
     f.seek(int(e['o'])); raw = f.read(int(e['n']))
     if len(raw) != int(e['n']): raise DisplayError(f'{ref}: store file shorter than the index says')
     p = _member_json(raw)
     if p.get('ref') != ref: raise DisplayError(f'{ref}: index points at {p.get("ref")!r}')
-    bad = {}
-    for r in p.get('records') or []:
+    bad, recs = {}, p.get('records')
+    if not isinstance(recs, list): recs = []
+    fp_src = [str(r.get('sha256')) if isinstance(r, dict) else 'None' for r in recs]
+    good = [r for r in recs if isinstance(r, dict) and isinstance(r.get('key'), str) and r.get('key')]
+    n_bad = len(recs) - len(good)          # a record that is not an object, or has no plain text key: left out, counted
+    keys = [r['key'] for r in good]
+    dup = {k for k in keys if keys.count(k) > 1}
+    if dup:                                # two records with one key: neither can be told apart, both left out
+        n_bad += sum(1 for r in good if r['key'] in dup); good = [r for r in good if r['key'] not in dup]
+    p['records'] = good
+    for r in good:
         try:
             er = enc_rings(r, p)
             if geometry_sha256(er) != r.get('sha256'): bad[r.get('key')] = 'its rings do not match its checksum'; continue
@@ -260,11 +271,11 @@ def read_park(store_dir, ref, e, handles):
                 ln = r.get('lines') or []
                 if geometry_sha256(ln) != r.get('line_sha256'): bad[r.get('key')] = 'its line does not match its line checksum'; continue
                 if sum(len(x) // 2 for x in ln) != r.get('line_points'): bad[r.get('key')] = 'its line point count does not match'
-        except (DisplayError, TypeError, ValueError, IndexError) as ex:
+        except (DisplayError, TypeError, ValueError, IndexError, AttributeError, KeyError) as ex:
             bad[r.get('key')] = f'its geometry cannot be read ({type(ex).__name__})'
-    fp = hashlib.sha256('|'.join(str(r.get('sha256')) for r in p.get('records') or []).encode()).hexdigest()
+    fp = hashlib.sha256('|'.join(fp_src).encode()).hexdigest()
     if e.get('fp') and fp != e['fp']: raise DisplayError(f'{ref}: park fingerprint differs from the index')
-    return p, bad
+    return p, bad, n_bad
 
 
 def file_sha256(path):
@@ -449,8 +460,9 @@ def samples(xs, ys, step=5.0):
 
 # ---- licence gate ---------------------------------------------------------------------------------------------------------
 def store_format(idx):
-    """'kpc-outline-store-index/3' -> 3; anything else -> 0."""
-    m = STORE_FORMAT_RX.fullmatch(str(idx.get('store_format_version') or '').strip())
+    """'kpc-outline-store-index/3' -> 3, exactly as written (no padding, no spaces, ASCII digits); anything else -> 0."""
+    v = idx.get('store_format_version')
+    m = STORE_FORMAT_RX.fullmatch(v) if isinstance(v, str) else None
     return int(m.group(1)) if m else 0
 
 
@@ -491,8 +503,14 @@ def clean_credit(t):
     t = re.sub(r'(https?://|www\.)\S+', ' ', t, flags=re.I)
     t = re.sub(r'\bowner\b[^,;]*', ' ', t, flags=re.I)
     t = re.sub(r'\s+', ' ', t).strip(' ,;:-')
-    if len(t) > 160 or re.search(r'password|token|private|internal|@', t, re.I): return ''
+    if len(t) > 160 or re.search(r'password|token|secret|key\s*=|private|internal|@|[<>]', t, re.I): return ''
     return t
+
+
+def clean_name(t, ref):
+    """The park name as a public file may carry it: the credit-line scrub, then no private word; else the park's ref."""
+    c = clean_credit(t)
+    return c if c and not PRIVATE_RX.search(c) else ref
 
 
 def norm_layer_url(u):
@@ -1072,8 +1090,9 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
     for a in areas:
         ix, p = read_index(store_dir, a, preview)
         if not preview: require_public_index(ix, a)
-        elif store_format(ix) not in (0,) + STORE_FORMATS:     # a preview may read an older index with no format, never a newer one
-            raise DisplayError(f'{a}: store_format_version {ix.get("store_format_version")!r} is newer than this reader knows')
+        elif ix.get('store_format_version') not in (None, '') and store_format(ix) not in STORE_FORMATS:
+            raise DisplayError(f'{a}: store_format_version {ix.get("store_format_version")!r} is not one this reader knows; a private '
+                               'preview reads an index with no format (an older store tool), kpc-outline-store-index/3 or /4 only')
         idx[a] = (ix, p)
         for f in sorted({e['file'] for e in ix['parks'].values()} | (set() if preview else set(ix.get('files') or {}))):
             if not re.fullmatch(r'[A-Za-z0-9_.-]+\.kpcstore\.json\.gz', str(f)): raise DisplayError(f'{a}: odd store file name {f!r}')
@@ -1090,10 +1109,12 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
         for ref in idx[a][0]['parks']: in_areas.setdefault(ref, []).append(a)
     handles = {}
     res = {a: {'feats': [], 'mid': {}, 'fine': {}, 'fallback': {}} for a in areas}
-    rows, why_private, held_private, kinds_private = [], {}, {}, {}
+    rows, why_private, held_private, kinds_private, bad_refs, malformed = [], {}, {}, {}, [], {}
     try:
-        for ref in sorted(in_areas):
+        for ref in sorted(in_areas, key=str):
             mine = in_areas[ref]
+            if not (isinstance(ref, str) and POTA_REF_RX.fullmatch(ref)):   # never written anywhere public, not even as fallback
+                bad_refs.append(str(ref)[:80]); continue
             others = [a for a in (park_areas or {}).get(ref, []) if a not in mine]
 
             def fall(why):
@@ -1107,7 +1128,9 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
             line_keys = set()
             for a in mine:
                 e = idx[a][0]['parks'][ref]
-                p, bad = read_park(store_dir, ref, e, handles); parks[a] = (e, p); name = p.get('name') or name
+                p, bad, n_mal = read_park(store_dir, ref, e, handles); parks[a] = (e, p); name = p.get('name') or name
+                if n_mal:
+                    malformed[ref] = malformed.get(ref, 0) + n_mal; why_not.append(f'{n_mal} malformed record(s) (not an object, no plain key, or a key twice)')
                 if p.get('circle') or p.get('grade') != 'official':
                     not_official.append(f'{a}: not an official outline in the store'); continue
                 if e.get('check_join'):
@@ -1200,7 +1223,8 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                 stp, drawn, ov, mid, fine, finest = {'once_m': 0.0}, [], None, None, None, None
                 inv = {'missing_m': 0.0, 'lost_fail': False, 'max_gap_m': 0.0, 'lost_m2': 0.0}
             won = min([(r.rank, r.layer) for r in recs] + [(l[4], l[2]) for l in lrecs])[1]
-            row = {'ref': ref, 'name': name, 'areas': mine, 'records': n_records, 'held_records': len(why_not),
+            row = {'ref': ref, 'name': name, 'areas': mine,
+                   'layers_by_area': {a: sorted({r.layer for r in drawn if r.area == a} | {l[2] for l in lrecs if l[0] == a}) for a in mine}, 'records': n_records, 'held_records': len(why_not),
                    'public_records': len(credit_of), 'distinct_records': len(recs) + len(lrecs),
                    'drawn_records': len(drawn) + len(lrecs), 'won': won, 'store_points': store_pts,
                    'line_records': len(lrecs), 'line_points': line_pts, 'pin_records_not_drawn': kinds['pin'],
@@ -1229,10 +1253,10 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                     res[a]['fallback'][ref] = FALLBACK_CODE   # of the same park): today's outline here, never an empty shape
                     held_private[ref] = (held + '; ' if held else '') + f'{a}: nothing of its own to draw (every record it holds is a copy drawn under another area)'
                     continue
-                base = {'ref': ref, 'name': name, 'g': 'official', 'detail_m': ov['tol'] if ov else 0,
+                base = {'ref': ref, 'name': clean_name(name, ref), 'g': 'official', 'detail_m': ov['tol'] if ov else 0,
                         'worst_m': round(ov['worst'] + merged_add, 1) if ov else LINE_ROUND_M,
                         'points': sum(len(k) for r, i, k, q in (ov['rings'] if ov else []) if r.area == a) + sum(len(pt) for pt in la),
-                        'layers': lay, 'won': won, 'cr': cr, 'mid': bool(mid), 'fine': bool(fine)}
+                        'cr': cr, 'mid': bool(mid), 'fine': bool(fine)}
                 if multi: base.update({'areas': mine, 'gen': gen})
                 if la:                     # official trail / river line(s) in this park, drawn as given; no corridor is drawn
                     base['line'] = True
@@ -1283,6 +1307,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
            'per_area': reps, 'rows': rows, 'fallback_reasons': why_private, 'held_records_reasons': held_private,
            'kinds_not_outlines': kinds_private, 'pin_records_not_drawn': sum(v['pin'] for v in kinds_private.values()),
            'zone_values_dropped': sum(r.get('zone_values_dropped', 0) for r in rows),
+           'refs_not_pota_left_out': bad_refs, 'malformed_records_left_out': malformed,
            'unknown_kind_records_not_drawn': sum(v['unknown'] for v in kinds_private.values()),
            'line_records_drawn': sum(r.get('line_records', 0) for r in rows if not r.get('failed')),
            'invariant_failures': [r['ref'] for r in rows if r.get('failed')]}
@@ -1340,8 +1365,7 @@ def write_area(out_dir, area, R, gen, built_with, cap, decimals, merge_m, previe
              'piece_cap': PIECE_CAP, 'decimals': decimals,
              'parks': len({f['properties']['ref'] for f in R['feats']}), 'parts': plist, 'mid': mlist, 'fine': flist,
              'fallback': dict(sorted(R['fallback'].items())),
-             'about': 'Display copy for drawing only (overview / middle / fine pieces). A park listed under fallback, or not '
-                      'listed, keeps its old outline on the map. Never used for "am I in the park" or 2-fers.',
+             'about': ABOUT,
              'line_rule': LINE_RULE}
     if preview: index['stamp'] = PREVIEW_STAMP
     (out / 'INDEX.json').write_text(json.dumps(index, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
@@ -1351,8 +1375,12 @@ def write_area(out_dir, area, R, gen, built_with, cap, decimals, merge_m, previe
 
 
 NAME_RX = re.compile(r'(mid/[A-Z0-9-]+|fine/[A-Z0-9-]+/-?\d+_-?\d+|[A-Z0-9-]+(\.p\d+)?)\.geojson\.gz')
+ABOUT = ('Display copy for drawing only (overview / middle / fine pieces). A park listed under fallback, or not '
+         'listed, keeps its old outline on the map. Never used for "am I in the park" or 2-fers.')
+INDEX_KEYS = {'format', 'area', 'gen', 'built_with', 'cap', 'mid_cap', 'mid_over_m', 'fine_over_m', 'fine_tol_m', 'piece_cap',
+              'decimals', 'parks', 'parts', 'mid', 'fine', 'fallback', 'about', 'line_rule', 'stamp'}
 PRIVATE_RX = re.compile(r'wdpa|protected ?planet|sprep|unep|licen[cs]e|restrict|private|held\b|publishable|@|https?:|'
-                        r'kpcstore|not on the allow|class\b|basis', re.I)
+                        r'kpcstore|not on the allow|class\b|basis|password|token|secret|key\s*=|[<>]', re.I)
 
 
 def check(out_dir, area, max_part=1_000_000, public=False, piece_cap=PIECE_CAP):
@@ -1368,7 +1396,12 @@ def check(out_dir, area, max_part=1_000_000, public=False, piece_cap=PIECE_CAP):
     if idx.get('area') != area: probs.append(f"INDEX is for {idx.get('area')!r}, not {area}")
     if public:
         if any(v != FALLBACK_CODE for v in (idx.get('fallback') or {}).values()): probs.append('INDEX fallback carries a reason (private)')
-        if PRIVATE_RX.search(json.dumps({k: v for k, v in idx.items() if k != 'about'})): probs.append('INDEX carries a private word')
+        if set(idx) - INDEX_KEYS: probs.append(f'INDEX keys not on the public list: {sorted(set(idx) - INDEX_KEYS)[:5]}')
+        if idx.get('about') != ABOUT or idx.get('line_rule') != LINE_RULE: probs.append('INDEX about / line_rule text is not the fixed text')
+        if PRIVATE_RX.search(json.dumps({k: v for k, v in idx.items() if k not in ('about', 'line_rule')})): probs.append('INDEX carries a private word')
+        bad_refs = [r for r in list(idx.get('fallback') or {}) + list(idx.get('mid') or {}) + list(idx.get('fine') or {})
+                    if not (isinstance(r, str) and POTA_REF_RX.fullmatch(r))]
+        if bad_refs: probs.append(f'INDEX names a park ref that is not a POTA reference: {bad_refs[:3]}')
     names = [x[0] for x in idx.get('parts') or []] + [v[0] for v in (idx.get('mid') or {}).values()]
     names += [f'fine/{ref}/{t}.geojson.gz' for ref, v in (idx.get('fine') or {}).items() for t in (v.get('tiles') or {})]
     if any('..' in n or n.startswith('/') or not NAME_RX.fullmatch(n) for n in names):
@@ -1394,6 +1427,10 @@ def check(out_dir, area, max_part=1_000_000, public=False, piece_cap=PIECE_CAP):
             seen.add((r, role))
             if r in (idx.get('fallback') or {}): probs.append(f'{r} both drawn and fallback')
             if public and any(PRIVATE_RX.search(c) for c in pr.get('cr') or []): probs.append(f'{r}: a credit line carries a private word')
+            if public and not (isinstance(r, str) and POTA_REF_RX.fullmatch(r)): probs.append(f'{str(r)[:20]!r}: not a POTA reference')
+            if public and (not isinstance(pr.get('name'), str) or clean_name(pr.get('name'), '\0') != pr.get('name')):
+                probs.append(f'{r}: the park name is not plain text')
+            if public and any(not isinstance(c, str) or clean_credit(c) != c for c in pr.get('cr') or []): probs.append(f'{r}: a credit line is not plain text')
             if public and set(pr) - PUBLIC_PROPS: probs.append(f'{r}: properties not on the public list: {sorted(set(pr) - PUBLIC_PROPS)[:5]}')
             if public and 'zone' in pr and not (isinstance(pr['zone'], list) and pr['zone'] and all(zone_ok(z) for z in pr['zone'])):
                 probs.append(f'{r}: a zone note holds a value that is not on the allow-list')
@@ -1429,7 +1466,7 @@ def main(argv=None):
     b.add_argument('--key-dir', help="data/us-key: a park that is also in an area not in this run keeps today's outline")
     b.add_argument('--decimals', type=int, default=DECIMALS); b.add_argument('--merge-m', type=float, default=MERGE_M)
     b.add_argument('--private-preview', action='store_true')
-    b.add_argument('--report', '--json', dest='report', help='the PRIVATE build report (reasons per park); must be outside --out')
+    b.add_argument('--report', '--json', dest='report', help='the PRIVATE build report (reasons per park); must be outside --out and outside every git work tree')
     c = sub.add_parser('check'); c.add_argument('--out', required=True); c.add_argument('--area', required=True)
     c.add_argument('--public', action='store_true', help='also refuse a PRIVATE PREVIEW, unlisted files and private words')
     a = ap.parse_args(argv)
@@ -1437,6 +1474,8 @@ def main(argv=None):
         if a.cmd == 'build':
             if a.report and pathlib.Path(out_root := a.out).resolve() in pathlib.Path(a.report).resolve().parents:
                 raise DisplayError('the private report must not be written inside the public output folder')
+            if a.report and in_git_tree(pathlib.Path(a.report).resolve().parent):
+                raise DisplayError('the private report (record keys, reasons) is written only OUTSIDE every git work tree')
             pt = json.loads(pathlib.Path(a.precedence).read_text(encoding='utf-8')) if a.precedence else None
             rep = build(a.store, a.area, a.out, cap=a.cap, doubtful=read_doubtful(a.doubtful, a.area), preview=a.private_preview,
                         decimals=a.decimals, merge_m=a.merge_m, precedence_table=pt, park_areas=key_areas(a.key_dir))
