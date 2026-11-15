@@ -193,7 +193,7 @@ jobs:
         id: kept_green_master
         continue-on-error: true
         env:
-          KPC_MASTER_PROBE: ${{ vars.KPC_MASTER_PROBE || '0' }}
+          KPC_MASTER_PROBE: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || vars.KPC_MASTER_PROBE || '0' }}
         run: |
           python3 .github/scripts/kpc_master_cli.py check || { kpc_rc=$?; echo "::error title=Master check::the master outlines failed their check (exit $kpc_rc)"; echo "Master check - failed (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           python3 .github/scripts/kpc_master_cli.py plan --prefix W- $([ "$KPC_MASTER_PROBE" = 1 ] || echo --no-probe) > /dev/null
@@ -232,6 +232,8 @@ jobs:
           RETRIES: ${{ vars.KPC_WORLD_HELD_RETRIES || '1' }}
           WAITMIN: ${{ vars.KPC_WORLD_HELD_WAIT_MIN || '10' }}
           STEP_MIN: '335'   # = this step's timeout-minutes
+          GEO_CACHE_MODE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'only' || '' }}   # KPC owner, 2026-11-15: store mode = the saved copies only (downloaded above), no live source
+          KPC_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'python3 .github/scripts/kpc_key_offline.py' || '' }}   # store mode: every connection refused (exit 89 = failed, previous key kept)
           KPC_OFFICIAL_PINS: .op/data/intake/official-pins-nov12.json   # Nov 12 (KPC owner, 2026-11-12): official pin fills (kpc_pin_fill.py), read only from KPC-Data
           # Nov 12 (KPC owner, 2026-11-12): the Japan A10 crosswalk (kpc_jp_crosswalk.py) is OFF until the owner signs the A10 licence terms; only the
           # repo variable KPC_JP_A10_CROSSWALK=on turns it on (JP only). Unset = off; the JP build says 'JP A10 crosswalk: OFF (licence not signed)'.
@@ -286,7 +288,7 @@ jobs:
           fi
           for c in $BUILD; do
             echo "::group::World key $c (limit ${CMIN} min)"
-            rc=0; COUNTRIES=$c timeout --kill-after=60 "${CMIN}m" python3 .github/scripts/kpc_world_key.py || rc=$?
+            rc=0; COUNTRIES=$c timeout --kill-after=60 "${CMIN}m" ${KPC_OFFLINE:-python3} .github/scripts/kpc_world_key.py || rc=$?
             echo "::endgroup::"
             if [ "$rc" = 124 ] || [ "$rc" = 137 ]; then echo "::warning title=World key $c::stopped after ${CMIN} min (a source stopped answering?); the build stamp lists it as failed"; echo "$c" >> part/failed.txt
             elif [ "$rc" = 3 ]; then echo "::warning title=World key $c::HELD (exit 3): a source failed or came back empty with no saved records; previous key kept (tried again at the end if time allows)"; echo "$c" >> part/failed.txt; echo "$c" >> part/held.txt
@@ -304,7 +306,7 @@ jobs:
               left=$(( STEP_MIN - 5 - ( $(date +%s) - T0 ) / 60 )); lim=$(( left < CMIN ? left : CMIN ))
               if [ "$lim" -lt 5 ]; then echo "$c" >> part/held.txt; continue; fi
               echo "::group::World key $c (held retry $n, limit ${lim} min)"
-              rc=0; COUNTRIES=$c timeout --kill-after=60 "${lim}m" python3 .github/scripts/kpc_world_key.py || rc=$?
+              rc=0; COUNTRIES=$c timeout --kill-after=60 "${lim}m" ${KPC_OFFLINE:-python3} .github/scripts/kpc_world_key.py || rc=$?
               echo "::endgroup::"
               if [ "$rc" = 0 ]; then awk -v c="$c" '$0 != c' part/failed.txt > part/failed.tmp; mv part/failed.tmp part/failed.txt; echo "$c" >> part/done.txt; echo "::notice title=World key $c::built on held retry $n"
               elif [ "$rc" = 3 ]; then echo "$c" >> part/held.txt; echo "::warning title=World key $c::still HELD after retry $n"
@@ -319,6 +321,17 @@ jobs:
         with:
           path: cache/world/parts
           key: world-parts-${{ matrix.g.countries }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Store mode (KPC owner, 2026-11-15) - never worse - a country with no saved copy, or fewer joined or official parks than main, is not sent to the join (it keeps main's key)
+        # Only when the repo variable KPC_KEY_SOURCE=store. Before the part is made: such a country leaves done.txt, so the part step below
+        # names it failed and does not send its file (the join keeps main's key, files and index row byte for byte). Offline.
+        if: ${{ always() && vars.KPC_KEY_SOURCE == 'store' }}
+        run: |
+          [ -s part/done.txt ] || exit 0
+          : > "$RUNNER_TEMP/world-worse.txt"
+          for c in $(cat part/done.txt); do [ -f "cache/world/W-$c.json.gz" ] || { echo "World key $c: no saved copy; not built in store mode, its key is left as it is"; echo "$c" >> "$RUNNER_TEMP/world-worse.txt"; }; done
+          files=""; for c in $(cat part/done.txt); do grep -qx "$c" "$RUNNER_TEMP/world-worse.txt" || { [ -f "data/world-key/$c.json" ] && files="$files data/world-key/$c.json"; }; done
+          if [ -n "$files" ]; then python3 .github/scripts/kpc_key_never_worse.py --ref HEAD --worse-out "$RUNNER_TEMP/world-worse-2.txt" $files || true; cat "$RUNNER_TEMP/world-worse-2.txt" >> "$RUNNER_TEMP/world-worse.txt" 2>/dev/null; fi   # ok: the list decides, not the exit code
+          if [ -s "$RUNNER_TEMP/world-worse.txt" ]; then grep -vxF -f "$RUNNER_TEMP/world-worse.txt" part/done.txt > part/done.tmp || true; mv part/done.tmp part/done.txt; fi   # ok: grep finds none = every country held
       - name: This job's part
         if: always()
         run: |
@@ -595,7 +608,7 @@ jobs:
         # failed, the branch is missing or holds no outlines, or what was unpacked is not every file the branch holds) NOTHING is pushed
         # (a push would leave only this run's countries and wipe every other country's saved outlines): ::error, and the verdict job
         # ends the run red. The key saved to main above is not affected.
-        if: ${{ !cancelled() && steps.save.outcome == 'success' && steps.join_verdict.outcome == 'success' && steps.tonight.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes' }}
+        if: ${{ (!cancelled() && steps.save.outcome == 'success' && steps.join_verdict.outcome == 'success' && steps.tonight.outcome == 'success' && steps.tonight.outputs.built != '0' && inputs.outline_test != 'yes') && vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode saves no outline (the outline store does)
         id: kept_green_1
         continue-on-error: true
         run: |
@@ -678,7 +691,7 @@ jobs:
     needs: [plan, join]
     # Nov 11 (KPC owner, 2026-11-11): and only when the join saved a country (a1b6d54 checked a red run's save); nothing saved = no check
     # Nov 12 (KPC owner, 2026-11-11): and only when the join job was green (a join red on its gate verdict saved nothing)
-    if: ${{ !cancelled() && needs.join.result == 'success' && needs.join.result != 'cancelled' && needs.join.result != 'skipped' && needs.join.outputs.built != '0' && needs.join.outputs.built != '' }}
+    if: ${{ (!cancelled() && needs.join.result == 'success' && needs.join.result != 'cancelled' && needs.join.result != 'skipped' && needs.join.outputs.built != '0' && needs.join.outputs.built != '') && vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode starts no other workflow
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:

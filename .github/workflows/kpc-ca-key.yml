@@ -106,17 +106,18 @@ jobs:
         id: kept_green_master
         continue-on-error: true
         env:
-          KPC_MASTER_PROBE: ${{ vars.KPC_MASTER_PROBE || '0' }}
+          KPC_MASTER_PROBE: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || vars.KPC_MASTER_PROBE || '0' }}
         run: |
           python3 .github/scripts/kpc_master_cli.py check || { kpc_rc=$?; echo "::error title=Master check::the master outlines failed their check (exit $kpc_rc)"; echo "Master check - failed (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           python3 .github/scripts/kpc_master_cli.py plan --prefix CA- $([ "$KPC_MASTER_PROBE" = 1 ] || echo --no-probe) > /dev/null
       - name: Build the Canada answer key
         if: ${{ env.SKIP != '1' }}
         env:
-          GEO_CACHE_MODE: ${{ (github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && !inputs.saved && 'refresh' || 'use' }}   # Nov 9 evening (Brandon t909u 'saved outlines first'): every run starts from the saved copy; only the MONTHLY run re-reads Canada live (his 'once a month')      # Oct 22: keep the outlines it read, so the next step can save the missing park files
+          GEO_CACHE_MODE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'only' || ((github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && !inputs.saved && 'refresh' || 'use') }}   # Nov 9 evening (Brandon t909u 'saved outlines first'): every run starts from the saved copy; only the MONTHLY run re-reads Canada live (his 'once a month')      # Oct 22: keep the outlines it read, so the next step can save the missing park files
           KPC_KEY_ONLY_PARKS: ${{ !((github.event.schedule || inputs.as_schedule) == '43 10 2 * *' && !inputs.saved) && env.RULES_ONLY_PARKS || '' }}   # Nov 9 evening (KZ4CP 5:41 PM CST): a park-scoped rule change re-matches only those parks (never on the monthly live re-read)
           GH_TOKEN: ${{ github.token }}
           KPC_CA_HAND: cache/ca-hand
+          KPC_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'python3 .github/scripts/kpc_key_offline.py' || '' }}   # KPC owner, 2026-11-15: store mode, every connection refused (exit 89 = stopped, main's key kept)
           KPC_OFFICIAL_PINS: .op/data/intake/official-pins-nov12.json   # Nov 12 (KPC owner, 2026-11-12): official pin fills (kpc_pin_fill.py), read only from KPC-Data
         id: kept_green_1
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)
@@ -124,9 +125,10 @@ jobs:
           pip install --quiet --break-system-packages pyshp pyproj || pip install --quiet pyshp pyproj || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           # Oct 27 (gap hunt): 'saved' = start from the saved copy on the boundary-cache release (a full re-read can time out)
           # Nov 9 (Brandon t939u "4 saved copies"): the monthly refresh downloads the saved copy too, so layers on saved-copy-only hosts keep their records
-          if [ "$GEO_CACHE_MODE" = use ] || [ "$GEO_CACHE_MODE" = refresh ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
+          if [ "$GEO_CACHE_MODE" = use ] || [ "$GEO_CACHE_MODE" = refresh ] || [ "$GEO_CACHE_MODE" = only ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
           # owner rule, 2026-11-10: the release copy as downloaded (+ the asset list) is what save-check compares the upload against
           mkdir -p .against; [ -f cache/ca/CA-ALL.json.gz ] && cp cache/ca/CA-ALL.json.gz .against/
+          if [ "$GEO_CACHE_MODE" = only ] && [ ! -f cache/ca/CA-ALL.json.gz ]; then touch /tmp/ca-key-stopped; echo "Canada key: no saved copy (CA-ALL.json.gz) downloaded; nothing built in store mode, the key is left as it is"; fi   # KPC_KEY_SOURCE=store only
           gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > .against/ASSETS.txt || rm -f .against/ASSETS.txt
           # Nov 10: checked hand files for Canada layers a bot may not read (Parks Canada): merged by the key (KPC_CA_HAND), keep-bigger, fail closed
           # A failed listing or download is a loud warning naming the asset; no matching asset is a plain notice (nothing waiting is normal)
@@ -148,7 +150,7 @@ jobs:
           rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --first-ok --cache cache/ca --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
           [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; echo "$mg" > "$RUNNER_TEMP/master-short.txt"; }
           if [ -s "$RUNNER_TEMP/master-short.txt" ]; then touch /tmp/ca-key-stopped; : > ca-key.log; echo "::notice title=Canada key::held: the saved copy is short (see the Master gate)"; else
-          python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { touch /tmp/ca-key-stopped; echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
+          ${KPC_OFFLINE:-python3} .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { touch /tmp/ca-key-stopped; echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
           fi
           # Oct 28 (tune pass): the script's own notices went only into ca-key.log, so a provincial map that FAILED or a
           # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).
@@ -156,7 +158,7 @@ jobs:
           grep '^::warning title=Official pin fills' ca-key.log | cut -c1-900 || true   # ok: shows the pin-fill warnings from the log (none = nothing to show); also in the run summary
           rm -rf .op
       - name: Keep the saved copy current (a full read that finished)
-        if: ${{ env.SKIP != '1' && !inputs.saved && (github.event.schedule || inputs.as_schedule) != '49 9 * * *' }}
+        if: ${{ (env.SKIP != '1' && !inputs.saved && (github.event.schedule || inputs.as_schedule) != '49 9 * * *') && vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode uploads nothing
         id: kept_green_2
         continue-on-error: true
         env:
@@ -172,7 +174,7 @@ jobs:
           if [ "$ok" = 1 ]; then bash .github/scripts/kpc_archive.sh put saved-outlines "Canada key saved outlines (run $GITHUB_RUN_ID)" cache/ca/CA-ALL.json.gz || { kpc_rc=$?; echo "::warning title=KPC-Archive::not saved to KPC-Archive this run (exit $kpc_rc, see above); the release copy is current"; echo "KPC-Archive - not saved this run (exit $kpc_rc); the release copy is current" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
           if [ "$ok" = 1 ]; then gh release upload boundary-cache cache/ca/CA-ALL.json.gz -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=download::a download failed (exit $kpc_rc); results may use old or missing files"; echo "download - a download failed (exit $kpc_rc); results may use old or missing files" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi
       - name: Save outline files for joined parks that have none (never overwrites)
-        if: ${{ env.SKIP != '1' }}
+        if: ${{ (env.SKIP != '1') && vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode builds no outline (the outline store does)
         id: kept_green_3
         continue-on-error: true
         run: python3 .github/scripts/kpc_ca_fill_bounds.py || { kpc_rc=$?; echo "::error title=kpc_ca_fill_bounds.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_ca_fill_bounds.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
@@ -217,6 +219,13 @@ jobs:
             echo "::error title=Review files::the review rows could not be merged: main's review files were put back whole and nothing is saved"
             exit 1   # Save is gated on this step (steps.keep_rows.outcome != 'failure')
           fi
+      - name: Store mode (KPC owner, 2026-11-15) - never worse - a province with fewer joined or official parks than main keeps EVERY province from main
+        # Only when the repo variable KPC_KEY_SOURCE=store. Canada builds as one job from one saved copy, so a worse province holds the whole
+        # Canada key (the next step puts main's data/ca-key back, no stamp, nothing saved). Offline.
+        if: ${{ env.SKIP != '1' && vars.KPC_KEY_SOURCE == 'store' }}
+        run: |
+          [ -f /tmp/ca-key-stopped ] && exit 0
+          python3 .github/scripts/kpc_key_never_worse.py --ref HEAD --worse-out "$RUNNER_TEMP/ca-worse.txt" data/ca-key/CA-??.json || { touch /tmp/ca-key-stopped; echo "::error title=Canada key::store mode: $(tr '\n' ' ' < "$RUNNER_TEMP/ca-worse.txt")has fewer joined or official parks than main: the whole Canada key is kept from main"; }
       - name: A Canada build that stopped keeps main's key (Nov 12, KPC owner, 2026-11-12) - no stamp, data/ca-key not saved
         # Canada builds as ONE job from ONE saved copy (CA-ALL) and writes its province files only at the end, so a province cannot fail
         # alone today: a short copy, a stopped build or a GATE FAIL keeps EVERY province from main. Before, the stamp still gave the
@@ -334,7 +343,7 @@ jobs:
     # owner rule, 2026-11-10: the ONE start of the world key (dispatch only, once per Canada run, built or skipped: a skipped
     # Canada start still lets the world key check its own turn; kpc_key_order.py makes a duplicate skip). Not for a cancelled run.
     needs: [run]
-    if: ${{ !cancelled() }}
+    if: ${{ (!cancelled()) && vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode starts no other workflow
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -349,7 +358,7 @@ jobs:
   postcheck:
     # owner rule, 2026-11-10: dispatch is the ONLY path to the post-key check. Not for a cancelled run or a start that built nothing.
     needs: [run]
-    if: ${{ !cancelled() && needs.run.result != 'cancelled' && needs.run.outputs.skip != '1' }}
+    if: ${{ (!cancelled() && needs.run.result != 'cancelled' && needs.run.outputs.skip != '1') && vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode starts no other workflow
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
