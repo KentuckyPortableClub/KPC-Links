@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# RETIRED 2026-11-14: the keeper replaces this finder; its schedule is off. A by-hand run still writes
+# data/state-gis-found.json and data/state-gis-proposed.json, but only adds layers to data/state-gis.json with KPC_STATE_GIS_AUTOADD=1.
 """Find each state's own GIS boundary layers (state parks, wildlife areas, state forests, nature preserves, trust land)
 for the Map Rep Tool Box, and check that they answer. Writes data/state-gis-found.json (everything found, for Claude to
 curate into data/state-gis.json). One-time / occasional run; never fails the workflow.
@@ -537,6 +539,9 @@ def main():
     # AUTO-ADD (Brandon Oct 24: 'keep looking and add as found'): only the strong ones — a state .gov/.us server or the agency's own ArcGIS Online
     # organization, a clear park/wildlife/forest/preserve layer name, a name field, 5-5000 records, and no such kind for that state yet.
     # Marked auto:true so the Tool Box labels them 'found by the bot, not yet checked'. Everything else stays in the proposal file for a person.
+    autoadd = os.environ.get('KPC_STATE_GIS_AUTOADD') == '1'   # retired Nov 14: off unless asked, so a by-hand run never changes the live list
+    if not autoadd:
+        print('::notice title=State GIS auto-add off::retired finder: data/state-gis.json left as is (set KPC_STATE_GIS_AUTOADD=1 to add)')
     try:
         gis = json.load(open('data/state-gis.json'))
     except Exception:
@@ -544,7 +549,7 @@ def main():
     states = gis.setdefault('states', {})
     STRONG = re.compile(r'state park|parks? (boundar|unit|propert)|wildlife (management )?area|\bwma|game land|state forest|nature preserve|natural area|public (hunting|land)|managed land|conservation area|dnr (land|managed)', re.I)
     added = []
-    for r in prop:
+    for r in (prop if autoadd else []):
         title = r['layer'] + ' ' + str(r.get('agolTitle') or '')
         if not STRONG.search(title) or not (5 <= r['count'] <= 5000):
             continue
