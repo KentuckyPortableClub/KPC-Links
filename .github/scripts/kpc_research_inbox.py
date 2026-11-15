@@ -13,9 +13,12 @@ The sure test (= the sure rule, the same as kpc_problem_solver.py / the Nov 9 tr
   - the KIND of place does not clash (problem solver kind rule, Quality Nov 7 C1);
   - not an overlay (Natura 2000 / Ramsar / UNESCO / Emerald / SSSI ...) unless the park's own name says so;
   - no person said otherwise (overrides 'no', 'none', blocked_ids) and the park has no saved id already (else REJECTED: nothing to add).
-Outlines: the saved copy first (RESEARCH_CACHE, default cache/research/<host-layer>.json), then an ALLOWED live read: robots.txt is
-checked per host (a 401/403 robots answer = disallow), hosts on KPC_SAVED_ONLY_HOSTS are never read live (the sure rule), one request
-per host per second, honest User-Agent. Every live read is saved to the cache (saved outlines first next time).
+Outlines: the saved copy first (RESEARCH_CACHE, default cache/research/<host-layer>.json), then an ALLOWED live read with the store
+engine's manners (kpc_inbox_manners.py, KPC owner 2026-11-14): robots.txt once per host per run (400-499 except 429 = no restrictions;
+429 / 5xx / no answer = no reads from that host this run; 200 = obeyed, Crawl-delay over 30 s = host skipped this run), at least 2 s
+between requests to one host, at most 200 per host per hour and 1,500 per day (counts kept in <cache>/_fetch-counts.json across runs;
+past a cap the park stays on the retry list). Hosts on KPC_SAVED_ONLY_HOSTS are never read live (the sure rule); honest User-Agent.
+Every live read is saved to the cache (saved outlines first next time).
 
 Out: data/research-inbox/results/<file stem>.json + .md (sure / needs person / rejected, with reasons) and the retry list
 data/research-inbox/needs-another-look.json (the sure rule): every park still NEEDS PERSON / held, with its reason and the row, so the
@@ -25,9 +28,11 @@ import unicodedata, csv, glob, json, math, os, pathlib, re, sys, time, urllib.pa
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import kpc_inbox_manners as MN  # noqa: E402  (robots.txt rule, 2 s, 200 per hour, 1500 per day: the store engine's manners)
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 UA = 'KPC (kentuckyportableclub.github.io)'
 SURE_KM = 0.5
+PC_PROPOSAL = 'point-circles-proposed.json'   # KPC owner, 2026-11-14: in results/ (never read as a batch, uploaded with the run)
 COLS = ['pota_ref', 'park_name', 'layer_url', 'record_id', 'official_name', 'owner', 'confidence', 'notes', 'source', 'pin_lat', 'pin_lon']
 HOLD = {h.strip().lower() for h in (os.environ.get('KPC_SAVED_ONLY_HOSTS') or
         'services.arcgis.com,services1.arcgis.com,apps.fs.usda.gov').split(',') if h.strip()}
@@ -137,7 +142,8 @@ def nurl(u):
 class Reader:
     def __init__(self, cache, offline=False):
         self.cache = pathlib.Path(cache); self.offline = offline; self.rb = {}; self.last = {}; self.mem = {}; self.live = 0; self.why_not = {}
-        self.hmem = {}
+        self.hmem = {}; self.later = set()   # later = reasons that are 'not this run' (cap, back-off): tried again next run
+        self.m = MN.manners_for(self.cache, UA, refuse=lambda u: self._never(u))
         try: self.handmap = {nurl(k).lower(): v for k, v in json.load(open(os.environ['RESEARCH_HAND'], encoding='utf-8')).items()}
         except Exception: self.handmap = {}  # noqa: BLE001
 
@@ -155,32 +161,28 @@ class Reader:
         for url, d in self.mem.items():
             if d.get('dirty'): d.pop('dirty'); json.dump(d, open(self._cfile(url), 'w', encoding='utf-8'), separators=(',', ':'))
 
-    def allowed(self, url):
+    @staticmethod
+    def _never(url):
+        """'' or why this address is never read live (standing rules + saved-copy-only hosts); checked before any request"""
         p = urllib.parse.urlparse(url); host = p.netloc.lower(); low = url.lower()
-        if any(n in low for n in NEVER): return False, 'never read (standing rule)'
+        if any(n in low for n in NEVER): return 'never read (standing rule)'
         if host in HOLD or not kpc_net_guard.host_ok(url)[0]:   # the shared rule: every services*.arcgis.com, any port / user@ / trailing dot
-            return False, f'{kpc_net_guard.host_of(url) or host}: saved copy only (no live reads while its robots.txt answers 403)'
+            return f'{kpc_net_guard.host_of(url) or host}: saved copy only (no live reads while its robots.txt answers 403)'
+        return ''
+
+    def allowed(self, url):
+        why = Reader._never(url)
+        if why: return False, why
         if self.offline: return False, 'offline run'
-        if host not in self.rb:
-            try:
-                r = urllib.request.urlopen(urllib.request.Request(f'{p.scheme}://{p.netloc}/robots.txt', headers={'User-Agent': UA}), timeout=25)
-                body = r.read().decode('utf-8', 'replace'); rp = urllib.robotparser.RobotFileParser()
-                rp.parse(body.splitlines() if '<html' not in body[:300].lower() else []); self.rb[host] = rp
-            except urllib.error.HTTPError as e: self.rb[host] = 'deny' if e.code in (401, 403) else None
-            except Exception: self.rb[host] = 'down'  # noqa: BLE001
-        rp = self.rb[host]
-        if rp == 'deny': return False, f'{host}: robots.txt answers 401/403 (= disallow)'
-        if rp == 'down': return False, f'{host}: did not answer'
-        if rp is not None and not rp.can_fetch(UA, url): return False, f'{host}: robots.txt disallows this path'
-        return True, ''
+        ok, why = self.m.robots_check(url)   # the store engine's robots.txt rule, caps and back-off (kpc_inbox_manners)
+        if not ok and (why.startswith('cap reached') or 'this run' in why): self.later.add(why)
+        return ok, why
 
     def _get(self, url, q):
-        host = urllib.parse.urlparse(url).netloc
-        w = 1.0 - (time.time() - self.last.get(host, 0))
-        if w > 0: time.sleep(w)
-        self.last[host] = time.time(); self.live += 1
-        req = urllib.request.Request(url + '/query?' + urllib.parse.urlencode(q), headers={'User-Agent': UA})
-        j = json.loads(urllib.request.urlopen(req, timeout=90).read().decode('utf-8', 'replace'))
+        self.live += 1
+        try: body = self.m.get(url + '/query?' + urllib.parse.urlencode(q), timeout=90)   # paced 2 s+, capped, counted
+        except MN.Skip as e: self.later.add(str(e)); raise
+        j = json.loads(body.decode('utf-8', 'replace'))
         if isinstance(j, dict) and j.get('error'): raise RuntimeError(str(j['error'])[:120])
         return j
 
@@ -237,6 +239,7 @@ class Reader:
              'spatialRel': 'esriSpatialRelIntersects', 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
              'maxAllowableOffset': 0.0002, 'geometryPrecision': 5, 'resultRecordCount': 50, 'f': 'json'}
         try: j = self._get(url, q)
+        except MN.Skip as e: return None, str(e)
         except Exception as e: return None, f'live read failed ({type(e).__name__}: {str(e)[:80]})'  # noqa: BLE001
         ids = []
         for f in j.get('features') or []:
@@ -563,6 +566,8 @@ def _judge(row, pin, ov, saved, rd):
     if not pin: return dict(out, status='NEEDS PERSON', reason='no POTA pin, so the pin test cannot be done; a person compares the outline with the park')
     if ov.get('none'): return dict(out, status='NEEDS PERSON', reason=f'a person set this park to no outline earlier (overrides none: true): a person decides')
     recs, how = rd.near(row['layer_url'], pin[0], pin[1])
+    if recs is None and how in (getattr(rd, 'later', None) or ()):   # a cap or a back-off: not read THIS run, kept for the next run
+        return dict(out, status='NEEDS PERSON', reason=f'not read this run: {how}; tried again next run', retry='next-run', why_not=how)
     if recs is None:
         return dict(out, status='NEEDS PERSON', reason=f'outline not readable: {how}; needs a hand download or a saved copy', retry='hand-download', why_not=how)
     no = {str(x).lower() for x in (ov.get('no') or [])}; blocked = {str(x) for x in ov.get('_blocked') or []}
@@ -769,6 +774,9 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False, 
     json.dump(nal, open(nal_f, 'w', encoding='utf-8'), indent=1, ensure_ascii=False, sort_keys=True)
     # the sure rule: the 100 ft circle around the OFFICIAL point of each POINT-CONFIRMED park (the 2-fer 'point-circle' tier reads it);
     # a park that turns SURE (a real boundary) loses its circle here, and the 2-fer bot never uses a circle for a park with an outline.
+    # KPC owner, 2026-11-14: the inbox no longer writes data/point-circles.json itself. It writes the same whole file it used to write
+    # (today's data/point-circles.json with this run's circles added and SURE parks' circles taken out) as a PROPOSAL,
+    # results/point-circles-proposed.json (uploaded with the run); a person or the keeper applies it. data/point-circles.json is untouched.
     pc_f = root / 'data/point-circles.json'
     try: pc = json.load(open(pc_f, encoding='utf-8'))
     except Exception: pc = {'about': 'Nov 9 2026: POINT-CONFIRMED parks: an official POINT record with the park\'s name within 0.5 km of the POTA pin. kind point-circle-100ft = a 30.48 m circle around the OFFICIAL point (the POTA pin is never moved), a stand-in used ONLY by the 2-fer bot as the labelled point-circle tier; never an official boundary, never a key outline. Replaced automatically when a real boundary is found.', 'parks': {}}  # noqa: BLE001
@@ -778,8 +786,10 @@ def run(files, root=ROOT, kpcdata=None, cache=None, offline=False, retry=False, 
                 pc['parks'][r['pota_ref']] = {'kind': 'point-circle-100ft', 'radius_m': 30.48, 'pt': r['pt'], 'layer_url': r.get('layer_url'), 'record_id': r.get('record_id'),
                                               'record_name': r.get('record_name'), 'pin_km': r.get('km'), 'read': r.get('read'), 'confirmed': r.get('checked'), 'decided_by': 'point-circle rule (Nov 9 2026)'}
             elif r['status'] == 'SURE': pc['parks'].pop(r['pota_ref'], None)
-    json.dump(pc, open(pc_f, 'w', encoding='utf-8'), indent=1, ensure_ascii=False, sort_keys=True)
-    print(f'live reads {rd.live}; needs another look: {len(nal["parks"])}')
+    (inbox / 'results').mkdir(parents=True, exist_ok=True)
+    json.dump(pc, open(inbox / 'results' / PC_PROPOSAL, 'w', encoding='utf-8'), indent=1, ensure_ascii=False, sort_keys=True)
+    rd.m.save()
+    print(f'live reads {rd.live}; needs another look: {len(nal["parks"])}; point circles proposed in results/{PC_PROPOSAL} (data/point-circles.json not changed)')
     return allres
 
 
