@@ -87,7 +87,7 @@
     if (p.access) L.push('Public access: ' + p.access);
     if (p.protection) L.push('Protection: ' + p.protection);
     if (p.acres) L.push('Size: about ' + Math.round(p.acres).toLocaleString('en-US') + ' acres');
-    L.push('Official record: ' + p.source + (p.ids && p.ids.length ? ', id ' + p.ids.join(', ') : ''));
+    L.push('Official record: ' + p.source + (p.priv ? ' (private lookup: licence not read yet)' : '') + (p.ids && p.ids.length ? ', id ' + p.ids.join(', ') : ''));
     if (p.credit) L.push('Credit: ' + p.credit);
     factRows(p).filter(r => r.vals.some(x => x.src !== p.source) || p.kind === 'state').forEach(r => L.push(r.label + ': ' + r.vals.map(x => x.v + ' (' + x.src + ')').join('; ') + (r.differ ? ' [sources differ]' : '')));
     (p.also || []).forEach(x => L.push('Also in: ' + x.source + (x.name && norm(x.name) !== norm(p.name) ? ' (' + x.name + ')' : '') + (x.link ? ', ' + x.link : '')));
@@ -233,7 +233,7 @@
     if (!facts.manager && facts.agency) facts.manager = Object.assign({}, facts.agency);
     const ac = facts.acres ? parseFloat(String(facts.acres.v).replace(/,/g, '')) : NaN;
     return { kind: 'state', a, facts, id: L.pre + id, name: capName(a[L.field]) || L.label, manager: facts.manager ? facts.manager.v : L.label, owner: facts.owner ? facts.owner.v : '', designation: facts.designation ? facts.designation.v : '', acc: '', cat: '', acres: ac > 0 ? ac : geomAcres(f.geometry),
-      access: 'not stated in this layer (check the agency)', protection: '', geom: f.geometry, source: L.label + (L.private ? ' (private lookup: licence not read yet)' : ''), credit: L.credit || '', layer: L.pre, link: L.url + '?objectIds=' + encodeURIComponent(id) + '&outFields=*&f=html' };
+      access: 'not stated in this layer (check the agency)', protection: '', geom: f.geometry, source: L.label, priv: !!L.private, credit: L.credit || '', layer: L.pre, link: L.url + '?objectIds=' + encodeURIComponent(id) + '&outFields=*&f=html' };
   }
   const SAVED_ONLY_HOSTS = /^(?:www\.)?(?:services\d*\.arcgis\.com|apps\.fs\.usda\.gov)$/i;   /* Nov 11 (job 3): services2..9 too (house rules: services*.arcgis.com) */
   function isSavedCopy(L) {
@@ -436,7 +436,7 @@
   function sourceLines(src, padErr, S, places) {
     const padSrc = places.find(p => p.kind !== 'state'), st = srcStats(places), padLabel = padSrc ? padSrc.source : (src === 'CPCAD' ? 'CPCAD, December 2025 edition' : 'USGS PAD-US 4.0');
     stLine(padLabel + ': ' + (padErr ? 'did not answer (' + padErr + ')' : (st.by[padLabel] || 0) + ' places'), !padErr);
-    S.out.forEach(o => stLine(o.L.label + ': ' + (o.err ? 'did not answer (' + o.err + ')' : (st.by[o.L.label] || 0) + ' places' + (o.recs.length >= 1000 ? ' (first 1,000 read)' : '')), !o.err));
+    S.out.forEach(o => stLine(o.L.label + (o.L.private ? ' (private lookup)' : '') + ': ' + (o.err ? 'did not answer (' + o.err + ')' : (st.by[o.L.label] || 0) + ' places' + (o.recs.length >= 1000 ? ' (first 1,000 read)' : '')), !o.err));
     /* skipped layers stay silent on the page */
     stLine('Same land in both lists: ' + st.both + ' \u00b7 only in ' + (src === 'CPCAD' ? 'CPCAD' : 'PAD-US') + ': ' + st.padOnly + ' \u00b7 only in a state layer: ' + st.stateOnly, true);
     W.KPCResearch && (W.KPCResearch.lastStats = Object.assign({ layers: S.out.map(o => ({ label: o.L.label, recs: o.recs.length, err: o.err })), skipped: S.skipped.map(L => ({ label: L.label })), padErr }, st));
@@ -487,7 +487,7 @@
   }
   function card(p, i) {
     const X = W.KPCMapExtras, c = p.checks || {};
-    const official = p.kind === 'pad' ? (X && X.padCard ? X.padCard(p.a) : '') : p.kind === 'state' ? '<p class="mr-help mr-rs-src">From the state / province layer: <b>' + esc(p.source) + '</b> (not in ' + (p.source && /CPCAD/.test(p.source) ? 'CPCAD' : 'PAD-US or CPCAD') + ')' + (p.credit ? '<br>Credit: ' + esc(p.credit) : '') + '</p>' : (X && X.caCard ? X.caCard(p.a) : '');
+    const official = p.kind === 'pad' ? (X && X.padCard ? X.padCard(p.a) : '') : p.kind === 'state' ? '<p class="mr-help mr-rs-src">From the state / province layer: <b>' + esc(p.source) + '</b> (not in ' + (p.source && /CPCAD/.test(p.source) ? 'CPCAD' : 'PAD-US or CPCAD') + ')' + (p.priv ? '<br>Private lookup: licence not read yet' : '') + (p.credit ? '<br>Credit: ' + esc(p.credit) : '') + '</p>' : (X && X.caCard ? X.caCard(p.a) : '');
     const also = (p.also || []).length ? '<p class="mr-help mr-rs-src">Also in: ' + p.also.map(x => '<a href="' + esc(x.link) + '" target="_blank" rel="noopener">' + esc(x.source) + (norm(x.name) !== norm(p.name) ? ' (\u201c' + esc(x.name) + '\u201d)' : '') + '</a>').join(' \u00b7 ') + '</p>' : '';
     const lines = [];
     if (c.same.length) lines.push('Same official record as: ' + c.same.join(', '));
