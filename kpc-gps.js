@@ -400,6 +400,9 @@
     return { ref: ref, name: row.name || row.n, lat: num(row.lat), lon: num(row.lon != null ? row.lon : row.lng) };
   }
   // data/fers/US-XX.json rows (shape unknown here: any row naming two refs and a lat/lon)
+  // Nov 14 (KPC owner): only a row whose status starts with 'candidate' is a 2-fer spot, the rule kpc-overlap-finder.js lists by
+  // (a 'merged into one row', 'dropped', 'not sure', 'very tight' or 'water only' row, or a bare row with no status, is never a waypoint)
+  function isCandidate(o) { return /^candidate/.test(String((o && o.status) || "")); }
   function readFers(obj, ref) {
     var out = [];
     function refsOf(o) {
@@ -412,16 +415,14 @@
       if (depth > 8 || o == null || typeof o !== "object") return;
       if (Array.isArray(o)) {
         if (o.length >= 4 && typeof o[0] === "string" && typeof o[1] === "string" && REF_RE.test(o[0]) && REF_RE.test(o[1])) {
-          var la0 = num(o[2]), lo0 = num(o[3]);
-          if (okLL(la0, lo0)) out.push({ refs: [o[0], o[1]], lat: la0, lon: lo0, note: typeof o[4] === "string" ? o[4] : "" });
-          return;
+          return;   // a bare [refA, refB, lat, lon] row carries no status: not a candidate
         }
         o.forEach(function (v) { walk(v, key, depth + 1); }); return;
       }
       var la = num(o.lat), lo = num(o.lon != null ? o.lon : o.lng);
       if (o.type === "Feature" && o.geometry && o.geometry.type === "Point") { la = num(o.geometry.coordinates[1]); lo = num(o.geometry.coordinates[0]); o = Object.assign({}, o.properties || {}, { _lat: la }); }
       var rs = refsOf(o); if (key && REF_RE.test(key) && rs.indexOf(key) < 0) rs.unshift(key);
-      if (okLL(la, lo) && rs.length >= 2) { out.push({ refs: rs, lat: la, lon: lo, note: o.note || o.name || "", source_url: o.source_url || null, read_date: o.read_date || null }); return; }
+      if (okLL(la, lo) && rs.length >= 2) { if (!isCandidate(o)) return; out.push({ refs: rs, lat: la, lon: lo, note: o.note || o.name || "", source_url: o.source_url || null, read_date: o.read_date || null }); return; }
       Object.keys(o).forEach(function (k) { walk(o[k], REF_RE.test(k) ? k : key, depth + 1); });
     }
     walk(obj, null, 0);

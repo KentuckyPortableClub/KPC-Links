@@ -79,7 +79,8 @@ vs = {n: set() for n in TOUCHED}
 for p in srcs:
     t = p.read_text(encoding='utf-8', errors='replace')
     for n in TOUCHED: vs[n] |= set(re.findall(r'(?<![\w.-])' + re.escape(n) + r'\?v=([A-Za-z0-9_-]+)', t))
-check(f'every touched script is loaded with ?v={STAMP} everywhere', all(v == {STAMP} for v in vs.values()) and all(vs.values()))
+LATER = {'kpc-gps.js': '20261114a'}   # Nov 14: bumped again by a later change (2-fer export: candidate rows only)
+check(f'every touched script is loaded with ?v={STAMP} everywhere (or its later stamp)', all(v == {LATER.get(n, STAMP)} for n, v in vs.items()) and all(vs.values()))
 
 # ---- 5. the block in node against this checkout's real released files
 node = shutil.which('node')

@@ -592,10 +592,38 @@ def outlined_n(doc):
     return n
 
 
+def ky_outlined_n(doc):
+    """Kentucky key (data/ky-answer-key.json): parks with at least one outline tract (a park in `missing` has none)."""
+    parks = doc.get('parks') if isinstance(doc, dict) else None
+    return sum(1 for p in (parks or {}).values() if isinstance(p, dict) and p.get('tracts')) if isinstance(parks, dict) else 0
+
+
+def ky_no_worse_than_live(repo, sha):
+    """(ok, why). Nov 14 (KPC owner): the Kentucky key gets the same check as US / CA / world: fewer parks with an outline than the
+    live released ky/ky-answer-key.json = worse, refused, the live copy stays. (The Nov 12 working key had 5 of 193.)"""
+    live_p = repo / 'data' / 'released' / 'ky' / 'ky-answer-key.json'
+    if not live_p.is_file(): return True, 'no live file yet'
+    def live_read(n):
+        f = repo / 'data' / 'released' / n
+        return f.read_bytes() if f.is_file() else None
+    try:
+        got = read_parts('ky/ky-answer-key.json', live_read)
+        live = join([load_doc(n, b) if b is not None else None for n, b in zip(*got)])
+    except (OSError, ValueError, ReleaseError): return True, 'live file could not be read for a count'
+    try:
+        got = read_parts('data/ky-answer-key.json', lambda n: _git_show(repo, sha, n))
+        if got is None: raise ReleaseError('missing')
+        new = join([load_doc(n, b) if b is not None else None for n, b in zip(*got)])
+    except (ReleaseError, ValueError, OSError): return False, 'the new key file is missing or unreadable'
+    a, b = ky_outlined_n(live), ky_outlined_n(new)
+    if b < a: return False, f'outlined parks {a} -> {b}: worse than live'
+    return True, ''
+
+
 def no_worse_than_live(repo, kind, unit, sha):
     """(ok, why). An area with fewer outlined parks than the live released file is worse, unless there is no live file yet."""
     repo = pathlib.Path(repo)
-    if kind == 'KY': return True, ''
+    if kind == 'KY': return ky_no_worse_than_live(repo, sha)
     rel = {'US': f'us-key/{unit}.json', 'CA': f'ca-key/{unit}.json', 'world': f'world-key/{unit}.json'}.get(kind)
     src = {'US': f'data/us-key/{unit}.json', 'CA': f'data/ca-key/{unit}.json', 'world': f'data/world-key/{unit}.json'}.get(kind)
     if not rel or not src: return True, ''
