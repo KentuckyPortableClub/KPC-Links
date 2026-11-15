@@ -38,9 +38,11 @@ import os
 import pathlib
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import urllib.robotparser
 import kpc_net_guard; kpc_net_guard.install()
 from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
@@ -94,7 +96,85 @@ def ky_now():
     return u + datetime.timedelta(hours=off)
 
 
+# Nov 14: robots + pacing gate, the store engine's manners in small (that class lives only in KPC-Data). robots.txt is read once
+# per host per run: 200 = its rules, 404/410 = allowed, 401/403 = Disallow, anything else (5xx, timeout, unreachable) = that host is
+# not read this run. At least 2 s between requests to a host (its Crawl-delay if longer; over 30 s = not read this run). The keyed
+# Park Service API skips robots (house rule) but keeps the gap. A skipped read raises Skipped, so each source handles it like a
+# failed read, and main() leaves that source's alerts and counters exactly as they were.
+GAP, MAX_CRAWL_DELAY = 2.0, 30.0
+KEYED = ('developer.nps.gov/api/',)
+_robots, _last, _no_host = {}, {}, {}     # host -> parser or None (no rules); host -> last request (monotonic); host -> why not read
+SKIPPED = {}                              # host -> why, for the run's notice
+GATE = {'skips': 0}
+
+
+class Skipped(Exception):
+    pass
+
+
+def _pace(host, gap):
+    w = _last.get(host, -1e9) + gap - time.monotonic()
+    if w > 0:
+        time.sleep(w)
+    _last[host] = time.monotonic()
+
+
+def _read_robots(host):
+    """Fills _robots[host] or _no_host[host], once per run."""
+    _pace(host, GAP)
+    try:
+        with urllib.request.urlopen(urllib.request.Request(f'https://{host}/robots.txt', headers=UA), timeout=30) as r:
+            body = r.read(512_000).decode('utf-8', 'replace')
+    except urllib.error.HTTPError as e:
+        if e.code in (404, 410):
+            _robots[host] = None
+        elif e.code in (401, 403):
+            _no_host[host] = f'robots.txt answered {e.code} (counts as Disallow)'
+        else:
+            _no_host[host] = f'robots.txt answered {e.code} (unreadable, not read this run)'
+        return
+    except Exception as e:  # noqa: BLE001
+        _no_host[host] = f'robots.txt unreadable ({type(e).__name__}), not read this run'
+        return
+    rp = urllib.robotparser.RobotFileParser()
+    rp.parse(body.splitlines())
+    _robots[host] = rp
+    try:
+        cd = float(rp.crawl_delay(UA['User-Agent']) or 0)
+    except (TypeError, ValueError):
+        cd = 0
+    if cd > MAX_CRAWL_DELAY:
+        _no_host[host] = f'Crawl-delay {cd:g} s is over {MAX_CRAWL_DELAY:g} s, not read this run'
+
+
+def gate(url):
+    """Wait the host's gap, or raise Skipped when this run may not read the address."""
+    sp = urllib.parse.urlsplit(url)
+    host = sp.netloc.lower()
+    if any((host + sp.path).startswith(k) for k in KEYED):
+        _pace(host, GAP)
+        return
+    if host not in _robots and host not in _no_host:
+        _read_robots(host)
+    why = _no_host.get(host)
+    rp = _robots.get(host)
+    if not why and rp is not None and not rp.can_fetch(UA['User-Agent'], url):
+        why = f'robots.txt disallows {sp.path or "/"}'
+    if why:
+        SKIPPED.setdefault(host, why)
+        GATE['skips'] += 1
+        raise Skipped(f'{host}: {why}')
+    cd = 0.0
+    if rp is not None:
+        try:
+            cd = float(rp.crawl_delay(UA['User-Agent']) or 0)
+        except (TypeError, ValueError):
+            cd = 0.0
+    _pace(host, max(GAP, cd))
+
+
 def fetch(url, headers=None, timeout=60):
+    gate(url)
     req = urllib.request.Request(url, headers={**UA, **(headers or {})})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read().decode('utf-8', 'replace')
@@ -555,12 +635,16 @@ def main():
     broke = False
     failed = set()     # the alert-id prefixes of the sources that did not answer (a source returns None when it failed)
     for prefix, src in SOURCES:
+        skips = GATE['skips']
         got = globals()[src]()
-        if got is None:          # the source itself failed: do not treat its alerts as 'gone'
-            broke = True
+        if got is None or GATE['skips'] > skips:   # failed, or (Nov 14) an address was skipped by the robots gate:
+            broke = True                             # do not treat its alerts as 'gone'
             failed.add(prefix)
+            live.update(got or {})                   # what it did read is still seen
             continue
         live.update(got)
+    if SKIPPED:
+        notice('Park alerts', 'Not read this run (robots / pacing): ' + '; '.join(f'{h}: {w}' for h, w in sorted(SKIPPED.items())))
     if failed:
         print(f"::warning title=Park alerts::{', '.join(sorted(failed))} did not answer this time: its alerts are shown as they were, "
               f"not counted as gone. Park pages may be out of date until it answers.", flush=True)
