@@ -23,8 +23,14 @@ Verdicts (one per park, with plain-words reasons):
                      the key's row lacks gets fault = 'key setup' and the reason (layer set up for another state only / PAD-US
                      load filter); a held record with no saved outline falls back to the key's own distance + acres
                      ('pin wrong', MEDIUM, only in the plain case: one state, one such name, acres agree)
+  Nov 14: KIND=US (default, exactly as before) | CA | WORLD | ALL. CA reads data/ca-key/CA-??.json + data/ca-key/overrides.json,
+  pins PARKINFO/CA.json, saved outlines GEO_CACHE_CA (default cache/ca: CA-ALL.json.gz), OUT_CA (default
+  data/ca-key/review/problem-solver). WORLD reads data/world-key/<CC>.json + data/world-key/overrides.json, pins PARKINFO/<CC>.json,
+  saved outlines GEO_CACHE_WORLD (default cache/world: W-<CC>.json.gz), OUT_WORLD (default data/world-key/review/problem-solver).
+  Outside the US there is no 'wrong state' verdict (the states file is the US's); a kind whose overrides file is broken stops
+  (nothing written for it); with ALL the other kinds still run.
 
-  KEY=us (only the US key for now)   PARKINFO=<dir> (default kpcdata/data/parkinfo)   GEO_CACHE=<dir> (default cache/us)
+  KIND=US|CA|WORLD|ALL (default US; see above)   PARKINFO=<dir> (default kpcdata/data/parkinfo)   GEO_CACHE=<dir> (default cache/us)
   OUT=<file stem> (default data/us-key/review/problem-solver)   STATES=<file> (default kpc-us-states.json)
   --selftest   (the 17 Research Bot calls of Nov 7, tests/fixtures/problem-solver-17.json)
 Standing candidate check (check_candidate): pin within 0.5 km, acreage within about 15% of an official figure
@@ -150,8 +156,8 @@ def kind_clash(park_txt, rec_txt):
 
 # ---- Nov 14 2026 (Job 2, item 4a): who / when / run id on every written record; the name test on every proposed candidate;
 # a person's NO in the overrides always wins. Recommends only, as before: nothing is applied and no POTA pin is moved.
-# US-SPECIFIC, in this one place: only the US key's overrides are read (Canada / world keys are a later change: add them here).
-OVERRIDE_FILES = {'US': 'data/us-key/overrides.json'}
+# Nov 14 (later): the Canada and world keys too, each with its own overrides file (KIND=CA|WORLD|ALL; the default is US only).
+OVERRIDE_FILES = {'US': 'data/us-key/overrides.json', 'CA': 'data/ca-key/overrides.json', 'WORLD': 'data/world-key/overrides.json'}
 BY = 'kpc_problem_solver'
 STAMP_KEYS = ('by', 'when', 'run_id')
 
@@ -373,7 +379,7 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
         if x is not None:
             R.update(verdict='same land new ID', confidence='high', recommend=f"re-point the hand join {', '.join(ov_ids)} -> {x[0]} ({x[1]})")
             why.append(f"overrides.json joins {', '.join(ov_ids)}, which is no longer a record anywhere this run can see")
-            why.append(f"{x[0]} has the park's name ({x[1]}, ~{x[2]:,} ac) and is {d_x:.2f} km from the pin (its own distance): the same land under a new id")
+            why.append(f"{x[0]} has the park's name ({x[1]}, {_acs(x[2])}) and is {d_x:.2f} km from the pin (its own distance): the same land under a new id")
             twins = [str(y[0]) for y in new[1:] if y[1] == x[1] and y[2] == x[2]]
             if twins: why.append(f"{', '.join(twins)} is the same feature again (same name and acres), not a second candidate")
             return R
@@ -393,7 +399,7 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
         if str(x[0]) in held or not same_name(p.get('n'), x[1]): continue
         rec = recs.get(str(x[0]))
         d = km(rec, la, lo) if rec else None
-        if d is not None and d <= NEAR_KM: others.append((d, not isinstance(x[0], int), -(x[2] or 0), x))
+        if d is not None and d <= NEAR_KM: others.append((d, not isinstance(x[0], int), -_num(x[2]), x))
     held_near = [h for h, rec in hrec if rec is not None and rings(rec) and km(rec, la, lo) <= NEAR_KM]
     if held_near:
         why.append(f"the pin is {'inside' if km(recs[held_near[0]], la, lo) == 0 else 'next to'} the held {held_near[0]} on the saved outline, "
@@ -407,7 +413,7 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
         if not others: return R
         x = others[0][3]
         R.update(verdict='land wrong', confidence='high', recommend=f"join {x[0]} ({x[1]}) and drop the held {', '.join(held)}")
-        why.append(f"the POTA pin is {'inside' if others[0][0] == 0 else f'{others[0][0]:.1f} km from'} {x[0]} ({x[1]}, ~{x[2]:,} ac)")
+        why.append(f"the POTA pin is {'inside' if others[0][0] == 0 else f'{others[0][0]:.1f} km from'} {x[0]} ({x[1]}, {_acs(x[2])})")
         for h, rec in hrec:
             d = km(rec, la, lo) if rec else None
             nm = next((y[1] for y in cands if str(y[0]) == h), h)
@@ -487,8 +493,8 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
     for hh in held:
         stop = person_no(hh, next((x[1] for x in cands if str(x[0]) == hh), ''), override, blocked)
         if stop: not_proposed(R, hh, next((x[1] for x in cands if str(x[0]) == hh), ''), stop); return R
-    # 6. wrong state
-    c = centre(rec)
+    # 6. wrong state (US only: kpc-us-states.json is the US's states; Nov 14)
+    c = centre(rec) if (ctx.get('kind') or 'US') == 'US' else None
     land_st = state_of(*c, path=states_path) if c else None
     pin_st = state_of(la, lo, path=states_path)
     st = (listed_state or '').replace('US-', '')
@@ -517,6 +523,9 @@ def solve(ref, p, pin, recs, override=None, listed_state=None, states_path=None,
 def join_gap(i, listed_state, ctx):
     """Nov 9: one plain sentence on why the key's row does not list the hand-joined record i."""
     st = st_lbl(listed_state)
+    if (ctx.get('kind') or 'US') != 'US':   # Nov 14: the Canada / world keys have no PAD-US or state-gis layers
+        return (f"{i}: the {st} key's row does not list this hand-joined record: the key was built before the join, the layer's "
+                f"read leaves it out, or the record is gone (the saved name + acres re-find it)")
     pre = re.match(r'[a-z]*', str(i)).group(0)
     lay = (ctx.get('layer_states') or {}).get(pre)
     if not pre:
@@ -568,6 +577,12 @@ def no_outline_fallback(R, p, h, hname, held, km_bk, cands, listed_state, others
 def st_lbl(s): return str(s or '').replace('US-', '') or 'listed'
 
 
+def _num(v): return v if isinstance(v, (int, float)) and not isinstance(v, bool) else 0   # world rows carry the layer name here
+
+
+def _acs(v): return f'~{v:,} ac' if isinstance(v, (int, float)) and not isinstance(v, bool) else 'acres not on file'
+
+
 # ---- the run
 def layer_states(root):
     """Nov 9: {layer prefix: {'name', 'states'}} for the state-GIS layers (data/state-gis.json; the prefix is fixed by the layer's
@@ -601,6 +616,68 @@ def load_recs(cache_dir, st):
         if d.get('saved'): SAVED[st] = str(d['saved'])
         return {str(r.get('OBJECTID')): r for r in d.get('recs') or []}
     except Exception: return {}  # noqa: BLE001
+
+
+# ---- Nov 14: the three keys. US is exactly as before; CA and WORLD saved outlines are put in the US record shape
+# (OBJECTID / Unit_Nm / Loc_Nm / GIS_Acres / _r) so every check reads them the same way.
+KEYS = {
+    'US': {'dir': 'data/us-key', 'glob': 'US-??.json', 'cut': 3, 'lab': lambda st: 'US-' + st, 'cache_env': 'GEO_CACHE',
+           'cache_def': 'cache/us', 'out_env': 'OUT', 'pins': lambda st: f'US-{st}.json', 'cache_key': lambda st: 'US-' + st,
+           'saved_key': lambda st: st},
+    'CA': {'dir': 'data/ca-key', 'glob': 'CA-[A-Z][A-Z].json', 'cut': 3, 'lab': lambda st: 'CA-' + st, 'cache_env': 'GEO_CACHE_CA',
+           'cache_def': 'cache/ca', 'out_env': 'OUT_CA', 'pins': lambda st: 'CA.json', 'cache_key': lambda st: 'CA-ALL',
+           'saved_key': lambda st: 'CA-ALL'},
+    'WORLD': {'dir': 'data/world-key', 'glob': '[A-Z][A-Z].json', 'cut': 0, 'lab': lambda st: st, 'cache_env': 'GEO_CACHE_WORLD',
+              'cache_def': 'cache/world', 'out_env': 'OUT_WORLD', 'pins': lambda st: f'{st}.json', 'cache_key': lambda st: 'W-' + st,
+              'saved_key': lambda st: 'W-' + st},
+}
+HA_AC = 2.471054
+_KREC = {}
+
+
+def _norm_rec(kind, o):
+    """A Canada / world saved record in the US shape. World: the fine ring ('_f', R-G6) when saved, else the thinned '_r'."""
+    rid = o.get('oid') if kind == 'CA' else o.get('id')
+    nm = str(o.get('n') or '')
+    ac = None
+    if kind == 'CA' and isinstance(o.get('ha'), (int, float)) and o.get('ha'): ac = round(float(o['ha']) * HA_AC, 1)
+    elif isinstance(o.get('ac'), (int, float)) and o.get('ac'): ac = float(o['ac'])
+    r = {'OBJECTID': rid, 'Unit_Nm': nm, 'Loc_Nm': str(o.get('nf') or '') or nm, 'GIS_Acres': ac,
+         '_r': (o.get('_f') or o.get('_r') or []) if kind == 'WORLD' else (o.get('_r') or [])}
+    if kind == 'WORLD': r['_src'] = str(o.get('src') or '')
+    return r
+
+
+def kind_recs(kind, cache_dir, st):
+    """{record id: record} of the saved outlines for one key file. US = load_recs (unchanged). CA = CA-ALL.json.gz (one file for
+    every province); WORLD = W-<CC>.json.gz. An id that two saved records with different names share (world ids are per layer) is
+    left out: its outline is not known for sure, so the park goes to a person."""
+    if kind == 'US': return load_recs(cache_dir, st)
+    f = pathlib.Path(cache_dir) / (f'{KEYS[kind]["cache_key"](st)}.json.gz')
+    mk = (str(f), f.stat().st_mtime_ns if f.exists() else None)
+    if mk in _KREC: return _KREC[mk]
+    out, bad = {}, set()
+    if f.exists():
+        try:
+            d = json.load(gzip.open(f, 'rt', encoding='utf-8'))
+            if d.get('saved'): SAVED[KEYS[kind]['saved_key'](st)] = str(d['saved'])
+            for o in d.get('recs') or []:
+                if not isinstance(o, dict): continue
+                r = _norm_rec(kind, o); k = str(r['OBJECTID'])
+                if r['OBJECTID'] is None or k in bad: continue
+                if k in out and core(out[k]['Unit_Nm']) != core(r['Unit_Nm']): bad.add(k); out.pop(k); continue
+                out.setdefault(k, r)
+        except Exception: out = {}  # noqa: BLE001
+    _KREC[mk] = out
+    return out
+
+
+def layer_of(kind, rid, rec=None):
+    """The layer a record id comes from (same-name pieces are only compared within one layer). US: the id's letters (unchanged);
+    CA: the part before ':' ('Alberta Park:433'; a bare number = the national layer); WORLD: the saved record's source layer."""
+    if kind == 'CA': return str(rid).split(':')[0] if ':' in str(rid) else ''
+    if kind == 'WORLD': return (rec or {}).get('_src', '')
+    return re.match(r'[a-z]*', str(rid)).group(0)
 
 
 def join_ids(override):
@@ -706,15 +783,16 @@ def wwff_names(env, root):
     return {}
 
 
-def why_rows(files, ov, root='.', env=None, cache=None):
+def why_rows(files, ov, root='.', env=None, cache=None, kind='US'):
     """One row per unjoined park of every state key file: ref, state, name, code, why, next_step."""
     env = env or os.environ; root = pathlib.Path(root); ww = wwff_names(env, root)
+    K = KEYS[kind]; lab = K['lab']
     where, joined_in = {}, {}
     for st, parks in files.items():
         for r, p in parks.items():
             if isinstance(p, dict):
-                where.setdefault(r, []).append('US-' + st)
-                if not unjoined(p): joined_in.setdefault(r, set()).add('US-' + st)
+                where.setdefault(r, []).append(lab(st))
+                if not unjoined(p): joined_in.setdefault(r, set()).add(lab(st))
     try: lay = json.load(open(root / 'data/outlines/layers.json', encoding='utf-8')).get('caches') or {}
     except Exception: lay = {}  # noqa: BLE001
     try: keys = json.load(open(root / 'data/us-key/layers.json', encoding='utf-8'))
@@ -723,34 +801,61 @@ def why_rows(files, ov, root='.', env=None, cache=None):
     except Exception: sg = {}  # noqa: BLE001
     rows = []
     for st, parks in sorted(files.items()):
-        has = bool(sg.get(st)) or any(re.fullmatch(f'sg{st.lower()}[a-z]', k) for k in keys) if (sg or keys) else None
-        n_saved = len(load_recs(cache, st)) if cache else 0
+        if kind == 'US':
+            has = bool(sg.get(st)) or any(re.fullmatch(f'sg{st.lower()}[a-z]', k) for k in keys) if (sg or keys) else None
+        else: has = None   # Nov 14: the state-gis list is the US's; outside it 'is a layer listed' is not known here
+        n_saved = len(kind_recs(kind, cache, st)) if cache else 0
         for r, p in sorted(parks.items()):
             if not isinstance(p, dict) or not unjoined(p): continue
-            ctx = {'states': where.get(r, []), 'state': 'US-' + st, 'joined_in': joined_in.get(r, set()) - {'US-' + st}, 'override': ov.get(r),
-                   'wwff_name': ww.get(r), 'has_layer': has, 'saved_n': n_saved or None, 'expected_n': (lay.get('US-' + st) or {}).get('expected_count')}
+            ctx = {'states': where.get(r, []), 'state': lab(st), 'joined_in': joined_in.get(r, set()) - {lab(st)}, 'override': ov.get(r),
+                   'wwff_name': ww.get(r), 'has_layer': has, 'saved_n': n_saved or None, 'expected_n': (lay.get(K['cache_key'](st)) or {}).get('expected_count')}
             code, why, nxt = why_code(r, p, ctx)
-            rows.append({'ref': r, 'state': 'US-' + st, 'name': p.get('n') or '', 'code': code, 'why': why, 'next_step': nxt})
+            rows.append({'ref': r, 'state': lab(st), 'name': p.get('n') or '', 'code': code, 'why': why, 'next_step': nxt})
     return rows
 
 
 def run(env=None, root='.'):
+    """KIND=US (default: exactly as before) | CA | WORLD | ALL (US, then CA, then WORLD). A kind whose overrides file is broken
+    stops (nothing written for it); with ALL the others still run and the first error is raised at the end."""
+    env = env or os.environ
+    kind = str(env.get('KIND') or 'US').strip().upper()
+    if kind in ('US', ''): return run_kind('US', env, root)
+    if kind in KEYS: return run_kind(kind, env, root)
+    if kind != 'ALL': raise ValueError(f'KIND={kind!r}: use US, CA, WORLD or ALL')
+    res, err = {}, None
+    for k in ('US', 'CA', 'WORLD'):
+        try: res[k] = run_kind(k, env, root)
+        except Exception as e:  # noqa: BLE001
+            print(f'::warning title=Problem solver {k}::stopped ({type(e).__name__}: {str(e)[:160]}); nothing written for {k}')
+            err = err or e
+    if err: raise err
+    return res
+
+
+def _pins(kind, pi_dir, st):
+    """{ref: POTA row} for one key file (US: US-<st>.json; CA: CA.json, every province; WORLD: <CC>.json)."""
+    try: return json.load(open(pathlib.Path(pi_dir) / KEYS[kind]['pins'](st), encoding='utf-8')).get('parks') or {}
+    except Exception: return {}  # noqa: BLE001
+
+
+def run_kind(kind, env=None, root='.'):
     env = env or os.environ; root = pathlib.Path(root)
+    K = KEYS[kind]; lab = K['lab']
     pi_dir = pathlib.Path(env.get('PARKINFO') or root / 'kpcdata/data/parkinfo')
-    cache = env.get('GEO_CACHE') or str(root / 'cache/us')
+    cache = env.get(K['cache_env']) or str(root / K['cache_def'])
     # Nov 12 2026 (KPC-Links #151): manifest + parts; a missing part stops here (never an empty set). Nov 14: + blocked_ids
-    PN = load_person_no(root, 'US'); ov = PN['parks']
+    PN = load_person_no(root, kind); ov = PN['parks']
     out = []
     files = {}
-    for f in sorted(glob.glob(str(root / 'data/us-key/US-??.json'))):
-        try: files[pathlib.Path(f).stem[3:]] = json.load(open(f, encoding='utf-8')).get('parks') or {}
+    for f in sorted(glob.glob(str(root / K['dir'] / K['glob']))):
+        try: files[pathlib.Path(f).stem[K['cut']:]] = json.load(open(f, encoding='utf-8')).get('parks') or {}
         except Exception: continue  # noqa: BLE001
-    lay_st = layer_states(root)
+    lay_st = layer_states(root) if kind == 'US' else {}
     where, joined_in, known = {}, {}, {}
     for st, parks in files.items():
         for r, p in parks.items():
             if not isinstance(p, dict): continue
-            where.setdefault(r, []).append('US-' + st)
+            where.setdefault(r, []).append(lab(st))
             if p.get('m') and p.get('g') != 'pin' and not p.get('held'): joined_in.setdefault(r, set()).add(st)
             for x in (p.get('m') or []) + (p.get('c') or []):
                 if isinstance(x, list) and x: known.setdefault(str(x[0]), set()).add(str(x[1]) if len(x) > 1 else '')
@@ -758,26 +863,28 @@ def run(env=None, root='.'):
     for st, parks in files.items():
         pick = {r: p for r, p in parks.items() if isinstance(p, dict) and (todo(p) or drift(p, ov.get(r)))}
         if not pick: continue
-        try: pins = json.load(open(pi_dir / f'US-{st}.json', encoding='utf-8')).get('parks') or {}
-        except Exception: pins = {}  # noqa: BLE001
-        recs = load_recs(cache, st)
+        pins = _pins(kind, pi_dir, st)
+        recs = kind_recs(kind, cache, st)
         by_name = {}
         for k, v in recs.items(): by_name.setdefault(' '.join(sorted(core(v.get('Unit_Nm') or v.get('Loc_Nm')))), {})[k] = v.get('Unit_Nm') or v.get('Loc_Nm')
         for r, p in sorted(pick.items()):
             row = pins.get(r) or []
+            if not row and kind == 'WORLD' and r.split('-')[0] != st:   # a territory's file holds its mother country's refs (SJ: NO-0179)
+                row = _pins(kind, pi_dir, r.split('-')[0]).get(r) or []
             hid = str(((p.get('held') or {}).get('ids') or [(p.get('bk') or [None])[0]])[0])
             hn = next((x[1] for x in (p.get('m') or []) + (p.get('c') or []) if isinstance(x, list) and x and str(x[0]) == hid), '')
-            pre = re.match(r'[a-z]*', hid).group(0)   # the same layer only (an HMA or a WSA with the name is another kind of land)
+            pre = layer_of(kind, hid, recs.get(hid))   # the same layer only (an HMA or a WSA with the name is another kind of land)
             sn = {k: v for k, v in by_name.get(' '.join(sorted(core(hn))), {}).items()
-                  if k != hid and re.match(r'[a-z]*', k).group(0) == pre} if core(hn) else {}
+                  if k != hid and layer_of(kind, k, recs.get(k)) == pre} if core(hn) else {}
             ctx = {'states': where.get(r, []), 'joined_in': joined_in.get(r, set()) - {st}, 'known_ids': known, 'same_name_recs': sn,
-                   'extra_recs': {k: recs[k] for k in sn}, 'layer_states': lay_st, 'cache_note': cache_note(cache, st),
+                   'extra_recs': {k: recs[k] for k in sn}, 'layer_states': lay_st, 'cache_note': cache_note(cache, K['saved_key'](st)),
                    'blocked_ids': PN['blocked'].get(r, set())}
-            out.append(solve(r, p, (row[5], row[6]) if len(row) > 6 else None, recs, ov.get(r), 'US-' + st, ctx=ctx))
-    wy = why_rows(files, ov, root, env, cache)
+            if kind != 'US': ctx['kind'] = kind
+            out.append(solve(r, p, (row[5], row[6]) if len(row) > 6 else None, recs, ov.get(r), lab(st), ctx=ctx))
+    wy = why_rows(files, ov, root, env, cache, kind=kind)
     wn = {}
     for x in wy: wn[x['code']] = wn.get(x['code'], 0) + 1
-    stem = pathlib.Path(env.get('OUT') or root / 'data/us-key/review/problem-solver')
+    stem = pathlib.Path(env.get(K['out_env']) or root / K['dir'] / 'review/problem-solver')
     stem.parent.mkdir(parents=True, exist_ok=True)
     n = {}
     for x in out: n[x['verdict']] = n.get(x['verdict'], 0) + 1
@@ -785,8 +892,9 @@ def run(env=None, root='.'):
     json.dump({'about': 'recommendations only: nothing is applied and no POTA pin is moved (kpc_problem_solver.py)',
                'counts': n, 'parks': out, 'why_counts': wn, 'why': wy}, open(str(stem) + '.json', 'w', encoding='utf-8'), indent=1)
     open(str(stem) + '.md', 'w', encoding='utf-8').write(md(out, n, wy, wn))
-    print(f'problem solver: {len(out)} parks; ' + ', '.join(f'{k} {v}' for k, v in sorted(n.items())))
-    print(f'why no boundary: {len(wy)} unjoined parks; ' + ', '.join(f'{k} {v}' for k, v in sorted(wn.items())))
+    tag = '' if kind == 'US' else f' ({kind})'
+    print(f'problem solver{tag}: {len(out)} parks; ' + ', '.join(f'{k} {v}' for k, v in sorted(n.items())))
+    print(f'why no boundary{tag}: {len(wy)} unjoined parks; ' + ', '.join(f'{k} {v}' for k, v in sorted(wn.items())))
     return out
 
 
