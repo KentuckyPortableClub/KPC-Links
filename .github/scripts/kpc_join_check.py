@@ -15,6 +15,7 @@ HELD (pin_km > 15, not exempt): the joined records move from 'm' to 'c' ('held: 
   'held' {why, was_g, ids, km, ac, decided_by}; the park is listed in data/<kind>/review/held-joins.json + .csv and one pile-enter
   proposal per park is written to data/<kind>/review/held-joins-ledger.csv (the agreement ledger's columns; a PROPOSAL for a
   person, not a ledger row: nothing is added to the ledger). Nothing is deleted: the records stay in 'c' and in the evidence.
+  Every held park is also one row of data/<kind>/review/held-parks-todo.csv (the keeper's to-do, todo_kind 'join_held').
 EXEMPT (never held, only marked): a join a person already approved:
   - an overrides.json entry of that key naming a joined record ('join': ids or names),
   - a joined record whose 'how' starts 'reviewed' (Brandon's rulings / reviews; v2.1: a 'chat 11 YES' how does NOT exempt),
@@ -43,6 +44,9 @@ DECIDED_BY = 'Brandon standing rule 2026-11-05 verify-then-fix'
 LINEAR_KIND = re.compile(r'\b(trail|wild (and|&) scenic river|heritage river|parkway)\b', re.I)   # v2.1: the park KIND ('t') only, never its name
 LEDGER_FIELDS = ['park', 'kind', 'proposed_by', 'proposal', 'source', 'confirmed_by', 'confirmed_at', 'decided_by', 'agreed_lat', 'agreed_lon',
                  'pota_lat', 'pota_lon', 'notes']   # = KPC-Data kpc_agreement_ledger.FIELDS (checked by the test)
+# Nov 14 (KPC owner, 2026-11-14): every held park also goes to review/held-parks-todo.csv, the keeper's to-do (one row per held park and
+# area file; 'area' lets kpc_area_join keep-rows merge it per area like the other review files). Overwritten each build.
+TODO_FIELDS = ['ref', 'name', 'kind', 'area', 'reason', 'pin_km', 'outline_ids', 'todo_kind', 'source', 'run_id', 'date', 'rules_version']
 SHEET = {'us': 'US.csv', 'ca': 'CA.csv', 'world': 'world.csv'}
 DIRS = {'us': ('data/us-key', 'US-??.json'), 'ca': ('data/ca-key', 'CA-??.json'), 'world': ('data/world-key', '??.json')}
 
@@ -325,6 +329,27 @@ def ledger_rows(held, kind):
              'notes': 'proposal only: confirm in the ledger, or keep the join via overrides.json join'} for h in held]
 
 
+def todo_rows(held, kind, env=None):
+    """The keeper's to-do: one row per held park and area file (two holds of one park in one file are one row), in held order.
+    Exempt joins are never held, so never listed. The join check carries no rules version stamp: rules_version stays blank."""
+    import datetime
+    env = os.environ if env is None else env
+    run_id, day, out = str(env.get('GITHUB_RUN_ID') or ''), datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d'), {}
+    for h in held:
+        r = out.get((h['park'], h['area']))
+        ids = [i for i in str(h.get('held_ids') or '').split(' | ') if i]
+        km = '' if h.get('pin_km') is None else h['pin_km']
+        if r is None:
+            out[(h['park'], h['area'])] = {'ref': h['park'], 'name': h.get('name') or '', 'kind': kind, 'area': h['area'], 'reason': 'held: ' + h['reason'],
+                                           'pin_km': km, 'outline_ids': ';'.join(ids), 'todo_kind': 'join_held', 'source': 'kpc_join_check',
+                                           'run_id': run_id, 'date': day, 'rules_version': ''}
+            continue
+        r['reason'] += '; held: ' + h['reason']
+        r['outline_ids'] = ';'.join(dict.fromkeys([i for i in r['outline_ids'].split(';') if i] + ids))
+        if r['pin_km'] == '': r['pin_km'] = km
+    return list(out.values())
+
+
 def run(env=None, root='.', plain=False):
     """plain=True writes key files with json.dump (the selftest: kpc_save would stamp data/status/ of the cwd)."""
     env = dict(os.environ if env is None else env)
@@ -370,7 +395,8 @@ def run(env=None, root='.', plain=False):
                f'{FAR_KM:.0f} km from the pin, not approved by a person); a person verifies, then fixes', 'parks': held},
               open(out / 'held-joins.json', 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     for name, cols, data in (('held-joins.csv', ['park', 'area', 'name', 'pin_km', 'was_g', 'held_ids', 'held_names', 'reason', 'decided_by', 'to_keep_it'], held),
-                             ('held-joins-ledger.csv', LEDGER_FIELDS, ledger_rows(held, k))):
+                             ('held-joins-ledger.csv', LEDGER_FIELDS, ledger_rows(held, k)),
+                             ('held-parks-todo.csv', TODO_FIELDS, todo_rows(held, k, env))):
         with open(out / name, 'w', newline='', encoding='utf-8') as fh:
             w = csv.DictWriter(fh, fieldnames=cols); w.writeheader(); w.writerows(data)
     print(f"::notice title=Join check::{k} key ({mode}): {len(held)} far join(s) HELD before the stamp, {len(rows)} of {joined_n} joined parks "
@@ -437,7 +463,11 @@ def selftest():
     check('run(): a park that passes loses an old mark', ('suspect' in after['US-0002'], 'suspect' in after['US-0003']), (False, False))
     check('run(): no other join, candidate or grade changed', all(after[r].get(f) == before[r].get(f) for r in before if r != 'US-0001' for f in ('m', 'c', 'g')), True)
     check('run(): held list + reason + decided_by', [(x['park'], x['decided_by'], x['held_ids']) for x in rep['held_rows']], [('US-0001', DECIDED_BY, '1')])
-    check('run(): evidence files written', sorted(os.listdir(td / 'data/us-key/review')), ['held-joins-ledger.csv', 'held-joins.csv', 'held-joins.json', 'join-check.csv', 'join-check.json'])
+    check('run(): evidence files written', sorted(os.listdir(td / 'data/us-key/review')), ['held-joins-ledger.csv', 'held-joins.csv', 'held-joins.json', 'held-parks-todo.csv', 'join-check.csv', 'join-check.json'])
+    tr = list(csv.DictReader(open(td / 'data/us-key/review/held-parks-todo.csv')))
+    check("keeper's to-do: the held park only (exempt ones not listed), its columns",
+          (list(tr[0]), [(x['ref'], x['kind'], x['area'], x['todo_kind'], x['source'], x['outline_ids'], x['reason'][:6]) for x in tr]),
+          (TODO_FIELDS, [('US-0001', 'us', 'US-AA', 'join_held', 'kpc_join_check', '1', 'held: ')]))
     lr = list(csv.DictReader(open(td / 'data/us-key/review/held-joins-ledger.csv')))
     check('ledger proposal file: one pile-enter row per held park, ledger columns, unconfirmed', (list(lr[0]), [(x['park'], x['kind'], x['confirmed_by']) for x in lr]),
           (LEDGER_FIELDS, [('US-0001', 'pile-enter', '')]))
