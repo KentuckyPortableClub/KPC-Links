@@ -636,21 +636,27 @@ def _in_box(pt, b, pad=1e-6):
     return pt is not None and b is not None and b[0] - pad <= pt[0] <= b[2] + pad and b[1] - pad <= pt[1] <= b[3] + pad
 
 
-SAME_SIZE = 0.25   # the old and new spot sizes (acres; metres of line for a trail / river row) may differ by at most a quarter
+SAME_SIZE = 1.25   # the larger size (acres; metres of line for a trail / river row) at most 1.25 times the smaller, both ways
+SAME_BOX = 2.0     # the old and new boxes: width and height each within a factor of 2 (a huge old box never matches a small spot)
+BOX_FLOOR = 1e-4   # degrees (about 10 m): a box side below this counts as this (a straight east-west line has no height)
 
 
 def same_spot(new, old):
-    """'' when the old row is the SAME spot as the new one (grade of #201, defect 1): the old centre lies inside the new spot's extent
-    or the new centre inside the old one's, AND the sizes agree within SAME_SIZE (acres for an area row, len_m for a line row). Else
-    the reason it is not. A row that carries no place or no size is never the same spot. The rows carry no outline checksum, so this
-    place + size test is the whole rule."""
+    """'' when the old row is the SAME spot as the new one (grade of #201): the old centre lies inside the new spot's extent or the new
+    centre inside the old one's; the boxes have the same size (width and height each within SAME_BOX); AND the sizes agree (the
+    larger at most SAME_SIZE times the smaller: acres for an area row, len_m for a line row). Else the reason it is not. A row that
+    carries no place, no box or no size is never the same spot. The rows carry no outline checksum, so this test is the rule."""
     if _pk(new) != _pk(old): return 'another pair or kind'
     nc, oc, ne, oe = _centre(new), _centre(old), _extent(new), _extent(old)
     if not (_in_box(oc, ne) or _in_box(nc, oe)): return 'the spot moved' if (nc and oc and (ne or oe)) else 'no place to compare'
+    if ne is None or oe is None: return 'no box to compare'
+    for i, side in ((0, 'width'), (1, 'height')):
+        a_, b_ = max(ne[i + 2] - ne[i], BOX_FLOOR), max(oe[i + 2] - oe[i], BOX_FLOOR)
+        if max(a_, b_) > SAME_BOX * min(a_, b_): return f'the spot changed shape (box {side})'
     key = 'acres' if new.get('kind') == 'area' else 'len_m'
     a, b = new.get(key), old.get(key)
     if not (isinstance(a, (int, float)) and isinstance(b, (int, float)) and a > 0 and b > 0): return f'no {key} to compare'
-    if abs(a - b) > SAME_SIZE * max(a, b): return f'the spot changed size ({b} -> {a} {key})'
+    if max(a, b) > SAME_SIZE * min(a, b): return f'the spot changed size ({b} -> {a} {key})'
     return ''
 
 
@@ -843,19 +849,61 @@ def secret_refs():
     return (HELD_PRIVATE | set(PRIVATE)) - READ_OK
 
 
+# the name guard (grade of #201): words that never make a name distinctive on their own (park kinds and plain place words)
+COMMON_NAME_WORDS = frozenset((
+    'the of and at on in de du des la le les el los las st saint ste mt mount fort ft '
+    'park parks state national provincial regional county city municipal community memorial historic historical heritage site sites '
+    'area areas recreation recreational wildlife management wma game fish land lands forest forests nf woods wood preserve reserve '
+    'nature natural conservation refuge sanctuary wilderness scenic monument battlefield trail trails greenway river rivers creek '
+    'lake lakes pond reservoir dam island islands beach bay coast shore marsh swamp wetland wetlands mountain mountains hill hills '
+    'valley canyon falls spring springs north south east west upper lower big little new old grand great green').split())
+
+
+def norm_name(t):
+    """Case, accents, hyphens, spacing and punctuation all fold away: 'Zxsecret-Inner  Park' -> 'zxsecret inner park'."""
+    import unicodedata
+    t = unicodedata.normalize('NFKD', str(t or ''))
+    t = ''.join(c for c in t if not unicodedata.combining(c)).lower()
+    return ' '.join(re.findall(r'[a-z0-9]+', t))
+
+
+def distinctive(n):
+    """A name the guard looks for: at least two words, and at least one word that is not a common park / place word (so 'Park',
+    'Lake Park' or 'State Park' never stop a run)."""
+    w = n.split()
+    return len(w) >= 2 and any(x not in COMMON_NAME_WORDS and not x.isdigit() for x in w)
+
+
 NAMES = {}          # ref -> the park's name as the store gives it (index entry or park piece): to find a secret park's NAME in text
 KF_REF = {'kf': None}   # install(): the kpc_fers module (its POTA pin list gives the other names)
+_NAME_CACHE = {}
+
+
+def _all_names():
+    """ref -> normalised names, for every park known to this run (the store and kpc_fers.py's POTA pin list)."""
+    pins = getattr(KF_REF['kf'], 'PINS', None) or {}
+    out = {}
+    for r, v in pins.items():
+        if isinstance(v, (list, tuple)) and v and isinstance(v[0], str): out.setdefault(r, set()).add(norm_name(v[0]))
+    for r, n in NAMES.items(): out.setdefault(r, set()).add(norm_name(n))
+    return out
 
 
 def secret_names(refs=None):
-    """The names of the parks a public file must never name (secret_refs): from the store and from kpc_fers.py's POTA pin list.
-    Names shorter than 4 characters are not matched (too likely to be part of other words)."""
-    pins = getattr(KF_REF['kf'], 'PINS', None) or {}
-    out = set()
-    for r in (secret_refs() if refs is None else refs):
-        for n in (NAMES.get(r), (pins.get(r) or [None])[0] if isinstance(pins.get(r), (list, tuple)) else None):
-            if isinstance(n, str) and len(n.strip()) >= 4: out.add(n.strip())
-    return out
+    """(the normalised names a public file must never carry, the public names that contain one of them). A name is looked for only
+    when it is distinctive() and NO park outside the secret set has the same name (a public namesake: the ref guard still protects
+    the withheld park). Public names that contain a secret name (secret 'Pine Ridge', public 'Pine Ridge Forest') are masked before
+    the scan, so they never stop a run."""
+    sec = set(secret_refs() if refs is None else refs)
+    if not sec: return set(), set()
+    key = (frozenset(sec), len(NAMES), len(getattr(KF_REF['kf'], 'PINS', None) or {}))
+    if key in _NAME_CACHE: return _NAME_CACHE[key]
+    allm = _all_names()
+    pub = {n for r, ns in allm.items() if r not in sec for n in ns if n}
+    out = {n for r in sec for n in allm.get(r, ()) if n and distinctive(n) and n not in pub}
+    mask = {p for p in pub for n in out if f' {n} ' in f' {p} '}
+    _NAME_CACHE.clear(); _NAME_CACHE[key] = (out, mask)
+    return out, mask
 
 
 def _no_ref_names(obj):
@@ -866,6 +914,28 @@ def _no_ref_names(obj):
                 if not (k == 'names' and isinstance(v, dict) and all(REFLIKE.match(str(x)) for x in v))}
     if isinstance(obj, (list, tuple)): return [_no_ref_names(v) for v in obj]
     return obj
+
+
+def _strings(obj):
+    st = [obj]
+    while st:
+        o = st.pop()
+        if isinstance(o, str): yield o
+        elif isinstance(o, dict): st.extend(o.values()); st.extend(k for k in o if isinstance(k, str))
+        elif isinstance(o, (list, tuple)): st.extend(o)
+
+
+def name_hits(doc, names, mask):
+    """The secret names found in any text of doc: whole words, after norm_name on both sides, masked public names taken out first."""
+    hits = set()
+    if not names: return hits
+    for t in _strings(_no_ref_names(doc)):
+        n = f' {norm_name(t)} '
+        for m in sorted(mask, key=len, reverse=True):
+            while f' {m} ' in n: n = n.replace(f' {m} ', ' ')
+        for x in names:
+            if f' {x} ' in n: hits.add(x)
+    return hits
 
 
 def _ref_rx(refs):
@@ -933,11 +1003,9 @@ def guard_write(path, doc, private=None):
         for m in sorted({m.group(0).upper() for m in rx.finditer(txt)}):
             probs.append(f'{path}: it names {m}, held or used for records that are not publishable'); kinds.add('park with unpublishable records')
     # grade of #201 (item 3): a secret park's NAME in any text (a note of a carried old row, a log line), not only its ref
-    nm = sorted(secret_names(private), key=len, reverse=True)
-    if nm:
-        nrx = re.compile(r'(?<!\w)(?:' + '|'.join(re.escape(n) for n in nm) + r')(?!\w)', re.I)
-        for m in sorted({m.group(0).lower() for m in nrx.finditer(json.dumps(_no_ref_names(doc), default=str, ensure_ascii=False))}):
-            probs.append(f'{path}: it names the park "{m}", held or used for records that are not publishable'); kinds.add('park name with unpublishable records')
+    nm, mask = secret_names(private)
+    for m in sorted(name_hits(doc, nm, mask)):
+        probs.append(f'{path}: it names the park "{m}", held or used for records that are not publishable'); kinds.add('park name with unpublishable records')
     if any('store_prev' in d for d in _dicts(doc)):
         probs.append(f'{path}: a row carries a store_prev copy (it stays in the side file)'); kinds.add('carried copy in a row')
     if probs: raise LeakRefused(probs, kinds)

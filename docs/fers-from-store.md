@@ -2,7 +2,7 @@
 
 KPC owner, 2026-11-13; switch-over 2026-11-15. Status: `kpc_fers.main()` calls `kpc_fers_store.install()` right after the hard-end
 clock is armed, only when `KPC_FERS_FROM_STORE` is on (off: nothing is imported and the run is exactly as before). This file and
-`.github/fers-store-areas.json` are 2-fer rule files (fers rules d0064c860cba -> fc5aa2abfe17, entry `2026-11-15-store-switch`).
+`.github/fers-store-areas.json` are 2-fer rule files (fers rules d0064c860cba -> 2fe19a32e5eb, entry `2026-11-15-store-switch`).
 No workflow turns the switch on yet (KPC-Store PR 2).
 
 **Scope `none`, and a stamp only in store runs.** With the switch off no answer and no pair fingerprint changes, so an ordinary
@@ -47,7 +47,8 @@ that the store run would turn NOT SURE only for that reason keeps its old row, t
 run decides (water only, dropped, any other not-sure reason, the water not checked either) is never kept, and an old row that was
 not a live candidate is never brought back.
 **Same spot only** (grade of #201): the old row is used only when it is the same spot: the old centre lies inside the new spot's
-box (or the new centre inside the old row's box) AND the size agrees within 25 % (acres for an area row, metres of line for a
+box (or the new centre inside the old row's box), the two boxes have the same size (width and height each within a factor of 2),
+AND the size agrees within 25 % both ways (the larger at most 1.25 times the smaller: acres for an area row, metres of line for a
 trail / river row). A spot that moved or changed size keeps this run's NOT SURE row (with `not_kept` saying why), and since its
 last row is then NOT SURE, a later store run never brings the old candidate back. The rows carry no outline checksum, so this place
 + size test is the whole rule.
@@ -58,9 +59,16 @@ refuses any public file with a `store_prev` copy in a row. Saved PAD-US answers 
 **A pair that is all water in the store tile** stays `not sure: closed areas not checked` (never kept). The store run cannot call it
 `water only` by itself: rule 10 is checked before the water (a permanent no-entry area on the water, a dam security zone, cannot be
 the spot, and main would then say `dropped: only inside an area closed to the public`), and the closed areas are not in the store.
-**Names too:** on a public store run the write guard also refuses a withheld park's NAME (from the store or the POTA pin list,
-4 characters or more, whole words, any case) in any text of a public file, not only its ref; the ref-keyed `names` map of a row is
-checked by ref (a public park that shares a withheld park's name does not stop the run).
+**Names too (a second line of defence; the REF guard is the main protection):** on a public store run the write guard also
+refuses a withheld park's NAME (from the store and the POTA pin list) in any text of a public file. Both the name and the text are
+folded first (case, accents, hyphens, underscores, spacing and punctuation), and the name must appear as whole words. It is NOT
+looked for when (a) a park that is not withheld has the same name (a public namesake: its rows and statuses name it freely), or
+(b) it is not distinctive: fewer than two words, or only common park / place words ("Park", "Lake Park", "State Park", "North
+Fork Trail" ...: COMMON_NAME_WORDS). A public park whose name CONTAINS the withheld name ("Pine Ridge Forest" for a withheld
+"Pine Ridge") is masked out of the text first. A row's ref-keyed `names` map is checked by ref only. What it does NOT catch:
+abbreviations ("Inner Pk"), partial names ("Inner Park" for "Zx Inner Park"), other spellings or translations, names under the
+rules above, and names the store and the pin list do not know. That is why every withheld park is kept out by its ref (rows,
+keys, text, any case) and by its records (never read on a public run).
 
 ## What it is
 

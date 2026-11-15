@@ -73,7 +73,9 @@ old = {'spots': [sp('A@1', ['US-1', 'US-2'], 'candidate', passes=[1, 1, 1], chec
                  sp('F@1', ['US-11', 'US-12'], 'candidate'),
                  sp('M@1', ['US-13', 'US-14'], 'candidate', c=(41.9, -71.1), acres=900),          # the grader's case: 20 km away, 900 acres
                  sp('R@1', ['US-15', 'US-16'], 'candidate', acres=200),                            # same place, four times the size
-                 sp('N@1', ['US-17', 'US-18'], 'candidate', acres=40)]}                            # same place, size within 25 %
+                 sp('N@1', ['US-17', 'US-18'], 'candidate', acres=40),                            # same place, size within 25 %
+                 sp('H@1', ['US-19', 'US-20'], 'candidate', acres=50, d=0.25),                    # same acres, but a box 60 times wider
+                 sp('S@1', ['US-21', 'US-22'], 'candidate', acres=100), sp('T@1', ['US-23', 'US-24'], 'candidate', acres=100)]}
 cl = 'not sure: closed areas not checked (x): the store must carry them first'
 mk = lambda i, refs, st=cl, **kw: sp(i, refs, st, store_not_checked='closed areas', **kw)
 new = {'spots': [mk('A@2', ['US-2', 'US-1'], c=(41.601, -71.601), acres=52),      # pair match, same spot
@@ -83,11 +85,12 @@ new = {'spots': [mk('A@2', ['US-2', 'US-1'], c=(41.601, -71.601), acres=52),    
                  sp('E@1', ['US-9', 'US-10'], 'not sure: the agency ownership map did not answer', kind='trail', acres=290),
                  sp('F@1', ['US-11', 'US-12'], 'not sure: closed areas not checked (x; the water was not checked either)'),
                  mk('M@2', ['US-13', 'US-14'], c=(41.628, -71.572), acres=58),
-                 mk('R@1', ['US-15', 'US-16'], acres=50), mk('N@1', ['US-17', 'US-18'], acres=48)]}
+                 mk('R@1', ['US-15', 'US-16'], acres=50), mk('N@1', ['US-17', 'US-18'], acres=48), mk('H@1', ['US-19', 'US-20'], acres=50),
+                 mk('S@1', ['US-21', 'US-22'], acres=126), mk('T@1', ['US-23', 'US-24'], acres=80)]}
 ST.owner_status(new)
 n = ST.keep_old_rows(new, old, '2026-11-15')
 by = {x['id']: x for x in new['spots']}
-check(n == 3 and by['A@1']['status'] == 'candidate' and by['A@1']['kept'] == 'kept: not checked in a store run' and 'closed areas' in by['A@1']['kept_why']
+check(n == 4 and by['A@1']['status'] == 'candidate' and by['A@1']['kept'] == 'kept: not checked in a store run' and 'closed areas' in by['A@1']['kept_why']
       and by['A@1']['checked'] == '2026-11-01' and by['A@1']['passes'] == [1, 1, 1],
       f'keep: the SAME spot (place inside, size within 25 %) left NOT SURE only because closed areas were not checked keeps its old row, tagged ({n})')
 check(by['N@1']['status'] == 'candidate' and by['N@1'].get('kept'), 'keep: same spot, 48 vs 40 acres (within 25 %): kept')
@@ -96,6 +99,9 @@ check(by['E@1']['status'].startswith('very tight') and by['E@1']['kept'] == ST.K
 check(by['M@2']['status'] == cl and 'moved' in by['M@2'].get('not_kept', '') and 'M@1' not in by,
       "keep: a MOVED spot (the old row 20 km away, 900 acres; this run's spot 58 acres) is NOT kept: this run's NOT SURE row stands")
 check(by['R@1']['status'] == cl and 'size' in by['R@1'].get('not_kept', ''), 'keep: a RESIZED spot (200 -> 50 acres, same place) is NOT kept')
+check(by['H@1']['status'] == cl and 'shape' in by['H@1'].get('not_kept', ''), 'keep: an old row whose box is far larger than the new spot\'s is NOT kept, even with the same acres')
+check(by['S@1']['status'] == cl and 'size' in by['S@1'].get('not_kept', '') and by['T@1']['status'] == 'candidate' and by['T@1'].get('kept'),
+      'keep: the size test is symmetric: 100 -> 126 acres (26 % up) not kept; 100 -> 80 (the larger 1.25 times the smaller) kept')
 check(by['B@1']['status'] == 'water only: boat or kayak' and by['C@1']['status'] == cl and by['D@9']['status'] == cl and by['F@1']['status'].startswith('not sure: closed')
       and not any('kept' in by[k] for k in ('B@1', 'C@1', 'D@9', 'F@1', 'M@2', 'R@1')),
       'keep: never a row the run decided (water only), never an old row that was not a candidate, never a guess between two old rows, never when the water was not checked either')
@@ -415,8 +421,12 @@ else:
     check(g, 'world: the write guard still refuses a world row in a public file (exit 89)')
 
 # ---------------------------------------------------------------- the write guard: a withheld park's NAME, and store_prev
-_po = ST.PRIVATE_OUT; ST.PRIVATE_OUT = None
-ST.HELD_PRIVATE.add('US-77001'); ST.NAMES['US-77001'] = 'Hidden Test Marsh'
+import types  # noqa: E402
+_po, _kf = ST.PRIVATE_OUT, ST.KF_REF['kf']; ST.PRIVATE_OUT = None
+ST.KF_REF['kf'] = types.SimpleNamespace(PINS={'US-77001': ('Hidden Test Marsh', 0, 0), 'US-77002': ('Pine Ridge', 0, 0), 'US-77003': ('Pine Ridge', 0, 0),
+                                              'US-77004': ('Hidden Test Marsh Forest', 0, 0), 'US-77005': ('Lake Park', 0, 0), 'US-77006': ('Test Lake Park', 0, 0),
+                                              'US-1': ('Open Park', 0, 0), 'US-2': ('Other Park', 0, 0)})
+ST.HELD_PRIVATE.update({'US-77001', 'US-77002', 'US-77005'})
 def refused(doc):
     try: ST.guard_write('data/fers/US-RI.json', doc); return None
     except ST.LeakRefused as e: return e.code
@@ -424,10 +434,20 @@ row = {'refs': ['US-1', 'US-2'], 'kind': 'area', 'status': 'candidate', 'names':
 check(refused({'spots': [row]}) is None, 'write guard: a clean public row is written')
 check(refused({'spots': [dict(row, note='shares a fence with hidden test marsh')]}) == 89 and refused({'spots': [dict(row, info={'names': ['Hidden Test Marsh']})]}) == 89,
       "write guard: a withheld park's NAME in any text of a row (a carried note, a list of names), any case, stops the run (exit 89)")
+check(all(refused({'spots': [dict(row, note=v)]}) == 89 for v in ('near Hidden-Test-Marsh.', 'HIDDEN  TEST   MARSH', 'Hídden Tést Marsh', 'hidden_test_marsh')),
+      'write guard: spacing, hyphen, case and accent variants of the name are caught')
+check(refused({'spots': [dict(row, refs=['US-1', 'US-77002'])]}) == 89 and refused({'spots': [dict(row, note='see US-77005')]}) == 89,
+      "write guard: the withheld park's REF still stops the run (the main protection), also when its name is not looked for")
+check(refused({'spots': [dict(row, refs=['US-1', 'US-77003'], status='not sure: the official outline of Pine Ridge, Open Park could not be read in pass 2', note='approximate line: Pine Ridge')]}) is None,
+      'write guard: a PUBLIC namesake (US-77003 "Pine Ridge", the same name as a withheld park) in a status line and a note does not stop the run')
+check(refused({'spots': [dict(row, status='not sure: the official outline of Hidden Test Marsh Forest could not be read')]}) is None,
+      'write guard: a public park whose name contains the withheld name ("Hidden Test Marsh Forest") does not stop the run')
+check(refused({'spots': [dict(row, status='not sure: the official outline of Test Lake Park, State Park and Lake Park could not be read')]}) is None,
+      'write guard: a withheld name made only of common words ("Lake Park") is not looked for (it would block every run)')
 check(refused({'spots': [dict(row, note='Hidden Test Marshland trail')]}) is None and refused({'spots': [dict(row, names={'US-1': 'Hidden Test Marsh', 'US-2': 'x'})]}) is None,
-      "write guard: a longer word is not the name, and a PUBLIC park's own name map (checked by ref) does not stop the run")
+      "write guard: a longer word is not the name, and a public park's own ref-keyed name map is checked by ref")
 check(refused({'spots': [dict(row, store_prev={'status': 'candidate'})]}) == 89, 'write guard: a row carrying a store_prev copy is refused (exit 89)')
-ST.HELD_PRIVATE.discard('US-77001'); ST.NAMES.pop('US-77001', None); ST.PRIVATE_OUT = _po
+ST.HELD_PRIVATE.difference_update({'US-77001', 'US-77002', 'US-77005'}); ST.PRIVATE_OUT, ST.KF_REF['kf'] = _po, _kf; ST._NAME_CACHE.clear()
 
 # ---------------------------------------------------------------- 7 the hook and the hashes
 src = (SCR / 'kpc_fers.py').read_text(encoding='utf-8')

@@ -17,7 +17,7 @@ KPC owner, 2026-11-14. Scope frozen; these are left for later PRs.
 6. PAD-US closed areas and ownership tiles are not in the store: in a store run those checks are NOT SURE.
 7. The switch-over itself: the hook in `kpc_fers.py`, lazy passes, this module into the 2-fer `RULE_FILES` (fers rules hash
    cef323de4c9a moves then), the KPC-Data workflow step, a private runner for private-store runs.
-   Nov 15: the hook and the RULE_FILES move are done (fers d0064c860cba -> fc5aa2abfe17, prep/nov15-fers-store-hook), with the area
+   Nov 15: the hook and the RULE_FILES move are done (fers d0064c860cba -> 2fe19a32e5eb, prep/nov15-fers-store-hook), with the area
    list .github/fers-store-areas.json and the keep-the-old-row rule (R11). Still open: lazy passes, the KPC-Store workflow (PR 2),
    the KPC-Data monthly-run skip of store areas (PR 4: it must also read the except list), a private runner for private runs.
 8. World store areas (wired, off): the store's world builder must write index-W-<CC>.json with record keys equal to the world
