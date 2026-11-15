@@ -90,7 +90,7 @@
     L.push('Official record: ' + p.source + (p.priv ? ' (private lookup: licence not read yet)' : '') + (p.ids && p.ids.length ? ', id ' + p.ids.join(', ') : ''));
     if (p.credit) L.push('Credit: ' + p.credit);
     factRows(p).filter(r => r.vals.some(x => x.src !== p.source) || p.kind === 'state').forEach(r => L.push(r.label + ': ' + r.vals.map(x => x.v + ' (' + x.src + ')').join('; ') + (r.differ ? ' [sources differ]' : '')));
-    (p.also || []).forEach(x => L.push('Also in: ' + x.source + (x.name && norm(x.name) !== norm(p.name) ? ' (' + x.name + ')' : '') + (x.link ? ', ' + x.link : '')));
+    (p.also || []).forEach(x => L.push('Also in: ' + x.source + (x.name && norm(x.name) !== norm(p.name) ? ' (' + x.name + ')' : '') + (x.priv ? ' (private lookup: licence not read yet)' : '') + (x.credit ? ', credit: ' + x.credit : '') + (x.link ? ', ' + x.link : '')));
     if (p.link) L.push('Record link: ' + p.link);
     L.push('POTA check: ' + p.verdict.label + '. ' + p.verdict.why);
     L.push('Checked with the KPC Mapping Rep Tool Box. Confirm with the managing agency before you submit.');
@@ -302,7 +302,7 @@
     for (const x of sp) {
       if (++n % 25 === 0) await tick();
       const hit = places.find(p => samePlace(x, p)) || extra.find(p => samePlace(x, p));
-      if (hit) { if (hit.sources.indexOf(x.source) < 0) hit.sources.push(x.source); hit.xids.push(...x.ids); (hit.also = hit.also || []).push({ source: x.source, name: x.name, ids: x.ids, link: x.link, facts: x.facts || {} });
+      if (hit) { if (hit.sources.indexOf(x.source) < 0) hit.sources.push(x.source); hit.xids.push(...x.ids); (hit.also = hit.also || []).push({ source: x.source, name: x.name, ids: x.ids, link: x.link, facts: x.facts || {}, priv: !!x.priv, credit: x.credit || '' });
         if (hit.kind !== 'state' && !hit.owner && x.facts && x.facts.owner) { hit.owner = x.facts.owner.v; hit.ownerFrom = x.source; }   /* PAD-US blank: the state layer's owner is used for the checks */ }
       else extra.push(x);
     }
@@ -488,7 +488,7 @@
   function card(p, i) {
     const X = W.KPCMapExtras, c = p.checks || {};
     const official = p.kind === 'pad' ? (X && X.padCard ? X.padCard(p.a) : '') : p.kind === 'state' ? '<p class="mr-help mr-rs-src">From the state / province layer: <b>' + esc(p.source) + '</b> (not in ' + (p.source && /CPCAD/.test(p.source) ? 'CPCAD' : 'PAD-US or CPCAD') + ')' + (p.priv ? '<br>Private lookup: licence not read yet' : '') + (p.credit ? '<br>Credit: ' + esc(p.credit) : '') + '</p>' : (X && X.caCard ? X.caCard(p.a) : '');
-    const also = (p.also || []).length ? '<p class="mr-help mr-rs-src">Also in: ' + p.also.map(x => '<a href="' + esc(x.link) + '" target="_blank" rel="noopener">' + esc(x.source) + (norm(x.name) !== norm(p.name) ? ' (\u201c' + esc(x.name) + '\u201d)' : '') + '</a>').join(' \u00b7 ') + '</p>' : '';
+    const also = (p.also || []).length ? '<p class="mr-help mr-rs-src">Also in: ' + p.also.map(x => '<a href="' + esc(x.link) + '" target="_blank" rel="noopener">' + esc(x.source) + (norm(x.name) !== norm(p.name) ? ' (\u201c' + esc(x.name) + '\u201d)' : '') + '</a>' + (x.priv ? ' (private lookup)' : '') + (x.credit ? ' (credit: ' + esc(x.credit) + ')' : '')).join(' \u00b7 ') + '</p>' : '';
     const lines = [];
     if (c.same.length) lines.push('Same official record as: ' + c.same.join(', '));
     (c.cover || []).forEach(x => lines.push('Park outline over it: ' + x.ref + ' covers ' + Math.round(x.share * 100) + '%'));
