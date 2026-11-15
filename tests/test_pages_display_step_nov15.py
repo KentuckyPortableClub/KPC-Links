@@ -50,7 +50,8 @@ check('it runs after the Jekyll build and before the upload', idx[0] > next(i fo
       and idx[0] < next(i for i, u in enumerate(uses) if 'upload-pages-artifact' in u))
 check('it can never fail the deploy (continue-on-error)', st.get('continue-on-error') is True)
 check('it re-checks every area with check --public', 'kpc_display_copy.py check --out' in st['run'] and '--public' in st['run'])
-check('it asks for no secret and no write permission', 'secrets.' not in st['run'] and 'env' not in st)
+check('it asks for no secret and no write permission', 'secrets.' not in st['run'] and set(st.get('env') or {}) == {'KPC_DISPLAY_MAX_MB'})
+check('it has a time limit and a size cap', 0 < int(st.get('timeout-minutes') or 0) <= 15 and 0 < int(st['env']['KPC_DISPLAY_MAX_MB']) <= 500)
 SCRIPT = st['run']
 
 tmp = pathlib.Path(tempfile.mkdtemp(prefix='kpc-pages-step-'))
@@ -61,13 +62,13 @@ try:
     git('remote', 'add', 'origin', str(bare), cwd=work); git('push', '-q', 'origin', 'HEAD:refs/heads/main', cwd=work)
     (work / 'tools').symlink_to(ROOT / 'tools')
 
-    def run_step(origin_ok=True):
+    def run_step(origin_ok=True, cap=None):
         site = work / '_site'
         if site.exists(): shutil.rmtree(site)
         (site / 'data').mkdir(parents=True); (site / 'index.html').write_text('site\n')
         summ = tmp / 'summary.md'; summ.write_text('')
         if not origin_ok: git('remote', 'set-url', 'origin', str(tmp / 'no-such.git'), cwd=work)
-        r = subprocess.run(['bash', '-e', '-c', SCRIPT], cwd=work, env=dict(ENV, GITHUB_STEP_SUMMARY=str(summ)), capture_output=True, text=True, timeout=300)
+        r = subprocess.run(['bash', '-e', '-c', SCRIPT], cwd=work, env=dict(ENV, GITHUB_STEP_SUMMARY=str(summ), KPC_DISPLAY_MAX_MB=str(cap if cap is not None else st['env']['KPC_DISPLAY_MAX_MB'])), capture_output=True, text=True, timeout=300)
         if not origin_ok: git('remote', 'set-url', 'origin', str(bare), cwd=work)
         return r, site, summ.read_text()
 
@@ -95,6 +96,39 @@ try:
           not (d / 'US-ZB').exists() and not (d / 'notes').exists() and 'US-ZB' in summ)
     check('the rest of the site is untouched', (site / 'index.html').read_text() == 'site\n')
     check('the checkout itself is not changed (only _site)', git('status', '--porcelain', '--untracked-files=no', cwd=work).stdout.strip() == '')
+    r, site, summ = run_step(cap=0)
+    check('over the size cap: exit 0 and nothing added', r.returncode == 0 and not (site / 'data' / 'display').exists() and 'size cap' in summ)
+
+    # grade fix: links and odd names. Each case is a branch of its own: US-ZA good + one bad thing.
+    outside = tmp / 'outside-secret'; outside.mkdir(); (outside / 'secret.txt').write_text('private')
+
+    def publish(fn):
+        pb = tmp / ('pub-' + fn.__name__); shutil.rmtree(pb, ignore_errors=True)
+        git('init', '-q', str(pb)); shutil.copytree(out / 'US-ZA', pb / 'US-ZA'); shutil.copytree(out / 'US-ZA', pb / 'US-ZC')
+        fn(pb)
+        git('add', '-A', cwd=pb); git('commit', '-q', '-m', 'display', cwd=pb)
+        return git('push', '-q', '-f', str(bare), 'HEAD:refs/heads/map-display', cwd=pb)
+    def dir_link(pb): (pb / 'US-ZC' / 'zzdir').symlink_to(outside, target_is_directory=True)
+    def file_link(pb): (pb / 'US-ZC' / 'mid').mkdir(exist_ok=True); (pb / 'US-ZC' / 'mid' / 'x.geojson.gz').symlink_to(outside / 'secret.txt')
+    def top_link(pb): (pb / 'US-ZD').symlink_to(outside, target_is_directory=True)
+    def nl_area_file(pb): (pb / 'US-ZC' / 'a\n::error title=x::injected').write_text('x')
+    def nl_top(pb): (pb / 'x\n::error title=x::injected').mkdir(); (pb / 'x\n::error title=x::injected' / 'f').write_text('x')
+    for fn, what in ((dir_link, 'a folder link inside an area'), (file_link, 'a file link inside an area'),
+                     (top_link, 'a top-level link named like an area'), (nl_area_file, 'a file name with a newline inside an area'),
+                     (nl_top, 'a top-level name with a newline')):
+        publish(fn)
+        r, site, summ = run_step()
+        d = site / 'data' / 'display'
+        links = [q for q in d.rglob('*') if q.is_symlink()] if d.exists() else []
+        leaked = 'private' in ''.join(q.read_text(errors='ignore') for q in d.rglob('*') if q.is_file()) if d.exists() else False
+        bad_area = 'US-ZD' if fn is top_link else 'US-ZC'
+        check(f'{what}: exit 0, the good area copied, the bad one left out, no link and nothing from outside in _site',
+              r.returncode == 0 and (d / 'US-ZA' / 'INDEX.json').is_file() and (fn in (top_link, nl_top) or not (d / bad_area).exists())
+              and not (d / 'US-ZD').exists() and not links and not leaked)
+        log = r.stdout + r.stderr + summ
+        check(f'{what}: no name read from the branch reaches the log or the summary (no injected workflow command)',
+              'injected' not in log and not any(ln.startswith('::error') for ln in log.splitlines()))
+    check('only plain files and folders end up in _site', all(q.is_file() or q.is_dir() for q in (site / 'data' / 'display').rglob('*')))
 finally:
     shutil.rmtree(tmp, ignore_errors=True); shutil.rmtree(ENV['HOME'], ignore_errors=True)
 print('ALL PASS' if not FAILS else f'SOME FAILED ({len(FAILS)})')

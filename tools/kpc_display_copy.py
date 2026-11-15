@@ -1074,10 +1074,13 @@ def key_areas(key_dir):
 # what the public map draws now). Today's file is simplified (its features say how much in 'detail', degrees), so a released
 # point counts as lost only when it is outside every store tract the park draws AND farther than NO_WORSE_TOL_M (or 1.5 x the
 # released detail, whichever is more) from the store's own boundary. More than LOST_TOL_CELLS lost cells = the park keeps today's
-# outline, and it is listed (report 'no_worse_kept_today'; the reason is private like every other). Only official released
+# outline, and it is listed (report 'no_worse_kept_today'; the reason is private like every other). It is also worse when more
+# than NO_WORSE_SHARE (20 %) of the released area lies outside the store's land, at any distance (small parks). Only official released
 # outlines are compared (an 'approximate' one, or a pin, is not land the map promises).
 RELEASED_DEFAULT = pathlib.Path(__file__).resolve().parent.parent / 'data' / 'released'
 NO_WORSE_TOL_M = 30.0
+NO_WORSE_SHARE = 0.2            # ...and, whatever the distance: more than this share of the released area outside the store's land
+                                # is also worse (a 33 m park shrunk to 3 m stays within 30 m of its edge, but loses 99 % of its land)
 NO_WORSE_CELLS = 40_000         # about this many cells per released polygon (cells of 2 m or more; 10 m for a 1 km park)
 
 
@@ -1136,8 +1139,8 @@ def no_worse(recs, rel_polys, rel_detail_m=0.0):
         land.add(xy)
         for xs, ys in xy: edge.add_ring(xs, ys)
     tol = max(NO_WORSE_TOL_M, 1.5 * float(rel_detail_m or 0.0))
-    lost = cells = 0
-    lost_m2 = 0.0
+    lost = cells = outside = 0
+    lost_m2 = rel_m2 = out_m2 = 0.0
     worst_cell = 0.0
     for poly in rel_polys:
         rings = [pr.xy(rg) for rg in poly]
@@ -1147,19 +1150,23 @@ def no_worse(recs, rel_polys, rel_detail_m=0.0):
         worst_cell = max(worst_cell, cell)
         nx, ny = max(1, int(math.ceil((x1 - x0) / cell))), max(1, int(math.ceil((y1 - y0) / cell)))
         mask = raster([rings], x0, y0, cell, nx, ny)     # even-odd over the polygon's rings: its holes are not land
-        n = 0
+        n = o = c0 = 0
         for j in range(ny):
             yc = y0 + (j + 0.5) * cell
             for i in range(nx):
                 if not mask[j * nx + i]: continue
-                cells += 1
+                cells += 1; c0 += 1
                 xc = x0 + (i + 0.5) * cell
                 if land.inside(xc, yc): continue
+                o += 1
                 if recs and edge.dist(xc, yc, tol * 1.2) <= tol: continue
                 n += 1
-        lost += n; lost_m2 += n * cell * cell
+        lost += n; lost_m2 += n * cell * cell; outside += o; out_m2 += o * cell * cell; rel_m2 += c0 * cell * cell
+    share = out_m2 / rel_m2 if rel_m2 else 0.0
     return {'released_cells': cells, 'lost_cells': lost, 'lost_m2': round(lost_m2, 1), 'tol_m': round(tol, 1),
-            'cell_m': round(worst_cell, 1), 'worse': lost > LOST_TOL_CELLS}
+            'cell_m': round(worst_cell, 1), 'released_m2': round(rel_m2, 1), 'outside_m2': round(out_m2, 1),
+            'outside_share': round(share, 4),
+            'worse': lost > LOST_TOL_CELLS or (outside > LOST_TOL_CELLS and share > NO_WORSE_SHARE)}
 
 
 def in_git_tree(path):
@@ -1204,6 +1211,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                 raise DisplayError(f'{f}: sha256 differs from the index (store and index are not from the same build)')
     gen = hashlib.sha256(json.dumps(sorted(sha.items())).encode()).hexdigest()[:12]
     rel = {a: released_land(released, a) for a in areas}   # today's released outlines (read before anything is written)
+    not_compared = sorted(a for a in areas if not (pathlib.Path(released) / 'outlines' / f'{a}.geojson.gz').is_file())   # listed, never silent
     no_worse_kept = []
     doubt = dict(doubtful or {})
     in_areas = {}
@@ -1350,7 +1358,8 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                 row['no_worse'] = nw
                 if nw['worse']:
                     fall(f"no worse than released: {nw['lost_m2']:.0f} m2 of today's released outline ({nw['lost_cells']} cells of "
-                         f"{nw['cell_m']} m) is outside the store's drawn land by more than {nw['tol_m']} m")
+                         f"{nw['cell_m']} m) is outside the store's drawn land by more than {nw['tol_m']} m; "
+                         f"{100 * nw['outside_share']:.1f} % of it is outside at any distance")
                     row['kept_today_no_worse'] = True; no_worse_kept.append(ref)
                     continue
             merged_add = merge_m if stp['once_m'] else 0.0
@@ -1423,6 +1432,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
            'line_records_drawn': sum(r.get('line_records', 0) for r in rows if not r.get('failed') and not r.get('kept_today_no_worse')),
            'invariant_failures': [r['ref'] for r in rows if r.get('failed')],
            'no_worse_kept_today': sorted(no_worse_kept),
+           'no_worse_areas_not_compared': not_compared,
            'no_worse_checked': len([r for r in rows if 'no_worse' in r])}
     for k in ('fallback', 'bytes_parts', 'bytes_mid', 'bytes_fine', 'pieces'): rep[k] = sum(r[k] for r in reps.values())
     rep['parks_drawn'] = len([r for r in rows if not r.get('failed') and not r.get('kept_today_no_worse')])
@@ -1496,6 +1506,38 @@ PRIVATE_RX = re.compile(r'wdpa|protected ?planet|sprep|unep|licen[cs]e|restrict|
                         r'kpcstore|not on the allow|class\b|basis|password|token|secret|key\s*=|[<>]', re.I)
 
 
+GEO_DEPTH = {'MultiPolygon': 4, 'MultiLineString': 3}
+ROLE_GEO = {'park': 'MultiPolygon', 'hit': 'MultiPolygon', 'line': 'MultiLineString'}
+
+
+def geo_problem(g, want):
+    """A drawn geometry the map can trust (2026-11-15): the expected type, not empty, every position two finite numbers in range
+    (lon within 540, lat within 90), every ring at least 4 positions and every line at least 2. -> None, or what is wrong."""
+    if not isinstance(g, dict): return 'no geometry'
+    if g.get('type') != want: return f'geometry type {str(g.get("type"))[:20]!r}, not {want}'
+    def pos_ok(c):
+        return (isinstance(c, list) and len(c) == 2 and all(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) for v in c)
+                and abs(c[0]) <= 540 and abs(c[1]) <= 90)
+    cs = g.get('coordinates')
+    if not isinstance(cs, list) or not cs: return 'empty geometry'
+    if want == 'MultiLineString':
+        for ln in cs:
+            if not isinstance(ln, list) or len(ln) < 2: return 'a line with fewer than 2 positions'
+            if not all(pos_ok(c) for c in ln): return 'a position that is not two finite numbers in range'
+        return None
+    for poly in cs:
+        if not isinstance(poly, list) or not poly: return 'an empty polygon'
+        for ring in poly:
+            if not isinstance(ring, list) or len(ring) < 4: return 'a ring with fewer than 4 positions'
+            if not all(pos_ok(c) for c in ring): return 'a position that is not two finite numbers in range'
+    return None
+
+
+def _read_gz_json(b):
+    try: return json.loads(gzip.decompress(b)), None
+    except Exception as e: return None, f'unreadable ({type(e).__name__})'
+
+
 def check(out_dir, area, max_part=1_000_000, public=False, piece_cap=PIECE_CAP):
     """Re-read a written display copy: every file under its cap, sha12 as listed, parts join, every park once, the preview
     stamp consistent (refused with public=True), nothing unlisted, no private words in INDEX.json or the overview (public=True).
@@ -1530,12 +1572,18 @@ def check(out_dir, area, max_part=1_000_000, public=False, piece_cap=PIECE_CAP):
         if not b: continue
         if len(b) > max_part: probs.append(f'{name} is {len(b)} bytes (over {max_part})')
         if hashlib.sha256(b).hexdigest()[:12] != sha12: probs.append(f'{name} sha differs from INDEX')
-        d = json.loads(gzip.decompress(b))
+        d, err = _read_gz_json(b)
+        if err or not isinstance(d, dict) or not isinstance(d.get('features'), list):
+            probs.append(f'{name}: {err or "not a feature collection"}'); continue
         if (d.get('kpc') or {}).get('stamp') != idx.get('stamp'): probs.append(f'{name}: preview stamp differs from INDEX')
         if (d.get('kpc') or {}).get('gen') != idx.get('gen'): probs.append(f'{name}: from another build')
         if len(d.get('features') or []) != n: probs.append(f'{name}: feature count differs from INDEX')
         for f in d.get('features') or []:
+            if not (isinstance(f, dict) and isinstance(f.get('properties'), dict) and isinstance(f['properties'].get('ref'), str)):
+                probs.append(f'{name}: a feature with no properties or no ref'); continue
             pr = f['properties']; r = pr['ref']; role = pr.get('role', 'park')
+            gp = geo_problem(f.get('geometry'), ROLE_GEO.get(role, 'MultiPolygon'))
+            if gp: probs.append(f'{r} {role}: {gp}')
             if (r, role) in seen: probs.append(f'{r} {role} twice')
             seen.add((r, role))
             if r in (idx.get('fallback') or {}): probs.append(f'{r} both drawn and fallback')
@@ -1557,6 +1605,7 @@ def check(out_dir, area, max_part=1_000_000, public=False, piece_cap=PIECE_CAP):
         b = (out / name).read_bytes() if (out / name).is_file() else b''
         if b and hashlib.sha256(b).hexdigest()[:12] != sha12: probs.append(f'mid {ref}: sha differs')
         elif len(b) > max_part: probs.append(f'mid {ref}: over {max_part} bytes')
+        elif b: probs.extend(f'mid {ref}: {x}' for x in _level_problems(b))
     for ref, v in (idx.get('fine') or {}).items():
         for t, (sha12, size) in (v.get('tiles') or {}).items():
             q = out / 'fine' / ref / f'{t}.geojson.gz'
@@ -1564,8 +1613,21 @@ def check(out_dir, area, max_part=1_000_000, public=False, piece_cap=PIECE_CAP):
             if not b: continue
             if hashlib.sha256(b).hexdigest()[:12] != sha12: probs.append(f'fine {ref} {t}: sha differs')
             elif len(b) > piece_cap: probs.append(f'fine {ref} {t}: {len(b)} bytes, over the piece cap {piece_cap}')
-            elif (json.loads(gzip.decompress(b)).get('kpc') or {}).get('stamp') != idx.get('stamp'): probs.append(f'fine {ref} {t}: preview stamp differs')
+            else:
+                lp = _level_problems(b)
+                if lp: probs.extend(f'fine {ref} {t}: {x}' for x in lp)
+                elif (json.loads(gzip.decompress(b)).get('kpc') or {}).get('stamp') != idx.get('stamp'): probs.append(f'fine {ref} {t}: preview stamp differs')
     return probs
+
+
+def _level_problems(b):
+    """a middle file or a fine piece: readable, one feature, a good MultiLineString"""
+    d, err = _read_gz_json(b)
+    if err: return [err]
+    fs = d.get('features') if isinstance(d, dict) else None
+    if not (isinstance(fs, list) and len(fs) == 1 and isinstance(fs[0], dict)): return ['not one feature']
+    gp = geo_problem(fs[0].get('geometry'), 'MultiLineString')
+    return [gp] if gp else []
 
 
 def main(argv=None):
@@ -1599,6 +1661,8 @@ def main(argv=None):
             if a.report: pathlib.Path(a.report).write_text(json.dumps(rep, indent=1), encoding='utf-8')
             probs = [f'{ar}: {p}' for ar in rep['areas'] for p in check(a.out, ar, public=not a.private_preview)]
             for p in probs: print('PROBLEM', p)
+            if rep['no_worse_areas_not_compared']:
+                print('no released outline file to compare with (no-worse check not run) for: ' + ', '.join(rep['no_worse_areas_not_compared']))
             if rep['no_worse_kept_today']:
                 print(f"{len(rep['no_worse_kept_today'])} park(s) would lose land against today's released outline and keep it: "
                       + ', '.join(rep['no_worse_kept_today'][:20]) + (' ...' if len(rep['no_worse_kept_today']) > 20 else ''))

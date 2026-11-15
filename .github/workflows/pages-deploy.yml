@@ -86,30 +86,53 @@ jobs:
       - name: Display copy from the map-display branch (only when it exists; never fails the deploy)
         # Nov 15 (map store hook, docs/map-from-store.md): kpc-outline-display.js reads data/display/<AREA>/ (drawn only for a
         # visitor who asks, ?outlines=store, until the owner fills its LIVE_AREAS list). Pages deploys main only, so the display
-        # copy published on the map-display branch (tools/kpc_display_publish.sh) is copied in here. Each area folder must pass
-        # tools/kpc_display_copy.py check --public again; an area that fails is left out (the map draws today's outline there).
-        # No branch yet, or it cannot be read = no display copy: the site deploys exactly as before.
+        # copy published on the map-display branch (tools/kpc_display_publish.sh) is copied in here. Each area folder must hold
+        # ONLY plain files and folders with plain names (no link, no other kind of entry) and pass tools/kpc_display_copy.py
+        # check --public again; an area that fails is left out (the map draws today's outline there). Over the size cap
+        # (KPC_DISPLAY_MAX_MB, 300 MB) = nothing added. No branch yet, or it cannot be read = no display copy: the site deploys
+        # exactly as before. Only counts and checked area codes are printed (never a name read from the branch).
         continue-on-error: true
+        timeout-minutes: 10
+        env:
+          KPC_DISPLAY_MAX_MB: '300'
         run: |
           say() { echo "$1"; echo "- $1" >> "$GITHUB_STEP_SUMMARY"; }
+          AREA_RX='^((US|CA)-[A-Z]{2,3}|W-[A-Z]{2})$'
+          CAP=$(( KPC_DISPLAY_MAX_MB * 1000000 ))
           W=$(mktemp -d); mkdir "$W/tree" "$W/ok"
           set +e; git ls-remote --exit-code origin refs/heads/map-display > "$W/ls.txt" 2> "$W/ls.err"; RC=$?; set -e
           if [ "$RC" -eq 2 ]; then say "Display copy: no map-display branch yet, nothing added (the map draws today's outlines)."; exit 0; fi
           if [ "$RC" -ne 0 ]; then echo "::warning title=Display copy::could not read map-display (git ls-remote exit $RC): nothing added"; say "Display copy: map-display could not be read, nothing added."; exit 0; fi
-          if ! git fetch -q --no-tags --depth 1 origin refs/heads/map-display; then echo "::warning title=Display copy::could not fetch map-display: nothing added"; exit 0; fi
-          git archive FETCH_HEAD | tar -x -C "$W/tree"
-          GOOD=""; BAD=""
-          for D in "$W"/tree/*; do
-            [ -d "$D" ] || continue
+          if ! git fetch -q --no-tags --depth 1 origin refs/heads/map-display 2> "$W/fetch.err"; then echo "::warning title=Display copy::could not fetch map-display: nothing added"; exit 0; fi
+          # the size BEFORE anything is unpacked: blobs only (links and other kinds are refused below anyway)
+          SIZE=$(git ls-tree -r -l FETCH_HEAD | awk '$2 == "blob" { s += $4 } END { print s + 0 }')
+          if [ "$SIZE" -gt "$CAP" ]; then echo "::warning title=Display copy::map-display holds $SIZE bytes, over the ${KPC_DISPLAY_MAX_MB} MB cap: nothing added"; say "Display copy: over the size cap, nothing added."; exit 0; fi
+          # no absolute path and no '..' anywhere in the tree (git never writes them; refused all the same)
+          if git ls-tree -r -z --name-only FETCH_HEAD | tr '\0' '\n' | grep -q -E '^/|(^|/)\.\.(/|$)'; then echo "::warning title=Display copy::map-display holds an odd path: nothing added"; exit 0; fi
+          git archive FETCH_HEAD | tar -x --no-same-owner --no-same-permissions -C "$W/tree"
+          NGOOD=0; NBAD=0; GOOD=""; BADA=""
+          for D in "$W"/tree/* "$W"/tree/.[!.]*; do
+            [ -e "$D" ] || [ -L "$D" ] || continue
             N=$(basename "$D")
-            [[ "$N" =~ ^((US|CA)-[A-Z]{2,3}|W-[A-Z]{2})$ ]] || { BAD="$BAD $N"; continue; }
-            if python3 -B tools/kpc_display_copy.py check --out "$W/tree" --area "$N" --public > "$W/check-$N.txt" 2>&1; then
-              cp -R "$D" "$W/ok/$N"; GOOD="$GOOD $N"
+            if [ -L "$D" ] || [ ! -d "$D" ] || ! [[ "$N" =~ $AREA_RX ]]; then NBAD=$((NBAD + 1)); continue; fi   # not an area folder: left out, not named
+            # only plain files and folders, with plain names (printable, no backslash): anything else = the area is left out
+            if [ -n "$(find "$D" ! -type f ! -type d -print -quit)" ] || [ -n "$(LC_ALL=C find "$D" -name '*[! -~]*' -print -quit)" ] \
+               || [ -n "$(find "$D" -name '*\\*' -print -quit)" ]; then
+              NBAD=$((NBAD + 1)); BADA="$BADA $N"; continue
+            fi
+            if python3 -B tools/kpc_display_copy.py check --out "$W/tree" --area "$N" --public > "$W/check.txt" 2>&1; then
+              mkdir "$W/ok/$N"
+              (cd "$D" && find . -type d -print0 | (cd "$W/ok/$N" && xargs -0 -r mkdir -p))
+              (cd "$D" && find . -type f -print0 | xargs -0 -r cp --parents --no-dereference -t "$W/ok/$N")   # plain files only
+              NGOOD=$((NGOOD + 1)); GOOD="$GOOD $N"
             else
-              BAD="$BAD $N"; echo "::warning title=Display copy::$N fails check --public: left out"; tail -5 "$W/check-$N.txt"
+              NBAD=$((NBAD + 1)); BADA="$BADA $N"   # the check's own lines are not printed (they can hold names read from the branch)
             fi
           done
-          if [ -z "$GOOD" ]; then say "Display copy: no area passed its check, nothing added.${BAD:+ Left out:$BAD}"; exit 0; fi
+          if [ "$NGOOD" -eq 0 ]; then say "Display copy: no area passed its checks, nothing added ($NBAD left out${BADA:+:$BADA})."; exit 0; fi
+          if [ -n "$(find "$W/ok" ! -type f ! -type d -print -quit)" ]; then echo "::warning title=Display copy::not plain files: nothing added"; exit 0; fi
+          TOTAL=$(du -sb "$W/ok" | cut -f1)
+          if [ "$TOTAL" -gt "$CAP" ]; then echo "::warning title=Display copy::$TOTAL bytes, over the ${KPC_DISPLAY_MAX_MB} MB cap: nothing added"; say "Display copy: over the size cap, nothing added."; exit 0; fi
           SUDO=""; T=_site; [ -d _site/data ] && T=_site/data
           if ! ( : > "$T/.kpc-w" ) 2>/dev/null; then SUDO=sudo; else rm -f "$T/.kpc-w"; fi   # the Jekyll step may leave _site owned by root
           trap '$SUDO rm -rf _site/data/display' ERR   # never half a copy: any failure below removes it all
@@ -117,7 +140,7 @@ jobs:
           $SUDO mkdir -p _site/data/display
           $SUDO cp -R "$W/ok/." _site/data/display/
           trap - ERR
-          say "Display copy: added$GOOD from map-display $(git rev-parse --short FETCH_HEAD).${BAD:+ Left out:$BAD}"
+          say "Display copy: added $NGOOD area(s):$GOOD ($TOTAL bytes) from map-display $(git rev-parse --short FETCH_HEAD); $NBAD left out${BADA:+:$BADA}."
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site

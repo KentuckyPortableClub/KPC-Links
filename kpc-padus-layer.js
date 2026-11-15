@@ -574,10 +574,51 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     }));
   }
   /* today's pack (a promise) -> the store pack when the loader wants this area and has it, else today's pack, unchanged */
+  /* Nov 15 (grade fix): every store feature is checked before it is drawn: a plain-text ref, a geometry of an allowed type, and
+     every position two finite numbers in range (lines too). A park with ANY bad store feature is drawn from today's pack (all of
+     its store features left out, today's features put back); a pack that is not a list of features = today's pack, whole. */
+  const GEO_DEPTH = { Polygon: 3, MultiPolygon: 4, LineString: 2, MultiLineString: 3 };
+  function goodCoords(c, depth) {
+    if (!Array.isArray(c)) return false;
+    if (depth === 1) return c.length >= 2 && typeof c[0] === 'number' && typeof c[1] === 'number' && isFinite(c[0]) && isFinite(c[1]) && Math.abs(c[0]) <= 540 && Math.abs(c[1]) <= 90;
+    if (!c.length) return false;
+    for (let i = 0; i < c.length; i++) if (!goodCoords(c[i], depth - 1)) return false;
+    return true;
+  }
+  function goodFeat(f) {
+    const g = f && f.geometry, p = f && f.properties;
+    return !!(p && typeof p === 'object' && typeof p.ref === 'string' && p.ref && g && typeof g === 'object' &&
+              Object.prototype.hasOwnProperty.call(GEO_DEPTH, g.type) && goodCoords(g.coordinates, GEO_DEPTH[g.type]));
+  }
+  function cleanStorePack(p, old) {
+    const oldFs = (old && Array.isArray(old.features)) ? old.features : [], oldSet = new Set(oldFs);
+    if (!p || !Array.isArray(p.features)) return null;
+    const bad = {};
+    let nStore = 0;
+    for (const f of p.features) {
+      if (oldSet.has(f)) continue;                                   /* today's own feature, put in by merge() */
+      const r = f && f.properties && f.properties.ref;
+      if (typeof r !== 'string' || !r) return null;                   /* a store feature with no ref: the whole pack is suspect */
+      if (!goodFeat(f)) bad[r] = 1;
+      nStore++;
+    }
+    if (!nStore) return null;
+    if (!Object.keys(bad).length) return p;
+    const feats = p.features.filter(f => oldSet.has(f) || !bad[f.properties.ref]);
+    oldFs.forEach(f => { const r = f && f.properties && f.properties.ref; if (r && bad[r] && (f.properties.g !== 'pin') && feats.indexOf(f) < 0) feats.push(f); });
+    if (!feats.some(f => !oldSet.has(f))) return null;              /* nothing of the store left: today's pack as it is */
+    return Object.assign({}, p, { features: feats, by: undefined });
+  }
   function storeOr(area, oldP) {
     return storeLoader().then(D => {
       if (!D || typeof D.wanted !== 'function' || !D.wanted(area)) return oldP;
-      return Promise.resolve(D.load(area, oldP)).then(p => (p && Array.isArray(p.features) && p.features.length ? p : oldP), () => oldP);
+      return Promise.all([Promise.resolve(D.load(area, oldP)).catch(() => null), Promise.resolve(oldP).catch(() => null)]).then(([p, old]) => {
+        let q = null;
+        try { q = cleanStorePack(p, old); } catch (e) { q = null; }
+        if (!q) return old;
+        try { Object.defineProperty(q, '_old', { value: old, enumerable: false }); } catch (e) { return old; }
+        return q;
+      }, () => oldP);
     }, () => oldP).catch(() => oldP);
   }
 
@@ -630,9 +671,9 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
         const got = want === 'mid' ? D.mid(d.area, ref).then(f => (f ? [f] : [])) : D.fine(d.area, ref, box);
         Promise.resolve(got).then(fs => {
           if (id !== detailReq) return;
-          fs = (fs || []).filter(f => f && f.geometry);
+          fs = (fs || []).filter(f => goodFeat(f) && /LineString$/.test(f.geometry.type));
           if (!fs.length) {
-            if (want === 'fine') return D.mid(d.area, ref).then(f => { if (id === detailReq) put(d, f ? [f] : []); });   /* too much for one look: the middle level */
+            if (want === 'fine') return D.mid(d.area, ref).then(f => { if (id === detailReq) put(d, goodFeat(f) ? [f] : []); });   /* too much for one look: the middle level */
             return put(d, []);
           }
           put(d, fs);
@@ -642,6 +683,9 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
     function put(d, fs) {
       undetail(d);
       if (!fs.length) return;
+      try { putNow(d, fs); } catch (e) { undetail(d); }
+    }
+    function putNow(d, fs) {
       d.detail = L.geoJSON({ type: 'FeatureCollection', features: fs }, { pane: 'usoff', renderer: rend, interactive: false,
         style: () => ({ color: '#c9a227', weight: W, opacity: 0.95, fill: false, interactive: false, className: 'kpc-usoff' }) });
       group.addLayer(d.detail);
@@ -724,8 +768,21 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
         if (id !== req) return;
         const sts = statesInView();
         const missing = [];
+        /* Nov 15 (grade fix): a store pack that throws while it is drawn is taken off again and the state is drawn from
+           today's pack instead (never a blank state) */
         function addPack(key, pack) {
           if (!pack || loaded[key]) return;
+          if (pack.source !== 'store') return drawPack(key, pack, []);
+          const mark = drawn.length, added = [];
+          try { return drawPack(key, pack, added); }
+          catch (e) {
+            added.forEach(l => { try { group.removeLayer(l); } catch (x) {} });
+            drawn.splice(mark); loaded[key] = false;
+            return pack._old ? drawPack(key, pack._old, []) : false;
+          }
+        }
+        function drawPack(key, pack, added) {
+          const add = l => { group.addLayer(l); added.push(l); };
           const feats = (pack.features || []).filter(f => f && f.geometry && (f.properties || {}).g !== 'pin');
           if (!feats.length) return false;
           const fc = { type: 'FeatureCollection', features: feats };
@@ -754,13 +811,13 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
                   if (lls.length) {
                     const t = L.polyline(lls, { pane: 'usoff', renderer: rend, weight: 12, opacity: 0, fill: false, interactive: true, className: 'kpc-usoff-hit' });
                     t.bindPopup(popup(f), { maxWidth: 260 });
-                    group.addLayer(t);
+                    add(t);
                   }
                 }
               }
             }
           });
-          group.addLayer(lay);
+          add(lay);
           loaded[key] = true;
           return true;
         }

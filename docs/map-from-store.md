@@ -24,7 +24,8 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
 | `tests/display_copy_fixture.py` | The synthetic store writer the tests use (store index format 3 shape). |
 | `tests/test_display_copy_v3store_nov14.py` | Opt-in (set `KPC_STORE_TOOL_DIR` to the unzipped store tool): 16 checks on stores the real store tool builds offline from its own test answers in a temporary folder; otherwise it says SKIP. |
 | `tests/test_display_no_worse_nov15.py` | Nov 15: the "no worse than released" check on a made-up store and released folder. |
-| `tests/test_pages_display_step_nov15.py` | Nov 15: the Pages step's own script against a local bare repository (no branch, unreadable, good + bad area). |
+| `tests/test_pages_display_step_nov15.py` | Nov 15: the Pages step's own script against a local bare repository (no branch, unreadable, good + bad area, size cap, links, names with a newline). |
+| `tests/test_display_check_geometry_nov15.py` | Nov 15: `check --public` refuses bad geometry and unreadable files. |
 | `tests/test_map_store_hook_nov15.py` + `tests/map_store_hook_nov15_browser.py` | Nov 15: the hook's wiring, and headless Chromium on made-up display data (off by default, `?outlines=store`, fallbacks, the line-park click target, levels). |
 | `tools/kpc_display_licence_classes.json` | Word-for-word copy of the store tool's `licence-classes.json`. |
 
@@ -45,6 +46,10 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
   adding the area to `LIVE_AREAS` AND including the loader on the pages (one `<script>` tag before `kpc-padus-layer.js`).
 - **Fallback.** The loader not loading (10 s at most), no index, a part missing or of another build, a bad file, an empty pack:
   today's pack, drawn exactly as before. A park the display copy does not hold is drawn from today's file (`merge()`).
+- **Every store feature is checked before it is drawn** (grade fix): a plain-text ref, a geometry of an allowed type and every
+  position two finite numbers in range, lines too. A park with any bad store feature is drawn from today's pack; a pack that is not
+  a list of features is today's pack, whole. If drawing the store pack throws anyway, what it drew is taken off and the state is
+  drawn again from today's pack. Middle / fine features are checked the same way.
 - **Drawing.** `role: line` = the drawn line (no fill); `role: hit` = the park's drawn tracts, clicks only (no stroke); a plain
   park feature as today. The popup adds the park's credit line (`creditLine()`).
 - **Click target.** A park with a `role: line` feature and no `role: hit` feature gets a second Leaflet polyline over the same
@@ -55,8 +60,12 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
 
 ### The Pages step (`pages-deploy.yml`, Nov 15)
 
-After the Jekyll build: if branch `map-display` exists, it is fetched (depth 1), every area folder is checked again with
-`check --public`, and the areas that pass are copied to `_site/data/display/`. No branch, a branch that cannot be read, or an area
+After the Jekyll build: if branch `map-display` exists, it is fetched (depth 1). Over the size cap (`KPC_DISPLAY_MAX_MB`, 300 MB,
+counted before anything is unpacked and again before the copy) = nothing added; a path that is absolute or holds `..` = nothing
+added. An area folder must hold only plain files and folders with plain (printable) names: a link or any other kind of entry
+leaves the area out. Each area is checked again with `check --public`, and only its plain files are copied to
+`_site/data/display/`. The log and the step summary print counts and checked area codes only, never a name read from the branch.
+The step has a 10-minute limit. No branch, a branch that cannot be read, or an area
 that fails = nothing added for it; the step is `continue-on-error` and never fails the deploy. A change on `map-display` alone does
 not start a deploy: it goes live with the next deploy (a push to main or the 2-hour timer when the site changed).
 
@@ -68,7 +77,14 @@ A park drawn from the store must not lose land against today's released outline 
 30 m (or 1.5 x the released `detail`) from the store's boundary. More than 4 lost cells: the park keeps today's outline, its
 reason goes to the private report and it is listed under `no_worse_kept_today` (the command line prints the refs). Only official
 released outlines are compared (not `approximate`, not pins); a line-only store park against a released area keeps today's
-outline. A released folder that is not there, or a released file that is broken or missing a part, stops the build.
+outline. It is also worse when more than 20 % of the released area lies outside the store's land at any distance (so a small park
+cannot shrink to almost nothing inside the 30 m allowance). An area with no released file is not compared; it is listed under
+`no_worse_areas_not_compared` and printed. A released folder that is not there, or a released file that is broken or missing a
+part, stops the build.
+
+`check --public` also checks every drawn geometry (overview parts, middle files, fine pieces): the expected type for its role, not
+empty, every position two finite numbers in range, rings of 4+ and lines of 2+ positions; a file that does not read is a problem,
+not a crash.
 
 ## What the builder does
 

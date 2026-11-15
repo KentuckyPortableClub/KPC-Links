@@ -17,7 +17,7 @@ def _no_net(*a, **k): raise OSError('network blocked in this test')
 socket.socket.connect = _no_net
 socket.create_connection = _no_net
 import kpc_display_copy as K  # noqa: E402
-from display_copy_fixture import circle, record, park, write_store, line_record, wiggle_line  # noqa: E402
+from display_copy_fixture import circle, square, record, park, write_store, line_record, wiggle_line  # noqa: E402
 
 FAILS = []
 NOLOG = lambda *a: None
@@ -119,12 +119,43 @@ try:
     rep5 = K.build(st, [A], tmp / 'out5', log=NOLOG, released=empty)
     check('an area with no released file: nothing to compare, every park drawn', rep5['no_worse_kept_today'] == [] and rep5['parks_drawn'] == 8)
 
+    check('an area with no released file is listed in the report (never silent)', rep5['no_worse_areas_not_compared'] == [A]
+          and rep['no_worse_areas_not_compared'] == [])
+
+    # relative allowance (grade fix): small parks cannot shrink to nearly nothing inside the 30 m allowance; big parks keep the
+    # distance allowance for today's simplified copy
+    m = 1 / 111320.0
+    sm = [park('US-0401', [record('s1', 'lay1', [circle(0.1, 0.3, 3 * m, 40)])]),       # released 33 m radius, store 3 m
+          park('US-0402', [record('s2', 'lay1', [circle(0.2, 0.3, 31 * m, 60)])]),      # released 33 m, store 31 m
+          park('US-0403', [record('s3', 'lay1', [circle(0.3, 0.3, 50 * m, 60)])]),      # released 67 m, store 50 m (25 % lost)
+          park('US-0404', [record('l1', 'lay1', [square(0.4 + 10 * m, 0.3 + 10 * m, 0.42 - 10 * m, 0.32 - 10 * m, 40)])]),   # 2.2 km, 10 m inset
+          park('US-0405', [record('l2', 'lay1', [square(0.5, 0.3, 0.52 - 300 * m, 0.32, 40)])]),                            # 2.2 km, a 300 m strip gone
+          park('US-0406', [record('l3', 'lay1', [square(0.6 + 25 * m, 0.3, 0.62 + 25 * m, 0.32, 40)])])]                     # 2.2 km, shifted 25 m
+    relsm = [feat('US-0401', [ccw(circle(0.1, 0.3, 33 * m, 40))]), feat('US-0402', [ccw(circle(0.2, 0.3, 33 * m, 40))]),
+             feat('US-0403', [ccw(circle(0.3, 0.3, 67 * m, 40))]),
+             feat('US-0404', [ccw(square(0.4, 0.3, 0.42, 0.32, 10))]), feat('US-0405', [ccw(square(0.5, 0.3, 0.52, 0.32, 10))]),
+             feat('US-0406', [ccw(square(0.6, 0.3, 0.62, 0.32, 10))])]
+    st2 = tmp / 'store-sizes'; write_store(st2, A, sm)
+    rel3 = tmp / 'released-sizes'; write_released(rel3, A, relsm)
+    rs = K.build(st2, [A], tmp / 'out-sizes', log=NOLOG, released=rel3)
+    ks = set(rs['no_worse_kept_today'])
+    sh = {r['ref']: r['no_worse']['outside_share'] for r in rs['rows'] if 'no_worse' in r}
+    check(f'small park: 33 m shrunk to 3 m keeps today\'s outline (share outside {sh.get("US-0401")})', 'US-0401' in ks)
+    check(f'small park: 33 m vs 31 m is drawn (share outside {sh.get("US-0402")})', 'US-0402' not in ks)
+    check(f'small park: 67 m vs 50 m (over the 20 % share) keeps today\'s outline ({sh.get("US-0403")})', 'US-0403' in ks)
+    check(f'large park: a 10 m inset is drawn ({sh.get("US-0404")})', 'US-0404' not in ks)
+    check(f'large park: a 300 m strip gone keeps today\'s outline ({sh.get("US-0405")})', 'US-0405' in ks)
+    check(f'large park: shifted 25 m (within the allowance, a small share) is drawn ({sh.get("US-0406")})', 'US-0406' not in ks)
+
     # the default is this repository's data/released; the command line lists the kept parks
     check('build() and the command line default to the repository\'s data/released', K.RELEASED_DEFAULT == ROOT / 'data' / 'released'
           and K.build.__defaults__[-1] == K.RELEASED_DEFAULT)
     buf = io.StringIO()
     with contextlib.redirect_stdout(buf):
         rc = K.main(['build', '--store', str(st), '--area', A, '--out', str(tmp / 'out6'), '--released', str(rel)])
+    with contextlib.redirect_stdout(io.StringIO()) as b2:
+        K.main(['build', '--store', str(st), '--area', A, '--out', str(tmp / 'out6b'), '--released', str(empty)])
+    check('command line: an area with no released file is named', 'no-worse check not run) for: US-ZZ' in b2.getvalue())
     check('command line: exit 0 and the kept parks listed', rc == 0 and 'US-0102' in buf.getvalue() and 'released outline' in buf.getvalue())
     buf = io.StringIO()
     with contextlib.redirect_stdout(buf):

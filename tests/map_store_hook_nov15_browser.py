@@ -31,6 +31,7 @@ PAGE = """<!doctype html><html><head><meta charset="utf-8"><title>store hook tes
 <div id="m" style="width:800px;height:600px"></div>
 <script src="leaflet.js"></script>
 <script src="kpc-padus-layer.js?v=test"></script>
+<script>if (location.hash === '#boom') { L.polyline = function () { throw new Error('test: drawing fails'); }; }</script>
 <script>
   const map = L.map('m', { center: [0.1, 0.12], zoom: 12 });
   const pad = KPCPad(map, { usOfficial: true, legend: false, minz: 7 });
@@ -191,6 +192,44 @@ def main():
                 ok([(f['ref'], f['role'], f['type']) for f in sf['feats']] == today and not sf['hits'] and not errs and len(cons) <= 1,
                    f"fallback, {name}: exactly today's outlines, no page error, at most the one failed request in the console ({len(cons)}: {cons[:2]})")
                 p.close(); c.close()
+
+            # BAD STORE FEATURES (grade fix): the overview part edited, same feature count, so the loader accepts it
+            ov = site / 'data' / 'display' / 'US-ZZ' / 'US-ZZ.geojson.gz'
+            doc0 = json.loads(gzip.decompress(ov.read_bytes()))
+
+            def edited(fn):
+                d = json.loads(json.dumps(doc0)); fn(d); return gzj(d)
+
+            def of(d, ref, role=''):
+                return next(f for f in d['features'] if f['properties']['ref'] == ref and f['properties'].get('role', '') == role)
+
+            def null_geo(d): of(d, 'US-0301')['geometry'] = None
+            def null_xy(d): of(d, 'US-0302', 'line')['geometry']['coordinates'][0][3] = [None, 0.1]
+            def wrong_type(d): of(d, 'US-0301')['geometry'] = {'type': 'Point', 'coordinates': [0.1, 0.1]}
+            def str_xy(d): of(d, 'US-0301')['geometry']['coordinates'][0][0][2] = ['0.1', '0.1']
+            bad = {'one park with geometry null': (null_geo, 'US-0301'), 'a null coordinate in the line park': (null_xy, 'US-0302'),
+                   'a wrong geometry type (Point)': (wrong_type, 'US-0301'), 'a coordinate given as text': (str_xy, 'US-0301')}
+            for name, (fn, ref) in bad.items():
+                body = edited(fn)
+                c = ctx(lambda u, body=body: body if '/data/display/US-ZZ/US-ZZ.geojson.gz' in u else None)
+                p, sf, seen, errs, cons = visit(c, '?outlines=store')
+                mine = [(f['ref'], f['role'], f['type'], f['src']) for f in sf['feats'] if f['ref'] == ref]
+                want = [t + ('today',) for t in today if t[0] == ref]
+                others = {f['ref'] for f in sf['feats'] if f['src'] == 'store'}
+                ok(mine == want and not errs and not cons and (others == {'US-0301', 'US-0302', 'US-0304'} - {ref})
+                   and (ref != 'US-0302' or not sf['hits']),
+                   f"bad store feature, {name}: that park is today's outline, the other store parks stay, nothing throws ({mine}; store {sorted(others)}; {errs + cons})")
+                p.close(); c.close()
+            raw = gzip.decompress(ov.read_bytes())
+            c = ctx(lambda u: gzip.compress(raw[:len(raw) // 2], 9, mtime=0) if '/data/display/US-ZZ/US-ZZ.geojson.gz' in u else None)
+            p, sf, seen, errs, cons = visit(c, '?outlines=store')
+            ok([(f['ref'], f['role'], f['type']) for f in sf['feats']] == today and not sf['hits'] and not errs and not cons,
+               f"truncated JSON in the overview part: exactly today's outlines, nothing throws ({errs + cons})")
+            p.close(); c.close()
+            c = ctx(); p, sf, seen, errs, cons = visit(c, '?outlines=store#boom')
+            ok([(f['ref'], f['role'], f['type']) for f in sf['feats']] == today and not sf['hits'] and not errs and not cons,
+               f"drawing the store pack throws: the state is drawn again from today's pack, nothing thrown to the page ({errs + cons})")
+            p.close(); c.close()
 
             # a park missing from the display copy is today's outline (also proved in 2); zoomed in, no error
             c = ctx(); p, s5, seen, errs, cons = visit(c, '?outlines=store')
