@@ -1,0 +1,124 @@
+{
+"format": 1,
+"store_format_version": "kpc-outline-store-index/3",
+"licence_classes": [
+"DISCLAIMER ONLY",
+"DO NOT SHARE",
+"NO TERMS STATED",
+"NON-COMMERCIAL",
+"OPEN",
+"PRIVATE UNTIL LICENCE READ",
+"PUBLIC DOMAIN",
+"RESTRICTED IN WRITING",
+"RESTRICTED OR HELD",
+"SHARE-ALIKE"
+],
+"area": "US-ZB",
+"made": "2026-11-14T08:51:37-06:00",
+"tool": "kpc-outline-store full 3 (2026-11-14)",
+"pack_commit": "synthetic",
+"about": "Small index of the outline store (the part that would live in git). o / n = byte offset / length of the park in the file.",
+"files": {
+"US-ZB.kpcstore.json.gz": {
+"bytes": 1347,
+"sha256": "5d4c16ab25947362f343db5f5b3bf9f49b0cfb3832963e727790ad6d9a980947",
+"parks": 2,
+"records": 2,
+"points": 10,
+"circles": 0,
+"date": "2026-11-14"
+}
+},
+"parks": {
+"US-9201": {
+"file": "US-ZB.kpcstore.json.gz",
+"o": 374,
+"n": 472,
+"grade": "official",
+"circle": false,
+"records": [
+"sgzz21"
+],
+"points": 5,
+"fp": "c66cac819bb636a6bb8ece0ab0f3b87a89b67d3d7554d0826fa6f5d559e2ba2f",
+"date": "2026-11-14",
+"licence": {
+"sgzz21": "synthetic"
+},
+"licence_class": {
+"sgzz21": "OPEN"
+},
+"credit": {
+"sgzz21": ""
+},
+"publishable": {
+"sgzz21": true
+},
+"park_publishable": true,
+"record_meta": {
+"sgzz21": {
+"publishable": true,
+"licence_class": "OPEN",
+"publish_basis": "verified-row",
+"publish_basis_detail": {
+"evidence_url": "https://example.invalid/terms",
+"date_read": "2026-11-14"
+},
+"credit_line": "Synthetic test agency",
+"source_layer": "sgzz",
+"source_url": "https://example.invalid/arcgis/rest/services/T/MapServer/0",
+"terms_text_sha256": "",
+"terms_text_file": "",
+"wdpa_derived": false,
+"private_reason": ""
+}
+}
+},
+"US-9150": {
+"file": "US-ZB.kpcstore.json.gz",
+"o": 846,
+"n": 477,
+"grade": "official",
+"circle": false,
+"records": [
+"sgzz50b"
+],
+"points": 5,
+"fp": "f37ac48726e52fa5463e083588dd313d957cfecb4a220e5c40138d6de84e5ca7",
+"date": "2026-11-14",
+"licence": {
+"sgzz50b": "synthetic"
+},
+"licence_class": {
+"sgzz50b": "OPEN"
+},
+"credit": {
+"sgzz50b": ""
+},
+"publishable": {
+"sgzz50b": true
+},
+"park_publishable": true,
+"record_meta": {
+"sgzz50b": {
+"publishable": true,
+"licence_class": "OPEN",
+"publish_basis": "verified-row",
+"publish_basis_detail": {
+"evidence_url": "https://example.invalid/terms",
+"date_read": "2026-11-14"
+},
+"credit_line": "Synthetic test agency",
+"source_layer": "sgzz",
+"source_url": "https://example.invalid/arcgis/rest/services/T/MapServer/0",
+"terms_text_sha256": "",
+"terms_text_file": "",
+"wdpa_derived": false,
+"private_reason": ""
+}
+}
+}
+},
+"layers": {},
+"publishable_rule": "publishable = the licence class allows it AND it is not private / held. This tool uploads nothing."
+}

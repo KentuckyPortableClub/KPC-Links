@@ -70,8 +70,22 @@ check("(ref in G)" in _ml and "'Missing boundary: check the official map'" in _m
 
 # 5 public docs unchanged + hashes
 import subprocess
-_d = subprocess.run(['git', 'diff', '--name-only', 'origin/main', '--', '.claude/RULES-NOW.md', '.claude/notes/mapping.md'], cwd=HERE, capture_output=True, text=True)
-check(_d.returncode != 0 or not _d.stdout.strip(), 'the public rules docs (RULES-NOW.md, mapping.md) are not changed by this PR')
+# KPC owner, 2026-11-14: was 'RULES-NOW.md and mapping.md are not changed by this PR' (a git diff against origin/main, true only for
+# the Nov 9 PR itself). What must always hold, both ways: (a) RULES-NOW.md is EXACTLY what rules_now.py makes from mapping.md
+# (rebuilt in a scratch copy and compared byte for byte), and (b) the R12 words say what missing_list() does.
+import shutil, tempfile
+_t = pathlib.Path(tempfile.mkdtemp(prefix='kpc-rules-now-'))
+(_t / '.claude/notes').mkdir(parents=True); (_t / '.claude/build').mkdir(parents=True)
+shutil.copy(HERE / '.claude/notes/mapping.md', _t / '.claude/notes/mapping.md'); shutil.copy(HERE / '.claude/build/rules_now.py', _t / '.claude/build/rules_now.py')
+_r = subprocess.run([sys.executable, '.claude/build/rules_now.py'], cwd=_t, capture_output=True, text=True)
+_rn = (HERE / '.claude/RULES-NOW.md').read_text(encoding='utf-8')
+check(_r.returncode == 0 and (_t / '.claude/RULES-NOW.md').read_text(encoding='utf-8') == _rn, 'the rules docs agree both ways: RULES-NOW.md is byte for byte what rules_now.py makes from mapping.md')
+shutil.rmtree(_t, ignore_errors=True)
+_r12 = _rn[_rn.index('(12) MISSING BOUNDARY'):_rn.index('(13) KEEP IT CURRENT')]
+check(all(x in _ml for x in ('(ref in G)', 'pip_groups(G[r], lo, la)', 'ref in KY_NOT_SURE or ref in PARTIAL', 'RET = retired()', 'if la is None or lo is None: continue', '(ref in LN and ref not in PARTIAL)'))
+      and all(x in _r12 for x in ('NO outline', 'never tested as a 2-fer', 'pin sits inside another park', 'US-10102', 'line park tested by its official line', 'retired', 'bad POTA pin', 'Approximate 2-fer', 'PARKS='))
+      and "'Missing boundary: check the official map' list" in _r12,
+      'R12 words match missing_list(): no outline in G, pin inside another outline or held by name (US-10102), line parks / retired / bad pins left out, approximate parks tested')
 import kpc_key_freeze as F
 sys.path.insert(0, str(HERE / '.github/scripts'))
 import kpc_preflight as PF
