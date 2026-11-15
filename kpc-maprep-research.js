@@ -436,7 +436,7 @@
   function sourceLines(src, padErr, S, places) {
     const padSrc = places.find(p => p.kind !== 'state'), st = srcStats(places), padLabel = padSrc ? padSrc.source : (src === 'CPCAD' ? 'CPCAD, December 2025 edition' : 'USGS PAD-US 4.0');
     stLine(padLabel + ': ' + (padErr ? 'did not answer (' + padErr + ')' : (st.by[padLabel] || 0) + ' places'), !padErr);
-    S.out.forEach(o => stLine(o.L.label + (o.L.private ? ' (private lookup)' : '') + ': ' + (o.err ? 'did not answer (' + o.err + ')' : (st.by[o.L.label] || 0) + ' places' + (o.recs.length >= 1000 ? ' (first 1,000 read)' : '')), !o.err));
+    S.out.forEach(o => stLine(o.L.label + ': ' + (o.err ? 'did not answer (' + o.err + ')' : (st.by[o.L.label] || 0) + ' places' + (o.recs.length >= 1000 ? ' (first 1,000 read)' : '') + (o.L.private ? ' (private lookup)' : '')), !o.err));
     /* skipped layers stay silent on the page */
     stLine('Same land in both lists: ' + st.both + ' \u00b7 only in ' + (src === 'CPCAD' ? 'CPCAD' : 'PAD-US') + ': ' + st.padOnly + ' \u00b7 only in a state layer: ' + st.stateOnly, true);
     W.KPCResearch && (W.KPCResearch.lastStats = Object.assign({ layers: S.out.map(o => ({ label: o.L.label, recs: o.recs.length, err: o.err })), skipped: S.skipped.map(L => ({ label: L.label })), padErr }, st));
