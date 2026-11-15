@@ -184,12 +184,17 @@ try:
     check("...the builder's class list is the store tool's licence-classes.json (store_format_version kpc-outline-store-index/3)",
           lc.get('store_format_version') == 'kpc-outline-store-index/3' and set(K.LICENCE_CLASSES) == set(lc['classes'])
           and all(K.LICENCE_CLASSES[c] == (v['can_be_publishable'] and c != 'SHARE-ALIKE') for c, v in lc['classes'].items()))
-    unk = []
-    for label, rec_, ws_ in (('a record class', record('r1', 'lay1', C, cls='LOOKS RESTRICTED'), None),
-                             ("the index's licence_classes list", record('r1', 'lay1', C), {'classes': sorted(K.LICENCE_CLASSES) + ['NEW CLASS']})):
-        try: build('unk' + str(len(unk)), [park('G1', [rec_])], ws=ws_); unk.append(False)
-        except K.DisplayError as ex: unk.append('does not know' in str(ex))
-    check('a licence class the builder does not know (in a record, or in the index list) STOPS the build', all(unk))
+    try: build('unkidx', [park('G1', [record('r1', 'lay1', C)])], ws={'classes': sorted(K.LICENCE_CLASSES) + ['NEW CLASS']}); unk_idx = False
+    except K.DisplayError as ex: unk_idx = 'does not know' in str(ex)
+    check("a licence class the builder does not know in the INDEX's licence_classes list stops the build", unk_idx)
+    ru, ou = build('unkrec', [park('G1', [record('r1', 'lay1', C, cls='LOOKS RESTRICTED')]),
+                              park('G2', [record('r2', 'lay1', [circle(0.6, 0.8, 0.01, 40)]),
+                                          record('r3', 'lay2', [circle(0.62, 0.8, 0.01, 40)], cls='BRAND NEW CLASS')])])   # marked publishable, class unknown
+    iu, fu = feats_of(ou, 'US-ZZ'); bu = by_ref(fu)
+    check("...but an unknown class on ONE record drops that record only (the private report says why); the area is built",
+          'G1' not in bu and iu['fallback'].get('G1') == K.FALLBACK_CODE and 'builder knows' in ru['fallback_reasons']['G1']
+          and 'G2' in bu and bu['G2'][0]['properties']['layers'] == ['lay1'] and 'builder knows' in ru['held_records_reasons']['G2']
+          and K.check(ou, 'US-ZZ', public=True) == [])
     wd = {'key "wdpa123"': record('wdpa123', 'lay1', C), 'record_id "WDPA-1234"': record('r1', 'lay1', C, record_id='WDPA-1234'),
           'attribute WDPAID': record('r1', 'lay1', C, attributes={'WDPAID': 555}), 'agency UNEP-WCMC': record('r1', 'lay1', C, agency_label='UNEP-WCMC'),
           'agency "World Database on Protected Areas"': record('r1', 'lay1', C, agency_label='World Database on Protected Areas'),
@@ -227,11 +232,21 @@ try:
           K.norm_layer_url('https://Example.invalid/A/MapServer/0/query') == K.norm_layer_url('example.invalid/a/mapserver/0') == 'example.invalid/a/mapserver/0'
           and K.norm_layer_url('http://127.0.0.1:8080/x/') == '127.0.0.1:8080/x' and K.norm_layer_url('https://h.gov:443/x') == 'h.gov/x')
     for label, ws in (('store_format_version kpc-outline-store-index/2', {'fmt': 'kpc-outline-store-index/2'}),
+                      ('store_format_version kpc-outline-store-index/5 (newer than this reader)', {'fmt': 'kpc-outline-store-index/5'}),
+                      ('store_format_version kpc-outline-store-index/99', {'fmt': 'kpc-outline-store-index/99'}),
+                      ('store_format_version kpc-outline-store-index/4x', {'fmt': 'kpc-outline-store-index/4x'}),
+                      ('store_format_version bogus/4', {'fmt': 'bogus/4'}),
                       ('no store_format_version (store tool before full 3)', {'fmt': None}),
                       ('no record_meta (nothing is ever guessed from licence text)', {'maps': False})):
         try: build('old' + str(len(label)), [park('G1', [record('r1', 'lay1', C)])], ws=ws); refused = False
         except K.DisplayError: refused = True
         check(f'an index with {label} is refused for a public build', refused)
+    try: build('prev5', [park('G1', [record('r1', 'lay1', C)])], ws={'fmt': 'kpc-outline-store-index/5'}, preview=True); pv5 = False
+    except K.DisplayError as ex: pv5 = 'newer' in str(ex)
+    check('...and a PRIVATE PREVIEW refuses a newer format too (/5)', pv5)
+    for n in (3, 4):
+        r34, o34 = build(f'fmt{n}ok', [park('G1', [record('r1', 'lay1', C)])], ws={'fmt': f'kpc-outline-store-index/{n}'})
+        check(f'kpc-outline-store-index/{n} is read', r34['parks_drawn'] == 1)
     rp, op = build('oldprev', [park('G1', [record('r1', 'lay1', C)])], ws={'fmt': None, 'maps': False}, preview=True)
     check('...a PRIVATE PREVIEW may still read an older index (for measuring on the PC), stamped',
           json.loads((op / 'US-ZZ' / 'INDEX.json').read_text()).get('stamp') == K.PREVIEW_STAMP)
@@ -333,13 +348,14 @@ try:
 
     # ---- store index format 4 (full 3.5): geometry kinds area / line / pin, the same per-record gate for every kind ----------
     T1 = wiggle_line(0.32, 0.3, 0.36, 80); T4 = wiggle_line(0.6, 0.6, 0.66, 120)
+    TRAIL = dict(boundary_rule='trail_100ft', corridor_ft=100, corridor_m=30.48, corridor_from='centreline')
+    RIVER = dict(boundary_rule='river_100ft_from_bank', corridor_from='waters_edge', bank_status='bank_missing', river_class='big river')
     f4 = [park('F1', [record('a1', 'lay1', [circle(0.3, 0.3, 0.01, 60)], credit='State Parks Office'),
-                      line_record('t1', 'lay3', [T1], credit='Trail Office', corridor_ft=100, corridor_from='centreline'),
+                      line_record('t1', 'lay3', [T1], credit='Trail Office', **TRAIL),
                       pin_record('p1', 'lay2', 0.305, 0.305, credit='Point Office'),
-                      record('w1', 'lay2', [circle(0.3, 0.315, 0.006, 40)], credit='Water Office', role='water_surface'),
                       line_record('t2', 'lay3', [wiggle_line(0.3, 0.33, 0.34, 40)], credit='Hidden Trail Office', publishable=False),
                       line_record('t3', 'lay3', [wiggle_line(0.3, 0.27, 0.34, 40)], cls='PUBLIC DOMAIN', credit='Global Line Credit', wdpa_derived=True)]),
-          park('F2', [line_record('t4', 'lay1', [T4], credit='Trail Office', corridor_ft=100, corridor_from='waters_edge')]),
+          park('F2', [line_record('t4', 'lay1', [T4], credit='Trail Office', **RIVER)]),
           park('F3', [pin_record('p3', 'lay1', 0.9, 0.9, credit='Point Office')]),
           park('F4', [line_record('t5', 'lay1', [wiggle_line(0.1, 0.9, 0.15, 40)], credit='Hidden Trail Office', publishable=False)]),
           park('F5', [record('a5', 'lay1', [circle(0.5, 0.9, 0.006, 40)]), record('u5', 'lay1', [circle(0.52, 0.9, 0.006, 40)], geometry_kind='blob')]),
@@ -355,27 +371,28 @@ try:
     f1 = {f['properties']['role']: f for f in b4.get('F1', [])}
     l1 = f1['line']['geometry']['coordinates'] if 'line' in f1 else []
     check('MIXED /4 park: the area is drawn as an area (its hit polygon) and the official line AS GIVEN (open, every point, '
-          'only rounded), both credits carried, the store\'s zone note carried as given',
+          'only rounded), both credits carried, the zone note from allow-listed values only',
           set(f1) == {'line', 'hit'} and len(has(l1, T1)) == 1 and has(l1, T1)[0][0] != has(l1, T1)[0][-1]
           and len(f1['hit']['geometry']['coordinates']) == 1 and f1['line']['properties']['cr'] == ['State Parks Office', 'Trail Office']
           and f1['line']['properties']['layers'] == ['lay1', 'lay3'] and f1['line']['properties'].get('line') is True
-          and f1['line']['properties'].get('zone') == [[100, 'centreline']] and not i4['fallback'].get('F1'))
+          and f1['line']['properties'].get('zone') == [{'rule': 'trail_100ft', 'from': 'centreline', 'ft': 100}] and not i4['fallback'].get('F1'))
     check('...the line is never turned into a polygon: no line point is in the hit polygon\'s rings',
-          not {tuple(p) for p in has(l1, T1)[0]} & {tuple(p) for poly in f1['hit']['geometry']['coordinates'] for ring in poly for p in ring} if 'hit' in f1 else False)
+          bool(has(l1, T1)) and 'hit' in f1 and not {tuple(p) for p in has(l1, T1)[0]} & {tuple(p) for poly in f1['hit']['geometry']['coordinates'] for ring in poly for p in ring})
     ys = [y for l in l1 for x, y in l] + [y for poly in (f1['hit']['geometry']['coordinates'] if 'hit' in f1 else []) for ring in poly for x, y in ring]
-    check('...the private line, the WDPA-derived line and the water-surface area are not drawn (every drawn point is on the park area or the public line)',
+    check('...the private line and the WDPA-derived line are not drawn (every drawn point is on the park area or the public line)',
           ys and all(0.2895 <= y <= 0.3105 for y in ys))
-    check('...the pin record is not drawn and no water surface becomes the outline; the private report counts each kind',
-          rw4['F1']['line_records'] == 1 and rw4['F1']['pin_records_not_drawn'] == 1 and rw4['F1']['water_surface_records_not_drawn'] == 1
-          and rw4['F1']['held_records'] == 2 and r4['kinds_not_outlines']['F1'] == {'line': 1, 'pin': 1, 'water_surface': 1, 'unknown': 0})
+    check('...the pin record is not drawn; the private report counts each kind',
+          rw4['F1']['line_records'] == 1 and rw4['F1']['pin_records_not_drawn'] == 1
+          and rw4['F1']['held_records'] == 2 and r4['kinds_not_outlines']['F1'] == {'line': 1, 'pin': 1, 'unknown': 0})
     check('...nothing of the records that were not drawn (credit lines, keys) is in a public file',
-          not any(w in blob4 for w in (b'Hidden Trail', b'Global Line', b'Point Office', b'Water Office', b'"t2"', b'"t3"', b'"p1"', b'"w1"')))
+          not any(w in blob4 for w in (b'Hidden Trail', b'Global Line', b'Point Office', b'"t2"', b'"t3"', b'"p1"')))
     f2 = b4.get('F2', [])
-    check('A TRAIL / RIVER park of one official line: drawn as that line only (one open line, every point), no polygon, '
-          'no band, the zone note as given (100 ft from the water\'s edge)',
-          len(f2) == 1 and f2[0]['geometry']['type'] == 'MultiLineString' and len(f2[0]['geometry']['coordinates']) == 1 and same(f2[0]['geometry']['coordinates'][0], T4)
-          and f2[0]['properties']['role'] == 'line' and f2[0]['properties']['points'] == len(T4)
-          and f2[0]['properties'].get('zone') == [[100, 'waters_edge']] and 'F2' not in i4['fallback'])
+    check('A RIVER park of one official line: drawn as that line only (one open line, every point), no polygon, no band; '
+          "the zone note says 100 ft from the bank, banks missing; river_class (not on the allow-list) is not passed on",
+          len(f2) == 1 and f2[0]['geometry']['type'] == 'MultiLineString' and len(f2[0]['geometry']['coordinates']) == 1
+          and same(f2[0]['geometry']['coordinates'][0], T4) and f2[0]['properties']['role'] == 'line' and f2[0]['properties']['points'] == len(T4)
+          and f2[0]['properties'].get('zone') == [{'rule': 'river_100ft_from_bank', 'from': 'waters_edge', 'bank': 'bank_missing'}]
+          and 'F2' not in i4['fallback'] and b'big river' not in blob4 and b'river_class' not in blob4)
     check("A PIN-only park (publishable official point): not drawn as an outline, today's outline kept, the POTA pin untouched; counted",
           'F3' not in b4 and i4['fallback'].get('F3') == K.FALLBACK_CODE and '1 pin' in r4['fallback_reasons']['F3']
           and r4['pin_records_not_drawn'] == 3 and b'0.9, 0.9' not in blob4 and b'[0.9,0.9]' not in blob4)
@@ -387,6 +404,70 @@ try:
     xs6 = [x for f in b4.get('F6', []) for l in drawn_lines([f]) for x, y in l]
     check("a stand-in circle (geometry_kind pin, ring_is_stand_in_circle) is never drawn as an outline; the real area is",
           xs6 and min(xs6) > 0.8055 and rw4['F6']['pin_records_not_drawn'] == 1)
+
+    # stand-in circles in ANY form, the store's use flag, bad checksums: each drops ONE record, never the area
+    def beside(ref, bad_rec):
+        return park(ref, [record(ref.lower() + 'ok', 'lay1', [circle(0.81, 0.6, 0.004, 40)], credit='Good Office'), bad_rec])
+    SMALL = [circle(0.8, 0.6, 0.0003, 16)]
+    odd_recs = {'SC1': record('sc1', 'lay1', SMALL, credit='Circle One', ring_is_stand_in_circle='true'),
+                'SC2': record('sc2', 'lay1', SMALL, credit='Circle Two', ring_is_stand_in_circle=1),
+                'SC3': record('sc3', 'lay1', SMALL, credit='Circle Three', circle=True),
+                'SC4': record('sc4', 'lay1', SMALL, credit='Circle Four', grade='point-circle'),
+                'SC5': record('sc5', 'lay1', SMALL, credit='Circle Five', circle='yes'),
+                'US1': record('us1', 'lay1', SMALL, credit='Unused Office', use=False, use_why='proclamation line (not land)'),
+                'US2': record('us2', 'lay1', SMALL, credit='Unused Office', use='false'),
+                'CK1': dict(record('ck1', 'lay1', SMALL, credit='Moved Point Office'), sha256='0' * 64),
+                'CK2': dict(line_record('ck2', 'lay1', [T4], credit='Moved Line Office'), line_sha256='0' * 64),
+                'CK3': dict(line_record('ck3', 'lay1', [T4], credit='Moved Line Office', publishable=False), line_points=3)}
+    ro, oo = build('oddrecs', [beside(k, v) for k, v in odd_recs.items()] + [park('US3', [record('us3', 'lay1', [circle(0.81, 0.6, 0.004, 40)])])],
+                   ws={'fmt': 'kpc-outline-store-index/4'})
+    io, fo = feats_of(oo, 'US-ZZ'); bo = by_ref(fo)
+    blobo = b''.join(gzip.decompress(q.read_bytes()) if q.suffix == '.gz' else q.read_bytes() for q in sorted((oo / 'US-ZZ').rglob('*')) if q.is_file())
+    def only_good(ref):
+        xs = [x for f in bo.get(ref, []) for l in drawn_lines([f]) for x, y in l]
+        return bool(xs) and min(xs) > 0.8055 and bo[ref][0]['properties']['cr'] == ['Good Office']
+    check('STAND-IN CIRCLES in any form (ring_is_stand_in_circle "true" or 1, record-level circle true or "yes", grade point-circle) '
+          'are never drawn; the real area beside each is', all(only_good(k) for k in ('SC1', 'SC2', 'SC3', 'SC4', 'SC5'))
+          and b'Circle ' not in blobo)
+    check("the store's use flag: use false (or anything but true) is never drawn, and the reason is private; use missing is drawn",
+          only_good('US1') and only_good('US2') and 'do not use' in ro['held_records_reasons']['US1'] and 'proclamation' in ro['held_records_reasons']['US1']
+          and b'Unused' not in blobo and 'US3' in bo)
+    check('a BAD CHECKSUM on one record (rings, or a line, publishable or not) drops that record only; the area is built and passes',
+          only_good('CK1') and only_good('CK2') and only_good('CK3') and 'checksum' in ro['held_records_reasons']['CK1']
+          and 'line checksum' in ro['held_records_reasons']['CK2'] and 'point count' in ro['held_records_reasons']['CK3']
+          and b'Moved' not in blobo and K.check(oo, 'US-ZZ', public=True) == [])
+
+    # HOSTILE STRINGS in every field that could reach the public zone note: only allow-listed values ever pass
+    EVIL = 'owner@example.com PRIVATE NOTE licence restricted https://x.invalid'
+    hostile = []
+    for i, (k, v) in enumerate([('boundary_rule', EVIL), ('corridor_from', EVIL), ('bank_status', EVIL), ('corridor_ft', EVIL),
+                                ('corridor_ft', True), ('corridor_ft', -5), ('corridor_ft', 1e9), ('corridor_ft', float('nan')),
+                                ('corridor_ft', '100'), ('corridor_from', ['centreline']), ('boundary_rule', {'x': 1}),
+                                ('river_class', EVIL), ('corridor_rule', EVIL), ('bank_source', EVIL), ('line_extent', EVIL),
+                                ('boundary_kind', EVIL), ('bank_near_parks', [EVIL]), ('corridor_m', EVIL)]):
+        hostile.append(park(f'H{i}', [line_record(f'h{i}', 'lay1', [wiggle_line(0.1, 0.1 + 0.02 * i, 0.12, 20)], credit='Trail Office',
+                                                  **dict({kk: vv for kk, vv in TRAIL.items() if kk != k}, **{k: v}))]))
+    rh, oh = build('hostile', hostile, ws={'fmt': 'kpc-outline-store-index/4'})
+    ih, fh = feats_of(oh, 'US-ZZ')
+    blobh = b''.join(gzip.decompress(q.read_bytes()) if q.suffix == '.gz' else q.read_bytes() for q in sorted((oh / 'US-ZZ').rglob('*')) if q.is_file())
+    check(f'HOSTILE values in {len(hostile)} pass-through fields: none reaches a public file, every line is still drawn, '
+          f'the bad values are counted privately ({rh["zone_values_dropped"]} dropped), and the public check passes',
+          rh['parks_drawn'] == len(hostile) and not any(w in blobh for w in (b'PRIVATE NOTE', b'owner@', b'restricted', b'x.invalid', b'nan', b'NaN', b'1000000000'))
+          and rh['zone_values_dropped'] == 11 and K.check(oh, 'US-ZZ', public=True) == []
+          and all(K.zone_ok(z) for f in fh for z in f['properties'].get('zone') or []))
+    # check --public catches a non-allow-listed value even if the builder were wrong: tamper one written part (and its INDEX sha)
+    import hashlib as _h
+    tam = tmp / 'out-tamper'; shutil.copytree(oh, tam)
+    ixt = json.loads((tam / 'US-ZZ' / 'INDEX.json').read_text()); part = ixt['parts'][0]
+    d = json.loads(gzip.decompress((tam / 'US-ZZ' / part[0]).read_bytes()))
+    d['features'][0]['properties']['zone'] = [{'rule': 'trail_100ft', 'from': EVIL}]
+    d['features'][1]['properties']['river_class'] = 'big river'
+    b_ = K.gz(d); (tam / 'US-ZZ' / part[0]).write_bytes(b_); part[1] = _h.sha256(b_).hexdigest()[:12]; part[3] = len(b_)
+    (tam / 'US-ZZ' / 'INDEX.json').write_text(json.dumps(ixt))
+    pt = K.check(tam, 'US-ZZ', public=True)
+    check('check --public refuses a zone value that is not on the allow-list, and a property that is not on the public list',
+          any('allow-list' in x for x in pt) and any('not on the public list' in x for x in pt))
+
     lv = [park('F9', [record('a9', 'lay1', [circle(0.5, 0.5, 0.01, 900, wobble=0.05)], credit='State Parks Office'),
                       line_record('t9', 'lay3', [T1], credit='Trail Office')])]
     r9, o9 = build('fmt4lv', lv, ws={'fmt': 'kpc-outline-store-index/4'}, cap=40, mid_cap=30)
@@ -399,14 +480,16 @@ try:
           'F9' in i9['mid'] and 'F9' in i9['fine'] and fine9
           and len(has([l for f in fs9 for l in drawn_lines([f])], T1)) == 1 and len(has(mid9, T1)) == 1
           and all(any(abs(x - p[0]) <= 0.6e-5 and abs(y - p[1]) <= 0.6e-5 for l in fine9 for x, y in l) for p in T1))
-    bad = [park('F7',[dict(line_record('t7', 'lay1', [T4], credit='Trail Office'), line_sha256='0' * 64)])]
-    try: build('fmt4bad', bad, ws={'fmt': 'kpc-outline-store-index/4'}); badline = False
-    except K.DisplayError as ex: badline = 'checksum' in str(ex)
-    check("a line whose points do not match its line_sha256 stops the build (a moved line point never passes)", badline)
     long_line = [park('F8', [line_record('t8', 'lay1', [wiggle_line(0.1, 0.5, 0.9, K.LINE_CAP + 10, amp=0.00001)], credit='Trail Office')])]
     r8, o8 = build('fmt4long', long_line, ws={'fmt': 'kpc-outline-store-index/4'})
     check("an official line over the points drawn as given keeps today's outline (never simplified into something else here)",
           'over the' in r8['fallback_reasons'].get('F8', '') and r8['parks_drawn'] == 0)
+    gw = tmp / 'a-git-work-tree'; (gw / '.git').mkdir(parents=True)
+    stg = tmp / 'st-prevgit'; write_store(stg, 'US-ZZ', [park('G1', [record('r1', 'lay1', C)])])
+    try: K.build(stg, 'US-ZZ', gw / 'preview', preview=True, log=NOLOG); pg = False
+    except K.DisplayError as ex: pg = 'git work tree' in str(ex)
+    check('a PRIVATE PREVIEW is never written inside a git work tree (any folder with .git above it), and nothing is written there',
+          pg and not (gw / 'preview').exists())
 
     # ---- must-fix 4: nothing private in the public files; credits per park --------------------------------------------------
     sec = [park('S1', [record('sgPRIVATEKEY77', 'lay1', C, cls='RESTRICTED IN WRITING')]), park('S2', [record('r2', 'lay1', [circle(0.8, 0.6, 0.01, 40)], publishable=False)]),

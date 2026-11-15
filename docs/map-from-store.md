@@ -36,14 +36,15 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
 
 1. **Licence gate (strict).** A public build reads only the store's PER-AREA index (`index-<AREA>.json`; the combined
    `index.json` merges parks that span areas, so it is never read for a public build), which must say
-   `store_format_version: kpc-outline-store-index/3` (or later) and list a sha256 for every area file; every listed file is
+   `store_format_version: kpc-outline-store-index/3` or `/4` (ONLY these two: a newer format, `/5` or anything else,
+   stops the build until this reader is updated) and list a sha256 for every area file; every listed file is
    checked against it. A record passes only if all of these hold:
    - the index's `record_meta` for the record and the record itself agree on every licence field, and both say
      `publishable` is exactly `true`, with no private reason;
    - the class is one the store's `licence-classes.json` allows (`can_be_publishable: true`: OPEN, PUBLIC DOMAIN, NO TERMS
      STATED, DISCLAIMER ONLY, NON-COMMERCIAL). SHARE-ALIKE stays off. The list is a word-for-word copy in
-     `tools/kpc_display_licence_classes.json`; a class the builder does not know (in a record or in the index's
-     `licence_classes`) stops the build;
+     `tools/kpc_display_licence_classes.json`. A class the builder does not know in the index's `licence_classes` list
+     stops the build; on one record it drops that record only (the private report says why);
    - the publish basis is `verified-row` or `owner-confirmed`;
    - the index's layer table agrees (its keys are the store's form, `host/path` with no `https://`; both sides are
      normalised the same way);
@@ -57,19 +58,36 @@ tract at the pin. The outline store keeps every tract of every park at about 2 m
    drawn, with their own credit lines; a record that fails (not publishable, WDPA-derived, a class that may not be drawn ...)
    is never drawn, never measured against and never named in a public file, and its reason goes to the private report. A
    park with no record that passes draws nothing from the store: it keeps today's outline, and its POTA pin is never moved.
+
+   Also left out, one record at a time (never the whole area): a record whose geometry does not match its own checksum or
+   point count (publishable or not), and a record the store marks `use` anything but `true` (the store tool sets
+   `use: false` with a `use_why` for PAD-US proclamation lines, easements, closed and military land: not the park's land;
+   FORMAT-4.md gives the field no other meaning). A record with no `use` field is judged by the gate alone.
+
    **Geometry kinds (store index format 4, store tool full 3.5).** A record's `geometry_kind` is `area`, `line` or `pin`
    (absent = `area`). The licence gate above is the same for every kind, so a line or pin that is not publishable, or is
    WDPA-derived, is never drawn. Then:
-   - `area`: drawn as an area, as before. An area record with `role: water_surface` is the water, not the park's boundary:
-     it is never drawn as the outline (counted in the private report).
+   - `area`: drawn as an area, as before. (River banks live in the store's water section, `store/water/...`, which the
+     display copy does not read.)
    - `line` (official trail or river): drawn **as the store gives it**, an open line with every point, only rounded to 5
      decimals, in every level (overview, middle, fine). It is never simplified, buffered, joined or made into a polygon, and
      no zone band is drawn. The map today draws a trail park as its official line and applies POTA's 100 ft each side only in
-     its own "am I in the park" test (`kpc-bounds.js`, 0.03048 km); this change keeps that and draws no band. The store's
-     `corridor_ft` / `corridor_from` (centreline or waters_edge) are carried as given in the feature's `zone`; the feature
+     its own "am I in the park" test (`kpc-bounds.js`, 0.03048 km); this change keeps that and draws no band. The feature
      says `line: true`, and `INDEX.json` names the rule in `line_rule`. A park whose lines hold more than 30,000 points keeps
      today's outline (no line levels yet).
-   - `pin` (an official agency point) and stand-in circles (`ring_is_stand_in_circle`): the display copy has no place for an
+   - The line's zone note goes to the public feature as `zone: [{rule, ft, from, bank}]` from an **allow-list only**:
+     `boundary_rule` trail_100ft | river_100ft_from_bank; `corridor_from` centreline | waters_edge; `bank_status` covered |
+     bank_missing | bank_not_needed | line_missing | "route line too coarse for a bank test"; `corridor_ft` a number from 1
+     to 1000. Any other value is dropped and counted (`zone_values_dropped`, private). Nothing else of the record (no
+     `river_class`, `corridor_rule`, `bank_source` or other store text) is written. `check --public` refuses a feature
+     property that is not on its public list and a zone value that is not on the allow-list.
+   - **Click target for a line-only park.** Such a park has one `role: line` feature and no `role: hit` polygon (a polygon
+     would be an invented band). `kpc-outline-display.js` needs no change (its `pack()` keeps the line feature as the park's
+     feature); the map hook that draws the pack (not in this PR) must make that line itself clickable: when a park has no
+     `hit` feature, bind the popup to its `line` feature, drawn with a wider invisible stroke (for example a second Leaflet
+     polyline, weight 12, opacity 0, interactive).
+   - `pin` (an official agency point) and stand-in circles in any form (`ring_is_stand_in_circle` or a record-level
+     `circle` set to anything but false, or the record's `grade: point-circle`): the display copy has no place for an
      official point, so they are not drawn (counted in the private report). A pin is never an outline and never moves or
      replaces the POTA pin. A park with only pins keeps today's outline.
    - Any other kind is left out (counted).
@@ -110,8 +128,10 @@ python3 tools/kpc_display_copy.py check --out OUT_DIR --area US-NH --public
 tools/kpc_display_publish.sh https://github.com/<owner>/<repo>.git OUT_DIR US-NH US-ME
 ```
 
-`--private-preview` skips the licence gate (and may read an older index) for a person's own look on their PC. Its output is
-stamped PRIVATE PREVIEW in every file, which `check --public`, the publish script and the loader all refuse.
+`--private-preview` skips the licence gate (and may read an older index with no format, never a newer one) for a person's
+own look on their PC. Its files carry private credit lines and layer names, so its `--out` must be OUTSIDE every git work
+tree (any folder with a `.git` above it is refused). Its output is stamped PRIVATE PREVIEW in every file, which
+`check --public`, the publish script and the loader all refuse.
 
 **The publish script:**
 - tells "branch missing" (first publish) from "cannot read the remote" (stop);

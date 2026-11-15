@@ -14,16 +14,15 @@ A level drops rings smaller than its tolerance only when that tolerance is over 
 complete). The store files are only read, never changed.
 
 What is drawn (in this order, per park; all of a park's areas together):
-  1. LICENCE GATE (strict; see gate()): a store in index format kpc-outline-store-index/3 or later, read from its PER-AREA
+  1. LICENCE GATE (strict; see gate()): a store in index format kpc-outline-store-index/3 or /4 (ONLY these), read from its PER-AREA
      index, every file's sha256 checked. A record is drawn only if the index's record_meta AND the record itself say publishable,
-     with the same licence class (one the store's licence-classes.json allows; SHARE-ALIKE stays off; an unknown class stops
-     the build), a basis of a verified row or the owner's confirmation, and the same plain credit line. wdpa_derived true, or
+     with the same licence class (one the store's licence-classes.json allows; SHARE-ALIKE stays off; an unknown class drops
+     the record), a basis of a verified row or the owner's confirmation, and the same plain credit line. wdpa_derived true, or
      WDPA / Protected Planet / SPREP / UNEP-WCMC in any value = never. Each RECORD is judged on its own (the park-level flag
      park_publishable is not read): the records that pass are drawn, with their credit lines; a record that fails is never
      drawn, never measured against and never named in a public file. A park with NO record that passes draws nothing here
      (it keeps today's outline; its POTA pin is never touched).
-     Geometry kinds (index format 4): the same gate for every kind; an 'area' is drawn as before (an area with role
-     water_surface is the water, never the outline); a 'line' (official trail / river) is drawn AS GIVEN, open, every point,
+     Geometry kinds (index format 4): the same gate for every kind; an 'area' is drawn as before; a 'line' (official trail / river) is drawn AS GIVEN, open, every point,
      in every level, never buffered or made a polygon, no zone band drawn (LINE_RULE); a 'pin' (and a stand-in circle) is not
      an outline and is not drawn (the display copy has no place for an official point; counted in the private report).
   2. Doubtful joins (lists, the store's check-join flag, or tracts 10 km apart): today's outline.
@@ -50,7 +49,8 @@ Files (folder OUT/<AREA>/), every file gzip level 9 with mtime 0 (same store = b
                                   features: role 'line' (MultiLineString, drawn) and role 'hit' (its drawn tracts, clicks only).
                                   Properties: ref, name, g, detail_m, worst_m, points, layers, won, cr (credit lines), mid,
                                   fine, and for a park across areas 'areas' and 'gen'; a park with an official line has
-                                  'line': true and, when the store gives one, 'zone' [[feet, measured from], ...] as given.
+                                  'line': true and, when the store gives one, 'zone' [{rule, ft, from, bank}, ...]: only the
+                                  allow-listed values of ZONE_ENUMS / ZONE_FT, anything else dropped (counted privately).
   mid/<REF>.geojson.gz            MIDDLE: one MultiLineString feature (this area's part of the park).
   fine/<REF>/<ix>_<iy>.geojson.gz FINE pieces: MultiLineString inside tile ix,iy (T x T degrees, T in INDEX fine[ref].t).
 Standard library only, Python 3.9+. No network.
@@ -85,10 +85,12 @@ LADDER = [0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 30, 40, 50, 60, 80,
 # Licence classes: the store tool's own list (licence-classes.json of store tool full 3, copied word for word to
 # tools/kpc_display_licence_classes.json). A class may be drawn only if that list says can_be_publishable: true AND it is not
 # held back here (SHARE-ALIKE stays off until the owner decides; it is can_be_publishable false in full 3 anyway). A store that
-# names a class this list does not know stops the build (the list must be updated first, by a person).
+# lists a class this list does not know in its index licence_classes stops the build (the list must be updated first, by a
+# person); an unknown class on one record drops that record only.
 HELD_CLASSES = {'SHARE-ALIKE'}
 BASIS_OK = {'verified-row', 'owner-confirmed'}
-STORE_FORMAT_MIN = 3            # store index 'kpc-outline-store-index/3' or later
+STORE_FORMATS = (3, 4)          # the store index formats this reader knows: 'kpc-outline-store-index/3' and '/4' ONLY. A newer
+                                # format stops the build until a person has read its spec and updated this reader (fail closed)
 STORE_FORMAT_RX = re.compile(r'kpc-outline-store-index/(\d+)')
 META_KEYS = ('publishable', 'licence_class', 'publish_basis', 'publish_basis_detail', 'credit_line', 'source_layer', 'source_url',
              'terms_text_sha256', 'terms_text_file', 'wdpa_derived', 'private_reason')
@@ -160,14 +162,61 @@ LINE_RULE = ('official trail and river lines are drawn as the store gives them (
              'zone band is drawn around them; the 100 ft zone either side is the map\'s own rule, applied by its own test')
 
 
+def stand_in(rec):
+    """A stand-in circle (100 ft around an official point), in ANY form: ring_is_stand_in_circle or a record-level circle set to
+    anything but None / False ("true", 1, ... all count), or the record's own grade point-circle. Never an outline."""
+    if rec.get('ring_is_stand_in_circle') not in (None, False) or rec.get('circle') not in (None, False): return True
+    return str(rec.get('grade') or '').strip().lower() == 'point-circle'
+
+
 def kind_of(rec):
     """The record's geometry kind (index format 4): 'area' when absent; a stand-in circle is a pin (its ring is ignored);
     anything not area / line / pin = 'unknown' (never drawn)."""
-    if rec.get('ring_is_stand_in_circle') is True: return 'pin'
+    if stand_in(rec): return 'pin'
     k = rec.get('geometry_kind')
     if k is None or k == '': return 'area'
     k = str(k).strip().lower()
     return k if k in KINDS else 'unknown'
+
+
+# The zone note a line record may carry (FORMAT-4.md, owner's ruling 2026-11-14). ONLY these enumerated values (and a number
+# of feet in a sane range) ever reach a public file; any other value is dropped and counted in the private report.
+ZONE_ENUMS = {'rule': ('boundary_rule', ('trail_100ft', 'river_100ft_from_bank')),
+              'from': ('corridor_from', ('centreline', 'waters_edge')),
+              'bank': ('bank_status', ('covered', 'bank_missing', 'bank_not_needed', 'line_missing',
+                                       'route line too coarse for a bank test'))}
+ZONE_FT = (1, 1000)        # corridor_ft: a number of feet (not a bool, not text) in this range
+ZONE_KEYS = ('rule', 'ft', 'from', 'bank')
+
+
+def zone_of(rec):
+    """-> (the public zone note {rule, ft, from, bank} with only allow-listed values, or None; how many values were dropped)."""
+    out, dropped = {}, 0
+    for k, (field, allowed) in ZONE_ENUMS.items():
+        v = rec.get(field)
+        if v is None: continue
+        if isinstance(v, str) and v in allowed: out[k] = v
+        else: dropped += 1
+    v = rec.get('corridor_ft')
+    if v is not None:
+        if isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and ZONE_FT[0] <= v <= ZONE_FT[1]:
+            out['ft'] = int(v) if float(v).is_integer() else round(float(v), 2)
+        else: dropped += 1
+    return (out or None), dropped
+
+
+def zone_ok(z):
+    """check --public: a zone note holds only allow-listed keys and values."""
+    if not isinstance(z, dict) or not z or set(z) - set(ZONE_KEYS): return False
+    for k, v in z.items():
+        if k == 'ft':
+            if not (isinstance(v, (int, float)) and not isinstance(v, bool) and ZONE_FT[0] <= v <= ZONE_FT[1]): return False
+        elif not (isinstance(v, str) and v in ZONE_ENUMS[k][1]): return False
+    return True
+
+
+PUBLIC_PROPS = {'ref', 'name', 'g', 'detail_m', 'worst_m', 'points', 'layers', 'won', 'cr', 'mid', 'fine', 'areas', 'gen', 'role',
+                'line', 'zone'}
 
 
 def _member_json(raw):
@@ -193,23 +242,29 @@ def read_index(store_dir, area, preview=False):
 
 
 def read_park(store_dir, ref, e, handles):
-    """One park, its record checksums recomputed (a moved coordinate never passes)."""
+    """One park, its record checksums recomputed (a moved coordinate never passes). -> (park, {key: why}) where the dict names
+    the records whose geometry does not match its own checksum or point count: those records are left out (never drawn), the
+    rest of the park and the area go on. A park that does not match the index (place, ref, fingerprint) still stops the build."""
     f = handles.get(e['file']) or handles.setdefault(e['file'], open(pathlib.Path(store_dir) / e['file'], 'rb'))
     f.seek(int(e['o'])); raw = f.read(int(e['n']))
     if len(raw) != int(e['n']): raise DisplayError(f'{ref}: store file shorter than the index says')
     p = _member_json(raw)
     if p.get('ref') != ref: raise DisplayError(f'{ref}: index points at {p.get("ref")!r}')
+    bad = {}
     for r in p.get('records') or []:
-        er = enc_rings(r, p)
-        if geometry_sha256(er) != r.get('sha256'): raise DisplayError(f'{ref}: record {r.get("key")} checksum does not match')
-        if sum(len(x) // 2 for x in er) != r.get('points'): raise DisplayError(f'{ref}: record {r.get("key")} point count')
-        if kind_of(r) == 'line':      # format 4: an official line's own checksum and point count (the store never buffers it)
-            ln = r.get('lines') or []
-            if geometry_sha256(ln) != r.get('line_sha256'): raise DisplayError(f'{ref}: line record {r.get("key")} checksum does not match')
-            if sum(len(x) // 2 for x in ln) != r.get('line_points'): raise DisplayError(f'{ref}: line record {r.get("key")} point count')
+        try:
+            er = enc_rings(r, p)
+            if geometry_sha256(er) != r.get('sha256'): bad[r.get('key')] = 'its rings do not match its checksum'; continue
+            if sum(len(x) // 2 for x in er) != r.get('points'): bad[r.get('key')] = 'its point count does not match'; continue
+            if kind_of(r) == 'line':      # format 4: an official line's own checksum and point count (the store never buffers it)
+                ln = r.get('lines') or []
+                if geometry_sha256(ln) != r.get('line_sha256'): bad[r.get('key')] = 'its line does not match its line checksum'; continue
+                if sum(len(x) // 2 for x in ln) != r.get('line_points'): bad[r.get('key')] = 'its line point count does not match'
+        except (DisplayError, TypeError, ValueError, IndexError) as ex:
+            bad[r.get('key')] = f'its geometry cannot be read ({type(ex).__name__})'
     fp = hashlib.sha256('|'.join(str(r.get('sha256')) for r in p.get('records') or []).encode()).hexdigest()
     if e.get('fp') and fp != e['fp']: raise DisplayError(f'{ref}: park fingerprint differs from the index')
-    return p
+    return p, bad
 
 
 def file_sha256(path):
@@ -407,11 +462,13 @@ def check_classes(names, where, known=None):
 
 
 def require_public_index(idx, area, known=None):
-    """A public build needs a PER-AREA index in store format 3 or later, with file checksums and, per record, the record_meta block."""
+    """A public build needs a PER-AREA index in store format 3 or 4, with file checksums and, per record, the record_meta block.
+    A record's own unknown licence class does not stop the build: gate() drops that record. An unknown class in the index's
+    licence_classes list does stop it (the store tool's class list changed: a person updates the copy first)."""
     v = store_format(idx)
-    if v < STORE_FORMAT_MIN:
-        raise DisplayError(f'{area}: store_format_version is {idx.get("store_format_version")!r}; a public build needs '
-                           f'kpc-outline-store-index/{STORE_FORMAT_MIN} or later')
+    if v not in STORE_FORMATS:
+        raise DisplayError(f'{area}: store_format_version is {idx.get("store_format_version")!r}; a public build reads only '
+                           + ' or '.join(f'kpc-outline-store-index/{n}' for n in STORE_FORMATS) + ' (a newer format needs this reader updated first)')
     if idx.get('area') != area:
         raise DisplayError(f'{area}: a public build reads the per-area index index-{area}.json (the combined index.json merges parks '
                            f'that span areas)')
@@ -423,7 +480,6 @@ def require_public_index(idx, area, known=None):
         if e.get('file') not in files: raise DisplayError(f'{area}: park {ref} is in {e.get("file")!r}, which the index does not list')
         rm = e.get('record_meta')
         if not isinstance(rm, dict) or not rm: raise DisplayError(f'{area}: park {ref} has no record_meta in the store index')
-        check_classes([m.get('licence_class') for m in rm.values() if isinstance(m, dict)], f'{area} park {ref}', known)
 
 
 def clean_credit(t):
@@ -500,7 +556,7 @@ def gate(rec, e, layers_tbl):
     cls_i = str(meta.get('licence_class') or '').strip().upper()
     cls_r = str(rec.get('licence_class') or '').strip().upper()
     if cls_i != cls_r: return False, f'licence class differs: index {cls_i!r}, record {cls_r!r}', ''
-    if cls_i not in LICENCE_CLASSES: raise DisplayError(f'{key}: licence class {cls_i!r} is not one this builder knows')
+    if cls_i not in LICENCE_CLASSES: return False, f'licence class {cls_i!r} is not one this builder knows (record left out)', ''
     if cls_i not in ALLOW_CLASSES: return False, f'licence class {cls_i!r} may not be drawn', ''
     basis = str(meta.get('publish_basis') or '')
     if basis not in BASIS_OK or str(rec.get('publish_basis') or '') != basis:
@@ -992,6 +1048,14 @@ def key_areas(key_dir):
     return out
 
 
+def in_git_tree(path):
+    """True when path (or the folder it would be made in) is inside a git work tree: it or a parent holds .git."""
+    q = pathlib.Path(path).resolve()
+    for d in [q] + list(q.parents):
+        if (d / '.git').exists(): return True
+    return False
+
+
 def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, decimals=DECIMALS, merge_m=MERGE_M,
           precedence_table=None, park_areas=None, max_part=MAX_PART, piece_cap=PIECE_CAP, mid_cap=MID_CAP, log=print):
     """Build the display copy of one or more areas in one run (a park in two areas needs both in the same run).
@@ -1000,13 +1064,16 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
     areas = [areas] if isinstance(areas, str) else sorted(set(areas))
     for a in areas:
         if not re.fullmatch(r'(US|CA)-[A-Z]{2,3}|W-[A-Z]{2}', a): raise DisplayError(f'bad area {a!r}')
-    if preview and re.search(r'(^|/)(data/display|data/released|_site)(/|$)', str(pathlib.Path(out_dir).resolve()).replace('\\', '/')):
-        raise DisplayError('a PRIVATE PREVIEW is never written into a public folder')
+    if preview and in_git_tree(out_dir):
+        raise DisplayError('a PRIVATE PREVIEW is written only OUTSIDE every git work tree (it carries private credit lines and '
+                           'layer names): choose an --out folder that is not in a repository')
     prec = dict(DEFAULT_PRECEDENCE, **(precedence_table or {}))
     idx, sha = {}, {}
     for a in areas:
         ix, p = read_index(store_dir, a, preview)
         if not preview: require_public_index(ix, a)
+        elif store_format(ix) not in (0,) + STORE_FORMATS:     # a preview may read an older index with no format, never a newer one
+            raise DisplayError(f'{a}: store_format_version {ix.get("store_format_version")!r} is newer than this reader knows')
         idx[a] = (ix, p)
         for f in sorted({e['file'] for e in ix['parks'].values()} | (set() if preview else set(ix.get('files') or {}))):
             if not re.fullmatch(r'[A-Za-z0-9_.-]+\.kpcstore\.json\.gz', str(f)): raise DisplayError(f'{a}: odd store file name {f!r}')
@@ -1035,17 +1102,23 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
             if others:
                 fall(f"also in {', '.join(others)}, which is not in this run (a park's areas are built together)"); continue
             parks, why_not, not_official, credit_of, name = {}, [], [], {}, ref
-            kinds = {'line': 0, 'pin': 0, 'water_surface': 0, 'unknown': 0}   # passing records of each kind (private report)
+            kinds = {'line': 0, 'pin': 0, 'unknown': 0}   # passing records of each kind (private report)
+            zone_dropped = 0
             line_keys = set()
             for a in mine:
                 e = idx[a][0]['parks'][ref]
-                p = read_park(store_dir, ref, e, handles); parks[a] = (e, p); name = p.get('name') or name
+                p, bad = read_park(store_dir, ref, e, handles); parks[a] = (e, p); name = p.get('name') or name
                 if p.get('circle') or p.get('grade') != 'official':
                     not_official.append(f'{a}: not an official outline in the store'); continue
                 if e.get('check_join'):
                     cj = e['check_join']; doubt.setdefault(ref, f"check join (tracts in {cj.get('groups')} groups {cj.get('gap_km')} km apart)")
                 lt = idx[a][0].get('layers')
                 for r in p.get('records') or []:
+                    if r.get('key') in bad:                # a moved point: this record is left out, whatever its licence
+                        why_not.append(f"{r.get('key')}: {bad[r.get('key')]}"); continue
+                    if r.get('use', True) is not True:     # the store's own 'do not use' (PAD-US proclamation line, easement,
+                        why_not.append(f"{r.get('key')}: the store says do not use it ({r.get('use_why') or 'use is not true'})")
+                        continue                           # closed or military land): never drawn as the park
                     if preview:
                         ok, why, cr = True, '', clean_credit(r.get('credit') or r.get('agency_label')) or str(r.get('layer') or '')
                         if wdpa_hit(r, None, None): ok, why = False, 'WDPA / Protected Planet / SPREP / UNEP-WCMC source'
@@ -1053,8 +1126,6 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                         ok, why, cr = gate(r, e, lt)      # the SAME gate for every geometry kind
                     if not ok: why_not.append(f"{r.get('key')}: {why}"); continue
                     k = kind_of(r)
-                    if k == 'area' and str(r.get('role') or '').strip().lower() == 'water_surface':
-                        kinds['water_surface'] += 1; continue      # the water itself, not the park's boundary: never the outline
                     if k in ('pin', 'unknown'):
                         kinds[k] += 1; continue                    # an official point is not an outline (the display copy has no
                     if k == 'line':                                # place for one); the POTA pin is never touched
@@ -1066,7 +1137,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
             # Records are judged one by one: the park keeps today's outline only when NO record passes
             # the licence gate. The records that did not pass are never drawn, and the private report keeps their reasons.
             held = ('licence gate: ' + '; '.join(why_not[:3]) + (f' (+{len(why_not) - 3} more)' if len(why_not) > 3 else '')) if why_not else ''
-            if why_not and not credit_of and not (kinds['pin'] or kinds['water_surface'] or kinds['unknown']):
+            if why_not and not credit_of and not (kinds['pin'] or kinds['unknown']):
                 fall(held); continue
             if held: held_private[ref] = held
             # 3. the same geometry once: the copy from the highest-ranked layer (then area, key); ONLY records that passed the gate
@@ -1084,8 +1155,8 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                     paths = [[(x / SCALE, y / SCALE) for x, y in ring_ints(el)] for el in (r.get('lines') or [])]
                     paths = [pt for pt in paths if len(pt) >= 2]
                     if paths:
-                        z = (r.get('corridor_ft'), r.get('corridor_from'))
-                        lrecs.append((a, key, r.get('layer') or '', paths, rk, z if z != (None, None) else None))
+                        z, nd = zone_of(r); zone_dropped += nd
+                        lrecs.append((a, key, r.get('layer') or '', paths, rk, z))
                     continue
                 if key in seen or r.get('sha256') in seen: continue
                 seen.update((key, r.get('sha256')))
@@ -1133,7 +1204,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                    'public_records': len(credit_of), 'distinct_records': len(recs) + len(lrecs),
                    'drawn_records': len(drawn) + len(lrecs), 'won': won, 'store_points': store_pts,
                    'line_records': len(lrecs), 'line_points': line_pts, 'pin_records_not_drawn': kinds['pin'],
-                   'water_surface_records_not_drawn': kinds['water_surface'], 'unknown_kind_records_not_drawn': kinds['unknown'], **stp,
+                   'unknown_kind_records_not_drawn': kinds['unknown'], 'zone_values_dropped': zone_dropped, **stp,
                    'points': (ov['points'] if ov else 0) + line_pts, 'detail_m': ov['tol'] if ov else 0,
                    'worst_m': round(ov['worst'], 2) if ov else 0.0, 'hidden_rings': ov['hidden'] if ov else 0,
                    'mid_points': mid['points'] if mid else None, 'mid_detail_m': mid['tol'] if mid else None,
@@ -1165,8 +1236,10 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                 if multi: base.update({'areas': mine, 'gen': gen})
                 if la:                     # official trail / river line(s) in this park, drawn as given; no corridor is drawn
                     base['line'] = True
-                    zs = sorted({l[5] for l in lrecs if l[0] == a and l[5]}, key=str)
-                    if zs: base['zone'] = [list(z) for z in zs]   # the store's own zone note (feet, measured from), as given
+                    zs = []
+                    for l in lrecs:            # the zone notes, allow-listed values only (zone_of), each once
+                        if l[0] == a and l[5] and l[5] not in zs: zs.append(l[5])
+                    if zs: base['zone'] = sorted(zs, key=lambda z: json.dumps(z, sort_keys=True))
                 polys = polys_of(ov, a) if ov else []
                 if as_lines:
                     res[a]['feats'].append({'type': 'Feature', 'properties': dict(base, role='line'),
@@ -1209,7 +1282,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
            'made': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'store': sha, 'seconds': round(time.time() - t0, 2),
            'per_area': reps, 'rows': rows, 'fallback_reasons': why_private, 'held_records_reasons': held_private,
            'kinds_not_outlines': kinds_private, 'pin_records_not_drawn': sum(v['pin'] for v in kinds_private.values()),
-           'water_surface_records_not_drawn': sum(v['water_surface'] for v in kinds_private.values()),
+           'zone_values_dropped': sum(r.get('zone_values_dropped', 0) for r in rows),
            'unknown_kind_records_not_drawn': sum(v['unknown'] for v in kinds_private.values()),
            'line_records_drawn': sum(r.get('line_records', 0) for r in rows if not r.get('failed')),
            'invariant_failures': [r['ref'] for r in rows if r.get('failed')]}
@@ -1321,6 +1394,11 @@ def check(out_dir, area, max_part=1_000_000, public=False, piece_cap=PIECE_CAP):
             seen.add((r, role))
             if r in (idx.get('fallback') or {}): probs.append(f'{r} both drawn and fallback')
             if public and any(PRIVATE_RX.search(c) for c in pr.get('cr') or []): probs.append(f'{r}: a credit line carries a private word')
+            if public and set(pr) - PUBLIC_PROPS: probs.append(f'{r}: properties not on the public list: {sorted(set(pr) - PUBLIC_PROPS)[:5]}')
+            if public and 'zone' in pr and not (isinstance(pr['zone'], list) and pr['zone'] and all(zone_ok(z) for z in pr['zone'])):
+                probs.append(f'{r}: a zone note holds a value that is not on the allow-list')
+            if public and (pr.get('g') != 'official' or role not in ('park', 'line', 'hit') or ('line' in pr and pr['line'] is not True)):
+                probs.append(f'{r}: an unexpected g / role / line value')
             if pr.get('mid') and r not in (idx.get('mid') or {}): probs.append(f'{r}: middle level missing')
             if pr.get('fine') and r not in (idx.get('fine') or {}): probs.append(f'{r}: fine level missing')
             if pr.get('areas') and (pr.get('gen') != idx.get('gen') or area not in pr['areas']): probs.append(f'{r}: areas / gen inconsistent')
