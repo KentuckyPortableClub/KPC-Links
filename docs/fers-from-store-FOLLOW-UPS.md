@@ -8,6 +8,7 @@ KPC owner, 2026-11-14. Scope frozen; these are left for later PRs.
 2. The "about" text of `data/fers/missing-<tag>.json` in `kpc_fers.py` still says "(or only an approximate one)" and
    "members first"; approximate parks are tested, not listed, and the list is not sorted. Fix in the switch-over PR (that PR
    moves the 2-fer rules hash anyway). The new R12 text keeps "members first" (the owner's words); drop it or sort the list.
+   Nov 14: the about text is corrected in prep/nov14-full-100ft (the R12 words are not touched); item 1 in prep/nov14-ky-key-and-gps-fix.
 3. The branch is behind main (main's us-key and world-key rules hashes moved since the branch base): rebase is the manager's
    call; the "newest changelog hash" tests must be run again after it.
 4. River tiers (`KPC_FERS_RIVER_NO_BANK=tiers`) stay provisional and off; no more work on them until the owner rules.
