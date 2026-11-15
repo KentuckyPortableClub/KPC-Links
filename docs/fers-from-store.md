@@ -45,33 +45,52 @@ world runs never use the store: with the switch on they run as today (downloads 
    confirmed, until the store carries the closed areas. Every fetch of `kpc_fers.py`, `kpc_owned.py` and the answer cache is
    refused before it is sent (live water: saved tiles only, else NOT SURE; ownership tiles; trail status; layer dates; bundle
    answers), and the process's sockets are shut.
-10. **The write guard (fail rather than leak).** Every file the bot writes goes through `save_json` -> `_save_json_raw` (the two
-    other writers, `live_save` and `_wsave`, are turned off in a store run); the store module guards that step and its own
-    store-missing list. The run stops with exit 89, writing nothing, rather than put any of these into a public file: a row
-    marked `club_room_only` (with or without its shape, width, centre or area), any mention of a park whose outline came from
-    records that are not publishable, a 2-fer row with a park outside the US and Canada, or the never-released build
-    `US-42797939226` (any file). A **private** store run (`KPC_FERS_STORE_KIND=private`) writes every file into
-    `KPC_FERS_PRIVATE_OUT`, which must be set and outside every git work tree (else exit 89 before anything is read): all its
-    files are club room only. On a public store no unpublishable or WDPA-derived record is read at all (the park is held).
-    `kpc_fers_publish.py` (the only path from 2-fer data to the public site) also refuses a club-room, world or blocked row.
-
+10. **Nothing private in a public file or log.** On a PUBLIC store run a park held or used for records that are not
+    publishable (licence) or that are (or may be) WDPA-derived is never named in any public file or in the run's log: not its
+    ref, name, record key or licence class. The set is filled from the store index for EVERY park of the run's areas (read or
+    not); a park this run read from publishable records only may be named. Such a park is left out of the spot files (an old
+    live row of it is not carried), `looked-<area>.json`, `missing-<tag>.json`, the report and `store-missing-<tag>.json`,
+    which gives only an anonymous count; a printed line naming one has it replaced by `[withheld]`. A park the store held for
+    another reason is listed on the Missing boundary list with the store's reason, never "no official boundary". Every file
+    the bot writes goes through `save_json` -> `_save_json_raw` (the two other writers, `live_save` and `_wsave`, are off in a
+    store run); the store module guards that step and its own list, and the run stops with exit 89, writing nothing, rather
+    than write a `club_room_only` row (any depth), a row naming a park outside the US and Canada (any row shape), any mention
+    of a secret park (any case), or the never-released build `US-42797939226` (as text or a number). The refusal prints only a
+    count and the kinds of problem; the details go to the private log (`KPC_FERS_PRIVATE_LOG` on a public run, the private
+    folder on a private run), nowhere else. A **private** store run writes every file into `KPC_FERS_PRIVATE_OUT` (outside
+    every git work tree, else exit 89 before anything is read), sends everything the process prints to
+    `<private folder>/run-log.txt` and prints counts only; under GitHub Actions (public logs) it is refused (exit 89) unless
+    `KPC_FERS_PRIVATE_RUNNER=1` names a private runner. `kpc_fers_publish.py` refuses a club-room, world or never-released row.
 11. **Store format 4 (store tool 3.5).** The reader takes index `kpc-outline-store-index/3` and `/4`; any other version is
-    refused (fails closed). Only records whose `geometry_kind` is `area` (absent = area) make a park's outline. `line` records
-    give a line park its line (the open path, exactly as stored: never closed, never buffered into an area) and the bot tests it
-    with today's line rule, unchanged: 100 ft, i.e. 25.48 m from a centre line with the station 5 m inside the other park, or
-    30.48 m from a US river's bank where a water area covers the line, along a stretch of at least 25 m. What the rule needs to
-    know about the park (trail or river, who drew it, NHT type, which pieces are water) still comes from `data/trails`. A line
-    park whose line the store lacks is held. A park with area records is tested as an area (its line records are not used).
-    `pin` records and unknown kinds are never used. The counts go into the run report (`outline_store`) and the store-missing
-    list: records left out, line parks read, live pairs on the 100-ft line rule.
-12. **Water tiles from the store first** (`store/water/<AREA>/<i>_<jt>.json.gz`, the bot's own WATER_STORE tile form), then the
-    bot's last good copy as today, else NOT SURE (never "no water"). Rows keep today's dated wording.
+    refused (fails closed). Only records whose `geometry_kind` is `area` (absent = area) make a park's outline; `pin` records
+    and unknown kinds are never used. A `line` record gives a line park its line (the open path, never closed, never buffered):
+    trail or river comes from the record's `boundary_rule` (`trail_100ft` / `river_100ft_from_bank`; never the park's name;
+    `data/trails` only when a record has none). A `designated_corridor` river is an AREA park (its corridor polygon is its
+    outline; its line is never the boundary); `line_missing`, an unsorted river class or an unknown rule = held. A line found
+    on NHD by name (`source: nhd-by-name` / `line_extent`) or a river line with no known bank status is SKIPPED and counted (no 2-fer from it; listed as "river candidate: needs a look" in the private folder only).
+    The four NPS water routes the store marks `too coarse for a bank test` (US-4572, US-3791, US-4567, US-4581) are treated
+    exactly as on main: their `data/trails` line and today's water-route rule (a coarse route not in `data/trails` is skipped).
+    A `bank_missing` water trail is still decided by the existing centre-line rule (owner ruling, 2026-11-14); a row whose
+    stretch was not measured from a real bank is marked `river_bank` (an estimate) and its stretch goes on the private
+    `river-bank-todo.csv` so the store fetches that tile next.
+    Who drew the line, its type and its water pieces still come from `data/trails`. Counts in the run report (`outline_store`).
+    **The line rule itself is exactly as on main** (`kpc_fers.py`): a station 5 m inside the other park within 25.48 m of a
+    trail's line (30.48 m from the line to the park edge, i.e. 100 ft), or within 30.48 m of a US river's bank where mapped
+    water covers the line, along a stretch of at least 25 m. The store spec's wording ("the old 25 m centre-line workaround is
+    not the rule") is about a river without a bank: that fallback is the switch in item 13, default unchanged.
+12. **Water tiles** (FORMAT-4): `store/water/<source id>/<i>_<j>.json.gz` with `store/water/index.json`. The source is the one
+    mapped to the run's areas (US-* = `us-nhdplus-hr`); a border tile in another source never decides. A tile must be listed in
+    the index with the same sha256, its source must be publishable on a public run, and it must be in the bot's own tile form;
+    otherwise it is NOT SURE, with no fall-through to another copy. A tile the store does not hold falls back to the bot's own
+    last good copy (WATER_STORE), as today. Rows keep today's dated wording (the tile's date). Canadian sources are not read
+    (Canada keeps today's behaviour: no bank source wired in the bot). Any error inside the land check of a store run is
+    NOT SURE, never "ok".
 13. **Rivers with no bank data, behind one switch** `KPC_FERS_RIVER_NO_BANK` (store runs, US rivers, passes 2-3):
     `centreline` (default) = today (25.48 m from the centre line where no water area covers it). `tiers` = PROVISIONAL (the
     owner's Nov 14 ruling): 1 bank (every point of the stretch in mapped water: today's 30.48 m from the bank, solid); 2 the
     other park reaches the river centre line (counts); 3 a park edge runs along the river within `KPC_FERS_RIVER_HALF_M`
     (150 m) for 50 m, or 4 the park lies within `KPC_FERS_RIVER_CATCH_M` (250 m) of the centre line: "river candidate: needs
-    bank shape" (never a 2-fer), each listed in the store-missing list's `river_bank_todo` for the bank store to fetch. Every
+    bank shape" (never a 2-fer), each written to `river-bank-todo.csv` (park ref, other park ref, lat, lon, radius m) in the PRIVATE folder only, for the bank store to fetch. Every
     river row says which tier decided it (`river_tier`). Canada and trails unchanged. The switch lives in this module (not a
     rule file), so no rules hash moves now; making it the rule in `kpc_fers.py`, or the switch-over moving this file into the
     2-fer `RULE_FILES`, moves the 2-fer (`fers`) rules hash cef323de4c9a.

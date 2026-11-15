@@ -192,32 +192,35 @@ else:
     try:
         os.environ['REGION'] = 'na'; os.environ['PASS'] = '2'
         import kpc_fers as KF
+        def inst(K, env):
+            try: return S.install(K, env=env)
+            finally: S.unsilence()   # a private store run sends the process's own prints to its private log: the test prints again
         priv = tmp / 'private'
         base = {'KPC_FERS_FROM_STORE': 'on', 'KPC_FERS_STORE_DIR': str(tmp / 'store'), 'KPC_FERS_STORE_MAX_DAYS': '100000', 'KPC_FERS_STORE_KIND': 'private', 'KPC_FERS_PRIVATE_OUT': str(priv)}
         orig = {k: getattr(KF, k) for k in ('download', 'saved_us', 'saved_ca', 'live_load', 'pc_tag')}
         KF.ONLY = {'US-QQ'}
         for bad_env, what in (({k: v for k, v in base.items() if k != 'KPC_FERS_PRIVATE_OUT'}, 'not set'), ({**base, 'KPC_FERS_PRIVATE_OUT': str(ROOT / 'never-made-private')}, 'inside a git work tree'),
                               ({**base, 'KPC_FERS_PRIVATE_OUT': str(work / 'p')}, 'inside the working folder')):
-            try: S.install(KF, env=bad_env); code = None
+            try: inst(KF, env=bad_env); code = None
             except SystemExit as e: code = e.code
             check(code == 89 and KF.download is orig['download'] and S.PRIVATE_OUT is None and not (ROOT / 'never-made-private').exists(),
                   f'private store run: refused (exit 89) before anything is read when the private folder is {what}')
-        try: S.install(KF, env=base); code = None
+        try: inst(KF, env=base); code = None
         except SystemExit as e: code = e.code
         rowsf = priv / f'store-missing-{KF.area_name()}.json'
         rows = json.loads(rowsf.read_text())
         check(code == 87 and rows['areas']['US-QQ']['verdict'] == 'NOT READY' and KF.download is orig['download'], 'area gate: a missing area store exits 87 before pass 1 (nothing replaced, nothing to save), its row written')
         KF.ONLY = {'US-ZZ'}; S.AREA_ROWS.clear()
-        try: S.install(KF, env={**base, 'KPC_FERS_STORE_MAX_DAYS': '0'}); code = None
+        try: inst(KF, env={**base, 'KPC_FERS_STORE_MAX_DAYS': '0'}); code = None
         except SystemExit as e: code = e.code
         check(code == 87 and KF.download is orig['download'], 'area gate: a stale area store exits 87 too')
         S.AREA_ROWS.clear()
-        try: S.install(KF, env={**base, 'KPC_FERS_STORE_LIMIT_MB': '100'}); code = None
+        try: inst(KF, env={**base, 'KPC_FERS_STORE_LIMIT_MB': '100'}); code = None
         except SystemExit as e: code = e.code
         rows = json.loads((priv / f'store-missing-{KF.area_name()}.json').read_text())
         check(code == 88 and rows['areas']['US-ZZ']['verdict'] == 'WILL NOT FIT' and KF.download is orig['download'], 'memory gate: install exits 88 with the area row when the run will not fit')
         S.AREA_ROWS.clear()
-        check(S.install(KF, env=base) is True and KF.download is not orig['download'] and S.STORE_ON, 'switch on: download() is replaced in this process only')
+        check(inst(KF, env=base) is True and KF.download is not orig['download'] and S.STORE_ON, 'switch on: download() is replaced in this process only')
         parks = {'US-9001': {'st': 'US-ZZ', 'ids': ['sgzza1', 901], 'names': {}}, 'US-9002': {'st': 'US-ZZ', 'ids': ['sgzza2'], 'names': {}},
                  'US-9005': {'st': 'US-ZZ', 'ids': ['sgzza5'], 'names': {}}, 'US-9006': {'st': 'US-ZZ', 'ids': ['sgzza6', 'sgzzb6'], 'names': {}},
                  'US-9009': {'st': 'US-ZZ', 'ids': ['sgzza9'], 'names': {}}}
@@ -292,11 +295,21 @@ else:
         out40 = 41.50 - 40 / 110574.0
         bank_n = 41.50 - 10 / 110574.0
         P4 = [{'ref': 'US-9401', 'name': 'Area Park', 'records': [rec('a1', [park4]), lrec('l1', [[[-77.5, 41.505], [-77.49, 41.505]]]), prec('p1', [-77.495, 41.505])]},
-              {'ref': 'US-9402', 'name': 'Crossing Trail', 'records': [lrec('l2', [[[-77.51, 41.505], [-77.495, 41.505], [-77.48, 41.506]]])]},
+              {'ref': 'US-9402', 'name': 'Crossing Trail', 'records': [lrec('l2', [[[-77.51, 41.505], [-77.495, 41.505], [-77.48, 41.506]]], boundary_rule='trail_100ft')]},
               {'ref': 'US-9403', 'name': 'Pin Only', 'records': [prec('p3', [-77.4, 41.4])]},
               {'ref': 'US-9404', 'name': 'Odd Kind', 'records': [{**rec('b4', [sq(-77.3, 41.3, 0.01)]), 'geometry_kind': 'blob'}]},
               {'ref': 'US-9405', 'name': 'Outside Trail', 'records': [lrec('l5', [[[-77.51, out40], [-77.48, out40]]])]},
-              {'ref': 'US-9406', 'name': 'Test River', 'records': [lrec('l6', [[[-77.498, 41.4977], [-77.492, 41.4977]]], record_name='Test River')]}]
+              {'ref': 'US-9406', 'name': 'Test Water', 'records': [lrec('l6', [[[-77.498, 41.4977], [-77.492, 41.4977]]], record_name='Test Water', boundary_rule='river_100ft_from_bank', river_class='water_trail', bank_status='covered')]},
+              {'ref': 'US-9412', 'name': 'Mississippi River Trail', 'records': [lrec('l12', [[[-77.2, 41.2], [-77.19, 41.2]]], record_name='Mississippi River Trail', boundary_rule='trail_100ft')]},
+              {'ref': 'US-9413', 'name': 'Kentucky Water Trail', 'records': [lrec('l13', [[[-77.2, 41.21], [-77.19, 41.21]]], record_name='Kentucky Water Trail', boundary_rule='river_100ft_from_bank', river_class='water_trail', bank_status='covered')]},
+              {'ref': 'US-9414', 'name': 'Corridor River', 'records': [lrec('l14', [[[-77.2, 41.22], [-77.19, 41.22]]], boundary_rule='designated_corridor_area', river_class='designated_corridor')]},
+              {'ref': 'US-9415', 'name': 'By Name River', 'records': [lrec('l15', [[[-77.498, 41.4999], [-77.492, 41.4999]]], boundary_rule='river_100ft_from_bank', river_class='water_trail', bank_status='covered', source='nhd-by-name', line_extent='the park may be a stretch only')]},
+              {'ref': 'US-9416', 'name': 'Old Route', 'records': [lrec('l16', [[[-77.2, 41.24], [-77.19, 41.24]]], boundary_rule='river_100ft_from_bank', river_class='historic_route', bank_status='route line too coarse for a bank test')]},
+              {'ref': 'US-9417', 'name': 'No Line', 'records': [lrec('l17', [[[-77.2, 41.25], [-77.19, 41.25]]], boundary_rule='river_100ft_from_bank', river_class='water_trail', bank_status='line_missing')]},
+              {'ref': 'US-9418', 'name': 'Unsorted', 'records': [lrec('l18', [[[-77.2, 41.26], [-77.19, 41.26]]], boundary_rule='unclear_river_class', river_class='unclear')]},
+              {'ref': 'US-9419', 'name': 'Bankless', 'records': [lrec('l19', [[[-77.498, 41.4977], [-77.492, 41.4977]], [[-77.498, 41.51 + 11 / 110574.0], [-77.492, 41.51 + 11 / 110574.0]]], boundary_rule='river_100ft_from_bank', river_class='water_trail', bank_status='bank_missing', bank_missing=True)]},
+              {'ref': 'US-9420', 'name': 'Ruleless', 'records': [lrec('l20', [[[-77.2, 41.27], [-77.19, 41.27]]])]},
+              {'ref': 'US-9421', 'name': 'NPS Water Route', 'records': [lrec('l21', [[[-77.2, 41.28], [-77.19, 41.28]]], boundary_rule='river_100ft_from_bank', river_class='historic_route', bank_status='route line too coarse for a bank test')]}]
         def _k4(d):
             d['store_format_version'] = 'kpc-outline-store-index/4'; d['geometry_kinds'] = ['area', 'line', 'pin']
             for p in P4:
@@ -310,13 +323,31 @@ else:
         check('no area record' in held(st4, 'US-9403', ['p3'], 'US-ZY') and 'pin is never a boundary' in held(st4, 'US-9403', ['p3'], 'US-ZY'), 'format 4: a pin-only park is never an outline (held: a pin is never a boundary)')
         check('no area record' in held(st4, 'US-9404', ['b4'], 'US-ZY'), 'format 4: an unknown geometry_kind is not an area (left out, never read as one)')
         base = {'US-9405': {'lines': [[[-77.51, out40], [-77.48, out40]]], 'kind': 'trail', 'by': 'Test agency (data/trails)', 'type': 'NRT'},
-                'US-9499': {'lines': [[[-77.2, 41.2], [-77.1, 41.2]]], 'kind': 'trail', 'by': 'x', 'type': 'NRT'}}
+                'US-9499': {'lines': [[[-77.2, 41.2], [-77.1, 41.2]]], 'kind': 'trail', 'by': 'x', 'type': 'NRT'},
+                'US-9421': {'lines': [[[-77.3, 41.3], [-77.25, 41.31]]], 'kind': 'trail', 'by': 'National Park Service', 'type': 'NHT', 'water_parts': [0]}}
         S.FLAGS.clear(); S.STORE_LINES.clear()
         LN4 = S.store_lines(KF, st4, ['US-ZY'], base)
-        check(set(LN4) == {'US-9402', 'US-9405', 'US-9406'} and LN4['US-9402']['lines'][0][0] == [-77.51, 41.505] and LN4['US-9402']['lines'][0][-1] == [-77.48, 41.506]
+        check(LN4.get('US-9421') == base['US-9421'] and 'US-9421' not in S.STORE_LINES and 'US-9421' not in S.LINE_SKIPPED and 'US-9421' not in S.FLAGS,
+              'M4 (owner ruling): a coarse NPS water route (US-4572, US-3791, US-4567, US-4581) is NOT skipped: its data/trails line and rule exactly as on main')
+        LN4.pop('US-9421', None)
+        check(set(LN4) == {'US-9402', 'US-9405', 'US-9406', 'US-9412', 'US-9413', 'US-9419'} and LN4['US-9402']['lines'][0][0] == [-77.51, 41.505] and LN4['US-9402']['lines'][0][-1] == [-77.48, 41.506]
               and LN4['US-9402']['lines'][0][0] != LN4['US-9402']['lines'][0][-1], 'format 4: line parks get their line from the store, open and exact (never closed, never buffered into an area)')
-        check(LN4['US-9405']['by'] == 'Test agency (data/trails)' and LN4['US-9405']['type'] == 'NRT' and LN4['US-9406']['kind'] == 'river' and LN4['US-9402']['kind'] == 'trail',
-              "format 4: what the line rule needs (trail or river, who drew it, type) is today's data/trails entry; a store-only line takes it from its record")
+        check(LN4['US-9405']['by'] == 'Test agency (data/trails)' and LN4['US-9405']['type'] == 'NRT' and LN4['US-9405']['kind'] == 'trail' and LN4['US-9406']['kind'] == 'river' and LN4['US-9402']['kind'] == 'trail',
+              "format 4: trail or river comes from the record's boundary_rule (data/trails only when a record has none); who drew it and its type from data/trails")
+        check(LN4['US-9412']['kind'] == 'trail' and LN4['US-9413']['kind'] == 'river', 'M5: kind from boundary_rule, never the name: "Mississippi River Trail" (trail_100ft) is a trail, "Kentucky Water Trail" (river_100ft_from_bank) a river')
+        check('designated-corridor' in S.FLAGS.get('US-9414', '') and 'line is missing' in S.FLAGS.get('US-9417', '') and 'not sorted' in S.FLAGS.get('US-9418', '') and 'no boundary rule' in S.FLAGS.get('US-9420', '')
+              and not {'US-9414', 'US-9417', 'US-9418', 'US-9420'} & set(LN4),
+              'M4: a designated-corridor river is an AREA park (its line is never the boundary); line_missing, unclear class and no boundary rule are held')
+        check('found on USGS NHD by name' in S.LINE_SKIPPED.get('US-9415', '') and 'too coarse' in S.LINE_SKIPPED.get('US-9416', '') and LN4['US-9419'].get('bank_missing') and not LN4['US-9406'].get('bank_missing'),
+              'M4 (owner ruling): a by-name river line and a coarse route line are SKIPPED and counted (no 2-fer from them); bank_missing is read from the record')
+        _n_todo = len(S.RIVER_TODO)
+        _rows4 = {'st': 'US-ZY', 'spots': [{'refs': ['US-9401', 'US-9419'], 'kind': 'river', 'status': 'candidate', 'id': 'r19', 'center': [41.4977, -77.495], 'len_m': 400},
+                                         {'refs': ['US-9401', 'US-9419'], 'kind': 'river', 'status': 'candidate', 'bank_ok': True, 'id': 'r19b'},
+                                         {'refs': ['US-9401', 'US-9406'], 'kind': 'river', 'status': 'candidate', 'id': 'r6'}, {'refs': ['US-9401', 'US-9402'], 'kind': 'trail', 'status': 'candidate', 'id': 't2'}]}
+        S.line_status(KF, _rows4); _x4 = _rows4['spots']
+        check([x['status'] for x in _x4] == ['candidate'] * 4 and _x4[0].get('river_bank') == S.BANK_EST and not any(x.get('river_bank') for x in _x4[1:])
+              and len(S.RIVER_TODO) == _n_todo + 1 and S.RIVER_TODO[-1]['river'] == 'US-9419' and S.RIVER_TODO[-1]['park'] == 'US-9401',
+              'M4 (owner ruling): a bank_missing water trail is still decided by the existing centre-line rule, the row marked as an estimate and its stretch put on the river bank to-do; covered rivers and trails unchanged')
         check('US-9401' not in LN4 and 'not in the outline store' in S.FLAGS.get('US-9499', ''), 'format 4: an area park is tested as an area; a data/trails line the store lacks is HELD (one door in)')
         parks4 = {'US-9401': {'st': 'US-ZY', 'ids': ['a1', 'l1', 'p1'], 'names': {}}, 'US-9402': {'st': 'US-ZY', 'ids': ['l2'], 'names': {}}, 'US-9403': {'st': 'US-ZY', 'ids': ['p3'], 'names': {}}}
         G4, bad4 = S.store_download(KF, st4, parks4, sorted(parks4))
@@ -326,10 +357,12 @@ else:
         check(cross and all(x['kind'] == 'trail' for x in cross) and max(x['len_m'] for x in cross) > 500, f'line rule: a trail that crosses the park is a pair (100 ft rule, {[x["len_m"] for x in cross]} m)')
         check(KF.line_spots('US-9405', LN4['US-9405']['lines'], 'US-9401', g9401, False, bx, 'trail') == [], 'line rule: a trail 40 m outside the park is no pair (25.48 m from the line, station 5 m inside)')
         wpoly = [[[-77.51, 41.4955], [-77.47, 41.4955], [-77.47, bank_n], [-77.51, bank_n], [-77.51, 41.4955]]]
+        wdir = tmp / 's4' / 'water' / 'us-nhdplus-hr'; wdir.mkdir(parents=True, exist_ok=True); widx = {'sources': {'us-nhdplus-hr': {'publishable': True, 'licence_class': 'PUBLIC DOMAIN'}}, 'tiles': {'us-nhdplus-hr': {}}}
         for i in range(int(_m.floor(-77.9 / .1)), int(_m.floor(-77.1 / .1)) + 1):
             for jt in range(int(_m.floor(41.1 / .1)), int(_m.floor(41.9 / .1)) + 1):
-                (tmp / 's4' / 'water' / 'US-ZY').mkdir(parents=True, exist_ok=True)
-                (tmp / 's4' / 'water' / 'US-ZY' / f'{i}_{jt}.json.gz').write_bytes(gzip.compress(json.dumps({'d': '2026-11-01', 'f': [['area', wpoly]]}).encode()))
+                raw_t = gzip.compress(json.dumps({'d': 'us-nhdplus-hr 2026-11-01', 'f': [['area', wpoly]]}).encode(), mtime=0)
+                (wdir / f'{i}_{jt}.json.gz').write_bytes(raw_t); widx['tiles']['us-nhdplus-hr'][f'{i}_{jt}.json.gz'] = {'sha256': hashlib.sha256(raw_t).hexdigest(), 'date': '2026-11-01'}
+        (tmp / 's4' / 'water' / 'index.json').write_text(json.dumps(widx))
         keep_wl = KF._wload; KF.NHDC.clear(); KF.WATER_UNCHECKED.clear()
         KF._wload = lambda i, jt: None   # no tile anywhere: the river's centre line only
         S.NET_TRIES.clear()
@@ -337,16 +370,39 @@ else:
         check(cen == [] and ('US-9406', 'US-9401') in KF.WATER_UNCHECKED and not S.NET_TRIES,
               'river, centre line only (no water tile): no pair from the centre line of a wide river, and the pair is marked water-unchecked (NOT SURE), no live call')
         KF.NHDC.clear(); KF.WATER_UNCHECKED.clear(); KF.WATER_MARK.clear()
-        KF._wload = lambda i, jt: S.store_water(st4, ['US-ZY'], i, jt)
+        KF._wload = S.water_reader(st4, ['US-ZY'], None)
         bnk = KF.line_spots('US-9406', LN4['US-9406']['lines'], 'US-9401', g9401, False, bx, 'river')
         check(bnk and not KF.WATER_UNCHECKED and S.WATER_READ['store'] > 0 and '2026-11-01' in KF.WATER_MARK and not S.NET_TRIES,
               f'river with its bank (water tile from the store): the park 10 m from the bank is a pair, 100 ft from the bank; the row is dated from the tile ({[x["len_m"] for x in bnk]} m)')
+        # S1: the spec's water section: store/water/<source id>/, checked against water/index.json, the area's own source only
+        t0 = S.store_water(st4, ['US-ZY'], -775, 414)
+        check(isinstance(t0, dict) and t0['d'] == '2026-11-01' and t0['f'], 'water: a tile is read from store/water/us-nhdplus-hr/<i>_<j>.json.gz, checked against water/index.json; its row date is the tile date')
+        _calls = []
+        _wr = S.water_reader(st4, ['US-ZY'], lambda i, jt: _calls.append((i, jt)) or {'d': 'other copy', 'f': []})
+        tf = wdir / '-775_414.json.gz'; keep_t = tf.read_bytes(); tf.write_bytes(keep_t[:-3] + b'xyz')
+        check(S.store_water(st4, ['US-ZY'], -775, 414) is S.WATER_DAMAGED and _wr(-775, 414) is None and not _calls,
+              'water: a damaged tile (sha256 differs from water/index.json) is NOT SURE and never falls through to another copy')
+        tf.write_bytes(keep_t)
+        check(_wr(-700, 300) == {'d': 'other copy', 'f': []} and _calls == [(-700, 300)], "water: a tile the store does not hold falls back to the bot's own last good copy, as today")
+        (tmp / 's4' / 'water' / 'on-ohn').mkdir(exist_ok=True); (tmp / 's4' / 'water' / 'on-ohn' / '-760_400.json.gz').write_bytes(gzip.compress(b'{"d": "on-ohn 2026-11-01", "f": []}'))
+        check(S.store_water(st4, ['US-ZY'], -776, 415)['d'] == '2026-11-01' and S.store_water(st4, ['US-ZY'], -760, 400) is None,
+              'water: a border tile is read from the source mapped to the area (us-nhdplus-hr); another source (on-ohn) never decides alone')
+        _wi = json.loads((tmp / 's4' / 'water' / 'index.json').read_text()); _wi['sources']['us-nhdplus-hr']['publishable'] = False; (tmp / 's4' / 'water' / 'index.json').write_text(json.dumps(_wi))
+        check(S.store_water(S.Store(tmp / 's4', 100000, today='2026-11-14', kind='public'), ['US-ZY'], -775, 414) is S.WATER_DAMAGED
+              and isinstance(S.store_water(S.Store(tmp / 's4', 100000, today='2026-11-14', kind='private'), ['US-ZY'], -775, 414), dict),
+              'water: a source marked publishable false is not read on a public store run (NOT SURE); a private run reads it')
+        _wi['sources']['us-nhdplus-hr']['publishable'] = True; (tmp / 's4' / 'water' / 'index.json').write_text(json.dumps(_wi))
+        check(S.store_water(st4, ['CA-ON'], -775, 414) is None, "water: Canadian areas are not read from the store (no bank source wired in the bot): today's behaviour")
+        KF.NHDC.clear(); _keep_wl2 = KF._wload; KF._wload = S.water_reader(st4, ['US-ZY'], None)
+        b19 = KF.line_spots('US-9419', LN4['US-9419']['lines'], 'US-9401', g9401, False, bx, 'river')
+        KF._wload = _keep_wl2
+        check(any(x.get('bank_ok') for x in b19) and any(not x.get('bank_ok') for x in b19), f'M4: a bank_missing river: the stretch in mapped water was measured from the bank (bank_ok), the stretch off the water was not ({[(x["len_m"], bool(x.get("bank_ok"))) for x in b19]})')
         # the river rule with NO bank data, behind one switch (KPC_FERS_RIVER_NO_BANK): default centreline = today; tiers = PROVISIONAL
         def rl(m_from_edge): y = 41.50 - m_from_edge / 110574.0; return [[[-77.498, y], [-77.492, y]]]
         check(S.river_mode({}) == 'centreline' and S.river_mode({'KPC_FERS_RIVER_NO_BANK': 'tiers'}) == 'tiers' and S.river_mode({'KPC_FERS_RIVER_NO_BANK': 'maybe'}) == 'centreline'
               and S.RIVER_NO_BANK['catch_m'] == 250.0, 'river switch: default centreline (today); only "tiers" turns the provisional tiers on; catch distance 250 m')
         keep_ls = KF.line_spots
-        KF._wload = lambda i, jt: S.store_water(st4, ['US-ZY'], i, jt)
+        KF._wload = S.water_reader(st4, ['US-ZY'], None)
         KF.NHDC.clear(); c1 = KF.line_spots('US-9407', narrow := [[[-77.498, 41.51 + 11 / 110574.0], [-77.492, 41.51 + 11 / 110574.0]]], 'US-9401', g9401, False, bx, 'river')
         check(c1 and not any('river_tier' in x for x in c1), f'river switch, default: no bank data = measured from the centre line exactly as today, no tier label ({[x["len_m"] for x in c1]} m)')
         S.river_bank_guard(KF, 'tiers'); S.RIVER_TIERS.clear(); S.RIVER_TODO.clear()
@@ -368,12 +424,18 @@ else:
               'tiers: only tiers 1 and 2 stay 2-fers; tier 3 / 4 rows say "river candidate: needs bank shape" with the distance and signs')
         check(len(S.RIVER_TODO) == 2 and {x['river'] for x in S.RIVER_TODO} == {'US-9409', 'US-9410'} and not any('shape' in x or 'lines' in x for x in S.RIVER_TODO) and S.store_counts()['river bank to-do (stretches)'] == 2,
               f'tiers: every caught candidate goes on the bank store to-do list (ids, distance, signs, a box; no shape) ({S.RIVER_TODO})')
+        import csv as _csv
+        check(S.write_todo_csv() and [r for r in _csv.reader(open(priv / 'river-bank-todo.csv'))][0] == ['park ref', 'other park ref', 'lat', 'lon', 'radius m']
+              and len(list(_csv.reader(open(priv / 'river-bank-todo.csv')))) == 3 and S.PRIVATE_LOG_DIR == S.PRIVATE_OUT,
+              "S3: the river bank to-do is the spec's river-bank-todo.csv (park ref, other park ref, lat, lon, radius m), written in the PRIVATE folder only")
+        check(S.write_candidates_csv() and 'river candidate: needs a look' in (priv / 'river-candidates-needs-a-look.csv').read_text() and 'US-9415' in (priv / 'river-candidates-needs-a-look.csv').read_text(),
+              'M4 (owner ruling): the skipped lines are listed as "river candidate: needs a look" in the PRIVATE folder only')
         S.RIVER_NO_BANK['mode'] = 'centreline'; KF.line_spots = keep_ls
         check(not S.NET_TRIES, 'tiers: no network request')
         KF._wload = keep_wl; KF.NHDC.clear(); KF.WATER_MARK.clear()
         d4 = KF.pc_tag({'st': 'US-ZY', 'spots': [dict(cross[0], status='candidate', id='t1'), {'refs': ['US-9401', 'US-1'], 'kind': 'area', 'status': 'candidate', 'id': 't2'}]})
         cnt = S.store_counts()
-        check(S.LINE_ROWS.get('US-ZY') == 1 and cnt['line parks read from the store'] == 3 and cnt['records left out of area outlines (not area)'].get('pin', 0) >= 1,
+        check(S.LINE_ROWS.get('US-ZY') == 1 and cnt['line parks read from the store'] == 6 and cnt['line parks skipped (by-name / coarse / no bank status)'] == 2 and cnt['records left out of area outlines (not area)'].get('pin', 0) >= 1,
               f'format 4: the run report counts the left-out records, the store line parks and the pairs that depend on the 100-ft line rule ({cnt})')
 
         # ---- must-fix 1: a private store run writes only into its private folder (club room only)
@@ -405,7 +467,9 @@ os.environ['REGION'] = 'na'; os.environ['PASS'] = '3'
 sys.path.insert(0, %r)
 import kpc_fers as KF, kpc_fers_store as S
 KF.ONLY = {'US-ZZ'}
-assert S.install(KF, env={'KPC_FERS_FROM_STORE': 'on', 'KPC_FERS_STORE_DIR': %r, 'KPC_FERS_STORE_MAX_DAYS': '100000', 'KPC_FERS_STORE_KIND': 'public'})
+_env = {'KPC_FERS_FROM_STORE': 'on', 'KPC_FERS_STORE_DIR': %r, 'KPC_FERS_STORE_MAX_DAYS': '100000', 'KPC_FERS_STORE_KIND': 'public'}
+if len(sys.argv) > 2: _env['KPC_FERS_PRIVATE_LOG'] = sys.argv[2]
+assert S.install(KF, env=_env)
 case = sys.argv[1]; f = KF.file_of('US-ZZ')
 row = {'refs': ['US-9001', 'US-9002'], 'kind': 'area', 'status': 'candidate', 'id': 'US-9001+US-9002@area@x', 'wide_m': 30, 'acres': 1.0, 'center': [40.0, -80.0], 'shape': [[-80, 40], [-79.99, 40], [-79.99, 40.01]]}
 priv = {'sgzza9': {'licence_class': 'NO TERMS STATED'}}
@@ -417,27 +481,135 @@ if case == 'private_untagged': S.PRIVATE['US-9009'] = priv; KF.save_json(f, {'st
 if case == 'private_id_only': S.PRIVATE['US-9009'] = priv; KF.save_json(KF.OUT / 'looked-US-ZZ.json', {'unread': ['US-9009'], 'boxes': {}})
 if case == 'world': KF.save_json(f, {'st': 'US-ZZ', 'spots': [dict(row, refs=['US-9001', 'GB-0001'])]})
 if case == 'blocked': KF.save_json(KF.OUT / 'report.json', {'build': 'US-42797939226'})
+if case == 'log_line': S.PRIVATE['US-9009'] = priv; KF.save_json(KF.OUT / 'report.json', {'problems': ['us-9009 lower case', 'pairUS-9009', 'area-US-9009', 'fine line'], 'x': {'US-9009': 1}})
+if case == 'print_secret': print('progress: now US-9001+US-9003, us-9008 and US-9009 at the end', flush=True)
 if case == 'store_list_blocked': S.FLAGS['US-9001'] = 'built from US-42797939226'; sys.exit(0)
 if case == 'swallowed':
     try: KF.save_json(f, {'st': 'US-ZZ', 'spots': [dict(row, club_room_only=True)]})
     except Exception: pass
 print('WROTE')
 """ % (str(ROOT / '.github/scripts'), str(tmp / 'store')))
-    def guard_case(case):
-        d = tmp / ('g-' + case); d.mkdir()
-        r = subprocess.run([sys.executable, str(guard_prog), case], capture_output=True, text=True, cwd=d)
+    def guard_case(case, plog=None):
+        d = tmp / ('g-' + case + ('-log' if plog else '')); d.mkdir(exist_ok=True)
+        r = subprocess.run([sys.executable, str(guard_prog), case] + ([str(plog)] if plog else []), capture_output=True, text=True, cwd=d)
         return r.returncode, (d / 'data' / 'fers').glob('*') and sorted(p.name for p in (d / 'data' / 'fers').glob('*')), r.stdout + r.stderr
     rc, files, out = guard_case('clean')
     check(rc == 0 and 'US-ZZ.json' in files and 'WROTE' in out, f'write guard: a clean public row is written as before ({rc}, {files})')
+    import re as _rx
+    REFS_OUT = _rx.compile(r'(?i)US-9\d{3}|GB-0001|sgzza\d|NO TERMS')
     for case, what in (('tagged', 'a row marked club_room_only, with its shape, width, centre and area'), ('tagged_no_geometry', 'a row marked club_room_only, with no geometry at all'),
-                       ('tagged_by_pc_tag', 'a row the save path tags club_room_only'), ('private_untagged', 'a row with a private park whose tag was never set'),
-                       ('private_id_only', 'a private park id alone (the looked list), no geometry'), ('world', 'a world 2-fer row'),
-                       ('blocked', 'the never-released build US-42797939226'), ('swallowed', "a refusal inside kpc_fers.py's own 'except Exception'")):
+                       ('world', 'a world 2-fer row'), ('blocked', 'the never-released build US-42797939226'), ('swallowed', "a refusal inside kpc_fers.py's own 'except Exception'")):
         rc, files, out = guard_case(case)
-        check(rc == 89 and 'US-ZZ.json' not in files and 'looked-US-ZZ.json' not in files and 'report.json' not in files and 'WROTE' not in out and 'write refused' in out,
+        check(rc == 89 and 'US-ZZ.json' not in files and 'report.json' not in files and 'WROTE' not in out and 'write refused' in out,
               f'write guard: the run FAILS (exit 89, nothing written) rather than write {what} to a public file ({rc}, {files})')
+        check(not REFS_OUT.search(out) and 'problem(s)' in out, f'M2: the refusal prints a count and a generic reason only: no park, record or licence in stdout / stderr ({REFS_OUT.findall(out)[:3]})')
+    for case, what, fname in (('tagged_by_pc_tag', 'a row the save path tags club_room_only', 'US-ZZ.json'), ('private_untagged', 'a row with a private park whose tag was never set', 'US-ZZ.json'),
+                              ('private_id_only', 'a private park id alone (the looked list), no geometry', 'looked-US-ZZ.json'), ('log_line', 'log lines naming it in lower case or glued to other text', 'report.json')):
+        rc, files, out = guard_case(case)
+        body = (tmp / ('g-' + case) / 'data' / 'fers' / fname).read_text() if fname in files else ''
+        sm = (tmp / ('g-' + case) / 'data' / 'fers' / 'store-missing-US-ZZ.json').read_text() if 'store-missing-US-ZZ.json' in files else ''
+        check(rc == 0 and fname in files and body and not _rx.search(r'(?i)US-9009|US-900[378]|sgzza9|NO TERMS', body + sm) and 'fine line' in (body if case == 'log_line' else 'fine line')
+              and not REFS_OUT.search(out), f'M1: {what}: the park is left out of the public file (and store-missing, stdout), never named ({rc}, {files})')
+    smj = json.loads((tmp / 'g-clean' / 'data' / 'fers' / 'store-missing-US-ZZ.json').read_text())
+    check(smj['withheld (parks held or used for unpublishable / WDPA records: not named)'] >= 4 and not _rx.search(r'(?i)US-900[3789]|sgzza[3789]|NO TERMS|wdpa_derived', json.dumps(smj['parks'])),
+          f"M1: store-missing names no park held for licence or WDPA records (filled from the store index for ALL parks of the area, read or not): only a count ({smj['withheld (parks held or used for unpublishable / WDPA records: not named)']})")
+    rc, files, out = guard_case('print_secret')
+    check(rc == 0 and 'US-9003' not in out and 'US-9009' not in out and 'us-9008' not in out.lower().replace('[withheld]', '') and 'US-9001' in out,
+          f'M1 / M3: a public run prints no park held for licence or WDPA records (a line naming one has it replaced by [withheld]) ({out.strip()[-120:]})')
+    plog = tmp / 'plog-tagged'
+    rc, files, out = guard_case('tagged', plog)
+    pl = (plog / 'private-log.txt').read_text() if (plog / 'private-log.txt').is_file() else ''
+    check(rc == 89 and 'US-9001+US-9002' in pl and 'US-9001' not in out and 'details are only in the private log' in out,
+          'M2: with a private log folder the details of a refusal go there, and only there')
     rc, files, out = guard_case('store_list_blocked')
     check(rc == 89 and 'store-missing-US-ZZ.json' not in files, f'write guard: the store-missing list (written at exit) passes the guard too ({rc}, {files})')
+
+# ---------------------------------------------------------------- the guard itself, hardened (S5), and small fixes (S2, S7)
+_po = S.PRIVATE_OUT; S.PRIVATE_OUT = None
+def _refused(doc, secret=()):
+    try: S.guard_write('data/fers/x.json', doc, secret); return False
+    except S.LeakRefused: return True
+_deep = {'a': 1}
+for _ in range(20): _deep = {'n': [_deep]}
+_deep_flag = json.loads(json.dumps(_deep).replace('{"a": 1}', '{"club_room_only": true}'))
+check(_refused(_deep_flag) and _refused({'pairs': ['US-1+GB-0001']}) and _refused({'x': [{'refs': ['US-1', 'W-5']}]}) and _refused({'build': 42797939226})
+      and _refused({'p': ['area-US-9009']}, {'US-9009'}) and _refused({'p': 'pairUS-9009'}, {'US-9009'}) and _refused({'p': 'us-9009'}, {'US-9009'})
+      and not _refused({'p': 'US-90091', 'refs': ['US-1', 'CA-2']}, {'US-9009'}),
+      'S5: the guard sees a club-room flag 20 levels deep, world refs in any row shape (pairs, refs without kind), the blocked build as a number, and a private ref in any case or glued to other text')
+S.PRIVATE_OUT = _po
+check(S.env_float({'X': 'nan'}, 'X', 250.0) == 250.0 and S.env_float({'X': 'inf'}, 'X', 250.0) == 250.0 and S.env_float({'X': '-3'}, 'X', 250.0) == 250.0
+      and S.env_float({'X': '0'}, 'X', 250.0) == 250.0 and S.env_float({'X': '300'}, 'X', 250.0) == 300.0, 'S7: nan, inf, zero and negative settings are refused (the default stays)')
+class _LC:
+    pad_closed = None
+    def land_check(self_or_s, *a, **k): raise RuntimeError('boom')
+_lc = _LC(); _lc.land_check = lambda s_, G_, live=True: (_ for _ in ()).throw(RuntimeError('boom'))
+S.shut_door(_lc)
+_sp = {'refs': ['US-1', 'US-2'], 'kind': 'area'}
+_lcr = _lc.land_check(_sp, {})
+_d2 = {'spots': [dict(_sp, status='not sure: water not checked (the USGS water map did not answer): run pass 5')]}
+S.closed_status(_d2)
+check(_lcr == 'not checked' and _d2['spots'][0]['status'].startswith('not sure: the land check stopped with an error'), 'S2: any error inside the land check on a store run is NOT SURE, never ok')
+
+# ---------------------------------------------------------------- S6 / M1 / M3: kpc_fers.main() end to end on a synthetic store, every socket shut
+if have:
+    e2e = tmp / 'e2e'
+    def e2e_world(name):
+        b = e2e / name; w = b / 'w'
+        for d in ('data/parkinfo', 'data/trails', 'data/us-key', 'data/fers'): (w / d).mkdir(parents=True, exist_ok=True)
+        EP = [('US-9601', 'Big Forest', sq(-71.6, 41.6, 0.02), {}), ('US-9602', 'Inner Park', sq(-71.59, 41.61, 0.005), {}),
+              ('US-9603', 'Secret Park', sq(-71.585, 41.605, 0.004), {'publishable': False, 'licence_class': 'NO TERMS STATED', 'publish_basis': 'none'}),
+              ('US-9604', 'Wdpa Park', sq(-71.595, 41.615, 0.004), {'wdpa_derived': True})]
+        build(b / 'store', 'US-RI', [{'ref': r, 'name': n, 'records': [rec(str(int(r[-4:]) * 10), [g], **kw)]} for r, n, g, kw in EP], made='2026-11-14')
+        pins = {r: [n, 'State Park', '', '', '', g[0][1] + 0.001, g[0][0] + 0.001] for r, n, g, kw in EP}
+        pins['US-9605'] = ['Held Park', 'State Park', '', '', '', 41.615, -71.58]
+        (w / 'data/parkinfo/US-RI.json').write_text(json.dumps({'parks': pins}))
+        key = {r: {'m': [[int(r[-4:]) * 10, n, 0.01, 'name']], 'g': 'official'} for r, n, g, kw in EP}
+        key['US-9605'] = {'m': [[96059, 'Held Park', 0.01, 'name']], 'g': 'official'}
+        (w / 'data/us-key/US-RI.json').write_text(json.dumps({'parks': key}))
+        (w / 'data/trails/index.json').write_text('[]'); (w / 'data/trails/index-state.json').write_text('[]')
+        (w / 'data/fers/US-RI.json').write_text(json.dumps({'st': 'US-RI', 'pass3': '2026-10-29', 'spots': [
+            {'refs': ['US-9601', 'US-9603'], 'kind': 'area', 'status': 'candidate', 'passes': [1, 1, 1], 'id': 'old1', 'names': {'US-9603': 'Secret Park'}}]}))
+        runner = b / 'runner.py'
+        runner.write_text('import socket, sys, os, json, atexit\nTRIES = []\n'
+                          'def no(*a, **k): TRIES.append(str(a[:2])[:80]); raise OSError("no network")\n'
+                          'socket.socket.connect = lambda self, *a, **k: no(*a); socket.socket.connect_ex = lambda self, *a, **k: no(*a)\n'
+                          'socket.create_connection = no; socket.getaddrinfo = no\n'
+                          'atexit.register(lambda: open(os.environ["TRIES_OUT"], "w").write(json.dumps(TRIES)))\n'
+                          f'sys.path.insert(0, {str(ROOT / ".github/scripts")!r})\nimport kpc_fers_store as S\nsys.exit(S.main(["run"]))\n')
+        return b, w, runner
+    def e2e_run(name, **extra):
+        b, w, runner = e2e_world(name)
+        env = {k: v for k, v in os.environ.items() if 'proxy' not in k.lower() and k not in ('GITHUB_ACTIONS', 'KPC_FERS_PRIVATE_RUNNER')}
+        env.update(KPC_FERS_FROM_STORE='on', KPC_FERS_STORE_DIR=str(b / 'store'), KPC_FERS_STORE_MAX_DAYS='100000', STATES='US-RI', PASS='1', REGION='na', MINUTES='5',
+                   TRIES_OUT=str(b / 'tries.json'), **extra)
+        r = subprocess.run([sys.executable, str(runner)], cwd=w, capture_output=True, text=True, env=env, timeout=900)
+        tries = json.loads((b / 'tries.json').read_text()) if (b / 'tries.json').is_file() else None
+        return r, b, w, tries
+    SECRET = _rx.compile(r'(?i)US-960[34]|Secret Park|Wdpa Park|9603\d|9604\d|NO TERMS')
+    r, b, w, tries = e2e_run('public', KPC_FERS_PRIVATE_LOG=str(e2e / 'public-plog'))
+    pub_files = {f.name: f.read_text() for f in (w / 'data/fers').glob('*.json')}
+    spots = json.loads(pub_files.get('US-RI.json', '{}')).get('spots') or []
+    miss = json.loads(pub_files.get('missing-na.json', '{}')).get('parks') or []
+    check(r.returncode == 0 and tries == [] and 'store-missing-US-RI.json' in pub_files and any(set(x['refs']) == {'US-9601', 'US-9602'} for x in spots),
+          f'S6: kpc_fers.main() runs end to end on a store with every socket shut: zero connection attempts, the files written ({r.returncode}, {tries}, {sorted(pub_files)})')
+    check(not any(SECRET.search(t) for t in pub_files.values()) and not SECRET.search(r.stdout + r.stderr) and not any('US-9603' in x['refs'] for x in spots),
+          'M1: a public run names no park held for licence / WDPA records in ANY file (spot file with its carried row, looked, missing, store-missing, report) nor in stdout / stderr')
+    m5 = [x for x in miss if x.get('ref') == 'US-9605']
+    check(m5 and m5[0]['why'].startswith('held by the outline store') and 'no official boundary' not in m5[0]['why'],
+          f'M1: a park the store held is on the Missing boundary list with the reason the store gave, never "no official boundary" ({[x.get("why") for x in m5]})')
+    import time as _time
+    check(isinstance(S._StoreTime(_time).monotonic(), float) and (lambda t0: (S._StoreTime(_time).sleep(60), _time.time() - t0)[1] < 1)(_time.time()),
+          "store run: pass 1's one-minute wait for a slow agency server is skipped (the second try only reads the store again)")
+    r, b, w, tries = e2e_run('private', KPC_FERS_STORE_KIND='private', KPC_FERS_PRIVATE_OUT=str(e2e / 'private-out'))
+    pf = sorted(f.name for f in (e2e / 'private-out').glob('*'))
+    check(r.returncode == 0 and tries == [] and 'run-log.txt' in pf and 'US-RI.json' in pf and json.loads((w / 'data/fers/US-RI.json').read_text())['spots'][0]['id'] == 'old1'
+          and not _rx.search(r'US-96\d\d|Big Forest|Inner Park', r.stdout + r.stderr) and 'every detail is in the private folder' in r.stdout,
+          f'M3: a private run writes only into its private folder and prints counts only: no park in stdout / stderr ({_rx.findall(r"US-96..", r.stdout + r.stderr)[:3]})')
+    r, b, w, tries = e2e_run('actions', KPC_FERS_STORE_KIND='private', KPC_FERS_PRIVATE_OUT=str(e2e / 'actions-out'), GITHUB_ACTIONS='true')
+    check(r.returncode == 89 and not (e2e / 'actions-out' / 'US-RI.json').exists() and 'KPC_FERS_PRIVATE_RUNNER' in r.stdout, 'M3: a private store run under GitHub Actions is refused (exit 89, nothing read) unless the private-runner switch is set')
+    r, b, w, tries = e2e_run('runner', KPC_FERS_STORE_KIND='private', KPC_FERS_PRIVATE_OUT=str(e2e / 'runner-out'), GITHUB_ACTIONS='true', KPC_FERS_PRIVATE_RUNNER='1')
+    check(r.returncode == 0 and (e2e / 'runner-out' / 'US-RI.json').is_file() and not _rx.search(r'US-96\d\d', r.stdout + r.stderr),
+          'M3: with KPC_FERS_PRIVATE_RUNNER=1 it runs, and still prints no park')
 
 # writer trace: every file kpc_fers.py writes goes through save_json -> _save_json_raw (the guarded write step), except the two
 # direct writers the shut door turns off in a store run (live_save: the saved-live copy; _wsave: a live water tile)

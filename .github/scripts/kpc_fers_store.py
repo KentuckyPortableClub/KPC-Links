@@ -80,10 +80,12 @@ NET_TRIES = []     # store runs: every socket connection the shut door refused (
 ASKED = []         # store runs: every fetch kpc_fers.py asked for and the door refused before it was sent (never an outline)
 CLOSED_NOT_CHECKED = {'n': 0}   # store runs: area spots whose PAD-US closed-area check could not run (no download)
 PUBLIC_REF = re.compile(r'(US|CA)-\d+')
+MAIN_LINES = {}    # ref -> why its line is taken from data/trails exactly as on main (the coarse NPS water routes)
+LINE_SKIPPED = {}  # ref -> why its store line is not used (by-name, coarse route, unknown bank status): counted, listed privately
 GEOM_SKIPPED = {}  # format 4: ref -> {geometry kind: records} left out of the park's AREA outline (lines, pins, unknown kinds)
 STORE_LINES = {}   # format 4: ref -> the line entry (kpc_fers.py LN form) whose geometry came from the store
 LINE_ROWS = {}     # area -> live trail / river rows (pairs that depend on the 100-ft line rule) in this run's files
-WATER_READ = {'store': 0, 'not in store': 0, 'store tile damaged': 0}
+WATER_READ = {'store': 0, 'not in store': 0, 'store tile refused': 0}
 RIVER_SWITCH = 'KPC_FERS_RIVER_NO_BANK'   # centreline (default: today's rule, unchanged) | tiers (PROVISIONAL, the owner's Nov 14 ruling)
 RIVER_NO_BANK = {'mode': 'centreline', 'catch_m': 250.0, 'half_m': 150.0, 'along_m': 50.0}
 RIVER_TIERS = {}   # tier -> stretches / rows this run (tiers mode)
@@ -96,9 +98,15 @@ def river_mode(env=None):
     env = os.environ if env is None else env
     v = str(env.get(RIVER_SWITCH) or '').strip().lower()
     for k, e in (('catch_m', 'KPC_FERS_RIVER_CATCH_M'), ('half_m', 'KPC_FERS_RIVER_HALF_M')):
-        try: RIVER_NO_BANK[k] = float(env.get(e) or RIVER_NO_BANK[k])
-        except ValueError: pass
+        RIVER_NO_BANK[k] = env_float(env, e, RIVER_NO_BANK[k])
     return 'tiers' if v == 'tiers' else 'centreline'
+
+
+def env_float(env, name, default, hi=1e7):
+    """A positive, finite number from the environment; anything else (nan, inf, 0, negative, text) keeps the default."""
+    try: v = float(str(env.get(name) or '').strip() or default)
+    except ValueError: return default
+    return v if math.isfinite(v) and 0 < v <= hi else default
 
 
 def kind_of(r):
@@ -114,11 +122,38 @@ class NoDownload(OSError):
 
 class LeakRefused(SystemExit):
     """The write guard refused a file. A SystemExit (not an Exception) so no 'except Exception' in kpc_fers.py can swallow it:
-    the run fails rather than write a club-room-only row, a private park, a world 2-fer or a blocked build to a public file."""
-    def __init__(self, why):
-        print(f'::error title=2-fer outline store: write refused::{why}. Nothing more is written; the area keeps its previous files.', flush=True)
+    the run fails rather than write a club-room-only row, a private park, a world 2-fer or a blocked build to a public file.
+    The message names NO park, record, licence or path detail: Actions logs of a public repo are public. Only the number of
+    problems and their kinds are printed; the details go to the private log (private folder) when there is one."""
+    def __init__(self, why, kinds=None):
+        whys = why if isinstance(why, list) else [why]
+        kinds = sorted(set(kinds or ['refused']))
+        private_note('write refused', whys)
+        msg = (f'{len(whys)} problem(s) would have gone into a public file ({", ".join(kinds)}); the details are only in the private log'
+               if PRIVATE_LOG_DIR else f'{len(whys)} problem(s) would have gone into a public file ({", ".join(kinds)}); no private log is set, so no detail is kept')
+        public_print(f'::error title=2-fer outline store: write refused::{msg}. Nothing more is written; the area keeps its previous files.')
         super().__init__(EXIT_LEAK)
-        self.why = why
+        self.why, self.kinds = whys, kinds
+
+
+PRIVATE_LOG_DIR = None   # the private folder (private run) or KPC_FERS_PRIVATE_LOG (public run): details that must never be printed
+_REAL_OUT = {'out': sys.stdout, 'err': sys.stderr}
+
+
+def public_print(text):
+    """The only printing this module does in a run: counts and generic reasons, never a park (see install: private runs send
+    every other line of the process to the private log)."""
+    try: print(text, file=_REAL_OUT['out'], flush=True)
+    except Exception: pass  # noqa: BLE001
+
+
+def private_note(what, lines):
+    """Details (refs, reasons, licence classes) into the private log only; nowhere when there is no private folder."""
+    if not PRIVATE_LOG_DIR: return
+    try:
+        with open(pathlib.Path(PRIVATE_LOG_DIR) / 'private-log.txt', 'a', encoding='utf-8') as fh:
+            for x in lines: fh.write(f'{datetime.datetime.now().isoformat(timespec="seconds")} {what}: {x}\n')
+    except OSError: pass
 
 
 def mode(env=None):
@@ -512,7 +547,9 @@ def closed_status(doc):
     which kpc_fers.py words as a water reason)."""
     n = 0
     for s in (doc or {}).get('spots') or []:
-        if s.get('closed_check') and str(s.get('status') or '').startswith('not sure: water not checked'):
+        if not str(s.get('status') or '').startswith('not sure: water not checked'): continue
+        if s.get('check_failed'): s['status'] = 'not sure: ' + s['check_failed'] + ': run again'; n += 1
+        elif s.get('closed_check'):
             s['status'] = 'not sure: closed areas not checked (' + s['closed_check'][len('not checked: '):] + '): the store must carry them first'; n += 1
     return n
 
@@ -576,11 +613,14 @@ def store_download(KF, store, parks, refs, budget=2_000_000):
             FLAGS.pop(ref, None); continue
         if why:
             bad.add(ref); FLAGS[ref] = why
+            if PRIVATE_WHY.search(why) and store.kind != 'private':
+                HELD_PRIVATE.add(ref); continue   # held for licence / WDPA: never named in a public file or log (no MISSING_SAVED entry)
             KF.MISSING_SAVED[ref] = f'the outline store ({why}; flagged for the store filler)'
             continue
         FLAGS.pop(ref, None)
         ok.append(ref); boxes[ref] = list(info['box'])
         if info.get('private'): PRIVATE[ref] = info['private']
+        else: READ_OK.add(ref)   # read from publishable records only: may be named
         KF.MAPDATE[ref] = f'outline store (read from the agency {store.read_date(ref, p["st"])})'
     for r in [r for r in KF.MISSING_SAVED if r in ok]: KF.MISSING_SAVED.pop(r)
 
@@ -605,39 +645,94 @@ def in_git_tree(p):
     return any((q / '.git').exists() for q in (p, *p.parents))
 
 
-def _dicts(obj, depth=0):
-    if depth > 14: return
-    if isinstance(obj, dict):
-        yield obj
-        for v in obj.values(): yield from _dicts(v, depth + 1)
-    elif isinstance(obj, (list, tuple)):
-        for v in obj: yield from _dicts(v, depth + 1)
+def _dicts(obj):
+    """Every dict at ANY depth (iterative: no depth limit, no recursion limit)."""
+    st = [obj]
+    while st:
+        o = st.pop()
+        if isinstance(o, dict): yield o; st.extend(o.values())
+        elif isinstance(o, (list, tuple)): st.extend(o)
+
+
+HELD_PRIVATE = set()   # parks with records that are not publishable or are WDPA-derived (from the store index, ALL parks of the run's areas)
+READ_OK = set()        # parks read on THIS run from publishable records only (they may be named)
+WITHHELD = {'parks': 0, 'items': 0}   # anonymous counts: what the public files leave out
+PRIVATE_WHY = re.compile(r'needs the private store|WDPA|Protected Planet|not publishable', re.I)
+REFLIKE = re.compile(r'^[A-Za-z0-9]{1,4}-\d{1,6}$')
+ROW_KEYS = ('refs', 'ref', 'pair', 'pairs', 'park', 'other', 'parks_in')
+
+
+def secret_refs():
+    """The parks a PUBLIC file must never name: held or used for unpublishable / WDPA-derived records, unless this run read them
+    from publishable records only."""
+    return (HELD_PRIVATE | set(PRIVATE)) - READ_OK
+
+
+def _ref_rx(refs):
+    refs = sorted({str(r) for r in refs if r}, key=len, reverse=True)
+    return re.compile('(?:' + '|'.join(re.escape(r) for r in refs) + r')(?!\d)', re.I) if refs else None
+
+
+def redact(doc, refs=None):
+    """A public file never names a secret park (see secret_refs): a dict key that is such a ref, and any list item (row, entry,
+    log line, [ref, name] pair) that mentions one, is left out; a text value that mentions one becomes '[withheld]'. Returns
+    (doc, items left out). The write guard checks the result again."""
+    rx = _ref_rx(secret_refs() if refs is None else refs)
+    if rx is None or not rx.search(json.dumps(doc, default=str, ensure_ascii=False)): return doc, 0
+    n = [0]
+    def walk(o):
+        if isinstance(o, dict):
+            out = {}
+            for k, v in o.items():
+                if rx.fullmatch(str(k)) or (rx.search(str(k)) and REFLIKE.match(str(k).split('+')[0])): n[0] += 1; continue
+                if isinstance(v, str) and rx.search(v): out[k] = '[withheld]'; n[0] += 1; continue
+                out[k] = walk(v)
+            return out
+        if isinstance(o, (list, tuple)):
+            keep = []
+            for v in o:
+                if rx.search(json.dumps(v, default=str, ensure_ascii=False)): n[0] += 1; continue
+                keep.append(walk(v))
+            return keep
+        return o
+    return walk(doc), n[0]
 
 
 def guard_write(path, doc, private=None):
     """THE WRITE STEP of a store run: every file kpc_fers.py saves (spot files, reuse, report, looked, missing, same-outline ...)
     and the store-missing list pass here first. Raises LeakRefused (the run fails, nothing is written) when the file
-      - names a build that is never released (BLOCKED_BUILDS), in any file;
+      - names a build that is never released (BLOCKED_BUILDS: as text or as a number), in any file;
       - is outside the private folder, on a private store run (every file of such a run is club room only);
-      - is a public file and holds a row marked club_room_only, a 2-fer row with a park that is not US / Canada (world 2-fers
-        stay off the public site), or ANY mention of a park whose outline came from records that are not publishable (with
-        or without its shape, width, centre or area)."""
-    private = PRIVATE if private is None else private
+      - is a public file and holds a row marked club_room_only (any depth), a row naming a park that is not US / Canada (world
+        2-fers stay off the public site; any row shape: refs, ref, pair, pairs, park, other), or ANY mention (any case, any
+        neighbour character) of a park held or used for records that are not publishable or are WDPA-derived.
+    Every problem is counted; the message names none of them (LeakRefused)."""
+    private = secret_refs() if private is None else set(private)
     txt = json.dumps(doc, default=str, ensure_ascii=False)
-    hit = sorted(b for b in BLOCKED_BUILDS if b in txt)
-    if hit: raise LeakRefused(f'{path}: it names {hit[0]}, which is never released')
+    probs, kinds = [], set()
+    for b in sorted(BLOCKED_BUILDS):
+        if re.search(re.escape(b) + r'(?!\d)', txt, re.I) or re.search(r'(?<!\d)' + re.escape(b.split('-', 1)[1]) + r'(?!\d)', txt):
+            probs.append(f'{path}: it names {b}, which is never released'); kinds.add('never-released build')
     if PRIVATE_OUT is not None:
-        if not _inside(path, PRIVATE_OUT): raise LeakRefused(f'{path}: a private store run writes only into its private folder')
+        if not _inside(path, PRIVATE_OUT): probs.append(f'{path}: a private store run writes only into its private folder'); kinds.add('private run writing outside its folder')
+        if probs: raise LeakRefused(probs, kinds)
         return
     for d in _dicts(doc):
         if d.get('club_room_only') or 'club_room_why' in d:
-            raise LeakRefused(f"{path}: a row marked club_room_only ({'+'.join(map(str, d.get('refs') or [])) or '?'}) would go into a public file")
-        refs = d.get('refs')
-        if isinstance(refs, list) and d.get('kind') is not None and any(not PUBLIC_REF.fullmatch(str(r)) for r in refs):
-            raise LeakRefused(f"{path}: a 2-fer row with a park outside the US and Canada ({'+'.join(map(str, refs))}) would go into a public file")
-    for r in sorted(private):
-        if re.search(r'(?<![\w-])' + re.escape(str(r)) + r'(?!\d)', txt):
-            raise LeakRefused(f'{path}: it names {r}, whose outline came from records that are not publishable')
+            probs.append(f"{path}: a row marked club_room_only ({'+'.join(map(str, d.get('refs') or [])) or '?'})"); kinds.add('club-room-only row')
+        for k in ROW_KEYS:
+            v = d.get(k)
+            vals = v if isinstance(v, (list, tuple)) else [v]
+            for x in vals:
+                for r in (str(x).split('+') if isinstance(x, str) else []):
+                    r = r.strip()
+                    if REFLIKE.match(r) and not PUBLIC_REF.fullmatch(r.split('@')[0]):
+                        probs.append(f'{path}: a row naming {r}, a park outside the US and Canada'); kinds.add('world park in a row')
+    rx = _ref_rx(private)
+    if rx is not None:
+        for m in sorted({m.group(0).upper() for m in rx.finditer(txt)}):
+            probs.append(f'{path}: it names {m}, held or used for records that are not publishable'); kinds.add('park with unpublishable records')
+    if probs: raise LeakRefused(probs, kinds)
 
 
 # ------------------------------------------------------------------ the shut door: a store run makes no network request at all
@@ -671,6 +766,9 @@ def shut_door(KF):
             def no_closed(box): asked.append(1); raise NoDownload('PAD-US closed areas are not in the outline store (no download)')
             KF.pad_closed = no_closed
             try: r = orig_lc(s, G, live=live)
+            except Exception as e:  # noqa: BLE001  any error in a store run = NOT SURE, never 'ok' (kpc_fers.py's caller would say ok)
+                s['check_failed'] = f'the land check stopped with an error ({type(e).__name__})'; CLOSED_NOT_CHECKED['n'] += 1
+                return 'not checked'
             finally: KF.pad_closed = _no_closed
             if asked:   # the overlap needed the closed-area check and it could not run: never confirmed
                 CLOSED_NOT_CHECKED['n'] += 1
@@ -696,6 +794,8 @@ def shut_door(KF):
     if raw is not None and not getattr(raw, '_store', False):
         def guarded(p, d, *a, **k):
             if isinstance(d, dict) and pathlib.Path(p).name.startswith('report') and STORE_ON: d = dict(d, outline_store=store_counts())
+            if PRIVATE_OUT is None:   # a public file: a park held or used for unpublishable / WDPA records is left out (counted only)
+                d, n = redact(d); WITHHELD['items'] += n
             guard_write(p, d); out = raw(p, d, *a, **k)
             ks = sys.modules.get('kpc_save')   # its exit-time status file (data/status/<bot>.json) must not list private files
             if PRIVATE_OUT is not None and ks is not None and isinstance(getattr(ks, '_changed', None), dict): ks._changed.pop(str(pathlib.Path(p)), None); ks._changed.pop(str(p), None)
@@ -738,25 +838,61 @@ def store_lines(KF, st, areas, base):
             if bad: break
         if rec is None: continue
         if not bad and not rec: bad = (why or f'{ref}: its official line is not in the outline store') if ref in base else ''
+        meta = base.get(ref) or {}
+        kind, not_sure = None, ''
+        if not bad and rec:
+            rules = {str(r.get('boundary_rule') or '') for r in rec} - {''}
+            rcls = {str(r.get('river_class') or '') for r in rec} - {''}
+            banks = {str(r.get('bank_status') or '') for r in rec} - {''}
+            if 'designated_corridor_area' in rules or 'designated_corridor' in rcls:
+                bad = f'{ref}: a designated-corridor river: its AREA is its official corridor polygon, which the store does not hold (the line is never its boundary)'
+            elif 'unclear_river_class' in rules or 'unclear' in rcls:
+                bad = f'{ref}: the river class is not sorted yet in the store (no boundary rule applied)'
+            elif len(rules) > 1:
+                bad = f'{ref}: its line records disagree on the boundary rule'
+            elif 'line_missing' in banks:
+                bad = f'{ref}: the store says its official line is missing'
+            else:
+                kind = {'trail_100ft': 'trail', 'river_100ft_from_bank': 'river'}.get(next(iter(rules), '')) or (meta.get('kind') if not rules else None)
+                if kind is None: bad = f'{ref}: its store line has no boundary rule this bot knows' + (f' ({next(iter(rules))})' if rules else '')
+            if not bad:   # owner ruling 2026-11-14: these lines are SKIPPED (counted; a 'river candidate: needs a look' row in the private folder only)
+                skip = ''
+                if (any(b.startswith('route line too coarse') for b in banks) or 'historic_route' in rcls) and ref in base:
+                    # the four NPS water routes (US-4572, US-3791, US-4567, US-4581): treated exactly as on main (their data/trails
+                    # line and today's water-route rule), never from the store's line
+                    out[ref] = dict(base[ref]); MAIN_LINES[ref] = 'coarse NPS route: line and rule as on main'; FLAGS.pop(ref, None); continue
+                if any(r.get('source') == 'nhd-by-name' or r.get('line_extent') for r in rec):
+                    skip = 'its river line was found on USGS NHD by name: the park may be only a stretch of it'
+                elif any(b.startswith('route line too coarse') for b in banks) or 'historic_route' in rcls:
+                    skip = 'its route line is too coarse for a bank test'
+                elif kind == 'river' and banks - {'covered', 'bank_not_needed', 'bank_missing'}:
+                    skip = 'its bank status is ' + ', '.join(sorted(banks - {'covered', 'bank_not_needed', 'bank_missing'}))
+                elif kind == 'river' and not banks:
+                    skip = 'the store gives no bank status for this river line'
+                if skip:
+                    LINE_SKIPPED[ref] = skip; FLAGS[ref] = f'{ref}: line skipped: {skip}'; continue
         if not bad and rec:
             priv = {str(r.get('key')): {'licence_class': str(r.get('licence_class') or 'NOT RECORDED'), 'publish_basis': str(r.get('publish_basis') or 'none'),
                                         'private_reason': str(r.get('private_reason') or '')} for r in rec if not (r.get('publishable') is True and r.get('publish_basis') in PUBLISH_BASES)}
             if priv and st.kind == 'public': bad = f'{ref} needs the private store (line records not publishable: ' + ', '.join(f"{k} {v['licence_class']}" for k, v in sorted(priv.items())[:4]) + ')'
             elif priv: PRIVATE[ref] = priv
         if bad:
-            FLAGS[ref] = bad; KF.LOG.append(f'outline store line: {bad[:120]}'); continue
+            FLAGS[ref] = bad
+            if PRIVATE_WHY.search(bad): HELD_PRIVATE.add(ref)   # never named in a public file, nor in the log
+            else: KF.LOG.append(f'outline store line: {bad[:120]}')
+            continue
         if not rec: continue
+        if not PRIVATE.get(ref): READ_OK.add(ref)
         ls = [ring_floats(e) for r in rec for e in (r.get('lines') or [])]
         ls = [x for x in ls if len(x) > 1]
         if not ls:
             if ref in base: FLAGS[ref] = f'{ref}: its line records in the outline store have no usable path'
             continue
-        meta = base.get(ref) or {}
-        txt = ' '.join(str(r.get(k) or '') for r in rec for k in ('record_name', 'boundary_kind', 'layer')) + ' ' + str((park or {}).get('name') or '')
-        e = {'lines': ls, 'kind': meta.get('kind') or ('river' if re.search(r'river', txt, re.I) else 'trail'),
+        e = {'lines': ls, 'kind': kind,   # from the record's boundary_rule (never the park's name); data/trails only when the record has none
              'by': meta.get('by') or '; '.join(sorted({str(r.get('credit_line') or '') for r in rec} - {''})) or 'outline store',
              'type': meta.get('type') or str(rec[0].get('boundary_kind') or ''), 'date': min(str(r.get('date') or (park or {}).get('date') or '') for r in rec) or st.today,
-             'from': 'outline store', **({'bank_missing': True} if any(r.get('bank_missing') is True for r in rec) else {}),   # kept for the reader; the tiers test the water itself
+             'from': 'outline store', **({'not_sure': not_sure} if not_sure else {}),
+             **({'bank_missing': True} if kind == 'river' and any(r.get('bank_missing') is True or r.get('bank_status') == 'bank_missing' for r in rec) else {}),
              **({'boundary_rule': str(rec[0].get('boundary_rule'))} if rec[0].get('boundary_rule') else {})}
         if meta.get('water_parts'):
             if len(meta['lines']) == len(ls): e['water_parts'] = meta['water_parts']
@@ -771,7 +907,7 @@ def store_counts():
     for v in GEOM_SKIPPED.values():
         for k, n in v.items(): tot[k] = tot.get(k, 0) + n
     return {'records left out of area outlines (not area)': dict(sorted(tot.items())), 'parks with records left out': len(GEOM_SKIPPED),
-            'line parks read from the store': len(STORE_LINES), 'live pairs on the 100-ft line rule': dict(sorted(LINE_ROWS.items())),
+            'line parks read from the store': len(STORE_LINES), 'line parks skipped (by-name / coarse / no bank status)': len(LINE_SKIPPED), 'line parks as on main (coarse NPS routes)': len(MAIN_LINES), 'live pairs on the 100-ft line rule': dict(sorted(LINE_ROWS.items())),
             'water tiles': dict(WATER_READ), 'river rule with no bank data': dict(RIVER_NO_BANK), 'river tiers': dict(RIVER_TIERS),
             'river bank to-do (stretches)': len(RIVER_TODO)}
 
@@ -847,7 +983,9 @@ def river_tiers(KF, lref, ls, oref, other, box, got):
            'river_candidate': {'centre_line_m': round(dmin), 'signs': signs, 'catch_m': catch}}
     for x in got: x['river_tier'] = tier
     _tier(tier)
+    _rad = max(catch, KF.close_m((min(q[0] for q in near), min(q[1] for q in near)), (max(q[0] for q in near), max(q[1] for q in near))) / 2 + RIVER_NO_BANK['catch_m'])
     RIVER_TODO.append({'refs': row['refs'], 'river': lref, 'park': oref, 'centre_line_m': round(dmin), 'signs': signs, 'tier': tier,
+                       'lat': round(pts[k][1], 6), 'lon': round(pts[k][0], 6), 'radius_m': round(min(_rad, 50000)),
                        'box': [round(min(q[0] for q in near), 4), round(min(q[1] for q in near), 4), round(max(q[0] for q in near), 4), round(max(q[1] for q in near), 4)]})
     return got if got else [row]
 
@@ -864,22 +1002,154 @@ def bank_status(doc):
     return n
 
 
+WATER_SOURCE = {'US': 'us-nhdplus-hr'}   # FORMAT-4: the area's water source. Canada (bc-fwa, ab-hydro, on-ohn) is not read here:
+                                        # Canadian rivers keep today's behaviour (no bank source wired in the bot)
+WATER_DAMAGED = object()                 # a stored tile that fails its check: NOT SURE, never a fall-through to another copy
+WATER_TILE_NAME = re.compile(r'^(-?\d+)_(-?\d+)\.json\.gz$')
+
+
+def _water_index(st):
+    if not hasattr(st, '_widx'):
+        try: st._widx = json.loads((pathlib.Path(st.dir) / 'water' / 'index.json').read_text(encoding='utf-8'))
+        except Exception: st._widx = None  # noqa: BLE001
+    return st._widx
+
+
+def water_tile_ok(d):
+    if not isinstance(d, dict) or not isinstance(d.get('f'), list) or not isinstance(d.get('d'), str): return False
+    for x in d['f']:
+        if not (isinstance(x, list) and len(x) == 2 and x[0] in ('area', 'wb') and isinstance(x[1], list)): return False
+        for ring in x[1]:
+            if not (isinstance(ring, list) and len(ring) >= 3 and all(isinstance(q, list) and len(q) >= 2 for q in ring)): return False
+    return True
+
+
 def store_water(st, areas, i, jt):
-    """A 0.1-degree water tile from the store's water section (store/water/<AREA>/<i>_<jt>.json.gz, the SAME tile form as the
-    bot's WATER_STORE: {'d': date, 'f': [[layer, rings], ...]}), or None. The run's areas first, then every other area folder."""
+    """A 0.1-degree water tile from the store's water section (FORMAT-4): store/water/<source id>/<i>_<j>.json.gz, the source
+    being the one mapped to the run's areas (US-* = us-nhdplus-hr; only that source decides: a border tile held by another
+    source is never read). The tile must be listed in store/water/index.json with the same sha256, its source must be
+    publishable on a public store run, and it must be in the bot's own tile form {'d', 'f': [[layer, rings]]}.
+    -> the tile (its date as 'd', so rows keep today's dated wording), None (not in the store: the bot's own last good copy of
+    the same USGS map is tried, as today) or WATER_DAMAGED (listed but damaged / unlisted / unpublishable: NOT SURE, no
+    fall-through)."""
+    srcs = [WATER_SOURCE[c] for c in ('US',) if any(str(a).startswith(c + '-') for a in areas)]
+    if not srcs: return None
+    sid = srcs[0]
     root = pathlib.Path(st.dir) / 'water'
-    if not root.is_dir(): return None
-    dirs = [root / a for a in areas] + sorted(d for d in root.iterdir() if d.is_dir() and d.name not in areas)
-    for d in dirs:
-        f = d / f'{i}_{jt}.json.gz'
-        if not f.is_file(): continue
-        try:
-            t = json.loads(gzip.decompress(f.read_bytes()))
-            if isinstance(t, dict) and isinstance(t.get('f'), list) and t.get('d'): WATER_READ['store'] += 1; return t
-        except Exception: pass  # noqa: BLE001
-        WATER_READ['store tile damaged'] += 1   # a damaged tile is never 'no water': the next copy, else NOT SURE
-    WATER_READ['not in store'] += 1
-    return None
+    name = f'{int(i)}_{int(jt)}.json.gz'
+    f = root / sid / name
+    if not f.is_file(): WATER_READ['not in store'] += 1; return None
+    idx = _water_index(st) or {}
+    src = (idx.get('sources') or {}).get(sid) or {}
+    want = ((idx.get('tiles') or {}).get(sid) or {}).get(name) or {}
+    try:
+        raw = f.read_bytes()
+        if not want.get('sha256') or hashlib.sha256(raw).hexdigest() != want['sha256']: raise ValueError('not listed in water/index.json with this sha256')
+        if st.kind != 'private' and src.get('publishable') is not True: raise ValueError('its source is not publishable')
+        t = json.loads(gzip.decompress(raw))
+        if not water_tile_ok(t): raise ValueError('not in the tile form')
+    except Exception as e:  # noqa: BLE001
+        WATER_READ['store tile refused'] = WATER_READ.get('store tile refused', 0) + 1
+        private_note('water tile refused', [f'{sid}/{name}: {str(e)[:80]}'])
+        return WATER_DAMAGED
+    WATER_READ['store'] += 1
+    d = str(t.get('d') or '')
+    if d.startswith(sid): d = d[len(sid):].strip()
+    return {'d': d or str(want.get('date') or ''), 'f': t['f']}
+
+
+def water_reader(st, areas, orig):
+    def wload(i, jt):
+        t = store_water(st, areas, i, jt)
+        if t is WATER_DAMAGED: return None   # NOT SURE: never another copy deciding alone
+        return t if t is not None else (orig(i, jt) if orig else None)
+    return wload
+
+
+def scan_private(st, areas):
+    """HELD_PRIVATE from the store index, for EVERY park of the run's areas (not only the parks read): a park with any record
+    that is not publishable (with a verified-row / owner-confirmed basis) or that is or may be WDPA-derived. The index's
+    record_meta is used; a park without it is read (checked) once. Such a park is never named in a public file."""
+    n = 0
+    for ar in areas:
+        a = st.area(ar)
+        if a is None: continue
+        for ref, e in list(a.entries.items()) + [(r, None) for r in a.bad]:
+            if e is None: continue
+            rm = e.get('record_meta') if isinstance(e.get('record_meta'), dict) else None
+            secret = e.get('park_publishable') is False
+            if rm:
+                secret = secret or any(not (isinstance(m, dict) and m.get('publishable') is True and m.get('publish_basis') in PUBLISH_BASES and m.get('wdpa_derived') is False)
+                                       for m in rm.values())
+            else:
+                try: p = a.park(ref) or {}
+                except StoreError: p = {}
+                secret = secret or wdpa_text(p) or any(not (r.get('publishable') is True and r.get('publish_basis') in PUBLISH_BASES and r.get('wdpa_derived') is False)
+                                                     or wdpa_text(r) for r in p.get('records') or [] if isinstance(r, dict))
+            if secret: HELD_PRIVATE.add(ref); n += 1
+    return n
+
+
+def write_todo_csv():
+    """The river bank to-do (tiers mode) as the spec's river-bank-todo.csv, in the PRIVATE folder only."""
+    if not PRIVATE_LOG_DIR or not RIVER_TODO: return False
+    import csv
+    p = pathlib.Path(PRIVATE_LOG_DIR) / 'river-bank-todo.csv'
+    with open(p, 'w', newline='', encoding='utf-8') as fh:
+        w = csv.writer(fh); w.writerow(['park ref', 'other park ref', 'lat', 'lon', 'radius m'])
+        for t in RIVER_TODO: w.writerow([t['river'], t['park'], t['lat'], t['lon'], t['radius_m']])
+    return True
+
+
+BANK_EST = 'no water data: measured from the centre line (25.48 m), an estimate until the store has this bank'
+
+
+def line_status(KF, doc):
+    """Owner ruling 2026-11-14: a river line the store marks bank_missing is still decided by the bot's existing centre-line rule
+    (exactly as on main). A row whose stretch was not measured from a real bank is marked 'river_bank' (an estimate) and its
+    stretch goes on the PRIVATE river-bank-todo.csv so the store fetches that tile next. Its status is not changed."""
+    n = 0
+    for x in (doc or {}).get('spots') or []:
+        if x.get('kind') != 'river' or str(x.get('status') or '').startswith(('dropped', 'merged')): continue
+        for r in x.get('refs') or []:
+            e = STORE_LINES.get(r) or {}
+            if e.get('bank_missing') and not x.get('bank_ok'):
+                x['river_bank'] = BANK_EST; n += 1
+                c = x.get('center') or [None, None]
+                o = [q for q in x.get('refs') or [] if q != r]
+                if c[0] is not None and not any(t.get('row') == x.get('id') for t in RIVER_TODO):
+                    RIVER_TODO.append({'river': r, 'park': o[0] if o else '', 'lat': c[0], 'lon': c[1], 'radius_m': max(250, round((x.get('len_m') or 0) / 2) + 250), 'row': x.get('id'), 'refs': x.get('refs')})
+                break
+    return n
+
+
+def write_candidates_csv():
+    """Lines the store gave but the bot skipped (by-name, coarse route, no bank status): 'river candidate: needs a look', in the
+    PRIVATE folder only."""
+    if not PRIVATE_LOG_DIR or not LINE_SKIPPED: return False
+    import csv
+    with open(pathlib.Path(PRIVATE_LOG_DIR) / 'river-candidates-needs-a-look.csv', 'w', newline='', encoding='utf-8') as fh:
+        w = csv.writer(fh); w.writerow(['park ref', 'status', 'why'])
+        for r, why in sorted(LINE_SKIPPED.items()): w.writerow([r, 'river candidate: needs a look', why])
+    return True
+
+
+def bank_check(KF):
+    """Store run: a river stretch of a store line marked bank_missing is 'bank_ok' only when every point of it lies in mapped
+    water (the 30.48 m-from-the-bank test really ran); line_status() makes the others NOT SURE."""
+    orig = getattr(KF, 'line_spots', None)
+    if orig is None or getattr(orig, '_bank', False): return
+    def line_spots(lref, ls, oref, other, other_is_line, box, kind):
+        got = orig(lref, ls, oref, other, other_is_line, box, kind)
+        if kind == 'river' and (STORE_LINES.get(lref) or {}).get('bank_missing'):
+            for x in got:
+                pts = x.get('shape') or []
+                b = KF.bbox_lines([pts]) if pts else None
+                wg = KF.nhd_water([b[0] - .001, b[1] - .001, b[2] + .001, b[3] + .001], rivers_only=True) if b else None
+                if wg and all(KF.pip_groups(wg, q[0], q[1]) for q in pts): x['bank_ok'] = True
+        return got
+    line_spots._bank = True; line_spots._store = getattr(orig, '_store', False)
+    KF.line_spots = line_spots
 
 
 def install(KF, env=None, store=None):
@@ -892,8 +1162,13 @@ def install(KF, env=None, store=None):
     if getattr(KF, 'REGION', 'na') != 'na':
         print(f'::notice title=2-fer outline store::{SWITCH} is on, but this is the {KF.REGION} run: the outline store is not used and the bot runs as today', flush=True)
         return False
-    global PRIVATE_OUT
+    global PRIVATE_OUT, PRIVATE_LOG_DIR
     st = store or Store.from_env(env)
+    if st.kind == 'private' and str(env.get('GITHUB_ACTIONS') or '').strip().lower() == 'true' and str(env.get('KPC_FERS_PRIVATE_RUNNER') or '').strip() != '1':
+        # the log of a GitHub Actions run of a public repo is public: a private store run there only on a runner named private
+        public_print('::error title=2-fer outline store::private store run refused under GitHub Actions: set KPC_FERS_PRIVATE_RUNNER=1 '
+                     'only on a private runner whose log nobody outside the club can read. Nothing was read or saved.')
+        raise SystemExit(EXIT_LEAK)
     if st.kind == 'private':
         # a private store holds records that are not publishable: every file of the run is club room only, so it goes to ONE
         # folder outside every git work tree (never the KPC-Data checkout); without one the run does not start
@@ -902,38 +1177,52 @@ def install(KF, env=None, store=None):
                'KPC_FERS_PRIVATE_OUT is inside a git work tree' if in_git_tree(po) else
                'KPC_FERS_PRIVATE_OUT overlaps the working folder' if _inside(po, os.getcwd()) or _inside(os.getcwd(), po) else '')
         if why:
-            print(f'::error title=2-fer outline store::private store run refused: {why}. A private store run writes only into a '
-                  'private folder outside every git work tree (club room only); nothing was read or saved.', flush=True)
+            public_print(f'::error title=2-fer outline store::private store run refused: {why}. A private store run writes only into a '
+                         'private folder outside every git work tree (club room only); nothing was read or saved.')
             raise SystemExit(EXIT_LEAK)
         PRIVATE_OUT = pathlib.Path(po).resolve(); PRIVATE_OUT.mkdir(parents=True, exist_ok=True)
-        KF.OUT = PRIVATE_OUT
+        KF.OUT = PRIVATE_LOG_DIR = PRIVATE_OUT
+        silence(PRIVATE_OUT)   # every line the bot prints (pair ids, park names, progress) goes to the private log; stdout gets counts only
+    else:
+        pl = str(env.get('KPC_FERS_PRIVATE_LOG') or '').strip()   # optional on a public run: where details (never printed) may go
+        if pl and not in_git_tree(pl) and not _inside(pl, os.getcwd()) and not _inside(os.getcwd(), pl):
+            PRIVATE_LOG_DIR = pathlib.Path(pl).resolve(); PRIVATE_LOG_DIR.mkdir(parents=True, exist_ok=True)
+        elif pl: public_print('::warning title=2-fer outline store::KPC_FERS_PRIVATE_LOG is inside a git work tree or the working folder: not used (no details are kept)')
+        if not isinstance(sys.stdout, RedactOut): sys.stdout = RedactOut(sys.stdout)
+        if not isinstance(sys.stderr, RedactOut): sys.stderr = RedactOut(sys.stderr)
     out_dir = pathlib.Path(getattr(KF, 'OUT', 'data/fers')).resolve()
     tag = getattr(KF, 'area_name', lambda: 'run')()
 
     def write_rows():
-        doc = {'about': 'Outline store use by the 2-fer bot: one row per area (ready / not ready / will not fit) and every held park with its reason. One door in: only the store filler fetches.',
-               'date': st.today, 'store': str(st.dir), 'kind': st.kind, 'areas': dict(sorted(AREA_ROWS.items())), 'parks': dict(sorted(FLAGS.items())),
+        doc = {'about': 'Outline store use by the 2-fer bot: one row per area (ready / not ready / will not fit) and every held park with its reason. '
+                        'A park held or used for records that are not publishable (licence) or are WDPA-derived is never named here: only counted. One door in: only the store filler fetches.',
+               'date': st.today, 'kind': st.kind, 'areas': dict(sorted(AREA_ROWS.items())), 'parks': dict(sorted(FLAGS.items())),
                **store_counts()}
-        if st.kind == 'private': doc['private_records'] = dict(sorted(PRIVATE.items()))
-        if RIVER_TODO: doc['river_bank_todo'] = RIVER_TODO   # the stretches the bank store must fetch (tiers mode)
+        if st.kind == 'private': doc['store'] = str(st.dir); doc['private_records'] = dict(sorted(PRIVATE.items())); doc['river_bank_todo'] = RIVER_TODO
+        else:
+            doc, n = redact(doc); WITHHELD['items'] += n
+        doc['withheld (parks held or used for unpublishable / WDPA records: not named)'] = len(secret_refs()) if st.kind != 'private' else 0
         p = out_dir / f'store-missing-{tag}.json'
         guard_write(p, doc)
+        try: write_todo_csv(); write_candidates_csv()
+        except OSError: pass
         try:
             out_dir.mkdir(parents=True, exist_ok=True)
             p.write_text(json.dumps(doc, indent=1, ensure_ascii=False), encoding='utf-8')
         except OSError: pass
     areas = sorted(a for a in (getattr(KF, 'ONLY', None) or ()) if re.fullmatch(r'(US|CA)-[A-Z]{2}', a))
+    if st.kind != 'private': scan_private(st, areas)   # every park of the areas, read or not
     lazy = bool(getattr(KF, 'FERS_LAZY_OK', False))   # set by the switch-over in kpc_fers.py once every pass keeps G lazy
     budget = int(env.get('KPC_FERS_STORE_BUDGET') or 2_000_000)
     ok, rows = fit_check(st, areas, int(env.get('KPC_FERS_STORE_LIMIT_MB') or 3000), budget,
-                         float(env.get('KPC_FERS_STORE_NEIGHBOURS') or 1.5), lazy) if areas else (True, {})
+                         env_float(env, 'KPC_FERS_STORE_NEIGHBOURS', 1.5, 10.0), lazy) if areas else (True, {})
     AREA_ROWS.update(rows)
-    if not areas: print('::warning title=2-fer outline store::no member states named (STATES): the memory gate could not run', flush=True)
+    if not areas: public_print('::warning title=2-fer outline store::no member states named (STATES): the memory gate could not run')
     bad_area = {a: r for a, r in rows.items() if r['verdict'] == 'NOT READY'}
     if bad_area or not ok:
         write_rows()
         for a, r in sorted(rows.items()):
-            if r['verdict'] != 'READY': print(f"::error title=2-fer outline store::{a}: {r['verdict']}: {r['why']}. Nothing of this run is read or saved; the area keeps its previous files.", flush=True)
+            if r['verdict'] != 'READY': public_print(f"::error title=2-fer outline store::{a}: {r['verdict']}: {r['why']}. Nothing of this run is read or saved; the area keeps its previous files.")
         raise SystemExit(EXIT_NOT_READY if bad_area else EXIT_WONT_FIT)
     orig_tag = KF.pc_tag
 
@@ -958,26 +1247,74 @@ def install(KF, env=None, store=None):
                 if n: KF.LOG.append(f"{d['st']}: {n} live rows of the last file carried with their reason (held park or not found again)")
                 tag_club_room(d, PRIVATE)
                 closed_status(d)
+                line_status(KF, d)
                 if RIVER_NO_BANK['mode'] == 'tiers': bank_status(d)
                 LINE_ROWS[d['st']] = sum(1 for x in d.get('spots') or [] if x.get('kind') in ('trail', 'river') and _live(x))
         except Exception as e: KF.LOG.append(f'outline store row carry: {str(e)[:80]}')  # noqa: BLE001  (the write guard still checks the file)
         return d
 
     shut_door(KF)
+    if getattr(KF, 'time', None) is not None and not isinstance(KF.time, _StoreTime): KF.time = _StoreTime(KF.time)
+    bank_check(KF)
     river_bank_guard(KF, river_mode(env))
     orig_lines, orig_wload = getattr(KF, 'trail_lines', None), getattr(KF, '_wload', None)
     if orig_lines is not None: KF.trail_lines = lambda: store_lines(KF, st, areas, orig_lines())
-    if orig_wload is not None:   # the store's water tile first; else the bot's own last good copy (WATER_STORE) as today; else None = NOT SURE
-        KF._wload = lambda i, jt: store_water(st, areas, i, jt) or orig_wload(i, jt)
+    if orig_wload is not None:   # the store's water tile first; else the bot's own last good copy (WATER_STORE) as today; damaged = NOT SURE
+        KF._wload = water_reader(st, areas, orig_wload)
+    orig_ml = getattr(KF, 'missing_list', None)
+    if orig_ml is not None:
+        def missing_list(*a, **k):   # R12 list: a park the STORE held is listed with the store's reason, never 'no official boundary'
+            out = orig_ml(*a, **k)
+            for x in out:
+                if isinstance(x, dict) and x.get('ref') in FLAGS: x['why'] = 'held by the outline store: ' + str(FLAGS[x['ref']])
+            return out
+        KF.missing_list = missing_list
     KF.download, KF.saved_us, KF.saved_ca, KF.live_load, KF.pc_tag = download, (lambda parks: saved_corridors(KF)), saved_ca, live_load, pc_tag
     KF.STORE = st; STORE_ON = True
     def rows_at_exit():
         try: write_rows()
         except LeakRefused: sys.stdout.flush(); sys.stderr.flush(); os._exit(EXIT_LEAK)   # at exit too: the run fails, nothing written
     atexit.register(rows_at_exit)   # written on every run, so an old list never outlives a filled gap
-    print(f"::notice title=2-fer outline store::{SWITCH}=on: outlines from {st.dir} ({st.kind} store); no boundary downloads; memory gate "
-          + ', '.join(f"{a} {r.get('estimate_mb')} MB" for a, r in sorted(rows.items())) + ('' if lazy else ' (outlines all unpacked until the bot keeps them lazy)'), flush=True)
+    public_print(f"::notice title=2-fer outline store::{SWITCH}=on ({st.kind} store, {len(areas)} area(s)); no boundary downloads; memory gate "
+                 + ', '.join(f"{a} {r.get('estimate_mb')} MB" for a, r in sorted(rows.items())) + ('' if lazy else ' (outlines all unpacked until the bot keeps them lazy)'))
+    if st.kind == 'private': atexit.register(lambda: public_print(f'::notice title=2-fer outline store::private store run: {len(STORE_LINES)} line parks, '
+                                                                     f'{len(FLAGS)} held parks, {sum(LINE_ROWS.values())} live line rows; every detail is in the private folder'))
     return True
+
+
+class _StoreTime:
+    """kpc_fers.py's 'time' in a store run: the one-minute wait before pass 1's slow second try (it waits for an agency server
+    that did not answer) is skipped: the second try only reads the store again. Every other use of time is unchanged."""
+    def __init__(self, real): self._real = real
+    def sleep(self, s):
+        if s >= 60: return None
+        return self._real.sleep(s)
+    def __getattr__(self, k): return getattr(self._real, k)
+
+
+class RedactOut:
+    """Public store run: every line this process prints passes here; a park held or used for unpublishable / WDPA records is
+    replaced by [withheld] (a GitHub Actions log of a public repo is public)."""
+    def __init__(self, real): self.real, self._n, self._rx = real, -1, None
+    def write(self, t):
+        sec = secret_refs()
+        if len(sec) != self._n: self._n, self._rx = len(sec), _ref_rx(sec)
+        if self._rx is not None and isinstance(t, str): t = self._rx.sub('[withheld]', t)
+        return self.real.write(t)
+    def flush(self): return self.real.flush()
+    def __getattr__(self, k): return getattr(self.real, k)
+
+
+def silence(folder):
+    """Private store run: this process's stdout and stderr go to <private folder>/run-log.txt (pair ids, park names, progress,
+    tracebacks); only public_print() reaches the real stdout, with counts."""
+    fh = open(pathlib.Path(folder) / 'run-log.txt', 'a', encoding='utf-8', buffering=1)
+    sys.stdout = sys.stderr = fh
+    return fh
+
+
+def unsilence():
+    sys.stdout, sys.stderr = _REAL_OUT['out'], _REAL_OUT['err']
 
 
 # ------------------------------------------------------------------ the reviewed change list
