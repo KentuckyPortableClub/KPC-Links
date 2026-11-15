@@ -106,6 +106,14 @@
       "why": "The outline store switch-over. With KPC_FERS_FROM_STORE off (every ordinary run) no 2-fer answer and no pair fingerprint changes, so no pair is tested again (scope none, like 2026-11-11-area-boxes-time). With it on, a US or Canadian run reads park outlines, line parks' lines and water tiles from the outline store for the areas .github/fers-store-areas.json allows (all US and Canadian areas, an except list, US-KY never); an area the store does not hold is left out of the run with its reason. A store run stamps the parks of the areas it runs from the store with this id (kpc_fers_store.install wraps rule_stamp), so exactly those pairs are tested again, once, on their first store run. A live candidate row that a store run would turn NOT SURE only because the PAD-US closed areas or the ownership map could not be checked keeps its old row when it is the same spot (same place, size within 25 percent), tagged 'kept: not checked in a store run'. World areas are in the code behind their own switch, off (\"world\": \"off\"): no world pair is touched.",
       "scope": "none",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-15"
+    },
+    {
+      "id": "2026-11-15-store-fixes",
+      "when": "2026-11-15",
+      "from": "2fe19a32e5eb",
+      "why": "Fixes after the first 2-fer trial on the real outline store. (1) Passes 2 and 3 (every run, store or not): each row of the pass before takes at most one new spot of its pair and each spot goes to at most one row, best fit first (the spot's centre in the row's box, then the row's centre in the spot's box, then the largest share of the two boxes); a spot no row took, of a pair whose row was dropped in that pass, becomes a new row in pass 2 (pass 3 decides it) and a warning in pass 3. Main gave the first touching spot to a row even when another row had taken it, so a real spot could be lost. No pair's spots change (the pair test is the same), only which row takes which spot, and that is worked out fresh in every run: no pair needs a new test. (2) Store runs only: a park held for licence is a known reason in pass 1 (no 'agency map did not answer' stop, no record ids printed); on a public store run a withheld park's rows of the previous public file are carried unchanged, marked 'not re-checked (outline held privately)', and counted per area (owner rule: never worse); the store words in the report; far line parks not listed; the run's total of withheld parks.",
+      "scope": "none",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-15"
     }
   ]
 }

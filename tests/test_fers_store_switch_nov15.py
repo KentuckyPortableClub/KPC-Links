@@ -460,10 +460,13 @@ import kpc_preflight as PF  # noqa: E402
 got = {k: KFZ.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')}
 check(got == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}, f'US, CA and world rules hashes do not move ({got})')
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-o, nw, ln = PF.changelog_hashes(log, 'fers')
-check(o == 'd0064c860cba' and nw == KFZ.rules_hash('fers') and 'APPROVED, decided_by KPC owner, 2026-11-15' in ln and log.startswith(ln),
-      f'the 2-fer hash moves only by the newest changelog line, on top (d0064c860cba -> {KFZ.rules_hash("fers")})')
-sc = json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'][-1]
+# KPC owner, 2026-11-15 (store run fixes, the next declared move 2fe19a32e5eb -> ...): this change's own line, wherever it now sits;
+# the newest line on top is checked by test_fers_store_fixes_nov15.py
+ln = next((x for x in log.splitlines() if 'fers rules d0064c860cba -> 2fe19a32e5eb' in x), '')
+o, nw, _ = PF.changelog_hashes(ln, 'fers')
+check(o == 'd0064c860cba' and nw == '2fe19a32e5eb' and 'APPROVED, decided_by KPC owner, 2026-11-15' in ln and (nw == KFZ.rules_hash('fers') or PF.changelog_hashes(log, 'fers')[0] == nw),
+      f'the switch-over moved the 2-fer hash by its own declared line (d0064c860cba -> 2fe19a32e5eb); any later move starts from it ({KFZ.rules_hash("fers")})')
+sc = next(c for c in json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'] if c.get('id') == '2026-11-15-store-switch')
 check(sc['id'] == '2026-11-15-store-switch' == ST.STORE_STAMP and sc['from'] == 'd0064c860cba' and sc['scope'] == 'none' and sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
       "scope entry 2026-11-15-store-switch: scope none (an ordinary run re-tests nothing); a store run stamps its own areas' parks with the same id")
 print('ALL PASS' if not FAILS else 'SOME FAILED')

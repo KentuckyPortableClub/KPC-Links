@@ -2524,7 +2524,7 @@ def near_pairs(G, pairs, spots, gap_m=100.0):
           try:
             f = Frame(box, max(10.0, math.sqrt(max(1.0, (box[2] - box[0]) * 111320 * math.cos(math.radians(box[1])) * (box[3] - box[1]) * 110574) / 4e6)), gap_m)
             if f.cell > gap_m / 2: continue
-            da = dt(1 - f.area(G[a]), outside=1) * f.cell
+            da = np.minimum(dt(1 - f.area(G[a]), outside=1), 1e7) * f.cell   # KPC owner, 2026-11-15 (C8): no pixel of a here = 'far' (was a float32 overflow warning); same answer
             mb = f.area(G[b])
             if mb.any():
                 d = float(da[mb > 0].min())
@@ -3052,6 +3052,64 @@ def slim(spots):
 
 
 def key_of(s): return '+'.join(s['refs']) + '@' + s['kind']
+
+
+def _ctr_in(s, b):
+    c = s.get('center')   # rows and spots: [lat, lon]; boxes: [lon0, lat0, lon1, lat1]
+    return bool(c and b and b[0] <= c[1] <= b[2] and b[1] <= c[0] <= b[3])
+
+
+def _barea(b): return max(0.0, b[2] - b[0]) * max(0.0, b[3] - b[1]) if b else 0.0
+
+
+def match_rows(rows, newk):
+    """KPC owner, 2026-11-15 (store trial M5, US-0229 + US-9882: pass 2 gave a row with a 3.5 km box the spot 2.3 km away that the
+    neighbouring row also took, the true spot was 'new here only' and pass 3 dropped the row). Passes 2 and 3: each row of the pass
+    before takes at most one new spot of its pair + kind, and each spot goes to at most one row. Only spots whose box touches the
+    row's box (as before) are candidates. Best fit first, over all rows of the file at once: the spot's centre inside the row's box,
+    then the row's centre inside the spot's box, then the largest share of the two boxes in common (overlap over union), then the
+    largest overlap. -> {id(row): spot}; the chosen spots are marked _used."""
+    cand = []
+    for i, s in enumerate(rows):
+        sb = sbox(s)
+        for j, n in enumerate(newk.get(key_of(s), [])):
+            if n.get('_used'): continue
+            nb = sbox(n)
+            if not inter(sb, nb, 0.0005): continue
+            ov = _barea(inter(sb, nb, 0.0))
+            un = _barea(sb) + _barea(nb) - ov
+            cand.append(((_ctr_in(n, sb), _ctr_in(s, nb), ov / un if un > 0 else 0.0, ov), -i, -j, i, n))
+    cand.sort(key=lambda c: c[:3], reverse=True)
+    out, took = {}, set()
+    for c in cand:
+        i, n = c[3], c[4]
+        if i in out or id(n) in took: continue
+        out[i] = n; took.add(id(n)); n['_used'] = 1
+    return {id(rows[i]): n for i, n in out.items()}
+
+
+def leftover_spots(d, newk, today):
+    """KPC owner, 2026-11-15 (store trial M5): a new spot no row took, of a pair + kind whose row was dropped in THIS pass, is not
+    lost: in pass 2 it becomes a new row of its own (passes [1, 1, 0]; pass 3 decides it like any row); in pass 3 it is a warning in
+    the report (a person looks). -> (rows added, warnings)."""
+    dropped = {key_of(s) for s in d.get('spots', []) if str(s.get('status', '')).startswith(f'dropped in pass {PASS}')}
+    if not dropped: return 0, 0
+    have = {s.get('id') for s in d.get('spots', [])}
+    added = warned = 0
+    for k in sorted(dropped):
+        for n in newk.get(k, []):
+            if n.get('_used'): continue
+            n['_used'] = 1
+            if PASS == 2:
+                g = {x: v for x, v in n.items() if not x.startswith('_')}
+                g['id'] = key_of(g) + '@%.3f,%.3f' % tuple(g['center'])
+                if g['id'] in have: continue
+                g.update({'passes': [1, 1, 0], 'status': 'pass 2', 'found': today,
+                          'note': 'a spot of this pair found in pass 2 next to a pass-1 row that was dropped: tested by pass 3 like any row'})
+                d['spots'].append(g); have.add(g['id']); added += 1
+            else:
+                warned += 1; LOG.append(f"pass {PASS}: a spot of {'+'.join(n['refs'])} ({n.get('kind')}, about {n.get('acres', n.get('len_m', '?'))}) was left over next to a dropped row")
+    return added, warned
 
 
 # Nov 2 5:45 PM (HQ, chat 8's KY hold check: 4 pairs looked 'missing' after the river fix, only their centre had moved a little): a
@@ -4071,7 +4129,9 @@ def main():
         if REGION == 'ky':
             kg, kb = ky_geom(parks, [r for r in parks if parks[r]['ids']]); G.update(kg); need = []
         else: G.update(saved_world(parks) if REGION == 'world' else saved_ca(parks))
-        notice('2-fer bot', f"pass 1: {len(G)} parks from saved outlines, {len(need)} to download, {len(LN)} official lines")
+        if getattr(sys.modules.get('kpc_fers_store'), 'STORE_ON', False):   # KPC owner, 2026-11-15 (C2): store words in a store run
+            notice('2-fer bot', f"pass 1: {len(G) + len(need)} parks to read from the outline store (no downloads), {len(LN)} official lines")
+        else: notice('2-fer bot', f"pass 1: {len(G)} parks from saved outlines, {len(need)} to download, {len(LN)} official lines")
         mark('pass 1 saved outlines')
         stage_start(f'pass 1 downloads ({len(need)} parks)')
         got, bad = download(parks, need, DET, PREC)
@@ -4085,16 +4145,25 @@ def main():
             if ref in LIVE and [str(i) for i in parks[ref]['ids']] == LIVE[ref].get('ids'):
                 G[ref] = LIVE[ref]['g']; MAPDATE[ref] = f"saved copy (read live {LIVE[ref].get('rd')}; today's re-read did not answer)"
                 bad.discard(ref); DL_CUT.discard(ref)
-        counts['parks read live (saved for next time)'] = len(set(need) & set(got))
+        # KPC owner, 2026-11-15 (store trial M1 / C2): in a store run nothing is read live; a held park is a store hold, never an agency map down
+        _KS = sys.modules.get('kpc_fers_store'); _son = bool(_KS is not None and getattr(_KS, 'STORE_ON', False))
+        _sheld = (bad & set(getattr(_KS, 'HELD_PRIVATE', ()) or ())) if _son else set()   # held for licence / WDPA: a known reason, never named
+        counts['parks read from the outline store' if _son else 'parks read live (saved for next time)'] = len(set(need) & set(got))
         live_save(today)
         mark(f'pass 1 downloads ({len(need)} parks; {len(DL_CUT)} not reached for time)')
         if DL_CUT:   # Nov 9 PM: parks not downloaded for time = an unfinished pass; their areas keep their previous files
             counts['stopped for time'] = True; counts['parks not downloaded: out of time'] = len(DL_CUT)
-        counts['parks whose outline could not be read'] = len(bad)
+        counts['parks held by the outline store' if _son else 'parks whose outline could not be read'] = len(bad)
         _held = {r for r in bad if r in MISSING_SAVED}   # a known reason (saved copy missing): listed, not an agency map down
-        if _held: counts['parks held: saved copy missing (needs download)'] = {r: saved_missing_why(r) for r in sorted(_held)}
+        if _held: counts['parks held: not in the outline store (listed for the store filler)' if _son else 'parks held: saved copy missing (needs download)'] = {r: saved_missing_why(r) for r in sorted(_held)}
+        if _sheld: counts['parks held: outline not publishable (held privately, not named)'] = len(_sheld)
         _withids = sum(1 for r in parks if parks[r].get('ids'))
-        if len(bad - _held) > 20 and len(bad - _held) > .2 * max(1, _withids):   # half a state missing is not a 2-fer answer: stop loudly (a real issue)
+        _open = bad - _held - _sheld
+        if len(_open) > 20 and len(_open) > .2 * max(1, _withids):   # half a state missing is not a 2-fer answer: stop loudly (a real issue)
+            if _son:   # a store run names no record id (a held park's ids could be private)
+                print(f"::error title=2-fer line: outlines not read::{len(_open)} of {_withids} parks could not be read from the outline store "
+                      "(the reasons are in the store-missing list). The area stops here, nothing is saved.", flush=True)
+                sys.exit(1)
             hosts = sorted({str(next(iter(parks[r]['ids']), ''))[:6] for r in list(bad)[:200]})
             print(f"::error title=2-fer line: outlines not read::{len(bad)} of {_withids} parks' outlines could not be read (id prefixes {' '.join(hosts[:8])}): "
                   "an agency map did not answer. The area stops here, nothing is saved; try it again later.", flush=True)
@@ -4270,7 +4339,12 @@ def main():
         newk = {}
         for s in spots: newk.setdefault(key_of(s), []).append(s)
         agree = new_only = 0
+        left_rows = left_warn = 0
         for st, d in files.items():
+            # KPC owner, 2026-11-15 (store trial M5): which new spot each row takes is decided for the whole file at once (match_rows):
+            # a spot another row took is never taken again, and the best fit goes first (see match_rows)
+            assign = match_rows([s for s in d.get('spots', []) if todo(s) and not any(r in bad for r in s['refs'])
+                                 and not (tuple(sorted(s['refs'][:2])) not in TESTED and len(s['refs']) == 2)], newk)
             for s in d.get('spots', []):
                 if not todo(s): continue
                 pk = tuple(sorted(s['refs'][:2]))
@@ -4282,8 +4356,7 @@ def main():
                                    f"not sure: the official outline of {', '.join(PIN.get(r, [r])[0] for r in ub)} could not be read in pass {PASS} (the next run tries again)"); continue
                 if pk not in TESTED and len(s['refs']) == 2:   # out of time before this pair: the next run carries on
                     s['status'] = f'waiting for pass {PASS}'; continue
-                sb = sbox(s)
-                m = next((n for n in newk.get(key_of(s), []) if inter(sb, sbox(n), 0.0005)), None)
+                m = assign.get(id(s))
                 if m:
                     s['passes'][PASS - 1] = 1; agree += 1
                     for k in ('center', 'shape', 'box', 'acres', 'wide_m', 'len_m'):
@@ -4310,6 +4383,8 @@ def main():
                         decide(s, parks, G, LN, PIN, today, saved_only, st_of)
                         water_date(s)
                     if _c.hit: s.clear(); s.update(_before); s['passes'][2] = 0; s['status'] = 'waiting for pass 3'   # listed; the next run carries on
+            _lr, _lw = leftover_spots(d, newk, today)   # KPC owner, 2026-11-15 (M5): a real spot is never lost without a trace
+            left_rows += _lr; left_warn += _lw
             if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN); tidy_rows(d.get('spots', []), PIN, today); counts['candidates held: no ownership source'] = counts.get('candidates held: no ownership source', 0) + hold_no_owner(d.get('spots', []))
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
@@ -4317,6 +4392,10 @@ def main():
             save_json(file_of(st), pc_tag(d), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
         new_only = sum(1 for v in newk.values() for n in v if not n.get('_used'))
         counts.update({'agree with the pass before': agree, 'new here only (not counted)': new_only})
+        if left_rows: counts['new rows: a spot of a pair whose row was dropped in this pass'] = left_rows
+        if left_warn:
+            counts['warning: a spot of a pair whose row was dropped in pass 3 (a person looks)'] = left_warn
+            print(f'::warning title=2-fer bot::pass {PASS}: {left_warn} new spot(s) of pairs whose row was dropped in this pass were left over (listed in the report)', flush=True)
     # report
     rep = {}
     RF = OUT / (f'report-{RUN_TAG}.json' if RUN_TAG else {'world': 'report-world.json', 'ky': 'report-ky.json'}.get(REGION, 'report.json'))
@@ -4337,7 +4416,9 @@ def main():
         rep['fers_rules'] = None
 
     if TIMED_OUT: counts['timed out (skipped, listed for a person)'] = dict(sorted(TIMED_OUT.items())[:200])
-    if NOPIN_BY_ID: counts['bad POTA pin: tested by saved record ids'] = sorted(NOPIN_BY_ID)[:400]
+    if NOPIN_BY_ID:   # KPC owner, 2026-11-15 (C2): a store run lists only its own areas' parks (Canadian refs filled a DE run's list)
+        _nb = sorted(r for r in NOPIN_BY_ID if not (getattr(sys.modules.get('kpc_fers_store'), 'STORE_ON', False) and ONLY) or st_of(r) in ONLY or st_of(r)[3:] in ONLY)
+        if _nb: counts['bad POTA pin: tested by saved record ids'] = _nb[:400]
     if counts.get('stopped for time'):   # Nov 9 PM: a pass cut short says so as a warning (the run summary shows it)
         print(f"::warning title=2-fer bot::pass {PASS} stopped for time ({counts.get('pairs tested', 0)} pairs tested, {counts.get('parks not downloaded: out of time', 0)} parks not downloaded); unfinished areas keep their previous files", flush=True)
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=LOG[:40])
