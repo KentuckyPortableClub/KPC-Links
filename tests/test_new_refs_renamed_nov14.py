@@ -74,7 +74,9 @@ with tempfile.TemporaryDirectory() as t:
     p = run(d, parks(tn_names={5: 'Renamed Before Names Existed'}))
     check(p.returncode == 0, 'old-format seen.json run finishes')
     s = json.loads((d / 'data/new-refs/seen.json').read_text())
-    check(len(s.get('names', {}).get('pota', {})) == len(old['pota']), 'names learned for every ref')
+    import base64
+    check('names' not in s and len(base64.b64decode(s.get('nh', {}).get('pota', ''))) == 3 * len(s['pota']), 'one 3-byte hash per ref, lined up with seen[pota]; no names stored')
+    check(len(s['nh']['pota']) == 4 * len(s['pota']), 'hash string is 4 characters per ref')
     rows = list(csv.DictReader(open(d / 'data/new-refs/keeper-list.csv')))
     check(rows == [], 'first run with names: no renames reported (old format never reads as everything renamed)')
     check('names learned' in p.stdout, 'first run says names were learned')
@@ -95,20 +97,34 @@ with tempfile.TemporaryDirectory() as t:
     check('US-9999' in txt and 'US-09007' not in txt, 'the new Kentucky park is posted; the renamed park is not')
     rows = {r['ref']: r for r in csv.DictReader(open(d / 'data/new-refs/keeper-list.csv'))}
     check(list(csv.reader(open(d / 'data/new-refs/keeper-list.csv')))[0] ==
-          ['ref', 'name', 'pin_lat', 'pin_lon', 'type', 'change', 'old_name', 'date', 'run_id', 'source'], 'keeper-list.csv columns')
+          ['ref', 'name', 'pin_lat', 'pin_lon', 'type', 'change', 'date', 'run_id', 'source'], 'keeper-list.csv columns')
     check(set(rows) == {'US-9999', 'US-09007'}, f'keeper list = the new park + the real rename only (got {sorted(rows)})')
     r = rows.get('US-09007', {})
-    check(r.get('change') == 'renamed' and r.get('old_name') == 'Test Park Number 7' and r.get('name') == 'Brand New Name Lake'
+    check(r.get('change') == 'renamed' and r.get('name') == 'Brand New Name Lake'
           and r.get('type') == 'POTA' and r.get('run_id') == '777' and r.get('source') == 'kpc_new_refs' and r.get('pin_lat') == '36.0', 'rename row filled')
     n = rows.get('US-9999', {})
-    check(n.get('change') == 'new' and n.get('old_name') == '' and n.get('pin_lon') == '-84.2', 'new row filled')
+    check(n.get('change') == 'new' and n.get('pin_lon') == '-84.2', 'new row filled')
     # day 2: a garbled download (every TN name different) records no renames and keeps the names; keeper rows persist
     p = run(d, parks(tn_names={i: f'Garbled {i} Xyz' for i in range(10050)}, extra_ky=[('US-9999', 'New KY Park')]))
     rows2 = {r['ref']: r for r in csv.DictReader(open(d / 'data/new-refs/keeper-list.csv'))}
     check(set(rows2) == set(rows), 'garbled list: no renames recorded; last run\'s rows kept (7-day window)')
-    s = json.loads((d / 'data/new-refs/seen.json').read_text())
-    check(s['names']['pota']['US-09007'] == 'Brand New Name Lake', 'garbled list: names not overwritten')
     check('looks like a bad download' in p.stdout, 'garbled list: one notice')
+    # day 3: the good list again (plus one more real rename): the garbled day did not overwrite the hashes
+    good = parks(tn_names={5: 'Renamed Before Names Existed', 7: 'Brand New Name Lake', 8: 'TEST PARK, NUMBER 8', 9: 'Another New Name'},
+                 extra_ky=[('US-9999', 'New KY Park')])
+    p = run(d, good)
+    rows3 = {r['ref']: r for r in csv.DictReader(open(d / 'data/new-refs/keeper-list.csv'))}
+    check(set(rows3) == set(rows) | {'US-09009'} and '1 renamed (US-09009)' in p.stdout, 'after a garbled day the old hashes still hold (only the one real rename is found)')
+    # day 4: one ref missing today + a new ref that sorts in the middle; day 5: it is back with a new name. The string must line up.
+    d4 = json.loads(json.dumps(good)); d4['US-TN'] = [x for x in d4['US-TN'] if x['reference'] != 'US-09003']
+    d4['US-TN'].append({'reference': 'US-09003A', 'name': 'Middle Insert Park', 'latitude': 36.0, 'longitude': -86.0})
+    p = run(d, d4)
+    check(p.returncode == 0 and 'renamed (' not in p.stdout, 'day 4: missing ref + middle insert: no renames')
+    d5 = json.loads(json.dumps(d4)); d5['US-TN'].append({'reference': 'US-09003', 'name': 'Returned Renamed Park', 'latitude': 36.0, 'longitude': -86.0})
+    p = run(d, d5)
+    check('1 renamed (US-09003)' in p.stdout, 'day 5: the missing ref kept its old hash and its rename is found (alignment held)')
+    s = json.loads((d / 'data/new-refs/seen.json').read_text())
+    check(len(s['nh']['pota']) == 4 * len(s['pota']), 'hash string still 4 characters per ref')
 
 print('ALL PASS' if not fails else f'{len(fails)} FAILED')
 sys.exit(1 if fails else 0)
