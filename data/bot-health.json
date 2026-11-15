@@ -1,43 +1,40 @@
 {
  "open": [
-  "KPC-Data/kpc-collector.yml",
-  "KPC-Data/kpc-copy-from-links.yml",
-  "KPC-Data/kpc-pages-sync.yml",
-  "KPC-Data/kpc-pile-solver.yml",
   "KPC-Data/kpc-storage.yml",
-  "KPC-Data/kpc-wdpa-phonebook.yml",
-  "KPC-Data/kpc-world-finder.yml",
   "kpc-band-alerts.yml",
   "kpc-ca-key.yml",
   "kpc-discord-relay.yml",
   "kpc-guide-pdf.yml",
   "kpc-hunters.json",
-  "kpc-hunters.yml",
-  "kpc-pota-discord.yml",
+  "kpc-park-alerts.yml",
   "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
-  "out:shrank:L:data/ky-answer-key.json",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
-  "refs:gone:US-AZ:US-13337",
-  "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324"
+  "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
+  "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-14T16:08+00:00",
+ "checked": "2026-11-15T12:39+00:00",
  "weekly": {
   "site": {
    "part": "site",
-   "date": "2026-11-08",
-   "problems": [],
-   "notes": [
+   "date": "2026-11-15",
+   "problems": [
     {
-     "chat": 5,
-     "msg": "Site test could not run: browserType.launch: Executable doesn't exist at /home/runner/.cache/ms-playwright/chromium_headless_shell-1194/chrome-linux/headless_shell\n╔════════════════════════════════════════════════════════════"
+     "key": "site:wide:kpc-live.html:desktop",
+     "chat": 1,
+     "msg": "kpc-live.html (desktop): page is 4px wider than the screen (sideways scroll)"
     }
    ],
-   "ok": []
+   "notes": [],
+   "ok": [
+    "60 public pages opened as a guest at phone width (390px)",
+    "members door checked on M-eb1a (members page), M-04b8 (members page), M-cbb8 (members page), M-e281 (members page)",
+    "60 public pages opened as a guest at desktop width (1280px)"
+   ]
   },
   "refs": {
    "part": "refs",
-   "date": "2026-11-08",
+   "date": "2026-11-15",
    "problems": [
     {
      "key": "refs:gone:CA-SI:CA-0120",
@@ -50,37 +47,2491 @@
      "msg": "CA-SP: 1 park number(s) POTA no longer lists, still in our data: CA-0122 (answer key)"
     },
     {
-     "key": "refs:gone:US-AZ:US-13337",
-     "chat": 2,
-     "msg": "US-AZ: 1 park number(s) POTA no longer lists, still in our data: US-13337 (state camps)"
-    },
-    {
      "key": "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
      "chat": 2,
      "msg": "trails: 5 park number(s) POTA no longer lists, still in our data: US-11232 (trail lines), US-11234 (trail lines), US-11954 (trail lines), US-4237 (trail lines), US-8324 (trail lines)"
     }
    ],
-   "notes": [],
+   "notes": [
+    {
+     "chat": 2,
+     "msg": "US-FL: 1 name(s) differ from POTA (renamed or spelled differently): US-0635 ours \"St. George State Park\" / POTA \"Dr. Julian G. Bruce St. George Island State Park\""
+    },
+    {
+     "chat": 2,
+     "msg": "US-HI: 1 name(s) differ from POTA (renamed or spelled differently): US-0121 ours \"Kure Atoll\" / POTA \"Kure Atoll State Wildlife Area\""
+    }
+   ],
    "ok": [
-    "18939 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
+    "18950 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
    ]
   },
   "links": {
    "part": "links",
-   "date": "2026-11-08",
+   "date": "2026-11-15",
    "problems": [
+    {
+     "key": "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38 → server error: json",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2 → server error: json",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23 → server error: json",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0 → no answer (<urlopen error apps.fs.usda.gov: saved copies only)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0 → no answer (<urlopen error apps.fs.usda.gov: saved copies only)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0 → no answer (<urlopen error apps.fs.usda.gov: saved copies only)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublish_01/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublish_01/MapServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://dpt.colorado.gov/localities",
+     "chat": 2,
+     "twice": true,
+     "msg": "land-owner.json: https://dpt.colorado.gov/localities → HTTP 404",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46 → no answer (The read operation timed out)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9 → server error: Service not found",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/11",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/11 → no answer (<urlopen error [Errno -3] Temporary failure in nam)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0 → no answer (<urlopen error ncnhde.natureserve.org: saved copie)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0 → no answer (<urlopen error services.arcgis.com: services*.arcg)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NY_State_Park_Facilities/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NY_State_Park_Facilities/FeatureServer/0 → no answer (<urlopen error services.arcgis.com: services*.arcg)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/ParkEntrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/ParkEntrance/FeatureServer/0 → no answer (<urlopen error services.arcgis.com: services*.arcg)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/EST_Public/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/EST_Public/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Parks_Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Parks_Trails/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/ParkEntrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/ParkEntrance/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
     {
      "key": "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
      "chat": 2,
      "twice": true,
-     "msg": "access-layers.json: https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0 → server error: Invalid URL",
+     "msg": "access-layers.json: https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0 → host not answering",
      "confirmed": true
     },
     {
-     "key": "links:https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_Boating_Access_Locations/FeatureServer/0",
+     "key": "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/lakes/FeatureServer/11",
      "chat": 2,
      "twice": true,
-     "msg": "access-layers.json: https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_Boating_Access_Locations/FeatureServer/0 → no answer (The read operation timed out)",
+     "msg": "state-gis.json: https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/lakes/FeatureServer/11 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/waterTrails/FeatureServer/12",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/waterTrails/FeatureServer/12 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/NHD/FeatureServer/6",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/NHD/FeatureServer/6 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Parks3/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Parks3/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/Eb8P5h4CJk8utIBz/arcgis/rest/services/PLRA/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services.arcgis.com/Eb8P5h4CJk8utIBz/arcgis/rest/services/PLRA/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hydrography_Public/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hydrography_Public/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Fishing_and_Boating_Access_FFW_App/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Fishing_and_Boating_Access_FFW_App/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/National_Trails_England/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/National_Trails_England/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/RyxlXSfFi87rAosq/ArcGIS/rest/services/NDOWWMAs/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/RyxlXSfFi87rAosq/ArcGIS/rest/services/NDOWWMAs/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Nevada_Department_of_Wildlife_Fish_Hatchery_Locations/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Nevada_Department_of_Wildlife_Fish_Hatchery_Locations/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Area_Point_Features/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Area_Point_Features/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/VdkVOAHovLuozJG4/arcgis/rest/services/Sport_Fishing_Opportunities_and_Access_DRAFT/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/VdkVOAHovLuozJG4/arcgis/rest/services/Sport_Fishing_Opportunities_and_Access_DRAFT/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/4",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/4 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/DPRRecreationPoints/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/DPRRecreationPoints/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Waterfowl_Management_Area_Interactive_Web_Map_WFL1/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Waterfowl_Management_Area_Interactive_Web_Map_WFL1/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/5",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/5 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/South_Carolina_Public_Water_Access_PUBLIC_VIEW/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/South_Carolina_Public_Water_Access_PUBLIC_VIEW/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/FirstResponderParkingAreas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/FirstResponderParkingAreas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/4",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/4 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/bDAhvQYMG4WL8O5o/ArcGIS/rest/services/Virginia_Trails/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services.arcgis.com/bDAhvQYMG4WL8O5o/ArcGIS/rest/services/Virginia_Trails/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Entry_Points/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Entry_Points/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Management_Areas_Official_Trails_and_Points_of_Interest/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Management_Areas_Official_Trails_and_Points_of_Interest/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Maryland_Water_Access_Sites_Production_View/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Maryland_Water_Access_Sites_Production_View/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Public_Water_Access_2020/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Public_Water_Access_2020/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/pA2nEVnB6tquxgOW/ArcGIS/rest/services/Utah_Scenic_Byways/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services.arcgis.com/pA2nEVnB6tquxgOW/ArcGIS/rest/services/Utah_Scenic_Byways/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Management_Area_Parking/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Management_Area_Parking/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Management_Area_Recreational_Amenity/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Management_Area_Recreational_Amenity/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Boating_Access_Sites_OA/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Boating_Access_Sites_OA/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Parks_view/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Parks_view/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Trails_Hosted_view/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Trails_Hosted_view/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/BoatRamps_Public/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/BoatRamps_Public/FeatureServer/0 → no answer (<urlopen error services1.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0 → no answer (<urlopen error services1.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0 → no answer (<urlopen error services1.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Headquarters__Access_Points/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Headquarters__Access_Points/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Public_Areas/FeatureServer/4",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Public_Areas/FeatureServer/4 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/Land_Management_Recreation_Boat_Canoe/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/Land_Management_Recreation_Boat_Canoe/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/Recreation_Parking/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/Recreation_Parking/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/BoatRamps05152025/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/BoatRamps05152025/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/SCORP_Facilities/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/SCORP_Facilities/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/BlueHillsParkingLotsPublic2024_07_24/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/BlueHillsParkingLotsPublic2024_07_24/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR-DWSP_Parking_and_Access_Locations_view/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR-DWSP_Parking_and_Access_Locations_view/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR_Roads_and_Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR_Roads_and_Trails/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DFWWATERACCESS/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DFWWATERACCESS/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DFW_Parking_for_Recreation_Maps_V3_view/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DFW_Parking_for_Recreation_Maps_V3_view/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/BoatRamps/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/BoatRamps/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahTrailheads/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahTrailheads/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/TrailsAndPathways/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/TrailsAndPathways/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/state_park_boundaries_dissolved/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/state_park_boundaries_dissolved/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/9M0W2FyHuittNScn/arcgis/rest/services/Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/9M0W2FyHuittNScn/arcgis/rest/services/Trails/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/CNPdEkvnGl65jCX8/ArcGIS/rest/services/Idaho_Centennial_Trail_Official_Route/FeatureServer/52",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/CNPdEkvnGl65jCX8/ArcGIS/rest/services/Idaho_Centennial_Trail_Official_Route/FeatureServer/52 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Park_N__Ski_replace_view/FeatureServer/7",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Park_N__Ski_replace_view/FeatureServer/7 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_DEEP_Boat_Launches_One_Symbol/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_DEEP_Boat_Launches_One_Symbol/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/4",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/4 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/DEEP_Property_Access_Locations/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/DEEP_Property_Access_Locations/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Property_Access_Locations/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Property_Access_Locations/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Trails_Set/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Trails_Set/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_National_Recreation_Site_Points/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_National_Recreation_Site_Points/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_GTLF_Public_Managed_Trails/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_GTLF_Public_Managed_Trails/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/National_Scenic_and_Historic_Trails_NSHT/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/National_Scenic_and_Historic_Trails_NSHT/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Aquatic_recreation_access_points/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Aquatic_recreation_access_points/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Managed_Trails/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Managed_Trails/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/StatePark_FacilitiesPOI/FeatureServer/12",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/StatePark_FacilitiesPOI/FeatureServer/12 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Virginia_State_Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Virginia_State_Trails/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Gates_AMGMT__Phase1_VIEW/FeatureServer/5",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Gates_AMGMT__Phase1_VIEW/FeatureServer/5 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Managed_Trails/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Managed_Trails/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_POI_assets/FeatureServer/12",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_POI_assets/FeatureServer/12 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VSP_Natural_Area_Preserves/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VSP_Natural_Area_Preserves/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/WaterAccess/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/WaterAccess/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/Open_Space__State_Owned__Points_of_Interest_h/FeatureServer/62",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/Open_Space__State_Owned__Points_of_Interest_h/FeatureServer/62 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/ArcGIS/rest/services/Maine_GeoLibrary_Structure/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/RbMX0mRVOFNTdLzd/ArcGIS/rest/services/Maine_GeoLibrary_Structure/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFWWildlifeManagementAreas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFWWildlifeManagementAreas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Coastal_Public_Access_Sites_April_2026/FeatureServer/74",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Coastal_Public_Access_Sites_April_2026/FeatureServer/74 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Eco_Reserves/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Eco_Reserves/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/WMA_AccessPoints/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/WMA_AccessPoints/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/BuildingsStructures_Reservations/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/BuildingsStructures_Reservations/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/Trailheads_Statewide/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/Trailheads_Statewide/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/Game_Land_Access/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/Game_Land_Access/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/NCWRC_Boating_Access_Areas_view/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/NCWRC_Boating_Access_Areas_view/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Balls_Falls_Entrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Balls_Falls_Entrance/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Beamer_Memorial_Entrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Beamer_Memorial_Entrance/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Binbrook_Entrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Binbrook_Entrance/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/CH_Parks_Points_of_Interest/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/CH_Parks_Points_of_Interest/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Canborough_Entrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Canborough_Entrance/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Cave_Springs_Entrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Cave_Springs_Entrance/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Chippawa_Creek_Entrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Chippawa_Creek_Entrance/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Authority_Entrances/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Authority_Entrances/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Hedley_Forest_Entrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Hedley_Forest_Entrance/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Ken_Reid_Points_of_Interest/FeatureServer/8",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Ken_Reid_Points_of_Interest/FeatureServer/8 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Public_Boat_Launch/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Public_Boat_Launch/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Wainfleet_Wetlands_Entrance/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Wainfleet_Wetlands_Entrance/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANST_Centerline/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANST_Centerline/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/BUOV_Congressionally_Designated_Alignment/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/BUOV_Congressionally_Designated_Alignment/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/CALI_NHT/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/CALI_NHT/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ELCA_NHT/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ELCA_NHT/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ELTE_NHT/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ELTE_NHT/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Iditarod_National_Historic_Trail_BLM_Official_Temp/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Iditarod_National_Historic_Trail_BLM_Official_Temp/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JUBA_HistoricTrail_ln/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JUBA_HistoricTrail_ln/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/LECL_Lewis_and_Clark_NHT_Auto_Route_Final_Combined/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/LECL_Lewis_and_Clark_NHT_Auto_Route_Final_Combined/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/MOPI_NHT/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/MOPI_NHT/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NEEN_BND_NationalScenicTrailCenterline_ln/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NEEN_BND_NationalScenicTrailCenterline_ln/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/OLSP_CAS_Line_201801/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/OLSP_CAS_Line_201801/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/OREG_NHT/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/OREG_NHT/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Overmountain_Victory_National_Historic_Trail_Official_Temp/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Overmountain_Victory_National_Historic_Trail_Official_Temp/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/POEX_NHT/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/POEX_NHT/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/SAFE_NHT/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/SAFE_NHT/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Selma_to_Montgomery_National_Historic_Trail_Official/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Selma_to_Montgomery_National_Historic_Trail_Official/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Sta_Spangled_Banner_National_Historic_Trail_Official_Centerline/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Sta_Spangled_Banner_National_Historic_Trail_Official_Centerline/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/TRTE_NHT/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/TRTE_NHT/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/gdr0FcZCwx1BmrQk/arcgis/rest/services/RecreationGuide/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/gdr0FcZCwx1BmrQk/arcgis/rest/services/RecreationGuide/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/100",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/100 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/103",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/103 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/105",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/105 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Designated_Paddling_Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Designated_Paddling_Trails/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/River_Access_STWD_2022/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/River_Access_STWD_2022/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/protected_areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/protected_areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0 → no answer (<urlopen error services2.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/8krRUWgifzA4cgL3/arcgis/rest/services/AdirondackParkBoundary/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/8krRUWgifzA4cgL3/arcgis/rest/services/AdirondackParkBoundary/FeatureServer/0 → no answer (<urlopen error services2.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkEntryPoints/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkEntryPoints/FeatureServer/2 → no answer (<urlopen error services2.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkingPoints/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkingPoints/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/AhxrK3F6WM8ECvDi/arcgis/rest/services/ParkEntryPoints/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/AhxrK3F6WM8ECvDi/arcgis/rest/services/ParkEntryPoints/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/AhxrK3F6WM8ECvDi/arcgis/rest/services/ParkingPoints/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/AhxrK3F6WM8ECvDi/arcgis/rest/services/ParkingPoints/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Boat_Ramps/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Boat_Ramps/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Access/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Access/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/JSw5FPLGACZknOZv/arcgis/rest/services/Park_Facilities/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/JSw5FPLGACZknOZv/arcgis/rest/services/Park_Facilities/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/RTP_Regional_Trails/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/RTP_Regional_Trails/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/S8zZg9pg23JUEexQ/arcgis/rest/services/HYDRO_Fishing_Boating_Access_2024_spf/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/S8zZg9pg23JUEexQ/arcgis/rest/services/HYDRO_Fishing_Boating_Access_2024_spf/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3092_fpu/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3092_fpu/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/WLyMuW006nKOfa5Z/ArcGIS/rest/services/NCC_Parking/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/WLyMuW006nKOfa5Z/ArcGIS/rest/services/NCC_Parking/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services/TRAZ_Editor_view/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services/TRAZ_Editor_view/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/TrailAccess/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/TrailAccess/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/PaddleNetworkParking/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/PaddleNetworkParking/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_MDC_Parking_Lots/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_MDC_Parking_Lots/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Area_Rec_Points/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Area_Rec_Points/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/r6iFVcMJeA4kB4GC/arcgis/rest/services/Iowa_Water_Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services2.arcgis.com/r6iFVcMJeA4kB4GC/arcgis/rest/services/Iowa_Water_Trails/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Access_Points_Draft/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Access_Points_Draft/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Facilities_Components_APCA_OpenOuvert/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Facilities_Components_APCA_OpenOuvert/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Facilities_Installations_Point_OpenData/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Facilities_Installations_Point_OpenData/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Facilities_Installations_Point_V2_FGP/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Facilities_Installations_Point_V2_FGP/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services2.arcgis.com/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services2.arcgis.com/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/9Ij3DUv1U3250Rno/arcgis/rest/services/Current_FLTFI_Parking_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/9Ij3DUv1U3250Rno/arcgis/rest/services/Current_FLTFI_Parking_Areas/FeatureServer/0 → no answer (<urlopen error services3.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0 → no answer (<urlopen error services3.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS_POINTS/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS_POINTS/FeatureServer/0 → no answer (<urlopen error services3.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS_FACILITIES_PTS/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS_FACILITIES_PTS/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FreezoutLakeWmaFacilities/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FreezoutLakeWmaFacilities/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FreezoutLakeWmaFacilities/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FreezoutLakeWmaFacilities/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Montana_State_Parks_Trailheads/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Montana_State_Parks_Trailheads/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Boat_Launch_CRCA_2021/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Boat_Launch_CRCA_2021/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/ND_Base_Amenity/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/ND_Base_Amenity/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRRecreationBaseFeatures_ReadOnly/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRRecreationBaseFeatures_ReadOnly/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/6",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/6 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNR_State_Sponsored_Developed_Boating_Access_Sites_Public_View/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNR_State_Sponsored_Developed_Boating_Access_Sites_Public_View/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/PRDBASPublicView/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/PRDBASPublicView/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/5",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/5 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/OYP7N6mAJJCyH6hd/ArcGIS/rest/services/National_Historic_Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services3.arcgis.com/OYP7N6mAJJCyH6hd/ArcGIS/rest/services/National_Historic_Trails/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/AllAccessSites/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/AllAccessSites/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/WMA_Entrances/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/WMA_Entrances/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Long_Distance_Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Long_Distance_Trails/FeatureServer/0 → no answer (<urlopen error services5.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2 → no answer (<urlopen error services5.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries_Entrances/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries_Entrances/FeatureServer/0 → no answer (<urlopen error services5.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkEntrances/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkEntrances/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkingAreas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkingAreas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Trailheads_PublicView/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Trailheads_PublicView/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Trails/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/WAStateParks_BoatLaunches/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/WAStateParks_BoatLaunches/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Amenities/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Amenities/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Boating_App_Web_Layers/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Boating_App_Web_Layers/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Boating_App_Web_Layers_Boat_Ramps_OPEN_DATA_PORTAL/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Boating_App_Web_Layers_Boat_Ramps_OPEN_DATA_PORTAL/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Map/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Map/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Paddle_Craft_Launch_View_Layer_for_Public_Web_Map/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Paddle_Craft_Launch_View_Layer_for_Public_Web_Map/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/Ul9AyFFeFTjf08DW/arcgis/rest/services/WIParks_V2_PUBLIC_VIEW/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/Ul9AyFFeFTjf08DW/arcgis/rest/services/WIParks_V2_PUBLIC_VIEW/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/ZTbCl7IqVy1LQh5d/arcgis/rest/services/Oklahoma_Historic_and_Scenic_Byways_WFL1/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services5.arcgis.com/ZTbCl7IqVy1LQh5d/arcgis/rest/services/Oklahoma_Historic_and_Scenic_Byways_WFL1/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/CleanedParkDriveTimes/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/CleanedParkDriveTimes/FeatureServer/2 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Park_Entrances_January/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Park_Entrances_January/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Parking_Areas_(Public_View)/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Parking_Areas_(Public_View)/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Lands/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Lands/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Boundaries_(Public_View)/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Boundaries_(Public_View)/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Recreation_Assets_(Public_View)/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Recreation_Assets_(Public_View)/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/VA_DWR_River_Accesses_WFL1/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/VA_DWR_River_Accesses_WFL1/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0 → no answer (<urlopen error services6.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0 → no answer (<urlopen error services6.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9 → no answer (<urlopen error services6.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/5",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/5 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/8",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/8 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_Water_Access_Points/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_Water_Access_Points/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/BoatLaunch_DECPOI/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/BoatLaunch_DECPOI/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/NYS_DEC_Lands/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/NYS_DEC_Lands/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/Boat_Launch_Sites/FeatureServer/4",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/Boat_Launch_Sites/FeatureServer/4 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/Catskill_Park_Boundary/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/Catskill_Park_Boundary/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/DEC_pointsinterest/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/DEC_pointsinterest/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_State_Land_Assets/FeatureServer/38",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_State_Land_Assets/FeatureServer/38 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/Pa9GX8gVoVoT9Dpj/arcgis/rest/services/LOSP_Points_of_Interest/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/Pa9GX8gVoVoT9Dpj/arcgis/rest/services/LOSP_Points_of_Interest/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/5",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/5 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/6",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/6 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Facilities/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Facilities/FeatureServer/3 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Facilities/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Facilities/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/NC_State_Parks_System/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/NC_State_Parks_System/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-hand.json: https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2 → no answer (<urlopen error services7.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0 → no answer (<urlopen error services7.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0 → no answer (<urlopen error services7.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services8.arcgis.com/hg1B9Egwk1I5p300/ArcGIS/rest/services/NH_Recreational_Trails/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services8.arcgis.com/hg1B9Egwk1I5p300/ArcGIS/rest/services/NH_Recreational_Trails/FeatureServer/1 → no answer (<urlopen error services8.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/0 → no answer (<urlopen error services8.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2 → no answer (<urlopen error services8.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/nh_access_sites/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/nh_access_sites/FeatureServer/0 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services9.arcgis.com/EGheeB0VDT6EarZv/ArcGIS/rest/services/MonumentParks1_WFL1/FeatureServer/29",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services9.arcgis.com/EGheeB0VDT6EarZv/ArcGIS/rest/services/MonumentParks1_WFL1/FeatureServer/29 → no answer (<urlopen error services9.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services9.arcgis.com/FF3qnCUixr5w9JQi/ArcGIS/rest/services/USGS_Trails/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services9.arcgis.com/FF3qnCUixr5w9JQi/ArcGIS/rest/services/USGS_Trails/FeatureServer/0 → no answer (<urlopen error services9.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Parking_Areas/FeatureServer/38",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Parking_Areas/FeatureServer/38 → no answer (<urlopen error services9.arcgis.com: services*.arc)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Access_Sites/FeatureServer/28",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Access_Sites/FeatureServer/28 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16 → host not answering",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1 → host not answering",
      "confirmed": false
     }
    ],
@@ -107,25 +2558,374 @@
     },
     {
      "chat": 2,
-     "msg": "parkinfo-web.json map links (from the monthly map-link check): 1917 load, 217 do not: CA-4959 map no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_); CA-5032 map HTTP 403; US-0264 map HTTP 530; US-0727 map HTTP 404; US-1001 map HTTP 404; US-10403 map HTTP 403; US-10428 map HTTP 404; US-1055 map HTTP 403"
+     "msg": "parkinfo-web.json map links (from the monthly map-link check): 1956 load, 240 do not: CA-0655 map HTTP 404; CA-4959 map no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_); CA-5032 map blocked (opens in a browser); US-0264 map HTTP 530; US-0727 map HTTP 404; US-1001 map HTTP 404; US-10403 map blocked (opens in a browser); US-10428 map HTTP 404"
     }
    ],
    "ok": [
-    "640 of 647 map-server / data addresses answered"
+    "299 of 656 map-server / data addresses answered"
    ]
   }
  },
  "link_fail_prev": [
+  "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
+  "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
+  "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
+  "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+  "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
+  "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
+  "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0",
+  "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0",
+  "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublish_01/MapServer/0",
+  "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+  "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+  "links:https://dpt.colorado.gov/localities",
+  "links:https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46",
+  "links:https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9",
+  "links:https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/11",
+  "links:https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0",
+  "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
+  "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NY_State_Park_Facilities/FeatureServer/0",
+  "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/ParkEntrance/FeatureServer/0",
+  "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/EST_Public/FeatureServer/3",
+  "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Parks_Trails/FeatureServer/0",
+  "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/ParkEntrance/FeatureServer/0",
   "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0",
-  "links:https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_Boating_Access_Locations/FeatureServer/0"
+  "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/lakes/FeatureServer/11",
+  "links:https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/waterTrails/FeatureServer/12",
+  "links:https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/NHD/FeatureServer/6",
+  "links:https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2",
+  "links:https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Parks3/FeatureServer/0",
+  "links:https://services.arcgis.com/Eb8P5h4CJk8utIBz/arcgis/rest/services/PLRA/FeatureServer/1",
+  "links:https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hydrography_Public/FeatureServer/0",
+  "links:https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Fishing_and_Boating_Access_FFW_App/FeatureServer/1",
+  "links:https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0",
+  "links:https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer/0",
+  "links:https://services.arcgis.com/JJzESW51TqeY9uat/ArcGIS/rest/services/National_Trails_England/FeatureServer/0",
+  "links:https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+  "links:https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0",
+  "links:https://services.arcgis.com/RyxlXSfFi87rAosq/ArcGIS/rest/services/NDOWWMAs/FeatureServer/0",
+  "links:https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Nevada_Department_of_Wildlife_Fish_Hatchery_Locations/FeatureServer/0",
+  "links:https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Area_Point_Features/FeatureServer/0",
+  "links:https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0",
+  "links:https://services.arcgis.com/VdkVOAHovLuozJG4/arcgis/rest/services/Sport_Fishing_Opportunities_and_Access_DRAFT/FeatureServer/2",
+  "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/1",
+  "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/4",
+  "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/DPRRecreationPoints/FeatureServer/0",
+  "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0",
+  "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0",
+  "links:https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Waterfowl_Management_Area_Interactive_Web_Map_WFL1/FeatureServer/1",
+  "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/0",
+  "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3",
+  "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4",
+  "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/5",
+  "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0",
+  "links:https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/South_Carolina_Public_Water_Access_PUBLIC_VIEW/FeatureServer/0",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/FirstResponderParkingAreas/FeatureServer/0",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/0",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/1",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/2",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Lands_Assets_Update_8_26_19_separate_layers_Non_Editable_View/FeatureServer/4",
+  "links:https://services.arcgis.com/bDAhvQYMG4WL8O5o/ArcGIS/rest/services/Virginia_Trails/FeatureServer/2",
+  "links:https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0",
+  "links:https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0",
+  "links:https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Waterbody_Entry_Points/FeatureServer/0",
+  "links:https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Management_Areas_Official_Trails_and_Points_of_Interest/FeatureServer/1",
+  "links:https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Maryland_Water_Access_Sites_Production_View/FeatureServer/0",
+  "links:https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Public_Water_Access_2020/FeatureServer/0",
+  "links:https://services.arcgis.com/pA2nEVnB6tquxgOW/ArcGIS/rest/services/Utah_Scenic_Byways/FeatureServer/0",
+  "links:https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Management_Area_Parking/FeatureServer/0",
+  "links:https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Management_Area_Recreational_Amenity/FeatureServer/0",
+  "links:https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0",
+  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0",
+  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Boating_Access_Sites_OA/FeatureServer/0",
+  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0",
+  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/2",
+  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/3",
+  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Parks_view/FeatureServer/0",
+  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Trails_Hosted_view/FeatureServer/0",
+  "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/BoatRamps_Public/FeatureServer/0",
+  "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0",
+  "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0",
+  "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Headquarters__Access_Points/FeatureServer/0",
+  "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Public_Areas/FeatureServer/4",
+  "links:https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0",
+  "links:https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/Land_Management_Recreation_Boat_Canoe/FeatureServer/0",
+  "links:https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/Recreation_Parking/FeatureServer/0",
+  "links:https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0",
+  "links:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/BoatRamps05152025/FeatureServer/0",
+  "links:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0",
+  "links:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0",
+  "links:https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0",
+  "links:https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/SCORP_Facilities/FeatureServer/0",
+  "links:https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0",
+  "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/BlueHillsParkingLotsPublic2024_07_24/FeatureServer/0",
+  "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR-DWSP_Parking_and_Access_Locations_view/FeatureServer/0",
+  "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR_Roads_and_Trails/FeatureServer/0",
+  "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DFWWATERACCESS/FeatureServer/0",
+  "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DFW_Parking_for_Recreation_Maps_V3_view/FeatureServer/0",
+  "links:https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0",
+  "links:https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/BoatRamps/FeatureServer/0",
+  "links:https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahTrailheads/FeatureServer/0",
+  "links:https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/TrailsAndPathways/FeatureServer/0",
+  "links:https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0",
+  "links:https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/state_park_boundaries_dissolved/FeatureServer/0",
+  "links:https://services1.arcgis.com/9M0W2FyHuittNScn/arcgis/rest/services/Trails/FeatureServer/0",
+  "links:https://services1.arcgis.com/CNPdEkvnGl65jCX8/ArcGIS/rest/services/Idaho_Centennial_Trail_Official_Route/FeatureServer/52",
+  "links:https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Park_N__Ski_replace_view/FeatureServer/7",
+  "links:https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128",
+  "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_DEEP_Boat_Launches_One_Symbol/FeatureServer/0",
+  "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/0",
+  "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/4",
+  "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0",
+  "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/DEEP_Property_Access_Locations/FeatureServer/0",
+  "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0",
+  "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Open_for_Hunting_New_Schema/FeatureServer/0",
+  "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Property_Access_Locations/FeatureServer/0",
+  "links:https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_Trails_Set/FeatureServer/3",
+  "links:https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0",
+  "links:https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0",
+  "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_National_Recreation_Site_Points/FeatureServer/2",
+  "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_GTLF_Public_Managed_Trails/FeatureServer/2",
+  "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0",
+  "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+  "links:https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/National_Scenic_and_Historic_Trails_NSHT/FeatureServer/0",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Aquatic_recreation_access_points/FeatureServer/0",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Managed_Trails/FeatureServer/1",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/StatePark_FacilitiesPOI/FeatureServer/12",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Virginia_State_Trails/FeatureServer/0",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Gates_AMGMT__Phase1_VIEW/FeatureServer/5",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Managed_Trails/FeatureServer/3",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_POI_assets/FeatureServer/12",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands/FeatureServer/0",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VSP_Natural_Area_Preserves/FeatureServer/1",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/WaterAccess/FeatureServer/0",
+  "links:https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0",
+  "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67",
+  "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828",
+  "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/Open_Space__State_Owned__Points_of_Interest_h/FeatureServer/62",
+  "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/ArcGIS/rest/services/Maine_GeoLibrary_Structure/FeatureServer/1",
+  "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFWWildlifeManagementAreas/FeatureServer/0",
+  "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Coastal_Public_Access_Sites_April_2026/FeatureServer/74",
+  "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Eco_Reserves/FeatureServer/0",
+  "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0",
+  "links:https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/WMA_AccessPoints/FeatureServer/0",
+  "links:https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/BuildingsStructures_Reservations/FeatureServer/0",
+  "links:https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0",
+  "links:https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/Trailheads_Statewide/FeatureServer/0",
+  "links:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/Game_Land_Access/FeatureServer/1",
+  "links:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/NCWRC_Boating_Access_Areas_view/FeatureServer/0",
+  "links:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22",
+  "links:https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Balls_Falls_Entrance/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Beamer_Memorial_Entrance/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Binbrook_Entrance/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/CH_Parks_Points_of_Interest/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Canborough_Entrance/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Cave_Springs_Entrance/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Chippawa_Creek_Entrance/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Authority_Entrances/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Hedley_Forest_Entrance/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Ken_Reid_Points_of_Interest/FeatureServer/8",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Public_Boat_Launch/FeatureServer/0",
+  "links:https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Wainfleet_Wetlands_Entrance/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANST_Centerline/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/BUOV_Congressionally_Designated_Alignment/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/CALI_NHT/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ELCA_NHT/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ELTE_NHT/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Iditarod_National_Historic_Trail_BLM_Official_Temp/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JUBA_HistoricTrail_ln/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/LECL_Lewis_and_Clark_NHT_Auto_Route_Final_Combined/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/MOPI_NHT/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NEEN_BND_NationalScenicTrailCenterline_ln/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/OLSP_CAS_Line_201801/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/OREG_NHT/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Overmountain_Victory_National_Historic_Trail_Official_Temp/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/POEX_NHT/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/SAFE_NHT/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Selma_to_Montgomery_National_Historic_Trail_Official/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Sta_Spangled_Banner_National_Historic_Trail_Official_Centerline/FeatureServer/0",
+  "links:https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/TRTE_NHT/FeatureServer/0",
+  "links:https://services1.arcgis.com/gdr0FcZCwx1BmrQk/arcgis/rest/services/RecreationGuide/FeatureServer/1",
+  "links:https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1",
+  "links:https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/100",
+  "links:https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/103",
+  "links:https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/105",
+  "links:https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300",
+  "links:https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Designated_Paddling_Trails/FeatureServer/0",
+  "links:https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer",
+  "links:https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer/0",
+  "links:https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0",
+  "links:https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/River_Access_STWD_2022/FeatureServer/0",
+  "links:https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/protected_areas/FeatureServer/0",
+  "links:https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0",
+  "links:https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1",
+  "links:https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0",
+  "links:https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0",
+  "links:https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0",
+  "links:https://services2.arcgis.com/8krRUWgifzA4cgL3/arcgis/rest/services/AdirondackParkBoundary/FeatureServer/0",
+  "links:https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkEntryPoints/FeatureServer/2",
+  "links:https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkingPoints/FeatureServer/0",
+  "links:https://services2.arcgis.com/AhxrK3F6WM8ECvDi/arcgis/rest/services/ParkEntryPoints/FeatureServer/2",
+  "links:https://services2.arcgis.com/AhxrK3F6WM8ECvDi/arcgis/rest/services/ParkingPoints/FeatureServer/0",
+  "links:https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Boat_Ramps/FeatureServer/1",
+  "links:https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Access/FeatureServer/0",
+  "links:https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6",
+  "links:https://services2.arcgis.com/JSw5FPLGACZknOZv/arcgis/rest/services/Park_Facilities/FeatureServer/0",
+  "links:https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/RTP_Regional_Trails/FeatureServer/3",
+  "links:https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0",
+  "links:https://services2.arcgis.com/S8zZg9pg23JUEexQ/arcgis/rest/services/HYDRO_Fishing_Boating_Access_2024_spf/FeatureServer/0",
+  "links:https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0",
+  "links:https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0",
+  "links:https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3092_fpu/FeatureServer/0",
+  "links:https://services2.arcgis.com/WLyMuW006nKOfa5Z/ArcGIS/rest/services/NCC_Parking/FeatureServer/0",
+  "links:https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services/TRAZ_Editor_view/FeatureServer/0",
+  "links:https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0",
+  "links:https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/TrailAccess/FeatureServer/0",
+  "links:https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/PaddleNetworkParking/FeatureServer/0",
+  "links:https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0",
+  "links:https://services2.arcgis.com/kNS2ppBA4rwAQQZy/arcgis/rest/services/MO_MDC_Parking_Lots/FeatureServer/0",
+  "links:https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0",
+  "links:https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Area_Rec_Points/FeatureServer/0",
+  "links:https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0",
+  "links:https://services2.arcgis.com/r6iFVcMJeA4kB4GC/arcgis/rest/services/Iowa_Water_Trails/FeatureServer/0",
+  "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Access_Points_Draft/FeatureServer/2",
+  "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Facilities_Components_APCA_OpenOuvert/FeatureServer/0",
+  "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Facilities_Installations_Point_OpenData/FeatureServer/0",
+  "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0",
+  "links:https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Facilities_Installations_Point_V2_FGP/FeatureServer/0",
+  "links:https://services2.arcgis.com/xLpB90lOmCXYDAWo/arcgis/rest/services/GTI_PUB_UTM_DBO_WV_Trail_Inventory/FeatureServer/0",
+  "links:https://services3.arcgis.com/9Ij3DUv1U3250Rno/arcgis/rest/services/Current_FLTFI_Parking_Areas/FeatureServer/0",
+  "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0",
+  "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS_POINTS/FeatureServer/0",
+  "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0",
+  "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS_FACILITIES_PTS/FeatureServer/0",
+  "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0",
+  "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FreezoutLakeWmaFacilities/FeatureServer/0",
+  "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FreezoutLakeWmaFacilities/FeatureServer/1",
+  "links:https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Montana_State_Parks_Trailheads/FeatureServer/0",
+  "links:https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Boat_Launch_CRCA_2021/FeatureServer/0",
+  "links:https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0",
+  "links:https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer/0",
+  "links:https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/ND_Base_Amenity/FeatureServer/0",
+  "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+  "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRRecreationBaseFeatures_ReadOnly/FeatureServer/0",
+  "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/6",
+  "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2",
+  "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNR_State_Sponsored_Developed_Boating_Access_Sites_Public_View/FeatureServer/0",
+  "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/PRDBASPublicView/FeatureServer/0",
+  "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/1",
+  "links:https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/5",
+  "links:https://services3.arcgis.com/OYP7N6mAJJCyH6hd/ArcGIS/rest/services/National_Historic_Trails/FeatureServer/0",
+  "links:https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/AllAccessSites/FeatureServer/0",
+  "links:https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0",
+  "links:https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/WMA_Entrances/FeatureServer/0",
+  "links:https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0",
+  "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Long_Distance_Trails/FeatureServer/0",
+  "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2",
+  "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries_Entrances/FeatureServer/0",
+  "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkEntrances/FeatureServer/0",
+  "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkingAreas/FeatureServer/0",
+  "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Trailheads_PublicView/FeatureServer/0",
+  "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Trails/FeatureServer/0",
+  "links:https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/WAStateParks_BoatLaunches/FeatureServer/0",
+  "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Amenities/FeatureServer/0",
+  "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Boating_App_Web_Layers/FeatureServer/0",
+  "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Boating_App_Web_Layers_Boat_Ramps_OPEN_DATA_PORTAL/FeatureServer/0",
+  "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0",
+  "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Map/FeatureServer/0",
+  "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268",
+  "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Paddle_Craft_Launch_View_Layer_for_Public_Web_Map/FeatureServer/1",
+  "links:https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0",
+  "links:https://services5.arcgis.com/Ul9AyFFeFTjf08DW/arcgis/rest/services/WIParks_V2_PUBLIC_VIEW/FeatureServer/0",
+  "links:https://services5.arcgis.com/ZTbCl7IqVy1LQh5d/arcgis/rest/services/Oklahoma_Historic_and_Scenic_Byways_WFL1/FeatureServer/1",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/CleanedParkDriveTimes/FeatureServer/2",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Park_Entrances_January/FeatureServer/0",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Parking_Areas_(Public_View)/FeatureServer/0",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Lands/FeatureServer/0",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Boundaries_(Public_View)/FeatureServer/0",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Recreation_Assets_(Public_View)/FeatureServer/0",
+  "links:https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49",
+  "links:https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0",
+  "links:https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/VA_DWR_River_Accesses_WFL1/FeatureServer/0",
+  "links:https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/ArcGIS/rest/services/CPWAdminData/FeatureServer/15",
+  "links:https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/0",
+  "links:https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5",
+  "links:https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0",
+  "links:https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0",
+  "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0",
+  "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9",
+  "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14",
+  "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/3",
+  "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/5",
+  "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/8",
+  "links:https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_Water_Access_Points/FeatureServer/0",
+  "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/BoatLaunch_DECPOI/FeatureServer/0",
+  "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/NYS_DEC_Lands/FeatureServer/0",
+  "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/Boat_Launch_Sites/FeatureServer/4",
+  "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/Catskill_Park_Boundary/FeatureServer/0",
+  "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/DEC_pointsinterest/FeatureServer/0",
+  "links:https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_State_Land_Assets/FeatureServer/38",
+  "links:https://services6.arcgis.com/Pa9GX8gVoVoT9Dpj/arcgis/rest/services/LOSP_Points_of_Interest/FeatureServer/0",
+  "links:https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0",
+  "links:https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3",
+  "links:https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/5",
+  "links:https://services6.arcgis.com/VcV5jchX8PVtkcbc/ArcGIS/rest/services/dataVIEWER_of_NW_Arkansas_Trails_2021_WFL1/FeatureServer/6",
+  "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0",
+  "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Hatchery_Locations/FeatureServer/0",
+  "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1",
+  "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Facilities/FeatureServer/3",
+  "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4",
+  "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Facilities/FeatureServer/1",
+  "links:https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0",
+  "links:https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0",
+  "links:https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/NC_State_Parks_System/FeatureServer/0",
+  "links:https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1",
+  "links:https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0",
+  "links:https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2",
+  "links:https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0",
+  "links:https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+  "links:https://services8.arcgis.com/hg1B9Egwk1I5p300/ArcGIS/rest/services/NH_Recreational_Trails/FeatureServer/1",
+  "links:https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/0",
+  "links:https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2",
+  "links:https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/nh_access_sites/FeatureServer/0",
+  "links:https://services9.arcgis.com/EGheeB0VDT6EarZv/ArcGIS/rest/services/MonumentParks1_WFL1/FeatureServer/29",
+  "links:https://services9.arcgis.com/FF3qnCUixr5w9JQi/ArcGIS/rest/services/USGS_Trails/FeatureServer/0",
+  "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Parking_Areas/FeatureServer/38",
+  "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Access_Sites/FeatureServer/28",
+  "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
+  "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1"
  ],
  "sizes": {
   "L:kpc-hunters.json": {
    "b": 2909
   },
   "L:data/ky-answer-key.json": {
-   "b": 31658,
-   "since": "2026-11-12"
+   "b": 31658
   },
   "L:data/us-key": {
    "b": 50363706
@@ -137,10 +2937,10 @@
    "b": 38466663
   },
   "L:data/pota": {
-   "b": 5660245
+   "b": 5823746
   },
   "L:data/canada.json": {
-   "b": 2494163
+   "b": 2559039
   },
   "L:kpc-top25.json": {
    "b": 16584
@@ -167,13 +2967,13 @@
    "b": 334294
   },
   "L:locations.json": {
-   "b": 5422744
+   "b": 5426391
   },
   "L:kpc-events-auto.json": {
    "b": 20937
   },
   "L:kpc-special-events.json": {
-   "b": 19859
+   "b": 18197
   },
   "L:kpc-youtube.json": {
    "b": 2948
@@ -201,22 +3001,22 @@
    "b": 5358732
   },
   "D:data/wwff": {
-   "b": 11701686
+   "b": 11701784
   },
   "D:data/review/scoreboard.json": {
-   "b": 137366
+   "b": 137361
   },
   "D:data/truth": {
-   "b": 20045555
+   "b": 20045269
   },
   "D:data/alerts/eu.json": {
-   "b": 161515
+   "b": 141670
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 184883
+   "b": 183793
   },
   "D:data/intake": {
    "b": 39695215,
@@ -226,7 +3026,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1109098
+   "b": 1109024
   }
  }
 }
