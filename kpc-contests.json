@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T12:27:13Z",
+ "updated": "2026-11-15T17:24:53Z",
  "week": [
   {
    "name": "WAE DX Contest, RTTY",
@@ -32,22 +32,6 @@
    "src": "WA7BNM"
   },
   {
-   "name": "JIDX Phone Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gdvug",
-   "when": "0700Z, Nov 14 to 1300Z, Nov 15",
-   "segs": [
-    [
-     "2026-11-14T07:00Z",
-     "2026-11-15T13:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
    "name": "SKCC Weekend Sprintathon",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g9dzw",
    "when": "1200Z, Nov 14 to 2400Z, Nov 15",
@@ -55,22 +39,6 @@
     [
      "2026-11-14T12:00Z",
      "2026-11-16T00:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "OK/OM DX Contest, CW",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003geizt",
-   "when": "1200Z, Nov 14 to 1200Z, Nov 15",
-   "segs": [
-    [
-     "2026-11-14T12:00Z",
-     "2026-11-15T12:00Z"
     ]
    ],
    "modes": [
@@ -1469,24 +1437,6 @@
    "exch": "Name, mbr or \"0,\" SPC"
   },
   {
-   "name": "JIDX Phone Contest",
-   "url": "https://www.jidx.org",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-14T07:00Z",
-     "2026-11-15T13:01Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28",
-   "exch": "RST, JA prefecture no. or CQ zone"
-  },
-  {
    "name": "SKCC Weekend Sprintathon",
    "url": "https://www.skccgroup.com",
    "when": "",
@@ -1543,24 +1493,6 @@
    "src": "CORRAL",
    "bands": "1.8-14",
    "exch": "RST, name, QTH, equipment year, xmtr type, pwr"
-  },
-  {
-   "name": "Homebrew and Oldtime Equipment Party",
-   "url": "https://www.qrpcc.de",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-15T13:00Z",
-     "2026-11-15T17:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5,7",
-   "exch": "RST, serial, class"
   },
   {
    "name": "Classic Exchange, Phone",
@@ -2695,7 +2627,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (42)",
-  "CORRAL": "ok (67)"
+  "WA7BNM": "ok (40)",
+  "CORRAL": "ok (65)"
  }
 }
