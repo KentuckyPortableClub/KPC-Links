@@ -5,7 +5,9 @@ In store mode (repo variable KPC_KEY_SOURCE=store) a key run only keeps the park
 copies are downloaded from this repo's boundary-cache release by the workflow BEFORE the key step; the key step itself must not
 open any connection. GEO_CACHE_MODE=only already keeps the map reads off; this runner makes every other path fail closed too:
 
-  python3 .github/scripts/kpc_key_offline.py .github/scripts/kpc_us_key.py [args]
+  KPC_KEY_OFFLINE=1 python3 .github/scripts/kpc_us_key.py        (the workflows: kpc_host_pace, which every key script imports
+                                                                 first, installs this guard when KPC_KEY_OFFLINE=1)
+  python3 .github/scripts/kpc_key_offline.py .github/scripts/kpc_us_key.py [args]     (the same, as a runner)
 
 - every socket connect (except a local AF_UNIX socket), socket.create_connection and every DNS lookup is refused (OSError), so a
   caller's ordinary 'read failed' path applies and nothing is read;
@@ -18,7 +20,10 @@ open any connection. GEO_CACHE_MODE=only already keeps the map reads off; this r
 Not a rule file: it decides no join (kpc_key_freeze.NOT_RULES). Standard library only.
   python3 .github/scripts/kpc_key_offline.py --selftest
 """
-import os, runpy, socket, subprocess, sys
+import atexit, os, runpy, socket, subprocess, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import kpc_net_guard  # noqa: E402
+kpc_net_guard.install()   # the shared host rules too (never-contact hosts), like every other script that can reach the web
 
 EXIT_REFUSED = 89
 NET_TOOLS = {'curl', 'wget', 'gh', 'ssh', 'scp', 'sftp', 'rsync', 'nc', 'ncat', 'pip', 'pip3', 'apt', 'apt-get'}
@@ -93,6 +98,23 @@ def install():
     socket._kpc_offline = True
 
 
+def _exit_red():
+    """atexit: any refusal turns the process exit code into 89, whatever the script returned."""
+    if not REFUSED: return
+    print(f'::error title=Store mode (no network)::{len(REFUSED)} connection(s) refused: this run is red and its result is not used '
+          f'(see {_log_path()})', file=sys.stderr, flush=True)
+    try: sys.stdout.flush()
+    except Exception: pass  # noqa: BLE001
+    os._exit(EXIT_REFUSED)
+
+
+def install_from_env():
+    """KPC_KEY_OFFLINE=1 (a store-mode key step): the guard for this whole process, red exit 89 on any refusal."""
+    if os.environ.get('KPC_KEY_OFFLINE') != '1' or getattr(socket, '_kpc_offline', False): return False
+    install(); atexit.register(_exit_red)
+    return True
+
+
 def run(script, args):
     install()
     sys.argv = [script] + list(args)
@@ -144,6 +166,17 @@ def selftest():
         z = t / 'z.py'; z.write_text("print(__name__, __file__.endswith('z.py'))\n")
         r = subprocess.run([sys.executable, __file__, str(z)], capture_output=True, text=True, env=dict(os.environ, KPC_OFFLINE_LOG=str(t / 'l3')))
         check(f"the script runs as __main__ with its own __file__ (got {r.stdout.strip()!r}, exit {r.returncode})", r.stdout.strip() == '__main__ True' and r.returncode == 0)
+        here = os.path.dirname(os.path.abspath(__file__))
+        e = t / 'e.py'; e.write_text(f"import sys; sys.path.insert(0, {here!r})\nimport kpc_host_pace, socket\n"
+                                     "try: socket.create_connection(('127.0.0.1', 9), 2)\nexcept OSError: print('refused')\nsys.exit(0)\n")
+        r = subprocess.run([sys.executable, str(e)], capture_output=True, text=True, env=dict(os.environ, KPC_KEY_OFFLINE='1', KPC_OFFLINE_LOG=str(t / 'l4')))
+        check(f'KPC_KEY_OFFLINE=1: importing kpc_host_pace installs the guard; a refusal = exit {EXIT_REFUSED} even after sys.exit(0) (got {r.returncode})',
+              'refused' in r.stdout and r.returncode == EXIT_REFUSED)
+        e2 = t / 'e2.py'; e2.write_text(f"import sys; sys.path.insert(0, {here!r})\nimport kpc_host_pace, socket\nprint(getattr(socket, '_kpc_offline', False))\n")
+        r = subprocess.run([sys.executable, str(e2)], capture_output=True, text=True, env={k: v for k, v in os.environ.items() if k != 'KPC_KEY_OFFLINE'})
+        check(f'KPC_KEY_OFFLINE unset: kpc_host_pace installs nothing (got {r.stdout.strip()!r}, exit {r.returncode})', r.stdout.strip() == 'False' and r.returncode == 0)
+        r = subprocess.run([sys.executable, str(e2)], capture_output=True, text=True, env=dict(os.environ, KPC_KEY_OFFLINE=''))
+        check('KPC_KEY_OFFLINE empty (the variable unset in a workflow): nothing installed', r.stdout.strip() == 'False' and r.returncode == 0)
     print('SELFTEST PASS' if ok else 'SELFTEST FAIL')
     return 0 if ok else 1
 

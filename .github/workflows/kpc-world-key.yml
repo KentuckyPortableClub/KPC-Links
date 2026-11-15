@@ -233,7 +233,7 @@ jobs:
           WAITMIN: ${{ vars.KPC_WORLD_HELD_WAIT_MIN || '10' }}
           STEP_MIN: '335'   # = this step's timeout-minutes
           GEO_CACHE_MODE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'only' || '' }}   # KPC owner, 2026-11-15: store mode = the saved copies only (downloaded above), no live source
-          KPC_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'python3 .github/scripts/kpc_key_offline.py' || '' }}   # store mode: every connection refused (exit 89 = failed, previous key kept)
+          KPC_KEY_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && '1' || '' }}   # KPC owner, 2026-11-15: store mode = the key opens no connection (kpc_key_offline.py via kpc_host_pace; a refusal = exit 89, the area keeps its key)
           KPC_OFFICIAL_PINS: .op/data/intake/official-pins-nov12.json   # Nov 12 (KPC owner, 2026-11-12): official pin fills (kpc_pin_fill.py), read only from KPC-Data
           # Nov 12 (KPC owner, 2026-11-12): the Japan A10 crosswalk (kpc_jp_crosswalk.py) is OFF until the owner signs the A10 licence terms; only the
           # repo variable KPC_JP_A10_CROSSWALK=on turns it on (JP only). Unset = off; the JP build says 'JP A10 crosswalk: OFF (licence not signed)'.
@@ -288,7 +288,7 @@ jobs:
           fi
           for c in $BUILD; do
             echo "::group::World key $c (limit ${CMIN} min)"
-            rc=0; COUNTRIES=$c timeout --kill-after=60 "${CMIN}m" ${KPC_OFFLINE:-python3} .github/scripts/kpc_world_key.py || rc=$?
+            rc=0; COUNTRIES=$c timeout --kill-after=60 "${CMIN}m" python3 .github/scripts/kpc_world_key.py || rc=$?
             echo "::endgroup::"
             if [ "$rc" = 124 ] || [ "$rc" = 137 ]; then echo "::warning title=World key $c::stopped after ${CMIN} min (a source stopped answering?); the build stamp lists it as failed"; echo "$c" >> part/failed.txt
             elif [ "$rc" = 3 ]; then echo "::warning title=World key $c::HELD (exit 3): a source failed or came back empty with no saved records; previous key kept (tried again at the end if time allows)"; echo "$c" >> part/failed.txt; echo "$c" >> part/held.txt
@@ -306,7 +306,7 @@ jobs:
               left=$(( STEP_MIN - 5 - ( $(date +%s) - T0 ) / 60 )); lim=$(( left < CMIN ? left : CMIN ))
               if [ "$lim" -lt 5 ]; then echo "$c" >> part/held.txt; continue; fi
               echo "::group::World key $c (held retry $n, limit ${lim} min)"
-              rc=0; COUNTRIES=$c timeout --kill-after=60 "${lim}m" ${KPC_OFFLINE:-python3} .github/scripts/kpc_world_key.py || rc=$?
+              rc=0; COUNTRIES=$c timeout --kill-after=60 "${lim}m" python3 .github/scripts/kpc_world_key.py || rc=$?
               echo "::endgroup::"
               if [ "$rc" = 0 ]; then awk -v c="$c" '$0 != c' part/failed.txt > part/failed.tmp; mv part/failed.tmp part/failed.txt; echo "$c" >> part/done.txt; echo "::notice title=World key $c::built on held retry $n"
               elif [ "$rc" = 3 ]; then echo "$c" >> part/held.txt; echo "::warning title=World key $c::still HELD after retry $n"

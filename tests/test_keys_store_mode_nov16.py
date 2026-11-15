@@ -3,10 +3,10 @@
 
 1. The three key workflows: every step that reads a live map, builds or uploads outlines, copies to KPC-Archive or starts another
    workflow carries `vars.KPC_KEY_SOURCE != 'store'`; nothing that can run in store mode does any of those; the drop guard, the join
-   check, the review files and the save still run; every key call goes through kpc_key_offline.py in store mode with
-   GEO_CACHE_MODE=only. With the variable unset the workflows are what they were (checked against 838fee6 while this change is the
+   check, the review files and the save still run; every step that runs a key script sets KPC_KEY_OFFLINE=1 (kpc_key_offline.py,
+   installed by kpc_host_pace) and GEO_CACHE_MODE=only in store mode; the US plan leaves out a state with no saved copy. With the variable unset the workflows are what they were (checked against 838fee6 while this change is the
    only edit since; later edits make that part a plain note).
-2. kpc_us_key.py on a small made-up state, store mode (kpc_key_offline.py + GEO_CACHE_MODE=only): no connection refused (zero tried),
+2. kpc_us_key.py on a small made-up state, store mode (KPC_KEY_OFFLINE=1 + GEO_CACHE_MODE=only, as the workflow runs it): no connection refused (zero tried),
    joins identical to a normal offline run (GEO_CACHE_MODE=use, KPC_MASTER_OWNS=1, sockets off) on the same saved copy; a new park
    with no record stays pin only; a state with no saved copy is skipped with a plain line and its key file is left byte for byte.
 3. Never worse: the drop guard as the store-mode step calls it (KPC_DROP_PCT=0, KPC_DROP_MIN=0) keeps a state that lost ONE official
@@ -75,7 +75,7 @@ def unset(s):
         return '${{ ' + (v[1:-1] if v.startswith('(') and v.endswith(')') else v) + ' }}'
     s = re.sub(r"\$\{\{ vars\.KPC_KEY_SOURCE == 'store' && '[^']*' \|\| (.*?) \}\}", one, s)
     s = re.sub(r"\$\{\{ \((.*)\) && vars\.KPC_KEY_SOURCE != 'store' \}\}", r'${{ \1 }}', s)
-    s = s.replace('${KPC_OFFLINE:-python3}', 'python3').replace(' || [ "$GEO_CACHE_MODE" = only ]', '')
+    s = s.replace(' || [ "$GEO_CACHE_MODE" = only ]', '')
     return s
 
 
@@ -131,11 +131,9 @@ for wf, script in KEYS.items():
                 if rx.search(text_of(st)): bad.append(f'{jn}/{st.get("name", st.get("id"))[:60]}: {what}')
     check(f'{wf}: no step that runs in store mode starts a workflow, uploads, archives, fills / collects / watches or builds outlines {bad[:3]}', not bad)
     # (d) every call of the key script goes through the no-network runner; store mode = GEO_CACHE_MODE only
-    calls = re.findall(r'(\S+) \.github/scripts/' + re.escape(script), raw)
-    check(f'{wf}: every {script} call goes through ${{KPC_OFFLINE:-python3}} ({len(calls)} calls)', calls and all(c == '${KPC_OFFLINE:-python3}' for c in calls))
     steps_calling = [st for job in doc['jobs'].values() for st in job.get('steps') or [] if script in str(st.get('run', ''))]
-    check(f'{wf}: each step that calls {script} sets KPC_OFFLINE to kpc_key_offline.py in store mode',
-          steps_calling and all("== 'store' && 'python3 .github/scripts/kpc_key_offline.py' || ''" in str((st.get('env') or {}).get('KPC_OFFLINE')) for st in steps_calling))
+    check(f'{wf}: each step that calls {script} sets KPC_KEY_OFFLINE=1 in store mode ({len(steps_calling)} steps; the key imports kpc_host_pace, which installs the guard)',
+          steps_calling and all(str((st.get('env') or {}).get('KPC_KEY_OFFLINE')) == "${{ vars.KPC_KEY_SOURCE == 'store' && '1' || '' }}" for st in steps_calling))
     geo = [str((st.get('env') or {}).get('GEO_CACHE_MODE')) for st in steps_calling if (st.get('env') or {}).get('GEO_CACHE_MODE')]
     check(f'{wf}: the build step sets GEO_CACHE_MODE=only in store mode', geo and all(g.startswith("${{ vars.KPC_KEY_SOURCE == 'store' && 'only' ||") for g in geo))
     # (e) unset = as today (838fee6), while this change is the only edit to the file since
@@ -158,9 +156,23 @@ for wf, script in KEYS.items():
                 if {k: v for k, v in a['jobs'][jn].items() if k != 'steps'} != {k: v for k, v in (b['jobs'].get(jn) or {}).items() if k != 'steps'}: print(f'  {wf} job {jn} differs')
         check(f'{wf}: with KPC_KEY_SOURCE unset the workflow is exactly the 838fee6 workflow (only guarded additions)', same)
 
+# the US plan's store-mode step, run for real: a state with no saved copy leaves the plan with a plain line; an emptied group goes
+uswf0 = yaml.safe_load((WF / 'kpc-us-key.yml').read_text())
+sp = [st for st in uswf0['jobs']['plan']['steps'] if st.get('id') == 'store_plan'][0]
+code = re.search(r"python3 - <<'PY'\n(.*?)\n\s*PY", sp['run'], re.S).group(1)
+import textwrap
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t); (t / 'store-assets.txt').write_text('US-RI.json.gz\nUS-DE.json.gz\nhand-US-RI.geojson.gz\n'); (t / 'out').write_text('')
+    groups = [{'i': 0, 'states': 'DE RI VT'}, {'i': 1, 'states': 'WY'}]
+    r = subprocess.run([sys.executable, '-c', textwrap.dedent(code)], capture_output=True, text=True,
+                       env=dict(os.environ, RUNNER_TEMP=str(t), GITHUB_OUTPUT=str(t / 'out'), GROUPS=json.dumps(groups)))
+    out = (t / 'out').read_text()
+    check(f"US plan, store mode: only states with a saved copy stay planned ({out.strip()})", r.returncode == 0 and out.strip() == 'groups=' + json.dumps([{'i': 0, 'states': 'DE RI'}]))
+    check('US plan, store mode: each left-out state gets one plain line (no ::error)', 'US key VT: no saved copy' in r.stderr and 'US key WY: no saved copy' in r.stderr and '::error' not in r.stderr)
+check("the plan's groups output is the store-mode list when there is one, else the normal one", uswf0['jobs']['plan']['outputs']['groups'] == '${{ steps.store_plan.outputs.groups || steps.p.outputs.groups }}')
+
 # ---------------------------------------------------------------- 2. the US key on a made-up state
 KEY = SC / 'kpc_us_key.py'
-OFF = SC / 'kpc_key_offline.py'
 CHILD = r'''
 import runpy, socket, sys
 def _off(*a, **k): raise OSError('network disabled in this test')
@@ -199,7 +211,7 @@ def build(store, with_copy=True, keep_file=None):
         env = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'GEO_', 'STATES'))}
         env.update(STATES='RI', GEO_DETAIL='0.001', no_proxy='*', HTTPS_PROXY='', HTTP_PROXY='', https_proxy='', http_proxy='', KPC_MASTER_OWNS='1',
                    KPC_OFFLINE_LOG=str(t / 'refused.txt'))
-        if store: cmd, env['GEO_CACHE_MODE'] = [sys.executable, str(OFF), str(KEY)], 'only'
+        if store: cmd, env['GEO_CACHE_MODE'], env['KPC_KEY_OFFLINE'] = [sys.executable, str(KEY)], 'only', '1'
         else: cmd, env['GEO_CACHE_MODE'] = [sys.executable, '-c', CHILD, str(KEY)], 'use'
         r = subprocess.run(cmd, cwd=t, capture_output=True, text=True, timeout=600, env=env)
         f = t / 'data/us-key/US-RI.json'

@@ -209,7 +209,7 @@ jobs:
           GROUPS: ${{ steps.p.outputs.groups }}
         run: |
           gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > "$RUNNER_TEMP/store-assets.txt" || { echo "::warning title=Store mode::the boundary-cache asset list could not be read: the plan is kept as it is (the build holds what it cannot download)"; exit 0; }
-          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          python3 - <<'PY'
           import json, os, sys
           have = set(open(os.path.join(os.environ['RUNNER_TEMP'], 'store-assets.txt')).read().split())
           out, skip = [], []
@@ -218,7 +218,7 @@ jobs:
               skip += [s for s in g['states'].split() if f'US-{s}.json.gz' not in have]
               if keep: out.append({'i': g['i'], 'states': ' '.join(keep)})
           for s in skip: print(f'US key {s}: no saved copy on the boundary-cache release; left out of this store-mode run, its key is left as it is', file=sys.stderr)
-          print('groups=' + json.dumps(out))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f: f.write('groups=' + json.dumps(out) + '\n')
           PY
   build:
     needs: plan
@@ -338,7 +338,7 @@ jobs:
           # once a month stays with kpc-boundary-check.yml (two states a night, oldest first). KPC_KEY_LIVE=1 = the old all-live read.
           GEO_CACHE_MODE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'only' || (vars.KPC_KEY_LIVE == '1' && 'off' || 'use') }}   # KPC owner, 2026-11-15: store mode = saved copies only, no network
           GEO_DETAIL: ${{ vars.KPC_KEY_SOURCE == 'store' && '0.001' || (vars.KPC_KEY_LIVE == '1' && '' || '0.001') }}
-          KPC_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'python3 .github/scripts/kpc_key_offline.py' || '' }}   # store mode: the key runs with every connection refused (exit 89 = red, key kept)
+          KPC_KEY_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && '1' || '' }}   # KPC owner, 2026-11-15: store mode = the key opens no connection (kpc_key_offline.py via kpc_host_pace; a refusal = exit 89, the area keeps its key)
           GEO_PAGE: '200'
         run: |
           set -o pipefail
@@ -364,7 +364,7 @@ jobs:
           if [ -s "$RUNNER_TEMP/download-held.txt" ]; then ok=""; for st in $STATES; do grep -qx "US-$st" "$RUNNER_TEMP/download-held.txt" || ok="$ok $st"; done; export STATES="${ok# }"; fi
           [ -n "$STATES" ] || { echo '::error title=Master gate::every state in this job has a short saved copy: nothing built'; exit 1; }
           touch "$RUNNER_TEMP/key-t0"   # Nov 11: the zip-<prefix>.json files this build WRITES are newer than this (the part sends only those)
-          KPC_MASTER_OWNS=1 ${KPC_OFFLINE:-python3} .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log   # Nov 10: the build only READS the saved copies (the master step owns them)
+          KPC_MASTER_OWNS=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-${{ matrix.g.i }}.log   # Nov 10: the build only READS the saved copies (the master step owns them)
           python3 .github/scripts/kpc_key_freeze.py take-rows data/us-key/index.json "$PLANNED_STATES" > /tmp/not-built-states.txt
           if [ -s /tmp/not-built-states.txt ]; then echo "::error title=US key::planned but NOT built (named failed in the stamp): $(tr '\n' ' ' < /tmp/not-built-states.txt)"; fi
           # Nov 6: a state whose shape source returned zero or under half the last live key (KPC-Data) must not
@@ -395,7 +395,7 @@ jobs:
                 fi
               done < /tmp/shape-short-live.txt
               if [ -n "$recover" ]; then
-                STATES="$recover" GEO_CACHE_MODE=only ${KPC_OFFLINE:-python3} .github/scripts/kpc_us_key.py 2>&1 | tee -a us-key-${{ matrix.g.i }}.log \
+                STATES="$recover" GEO_CACHE_MODE=only python3 .github/scripts/kpc_us_key.py 2>&1 | tee -a us-key-${{ matrix.g.i }}.log \
                   || { kpc_rc=$?; echo "::error title=Shape guard::saved-copy refill failed (exit $kpc_rc), see the log above"; echo "Shape guard - saved-copy refill failed (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
               fi
               python3 .github/scripts/kpc_shape_guard.py --built data/us-key --live-index .livekey/data/us-key/index.json --states "$STATES" > /tmp/shape-short.txt && sc=0 || sc=$?
@@ -549,7 +549,7 @@ jobs:
           path: parts
       - name: Put the parts together + the all-state steps
         env:
-          KPC_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'python3 .github/scripts/kpc_key_offline.py' || '' }}   # KPC owner, 2026-11-15: store mode, no network
+          KPC_KEY_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && '1' || '' }}   # KPC owner, 2026-11-15: store mode = the key opens no connection (kpc_key_offline.py via kpc_host_pace; a refusal = exit 89, the area keeps its key)
         run: |
           # Nov 11 (KPC owner, 2026-11-11): per state from its owning part, fail closed (kpc_us_key_join.py): one state in two parts, a file
           # for a state a part does not own, one layers.json prefix written differently by two parts, a zip from a part that does not own
@@ -557,7 +557,7 @@ jobs:
           python3 .github/scripts/kpc_us_key_join.py parts/us-key-part-* --out data/us-key \
             || { touch /tmp/kpc-key-join-bad; git checkout -q HEAD -- data/us-key && git clean -fdq data/us-key; echo "::error title=US key join::the parts did not join per state: nothing from this run is saved"; exit 1; }
           for d in parts/us-key-part-*; do cp "$d"/us-key-*.log . 2>/dev/null || true; done   # ok: a red group may have no log
-          FINISH_ONLY=1 ${KPC_OFFLINE:-python3} .github/scripts/kpc_us_key.py 2>&1 | tee us-key-join.log
+          FINISH_ONLY=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-join.log
           # Oct 28 (HQ 2:58 PM): parks whose joined outline changed -> the 2-fer small batches (KPC-Data kpc-fers-pending.yml reads it)
           python3 - <<'PY'
           import glob, json, subprocess, time
