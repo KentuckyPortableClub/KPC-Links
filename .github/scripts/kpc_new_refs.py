@@ -10,6 +10,10 @@ New ones go in kpc-new-refs.json for 7 days:
   Other states -> 'NEW THIS WEEK' box on Park Notes: Other States only (no Facebook, Brandon).
 Posting starts 2026-10-21 5 PM Central (START). The first run only remembers the lists.
 A list that comes back much shorter than last time is skipped that day (a broken download must not look like 'everything is new').
+Nov 14 (KPC owner, 2026-11-14): seen.json also keeps a short hash of each ref's name (seen['nh'], no names). A known ref whose
+  kpc_name_match.norm_name hash changed is a RENAME: never posted, never in 'NEW THIS WEEK'. An old seen.json with no hashes only learns them
+  (no renames that run). More renames at once than the hiccup gate allows = a bad download: none recorded, hashes kept.
+  data/new-refs/keeper-list.csv (overwritten each run) lists every ref new or renamed in the last 7 days for the keeper.
 DRY=1 prints what would happen without writing or posting.
 """
 import csv, datetime, io, json, os, pathlib, re, subprocess, sys, time, urllib.parse, urllib.request
@@ -209,6 +213,44 @@ feed = load(OUT, {'items': []})
 items = [i for i in feed.get('items', []) if i.get('found', '') >= (NOW.date() - datetime.timedelta(days=KEEP_DAYS - 1)).isoformat()]
 have = {(i['prog'], i['ref']) for i in items}
 changed, summary = False, []
+# Nov 14 (KPC owner, 2026-11-14): renamed refs + the keeper's list (first-seen date per ref, kept 7 days like 'new')
+KEEPER = pathlib.Path('data/new-refs/keeper-list.csv')
+KEEPER_COLS = ('ref', 'name', 'pin_lat', 'pin_lon', 'type', 'change', 'date', 'run_id', 'source')
+RUN_ID = os.environ.get('GITHUB_RUN_ID', '')
+KROWS = seen.setdefault('keeper', {})
+
+
+# Nov 14 (size): seen.json keeps NO names. seen['nh'][prog] = one base64 string of 3-byte name hashes (sha1 of the
+# kpc_name_match.norm_name key), 4 characters per ref, in the order of the sorted list seen[prog]. 3 zero bytes = name not known.
+# A 24-bit hash can collide (1 in about 16 million): that rename is missed, which is acceptable.
+NO_HASH = bytes(3)
+
+
+def name_hash(n):
+    sys.path.insert(0, str(pathlib.Path(__file__).parent))
+    import hashlib, kpc_name_match as NM
+    k = NM.norm_name(n) or re.sub(r'[^a-z0-9]+', ' ', NM.fold(n).lower()).strip()
+    return hashlib.sha1(k.encode()).digest()[:3] if k else NO_HASH
+
+
+def hashes_of(prog):
+    """{ref: 3-byte hash} from last run's string, or None (no string, or it does not line up with seen[prog]: learn only)."""
+    import base64
+    refs, s = seen.get(prog, []), (seen.get('nh') or {}).get(prog)
+    try: b = base64.b64decode(s, validate=True) if isinstance(s, str) else None
+    except Exception: b = None  # noqa: BLE001
+    if b is None or len(b) != 3 * len(refs): return None
+    return {r: b[3 * i:3 * i + 3] for i, r in enumerate(refs)}
+
+
+def keeper_row(prog, ref, c, change, date=None, run_id=None):
+    k = f'{prog}|{ref}'; r = KROWS.get(k)
+    if r and r.get('change') == 'new' and change == 'renamed':   # new this week and renamed since: still 'new', newest name
+        r['name'] = c.get('name') or r.get('name', ''); return
+    pin = lambda v: '' if v is None else v
+    KROWS[k] = {'ref': ref, 'name': c.get('name') or '', 'pin_lat': pin(c.get('la')), 'pin_lon': pin(c.get('lo')),
+                'type': prog.upper(), 'change': change, 'date': date or TODAY,
+                'run_id': RUN_ID if run_id is None else run_id, 'source': 'kpc_new_refs'}
 TODAYS = {}   # today's official lists that passed the checks (search lists + retired check)
 # Oct 28 GATE (HQ tune pass): POTA API hiccup guard. Yesterday's exact list = everything seen minus seen['off'] (refs that were
 # missing yesterday). FAIL (nothing saved for that program today, one notice): the 3 known Kentucky parks missing, or more than
@@ -262,6 +304,17 @@ for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota
     cur = gate(prog, fn, cur, floor)
     if cur is None: continue
     TODAYS[prog] = cur
+    # Nov 14: renames. Only after the gate passed (a short list never gets here). No hash string yet = learn only.
+    prevh = hashes_of(prog); todayh = {r: name_hash(c.get('name') or '') for r, c in cur.items()}
+    ren = sorted(r for r in set(cur) & old if prevh and prevh.get(r, NO_HASH) != NO_HASH and todayh[r] != NO_HASH and todayh[r] != prevh[r])
+    cap = max(25, int(DROP_MAX * len(old)))
+    if len(ren) > cap:
+        notice(f'New references: {prog.upper()}', f'{len(ren)} names changed at once (> {cap}): looks like a bad download; no renames recorded, names kept.')
+        todayh = {r: h for r, h in todayh.items() if r not in (prevh or {})}   # keep last run's hash for every known ref
+    else:
+        for r in ren: keeper_row(prog, r, cur[r], 'renamed')
+        if ren: summary.append(f'{prog.upper()}: {len(ren)} renamed ({", ".join(ren[:8])}{"…" if len(ren) > 8 else ""}), not posted as new')
+        elif prevh is None: summary.append(f'{prog.upper()}: names learned ({len(cur)}), no renames reported this run')
     new = sorted(set(cur) - old)
     if not old:
         summary.append(f'{prog.upper()}: first run, remembered {len(cur)}')
@@ -272,9 +325,13 @@ for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota
             it = {'ref': ref, 'prog': prog, 'name': c['name'], 'st': c['st'], 'la': c['la'], 'lo': c['lo'], 'found': TODAY}
             if prog == 'sota': it.update(ft=c.get('ft'), pts=c.get('pts'))
             items.append(it)
+            keeper_row(prog, ref, c, 'new')
         summary.append(f'{prog.upper()}: {len(cur)} today, {len(new)} new' + (f" ({', '.join(new[:8])}{'…' if len(new) > 8 else ''})" if new else ''))
     # keep refs that dropped off too (a park that comes back is not 'new')
     seen[prog] = sorted(old | set(cur))
+    import base64   # Nov 14: the hash string, rebuilt to line up with the new sorted list (a ref not read today keeps its old hash)
+    seen.setdefault('nh', {})[prog] = base64.b64encode(b''.join(todayh[r] if todayh.get(r, NO_HASH) != NO_HASH else (prevh or {}).get(r, NO_HASH)
+                                                                 for r in seen[prog])).decode()
     seen.setdefault('off', {})[prog] = sorted(set(seen[prog]) - set(cur))   # missing today (yesterday's list for the gate)
     if prog == 'pota': seen['locn'] = {**seen.get('locn', {}), **LOCN}
     changed = True
@@ -402,11 +459,20 @@ elif ky:
 keep = {f"{i['prog']}|{i['ref']}" for i in items} | set(TP)
 seen['posted'] = sorted(set(seen.get('posted', [])) & keep)
 
+# Nov 14: the keeper's list keeps 7 days like 'new'; a new item from before this change gets its row (no run id)
+KCUT = (NOW.date() - datetime.timedelta(days=KEEP_DAYS - 1)).isoformat()
+for i in items:
+    if f"{i['prog']}|{i['ref']}" not in KROWS: keeper_row(i['prog'], i['ref'], i, 'new', i.get('found'), '')
+for k in [k for k, r in KROWS.items() if str(r.get('date', '')) < KCUT]: KROWS.pop(k)
+
 if DRY:
     notice('New references (dry run)', f'{len(items)} item(s) in the 7-day list; nothing written.')
     sys.exit(0)
 SEEN.parent.mkdir(parents=True, exist_ok=True)
 SEEN.write_text(json.dumps(seen, separators=(',', ':')), encoding='utf-8')
+with open(KEEPER, 'w', encoding='utf-8', newline='') as f:
+    w = csv.DictWriter(f, KEEPER_COLS, lineterminator='\n'); w.writeheader()
+    for k in sorted(KROWS, key=lambda k: (KROWS[k]['date'], k), reverse=True): w.writerow({c: KROWS[k].get(c, '') for c in KEEPER_COLS})
 s = json.dumps(feed, indent=1, ensure_ascii=False)
 old = OUT.read_text(encoding='utf-8') if OUT.exists() else ''
 if json.loads(old or '{}').get('items') != items or not old:
