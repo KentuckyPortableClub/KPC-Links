@@ -44,7 +44,7 @@ OUTPUTS = [
     ('kpc-world-key.yml', 'L', 'data/world-key', 'data'), ('kpc-world-pota.yml', 'L', 'data/pota', 'data'),
     ('kpc-canada.yml', 'L', 'data/canada.json', 'data'), ('kpc-top25.yml', 'L', 'kpc-top25.json', 'data'),
     ('kpc-ky-maps.yml', 'L', 'data/ky-official-maps.json', 'data'), ('kpc-official-links.yml', 'L', 'data/parkinfo-web.json', 'data'),
-    ('kpc-state-gis.yml', 'L', 'data/state-gis.json', 'data'), ('kpc-boundary-check.yml', 'L', 'data/boundary-score.json', 'data'),
+    ('kpc-boundary-check.yml', 'L', 'data/boundary-score.json', 'data'),
     ('kpc-fed-camps.yml', 'L', 'data/campfed', 'data'), ('kpc-state-camps.yml', 'L', 'data/campstate', 'data'),
     ('kpc-nwr.yml', 'L', 'data/nwr', 'data'),
     ('kpc-new-refs.yml', 'L', 'locations.json', 'news'), ('kpc-events.yml', 'L', 'kpc-events-auto.json', 'news'),
@@ -219,7 +219,7 @@ def main():
     for f, repo, tag in srcs:
         if f.name in SKIP: continue
         txt = f.read_text(encoding='utf-8')
-        crons = re.findall(r"-\s*cron:\s*'([^']+)'", txt)
+        crons = re.findall(r"^\s*-\s*cron:\s*'([^']+)'", txt, re.M)   # Nov 14: real lines only, a commented '# - cron:' is paused
         if not crons: continue
         name = tag + (re.search(r'^name:\s*(.+)$', txt, re.M) or [None, f.name])[1].strip()
         need = every_hours(crons)

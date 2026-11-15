@@ -1,9 +1,8 @@
+# RETIRED 2026-11-14: the keeper replaces this finder; schedule removed; file kept because data/state-gis.json (live map pages, key builders) still needs to exist and kpc_state_camps.py reads ROOTS from kpc_state_gis.py
 name: State GIS layer scan
-# Quarterly + by hand: finds each state's own park / wildlife / forest boundary layers for the Map Rep Tool Box
+# By hand only (retired): finds each state's own park / wildlife / forest boundary layers for the Map Rep Tool Box
 # and saves what it found to data/state-gis-found.json (Claude curates that into data/state-gis.json). Never fails.
 on:
-  schedule:
-    - cron: '23 9 1 1,4,7,10 *'   # four times a year (never fails, so it never emails)
   workflow_dispatch:
     inputs:
       states:
