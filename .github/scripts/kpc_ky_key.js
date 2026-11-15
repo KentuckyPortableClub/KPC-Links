@@ -14,9 +14,13 @@ const fakeFetch = async u => {
   const t = fs.readFileSync(f, 'utf8');
   return { ok: true, status: 200, json: async () => JSON.parse(t) };
 };
-const win = {};
+// Nov 14 (KPC owner): kpc-bounds.js reads Kentucky layers through KPCREL (released files only, since Nov 12). The key is built from the
+// WORKING files (the same rule as a Map Rep review page), so the vm window gets the fetch KPCREL needs and KPC_WORKING_COPY, and the bare
+// name KPCREL that kpc-bounds.js uses is made visible in the vm. Without both, every Kentucky layer read as empty (5 of 193 parks).
+const win = { fetch: fakeFetch, KPC_WORKING_COPY: true };
 const ctx = vm.createContext({ window: win, fetch: fakeFetch, AbortController, setTimeout, clearTimeout, console, document: undefined, navigator: {}, location: { href: '' } });
 vm.runInContext(fs.readFileSync(path.join(ROOT, 'kpc-bounds.js'), 'utf8'), ctx);
+ctx.KPCREL = win.KPCREL;
 const B = win.KPCB;
 
 function acres(g) { // spherical-ish shoelace, holes subtracted
