@@ -64,17 +64,6 @@
    "next": "2026-11-27T07:04+00:00"
   },
   {
-   "wf": "kpc-world-key.yml",
-   "inputs": {
-    "countries": "AU DE GB JP PL ES FR CH AT IT SE HU DK PT EE",
-    "pin_join": "JP,HU,DK,PT,IT,SE,AT,EE"
-   },
-   "why": "World: the top countries again",
-   "every": 14,
-   "next": "2026-11-16T17:17+00:00",
-   "fails": 1
-  },
-  {
    "wf": "kpc-us-key.yml",
    "inputs": {
     "states": "CA HI MA MT NV SC WA"
@@ -82,6 +71,16 @@
    "why": "US outlines, live refresh: CA HI MA MT NV SC WA",
    "every": 14,
    "next": "2026-11-30T14:56+00:00"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "AU DE GB JP PL ES FR CH AT IT SE HU DK PT EE",
+    "pin_join": "JP,HU,DK,PT,IT,SE,AT,EE"
+   },
+   "why": "World: the top countries again",
+   "every": 14,
+   "next": "2026-11-30T18:05+00:00"
   }
  ]
 }
