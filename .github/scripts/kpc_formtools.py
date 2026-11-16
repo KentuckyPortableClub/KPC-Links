@@ -9,6 +9,7 @@
 Look-ups are remembered in data/kpc-form-checks.json (call signs and reference numbers only, both public)."""
 import csv, io, json, os, re, time, urllib.request, urllib.parse, datetime
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): every POTA read goes through the door (stored copy first, paced, budget)
 from kpc_scrub import notice_text
 
 UA = {'User-Agent': 'KPC form sync (kentuckyportableclub.github.io)'}
@@ -129,7 +130,8 @@ def ref_name(ref):
             name = next((x[1] for x in d if x[0] == r), '')
         except Exception: name = None
     else:                                                         # POTA: US-1271
-        j, reached = getj('https://api.pota.app/park/' + urllib.parse.quote(r))
+        try: j, reached = DOOR.park(r), True
+        except DOOR.DoorClosed as e: j, reached = None, 'did not answer' not in str(e) and 'budget' not in str(e) and 'offline' not in str(e)
         if reached: name = (j or {}).get('name') or ''
     if name is None: return None
     CACHE['refs'][r] = [name, int(time.time())]

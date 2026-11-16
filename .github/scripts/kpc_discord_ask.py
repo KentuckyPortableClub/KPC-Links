@@ -31,6 +31,7 @@ import sys
 import urllib.error
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): every POTA read goes through the door (stored copy first, paced, budget)
 from kpc_scrub import notice_text, clip   # Nov 12: every log line scrubbed first, then cut
 
 API = 'https://discord.com/api/v10/'
@@ -394,7 +395,8 @@ def place(ref):
         if str(x.get('c', '')).upper() == ref and x.get('la') is not None:
             return {'n': x.get('n'), 'la': float(x['la']), 'lo': float(x['lo'])}
     if ref.startswith('US-'):
-        j = web('https://api.pota.app/park/' + ref)
+        try: j = DOOR.park(ref)
+        except DOOR.DoorClosed: j = None
         if j and j.get('latitude') is not None:
             return {'n': j.get('name'), 'la': float(j['latitude']), 'lo': float(j['longitude'])}
     return None
@@ -402,7 +404,8 @@ def place(ref):
 
 def on_air():
     """1. 'who's on the air in Kentucky right now?' - POTA's live activator spots for Kentucky parks."""
-    sp = web('https://api.pota.app/spot/activator')
+    try: sp = DOOR.club_spots(max_age=900)[0]   # the club spot file (one club reader asks POTA every 5 min), never POTA
+    except DOOR.DoorClosed: sp = None
     if sp is None:
         return f"POTA's spot list did not answer just now. Live spots: {SITE}kpc-spots.html"
     ky = [x for x in sp if 'US-KY' in str(x.get('locationDesc') or '')]
@@ -425,7 +428,8 @@ def on_air():
 
 def last_activation(ref):
     """2. 'when was US-1271 last activated?' / 'has it been done this year?'"""
-    a = web(f'https://api.pota.app/park/activations/{ref}?count=all')
+    try: a = DOOR.activations(ref)
+    except DOOR.DoorClosed: a = None
     if a is None:
         return None
     ok = sorted([x for x in a if int(x.get('totalQSOs') or 0) >= 10], key=lambda x: str(x.get('qso_date') or ''), reverse=True)

@@ -103,7 +103,8 @@ BOTS = ['kpc_club_posts.py', 'kpc_discord_mod.py', 'kpc_discord_watch.py', 'kpc_
         # Nov 12 regrade: the other scripts a workflow hands a secret to
         'kpc_whats_new.py', 'kpc_discord_ask.py', 'kpc_discord_relay.py', 'kpc_approvals.py', 'kpc_bot_health.py', 'kpc_campground_notes.py',
         'kpc_fed_camps.py', 'kpc_link_harvest.py', 'kpc_master_cli.py', 'kpc_layer_intake.py', 'kpc_activations.py', 'kpc_cwboard.py',
-        'kpc_guestbook.py', 'kpc_key_check.py', 'kpc_relay_peek.py']
+        'kpc_guestbook.py', 'kpc_key_check.py', 'kpc_relay_peek.py',
+        'kpc_pota_spots.py']   # KPC owner, 2026-11-16 (item 7): the one club spot reader runs in the spotter's step
 
 
 def secret_scripts():

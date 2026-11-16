@@ -1,3 +1,13 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* KPC QRM check (Opus, Oct 23 2026; Brandon: 'if someone was going to spot at 14.284 but someone was spotted 5 minutes
    ago at 14.286 give a warning … you may cause QRM, are you sure you want to spot here? Same for cw … ft8 and 4 is
    perfectly fine'). One rule for every place a station spots ITSELF (Spot Me page; the Logger has the same rule inline).
@@ -14,7 +24,7 @@
     const m = String(mode || '').toUpperCase(), g = ROOM[/^(USB|LSB|PHONE)$/.test(m) ? 'SSB' : m];
     k = kh(k); if (!g || !k) return '';
     let L = [];
-    try { const r = await fetch('https://api.pota.app/spot/activator', { cache: 'no-store' }); L = r.ok ? await r.json() : []; } catch (e) { return ''; }
+    try { const r = await KPCPota.spotsResponse(); L = r.ok ? await r.json() : []; } catch (e) { return ''; }
     const now = Date.now(), mine = base(me);
     const near = (Array.isArray(L) ? L : []).map(x => Object.assign({}, x, { _k: kh(x.frequency), _t: ms(x.spotTime) }))
       .filter(x => x._k && base(x.activator) !== mine && Math.abs(x._k - k) <= g && now - x._t < 20 * 60000)

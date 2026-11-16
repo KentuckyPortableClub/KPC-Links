@@ -2,7 +2,7 @@
 """WHEN ARE THE HUNTERS OUT? (Opus, Oct 23 2026; Brandon: 'Yeah sounds good and it will go to discord park info and
 Facebook also?'). POTA does not publish when hunters are on, so we count it ourselves.
 
-  collect  (every 15 min)  reads api.pota.app/spot/activator and counts, for each clock hour, the HUNTER spots on US
+  collect  (every 15 min)  reads the club spot file (data/pota/spots.json, one club reader asks POTA every 5 min; Nov 16) and counts, for each clock hour, the HUNTER spots on US
            parks (a spot posted by someone other than the activator = a hunter who just worked or heard them), how
            many activators were on, and the band. Only counts are kept (no call signs): data/hunters/buckets.json.
   build    (after collect) turns the last 8 weeks into kpc-hunters.json for the Happening Now card (an hour-by-day
@@ -90,9 +90,8 @@ def collect():
     """Counts go to the hour of the poll. A spot is new when its spot id is new; when POTA gives a running 'count' per
     activation, its growth since the last poll is used instead (it also catches spots between two polls)."""
     try:
-        req = urllib.request.Request('https://api.pota.app/spot/activator', headers={'User-Agent': UA, 'Accept': 'application/json'})
-        with urllib.request.urlopen(req, timeout=40) as r:
-            spots = json.load(r)
+        import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): the club spot file, never POTA
+        spots = DOOR.club_spots(max_age=1800)[0]
         if not isinstance(spots, list): raise ValueError('not a list')
     except Exception as e:  # noqa: BLE001
         notice('Hunters', f'POTA spots not read this time ({e}); skipped'); return False

@@ -1,3 +1,13 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* KPC Activator Logger (kpc-logger.html, members room). Oct 16 2026.
    Log a POTA activation in the browser: tap a live POTA spot to fill the form, call sign lookup (callook.info for US calls,
    HamDB for the rest; both public FCC/agency data, CORS *), QSO map, rates per hour, notes that can ride on every contact,
@@ -595,7 +605,7 @@
     const jg = (u, ms) => { const c = new AbortController(), t = setTimeout(() => c.abort(), ms); return fetch(u, { cache: 'no-store', signal: c.signal }).then(r => r.ok ? r.json() : Promise.reject(r.status)).finally(() => clearTimeout(t)); };
     const kh = f => { f = Number(f); return !isFinite(f) || f <= 0 ? 0 : f < 1000 ? f * 1000 : f < 1e6 ? f : f / 1000; };
     const ms = v => { if (v == null) return Date.now(); if (typeof v === 'number') return v < 1e12 ? v * 1000 : v; const s = String(v); const d = Date.parse(/[zZ]|[+-]\d\d:?\d\d$/.test(s) ? s : s + 'Z'); return isFinite(d) ? d : Date.now(); };
-    const P = jg('https://api.pota.app/spot/activator', 25000).then(j => { SPP = (Array.isArray(j) ? j : []).map(x => Object.assign(x, { prog: 'POTA', _t: ms(x.spotTime), frequency: kh(x.frequency) })); return 1; }).catch(() => 0);
+    const P = KPCPota.spots().then(j => { SPP = (Array.isArray(j) ? j : []).map(x => Object.assign(x, { prog: 'POTA', _t: ms(x.spotTime), frequency: kh(x.frequency) })); return 1; }).catch(() => 0);
     const S = jg('https://api2.sota.org.uk/api/spots/50/all', 25000).then(j => { SPS = (j || []).map(x => ({ spotId: 'S' + (x.id || x.timeStamp + x.activatorCallsign), prog: 'SOTA', activator: String(x.activatorCallsign || '').toUpperCase(), frequency: kh(x.frequency), mode: x.mode || '', reference: ((x.associationCode || '') + '/' + (x.summitCode || '')).toUpperCase(), name: x.summitDetails || '', locationDesc: x.associationCode || '', _t: ms(x.timeStamp), comments: x.comments || '', spotter: x.callsign || '', source: '' })).filter(x => x.frequency && x.activator); return 1; }).catch(() => 0);
     let W = Promise.resolve(1);
     if (Date.now() - wwAt > 175000) W = jg('https://spothole.app/api/v1/spots?max_age=2700', 60000).then(j => { const L = Array.isArray(j) ? j : (j && j.spots) || []; wwAt = Date.now();

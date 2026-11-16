@@ -1,7 +1,17 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* KPC app: THE REAL SPOT SOURCES (Opus, Oct 22, step 4; Brandon: 'Spots they not pota,wwff,sota,dx cluster etc').
    Each one is a poll function on the spot frame (kpc-spots.js), the same way the website's Hunters Lounge reads them
    (kpc-links/kpc-hunt.js):
-     POTA   api.pota.app/spot/activator            every 60 s
+     POTA   the club spot file (data/pota/spots.json) every 60 s; POTA is asked once per 5 min by the club reader (Nov 16)
      SOTA   api2.sota.org.uk/api/spots/50/all      every 60 s
      WWFF + DX cluster   spothole.app (one ~1 MB list for both, a small hobby service: every 3 min, and only while one of
             the two is switched on; RBN skimmer spots are left out, they swamp the list)
@@ -22,7 +32,7 @@
   /* Oct 26 (Brandon: 'make sure the spots show state'): POTA's locationDesc 'US-KY' (or 'US-KY,US-TN' on a line) → 'KY' / 'KY/TN'; Canada 'CA-ON' → 'ON' */
   const stOf = d => [...new Set(String(d || '').split(/[,\s]+/).map(c => (/^(US|CA|MX|AU)-([A-Z]{2,3})$/i.exec(c) || [])[2]).filter(Boolean).map(x => x.toUpperCase()))].join('/');
   SPx.source({ id: 'pota', label: 'POTA', every: 60, poll: async () => {
-    const L = await getJson('https://api.pota.app/spot/activator');
+    const L = await KPCPota.spots();
     return (L || []).map(x => ({ call: x.activator, khz: toKhz(x.frequency), mode: x.mode, refs: x.reference ? [x.reference] : [], t: toMs(x.spotTime),
       comment: [x.name, x.locationDesc, x.comments].filter(Boolean).join(' · '), grid: x.grid6 || x.grid4 || '', spotter: x.spotter || '', la: +x.latitude, lo: +x.longitude, st: stOf(x.locationDesc) })).filter(s => s.khz);
   } });

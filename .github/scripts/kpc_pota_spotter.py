@@ -28,11 +28,11 @@ webhook = os.getenv('DISCORD_WEBHOOK_URL', '').strip()
 if not webhook.startswith(('https://discord.com/api/webhooks/', 'https://discordapp.com/api/webhooks/')):
     raise SystemExit('Add the KPC_DISCORD_WEBHOOK GitHub Actions secret first.')
 
-req = urllib.request.Request('https://api.pota.app/spot/activator',
-                             headers={'User-Agent': 'KPC-POTA-Discord-Spotter/2.0', 'Accept': 'application/json'})
-with urllib.request.urlopen(req, timeout=25) as response:
-    feed = json.load(response)
-spots = feed if isinstance(feed, list) else feed.get('spots', [])
+# KPC owner, 2026-11-16 (handoff item 7): the club spot file written by the one club spot reader (kpc_pota_spots.py, every 5 min
+# in this same job), never POTA itself. A file older than 10 minutes is not used (no stale alerts).
+import kpc_pota_door as DOOR
+try: spots = DOOR.club_spots(max_age=600)[0]
+except DOOR.DoorClosed as e: raise SystemExit(f'No fresh club spot file ({e}); no state changed.')
 if not isinstance(spots, list):
     raise SystemExit('Unexpected POTA feed format; no state changed.')
 

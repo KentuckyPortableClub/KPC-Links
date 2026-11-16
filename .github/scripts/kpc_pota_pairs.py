@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """POTA ACTIVATION HISTORY PAIRS (chat 2, Oct 27 2026; HQ 3:46 PM MISSING CHECK source 2, the proof-badge data pulled early). For each park
-in a state, POTA's public activation list (api.pota.app/park/activations/<ref>), grouped by (activator, date): two parks activated
+in a state, POTA's public activation list (/park/activations/<ref>, through the club's POTA door: stored copy first, 30 days), grouped by (activator, date): two parks activated
 on the same day by the same call = a pair people really worked together. COUNTS ONLY are kept (no call signs, no dates):
 data/fers/pota-pairs-<US-XX>.json {made, parks_read, pairs: {"A+B": times}}. Slow (1 request a second), re-read at most every
 30 days. STATES='US-KY US-OH'. A hint, never proof (an activator can drive between two parks the same day). Never fails."""
 import itertools, json, os, pathlib, sys, time, urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): every POTA read goes through the door (stored copy first, paced, budget)
 UA = {'User-Agent': 'KPC 2-fer missing check (kentuckyportableclub.github.io; counts only)'}
 STATES = (os.environ.get('STATES') or 'US-KY').upper().replace(',', ' ').split()
 OUT = pathlib.Path('data/fers')
@@ -41,8 +42,8 @@ def main():
         days, counts, n, complete = {}, {}, 0, True
         for ref in sorted(refs):
             if time.time() - T0 > LIMIT: complete = False; break
-            j = get(f'https://api.pota.app/park/activations/{ref}?count=all')
-            time.sleep(1.0)
+            try: j = DOOR.activations(ref)   # paced by kpc_host_pace inside the door (2 s), per-run budget
+            except DOOR.DoorClosed: j = None
             if j is None: continue
             n += 1
             if not n_keys_shown[0] and isinstance(j, list) and j:

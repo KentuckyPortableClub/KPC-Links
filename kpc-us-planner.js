@@ -1,3 +1,13 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* >>> kpc_released (KPC owner, 2026-11-11): the same block is in kpc-bounds.js, kpc-padus-layer.js, kpc-us-planner.js and kpc-gps.js (a test keeps them equal).
    The public map reads RELEASED files only: data/released/RELEASED.json (asked for fresh every page load) lists, per working file name,
    its released file(s) and each one's own version, so a changed file shows at once and an unchanged one stays cached.
@@ -216,7 +226,7 @@ async function addTiles(s0,w0,n0,e0,la,lo,cap){let keys=[];
  return added}
 async function addLive(la,lo,mi){if(!progs.includes('POTA'))return 0;let added=0;
  const st=statesNear(la,lo,mi).filter(a=>!(a in liveStates)).slice(0,4);
- await Promise.all(st.map(async a=>{liveStates[a]=null;try{const c=new AbortController(),t=setTimeout(()=>c.abort(),12000);const r=await fetch('https://api.pota.app/location/parks/US-'+a,{signal:c.signal});clearTimeout(t);if(!r.ok)throw 0;const j=await r.json();
+ await Promise.all(st.map(async a=>{liveStates[a]=null;try{const j=await KPCPota.parkList('US-'+a,12000);
   liveStates[a]=true;if(window.KPCMine)KPCMine.takePotaList(a,j);(Array.isArray(j)?j:[]).forEach(x=>{const ref=String(x.reference||'').toUpperCase(),la2=+x.latitude,lo2=+x.longitude;if(!/^US-\d+$/.test(ref)||!isFinite(la2)||!isFinite(lo2)||!la2)return;
    if(!BYREF[ref]){const s={p:'POTA',c:ref,n:x.name||ref,la:la2,lo:lo2,url:'',live:true};ALL.push(s);BYREF[ref]=s;added++}})}catch(e){delete liveStates[a]}}));
  return added}

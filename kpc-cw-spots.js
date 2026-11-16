@@ -1,3 +1,13 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* KPC CW Practice: live CW spots you can click to listen to.
    Spots come from POTA and SOTA (CW only). Clicking LISTEN opens your chosen WebSDR in its own tab,
    already tuned to that frequency in CW mode. Then use "Decode a tab" to decode it here.
@@ -41,7 +51,7 @@ let spots=[],loaded=false,timer=null,err='',stamp=0;
 
 async function load(){
  const out=[];let ok=0;
- try{const r=await fetch('https://api.pota.app/spot/activator',{cache:'no-store'});if(r.ok){ok++;const j=await r.json();
+ try{const r=await KPCPota.spotsResponse();if(r.ok){ok++;const j=await r.json();
   (Array.isArray(j)?j:[]).forEach(s=>{if(String(s.mode||'').toUpperCase()!=='CW')return;const k=+s.frequency;if(!(k>0))return;
    out.push({call:String(s.activator||''),ref:String(s.reference||''),name:String(s.name||''),loc:String(s.locationDesc||''),khz:k,t:toMs(s.spotTime),prog:'POTA',xy:(isFinite(+s.latitude)&&+s.latitude&&isFinite(+s.longitude)?[+s.latitude,+s.longitude]:null)||gridXY(s.grid6)||gridXY(s.grid4)||STC[(String(s.locationDesc||'').match(/^US-([A-Z]{2})/)||[])[1]]||null})})}}catch(e){}
  try{const r=await fetch('https://api2.sota.org.uk/api/spots/50/all',{cache:'no-store'});if(r.ok){ok++;const j=await r.json();
@@ -87,7 +97,7 @@ function init(){
  $('cwsRx').addEventListener('change',e=>{st.rx=e.target.value;store.set('kpcCwSpots',st)});
  $('cwsRefresh').addEventListener('click',()=>{loaded=false;draw();load()});
  $('cwsList').addEventListener('click',e=>{const b=e.target.closest('.cws-go');if(!b)return;const s=($('cwsList')._list||[])[+b.dataset.i];if(s)listen(s)});
- const on=m=>{clearInterval(timer);timer=null;if(m==='listen'){load();timer=setInterval(load,6e4)}};
+ const on=m=>{clearInterval(timer);timer=null;if(m==='listen'){load();timer=KPCPota.poll(load,6e4)}};
  document.addEventListener('kpccw:mode',e=>on(e.detail));
  const app=document.getElementById('cwApp');if(app&&app.dataset.mode==='listen')on('listen');
  draw();

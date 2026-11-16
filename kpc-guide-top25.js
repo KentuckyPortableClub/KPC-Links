@@ -1,3 +1,13 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* KPC Top 25 low-activity Kentucky POTA parks (kpc-guide-top25.html).
    Reads kpc-top25.json, which the "KPC Top 25" GitHub Action refreshes every Monday from POTA's public park
    numbers (.github/scripts/kpc_top25.py). "Get live POTA numbers" ranks the parks again in this browser,
@@ -94,9 +104,9 @@ async function loadPlace(){
  try{D=await placeData();render()}catch(e){$('upd').textContent='COULD NOT LOAD '+pName(WHERE).toUpperCase();$('b1').innerHTML=$('b2').innerHTML='<tr><td colspan="6">The park list did not load. Try again in a minute.</td></tr>'}}
 async function live(){
  const b=$('live'),m=$('msg');b.disabled=true;m.textContent='Asking POTA for every park’s numbers…';
- try{if(WHERE!=='US-KY'){const j=await jget('https://api.pota.app/location/parks/'+WHERE,25000);const st={},parks=[];(Array.isArray(j)?j:[]).forEach(x=>{const r=String(x.reference||'').toUpperCase(),a=+x.activations,q=+(x.qsos??x.contacts);if(r&&isFinite(a)&&isFinite(q)){st[r]=[a,q];parks.push({c:r,n:x.name||r,co:'',la:+x.latitude,lo:+x.longitude})}});
+ try{if(WHERE!=='US-KY'){const j=await KPCPota.parkList(WHERE,25000);const st={},parks=[];(Array.isArray(j)?j:[]).forEach(x=>{const r=String(x.reference||'').toUpperCase(),a=+x.activations,q=+(x.qsos??x.contacts);if(r&&isFinite(a)&&isFinite(q)){st[r]=[a,q];parks.push({c:r,n:x.name||r,co:'',la:+x.latitude,lo:+x.longitude})}});
    if(parks.length<3)throw new Error('none');const R=rank(st,parks);R.all=parks.map(p=>[p.c,st[p.c][0],st[p.c][1]]);parks.forEach(p=>{KY[p.c]=p});const t=new Date();D=Object.assign(R,{updated:t.toISOString().slice(0,10),live:true});render();m.textContent='Showing live numbers from POTA, ranked just now.';b.textContent='REFRESH LIVE NUMBERS';return}
-  const [j,ky]=await Promise.all([jget('https://api.pota.app/location/parks/US-KY',20000),jget('kpc-ky-data.json',20000)]);
+  const [j,ky]=await Promise.all([KPCPota.parkList('US-KY',20000),jget('kpc-ky-data.json',20000)]);
   const st={};(Array.isArray(j)?j:[]).forEach(x=>{const r=String(x.reference||'').toUpperCase(),a=+x.activations,q=+(x.qsos??x.contacts);if(/^US-\d+$/.test(r)&&isFinite(a)&&isFinite(q))st[r]=[a,q]});
   const R=rank(st,(ky&&ky.parks)||[]);
   if(R.parks<50)throw new Error('too few parks');

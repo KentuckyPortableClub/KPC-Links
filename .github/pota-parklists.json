@@ -1,0 +1,7 @@
+{
+ "about": "The one park-list job (kpc_pota_parklists.py, KPC owner 2026-11-16, handoff item 7): world lists are re-pulled on this weekday and this many days before the monthly world key check (the 3rd). US and CA lists only when POTA's own count changes. POTA's /locations rows carry no park count today (checked Nov 16, 2026), so a US / CA list is re-pulled after home_list_max_days until they do (owner's setting).",
+ "world_weekday": "Wed",
+ "world_before_monthly_check_days": 3,
+ "home_list_max_days": 7,
+ "minutes": 95
+}

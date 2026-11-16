@@ -116,26 +116,52 @@ async function getJSON(url, tries = 3) {
   throw last;
 }
 // Activation history for every Kentucky park: {ref: [[call, yyyymmdd, qsos], ...]}
-async function history() { // cached for 3 hours so milestones + recaps in the same job only ask POTA once
-  const C = '/tmp/kpc-history.json';
-  try { const st = fs.statSync(C); if (Date.now() - st.mtimeMs < 3 * 36e5) return JSON.parse(fs.readFileSync(C, 'utf8')); } catch (e) { /* none yet */ }
-  const h = await history0();
-  try { fs.writeFileSync(C, JSON.stringify(h)); } catch (e) { /* fine */ }
-  return h;
+// KPC owner, 2026-11-16 (handoff item 7, be polite to POTA): the history is kept in REPO data (data/pota/social-history.json.gz,
+// saved by the social workflows) with each park's activation count. A run asks POTA once for Kentucky's park list (the counts),
+// then re-reads a park's activation list ONLY when its count changed. Same club User-Agent with a contact as the POTA door;
+// one request at a time, 2 s apart (kpc_host_pace's gap); one report line per run.
+const HIST = 'data/pota/social-history.json.gz';
+const POTA_UA = 'KPC-Links/1.0 (Kentucky Portable Club; +https://kentuckyportableclub.github.io/KPC-Links/; contact: https://github.com/KentuckyPortableClub/KPC-Links/issues)';
+const POTA_GAP = 2000, POTA_BUDGET = +(process.env.KPC_POTA_BUDGET || 300);
+const POTA_STAT = { asked: 0, stored: 0 };
+let potaLast = 0;
+async function potaGet(path) {
+  if (POTA_STAT.asked >= POTA_BUDGET) throw new Error(`per-run budget of ${POTA_BUDGET} POTA requests spent`);
+  const w = potaLast + POTA_GAP - Date.now(); if (w > 0) await sleep(w);
+  potaLast = Date.now(); POTA_STAT.asked++;
+  const r = await fetch(API + path, { headers: { 'User-Agent': POTA_UA, Accept: 'application/json' } });
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
 }
-async function history0() {
+process.on('exit', () => { if (POTA_STAT.asked || POTA_STAT.stored) console.log(`::notice title=POTA door::POTA door kpc_social.js ${task}: ${POTA_STAT.asked} asked POTA (budget ${POTA_BUDGET}), ${POTA_STAT.stored} from the stored copy`); });
+let histMemo = null;
+async function history() {
+  if (histMemo) return histMemo;
+  const zlib = require('zlib');
+  let saved = { parks: {} };
+  try { saved = JSON.parse(zlib.gunzipSync(fs.readFileSync(HIST)).toString('utf8')); } catch (e) { /* none yet */ }
+  saved.parks = saved.parks || {};
+  let counts = {};
+  try { (await potaGet('/location/parks/US-KY') || []).forEach(p => { if (p && p.reference) counts[String(p.reference).toUpperCase()] = +p.activations || 0; }); }
+  catch (e) { notice(`POTA park list not read (${e.message}); the saved history is used`); counts = null; }
   const refs = KY.parks.map(p => p.c), out = {};
-  let i = 0, fails = 0;
-  async function worker() {
-    while (i < refs.length) {
-      const ref = refs[i++];
-      try { const j = await getJSON(`${API}/park/activations/${ref}?count=all`); out[ref] = (Array.isArray(j) ? j : []).map(a => [String(a.activeCallsign || '').toUpperCase().replace(/\/.*$/, ''), String(a.qso_date || ''), +a.totalQSOs || 0]); }
-      catch (e) { fails++; }
-      await sleep(150);
-    }
+  let fails = 0, reread = 0;
+  for (const ref of refs) {
+    const old = saved.parks[ref], n = counts ? counts[ref] : undefined;
+    if (old && (counts === null || n === undefined || old.n === n)) { out[ref] = old.a; POTA_STAT.stored++; continue; }
+    try {
+      const j = await potaGet(`/park/activations/${ref}?count=all`);
+      out[ref] = (Array.isArray(j) ? j : []).map(a => [String(a.activeCallsign || '').toUpperCase().replace(/\/.*$/, ''), String(a.qso_date || ''), +a.totalQSOs || 0]);
+      saved.parks[ref] = { n: n === undefined ? null : n, a: out[ref] }; reread++;
+    } catch (e) { fails++; if (old) out[ref] = old.a; }
   }
-  await Promise.all([worker(), worker(), worker(), worker()]);
   if (fails > refs.length * 0.1) throw new Error(`POTA API: ${fails} of ${refs.length} parks failed`);
+  if (reread && !DRY) {
+    try { fs.mkdirSync('data/pota', { recursive: true }); const gz = zlib.gzipSync(JSON.stringify({ about: 'kpc_social.js activation history cache (item 7): re-read per park only when its activation count changes', parks: saved.parks }));
+      if (gz.length > 1e6) notice(`history cache is ${gz.length} bytes, over the 1 MB cap: not saved`); else fs.writeFileSync(HIST, gz); }
+    catch (e) { notice(`history cache not saved (${e.message})`); }
+  }
+  histMemo = out;
   return out;
 }
 function members() {
@@ -323,7 +349,7 @@ tasks.recaps = async () => {
   }
   /* Oct 20 (Brandon: 'Yes members yes'): members' activations OUTSIDE Kentucky too, from each member's POTA profile (recent activity) */
   for (const c of calls) {
-    let pr; try { pr = await getJSON(`${API}/profile/${c}`); } catch (e) { notice(`Recaps: no POTA profile for ${c} (${e.message})`); continue; }
+    let pr; try { pr = await potaGet(`/profile/${c}`); } catch (e) { notice(`Recaps: no POTA profile for ${c} (${e.message})`); continue; }
     for (const a of ((pr.recent_activity || {}).activations || [])) {
       const ref = String(a.reference || '').toUpperCase(), d = String(a.date || '').replace(/\D/g, '').slice(0, 8), q = +a.total || 0;
       if (!ref || park[ref] || q < 10 || !/^\d{8}$/.test(d)) continue;   // Kentucky parks come from the park history above
@@ -357,7 +383,7 @@ tasks.recaps = async () => {
     const day = `${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dt0.getUTCDay()]}, ${MN[dt0.getUTCMonth()]} ${dt0.getUTCDate()}`;
     const ps = g.parks.map(p => ({ q: p.q, ref: p.ref, name: (park[p.ref] || {}).n || p.name || p.ref, la: (park[p.ref] || {}).la, lo: (park[p.ref] || {}).lo, co: (park[p.ref] || {}).co, st: p.st || '' }));
     for (const p of ps) if (p.la == null && !park[p.ref]) {   // outside Kentucky: ask POTA where the park is (for the map pin)
-      try { const j = await getJSON(`${API}/park/${p.ref}`); if (j && isFinite(+j.latitude)) { p.la = +j.latitude; p.lo = +j.longitude; } } catch (e) { /* no pin */ }
+      try { const j = await potaGet(`/park/${p.ref}`); if (j && isFinite(+j.latitude)) { p.la = +j.latitude; p.lo = +j.longitude; } } catch (e) { /* no pin */ }
       await sleep(300);
     }
     // no '2-fer' wording (Brandon Oct 17: 'just number of activations'); overlapping parks share the same contacts, so don't add them twice

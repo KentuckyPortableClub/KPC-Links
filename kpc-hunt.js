@@ -1,5 +1,15 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* KPC Hunters Lounge (kpc-hunt.html) — Brandon Oct 16 2026: a dressed-up live spotting page for hunters.
-   - Live spots: POTA (api.pota.app/spot/activator), SOTA (api2.sota.org.uk) and WWFF (Spothole), checked every minute.
+   - Live spots: POTA (the club spot file; one club reader asks POTA every 5 min, Nov 16), SOTA (api2.sota.org.uk) and WWFF (Spothole), checked every minute.
    - Your log: upload any CSV / ADIF (POTA hunted parks export, WWFF Logsearch, SOTA chaser log, a logger's ADIF); the page
      pulls out every POTA / WWFF / SOTA number in it. Saved ONLY in this browser (localStorage kpcHuntLog), never sent anywhere.
      Old POTA numbers K-1234 count as US-1234 (and VE- as CA-). ✓ WORKED on a spot adds it by hand.
@@ -156,7 +166,7 @@
     if (loadBusy) return;   /* Nov 11: the 8 s re-check after a respot must not run beside the minute poll */
     loadBusy = true;
     try {
-    const a = jget('https://api.pota.app/spot/activator', 25000).then(x => { LP = (x || []).map(fromPota).filter(Boolean); GOT.POTA = 1; }).catch(() => { GOT.POTA = 0; });
+    const a = KPCPota.spots().then(x => { LP = (x || []).map(fromPota).filter(Boolean); GOT.POTA = 1; }).catch(() => { GOT.POTA = 0; });
     const b = jget('https://api2.sota.org.uk/api/spots/50/all', 25000).then(x => { LS = (x || []).map(fromSota).filter(Boolean); GOT.SOTA = 1; }).catch(() => { GOT.SOTA = 0; });
     /* Spothole is a small hobby service and its list is ~1 MB (Brandon Oct 17, 250 users at once): ask it only when a list,
        spot window or the alert actually shows WWFF / DX / DXpeditions / special events, at most every 3 min (every 10 min
@@ -964,7 +974,7 @@
   let NV = get('kpcHuntNV', 'list'), BORDERS = null;
   async function needLoad() {
     const a = $('nSt').value; $('nList').innerHTML = '<div class="hl-empty">Loading ' + esc(ST[a]) + '’s parks…</div>'; $('nBar').innerHTML = ''; NP = []; nShown = 120;
-    try { const L = await jget('https://api.pota.app/location/parks/US-' + a, 45000); NP = (L || []).filter(p => p && p.reference).map(p => ({ r: nref(p.reference), n: p.name || p.reference, a: +p.activations || 0, la: +p.latitude, lo: +p.longitude })); nSrc = 'POTA'; } catch (e) { NP = []; }
+    try { const L = await KPCPota.parkList('US-' + a, 45000); NP = (L || []).filter(p => p && p.reference).map(p => ({ r: nref(p.reference), n: p.name || p.reference, a: +p.activations || 0, la: +p.latitude, lo: +p.longitude })); nSrc = 'POTA'; } catch (e) { NP = []; }
     if (!NP.length) { await loadParks(); NP = Object.entries(PK).filter(([r, k]) => k.st === a && /^US-/.test(r)).map(([r, k]) => ({ r, n: k.n || r, a: +k.a || 0, la: k.la, lo: k.lo })); nSrc = 'KPC copy'; }
     if (!NP.length) { $('nList').innerHTML = `<div class="hl-empty">Couldn’t load ${esc(ST[a])}’s parks just now. <button type="button" class="hl-btn line sm" id="nRetry">TRY AGAIN</button></div>`; $('nRetry').onclick = needLoad; return; }
     needDraw();

@@ -1,3 +1,13 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* KPC Mapping Representative's Tool Box (kpc-maprep.html) — HIDDEN page (noindex, not linked anywhere).
    Type a park name (and optionally a town and/or state). Finds it in USGS PAD-US (the national public-land database),
    checks it against POTA's park-addition rules, shows YES / NO / CHECK
@@ -511,7 +521,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     if (PPS[st]) return PPS[st];
     let L = [];
     /* api.pota.app/location/parks/US-XX = every park in the state (the same list the Hunters Lounge and finder use); 'program' was the wrong address (Oct 24, Brandon: 187 of 197 KY areas showed as new) */
-    try { const j = await B.jget('https://api.pota.app/location/parks/' + refPre() + '-' + st, null, 45000); if (Array.isArray(j)) L = j.filter(p => p && p.reference).map(p => ({ ref: p.reference, name: p.name || '', type: p.parktypeDesc || '', la: +p.latitude, lo: +p.longitude, active: p.active !== 0 })); } catch (e) {}
+    try { const j = await KPCPota.parkList(refPre() + '-' + st, 45000); if (Array.isArray(j)) L = j.filter(p => p && p.reference).map(p => ({ ref: p.reference, name: p.name || '', type: p.parktypeDesc || '', la: +p.latitude, lo: +p.longitude, active: p.active !== 0 })); } catch (e) {}
     if (!L.length) { try { const b = await stBox(st); if (b) { const j = await B.jget(`https://api.pota.app/park/grids/${b[1].toFixed(2)}/${b[0].toFixed(2)}/${b[3].toFixed(2)}/${b[2].toFixed(2)}/0`, null, 30000); L = (j.features || []).map(f => ({ ref: f.properties.reference, name: f.properties.name, type: f.properties.parktypeDesc || '', lo: f.geometry.coordinates[0], la: f.geometry.coordinates[1], active: true })); } } catch (e) {} }
     L = L.filter(p => String(p.ref || '').indexOf(refPre() + '-') === 0);
     if (L.length) PPS[st] = L;

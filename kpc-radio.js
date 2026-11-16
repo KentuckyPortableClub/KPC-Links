@@ -1,3 +1,13 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* KPC Live: HF receiver (WebSDR / KiwiSDR / OpenWebRX) + worldwide spots with filters.
    Receivers are other people's servers. Most only run on plain http, and a secure (https) page like ours
    is not allowed to show an http page inside it, so those open tuned in their own tab instead.
@@ -100,7 +110,7 @@ async function loadSpots(){const note=$('sp-note');if(note)note.textContent='Loa
  let out=null;
  for(const u of['https://spothole.app/api/v1/spots?limit=2000&max_age=3600','https://spothole.app/api/v1/spots?limit=1000']){try{const j=await jget(u);const a=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:null);if(a&&a.length){out=a.map(normHole).filter(Boolean);srcNote='Spothole (POTA, SOTA, WWFF, DX cluster, skimmers and more)';break}}catch(e){}}
  if(!out){out=[];const got=[];
-  await Promise.all([jget('https://api.pota.app/spot/activator').then(a=>{(a||[]).forEach(x=>{const n=normPota(x);if(n)out.push(n)});got.push('POTA')}).catch(()=>{}),
+  await Promise.all([KPCPota.spots().then(a=>{(a||[]).forEach(x=>{const n=normPota(x);if(n)out.push(n)});got.push('POTA')}).catch(()=>{}),
    jget('https://api2.sota.org.uk/api/spots/50/all').then(a=>{(a||[]).forEach(x=>{const n=normSota(x);if(n)out.push(n)});got.push('SOTA')}).catch(()=>{})]);
   srcNote=got.length?got.join(' and ')+' directly (the all-in-one feed is not answering, so DX cluster and WWFF spots are missing right now)':''}
  /* newest spot per call + frequency */

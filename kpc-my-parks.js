@@ -1,3 +1,13 @@
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
 /* KPC "My Parks" checker — shared by the US Trip Planner, Kentucky Trip Planner and Park Commander.
    Works for POTA parks and SOTA summits (WWFF is left out on purpose).
    - Your callsign is remembered on this device (key kpcMyCall) and shared by all three tools.
@@ -62,7 +72,7 @@ async function loadCounts(spots){const want=new Set();
  spots.forEach(s=>{if(s.k==='sota'&&cnt.d[s.ref]==null){const m=s.ref.match(/^(.+)\/([A-Z0-9]{2})-\d{3}$/);if(m&&!cnt.g['S:'+m[1]+'/'+m[2]])want.add('S:'+m[1]+'/'+m[2])}});
  const list=[...want].filter(g=>!tried.has(g)).slice(0,12);if(!list.length)return false;
  await Promise.all(list.map(async g=>{if(tried.has(g))return;tried.add(g);
-  try{if(g[0]==='P'){takePotaList(g.slice(2),await jget(POTA+'/location/parks/US-'+g.slice(2),15000));return}
+  try{if(g[0]==='P'){takePotaList(g.slice(2),await KPCPota.parkList('US-'+g.slice(2),15000));return}
    const j=await jget(SOTA+'/regions/'+g.slice(2),15000);const L=Array.isArray(j)?j:(j&&(j.summits||j.Summits))||[];
    L.forEach(s=>{const r=String(s.summitCode||s.SummitCode||'').toUpperCase(),n=s.activationCount??s.ActivationCount;if(r&&n!=null)cnt.d[r]=+n||0});cnt.g[g]=Date.now()}
   catch(e){/* that list can't be reached right now: those spots just show no ATNO answer */}}));

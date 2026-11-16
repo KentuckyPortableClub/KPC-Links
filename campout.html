@@ -175,6 +175,17 @@ body.field .page-jump-nav{display:none!important}
 </style>
 <div class="kpcc-in" id="kpccIn"></div>
 <script>
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
+async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
+ const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);
+ try{const r=await fetch('https://api.pota.app/location/parks/'+encodeURIComponent(loc),ctl?{signal:ctl.signal}:{});if(!r.ok)throw new Error('POTA '+r.status);const rows=await r.json();try{localStorage.setItem(k,JSON.stringify({t:Date.now(),rows}))}catch(_){}return rows}
+ catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
+function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
+return{spots,spotsResponse,parkList,poll,SPOTS}})();
+
 (function(){
 /* ---- EDIT HERE ---- */
 const START='2027-09-24T14:00:00-04:00';   // campout opens (Eastern time)
@@ -196,13 +207,13 @@ function before(){if(mode!=='before'){mode='before';el.innerHTML=`<div class="kp
  let t=Math.max(0,s-Date.now())/1000;const d=Math.floor(t/86400);t-=d*86400;const h=Math.floor(t/3600);t-=h*3600;const m=Math.floor(t/60),sec=Math.floor(t-m*60);
  document.getElementById('kd').textContent=d;document.getElementById('kh').textContent=pad(h);document.getElementById('km').textContent=pad(m);document.getElementById('ks').textContent=pad(sec)}
 async function live(){if(mode!=='live'){mode='live';el.innerHTML=`<div class="kpcc-k"><span class="kpcc-dot"></span>HAPPENING NOW</div><h2>THE CAMPOUT IS <span>ON THE AIR</span></h2><p class="kpcc-sub">Live POTA spots from ${esc(PARKNAME)} (${PARK}) and every KPC member on the air. Updates every minute.</p><div class="kpcc-board" id="kb"><div class="kpcc-empty">Loading spots…</div></div><div class="kpcc-btns"><a class="kpcc-btn" href="kpc-spots.html">ALL KPC SPOTS →</a></div>`}
- try{const r=await fetch('https://api.pota.app/spot/activator',{cache:'no-store'});const all=await r.json();
+ try{const r=await KPCPota.spotsResponse();const all=await r.json();
   const list=all.filter(x=>x.reference===PARK||MEMBERS.includes(base(x.activator))).sort((a,b)=>String(b.spotTime).localeCompare(String(a.spotTime)));
   document.getElementById('kb').innerHTML=list.length?list.map(x=>{const m=MEMBERS.includes(base(x.activator)),t=new Date(String(x.spotTime).endsWith('Z')?x.spotTime:x.spotTime+'Z');
    return`<div class="kpcc-spot${m?' m':''}"><div class="c"><a href="https://www.qrz.com/db/${encodeURIComponent(base(x.activator))}" target="_blank" rel="noopener">${esc(x.activator)}</a>${m?'<span class="kpcc-badge">KPC</span>':''}</div><div class="f">${(parseFloat(x.frequency)/1000).toFixed(3)} <small style="font:900 11px Arial;color:#bcb8ae">${esc(x.mode)}</small></div><div class="p">${esc(x.reference)} • ${esc(x.name||x.parkName||'')}${x.comments?`<br>“${esc(x.comments)}”`:''}</div><div class="t">${t.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}</div></div>`}).join(''):`<div class="kpcc-empty">No spots at ${PARK} right now — someone go get on the air!</div>`}
  catch(_){document.getElementById('kb').innerHTML='<div class="kpcc-empty">Couldn’t reach POTA right now — retrying.</div>'}}
 function after(){if(mode==='after')return;mode='after';el.innerHTML=`<div class="kpcc-k">THANK YOU</div><h2>SEE YOU <span>NEXT YEAR</span></h2><p class="kpcc-sub">Thanks to everyone who camped, operated and hunted the 2027 KYPOTA Campout at ${esc(PARKNAME)}.</p><div class="kpcc-btns"><a class="kpcc-btn" href="parks.html">EXPLORE MORE KENTUCKY PARKS →</a></div>`}
-function tick(){const p=phase();if(p==='before')before();else if(p==='live'){if(mode!=='live'||Date.now()-last>60000){last=Date.now();live()}}else after()}
+function tick(){const p=phase();if(p==='before')before();else if(p==='live'){if(mode!=='live'||(!document.hidden&&Date.now()-last>60000)){last=Date.now();live()}}else after()}
 tick();setInterval(tick,1000);
 })();
 </script>

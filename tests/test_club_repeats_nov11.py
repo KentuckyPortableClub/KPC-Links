@@ -77,6 +77,8 @@ sp = tmp / 'spot'; sp.mkdir()
     FEED = [{'activator': os.environ['C1'], 'reference': 'US-0001', 'frequency': '14074', 'mode': 'FT8', 'spotTime': now, 'name': 'Park A'},
             {'activator': os.environ['C2'], 'reference': 'US-0002', 'frequency': '7074', 'mode': 'FT8', 'spotTime': now, 'name': 'Park B'}]
     plan = os.environ['PLAN'].split(','); calls = []
+    # KPC owner, 2026-11-16 (item 7): the spotter reads the club spot file (written by the one club spot reader), not POTA
+    os.makedirs('data/pota', exist_ok=True); json.dump({'saved': int(__import__('time').time()), 'spots': FEED}, open('data/pota/spots.json', 'w'))
     class R(io.BytesIO):
         def __enter__(self): return self
         def __exit__(self, *a): return False
