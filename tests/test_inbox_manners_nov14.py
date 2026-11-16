@@ -49,8 +49,21 @@ c = Clock(); n = Net(robots=TimeoutError('timed out'), clock=c); m = man(tempfil
 check(not m.robots_check(U)[0], 'robots.txt timeout: no reads from that host this run')
 c = Clock(); n = Net(robots=(200, b'User-agent: *\nDisallow: /arcgis/rest/services/p/\n', {}), clock=c); m = man(tempfile.mkdtemp(), n, c)
 check(not m.robots_check(U)[0] and m.robots_check('https://gis.example.gov/arcgis/rest/services/q/MapServer/0')[0], 'robots.txt 200: Disallow obeyed, other paths allowed')
-c = Clock(); n = Net(robots=(200, b'<html>not robots</html>', {}), clock=c); m = man(tempfile.mkdtemp(), n, c)
-check(not m.robots_check(U)[0], 'robots.txt 200 that is a web page = could not be read (engine rule)')
+# Nov 15: a web page at robots.txt follows the store engine 3.6.2 rule (it was "could not be read" before)
+for body, hdr, want, what in ((b'<html>not robots</html>', {}, True, 'an ordinary web page with no robots line = no rules'),
+                              (b'<!DOCTYPE html><html><body><h1>Page not found</h1></body></html>', {}, True, 'a "not found" web page = no rules'),
+                              (b'<html><body><form action="/login"><input type="password"></form></body></html>', {}, False, 'a sign-in page = no reads this run'),
+                              (b'<html><body>Please sign in to continue</body></html>', {}, False, 'a page asking to sign in = no reads this run'),
+                              (b'<html><body>Verify you are human</body></html>', {}, False, 'a bot-challenge page = no reads this run'),
+                              (b'<html>hello</html>', {'WWW-Authenticate': 'Basic'}, False, 'a page with WWW-Authenticate = no reads this run'),
+                              (b'<html><pre>User-agent: *\nDisallow: /arcgis/</pre></html>', {}, False, 'a page holding robots directives is parsed: its Disallow is obeyed')):
+    c = Clock(); n = Net(robots=(200, body, hdr), clock=c); m = man(tempfile.mkdtemp(), n, c)
+    check(m.robots_check(U)[0] == want, f'robots.txt 200 web page: {what} (engine 3.6.2 rule)')
+c = Clock(); n = Net(robots=(200, b'<html><pre>User-agent: *\nDisallow: /private/</pre></html>', {}), clock=c); m = man(tempfile.mkdtemp(), n, c)
+check(m.robots_check(U)[0] and not m.robots_check('https://gis.example.gov/private/x')[0], 'a page holding robots directives: other paths allowed')
+check(MN.robots_verdict(200, b'<html>x</html>', 'KPC', {}, 'https://other.example.gov/robots.txt', 'https://gis.example.gov/robots.txt')[0] == 'unreadable',
+      'a web page that came from another site is never "no rules"')
+check(MN.robots_verdict(200, b'Disallow: /\n', 'KPC')[0] == 'unreadable', 'rules with no User-agent group: could not be read (engine 3.6.2)')
 c = Clock(); n = Net(robots=(200, b'User-agent: *\nCrawl-delay: 45\n', {}), clock=c); m = man(tempfile.mkdtemp(), n, c)
 ok45, why = m.robots_check(U); check(not ok45 and 'skipped this run' in why, 'Crawl-delay over 30 s: host skipped this run')
 c = Clock(); n = Net(robots=(429, b'', {'Retry-After': '120'}), clock=c); d = tempfile.mkdtemp(); m = man(d, n, c); m.robots_check(U)

@@ -7,7 +7,10 @@ robots_hop_problem, Net.cap_problem / wait / spend; fetch-settings.json):
   1. robots.txt, asked ONCE per host per run (RFC 9309 2.3.1.3, the engine's one rule for every host):
        200 (a robots file)         = obeyed: the longest matching Allow / Disallow wins (a tie goes to Allow, as in the engine);
                                      a Crawl-delay longer than our 2 s floor is used; over 30 s the host is skipped this run;
-       200 that is a web page      = could not be read: no reads from that host this run;
+       200 that is a web page      = the engine 3.6.2 rule (Nov 15): a page from this site's own /robots.txt address (same scheme and
+                                     host, every redirect hop too) with NO robots line, that is not a sign-in or bot-challenge page,
+                                     is "no rules"; a page holding robots directives is parsed as a robots file; anything else
+                                     (a sign-in page, another site, a password form, WWW-Authenticate) = no reads from that host this run;
        400-499 except 429          = "unavailable" = no restrictions;
        429, any 5xx, no answer     = no reads from that host this run (tried again next run; a Retry-After is kept for next run).
      A robots.txt redirect is followed like the engine: at most 5 steps, https only, the same site (the same host, its www. twin
@@ -19,7 +22,7 @@ robots_hop_problem, Net.cap_problem / wait / spend; fetch-settings.json):
 The never-contact list (kpc_net_guard: services*.arcgis.com, apps.fs.usda.gov, ncnhde.natureserve.org, KPC_SAVED_ONLY_HOSTS, the
 layers.json never_contact flags) keeps winning: it is checked before anything here and again by the guard on every open.
 Not a rule file (kpc_key_freeze.NOT_RULES): it decides which request may go out, never a join. Standard library only."""
-import datetime, email.utils, json, os, pathlib, re, time, urllib.error, urllib.parse, urllib.request
+import datetime, email.utils, html, json, os, pathlib, re, time, urllib.error, urllib.parse, urllib.request
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 
 # ---- the limits, in ONE place (the store engine's fetch-settings.json values and floors)
@@ -145,12 +148,72 @@ class RobotsTxt:
         return allow
 
 
-def robots_verdict(status, body, ua):
-    """-> ('parsed' | 'yes' | 'unreadable', RobotsTxt or None, why). The engine's read_robots rule (3.6), the same for every host."""
+# ---- Nov 15: the engine 3.6.2 (final) rule for a robots.txt that answers 200 (kpc_outline_store.py read_robots, robots_final_problem,
+# robots_html_no_rules_ok, robots_normalize; the same regular expressions)
+ROBOTS_SCRIPT_RX = re.compile(r'<script\b.*?</script\s*>|<style\b.*?</style\s*>|<!--.*?-->', re.I | re.S)
+ROBOTS_ANY_RX = re.compile(r'(?<![\w-])(user-agent|useragent|allow|disallow|sitemap|crawl-delay)\s*:', re.I)
+ROBOTS_LINE_RX = re.compile(r'^\s*(user-agent|useragent|allow|disallow|sitemap|crawl-delay)\s*:', re.I | re.M)
+ROBOTS_FORM_RX = re.compile(r'<input\b[^>]{0,300}\btype\s*=\s*["\']?password|<form\b[^>]{0,400}\b(action|id|name|class)\s*=\s*["\']?[^"\'>]{0,200}'
+                            r'(log[\s_-]?in|sign[\s_-]?in|auth|sso|saml|oauth|session|credential|j_security_check|account|captcha|challenge)', re.I)
+ROBOTS_WALL_RX = re.compile(r'cf-chl|challenge-platform|captcha-delivery|verify (that )?you are (a )?human|are you a robot', re.I)
+ROBOTS_SIGNIN_TEXT_RX = re.compile(r'\b(please|you must|you need to|required to)\s+(sign|log)\s?-?\s?(in|on)\b|\b(sign|log)\s?-?\s?(in|on)\s+(to continue|is required|required)\b'
+                                   r'|\b(login|sign[\s-]?in|authentication)\s+(is\s+)?required\b|\baccess denied\b', re.I)
+ROBOTS_SIGNIN_PATH_RX = re.compile(r'log[\s_-]?in|log[\s_-]?on|sign[\s_-]?in|sign[\s_-]?on|auth|sso|saml|oauth|openid|account|session|(?:^|/)cas/|\bidp\b|j_security', re.I)
+_TAG_RX = re.compile(r'<[^>]{0,400}>')
+
+
+def robots_normalize(txt):
+    """One directive per line (the engine's 3.6.2c step): a new line before every directive keyword that is not at a line start."""
+    out = []
+    for line in re.split(r'\r\n|\r|\n', str(txt or '')):
+        body, hsh, com = line.partition('#')
+        out.append(re.sub(r'(?<=\S)[ \t]+(?=(?:user-agent|useragent|disallow|allow|sitemap|crawl-delay)\s*:)', '\n', body, flags=re.I) + hsh + com)
+    return '\n'.join(out)
+
+
+def robots_final_problem(final_url, first_url, chain=()):
+    """'' when the answer came from this site's own /robots.txt address (same scheme and host, every hop too, no user name, not a
+    sign-in address), else why not (the engine's robots_final_problem)."""
+    if not first_url: return ''
+    b, fu = urllib.parse.urlsplit(first_url), urllib.parse.urlsplit(final_url or first_url)
+    same = lambda x: (x.scheme or '').lower() == (b.scheme or '').lower() and (x.hostname or '').lower() == (b.hostname or '').lower() and x.port == b.port
+    if not same(fu): return f'the answer came from another site ({str(final_url)[:120]}): not read as "no rules"'
+    for hop in chain or ():
+        if not same(urllib.parse.urlsplit(str(hop))): return f'a redirect on the way went to another site ({str(hop)[:120]}): not read as "no rules"'
+    if '@' in fu.netloc: return 'the answer address carries a user name: not read as "no rules"'
+    if ROBOTS_SIGNIN_PATH_RX.search(fu.path + '?' + fu.query + '#' + fu.fragment):
+        return f'the redirects ended at a sign-in address ({str(final_url)[:120]}): not read as "no rules"'
+    return ''
+
+
+def robots_page(txt, ua, headers=None, final_url='', first_url='', chain=()):
+    """A robots.txt that answered 200 with a web page -> ('parsed' | 'yes' | 'unreadable', RobotsTxt or None, why): the engine 3.6.2 rule."""
+    vis = ROBOTS_SCRIPT_RX.sub(' ', txt)
+    why_url = robots_final_problem(final_url, first_url, chain)
+    if ROBOTS_ANY_RX.search(_TAG_RX.sub(' ', html.unescape(vis))):   # robots directives anywhere in the page text: it IS a robots file
+        if why_url: return 'unreadable', None, f'robots.txt answered with a web page holding robots directives, but {why_url}: nothing read from this host this run'
+        rb = RobotsTxt(robots_normalize(_TAG_RX.sub('\n', html.unescape(vis))), ua)
+        if not rb.groups: return 'unreadable', None, 'robots.txt answered with a web page holding robots directives that could not be parsed: nothing read from this host this run'
+        return 'parsed', rb, f'robots.txt answered with a web page holding robots directives: parsed ({rb.group})'
+    why = why_url
+    if not why and ROBOTS_LINE_RX.search(vis): why = 'the page holds robots lines inside HTML: not read as "no rules" (a person looks)'
+    if not why and ROBOTS_WALL_RX.search(txt): why = 'the page is a bot challenge (captcha / "verify you are human"): not read as "no rules"'
+    if not why and ROBOTS_SIGNIN_TEXT_RX.search(_TAG_RX.sub(' ', html.unescape(vis))): why = 'the page asks the reader to sign in: a sign-in page, not read as "no rules"'
+    if not why and {str(k).lower(): v for k, v in (headers or {}).items()}.get('www-authenticate'): why = 'the answer carries a WWW-Authenticate header (a sign-in): not read as "no rules"'
+    if not why and ROBOTS_FORM_RX.search(txt): why = 'the page has a password field or a form that posts credentials (a sign-in page): not read as "no rules"'
+    if why: return 'unreadable', None, f'robots.txt answered with a web page, not a robots file ({why}): nothing read from this host this run'
+    return 'yes', None, 'robots.txt answered with a web page holding no robots line: read as "no rules" (RFC 9309 2.2; the store engine 3.6.2 rule)'
+
+
+def robots_verdict(status, body, ua, headers=None, final_url='', first_url='', chain=()):
+    """-> ('parsed' | 'yes' | 'unreadable', RobotsTxt or None, why). The engine's read_robots rule (3.6.2), the same for every host."""
     if status == 200:
         txt = (body or b'').decode('utf-8', 'replace')
-        if txt.lstrip('﻿ \t\r\n').startswith('<'): return 'unreadable', None, 'robots.txt answered with a web page, not a robots file: nothing read from this host this run'
-        rb = RobotsTxt(txt, ua); return 'parsed', rb, f'robots.txt read ({rb.group})'
+        if txt.lstrip('\ufeff \t\r\n').startswith('<'): return robots_page(txt, ua, headers, final_url, first_url, chain)
+        rb = RobotsTxt(robots_normalize(txt), ua)
+        if ROBOTS_ANY_RX.search(txt) and not rb.groups and re.search(r'\b(dis)?allow\s*:', txt, re.I):
+            return 'unreadable', None, 'robots.txt holds rules that could not be parsed (no User-agent group): nothing read from this host this run'
+        return 'parsed', rb, f'robots.txt read ({rb.group})'
     if status == 429: return 'unreadable', None, 'robots.txt answered 429 (the server asks us to back off): nothing read from this host this run, tried next run'
     if 400 <= status < 500: return 'yes', None, f'robots.txt answered {status}: "unavailable" = no restrictions (RFC 9309 2.3.1.3)'
     return 'unreadable', None, f'robots.txt could not be read ({status or "no answer"}): nothing read from this host this run, tried next run'
@@ -288,7 +351,7 @@ class Manners:
                             ('a redirect loop' if nxt in seen else robots_hop_problem(cur, nxt) or ('' if kpc_net_guard.host_ok(nxt)[0] else kpc_net_guard.host_ok(nxt)[1]))
                         if prob: verdict = ('unreadable', None, f'robots.txt redirect to {host_of(nxt)} refused: {prob}: nothing read from this host this run'); break
                         seen.add(nxt); cur = nxt; continue
-                    verdict = robots_verdict(a.status, a.body, self.ua)
+                    verdict = robots_verdict(a.status, a.body, self.ua, a.headers, cur, f'{p.scheme}://{p.netloc}/robots.txt', sorted(seen - {f'{p.scheme}://{p.netloc}/robots.txt'}))
                     break
             except Skip as e:
                 if str(e).startswith('cap reached'): return False, str(e)   # not asked: the cap, tried again next run

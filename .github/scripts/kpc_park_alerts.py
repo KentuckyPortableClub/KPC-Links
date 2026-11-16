@@ -42,8 +42,8 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-import urllib.robotparser
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_inbox_manners as _MN   # Nov 15: the store engine's robots.txt rule and matcher (one rule everywhere)
 from kpc_scrub import scrub, notice_text, clip   # Nov 12: clip = scrub first, then cut
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
@@ -97,8 +97,10 @@ def ky_now():
 
 
 # Nov 14: robots + pacing gate, the store engine's manners in small (that class lives only in KPC-Data). robots.txt is read once
-# per host per run: 200 = its rules, 404/410 = allowed, 401/403 = Disallow, anything else (5xx, timeout, unreachable) = that host is
-# not read this run. At least 2 s between requests to a host (its Crawl-delay if longer; over 30 s = not read this run). The keyed
+# per host per run. Nov 15: ONE rule everywhere = the store engine 3.6.2 rule (kpc_inbox_manners.robots_verdict, the engine's own
+# matcher): 200 = its rules (a web page with no robots line from the site's own address = no rules; a sign-in page = not read);
+# 404/410 = no file; 401/403 and any other 4xx but 429 = "unavailable" = no rules (RFC 9309 2.3.1.3); 429, 5xx, timeout,
+# unreachable = that host is not read this run. At least 2 s between requests to a host (its Crawl-delay if longer; over 30 s = not read this run). The keyed
 # Park Service API skips robots (house rule) but keeps the gap. A skipped read raises Skipped, so each source handles it like a
 # failed read, and main() leaves that source's alerts and counters exactly as they were.
 GAP, MAX_CRAWL_DELAY = 2.0, 30.0
@@ -122,27 +124,31 @@ def _pace(host, gap):
 def _read_robots(host):
     """Fills _robots[host] or _no_host[host], once per run."""
     _pace(host, GAP)
+    first = f'https://{host}/robots.txt'
     try:
-        with urllib.request.urlopen(urllib.request.Request(f'https://{host}/robots.txt', headers=UA), timeout=30) as r:
-            body = r.read(512_000).decode('utf-8', 'replace')
+        with urllib.request.urlopen(urllib.request.Request(first, headers=UA), timeout=30) as r:
+            body = r.read(512_000)
+            hdr = dict(r.headers.items()) if getattr(r, 'headers', None) else {}
+            final = r.geturl() if callable(getattr(r, 'geturl', None)) else first
     except urllib.error.HTTPError as e:
         if e.code in (404, 410):
             _robots[host] = None
-        elif e.code in (401, 403):
-            _no_host[host] = f'robots.txt answered {e.code} (counts as Disallow)'
+        elif e.code == 429:
+            _no_host[host] = 'robots.txt answered 429 (the server asks us to back off), not read this run'
+        elif 400 <= e.code < 500:
+            _robots[host] = None   # Nov 15: 401 / 403 / other 4xx = "unavailable" = no rules (the store engine 3.6.2 rule, RFC 9309 2.3.1.3)
         else:
             _no_host[host] = f'robots.txt answered {e.code} (unreadable, not read this run)'
         return
     except Exception as e:  # noqa: BLE001
         _no_host[host] = f'robots.txt unreadable ({type(e).__name__}), not read this run'
         return
-    rp = urllib.robotparser.RobotFileParser()
-    rp.parse(body.splitlines())
-    _robots[host] = rp
-    try:
-        cd = float(rp.crawl_delay(UA['User-Agent']) or 0)
-    except (TypeError, ValueError):
-        cd = 0
+    kind, rp, why = _MN.robots_verdict(200, body, UA['User-Agent'], hdr, final or first, first)
+    if kind == 'unreadable':
+        _no_host[host] = why.replace(': nothing read from this host this run', '') + ', not read this run'
+        return
+    _robots[host] = rp   # None = no rules
+    cd = float(rp.crawl_delay or 0) if rp is not None else 0.0
     if cd > MAX_CRAWL_DELAY:
         _no_host[host] = f'Crawl-delay {cd:g} s is over {MAX_CRAWL_DELAY:g} s, not read this run'
 
@@ -158,18 +164,13 @@ def gate(url):
         _read_robots(host)
     why = _no_host.get(host)
     rp = _robots.get(host)
-    if not why and rp is not None and not rp.can_fetch(UA['User-Agent'], url):
+    if not why and rp is not None and not rp.allowed(url):
         why = f'robots.txt disallows {sp.path or "/"}'
     if why:
         SKIPPED.setdefault(host, why)
         GATE['skips'] += 1
         raise Skipped(f'{host}: {why}')
-    cd = 0.0
-    if rp is not None:
-        try:
-            cd = float(rp.crawl_delay(UA['User-Agent']) or 0)
-        except (TypeError, ValueError):
-            cd = 0.0
+    cd = float(rp.crawl_delay or 0) if rp is not None else 0.0
     _pace(host, max(GAP, cd))
 
 
