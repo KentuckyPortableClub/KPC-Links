@@ -852,7 +852,7 @@
  },
  "Canada": {
   "totals": {
-   "matched": 4381,
+   "matched": 4402,
    "far": 1628,
    "noshape": 25,
    "edge": 1527,
@@ -958,7 +958,7 @@
    },
    {
     "st": "CA-ON",
-    "matched": 950,
+    "matched": 956,
     "far": 387,
     "noshape": 16,
     "out": 7,
@@ -1006,7 +1006,7 @@
    },
    {
     "st": "CA-SK",
-    "matched": 304,
+    "matched": 319,
     "far": 151,
     "noshape": 2,
     "out": 17,
