@@ -592,8 +592,15 @@ if have:
     miss = json.loads(pub_files.get('missing-na.json', '{}')).get('parks') or []
     check(r.returncode == 0 and tries == [] and 'store-missing-US-RI.json' in pub_files and any(set(x['refs']) == {'US-9601', 'US-9602'} for x in spots),
           f'S6: kpc_fers.main() runs end to end on a store with every socket shut: zero connection attempts, the files written ({r.returncode}, {tries}, {sorted(pub_files)})')
-    check(not any(SECRET.search(t) for t in pub_files.values()) and not SECRET.search(r.stdout + r.stderr) and not any('US-9603' in x['refs'] for x in spots),
-          'M1: a public run names no park held for licence / WDPA records in ANY file (spot file with its carried row, looked, missing, store-missing, report) nor in stdout / stderr')
+    # KPC owner, 2026-11-15 (owner rule never worse, R12): the old public row of the withheld park (old1) is carried UNCHANGED, with
+    # only the mark 'not re-checked (outline held privately)'; that exact copy is the one place the park may appear
+    _old1 = {'refs': ['US-9601', 'US-9603'], 'kind': 'area', 'status': 'candidate', 'passes': [1, 1, 1], 'id': 'old1', 'names': {'US-9603': 'Secret Park'}}
+    _car = [x for x in spots if x.get('store_held')]
+    _rest = dict(json.loads(pub_files.get('US-RI.json', '{}')), spots=[x for x in spots if not x.get('store_held')])
+    _other = {k: v for k, v in pub_files.items() if k != 'US-RI.json'}
+    check(_car == [dict(_old1, store_held=S.HELD_TAG)] and not SECRET.search(json.dumps(_rest)) and not any(SECRET.search(t) for t in _other.values())
+          and not SECRET.search(r.stdout + r.stderr),
+          'M1: a public run names no park held for licence / WDPA records in ANY file (looked, missing, store-missing, report, any other row) nor in stdout / stderr; its old public row is carried unchanged (never worse)')
     m5 = [x for x in miss if x.get('ref') == 'US-9605']
     check(m5 and m5[0]['why'].startswith('held by the outline store') and 'no official boundary' not in m5[0]['why'],
           f'M1: a park the store held is on the Missing boundary list with the reason the store gave, never "no official boundary" ({[x.get("why") for x in m5]})')
@@ -621,8 +628,9 @@ _direct = sorted({_owner(m.start()) for m in _re.finditer(r"\.write_text\(|\.wri
 check(_direct == ['_wsave', 'live_save'] and _src.count('def save_json') == 1 and 'return _save_json_raw(p, FCOUNT.apply(p, d)' in _src,
       f'writer trace: kpc_fers.py writes files only through save_json -> _save_json_raw, plus live_save / _wsave (turned off in a store run) ({_direct})')
 _ss = (ROOT / '.github/scripts/kpc_fers_store.py').read_text(encoding='utf-8')
-check(len(_re.findall(r'\.write_text\(', _ss)) == 4 and 'guard_write(p, doc)' in _ss and "if hasattr(KF, name): setattr(KF, name, lambda *a, **k: None)" in _ss,
-      'writer trace: the store module writes the store-missing list (guarded), the diff command output (ids, names, statuses only) and the between-pass side file (outside the data folder, Nov 15)')
+# KPC owner, 2026-11-15 (store trial fixes): + 2 private side files (store-held refs between passes, the store-withheld lists), both in the private folder
+check(len(_re.findall(r'\.write_text\(', _ss)) == 6 and 'guard_write(p, doc)' in _ss and "if hasattr(KF, name): setattr(KF, name, lambda *a, **k: None)" in _ss,
+      'writer trace: the store module writes the store-missing list (guarded), the diff command output (ids, names, statuses only; private folder) and the between-pass side files and withheld lists (private folder, Nov 15)')
 try:
     import kpc_release as _REL
     check(S.BLOCKED_BUILDS == _REL.BLOCKED_BUILDS, 'the never-released list is the release tool\'s own (US-42797939226)')
