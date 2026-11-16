@@ -4517,6 +4517,11 @@ def main():
         for st in sorted(set(by) | {p['st'] for p in parks.values()}):
             if counts.get('stopped for time') and st in old and (st in undone or st not in by): continue
             if st in EMPTY_AREAS: continue   # KPC owner, 2026-11-16 (item 1): measured nothing = its previous file stays
+            # KPC owner, 2026-11-16: a run named for some areas (STATES) writes ONLY those areas' files. Pass 1 also holds the
+            # neighbours' parks (border pairs), and it used to rewrite each neighbour's file as a pass-1 file; passes 2 to 5 take
+            # only the run's own areas, so the neighbour's finished rows were reset and never finished again (W-AT after a W-CH
+            # run: 57 candidates -> 53, its pass 3 and pass 5 dates gone). A neighbour's file is that neighbour's own run's.
+            if ONLY and not (st in ONLY or st[3:] in ONLY): continue
             sp = by.get(st, [])
             if PARKS:   # small batch: the new rows for the pairs touching PARKS + every other old row unchanged
                 sp = [x for x in sp if PARKS & set(x['refs'])]
