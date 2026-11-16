@@ -24,11 +24,16 @@ Env passed through (LINKS / DATA point the tests at the other repo).
 A baseline entry whose test now PASSES fails the gate ('stale baseline: remove X'), so the baseline cannot rot; clear it in the same PR.
 
 Baseline file: one entry per line, '#' comments. An entry is a test path (tests/test_x.py) or 'selftest:<script path>'.
+
+Groups (KPC owner, 2026-11-16, handoff item 6): tests that pin LIVE data (a key file, a run's output, a released file) are listed in
+tests/data-check.txt (same format). The default group 'code' leaves them out, so the code tests are green on main whatever the data
+did; '--group data' runs only them (no selftests, no baseline) and reports, for the owner to re-pin; '--group all' runs both.
 """
 import argparse, os, pathlib, re, subprocess, sys, tempfile, time
 
 FAIL_WORDS = re.compile(r'SOME FAILED|SELFTEST FAIL|-> FAIL\b')
 BASELINE = 'tests/known-fail-main.txt'
+DATA_CHECK = 'tests/data-check.txt'
 
 
 def git_state(root):
@@ -92,10 +97,13 @@ def run_one(cmd, root, timeout):
     return ok, why, round(time.time() - t, 1), skip
 
 
-def suite(root='.', baseline=None, timeout=180, selftests=True, label=''):
+def suite(root='.', baseline=None, timeout=180, selftests=True, label='', group='code'):
     root = str(pathlib.Path(root).resolve())
     base = read_baseline(baseline or os.path.join(root, BASELINE))
+    data = read_baseline(os.path.join(root, DATA_CHECK)) if os.path.exists(os.path.join(root, DATA_CHECK)) else set()
     items = [(str(f.relative_to(root)), [sys.executable, '-B', str(f.relative_to(root))]) for f in sorted(pathlib.Path(root, 'tests').glob('test_*.py'))]
+    if group == 'code': items = [x for x in items if x[0] not in data]
+    elif group == 'data': items = [x for x in items if x[0] in data]; selftests = False; base = set()
     if selftests:
         items += [('selftest:' + str(f.relative_to(root)), [sys.executable, '-B', str(f.relative_to(root)), '--selftest']) for f in selftest_scripts(root)]
     rows, before = [], git_state(root)
@@ -115,7 +123,7 @@ def suite(root='.', baseline=None, timeout=180, selftests=True, label=''):
     head = ''
     try: head = subprocess.run(['git', 'rev-parse', '--short=12', 'HEAD'], cwd=root, capture_output=True, text=True).stdout.strip()
     except Exception: pass  # noqa: BLE001
-    return {'root': root, 'head': head, 'label': label, 'inputs': inputs, 'rows': rows, 'new': new, 'fixed': fixed, 'gone': gone,
+    return {'root': root, 'head': head, 'label': label, 'group': group, 'data_check': sorted(data), 'inputs': inputs, 'rows': rows, 'new': new, 'fixed': fixed, 'gone': gone,
             'pass': sum(r['ok'] and not r['skip'] for r in rows), 'skipped': [r['name'] for r in rows if r['skip']], 'total': len(rows),
             'tests_pass': sum(r['ok'] and not r['skip'] for r in rows if not r['name'].startswith('selftest:')),
             'tests_total': sum(1 for r in rows if not r['name'].startswith('selftest:'))}
@@ -129,6 +137,9 @@ def report(res):
     L = [f"## {res['label'] or 'suite'}  root={res['root']}  HEAD={res['head']}",
          f"CMD: python3 .github/scripts/kpc_full_suite.py --root {res['root']}  (every tests/test_*.py one by one + every --selftest)"]
     if res.get('inputs'): L.append('INPUTS: ' + res['inputs'])
+    if res.get('group', 'code') == 'code' and res.get('data_check'):
+        L.append(f"GROUP code: {len(res['data_check'])} data-check test(s) left out (run them with --group data): " + ', '.join(res['data_check']))
+    elif res.get('group') == 'data': L.append('GROUP data: live-data pins only; a failure here means the data moved, the owner re-pins (not a code failure)')
     for r in res['rows']:
         tag = 'SKIP' if r['skip'] else 'PASS' if r['ok'] else ('FAIL (known on main)' if r['known'] else 'FAIL NEW')
         L.append(f"{tag:<21} {r['name']}  ({r['secs']}s)")
@@ -193,6 +204,12 @@ def selftest():
     check('only known failures left, none stale -> GATE PASS (exit 0)', (len(res2['new']), len(res2['fixed']), 'GATE PASS' in report(res2)), (0, 0, True))
     check('report names its inputs (origin/main, DATA, clean tree) so two reports can be compared', 'INPUTS: origin/main=' in report(res2) and 'tree clean at start: yes' in report(res2), True)
     check('the same tree run twice gives the same rows', [(r['name'], r['ok'], r['skip']) for r in suite(d, timeout=30)['rows']] == [(r['name'], r['ok'], r['skip']) for r in res2['rows']], True)
+    w('tests/test_i_data.py', "import sys; print('FAIL live pin moved'); sys.exit(1)\n"); w('tests/data-check.txt', "# live data pins\ntests/test_i_data.py\n")
+    subprocess.run('git add -A && git -c user.name=t -c user.email=t@t commit -qm t3', shell=True, cwd=d)
+    res3 = suite(d, timeout=30, label='selftest-3')
+    check('a data-check test is left out of the code group (gate stays green)', ('tests/test_i_data.py' in [r['name'] for r in res3['rows']], gate_fails(res3), 'GROUP code: 1 data-check' in report(res3)), (False, False, True))
+    res4 = suite(d, timeout=30, label='selftest-4', group='data')
+    check('--group data runs only the data-check tests, no selftests', [r['name'] for r in res4['rows']], ['tests/test_i_data.py'])
     print(f"SELFTEST {'PASS' if ok_all else 'FAIL'}: {n} cases")
     return ok_all
 
@@ -202,8 +219,9 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', default='.'); ap.add_argument('--baseline'); ap.add_argument('--report', default=os.environ.get('REPORT'))
     ap.add_argument('--timeout', type=int, default=180); ap.add_argument('--no-selftests', action='store_true'); ap.add_argument('--label', default='')
+    ap.add_argument('--group', choices=('code', 'data', 'all'), default='code')
     a = ap.parse_args(argv)
-    res = suite(a.root, a.baseline, a.timeout, not a.no_selftests, a.label)
+    res = suite(a.root, a.baseline, a.timeout, not a.no_selftests, a.label, a.group)
     txt = report(res); sys.stdout.write(txt)
     if a.report:
         with open(a.report, 'a', encoding='utf-8') as f: f.write(txt + '\n')

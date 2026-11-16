@@ -82,7 +82,9 @@ check("_PFHOLD.HELD" in writer and 'Owner hold (pin fills not applied)' in write
 # scope: CA-QC only; world none (hash moves, no country rebuild); US and fers unchanged
 cur = {k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
 # Nov 14 (the full 100 ft 2-fer ruling): the 2-fer hash moved later in its own entry; it must equal its newest changelog line
-check(cur['us-key'] == 'd4ebfafce438' and cur['fers'] == PF.newest_hash('fers'),
+# KPC owner, 2026-11-16 (handoff item 6): a hash this change did not move is its pinned value OR the newest declared changelog hash
+# (a later change may move it in its own declared line); not 'unchanged for ever'
+check(cur['us-key'] in ('d4ebfafce438', PF.newest_hash('us-key')) and cur['fers'] == PF.newest_hash('fers'),
       f"US hash unchanged, fers hash = its newest changelog line ({cur['us-key']}, {cur['fers']})")
 check(cur['ca-key'] == 'ba480fa34fb6' and cur['world-key'] == '158325de87ce',
       f"CA and world hashes are the post-hold hashes ({cur['ca-key']}, {cur['world-key']})")

@@ -350,6 +350,29 @@ def todo_rows(held, kind, env=None):
     return list(out.values())
 
 
+EASEMENT_CSV = 'data/us-key/review/easement-name-joins.csv'
+
+
+def easement_review(root='.'):
+    """KPC owner, 2026-11-16 (handoff item 5, v4 answer 1): the existing name-alone conservation easement joins of every US state
+    (each state file's 'easement_name_joins', written by the key) in ONE review file: ref, record, state. They are not removed; the
+    evidence cards and a person look at them. A state not yet rebuilt on the rule has no rows. Returns {state: count}."""
+    rows = []
+    for x in sorted(glob.glob(os.path.join(root, 'data/us-key/US-*.json'))):
+        try: d = json.load(open(x, encoding='utf-8'))
+        except Exception: continue  # noqa: BLE001
+        st = 'US-' + str(d.get('st') or pathlib.Path(x).stem[3:])
+        rows += [{'ref': str(r[0]), 'record': str(r[1]), 'state': st} for r in (d.get('easement_name_joins') or []) if isinstance(r, (list, tuple)) and len(r) >= 2]
+    f = pathlib.Path(root, EASEMENT_CSV); f.parent.mkdir(parents=True, exist_ok=True)
+    with open(f, 'w', newline='', encoding='utf-8') as fh:
+        w = csv.DictWriter(fh, fieldnames=['ref', 'record', 'state'], lineterminator='\n'); w.writeheader(); w.writerows(rows)
+    per = {}
+    for r in rows: per[r['state']] = per.get(r['state'], 0) + 1
+    print(f"::notice title=Easement joins for review::{len(rows)} existing name-alone conservation easement join(s) listed in {EASEMENT_CSV}"
+          + (f" ({', '.join(f'{k} {v}' for k, v in sorted(per.items()))})" if per else '') + '; none removed')
+    return per
+
+
 def run(env=None, root='.', plain=False):
     """plain=True writes key files with json.dump (the selftest: kpc_save would stamp data/status/ of the cwd)."""
     env = dict(os.environ if env is None else env)
@@ -399,13 +422,16 @@ def run(env=None, root='.', plain=False):
                              ('held-parks-todo.csv', TODO_FIELDS, todo_rows(held, k, env))):
         with open(out / name, 'w', newline='', encoding='utf-8') as fh:
             w = csv.DictWriter(fh, fieldnames=cols); w.writeheader(); w.writerows(data)
+    if k == 'us':
+        try: easement_review(root)
+        except Exception as e: print(f'::warning title=Easement joins for review::not written ({type(e).__name__}: {str(e)[:120]})')  # noqa: BLE001
     print(f"::notice title=Join check::{k} key ({mode}): {len(held)} far join(s) HELD before the stamp, {len(rows)} of {joined_n} joined parks "
           f"marked suspect in {len(files)} file(s); {acres_note}; evidence {d}/review/held-joins.csv + join-check.csv; nothing deleted")
     return rep
 
 
 def selftest():
-    import tempfile
+    import contextlib, io, tempfile
     ok, n = True, 0
     def check(name, got, want):
         nonlocal ok, n
@@ -463,7 +489,7 @@ def selftest():
     check('run(): a park that passes loses an old mark', ('suspect' in after['US-0002'], 'suspect' in after['US-0003']), (False, False))
     check('run(): no other join, candidate or grade changed', all(after[r].get(f) == before[r].get(f) for r in before if r != 'US-0001' for f in ('m', 'c', 'g')), True)
     check('run(): held list + reason + decided_by', [(x['park'], x['decided_by'], x['held_ids']) for x in rep['held_rows']], [('US-0001', DECIDED_BY, '1')])
-    check('run(): evidence files written', sorted(os.listdir(td / 'data/us-key/review')), ['held-joins-ledger.csv', 'held-joins.csv', 'held-joins.json', 'held-parks-todo.csv', 'join-check.csv', 'join-check.json'])
+    check('run(): evidence files written', sorted(os.listdir(td / 'data/us-key/review')), ['easement-name-joins.csv', 'held-joins-ledger.csv', 'held-joins.csv', 'held-joins.json', 'held-parks-todo.csv', 'join-check.csv', 'join-check.json'])
     tr = list(csv.DictReader(open(td / 'data/us-key/review/held-parks-todo.csv')))
     check("keeper's to-do: the held park only (exempt ones not listed), its columns",
           (list(tr[0]), [(x['ref'], x['kind'], x['area'], x['todo_kind'], x['source'], x['outline_ids'], x['reason'][:6]) for x in tr]),
@@ -477,6 +503,15 @@ def selftest():
     check("multi-state park: the far state piece is measured to the nearest part of the WHOLE outline (another file: 0 km): kept",
           (r2['held'], bool(json.load(open(td / 'data/us-key/US-BB.json'))['parks']['US-0006']['m'])), (0, True))
     check('a second run holds nothing more (idempotent)', run({'KEY': 'us', 'ALL': '1'}, root=str(td), plain=True)['held'], 0)
+    # KPC owner, 2026-11-16 (item 5): the easement review file lists each state's existing name-alone easement joins, nothing else
+    with tempfile.TemporaryDirectory() as t2:
+        t2 = pathlib.Path(t2); (t2 / 'data/us-key').mkdir(parents=True)
+        json.dump({'st': 'NY', 'parks': {}, 'easement_name_joins': []}, open(t2 / 'data/us-key/US-NY.json', 'w'))
+        json.dump({'st': 'VT', 'parks': {}, 'easement_name_joins': [['US-9991', 'sgvta12'], ['US-9992', '777']]}, open(t2 / 'data/us-key/US-VT.json', 'w'))
+        json.dump({'st': 'ME', 'parks': {}}, open(t2 / 'data/us-key/US-ME.json', 'w'))
+        with contextlib.redirect_stdout(io.StringIO()): per = easement_review(t2)
+        check('easement review: count per state', per, {'US-VT': 2})
+        check('easement review: rows ref, record, state', (t2 / EASEMENT_CSV).read_text(), 'ref,record,state\nUS-9991,sgvta12,US-VT\nUS-9992,777,US-VT\n')
     print(f"SELFTEST {'PASS' if ok else 'FAIL'}: {n} cases")
     return ok
 

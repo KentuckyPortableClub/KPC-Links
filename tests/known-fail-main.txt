@@ -5,10 +5,7 @@
 # Taken out 2026-11-16: test_ky_brandon_slash_nov6, test_map_alias_join_nov10, test_planner_answer_key_nov10, test_us_planner_ky_outlines_nov10,
 # test_weekly_batch_nov9 (they read data/ky-answer-key.json, which the KY key bot rebuilt correctly on Nov 15; they pass on main now, and a
 # future fail there is a real KY key regression, not noise) and test_maprep_state_search_fast_nov8 (fixed on 2026-11-16).
+# Moved 2026-11-16 (handoff item 6) to the data-check group (tests/data-check.txt, run with --group data): test_mystery_joins_nov11,
+# test_world_fr_patrinat_overrides_nov11, test_world_fr_patrinat_layers_nov11, test_trail_join_guard_nov11, test_tracts_nov7.
 # Do not list a test here only because it fails on an older base or without DATA: compare the INPUTS line of the two reports first.
 tests/test_loaders_released_ca_ky_nov11.py       # 2026-11-16: released ky-usace parts / ky-overlaps / trail line differ from the working files until the next KY release (owner's)
-tests/test_mystery_joins_nov11.py                # 2026-11-16: pins FR-14979 / FR-10432 "as in the live world key until the next world run"; the world key has moved on, the owner re-pins
-tests/test_tracts_nov7.py                        # 2026-11-16: harness stubs live layer reads, but since #136 usOutline reads released outline files only (none here); plus world layers.json moved source
-tests/test_trail_join_guard_nov11.py             # 2026-11-16: US-12959 in data/us-key/US-OR.json changed after the pinned 11f908d9; the owner decides the new pin
-tests/test_world_fr_patrinat_layers_nov11.py     # 2026-11-16: FR-10432 / FR-11106 / FR-10548 "before" pins are the pre-run live key; the world key has moved on
-tests/test_world_fr_patrinat_overrides_nov11.py  # 2026-11-16: same three parks, same reason

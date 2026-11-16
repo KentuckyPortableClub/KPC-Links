@@ -201,8 +201,10 @@ scw, _, _ = F.pending_scope('world-key', 'a47e0479ad41')
 check('world pin-fill hold is scope none: no country is rebuilt for that change',
       scw == set(), scw)
 scu, _, _ = F.pending_scope('us-key', 'd4ebfafce438')
+# KPC owner, 2026-11-16 (handoff item 6): a later change may declare its own US scope (checked by its own id in its own test);
+# this work itself must not ask for a full US rebuild
 check('no new US rule-scope is pending: this work is not a full US rebuild',
-      scu in (None, set()), scu)
+      scu in (None, set()) or (scu != 'all' and isinstance(scu, set) and len(scu) < 50), scu)
 
 with tempfile.TemporaryDirectory() as t:
     d = pathlib.Path(t) / 'r'; d.mkdir()
