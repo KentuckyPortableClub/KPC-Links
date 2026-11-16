@@ -100,7 +100,9 @@ docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 # KPC owner, 2026-11-14 (full 100 ft trail / river rule, fers): + that entry on top: the top twenty-one.
 # KPC owner, 2026-11-15 (the outline store switch-over, fers): + that entry on top: the top twenty-two.
 # KPC owner, 2026-11-15 (the store run fixes after the first real-store trial, fers): + that entry on top: the top twenty-three.
-_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:23])
+# KPC owner, 2026-11-16: + the Nov 15 owner rule 12 public view entry (#209) and the Nov 15 partial boundaries entry (#211), both fers,
+#   on top: the top twenty-five (those two PRs added entries without moving the window, so the Nov 10 fers v1 lines fell out of it).
+_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:25])
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt Nov 10 entries declare fers v1 hash {fers_h}')
 # Public changelog keeps hashes and dates only (no quotes, no ids)
