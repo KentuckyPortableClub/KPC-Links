@@ -22,7 +22,10 @@ def never_looked(e):
     """-> (counted, no_outline, total expected, {reason: n} for the counted ones) from an expected-<tag>.json"""
     nla = e.get('NEVER LOOKED AT') if isinstance(e.get('NEVER LOOKED AT'), list) else []
     tot = sum(len(e.get(k)) for k in ('FOUND', 'DROPPED', 'NEVER LOOKED AT') if isinstance(e.get(k), list))
-    if not tot: tot = sum(int(v or 0) for v in (e.get('counts') or {}).values())
+    # 'counts' wins when it is bigger: a bucket's LIST may be left out of the pushed file while its count stays (the DROPPED list
+    # moved to the private folder - KPC owner, 2026-11-15 23:14), and the share below must still be measured against every pair.
+    cnt = sum(int(v or 0) for v in (e.get('counts') or {}).values())
+    if cnt > tot: tot = cnt
     no_out, why = 0, {}
     for x in nla:
         parts = [q.split(':', 1)[-1].strip() for q in str(x.get('reason') or 'unknown').split(';') if q.strip()]

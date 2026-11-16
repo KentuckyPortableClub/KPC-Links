@@ -2,13 +2,16 @@
 """MISSING CHECK (chat 2, Oct 27 2026; HQ 3:46 PM, Brandon: 'chat 8 can't verify what's missing'). For each area of a 2-fer run, every
 pair of parks we have an OUTSIDE reason to expect, with what the bot did with it:
   FOUND            a live row (candidate / very tight / water only, or folded into one)
-  DROPPED          a row with the exact reason + the rule, or 'looked, no shared ground on the official outlines (rule 4)'
+  DROPPED          a pair we looked at and did not show. Its COUNT is in the pushed file; the list, with the exact reason + the
+                   rule, goes to the PRIVATE folder (expected-dropped-<tag>.json), because no file we publish may say a pair is
+                   not a 2-fer (KPC owner, 2026-11-15 23:14; re-grade R2, 2026-11-16)
   NEVER LOOKED AT  the bot never tested the pair, with why (no official outline, a line park with no line, not in the run…)
 Sources (why each pair is expected): 'hand list' = ky-trail-parks.json (Kentucky's river / trail pairs) · 'old guide' = the
 Oct 13 Kentucky 2-fers guide (ky-overlaps.geojson, 76 pairs) · 'activated together' = POTA activation history, same call same day
 (data/fers/pota-pairs-<st>.json, counts only) · 'near-touching' = outlines within 100 m (pass 1's looked file) · 'member report'
 (data/fers/member-reports.json, later). Writes data/fers/expected-<area>.json; 'pass' = no NEVER LOOKED AT without a reason and
-every DROPPED with a reason. Chat 8 reviews the DROPPED + NEVER LOOKED AT lists. AREA='ky' or STATES='US-OH'. Never fails.
+every DROPPED with a reason (both worked out before the DROPPED list is moved out). Chat 8 reviews the DROPPED list in the
+private folder + the NEVER LOOKED AT list in the file. AREA='ky' or STATES='US-OH'. Never fails.
 Public outline-store run (KPC owner, 2026-11-15; store trial M4: KPC_FERS_FROM_STORE on, KPC_FERS_STORE_KIND public): a pair with a
 park whose outline the store holds privately (the run's withheld lists in KPC_FERS_PRIVATE_LOG, as the store-missing list reads
 them) is left out and only counted, and the file goes through the store's redact + write guard. No readable list = no file
@@ -18,6 +21,9 @@ OUT = pathlib.Path('data/fers')
 NEAR_M = 1000.0   # HQ Oct 27 9:39 PM: a pair expected ONLY because people activated both the same day counts when the two
                   # parks' OUTLINES are within 1 km or touch (never pin to pin: a forest's pin can be 30 km from a park inside it)
 LIVE = ('candidate', 'very tight', 'water only', 'merged into')
+# KPC owner, 2026-11-15 23:14 ("we just show what we think are overlaps"): a 2-fer file no longer holds a row that denies a pair,
+# so a pair the bot stopped looking at has no row here either. Such a pair falls to the 'looked: no shared ground ...' line below
+# (rule 4 / rule 5) from pass 1's own looked list; the exact reason is in the run report's 'not shown' list (kpc_fers.no_denials).
 RULES = [(r'^dropped: side by side|two owners side by side', 'rule 14 (ownership: side by side, not layered)'),
          (r'^dropped: private', 'rule 2 + B-G2 (private land counts only for its own number)'),
          (r'^dropped: only inside an area closed', 'rule 10 (closed to the public)'),
@@ -25,6 +31,50 @@ RULES = [(r'^dropped: side by side|two owners side by side', 'rule 14 (ownership
          (r'ruling Oct 27', 'Kentucky ruling (Brandon / HQ Oct 27)'),
          (r'^not sure', 'rule 7 (NOT SURE is kept out)'),
          (r'^dropped', 'see the reason')]
+
+
+DROPPED_PRIVATE = ('The pairs this run looked at and did not show, with the reason. PRIVATE: a person reads it (chat 8). It names '
+                   'both parks of each pair beside a reason that reads as "not a 2-fer", so it never goes into a file we publish '
+                   '(KPC owner, 2026-11-15 23:14; re-grade R2, 2026-11-16). The published expected-<tag>.json keeps the COUNT.')
+DROPPED_NOTE = ('the pairs we looked at and did not show are not listed here: we show only overlaps we believe in, and no file we '
+                'publish says a pair is not a 2-fer (KPC owner, 2026-11-15). The count is in "counts"; the list, with each '
+                'reason, is in the private folder for a person (expected-dropped-<tag>.json)')
+
+
+def private_dir():
+    """The PRIVATE folder for material that may not be published, or None. The same three environment names and the same
+    git-work-tree refusal as kpc_fers.not_shown_file(), so both land in one place."""
+    for v in ('KPC_FERS_NOT_SHOWN_DIR', 'KPC_FERS_PRIVATE_OUT', 'KPC_FERS_PRIVATE_LOG'):
+        base = str(os.environ.get(v) or '').strip()
+        if not base: continue
+        try:
+            d = pathlib.Path(base).resolve() / 'not-shown'
+            probe = d if d.exists() else d.parent
+            if any((q / '.git').exists() for q in (probe, *probe.parents)): continue
+            d.mkdir(parents=True, exist_ok=True)
+            return d
+        except OSError: continue
+    return None
+
+
+def split_dropped(res, tag):
+    """OWNER RULE (KPC owner, 2026-11-15 23:14): no file we publish may say a pair is not a 2-fer. The DROPPED bucket is exactly
+    that - a pair we expected, looked at, and did not show, with the reason - so the list is taken OUT of the file that is pushed
+    and written to the private folder instead. What stays in the published file: counts['DROPPED'] (the number), FOUND and
+    NEVER LOOKED AT (which say we did NOT test a pair, and why: not a verdict about the parks), 'pass' and the filter counts.
+    -> (the private path or None, how many pairs)."""
+    rows = res.get('DROPPED')
+    if not isinstance(rows, list): return None, 0
+    res['DROPPED'] = []
+    res['DROPPED (not listed here)'] = DROPPED_NOTE
+    d = private_dir()
+    if d is None: return None, len(rows)
+    f = d / f'expected-dropped-{tag}.json'
+    try:
+        f.write_text(json.dumps({'about': DROPPED_PRIVATE, 'area': res.get('area'), 'date': res.get('date'),
+                                 'DROPPED': rows}, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
+    except OSError: return None, len(rows)
+    return f, len(rows)
 
 
 def rule_of(st):
@@ -179,9 +229,16 @@ def build(area, files, tag='', sts=()):
         out['NEVER LOOKED AT'].append(e)
     bad = [e for e in out['NEVER LOOKED AT'] if e.get('reason') == 'unknown'] + [e for e in out['DROPPED'] if not e.get('reason')]
     if not looked: print(f'::notice title=2-fer missing check::{area}: no pass-1 list (looked-{area}.json): run pass 1 first', flush=True)
-    res = {'filter': filt, 'about': __doc__.split('\n')[0] + ' See kpc_fers_expected.py. Chat 8 reviews DROPPED + NEVER LOOKED AT.', 'area': area,
+    res = {'filter': filt, 'about': __doc__.split('\n')[0] + ' See kpc_fers_expected.py. Chat 8 reviews the private DROPPED list + NEVER LOOKED AT.', 'area': area,
            'date': time.strftime('%Y-%m-%d'), 'pass': not bad, 'counts': {k: len(v) for k, v in out.items()}, **out}
     path = OUT / f'expected-{tag or area}.json'
+    # OWNER RULE (2026-11-15 23:14; re-grade R2): the DROPPED list never goes into the pushed file. 'pass', 'counts' and the
+    # notice above are worked out from the whole buckets first, so nothing the checkers rely on changes.
+    _dpf, _dpn = split_dropped(res, tag or area)
+    if _dpn:
+        print(f'::notice title=2-fer missing check::{area}: {_dpn} looked-at pair(s) are not listed in the pushed file '
+              + (f'(their reasons are in the private folder for a person)' if _dpf is not None else
+                 '(no private folder was given, so their reasons were not written anywhere)'), flush=True)
     if wh != 'off':   # public store run: the store's redact + write guard, like every file the bot writes (a refusal = no file)
         import kpc_fers_store as S
         res['withheld (pairs with a park whose outline is held privately: not named)'] = n_withheld
