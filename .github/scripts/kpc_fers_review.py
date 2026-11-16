@@ -3,7 +3,8 @@
 
 For one area (TAG + STATES) the line's checker adds/updates its rows in data/fers/review-all.json (+ review-all.md):
   - every NOT SURE row (the reason in plain words),
-  - every missing-check DROPPED pair that POTA's own history says people activate together (not confirmed by the outlines),
+  - every missing-check pair we looked at and did not show that POTA's own history says people activate together (the hint is
+    the history; the row never carries a reason that reads as "not a 2-fer"),
   - every WATER ONLY row (a boat spot: is there really no land?),
   - every pair whose overlap leaves a river channel out between two banks (river slot).
 One row per pair + kind; a rerun replaces that area's rows (never duplicates). Sorted biggest first.
@@ -14,6 +15,25 @@ TAG = os.environ.get('TAG') or ''
 STATES = (os.environ.get('STATES') or '').split()
 DATA = pathlib.Path(os.environ.get('DATA') or 'data/fers')
 OUT = pathlib.Path(os.environ.get('OUT') or DATA)
+
+
+HINT_REASON = ('people have activated these two the same day; our own outlines did not show an overlap this run, which decides '
+               'nothing either way - a person looks')
+
+
+def load_private_dropped(tag):
+    """The private DROPPED list of the missing check (kpc_fers_expected.split_dropped), or None. Same three environment names and
+    the same git-work-tree refusal as kpc_fers.not_shown_file()."""
+    for v in ('KPC_FERS_NOT_SHOWN_DIR', 'KPC_FERS_PRIVATE_OUT', 'KPC_FERS_PRIVATE_LOG'):
+        base = str(os.environ.get(v) or '').strip()
+        if not base: continue
+        try:
+            d = pathlib.Path(base).resolve() / 'not-shown'
+            if any((q / '.git').exists() for q in (d, *d.parents)): continue
+            doc = load(d / f'expected-dropped-{tag}.json')
+            if isinstance(doc, dict) and isinstance(doc.get('DROPPED'), list): return doc['DROPPED']
+        except OSError: continue
+    return None
 
 
 def load(p):
@@ -58,7 +78,11 @@ def main():
                          'size': szt, 'sort': round(sz, 1), 'reason': (plain(stt) + ''.join(' · ' + str(s.get(k)) for k in ('mixed_owners', 'private_part', 'unknown_part') if s.get(k)))[:300], 'id': s.get('id'),
                          'sources': s.get('map_dates') or {}, 'checked': s.get('checked') or s.get('pass5') or d.get('pass5') or ''})
     e = load(DATA / f'expected-{TAG}.json') or {}
-    for x in (e.get('DROPPED') or []) + [y for y in e.get('NEVER LOOKED AT') or [] if 'boxes do not touch' in str(y.get('reason', ''))]:
+    # The DROPPED list is no longer in the pushed expected file (KPC owner, 2026-11-15 23:14: no file we publish says a pair is
+    # not a 2-fer; kpc_fers_expected.split_dropped). It is in the private folder beside the run, so the HINT rows still work when
+    # this runs on the same machine as the bot; with no private copy there are simply no DROPPED hints.
+    dropped = e.get('DROPPED') or load_private_dropped(TAG) or []
+    for x in dropped + [y for y in e.get('NEVER LOOKED AT') or [] if 'boxes do not touch' in str(y.get('reason', ''))]:
         # Oct 28 (chat 8, Iowa): pairs POTA history ties together but whose official outlines are apart (box test) are listed too: a hint only
         if not isinstance(x, dict): continue
         why = ' / '.join(x.get('why_expected') or [])
@@ -70,7 +94,9 @@ def main():
         n = re.search(r'\((\d+)x', why)
         rows.append({'area': TAG, 'state': '', 'refs': x.get('refs'), 'names': {}, 'what': 'HINT only (look here): POTA history shows people activating these together; logs have mistakes, it never decides',
                      'kind': 'pair', 'size': f"{n.group(1) if n else '?'} same-day activations", 'sort': float(n.group(1)) if n else 0,
-                     'reason': x.get('reason', ''), 'id': '+'.join(x.get('refs') or []) + '@pota', 'sources': {'POTA history': why[:160]}, 'checked': e.get('date', '')})
+                     # never the DROPPED reason: it reads as "not a 2-fer", and this list is written into data/fers (KPC owner,
+                     # 2026-11-15 23:14). The hint is the POTA history, which is what a person is being asked to look at.
+                     'reason': HINT_REASON, 'id': '+'.join(x.get('refs') or []) + '@pota', 'sources': {'POTA history': why[:160]}, 'checked': e.get('date', '')})
     # one row per pair + what (the biggest)
     best = {}
     for r in rows:

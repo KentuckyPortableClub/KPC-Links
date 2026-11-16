@@ -325,9 +325,17 @@ else:
     xf = t / 'data/fers/expected-testri.json'
     xt = xf.read_text() if xf.is_file() else ''
     xd = json.loads(xt) if xt else {}
+    # KPC owner, 2026-11-15 23:14 (re-grade R2, 2026-11-16): a pair we LOOKED AT and did not show is no longer named in the
+    # pushed file - only counted - and its reason waits for a person in the private folder. A pair in FOUND or NEVER LOOKED AT
+    # (neither of which says a pair is not a 2-fer) is still named.
+    pub_named = any(x['refs'] == ['US-99201', 'US-99202'] for v in ('FOUND', 'NEVER LOOKED AT') for x in xd.get(v) or [])
+    dropped_file = priv / 'not-shown' / 'expected-dropped-testri.json'
+    dropped_doc = json.loads(dropped_file.read_text()) if dropped_file.is_file() else {}
+    pub_counted = (xd.get('counts') or {}).get('DROPPED', 0) >= 1 and any(
+        x.get('refs') == ['US-99201', 'US-99202'] for x in dropped_doc.get('DROPPED') or [])
     check(xt and not rx.search(xt) and not any(w in xt for w in WNAMES.values()) and xd.get('withheld (pairs with a park whose outline is held privately: not named)') == 2
-          and any(x['refs'] == ['US-99201', 'US-99202'] for v in ('FOUND', 'DROPPED', 'NEVER LOOKED AT') for x in xd.get(v) or []),
-          f"M4: expected-<tag>.json leaves the withheld parks' pairs out (2 counted) and keeps the public pair ({xd.get('counts')})")
+          and (pub_named or pub_counted) and xd.get('DROPPED') == [],
+          f"M4: expected-<tag>.json leaves the withheld parks' pairs out (2 counted) and accounts for the public pair ({xd.get('counts')}, named={pub_named}, private={pub_counted})")
     xf.unlink(missing_ok=True)
     r = subprocess.run([sys.executable, str(SCR / 'kpc_fers_expected.py')], cwd=t, env=dict(ee, KPC_FERS_PRIVATE_LOG=str(TMP / 'empty-private')), capture_output=True, text=True, timeout=300)
     check(not xf.is_file() and 'not written' in r.stdout, 'M4: a public store run without a readable withheld list writes no expected file (fail closed)')

@@ -45,8 +45,8 @@ Geometry is done on rasters (numpy + OpenCV): outlines are filled with the even-
 distance transform (= the 50-yard shrink), spots are its connected pieces.
 
 We show only overlaps we believe in (KPC owner, 2026-11-15 23:14): no file this bot writes says a pair is NOT a 2-fer. A pair we
-stopped looking at is simply not in the file, and the reason is in the run report's 'not shown' list for a person (no_denials()).
-A spot the last run showed is never taken away by a shape we have today (never worse).
+stopped looking at is simply not in the file; the run report gets the COUNT only, and the reasons go to a PRIVATE folder for a
+person (no_denials(), save_not_shown()). A spot the last run showed is never taken away by a shape we have today (never worse).
 
 Never fails (exit 0). MINUTES = time limit; what is done is saved.
 """
@@ -4544,6 +4544,8 @@ def main():
                               'n-fers': sum(1 for s in sp if len(s['refs']) > 2), 'lines': sum(1 for s in sp if s['kind'] != 'area'),
                               'very tight': sum(1 for s in sp if str(s.get('status', '')).startswith('very tight')), 'not sure': sum(1 for s in sp if str(s.get('status', '')).startswith('not sure')),
                               'water only': sum(1 for s in sp if str(s.get('status', '')).startswith('water only'))}
+    rep.pop('not shown', None)   # ALWAYS, not only when this run suppressed something: rep is loaded from the file on disk, so a
+                                 # run with nothing to suppress must still strip a list an older run left there (re-grade R1)
     rep['about'] = 'Counts from the 2-fer bot (kpc_fers.py). Hidden: data only.'
     try:
         rep['fers_rules'] = KFREEZE.rules_hash('fers') if KFREEZE else None
@@ -4563,7 +4565,6 @@ def main():
         counts['...their reasons'] = (f'{_nsn} pair(s), written for a person in the private folder'
                                       if _nsf is not None else
                                       f'{_nsn} pair(s); no private folder was given, so the reasons were not written anywhere')
-        rep.pop('not shown', None)   # never here: an older report file may still hold one
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=LOG[:40])
     rep['per state'] = per
     save_json(RF, rep, indent=1)

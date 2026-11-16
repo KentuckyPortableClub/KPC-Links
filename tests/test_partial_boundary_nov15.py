@@ -27,6 +27,9 @@ Offline; made-up squares and refs only; no socket.
     file's live row back), F2 (the per-pair reasons go to a private folder, never to the public run report), H1 (the map re-checks
     that every record the view names is publishable and non-WDPA, and pins the basis) and H2 (a ratio that is not a real number
     fails closed in every reader).
+11. The re-grade of 2026-11-16: R1 (a stale "not shown" list is stripped from the run report even on a quiet run) and R2 (the
+    missing check's DROPPED list - a pair we looked at and did not show, with the reason - is kept out of the pushed file and
+    written to the private folder; the count, the pass flag, FOUND, NEVER LOOKED AT and both downstream readers still work).
  9. World areas off GitHub: .github/fers-store-areas.json stays "world": "off" (GitHub unchanged) and KPC_FERS_WORLD_STORE=on adds
     them on a person's own machine only; a world store run is still a private store run or nothing.
 Run: python3 tests/test_partial_boundary_nov15.py"""
@@ -369,6 +372,88 @@ def t_grade(tmp):
           'H2: a store whose ratio is the string "0.44" draws nothing (it used to be coerced and pass)')
 
 
+# ---------------------------------------------------------------- 11: the re-grade's two items (2026-11-16)
+def t_regrade(tmp):
+    """R1 and R2 of the re-grade."""
+    import kpc_fers as KF
+    src = (ROOT / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
+
+    # ---- R1: a stale 'not shown' list must be stripped even on a run that suppressed nothing. The report is loaded from the
+    # file on disk, so the pop has to sit ABOVE the "if NOT_SHOWN:" block, not inside it.
+    i_pop, i_if = src.find("rep.pop('not shown', None)"), src.find('    if NOT_SHOWN:')
+    check(i_pop > 0 and i_if > 0 and i_pop < i_if and src.count("rep.pop('not shown', None)") == 1,
+          f'R1: the stale-list pop runs before (and outside) the "if NOT_SHOWN:" block ({i_pop} < {i_if})')
+    # and prove it on a report document, the way main() builds one
+    stale = {'about': 'x', 'not shown': {'US-ZZ': [[['US-1', 'US-2'], 'area', 'dropped: an old reason', 's1']]}, 'per state': {}}
+    rep = dict(stale)
+    rep.pop('not shown', None)
+    check('not shown' not in rep and 'not shown' in stale,
+          'R1: an older run\'s list is taken out of the report document a quiet run rewrites')
+
+    # ---- R2: the DROPPED list never goes into the pushed expected file
+    import kpc_fers_expected as EX
+    res = {'area': 'US-ZZ', 'date': '2026-11-16', 'pass': True,
+           'counts': {'FOUND': 1, 'DROPPED': 2, 'NEVER LOOKED AT': 1},
+           'FOUND': [{'refs': ['US-1', 'US-2']}],
+           'DROPPED': [{'refs': ['US-5', 'US-6'], 'reason': 'looked: no shared ground on the official outlines', 'rule': 'rule 4 / rule 5'},
+                       {'refs': ['US-7', 'US-8'], 'reason': 'dropped: only inside an area closed to the public', 'rule': 'rule 10'}],
+           'NEVER LOOKED AT': [{'refs': ['US-9', 'US-10'], 'reason': 'not tested: the outlines\' boxes do not touch'}]}
+    priv = tmp / 'R2-private'
+    os.environ['KPC_FERS_NOT_SHOWN_DIR'] = str(priv)
+    try:
+        f, n = EX.split_dropped(res, 'us-zz')
+    finally:
+        os.environ.pop('KPC_FERS_NOT_SHOWN_DIR', None)
+    pushed = json.dumps(res)
+    check(n == 2 and res['DROPPED'] == [] and 'no shared ground' not in pushed and 'closed to the public' not in pushed
+          and 'US-5' not in pushed and 'US-7' not in pushed,
+          'R2: the pushed file names no pair we looked at and did not show, and carries none of their reasons')
+    check(res['counts']['DROPPED'] == 2 and 'DROPPED (not listed here)' in res and res['pass'] is True
+          and res['FOUND'] and res['NEVER LOOKED AT'] and 'boxes do not touch' in pushed,
+          'R2: the count, the pass flag, FOUND and NEVER LOOKED AT (which say we did NOT test a pair) all stay')
+    doc = json.loads(f.read_text(encoding='utf-8')) if f is not None else {}
+    check(f is not None and f.name == 'expected-dropped-us-zz.json' and len(doc.get('DROPPED') or []) == 2
+          and 'no shared ground' in json.dumps(doc) and 'PRIVATE' in doc.get('about', ''),
+          f'R2: the whole list, with every reason, is written for a person in the private folder ({f})')
+    # a private folder inside a git work tree is refused: then the list is written NOWHERE (and still not pushed)
+    ingit = tmp / 'R2-ingit'
+    (ingit / '.git').mkdir(parents=True, exist_ok=True)
+    res2 = dict(res, DROPPED=[{'refs': ['US-5', 'US-6'], 'reason': 'looked: no shared ground'}])
+    os.environ['KPC_FERS_NOT_SHOWN_DIR'] = str(ingit)
+    try:
+        f2, n2 = EX.split_dropped(res2, 'us-zz')
+    finally:
+        os.environ.pop('KPC_FERS_NOT_SHOWN_DIR', None)
+    check(f2 is None and n2 == 1 and res2['DROPPED'] == [] and 'no shared ground' not in json.dumps(res2)
+          and not list(ingit.rglob('expected-dropped*')),
+          'R2: a folder inside a git work tree is refused; the list is written nowhere and still never pushed')
+    check('path.write_text' in (ROOT / '.github/scripts/kpc_fers_expected.py').read_text(encoding='utf-8')
+          and 'split_dropped(res, tag or area)' in (ROOT / '.github/scripts/kpc_fers_expected.py').read_text(encoding='utf-8'),
+          'R2: the split runs before the file is written (and before the store write guard sees it)')
+
+    # ---- the two readers of that list keep working
+    import kpc_fers_line_check as LC
+    e_old = {'FOUND': [1, 2], 'DROPPED': [1, 1, 1], 'NEVER LOOKED AT': [{'reason': 'not tested: something'}],
+             'counts': {'FOUND': 2, 'DROPPED': 3, 'NEVER LOOKED AT': 1}}
+    e_new = {'FOUND': [1, 2], 'DROPPED': [], 'NEVER LOOKED AT': [{'reason': 'not tested: something'}],
+             'counts': {'FOUND': 2, 'DROPPED': 3, 'NEVER LOOKED AT': 1}}
+    check(LC.never_looked(e_old)[2] == 6 and LC.never_looked(e_new)[2] == 6
+          and LC.never_looked(e_old)[0] == LC.never_looked(e_new)[0] == 1,
+          f'R2: the never-looked share is still measured against EVERY expected pair ({LC.never_looked(e_new)[2]})')
+    import kpc_fers_review as RV
+    os.environ['KPC_FERS_NOT_SHOWN_DIR'] = str(priv)
+    try:
+        got = RV.load_private_dropped('us-zz')
+    finally:
+        os.environ.pop('KPC_FERS_NOT_SHOWN_DIR', None)
+    check(isinstance(got, list) and len(got) == 2 and RV.load_private_dropped('nothing-here') is None,
+          'R2: the review list still finds the pairs (from the private folder) and copes when there is none')
+    rv_src = (ROOT / '.github/scripts/kpc_fers_review.py').read_text(encoding='utf-8')
+    check("'reason': HINT_REASON" in rv_src and "'reason': x.get('reason', '')" not in rv_src
+          and 'decides\nnothing either way' in RV.HINT_REASON.replace(' ', '\n') or 'decides nothing either way' in RV.HINT_REASON,
+          'R2: a review HINT row never copies the reason: the hint is the POTA history, and it decides nothing either way')
+
+
 # ---------------------------------------------------------------- 9: world areas off GitHub (the owner's PC)
 def t_world():
     """KPC owner, 2026-11-15: the world store is about 65 per cent built and he wants world 2-fers on his PC. The repo file stays
@@ -409,7 +494,7 @@ def t_hash():
 
 def main():
     tmp = pathlib.Path(tempfile.mkdtemp(prefix='kpc-partial-'))
-    for t in (t_reader, t_marks, t_no_denials, t_map, t_grade, t_world, t_hash):
+    for t in (t_reader, t_marks, t_no_denials, t_map, t_grade, t_regrade, t_world, t_hash):
         try: t(tmp) if t not in (t_marks, t_hash, t_world) else t()
         except Exception as ex:   # noqa: BLE001
             import traceback; traceback.print_exc(); check(False, f'{t.__name__} raised {type(ex).__name__}: {ex}')
