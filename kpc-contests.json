@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T12:26:08Z",
+ "updated": "2026-11-16T20:41:16Z",
  "week": [
   {
    "name": "PODXS 070 Club Triple Play Low Band Sprint",
@@ -52,34 +52,6 @@
    "modes": [
     "PHONE"
    ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gltr4",
-   "when": "1300Z-1400Z, Nov 16",
-   "segs": [
-    [
-     "2026-11-16T13:00Z",
-     "2026-11-16T14:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "OK1WC Memorial (MWC)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gotqz",
-   "when": "1630Z-1729Z, Nov 16",
-   "segs": [
-    [
-     "2026-11-16T16:30Z",
-     "2026-11-16T17:29Z"
-    ]
-   ],
-   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   },
@@ -2471,7 +2443,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (36)",
+  "WA7BNM": "ok (34)",
   "CORRAL": "ok (60)"
  }
 }

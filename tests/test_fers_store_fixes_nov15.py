@@ -359,25 +359,22 @@ else:
         # (a) a second row of the same pair over the same spot: main gave both rows that one spot; now exactly one row takes it
         dup = dict(real[0], id=real[0]['id'] + '-twin')
         f2.write_text(json.dumps(dict(p1doc, spots=p1doc['spots'] + [dup])))
-        r2 = run2(2); d2 = json.loads(f2.read_text())
+        # KPC owner, 2026-11-16: a store run does not run pass 2 (same outlines in every pass); pass 3 takes the pass-1 rows, so the
+        # call sites are tested in pass 3
+        r2 = run2(3); d2 = json.loads(f2.read_text())
         st2 = sorted(str(x.get('status'))[:17] for x in d2['spots'] if x.get('id') in (real[0]['id'], dup['id']))
         # OWNER RULE 2026-11-15 23:14: the row that did not take the spot is no longer WRITTEN at all (nothing in a 2-fer file
         # ever says a pair is not a 2-fer). Exactly one row of the pair is in the file, and it is the one that took the spot.
-        check(r2.returncode == 0 and st2 == ['pass 2'], f'call site (main): two rows over one spot: one row takes it, the other is not written, never both ({st2})')
-        # (b) the pair's only row moved far away (its box touches no spot): the real spot becomes a new row, it is not lost
+        check(r2.returncode == 0 and len(st2) == 1 and not st2[0].startswith(('pass ', 'waiting', 'dropped')),
+              f'call site (main): two rows over one spot: one row takes it and is decided, the other is not written, never both ({st2})')
+        # (b) + (c) the pair's only row moved far away (its box touches no spot): the real spot becomes a new row of pass 3 and is
+        # DECIDED there (D5); it is not lost
         far = dict(real[0], id=real[0]['id'] + '-far', center=[45.0, -70.0], box=[-70.01, 44.99, -69.99, 45.01])
         f2.write_text(json.dumps(dict(p1doc, spots=[x for x in p1doc['spots'] if x is not real[0] and x.get('id') != real[0]['id']] + [far])))
-        r3 = run2(2); d3 = json.loads(f2.read_text())
-        made = [x for x in d3['spots'] if x.get('refs') == PP and x.get('kind') == 'area' and x.get('status') == 'pass 2' and 'next to a row that was dropped' in str(x.get('note'))]
-        check(r3.returncode == 0 and len(made) == 1 and made[0]['passes'] == [1, 1, 0], f'call site (main): the spot of a dropped row becomes a new row in pass 2 ({len(made)})')
-        # (c) pass 3: the pair's row moved far away again: the spot becomes a new row of pass 3 and is DECIDED there (D5)
-        if made:
-            mv = dict(made[0], center=[45.0, -70.0], box=[-70.01, 44.99, -69.99, 45.01])
-            f2.write_text(json.dumps(dict(d3, spots=[x for x in d3['spots'] if x is not made[0] and x.get('id') != made[0]['id']] + [mv])))
-            r4 = run2(3); d4_ = json.loads(f2.read_text())
-            m3 = [x for x in d4_['spots'] if x.get('refs') == PP and x.get('kind') == 'area' and 'decided in pass 3' in str(x.get('note'))]
-            check(r4.returncode == 0 and len(m3) == 1 and m3[0]['passes'] == [1, 1, 1] and m3[0].get('status') not in ('pass 3', 'waiting for pass 3') and m3[0].get('checked'),
-                  f"call site (main): pass 3: the spot of a dropped row becomes a new row and is decided in pass 3 ({[(x.get('status'), x.get('passes')) for x in m3]})")
+        r4 = run2(3); d4_ = json.loads(f2.read_text())
+        m3 = [x for x in d4_['spots'] if x.get('refs') == PP and x.get('kind') == 'area' and 'decided in pass 3' in str(x.get('note'))]
+        check(r4.returncode == 0 and len(m3) == 1 and m3[0]['passes'] == [1, 1, 1] and m3[0].get('status') not in ('pass 3', 'waiting for pass 3') and m3[0].get('checked'),
+              f"call site (main): pass 3: the spot of a dropped row becomes a new row and is decided in pass 3 ({[(x.get('status'), x.get('passes')) for x in m3]})")
     # C1: a far line park is not listed
     check(S.NEAR_LINE_DEG == 1.0, 'C1: line parks more than about 100 km from the run\'s own pins are not listed as held (counted only)')
     class PK: PINS = {'US-1': ['a', 41.0, -71.0, '', '', 'RI'], 'US-2': ['b', 30.0, -90.0, '', '', 'LA']}

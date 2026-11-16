@@ -242,7 +242,7 @@ def normal_area(script_dir):
         rc, out = run(t, script_dir, env)
         today = time.strftime('%Y-%m-%d')
         h = hashlib.sha256()
-        names = sorted(p.name for p in (t / 'data/fers').glob('*.json'))
+        names = sorted(p.name for p in (t / 'data/fers').glob('*.json') if not p.name.startswith('receipt-'))   # Nov 16 (item 1): the new run receipt is not main's
         for n in names:
             d = json.load(open(t / 'data/fers' / n))
             if n.startswith('report-'): d.pop('fers_rules', None)
