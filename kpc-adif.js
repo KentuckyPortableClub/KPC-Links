@@ -378,7 +378,7 @@
   $('aeSaveT').addEventListener('click', () => { const T = [...TICK].sort((a, b) => a - b).map(i => recs[i]); if (!T.length) return say('Tick some contacts first.', true); download(A.write(header, T), base() + '-ticked.adi'); say(T.length + ' ticked contacts saved.'); });
   $('aeCsv').addEventListener('click', () => { download(csvOut(recs), base() + '.csv', 'text/csv'); say('Saved ' + base() + '.csv (opens in Excel / Sheets).'); });
   $('aePota').addEventListener('click', potaSave);
-  $('aeSend').addEventListener('click', () => { try { sessionStorage.setItem('kpcAdifBack', JSON.stringify({ name: base() + '-checked.adi', text: A.write(header, recs) })); } catch (e) { return say('This browser would not hand the log over; use SAVE ADIF, then pick that file in the uploader.', true); } location.href = 'kpc-club.html#qrzup'; });
+  if ($('aeSend')) $('aeSend').addEventListener('click', () => { try { sessionStorage.setItem('kpcAdifBack', JSON.stringify({ name: base() + '-checked.adi', text: A.write(header, recs) })); } catch (e) { return say('This browser would not hand the log over; use SAVE ADIF, then pick that file in the uploader.', true); } location.href = 'kpc-club.html#qrzup'; });
   $('aeLines').addEventListener('change', drawMap);
   /* settings */
   function fillS() { $('aeMy').value = S.mycall || ''; $('aeMyG').value = S.mygrid || ''; $('aeSQ').checked = !!S.qrzOn; $('aeSQc').value = S.qrz || ''; $('aeSP').checked = !!S.potaOn; $('aeSSplit').value = S.potaSplit; $('aeSName').value = S.potaName; $('aeSSig').checked = !!S.potaAddSig; $('aeSP2P').checked = !!S.p2p; }
