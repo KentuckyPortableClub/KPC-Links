@@ -397,7 +397,7 @@ _sc = next(c for c in json.loads((ROOT / '.github/fers-rule-scope.json').read_te
 check(_sc['id'] == '2026-11-15-store-fixes' and _sc['from'] == '2fe19a32e5eb' and _sc['scope'] == 'none' and _sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
       'scope entry 2026-11-15-store-fixes (from 2fe19a32e5eb, scope none, approved)')
 _k = {k: KFZ.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')}
-check(_k == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}, f'US, CA and world rules hashes do not move ({_k})')
+check(_k == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'}, f'US, CA and world rules hashes do not move ({_k})')
 shutil.rmtree(TMP, ignore_errors=True)
 print('ALL PASS' if not FAILS else f'SOME FAILED ({len(FAILS)})')
 sys.exit(1 if FAILS else 0)

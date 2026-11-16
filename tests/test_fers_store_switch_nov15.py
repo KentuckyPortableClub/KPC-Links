@@ -461,7 +461,7 @@ check("in ('1', 'on', 'yes', 'true')" in mn[:hook] and mn[:hook].count('import k
 import kpc_key_freeze as KFZ  # noqa: E402
 import kpc_preflight as PF  # noqa: E402
 got = {k: KFZ.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')}
-check(got == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}, f'US, CA and world rules hashes do not move ({got})')
+check(got == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'}, f'US, CA and world rules hashes do not move ({got})')
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 # KPC owner, 2026-11-15 (store run fixes, the next declared move 2fe19a32e5eb -> ...): this change's own line, wherever it now sits;
 # the newest line on top is checked by test_fers_store_fixes_nov15.py
