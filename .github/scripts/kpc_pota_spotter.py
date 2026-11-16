@@ -29,8 +29,8 @@ if not webhook.startswith(('https://discord.com/api/webhooks/', 'https://discord
     raise SystemExit('Add the KPC_DISCORD_WEBHOOK GitHub Actions secret first.')
 
 # KPC owner, 2026-11-16 (handoff item 7, v4 answer 4): the club spot file written by the one club spot reader (kpc_pota_spots.py,
-# every 5 min in this same job: KPC_POTA_SPOT_FILE, else the live-spots raw file). POTA is read directly only when that file is
-# more than 15 minutes old (the door does it, paced and counted).
+# every 5 min in this same job and saves it on live-spots; this reads its raw address). POTA is read directly only when that file is
+# more than 30 minutes old (the door does it, paced and counted).
 import kpc_pota_door as DOOR
 try: spots = DOOR.club_spots()[0]
 except DOOR.DoorClosed as e: raise SystemExit(f'No club spot file and POTA not read ({e}); no state changed.')

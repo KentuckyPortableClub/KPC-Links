@@ -90,7 +90,7 @@ def collect():
     """Counts go to the hour of the poll. A spot is new when its spot id is new; when POTA gives a running 'count' per
     activation, its growth since the last poll is used instead (it also catches spots between two polls)."""
     try:
-        import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): the club spot file; POTA only when it is over 15 min old
+        import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): the club spot file; POTA only when it is over 30 min old
         spots = DOOR.club_spots()[0]
         if not isinstance(spots, list): raise ValueError('not a list')
     except Exception as e:  # noqa: BLE001

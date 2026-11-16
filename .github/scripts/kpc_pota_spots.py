@@ -4,7 +4,7 @@
 data/pota/spots.json = {"saved": <unix time>, "source": "POTA /spot/activator", "spots": [...POTA's rows as they came...]}, which
 kpc_live_spots_push.sh publishes on the data-only branch live-spots (one commit replaced each time; never main, no site build).
 The live pages, the Discord spotter (kpc_pota_spotter.py) and the hunters job (kpc_hunters.py) read that file (raw address) and
-read POTA directly only when it is more than 15 minutes old. Run inside the Discord spotter's job, once per 5-minute check
+read POTA directly only when it is more than 30 minutes old. Run inside the Discord spotter's job, once per 5-minute check
 (kpc-pota-discord.yml). Exit 0 when the file was written now (publish it), 2 when it is under 5 minutes old (nothing new),
 1 when POTA could not be read (the old file stays)."""
 import json, os, pathlib, sys, time

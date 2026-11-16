@@ -4,7 +4,7 @@ something from POTA (api.pota.app) asks here; no other script opens api.pota.app
 direct call). The door reads the STORED COPY first and asks POTA only when the copy is older than its allowed age:
 
   spots            5 minutes   ONLY the club spot reader (kpc_pota_spots.py) asks POTA; everyone else reads the club spot file
-                               (live-spots branch, raw address) and asks POTA directly only when it is over 15 minutes old
+                               (live-spots branch, raw address) and asks POTA directly only when it is over 30 minutes old
   all-parks export 1 day       all_parks_ext.csv, read once a day by the park-list job (kpc_pota_parklists.py) and compared with
                                yesterday's copy: only the changed locations' saved lists are rewritten (from the export)
   location list    only for a location the export shows CHANGED, and only when a job needs a field the export lacks
@@ -304,12 +304,12 @@ def fetch_park_list(loc):
 
 
 # ---------------------------------------------------------------- spots
-# KPC owner, 2026-11-16 (v4 answer 4): the club spot file lives on its own data-only branch (live-spots, one commit replaced each
-# time), never on main, and starts no site build. Everyone reads it from the raw file address; a reader goes to POTA directly only
-# when that file is more than 15 minutes old (or cannot be read).
+# KPC owner, 2026-11-16 (v5): the club spot file lives on its own data-only branch (live-spots, saved with ordinary commits after
+# each read, never force-pushed), never on main, and starts no site build. The Discord spotter, the hunters job and the pages read
+# it from the raw file address; a reader goes to POTA directly only when that file is more than 30 minutes old (or cannot be read).
 SPOT_FILE = 'data/pota/spots.json'
 SPOT_URL = 'https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/live-spots/spots.json'
-SPOT_STALE = 900   # 15 minutes
+SPOT_STALE = 1800   # 30 minutes (v5)
 
 
 def fetch_spots():
@@ -321,14 +321,17 @@ def fetch_spots():
 
 
 def club_spots(max_age=SPOT_STALE):
-    """Everyone else's spots: the club spot file (live-spots branch, raw address; KPC_POTA_SPOT_FILE = a local copy the same job just
-    wrote). When it is over max_age (15 minutes) old or unreadable, POTA is read directly through the door. Returns (spots, age_s)."""
+    """Everyone else's spots: the club spot file from its raw address on the live-spots branch (a time query skips the raw cache;
+    KPC_POTA_SPOT_FILE = a local copy, for tests only). When it is over max_age (30 minutes) old or unreadable, POTA is read directly
+    through the door. Returns (spots, age_s)."""
     d = None
     loc = os.environ.get('KPC_POTA_SPOT_FILE')
     if loc: d = _read(loc)
     if d is None:
         try:
-            with urllib.request.urlopen(urllib.request.Request(os.environ.get('KPC_POTA_SPOT_URL') or SPOT_URL, headers={'User-Agent': UA}), timeout=30) as f:
+            u = os.environ.get('KPC_POTA_SPOT_URL') or SPOT_URL
+            u += ('&' if '?' in u else '?') + 't=' + str(int(_now()))
+            with urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': UA, 'Cache-Control': 'no-cache'}), timeout=30) as f:
                 d = json.loads(f.read().decode('utf-8'))
         except Exception: d = None  # noqa: BLE001
     age = (_now() - d.get('saved', 0)) if d else None
@@ -435,9 +438,10 @@ def selftest():
             check('spots: the reader asks', pulled, True)
             check('spots: under 5 minutes -> the saved file', fetch_spots()[1], False)
             n0 = len(calls); check('club_spots reads the club file (no request)', (len(club_spots()[0]), len(calls) - n0), (1, 0))
-            clock[0] += 16 * 60; n0 = len(calls)
+            clock[0] += 16 * 60; n0 = len(calls); check('club file 16 minutes old -> still the club file (no request)', (len(club_spots()[0]), len(calls) - n0), (1, 0))
+            clock[0] += 15 * 60; n0 = len(calls)
             with __import__('contextlib').redirect_stdout(__import__('io').StringIO()): got = club_spots()
-            check('club file over 15 minutes old -> POTA read directly (one request)', (len(got[0]), len(calls) - n0), (1, 1))
+            check('club file over 30 minutes old -> POTA read directly (one request)', (len(got[0]), len(calls) - n0), (1, 1))
             rc = receipt({'x': 1})
             check('receipt: the real numbers by kind', (rc['asked_pota'] == len(calls), rc['by_kind'].get('export'), rc['by_kind'].get('details'), rc['x']), (True, 5, 2, 1))
             BUDGET = len(calls); clock[0] += 31 * DAY

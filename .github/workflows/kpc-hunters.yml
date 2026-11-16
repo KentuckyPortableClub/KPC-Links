@@ -50,7 +50,7 @@ jobs:
       - name: Count
         env:
           WHICH_SCHEDULE: ${{ github.event.schedule || inputs.as_schedule }}
-          KPC_POTA_SPOT_URL: https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/live-spots/spots.json   # Nov 16 (item 7): the club spot file (live-spots branch); POTA only when it is over 15 minutes old
+          KPC_POTA_SPOT_URL: https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/live-spots/spots.json   # Nov 16 (item 7): the club spot file (live-spots branch); POTA only when it is over 30 minutes old
         run: |
           # PR2: the hourly run counts 4 times (0, 15, 30, 45 min); the Friday post run and a by-hand run count once, as before
           N=1; [ "$WHICH_SCHEDULE" = '7 * * * *' ] && N=4
