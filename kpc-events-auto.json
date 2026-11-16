@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T12:11:17Z",
+ "updated": "2026-11-16T12:25:45Z",
  "recurring": [
   {
    "name": "POTA Support Your Parks Weekend",
@@ -86,6 +86,18 @@
    "by": "Winter Field Day Association",
    "url": "https://winterfieldday.org/",
    "rule": "Last full weekend of January"
+  },
+  {
+   "name": "POTA Support Your Parks Weekend",
+   "tags": [
+    "POTA"
+   ],
+   "start": "2028-01-15",
+   "end": "2028-01-16",
+   "where": "Any Kentucky park. Get out and activate!",
+   "by": "Parks on the Air",
+   "url": "https://pota.app/",
+   "rule": "Third full weekend of Jan, Apr, Jul and Oct"
   },
   {
    "name": "POTA New Year’s Week",
