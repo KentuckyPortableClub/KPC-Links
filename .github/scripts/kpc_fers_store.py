@@ -87,6 +87,8 @@ Command line (no network in any of them):
   kpc_fers_store.py run                                     KPC_FERS_FROM_STORE=on only: kpc_fers.main() (its hook installs the store)
 """
 import array, atexit, collections.abc, datetime, gzip, hashlib, json, math, os, pathlib, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import kpc_record_key   # noqa: E402  KPC owner, 2026-11-16 (item 4)
 
 FORMAT = 1
 STORE_FORMAT_VERSION = 'kpc-outline-store-index/3'   # the outline store tool 'full 3' index contract this reader was written for
@@ -961,8 +963,7 @@ def saved_corridors(KF):
 def store_ids(p):
     """The record keys the store files a park's records under. A US / Canadian park: the key's ids as they are. A world park
     (KPC owner, 2026-11-16): the world store files each record as '<area>:<layer>:<id>' (W-BE:EEA Natura 2000:352)."""
-    if 'm' in p: return [f"{p['st']}:{x[2]}:{x[0]}" for x in p['m']]
-    return list(p['ids'])
+    return kpc_record_key.park_keys(p)   # KPC owner, 2026-11-16 (item 4): the one lookup shared by key, store and bot
 
 
 def store_download(KF, store, parks, refs, budget=2_000_000):
@@ -2000,6 +2001,7 @@ def install(KF, env=None, store=None):
         try: write_rows()
         except LeakRefused: sys.stdout.flush(); sys.stderr.flush(); os._exit(EXIT_LEAK)   # at exit too: the run fails, nothing written
     atexit.register(rows_at_exit)   # written on every run, so an old list never outlives a filled gap
+    globals()['WRITE_ROWS'] = write_rows   # KPC owner, 2026-11-16 (item 2): the one-process chain writes it after every pass
     public_print(f"::notice title=2-fer outline store::{SWITCH}=on ({st.kind} store, {len(areas)} area(s)); no boundary downloads; memory gate "
                  + ', '.join(f"{a} {r.get('estimate_mb')} MB" for a, r in sorted(rows.items())) + ('' if lazy else ' (outlines all unpacked until the bot keeps them lazy)'))
     if st.kind == 'private': atexit.register(lambda: public_print(f'::notice title=2-fer outline store::private store run: {len(STORE_LINES)} line parks, '
@@ -2138,6 +2140,20 @@ def main(argv=None):
         if KF.REGION != 'na' and not (KF.REGION == 'world' and cfg and cfg['world']): print(f'the {KF.REGION} run does not use the outline store: use kpc_fers.py'); return 2
         KF.main()   # the hook at the top of kpc_fers.main() installs the store (once)
         return 0
+    if cmd == 'chain':   # KPC owner, 2026-11-16 (item 2): one program per area: passes 1, 2, 3, 5 in this process, the store loaded once
+        if mode() != 'on': print(f'{SWITCH} is not on: the one-process chain is for store runs only (use kpc_fers.py PASS=n otherwise)'); return 2
+        passes = tuple(int(x) for x in (argv[0] if argv else '1,2,3,5').replace(' ', ',').split(',') if x)
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import kpc_fers as KF
+        cfg, _ = store_areas()
+        if KF.REGION != 'na' and not (KF.REGION == 'world' and cfg and cfg['world']): print(f'the {KF.REGION} run does not use the outline store: use kpc_fers.py'); return 2
+        try:
+            import kpc_fers_far_hold  # noqa: F401  (pass 5 imports it; imported before the snapshot so every pass sees it fresh)
+        except Exception: pass  # noqa: BLE001
+        KF.set_pass(passes[0])
+        import kpc_fers_store as S   # the module kpc_fers.py looks up (this file may be running as __main__)
+        if not S.install(KF): print('the outline store is not used by this run (see the notice above): use kpc_fers.py PASS=n'); return 2
+        return KF.run_chain(passes)
     print(f'unknown command {cmd!r}'); return 2
 
 

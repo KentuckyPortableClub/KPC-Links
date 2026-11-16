@@ -628,10 +628,12 @@ _src = (ROOT / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
 _defs = [(m.start(), m.group(1)) for m in _re.finditer(r'^def (\w+)', _src, _re.M)]
 def _owner(pos): return max((d for d in _defs if d[0] <= pos), default=(0, '?'))[1]
 _direct = sorted({_owner(m.start()) for m in _re.finditer(r"\.write_text\(|\.write_bytes\(|gzip\.open\([^\n]*'w|[^.\w]open\([^\n]*['\"][wa]b?['\"]|json\.dump\(", _src)})
-check(_direct == ['_wsave', 'live_save', 'save_not_shown'] and _src.count('def save_json') == 1
+# KPC owner, 2026-11-16 (item 2): save_fine_only, the 5 m-only spot list, writes only into the private log folder, never inside a git tree
+_fsrc = _src[_src.index('def save_fine_only'):][:900]
+check(_direct == ['_wsave', 'live_save', 'save_fine_only', 'save_not_shown'] and '_in_git_tree(' in _fsrc and 'PRIVATE_LOG_DIR' in _fsrc and _src.count('def save_json') == 1
       and 'return _save_json_raw(p, no_denials(p, FCOUNT.apply(p, d)), *a, **k)' in _src
       and 'def not_shown_file' in _src and 'if _in_git_tree(' in _src,
-      f'writer trace: kpc_fers.py writes files only through save_json -> _save_json_raw, plus live_save / _wsave (turned off in a store run) and save_not_shown (a private folder outside every git tree) ({_direct})')
+      f'writer trace: kpc_fers.py writes files only through save_json -> _save_json_raw, plus live_save / _wsave (turned off in a store run) and save_not_shown / save_fine_only (a private folder outside every git tree) ({_direct})')
 _ss = (ROOT / '.github/scripts/kpc_fers_store.py').read_text(encoding='utf-8')
 # KPC owner, 2026-11-15 (store trial fixes): + 2 private side files (store-held refs between passes, the store-withheld lists), both in the private folder
 check(len(_re.findall(r'\.write_text\(', _ss)) == 6 and 'guard_write(p, doc)' in _ss and "if hasattr(KF, name): setattr(KF, name, lambda *a, **k: None)" in _ss,

@@ -28,6 +28,7 @@
 .github/scripts/kpc_fers_ready.py text eol=lf
 .github/scripts/kpc_fers_store.py text eol=lf
 .github/scripts/kpc_jp_crosswalk.py text eol=lf
+.github/scripts/kpc_record_key.py text eol=lf
 .github/scripts/kpc_key_facts.py text eol=lf
 .github/scripts/kpc_key_rules.py text eol=lf
 .github/scripts/kpc_match.py text eol=lf
