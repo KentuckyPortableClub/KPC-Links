@@ -126,7 +126,8 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              'kpc_matcher.py',
              # Nov 15 (KPC owner, 2026-11-15; keys in store mode): the no-network runner of a store-mode key step and the store-mode
              # never-worse check (an area with fewer joined / official parks than main keeps main's key); neither decides a join
-             'kpc_key_offline.py', 'kpc_key_never_worse.py'}
+             'kpc_key_offline.py', 'kpc_key_never_worse.py',
+             'kpc_ca_store_keep.py', 'kpc_world_store_gaps.py'}   # KPC owner, 2026-11-15: Canada + world keys in store mode (decide no join)
              # Nov 15 (KPC owner, 2026-11-15): kpc_fers_store.py left this list for the 2-fer RULE_FILES (the switch-over hook)
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)

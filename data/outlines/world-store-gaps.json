@@ -1,0 +1,1306 @@
+{
+ "about": "World countries a store-mode key run (KPC_KEY_SOURCE=store) cannot build: no saved copy W-<CC>.json.gz on the boundary-cache release, or sources with no record in it. Such a country is left out of a store-mode run and keeps its key. To fill a gap: save a whole copy of the country that has every source, upload it, run `python3 .github/scripts/kpc_world_store_gaps.py scan --cache <dir with the W-*.json.gz copies>` again. Made by kpc_world_store_gaps.py (not a rule file).",
+ "countries": {
+  "AE": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://arcgis.sdi.abudhabi.ae/agspublish/rest/services/OpenData/ADSDI_OpenData/FeatureServer/127",
+     "label": "ProtectedAreas",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-AE.json.gz on the boundary-cache release"
+  },
+  "AS": {
+   "copy": "W-AS.json.gz",
+   "missing": [],
+   "records": 3,
+   "saved": "2026-11-11",
+   "sources": 2
+  },
+  "AT": {
+   "copy": "W-AT.json.gz",
+   "missing": [],
+   "records": 3102,
+   "saved": "2026-11-04",
+   "sources": 10
+  },
+  "AU": {
+   "copy": "W-AU.json.gz",
+   "missing": [
+    {
+     "address": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Boundaries/AdminBoundariesFramework/FeatureServer/77",
+     "label": "QLD State Forest (Queensland Government)",
+     "layer": [
+      "esttype='SF'"
+     ],
+     "reader": "arcgis"
+    }
+   ],
+   "records": 365915,
+   "saved": "2026-11-04",
+   "sources": 19,
+   "why": "1 of 19 source(s) have no record in the saved copy"
+  },
+  "AX": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/ALR_Naturreservat/MapServer/1",
+     "label": "Naturreservat",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://kartor.regeringen.ax/arcgis/rest/services/Miljo/Skyddsomraden/MapServer/7",
+     "label": "Naturreservat",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 2,
+   "why": "no saved copy W-AX.json.gz on the boundary-cache release"
+  },
+  "BE": {
+   "copy": "W-BE.json.gz",
+   "missing": [],
+   "records": 3713,
+   "saved": "2026-11-12",
+   "sources": 6
+  },
+  "BM": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.planning.gov.bm/arcgis/rest/services/PlanningLayers/MapServer/14",
+     "label": "National Parks",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-BM.json.gz on the boundary-cache release"
+  },
+  "BS": {
+   "copy": "W-BS.json.gz",
+   "missing": [],
+   "records": 53,
+   "saved": "2026-11-11",
+   "sources": 1
+  },
+  "BT": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://nsdi.systems.gov.bt/server/rest/services/Hosted/Protected_Areas_of_Bhutan/FeatureServer/1",
+     "label": "Parks_20200716",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-BT.json.gz on the boundary-cache release"
+  },
+  "BW": {
+   "copy": "W-BW.json.gz",
+   "missing": [],
+   "records": 9,
+   "saved": "2026-11-11",
+   "sources": 1
+  },
+  "BZ": {
+   "copy": "W-BZ.json.gz",
+   "missing": [],
+   "records": 503,
+   "saved": "2026-11-11",
+   "sources": 2
+  },
+  "CC": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+     "label": "Cocos (Keeling) Islands: Australian Government DCCEEW (CAPAD) (1)",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/1",
+     "label": "Cocos (Keeling) Islands: Australian Government DCCEEW (CAPAD) (2)",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 2,
+   "why": "no saved copy W-CC.json.gz on the boundary-cache release"
+  },
+  "CD": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.forest-atlas.org/server/rest/services/cod/Localisation_aacs_en/MapServer/102",
+     "label": "Protected areas",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-CD.json.gz on the boundary-cache release"
+  },
+  "CG": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.forest-atlas.org/server/rest/services/cog/Affectation_terre_en/MapServer/47",
+     "label": "Protected Areas",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-CG.json.gz on the boundary-cache release"
+  },
+  "CH": {
+   "copy": "W-CH.json.gz",
+   "missing": [],
+   "records": 16559,
+   "saved": "2026-11-12",
+   "sources": 11
+  },
+  "CL": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/0",
+     "label": "Chile SIMBIO protected areas (MMA)",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/FeatureServer/2",
+     "label": "Chile SIMBIO protected areas, layer 2 (MMA)",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/MapServer/0",
+     "label": "Áreas Protegidas",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/MapServer/1",
+     "label": "Otras Designaciones",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://arcgis.mma.gob.cl/server/rest/services/SIMBIO/SIMBIO_AP/MapServer/3",
+     "label": "Conservación Privada",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 5,
+   "why": "no saved copy W-CL.json.gz on the boundary-cache release"
+  },
+  "CM": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.forest-atlas.org/server/rest/services/cmr/open_data_fr/MapServer/123",
+     "label": "Aires protegées de la faune",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-CM.json.gz on the boundary-cache release"
+  },
+  "CO": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://mapasdnp.dnp.gov.co/server/rest/services/Hosted/RUNAP_Registro_%C3%9Anico_Nacional_de_%C3%81reas_Protegidas/FeatureServer/0",
+     "label": "Colombia RUNAP (national register of protected areas, DNP)",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-CO.json.gz on the boundary-cache release"
+  },
+  "CR": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://mapas.msj.go.cr/server/rest/services/SIG_BASE/SIG_SER_Areas_Uso_Publico_SJ/MapServer/0",
+     "label": "Áreas de uso público",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-CR.json.gz on the boundary-cache release"
+  },
+  "CV": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://ingtgeo.gov.cv/arcgisingt/rest/services/SDI/areas_protegidas_2022/FeatureServer/0",
+     "label": "Áreas Protegidas",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-CV.json.gz on the boundary-cache release"
+  },
+  "CX": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+     "label": "Protected Areas (CAPAD)",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-CX.json.gz on the boundary-cache release"
+  },
+  "CZ": {
+   "copy": "W-CZ.json.gz",
+   "missing": [
+    {
+     "address": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/0",
+     "label": "Ptačí oblast (PO)",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://gis.nature.cz/arcgis/rest/services/UzemniOchrana/Natura2000/MapServer/1",
+     "label": "Evropsky významná lokalita (EVL)",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 6785,
+   "saved": "2026-11-04",
+   "sources": 7,
+   "why": "2 of 7 source(s) have no record in the saved copy"
+  },
+  "DE": {
+   "copy": "W-DE.json.gz",
+   "missing": [
+    {
+     "address": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Naturpark/MapServer/0",
+     "label": "Naturpark",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/1",
+     "label": "Naturpark",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/2",
+     "label": "Nationalpark",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/1",
+     "label": "Naturschutzgebiete",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/2",
+     "label": "Nationalpark",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/3",
+     "label": "Vogelschutzgebiete",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/4",
+     "label": "Fauna-Flora-Habitate",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://geodienste-umwelt.hessen.de/arcgis/rest/services/natureg/schutzgebiete/MapServer/6",
+     "label": "Naturparke",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://gis-hub.bremen.de/ags1/rest/services/inspire/Schutzgebiete_Land_Bremen/MapServer/2",
+     "label": "Naturschutzgebiete",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/1",
+     "label": "Naturpark",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/2",
+     "label": "Flaechennaturdenkmaeler",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/3",
+     "label": "Nationalpark",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://luis.sachsen.de/arcgis/rest/services/natur/schutzgebiete/FeatureServer/4",
+     "label": "Naturschutzgebiete",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Naturschutzgebiet/MapServer/0",
+     "label": "Naturschutzgebiet",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://rips-gdi.lubw.baden-wuerttemberg.de/arcgis/rest/services/wfs/Vogelschutzgebiet_SPA/MapServer/0",
+     "label": "Vogelschutzgebiet_SPA",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/14",
+     "label": "Fauna-Flora-Habitat-Gebiete (FFH) in Niedersachsen",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://www.umweltkarten-niedersachsen.de/arcgis/rest/services/Natur_wms/MapServer/4",
+     "label": "Naturschutzgebiet",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 23904,
+   "saved": "2026-11-04",
+   "sources": 26,
+   "why": "17 of 26 source(s) have no record in the saved copy"
+  },
+  "DK": {
+   "copy": "W-DK.json.gz",
+   "missing": [],
+   "records": 947,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "DO": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://mapageneral.mineria.gob.do/arcgis/rest/services/PortalMapa/Portal_AP/MapServer/0",
+     "label": "Areas Protegidas",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-DO.json.gz on the boundary-cache release"
+  },
+  "EC": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://geovisorm.controlrecursosyenergia.gob.ec/arcgis/rest/services/MAAE_WGS84_17S/MapServer/0",
+     "label": "Ecuador: Ministerio del Ambiente, Agua y Transición Ecológica (MAATE/MAAE), ser",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-EC.json.gz on the boundary-cache release"
+  },
+  "EE": {
+   "copy": "W-EE.json.gz",
+   "missing": [],
+   "records": 21122,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "ES": {
+   "copy": "W-ES.json.gz",
+   "missing": [],
+   "records": 3658,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "FI": {
+   "copy": "W-FI.json.gz",
+   "missing": [],
+   "records": 19878,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "FO": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.us.fo/arcgis/rest/services/ramsar/us_ramsar_oki/MapServer/1",
+     "label": "Ramsar øki",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-FO.json.gz on the boundary-cache release"
+  },
+  "FR": {
+   "copy": "W-FR.json.gz",
+   "missing": [
+    {
+     "address": "https://data.geopf.fr/wfs/ows",
+     "label": "IGN Géoplateforme ZNIEFF type II sea",
+     "layer": "patrinat_znieff2_mer:znieff2_mer",
+     "reader": "wfs"
+    },
+    {
+     "address": "https://data.geopf.fr/wfs/ows",
+     "label": "IGN Géoplateforme Conservatoire du littoral",
+     "layer": "patrinat_cdl:cdl",
+     "reader": "wfs"
+    },
+    {
+     "address": "https://data.geopf.fr/wfs/ows",
+     "label": "IGN Géoplateforme RNN protection perimeters",
+     "layer": "patrinat_pprnn:pprnn",
+     "reader": "wfs"
+    }
+   ],
+   "records": 29980,
+   "saved": "2026-11-04",
+   "sources": 10,
+   "why": "3 of 10 source(s) have no record in the saved copy"
+  },
+  "GA": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.forest-atlas.org/server/rest/services/gab/pnat_conservation/MapServer/0",
+     "label": "Aires protégées",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-GA.json.gz on the boundary-cache release"
+  },
+  "GB": {
+   "copy": "W-GB.json.gz",
+   "missing": [],
+   "records": 58931,
+   "saved": "2026-11-04",
+   "sources": 30
+  },
+  "GE": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gisserver.mepa.gov.ge/arcgis/rest/services/APA/%E1%83%A1%E1%83%90%E1%83%A5%E1%83%90%E1%83%A0%E1%83%97%E1%83%95%E1%83%94%E1%83%9A%E1%83%9D%E1%83%A1_%E1%83%93%E1%83%90%E1%83%AA%E1%83%A3%E1%83%9A%E1%83%98_%E1%83%A2%E1%83%94%E1%83%A0%E1%83%98%E1%83%A2%E1%83%9D%E1%83%A0%E1%83%98%E1%83%94%E1%83%91%E1%83%98/FeatureServer/0",
+     "label": "საქართველოს დაცული ტერიტორიები",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://gisserver.mepa.gov.ge/arcgis/rest/services/APA/საქართველოს_დაცული_ტერიტორიები/FeatureServer/0",
+     "label": "Georgia: Agency of Protected Areas (APA), Ministry of Environmental Protection ",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 2,
+   "why": "no saved copy W-GE.json.gz on the boundary-cache release"
+  },
+  "GL": {
+   "copy": "W-GL.json.gz",
+   "missing": [],
+   "records": 63,
+   "saved": "2026-11-11",
+   "sources": 1
+  },
+  "GR": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://geohub.necca.gov.gr/server/rest/services/ELBIOS-EXTERNAL_DATA/PRC_TERMAR_CDDA2020/MapServer/0",
+     "label": "Εθνικοί Δρυμοί (Εθνικά πάρκα) - Αισθητικά Δάση - Διατηρητέα μνημεία της φύσης - ",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://geohub.necca.gov.gr/server/rest/services/ELBIOS-EXTERNAL_DATA/PRC_TERMAR_N2000_v32/MapServer/0",
+     "label": "Προστατευόμενες τοποθεσίες NATURA 2000",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 2,
+   "why": "no saved copy W-GR.json.gz on the boundary-cache release"
+  },
+  "GT": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://rmgir.proyectomesoamerica.org/server/rest/services/RMGIR/Guatemala_Datos_B%C3%A1sicos_WGS1984/MapServer/3",
+     "label": "Áreas protegidas 2018",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-GT.json.gz on the boundary-cache release"
+  },
+  "GU": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+     "label": "Guam: Guam Coastal Management Program (GCMP), served by PacIOOS GeoServer; p (1)",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://services1.arcgis.com/KNdRU5cN6ENqCTjk/ArcGIS/rest/services/US_Fish_and_Wildlife_Service/FeatureServer/7",
+     "label": "Guam: Guam Coastal Management Program (GCMP), served by PacIOOS GeoServer; p (2)",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 2,
+   "why": "no saved copy W-GU.json.gz on the boundary-cache release"
+  },
+  "GY": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://services.arcgis.com/bL1WyMoaiBW4etad/arcgis/rest/services/Guyana_VIP_Status/FeatureServer/1",
+     "label": "Protected Areas",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-GY.json.gz on the boundary-cache release"
+  },
+  "HR": {
+   "copy": "W-HR.json.gz",
+   "missing": [],
+   "records": 1112,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "HU": {
+   "copy": "W-HU.json.gz",
+   "missing": [],
+   "records": 1206,
+   "saved": "2026-11-04",
+   "sources": 3
+  },
+  "ID": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://geoservices.big.go.id/gis/rest/services/PTRA/Atlas_250K_KawasanKonservasi/MapServer/7",
+     "label": "Kawasan Konservasi",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-ID.json.gz on the boundary-cache release"
+  },
+  "IE": {
+   "copy": "W-IE.json.gz",
+   "missing": [],
+   "records": 788,
+   "saved": "2026-11-04",
+   "sources": 4
+  },
+  "IM": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://ppmaps.gov.im/manngispubserver/rest/services/CorporateDynamicServices/PPDEFA/MapServer/3",
+     "label": "Glens",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://ppmaps.gov.im/manngispubserver/rest/services/CorporateDynamicServices/PPDEFA/MapServer/9",
+     "label": "National Nature Reserves",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 2,
+   "why": "no saved copy W-IM.json.gz on the boundary-cache release"
+  },
+  "IT": {
+   "copy": "W-IT.json.gz",
+   "missing": [],
+   "records": 3697,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "JE": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://services-eu1.arcgis.com/mUgkK1QjC37PAGmP/arcgis/rest/services/BIP2022_WFL1/FeatureServer/32",
+     "label": "Jersey: Government of Jersey (Infrastructure & Environment; maps.gov.je AGOL o",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-JE.json.gz on the boundary-cache release"
+  },
+  "JP": {
+   "copy": "W-JP.json.gz",
+   "missing": [],
+   "records": 30425,
+   "saved": "2026-11-04",
+   "sources": 3
+  },
+  "KE": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.forest-atlas.org/server/rest/services/ken/overlay_layers/MapServer/4",
+     "label": "Protected Areas",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-KE.json.gz on the boundary-cache release"
+  },
+  "LK": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gisapps.nsdi.gov.lk/server/rest/services/Srilanka/Biota/MapServer/1",
+     "label": "Protected Area Network",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-LK.json.gz on the boundary-cache release"
+  },
+  "LR": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.forest-atlas.org/server/rest/services/lbr/forest_atlas/MapServer/2",
+     "label": "National Parks",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://gis.forest-atlas.org/server/rest/services/lbr/forest_atlas/MapServer/3",
+     "label": "Reserves",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 2,
+   "why": "no saved copy W-LR.json.gz on the boundary-cache release"
+  },
+  "LT": {
+   "copy": "W-LT.json.gz",
+   "missing": [],
+   "records": 1190,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "LU": {
+   "copy": "W-LU.json.gz",
+   "missing": [],
+   "records": 291,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "LV": {
+   "copy": "W-LV.json.gz",
+   "missing": [],
+   "records": 6713,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "MK": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://portal.app.gov.mk/arcgis/rest/services/PPRSM/karta37_PPRSM_namena_na_zemjiste_WMS_novo/MapServer/94",
+     "label": "Заштитени подрачја",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-MK.json.gz on the boundary-cache release"
+  },
+  "MP": {
+   "copy": "W-MP.json.gz",
+   "missing": [],
+   "records": 10,
+   "saved": "2026-11-11",
+   "sources": 1
+  },
+  "MT": {
+   "copy": "W-MT.json.gz",
+   "missing": [
+    {
+     "address": "https://services-eu1.arcgis.com/XSelLE0xRyexHDpW/arcgis/rest/services/Base_data_Ambjent_Malta_2022_WFL1_view/FeatureServer/36",
+     "label": "Malta: Ambjent Malta (government agency; Natura 2000 data from ERA)",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 14,
+   "saved": "2026-11-11",
+   "sources": 2,
+   "why": "1 of 2 source(s) have no record in the saved copy"
+  },
+  "MV": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://services7.arcgis.com/yvCbn3q8PPtPLZIM/arcgis/rest/services/ProtectedArea/FeatureServer/0",
+     "label": "Protected_Areas_of_Maldives_EPA_V4_1",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-MV.json.gz on the boundary-cache release"
+  },
+  "MX": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/aps/SIVECA/MapServer/0",
+     "label": "Áreas Naturales Protegidas, 2025",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-MX.json.gz on the boundary-cache release"
+  },
+  "NC": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://geoportail.oeil.nc/arcgis/rest/services/GEOPORTAIL_SUIVI/AIRE_PROTEGEE_TERRESTRE/MapServer/0",
+     "label": "Aires protégées provinciales terrestres",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-NC.json.gz on the boundary-cache release"
+  },
+  "NF": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://gis.environment.gov.au/gispubmap/rest/services/ogc_services/CAPAD/FeatureServer/0",
+     "label": "Protected Areas (CAPAD)",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-NF.json.gz on the boundary-cache release"
+  },
+  "NI": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://rmgir.proyectomesoamerica.org/server/rest/services/RMGIR/Nicaragua_FISICO_NATURAL/MapServer/2",
+     "label": "AREAS_PROTEGIDAS_NIC",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-NI.json.gz on the boundary-cache release"
+  },
+  "NL": {
+   "copy": "W-NL.json.gz",
+   "missing": [],
+   "records": 396,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "NO": {
+   "copy": "W-NO.json.gz",
+   "missing": [],
+   "records": 6983,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "NZ": {
+   "copy": "W-NZ.json.gz",
+   "missing": [
+    {
+     "address": "https://seasketch.doc.govt.nz/arcgis/rest/services/National/Public_Conservation_Land/MapServer/0",
+     "label": "Public conservation land",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://mapping.gw.govt.nz/arcgis/rest/services/GW/Parks_P/MapServer/26",
+     "label": "Regional Parks and Forests",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 2837,
+   "saved": "2026-11-11",
+   "sources": 3,
+   "why": "2 of 3 source(s) have no record in the saved copy"
+  },
+  "OM": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://services3.arcgis.com/ZMzLg7Owk19jwEIO/arcgis/rest/services/%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B7%D9%82_%D8%A7%D9%84%D9%85%D8%AD%D9%85%D9%8A%D8%A927012025/FeatureServer/0",
+     "label": "المناطق_المحمية27012025",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://services3.arcgis.com/ZMzLg7Owk19jwEIO/arcgis/rest/services/المناطق_المحمية27012025/FeatureServer/0",
+     "label": "Oman: Environment Authority Oman / NCSI (Environment Atlas of Oman, ONSDI)",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 2,
+   "why": "no saved copy W-OM.json.gz on the boundary-cache release"
+  },
+  "PA": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://geoportal.miambiente.gob.pa/server/rest/services/Hosted/SINAP_2025/FeatureServer/0",
+     "label": "SINAP",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-PA.json.gz on the boundary-cache release"
+  },
+  "PE": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://geoservicios.sernanp.gob.pe/arcgis/rest/services/servicios_ogc/peru_sernanp_0102/MapServer/0",
+     "label": "Peru: SERNANP (Servicio Nacional de Áreas Naturales Protegidas por el Estado",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-PE.json.gz on the boundary-cache release"
+  },
+  "PF": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://services.arcgis.com/L4H4rU26VyhEF588/arcgis/rest/services/PGEM_Aires_marines_prot%C3%A9g%C3%A9es_(TeFenua)/FeatureServer/0",
+     "label": "French Polynesia: Gouvernement de la Polynésie française, Te Fenua open data (DSI); PGEM",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-PF.json.gz on the boundary-cache release"
+  },
+  "PL": {
+   "copy": "W-PL.json.gz",
+   "missing": [],
+   "records": 3264,
+   "saved": "2026-11-04",
+   "sources": 3
+  },
+  "PR": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://sigejp.pr.gov/server/rest/services/Advisory_Maps/Datos_Generales/MapServer/4",
+     "label": "Áreas Naturales Protegidas Marinas",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://sigejp.pr.gov/server/rest/services/Advisory_Maps/Datos_Generales/MapServer/5",
+     "label": "Áreas Naturales ProtegidasTerrrestres",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 2,
+   "why": "no saved copy W-PR.json.gz on the boundary-cache release"
+  },
+  "PT": {
+   "copy": "W-PT.json.gz",
+   "missing": [],
+   "records": 777,
+   "saved": "2026-11-12",
+   "sources": 7
+  },
+  "PY": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://visor.infona.gov.py/server/rest/services/Areas_Silvestres_Protegidas/Areas_Silvestres_Protegidas/MapServer/0",
+     "label": "Areas_Silvestres_Protegidas",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-PY.json.gz on the boundary-cache release"
+  },
+  "QA": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://services.gisqatar.org.qa/server/rest/services/Vector/Protected_Areas/FeatureServer/0",
+     "label": "ProtectedAreas",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-QA.json.gz on the boundary-cache release"
+  },
+  "RO": {
+   "copy": "W-RO.json.gz",
+   "missing": [],
+   "records": 1552,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "RW": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://geodata.rw/server/rest/services/basemap/National_Parks/FeatureServer/0",
+     "label": "National Parks",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-RW.json.gz on the boundary-cache release"
+  },
+  "SE": {
+   "copy": "W-SE.json.gz",
+   "missing": [],
+   "records": 36963,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "SI": {
+   "copy": "W-SI.json.gz",
+   "missing": [],
+   "records": 1412,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "SJ": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://kart.miljodirektoratet.no/arcgis/rest/services/vern/MapServer/0",
+     "label": "Svalbard & Jan Mayen: Miljødirektoratet (Norwegian Environment Agency) – Naturbase",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-SJ.json.gz on the boundary-cache release"
+  },
+  "SK": {
+   "copy": "W-SK.json.gz",
+   "missing": [],
+   "records": 1882,
+   "saved": "2026-11-04",
+   "sources": 2
+  },
+  "SV": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://services6.arcgis.com/DO1cMKsePeciYDRE/arcgis/rest/services/Layers/FeatureServer/6",
+     "label": "El Salvador: MARN – Dirección de Ecosistemas y Vida Silvestre (Ministerio de Medio ",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-SV.json.gz on the boundary-cache release"
+  },
+  "UM": {
+   "copy": "W-UM.json.gz",
+   "missing": [],
+   "records": 10,
+   "saved": "2026-11-11",
+   "sources": 1
+  },
+  "UY": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://sit.mvot.gub.uy/arcgis/rest/services/07_EXTERNO/LUGARES_PROTEGIDOS/MapServer/5",
+     "label": "Uruguay: Ministerio de Ambiente (DINABISE) – SNAP; served by MVOT SIT",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 1,
+   "why": "no saved copy W-UY.json.gz on the boundary-cache release"
+  },
+  "VI": {
+   "copy": "W-VI.json.gz",
+   "missing": [],
+   "records": 11,
+   "saved": "2026-11-11",
+   "sources": 3
+  },
+  "ZA": {
+   "copy": null,
+   "missing": [
+    {
+     "address": "https://dpmegis.dpme.gov.za/arcgis/rest/services/Environmental2/MapServer/1",
+     "label": "South Africa protected areas (DPME, from DFFE SAPAD)",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://dffeportal.environment.gov.za/hosting/rest/services/PACA/SAPAD/MapServer/2",
+     "label": "South Africa SAPAD (DFFE)",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/1",
+     "label": "ENV_DB.LDR.National_Park",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/2",
+     "label": "ENV_DB.LDR.Nature_Reserve",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/3",
+     "label": "ENV_DB.LDR.Forest_Nature_Reserve",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/5",
+     "label": "ENV_DB.LDR.Marine_Protected_Area",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/4",
+     "label": "ENV_DB.LDR.Forest_Wilderness_Area",
+     "layer": null,
+     "reader": "arcgis"
+    },
+    {
+     "address": "https://paca.environment.gov.za/par/rest/services/PACA/SAPAD/MapServer/7",
+     "label": "ENV_DB.LDR.Protected_Environment",
+     "layer": null,
+     "reader": "arcgis"
+    }
+   ],
+   "records": 0,
+   "saved": null,
+   "sources": 8,
+   "why": "no saved copy W-ZA.json.gz on the boundary-cache release"
+  }
+ },
+ "gaps": [
+  "AE",
+  "AU",
+  "AX",
+  "BM",
+  "BT",
+  "CC",
+  "CD",
+  "CG",
+  "CL",
+  "CM",
+  "CO",
+  "CR",
+  "CV",
+  "CX",
+  "CZ",
+  "DE",
+  "DO",
+  "EC",
+  "FO",
+  "FR",
+  "GA",
+  "GE",
+  "GR",
+  "GT",
+  "GU",
+  "GY",
+  "ID",
+  "IM",
+  "JE",
+  "KE",
+  "LK",
+  "LR",
+  "MK",
+  "MT",
+  "MV",
+  "MX",
+  "NC",
+  "NF",
+  "NI",
+  "NZ",
+  "OM",
+  "PA",
+  "PE",
+  "PF",
+  "PR",
+  "PY",
+  "QA",
+  "RW",
+  "SJ",
+  "SV",
+  "UY",
+  "ZA"
+ ],
+ "made": "2026-11-15"
+}
