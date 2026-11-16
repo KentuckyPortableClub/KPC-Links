@@ -1,11 +1,11 @@
 {
  "key": "world",
  "mode": "hold",
- "files_checked": 47,
- "joined_parks": 24184,
+ "files_checked": 2,
+ "joined_parks": 3715,
  "suspect": 36,
- "held": 55,
- "files_changed": 11,
+ "held": 31,
+ "files_changed": 1,
  "official_acres_known": 0,
  "acres_check": "acres check off: no acres file",
  "approved_parks_known": 13514,
@@ -421,16 +421,15 @@
  ],
  "kept_from_main": [
   "AT",
+  "AU",
   "BZ",
   "CH",
+  "FR",
   "GB",
   "JP",
-  "MT",
-  "MX",
   "NI",
   "NL",
   "NZ",
-  "SE",
   "ZA"
  ]
 }

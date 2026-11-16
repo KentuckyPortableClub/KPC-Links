@@ -991,16 +991,15 @@
  ],
  "kept_from_main": [
   "AT",
+  "AU",
   "BZ",
   "CH",
+  "FR",
   "GB",
   "JP",
-  "MT",
-  "MX",
   "NI",
   "NL",
   "NZ",
-  "SE",
   "ZA"
  ]
 }
