@@ -145,6 +145,8 @@ check({k: v for k, v in w1.items() if k != 'store_held'} == old['spots'][0] and 
       'never worse: a carried row is the old row unchanged, plus the mark "not re-checked (outline held privately)"')
 check(S.CARRIED_PUBLIC == {'US-99210'} and S.withheld_refs() == {'US-99210', 'US-99213'} and S.secret_refs() == {'US-99210', 'US-99213'},
       'never worse: the full withheld set guards every file, and the push-check list is the same whole set, carried parks included (D3)')
+check(not S._full_row({'refs': ['US-99201', 'US-99210'], 'kind': 'area', 'status': 'candidate'}) and S._full_row(old['spots'][0]),
+      'never worse: only a full row (refs, kind, status, passes) is carried: an old row without passes would stop the passes (KPC-Store store_run test)')
 K.PASS = 2
 S.HELD_PRIVATE.clear(); S.CARRIED_PUBLIC.clear()   # pass 2 reads fewer parks: the side file keeps the withheld refs
 p1file = json.loads(json.dumps(d1))

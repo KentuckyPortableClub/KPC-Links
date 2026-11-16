@@ -729,6 +729,13 @@ def held_refs_file(KF, area):
     return None if f is None else f.parent.parent / 'store-held' / f'{area}.json'
 
 
+def _full_row(x):
+    """A row as the bot writes it (refs, kind, status, passes [p1, p2, p3]): only such a row can be carried; the passes read every
+    row's fields (KPC-Store test_fers_store_run: an old row without 'passes' stopped pass 1's report with a KeyError)."""
+    return (isinstance(x, dict) and isinstance(x.get('refs'), list) and isinstance(x.get('kind'), str) and isinstance(x.get('status'), str)
+            and isinstance(x.get('passes'), list) and len(x['passes']) >= 3)
+
+
 def carry_held_rows(KF, d, old):
     """OWNER RULE 'never worse' (KPC owner, 2026-11-15; store trial M2 + M3). On a PUBLIC store run a withheld park (a record of it is
     not publishable, or its line record is not) is never read, so its pairs cannot be tested. Its existing public rows must not
@@ -742,7 +749,7 @@ def carry_held_rows(KF, d, old):
     hf = held_refs_file(KF, area)
     sec = set(withheld_refs())
     if int(getattr(KF, 'PASS', 1)) == 1:
-        orig = [json.loads(_canon(x)) for x in (old or {}).get('spots') or [] if isinstance(x, dict) and set(x.get('refs') or []) & sec]
+        orig = [json.loads(_canon(x)) for x in (old or {}).get('spots') or [] if _full_row(x) and set(x.get('refs') or []) & sec]
         for x in orig: x['store_held'] = HELD_TAG
         held = sorted({r for x in orig for r in x.get('refs') or [] if r in sec})
         if hf is not None:
