@@ -49,6 +49,27 @@ def _world_count(name, blob):
         return len(recs) if isinstance(recs, list) else 0
 
 
+CURRENT_LAYER_BASELINE = 'current-layer count'   # how a baseline recorded from the key's CURRENT layers says so (layers.json read_how; W-AU, #135)
+
+
+def _gate_count(name, blob, entry):
+    """(count, how) the gate compares with a FULL baseline (layers.json caches), counted the way that baseline was recorded
+    (Nov 15, KPC owner, 2026-11-15: run 43803039057 held W-GB and W-JP as SHORT though nothing was missing). A baseline is the copy's
+    record count: every record, by kpc_master_cli.py baseline and by the key's counts.areas ('live key file counts.areas'). Only a
+    baseline whose read_how says it is a current-layer count (W-AU after #135 dropped 8 layers) is compared with the current-layer
+    count (kpc_world_hand.world_current_rec_count: records with geometry, from layers the key still reads). Comparing a full baseline
+    with the current-layer count called a complete copy short by its dropped-layer and no-geometry records (W-GB 58931 -> 56446:
+    2484 records of 3 dropped Forestry England layers + 1 without geometry; W-JP 30425 -> 30423: 2 without geometry). Like with
+    like, still exact: a copy with fewer records than its baseline counted the same way is SHORT."""
+    recs = (blob or {}).get('recs') if isinstance((blob or {}).get('recs'), list) else []
+    stem = name[:-len('.json.gz')] if name.endswith('.json.gz') else name
+    if stem.startswith('W-') and not str((entry or {}).get('read_how') or '').startswith(CURRENT_LAYER_BASELINE):
+        cur = _world_count(name, blob)
+        return len(recs), ('' if cur == len(recs) else f'{stem}: counted in full like its baseline ({len(recs)} records; '
+                                                        f'{len(recs) - cur} of them are from layers the key no longer reads or have no geometry)')
+    return _world_count(name, blob), ''
+
+
 def _world_labels(cc):
     try:
         import kpc_world_hand as _kwh
@@ -248,6 +269,10 @@ def cmd_gate(a):
             err('master gate NO BASELINE' if 'no baseline' in why else 'master gate REFUSED', why); aside(f, stem); continue
         try:
             if how == 'manifest': M.check_against_manifest(f.name, blob)
+            elif how == 'full':
+                got, note = _gate_count(f.name, blob, caches.get(stem))
+                M.check_complete(exp, got, str(f))
+                if note: notice('master gate', note)
             else: M.check_complete(exp, _world_count(f.name, blob), str(f))
             if how != 'full': notice('master gate', why + ('' if (caches.get(stem) or {}).get('expected_count') is None else f"; the full baseline {caches[stem]['expected_count']} is not used here and not changed"))
         except M.ShortRead as e: err('master gate SHORT', e); aside(f, stem)
