@@ -171,26 +171,37 @@ with tempfile.TemporaryDirectory() as t:
           why and 'US-42797939226' in why and 'never released' in why, why)
 
 # from_key rebuild of US-10281 when the saved copy is present
-with tempfile.TemporaryDirectory() as t:
-    d = pathlib.Path(t); root = d / 'outlines'; kd = d / 'us-key'; cache = d / 'cache'
-    root.mkdir(); kd.mkdir(); cache.mkdir()
-    keyfile(kd, 'AK', {'US-10281': {'g': 'official', 'n': 'White Mountains', 'read': '2026-11-11',
-                                    'm': [['rst11010', 'White Mountains SRMA', 1, 'name'],
-                                          ['sgakg11010', 'White Mountains SRMA', 1, 'reviewed']]}})
-    # existing dirty outline
-    M.save_area('US-AK', {'US-10281': rec('US-10281', ids=['rst11010', 'sgakg11010', '2165'], geom=SQ(0))}, root, key_dir=kd)
-    # saved copy with the two joined records (and 2165, which must not be used)
-    def rec_blob(oid, x):
-        return {'OBJECTID': oid, '_r': [[[x, 0], [x, 1], [x + 1, 1], [x + 1, 0], [x, 0]]], 'Loc_Mang': 'BLM'}
-    blob = {'saved': '2026-11-11', 'recs': [rec_blob('rst11010', 0), rec_blob('sgakg11010', 1), rec_blob('2165', 50)]}
-    with gzip.open(cache / 'US-AK.json.gz', 'wt', encoding='utf-8') as f: json.dump(blob, f)
-    added, skipped = FK.build_state('AK', cache=cache, root=root, key_dir=kd, say=lambda *a, **k: None)
-    got = M.load_area('US-AK', root)['US-10281']
-    check('from_key rebuilds US-10281 from the key\'s m (2165 is not in record_ids)',
-          '2165' not in M.outline_record_ids(got) and set(M.outline_record_ids(got)) == {'rst11010', 'sgakg11010'},
-          M.outline_record_ids(got))
-    check('after rebuild, outline_key_problems is empty for AK',
-          M.outline_key_problems('US-AK', M.load_area('US-AK', root), kd) == [])
+# KPC owner, 2026-11-16: this part puts shapes together with shapely (kpc_outlines_from_key.union_geometry); where shapely is
+# not installed it is SKIPPED with that reason instead of failing with ModuleNotFoundError. Every check above still runs.
+try:
+    import shapely.geometry  # noqa: F401
+    _no_shapely = False
+except ImportError:
+    _no_shapely = True
+if _no_shapely:
+    print('SKIP from_key rebuild of US-10281: shapely is not installed here (pip install shapely to run it)')
+else:
+  with tempfile.TemporaryDirectory() as t:
+      d = pathlib.Path(t); root = d / 'outlines'; kd = d / 'us-key'; cache = d / 'cache'
+      root.mkdir(); kd.mkdir(); cache.mkdir()
+      keyfile(kd, 'AK', {'US-10281': {'g': 'official', 'n': 'White Mountains', 'read': '2026-11-11',
+                                      'm': [['rst11010', 'White Mountains SRMA', 1, 'name'],
+                                            ['sgakg11010', 'White Mountains SRMA', 1, 'reviewed']]}})
+      # existing dirty outline
+      M.save_area('US-AK', {'US-10281': rec('US-10281', ids=['rst11010', 'sgakg11010', '2165'], geom=SQ(0))}, root, key_dir=kd)
+      # saved copy with the two joined records (and 2165, which must not be used)
+      def rec_blob(oid, x):
+          return {'OBJECTID': oid, '_r': [[[x, 0], [x, 1], [x + 1, 1], [x + 1, 0], [x, 0]]], 'Loc_Mang': 'BLM'}
+      blob = {'saved': '2026-11-11', 'recs': [rec_blob('rst11010', 0), rec_blob('sgakg11010', 1), rec_blob('2165', 50)]}
+      with gzip.open(cache / 'US-AK.json.gz', 'wt', encoding='utf-8') as f: json.dump(blob, f)
+      added, skipped = FK.build_state('AK', cache=cache, root=root, key_dir=kd, say=lambda *a, **k: None)
+      got = M.load_area('US-AK', root)['US-10281']
+      check('from_key rebuilds US-10281 from the key\'s m (2165 is not in record_ids)',
+            '2165' not in M.outline_record_ids(got) and set(M.outline_record_ids(got)) == {'rst11010', 'sgakg11010'},
+            M.outline_record_ids(got))
+      check('after rebuild, outline_key_problems is empty for AK',
+            M.outline_key_problems('US-AK', M.load_area('US-AK', root), kd) == [])
 
-print('ALL PASS' if ok else 'FAILED')
+if ok and _no_shapely: print('SKIP: every other check passed; the from_key rebuild needs shapely, which is not installed here')
+else: print('ALL PASS' if ok else 'FAILED')
 sys.exit(0 if ok else 1)

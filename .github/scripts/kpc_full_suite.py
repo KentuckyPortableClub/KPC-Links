@@ -39,6 +39,24 @@ def git_state(root):
     except Exception: return None  # noqa: BLE001
 
 
+def _sha(cwd, ref='HEAD'):
+    try:
+        r = subprocess.run(['git', 'rev-parse', '--short=12', '--verify', '--quiet', ref], cwd=cwd, capture_output=True, text=True, timeout=30)
+        return r.stdout.strip() or 'none'
+    except Exception: return 'none'  # noqa: BLE001
+
+
+def run_inputs(root, state):
+    """KPC owner, 2026-11-16: everything besides this repo's own commit that the results depend on, printed in the report, so two
+    reports can be compared. Some tests compare with origin/main (moves on every fetch), read the KPC-Data checkout DATA points at
+    (moves on every pull; unset = those parts skip), or read data files the bots rewrite on main (data/ky-answer-key.json every
+    Monday). Two runs with the same INPUTS line give the same result; when the line differs, so may the result."""
+    data = os.environ.get('DATA') or ''
+    dpart = f"DATA={data}@{_sha(data)}" if data and os.path.isdir(data) else 'DATA=not set'
+    clean = 'unknown' if state is None else ('yes' if not state.strip() else f'NO ({len(state.splitlines())} changed paths: not comparable)')
+    return f"origin/main={_sha(root, 'origin/main')}  {dpart}  LINKS={os.environ.get('LINKS') or 'not set'}  tree clean at start: {clean}"
+
+
 def read_baseline(path):
     out = set()
     try:
@@ -62,7 +80,7 @@ def selftest_scripts(root):
 def run_one(cmd, root, timeout):
     t = time.time()
     try:
-        r = subprocess.run(cmd, cwd=root, capture_output=True, text=True, timeout=timeout, env=dict(os.environ, PYTHONDONTWRITEBYTECODE='1'))
+        r = subprocess.run(cmd, cwd=root, capture_output=True, text=True, timeout=timeout, env=dict(os.environ, PYTHONDONTWRITEBYTECODE='1', PYTHONHASHSEED='0'))
         out, rc = (r.stdout or '') + (r.stderr or ''), r.returncode
     except subprocess.TimeoutExpired:
         out, rc = f'TIMEOUT after {timeout}s', 124
@@ -81,6 +99,7 @@ def suite(root='.', baseline=None, timeout=180, selftests=True, label=''):
     if selftests:
         items += [('selftest:' + str(f.relative_to(root)), [sys.executable, '-B', str(f.relative_to(root)), '--selftest']) for f in selftest_scripts(root)]
     rows, before = [], git_state(root)
+    inputs = run_inputs(root, before)
     for name, cmd in items:
         ok, why, secs, skip = run_one(cmd, root, timeout)
         after = git_state(root)
@@ -96,7 +115,7 @@ def suite(root='.', baseline=None, timeout=180, selftests=True, label=''):
     head = ''
     try: head = subprocess.run(['git', 'rev-parse', '--short=12', 'HEAD'], cwd=root, capture_output=True, text=True).stdout.strip()
     except Exception: pass  # noqa: BLE001
-    return {'root': root, 'head': head, 'label': label, 'rows': rows, 'new': new, 'fixed': fixed, 'gone': gone,
+    return {'root': root, 'head': head, 'label': label, 'inputs': inputs, 'rows': rows, 'new': new, 'fixed': fixed, 'gone': gone,
             'pass': sum(r['ok'] and not r['skip'] for r in rows), 'skipped': [r['name'] for r in rows if r['skip']], 'total': len(rows),
             'tests_pass': sum(r['ok'] and not r['skip'] for r in rows if not r['name'].startswith('selftest:')),
             'tests_total': sum(1 for r in rows if not r['name'].startswith('selftest:'))}
@@ -109,6 +128,7 @@ def gate_fails(res):
 def report(res):
     L = [f"## {res['label'] or 'suite'}  root={res['root']}  HEAD={res['head']}",
          f"CMD: python3 .github/scripts/kpc_full_suite.py --root {res['root']}  (every tests/test_*.py one by one + every --selftest)"]
+    if res.get('inputs'): L.append('INPUTS: ' + res['inputs'])
     for r in res['rows']:
         tag = 'SKIP' if r['skip'] else 'PASS' if r['ok'] else ('FAIL (known on main)' if r['known'] else 'FAIL NEW')
         L.append(f"{tag:<21} {r['name']}  ({r['secs']}s)")
@@ -171,6 +191,8 @@ def selftest():
     subprocess.run('git add -A && git -c user.name=t -c user.email=t@t commit -qm t2', shell=True, cwd=d)
     res2 = suite(d, timeout=30, label='selftest-2')
     check('only known failures left, none stale -> GATE PASS (exit 0)', (len(res2['new']), len(res2['fixed']), 'GATE PASS' in report(res2)), (0, 0, True))
+    check('report names its inputs (origin/main, DATA, clean tree) so two reports can be compared', 'INPUTS: origin/main=' in report(res2) and 'tree clean at start: yes' in report(res2), True)
+    check('the same tree run twice gives the same rows', [(r['name'], r['ok'], r['skip']) for r in suite(d, timeout=30)['rows']] == [(r['name'], r['ok'], r['skip']) for r in res2['rows']], True)
     print(f"SELFTEST {'PASS' if ok_all else 'FAIL'}: {n} cases")
     return ok_all
 
