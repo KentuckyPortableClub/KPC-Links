@@ -148,6 +148,15 @@
       "scope": "none",
       "scope_note": "No pair answer or pair fingerprint changes: nothing is re-tested.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
+    },
+    {
+      "id": "2026-11-16-store-three-passes",
+      "when": "2026-11-16",
+      "from": "407f6aa7a708",
+      "why": "Store runs do three passes of work, not four (KPC owner, 2026-11-16). The outline store gives every pass the same outline (about 2 m), so pass 2 (10 m grid, once fed by a fresher agency download) only repeated pass 3's test on a coarser grid. In a store run PASS=2 does nothing (exit 0, a receipt section that says so, no area file changed) and pass 3 takes every pass-1 row on the 5 m grid; a row pass 3 agrees with is marked for pass 2 too and the file keeps its pass2 date. A run that downloads from the agencies (no store) is unchanged. The pass loops of the workflows, the PC runner and the receipt check are unchanged (1, 2, 3, 5).",
+      "scope": "none",
+      "scope_note": "Measured on the same store and key, four passes against three: W-BE 6 = 6 candidates, W-NO 16 = 16, W-AT 53 = 53, W-CH 11 = 11, US-RI 6 = 6 (not sure 3 = 3), US-NY 66 = 66 (not sure 25 = 25); no shown pair lost or gained; US-NY gains 2 trail rows merged into rows already shown. Store areas are re-measured by their next run anyway; no area that does not use the store changes.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
     }
   ]
 }
