@@ -35,18 +35,16 @@ jobs:
           stop=$(( $(date +%s) + 54 * 60 ))          # finish before the next hour's job starts
           ok=0; bad=0
           for i in $(seq 1 12); do
-            # Nov 16 (handoff item 7, owner's choice): this job is the ONE club spot reader. Each 5-minute check asks POTA once
-            # (kpc_pota_spots.py, through the POTA door) and publishes data/pota/spots.json on the club's site; the spotter below,
-            # the hunters job and the live pages read that file and never call POTA for spots. Same schedule as before.
-            # The sent-spot state rides along (the save resets to the newest main, so the last check's sent IDs must be in it).
+            # Nov 16 (handoff item 7, owner's choice; v4 answer 4): this job is the ONE club spot reader. Each 5-minute check asks POTA
+            # once (kpc_pota_spots.py, through the POTA door) and publishes spots.json on the data-only branch live-spots (one commit,
+            # replaced each time: the forced update is allowed on that branch ONLY; never main, no site build). The spotter below reads
+            # this job's own copy (KPC_POTA_SPOT_FILE); the hunters job and the live pages read the raw file address. Same schedule.
             if python3 .github/scripts/kpc_pota_spots.py; then
-              git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-              if ! KPC_SAVE_MODE="${{ vars.KPC_SAVE_MODE || 'overwrite' }}" KPC_SAVE_RED=no \
-                bash .github/scripts/kpc_save_overwrite.sh --copy 'Club spot file (one POTA read per 5 minutes)' - -- data/pota/spots.json .github/kpc-pota-spot-state.json >/dev/null; then
-                echo "::warning title=Club spot file::not published this check; the next check tries again"; echo "Club spot file - not published this check" >> "$RUNNER_TEMP/kpc-hidden.txt"
+              if ! bash .github/scripts/kpc_live_spots_push.sh data/pota/spots.json; then
+                echo "Club spot file - not published this check" >> "$RUNNER_TEMP/kpc-hidden.txt"
               fi
             fi
-            if python3 .github/scripts/kpc_pota_spotter.py; then ok=$((ok+1)); else bad=$((bad+1)); echo "::warning title=POTA spotter::check $i failed (POTA or Discord hiccup); the next check tries again"; fi
+            if KPC_POTA_SPOT_FILE=data/pota/spots.json python3 .github/scripts/kpc_pota_spotter.py; then ok=$((ok+1)); else bad=$((bad+1)); echo "::warning title=POTA spotter::check $i failed (POTA or Discord hiccup); the next check tries again"; fi
             [ "$i" -lt 12 ] || break
             [ $(( $(date +%s) + 300 )) -lt "$stop" ] || break
             sleep 300

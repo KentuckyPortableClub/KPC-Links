@@ -4,25 +4,29 @@ something from POTA (api.pota.app) asks here; no other script opens api.pota.app
 direct call). The door reads the STORED COPY first and asks POTA only when the copy is older than its allowed age:
 
   spots            5 minutes   ONLY the club spot reader (kpc_pota_spots.py) asks POTA; everyone else reads the club spot file
-  locations        1 day       /locations, read once a day by the park-list job (kpc_pota_parklists.py)
-  park list US/CA  until POTA's own park count for that state / province changes (the park-list job decides)
-  park list world  1 week      re-pulled by the park-list job on its weekly world day (spill-over the next nights)
+                               (live-spots branch, raw address) and asks POTA directly only when it is over 15 minutes old
+  all-parks export 1 day       all_parks_ext.csv, read once a day by the park-list job (kpc_pota_parklists.py) and compared with
+                               yesterday's copy: only the changed locations' saved lists are rewritten (from the export)
+  location list    only for a location the export shows CHANGED, and only when a job needs a field the export lacks
+                               (/location/parks/<loc>; the park-list job decides; world ones weekly at most)
   park details     30 days     /park/<ref>
   activations      30 days     /park/activations/<ref>?count=all   (also /park/leaderboard/<ref>, /lookup)
+/locations is not used. When the export is gone or too thin, the park-list job falls back to a 7-day re-pull of the US and CA
+lists and says so.
 
 Readers of park lists (world_pota, canada, northam, new_refs, pota_activity, state_links, top25, refcheck, new_lands) call
-saved_park_list() / saved_locations(): the saved copy ONLY, never POTA (ask_pota=False).
+saved_park_list() / saved_locations(): the saved copy ONLY, never POTA.
 
 Every request is paced through kpc_host_pace (one per 2 s per host) and counted against a per-run budget (KPC_POTA_BUDGET,
 default 300; a run that reaches it gets the stored copy, or a DoorClosed error when it has none). The club User-Agent with a
 contact is sent on every request (KPC_POTA_CONTACT replaces the contact). One report line per run (at exit):
   POTA door <script>: N asked POTA (budget B), M from the stored copy, K refused
 
-Stored copies live in data/pota/saved/ of this repo (KPC_POTA_DIR moves them): locations.json, parks/<loc>.json.gz,
-<kind>/<shard>.json. Offline (KPC_POTA_OFFLINE=1): stored copies only.
+Stored copies live in data/pota/saved/ of this repo (KPC_POTA_DIR moves them): export-index.json (yesterday's export: per location
+its park count and checksum), locations.json, parks/<loc>.json.gz, <kind>/<shard>.json, receipts/<job>.json (the real numbers). Offline (KPC_POTA_OFFLINE=1): stored copies only.
   python3 kpc_pota_door.py --selftest
 """
-import atexit, gzip, hashlib, json, os, pathlib, re, sys, threading, time, urllib.parse, urllib.request
+import atexit, gzip, hashlib, json, os, pathlib, re, sys, threading, time, urllib.error, urllib.parse, urllib.request
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request
 
 API = 'https://api.pota.app'
@@ -31,8 +35,7 @@ HOST = 'api.pota.app'
 CONTACT = os.environ.get('KPC_POTA_CONTACT') or 'https://github.com/KentuckyPortableClub/KPC-Links/issues'
 UA = f'KPC-Links/1.0 (Kentucky Portable Club; +https://kentuckyportableclub.github.io/KPC-Links/; contact: {CONTACT})'
 DAY = 86400
-AGES = {'spots': 300, 'locations': DAY, 'world_list': 7 * DAY, 'details': 30 * DAY, 'activations': 30 * DAY,
-        'leaderboard': 30 * DAY, 'lookup': 30 * DAY}
+AGES = {'spots': 300, 'export': DAY - 3600, 'details': 30 * DAY, 'activations': 30 * DAY, 'leaderboard': 30 * DAY, 'lookup': 30 * DAY}
 BUDGET = int(os.environ.get('KPC_POTA_BUDGET') or 300)
 STAT = {'asked': 0, 'stored': 0, 'refused': 0, 'failed': 0}
 _REPORTED = [False]
@@ -125,6 +128,7 @@ def _cached(kind, key, path, max_age=None, ask_pota=True):
     except DoorClosed:
         if e: STAT['stored'] += 1; return e['data']   # older than its age, but POTA may not be asked: the stored copy
         raise
+    STAT_KIND[kind] = STAT_KIND.get(kind, 0) + 1
     _shard_put(kind, key, {'saved': int(_now()), 'data': data})
     return data
 
@@ -147,84 +151,216 @@ def lookup(q, size=40, ask_pota=True):
     return _cached('lookup', f'{q}:{size}', '/lookup?search=' + urllib.parse.quote(q) + f'&size={size}', ask_pota=ask_pota)
 
 
-# ---------------------------------------------------------------- locations and park lists (the park-list job asks; readers read)
+# ---------------------------------------------------------------- the all-parks export and the park lists (the park-list job asks; readers read)
+# KPC owner, 2026-11-16 (v4 answer 2): POTA's ONE all-parks export (all_parks_ext.csv: reference, name, active, entityId, locationDesc,
+# latitude, longitude, grid) is read once a day and compared with yesterday's saved copy (export-index.json: per location its park
+# count and a checksum). The difference names the states, provinces and countries that changed; only those saved lists are rewritten,
+# from the export itself (no POTA call). /locations is not used. /location/parks/<loc> is asked only for a CHANGED location and only
+# when a job needs a field the export lacks (activations, attempts, qsos, parktypeDesc: kpc_pota_parklists.py decides).
+EXPORT_URL = os.environ.get('KPC_POTA_EXPORT_URL') or 'https://pota.app/all_parks_ext.csv'
+EXPORT_FIELDS = ('reference', 'name', 'active', 'entityId', 'locationDesc', 'latitude', 'longitude', 'grid')
+EXPORT_NEEDS = ('reference', 'name', 'locationDesc', 'latitude', 'longitude')   # less than this = too thin: the 7-day fallback
+EXTRA_FIELDS = ('activations', 'attempts', 'qsos', 'parktypeDesc', 'parktypeId', 'accessibility', 'sensitivity', 'firstActivator', 'firstActivationDate')
+
+
+class ExportGone(DoorClosed):
+    """The export is not published any more (404 / 410) or lacks the fields the readers need."""
+
+
+def _ask_export(etag='', modified=''):
+    """One paced, budgeted GET of the export, conditional on yesterday's ETag / Last-Modified. (status, text, etag, modified)."""
+    if offline(): STAT['refused'] += 1; raise DoorClosed('offline: all_parks_ext.csv')
+    if STAT['asked'] >= BUDGET: STAT['refused'] += 1; raise DoorClosed(f'per-run budget of {BUDGET} POTA requests spent: all_parks_ext.csv')
+    import kpc_host_pace
+    kpc_host_pace.install()
+    STAT['asked'] += 1; STAT_KIND['export'] = STAT_KIND.get('export', 0) + 1
+    h = {'User-Agent': UA, 'Accept': 'text/csv'}
+    if etag: h['If-None-Match'] = etag
+    if modified: h['If-Modified-Since'] = modified
+    err = None
+    for i in range(2):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(EXPORT_URL, headers=h), timeout=180) as f:
+                return 200, f.read().decode('utf-8-sig', 'replace'), f.headers.get('ETag') or '', f.headers.get('Last-Modified') or ''
+        except urllib.error.HTTPError as e:
+            if e.code == 304: return 304, '', etag, modified
+            if e.code in (403, 404, 410): STAT['failed'] += 1; raise ExportGone(f'all_parks_ext.csv answered HTTP {e.code}')
+            err = e
+        except Exception as e:  # noqa: BLE001
+            err = e
+        if i == 0: time.sleep(5)
+    STAT['failed'] += 1
+    raise DoorClosed(f'all_parks_ext.csv not read: {err}')
+
+
+def export_by_location(text):
+    """{location: [park rows]} from the export text: ACTIVE parks only (as /location/parks lists them); a park in several locations
+    ('US-KY,US-TN,US-VA') is in each. Raises ExportGone when the header lacks a field the readers need."""
+    import csv, io
+    rd = csv.DictReader(io.StringIO(text))
+    miss = [f for f in EXPORT_NEEDS if f not in (rd.fieldnames or [])]
+    if miss: raise ExportGone(f'all_parks_ext.csv lacks {", ".join(miss)}')
+    out = {}
+    for r in rd:
+        if str(r.get('active', '1')).strip() not in ('1', 'true', 'True'): continue
+        row = {k: r.get(k) for k in EXPORT_FIELDS if k in r}
+        for k in ('latitude', 'longitude'):
+            try: row[k] = float(row[k])
+            except (TypeError, ValueError): row[k] = None
+        for k in ('active', 'entityId'):
+            try: row[k] = int(row[k])
+            except (TypeError, ValueError): pass
+        for loc in [x.strip() for x in str(r.get('locationDesc') or '').split(',') if x.strip()]: out.setdefault(loc, []).append(row)
+    return out
+
+
+def _sha(rows):
+    return hashlib.sha1(json.dumps(sorted((json.dumps(r, sort_keys=True) for r in rows)), separators=(',', ':')).encode()).hexdigest()[:16]
+
+
+def export_index():
+    return _read(root() / 'export-index.json') or {}
+
+
+def sync_export():
+    """For the park-list job only. Reads the export at most once a day; rewrites the saved list of every location whose rows changed
+    since yesterday's copy (the count fields a location's last /location/parks read had are kept per park). Returns a summary dict:
+    asked (bool), not_modified, parks, locations, changed [locs], removed [locs]."""
+    idx = export_index(); now = int(_now())
+    if idx and now - idx.get('saved', 0) < AGES['export']:
+        STAT['stored'] += 1
+        return {'asked': False, 'not_modified': False, 'parks': idx.get('parks', 0), 'locations': len(idx.get('locations') or {}), 'changed': [], 'removed': []}
+    status, text, etag, modified = _ask_export(idx.get('etag', ''), idx.get('modified', ''))
+    if status == 304:
+        idx['saved'] = now; _write(root() / 'export-index.json', idx)
+        return {'asked': True, 'not_modified': True, 'parks': idx.get('parks', 0), 'locations': len(idx.get('locations') or {}), 'changed': [], 'removed': []}
+    by = export_by_location(text)
+    if len(by) < 100: raise ExportGone(f'all_parks_ext.csv holds only {len(by)} locations (too thin)')
+    old = idx.get('locations') or {}
+    new = {loc: [len(rows), _sha(rows)] for loc, rows in by.items()}
+    changed = sorted(loc for loc in new if (old.get(loc) or [None, None])[1] != new[loc][1] or not (root() / 'parks' / f'{loc}.json.gz').exists())
+    removed = sorted(set(old) - set(new))
+    new_parks = {}
+    for loc in changed:   # parks new in a location that had a saved list (a first copy names none)
+        was = _read(root() / 'parks' / f'{loc}.json.gz')
+        if was is not None:
+            seen = {str(r.get('reference')) for r in (was.get('data') or []) if isinstance(r, dict)}
+            fresh = sorted({r['reference'] for r in by[loc]} - seen)
+            if fresh: new_parks[loc] = fresh
+    for loc in changed: _write_list(loc, by[loc], 'export')
+    for loc in removed: _write_list(loc, [], 'export')
+    names = {str(l.get('locationDesc')): l for l in ((_read(root() / 'locations.json') or {}).get('data') or []) if isinstance(l, dict)}
+    _write(root() / 'locations.json', {'saved': now, 'source': 'all_parks_ext.csv', 'data': [
+        {**{k: v for k, v in (names.get(loc) or {}).items() if k not in ('parks',)}, 'locationDesc': loc, 'parks': new[loc][0]} for loc in sorted(new)]})
+    parks = len({r['reference'] for rows in by.values() for r in rows})
+    first = not old   # the first export copy: nothing to compare with, so no location counts as changed for the list calls
+    _write(root() / 'export-index.json', {'saved': now, 'etag': etag, 'modified': modified, 'parks': parks, 'locations': new,
+                                          'extra_due': sorted(set(idx.get('extra_due') or []) | (set() if first else set(changed)))})
+    return {'asked': True, 'not_modified': False, 'parks': parks, 'locations': len(new), 'changed': [] if first else changed,
+            'written': len(changed), 'removed': removed, 'first_copy': first, 'new_parks': new_parks}
+
+
+def _write_list(loc, rows, source):
+    """Save one location's list; per park, the extra fields of the last /location/parks read are kept (the export lacks them)."""
+    p = root() / 'parks' / f'{loc}.json.gz'; old = _read(p) or {}
+    keep = {str(r.get('reference')): {k: r[k] for k in EXTRA_FIELDS if k in r} for r in (old.get('data') or []) if isinstance(r, dict)}
+    if source == 'export': rows = [{**keep.get(str(r.get('reference')), {}), **r} for r in rows]
+    doc = {'saved': int(_now()), 'source': source, 'loc': loc, 'count': len(rows), 'data': rows,
+           'extra_saved': int(_now()) if source == 'api' else old.get('extra_saved')}
+    _write(p, doc)
+
+
 def saved_locations():
     d = _read(root() / 'locations.json')
-    if not d: raise DoorClosed('no saved /locations copy (the park-list job kpc_pota_parklists.py makes it)')
+    if not d: raise DoorClosed('no saved locations list (the park-list job kpc_pota_parklists.py makes it from all_parks_ext.csv)')
     STAT['stored'] += 1
     return d['data']
 
 
 def saved_park_list(loc):
-    """The saved park list of one location ('US-KY', 'CA-ON', 'DE-BW' ...): the saved copy only, never POTA."""
+    """The saved park list of one location ('US-KY', 'CA-ON', 'DE-BW' ...): the saved copy only, never POTA. A location the export
+    lists no active park for is an empty list."""
     d = _read(root() / 'parks' / f'{loc}.json.gz')
-    if d is None: raise DoorClosed(f'no saved park list for {loc} (the park-list job kpc_pota_parklists.py makes it)')
+    if d is None:
+        if export_index().get('locations') is not None and loc not in export_index()['locations']: STAT['stored'] += 1; return []
+        raise DoorClosed(f'no saved park list for {loc} (the park-list job kpc_pota_parklists.py makes it)')
     STAT['stored'] += 1
     return d['data']
 
 
-def park_count(loc_row):
-    for k in ('parks', 'parkCount', 'park_count'):
-        if isinstance(loc_row.get(k), (int, float)): return int(loc_row[k])
-    return None
-
-
-def fetch_locations():
-    """For the park-list job only: /locations once a day (the stored copy when it is under a day old)."""
-    p = root() / 'locations.json'; d = _read(p)
-    if d and _now() - d.get('saved', 0) < AGES['locations']: STAT['stored'] += 1; return d['data'], False
-    data = _ask('/locations')
-    _write(p, {'saved': int(_now()), 'data': data})
-    return data, True
-
-
 def saved_list_info(loc):
-    """(saved unix time, saved count) of a saved park list, (None, None) when there is none."""
+    """(saved unix time, park count, source, extra_saved) of a saved park list; Nones when there is none."""
     d = _read(root() / 'parks' / f'{loc}.json.gz')
-    return (d.get('saved'), d.get('count')) if d else (None, None)
+    return (d.get('saved'), d.get('count'), d.get('source'), d.get('extra_saved')) if d else (None, None, None, None)
 
 
-def fetch_park_list(loc, count=None, due=False):
-    """For the park-list job only (it decides when a list is due: kpc_pota_parklists.py). A list with no saved copy is always
-    pulled; otherwise only when due. Returns (rows, pulled)."""
-    p = root() / 'parks' / f'{loc}.json.gz'; d = _read(p)
-    if d is not None and not due: STAT['stored'] += 1; return d['data'], False
+def fetch_park_list(loc):
+    """For the park-list job only: /location/parks/<loc> for a location it chose (changed in the export and a job needs a field
+    the export lacks; or the 7-day fallback when the export is gone). Saves it; returns the rows."""
     data = _ask('/location/parks/' + urllib.parse.quote(str(loc)))
-    _write(p, {'saved': int(_now()), 'count': count if count is not None else (len(data) if isinstance(data, list) else None), 'loc': loc, 'data': data})
-    return data, True
+    STAT_KIND['list'] = STAT_KIND.get('list', 0) + 1
+    _write_list(loc, data if isinstance(data, list) else [], 'api')
+    return data
 
 
 # ---------------------------------------------------------------- spots
+# KPC owner, 2026-11-16 (v4 answer 4): the club spot file lives on its own data-only branch (live-spots, one commit replaced each
+# time), never on main, and starts no site build. Everyone reads it from the raw file address; a reader goes to POTA directly only
+# when that file is more than 15 minutes old (or cannot be read).
 SPOT_FILE = 'data/pota/spots.json'
+SPOT_URL = 'https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/live-spots/spots.json'
+SPOT_STALE = 900   # 15 minutes
 
 
 def fetch_spots():
-    """For the club spot reader ONLY (kpc_pota_spots.py): /spot/activator, at most once per 5 minutes (stored copy first)."""
+    """For the club spot reader (kpc_pota_spots.py), and the stale-file fallback: /spot/activator, at most once per 5 minutes."""
     p = pathlib.Path(os.environ.get('KPC_POTA_SPOT_FILE') or SPOT_FILE); d = _read(p)
     if d and _now() - d.get('saved', 0) < AGES['spots']: STAT['stored'] += 1; return d['spots'], False
-    return _ask('/spot/activator'), True
+    data = _ask('/spot/activator'); STAT_KIND['spots'] = STAT_KIND.get('spots', 0) + 1
+    return data, True
 
 
-def club_spots(max_age=None):
-    """Everyone else's spots: the club spot file (written by kpc_pota_spots.py), never POTA. Returns (spots, age_seconds)."""
-    src = os.environ.get('KPC_POTA_SPOT_URL') or ''
+def club_spots(max_age=SPOT_STALE):
+    """Everyone else's spots: the club spot file (live-spots branch, raw address; KPC_POTA_SPOT_FILE = a local copy the same job just
+    wrote). When it is over max_age (15 minutes) old or unreadable, POTA is read directly through the door. Returns (spots, age_s)."""
     d = None
-    if src:
+    loc = os.environ.get('KPC_POTA_SPOT_FILE')
+    if loc: d = _read(loc)
+    if d is None:
         try:
-            with urllib.request.urlopen(urllib.request.Request(src, headers={'User-Agent': UA}), timeout=30) as f: d = json.loads(f.read().decode('utf-8'))
+            with urllib.request.urlopen(urllib.request.Request(os.environ.get('KPC_POTA_SPOT_URL') or SPOT_URL, headers={'User-Agent': UA}), timeout=30) as f:
+                d = json.loads(f.read().decode('utf-8'))
         except Exception: d = None  # noqa: BLE001
-    if d is None: d = _read(os.environ.get('KPC_POTA_SPOT_FILE') or SPOT_FILE)
-    if not d: raise DoorClosed('no club spot file (kpc_pota_spots.py writes data/pota/spots.json)')
-    age = _now() - d.get('saved', 0)
-    if max_age is not None and age > max_age: raise DoorClosed(f'the club spot file is {int(age)} s old (over {max_age} s)')
-    STAT['stored'] += 1
-    return d.get('spots') or [], age
+    age = (_now() - d.get('saved', 0)) if d else None
+    if d and age <= max_age: STAT['stored'] += 1; return d.get('spots') or [], age
+    print(f"::notice title=POTA door::the club spot file is {'missing' if d is None else f'{int(age)} s old'} (over {max_age} s): POTA read directly", flush=True)
+    data = _ask('/spot/activator'); STAT_KIND['spots_fallback'] = STAT_KIND.get('spots_fallback', 0) + 1
+    return data or [], 0
 
 
-# ---------------------------------------------------------------- the report line
+# ---------------------------------------------------------------- the report line and the receipt
+STAT_KIND = {}
+
+
+def receipt(extra=None):
+    """The real numbers of this run (v4 answer 3): requests by kind, stored-copy reads, refusals."""
+    return {'script': pathlib.Path(sys.argv[0] or 'python').name, 'when': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(_now())),
+            'asked_pota': STAT['asked'], 'by_kind': dict(sorted(STAT_KIND.items())), 'from_stored_copy': STAT['stored'],
+            'refused_by_budget_or_offline': STAT['refused'], 'unanswered': STAT['failed'], 'budget': BUDGET, **(extra or {})}
+
+
+def write_receipt(extra=None, name=None):
+    """Save the receipt in data/pota/saved/receipts/<script>.json (saved by the jobs that save data/pota/saved)."""
+    doc = receipt(extra)
+    _write(root() / 'receipts' / ((name or doc['script'].rsplit('.', 1)[0]) + '.json'), doc)
+    return doc
+
+
 def report_line(who=None):
     who = who or pathlib.Path(sys.argv[0] or 'python').name
-    return f"POTA door {who}: {STAT['asked']} asked POTA (budget {BUDGET}), {STAT['stored']} from the stored copy, {STAT['refused']} refused" + (f", {STAT['failed']} unanswered" if STAT['failed'] else '')
+    kinds = ', '.join(f'{k} {v}' for k, v in sorted(STAT_KIND.items()))
+    return (f"POTA door {who}: {STAT['asked']} asked POTA (budget {BUDGET}){f' ({kinds})' if kinds else ''}, {STAT['stored']} from the stored copy, "
+            f"{STAT['refused']} refused" + (f", {STAT['failed']} unanswered" if STAT['failed'] else ''))
 
 
 def _report():
@@ -244,32 +380,52 @@ def selftest():
         nonlocal ok_all, n
         n += 1; good = got == want; ok_all &= good
         print(f"{'PASS' if good else 'SELFTEST FAIL'} {name}" + ('' if good else f' (got {got!r}, want {want!r})'))
-    global _ask, _now, BUDGET
-    real_ask, real_now, real_budget = _ask, _now, BUDGET
+    global _ask, _ask_export, _now, BUDGET
+    real = (_ask, _ask_export, _now, BUDGET)
     calls, clock = [], [1_800_000_000.0]
-    answers = {'/locations': [{'locationDesc': 'US-ZZ', 'parks': 2}, {'locationDesc': 'DE-ZZ', 'parks': 1}],
-               '/location/parks/US-ZZ': [{'reference': 'US-9901'}, {'reference': 'US-9902'}], '/location/parks/DE-ZZ': [{'reference': 'DE-9901'}],
+    head = 'reference,name,active,entityId,locationDesc,latitude,longitude,grid\n'
+    def csv_of(extra=''):
+        rows = [f'XX-{i:04d},Park {i},1,1,XX-{i % 120:03d},1.0,2.0,AA00' for i in range(240)]
+        return head + '\n'.join(rows + ['US-9901,Test One,1,291,US-ZZ,37.1,-85.1,EM77', 'US-9902,Test Two,1,291,"US-ZZ,US-YY",37.2,-85.2,EM77',
+                                        'US-9903,Gone Park,0,291,US-ZZ,37.3,-85.3,EM77']) + extra + '\n'
+    export = {'text': csv_of(), 'etag': 'e1'}
+    answers = {'/location/parks/US-ZZ': [{'reference': 'US-9901', 'name': 'Test One', 'activations': 7, 'attempts': 8, 'locationDesc': 'US-ZZ'},
+                                         {'reference': 'US-9902', 'name': 'Test Two', 'activations': 1, 'attempts': 1, 'locationDesc': 'US-ZZ,US-YY'}],
                '/park/US-9901': {'reference': 'US-9901', 'name': 'Test'}, '/park/activations/US-9901?count=all': [{'activeCallsign': 'N0CALL'}],
                '/spot/activator': [{'reference': 'US-9901'}]}
     def fake_ask(path):
         if STAT['asked'] >= BUDGET: STAT['refused'] += 1; raise DoorClosed('budget')
         STAT['asked'] += 1; calls.append(path); return answers[path]
+    def fake_export(etag='', modified=''):
+        if STAT['asked'] >= BUDGET: STAT['refused'] += 1; raise DoorClosed('budget')
+        STAT['asked'] += 1; calls.append('export'); STAT_KIND['export'] = STAT_KIND.get('export', 0) + 1
+        if export.get('gone'): raise ExportGone('HTTP 404')
+        if etag and etag == export['etag']: return 304, '', etag, ''
+        return 200, export['text'], export['etag'], ''
     with tempfile.TemporaryDirectory() as t:
         os.environ['KPC_POTA_DIR'] = t; os.environ['KPC_POTA_SPOT_FILE'] = os.path.join(t, 'spots.json')
-        _ask, _now = fake_ask, (lambda: clock[0])
+        _ask, _ask_export, _now = fake_ask, fake_export, (lambda: clock[0])
         try:
-            locs, pulled = fetch_locations(); check('locations: asked once', (pulled, calls), (True, ['/locations']))
-            check('locations: the stored copy the same day', fetch_locations()[1], False)
-            rows, pulled = fetch_park_list('US-ZZ', 2); check('US list: first pull (no saved copy)', (pulled, len(rows)), (True, 2))
-            check('US list: not due -> the saved copy', fetch_park_list('US-ZZ', 2)[1], False)
-            check('US list: due -> pulled', fetch_park_list('US-ZZ', 3, due=True)[1], True)
-            check('the saved count goes with the list', saved_list_info('US-ZZ')[1], 3)
-            fetch_park_list('DE-ZZ')
-            check('world list: no count given -> the number of rows is kept', saved_list_info('DE-ZZ')[1], 1)
-            check('readers read the saved list, never POTA', (len(saved_park_list('US-ZZ')), calls.count('/location/parks/US-ZZ')), (2, 2))
+            r = sync_export()
+            check('export: one request, every location written from it (no list call); a first copy marks nothing changed', (r['asked'], calls, r['written'], r['changed'], r['first_copy']), (True, ['export'], 122, [], True))
+            check('export: active parks only; a park in two locations is in both', ([x['reference'] for x in saved_park_list('US-ZZ')], [x['reference'] for x in saved_park_list('US-YY')]), (['US-9901', 'US-9902'], ['US-9902']))
+            check('export: locations list made from the export (no /locations)', {l['locationDesc']: l['parks'] for l in saved_locations()}.get('US-ZZ'), 2)
+            check('export: the same day -> the stored copy, no request', (sync_export()['asked'], len(calls)), (False, 1))
+            clock[0] += DAY; r = sync_export()
+            check('export: next day, unchanged (304) -> nothing changed', (r['not_modified'], r['changed']), (True, []))
+            clock[0] += DAY; export.update(text=csv_of('\nUS-9904,New Park,1,291,US-ZZ,37.4,-85.4,EM77'), etag='e2'); r = sync_export()
+            check('export: a new park -> only its location changed, the new park named', (r['changed'], r['new_parks'], export_index()['extra_due']), (['US-ZZ'], {'US-ZZ': ['US-9904']}, ['US-ZZ']))
+            check('export: the changed list has the new park', len(saved_park_list('US-ZZ')), 3)
+            rows = fetch_park_list('US-ZZ')
+            check('a list call for a changed location keeps the extra fields', saved_park_list('US-ZZ')[0].get('activations'), 7)
+            clock[0] += DAY; export.update(text=csv_of('\nUS-9904,New Park Renamed,1,291,US-ZZ,37.4,-85.4,EM77'), etag='e3'); sync_export()
+            check('export rewrite of a location keeps each park\'s extra fields from its last list call', (saved_park_list('US-ZZ')[0].get('activations'), saved_list_info('US-ZZ')[2]), (7, 'export'))
             try: saved_park_list('FR-ZZ'); got = 'no error'
             except DoorClosed: got = 'DoorClosed'
-            check('a reader with no saved list gets DoorClosed (not a POTA call)', got, 'DoorClosed')
+            check('a location with no active park in the export is an empty list', got, 'no error')
+            check('too thin: a header without latitude is refused', _raises(lambda: export_by_location('reference,name,locationDesc\nA,B,C\n'), ExportGone), True)
+            clock[0] += DAY; export['gone'] = True
+            check('export gone -> ExportGone (the job falls back to the 7-day re-pull)', _raises(sync_export, ExportGone), True)
             n0 = len(calls); park('US-9901'); park('US-9901'); check('details: one ask, then the stored copy', len(calls) - n0, 1)
             clock[0] += 29 * DAY; park('US-9901'); check('details: 29 days later still stored', len(calls) - n0, 1)
             clock[0] += 2 * DAY; park('US-9901'); check('details: after 30 days asked again', len(calls) - n0, 2)
@@ -278,27 +434,34 @@ def selftest():
             sp, pulled = fetch_spots(); _write(os.environ['KPC_POTA_SPOT_FILE'], {'saved': int(clock[0]), 'spots': sp})
             check('spots: the reader asks', pulled, True)
             check('spots: under 5 minutes -> the saved file', fetch_spots()[1], False)
-            check('club_spots reads the club file', len(club_spots()[0]), 1)
-            BUDGET = len(calls) + 1; clock[0] += 31 * DAY
-            park('US-9901')
-            got = park('US-9901'.replace('1', '1'), ask_pota=True)   # stored again (fresh after the ask above)
-            clock[0] += 31 * DAY
-            stale = park('US-9901')   # budget spent: the old stored copy, counted as refused
+            n0 = len(calls); check('club_spots reads the club file (no request)', (len(club_spots()[0]), len(calls) - n0), (1, 0))
+            clock[0] += 16 * 60; n0 = len(calls)
+            with __import__('contextlib').redirect_stdout(__import__('io').StringIO()): got = club_spots()
+            check('club file over 15 minutes old -> POTA read directly (one request)', (len(got[0]), len(calls) - n0), (1, 1))
+            rc = receipt({'x': 1})
+            check('receipt: the real numbers by kind', (rc['asked_pota'] == len(calls), rc['by_kind'].get('export'), rc['by_kind'].get('details'), rc['x']), (True, 5, 2, 1))
+            BUDGET = len(calls); clock[0] += 31 * DAY
+            stale = park('US-9901')
             check('budget spent: the stored copy, the refusal counted', (stale['name'], STAT['refused'] >= 1), ('Test', True))
-            try: lookup('nothing stored'); got = 'asked'
-            except DoorClosed: got = 'DoorClosed'
-            check('budget spent and nothing stored: DoorClosed', got, 'DoorClosed')
-            check('report line', report_line('t').startswith(f'POTA door t: {len(calls)} asked POTA (budget {BUDGET}),'), True)
+            check('budget spent and nothing stored: DoorClosed', _raises(lambda: lookup('nothing stored'), DoorClosed), True)
+            check('report line', report_line('t').startswith(f'POTA door t: {len(calls)} asked POTA (budget {BUDGET}) ('), True)
             check('club User-Agent with a contact', 'Kentucky Portable Club' in UA and 'contact:' in UA, True)
             src = pathlib.Path(__file__).read_text()
-            check('paced through kpc_host_pace', 'kpc_host_pace.install()' in src, True)
+            check('paced through kpc_host_pace; /locations is never asked', ('kpc_host_pace.install()' in src, "_ask('/loc" + "ations')" in src), (True, False))
         finally:
-            _ask, _now, BUDGET = real_ask, real_now, real_budget
+            _ask, _ask_export, _now, BUDGET = real
             os.environ.pop('KPC_POTA_DIR', None); os.environ.pop('KPC_POTA_SPOT_FILE', None)
             for k in STAT: STAT[k] = 0
-            _REPORTED[0] = True
+            STAT_KIND.clear(); _REPORTED[0] = True
     print(f"SELFTEST {'PASS' if ok_all else 'FAIL'}: {n} cases")
     return 0 if ok_all else 1
+
+
+def _raises(fn, exc):
+    try: fn()
+    except exc: return True
+    except Exception: return False  # noqa: BLE001
+    return False
 
 
 if __name__ == '__main__':

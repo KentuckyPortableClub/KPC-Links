@@ -18,8 +18,9 @@ jobs:
       - uses: actions/checkout@v5
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
-      # Nov 16 (handoff item 7): the ONE park-list job. /locations once a day; a US / CA list only when it is due (count change);
-      # world lists weekly. Saved to data/pota/saved (the readers never call POTA). Same schedule as before.
+      # Nov 16 (handoff item 7, v4): the ONE park-list job. POTA's all-parks export once a day, compared with yesterday's copy; a
+      # location's own list only when it changed and a job needs a field the export lacks (world: weekly). Saved to data/pota/saved
+      # with its receipt (the readers never call POTA). Same schedule as before.
       - name: The park-list job (kpc_pota_parklists.py)
         run: python3 .github/scripts/kpc_pota_parklists.py
       - run: python3 .github/scripts/kpc_world_pota.py   # reads the saved copy only

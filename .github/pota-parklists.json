@@ -1,7 +1,11 @@
 {
- "about": "The one park-list job (kpc_pota_parklists.py, KPC owner 2026-11-16, handoff item 7): world lists are re-pulled on this weekday and this many days before the monthly world key check (the 3rd). US and CA lists only when POTA's own count changes. POTA's /locations rows carry no park count today (checked Nov 16, 2026), so a US / CA list is re-pulled after home_list_max_days until they do (owner's setting).",
+ "about": "The one park-list job (kpc_pota_parklists.py, KPC owner 2026-11-16, handoff item 7, v4): POTA's all-parks export (all_parks_ext.csv, checked Nov 16, 2026: 106,058 parks, fields reference, name, active, entityId, locationDesc, latitude, longitude, grid) is read once a day and compared with yesterday's copy; only changed locations are rewritten. /location/parks/<loc> only for a changed location whose jobs need a field the export lacks (extra_fields_locations any day; world_extra_locations on the world day), at most max_lists_per_run. If the export is gone, US / CA lists are re-pulled after home_list_max_days (fallback).",
  "world_weekday": "Wed",
  "world_before_monthly_check_days": 3,
+ "extra_fields_locations": ["US-*", "CA-*"],
+ "world_extra_locations": ["*"],
+ "max_lists_per_run": 20,
+ "max_details_per_run": 40,
  "home_list_max_days": 7,
- "minutes": 95
+ "minutes": 30
 }

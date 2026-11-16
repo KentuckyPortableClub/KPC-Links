@@ -163,9 +163,12 @@
 
 </div></section>
 <script>
-/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7): spots come from the club spot file (one club reader asks POTA every 5 minutes; pages never ask POTA for spots); a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
-window.KPCPota=window.KPCPota||(function(){const SPOTS='https://kentuckyportableclub.github.io/KPC-Links/data/pota/spots.json',DAY=864e5;let sp=null,spAt=0;
-async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(!r.ok)throw new Error('club spot file '+r.status);const j=await r.json();sp=Array.isArray(j)?j:(j&&Array.isArray(j.spots)?j.spots:[]);spAt=Date.now();return sp}
+/* KPC POTA door for the browser (KPC owner, 2026-11-16, handoff item 7, v4): spots come from the club spot file on the data-only live-spots branch (one club reader asks POTA every 5 minutes); a page reads POTA's spot list directly only when that file is more than 15 minutes old or cannot be read; a state's park list is kept in the browser for 24 hours; polls pause while the tab is hidden. The same copy is in every page script that needs it (tests/test_pota_door_nov16.py). */
+window.KPCPota=window.KPCPota||(function(){const SPOTS='https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/live-spots/spots.json',STALE=9e5,DAY=864e5;let sp=null,spAt=0;
+async function direct(){const r=await fetch('https://api.pota.app/spot/activator');if(!r.ok)throw new Error('POTA '+r.status);const a=await r.json();return Array.isArray(a)?a:[]}
+async function spots(){if(sp&&Date.now()-spAt<6e4)return sp;let a=null;
+ try{const r=await fetch(SPOTS+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'});if(r.ok){const j=await r.json();if(j&&Array.isArray(j.spots)&&Date.now()-1e3*(+j.saved||0)<=STALE)a=j.spots}}catch(_){}
+ if(!a)a=await direct();sp=a;spAt=Date.now();return sp}
 function spotsResponse(){return spots().then(a=>({ok:true,status:200,json:async()=>a}),()=>({ok:false,status:0,json:async()=>[]}))}
 async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(_){}if(c&&Array.isArray(c.rows)&&Date.now()-c.t<DAY)return c.rows;
  const ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=ctl&&setTimeout(()=>ctl.abort(),ms||30000);

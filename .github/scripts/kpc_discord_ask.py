@@ -404,7 +404,7 @@ def place(ref):
 
 def on_air():
     """1. 'who's on the air in Kentucky right now?' - POTA's live activator spots for Kentucky parks."""
-    try: sp = DOOR.club_spots(max_age=900)[0]   # the club spot file (one club reader asks POTA every 5 min), never POTA
+    try: sp = DOOR.club_spots()[0]   # the club spot file (one club reader asks POTA every 5 min); POTA only when it is over 15 min old
     except DOOR.DoorClosed: sp = None
     if sp is None:
         return f"POTA's spot list did not answer just now. Live spots: {SITE}kpc-spots.html"

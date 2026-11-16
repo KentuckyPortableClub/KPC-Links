@@ -117,8 +117,9 @@ async function getJSON(url, tries = 3) {
 }
 // Activation history for every Kentucky park: {ref: [[call, yyyymmdd, qsos], ...]}
 // KPC owner, 2026-11-16 (handoff item 7, be polite to POTA): the history is kept in REPO data (data/pota/social-history.json.gz,
-// saved by the social workflows) with each park's activation count. A run asks POTA once for Kentucky's park list (the counts),
-// then re-reads a park's activation list ONLY when its count changed. Same club User-Agent with a contact as the POTA door;
+// saved by the social workflows) with each park's activation count. The counts come from the club's SAVED Kentucky park list
+// (data/pota/saved/parks/US-KY.json.gz, kept by the one park-list job; no POTA call). A park's activation list is re-read ONLY when
+// its count there changed, or when the stored copy is over 30 days old (v4 answer 3). Same club User-Agent with a contact as the POTA door;
 // one request at a time, 2 s apart (kpc_host_pace's gap); one report line per run.
 const HIST = 'data/pota/social-history.json.gz';
 const POTA_UA = 'KPC-Links/1.0 (Kentucky Portable Club; +https://kentuckyportableclub.github.io/KPC-Links/; contact: https://github.com/KentuckyPortableClub/KPC-Links/issues)';
@@ -142,22 +143,23 @@ async function history() {
   try { saved = JSON.parse(zlib.gunzipSync(fs.readFileSync(HIST)).toString('utf8')); } catch (e) { /* none yet */ }
   saved.parks = saved.parks || {};
   let counts = {};
-  try { (await potaGet('/location/parks/US-KY') || []).forEach(p => { if (p && p.reference) counts[String(p.reference).toUpperCase()] = +p.activations || 0; }); }
-  catch (e) { notice(`POTA park list not read (${e.message}); the saved history is used`); counts = null; }
+  try { (JSON.parse(zlib.gunzipSync(fs.readFileSync('data/pota/saved/parks/US-KY.json.gz')).toString('utf8')).data || []).forEach(p => { if (p && p.reference && p.activations !== undefined) counts[String(p.reference).toUpperCase()] = +p.activations || 0; }); }
+  catch (e) { notice(`the saved Kentucky park list was not read (${e.message}); each park's history is re-read only after 30 days`); counts = {}; }
+  const MONTH = 30 * 864e5;
   const refs = KY.parks.map(p => p.c), out = {};
   let fails = 0, reread = 0;
   for (const ref of refs) {
     const old = saved.parks[ref], n = counts ? counts[ref] : undefined;
-    if (old && (counts === null || n === undefined || old.n === n)) { out[ref] = old.a; POTA_STAT.stored++; continue; }
+    if (old && Date.now() - (old.t || 0) < MONTH && (n === undefined || old.n === n)) { out[ref] = old.a; POTA_STAT.stored++; continue; }
     try {
       const j = await potaGet(`/park/activations/${ref}?count=all`);
       out[ref] = (Array.isArray(j) ? j : []).map(a => [String(a.activeCallsign || '').toUpperCase().replace(/\/.*$/, ''), String(a.qso_date || ''), +a.totalQSOs || 0]);
-      saved.parks[ref] = { n: n === undefined ? null : n, a: out[ref] }; reread++;
+      saved.parks[ref] = { n: n === undefined ? null : n, t: Date.now(), a: out[ref] }; reread++;
     } catch (e) { fails++; if (old) out[ref] = old.a; }
   }
   if (fails > refs.length * 0.1) throw new Error(`POTA API: ${fails} of ${refs.length} parks failed`);
   if (reread && !DRY) {
-    try { fs.mkdirSync('data/pota', { recursive: true }); const gz = zlib.gzipSync(JSON.stringify({ about: 'kpc_social.js activation history cache (item 7): re-read per park only when its activation count changes', parks: saved.parks }));
+    try { fs.mkdirSync('data/pota', { recursive: true }); const gz = zlib.gzipSync(JSON.stringify({ about: 'kpc_social.js activation history cache (item 7): re-read per park only when its activation count changes or the copy is over 30 days old', parks: saved.parks }));
       if (gz.length > 1e6) notice(`history cache is ${gz.length} bytes, over the 1 MB cap: not saved`); else fs.writeFileSync(HIST, gz); }
     catch (e) { notice(`history cache not saved (${e.message})`); }
   }

@@ -5,7 +5,9 @@
      kpc_net_guard's / kpc_pin_guard's text); a page script may not name it more often than the baseline (the browser door
      snippet is not counted; spots are never read from POTA by a page). A new file naming it fails.
   2. The door: its selftest (ages, budget, report line, User-Agent with a contact).
-  3. The park-list readers read the saved copy only; the spotter and hunters read the club spot file.
+  2b. v4: the park lists come from POTA's one all-parks export (no /locations); 20 location lists a run at most.
+  3. The park-list readers read the saved copy only; the spotter, hunters and Discord ask read the club spot file (live-spots
+     branch, raw address; POTA only when it is over 15 minutes old); only kpc_live_spots_push.sh force-updates, and only live-spots.
   4. Every page script that carries the browser door carries the SAME copy; no page reads POTA's spot feed.
   5. No schedule changed: every 'cron:' line is as on main (git), and no new workflow file."""
 import json, pathlib, re, subprocess, sys
@@ -63,8 +65,16 @@ check('kpc_social.js' in ' '.join(base) and base.get('.github/scripts/kpc_social
 import kpc_pota_door as D  # noqa: E402
 r = subprocess.run([sys.executable, '-B', str(SCR / 'kpc_pota_door.py'), '--selftest'], capture_output=True, text=True)
 check(r.returncode == 0 and 'SELFTEST PASS' in r.stdout, '2. the door selftest passes (stored copy first, ages, budget, report line)')
-check(D.AGES['spots'] == 300 and D.AGES['details'] == 30 * 86400 and D.AGES['activations'] == 30 * 86400 and D.AGES['locations'] == 86400,
-      '2. allowed ages: spots 5 min, /locations 1 day, details and activation history 30 days')
+check(D.AGES['spots'] == 300 and D.AGES['details'] == 30 * 86400 and D.AGES['activations'] == 30 * 86400 and D.AGES['export'] <= 86400 and 'locations' not in D.AGES,
+      '2. allowed ages: spots 5 min, the all-parks export once a day, details and activation history 30 days (no /locations)')
+# v4 answer 2: the park lists come from the one all-parks export, compared with yesterday's copy; /locations is never asked
+py_loc = sorted(str(f.relative_to(ROOT)) for f in SCR.glob('*.py') if "_ask('/locations')" in f.read_text(encoding='utf-8', errors='replace'))
+check(not py_loc, f'2. no script asks POTA for /locations ({py_loc})')
+pl = (SCR / 'kpc_pota_parklists.py').read_text(encoding='utf-8')
+check('DOOR.sync_export()' in pl and 'DOOR.ExportGone' in pl and 'DOOR.write_receipt(' in pl and D.EXPORT_URL.endswith('/all_parks_ext.csv'),
+      '2. the park-list job reads the all-parks export, falls back when it is gone, and writes its receipt')
+cfg = json.loads((ROOT / '.github/pota-parklists.json').read_text(encoding='utf-8'))
+check(cfg.get('max_lists_per_run') == 20 and cfg.get('home_list_max_days') == 7, '2. at most 20 location lists a run; the 7-day re-pull is the fallback')
 check('contact:' in D.UA and 'Kentucky Portable Club' in D.UA, '2. a club User-Agent with a contact')
 
 for f in ('kpc_world_pota', 'kpc_canada', 'kpc_northam', 'kpc_new_refs', 'kpc_state_links', 'kpc_top25', 'kpc_refcheck', 'kpc_new_lands'):
@@ -72,12 +82,34 @@ for f in ('kpc_world_pota', 'kpc_canada', 'kpc_northam', 'kpc_new_refs', 'kpc_st
     check('DOOR.saved_park_list(' in s and 'DOOR.fetch_' not in s and '_ask(' not in s, f'3. {f} reads the saved park lists only (never POTA)')
 s = (SCR / 'kpc_state_links.py').read_text(encoding='utf-8')
 check('DOOR.park(ref, ask_pota=False)' in s, '3. kpc_state_links reads park details from the saved copy only')
-for f in ('kpc_pota_spotter', 'kpc_hunters'):
-    check('DOOR.club_spots(' in (SCR / f'{f}.py').read_text(encoding='utf-8'), f'3. {f} reads the club spot file')
+for f in ('kpc_pota_spotter', 'kpc_hunters', 'kpc_discord_ask'):
+    check('DOOR.club_spots()' in (SCR / f'{f}.py').read_text(encoding='utf-8'), f'3. {f} reads the club spot file (POTA only when it is over 15 minutes old)')
+check(D.SPOT_STALE == 900 and D.SPOT_URL == 'https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/live-spots/spots.json', '3. the club spot file is read from the live-spots raw address; stale after 15 minutes')
+# v4 answer 4: the spot file goes to its own data-only branch, never main; the forced update is on that branch only
+push = (SCR / 'kpc_live_spots_push.sh').read_text(encoding='utf-8')
+check('push -q --force origin "$commit:refs/heads/live-spots"' in push and 'git commit-tree' in push and 'checkout' not in push.split('set -euo pipefail')[1],
+      '3. the spot file is one root commit force-updated on refs/heads/live-spots only (the checkout and main untouched)')
+forced = []
+for p in list((ROOT / '.github').rglob('*.sh')) + list((ROOT / '.github').rglob('*.yml')) + list((ROOT / '.github').rglob('*.py')):
+    if p.name == 'kpc_live_spots_push.sh': continue
+    for l in p.read_text(encoding='utf-8', errors='replace').splitlines():
+        if re.search(r'git\b.*\bpush\b.*(--force\b|--force-with-lease|\s-f\b|\s\+\S+:)', l) and not l.lstrip().startswith('#'): forced.append((str(p.relative_to(ROOT)), l.strip()))
+def _on_main(rel, line):   # a forced push already on main (its own job's data branch) is not this change's
+    t = subprocess.run(['git', 'show', f'origin/main:{rel}'], cwd=ROOT, capture_output=True, text=True).stdout
+    return line in {x.strip() for x in t.splitlines()}
+new_forced = [f'{r}: {l[:80]}' for r, l in forced if not _on_main(r, l)]
+check(not new_forced, f'3. no other new force-push in any script or workflow ({new_forced[:3]})')
+wf = (ROOT / '.github/workflows/kpc-pota-discord.yml').read_text(encoding='utf-8')
+check('kpc_live_spots_push.sh data/pota/spots.json' in wf and 'data/pota/spots.json .github/kpc-pota-spot-state.json' not in wf,
+      '3. the spotter job publishes the spot file on live-spots, never commits it to main')
+check('data/pota/spots.json' in (ROOT / '.gitignore').read_text(encoding='utf-8').splitlines(), '3. the spot file can never be committed to main by a broad add (.gitignore)')
 check('DOOR.fetch_spots()' in (SCR / 'kpc_pota_spots.py').read_text(encoding='utf-8'), '3. the one club spot reader asks through the door')
 
 one = {x for v in snips.values() for x in v}
 check(len(one) == 1 and len(snips) >= 10, f'4. every page script carries the same browser door ({len(snips)} files, {len(one)} version(s))')
+sn = next(iter(one), '')
+check("live-spots/spots.json" in sn and 'STALE=9e5' in sn and 'document.hidden' in sn and 'DAY=864e5' in sn,
+      '4. the browser door reads the live-spots file (POTA only when it is over 15 minutes old), pauses hidden tabs, keeps lists 24 h')
 spot_reads = sorted(k for k in now if re.search(r"api\.pota\.app/spot/activator", SNIP_RX.sub('', (ROOT / k).read_text(encoding='utf-8', errors='replace'))))
 check(not spot_reads, f'4. no page or script reads POTA\'s spot feed itself ({spot_reads})')
 
