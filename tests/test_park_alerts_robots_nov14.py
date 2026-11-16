@@ -123,5 +123,20 @@ except pa.Skipped:
 t0 = clock['t']; pa.gate('https://developer.nps.gov/api/v1/x'); pa.gate('https://developer.nps.gov/api/v1/y')
 check(clock['t'] - t0 >= 2.0 - 1e-9, 'keyed API still gets the 2 s gap')
 
+# Nov 15: ONE robots.txt rule everywhere = the store engine 3.6.2 rule (401 / 403 = "unavailable" = no rules; a plain web page = no
+# rules; a sign-in page, 429 = not read this run)
+ROBOTS.update({'a401.example.gov': 401, 'a403.example.gov': 403, 'a429.example.gov': 429, 'a410.example.gov': 410,
+               'page.example.gov': b'<!DOCTYPE html><html><body><h1>Welcome</h1></body></html>',
+               'signin.example.gov': b'<html><body><form action="/login"><input type="password" name="p"></form></body></html>',
+               'inpage.example.gov': b'<html><pre>User-agent: *\nDisallow: /a</pre></html>'})
+for h in ('a401', 'a403', 'a429', 'a410', 'page', 'signin', 'inpage'): PAGES[f'https://{h}.example.gov/a'] = b'ok'
+for h, want, what in (('a401', True, '401 = no rules (read)'), ('a403', True, '403 = no rules (read)'), ('a410', True, '410 = no file (read)'),
+                      ('a429', False, '429 = not read this run'), ('page', True, 'an ordinary web page = no rules (read)'),
+                      ('signin', False, 'a sign-in page = not read this run'), ('inpage', False, 'a page holding robots directives: its Disallow is obeyed')):
+    new_run()
+    try: pa.fetch(f'https://{h}.example.gov/a'); got = True
+    except pa.Skipped: got = False
+    check(got == want and (got == any(u == f'https://{h}.example.gov/a' for u, _ in calls)), f'robots.txt {what} (store engine 3.6.2 rule)')
+
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
