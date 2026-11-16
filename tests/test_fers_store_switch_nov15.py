@@ -463,7 +463,7 @@ import kpc_preflight as PF  # noqa: E402
 got = {k: KFZ.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')}
 # KPC owner, 2026-11-16 (handoff item 6): a hash this change did not move is its pinned value OR the newest declared changelog hash
 # (a later change may move it in its own declared line); not 'unchanged for ever'
-check(all(got[_x] in ({'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}[_x], __import__('kpc_preflight').newest_hash(_x)) for _x in got), f'US, CA and world rules hashes do not move, or moved only by a later declared line ({got})')
+check(all(got[_x] in ({'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'}[_x], __import__('kpc_preflight').newest_hash(_x)) for _x in got), f'US, CA and world rules hashes do not move, or moved only by a later declared line ({got})')
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 # KPC owner, 2026-11-15 (store run fixes, the next declared move 2fe19a32e5eb -> ...): this change's own line, wherever it now sits;
 # the newest line on top is checked by test_fers_store_fixes_nov15.py

@@ -484,17 +484,16 @@ def t_hash():
     # Nov 16 (world opened): the newest line is whatever the newest 2-fer change is (its own test pins it); this test checks the
     # shape of the bookkeeping and that THIS change's own line (cb894783186f -> 8f5b753ce842, approved 2026-11-15) is still there
     own = next((x for x in log.splitlines() if 'fers rules cb894783186f -> 8f5b753ce842' in x), '')
-    _lines = log.split('\n'); _i = next((i for i, x in enumerate(_lines) if x == ln.split('\n')[0]), -1)   # Nov 16 (item 6): wherever it sits
-    check(n == KFZ.rules_hash('fers') and _i >= 0 and _lines[_i + 1].startswith('Why:')
+    check(n == KFZ.rules_hash('fers') and ln in log and log[log.index(ln) + len(ln):].lstrip('\n').startswith('Why:')
           and 'APPROVED, decided_by KPC owner, 2026-11-15' in own,
-          f'8. the 2-fer hash moves by the newest changelog line, on top, with its Why line ({o} -> {KFZ.rules_hash("fers")}); this change\'s own line is kept')
+          f'8. the 2-fer hash moves by its newest changelog line, with its Why line (Nov 16: a line of another key may sit above it) ({o} -> {KFZ.rules_hash("fers")}); this change\'s own line is kept')
     sc = next((c for c in json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'] if c.get('id') == '2026-11-15-partial-view'), {})   # Nov 16: not the last entry any more
     check(sc['id'] == '2026-11-15-partial-view' and sc['from'] == 'cb894783186f' and sc['scope'] == 'none'
           and sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
           '8. scope entry 2026-11-15-partial-view (from cb894783186f, scope none, approved)')
     others = {k: KFZ.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')}
     # KPC owner, 2026-11-16 (handoff item 6): its pinned value OR the newest declared changelog hash (a later change moves it in its own line)
-    check(all(others[x] in ({'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}[x], PF.newest_hash(x)) for x in others),
+    check(all(others[x] in ({'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'}[x], PF.newest_hash(x)) for x in others),
           f'8. US, CA and world rules hashes do not move, or moved only by a later declared line ({others})')
 
 

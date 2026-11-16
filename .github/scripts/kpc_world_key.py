@@ -33,6 +33,29 @@ except Exception:  # noqa: BLE001
 
 
 def low(x): return ' '.join(unicodedata.normalize('NFKD', str(x or '')).encode('ascii', 'ignore').decode().lower().replace("'", '').split())
+
+
+NO_WHY = 'kept as pin: this record is on the park\'s NO list (data/world-key/overrides.json)'
+
+
+def enforce_no(parks, wov):
+    """KPC owner, 2026-11-16 (rule 21: 'a no means the record never joins that park on any build path'). The 'no' list was
+    read on the name paths only: once it had emptied a park's join, the later paths (the pin inside one area; the pin inside
+    + name words; the same-name / other-kind path; the Japan crosswalk) ran BECAUSE the join was empty and joined the same
+    record again (Nov 14 build: BZ-0051, CV-0012, DO-0110, ID-0060, NZ-0150, NZ-0624, NZ-0676, PA-0001, PA-0054, PR-0057
+    and 27 Australian parks). This runs once, after every join path: a joined record whose id or name is on the park's NO
+    list is taken out and listed as a candidate with NO_WHY. A park left with no record is a pin. -> parks changed."""
+    n = 0
+    for ref, p in parks.items():
+        no = {low(x) for x in ((wov.get(ref) or {}).get('no') or [])}
+        m = p.get('m') or []
+        if not no or not m: continue
+        gone = [q for q in m if low(str(q[0])) in no or low(q[1]) in no]
+        if not gone: continue
+        p['m'] = [q for q in m if q not in gone]
+        p['c'] = ([[q[0], q[1], q[2], NO_WHY] for q in gone] + [x for x in (p.get('c') or []) if x not in gone])[:6]
+        n += 1
+    return n
 from kpc_save import save_json, save_text  # noqa: E402  (Oct 25 storage plan: write only when the content changed)
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; the same scheme as kpc_us_key.py). Live runs have always fetched
 # outlines at 0.01 degrees (~1.1 km) and then THINNED every ring to about 60 points - a whole national park in 60
@@ -1454,6 +1477,8 @@ for cc in COUNTRIES:
         parks[ref] = {'n': name, 't': typ, 'm': m, 'c': c}
     # Nov 12 (KPC owner, 2026-11-12; kpc_jp_crosswalk.py): the Japan A10 crosswalk, JP only, behind the repo switch KPC_JP_A10_CROSSWALK (OFF until the A10 terms are signed)
     import kpc_jp_crosswalk as JPX; JPX.apply(cc, parks, P, recs, jstrip, near, inside, notice)  # noqa: E402,E702
+    _nn = enforce_no(parks, WOV)   # KPC owner, 2026-11-16: the NO list wins on every build path (rule 21)
+    if _nn: notice(f'World key {cc}', f'{_nn} park(s) had a record of their NO list joined by a later path: taken out (kept as pins or on their other records)')
     # IS THE BOUNDARY WHERE IT SHOULD BE? (Oct 24: the US key's Oct 21-22 check, ported.) A name can match and still
     # be the wrong place, so: does the park's own pin fall inside the land it was joined to? Sorted the same three
     # ways as the US ('no shape to check against' = the check is blind, not the join; 'edge' = within about a mile;

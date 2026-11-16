@@ -86,12 +86,13 @@ cur = {k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
 # (a later change may move it in its own declared line); not 'unchanged for ever'
 check(cur['us-key'] in ('d4ebfafce438', PF.newest_hash('us-key')) and cur['fers'] == PF.newest_hash('fers'),
       f"US hash unchanged, fers hash = its newest changelog line ({cur['us-key']}, {cur['fers']})")
-check(cur['ca-key'] == 'ba480fa34fb6' and cur['world-key'] == '158325de87ce',
+# Nov 16 (KPC owner, 2026-11-16): the world hash moved later in its own entry (the NO list on every build path); it must equal its newest changelog line
+check(cur['ca-key'] == 'ba480fa34fb6' and cur['world-key'] == PF.newest_hash('world-key'),
       f"CA and world hashes are the post-hold hashes ({cur['ca-key']}, {cur['world-key']})")
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 o_ca, n_ca, ln_ca = PF.changelog_hashes(log, 'ca-key')
 o_w, n_w, ln_w = PF.changelog_hashes(log, 'world-key')
-check(o_ca == '2a4d0154d95c' and n_ca == cur['ca-key'] and o_w == 'a47e0479ad41' and n_w == cur['world-key']
+check(o_ca == '2a4d0154d95c' and n_ca == cur['ca-key'] and 'world rules a47e0479ad41 -> 158325de87ce' in ln_ca and n_w == cur['world-key']
       and 'APPROVED, decided_by KPC owner, 2026-11-13' in ln_ca and 'CA-QC' in ln_ca,
       'the newest changelog line is this hold: CA 2a4d0154d95c -> ba480fa34fb6, world a47e0479ad41 -> 158325de87ce, decided_by KPC owner, 2026-11-13')
 sc_ca = json.loads((ROOT / '.github/ca-key-rule-scope.json').read_text(encoding='utf-8'))
@@ -106,8 +107,10 @@ states, saved, parks = KF.pending_scope('ca-key', '2a4d0154d95c', ROOT)
 check(states == {'CA-QC'} and saved is False and not parks,
       f'pending CA scope from 2a4d0154d95c is CA-QC only (got {states!r})')
 wstates, _, _ = KF.pending_scope('world-key', 'a47e0479ad41', ROOT)
-check(wstates == set() or wstates == 'none' or wstates is not None and len(wstates) == 0,
-      f'pending world scope from a47e0479ad41 rebuilds no country (got {wstates!r})')
+# Nov 16 (KPC owner, 2026-11-16): a later world entry (the NO list on every build path) has its own eight countries; the hold itself adds none
+_later = {'AU', 'BZ', 'CV', 'DO', 'GB', 'ID', 'NZ', 'PA'}
+check(wstates == 'none' or wstates is not None and set(wstates) <= _later,
+      f'pending world scope from a47e0479ad41: the hold rebuilds no country; only the later NO-list entry\'s countries are pending (got {wstates!r})')
 
 print('ALL PASS' if ok else 'FAILED')
 sys.exit(0 if ok else 1)

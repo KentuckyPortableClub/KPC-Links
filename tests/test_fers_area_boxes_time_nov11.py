@@ -225,7 +225,9 @@ with tempfile.TemporaryDirectory() as t:
 # golden moved 17ebca8a53004e16 -> aaf56aa08bd907bb. Proof: main 0a7df54's kpc_fers.py with ONLY that text changed gives aaf56aa08bd907bb too
 # (this area has no line park, so the 100 ft change itself does not touch it).
 # Nov 15 (the outline store switch-over): its scope is 'none', so a switch-off run's files do not move (the golden stays).
-GOLDEN = 'aaf56aa08bd907bb'
+# Nov 16 (KPC owner, 2026-11-16; a run writes only its own areas' files): the US-WA run no longer writes its neighbour's CA-BC.json
+# (aaf56aa08bd907bb with it). The other six files are the same, and both rows are still in US-WA.json.
+GOLDEN = '31c900c81c9fa209'
 
 
 def normal_area(script_dir):
@@ -254,5 +256,6 @@ def normal_area(script_dir):
 rc, hv, names, nsp = normal_area(pathlib.Path(os.environ.get('KPC_FERS_TEST_SCRIPTS') or S))
 if os.environ.get('KPC_FERS_PRINT_GOLDEN'): print('GOLDEN=' + hv, names, nsp)
 check(rc == 0 and nsp >= 2, f'the normal area runs and finds its spots (exit {rc}, {nsp} rows in {len(names)} files)')
-check(hv == GOLDEN, f'its files are byte for byte the ones main (11f908d9) wrote, with the Nov 14 about text ({hv} == {GOLDEN})')
+check(hv == GOLDEN, f'its files are byte for byte the ones main (11f908d9) wrote, with the Nov 14 about text, less the neighbour file ({hv} == {GOLDEN})')
+check('US-WA.json' in names and 'CA-BC.json' not in names, 'a US-WA run writes US-WA.json and leaves the neighbour CA-BC.json to its own run')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

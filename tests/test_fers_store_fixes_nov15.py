@@ -399,7 +399,7 @@ check(_sc['id'] == '2026-11-15-store-fixes' and _sc['from'] == '2fe19a32e5eb' an
 _k = {k: KFZ.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')}
 # KPC owner, 2026-11-16 (handoff item 6): a hash this change did not move is its pinned value OR the newest declared changelog hash
 # (a later change may move it in its own declared line); not 'unchanged for ever'
-check(all(_k[_x] in ({'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}[_x], __import__('kpc_preflight').newest_hash(_x)) for _x in _k), f'US, CA and world rules hashes do not move, or moved only by a later declared line ({_k})')
+check(all(_k[_x] in ({'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'}[_x], __import__('kpc_preflight').newest_hash(_x)) for _x in _k), f'US, CA and world rules hashes do not move, or moved only by a later declared line ({_k})')
 shutil.rmtree(TMP, ignore_errors=True)
 print('ALL PASS' if not FAILS else f'SOME FAILED ({len(FAILS)})')
 sys.exit(1 if FAILS else 0)
