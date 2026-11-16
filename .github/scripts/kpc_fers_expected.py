@@ -18,6 +18,9 @@ OUT = pathlib.Path('data/fers')
 NEAR_M = 1000.0   # HQ Oct 27 9:39 PM: a pair expected ONLY because people activated both the same day counts when the two
                   # parks' OUTLINES are within 1 km or touch (never pin to pin: a forest's pin can be 30 km from a park inside it)
 LIVE = ('candidate', 'very tight', 'water only', 'merged into')
+# KPC owner, 2026-11-15 23:14 ("we just show what we think are overlaps"): a 2-fer file no longer holds a row that denies a pair,
+# so a pair the bot stopped looking at has no row here either. Such a pair falls to the 'looked: no shared ground ...' line below
+# (rule 4 / rule 5) from pass 1's own looked list; the exact reason is in the run report's 'not shown' list (kpc_fers.no_denials).
 RULES = [(r'^dropped: side by side|two owners side by side', 'rule 14 (ownership: side by side, not layered)'),
          (r'^dropped: private', 'rule 2 + B-G2 (private land counts only for its own number)'),
          (r'^dropped: only inside an area closed', 'rule 10 (closed to the public)'),

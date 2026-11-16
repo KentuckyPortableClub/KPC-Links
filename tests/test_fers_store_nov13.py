@@ -625,7 +625,8 @@ _src = (ROOT / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
 _defs = [(m.start(), m.group(1)) for m in _re.finditer(r'^def (\w+)', _src, _re.M)]
 def _owner(pos): return max((d for d in _defs if d[0] <= pos), default=(0, '?'))[1]
 _direct = sorted({_owner(m.start()) for m in _re.finditer(r"\.write_text\(|\.write_bytes\(|gzip\.open\([^\n]*'w|[^.\w]open\([^\n]*['\"][wa]b?['\"]|json\.dump\(", _src)})
-check(_direct == ['_wsave', 'live_save'] and _src.count('def save_json') == 1 and 'return _save_json_raw(p, FCOUNT.apply(p, d)' in _src,
+check(_direct == ['_wsave', 'live_save'] and _src.count('def save_json') == 1
+      and 'return _save_json_raw(p, no_denials(p, FCOUNT.apply(p, d)), *a, **k)' in _src,
       f'writer trace: kpc_fers.py writes files only through save_json -> _save_json_raw, plus live_save / _wsave (turned off in a store run) ({_direct})')
 _ss = (ROOT / '.github/scripts/kpc_fers_store.py').read_text(encoding='utf-8')
 # KPC owner, 2026-11-15 (store trial fixes): + 2 private side files (store-held refs between passes, the store-withheld lists), both in the private folder

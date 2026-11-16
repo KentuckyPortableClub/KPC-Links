@@ -121,10 +121,14 @@ def main():
     import kpc_key_freeze as KFZ, kpc_preflight as PF
     log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
     o, n, ln = PF.changelog_hashes(log, 'fers')
-    check(o == 'e402c3819224' and n == KFZ.rules_hash('fers') and log.startswith(ln) and 'APPROVED, decided_by KPC owner, 2026-11-15' in ln and log.split('\n')[1].startswith('Why:'),
-          f'the 2-fer hash moves by the newest changelog line, on top, with its Why line (e402c3819224 -> {KFZ.rules_hash("fers")})')
-    sc = json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'][-1]
-    check(sc['id'] == '2026-11-15-public-view' and sc['from'] == 'e402c3819224' and sc['scope'] == 'none' and sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
+    # Nov 15 (partial boundaries): the newest line is whatever the newest 2-fer change is; this test checks the shape of the
+    # bookkeeping and that THIS change's own entries are still there (the newest hash is pinned by the newest change's own test).
+    check(n == KFZ.rules_hash('fers') and log.startswith(ln) and 'APPROVED, decided_by KPC owner, 2026-11-15' in ln and log.split('\n')[1].startswith('Why:'),
+          f'the 2-fer hash moves by the newest changelog line, on top, with its Why line ({o} -> {KFZ.rules_hash("fers")})')
+    check('fers rules e402c3819224 -> cb894783186f APPROVED, decided_by KPC owner, 2026-11-15' in log,
+          'the public-view change keeps its own changelog line (e402c3819224 -> cb894783186f)')
+    sc = [x for x in json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'] if x['id'] == '2026-11-15-public-view']
+    check(len(sc) == 1 and sc[0]['from'] == 'e402c3819224' and sc[0]['scope'] == 'none' and sc[0].get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
           'scope entry 2026-11-15-public-view (from e402c3819224, scope none, approved)')
     k = {x: KFZ.rules_hash(x) for x in ('us-key', 'ca-key', 'world-key')}
     check(k == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}, f'US, CA and world rules hashes do not move ({k})')

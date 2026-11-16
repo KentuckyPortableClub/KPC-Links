@@ -353,7 +353,9 @@ else:
         f2.write_text(json.dumps(dict(p1doc, spots=p1doc['spots'] + [dup])))
         r2 = run2(2); d2 = json.loads(f2.read_text())
         st2 = sorted(str(x.get('status'))[:17] for x in d2['spots'] if x.get('id') in (real[0]['id'], dup['id']))
-        check(r2.returncode == 0 and st2 == ['dropped in pass 2', 'pass 2'], f'call site (main): two rows over one spot: one row takes it, the other is dropped, never both ({st2})')
+        # OWNER RULE 2026-11-15 23:14: the row that did not take the spot is no longer WRITTEN at all (nothing in a 2-fer file
+        # ever says a pair is not a 2-fer). Exactly one row of the pair is in the file, and it is the one that took the spot.
+        check(r2.returncode == 0 and st2 == ['pass 2'], f'call site (main): two rows over one spot: one row takes it, the other is not written, never both ({st2})')
         # (b) the pair's only row moved far away (its box touches no spot): the real spot becomes a new row, it is not lost
         far = dict(real[0], id=real[0]['id'] + '-far', center=[45.0, -70.0], box=[-70.01, 44.99, -69.99, 45.01])
         f2.write_text(json.dumps(dict(p1doc, spots=[x for x in p1doc['spots'] if x is not real[0] and x.get('id') != real[0]['id']] + [far])))

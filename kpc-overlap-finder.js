@@ -7,7 +7,9 @@
    very tight list, missing-boundary list, rows with no public access within ~1 mile, 'how we checked'. Non-members never see a
    region whose public flag is false. Wording: 'POSSIBLE 2-FER' / 'POSSIBLE TRAIL OVERLAP', never 'is a 2-fer' / 'shared';
    GPS card 'By our maps you look inside both outlines', never 'you are in both parks'. FULL notice on the page, SHORT on every
-   row, popup, GPS card and exported file. */
+   row, popup, GPS card and exported file.
+   PARTIAL BOUNDARY (KPC owner, 2026-11-15): a row whose data carries partial_boundary gets a badge naming the park(s) whose public
+   official outline covers only PART of the park. Nothing is ever shown as "not a 2-fer": the bot writes no such row. */
 (function () {
   'use strict';
   var $ = function (id) { return document.getElementById(id); };
@@ -201,6 +203,8 @@
       '<b class="t" style="margin-top:6px">' + g.refs.map(function (r) { return esc(r) + ' ' + esc(nm(g, r)); }).join(' + ') + '</b>' +
       '<span class="m">' + sizeLine(g, ps) + (here && g._mi != null ? ' · ' + Math.round(g._mi) + ' mi from you' : '') + '</span>' +
       (apxPair(ps) ? '<span class="ov-badge bg-apx">APPROXIMATE 2-FER</span>' : '') +
+      /* KPC owner, 2026-11-15: only part of one park has a public official record, so the shape used was a piece of the park */
+      ((s.partial_boundary && s.partial_boundary.length) ? '<span class="ov-badge bg-apx">PARTIAL BOUNDARY: ONLY PART OF ' + esc(s.partial_boundary.join(', ')) + ' HAS A PUBLIC OFFICIAL OUTLINE</span>' : '') +
       (ps.some(function (x) { return x.tier === 'point-circle' || x.point_circle; }) ? '<span class="ov-badge bg-small">POINT CIRCLE: NO OFFICIAL BOUNDARY</span>' : '') +
       '<p class="ov-note">Last checked ' + niceDate(s.checked || s.found || '') + '</p>' + apxLine(g.refs, ps) + pcLine(ps) + (ps.length > 1 ? '' : accLine(s)) +
       '<div class="acts"><button type="button" data-open="' + esc(g.key) + '">🗺 SHOW ON THE MAP</button></div>' +

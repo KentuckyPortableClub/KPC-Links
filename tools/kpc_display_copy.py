@@ -22,7 +22,10 @@ What is drawn (in this order, per park; all of a park's areas together):
      are drawn, with their credit lines; a record that fails is never drawn, never measured against and never named in a public
      file. Owner rule 12 (2026-11-15; a store from core 3.6.3 on, whose entries carry park_public): a park whose index entry is not
      park_publishable is drawn ONLY from the records of its public view (publish_view "public-records-only", in_public_view()); with
-     no valid view it draws nothing. An older store keeps the per-record rule. A park
+     no valid view it draws nothing. Store core 3.6.4 (owner decision 2026-11-15 23:08: "little 2fer better then none and mark it
+     partial boundary"): a park whose view covers only PART of it (publish_view "public-records-partial", ratio under 0.80 and at
+     least 0.05) IS drawn, from its view records only, and its features carry 'boundary': 'partial' so the site can say the outline
+     is only part of the park; its held records are still never drawn, measured against or named. An older store keeps the per-record rule. A park
      with NO record that passes draws nothing here (it keeps today's outline; its POTA pin is never touched).
      Geometry kinds (index format 4): the same gate for every kind; an 'area' is drawn as before; a 'line' (official trail / river) is drawn AS GIVEN, open, every point,
      in every level, never buffered or made a polygon, no zone band drawn (LINE_RULE); a 'pin' (and a stand-in circle) is not
@@ -55,7 +58,8 @@ Files (folder OUT/<AREA>/), every file gzip level 9 with mtime 0 (same store = b
                                   points, cr (credit lines), mid,
                                   fine, and for a park across areas 'areas' and 'gen'; a park with an official line has
                                   'line': true and, when the store gives one, 'zone' [{rule, ft, from, bank}, ...]: only the
-                                  allow-listed values of ZONE_ENUMS / ZONE_FT, anything else dropped (counted privately).
+                                  allow-listed values of ZONE_ENUMS / ZONE_FT, anything else dropped (counted privately); and
+                                  'boundary': 'partial' on a park drawn from a PARTIAL public view (the only value ever written).
   mid/<REF>.geojson.gz            MIDDLE: one MultiLineString feature (this area's part of the park).
   fine/<REF>/<ix>_<iy>.geojson.gz FINE pieces: MultiLineString inside tile ix,iy (T x T degrees, T in INDEX fine[ref].t).
 Standard library only, Python 3.9+. No network.
@@ -222,7 +226,7 @@ def zone_ok(z):
     return True
 
 
-PUBLIC_PROPS = {'ref', 'name', 'g', 'detail_m', 'worst_m', 'points', 'cr', 'mid', 'fine', 'areas', 'gen', 'role', 'line', 'zone'}
+PUBLIC_PROPS = {'ref', 'name', 'g', 'detail_m', 'worst_m', 'points', 'cr', 'mid', 'fine', 'areas', 'gen', 'role', 'line', 'zone', 'boundary'}
 
 
 def _member_json(raw):
@@ -560,24 +564,52 @@ def wdpa_hit(rec, meta, layer_row):
 
 VIEW_NAME = 'public-records-only'   # owner rule 12 (2026-11-15), store core 3.6.3: see FORMAT-4.md / kpc_store_read.public_records
 VIEW_MIN_COVER = 0.80
+# PARTIAL view (owner decision 2026-11-15 23:08, his words: "lets go b for now and mark partial till we figure it out"): store core
+# 3.6.4 gives a held park whose own publishable records cover LESS than VIEW_MIN_COVER of it a view under its own name, down to the
+# floor VIEW_PARTIAL_MIN. Such a park IS drawn here, from its view records only, and the public file marks it "boundary": "partial"
+# so the site can say the outline is only part of the park. The held records are still never drawn, measured against or named.
+VIEW_NAME_PARTIAL = 'public-records-partial'
+VIEW_PARTIAL_MIN = 0.05
+VIEW_NAMES = (VIEW_NAME, VIEW_NAME_PARTIAL)
+PARTIAL_BOUNDARY = 'partial'   # the value of the public 'boundary' property on a park drawn from a partial view
+
+
+def view_ratio_ok(name, ratio):
+    """Is `ratio` in the band this view name allows (full: at least 0.80; partial: at least 0.05 and under 0.80)? An unknown name,
+    or a ratio that is not a number, is False: the park stays private (fail closed)."""
+    try: r = float(ratio or 0)
+    except (TypeError, ValueError): return False
+    if name == VIEW_NAME: return r >= VIEW_MIN_COVER
+    if name == VIEW_NAME_PARTIAL: return VIEW_PARTIAL_MIN <= r < VIEW_MIN_COVER
+    return False
+
+
+def view_of(e, park):
+    """The view name an index entry and its park BOTH name, valid and in its own ratio band, or '' when there is none."""
+    nm = e.get('publish_view')
+    keys = e.get('publish_view_records')
+    if nm not in VIEW_NAMES or not isinstance(keys, list) or not keys: return ''
+    if (park or {}).get('publish_view') != nm or park.get('publish_view_records') != keys or park.get('publish_view_basis') != e.get('publish_view_basis'): return ''
+    if not view_ratio_ok(nm, e.get('publish_view_ratio')): return ''
+    return nm
 
 
 def in_public_view(rec, e, park):
     """Owner rule 12 (2026-11-15: "if we dont have state then pad it is"; "we use what we got and better 1 wins out"). A park whose
     index entry says park_publishable true: every record may pass (the gate still judges each one). Any other park: ONLY the records
-    its public view names, and only when the index entry and the park agree on the view (name, records, basis, coverage at least
-    0.80). A park with no valid view draws nothing here (it keeps today's outline): its publishable records alone may be much smaller
-    than the park, and its held records are never drawn, measured against or named. A store written before core 3.6.3 has no
-    park_public field in its entries: its parks are judged by the per-record gate alone, exactly as before."""
+    its public view names, and only when the index entry and the park agree on the view (name, records, basis, and a coverage ratio in
+    that view name's own band). A park with no valid view draws nothing here (it keeps today's outline): its publishable records alone
+    may be much smaller than the park, and its held records are never drawn, measured against or named. A store written before core
+    3.6.3 has no park_public field in its entries: its parks are judged by the per-record gate alone, exactly as before."""
     if 'park_public' not in e: return True   # a store before core 3.6.3 (no view field at all): the per-record gate alone, as before
     if e.get('park_publishable') is True: return True
-    keys = e.get('publish_view_records')
-    if e.get('publish_view') != VIEW_NAME or not isinstance(keys, list) or not keys: return False
-    if (park or {}).get('publish_view') != VIEW_NAME or park.get('publish_view_records') != keys or park.get('publish_view_basis') != e.get('publish_view_basis'): return False
-    try:
-        if float(e.get('publish_view_ratio') or 0) < VIEW_MIN_COVER: return False
-    except (TypeError, ValueError): return False
-    return rec.get('key') in keys
+    nm = view_of(e, park)
+    return bool(nm) and rec.get('key') in e.get('publish_view_records')
+
+
+def partial_view(e, park):
+    """Is this area entry public only through a PARTIAL view, so the drawn land is only part of the park?"""
+    return e.get('park_publishable') is not True and view_of(e, park) == VIEW_NAME_PARTIAL
 
 
 def gate(rec, e, layers_tbl):
@@ -1257,12 +1289,14 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
             if others:
                 fall(f"also in {', '.join(others)}, which is not in this run (a park's areas are built together)"); continue
             parks, why_not, not_official, credit_of, name = {}, [], [], {}, ref
+            is_partial = False   # owner decision 2026-11-15 23:08: this park is public only through a PARTIAL view
             kinds = {'line': 0, 'pin': 0, 'unknown': 0}   # passing records of each kind (private report)
             zone_dropped = 0
             line_keys = set()
             for a in mine:
                 e = idx[a][0]['parks'][ref]
                 p, bad, n_mal = read_park(store_dir, ref, e, handles); parks[a] = (e, p); name = p.get('name') or name
+                if not preview and partial_view(e, p): is_partial = True   # its view covers only part of the park: marked partial below
                 if n_mal:
                     malformed[ref] = malformed.get(ref, 0) + n_mal; why_not.append(f'{n_mal} malformed record(s) (not an object, no plain key, or a key twice)')
                 if p.get('circle') or p.get('grade') != 'official':
@@ -1364,7 +1398,8 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                    'public_records': len(credit_of), 'distinct_records': len(recs) + len(lrecs),
                    'drawn_records': len(drawn) + len(lrecs), 'won': won, 'store_points': store_pts,
                    'line_records': len(lrecs), 'line_points': line_pts, 'pin_records_not_drawn': kinds['pin'],
-                   'unknown_kind_records_not_drawn': kinds['unknown'], 'zone_values_dropped': zone_dropped, **stp,
+                   'unknown_kind_records_not_drawn': kinds['unknown'], 'zone_values_dropped': zone_dropped,
+                   'partial_boundary': bool(is_partial), **stp,
                    'points': (ov['points'] if ov else 0) + line_pts, 'detail_m': ov['tol'] if ov else 0,
                    'worst_m': round(ov['worst'], 2) if ov else 0.0, 'hidden_rings': ov['hidden'] if ov else 0,
                    'mid_points': mid['points'] if mid else None, 'mid_detail_m': mid['tol'] if mid else None,
@@ -1403,6 +1438,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                         'worst_m': round(ov['worst'] + merged_add, 1) if ov else LINE_ROUND_M,
                         'points': sum(len(k) for r, i, k, q in (ov['rings'] if ov else []) if r.area == a) + sum(len(pt) for pt in la),
                         'cr': cr, 'mid': bool(mid), 'fine': bool(fine)}
+                if is_partial: base['boundary'] = PARTIAL_BOUNDARY   # owner decision 2026-11-15 23:08: only part of the park is drawn
                 if multi: base.update({'areas': mine, 'gen': gen})
                 if la:                     # official trail / river line(s) in this park, drawn as given; no corridor is drawn
                     base['line'] = True
@@ -1453,6 +1489,7 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
            'per_area': reps, 'rows': rows, 'fallback_reasons': why_private, 'held_records_reasons': held_private,
            'kinds_not_outlines': kinds_private, 'pin_records_not_drawn': sum(v['pin'] for v in kinds_private.values()),
            'zone_values_dropped': sum(r.get('zone_values_dropped', 0) for r in rows),
+           'partial_boundary_parks': sorted(r['ref'] for r in rows if r.get('partial_boundary') and not r.get('failed') and not r.get('kept_today_no_worse')),
            'refs_not_pota_left_out': bad_refs, 'malformed_records_left_out': malformed,
            'unknown_kind_records_not_drawn': sum(v['unknown'] for v in kinds_private.values()),
            'line_records_drawn': sum(r.get('line_records', 0) for r in rows if not r.get('failed') and not r.get('kept_today_no_worse')),
@@ -1621,6 +1658,8 @@ def check(out_dir, area, max_part=1_000_000, public=False, piece_cap=PIECE_CAP):
             if public and set(pr) - PUBLIC_PROPS: probs.append(f'{r}: properties not on the public list: {sorted(set(pr) - PUBLIC_PROPS)[:5]}')
             if public and 'zone' in pr and not (isinstance(pr['zone'], list) and pr['zone'] and all(zone_ok(z) for z in pr['zone'])):
                 probs.append(f'{r}: a zone note holds a value that is not on the allow-list')
+            if public and 'boundary' in pr and pr['boundary'] != PARTIAL_BOUNDARY:   # the only value this builder writes
+                probs.append(f'{r}: boundary is {pr["boundary"]!r}, not {PARTIAL_BOUNDARY!r}')
             if public and (pr.get('g') != 'official' or role not in ('park', 'line', 'hit') or ('line' in pr and pr['line'] is not True)):
                 probs.append(f'{r}: an unexpected g / role / line value')
             if pr.get('mid') and r not in (idx.get('mid') or {}): probs.append(f'{r}: middle level missing')

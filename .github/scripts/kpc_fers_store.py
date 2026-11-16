@@ -51,6 +51,17 @@ returns False. On, US + Canada runs (REGION na) only: for one process,
   Kentucky and world runs: install() returns False and the bot runs AS TODAY (downloads included): nothing here refuses them.
   Every area named for the run must be on the store list or be left out with its reason; a run that names no area (STATES) is
   refused (exit 87): a whole-region store run could rewrite the files of an area that is pulled back to the old path.
+Partial boundaries (OWNER DECISION, 2026-11-15 23:08, his words: "little 2fer better then none and mark it partial boundary"): store
+core 3.6.4 gives a held park whose own publishable records cover LESS than 0.80 of it a PARTIAL view (publish_view
+"public-records-partial", ratio at least 0.05). A public run USES it, exactly like a full view (the held records are never read), and
+  - marks every row that used it: partial_boundary (the refs) + partial_boundary_why (mark_partial);
+  - never lets it take a 2-fer away: a partial piece lies INSIDE the park, so an overlap found with it is real and may be ADDED, while
+    "no overlap" from it means UNKNOWN. So a not-live row of such a pair is never written as a verdict: the previous public file's
+    live row comes back unchanged (never worse) or the row is left out altogether (partial_only_adds, and carry_rows keeps the old
+    status for such a pair instead of "dropped: not found again").
+World areas (KPC owner, 2026-11-15): .github/fers-store-areas.json stays "world": "off", so every GitHub run is exactly as today.
+A run on a person's OWN machine may add the world areas with KPC_FERS_WORLD_STORE=on (world_env; ignored under GitHub Actions). It
+only adds the areas: a world store run is still refused unless it is a PRIVATE store run, because world 2-fers are club room only.
 Settings: KPC_FERS_STORE_DIR (default 'store'), KPC_FERS_STORE_MAX_DAYS (45), KPC_FERS_STORE_KIND = public | private (default
 public: a park with any record not marked publishable is held 'needs the private store'), KPC_FERS_PRIVATE_OUT (private only),
 KPC_FERS_STORE_LIMIT_MB (3000, the whole process), KPC_FERS_STORE_BUDGET (2,000,000 unpacked points), KPC_FERS_STORE_NEIGHBOURS
@@ -399,6 +410,7 @@ class Store:
                     return None, [], f'record {r.get("key")} of {ref}: the index and the store disagree on its licence fields', {}
                 by.setdefault(str(r.get('key')), (r, p))
         groups, left, private, pts, box, skipped = [], [], {}, 0, None, {}
+        self._view_partial = False
         view = self.view_keys(ref, stores, by) if self.kind == 'public' else None   # owner rule 12: a held park's public view
         for rid in ids:
             r, p = by.get(str(rid), (None, None))
@@ -434,28 +446,47 @@ class Store:
             return None, left, (f'every record of {ref} is left out by its use flag' if left else f'{ref} has no rings in the store'), {}
         if private and self.kind == 'public':
             return None, left, f'{ref} needs the private store (records not publishable: ' + ', '.join(f"{k} {v['licence_class']}" for k, v in sorted(private.items())[:4]) + ')', {}
+        if self._view_partial: PARTIAL_VIEW.add(ref)   # read from a PARTIAL view: every row that uses it is marked partial boundary
         return (groups if keep else None), left, '', {'points': pts, 'box': box, 'private': private, 'skipped': skipped}
 
-    VIEW_NAME = 'public-records-only'   # owner rule 12 (2026-11-15), store core 3.6.3
+    VIEW_NAME = 'public-records-only'            # owner rule 12 (2026-11-15), store core 3.6.3
+    VIEW_NAME_PARTIAL = 'public-records-partial'  # owner decision 2026-11-15 23:08, store core 3.6.4: a view of only PART of the park
+    VIEW_MIN_COVER = 0.80
+    VIEW_PARTIAL_MIN = 0.05
+
+    @classmethod
+    def view_ratio_ok(cls, name, ratio):
+        """Is `ratio` in the band this view name allows (full: at least 0.80; partial: at least 0.05 and under 0.80)? An unknown
+        name, or a ratio that is not a number, is False: the park needs the private store (fail closed)."""
+        try: r = float(ratio or 0)
+        except (TypeError, ValueError): return False
+        if name == cls.VIEW_NAME: return r >= cls.VIEW_MIN_COVER
+        if name == cls.VIEW_NAME_PARTIAL: return cls.VIEW_PARTIAL_MIN <= r < cls.VIEW_MIN_COVER
+        return False
 
     def view_keys(self, ref, stores, by):
         """Owner rule 12 ("if we dont have state then pad it is"; "we use what we got and better 1 wins out"): for a PUBLIC run, the
         record keys a park not publishable as a whole may use = the records its public view names, in every area file that holds the
         park (a whole-publishable area entry gives all its records). None when every entry is publishable (the old rule, unchanged)
         or when any entry has no valid view (then the old rule applies too: the park needs the private store). The view's records
-        are judged again below like any record (publishable, basis, WDPA); the other records are never read."""
+        are judged again below like any record (publishable, basis, WDPA); the other records are never read.
+        Store core 3.6.4 (owner decision 2026-11-15 23:08: "little 2fer better then none and mark it partial boundary"): a PARTIAL
+        view (publish_view "public-records-partial", ratio under 0.80 and at least 0.05) is used in the same way, and the park goes
+        on PARTIAL_VIEW: a 2-fer found with it is marked "partial boundary", and a partial shape may only ADD a 2-fer, never remove
+        or deny one (partial_only_adds)."""
         ents = [(a.entries.get(ref) or {}) for a in stores]
         if all(e.get('park_publishable') is True for e in ents): return None
-        keys = set()
+        keys, part = set(), False
         for a, e in zip(stores, ents):
             if e.get('park_publishable') is True: keys |= {str(k) for k in e.get('records') or []}; continue
-            vk = e.get('publish_view_records')
-            try: ratio_ok = float(e.get('publish_view_ratio') or 0) >= 0.80
-            except (TypeError, ValueError): ratio_ok = False
-            if e.get('publish_view') != self.VIEW_NAME or not isinstance(vk, list) or not vk or not ratio_ok: return None
+            vk, nm = e.get('publish_view_records'), e.get('publish_view')
+            if nm not in (self.VIEW_NAME, self.VIEW_NAME_PARTIAL) or not isinstance(vk, list) or not vk: return None
+            if not self.view_ratio_ok(nm, e.get('publish_view_ratio')): return None
             pk_ = next((p for r, p in by.values() if p and p.get('publish_view_records') == vk), None)
-            if pk_ is None or pk_.get('publish_view') != self.VIEW_NAME: return None   # the park itself must name the same view
+            if pk_ is None or pk_.get('publish_view') != nm: return None   # the park itself must name the same view
             keys |= {str(k) for k in vk}
+            part = part or nm == self.VIEW_NAME_PARTIAL
+        self._view_partial = part   # _examine puts the park on PARTIAL_VIEW only once it is really read (never a refused park)
         return keys
 
     def groups_for(self, ref, area, ids, clip=None):
@@ -574,9 +605,10 @@ def _pk(s): return (tuple(sorted(s.get('refs') or [])), s.get('kind'))
 
 def carry_rows(new, old, held, today=None):
     """Every LIVE row of the previous file whose pair + kind this run did not make again comes back as a row, so the post-line
-    check never sees a live pair vanish: a park of it held -> 'not sure: held: <why>' (old answer kept for a person); otherwise
-    -> 'dropped: not found again ...' (it goes on the change list as gone). passes [0, 0, 0]: no later pass tests it again.
-    Returns the number of rows added."""
+    check never sees a live pair vanish: a park of it held -> 'not sure: held: <why>' (old answer kept for a person); a park read
+    from a PARTIAL public view -> the row comes back UNCHANGED (owner decision 2026-11-15 23:08: "no overlap" from a partial shape
+    means UNKNOWN, never a denial, so never worse keeps today's row); otherwise -> 'dropped: not found again ...'. passes [0, 0, 0]:
+    no later pass tests it again. Returns the number of rows added."""
     if not isinstance(new, dict) or not isinstance(old, dict): return 0
     have = {_pk(s) for s in new.get('spots') or [] if isinstance(s, dict)}
     add = []
@@ -589,6 +621,10 @@ def carry_rows(new, old, held, today=None):
         if hr:
             x['status'] = 'not sure: held: ' + '; '.join(f'{r}: {w}' for r, w in sorted(hr.items())) + f' (last answer: {was})'
             x['held'] = hr
+        elif set(s.get('refs') or []) & PARTIAL_VIEW:   # owner decision 2026-11-15 23:08: a partial shape can never rule a 2-fer out
+            x['status'] = str(s.get('status') or '')     # the row stands exactly as it did (never worse); the mark says why
+            x['partial_kept'] = PARTIAL_KEPT
+            PARTIAL['kept'] += 1
         else:
             x['status'] = f'dropped: not found again on the outline store outlines (last answer: {was}); on the change list for a person'
         add.append(x); have.add(_pk(s))
@@ -739,6 +775,64 @@ def keep_old_rows(new, old, today=None, final=True, carry=None):
         if carry is not None and not final and prev is not None and _live(x) and x.get('id'): carry[x['id']] = prev
     KEPT['n'] += n
     return n
+
+
+PARTIAL_VIEW = set()   # parks read on this run from a PARTIAL public view (store core 3.6.4): their boundary is only part of the park
+PARTIAL_TAG = 'partial boundary'
+PARTIAL_WHY = ('partial boundary: only part of this park has a public official record, so the shape used here is a piece of the '
+               'park, not the whole of it')
+PARTIAL_KEPT = 'not re-checked (partial boundary: a partial shape can never rule a 2-fer out)'
+PARTIAL = {'marked': 0, 'kept': 0, 'denials_blocked': 0}   # counts for the run report (no park names here)
+
+
+def mark_partial(doc):
+    """OWNER DECISION 2026-11-15 23:08 (his words: "little 2fer better then none and mark it partial boundary"). Every row that
+    used a park read from a PARTIAL public view is MARKED: partial_boundary = the refs whose boundary was partial, and a plain
+    partial_boundary_why line. The status word is NOT touched (the site reads its first word), so a partial 2-fer is shown exactly
+    like any other candidate, with the mark beside it. Nothing about the park's held records is written. -> rows marked."""
+    n = 0
+    for x in (doc or {}).get('spots') or []:
+        if not isinstance(x, dict): continue
+        if x.get('store_held') == HELD_TAG: continue   # a 'never worse' carried row must stay an EXACT copy (the push check checks that)
+        rr = sorted(r for r in x.get('refs') or [] if r in PARTIAL_VIEW)
+        if not rr:
+            x.pop('partial_boundary', None); x.pop('partial_boundary_why', None); continue
+        x['partial_boundary'] = rr
+        x['partial_boundary_why'] = PARTIAL_WHY
+        n += 1
+    PARTIAL['marked'] = n
+    return n
+
+
+def partial_only_adds(doc, old):
+    """OWNER DECISION 2026-11-15 23:08: "A partial shape can only ADD a 2-fer. It must never REMOVE or deny one: 'no overlap' from a
+    partial shape means 'unknown'." A park's partial view is a piece that lies INSIDE the park, so an overlap found with it is a
+    real overlap (it may be ADDED). The other way round says nothing: the overlap could be in the part we have no public record of.
+    So, for every pair that used a park read from a PARTIAL view:
+      * a row this run made that is NOT live (a 'dropped ...' / denial of any kind) is never left in the file as a verdict. When the
+        previous PUBLIC file had a LIVE row for the same pair and kind, that row is put back UNCHANGED (never worse, marked
+        PARTIAL_KEPT); when it had none, the row is taken out (nothing is shown: no row, no denial);
+      * a live row is kept as it is (mark_partial marks it).
+    Rows of pairs with no partial-view park are left alone here (the general no-denial rule is kpc_fers.no_denials). -> (rows put
+    back, denial rows taken out)."""
+    if not isinstance(doc, dict) or not isinstance(doc.get('spots'), list) or not PARTIAL_VIEW: return 0, 0
+    olds = {}
+    for y in (old or {}).get('spots') or []:
+        if isinstance(y, dict) and _full_row(y) and _live(y): olds.setdefault(_pk(y), y)
+    keep, back, out = [], [], 0
+    have_live = {_pk(x) for x in doc['spots'] if isinstance(x, dict) and _live(x)}
+    for x in doc['spots']:
+        if not isinstance(x, dict) or _live(x) or x.get('store_held') == HELD_TAG or not (set(x.get('refs') or []) & PARTIAL_VIEW):
+            keep.append(x); continue   # a carried 'never worse' row is left exactly as it is
+        if str(x.get('status') or '').startswith('merged') or _pk(x) in have_live:
+            keep.append(x); continue   # the pair is still shown by another row of the same pair: not a denial
+        y = olds.get(_pk(x))
+        out += 1
+        if y is not None:
+            z = json.loads(_canon(y)); z['partial_kept'] = PARTIAL_KEPT; back.append(z)
+    doc['spots'] = keep + back
+    PARTIAL['kept'] += len(back); PARTIAL['denials_blocked'] += out
+    return len(back), out
 
 
 HELD_TAG = 'not re-checked (outline held privately)'
@@ -1337,6 +1431,10 @@ def store_counts():
             'river bank to-do (stretches)': len(RIVER_TODO), 'rows kept (kept: not checked in a store run)': KEPT['n'],
             'rows carried unchanged (' + HELD_TAG + ')': dict(sorted(CARRIED.items())), 'of them live rows': dict(sorted(CARRIED_LIVE.items())),
             'area files left as they were (area does not use the store)': len(SKIPPED_FILES),
+            'parks read from a PARTIAL public view (only part of the park has a public record)': len(PARTIAL_VIEW),
+            'rows marked "' + PARTIAL_TAG + '"': PARTIAL['marked'],
+            'rows of a partial-boundary pair kept unchanged (a partial shape can never rule a 2-fer out)': PARTIAL['kept'],
+            'rows of a partial-boundary pair NOT written (nothing is shown; no "not a 2-fer" is ever written)': PARTIAL['denials_blocked'],
             'line parks far from this run not in the store (not listed)': FAR_LINES['n']}
 
 
@@ -1640,9 +1738,10 @@ def bank_check(KF):
     KF.line_spots = line_spots
 
 
-def store_areas(path=None):
+def store_areas(path=None, env=None):
     """.github/fers-store-areas.json -> {'all': bool, 'list': set, 'except': {area: why}, 'world': bool}, or None with the reason
-    when the file is missing or not in the one shape this reader knows (fail closed: then no area uses the store)."""
+    when the file is missing or not in the one shape this reader knows (fail closed: then no area uses the store).
+    'world' is true when the FILE says "world": "on" or, off GitHub only, when KPC_FERS_WORLD_STORE is on (world_env)."""
     p = pathlib.Path(path or STORE_AREAS_FILE)
     try: doc = json.loads(p.read_text(encoding='utf-8'))
     except Exception as e: return None, f'{p.name} cannot be read ({_err(e)})'  # noqa: BLE001
@@ -1653,7 +1752,22 @@ def store_areas(path=None):
     if not (isinstance(ex, list) and all(isinstance(x, str) and re.fullmatch(r'(US|CA|W)-[A-Z]{2}', x) for x in ex)):
         return None, f'{p.name}: "except" must be a list of area codes'
     if w not in ('on', 'off'): return None, f'{p.name}: "world" must be "on" or "off"'
-    return {'all': a == STORE_ALL, 'list': set(a) if isinstance(a, list) else set(), 'except': set(ex), 'world': w == 'on'}, ''
+    world = w == 'on' or world_env(env)
+    return {'all': a == STORE_ALL, 'list': set(a) if isinstance(a, list) else set(), 'except': set(ex), 'world': world}, ''
+
+
+WORLD_ENV = 'KPC_FERS_WORLD_STORE'
+
+
+def world_env(env=None):
+    """The off-GitHub switch for world store areas (KPC owner, 2026-11-15: the world store is about 65 per cent built and he wants
+    world 2-fers on his PC now). .github/fers-store-areas.json stays "world": "off", so EVERY GitHub run is exactly as today; a run
+    on a person's own machine may set KPC_FERS_WORLD_STORE=on instead. It only ever adds the world areas to the list: a world store
+    run is still refused unless it is a PRIVATE store run (world 2-fers are club room only), and it is ignored under GitHub Actions
+    (there the repo file alone decides). It changes nothing for a US or Canadian run."""
+    env = os.environ if env is None else env
+    if str(env.get('GITHUB_ACTIONS') or '').strip().lower() == 'true': return False
+    return str(env.get(WORLD_ENV) or '').strip().lower() in ('1', 'on', 'yes', 'true')
 
 
 def area_use(area, cfg):
@@ -1679,7 +1793,7 @@ def install(KF, env=None, store=None):
     if mode(env) != 'on': return False
     if getattr(KF, '_STORE_INSTALLED', False): return True   # once per process (kpc_fers_store.py run + the hook in kpc_fers.main())
     region = getattr(KF, 'REGION', 'na')
-    cfg, cfg_why = store_areas()
+    cfg, cfg_why = store_areas(env=env)
     world_on = region == 'world' and cfg is not None and cfg['world']
     if region != 'na' and not world_on:
         print(f'::notice title=2-fer outline store::{SWITCH} is on, but this is the {KF.REGION} run: the outline store is not used and the bot runs as today', flush=True)
@@ -1825,6 +1939,10 @@ def install(KF, env=None, store=None):
                 n = carry_rows(d, old, FLAGS, st.today)
                 if n: KF.LOG.append(f"{d['st']}: {n} live rows of the last file carried with their reason (held park or not found again)")
                 tag_club_room(d, PRIVATE)
+                # owner decision 2026-11-15 23:08: mark every 2-fer found with a partial boundary, and make sure a partial shape
+                # can only ADD a row (a denial or a lost row of such a pair is never written)
+                b, o_ = partial_only_adds(d, old)
+                if b or o_: KF.LOG.append(f"{d['st']}: a partial boundary can only add a 2-fer: {b} row(s) of the last file kept unchanged, {o_} row(s) not written")
                 closed_status(d)
                 owner_status(d)
                 line_status(KF, d)
@@ -1838,6 +1956,8 @@ def install(KF, env=None, store=None):
                 if st.kind != 'private':   # OWNER RULE 'never worse' (M2 + M3): a withheld park's public rows are carried unchanged
                     c = carry_held_rows(KF, d, old)
                     if c: KF.LOG.append(f"{d['st']}: {c} rows of parks whose outline is held privately carried unchanged ({HELD_TAG})")
+                n_mk = mark_partial(d)   # last: every row left in the file that used a partial boundary says so
+                if n_mk: KF.LOG.append(f"{d['st']}: {n_mk} row(s) marked '{PARTIAL_TAG}' (store core 3.6.4)")
                 LINE_ROWS[d['st']] = sum(1 for x in d.get('spots') or [] if x.get('kind') in ('trail', 'river') and _live(x) and not x.get('store_held'))
         except Exception as e: KF.LOG.append(f'outline store row carry: {str(e)[:80]}')  # noqa: BLE001  (the write guard still checks the file)
         return d
