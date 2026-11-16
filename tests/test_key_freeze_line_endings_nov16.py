@@ -78,34 +78,48 @@ class LineEndings(unittest.TestCase):
             self.assertNotEqual(F.rules_hash('us-key', root=tmp), before)
 
 
+def check_attr(rels, attr='eol'):
+    """what git itself says the attribute is for each path: {path: value}, or None when git cannot be asked here"""
+    r = subprocess.run(['git', 'check-attr', attr, '--', *rels], cwd=str(ROOT), capture_output=True, text=True)
+    if r.returncode != 0:
+        return None
+    got = {}
+    for line in (r.stdout or '').splitlines():
+        if f': {attr}: ' in line:
+            path, _, val = line.partition(f': {attr}: ')
+            got[path] = val.strip()
+    return got
+
+
 class GitAttributes(unittest.TestCase):
-    def test_every_rule_file_is_named(self):
-        p = ROOT / '.gitattributes'
-        self.assertTrue(p.is_file(), 'there is no .gitattributes: a Windows checkout would get CRLF')
-        named = {}
-        for line in p.read_text(encoding='utf-8').splitlines():
-            line = line.strip()
-            if not line or line.startswith('#'):
-                continue
-            bits = line.split()
-            named[bits[0]] = set(bits[1:])
-        for rel in rule_files():
-            self.assertIn(rel, named, f'{rel} is a rule file but is not in .gitattributes')
-            self.assertIn('eol=lf', named[rel], f'{rel} is in .gitattributes without eol=lf')
+    def test_there_is_an_attributes_file(self):
+        self.assertTrue((ROOT / '.gitattributes').is_file(), 'there is no .gitattributes: a Windows checkout would get CRLF')
 
     def test_git_agrees_the_rule_files_are_lf(self):
-        """git itself must report eol=lf for the rule files (so the attribute file is really in force)."""
+        """git itself must report eol=lf for every rule file, however .gitattributes spells it (name or pattern)."""
         rels = rule_files()
-        r = subprocess.run(['git', 'check-attr', 'eol', '--', *rels], cwd=str(ROOT), capture_output=True, text=True)
-        if r.returncode != 0:
+        got = check_attr(rels)
+        if got is None:
             self.skipTest('git check-attr is not available here')
-        got = {}
-        for line in (r.stdout or '').splitlines():
-            if ': eol: ' in line:
-                rel, _, val = line.rpartition(': eol: ')
-                got[rel[:-len(': eol')] if rel.endswith(': eol') else rel.split(': eol')[0]] = val.strip()
         for rel in rels:
             self.assertEqual(got.get(rel), 'lf', f'git does not see eol=lf for {rel}: {got.get(rel)!r}')
+
+    def test_the_answer_keys_and_outlines_are_lf_too(self):
+        """KPC-Data's chain plan hashes the BYTES of the answer-key files as well, so they must be LF in every checkout."""
+        rels = [p for p in ('data/us-key/US-RI.json', 'data/ca-key/CA.json', 'data/world-key/GB.json',
+                            'data/us-key/index.json', 'data/us-key/layers.json') if (ROOT / p).is_file()]
+        self.assertTrue(rels, 'no answer-key files found in this checkout')
+        got = check_attr(rels)
+        if got is None:
+            self.skipTest('git check-attr is not available here')
+        for rel in rels:
+            self.assertEqual(got.get(rel), 'lf', f'git does not see eol=lf for {rel}: {got.get(rel)!r}')
+
+    def test_packed_files_are_left_alone(self):
+        got = check_attr(['data/outlines/US-RI.geojson.gz'], 'text')
+        if got is None:
+            self.skipTest('git check-attr is not available here')
+        self.assertEqual(got.get('data/outlines/US-RI.geojson.gz'), 'unset', 'a .gz must not be converted')
 
 
 class HashIsStillTheSame(unittest.TestCase):
