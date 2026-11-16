@@ -1,19 +1,17 @@
 {
  "open": [
-  "KPC-Data/kpc-copy-from-links.yml",
-  "KPC-Data/kpc-pages-sync.yml",
+  "KPC-Data/kpc-fers-pending.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-waiting-room.yml",
-  "kpc-boards.yml",
+  "KPC-Data/kpc-watchdog.yml",
+  "guard:pubnoindex:kpc-log-checker.html",
+  "kpc-band-alerts.yml",
   "kpc-bot-queue.yml",
   "kpc-ca-key.yml",
-  "kpc-discord-watch.yml",
+  "kpc-discord-relay.yml",
   "kpc-fb-comments.yml",
   "kpc-guide-pdf.yml",
   "kpc-hunters.json",
-  "kpc-hunters.yml",
-  "kpc-park-alerts.yml",
-  "kpc-pota-discord.yml",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
@@ -364,13 +362,12 @@
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Access_Sites/FeatureServer/28",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
-  "pages-deploy.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-15T16:49+00:00",
+ "checked": "2026-11-16T12:25+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3263,28 +3260,28 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2909
+   "b": 2910
   },
   "L:data/ky-answer-key.json": {
    "b": 31658
   },
   "L:data/us-key": {
-   "b": 50363706
+   "b": 50629889
   },
   "L:data/ca-key": {
-   "b": 5826519
+   "b": 5833101
   },
   "L:data/world-key": {
-   "b": 38466663
+   "b": 38466222
   },
   "L:data/pota": {
-   "b": 5823837
+   "b": 5824190
   },
   "L:data/canada.json": {
    "b": 2559039
   },
   "L:kpc-top25.json": {
-   "b": 16584
+   "b": 16585
   },
   "L:data/ky-official-maps.json": {
    "b": 91558
@@ -3311,10 +3308,10 @@
    "b": 5426391
   },
   "L:kpc-events-auto.json": {
-   "b": 20937
+   "b": 21245
   },
   "L:kpc-special-events.json": {
-   "b": 18197
+   "b": 17150
   },
   "L:kpc-youtube.json": {
    "b": 2948
@@ -3348,16 +3345,16 @@
    "b": 137361
   },
   "D:data/truth": {
-   "b": 20028588
+   "b": 20018247
   },
   "D:data/alerts/eu.json": {
-   "b": 121449
+   "b": 158570
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 183812
+   "b": 183793
   },
   "D:data/intake": {
    "b": 39695215,
