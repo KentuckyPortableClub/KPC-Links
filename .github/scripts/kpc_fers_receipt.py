@@ -118,6 +118,10 @@ def merge(out, tag, pass_no, section, fresh=False):
     doc['about'] = ('Proof of work of the 2-fer bot, one section per pass (kpc_fers_receipt.py). Counts only. '
                     'No receipt, or an area that is not "measured", means the area is red.')
     doc['tag'] = tag
+    # owner, Nov 16: every receipt shows the POTA request count of the pass (the POTA door's own count when this run loaded it;
+    # the 2-fer bot itself no longer asks POTA, so otherwise 0)
+    door = sys.modules.get('kpc_pota_door')
+    section = {**section, 'pota_requests': int(getattr(door, 'STAT', {}).get('asked', 0)) if door else 0}
     doc.setdefault('passes', {})[str(pass_no)] = section
     return p, doc
 

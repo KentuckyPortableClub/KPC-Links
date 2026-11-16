@@ -161,6 +161,8 @@ else:
                         env={**os.environ, 'RUN_TAG': 'testri'})
     check(r0.returncode == 0 and r1.returncode == 2 and 'no receipt' in r1.stdout and r2.returncode == 0,
           f'check: done from the receipt (0), no receipt = red (2), the tag from the environment ({r0.returncode}, {r1.returncode}, {r2.returncode})')
+    check(all(isinstance(s_.get('pota_requests'), int) for s_ in (rc_ or {}).get('passes', {}).values()) and p1.get('pota_requests') == 0,
+          'every pass section shows the POTA request count (0: the 2-fer bot asks POTA nothing)')
     blob = json.dumps(rc_)
     check(not any(n in blob for n, *_ in PINS.values()) and 'US-990' not in blob and 'store-copy' not in blob, 'the receipt holds counts only: no park name, no ref, no store path')
     # ------------------------------------------------------------ 1 an area the store does not hold: store missing, red
