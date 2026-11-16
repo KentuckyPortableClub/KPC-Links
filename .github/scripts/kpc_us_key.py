@@ -20,33 +20,6 @@ T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 # live this run, a saved copy with no 'saved' stamp). KPC_BUILD_DATE=YYYY-MM-DD (the proof job gives a fixed one), else today's date read
 # once here: never a per-park clock call, so the same inputs and the same KPC_BUILD_DATE give byte-identical key files. A malformed
 # value stops the build (nothing written). A park's 'read' date still comes from its records' own 'rd' / the saved copy's 'saved' first.
-
-# KPC owner, 2026-11-16 (handoff item 5): records of type CONSERVATION EASEMENT are never joined by name alone. The type is read
-# from the record's own fields: PAD-US Category / Des_Tp / d_Des_Tp, a state layer's own type field (Rec_Type: CATEGORY, TYPE,
-# CLASS, INTEREST ...) and its source fields. A join a person made (overrides, 'reviewed') is not a name-alone join.
-EASEMENT_RX = re.compile(r'\beasements?\b|^\s*(cone|ease)\s*$', re.I)
-TYPE_KEY_RX = re.compile(r'^(category|des_tp|d_des_tp|rec_type|type|class|interest|inttype\d*|prot_type|land_type|acq_type|feat_type|ownership_type|own_type_desc)$', re.I)
-EASEMENT_HELD = []
-
-
-def rec_type(attrs):
-    """The record's own type value (the first type-like field with a value), '' when the layer has none."""
-    for k, v in (attrs or {}).items():
-        if TYPE_KEY_RX.match(str(k)) and v not in (None, '', ' '): return str(v).strip()[:80]
-    return ''
-
-
-def easement_record(a):
-    vals = [a.get('Category'), a.get('Des_Tp'), a.get('d_Des_Tp'), a.get('Rec_Type')]
-    vals += [v for k, v in (a.get('SA') or {}).items() if TYPE_KEY_RX.match(str(k))]
-    return any(EASEMENT_RX.search(str(v)) for v in vals if v not in (None, ''))
-
-
-def name_only(how):
-    """A join made by the name alone (the matcher's 'name' / 'words' rows), not by a person or a saved id."""
-    h = str(how or '').split(' · ')[0].strip().lower()
-    return h == 'words' or h.startswith('name')
-
 def _build_date():
     v = (os.environ.get('KPC_BUILD_DATE') or '').strip()
     if not v: return time.strftime('%Y-%m-%d')
@@ -1165,6 +1138,34 @@ def extra_state(st, have, only=None):
 
 
 READ_ONCE = {}   # (query url, where, box, fields, order) -> a complete read of this run
+
+
+
+# KPC owner, 2026-11-16 (handoff item 5): records of type CONSERVATION EASEMENT are never joined by name alone. The type is read
+# from the record's own fields: PAD-US Category / Des_Tp / d_Des_Tp, a state layer's own type field (Rec_Type: CATEGORY, TYPE,
+# CLASS, INTEREST ...) and its source fields. A join a person made (overrides, 'reviewed') is not a name-alone join.
+EASEMENT_RX = re.compile(r'\beasements?\b|^\s*(cone|ease)\s*$', re.I)
+TYPE_KEY_RX = re.compile(r'^(category|des_tp|d_des_tp|rec_type|type|class|interest|inttype\d*|prot_type|land_type|acq_type|feat_type|ownership_type|own_type_desc)$', re.I)
+EASEMENT_HELD = []
+
+
+def rec_type(attrs):
+    """The record's own type value (the first type-like field with a value), '' when the layer has none."""
+    for k, v in (attrs or {}).items():
+        if TYPE_KEY_RX.match(str(k)) and v not in (None, '', ' '): return str(v).strip()[:80]
+    return ''
+
+
+def easement_record(a):
+    vals = [a.get('Category'), a.get('Des_Tp'), a.get('d_Des_Tp'), a.get('Rec_Type')]
+    vals += [v for k, v in (a.get('SA') or {}).items() if TYPE_KEY_RX.match(str(k))]
+    return any(EASEMENT_RX.search(str(v)) for v in vals if v not in (None, ''))
+
+
+def name_only(how):
+    """A join made by the name alone (the matcher's 'name' / 'words' rows), not by a person or a saved id."""
+    h = str(how or '').split(' · ')[0].strip().lower()
+    return h == 'words' or h.startswith('name')
 
 
 def _in_box(g, box):

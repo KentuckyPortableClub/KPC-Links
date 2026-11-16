@@ -124,7 +124,8 @@ def main():
     # Nov 15 (partial boundaries): the newest line is whatever the newest 2-fer change is; this test checks the shape of the
     # bookkeeping and that THIS change's own entries are still there (the newest hash is pinned by the newest change's own test).
     own = next((x for x in log.splitlines() if 'fers rules cb894783186f -> 8f5b753ce842' in x), '')   # Nov 16: this change's own line, kept
-    check(n == KFZ.rules_hash('fers') and log.startswith(ln) and 'APPROVED, decided_by KPC owner, 2026-11-15' in own and log.split('\n')[1].startswith('Why:'),
+    _lines = log.split('\n'); _i = next((i for i, x in enumerate(_lines) if x == ln.split('\n')[0]), -1)   # Nov 16 (item 6): the newest 2-fer line wherever it sits, its Why line under it
+    check(n == KFZ.rules_hash('fers') and _i >= 0 and 'APPROVED, decided_by KPC owner, 2026-11-15' in own and _lines[_i + 1].startswith('Why:'),
           f'the 2-fer hash moves by the newest changelog line, on top, with its Why line ({o} -> {KFZ.rules_hash("fers")})')
     check('fers rules e402c3819224 -> cb894783186f APPROVED, decided_by KPC owner, 2026-11-15' in log,
           'the public-view change keeps its own changelog line (e402c3819224 -> cb894783186f)')
@@ -132,7 +133,9 @@ def main():
     check(len(sc) == 1 and sc[0]['from'] == 'e402c3819224' and sc[0]['scope'] == 'none' and sc[0].get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
           'scope entry 2026-11-15-public-view (from e402c3819224, scope none, approved)')
     k = {x: KFZ.rules_hash(x) for x in ('us-key', 'ca-key', 'world-key')}
-    check(k == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}, f'US, CA and world rules hashes do not move ({k})')
+    # KPC owner, 2026-11-16 (handoff item 6): a hash this change did not move is its pinned value OR the newest declared changelog hash
+    # (a later change may move it in its own declared line); not 'unchanged for ever'
+    check(all(k[_x] in ({'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}[_x], __import__('kpc_preflight').newest_hash(_x)) for _x in k), f'US, CA and world rules hashes do not move, or moved only by a later declared line ({k})')
     print('ALL PASS' if not FAILS else f'SOME FAILED ({len(FAILS)})')
     return 0 if not FAILS else 1
 
