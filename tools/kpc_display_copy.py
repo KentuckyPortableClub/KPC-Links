@@ -571,26 +571,39 @@ VIEW_MIN_COVER = 0.80
 VIEW_NAME_PARTIAL = 'public-records-partial'
 VIEW_PARTIAL_MIN = 0.05
 VIEW_NAMES = (VIEW_NAME, VIEW_NAME_PARTIAL)
+VIEW_BASIS = 'owner rule 12 (2026-11-15)'   # the only basis a view may carry (both the index entry and the park must say it)
 PARTIAL_BOUNDARY = 'partial'   # the value of the public 'boundary' property on a park drawn from a partial view
 
 
 def view_ratio_ok(name, ratio):
     """Is `ratio` in the band this view name allows (full: at least 0.80; partial: at least 0.05 and under 0.80)? An unknown name,
-    or a ratio that is not a number, is False: the park stays private (fail closed)."""
-    try: r = float(ratio or 0)
-    except (TypeError, ValueError): return False
+    or a ratio that is not a REAL number, is False: the park stays private (fail closed). A numeric string like "0.44" is not a
+    number here (privacy grade 2026-11-16, H2: it used to be coerced, which the words did not say), and neither is True/False."""
+    if not isinstance(ratio, (int, float)) or isinstance(ratio, bool): return False
+    r = float(ratio)
+    if r != r: return False   # not a number
     if name == VIEW_NAME: return r >= VIEW_MIN_COVER
     if name == VIEW_NAME_PARTIAL: return VIEW_PARTIAL_MIN <= r < VIEW_MIN_COVER
     return False
 
 
 def view_of(e, park):
-    """The view name an index entry and its park BOTH name, valid and in its own ratio band, or '' when there is none."""
+    """The view name an index entry and its park BOTH name, valid and in its own ratio band, or '' when there is none.
+    As well as the name, the record list, the basis and the ratio, every record the view names must be marked publishable and
+    non-WDPA in the index's record_meta (privacy grade 2026-11-16, H1: this reader used not to re-check that, so a store whose
+    view NAMED a held record was still drawn and marked partial, while both sibling readers - kpc_store_read.public_records and
+    kpc_fers_store - refused it. The geometry was never at risk, because gate() throws the held record out on its own, but this
+    is the second line of defence the other two have). The basis is pinned to VIEW_BASIS, not only compared between the two."""
     nm = e.get('publish_view')
     keys = e.get('publish_view_records')
     if nm not in VIEW_NAMES or not isinstance(keys, list) or not keys: return ''
-    if (park or {}).get('publish_view') != nm or park.get('publish_view_records') != keys or park.get('publish_view_basis') != e.get('publish_view_basis'): return ''
+    if (park or {}).get('publish_view') != nm or park.get('publish_view_records') != keys: return ''
+    if e.get('publish_view_basis') != VIEW_BASIS or park.get('publish_view_basis') != VIEW_BASIS: return ''
     if not view_ratio_ok(nm, e.get('publish_view_ratio')): return ''
+    meta = e.get('record_meta') if isinstance(e.get('record_meta'), dict) else {}
+    for k in keys:
+        m = meta.get(k)
+        if not (isinstance(m, dict) and m.get('publishable') is True and m.get('wdpa_derived') is False): return ''
     return nm
 
 

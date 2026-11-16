@@ -65,11 +65,20 @@ _save_json_raw = save_json
 # boundary, a saved copy or a line): "no overlap found" is not a finding about the parks, it is the end of our looking. The two
 # statuses below are NOT denials of a pair: they say one ROW stands in for another row of the SAME pair, so they stay.
 DENY_KEEP = re.compile(r'^(dropped: the same stretch twice|merged into one row)')
-NOT_SHOWN = {}     # area -> [[refs, kind, the reason we stopped, the row id]]: for a person (the run report), never in a 2-fer file
-NOT_WORSE_TAG = 'kept: the last run showed this spot, and nothing we have today can rule a 2-fer out'
+NOT_SHOWN = {}     # area -> [[refs, kind, the reason we stopped, the row id]]: for a person, in a PRIVATE file only (not_shown_file)
+# The mark on a row never-worse puts back. Its own field, NOT 'kept' (kpc_fers_store.keep_old_rows writes its own note there), and
+# NOT on KEPT_MARKS: if a later pass turned such a row into a denial, it must go through this rule again and be put back again.
+NOT_WORSE_FIELD = 'not_worse'
+NOT_WORSE_TAG = 'the last run showed this spot, and nothing we have today can rule a 2-fer out'
 
 
-KEPT_MARKS = ('store_held', 'partial_kept', 'kept', 'carried')   # a row brought back from an older file: never this run's verdict
+# A row brought back from an older file EXACTLY as it was: never this run's verdict, and the store's 'never worse' rule and the
+# KPC-Store push check both need it byte for byte. 'carried' is NOT on this list (privacy grade, 2026-11-16, F1):
+# kpc_fers_store.carry_rows stamps 'carried' on every row it makes, and one of its branches INVENTS a new denial this run
+# ("dropped: not found again on the outline store outlines ..."). That is a verdict of this run, with its passes zeroed, so it is
+# not an exact copy of anything and it must go through the rule like any other row. The carry_rows branches that are not denials
+# (a held park -> "not sure: held: ...", a partial-boundary pair -> its old status) are kept by denial() anyway.
+KEPT_MARKS = ('store_held', 'partial_kept', 'kept')
 
 
 def denial(status):
@@ -79,9 +88,10 @@ def denial(status):
 
 
 def this_runs_verdict(x):
-    """A row we are DECIDING now. A row carried or kept from an older file (store_held / partial_kept / kept / carried) is left
-    exactly as it was: it is yesterday's published row, not a verdict of this run, and the store's 'never worse' rule and the
-    KPC-Store push check both require it to stay an exact copy."""
+    """A row we are DECIDING now. A row reproduced from an older file EXACTLY as it was (store_held / partial_kept / kept) is
+    left alone: it is yesterday's published row, not a verdict of this run, and the never-worse rule and the KPC-Store push check
+    both require it to stay an exact copy. A row that only carries a 'carried' stamp is NOT one of those: carry_rows gives it a
+    status of its own and zeroes its passes, so it is judged like any other row."""
     return isinstance(x, dict) and not any(x.get(k) for k in KEPT_MARKS)
 
 
@@ -90,13 +100,55 @@ def _shown(x):
     return isinstance(x, dict) and not str(x.get('status') or '').startswith(('dropped', 'merged'))
 
 
+def _in_git_tree(p):
+    """True when p (or a folder above it) is a git work tree: a file written there could be committed and pushed."""
+    p = pathlib.Path(p).resolve()
+    return any((q / '.git').exists() for q in (p, *p.parents))
+
+
+def not_shown_file():
+    """Where the per-pair 'not shown' reasons go: a PRIVATE folder OUTSIDE every git work tree, or nowhere (privacy grade,
+    2026-11-16, F2). They name both parks of a pair and the reason we stopped looking, so they must never reach a file this bot
+    publishes: data/fers/report.json is copied into KPC-Data, a PUBLIC repo, so it gets the per-area COUNT only.
+    The folder is KPC_FERS_NOT_SHOWN_DIR, else the private folder a store run already writes (KPC_FERS_PRIVATE_OUT, then
+    KPC_FERS_PRIVATE_LOG). A folder that is inside a git work tree, or that cannot be made, gives None: then the reasons stay in
+    this process and only the count is written anywhere."""
+    for v in ('KPC_FERS_NOT_SHOWN_DIR', 'KPC_FERS_PRIVATE_OUT', 'KPC_FERS_PRIVATE_LOG'):
+        base = str(os.environ.get(v) or '').strip()
+        if not base: continue
+        try:
+            d = pathlib.Path(base).resolve() / 'not-shown'
+            if _in_git_tree(d.parent if not d.exists() else d): continue
+            d.mkdir(parents=True, exist_ok=True)
+            return d / f"not-shown-{RUN_TAG or REGION}-p{PASS}.json"
+        except OSError: continue
+    return None
+
+
+def save_not_shown():
+    """Write the 'not shown' reasons to the private file, when there is one. -> (path or None, how many pairs)."""
+    n = sum(len(v) for v in NOT_SHOWN.values())
+    if not n: return None, 0
+    f = not_shown_file()
+    if f is None: return None, n
+    try:
+        f.write_text(json.dumps({'about': 'Pairs this run stopped looking at, and why. PRIVATE: a person reads it. It names both '
+                                          'parks of each pair, so it never goes into a file the bot publishes (the public run '
+                                          'report gets the count only). KPC owner, 2026-11-15 / privacy grade 2026-11-16.',
+                                 'pass': PASS, 'region': REGION, 'tag': RUN_TAG, 'date': time.strftime('%Y-%m-%d'),
+                                 'not shown': {a: v for a, v in sorted(NOT_SHOWN.items())}}, ensure_ascii=False, indent=1),
+                     encoding='utf-8')
+    except OSError: return None, n
+    return f, n
+
+
 def no_denials(path, d):
     """Take every denial out of a 2-fer file before it is written, and never lose a spot we showed before:
       * a row whose status denies the pair is NOT written. When the file still has a row showing that pair + kind, the denied row
         simply goes (the pair is shown by that row, as today). When it does not, nothing at all is written for the pair: no row,
         no reason, no "not a 2-fer".
       * NEVER WORSE: when the file this one replaces had a row SHOWING that pair + kind, that row is put back UNCHANGED (only the
-        plain mark NOT_WORSE_TAG is added), so a shape we have today can only ever ADD a 2-fer, never take one away. This is the
+        plain mark NOT_WORSE_FIELD = NOT_WORSE_TAG is added), so a shape we have today can only ever ADD a 2-fer, never take one away. This is the
         same rule as the store's 'never worse' and the partial-boundary rule (kpc_fers_store.partial_only_adds), applied to every
         row of every run.
       * the reasons go to NOT_SHOWN for the run report and the private log, never into the file.
@@ -126,7 +178,7 @@ def no_denials(path, d):
             if tuple(sorted(y['refs'])) + (y['kind'],) not in want: continue
             k = key_of(y)
             if k in shown: continue
-            z = json.loads(json.dumps(y)); z['kept'] = NOT_WORSE_TAG
+            z = json.loads(json.dumps(y)); z[NOT_WORSE_FIELD] = NOT_WORSE_TAG
             back.append(z); shown.add(k)
     except Exception:  # noqa: BLE001  the rows are already out; putting none back is the safe answer
         back = []
@@ -4504,10 +4556,14 @@ def main():
         if _nb: counts['bad POTA pin: tested by saved record ids'] = _nb[:400]
     if counts.get('stopped for time'):   # Nov 9 PM: a pass cut short says so as a warning (the run summary shows it)
         print(f"::warning title=2-fer bot::pass {PASS} stopped for time ({counts.get('pairs tested', 0)} pairs tested, {counts.get('parks not downloaded: out of time', 0)} parks not downloaded); unfinished areas keep their previous files", flush=True)
-    if NOT_SHOWN:   # OWNER RULE 2026-11-15 23:14: the reasons we stopped looking live here, for a person; never in a 2-fer file
+    if NOT_SHOWN:   # OWNER RULE 2026-11-15 23:14. The run report is PUBLIC (KPC-Data copies it), so it gets the COUNT only:
         counts['pairs not shown (we show only overlaps we believe in; no "not a 2-fer" is written)'] = {
-            a: len(v) for a, v in sorted(NOT_SHOWN.items())}
-        rep.setdefault('not shown', {}).update({a: v[:400] for a, v in sorted(NOT_SHOWN.items())})
+            a: len(v) for a, v in sorted(NOT_SHOWN.items())}   # the reasons go to a private file (privacy grade 2026-11-16, F2)
+        _nsf, _nsn = save_not_shown()
+        counts['...their reasons'] = (f'{_nsn} pair(s), written for a person in the private folder'
+                                      if _nsf is not None else
+                                      f'{_nsn} pair(s); no private folder was given, so the reasons were not written anywhere')
+        rep.pop('not shown', None)   # never here: an older report file may still hold one
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=LOG[:40])
     rep['per state'] = per
     save_json(RF, rep, indent=1)

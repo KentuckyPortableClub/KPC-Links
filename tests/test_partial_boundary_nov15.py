@@ -23,6 +23,10 @@ Offline; made-up squares and refs only; no socket.
     'boundary': 'partial'; a full view carries no such property; nothing of the held record reaches the public files; the public
     check passes; a store written before core 3.6.3 is unchanged.
  8. The 2-fer rules hash moves with its changelog line on top and its scope entry; the US, CA and world hashes do not move.
+10. The privacy grade of 2026-11-16: F1 (a carry_rows denial is no longer exempt from no_denials, and never worse puts the last
+    file's live row back), F2 (the per-pair reasons go to a private folder, never to the public run report), H1 (the map re-checks
+    that every record the view names is publishable and non-WDPA, and pins the basis) and H2 (a ratio that is not a real number
+    fails closed in every reader).
  9. World areas off GitHub: .github/fers-store-areas.json stays "world": "off" (GitHub unchanged) and KPC_FERS_WORLD_STORE=on adds
     them on a person's own machine only; a world store run is still a private store run or nothing.
 Run: python3 tests/test_partial_boundary_nov15.py"""
@@ -197,16 +201,17 @@ def t_no_denials(tmp):
         row('n4', ['US-3', 'US-4'], status='dropped: the same stretch twice (copy of n3)'),
         row('n5', ['US-9', 'US-10'], status='merged into one row: n3'),
         row('n6', ['US-5', 'US-6'], status='dropped: carried from before', store_held=S.HELD_TAG),
-        row('n7', ['US-11', 'US-12'], status='dropped: kept from before', partial_kept=S.PARTIAL_KEPT)]}
+        row('n7', ['US-11', 'US-12'], status='dropped: kept from before', partial_kept=S.PARTIAL_KEPT),
+        row('n8', ['US-13', 'US-14'], status='dropped: kept from before', kept=S.KEPT_TAG)]}
     out = KF.no_denials(f, doc)
     got = {x['id']: x for x in out['spots']}
     check('n1' not in got and 'n2' not in got, '6. no row that denies a pair is written (from any shape: full, partial, saved copy or line)')
-    check('old1' in got and got['old1']['status'] == 'candidate' and got['old1']['kept'] == KF.NOT_WORSE_TAG
+    check('old1' in got and got['old1']['status'] == 'candidate' and got['old1'][KF.NOT_WORSE_FIELD] == KF.NOT_WORSE_TAG
           and got['old1']['refs'] == ['US-1', 'US-2'],
           '6. never worse: the row the last file showed for that pair comes back unchanged (only the plain mark is added)')
     for what, cond in (('6. a pair the last file did not show either is simply not there (no row, no reason)', 'n2' not in got and not any(x.get('refs') == ['US-7', 'US-8'] for x in out['spots'])),
                        ('6. the two row-bookkeeping statuses stay (one ROW standing in for another row of the SAME pair)', 'n4' in got and 'n5' in got),
-                       ('6. a row carried (store_held) or kept (partial_kept) from an older file is left exactly as it was', got.get('n6', {}).get('status') == 'dropped: carried from before' and got.get('n7', {}).get('status') == 'dropped: kept from before'),
+                       ('6. a row carried (store_held) or kept (partial_kept / kept) from an older file is left exactly as it was', got.get('n6', {}).get('status') == 'dropped: carried from before' and got.get('n7', {}).get('status') == 'dropped: kept from before' and got.get('n8', {}).get('status') == 'dropped: kept from before'),
                        ('6. the reasons go to the run report\'s "not shown" list, never into the file', len(KF.NOT_SHOWN.get('US-ZZ') or []) == 2 and 'closed to the public' in json.dumps(KF.NOT_SHOWN) and 'closed to the public' not in json.dumps(out)),
                        ('6. a file with no denial is returned untouched (same object)', KF.no_denials('nowhere.json', {'st': 'US-ZZ', 'spots': [row('x', ['US-1', 'US-2'])]})['spots'][0]['id'] == 'x'),
                        ('6. denial(): every "dropped ..." but the two row-bookkeeping ones', KF.denial('dropped: anything') and KF.denial('dropped in pass 2') and not KF.denial('dropped: the same stretch twice (copy of z)') and not KF.denial('merged into one row: z') and not KF.denial('candidate') and not KF.denial('not sure: x')),
@@ -261,6 +266,109 @@ def t_map(tmp):
           '7. map: a store written before core 3.6.3 keeps the per-record rule exactly as before, and nothing is marked partial')
 
 
+# ---------------------------------------------------------------- 10: the privacy grade's four findings (2026-11-16)
+def t_grade(tmp):
+    """F1, F2, H1 and H2 of the privacy grade of 2026-11-16."""
+    import kpc_fers as KF
+
+    # ---- F1: carry_rows stamps 'carried' on every row it makes, and one branch INVENTS a denial this run. That row must go
+    # through no_denials like any other, and never worse must put the last file's live row back instead.
+    check('carried' not in KF.KEPT_MARKS and set(KF.KEPT_MARKS) == {'store_held', 'partial_kept', 'kept'},
+          f'F1: a bare "carried" stamp no longer exempts a row from the rule ({KF.KEPT_MARKS})')
+    S.PARTIAL_VIEW.clear()
+    old = {'pass3': '2026-11-14', 'spots': [row('live', ['US-1001', 'US-1002'], status='candidate: 60 yards'),
+                                            row('held', ['US-2001', 'US-2002'], status='candidate')]}
+    new = {'st': 'US-ZZ', 'spots': []}
+    S.carry_rows(new, old, {'US-2001': 'held by the outline store'}, today='2026-11-16')
+    made = {x['id']: x for x in new['spots']}
+    check(KF.denial(made['live']['status']) and bool(made['live'].get('carried'))
+          and made['live']['status'].startswith('dropped: not found again'),
+          f"F1: carry_rows still invents a denial for a pair with no partial park ({made['live']['status'][:46]!r})")
+    check(KF.this_runs_verdict(made['live']) is True and not KF.denial(made['held']['status']),
+          'F1: that row IS this run\'s verdict now; the held-park branch is not a denial and is untouched')
+    f = tmp / 'F1-US-ZZ.json'
+    f.write_text(json.dumps(old), encoding='utf-8')
+    out = KF.no_denials(f, new)
+    got = {x['id']: x for x in out['spots']}
+    check(not any(KF.denial(x.get('status')) for x in out['spots']),
+          f'F1: no denial is left in the file that would be written ({[x.get("status", "")[:40] for x in out["spots"]]})')
+    check(got.get('live', {}).get('status') == 'candidate: 60 yards' and got['live'].get(KF.NOT_WORSE_FIELD) == KF.NOT_WORSE_TAG
+          and 'kept' not in got['live']
+          and got['live']['refs'] == ['US-1001', 'US-1002'],
+          'F1: never worse puts yesterday\'s live row back unchanged, so the pair is still shown')
+    check('held' in got and got['held']['status'].startswith('not sure: held:'),
+          'F1: the held-park row is still carried with its "not sure: held:" answer')
+    # a row carried byte for byte for a WITHHELD park (store_held) is still left exactly as it was
+    keep_exact = {'st': 'US-ZZ', 'spots': [row('x', ['US-3001', 'US-3002'], status='dropped: published before now',
+                                               store_held=S.HELD_TAG)]}
+    check(KF.no_denials(f, keep_exact)['spots'][0]['status'] == 'dropped: published before now',
+          'F1: a row carried byte for byte for a withheld park is still untouched (the push check needs the exact copy)')
+
+    # ---- F2: the per-pair reasons must never reach the run report (KPC-Data copies it and KPC-Data is public)
+    KF.NOT_SHOWN.clear()
+    KF.no_denials(tmp / 'F2-none.json', {'st': 'US-ZZ', 'spots': [
+        row('d1', ['US-4001', 'US-4002'], status='dropped: no shared patch on the official outlines'),
+        row('d2', ['US-4003', 'US-4004'], status='dropped in pass 3: only inside an area closed to the public')]})
+    check(sum(len(v) for v in KF.NOT_SHOWN.values()) == 2, 'F2: the reasons are collected in memory as before')
+    priv = tmp / 'F2-private'
+    os.environ['KPC_FERS_NOT_SHOWN_DIR'] = str(priv)
+    try:
+        nf, n = KF.save_not_shown()
+    finally:
+        os.environ.pop('KPC_FERS_NOT_SHOWN_DIR', None)
+    txt = nf.read_text(encoding='utf-8') if nf is not None else ''
+    check(nf is not None and n == 2 and nf.is_file() and 'US-4001' in txt and 'closed to the public' in txt,
+          f'F2: with a private folder the reasons are written there, and only there ({nf})')
+    rep = (ROOT / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
+    check("rep.setdefault('not shown'" not in rep and "rep.pop('not shown', None)" in rep,
+          'F2: the run report never gets the list, and an older report file\'s list is taken out')
+    check("counts['pairs not shown" in rep and "counts['...their reasons']" in rep,
+          'F2: the run report keeps the per-area COUNT (and says where the reasons went)')
+    # a private folder INSIDE a git work tree is refused: then nothing is written anywhere
+    ingit = tmp / 'F2-ingit'
+    (ingit / '.git').mkdir(parents=True, exist_ok=True)
+    os.environ['KPC_FERS_NOT_SHOWN_DIR'] = str(ingit)
+    try:
+        nf2, n2 = KF.save_not_shown()
+    finally:
+        os.environ.pop('KPC_FERS_NOT_SHOWN_DIR', None)
+    check(nf2 is None and n2 == 2 and not list(ingit.rglob('not-shown*')),
+          'F2: a folder inside a git work tree is refused; the reasons are not written anywhere (fail closed)')
+    KF.NOT_SHOWN.clear()
+
+    # ---- H1: the display copy re-checks the view's records and pins the basis, like its two sibling readers
+    e = {'park_public': True, 'park_publishable': False, 'publish_view': PARTIAL_NAME,
+         'publish_view_basis': 'owner rule 12 (2026-11-15)', 'publish_view_ratio': 0.44, 'publish_view_records': ['p1'],
+         'record_meta': {'p1': {'publishable': True, 'wdpa_derived': False}, 'h1': {'publishable': False, 'wdpa_derived': False}}}
+    pk = {'publish_view': PARTIAL_NAME, 'publish_view_basis': 'owner rule 12 (2026-11-15)', 'publish_view_records': ['p1']}
+    check(DC.view_of(e, pk) == PARTIAL_NAME and DC.partial_view(e, pk), 'H1: a good partial view still reads as one')
+    held_named = dict(e, publish_view_records=['p1', 'h1'])
+    check(DC.view_of(held_named, dict(pk, publish_view_records=['p1', 'h1'])) == ''
+          and not DC.in_public_view({'key': 'p1'}, held_named, dict(pk, publish_view_records=['p1', 'h1'])),
+          'H1: a view that NAMES a held record is refused by the map too (it used to be drawn and marked partial)')
+    check(DC.view_of(dict(e, record_meta={'p1': {'publishable': True, 'wdpa_derived': True}}), pk) == ''
+          and DC.view_of(dict(e, record_meta={}), pk) == '',
+          'H1: a view record marked WDPA-derived, or with no record_meta at all, is refused')
+    check(DC.view_of(dict(e, publish_view_basis='someone said so'), dict(pk, publish_view_basis='someone said so')) == ''
+          and DC.view_of(dict(e, publish_view_basis='someone said so'), pk) == '',
+          'H1: the basis is pinned to the owner\'s rule, not just agreed on by the two sides')
+    check(S.Store.VIEW_BASIS == 'owner rule 12 (2026-11-15)'
+          and "e.get('publish_view_basis') != self.VIEW_BASIS" in (ROOT / '.github/scripts/kpc_fers_store.py').read_text(encoding='utf-8'),
+          'H1: the 2-fer reader pins the basis too')
+
+    # ---- H2: a ratio that is not a REAL number fails closed in both readers
+    bad = ['0.44', '0.9', ' 0.44 ', True, False, None, [], {}, float('nan')]
+    check(not any(DC.view_ratio_ok(PARTIAL_NAME, x) for x in bad) and not any(DC.view_ratio_ok(DC.VIEW_NAME, x) for x in bad)
+          and DC.view_ratio_ok(PARTIAL_NAME, 1 / 4) and DC.view_ratio_ok(DC.VIEW_NAME, 0.9),
+          f'H2: the map: a numeric STRING (and True / None / NaN) is not a ratio ({[x for x in bad if DC.view_ratio_ok(PARTIAL_NAME, x)]})')
+    check(not any(S.Store.view_ratio_ok(PARTIAL_NAME, x) for x in bad)
+          and not any(S.Store.view_ratio_ok(S.Store.VIEW_NAME, x) for x in bad)
+          and S.Store.view_ratio_ok(PARTIAL_NAME, 1 / 4),
+          'H2: the 2-fer reader: the same')
+    check(DC.view_of(dict(e, publish_view_ratio='0.44'), pk) == '',
+          'H2: a store whose ratio is the string "0.44" draws nothing (it used to be coerced and pass)')
+
+
 # ---------------------------------------------------------------- 9: world areas off GitHub (the owner's PC)
 def t_world():
     """KPC owner, 2026-11-15: the world store is about 65 per cent built and he wants world 2-fers on his PC. The repo file stays
@@ -301,7 +409,7 @@ def t_hash():
 
 def main():
     tmp = pathlib.Path(tempfile.mkdtemp(prefix='kpc-partial-'))
-    for t in (t_reader, t_marks, t_no_denials, t_map, t_world, t_hash):
+    for t in (t_reader, t_marks, t_no_denials, t_map, t_grade, t_world, t_hash):
         try: t(tmp) if t not in (t_marks, t_hash, t_world) else t()
         except Exception as ex:   # noqa: BLE001
             import traceback; traceback.print_exc(); check(False, f'{t.__name__} raised {type(ex).__name__}: {ex}')

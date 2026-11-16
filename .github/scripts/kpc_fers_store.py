@@ -451,15 +451,18 @@ class Store:
 
     VIEW_NAME = 'public-records-only'            # owner rule 12 (2026-11-15), store core 3.6.3
     VIEW_NAME_PARTIAL = 'public-records-partial'  # owner decision 2026-11-15 23:08, store core 3.6.4: a view of only PART of the park
+    VIEW_BASIS = 'owner rule 12 (2026-11-15)'     # the only basis a view may carry (privacy grade 2026-11-16, H1)
     VIEW_MIN_COVER = 0.80
     VIEW_PARTIAL_MIN = 0.05
 
     @classmethod
     def view_ratio_ok(cls, name, ratio):
         """Is `ratio` in the band this view name allows (full: at least 0.80; partial: at least 0.05 and under 0.80)? An unknown
-        name, or a ratio that is not a number, is False: the park needs the private store (fail closed)."""
-        try: r = float(ratio or 0)
-        except (TypeError, ValueError): return False
+        name, or a ratio that is not a REAL number, is False: the park needs the private store (fail closed). A numeric string
+        like "0.44" is not a number here (privacy grade 2026-11-16, H2: it used to be coerced), nor is True/False."""
+        if not isinstance(ratio, (int, float)) or isinstance(ratio, bool): return False
+        r = float(ratio)
+        if r != r: return False   # not a number
         if name == cls.VIEW_NAME: return r >= cls.VIEW_MIN_COVER
         if name == cls.VIEW_NAME_PARTIAL: return cls.VIEW_PARTIAL_MIN <= r < cls.VIEW_MIN_COVER
         return False
@@ -482,8 +485,9 @@ class Store:
             vk, nm = e.get('publish_view_records'), e.get('publish_view')
             if nm not in (self.VIEW_NAME, self.VIEW_NAME_PARTIAL) or not isinstance(vk, list) or not vk: return None
             if not self.view_ratio_ok(nm, e.get('publish_view_ratio')): return None
+            if e.get('publish_view_basis') != self.VIEW_BASIS: return None   # H1: the basis is pinned, not just agreed on
             pk_ = next((p for r, p in by.values() if p and p.get('publish_view_records') == vk), None)
-            if pk_ is None or pk_.get('publish_view') != nm: return None   # the park itself must name the same view
+            if pk_ is None or pk_.get('publish_view') != nm or pk_.get('publish_view_basis') != self.VIEW_BASIS: return None   # the park itself must name the same view
             keys |= {str(k) for k in vk}
             part = part or nm == self.VIEW_NAME_PARTIAL
         self._view_partial = part   # _examine puts the park on PARTIAL_VIEW only once it is really read (never a refused park)
