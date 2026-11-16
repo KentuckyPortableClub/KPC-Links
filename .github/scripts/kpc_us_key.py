@@ -20,6 +20,33 @@ T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 # live this run, a saved copy with no 'saved' stamp). KPC_BUILD_DATE=YYYY-MM-DD (the proof job gives a fixed one), else today's date read
 # once here: never a per-park clock call, so the same inputs and the same KPC_BUILD_DATE give byte-identical key files. A malformed
 # value stops the build (nothing written). A park's 'read' date still comes from its records' own 'rd' / the saved copy's 'saved' first.
+
+# KPC owner, 2026-11-16 (handoff item 5): records of type CONSERVATION EASEMENT are never joined by name alone. The type is read
+# from the record's own fields: PAD-US Category / Des_Tp / d_Des_Tp, a state layer's own type field (Rec_Type: CATEGORY, TYPE,
+# CLASS, INTEREST ...) and its source fields. A join a person made (overrides, 'reviewed') is not a name-alone join.
+EASEMENT_RX = re.compile(r'\beasements?\b|^\s*(cone|ease)\s*$', re.I)
+TYPE_KEY_RX = re.compile(r'^(category|des_tp|d_des_tp|rec_type|type|class|interest|inttype\d*|prot_type|land_type|acq_type|feat_type|ownership_type|own_type_desc)$', re.I)
+EASEMENT_HELD = []
+
+
+def rec_type(attrs):
+    """The record's own type value (the first type-like field with a value), '' when the layer has none."""
+    for k, v in (attrs or {}).items():
+        if TYPE_KEY_RX.match(str(k)) and v not in (None, '', ' '): return str(v).strip()[:80]
+    return ''
+
+
+def easement_record(a):
+    vals = [a.get('Category'), a.get('Des_Tp'), a.get('d_Des_Tp'), a.get('Rec_Type')]
+    vals += [v for k, v in (a.get('SA') or {}).items() if TYPE_KEY_RX.match(str(k))]
+    return any(EASEMENT_RX.search(str(v)) for v in vals if v not in (None, ''))
+
+
+def name_only(how):
+    """A join made by the name alone (the matcher's 'name' / 'words' rows), not by a person or a saved id."""
+    h = str(how or '').split(' · ')[0].strip().lower()
+    return h == 'words' or h.startswith('name')
+
 def _build_date():
     v = (os.environ.get('KPC_BUILD_DATE') or '').strip()
     if not v: return time.strftime('%Y-%m-%d')
@@ -1118,6 +1145,7 @@ def extra_state(st, have, only=None):
             if LAYER_OUT is not None: RAWF.setdefault(pre, []).append(f)
             nm = (a.get(nf.lower()) or '').strip()
             if not nm: continue
+            _rt = rec_type(a)   # KPC owner, 2026-11-16 (item 5): the record's own type field, when the layer has one (Category, TYPE ...)
             # Oct 20: an 'easement' record is private land with public access, never joined by name alone. Oct 29 (Brandon 2:22 PM:
             # 'we are not here to correct POTA's mistakes, we show the boundaries of where they are'): when POTA numbered the
             # easement itself and a person named that record in overrides.json, it IS the park's outline (Buena Vista SWA)
@@ -1129,7 +1157,7 @@ def extra_state(st, have, only=None):
             nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
             out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
                         'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': _sane_ac(_num(a.get(af.lower()) if af else 0), bbox(g)), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
-                        **({'Water': 1} if opt.get('water') else {}),
+                        **({'Water': 1} if opt.get('water') else {}), **({'Rec_Type': _rt} if _rt else {}),
                         **({'SA': {f: a.get(f.lower()) for f in _sfx if a.get(f.lower()) not in (None, '', ' ')}} if _sfx and any(a.get(f.lower()) not in (None, '', ' ') for f in _sfx) else {})})
             n += 1
         XCOUNT[pre] = XCOUNT.get(pre, 0) + n
@@ -2301,6 +2329,7 @@ def run(st):
     _slack = DETAIL * 111.0
     held_g, pin_wrong = [], []
     g8 = []
+    EASEMENT_HELD.clear()
     def _g8tok(s):
         s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
         s = re.sub(r'\bft\b', 'fort', re.sub(r'\bmt\b', 'mount', re.sub(r'\bst\b', 'saint', s)))
@@ -2329,6 +2358,14 @@ def run(st):
             _a = gs_.get(str(_x[0])) or {}
             _l2 = str(_a.get('Loc_Nm') or '').strip()
             if _l2 and _l2 != _x[1] and _pw and len(_pw & words(_l2)) > len(_pw & words(_x[1])): _x[1] = f'{_l2} ({_x[1]})'
+        # KPC owner, 2026-11-16 (item 5; Storm King US-2146: a Conservation Easement record that shares the park's name was joined, and
+        # the NY count went from 3 to 204): a record whose TYPE is a conservation easement is never joined by name alone. It goes to
+        # CHECK with the reason; a person's join (overrides / reviewed) still stands
+        _ce = [x for x in m if name_only(x[3]) and easement_record(gs_.get(str(x[0])) or {})]
+        if _ce:
+            p['m'] = m = [x for x in m if x not in _ce]
+            p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check: a conservation easement record is never joined by name alone (item 5, Nov 16)'] for x in _ce]
+            EASEMENT_HELD.extend(f'{ref} ({x[0]})' for x in _ce)
         weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1]))]   # R-G8 fix: 'Kodiak' is in 'Kodiak Office' but that record does not NAME the park
         # Nov 2 (map audit, Tennessee: the bare 'Reelfoot' / 'Chickasaw' / 'Pickett' records were drawn into the state park, the WMA AND the
         # refuge at once): when the park already has its own full-name record, a bare-name piece matched with the designation code
@@ -2418,6 +2455,7 @@ def run(st):
             p['m'] = [[f"trl{ref.split('-')[1]}", TRL[ref].get('name') or p.get('n'), 0, f"official trail line ({TRL[ref].get('by')}): the park is the line + POTA's 100-ft band"]]
             p['g'] = 'official'; p['line'] = 1
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
+    if EASEMENT_HELD: notice(f'US key {st}', f"conservation easement records not joined by name alone (item 5): {len(EASEMENT_HELD)} piece(s) moved to CHECK: {', '.join(EASEMENT_HELD[:10])}")
     if held_g: notice(f'US key {st}', f"rule G-1: {len(held_g)} parks had similar-name pieces held (not drawn): {', '.join(held_g[:12])}")
     if pin_wrong: notice(f'US key {st}', f"{len(pin_wrong)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(pin_wrong[:12])}")
     # Oct 29 (chat 10: Virginia's Dragon Run = PAD-US 9,563 + the state layer 9,562 + more copies of the SAME tracts; anything that

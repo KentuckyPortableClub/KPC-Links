@@ -1,0 +1,8 @@
+# DATA-CHECK group (KPC owner, 2026-11-16, handoff item 6): tests that pin LIVE data (a key file, a released file, a run's output).
+# The code suite (kpc_full_suite.py, default --group code) leaves these out; run them with --group data. A failure here means the data
+# moved since the pin, not that the code broke; the owner re-pins. One test path per line, '#' comments.
+tests/test_mystery_joins_nov11.py                # pins FR-14979 / FR-10432 as in the live world key
+tests/test_world_fr_patrinat_overrides_nov11.py  # pins FR-10432 / FR-11106 / FR-10548 as in the live world key
+tests/test_world_fr_patrinat_layers_nov11.py     # same three parks' 'before' pins in the live world key
+tests/test_trail_join_guard_nov11.py             # pins the 31 official-line parks' key entries to 11f908d9
+tests/test_tracts_nov7.py                        # pins released outline files and data/world-key/layers.json
