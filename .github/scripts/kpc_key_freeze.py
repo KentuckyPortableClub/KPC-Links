@@ -180,13 +180,23 @@ def park_areas(kind, refs, root=None):
     return got
 
 
+def same_lines(b):
+    """Nov 16 2026 (KPC owner): the rule files are text, so the hash must not change with the LINE ENDINGS a checkout happens
+    to use. Git for Windows writes CRLF by default, so a Windows checkout of the very same commit used to work out a different
+    rules hash from the Linux build (us-key 3759b3c8b122 instead of d4ebfafce438): the 2-fer key gate then called every green
+    key stale and refused every area. CR LF and a lone CR both count as one line break. A tree already stored with LF keeps
+    the hash it has always had, so no key or build stamp moves because of this."""
+    return b.replace(b'\r\n', b'\n').replace(b'\r', b'\n')
+
+
 def rules_hash(kind, root=None):
-    """sha256 (12 hex) over this key's rule files + its line in .github/key-rules-version.json. A missing file counts as 'missing'."""
+    """sha256 (12 hex) over this key's rule files + its line in .github/key-rules-version.json. A missing file counts as 'missing'.
+    Line endings are levelled first (same_lines), so the hash is the same on Windows and on Linux."""
     root = pathlib.Path(root or ROOT); h = hashlib.sha256()
     for rel in sorted(RULE_FILES[kind]):
         f = root / rel
         if rel in SCOPE_FILES.values() and not f.is_file(): continue   # Nov 9 evening: a tree without the scope file keeps its old hash
-        h.update(rel.encode() + b'\0' + (f.read_bytes() if f.is_file() else b'missing') + b'\0')
+        h.update(rel.encode() + b'\0' + (same_lines(f.read_bytes()) if f.is_file() else b'missing') + b'\0')
     try: ver = json.load(open(root / VERSION_FILE, encoding='utf-8')).get(kind)
     except Exception: ver = None  # noqa: BLE001
     h.update(b'version\0' + str(ver).encode())
