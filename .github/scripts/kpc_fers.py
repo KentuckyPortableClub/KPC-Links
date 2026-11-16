@@ -3985,6 +3985,17 @@ def _store_mod():
     return m if m is not None and getattr(m, 'STORE_ON', False) else None
 
 
+STORE_PASS2_NOTE = ('store run: pass 2 not run. Every pass reads the same store outlines (about 2 m), so pass 3 tests every '
+                    'pass-1 row itself on the 5 m grid (KPC owner, 2026-11-16)')
+
+
+def store_one_detail():
+    """KPC owner, 2026-11-16: True in an outline-store run. The store gives the SAME outline (about 2 m) to every pass, so
+    pass 2 (the 10 m grid, once fed by a fresher download) can only repeat pass 3's test on a coarser grid. In a store run
+    pass 2 is not run and pass 3 takes every pass-1 row. A run that downloads from the agencies is unchanged."""
+    return _store_mod() is not None
+
+
 def receipt_verdicts(parks, G, refs=None):
     """{own area: verdict} for this pass (kpc_fers_receipt.area_verdicts). Only parks with record ids count as expected."""
     own = own_areas(); exp, got = {}, {}
@@ -3997,7 +4008,7 @@ def receipt_verdicts(parks, G, refs=None):
     return RECEIPT.area_verdicts(own, exp, got, getattr(KS, 'AREA_ROWS', None) if KS else None, KS is not None)
 
 
-def write_receipt(counts, parks, G, bad, rules, refs=None, stopped=''):
+def write_receipt(counts, parks, G, bad, rules, refs=None, stopped='', note=''):
     """KPC owner, 2026-11-16 (item 1): this pass's section of OUT/receipt-<tag>.json. Counts only (no names, no record keys)."""
     try:
         own = own_areas(); KS = _store_mod()
@@ -4028,7 +4039,7 @@ def write_receipt(counts, parks, G, bad, rules, refs=None, stopped=''):
                'pairs tested': int(counts.get('pairs tested') or 0), 'rules_hash': rules, 'engine': RECEIPT.engine_version(),
                'seconds per stage': STAGES.table(), 'seconds': round(time.time() - T0, 1), 'areas': verd,
                'neighbours': {a: f'neighbour store missing: {n} parks' for a, n in sorted(nb.items())},
-               'stopped_for_time': bool(counts.get('stopped for time')), 'stopped': stopped,
+               'stopped_for_time': bool(counts.get('stopped for time')), 'stopped': stopped, **({'note': note} if note else {}),
                'fine-only spots': {'listed': len(FINE_ONLY), 'mode': fine_only_mode()} if PASS in (2, 3) and KS is not None else None}
         tag = RUN_TAG or area_name()
         p, doc = RECEIPT.merge(OUT, tag, PASS, sec)
@@ -4070,6 +4081,10 @@ def main():
             notice('2-fer bot', 'STOPPED: no ready areas left in this run (see 2-fer ready-areas notices).'); raise RECEIPT.StoppedEarly('no ready areas left in this run')
         if ONLY:
             ONLY = set(_allow)
+    if PASS == 2 and store_one_detail():   # KPC owner, 2026-11-16: nothing to do; the receipt says so (the pass loop is unchanged)
+        notice('2-fer bot', STORE_PASS2_NOTE)
+        write_receipt({}, {}, {}, set(), KFREEZE.rules_hash('fers') if KFREEZE else None, refs=[], note=STORE_PASS2_NOTE)
+        return
     # Oct 27 (Fable's assembly-line review A5): the park list + trail lines live in KPC-Data (Step B); without them a pass would
     # run and quietly drop every trail pair. Stop instead, loudly.
     if REGION != 'world':
@@ -4575,7 +4590,10 @@ def main():
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
-        todo = lambda s: s['passes'][PASS - 2] == 1 and not s['passes'][PASS - 1] and not str(s.get('status', '')).startswith(f'dropped in pass {PASS}') and not (PASS == 3 and str(s.get('status', '')).startswith(('candidate', 'dropped: ', 'not sure', 'water only', 'check: two owners', 'very tight', 'merged into')))
+        # KPC owner, 2026-11-16: in a store run pass 2 is not run, so pass 3 takes every pass-1 row (also a row an earlier
+        # run's pass 2 dropped: the 5 m test of the same outlines decides it)
+        _from1 = PASS == 3 and store_one_detail()
+        todo = lambda s: (s['passes'][PASS - 2] == 1 or (_from1 and s['passes'][0] == 1)) and not s['passes'][PASS - 1] and not str(s.get('status', '')).startswith(f'dropped in pass {PASS}') and not (PASS == 3 and str(s.get('status', '')).startswith(('candidate', 'dropped: ', 'not sure', 'water only', 'check: two owners', 'very tight', 'merged into')))
         prev = [s for d in files.values() for s in d.get('spots', []) if todo(s)]
         refs = sorted({r for s in prev for r in s['refs'] if r in parks})
         notice('2-fer bot', f'pass {PASS}: {len(prev)} spots from pass {PASS - 1}, {len(refs)} parks to download fresh')
@@ -4635,6 +4653,7 @@ def main():
                 m = assign.get(id(s))
                 if m:
                     s['passes'][PASS - 1] = 1; agree += 1
+                    if _from1: s['passes'][1] = 1   # the same outlines: pass 3's finer test stands for pass 2
                     for k in ('center', 'shape', 'box', 'acres', 'wide_m', 'len_m'):
                         if k in m: s[k] = m[k]
                     if m.get('masked_out'): s['masked_out'] = m['masked_out']
@@ -4657,6 +4676,7 @@ def main():
                 for s in _lr: _decide3(s)
             if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN); tidy_rows(d.get('spots', []), PIN, today); counts['candidates held: no ownership source'] = counts.get('candidates held: no ownership source', 0) + hold_no_owner(d.get('spots', []))
             d[f'pass{PASS}'] = today
+            if _from1: d['pass2'] = today   # store run: pass 3 did pass 2's test (finer grid, same outlines)
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
             d['spots'] = slim(d.get('spots', []))
             save_json(file_of(st), pc_tag(d), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)

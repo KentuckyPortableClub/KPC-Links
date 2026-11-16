@@ -1,17 +1,17 @@
 {
  "open": [
+  "KPC-Data/kpc-copy-from-links.yml",
   "KPC-Data/kpc-fers-pending.yml",
+  "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-storage.yml",
-  "KPC-Data/kpc-waiting-room.yml",
-  "KPC-Data/kpc-watchdog.yml",
   "guard:pubnoindex:kpc-log-checker.html",
-  "kpc-band-alerts.yml",
-  "kpc-bot-queue.yml",
   "kpc-ca-key.yml",
-  "kpc-discord-relay.yml",
-  "kpc-fb-comments.yml",
+  "kpc-discord-watch.yml",
   "kpc-guide-pdf.yml",
   "kpc-hunters.json",
+  "kpc-hunters.yml",
+  "kpc-park-alerts.yml",
+  "kpc-pota-discord.yml",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
@@ -367,7 +367,7 @@
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-16T12:25+00:00",
+ "checked": "2026-11-16T19:52+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3269,13 +3269,13 @@
    "b": 50629889
   },
   "L:data/ca-key": {
-   "b": 5833101
+   "b": 5833145
   },
   "L:data/world-key": {
    "b": 38466222
   },
   "L:data/pota": {
-   "b": 5824190
+   "b": 5824337
   },
   "L:data/canada.json": {
    "b": 2559039
@@ -3348,7 +3348,7 @@
    "b": 20018247
   },
   "D:data/alerts/eu.json": {
-   "b": 158570
+   "b": 196784
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698

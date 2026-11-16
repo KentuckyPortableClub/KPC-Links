@@ -141,10 +141,28 @@
       "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
     },
     {
-      "id": "2026-11-16-proof-of-work",
+      "id": "2026-11-16-proof-receipts",
       "when": "2026-11-16",
       "from": "539fa1720787",
-      "why": "Proof of work and one program per area (handoff of Nov 16, items 1, 2 and 4). No 2-fer rule changes: which pairs count, their grades, rows and wording are the same. (1) kpc_fers.py: every pass writes a receipt (counts only: parks expected, read, held with reason counts, pairs tested, rules hash, store date, engine version, seconds per stage) and the bot exits 84 when it stops before measuring and 85 when pass 1 read no outline of an area that has official parks (that area keeps its previous file and is never reported as having no 2-fers). (2) kpc_fers.py + kpc_fers_store.py: a store run may run passes 1, 2, 3 and 5 in ONE process (kpc_fers_store.py chain), the store loaded once; each pass starts from the state a fresh process has, so the files are the same as four separate runs. The spots a finer grid finds that no row took are listed privately on store runs; the switch KPC_FERS_FINE_ONLY (default off = today) would count them, and is the owner's decision. (3) kpc_record_key.py (new 2-fer rule file): the one function that turns a key join into a store record key for US, Canada and world; kpc_fers_store.store_ids calls it (same keys as #216).",
+      "why": "Proof of work, round 1 (handoff of Nov 16, item 1 only). No 2-fer rule changes: which pairs count, their grades, rows and wording are the same. kpc_fers.py: every pass writes a receipt (counts only: parks expected, read, held with reason counts, pairs tested, rules hash, store date, engine version, seconds per stage, a verdict per area); the bot exits 84 when it stops before measuring and 85 when pass 1 read no outline of an area that has official parks (that area keeps its previous file and is never reported as having no 2-fers); an area the store does not hold is 'store missing' and a border area's missing store is counted as 'neighbour store missing: N parks'. kpc_fers_receipt.py check decides done from the receipt (not a rule file).",
+      "scope": "none",
+      "scope_note": "No pair answer or pair fingerprint changes: nothing is re-tested.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
+    },
+    {
+      "id": "2026-11-16-store-three-passes",
+      "when": "2026-11-16",
+      "from": "407f6aa7a708",
+      "why": "Store runs do three passes of work, not four (KPC owner, 2026-11-16). The outline store gives every pass the same outline (about 2 m), so pass 2 (10 m grid, once fed by a fresher agency download) only repeated pass 3's test on a coarser grid. In a store run PASS=2 does nothing (exit 0, a receipt section that says so, no area file changed) and pass 3 takes every pass-1 row on the 5 m grid; a row pass 3 agrees with is marked for pass 2 too and the file keeps its pass2 date. A run that downloads from the agencies (no store) is unchanged. The pass loops of the workflows, the PC runner and the receipt check are unchanged (1, 2, 3, 5).",
+      "scope": "none",
+      "scope_note": "Measured on the same store and key, four passes against three: W-BE 6 = 6 candidates, W-NO 16 = 16, W-AT 53 = 53, W-CH 11 = 11, US-RI 6 = 6 (not sure 3 = 3), US-NY 66 = 66 (not sure 25 = 25); no shown pair lost or gained; US-NY gains 2 trail rows merged into rows already shown. Store areas are re-measured by their next run anyway; no area that does not use the store changes.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
+    },
+    {
+      "id": "2026-11-16-proof-of-work",
+      "when": "2026-11-16",
+      "from": "50d71e9f9cc7",
+      "why": "One program per area and one record lookup (handoff of Nov 16, items 2 and 4, on top of round 1 and the store three-pass change on main). No 2-fer rule changes: which pairs count, their grades, rows and wording are the same with the new switch off (the default). (1) kpc_fers.py + kpc_fers_store.py: a store run may run passes 1, 2, 3 and 5 in ONE process (kpc_fers_store.py chain), the store loaded once; each pass starts from the state a fresh process has, so the files are the same as four separate runs. Pass 2 of a store run still does nothing (main's three-pass rule, kept), and pass 3 still takes every pass-1 row. The spots the 5 m grid of pass 3 finds that no row took are listed privately on store runs; the switch KPC_FERS_FINE_ONLY (default off = today) would count them, and is the owner's decision. (2) kpc_record_key.py (new 2-fer rule file): the one function that turns a key join into a store record key for US, Canada and world; kpc_fers_store.store_ids calls it (same keys as #216).",
       "scope": "none",
       "scope_note": "No pair answer or pair fingerprint changes with the new switch off (the default): nothing is re-tested.",
       "approved": "WAITING FOR THE KPC OWNER'S APPROVAL"
