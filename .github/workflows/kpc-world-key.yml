@@ -50,8 +50,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
-      groups: ${{ steps.p.outputs.groups }}
-      full: ${{ steps.p.outputs.full }}   # Nov 4 (links-04): 1 = the default ALL list was built (the join stamps the rules hash only then)
+      groups: ${{ steps.store_plan.outputs.groups || steps.p.outputs.groups }}   # KPC owner, 2026-11-15: store mode leaves out a country it cannot build
+      full: ${{ steps.store_plan.outputs.full || steps.p.outputs.full }}   # Nov 4 (links-04): 1 = the default ALL list was built (the join stamps the rules hash only then)
       expected: ${{ steps.p.outputs.expected }}   # Nov 12 (KPC owner, 2026-11-11): owner-signed expected holds, left out of the build, kept from main
       area_plan: ${{ steps.p.outputs.area_plan }}   # Nov 12 (KPC owner, 2026-11-12): per-country input hashes of this plan (kpc_area_hash.py), stamped on the saved rows
     steps:
@@ -158,6 +158,30 @@ jobs:
           G += [{'i': n + j, 'countries': c, 'cmin': os.environ.get('SLOW_MIN') or '300'} for j, c in enumerate(slow)]
           print('groups=' + json.dumps(G))
           print(f"::notice title=World key plan::{len(G)} job(s): " + ' | '.join(x['countries'] + (f" (own job, limit {x['cmin']} min)" if x['cmin'] else '') for x in G), file=__import__('sys').stderr)   # next round C2: the run log, not $GITHUB_OUTPUT
+          PY
+      - name: Store mode (KPC owner, 2026-11-15) - a country with no saved copy, or a saved copy that lacks a source, is left out with a plain line (its key is left as it is)
+        # Only when the repo variable KPC_KEY_SOURCE=store. A store-mode key builds a country from its saved copy W-<CC>.json.gz only, used whole:
+        # a source with no record in it would lose the parks joined through it. Such a country (data/outlines/world-store-gaps.json, the keeper's
+        # list; kpc_world_store_gaps.py) is not planned: never emptied, never named failed, not a full build. The build job checks the copies
+        # it really downloads again. A failed asset listing changes nothing here (the build job holds what it cannot download).
+        id: store_plan
+        if: ${{ vars.KPC_KEY_SOURCE == 'store' && steps.p.outputs.groups != '' && steps.p.outputs.groups != '[]' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GROUPS: ${{ steps.p.outputs.groups }}
+        run: |
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > "$RUNNER_TEMP/store-assets.txt" || { echo "::warning title=Store mode::the boundary-cache asset list could not be read: the plan is kept as it is (the build holds what it cannot download)"; exit 0; }
+          ALLC=$(python3 -c "import json, os; print(' '.join(c for g in json.loads(os.environ['GROUPS']) for c in g['countries'].split()))")
+          KEEP=$(python3 .github/scripts/kpc_world_store_gaps.py plan --assets "$RUNNER_TEMP/store-assets.txt" --gaps data/outlines/world-store-gaps.json $ALLC)
+          KEEP="$KEEP" python3 - <<'PY'
+          import json, os
+          keep = set(os.environ['KEEP'].split()); out, left = [], 0
+          for g in json.loads(os.environ['GROUPS']):
+              cs = [c for c in g['countries'].split() if c in keep]; left += len(g['countries'].split()) - len(cs)
+              if cs: out.append(dict(g, countries=' '.join(cs)))
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+              f.write('groups=' + json.dumps(out) + '\n')
+              if left: f.write('full=0\n')   # a country left out = not a full build (no rules stamp)
           PY
   build:
     needs: plan
@@ -286,6 +310,10 @@ jobs:
             echo "::error title=Master gate::gate exit is $mg (not 0 or 7): no country of this shard is built (old keys kept)"
             BUILD=""
           fi
+          # KPC owner, 2026-11-15: store mode checks the copies really downloaded (kpc_world_store_gaps.py): a copy that lacks a source (or none)   # KPC_KEY_SOURCE=store only
+          # = not built, its key is left as it is; the plan should have left it out, so it is named failed (store-gaps.json is out of date)   # KPC_KEY_SOURCE=store only
+          if [ "${GEO_CACHE_MODE:-}" = only ] && [ -n "$BUILD" ]; then python3 .github/scripts/kpc_world_store_gaps.py check --cache cache/world --out "$RUNNER_TEMP/store-gaps.txt" $BUILD || printf '%s\n' $BUILD > "$RUNNER_TEMP/store-gaps.txt"; fi   # KPC_KEY_SOURCE=store only
+          if [ "${GEO_CACHE_MODE:-}" = only ] && [ -s "$RUNNER_TEMP/store-gaps.txt" ]; then cat "$RUNNER_TEMP/store-gaps.txt" >> part/failed.txt; BUILD=$(for c in $BUILD; do grep -qx "$c" "$RUNNER_TEMP/store-gaps.txt" || printf '%s ' "$c"; done); echo "::warning title=World key store mode::not built (the saved copy lacks a source; data/outlines/world-store-gaps.json is out of date): $(tr '\n' ' ' < "$RUNNER_TEMP/store-gaps.txt")"; fi   # KPC_KEY_SOURCE=store only
           for c in $BUILD; do
             echo "::group::World key $c (limit ${CMIN} min)"
             rc=0; COUNTRIES=$c timeout --kill-after=60 "${CMIN}m" python3 .github/scripts/kpc_world_key.py || rc=$?

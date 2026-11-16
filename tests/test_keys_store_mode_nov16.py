@@ -69,7 +69,7 @@ def find(doc, sel):
 
 def unset(s):
     """The text as GitHub runs it with KPC_KEY_SOURCE unset (the store-mode additions read out)."""
-    s = re.sub(r"\$\{\{ steps\.store_plan\.outputs\.groups \|\| (steps\.p\.outputs\.groups) \}\}", r'${{ \1 }}', s)
+    s = re.sub(r"\$\{\{ steps\.store_plan\.outputs\.(\w+) \|\| (steps\.p\.outputs\.\1) \}\}", r'${{ \2 }}', s)   # groups (US, world), full (world)
     def one(m):
         v = m.group(1)
         return '${{ ' + (v[1:-1] if v.startswith('(') and v.endswith(')') else v) + ' }}'

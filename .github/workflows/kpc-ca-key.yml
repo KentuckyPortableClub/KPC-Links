@@ -150,13 +150,24 @@ jobs:
           rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --first-ok --cache cache/ca --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
           [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; echo "$mg" > "$RUNNER_TEMP/master-short.txt"; }
           if [ -s "$RUNNER_TEMP/master-short.txt" ]; then touch /tmp/ca-key-stopped; : > ca-key.log; echo "::notice title=Canada key::held: the saved copy is short (see the Master gate)"; else
+          # KPC owner, 2026-11-15: store mode makes no hard look (a live read of one named record, not in the saved copy): the file is moved aside   # KPC_KEY_SOURCE=store only
+          # for the build, so the key reads none, and put back right after (the next step keeps main's hard-look joins)   # KPC_KEY_SOURCE=store only
+          if [ "$GEO_CACHE_MODE" = only ]; then python3 .github/scripts/kpc_ca_store_keep.py aside || { kpc_rc=$?; touch /tmp/ca-key-stopped; echo "::error title=Canada key::store mode: the hard-look file could not be moved aside (exit $kpc_rc): Canada is not saved"; echo "Canada key - store mode: the hard-look file could not be moved aside (exit $kpc_rc)" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }; fi   # KPC_KEY_SOURCE=store only
           python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { touch /tmp/ca-key-stopped; echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
+          if [ "$GEO_CACHE_MODE" = only ]; then python3 .github/scripts/kpc_ca_store_keep.py back; fi   # KPC_KEY_SOURCE=store only
           fi
           # Oct 28 (tune pass): the script's own notices went only into ca-key.log, so a provincial map that FAILED or a
           # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).
           grep '^::notice' ca-key.log | grep -v 'title=CPCAD layer::' | tail -n 9 | cut -c1-900 || true   # ok: a pipeline (its exit status is the last command; follow-up: pipefail)
           grep '^::warning title=Official pin fills' ca-key.log | cut -c1-900 || true   # ok: shows the pin-fill warnings from the log (none = nothing to show); also in the run summary
           rm -rf .op
+      - name: Store mode (KPC owner, 2026-11-15) - a hard-look join on main is kept (a hard look is a live read, not made in store mode)
+        # Only when the repo variable KPC_KEY_SOURCE=store. A park main joined through a hard-look record and this build left without a join
+        # gets main's entry back (counts, index row, review page and tracts brought in line); a park joined another way keeps the new join. Offline.
+        if: ${{ env.SKIP != '1' && vars.KPC_KEY_SOURCE == 'store' }}
+        run: |
+          [ -f /tmp/ca-key-stopped ] && exit 0
+          python3 .github/scripts/kpc_ca_store_keep.py keep --ref HEAD || { kpc_rc=$?; touch /tmp/ca-key-stopped; echo "::error title=Canada key::store mode: the hard-look joins could not be kept from main (exit $kpc_rc): the whole Canada key is kept from main"; echo "Canada key - store mode: hard-look joins not kept (exit $kpc_rc); the key is kept from main" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Keep the saved copy current (a full read that finished)
         if: ${{ (env.SKIP != '1' && !inputs.saved && (github.event.schedule || inputs.as_schedule) != '49 9 * * *') && vars.KPC_KEY_SOURCE != 'store' }}   # KPC owner, 2026-11-15: store mode uploads nothing
         id: kept_green_2
@@ -219,6 +230,12 @@ jobs:
             echo "::error title=Review files::the review rows could not be merged: main's review files were put back whole and nothing is saved"
             exit 1   # Save is gated on this step (steps.keep_rows.outcome != 'failure')
           fi
+      - name: Store mode (KPC owner, 2026-11-15) - a hard-look park that is still a pin goes on the keeper's to-do (held-parks-todo.csv)
+        # Only when the repo variable KPC_KEY_SOURCE=store. After the join check (it rewrites the to-do file): todo_kind store_hard_look. Offline.
+        if: ${{ env.SKIP != '1' && vars.KPC_KEY_SOURCE == 'store' }}
+        run: |
+          [ -f /tmp/ca-key-stopped ] && exit 0
+          python3 .github/scripts/kpc_ca_store_keep.py todo || { kpc_rc=$?; echo "::warning title=Canada key::store mode: the hard-look to-do rows were not written (exit $kpc_rc; the key is not affected)"; echo "Canada key - store mode: hard-look to-do rows not written (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Store mode (KPC owner, 2026-11-15) - never worse - a province with fewer joined or official parks than main keeps EVERY province from main
         # Only when the repo variable KPC_KEY_SOURCE=store. Canada builds as one job from one saved copy, so a worse province holds the whole
         # Canada key (the next step puts main's data/ca-key back, no stamp, nothing saved). Offline.
