@@ -1,6 +1,6 @@
 # Canada SK: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **304 of 411** joined (same name + same kind). **0** to check, **79** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **319 of 411** joined (same name + same kind). **0** to check, **79** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -117,3 +117,8 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-6320 Merrill School Historic Site (Historic Site)
 - CA-6339 River Ridge Trails National Historic Trail (National Historic Trail)
 - CA-6438 Sergeant Hugh Cairns Statue National Historical Site (National Historical Site)
+
+## Kept from main (store mode: the hard look is a live read, not made in a store-mode run)
+
+- CA-4926 Batoche National Historic Site (National Historic Site) → BATOCHE NATIONAL HISTORIC PARK
+- CA-4933 Fort Walsh National Historic Site (National Historic Site) → FORT WALSH NATIONAL HISTORIC PARK

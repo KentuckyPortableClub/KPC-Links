@@ -1,11 +1,11 @@
 {
  "key": "ca",
  "mode": "hold",
- "files_checked": 26,
- "joined_parks": 4350,
+ "files_checked": 24,
+ "joined_parks": 4276,
  "suspect": 50,
  "held": 19,
- "files_changed": 11,
+ "files_changed": 10,
  "official_acres_known": 0,
  "acres_check": "acres check off: no acres file",
  "approved_parks_known": 711,
@@ -581,7 +581,7 @@
   "CA-NL",
   "CA-NS",
   "CA-NT",
-  "CA-SK",
+  "CA-QC",
   "CA-YT"
  ]
 }

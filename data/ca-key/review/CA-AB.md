@@ -74,3 +74,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-6124 Fort Whoop-Up National Historic Site (National Historic Site)
 - CA-6395 Turner Valley Gas Plant National Historic Site (National Historic Site)
 - CA-6396 Leitch Collieries Provincial Historic Site (Provincial Historic Site)
+
+## Kept from main (store mode: the hard look is a live read, not made in a store-mode run)
+
+- CA-1194 Sylvan Lake Provincial Park (Provincial Park) → Sylvan Lake Park

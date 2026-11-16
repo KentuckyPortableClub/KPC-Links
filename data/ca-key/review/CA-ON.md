@@ -1,6 +1,6 @@
 # Canada ON: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **950 of 1180** joined (same name + same kind). **10** to check, **193** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **956 of 1180** joined (same name + same kind). **10** to check, **191** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -240,3 +240,22 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-6512 Kìwekì Point National Park (National Park)
 - CA-6513 Brockville Railway Tunnel Historic Site (Historic Site)
 - CA-6604 Mattawa Island Conservation Area (Conservation Area)
+
+## Kept from main (store mode: the hard look is a live read, not made in a store-mode run)
+
+- CA-0177 Chapleau Crown Game Preserve (Game Preserve) → Chapleau Crown Game Preserve
+- CA-1658 Sunnidale Recreation Park (Recreation Park) → SUNNIDALE PARK
+- CA-1660 Edenvale Conservation Area (Conservation Area) → Edenvale Conservation Area
+- CA-1661 Fort Willow Conservation Area (Conservation Area) → Fort Willow Conservation Area
+- CA-1678 New Lowell Conservation Area (Conservation Area) → New Lowell Conservation Area
+- CA-4861 Butler's Barracks National Historic Site (National Historic Site) → Butler's Barracks National Historic Site
+- CA-4865 Fort Malden National Historic Site (National Historic Site) → Fort Malden National Historic Site
+- CA-4873 Laurier House National Historic Site (National Historic Site) → Laurier House National Historic Site
+- CA-4887 Sir John Johnson House National Historic Site (National Historic Site) → Sir John Johnson House National Historic Site
+- CA-4890 Woodside National Historic Site (National Historic Site) → Woodside National Historic Site
+- CA-5314 Tottenham Conservation Area (Conservation Area) → Tottenham Conservation Area
+- CA-5641 Sylvan Glen Conservation Area (Conservation Area) → Sylvan Glen C.A.
+- CA-5645 Ball's Mill Conservation Area (Conservation Area) → Ball's Mill C.A.
+- CA-5650 Thurne Parks Conservation Area (Conservation Area) → Thurne Parks C.A.
+- CA-6139 Fingal Wildlife Management Area (Wildlife Management Area) → Fingal Wildlife Management Area
+- CA-6617 H. R. Frink Conservation Area (Conservation Area) → H.R. Frink Conservation Area
