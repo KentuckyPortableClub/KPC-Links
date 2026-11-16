@@ -35,6 +35,8 @@ check(any('pass 5' in x for x in R.check({'passes': {k: v for k, v in good['pass
 check(any('store empty' in x for x in R.check({'passes': {'1': {'areas': {'US-RI': 'store empty'}}}}, [1])), 'check: store empty = red, never done')
 check(any('stopped' in x for x in R.check({'passes': {'1': {'areas': {}, 'stopped': 'x'}}}, [1])), 'check: stopped early = red')
 check(any('rules hash' in x for x in R.check(good, [1], 'zzz')), 'check: another rules hash = red')
+cut = {'passes': {'1': {'areas': {'US-RI': 'measured'}, 'stopped_for_time': True}}}
+check(R.check(cut, [1]) and R.check(cut, [1], allow_time_stop=True) == [], 'check: a pass cut by time is red unless the caller allows it (--allow-time-stop)')
 s = R.Stages(100.0); s.mark('pass 1 saved outlines', 101.5); s.mark('pass 1 downloads (5 parks)', 104.0); s.mark('pass 1 downloads (2 parks)', 105.0)
 check(s.table() == {'pass 1 saved outlines': 1.5, 'pass 1 downloads': 3.5}, f'seconds per stage add up by stage ({s.table()})')
 check(R.tag_from_env({'REGION': 'ky'}) == 'ky' and R.tag_from_env({'STATES': 'US-RI us-ny'}) == 'US-NY-US-RI' and R.tag_from_env({'RUN_TAG': 'NE-1', 'REGION': 'ky'}) == 'ne-1',
