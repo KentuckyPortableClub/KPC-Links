@@ -5,8 +5,8 @@
   "date": "2026-11-16",
   "result": "PASS"
  },
- "previous_build": "CA-43524444769",
- "previous_built": "2026-11-13 23:20 UTC",
+ "previous_build": "CA-43803071681",
+ "previous_built": "2026-11-16 04:21 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -43,7 +43,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "807d8728b0b58a61a7b1b105035db1366c3d9f6081a817949fff0b4fb508f99a",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "BC": {
    "check": 8,
@@ -82,7 +82,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "e118bb7d09e8685521da41daf764fb0756f4b355888a316928d624bd200737a0",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "MB": {
    "check": 0,
@@ -117,7 +117,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "fe344f83cd6ecc8a71d858c77bdd4b769678b045d1abddc042e16ca3bcfd185c",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "NB": {
    "check": 8,
@@ -157,7 +157,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "742a98f4bf97d1aed88c9d90d64dd398f205d9e86bc5f34b13e7eb98daef7d8f",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "NL": {
    "check": 1,
@@ -231,7 +231,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "6c1035d3075e0d39e884afa2fba2ebf65c59557a345a0ec442e3ee2a69b34798",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "NT": {
    "check": 0,
@@ -268,7 +268,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "f3db611d9d383d90d07c572881a1d92b17c9d13610f2a5d99fdf565e36088550",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "NU": {
    "check": 0,
@@ -304,7 +304,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "b4488ea111db85f69aa928ba2208fb279d667e89ba221ad3e0540870a4bbc53d",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "ON": {
    "check": 10,
@@ -344,7 +344,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "605655b0257987359ea154a3851e5693bfa3f03082b28c8b1954702cee98b080",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "PE": {
    "check": 1,
@@ -380,7 +380,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "0995edce4e823abafb98f521d229ab9c16cd2dfbb8519846e3090f3f484991ff",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "QC": {
    "check": 29,
@@ -418,7 +418,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "c39cefb6118bcf1f3a3eeb1500668e8b9c167236cdad7442189f45b3871d0df1",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "SI": {
    "check": 0,
@@ -452,7 +452,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "1716b4259d87a8eee9e5772f30072dbe0003c1744684ecd1883771019bcdf1d5",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "SK": {
    "check": 0,
@@ -491,7 +491,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "cc3ae76985f19847a239b47d6b80dbc35eab6a190049ec3fe4981492c9b2ae73",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "SP": {
    "check": 0,
@@ -524,7 +524,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "d2012eb41f1135316907ac95eb5e311683b96a25a1dca93b9c5c29063559965c",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   },
   "YT": {
    "check": 0,
@@ -561,7 +561,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "345f929d4a001aa5159a79d83c3798d3d35b45cbd83802f7131536fa4d506f51",
-   "built_sha": "5d177a78c3c818e656671c6876be3954b15e54e7"
+   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
   }
  },
  "rules": "ba480fa34fb6",
@@ -578,8 +578,8 @@
  "inputs": {
   "us-key": "US-43788025927"
  },
- "build": "CA-43803071681",
- "built": "2026-11-16 04:21 UTC",
+ "build": "CA-43866754543",
+ "built": "2026-11-16 12:31 UTC",
  "areas_rebuilt": [
   "AB",
   "BC",
