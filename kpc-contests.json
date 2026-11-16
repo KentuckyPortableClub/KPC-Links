@@ -1,22 +1,6 @@
 {
- "updated": "2026-11-15T17:24:53Z",
+ "updated": "2026-11-16T12:26:08Z",
  "week": [
-  {
-   "name": "WAE DX Contest, RTTY",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003dw2tj",
-   "when": "0000Z, Nov 14 to 2359Z, Nov 15",
-   "segs": [
-    [
-     "2026-11-14T00:00Z",
-     "2026-11-15T23:59Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "PODXS 070 Club Triple Play Low Band Sprint",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ger1q",
@@ -28,22 +12,6 @@
     ]
    ],
    "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "SKCC Weekend Sprintathon",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g9dzw",
-   "when": "1200Z, Nov 14 to 2400Z, Nov 15",
-   "segs": [
-    [
-     "2026-11-14T12:00Z",
-     "2026-11-16T00:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
    "kinds": [],
    "src": "WA7BNM"
   },
@@ -84,36 +52,6 @@
    "modes": [
     "PHONE"
    ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Run for the Bacon QRP Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g8qtd",
-   "when": "2300Z, Nov 15 to 0100Z, Nov 16",
-   "segs": [
-    [
-     "2026-11-15T23:00Z",
-     "2026-11-16T01:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gjwa1",
-   "when": "0000Z-0100Z, Nov 16",
-   "segs": [
-    [
-     "2026-11-16T00:00Z",
-     "2026-11-16T01:00Z"
-    ]
-   ],
-   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   },
@@ -1383,24 +1321,6 @@
    "exch": "RS(T), age (avg age for multiops)"
   },
   {
-   "name": "WAE DX Contest, RTTY",
-   "url": "https://www.darc.de",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-14T00:00Z",
-     "2026-11-16T00:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5-28",
-   "exch": "RST, serial"
-  },
-  {
    "name": "PODXS 070 Club Triple Play Low Band Sprint",
    "url": "https://www.podxs070.com",
    "when": "",
@@ -1417,62 +1337,6 @@
    "src": "CORRAL",
    "bands": "1.8-7",
    "exch": "RST, SPC"
-  },
-  {
-   "name": "10-10 International Fall Contest, Digital",
-   "url": "https://www.ten-ten.org",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-14T00:01Z",
-     "2026-11-16T00:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "28",
-   "exch": "Name, mbr or \"0,\" SPC"
-  },
-  {
-   "name": "SKCC Weekend Sprintathon",
-   "url": "https://www.skccgroup.com",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-14T12:00Z",
-     "2026-11-16T00:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28,50",
-   "exch": "RST, SPC, name, mbr or \"none\""
-  },
-  {
-   "name": "CQ-WE Contest",
-   "url": "https://w8zpf.com",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-14T19:00Z",
-     "2026-11-16T05:01Z"
-    ]
-   ],
-   "modes": [
-    "CW",
-    "PHONE",
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28,50,144,432",
-   "exch": "Name, location code, years of service"
   },
   {
    "name": "AWA Bruce Kelley 1929 QSO Party",
@@ -1511,26 +1375,6 @@
    "src": "CORRAL",
    "bands": "1.8-28,50,144",
    "exch": "Name, RS, SPC, rcvr/xmtr model"
-  },
-  {
-   "name": "Run for the Bacon QRP Contest",
-   "url": "https://qrpcontest.com/pigrun",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-15T23:00Z",
-     "2026-11-16T01:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "CORRAL",
-   "bands": "1.8-28",
-   "exch": "RST, SPC, mbr or pwr"
   },
   {
    "name": "RSGB FT4 Contest",
@@ -2627,7 +2471,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (40)",
-  "CORRAL": "ok (65)"
+  "WA7BNM": "ok (36)",
+  "CORRAL": "ok (60)"
  }
 }

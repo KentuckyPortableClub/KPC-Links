@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T12:26:58Z",
+ "updated": "2026-11-16T12:25:59Z",
  "stations": [
   {
    "title": "SVARA 50th Birthday",
@@ -51,40 +51,6 @@
    "qsl": "QSL",
    "url": "https://www.qrz.com/db/W3A",
    "note": ", Harleysville, PA. WV2M. 7.030 7.074 14.030 14.074. QSL. Frank Gallo, 106 Tweed Way, Harleysville, PA 19438."
-  },
-  {
-   "title": "Guns on the Air (GOTA) 65th Anniversary of the WVARC",
-   "start": "2026-11-13",
-   "end": "2026-11-15",
-   "times": "2000Z-2000Z",
-   "call": "NY7S",
-   "calls": [
-    "NY7S"
-   ],
-   "where": "Sun City, AZ",
-   "st": "AZ",
-   "by": "West Valley Amateur Radio Club",
-   "freqs": "14.250 147.300",
-   "qsl": "QSL",
-   "url": "http://westvalleyARC.com",
-   "note": ", Sun City, AZ. West Valley Amateur Radio Club . 14.250 147.300. QSL. WVARC GOTA, PO Box 1573, Sun City, AZ 85372."
-  },
-  {
-   "title": "USS Cobia Veterans Day Special Event",
-   "start": "2026-11-14",
-   "end": "2026-11-15",
-   "times": "1500Z-2100Z",
-   "call": "NB9QV",
-   "calls": [
-    "NB9QV"
-   ],
-   "where": "Manitowoc, WI",
-   "st": "WI",
-   "by": "NB9QV Cobia Club",
-   "freqs": "7.240 14.240",
-   "qsl": "Certificate",
-   "url": "",
-   "note": ", Manitowoc, WI. NB9QV Cobia Club. 7.240 14.240. Certificate. E-certificate only , kc9yl@arrl.net, Manitowoc, WI 54220. Send contact information to kc9yl@arrl.net to receive PDF certificate via email."
   },
   {
    "title": "NRA Birthday Celebration",
@@ -518,6 +484,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (27)"
+  "ARRL": "ok (25)"
  }
 }
