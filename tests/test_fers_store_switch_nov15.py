@@ -239,6 +239,8 @@ else:
         om, oc = run(tm, main_scr, {}, WRAP_OFF), run(tc, code_scr, {}, WRAP_OFF)
         fm, fc = files_of(tm), files_of(tc)
         def differ(a, b):
+            # KPC owner, 2026-11-16 (item 1): this code also writes its run receipt (receipt-<tag>.json, new); main has none
+            a = {k: v for k, v in a.items() if not k.startswith('receipt-')}; b = {k: v for k, v in b.items() if not k.startswith('receipt-')}
             out = sorted(set(a) ^ set(b))
             for k in sorted(set(a) & set(b)):
                 if a[k] == b[k]: continue

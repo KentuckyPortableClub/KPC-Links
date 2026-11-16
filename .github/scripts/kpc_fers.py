@@ -193,6 +193,7 @@ import kpc_fers_guard as FG   # Nov 4 (Mapping 2-fer review): bad POTA pins, one
 import kpc_fers_key_status as FKS  # Nov 6 (Quality 2-fer grade): area/same-land follow key PIN/approximate
 from kpc_fers_key_status import key_line_match, load_key_status, KEY_STATUS  # noqa: E402
 import kpc_fers_ready as FREADY  # Nov 8: declared ready-areas gate (ownership+management)
+import kpc_fers_receipt as RECEIPT  # KPC owner, 2026-11-16 (proof of work, item 1): one receipt per area run; 84 / 85 exits
 try:
     import kpc_key_freeze as KFREEZE  # Nov 8: declared 2-fer rules hash (kind 'fers')
 except Exception:  # noqa: BLE001
@@ -3763,6 +3764,8 @@ def how_checked(s, parks, PIN):
 
 
 MARK_T = [time.time()]
+STAGES = RECEIPT.Stages(T0)   # this pass's seconds per stage (the receipt)
+EMPTY_AREAS = {}   # area -> why pass 1 measured nothing there (its file is kept; exit 85)
 def mark(what):
     """Oct 28 (pass-5 speed-up): one log line per stage: seconds since the last mark + the process's peak memory so far."""
     try:
@@ -3770,6 +3773,7 @@ def mark(what):
         mb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024
     except Exception: mb = -1  # noqa: BLE001
     now = time.time(); print(f'stage: {what}: {now - MARK_T[-1]:.0f} s, peak {mb} MB', flush=True); MARK_T.append(now)
+    STAGES.mark(what, now)   # KPC owner, 2026-11-16 (item 1): seconds per stage go into the receipt
 
 
 def tidy_rows(spots, PIN, today):
@@ -3915,6 +3919,70 @@ def water_prefetch():
                                f"{WATER_N['missing']} missing (live down and no saved copy); {n} tiles kept")
 
 
+def own_areas():
+    """The run's own areas (STATES; Kentucky's run = US-KY)."""
+    if REGION == 'ky': return {'US-KY'}
+    return {a if re.fullmatch(r'(US|CA|W)-[A-Z]{2}', a) else 'US-' + a for a in ONLY}
+
+
+def _store_mod():
+    m = sys.modules.get('kpc_fers_store')
+    return m if m is not None and getattr(m, 'STORE_ON', False) else None
+
+
+def receipt_verdicts(parks, G, refs=None):
+    """{own area: verdict} for this pass (kpc_fers_receipt.area_verdicts). Only parks with record ids count as expected."""
+    own = own_areas(); exp, got = {}, {}
+    for r, p in parks.items():
+        a = p.get('st') or ''
+        if a not in own or not p.get('ids') or (refs is not None and r not in refs): continue
+        exp[a] = exp.get(a, 0) + 1
+        if r in G: got[a] = got.get(a, 0) + 1
+    KS = _store_mod()
+    return RECEIPT.area_verdicts(own, exp, got, getattr(KS, 'AREA_ROWS', None) if KS else None, KS is not None)
+
+
+def write_receipt(counts, parks, G, bad, rules, refs=None, stopped=''):
+    """KPC owner, 2026-11-16 (item 1): this pass's section of OUT/receipt-<tag>.json. Counts only (no names, no record keys)."""
+    try:
+        own = own_areas(); KS = _store_mod()
+        refs = None if refs is None else set(refs)
+        expd = {a: 0 for a in own}; read = {a: 0 for a in own}
+        for r, p in parks.items():
+            a = p.get('st') or ''
+            if a in own and p.get('ids') and (refs is None or r in refs):
+                expd[a] += 1; read[a] += int(r in G)
+        why = {}
+        for r in bad:
+            w = RECEIPT.reason_class(MISSING_SAVED.get(r) or (getattr(KS, 'FLAGS', {}) or {}).get(r) if KS else MISSING_SAVED.get(r))
+            why[w] = why.get(w, 0) + 1
+        nb = {}
+        if KS is not None and callable((getattr(KS, 'AREA_OFF', {}) or {}).get('fn')):
+            for r, p in parks.items():
+                a = p.get('st') or ''
+                if a and a not in own and p.get('ids') and r not in G and KS.AREA_OFF['fn'](a): nb[a] = nb.get(a, 0) + 1
+        verd = ({a: 'measured' for a in own} if stopped == '' and PASS != 1 else
+                {a: f'stopped early: {stopped}' for a in own} if stopped else receipt_verdicts(parks, G))
+        rows = getattr(KS, 'AREA_ROWS', {}) if KS else {}
+        for a, r in rows.items():   # an area named for the run that the store does not hold: left out, and red here (never 'no 2-fers')
+            if a not in verd and isinstance(r, dict) and r.get('verdict') == 'NOT READY': verd[a] = f"store missing: {str(r.get('why') or '')[:160]}"
+        sec = {'pass': PASS, 'date': time.strftime('%Y-%m-%d %H:%M:%S'), 'region': REGION, 'store run': KS is not None,
+               'store kind': getattr(globals().get('STORE'), 'kind', None) if KS else None,
+               'store date': {a: (rows.get(a) or {}).get('built') for a in sorted(own)} if KS else None,
+               'parks expected': expd, 'parks read': read, 'parks held': len(bad), 'parks held by reason': dict(sorted(why.items())),
+               'pairs tested': int(counts.get('pairs tested') or 0), 'rules_hash': rules, 'engine': RECEIPT.engine_version(),
+               'seconds per stage': STAGES.table(), 'seconds': round(time.time() - T0, 1), 'areas': verd,
+               'neighbours': {a: f'neighbour store missing: {n} parks' for a, n in sorted(nb.items())},
+               'stopped_for_time': bool(counts.get('stopped for time')), 'stopped': stopped}
+        tag = RUN_TAG or area_name()
+        p, doc = RECEIPT.merge(OUT, tag, PASS, sec)
+        save_json(p, doc, indent=1)
+    except RECEIPT.StoppedEarly: raise
+    except SystemExit: raise
+    except Exception as e:  # noqa: BLE001  a receipt that cannot be written = no receipt = the area is red (check)
+        print(f'::warning title=2-fer receipt::not written: {str(e)[:120]}', flush=True)
+
+
 def main():
     if HARD_END: _arm()   # Nov 9 PM: the step's hard end is armed from the start (exit 3 = red, never a silent time-out)
     if str(os.environ.get('KPC_FERS_FROM_STORE') or '').strip().lower() in ('1', 'on', 'yes', 'true'):   # KPC owner, 2026-11-15: outlines from the
@@ -3930,20 +3998,20 @@ def main():
         msg = ('2-fer ready-areas: SKIP world run — no STATES set, and W-* is not on '
                '.github/fers-ready-areas.json (needs ownership + management).')
         print(f'::notice title=2-fer ready-areas::{msg}', flush=True)
-        notice('2-fer bot', msg); return
+        notice('2-fer bot', msg); raise RECEIPT.StoppedEarly(msg)   # KPC owner, 2026-11-16 (item 1): exit 84, never a green run that measured nothing
     if _run_areas:
         # Expand a bare W-* refuse; concrete W-AU etc. go through filter_areas
         if _run_areas == ['W-*']:
             msg = ('2-fer ready-areas: SKIP W-* — world countries are not declared ready '
                    '(ownership + management required; Brandon Nov 8 / t808u).')
             print(f'::notice title=2-fer ready-areas::{msg}', flush=True)
-            notice('2-fer bot', msg); return
+            notice('2-fer bot', msg); raise RECEIPT.StoppedEarly(msg)   # KPC owner, 2026-11-16 (item 1): exit 84, never a green run that measured nothing
         _allow, _skip = FREADY.filter_areas(_run_areas, log=lambda m: print(f'::notice title=2-fer ready-areas::{m}', flush=True))
         if _skip:
             print(f'::notice title=2-fer ready-areas::{FREADY.skip_message(_skip)}', flush=True)
             notice('2-fer bot', FREADY.skip_message(_skip))
         if not _allow:
-            notice('2-fer bot', 'STOPPED: no ready areas left in this run (see 2-fer ready-areas notices).'); return
+            notice('2-fer bot', 'STOPPED: no ready areas left in this run (see 2-fer ready-areas notices).'); raise RECEIPT.StoppedEarly('no ready areas left in this run')
         if ONLY:
             ONLY = set(_allow)
     # Oct 27 (Fable's assembly-line review A5): the park list + trail lines live in KPC-Data (Step B); without them a pass would
@@ -3951,12 +4019,12 @@ def main():
     if REGION != 'world':
         for need in ('data/parkinfo', 'data/trails'):
             if not pathlib.Path(need).is_dir() or not any(pathlib.Path(need).iterdir()):
-                notice('2-fer bot', f'STOPPED: {need} is missing (KPC-Data overlay not laid in: run kpc_overlay.sh first)'); return
+                notice('2-fer bot', f'STOPPED: {need} is missing (KPC-Data overlay not laid in: run kpc_overlay.sh first)'); raise RECEIPT.StoppedEarly(f'{need} is missing (KPC-Data overlay not laid in)')
     PIN = pins()
     PINS.update(PIN)
     if REGION == 'na' and not ONLY and PASS == 1:
         ok, why = known_ok()
-        if not ok: notice('2-fer bot', f'STOPPED before the all-US / Canada run: {why}. Fix and rerun Kentucky first.'); return
+        if not ok: notice('2-fer bot', f'STOPPED before the all-US / Canada run: {why}. Fix and rerun Kentucky first.'); raise RECEIPT.StoppedEarly(f'before the all-US / Canada run: {why}')
     parks, skip = official_parks(PIN)
     drop_blocked(parks)
     PINS.update(PIN)   # Nov 9 PM: official_parks blanks the key's 'pin00' pins (no coordinates)
@@ -4302,6 +4370,12 @@ def main():
             print(f"::error title=2-fer line: outlines not read::{len(bad)} of {_withids} parks' outlines could not be read (id prefixes {' '.join(hosts[:8])}): "
                   "an agency map did not answer. The area stops here, nothing is saved; try it again later.", flush=True)
             sys.exit(1)
+        # KPC owner, 2026-11-16 (item 1): an own area with official parks of which pass 1 read NO outline measured nothing: its file
+        # is kept as it was, the receipt says why (store empty / store missing / 0 of N read), and the pass ends with exit 85
+        EMPTY_AREAS.clear()
+        EMPTY_AREAS.update({a: v for a, v in receipt_verdicts(parks, G).items() if v != 'measured'})
+        for a, v in sorted(EMPTY_AREAS.items()):
+            print(f"::error title=2-fer bot: measured nothing::{a}: {v}. Its 2-fer file is kept as it was; this is not an answer that the area has no 2-fers.", flush=True)
         stage_start(f'pass 1 box test ({len(G)} parks, {len(LN)} lines)')
         boxes = {r: bbox_groups(g) for r, g in G.items() if bbox_groups(g)}
         for r in LN:
@@ -4427,6 +4501,7 @@ def main():
             if kept: counts['areas kept as before (pass 1 out of time)'] = kept; LOG.append(f'{len(kept)} areas kept their previous file (pass 1 out of time): ' + ' '.join(kept[:20]))
         for st in sorted(set(by) | {p['st'] for p in parks.values()}):
             if counts.get('stopped for time') and st in old and (st in undone or st not in by): continue
+            if st in EMPTY_AREAS: continue   # KPC owner, 2026-11-16 (item 1): measured nothing = its previous file stays
             sp = by.get(st, [])
             if PARKS:   # small batch: the new rows for the pairs touching PARKS + every other old row unchanged
                 sp = [x for x in sp if PARKS & set(x['refs'])]
@@ -4574,6 +4649,13 @@ def main():
     if HC.report(): notice('2-fer bot', f'pass {PASS}: ' + HC.report())
     notice('2-fer bot', json.dumps({k: v for k, v in counts.items() if k != 'left out'})[:800])
     if LOG: notice('2-fer bot problems', f'pass {PASS}: {len(LOG)} · ' + ' | '.join(dict.fromkeys(l[:90] for l in LOG))[:700])   # ONE line: GitHub keeps only 10 notes a step
+    mark('report')
+    _L = locals()
+    write_receipt(counts, _L.get('parks') or {}, _L.get('G') or {}, _L.get('bad') or set(), rep.get('fers_rules'),
+                  refs=None if PASS == 1 else (_L.get('refs') or []))
+    if PASS == 1 and EMPTY_AREAS:
+        print(f"::error title=2-fer bot::pass 1 measured nothing in {len(EMPTY_AREAS)} area(s): {', '.join(sorted(EMPTY_AREAS))} (see the receipt)", flush=True)
+        sys.exit(RECEIPT.EXIT_NOTHING)
 
 
 ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by the 2-FER RULES FOR THE WHOLE WORLD (Brandon Oct 27, "
@@ -4587,19 +4669,30 @@ ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by t
          "Check both official boundary maps and make your "
          "own call before you count it.' Tool pages carry the FULL notice from .claude/notes/notices.md.")
 
-if __name__ == '__main__':
-    # Nov 9 PM (run 42649544758 showed a green check after pass 3 stopped on KeyError 'CA-2062' and the step timed out): a crash
-    # exits 1 and the step's hard end exits 3, so the workflow records an error and the run is red. Areas not saved keep their files.
+def run_main():
+    """One pass with the bot's own exit codes (0 done; 1 crash; 3 the step's hard end; 84 stopped early; 85 an area measured
+    nothing). Used by __main__."""
     try: main()
+    except RECEIPT.StoppedEarly as e:   # KPC owner, 2026-11-16 (item 1): stopped before measuring = red (exit 84), with a receipt
+        try: write_receipt({}, {}, {}, set(), None, stopped=str(e))
+        except Exception: pass  # noqa: BLE001
+        print(f'::error title=2-fer bot::stopped early, nothing measured: {e}', flush=True)
+        return (RECEIPT.EXIT_STOPPED)
     except HardStop:
         try: print(f'::notice title=2-fer bot::{reuse_keep_finished()} finished pair answers kept for the next run', flush=True)
         except Exception: pass  # noqa: BLE001
         print(f'::error title=2-fer bot::pass {PASS} reached the step\'s time limit and stopped; nothing more was saved by this pass (unfinished areas keep their previous files)', flush=True)
-        sys.exit(3)
+        return (3)
     except Exception as e:  # noqa: BLE001
         import traceback; traceback.print_exc()
         notice('2-fer bot', f'stopped: {e}')
         try: notice('2-fer bot', f'{reuse_keep_finished()} finished pair answers kept for the next run')
         except Exception: pass  # noqa: BLE001
-        sys.exit(1)
-    sys.exit(0)
+        return (1)
+    return 0
+
+
+if __name__ == '__main__':
+    # Nov 9 PM (run 42649544758 showed a green check after pass 3 stopped on KeyError 'CA-2062' and the step timed out): a crash
+    # exits 1 and the step's hard end exits 3, so the workflow records an error and the run is red. Areas not saved keep their files.
+    sys.exit(run_main())
