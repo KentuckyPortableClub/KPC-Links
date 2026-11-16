@@ -449,9 +449,10 @@ def t_regrade(tmp):
     check(isinstance(got, list) and len(got) == 2 and RV.load_private_dropped('nothing-here') is None,
           'R2: the review list still finds the pairs (from the private folder) and copes when there is none')
     rv_src = (ROOT / '.github/scripts/kpc_fers_review.py').read_text(encoding='utf-8')
+    deny_words = ('no overlap', 'did not show', 'not a 2-fer', 'no shared ground', 'dropped')
     check("'reason': HINT_REASON" in rv_src and "'reason': x.get('reason', '')" not in rv_src
-          and 'decides\nnothing either way' in RV.HINT_REASON.replace(' ', '\n') or 'decides nothing either way' in RV.HINT_REASON,
-          'R2: a review HINT row never copies the reason: the hint is the POTA history, and it decides nothing either way')
+          and not any(w in RV.HINT_REASON.lower() for w in deny_words),
+          'R2: a review HINT row never copies the reason, and the hint itself says nothing about an overlap')
 
 
 # ---------------------------------------------------------------- 9: world areas off GitHub (the owner's PC)

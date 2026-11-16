@@ -17,8 +17,7 @@ DATA = pathlib.Path(os.environ.get('DATA') or 'data/fers')
 OUT = pathlib.Path(os.environ.get('OUT') or DATA)
 
 
-HINT_REASON = ('people have activated these two the same day; our own outlines did not show an overlap this run, which decides '
-               'nothing either way - a person looks')
+HINT_REASON = 'people have activated these two the same day - a person looks'
 
 
 def load_private_dropped(tag):
