@@ -139,6 +139,15 @@
       "scope": "none",
       "scope_note": "No US or Canadian pair changes: the code changes run only for world parks (REGION world). The world areas were never measured before, so they have nothing to re-test; they are new.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
+    },
+    {
+      "id": "2026-11-16-proof-receipts",
+      "when": "2026-11-16",
+      "from": "539fa1720787",
+      "why": "Proof of work, round 1 (handoff of Nov 16, item 1 only). No 2-fer rule changes: which pairs count, their grades, rows and wording are the same. kpc_fers.py: every pass writes a receipt (counts only: parks expected, read, held with reason counts, pairs tested, rules hash, store date, engine version, seconds per stage, a verdict per area); the bot exits 84 when it stops before measuring and 85 when pass 1 read no outline of an area that has official parks (that area keeps its previous file and is never reported as having no 2-fers); an area the store does not hold is 'store missing' and a border area's missing store is counted as 'neighbour store missing: N parks'. kpc_fers_receipt.py check decides done from the receipt (not a rule file).",
+      "scope": "none",
+      "scope_note": "No pair answer or pair fingerprint changes: nothing is re-tested.",
+      "approved": "WAITING FOR THE KPC OWNER'S APPROVAL"
     }
   ]
 }
