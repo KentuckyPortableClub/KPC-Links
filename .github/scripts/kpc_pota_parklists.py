@@ -2,9 +2,11 @@
 """THE ONE PARK-LIST JOB (KPC owner, 2026-11-16, handoff item 7; v4 answers 2 and 3). Once a day:
   1. ONE request: POTA's all-parks export (all_parks_ext.csv: reference, name, active, entityId, locationDesc, latitude, longitude,
      grid), conditional on yesterday's ETag. It is compared with yesterday's saved copy (data/pota/saved/export-index.json); the
-     difference names the states, provinces and countries that changed, and only their saved lists are rewritten, from the export
-     itself (kpc_pota_door.sync_export). /locations is not used.
-  2. /location/parks/<loc> ONLY for a location that changed, and only when a job needs a field the export lacks (activations,
+     difference names the ROWS that changed (v5: added, retired by the `active` column, changed name / pin / grid, gone; in
+     data/pota/saved/export-changes.json), and only the saved lists of the locations holding them are rewritten, from the export
+     itself (kpc_pota_door.sync_export). It replaces the 7-day re-pull. /locations is not used.
+  2. /location/parks/<loc> ONLY for a location with NEW park rows (a retired, renamed or moved row keeps its counts), and only
+     when a job needs a field the export lacks (activations,
      attempts, qsos, parktypeDesc: state_links, top25, state_leaders, KPC-Data pota_activity). US and CA locations: the day they
      change (and once, for a list that never had those fields). World locations: on the weekly world day only (a few days before the
      world key check). At most max_lists_per_run a run; the rest wait in the queue (export-index.json extra_due).
@@ -113,11 +115,12 @@ def main(argv=None):
         try: DOOR.park(ref)
         except DOOR.DoorClosed: pass
     rec.update(lists=done, lists_left_in_queue=left, new_park_details=details,
-               expected_per_day={'spots': 288, 'export': 1, 'lists': f"changed locations that need a field the export lacks, at most {cfg.get('max_lists_per_run') or 20} a run",
+               expected_per_day={'spots': 288, 'export': 1, 'lists': f"locations with new park rows that need a field the export lacks, at most {cfg.get('max_lists_per_run') or 20} a run",
                                  'details_and_history': 'only when a stored copy is over 30 days old (and new parks)'})
     DOOR.write_receipt(rec, 'parklists')
     print(f"::notice title=POTA park lists::{today}: export {'unchanged (304)' if r.get('not_modified') else ('read' if r['asked'] else 'stored copy (under a day old)')}:"
           f" {r['parks']} parks in {r['locations']} locations; {len(r['changed'])} changed ({', '.join(r['changed'][:12])}{' ...' if len(r['changed']) > 12 else ''});"
+          f" rows {r.get('rows') or {}}; {DOOR.STAT['asked']} POTA request(s);"
           f" {len(done)} location list(s) asked ({', '.join(done[:12])}); {left} left in the queue; {details} new park detail(s); world day {wday}")
     return 0
 

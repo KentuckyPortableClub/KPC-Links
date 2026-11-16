@@ -193,16 +193,19 @@ def _ask_export(etag='', modified=''):
     raise DoorClosed(f'all_parks_ext.csv not read: {err}')
 
 
-def export_by_location(text):
+def export_by_location(text, inactive=None):
     """{location: [park rows]} from the export text: ACTIVE parks only (as /location/parks lists them); a park in several locations
-    ('US-KY,US-TN,US-VA') is in each. Raises ExportGone when the header lacks a field the readers need."""
+    ('US-KY,US-TN,US-VA') is in each. inactive (a set) collects the references the `active` column flags as retired. Raises
+    ExportGone when the header lacks a field the readers need."""
     import csv, io
     rd = csv.DictReader(io.StringIO(text))
     miss = [f for f in EXPORT_NEEDS if f not in (rd.fieldnames or [])]
     if miss: raise ExportGone(f'all_parks_ext.csv lacks {", ".join(miss)}')
     out = {}
     for r in rd:
-        if str(r.get('active', '1')).strip() not in ('1', 'true', 'True'): continue
+        if str(r.get('active', '1')).strip() not in ('1', 'true', 'True'):
+            if inactive is not None and r.get('reference'): inactive.add(str(r['reference']).strip())
+            continue
         row = {k: r.get(k) for k in EXPORT_FIELDS if k in r}
         for k in ('latitude', 'longitude'):
             try: row[k] = float(row[k])
@@ -234,19 +237,27 @@ def sync_export():
     if status == 304:
         idx['saved'] = now; _write(root() / 'export-index.json', idx)
         return {'asked': True, 'not_modified': True, 'parks': idx.get('parks', 0), 'locations': len(idx.get('locations') or {}), 'changed': [], 'removed': []}
-    by = export_by_location(text)
+    inactive = set(); by = export_by_location(text, inactive)
     if len(by) < 100: raise ExportGone(f'all_parks_ext.csv holds only {len(by)} locations (too thin)')
     old = idx.get('locations') or {}
     new = {loc: [len(rows), _sha(rows)] for loc, rows in by.items()}
     changed = sorted(loc for loc in new if (old.get(loc) or [None, None])[1] != new[loc][1] or not (root() / 'parks' / f'{loc}.json.gz').exists())
     removed = sorted(set(old) - set(new))
-    new_parks = {}
-    for loc in changed:   # parks new in a location that had a saved list (a first copy names none)
+    # v5 (owner, Nov 16): act only on the ROWS that changed against yesterday's copy. Per changed location the rows are compared
+    # with the saved list: added (new park), retired (the `active` column now flags it), changed (name / pin / grid / entity /
+    # locations), gone (no longer in this location, not retired). A first copy names none.
+    new_parks, rows = {}, {'added': [], 'retired': [], 'changed': [], 'gone': []}
+    for loc in changed + removed:
         was = _read(root() / 'parks' / f'{loc}.json.gz')
-        if was is not None:
-            seen = {str(r.get('reference')) for r in (was.get('data') or []) if isinstance(r, dict)}
-            fresh = sorted({r['reference'] for r in by[loc]} - seen)
-            if fresh: new_parks[loc] = fresh
+        if was is None: continue
+        old_rows = {str(r.get('reference')): r for r in (was.get('data') or []) if isinstance(r, dict)}
+        now_rows = {str(r['reference']): r for r in by.get(loc, [])}
+        fresh = sorted(set(now_rows) - set(old_rows))
+        if fresh: new_parks[loc] = fresh; rows['added'] += [[loc, x] for x in fresh]
+        for ref in sorted(set(old_rows) - set(now_rows)): rows['retired' if ref in inactive else 'gone'].append([loc, ref])
+        for ref in sorted(set(old_rows) & set(now_rows)):
+            diff = sorted(k for k in EXPORT_FIELDS if k in old_rows[ref] and old_rows[ref].get(k) != now_rows[ref].get(k))
+            if diff: rows['changed'].append([loc, ref, diff])
     for loc in changed: _write_list(loc, by[loc], 'export')
     for loc in removed: _write_list(loc, [], 'export')
     names = {str(l.get('locationDesc')): l for l in ((_read(root() / 'locations.json') or {}).get('data') or []) if isinstance(l, dict)}
@@ -255,9 +266,14 @@ def sync_export():
     parks = len({r['reference'] for rows in by.values() for r in rows})
     first = not old   # the first export copy: nothing to compare with, so no location counts as changed for the list calls
     _write(root() / 'export-index.json', {'saved': now, 'etag': etag, 'modified': modified, 'parks': parks, 'locations': new,
-                                          'extra_due': sorted(set(idx.get('extra_due') or []) | (set() if first else set(changed)))})
+                                          'extra_due': sorted(set(idx.get('extra_due') or []) | (set() if first else set(new_parks)))})
+    # the count fields (activations, attempts, qsos) exist only per list call: only a location with NEW parks needs one (a retired,
+    # renamed or moved row keeps its counts), so only those are queued
+    _write(root() / 'export-changes.json', {'saved': now, 'first_copy': first, 'retired_in_export': len(inactive),
+                                            **{k: v[:2000] for k, v in rows.items()}, 'counts': {k: len(v) for k, v in rows.items()}})
     return {'asked': True, 'not_modified': False, 'parks': parks, 'locations': len(new), 'changed': [] if first else changed,
-            'written': len(changed), 'removed': removed, 'first_copy': first, 'new_parks': new_parks}
+            'written': len(changed), 'removed': removed, 'first_copy': first, 'new_parks': new_parks,
+            'rows': {k: len(v) for k, v in rows.items()}, 'list_due': [] if first else sorted(new_parks)}
 
 
 def _write_list(loc, rows, source):
@@ -348,7 +364,7 @@ STAT_KIND = {}
 def receipt(extra=None):
     """The real numbers of this run (v4 answer 3): requests by kind, stored-copy reads, refusals."""
     return {'script': pathlib.Path(sys.argv[0] or 'python').name, 'when': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(_now())),
-            'asked_pota': STAT['asked'], 'by_kind': dict(sorted(STAT_KIND.items())), 'from_stored_copy': STAT['stored'],
+            'pota_requests': STAT['asked'], 'asked_pota': STAT['asked'], 'by_kind': dict(sorted(STAT_KIND.items())), 'from_stored_copy': STAT['stored'],
             'refused_by_budget_or_offline': STAT['refused'], 'unanswered': STAT['failed'], 'budget': BUDGET, **(extra or {})}
 
 
@@ -419,10 +435,18 @@ def selftest():
             clock[0] += DAY; export.update(text=csv_of('\nUS-9904,New Park,1,291,US-ZZ,37.4,-85.4,EM77'), etag='e2'); r = sync_export()
             check('export: a new park -> only its location changed, the new park named', (r['changed'], r['new_parks'], export_index()['extra_due']), (['US-ZZ'], {'US-ZZ': ['US-9904']}, ['US-ZZ']))
             check('export: the changed list has the new park', len(saved_park_list('US-ZZ')), 3)
+            answers['/location/parks/US-ZZ'].append({'reference': 'US-9904', 'name': 'New Park', 'activations': 0, 'attempts': 0, 'locationDesc': 'US-ZZ'})
             rows = fetch_park_list('US-ZZ')
             check('a list call for a changed location keeps the extra fields', saved_park_list('US-ZZ')[0].get('activations'), 7)
-            clock[0] += DAY; export.update(text=csv_of('\nUS-9904,New Park Renamed,1,291,US-ZZ,37.4,-85.4,EM77'), etag='e3'); sync_export()
+            clock[0] += DAY; export.update(text=csv_of('\nUS-9904,New Park Renamed,1,291,US-ZZ,37.4,-85.4,EM77'), etag='e3'); r = sync_export()
+            check('rows: a renamed park is one changed row (name), no list call due', (r['rows'], r['list_due'], _read(root() / 'export-changes.json')['changed']),
+                  ({'added': 0, 'retired': 0, 'changed': 1, 'gone': 0}, [], [['US-ZZ', 'US-9904', ['name']]]))
             check('export rewrite of a location keeps each park\'s extra fields from its last list call', (saved_park_list('US-ZZ')[0].get('activations'), saved_list_info('US-ZZ')[2]), (7, 'export'))
+            clock[0] += DAY; export.update(text=csv_of('\nUS-9904,New Park Renamed,0,291,US-ZZ,37.4,-85.4,EM77'), etag='e4'); r = sync_export()
+            check('rows: the active column retiring a park -> one retired row, it leaves the list, no list call due',
+                  (r['rows']['retired'], _read(root() / 'export-changes.json')['retired'], [x['reference'] for x in saved_park_list('US-ZZ')], r['list_due']),
+                  (1, [['US-ZZ', 'US-9904']], ['US-9901', 'US-9902'], []))
+            check('receipt: the POTA request count is always shown', receipt()['pota_requests'], len(calls))
             try: saved_park_list('FR-ZZ'); got = 'no error'
             except DoorClosed: got = 'DoorClosed'
             check('a location with no active park in the export is an empty list', got, 'no error')
@@ -443,7 +467,7 @@ def selftest():
             with __import__('contextlib').redirect_stdout(__import__('io').StringIO()): got = club_spots()
             check('club file over 30 minutes old -> POTA read directly (one request)', (len(got[0]), len(calls) - n0), (1, 1))
             rc = receipt({'x': 1})
-            check('receipt: the real numbers by kind', (rc['asked_pota'] == len(calls), rc['by_kind'].get('export'), rc['by_kind'].get('details'), rc['x']), (True, 5, 2, 1))
+            check('receipt: the real numbers by kind', (rc['asked_pota'] == len(calls), rc['by_kind'].get('export'), rc['by_kind'].get('details'), rc['x']), (True, 6, 2, 1))
             BUDGET = len(calls); clock[0] += 31 * DAY
             stale = park('US-9901')
             check('budget spent: the stored copy, the refusal counted', (stale['name'], STAT['refused'] >= 1), ('Test', True))
