@@ -64,7 +64,8 @@ with tempfile.TemporaryDirectory() as td:
     src = open(S / 'kpc_fers.py', encoding='utf-8').read()
     check("_sm = [saved_missing_why(r) for r in ub if r in MISSING_SAVED]" in src, 'pass 2-3 rows say saved copy missing (not "could not be read")')
     check("if ref in got and ref not in SAVED_USE: LIVE[ref]" in src, "a saved copy is never re-saved as a live read")
-    check("len(bad - _held) > 20" in src, 'held parks do not stop pass 1 as an agency outage')
+    # KPC owner, 2026-11-15 (store trial M1): the outage test also leaves out the store's licence holds (_open = bad - _held - _sheld)
+    check("_open = bad - _held - _sheld" in src and "len(_open) > 20" in src, 'held parks do not stop pass 1 as an agency outage')
 
     # W&S corridors from the saved copy
     PIN = {'US-9001': ('Obed Wild and Scenic River', 35.005, -79.995, '', 'National Wild and Scenic River', 'NC')}

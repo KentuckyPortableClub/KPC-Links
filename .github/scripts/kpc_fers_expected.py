@@ -8,7 +8,11 @@ Sources (why each pair is expected): 'hand list' = ky-trail-parks.json (Kentucky
 Oct 13 Kentucky 2-fers guide (ky-overlaps.geojson, 76 pairs) · 'activated together' = POTA activation history, same call same day
 (data/fers/pota-pairs-<st>.json, counts only) · 'near-touching' = outlines within 100 m (pass 1's looked file) · 'member report'
 (data/fers/member-reports.json, later). Writes data/fers/expected-<area>.json; 'pass' = no NEVER LOOKED AT without a reason and
-every DROPPED with a reason. Chat 8 reviews the DROPPED + NEVER LOOKED AT lists. AREA='ky' or STATES='US-OH'. Never fails."""
+every DROPPED with a reason. Chat 8 reviews the DROPPED + NEVER LOOKED AT lists. AREA='ky' or STATES='US-OH'. Never fails.
+Public outline-store run (KPC owner, 2026-11-15; store trial M4: KPC_FERS_FROM_STORE on, KPC_FERS_STORE_KIND public): a pair with a
+park whose outline the store holds privately (the run's withheld lists in KPC_FERS_PRIVATE_LOG, as the store-missing list reads
+them) is left out and only counted, and the file goes through the store's redact + write guard. No readable list = no file
+(fail closed: the old file is not touched)."""
 import glob, gzip, itertools, json, math, os, pathlib, re, sys, time
 OUT = pathlib.Path('data/fers')
 NEAR_M = 1000.0   # HQ Oct 27 9:39 PM: a pair expected ONLY because people activated both the same day counts when the two
@@ -72,7 +76,22 @@ def load(p, d=None):
     except Exception: return d  # noqa: BLE001
 
 
+def store_withheld():
+    """Public store run: (refs, names, mask) of the run's withheld lists, or 'off' (not a public store run), or None (a public store
+    run with no readable list: write nothing)."""
+    on = str(os.environ.get('KPC_FERS_FROM_STORE') or '').strip().lower() in ('1', 'on', 'yes', 'true')
+    if not on or str(os.environ.get('KPC_FERS_STORE_KIND') or 'public').strip().lower() == 'private': return 'off'
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import kpc_fers_store as S
+    return S.load_withheld(str(os.environ.get('KPC_FERS_PRIVATE_LOG') or '').strip())
+
+
 def build(area, files, tag='', sts=()):
+    wh = store_withheld()
+    if wh is None:
+        print(f'::warning title=2-fer missing check::{area}: public outline-store run without a readable withheld list: expected-{tag or area}.json is not written', flush=True)
+        return
+    sec = set(wh[0]) if wh != 'off' else set()
     rows = []
     for f in files:
         for s in (load(f, {}) or {}).get('spots') or []: rows.append((set(s.get('refs') or []), str(s.get('status', '')), s.get('id', '')))
@@ -127,6 +146,10 @@ def build(area, files, tag='', sts=()):
         if gap > NEAR_M: filt['left_out_far'] += 1; continue
         keep[refs] = why | {f'outlines about {int(gap)} m apart'}
     exp = keep
+    n_withheld = 0
+    if sec:   # a pair with a withheld park is left out of the public file: counted only
+        n_withheld = sum(1 for refs in exp if set(refs) & sec)
+        exp = {refs: why for refs, why in exp.items() if not set(refs) & sec}
     out = {'FOUND': [], 'DROPPED': [], 'NEVER LOOKED AT': []}
     for refs, why in sorted(exp.items()):
         rs = set(refs)
@@ -158,7 +181,15 @@ def build(area, files, tag='', sts=()):
     if not looked: print(f'::notice title=2-fer missing check::{area}: no pass-1 list (looked-{area}.json): run pass 1 first', flush=True)
     res = {'filter': filt, 'about': __doc__.split('\n')[0] + ' See kpc_fers_expected.py. Chat 8 reviews DROPPED + NEVER LOOKED AT.', 'area': area,
            'date': time.strftime('%Y-%m-%d'), 'pass': not bad, 'counts': {k: len(v) for k, v in out.items()}, **out}
-    (OUT / f'expected-{tag or area}.json').write_text(json.dumps(res, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
+    path = OUT / f'expected-{tag or area}.json'
+    if wh != 'off':   # public store run: the store's redact + write guard, like every file the bot writes (a refusal = no file)
+        import kpc_fers_store as S
+        res['withheld (pairs with a park whose outline is held privately: not named)'] = n_withheld
+        try: res, n = S.guard_public_file(path, res, wh[0], wh[1], wh[2])
+        except S.LeakRefused:
+            print(f'::error title=2-fer missing check::{area}: the write guard refused expected-{tag or area}.json: not written', flush=True); return
+        if n: res['withheld (items left out by the write guard)'] = n
+    path.write_text(json.dumps(res, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     print(f"::notice title=2-fer missing check::{area}: {res['counts']} expected pairs · filter: {filt['left_out_far']} POTA-only pairs left out "
           f"(outlines over {int(NEAR_M)} m apart), kept {filt['kept_no_outline']} with no outline + {filt['kept_same_session']} one-session + "
           f"{filt['kept_not_measured']} not measurable" + ('' if res['pass'] else f' · {len(bad)} with no reason'), flush=True)

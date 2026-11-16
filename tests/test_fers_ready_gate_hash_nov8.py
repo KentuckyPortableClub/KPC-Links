@@ -99,7 +99,8 @@ docs = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 # KPC owner, 2026-11-12 (Japan A10 crosswalk, world, switch off): + that entry on top: (inside the same window).
 # KPC owner, 2026-11-14 (full 100 ft trail / river rule, fers): + that entry on top: the top twenty-one.
 # KPC owner, 2026-11-15 (the outline store switch-over, fers): + that entry on top: the top twenty-two.
-_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:22])
+# KPC owner, 2026-11-15 (the store run fixes after the first real-store trial, fers): + that entry on top: the top twenty-three.
+_head = '\n\n'.join([p for p in docs.split('\n\n') if p.strip()][:23])
 check(fers_h in _head and 'fers v1' in _head,
       f'docs/key-rules-change.txt Nov 10 entries declare fers v1 hash {fers_h}')
 # Public changelog keeps hashes and dates only (no quotes, no ids)

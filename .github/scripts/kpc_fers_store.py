@@ -19,6 +19,12 @@ closed areas or the ownership map could not be checked (a store run downloads no
 positively decides (water only, dropped, any other not-sure reason, water not checked too) is never kept. The good copies wait
 between passes in a side file outside the data folder (store_prev_file), never in a row. Saved PAD-US answers are not used yet.
 Rule scope 'none': a switch-off run re-tests nothing; a store run stamps its own areas' parks (STORE_STAMP) so they are re-tested once.
+Never worse (OWNER RULE, KPC owner 2026-11-15, rule R12; scope 2026-11-15-store-fixes): on a PUBLIC store run a withheld park (a record
+of it, or its line record, not publishable) keeps its rows of the previous public file UNCHANGED, marked 'not re-checked (outline held
+privately)' and counted per area (carry_held_rows); nothing else names it. withheld_refs() is the whole set every public file is guarded
+with, and secret_refs() (the KPC-Store push check's list) is the same whole set (grade of #204, D3): the push check lets a carried row
+through only as the exact row of the previous public file, and scans for the park everywhere else. Each process writes its whole list
+to <private folder>/store-withheld/ (kpc_fers_expected.py reads it; store-missing gives the run's total).
 
 Switch: KPC_FERS_FROM_STORE = on | off (default off; anything but 1 / on / yes / true is off). Off: install() does nothing and
 returns False. On, US + Canada runs (REGION na) only: for one process,
@@ -708,6 +714,60 @@ def keep_old_rows(new, old, today=None, final=True, carry=None):
     return n
 
 
+HELD_TAG = 'not re-checked (outline held privately)'
+CARRIED = {}       # area -> rows carried unchanged by carry_held_rows in the last save of this process (every status)
+CARRIED_LIVE = {}  # area -> of those, the live ones (candidate, very tight, water only, not sure ...: not dropped or merged)
+CARRIED_JSON = {}  # area -> the exact JSON of each carried row: the write step lets exactly these through (nothing else naming the park)
+
+
+def _canon(x): return json.dumps(x, sort_keys=True, ensure_ascii=False, default=str)
+
+
+def held_refs_file(KF, area):
+    """The private side file with the withheld refs of an area's carried rows (between passes), next to the store-prev side file."""
+    f = store_prev_file(KF, area)
+    return None if f is None else f.parent.parent / 'store-held' / f'{area}.json'
+
+
+def _full_row(x):
+    """A row as the bot writes it (refs, kind, status, passes [p1, p2, p3]): only such a row can be carried; the passes read every
+    row's fields (KPC-Store test_fers_store_run: an old row without 'passes' stopped pass 1's report with a KeyError)."""
+    return (isinstance(x, dict) and isinstance(x.get('refs'), list) and isinstance(x.get('kind'), str) and isinstance(x.get('status'), str)
+            and isinstance(x.get('passes'), list) and len(x['passes']) >= 3)
+
+
+def carry_held_rows(KF, d, old):
+    """OWNER RULE 'never worse' (KPC owner, 2026-11-15; store trial M2 + M3). On a PUBLIC store run a withheld park (a record of it is
+    not publishable, or its line record is not) is never read, so its pairs cannot be tested. Its existing public rows must not
+    vanish: every row of the previous PUBLIC file that names such a park is carried UNCHANGED (only the mark store_held =
+    'not re-checked (outline held privately)' is added) and counted; no row naming it is computed or added from anything else, and
+    nothing about it goes into any other row or file (the write step lets only these exact copies through). Pass 1 takes the rows
+    from the previous public file; passes 2-5 take the marked rows of the file pass 1 wrote (the exact copies; whatever a pass did to
+    them in memory is thrown away). Returns the number of rows carried."""
+    if not isinstance(d, dict) or not d.get('st'): return 0
+    area = d['st']
+    hf = held_refs_file(KF, area)
+    sec = set(withheld_refs())
+    if int(getattr(KF, 'PASS', 1)) == 1:
+        orig = [json.loads(_canon(x)) for x in (old or {}).get('spots') or [] if _full_row(x) and set(x.get('refs') or []) & sec]
+        for x in orig: x['store_held'] = HELD_TAG
+        held = sorted({r for x in orig for r in x.get('refs') or [] if r in sec})
+        if hf is not None:
+            try:
+                hf.parent.mkdir(parents=True, exist_ok=True); hf.write_text(json.dumps({'refs': held}), encoding='utf-8')
+            except OSError: pass
+    else:
+        orig = [json.loads(_canon(x)) for x in (old or {}).get('spots') or [] if isinstance(x, dict) and x.get('store_held') == HELD_TAG]
+        held = sorted(set(_read_json(hf).get('refs') or []) if hf is not None and hf.is_file() else set())
+        sec |= set(held)
+    keep = [x for x in d.get('spots') or [] if not (isinstance(x, dict) and (x.get('store_held') or set(x.get('refs') or []) & sec))]
+    d['spots'] = keep + orig
+    CARRIED[area] = len(orig); CARRIED_LIVE[area] = sum(1 for x in orig if _live(x))
+    CARRIED_JSON[area] = {_canon(x) for x in orig}
+    CARRIED_PUBLIC.update(r for x in orig for r in x.get('refs') or [] if r in sec)
+    return len(orig)
+
+
 def store_prev_file(KF, area):
     """Where the good copies of a store run's rows wait between passes: the private folder (a private run's own folder, or
     KPC_FERS_PRIVATE_LOG on a public run), else KPC_FERS_LIVE_DIR (cache/fers), never under the data folder kpc_fers.py writes
@@ -837,16 +897,29 @@ def _dicts(obj):
 
 HELD_PRIVATE = set()   # parks with records that are not publishable or are WDPA-derived (from the store index, ALL parks of the run's areas)
 READ_OK = set()        # parks read on THIS run from publishable records only (they may be named)
+READ_OK_RUN = set()    # KPC owner, 2026-11-15 (trial 2, CT): parks an EARLIER pass of this area's run read from publishable records only
 WITHHELD = {'parks': 0, 'items': 0}   # anonymous counts: what the public files leave out
 PRIVATE_WHY = re.compile(r'needs the private store|WDPA|Protected Planet|not publishable', re.I)
 REFLIKE = re.compile(r'^[A-Za-z0-9]{1,4}-\d{1,6}$')
 ROW_KEYS = ('refs', 'ref', 'pair', 'pairs', 'park', 'other', 'parks_in')
 
 
-def secret_refs():
+def withheld_refs():
     """The parks a PUBLIC file must never name: held or used for unpublishable / WDPA-derived records, unless this run read them
-    from publishable records only."""
-    return (HELD_PRIVATE | set(PRIVATE)) - READ_OK
+    from publishable records only. Every public file this module guards (redact, guard_write, the log filter, store-missing) uses
+    this whole set; the only exception is a carried row (carry_held_rows): an unchanged copy of a row the previous PUBLIC file
+    already had."""
+    return (HELD_PRIVATE | set(PRIVATE)) - READ_OK - READ_OK_RUN
+
+
+CARRIED_PUBLIC = set()   # withheld parks whose rows the previous public file already named (carried unchanged: carry_held_rows)
+
+
+def secret_refs():
+    """The list the KPC-Store push check scans every changed file for (keeper/fers_bot_run.py writes it at exit): the whole
+    withheld_refs() set, parks of carried rows included (grade of #204, D3). A carried row (carry_held_rows) is let through by the
+    push check only as the exact row of the previous public file (store_held mark aside); every other mention is refused."""
+    return withheld_refs()
 
 
 # the name guard (grade of #201): words that never make a name distinctive on their own (park kinds and plain place words)
@@ -947,7 +1020,7 @@ def redact(doc, refs=None):
     """A public file never names a secret park (see secret_refs): a dict key that is such a ref, and any list item (row, entry,
     log line, [ref, name] pair) that mentions one, is left out; a text value that mentions one becomes '[withheld]'. Returns
     (doc, items left out). The write guard checks the result again."""
-    rx = _ref_rx(secret_refs() if refs is None else refs)
+    rx = _ref_rx(withheld_refs() if refs is None else refs)
     if rx is None or not rx.search(json.dumps(doc, default=str, ensure_ascii=False)): return doc, 0
     n = [0]
     def walk(o):
@@ -968,7 +1041,7 @@ def redact(doc, refs=None):
     return walk(doc), n[0]
 
 
-def guard_write(path, doc, private=None):
+def guard_write(path, doc, private=None, names=None):
     """THE WRITE STEP of a store run: every file kpc_fers.py saves (spot files, reuse, report, looked, missing, same-outline ...)
     and the store-missing list pass here first. Raises LeakRefused (the run fails, nothing is written) when the file
       - names a build that is never released (BLOCKED_BUILDS: as text or as a number), in any file;
@@ -976,8 +1049,9 @@ def guard_write(path, doc, private=None):
       - is a public file and holds a row marked club_room_only (any depth), a row naming a park that is not US / Canada (world
         2-fers stay off the public site; any row shape: refs, ref, pair, pairs, park, other), or ANY mention (any case, any
         neighbour character) of a park held or used for records that are not publishable or are WDPA-derived.
+    names = (normalised secret names, masked public names) when the caller has them from a list (another process: kpc_fers_expected.py).
     Every problem is counted; the message names none of them (LeakRefused)."""
-    private = secret_refs() if private is None else set(private)
+    private = withheld_refs() if private is None else set(private)
     txt = json.dumps(doc, default=str, ensure_ascii=False)
     probs, kinds = [], set()
     for b in sorted(BLOCKED_BUILDS):
@@ -1003,7 +1077,7 @@ def guard_write(path, doc, private=None):
         for m in sorted({m.group(0).upper() for m in rx.finditer(txt)}):
             probs.append(f'{path}: it names {m}, held or used for records that are not publishable'); kinds.add('park with unpublishable records')
     # grade of #201 (item 3): a secret park's NAME in any text (a note of a carried old row, a log line), not only its ref
-    nm, mask = secret_names(private)
+    nm, mask = secret_names(private) if names is None else (set(names[0]), set(names[1]))
     for m in sorted(name_hits(doc, nm, mask)):
         probs.append(f'{path}: it names the park "{m}", held or used for records that are not publishable'); kinds.add('park name with unpublishable records')
     if any('store_prev' in d for d in _dicts(doc)):
@@ -1075,9 +1149,20 @@ def shut_door(KF):
             if off:   # an area that does not use the store in this run (except list, not held, stale ...): its file stays as it was
                 SKIPPED_FILES[m.group(1)] = off; return None
             if isinstance(d, dict) and pathlib.Path(p).name.startswith('report') and STORE_ON: d = dict(d, outline_store=store_counts())
+            carried = []
+            if PRIVATE_OUT is None and m and isinstance(d, dict) and CARRIED_JSON.get(m.group(1)) and isinstance(d.get('spots'), list):
+                # the 'never worse' rows (carry_held_rows): exact copies of the previous public file's rows, checked on their own (no
+                # club-room row, no world park, no never-released build), then put back; any other row naming the park is left out
+                allow = CARRIED_JSON[m.group(1)]
+                carried = [x for x in d['spots'] if isinstance(x, dict) and x.get('store_held') == HELD_TAG and _canon(x) in allow]
+                if carried:
+                    d = dict(d, spots=[x for x in d['spots'] if not (isinstance(x, dict) and x.get('store_held') == HELD_TAG and _canon(x) in allow)])
+                    guard_write(p, {'spots': carried}, private=set(), names=(set(), set()))
             if PRIVATE_OUT is None:   # a public file: a park held or used for unpublishable / WDPA records is left out (counted only)
                 d, n = redact(d); WITHHELD['items'] += n
-            guard_write(p, d); out = raw(p, d, *a, **k)
+            guard_write(p, d)
+            if carried: d = dict(d, spots=list(d.get('spots') or []) + carried)
+            out = raw(p, d, *a, **k)
             ks = sys.modules.get('kpc_save')   # its exit-time status file (data/status/<bot>.json) must not list private files
             if PRIVATE_OUT is not None and ks is not None and isinstance(getattr(ks, '_changed', None), dict): ks._changed.pop(str(pathlib.Path(p)), None); ks._changed.pop(str(p), None)
             return out
@@ -1102,6 +1187,10 @@ def store_lines(KF, st, areas, base):
         for ref, e in ((a.entries.items()) if a is not None else ()):
             if e.get('geometry_kind') == 'line': cand.setdefault(ref, ar)
     for ref in base: cand.setdefault(ref, (areas or names or [''])[0])
+    # C1 (store trial, KPC owner 2026-11-15): a data/trails line park far from this run's areas (its line's box more than NEAR_LINE_DEG
+    # from the box of the run's own park pins) is still read when the store has it (pairs exactly as before), but when the store
+    # does not have it, it is not listed as held: every run listed about 370 such North American line parks
+    near = _near_run(KF, areas)
     for ref, ar in sorted(cand.items()):
         stores, why = st.locate_all(ref, ar)
         rec, park, bad = [], None, ''
@@ -1158,9 +1247,10 @@ def store_lines(KF, st, areas, base):
             if priv and st.kind == 'public': bad = f'{ref} needs the private store (line records not publishable: ' + ', '.join(f"{k} {v['licence_class']}" for k, v in sorted(priv.items())[:4]) + ')'
             elif priv: PRIVATE[ref] = priv
         if bad:
-            FLAGS[ref] = bad
-            if PRIVATE_WHY.search(bad): HELD_PRIVATE.add(ref)   # never named in a public file, nor in the log
-            else: KF.LOG.append(f'outline store line: {bad[:120]}')
+            if PRIVATE_WHY.search(bad): HELD_PRIVATE.add(ref); FLAGS[ref] = bad   # never named in a public file, nor in the log
+            elif ref in base and not seen_area(st, areas, ref) and not near(base[ref]):
+                FAR_LINES['n'] += 1   # far from the run: not this run's to list (counted only)
+            else: FLAGS[ref] = bad; KF.LOG.append(f'outline store line: {bad[:120]}')
             continue
         if not rec: continue
         if not PRIVATE.get(ref): READ_OK.add(ref)
@@ -1182,6 +1272,33 @@ def store_lines(KF, st, areas, base):
     return out
 
 
+NEAR_LINE_DEG = 1.0   # about 100 km: a line park this close to the run's own park pins is the run's or a neighbour's
+FAR_LINES = {'n': 0}
+
+
+def _near_run(KF, areas):
+    """-> f(line entry) True when the line's box comes within NEAR_LINE_DEG of the box of the POTA pins filed under the run's areas
+    (no box known = always True: nothing is left unlisted)."""
+    pins = getattr(KF, 'PINS', None) or {}
+    pts = []
+    for v in pins.values():
+        if not (isinstance(v, (list, tuple)) and len(v) > 5 and isinstance(v[1], (int, float)) and isinstance(v[2], (int, float))): continue
+        a_ = str(v[5]); a_ = a_ if a_.startswith(('CA-', 'W-', 'US-')) else 'US-' + a_
+        if a_ in areas: pts.append((v[2], v[1]))
+    if not pts: return lambda e: True
+    b = (min(x for x, _ in pts) - NEAR_LINE_DEG, min(y for _, y in pts) - NEAR_LINE_DEG, max(x for x, _ in pts) + NEAR_LINE_DEG, max(y for _, y in pts) + NEAR_LINE_DEG)
+    def near(e):
+        q = [p for l in (e or {}).get('lines') or [] for p in l if isinstance(p, (list, tuple)) and len(p) >= 2]
+        if not q: return True
+        return not (max(p[0] for p in q) < b[0] or min(p[0] for p in q) > b[2] or max(p[1] for p in q) < b[1] or min(p[1] for p in q) > b[3])
+    return near
+
+
+def seen_area(st, areas, ref):
+    """The run's areas whose store index lists ref (a line park of the run's own areas is always listed when held)."""
+    return {ar for ar in areas if st.area(ar) is not None and ref in st.area(ar).entries}
+
+
 def store_counts():
     """What the run report and the store-missing list say about format-4 records (counts and ids only, no geometry)."""
     tot = {}
@@ -1191,7 +1308,9 @@ def store_counts():
             'line parks read from the store': len(STORE_LINES), 'line parks skipped (by-name / coarse / no bank status)': len(LINE_SKIPPED), 'line parks as on main (coarse NPS routes)': len(MAIN_LINES), 'live pairs on the 100-ft line rule': dict(sorted(LINE_ROWS.items())),
             'water tiles': dict(WATER_READ), 'river rule with no bank data': dict(RIVER_NO_BANK), 'river tiers': dict(RIVER_TIERS),
             'river bank to-do (stretches)': len(RIVER_TODO), 'rows kept (kept: not checked in a store run)': KEPT['n'],
-            'area files left as they were (area does not use the store)': len(SKIPPED_FILES)}
+            'rows carried unchanged (' + HELD_TAG + ')': dict(sorted(CARRIED.items())), 'of them live rows': dict(sorted(CARRIED_LIVE.items())),
+            'area files left as they were (area does not use the store)': len(SKIPPED_FILES),
+            'line parks far from this run not in the store (not listed)': FAR_LINES['n']}
 
 
 def river_bank_guard(KF, mode):
@@ -1373,6 +1492,65 @@ def scan_private(st, areas):
     return n
 
 
+WITHHELD_DIR = 'store-withheld'   # in the private folder: one list per bot process (refs, names), read by kpc_fers_expected.py
+
+
+def save_withheld_list(tag, pass_no):
+    """Public store run: the WHOLE withheld list of this process (withheld_refs(), with the distinctive names) into
+    <private folder>/store-withheld/<tag>-p<pass>.json, so a later step (kpc_fers_expected.py) leaves those parks out. -> the number of
+    withheld parks over every list of this tag so far (the run's total), or None when there is no private folder."""
+    if not PRIVATE_LOG_DIR: return None
+    d = pathlib.Path(PRIVATE_LOG_DIR) / WITHHELD_DIR
+    refs = sorted(withheld_refs())
+    nm, mask = secret_names(set(refs)) if refs else (set(), set())
+    try:
+        d.mkdir(parents=True, exist_ok=True)
+        (d / f'{tag}-p{pass_no}.json').write_text(json.dumps({'refs': refs, 'names': sorted(nm), 'mask': sorted(mask), 'read_ok': sorted(READ_OK)}), encoding='utf-8')
+    except OSError: return None
+    allr = set()
+    for f in d.glob(f'{tag}-p*.json'): allr |= set(_read_json(f).get('refs') or [])
+    return len(allr)
+
+
+def read_ok_before(tag, pass_no):
+    """The parks the earlier passes of this area's public run read from publishable records only (their store-withheld lists, in the
+    private folder). KPC owner, 2026-11-15 (trial 2 on the real store, CT): a park with a publishable outline and an unpublishable line
+    record is read (and may be named) in pass 1, which reads every park; pass 5 reads only some parks, so the same park counted as
+    withheld there and the push check refused pass 1's own files. A later pass keeps the earlier passes' answer."""
+    if not PRIVATE_LOG_DIR or not pass_no: return set()
+    out = set()
+    for f in (pathlib.Path(PRIVATE_LOG_DIR) / WITHHELD_DIR).glob(f'{tag}-p*.json'):
+        m = re.fullmatch(re.escape(tag) + r'-p(\d+)\.json', f.name)
+        if m and int(m.group(1)) < pass_no: out |= {str(x) for x in _read_json(f).get('read_ok') or []}
+    return out
+
+
+def load_withheld(private_dir):
+    """(refs, names, mask) of every withheld list in a private folder: this module's own lists (store-withheld/) and the KPC-Store
+    run's lists (withheld/*.json: refs, names, mask), unioned. None when the folder has no list at all (the caller fails closed)."""
+    if not private_dir: return None
+    refs, names, mask, n = set(), set(), set(), 0
+    for sub in (WITHHELD_DIR, 'withheld'):
+        for f in sorted((pathlib.Path(private_dir) / sub).glob('*.json')):
+            if f.name == 'store-tokens.json': continue
+            try: doc = json.loads(f.read_text(encoding='utf-8'))
+            except (OSError, ValueError): return None   # a list that cannot be read: fail closed
+            if not isinstance(doc, dict): return None
+            n += 1
+            refs |= {str(x) for x in doc.get('refs') or []}
+            names |= {norm_name(x) for x in doc.get('names') or [] if norm_name(x)}
+            mask |= {norm_name(x) for x in doc.get('mask') or [] if norm_name(x)}
+    return (refs, names, mask) if n else None
+
+
+def guard_public_file(path, doc, refs, names=(), mask=()):
+    """For a writer in ANOTHER process of a public store run (kpc_fers_expected.py): redact + the write guard with the run's withheld
+    list. -> (doc, items left out); raises LeakRefused like the bot's own write step."""
+    doc, n = redact(doc, set(refs))
+    guard_write(path, doc, private=set(refs), names=(set(names), set(mask)))
+    return doc, n
+
+
 def write_todo_csv():
     """The river bank to-do (tiers mode) as the spec's river-bank-todo.csv, in the PRIVATE folder only."""
     if not PRIVATE_LOG_DIR or not RIVER_TODO: return False
@@ -1516,6 +1694,8 @@ def install(KF, env=None, store=None):
         if not isinstance(sys.stderr, RedactOut): sys.stderr = RedactOut(sys.stderr)
     out_dir = pathlib.Path(getattr(KF, 'OUT', 'data/fers')).resolve()
     tag = getattr(KF, 'area_name', lambda: 'run')()
+    if st.kind != 'private':   # trial 2 (CT): one answer per park for the whole run, so a later pass never withholds a park an earlier pass published
+        READ_OK_RUN.update(read_ok_before(tag, int(getattr(KF, 'PASS', 0) or 0)))
 
     def write_rows():
         doc = {'about': 'Outline store use by the 2-fer bot: one row per area (ready / not ready / will not fit) and every held park with its reason. '
@@ -1525,7 +1705,10 @@ def install(KF, env=None, store=None):
         if st.kind == 'private': doc['store'] = str(st.dir); doc['private_records'] = dict(sorted(PRIVATE.items())); doc['river_bank_todo'] = RIVER_TODO
         else:
             doc, n = redact(doc); WITHHELD['items'] += n
-        doc['withheld (parks held or used for unpublishable / WDPA records: not named)'] = len(secret_refs()) if st.kind != 'private' else 0
+        doc['withheld (parks held or used for unpublishable / WDPA records: not named)'] = len(withheld_refs()) if st.kind != 'private' else 0
+        if st.kind != 'private':   # C9: the whole run (every pass of this area so far), not only this pass; and the full list, privately
+            run = save_withheld_list(tag, int(getattr(KF, 'PASS', 0) or 0))
+            if run is not None: doc['withheld over the run (all passes so far, not named)'] = run
         p = out_dir / f'store-missing-{tag}.json'
         guard_write(p, doc)
         try: write_todo_csv(); write_candidates_csv()
@@ -1625,7 +1808,10 @@ def install(KF, env=None, store=None):
                 k = keep_old_rows(d, old, st.today, final=final, carry=carry)
                 if cf is not None: _write_carry(cf, carry if not final else None)
                 if k: KF.LOG.append(f"{d['st']}: {k} candidate rows kept from the last file ({KEPT_TAG}: closed areas / ownership)")
-                LINE_ROWS[d['st']] = sum(1 for x in d.get('spots') or [] if x.get('kind') in ('trail', 'river') and _live(x))
+                if st.kind != 'private':   # OWNER RULE 'never worse' (M2 + M3): a withheld park's public rows are carried unchanged
+                    c = carry_held_rows(KF, d, old)
+                    if c: KF.LOG.append(f"{d['st']}: {c} rows of parks whose outline is held privately carried unchanged ({HELD_TAG})")
+                LINE_ROWS[d['st']] = sum(1 for x in d.get('spots') or [] if x.get('kind') in ('trail', 'river') and _live(x) and not x.get('store_held'))
         except Exception as e: KF.LOG.append(f'outline store row carry: {str(e)[:80]}')  # noqa: BLE001  (the write guard still checks the file)
         return d
 
@@ -1673,7 +1859,7 @@ class RedactOut:
     replaced by [withheld] (a GitHub Actions log of a public repo is public)."""
     def __init__(self, real): self.real, self._n, self._rx = real, -1, None
     def write(self, t):
-        sec = secret_refs()
+        sec = withheld_refs()
         if len(sec) != self._n: self._n, self._rx = len(sec), _ref_rx(sec)
         if self._rx is not None and isinstance(t, str): t = self._rx.sub('[withheld]', t)
         return self.real.write(t)
@@ -1765,7 +1951,13 @@ def main(argv=None):
         if '--old' not in a or '--new' not in a: print('usage: kpc_fers_store.py diff --old FILE --new FILE [--out STEM]'); return 2
         d = diff_rows(_load(a['--old']), _load(a['--new']))
         if a.get('--out'):
+            # C7 (store trial): the change list names parks, withheld ones of the old public file too: it is a PRIVATE file. With
+            # KPC_FERS_PRIVATE_LOG set it goes there (the stem's name only); otherwise a stem inside a git work tree is refused
             stem = pathlib.Path(a['--out'])
+            pl = str(os.environ.get('KPC_FERS_PRIVATE_LOG') or '').strip()
+            if pl: stem = pathlib.Path(pl) / stem.name; stem.parent.mkdir(parents=True, exist_ok=True)
+            if in_git_tree(stem.parent):
+                print('diff --out: the change list names parks (withheld ones too): write it outside every git work tree, or set KPC_FERS_PRIVATE_LOG'); return 2
             stem.with_suffix('.json').write_text(json.dumps(d, indent=1, ensure_ascii=False), encoding='utf-8')
             md = ['# 2-fer change list (store outlines against the last answers)', '', 'Nothing is published until a person signs this list; the old answers stay.', '',
                   ' | '.join(f'{k}: {v}' for k, v in d['counts'].items()), '']
