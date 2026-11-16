@@ -366,7 +366,8 @@ else:
     wdoc = {'areas': 'all-us-ca', 'except': [], 'world': 'on'}
     res, out = region('world', wdoc)
     check(res == 'exit 89 True' and 'club room only' in out, 'world switch on, public store: refused (exit 89): world 2-fers are club room only, so a world store run is a private run')
-    # a made-up world area W-ZQ: one ordinary record and one WDPA-derived record
+    # a made-up world area W-ZQ: one ordinary record and one WDPA-derived record. Record keys as the world store files them
+    # ('<area>:<layer>:<id>', KPC owner 2026-11-16: a world park is looked up that way)
     wst = TMP / 'wstore'; wst.mkdir()
     def _enc(r):
         o, px, py = [], 0, 0
@@ -375,13 +376,13 @@ else:
         return o
     def _rec(key, ring, **kw):
         e = [_enc(ring)]
-        return {'key': key, 'layer': 'w-test', 'record_id': key, 'record_name': key, 'licence_class': 'OPEN', 'publishable': True, 'publish_basis': 'verified-row',
+        return {'key': key, 'layer': key.rsplit(':', 1)[0], 'record_id': key.rsplit(':', 1)[-1], 'record_name': key, 'licence_class': 'OPEN', 'publishable': True, 'publish_basis': 'verified-row',
                 'wdpa_derived': False, 'private_reason': '', 'source': 'live', 'use': True, 'q': 6, 'geometry_kind': 'area', 'rings': e,
                 'points': sum(len(x) // 2 for x in e), 'sha256': ST.geometry_sha256(e), **kw}
     sq = lambda x0, y0, d: [[x0, y0], [x0 + d, y0], [x0 + d, y0 + d], [x0, y0 + d], [x0, y0]]
     import hashlib
-    WP = [{'ref': 'ZQ-0001', 'name': 'Test World Park', 'records': [_rec('w1', sq(10.0, 50.0, 0.01))]},
-          {'ref': 'ZQ-0002', 'name': 'Test Wdpa Park', 'records': [_rec('w2', sq(10.1, 50.0, 0.01), wdpa_derived=True)]}]
+    WP = [{'ref': 'ZQ-0001', 'name': 'Test World Park', 'records': [_rec('W-ZQ:w-test:w1', sq(10.0, 50.0, 0.01))]},
+          {'ref': 'ZQ-0002', 'name': 'Test Wdpa Park', 'records': [_rec('W-ZQ:w-test:w2', sq(10.1, 50.0, 0.01), wdpa_derived=True)]}]
     fn = 'W-ZQ.kpcstore.json.gz'; raw = bytearray(gzip.compress(b'{"kpcstore": 1, "area": "W-ZQ", "parks": [', mtime=0)); idx = {}
     for i, p in enumerate(WP):
         bb = gzip.compress(((',' if i else '') + json.dumps(p)).encode(), mtime=0)

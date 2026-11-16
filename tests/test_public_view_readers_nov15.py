@@ -123,7 +123,8 @@ def main():
     o, n, ln = PF.changelog_hashes(log, 'fers')
     # Nov 15 (partial boundaries): the newest line is whatever the newest 2-fer change is; this test checks the shape of the
     # bookkeeping and that THIS change's own entries are still there (the newest hash is pinned by the newest change's own test).
-    check(n == KFZ.rules_hash('fers') and log.startswith(ln) and 'APPROVED, decided_by KPC owner, 2026-11-15' in ln and log.split('\n')[1].startswith('Why:'),
+    own = next((x for x in log.splitlines() if 'fers rules cb894783186f -> 8f5b753ce842' in x), '')   # Nov 16: this change's own line, kept
+    check(n == KFZ.rules_hash('fers') and log.startswith(ln) and 'APPROVED, decided_by KPC owner, 2026-11-15' in own and log.split('\n')[1].startswith('Why:'),
           f'the 2-fer hash moves by the newest changelog line, on top, with its Why line ({o} -> {KFZ.rules_hash("fers")})')
     check('fers rules e402c3819224 -> cb894783186f APPROVED, decided_by KPC owner, 2026-11-15' in log,
           'the public-view change keeps its own changelog line (e402c3819224 -> cb894783186f)')

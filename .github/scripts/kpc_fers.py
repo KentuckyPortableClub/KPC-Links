@@ -1809,9 +1809,9 @@ def ownership_step(s, parks, PIN):
     priv = [r for r, o in owners.items() if o == 'PRIVATE']
     if priv: return 'drop', 'private land (leased / open by agreement) counts only for its own park number: ' + ', '.join(PIN.get(r, [r])[0] for r in priv)
     real = {r: o for r, o in owners.items() if o not in ('', '?')}
-    if REGION == 'world':
-        if real and len(set(real.values())) <= 1 and '?' not in owners.values(): return 'ok', 'one owner (or designations on it): layered'
-        return 'not sure', ('owners differ' if real else 'no park here owns land (designations only)') + '; no land register read for this country yet'
+    # Nov 16 2026 (KPC owner, 2026-11-16; world opened): the world used to stop HERE, before the Nov 9 and Nov 10 tests below,
+    # so a world pair inside two official agency outlines was 'not sure'. The world now takes the same tests as the US and
+    # Canada first; its own one-owner rule and its 'no land register' wording come after them (end of this function).
     PUB = ('FED', 'STATE', 'STAT', 'LOCAL', 'LOC', 'DIST', 'TVA', 'JNT')
     # Nov 9 (Brandon 9:37 AM CST, KISS): owners come from the parks' own records / agency names only: no ownership map, no live call
     if real and '?' not in owners.values() and all(str(o).split(':')[0] in PUB for o in real.values()):
@@ -1830,6 +1830,9 @@ def ownership_step(s, parks, PIN):
         s['owner_src'] = 'official agency outline (government / public land)'
         if len(set(real.values())) > 1: s['mixed_owners'] = sorted(set(real.values()))
         return 'ok', 'public land (' + ' + '.join(s['ground']) + ')'
+    if REGION == 'world':   # after the Nov 9 / Nov 10 tests (see above): the world's own rule and words
+        if real and len(set(real.values())) <= 1 and '?' not in owners.values(): return 'ok', 'one owner (or designations on it): layered'
+        return 'not sure', ('owners differ' if real else 'no park here owns land (designations only)') + '; no land register read for this country yet'
     blank = [PIN.get(r, [r])[0] for r, o in owners.items() if o == '?']
     if blank: return 'not sure', 'no owner on the park record or in its name for ' + ', '.join(blank) + ' (a person adds it)'
     if not real: return 'not sure', 'no park here owns land (designations only): no owner on the records'

@@ -481,10 +481,13 @@ def t_hash():
     import kpc_key_freeze as KFZ, kpc_preflight as PF
     log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
     o, n, ln = PF.changelog_hashes(log, 'fers')
-    check(o == 'cb894783186f' and n == KFZ.rules_hash('fers') and log.startswith(ln)
-          and 'APPROVED, decided_by KPC owner, 2026-11-15' in ln and log.split('\n')[1].startswith('Why:'),
-          f'8. the 2-fer hash moves by the newest changelog line, on top, with its Why line (cb894783186f -> {KFZ.rules_hash("fers")})')
-    sc = json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'][-1]
+    # Nov 16 (world opened): the newest line is whatever the newest 2-fer change is (its own test pins it); this test checks the
+    # shape of the bookkeeping and that THIS change's own line (cb894783186f -> 8f5b753ce842, approved 2026-11-15) is still there
+    own = next((x for x in log.splitlines() if 'fers rules cb894783186f -> 8f5b753ce842' in x), '')
+    check(n == KFZ.rules_hash('fers') and log.startswith(ln) and log.split('\n')[1].startswith('Why:')
+          and 'APPROVED, decided_by KPC owner, 2026-11-15' in own,
+          f'8. the 2-fer hash moves by the newest changelog line, on top, with its Why line ({o} -> {KFZ.rules_hash("fers")}); this change\'s own line is kept')
+    sc = next((c for c in json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'] if c.get('id') == '2026-11-15-partial-view'), {})   # Nov 16: not the last entry any more
     check(sc['id'] == '2026-11-15-partial-view' and sc['from'] == 'cb894783186f' and sc['scope'] == 'none'
           and sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
           '8. scope entry 2026-11-15-partial-view (from cb894783186f, scope none, approved)')

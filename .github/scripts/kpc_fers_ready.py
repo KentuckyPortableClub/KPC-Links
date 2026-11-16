@@ -5,7 +5,7 @@ Reads .github/fers-ready-areas.json (declared list). An area may run only when i
 entry that documents BOTH ownership and management sources. No hardcoded country ifs in the
 finder — open a new area by editing the JSON (and bumping key-rules-version.json 'fers').
 
-US-* and CA-* are ready today. W-* is not (no fee ownership wired for world ownership_step).
+US-*, CA-* and (since 2026-11-16) W-* are ready.
 """
 from __future__ import annotations
 
@@ -120,8 +120,8 @@ def selftest():
     check('SKIP' in skip_message(skip) and 'W-AU' in skip_message(skip), 'skip_message names areas')
     # real file on this checkout
     real = load_ready(ROOT)
-    check(area_ready('US-OH', real) and area_ready('CA-AB', real) and not area_ready('W-AU', real),
-          'repo fers-ready-areas.json: US/CA yes, W-AU no')
+    check(area_ready('US-OH', real) and area_ready('CA-AB', real) and area_ready('W-AU', real) and area_ready('W-GB', real),
+          'repo fers-ready-areas.json: US/CA yes, world yes (opened 2026-11-16)')
     return ok
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """World 2-fer line, KPC-Links side (owner rule, 2026-11-11). Offline: no network. Test only; no rule file is touched.
 1 no world (W-*) region of the overlap finder is public (kpc-fers-regions.json): world 2-fers stay beta, members only
-2 no world country is on the 2-fer ready list today, and the world key holds no owner / manager data a ready entry could name
+2 since 2026-11-16 (KPC owner) every world country is on the 2-fer ready list, on the Nov 9 / Nov 10 owner rules (club room only)
 3 the world line path: a record on a saved-copy-only host is read from the world saved copy (cache/world/W-XX.json.gz), and with no
   saved copy the park is held 'saved copy missing'; the host is never reached: kpc_net_guard refuses before any name lookup or socket (the test counts both)"""
 import gzip, json, os, pathlib, sys, tempfile, types
@@ -31,8 +31,8 @@ check(all(r.get('public') is False and r.get('beta') for r in world), 'every wor
 # 2 ready list
 import kpc_fers_ready as FR
 rd = FR.load_ready(HERE)
-check(not any(FR.area_ready('W-' + c, rd) for c in ('GB', 'AU', 'FR', 'DE', 'JP', 'IE', 'AT')) and FR.area_ready('US-OH', rd) and FR.area_ready('CA-ON', rd),
-      'ready list: US and Canada yes; no world country (W-GB W-AU W-FR W-DE W-JP W-IE W-AT) is ready')
+check(all(FR.area_ready('W-' + c, rd) for c in ('GB', 'AU', 'FR', 'DE', 'JP', 'IE', 'AT')) and FR.area_ready('US-OH', rd) and FR.area_ready('CA-ON', rd),
+      'ready list: US, Canada and (since 2026-11-16) the world countries are ready (W-GB W-AU W-FR W-DE W-JP W-IE W-AT)')
 keys = set()
 for f in (HERE / 'data/world-key').glob('[A-Z][A-Z].json'):
     for p in (json.load(open(f)).get('parks') or {}).values(): keys |= set(p)

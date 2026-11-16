@@ -958,6 +958,13 @@ def saved_corridors(KF):
     return {}
 
 
+def store_ids(p):
+    """The record keys the store files a park's records under. A US / Canadian park: the key's ids as they are. A world park
+    (KPC owner, 2026-11-16): the world store files each record as '<area>:<layer>:<id>' (W-BE:EEA Natura 2000:352)."""
+    if 'm' in p: return [f"{p['st']}:{x[2]}:{x[0]}" for x in p['m']]
+    return list(p['ids'])
+
+
 def store_download(KF, store, parks, refs, budget=2_000_000):
     """download()'s contract from the store: (LazyOutlines, bad). Nothing is unpacked here beyond one check per park (no rings
     kept). A held park goes into KF.MISSING_SAVED with its reason (kpc_fers.py's 'known reason' path)."""
@@ -968,7 +975,7 @@ def store_download(KF, store, parks, refs, budget=2_000_000):
         p = parks[ref]
         if 'm' in p and not WORLD_ON['on']:
             bad.add(ref); FLAGS[ref] = 'world park: not read from the outline store'; KF.MISSING_SAVED[ref] = 'the outline store (world parks are not read from it)'; continue
-        ids = list(p['ids'])
+        ids = store_ids(p)
         if ids and all(re.fullmatch(r'wsrc\d+', str(i)) and str(i) in KF.SAVED_STR for i in ids):   # a corridor park: the saved copy, as today
             corr[ref] = [KF.clip(ref, i, KF.SAVED_STR[str(i)]) for i in ids]; KF.MAPDATE[ref] = 'saved copy (answer key)'; KF.SAVED_USE.add(ref); continue
         clips[ref] = (lambda rid, rs, _r=ref: KF.clip(_r, rid, rs))
@@ -991,7 +998,7 @@ def store_download(KF, store, parks, refs, budget=2_000_000):
     for r in [r for r in KF.MISSING_SAVED if r in ok]: KF.MISSING_SAVED.pop(r)
 
     def load(ref):
-        g, _, why = store.groups_for(ref, parks[ref]['st'], parks[ref]['ids'], clips[ref])
+        g, _, why = store.groups_for(ref, parks[ref]['st'], store_ids(parks[ref]), clips[ref])
         return g if not why else None
     got = LazyOutlines(load, ok, budget, boxes)
     for r, v in {**corr, **_pc, **_apx}.items(): got[r] = v
@@ -1930,6 +1937,10 @@ def install(KF, env=None, store=None):
         ca = {r: p for r, p in parks.items() if str(p.get('st', '')).startswith('CA-')}
         return store_download(KF, st, ca, list(ca), budget)[0]
 
+    def saved_world(parks):   # KPC owner, 2026-11-16: a world store run reads the world parks from the store (as saved_ca)
+        w = {r: p for r, p in parks.items() if str(p.get('st', '')).startswith('W-')}
+        return store_download(KF, st, w, list(w), budget)[0]
+
     def live_load(area):
         KF.LIVE_FILE = None; KF.LIVE = {}
         return KF.LIVE
@@ -1983,6 +1994,7 @@ def install(KF, env=None, store=None):
             return out
         KF.missing_list = missing_list
     KF.download, KF.saved_us, KF.saved_ca, KF.live_load, KF.pc_tag = download, (lambda parks: saved_corridors(KF)), saved_ca, live_load, pc_tag
+    if world_on: KF.saved_world = saved_world
     KF.STORE = st; STORE_ON = True; KF._STORE_INSTALLED = True
     def rows_at_exit():
         try: write_rows()
