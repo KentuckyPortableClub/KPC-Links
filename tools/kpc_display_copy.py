@@ -18,10 +18,12 @@ What is drawn (in this order, per park; all of a park's areas together):
      index, every file's sha256 checked. A record is drawn only if the index's record_meta AND the record itself say publishable,
      with the same licence class (one the store's licence-classes.json allows; SHARE-ALIKE stays off; an unknown class drops
      the record), a basis of a verified row or the owner's confirmation, and the same plain credit line. wdpa_derived true, or
-     WDPA / Protected Planet / SPREP / UNEP-WCMC in any value = never. Each RECORD is judged on its own (the park-level flag
-     park_publishable is not read): the records that pass are drawn, with their credit lines; a record that fails is never
-     drawn, never measured against and never named in a public file. A park with NO record that passes draws nothing here
-     (it keeps today's outline; its POTA pin is never touched).
+     WDPA / Protected Planet / SPREP / UNEP-WCMC in any value = never. Each RECORD is judged on its own: the records that pass
+     are drawn, with their credit lines; a record that fails is never drawn, never measured against and never named in a public
+     file. Owner rule 12 (2026-11-15; a store from core 3.6.3 on, whose entries carry park_public): a park whose index entry is not
+     park_publishable is drawn ONLY from the records of its public view (publish_view "public-records-only", in_public_view()); with
+     no valid view it draws nothing. An older store keeps the per-record rule. A park
+     with NO record that passes draws nothing here (it keeps today's outline; its POTA pin is never touched).
      Geometry kinds (index format 4): the same gate for every kind; an 'area' is drawn as before; a 'line' (official trail / river) is drawn AS GIVEN, open, every point,
      in every level, never buffered or made a polygon, no zone band drawn (LINE_RULE); a 'pin' (and a stand-in circle) is not
      an outline and is not drawn (the display copy has no place for an official point; counted in the private report).
@@ -554,6 +556,28 @@ def wdpa_hit(rec, meta, layer_row):
         for v in _values(part, WDPA_SKIP_ATTRS):
             if WDPA.search(v): return True
     return False
+
+
+VIEW_NAME = 'public-records-only'   # owner rule 12 (2026-11-15), store core 3.6.3: see FORMAT-4.md / kpc_store_read.public_records
+VIEW_MIN_COVER = 0.80
+
+
+def in_public_view(rec, e, park):
+    """Owner rule 12 (2026-11-15: "if we dont have state then pad it is"; "we use what we got and better 1 wins out"). A park whose
+    index entry says park_publishable true: every record may pass (the gate still judges each one). Any other park: ONLY the records
+    its public view names, and only when the index entry and the park agree on the view (name, records, basis, coverage at least
+    0.80). A park with no valid view draws nothing here (it keeps today's outline): its publishable records alone may be much smaller
+    than the park, and its held records are never drawn, measured against or named. A store written before core 3.6.3 has no
+    park_public field in its entries: its parks are judged by the per-record gate alone, exactly as before."""
+    if 'park_public' not in e: return True   # a store before core 3.6.3 (no view field at all): the per-record gate alone, as before
+    if e.get('park_publishable') is True: return True
+    keys = e.get('publish_view_records')
+    if e.get('publish_view') != VIEW_NAME or not isinstance(keys, list) or not keys: return False
+    if (park or {}).get('publish_view') != VIEW_NAME or park.get('publish_view_records') != keys or park.get('publish_view_basis') != e.get('publish_view_basis'): return False
+    try:
+        if float(e.get('publish_view_ratio') or 0) < VIEW_MIN_COVER: return False
+    except (TypeError, ValueError): return False
+    return rec.get('key') in keys
 
 
 def gate(rec, e, layers_tbl):
@@ -1257,6 +1281,8 @@ def build(store_dir, areas, out_dir, cap=CAP, doubtful=None, preview=False, deci
                         if wdpa_hit(r, None, None): ok, why = False, 'WDPA / Protected Planet / SPREP / UNEP-WCMC source'
                     else:
                         ok, why, cr = gate(r, e, lt)      # the SAME gate for every geometry kind
+                        if ok and not in_public_view(r, e, p):   # owner rule 12 (2026-11-15): a park not publishable as a whole is
+                            ok, why = False, 'not in the park\'s public view (owner rule 12: held park, only its view records)'   # drawn from its view only
                     if not ok: why_not.append(f"{r.get('key')}: {why}"); continue
                     k = kind_of(r)
                     if k in ('pin', 'unknown'):

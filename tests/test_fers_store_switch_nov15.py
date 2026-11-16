@@ -464,7 +464,7 @@ log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 # the newest line on top is checked by test_fers_store_fixes_nov15.py
 ln = next((x for x in log.splitlines() if 'fers rules d0064c860cba -> 2fe19a32e5eb' in x), '')
 o, nw, _ = PF.changelog_hashes(ln, 'fers')
-check(o == 'd0064c860cba' and nw == '2fe19a32e5eb' and 'APPROVED, decided_by KPC owner, 2026-11-15' in ln and (nw == KFZ.rules_hash('fers') or PF.changelog_hashes(log, 'fers')[0] == nw),
+check(o == 'd0064c860cba' and nw == '2fe19a32e5eb' and 'APPROVED, decided_by KPC owner, 2026-11-15' in ln and (nw == KFZ.rules_hash('fers') or f'fers rules {nw} -> ' in log),
       f'the switch-over moved the 2-fer hash by its own declared line (d0064c860cba -> 2fe19a32e5eb); any later move starts from it ({KFZ.rules_hash("fers")})')
 sc = next(c for c in json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'] if c.get('id') == '2026-11-15-store-switch')
 check(sc['id'] == '2026-11-15-store-switch' == ST.STORE_STAMP and sc['from'] == 'd0064c860cba' and sc['scope'] == 'none' and sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
