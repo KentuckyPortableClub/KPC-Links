@@ -64,6 +64,25 @@
    "why": "Owner hold of CA-2241, CA-1974 and CA-1997 in kpc_pin_fill.py (Quality, delegated by Brandon 4:43 AM CT). The file is in the world RULE_FILES so this edit moves the world hash; no world country result changes (the new holds are Canada refs; PF-0033/34 stay held; the AU fill still applies), so no country is rebuilt.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-13"
+  },
+  {
+   "id": "2026-11-16-no-list-every-path",
+   "when": "2026-11-16",
+   "from": "158325de87ce",
+   "why": "The NO list wins on every build path (rule 21; KPC owner, 2026-11-16). kpc_world_key.py read a park's 'no' list (data/world-key/overrides.json) on the name paths only. Once the list had emptied a park's join, the later paths (the pin inside one area, the pin inside + name words, same name / other kind, the Japan crosswalk) ran because the join was empty and joined the same record again. enforce_no() now runs once after every join path: a joined record whose id or name is on the park's NO list is taken out and listed as a candidate; a park left with no record is a pin. On the Nov 14 key this changes 14 parks: AU 1, BZ 1, CV 1, DO 1, GB 4, ID 1, NZ 3, PA 2 (11 become pins, among them BZ-0051, CV-0012, DO-0110, ID-0060, NZ-0150, NZ-0624, NZ-0676, PA-0001, PA-0054). No other park changes.",
+   "scope": {
+    "states": [
+     "AU",
+     "BZ",
+     "CV",
+     "DO",
+     "GB",
+     "ID",
+     "NZ",
+     "PA"
+    ]
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
   }
  ]
 }
