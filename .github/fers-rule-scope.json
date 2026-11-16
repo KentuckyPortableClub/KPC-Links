@@ -114,6 +114,14 @@
       "why": "Fixes after the first 2-fer trial on the real outline store. (1) Passes 2 and 3 (every run, store or not): each row of the pass before takes at most one new spot of its pair and each spot goes to at most one row, best fit first (the spot's centre in the row's box, then the row's centre in the spot's box, then the largest share of the two boxes); a spot no row took, of a pair whose row was dropped in that pass, becomes a new row in pass 2 (pass 3 decides it) and in pass 3 (decided there); only a spot that cannot be added is a warning. Main gave the first touching spot to a row even when another row had taken it, so a real spot could be lost. No pair's spots change (the pair test is the same), only which row takes which spot, and that is worked out fresh in every run: no pair needs a new test. (2) Store runs only: a park held for licence is a known reason in pass 1 (no 'agency map did not answer' stop, no record ids printed); on a public store run a withheld park's rows of the previous public file are carried unchanged, marked 'not re-checked (outline held privately)', and counted per area (owner rule: never worse); the store words in the report; far line parks not listed; the run's total of withheld parks.",
       "scope": "none",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-15"
+    },
+    {
+      "id": "2026-11-15-public-view",
+      "when": "2026-11-15",
+      "from": "e402c3819224",
+      "why": "Owner rule 12 (2026-11-15, his words: \"if we dont have state then pad it is\"; \"Yes to cpad or any other pad ...we use what we got and better 1 wins out\"). Store core 3.6.3 gives a park whose records are not all publishable because some come from held layers a public view (publish_view 'public-records-only'): only the park's own publishable records, chosen by the engine's own precedence, covering at least 0.80 of the park. On a PUBLIC store run kpc_fers_store.py now reads such a park from its view records only (both the park and its index entry must name the same valid view; every view record is still judged publishable / basis / WDPA like any record) and never reads the held records; with no valid view the park needs the private store, as before. A private run and every non-store run are unchanged. Parks that were withheld become readable: their pairs are new (their outlines were never read on a public run), so they are tested anyway; no other pair changes.",
+      "scope": "none",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-15"
     }
   ]
 }

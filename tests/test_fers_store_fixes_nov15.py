@@ -379,10 +379,14 @@ else:
 import kpc_key_freeze as KFZ  # noqa: E402
 import kpc_preflight as PF  # noqa: E402
 _log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-_o, _n, _ln = PF.changelog_hashes(_log, 'fers')
-check(_o == '2fe19a32e5eb' and _n == KFZ.rules_hash('fers') and _log.startswith(_ln) and 'APPROVED, decided_by KPC owner, 2026-11-15' in _ln
-      and _log.split('\n')[1].startswith('Why:'), f'the 2-fer hash moves by the newest changelog line, on top, with its Why line (2fe19a32e5eb -> {KFZ.rules_hash("fers")})')
-_sc = json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'][-1]
+# KPC owner, 2026-11-15 (owner rule 12 public view, the next declared move e402c3819224 -> ...): this change's own line, wherever it
+# now sits, and any later move starts from it; the newest line on top is checked by test_public_view_readers_nov15.py
+_ln = next((x for x in _log.splitlines() if 'fers rules 2fe19a32e5eb -> e402c3819224' in x), '')
+_o, _n, _ = PF.changelog_hashes(_ln, 'fers')
+_i = _log.splitlines().index(_ln) if _ln else -1
+check(_o == '2fe19a32e5eb' and _n == 'e402c3819224' and 'APPROVED, decided_by KPC owner, 2026-11-15' in _ln and _log.splitlines()[_i + 1].startswith('Why:')
+      and (_n == KFZ.rules_hash('fers') or f'fers rules {_n} -> ' in _log), f'the store fixes moved the 2-fer hash by their own declared line with its Why line (2fe19a32e5eb -> e402c3819224); any later move starts from it ({KFZ.rules_hash("fers")})')
+_sc = next(c for c in json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'] if c.get('id') == '2026-11-15-store-fixes')
 check(_sc['id'] == '2026-11-15-store-fixes' and _sc['from'] == '2fe19a32e5eb' and _sc['scope'] == 'none' and _sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
       'scope entry 2026-11-15-store-fixes (from 2fe19a32e5eb, scope none, approved)')
 _k = {k: KFZ.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')}

@@ -399,8 +399,11 @@ class Store:
                     return None, [], f'record {r.get("key")} of {ref}: the index and the store disagree on its licence fields', {}
                 by.setdefault(str(r.get('key')), (r, p))
         groups, left, private, pts, box, skipped = [], [], {}, 0, None, {}
+        view = self.view_keys(ref, stores, by) if self.kind == 'public' else None   # owner rule 12: a held park's public view
         for rid in ids:
             r, p = by.get(str(rid), (None, None))
+            if view is not None and str(rid) not in view:   # a record outside the park's public view: never read for a public run
+                skipped['outside the public view'] = skipped.get('outside the public view', 0) + 1; continue
             if r is None: return None, [], f'the outline store has no record {rid} for {ref} (the key joins it)', {}
             if r.get('wdpa_derived') is not False:   # the store's own flag first (true, or not stated): never a 2-fer source
                 return None, [], f'record {rid} of {ref} is marked WDPA derived by the store (or does not say): never a 2-fer source', {}
@@ -423,6 +426,8 @@ class Store:
                 box = b if box is None else (min(box[0], b[0]), min(box[1], b[1]), max(box[2], b[2]), max(box[3], b[3]))
                 pts += len(x)
             if keep: groups.append(rs)
+        if box is None and view is not None and skipped.get('outside the public view'):   # owner rule 12: nothing of the view is joined by the key
+            return None, left, f'{ref} needs the private store (the records the key joins are outside its public view)', {}
         if box is None:
             if skipped: return None, left, (f'{ref} has no area record in the outline store (' + ', '.join(f'{v} {k}' for k, v in sorted(skipped.items()))
                                              + '): a line is tested by the line rule, a pin is never a boundary'), {'skipped': skipped, 'no_area': True}
@@ -430,6 +435,28 @@ class Store:
         if private and self.kind == 'public':
             return None, left, f'{ref} needs the private store (records not publishable: ' + ', '.join(f"{k} {v['licence_class']}" for k, v in sorted(private.items())[:4]) + ')', {}
         return (groups if keep else None), left, '', {'points': pts, 'box': box, 'private': private, 'skipped': skipped}
+
+    VIEW_NAME = 'public-records-only'   # owner rule 12 (2026-11-15), store core 3.6.3
+
+    def view_keys(self, ref, stores, by):
+        """Owner rule 12 ("if we dont have state then pad it is"; "we use what we got and better 1 wins out"): for a PUBLIC run, the
+        record keys a park not publishable as a whole may use = the records its public view names, in every area file that holds the
+        park (a whole-publishable area entry gives all its records). None when every entry is publishable (the old rule, unchanged)
+        or when any entry has no valid view (then the old rule applies too: the park needs the private store). The view's records
+        are judged again below like any record (publishable, basis, WDPA); the other records are never read."""
+        ents = [(a.entries.get(ref) or {}) for a in stores]
+        if all(e.get('park_publishable') is True for e in ents): return None
+        keys = set()
+        for a, e in zip(stores, ents):
+            if e.get('park_publishable') is True: keys |= {str(k) for k in e.get('records') or []}; continue
+            vk = e.get('publish_view_records')
+            try: ratio_ok = float(e.get('publish_view_ratio') or 0) >= 0.80
+            except (TypeError, ValueError): ratio_ok = False
+            if e.get('publish_view') != self.VIEW_NAME or not isinstance(vk, list) or not vk or not ratio_ok: return None
+            pk_ = next((p for r, p in by.values() if p and p.get('publish_view_records') == vk), None)
+            if pk_ is None or pk_.get('publish_view') != self.VIEW_NAME: return None   # the park itself must name the same view
+            keys |= {str(k) for k in vk}
+        return keys
 
     def groups_for(self, ref, area, ids, clip=None):
         g, left, why, _ = self.examine(ref, area, ids, clip, keep=True)
