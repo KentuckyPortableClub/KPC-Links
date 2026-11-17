@@ -43,6 +43,10 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           back and it goes to check (a person may say it is the same land under two numbers). No single
                           winner = left as it is (the tripwire list shows it). A park given its own parts of the record (rule
                           B12 'parts') and hand joins are never moved. OFF until the owner says ON (count first, one state).
+  KPC_NO_LEASE_BY_NAME 0  (KPC owner, 2026-11-17, ruling D5) a record whose name says leased / lease / agreement / cooperative area is
+                          the easement family: never joined by name alone, it goes to check; a person may say yes for one park.
+  KPC_LAKE_ONLY_IF_LAKE 0 (KPC owner, 2026-11-17, ruling D4) a park with land of its own never takes a lake surface by name; only a
+                          park whose own TYPE says it is the lake keeps one. A park with no land record keeps its lake for a person.
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -53,7 +57,7 @@ import os, re, unicodedata
 
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
-            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0'}
+            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0'}
 
 
 def setting(name, env=None):
