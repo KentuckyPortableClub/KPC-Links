@@ -224,6 +224,20 @@
     },
     "scope_note": "Q1: the pairs of parks whose land is only designation lines (rule_stamp flag 'designation', from designation_only()) are tested again. Q3 changes what a file write keeps, not a pair answer.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:14 AM"
+    },
+    {
+      "id": "2026-11-17-q4-lease-is-the-park",
+      "when": "2026-11-17",
+      "from": "c5579dff4853",
+      "why": "Owner 17 Nov 11:22-11:23 AM: 'We are not here to correct pota ... if it is a pota park we treat it as one ... and overlap boundaries matter'; 'Technically it shouldn't be a park ... but it has a number we confirmed yes thats the park ... we treat it as a park'. A POTA park on leased / agreement land (owner reads PRIVATE) is that park's land: its overlaps are decided like any other, with the access note 'leased or agreement land: open to the public by agreement, check the access rules'. The Oct 27 drop ('counts only for its own park number') is retired. Also the Q1 note reworded in plain words.",
+      "scope": {
+        "flags": [
+          "lease",
+          "designation"
+        ]
+      },
+      "scope_note": "The pairs of leased-land parks (flag 'lease') and of designation-only parks (the reworded note) are tested again once.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:22 AM"
     }
   ]
 }

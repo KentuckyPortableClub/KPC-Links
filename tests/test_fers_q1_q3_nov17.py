@@ -20,10 +20,26 @@ check(KF.designation_only('US-4', parks) and KF.designation_only('US-7', parks),
 check(not KF.designation_only('US-5', parks), 'a state park boundary layer is not')
 check(not KF.designation_only('US-6', parks), 'a line park (trail / river, no records) keeps its own rules')
 check(not KF.designation_only('US-8', parks), 'a park with owned land of its own is not, even with a designation piece too')
-check('private land' in KF.PRIVATE_NOTE and 'Research' in KF.PRIVATE_NOTE, 'the note says may contain private land, research it')
+check(KF.PRIVATE_NOTE.startswith('May contain private land.') and 'public land before you set up' in KF.PRIVATE_NOTE and 'law' not in KF.PRIVATE_NOTE,
+      'the note in plain words (owner 11:22 AM): may contain private land, check the official map, be on public land')
 src = (ROOT / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
 blk = src[src.index("_land = [r for r in refs if not (r in LN and r not in G)]"):][:600]
 check("all(designation_only(r, parks) for r in _land)" in blk and "s['approx'] = True" in blk and 'PRIVATE_NOTE' in blk,
       'decide(): every land half designation-only = approximate tier with the note (one owned half = public ground, as before)')
 check(KF.KEEP_DROPPED_ROWS is False, 'Q3: dropped rows are not put back unless KPC_FERS_KEEP_DROPPED=1')
+# Q4 (owner 11:22 AM: 'if it is a pota park we treat it as one ... and overlap boundaries matter'): leased / agreement land is
+# that park's land; the pair is decided like any other, with an access note
+KF.REGION = 'na'
+_po = KF.park_owner
+own = {'US-10': 'PRIVATE', 'US-11': 'STATE', 'US-12': 'PRIVATE', 'US-13': '?'}
+KF.park_owner = lambda r, parks: own[r]
+s1 = {'refs': ['US-10', 'US-11'], 'notes': ['x']}
+v, why = KF.ownership_step(s1, {}, {})
+check(v == 'ok' and KF.LEASE_NOTE in s1['notes'] and 'leased / agreement land' in why, f'Q4: leased land + a state park = public ground, with the access note ({v}: {why})')
+s2 = {'refs': ['US-10', 'US-12']}
+check(KF.ownership_step(s2, {}, {})[0] == 'ok', 'Q4: two leased parks: their overlap counts like any other')
+s3 = {'refs': ['US-10', 'US-13']}
+check(KF.ownership_step(s3, {}, {})[0] == 'not sure', 'Q4: an unknown owner is still not sure (nothing else changed)')
+KF.park_owner = _po
+check(KF.owner_word('LEASE') == 'leased / agreement land', 'the owner in plain words')
 print('ALL PASS' if all(R) else f'{R.count(False)} FAILED'); sys.exit(0 if all(R) else 1)

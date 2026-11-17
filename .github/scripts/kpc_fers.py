@@ -939,9 +939,11 @@ APX_NOTE = 'Not the official boundary. We believe this is a 2-fer, but it needs 
 # area, monument / NCA, Forest Service designated area, herd area, BLM planning area, ACEC, wild and scenic river corridor, a PAD-US
 # Designation or Proclamation record, a state layer labelled 'designation' in data/state-gis.json) has no proof the ground is
 # public: it is shown in the approximate tier with this note until the agency's own land proves it (step 8 owned land).
-PRIVATE_NOTE = 'May contain private land: these boundaries are lines drawn by a law or a plan, not land the agency owns. Research the ground before you go.'
+PRIVATE_NOTE = ('May contain private land. These boundaries are outer lines drawn around an area, and not all the land inside them is '
+                'public. Check the official map and make sure you are on public land before you set up.')   # owner, 11:22 AM: plain words
 DESIG_PRE = {'wsrc', 'akht', 'wld', 'wsa', 'wbl', 'nca', 'hma', 'hab', 'rst', 'rma', 'fwsr', 'fsod'}
 DESIG_SG = set()
+LEASE_REFS = set()   # Q4: parks whose owner reads PRIVATE (leased / agreement land): scope flag 'lease'
 DESIG_REFS = set()   # filled after official_parks(): the parks designation_only() names (scope flag 'designation')
 
 
@@ -1854,13 +1856,18 @@ def ownership_step(s, parks, PIN):
     refs = s['refs']
     owners = {r: park_owner(r, parks) for r in refs}
     # Brandon Oct 27 5:21 AM (rule 14 + boundary B-G2): a park on private land (lease / agreement) counts only for its own number
+    # KPC owner, 2026-11-17 11:22 AM (Q4, his words: 'We are not here to correct pota ... if it is a pota park we treat it as one ...
+    # and overlap boundaries matter'): a POTA park on leased / agreement land is that park's land; its overlaps count like any
+    # other (the old Oct 27 drop is retired). The row carries an access note instead.
     priv = [r for r, o in owners.items() if o == 'PRIVATE']
-    if priv: return 'drop', 'private land (leased / open by agreement) counts only for its own park number: ' + ', '.join(PIN.get(r, [r])[0] for r in priv)
+    if priv:
+        owners = {r: ('LEASE' if o == 'PRIVATE' else o) for r, o in owners.items()}
+        s['notes'] = sorted(set(s.get('notes') or []) | {LEASE_NOTE})
     real = {r: o for r, o in owners.items() if o not in ('', '?')}
     # Nov 16 2026 (KPC owner, 2026-11-16; world opened): the world used to stop HERE, before the Nov 9 and Nov 10 tests below,
     # so a world pair inside two official agency outlines was 'not sure'. The world now takes the same tests as the US and
     # Canada first; its own one-owner rule and its 'no land register' wording come after them (end of this function).
-    PUB = ('FED', 'STATE', 'STAT', 'LOCAL', 'LOC', 'DIST', 'TVA', 'JNT')
+    PUB = ('FED', 'STATE', 'STAT', 'LOCAL', 'LOC', 'DIST', 'TVA', 'JNT', 'LEASE')
     # Nov 9 (Brandon 9:37 AM CST, KISS): owners come from the parks' own records / agency names only: no ownership map, no live call
     if real and '?' not in owners.values() and all(str(o).split(':')[0] in PUB for o in real.values()):
         # every park here is held by a known PUBLIC owner (one or several; a trail / designation layers on it): public ground
@@ -1887,7 +1894,8 @@ def ownership_step(s, parks, PIN):
     return 'not sure', 'an owner here is not a public owner (' + ', '.join(sorted({owner_word(o) for o in real.values()})) + ')'
 
 
-OWNWORD = {'STAT': 'state', 'STATE': 'state', 'LOC': 'local', 'LOCAL': 'local', 'PVT': 'private', 'PRIVATE': 'private', 'TRIB': 'tribal',
+LEASE_NOTE = 'leased or agreement land: open to the public by agreement, check the access rules'
+OWNWORD = {'LEASE': 'leased / agreement land', 'STAT': 'state', 'STATE': 'state', 'LOC': 'local', 'LOCAL': 'local', 'PVT': 'private', 'PRIVATE': 'private', 'TRIB': 'tribal',
            'TRIBAL': 'tribal', 'USFS': 'Forest Service', 'NPS': 'Park Service', 'FWS': 'Fish and Wildlife Service', 'USACE': 'Corps of Engineers',
            'BLM': 'BLM', 'TVA': 'TVA', 'DOD': 'military', 'FED': 'federal', 'DIST': 'special district', 'UNIVERSITY': 'university'}
 
@@ -2495,6 +2503,7 @@ def rule_stamp(r):
     if r in NOPIN_BY_ID or (p and p[1] is None): flags.add('bad-pin')
     if r in CURLN: flags.add('line')
     if r in DESIG_REFS: flags.add('designation')   # Q1 (2026-11-17): parks whose land is only designation lines
+    if r in LEASE_REFS: flags.add('lease')   # Q4 (2026-11-17)
     out = []
     for c in SCOPE:
         sc = c.get('scope')
@@ -4214,6 +4223,9 @@ def main():
         for r in TRAIL_BY_LINE: parks.pop(r, None); OWNED.pop(r, None)
         if TRAIL_BY_LINE: LOG.append(f'{len(TRAIL_BY_LINE)} trail parks tested by their official line (R5), not their polygon: ' + ', '.join(TRAIL_BY_LINE[:10]))
     owners(parks); ca_owners(parks)
+    if REGION != 'ky':   # Q4 (2026-11-17): the parks on leased / agreement land (scope flag 'lease': their pairs are tested again once)
+        try: LEASE_REFS.update(r for r in parks if park_owner(r, parks) == 'PRIVATE')
+        except Exception as e: LOG.append(f'lease flag: {str(e)[:60]}')  # noqa: BLE001
     for ref in LN:
         # Oct 27: a trail that CROSSES Kentucky counts in the Kentucky run even when POTA files it under another state
         # (Trail of Tears, Lewis and Clark NHT): the Kentucky region takes any line whose box touches the state
