@@ -5,7 +5,10 @@ Sources: the National Park Service's own ArcGIS services (services1.arcgis.com/f
 NPS doesn't run, the Forest Service / trail partners. MODE=info only prints what each service has.
 Oct 28 (HQ tune): a trail whose new line has under half the points of the saved one keeps the saved copy (a half-answered
 service must not cut the trail); a self-grade gate (the Sheltowee Trace + the Appalachian, Pacific Crest and North Country
-lines must be there) prints GATE PASS / FAIL and writes /tmp/kpc-gate.txt for the workflow's grade-me line."""
+lines must be there) prints GATE PASS / FAIL and writes /tmp/kpc-gate.txt for the workflow's grade-me line.
+Nov 16: the index is merged, not replaced. Entries this bot did not produce stay in the index when their
+line file is still there. An entry is removed only when its line file is really gone, and that drop is listed
+rather than silent."""
 import re, json, os, sys, time, urllib.request, urllib.parse
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 NPS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/'
@@ -25,6 +28,32 @@ def note(t, m):
     line = f'{t} => ' + str(m).replace('\n', ' ')[:3000]; print(line)
     if os.environ.get('OUT'): open(os.environ['OUT'], 'a').write(line + '\n')
 def svc(x): return x['url'] if x['url'].startswith('http') else NPS + x['url']
+
+def merge_index_entries(old, produced, outdir, note_fn=None):
+    """Keep index entries this bot did not produce when their line file is still there.
+
+    Merge, don't replace. Only remove an entry when its line file is really gone, and even
+    then list it rather than silently dropping it. `old` is {ref: entry} from the current
+    index; `produced` is the list this run built or kept for its own trails.
+    """
+    have = {r['ref'] for r in produced}
+    out = list(produced)
+    dropped = []
+    kept = 0
+    for ref, rec in old.items():
+        if ref in have:
+            continue
+        if os.path.isfile(os.path.join(outdir, f'{ref}.json')):
+            out.append(rec)
+            kept += 1
+        else:
+            dropped.append(ref)
+    if note_fn and kept:
+        note_fn('index kept', f'{kept} trail(s) this bot did not produce stayed in the index')
+    if note_fn and dropped:
+        note_fn('index dropped', f'{len(dropped)} trail(s) left the index because their line file is gone: {dropped}')
+    return out, dropped
+
 MODE = os.environ.get('MODE', 'build')
 if MODE == 'info':
     for x in T:
@@ -141,6 +170,7 @@ for x in T:
     except Exception as e:
         failed.append(x['ref']); note(x['ref'] + ' FAILED', f"{x['name']}: {e}")
         if x['ref'] in old and os.path.exists(f"{OUTDIR}/{x['ref']}.json"): index.append(old[x['ref']])   # keep last month's copy
+index, _dropped = merge_index_entries(old, index, OUTDIR, note)
 index.sort(key=lambda r: r['name'])
 json.dump(index, open(OUTDIR + '/index.json', 'w'), indent=0)
 note('Trails done', f'{done} built, {len(failed)} failed {failed}')
