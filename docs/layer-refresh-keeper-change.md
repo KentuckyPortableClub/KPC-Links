@@ -132,6 +132,6 @@ Q1. How the public copy reaches the KPC-Links boundary-cache release. The keeper
 Q2. Who clears a served row. Rows stay in the file until removed; pressing the button twice re-reads the same areas.
     The cache bot does not write back. Suggestion: the keeper drops a row once the area's release copy is newer than the
     row's date; not built, because nothing else in the keeper may change without a ruling.
-Q3. R-LR1 to R-LR4 are still open; the cache side has a knob for each, all unset (see the PR).
+Q3. R-LR1 to R-LR4 RULED 2026-11-17; the cache workflows default to them (180 / full / whole / keeper+hand). R-LR2's one full-detail save of a dying layer is built on the cache side (kpc_layer_full_save.sh, asset full-<area>.json.gz); the keeper only marks the row (moved 'gone' / 'retiring', or dying: true).
 
 KPC owner, 2026-11-17

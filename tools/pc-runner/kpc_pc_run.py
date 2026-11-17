@@ -618,11 +618,19 @@ def cmd_summary(a):
          f'minutes       {run.get("minutes")}', f'areas done    {len(run.get("done") or [])}: ' + ' '.join(run.get('done') or []),
          f'areas not     {len(run.get("red") or [])}' + (': ' + '; '.join(f'{x[0]} ({x[1]})' for x in (run.get('red') or [])) if run.get('red') else ''), '']
     # ---- the files this run would push, copied into RESULTS
-    if not run.get('world'):
+    # KPC owner, 2026-11-17: the US / Canada files waiting in the KPC-Data checkout are checked whatever ran LAST. A world run
+    # (club room only) writes nothing there, so after one the US / Canada files of the run before are still the ones a push
+    # would carry, and the push check must still look at them. The areas and tags come from those files themselves.
+    _r0 = git(['status', '--porcelain', '-uall', '--', 'data'], kd, quiet=True)
+    _waiting = [ln[3:].strip().strip('"') for ln in (_r0.stdout or '').splitlines() if ln.strip()]
+    if run.get('world') and _waiting:
+        L += ['The last run was WORLD (club room only). The US / Canada files still waiting in the KPC-Data checkout from the run',
+              'before are checked below, because they are what a push would carry.', '']
+    if not run.get('world') or _waiting:
         push = out / 'to-kpc-data'
         if push.exists(): shutil.rmtree(push)
         (push / 'data' / 'fers').mkdir(parents=True)
-        r = git(['status', '--porcelain', '--', 'data'], kd, quiet=True)
+        r = git(['status', '--porcelain', '-uall', '--', 'data'], kd, quiet=True)
         changed = [ln[3:].strip().strip('"') for ln in (r.stdout or '').splitlines() if ln.strip()]
         for rel in changed:
             src = kd / rel
@@ -632,7 +640,10 @@ def cmd_summary(a):
              [f'   {x}' for x in sorted(changed)[:40]] + (['   ...'] if len(changed) > 40 else []) + ['']
         # ---- the push check, on the staged change (nothing is committed and nothing is pushed)
         git(['add', '-A', '--', 'data'], kd, quiet=True)
-        areas, tags = ' '.join(run.get('areas') or []), ' '.join(run.get('tags') or [])
+        _ar = sorted({m.group(1) for x in changed for m in [re.search(r'data/fers/(?:stamps/)?((?:US|CA)-[A-Z]{2})\.json', x)] if m})
+        _tg = sorted({a.lower().replace('us-', '').replace('-', '') for a in _ar})   # = fers_run_plan.tag_of
+        areas = ' '.join(run.get('areas') or []) if not run.get('world') else ' '.join(_ar)
+        tags = ' '.join(run.get('tags') or []) if not run.get('world') else ' '.join(_tg)
         pc = subprocess.run([sys.executable, str(keeper / 'fers_push_check.py'), '--repo', str(kd), '--staged',
                              '--private', str(priv), '--areas', areas or 'US-RI', '--tags', tags or 'x'],
                             capture_output=True, text=True)

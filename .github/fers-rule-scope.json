@@ -184,6 +184,15 @@
       "scope": "none",
       "scope_note": "No pair answer or pair fingerprint changes with the new switch off (the default): nothing is re-tested.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-17"
+    },
+    {
+      "id": "2026-11-17-thin-shelf",
+      "when": "2026-11-17",
+      "from": "2d4a8fded006",
+      "why": "A PUBLIC SHELF area too thin to be worth reading is left on the OLD path for that run, worked out from the shelf's own coverage block (tools/kpc_store_public.py writes parks_in_store / parks_on_shelf / share), not from a list kept by hand. Why it matters: in a thin area most parks are held, so a store run would CARRY most of its rows unchecked instead of re-testing them, which is worse than not using the store there at all. Measured 17 Nov from every store index: 85.2% of parks pass the licence gate overall, and 23 of 66 areas are under 90% (US-HI 9.5% to US-AK 89.2%). The floor is THIN_SHELF = 0.90, and KPC_FERS_SHELF_MIN overrides it (0 or 'off' = read every shelf area however thin). An area joins in BY ITSELF once enough of its layers have their terms confirmed on the PC store tool, so nothing is edited and no hash moves as coverage improves.",
+      "scope": "none",
+      "scope_note": "No pair answer changes. A thin area is handled exactly as one on the except list already was (verdict NOT USED, it keeps its previous files), the public 2-fer bot does not read the store at all yet, and the private store is never judged thin (only an index that says shelf: public carries a coverage block).",
+      "approved": "WAITING FOR THE KPC OWNER'S APPROVAL"
     }
   ]
 }
