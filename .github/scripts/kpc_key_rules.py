@@ -72,6 +72,10 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
   KPC_MEASURED_ACRES   0  (Handoff 8 fix 4, reviewer A #9) a joined park with no union acreage ('ac') whose records include one with no
                           acres on file (0) gets 'ac' measured from the saved shapes (records with acres on file count their own acres),
                           and 'ac_how' = 'measured' says so. The join rows are not changed. Plain Python, no shapely. OFF.
+  KPC_CA_NONE_KEPT     0  (Handoff 8 fix 5, reviewer B #4; Canada) a park a person marked 'none' in data/ca-key/overrides.json (a different
+                          place, no outline of its own) takes no NAME join until a person clears the 'none'. Before, 'none' only emptied
+                          the check list, so a layer added later with the same name joined anyway (9 parks: Trout Brook PP, Cedar Creek
+                          CA, Ministers Island NHS ...). A person's own join or alias still stands. OFF.
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -84,7 +88,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
-            'KPC_MEASURED_ACRES': '0'}
+            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0'}
 
 
 def setting(name, env=None):

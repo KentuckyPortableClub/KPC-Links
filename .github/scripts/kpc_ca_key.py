@@ -19,6 +19,10 @@ import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind 
 import kpc_source_fields as SF  # noqa: E402  (Nov 6: the one source-field table)
 import kpc_tracts as TR  # noqa: E402  (Nov 6: tract records + parks inside parks, side file)
 import kpc_master as KMASTER  # noqa: E402  (the one complete-read helper; not a rule file)
+try: import kpc_key_rules as KR  # noqa: E402  (Handoff 8: the rule switches, kpc_key_rules.DEFAULTS; a missing file = every switch off)
+except Exception: KR = None  # noqa: BLE001
+def _kr(name): return KR is not None and KR.on(name)
+NONE_HELD = []   # Handoff 8 fix 5: [ref, record id] name joins held because a person marked the park 'none'
 kpc_host_pace.install()
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; same scheme as kpc_us_key.py). Every live run has fetched CPCAD and
 # the provincial layers at 0.02 degrees (~2.2 km) - coarser than many parks. GEO_CACHE_MODE: off (default, exactly as
@@ -838,6 +842,15 @@ for pv, parks_in in sorted(by.items()):
             if c and all(q[3].startswith('the POTA pin is inside') for q in c):
                 site = sorted((q for q in c if not re.search(r'buffer zone|closure|\bsfa\b|marine refuge|fishing area|fishery', q[1], re.I)), key=lambda q: q[2])[:2]; c = []
         if ov.get('none'): c = []   # a person looked: no official outline for this park
+        if ov.get('none') and _kr('KPC_CA_NONE_KEPT'):
+            # Handoff 8 fix 5 (reviewer B #4): 'a different place, no outline of its own' is a person's decision: it holds against every
+            # NAME join until a person clears the 'none' (a layer added later with the same name used to join anyway). A person's own
+            # join ('reviewed') or alias stands.
+            _hj = {str(w) for w in ov.get('join') or []} | {_nf(w) for w in ov.get('join') or []}
+            _nh = [q for q in m if not str(q[3]).startswith(('reviewed', 'alias')) and str(q[0]) not in _hj and _nf(q[1]) not in _hj]
+            if _nh:
+                m = [q for q in m if q not in _nh]
+                NONE_HELD.extend([ref, str(q[0])] for q in _nh)
         # Nov 3 (rules sort §9 conflict 2; proposed rule 21: "a no means the record never joins that park on any build path"): the
         # 'no' list was only applied to the name joins above, so a hand join written by name, the hard-look YES, an alias or the
         # check list could still bring a NO'd record back. Applied last, to every list, by id or exact name.
@@ -1003,4 +1016,5 @@ save_json(OUT / 'index.json', _with_old_stamp({'provinces': idx, 'gate': GATE}))
 # province file holds a park (a CA- number says nothing about the province)
 save_json(OUT / 'refs.json', {ref: pv for pv, pk in by.items() for ref in pk})
 t = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
+if NONE_HELD: notice('Canada key', f"Handoff 8 fix 5: {len({r for r, _ in NONE_HELD})} park(s) a person marked 'none' kept no name join ({len(NONE_HELD)} record(s) held): " + ', '.join(sorted({r for r, _ in NONE_HELD})[:12]))
 notice('Canada answer key', f"{t['parks']} parks: {t['matched']} joined, {t['check']} to check, {t['site']} sites on bigger land, {t['none']} nothing found · " + ' '.join(f"{k} {v['matched']}/{v['parks']}" for k, v in sorted(idx.items())))
