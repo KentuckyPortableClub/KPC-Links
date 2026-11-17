@@ -1,7 +1,7 @@
 """New references watch (Brandon Oct 17 2026: 'bots look for new parks … post to park tips other states … a 7 day rotation').
 
 Every day: compare today's lists with what we saw before (data/new-refs/seen.json):
-  POTA  every US location (api.pota.app/locations -> /location/parks/US-XX)
+  POTA  every US location (POTA's /locations -> /location/parks/US-XX), the SAVED copy (kpc_pota_parklists.py; Nov 16)
   KFF   the WWFF directory (wwff.co/wwff-data/wwff_directory.csv), KFF- only
   SOTA  the SOTA summits list (storage.sota.org.uk/summitslist.csv), US associations only, valid today
 New ones go in kpc-new-refs.json for 7 days:
@@ -18,6 +18,7 @@ DRY=1 prints what would happen without writing or posting.
 """
 import csv, datetime, io, json, os, pathlib, re, subprocess, sys, time, urllib.parse, urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): POTA's park lists from the SAVED copy only (kpc_pota_parklists.py); never POTA
 
 UA = 'KPC-NewRefs/1.0 (+https://kentuckyportableclub.github.io/KPC-Links/)'
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
@@ -63,11 +64,11 @@ LOCN = {}             # parks per state read today (saved as seen['locn'] for to
 
 
 def pota():
-    locs = sorted({l['locationDesc'] for l in get('https://api.pota.app/locations') if str(l.get('locationDesc', '')).startswith('US-')})
+    locs = sorted({l['locationDesc'] for l in DOOR.saved_locations() if str(l.get('locationDesc', '')).startswith('US-')})
     out, bad, failed = {}, 0, []
 
     def one(d):
-        try: return get(f'https://api.pota.app/location/parks/{d}')
+        try: return DOOR.saved_park_list(d)
         except Exception: return None  # noqa: BLE001
     got = {}
     for d in locs:
@@ -368,7 +369,7 @@ if 'pota' in TODAYS and 'US-KY' not in POTA_FAILED:
                 # GATE (Oct 28): more than 1% of Kentucky's parks at once needs a second read of Kentucky before anything leaves
                 time.sleep(30)
                 try:
-                    ky2 = {p.get('reference') for p in get('https://api.pota.app/location/parks/US-KY') if isinstance(p, dict)}
+                    ky2 = {p.get('reference') for p in DOOR.saved_park_list('US-KY') if isinstance(p, dict)}
                     if len(ky2) < 0.9 * len(offky): raise RuntimeError(f'second read short ({len(ky2)})')
                     RETIRED_NOW = [c for c in RETIRED_NOW if c not in ky2]
                     notice('Retired parks', f'GATE PASS second read of Kentucky: {len(RETIRED_NOW)} still gone')

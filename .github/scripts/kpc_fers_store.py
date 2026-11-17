@@ -378,6 +378,17 @@ class Store:
         except Exception as e:  # noqa: BLE001
             return None, [], f'{ref} in the outline store failed its check ({_err(e)})', {}
 
+    def public_shelf(self, area):
+        """True when this area is read from the PUBLIC SHELF (tools/kpc_store_public.py: index 'shelf': 'public'). The shelf holds only
+        parks whose every needed record passed the licence gate and never lists the ones it leaves off, so a park the shelf does not
+        have must be treated as held privately (PRIVATE_WHY: never named in a public file or log, its previous public rows carried),
+        never as missing from the store (which would name it on the store-filler list)."""
+        a = self.area(area)
+        if a is not None: return a.idx.get('shelf') == 'public'
+        try:   # an area the reader cannot load (an empty shelf area: no readable park) is still a shelf when its index says so
+            return json.loads((self.dir / f'index-{area}.json').read_text(encoding='utf-8')).get('shelf') == 'public'
+        except Exception: return False  # noqa: BLE001
+
     def locate_all(self, ref, area):
         """Every area store that holds a piece of ref: the key's own state first, then every other per-area index in the folder
         (a park can have tracts in two area files, or be filed by the key under a neighbour's state). ([AreaStore], why)."""
@@ -393,6 +404,8 @@ class Store:
 
     def _examine(self, ref, area, ids, clip, keep):
         stores, why = self.locate_all(ref, area)
+        if not stores and self.public_shelf(area):   # KPC owner, 2026-11-16 (public shelf): a park a public shelf leaves off is held
+            return None, [], f'{ref} needs the private store (not on the public shelf)', {}   # privately, exactly as when the full store is read
         if not stores and why: return None, [], why, {}
         if not stores: return None, [], f'{ref} is not in the outline store for {area}', {}
         by = {}   # record key -> (record, its park piece): a park with tracts in two area files is assembled whole
@@ -418,7 +431,10 @@ class Store:
             r, p = by.get(str(rid), (None, None))
             if view is not None and str(rid) not in view:   # a record outside the park's public view: never read for a public run
                 skipped['outside the public view'] = skipped.get('outside the public view', 0) + 1; continue
-            if r is None: return None, [], f'the outline store has no record {rid} for {ref} (the key joins it)', {}
+            if r is None:
+                if self.public_shelf(area) or any(a.idx.get('shelf') == 'public' for a in stores):   # Fable's review of #237 (KPC owner,
+                    return None, [], f'{ref} needs the private store (a record the key joins is not on the public shelf)', {}   # 2026-11-16)
+                return None, [], f'the outline store has no record {rid} for {ref} (the key joins it)', {}
             if r.get('wdpa_derived') is not False:   # the store's own flag first (true, or not stated): never a 2-fer source
                 return None, [], f'record {rid} of {ref} is marked WDPA derived by the store (or does not say): never a 2-fer source', {}
             if wdpa_text(r): return None, [], f'record {rid} of {ref} looks WDPA / Protected Planet derived: never a 2-fer source', {}
@@ -1340,7 +1356,10 @@ def store_lines(KF, st, areas, base):
                 rec.append(r)
             if bad: break
         if rec is None: continue
-        if not bad and not rec: bad = (why or f'{ref}: its official line is not in the outline store') if ref in base else ''
+        if not bad and not rec:
+            if ref in base and st.public_shelf(ar):   # Fable's review of #237: a line park left off a public shelf is held, never named
+                bad = f'{ref} needs the private store (its line is not on the public shelf)'
+            else: bad = (why or f'{ref}: its official line is not in the outline store') if ref in base else ''
         meta = base.get(ref) or {}
         kind, not_sure = None, ''
         if not bad and rec:

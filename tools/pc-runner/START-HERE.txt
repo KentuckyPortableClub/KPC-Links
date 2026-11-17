@@ -1,0 +1,23 @@
+KPC 2-FER PC RUNNER
+===================
+
+What it is: the club's OWN 2-fer bot, run on this PC, against the outline
+store this PC built. It is the SAME code GitHub runs - not a copy of the
+rules - so its answers are the answers a GitHub run would give.
+
+What to do, in order:
+
+  1-GET-CODE.bat          once (needs the internet; downloads the club code)
+  0-CHECK-SETUP.bat       says whether everything is ready
+  2-RUN-2FERS.bat         US and Canada
+  4-CHECK-AND-SUMMARY.bat the push check, never-worse and RESULTS\SUMMARY.txt
+
+  3-RUN-WORLD-2FERS.bat   the world, when you want it. CLUB ROOM ONLY.
+
+Nothing is ever uploaded by this tool. The 2-fer run itself makes no
+internet request at all. Only 1-GET-CODE.bat uses the internet.
+
+Before the first run, open settings.json in Notepad and check the two store
+folders are where your stores really are.
+
+More, in plain words: HOW-TO.md

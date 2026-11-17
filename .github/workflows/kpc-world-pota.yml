@@ -1,5 +1,6 @@
 name: KPC world POTA pins
 # Every night (Oct 23; was monthly) + by hand: every POTA park outside the US and Canada as map tiles (data/pota/t) for the KPC US Trip Planner.
+# Nov 16 (handoff item 7): also the one POTA park-list job (kpc_pota_parklists.py) that every park-list reader uses.
 on:
   schedule:
     - cron: '17 6 * * *'   # Oct 23: every night (1:17 AM Central); a retired park's pin goes that night
@@ -17,7 +18,12 @@ jobs:
       - uses: actions/checkout@v5
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
-      - run: python3 .github/scripts/kpc_world_pota.py
+      # Nov 16 (handoff item 7, v4): the ONE park-list job. POTA's all-parks export once a day, compared with yesterday's copy; a
+      # location's own list only when it changed and a job needs a field the export lacks (world: weekly). Saved to data/pota/saved
+      # with its receipt (the readers never call POTA). Same schedule as before.
+      - name: The park-list job (kpc_pota_parklists.py)
+        run: python3 .github/scripts/kpc_pota_parklists.py
+      - run: python3 .github/scripts/kpc_world_pota.py   # reads the saved copy only
       - name: Save
         run: |
           git config user.name 'github-actions[bot]'

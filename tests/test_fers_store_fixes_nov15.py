@@ -248,7 +248,10 @@ def layout(t):
     (t / 'data/us-key/US-RI.json').write_text(json.dumps({'parks': key}))
     with gzip.open(t / 'cache/us/US-RI.json.gz', 'wt') as fh: json.dump({'saved': '2026-11-01', 'recs': []}, fh)
     (t / 'data/fers/US-RI.json').write_text(json.dumps(OLD_FILE))
-    (t / 'data/fers/pota-pairs-US-RI.json').write_text(json.dumps({'pairs': {'US-99201+US-99210': 3, 'US-99201+US-99202': 2, 'US-99213+US-99214': 1}}))
+    # KPC owner, 2026-11-16 (rule N6): POTA activation history is no longer a source of expected pairs, so the three pairs M4 needs
+    # come from member reports instead (the guard under test is the same: withheld parks are counted, never named)
+    (t / 'data/fers/member-reports.json').write_text(json.dumps({'reports': [{'refs': r, 'what': 'test pair'} for r in
+        (['US-99201', 'US-99210'], ['US-99201', 'US-99202'], ['US-99213', 'US-99214'])]}))
     build(t / 'store', 'US-RI', sp)
 
 
@@ -302,7 +305,7 @@ else:
     pr = next((x for x in ri['spots'] if x.get('refs') == ['US-99201', 'US-99202'] and not str(x.get('status')).startswith('merged')), {})
     check(pr and not pr.get('store_held') and pr.get('passes') == [1, 1, 1], f"the publishable pair is tested again as usual ({pr.get('status')})")
     rx = S._ref_rx(WITHHELD)
-    others = {f.name: f.read_text() for f in (t / 'data/fers').glob('*.json') if f.name != 'US-RI.json' and not f.name.startswith('pota-pairs-')}   # pota-pairs: this test's own input
+    others = {f.name: f.read_text() for f in (t / 'data/fers').glob('*.json') if f.name not in ('US-RI.json', 'member-reports.json')}   # member-reports: this test's own input
     named = sorted(n for n, txt in others.items() if rx.search(txt) or any(w in txt for w in WNAMES.values()))
     rest = json.dumps([x for x in ri['spots'] if not x.get('store_held')]) + json.dumps({k: v for k, v in ri.items() if k != 'spots'})
     check(named == [] and not rx.search(rest) and not any(w in rest for w in WNAMES.values()),

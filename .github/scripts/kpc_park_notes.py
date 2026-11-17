@@ -6,6 +6,7 @@ import csv,io,json,os,re,hashlib,sys,urllib.request
 import kpc_preapproved as PA
 import kpc_formtools as T
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): every POTA read goes through the door (stored copy first, paced, budget)
 from kpc_scrub import notice_text
 PRE=PA.load()
 URL=os.environ.get('NOTES_SHEET_CSV','').strip()
@@ -71,7 +72,8 @@ def far(ref):
   if ref in GEO: return tuple(GEO[ref]) if GEO[ref] else None
   out=None
   if re.fullmatch(r'US-\d{4,5}',ref):
-    j,ok=T.getj('https://api.pota.app/park/'+ref)
+    try: j,ok=DOOR.park(ref),True
+    except DOOR.DoorClosed: j,ok=None,False
     if not ok: return None
     if j and j.get('name'): out=(j['name'],str(j.get('locationDesc') or '').replace('US-','').split(',')[0],j.get('latitude'),j.get('longitude'))
   elif '/' in ref:

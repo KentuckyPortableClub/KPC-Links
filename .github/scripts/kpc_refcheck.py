@@ -1,7 +1,7 @@
 """Weekly check (Mondays): are the site's Kentucky reference lists still current?
 
 Compares kpc-ky-data.json (what the maps, planners and checkers use) with the official lists:
-  - POTA parks in US-KY        (api.pota.app)
+  - POTA parks in US-KY        (POTA's park list, the club's saved copy)
   - SOTA summits in W4K        (api2.sota.org.uk)
   - WWFF/KFF areas in Kentucky (wwff.co directory)
 Nothing is changed automatically. New, retired or renamed references are listed in one GitHub issue
@@ -21,6 +21,7 @@ import urllib.request
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from kpc_issue import report  # noqa: E402
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): POTA's park lists from the SAVED copy only (kpc_pota_parklists.py); never POTA
 
 UA = 'Mozilla/5.0 (compatible; KPC-reference-check; +https://kentuckyportableclub.github.io/KPC-Links/)'
 DATA = json.load(open('kpc-ky-data.json', encoding='utf-8'))
@@ -51,7 +52,7 @@ def ours(key, code='c', name='n'):
 
 
 def pota():
-    rows = json.loads(get('https://api.pota.app/location/parks/US-KY'))
+    rows = DOOR.saved_park_list('US-KY')
     return {r['reference']: r.get('name', '') for r in rows if r.get('reference', '').startswith('US-') and r.get('active', 1) in (1, True, '1')}
 
 

@@ -1,6 +1,6 @@
 name: KPC Hunters
 # WHEN ARE THE HUNTERS OUT? (Oct 23 2026, Brandon: 'Yeah sounds good and it will go to discord park info and Facebook also?')
-# Every 15 min: count hunter spots on US parks from POTA's spot list (kpc_hunters.py collect). The open hour lives in the
+# Every 15 min: count hunter spots on US parks from the club spot relay (POTA's spot list, asked at most every 2 min; address in kpc-spots.json; Nov 16) (kpc_hunters.py collect). The open hour lives in the
 # Actions cache; finished hours go to data/hunters/buckets.json, kpc-hunters.json (Happening Now card) and
 # app/hunters.json (the app's 'Hunters are out' alert). Oct 27 (HQ limits plan): the finished hours (buckets.json) also
 # live in the cache between runs, and the repo gets ONE commit a day (Nov 3; was every ~3 hours).

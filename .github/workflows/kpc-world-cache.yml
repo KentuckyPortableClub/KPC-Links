@@ -6,8 +6,11 @@ name: KPC saved shapes (world + Canada)
 # the club's 20 GitHub slots. Each country is its own government server, so the width hurts nobody, and no job here
 # pushes to the repo, so the jobs cannot collide with each other or with the other bots. Never fails.
 on:
-  schedule:
-    - cron: '43 9 4 * *'          # the 4th of each month (the US one runs on the 3rd)   # G9 Nov 2: was '47 9 4 * *' (spread the start times; now 4 min earlier)
+  # SCHEDULE OFF, Brandon Nov 16 2026 ('the less downloading the less issues'): same reason as kpc-geo-cache.yml - this
+  # re-read every world layer blind on the 4th of each month. The keeper already checks every layer for change.
+  # Read .claude/notes/layer-refresh.md before switching it back on. The by-hand button below still works.
+  #schedule:
+  #  - cron: '43 9 4 * *'          # the 4th of each month (the US one runs on the 3rd)
   workflow_dispatch:
     inputs:
       countries:
