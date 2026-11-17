@@ -4,14 +4,15 @@
   "KPC-Data/kpc-fers-pending.yml",
   "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-storage.yml",
+  "KPC-Data/kpc-waiting-room.yml",
   "guard:pubnoindex:kpc-log-checker.html",
-  "kpc-ca-key.yml",
+  "kpc-bot-queue.yml",
   "kpc-discord-watch.yml",
-  "kpc-guide-pdf.yml",
+  "kpc-fb-comments.yml",
   "kpc-hunters.json",
-  "kpc-hunters.yml",
-  "kpc-park-alerts.yml",
   "kpc-pota-discord.yml",
+  "kpc-watchdog.yml",
+  "kpc-world-key.yml",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
@@ -362,12 +363,13 @@
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Access_Sites/FeatureServer/28",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
+  "pages-deploy.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-16T19:52+00:00",
+ "checked": "2026-11-17T12:41+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3260,13 +3262,13 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2910
+   "b": 2911
   },
   "L:data/ky-answer-key.json": {
    "b": 31658
   },
   "L:data/us-key": {
-   "b": 50629889
+   "b": 50718814
   },
   "L:data/ca-key": {
    "b": 5833145
@@ -3275,10 +3277,10 @@
    "b": 38466222
   },
   "L:data/pota": {
-   "b": 5824337
+   "b": 9600001
   },
   "L:data/canada.json": {
-   "b": 2559039
+   "b": 2558934
   },
   "L:kpc-top25.json": {
    "b": 16585
@@ -3330,7 +3332,7 @@
    "b": 1697496
   },
   "D:data/parkinfo": {
-   "b": 15823989
+   "b": 12632835
   },
   "D:data/trails": {
    "b": 31966627
@@ -3339,22 +3341,22 @@
    "b": 5358732
   },
   "D:data/wwff": {
-   "b": 11701784
+   "b": 11701906
   },
   "D:data/review/scoreboard.json": {
    "b": 137361
   },
   "D:data/truth": {
-   "b": 20018247
+   "b": 19645880
   },
   "D:data/alerts/eu.json": {
-   "b": 196784
+   "b": 227691
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 183793
+   "b": 168398
   },
   "D:data/intake": {
    "b": 39695215,
