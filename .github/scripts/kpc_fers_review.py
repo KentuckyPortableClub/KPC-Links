@@ -3,10 +3,10 @@
 
 For one area (TAG + STATES) the line's checker adds/updates its rows in data/fers/review-all.json (+ review-all.md):
   - every NOT SURE row (the reason in plain words),
-  - every missing-check pair we looked at and did not show that POTA's own history says people activate together (the hint is
-    the history; the row never carries a reason that reads as "not a 2-fer"),
   - every WATER ONLY row (a boat spot: is there really no land?),
   - every pair whose overlap leaves a river channel out between two banks (river slot).
+No POTA-history hints (KPC owner, 2026-11-16, rule N6: same-day activations are never evidence); hint rows left in an older
+area file are dropped the next time the list is written.
 One row per pair + kind; a rerun replaces that area's rows (never duplicates). Sorted biggest first.
 Env: TAG, STATES, DATA (data/fers, the fresh files), OUT (where review-all.json lives; default DATA)."""
 import json, os, pathlib, re, sys, time
@@ -15,9 +15,6 @@ TAG = os.environ.get('TAG') or ''
 STATES = (os.environ.get('STATES') or '').split()
 DATA = pathlib.Path(os.environ.get('DATA') or 'data/fers')
 OUT = pathlib.Path(os.environ.get('OUT') or DATA)
-
-
-HINT_REASON = 'people have activated these two the same day - a person looks'
 
 
 def load_private_dropped(tag):
@@ -76,26 +73,6 @@ def main():
             rows.append({'area': TAG, 'state': st, 'refs': s.get('refs'), 'names': s.get('names') or {}, 'what': kind, 'kind': s.get('kind'),
                          'size': szt, 'sort': round(sz, 1), 'reason': (plain(stt) + ''.join(' · ' + str(s.get(k)) for k in ('mixed_owners', 'private_part', 'unknown_part') if s.get(k)))[:300], 'id': s.get('id'),
                          'sources': s.get('map_dates') or {}, 'checked': s.get('checked') or s.get('pass5') or d.get('pass5') or ''})
-    e = load(DATA / f'expected-{TAG}.json') or {}
-    # The DROPPED list is no longer in the pushed expected file (KPC owner, 2026-11-15 23:14: no file we publish says a pair is
-    # not a 2-fer; kpc_fers_expected.split_dropped). It is in the private folder beside the run, so the HINT rows still work when
-    # this runs on the same machine as the bot; with no private copy there are simply no DROPPED hints.
-    dropped = e.get('DROPPED') or load_private_dropped(TAG) or []
-    for x in dropped + [y for y in e.get('NEVER LOOKED AT') or [] if 'boxes do not touch' in str(y.get('reason', ''))]:
-        # Oct 28 (chat 8, Iowa): pairs POTA history ties together but whose official outlines are apart (box test) are listed too: a hint only
-        if not isinstance(x, dict): continue
-        why = ' / '.join(x.get('why_expected') or [])
-        if 'activated together' not in why: continue
-        if 'boxes do not touch' in str(x.get('reason', '')):   # far-apart pairs: only strong hints (one session logged both, 10+ days), or the list drowns (8,000+ rows)
-            nn = re.search(r'\((\d+)x', why)
-            if 'one session logged both' not in why or not nn or int(nn.group(1)) < 10: continue
-        elif not (m5 := re.search(r'\((\d+)x', why)) or int(m5.group(1)) < 5: continue   # a hint needs 5+ same-day activations (logs have mistakes)
-        n = re.search(r'\((\d+)x', why)
-        rows.append({'area': TAG, 'state': '', 'refs': x.get('refs'), 'names': {}, 'what': 'HINT only (look here): POTA history shows people activating these together; logs have mistakes, it never decides',
-                     'kind': 'pair', 'size': f"{n.group(1) if n else '?'} same-day activations", 'sort': float(n.group(1)) if n else 0,
-                     # never the DROPPED reason: it reads as "not a 2-fer", and this list is written into data/fers (KPC owner,
-                     # 2026-11-15 23:14). The hint is the POTA history, which is what a person is being asked to look at.
-                     'reason': HINT_REASON, 'id': '+'.join(x.get('refs') or []) + '@pota', 'sources': {'POTA history': why[:160]}, 'checked': e.get('date', '')})
     # one row per pair + what (the biggest)
     best = {}
     for r in rows:
@@ -107,25 +84,24 @@ def main():
     json.dump({'area': TAG, 'date': time.strftime('%Y-%m-%d'), 'states': STATES, 'rows': rows}, open(OUT / 'review' / f'{TAG}.json', 'w'), indent=1)
     combine()
     print(f"::notice title=2-fer review list::{TAG}: {len(rows)} rows need a human look (not sure {sum(1 for r in rows if r['what'] == 'not sure')}, "
-          f"POTA pairs not confirmed {sum(1 for r in rows if r['kind'] == 'pair')}, water only {sum(1 for r in rows if r['what'].startswith('water only'))}, river slots {sum(1 for r in rows if r['what'].startswith('river slot'))})", flush=True)
+          f"water only {sum(1 for r in rows if r['what'].startswith('water only'))}, river slots {sum(1 for r in rows if r['what'].startswith('river slot'))})", flush=True)
 
 
 def combine():
     """data/fers/review-all.json + .md from every area's data/fers/review/<tag>.json (run by the last step of the queue too)."""
     import glob
-    allr = {'about': "ONE BIG 'NEEDS A HUMAN LOOK' LIST (HQ + Brandon Oct 28): every NOT SURE row, POTA pairs our outlines do not confirm, water-only rows, river slots; one row per pair; an area's rows are replaced on each run. Chat 8 works it after the US queue.", 'areas': {}}
+    allr = {'about': "ONE BIG 'NEEDS A HUMAN LOOK' LIST (HQ + Brandon Oct 28): every NOT SURE row, water-only rows, river slots (no POTA-history hints, rule N6); one row per pair; an area's rows are replaced on each run. Chat 8 works it after the US queue.", 'areas': {}}
     for g in sorted(glob.glob(str(OUT / 'review' / '*.json'))):
         v = load(pathlib.Path(g))
-        if v: allr['areas'][v['area']] = v
+        if v:
+            v['rows'] = [r for r in v.get('rows') or [] if not str(r.get('what', '')).startswith('HINT')]   # rule N6: no history hints, old ones too
+            allr['areas'][v['area']] = v
     f = OUT / 'review-all.json'
     json.dump(allr, open(f, 'w'), indent=1)
     L = ['# Needs a human look (all areas, biggest first per area)', '', "Written by the 2-fer line's checker. Chat 8 works it after the US queue. Nothing here is shown to anyone.", '']
     for a, v in sorted(allr['areas'].items()):
         L += [f"## {a} ({len(v['rows'])} rows, {v['date']})", '', '| what | parks | size | reason | sources |', '|---|---|---|---|---|']
-        hints = [r for r in v['rows'] if str(r.get('what', '')).startswith('HINT')]
-        main_rows = [r for r in v['rows'] if not str(r.get('what', '')).startswith('HINT')]
-        if hints: L.insert(len(L) - 2, f"{len(main_rows)} rows to look at + {len(hints)} POTA-history hints (only the 30 strongest shown here; all in review-all.json)")
-        for r in (main_rows + hints[:30])[:400]:
+        for r in v['rows'][:400]:
             pk = ' + '.join(f"{x} {r['names'].get(x, '')}".strip() for x in (r['refs'] or []))
             L.append(f"| {r['what']} | {pk[:120]} | {r['size']} | {str(r['reason'])[:160]} | {'; '.join(f'{k}: {v2}' for k, v2 in (r['sources'] or {}).items())[:120]} |")
         L.append('')

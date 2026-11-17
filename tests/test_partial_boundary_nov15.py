@@ -449,10 +449,12 @@ def t_regrade(tmp):
     check(isinstance(got, list) and len(got) == 2 and RV.load_private_dropped('nothing-here') is None,
           'R2: the review list still finds the pairs (from the private folder) and copes when there is none')
     rv_src = (ROOT / '.github/scripts/kpc_fers_review.py').read_text(encoding='utf-8')
-    deny_words = ('no overlap', 'did not show', 'not a 2-fer', 'no shared ground', 'dropped')
-    check("'reason': HINT_REASON" in rv_src and "'reason': x.get('reason', '')" not in rv_src
-          and not any(w in RV.HINT_REASON.lower() for w in deny_words),
-          'R2: a review HINT row never copies the reason, and the hint itself says nothing about an overlap')
+    ex_src = (ROOT / '.github/scripts/kpc_fers_expected.py').read_text(encoding='utf-8')
+    # KPC owner, 2026-11-16 (rule N6): POTA history is never evidence. The review list has no history hint rows at all (stronger than
+    # the old check that a hint row never copied a DROPPED reason), the missing check reads no history, and old hint rows are dropped.
+    check(not hasattr(RV, 'HINT_REASON') and 'activated together' not in rv_src and "'reason': x.get('reason', '')" not in rv_src
+          and "startswith('HINT')]   # rule N6" in rv_src and 'pota-pairs' not in ex_src and 'activated together by' not in ex_src,
+          'N6: no POTA-history hints in the review list (old ones dropped on write) and no history read by the missing check')
 
 
 # ---------------------------------------------------------------- 9: world areas off GitHub (the owner's PC)
