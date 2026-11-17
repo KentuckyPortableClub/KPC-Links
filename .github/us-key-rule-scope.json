@@ -138,6 +138,13 @@
    "from": "f35202856bbc",
    "why": "D4 + D5 (owner rulings, 17 Nov 2026), each behind its own rule switch (OFF). D4 KPC_LAKE_ONLY_IF_LAKE: a park with land of its own never takes a lake surface by name (only a park whose own type says it is the lake keeps one; a park with no land record keeps its lake for a person). D5 KPC_NO_LEASE_BY_NAME: a leased / agreement / cooperative-area record is never joined by name alone (the easement family). Both act on a park's fresh match, like the easement rule; rows carried through a rules change stay until a park-scoped re-match. Live key (as published): D4 87 parks carry a lake surface beside land of their own (17 water-only parks left for a person); D5 21 name-only joins to a lease / agreement record. Switches OFF = no result changes.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-d4-owner-of-water",
+   "when": "2026-11-17",
+   "from": "2f1fd12234eb",
+   "why": "D4 rewritten (owner, 17 Nov 2026 9:17 AM, after the research in d4-research.md: the first D4 decided by the park's KIND and was wrong both ways). Now WHO OWNS THE WATER decides: a lake surface joined by name stays only when the park has land of its own and the lake sits inside that land (kpc_key_rules.lake_inside_land: inside the land's box, no bigger than the land; over 3 times the land never), or the park has no land record and its own type says it is the water (state fishing lake, reservoir). Everything else goes to CHECK for a person (a park on the Corps', Reclamation's or a utility's lake never takes it). Still behind KPC_LAKE_ONLY_IF_LAKE (OFF) = no result changes.",
+   "scope": "none"
   }
  ]
 }

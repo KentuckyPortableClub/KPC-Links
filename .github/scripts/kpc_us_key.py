@@ -2385,14 +2385,27 @@ def run(st):
                 p['m'] = m = [x for x in m if x not in _ls]
                 p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check (D5): a leased / agreement record is never joined by name alone'] for x in _ls]
                 LEASE_HELD.extend(f'{ref} ({x[0]})' for x in _ls)
-        # D4 (KPC owner, 2026-11-17, switch KPC_LAKE_ONLY_IF_LAKE): a park with land of its own never takes the lake by name. A water
-        # surface stays only on a park whose own type says it is the lake, or a park with no land record at all (left for a person)
-        if _kr('KPC_LAKE_ONLY_IF_LAKE') and not LAKE_TYPE_RX.search(str(p.get('t') or '')):
+        # D4 (KPC owner, 2026-11-17 9:17 AM, switch KPC_LAKE_ONLY_IF_LAKE): WHO OWNS THE WATER decides. A lake surface joined by name
+        # stays when the park has land and the lake sits inside it (kpc_key_rules.lake_inside_land), or the park has no land and its
+        # own TYPE says it is the water; else CHECK (a person decides; a park on someone else's lake never takes it)
+        if _kr('KPC_LAKE_ONLY_IF_LAKE'):
             _wt = [x for x in m if 'water outline only' in str(x[3]) and name_only(x[3])]
-            if _wt and any(x not in _wt for x in m):
-                p['m'] = m = [x for x in m if x not in _wt]
-                p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check (D4): the park has land of its own; a lake surface is not added by name'] for x in _wt]
-                LAKE_HELD.extend(f'{ref} ({x[0]})' for x in _wt)
+            if _wt:
+                _land = [x for x in m if 'water outline only' not in str(x[3])]
+                _go = []
+                if _land:
+                    _lbb = [(gs_.get(str(x[0])) or {}).get('_bb') for x in _land]
+                    _lac = sum(float(x[2] or 0) for x in _land)
+                    for x in _wt:
+                        ok_, why_ = KR.lake_inside_land((gs_.get(str(x[0])) or {}).get('_bb'), float(x[2] or 0), _lbb, _lac, DETAIL)
+                        if not ok_: _go.append((x, why_))
+                elif not LAKE_TYPE_RX.search(str(p.get('t') or '')):
+                    _go = [(x, 'only a lake surface matched and the park is not a lake-type park (the shore may be leased on another owner\'s lake)') for x in _wt]
+                if _go:
+                    _gx = [x for x, _ in _go]
+                    p['m'] = m = [x for x in m if x not in _gx]
+                    p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], f'check (D4): {w}; who owns the water decides (a person)'] for x, w in _go]
+                    LAKE_HELD.extend(f'{ref} ({x[0]})' for x in _gx)
         weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1]))]   # R-G8 fix: 'Kodiak' is in 'Kodiak Office' but that record does not NAME the park
         # Nov 2 (map audit, Tennessee: the bare 'Reelfoot' / 'Chickasaw' / 'Pickett' records were drawn into the state park, the WMA AND the
         # refuge at once): when the park already has its own full-name record, a bare-name piece matched with the designation code
