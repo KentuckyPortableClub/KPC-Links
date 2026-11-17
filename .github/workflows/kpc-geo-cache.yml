@@ -34,6 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       groups: ${{ steps.g.outputs.groups }}
+      full: ${{ steps.g.outputs.full }}   # R-LR2: the areas that get their one full-detail save
     steps:
       - name: Make sure the release exists
         id: kept_green_1
@@ -163,6 +164,64 @@ jobs:
           [ -n "${F// /}" ] || { echo "::notice title=Saved shapes::no copy passed save-check for ${{ matrix.states }}"; exit 0; }
           gh release upload boundary-cache $F -R "$GITHUB_REPOSITORY" --clobber || { kpc_rc=$?; echo "::warning title=upload::an upload failed (exit $kpc_rc)"; echo "upload - an upload failed (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
           echo "::notice title=Saved shapes::uploaded $F"
+      - name: Report hidden failures (Nov 2 review, G8)
+        if: always()
+        env:
+          KPC_STEPS: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          s = json.loads(os.environ.get('KPC_STEPS') or '{}')
+          bad = [k for k, v in s.items() if v.get('outcome') == 'failure' and v.get('conclusion') == 'success']
+          for k in bad: print(f'::error title=Step failed (kept green)::step {k} failed; continue-on-error kept the job green. See its log.')
+          print(f'{len(bad)} hidden step failure(s)')
+          if bad and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write('**Steps that failed but were kept green:** ' + ', '.join(bad) + '\n')
+          # Next round C4 (Nov 5; Brandon's yes relayed via Super): the errors a step caught itself ('|| { ...; echo ::error ... }') are listed
+          # too (kpc-hidden.txt), one 'Hidden failures' line is left for the check-up (data/status/hidden-failures.json), and a job the
+          # check-up lists as safe to fail (KPC_FAIL_SAFE=1: it starts nothing after it) goes red on a caught ERROR (not on a warning).
+          import sys
+          h = os.path.join(os.environ.get('RUNNER_TEMP') or '/tmp', 'kpc-hidden.txt'); he = h[:-4] + '-errors.txt'
+          said = [x.strip() for x in open(h, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(h) else []
+          errs = [x.strip() for x in open(he, encoding='utf-8', errors='replace') if x.strip()] if os.path.exists(he) else []
+          print(f'{len(said)} error(s) caught inside steps and kept green')
+          if said and os.environ.get('GITHUB_STEP_SUMMARY'):
+              open(os.environ['GITHUB_STEP_SUMMARY'], 'a').write(f'**Errors caught inside steps and kept green ({len(said)}):**\n' + ''.join(f'- {x}\n' for x in said[:50]))
+          if said or bad:
+              print(f"::warning title=Hidden failures::{len(errs)} error(s) and {len(said) - len(errs)} warning(s) caught inside steps, {len(bad)} step(s) failed but kept green (job {os.environ.get('GITHUB_JOB', '?')})")
+          if errs and os.environ.get('KPC_FAIL_SAFE') == '1':
+              print(f'::error title=Fail where safe::{len(errs)} error(s) were caught inside steps, so this job is red (it starts nothing after it). The repo variable KPC_HIDDEN_RED=off turns this off.')
+              sys.exit(1)
+          PY
+  full_save:
+    # R-LR2 (ruled 'full', KPC owner, 2026-11-17): a layer that looks like it is going away gets ONE full-detail save (~1 m) before
+    # it dies, as the separate release asset full-<area>.json.gz (uploaded once, never replaced). The ~110 m copy is left as it is.
+    # Only from a request row (from_requests ticked, KPC_LR_DYING=full); the same key script, host rules and pacing as 'fetch',
+    # save-check against the ~110 m copy. .github/scripts/kpc_layer_full_save.sh
+    needs: prepare
+    if: ${{ needs.prepare.outputs.full != '[]' && needs.prepare.outputs.full != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        st: ${{ fromJSON(needs.prepare.outputs.full) }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data (Step B, read only)
+        run: bash .github/scripts/kpc_overlay.sh
+      - name: One full-detail save of ${{ matrix.st }}
+        id: kept_green_2
+        continue-on-error: true
+        env:
+          GEO_CACHE: cache/full
+          GEO_DETAIL: '0.00001'
+          GEO_PAGE: '100'
+          MINUTES: '320'
+          GH_TOKEN: ${{ github.token }}
+          UNIT: ${{ matrix.st }}
+        run: bash .github/scripts/kpc_layer_full_save.sh us "$UNIT"
       - name: Report hidden failures (Nov 2 review, G8)
         if: always()
         env:
