@@ -251,6 +251,30 @@ for _cc, _v in SHEET.items():
         SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or _v.get('country') or _cc)[:90], 'arcgis', _u)]
         SHEET_URLS.add(_u)
         if _l.get('namef'): LAYER_NAMEF[_u] = _l['namef']
+# Handoff 8 fix 8 (KPC_MK_LAYER_93): North Macedonia's sheet layer MapServer/94 (91 records: monuments, natural rarities, caves,
+# trees) has no national park; MapServer/93 of the same service (97 records, same fields, no name in common with 94) is the areas
+# layer with Galichica, Mavrovo and Pelister. ON reads 93 as well as 94 (no data file changes), and a record whose Prot_Stat says
+# 'proposed' (70 of 93's 97 on Nov 17) never gives official land (see PROPOSED_WHY below).
+MK94 = 'https://portal.app.gov.mk/arcgis/rest/services/PPRSM/karta37_PPRSM_namena_na_zemjiste_WMS_novo/MapServer/94'
+MK93 = MK94[:-2] + '93'
+if _kr('KPC_MK_LAYER_93') and 'MK' in SRC:
+    _m94 = [s for s in SRC['MK'] if str(s[2]).rstrip('/').lower() == MK94.lower()]
+    if _m94 and not any(str(s[2]).rstrip('/').lower() == MK93.lower() for s in SRC['MK']):
+        SRC['MK'] = SRC['MK'] + [('Заштитени подрачја (areas, MapServer/93)', 'arcgis', MK93)]
+    if any(u.lower() == MK94.lower() for u in SHEET_URLS): SHEET_URLS.add(MK93)
+    for _u in [u for u in LAYER_NAMEF if u.lower() == MK94.lower()]: LAYER_NAMEF.setdefault(MK93, LAYER_NAMEF[_u])
+PROPOSED_WHY = "the record is only PROPOSED for protection (Prot_Stat 'proposed'): never official land (Handoff 8 fix 8)"
+def hold_proposed(parks, recs):
+    """Handoff 8 fix 8: a joined record whose own Prot_Stat field says 'proposed' leaves 'm' and is listed for a person in 'c'."""
+    pro = {(r.get('src'), str(r.get('id'))) for r in recs if str((r.get('_a') or {}).get('Prot_Stat') or '').strip().lower() == 'proposed'}
+    held = []
+    for ref, pk in parks.items():
+        mv = [q for q in pk.get('m') or [] if (q[2], str(q[0])) in pro]
+        if not mv: continue
+        pk['m'] = [q for q in pk['m'] if q not in mv]
+        pk['c'] = ([[q[0], q[1], q[2], PROPOSED_WHY] for q in mv] + [q for q in pk.get('c') or [] if not any(q[2] == x[2] and str(q[0]) == str(x[0]) for x in mv)])[:6]
+        held.append(ref)
+    return held
 # Nov 4 PM fix bundle (item 11c, Quality v3 should-fix; Brandon's yes relayed via Super Head Bot, 4:53 PM CST Nov 4): DE-0095
 # 'Mecklenburgisches Elbetal UNESCO Biosphere Reserve' was joined on 'pin inside + same name' to the BfN Vogelschutzgebiet (bird
 # sanctuary, Natura 2000) DE2732473 of the same name: same name, other kind. A biosphere-reserve park ('br') whose name-agreeing
@@ -1524,6 +1548,9 @@ for cc in COUNTRIES:
             return holds[0] if holds and (len(holds) == 1 or len({(r['src'], norm(cc, r['n'])) for r in holds}) == 1) else None
         _ag = a10_gap_only(parks, recs, _pin_holder if cc in PIN_JOIN else None)
         if _ag: notice(f'World key {cc}', f'Handoff 8 fix 7: {_ag} park(s) already joined to a current layer keep only that (the FY2010 A10-10 area is not added)')
+    if _kr('KPC_MK_LAYER_93'):
+        _hp = hold_proposed(parks, recs)
+        if _hp: notice(f'World key {cc}', f"Handoff 8 fix 8: {len(_hp)} park(s) lost a join to a record only PROPOSED for protection (to a person): " + ', '.join(sorted(_hp)[:12]))
     # IS THE BOUNDARY WHERE IT SHOULD BE? (Oct 24: the US key's Oct 21-22 check, ported.) A name can match and still
     # be the wrong place, so: does the park's own pin fall inside the land it was joined to? Sorted the same three
     # ways as the US ('no shape to check against' = the check is blind, not the join; 'edge' = within about a mile;
