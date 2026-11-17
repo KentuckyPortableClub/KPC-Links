@@ -7,7 +7,7 @@ name: KPC saved shapes
 # Handoff 3 (KPC owner, 2026-11-17): 'from_requests' re-reads only the states named in the keeper's layer requests, with the
 # same fetch, pacing, save-check and upload as below (.claude/notes/layer-refresh.md).
 on:
-  # SCHEDULE OFF, Brandon Nov 16 2026 ('the less downloading the less issues'): this job re-read every layer blind
+  # SCHEDULE OFF (KPC owner, 2026-11-16, to download less): this job re-read every layer blind
   # (GEO_CACHE_MODE: refresh) on the 3rd of each month, whether or not one line of it had moved. Every layer we hold was
   # downloaded in the last few days, so a monthly re-download only risked a fresh copy being replaced by a worse read.
   # The keeper already checks every layer for change (KPC-Store store/layers-seen.json: ETag, lastEditDate, record count).
@@ -54,12 +54,12 @@ jobs:
           WANT: ${{ inputs.states }}
           FROM_REQUESTS: ${{ inputs.from_requests }}
           GH_TOKEN: ${{ github.token }}
-          # The owner's four layer-refresh rulings (.claude/notes/layer-refresh.md, R-LR1..R-LR4). Repo variables, UNSET until ruled;
-          # unset = nothing extra is fetched. What each one does: .github/scripts/kpc_layer_refresh.py.
-          KPC_LR_STALE_DAYS: ${{ vars.KPC_LR_STALE_DAYS }}
-          KPC_LR_DYING: ${{ vars.KPC_LR_DYING }}
-          KPC_LR_CHANGED_READ: ${{ vars.KPC_LR_CHANGED_READ }}
-          KPC_LR_WHO: ${{ vars.KPC_LR_WHO }}
+          # The owner's four layer-refresh rulings (RULED 2026-11-17, .claude/notes/layer-refresh.md): 180 days for a layer with no
+          # date, a dying layer gets a full-detail save first, a changed layer is re-read whole, the keeper or a chat may ask. A repo variable overrides. What each one does: .github/scripts/kpc_layer_refresh.py.
+          KPC_LR_STALE_DAYS: ${{ vars.KPC_LR_STALE_DAYS || '180' }}
+          KPC_LR_DYING: ${{ vars.KPC_LR_DYING || 'full' }}
+          KPC_LR_CHANGED_READ: ${{ vars.KPC_LR_CHANGED_READ || 'whole' }}
+          KPC_LR_WHO: ${{ vars.KPC_LR_WHO || 'keeper+hand' }}
         run: |
           # Handoff 3 (KPC owner, 2026-11-17): the keeper asks, this job fetches. With from_requests the list is the keeper's request
           # file (read only; no file, an unreadable one or nothing servable = no state = nothing is fetched), else exactly as before.

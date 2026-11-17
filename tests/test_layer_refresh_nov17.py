@@ -153,8 +153,11 @@ for wf, sid, key, want_fetch in (('kpc-geo-cache.yml', 'g', 'groups', ['TN']), (
     check(set(on) == {'workflow_dispatch'} and 'from_requests' in on['workflow_dispatch']['inputs'] and on['workflow_dispatch']['inputs']['from_requests'].get('default') is False,
           f'{wf}: by-hand button only (no schedule block); from_requests is off unless pressed')
     txt = (HERE / '.github/workflows' / wf).read_text(encoding='utf-8')
-    check(all(f'${{{{ vars.{k} }}}}' in txt for k in LR.KNOBS.values()) and not any(f'{k}: \'' in txt or f'{k}: "' in txt for k in LR.KNOBS.values()),
-          f'{wf}: the four knobs come only from repo variables (no default written in the workflow)')
+    # KPC owner, 2026-11-17: R-LR1..R-LR4 RULED (180 days for a dateless layer, full save before a layer dies, whole re-read,
+    # keeper or a chat may ask). The workflow carries the rulings as defaults; a repo variable still overrides.
+    RULED_DEFAULTS = {'KPC_LR_STALE_DAYS': '180', 'KPC_LR_DYING': 'full', 'KPC_LR_CHANGED_READ': 'whole', 'KPC_LR_WHO': 'keeper+hand'}
+    check(all(f"${{{{ vars.{k} || '{v}' }}}}" in txt for k, v in RULED_DEFAULTS.items()) and set(RULED_DEFAULTS) == set(LR.KNOBS.values()),
+          f'{wf}: the four knobs default to the owner\'s rulings, and a repo variable overrides')
     steps = fj['steps']; runs = [str(s.get('run') or '') for s in steps]
     fetch_i = next(i for i, x in enumerate(runs) if ('kpc_us_key.py' if 'geo' in wf else 'kpc_world_key.py') in x)
     up_i = next(i for i, x in enumerate(runs) if 'gh release upload boundary-cache' in x)
