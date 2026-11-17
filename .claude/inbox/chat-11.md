@@ -391,3 +391,75 @@ FROM CHAT 8 (Oct 29): please spot-check 4 far-pin 2-fer rows: US-OH Wayne NF x D
 
 - **FROM CHAT 9 (Oct 29 10:50 PM) NOT SURE 146 FACTS READY:** .claude/build/research/KPC_NotSure146_Facts_desk.md = one line per row: POTA name, the piece, and what the agency record says (name, kind, acres, manager). Rows marked "no record link" have only the earlier point-check facts (KPC_KeyPieces_LayerProbe_desk.md). 3 WA DNR records are unnamed parcel records; 1 WDFW link was malformed. I add layer checks for the no-link rows if you want them.
 - FROM CHAT 8 via HQ/Brandon (Oct 30 ~8:50 AM) RAY NORBUT PIN CHECK: US-10788 Ray Norbut East Hannibal Unit State Fish and Wildlife Area (Illinois) has a pin sitting ~40 km from its own official huntillinois.org map (chat 3's find, Oct 30; detail in fable/US-IL.md). Brandon wants this sent to you rather than held for his own ruling. Please check it (the pin itself vs the official map's actual location) and say whether it's a POTA pin error worth flagging upstream, or something else going on.
+
+- **FROM HQ (Nov 17 4:10 PM) 69 'NONE' PARKS THAT GOT LAND AGAIN, busiest first.** On Oct 22 a reviewer marked each 'a different place; pin only' (overrides none: true). Since then the bot joined land to each by name. For each: is the joined land THIS park? Answer YES (keep, and clear 'none') or NO (that record is a NO; the park stays a pin). Owner 4:07 PM: no blanket rule, a person looks at each.
+  park | activations | joined records | first records
+  US-6927 Nantahala State Game Land | 1474 | 139 | Nantahala, Nantahala
+  US-9384 Minnesota Valley State Trail | 1224 | 1 | Minnesota Valley State Trail
+  US-1728 Wharton Brook State Park | 978 | 2 | Wharton Brook State Park, Wharton Brook State Park
+  US-7850 Caesar Creek Lake State Wildlife Area | 794 | 16 | Caesar Creek SP, CAESAR CREEK
+  US-7145 Minnesota Valley State Recreation Area | 743 | 339 | MINNESOTA VALLEY, MINNESOTA VALLEY
+  US-12320 Yadkin River State Trail | 517 | 1 | Yadkin River State Trail
+  US-0888 Musconetcong River National Wild and Scenic River | 297 | 1 | Musconetcong Wild and Scenic River
+  US-0898 White Clay Creek National Wild and Scenic River | 296 | 2 | White Clay Creek Wild and Scenic River, White Clay Creek Wild and Scenic River
+  US-0898 White Clay Creek National Wild and Scenic River | 296 | 2 | White Clay Creek Wild and Scenic River, White Clay Creek Wild and Scenic River
+  US-9386 Browns Creek State Trail | 274 | 1 | Browns Creek State Trail
+  US-1080 DeGray Lake Resort State Park | 251 | 1 | DeGray Lake
+  US-6936 Pisgah State Game Land | 214 | 73 | Pisgah, Pisgah
+  US-1104 Mount Magazine State Park | 204 | 1 | Mount Magazine State Park
+  US-3075 Great Salt Lake State Park | 176 | 1 | Great Salt Lake Marina
+  US-10258 Ouachita National Recreation Trail | 171 | 1 | Ouachita National Recreation Trail
+  US-10258 Ouachita National Recreation Trail | 171 | 1 | Ouachita National Recreation Trail
+  US-7925 El Dorado State Wildlife Area | 128 | 4 | El Dorado Wildlife Area, El Dorado Wildlife Area
+  US-1694 Mansfield Hollow State Park | 124 | 9 | Mansfield Hollow Wildlife Management  Ar, Mansfield Hollow State Park
+  US-2887 Calhoun Falls State Park | 109 | 1 | Calhoun Falls State Park
+  US-1699 Mohawk Mountain State Park | 109 | 1 | Mohawk Mountain State Park
+  US-8637 Deer Creek State Wildlife Area | 105 | 23 | Deer Creek SP, DEER CREEK
+  US-7929 Hillsdale State Wildlife Area | 95 | 3 | Hillsdale Wildlife Area, Hillsdale Wildlife Area
+  US-2517 St. Croix State Park | 95 | 865 | St. Croix, SAINT CROIX
+  US-12395 St. Croix Boom Site Unique Area | 85 | 3 | Saint Croix Boom Site, St. Croix Boom Site
+  US-0677 Great Egg Harbor National Wild and Scenic River | 80 | 1 | Great Egg Harbor Wild and Scenic River
+  US-5922 Echo State Park | 75 | 1 | Echo
+  US-7938 Milford State Wildlife Area | 73 | 11 | Milford Wildlife Area, Milford Wildlife Area
+  US-7362 Sawtooth National Recreation Area | 73 | 1 | Sawtooth National Recreation Area
+  US-9164 Lake Conway State Recreation Area | 72 | 1 | Lake Conway
+  US-12427 Liberty State Fishing Lake | 69 | 2 | Liberty Lake, Liberty Lake
+  US-8322 Mount Magazine Scenic Byway State Trail | 60 | 1 | Mount Magazine Scenic Byway State Trail
+  US-8323 Ozark Highlands Scenic Byway State Trail | 57 | 1 | Ozark Highlands Scenic Byway State Trail
+  US-7712 Dardanelle Rock Natural Area | 51 | 1 | Dardanelle Rock Natural Area
+  US-9458 Dillon State Wildlife Area | 50 | 14 | Dillon WA, DILLON (DillonWA)
+  US-9753 Katy Trail Rock Island Spur State Park | 44 | 1 | Katy Trail Rock Island Spur State Park
+  US-10508 Ozark Highlands Trail (OHT) National Historic Trail | 44 | 1 | Ozark Highlands Trail (OHT) National His
+  US-12399 Spokane State Fish Hatchery | 37 | 2 | Spokane Hatchery, Spokane Hatchery
+  US-6870 Quinebaug Lake State Park | 36 | 2 | Quinebaug Lake State Park Scenic Reserve, Quinebaug Lake State Park Scenic Reserve
+  US-12795 Pere Marquette National Wild and Scenic River | 32 | 1 | Pere Marquette, Michigan National Wild a
+  US-7361 Hells Canyon National Recreation Area | 30 | 1 | Hells Canyon National Recreation Area
+  US-7361 Hells Canyon National Recreation Area | 30 | 1 | Hells Canyon National Recreation Area
+  US-11517 American Falls Reservoir State Fishing Lake | 23 | 1 | American Falls Reservoir
+  US-11464 Blacks Creek Reservoir State Fishing Lake | 22 | 1 | Blacks Creek Reservoir
+  US-7941 Perry State Wildlife Area | 21 | 2 | Perry Lake Wildlife Area, Perry Wildlife Area
+  US-11393 Sylamore Scenic Byway State Trail | 21 | 1 | Sylamore Scenic Byway State Trail
+  US-3225 Lyons Ferry State Park | 20 | 7 | Lyons Ferry, LYONS FERRY MARINA
+  US-7195 Clam Gulch State Recreation Area | 19 | 3 | Clam Gulch State Recreation Area, Clam Gulch State Recreation Area
+  US-10594 Manatee Springs South State Conservation Area | 19 | 5 | MANATEE SPRINGS SOUTH, MANATEE SPRINGS SOUTH
+  US-7114 Bienville Wildlife Management Area | 18 | 2 | BIENVILLE WMA, BIENVILLE WMA
+  US-0802 Boston African American National Historic Site | 16 | 1 | Boston African American National Histori
+  US-7946 Tuttle Creek State Wildlife Area | 15 | 6 | Tuttle Creek Lake Wildlife Area, Tuttle Creek Lake Wildlife Area
+  US-7524 Lake Greeson National Recreation Area | 14 | 1 | Lake Greeson
+  US-11249 Salmon Falls Creek Reservoir State Fishing Lake | 14 | 12 | Salmon Falls Reservoir, Salmon Falls Reservoir
+  US-7948 Wilson State Wildlife Area | 12 | 5 | Wilson Wildlife Area, Wilson Reservoir State Wildlife Manageme
+  US-9679 Pecos Canyon State Park | 11 | 1 | PECOS CANYON
+  US-10694 Sun Lakes Wildlife Area | 11 | 2 | Sun Lakes, Sun Lakes
+  US-7947 Webster State Wildlife Area | 10 | 3 | Webster Wildlife Area, Webster Wildlife Area
+  US-10805 Sinks Canyon State Wildlife Habitat Management Area | 9 | 1 | Sinks Canyon
+  US-12799 Sturgeon (Ottawa) National Wild and Scenic River | 8 | 1 | Sturgeon, Michigan (Ottawa NF) National 
+  US-12343 White Salmon National Wild and Scenic River | 7 | 1 | White Salmon, Washington National Wild a
+  US-12112 Little Payette Lake State Fishing Lake | 7 | 1 | Little Payette Lake
+  US-11218 Fort Peck State Fish Hatchery | 7 | 1 | Fort Peck Hatchery
+  US-11217 Bluewater Springs Trout State Fish Hatchery | 7 | 1 | Bluewater Springs Trout Hatchery
+  US-11094 Glenwood State Fish Hatchery | 6 | 1 | Glenwood Hatchery
+  US-0425 Devils Lake Wetland Management District | 6 | 224 | Stewart Lake WPA, Grand Forks County Wat, Martinson WPA, Ramsey County Waterfowl P
+  US-10374 Bob's Landing State Recreation Area | 4 | 2 | Bob's Landing, Bob's Landing
+  US-0428 J. Clark Salyer Wetland Management District | 4 | 164 | Horseshoe Lake WPA, Pierce County Waterf, LaFromboise WPA, Rolette County Waterfow
+  US-12992 Bandon State Fish Hatchery | 3 | 1 | Bandon Hatchery
+  US-5842 Canyonlands BLM Herd Management Area | 1 | 1 | Canyon Lands
