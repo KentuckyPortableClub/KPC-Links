@@ -108,6 +108,10 @@ nov11_wf |= {'.github/workflows/kpc-community.yml', '.github/workflows/kpc-hunte
 nov11_wf |= {'.github/workflows/kpc-key-proof.yml'}   # KPC owner, 2026-11-12 (D4): the by-hand key proof job (new file, dispatch only, read-only); not a key workflow
 nov11_wf |= {'.github/workflows/kpc-rebuild-level.yml'}   # KPC owner, 2026-11-12: the PR rebuild-level check (new file, PR/dispatch only); not a key workflow
 nov11_wf |= {'.github/workflows/kpc-state-gis.yml'}   # KPC owner, 2026-11-14: the state GIS finder retired (schedule removed, dispatch only); not a key workflow
+# KPC owner, 2026-11-16 (handoff item 7, be polite to POTA): the spot reader / park-list job / social history cache steps; no schedule
+# changes and not key rule workflows
+nov11_wf |= {'.github/workflows/kpc-pota-discord.yml', '.github/workflows/kpc-world-pota.yml', '.github/workflows/kpc-hunters.yml',
+             '.github/workflows/kpc-social.yml', '.github/workflows/kpc-band-alerts.yml'}
 extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf | nov10_wf | nov11_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))

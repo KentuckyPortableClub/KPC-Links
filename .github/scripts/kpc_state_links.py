@@ -7,6 +7,7 @@ Park details are fetched once and reused; RECHECK=1 fetches them all again. STAT
 import json, os, re, time, urllib.request, urllib.parse, datetime, collections
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): POTA's park lists from the SAVED copy only (kpc_pota_parklists.py); never POTA
 import kpc_pin_guard as PG   # Nov 11: a POTA pin that changed is recorded (data/parkinfo/pin-changes.json); an unusable one keeps the last good pin
 STATES = [] if (os.environ.get('STATES') or '').strip().upper() == 'NONE' else (os.environ.get('STATES') or 'TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SC SD TX UT VT WA WY').split()  # STATES=NONE = only the PROGS programs
 UA = {'User-Agent': 'KPC park links (kentuckyportableclub.github.io)'}
@@ -46,12 +47,12 @@ def pin_of(ref, p, o, name=''):
     return pin
 total = 0
 COORD = {}
-MISSED = {'HI': ['US-0121']}   # Kure Atoll: in POTA's park data, missing from api.pota.app/location/parks/US-HI (checked Nov 8)
+MISSED = {'HI': ['US-0121']}   # Kure Atoll: in POTA's park data, missing from POTA's /location/parks/US-HI (checked Nov 8)
 for st in STATES:
     path = f'{OUT}/US-{st}.json'
     try: old = json.load(open(path)).get('parks', {})
     except Exception: old = {}
-    try: L = get(f'https://api.pota.app/location/parks/US-{st}')
+    try: L = DOOR.saved_park_list(f'US-{st}')
     except Exception as e: note(f'US-{st} FAILED', e); continue
     parks, fetched = {}, 0
     if L and st == STATES[0]: note('POTA park list fields', ', '.join(sorted(L[0].keys())))
@@ -63,7 +64,7 @@ for st in STATES:
         if o and not os.environ.get('RECHECK'): typ, act, acc = o[2], o[3], o[4]
         else:
             try:
-                d = get('https://api.pota.app/park/' + urllib.parse.quote(ref)); fetched += 1
+                d = DOOR.park(ref, ask_pota=False); fetched += 1
                 typ, act, acc = clean(d.get('parktypeDesc')), clean(d.get('activationMethods')), clean(d.get('accessMethods'))
                 web = web or fixurl(d.get('website'))
             except Exception: typ, act, acc = (o[2], o[3], o[4]) if o else ('', '', '')
@@ -73,12 +74,12 @@ for st in STATES:
         web = web or HANDWEB.get(ref, {}).get('web', '')   # Oct 25: official pages found by hand for parks POTA lists with no website (data/parkinfo-web.json, chat 2)
         parks[ref] = [clean(p.get('name')), web, typ, act, acc, la, lo,
                       int(n_act) if str(n_act).isdigit() else None, int(n_try) if str(n_try).isdigit() else None, int(n_q) if str(n_q).isdigit() else None]
-    # Nov 8 (zip-nov7e ITEM4): parks POTA has (api.pota.app/park/<ref>, active) but leaves out of the state's location list;
+    # Nov 8 (zip-nov7e ITEM4): parks POTA has (/park/<ref>, active) but leaves out of the state's location list;
     # today only Kure Atoll. One extra detail call per weekly run; the row is built from that call.
     for ref in MISSED.get(st, []):
         if ref in parks: continue
         try:
-            d = get('https://api.pota.app/park/' + urllib.parse.quote(ref)); fetched += 1
+            d = DOOR.park(ref, ask_pota=False); fetched += 1
             if not d or str(d.get('active', 1)) == '0': continue
             o = old.get(ref) or []
             la, lo = pin_of(ref, d, o or None, clean(d.get('name')))
@@ -108,7 +109,7 @@ try:   # Nov 1 (chat 2): the countries in Brandon's filled world sheet need thei
 except Exception: pass  # noqa: BLE001
 PROGS = (os.environ.get('PROGS') or ('' if os.environ.get('STATES') else ' '.join(NA_PROGS + WORLD_KEY_PROGS))).split()  # also any POTA program outside NA, e.g. JP DE GB PL AU
 if PROGS:
-    try: LOCS = get('https://api.pota.app/locations')
+    try: LOCS = DOOR.saved_locations()
     except Exception as e: LOCS = []; note('POTA locations FAILED', e)
 for pre in PROGS:
     descs = sorted({l['locationDesc'] for l in LOCS if str(l.get('locationDesc', '')).split('-')[0] == pre})
@@ -118,7 +119,7 @@ for pre in PROGS:
     except Exception: old = {}
     parks, fetched, failed, sites = {}, 0, 0, {}
     for desc in descs:
-        try: L = get(f'https://api.pota.app/location/parks/{desc}')
+        try: L = DOOR.saved_park_list(desc)
         except Exception as e:
             failed += 1; note(f'{desc} FAILED', e)
             parks.update({r: v for r, v in old.items() if len(v) > 10 and v[10] == desc.split('-', 1)[-1]}); continue
@@ -130,7 +131,7 @@ for pre in PROGS:
             if o and not os.environ.get('RECHECK'): typ, act, acc = o[2], o[3], o[4]
             else:
                 try:
-                    d = get('https://api.pota.app/park/' + urllib.parse.quote(ref)); fetched += 1
+                    d = DOOR.park(ref, ask_pota=False); fetched += 1
                     typ, act, acc = clean(d.get('parktypeDesc')), clean(d.get('activationMethods')), clean(d.get('accessMethods'))
                     web = web or fixurl(d.get('website'))
                 except Exception: typ, act, acc = (o[2], o[3], o[4]) if o else ('', '', '')

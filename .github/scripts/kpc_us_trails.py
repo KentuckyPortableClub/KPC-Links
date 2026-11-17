@@ -72,7 +72,8 @@ if MODE == 'info':
         note('search ' + q, ' || '.join(f"{r['owner']} :: {r['title']} :: {r.get('url')}" for r in j.get('results', [])))
     for q in os.environ.get('POTA', '').split('|'):
         if not q: continue
-        j = get('https://api.pota.app/lookup?search=' + urllib.parse.quote(q) + '&size=40')
+        import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7)
+        j = DOOR.lookup(q, 40)
         note('pota ' + q, ' || '.join(x['display'] for x in j if x['value'].startswith('US-')))
     sys.exit(0)
 

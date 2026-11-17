@@ -185,6 +185,11 @@ os.rename('x.json', WL.XREF['KFF'][0])
 # ---- data/canada.json (kpc_canada.py)
 for pv in 'AB BC MB NB NL NS NT NU ON PE QC SK YT'.split(): CA_API[f'https://api.pota.app/location/parks/CA-{pv}'] = []
 CA_API['https://api.pota.app/location/parks/CA-ON'] = [{'reference': r[1], 'name': r[2], 'latitude': r[3], 'longitude': r[4]} for r in CAN['rows']]
+# Nov 16 (item 7): kpc_canada.py reads the saved park lists (POTA door), never POTA itself: the same rows go in a saved copy
+os.environ['KPC_POTA_DIR'] = os.path.abspath('pota-saved')
+sys.path.insert(0, str(SCR)); import kpc_pota_door as _DOOR
+for _u, _rows in CA_API.items(): _DOOR._write_list(_u.rsplit('/', 1)[1], _rows, 'api')
+_DOOR._write(_DOOR.root() / 'locations.json', {'saved': int(time.time()), 'source': 'test', 'data': [{'locationDesc': _u.rsplit('/', 1)[1]} for _u in CA_API]})
 quiet(runpy.run_path, str(SCR / 'kpc_canada.py'), run_name='__main__')
 C = json.load(open('data/canada.json'))['rows']
 CW = {r[1]: r for r in C if r[0] == 'WWFF'}

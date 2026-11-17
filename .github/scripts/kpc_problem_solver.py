@@ -1060,7 +1060,7 @@ def _merge_parts(park_name, recs):
 
 
 def official_website(park, rec=None, pin=None, rec_acres_v=None, fetch=False, html=None, url=None):
-    """Read the park's official website (one function). URL from the park row, the key, or api.pota.app.
+    """Read the park's official website (one function). URL from the park row, the key, or POTA (through the club POTA door).
     robots.txt, crawl delay, a cache, and the never-touch host list are obeyed. A dead or missing
     site is noted and does not block. Map/PDF links are returned as leads."""
     out = {'url': '', 'status': 'none', 'note': '', 'name_fit': None, 'acres_fit': None,
@@ -1175,7 +1175,7 @@ def official_website(park, rec=None, pin=None, rec_acres_v=None, fetch=False, ht
 
 
 def _pota_website(ref):
-    """Website field from api.pota.app park info (allowed). Cached. Never used to move a pin."""
+    """Website field from POTA's park info (allowed), through the club's POTA door (stored copy first, 30 days). Never used to move a pin."""
     if not ref: return ''
     cache = pathlib.Path(os.environ.get('POTA_WEB_CACHE') or ROOT / 'cache/official-pages')
     cache.mkdir(parents=True, exist_ok=True)
@@ -1186,14 +1186,12 @@ def _pota_website(ref):
             return d.get('website') or d.get('parkinfoWebsite') or ''
     except Exception:
         pass
-    url = 'https://api.pota.app/park/' + urllib.parse.quote(str(ref))
-    # robots + manners if available
-    body, err = _fetch_site(url)
-    if err or not body: return ''
     try:
-        d = json.loads(body)
-    except Exception:
+        import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7)
+        d = DOOR.park(str(ref))
+    except Exception:  # noqa: BLE001
         return ''
+    if not isinstance(d, dict): return ''
     try: f.write_text(json.dumps(d), encoding='utf-8')
     except Exception: pass
     return d.get('website') or d.get('parkinfoWebsite') or ''

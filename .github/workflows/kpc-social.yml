@@ -80,7 +80,8 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if [ -f kpc-social-state.json ]; then
             git add kpc-social-state.json
+            git add data/pota/social-history.json.gz 2>/dev/null || true   # ok: Nov 16 (item 7) the activation history cache; only once a run read POTA
             # Nov 2 review (G7): save with the shared helper (shared with another workflow (kpc-social-state.json): merged the old way, but loud). A save that never lands prints ::error (no more '|| true'); red only if the repo variable KPC_SAVE_RED=yes.
             KPC_SAVE_MODE=rebase KPC_SAVE_RED="${{ vars.KPC_SAVE_RED || 'no' }}" \
-              bash .github/scripts/kpc_save_overwrite.sh 'Remember social posts' - -- kpc-social-state.json
+              bash .github/scripts/kpc_save_overwrite.sh 'Remember social posts' - -- kpc-social-state.json $([ -f data/pota/social-history.json.gz ] && echo data/pota/social-history.json.gz)
           fi
