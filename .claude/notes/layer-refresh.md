@@ -3,7 +3,8 @@
 Owner's call, 16 Nov 2026, 9:37 PM Central: *"write a plan using keeper since it is doing the checks that when
 something out of date it request it ... put that somewhere we won't forget it."*
 
-**Status: WIRED, OFF (Nov 17, see below).** Before that, nothing was built. Every layer we hold was downloaded in the last few days, so nothing is
+**Status: RULED AND BUILT, NOT RUNNING (17 Nov).** The cache side is KPC-Links #247 (merged; by-hand button only, knobs default to the rulings); the keeper
+side is a change file to apply in KPC-Store. All four grey areas are ruled, below. Was: PARKED, nothing built. Every layer we hold was downloaded in the last few days, so nothing is
 stale and there is nothing to refresh yet. Pick this up when a real layer is actually out of date, or before
 the two monthly jobs are ever switched back on.
 
@@ -76,21 +77,37 @@ KPC-Data.
 5. **A layer nobody has walked yet is not "unchanged".** Until the keeper has a first reading for a layer, that
    layer is unknown, not fresh. The request file says which.
 
-## Not decided — the owner rules on these before anything is built
+## RULED by Brandon, 17 Nov 2026, 4:30 AM Central
 
-These are the grey areas. RULES FIRST: this decides what gets refreshed, so the rule sheet comes before the
-code.
+All four grey areas are closed. These are the rules now; the knobs in KPC-Links #247 get set to match.
 
-- **R-LR1. How stale is too stale** for a layer whose ETag never changes? Six months? A year? Never, as long as
-  the ETag holds? (An ETag that never moves can mean the layer never changes — or that the server always sends
-  the same one.)
-- **R-LR2. A layer that is dying.** When a service is about to retire (`retired-layers.csv`), our copy becomes
-  the only one left. Is the ~110 m saved copy good enough to be the permanent record, or does a layer we think
-  is going away get one full-detail save first?
-- **R-LR3. Changed layer: whole or part?** When a layer moved, do we re-read the whole layer or only the
-  records whose own ids changed? The keeper holds a record count per layer, so a count that moved says
-  something was added or removed, but not which record.
-- **R-LR4. Who may ask.** Only the keeper's own walk, or may a chat or a report add a request row by hand?
+- **R-LR1. How stale is too stale.** A layer that gives us a change DATE we can read (`lastEditDate`, or
+  `Last-Modified`) is trusted: no timer, it is re-pulled only when that date moves. A layer that gives us no
+  date is re-pulled **every 6 months** to be safe. Knob `KPC_LR_STALE_DAYS` = 180, applied to dateless layers
+  only.
+  - HQ's reading, say so if it is wrong: an **ETag is not a date**. It says *that* a layer changed, not *when*.
+    So a layer with an ETag but no date still gets the 6-month pull. On the first walk 14 of 14 layers gave an
+    ETag but only 6 of 14 gave a `lastEditDate` and 6 a `Last-Modified`, so this is the common case, and it is
+    the safe side: at most 2 pulls a year for those, against 12 a year for all 589 under the old blind monthly.
+- **R-LR2. A layer that is dying.** Before a service goes dark we take **one full-detail copy** and archive it.
+  The ~110 m saved copy is not good enough to be the permanent record. Knob `KPC_LR_DYING` = on.
+- **R-LR3. Changed layer: whole or part?** Re-read the **whole layer** for now. Reading only the changed
+  records means editing the key scripts, which sit inside the rules hash. Brandon: *do it properly later* -
+  so it goes on notes/ideas.md, not into this build. Knob `KPC_LR_CHANGED_READ` = whole.
+- **R-LR4. Who may ask.** The keeper's own walk, **and a chat or a report may flag a layer as stale** and add a
+  request row. Knob `KPC_LR_WHO` = keeper + chat. The row carries who asked (`by`), so a hand-added row is
+  always told apart from the keeper's own.
+
+**Q2, also ruled: the keeper removes its own served rows.** Not the cache bot (that would mean giving a public
+bot write access to a private file) and not by hand. The keeper drops a row once the area's saved copy on the
+release is newer than the row's date. This is a change to the keeper, so it goes in the KPC-Store change file
+with the rest.
+
+**Q1, the remaining blocker:** the public request file reaches the KPC-Links release through the keeper, using
+the secret `KPC_LINKS_DISPLAY_TOKEN` in KPC-Store. Brandon has a fine-grained token and added KPC-Links to it on
+17 Nov; it still has to be pasted into KPC-Store's Actions secrets under that name. Until it is, the cache bot
+finds no request file and fetches nothing. The same missing-secret finding blocks `KPC_DATA_WRITE_TOKEN` and
+with it the public shelf (ledger 45).
 
 ## Before the crons are ever switched back on
 
