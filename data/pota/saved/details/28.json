@@ -1,0 +1,34 @@
+{
+"US-0121":{
+"data":{
+"accessMethods":"Boat,Seaplane/Airtaxi",
+"accessibility":null,
+"activationMethods":"Other,Pedestrian",
+"active":1,
+"agencies":null,
+"agencyURLs":null,
+"createdByAdmin":null,
+"entityDeleted":0,
+"entityId":138,
+"entityName":"Kure Island",
+"grid4":"AL08",
+"grid6":"AL08uk",
+"latitude":28.4168,
+"locationDesc":"US-KI",
+"locationName":"Kure Island",
+"longitude":-178.332,
+"name":"Kure Atoll",
+"parkComments":null,
+"parkId":121,
+"parkURLs":null,
+"parktypeDesc":"State Wildlife Area",
+"parktypeId":113,
+"reference":"US-0121",
+"referencePrefix":"US",
+"sensitivity":null,
+"uniqueHunters":0,
+"website":"https://www.papahanaumokuakea.gov/visit/kure.html"
+},
+"saved":1794899260
+}
+}
