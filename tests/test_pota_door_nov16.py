@@ -27,6 +27,7 @@ sys.path.insert(0, str(SCR))
 SNIP_RX = re.compile(r'/\* KPC POTA door for the browser.*?return\{spots,spotsResponse,parkList,poll,age,setting\}\}\)\(\);\n', re.S)
 PY_OK = {'.github/scripts/kpc_pota_door.py', '.github/scripts/kpc_net_guard.py', '.github/scripts/kpc_pin_guard.py'}
 SKIP = re.compile(r'^(tests|data|docs|notes|node_modules|\.git)/')
+RELAY_CODE = 'tools/kpc-spot-relay.js'   # the spot relay itself (the Cloudflare Worker, #226): it reads POTA's spot list and names its own address
 EXT = ('.py', '.js', '.mjs', '.html', '.yml', '.yaml', '.sh')
 
 
@@ -94,7 +95,7 @@ check(D.SPOT_CONFIG == ROOT / 'kpc-spots.json' and D.spot_setting()['relay'] == 
 host = RELAY.split('/')[2] if RELAY else 'kpc-spots.'
 named = sorted(k for k in subprocess.run(['git', 'ls-files'], cwd=ROOT, capture_output=True, text=True).stdout.split('\n')
                + subprocess.run(['git', 'ls-files', '--others', '--exclude-standard'], cwd=ROOT, capture_output=True, text=True).stdout.split('\n')
-               if k and k != 'kpc-spots.json' and not SKIP.match(k) and (ROOT / k).is_file()
+               if k and k not in ('kpc-spots.json', RELAY_CODE) and not SKIP.match(k) and (ROOT / k).is_file()
                and host in (ROOT / k).read_text(encoding='utf-8', errors='replace'))
 check(not named, f'3. the relay address is written in ONE place only, kpc-spots.json ({named[:5]})')
 gone = [f for f in ('.github/scripts/kpc_live_spots_push.sh', '.github/scripts/kpc_pota_spots.py') if (ROOT / f).exists()]
@@ -122,7 +123,7 @@ sn = next(iter(one), '')
 check("root()+'kpc-spots.json'" in sn and 'r.headers.get(c.hdr)' in sn and 'STALE=18e5' in sn and 'GAP=3e5' in sn and 'document.hidden||' in sn and 'kpcSpotAge' in sn
       and 'DAY=864e5' in sn and 'live-spots' not in sn and host not in sn,
       '4. the browser door reads the relay address from kpc-spots.json, shows the age from x-kpc-spot-age, and reads POTA only when the relay does not answer or is over 30 minutes old (at most once per 5 minutes per browser, never while hidden); lists kept 24 h')
-spot_reads = sorted(k for k in now if re.search(r"api\.pota\.app/spot/activator", SNIP_RX.sub('', (ROOT / k).read_text(encoding='utf-8', errors='replace'))))
+spot_reads = sorted(k for k in now if k != RELAY_CODE and re.search(r"api\.pota\.app/spot/activator", SNIP_RX.sub('', (ROOT / k).read_text(encoding='utf-8', errors='replace'))))
 check(not spot_reads, f'4. no page or script reads POTA\'s spot feed itself ({spot_reads})')
 
 def crons(ref=None):

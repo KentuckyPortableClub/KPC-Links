@@ -1,5 +1,5 @@
 {
- "about": "Item 7 (KPC owner, 2026-11-16): api.pota.app mentions per code file. A Python script names it only in the door. A page may not name it more often than here (its self-spot POST, park details / lookups / user stats it reads on a person's click). Lower a number when a call goes; never raise one.",
+ "about": "Item 7 (KPC owner, 2026-11-16): api.pota.app mentions per code file. A Python script names it only in the door. A page may not name it more often than here (its self-spot POST, park details / lookups / user stats it reads on a person's click). Lower a number when a call goes; never raise one. tools/kpc-spot-relay.js is the spot relay itself (the Cloudflare Worker, #226): its one POTA call is the spot list it serves, at most once every 2 minutes.",
  "files": {
   ".claude/build/access-finder/main-classic.html": 1,
   ".github/scripts/kpc_net_guard.py": 1,
@@ -29,6 +29,7 @@
   "kpc-tools.js": 1,
   "kpc-us-planner.js": 2,
   "logger-beta/kpc-pota.js": 4,
-  "logger-beta/kpc-spotme.js": 2
+  "logger-beta/kpc-spotme.js": 2,
+  "tools/kpc-spot-relay.js": 1
  }
 }
