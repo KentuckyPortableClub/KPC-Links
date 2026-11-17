@@ -91,6 +91,23 @@ TABLES = {
 # D6: one per-area table file per kind (read by the builder at start, from its own checkout). Top level: header texts (about, notes,
 # format; not counted) and tables, each {area: value} or [entry with 'areas': [...]] (an entry counts for every area it lists).
 AREA_TABLES = {'us': 'data/us-key/area-tables.json', 'ca': 'data/ca-key/area-tables.json', 'world': 'data/world-key/area-tables.json'}
+# Nov 17 (KPC owner, 2026-11-17; ruling D11): data/state-gis.json is a US rule file (it is in the US rules hash), but like the area
+# table files it is sliced per state as a 'data:' part (each state's own layers), never hashed whole as shared code: a layer added
+# for one state moves that state only, and a province row moves no US state.
+SLICED_RULE_FILES = {'data/state-gis.json'}
+# D11's per-layer label ('what': owned / designation / water / register / compilation) is read by NO rule yet, so it is left out
+# of a state's slice: labelling the layers moves no area and starts no rebuild. The rule that first reads it (T5 / D3 / D4) must
+# take 'what' off this list in the same change (tests/test_d11_layer_list_nov17.py fails while a US / Canada rule file reads
+# 'what' and it is still listed here).
+SGIS_UNREAD = ('what',)
+
+
+def sgis_slice(v, areas):
+    """This kind's areas' layers from data/state-gis.json, without the fields no rule reads (SGIS_UNREAD)."""
+    if not isinstance(v, dict): return {}
+    return {k: [{f: y for f, y in l.items() if f not in SGIS_UNREAD} if isinstance(l, dict) else l for l in (x if isinstance(x, list) else [x])]
+                if isinstance(x, list) else x
+            for k, x in (v.get('states') or {}).items() if k in areas}
 
 
 def H(b): return hashlib.sha256(b if isinstance(b, bytes) else str(b).encode()).hexdigest()
@@ -374,7 +391,7 @@ class Kind:
         keep = [f for f in rf.get(k, []) if f not in sf.values() or f == SCOPE_READ.get(self.kind)]
         # Area table files are in RULE_FILES (Quality M1, part of the region / rules hash) but are
         # sliced per area as data parts, not hashed whole as shared code.
-        keep = [f for f in keep if f not in AREA_TABLES.values()]
+        keep = [f for f in keep if f not in AREA_TABLES.values() and f not in SLICED_RULE_FILES]   # D11: state-gis.json is sliced per state
         return sorted(set(keep) | set(CLOSURE_ADD.get(self.kind, []))), vf
 
     def shared_parts(self):
@@ -564,7 +581,7 @@ class Kind:
         if self.kind == 'us':
             self.slice_file('data/us-key/overrides.json', parts, sh)
             self.area_tables(parts, sh)   # D6: BOX_ADD, the state-limited XS layers
-            self.slice_file('data/state-gis.json', parts, sh, lambda v: ({k: x for k, x in (v.get('states') or {}).items() if k in self.areas_set} if isinstance(v, dict) else {}, {}),
+            self.slice_file('data/state-gis.json', parts, sh, lambda v: (sgis_slice(v, self.areas_set), {}),
                             label='data/state-gis.json(states; other codes are not read by this key)')
             # data/us-key/layers.json is NOT an input: the US key writes it (kpc_us_key.py:2652-2665) and reads it back only so a state
             # layer keeps the prefix it was first given (kpc_us_key.py:843-856); the layer list itself is data/state-gis.json (above).
@@ -579,7 +596,7 @@ class Kind:
             self.slice_file('data/ca-key/overrides.json', parts, sh)
             self.area_tables(parts, sh)   # Quality regrade: kpc_pin_fill.HELD is a per-area table (CA-QC only)
             self.slice_file('data/ca-key/hardlook-joins.json', parts, sh)
-            self.slice_file('data/state-gis.json', parts, sh, lambda v: ({k: x for k, x in (v.get('states') or {}).items() if k in self.areas_set} if isinstance(v, dict) else {}, {}))
+            self.slice_file('data/state-gis.json', parts, sh, lambda v: (sgis_slice(v, self.areas_set), {}))
             self.slice_file('data/ca-key/layers.json', parts, sh, key_of=lambda v: (
                 {a: {k: x for k, x in v.items() if k.startswith(a + ' ') or k.startswith(a + '-')} for a in self.areas},
                 {k: x for k, x in v.items() if not any(k.startswith(a + ' ') or k.startswith(a + '-') for a in self.areas)}))

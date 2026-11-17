@@ -1,10 +1,12 @@
 {
  "when": "2026-10-24",
  "note": "Curated from data/state-gis-found.json (State GIS layer scan). agency = on the state's own server; agol = the agency's account on ArcGIS Online. KY uses its own KYL list in kpc-maprep.js.",
+ "what_note": "D11 (owner, 17 Nov 2026): 'what' says what each layer is: owned = land the agency owns or manages; designation = a line drawn by a law or a plan (monument, ACEC, heritage area, legal / approved boundary), which may hold other people's land; water = lake / reservoir surfaces; register = a list of places (NRHP, historic places); compilation = many owners' lands gathered by one office. This file is a US key rule file (kpc_key_freeze RULE_FILES['us-key']); the labels change no join until a rule reads them (T5 / D3 / D4).",
  "states": {
   "AK": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Alaska State Parks (DNR)",
     "nm": "PARKNAME",
     "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/MapServer/2",
@@ -12,6 +14,7 @@
    },
    {
     "kind": "preserve",
+    "what": "designation",
     "ag": "Alaska Department of Natural Resources",
     "nm": "LDA_NAME_1",
     "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/SurfaceClassification_LegislativelyDesignatedAreas/MapServer/0",
@@ -19,6 +22,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "Alaska DNR Division of Forestry (Alaska DNR AGOL org)",
     "nm": "forestname",
     "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0",
@@ -27,6 +31,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -36,6 +41,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Alaska DNR State Parks (park boundaries)",
     "nm": "PARKNAME",
     "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2",
@@ -44,6 +50,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Alaska DNR, Division of Parks & Outdoor Recreation (credit: Alaska Department of Natural Resources)",
     "host": "agency",
     "nm": "PARKNAME",
@@ -54,6 +61,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -63,6 +71,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -72,6 +81,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -83,6 +93,7 @@
   "AR": [
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Arkansas Natural Heritage Commission",
     "nm": "maname",
     "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/21",
@@ -91,6 +102,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Arkansas State Parks",
     "nm": "name",
     "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0",
@@ -98,6 +110,7 @@
    },
    {
     "kind": "land",
+    "what": "water",
     "ag": "Arkansas Game and Fish Commission (AGOL org 5bMc8SlGDYGINZr5)",
     "nm": "fisheries_name",
     "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/lakes/FeatureServer/11",
@@ -109,6 +122,7 @@
   "CA": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "California Department of Fish & Wildlife",
     "nm": "PROP_NAME",
     "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0",
@@ -117,6 +131,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "California State Parks",
     "nm": "UNITNAME",
     "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0",
@@ -124,6 +139,7 @@
    },
    {
     "kind": "wild",
+    "what": "designation",
     "ag": "US Fish and Wildlife Service (approved boundary)",
     "nm": "ORGNAME",
     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
@@ -133,6 +149,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "California Department of Fish and Wildlife (credit: CDFW, BIOS ds3092)",
     "host": "agol",
     "nm": "Name",
@@ -144,6 +161,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -153,6 +171,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -162,6 +181,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "BLM CA Recreation Polygons",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/caarcgis/rest/services/Recreation/BLM_CA_RECS/FeatureServer/1",
@@ -171,6 +191,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -182,6 +203,7 @@
   "CO": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Colorado Parks & Wildlife",
     "nm": "PropName",
     "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/30",
@@ -190,6 +212,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Colorado Parks & Wildlife",
     "nm": "PropName",
     "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/41",
@@ -198,6 +221,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Colorado Parks & Wildlife (CPW AGOL org ttNGmDvKQA7oeDQ3)",
     "nm": "PropName",
     "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5",
@@ -206,6 +230,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -215,6 +240,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Colorado Parks and Wildlife (credit: CPW GIS Unit, CPW Real Estate Unit)",
     "host": "agency",
     "nm": "PropName",
@@ -225,6 +251,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -234,6 +261,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -243,6 +271,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Bureau of Land Management, Colorado (recreation sites)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/coarcgis/rest/services/recreation/BLM_Colorado_Recreation_for_HUB/FeatureServer/1",
@@ -254,6 +283,7 @@
   "DE": [
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Delaware DNREC",
     "nm": "NAME",
     "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_State_Lands/FeatureServer/0",
@@ -262,6 +292,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "Delaware Forest Service",
     "nm": "LABEL",
     "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/0",
@@ -270,6 +301,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Delaware Fish & Wildlife (DNREC)",
     "nm": "AREA_NAME",
     "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/17",
@@ -278,6 +310,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Delaware nature preserves (DNREC)",
     "nm": "NAME",
     "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/8",
@@ -286,6 +319,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Delaware public protected lands (DNREC)",
     "nm": "NAME",
     "web": "WEB_ADDRESSES",
@@ -297,6 +331,7 @@
   "FL": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Florida State Parks (DEP)",
     "nm": "SITE_NAME",
     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/0",
@@ -305,6 +340,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "Florida Forest Service",
     "nm": "DOF_NAME",
     "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0",
@@ -315,6 +351,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Suwannee River Water Management District",
     "nm": "TRACT_NAME",
     "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0",
@@ -322,6 +359,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "St. Johns River Water Management District",
     "nm": "CONSERVATION_AREA",
     "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0",
@@ -329,6 +367,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Florida DEP Division of State Lands",
     "nm": "PROJECT_NAME",
     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0",
@@ -336,6 +375,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "FWC",
     "nm": "NAME",
     "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1",
@@ -344,6 +384,7 @@
    },
    {
     "kind": "wild",
+    "what": "designation",
     "ag": "US Fish and Wildlife Service (approved boundary)",
     "nm": "ORGNAME",
     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
@@ -355,6 +396,7 @@
   "GA": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Georgia DNR Wildlife Resources Division",
     "nm": "PropName",
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9",
@@ -364,6 +406,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Georgia State Parks (DNR)",
     "nm": "PropName",
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0",
@@ -371,6 +414,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Georgia DNR Wildlife Resources Division (GA DNR AGOL org)",
     "nm": "PropName",
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14",
@@ -379,6 +423,7 @@
    },
    {
     "kind": "forest",
+    "what": "designation",
     "ag": "BdyDesg_LSRS_SpecialInterestManagementArea",
     "nm": "areaname",
     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SpecialInterestManagementArea_01/MapServer/0",
@@ -388,6 +433,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "National_Heritage_Areas_Updated2023",
     "nm": "RESNAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0",
@@ -397,6 +443,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Georgia DNR Lands (UGA ITOS conservation framework)",
     "nm": "NAME",
     "url": "https://maps.itos.uga.edu/arcgis/rest/services/FrameWork/Conservation/FeatureServer/0",
@@ -407,6 +454,7 @@
   "HI": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Hawaii Division of State Parks (DLNR)",
     "nm": "name",
     "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/16",
@@ -414,6 +462,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Hawaii DLNR reserves (DOFAW)",
     "nm": "name",
     "url": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1",
@@ -422,6 +471,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Hawaii State Parks (DLNR)",
     "nm": "NAME",
     "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer/0",
@@ -429,6 +479,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -438,6 +489,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -450,6 +502,7 @@
   "IA": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Iowa DNR",
     "nm": "AREA_NAME",
     "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9",
@@ -458,6 +511,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Iowa DNR",
     "nm": "NAME",
     "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails/MapServer/2",
@@ -465,6 +519,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Iowa DNR",
     "nm": "NAME",
     "url": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0",
@@ -473,6 +528,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Iowa DNR (credit: Iowa Department of Natural Resources)",
     "host": "agency",
     "nm": "NameUnit",
@@ -485,6 +541,7 @@
   "ID": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Idaho Fish & Game",
     "nm": "Name",
     "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0",
@@ -493,6 +550,7 @@
    },
    {
     "kind": "land",
+    "what": "water",
     "ag": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame)",
     "nm": "NAME",
     "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hydrography_Public/FeatureServer/0",
@@ -502,6 +560,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -511,6 +570,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -520,6 +580,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Idaho recreation area polygons (76)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/idarcgis/rest/services/recreation/BLM_ID_Recreation_Area_Poly/MapServer/0",
@@ -529,6 +590,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "BdyOwn_LSRS_BasicOwnership",
     "nm": "forestname",
     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
@@ -538,6 +600,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -549,6 +612,7 @@
   "IN": [
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Indiana DNR",
     "nm": "unitname",
     "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0",
@@ -556,6 +620,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Indiana DNR Nature Preserves (credit: IN DNR, IN Natural Heritage Data Center, IN State Land Office)",
     "host": "agency",
     "nm": "unitname",
@@ -566,6 +631,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Indiana DNR + INHD (all managed lands)",
     "nm": "unitname",
     "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_DNR_INHD_IN_SP/FeatureServer/0",
@@ -576,6 +642,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -587,6 +654,7 @@
   "KS": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Kansas Wildlife & Parks (state park areas, KDOT GIS)",
     "nm": "Description",
     "url": "https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Boundaries/State_Park_Area/MapServer/0",
@@ -594,6 +662,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "KDWPT (owner jjones_KDWPT)",
     "nm": "Label_Name",
     "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0",
@@ -602,6 +671,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "KDWPT (owner jjones_KDWPT; KS Natural Heritage Inventory compilation)",
     "nm": "Unit_Name",
     "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/protected_areas/FeatureServer/0",
@@ -611,6 +681,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -621,6 +692,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -632,6 +704,7 @@
   "LA": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Louisiana Department of Wildlife & Fisheries",
     "nm": "NAME",
     "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0",
@@ -641,6 +714,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "LDWF (owner LDWF_ArcGIS1), Sep 2025 edition",
     "nm": "Name_Short",
     "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0",
@@ -649,6 +723,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024)",
     "nm": "NAME",
     "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0",
@@ -659,6 +734,7 @@
   "MI": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Michigan DNR Parks & Recreation",
     "nm": "Facility",
     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
@@ -666,6 +742,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Michigan Department of Natural Resources (AGOL owner MichiganDNR)",
     "nm": "OfficialWLDProjectAreaName",
     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2",
@@ -674,6 +751,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Michigan State Park Boundaries",
     "nm": "FACILITY",
     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/5",
@@ -685,6 +763,7 @@
   "MN": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Minnesota DNR",
     "nm": "name",
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer/0",
@@ -693,6 +772,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "Minnesota DNR",
     "nm": "name",
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/4",
@@ -701,6 +781,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Minnesota DNR",
     "nm": "unit_name",
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4",
@@ -709,6 +790,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Minnesota State Parks (DNR)",
     "nm": "AREA_NAME",
     "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2",
@@ -716,6 +798,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Minnesota DNR (state land admin: parks and trails)",
     "nm": "mgtprjname",
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10",
@@ -724,6 +807,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "DNR Management Units",
     "nm": "UNIT_NAME",
     "url": "https://apps.bwsr.state.mn.us/arcgis/rest/services/DNR_Management_Units/MapServer/0",
@@ -733,6 +817,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "FWSBoundaries",
     "nm": "ORGNAME",
     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0",
@@ -744,6 +829,7 @@
   "MS": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -755,6 +841,7 @@
   "MT": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Montana Fish, Wildlife & Parks",
     "nm": "NAME",
     "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0",
@@ -764,6 +851,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Montana Fish, Wildlife & Parks",
     "nm": "NAME",
     "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0",
@@ -773,6 +861,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Montana Fish, Wildlife & Parks",
     "nm": "NAME",
     "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0",
@@ -781,6 +870,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -790,6 +880,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -799,6 +890,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Managed Areas",
     "nm": "MANAME",
     "url": "https://gisservice.mt.gov/ArcGIS/rest/services/msdi_administrative_boundaries_map_v1/MapServer/70",
@@ -808,6 +900,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Montana Fish, Wildlife & Parks (state park boundaries)",
     "nm": "NAME",
     "url": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/5",
@@ -817,6 +910,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Montana Fish, Wildlife & Parks (fishing access site boundaries)",
     "nm": "NAME",
     "url": "https://fwp-gis.mt.gov/arcgis/rest/services/fwplnd/fwpLands/MapServer/2",
@@ -828,6 +922,7 @@
   "ND": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "North Dakota Game & Fish",
     "nm": "Unit_Name",
     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0",
@@ -836,6 +931,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "North Dakota Parks & Recreation",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0",
@@ -843,6 +939,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "North Dakota Parks and Recreation Department (credit)",
     "host": "agol",
     "nm": "Name",
@@ -853,6 +950,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "North Dakota Forest Service (via ND Dept of Mineral Resources server)",
     "nm": "DESCRIPTION",
     "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Forest/MapServer/0",
@@ -862,6 +960,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -871,6 +970,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -880,6 +980,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -890,6 +991,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -901,6 +1003,7 @@
   "NJ": [
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "New Jersey DEP (Natural Lands Trust preserves)",
     "nm": "FACILITY",
     "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_NLT/MapServer/1",
@@ -910,6 +1013,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "New Jersey DEP (state-owned open space)",
     "nm": "FEATURE_NAME",
     "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67",
@@ -919,6 +1023,7 @@
   "NM": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "New Mexico Department of Game & Fish",
     "nm": "NAME",
     "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6",
@@ -926,6 +1031,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org",
     "nm": "Name",
     "url": "https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0",
@@ -934,6 +1040,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -943,6 +1050,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -952,6 +1060,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "BLM Natl Recreation Site Polygons",
     "nm": "FET_NAME",
     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
@@ -963,6 +1072,7 @@
   "NV": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Nevada Department of Wildlife",
     "nm": "LandName",
     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0",
@@ -971,6 +1081,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server)",
     "nm": "name",
     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0",
@@ -980,6 +1091,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Nevada Division of State Parks (AGOL org owner NDSP_1PARK; copyright Nevada Division of State Lands; UsingAgenc NDSP)",
     "nm": "LandName",
     "url": "https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2",
@@ -988,6 +1100,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Nevada (SCORP recreation areas)",
     "nm": "name",
     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0",
@@ -996,6 +1109,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Nevada Division of State Parks (credit: State of Nevada, DCNR, Nevada Division of State Lands, Nevada Division of State Parks)",
     "host": "agency",
     "nm": "landname",
@@ -1006,6 +1120,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -1015,6 +1130,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -1024,6 +1140,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Nevada national monuments + NCAs",
     "nm": "NLCS_NAME",
     "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_National_Landscape_Conservation_System/BLM_NV_National_Monument_National_Conservation_Area/MapServer/0",
@@ -1033,6 +1150,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "Administrative Forest Boundaries - National Extent",
     "nm": "forestname",
     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
@@ -1042,6 +1160,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "ACEC Designated Polygons",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -1051,6 +1170,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "Bureau of Land Management, Nevada (wild horse and burro herd management areas)",
     "nm": "HMA_NAME",
     "url": "https://gis.blm.gov/nvarcgis/rest/services/BLM_Nevada_Wild_Horse_Burro/BLM_NV_Wild_Horse_and_Burro_Herd_Management_Areas/FeatureServer/0",
@@ -1060,6 +1180,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -1070,6 +1191,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Nevada Department of Wildlife wildlife management areas (NDOWWMAs)",
     "nm": "WMA_NAME",
     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/ArcGIS/rest/services/NDOWWMAs/FeatureServer/0",
@@ -1078,6 +1200,7 @@
    },
    {
     "kind": "points",
+    "what": "owned",
     "geom": "point",
     "ag": "Nevada Department of Wildlife fish hatchery locations",
     "pnm": "name",
@@ -1089,6 +1212,7 @@
   "NY": [
    {
     "kind": "land",
+    "what": "owned",
     "ag": "New York State DEC",
     "nm": "FACILITY",
     "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/NYS_DEC_Lands/FeatureServer/0",
@@ -1097,6 +1221,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "New York State Parks",
     "nm": "Name",
     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
@@ -1106,6 +1231,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -1115,6 +1241,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "NYS Adirondack Park Agency (Adirondack Park Blue Line)",
     "nm": "NAME",
     "url": "https://services2.arcgis.com/8krRUWgifzA4cgL3/arcgis/rest/services/AdirondackParkBoundary/FeatureServer/0",
@@ -1123,6 +1250,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "NYS DEC (Catskill Park boundary)",
     "nm": "NAME",
     "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/Catskill_Park_Boundary/FeatureServer/0",
@@ -1133,6 +1261,7 @@
   "OK": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Oklahoma State Parks (ODOT GIS)",
     "nm": "PARK_NAME",
     "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3",
@@ -1140,6 +1269,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Oklahoma Department of Wildlife Conservation (ODOT GIS)",
     "nm": "NAME",
     "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0",
@@ -1147,6 +1277,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "ODWC (owner ODWC_GIS)",
     "nm": "SHORTNAME",
     "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1",
@@ -1155,6 +1286,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -1165,6 +1297,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -1176,6 +1309,7 @@
   "OR": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Oregon Parks & Recreation Department",
     "nm": "NAME",
     "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer/0",
@@ -1183,6 +1317,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Oregon Parks and Recreation Department (AGOL owner orstateparks)",
     "nm": "FULL_NAME",
     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Parks_view/FeatureServer/0",
@@ -1191,6 +1326,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO)",
     "nm": "AreaName",
     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0",
@@ -1199,6 +1335,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "State of Oregon (all state owned and managed lands)",
     "nm": "NAME",
     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0",
@@ -1207,6 +1344,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "State of Oregon (Oregon parklands)",
     "nm": "PARK_NAME",
     "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_Parklands/FeatureServer/0",
@@ -1215,6 +1353,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -1224,6 +1363,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -1233,6 +1373,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Oregon/Washington recreation management areas (2,188)",
     "nm": "RMA_NAME",
     "url": "https://gis.blm.gov/orarcgis/rest/services/Recreation/BLM_OR_Recreation_Management_Areas/MapServer/0",
@@ -1242,6 +1383,7 @@
    },
    {
     "kind": "wild",
+    "what": "designation",
     "ag": "Bureau of Land Management, Oregon State Office (wild and scenic river corridors)",
     "nm": "WSR_NAME",
     "url": "https://gis.blm.gov/orarcgis/rest/services/Administrative/BLM_OR_Wild_and_Scenic_River_Corridor/MapServer/3",
@@ -1251,6 +1393,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -1262,6 +1405,7 @@
   "PA": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Pennsylvania DCNR Bureau of State Parks",
     "nm": "PARK_NAME",
     "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/9",
@@ -1270,6 +1414,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Pennsylvania State Parks (DCNR)",
     "nm": "StParkName",
     "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer/0",
@@ -1277,6 +1422,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Pennsylvania Game Commission (PGC AGOL org k8yxvICm95iIFicb)",
     "nm": "sgl_name",
     "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300",
@@ -1285,6 +1431,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -1294,6 +1441,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "PA DCNR Bureau of State Parks (credit)",
     "host": "agency",
     "nm": "NAME",
@@ -1304,6 +1452,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "State Forests",
     "nm": "SF_Name",
     "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/BOF/State_Forests/MapServer/4",
@@ -1315,6 +1464,7 @@
   "RI": [
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Rhode Island DEM",
     "nm": "NAME",
     "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/State_Conservation_Land/MapServer/0",
@@ -1323,6 +1473,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Rhode Island DEM",
     "nm": "NAME",
     "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0",
@@ -1330,6 +1481,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -1339,6 +1491,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Rhode Island DEM (state conservation land)",
     "nm": "NAME",
     "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/3",
@@ -1349,6 +1502,7 @@
   "TN": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Tennessee State Parks (TDEC)",
     "nm": "PARK_NAME",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0",
@@ -1356,6 +1510,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Tennessee State Natural Areas (TDEC)",
     "nm": "SITE_NAME",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Boundaries_(Public_View)/FeatureServer/0",
@@ -1364,6 +1519,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Tennessee Wildlife Resources Agency",
     "nm": "NAME",
     "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0",
@@ -1371,6 +1527,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "Tennessee Department of Agriculture, Division of Forestry",
     "nm": "StateForestName",
     "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0",
@@ -1378,6 +1535,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map",
     "nm": "NAME",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49",
@@ -1386,6 +1544,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Tennessee Department of Environment and Conservation (TDEC public lands)",
     "nm": "NAME_1",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Lands/FeatureServer/0",
@@ -1394,6 +1553,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Tennessee State Parks (TDEC state park boundaries)",
     "nm": "PRIMARY_NAME__LONG_",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0",
@@ -1402,6 +1562,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Tennessee Natural Areas (TDEC, non-state-park natural areas)",
     "nm": "NaturalAreaName",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10",
@@ -1412,6 +1573,7 @@
     "ag": "Tennessee Wildlife Resources Agency (credit: TWRA)",
     "host": "agency",
     "kind": "wild",
+    "what": "owned",
     "nm": "NAME",
     "own": "OWNERSHIP",
     "lic": "credit only, no use limits (HQ Oct 27 ruling): TWRA",
@@ -1421,6 +1583,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Tennessee Department of Environment and Conservation (State Park Boundaries, Public View; multi-site parks dissolved)",
     "nm": "PRIMARY_NAME__LONG_",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331",
@@ -1429,6 +1592,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -1440,6 +1604,7 @@
   "TX": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Texas Parks & Wildlife Department (state parks)",
     "nm": "ParkName",
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0",
@@ -1448,6 +1613,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Texas Parks & Wildlife Department (public hunting lands)",
     "nm": "Name",
     "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/TPWD_PublicHuntLocatorMap/MapServer/9",
@@ -1455,6 +1621,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "TPWD Wildlife Division (owner nancy.heger@tpwd.texas.gov_TPWD)",
     "nm": "LoName",
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0",
@@ -1463,6 +1630,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Texas Parks and Wildlife (public conservation lands)",
     "nm": "P_Loc_Nm",
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0",
@@ -1471,6 +1639,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -1480,6 +1649,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -1491,6 +1661,7 @@
   "UT": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Utah State Parks",
     "nm": "name",
     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0",
@@ -1500,6 +1671,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org)",
     "nm": "Property_N",
     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0",
@@ -1508,6 +1680,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "Utah (National Historic Landmarks)",
     "nm": "L_Name",
     "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0",
@@ -1516,6 +1689,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Utah State Office (congressionally designated recreation areas)",
     "nm": "RECS_NAME",
     "url": "https://gis.blm.gov/utarcgis/rest/services/Recreation/BLM_UT_RecAreas/MapServer/1",
@@ -1525,6 +1699,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -1534,6 +1709,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -1543,6 +1719,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "NLCS Wild and Scenic Rivers",
     "nm": "NLCS_NAME",
     "url": "https://gis.blm.gov/natl/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer/0",
@@ -1552,6 +1729,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "state_park_boundaries_dissolved",
     "nm": "truncated_name",
     "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/state_park_boundaries_dissolved/FeatureServer/0",
@@ -1561,6 +1739,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -1573,6 +1752,7 @@
   "VA": [
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "Virginia Department of Forestry",
     "nm": "Name",
     "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0",
@@ -1580,6 +1760,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Virginia DCR Natural Heritage",
     "nm": "MANAME",
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VSP_Natural_Area_Preserves/FeatureServer/1",
@@ -1588,6 +1769,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Virginia State Parks (DCR)",
     "nm": "LABEL",
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0",
@@ -1596,6 +1778,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Virginia DCR State Parks (tracts)",
     "nm": "MANAME",
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0",
@@ -1603,6 +1786,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Virginia DCR (Virginia's conservation lands)",
     "nm": "LABEL",
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands/FeatureServer/0",
@@ -1611,6 +1795,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Virginia DCR (local parks 2023)",
     "nm": "NAME",
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0",
@@ -1621,6 +1806,7 @@
     "ag": "Virginia Department of Wildlife Resources",
     "host": "agency",
     "kind": "wild",
+    "what": "owned",
     "nm": "WMA_NAME",
     "note": "242 WMAs; Owner field = rule 14 (WMAs on USFS / Corps / power-company land are SE-1: NOT SURE until Brandon rules)",
     "own": "Owner",
@@ -1630,6 +1816,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "Virginia Dept. of Historic Resources (credit)",
     "host": "agency",
     "nm": "PropertyNames",
@@ -1642,6 +1829,7 @@
   "WA": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Washington State Parks",
     "nm": "ParkName",
     "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2",
@@ -1651,6 +1839,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Washington Department of Fish and Wildlife",
     "nm": "ManagedPlaceName",
     "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/ManagedPlaces/MapServer/0",
@@ -1658,6 +1847,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Washington State Department of Natural Resources",
     "nm": "PARCEL_LABEL_NM",
     "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Cadastre_OpenData/MapServer/6",
@@ -1665,6 +1855,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Washington State Department of Natural Resources (Non-DNR Major Public Lands parcels; MANAGER field gives WDFW / State Parks)",
     "nm": "NAME",
     "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR/MapServer/1",
@@ -1674,6 +1865,7 @@
    },
    {
     "kind": "land",
+    "what": "water",
     "ag": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices)",
     "nm": "GNIS_Name",
     "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/NHD/FeatureServer/6",
@@ -1684,6 +1876,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Washington Dept. of Fish and Wildlife (credit: WDFW)",
     "host": "agency",
     "nm": "WildlifeAreaUnitName",
@@ -1694,6 +1887,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Washington Dept. of Fish and Wildlife (credit: WDFW)",
     "host": "agency",
     "nm": "WildlifeAreaName",
@@ -1704,6 +1898,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -1713,6 +1908,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -1722,6 +1918,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Oregon/Washington recreation management areas (2,188)",
     "nm": "RMA_NAME",
     "url": "https://gis.blm.gov/orarcgis/rest/services/Recreation/BLM_OR_Recreation_Management_Areas/MapServer/0",
@@ -1731,6 +1928,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "Hanford Reach",
     "nm": "NAME",
     "url": "https://services9.arcgis.com/EGheeB0VDT6EarZv/ArcGIS/rest/services/MonumentParks1_WFL1/FeatureServer/29",
@@ -1740,6 +1938,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -1751,6 +1950,7 @@
   "WI": [
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Wisconsin DNR",
     "nm": "PROP_NAME",
     "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0",
@@ -1758,6 +1958,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Wisconsin State Parks (DNR)",
     "nm": "PROP_NAME",
     "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0",
@@ -1766,6 +1967,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Wisconsin DNR Natural Heritage Conservation",
     "nm": "SNA_NAME",
     "url": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1",
@@ -1773,6 +1975,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Wisconsin DNR Bureau of Facilities and Lands",
     "nm": "PROP_NAME",
     "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1",
@@ -1780,6 +1983,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "Wisconsin DNR (county forests, from the counties)",
     "nm": "FR_PROP_NAME",
     "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/0",
@@ -1789,6 +1993,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Natural Area Parcel Ownership",
     "nm": "SNA_NAME",
     "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/ER_DNR_NA_StateNaturalAreas_WTM/MapServer/2",
@@ -1800,6 +2005,7 @@
   "WV": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "West Virginia DNR",
     "nm": "NAME",
     "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
@@ -1808,6 +2014,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "West Virginia State Forests (DNR)",
     "nm": "Name",
     "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
@@ -1816,6 +2023,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "West Virginia State Parks (WVDOT boundaries server)",
     "nm": "Loc_Nm",
     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/10",
@@ -1825,6 +2033,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -1836,6 +2045,7 @@
   "WY": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Wyoming State Parks",
     "nm": "Park_Name",
     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0",
@@ -1844,6 +2054,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Wyoming State Parks, Historic Sites & Trails",
     "nm": "site_name",
     "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0",
@@ -1851,6 +2062,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw)",
     "nm": "WHMA_Name",
     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4",
@@ -1859,6 +2071,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw)",
     "nm": "PAA_Name",
     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1",
@@ -1867,6 +2080,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -1876,6 +2090,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -1885,6 +2100,7 @@
    },
    {
     "kind": "points",
+    "what": "owned",
     "geom": "point",
     "ag": "Wyoming Game and Fish Department hatchery locations",
     "pnm": "NAME",
@@ -1894,6 +2110,7 @@
    },
    {
     "kind": "points",
+    "what": "owned",
     "geom": "point",
     "ag": "Wyoming Game and Fish Department river access points",
     "pnm": "StreamName",
@@ -1906,6 +2123,7 @@
   "OH": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Ohio DNR Division of Parks and Watercraft",
     "nm": "LANDS_NAME",
     "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5",
@@ -1914,6 +2132,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Ohio DNR Division of Wildlife",
     "nm": "LANDS_NAME",
     "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/7",
@@ -1922,6 +2141,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "Ohio DNR Division of Forestry",
     "nm": "LANDS_NAME",
     "ds": "State Forest",
@@ -1931,6 +2151,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Ohio DNR Division of Natural Areas and Preserves",
     "nm": "LANDS_NAME",
     "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/8",
@@ -1939,6 +2160,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Ohio DNR",
     "nm": "NAME",
     "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134",
@@ -1946,6 +2168,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -1955,6 +2178,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Ohio DNR, Office of Information Technology (credit)",
     "host": "agency",
     "nm": "Name_Label",
@@ -1965,6 +2189,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "Ohio DNR (credit): city, county + NGO lands",
     "host": "agency",
     "nm": "FIRST_NAME",
@@ -1975,6 +2200,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -1986,6 +2212,7 @@
   "SC": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "South Carolina DNR (WMAs, heritage preserves)",
     "nm": "PropertyName",
     "web": "prop_page_url",
@@ -1995,6 +2222,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "South Carolina State Parks (PRT)",
     "nm": "NAME",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0",
@@ -2002,6 +2230,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "South Carolina DNR (heritage preserves)",
     "nm": "PropertyName",
     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0",
@@ -2010,6 +2239,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "South Carolina Department of Natural Resources (credit: SCDNR)",
     "host": "agol",
     "nm": "PropertyName",
@@ -2024,6 +2254,7 @@
   "ME": [
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "State of Maine conserved lands (Bureau of Parks and Lands / IFW)",
     "nm": "PARCEL_NAME",
     "own": "HOLD1_NAME",
@@ -2033,6 +2264,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "WMA_Boundaries",
     "nm": "PROJECT",
     "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFWWildlifeManagementAreas/FeatureServer/0",
@@ -2042,6 +2274,7 @@
    },
    {
     "kind": "preserve",
+    "what": "designation",
     "ag": "Maine Conserved Lands, Ecological Reserves (Bureau of Parks and Lands)",
     "nm": "PROJECT",
     "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Eco_Reserves/FeatureServer/0",
@@ -2052,6 +2285,7 @@
   "MD": [
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Maryland DNR (state parks, WMAs, forests, natural resource areas)",
     "nm": "DNRName",
     "web": "WebLink",
@@ -2062,6 +2296,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Maryland DNR (Maryland Natural Areas)",
     "nm": "AREA_NAME",
     "web": "weblink",
@@ -2071,6 +2306,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -2083,6 +2319,7 @@
   "AL": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Alabama State Parks (ADCNR)",
     "nm": "NAME",
     "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer/0",
@@ -2090,6 +2327,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Alabama Dept of Conservation and Natural Resources, State La",
     "nm": "DCNR_Name",
     "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/ForeverWildTracts/MapServer/0",
@@ -2097,6 +2335,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "ADCNR Wildlife and Freshwater Fisheries",
     "nm": "Name",
     "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/WildlifeManagementAreas/MapServer/0",
@@ -2105,6 +2344,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "ADCNR Wildlife and Freshwater Fisheries",
     "nm": "Name",
     "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/PublicFishingLakes/MapServer/1",
@@ -2113,6 +2353,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -2125,6 +2366,7 @@
   "AZ": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Arizona State Parks & Trails",
     "nm": "NAME",
     "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0",
@@ -2132,6 +2374,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Arizona Game and Fish Department (AZGFD_GIS org)",
     "nm": "MasterName",
     "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0",
@@ -2140,6 +2383,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Arizona Game and Fish Department (AZGFD_GIS org)",
     "nm": "Prop_name",
     "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0",
@@ -2148,6 +2392,7 @@
    },
    {
     "kind": "wild",
+    "what": "designation",
     "ag": "US Fish and Wildlife Service (approved boundary)",
     "nm": "ORGNAME",
     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
@@ -2157,6 +2402,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Arizona State Parks and Trails (park boundaries)",
     "nm": "NAME",
     "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0",
@@ -2165,6 +2411,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -2174,6 +2421,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -2183,6 +2431,7 @@
    },
    {
     "kind": "preserve",
+    "what": "designation",
     "ag": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
     "nm": "NCA_NAME",
     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0",
@@ -2192,6 +2441,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Bureau of Land Management, Arizona (recreation sites, polygons)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/azarcgis/rest/services/recreation/BLM_AZ_RECS/MapServer/1",
@@ -2203,6 +2453,7 @@
   "MO": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Missouri State Parks (DNR)",
     "nm": "LOC_NAME",
     "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/0",
@@ -2210,6 +2461,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Missouri Natural Areas (DNR)",
     "nm": "NAME",
     "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/3",
@@ -2217,6 +2469,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Missouri Department of Conservation (gisblue.mdc.mo.gov)",
     "nm": "Area_Name",
     "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5",
@@ -2225,6 +2478,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Missouri Department of Conservation (credit)",
     "host": "agency",
     "nm": "Area_Name",
@@ -2235,6 +2489,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Missouri DNR, Division of State Parks (credit)",
     "host": "agency",
     "nm": "WA_NAME",
@@ -2245,6 +2500,7 @@
    },
    {
     "kind": "forest",
+    "what": "owned",
     "ag": "MDC Lands",
     "nm": "Area_Name",
     "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/0",
@@ -2254,6 +2510,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Natural Areas",
     "nm": "Name",
     "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/FeatureServer/3",
@@ -2263,6 +2520,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Missouri Department of Conservation (conservation area boundaries)",
     "nm": "Area_Name",
     "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/MapServer/5",
@@ -2274,6 +2532,7 @@
   "CT": [
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Connecticut DEEP",
     "nm": "PROPERTY",
     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0",
@@ -2281,6 +2540,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "CT DEEP (deepgis account)",
     "nm": "OFFIC_NAME",
     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0",
@@ -2289,6 +2549,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "CT DEEP (credit: Department of Energy & Environmental Protection)",
     "host": "agol",
     "nm": "HuntAName",
@@ -2302,6 +2563,7 @@
   "IL": [
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Illinois Department of Natural Resources",
     "nm": "Site_Name",
     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0",
@@ -2309,6 +2571,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Illinois Department of Natural Resources",
     "nm": "Site_Name",
     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3",
@@ -2316,6 +2579,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "IDNR Properties",
     "nm": "SITE_NAME",
     "url": "https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/11",
@@ -2325,6 +2589,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Illinois Nature Preserves Commission / IDNR protected lands (Chicago Wilderness, Holman)",
     "nm": "site_name",
     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
@@ -2333,6 +2598,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -2344,6 +2610,7 @@
   "VT": [
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Vermont Agency of Natural Resources",
     "nm": "NAME",
     "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
@@ -2353,6 +2620,7 @@
   "MA": [
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "MassGIS / Executive Office of Energy and Environmental Affai",
     "nm": "SITE_NAME",
     "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/openspace/FeatureServer/0",
@@ -2360,6 +2628,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Massachusetts DCR (DCRStateParks account, mass-eoeea org)",
     "nm": "SITE_NAME",
     "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0",
@@ -2368,6 +2637,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -2377,6 +2647,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "National Park Service (property boundaries)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0",
@@ -2385,6 +2656,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "MassGIS / Massachusetts EEA (Protected and Recreational OpenSpace)",
     "nm": "SITE_NAME",
     "url": "https://gis.eea.mass.gov/server/rest/services/Protected_and_Recreational_OpenSpace_Polygons/MapServer/0",
@@ -2396,6 +2668,7 @@
   "NE": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Nebraska Game and Parks Commission",
     "nm": "AreaName",
     "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0",
@@ -2403,6 +2676,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "NGPC (owner NGPC.GISAdmin)",
     "nm": "AreaName",
     "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268",
@@ -2411,6 +2685,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -2420,6 +2695,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Nebraska Game and Parks Commission",
     "host": "agol",
     "nm": "AreaName",
@@ -2430,6 +2706,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "National Register of Historic Places Polygons",
     "nm": "RESNAME",
     "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
@@ -2442,6 +2719,7 @@
   "NC": [
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "NC Natural Heritage Program, NC Dept of Natural and Cultural",
     "nm": "MA_NAME",
     "url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0",
@@ -2449,6 +2727,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "NCWRC (owner ncwildlife.gov)",
     "nm": "GML_HAB",
     "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21",
@@ -2457,6 +2736,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Game Lands - detail",
     "nm": "GML_HAB",
     "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22",
@@ -2466,6 +2746,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "ParkBoundaries",
     "nm": "PK_NAME",
     "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/NC_State_Parks_System/FeatureServer/0",
@@ -2477,6 +2758,7 @@
   "NH": [
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "NH GRANIT",
     "nm": "name",
     "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6",
@@ -2484,6 +2766,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "New Hampshire Fish and Game Department (NHFG AGOL org)",
     "nm": "NAME",
     "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2",
@@ -2492,6 +2775,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "NH GRANIT (recreation inventory areas)",
     "nm": "site",
     "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/3",
@@ -2500,6 +2784,7 @@
    },
    {
     "kind": "land",
+    "what": "compilation",
     "ag": "NH GRANIT conservation lands (UNH / NH OSI)",
     "nm": "NAME",
     "url": "https://nhgeodata.unh.edu/nhgeodata/rest/services/EC/Conservation/MapServer/0",
@@ -2511,6 +2796,7 @@
   "NU": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Crown-Indigenous Relations and Northern Affairs Canada (Nunavut Map Viewer); SOURCE=GN-ENV (Government of Nunavut Environment)",
     "nm": "NAME_E",
     "url": "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21",
@@ -2522,6 +2808,7 @@
   "NS": [
    {
     "kind": "land",
+    "what": "register",
     "ag": "Nova Scotia Department of Natural Resources and Renewables (NovaRoc)",
     "nm": "NAME1",
     "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29",
@@ -2531,6 +2818,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Nova Scotia Department of Natural Resources and Renewables (NovaRoc)",
     "nm": "NAME1",
     "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/52",
@@ -2540,6 +2828,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "Nova Scotia Environment (Parks and Protected Areas System)",
     "nm": "PROT_NAME",
     "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1",
@@ -2549,6 +2838,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "NS_Lands_Proposed_or_Pending_Protection",
     "nm": "INT_NAME",
     "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0",
@@ -2558,6 +2848,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "NS_Lands_Proposed_or_Pending_Protection",
     "nm": "INT_NAME",
     "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0",
@@ -2567,6 +2858,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "HRM Parks",
     "nm": "PARK_NAME",
     "url": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/HRM_Parks_2/FeatureServer/0",
@@ -2578,6 +2870,7 @@
   "QC": [
    {
     "kind": "land",
+    "what": "register",
     "ag": "Ministère de la Culture et des Communications du Québec (Répertoire du patrimoine culturel du Québec), via Données Québec",
     "nm": "nom_bien",
     "url": "https://www.donneesquebec.ca/recherche/dataset/578d182d-4897-4c11-aa7f-ee0cfed222a0/resource/5abd7e57-bfeb-49ba-a76c-93d961ae0633/download/sites_classes_pg.geojson",
@@ -2588,6 +2881,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "Ministère de la Culture et des Communications du Québec (Répertoire du patrimoine culturel du Québec), via Données Québec",
     "nm": "nom_bien",
     "url": "https://www.donneesquebec.ca/recherche/dataset/b35078ae-f1a6-4f9a-a9d2-b00244ae1e84/resource/059897d4-f927-4c30-b345-bf6810f2d00f/download/sites_declares_pg.geojson",
@@ -2598,6 +2892,7 @@
    },
    {
     "kind": "land",
+    "what": "register",
     "ag": "Ministère de la Culture et des Communications du Québec (Répertoire du patrimoine culturel du Québec), via Données Québec",
     "nm": "nom_bien",
     "url": "https://www.donneesquebec.ca/recherche/dataset/33a72ee0-4af3-4d76-8a13-0338e10cdaeb/resource/a82a8015-d06a-45bc-bedc-7e03399f71a8/download/terrains_protege_pg.geojson",
@@ -2608,6 +2903,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Ministère des Ressources naturelles et des Forêts du Québec (Territoires récréatifs du Québec)",
     "nm": "NOM_OFFICIEL",
     "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/11",
@@ -2617,6 +2913,7 @@
    },
    {
     "kind": "park",
+    "what": "compilation",
     "ag": "PoleConnectivite_CIMA_2025",
     "nm": "TOPONYME",
     "url": "https://services5.arcgis.com/wxzmuDTkTCuXv90n/arcgis/rest/services/Parcs_naturels_int%C3%A9r%C3%AAt_m%C3%A9tropolitain/FeatureServer/0",
@@ -2628,6 +2925,7 @@
   "ON": [
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Niagara Peninsula Conservation Authority",
     "nm": "CA_Name",
     "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2",
@@ -2637,6 +2935,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Ausable Bayfield Conservation Authority",
     "nm": "prop_nam",
     "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0",
@@ -2646,6 +2945,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Essex Region Conservation Authority",
     "nm": "table_LandInformation_LMUName",
     "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0",
@@ -2655,6 +2955,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Lower Thames Valley Conservation Authority",
     "nm": "Site_Name",
     "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0",
@@ -2664,6 +2965,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Kawartha Region Conservation Authority (Kawartha Conservation)",
     "nm": "Name",
     "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6",
@@ -2673,6 +2975,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Credit Valley Conservation",
     "nm": "propname",
     "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0",
@@ -2682,6 +2985,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Toronto and Region Conservation Authority",
     "nm": "PROP_NAME",
     "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250",
@@ -2691,6 +2995,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Lake Simcoe Region Conservation Authority",
     "nm": "PROPERTY_NAME",
     "url": "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46",
@@ -2700,6 +3005,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Conservation Halton (Halton Region Conservation Authority)",
     "nm": "Park_Name",
     "url": "https://utility.arcgis.com/usrsvcs/servers/f5ef7d87ccef45f4a0de9c0e4548c39f/rest/services/ms-opendata/CH_Parks/MapServer/0",
@@ -2709,6 +3015,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Grey County GIS (upper-tier municipal government) publishing Grey Sauble Conservation Authority property data",
     "nm": "PROP_NAME",
     "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/3",
@@ -2718,6 +3025,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Grey County GIS publishing Saugeen Valley Conservation Authority property data",
     "nm": "PROPERTY_N",
     "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4",
@@ -2727,6 +3035,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Ganaraska Region Conservation Authority (maps2.grca.on.ca)",
     "nm": "name",
     "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0",
@@ -2736,6 +3045,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Otonabee Region Conservation Authority (hosted on the Ganaraska server maps2.grca.on.ca, ORCA_Public folder)",
     "nm": "CANAME",
     "url": "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2",
@@ -2745,6 +3055,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Lower Trent Conservation",
     "nm": "AREA_NAME",
     "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0",
@@ -2754,6 +3065,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Mississippi Valley Conservation Authority",
     "nm": "PROP_NAME",
     "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0",
@@ -2763,6 +3075,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Rideau Valley Conservation Authority",
     "nm": "Property_Name",
     "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8",
@@ -2772,6 +3085,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Grand River Conservation Authority (GRCA Open Data Licence)",
     "nm": "CA_NAME",
     "url": "https://data.grandriver.ca/downloads/gis/GRCA_Parks.zip",
@@ -2784,6 +3098,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "Cataraqui Conservation",
     "nm": "Property_Name",
     "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0",
@@ -2795,6 +3110,7 @@
   "NB": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Government of New Brunswick, Dept of Natural Resources and Energy Development (GeoNB)",
     "nm": "NAME",
     "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0",
@@ -2804,6 +3120,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Parks",
     "nm": "Park_Name",
     "url": "https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Parks3/FeatureServer/0",
@@ -2813,6 +3130,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "Parks",
     "nm": "Park_Name",
     "url": "https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Parks_Public_View/FeatureServer/0",
@@ -2822,6 +3140,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "New Brunswick Natural Resources and Energy Development (Nature Legacy protected areas)",
     "nm": "NAME",
     "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Nature_Legacy_Protected_Areas/MapServer/0",
@@ -2833,6 +3152,7 @@
   "SK": [
    {
     "kind": "park",
+    "what": "designation",
     "ag": "Government of Saskatchewan, Ministry of Parks, Culture and Sport (gis.saskatchewan.ca)",
     "nm": "PARKNM",
     "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4",
@@ -2842,6 +3162,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Government of Saskatchewan (Parks as titled)",
     "nm": "PARKNM",
     "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0",
@@ -2853,6 +3174,7 @@
   "PE": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Government of Prince Edward Island, Dept of Environment, Energy and Climate Action (GeoLinc, gis.princeedwardisland.ca)",
     "nm": "PARK",
     "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLinc_Provincial_Parks/MapServer/0",
@@ -2862,6 +3184,7 @@
    },
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Province of PEI, Department of Land & Environment (credit; updated Dec 2025)",
     "host": "agency",
     "nm": "NAME_E",
@@ -2872,6 +3195,7 @@
    },
    {
     "kind": "preserve",
+    "what": "owned",
     "ag": "NCC_AT_Nature_Reserves_Public_Map",
     "nm": "Descriptio",
     "url": "https://services.arcgis.com/etzrVYxPRxn7Nirj/arcgis/rest/services/NCC_AT_Nature_Reserves_20220908/FeatureServer/0",
@@ -2883,6 +3207,7 @@
   "AB": [
    {
     "kind": "land",
+    "what": "designation",
     "ag": "Government of Alberta - Forestry and Parks / Public Lands",
     "nm": "PLUZ_NAME",
     "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/11",
@@ -2892,6 +3217,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "Public Land Use Zone",
     "nm": "PLUZ_NAME",
     "url": "https://geospatial.alberta.ca/titan/rest/services/ags_apps/ags_apps_land_use_management/MapServer/0",
@@ -2903,6 +3229,7 @@
   "SD": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data)",
     "nm": "AreaName",
     "url": "https://utility.arcgis.com/usrsvcs/servers/4787d99dcb1f4728b33f89a9eb9ae03e/rest/services/OpenData/SouthDakota_ParksAndRecreationAreas/FeatureServer/0",
@@ -2911,6 +3238,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data)",
     "nm": "AreaName",
     "url": "https://utility.arcgis.com/usrsvcs/servers/0a01764b6c3b4d13b9af23df1610214b/rest/services/OpenData/SouthDakota_GFPManagedLands/FeatureServer/0",
@@ -2920,6 +3248,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "National Park Service (legal boundary)",
     "nm": "UNIT_NAME",
     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
@@ -2929,6 +3258,7 @@
    },
    {
     "kind": "land",
+    "what": "owned",
     "ag": "BLM recreation SITE polygons (national, 3,478)",
     "nm": "FET_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/1",
@@ -2938,6 +3268,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "BLM Areas of Critical Environmental Concern (national, 1,120)",
     "nm": "ACEC_NAME",
     "url": "https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/0",
@@ -2947,6 +3278,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Recreation Area",
     "nm": "RECPROJECTSITEAREANAME",
     "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
@@ -2958,6 +3290,7 @@
   "BC": [
    {
     "kind": "land",
+    "what": "register",
     "ag": "Government of British Columbia (Historic Places)",
     "nm": "COMMON_SITE_NAME",
     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/82",
@@ -2967,6 +3300,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "Government of British Columbia (Heritage Conservation Areas)",
     "nm": "DESIGNATED_AREA_NAME",
     "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/46",
@@ -2976,6 +3310,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "Park Inventory",
     "nm": "NAME",
     "url": "https://gis.burnaby.ca/arcgis/rest/services/OpenData/OpenData1/MapServer/6",
@@ -2985,6 +3320,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "RegionalParksBoundaries_OpenData",
     "nm": "parkname",
     "url": "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/RegionalParksBoundaries_OpenData/FeatureServer/0",
@@ -2994,6 +3330,7 @@
    },
    {
     "kind": "park",
+    "what": "owned",
     "ag": "BC Parks EcoRes and PAs",
     "nm": "PROTECTED_LANDS_NAME",
     "url": "https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/services/British_Columbia_Parks_Ecological_Reserves_and_Protected_Areas/FeatureServer/0",
@@ -3005,6 +3342,7 @@
   "NT": [
    {
     "kind": "park",
+    "what": "owned",
     "ag": "GNWT Environment and Natural Resources (credit: Conservation Planning and Implementation Unit, ENR; Open Government Licence - NWT)",
     "host": "agency",
     "nm": "Name",
@@ -3015,6 +3353,7 @@
    },
    {
     "kind": "land",
+    "what": "designation",
     "ag": "Nagwichoonjik National Historic Site",
     "nm": "Name",
     "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206",
@@ -3024,6 +3363,7 @@
    },
    {
     "kind": "park",
+    "what": "designation",
     "ag": "Regulated Areas",
     "nm": "Name",
     "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16",
@@ -3035,6 +3375,7 @@
   "NL": [
    {
     "kind": "wild",
+    "what": "owned",
     "ag": "Provincial_Protected_Areas_NL",
     "nm": "NAME_E",
     "url": "https://services5.arcgis.com/khIMcsNnPXZQg2Ef/arcgis/rest/services/Provincial_Protected_Areas_NL/FeatureServer/0",

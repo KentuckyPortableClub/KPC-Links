@@ -65,6 +65,10 @@ for _kind, _f in SCOPE_FILES.items(): RULE_FILES[_kind].append(_f)
 # key's rules. A later edit to them would change key results, so they belong in the hash.
 RULE_FILES['us-key'].append('data/us-key/area-tables.json')
 RULE_FILES['world-key'].append('data/world-key/area-tables.json')
+# Nov 17 (KPC owner, 2026-11-17; ruling D11): the US key's layer list is a rule file too. kpc_us_key.py reads every state's
+# layers from data/state-gis.json (which layer, its name field, its kind), so adding, dropping or re-pointing a layer changes
+# what the key can join; each layer also carries 'what' (owned / designation / water / register / compilation). No new rule file.
+RULE_FILES['us-key'].append('data/state-gis.json')
 # Nov 12 (KPC owner, 2026-11-12; Quality must-fix M2): the official pin-fill helper decides
 # which pin a park is joined by, so it is a Canada and world rule file. The Japan A10
 # crosswalk helper is a world rule file. A later edit to either moves the hash.

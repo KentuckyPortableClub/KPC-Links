@@ -93,7 +93,19 @@ def _git_show(rev, rel):
     return r.stdout if r.returncode == 0 else None
 
 def rules_hash_at(rev, kind):
-    rels = list(KF.RULE_FILES[kind]) + [KF.VERSION_FILE]
+    # KPC owner, 2026-11-17 (D11: the US layer list joins RULE_FILES['us-key']): rev's hash is worked out with rev's OWN list of rule
+    # files and its own rules_hash (its kpc_key_freeze.py), as kpc_preflight.base_hash does since Nov 15, so a change that adds a rule
+    # file is compared with the hash main reports, not with main's files read through the new list
+    _hash, rels = KF.rules_hash, list(KF.RULE_FILES[kind])
+    _src = _git_show(rev, '.github/scripts/kpc_key_freeze.py')
+    if _src:
+        _ns = {'__name__': '_kf_rev', '__file__': str(ROOT / '.github/scripts/kpc_key_freeze.py')}
+        try:
+            exec(compile(_src, 'kpc_key_freeze@' + rev, 'exec'), _ns)
+            if kind in _ns['RULE_FILES']: _hash, rels = _ns['rules_hash'], list(_ns['RULE_FILES'][kind])
+        except Exception:  # noqa: BLE001
+            pass
+    rels = rels + [KF.VERSION_FILE]
     with tempfile.TemporaryDirectory() as td:
         base = pathlib.Path(td)
         for rel in rels:
@@ -103,7 +115,7 @@ def rules_hash_at(rev, kind):
             dest = base / rel
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_bytes(blob)
-        return KF.rules_hash(kind, base)
+        return _hash(kind, base)
 
 def declaration_exemption(root, main_rev='origin/main'):
     """The first line when this root adds or changes docs/key-rules-change.txt, else None."""
