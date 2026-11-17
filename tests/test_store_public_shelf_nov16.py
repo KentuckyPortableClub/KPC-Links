@@ -113,7 +113,8 @@ class PublicShelf(unittest.TestCase):
         # 'SHARE-ALIKE' is one of the class NAMES every index lists (licence_classes, the vocabulary the gate checks against);
         # what must never be here is a RECORD of that class
         self.assertNotRegex(low, r'"licence_class"\s*:\s*"share-alike"')
-        for f in ('private_reason', 'terms_text_file', 'terms_text_sha256', 'attributes', '"owner"', 'same_geometry_as', 'publish_why'):
+        for f in ('private_reason', 'terms_text_file', 'terms_text_sha256', 'attributes', '"owner"', 'same_geometry_as', 'publish_why',
+                  'publish_basis_detail'):
             self.assertNotIn(f, self.text, f'private field {f} is on the shelf')
 
     def test_the_report_names_nobody(self):
@@ -166,6 +167,82 @@ class PublicShelf(unittest.TestCase):
         _, _, w, _ = FS.Store(self.store, kind='public').examine('US-9999', AREA, ['nope'])
         self.assertIn('is not in the outline store', w)
         self.assertFalse(FS.PRIVATE_WHY.search(w))
+
+
+
+class ReviewCases(unittest.TestCase):
+    """Fable's review of #237 (2026-11-16): the three ways a park left off the shelf could still be named, or measured wrongly."""
+
+    def setUp(self):
+        import kpc_fers as KF
+        self.KF = KF
+        self.tmp = pathlib.Path(tempfile.mkdtemp()); self.st, self.out = self.tmp / 's', self.tmp / 'o'
+        for d in (FS.FLAGS, FS.STORE_LINES, FS.LINE_SKIPPED, FS.MAIN_LINES): d.clear()
+        FS.HELD_PRIVATE.clear(); FS.READ_OK.clear(); FS.PRIVATE.clear()
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_a_park_in_two_areas_held_in_one_is_never_named(self):
+        """Fable's repro: US-9100 is public in US-AA and held in US-BB. The full store holds it privately; the shelf must too."""
+        F.write_store(self.st, 'US-AA', [F.park('US-9100', [F.record('a1', 'openlayer', sq(1))], name='Border Park')],
+                      fmt='kpc-outline-store-index/4', index_override={'US-9100': {'park_public': True}}, top=MADE)
+        F.write_store(self.st, 'US-BB', [F.park('US-9100', [F.record('b1held', 'heldlayerq', sq(2), publishable=False)], name='Border Park'),
+                                         F.park('US-9101', [F.record('c1', 'openlayer', sq(3))])], fmt='kpc-outline-store-index/4',
+                      index_override={'US-9100': {'park_public': False}, 'US-9101': {'park_public': True}}, top=MADE)
+        for a in ('US-AA', 'US-BB'): SP.build_area(self.st, a, self.out)
+        ids = ['a1', 'b1held']
+        _, _, w_full, _ = FS.Store(self.st, kind='public').examine('US-9100', 'US-AA', ids)
+        _, _, w_shelf, _ = FS.Store(self.out, kind='public').examine('US-9100', 'US-AA', ids)
+        self.assertTrue(FS.PRIVATE_WHY.search(w_full), w_full)
+        self.assertTrue(FS.PRIVATE_WHY.search(w_shelf), f'the shelf must hold it privately too, got {w_shelf!r}')
+        self.assertNotIn('b1held', w_shelf)
+
+    def _line_area(self, parks, over):
+        F.write_store(self.st, AREA, parks, fmt='kpc-outline-store-index/4', index_override=over, top=MADE)
+        SP.build_area(self.st, AREA, self.out)
+
+    def _lines(self, d, base):
+        log0 = len(self.KF.LOG)
+        for x in (FS.FLAGS, FS.STORE_LINES, FS.LINE_SKIPPED, FS.MAIN_LINES): x.clear()
+        FS.HELD_PRIVATE.clear()
+        out = FS.store_lines(self.KF, FS.Store(d, kind='public'), [AREA], base)
+        return out, ' '.join(self.KF.LOG[log0:]), set(FS.HELD_PRIVATE), dict(FS.LINE_SKIPPED)
+
+    def test_a_held_line_park_is_never_named(self):
+        path = [[(-77.20, 41.20), (-77.19, 41.20)]]
+        held = F.line_record('lh1secret', 'heldlayerq', path, publishable=False, boundary_rule='trail_100ft')
+        self._line_area([F.park('US-9200', [held], name='Secret Ridge Trail')],
+                        {'US-9200': {'park_public': False, 'geometry_kind': 'line'}})
+        self.assertNotIn('US-9200', json.loads((self.out / f'index-{AREA}.json').read_text())['parks'])
+        base = {'US-9200': {'lines': [[[-77.20, 41.20], [-77.19, 41.20]]], 'kind': 'trail', 'by': 'x', 'type': 'NRT'}}
+        _, log_full, held_full, _ = self._lines(self.st, base)
+        _, log_shelf, held_shelf, _ = self._lines(self.out, base)
+        self.assertIn('US-9200', held_full)
+        self.assertIn('US-9200', held_shelf, 'a line park left off the shelf must be held privately, as with the full store')
+        for t in ('US-9200', 'Secret Ridge', 'lh1secret'): self.assertNotIn(t, log_shelf)
+
+    def test_a_river_line_found_by_name_is_still_skipped(self):
+        path = [[(-77.30, 41.30), (-77.29, 41.30)]]
+        rec = F.line_record('ln1', 'openlayer', path, source='nhd-by-name', boundary_rule='river_100ft_from_bank',
+                            river_class='water_trail', bank_status='covered')
+        self._line_area([F.park('US-9300', [rec], name='By Name River')], {'US-9300': {'park_public': True, 'geometry_kind': 'line'}})
+        idx = json.loads((self.out / f'index-{AREA}.json').read_text())
+        park, _, _ = DC.read_park(self.out, 'US-9300', idx['parks']['US-9300'], {})
+        self.assertEqual(park['records'][0].get('source'), 'nhd-by-name', 'the shelf keeps the record source the reader needs')
+        base = {'US-9300': {'lines': [[[-77.30, 41.30], [-77.29, 41.30]]], 'kind': 'river', 'by': 'x', 'type': 'WT'}}
+        _, _, _, skip_full = self._lines(self.st, base)
+        _, _, _, skip_shelf = self._lines(self.out, base)
+        self.assertIn('US-9300', skip_full)
+        self.assertEqual(skip_shelf.get('US-9300'), skip_full['US-9300'], 'the shelf must skip a by-name river line exactly as the full store does')
+
+    def test_an_odd_source_value_is_dropped_not_copied(self):
+        rec = F.record('o9', 'openlayer', sq(9), source='have:C:/Users/someone/private/State_Land.geojson')
+        F.write_store(self.st, AREA, [F.park('US-9400', [rec])], fmt='kpc-outline-store-index/4',
+                      index_override={'US-9400': {'park_public': True}}, top=MADE)
+        SP.build_area(self.st, AREA, self.out)
+        txt = shelf_bytes(self.out)
+        self.assertNotIn('someone', txt); self.assertNotIn('State_Land', txt)
 
 
 if __name__ == '__main__':

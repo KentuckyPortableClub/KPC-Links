@@ -35,7 +35,7 @@ view fields exactly, so the reader still marks every row that uses them partial 
   build --store DIR --area US-RI [--area ...] --out DIR [--report FILE]
   check --out DIR --area US-RI [...]       re-reads the shelf and refuses it if any record on it is not public
 """
-import argparse, collections, gzip, hashlib, json, pathlib, sys
+import argparse, collections, gzip, hashlib, json, pathlib, re, sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_display_copy as DC  # noqa: E402  (the one licence gate)
@@ -45,21 +45,27 @@ SHELF_FORMAT = 'kpc-store-public-shelf/1'
 
 # What the 2-fer bot's reader (kpc_fers_store.py) and the gate actually read. Nothing else is copied.
 REC_KEEP = ('key', 'rings', 'sha256', 'points', 'geometry_kind', 'boundary_kind', 'lines', 'line_sha256', 'line_points',
-            'line_extent', 'publishable', 'licence_class', 'publish_basis', 'publish_basis_detail', 'credit_line', 'wdpa_derived',
+            'line_extent', 'publishable', 'licence_class', 'publish_basis', 'credit_line', 'wdpa_derived',
             'use', 'use_why', 'record_name', 'source_layer', 'source_url', 'layer_url', 'boundary_rule', 'corridor_ft',
-            'corridor_from', 'bank_status', 'bank_ok', 'bank_missing', 'river_class', 'len_m', 'km', 'read', 'q')
+            'corridor_from', 'bank_status', 'bank_ok', 'bank_missing', 'river_class', 'len_m', 'km', 'read', 'q', 'source')
 PARK_KEEP = ('ref', 'name', 'grade', 'grade_today', 'circle', 'geometry_kind', 'pin', 'publish_view', 'publish_view_records',
              'publish_view_basis', 'publish_view_ratio')
 ENTRY_KEEP = ('file', 'grade', 'circle', 'date', 'geometry_kind', 'park_public', 'park_publishable', 'publish_view',
               'publish_view_records', 'publish_view_basis', 'publish_view_ratio')
 ENTRY_PER_RECORD = ('licence', 'licence_class', 'credit', 'publishable')
-META_KEEP = ('geometry_kind', 'boundary_kind', 'publishable', 'licence_class', 'publish_basis', 'publish_basis_detail',
-             'credit_line', 'source_layer', 'source_url', 'wdpa_derived')
+META_KEEP = ('geometry_kind', 'boundary_kind', 'publishable', 'licence_class', 'publish_basis', 'credit_line', 'source_layer',
+             'source_url', 'wdpa_derived')
 LAYER_KEEP = ('layer', 'address', 'publishable', 'class', 'credit')
 # Never on the shelf, whatever else changes (the push check's private fields and the store's own private notes).
 NEVER = frozenset({'private_reason', 'terms_text_file', 'terms_text_sha256', 'attributes', 'attrs', 'owner', 'request',
                    'source_detail', 'credit_detail', 'licence_from', 'publish_why', 'note', 'join', 'record_id',
-                   'record_name_in_source', 'tract_name', 'agency_label', 'finer_than_6_decimals', 'same_geometry_as'})
+                   'record_name_in_source', 'tract_name', 'agency_label', 'finer_than_6_decimals', 'same_geometry_as',
+                   'publish_basis_detail'})
+
+
+# A record's 'source' is kept because the reader reads it ('nhd-by-name' = a river line found by name: the park may be only a stretch
+# of it, so its line is skipped), but only as one plain lower-case word: the store's values are 'live', 'have-line', 'nhd-by-name'.
+SOURCE_RX = re.compile(r'[a-z][a-z0-9-]{0,30}')
 
 
 class ShelfError(Exception):
@@ -101,7 +107,9 @@ def public_park(ref, e, park, bad, n_bad, layers):
             if not src or src.get('rings') is None: return None, 'a record shares the rings of a record the park does not have'
             if DC.geometry_sha256(src['rings']) != r.get('sha256'): return None, 'a shared ring set does not match its checksum'
             r['rings'] = src['rings']
-        kept.append(_keep(r, REC_KEEP))
+        pr = _keep(r, REC_KEEP)
+        if not (isinstance(pr.get('source'), str) and SOURCE_RX.fullmatch(pr['source'])): pr.pop('source', None)   # plain words only
+        kept.append(pr)
     pk = _keep(park, PARK_KEEP); pk['records'] = kept
     meta = e.get('record_meta') or {}
     ent = _keep(e, ENTRY_KEEP)
@@ -174,7 +182,7 @@ def check_area(out_dir, area):
             park, bad, n_bad = DC.read_park(out, ref, e, handles)
             if bad or n_bad: raise ShelfError(f'{area}: a park on the shelf fails its checksum')
             if [r['key'] for r in park['records']] != list(e.get('records') or []): raise ShelfError(f'{area}: index and park disagree')
-            for blob in (park, e):
+            for blob in [park, e] + [m for m in (e.get('record_meta') or {}).values() if isinstance(m, dict)]:
                 hit = NEVER & set(blob)
                 if hit: raise ShelfError(f'{area}: a private field is on the shelf: {sorted(hit)}')
             for r in park['records']:
