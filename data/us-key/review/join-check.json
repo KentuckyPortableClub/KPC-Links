@@ -1,11 +1,11 @@
 {
  "key": "us",
  "mode": "hold",
- "files_checked": 100,
- "joined_parks": 11714,
- "suspect": 407,
- "held": 31,
- "files_changed": 38,
+ "files_checked": 35,
+ "joined_parks": 7355,
+ "suspect": 410,
+ "held": 33,
+ "files_changed": 27,
  "official_acres_known": 0,
  "acres_check": "acres check off: no acres file",
  "approved_parks_known": 4965,
@@ -30,6 +30,17 @@
    "official_ac": "",
    "pin_km": 24.43,
    "suspect": "the nearest joined record is 24.4 km from the POTA pin (over 15 km) (not held: signed override in overrides.json (decided_by Brandon (KZ4CP), Nov 7 2026 4:54 PM CST))",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "US-0643",
+   "area": "US-AK",
+   "name": "Noatak National Preserve",
+   "outline_ac": 6542343,
+   "official_ac": "",
+   "pin_km": 16.37,
+   "suspect": "the nearest joined record is 16.4 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
@@ -1233,6 +1244,17 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
+   "park": "US-4404",
+   "area": "US-CO",
+   "name": "Pike National Forest",
+   "outline_ac": 1096884,
+   "official_ac": "",
+   "pin_km": 18.81,
+   "suspect": "the nearest joined record is 18.8 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
    "park": "US-9593",
    "area": "US-CO",
    "name": "Dominguez-Escalante BLM National Conservation Area",
@@ -1371,6 +1393,17 @@
    "outline_ac": 0,
    "official_ac": "",
    "pin_km": 0.01,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "US-7879",
+   "area": "US-FL",
+   "name": "Citrus Wildlife Management Area",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.0,
    "suspect": "the joined land has 0 acres",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
@@ -4499,5 +4532,37 @@
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   }
+ ],
+ "kept_from_main": [
+  "US-AR",
+  "US-AZ",
+  "US-CA",
+  "US-CT",
+  "US-DC",
+  "US-DE",
+  "US-GA",
+  "US-HI",
+  "US-ID",
+  "US-IL",
+  "US-KS",
+  "US-MA",
+  "US-MD",
+  "US-ME",
+  "US-MO",
+  "US-MT",
+  "US-ND",
+  "US-NE",
+  "US-NM",
+  "US-NV",
+  "US-NY",
+  "US-OH",
+  "US-OK",
+  "US-OR",
+  "US-PA",
+  "US-RI",
+  "US-SD",
+  "US-TN",
+  "US-TX",
+  "US-WY"
  ]
 }

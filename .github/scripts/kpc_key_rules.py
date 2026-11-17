@@ -103,14 +103,55 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0'}
 
 
-def setting(name, env=None):
+# Reviewer B #7 (KPC owner, 2026-11-17): the switches live in .github/key-switches.json (a US rule file, sliced per area), so a
+# switch turned on in GitHub really reaches the build and moves the hash of exactly the areas it is on for. An environment
+# variable of the same name still wins (offline proofs, the scorecard).
+SWITCH_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'key-switches.json')
+_SW = {}
+
+
+class SwitchFileError(RuntimeError): pass
+
+
+def switch_file(path=None):
+    """{switch: set of areas it is on for} from the switch file. A missing file = every switch at its DEFAULT; a file that cannot
+    be read or has the wrong shape raises (the build must stop, never run with every switch silently off)."""
+    path = path or SWITCH_FILE
+    if path in _SW: return _SW[path]
+    import json
+    if not os.path.exists(path): _SW[path] = {}; return _SW[path]
+    try: d = json.load(open(path, encoding='utf-8'))
+    except (OSError, ValueError) as e: raise SwitchFileError(f'{path} cannot be read: {e}')
+    sw = d.get('switches') if isinstance(d, dict) else None
+    if not isinstance(sw, dict): raise SwitchFileError(f"{path}: no 'switches' object")
+    out = {}
+    for k, v in sw.items():
+        on_ = (v or {}).get('on') if isinstance(v, dict) else None
+        if not isinstance(on_, list) or not all(isinstance(a, str) for a in on_): raise SwitchFileError(f"{path}: {k} needs an 'on' list of areas")
+        out[k] = set(on_)
+    _SW[path] = out
+    return out
+
+
+def setting(name, env=None, area=None, path=None):
     env = os.environ if env is None else env
     v = str(env.get(name, '') or '').strip()
-    return v if v else DEFAULTS.get(name, '0')
+    if v: return v
+    areas = switch_file(path).get(name)
+    if areas is not None and areas:
+        a = str(area or '')
+        if '*' in areas or (a and (a in areas or ('US-' + a) in areas)): return '1'
+    return DEFAULTS.get(name, '0')
 
 
-def on(name, env=None):
-    return setting(name, env).lower() not in ('0', 'off', 'false', 'no', '')
+def on(name, env=None, area=None, path=None):
+    return setting(name, env, area, path).lower() not in ('0', 'off', 'false', 'no', '')
+
+
+def areas_on(area, path=None):
+    """The switches the file turns on for one area (kpc_area_hash slices the file with this)."""
+    a = str(area or '')
+    return sorted(k for k, s in switch_file(path).items() if '*' in s or a in s or ('US-' + a) in s)
 
 
 def nf(t):
@@ -566,3 +607,55 @@ def measured_ac(rows, rings_of, parts=None):
         if not rr: return None
         tot += ring_acres(rr); n += 1
     return round(tot), n
+
+# ---------------------------------------------------------------- THE CONTEST (matching plan section 1; Fable 17 Nov, owner YES)
+# A record joined by name to two or more parks goes to the park it fits best; a tie or a bare name goes to a person (never left on
+# everyone); a record whose own type words name BOTH parks' kinds ('... State Forest & Wildlife Management Area') stays on both.
+# Type words include the short forms agencies write (SP, SF, WA, WMA, SB, SHP, SRA, SNA, DNP, NWR, NF, CA ...): kinds() in the US
+# key does not know them, which is why 'Scioto Trail SF' sat on both the State Park and the State Forest.
+TYPE_WORDS = [('park', r'state (resort )?park|\bsp\b|\bsrp\b|national park|\bnp\b|\bstate parks?\b'),
+              ('forest', r'\bforests?\b|\bsf\b|\bnf\b'),
+              ('wildlife', r'wildlife (management )?area|\bwma\b|\bwa\b|\bswa\b|\bfwa\b|game lands?|\bsgl\b|hunting area|game area|fish and wildlife area|wildlife habitat'),
+              ('beach', r'\bbeach\b|\bsb\b'),
+              ('historic', r'histori|\bshp\b|\bshs\b|\bhs\b|\bnhs\b|\bnhp\b'),
+              ('recreation', r'recreation (area|site)|\bsra\b|\bnra\b|\bsrs\b'),
+              ('preserve', r'\bpreserve\b|\bdnp\b|\bsnp\b|natural area|\bsna\b|nature reserve'),
+              ('wilderness', r'wilderness(?! study)'), ('study', r'study area|\bwsa\b'), ('refuge', r'\brefuge\b|\bnwr\b'),
+              ('fishing', r'fishing (lake|area)|\bsfl\b|\bpfl\b|fishing access'), ('monument', r'\bmonument\b'),
+              ('conservation', r'conservation area|\bnca\b|\bsca\b'), ('herd', r'\bherd\b|\bhma\b'), ('rma', r'recreation management|\bs?rma\b')]
+# a layer's own kind (state-gis 'kind', or the US key's kind tags of a national layer) when the record's name carries no type word
+LAYER_TYPE = {'park': 'park', 'sp': 'park', 'wild': 'wildlife', 'wma': 'wildlife', 'forest': 'forest', 'sf': 'forest', 'nf': 'forest',
+              'preserve': 'preserve', 'snp': 'preserve', 'nwr': 'refuge', 'hma': 'herd', 'wsa': 'study', 'rma': 'rma', 'nps': 'park'}
+
+
+def type_words(s):
+    """The kinds of place a name's own type words say: {'park', 'forest', ...} (short forms included)."""
+    t = re.sub(r'[^a-z ]', ' ', str(s or '').lower())
+    return {k for k, rx in TYPE_WORDS if re.search(rx, t)}
+
+
+def contest(record_name, parks, place=None, layer_kinds=()):
+    """parks: {ref: (park name, park type)} of the parks a record is joined to by name. -> ('win', ref) | ('both', None) |
+    ('person', why). place(s) = the US key's norm() (place words only), used to break a tie between two parks of the same kind."""
+    names = {r: str(v[0] or '') for r, v in parks.items()}
+    full = _full(record_name)
+    w = [r for r, n in names.items() if _full(n) == full]
+    if len(w) == 1: return 'win', w[0]
+    if len(w) == len(names) or len({_full(n) for n in names.values()}) == 1:
+        return 'both', None   # every sharing park has the same name: POTA lists one place twice ('same land, two park numbers')
+    rs = type_words(record_name)
+    ps = {r: type_words(v[0]) | type_words(v[1]) for r, v in parks.items()}
+    if rs and re.search(r'\band\b|&|/', str(record_name).lower()) and all(ps[r] & rs for r in parks) and len({frozenset(ps[r] & rs) for r in parks}) == len(parks):
+        return 'both', None
+    if not rs: rs = {LAYER_TYPE[k] for k in layer_kinds if k in LAYER_TYPE}
+    if not rs: return 'person', 'a bare name with no type word: which park it belongs to is for a person'
+    k = [r for r in parks if ps[r] & rs]
+    if len(k) == 1: return 'win', k[0]
+    if not k: return 'person', 'the record names a kind of place that none of these parks is'
+    if place is not None:
+        pr = place(record_name)
+        eq = [r for r in k if place(names[r]) == pr]
+        if len(eq) == 1: return 'win', eq[0]
+    ex = [r for r in k if ps[r] == rs]
+    if len(ex) == 1: return 'win', ex[0]
+    return 'person', 'the record fits more than one of these parks'

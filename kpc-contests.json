@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T12:42:14Z",
+ "updated": "2026-11-17T19:25:15Z",
  "week": [
   {
    "name": "AWA Bruce Kelley 1929 QSO Party",
@@ -410,11 +410,11 @@
   {
    "name": "REF 160-Meter Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gf6gu",
-   "when": "1700Z-2400Z, Nov 21",
+   "when": "1700Z, Nov 21 to 0100Z, Nov 22",
    "segs": [
     [
      "2026-11-21T17:00Z",
-     "2026-11-22T00:00Z"
+     "2026-11-22T01:00Z"
     ]
    ],
    "modes": [],
