@@ -68,6 +68,7 @@ function headers(age) {
     'content-type': 'application/json; charset=utf-8',
     'cache-control': 'public, max-age=' + SECONDS,
     'access-control-allow-origin': '*',
+    'access-control-expose-headers': 'x-kpc-spot-age',   // without this a page on another site cannot read the age
     'x-kpc-spot-age': age || '0',   // seconds since POTA was last asked
     'x-kpc-relay': 'kpc-spots',
   };
