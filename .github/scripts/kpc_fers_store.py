@@ -128,6 +128,12 @@ STORE_AREAS_FILE = pathlib.Path(__file__).resolve().parents[1] / 'fers-store-are
 STORE_AREA_RX = re.compile(r'(US|CA)-[A-Z]{2}')
 STORE_ALL = 'all-us-ca'
 NEVER_STORE = {'US-KY': 'Kentucky runs on its own files (the REGION ky run), never on the outline store'}
+# KPC owner, 2026-11-17: a PUBLIC SHELF area whose own coverage block says less than this share of its parks made it onto the shelf
+# is left on the OLD path for this run, by itself. In a thin area most parks would be held, so a store run would CARRY most of its
+# rows unchecked instead of re-testing them, which is worse than not using the store at all. The share is written by
+# tools/kpc_store_public.py from the store it was built from, so nothing has to be kept by hand as licences are confirmed: an area
+# joins in on its own once enough of its layers are confirmed. KPC_FERS_SHELF_MIN overrides it (0 = never leave an area out).
+THIN_SHELF = 0.90
 KEPT_TAG = 'kept: not checked in a store run'
 STORE_STAMP = '2026-11-15-store-switch'   # the declared rule change (.github/fers-rule-scope.json): stamped only in a store run
 KEPT = {'n': 0}    # rows kept by the keep-the-old-row rule this run
@@ -377,6 +383,30 @@ class Store:
         try: return self._examine(ref, area, ids, clip, keep)
         except Exception as e:  # noqa: BLE001
             return None, [], f'{ref} in the outline store failed its check ({_err(e)})', {}
+
+    def shelf_share(self, area):
+        """A public shelf's own coverage share for this area (0.0 to 1.0), or None when it is not a shelf or does not say."""
+        a = self.area(area)
+        idx = a.idx if a is not None else None
+        if idx is None:
+            try: idx = json.loads((self.dir / f'index-{area}.json').read_text(encoding='utf-8'))
+            except Exception: return None  # noqa: BLE001
+        if idx.get('shelf') != 'public': return None
+        c = idx.get('coverage')
+        if not isinstance(c, dict): return None
+        try: v = float(c.get('share'))
+        except (TypeError, ValueError): return None
+        return v if 0.0 <= v <= 1.0 else None
+
+    def thin_shelf(self, area):
+        """-> why this area is left on the old path this run (a thin public shelf), or '' when it may be read."""
+        raw = str(os.environ.get('KPC_FERS_SHELF_MIN') or '').strip()
+        if raw in ('0', '0.0', 'off', 'none'): return ''   # the floor is off: every shelf area is read, however thin
+        want = env_float(os.environ, 'KPC_FERS_SHELF_MIN', THIN_SHELF, 1.0)
+        v = self.shelf_share(area)
+        if v is None or v >= want: return ''
+        return (f'the public shelf holds only {v * 100:.0f}% of {area} (under {want * 100:.0f}%): left as it is this run, so its rows '
+                f'are not carried unchecked. It joins in by itself once more of its layers have their terms confirmed.')
 
     def public_shelf(self, area):
         """True when this area is read from the PUBLIC SHELF (tools/kpc_store_public.py: index 'shelf': 'public'). The shelf holds only
@@ -1901,6 +1931,12 @@ def install(KF, env=None, store=None):
         raise SystemExit(EXIT_NOT_READY)
     st.allow = lambda a: area_use(a, cfg)
     off = {a: area_use(a, cfg) for a in areas if area_use(a, cfg)}
+    # KPC owner, 2026-11-17: a PUBLIC SHELF area too thin to be worth reading stays on the old path, the same as one on the except
+    # list. It is worked out from the shelf's own coverage block, so no list is kept by hand (see THIN_SHELF).
+    for a in areas:
+        if a not in off:
+            w = st.thin_shelf(a)
+            if w: off[a] = w
     if len(off) == len(areas):   # every named area stays on the old path: the bot runs as today for all of them
         st.allow = None
         public_print(f'::notice title=2-fer outline store::{SWITCH} is on, but no area of this run uses the store (' + '; '.join(f'{a}: {w}' for a, w in sorted(off.items()))
