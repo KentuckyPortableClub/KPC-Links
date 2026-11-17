@@ -32,6 +32,12 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           Office') is not joined by that name. When its second name (Loc_Nm) is a real place (Steese National
                           Conservation Area), the place name is tested instead; a record with no real place name is never
                           joined by name. OFF until Brandon / chat 11 say ON.
+  KPC_SAVED_ID_LAND    0  (KPC owner, 2026-11-17, ruling D1: a saved id = the LAND, not the number) a park whose saved record ids
+                          are kept through a rules change (the 9 Nov rule) keeps an id only while the record still carries
+                          the name it was saved with and acres within 10% (20 acres at least). If an agency renumbered its
+                          layer, the same name + acres is looked for in the SAME layer near the pin and the new id is kept;
+                          if that fails, the old row is not carried, this run's own match stands, and the record goes to
+                          check. OFF until the owner says ON (it changes outlines; count first, one state).
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -42,7 +48,7 @@ import os, re, unicodedata
 
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
-            'KPC_NO_OFFICE_JOIN': '0'}
+            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0'}
 
 
 def setting(name, env=None):
@@ -354,3 +360,12 @@ def tracts_of(boxes, gap_km=1.0):
     out = {}
     for i in range(n): out.setdefault(find(i), []).append(i)
     return sorted(out.values(), key=lambda v: v[0])
+
+def saved_row_ok(row, rec):
+    """D1 (KPC owner, 2026-11-17): does a saved join row [id, name, acres, how] still describe record `rec` of this read?
+    Same name (accents and case aside) and acres within 10% (at least 20 acres slack); a 0 on either side skips the acres test."""
+    nm = rec.get('Unit_Nm') or rec.get('Loc_Nm') or ''
+    if nf(nm) != nf(row[1] if len(row) > 1 else ''): return False
+    sa, ra = (row[2] if len(row) > 2 else 0) or 0, rec.get('GIS_Acres') or 0
+    if not sa or not ra: return True
+    return abs(ra - sa) <= max(20, 0.10 * sa)

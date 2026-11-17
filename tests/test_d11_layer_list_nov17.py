@@ -53,8 +53,11 @@ check('2. a state park layer is owned land', by(r'ParkBoundaries/FeatureServer|P
 
 # 3
 sc = json.loads((ROOT / '.github/us-key-rule-scope.json').read_text(encoding='utf-8'))
-last = sc['changes'][-1]
-check('3. the last US scope entry is D11, scope none, waiting for the owner (no approval written by a bot)',
+# HQ, 2026-11-17: the D11 entry is found by its id. While D11 is the NEWEST US change the hash checks below run as written; once a
+# later change is declared on top (D1 first), they are branch-time checks that no longer apply and say so.
+last = next((c for c in sc['changes'] if c.get('id') == '2026-11-17-d11-layer-list'), {})
+D11_NEWEST = bool(sc['changes']) and sc['changes'][-1].get('id') == '2026-11-17-d11-layer-list'
+check('3. the US scope file holds the D11 entry, scope none (no approval written by a bot)',
       last.get('id') == '2026-11-17-d11-layer-list' and last.get('scope') == 'none' and 'approved' not in last)
 
 
@@ -74,10 +77,13 @@ def hash_without_d11():
     return h.hexdigest()[:12]
 
 
-now, before = F.rules_hash('us-key'), hash_without_d11()
-check(f'3. the hash moves once: {before} (no list, no labels) -> {now}, and the D11 entry is from {last.get("from")}', last.get('from') == before and now != before)
-ps = F.pending_scope('us-key', last.get('from'))
-check(f'3. from the last build on {before}, the declared change rebuilds no area (pending scope {ps})', ps == (set(), False, set()))
+if D11_NEWEST:
+    now, before = F.rules_hash('us-key'), hash_without_d11()
+    check(f'3. the hash moves once: {before} (no list, no labels) -> {now}, and the D11 entry is from {last.get("from")}', last.get('from') == before and now != before)
+    ps = F.pending_scope('us-key', last.get('from'))
+    check(f'3. from the last build on {before}, the declared change rebuilds no area (pending scope {ps})', ps == (set(), False, set()))
+else:
+    print('NOTE 3. a later US rule change is declared on top of D11: its own branch-time hash checks no longer apply')
 check('3. Canada, world and 2-fer hashes are not D11\'s (state-gis.json is not their rule file)', all(SG not in F.RULE_FILES[k] for k in ('ca-key', 'world-key', 'fers')))
 
 # 4
