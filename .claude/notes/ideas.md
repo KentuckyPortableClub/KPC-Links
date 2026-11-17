@@ -135,3 +135,26 @@
 - **CELL COVERAGE RULE SHEET (HQ Oct 31 8:45 PM; OK by Brandon Oct 31 8:57 PM, SAVED FOR LATER: build when he says):** (1) COUNTS: the FCC National Broadband Map (Broadband Data Collection, mobile) at the POTA pin and the park's main parking point: per carrier (AT&T, T-Mobile, Verizon, UScellular, others listed by the FCC) the best technology claimed: 5G, 4G LTE, or none; outdoor stationary first. (2) DOES NOT: crowd-sourced maps (Opensignal, carrier store maps), guesses between points, Canada / world (FCC = US only; Canada = ISED's map later if wanted). (3) SOURCE: the FCC BDC public API with the club's key (GitHub secret, never in the page), refreshed when the FCC publishes a new filing (twice a year). (4) UNSURE: no FCC answer = say 'no FCC data', never 'no signal'. (5) SHOWN: a NOTE on the park card first ('📶 FCC map (carriers' own claims): Verizon 4G · AT&T 4G · T-Mobile none at the pin. Not a guarantee: carriers' coverage claims; real signal varies.') + an optional MAP LAYER later (coloured dots at pins: green 2+ carriers, amber 1, grey none) on the trip planner. (6) EXAMPLES to test: a KY state park in town, a deep-woods KY WMA, Red River Gorge, a western BLM site, a coastal NWR. Before building: Brandon OKs this sheet; the FCC key's terms checked for showing results publicly.
 
 - **REVISIT THE PICTURE-TRACE RULE (KPC-Links #155) ONCE THE TRACER IS TUNED (Brandon Nov 12, 12:10 AM CT, via Quality: go with readings a-d for now, no live traces):** #155 ships as INTERIM. Readings: (a) inside = no part of the trace more than 25 yd outside the other park's outline; (b) bigger = the other outline reaches more than 25 yd past the trace somewhere; (c) trace vs trace is dropped, not an approximate 2-fer; (d) a row with an official pin (100 ft circle), trail or river skips the trace rule. He is NOT SURE about c and d. TO DO: once the tracer is dialed in, a PR that measures tracer accuracy on a larger sample, then revisit a-d and the 25 yd value. His example: if traces average +/-25 yd, a 100 yd overlap could be a 2-fer. Quality's early 3-park sample (inbox/quality/2026-11-11-grade-pr154-155/TRACE-SIZE.md on the box): area ratio 0.99-1.02, edge drift 6-51 yd p90, worst 43-123 yd, so 25 yd may be too tight where a trace runs along another park's edge. Value kept at 25 yd until then.
+
+## Three to think on (Brandon, 17 Nov 5:06 AM) - NOT started, no rule sheet yet
+
+- **Do other languages break name matching?** Likely yes, and quietly. The fold we use (kpc_fers_store.norm_name,
+  mirrored in keeper/fers_push_check.py) strips everything outside ASCII, so a record named in Greek, Japanese,
+  Thai or Cyrillic folds to nothing or near nothing: name evidence does not fail loudly, it just stops existing,
+  and the match falls back to geometry without saying so. Even in Latin script the official name often is not
+  POTA's ("Parc national de la Mauricie" / "La Mauricie National Park"; "Parque Nacional" word order).
+  FIRST THING TO CHECK, cheap: how many world records fold to an empty or one-word name. If it is a big share,
+  then outside the US and Canada we are matching on geometry alone and should say so rather than imply a name
+  check happened. Fits the same lesson as the easement family: name-alone is the weak evidence, and it gets
+  weaker the further from English we go.
+- **Rule changes without a full key rebuild.** The scope files (.github/us-key-rule-scope.json,
+  .github/fers-rule-scope.json) already record none / all / a list of areas per rule change, but a person writes
+  that by hand. The idea: have the build record, per area, WHICH RULES ACTUALLY DECIDED ITS RESULT, so a rule
+  change rebuilds only the areas whose record names that rule. Same provenance idea as the match cards.
+  THE CATCH, and it decides whether this is safe: a rule that did not fire leaves no trace, so "this rule did not
+  apply here" and "we forgot to record it" look identical. It only works if the record is complete by
+  construction - every rule consulted is logged, not only the ones that changed something. Until that holds, a
+  computed scope is a guess and a full rebuild is the honest answer.
+- **Scripts change all the time, so the rebuild question is the real one.** Worth separating a change that can
+  alter an answer (a rule, a threshold, a source) from one that cannot (wording, speed, a log line). Only the
+  first kind needs any rebuild at all. We do not have that distinction written down anywhere yet.
