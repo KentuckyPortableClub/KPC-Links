@@ -20,7 +20,10 @@ Oct 28 (HQ tune + speed-up): polite (1 request / 2 s per host); service / layer 
 a state used to re-read the same 40 services); a park that already has an OFFICIAL line read in the last REUSE_DAYS (60) is
 reused, not searched again (FULL=1 searches all; OpenStreetMap and missing parks are always searched again, for an upgrade);
 a new line under half the length of the saved one keeps the saved one; parks POTA no longer lists are taken out; a self-grade
-gate (Sheltowee Trace + Katy, Virginia Creeper, Greenbrier River lines) writes /tmp/kpc-gate.txt for the grade-me line."""
+gate (Sheltowee Trace + Katy, Virginia Creeper, Greenbrier River lines) writes /tmp/kpc-gate.txt for the grade-me line.
+Nov 16: before writing, the bot checks both index-state.json and index.json. A new official line always beats a saved
+OpenStreetMap line. A hand-picked line always gets written. Between two official lines, only a shorter or rougher new one
+is blocked (under 75% of the saved length, or under half the saved points). A skip is logged with the reason."""
 import json, os, re, time, math, urllib.request, urllib.parse, datetime
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
@@ -378,6 +381,121 @@ def in_state(ls, st, buf=0.05):
     if not pts: return 1.0
     hit = sum(1 for x, y in pts if _inpoly(x, y, mp) or any(_inpoly(x + dx, y + dy, mp) for dx, dy in ((buf, 0), (-buf, 0), (0, buf), (0, -buf))))
     return hit / len(pts)
+
+def trail_line_stats(path):
+    """Points and kilometres from a trail line file. (0, 0) if it cannot be read."""
+    try:
+        g = json.load(open(path))
+    except Exception:
+        return 0, 0.0, {}
+    feats = g.get('features') or [g]
+    pts, km_total, props = 0, 0.0, {}
+    for f in feats:
+        props = f.get('properties') or props or g.get('properties') or {}
+        gg = f.get('geometry') or {}
+        c = gg.get('coordinates') or []
+        lines = [c] if gg.get('type') == 'LineString' else c
+        for line in lines:
+            if not line or len(line) < 2:
+                continue
+            pts += len(line)
+            for i in range(len(line) - 1):
+                a, b = line[i], line[i + 1]
+                if not a or not b or len(a) < 2 or len(b) < 2:
+                    continue
+                km_total += km(a[1], a[0], b[1], b[0])
+    return pts, km_total, props
+
+
+def record_is_official(rec, props=None):
+    """True when a saved index row or line file is an official line, not OpenStreetMap."""
+    rec = rec or {}
+    props = props or {}
+    src = str(rec.get('source') or props.get('source') or '')
+    if rec.get('official') is True or src == 'official':
+        return True
+    if rec.get('official') is False or src == 'osm':
+        return False
+    by = ' '.join(str(x) for x in (rec.get('by'), props.get('by')) if x)
+    if re.search(r'openstreetmap|\bunofficial\b', by, re.I):
+        return False
+    if re.search(r'\bofficial\b|usgs|national transportation|forest service|\busfs\b|fish and wildlife|\bfws\b|national park|\bnps\b|granit|state agency|bureau of land|\bblm\b|army corps|\busace\b', by, re.I):
+        return True
+    if rec.get('kind') in ('NST', 'NHT'):
+        return True
+    return False
+
+
+def saved_record(ref, idx_state, idx_nat, outdir):
+    """The saved line for this trail, from index-state.json, index.json, and the line file if it is there."""
+    rec = {}
+    if idx_state and ref in idx_state:
+        rec.update(idx_state[ref] or {})
+    if idx_nat and ref in idx_nat:
+        nat = idx_nat[ref] or {}
+        for k, v in nat.items():
+            rec.setdefault(k, v)
+        if record_is_official(nat) or record_is_official(rec):
+            rec['official'] = True
+    path = os.path.join(outdir, f'{ref}.json')
+    exists = os.path.isfile(path)
+    pts, km_total, props = trail_line_stats(path) if exists else (0, 0.0, {})
+    official = record_is_official(rec, props)
+    saved_km = rec.get('km')
+    try:
+        saved_km = float(saved_km) if saved_km else 0.0
+    except (TypeError, ValueError):
+        saved_km = 0.0
+    if not saved_km and km_total:
+        saved_km = km_total
+    return {
+        'ref': ref,
+        'exists': exists,
+        'official': official,
+        'km': saved_km,
+        'pts': pts,
+        'by': rec.get('by') or props.get('by') or '',
+        'source': 'official' if official else (rec.get('source') or props.get('source') or ''),
+        'in_state': bool(idx_state and ref in idx_state),
+        'in_nat': bool(idx_nat and ref in idx_nat),
+    }
+
+
+def keep_saved_reason(saved, new_official, new_km, new_pts, new_hand=False):
+    """Why the saved line must be kept, or None if the new line may be written.
+
+    A new official line always beats a saved OpenStreetMap line. A hand-picked line
+    always gets written. Between two official lines, only a shorter or rougher new
+    one is blocked (under 75% of the saved length, or under half the saved points).
+    """
+    if new_hand:
+        return None
+    if not saved or not saved.get('exists'):
+        return None
+    skm = float(saved.get('km') or 0)
+    spts = int(saved.get('pts') or 0)
+    if saved.get('official') and not new_official:
+        return (f"saved official line is kept ({skm:.0f} km, {spts} points); "
+                f"a new OpenStreetMap line ({new_km:.0f} km) does not replace it")
+    if new_official and not saved.get('official'):
+        return None
+    if saved.get('official') and new_official:
+        if spts and new_pts < .5 * spts:
+            return (f"saved finer line is kept ({spts} points, {skm:.0f} km); "
+                    f"the new line is coarser ({new_pts} points, {new_km:.0f} km)")
+        if skm > 1 and new_km < .75 * skm:
+            return (f"saved line is kept ({skm:.0f} km, {spts} points); "
+                    f"the new line ({new_km:.0f} km, {new_pts} points) is shorter")
+        return None
+    if spts and new_pts < .5 * spts:
+        return (f"saved finer line is kept ({spts} points, {skm:.0f} km); "
+                f"the new line is coarser ({new_pts} points, {new_km:.0f} km)")
+    if skm > 1 and spts and new_pts <= spts:
+        if not (.75 * skm <= new_km <= 1.5 * skm):
+            return (f"saved line is kept ({skm:.0f} km, {spts} points); "
+                    f"the new line ({new_km:.0f} km, {new_pts} points) is outside -25% / +50%")
+    return None
+
 # ---------------------------------------------------------------- run
 try: IDX = {x['ref']: x for x in json.load(open(f'{OUT}/index-state.json'))}
 except Exception: IDX = {}
@@ -385,8 +503,9 @@ try: HAND = json.load(open('data/trails-hand.json')).get('parks', {})
 except Exception: HAND = {}  # noqa: E722
 # Nov 2 (PR 4): a row the national bot only carries for an outside-research find (kind 'found', kpc_finds_lines) does not block
 # this bot when the park has an official line picked by hand in data/trails-hand.json: that line is drawn here, with its source shown
-try: NAT = {x['ref'] for x in json.load(open(f'{OUT}/index.json')) if not (x.get('kind') == 'found' and x['ref'] in HAND)}
-except Exception: NAT = set()
+try: NATIDX = {x['ref']: x for x in json.load(open(f'{OUT}/index.json'))}
+except Exception: NATIDX = {}
+NAT = {r for r, x in NATIDX.items() if not (x.get('kind') == 'found' and r in HAND)}   # parks the national index already carries, unless a hand-picked official line should be drawn here
 LOC = {}
 try:
     for r in json.load(open('locations.json')):
@@ -504,12 +623,12 @@ for st, cand in jobs():
         la, lo = (v[5], v[6]) if len(v) > 6 and v[5] is not None else LOC.get(ref, (None, None))
         if la is None: report['missing'].append([ref, name, stc, 'no pin']); continue
         lim = CHECK_KM if kind(typ, name) == 'TP' else CHECK_KM_TRAIL
-        lines, by, off, near = None, '', False, 1e9
+        lines, by, off, near, from_hand = None, '', False, 1e9, False
         if ref in HAND:
             try:
                 hl, hb = hand_lines(ref)
                 hn = min((km(la, lo, q[1], q[0]) for l in hl for q in l), default=1e9)
-                if hl and hn <= max(lim, 50): lines, by, off, near = hl, hb, True, hn
+                if hl and hn <= max(lim, 50): lines, by, off, near, from_hand = hl, hb, True, hn, True
                 elif hl: note(ref, 'hand-picked line is far from the POTA pin: not used')
             except Exception as e:  # noqa: BLE001
                 note(ref, f'hand-picked layer not read: {str(e)[:100]}')
@@ -536,10 +655,17 @@ for st, cand in jobs():
                 near = min(km(la, lo, p[1], p[0]) for l in lines for p in l)
                 if near <= lim: break
                 lines = None
-        if not lines and IDX.get(ref) and not IDX[ref].get('official') and os.path.exists(f'{OUT}/{ref}.json'):
-            # Nov 2 (PR 4): no official line yet: the saved OpenStreetMap line stays, labelled unofficial
-            o = IDX[ref]; o['by'], o['source'] = OSM_LABEL, 'osm'
-            report['found'].append([ref, name, stc, OSM_LABEL, o.get('km', 0), 0]); got += 1; continue
+        saved = saved_record(ref, IDX, NATIDX, OUT)
+        if not lines and saved and saved.get('exists'):
+            # Nov 2 (PR 4) + Nov 16: no new official line: a saved official line (either index) stays; a saved OSM line stays, labelled unofficial
+            if saved.get('official'):
+                KEPT.append(ref); note(ref, f"{name}: saved official line is kept ({saved['km']:.0f} km); no new official line was found")
+                report['found'].append([ref, name, stc, saved.get('by', ''), saved.get('km', 0), 0]); got += 1; continue
+            if saved.get('in_state') or saved.get('in_nat'):
+                if saved.get('in_state'):
+                    IDX[ref]['by'], IDX[ref]['source'] = OSM_LABEL, 'osm'
+                note(ref, f"{name}: saved OpenStreetMap line is kept ({saved['km']:.0f} km); no official line was found")
+                report['found'].append([ref, name, stc, OSM_LABEL, saved.get('km', 0), 0]); got += 1; continue
         if not lines:
             why = 'line found too far from the POTA pin: not used' if near < 1e9 else 'no line found'
             if ref in NOLINE_PARK: report.setdefault('noline', []).append([ref, name, stc, 'a park with Trail in its name, not a trail'])
@@ -564,11 +690,11 @@ for st, cand in jobs():
             note(ref, f'{name}: {flag}'); report.setdefault('flags', []).append([ref, name, stc, flag])
             if not off: report['missing'].append([ref, name, stc, 'unofficial line over 3x the official length: not used']); continue
         if kind(typ, name) == 'TP' and total < 4 and ref not in HAND: report['missing'].append([ref, name, stc, 'short: probably a park, not a trail']); continue
-        o = IDX.get(ref)
-        if o and o.get('km') and total < .5 * o['km'] and (o.get('official') or not off) and os.path.exists(f'{OUT}/{ref}.json'):
-            # Oct 28: a much shorter line than the saved one (a half-answered layer) never replaces it
-            KEPT.append(ref); note(ref, f'{name}: new line {round(total)} km, saved {o["km"]} km: the saved line is kept')
-            report['found'].append([ref, name, stc, o.get('by', ''), o['km'], round(near, 1)]); got += 1; continue
+        saved = saved_record(ref, IDX, NATIDX, OUT)
+        why = keep_saved_reason(saved, off, total, sum(len(l) for l in lines), from_hand)
+        if why:   # Nov 16: official beats OSM; hand-picked is always written; official vs official blocks only shorter or rougher
+            KEPT.append(ref); note(ref, f'{name}: {why}')
+            report['found'].append([ref, name, stc, (saved or {}).get('by', ''), (saved or {}).get('km', 0), round(near, 1)]); got += 1; continue
         xs = [p[0] for l in lines for p in l]; ys = [p[1] for l in lines for p in l]
         src = 'official' if off else 'osm'
         wat = bool((HAND.get(ref) or {}).get('water')) or bool(WATER.search(name + ' ' + typ))
