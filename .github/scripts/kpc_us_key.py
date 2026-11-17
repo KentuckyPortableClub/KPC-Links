@@ -336,6 +336,18 @@ def join_how(name, kp, a, close, rules=True):
         if piece_why(name, a): return None
     if name_ok(name, nm, kp, a['_k']) or (loc and name_ok(name, loc, kp, a['_k'])):
         return 'name'
+    if _kr('KPC_FS_RIVER_NAMES'):
+        # Handoff 8 fix 2 (reviewer A #6): the Forest Service names its rivers 'Manistee, Michigan National Wild and Scenic River' and
+        # 'Sturgeon, Michigan (Hiawatha NF) ...'; the state and the forest are not part of the river's name (a park that names its
+        # forest only takes that forest's record)
+        if KR.fs_river_record(nm, f"{a.get('OBJECTID')} {a.get('Loc_Mang') or ''}"):
+            _cn, _fo = KR.fs_river_name(nm)
+            if KR.fs_river_forest_ok(name, _fo) and name_ok(name, _cn, kp, a['_k'] or kinds(_cn)): return 'name (Forest Service river: state and forest dropped)'
+        # the record's SECOND name field on its own kind words, when it has none (Tennessee 'Cumberland Trail' / 'Ozone Falls' = Ozone
+        # Falls State Natural Area): only near the pin, and never when the record's FIRST name says another kind of place
+        # (Washington 'Klickitat Wildlife Area Complex' / 'Klickitat' is not the Klickitat Wild and Scenic River)
+        if loc and close and not kinds(loc) and not (kp and kinds(nm) and not (kp & kinds(nm))) and name_ok(name, loc, kp, set()):
+            return 'name (second name field)'
     if isinstance(a.get('OBJECTID'), int) and not kinds(nm) and exact_name(name, nm) and name_ok(name, nm, kp, set()):
         # Oct 18 review: a bare PAD-US name ('Fort Fetterman', 'Trail End') whose only 'kind' came from its designation code,
         # and the whole name matches: the designation code is often off, so the name decides

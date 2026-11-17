@@ -60,6 +60,11 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           UNIT_CODE), at any distance, with no name test. A unit that two or more POTA parks of the state use (by website or
                           by a name join: park + preserve) is settled by NAME inside the unit: a record goes to the one park whose full name
                           is the record's own name, the other gives it back (to check). A person's NO and hand joins always stand. OFF.
+  KPC_FS_RIVER_NAMES   0  (Handoff 8 fix 2, reviewer A #6) a Forest Service wild and scenic river record is named 'Manistee, Michigan
+                          National Wild and Scenic River' / 'Sturgeon, Michigan (Hiawatha NF) ...': the ', <State>' and the '(<forest> NF)'
+                          are dropped before the name test (a park that names its forest, 'Sturgeon (Hiawatha)', only takes that forest's
+                          record). Also the record's SECOND name field is tested on its own kind words when it has none ('Cumberland
+                          Trail' / 'Ozone Falls' joins Ozone Falls State Natural Area), only near the pin. Study areas are not rivers. OFF.
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -71,7 +76,7 @@ import os, re, unicodedata
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
-            'KPC_NPS_UNIT_CODE': '0'}
+            'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0'}
 
 
 def setting(name, env=None):
@@ -447,3 +452,41 @@ def nps_record_code(rec):
         v = str((rec or {}).get('Loc_Nm') or '').strip()
         if re.fullmatch(r'[A-Z]{4}', v): return v
     return None
+
+
+# ------------------------------------------------------------------ Handoff 8 fix 2: Forest Service wild and scenic river names
+_FSR_STATE = re.compile(r',\s*(?:' + '|'.join(sorted({w.replace('_', ' ') for w in (
+    'Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas '
+    'Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New_Hampshire New_Jersey '
+    'New_Mexico New_York North_Carolina North_Dakota Ohio Oklahoma Oregon Pennsylvania Rhode_Island South_Carolina South_Dakota Tennessee '
+    'Texas Utah Vermont Virginia Washington West_Virginia Wisconsin Wyoming').split()}, key=len, reverse=True)) + r')\b', re.I)
+_FSR_FOREST = re.compile(r'\(([^)]*?)\s*(?:NF|N\.F\.|National Forests?)\s*\)', re.I)
+
+
+def fs_river_record(name, layer=''):
+    """A Forest Service wild and scenic river record (not a study area): its name says Wild and Scenic River and its layer is the
+    Forest Service's (FS river corridors 'fwsr', FS designated areas 'fsod', or a Forest Service layer name)."""
+    n = str(name or '')
+    if not re.search(r'wild\s*(and|&)\s*scenic river', n, re.I) or re.search(r'study area', n, re.I): return False
+    return bool(re.match(r'(fwsr|fsod)\d', str(layer or ''), re.I) or re.search(r'forest service', str(layer or ''), re.I))
+
+
+def fs_river_name(name):
+    """(clean name, forest) for a Forest Service river record: 'Sturgeon, Michigan (Hiawatha NF) National Wild and Scenic River' ->
+    ('Sturgeon National Wild and Scenic River', 'hiawatha'); 'Manistee, Michigan National Wild and Scenic River' -> ('Manistee National
+    Wild and Scenic River', '')."""
+    n = str(name or '')
+    m = _FSR_FOREST.search(n)
+    forest = nf(m.group(1)) if m else ''
+    n = _FSR_FOREST.sub(' ', n)
+    n = _FSR_STATE.sub(' ', n)
+    return ' '.join(n.split()), forest
+
+
+def fs_river_forest_ok(park_name, forest):
+    """A park that names its forest in brackets ('Sturgeon (Hiawatha) National Wild and Scenic River') takes only that forest's
+    record; a record with no forest, or a park with no bracket, is not refused here."""
+    pb = re.findall(r'\(([^)]*)\)', str(park_name or ''))
+    if not pb or not forest: return True
+    fw = set(re.findall(r'\w+', forest))
+    return any(fw & set(re.findall(r'\w+', nf(b))) for b in pb)
