@@ -443,6 +443,15 @@ def cmd_run(a):
         env['KPC_FERS_PRIVATE_OUT'] = str(priv / 'world-out')
         (priv / 'world-out').mkdir(parents=True, exist_ok=True)
     env['KPC_FERS_PARK_S'] = env.get('KPC_FERS_PARK_S') or '600'   # the GitHub job's per-park limit
+    # Owner rulings on Handoff 9 (KPC owner, 2026-11-17 3:49 PM: 'I am good with your answers'); a value already in the shell wins.
+    # Q3 the band at the 25- and 50-yard lines = 5 m (the outlines may be off by up to 5 m, rule R-G6); Q4 a row is never carried
+    # past a key rebuild; Q1 summary-map outlines are approximate; Q2 a national park / refuge beside a national forest is NOT SURE;
+    # Q6 a held park's outline leaves its carried rows (the store's push check knows the stripped row: KPC-Store 72e39c0).
+    # Q5 (fine-only spots + the 100 m rule) waits for the owner.
+    for _k, _v in (('KPC_FERS_NEAR_LINE_M', '5'), ('KPC_FERS_CARRY_MAX', 'key'), ('KPC_FERS_SUMMARY_APPROX', '1'),
+                   ('KPC_FERS_FED_NEIGHBOUR', '1'), ('KPC_FERS_STRIP_HELD', '1')):
+        env.setdefault(_k, _v)
+    say('2-fer settings: ' + ', '.join(f"{_k[9:]}={env[_k]}" for _k in ('KPC_FERS_NEAR_LINE_M', 'KPC_FERS_CARRY_MAX', 'KPC_FERS_SUMMARY_APPROX', 'KPC_FERS_FED_NEIGHBOUR', 'KPC_FERS_STRIP_HELD')))
     # Handoff 9 bug 3 (KPC owner's fix list, 2026-11-17): D10 reads the tripwire not-sure list from kpcdata/data/waiting/... under the
     # bot's working folder (the GitHub layout). Here the bot runs in the KPC-Links checkout and KPC-Data is elsewhere, so D10 was
     # silently off: point the bot at the list in the KPC-Data checkout, and say so loudly when it is not there.
