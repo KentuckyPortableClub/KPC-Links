@@ -97,6 +97,9 @@ finally:
     K.HARD_END = 0; K._arm()
 check(r, "the step's hard end stops the bot (HardStop)")
 _crash = src[src.index("notice('2-fer bot', f'stopped: {e}')"):][:400]   # Nov 9 evening (t926u): finished answers are kept first, then exit 1
-check('sys.exit(3)' in src and 'sys.exit(1)' in _crash and _crash.index('reuse_keep_finished') < _crash.index('sys.exit(1)'), 'a crash exits 1 and the hard end exits 3 (red run, not green)')
+# KPC owner, 2026-11-16 (item 1/2): the exit codes come from run_main() (the store chain runs it once per pass); __main__ exits with it
+_exit1 = 'return (1)' if 'return (1)' in _crash else 'sys.exit(1)'
+check(('sys.exit(3)' in src or ('return (3)' in src and 'sys.exit(run_main())' in src)) and _exit1 in _crash and _crash.index('reuse_keep_finished') < _crash.index(_exit1),
+      'a crash exits 1 and the hard end exits 3 (red run, not green)')
 check('if late(): more = []; lw = []' in src and "add_lines(files, G, today) if not late() else 0" in src, "pass 5's later stages respect the time")
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

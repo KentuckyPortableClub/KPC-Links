@@ -139,6 +139,33 @@
       "scope": "none",
       "scope_note": "No US or Canadian pair changes: the code changes run only for world parks (REGION world). The world areas were never measured before, so they have nothing to re-test; they are new.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
+    },
+    {
+      "id": "2026-11-16-proof-receipts",
+      "when": "2026-11-16",
+      "from": "539fa1720787",
+      "why": "Proof of work, round 1 (handoff of Nov 16, item 1 only). No 2-fer rule changes: which pairs count, their grades, rows and wording are the same. kpc_fers.py: every pass writes a receipt (counts only: parks expected, read, held with reason counts, pairs tested, rules hash, store date, engine version, seconds per stage, a verdict per area); the bot exits 84 when it stops before measuring and 85 when pass 1 read no outline of an area that has official parks (that area keeps its previous file and is never reported as having no 2-fers); an area the store does not hold is 'store missing' and a border area's missing store is counted as 'neighbour store missing: N parks'. kpc_fers_receipt.py check decides done from the receipt (not a rule file).",
+      "scope": "none",
+      "scope_note": "No pair answer or pair fingerprint changes: nothing is re-tested.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
+    },
+    {
+      "id": "2026-11-16-store-three-passes",
+      "when": "2026-11-16",
+      "from": "407f6aa7a708",
+      "why": "Store runs do three passes of work, not four (KPC owner, 2026-11-16). The outline store gives every pass the same outline (about 2 m), so pass 2 (10 m grid, once fed by a fresher agency download) only repeated pass 3's test on a coarser grid. In a store run PASS=2 does nothing (exit 0, a receipt section that says so, no area file changed) and pass 3 takes every pass-1 row on the 5 m grid; a row pass 3 agrees with is marked for pass 2 too and the file keeps its pass2 date. A run that downloads from the agencies (no store) is unchanged. The pass loops of the workflows, the PC runner and the receipt check are unchanged (1, 2, 3, 5).",
+      "scope": "none",
+      "scope_note": "Measured on the same store and key, four passes against three: W-BE 6 = 6 candidates, W-NO 16 = 16, W-AT 53 = 53, W-CH 11 = 11, US-RI 6 = 6 (not sure 3 = 3), US-NY 66 = 66 (not sure 25 = 25); no shown pair lost or gained; US-NY gains 2 trail rows merged into rows already shown. Store areas are re-measured by their next run anyway; no area that does not use the store changes.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
+    },
+    {
+      "id": "2026-11-16-neighbour-files",
+      "when": "2026-11-16",
+      "from": "50d71e9f9cc7",
+      "why": "A run named for some areas writes only those areas' files (KPC owner, 2026-11-16). Pass 1 also holds the neighbours' parks for border pairs and rewrote each neighbour's file as a pass-1 file; passes 2 to 5 take only the run's own areas, so the neighbour's finished rows were reset and never finished again. Measured: W-AT had 57 candidates, 39 merged rows and its pass 2/3/5 dates; after a W-CH run it had 53, 0 and none. With the change W-AT.json is byte for byte the same after the W-CH run. A whole-region run (no STATES) writes every area as before. No rule about what counts changes.",
+      "scope": "none",
+      "scope_note": "No pair answer changes: an area's own run gives the same rows as before. What changes is that another area's run no longer overwrites them.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
     }
   ]
 }

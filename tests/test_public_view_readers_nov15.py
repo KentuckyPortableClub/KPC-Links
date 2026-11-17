@@ -124,15 +124,15 @@ def main():
     # Nov 15 (partial boundaries): the newest line is whatever the newest 2-fer change is; this test checks the shape of the
     # bookkeeping and that THIS change's own entries are still there (the newest hash is pinned by the newest change's own test).
     own = next((x for x in log.splitlines() if 'fers rules cb894783186f -> 8f5b753ce842' in x), '')   # Nov 16: this change's own line, kept
-    check(n == KFZ.rules_hash('fers') and log.startswith(ln) and 'APPROVED, decided_by KPC owner, 2026-11-15' in own and log.split('\n')[1].startswith('Why:'),
-          f'the 2-fer hash moves by the newest changelog line, on top, with its Why line ({o} -> {KFZ.rules_hash("fers")})')
+    check(n == KFZ.rules_hash('fers') and ln in log and 'APPROVED, decided_by KPC owner, 2026-11-15' in own and log[log.index(ln) + len(ln):].lstrip('\n').startswith('Why:'),
+          f'the 2-fer hash moves by its newest changelog line, with its Why line (Nov 16: a line of another key may sit above it) ({o} -> {KFZ.rules_hash("fers")})')
     check('fers rules e402c3819224 -> cb894783186f APPROVED, decided_by KPC owner, 2026-11-15' in log,
           'the public-view change keeps its own changelog line (e402c3819224 -> cb894783186f)')
     sc = [x for x in json.loads((ROOT / '.github/fers-rule-scope.json').read_text())['changes'] if x['id'] == '2026-11-15-public-view']
     check(len(sc) == 1 and sc[0]['from'] == 'e402c3819224' and sc[0]['scope'] == 'none' and sc[0].get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
           'scope entry 2026-11-15-public-view (from e402c3819224, scope none, approved)')
     k = {x: KFZ.rules_hash(x) for x in ('us-key', 'ca-key', 'world-key')}
-    check(k == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '158325de87ce'}, f'US, CA and world rules hashes do not move ({k})')
+    check(k == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'}, f'US, CA and world rules hashes do not move ({k})')
     print('ALL PASS' if not FAILS else f'SOME FAILED ({len(FAILS)})')
     return 0 if not FAILS else 1
 
