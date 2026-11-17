@@ -9,8 +9,9 @@ writes no saved copy: the fetch code, the per-host pacing, the release upload an
   python3 kpc_layer_refresh.py plan --requests FILE --job us|world [--want 'KY TN'] [--known 'AL AK ...'] [--asset-dates FILE]
                                     [--receipt OUT.json] [--summary OUT.md] [--output-key groups|list] [--group 5]
 
-stdout: one line '<output-key>=<json list>' for $GITHUB_OUTPUT (us: groups of --group state codes; world: country codes, CA = all
-of Canada). No request file, an unreadable one, or no row that may be served = an empty list = nothing is fetched.
+stdout: '<output-key>=<json list>' for $GITHUB_OUTPUT (us: groups of --group state codes; world: country codes, CA = all of
+Canada), then 'full=<json list>': the areas that get their one full-detail save (R-LR2 'full'; kpc_layer_full_save.sh).
+No request file, an unreadable one, or no row that may be served = empty lists = nothing is fetched.
 
 The request file (format 1; written by the keeper, read only here):
   {"format": 1, "written": "<UTC time>",
@@ -21,19 +22,24 @@ The request file (format 1; written by the keeper, read only here):
 A layer address is never printed, never written to the receipt and never used to fetch: the cache jobs re-read the whole area
 file they already own (US-XX.json.gz, W-XX.json.gz, CA-ALL.json.gz). Only area codes and counts reach a log.
 
-The owner's four open rulings are knobs (repo variables, all UNSET when this was built; nothing here picks a default).
-Unset = the safe behaviour: nothing extra is fetched.
-  KPC_LR_STALE_DAYS    R-LR1  a whole number of days, or 'never'. Set to N: an area of this job whose saved copy on the release
-                              is older than N days is re-read even with no request (an ETag that never moves). Unset / 'never':
-                              no staleness re-read.
-  KPC_LR_DYING         R-LR2  'saved' | 'full'. A row marked dying (dying: true, or moved holds 'gone' / 'retiring'):
-                              'saved' = served like any other row (the ~110 m saved copy is the permanent record);
-                              'full'  = held and listed as needing one full-detail save first (that save is not built here).
+The owner ruled the four questions on 17 Nov 2026. Both cache workflows pass the rulings as the knobs' DEFAULTS
+(`${{ vars.X || '<ruling>' }}`): KPC_LR_STALE_DAYS=180, KPC_LR_DYING=full, KPC_LR_CHANGED_READ=whole, KPC_LR_WHO=keeper+hand.
+A repo variable still overrides each one. The wire stays OFF: by-hand button only, 'from_requests' unticked by default.
+This script itself has no defaults: a knob that reaches it empty counts as unset (the safe behaviour, nothing extra fetched).
+  KPC_LR_STALE_DAYS    R-LR1  live default 180. A whole number of days N: an area of this job whose saved copy on the release
+                              is older than N days is re-read even with no request (an ETag that never moves). 'never' or
+                              unset: no staleness re-read.
+  KPC_LR_DYING         R-LR2  live default 'full'. A row marked dying (dying: true, or moved holds 'gone' / 'retiring'):
+                              'full'  = the area gets ONE full-detail save (~1 m, kpc_layer_full_save.sh) as the separate
+                                        release asset full-<area>.json.gz, uploaded once and never replaced; the ~110 m copy is
+                                        left as it is. An area that already has its full save, or when the release asset list
+                                        could not be read, is held.
+                              'saved' = served like any other row (the ~110 m saved copy is the permanent record).
                               Unset: held (our last copy is never touched).
-  KPC_LR_CHANGED_READ  R-LR3  'whole' | 'records'. 'whole' = a changed layer's area is re-read whole by the old bot;
+  KPC_LR_CHANGED_READ  R-LR3  live default 'whole' = a changed layer's area is re-read whole by the old bot;
                               'records' = held: a re-read of only the changed record ids needs a key-script change (rules hash).
                               Unset: every changed-layer row is held.
-  KPC_LR_WHO           R-LR4  'keeper' | 'keeper+hand'. Whose rows may be served: only the keeper's own walk, or also a row added by
+  KPC_LR_WHO           R-LR4  live default 'keeper+hand'. Whose rows may be served: only the keeper's own walk ('keeper'), or also a row added by
                               hand (by: chat / report / hand / owner). Unset: only the keeper's rows (a hand row is held).
 A knob with any other value counts as unset (and says so).
 """
@@ -103,13 +109,14 @@ def plan(doc, state, job, want=(), known=(), asset_dates=None, env=None, today=N
     today = today or datetime.datetime.now(datetime.timezone.utc).date()
     rows = _rows(doc, 'requests')
     rc = {'job': job, 'file': state, 'requests_read': len(rows), 'for_this_job': 0, 'served': 0, 'held': {}, 'refused': {},
-          'fetch': [], 'stale': [], 'unknown_layers': {}, 'unknown_areas': [], 'unchanged_areas': [],
+          'fetch': [], 'full_save': [], 'stale': [], 'unknown_layers': {}, 'unknown_areas': [], 'unchanged_areas': [],
           'knobs': {r: (k[v] or 'unset') for r, v in KNOBS.items()}, 'notes': notes}
     if state == 'unreadable': rc['notes'].append('the request file could not be read (bad JSON or not format 1): nothing is fetched')
 
     def hold(why): rc['held'][why] = rc['held'].get(why, 0) + 1
     def refuse(why): rc['refused'][why] = rc['refused'].get(why, 0) + 1
-    fetch, asked = set(), set()
+    fetch, asked, full = set(), set(), set()
+    names = set(asset_dates) if isinstance(asset_dates, dict) else None   # the release's asset names (None = the list was not read)
     for r in rows:
         moved = r.get('moved')
         moved = [str(m).strip().lower() for m in (moved if isinstance(moved, list) else [moved]) if str(m or '').strip()]
@@ -132,7 +139,11 @@ def plan(doc, state, job, want=(), known=(), asset_dates=None, env=None, today=N
             else: refuse('row not in the request format'); continue
         if r.get('dying') is True or set(moved) & DYING_WORDS:
             if k['KPC_LR_DYING'] == 'saved': pass
-            elif k['KPC_LR_DYING'] == 'full': hold('R-LR2 (dying layer): needs one full-detail save first (not built in this wire)'); continue
+            elif k['KPC_LR_DYING'] == 'full':
+                fn = f'full-{save_stem(u, job)}.json.gz'
+                if names is None: hold('R-LR2 (dying layer): the release asset list was not read, so a full-detail save already made cannot be ruled out'); continue
+                if fn in names: hold('R-LR2 (dying layer): its one full-detail save is already on the release; our copies are left as they are'); continue
+                full.add(u); continue
             else: hold('R-LR2 (dying layer): waits for the ruling; our last copy is left as it is'); continue
         if k['KPC_LR_CHANGED_READ'] == 'whole': pass
         elif k['KPC_LR_CHANGED_READ'] == 'records': hold('R-LR3 (changed layer): a records-only re-read is not built (it needs a key-script change)'); continue
@@ -163,7 +174,14 @@ def plan(doc, state, job, want=(), known=(), asset_dates=None, env=None, today=N
     rc['unknown_areas'] = sorted(universe - seen) if state == 'found' else sorted(universe)
     rc['unchanged_areas'] = sorted(a for a in walked if a not in unwalked and a not in asked) if state == 'found' else []
     rc['fetch'] = sorted(fetch)
+    rc['full_save'] = sorted(full)
     return rc
+
+
+def save_stem(u, job):
+    """The release file stem of a save unit: 'TN' -> US-TN (us job), 'JP' -> W-JP, 'CA' -> CA-ALL (world job)."""
+    if job == 'us': return f'US-{u}'
+    return 'CA-ALL' if u == 'CA' else f'W-{u}'
 
 
 def summary_md(rc):
@@ -172,6 +190,7 @@ def summary_md(rc):
          f"- request file: **{rc['file']}**; rows read: **{rc['requests_read']}** (for this job: {rc['for_this_job']})",
          f"- served: **{rc['served']}**; held: **{held}**; refused: **{ref}**",
          f"- areas to re-read: **{len(rc['fetch'])}** ({' '.join(rc['fetch']) or 'none: nothing is fetched'})"]
+    if rc['full_save']: L.append(f"- R-LR2 one full-detail save before the layer goes away: {' '.join(save_stem(u, rc['job']) for u in rc['full_save'])}")
     if rc['stale']: L.append(f"- R-LR1 stale copies re-read: {' '.join(rc['stale'])}")
     for why, n in sorted(rc['held'].items()): L.append(f'- held {n}: {why}')
     for why, n in sorted(rc['refused'].items()): L.append(f'- refused {n}: {why}')
@@ -208,6 +227,8 @@ def main(argv=None):
         out = [c for c in rc['fetch'] if c != 'CA'] + (['CA'] if 'CA' in rc['fetch'] else [])   # CA stays last, as in the full list
         key = a.output_key or 'list'
     print(f'{key}=' + json.dumps(out))
+    full = rc['full_save'] if a.job == 'us' else [c for c in rc['full_save'] if c != 'CA'] + (['CA'] if 'CA' in rc['full_save'] else [])
+    print('full=' + json.dumps(full))
     return 0
 
 

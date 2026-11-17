@@ -15,9 +15,12 @@ the two monthly jobs are ever switched back on.
   box on their by-hand button; ticked, they re-read only those areas with their own fetch, pacing, `save-check` and upload. No
   request file, an unreadable one, or no row that may be served = nothing is fetched. No schedule block.
 - Keeper side (KPC-Store): a change file, `docs/layer-refresh-keeper-change.md`, for the owner to apply. Not applied.
-- The four rulings are repo variables, all UNSET: `KPC_LR_STALE_DAYS` (R-LR1), `KPC_LR_DYING` (R-LR2), `KPC_LR_CHANGED_READ`
-  (R-LR3), `KPC_LR_WHO` (R-LR4). Unset = nothing extra; with R-LR3 unset every changed-layer row is held, so the wire serves
-  nothing until the owner rules. What each value does: the top of `kpc_layer_refresh.py`.
+- The four rulings (ruled 17 Nov) are the knobs' live defaults in both cache workflows; a repo variable still overrides each:
+  `KPC_LR_STALE_DAYS` = 180 (R-LR1: a layer whose ETag never moves is re-read after 180 days), `KPC_LR_DYING` = full (R-LR2: a
+  layer that looks like it is going away gets one full-detail save, `full-<area>.json.gz`, before it dies), `KPC_LR_CHANGED_READ`
+  = whole (R-LR3: a changed layer is re-read whole), `KPC_LR_WHO` = keeper+hand (R-LR4: the keeper's walk or a chat / report may
+  add a row). Still built OFF: by-hand button only, `from_requests` unticked by default. What each value does: the top of
+  `kpc_layer_refresh.py`; the full-detail save: `.github/scripts/kpc_layer_full_save.sh`.
 - The save unit is the area file (US-XX, W-XX, CA-ALL): a request for one layer re-reads its whole area once. A re-read of only
   the requested layer inside an area needs a change to the key scripts (rules hash) and is not built.
 
