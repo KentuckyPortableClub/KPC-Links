@@ -173,6 +173,13 @@
    "from": "1e29847a4f20",
    "why": "Reviewer B #7 (owner 17 Nov: stick to Fable's plan; step 0): the rule switches are read from .github/key-switches.json per state (an environment variable still wins), the file is a US rule file sliced per state in the area hash (a state with no switch on gets no part), and a key rules / switch file that cannot load stops the build instead of turning every rule off. Every switch is OFF in the file: no result changes.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-contest",
+   "when": "2026-11-17",
+   "from": "d720bf16f745",
+   "why": "THE CONTEST (matching plan section 1, Fable; owner YES 17 Nov 12:25 PM), behind KPC_ONE_RECORD_ONE_PARK with D9 (OFF): a record joined by name to two or more parks goes to the park it fits best (full name, then the record's own type words incl. short forms SP / SF / WA / WMA / SB / SHP / SRA / SNA / DNP / NWR / NF, then the layer's kind, then place words); a record naming both kinds stays on both; a tie or a bare name leaves every park for a person; and exact name wins: a record whose full name is another park of the state goes back from the park that took it. Hand joins and B12 parts are never moved. Offline proof OH / WI / MD / NE: 37 / 1 / 11 / 15 parks change, none becomes a pin (two same-name POTA numbers keep a shared record); the bare-name records sent to a person are Ohio's basemap copies ('CAESAR CREEK'), the parks keep their division layers' records.",
+   "scope": "none"
   }
  ]
 }

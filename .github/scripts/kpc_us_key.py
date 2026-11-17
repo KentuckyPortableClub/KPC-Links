@@ -2745,6 +2745,51 @@ def run(st):
                     _p['c'] = [list(q[:3]) + [f'check (D9): this record is {_w}\'s own (its full name); one record, one park unless a person says same land'] for q in _q] + (_p.get('c') or [])
                     _d9.append(_r)
             if _d9: notice(f'US key {st}', f"D9 one record one park: {len(_d9)} park(s) gave a shared record back to the park it names: {', '.join(_d9[:10])}")
+            # THE CONTEST (matching plan section 1; Fable 17 Nov, owner YES 12:25 PM; same switch as D9). (a) A record still joined by name
+            # to two or more parks goes to the park it fits best (KR.contest: full name, then the record's own type words incl. SP / SF /
+            # WA ..., then place words); a record naming both kinds stays on both; a tie or a bare name leaves EVERY park and goes to a
+            # person (a park left with nothing is a pin). (b) Exact name wins (owner YES): a record whose full name is ANOTHER park of
+            # this state goes back from the park that took it. Hand joins and B12 parts are never moved.
+            _pk = {x[0]: set(x[4] or ()) for x in XS if len(x) > 4}
+            def _lk(_id):
+                _m = re.match(r'[a-z]+', _id)
+                if _m: return _pk.get(_m.group(0), set())
+                _a = gs_.get(_id) or {}
+                _d = DES.get(str(_a.get('Des_Tp') or '').upper())
+                return {_d} if _d else set()
+            _won, _person, _exact = [], [], []
+            for _id, _rs in _by.items():
+                _rs = [r for r in _rs if any(str(q[0]) == _id for q in parks[r].get('m') or []) and _id not in (parks[r].get('parts') or {})]
+                if len(_rs) < 2: continue
+                _qn = next(q[1] for q in parks[_rs[0]]['m'] if str(q[0]) == _id)
+                _v, _x = KR.contest(_qn, {r: (parks[r].get('n') or '', parks[r].get('t') or '') for r in _rs}, norm, _lk(_id))
+                if _v == 'both': continue
+                for _r in _rs:
+                    if _v == 'win' and _r == _x: continue
+                    _p = parks[_r]; _q = [q for q in _p['m'] if str(q[0]) == _id]
+                    _p['m'] = [q for q in _p['m'] if str(q[0]) != _id]
+                    if not _p['m']: _p['g'] = 'pin'
+                    _why = (f'check (contest): this record fits {_x} better (its own type words)' if _v == 'win'
+                            else f"check (contest): shared with {', '.join(r for r in _rs if r != _r)}; {_x}: a person decides")
+                    _p['c'] = [list(q[:3]) + [_why] for q in _q] + (_p.get('c') or [])
+                    (_won if _v == 'win' else _person).append(_r)
+            _full_of = {}
+            for _r, _p in parks.items(): _full_of.setdefault(KR._full(_p.get('n') or ''), []).append(_r)
+            for _r, _p in parks.items():
+                _gone = []
+                for _q in _p.get('m') or []:
+                    if str(_q[3] if len(_q) > 3 else '').split(' · ')[0] not in ('name', 'words', 'name (designation code ignored)'): continue
+                    if str(_q[0]) in (_p.get('parts') or {}): continue
+                    _o = [x for x in _full_of.get(KR._full(_q[1]), []) if x != _r]
+                    if len(_o) == 1 and KR._full(_p.get('n') or '') != KR._full(_q[1]): _gone.append((_q, _o[0]))
+                if _gone:
+                    _p['m'] = [q for q in _p['m'] if all(q is not g for g, _ in _gone)]
+                    if not _p['m']: _p['g'] = 'pin'
+                    _p['c'] = [list(q[:3]) + [f'check (exact name): this record carries the full name of {o}'] for q, o in _gone] + (_p.get('c') or [])
+                    _exact.append(_r)
+            if _won or _person or _exact:
+                notice(f'US key {st}', f"contest: {len(_won)} park(s) gave a record to the park it fits better, {len(_person)} sent one to a person, "
+                       f"{len(_exact)} gave back a record carrying another park's exact name: {', '.join((_won + _person + _exact)[:10])}")
     except Exception as _e: notice(f'US key {st}', f'one-record-two-parks pass skipped: {_e}')  # noqa: BLE001
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
