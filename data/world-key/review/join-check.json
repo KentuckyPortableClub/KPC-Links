@@ -1,11 +1,11 @@
 {
  "key": "world",
  "mode": "hold",
- "files_checked": 2,
- "joined_parks": 3715,
- "suspect": 36,
- "held": 31,
- "files_changed": 1,
+ "files_checked": 52,
+ "joined_parks": 18959,
+ "suspect": 40,
+ "held": 8,
+ "files_changed": 7,
  "official_acres_known": 0,
  "acres_check": "acres check off: no acres file",
  "approved_parks_known": 13514,
@@ -138,8 +138,41 @@
    "name": "Ghöggerhütte Wetland Reserve",
    "outline_ac": "",
    "official_ac": "",
-   "pin_km": 77.97,
+   "pin_km": 77.96,
    "suspect": "the nearest joined record is 78.0 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "ES-0058",
+   "area": "ES",
+   "name": "Sierra de Santo Domingo Nature and Landscape Complex",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 17.4,
+   "suspect": "the nearest joined record is 17.4 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "ES-0737",
+   "area": "ES",
+   "name": "Puertos de Beceite Natura 2000",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 19.92,
+   "suspect": "the nearest joined record is 19.9 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "FI-1582",
+   "area": "FI",
+   "name": "Kiiminkijoki Natura 2000",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 17.09,
+   "suspect": "the nearest joined record is 17.1 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
@@ -380,7 +413,7 @@
    "name": "de Voorde Historic Site",
    "outline_ac": "",
    "official_ac": "",
-   "pin_km": 18.73,
+   "pin_km": 18.74,
    "suspect": "the nearest joined record is 18.7 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
@@ -393,6 +426,17 @@
    "official_ac": "",
    "pin_km": 33.44,
    "suspect": "the nearest joined record is 33.4 km from the POTA pin (over 15 km)",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
+   "park": "SE-1662",
+   "area": "SE",
+   "name": "Kvikkjokk – Västerfjäll/Piteälven (del av Kungsleden) State Trail",
+   "outline_ac": "",
+   "official_ac": "",
+   "pin_km": 22.2,
+   "suspect": "the nearest joined record is 22.2 km from the POTA pin (over 15 km) (not held: trail / linear feature (nearest part of the line measured))",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
@@ -420,15 +464,11 @@
   }
  ],
  "kept_from_main": [
-  "AT",
   "AU",
-  "BZ",
-  "CH",
   "FR",
-  "GB",
   "JP",
+  "MT",
   "NI",
-  "NL",
   "NZ",
   "ZA"
  ]

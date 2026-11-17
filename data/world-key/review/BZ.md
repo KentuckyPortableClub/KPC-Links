@@ -1,6 +1,6 @@
 # BZ: POTA parks vs official land
 
-Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Protected_Areas_Belize_2015, PA_updated_2024. **55 of 69** joined (same name + same kind), **12** to check, **2** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Protected_Areas_Belize_2015, PA_updated_2024. **54 of 69** joined (same name + same kind), **13** to check, **2** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -10,6 +10,7 @@ Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.jso
 - **BZ-0025** Spanish Creek Wildlife Area (Wildlife Area) → Crooked Tree (Protected_Areas_Belize_2015, the POTA pin is inside it (different name)); Crooked Tree (PA_updated_2024, the POTA pin is inside it (different name))
 - **BZ-0027** Swallow Caye Marine Reserve (Marine Reserve) → Outside Protection (Protected_Areas_Belize_2015, the POTA pin is inside it (different name))
 - **BZ-0040** Fresh Water Creek Forest Reserve (Forest Reserve) → Peccary Hills (PA_updated_2024, the POTA pin is inside it (different name))
+- **BZ-0051** Bird Caye Bird Sanctuary (Bird Sanctuary) → Laughing Bird Caye (Protected_Areas_Belize_2015, kept as pin: this record is on the park's NO list (data/world-key/overrides.json)); Laughing Bird Caye (PA_updated_2024, kept as pin: this record is on the park's NO list (data/world-key/overrides.json))
 - **BZ-0052** Doubloon Caye Bird Sanctuary (Bird Sanctuary) → Outside Protection (Protected_Areas_Belize_2015, the POTA pin is inside it (different name))
 - **BZ-0054** Santa Rita Archeological Reserve (Archeological Reserve) → Santa Rita (Protected_Areas_Belize_2015, similar name); Santa Rita (PA_updated_2024, similar name); Outside Protection (Protected_Areas_Belize_2015, the POTA pin is inside it (different name))
 - **BZ-0064** Lubaantun Archeological Reserve (Archeological Reserve) → Lubaantun (Protected_Areas_Belize_2015, similar name); Outside Protection (Protected_Areas_Belize_2015, the POTA pin is inside it (different name))

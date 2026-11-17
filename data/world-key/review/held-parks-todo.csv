@@ -1,1 +1,9 @@
 ref,name,kind,area,reason,pin_km,outline_ids,todo_kind,source,run_id,date,rules_version
+AT-0029,Kaunergrat Nature Reserve,world,AT,held: the nearest part of the joined outline is 57.5 km from the POTA pin (over 15 km),57.53,48,join_held,kpc_join_check,44085508762,2026-11-17,
+BZ-0034,Sibun Forest Reserve,world,BZ,held: the nearest part of the joined outline is 22.5 km from the POTA pin (over 15 km),22.46,339;36,join_held,kpc_join_check,44085508762,2026-11-17,
+CH-0225,Unteres Ghögg Wetland Reserve,world,CH,held: the nearest part of the joined outline is 80.2 km from the POTA pin (over 15 km),80.22,bundesinventare-auen:8,join_held,kpc_join_check,44085508762,2026-11-17,
+CH-0226,Ghöggerhütte Wetland Reserve,world,CH,held: the nearest part of the joined outline is 78.0 km from the POTA pin (over 15 km),77.96,bundesinventare-auen:9,join_held,kpc_join_check,44085508762,2026-11-17,
+ES-0058,Sierra de Santo Domingo Nature and Landscape Complex,world,ES,held: the nearest part of the joined outline is 17.4 km from the POTA pin (over 15 km),17.4,71295,join_held,kpc_join_check,44085508762,2026-11-17,
+ES-0737,Puertos de Beceite Natura 2000,world,ES,held: the nearest part of the joined outline is 19.9 km from the POTA pin (over 15 km),19.92,8746,join_held,kpc_join_check,44085508762,2026-11-17,
+FI-1582,Kiiminkijoki Natura 2000,world,FI,held: the nearest part of the joined outline is 17.1 km from the POTA pin (over 15 km),17.09,11503,join_held,kpc_join_check,44085508762,2026-11-17,
+NL-0204,de Voorde Historic Site,world,NL,held: the nearest part of the joined outline is 18.7 km from the POTA pin (over 15 km),18.74,124231,join_held,kpc_join_check,44085508762,2026-11-17,
