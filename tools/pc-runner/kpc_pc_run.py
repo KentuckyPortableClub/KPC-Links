@@ -632,6 +632,26 @@ def cmd_summary(a):
         (push / 'data' / 'fers').mkdir(parents=True)
         r = git(['status', '--porcelain', '-uall', '--', 'data'], kd, quiet=True)
         changed = [ln[3:].strip().strip('"') for ln in (r.stdout or '').splitlines() if ln.strip()]
+        # KPC owner, 2026-11-17 (ledger 59): only the areas THIS run finished go into the push. A file of another area was left in
+        # the checkout by an earlier run (or copied in by hand); its withheld lists are not this run's, so it can never be cleared
+        # and must not ride along. Files of no single area (waiting-room notes, status) still go and are checked against everything.
+        left_out = []
+        if not run.get('world'):
+            try:
+                sys.path.insert(0, str(keeper)); import fers_push_check as _FPC
+                _done = set(run.get('done') or []); _dtags = {_FPC.tag_of(x) for x in _done}
+                def _ours(rel):
+                    m = _FPC.FILE_AREA_RX.fullmatch(rel)
+                    if m: return m.group(1) in _done
+                    m = _FPC.FILE_TAG_RX.fullmatch(rel)
+                    return (m.group(1) in _dtags) if m else True
+                left_out = [x for x in changed if not _ours(x)]
+                changed = [x for x in changed if _ours(x)]
+            except Exception as e:   # noqa: BLE001  an older pinned keeper: everything is checked, as before
+                L += [f'(could not sort files by area: {type(e).__name__}; every waiting file is checked)', '']
+        if left_out:
+            L += [f'LEFT OUT OF THE PUSH: {len(left_out)} file(s) of areas this run did not finish (an earlier run left them):'] + \
+                 [f'   {x}' for x in sorted(left_out)[:20]] + (['   ...'] if len(left_out) > 20 else []) + ['']
         for rel in changed:
             src = kd / rel
             if src.is_file():
@@ -639,7 +659,9 @@ def cmd_summary(a):
         L += [f'FILES THIS RUN WOULD PUSH TO KPC-DATA: {len(changed)} (copied to {push})'] + \
              [f'   {x}' for x in sorted(changed)[:40]] + (['   ...'] if len(changed) > 40 else []) + ['']
         # ---- the push check, on the staged change (nothing is committed and nothing is pushed)
-        git(['add', '-A', '--', 'data'], kd, quiet=True)
+        if changed:   # stage exactly the files of this run (a file left out stays unstaged, so the check never sees it)
+            subprocess.run(['git', 'add', '-A', '--pathspec-from-file=-', '--pathspec-file-nul'], cwd=str(kd),
+                           input='\0'.join(changed).encode('utf-8'), capture_output=True)
         _ar = sorted({m.group(1) for x in changed for m in [re.search(r'data/fers/(?:stamps/)?((?:US|CA)-[A-Z]{2})\.json', x)] if m})
         _tg = sorted({a.lower().replace('us-', '').replace('-', '') for a in _ar})   # = fers_run_plan.tag_of
         areas = ' '.join(run.get('areas') or []) if not run.get('world') else ' '.join(_ar)

@@ -202,6 +202,15 @@
       "scope": "none",
       "scope_note": "No pair answer changes and nothing re-runs: there is no list on KPC-Data yet and no 2-fer run is going (owner, 17 Nov: ground level first), and with no list hold_tripwire() holds nothing and adds no count line. Once the tripwire bot publishes a list, the next ordinary run of an area holds that area's listed parks' rows; no area is rebuilt for it.",
       "approved": "WAITING FOR THE KPC OWNER'S APPROVAL"
+    },
+    {
+      "id": "2026-11-17-final-redact",
+      "when": "2026-11-17",
+      "from": "1fa86247be54",
+      "why": "Leak fix (ledger 59, push check on the owner's PC): on a PUBLIC store run a park is held when the bot reaches it, but side files (looked-, missing-, reuse-, report-) were written earlier against the smaller withheld set, so they named parks the run later held and the push check refused them. At exit every public file the process wrote is redacted again (refs and names) against the final set, through the same write guard; carried rows are kept. No pair answer changes: only what a public file may name.",
+      "scope": "none",
+      "scope_note": "No 2-fer is decided differently; public files only lose mentions of parks the run withheld. 2-fers are parked (owner, 17 Nov): nothing re-runs for it.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-17 (owner: do whatever the ground work needs)"
     }
   ]
 }

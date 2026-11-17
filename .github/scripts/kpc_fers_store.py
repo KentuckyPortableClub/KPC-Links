@@ -1220,6 +1220,63 @@ def redact(doc, refs=None):
     return walk(doc), n[0]
 
 
+PUBLIC_WRITTEN = {}   # path -> (writer, args, kwargs) of every PUBLIC file this process wrote (final_redact reads them again)
+
+
+def redact_names(doc, names, mask):
+    """redact() for NAMES: a list item that carries a secret name is left out; a text value that carries one becomes '[withheld]';
+    a dict key that carries one is left out. -> (doc, items left out). Same name test as the write guard (name_hits)."""
+    if not names or not name_hits(doc, names, mask): return doc, 0
+    n = [0]
+    def walk(o):
+        if isinstance(o, dict):
+            out = {}
+            for k, v in o.items():
+                if isinstance(k, str) and name_hits({k: None}, names, mask): n[0] += 1; continue
+                if isinstance(v, str) and name_hits({k: v}, names, mask): out[k] = '[withheld]'; n[0] += 1; continue
+                out[k] = walk(v)
+            return out
+        if isinstance(o, (list, tuple)):
+            keep = []
+            for v in o:
+                if name_hits(v if isinstance(v, (dict, list, tuple)) else [v], names, mask): n[0] += 1; continue
+                keep.append(walk(v))
+            return keep
+        return o
+    return walk(doc), n[0]
+
+
+def final_redact():
+    """KPC owner, 2026-11-17 (ledger 59, push check on the owner's PC): the withheld set GROWS while a process runs (a park is held
+    when the bot reaches it), but a side file (looked-, missing-, reuse-, report-) is written earlier, against the smaller set, and the
+    push check reads the set as it is at the END. So at exit every public file this process wrote is read again and redacted
+    (refs and names) against the final set, exactly as the write step does; a file that changes is written again through the write
+    guard. Carried rows (carry_held_rows) are kept as the write step keeps them. Runs before fers_bot_run.py dumps the list."""
+    if PRIVATE_OUT is not None or not PUBLIC_WRITTEN: return 0
+    refs = withheld_refs()
+    names, mask = secret_names(refs) if refs else (set(), set())
+    if not refs: return 0
+    fixed = 0
+    for p, (raw, a, k) in sorted(PUBLIC_WRITTEN.items()):
+        try: d = json.loads(pathlib.Path(p).read_text(encoding='utf-8'))
+        except (OSError, ValueError): continue   # not there (an unchanged file is not rewritten) or not JSON: nothing of ours to fix
+        m = AREA_FILE.fullmatch(pathlib.Path(p).name)
+        carried = []
+        if m and isinstance(d, dict) and CARRIED_JSON.get(m.group(1)) and isinstance(d.get('spots'), list):
+            allow = CARRIED_JSON[m.group(1)]
+            carried = [x for x in d['spots'] if isinstance(x, dict) and x.get('store_held') == HELD_TAG and _canon(x) in allow]
+            if carried: d = dict(d, spots=[x for x in d['spots'] if not (isinstance(x, dict) and _canon(x) in {_canon(c) for c in carried})])
+        d2, n1 = redact(d, refs)
+        d2, n2 = redact_names(d2, names, mask)
+        if not (n1 + n2): continue
+        WITHHELD['items'] += n1 + n2
+        guard_write(p, d2)
+        if carried: d2 = dict(d2, spots=list(d2.get('spots') or []) + carried)
+        raw(p, d2, *a, **k); fixed += 1
+    if fixed: public_print(f'::notice title=2-fer outline store::{fixed} public file(s) redacted again at exit (parks held later in the run)')
+    return fixed
+
+
 def guard_write(path, doc, private=None, names=None):
     """THE WRITE STEP of a store run: every file kpc_fers.py saves (spot files, reuse, report, looked, missing, same-outline ...)
     and the store-missing list pass here first. Raises LeakRefused (the run fails, nothing is written) when the file
@@ -1342,6 +1399,7 @@ def shut_door(KF):
             guard_write(p, d)
             if carried: d = dict(d, spots=list(d.get('spots') or []) + carried)
             out = raw(p, d, *a, **k)
+            if PRIVATE_OUT is None: PUBLIC_WRITTEN[str(p)] = (raw, a, k)   # checked again at exit (final_redact): the set grows
             ks = sys.modules.get('kpc_save')   # its exit-time status file (data/status/<bot>.json) must not list private files
             if PRIVATE_OUT is not None and ks is not None and isinstance(getattr(ks, '_changed', None), dict): ks._changed.pop(str(pathlib.Path(p)), None); ks._changed.pop(str(p), None)
             return out
@@ -2055,6 +2113,10 @@ def install(KF, env=None, store=None):
     def rows_at_exit():
         try: write_rows()
         except LeakRefused: sys.stdout.flush(); sys.stderr.flush(); os._exit(EXIT_LEAK)   # at exit too: the run fails, nothing written
+    def final_at_exit():
+        try: final_redact()
+        except LeakRefused: sys.stdout.flush(); sys.stderr.flush(); os._exit(EXIT_LEAK)   # the run fails, the push check refuses
+    atexit.register(final_at_exit)   # registered BEFORE rows_at_exit, so it runs AFTER it (last of the store's exit steps)
     atexit.register(rows_at_exit)   # written on every run, so an old list never outlives a filled gap
     globals()['WRITE_ROWS'] = write_rows   # KPC owner, 2026-11-16 (item 2): the one-process chain writes it after every pass
     public_print(f"::notice title=2-fer outline store::{SWITCH}=on ({st.kind} store, {len(areas)} area(s)); no boundary downloads; memory gate "
