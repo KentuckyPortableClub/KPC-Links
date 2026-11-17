@@ -2645,6 +2645,25 @@ def run(st):
                 _p['c'] = [list(q[:3]) + [f'record also joined to {", ".join(_fit)} whose kind it names'] for q in _q] + (_p.get('c') or [])
                 _moved.append(_r)
         if _moved: notice(f'US key {st}', f"{len(_moved)} parks gave back a record joined to another park of the kind it names: {', '.join(_moved[:10])}")
+        # D9 (KPC owner, 2026-11-17, switch KPC_ONE_RECORD_ONE_PARK): one record, one park. A record still joined by name to two or more
+        # parks goes to the ONE park whose full name is the record's own name; the others give it back to check. A park given only
+        # its own parts of the record (rule B12) and hand joins are never moved; no single winner = left for the tripwire list.
+        if _kr('KPC_ONE_RECORD_ONE_PARK'):
+            _d9 = []
+            for _id, _rs in _by.items():
+                _rs = [r for r in _rs if any(str(q[0]) == _id for q in parks[r].get('m') or []) and _id not in (parks[r].get('parts') or {})]
+                if len(_rs) < 2: continue
+                _qn = next(q[1] for q in parks[_rs[0]]['m'] if str(q[0]) == _id)
+                _w = KR.d9_winner(_qn, {r: parks[r].get('n') or '' for r in _rs})
+                if not _w: continue
+                for _r in _rs:
+                    if _r == _w: continue
+                    _p = parks[_r]; _q = [q for q in _p['m'] if str(q[0]) == _id]
+                    _p['m'] = [q for q in _p['m'] if str(q[0]) != _id]
+                    if not _p['m']: _p['g'] = 'pin'   # owner rule, 2026-11-10: no joined record left = a pin
+                    _p['c'] = [list(q[:3]) + [f'check (D9): this record is {_w}\'s own (its full name); one record, one park unless a person says same land'] for q in _q] + (_p.get('c') or [])
+                    _d9.append(_r)
+            if _d9: notice(f'US key {st}', f"D9 one record one park: {len(_d9)} park(s) gave a shared record back to the park it names: {', '.join(_d9[:10])}")
     except Exception as _e: notice(f'US key {st}', f'one-record-two-parks pass skipped: {_e}')  # noqa: BLE001
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
