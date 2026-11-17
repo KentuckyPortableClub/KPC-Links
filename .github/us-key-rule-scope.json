@@ -145,6 +145,13 @@
    "from": "2f1fd12234eb",
    "why": "D4 rewritten (owner, 17 Nov 2026 9:17 AM, after the research in d4-research.md: the first D4 decided by the park's KIND and was wrong both ways). Now WHO OWNS THE WATER decides: a lake surface joined by name stays only when the park has land of its own and the lake sits inside that land (kpc_key_rules.lake_inside_land: inside the land's box, no bigger than the land; over 3 times the land never), or the park has no land record and its own type says it is the water (state fishing lake, reservoir). Everything else goes to CHECK for a person (a park on the Corps', Reclamation's or a utility's lake never takes it). Still behind KPC_LAKE_ONLY_IF_LAKE (OFF) = no result changes.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-d4-lake-type-keeps",
+   "when": "2026-11-17",
+   "from": "cb719b523ae0",
+   "why": "D4 precheck (offline AR / ID / WA build, switches on): a park whose own TYPE is the water (a state fishing lake, a reservoir area) keeps its lake even when it also has a small land record (Liberty Lake, Chambers Lake, Lake Desire State Fishing Lakes in WA had been sent to CHECK). Other parks unchanged: lake inside their land, else CHECK. Switch KPC_LAKE_ONLY_IF_LAKE still OFF.",
+   "scope": "none"
   }
  ]
 }

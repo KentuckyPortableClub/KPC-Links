@@ -46,10 +46,9 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
   KPC_NO_LEASE_BY_NAME 0  (KPC owner, 2026-11-17, ruling D5) a record whose name says leased / lease / agreement / cooperative area is
                           the easement family: never joined by name alone, it goes to check; a person may say yes for one park.
   KPC_LAKE_ONLY_IF_LAKE 0 (KPC owner, 2026-11-17, ruling D4, rewritten 9:17 AM after the research: WHO OWNS THE WATER decides, not
-                          the park's kind). A lake surface joined by name stays only when (a) the park has land of its own and the
-                          lake sits inside that land (a small lake the park surrounds, or the agency's own outline already holds
-                          it), or (b) the park has no land record and its own TYPE says it is the water (a state fishing lake, a
-                          reservoir). Otherwise it goes to CHECK (a person decides who owns the water; a park on someone else's lake,
+                          the park's kind). A lake surface joined by name stays only when (a) the park's own TYPE says it is the
+                          water (a state fishing lake, a reservoir), or (b) the park has land of its own and the lake sits inside
+                          that land (a small lake the park surrounds, or the agency's own outline already holds it). Otherwise it goes to CHECK (a person decides who owns the water; a park on someone else's lake,
                           the Corps', Reclamation's or a utility's, never takes it). A lake over 3 times the park's land never joins
                           by name. OFF until the owner says ON (park-scoped run).
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one

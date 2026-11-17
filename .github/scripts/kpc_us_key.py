@@ -2386,11 +2386,11 @@ def run(st):
                 p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check (D5): a leased / agreement record is never joined by name alone'] for x in _ls]
                 LEASE_HELD.extend(f'{ref} ({x[0]})' for x in _ls)
         # D4 (KPC owner, 2026-11-17 9:17 AM, switch KPC_LAKE_ONLY_IF_LAKE): WHO OWNS THE WATER decides. A lake surface joined by name
-        # stays when the park has land and the lake sits inside it (kpc_key_rules.lake_inside_land), or the park has no land and its
-        # own TYPE says it is the water; else CHECK (a person decides; a park on someone else's lake never takes it)
+        # stays when the park's own TYPE says it is the water (fishing lake, reservoir), or the park has land and the lake sits inside
+        # it (kpc_key_rules.lake_inside_land); else CHECK (a person decides; a park on someone else's lake never takes it)
         if _kr('KPC_LAKE_ONLY_IF_LAKE'):
             _wt = [x for x in m if 'water outline only' in str(x[3]) and name_only(x[3])]
-            if _wt:
+            if _wt and not LAKE_TYPE_RX.search(str(p.get('t') or '')):   # a park whose own TYPE is the water (fishing lake, reservoir) keeps it
                 _land = [x for x in m if 'water outline only' not in str(x[3])]
                 _go = []
                 if _land:
@@ -2399,7 +2399,7 @@ def run(st):
                     for x in _wt:
                         ok_, why_ = KR.lake_inside_land((gs_.get(str(x[0])) or {}).get('_bb'), float(x[2] or 0), _lbb, _lac, DETAIL)
                         if not ok_: _go.append((x, why_))
-                elif not LAKE_TYPE_RX.search(str(p.get('t') or '')):
+                else:
                     _go = [(x, 'only a lake surface matched and the park is not a lake-type park (the shore may be leased on another owner\'s lake)') for x in _wt]
                 if _go:
                     _gx = [x for x, _ in _go]
@@ -2497,7 +2497,7 @@ def run(st):
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
     if EASEMENT_HELD: notice(f'US key {st}', f"conservation easement records not joined by name alone (item 5): {len(EASEMENT_HELD)} piece(s) moved to CHECK: {', '.join(EASEMENT_HELD[:10])}")
     if LEASE_HELD: notice(f'US key {st}', f"D5 leased / agreement records not joined by name alone: {len(LEASE_HELD)} piece(s) to CHECK: {', '.join(LEASE_HELD[:10])}")
-    if LAKE_HELD: notice(f'US key {st}', f"D4 lake surfaces not added to a park with land of its own: {len(LAKE_HELD)} piece(s) to CHECK: {', '.join(LAKE_HELD[:10])}")
+    if LAKE_HELD: notice(f'US key {st}', f"D4 lake surfaces sent to CHECK (who owns the water decides): {len(LAKE_HELD)} piece(s): {', '.join(LAKE_HELD[:10])}")
     if held_g: notice(f'US key {st}', f"rule G-1: {len(held_g)} parks had similar-name pieces held (not drawn): {', '.join(held_g[:12])}")
     if pin_wrong: notice(f'US key {st}', f"{len(pin_wrong)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(pin_wrong[:12])}")
     # Oct 29 (chat 10: Virginia's Dragon Run = PAD-US 9,563 + the state layer 9,562 + more copies of the SAME tracts; anything that
