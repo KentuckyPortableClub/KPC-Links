@@ -287,7 +287,9 @@ KPC_MERGE_PY
 }
 for p in "$@"; do git add -A -- "$p" 2>/dev/null; done   # Nov 1 (chat 10): one path at a time: ONE missing path (data/intake/found-layers-stage2.json) made git add nothing at all, so the world finder saved nothing since Oct 30
 # B7 (Oct 30): file names are read NUL-separated, so a path with a space is one path, not two
-mapfile -d '' CH < <(git diff --cached --name-only -z --diff-filter=AMR); mapfile -d '' DEL < <(git diff --cached --name-only -z --diff-filter=D)
+# Nov 17: --no-renames. A release deletes the held copy (data/waiting/in/<path>) and adds data/waiting/previous/<path>; when the two
+# are alike git called that a rename, so DEL was empty and the held copy stayed on main (tests/test_save_release_delete_nov17.py)
+mapfile -d '' CH < <(git diff --cached --no-renames --name-only -z --diff-filter=AM); mapfile -d '' DEL < <(git diff --cached --no-renames --name-only -z --diff-filter=D)
 [ ${#CH[@]} -eq 0 ] && [ ${#DEL[@]} -eq 0 ] && { echo "nothing changed"; exit 0; }
 T=$(mktemp -d)
 for f in "${CH[@]}"; do mkdir -p "$T/$(dirname "$f")" && cp -a "$f" "$T/$f"; done
