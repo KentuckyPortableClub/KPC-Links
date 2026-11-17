@@ -1954,6 +1954,31 @@ def run(st):
             notice(f'US key {st}', f'{len(_old)} older PAD-US copies of the same place from the same provider left out (KPC_PADUS_DEDUPE)')
         elif not any(a.get('Agg_Src') for a in recs if isinstance(a.get('OBJECTID'), int)):
             notice(f'US key {st}', 'KPC_PADUS_DEDUPE is on but the saved copy has no Agg_Src: run GEO_CACHE_MODE=refresh once')
+    D1_CHECK = {}
+    if _kr('KPC_SAVED_ID_LAND'):
+        # D1 on a person's own rows (KPC owner, 2026-11-17): a 'join' or 'no' id whose record now holds other land (another name,
+        # or acres more than 10% off) moves to the same name + acres in the SAME layer near the pin; a join that is not found
+        # again stays and goes to check, a NO that is not found again stays (a person looks). Gone ids keep the Oct 27 re-find below.
+        _by = {_oid(a): a for a in recs}
+        _moved = []
+        for ref in sorted(P):
+            ov_ = OVR.get(ref)
+            if not ov_ or not (ov_.get('fp') or ov_.get('nofp')): continue
+            r_ = P[ref]; la_, lo_ = (r_[5], r_[6]) if len(r_) > 6 else (None, None)
+            if la_ is None and ref in pins(): la_, lo_ = pins()[ref]
+            def _rf(old, nm, ac, la_=la_, lo_=lo_):
+                fam = re.match(r'\D*', old).group()
+                return [a for a in recs if re.match(r'\D*', _oid(a)).group() == fam and _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(nm)
+                        and (la_ is None or near(la_, lo_, a['_bb'], .6))]
+            nov, notes = KR.saved_land_moves(ov_, _by, _rf)
+            if not notes: continue
+            OVR[ref] = nov
+            _moved += [(ref,) + n for n in notes]
+            D1_CHECK[ref] = [[n[1], n[3], n[4], 'check (D1): a person joined this record id, and it now holds other land (another name or acres); not found again in the same layer, the join stays until a person answers']
+                             for n in notes if n[0] == 'join check']
+        if _moved:
+            notice(f'US key {st}', 'D1 a person\'s rows = the land: ' + ', '.join(f"{k} {sum(1 for x in _moved if x[1] == k)}" for k in ('join moved', 'join check', 'no moved', 'no kept') if any(x[1] == k for x in _moved))
+                   + ' (' + '; '.join(f'{x[0]} {x[1]} {x[2]}->{x[3]}' for x in _moved[:12]) + ')')
     parks, used = {}, set()
     RD.clear()
     clusters = name_clusters(recs)
@@ -2233,6 +2258,8 @@ def run(st):
             for p_ in parks.values(): used.update(x[0] for x in p_.get('m') or [])
             _nh = [h for h in NPS_CODE_HIT if h[0] == st]
             notice(f'US key {st}', f"NPS unit codes: {sum(1 for h in _nh if h[4] == 'joined')} record(s) joined by the park's nps.gov code, {sum(1 for h in _nh if h[4] != 'joined')} given back inside a shared unit: " + ', '.join(f'{h[1]} {h[3]}' for h in _nh[:12]))
+    for ref, rows_ in D1_CHECK.items():
+        if ref in parks and rows_: parks[ref]['c'] = list(parks[ref].get('c') or []) + [x for x in rows_ if not any(str(y[0]) == str(x[0]) for y in parks[ref].get('c') or [])]
     for r_ in DBG & set(parks): dbg(r_, 'B after the park loop', {k: parks[r_].get(k) for k in ('m', 'c', 'far', 'a')})
     rb = {_oid(a): a['_bb'] for a in recs if a.get('_bb')}
     # Fable Oct 29: a MULTIPART record (Lost Nation = St. Lawrence + Allegany forests in one record) has a bbox that spans the

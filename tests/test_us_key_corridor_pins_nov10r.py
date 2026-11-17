@@ -24,7 +24,11 @@ FIVE = {'US-8015': ('NH', 'Wildcat National Wild and Scenic River', 'National Wi
         'US-12234': ('PA', 'Allegheny National Wild and Scenic River', 'National Wild & Scenic River', 41.6815, -79.4108),
         'US-12792': ('MI', 'Manistee National Wild and Scenic River', 'National Wild and Scenic River', 44.2672, -86.0154),
         'US-12798': ('MI', 'Sturgeon (Hiawatha) National Wild and Scenic River', 'National Wild and Scenic River', 45.9351, -86.707)}
-for ref in FIVE:
+LIFTED = {'US-10709', 'US-12234', 'US-12792', 'US-12798'}   # owner 17 Nov 2026: the Forest Service record is the park's own river (handoff 8 fix 2)
+for ref in sorted(LIFTED):
+    o = OVR.get(ref) or {}
+    check(f"{ref}: the Oct 22 NO is lifted by the owner on 17 Nov (no 'no', no 'none')", not o.get('no') and not o.get('none') and o.get('decided_by') == 'KPC owner, Nov 17 2026')
+for ref in sorted(set(FIVE) - LIFTED):
     o = OVR.get(ref) or {}
     check(f"{ref}: overrides row keeps 'none', has a 'no' on fwsr record(s), decided_by the owner ({o.get('no')})",
           o.get('none') is True and o.get('no') and all(str(x).startswith('fwsr') for x in o['no']) and o.get('decided_by') == 'KPC owner, Nov 9 2026'
@@ -69,7 +73,8 @@ def build(states, P, rows, recs):
 
 
 P, recs, rows = {}, {}, {}
-for ref, (st, name, typ, la, lo) in FIVE.items():
+HELD = {k: v for k, v in FIVE.items() if k not in LIFTED}   # the parks still held by a 'no' (US-8015)
+for ref, (st, name, typ, la, lo) in HELD.items():
     P[ref] = (st, [name, '', typ, '', '', la, lo, 0, 0, 0])
     rows[ref] = OVR[ref]
     for i, oid in enumerate(OVR[ref].get('no') or []):   # the corridor record(s) the published key joined (name + acres saved in 'nofp'), around the pin
@@ -82,7 +87,7 @@ recs['NH'].append(rec('sgnhx1', 'Example Pond State Park', 300, 43.5, -71.5, .01
 
 r, parks = build(sorted({v[0] for v in P.values()}), P, rows, recs)
 if not parks: print(r.stdout[-3000:], r.stderr[-3000:])
-for ref in FIVE:
+for ref in HELD:
     p = parks.get(ref) or {}
     check(f"{ref}: built with no joined record and grade pin (m={p.get('m')}, g={p.get('g')})", ref in parks and not p.get('m') and p.get('g') == 'pin')
 p = parks.get('US-99001') or {}
@@ -91,8 +96,8 @@ check(f"a 'none' park with an official exact-name join KEEPS it (m={p.get('m')},
 
 # the same build without the 'no' rows: the corridor records DO join (so the 'no' is what makes them pins)
 r2, parks2 = build(sorted({v[0] for v in P.values()}), P, {k: {kk: vv for kk, vv in v.items() if kk != 'no'} for k, v in rows.items()}, recs)
-check(f"control: without 'no' the corridor joins ({sum(1 for k in FIVE if (parks2.get(k) or {}).get('m'))} of 5 joined)",
-      all((parks2.get(k) or {}).get('m') for k in FIVE))
+check(f"control: without 'no' the corridor joins ({sum(1 for k in HELD if (parks2.get(k) or {}).get('m'))} of {len(HELD)} joined)",
+      all((parks2.get(k) or {}).get('m') for k in HELD))
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

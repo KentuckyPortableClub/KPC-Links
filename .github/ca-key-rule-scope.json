@@ -71,6 +71,13 @@
     ]
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-13"
+  },
+  {
+   "id": "2026-11-17-h8-fixes",
+   "when": "2026-11-17",
+   "from": "ba480fa34fb6",
+   "why": "Handoff 8 part 2 (Canada fixes 5-6: a park marked none takes no name join; a saved hand-join id keeps its land by CPCAD ZONE_ID). Both switches OFF: no result changes.",
+   "scope": "none"
   }
  ]
 }

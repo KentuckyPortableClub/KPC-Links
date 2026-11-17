@@ -38,6 +38,10 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           layer, the same name + acres is looked for in the SAME layer near the pin and the new id is kept;
                           if that fails, the old row is not carried, this run's own match stands, and the record goes to
                           check. OFF until the owner says ON (it changes outlines; count first, one state).
+                          The same switch covers a person's own rows in overrides.json (17 Nov, HQ): a 'join' id with a saved
+                          'fp' whose record now holds other land moves to the same name + acres in the same layer, or goes to
+                          check (the join stays until a person answers); a 'no' id with a saved 'nofp' moves the same way (the NO is the land), and stays where it is
+                          when the land is not found again (a person looks).
   KPC_ONE_RECORD_ONE_PARK 0  (KPC owner, 2026-11-17, ruling D9: one record, one park) a record joined by name to two or more parks
                           of the same kind stays with the ONE park whose full name is the record's own name; the others give it
                           back and it goes to check (a person may say it is the same land under two numbers). No single
@@ -462,6 +466,43 @@ def saved_row_ok(row, rec):
     sa, ra = (row[2] if len(row) > 2 else 0) or 0, rec.get('GIS_Acres') or 0
     if not sa or not ra: return True
     return abs(ra - sa) <= max(20, 0.10 * sa)
+
+
+def saved_land_moves(ov, by_id, refind):
+    """D1 on a person's own rows (KPC owner, 2026-11-17: 'a saved id = the land; a NO likewise'). ov = one park's overrides;
+    by_id = {record id: record} of this read; refind(old_id, name, acres) -> records of the SAME layer near the pin with that
+    name + acres (the caller filters). Returns (new_ov, notes); new_ov is a copy, ov is not touched; notes are
+    (kind, old id, new id or None, saved name, saved acres) with kind 'join moved' / 'join check' / 'no moved' / 'no kept'.
+    Either of the record's names (Unit_Nm or Loc_Nm) may carry the saved name.
+    A row is only looked at when its record IS in this read and no longer fits; a gone id keeps today's re-find path."""
+    ov = dict(ov or {})
+    notes = []
+    fp, nofp = dict(ov.get('fp') or {}), dict(ov.get('nofp') or {})
+    join, no = list(ov.get('join') or []), list(ov.get('no') or [])
+    for k, saved, rows in (('join', fp, join), ('no', nofp, no)):
+        for old in list(rows):
+            sv = saved.get(str(old))
+            rec = by_id.get(str(old))
+            if not sv or not sv[0] or rec is None: continue
+            row = [old, sv[0], sv[1] if len(sv) > 1 else 0]
+            if saved_row_ok(row, rec) or saved_row_ok(row, {'Unit_Nm': rec.get('Loc_Nm'), 'GIS_Acres': rec.get('GIS_Acres')}): continue
+            hits = [a for a in refind(str(old), sv[0], row[2]) if str(a.get('OBJECTID')) != str(old) and saved_row_ok(row, a)]
+            if k == 'join' and hits and any(is_no(ov, a.get('OBJECTID'), a.get('Unit_Nm') or a.get('Loc_Nm'), a.get('GIS_Acres'), by_name=True) for a in hits[:1]):
+                hits = []
+            if len(hits) == 1:
+                new = str(hits[0].get('OBJECTID'))
+                rows[rows.index(old)] = hits[0].get('OBJECTID')
+                saved[new] = saved.pop(str(old))
+                notes.append((k + ' moved', str(old), new, sv[0], row[2]))
+            elif k == 'join':   # not found again: the person's join STAYS (never worse) and the record goes to check
+                notes.append(('join check', str(old), None, sv[0], row[2]))
+            else:
+                notes.append(('no kept', str(old), None, sv[0], row[2]))
+    if fp or 'fp' in ov: ov['fp'] = fp
+    if nofp or 'nofp' in ov: ov['nofp'] = nofp
+    if 'join' in ov or join: ov['join'] = join
+    if 'no' in ov or no: ov['no'] = no
+    return ov, notes
 
 
 def _full(t):

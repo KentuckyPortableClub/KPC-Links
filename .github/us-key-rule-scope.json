@@ -180,6 +180,13 @@
    "from": "d720bf16f745",
    "why": "THE CONTEST (matching plan section 1, Fable; owner YES 17 Nov 12:25 PM), behind KPC_ONE_RECORD_ONE_PARK with D9 (OFF): a record joined by name to two or more parks goes to the park it fits best (full name, then the record's own type words incl. short forms SP / SF / WA / WMA / SB / SHP / SRA / SNA / DNP / NWR / NF, then the layer's kind, then place words); a record naming both kinds stays on both; a tie or a bare name leaves every park for a person; and exact name wins: a record whose full name is another park of the state goes back from the park that took it. Hand joins and B12 parts are never moved. Offline proof OH / WI / MD / NE: 37 / 1 / 11 / 15 parks change, none becomes a pin (two same-name POTA numbers keep a shared record); the bare-name records sent to a person are Ohio's basemap copies ('CAESAR CREEK'), the parks keep their division layers' records.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-h8-fixes",
+   "when": "2026-11-17",
+   "from": "10e192233218",
+   "why": "Handoff 8 part 2 (US fixes 1-4: Park Service unit codes, Forest Service river names + second name, R-G8 other kinds of place, measured acres) + D1 on a person's own rows in overrides.json (KPC_SAVED_ID_LAND: a join or NO whose record now holds other land moves to the same name + acres in the same layer; a join not found again stays and goes to check). Every switch OFF: no result changes.",
+   "scope": "none"
   }
  ]
 }
