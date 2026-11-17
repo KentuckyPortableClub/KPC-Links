@@ -494,8 +494,9 @@ def t_hash():
           and sc.get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
           '8. scope entry 2026-11-15-partial-view (from cb894783186f, scope none, approved)')
     others = {k: KFZ.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')}
-    check(others == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'},
-          f'8. US, CA and world rules hashes do not move ({others})')
+    # KPC owner, 2026-11-16 (handoff item 6): its pinned value OR the newest declared changelog hash (a later change moves it in its own line)
+    check(all(others[x] in ({'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'}[x], PF.newest_hash(x)) for x in others),
+          f'8. US, CA and world rules hashes do not move, or moved only by a later declared line ({others})')
 
 
 def main():

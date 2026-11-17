@@ -132,7 +132,9 @@ def main():
     check(len(sc) == 1 and sc[0]['from'] == 'e402c3819224' and sc[0]['scope'] == 'none' and sc[0].get('approved') == 'APPROVED, decided_by KPC owner, 2026-11-15',
           'scope entry 2026-11-15-public-view (from e402c3819224, scope none, approved)')
     k = {x: KFZ.rules_hash(x) for x in ('us-key', 'ca-key', 'world-key')}
-    check(k == {'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'}, f'US, CA and world rules hashes do not move ({k})')
+    # KPC owner, 2026-11-16 (handoff item 6): a hash this change did not move is its pinned value OR the newest declared changelog hash
+    # (a later change may move it in its own declared line); not 'unchanged for ever'
+    check(all(k[_x] in ({'us-key': 'd4ebfafce438', 'ca-key': 'ba480fa34fb6', 'world-key': '24cd942eca01'}[_x], __import__('kpc_preflight').newest_hash(_x)) for _x in k), f'US, CA and world rules hashes do not move, or moved only by a later declared line ({k})')
     print('ALL PASS' if not FAILS else f'SOME FAILED ({len(FAILS)})')
     return 0 if not FAILS else 1
 
