@@ -7,8 +7,8 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "1d28603fd907788414f08fa8a855cd4167478c74af56129ea402a8a009bfc540",
-  "overrides-parks-02.json": "7d15e424a7fd2bc84f7d9108fda5af0db309b01e1ce1fdc0298220ac9d54b474"
+  "overrides-parks-01.json": "fbf20636d5621ed7d3898b88e44527cd47d64d1ecbfa4f6093fcbfbb69e17785",
+  "overrides-parks-02.json": "b344655ec60908164f72ea9bd54d4e555d56c3353c72511cc7ff8a306de1cba2"
  },
  "parks": {
   "US-0043": {
@@ -509,19 +509,6 @@
    ],
    "when": "2026-10-29",
    "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Bear Run Nature Reserve' and the POTA pin is inside it; joins only with the pin inside · 2026-10-29 23:15: gis-hunter row NO 'Bear Run Nature Reserve' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Bear Run Nature Reserve' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
-  },
-  "US-0643": {
-   "no": [
-    "3310"
-   ],
-   "nofp": {
-    "3310": [
-     "Noatak National Preserve",
-     6542342.0
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on 3310 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-0652": {
    "join": [
@@ -2385,19 +2372,6 @@
    "when": "2026-11-02",
    "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 57031.9 ac) · Nov 2 map audit: chat 11 NO on fsod87 (NO (chat 11, Nov 2): PIN. record is Mount St. Helens, pin 249 km away)"
   },
-  "US-4404": {
-   "no": [
-    "2703"
-   ],
-   "nofp": {
-    "2703": [
-     "Pike National Forest",
-     1096883.9
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on 2703 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
-  },
   "US-4438": {
    "no": [
     "sgnve6"
@@ -2526,32 +2500,6 @@
    },
    "when": "2026-11-02",
    "why": "Oct 29 9:30 PM: the park's own website name 'Bartram Forest' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it · 2026-11-02 12:49: gis-hunter row YES 'BARTRAM FOREST WMA' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row YES 'BARTRAM FOREST WMA' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Bartram Forest Wildlife Management Area' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
-  },
-  "US-4868": {
-   "no": [
-    "56939"
-   ],
-   "nofp": {
-    "56939": [
-     "Annett State Forest",
-     1769.9
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on 56939 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
-  },
-  "US-4886": {
-   "no": [
-    "56956"
-   ],
-   "nofp": {
-    "56956": [
-     "Connecticut Lakes State Forest",
-     2001.4
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on 56956 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-4923": {
    "no": [
@@ -4015,19 +3963,6 @@
    "when": "2026-11-02",
    "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: YES Agency CA; Agency Access stays out · 2026-11-02 12:49: key-pieces row NO 'Agency Access' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 12:49: key-pieces row NO 'Agency Access' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Agency CA' (chat 11; applied by kpc_key_answers)"
   },
-  "US-7879": {
-   "no": [
-    "sgflg58"
-   ],
-   "nofp": {
-    "sgflg58": [
-     "Citrus Wildlife Management Area",
-     48107.1
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on sgflg58 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)"
-  },
   "US-7884": {
    "no": [
     "fsod167"
@@ -5067,19 +5002,6 @@
    },
    "when": "2026-11-02",
    "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on 201050 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
-  },
-  "US-10180": {
-   "no": [
-    "201064"
-   ],
-   "nofp": {
-    "201064": [
-     "Fourteen Mile Creek Nature Preserve",
-     829.7
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on 201064 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-10211": {
    "no": [

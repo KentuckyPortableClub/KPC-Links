@@ -851,6 +851,21 @@
    "when": "2026-11-02",
    "why": "Oct 18 review: same place, official name written differently · 2026-11-02 12:49: layers row YES 'Natchez Trace Parkway' (chat 11 (Oct 31); applied by kpc_key_answers)"
   },
+  "US-0643": {
+   "when": "2026-11-02",
+   "why": "Nov 2 map audit: chat 11 NO on 3310 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "released_no": [
+    "3310"
+   ],
+   "released_nofp": {
+    "3310": [
+     "Noatak National Preserve",
+     6542342.0
+    ]
+   },
+   "released_when": "2026-11-17",
+   "released_why": "D6 (owner 17 Nov): old NO re-opened once under the later rulings (D2/D3); a person decides again; full record KPC-Data tools-out d6/held-nos-2026-11-17.csv"
+  },
   "US-0646": {
    "join": [
     "Buffalo National River"
@@ -25986,6 +26001,21 @@
    "when": "2026-11-02",
    "why": "2026-11-02 13:05: layers row YES 'Uinta-Wasatch-Cache National Forest' (chat 11; applied by kpc_key_answers)"
   },
+  "US-4404": {
+   "when": "2026-11-02",
+   "why": "Nov 2 map audit: chat 11 NO on 2703 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "released_no": [
+    "2703"
+   ],
+   "released_nofp": {
+    "2703": [
+     "Pike National Forest",
+     1096883.9
+    ]
+   },
+   "released_when": "2026-11-17",
+   "released_why": "D6 (owner 17 Nov): old NO re-opened once under the later rulings (D2/D3); a person decides again; full record KPC-Data tools-out d6/held-nos-2026-11-17.csv"
+  },
   "US-4419": {
    "alias": [
     "I.D. FairChild State Forest"
@@ -27611,6 +27641,36 @@
    ],
    "when": "2026-10-22",
    "why": "same place, another name (hand review Oct 22 (waiting list))"
+  },
+  "US-4868": {
+   "when": "2026-11-02",
+   "why": "Nov 2 map audit: chat 11 NO on 56939 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "released_no": [
+    "56939"
+   ],
+   "released_nofp": {
+    "56939": [
+     "Annett State Forest",
+     1769.9
+    ]
+   },
+   "released_when": "2026-11-17",
+   "released_why": "D6 (owner 17 Nov): old NO re-opened once under the later rulings (D2/D3); a person decides again; full record KPC-Data tools-out d6/held-nos-2026-11-17.csv"
+  },
+  "US-4886": {
+   "when": "2026-11-02",
+   "why": "Nov 2 map audit: chat 11 NO on 56956 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "released_no": [
+    "56956"
+   ],
+   "released_nofp": {
+    "56956": [
+     "Connecticut Lakes State Forest",
+     2001.4
+    ]
+   },
+   "released_when": "2026-11-17",
+   "released_why": "D6 (owner 17 Nov): old NO re-opened once under the later rulings (D2/D3); a person decides again; full record KPC-Data tools-out d6/held-nos-2026-11-17.csv"
   },
   "US-4894": {
    "decided_by": "Brandon (KZ4CP), Nov 7 2026 4:54 PM CST",

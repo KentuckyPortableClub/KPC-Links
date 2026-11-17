@@ -5623,6 +5623,21 @@
    "when": "2026-10-18",
    "why": "Oct 18 review: same place, official name written differently"
   },
+  "US-7879": {
+   "when": "2026-11-02",
+   "why": "Nov 2 map audit: chat 11 NO on sgflg58 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)",
+   "released_no": [
+    "sgflg58"
+   ],
+   "released_nofp": {
+    "sgflg58": [
+     "Citrus Wildlife Management Area",
+     48107.1
+    ]
+   },
+   "released_when": "2026-11-17",
+   "released_why": "D6 (owner 17 Nov): old NO re-opened once under the later rulings (D2/D3); a person decides again; full record KPC-Data tools-out d6/held-nos-2026-11-17.csv"
+  },
   "US-7880": {
    "join": [
     "Luper Mountain"
@@ -14460,6 +14475,21 @@
    ],
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Milltown' (chat 11; applied by kpc_key_answers)"
+  },
+  "US-10180": {
+   "when": "2026-11-02",
+   "why": "Nov 2 map audit: chat 11 NO on 201064 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)",
+   "released_no": [
+    "201064"
+   ],
+   "released_nofp": {
+    "201064": [
+     "Fourteen Mile Creek Nature Preserve",
+     829.7
+    ]
+   },
+   "released_when": "2026-11-17",
+   "released_why": "D6 (owner 17 Nov): old NO re-opened once under the later rulings (D2/D3); a person decides again; full record KPC-Data tools-out d6/held-nos-2026-11-17.csv"
   },
   "US-10190": {
    "join": [
