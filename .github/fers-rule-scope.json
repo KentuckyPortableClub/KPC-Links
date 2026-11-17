@@ -251,6 +251,15 @@
       },
       "scope_note": "The pairs of leased-land parks lose the note.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:29 AM"
+    },
+    {
+      "id": "2026-11-17-owner-source-count",
+      "when": "2026-11-17",
+      "from": "1429008f7106",
+      "why": "HQ 2-fer review #6 (owner said go, 17 Nov 11:37 AM): each decided row records where its parks' owners came from (owner_from: record / name / none) and the run report counts the SHOWN rows that rest on an owner guessed from a park NAME. Information only: no verdict changes.",
+      "scope": "none",
+      "scope_note": "No pair answer changes; rows get the new field when they are next decided.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:37 AM"
     }
   ]
 }

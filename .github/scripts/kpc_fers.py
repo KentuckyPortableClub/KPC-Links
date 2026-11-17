@@ -1839,9 +1839,15 @@ def park_owner(ref, parks):
         fee, des = OWN.get(ref, (set(), False))
         o = (sorted(fee)[0] if len(fee) == 1 else '?') if fee else ('' if des else '?')
     if o == 'UNK': o = '?'   # PAD-US 'unknown' owner = not known
+    OWNER_SRC[ref] = 'record' if o not in ('', '?') else ''
     if o in ('', '?'):   # Nov 9 (KISS): the park's own name / its records' names say the agency
-        o = owner_from_name((PINS.get(ref) or [''])[0], *((p.get('names') or {}).values())) or o
+        o2 = owner_from_name((PINS.get(ref) or [''])[0], *((p.get('names') or {}).values()))
+        if o2: OWNER_SRC[ref] = 'name'
+        o = o2 or o
     return o
+
+
+OWNER_SRC = {}   # HQ review #6 (KPC owner, 2026-11-17 11:37 AM): where each park's owner came from: 'record' | 'name' ('' = none)
 
 
 OWN_CA = {}
@@ -1855,6 +1861,7 @@ def ownership_step(s, parks, PIN):
     piece is not sure, the public rest counts. Owners are INFO ('ground'), never the verdict. ('ok' | 'drop' | 'not sure', why)."""
     refs = s['refs']
     owners = {r: park_owner(r, parks) for r in refs}
+    s['owner_from'] = sorted({OWNER_SRC.get(r) or 'none' for r in refs if (parks.get(r) or {}).get('ids')})   # review #6: counted in the report
     # Brandon Oct 27 5:21 AM (rule 14 + boundary B-G2): a park on private land (lease / agreement) counts only for its own number
     # KPC owner, 2026-11-17 11:22 AM (Q4, his words: 'We are not here to correct pota ... if it is a pota park we treat it as one ...
     # and overlap boundaries matter'): a POTA park on leased / agreement land is that park's land; its overlaps count like any
@@ -3740,7 +3747,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         s['members_line'] = 'saved outline, not read live today'   # chat 8 KY note 4
     notes = sorted({n for r in refs for n in ACC.get(r, ())} | {"check the agency's closures and seasons before you go"})   # pre-flight fix 14
     s['notes'] = notes
-    for k in ('list', 'ownership', 'ground', 'private_part', 'unknown_part', 'corps_land', 'owner_src', 'info', 'known', 'mixed_owners'): s.pop(k, None)
+    for k in ('list', 'ownership', 'ground', 'private_part', 'unknown_part', 'corps_land', 'owner_src', 'info', 'known', 'mixed_owners', 'owner_from'): s.pop(k, None)
     pk = tuple(sorted(refs))
     if pk in KNOWN_LIVE:   # Brandon Oct 28 8:35 PM: a permanent known answer (he activates it in person): the whole overlap, live
         s['known'] = KNOWN_LIVE[pk]; s['ownership'] = 'known answer: ' + KNOWN_LIVE[pk]
@@ -4820,7 +4827,10 @@ def main():
         if sp: per[f.stem] = {'spots': len(sp), 'pass1': len(sp), 'pass2': sum(1 for s in sp if s['passes'][1]), 'candidates': sum(1 for s in sp if s['status'] == 'candidate'), 'candidates (saved outline only)': sum(1 for s in sp if s['status'] == 'candidate (saved outline only)'),
                               'n-fers': sum(1 for s in sp if len(s['refs']) > 2), 'lines': sum(1 for s in sp if s['kind'] != 'area'),
                               'very tight': sum(1 for s in sp if str(s.get('status', '')).startswith('very tight')), 'not sure': sum(1 for s in sp if str(s.get('status', '')).startswith('not sure')),
-                              'water only': sum(1 for s in sp if str(s.get('status', '')).startswith('water only'))}
+                              'water only': sum(1 for s in sp if str(s.get('status', '')).startswith('water only')),
+                              # HQ review #6 (KPC owner, 2026-11-17): how many SHOWN rows rest on an owner guessed from a park NAME
+                              'shown, owner from a name': sum(1 for s in sp if _shown(s) and 'name' in (s.get('owner_from') or [])),
+                              'shown, owner from records only': sum(1 for s in sp if _shown(s) and s.get('owner_from') and 'name' not in s['owner_from'] and 'none' not in s['owner_from'])}
     rep.pop('not shown', None)   # ALWAYS, not only when this run suppressed something: rep is loaded from the file on disk, so a
                                  # run with nothing to suppress must still strip a list an older run left there (re-grade R1)
     rep['about'] = 'Counts from the 2-fer bot (kpc_fers.py). Hidden: data only.'

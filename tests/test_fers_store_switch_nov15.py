@@ -203,7 +203,12 @@ def files_of(t):
 
 
 def report_wo_hash(b):
-    d = json.loads(b); d.pop('fers_rules', None); return json.dumps(d, sort_keys=True)
+    d = json.loads(b); d.pop('fers_rules', None)
+    def _strip(o):   # HQ review #6 (2026-11-17): the report's two owner-source counts are new; the rows themselves are compared as before
+        if isinstance(o, dict): return {k: _strip(x) for k, x in o.items() if k not in ('shown, owner from a name', 'shown, owner from records only')}
+        if isinstance(o, list): return [_strip(x) for x in o]
+        return o
+    return json.dumps(_strip(d), sort_keys=True)
 
 
 OLD_RI = {'st': 'US-RI', 'pass3': '2026-11-01', 'spots': [
