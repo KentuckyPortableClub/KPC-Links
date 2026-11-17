@@ -52,7 +52,9 @@ RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_k
                        '.github/scripts/kpc_fers_preline.py',  # Nov 8 Quality should-fix: preline HOLDs non-ready areas (affects which pairs count)
                        '.github/fers-ready-areas.json',
                        # Nov 15 (KPC owner, 2026-11-15; switch-over): the store reader kpc_fers.main() now calls, and its area list
-                       '.github/scripts/kpc_fers_store.py', '.github/fers-store-areas.json']}
+                       '.github/scripts/kpc_fers_store.py', '.github/fers-store-areas.json',
+                       # Nov 16 (KPC owner, 2026-11-16; item 4): the one record lookup the store reads use (kpc_fers_store.store_ids)
+                       '.github/scripts/kpc_record_key.py']}
 # Nov 9 evening (Brandon t915u, 4:40 PM CST; KZ4CP 5:12 PM CST): every rule change DECLARES what it touches, in a scope file that is part
 # of that key's rules hash (so a scope edit moves the hash and is visible). A rules change rebuilds only the declared states; a park
 # with saved record ids keeps its result (kpc_us_key.py); a full rebuild ('states: all' by hand) is for emergencies only.
@@ -128,7 +130,9 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              # never-worse check (an area with fewer joined / official parks than main keeps main's key); neither decides a join
              'kpc_key_offline.py', 'kpc_key_never_worse.py',
              'kpc_ca_store_keep.py', 'kpc_world_store_gaps.py',   # KPC owner, 2026-11-15: Canada + world keys in store mode (decide no join)
-             'kpc_fers_receipt.py'}   # Nov 16 (KPC owner, 2026-11-16; item 1): the 2-fer receipt (counts and seconds per pass) and its done check; decides no pair
+             'kpc_fers_receipt.py',   # Nov 16 (KPC owner, 2026-11-16; item 1): the 2-fer receipt (counts and seconds per pass) and its done check; decides no pair
+             # Nov 16 (KPC owner, 2026-11-16; items 2 and 3): the jump report and the one area driver; neither decides a pair
+             'kpc_fers_jump.py', 'kpc_fers_area_run.py'}
              # Nov 15 (KPC owner, 2026-11-15): kpc_fers_store.py left this list for the 2-fer RULE_FILES (the switch-over hook)
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)

@@ -3765,6 +3765,12 @@ def how_checked(s, parks, PIN):
 
 MARK_T = [time.time()]
 STAGES = RECEIPT.Stages(T0)   # this pass's seconds per stage (the receipt)
+# KPC owner, 2026-11-16 (item 2, OWNER DECISION PENDING): in a store run passes 1, 2 and 3 read the same shapes (about 2 m); only the
+# grid changes (20 m, 10 m, 5 m). A spot a finer grid finds that no row of its pair took ('new here only (not counted)') is LISTED
+# on every store run (fine-only-<tag>-p<pass>.json in the private folder, counts in the receipt). KPC_FERS_FINE_ONLY=count makes
+# such a spot a row of its own (decided by pass 3 like any row, marked 'fine_only'); off (the default) = today, nothing counted.
+FINE_ONLY_SWITCH = 'KPC_FERS_FINE_ONLY'
+FINE_ONLY = []   # this pass's listed spots (no names; refs, kind, place, size)
 EMPTY_AREAS = {}   # area -> why pass 1 measured nothing there (its file is kept; exit 85)
 def mark(what):
     """Oct 28 (pass-5 speed-up): one log line per stage: seconds since the last mark + the process's peak memory so far."""
@@ -3919,6 +3925,55 @@ def water_prefetch():
                                f"{WATER_N['missing']} missing (live down and no saved copy); {n} tiles kept")
 
 
+def fine_only_mode():
+    v = str(os.environ.get(FINE_ONLY_SWITCH) or 'off').strip().lower()
+    return 'count' if v == 'count' and _store_mod() is not None else 'off'   # only where the shapes are the same in every pass
+
+
+def fine_only_spots(d, newk, today, st):
+    """Passes 2-3 of a store run: every new spot no row took, of a pair this file holds, is listed (FINE_ONLY). With the switch
+    on (count) it becomes a row of its own like leftover_spots does (pass 3 decides it). -> rows added (the caller decides them)."""
+    if PASS not in (2, 3) or _store_mod() is None: return []
+    here = {tuple(sorted((s.get('refs') or [])[:2])) for s in d.get('spots', [])}
+    have = {s.get('id') for s in d.get('spots', [])}
+    count, added = fine_only_mode() == 'count', []
+    for k in sorted(newk):
+        for n in newk[k]:
+            if n.get('_used') or n.get('_fine') or tuple(sorted(n['refs'][:2])) not in here: continue
+            n['_fine'] = 1
+            FINE_ONLY.append({'area': st, 'pass': PASS, 'grid_m': CELL, 'refs': list(n['refs']), 'kind': n.get('kind'), 'center': n.get('center'),
+                              **{x: n[x] for x in ('acres', 'wide_m', 'len_m', 'box') if x in n}})
+            if not count: continue
+            g = {x: v for x, v in n.items() if not x.startswith('_')}
+            g['id'] = key_of(g) + '@%.3f,%.3f' % tuple(g['center'])
+            if g['id'] in have: continue
+            n['_used'] = 1
+            g.update({'passes': [1, 1, 0] if PASS == 2 else [1, 1, 1], 'status': f'pass {PASS}', 'found': today, 'fine_only': f'{CELL:g} m grid',
+                      'note': f'found only at the {CELL:g} m grid of pass {PASS} on the same shapes (owner switch {FINE_ONLY_SWITCH}=count)'})
+            d['spots'].append(g); have.add(g['id']); added.append(g)
+    return added
+
+
+def save_fine_only():
+    """The list for the owner: private folder only (a store run's spots may name parks that are withheld in public files)."""
+    KS = _store_mod()
+    if KS is None or PASS not in (2, 3): return None
+    folder = getattr(KS, 'PRIVATE_LOG_DIR', None)
+    if not folder:
+        if FINE_ONLY: notice('2-fer bot', f'pass {PASS}: {len(FINE_ONLY)} spot(s) found only at the {CELL:g} m grid; no private folder, so the list was not written (counts in the receipt)')
+        return None
+    if _in_git_tree(pathlib.Path(folder).resolve()):   # never inside a git work tree (the same lock as save_not_shown)
+        notice('2-fer bot', f'pass {PASS}: the private folder is inside a git work tree; the 5 m-only list was not written (counts in the receipt)')
+        return None
+    f = pathlib.Path(folder) / f'fine-only-{RUN_TAG or area_name()}-p{PASS}.json'
+    try:
+        f.write_text(json.dumps({'about': f'Spots found only at the {CELL:g} m grid of pass {PASS} (the same store shapes as the passes before). '
+                                          f'Owner decision pending: counted only with {FINE_ONLY_SWITCH}=count (this run: {fine_only_mode()}).',
+                                 'mode': fine_only_mode(), 'spots': FINE_ONLY}, indent=1, ensure_ascii=False), encoding='utf-8')
+    except OSError: return None
+    return f
+
+
 def own_areas():
     """The run's own areas (STATES; Kentucky's run = US-KY)."""
     if REGION == 'ky': return {'US-KY'}
@@ -3984,7 +4039,8 @@ def write_receipt(counts, parks, G, bad, rules, refs=None, stopped='', note=''):
                'pairs tested': int(counts.get('pairs tested') or 0), 'rules_hash': rules, 'engine': RECEIPT.engine_version(),
                'seconds per stage': STAGES.table(), 'seconds': round(time.time() - T0, 1), 'areas': verd,
                'neighbours': {a: f'neighbour store missing: {n} parks' for a, n in sorted(nb.items())},
-               'stopped_for_time': bool(counts.get('stopped for time')), 'stopped': stopped, **({'note': note} if note else {})}
+               'stopped_for_time': bool(counts.get('stopped for time')), 'stopped': stopped, **({'note': note} if note else {}),
+               'fine-only spots': {'listed': len(FINE_ONLY), 'mode': fine_only_mode()} if PASS in (2, 3) and KS is not None else None}
         tag = RUN_TAG or area_name()
         p, doc = RECEIPT.merge(OUT, tag, PASS, sec)
         save_json(p, doc, indent=1)
@@ -4620,6 +4676,7 @@ def main():
                 if PASS == 3 and m: _decide3(s)
             _lr, _lw = leftover_spots(d, newk, today)   # KPC owner, 2026-11-15 (M5, D5): a real spot is never lost: it becomes a row
             left_rows += len(_lr); left_warn += _lw
+            _lr += fine_only_spots(d, newk, today, st)   # KPC owner, 2026-11-16 (item 2): listed; rows only with the owner's switch on
             if PASS == 3:
                 for s in _lr: _decide3(s)
             if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN); tidy_rows(d.get('spots', []), PIN, today); counts['candidates held: no ownership source'] = counts.get('candidates held: no ownership source', 0) + hold_no_owner(d.get('spots', []))
@@ -4629,6 +4686,7 @@ def main():
             d['spots'] = slim(d.get('spots', []))
             save_json(file_of(st), pc_tag(d), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
         new_only = sum(1 for v in newk.values() for n in v if not n.get('_used'))
+        save_fine_only()
         counts.update({'agree with the pass before': agree, 'new here only (not counted)': new_only})
         if left_rows: counts['new rows: a spot of a pair whose row was dropped in this pass'] = left_rows
         if left_warn:
@@ -4694,9 +4752,97 @@ ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by t
          "Check both official boundary maps and make your "
          "own call before you count it.' Tool pages carry the FULL notice from .claude/notes/notices.md.")
 
+# ---------------------------------------------------------------- one program per area in store mode (KPC owner, 2026-11-16, item 2)
+# A store run reads the same shapes in every pass, so the passes run back to back in ONE process: the store is opened, checked and
+# installed once (kpc_fers_store.py chain), and every pass then starts from exactly the state a fresh process would have (every
+# module-level value of the bot's own modules is put back as it was right after the install). The passes, their grids and their
+# files are the same as the separate runs; only the loading is done once. Runs whose shapes differ between passes (Kentucky's live
+# layers, any download run) keep the separate passes (kpc_fers.py with PASS=n).
+CHAIN_PASSES = (1, 2, 3, 5)
+_CHAIN_SKIP = {'STORE', '_STORE_INSTALLED', 'PASS', 'CELL', 'DET', 'PREC', 'T0', 'LIMIT', 'STAGES', 'MARK_T'}
+
+
+def set_pass(p, minutes=None):
+    """This process's pass and its grid / detail (as PASS=p at import), and a fresh clock for its share of the time."""
+    global PASS, CELL, DET, PREC, T0, LIMIT, STAGES
+    PASS = int(p)
+    CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0, 5: 5.0, 6: 5.0}[PASS]
+    DET = {1: 0.0005, 2: 0.0002, 3: 0.00002, 4: 0.00002, 5: 0.00002, 6: 0.00002}[PASS]
+    PREC = {1: 5, 2: 5, 3: 6, 4: 6, 5: 6, 6: 6}[PASS]
+    T0 = time.time()
+    if minutes is not None: LIMIT = float(minutes) * 60
+    STAGES = RECEIPT.Stages(T0); MARK_T[:] = [T0]
+
+
+def _chain_modules():
+    return [m for n, m in sorted(sys.modules.items()) if n.startswith('kpc_') and n not in ('kpc_save', 'kpc_fers_receipt') and m is not None] + [sys.modules[__name__]]
+
+
+def chain_snapshot():
+    """Every module-level value of the bot's modules that a pass can change (containers and plain values; not functions, classes or
+    modules). Taken right after the store install."""
+    import copy, types
+    snap = {}
+    for m in _chain_modules():
+        vals = {}
+        for k, v in vars(m).items():
+            if k.startswith('__') or k in _CHAIN_SKIP or isinstance(v, (types.ModuleType, types.FunctionType, types.BuiltinFunctionType, type)): continue
+            try: vals[k] = (v, copy.deepcopy(v))
+            except Exception: continue  # noqa: BLE001  (an open handle, a lock: not pass state)
+        snap[m.__name__] = (m, vals)
+    return snap
+
+
+def chain_restore(snap):
+    """Put every snapshot value back; containers in place (other modules hold references to them)."""
+    import copy
+    for name, (m, vals) in snap.items():
+        for k, (orig, saved) in vals.items():
+            cur, val = getattr(m, k, None), copy.deepcopy(saved)
+            if cur is orig and type(orig) in (dict, list, set):
+                orig.clear()
+                if isinstance(orig, list): orig.extend(val)
+                else: orig.update(val)
+            else: setattr(m, k, val if type(orig) in (dict, list, set) else orig)
+
+
+def chain_split(p, total, left):
+    """The time share of each pass, as the workflow splits MINUTES today (pass 1 two fifths, pass 2 half of what is left, pass 3
+    four fifths of what is left, the rest for pass 5)."""
+    cap = total * 2 // 5 if p == 1 else left // 2 if p == 2 else left * 4 // 5 if p == 3 else left
+    return min(cap, left)
+
+
+def run_chain(passes=CHAIN_PASSES, minutes=None, after_pass=None):
+    """Store runs only (kpc_fers_store.py chain, after install()): the passes back to back in this process. -> the first non-zero
+    exit code, or 0. A pass with under 5 minutes left is not started (the next run carries on, as the workflow does today)."""
+    snap = chain_snapshot()
+    total = int(float(minutes if minutes is not None else (os.environ.get('MINUTES') or 300)))
+    end = time.time() + total * 60
+    for i, p in enumerate(passes):
+        left = int((end - time.time()) // 60)
+        cap = chain_split(p, total, left)
+        if cap < 5:
+            notice('2-fer bot', f'no time left for pass {p} (next run carries on)'); break
+        if i: chain_restore(snap)
+        set_pass(p, cap)
+        KS = _store_mod()
+        if KS is not None and getattr(globals().get('STORE'), 'kind', 'public') != 'private':
+            KS.READ_OK_RUN.update(KS.read_ok_before(area_name(), PASS))   # as install() does at the start of each separate pass
+        notice('2-fer bot', f'pass {p} in the same process (store loaded once), {cap} min')
+        try: rc = run_main()
+        except SystemExit as e: rc = e.code if isinstance(e.code, int) else (0 if e.code is None else 1)
+        if KS is not None and callable(getattr(KS, 'WRITE_ROWS', None)):
+            try: KS.WRITE_ROWS()   # what a separate pass writes at its exit (the store list, the withheld list the next pass reads)
+            except SystemExit as e: rc = rc or (e.code if isinstance(e.code, int) else 1)
+        if after_pass is not None: after_pass(p)
+        if rc: return rc
+    return 0
+
+
 def run_main():
     """One pass with the bot's own exit codes (0 done; 1 crash; 3 the step's hard end; 84 stopped early; 85 an area measured
-    nothing). Used by __main__."""
+    nothing). Used by __main__ and by the one-process store chain (run_chain)."""
     try: main()
     except RECEIPT.StoppedEarly as e:   # KPC owner, 2026-11-16 (item 1): stopped before measuring = red (exit 84), with a receipt
         try: write_receipt({}, {}, {}, set(), None, stopped=str(e))
