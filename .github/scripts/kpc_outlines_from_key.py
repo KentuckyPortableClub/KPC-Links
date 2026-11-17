@@ -53,6 +53,17 @@ def union_geometry(rs):
 def npts(g): return sum(len(r) for p in M.polys_of(g) for r in p)
 
 
+def clip_rec(rec, boxes):
+    """D9 / rule B12 (KPC owner, 2026-11-17): a record shared by two far-apart parks keeps, for THIS park, only the rings whose middle
+    sits in one of the park's own part boxes from the key ('parts' {record id: [[w, s, e, n], ...]}), +-0.01 degree, exactly as
+    the 2-fer bot clips (kpc_fers.clip). Holes ride along with their part. No box, or no ring left = the record as it is."""
+    rs = rec.get('_r') or []
+    if not boxes or not rs: return rec
+    def mid(r): return ((min(q[0] for q in r) + max(q[0] for q in r)) / 2, (min(q[1] for q in r) + max(q[1] for q in r)) / 2)
+    keep = [r for r in rs if len(r) > 2 and any(b[0] - .01 <= mid(r)[0] <= b[2] + .01 and b[1] - .01 <= mid(r)[1] <= b[3] + .01 for b in boxes)]
+    return dict(rec, _r=keep) if keep else rec
+
+
 def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=print):
     root = pathlib.Path(root or M.OUTLINES); area = f'US-{st}'
     key_dir = pathlib.Path(key_dir or (ROOT / 'data' / 'us-key'))
@@ -71,6 +82,7 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
     def stale(ref, rec, q):
         """True when the existing outline must be rebuilt or will be dropped: PIN, or record_ids are not the key's m."""
         if q.get('g') == 'pin': return True
+        if q.get('parts'): return True   # D9: a park given only its own parts of a shared record is always drawn from those parts
         ids = [str(x[0]) for x in (q.get('m') or []) if isinstance(x, list) and x]
         ids = [i for i in ids if M.prefix_of(i) != 'trl']
         have_ids = M.outline_record_ids(rec)
@@ -86,7 +98,8 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         if not recs: skipped.append((ref, 'no saved copy (cannot rebuild this outline this run)')); continue
         miss = [i for i in ids if i not in recs]
         if miss: skipped.append((ref, f'{len(miss)} of {len(ids)} joined records not in the saved copy ({" ".join(miss[:4])})')); continue
-        g, why = union_geometry([recs[i] for i in ids])
+        _parts = q.get('parts') or {}   # D9 / rule B12: only this park's own parts of a shared multipart record
+        g, why = union_geometry([clip_rec(recs[i], _parts.get(i)) for i in ids])
         if g is None: skipped.append((ref, why)); continue
         g = M.trim_geometry(g)
         g = json.loads(json.dumps(g))   # tuples -> lists

@@ -38,6 +38,11 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           layer, the same name + acres is looked for in the SAME layer near the pin and the new id is kept;
                           if that fails, the old row is not carried, this run's own match stands, and the record goes to
                           check. OFF until the owner says ON (it changes outlines; count first, one state).
+  KPC_ONE_RECORD_ONE_PARK 0  (KPC owner, 2026-11-17, ruling D9: one record, one park) a record joined by name to two or more parks
+                          of the same kind stays with the ONE park whose full name is the record's own name; the others give it
+                          back and it goes to check (a person may say it is the same land under two numbers). No single
+                          winner = left as it is (the tripwire list shows it). A park given its own parts of the record (rule
+                          B12 'parts') and hand joins are never moved. OFF until the owner says ON (count first, one state).
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -48,7 +53,7 @@ import os, re, unicodedata
 
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
-            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0'}
+            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0'}
 
 
 def setting(name, env=None):
@@ -369,3 +374,19 @@ def saved_row_ok(row, rec):
     sa, ra = (row[2] if len(row) > 2 else 0) or 0, rec.get('GIS_Acres') or 0
     if not sa or not ra: return True
     return abs(ra - sa) <= max(20, 0.10 * sa)
+
+
+def _full(t):
+    """A full name for D9: case and accents aside, brackets and punctuation out, spaces squeezed."""
+    import re as _re
+    s = nf(_re.sub(r'\(.*?\)', ' ', str(t or '')))
+    return ' '.join(_re.sub(r"[^\w ]+", ' ', s).split())
+
+
+def d9_winner(record_name, parks):
+    """D9 (KPC owner, 2026-11-17): of the parks {ref: park name} sharing one record, the ONE whose full name is the record's own
+    name, or None when no park or more than one park carries it."""
+    rn = _full(record_name)
+    if not rn: return None
+    w = [r for r, n in parks.items() if _full(n) == rn]
+    return w[0] if len(w) == 1 else None

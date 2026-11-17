@@ -124,6 +124,13 @@
    "from": "f9c4c0992add",
    "why": "D1 (owner ruling, 17 Nov 2026): a saved record id is the LAND, not the number. Behind the rule switch KPC_SAVED_ID_LAND (OFF): a park whose saved ids are carried through a rules change keeps a row only while its record still carries the saved name and acres within 10% (20 acres at least); a renumbered row is found again by name + acres in the same layer near the pin; if that fails the old row is not carried and the record goes to check. Switch OFF = no result changes anywhere. Measured offline on Florida's saved copy with the switch ON: 32 parks / 197 rows pointed at other land (one state layer renumbered: Big Shoals State Park 13 of 19 rows, Big Shoals State Forest 12, Andrews WMA 15 ...); all 197 were found again in the same layer, 0 sent to check.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-d9-one-record-one-park",
+   "when": "2026-11-17",
+   "from": "77b70447553a",
+   "why": "D9 (owner ruling, 17 Nov 2026): one record, one park. Behind the rule switch KPC_ONE_RECORD_ONE_PARK (OFF): a record still joined by name to two or more parks goes to the ONE park whose full name is the record's own name (kpc_key_rules.d9_winner); the others give it back to check. Parks given their own parts of the record (rule B12) and hand joins are never moved; no single winner = left for the tripwire list. Switch OFF = no result changes. Measured on the live US key: 169 shared records would settle, 167 parks give one back, 1 ends as a pin; 911 shared records have no single winner. (The drawn outline now honours the key's B12 part boxes, kpc_outlines_from_key.py, not a rule file.)",
+   "scope": "none"
   }
  ]
 }
