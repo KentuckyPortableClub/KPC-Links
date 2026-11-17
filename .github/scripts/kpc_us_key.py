@@ -2390,7 +2390,9 @@ def run(st):
         # it (kpc_key_rules.lake_inside_land); else CHECK (a person decides; a park on someone else's lake never takes it)
         if _kr('KPC_LAKE_ONLY_IF_LAKE'):
             _wt = [x for x in m if 'water outline only' in str(x[3]) and name_only(x[3])]
-            if _wt and not LAKE_TYPE_RX.search(str(p.get('t') or '')):   # a park whose own TYPE is the water (fishing lake, reservoir) keeps it
+            # a park whose own TYPE is the water (fishing lake, reservoir), or whose NAME says it is a reservoir's area ('Magic Reservoir BLM
+            # Recreation Management Area', 'Anderson Ranch Reservoir Management Area'), keeps it
+            if _wt and not LAKE_TYPE_RX.search(str(p.get('t') or '')) and not re.search(r'\breservoir\b', str(p.get('n') or ''), re.I):
                 _land = [x for x in m if 'water outline only' not in str(x[3])]
                 _go = []
                 if _land:

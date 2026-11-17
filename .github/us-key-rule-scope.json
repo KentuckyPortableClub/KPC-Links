@@ -152,6 +152,13 @@
    "from": "cb719b523ae0",
    "why": "D4 precheck (offline AR / ID / WA build, switches on): a park whose own TYPE is the water (a state fishing lake, a reservoir area) keeps its lake even when it also has a small land record (Liberty Lake, Chambers Lake, Lake Desire State Fishing Lakes in WA had been sent to CHECK). Other parks unchanged: lake inside their land, else CHECK. Switch KPC_LAKE_ONLY_IF_LAKE still OFF.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-d4-reservoir-name",
+   "when": "2026-11-17",
+   "from": "2ac66f53c4e8",
+   "why": "D4 precheck (AR / ID / WA, saved ids re-matched): a park whose NAME says it is a reservoir's area ('Magic Reservoir BLM Recreation Management Area', 'Anderson Ranch Reservoir Management Area', 'Scooteney Reservoir State Park') keeps its reservoir surface; the research found these areas manage the water. A park named only 'Lake X State Park' is not covered (the lake is often another owner's). Switch KPC_LAKE_ONLY_IF_LAKE still OFF.",
+   "scope": "none"
   }
  ]
 }
