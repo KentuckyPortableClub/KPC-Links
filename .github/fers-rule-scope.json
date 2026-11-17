@@ -238,6 +238,19 @@
       },
       "scope_note": "The pairs of leased-land parks (flag 'lease') and of designation-only parks (the reworded note) are tested again once.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:22 AM"
+    },
+    {
+      "id": "2026-11-17-q4-no-lease-note",
+      "when": "2026-11-17",
+      "from": "ba639d602591",
+      "why": "Owner 17 Nov 11:29 AM: 'Not sure if leased or agreement should be stated ... dont get carried away with notes'. A leased-land park's pair carries no extra note; its ground reads 'park land'.",
+      "scope": {
+        "flags": [
+          "lease"
+        ]
+      },
+      "scope_note": "The pairs of leased-land parks lose the note.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:29 AM"
     }
   ]
 }

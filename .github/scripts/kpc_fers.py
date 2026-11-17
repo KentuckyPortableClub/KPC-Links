@@ -1858,11 +1858,10 @@ def ownership_step(s, parks, PIN):
     # Brandon Oct 27 5:21 AM (rule 14 + boundary B-G2): a park on private land (lease / agreement) counts only for its own number
     # KPC owner, 2026-11-17 11:22 AM (Q4, his words: 'We are not here to correct pota ... if it is a pota park we treat it as one ...
     # and overlap boundaries matter'): a POTA park on leased / agreement land is that park's land; its overlaps count like any
-    # other (the old Oct 27 drop is retired). The row carries an access note instead.
+    # other (the old Oct 27 drop is retired). No extra note on the row (owner, 11:29 AM).
     priv = [r for r, o in owners.items() if o == 'PRIVATE']
     if priv:
-        owners = {r: ('LEASE' if o == 'PRIVATE' else o) for r, o in owners.items()}
-        s['notes'] = sorted(set(s.get('notes') or []) | {LEASE_NOTE})
+        owners = {r: ('LEASE' if o == 'PRIVATE' else o) for r, o in owners.items()}   # owner, 11:29 AM: no extra note ('dont get carried away with notes')
     real = {r: o for r, o in owners.items() if o not in ('', '?')}
     # Nov 16 2026 (KPC owner, 2026-11-16; world opened): the world used to stop HERE, before the Nov 9 and Nov 10 tests below,
     # so a world pair inside two official agency outlines was 'not sure'. The world now takes the same tests as the US and
@@ -1894,8 +1893,7 @@ def ownership_step(s, parks, PIN):
     return 'not sure', 'an owner here is not a public owner (' + ', '.join(sorted({owner_word(o) for o in real.values()})) + ')'
 
 
-LEASE_NOTE = 'leased or agreement land: open to the public by agreement, check the access rules'
-OWNWORD = {'LEASE': 'leased / agreement land', 'STAT': 'state', 'STATE': 'state', 'LOC': 'local', 'LOCAL': 'local', 'PVT': 'private', 'PRIVATE': 'private', 'TRIB': 'tribal',
+OWNWORD = {'LEASE': 'park land', 'STAT': 'state', 'STATE': 'state', 'LOC': 'local', 'LOCAL': 'local', 'PVT': 'private', 'PRIVATE': 'private', 'TRIB': 'tribal',
            'TRIBAL': 'tribal', 'USFS': 'Forest Service', 'NPS': 'Park Service', 'FWS': 'Fish and Wildlife Service', 'USACE': 'Corps of Engineers',
            'BLM': 'BLM', 'TVA': 'TVA', 'DOD': 'military', 'FED': 'federal', 'DIST': 'special district', 'UNIVERSITY': 'university'}
 

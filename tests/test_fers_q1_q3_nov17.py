@@ -35,11 +35,11 @@ own = {'US-10': 'PRIVATE', 'US-11': 'STATE', 'US-12': 'PRIVATE', 'US-13': '?'}
 KF.park_owner = lambda r, parks: own[r]
 s1 = {'refs': ['US-10', 'US-11'], 'notes': ['x']}
 v, why = KF.ownership_step(s1, {}, {})
-check(v == 'ok' and KF.LEASE_NOTE in s1['notes'] and 'leased / agreement land' in why, f'Q4: leased land + a state park = public ground, with the access note ({v}: {why})')
+check(v == 'ok' and s1['notes'] == ['x'] and 'leased' not in why, f'Q4: leased land + a state park = the park\'s land, no extra note (owner 11:29 AM) ({v}: {why})')
 s2 = {'refs': ['US-10', 'US-12']}
 check(KF.ownership_step(s2, {}, {})[0] == 'ok', 'Q4: two leased parks: their overlap counts like any other')
 s3 = {'refs': ['US-10', 'US-13']}
 check(KF.ownership_step(s3, {}, {})[0] == 'not sure', 'Q4: an unknown owner is still not sure (nothing else changed)')
 KF.park_owner = _po
-check(KF.owner_word('LEASE') == 'leased / agreement land', 'the owner in plain words')
+check(KF.owner_word('LEASE') == 'park land', 'the ground word says park land, nothing about a lease')
 print('ALL PASS' if all(R) else f'{R.count(False)} FAILED'); sys.exit(0 if all(R) else 1)
