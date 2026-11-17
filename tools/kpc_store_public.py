@@ -160,6 +160,10 @@ def build_area(store_dir, area, out_dir):
                                         'points': sum(e['points'] for e in entries.values()), 'circles': 0,
                                         'date': (idx.get('files') or {}).get(store_name, {}).get('date')}},
                  'parks': entries, 'layers': lay,
+                 # KPC owner, 2026-11-17: how much of the area the shelf holds. The 2-fer bot reads this and leaves a THIN area on the
+                 # old path by itself (kpc_fers_store.THIN_SHELF), so no hand-kept list has to be edited as licences are confirmed.
+                 'coverage': {'parks_in_store': len(idx.get('parks') or {}), 'parks_on_shelf': len(rows),
+                              'share': round(len(rows) / max(1, len(idx.get('parks') or {})), 4)},
                  'publishable_rule': 'every record here passed tools/kpc_display_copy.py gate(); a park is here whole or not at all'})
     (out / f'index-{area}.json').write_text(json.dumps(pidx, separators=(',', ':'), sort_keys=True), encoding='utf-8')
     # The report counts only: it never names a park that was left off.
