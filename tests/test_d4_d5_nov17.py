@@ -35,7 +35,7 @@ check(not LI([0, 0, 1, 1], 500, [[0, 0, 1, 1]], 100)[0], 'a lake bigger than the
 check(LI([0.001, 0, 1.005, 1], 0, [[0, 0, 1, 1]], 100, pad=0.01)[0], 'the working copy slack is allowed at the edge')
 check(not LI([0, 0, 1, 1], 0, [None], 100)[0], 'no land outline: never joined here')
 _blk = src[src.index('# D4 (KPC owner, 2026-11-17 9:17 AM'):src.index("weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK")]
-check('KR.lake_inside_land' in _blk and "if _wt and not LAKE_TYPE_RX.search(str(p.get('t') or ''))" in _blk and "_kr('KPC_LAKE_ONLY_IF_LAKE')" in _blk,
+check('KR.lake_inside_land' in _blk and "if _wt and not LAKE_TYPE_RX.search(str(p.get('t') or '')) and not re.search(r'\\breservoir\\b', str(p.get('n') or ''), re.I)" in _blk and "_kr('KPC_LAKE_ONLY_IF_LAKE')" in _blk,
       'a lake-type park (fishing lake, reservoir) keeps its lake; other parks: lake inside their land, else CHECK; behind the switch')
 check("'water outline only' not in str(x[3])]" in _blk, 'land = every joined row that is not a lake surface')
 n = sum(1 for ok, _ in RESULTS if ok); print(f'\n{n}/{len(RESULTS)} checks passed'); sys.exit(0 if n == len(RESULTS) else 1)
