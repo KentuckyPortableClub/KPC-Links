@@ -1854,51 +1854,13 @@ OWN_CA = {}
 
 
 def ownership_step(s, parks, PIN):
-    """Brandon Oct 28 8:35 PM, THE SIMPLE TEST (step 2 of 'the job in two steps', mapping.md): the patch already sits inside two
-    OFFICIAL boundaries (step 1, the keys, settled each park's boundary), so the line only asks: is the ground PUBLIC?
-    Every owner public (federal, state, county, city, TVA, Corps...) = 'ok', the whole patch, however many owners. PRIVATE
-    pieces are named ('private land', cut out, count only for their own park); a piece with no owner on any map = only that
-    piece is not sure, the public rest counts. Owners are INFO ('ground'), never the verdict. ('ok' | 'drop' | 'not sure', why)."""
-    refs = s['refs']
-    owners = {r: park_owner(r, parks) for r in refs}
-    s['owner_from'] = sorted({OWNER_SRC.get(r) or 'none' for r in refs if (parks.get(r) or {}).get('ids')})   # review #6: counted in the report
-    # Brandon Oct 27 5:21 AM (rule 14 + boundary B-G2): a park on private land (lease / agreement) counts only for its own number
-    # KPC owner, 2026-11-17 11:22 AM (Q4, his words: 'We are not here to correct pota ... if it is a pota park we treat it as one ...
-    # and overlap boundaries matter'): a POTA park on leased / agreement land is that park's land; its overlaps count like any
-    # other (the old Oct 27 drop is retired). No extra note on the row (owner, 11:29 AM).
-    priv = [r for r, o in owners.items() if o == 'PRIVATE']
-    if priv:
-        owners = {r: ('LEASE' if o == 'PRIVATE' else o) for r, o in owners.items()}   # owner, 11:29 AM: no extra note ('dont get carried away with notes')
-    real = {r: o for r, o in owners.items() if o not in ('', '?')}
-    # Nov 16 2026 (KPC owner, 2026-11-16; world opened): the world used to stop HERE, before the Nov 9 and Nov 10 tests below,
-    # so a world pair inside two official agency outlines was 'not sure'. The world now takes the same tests as the US and
-    # Canada first; its own one-owner rule and its 'no land register' wording come after them (end of this function).
-    PUB = ('FED', 'STATE', 'STAT', 'LOCAL', 'LOC', 'DIST', 'TVA', 'JNT', 'LEASE')
-    # Nov 9 (Brandon 9:37 AM CST, KISS): owners come from the parks' own records / agency names only: no ownership map, no live call
-    if real and '?' not in owners.values() and all(str(o).split(':')[0] in PUB for o in real.values()):
-        # every park here is held by a known PUBLIC owner (one or several; a trail / designation layers on it): public ground
-        s['ground'] = sorted({owner_word(o) for o in real.values()})
-        if len(set(real.values())) > 1: s['mixed_owners'] = sorted(set(real.values()))
-        s['owner_src'] = "the parks' own records / agency names (Brandon Nov 9, 9:37 AM CST)"
-        return 'ok', 'public land (' + ' + '.join(s['ground']) + ')'
-    # Official agency outlines already show government or public land, so a blank owner field
-    # is not a hold when every half comes from such a layer. Point-circle and approximate
-    # pairs stay flagged. A blank owner whose outline is not from an official agency layer
-    # still cannot be a candidate.
-    if official_agency_outlines(refs):
-        known = sorted({owner_word(o) for o in real.values()}) if real else []
-        s['ground'] = known or ['government or public land']
-        s['owner_src'] = 'official agency outline (government / public land)'
-        if len(set(real.values())) > 1: s['mixed_owners'] = sorted(set(real.values()))
-        return 'ok', 'public land (' + ' + '.join(s['ground']) + ')'
-    if REGION == 'world':   # after the Nov 9 / Nov 10 tests (see above): the world's own rule and words
-        if real and len(set(real.values())) <= 1 and '?' not in owners.values(): return 'ok', 'one owner (or designations on it): layered'
-        return 'not sure', ('owners differ' if real else 'no park here owns land (designations only)') + '; no land register read for this country yet'
-    blank = [PIN.get(r, [r])[0] for r, o in owners.items() if o == '?']
-    if blank: return 'not sure', 'no owner on the park record or in its name for ' + ', '.join(blank) + ' (a person adds it)'
-    if not real: return 'not sure', 'no park here owns land (designations only): no owner on the records'
-    return 'not sure', 'an owner here is not a public owner (' + ', '.join(sorted({owner_word(o) for o in real.values()})) + ')'
-
+    """KPC owner, 2026-11-17 11:47 AM (his words: 'All we have to do for 2fers is yes this is the park boundaries are correct and it
+    overlaps'; POTA's board removed the sub-park rule: a smaller park inside a bigger one of the SAME agency is a park, and standing
+    on land common to both suggests a 2-fer). No owner is guessed or tested here any more: the keys settle each park's official
+    boundary, so two official boundaries that overlap ARE the 2-fer. What still decides a row stays where it was: approximate
+    outlines (approximate tier), lines drawn around an area only (the 'may contain private land' note, Q1), holes in an outline,
+    water-only, closed areas, trail and river rules. -> ('ok', why)."""
+    return 'ok', 'the official boundaries overlap'
 
 OWNWORD = {'LEASE': 'park land', 'STAT': 'state', 'STATE': 'state', 'LOC': 'local', 'LOCAL': 'local', 'PVT': 'private', 'PRIVATE': 'private', 'TRIB': 'tribal',
            'TRIBAL': 'tribal', 'USFS': 'Forest Service', 'NPS': 'Park Service', 'FWS': 'Fish and Wildlife Service', 'USACE': 'Corps of Engineers',
@@ -3479,6 +3441,7 @@ def no_owner_source(x, root=None):
     pairs become an approximate 2-fer (not held here). A blank owner whose outline is not
     from an official agency layer and is not an approximate or point-circle outline still
     cannot be a candidate."""
+    return False   # KPC owner, 2026-11-17 11:47 AM: no ownership source is needed (official boundaries that overlap = the 2-fer)
     st = str(x.get('status', ''))
     if not (st.startswith('candidate') or st.startswith('very tight')): return False
     refs = list(x.get('refs') or [])
@@ -4827,10 +4790,7 @@ def main():
         if sp: per[f.stem] = {'spots': len(sp), 'pass1': len(sp), 'pass2': sum(1 for s in sp if s['passes'][1]), 'candidates': sum(1 for s in sp if s['status'] == 'candidate'), 'candidates (saved outline only)': sum(1 for s in sp if s['status'] == 'candidate (saved outline only)'),
                               'n-fers': sum(1 for s in sp if len(s['refs']) > 2), 'lines': sum(1 for s in sp if s['kind'] != 'area'),
                               'very tight': sum(1 for s in sp if str(s.get('status', '')).startswith('very tight')), 'not sure': sum(1 for s in sp if str(s.get('status', '')).startswith('not sure')),
-                              'water only': sum(1 for s in sp if str(s.get('status', '')).startswith('water only')),
-                              # HQ review #6 (KPC owner, 2026-11-17): how many SHOWN rows rest on an owner guessed from a park NAME
-                              'shown, owner from a name': sum(1 for s in sp if _shown(s) and 'name' in (s.get('owner_from') or [])),
-                              'shown, owner from records only': sum(1 for s in sp if _shown(s) and s.get('owner_from') and 'name' not in s['owner_from'] and 'none' not in s['owner_from'])}
+                              'water only': sum(1 for s in sp if str(s.get('status', '')).startswith('water only'))}
     rep.pop('not shown', None)   # ALWAYS, not only when this run suppressed something: rep is loaded from the file on disk, so a
                                  # run with nothing to suppress must still strip a list an older run left there (re-grade R1)
     rep['about'] = 'Counts from the 2-fer bot (kpc_fers.py). Hidden: data only.'

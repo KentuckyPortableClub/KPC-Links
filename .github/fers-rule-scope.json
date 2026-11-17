@@ -260,6 +260,15 @@
       "scope": "none",
       "scope_note": "No pair answer changes; rows get the new field when they are next decided.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:37 AM"
+    },
+    {
+      "id": "2026-11-17-boundaries-only",
+      "when": "2026-11-17",
+      "from": "e62255828c3a",
+      "why": "Owner 17 Nov 11:47 AM: 'All we have to do for 2fers is yes this is the park boundaries are correct and it overlaps'; POTA's board removed the sub-park rule (a smaller park inside a bigger one of the same agency is a park, and land common to both suggests a 2-fer). ownership_step() no longer guesses or tests owners and no row is held for a missing ownership source: two official boundaries that overlap are the 2-fer. Approximate tier, the Q1 'may contain private land' note, holes, water-only, closed areas and the trail / river rules are unchanged. The owner-source count (review #6) is removed with it.",
+      "scope": "none",
+      "scope_note": "Pass 3 decides every row again on each run (decide() is not reused), so no pair needs a new stamp.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:47 AM"
     }
   ]
 }

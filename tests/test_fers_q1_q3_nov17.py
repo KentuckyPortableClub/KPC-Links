@@ -27,23 +27,10 @@ blk = src[src.index("_land = [r for r in refs if not (r in LN and r not in G)]")
 check("all(designation_only(r, parks) for r in _land)" in blk and "s['approx'] = True" in blk and 'PRIVATE_NOTE' in blk,
       'decide(): every land half designation-only = approximate tier with the note (one owned half = public ground, as before)')
 check(KF.KEEP_DROPPED_ROWS is False, 'Q3: dropped rows are not put back unless KPC_FERS_KEEP_DROPPED=1')
-# Q4 (owner 11:22 AM: 'if it is a pota park we treat it as one ... and overlap boundaries matter'): leased / agreement land is
-# that park's land; the pair is decided like any other, with an access note
-KF.REGION = 'na'
-_po = KF.park_owner
-own = {'US-10': 'PRIVATE', 'US-11': 'STATE', 'US-12': 'PRIVATE', 'US-13': '?'}
-KF.park_owner = lambda r, parks: own[r]
-s1 = {'refs': ['US-10', 'US-11'], 'notes': ['x']}
-v, why = KF.ownership_step(s1, {}, {})
-check(v == 'ok' and s1['notes'] == ['x'] and 'leased' not in why, f'Q4: leased land + a state park = the park\'s land, no extra note (owner 11:29 AM) ({v}: {why})')
-s2 = {'refs': ['US-10', 'US-12']}
-check(KF.ownership_step(s2, {}, {})[0] == 'ok', 'Q4: two leased parks: their overlap counts like any other')
-s3 = {'refs': ['US-10', 'US-13']}
-check(KF.ownership_step(s3, {}, {})[0] == 'not sure', 'Q4: an unknown owner is still not sure (nothing else changed)')
-KF.OWNER_SRC.update({'US-10': 'record', 'US-11': 'name'})
-s4 = {'refs': ['US-10', 'US-11']}
-KF.ownership_step(s4, {'US-10': {'ids': [1]}, 'US-11': {'ids': [2]}}, {})
-check(s4.get('owner_from') == ['name', 'record'], f"review #6: the row says where its owners came from ({s4.get('owner_from')})")
-KF.park_owner = _po
-check(KF.owner_word('LEASE') == 'park land', 'the ground word says park land, nothing about a lease')
+# 17 Nov 11:47 AM (owner: 'All we have to do for 2fers is yes this is the park boundaries are correct and it overlaps'): no owner is
+# guessed or tested; any pair that reaches the ownership step is decided by its official boundaries alone
+for refs in (['US-10', 'US-11'], ['US-10', 'US-12'], ['US-10', 'US-13']):
+    v, why = KF.ownership_step({'refs': refs}, {}, {})
+    check(v == 'ok' and 'official boundaries overlap' in why, f'boundaries only: {refs} -> {v} ({why})')
+check(KF.no_owner_source({'status': 'candidate', 'refs': ['US-10', 'US-11']}) is False, 'no row is held for a missing ownership source')
 print('ALL PASS' if all(R) else f'{R.count(False)} FAILED'); sys.exit(0 if all(R) else 1)
