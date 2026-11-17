@@ -885,3 +885,56 @@ Built from chat 11's 2,480 answers (US + Canada hunter 479, world finder 2,047) 
   - (3:58 PM, after run 42649544758 failed) The 2-fer fixes go IN with the weekly batch ("since it failed might as well through it in with the large patch you started"; earlier "no I just want to get through with them get a good run on all that"): the 2-fer fixes go in the batch; fers rules 94b7d25d0769 -> 0ab873cf4758 -> eb92de7a5f65 (final; US 464d2ce92eda -> 19d219f37114 and CA 8feccbb7d9ee -> 22f16bc69b96 for the blocked_ids rule, same OK), OK'd: Brandon Nov 9, 2026, 4:45 PM CST (t918u): "i agree to new number and if the boundary matches the park yes". A park with a bad POTA pin (pin00 or 0,0) is never searched around its pin: tested by its saved record ids, else listed for a person; pins are never moved (CA-2062 -> saved id 22162). Every park / pair / map request has its own time limit; one that runs over is skipped and listed. A step time-out or crash shows RED, never green. Region-by-region runs: one dispatch per area (.github/fers-areas.json in KPC-Data), each with its own time; an area that runs out of time keeps its previous file. (4:33-4:45 PM) Saved outlines first (key copy, then the bot's own saved-live copy; every live read saved, re-read about monthly in slices); only pairs whose parks changed are re-tested, a rule change declares its scope (.github/fers-rule-scope.json); ONE monthly cron (kpc-fers.yml, 5th, 2:23 AM CST); each area one full rebuild per 90 days, round-robin (Brandon confirmed t918u). US-11308 Blackfoot + US-10008 Lower Klamath Hills joined to their BLM records (decided_by Brandon t918u: boundary matches). (4:48 PM, t919u) Pins and names are only sanity checks; the official boundary is right most of the time (pin inside = good match; a pin close by = the pin is probably off). Bad-ID block list: overrides.json blocked_ids {ref, id, reason, decided_by}; a listed id is never used for that park (US key, Canada key, 2-fer bot); the park goes back to normal matching or to a person.
   - (Nov 9 PM) The batch goes up as DRAFT PRs on prep/* branches (one per repo); Brandon merges.
   - (10:40 AM) The weekly batch is prepared LOCALLY only: no PR and no push to any remote branch while the full US+CA 2-fer run is going ("A PR would make the keys stale mid-run").
+
+## OWNER'S RULINGS, 16 NOVEMBER 2026 (late evening): WHAT A 2-FER IS, IN HIS WORDS
+
+He paraphrased POTA's 2-fer rules himself and then clarified the public-land part. Five of his six points already
+matched the written rules word for word; the sixth (ownership) exposed a contradiction between R1/R8 and R2(a)/R4/R14.
+These rulings settle it. They collect his words and win over the older wording where they differ.
+
+- **N1 OWNERSHIP IS A KEY JOB, NEVER A LINE JOB** (Brandon 10:22 PM: *"ownership dont matter long as it is 2 pota parks
+  and they overlap"*; 10:29 PM: *"they is time federal has a hard boundary with a state park in the middle...not a 2fer
+  no over lap all geometry like you said"*). This is R1 as written (*"ownership is settled HERE [the keys] ... The line
+  does not re-argue ownership"*) and R8 (*"Ownership ... never a deciding rule"*). Where R2(a), R4 and R14 make the line
+  check ownership before a pair can be confirmed, **N1 wins**: ownership decides ONE PARK'S TRUE BOUNDARY, in the key.
+  After that a 2-fer is pure geometry. R4's "state park inside a federal proclamation line = not a 2-fer" then needs no
+  rule of its own: the key already cut the forest down to the land the agency owns, so the geometry says no by itself.
+  STILL OPEN for his ruling: the safety catch. Deleting the ownership step outright would confirm false 2-fers for every
+  park whose boundary is still an outer line, and most of the world has no ownership data. Proposed: the key records per
+  park whether its boundary is ownership-settled (agency-owned land, inholdings cut) or still an outer line; both settled
+  = geometry decides; either one still an outer line = NOT SURE, never confirmed, never ownership-patched at the line.
+  The `g` grade cannot carry this: a boundary cut by ownership parcels is graded *Approximate* today even though it is
+  the most ownership-correct one. Needs one new flag in the key.
+
+- **N2 PUBLIC LAND IS POTA'S CALL, NOT OURS** (Brandon 10:29 PM: *"potas rules say must be public land...for US that is
+  federal or state only but they some grandfathered parks that county etc now own or some parks that shouldn't been
+  added....but we not here to correct pota...we match the parks for pota and wwff. .we find the overlaps"*). So rule 2
+  (PUBLIC + OPEN) is NOT a test of whether a park deserves its number. A grandfathered county-owned park with a POTA
+  number IS a park: we find its boundary and its overlaps like any other. Never filter a park out for being county,
+  city or regional land. What rule 2 still tests is **the ground at the spot**: private inholdings are cut out (R3,
+  POTA's own words), and a permanently closed area cannot be the spot (rule 10). Same as OUR JOB in CLAUDE.md: if POTA
+  numbers it, it is a park.
+
+- **N3 FINE LINES FOR 2-FERS** (Brandon 10:21 PM: *"I agree with fine lines for 2fers"*). The public display copy is
+  three levels: overview (<=3,000 points), middle (<=30,000, made when the overview is over 25 m off), fine (1 m, in
+  tiles, made when the coarser levels are over 5 m off). Drawing may use any level. **MEASURING MAY NOT.** A 2-fer is a
+  measurement: the patch is 50 yards (~46 m) and a line park counts 100 ft (~30 m) from its edge, so a 25 m tolerance on
+  each of two borders is the same size as the thing being measured. So: a 2-fer is judged from the FINE level only.
+  Where a park has no fine level and the pair sits near a threshold, the answer is NOT SURE, never a yes or a no.
+  Simplification does not thicken a border, it MOVES it, either side of the truth, by up to that level's tolerance.
+
+- **N4 WE ARE STRICTER THAN POTA, ON PURPOSE** (Brandon 10:22 PM: *"4' is acceptable if i can get everything in it...we
+  are little stricter to account for map errors"*). POTA's own threshold is whatever fits the operator and their kit, a
+  few feet. Ours (rule 4) refuses anything under 25 yards and labels 25-100 yards as tight, because official maps can be
+  off 10-15 yards. That gap is deliberate and is not a bug to be closed.
+
+- **N5 A RIVER OR TRAIL WITH AN OFFICIAL CORRIDOR IS AN AREA PARK** (Brandon 10:29 PM: *"Wild scenic rivers most have an
+  offical boundary"*). This is rule 5 as written and it stands: an official corridor or area boundary means the park is
+  tested like any other park. The 100 ft (30.5 m) each side is ONLY for a river or trail that is nothing but a centre
+  line with no official corridor; water routes measure from the official shoreline. MEASURED 16 Nov from the 50 key
+  files: 111 US parks whose name says wild/scenic river, only 61 joined, 50 pins. Of those 50, ONE was a name refusal
+  (MI US-12788 Black River: POTA "Black River National Wild and Scenic River" vs Forest Service "Black, Michigan
+  National Wild and Scenic River" - the fwsr layer names records "<river>, <state>", with no word "River"), 23 had no
+  corridor candidate at all, and 26 saw only a bigger differently-named park (Chilikadrotna -> Lake Clark NP, Eightmile
+  -> Devils Hopyard SP), correctly refused. So the gap is layer COVERAGE, not matching: the NPS corridor layer holds 33
+  rivers against 111 POTA river parks. Both jobs are on the to-do list in notes/ideas.md.
