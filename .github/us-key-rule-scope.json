@@ -110,6 +110,13 @@
    },
    "scope_note": "The US key hash moves, so every US state needs a fresh key build before its next 2-fer run; the owner times this PR. saved_ids false: parks with saved record ids keep them (existing easement joins are listed, not removed), except in New York, which re-checks them in kpc_us_key.py (EASEMENT_RECHECK_STATES).",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-17"
+  },
+  {
+   "id": "2026-11-17-d11-layer-list",
+   "when": "2026-11-17",
+   "from": "3b70e43f4200",
+   "why": "D11 (owner ruling, 17 Nov 2026): data/state-gis.json, the US key's list of state layers, joins the US rules hash (kpc_key_freeze RULE_FILES['us-key']), and every layer in it gets one more field, 'what': owned, designation, water, register or compilation (340 layers; the 131 filed as kind 'land' first: 64 owned, 28 designation, 17 register, 3 water, 19 compilation). Labels and hash in one change, so the hash moves once. No join changes: kpc_us_key.py does not read 'what' (it reads url, nm, kind, water, where, nm2, ag), and the key builder gives the same layer table before and after (tests/test_d11_layer_list_nov17.py). The labels change a join only when a later rule reads them (T5 / D3 / D4), and that rule comes with its own park list.",
+   "scope": "none"
   }
  ]
 }
