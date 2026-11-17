@@ -49,8 +49,10 @@ rows = [{'kind': 'area', 'status': 'candidate', 'refs': ['CA-0005', 'CA-0040']},
         {'kind': 'area', 'status': 'not sure: x', 'refs': ['g', 'h']},
         {'kind': 'area', 'status': 'candidate', 'refs': ['ZZ-NOKEY-1', 'ZZ-NOKEY-2']}]
 n = K.hold_no_owner(rows, root=str(HERE))
-check(n == 2 and rows[5]['status'].startswith('not sure: no ownership source') and rows[2]['status'].startswith('not sure'), 'blank owner with no official agency outline is held NOT SURE')
-check(rows[0]['status'] == 'candidate' and str(rows[0].get('ownership') or '').startswith('public land'), 'official agency outlines (Banff x Jasper) count as public land, no separate owner source')
+# KPC owner, 2026-11-17 11:47 AM: 'All we have to do for 2fers is yes this is the park boundaries are correct and it overlaps':
+# no row is held for a missing ownership source any more
+check(n == 0 and rows[5]['status'] == 'candidate' and rows[2]['status'] == 'candidate', 'no row is held for a missing owner (boundaries only, 17 Nov)')
+check(rows[0]['status'] == 'candidate', 'official agency outlines (Banff x Jasper): the overlap decides, no owner source')
 check(rows[1]['status'] == 'candidate' and rows[3]['status'] == 'candidate' and rows[4]['status'] == 'not sure: x', 'rows with an ownership source untouched')
 # point-circle and approximate pairs become an approximate 2-fer, not a drop
 import kpc_fers_key_status as KS
@@ -86,14 +88,14 @@ K.OWN.update({'A': (set(), True), 'B': (set(), True), 'C': (set(), False)})
 PIN = {'A': ['Boise National Forest'], 'B': ['Ponderosa State Park'], 'C': ['Something Place']}
 K.PINS.update(PIN)
 s1 = {'refs': ['A', 'B']}; v1 = K.ownership_step(s1, parks, PIN)
-check(v1[0] == 'ok' and s1.get('mixed_owners') == ['FED:USFS', 'STATE'], f'national forest x state park = public ground, two owners kept as before ({v1})')
+check(v1[0] == 'ok', f'national forest x state park: the official boundaries overlap ({v1})')
 v2 = K.ownership_step({'refs': ['A', 'C']}, parks, PIN)
-check(v2[0] == 'not sure' and 'Something Place' in v2[1], f'a truly blank owner with no official outline = NOT SURE ({v2})')
+check(v2[0] == 'ok', f'a blank owner no longer matters: boundaries only (17 Nov) ({v2})')
 import kpc_fers_key_status as KS
 KS.clear(); KS.KEY_STATUS['C'] = 'official'; KS.KEY_STATUS['A'] = 'official'; KS.KEY_BY_AREA['C'] = {'_': 'official'}; KS.KEY_BY_AREA['A'] = {'_': 'official'}
 s3 = {'refs': ['A', 'C']}
 v3 = K.ownership_step(s3, parks, PIN)
-check(v3[0] == 'ok' and 'official agency outline' in (s3.get('owner_src') or ''), f'blank owner on official agency outlines = public land ({v3})')
+check(v3[0] == 'ok', f'blank owner on official agency outlines: the overlap decides ({v3})')
 KS.clear(); KS.load_key_status = lambda root='.': KS.KEY_STATUS  # keep later tests from needing a full reload
 # restore normal loader after this file's remaining tests do not need the stub; real load happens if KEY_STATUS empty
 KS.clear()
