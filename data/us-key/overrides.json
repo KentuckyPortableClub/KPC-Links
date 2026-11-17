@@ -7,8 +7,8 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "fbf20636d5621ed7d3898b88e44527cd47d64d1ecbfa4f6093fcbfbb69e17785",
-  "overrides-parks-02.json": "ef18a225ff2966156dc6784f97c39d2bf34dbbfdbc22743480770a9a7ea6e8e3"
+  "overrides-parks-01.json": "61af0baf23862fc6f70a4e3293ccbe13e5ec3abe479df41c6fbe052a03cc1e94",
+  "overrides-parks-02.json": "485aab7722b08196bec1999470094c9a41d683d183d7f642fdba0b54ca9b597a"
  },
  "parks": {
   "US-0043": {
@@ -385,9 +385,9 @@
      53346.6
     ]
    },
-   "none": true,
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on fws1871 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on fws1871 (NO (chat 11, Nov 2, pattern MISMATCH district): PIN. The record is one) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-0428": {
    "no": [
@@ -399,9 +399,9 @@
      34027.8
     ]
    },
-   "none": true,
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on fws2592 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on fws2592 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-0430": {
    "no": [
@@ -823,9 +823,9 @@
      12342.6
     ]
    },
-   "none": true,
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'DeGray Lake Resort State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb44 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'DeGray Lake Resort State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb44 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-1090": {
    "fp": {
@@ -3375,9 +3375,9 @@
      517861.7
     ]
    },
-   "none": true,
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on sgncb62 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on sgncb62 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-7144": {
    "no": [
@@ -3411,9 +3411,9 @@
      10418.2
     ]
    },
-   "none": true,
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Minnesota Valley' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgmnd2 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Minnesota Valley' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgmnd2 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline ) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-7171": {
    "no": [
@@ -3919,6 +3919,30 @@
    "none": true,
    "when": "2026-11-02",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Magic Reservoir' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Magic Reservoir' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: layers row NO 'Magic Reservoir' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)"
+  },
+  "US-7850": {
+   "when": "2026-10-22",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it; 2026-11-17 HQ spot check: the 'Caesar Creek SP' records (sgohf181, sgohf180, sgohf6) are the state park's, NO for the wildlife area",
+   "decided_by": "KPC owner, Nov 17 2026",
+   "no": [
+    "sgohf181",
+    "sgohf180",
+    "sgohf6"
+   ],
+   "nofp": {
+    "sgohf181": [
+     "Caesar Creek SP",
+     6998
+    ],
+    "sgohf180": [
+     "Caesar Creek SP",
+     1085
+    ],
+    "sgohf6": [
+     "Caesar Creek SP",
+     2
+    ]
+   }
   },
   "US-7854": {
    "fp": {
@@ -4765,9 +4789,9 @@
     "sgmnd2",
     "sgmne11006"
    ],
-   "none": true,
    "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Minnesota Valley' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'MINNESOTA VALLEY' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Minnesota Valley' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'MINNESOTA VALLEY' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-9557": {
    "fp": {
@@ -5020,9 +5044,9 @@
    "no": [
     "3000"
    ],
-   "none": true,
    "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Ouachita National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Ouachita National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-10263": {
    "no": [
@@ -5760,9 +5784,9 @@
    "no": [
     "2572"
    ],
-   "none": true,
    "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Fort Peck Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Fort Peck Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-11231": {
    "no": [
@@ -6419,9 +6443,9 @@
     "sgnca13377",
     "sgncb96"
    ],
-   "none": true,
    "when": "2026-10-29",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Yadkin River Game Land (Leased)' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Yadkin River' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Yadkin River Game Land (Leased)' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Yadkin River' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-12349": {
    "no": [
@@ -6469,9 +6493,9 @@
      103.5
     ]
    },
-   "none": true,
    "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on sgmnd20 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)"
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on sgmnd20 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
+   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-12396": {
    "no": [
