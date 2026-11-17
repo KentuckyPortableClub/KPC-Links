@@ -2643,6 +2643,14 @@ def run(st):
         notice(f'US key {st}', f'{nac} parks with several records got one union acreage (ac)' + (f'; {skipped} too big or out of time (no ac)' if skipped else '')) if nac or skipped else None
     except ImportError: pass
     except Exception as e: notice(f'US key {st}', f'union acreage skipped: {str(e)[:120]}')  # noqa: BLE001
+    if _kr('KPC_MEASURED_ACRES'):   # Handoff 8 fix 4 (reviewer A #9): a park whose records have no acres on file gets 'ac' measured from the shape
+        _byg = {_oid(a): a for a in recs if a.get('_g')}
+        _nm_ac = 0
+        for ref, p in parks.items():
+            if p.get('ac') or not p.get('m'): continue
+            got = KR.measured_ac(p['m'], lambda i: rings(_byg[i]['_g']) if i in _byg else None, p.get('parts'))
+            if got: p['ac'], p['ac_how'] = got[0], 'measured'; _nm_ac += 1
+        if _nm_ac: notice(f'US key {st}', f"{_nm_ac} park(s) with a record that has no acres on file got 'ac' measured from the saved shape (Handoff 8 fix 4)")
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
     for ref in parks:
         if (OVR.get(ref) or {}).get('note'): parks[ref]['note'] = OVR[ref]['note']

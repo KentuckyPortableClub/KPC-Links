@@ -69,6 +69,9 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           city, county, town, cemetery, church or airport is 'another kind of place' (to check), unless the park's own
                           name has that word or the record holds the park's full name ('Watkins Lake State Park and County Preserve').
                           Before: 'Tumalo Community School' and 'Ontario High School' were drawn into the state parks. OFF.
+  KPC_MEASURED_ACRES   0  (Handoff 8 fix 4, reviewer A #9) a joined park with no union acreage ('ac') whose records include one with no
+                          acres on file (0) gets 'ac' measured from the saved shapes (records with acres on file count their own acres),
+                          and 'ac_how' = 'measured' says so. The join rows are not changed. Plain Python, no shapely. OFF.
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -80,7 +83,8 @@ import os, re, unicodedata
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
-            'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0'}
+            'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
+            'KPC_MEASURED_ACRES': '0'}
 
 
 def setting(name, env=None):
@@ -511,3 +515,38 @@ def other_place_word(park_name, rec_name):
     pw = {OTHER_PLACE[w] for w in pf.split() if w in OTHER_PLACE}
     left = [w for w in rw if w not in pw]
     return left[0] if left else ''
+
+
+# ------------------------------------------------------------------ Handoff 8 fix 4: measured acres
+def ring_acres(rings):
+    """Acres of a record's rings (lon / lat degrees): the shoelace on a local equal-area scale (x times cos latitude), signed, so a
+    hole (the other winding) subtracts; the absolute total. Plain Python."""
+    import math
+    tot = 0.0
+    for r in rings or []:
+        if len(r) < 3: continue
+        lat0 = math.radians(sum(q[1] for q in r) / len(r)); kx, ky = 111320.0 * math.cos(lat0), 110574.0
+        a = 0.0
+        for i in range(len(r)):
+            x1, y1 = r[i - 1][0] * kx, r[i - 1][1] * ky; x2, y2 = r[i][0] * kx, r[i][1] * ky
+            a += x1 * y2 - x2 * y1
+        tot += a / 2.0
+    return abs(tot) / 4046.8564224
+
+
+def measured_ac(rows, rings_of, parts=None):
+    """Handoff 8 fix 4: (acres, n measured) for a park's joined rows [id, name, acres, how] when at least one has no acres on file:
+    rows with acres count their own acres, rows without are measured from their saved shape (rings_of(id) -> rings; only the
+    rings inside the park's own part boxes when the park has 'parts'). None when no row lacks acres or a 0-acre row has no shape."""
+    zero = [x for x in rows or [] if not (x[2] if len(x) > 2 else 0)]
+    if not zero: return None
+    tot, n = sum(float(x[2] or 0) for x in rows if len(x) > 2 and x[2]), 0
+    for x in zero:
+        rr = [r for r in (rings_of(str(x[0])) or []) if len(r) > 3]
+        boxes = (parts or {}).get(str(x[0]))
+        if boxes:
+            rr = [r for r in rr if any(b[0] - .01 <= (min(q[0] for q in r) + max(q[0] for q in r)) / 2 <= b[2] + .01
+                                     and b[1] - .01 <= (min(q[1] for q in r) + max(q[1] for q in r)) / 2 <= b[3] + .01 for b in boxes)]
+        if not rr: return None
+        tot += ring_acres(rr); n += 1
+    return round(tot), n
