@@ -24,4 +24,18 @@ for s in ('State Fishing Lake', 'Reservoir', 'State Lake', 'Fishing Pond'):
 for s in ('State Park', 'National Wildlife Refuge', 'State Recreation Area', 'Wildlife Management Area'):
     check(not W.search(s), f'D4 a park type that is not the lake: {s}')
 check(not KR.on('KPC_NO_LEASE_BY_NAME', {}) and not KR.on('KPC_LAKE_ONLY_IF_LAKE', {}), 'both switches are OFF unless set')
+# D4 rewritten (KPC owner, 2026-11-17 9:17 AM): who owns the water decides; inside the park's own land = keep, else a person
+LI = KR.lake_inside_land
+check(not LI([-111.5, 41.8, -111.2, 42.2], 69474, [[-111.30, 41.95, -111.25, 42.00]], 966)[0], 'Bear Lake SP: a 69,474-acre lake beside a 966-acre park is not joined')
+check('3 times' in LI([-111.5, 41.8, -111.2, 42.2], 69474, [[-111.30, 41.95, -111.25, 42.00]], 966)[1], 'Bear Lake SP: the reason says over 3 times the land')
+check(not LI([-120.7, 47.8, -120.0, 48.5], 0, [[-120.9, 48.3, -120.6, 48.6]], 62000)[0], 'Lake Chelan NRA: the lake runs far past the NRA land: a person decides')
+check(LI([-116.645, 47.835, -116.630, 47.845], 0, [[-116.66, 47.82, -116.61, 47.86]], 142)[0], 'Round Lake SP: a small lake the park surrounds is kept')
+check(LI([-90.10, 35.88, -90.05, 35.95], 0, [[-90.12, 35.86, -90.03, 35.97]], 10911)[0], 'Big Lake NWR: the lake inside the refuge land is kept')
+check(not LI([0, 0, 1, 1], 500, [[0, 0, 1, 1]], 100)[0], 'a lake bigger than the park land is never joined by name')
+check(LI([0.001, 0, 1.005, 1], 0, [[0, 0, 1, 1]], 100, pad=0.01)[0], 'the working copy slack is allowed at the edge')
+check(not LI([0, 0, 1, 1], 0, [None], 100)[0], 'no land outline: never joined here')
+_blk = src[src.index('# D4 (KPC owner, 2026-11-17 9:17 AM'):src.index("weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK")]
+check('KR.lake_inside_land' in _blk and 'LAKE_TYPE_RX.search' in _blk and "_kr('KPC_LAKE_ONLY_IF_LAKE')" in _blk,
+      'the key build uses lake_inside_land for parks with land and the lake-type test only for water-only parks, behind the switch')
+check("'water outline only' not in str(x[3])]" in _blk, 'land = every joined row that is not a lake surface')
 n = sum(1 for ok, _ in RESULTS if ok); print(f'\n{n}/{len(RESULTS)} checks passed'); sys.exit(0 if n == len(RESULTS) else 1)

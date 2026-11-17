@@ -45,8 +45,13 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           B12 'parts') and hand joins are never moved. OFF until the owner says ON (count first, one state).
   KPC_NO_LEASE_BY_NAME 0  (KPC owner, 2026-11-17, ruling D5) a record whose name says leased / lease / agreement / cooperative area is
                           the easement family: never joined by name alone, it goes to check; a person may say yes for one park.
-  KPC_LAKE_ONLY_IF_LAKE 0 (KPC owner, 2026-11-17, ruling D4) a park with land of its own never takes a lake surface by name; only a
-                          park whose own TYPE says it is the lake keeps one. A park with no land record keeps its lake for a person.
+  KPC_LAKE_ONLY_IF_LAKE 0 (KPC owner, 2026-11-17, ruling D4, rewritten 9:17 AM after the research: WHO OWNS THE WATER decides, not
+                          the park's kind). A lake surface joined by name stays only when (a) the park has land of its own and the
+                          lake sits inside that land (a small lake the park surrounds, or the agency's own outline already holds
+                          it), or (b) the park has no land record and its own TYPE says it is the water (a state fishing lake, a
+                          reservoir). Otherwise it goes to CHECK (a person decides who owns the water; a park on someone else's lake,
+                          the Corps', Reclamation's or a utility's, never takes it). A lake over 3 times the park's land never joins
+                          by name. OFF until the owner says ON (park-scoped run).
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -394,3 +399,19 @@ def d9_winner(record_name, parks):
     if not rn: return None
     w = [r for r, n in parks.items() if _full(n) == rn]
     return w[0] if len(w) == 1 else None
+
+
+def lake_inside_land(water_bb, water_acres, land_bbs, land_acres, pad=0.0):
+    """D4 (KPC owner, 2026-11-17 9:17 AM): does a lake surface sit inside the park's own land? -> (keep, why).
+    water_bb / land_bbs are [x0, y0, x1, y1] boxes (degrees), pad the working copy's slack in degrees. The lake must lie inside the
+    box of the park's own land, and (when both sizes are known) be no bigger than that land; a lake over 3 times the land never
+    joins by name."""
+    lb = [b for b in land_bbs or [] if b]
+    if not water_bb or not lb: return False, 'no land outline to hold the lake'
+    if water_acres and land_acres and water_acres > 3 * land_acres: return False, 'the lake is over 3 times the park\'s own land'
+    x0, y0 = min(b[0] for b in lb) - pad, min(b[1] for b in lb) - pad
+    x1, y1 = max(b[2] for b in lb) + pad, max(b[3] for b in lb) + pad
+    if not (x0 <= water_bb[0] and y0 <= water_bb[1] and water_bb[2] <= x1 and water_bb[3] <= y1):
+        return False, 'the lake reaches past the park\'s own land'
+    if water_acres and land_acres and water_acres > land_acres: return False, 'the lake is bigger than the park\'s own land'
+    return True, 'the lake sits inside the park\'s own land'
