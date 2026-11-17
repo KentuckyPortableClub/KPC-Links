@@ -2,7 +2,7 @@
 """WHEN ARE THE HUNTERS OUT? (Opus, Oct 23 2026; Brandon: 'Yeah sounds good and it will go to discord park info and
 Facebook also?'). POTA does not publish when hunters are on, so we count it ourselves.
 
-  collect  (every 15 min)  reads the club spot file (data/pota/spots.json, one club reader asks POTA every 5 min; Nov 16) and counts, for each clock hour, the HUNTER spots on US
+  collect  (every 15 min)  reads the club spot relay (kpc-spots.json; the relay asks POTA at most every 2 min; Nov 16) and counts, for each clock hour, the HUNTER spots on US
            parks (a spot posted by someone other than the activator = a hunter who just worked or heard them), how
            many activators were on, and the band. Only counts are kept (no call signs): data/hunters/buckets.json.
   build    (after collect) turns the last 8 weeks into kpc-hunters.json for the Happening Now card (an hour-by-day
@@ -90,7 +90,7 @@ def collect():
     """Counts go to the hour of the poll. A spot is new when its spot id is new; when POTA gives a running 'count' per
     activation, its growth since the last poll is used instead (it also catches spots between two polls)."""
     try:
-        import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): the club spot file; POTA only when it is over 30 min old
+        import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): the club spot relay; POTA only when it does not answer or is over 30 min old
         spots = DOOR.club_spots()[0]
         if not isinstance(spots, list): raise ValueError('not a list')
     except Exception as e:  # noqa: BLE001

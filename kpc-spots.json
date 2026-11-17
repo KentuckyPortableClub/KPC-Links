@@ -1,0 +1,6 @@
+{
+  "about": "KPC owner, 2026-11-16 (handoff item 7): THE one setting for live POTA spots. The club spot relay reads POTA's spot list at most once every 2 minutes and serves that saved copy; every answer carries the header x-kpc-spot-age (seconds since POTA was last asked). The pages (the browser door in every page script) and the bots (kpc_pota_door.club_spots: the Discord spotter, the hunters job, the Discord ask bot) read the relay address from this file only. When the relay does not answer (or its copy is over stale_seconds old) they read POTA's spot list directly: a page at most once every 5 minutes per browser and never while its tab is hidden.",
+  "relay": "https://kpc-spots.kentuckyportableclub.workers.dev/spots",
+  "age_header": "x-kpc-spot-age",
+  "stale_seconds": 1800
+}

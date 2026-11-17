@@ -1,6 +1,6 @@
 name: KPC Hunters
 # WHEN ARE THE HUNTERS OUT? (Oct 23 2026, Brandon: 'Yeah sounds good and it will go to discord park info and Facebook also?')
-# Every 15 min: count hunter spots on US parks from the club spot file (POTA's spot list, read once per 5 min by the one club reader; Nov 16) (kpc_hunters.py collect). The open hour lives in the
+# Every 15 min: count hunter spots on US parks from the club spot relay (POTA's spot list, asked at most every 2 min; address in kpc-spots.json; Nov 16) (kpc_hunters.py collect). The open hour lives in the
 # Actions cache; finished hours go to data/hunters/buckets.json, kpc-hunters.json (Happening Now card) and
 # app/hunters.json (the app's 'Hunters are out' alert). Oct 27 (HQ limits plan): the finished hours (buckets.json) also
 # live in the cache between runs, and the repo gets ONE commit a day (Nov 3; was every ~3 hours).
@@ -50,7 +50,6 @@ jobs:
       - name: Count
         env:
           WHICH_SCHEDULE: ${{ github.event.schedule || inputs.as_schedule }}
-          KPC_POTA_SPOT_URL: https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Links/live-spots/spots.json   # Nov 16 (item 7): the club spot file (live-spots branch); POTA only when it is over 30 minutes old
         run: |
           # PR2: the hourly run counts 4 times (0, 15, 30, 45 min); the Friday post run and a by-hand run count once, as before
           N=1; [ "$WHICH_SCHEDULE" = '7 * * * *' ] && N=4

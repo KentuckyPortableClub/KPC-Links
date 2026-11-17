@@ -19,5 +19,3 @@ data/access/
 raw-layers/
 *.gdb/
 *.gdb.zip
-# KPC owner, 2026-11-16: the club spot file lives on the live-spots branch only
-data/pota/spots.json

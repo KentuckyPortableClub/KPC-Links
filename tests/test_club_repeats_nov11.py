@@ -79,7 +79,7 @@ sp = tmp / 'spot'; sp.mkdir()
     plan = os.environ['PLAN'].split(','); calls = []
     # KPC owner, 2026-11-16 (item 7): the spotter reads the club spot file (written by the one club spot reader), not POTA
     os.makedirs('data/pota', exist_ok=True); json.dump({'saved': int(__import__('time').time()), 'spots': FEED}, open('data/pota/spots.json', 'w'))
-    os.environ['KPC_POTA_SPOT_FILE'] = 'data/pota/spots.json'   # a local copy of the club file (the job reads the raw address; tests use a file)
+    os.environ['KPC_POTA_SPOT_FILE'] = 'data/pota/spots.json'   # a local copy instead of the spot relay (tests only)
     class R(io.BytesIO):
         def __enter__(self): return self
         def __exit__(self, *a): return False

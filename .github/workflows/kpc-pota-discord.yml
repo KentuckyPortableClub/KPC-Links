@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           persist-credentials: true
-      - name: Read POTA's spots 12 times, 5 minutes apart (the one club spot reader), publish the club spot file, and notify Discord
+      - name: Check POTA 12 times, 5 minutes apart, and notify Discord
         id: kept_green_1
         continue-on-error: true
         timeout-minutes: 57
@@ -35,15 +35,6 @@ jobs:
           stop=$(( $(date +%s) + 54 * 60 ))          # finish before the next hour's job starts
           ok=0; bad=0
           for i in $(seq 1 12); do
-            # Nov 16 (handoff item 7, owner's choice; v4 answer 4): this job is the ONE club spot reader. Each 5-minute check asks POTA
-            # once (kpc_pota_spots.py, through the POTA door) and saves spots.json on the data-only branch live-spots with an ordinary
-            # commit (v5: no force-push anywhere; never main, no site build). The spotter below, the hunters job and the live pages
-            # read the raw file address. Same schedule.
-            if python3 .github/scripts/kpc_pota_spots.py; then
-              if ! bash .github/scripts/kpc_live_spots_push.sh data/pota/spots.json; then
-                echo "Club spot file - not published this check" >> "$RUNNER_TEMP/kpc-hidden.txt"
-              fi
-            fi
             if python3 .github/scripts/kpc_pota_spotter.py; then ok=$((ok+1)); else bad=$((bad+1)); echo "::warning title=POTA spotter::check $i failed (POTA or Discord hiccup); the next check tries again"; fi
             [ "$i" -lt 12 ] || break
             [ $(( $(date +%s) + 300 )) -lt "$stop" ] || break
