@@ -15,7 +15,7 @@ the two monthly jobs are ever switched back on.
   box on their by-hand button; ticked, they re-read only those areas with their own fetch, pacing, `save-check` and upload. No
   request file, an unreadable one, or no row that may be served = nothing is fetched. No schedule block.
 - Keeper side (KPC-Store): a change file, `docs/layer-refresh-keeper-change.md`, for the owner to apply. Not applied.
-- The four rulings are repo variables, all UNSET: `KPC_LR_STALE_DAYS` (R-LR1), `KPC_LR_DYING` (R-LR2), `KPC_LR_CHANGED_READ`
+- The four rulings (RULED 17 Nov) default in both cache workflows; a repo variable overrides: `KPC_LR_STALE_DAYS` (R-LR1), `KPC_LR_DYING` (R-LR2), `KPC_LR_CHANGED_READ`
   (R-LR3), `KPC_LR_WHO` (R-LR4). Unset = nothing extra; with R-LR3 unset every changed-layer row is held, so the wire serves
   nothing until the owner rules. What each value does: the top of `kpc_layer_refresh.py`.
 - The save unit is the area file (US-XX, W-XX, CA-ALL): a request for one layer re-reads its whole area once. A re-read of only

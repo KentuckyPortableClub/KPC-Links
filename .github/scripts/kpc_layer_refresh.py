@@ -21,7 +21,7 @@ The request file (format 1; written by the keeper, read only here):
 A layer address is never printed, never written to the receipt and never used to fetch: the cache jobs re-read the whole area
 file they already own (US-XX.json.gz, W-XX.json.gz, CA-ALL.json.gz). Only area codes and counts reach a log.
 
-The owner's four open rulings are knobs (repo variables, all UNSET when this was built; nothing here picks a default).
+The owner's four rulings are knobs (ruled 2026-11-17: the cache workflows pass 180 / full / whole / keeper+hand; a repo variable overrides).
 Unset = the safe behaviour: nothing extra is fetched.
   KPC_LR_STALE_DAYS    R-LR1  a whole number of days, or 'never'. Set to N: an area of this job whose saved copy on the release
                               is older than N days is re-read even with no request (an ETag that never moves). Unset / 'never':

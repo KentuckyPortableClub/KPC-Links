@@ -31,7 +31,7 @@ import kpc_layer_refresh as LR  # noqa: E402
 
 SECRET = 'https://example.invalid/private-layer-address/FeatureServer/7'
 ALL_US = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
-RULED = {'KPC_LR_CHANGED_READ': 'whole'}   # a test-only ruling; the repo leaves every knob unset
+RULED = {'KPC_LR_CHANGED_READ': 'whole'}   # a test-only ruling (the workflows default to all four rulings)
 REQ = {'format': 1, 'written': '2026-11-17 07:41 UTC',
        'requests': [{'layer': SECRET, 'area': 'US-TN', 'moved': ['etag'], 'date': '2026-11-17', 'by': 'keeper'},
                     {'layer': SECRET + 'b', 'area': 'US-TN', 'moved': ['etag', 'lastEditDate'], 'date': '2026-11-17', 'by': 'keeper'},
