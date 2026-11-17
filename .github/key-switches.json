@@ -1,0 +1,18 @@
+{
+  "about": "Rule switches of the keys (reviewer B #7, KPC owner 17 Nov 2026). A switch is ON for the areas in its 'on' list ('US-OH', ...; '*' = every area) and OFF everywhere else. Switching one on = a commit to this file with a changelog line marked APPROVED by the owner: the file is a US rule file and is sliced per area, so only the areas whose switches changed are rebuilt. An environment variable of the same name still wins (offline proofs, the scorecard). The meaning of each switch is in .github/scripts/kpc_key_rules.py (DEFAULTS and the note above it).",
+  "switches": {
+    "KPC_SAVED_ID_LAND": {"on": []},
+    "KPC_ONE_RECORD_ONE_PARK": {"on": []},
+    "KPC_NO_LEASE_BY_NAME": {"on": []},
+    "KPC_LAKE_ONLY_IF_LAKE": {"on": []},
+    "KPC_DESIGNATION_SPLIT": {"on": []},
+    "KPC_NO_BY_NAME": {"on": []},
+    "KPC_ID_JOIN_NAME": {"on": []},
+    "KPC_REFOUND_NEAR": {"on": []},
+    "KPC_SELF_CHECKS": {"on": []},
+    "KPC_CONF_SORT": {"on": []},
+    "KPC_PADUS_DEDUPE": {"on": []},
+    "KPC_PIECE_NAME": {"on": []},
+    "KPC_NO_OFFICE_JOIN": {"on": []}
+  }
+}

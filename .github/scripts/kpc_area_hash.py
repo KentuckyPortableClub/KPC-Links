@@ -94,7 +94,7 @@ AREA_TABLES = {'us': 'data/us-key/area-tables.json', 'ca': 'data/ca-key/area-tab
 # Nov 17 (KPC owner, 2026-11-17; ruling D11): data/state-gis.json is a US rule file (it is in the US rules hash), but like the area
 # table files it is sliced per state as a 'data:' part (each state's own layers), never hashed whole as shared code: a layer added
 # for one state moves that state only, and a province row moves no US state.
-SLICED_RULE_FILES = {'data/state-gis.json'}
+SLICED_RULE_FILES = {'data/state-gis.json', '.github/key-switches.json'}   # Nov 17 (reviewer B #7): the switch file, per area
 # D11's per-layer label ('what': owned / designation / water / register / compilation) is read by NO rule yet, so it is left out
 # of a state's slice: labelling the layers moves no area and starts no rebuild. The rule that first reads it (T5 / D3 / D4) must
 # take 'what' off this list in the same change (tests/test_d11_layer_list_nov17.py fails while a US / Canada rule file reads
@@ -108,6 +108,18 @@ def sgis_slice(v, areas):
     return {k: [{f: y for f, y in l.items() if f not in SGIS_UNREAD} if isinstance(l, dict) else l for l in (x if isinstance(x, list) else [x])]
                 if isinstance(x, list) else x
             for k, x in (v.get('states') or {}).items() if k in areas}
+
+
+def switch_slice(v, areas):
+    """{state: [switches on there]} from .github/key-switches.json ('*' = every state). A state with no switch on gets NO part, so
+    adding the file (every switch off) moves no area hash, and turning a switch on moves only the states it is on for."""
+    sw = (v or {}).get('switches') if isinstance(v, dict) else {}
+    out = {}
+    for k, x in sorted((sw or {}).items()):
+        on_ = set((x or {}).get('on') or []) if isinstance(x, dict) else set()
+        for a in sorted(areas):
+            if '*' in on_ or a in on_ or ('US-' + a) in on_: out.setdefault(a, []).append(k)
+    return out
 
 
 def H(b): return hashlib.sha256(b if isinstance(b, bytes) else str(b).encode()).hexdigest()
@@ -583,6 +595,8 @@ class Kind:
             self.area_tables(parts, sh)   # D6: BOX_ADD, the state-limited XS layers
             self.slice_file('data/state-gis.json', parts, sh, lambda v: (sgis_slice(v, self.areas_set), {}),
                             label='data/state-gis.json(states; other codes are not read by this key)')
+            # Nov 17 (reviewer B #7): the rule switches turned on for each state; flipping one moves only the states it is on for
+            self.slice_file('.github/key-switches.json', parts, sh, lambda v: (switch_slice(v, self.areas_set), {}), label='.github/key-switches.json(switches on per state)')
             # data/us-key/layers.json is NOT an input: the US key writes it (kpc_us_key.py:2652-2665) and reads it back only so a state
             # layer keeps the prefix it was first given (kpc_us_key.py:843-856); the layer list itself is data/state-gis.json (above).
             self.slice_file('kpc-us-states.json', parts, sh, key_of=lambda v: ({a: boxes_near(v, a) for a in self.areas}, {}), label='kpc-us-states.json(own+neighbour boxes)')
