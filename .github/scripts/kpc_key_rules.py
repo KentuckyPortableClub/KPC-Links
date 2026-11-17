@@ -81,6 +81,9 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           published tract row. If the id now points at a record with another name, the land is found again by that id
                           (or same layer + name + hectares within 10%); if not, nothing joins by the id and the park goes to a person
                           (check B3). Today all 81 saved ids with a tract row still point at the right names (no change). OFF.
+  KPC_JP_A10_NAMES     0  (Handoff 8 fix 7; Japan, kpc_world_key.py pull_a10n) the MLIT v3 codelist names a park by its bare name
+                          ('102 | 網走', no 公園), so only 5 areas of the national A10-10 file were kept. ON takes the name cell next
+                          to the code and adds the kind from A10_003 (網走 -> 網走国定公園; prefectural -> 自然公園). OFF.
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -93,7 +96,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
-            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0'}
+            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0'}
 
 
 def setting(name, env=None):
