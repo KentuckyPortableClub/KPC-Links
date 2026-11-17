@@ -336,3 +336,21 @@ These rulings settle it. They collect his words and win over the older wording w
 
 - **N6 POTA HISTORY IS NEVER EVIDENCE** (Brandon 11:38 PM: *"people make mistakes and activate 2fers that are not truly 2fers all the time and if 2 parks close together and not touching people will drive there and activate in the same day...that info really told us nothing geometry is hard evidence that is not"*). Two parks activated by one call on one day prove nothing: logging mistakes, and short drives between parks that only sit close. Only the official boundaries (geometry) decide a 2-fer. Since KPC-Data #109 (16 Nov) the 2-fer run no longer asks POTA for activation history, and that is final: no refresh job, monthly or otherwise. The last saved copies (data/fers/pota-pairs-<st>.json, read by kpc_fers_expected.py "activated together" and the review list's POTA-history hints) are left to go stale. When either of those two is next touched for another reason, take the history column out rather than refresh it.
 
+- **SHELF COVERAGE MEASURED, 17 Nov 2026 (HQ; all 66 store areas, read-only, no runs).** Before the public 2-fer bot is switched
+  onto the public shelf (tools/kpc_store_public.py, KPC-Links #237), every area was measured from its store index. Upper bound,
+  because an index can only be checked against itself: **13,118 of 15,403 parks, 85.2%**. The real shelf is this or a little less.
+  WHY A PARK IS OFF: 1,699 records whose terms the tool read but **no person has confirmed** (publish_basis 'tool-read'; the gate
+  needs 'verified-row' or 'owner-confirmed'), 896 records with **no credit line**, 81 SHARE-ALIKE (correctly refused, the licence
+  forbids it), and 649 parks with no public view at all. So coverage is limited by LICENCE CONFIRMATION on the owner's PC
+  (6-CONFIRM-TERMS.bat / 7-MERGE-VERIFIED-ROWS.bat), not by a fault in the shelf or the gate.
+  23 AREAS UNDER 90%, thinnest first: US-HI 9.5%, US-VT 11.9%, US-MN 19.1%, CA-NB 30.8%, CA-PE 35.3%, US-AL 36.2%, US-IA 36.5%,
+  US-MT 37.2%, US-RI 38.6%, US-TN 46.0%, US-WA 47.8%, US-AR 48.0%, CA-YT 54.5%, CA-SK 69.9%, US-VA 72.4%, US-PA 75.5%, US-NV 78.4%,
+  US-MO 83.2%, US-MD 85.1%, US-WI 85.5%, US-ND 87.0%, US-ID 88.7%, US-AK 89.2%.
+  40 layers hold it back; the 12 biggest are worth about 1,406 parks (CA New Brunswick 189 no credit, US-WA sgwab 181, US-MN sgmnf
+  166, US-PA sgpab 118, US-AR arw 118, US-IA sgiaa 112, US-MN sgmna 95, US-TN sgtni 94, US-MT sgmtf 91, US-MO sgmoa 88 no credit,
+  CA-SK Saskatchewan~6 80 no credit, US-VT sgvta 74 SHARE-ALIKE: that last one stays off whatever happens). The full list went to
+  the owner as SHELF-LAYERS-TO-CONFIRM.csv.
+  **RULE: an area under 90% stays on the OLD path when the public bot is switched on** (.github/fers-store-areas.json 'except'),
+  because its parks would otherwise carry their old rows unchecked. Re-measure after the owner confirms a batch of layers; an area
+  comes off the except list when it passes 90%.
+
