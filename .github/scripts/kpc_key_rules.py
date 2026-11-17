@@ -458,11 +458,20 @@ def tracts_of(boxes, gap_km=1.0):
     for i in range(n): out.setdefault(find(i), []).append(i)
     return sorted(out.values(), key=lambda v: v[0])
 
+def rec_names(rec):
+    """Every name a record goes by: its name, its second name (Ohio: Unit_Nm is a code like 'CaesarCrkSP' and Loc_Nm the readable
+    'CAESAR CREEK'), and the key's shown form 'second (first)' (scorecard 17 Nov: the code alone failed 164 Ohio hand joins)."""
+    u, l = str(rec.get('Unit_Nm') or '').strip(), str(rec.get('Loc_Nm') or '').strip()
+    out = [x for x in (u, l) if x]
+    if u and l: out += [f'{l} ({u})', f'{u} ({l})']
+    return out
+
+
 def saved_row_ok(row, rec):
     """D1 (KPC owner, 2026-11-17): does a saved join row [id, name, acres, how] still describe record `rec` of this read?
-    Same name (accents and case aside) and acres within 10% (at least 20 acres slack); a 0 on either side skips the acres test."""
-    nm = rec.get('Unit_Nm') or rec.get('Loc_Nm') or ''
-    if nf(nm) != nf(row[1] if len(row) > 1 else ''): return False
+    Same name (accents and case aside; any of the record's names, see rec_names) and acres within 10% (at least 20 acres
+    slack); a 0 on either side skips the acres test."""
+    if nf(row[1] if len(row) > 1 else '') not in {nf(n) for n in rec_names(rec) or ['']}: return False
     sa, ra = (row[2] if len(row) > 2 else 0) or 0, rec.get('GIS_Acres') or 0
     if not sa or not ra: return True
     return abs(ra - sa) <= max(20, 0.10 * sa)
@@ -485,7 +494,7 @@ def saved_land_moves(ov, by_id, refind):
             rec = by_id.get(str(old))
             if not sv or not sv[0] or rec is None: continue
             row = [old, sv[0], sv[1] if len(sv) > 1 else 0]
-            if saved_row_ok(row, rec) or saved_row_ok(row, {'Unit_Nm': rec.get('Loc_Nm'), 'GIS_Acres': rec.get('GIS_Acres')}): continue
+            if saved_row_ok(row, rec): continue
             hits = [a for a in refind(str(old), sv[0], row[2]) if str(a.get('OBJECTID')) != str(old) and saved_row_ok(row, a)]
             if k == 'join' and hits and any(is_no(ov, a.get('OBJECTID'), a.get('Unit_Nm') or a.get('Loc_Nm'), a.get('GIS_Acres'), by_name=True) for a in hits[:1]):
                 hits = []

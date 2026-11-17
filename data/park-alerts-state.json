@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12 17:54",
+ "updated": "2026-11-17 15:16",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -245,6 +245,19 @@
    "runs": 2,
    "missing": 0,
    "announced": true,
+   "refs": []
+  },
+  "nps-553AA852-64F2-4278-A236-A73A34EBB0DA": {
+   "who": "CUGA",
+   "title": "No potable water at Pinnacle Overlook",
+   "text": "Due to freezing conditions, no potable water is available at the Pinnacle overlook. The Pinnacle restrooms are closed, but portable restrooms are available for use instead.",
+   "link": "https://www.nps.gov/",
+   "routine": true,
+   "cat": "information",
+   "first": "2026-11-17",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
    "refs": []
   }
  },

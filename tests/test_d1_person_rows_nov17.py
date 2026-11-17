@@ -42,6 +42,10 @@ ck(notes and notes[0][0] == 'join check', 'same name, acres 5x off = other land:
 n, notes = KR.saved_land_moves({'join': [7]}, {'7': {'OBJECTID': 7, 'Unit_Nm': 'FW 49 - Tract (Holland WMA)', 'Loc_Nm': 'Holland WMA', 'GIS_Acres': 10}}, rf) if False else (None, [])
 n, notes = KR.saved_land_moves({'join': [7], 'fp': {'7': ['Holland WMA', 10]}}, {'7': {'OBJECTID': 7, 'Unit_Nm': 'FW 49 - Tract (Holland WMA)', 'Loc_Nm': 'Holland WMA', 'GIS_Acres': 10}}, rf)
 ck(not notes, 'the saved name on the second name field still fits')
+# 10. Ohio: the first name is a code, the key shows 'second (first)'
+oh = {'OBJECTID': 'sgoha26', 'Unit_Nm': 'CaesarCrkSP', 'Loc_Nm': 'CAESAR CREEK', 'GIS_Acres': 6953}
+ck(KR.saved_row_ok(['sgoha26', 'CAESAR CREEK (CaesarCrkSP)', 6953], oh) and KR.saved_row_ok(['sgoha26', 'CAESAR CREEK', 6953], oh)
+   and not KR.saved_row_ok(['sgoha26', 'Hueston Woods', 6953], oh), "Ohio's shown name 'CAESAR CREEK (CaesarCrkSP)' still fits its record")
 # 9. the switch is listed OFF
 import json
 sw = json.load(open(pathlib.Path(__file__).resolve().parents[1] / '.github' / 'key-switches.json'))

@@ -2046,7 +2046,9 @@ def run(st):
                     if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (la is None or near(la, lo, a['_bb'], .6)):   # Oct 25: an id in 'no' is never re-added by a same-name join
                         if _no_all(ov, a): continue   # Nov 2: a NO by name wins over a join by id
                         if _kr('KPC_ID_JOIN_NAME') and _oid(a) == str(want) and _nf(nm) != _nf(want):
-                            _ok, _why = KR.id_join_name_ok(name, nm, ((ov.get('fp') or {}).get(_want0) or [None])[0])
+                            # scorecard 17 Nov: Ohio's first name is a code ('CaesarCrkSP'); any of the record's names may carry it
+                            _ok, _why = next(((o_, w_) for o_, w_ in (KR.id_join_name_ok(name, n_, ((ov.get('fp') or {}).get(_want0) or [None])[0])
+                                                                    for n_ in KR.rec_names(a) or [nm]) if o_), KR.id_join_name_ok(name, nm, ((ov.get('fp') or {}).get(_want0) or [None])[0]))
                             if not _ok:   # Nov 2: the approved id now points at other land: check, never an outline
                                 if not any(str(x[0]) == _oid(a) for x in c): c.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), _why])
                                 continue
