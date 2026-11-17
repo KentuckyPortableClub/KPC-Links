@@ -1,0 +1,29 @@
+{
+  "about": "Decided 2-fer pairs and fixed links that used to be written inside kpc_fers.py (KNOWN_LIVE, KY_DROP, SAME_LAND_PAIRS, MAPFIX), moved here unchanged (Handoff 9, bug 8, 2026-11-17), plus the world layer kinds that are designation lines (bug 6). One entry per ruling, each with the date and who ruled. kpc_fers.py reads this file at start and stops loudly if it is missing or broken. A change here changes the 2-fer rules hash (kpc_key_freeze 'fers'), so it is rechecked like a code change.",
+  "known_live": [
+    {"pair": ["US-0050", "US-10105"], "why": "Mammoth Cave x Green River Wild River: Brandon activates it in person (ruling Oct 28 8:35 PM)",
+     "date": "2026-10-28 20:35 CT", "ruled_by": "KPC owner (Brandon, KZ4CP)"}
+  ],
+  "ky_drop": [
+    {"pair": ["US-1277", "US-4484"], "why": "Cumberland Falls is state land beside Forest Service land (ruling Oct 27)", "date": "2026-10-27", "ruled_by": "KPC owner (Brandon, KZ4CP) + HQ"},
+    {"pair": ["US-1286", "US-4484"], "why": "Natural Bridge is state land beside Forest Service land (ruling Oct 27)", "date": "2026-10-27", "ruled_by": "KPC owner (Brandon, KZ4CP) + HQ"},
+    {"pair": ["US-0686", "US-4484"], "why": "Big South Fork is Park Service land beside Forest Service land (ruling Oct 27)", "date": "2026-10-27", "ruled_by": "KPC owner (Brandon, KZ4CP) + HQ"},
+    {"pair": ["US-3799", "US-4484"], "why": "Burchell-Beech is KDFWR-owned (ruling Oct 27)", "date": "2026-10-27", "ruled_by": "KPC owner (Brandon, KZ4CP) + HQ"},
+    {"pair": ["US-4484", "US-7964"], "why": "W.H. Martin is state nature preserve land (ruling Oct 27)", "date": "2026-10-27", "ruled_by": "KPC owner (Brandon, KZ4CP) + HQ"},
+    {"pair": ["US-12083", "US-4484"], "why": "University of the Cumberlands WMA is private (ruling Oct 27)", "date": "2026-10-27", "ruled_by": "KPC owner (Brandon, KZ4CP) + HQ"}
+  ],
+  "same_land_pairs": [
+    {"pair": ["US-0703", "US-3790"], "record": "Fort Heiman tract", "name": "Fort Heiman (Fort Donelson National Battlefield tract)",
+     "date": "2026-10-28 06:18 CT", "ruled_by": "KPC owner (Brandon, KZ4CP)"}
+  ],
+  "map_fix": [
+    {"ref": "US-0703", "url": "https://www.nps.gov/fodo/planyourvisit/maps.htm", "why": "the file had a POTA page (chat 8 re-check)",
+     "date": "2026-10-27", "ruled_by": "chat 8 re-check (Oct 27; a link fix, no owner ruling recorded)"}
+  ],
+  "world_designation_layers": [
+    {"layers": ["Natural England National Parks", "NRW Wales National Parks", "Natural England National Landscapes", "NRW Wales National Landscapes",
+                "NationalScenicAreas", "NatureScot rp"],
+     "why": "UK national parks, national landscapes (AONB), national scenic areas and regional parks are lines drawn by law around mostly private land: a pair of two of them gets the 'May contain private land' approximate note, as US designation lines do (Q1)",
+     "date": "2026-11-17", "ruled_by": "KPC owner Q1 ruling (2026-11-17 11:14 AM) applied to the world (Handoff 9, bug 6)"}
+  ]
+}

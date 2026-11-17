@@ -361,6 +361,15 @@ def world_ready(links):
 
 
 # ------------------------------------------------------------------ run
+NOT_SURE_REL = pathlib.Path('data') / 'waiting' / 'tripwires' / 'not-sure.json'
+
+
+def tripwire_list(kd):
+    """The tripwire bot's not-sure list in the KPC-Data checkout (Handoff 9 bug 3), or None when it is not there."""
+    f = pathlib.Path(kd) / NOT_SURE_REL
+    return f.resolve() if f.is_file() else None
+
+
 def cmd_run(a):
     s, pn = settings(a.settings), pins()
     if cmd_check(argparse.Namespace(settings=a.settings)) != 0:
@@ -434,6 +443,12 @@ def cmd_run(a):
         env['KPC_FERS_PRIVATE_OUT'] = str(priv / 'world-out')
         (priv / 'world-out').mkdir(parents=True, exist_ok=True)
     env['KPC_FERS_PARK_S'] = env.get('KPC_FERS_PARK_S') or '600'   # the GitHub job's per-park limit
+    # Handoff 9 bug 3 (KPC owner's fix list, 2026-11-17): D10 reads the tripwire not-sure list from kpcdata/data/waiting/... under the
+    # bot's working folder (the GitHub layout). Here the bot runs in the KPC-Links checkout and KPC-Data is elsewhere, so D10 was
+    # silently off: point the bot at the list in the KPC-Data checkout, and say so loudly when it is not there.
+    nsl = tripwire_list(kd)
+    if nsl: env['KPC_FERS_NOT_SURE'] = str(nsl); say(f'D10 tripwire list: {nsl}')
+    else: say('WARNING: D10 is OFF for this run: no tripwire not-sure list at ' + str(kd / NOT_SURE_REL) + ' (get KPC-Data again); no park is held for it')
     # --- the GitHub job's set-up steps (Nov 16): without them the bot stops on its first line
     bad = lay_overlay(links, kd)
     if bad:
