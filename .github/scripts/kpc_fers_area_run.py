@@ -57,6 +57,9 @@ class Run:
     def env(self, **kw):
         e = dict(os.environ)
         e.update({'REGION': self.a.region, 'STATES': self.a.states or '', 'RUN_TAG': self.a.tag or '', 'KPCDATA': str(self.kd or ''), 'LINKS': str(self.links)})
+        # Handoff 9 bug 3: D10's tripwire list is read from the KPC-Data checkout wherever it is (not only kpcdata/ under the run folder)
+        if self.kd is not None and not e.get('KPC_FERS_NOT_SURE') and (self.kd / 'data/waiting/tripwires/not-sure.json').is_file():
+            e['KPC_FERS_NOT_SURE'] = str(self.kd / 'data/waiting/tripwires/not-sure.json')
         if self.store:
             e['KPC_FERS_FROM_STORE'] = 'on'
             for k, n in (('store_dir', 'KPC_FERS_STORE_DIR'), ('store_kind', 'KPC_FERS_STORE_KIND'), ('private_out', 'KPC_FERS_PRIVATE_OUT'), ('private_log', 'KPC_FERS_PRIVATE_LOG')):

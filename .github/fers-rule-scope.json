@@ -269,6 +269,15 @@
       "scope": "none",
       "scope_note": "Pass 3 decides every row again on each run (decide() is not reused), so no pair needs a new stamp.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:47 AM"
+    },
+    {
+      "id": "2026-11-17-handoff9-fers-fixes",
+      "when": "2026-11-17",
+      "from": "b4f19e522c34",
+      "why": "Handoff 9 (the KPC owner's 2-fer fix list, 17 Nov): quiet failures fail loud (a crash in the US water / closed-area check or a closed-area map that does not answer is NOT SURE; a crashed pair test and an unread park outline make the area's receipt 'not finished'); D10 reads KPC-Data's not-sure list on the PC runner; the public report keeps the problem count (the list goes to the private folder); world designation layers get the private-land note; KNOWN_LIVE / KY_DROP / SAME_LAND_PAIRS / MAPFIX move unchanged to .github/fers-rulings.json. New settings, all OFF: KPC_FERS_NEAR_LINE_M (N3), KPC_FERS_CARRY_MAX, KPC_FERS_SUMMARY_APPROX, KPC_FERS_FED_NEIGHBOUR, KPC_FERS_FINE_100M, KPC_FERS_STRIP_HELD.",
+      "scope": "none",
+      "scope_note": "No pair answer changes with the settings off: the new NOT SURE answers come only from a failed check, which pass 3 decides again on every run. World 2-fers are off. Turning a setting on needs its own scope entry.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-17"
     }
   ]
 }

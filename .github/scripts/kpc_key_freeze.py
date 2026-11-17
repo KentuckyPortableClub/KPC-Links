@@ -54,7 +54,10 @@ RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_k
                        # Nov 15 (KPC owner, 2026-11-15; switch-over): the store reader kpc_fers.main() now calls, and its area list
                        '.github/scripts/kpc_fers_store.py', '.github/fers-store-areas.json',
                        # Nov 16 (KPC owner, 2026-11-16; item 4): the one record lookup the store reads use (kpc_fers_store.store_ids)
-                       '.github/scripts/kpc_record_key.py']}
+                       '.github/scripts/kpc_record_key.py',
+                       # Handoff 9 (KPC owner's 2-fer fix list, 2026-11-17): the decided pairs moved out of kpc_fers.py (bug 8) and the
+                       # carried-row age check (bug 4) decide rows too
+                       '.github/fers-rulings.json', '.github/scripts/kpc_fers_age.py']}
 # Nov 9 evening (Brandon t915u, 4:40 PM CST; KZ4CP 5:12 PM CST): every rule change DECLARES what it touches, in a scope file that is part
 # of that key's rules hash (so a scope edit moves the hash and is visible). A rules change rebuilds only the declared states; a park
 # with saved record ids keeps its result (kpc_us_key.py); a full rebuild ('states: all' by hand) is for emergencies only.

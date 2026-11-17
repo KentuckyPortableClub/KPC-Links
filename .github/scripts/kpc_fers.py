@@ -57,6 +57,7 @@ import cv2
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
 import kpc_fers_count as FCOUNT  # noqa: E402  Nov 6: 2-fer count switch, KPC_FERS_COUNT_MODE (default whole_park = today, untouched)
+import kpc_fers_age as _AGE  # noqa: E402  Handoff 9 bug 4 (2026-11-17): how old a carried row may get (KPC_FERS_CARRY_MAX, off)
 _save_json_raw = save_json
 
 # ---- OWNER RULE (KPC owner, 2026-11-15 23:14, his words: "We marking nothing not a 2 fer fyi... we just show what we think are
@@ -71,6 +72,40 @@ NOT_SHOWN = {}     # area -> [[refs, kind, the reason we stopped, the row id]]: 
 NOT_WORSE_FIELD = 'not_worse'
 KEEP_DROPPED_ROWS = os.environ.get('KPC_FERS_KEEP_DROPPED') == '1'   # Q3 (2026-11-17): off = a dropped row is not put back
 NOT_WORSE_TAG = 'the last run showed this spot, and nothing we have today can rule a 2-fer out'
+
+
+# ---- Handoff 9 (KPC owner's 2-fer fix list, 2026-11-17), bug 8: the decided pairs and fixed links that were written in this file
+# (KNOWN_LIVE, KY_DROP, SAME_LAND_PAIRS, MAPFIX) live in ONE data file with the date and who ruled each one, like overrides.json.
+# The values are the same, so nothing a run makes changes. A missing or broken file stops the bot loudly (never a silent default).
+RULINGS_FILE = pathlib.Path(__file__).resolve().parent.parent / 'fers-rulings.json'
+
+
+def load_rulings(path=None):
+    f = pathlib.Path(path or RULINGS_FILE)
+    try:
+        d = json.loads(f.read_text(encoding='utf-8'))
+        for k in ('known_live', 'ky_drop', 'same_land_pairs', 'map_fix', 'world_designation_layers'):
+            if not isinstance(d.get(k), list): raise ValueError(f'no {k} list')
+            for e in d[k]:
+                if not (isinstance(e, dict) and e.get('date') and e.get('ruled_by')): raise ValueError(f'a {k} entry has no date / ruled_by')
+        return d
+    except (OSError, ValueError) as e:
+        print(f'::error title=2-fer bot::the 2-fer rulings file {f} could not be read ({e}): the bot stops here', flush=True)
+        raise SystemExit(4)
+
+
+RULINGS = load_rulings()
+
+# ---- Handoff 9: owner-question settings. Each is OFF (today's behaviour) until the KPC owner rules; HQ turns one on in the workflow.
+# Q3 / bug 2 (owner ruling N3, 16 Nov: a pair near a size line is NOT SURE): metres either side of the 25-yard and 50-yard lines
+NEAR_LINE_M = float(os.environ.get('KPC_FERS_NEAR_LINE_M') or 0)
+# Q4 / bug 4: how old a carried row may get: KPC_FERS_CARRY_MAX=key = never past a key rebuild (read in kpc_fers_age.py, used by every
+# keep-the-old-row path here and in kpc_fers_store.py)
+# Q1: an outline whose every record comes from a summary map (compilation), a historic-register shape, a lake surface, a Michigan
+# project line or the Mississippi general-area file is APPROXIMATE until the agency's own map is found
+SUMMARY_APPROX = os.environ.get('KPC_FERS_SUMMARY_APPROX') == '1'
+# Q2: a national park / refuge and the national forest next door = NOT SURE unless one is a designation laid on the other
+FED_NEIGHBOUR = os.environ.get('KPC_FERS_FED_NEIGHBOUR') == '1'
 
 
 # A row brought back from an older file EXACTLY as it was: never this run's verdict, and the store's 'never worse' rule and the
@@ -141,6 +176,66 @@ def save_not_shown():
                      encoding='utf-8')
     except OSError: return None, n
     return f, n
+
+
+# ---- Handoff 9, bugs 1 and 5 (KPC owner's 2-fer fix list, 2026-11-17): quiet failures fail loud. A pair test that crashed, or a
+# park whose outline could not be read, is counted in the public report (the count only), listed for a person in the PRIVATE folder
+# (the same folder rule as not_shown_file: outside every git work tree), and makes the area's receipt say 'not finished'.
+CRASHED_PAIRS = {}   # (a, b) -> what went wrong (pass 1 carries the pair's old rows like a pair skipped for time; passes 2-3 leave it waiting)
+UNREAD_PARKS = {}    # ref -> area: an outline that could not be read this pass (not a known store / saved-copy hold)
+
+
+def private_file(kind):
+    """A file for a person in the private folder (KPC_FERS_NOT_SHOWN_DIR, KPC_FERS_PRIVATE_OUT, KPC_FERS_PRIVATE_LOG), never inside a
+    git work tree; None when there is no such folder."""
+    for v in ('KPC_FERS_NOT_SHOWN_DIR', 'KPC_FERS_PRIVATE_OUT', 'KPC_FERS_PRIVATE_LOG'):
+        base = str(os.environ.get(v) or '').strip()
+        if not base: continue
+        try:
+            d = pathlib.Path(base).resolve() / 'problems'
+            if _in_git_tree(d.parent if not d.exists() else d): continue
+            d.mkdir(parents=True, exist_ok=True)
+            return d / f"{kind}-{RUN_TAG or REGION}-p{PASS}.json"
+        except OSError: continue
+    return None
+
+
+def save_problems(log):
+    """Bug 5: the run's FULL problem list (the public report keeps only the count; GitHub keeps 10 notices a step) + the crashed
+    pairs, the unread parks and the old rows not carried, in the private folder. -> (path or None, number of problem lines)."""
+    stale = list(_AGE.NOT_CARRIED)
+    n = len(log)
+    if not (n or CRASHED_PAIRS or UNREAD_PARKS or stale): return None, 0
+    f = private_file('problems')
+    if f is None: return None, n
+    try:
+        f.write_text(json.dumps({'about': '2-fer bot problems for a person. PRIVATE: it may name parks whose outlines are withheld, so it '
+                                          'never goes into a published file (the public run report gets the counts only). Handoff 9, 2026-11-17.',
+                                 'pass': PASS, 'region': REGION, 'tag': RUN_TAG, 'date': time.strftime('%Y-%m-%d %H:%M:%S'),
+                                 'problems': list(log),
+                                 'pair tests that crashed': [[a, b, w] for (a, b), w in sorted(CRASHED_PAIRS.items())],
+                                 'parks whose outline could not be read': dict(sorted(UNREAD_PARKS.items())),
+                                 'old rows not carried (made before the key rebuild)': stale},
+                                ensure_ascii=False, indent=1), encoding='utf-8')
+    except OSError: return None, n
+    return f, n
+
+
+def unfinished_areas(st_of=None):
+    """{area: 'not finished: ...'} for this pass's receipt (bug 1c / 1d). Empty when nothing crashed and every outline was read."""
+    out = {}
+    def _st(r):
+        try: return (st_of(r) if callable(st_of) else '') or ''
+        except Exception: return ''  # noqa: BLE001
+    cr, ur = {}, {}
+    for (a, b) in CRASHED_PAIRS:
+        for r in {_st(a), _st(b)} - {''}: cr[r] = cr.get(r, 0) + 1
+    for r, a in UNREAD_PARKS.items():
+        if a: ur[a] = ur.get(a, 0) + 1
+    for a in sorted(set(cr) | set(ur)):
+        bits = ([f'{cr[a]} pair test(s) crashed'] if a in cr else []) + ([f'{ur[a]} park outline(s) could not be read'] if a in ur else [])
+        out[a] = 'not finished: ' + ' and '.join(bits) + ' (listed for a person in the private folder)'
+    return out
 
 
 def no_denials(path, d):
@@ -943,6 +1038,7 @@ PRIVATE_NOTE = ('May contain private land. These boundaries are outer lines draw
                 'public. Check the official map and make sure you are on public land before you set up.')   # owner, 11:22 AM: plain words
 DESIG_PRE = {'wsrc', 'akht', 'wld', 'wsa', 'wbl', 'nca', 'hma', 'hab', 'rst', 'rma', 'fwsr', 'fsod'}
 DESIG_SG = set()
+WORLD_DESIG = {str(n) for e in RULINGS['world_designation_layers'] for n in e.get('layers') or []}   # Handoff 9 bug 6: .github/fers-rulings.json
 LEASE_REFS = set()   # Q4: parks whose owner reads PRIVATE (leased / agreement land): scope flag 'lease'
 DESIG_REFS = set()   # filled after official_parks(): the parks designation_only() names (scope flag 'designation')
 
@@ -968,6 +1064,9 @@ def designation_only(ref, parks):
     keep their own 100 ft rules)."""
     ids = (parks.get(ref) or {}).get('ids') or []
     if not ids or REGION == 'ky': return False
+    if REGION == 'world':   # Handoff 9 bug 6: world record ids are not PAD-US ids; the layer NAME says whether it is a designation line
+        m = (parks.get(ref) or {}).get('m') or []
+        return bool(m) and all(len(x) > 2 and str(x[2]) in WORLD_DESIG for x in m)
     if not PADMANG: agency_kind([])
     sg = _desig_sg()
     for rid in ids:
@@ -978,6 +1077,75 @@ def designation_only(ref, parks):
         if not m or (m.group() not in DESIG_PRE and m.group() not in sg): return False
     return True
 APX_LIST = 'Approximate 2-fer: not the official boundary; needs more research'
+
+
+# ---- Handoff 9 helpers (KPC owner's 2-fer fix list, 2026-11-17)
+LINE_NAMES = ((22.86, 'the 25-yard'), (45.72, 'the 50-yard'))   # the two size lines a measured width is compared with
+
+
+def near_line(s, band=None):
+    """Bug 2 / owner ruling N3 (16 Nov 2026: a pair near a size line, on anything but the fine level, is NOT SURE). The final grid
+    is 5 m: in the Handoff 6 test on made-up squares a true 16-20 m overlap passed the 25-yard (22.86 m) floor and a true 46 m read
+    45 m. An area row whose measured width is within `band` metres of the 25-yard or the 50-yard line -> the plain reason; '' when
+    not (or when the setting is 0 = off, today's behaviour)."""
+    band = NEAR_LINE_M if band is None else float(band)
+    if band <= 0 or s.get('kind') != 'area' or s.get('wide_m') is None: return ''
+    w = float(s['wide_m'])
+    for m, nm in LINE_NAMES:
+        if abs(w - m) <= band:
+            return (f'near a size line: measured {w:g} m wide on the {CELL:g} m grid, within {band:g} m of {nm} line ({m:g} m); '
+                    "the grid can't tell which side it is on, so a person or the fine lines decide it")
+    return ''
+
+
+SUMMARY_KINDS = ('compilation', 'register', 'water')   # data/state-gis.json 'what' labels that are not the agency's own land
+SUMMARY_PRE = {'mid', 'mszp'}   # Michigan DNR project lines (an outer line) and the Mississippi zip ('general area, not a legal description')
+SUMMARY_SG = {}
+SUMMARY_NOTE = ("Not the agency's own map: this outline comes from a summary map (another agency's land re-drawn, a historic-register "
+                "shape, a lake surface or a project line). We believe this is a 2-fer, but it needs more research.")
+
+
+def _summary_sg():
+    """{layer prefix: what} for the state-gis layers labelled compilation / register / water, once (Q1)."""
+    if SUMMARY_SG: return SUMMARY_SG
+    try:
+        L = json.load(open('data/us-key/layers.json'))
+        by = {str(v[0]).split('/query')[0].rstrip('/'): k for k, v in L.items() if isinstance(v, list) and v}
+        for lays in json.load(open('data/state-gis.json'))['states'].values():
+            for l in lays:
+                if l.get('what') in SUMMARY_KINDS:
+                    k = by.get(str(l.get('url') or '').rstrip('/'))
+                    if k: SUMMARY_SG[k] = l['what']
+    except Exception: pass  # noqa: BLE001
+    SUMMARY_SG['_'] = ''
+    return SUMMARY_SG
+
+
+def summary_only(ref, parks):
+    """Q1: True when EVERY joined record of a US park comes from a summary-map layer (WL1: 74 parks)."""
+    ids = (parks.get(ref) or {}).get('ids') or []
+    if not ids or REGION != 'na' or not str(ref).startswith('US-'): return False
+    sg = _summary_sg()
+    for rid in ids:
+        m = re.match(r'[a-z]+', str(rid)) if isinstance(rid, str) else None
+        if not m or (m.group() not in SUMMARY_PRE and m.group() not in sg): return False
+    return True
+
+
+FED_LAND = re.compile(r'\bNational (Park|Wildlife Refuge|Preserve)\b', re.I)
+FED_FOREST = re.compile(r'\bNational (Forest|Grassland)s?\b', re.I)
+
+
+def fed_neighbours(refs, parks, PIN):
+    """Q2: 'park x forest' when a national park / refuge / preserve pairs with a national forest / grassland and neither is a
+    designation laid on the other (wild and scenic river, wilderness, a PAD-US designation record ...); '' otherwise."""
+    nm = {r: str((PIN.get(r) or [''])[0] or '') for r in refs}
+    land = [r for r in refs if FED_LAND.search(nm[r]) and not FED_FOREST.search(nm[r])]
+    forest = [r for r in refs if FED_FOREST.search(nm[r])]
+    if not land or not forest: return ''
+    if any(designation_only(r, parks) or re.search(r'wilderness|wild and scenic|scenic river|recreation area|national monument', nm[r], re.I) for r in refs):
+        return ''
+    return f'{nm[land[0]]} x {nm[forest[0]]}'
 WDPA_RX = re.compile(r'wdpa|protectedplanet|protected.?planet|unep-?wcmc|world_database_of_protected', re.I)
 WDPA_SKIP = []   # refs whose outline is WDPA / Protected Planet (internal file only)
 APX_PARKS = set()
@@ -1574,7 +1742,7 @@ def pmask(F, r, G):
 SOFT = {'nps', 'usace', 'fws', 'state'}
 # Brandon Oct 28 8:35 PM: pairs he activates in person = PERMANENT KNOWN ANSWERS (the whole overlap of the two official
 # boundaries, river included; no mask, no ownership argument)
-KNOWN_LIVE = {('US-0050', 'US-10105'): 'Mammoth Cave x Green River Wild River: Brandon activates it in person (ruling Oct 28 8:35 PM)'}
+KNOWN_LIVE = {tuple(e['pair']): e['why'] for e in RULINGS['known_live']}   # Handoff 9 bug 8: .github/fers-rulings.json (date + who ruled)
 
 
 OWNED_FAIL = set()
@@ -1901,12 +2069,7 @@ def patch_points(s):
 
 
 # Kentucky rulings (Brandon + HQ Oct 27; chat 8's KPC_KY2fer_VERDICT_desk.md): decided pairs, applied after the tests
-KY_DROP = {('US-1277', 'US-4484'): 'Cumberland Falls is state land beside Forest Service land (ruling Oct 27)',
-           ('US-1286', 'US-4484'): 'Natural Bridge is state land beside Forest Service land (ruling Oct 27)',
-           ('US-0686', 'US-4484'): 'Big South Fork is Park Service land beside Forest Service land (ruling Oct 27)',
-           ('US-3799', 'US-4484'): 'Burchell-Beech is KDFWR-owned (ruling Oct 27)',
-           ('US-4484', 'US-7964'): 'W.H. Martin is state nature preserve land (ruling Oct 27)',
-           ('US-12083', 'US-4484'): 'University of the Cumberlands WMA is private (ruling Oct 27)'}
+KY_DROP = {tuple(e['pair']): e['why'] for e in RULINGS['ky_drop']}   # Handoff 9 bug 8: .github/fers-rulings.json (date + who ruled)
 PARTIAL = {'US-10102': 'official line = the open 44 miles only (Breaks to US 119): pairs on the planned stretch stay NOT SURE'}
 KY_NOT_SURE = {'US-10102': 'Pine Mountain State Scenic Trail is a line park: no official trail line yet'}
 
@@ -2610,6 +2773,12 @@ def find_spots(G, LN, pairs, counts):
                              'fx': {'owned_fail': sorted(OWNED_FAIL - of0), 'water_fail': [list(x) for x in WATER_FAIL[wf0:]], 'log': LOG[n_log:]}}
         except Exception as e:  # noqa: BLE001
             LOG.append(f'{a} + {b}: {str(e)[:80]}')
+            # Handoff 9 bug 1c: a crashed pair no longer just disappears. It is counted, listed for a person (private folder), its area's
+            # receipt says 'not finished', pass 1 carries its old rows like a pair skipped for time, passes 2-3 leave its rows waiting
+            CRASHED_PAIRS[(a, b)] = f'{type(e).__name__}: {str(e)[:160]}'
+            counts['pair tests that crashed (not finished; listed in the private folder)'] = len(CRASHED_PAIRS)
+            del spots[n_sp:]; REUSE_NEW.pop(pk, None)
+            if PASS != 1: TESTED.discard((a, b))
         if _pc.out_of_time:   # KPC owner, 2026-11-11: the pass's own time ended inside this pair: not tested, the next run carries on
             TESTED.discard((a, b)); REUSE_NEW.pop(f'{a}+{b}', None); counts['pairs tested'] -= 1; counts['stopped for time'] = True
             del spots[n_sp:]; HC.TRACE = None; break
@@ -2650,7 +2819,10 @@ def find_spots(G, LN, pairs, counts):
                 if not box: continue
                 with park_clock(f"{'+'.join(s['refs'])}+{c}", 'n-fer test', seconds=1e9, budget_end=_be) as _nc:   # KPC owner, 2026-11-11: the pass's own end only
                     try: nxt += area_spots(G, s['refs'] + [c], [box[0] - .001, box[1] - .001, box[2] + .001, box[3] + .001])
-                    except Exception as e: LOG.append(f"{'+'.join(s['refs'])} + {c}: {str(e)[:60]}")  # noqa: BLE001
+                    except Exception as e:  # noqa: BLE001
+                        LOG.append(f"{'+'.join(s['refs'])} + {c}: {str(e)[:60]}")
+                        CRASHED_PAIRS[(s['refs'][0], c)] = f"n-fer test {'+'.join(s['refs'])}+{c}: {type(e).__name__}: {str(e)[:120]}"   # Handoff 9 bug 1c
+                        counts['pair tests that crashed (not finished; listed in the private folder)'] = len(CRASHED_PAIRS)
                 if _nc.out_of_time: _cut = True; break
             if _cut: break
         if _cut:   # KPC owner, 2026-11-12 (Quality follow-up): an n-fer stage cut for time is an unfinished pass, never a finished area
@@ -2695,7 +2867,7 @@ def near_pairs(G, pairs, spots, gap_m=100.0):
 # Oct 28 (Brandon 6:18 AM): Fort Heiman (US-3790) = its own outline now (the Fort Heiman tract only, split out of Fort Donelson's
 # 8-piece record), but the pair STAYS a 'same land, two park numbers' row: both numbers apply to that one tract.
 SAME_FAR = []   # same-land pairs left out: pins far apart, not both inside the shared outline (Oct 29)
-SAME_LAND_PAIRS = [(('US-0703', 'US-3790'), 'Fort Heiman tract', 'Fort Heiman (Fort Donelson National Battlefield tract)')]
+SAME_LAND_PAIRS = [(tuple(e['pair']), e['record'], e['name']) for e in RULINGS['same_land_pairs']]   # Handoff 9 bug 8: .github/fers-rulings.json
 
 
 def same_outline(parks):
@@ -3367,7 +3539,9 @@ def land_check(s, G, live=True):
     if raw is not None and (raw & (1 - ov)).any(): s.setdefault('info', {})['cut_ac'] = round(float((raw & (1 - ov)).sum()) * ac, 1)
     need = TIGHT_SHRINK + cell
     try: closed = F.area(pad_closed(F.bounds()))
-    except Exception as e: LOG.append(f'closed areas: {str(e)[:60]}'); closed = np.zeros_like(ov)  # noqa: BLE001
+    except Exception as e:  # noqa: BLE001
+        LOG.append(f'closed areas: {str(e)[:60]}'); closed = np.zeros_like(ov)
+        s['_closed_fail'] = f'{type(e).__name__}'   # Handoff 9 bug 1b: decide() makes an otherwise-open row NOT SURE (never 'nothing is closed')
     open_ = ov & (1 - closed)
     if not (dt(open_) * cell >= need).any(): return 'closed' if closed.any() else 'ok'
     wg = nhd_water(box, live=live)   # Oct 28 11 PM: the row's own box (the tiles the water job saves), not the frame's wider margin (a missing margin tile = 'not checked' with every needed tile saved)
@@ -3500,6 +3674,11 @@ def tripwire_parks(path=None):
             got = {}
         _TRIPWIRE[c] = got
         return got
+    # Handoff 9 bug 3: no list = D10 holds nothing. Say so ONCE (a PC run used to look in the wrong folder and stay silent)
+    if '_missing' not in _TRIPWIRE:
+        _TRIPWIRE['_missing'] = {}
+        print('::warning title=2-fer bot::D10 is off for this run: the tripwire not-sure list was not found (looked in '
+              + ', '.join(str(c) for c in cands if c) + '); set KPC_FERS_NOT_SURE to KPC-Data data/waiting/tripwires/not-sure.json', flush=True)
     return {}
 
 
@@ -3744,8 +3923,16 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     if REGION != 'ky' and any(r in LOWCONF for r in refs):   # pre-flight fix 9 (Oct 28: not in Kentucky: its outlines come from Kentucky's own files, not the US key join the score is about)
         s['status'] = 'not sure: low-confidence outline for ' + ', '.join(PIN[r][0] for r in refs if r in LOWCONF) + ' (check the join)'; return
     if s['kind'] == 'area' and refs[0].startswith('US-'):
+        # Handoff 9 bug 1a (KPC owner's fix list, 2026-11-17): a crash in the water / closed-area check is NOT SURE, as Canada does,
+        # never a candidate. Bug 1b: the PAD-US closed-area map did not answer = closed areas not checked = NOT SURE, never 'nothing closed'
+        _lcx = ''
         try: lc = land_check(s, G)
-        except Exception as e: lc = 'ok'; LOG.append(f"land check {s['id']}: {str(e)[:60]}")  # noqa: BLE001
+        except Exception as e: lc = 'check failed'; _lcx = type(e).__name__; LOG.append(f"land check {s['id']}: {str(e)[:60]}")  # noqa: BLE001
+        _cf = s.pop('_closed_fail', None)
+        if lc == 'check failed':
+            s['status'] = f'not sure: water/closed-area check failed ({_lcx}): run again'; s['names'] = {r: PIN[r][0] for r in refs}; return
+        if lc == 'ok' and _cf:
+            s['status'] = f'not sure: closed areas not checked (the PAD-US closed-area map did not answer: {_cf}): run again'; s['names'] = {r: PIN[r][0] for r in refs}; return
         if lc == 'water': s['status'] = 'water only: boat or kayak'; s['list'] = '🚤 Water only: boat or kayak'; return
         if lc == 'closed': s['status'] = 'dropped: only inside an area closed to the public (no entry)'; return
         if lc == 'not checked': s['status'] = 'not sure: water not checked (the USGS water map did not answer): run pass 5'; s['names'] = {r: PIN[r][0] for r in refs}; return
@@ -3753,6 +3940,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         # Oct 28 11:19 PM (Brandon: Canada's water): the saved NRCan NHN tiles (kpc_water_ca.py); none saved = never guess it is land
         try: lc = land_check(s, G, live=False)
         except Exception as e: lc = 'not checked'; LOG.append(f"land check {s['id']}: {str(e)[:60]}")  # noqa: BLE001
+        s.pop('_closed_fail', None)   # PAD-US is a US map: Canada's closed areas are not read from it (as before)
         if lc == 'water': s['status'] = 'water only: boat or kayak'; s['list'] = '🚤 Water only: boat or kayak'; return
         if lc == 'closed': s['status'] = 'dropped: only inside an area closed to the public (no entry)'; return
         if lc == 'not checked': s['status'] = 'not sure: water not checked (no saved Canadian water tile here yet: run the Canada water job)'; s['names'] = {r: PIN[r][0] for r in refs}; return
@@ -3764,9 +3952,22 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     if _land and all(designation_only(r, parks) for r in _land):   # Q1 (KPC owner, 2026-11-17): no proof the ground is public
         s['approx'] = True; s['approx_refs'] = sorted(set(s.get('approx_refs') or []) | set(_land)); s['approx_note'] = PRIVATE_NOTE
         s['may_contain_private'] = True
+    if FED_NEIGHBOUR and s['kind'] == 'area':   # Q2 (setting KPC_FERS_FED_NEIGHBOUR=1, off): side-by-side federal land, not shared ground
+        _fn = fed_neighbours(refs, parks, PIN)
+        if _fn:
+            s['status'] = ('not sure: two agencies\' maps disagree here (' + _fn + '): a national park or refuge and the national forest next '
+                           'to it are normally side by side; check both official maps'); s['names'] = {r: PIN[r][0] for r in refs}; return
+    if SUMMARY_APPROX:   # Q1 (setting KPC_FERS_SUMMARY_APPROX=1, off): a summary-map outline is approximate until the agency's own map is found
+        _sm = [r for r in refs if summary_only(r, parks)]
+        if _sm:
+            s['approx'] = True; s['approx_refs'] = sorted(set(s.get('approx_refs') or []) | set(_sm)); s['approx_note'] = SUMMARY_NOTE
     s['status'] = 'candidate' if not s.get('fresh') else 'candidate (saved outline only)'
     if s['kind'] == 'area' and (s.get('wide_m') or 0) < TIGHT_M:
         s['status'] = VERY_TIGHT; s['list'] = 'Very tight (members only)'   # rule 4: its own list, never the main one
+    _nl = near_line(s)
+    if _nl:   # owner ruling N3 (16 Nov): near a size line = NOT SURE (setting KPC_FERS_NEAR_LINE_M, off; lean 8 m)
+        s['status'] = 'not sure: ' + _nl; s.pop('list', None)
+    _AGE.stamp(s, (st_of(refs[0]) if callable(st_of) else '') or '')   # Handoff 9 bug 4: the key build the row was made on (setting on only)
     s['access'] = nearest_access(s, st_of)
     try: s['access_pin'] = access_pin(s, G, LN, st_of)
     except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
@@ -3776,7 +3977,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     how_checked(s, parks, PIN)
 
 
-MAPFIX = {'US-0703': 'https://www.nps.gov/fodo/planyourvisit/maps.htm'}   # Oct 27 (chat 8 re-check): the file had a POTA page
+MAPFIX = {e['ref']: e['url'] for e in RULINGS['map_fix']}   # Oct 27 (chat 8 re-check): the file had a POTA page; Handoff 9 bug 8: .github/fers-rulings.json
 WEB = {}
 KYOFF = {}
 
@@ -4007,6 +4208,30 @@ def fine_only_mode():
     return 'count' if v == 'count' and _store_mod() is not None else 'off'   # only where the shapes are the same in every pass
 
 
+# Q5 (Handoff 9; owner question 5, WL7): with KPC_FERS_FINE_ONLY=count and KPC_FERS_FINE_100M=1, a spot no row took becomes its own row only when it is at
+# least 25 yards across AND more than FINE_GAP_M from every row of the same pair; a smaller or nearby piece is the same patch as its
+# row and is listed only. Its own setting KPC_FERS_FINE_100M=1 (OFF: with count on, every leftover spot is a row, as the switch did
+# before); the owner's lean is both on together.
+FINE_GAP_M = 100.0
+FINE_100M = os.environ.get('KPC_FERS_FINE_100M') == '1'
+
+
+def _gap_m(a, b):
+    la1, lo1 = a; la2, lo2 = b
+    return math.hypot((lo1 - lo2) * 111320 * math.cos(math.radians((la1 + la2) / 2)), (la1 - la2) * 110574)
+
+
+def fine_own_row(n, rows):
+    """Q5's 100 m rule for one fine-grid spot n against the file's rows. True = it becomes its own row."""
+    if n.get('kind') == 'area' and (n.get('wide_m') or 0) < SHRINK: return False   # under 25 yards across
+    pk = tuple(sorted((n.get('refs') or [])[:2]))
+    c = n.get('center')
+    if not c: return False
+    for r in rows:
+        if tuple(sorted((r.get('refs') or [])[:2])) == pk and r.get('center') and _gap_m(c, r['center']) <= FINE_GAP_M: return False
+    return True
+
+
 def fine_only_spots(d, newk, today, st):
     """Passes 2-3 of a store run: every new spot no row took, of a pair this file holds, is listed (FINE_ONLY). With the switch
     on (count) it becomes a row of its own like leftover_spots does (pass 3 decides it). -> rows added (the caller decides them)."""
@@ -4021,6 +4246,7 @@ def fine_only_spots(d, newk, today, st):
             FINE_ONLY.append({'area': st, 'pass': PASS, 'grid_m': CELL, 'refs': list(n['refs']), 'kind': n.get('kind'), 'center': n.get('center'),
                               **{x: n[x] for x in ('acres', 'wide_m', 'len_m', 'box') if x in n}})
             if not count: continue
+            if FINE_100M and not fine_own_row(n, d.get('spots', [])): continue   # Q5: a small or nearby piece stays with its row (listed only)
             g = {x: v for x, v in n.items() if not x.startswith('_')}
             g['id'] = key_of(g) + '@%.3f,%.3f' % tuple(g['center'])
             if g['id'] in have: continue
@@ -4106,6 +4332,8 @@ def write_receipt(counts, parks, G, bad, rules, refs=None, stopped='', note=''):
                 if a and a not in own and p.get('ids') and r not in G and KS.AREA_OFF['fn'](a): nb[a] = nb.get(a, 0) + 1
         verd = ({a: 'measured' for a in own} if stopped == '' and PASS != 1 else
                 {a: f'stopped early: {stopped}' for a in own} if stopped else receipt_verdicts(parks, G))
+        for a, v in unfinished_areas(globals().get('_ST_OF')).items():   # Handoff 9 bugs 1c / 1d: never 'measured' with a crash or an unread outline
+            if a in verd and verd[a] == 'measured': verd[a] = v
         rows = getattr(KS, 'AREA_ROWS', {}) if KS else {}
         for a, r in rows.items():   # an area named for the run that the store does not hold: left out, and red here (never 'no 2-fers')
             if a not in verd and isinstance(r, dict) and r.get('verdict') == 'NOT READY': verd[a] = f"store missing: {str(r.get('why') or '')[:160]}"
@@ -4202,6 +4430,7 @@ def main():
             st = 'KY' if kyl else PIN[ref][5]
             parks[ref] = {'st': st if st.startswith('CA-') else 'US-' + st, 'ids': [], 'names': {}}
     st_of = lambda r: parks[r]['st'] if r in parks else ''
+    globals()['_ST_OF'] = st_of   # Handoff 9: the receipt names a crashed pair's area
     if ONLY:
         # Oct 30 (chat 2, from the wave-2 recheck: IA lost both Mormon Pioneer NHT pairs, NM every Old Spanish NHT pair): a LINE park
         # (a national trail crossing many states) is filed under ONE state by POTA, so a one-state area dropped it whenever that
@@ -4515,6 +4744,9 @@ def main():
         if _sheld: counts['parks held: outline not publishable (held privately, not named)'] = len(_sheld)
         _withids = sum(1 for r in parks if parks[r].get('ids'))
         _open = bad - _held - _sheld
+        # Handoff 9 bug 1d: under the stop line (20 parks and 20%) an area used to lose its unread parks' pairs and still count as
+        # finished. Every unread park is counted, listed for a person, and its area's receipt says 'not finished' with the count
+        UNREAD_PARKS.update({r: (parks.get(r) or {}).get('st') or '' for r in _open})
         if len(_open) > 20 and len(_open) > .2 * max(1, _withids):   # half a state missing is not a 2-fer answer: stop loudly (a real issue)
             if _son:   # a store run names no record id (a held park's ids could be private)
                 print(f"::error title=2-fer line: outlines not read::{len(_open)} of {_withids} parks could not be read from the outline store "
@@ -4667,11 +4899,13 @@ def main():
                 kinds = {(tuple(sorted(x['refs'])), x['kind']) for x in sp}
                 # Oct 28 9:15 PM (KY known answer 18/19: the Kentucky Lake shore rows vanished): an old row of a PARKS pair is carried
                 # over when the batch made no row of that pair + kind (line / river / water-route rows are not all remade by a batch)
-                sp += [x for x in (old.get(st) or {}).get('spots', []) if not PARKS & set(x.get('refs') or []) or (tuple(sorted(x.get('refs') or [])), x.get('kind')) not in kinds]
+                sp += _AGE.keep_fresh([x for x in (old.get(st) or {}).get('spots', []) if not PARKS & set(x.get('refs') or []) or (tuple(sorted(x.get('refs') or [])), x.get('kind')) not in kinds],
+                                      st, (old.get(st) or {}).get('pass1'))   # Handoff 9 bug 4 (setting, off)
                 if not sp and st not in old: continue
-            if TIMED_PAIRS:   # Nov 9 PM: a pair skipped for time keeps its old rows (listed in the report for a person)
-                _tp = {tuple(sorted(p_)) for p_ in TIMED_PAIRS}
-                sp = sp + [x for x in (old.get(st) or {}).get('spots', []) if tuple(sorted((x.get('refs') or [])[:2])) in _tp and len(x.get('refs') or []) == 2]
+            if TIMED_PAIRS or CRASHED_PAIRS:   # Nov 9 PM: a pair skipped for time keeps its old rows (listed in the report for a person); Handoff 9 bug 1c: a crashed pair too
+                _tp = {tuple(sorted(p_)) for p_ in TIMED_PAIRS} | {tuple(sorted(p_)) for p_ in CRASHED_PAIRS}
+                sp = sp + _AGE.keep_fresh([x for x in (old.get(st) or {}).get('spots', []) if tuple(sorted((x.get('refs') or [])[:2])) in _tp and len(x.get('refs') or []) == 2],
+                                          st, (old.get(st) or {}).get('pass1'))   # Handoff 9 bug 4: never past a key rebuild (setting, off)
             mem = stable_ids([x for x in sp if x.get('center') and x.get('refs') and x.get('kind') and '@channel@' not in str(x.get('id'))], id_memory(old.get(st)))
             save_json(file_of(st), pc_tag({'st': st, 'about': ABOUT, 'pass1': today, 'ids': mem, 'spots': slim(sorted(sp, key=lambda s: s['id'])),
                                     **({'incomplete': 'pass 1 stopped for time before every pair here was tested: run again'} if st in undone else {})}), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
@@ -4700,6 +4934,8 @@ def main():
             for r, g in sw.items(): G[r] = g; saved_only.add(r)
             bad -= saved_only
         counts['parks whose outline could not be read'] = len(bad)
+        _hp = set(getattr(_store_mod(), 'HELD_PRIVATE', ()) or ()) if _store_mod() is not None else set()   # held for licence / WDPA: a known reason
+        UNREAD_PARKS.update({r: (parks.get(r) or {}).get('st') or '' for r in bad if r not in MISSING_SAVED and r not in _hp})   # Handoff 9 bug 1d: the receipt says 'not finished'
         counts['parks with a saved copy only (no fresh download possible)'] = len(saved_only)
         pairs = {tuple(sorted(s['refs'][:2])) for s in prev}
         for s in prev:
@@ -4812,7 +5048,13 @@ def main():
         counts['...their reasons'] = (f'{_nsn} pair(s), written for a person in the private folder'
                                       if _nsf is not None else
                                       f'{_nsn} pair(s); no private folder was given, so the reasons were not written anywhere')
-    rep[f'pass{PASS}'] = dict(counts, date=today, problems=LOG[:40])
+    # Handoff 9 bug 5: the public report keeps the COUNT of problem lines; the full list goes to the private folder (save_problems)
+    _pf, _pn = save_problems(LOG)
+    _ag = len(getattr(sys.modules.get('kpc_fers_age'), 'NOT_CARRIED', []) or [])
+    if _ag: counts['old rows not carried: made before the key rebuild (setting KPC_FERS_CARRY_MAX=key)'] = _ag
+    if LOG: counts['...problem lines'] = (f'{_pn} line(s), written for a person in the private folder' if _pf is not None else
+                                          f'{_pn} line(s); no private folder was given, so the list was not written anywhere')
+    rep[f'pass{PASS}'] = dict(counts, date=today, problems=len(LOG))
     rep['per state'] = per
     save_json(RF, rep, indent=1)
     if HC.report(): notice('2-fer bot', f'pass {PASS}: ' + HC.report())

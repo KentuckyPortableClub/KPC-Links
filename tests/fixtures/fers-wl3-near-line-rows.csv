@@ -1,0 +1,473 @@
+file,area,pass3_date,pair,wide_m,status,line
+public,US-FL,2026-10-29,US-0231+US-1914,47,candidate,50-yard
+public,US-FL,2026-10-29,US-0235+US-4646,45,very tight,50-yard
+public,US-FL,2026-10-29,US-0235+US-6296,45,very tight,50-yard
+public,US-FL,2026-10-29,US-0236+US-1886,23,very tight,25-yard
+public,US-FL,2026-10-29,US-0241+US-3657,49,candidate,50-yard
+public,US-FL,2026-10-29,US-0250+US-3620,25,very tight,25-yard
+public,US-FL,2026-10-29,US-0250+US-6303,25,very tight,25-yard
+public,US-FL,2026-10-29,US-0258+US-3618,45,very tight,50-yard
+public,US-FL,2026-10-29,US-1838+US-8680,91,candidate,100-yard
+public,US-FL,2026-10-29,US-1853+US-4627,25,very tight,25-yard
+public,US-FL,2026-10-29,US-1866+US-4631,23,very tight,25-yard
+public,US-FL,2026-10-29,US-1886+US-3620,45,very tight,50-yard
+public,US-FL,2026-10-29,US-1919+US-8716,23,very tight,25-yard
+public,US-FL,2026-10-29,US-3637+US-8362,25,very tight,25-yard
+public,US-FL,2026-10-29,US-4617+US-4630,25,very tight,25-yard
+public,US-FL,2026-10-29,US-4617+US-8370,25,very tight,25-yard
+public,US-FL,2026-10-29,US-4646+US-6296,45,very tight,50-yard
+public,US-NJ,2026-10-30,US-0677+US-8058,47,candidate,50-yard
+public,US-NJ,2026-10-30,US-1613+US-1634,23,very tight,25-yard
+public,US-NJ,2026-10-30,US-1619+US-4999,97,candidate,100-yard
+public,US-NJ,2026-10-30,US-1622+US-4995,23,very tight,25-yard
+public,US-MA,2026-10-29,US-0320+US-4720,87,candidate,100-yard
+public,US-MA,2026-10-29,US-0672+US-8395,25,very tight,25-yard
+public,US-MA,2026-10-29,US-0742+US-2444,45,very tight,50-yard
+public,US-MA,2026-10-29,US-11396+US-4711,45,very tight,50-yard
+public,US-MA,2026-10-29,US-11401+US-4722,23,very tight,25-yard
+public,US-MA,2026-10-29,US-11409+US-4719,25,very tight,25-yard
+public,US-MA,2026-10-29,US-4748+US-4756,25,very tight,25-yard
+public,CA-QC,2026-10-29,CA-0086+CA-0495,27,very tight,25-yard
+public,US-TN,2026-10-29,US-0537+US-2947,25,very tight,25-yard
+public,US-TN,2026-10-29,US-0537+US-5494,45,very tight,50-yard
+public,US-TN,2026-10-29,US-0686+US-5500,47,candidate,50-yard
+public,US-TN,2026-10-29,US-0703+US-7568,93,candidate,100-yard
+public,US-TN,2026-10-29,US-12663+US-4525,93,candidate,100-yard
+public,US-TN,2026-10-29,US-2947+US-3948,25,very tight,25-yard
+public,US-TN,2026-10-29,US-2952+US-4525,93,candidate,100-yard
+public,US-TN,2026-10-29,US-2955+US-5499,45,very tight,50-yard
+public,US-TN,2026-10-29,US-2974+US-4525,27,very tight,25-yard
+public,US-TN,2026-10-29,US-3940+US-3959,45,water only,50-yard
+public,US-TN,2026-10-29,US-4525+US-6246,47,candidate,50-yard
+public,US-TN,2026-10-29,US-0685+US-3931,50.0,water only,50-yard
+public,US-MD,2026-10-31,US-10758+US-1559,93,candidate,100-yard
+public,US-MD,2026-10-31,US-10758+US-7780,45,very tight,50-yard
+public,US-MD,2026-10-31,US-1575+US-1598,27,very tight,25-yard
+public,US-MD,2026-10-31,US-4766+US-7765,23,very tight,25-yard
+public,US-CT,2026-10-29,US-11013+US-12604,45,very tight,50-yard
+public,US-CT,2026-10-29,US-1651+US-7532,45,very tight,50-yard
+public,US-CT,2026-10-29,US-1658+US-1674,23,very tight,25-yard
+public,US-CT,2026-10-29,US-1668+US-1698,45,water only,50-yard
+public,US-CT,2026-10-29,US-6857+US-6869,45,very tight,50-yard
+public,US-AK,2026-10-29,US-0143+US-0144,23,very tight,25-yard
+public,US-AK,2026-10-29,US-0150+US-1639,25,very tight,25-yard
+public,US-AK,2026-10-29,US-4448+US-4593,45,very tight,50-yard
+public,US-IN,2026-10-29,US-0290+US-4228,45,very tight,50-yard
+public,US-IN,2026-10-29,US-10253+US-4215+US-4235,27,very tight,25-yard
+public,US-IN,2026-10-29,US-2251+US-4235,25,very tight,25-yard
+public,US-IN,2026-10-29,US-2262+US-4203,93,candidate,100-yard
+public,US-IN,2026-10-29,US-4219+US-4228,45,very tight,50-yard
+public,US-IN,2026-10-29,US-4235+US-6976,95,candidate,100-yard
+public,US-IN,2026-10-29,US-4483+US-5687,45,very tight,50-yard
+public,US-IN,2026-10-29,US-4164+US-5691,42.0,water only,50-yard
+public,US-MT,2026-10-29,US-0407+US-4499,25,very tight,25-yard
+public,US-MT,2026-10-29,US-2574+US-4504,45,very tight,50-yard
+public,US-MT,2026-10-29,US-2584+US-4499,45,very tight,50-yard
+public,US-MT,2026-10-29,US-2597+US-4504,49,water only,50-yard
+public,US-MT,2026-10-29,US-2597+US-4504,25,very tight,25-yard
+public,US-MT,2026-10-29,US-4505+US-4848,95,candidate,100-yard
+public,US-IL,2026-11-09,US-0283+US-4130,45,very tight,50-yard
+public,US-IL,2026-11-09,US-4112+US-9893,25,very tight,25-yard
+public,US-IL,2026-11-09,US-4157+US-4482,25,very tight,25-yard
+public,US-IL,2026-11-09,US-4482+US-9893,45,very tight,50-yard
+public,US-TX,2026-10-29,US-0551+US-3054,27,very tight,25-yard
+public,US-OK,2026-10-29,US-2784+US-6359,51,water only,50-yard
+public,US-OK,2026-10-29,US-6341+US-6360,25,very tight,25-yard
+public,US-OK,2026-10-29,US-6347+US-7923,25,very tight,25-yard
+public,US-OK,2026-10-29,US-6360+US-6367,25,very tight,25-yard
+public,US-OK,2026-10-29,US-6367+US-6377,45,very tight,50-yard
+public,US-MN,2026-10-30,US-2508+US-4799+US-4831,25,very tight,25-yard
+public,US-MN,2026-10-30,US-2519+US-4826,45,water only,50-yard
+public,US-MN,2026-10-30,US-2531+US-4809,25,very tight,25-yard
+public,US-MN,2026-10-30,US-4490+US-4787+US-4835,25,very tight,25-yard
+public,US-MN,2026-10-30,US-4490+US-4797,25,very tight,25-yard
+public,US-MN,2026-10-30,US-4490+US-4799,45,very tight,50-yard
+public,US-MN,2026-10-30,US-4490+US-4817,45,very tight,50-yard
+public,US-MN,2026-10-30,US-4799+US-4831,45,very tight,50-yard
+public,US-MN,2026-10-30,US-4806+US-4807,25,very tight,25-yard
+public,US-MN,2026-10-30,US-4807+US-4819,45,very tight,50-yard
+public,US-MN,2026-10-30,US-4491+US-4801,48.0,water only,50-yard
+public,US-IA,2026-11-09,US-0268+US-9310,25,very tight,25-yard
+public,US-IA,2026-11-09,US-0922+US-4664,45,very tight,50-yard
+public,US-IA,2026-11-09,US-11875+US-9308,25,very tight,25-yard
+public,US-IA,2026-11-09,US-12192+US-2316,45,very tight,50-yard
+public,US-IA,2026-11-09,US-2316+US-4659,45,very tight,50-yard
+public,US-IA,2026-11-09,US-9326+US-9327,25,very tight,25-yard
+public,US-PA,2026-10-30,US-0619+US-12235+US-8743,27,water only,25-yard
+public,US-PA,2026-10-30,US-0619+US-12235+US-8743,25,very tight,25-yard
+public,US-PA,2026-10-30,US-0619+US-8729,25,very tight,25-yard
+public,US-PA,2026-10-30,US-0619+US-8743,27,water only,25-yard
+public,US-PA,2026-10-30,US-0681+US-5466+US-8906,25,very tight,25-yard
+public,US-PA,2026-10-30,US-5463+US-8748,23,very tight,25-yard
+public,US-PA,2026-10-30,US-5463+US-8796,95,candidate,100-yard
+public,US-PA,2026-10-30,US-5466+US-8906,23,very tight,25-yard
+public,US-PA,2026-10-30,US-5467+US-8730,23,very tight,25-yard
+public,US-PA,2026-10-30,US-5468+US-8810,51,candidate,50-yard
+public,US-PA,2026-10-30,US-5468+US-8836,27,very tight,25-yard
+public,US-PA,2026-10-30,US-5472+US-8793,45,very tight,50-yard
+public,US-PA,2026-10-30,US-5472+US-9021,25,very tight,25-yard
+public,US-PA,2026-10-30,US-5473+US-8884,23,very tight,25-yard
+public,US-PA,2026-10-30,US-5473+US-8904,87,candidate,100-yard
+public,US-PA,2026-10-30,US-5473+US-8993,23,very tight,25-yard
+public,US-PA,2026-10-30,US-5473+US-9003,25,very tight,25-yard
+public,US-PA,2026-10-30,US-5474+US-8811,49,candidate,50-yard
+public,US-PA,2026-10-30,US-5475+US-9011,25,very tight,25-yard
+public,US-PA,2026-10-30,US-5478+US-8774,25,very tight,25-yard
+public,US-PA,2026-10-30,US-5480+US-8779,23,very tight,25-yard
+public,US-PA,2026-10-30,US-5480+US-8805,89,candidate,100-yard
+public,US-PA,2026-10-30,US-5480+US-8930,89,candidate,100-yard
+public,US-ID,2026-10-29,US-10381+US-4500,25,very tight,25-yard
+public,US-ID,2026-10-29,US-10383+US-4481+US-7362,25,very tight,25-yard
+public,US-ID,2026-10-29,US-2241+US-4480,23,very tight,25-yard
+public,US-OH,2026-10-30,US-0482+US-9479,25,very tight,25-yard
+public,US-OH,2026-10-30,US-0483+US-1944,25,very tight,25-yard
+public,US-OH,2026-10-30,US-4521+US-9506,45,very tight,50-yard
+public,US-OH,2026-10-30,US-9393+US-9458,45,water only,50-yard
+public,US-WA,2026-10-29,US-0595+US-10407,93,candidate,100-yard
+public,US-WA,2026-10-29,US-0597+US-3220,25,very tight,25-yard
+public,US-WA,2026-10-29,US-12283+US-4531,25,very tight,25-yard
+public,US-WA,2026-10-29,US-12284+US-4531,45,very tight,50-yard
+public,US-WA,2026-10-29,US-12294+US-4530,45,very tight,50-yard
+public,US-WA,2026-10-29,US-12304+US-4530,45,very tight,50-yard
+public,US-WA,2026-10-29,US-3158+US-4529,45,very tight,50-yard
+public,US-WA,2026-10-29,US-3239+US-4530,25,very tight,25-yard
+public,US-WA,2026-10-29,US-3286+US-3290,25,very tight,25-yard
+public,US-WV,2026-10-29,US-0632+US-1808,51,candidate,50-yard
+public,US-WV,2026-10-29,US-0697+US-1804+US-1820,23,very tight,25-yard
+public,US-WV,2026-10-29,US-0697+US-1804+US-7037,45,very tight,50-yard
+public,US-WV,2026-10-29,US-1804+US-1820,25,very tight,25-yard
+public,US-NH,2026-10-29,US-4512+US-4875,25,very tight,25-yard
+public,US-NH,2026-10-29,US-4512+US-4958,45,very tight,50-yard
+public,US-GA,2026-10-29,US-0264+US-3720,45,very tight,50-yard
+public,US-GA,2026-10-29,US-2176+US-4473,45,very tight,50-yard
+public,US-GA,2026-10-29,US-3767+US-3773,49,candidate,50-yard
+public,US-MI,2026-10-29,US-0346+US-6669,25,water only,25-yard
+public,US-MI,2026-10-29,US-0353+US-6782,51,candidate,50-yard
+public,US-MI,2026-10-29,US-4489+US-6620,45,very tight,50-yard
+public,US-MI,2026-10-29,US-12792+US-4583,50.0,water only,50-yard
+public,US-MI,2026-10-29,US-12793+US-3306,42.0,water only,50-yard
+public,US-WI,2026-10-29,US-0673+US-4350,89,candidate,100-yard
+public,US-WI,2026-10-29,US-0673+US-4533,95,candidate,100-yard
+public,US-WY,2026-10-29,US-0031+US-6210,49,candidate,50-yard
+public,US-WY,2026-10-29,US-0070+US-4535+US-6210+US-6227,25,very tight,25-yard
+public,US-WY,2026-10-29,US-0070+US-4535+US-6227,25,very tight,25-yard
+public,US-WY,2026-10-29,US-0070+US-4535,45,very tight,50-yard
+public,US-WY,2026-10-29,US-0070+US-6210+US-6227,25,very tight,25-yard
+public,US-WY,2026-10-29,US-0070+US-6210,45,very tight,50-yard
+public,US-WY,2026-10-29,US-0613+US-4535+US-6223+US-6227,25,very tight,25-yard
+public,US-WY,2026-10-29,US-0613+US-4535+US-6223,25,very tight,25-yard
+public,US-WY,2026-10-29,US-0613+US-6223,45,very tight,50-yard
+public,US-WY,2026-10-29,US-10808+US-4535,45,very tight,50-yard
+public,US-WY,2026-10-29,US-3293+US-6175,45,very tight,50-yard
+public,US-WY,2026-10-29,US-3302+US-4536,45,very tight,50-yard
+public,US-WY,2026-10-29,US-4403+US-6123,25,very tight,25-yard
+public,US-WY,2026-10-29,US-4403+US-6126,95,candidate,100-yard
+public,US-WY,2026-10-29,US-4534+US-6139,25,very tight,25-yard
+public,US-LA,2026-11-09,US-0297+US-0312,25,very tight,25-yard
+public,US-LA,2026-11-09,US-0302+US-4071,25,very tight,25-yard
+public,US-LA,2026-11-09,US-10456+US-4486,27,very tight,25-yard
+public,US-LA,2026-11-09,US-2358+US-4047,95,candidate,100-yard
+public,US-LA,2026-11-09,US-4056+US-4065,25,very tight,25-yard
+public,US-KY,2026-10-31,US-1275+US-4484,27,very tight,25-yard
+public,US-KY,2026-10-31,US-1281+US-4687,49,candidate,50-yard
+public,US-KY,2026-10-31,US-4484+US-7962,49,candidate,50-yard
+public,US-KY,2026-10-31,US-4484+US-7970,42.0,water only,50-yard
+public,US-NC,2026-10-29,US-0410+US-6908,49,candidate,50-yard
+public,US-NC,2026-10-29,US-0417+US-6919,45,very tight,50-yard
+public,US-NC,2026-10-29,US-0419+US-6908,45,very tight,50-yard
+public,US-NC,2026-10-29,US-2729+US-8313,95,candidate,100-yard
+public,US-NC,2026-10-29,US-2732+US-4509+US-6936,49,candidate,50-yard
+public,US-NC,2026-10-29,US-2732+US-4509+US-6937,49,candidate,50-yard
+public,US-NC,2026-10-29,US-2753+US-6952,27,very tight,25-yard
+public,US-NC,2026-10-29,US-4509+US-9758,25,very tight,25-yard
+public,US-NC,2026-10-29,US-6907+US-6917,25,very tight,25-yard
+public,US-NC,2026-10-29,US-6927+US-9758,25,very tight,25-yard
+public,US-NC,2026-10-29,US-6960+US-9226,23,very tight,25-yard
+public,US-OR,2026-10-29,US-0501+US-4379,27,very tight,25-yard
+public,US-OR,2026-10-29,US-0505+US-2817,27,very tight,25-yard
+public,US-OR,2026-10-29,US-0505+US-2835,23,very tight,25-yard
+public,US-OR,2026-10-29,US-0505+US-2847,23,very tight,25-yard
+public,US-OR,2026-10-29,US-0505+US-2848,27,very tight,25-yard
+public,US-OR,2026-10-29,US-0505+US-4384,45,very tight,50-yard
+public,US-OR,2026-10-29,US-0505+US-9568,45,very tight,50-yard
+public,US-OR,2026-10-29,US-0731+US-4381,45,very tight,50-yard
+public,US-OR,2026-10-29,US-12744+US-4381,25,very tight,25-yard
+public,US-OR,2026-10-29,US-2812+US-4380,25,very tight,25-yard
+public,US-OR,2026-10-29,US-2826+US-9568,45,very tight,50-yard
+public,US-OR,2026-10-29,US-2839+US-4378,25,very tight,25-yard
+public,US-OR,2026-10-29,US-2863+US-4387,25,very tight,25-yard
+public,US-OR,2026-10-29,US-4379+US-5458,25,very tight,25-yard
+public,US-OR,2026-10-29,US-4384+US-5457,25,very tight,25-yard
+public,US-OR,2026-10-29,US-9525+US-9568,25,very tight,25-yard
+public,US-NV,2026-10-29,US-2633+US-4458,95,candidate,100-yard
+public,US-NV,2026-10-29,US-3389+US-4458,95,candidate,100-yard
+public,US-SC,2026-10-29,US-2908+US-4523,87,candidate,100-yard
+public,US-SC,2026-10-29,US-2910+US-5486,45,very tight,50-yard
+public,US-SC,2026-10-29,US-3879+US-9225,23,very tight,25-yard
+public,US-SC,2026-10-29,US-3885+US-4523,49,candidate,50-yard
+public,US-MS,2026-11-09,US-0642+US-10297,45,very tight,50-yard
+public,US-VA,2026-10-31,US-0560+US-1298,45,very tight,50-yard
+public,US-VA,2026-10-31,US-0563+US-1308,23,very tight,25-yard
+public,US-VA,2026-10-31,US-3378+US-9944,47,candidate,50-yard
+public,US-VA,2026-10-31,US-3378+US-9955,45,very tight,50-yard
+public,US-DE,2026-10-31,US-0229+US-9882,27,very tight,25-yard
+public,US-UT,2026-10-29,US-0895+US-11760,25,very tight,25-yard
+public,US-UT,2026-10-29,US-0914+US-6006,45,very tight,50-yard
+public,US-UT,2026-10-29,US-11103+US-4398,45,very tight,50-yard
+public,US-UT,2026-10-29,US-11205+US-4397,25,very tight,25-yard
+public,US-UT,2026-10-29,US-11742+US-4395,25,very tight,25-yard
+public,US-UT,2026-10-29,US-13603+US-4397,25,very tight,25-yard
+public,US-UT,2026-10-29,US-3096+US-5971,45,very tight,50-yard
+public,US-UT,2026-10-29,US-4397+US-5925,25,very tight,25-yard
+public,US-UT,2026-10-29,US-4398+US-5933,25,very tight,25-yard
+public,US-SD,2026-11-09,US-8155+US-8193,27,very tight,25-yard
+public,US-CA,2026-10-29,US-0046+US-0884+US-4466,49,candidate,50-yard
+public,US-CA,2026-10-29,US-0071+US-4466,95,candidate,100-yard
+public,US-CA,2026-10-29,US-0181+US-0639,25,very tight,25-yard
+public,US-CA,2026-10-29,US-0193+US-3523,23,very tight,25-yard
+public,US-CA,2026-10-29,US-0207+US-3551,45,very tight,50-yard
+public,US-CA,2026-10-29,US-0639+US-1153,25,very tight,25-yard
+public,US-CA,2026-10-29,US-0639+US-3436,45,very tight,50-yard
+public,US-CA,2026-10-29,US-0648+US-1186,25,very tight,25-yard
+public,US-CA,2026-10-29,US-0919+US-4456,25,very tight,25-yard
+public,US-CA,2026-10-29,US-1131+US-3403,27,very tight,25-yard
+public,US-CA,2026-10-29,US-1172+US-1173,93,candidate,100-yard
+public,US-CA,2026-10-29,US-1173+US-4603,25,very tight,25-yard
+public,US-CA,2026-10-29,US-1177+US-4463,45,very tight,50-yard
+public,US-CA,2026-10-29,US-3416+US-4453,45,very tight,50-yard
+public,US-CA,2026-10-29,US-3593+US-4463,23,very tight,25-yard
+public,US-CA,2026-10-29,US-4459+US-4605,45,very tight,50-yard
+public,CA-AB,2026-10-29,CA-0109+CA-0691,49,candidate,50-yard
+public,CA-AB,2026-10-29,CA-0110+CA-0691,49,candidate,50-yard
+public,CA-AB,2026-10-29,CA-0115+CA-2988,45,water only,50-yard
+public,US-HI,2026-11-09,US-10905+US-2222,23,very tight,25-yard
+public,US-HI,2026-11-09,US-2210+US-3391,25,very tight,25-yard
+waiting room,US-NJ,2026-11-13,US-0452+US-8036,45,very tight,50-yard
+waiting room,US-NJ,2026-11-13,US-0684+US-1613+US-1634,45,very tight,50-yard
+waiting room,US-NJ,2026-11-13,US-0888+US-1622,91,candidate,100-yard
+waiting room,US-NJ,2026-11-13,US-1608+US-1631,23,very tight,25-yard
+waiting room,US-NJ,2026-11-13,US-1613+US-1634,45,very tight,50-yard
+waiting room,US-NJ,2026-11-13,US-1622+US-4995,23,very tight,25-yard
+waiting room,US-NJ,2026-11-13,US-1622+US-8048,27,very tight,25-yard
+waiting room,US-NJ,2026-11-13,US-1630+US-4998,45,very tight,50-yard
+waiting room,US-NJ,2026-11-13,US-5000+US-8053,27,very tight,25-yard
+waiting room,US-MA,2026-11-14,US-0320+US-4720,87,candidate,100-yard
+waiting room,US-MA,2026-11-14,US-0321+US-11598,25,very tight,25-yard
+waiting room,US-MA,2026-11-14,US-0328+US-8429,45,very tight,50-yard
+waiting room,US-MA,2026-11-14,US-11396+US-4711,45,very tight,50-yard
+waiting room,US-MA,2026-11-14,US-11401+US-4722,23,very tight,25-yard
+waiting room,US-MA,2026-11-14,US-11404+US-4733,25,very tight,25-yard
+waiting room,US-MA,2026-11-14,US-11459+US-4750,25,very tight,25-yard
+waiting room,US-MA,2026-11-14,US-11480+US-4725,25,very tight,25-yard
+waiting room,US-MA,2026-11-14,US-11482+US-4751,45,very tight,50-yard
+waiting room,US-MA,2026-11-14,US-11488+US-4705,45,very tight,50-yard
+waiting room,US-MA,2026-11-14,US-11498+US-4745,49,candidate,50-yard
+waiting room,US-MA,2026-11-14,US-11548+US-4744,25,very tight,25-yard
+waiting room,US-MA,2026-11-14,US-11555+US-4740,51,candidate,50-yard
+waiting room,US-MA,2026-11-14,US-11603+US-8428,25,very tight,25-yard
+waiting room,US-MA,2026-11-14,US-2148+US-4709,45,very tight,50-yard
+waiting room,US-MA,2026-11-14,US-2418+US-4709,45,very tight,50-yard
+waiting room,US-MA,2026-11-14,US-4748+US-4756,25,very tight,25-yard
+waiting room,US-MA,2026-11-14,US-8402+US-8421,45,very tight,50-yard
+waiting room,US-MD,2026-11-13,US-10758+US-1559,93,candidate,100-yard
+waiting room,US-MD,2026-11-13,US-10758+US-7780,45,very tight,50-yard
+waiting room,US-MD,2026-11-13,US-1575+US-1598,27,very tight,25-yard
+waiting room,US-MD,2026-11-13,US-4766+US-7765,23,very tight,25-yard
+waiting room,US-NE,2026-11-14,US-0675+US-2620+US-9360,23,very tight,25-yard
+waiting room,US-IN,2026-11-14,US-0290+US-4228,45,very tight,50-yard
+waiting room,US-IN,2026-11-14,US-0765+US-4206,25,very tight,25-yard
+waiting room,US-IN,2026-11-14,US-10253+US-4215+US-4235,27,very tight,25-yard
+waiting room,US-IN,2026-11-14,US-2251+US-4235,25,very tight,25-yard
+waiting room,US-IN,2026-11-14,US-2262+US-4203,93,candidate,100-yard
+waiting room,US-IN,2026-11-14,US-4198+US-4483,25,very tight,25-yard
+waiting room,US-IN,2026-11-14,US-4219+US-4228,45,very tight,50-yard
+waiting room,US-IN,2026-11-14,US-4235+US-6976,95,candidate,100-yard
+waiting room,US-IN,2026-11-14,US-4483+US-5687,45,very tight,50-yard
+waiting room,US-CT,2026-11-14,US-11013+US-1669,47,candidate,50-yard
+waiting room,US-CT,2026-11-14,US-1658+US-1674,49,candidate,50-yard
+waiting room,US-CT,2026-11-14,US-1697+US-7531,45,very tight,50-yard
+waiting room,US-IL,2026-11-12,US-0283+US-4130,97,candidate,100-yard
+waiting room,US-IL,2026-11-12,US-12184+US-7638,87,candidate,100-yard
+waiting room,US-IL,2026-11-12,US-12314+US-12368,45,very tight,50-yard
+waiting room,US-IL,2026-11-12,US-12314+US-4132,25,very tight,25-yard
+waiting room,US-IL,2026-11-12,US-4113+US-4482,27,very tight,25-yard
+waiting room,US-IL,2026-11-12,US-4146+US-8236,25,very tight,25-yard
+waiting room,US-IL,2026-11-12,US-4157+US-4482,25,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-0066+CA-3664,23,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-0696+CA-3269,45,water only,50-yard
+waiting room,CA-BC,2026-11-13,CA-0713+CA-3764,27,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-0723+CA-3810,25,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-3052+CA-3657,25,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-3052+CA-3658,25,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-3167+CA-3657,25,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-3167+CA-3658,25,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-3181+CA-4236,45,very tight,50-yard
+waiting room,CA-BC,2026-11-13,CA-3181+CA-4237,45,very tight,50-yard
+waiting room,CA-BC,2026-11-13,CA-3303+CA-4092,25,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-3328+CA-5346,23,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-3615+CA-4243,23,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-3640+CA-3904,25,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-3721+CA-3925,25,very tight,25-yard
+waiting room,CA-BC,2026-11-13,CA-4205+CA-4206,87,water only,100-yard
+waiting room,US-MO,2026-11-14,US-0376+US-11065,25,very tight,25-yard
+waiting room,US-MO,2026-11-14,US-0377+US-6488,45,very tight,50-yard
+waiting room,US-MO,2026-11-14,US-0788+US-4492,25,very tight,25-yard
+waiting room,US-MO,2026-11-14,US-0788+US-5696,25,very tight,25-yard
+waiting room,US-MO,2026-11-14,US-11138+US-4492,25,very tight,25-yard
+waiting room,US-MO,2026-11-14,US-11370+US-4492,25,very tight,25-yard
+waiting room,US-MO,2026-11-14,US-1758+US-6511,25,very tight,25-yard
+waiting room,US-MO,2026-11-14,US-1771+US-5697,93,candidate,100-yard
+waiting room,US-MO,2026-11-14,US-1780+US-4492,25,very tight,25-yard
+waiting room,US-MO,2026-11-14,US-5713+US-8252,95,candidate,100-yard
+waiting room,US-KS,2026-11-14,US-0293+US-7935,87,candidate,100-yard
+waiting room,US-KS,2026-11-14,US-2336+US-7925,47,candidate,50-yard
+waiting room,US-KS,2026-11-14,US-6347+US-7923,25,very tight,25-yard
+waiting room,US-MN,2026-11-14,US-0364+US-2482+US-7145,45,very tight,50-yard
+waiting room,US-MN,2026-11-14,US-0367+US-9327,45,water only,50-yard
+waiting room,US-MN,2026-11-14,US-12389+US-4491,25,very tight,25-yard
+waiting room,US-MN,2026-11-14,US-12393+US-4491,25,very tight,25-yard
+waiting room,US-MN,2026-11-14,US-12813+US-2496,95,candidate,100-yard
+waiting room,US-MN,2026-11-14,US-2508+US-4799+US-4831,25,very tight,25-yard
+waiting room,US-MN,2026-11-14,US-2517+US-4790+US-4824,25,very tight,25-yard
+waiting room,US-MN,2026-11-14,US-2519+US-4826,45,water only,50-yard
+waiting room,US-MN,2026-11-14,US-2531+US-4809,25,very tight,25-yard
+waiting room,US-MN,2026-11-14,US-4490+US-4787+US-4835,25,very tight,25-yard
+waiting room,US-MN,2026-11-14,US-4490+US-4797,25,very tight,25-yard
+waiting room,US-MN,2026-11-14,US-4490+US-4799,45,very tight,50-yard
+waiting room,US-MN,2026-11-14,US-4490+US-4817,45,very tight,50-yard
+waiting room,US-MN,2026-11-14,US-4491+US-4801,45,water only,50-yard
+waiting room,US-MN,2026-11-14,US-4799+US-4831,45,very tight,50-yard
+waiting room,US-MN,2026-11-14,US-4806+US-4807,25,very tight,25-yard
+waiting room,US-MN,2026-11-14,US-4807+US-4819,45,very tight,50-yard
+waiting room,US-IA,2026-11-14,US-0268+US-3487,25,very tight,25-yard
+waiting room,US-IA,2026-11-14,US-0268+US-9310,25,very tight,25-yard
+waiting room,US-IA,2026-11-14,US-0922+US-4664,45,very tight,50-yard
+waiting room,US-IA,2026-11-14,US-11875+US-9308,25,very tight,25-yard
+waiting room,US-IA,2026-11-14,US-2316+US-4659,45,very tight,50-yard
+waiting room,US-IA,2026-11-14,US-4236+US-4664,45,water only,50-yard
+waiting room,US-IA,2026-11-14,US-9326+US-9327,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-0619+US-12235+US-8743,23,water only,25-yard
+waiting room,US-PA,2026-11-13,US-0619+US-12235+US-8743,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-0619+US-8728,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-0619+US-8743,27,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-0681+US-5466+US-8906,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-0684+US-1347+US-6432,27,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-0798+US-8895,87,candidate,100-yard
+waiting room,US-PA,2026-11-13,US-11977+US-1332,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-12235+US-1345+US-8977,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-1331+US-8726,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-1333+US-8737,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-1337+US-5471,27,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-1344+US-5478,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-1347+US-6432,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-1349+US-8726,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-1359+US-8739,51,candidate,50-yard
+waiting room,US-PA,2026-11-13,US-1359+US-8827,89,candidate,100-yard
+waiting room,US-PA,2026-11-13,US-1359+US-8839,49,candidate,50-yard
+waiting room,US-PA,2026-11-13,US-1370+US-5468,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-1374+US-5478,27,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-1388+US-8982,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-1391+US-8855,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-1392+US-8810,97,candidate,100-yard
+waiting room,US-PA,2026-11-13,US-1397+US-5474,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-1413+US-8756,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-1422+US-5476,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-1423+US-5467,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-1427+US-8825,87,candidate,100-yard
+waiting room,US-PA,2026-11-13,US-1427+US-9003,49,candidate,50-yard
+waiting room,US-PA,2026-11-13,US-1428+US-5474,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-1434+US-5470,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5462+US-8988,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5463+US-8748,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5463+US-8764,49,candidate,50-yard
+waiting room,US-PA,2026-11-13,US-5463+US-8796,89,candidate,100-yard
+waiting room,US-PA,2026-11-13,US-5464+US-8977,27,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5466+US-8877,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-5466+US-8880,27,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5466+US-8906,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-5467+US-8730,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5467+US-8986,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5469+US-8856,49,candidate,50-yard
+waiting room,US-PA,2026-11-13,US-5470+US-8832,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5470+US-8991,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5472+US-8732,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-5472+US-8759,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5472+US-8793,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-5472+US-9002,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5473+US-8818,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5473+US-8825,27,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5473+US-8884,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5473+US-8904,89,candidate,100-yard
+waiting room,US-PA,2026-11-13,US-5473+US-8955,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5473+US-8993,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-5473+US-9003,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5474+US-8780,27,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5477+US-8774,95,candidate,100-yard
+waiting room,US-PA,2026-11-13,US-5478+US-8774,25,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5478+US-8905,45,very tight,50-yard
+waiting room,US-PA,2026-11-13,US-5480+US-8779,23,very tight,25-yard
+waiting room,US-PA,2026-11-13,US-5480+US-8783,47,candidate,50-yard
+waiting room,US-PA,2026-11-13,US-5480+US-8805,97,candidate,100-yard
+waiting room,US-PA,2026-11-13,US-5480+US-8809,49,candidate,50-yard
+waiting room,US-PA,2026-11-13,US-5480+US-8930,89,candidate,100-yard
+waiting room,US-PA,2026-11-13,US-8732+US-8759,49,candidate,50-yard
+waiting room,US-PA,2026-11-13,US-8759+US-8856,25,very tight,25-yard
+waiting room,US-OH,2026-11-14,US-0482+US-9479,25,very tight,25-yard
+waiting room,US-OH,2026-11-14,US-0483+US-1944,25,very tight,25-yard
+waiting room,US-OH,2026-11-14,US-1407+US-1986,45,water only,50-yard
+waiting room,US-OH,2026-11-14,US-4521+US-9506,45,very tight,50-yard
+waiting room,US-OH,2026-11-14,US-9393+US-9458,45,water only,50-yard
+waiting room,US-RI,2026-11-14,US-0515+US-2871,45,very tight,50-yard
+waiting room,US-ND,2026-11-14,US-0065+US-7485,89,candidate,100-yard
+waiting room,CA-ON,2026-11-13,CA-0050+CA-0222,27,very tight,25-yard
+waiting room,CA-ON,2026-11-13,CA-0050+CA-0360,45,very tight,50-yard
+waiting room,CA-ON,2026-11-13,CA-0312+CA-4882,23,very tight,25-yard
+waiting room,CA-ON,2026-11-13,CA-0341+US-2489,25,very tight,25-yard
+waiting room,CA-ON,2026-11-13,CA-4882+CA-5295,23,very tight,25-yard
+waiting room,CA-ON,2026-11-13,CA-4882+CA-5642,45,water only,50-yard
+waiting room,CA-ON,2026-11-13,CA-4882+CA-5956,49,water only,50-yard
+waiting room,CA-ON,2026-11-13,CA-4889+CA-5291,51,water only,50-yard
+waiting room,CA-ON,2026-11-13,CA-5671+CA-5895,47,water only,50-yard
+waiting room,US-MI,2026-11-14,US-0353+US-6782,91,candidate,100-yard
+waiting room,US-MI,2026-11-14,US-6624+US-7856,23,very tight,25-yard
+waiting room,US-WI,2026-11-12,US-0601+US-4294,27,very tight,25-yard
+waiting room,US-WI,2026-11-12,US-0605+US-1471,23,very tight,25-yard
+waiting room,US-WI,2026-11-12,US-1482+US-4236,25,very tight,25-yard
+waiting room,US-WI,2026-11-12,US-3319+US-4264,27,very tight,25-yard
+waiting room,US-WI,2026-11-12,US-4236+US-4664,45,water only,50-yard
+waiting room,US-WI,2026-11-12,US-4533+US-9872,25,very tight,25-yard
+waiting room,CA-NT,2026-11-13,CA-0062+CA-0121,49,candidate,50-yard
+waiting room,US-KY,2026-11-02,US-1275+US-4484,27,very tight,25-yard
+waiting room,US-KY,2026-11-02,US-1281+US-4687,49,candidate,50-yard
+waiting room,US-KY,2026-11-02,US-4484+US-7962,49,candidate,50-yard
+waiting room,US-KY,2026-11-02,US-4484+US-7970,42.0,water only,50-yard
+waiting room,US-NY,2026-11-13,US-0475+US-8100,45,very tight,50-yard
+waiting room,US-NY,2026-11-13,US-0679+US-2128,49,candidate,50-yard
+waiting room,US-NY,2026-11-13,US-10040+US-10078,27,very tight,25-yard
+waiting room,US-NY,2026-11-13,US-10294+US-10295,45,water only,50-yard
+waiting room,US-NY,2026-11-13,US-10295+US-5232,27,very tight,25-yard
+waiting room,US-NY,2026-11-13,US-2039+US-9106,49,candidate,50-yard
+waiting room,US-NY,2026-11-13,US-2044+US-2113,93,candidate,100-yard
+waiting room,US-NY,2026-11-13,US-2080+US-9124,45,water only,50-yard
+waiting room,US-NY,2026-11-13,US-2101+US-2117,45,very tight,50-yard
+waiting room,US-NY,2026-11-13,US-2132+US-8319,45,very tight,50-yard
+waiting room,US-NY,2026-11-13,US-5037+US-5348,45,very tight,50-yard
+waiting room,US-NY,2026-11-13,US-5042+US-5416,45,very tight,50-yard
+waiting room,US-NY,2026-11-13,US-5079+US-5385,49,candidate,50-yard
+waiting room,US-NY,2026-11-13,US-5088+US-5261,45,very tight,50-yard
+waiting room,US-NY,2026-11-13,US-5092+US-5429,45,very tight,50-yard
+waiting room,US-NY,2026-11-13,US-5103+US-5285,95,candidate,100-yard
+waiting room,US-NY,2026-11-13,US-5190+US-9049,87,candidate,100-yard
+waiting room,US-NY,2026-11-13,US-5229+US-8626,97,candidate,100-yard
+waiting room,US-NY,2026-11-13,US-5291+US-5348,25,very tight,25-yard
+waiting room,US-NY,2026-11-13,US-5344+US-5365,45,very tight,50-yard
+waiting room,US-NY,2026-11-13,US-5376+US-5623,45,very tight,50-yard
+waiting room,US-NY,2026-11-13,US-5694+US-8070+US-8076,95,candidate,100-yard
+waiting room,US-NY,2026-11-13,US-5694+US-8076,95,candidate,100-yard
+waiting room,CA-AB,2026-11-13,CA-0115+CA-2988,45,water only,50-yard
+waiting room,US-NH,2026-11-14,US-13518+US-4512,23,very tight,25-yard
+waiting room,US-NH,2026-11-14,US-2650+US-4512,47,candidate,50-yard
+waiting room,US-NH,2026-11-14,US-2667+US-4512,23,very tight,25-yard
+waiting room,US-NH,2026-11-14,US-4512+US-4877,23,very tight,25-yard
+waiting room,US-NH,2026-11-14,US-4512+US-4900,23,very tight,25-yard
+waiting room,US-NH,2026-11-14,US-4512+US-4958,47,candidate,50-yard

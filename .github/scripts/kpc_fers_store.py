@@ -89,6 +89,7 @@ Command line (no network in any of them):
 import array, atexit, collections.abc, datetime, gzip, hashlib, json, math, os, pathlib, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_record_key   # noqa: E402  KPC owner, 2026-11-16 (item 4)
+import kpc_fers_age as _AGE   # noqa: E402  Handoff 9 bug 4 (2026-11-17): never past a key rebuild (KPC_FERS_CARRY_MAX, off)
 
 FORMAT = 1
 STORE_FORMAT_VERSION = 'kpc-outline-store-index/3'   # the outline store tool 'full 3' index contract this reader was written for
@@ -666,6 +667,7 @@ def carry_rows(new, old, held, today=None):
     add = []
     for s in old.get('spots') or []:
         if not isinstance(s, dict) or not _live(s) or _pk(s) in have: continue
+        if not _AGE.keep_fresh([s], str(new.get('st') or old.get('st') or ''), old.get('pass1')): continue   # Handoff 9 bug 4 (setting, off)
         x = {k: v for k, v in s.items() if k not in ('passes', 'status')}
         hr = {r: held[r] for r in s.get('refs') or [] if r in held}
         was = f"{str(s.get('status'))[:80]} on {old.get('pass3') or old.get('pass1') or 'the last run'}"
@@ -813,7 +815,8 @@ def keep_old_rows(new, old, today=None, final=True, carry=None):
             o = _old_match(x, by_id, by_pk)
             prev = _prev_of(o) if o is not None and id(o) not in used else None
             if prev is not None: used.add(id(o))
-        if prev is not None and x.get('store_not_checked') and str(x.get('status') or '').startswith('not sure') and _good(prev):
+        if prev is not None and x.get('store_not_checked') and str(x.get('status') or '').startswith('not sure') and _good(prev) \
+                and _AGE.keep_fresh([prev], str(new.get('st') or ''), (old or {}).get('pass1') if isinstance(old, dict) else None):   # Handoff 9 bug 4
             why = same_spot(x, prev)
             if why: x['not_kept'] = f'the last candidate row is not this spot ({why}): this run\'s answer stands'
             else:
@@ -888,6 +891,11 @@ def partial_only_adds(doc, old):
 
 
 HELD_TAG = 'not re-checked (outline held privately)'
+# Q6 (Handoff 9; owner question 6, WL9; privacy): a carried row of a withheld park keeps 'there may be a 2-fer here' (refs, kind, status,
+# center, size) but drops the drawn pieces of the overlap (shape, lines), which trace the withheld park's private outline
+STRIP_HELD = os.environ.get('KPC_FERS_STRIP_HELD') == '1'
+STRIP_KEYS = ('shape', 'lines')
+STRIP_NOTE = 'there may be a 2-fer here; its outline is held privately, so the overlap is not drawn'
 CARRIED = {}       # area -> rows carried unchanged by carry_held_rows in the last save of this process (every status)
 CARRIED_LIVE = {}  # area -> of those, the live ones (candidate, very tight, water only, not sure ...: not dropped or merged)
 CARRIED_JSON = {}  # area -> the exact JSON of each carried row: the write step lets exactly these through (nothing else naming the park)
@@ -923,7 +931,12 @@ def carry_held_rows(KF, d, old):
     sec = set(withheld_refs())
     if int(getattr(KF, 'PASS', 1)) == 1:
         orig = [json.loads(_canon(x)) for x in (old or {}).get('spots') or [] if _full_row(x) and set(x.get('refs') or []) & sec]
-        for x in orig: x['store_held'] = HELD_TAG
+        orig = _AGE.keep_fresh(orig, area, (old or {}).get('pass1'))   # Handoff 9 bug 4: never past a key rebuild (setting, off)
+        for x in orig:
+            x['store_held'] = HELD_TAG
+            if STRIP_HELD:   # Q6 (setting KPC_FERS_STRIP_HELD=1, off): the withheld park's outline pieces leave the public row
+                for k in STRIP_KEYS: x.pop(k, None)
+                x['held_outline'] = STRIP_NOTE
         held = sorted({r for x in orig for r in x.get('refs') or [] if r in sec})
         if hf is not None:
             try:
