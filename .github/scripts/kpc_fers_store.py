@@ -376,6 +376,14 @@ class Store:
         except Exception as e:  # noqa: BLE001
             return None, [], f'{ref} in the outline store failed its check ({_err(e)})', {}
 
+    def public_shelf(self, area):
+        """True when this area is read from the PUBLIC SHELF (tools/kpc_store_public.py: index 'shelf': 'public'). The shelf holds only
+        parks whose every needed record passed the licence gate and never lists the ones it leaves off, so a park the shelf does not
+        have must be treated as held privately (PRIVATE_WHY: never named in a public file or log, its previous public rows carried),
+        never as missing from the store (which would name it on the store-filler list)."""
+        a = self.area(area)
+        return a is not None and a.idx.get('shelf') == 'public'
+
     def locate_all(self, ref, area):
         """Every area store that holds a piece of ref: the key's own state first, then every other per-area index in the folder
         (a park can have tracts in two area files, or be filed by the key under a neighbour's state). ([AreaStore], why)."""
@@ -392,6 +400,8 @@ class Store:
     def _examine(self, ref, area, ids, clip, keep):
         stores, why = self.locate_all(ref, area)
         if not stores and why: return None, [], why, {}
+        if not stores and self.public_shelf(area):   # KPC owner, 2026-11-16 (public shelf): a park a public shelf leaves off is held
+            return None, [], f'{ref} needs the private store (not on the public shelf)', {}   # privately, exactly as when the full store is read
         if not stores: return None, [], f'{ref} is not in the outline store for {area}', {}
         by = {}   # record key -> (record, its park piece): a park with tracts in two area files is assembled whole
         for a in stores:
