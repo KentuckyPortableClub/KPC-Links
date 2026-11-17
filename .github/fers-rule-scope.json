@@ -183,7 +183,7 @@
       "why": "One program per area and one record lookup (handoff of Nov 16, items 2 and 4, on top of round 1, the store three-pass change, the own-areas-only change and the public shelf on main). No 2-fer rule changes: which pairs count, their grades, rows and wording are the same with the new switch off (the default). (1) kpc_fers.py + kpc_fers_store.py: a store run may run passes 1, 2, 3 and 5 in ONE process (kpc_fers_store.py chain), the store loaded once; each pass starts from the state a fresh process has, so the files are the same as four separate runs. Pass 2 of a store run still does nothing (main's three-pass rule, kept), and pass 3 still takes every pass-1 row. The spots the 5 m grid of pass 3 finds that no row took are listed privately on store runs; the switch KPC_FERS_FINE_ONLY (default off = today) would count them, and is the owner's decision. (2) kpc_record_key.py (new 2-fer rule file): the one function that turns a key join into a store record key for US, Canada and world; kpc_fers_store.store_ids calls it (same keys as #216).",
       "scope": "none",
       "scope_note": "No pair answer or pair fingerprint changes with the new switch off (the default): nothing is re-tested.",
-      "approved": "WAITING FOR THE KPC OWNER'S APPROVAL"
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-17"
     }
   ]
 }
