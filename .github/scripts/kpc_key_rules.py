@@ -51,6 +51,10 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           that land (a small lake the park surrounds, or the agency's own outline already holds it). Otherwise it goes to CHECK (a person decides who owns the water; a park on someone else's lake,
                           the Corps', Reclamation's or a utility's, never takes it). A lake over 3 times the park's land never joins
                           by name. OFF until the owner says ON (park-scoped run).
+  KPC_DESIGNATION_SPLIT 0 (KPC owner, 2026-11-17 10:00 AM, ruling D3) a national heritage area gets no outline (pin + 'sits on', its
+                          records in the park's 'on' list); a federal designation line (FS designated area, BLM monument / NCA,
+                          wilderness, study area, a PAD-US Designation record) is drawn only for the park that IS that designation;
+                          joined by name to another kind of park it goes to check. Ownership share is a report first. OFF.
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -61,7 +65,7 @@ import os, re, unicodedata
 
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
-            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0'}
+            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0'}
 
 
 def setting(name, env=None):
