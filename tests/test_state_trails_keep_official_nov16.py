@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Nov 16 2026 (KPC owner): the state trails bot must check both trail indexes before it writes a line.
 
-A saved official line that lives only in index.json (not in the state bot's own index-state.json)
-used to be unprotected, so an OpenStreetMap or coarser official read could replace it. Official
-beats OpenStreetMap; a finer saved line beats a coarser one. When the bot skips a write, it logs why.
+A new official line always beats a saved OpenStreetMap line. A hand-picked line always
+gets written. Between two official lines, only a shorter or rougher new one is blocked
+(under 75% of the saved length, or under half the saved points). That keeps the US-13626
+and US-9203 cases protected. When the bot skips a write, it logs why.
 
 Synthetic data only. Offline, no network, no live trail files are read or written.
 This file does not import kpc_state_trails.py (that script starts a build at import time).
@@ -44,10 +45,14 @@ record_is_official = ns['record_is_official']
 # The write path must check both indexes and call the keep helper.
 check('saved_record(ref, IDX, NATIDX, OUT)' in SRC,
       'before writing, the bot looks up the saved line in both indexes')
-check('why = keep_saved_reason(saved, off, total, sum(len(l) for l in lines))' in SRC,
-      'before writing, the bot asks whether the saved line must be kept')
+check('why = keep_saved_reason(saved, off, total, sum(len(l) for l in lines), from_hand)' in SRC,
+      'before writing, the bot asks whether the saved line must be kept; a hand-picked line is marked')
 check('note(ref, f\'{name}: {why}\')' in SRC,
       'when it skips a write, the reason is logged')
+check('lines, by, off, near, from_hand = None, \'\', False, 1e9, False' in SRC,
+      'the write path starts with from_hand unset')
+check('lines, by, off, near, from_hand = hl, hb, True, hn, True' in SRC,
+      'a used hand-picked line is marked from_hand')
 
 
 def write_line(folder, ref, npts, km_len, official=True):
@@ -147,6 +152,57 @@ with tempfile.TemporaryDirectory() as tmp:
 # --- No saved line: the new line may be written.
 why = keep_saved_reason({'exists': False, 'official': False, 'km': 0, 'pts': 0}, True, 10, 20)
 check(why is None, 'with no saved line, a new line may be written')
+
+
+# --- Official beats saved OSM even when the official line has fewer points.
+# On the previous head, under-half-the-points blocked the official line.
+with tempfile.TemporaryDirectory() as tmp:
+    d = pathlib.Path(tmp)
+    write_line(d, 'US-A', 200, 20, official=False)
+    st = {'US-A': {'ref': 'US-A', 'official': False, 'source': 'osm', 'by': 'Unofficial line (OpenStreetMap)', 'km': 20}}
+    saved = saved_record('US-A', st, {}, str(d))
+    check(not saved['official'] and saved['pts'] == 200,
+          f'saved OpenStreetMap line has more points than the new official line will; got {saved}')
+    why = keep_saved_reason(saved, True, 16, 80)
+    check(why is None, f'official beats saved OSM even with fewer points; got {why!r}')
+
+
+# --- A hand-picked line is always written, even when it would fail the official-vs-official checks.
+with tempfile.TemporaryDirectory() as tmp:
+    d = pathlib.Path(tmp)
+    write_line(d, 'US-B', 200, 100, official=True)
+    st = {'US-B': {'ref': 'US-B', 'official': True, 'source': 'official', 'by': 'US Forest Service', 'km': 100}}
+    saved = saved_record('US-B', st, {}, str(d))
+    try:
+        why = keep_saved_reason(saved, True, 200, 50, True)
+    except TypeError as e:
+        why = f'TypeError: {e}'
+    check(why is None, f'a hand-picked line is always written; got {why!r}')
+    # Without the hand-picked flag, this same line is shorter/rougher and must still be blocked.
+    why_no = keep_saved_reason(saved, True, 200, 50)
+    check(why_no and 'kept' in why_no,
+          f'without the hand-picked flag, a rougher official line is still blocked; got {why_no!r}')
+
+
+# --- A full official line may replace a short partial official line even when it is more than 50% longer.
+with tempfile.TemporaryDirectory() as tmp:
+    d = pathlib.Path(tmp)
+    write_line(d, 'US-C', 80, 10, official=True)
+    st = {'US-C': {'ref': 'US-C', 'official': True, 'source': 'official', 'by': 'US Forest Service', 'km': 10}}
+    saved = saved_record('US-C', st, {}, str(d))
+    why = keep_saved_reason(saved, True, 20, 160)
+    check(why is None, f'a full official line may replace a short partial official line even when >50% longer; got {why!r}')
+
+
+# --- A shorter or rougher official line does not replace a saved official line.
+# This is the US-9203 protection: fewer points and a shorter length.
+with tempfile.TemporaryDirectory() as tmp:
+    d = pathlib.Path(tmp)
+    write_line(d, 'US-D', 400, 138, official=True)
+    st = {'US-D': {'ref': 'US-D', 'official': True, 'source': 'official', 'by': 'USGS National Transportation Dataset', 'km': 138}}
+    saved = saved_record('US-D', st, {}, str(d))
+    why = keep_saved_reason(saved, True, 88, 40)
+    check(why and 'kept' in why, f'a shorter or rougher official line does not replace the saved official line; got {why!r}')
 
 
 print('ALL PASS' if ok else 'SOME FAILED')

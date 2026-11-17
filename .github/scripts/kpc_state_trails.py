@@ -21,9 +21,9 @@ a state used to re-read the same 40 services); a park that already has an OFFICI
 reused, not searched again (FULL=1 searches all; OpenStreetMap and missing parks are always searched again, for an upgrade);
 a new line under half the length of the saved one keeps the saved one; parks POTA no longer lists are taken out; a self-grade
 gate (Sheltowee Trace + Katy, Virginia Creeper, Greenbrier River lines) writes /tmp/kpc-gate.txt for the grade-me line.
-Nov 16: before writing, the bot checks both index-state.json and index.json. An official saved line is never replaced by an
-OpenStreetMap one; a finer saved line is never replaced by a coarser one (under half the points, or a length outside -25% /
-+50%). A skip is logged with the reason."""
+Nov 16: before writing, the bot checks both index-state.json and index.json. A new official line always beats a saved
+OpenStreetMap line. A hand-picked line always gets written. Between two official lines, only a shorter or rougher new one
+is blocked (under 75% of the saved length, or under half the saved points). A skip is logged with the reason."""
 import json, os, re, time, math, urllib.request, urllib.parse, datetime
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
@@ -461,12 +461,15 @@ def saved_record(ref, idx_state, idx_nat, outdir):
     }
 
 
-def keep_saved_reason(saved, new_official, new_km, new_pts):
+def keep_saved_reason(saved, new_official, new_km, new_pts, new_hand=False):
     """Why the saved line must be kept, or None if the new line may be written.
 
-    Official beats OpenStreetMap. Finer beats coarser: a new line with under half the
-    saved points, or a length outside -25% / +50% of a saved official or finer line, is coarser.
+    A new official line always beats a saved OpenStreetMap line. A hand-picked line
+    always gets written. Between two official lines, only a shorter or rougher new
+    one is blocked (under 75% of the saved length, or under half the saved points).
     """
+    if new_hand:
+        return None
     if not saved or not saved.get('exists'):
         return None
     skm = float(saved.get('km') or 0)
@@ -474,10 +477,20 @@ def keep_saved_reason(saved, new_official, new_km, new_pts):
     if saved.get('official') and not new_official:
         return (f"saved official line is kept ({skm:.0f} km, {spts} points); "
                 f"a new OpenStreetMap line ({new_km:.0f} km) does not replace it")
+    if new_official and not saved.get('official'):
+        return None
+    if saved.get('official') and new_official:
+        if spts and new_pts < .5 * spts:
+            return (f"saved finer line is kept ({spts} points, {skm:.0f} km); "
+                    f"the new line is coarser ({new_pts} points, {new_km:.0f} km)")
+        if skm > 1 and new_km < .75 * skm:
+            return (f"saved line is kept ({skm:.0f} km, {spts} points); "
+                    f"the new line ({new_km:.0f} km, {new_pts} points) is shorter")
+        return None
     if spts and new_pts < .5 * spts:
         return (f"saved finer line is kept ({spts} points, {skm:.0f} km); "
                 f"the new line is coarser ({new_pts} points, {new_km:.0f} km)")
-    if skm > 1 and (saved.get('official') or (spts and new_pts <= spts)):
+    if skm > 1 and spts and new_pts <= spts:
         if not (.75 * skm <= new_km <= 1.5 * skm):
             return (f"saved line is kept ({skm:.0f} km, {spts} points); "
                     f"the new line ({new_km:.0f} km, {new_pts} points) is outside -25% / +50%")
@@ -610,12 +623,12 @@ for st, cand in jobs():
         la, lo = (v[5], v[6]) if len(v) > 6 and v[5] is not None else LOC.get(ref, (None, None))
         if la is None: report['missing'].append([ref, name, stc, 'no pin']); continue
         lim = CHECK_KM if kind(typ, name) == 'TP' else CHECK_KM_TRAIL
-        lines, by, off, near = None, '', False, 1e9
+        lines, by, off, near, from_hand = None, '', False, 1e9, False
         if ref in HAND:
             try:
                 hl, hb = hand_lines(ref)
                 hn = min((km(la, lo, q[1], q[0]) for l in hl for q in l), default=1e9)
-                if hl and hn <= max(lim, 50): lines, by, off, near = hl, hb, True, hn
+                if hl and hn <= max(lim, 50): lines, by, off, near, from_hand = hl, hb, True, hn, True
                 elif hl: note(ref, 'hand-picked line is far from the POTA pin: not used')
             except Exception as e:  # noqa: BLE001
                 note(ref, f'hand-picked layer not read: {str(e)[:100]}')
@@ -678,8 +691,8 @@ for st, cand in jobs():
             if not off: report['missing'].append([ref, name, stc, 'unofficial line over 3x the official length: not used']); continue
         if kind(typ, name) == 'TP' and total < 4 and ref not in HAND: report['missing'].append([ref, name, stc, 'short: probably a park, not a trail']); continue
         saved = saved_record(ref, IDX, NATIDX, OUT)
-        why = keep_saved_reason(saved, off, total, sum(len(l) for l in lines))
-        if why:   # Nov 16: official beats OpenStreetMap; finer beats coarser; both indexes are checked
+        why = keep_saved_reason(saved, off, total, sum(len(l) for l in lines), from_hand)
+        if why:   # Nov 16: official beats OSM; hand-picked is always written; official vs official blocks only shorter or rougher
             KEPT.append(ref); note(ref, f'{name}: {why}')
             report['found'].append([ref, name, stc, (saved or {}).get('by', ''), (saved or {}).get('km', 0), round(near, 1)]); got += 1; continue
         xs = [p[0] for l in lines for p in l]; ys = [p[1] for l in lines for p in l]
