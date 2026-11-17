@@ -174,7 +174,7 @@
       "why": "The public shelf of the outline store (KPC owner, 2026-11-16; Fable's brief). tools/kpc_store_public.py copies out of the private store only the parks whose every needed record passes the display copy's licence gate, in the same store format, and never lists the parks it leaves off. The reader (kpc_fers_store.py) learns one thing: when an area's index says shelf: public, a park the shelf does not have is held privately ('needs the private store', PRIVATE_WHY), exactly as a held park is when the full store is read. Without it such a park would be filed as missing from the store and NAMED on the store-filler list in a public file. Measured on the real US-RI store: 21 parks read identically from shelf and full store, 35 left off and every one held privately, none named.",
       "scope": "none",
       "scope_note": "No pair answer changes. The private store path is unchanged (test_a_reader_on_the_private_store_is_unchanged): a park the full store lacks is still 'not in the outline store'. The new branch acts only when a shelf is read.",
-      "approved": "PENDING: the owner's yes on fers rules a3d0d8350498 -> the new hash"
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
     }
   ]
 }
