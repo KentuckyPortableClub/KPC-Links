@@ -1723,6 +1723,53 @@ def _nps_code(name):
     return NPS_CODES.get(_nf(name))
 
 
+
+NPS_CODE_HIT = []   # Handoff 8 fix 1: [state, park, record id, code, what] for the run's notice
+def nps_code_joins(st, parks, recs, P, ovr=None, on=None):
+    """Handoff 8 fix 1 (switch KPC_NPS_UNIT_CODE; matching plan section 3: hard numbers before names). A POTA park whose website is
+    nps.gov/<code> joins the Park Service record(s) of that unit code at any distance, no name test. A unit used by two or more POTA
+    parks of this state (by website, or because the park already took one of the unit's records by name: park + preserve) is settled
+    by NAME inside the unit (owner: each unit its own): a record goes to the ONE park whose full name is the record's own name
+    (KR.d9_winner); the others give it back (to check). No single winner = left as the name rules made it. A person's NO and a
+    person's join ('reviewed...') always stand. Changes `parks` in place; returns the number of rows added or moved."""
+    if on is None: on = _kr('KPC_NPS_UNIT_CODE')
+    if not on or KR is None: return 0
+    ovr = OVR if ovr is None else ovr
+    unit = {}
+    for a in recs:
+        cd = KR.nps_record_code(a)
+        if cd: unit.setdefault(cd, []).append(a)
+    if not unit: return 0
+    site = {ref: KR.nps_code_from_site((P.get(ref) or [None, ''])[1] if len(P.get(ref) or []) > 1 else '') for ref in parks}
+    n = 0
+    for cd, ra in sorted(unit.items()):
+        ids = {_oid(a) for a in ra}
+        users = {ref for ref, c in site.items() if c == cd}
+        users |= {ref for ref, p in parks.items() if any(str(x[0]) in ids for x in p.get('m') or [])}
+        if not any(site.get(r) == cd for r in users): continue   # the website code is the evidence: no POTA park names this unit's code = the name rules alone
+        tag = f'NPS unit code {cd} (POTA website nps.gov/{cd.lower()})'
+        for a in ra:
+            rid = _oid(a); nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+            if len(users) == 1:
+                owner = next(iter(users))
+                if site.get(owner) != cd: continue
+            else:
+                owner = KR.d9_winner(nm, {r: parks[r].get('n') or '' for r in users})
+                if owner is None: continue
+                for r in sorted(users - {owner}):   # the other parks of the unit give this record back
+                    p = parks[r]; row = next((x for x in p.get('m') or [] if str(x[0]) == rid), None)
+                    if row is None or str(row[3]).startswith('reviewed'): continue
+                    p['m'] = [x for x in p['m'] if str(x[0]) != rid]
+                    p['c'] = list(p.get('c') or []) + [[row[0], row[1], row[2], f'check (NPS unit code {cd}): this record is {owner}\'s own unit; the name decides inside a shared unit']]
+                    NPS_CODE_HIT.append([st, r, rid, cd, 'given back']); n += 1
+            p = parks[owner]; ov = ovr.get(owner) or {}
+            if any(str(x[0]) == rid for x in p.get('m') or []): continue
+            if rid in {str(y) for y in ov.get('no') or []} or _nf(nm) in {_nf(y) for y in ov.get('no') or []} or KR.is_no(ov, rid, nm, a.get('GIS_Acres')): continue
+            p['m'] = sorted(list(p.get('m') or []) + [[a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), tag]], key=lambda x: -(x[2] or 0))
+            p['c'] = [x for x in p.get('c') or [] if str(x[0]) != rid]
+            NPS_CODE_HIT.append([st, owner, rid, cd, 'joined']); n += 1
+    return n
+
 def _tract_store(st, parks, recs):
     """Nov 6 (big key / 2-fer patch): the side file data/us-key/tracts/US-<st>.json (kpc_tracts.py): one tract record per official
     record joined to a park (source, stable id, official + measured acres, owner, access, fee / easement / approved boundary), and
@@ -2166,6 +2213,11 @@ def run(st):
     # Oct 29 (chat 8, 'wrong joins solved'): a record joined to two or more parks by NAME alone (Robert Moses Long Island +
     # Thousand Islands, NY county forests) stays only with the parks it is NEAR: a claim from a park whose pin is more than
     # 15 km from the record is dropped when another park's pin sits within 2 km of it. Hand joins ('reviewed') are never dropped.
+    if _kr('KPC_NPS_UNIT_CODE'):   # Handoff 8 fix 1: Park Service unit codes before names
+        if nps_code_joins(st, parks, recs, P):
+            for p_ in parks.values(): used.update(x[0] for x in p_.get('m') or [])
+            _nh = [h for h in NPS_CODE_HIT if h[0] == st]
+            notice(f'US key {st}', f"NPS unit codes: {sum(1 for h in _nh if h[4] == 'joined')} record(s) joined by the park's nps.gov code, {sum(1 for h in _nh if h[4] != 'joined')} given back inside a shared unit: " + ', '.join(f'{h[1]} {h[3]}' for h in _nh[:12]))
     for r_ in DBG & set(parks): dbg(r_, 'B after the park loop', {k: parks[r_].get(k) for k in ('m', 'c', 'far', 'a')})
     rb = {_oid(a): a['_bb'] for a in recs if a.get('_bb')}
     # Fable Oct 29: a MULTIPART record (Lost Nation = St. Lawrence + Allegany forests in one record) has a bbox that spans the

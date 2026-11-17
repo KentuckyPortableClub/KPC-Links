@@ -55,6 +55,11 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           records in the park's 'on' list); a federal designation line (FS designated area, BLM monument / NCA,
                           wilderness, study area, a PAD-US Designation record) is drawn only for the park that IS that designation;
                           joined by name to another kind of park it goes to check. Ownership share is a report first. OFF.
+  KPC_NPS_UNIT_CODE    0  (Handoff 8 fix 1, matching plan section 3) a POTA park whose website is nps.gov/<4-letter code> joins the Park
+                          Service record(s) carrying the same unit code (PAD-US NPS records keep it in Loc_Nm; the NPS boundary layer in
+                          UNIT_CODE), at any distance, with no name test. A unit that two or more POTA parks of the state use (by website or
+                          by a name join: park + preserve) is settled by NAME inside the unit: a record goes to the one park whose full name
+                          is the record's own name, the other gives it back (to check). A person's NO and hand joins always stand. OFF.
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -65,7 +70,8 @@ import os, re, unicodedata
 
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
-            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0'}
+            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
+            'KPC_NPS_UNIT_CODE': '0'}
 
 
 def setting(name, env=None):
@@ -418,3 +424,26 @@ def lake_inside_land(water_bb, water_acres, land_bbs, land_acres, pad=0.0):
         return False, 'the lake reaches past the park\'s own land'
     if water_acres and land_acres and water_acres > land_acres: return False, 'the lake is bigger than the park\'s own land'
     return True, 'the lake sits inside the park\'s own land'
+
+
+# ------------------------------------------------------------------ Handoff 8 fix 1: Park Service unit codes before names
+_NPS_SITE = re.compile(r'(?:^|[/.])nps\.gov/([a-z]{4})(?=[/?#.]|$)', re.I)
+
+
+def nps_code_from_site(url):
+    """The 4-letter Park Service unit code in a POTA website ('https://www.nps.gov/guis/index.htm' -> 'GUIS'), or None.
+    Only the unit folder counts: nps.gov/articles/..., nps.gov/places/..., nps.gov/nr/... name no unit."""
+    m = _NPS_SITE.search(str(url or '').strip())
+    return m.group(1).upper() if m else None
+
+
+def nps_record_code(rec):
+    """The unit code a record carries: the NPS boundary layer's UNIT_CODE, or a PAD-US Park Service record's Loc_Nm when that is a
+    4-letter code (PAD-US writes 'GUIS', 'GRSA' there). None for any other record."""
+    sa = (rec or {}).get('SA') or {}
+    v = sa.get('UNIT_CODE') or sa.get('unit_code') or (rec or {}).get('UNIT_CODE')
+    if v and re.fullmatch(r'[A-Za-z]{4}', str(v).strip()): return str(v).strip().upper()
+    if str((rec or {}).get('Mang_Name') or '') == 'NPS':
+        v = str((rec or {}).get('Loc_Nm') or '').strip()
+        if re.fullmatch(r'[A-Z]{4}', v): return v
+    return None
