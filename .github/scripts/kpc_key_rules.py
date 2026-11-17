@@ -68,14 +68,55 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0'}
 
 
-def setting(name, env=None):
+# Reviewer B #7 (KPC owner, 2026-11-17): the switches live in .github/key-switches.json (a US rule file, sliced per area), so a
+# switch turned on in GitHub really reaches the build and moves the hash of exactly the areas it is on for. An environment
+# variable of the same name still wins (offline proofs, the scorecard).
+SWITCH_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'key-switches.json')
+_SW = {}
+
+
+class SwitchFileError(RuntimeError): pass
+
+
+def switch_file(path=None):
+    """{switch: set of areas it is on for} from the switch file. A missing file = every switch at its DEFAULT; a file that cannot
+    be read or has the wrong shape raises (the build must stop, never run with every switch silently off)."""
+    path = path or SWITCH_FILE
+    if path in _SW: return _SW[path]
+    import json
+    if not os.path.exists(path): _SW[path] = {}; return _SW[path]
+    try: d = json.load(open(path, encoding='utf-8'))
+    except (OSError, ValueError) as e: raise SwitchFileError(f'{path} cannot be read: {e}')
+    sw = d.get('switches') if isinstance(d, dict) else None
+    if not isinstance(sw, dict): raise SwitchFileError(f"{path}: no 'switches' object")
+    out = {}
+    for k, v in sw.items():
+        on_ = (v or {}).get('on') if isinstance(v, dict) else None
+        if not isinstance(on_, list) or not all(isinstance(a, str) for a in on_): raise SwitchFileError(f"{path}: {k} needs an 'on' list of areas")
+        out[k] = set(on_)
+    _SW[path] = out
+    return out
+
+
+def setting(name, env=None, area=None, path=None):
     env = os.environ if env is None else env
     v = str(env.get(name, '') or '').strip()
-    return v if v else DEFAULTS.get(name, '0')
+    if v: return v
+    areas = switch_file(path).get(name)
+    if areas is not None and areas:
+        a = str(area or '')
+        if '*' in areas or (a and (a in areas or ('US-' + a) in areas)): return '1'
+    return DEFAULTS.get(name, '0')
 
 
-def on(name, env=None):
-    return setting(name, env).lower() not in ('0', 'off', 'false', 'no', '')
+def on(name, env=None, area=None, path=None):
+    return setting(name, env, area, path).lower() not in ('0', 'off', 'false', 'no', '')
+
+
+def areas_on(area, path=None):
+    """The switches the file turns on for one area (kpc_area_hash slices the file with this)."""
+    a = str(area or '')
+    return sorted(k for k, s in switch_file(path).items() if '*' in s or a in s or ('US-' + a) in s)
 
 
 def nf(t):

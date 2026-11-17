@@ -166,6 +166,13 @@
    "from": "8e540cdc818b",
    "why": "D3 (owner ruling 17 Nov 2026, built 10:00 AM), switch KPC_DESIGNATION_SPLIT (OFF): (1) a national heritage area / corridor (a line around mostly other people's land) gets no outline: pin + 'sits on' (the key's new 'on' list names its records); (2) a federal designation line (Forest Service designated areas, BLM monuments / NCAs, FS + BLM wilderness, BLM study areas, a PAD-US Designation record) joined by name is kept only on the park that IS that designation (its name, its name without type words, or the same kind of place); on another kind of park it goes to CHECK. State layers labelled 'designation' wait for D7 (reading D11's labels moves every area's hash). Ownership share (approximate / herd areas on checkerboard) is a report first. Offline precheck UT / AK / GA: 3 heritage areas become pin + sits on; UT 1 park loses 2 neighbouring study-area pieces (Black Ridge Canyons West).",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-switch-file",
+   "when": "2026-11-17",
+   "from": "1e29847a4f20",
+   "why": "Reviewer B #7 (owner 17 Nov: stick to Fable's plan; step 0): the rule switches are read from .github/key-switches.json per state (an environment variable still wins), the file is a US rule file sliced per state in the area hash (a state with no switch on gets no part), and a key rules / switch file that cannot load stops the build instead of turning every rule off. Every switch is OFF in the file: no result changes.",
+   "scope": "none"
   }
  ]
 }

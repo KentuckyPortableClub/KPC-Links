@@ -1531,10 +1531,12 @@ for _r, _ids in BLOCKED.items():
 def _oid(a): return str(a['OBJECTID'])
 # Nov 2 review: one set of rules for a person's NO in every join path, a name check on id joins, self-checks and confidence
 # (kpc_key_rules.py; every rule has its own switch, see that file). Missing file = today's behaviour.
-try:
-    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import kpc_key_rules as KR
-except Exception: KR = None  # noqa: BLE001
-def _kr(name): return KR is not None and KR.on(name)
+# Reviewer B #7 (KPC owner, 2026-11-17): a key rules file that cannot be loaded STOPS the build (it used to switch every rule off,
+# KPC_NO_ALL_PATHS included, without a word). The switches are read per state from .github/key-switches.json.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import kpc_key_rules as KR  # noqa: E402
+KR.switch_file()   # a broken switch file stops here, before any state is built
+CUR_ST = {'st': ''}
+def _kr(name): return KR.on(name, area=CUR_ST['st'])
 
 
 def _hand_ids(recs, P):
@@ -1788,6 +1790,7 @@ def _fs_owned_note(parks):
 
 
 def run(st):
+    CUR_ST['st'] = st   # the rule switches are read for this state (key-switches.json)
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']; P_ALL.clear(); P_ALL.update(P)
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
     try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}   # Oct 29: retired numbers leave the key (issue #17)

@@ -42,7 +42,7 @@ REPO = 'KentuckyPortableClub/KPC-Data'
 # decide a join): kpc_host_pace.py (request pacing), kpc_save.py (file writer), the issue / answers / layers / lost-finds helpers.
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 VERSION_FILE = '.github/key-rules-version.json'
-RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_key_rules.py', '.github/scripts/kpc_match.py'],
+RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_key_rules.py', '.github/scripts/kpc_match.py', '.github/key-switches.json'],
               'ca-key': ['.github/scripts/kpc_ca_key.py', '.github/scripts/kpc_ca_fill_bounds.py', '.github/scripts/kpc_ca_hardlook.py'],
               'world-key': ['.github/scripts/kpc_world_key.py', '.github/scripts/kpc_match.py',
                             '.github/scripts/kpc_number_rules.py'],   # next round v3 C10: same_name's one-side number test (world only; not US)
