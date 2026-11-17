@@ -5,8 +5,14 @@ name: KPC saved shapes
 # Fable's review, Oct 22: 'nearly all the time is re-downloading the same geometry'.
 # Monthly, plus by hand. Six states at a time so the government servers are not hammered. Never fails.
 on:
-  schedule:
-    - cron: '13 9 3 * *'          # the 3rd of each month, 4.17am Central   # G9 Nov 2: was '17 9 3 * *' (spread the start times; now 4 min earlier)
+  # SCHEDULE OFF, Brandon Nov 16 2026 ('the less downloading the less issues'): this job re-read every layer blind
+  # (GEO_CACHE_MODE: refresh) on the 3rd of each month, whether or not one line of it had moved. Every layer we hold was
+  # downloaded in the last few days, so a monthly re-download only risked a fresh copy being replaced by a worse read.
+  # The keeper already checks every layer for change (KPC-Store store/layers-seen.json: ETag, lastEditDate, record count).
+  # Before this is ever switched back on, read .claude/notes/layer-refresh.md: the plan is that the keeper ASKS and this
+  # job fetches only the layers that moved. The by-hand button below still works and is how a refresh is started now.
+  #schedule:
+  #  - cron: '13 9 3 * *'          # the 3rd of each month, 4.17am Central
   workflow_dispatch:
     inputs:
       states:

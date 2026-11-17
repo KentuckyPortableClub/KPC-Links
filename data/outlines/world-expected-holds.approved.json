@@ -9,6 +9,15 @@
    "copy": "W-MT",
    "copy_sha256": "9c94cb55777d417b1fcf92aae95308dcd539415d0e833ca1ff8af574908f3b7b",
    "review_by": ""
+  },
+  "JP": {
+   "reason": "A store-mode rebuild of Japan joins 184 parks against 185 on main, so the never-worse guard keeps main's key and the run goes red every night. All five lost joins (JP-0025, JP-1071, JP-1681, JP-1745, JP-2097) come from the MLIT natural park areas (A10) layer and were made by the pin-inside-only path, and at least two join the wrong place (JP-2097 Kannourako Kaigan Ryokuchi to Muroto-Anan; JP-1071 Goshozan to the Zaou range). Owner decision 2026-11-16: hold Japan until the joins are right. The A10 crosswalk is the proper fix for these pins and stays off until its licence is signed; the owner also ruled the same day that Japan gets no looser pin rule than any other country, which will drop about 102 more joins when it is built. Japan keeps its previous join meanwhile and the run can finish green.",
+   "approved_by": "Brandon (KZ4CP)",
+   "approved_date": "2026-11-16",
+   "source": "Owner, 2026-11-16 6:15 PM CT: 'yes hold it till we get the joins right'; the five lost joins read from world key run 43949001506",
+   "copy": "W-JP",
+   "copy_sha256": "f8560ecf7dc9dafcab3f248570142a4b5499eff22bb052fea1c29a83ff54b920",
+   "review_by": ""
   }
  },
  "removed": {

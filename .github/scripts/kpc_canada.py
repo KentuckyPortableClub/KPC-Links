@@ -1,6 +1,6 @@
 """Canadian pins for the KPC US Trip Planner (Brandon Oct 16: 'Canada you can go ahead and drop the pins, we work on
 boundaries later'). Writes data/canada.json in the same row format as locations.json:
-  ['POTA', 'CA-0001', name, lat, lon, url]   from api.pota.app (all Canadian POTA parks, by province)
+  ['POTA', 'CA-0001', name, lat, lon, url]   from POTA's park lists (all Canadian parks, by province), the club's SAVED copy (Nov 16)
   ['WWFF', 'VEFF-0001', name, lat, lon, url, None, potaRef] from our weekly WWFF copy (data/wwff/VEFF.json); potaRef = the
     confirmed link of data/wwff-xref-VEFF.json ('' when none)
   ['SOTA', 'VE7/..', name, lat, lon, url, altM, points] from our weekly SOTA tiles (VE/VA/VY/VO associations)
@@ -8,6 +8,7 @@ Keeps last week's POTA rows if POTA can't be reached."""
 import json, os, glob, time, urllib.request, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): POTA's park lists from the SAVED copy only (kpc_pota_parklists.py); never POTA
 import kpc_pin_guard as PG   # Nov 11: a POTA pin that changed is recorded; an unusable one keeps the last good pin
 UA = {'User-Agent': 'KPC Canada pins (kentuckyportableclub.github.io)'}
 def note(t, m): print(f'::notice title={t}::{m}')
@@ -23,7 +24,7 @@ oldp = {r[1]: r for r in old.get('rows', []) if r[0] == 'POTA'}
 pota, prov, bad, events = {}, {}, [], []
 for pv in 'AB BC MB NB NL NS NT NU ON PE QC SK YT'.split():
     try:
-        L = get(f'https://api.pota.app/location/parks/CA-{pv}')
+        L = DOOR.saved_park_list(f'CA-{pv}')
         for p in L:
             ref = p.get('reference', '')
             if not ref.startswith('CA-') or ref in pota: continue
@@ -36,7 +37,6 @@ for pv in 'AB BC MB NB NL NS NT NU ON PE QC SK YT'.split():
             if pin is None: pin = raw          # no earlier pin: as before (a 0,0 is passed on for the key to mark pin00; nothing at all = skipped)
             if pin is None: continue
             pota[ref] = ['POTA', ref, name, pin[0], pin[1], 'https://pota.app/#/park/' + ref]; prov[pv] = prov.get(pv, 0) + 1
-        time.sleep(.5)
     except Exception as e: bad.append(pv); note(f'CA-{pv}', f'failed: {str(e)[:100]}')
 if not pota:
     pota = dict(oldp); note('POTA', 'no answer: kept last copy')

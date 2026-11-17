@@ -2,10 +2,12 @@
 (Brandon Oct 17: 'drop pins for all three programs for the world'). WWFF and SOTA world tiles already exist
 (data/wwff/t, data/sota/t, built Sundays); this adds data/pota/t/<floor lat>_<floor lon>.json = [[ref, name, lat, lon], ...]
 plus data/pota/index.json {updated, parks, tiles, programs:{prefix: count}}.
-Source: api.pota.app/locations, then /location/parks/<locationDesc> for every location. A location that fails keeps
+Source: POTA's /locations and /location/parks/<locationDesc>, read from the SAVED copy (data/pota/saved, made by the park-list
+job kpc_pota_parklists.py: world lists weekly); this script never calls POTA (Nov 16). A location that fails keeps
 last month's rows (read back from the old tiles)."""
 import json, os, glob, math, time, datetime, urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (item 7): the saved copy only (kpc_pota_parklists.py pulls it); never POTA
 import kpc_pin_guard as PG   # Nov 11: a POTA pin that changed is recorded; an unusable one keeps the last good pin
 
 UA = {'User-Agent': 'KPC world POTA pins (kentuckyportableclub.github.io)'}
@@ -35,14 +37,14 @@ for f in glob.glob(OUT + '/*.json'):
     except Exception:
         pass
 
-locs = get('https://api.pota.app/locations')
+locs = DOOR.saved_locations()
 want = sorted({l['locationDesc'] for l in locs if l.get('locationDesc') and not str(l['locationDesc']).startswith(('US-', 'CA-'))})
 note('Locations', f'{len(want)} POTA locations outside the US and Canada')
 rows, failed, byp, events = {}, [], {}, []
 t0 = time.time()
 for i, desc in enumerate(want):
     try:
-        for p in get(f'https://api.pota.app/location/parks/{desc}') or []:
+        for p in DOOR.saved_park_list(desc) or []:
             ref = str(p.get('reference') or '').upper()
             if not ref:
                 continue
@@ -62,7 +64,6 @@ for i, desc in enumerate(want):
             rows[ref] = [ref, (p.get('name') or '').strip(), pin[0], pin[1]]
     except Exception as e:
         failed.append(desc)
-    time.sleep(.25)
     if time.time() - t0 > 100 * 60:
         note('Time', f'stopped after {i + 1} locations (time limit); the rest keep last month'); failed += want[i + 1:]; break
 pre = lambda r: r.split('-')[0]

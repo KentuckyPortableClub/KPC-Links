@@ -1,6 +1,6 @@
 """North America pins outside the US and Canada for the KPC US Trip Planner (Brandon Oct 17: 'drop pins in Mexico next,
 finish all pins in North America'). Writes data/northam.json in the same row format as locations.json / canada.json:
-  ['POTA', 'MX-0001', name, lat, lon, url]    from api.pota.app: every location of the programs in NA below (/locations
+  ['POTA', 'MX-0001', name, lat, lon, url]    from POTA's saved park lists (Nov 16): every location of the programs in NA below (/locations
                                               lists them with their locationDesc, then /location/parks/<desc>)
   ['WWFF', 'XEFF-0001', name, lat, lon, url]  from our weekly WWFF copy (data/wwff/*.json)
   ['SOTA', 'XE1/BC-001', ...]                 from our weekly SOTA tiles
@@ -9,6 +9,7 @@ a program POTA doesn't answer for."""
 import json, glob, time, urllib.request, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): POTA's park lists from the SAVED copy only (kpc_pota_parklists.py); never POTA
 import kpc_pin_guard as PG   # Nov 11: a POTA pin that changed is recorded; an unusable one keeps the last good pin
 
 UA = {'User-Agent': 'KPC North America pins (kentuckyportableclub.github.io)'}
@@ -48,7 +49,7 @@ oldpota = {r[1]: r for r in old.get('rows', []) if r[0] == 'POTA'}
 
 pota, byprog, failed, events, locs_failed = {}, {}, set(), [], False
 try:
-    locs = get('https://api.pota.app/locations')
+    locs = DOOR.saved_locations()
 except Exception as e:
     locs = []; locs_failed = True; note('POTA locations', f'failed: {str(e)[:100]}')
 if not locs_failed and not isinstance(locs, list): locs, locs_failed = [], True   # an answer that is not a list is a failed read, not 'no locations'
@@ -57,7 +58,7 @@ want = [l['locationDesc'] for l in locs if str(l.get('locationDesc', '')).split(
 for desc in sorted(set(want)):
     pre = desc if desc.startswith('US-') else desc.split('-')[0]
     try:
-        for p in get(f'https://api.pota.app/location/parks/{desc}'):
+        for p in DOOR.saved_park_list(desc):
             ref = p.get('reference', '')
             if not ref or ref in pota: continue
             name = (p.get('name') or '').strip()
@@ -72,7 +73,6 @@ for desc in sorted(set(want)):
             if pin is None: continue
             pota[ref] = ['POTA', ref, name, pin[0], pin[1], 'https://pota.app/#/park/' + ref]
             byprog[pre] = byprog.get(pre, 0) + 1
-        time.sleep(.4)
     except Exception as e:
         failed.add(pre); note(desc, f'failed: {str(e)[:100]}')
 # Nov 11: POTA's list of locations did not come (or was not a list): every program is a failed read, so last night's POTA pins stay.

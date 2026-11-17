@@ -1,6 +1,6 @@
 """Weekly: the 25 Kentucky POTA parks with the fewest QSOs and the 25 with the fewest activations.
 
-Reads POTA's public park list for Kentucky (https://api.pota.app/location/parks/US-KY), which carries each
+Reads POTA's public park list for Kentucky (/location/parks/US-KY, the club's SAVED copy, Nov 16), which carries each
 park's total activations, attempts and QSOs. The park list, names, counties and map points come from
 kpc-ky-data.json `parks` (what every KPC tool uses). Writes kpc-top25.json for kpc-guide-top25.html.
 
@@ -17,9 +17,9 @@ import sys
 import time
 import urllib.request
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): POTA's park lists from the SAVED copy only (kpc_pota_parklists.py); never POTA
 
 UA = 'Mozilla/5.0 (compatible; KPC-top25; +https://kentuckyportableclub.github.io/KPC-Links/)'
-URL = 'https://api.pota.app/location/parks/US-KY'
 OUT = pathlib.Path('kpc-top25.json')
 TOP = 25
 
@@ -68,7 +68,7 @@ def build(stats, updated, parks):
 
     return {
         'updated': updated,
-        'source': 'POTA public park statistics (api.pota.app), Kentucky parks from kpc-ky-data.json',
+        'source': 'POTA public park statistics (pota.app), Kentucky parks from kpc-ky-data.json',
         'parks': len(parks),  # every KY POTA park (brand-new parks may not be in POTA's stats list yet)
         'qsos': ranked(lambda r: (r['q'], r['a'], num(r['c']))),
         'acts': ranked(lambda r: (r['a'], r['q'], num(r['c']))),
@@ -81,7 +81,7 @@ def build(stats, updated, parks):
 def main():
     parks = json.load(open('kpc-ky-data.json', encoding='utf-8'))['parks']
     try:
-        j = get(URL)
+        j = DOOR.saved_park_list('US-KY')
     except Exception as e:  # noqa: BLE001
         notice('POTA not reachable', '%s. Kept the old kpc-top25.json.' % e)
         return 0

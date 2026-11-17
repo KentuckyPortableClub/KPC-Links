@@ -31,6 +31,13 @@ def urlopen(req, timeout=None):
     raise OSError('offline test: no network for ' + url.split('/')[2])
 urllib.request.urlopen = urlopen
 time.sleep = lambda s: None
+# KPC owner, 2026-11-16 (item 7): new_refs reads the saved park lists through the POTA door, never POTA
+import kpc_pota_door as _D
+_D.saved_locations = lambda: [{'locationDesc': 'US-KY'}, {'locationDesc': 'US-TN'}]
+def _spl(loc):
+    if loc in FIX: return FIX[loc]
+    raise _D.DoorClosed('no saved list for ' + loc)
+_D.saved_park_list = _spl
 sys.argv = [sys.argv[1]]
 runpy.run_path(sys.argv[0], run_name='__main__')
 '''

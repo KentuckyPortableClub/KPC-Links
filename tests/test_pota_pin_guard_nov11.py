@@ -47,6 +47,16 @@ def fake_urlopen(req, *a, **k):
 urllib.request.urlopen = fake_urlopen
 time.sleep = lambda *a, **k: None
 
+# KPC owner, 2026-11-16 (item 7): the readers take the saved copies through the POTA door, never POTA; the fake answers stand in for them
+sys.path.insert(0, str(SCR)); import kpc_pota_door as _D
+def _saved(u):
+    ASKED.append(u)
+    v = API.get(u, [])
+    if isinstance(v, Exception): raise _D.DoorClosed(str(v))
+    return json.loads(json.dumps(v))
+_D.saved_locations = lambda: _saved('https://api.pota.app/locations')
+_D.saved_park_list = lambda loc: _saved('https://api.pota.app/location/parks/' + loc)
+
 
 def run(script, cwd):
     os.chdir(cwd)

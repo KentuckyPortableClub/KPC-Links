@@ -27,6 +27,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 import zlib
 import kpc_net_guard; kpc_net_guard.install()
+import kpc_pota_door as DOOR   # KPC owner, 2026-11-16 (handoff item 7): POTA's park lists from the SAVED copy only (kpc_pota_parklists.py); never POTA
 
 UA = 'Mozilla/5.0 (compatible; KPC-new-lands; +https://kentuckyportableclub.github.io/KPC-Links/)'
 SEEN = pathlib.Path('data/ky-lands-seen.json')
@@ -137,7 +138,7 @@ def padus():
 
 
 def pota():
-    rows = json.loads(get('https://api.pota.app/location/parks/US-KY'))
+    rows = DOOR.saved_park_list('US-KY')
     return {r['reference']: r.get('name', '') for r in rows if str(r.get('reference', '')).startswith('US-')}
 
 
