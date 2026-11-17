@@ -1,0 +1,59 @@
+{
+ "note": "made-up fixture (scorecard test)",
+ "blocked_ids": [
+  {
+   "ref": "US-9006",
+   "id": "602",
+   "reason": "fixture: another place",
+   "decided_by": "Brandon"
+  },
+  {
+   "ref": "US-9001",
+   "id": "103",
+   "reason": "fixture: no decided_by, so it does not count"
+  }
+ ],
+ "parks": {
+  "US-9001": {
+   "join": [
+    "101"
+   ],
+   "no": [
+    "199"
+   ],
+   "why": "fixture"
+  },
+  "US-9002": {
+   "join": [
+    "201",
+    "zzb202"
+   ],
+   "no": [
+    "299"
+   ],
+   "why": "fixture"
+  },
+  "US-9003": {
+   "no": [
+    "Gamma Forest Annex"
+   ],
+   "why": "fixture: a NO typed as a name"
+  },
+  "US-9004": {
+   "none": true,
+   "why": "fixture: a person found no official outline"
+  },
+  "US-9007": {
+   "no": [
+    "701"
+   ],
+   "nofp": {
+    "701": [
+     "Eta Area",
+     100
+    ]
+   },
+   "why": "fixture: renumbered record, caught only by name + acres"
+  }
+ }
+}
