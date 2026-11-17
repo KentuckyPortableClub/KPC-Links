@@ -1155,6 +1155,14 @@ EASEMENT_HELD = []
 LEASE_RX = re.compile(r'\bagreement\b|\blease[ds]?\b|cooperative (?:wildlife|management|area)', re.I)   # D5 (KPC owner, 2026-11-17)
 LAKE_TYPE_RX = re.compile(r'fishing lake|reservoir|\blakes?\b|\bpond', re.I)   # D4: a park TYPE that says it is the lake
 LEASE_HELD, LAKE_HELD = [], []
+DESIG_HELD, SITS_ON = [], []   # D3 (KPC owner, 2026-11-17 10:00 AM)
+# D3: the FEDERAL designation layers (a line drawn by a law or a plan): Forest Service designated areas, BLM monuments / NCAs,
+# wilderness (FS + BLM), BLM study areas. State layers labelled 'designation' (D11) join this list with D7, when 'what' is read.
+DESIG_PRE = {'fsod', 'nca', 'wld', 'wbl', 'wsa'}
+DESIG_KIND = {'wld': {'wild'}, 'wbl': {'wild'}, 'wsa': {'wsa'}, 'nca': {'nps', 'ca'}}   # the kind a layer's bare record names carry
+HERITAGE_RX = re.compile(r'heritage (area|corridor)', re.I)
+DESIG_WORDS = frozenset('blm usfs nps wsa isa wilderness study instant area areas national monument conservation nca recreation nra the'.split())
+def _dcore(t): return ' '.join(w for w in str(t or '').split() if w not in DESIG_WORDS)   # a designation name without its type words
 
 
 def rec_type(attrs):
@@ -2340,7 +2348,7 @@ def run(st):
     held_g, pin_wrong = [], []
     g8 = []
     EASEMENT_HELD.clear(); EASEMENT_KEPT.clear()
-    LEASE_HELD.clear(); LAKE_HELD.clear()
+    LEASE_HELD.clear(); LAKE_HELD.clear(); DESIG_HELD.clear(); SITS_ON.clear()
     def _g8tok(s):
         s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
         s = re.sub(r'\bft\b', 'fort', re.sub(r'\bmt\b', 'mount', re.sub(r'\bst\b', 'saint', s)))
@@ -2408,6 +2416,37 @@ def run(st):
                     p['m'] = m = [x for x in m if x not in _gx]
                     p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], f'check (D4): {w}; who owns the water decides (a person)'] for x, w in _go]
                     LAKE_HELD.extend(f'{ref} ({x[0]})' for x in _gx)
+        # D3 (KPC owner, 2026-11-17 10:00 AM, switch KPC_DESIGNATION_SPLIT): A PARK THAT IS A DESIGNATION. (1) A national heritage area
+        # (a line drawn around mostly other people's land) gets no outline: pin + 'sits on' (its records listed in p['on']). (2) A
+        # designation line (federal designation layers DESIG_PRE, a PAD-US 'Designation' record) is drawn only for the park that IS
+        # that designation (the same kind of place, or the record carries the park's full name); joined by name to a park of another
+        # kind it goes to CHECK. A person's join stands. Ownership share (approximate where the agency owns only part; herd areas on
+        # checkerboard) is measured by a report first, like D2.
+        if _kr('KPC_DESIGNATION_SPLIT') and m:
+            if HERITAGE_RX.search(str(p.get('t') or '') + ' ' + str(p.get('n') or '')):
+                _hx = [x for x in m if name_only(x[3])]
+                if _hx:
+                    p['m'] = m = [x for x in m if x not in _hx]
+                    p['on'] = sorted({str(x[1]) for x in _hx})
+                    p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'held (D3): a heritage area is drawn around mostly other people\'s land: pin + sits on, no outline'] for x in _hx]
+                    SITS_ON.append(ref)
+            else:
+                _pk = kinds(p.get('n') or '') | kinds(p.get('t') or '')
+                def _desig(x):
+                    _pre = re.match(r'[a-z]+', str(x[0]))
+                    return (_pre is not None and _pre.group(0) in DESIG_PRE) or (gs_.get(str(x[0])) or {}).get('Category') == 'Designation'
+                def _is_it(x):   # the park IS the designation: the record's own name begins the park's name, or the same kind of place
+                    _rn, _pn = KR._full(x[1]), KR._full(p.get('n') or '')
+                    if _rn and (_pn == _rn or _pn.startswith(_rn + ' ')): return True
+                    if _rn and _dcore(_rn) and _dcore(_rn) == _dcore(_pn): return True   # 'Phipps - Death Hollow ISA' = 'Phipps-Death Hollow BLM Wilderness Area'
+                    _pre = re.match(r'[a-z]+', str(x[0]))
+                    _rk = kinds(x[1]) or DESIG_KIND.get(_pre.group(0) if _pre else '', set())
+                    return bool(_rk & _pk)
+                _dx = [x for x in m if name_only(x[3]) and _desig(x) and not _is_it(x)]
+                if _dx:
+                    p['m'] = m = [x for x in m if x not in _dx]
+                    p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check (D3): a designation line is drawn only for the park that IS that designation'] for x in _dx]
+                    DESIG_HELD.extend(f'{ref} ({x[0]})' for x in _dx)
         weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1]))]   # R-G8 fix: 'Kodiak' is in 'Kodiak Office' but that record does not NAME the park
         # Nov 2 (map audit, Tennessee: the bare 'Reelfoot' / 'Chickasaw' / 'Pickett' records were drawn into the state park, the WMA AND the
         # refuge at once): when the park already has its own full-name record, a bare-name piece matched with the designation code
@@ -2499,6 +2538,8 @@ def run(st):
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
     if EASEMENT_HELD: notice(f'US key {st}', f"conservation easement records not joined by name alone (item 5): {len(EASEMENT_HELD)} piece(s) moved to CHECK: {', '.join(EASEMENT_HELD[:10])}")
     if LEASE_HELD: notice(f'US key {st}', f"D5 leased / agreement records not joined by name alone: {len(LEASE_HELD)} piece(s) to CHECK: {', '.join(LEASE_HELD[:10])}")
+    if DESIG_HELD: notice(f'US key {st}', f"D3 designation lines sent to CHECK (drawn only for the park that is the designation): {len(DESIG_HELD)} piece(s): {', '.join(DESIG_HELD[:10])}")
+    if SITS_ON: notice(f'US key {st}', f"D3 heritage areas shown as pin + sits on: {len(SITS_ON)} park(s): {', '.join(SITS_ON[:10])}")
     if LAKE_HELD: notice(f'US key {st}', f"D4 lake surfaces sent to CHECK (who owns the water decides): {len(LAKE_HELD)} piece(s): {', '.join(LAKE_HELD[:10])}")
     if held_g: notice(f'US key {st}', f"rule G-1: {len(held_g)} parks had similar-name pieces held (not drawn): {', '.join(held_g[:12])}")
     if pin_wrong: notice(f'US key {st}', f"{len(pin_wrong)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(pin_wrong[:12])}")

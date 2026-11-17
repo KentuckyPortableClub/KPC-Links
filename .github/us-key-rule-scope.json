@@ -159,6 +159,13 @@
    "from": "2ac66f53c4e8",
    "why": "D4 precheck (AR / ID / WA, saved ids re-matched): a park whose NAME says it is a reservoir's area ('Magic Reservoir BLM Recreation Management Area', 'Anderson Ranch Reservoir Management Area', 'Scooteney Reservoir State Park') keeps its reservoir surface; the research found these areas manage the water. A park named only 'Lake X State Park' is not covered (the lake is often another owner's). Switch KPC_LAKE_ONLY_IF_LAKE still OFF.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-d3-designations",
+   "when": "2026-11-17",
+   "from": "8e540cdc818b",
+   "why": "D3 (owner ruling 17 Nov 2026, built 10:00 AM), switch KPC_DESIGNATION_SPLIT (OFF): (1) a national heritage area / corridor (a line around mostly other people's land) gets no outline: pin + 'sits on' (the key's new 'on' list names its records); (2) a federal designation line (Forest Service designated areas, BLM monuments / NCAs, FS + BLM wilderness, BLM study areas, a PAD-US Designation record) joined by name is kept only on the park that IS that designation (its name, its name without type words, or the same kind of place); on another kind of park it goes to CHECK. State layers labelled 'designation' wait for D7 (reading D11's labels moves every area's hash). Ownership share (approximate / herd areas on checkerboard) is a report first. Offline precheck UT / AK / GA: 3 heritage areas become pin + sits on; UT 1 park loses 2 neighbouring study-area pieces (Black Ridge Canyons West).",
+   "scope": "none"
   }
  ]
 }
