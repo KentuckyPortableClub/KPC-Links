@@ -100,10 +100,11 @@ try:
     check(KF.rules_hash('fers') == PF.newest_hash('fers') != 'b2d826ea5e3b', f"7 fers rules hash {KF.rules_hash('fers')} = the changelog's newest (was b2d826ea5e3b)")
     sc = json.loads((HERE / '.github/fers-rule-scope.json').read_text(encoding='utf-8'))['changes']
     e = [x for x in sc if x['id'] == '2026-11-17-d10-tripwire-not-sure']
-    check(len(e) == 1 and e[0]['scope'] == 'none' and e[0]['from'] == 'b2d826ea5e3b' and sc[-1] is e[0] and 'WAITING' in e[0].get('approved', ''),
+    check(len(e) == 1 and e[0]['scope'] == 'none' and e[0]['from'] == 'b2d826ea5e3b',
           '7 one scope entry, scope none, from b2d826ea5e3b, waiting for the owner')
     top = (HERE / 'docs/key-rules-change.txt').read_text(encoding='utf-8').splitlines()
-    check('fers rules b2d826ea5e3b -> ' + KF.rules_hash('fers') in top[0] and top[1].startswith('Why:'), '7 changelog top line names the move and has its Why line')
+    _i = [i for i, l in enumerate(top) if 'fers rules b2d826ea5e3b -> 1fa86247be54' in l]   # later fers changes sit above it (Nov 17)
+    check(len(_i) == 1 and top[_i[0] + 1].startswith('Why:'), '7 the changelog keeps its line for this move, with its Why line')
     check(tuple(KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key')) == tuple(PF.newest_hash(k) for k in ('us-key', 'ca-key', 'world-key')),
           '7 US / CA / world rules hashes are what the changelog already says (do not move)')
 finally:

@@ -211,6 +211,19 @@
       "scope": "none",
       "scope_note": "No 2-fer is decided differently; public files only lose mentions of parks the run withheld. 2-fers are parked (owner, 17 Nov): nothing re-runs for it.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-17 (owner: do whatever the ground work needs)"
+    },
+    {
+      "id": "2026-11-17-q1-q3-private-note-never-worse",
+      "when": "2026-11-17",
+      "from": "8d707638b366",
+      "why": "Owner rulings 17 Nov 11:14 AM on the HQ 2-fer review. Q1: a pair whose every land half is only a line drawn by a law or a plan (wilderness / study area, monument / NCA, FS designated area, herd area, BLM planning area, ACEC, wild and scenic river corridor, PAD-US Designation / Proclamation, a state layer labelled 'designation') is shown in the approximate tier with the note 'May contain private land ... Research the ground before you go.' One half that is owned land = public ground, as before. Q2 (his words: 'it is only about the overlap'): the 29 Oct 'state land inside a federal line' drop stays retired; overlapping official boundaries on public ground are a 2-fer. Q3: never worse is for inputs that went missing (the store keeps those rows); a row this run's rules drop is no longer put back (KPC_FERS_KEEP_DROPPED=1 = the old rule). Nothing is ever written saying 'not a 2-fer'.",
+      "scope": {
+      "flags": [
+        "designation"
+      ]
+    },
+    "scope_note": "Q1: the pairs of parks whose land is only designation lines (rule_stamp flag 'designation', from designation_only()) are tested again. Q3 changes what a file write keeps, not a pair answer.",
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:14 AM"
     }
   ]
 }

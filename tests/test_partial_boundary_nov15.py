@@ -206,12 +206,19 @@ def t_no_denials(tmp):
         row('n6', ['US-5', 'US-6'], status='dropped: carried from before', store_held=S.HELD_TAG),
         row('n7', ['US-11', 'US-12'], status='dropped: kept from before', partial_kept=S.PARTIAL_KEPT),
         row('n8', ['US-13', 'US-14'], status='dropped: kept from before', kept=S.KEPT_TAG)]}
+    out0 = KF.no_denials(f, json.loads(json.dumps(doc)))
+    got0 = {x['id']: x for x in out0['spots']}
+    check('old1' not in got0 and 'n1' not in got0 and not any(x.get('refs') == ['US-1', 'US-2'] for x in out0['spots']),
+          '6. Q3 (owner, 2026-11-17): a pair THIS run\'s rules drop is not put back: the spot simply is not shown (no denial either)')
+    KF.KEEP_DROPPED_ROWS = True   # the old rule, behind KPC_FERS_KEEP_DROPPED=1
+    KF.NOT_SHOWN.clear()
     out = KF.no_denials(f, doc)
+    KF.KEEP_DROPPED_ROWS = False
     got = {x['id']: x for x in out['spots']}
     check('n1' not in got and 'n2' not in got, '6. no row that denies a pair is written (from any shape: full, partial, saved copy or line)')
     check('old1' in got and got['old1']['status'] == 'candidate' and got['old1'][KF.NOT_WORSE_FIELD] == KF.NOT_WORSE_TAG
           and got['old1']['refs'] == ['US-1', 'US-2'],
-          '6. never worse: the row the last file showed for that pair comes back unchanged (only the plain mark is added)')
+          '6. with KPC_FERS_KEEP_DROPPED=1 (old rule): the row the last file showed comes back unchanged (only the plain mark is added)')
     for what, cond in (('6. a pair the last file did not show either is simply not there (no row, no reason)', 'n2' not in got and not any(x.get('refs') == ['US-7', 'US-8'] for x in out['spots'])),
                        ('6. the two row-bookkeeping statuses stay (one ROW standing in for another row of the SAME pair)', 'n4' in got and 'n5' in got),
                        ('6. a row carried (store_held) or kept (partial_kept / kept) from an older file is left exactly as it was', got.get('n6', {}).get('status') == 'dropped: carried from before' and got.get('n7', {}).get('status') == 'dropped: kept from before' and got.get('n8', {}).get('status') == 'dropped: kept from before'),
@@ -291,7 +298,12 @@ def t_grade(tmp):
           'F1: that row IS this run\'s verdict now; the held-park branch is not a denial and is untouched')
     f = tmp / 'F1-US-ZZ.json'
     f.write_text(json.dumps(old), encoding='utf-8')
+    out0 = KF.no_denials(f, json.loads(json.dumps(new)))
+    check(not any(x.get('id') == 'live' for x in out0['spots']), 'F1 + Q3: the invented denial is not written and the old live row is not put back')
+    KF.KEEP_DROPPED_ROWS = True
+    KF.NOT_SHOWN.clear()
     out = KF.no_denials(f, new)
+    KF.KEEP_DROPPED_ROWS = False
     got = {x['id']: x for x in out['spots']}
     check(not any(KF.denial(x.get('status')) for x in out['spots']),
           f'F1: no denial is left in the file that would be written ({[x.get("status", "")[:40] for x in out["spots"]]})')

@@ -69,6 +69,7 @@ NOT_SHOWN = {}     # area -> [[refs, kind, the reason we stopped, the row id]]: 
 # The mark on a row never-worse puts back. Its own field, NOT 'kept' (kpc_fers_store.keep_old_rows writes its own note there), and
 # NOT on KEPT_MARKS: if a later pass turned such a row into a denial, it must go through this rule again and be put back again.
 NOT_WORSE_FIELD = 'not_worse'
+KEEP_DROPPED_ROWS = os.environ.get('KPC_FERS_KEEP_DROPPED') == '1'   # Q3 (2026-11-17): off = a dropped row is not put back
 NOT_WORSE_TAG = 'the last run showed this spot, and nothing we have today can rule a 2-fer out'
 
 
@@ -163,7 +164,11 @@ def no_denials(path, d):
             gone.append([sorted(x.get('refs') or []), x.get('kind'), str(x.get('status'))[:300], x.get('id')])
         else: keep.append(x)
     back = []
+    # KPC owner, 2026-11-17 11:14 AM (Q3, agreed): 'never worse' is for an INPUT that went missing or broke (a store outline held
+    # or not there: kpc_fers_store keeps the old row for those), never for a verdict of this run. A row this run's rules drop is
+    # not put back: a corrected key or a new rule may take a wrong spot away. Still nothing is ever written saying 'not a 2-fer'.
     try:
+        if not KEEP_DROPPED_ROWS: raise StopIteration
         shown = {key_of(x) for x in keep if _shown(x) and x.get('refs') and x.get('kind')}
         old = {}
         try:
@@ -180,6 +185,7 @@ def no_denials(path, d):
             if k in shown: continue
             z = json.loads(json.dumps(y)); z[NOT_WORSE_FIELD] = NOT_WORSE_TAG
             back.append(z); shown.add(k)
+    except StopIteration: back = []
     except Exception:  # noqa: BLE001  the rows are already out; putting none back is the safe answer
         back = []
     if d.get('st'): NOT_SHOWN.setdefault(str(d['st']), []).extend(gone)
@@ -928,6 +934,47 @@ def pc_tag(d):
 # Approximate 2-fer outlines (picture traces). Not official key outlines.
 # WDPA / Protected Planet is never a public 2-fer source.
 APX_NOTE = 'Not the official boundary. We believe this is a 2-fer, but it needs more research.'
+# KPC owner, 2026-11-17 11:14 AM (Q1, his words: 'needs to be public ... maybe have a note may contain private land please research
+# it ... or we find a way to prove it'): a pair whose every land half is only a line drawn by a law or a plan (wilderness / study
+# area, monument / NCA, Forest Service designated area, herd area, BLM planning area, ACEC, wild and scenic river corridor, a PAD-US
+# Designation or Proclamation record, a state layer labelled 'designation' in data/state-gis.json) has no proof the ground is
+# public: it is shown in the approximate tier with this note until the agency's own land proves it (step 8 owned land).
+PRIVATE_NOTE = 'May contain private land: these boundaries are lines drawn by a law or a plan, not land the agency owns. Research the ground before you go.'
+DESIG_PRE = {'wsrc', 'akht', 'wld', 'wsa', 'wbl', 'nca', 'hma', 'hab', 'rst', 'rma', 'fwsr', 'fsod'}
+DESIG_SG = set()
+DESIG_REFS = set()   # filled after official_parks(): the parks designation_only() names (scope flag 'designation')
+
+
+def _desig_sg():
+    """The state-gis prefixes whose layer is labelled 'designation' (D11), once."""
+    if DESIG_SG: return DESIG_SG
+    try:
+        L = json.load(open('data/us-key/layers.json'))
+        by = {str(v[0]).split('/query')[0].rstrip('/'): k for k, v in L.items() if isinstance(v, list) and v}
+        for lays in json.load(open('data/state-gis.json'))['states'].values():
+            for l in lays:
+                if l.get('what') == 'designation':
+                    k = by.get(str(l.get('url') or '').rstrip('/'))
+                    if k: DESIG_SG.add(k)
+    except Exception: pass  # noqa: BLE001
+    DESIG_SG.add('_')
+    return DESIG_SG
+
+
+def designation_only(ref, parks):
+    """True when every joined record of the park is a designation / planning line (never for a line park: trails and rivers
+    keep their own 100 ft rules)."""
+    ids = (parks.get(ref) or {}).get('ids') or []
+    if not ids or REGION == 'ky': return False
+    if not PADMANG: agency_kind([])
+    sg = _desig_sg()
+    for rid in ids:
+        if isinstance(rid, int):
+            if (PADMANG.get(rid) or ('', ''))[1] not in ('Designation', 'Proclamation'): return False
+            continue
+        m = re.match(r'[a-z]+', str(rid))
+        if not m or (m.group() not in DESIG_PRE and m.group() not in sg): return False
+    return True
 APX_LIST = 'Approximate 2-fer: not the official boundary; needs more research'
 WDPA_RX = re.compile(r'wdpa|protectedplanet|protected.?planet|unep-?wcmc|world_database_of_protected', re.I)
 WDPA_SKIP = []   # refs whose outline is WDPA / Protected Planet (internal file only)
@@ -2447,6 +2494,7 @@ def rule_stamp(r):
     flags = set()
     if r in NOPIN_BY_ID or (p and p[1] is None): flags.add('bad-pin')
     if r in CURLN: flags.add('line')
+    if r in DESIG_REFS: flags.add('designation')   # Q1 (2026-11-17): parks whose land is only designation lines
     out = []
     for c in SCOPE:
         sc = c.get('scope')
@@ -3735,6 +3783,10 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     s['ownership'] = why
     if v == 'drop': s['status'] = 'dropped: ' + why; return
     if v == 'not sure': s['status'] = 'not sure: ' + why; return
+    _land = [r for r in refs if not (r in LN and r not in G)]
+    if _land and all(designation_only(r, parks) for r in _land):   # Q1 (KPC owner, 2026-11-17): no proof the ground is public
+        s['approx'] = True; s['approx_refs'] = sorted(set(s.get('approx_refs') or []) | set(_land)); s['approx_note'] = PRIVATE_NOTE
+        s['may_contain_private'] = True
     s['status'] = 'candidate' if not s.get('fresh') else 'candidate (saved outline only)'
     if s['kind'] == 'area' and (s.get('wide_m') or 0) < TIGHT_M:
         s['status'] = VERY_TIGHT; s['list'] = 'Very tight (members only)'   # rule 4: its own list, never the main one
@@ -4145,6 +4197,7 @@ def main():
         ok, why = known_ok()
         if not ok: notice('2-fer bot', f'STOPPED before the all-US / Canada run: {why}. Fix and rerun Kentucky first.'); raise RECEIPT.StoppedEarly(f'before the all-US / Canada run: {why}')
     parks, skip = official_parks(PIN)
+    DESIG_REFS.update(r for r in parks if designation_only(r, parks))   # Q1: the scope flag 'designation' (rule_stamp)
     drop_blocked(parks)
     PINS.update(PIN)   # Nov 9 PM: official_parks blanks the key's 'pin00' pins (no coordinates)
     RET = retired()   # rule 13: retired POTA numbers drop out
