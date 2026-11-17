@@ -13,6 +13,14 @@
     "KPC_CONF_SORT": {"on": []},
     "KPC_PADUS_DEDUPE": {"on": []},
     "KPC_PIECE_NAME": {"on": []},
-    "KPC_NO_OFFICE_JOIN": {"on": []}
+    "KPC_NO_OFFICE_JOIN": {"on": []},
+    "KPC_NPS_UNIT_CODE": {"on": []},
+    "KPC_FS_RIVER_NAMES": {"on": []},
+    "KPC_G8_OTHER_PLACE": {"on": []},
+    "KPC_MEASURED_ACRES": {"on": []},
+    "KPC_CA_NONE_KEPT": {"on": []},
+    "KPC_CA_SAVED_ID_LAND": {"on": []},
+    "KPC_JP_A10_NAMES": {"on": []},
+    "KPC_MK_LAYER_93": {"on": []}
   }
 }

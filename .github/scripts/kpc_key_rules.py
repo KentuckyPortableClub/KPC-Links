@@ -38,6 +38,10 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           layer, the same name + acres is looked for in the SAME layer near the pin and the new id is kept;
                           if that fails, the old row is not carried, this run's own match stands, and the record goes to
                           check. OFF until the owner says ON (it changes outlines; count first, one state).
+                          The same switch covers a person's own rows in overrides.json (17 Nov, HQ): a 'join' id with a saved
+                          'fp' whose record now holds other land moves to the same name + acres in the same layer, or goes to
+                          check (the join stays until a person answers); a 'no' id with a saved 'nofp' moves the same way (the NO is the land), and stays where it is
+                          when the land is not found again (a person looks).
   KPC_ONE_RECORD_ONE_PARK 0  (KPC owner, 2026-11-17, ruling D9: one record, one park) a record joined by name to two or more parks
                           of the same kind stays with the ONE park whose full name is the record's own name; the others give it
                           back and it goes to check (a person may say it is the same land under two numbers). No single
@@ -55,6 +59,39 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           records in the park's 'on' list); a federal designation line (FS designated area, BLM monument / NCA,
                           wilderness, study area, a PAD-US Designation record) is drawn only for the park that IS that designation;
                           joined by name to another kind of park it goes to check. Ownership share is a report first. OFF.
+  KPC_NPS_UNIT_CODE    0  (Handoff 8 fix 1, matching plan section 3) a POTA park whose website is nps.gov/<4-letter code> joins the Park
+                          Service record(s) carrying the same unit code (PAD-US NPS records keep it in Loc_Nm; the NPS boundary layer in
+                          UNIT_CODE), at any distance, with no name test. A unit that two or more POTA parks of the state use (by website or
+                          by a name join: park + preserve) is settled by NAME inside the unit: a record goes to the one park whose full name
+                          is the record's own name, the other gives it back (to check). A person's NO and hand joins always stand. OFF.
+  KPC_FS_RIVER_NAMES   0  (Handoff 8 fix 2, reviewer A #6) a Forest Service wild and scenic river record is named 'Manistee, Michigan
+                          National Wild and Scenic River' / 'Sturgeon, Michigan (Hiawatha NF) ...': the ', <State>' and the '(<forest> NF)'
+                          are dropped before the name test (a park that names its forest, 'Sturgeon (Hiawatha)', only takes that forest's
+                          record). Also the record's SECOND name field is tested on its own kind words when it has none ('Cumberland
+                          Trail' / 'Ozone Falls' joins Ozone Falls State Natural Area), only near the pin. Study areas are not rivers. OFF.
+  KPC_G8_OTHER_PLACE   0  (Handoff 8 fix 3, reviewer A #7) in rule R-G8, a shared-words record whose name says it is a school, college,
+                          city, county, town, cemetery, church or airport is 'another kind of place' (to check), unless the park's own
+                          name has that word or the record holds the park's full name ('Watkins Lake State Park and County Preserve').
+                          Before: 'Tumalo Community School' and 'Ontario High School' were drawn into the state parks. OFF.
+  KPC_MEASURED_ACRES   0  (Handoff 8 fix 4, reviewer A #9) a joined park with no union acreage ('ac') whose records include one with no
+                          acres on file (0) gets 'ac' measured from the saved shapes (records with acres on file count their own acres),
+                          and 'ac_how' = 'measured' says so. The join rows are not changed. Plain Python, no shapely. OFF.
+  KPC_CA_NONE_KEPT     0  (Handoff 8 fix 5, reviewer B #4; Canada) a park a person marked 'none' in data/ca-key/overrides.json (a different
+                          place, no outline of its own) takes no NAME join until a person clears the 'none'. Before, 'none' only emptied
+                          the check list, so a layer added later with the same name joined anyway (9 parks: Trout Brook PP, Cedar Creek
+                          CA, Ministers Island NHS ...). A person's own join or alias still stands. OFF.
+  KPC_CA_SAVED_ID_LAND 0  (Handoff 8 fix 6, reviewer B3; Canada) a hand join saved as a bare record id keeps the LAND it stood for:
+                          name + hectares + the source's own stable id (CPCAD ZONE_ID = the tract row's 'sid'), from overrides 'fp' or the
+                          published tract row. If the id now points at a record with another name, the land is found again by that id
+                          (or same layer + name + hectares within 10%); if not, nothing joins by the id and the park goes to a person
+                          (check B3). Today all 81 saved ids with a tract row still point at the right names (no change). OFF.
+  KPC_JP_A10_NAMES     0  (Handoff 8 fix 7; Japan, kpc_world_key.py pull_a10n) the MLIT v3 codelist names a park by its bare name
+                          ('102 | 網走', no 公園), so only 5 areas of the national A10-10 file were kept. ON takes the name cell next
+                          to the code and adds the kind from A10_003 (網走 -> 網走国定公園; prefectural -> 自然公園). OFF.
+  KPC_MK_LAYER_93      0  (Handoff 8 fix 8; North Macedonia, kpc_world_key.py) the sheet layer MapServer/94 has the monuments and
+                          natural rarities but no national park; ON also reads MapServer/93 of the same service (the areas layer:
+                          Galichica, Mavrovo, Pelister), code only, no data file. A record whose own Prot_Stat says 'proposed' never
+                          gives official land: it leaves 'm' and is listed for a person in 'c'. OFF.
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -65,7 +102,9 @@ import os, re, unicodedata
 
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
-            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0'}
+            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
+            'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
+            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0'}
 
 
 # Reviewer B #7 (KPC owner, 2026-11-17): the switches live in .github/key-switches.json (a US rule file, sliced per area), so a
@@ -429,6 +468,43 @@ def saved_row_ok(row, rec):
     return abs(ra - sa) <= max(20, 0.10 * sa)
 
 
+def saved_land_moves(ov, by_id, refind):
+    """D1 on a person's own rows (KPC owner, 2026-11-17: 'a saved id = the land; a NO likewise'). ov = one park's overrides;
+    by_id = {record id: record} of this read; refind(old_id, name, acres) -> records of the SAME layer near the pin with that
+    name + acres (the caller filters). Returns (new_ov, notes); new_ov is a copy, ov is not touched; notes are
+    (kind, old id, new id or None, saved name, saved acres) with kind 'join moved' / 'join check' / 'no moved' / 'no kept'.
+    Either of the record's names (Unit_Nm or Loc_Nm) may carry the saved name.
+    A row is only looked at when its record IS in this read and no longer fits; a gone id keeps today's re-find path."""
+    ov = dict(ov or {})
+    notes = []
+    fp, nofp = dict(ov.get('fp') or {}), dict(ov.get('nofp') or {})
+    join, no = list(ov.get('join') or []), list(ov.get('no') or [])
+    for k, saved, rows in (('join', fp, join), ('no', nofp, no)):
+        for old in list(rows):
+            sv = saved.get(str(old))
+            rec = by_id.get(str(old))
+            if not sv or not sv[0] or rec is None: continue
+            row = [old, sv[0], sv[1] if len(sv) > 1 else 0]
+            if saved_row_ok(row, rec) or saved_row_ok(row, {'Unit_Nm': rec.get('Loc_Nm'), 'GIS_Acres': rec.get('GIS_Acres')}): continue
+            hits = [a for a in refind(str(old), sv[0], row[2]) if str(a.get('OBJECTID')) != str(old) and saved_row_ok(row, a)]
+            if k == 'join' and hits and any(is_no(ov, a.get('OBJECTID'), a.get('Unit_Nm') or a.get('Loc_Nm'), a.get('GIS_Acres'), by_name=True) for a in hits[:1]):
+                hits = []
+            if len(hits) == 1:
+                new = str(hits[0].get('OBJECTID'))
+                rows[rows.index(old)] = hits[0].get('OBJECTID')
+                saved[new] = saved.pop(str(old))
+                notes.append((k + ' moved', str(old), new, sv[0], row[2]))
+            elif k == 'join':   # not found again: the person's join STAYS (never worse) and the record goes to check
+                notes.append(('join check', str(old), None, sv[0], row[2]))
+            else:
+                notes.append(('no kept', str(old), None, sv[0], row[2]))
+    if fp or 'fp' in ov: ov['fp'] = fp
+    if nofp or 'nofp' in ov: ov['nofp'] = nofp
+    if 'join' in ov or join: ov['join'] = join
+    if 'no' in ov or no: ov['no'] = no
+    return ov, notes
+
+
 def _full(t):
     """A full name for D9: case and accents aside, brackets and punctuation out, spaces squeezed."""
     import re as _re
@@ -460,6 +536,118 @@ def lake_inside_land(water_bb, water_acres, land_bbs, land_acres, pad=0.0):
     if water_acres and land_acres and water_acres > land_acres: return False, 'the lake is bigger than the park\'s own land'
     return True, 'the lake sits inside the park\'s own land'
 
+
+# ------------------------------------------------------------------ Handoff 8 fix 1: Park Service unit codes before names
+_NPS_SITE = re.compile(r'(?:^|[/.])nps\.gov/([a-z]{4})(?=[/?#.]|$)', re.I)
+
+
+def nps_code_from_site(url):
+    """The 4-letter Park Service unit code in a POTA website ('https://www.nps.gov/guis/index.htm' -> 'GUIS'), or None.
+    Only the unit folder counts: nps.gov/articles/..., nps.gov/places/..., nps.gov/nr/... name no unit."""
+    m = _NPS_SITE.search(str(url or '').strip())
+    return m.group(1).upper() if m else None
+
+
+def nps_record_code(rec):
+    """The unit code a record carries: the NPS boundary layer's UNIT_CODE, or a PAD-US Park Service record's Loc_Nm when that is a
+    4-letter code (PAD-US writes 'GUIS', 'GRSA' there). None for any other record."""
+    sa = (rec or {}).get('SA') or {}
+    v = sa.get('UNIT_CODE') or sa.get('unit_code') or (rec or {}).get('UNIT_CODE')
+    if v and re.fullmatch(r'[A-Za-z]{4}', str(v).strip()): return str(v).strip().upper()
+    if str((rec or {}).get('Mang_Name') or '') == 'NPS':
+        v = str((rec or {}).get('Loc_Nm') or '').strip()
+        if re.fullmatch(r'[A-Z]{4}', v): return v
+    return None
+
+
+# ------------------------------------------------------------------ Handoff 8 fix 2: Forest Service wild and scenic river names
+_FSR_STATE = re.compile(r',\s*(?:' + '|'.join(sorted({w.replace('_', ' ') for w in (
+    'Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois Indiana Iowa Kansas '
+    'Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana Nebraska Nevada New_Hampshire New_Jersey '
+    'New_Mexico New_York North_Carolina North_Dakota Ohio Oklahoma Oregon Pennsylvania Rhode_Island South_Carolina South_Dakota Tennessee '
+    'Texas Utah Vermont Virginia Washington West_Virginia Wisconsin Wyoming').split()}, key=len, reverse=True)) + r')\b', re.I)
+_FSR_FOREST = re.compile(r'\(([^)]*?)\s*(?:NF|N\.F\.|National Forests?)\s*\)', re.I)
+
+
+def fs_river_record(name, layer=''):
+    """A Forest Service wild and scenic river record (not a study area): its name says Wild and Scenic River and its layer is the
+    Forest Service's (FS river corridors 'fwsr', FS designated areas 'fsod', or a Forest Service layer name)."""
+    n = str(name or '')
+    if not re.search(r'wild\s*(and|&)\s*scenic river', n, re.I) or re.search(r'study area', n, re.I): return False
+    return bool(re.match(r'(fwsr|fsod)\d', str(layer or ''), re.I) or re.search(r'forest service', str(layer or ''), re.I))
+
+
+def fs_river_name(name):
+    """(clean name, forest) for a Forest Service river record: 'Sturgeon, Michigan (Hiawatha NF) National Wild and Scenic River' ->
+    ('Sturgeon National Wild and Scenic River', 'hiawatha'); 'Manistee, Michigan National Wild and Scenic River' -> ('Manistee National
+    Wild and Scenic River', '')."""
+    n = str(name or '')
+    m = _FSR_FOREST.search(n)
+    forest = nf(m.group(1)) if m else ''
+    n = _FSR_FOREST.sub(' ', n)
+    n = _FSR_STATE.sub(' ', n)
+    return ' '.join(n.split()), forest
+
+
+def fs_river_forest_ok(park_name, forest):
+    """A park that names its forest in brackets ('Sturgeon (Hiawatha) National Wild and Scenic River') takes only that forest's
+    record; a record with no forest, or a park with no bracket, is not refused here."""
+    pb = re.findall(r'\(([^)]*)\)', str(park_name or ''))
+    if not pb or not forest: return True
+    fw = set(re.findall(r'\w+', forest))
+    return any(fw & set(re.findall(r'\w+', nf(b))) for b in pb)
+# ------------------------------------------------------------------ Handoff 8 fix 3: schools, cities and counties are another kind of place
+OTHER_PLACE = {'school': 'school', 'schools': 'school', 'college': 'college', 'colleges': 'college', 'city': 'city', 'cities': 'city',
+               'county': 'county', 'counties': 'county', 'town': 'town', 'towns': 'town', 'cemetery': 'cemetery', 'cemeteries': 'cemetery',
+               'church': 'church', 'churches': 'church', 'airport': 'airport', 'airports': 'airport'}
+
+
+def other_place_word(park_name, rec_name):
+    """R-G8 (Handoff 8 fix 3): the word that makes record `rec_name` another kind of place than the park ('school' for 'Tumalo
+    Community School' vs Tumalo State Park), or '' when it may stand: no such word, the park's own name has the same word, or the
+    record holds the park's full name ('Watkins Lake State Park and County Preserve' holds 'Watkins Lake State Park')."""
+    rw = [OTHER_PLACE[w] for w in _full(rec_name).split() if w in OTHER_PLACE]
+    if not rw: return ''
+    pf = _full(park_name)
+    if pf and (' ' + pf + ' ') in (' ' + _full(rec_name) + ' '): return ''
+    pw = {OTHER_PLACE[w] for w in pf.split() if w in OTHER_PLACE}
+    left = [w for w in rw if w not in pw]
+    return left[0] if left else ''
+
+
+# ------------------------------------------------------------------ Handoff 8 fix 4: measured acres
+def ring_acres(rings):
+    """Acres of a record's rings (lon / lat degrees): the shoelace on a local equal-area scale (x times cos latitude), signed, so a
+    hole (the other winding) subtracts; the absolute total. Plain Python."""
+    import math
+    tot = 0.0
+    for r in rings or []:
+        if len(r) < 3: continue
+        lat0 = math.radians(sum(q[1] for q in r) / len(r)); kx, ky = 111320.0 * math.cos(lat0), 110574.0
+        a = 0.0
+        for i in range(len(r)):
+            x1, y1 = r[i - 1][0] * kx, r[i - 1][1] * ky; x2, y2 = r[i][0] * kx, r[i][1] * ky
+            a += x1 * y2 - x2 * y1
+        tot += a / 2.0
+    return abs(tot) / 4046.8564224
+
+
+def measured_ac(rows, rings_of, parts=None):
+    """Handoff 8 fix 4: (acres, n measured) for a park's joined rows [id, name, acres, how] when at least one has no acres on file:
+    rows with acres count their own acres, rows without are measured from their saved shape (rings_of(id) -> rings; only the
+    rings inside the park's own part boxes when the park has 'parts'). None when no row lacks acres or a 0-acre row has no shape."""
+    zero = [x for x in rows or [] if not (x[2] if len(x) > 2 else 0)]
+    if not zero: return None
+    tot, n = sum(float(x[2] or 0) for x in rows if len(x) > 2 and x[2]), 0
+    for x in zero:
+        rr = [r for r in (rings_of(str(x[0])) or []) if len(r) > 3]
+        boxes = (parts or {}).get(str(x[0]))
+        if boxes:
+            rr = [r for r in rr if any(b[0] - .01 <= (min(q[0] for q in r) + max(q[0] for q in r)) / 2 <= b[2] + .01
+                                     and b[1] - .01 <= (min(q[1] for q in r) + max(q[1] for q in r)) / 2 <= b[3] + .01 for b in boxes)]
+        if not rr: return None
+        tot += ring_acres(rr); n += 1
+    return round(tot), n
 
 # ---------------------------------------------------------------- THE CONTEST (matching plan section 1; Fable 17 Nov, owner YES)
 # A record joined by name to two or more parks goes to the park it fits best; a tie or a bare name goes to a person (never left on

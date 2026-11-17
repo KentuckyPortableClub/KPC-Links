@@ -19,6 +19,10 @@ import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind 
 import kpc_source_fields as SF  # noqa: E402  (Nov 6: the one source-field table)
 import kpc_tracts as TR  # noqa: E402  (Nov 6: tract records + parks inside parks, side file)
 import kpc_master as KMASTER  # noqa: E402  (the one complete-read helper; not a rule file)
+try: import kpc_key_rules as KR  # noqa: E402  (Handoff 8: the rule switches, kpc_key_rules.DEFAULTS; a missing file = every switch off)
+except Exception: KR = None  # noqa: BLE001
+def _kr(name): return KR is not None and KR.on(name)
+NONE_HELD = []   # Handoff 8 fix 5: [ref, record id] name joins held because a person marked the park 'none'
 kpc_host_pace.install()
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; same scheme as kpc_us_key.py). Every live run has fetched CPCAD and
 # the provincial layers at 0.02 degrees (~2.2 km) - coarser than many parks. GEO_CACHE_MODE: off (default, exactly as
@@ -686,6 +690,39 @@ for _r, _ids in BLOCKED.items():
     _o['join'] = [x for x in _o.get('join') or [] if str(x) not in _ids]
     if _o.get('fp'): _o['fp'] = {k: v for k, v in _o['fp'].items() if str(k) not in _ids}
     _o['no'] = list(_o.get('no') or []) + sorted(_ids - {str(x) for x in _o.get('no') or []})
+# Handoff 8 fix 6 (KPC_CA_SAVED_ID_LAND, reviewer B3): a hand join saved as a bare record id ('21900', 'Manitoba Par:89') breaks
+# silently if the source renumbers its records. Each saved id gets the LAND it stood for: the record's name, its hectares and its
+# source's own stable id (CPCAD ZONE_ID; a province layer's own id) - from overrides.json 'fp' {id: {name, ha, sid, layer}} when a
+# person wrote one, else from the published tract row (data/ca-key/tracts/CA-XX.json: rid -> name, ac, sid, layer). When the id
+# now points at a record with ANOTHER name, the land is found again by its stable id (or same layer + same name + hectares within
+# 10%) near the pin; if it cannot be found, nothing joins by that id and the park goes to a person (check B3).
+FPS, B3 = {}, []
+if _kr('KPC_CA_SAVED_ID_LAND'):
+    import glob as _glob
+    for _f in sorted(_glob.glob(str(OUT / 'tracts' / 'CA-*.json'))):
+        try: _tp = json.load(open(_f)).get('parks') or {}
+        except Exception: continue  # noqa: BLE001
+        for _ref, _rows in _tp.items():
+            for _t in _rows or []:
+                if _t.get('rid') in (None, '') or not _t.get('name'): continue
+                _ac = _t.get('ac') if _t.get('ac') is not None else _t.get('ac_measured')
+                FPS[(_ref, str(_t['rid']))] = {'name': _t['name'], 'ha': (float(_ac) / 2.47105) if _ac else None, 'sid': _t.get('sid'), 'layer': _t.get('layer') or ''}
+    for _ref, _o in OVR.items():
+        for _k, _v in (_o.get('fp') or {}).items():
+            if isinstance(_v, dict) and _v.get('name'): FPS[(_ref, str(_k))] = dict(_v)
+            elif isinstance(_v, (list, tuple)) and _v: FPS[(_ref, str(_k))] = {'name': _v[0], 'ha': _v[1] if len(_v) > 1 else None, 'sid': _v[2] if len(_v) > 2 else None, 'layer': _v[3] if len(_v) > 3 else ''}
+def _rec_sid(r):
+    if not r.get('src'): return (r.get('SA') or {}).get('ZONE_ID')
+    try:
+        pid = str(r['oid']).split(':', 1)[0]
+        mp = CA_SFMAP.get(pid) or SF.mapping('', r.get('src') or '', list((r.get('SA') or {}).keys()))
+        return SF.read(mp, dict(r.get('SA') or {})).get('sid')
+    except Exception: return None  # noqa: BLE001
+def _rec_layer(r): return r.get('src') or 'CPCAD'
+def _land_same(r, fp):   # same name, and (when both are known) hectares within 10%
+    if _nf(fp['name']) not in (_nf(r['n']), _nf(r['nf'])): return False
+    try: return not (fp.get('ha') and r.get('ha')) or abs(float(r['ha']) - float(fp['ha'])) <= .1 * max(float(fp['ha']), 1e-9)
+    except (TypeError, ValueError): return True
 P = json.load(open('data/parkinfo/CA.json'))['parks']
 # Oct 29 (chat 5 check-up, issue #17): park numbers POTA retired (data/retired-refs.json) leave the answer key
 try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}
@@ -806,6 +843,22 @@ for pv, parks_in in sorted(by.items()):
             no = {str(q) for q in ov.get('no', [])}
             m = [q for q in m if str(q[0]) not in no and _nf(q[1]) not in {_nf(x) for x in no}]
             for want in ov.get('join', []):
+                _fpw = FPS.get((ref, str(want))) if _kr('KPC_CA_SAVED_ID_LAND') else None
+                if _fpw:
+                    _at = [r for r in NEAR if str(r['oid']) == str(want)]
+                    if not (_at and _nf(_fpw['name']) in (_nf(_at[0]['n']), _nf(_at[0]['nf']))):
+                        # the saved id no longer points at the land a person picked: find that land again, else a person looks
+                        _ag = [r for r in NEAR if (la is None or near(la, lo, r['_bb'], .6)) and str(r['oid']) != str(want)
+                               and ((_fpw.get('sid') not in (None, '') and str(_rec_sid(r) or '') == str(_fpw['sid']))
+                                    or (_rec_layer(r) == (_fpw.get('layer') or _rec_layer(r)) and _land_same(r, _fpw)))]
+                        _now = (_at[0]['n'] or _at[0]['nf']) if _at else '(no record has this id now)'
+                        for r in _ag:
+                            if not any(str(q[0]) == str(r['oid']) for q in m):
+                                m.append([r['oid'], r['n'] or r['nf'], acres(r), f"reviewed (found again by its saved land: saved id {want} now points at {_now}; Handoff 8 fix 6)"])
+                        if not _ag:
+                            c.append([want, _now, acres(_at[0]) if _at else 0, f"check (B3): the saved record id {want} now points at '{_now}', not '{_fpw['name']}' (Handoff 8 fix 6)"])
+                        B3.append([ref, str(want), _now, _fpw['name'], 'found again' if _ag else 'to a person'])
+                        continue
                 for r in NEAR:
                     # Oct 29 (R-CA1): a hand join written as an OLD id 'Nova Scotia :26' (12-letter prefix, before one prefix per
                     # layer) also matches the same record number in that prefix's other layers ('Nova Scotia ~1:26'), but only
@@ -838,6 +891,15 @@ for pv, parks_in in sorted(by.items()):
             if c and all(q[3].startswith('the POTA pin is inside') for q in c):
                 site = sorted((q for q in c if not re.search(r'buffer zone|closure|\bsfa\b|marine refuge|fishing area|fishery', q[1], re.I)), key=lambda q: q[2])[:2]; c = []
         if ov.get('none'): c = []   # a person looked: no official outline for this park
+        if ov.get('none') and _kr('KPC_CA_NONE_KEPT'):
+            # Handoff 8 fix 5 (reviewer B #4): 'a different place, no outline of its own' is a person's decision: it holds against every
+            # NAME join until a person clears the 'none' (a layer added later with the same name used to join anyway). A person's own
+            # join ('reviewed') or alias stands.
+            _hj = {str(w) for w in ov.get('join') or []} | {_nf(w) for w in ov.get('join') or []}
+            _nh = [q for q in m if not str(q[3]).startswith(('reviewed', 'alias')) and str(q[0]) not in _hj and _nf(q[1]) not in _hj]
+            if _nh:
+                m = [q for q in m if q not in _nh]
+                NONE_HELD.extend([ref, str(q[0])] for q in _nh)
         # Nov 3 (rules sort §9 conflict 2; proposed rule 21: "a no means the record never joins that park on any build path"): the
         # 'no' list was only applied to the name joins above, so a hand join written by name, the hard-look YES, an alias or the
         # check list could still bring a NO'd record back. Applied last, to every list, by id or exact name.
@@ -1003,4 +1065,6 @@ save_json(OUT / 'index.json', _with_old_stamp({'provinces': idx, 'gate': GATE}))
 # province file holds a park (a CA- number says nothing about the province)
 save_json(OUT / 'refs.json', {ref: pv for pv, pk in by.items() for ref in pk})
 t = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
+if B3: notice('Canada key', f"Handoff 8 fix 6: {len(B3)} saved record id(s) no longer point at the land a person picked: " + '; '.join(f'{a} id {b}: now {c!r}, saved {d!r} ({e})' for a, b, c, d, e in B3[:12]))
+if NONE_HELD: notice('Canada key', f"Handoff 8 fix 5: {len({r for r, _ in NONE_HELD})} park(s) a person marked 'none' kept no name join ({len(NONE_HELD)} record(s) held): " + ', '.join(sorted({r for r, _ in NONE_HELD})[:12]))
 notice('Canada answer key', f"{t['parks']} parks: {t['matched']} joined, {t['check']} to check, {t['site']} sites on bigger land, {t['none']} nothing found · " + ' '.join(f"{k} {v['matched']}/{v['parks']}" for k, v in sorted(idx.items())))

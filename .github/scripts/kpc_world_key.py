@@ -24,6 +24,9 @@ kpc_host_pace.install()
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
 import kpc_number_rules as KN  # noqa: E402  (next round v3 C10: a number in one name only; a world-key rule file)
+try: import kpc_key_rules as KR  # noqa: E402  (Handoff 8: the rule switches, kpc_key_rules.DEFAULTS; a missing file = every switch off)
+except Exception: KR = None  # noqa: BLE001
+def _kr(name): return KR is not None and KR.on(name)
 
 # Oct 25 (round 5 hand checks): a person's decisions per park, {ref: {join: [official names], no: [names], why}}
 try:
@@ -248,6 +251,30 @@ for _cc, _v in SHEET.items():
         SRC[_cc] = SRC.get(_cc, []) + [(str(_l.get('label') or _v.get('country') or _cc)[:90], 'arcgis', _u)]
         SHEET_URLS.add(_u)
         if _l.get('namef'): LAYER_NAMEF[_u] = _l['namef']
+# Handoff 8 fix 8 (KPC_MK_LAYER_93): North Macedonia's sheet layer MapServer/94 (91 records: monuments, natural rarities, caves,
+# trees) has no national park; MapServer/93 of the same service (97 records, same fields, no name in common with 94) is the areas
+# layer with Galichica, Mavrovo and Pelister. ON reads 93 as well as 94 (no data file changes), and a record whose Prot_Stat says
+# 'proposed' (70 of 93's 97 on Nov 17) never gives official land (see PROPOSED_WHY below).
+MK94 = 'https://portal.app.gov.mk/arcgis/rest/services/PPRSM/karta37_PPRSM_namena_na_zemjiste_WMS_novo/MapServer/94'
+MK93 = MK94[:-2] + '93'
+if _kr('KPC_MK_LAYER_93') and 'MK' in SRC:
+    _m94 = [s for s in SRC['MK'] if str(s[2]).rstrip('/').lower() == MK94.lower()]
+    if _m94 and not any(str(s[2]).rstrip('/').lower() == MK93.lower() for s in SRC['MK']):
+        SRC['MK'] = SRC['MK'] + [('Заштитени подрачја (areas, MapServer/93)', 'arcgis', MK93)]
+    if any(u.lower() == MK94.lower() for u in SHEET_URLS): SHEET_URLS.add(MK93)
+    for _u in [u for u in LAYER_NAMEF if u.lower() == MK94.lower()]: LAYER_NAMEF.setdefault(MK93, LAYER_NAMEF[_u])
+PROPOSED_WHY = "the record is only PROPOSED for protection (Prot_Stat 'proposed'): never official land (Handoff 8 fix 8)"
+def hold_proposed(parks, recs):
+    """Handoff 8 fix 8: a joined record whose own Prot_Stat field says 'proposed' leaves 'm' and is listed for a person in 'c'."""
+    pro = {(r.get('src'), str(r.get('id'))) for r in recs if str((r.get('_a') or {}).get('Prot_Stat') or '').strip().lower() == 'proposed'}
+    held = []
+    for ref, pk in parks.items():
+        mv = [q for q in pk.get('m') or [] if (q[2], str(q[0])) in pro]
+        if not mv: continue
+        pk['m'] = [q for q in pk['m'] if q not in mv]
+        pk['c'] = ([[q[0], q[1], q[2], PROPOSED_WHY] for q in mv] + [q for q in pk.get('c') or [] if not any(q[2] == x[2] and str(q[0]) == str(x[0]) for x in mv)])[:6]
+        held.append(ref)
+    return held
 # Nov 4 PM fix bundle (item 11c, Quality v3 should-fix; Brandon's yes relayed via Super Head Bot, 4:53 PM CST Nov 4): DE-0095
 # 'Mecklenburgisches Elbetal UNESCO Biosphere Reserve' was joined on 'pin inside + same name' to the BfN Vogelschutzgebiet (bird
 # sanctuary, Natura 2000) DE2732473 of the same name: same name, other kind. A biosphere-reserve park ('br') whose name-agreeing
@@ -1028,6 +1055,27 @@ def pull_a10(label, page):
     return recs
 
 
+def a10_bare(r):   # Handoff 8 fix 7: an A10-10 area named from a bare codelist cell (only with KPC_JP_A10_NAMES on)
+    return str(r.get('id') or '').startswith('a10n:') and bool((r.get('_a') or {}).get('bare'))
+
+
+def a10_gap_only(parks, recs, pin_holder=None):
+    """Handoff 8 fix 7: the FY2010 national file's newly named areas only fill gaps. A park joined to a current layer keeps only
+    those records (no second, older outline); a park the new areas joined by name, whose pin today's pin rule puts in exactly one
+    current area (pin_holder(ref) -> that record or None), keeps today's join."""
+    bare = {(r.get('src'), str(r.get('id'))) for r in recs if a10_bare(r)}
+    n = 0
+    for ref, pk in parks.items():
+        mm = pk.get('m') or []
+        if not any((q[2], str(q[0])) in bare for q in mm): continue
+        keep = [q for q in mm if (q[2], str(q[0])) not in bare]
+        if not keep and pin_holder:
+            r = pin_holder(ref)
+            if r is not None: keep = [[r['id'], r['n'], r['src'], 'the POTA pin is inside it (names are written differently here)']]
+        if keep: pk['m'] = keep; n += 1
+    return n
+
+
 def pull_a10n(label, url):
     # Japan's national A10 file (FY2010): one shapefile for the whole country; the park NAME is a code (A10_005) in the KSJ
     # codelist NaturalParkNameCd, and A10_003 says the class (1 national, 2 quasi-national, 3 prefectural)
@@ -1047,6 +1095,11 @@ def pull_a10n(label, url):
                 cells = [re.sub(r'\s+', '', re.sub(r'<[^>]+>', '', c)) for c in re.findall(r'<td[^>]*>(.*?)</td>', tr, re.S)]
                 code = next((c for c in cells if re.fullmatch(r'\d{3,6}', c)), None)
                 nm = next((c for c in cells if re.search(r'公園', c)), None)
+                # Handoff 8 fix 7 (KPC_JP_A10_NAMES): the v3 codelist gives the bare name ('102 | 網走'), with no 公園 in it, so
+                # every national / quasi-national park was dropped (5 areas kept in all of Japan). Take the cell right after the code.
+                if code and not nm and _kr('KPC_JP_A10_NAMES'):
+                    _i = cells.index(code)
+                    nm = cells[_i + 1] if _i + 1 < len(cells) and cells[_i + 1] and not re.fullmatch(r'\d+', cells[_i + 1]) else None
                 if code and nm: names.setdefault(code, []).append(nm)
             if names: break
         except Exception as e: notice(label, f'codelist {cu}: {e}')  # noqa: BLE001
@@ -1068,9 +1121,12 @@ def pull_a10n(label, url):
             cand = names.get(code) or names.get(code.lstrip('0')) or names.get(code.zfill(3)) or []
             nm = next((c for c in cand if want and want in c), None) or next((c for c in cand if not want and not re.search(r'国立公園|国定公園', c)), None) or (cand[0] if len(cand) == 1 else '')
             if not nm: continue
+            # Handoff 8 fix 7: a bare codelist name takes its kind from A10_003 (網走 -> 網走国定公園), so the kind and romaji match work
+            bare = _kr('KPC_JP_A10_NAMES') and '公園' not in nm
+            if bare: nm = nm + (want or '自然公園')
             pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
             rs = [[list(q) for q in pts[parts[k]:parts[k + 1]]] for k in range(len(parts) - 1)]
-            recs.append({'id': f'a10n:{i}', 'n': nm, 'nj': nm, 'ty': nm, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_f': fine(rs), '_a': {'A10_003': cls, 'A10_005': code},
+            recs.append({'id': f'a10n:{i}', 'n': nm, 'nj': nm, 'ty': nm, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_f': fine(rs), '_a': {'A10_003': cls, 'A10_005': code, **({'bare': 1} if bare else {})},
                          'code': '', 'dc': '', '_k0': jkind(nm) or ({'np'} if cls == '1' else {'qnp'} if cls == '2' else {'pnp'})})
     notice(label, f'{len(recs)} areas named from the codelist, e.g. ' + ' / '.join(r['n'] for r in recs[:4]))
     return recs
@@ -1409,6 +1465,9 @@ for cc in COUNTRIES:
         # inside both a national park and a small reserve inside it is still left for a person to look at.
         if not m and la is not None and cc in PIN_JOIN:
             holds = [r for r in nearby(la, lo) if r['n'] and inside(la, lo, r['_r'])]
+            # Handoff 8 fix 7: the FY2010 national file's newly named areas (A10_005 bare codelist names) join by NAME only, never by the
+            # pin alone (a small prefectural park inside a big national park is not that park), and never make today's pin join ambiguous
+            if cc == 'JP' and _kr('KPC_JP_A10_NAMES'): holds = [r for r in holds if not a10_bare(r)]
             if kp:
                 fit = [r for r in holds if kp & r['_k']]
                 if fit: holds = fit
@@ -1479,6 +1538,19 @@ for cc in COUNTRIES:
     import kpc_jp_crosswalk as JPX; JPX.apply(cc, parks, P, recs, jstrip, near, inside, notice)  # noqa: E402,E702
     _nn = enforce_no(parks, WOV)   # KPC owner, 2026-11-16: the NO list wins on every build path (rule 21)
     if _nn: notice(f'World key {cc}', f'{_nn} park(s) had a record of their NO list joined by a later path: taken out (kept as pins or on their other records)')
+    if cc == 'JP' and _kr('KPC_JP_A10_NAMES'):
+        def _pin_holder(ref):   # today's pin rule (PIN_JOIN, above), without the newly named FY2010 areas
+            x = P[ref]; la, lo = x[5], x[6]
+            if not la and not lo: return None
+            kp = kinds(cc, x[0]) | kinds(cc, x[2])
+            holds = [r for r in nearby(la, lo) if r['n'] and not a10_bare(r) and inside(la, lo, r['_r'])]
+            if kp: holds = [r for r in holds if kp & r['_k']] or holds
+            return holds[0] if holds and (len(holds) == 1 or len({(r['src'], norm(cc, r['n'])) for r in holds}) == 1) else None
+        _ag = a10_gap_only(parks, recs, _pin_holder if cc in PIN_JOIN else None)
+        if _ag: notice(f'World key {cc}', f'Handoff 8 fix 7: {_ag} park(s) already joined to a current layer keep only that (the FY2010 A10-10 area is not added)')
+    if _kr('KPC_MK_LAYER_93'):
+        _hp = hold_proposed(parks, recs)
+        if _hp: notice(f'World key {cc}', f"Handoff 8 fix 8: {len(_hp)} park(s) lost a join to a record only PROPOSED for protection (to a person): " + ', '.join(sorted(_hp)[:12]))
     # IS THE BOUNDARY WHERE IT SHOULD BE? (Oct 24: the US key's Oct 21-22 check, ported.) A name can match and still
     # be the wrong place, so: does the park's own pin fall inside the land it was joined to? Sorted the same three
     # ways as the US ('no shape to check against' = the check is blind, not the join; 'edge' = within about a mile;

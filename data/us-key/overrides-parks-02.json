@@ -16183,6 +16183,11 @@
    "when": "2026-11-02",
    "why": "2026-11-02 13:05: layers row YES 'Neeper CA' (chat 11; applied by kpc_key_answers)"
   },
+  "US-10709": {
+   "decided_by": "KPC owner, Nov 17 2026",
+   "when": "2026-11-17",
+   "why": "Nov 17: the Oct 22 'a different place' NO is lifted: the Forest Service record is this park's own river (the name test could not see past ', State'); handoff 8 fix 2 joins it when KPC_FS_RIVER_NAMES is on"
+  },
   "US-10720": {
    "fp": {
     "sgmnf4953": [
@@ -20392,6 +20397,11 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Sandy Ford State Natural Area' (chat 11; applied by kpc_key_answers)"
   },
+  "US-12234": {
+   "decided_by": "KPC owner, Nov 17 2026",
+   "when": "2026-11-17",
+   "why": "Nov 17: the Oct 22 'a different place' NO is lifted: the Forest Service record is this park's own river (the name test could not see past ', State'); handoff 8 fix 2 joins it when KPC_FS_RIVER_NAMES is on"
+  },
   "US-12235": {
    "source_kind": "corridor",
    "when": "2026-11-09",
@@ -22422,6 +22432,11 @@
     "rule": "Brandon t927u sure rule (pin inside or <=0.5 km of the official unit's polygon, name fits; a typo or the agency's own name counts) + t938u recheck — whole-river rule"
    }
   },
+  "US-12792": {
+   "decided_by": "KPC owner, Nov 17 2026",
+   "when": "2026-11-17",
+   "why": "Nov 17: the Oct 22 'a different place' NO is lifted: the Forest Service record is this park's own river (the name test could not see past ', State'); handoff 8 fix 2 joins it when KPC_FS_RIVER_NAMES is on"
+  },
   "US-12794": {
    "alias": [
     "Paint River"
@@ -22488,6 +22503,11 @@
    "when": "2026-11-09",
    "why": "2026-11-08: official wild & scenic river corridor polygon (USFS EDW WSR; Research Bot 0059-0103 CST, area matches within 10%) = this park (Brandon Nov 8: wild rivers are bounded parks) · 2026-11-09: put back (weekly batch): this join was made in the KPC-Data copy on Nov 8 (cc59b4dd) and wiped by the release f2a68a32 · Nov 9 5:13 PM CST signed (Brandon t927u, 'if they are for sure matches yes'): name matches and pin inside / within 0.5 km (fwsr63 Presque Isle, Michigan National Wild and Scenic River pin 0.04 km; fwsr144 Presque Isle, Michigan National Wild and Scenic River pin 0.0 km)",
    "decided_by": "Brandon t927u"
+  },
+  "US-12798": {
+   "decided_by": "KPC owner, Nov 17 2026",
+   "when": "2026-11-17",
+   "why": "Nov 17: the Oct 22 'a different place' NO is lifted: the Forest Service record is this park's own river (the name test could not see past ', State'); handoff 8 fix 2 joins it when KPC_FS_RIVER_NAMES is on"
   },
   "US-12799": {
    "none": true,

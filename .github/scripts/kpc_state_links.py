@@ -34,6 +34,16 @@ def fixurl(u):
     if u and not re.match(r'^https?://', u, re.I) and re.match(r'^[\w.-]+\.[a-z]{2,}(/|$)', u, re.I): u = 'https://' + u
     return u if re.match(r'^https?://', u, re.I) else ''
 PIN_EVENTS = []
+def keep(p, key, o, i, conv=None):
+    """KPC owner, 2026-11-17 (Nov 17 4:07 AM run blanked websites + activation counts in 163 files): a saved park list made
+    from POTA's export has no website / activations / attempts / qsos fields. A field the row does NOT carry keeps last
+    week's value; a field POTA sends (even empty) is taken as sent."""
+    if key not in p: return o[i] if o and len(o) > i else (None if conv else '')
+    v = p.get(key)
+    if conv: return int(v) if str(v).isdigit() else None
+    return fixurl(v)
+
+
 def pin_of(ref, p, o, name=''):
     """Nov 11: the pin follows POTA's park list (rounded to 5 decimals, as before). A pin POTA sent that cannot be one (none, 0,0, past 90 /
     180, or the old pin turned around) keeps the row's last good pin; a pin that moved is recorded. No earlier pin: as before."""
@@ -59,8 +69,8 @@ for st in STATES:
     for p in L:
         ref = p.get('reference', '')
         if not ref.startswith('US-'): continue
-        web = fixurl(p.get('website'))
         o = old.get(ref)
+        web = keep(p, 'website', o, 1)
         if o and not os.environ.get('RECHECK'): typ, act, acc = o[2], o[3], o[4]
         else:
             try:
@@ -73,7 +83,7 @@ for st in STATES:
         n_act = p.get('activations'); n_try = p.get('attempts'); n_q = p.get('qsos')
         web = web or HANDWEB.get(ref, {}).get('web', '')   # Oct 25: official pages found by hand for parks POTA lists with no website (data/parkinfo-web.json, chat 2)
         parks[ref] = [clean(p.get('name')), web, typ, act, acc, la, lo,
-                      int(n_act) if str(n_act).isdigit() else None, int(n_try) if str(n_try).isdigit() else None, int(n_q) if str(n_q).isdigit() else None]
+                      keep(p, 'activations', o, 7, int), keep(p, 'attempts', o, 8, int), keep(p, 'qsos', o, 9, int)]
     # Nov 8 (zip-nov7e ITEM4): parks POTA has (/park/<ref>, active) but leaves out of the state's location list;
     # today only Kure Atoll. One extra detail call per weekly run; the row is built from that call.
     for ref in MISSED.get(st, []):
@@ -127,7 +137,7 @@ for pre in PROGS:
         for p in L:
             ref = p.get('reference', '')
             if not ref or ref in parks: continue
-            web = fixurl(p.get('website')); o = old.get(ref)
+            o = old.get(ref); web = keep(p, 'website', o, 1)
             if o and not os.environ.get('RECHECK'): typ, act, acc = o[2], o[3], o[4]
             else:
                 try:
@@ -140,7 +150,7 @@ for pre in PROGS:
             n_act = p.get('activations'); n_try = p.get('attempts'); n_q = p.get('qsos')
             web = web or HANDWEB.get(ref, {}).get('web', '')   # Oct 25: official pages found by hand (data/parkinfo-web.json)
             parks[ref] = [clean(p.get('name')), web, typ, act, acc, la, lo,
-                          int(n_act) if str(n_act).isdigit() else None, int(n_try) if str(n_try).isdigit() else None, int(n_q) if str(n_q).isdigit() else None, sub]
+                          keep(p, 'activations', o, 7, int), keep(p, 'attempts', o, 8, int), keep(p, 'qsos', o, 9, int), sub]
         doms = collections.Counter(d for d in (urllib.parse.urlparse(v[1]).netloc.lower().replace('www.', '') for v in parks.values() if v[1] and v[10] == sub and re.search(r'Provincial Park|State Park|National Park', v[2] or '')) if '.' in d)
         doms = collections.Counter({d: n for d, n in doms.items() if OKSITE.search(d)})   # only real park / government sites (not Wikipedia, APRS maps, tourism pages)
         if doms:

@@ -83,6 +83,13 @@
     ]
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-16"
+  },
+  {
+   "id": "2026-11-17-h8-fixes",
+   "when": "2026-11-17",
+   "from": "24cd942eca01",
+   "why": "Handoff 8 part 2 (world fixes 7-8: Japan A10 names next to the code; North Macedonia layer 93, proposed is never land). Both switches OFF: no result changes.",
+   "scope": "none"
   }
  ]
 }

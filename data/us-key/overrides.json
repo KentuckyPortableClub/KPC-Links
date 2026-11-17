@@ -8,7 +8,7 @@
  ],
  "parts_sha256": {
   "overrides-parks-01.json": "fbf20636d5621ed7d3898b88e44527cd47d64d1ecbfa4f6093fcbfbb69e17785",
-  "overrides-parks-02.json": "b344655ec60908164f72ea9bd54d4e555d56c3353c72511cc7ff8a306de1cba2"
+  "overrides-parks-02.json": "ef18a225ff2966156dc6784f97c39d2bf34dbbfdbc22743480770a9a7ea6e8e3"
  },
  "parks": {
   "US-0043": {
@@ -5393,21 +5393,6 @@
    "when": "2026-11-02",
    "why": "Nov 2 map audit: chat 11 NO on 57602 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )"
   },
-  "US-10709": {
-   "decided_by": "KPC owner, Nov 9 2026",
-   "no": [
-    "fwsr35"
-   ],
-   "nofp": {
-    "fwsr35": [
-     "Klickitat, Washington National Wild and Scenic River",
-     4815
-    ]
-   },
-   "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
-  },
   "US-10725": {
    "no": [
     "207783"
@@ -6422,21 +6407,6 @@
    "when": "2026-10-29",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Snake River' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Snake River' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Snake River' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
-  "US-12234": {
-   "decided_by": "KPC owner, Nov 9 2026",
-   "no": [
-    "fwsr1"
-   ],
-   "nofp": {
-    "fwsr1": [
-     "Allegheny, Pennsylvania National Wild and Scenic River",
-     35107
-    ]
-   },
-   "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
-  },
   "US-12298": {
    "no": [
     "rst13894"
@@ -6726,41 +6696,6 @@
    ],
    "when": "2026-10-29",
    "why": "Oct 29 5:55 PM: 'Fall Creek' NO (chat 11) · Oct 29 5:55 PM: WGFD's own 632.7-ac record at the pin (chat 11; the 0-ac sliver stays 'no') · 2026-10-29 23:15: key-pieces row NO 'Fall Creek' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
-  },
-  "US-12792": {
-   "decided_by": "KPC owner, Nov 9 2026",
-   "no": [
-    "fwsr44"
-   ],
-   "nofp": {
-    "fwsr44": [
-     "Manistee, Michigan National Wild and Scenic River",
-     8919
-    ]
-   },
-   "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
-  },
-  "US-12798": {
-   "decided_by": "KPC owner, Nov 9 2026",
-   "no": [
-    "fwsr163",
-    "fwsr61"
-   ],
-   "nofp": {
-    "fwsr163": [
-     "Sturgeon, Michigan (Hiawatha NF) National Wild and Scenic River",
-     4860
-    ],
-    "fwsr61": [
-     "Sturgeon, Michigan (Hiawatha NF) National Wild and Scenic River",
-     3532
-    ]
-   },
-   "none": true,
-   "when": "2026-10-22",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
   },
   "US-12811": {
    "fp": {

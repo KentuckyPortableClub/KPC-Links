@@ -336,6 +336,18 @@ def join_how(name, kp, a, close, rules=True):
         if piece_why(name, a): return None
     if name_ok(name, nm, kp, a['_k']) or (loc and name_ok(name, loc, kp, a['_k'])):
         return 'name'
+    if _kr('KPC_FS_RIVER_NAMES'):
+        # Handoff 8 fix 2 (reviewer A #6): the Forest Service names its rivers 'Manistee, Michigan National Wild and Scenic River' and
+        # 'Sturgeon, Michigan (Hiawatha NF) ...'; the state and the forest are not part of the river's name (a park that names its
+        # forest only takes that forest's record)
+        if KR.fs_river_record(nm, f"{a.get('OBJECTID')} {a.get('Loc_Mang') or ''}"):
+            _cn, _fo = KR.fs_river_name(nm)
+            if KR.fs_river_forest_ok(name, _fo) and name_ok(name, _cn, kp, a['_k'] or kinds(_cn)): return 'name (Forest Service river: state and forest dropped)'
+        # the record's SECOND name field on its own kind words, when it has none (Tennessee 'Cumberland Trail' / 'Ozone Falls' = Ozone
+        # Falls State Natural Area): only near the pin, and never when the record's FIRST name says another kind of place
+        # (Washington 'Klickitat Wildlife Area Complex' / 'Klickitat' is not the Klickitat Wild and Scenic River)
+        if loc and close and not kinds(loc) and not (kp and kinds(nm) and not (kp & kinds(nm))) and name_ok(name, loc, kp, set()):
+            return 'name (second name field)'
     if isinstance(a.get('OBJECTID'), int) and not kinds(nm) and exact_name(name, nm) and name_ok(name, nm, kp, set()):
         # Oct 18 review: a bare PAD-US name ('Fort Fetterman', 'Trail End') whose only 'kind' came from its designation code,
         # and the whole name matches: the designation code is often off, so the name decides
@@ -1725,6 +1737,53 @@ def _nps_code(name):
     return NPS_CODES.get(_nf(name))
 
 
+
+NPS_CODE_HIT = []   # Handoff 8 fix 1: [state, park, record id, code, what] for the run's notice
+def nps_code_joins(st, parks, recs, P, ovr=None, on=None):
+    """Handoff 8 fix 1 (switch KPC_NPS_UNIT_CODE; matching plan section 3: hard numbers before names). A POTA park whose website is
+    nps.gov/<code> joins the Park Service record(s) of that unit code at any distance, no name test. A unit used by two or more POTA
+    parks of this state (by website, or because the park already took one of the unit's records by name: park + preserve) is settled
+    by NAME inside the unit (owner: each unit its own): a record goes to the ONE park whose full name is the record's own name
+    (KR.d9_winner); the others give it back (to check). No single winner = left as the name rules made it. A person's NO and a
+    person's join ('reviewed...') always stand. Changes `parks` in place; returns the number of rows added or moved."""
+    if on is None: on = _kr('KPC_NPS_UNIT_CODE')
+    if not on or KR is None: return 0
+    ovr = OVR if ovr is None else ovr
+    unit = {}
+    for a in recs:
+        cd = KR.nps_record_code(a)
+        if cd: unit.setdefault(cd, []).append(a)
+    if not unit: return 0
+    site = {ref: KR.nps_code_from_site((P.get(ref) or [None, ''])[1] if len(P.get(ref) or []) > 1 else '') for ref in parks}
+    n = 0
+    for cd, ra in sorted(unit.items()):
+        ids = {_oid(a) for a in ra}
+        users = {ref for ref, c in site.items() if c == cd}
+        users |= {ref for ref, p in parks.items() if any(str(x[0]) in ids for x in p.get('m') or [])}
+        if not any(site.get(r) == cd for r in users): continue   # the website code is the evidence: no POTA park names this unit's code = the name rules alone
+        tag = f'NPS unit code {cd} (POTA website nps.gov/{cd.lower()})'
+        for a in ra:
+            rid = _oid(a); nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+            if len(users) == 1:
+                owner = next(iter(users))
+                if site.get(owner) != cd: continue
+            else:
+                owner = KR.d9_winner(nm, {r: parks[r].get('n') or '' for r in users})
+                if owner is None: continue
+                for r in sorted(users - {owner}):   # the other parks of the unit give this record back
+                    p = parks[r]; row = next((x for x in p.get('m') or [] if str(x[0]) == rid), None)
+                    if row is None or str(row[3]).startswith('reviewed'): continue
+                    p['m'] = [x for x in p['m'] if str(x[0]) != rid]
+                    p['c'] = list(p.get('c') or []) + [[row[0], row[1], row[2], f'check (NPS unit code {cd}): this record is {owner}\'s own unit; the name decides inside a shared unit']]
+                    NPS_CODE_HIT.append([st, r, rid, cd, 'given back']); n += 1
+            p = parks[owner]; ov = ovr.get(owner) or {}
+            if any(str(x[0]) == rid for x in p.get('m') or []): continue
+            if rid in {str(y) for y in ov.get('no') or []} or _nf(nm) in {_nf(y) for y in ov.get('no') or []} or KR.is_no(ov, rid, nm, a.get('GIS_Acres')): continue
+            p['m'] = sorted(list(p.get('m') or []) + [[a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), tag]], key=lambda x: -(x[2] or 0))
+            p['c'] = [x for x in p.get('c') or [] if str(x[0]) != rid]
+            NPS_CODE_HIT.append([st, owner, rid, cd, 'joined']); n += 1
+    return n
+
 def _tract_store(st, parks, recs):
     """Nov 6 (big key / 2-fer patch): the side file data/us-key/tracts/US-<st>.json (kpc_tracts.py): one tract record per official
     record joined to a park (source, stable id, official + measured acres, owner, access, fee / easement / approved boundary), and
@@ -1895,6 +1954,31 @@ def run(st):
             notice(f'US key {st}', f'{len(_old)} older PAD-US copies of the same place from the same provider left out (KPC_PADUS_DEDUPE)')
         elif not any(a.get('Agg_Src') for a in recs if isinstance(a.get('OBJECTID'), int)):
             notice(f'US key {st}', 'KPC_PADUS_DEDUPE is on but the saved copy has no Agg_Src: run GEO_CACHE_MODE=refresh once')
+    D1_CHECK = {}
+    if _kr('KPC_SAVED_ID_LAND'):
+        # D1 on a person's own rows (KPC owner, 2026-11-17): a 'join' or 'no' id whose record now holds other land (another name,
+        # or acres more than 10% off) moves to the same name + acres in the SAME layer near the pin; a join that is not found
+        # again stays and goes to check, a NO that is not found again stays (a person looks). Gone ids keep the Oct 27 re-find below.
+        _by = {_oid(a): a for a in recs}
+        _moved = []
+        for ref in sorted(P):
+            ov_ = OVR.get(ref)
+            if not ov_ or not (ov_.get('fp') or ov_.get('nofp')): continue
+            r_ = P[ref]; la_, lo_ = (r_[5], r_[6]) if len(r_) > 6 else (None, None)
+            if la_ is None and ref in pins(): la_, lo_ = pins()[ref]
+            def _rf(old, nm, ac, la_=la_, lo_=lo_):
+                fam = re.match(r'\D*', old).group()
+                return [a for a in recs if re.match(r'\D*', _oid(a)).group() == fam and _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(nm)
+                        and (la_ is None or near(la_, lo_, a['_bb'], .6))]
+            nov, notes = KR.saved_land_moves(ov_, _by, _rf)
+            if not notes: continue
+            OVR[ref] = nov
+            _moved += [(ref,) + n for n in notes]
+            D1_CHECK[ref] = [[n[1], n[3], n[4], 'check (D1): a person joined this record id, and it now holds other land (another name or acres); not found again in the same layer, the join stays until a person answers']
+                             for n in notes if n[0] == 'join check']
+        if _moved:
+            notice(f'US key {st}', 'D1 a person\'s rows = the land: ' + ', '.join(f"{k} {sum(1 for x in _moved if x[1] == k)}" for k in ('join moved', 'join check', 'no moved', 'no kept') if any(x[1] == k for x in _moved))
+                   + ' (' + '; '.join(f'{x[0]} {x[1]} {x[2]}->{x[3]}' for x in _moved[:12]) + ')')
     parks, used = {}, set()
     RD.clear()
     clusters = name_clusters(recs)
@@ -2169,6 +2253,13 @@ def run(st):
     # Oct 29 (chat 8, 'wrong joins solved'): a record joined to two or more parks by NAME alone (Robert Moses Long Island +
     # Thousand Islands, NY county forests) stays only with the parks it is NEAR: a claim from a park whose pin is more than
     # 15 km from the record is dropped when another park's pin sits within 2 km of it. Hand joins ('reviewed') are never dropped.
+    if _kr('KPC_NPS_UNIT_CODE'):   # Handoff 8 fix 1: Park Service unit codes before names
+        if nps_code_joins(st, parks, recs, P):
+            for p_ in parks.values(): used.update(x[0] for x in p_.get('m') or [])
+            _nh = [h for h in NPS_CODE_HIT if h[0] == st]
+            notice(f'US key {st}', f"NPS unit codes: {sum(1 for h in _nh if h[4] == 'joined')} record(s) joined by the park's nps.gov code, {sum(1 for h in _nh if h[4] != 'joined')} given back inside a shared unit: " + ', '.join(f'{h[1]} {h[3]}' for h in _nh[:12]))
+    for ref, rows_ in D1_CHECK.items():
+        if ref in parks and rows_: parks[ref]['c'] = list(parks[ref].get('c') or []) + [x for x in rows_ if not any(str(y[0]) == str(x[0]) for y in parks[ref].get('c') or [])]
     for r_ in DBG & set(parks): dbg(r_, 'B after the park loop', {k: parks[r_].get(k) for k in ('m', 'c', 'far', 'a')})
     rb = {_oid(a): a['_bb'] for a in recs if a.get('_bb')}
     # Fable Oct 29: a MULTIPART record (Lost Nation = St. Lawrence + Allegany forests in one record) has a bbox that spans the
@@ -2473,8 +2564,10 @@ def run(st):
                 ta, tb = _g8tok(p.get('n') or ''), _g8tok(x[1])
                 pw_ = (ta & tb) or {w for w in ta | tb if any(w == u + v for u in ta | tb for v in ta | tb if u != v)}
                 da, db = _g8des(p.get('n') or ''), _g8des(x[1])
+                _op = KR.other_place_word(p.get('n') or '', x[1]) if _kr('KPC_G8_OTHER_PLACE') else ''   # Handoff 8 fix 3: a school / city / county ... is another kind of place
                 why8 = ('no shared place word' if not pw_ else
                         'another kind of place' if (KM.is_admin(x[1]) or 'office' in db or (da and db and not da & db) or not same_kind(_kp, a.get('_k') or kinds(x[1]))) else
+                        f'another kind of place (a {_op}, Handoff 8 fix 3)' if _op else
                         'bigger than the park\'s own record' if (_cap is not None and (x[2] or 0) > _cap) else '')
                 if why8: _bad.append((x, why8))
             if _bad:
@@ -2580,6 +2673,14 @@ def run(st):
         notice(f'US key {st}', f'{nac} parks with several records got one union acreage (ac)' + (f'; {skipped} too big or out of time (no ac)' if skipped else '')) if nac or skipped else None
     except ImportError: pass
     except Exception as e: notice(f'US key {st}', f'union acreage skipped: {str(e)[:120]}')  # noqa: BLE001
+    if _kr('KPC_MEASURED_ACRES'):   # Handoff 8 fix 4 (reviewer A #9): a park whose records have no acres on file gets 'ac' measured from the shape
+        _byg = {_oid(a): a for a in recs if a.get('_g')}
+        _nm_ac = 0
+        for ref, p in parks.items():
+            if p.get('ac') or not p.get('m'): continue
+            got = KR.measured_ac(p['m'], lambda i: rings(_byg[i]['_g']) if i in _byg else None, p.get('parts'))
+            if got: p['ac'], p['ac_how'] = got[0], 'measured'; _nm_ac += 1
+        if _nm_ac: notice(f'US key {st}', f"{_nm_ac} park(s) with a record that has no acres on file got 'ac' measured from the saved shape (Handoff 8 fix 4)")
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
     for ref in parks:
         if (OVR.get(ref) or {}).get('note'): parks[ref]['note'] = OVR[ref]['note']
