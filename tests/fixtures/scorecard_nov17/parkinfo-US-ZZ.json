@@ -1,0 +1,88 @@
+{
+ "parks": {
+  "US-9001": [
+   "Alpha State Park",
+   "",
+   "State Park",
+   "",
+   "",
+   37.0,
+   -85.0,
+   100,
+   0,
+   0
+  ],
+  "US-9002": [
+   "Beta Wildlife Management Area",
+   "",
+   "WMA",
+   "",
+   "",
+   37.1,
+   -85.1,
+   50,
+   0,
+   0
+  ],
+  "US-9003": [
+   "Gamma State Forest",
+   "",
+   "State Forest",
+   "",
+   "",
+   37.2,
+   -85.2,
+   null,
+   null,
+   null
+  ],
+  "US-9004": [
+   "Delta National Wildlife Refuge",
+   "",
+   "NWR",
+   "",
+   "",
+   37.3,
+   -85.3,
+   30,
+   0,
+   0
+  ],
+  "US-9005": [
+   "Epsilon Wetland Management District",
+   "",
+   "WMD",
+   "",
+   "",
+   37.4,
+   -85.4,
+   10,
+   0,
+   0
+  ],
+  "US-9006": [
+   "Zeta State Park",
+   "",
+   "State Park",
+   "",
+   "",
+   37.5,
+   -85.5,
+   5,
+   0,
+   0
+  ],
+  "US-9007": [
+   "Eta Natural Area",
+   "",
+   "Natural Area",
+   "",
+   "",
+   37.6,
+   -85.6,
+   7,
+   0,
+   0
+  ]
+ }
+}
