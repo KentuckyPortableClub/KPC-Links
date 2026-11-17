@@ -354,3 +354,20 @@ These rulings settle it. They collect his words and win over the older wording w
   because its parks would otherwise carry their old rows unchecked. Re-measure after the owner confirms a batch of layers; an area
   comes off the except list when it passes 90%.
 
+- **PUSH CHECK ON THE PC: DIAGNOSED 17 Nov, NOT YET FIXED (HQ, from the owner's private folder; no withheld park is named here, nor
+  anywhere public).** His 24 finished areas of the 16 Nov run never reached KPC-Data because keeper/fers_push_check.py refused the
+  push with 72 problems. The repo's 2-fer files are still from 9 Nov. THREE causes, counted from the run's own push-check.txt:
+  (1) **ONE SHARED WITHHELD FOLDER, the big one, about 112 of ~125 ref hits.** On the PC every area writes its withheld list into
+  the same PRIVATE/withheld/ folder (ak-p1.json, al-p1.json, cabc-p1.json ...). read_lists() loads them ALL into one set and every
+  changed file is scanned against all of it. So a park held in its own state's run is refused when a NEIGHBOURING area's file names
+  it as a BORDER PAIR, which is correct and expected content. On GitHub each area runs alone, so only that area's list exists and
+  this cannot happen. FIX: scope each file to its own area's lists (the file's tag gives the area; the run already passes --areas
+  and --tags), never the union. Fail closed stays: an area whose process left no list still refuses.
+  (2) **14 processes killed by the memory guard** left no withheld list (.started with no .json) = refused, by design. KPC-Data #99
+  (a passing dip no longer throws away a healthy run) should cut these; a died process could also refuse its OWN area only.
+  (3) **13 same-area hits**, not diagnosed: a held park MAY legitimately appear in its own area's file as a CARRIED row (the never
+  worse rule, R12) and the check has without_carried() for exactly that. These look like carried rows it did not match, perhaps
+  because the PC's 'previous public file' base differs from GitHub's. Needs its own look; do not guess.
+  WHEN FIXING: prove the ~112 clear and the 13 still refuse before merging. This is the one guard between a private outline and a
+  public repo, so it gets tests, not a quick patch.
+
