@@ -2534,8 +2534,10 @@ def run(st):
                 ta, tb = _g8tok(p.get('n') or ''), _g8tok(x[1])
                 pw_ = (ta & tb) or {w for w in ta | tb if any(w == u + v for u in ta | tb for v in ta | tb if u != v)}
                 da, db = _g8des(p.get('n') or ''), _g8des(x[1])
+                _op = KR.other_place_word(p.get('n') or '', x[1]) if _kr('KPC_G8_OTHER_PLACE') else ''   # Handoff 8 fix 3: a school / city / county ... is another kind of place
                 why8 = ('no shared place word' if not pw_ else
                         'another kind of place' if (KM.is_admin(x[1]) or 'office' in db or (da and db and not da & db) or not same_kind(_kp, a.get('_k') or kinds(x[1]))) else
+                        f'another kind of place (a {_op}, Handoff 8 fix 3)' if _op else
                         'bigger than the park\'s own record' if (_cap is not None and (x[2] or 0) > _cap) else '')
                 if why8: _bad.append((x, why8))
             if _bad:

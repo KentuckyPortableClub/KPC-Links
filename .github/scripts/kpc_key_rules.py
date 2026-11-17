@@ -65,6 +65,10 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           are dropped before the name test (a park that names its forest, 'Sturgeon (Hiawatha)', only takes that forest's
                           record). Also the record's SECOND name field is tested on its own kind words when it has none ('Cumberland
                           Trail' / 'Ozone Falls' joins Ozone Falls State Natural Area), only near the pin. Study areas are not rivers. OFF.
+  KPC_G8_OTHER_PLACE   0  (Handoff 8 fix 3, reviewer A #7) in rule R-G8, a shared-words record whose name says it is a school, college,
+                          city, county, town, cemetery, church or airport is 'another kind of place' (to check), unless the park's own
+                          name has that word or the record holds the park's full name ('Watkins Lake State Park and County Preserve').
+                          Before: 'Tumalo Community School' and 'Ontario High School' were drawn into the state parks. OFF.
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -76,7 +80,7 @@ import os, re, unicodedata
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
-            'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0'}
+            'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0'}
 
 
 def setting(name, env=None):
@@ -490,3 +494,20 @@ def fs_river_forest_ok(park_name, forest):
     if not pb or not forest: return True
     fw = set(re.findall(r'\w+', forest))
     return any(fw & set(re.findall(r'\w+', nf(b))) for b in pb)
+# ------------------------------------------------------------------ Handoff 8 fix 3: schools, cities and counties are another kind of place
+OTHER_PLACE = {'school': 'school', 'schools': 'school', 'college': 'college', 'colleges': 'college', 'city': 'city', 'cities': 'city',
+               'county': 'county', 'counties': 'county', 'town': 'town', 'towns': 'town', 'cemetery': 'cemetery', 'cemeteries': 'cemetery',
+               'church': 'church', 'churches': 'church', 'airport': 'airport', 'airports': 'airport'}
+
+
+def other_place_word(park_name, rec_name):
+    """R-G8 (Handoff 8 fix 3): the word that makes record `rec_name` another kind of place than the park ('school' for 'Tumalo
+    Community School' vs Tumalo State Park), or '' when it may stand: no such word, the park's own name has the same word, or the
+    record holds the park's full name ('Watkins Lake State Park and County Preserve' holds 'Watkins Lake State Park')."""
+    rw = [OTHER_PLACE[w] for w in _full(rec_name).split() if w in OTHER_PLACE]
+    if not rw: return ''
+    pf = _full(park_name)
+    if pf and (' ' + pf + ' ') in (' ' + _full(rec_name) + ' '): return ''
+    pw = {OTHER_PLACE[w] for w in pf.split() if w in OTHER_PLACE}
+    left = [w for w in rw if w not in pw]
+    return left[0] if left else ''
