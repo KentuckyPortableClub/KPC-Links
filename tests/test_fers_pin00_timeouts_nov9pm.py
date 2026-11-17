@@ -86,7 +86,7 @@ finally: K.T0, K.LIMIT = t0, lim
 check(not got and 'US-7' in K.DL_CUT and 'US-7' not in bad, 'pass 1: past half its time, downloads stop; the park is listed as not reached')
 check('undone |= {st_of(r) for r in DL_CUT}' in src and "counts['stopped for time'] = True; counts['parks not downloaded: out of time']" in src,
       'parks not downloaded for time mark the pass as cut short and their areas keep their previous files')
-check('if PASS != 1: TESTED.discard((a, b))' in src and 'if TIMED_PAIRS:' in src, 'a pair skipped for time: pass 1 keeps its old rows, passes 2-3 leave it waiting')
+check('if PASS != 1: TESTED.discard((a, b))' in src and ('if TIMED_PAIRS:' in src or 'if TIMED_PAIRS or CRASHED_PAIRS:' in src),   # Handoff 9 bug 1c: a crashed pair is carried the same way 'a pair skipped for time: pass 1 keeps its old rows, passes 2-3 leave it waiting')
 
 # 4 the step's hard end
 K.HARD_END = time.time() + 1; K._arm()

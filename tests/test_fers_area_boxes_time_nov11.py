@@ -227,7 +227,14 @@ with tempfile.TemporaryDirectory() as t:
 # Nov 15 (the outline store switch-over): its scope is 'none', so a switch-off run's files do not move (the golden stays).
 # Nov 16 (KPC owner, 2026-11-16; a run writes only its own areas' files): the US-WA run no longer writes its neighbour's CA-BC.json
 # (aaf56aa08bd907bb with it). The other six files are the same, and both rows are still in US-WA.json.
-GOLDEN = '31c900c81c9fa209'
+# Nov 17 (Handoff 9 bug 5): the public report keeps the COUNT of problem lines (problems: N, plus a '...problem lines' note when there
+# are any), not the first 40 lines, so report-testwa.json moved: 31c900c81c9fa209 -> 6d7c5c5b7e33a0c5. Proof: main 36dc58cf's kpc_fers.py
+# with ONLY that report line changed gives 6d7c5c5b7e33a0c5 too (KPC_FERS_TEST_SCRIPTS=<that copy> KPC_FERS_PRINT_GOLDEN=1).
+# Handoff 9 bug 7 (the Handoff 6 review saw this check fail on Python 3.13.5): it passes on Python 3.12.16 and 3.13.18 AND on 3.13.5,
+# each with numpy 2.5.5 + opencv-python-headless 5.0.0 (17 Nov). The hash depends on the raster library (numpy / OpenCV drawing the
+# outlines), not on the Python version: with other numpy / OpenCV versions it may move while every row is right. Print it with
+# KPC_FERS_PRINT_GOLDEN=1 on main's code and on this code before reading a mismatch as a rule change.
+GOLDEN = '6d7c5c5b7e33a0c5'
 
 
 def normal_area(script_dir):
@@ -256,6 +263,6 @@ def normal_area(script_dir):
 rc, hv, names, nsp = normal_area(pathlib.Path(os.environ.get('KPC_FERS_TEST_SCRIPTS') or S))
 if os.environ.get('KPC_FERS_PRINT_GOLDEN'): print('GOLDEN=' + hv, names, nsp)
 check(rc == 0 and nsp >= 2, f'the normal area runs and finds its spots (exit {rc}, {nsp} rows in {len(names)} files)')
-check(hv == GOLDEN, f'its files are byte for byte the ones main (11f908d9) wrote, with the Nov 14 about text, less the neighbour file ({hv} == {GOLDEN})')
+check(hv == GOLDEN, f'its files are byte for byte the ones main (11f908d9) wrote, with the Nov 14 about text, less the neighbour file, the report keeping the problem count (Nov 17) ({hv} == {GOLDEN}; numpy {K.np.__version__}, OpenCV {getattr(sys.modules.get("cv2"), "__version__", "?")})')
 check('US-WA.json' in names and 'CA-BC.json' not in names, 'a US-WA run writes US-WA.json and leaves the neighbour CA-BC.json to its own run')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

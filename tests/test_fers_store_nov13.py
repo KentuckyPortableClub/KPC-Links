@@ -630,7 +630,11 @@ def _owner(pos): return max((d for d in _defs if d[0] <= pos), default=(0, '?'))
 _direct = sorted({_owner(m.start()) for m in _re.finditer(r"\.write_text\(|\.write_bytes\(|gzip\.open\([^\n]*'w|[^.\w]open\([^\n]*['\"][wa]b?['\"]|json\.dump\(", _src)})
 # KPC owner, 2026-11-16 (item 2): save_fine_only, the 5 m-only spot list, writes only into the private log folder, never inside a git tree
 _fsrc = _src[_src.index('def save_fine_only'):][:900]
-check(_direct == ['_wsave', 'live_save', 'save_fine_only', 'save_not_shown'] and '_in_git_tree(' in _fsrc and 'PRIVATE_LOG_DIR' in _fsrc and _src.count('def save_json') == 1
+# Handoff 9 bug 5 (2026-11-17): save_problems, the full problem list + crashed pairs + unread parks, writes only into the same private
+# folder (private_file: KPC_FERS_NOT_SHOWN_DIR / KPC_FERS_PRIVATE_OUT / KPC_FERS_PRIVATE_LOG, never inside a git work tree, nowhere when none)
+_psrc = _src[_src.index('def private_file'):][:900]
+check('_in_git_tree(' in _psrc and 'f = private_file(' in _src[_src.index('def save_problems'):][:1200], 'writer trace: save_problems writes only through private_file (outside every git tree)')
+check(_direct == ['_wsave', 'live_save', 'save_fine_only', 'save_not_shown', 'save_problems'] and '_in_git_tree(' in _fsrc and 'PRIVATE_LOG_DIR' in _fsrc and _src.count('def save_json') == 1
       and 'return _save_json_raw(p, no_denials(p, FCOUNT.apply(p, d)), *a, **k)' in _src
       and 'def not_shown_file' in _src and 'if _in_git_tree(' in _src,
       f'writer trace: kpc_fers.py writes files only through save_json -> _save_json_raw, plus live_save / _wsave (turned off in a store run) and save_not_shown / save_fine_only (a private folder outside every git tree) ({_direct})')

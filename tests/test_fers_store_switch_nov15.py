@@ -205,7 +205,10 @@ def files_of(t):
 def report_wo_hash(b):
     d = json.loads(b); d.pop('fers_rules', None)
     def _strip(o):   # HQ review #6 (2026-11-17): the report's two owner-source counts are new; the rows themselves are compared as before
-        if isinstance(o, dict): return {k: _strip(x) for k, x in o.items() if k not in ('shown, owner from a name', 'shown, owner from records only')}
+        # Handoff 9 bug 5 (2026-11-17): the public report keeps the COUNT of problem lines (main wrote the first 40 lines); the full list
+        # goes to the private folder, so main's list is compared by its length and the new '...problem lines' note is left out
+        if isinstance(o, dict): return {k: (len(x) if k == 'problems' and isinstance(x, list) else _strip(x)) for k, x in o.items()
+                                        if k not in ('shown, owner from a name', 'shown, owner from records only', '...problem lines')}
         if isinstance(o, list): return [_strip(x) for x in o]
         return o
     return json.dumps(_strip(d), sort_keys=True)
