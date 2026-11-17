@@ -29,3 +29,4 @@ never worse only for missing inputs (#260), final redact (#255), rules check wor
 5. Separate patches the fine pass finds as their own rows (KPC_FERS_FINE_ONLY=count + 100 m rule)? [yes]
 6. Strip a held park's outline pieces from carried rows, keep 'there may be a 2-fer here'? [yes, privacy]
 7. Mark scope entries 2026-11-17-thin-shelf and 2026-11-17-d10-tripwire-not-sure approved (owner approved them)? [yes]
+- 17 Nov 4:04 PM (owner): 'We need not make up rules: we made little stricter rules to help from having map errors, but we dont add rules to POTA.' So Q5's 100 m distance is OUT (made up). Q5 later, built with no new number: a separate overlap piece that passes the 25-yard test is its own spot; a piece joined to a listed spot is that spot. Q2 (park beside a forest) OFF: overlapping official lines = 2-fer. Kept: the 25-yard / tight bands and the 5 m 'not sure' band at those lines (N3/N4: near a line, map error decides, so not sure).
