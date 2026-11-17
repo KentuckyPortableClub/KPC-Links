@@ -117,6 +117,13 @@
    "from": "3b70e43f4200",
    "why": "D11 (owner ruling, 17 Nov 2026): data/state-gis.json, the US key's list of state layers, joins the US rules hash (kpc_key_freeze RULE_FILES['us-key']), and every layer in it gets one more field, 'what': owned, designation, water, register or compilation (340 layers; the 131 filed as kind 'land' first: 64 owned, 28 designation, 17 register, 3 water, 19 compilation). Labels and hash in one change, so the hash moves once. No join changes: kpc_us_key.py does not read 'what' (it reads url, nm, kind, water, where, nm2, ag), and the key builder gives the same layer table before and after (tests/test_d11_layer_list_nov17.py). The labels change a join only when a later rule reads them (T5 / D3 / D4), and that rule comes with its own park list.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-d1-saved-id-land",
+   "when": "2026-11-17",
+   "from": "f9c4c0992add",
+   "why": "D1 (owner ruling, 17 Nov 2026): a saved record id is the LAND, not the number. Behind the rule switch KPC_SAVED_ID_LAND (OFF): a park whose saved ids are carried through a rules change keeps a row only while its record still carries the saved name and acres within 10% (20 acres at least); a renumbered row is found again by name + acres in the same layer near the pin; if that fails the old row is not carried and the record goes to check. Switch OFF = no result changes anywhere. Measured offline on Florida's saved copy with the switch ON: 32 parks / 197 rows pointed at other land (one state layer renumbered: Big Shoals State Park 13 of 19 rows, Big Shoals State Forest 12, Andrews WMA 15 ...); all 197 were found again in the same layer, 0 sent to check.",
+   "scope": "none"
   }
  ]
 }

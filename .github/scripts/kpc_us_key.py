@@ -1505,6 +1505,7 @@ _OVRDOC = _KOVR.load(OUT / 'overrides.json', missing_ok=True); OVR = _OVRDOC.get
 # it leaves the park's saved joins (join / fp) and becomes a NO, so the park goes back to normal matching (or to a person).
 # An entry without decided_by is ignored (and named in the log), so no block happens without a person.
 BLOCKED = {}
+SAVED_ID_MOVED = []   # D1 (KPC owner, 2026-11-17): parks whose saved id now holds other land, per state
 try:
     for _b in json.load(open(OUT / 'overrides.json')).get('blocked_ids') or []:
         if not (_b.get('ref') and _b.get('id') not in (None, '')): continue
@@ -2560,6 +2561,28 @@ def run(st):
                 oids = sorted(str(x[0]) for x in op['m'])
                 if not all(i in ids_here for i in oids) or set(oids) & BLOCKED.get(ref, set()): continue
                 if sorted(str(x[0]) for x in np_.get('m') or []) == oids: continue
+                if _kr('KPC_SAVED_ID_LAND'):
+                    # D1 (KPC owner, 2026-11-17): a saved id is the LAND, not the number. A row whose record now carries another
+                    # name, or acres more than 10% off, is looked for again by its saved name + acres in the SAME layer near the
+                    # pin; if that fails the old row is not carried (this run's own match stands) and the record goes to check.
+                    _bad = [x for x in op['m'] if str(x[0]) in gs_ and not KR.saved_row_ok(x, gs_[str(x[0])])]
+                    if _bad:
+                        _pr = P.get(ref) or []; _pla, _plo = (_pr[5], _pr[6]) if len(_pr) > 6 else (None, None)
+                        if _pla is None and ref in pins(): _pla, _plo = pins()[ref]
+                        _new, _lost = [], []
+                        for x in op['m']:
+                            if x not in _bad: _new.append(x); continue
+                            _fam = re.match(r'\D*', str(x[0])).group()
+                            _hit = next((a for a in recs if _oid(a) != str(x[0]) and re.match(r'\D*', _oid(a)).group() == _fam
+                                         and KR.saved_row_ok(x, a) and (_pla is None or near(_pla, _plo, a['_bb'], .6))
+                                         and not _no_all(OVR.get(ref) or {}, a)), None)
+                            if _hit: _new.append([_hit['OBJECTID'], x[1], round(_hit.get('GIS_Acres') or 0), x[3]])
+                            else: _lost.append(x)
+                        SAVED_ID_MOVED.append({'st': st, 'park': ref, 'moved': len(_bad), 'refound': len(_bad) - len(_lost), 'lost': len(_lost)})
+                        if _lost:
+                            np_['c'] = list(np_.get('c') or []) + [[x[0], x[1], x[2], 'check (D1): this saved record id now holds other land (another name or acres)'] for x in _lost]
+                            continue
+                        op = dict(op, m=_new)
                 keep = dict(op)
                 for k in ('n', 't'):
                     if k in np_: keep[k] = np_[k]   # POTA's current name / type
@@ -2574,6 +2597,8 @@ def run(st):
                 elif _ke: EASEMENT_KEPT.extend([ref, str(x[0])] for x in _ke)
                 parks[ref] = keep; carried += 1
             if carried: notice(f'US key {st}', f'{carried} park(s) kept their saved record ids (rules changes do not move a park with saved ids; Brandon t915u)')
+            _sm = [d for d in SAVED_ID_MOVED if d['st'] == st]
+            if _sm: notice(f'US key {st}', f"D1 saved id = the land: {len(_sm)} park(s) had a saved id that now holds other land; {sum(d['refound'] for d in _sm)} row(s) found again in the same layer, {sum(1 for d in _sm if d['lost'])} park(s) re-matched (their old row not carried)")
             if EASEMENT_KEPT: notice(f'US key {st}', f"{len(EASEMENT_KEPT)} existing name-alone conservation easement join(s) kept and listed for review (data/us-key/review/easement-name-joins.csv; item 5)")
         except FileNotFoundError: pass
         except Exception as e: notice(f'US key {st}', f'saved-id keep skipped: {e}')  # noqa: BLE001
