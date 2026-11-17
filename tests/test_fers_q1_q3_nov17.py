@@ -40,6 +40,10 @@ s2 = {'refs': ['US-10', 'US-12']}
 check(KF.ownership_step(s2, {}, {})[0] == 'ok', 'Q4: two leased parks: their overlap counts like any other')
 s3 = {'refs': ['US-10', 'US-13']}
 check(KF.ownership_step(s3, {}, {})[0] == 'not sure', 'Q4: an unknown owner is still not sure (nothing else changed)')
+KF.OWNER_SRC.update({'US-10': 'record', 'US-11': 'name'})
+s4 = {'refs': ['US-10', 'US-11']}
+KF.ownership_step(s4, {'US-10': {'ids': [1]}, 'US-11': {'ids': [2]}}, {})
+check(s4.get('owner_from') == ['name', 'record'], f"review #6: the row says where its owners came from ({s4.get('owner_from')})")
 KF.park_owner = _po
 check(KF.owner_word('LEASE') == 'park land', 'the ground word says park land, nothing about a lease')
 print('ALL PASS' if all(R) else f'{R.count(False)} FAILED'); sys.exit(0 if all(R) else 1)

@@ -1,0 +1,43 @@
+name: KPC 2-fer rules check
+# HQ review #5 (KPC owner, 2026-11-17 11:37 AM): a change to the 2-fer rules is proven before it is merged. On a pull request that
+# touches a 2-fer rule file, the real kpc_fers.py runs main's code and this code on the made-up test area
+# (tests/fixtures/fers-store-v4) and the files must be byte for byte the same unless the change declares a scope that covers the
+# parks it moves; the rule tests run too. Offline (no network in the tests), pull requests only (no schedule, no dispatch), so it
+# emails only when it FAILS (owner's Actions setting).
+on:
+  pull_request:
+    paths:
+      - '.github/scripts/kpc_fers*.py'
+      - '.github/scripts/kpc_owned.py'
+      - '.github/fers-rule-scope.json'
+      - 'docs/key-rules-change.txt'
+permissions:
+  contents: read
+concurrency:
+  group: fers-rules-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Packages the 2-fer bot needs
+        run: python3 -m pip install --quiet numpy opencv-python-headless
+      - name: main's ref for the byte-for-byte comparison
+        run: git fetch --quiet origin main:refs/remotes/origin/main
+      - name: The 2-fer rule tests (main vs this code on the test area; scope claims; rulings)
+        run: |
+          set -e
+          for t in tests/test_fers_store_switch_nov15.py tests/test_fers_store_nov13.py tests/test_partial_boundary_nov15.py \
+                   tests/test_fers_q1_q3_nov17.py tests/test_fers_final_redact_nov17.py tests/test_fers_d10_not_sure_nov17.py \
+                   tests/test_fers_store_three_passes_nov16.py; do
+            echo "== $t"
+            out=$(python3 "$t" 2>&1) || { echo "$out" | grep -E '^(FAIL|SKIP)' | head -20; echo "::error title=2-fer rules check::$t failed"; exit 1; }
+            echo "$out" | grep -E '^(FAIL|SKIP|ALL PASS)|checks passed' | head -5
+          done
