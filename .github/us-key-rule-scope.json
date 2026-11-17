@@ -187,6 +187,13 @@
    "from": "10e192233218",
    "why": "Handoff 8 part 2 (US fixes 1-4: Park Service unit codes, Forest Service river names + second name, R-G8 other kinds of place, measured acres) + D1 on a person's own rows in overrides.json (KPC_SAVED_ID_LAND: a join or NO whose record now holds other land moves to the same name + acres in the same layer; a join not found again stays and goes to check). Every switch OFF: no result changes.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-rec-names",
+   "when": "2026-11-17",
+   "from": "1c23e80c9068",
+   "why": "Scorecard finding: the id-join name test (KPC_ID_JOIN_NAME) and the D1 saved-row test (KPC_SAVED_ID_LAND) read only a record's first name; Ohio's first name is a code ('CaesarCrkSP'), so 164 Ohio hand joins failed with KPC_ID_JOIN_NAME on. Both now accept any of the record's names (second name, and the key's shown 'second (first)'). Both switches OFF: no result changes.",
+   "scope": "none"
   }
  ]
 }
