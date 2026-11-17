@@ -899,12 +899,18 @@ These rulings settle it. They collect his words and win over the older wording w
   check ownership before a pair can be confirmed, **N1 wins**: ownership decides ONE PARK'S TRUE BOUNDARY, in the key.
   After that a 2-fer is pure geometry. R4's "state park inside a federal proclamation line = not a 2-fer" then needs no
   rule of its own: the key already cut the forest down to the land the agency owns, so the geometry says no by itself.
-  STILL OPEN for his ruling: the safety catch. Deleting the ownership step outright would confirm false 2-fers for every
-  park whose boundary is still an outer line, and most of the world has no ownership data. Proposed: the key records per
-  park whether its boundary is ownership-settled (agency-owned land, inholdings cut) or still an outer line; both settled
-  = geometry decides; either one still an outer line = NOT SURE, never confirmed, never ownership-patched at the line.
-  The `g` grade cannot carry this: a boundary cut by ownership parcels is graded *Approximate* today even though it is
-  the most ownership-correct one. Needs one new flag in the key.
+  CLOSED 10:37 PM, no new rule needed (Brandon: *"We record ownership when we have it cause it helps us.....will we have
+  all the time no...but the layers are part of the puzzle and we just have to solve it"*). **Ownership is RECORDED on the
+  row whenever we have it, because it helps a person judge and it helps find the true boundary - and it is never a gate.**
+  That is R8 as written. We will not always have it, and a pair is not held back for the lack of it.
+  The safety catch HQ proposed (NOT SURE when a boundary is still an outer line) was dropped as redundant, after checking
+  rather than assuming. Two different things had been tangled: (a) we do not know who owns the patch -> record what we
+  have, judge on geometry; (b) the boundary we hold IS an outer line -> that is a WRONG boundary, not an uncertain one,
+  and rule 6 ("proclamation / purchase lines are not land") plus rule 12 (a park with no outline is never tested) already
+  keep it out. VERIFIED 16 Nov from the 50 key files and the key script, no runs: ZERO parks have an outline whose source
+  is an outer / proclamation / purchase / approved-acquisition line, and kpc_us_key.py reads exactly ONE PAD-US layer
+  (PAD_US/MapServer/0) with no proclamation layer anywhere in it. So no new flag in the key, and the `g` grade is left
+  alone. US grades at that build: 11,271 official, 414 approximate, 1,422 pin, of 13,107 parks.
 
 - **N2 PUBLIC LAND IS POTA'S CALL, NOT OURS** (Brandon 10:29 PM: *"potas rules say must be public land...for US that is
   federal or state only but they some grandfathered parks that county etc now own or some parks that shouldn't been
@@ -938,3 +944,11 @@ These rulings settle it. They collect his words and win over the older wording w
   corridor candidate at all, and 26 saw only a bigger differently-named park (Chilikadrotna -> Lake Clark NP, Eightmile
   -> Devils Hopyard SP), correctly refused. So the gap is layer COVERAGE, not matching: the NPS corridor layer holds 33
   rivers against 111 POTA river parks. Both jobs are on the to-do list in notes/ideas.md.
+- **N1 SUPERSEDES THE OLDER OWNERSHIP WORDING.** R2(a) ("who OWNS the ground" as step (a) of every pair), R4 ("a
+  state-OWNED park inside a federal outer / proclamation line = hard boundary, NOT a 2-fer") and R14 ("every pair ...
+  gets an ownership check before it can be confirmed") are the older wording and are NO LONGER followed where they
+  make the LINE decide a pair on ownership. Read them as what they are useful for: R2(a) and R14's lists of sources and
+  layered / line-mismatch examples are how the KEY settles one park's boundary; R4's federal-with-a-state-park-inside
+  case needs no rule at all, because the key has already cut the forest down to the land the agency owns, so the
+  geometry says no by itself (Brandon 10:29 PM: *"not a 2fer no over lap all geometry like you said"*). Ownership facts
+  still ride along on the row as INFO (R8, N1). Nothing else in rules 1-14 changes.
