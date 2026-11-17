@@ -92,6 +92,9 @@ NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_
              'kpc_area_join.py', 'kpc_area_hash.py',
              # Nov 12 (KPC owner, 2026-11-12; D4): the proof job's builder runner / comparer / record writer; it decides no join
              'kpc_key_proof.py',
+             # Nov 17 (KPC owner, 2026-11-17; handoff 8 part 1): the scorecard builds the US key twice offline in scratch copies and
+             # grades it against the people's answers; it decides no join and writes nothing into the checkout
+             'kpc_key_scorecard.py',
              # Nov 7 (Brandon 4:55 PM CST): recommends a fix for each held park, writes only data/us-key/review/problem-solver.*
              'kpc_problem_solver.py',
              # Nov 9 amendment 2 (Brandon t943u/t942u): the research inbox + its xlsx converter recommend only, never decide a join

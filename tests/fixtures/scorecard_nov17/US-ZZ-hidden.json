@@ -1,0 +1,131 @@
+{
+ "st": "ZZ",
+ "parks": {
+  "US-9001": {
+   "n": "Alpha State Park",
+   "m": [
+    [
+     101,
+     "Alpha State Park",
+     500,
+     "name"
+    ],
+    [
+     102,
+     "Alpha SP",
+     20,
+     "name"
+    ],
+    [
+     103,
+     "Alpha Lake",
+     900,
+     "words"
+    ],
+    [
+     104,
+     "Alpha State Park Unit 2",
+     510,
+     "name"
+    ]
+   ],
+   "c": []
+  },
+  "US-9002": {
+   "n": "Beta Wildlife Management Area",
+   "m": [
+    [
+     201,
+     "Beta WMA",
+     300,
+     "name"
+    ],
+    [
+     299,
+     "Beta Creek WMA",
+     50,
+     "name"
+    ],
+    [
+     "zzc203",
+     "BETA WMA",
+     0,
+     "name"
+    ]
+   ],
+   "c": []
+  },
+  "US-9003": {
+   "n": "Gamma State Forest",
+   "m": [
+    [
+     301,
+     "Gamma Forest Annex",
+     10,
+     "words"
+    ],
+    [
+     302,
+     "gamma forest annex",
+     12,
+     "words"
+    ]
+   ],
+   "c": []
+  },
+  "US-9004": {
+   "n": "Delta National Wildlife Refuge",
+   "m": [
+    [
+     401,
+     "Delta Refuge",
+     700,
+     "name"
+    ]
+   ],
+   "c": []
+  },
+  "US-9005": {
+   "n": "Epsilon Wetland Management District",
+   "m": [
+    [
+     501,
+     "Epsilon WPA",
+     80,
+     "reviewed: the district = FWS fee (owned) tracts only, easements left out (Brandon Oct 29)"
+    ]
+   ],
+   "c": []
+  },
+  "US-9006": {
+   "n": "Zeta State Park",
+   "m": [
+    [
+     601,
+     "Zeta State Park",
+     40,
+     "name"
+    ],
+    [
+     602,
+     "Zeta State Park Addition",
+     4,
+     "name"
+    ]
+   ],
+   "c": []
+  },
+  "US-9007": {
+   "n": "Eta Natural Area",
+   "m": [
+    [
+     702,
+     "Eta Area",
+     105,
+     "name"
+    ]
+   ],
+   "c": []
+  }
+ }
+}
