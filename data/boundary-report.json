@@ -1,10 +1,10 @@
 {
  "United States": {
   "totals": {
-   "matched": 11735,
-   "far": 2336,
+   "matched": 11736,
+   "far": 2337,
    "noshape": 0,
-   "edge": 2224,
+   "edge": 2225,
    "out": 112,
    "swap": 1
   },
@@ -191,15 +191,15 @@
    },
    {
     "st": "IN",
-    "matched": 217,
-    "far": 32,
+    "matched": 218,
+    "far": 33,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 31
+    "edge": 32
    },
    {
     "st": "KS",
@@ -1275,11 +1275,11 @@
  },
  "World": {
   "totals": {
-   "matched": 43143,
-   "far": 8807,
+   "matched": 43245,
+   "far": 7322,
    "noshape": 0,
-   "edge": 8488,
-   "out": 319,
+   "edge": 7004,
+   "out": 318,
    "swap": 1
   },
   "states": [
@@ -1309,15 +1309,15 @@
    },
    {
     "st": "AT",
-    "matched": 285,
-    "far": 51,
+    "matched": 286,
+    "far": 56,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": 250,
-    "edge": 46
+    "edge": 51
    },
    {
     "st": "AU",
@@ -1345,15 +1345,15 @@
    },
    {
     "st": "BE",
-    "matched": 165,
-    "far": 46,
+    "matched": 171,
+    "far": 38,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 46
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 38
    },
    {
     "st": "BM",
@@ -1405,7 +1405,7 @@
    },
    {
     "st": "BZ",
-    "matched": 55,
+    "matched": 54,
     "far": 12,
     "noshape": 0,
     "out": 5,
@@ -1453,15 +1453,15 @@
    },
    {
     "st": "CH",
-    "matched": 274,
-    "far": 30,
+    "matched": 275,
+    "far": 25,
     "noshape": 0,
     "out": 2,
     "swap": 1,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 28
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 23
    },
    {
     "st": "CL",
@@ -1549,15 +1549,15 @@
    },
    {
     "st": "DK",
-    "matched": 106,
-    "far": 25,
+    "matched": 109,
+    "far": 11,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 25
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 11
    },
    {
     "st": "DO",
@@ -1585,39 +1585,39 @@
    },
    {
     "st": "EE",
-    "matched": 72,
-    "far": 13,
+    "matched": 73,
+    "far": 5,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 11
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 3
    },
    {
     "st": "ES",
-    "matched": 1789,
-    "far": 460,
+    "matched": 1797,
+    "far": 345,
     "noshape": 0,
-    "out": 11,
+    "out": 12,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 449
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 333
    },
    {
     "st": "FI",
-    "matched": 1592,
-    "far": 393,
+    "matched": 1650,
+    "far": 230,
     "noshape": 0,
     "out": 14,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 379
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 216
    },
    {
     "st": "FO",
@@ -1657,7 +1657,7 @@
    },
    {
     "st": "GB",
-    "matched": 3715,
+    "matched": 3684,
     "far": 847,
     "noshape": 0,
     "out": 15,
@@ -1742,26 +1742,26 @@
    {
     "st": "HR",
     "matched": 366,
-    "far": 76,
+    "far": 51,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 76
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 51
    },
    {
     "st": "HU",
     "matched": 23,
-    "far": 6,
+    "far": 4,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 6
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 4
    },
    {
     "st": "ID",
@@ -1777,15 +1777,15 @@
    },
    {
     "st": "IE",
-    "matched": 104,
-    "far": 22,
+    "matched": 106,
+    "far": 12,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": 250,
-    "edge": 22
+    "edge": 12
    },
    {
     "st": "IM",
@@ -1801,15 +1801,15 @@
    },
    {
     "st": "IT",
-    "matched": 1919,
-    "far": 226,
+    "matched": 1928,
+    "far": 83,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 226
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 83
    },
    {
     "st": "JE",
@@ -1874,26 +1874,26 @@
    {
     "st": "LT",
     "matched": 28,
-    "far": 1,
+    "far": 2,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 1
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 2
    },
    {
     "st": "LU",
     "matched": 45,
-    "far": 24,
+    "far": 18,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 24
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 18
    },
    {
     "st": "LV",
@@ -1903,8 +1903,8 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
+    "detail": "~110 m",
+    "thin": 250,
     "edge": 0
    },
    {
@@ -2006,26 +2006,26 @@
    {
     "st": "NL",
     "matched": 81,
-    "far": 14,
+    "far": 10,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 13
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 9
    },
    {
     "st": "NO",
-    "matched": 3044,
-    "far": 506,
+    "matched": 3055,
+    "far": 173,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 506
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 173
    },
    {
     "st": "NZ",
@@ -2089,15 +2089,15 @@
    },
    {
     "st": "PL",
-    "matched": 2696,
-    "far": 402,
+    "matched": 2708,
+    "far": 145,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 402
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 145
    },
    {
     "st": "PR",
@@ -2149,15 +2149,15 @@
    },
    {
     "st": "RO",
-    "matched": 305,
-    "far": 91,
+    "matched": 310,
+    "far": 79,
     "noshape": 0,
-    "out": 6,
+    "out": 5,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 85
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 74
    },
    {
     "st": "RW",
@@ -2173,27 +2173,27 @@
    },
    {
     "st": "SE",
-    "matched": 2042,
-    "far": 700,
+    "matched": 2052,
+    "far": 333,
     "noshape": 0,
-    "out": 8,
+    "out": 7,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 692
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 326
    },
    {
     "st": "SI",
-    "matched": 137,
-    "far": 45,
+    "matched": 144,
+    "far": 26,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
-    "thin": 60,
-    "edge": 44
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 25
    },
    {
     "st": "SJ",
@@ -2576,7 +2576,7 @@
     "ES",
     "ES-0058",
     "Sierra de Santo Domingo Nature and Landscape Complex",
-    "Sierra de Santo Domingo"
+    ""
    ],
    [
     "ES",
@@ -2588,7 +2588,7 @@
     "ES",
     "ES-0737",
     "Puertos de Beceite Natura 2000",
-    "Puertos de Beceite"
+    ""
    ],
    [
     "ES",
@@ -2613,6 +2613,12 @@
     "ES-1665",
     "Barranco Oscuro Nature Reserve",
     "Barranco Oscuro"
+   ],
+   [
+    "ES",
+    "ES-1702",
+    "Macizo de Tauro II Natura 2000",
+    "Macizo de Tauro II"
    ],
    [
     "ES",
@@ -2696,7 +2702,7 @@
     "FI",
     "FI-1582",
     "Kiiminkijoki Natura 2000",
-    "Kiiminkijoki"
+    ""
    ],
    [
     "FI",
@@ -4026,12 +4032,6 @@
    ],
    [
     "RO",
-    "RO-0573",
-    "F\u0103getul secular Stuhoasa Forest Reserve",
-    "F\u0103getul secular Stuhoasa"
-   ],
-   [
-    "RO",
     "RO-0880",
     "P\u0103durea Homi\u021ba Protected Area",
     "P\u0103durea Homi\u021ba"
@@ -4083,12 +4083,6 @@
     "SE-2138",
     "Norra Kvill Natura 2000",
     "Norra Kvill"
-   ],
-   [
-    "SE",
-    "SE-2179",
-    "Brattforshedens krigsflygf\u00e4lt 16 National Heritage Area",
-    "2003901 Brattforshedens krigsflygf\u00e4lt 16"
    ],
    [
     "SE",

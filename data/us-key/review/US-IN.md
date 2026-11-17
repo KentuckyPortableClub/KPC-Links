@@ -1,32 +1,22 @@
 # IN: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **208 of 229** parks joined to official land (same name + same kind of place). **0** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **218 of 229** parks joined to official land (same name + same kind of place). **2** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-10179** Ten O' Clock Line State Nature Preserve (State Nature Preserve) → Brown County State Park (~12,705 ac, the POTA pin is inside it (different name)); Brown County State Park (~12,651 ac, the POTA pin is inside it (different name)); Brown County State Park (~12,651 ac, the POTA pin is inside it (different name)); 10 O'clock Line Nature Preserve (~3,341 ac, a person said NO to this record (overrides.json no: Oct 18 review: same place, official name written differently · Nov 2 map audit: ))
+- **US-4161** Quakertown on Brookville Lake State Recreation Area (State Recreation Area) → Brookville Recreation Area (~17,185 ac, similar name); Brookville Lake (~13,201 ac, similar name); Brookville Lake (~13,201 ac, similar name); Brookville Lake (~13,201 ac, similar name); Brookville Lake (~663 ac, similar name); Brookville Lake (~663 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-4188 Bryan Woods State Nature Preserve (State Nature Preserve) → on Bryan (Eunice Hamilton) Nature Preserve (~30 ac); Bryan (Eunice Hamilton) Nature Preserve (~33 ac)
-- US-4208 J. E. Roush Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → on J. Edward Roush Fish and Wildlife Area (~8,235 ac); J. Edward Roush Fish and Wildlife Area (~8,235 ac)
 - US-5680 Indian-Celina State Recreation Area (State Recreation Area) → on Hoosier National Forest (~204,291 ac)
-- US-5681 Little Turtle State Recreation Area (State Recreation Area) → on J. Edward Roush Fish and Wildlife Area (~8,235 ac); J. Edward Roush Fish and Wildlife Area (~8,235 ac)
-- US-5682 Moores Creek State Recreation Area (State Recreation Area) → on Monroe Recreation Area (~25,720 ac)
 - US-5683 Kil-So-Quah State Recreation Area (State Recreation Area) → on J. Edward Roush Fish and Wildlife Area (~8,235 ac); J. Edward Roush Fish and Wildlife Area (~8,235 ac)
-- US-5684 Allens Creek State Recreation Area (State Recreation Area) → on Monroe Recreation Area (~25,720 ac)
-- US-5685 Lieber State Recreation Area (State Recreation Area) → on Owen-Putnam State Forest (~6,594 ac)
-- US-5686 Fairfax State Recreation Area (State Recreation Area) → on Monroe Recreation Area (~25,720 ac)
-- US-5688 Salt Creek State Recreation Area (State Recreation Area) → on Monroe Lake (~313 ac); Monroe Lake (~313 ac)
-- US-5689 Pine Grove State Recreation Area (State Recreation Area) → on Monroe Recreation Area (~25,720 ac)
-- US-5690 Crooked Creek State Recreation Area (State Recreation Area) → on Monroe Lake (~18,310 ac); Monroe Lake (~18,310 ac)
 - US-5692 Cartop State Recreation Area (State Recreation Area) → on Monroe Lake (~18,310 ac); Monroe Lake (~18,310 ac)
-- US-7842 Red Bridge State Recreation Area (State Recreation Area) → on Mississinewa Lake (~13,064 ac); Mississinewa Lake (~13,064 ac)
-- US-7843 Pearson Mill State Recreation Area (State Recreation Area) → on Mississinewa Lake (~13,064 ac); Mississinewa Lake (~13,064 ac)
 
 ## Nothing found in PAD-US
 
-- US-13101 Westercamp Wildlife Management Area (Wildlife Management Area)
-- US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
+- US-12020 Prophetstown Fen State Nature Preserve (State Nature Preserve)
 - US-4667 Spencer County State Forest (State Forest)
 - US-6972 Historic New Harmony State Historic Site (State Historic Site)
 - US-6973 Lanier Mansion State Historic Site (State Historic Site)
@@ -35,19 +25,24 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Patoka Lake ·  · Indiana DNR (land, state GIS table) · ~26,122 ac
+- Patoka Lake ·  · Indiana DNR + INHD (all managed lands) (land, state GIS table) · ~26,122 ac
 - Monroe Lake ·  · Indiana DNR properties · ~18,310 ac
 - Monroe Lake ·  · Indiana DNR (land, state GIS table) · ~18,310 ac
+- Monroe Lake ·  · Indiana DNR + INHD (all managed lands) (land, state GIS table) · ~18,310 ac
 - Brookville Recreation Area · REC · Louisville · ~17,185 ac
 - Mississinewa Lake ·  · Indiana DNR properties · ~13,064 ac
 - Mississinewa Lake ·  · Indiana DNR (land, state GIS table) · ~13,064 ac
+- Mississinewa Lake ·  · Indiana DNR + INHD (all managed lands) (land, state GIS table) · ~13,064 ac
 - Minnehana Fish and Wildlife Area · SCA · Indiana Department of Natural Resources Fish and Wildlife · ~12,889 ac
 - Charles C. Deam Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,538 ac
 - Salamonie Lake ·  · Indiana DNR (land, state GIS table) · ~10,768 ac
-- J. Edward Roush Recreation Area · REC · Louisville · ~8,533 ac
+- Salamonie Lake ·  · Indiana DNR + INHD (all managed lands) (land, state GIS table) · ~10,768 ac
 - J. Edward Roush Fish and Wildlife Area ·  · Indiana DNR properties · ~8,235 ac
 - J. Edward Roush Fish and Wildlife Area ·  · Indiana DNR (land, state GIS table) · ~8,235 ac
+- 10 O'clock Line Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~3,341 ac
 - Monroe Lake ·  · Indiana DNR properties · ~3,142 ac
 - Monroe Lake ·  · Indiana DNR (land, state GIS table) · ~3,142 ac
+- Monroe Lake ·  · Indiana DNR + INHD (all managed lands) (land, state GIS table) · ~3,142 ac
 - Gibson Lake Recreation Area · SREC · Unknown State · ~2,908 ac
 - Bradford Woods · SRMA · Indiana University · ~2,375 ac
 - Green River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,197 ac
@@ -79,6 +74,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Bloomfield Barrens Nature Preserve ·  · Indiana DNR Nature Preserves (credit: IN DNR, IN Natural Heritage Data Center, IN State Land Office) (preserve, state GIS table) · ~803 ac
 - Mississinewa Lake ·  · Indiana DNR properties · ~797 ac
 - Mississinewa Lake ·  · Indiana DNR (land, state GIS table) · ~797 ac
+- Mississinewa Lake ·  · Indiana DNR + INHD (all managed lands) (land, state GIS table) · ~797 ac
 - Leavenworth Barrens Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~748 ac
 - Fourteen Mile Creek Nature Preserve Addition · SP · Indiana DNR, State Parks and Reservoirs Division · ~743 ac
 - Monroe Lake ·  · Indiana DNR properties · ~741 ac
@@ -88,9 +84,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - White River Bend Wildlife Management Area ·  · Indiana DNR (land, state GIS table) · ~710 ac
 - Mallard Roost Wetland Conservation Area ·  · Indiana DNR (land, state GIS table) · ~701 ac
 - Mallard Roost Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~699 ac
-- Elk Creek Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~694 ac
-- Elk Creek Wildlife Management Area ·  · Indiana DNR (land, state GIS table) · ~694 ac
-- Marsh Lake Wetland Conservation Area ·  · Indiana DNR (land, state GIS table) · ~678 ac
-- Eagle Marsh ·  · Indiana DNR properties · ~670 ac
-- Eagle Marsh ·  · Indiana DNR (land, state GIS table) · ~670 ac
-- Eagle Marsh ·  · Indiana DNR Nature Preserves (credit: IN DNR, IN Natural Heritage Data Center, IN State Land Office) (preserve, state GIS table) · ~670 ac
