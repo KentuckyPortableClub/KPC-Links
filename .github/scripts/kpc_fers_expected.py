@@ -7,9 +7,10 @@ pair of parks we have an OUTSIDE reason to expect, with what the bot did with it
                    not a 2-fer (KPC owner, 2026-11-15 23:14; re-grade R2, 2026-11-16)
   NEVER LOOKED AT  the bot never tested the pair, with why (no official outline, a line park with no line, not in the run…)
 Sources (why each pair is expected): 'hand list' = ky-trail-parks.json (Kentucky's river / trail pairs) · 'old guide' = the
-Oct 13 Kentucky 2-fers guide (ky-overlaps.geojson, 76 pairs) · 'activated together' = POTA activation history, same call same day
-(data/fers/pota-pairs-<st>.json, counts only) · 'near-touching' = outlines within 100 m (pass 1's looked file) · 'member report'
-(data/fers/member-reports.json, later). Writes data/fers/expected-<area>.json; 'pass' = no NEVER LOOKED AT without a reason and
+Oct 13 Kentucky 2-fers guide (ky-overlaps.geojson, 76 pairs) · 'near-touching' = outlines within 100 m (pass 1's looked file) ·
+'member report' (data/fers/member-reports.json, later). POTA activation history (two parks worked by one call on one day) is NOT a
+source (KPC owner, 2026-11-16, rule N6: logging mistakes and short drives between nearby parks make it no evidence; only the
+official boundaries decide). Writes data/fers/expected-<area>.json; 'pass' = no NEVER LOOKED AT without a reason and
 every DROPPED with a reason (both worked out before the DROPPED list is moved out). Chat 8 reviews the DROPPED list in the
 private folder + the NEVER LOOKED AT list in the file. AREA='ky' or STATES='US-OH'. Never fails.
 Public outline-store run (KPC owner, 2026-11-15; store trial M4: KPC_FERS_FROM_STORE on, KPC_FERS_STORE_KIND public): a pair with a
@@ -18,8 +19,6 @@ them) is left out and only counted, and the file goes through the store's redact
 (fail closed: the old file is not touched)."""
 import glob, gzip, itertools, json, math, os, pathlib, re, sys, time
 OUT = pathlib.Path('data/fers')
-NEAR_M = 1000.0   # HQ Oct 27 9:39 PM: a pair expected ONLY because people activated both the same day counts when the two
-                  # parks' OUTLINES are within 1 km or touch (never pin to pin: a forest's pin can be 30 km from a park inside it)
 LIVE = ('candidate', 'very tight', 'water only', 'merged into')
 # KPC owner, 2026-11-15 23:14 ("we just show what we think are overlaps"): a 2-fer file no longer holds a row that denies a pair,
 # so a pair the bot stopped looking at has no row here either. Such a pair falls to the 'looked: no shared ground ...' line below
@@ -81,46 +80,6 @@ def rule_of(st):
     return next((r for rx, r in RULES if re.search(rx, st, re.I)), '')
 
 
-def ring_box(g):
-    """bbox of one record's rings ([[ [lon,lat], ... ], ...])."""
-    xs = [q[0] for r in g for q in r]; ys = [q[1] for r in g for q in r]
-    return [min(xs), min(ys), max(xs), max(ys)] if xs else None
-
-
-def park_boxes(sts):
-    """{ref: bbox} for the run's states, from the answer key's record ids + the saved outline cache (cache/us/US-XX.json.gz).
-    A park with no outline (or no cache file) simply has no box: its pairs are never filtered out."""
-    out = {}
-    for st in sts:
-        key = load(f'data/us-key/{st}.json', {}) or {}
-        ids = {ref: [m[0] for m in (p.get('m') or []) if isinstance(m[0], int)] for ref, p in (key.get('parks') or {}).items()}
-        want = {i for v in ids.values() for i in v}
-        if not want: continue
-        boxes = {}
-        for f in list(glob.glob(f'cache/us/{st}.json.gz')) + list(glob.glob(f'cache/us/{st}.json')):
-            try:
-                op = gzip.open if f.endswith('.gz') else open
-                with op(f, 'rt', encoding='utf-8') as fh: blob = json.load(fh)
-                for r in blob.get('recs') or []:
-                    if r.get('OBJECTID') in want and r.get('_r'):
-                        b = ring_box(r['_r'])
-                        if b: boxes[r['OBJECTID']] = b
-            except Exception: pass  # noqa: BLE001
-        for ref, v in ids.items():
-            bs = [boxes[i] for i in v if i in boxes]
-            if bs: out[ref] = [min(b[0] for b in bs), min(b[1] for b in bs), max(b[2] for b in bs), max(b[3] for b in bs)]
-    return out
-
-
-def box_gap_m(a, b):
-    """Metres between two bounding boxes (0 when they touch or overlap). A box gap is never more than the real outline gap,
-    so a pair dropped at over 1 km really is over 1 km apart."""
-    la = (a[1] + a[3] + b[1] + b[3]) / 4
-    dx = max(0.0, max(a[0], b[0]) - min(a[2], b[2])) * 111320 * math.cos(math.radians(la))
-    dy = max(0.0, max(a[1], b[1]) - min(a[3], b[3])) * 110574
-    return math.hypot(dx, dy)
-
-
 def load(p, d=None):
     try: return json.load(open(p))
     except Exception: return d  # noqa: BLE001
@@ -164,38 +123,9 @@ def build(area, files, tag='', sts=()):
             refs = sorted({r for r, _ in (ft.get('properties') or {}).get('pota') or []})
             for a, b in itertools.combinations(refs, 2): add([a, b], 'old guide (Oct 13 Kentucky 2-fers guide)')
     sts = ['US-KY'] if area == 'ky' else list(sts)
-    for st in sts:
-        pp = load(OUT / f'pota-pairs-{st}.json', {}) or {}
-        for k, n in (pp.get('pairs') or {}).items(): add(k.split('+'), f'activated together by the same call on the same day ({n}x, POTA history)')
     for a, b, m in looked.get('near100') or []: add([a, b], f'outlines come within {m} m of each other')
     for x in (load(OUT / 'member-reports.json', {}) or {}).get('reports') or []:
         if x.get('area') in (area, None): add(x.get('refs') or [], 'member report: ' + str(x.get('what', ''))[:60])
-    # HQ Oct 27: the POTA history is a wide net (Ohio: 7,908 pairs). A pair expected ONLY because the same call worked both the
-    # same day is kept when the two OUTLINES are within 1 km; always kept when a park has no outline (missing-boundary list) or
-    # when the history shows ONE session logged to both parks. Everything else (hand lists, the old guide, near-touching,
-    # member reports) is never filtered.
-    BOX = dict(park_boxes(sts))
-    BOX.update({r: b for r, b in (looked.get('boxes') or {}).items() if b})   # pass 1's own boxes (every park it read), best source
-    same_session = set()
-    for st in sts:
-        for k in ((load(OUT / f'pota-pairs-{st}.json', {}) or {}).get('same_session') or []): same_session.add(tuple(sorted(k.split('+'))))
-    filt = {'rule': f'pairs expected only from POTA history are kept when the outlines are within {int(NEAR_M)} m (box to box), '
-                    'or a park has no outline, or one session logged both', 'left_out_far': 0, 'kept_no_outline': 0,
-            'kept_same_session': 0, 'kept_not_measured': 0, 'outlines_measured': len(BOX)}
-    keep = {}
-    for refs, why in exp.items():
-        only_pota = all(w.startswith('activated together') for w in why)
-        if not only_pota: keep[refs] = why; continue
-        if refs in same_session: filt['kept_same_session'] += 1; keep[refs] = why | {'POTA shows one session logged both parks'}; continue
-        bs = [BOX.get(r) for r in refs]
-        if any(b is None for b in bs):
-            miss_out = [r for r, b in zip(refs, bs) if b is None]
-            filt['kept_no_outline' if any(r in noout or r not in inrun for r in miss_out) else 'kept_not_measured'] += 1
-            keep[refs] = why; continue
-        gap = max(box_gap_m(bs[i], bs[j]) for i in range(len(bs)) for j in range(i + 1, len(bs)))
-        if gap > NEAR_M: filt['left_out_far'] += 1; continue
-        keep[refs] = why | {f'outlines about {int(gap)} m apart'}
-    exp = keep
     n_withheld = 0
     if sec:   # a pair with a withheld park is left out of the public file: counted only
         n_withheld = sum(1 for refs in exp if set(refs) & sec)
@@ -229,7 +159,7 @@ def build(area, files, tag='', sts=()):
         out['NEVER LOOKED AT'].append(e)
     bad = [e for e in out['NEVER LOOKED AT'] if e.get('reason') == 'unknown'] + [e for e in out['DROPPED'] if not e.get('reason')]
     if not looked: print(f'::notice title=2-fer missing check::{area}: no pass-1 list (looked-{area}.json): run pass 1 first', flush=True)
-    res = {'filter': filt, 'about': __doc__.split('\n')[0] + ' See kpc_fers_expected.py. Chat 8 reviews the private DROPPED list + NEVER LOOKED AT.', 'area': area,
+    res = {'about': __doc__.split('\n')[0] + ' See kpc_fers_expected.py. Chat 8 reviews the private DROPPED list + NEVER LOOKED AT.', 'area': area,
            'date': time.strftime('%Y-%m-%d'), 'pass': not bad, 'counts': {k: len(v) for k, v in out.items()}, **out}
     path = OUT / f'expected-{tag or area}.json'
     # OWNER RULE (2026-11-15 23:14; re-grade R2): the DROPPED list never goes into the pushed file. 'pass', 'counts' and the
@@ -247,9 +177,7 @@ def build(area, files, tag='', sts=()):
             print(f'::error title=2-fer missing check::{area}: the write guard refused expected-{tag or area}.json: not written', flush=True); return
         if n: res['withheld (items left out by the write guard)'] = n
     path.write_text(json.dumps(res, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
-    print(f"::notice title=2-fer missing check::{area}: {res['counts']} expected pairs · filter: {filt['left_out_far']} POTA-only pairs left out "
-          f"(outlines over {int(NEAR_M)} m apart), kept {filt['kept_no_outline']} with no outline + {filt['kept_same_session']} one-session + "
-          f"{filt['kept_not_measured']} not measurable" + ('' if res['pass'] else f' · {len(bad)} with no reason'), flush=True)
+    print(f"::notice title=2-fer missing check::{area}: {res['counts']} expected pairs" + ('' if res['pass'] else f' · {len(bad)} with no reason'), flush=True)
 
 
 def main():
