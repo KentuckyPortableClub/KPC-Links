@@ -203,8 +203,15 @@ check('world pin-fill hold is scope none: no country is rebuilt for that change'
 scu, _, _ = F.pending_scope('us-key', 'd4ebfafce438')
 # KPC owner, 2026-11-16 (handoff item 6): a later change may declare its own US scope (checked by its own id in its own test);
 # this work itself must not ask for a full US rebuild
-check('no new US rule-scope is pending: this work is not a full US rebuild',
-      scu in (None, set()) or (scu != 'all' and isinstance(scu, set) and len(scu) < 50), scu)
+# KPC owner, 2026-11-17 (round 2): the easement rule (2026-11-16-easement-not-by-name) declares scope all ON PURPOSE - an easement
+# record can share any state's park name - and it is approved. It is named here so this guard still catches an UNDECLARED full
+# US rebuild: any other pending entry asking for 'all' still fails.
+_EASEMENT_ID = '2026-11-16-easement-not-by-name'
+_us_sc = json.load(open(ROOT / '.github/us-key-rule-scope.json', encoding='utf-8'))
+_others = [e for e in _us_sc['changes'] if e.get('from') == 'd4ebfafce438' and e.get('id') != _EASEMENT_ID]
+check('no new US rule-scope is pending: this work is not a full US rebuild (the approved easement rule aside)',
+      scu in (None, set()) or scu == 'all' and not _others or (scu != 'all' and isinstance(scu, set) and len(scu) < 50),
+      (scu, [e['id'] for e in _others]))
 
 with tempfile.TemporaryDirectory() as t:
     d = pathlib.Path(t) / 'r'; d.mkdir()

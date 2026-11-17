@@ -65,11 +65,11 @@ check(rv.splitlines()[:1] == ['ref,record,state'], 'the review file is in the re
 
 # bookkeeping, by this change's own id
 sc = next((c for c in json.loads((ROOT / '.github/us-key-rule-scope.json').read_text())['changes'] if c.get('id') == '2026-11-16-easement-not-by-name'), {})
-check(sc.get('from') == 'd4ebfafce438' and sc.get('scope', {}).get('all') is True and not sc.get('scope', {}).get('saved_ids') and 'WAITING' in str(sc.get('approved')),
-      'scope entry 2026-11-16-easement-not-by-name (from d4ebfafce438, every US state, saved ids kept, waiting for the owner)')
+check(sc.get('from') == 'd4ebfafce438' and sc.get('scope', {}).get('all') is True and not sc.get('scope', {}).get('saved_ids') and 'APPROVED' in str(sc.get('approved')),
+      'scope entry 2026-11-16-easement-not-by-name (from d4ebfafce438, every US state, saved ids kept, approved by the owner)')
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 own = next((x for x in log.splitlines() if 'branch prep/2026-11-16-easement-rule' in x and 'US rules d4ebfafce438 -> ' in x), '')
-check(bool(own) and "waiting for the KPC owner's approval" in own, "this change's own changelog line is there, waiting for the owner")
+check(bool(own) and 'APPROVED' in own, "this change's own changelog line is there and approved by the owner")
 
 print('ALL PASS' if not FAILS else 'SOME FAILED')
 sys.exit(1 if FAILS else 0)
