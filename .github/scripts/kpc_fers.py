@@ -3448,6 +3448,54 @@ def hold_no_owner(spots, root=None):
 
 
 
+# D10 (owner ruling, 17 Nov 2026): a park on tripwire T1 (one of its records is joined to another park too), T2 (a piece of its land
+# is cut off from its pin) or T4 (its pin is off its land and no person is behind the join) is NOT SURE for 2-fers until a person
+# clears it. Its outline stays on the map: only the 2-fer rows are held. The list is written by the tripwire bot (KPC-Data
+# .github/scripts/kpc_tripwires.py) to KPC-Data data/waiting/tripwires/not-sure.json ({"parks": {ref: ["T1", ...]}}, a person's
+# clears already left out); the 2-fer workflows check KPC-Data out as kpcdata/, so that is read first. KPC_FERS_NOT_SURE = another
+# file. No list (or an unreadable one: a warning) = no park is held here, exactly as before.
+TRIPWIRE_LISTS = ('kpcdata/data/waiting/tripwires/not-sure.json', 'data/waiting/tripwires/not-sure.json')
+TRIPWIRE_HOLD = 'not sure: tripwire'
+_TRIPWIRE = {}
+
+
+def tripwire_parks(path=None):
+    """{ref: ['T1', 'T4', ...]} from the not-sure list (read once per file); {} when there is no list."""
+    cands = [path] if path else ([os.environ['KPC_FERS_NOT_SURE']] if os.environ.get('KPC_FERS_NOT_SURE') else list(TRIPWIRE_LISTS))
+    for c in cands:
+        if not c or not os.path.isfile(c): continue
+        if c in _TRIPWIRE: return _TRIPWIRE[c]
+        try:
+            pk = json.load(open(c, encoding='utf-8')).get('parks')
+            got = {str(r): sorted(str(w) for w in (v if isinstance(v, list) else [v])) for r, v in (pk or {}).items()} if isinstance(pk, dict) else None
+        except Exception as e:  # noqa: BLE001
+            got = None; LOG.append(f'tripwire not-sure list {c}: unreadable ({type(e).__name__}); no park held for it')
+        if got is None:
+            print(f'::warning title=2-fer bot::the tripwire not-sure list ({c}) could not be read: no park is held for it this run', flush=True)
+            got = {}
+        _TRIPWIRE[c] = got
+        return got
+    return {}
+
+
+def hold_tripwire(spots, listed=None):
+    """D10: every row of THIS run's verdict that shows a pair with a listed park becomes NOT SURE (the park's outline is not touched).
+    A row already not sure keeps its own reason; a row reproduced exactly from an older file (store_held / partial_kept / kept) is left
+    as it is (this_runs_verdict). Returns the number of rows held."""
+    listed = tripwire_parks() if listed is None else listed
+    if not listed: return 0
+    n = 0
+    for x in spots:
+        if not this_runs_verdict(x) or not _shown(x) or str(x.get('status') or '').startswith('not sure'): continue
+        hit = [r for r in (x.get('refs') or []) if r in listed]
+        if not hit: continue
+        x['status'] = (TRIPWIRE_HOLD + ' ' + '; '.join(f"{r} {'+'.join(listed[r]) or 'listed'}" for r in sorted(hit))
+                       + ' (a person clears it; its outline stays on the map)')
+        x['tripwire'] = sorted(hit)
+        x.pop('list', None); n += 1
+    return n
+
+
 SAME_RECORDS_HOLD = ('not sure: both parks join the same official records '
                      '(one place, two park numbers): a person looks')
 
@@ -4350,6 +4398,8 @@ def main():
                 n['live rows held: spot far from a state park pin (rule B13)'] = sum(FH.hold_spots(d.get('spots', []), FP) for d in files.values())
             except Exception as e: LOG.append(f'far-spot hold: {str(e)[:80]}')  # noqa: BLE001
         n['candidates held: no ownership source'] = sum(hold_no_owner(d.get('spots', [])) for d in files.values())
+        _tw = sum(hold_tripwire(d.get('spots', [])) for d in files.values())   # D10: tripwire parks are not sure (no list = 0, no count line)
+        if _tw: n['rows held: tripwire park, not sure until a person clears it (D10)'] = _tw
         for st, d in files.items():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT
@@ -4680,6 +4730,9 @@ def main():
             if PASS == 3:
                 for s in _lr: _decide3(s)
             if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN); tidy_rows(d.get('spots', []), PIN, today); counts['candidates held: no ownership source'] = counts.get('candidates held: no ownership source', 0) + hold_no_owner(d.get('spots', []))
+            if PASS == 3:   # D10: tripwire parks are not sure (no list = 0, no count line)
+                _tw = hold_tripwire(d.get('spots', []))
+                if _tw: counts['rows held: tripwire park, not sure until a person clears it (D10)'] = counts.get('rows held: tripwire park, not sure until a person clears it (D10)', 0) + _tw
             d[f'pass{PASS}'] = today
             if _from1: d['pass2'] = today   # store run: pass 3 did pass 2's test (finer grid, same outlines)
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save

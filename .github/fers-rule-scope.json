@@ -193,6 +193,15 @@
       "scope": "none",
       "scope_note": "No pair answer changes. A thin area is handled exactly as one on the except list already was (verdict NOT USED, it keeps its previous files), the public 2-fer bot does not read the store at all yet, and the private store is never judged thin (only an index that says shelf: public carries a coverage block).",
       "approved": "WAITING FOR THE KPC OWNER'S APPROVAL"
+    },
+    {
+      "id": "2026-11-17-d10-tripwire-not-sure",
+      "when": "2026-11-17",
+      "from": "b2d826ea5e3b",
+      "why": "D10 (owner ruling, 17 Nov 2026): a park on tripwire T1 (one of its records is joined to another park too), T2 (a piece of its land is cut off from its pin) or T4 (its pin is off its land and no person is behind the join) is NOT SURE for 2-fers until a person clears it; its outline stays on the map. kpc_fers.hold_tripwire() (passes 3 and 5, beside the no-ownership hold) turns every row of this run's verdict that shows a pair with a listed park into 'not sure: tripwire <ref> <T1+T4> (a person clears it; its outline stays on the map)'. The list is KPC-Data data/waiting/tripwires/not-sure.json, written by the tripwire bot (KPC-Data kpc_tripwires.py; a person's clears in data/waiting/tripwires/cleared.json are left out of it); the 2-fer workflows read it from their kpcdata/ checkout.",
+      "scope": "none",
+      "scope_note": "No pair answer changes and nothing re-runs: there is no list on KPC-Data yet and no 2-fer run is going (owner, 17 Nov: ground level first), and with no list hold_tripwire() holds nothing and adds no count line. Once the tripwire bot publishes a list, the next ordinary run of an area holds that area's listed parks' rows; no area is rebuilt for it.",
+      "approved": "WAITING FOR THE KPC OWNER'S APPROVAL"
     }
   ]
 }
