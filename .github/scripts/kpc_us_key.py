@@ -1152,6 +1152,9 @@ EASEMENT_KEPT = []   # [ref, record id] of this state's existing name-alone ease
 EASEMENT_RX = re.compile(r'\beasements?\b|^\s*(cone|ease)\s*$', re.I)
 TYPE_KEY_RX = re.compile(r'^(category|des_tp|d_des_tp|rec_type|type|class|interest|inttype\d*|prot_type|land_type|acq_type|feat_type|ownership_type|own_type_desc)$', re.I)
 EASEMENT_HELD = []
+LEASE_RX = re.compile(r'\bagreement\b|\blease[ds]?\b|cooperative (?:wildlife|management|area)', re.I)   # D5 (KPC owner, 2026-11-17)
+LAKE_TYPE_RX = re.compile(r'fishing lake|reservoir|\blakes?\b|\bpond', re.I)   # D4: a park TYPE that says it is the lake
+LEASE_HELD, LAKE_HELD = [], []
 
 
 def rec_type(attrs):
@@ -2337,6 +2340,7 @@ def run(st):
     held_g, pin_wrong = [], []
     g8 = []
     EASEMENT_HELD.clear(); EASEMENT_KEPT.clear()
+    LEASE_HELD.clear(); LAKE_HELD.clear()
     def _g8tok(s):
         s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
         s = re.sub(r'\bft\b', 'fort', re.sub(r'\bmt\b', 'mount', re.sub(r'\bst\b', 'saint', s)))
@@ -2373,6 +2377,22 @@ def run(st):
             p['m'] = m = [x for x in m if x not in _ce]
             p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check: a conservation easement record is never joined by name alone (item 5, Nov 16)'] for x in _ce]
             EASEMENT_HELD.extend(f'{ref} ({x[0]})' for x in _ce)
+        # D5 (KPC owner, 2026-11-17, switch KPC_NO_LEASE_BY_NAME): land the agency does not own but uses (leased, an agreement area)
+        # is the easement family: never joined by name alone; it goes to CHECK and a person may say yes for one park
+        if _kr('KPC_NO_LEASE_BY_NAME'):
+            _ls = [x for x in m if name_only(x[3]) and LEASE_RX.search(str(x[1]))]
+            if _ls:
+                p['m'] = m = [x for x in m if x not in _ls]
+                p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check (D5): a leased / agreement record is never joined by name alone'] for x in _ls]
+                LEASE_HELD.extend(f'{ref} ({x[0]})' for x in _ls)
+        # D4 (KPC owner, 2026-11-17, switch KPC_LAKE_ONLY_IF_LAKE): a park with land of its own never takes the lake by name. A water
+        # surface stays only on a park whose own type says it is the lake, or a park with no land record at all (left for a person)
+        if _kr('KPC_LAKE_ONLY_IF_LAKE') and not LAKE_TYPE_RX.search(str(p.get('t') or '')):
+            _wt = [x for x in m if 'water outline only' in str(x[3]) and name_only(x[3])]
+            if _wt and any(x not in _wt for x in m):
+                p['m'] = m = [x for x in m if x not in _wt]
+                p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check (D4): the park has land of its own; a lake surface is not added by name'] for x in _wt]
+                LAKE_HELD.extend(f'{ref} ({x[0]})' for x in _wt)
         weak = [x for x in m if str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1]))]   # R-G8 fix: 'Kodiak' is in 'Kodiak Office' but that record does not NAME the park
         # Nov 2 (map audit, Tennessee: the bare 'Reelfoot' / 'Chickasaw' / 'Pickett' records were drawn into the state park, the WMA AND the
         # refuge at once): when the park already has its own full-name record, a bare-name piece matched with the designation code
@@ -2463,6 +2483,8 @@ def run(st):
             p['g'] = 'official'; p['line'] = 1
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
     if EASEMENT_HELD: notice(f'US key {st}', f"conservation easement records not joined by name alone (item 5): {len(EASEMENT_HELD)} piece(s) moved to CHECK: {', '.join(EASEMENT_HELD[:10])}")
+    if LEASE_HELD: notice(f'US key {st}', f"D5 leased / agreement records not joined by name alone: {len(LEASE_HELD)} piece(s) to CHECK: {', '.join(LEASE_HELD[:10])}")
+    if LAKE_HELD: notice(f'US key {st}', f"D4 lake surfaces not added to a park with land of its own: {len(LAKE_HELD)} piece(s) to CHECK: {', '.join(LAKE_HELD[:10])}")
     if held_g: notice(f'US key {st}', f"rule G-1: {len(held_g)} parks had similar-name pieces held (not drawn): {', '.join(held_g[:12])}")
     if pin_wrong: notice(f'US key {st}', f"{len(pin_wrong)} parks: the POTA pin sits well outside the official outline (POTA pin may be wrong; the outline stays): {', '.join(pin_wrong[:12])}")
     # Oct 29 (chat 10: Virginia's Dragon Run = PAD-US 9,563 + the state layer 9,562 + more copies of the SAME tracts; anything that

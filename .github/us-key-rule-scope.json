@@ -131,6 +131,13 @@
    "from": "77b70447553a",
    "why": "D9 (owner ruling, 17 Nov 2026): one record, one park. Behind the rule switch KPC_ONE_RECORD_ONE_PARK (OFF): a record still joined by name to two or more parks goes to the ONE park whose full name is the record's own name (kpc_key_rules.d9_winner); the others give it back to check. Parks given their own parts of the record (rule B12) and hand joins are never moved; no single winner = left for the tripwire list. Switch OFF = no result changes. Measured on the live US key: 169 shared records would settle, 167 parks give one back, 1 ends as a pin; 911 shared records have no single winner. (The drawn outline now honours the key's B12 part boxes, kpc_outlines_from_key.py, not a rule file.)",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-d4-d5-lakes-leases",
+   "when": "2026-11-17",
+   "from": "f35202856bbc",
+   "why": "D4 + D5 (owner rulings, 17 Nov 2026), each behind its own rule switch (OFF). D4 KPC_LAKE_ONLY_IF_LAKE: a park with land of its own never takes a lake surface by name (only a park whose own type says it is the lake keeps one; a park with no land record keeps its lake for a person). D5 KPC_NO_LEASE_BY_NAME: a leased / agreement / cooperative-area record is never joined by name alone (the easement family). Both act on a park's fresh match, like the easement rule; rows carried through a rules change stay until a park-scoped re-match. Live key (as published): D4 87 parks carry a lake surface beside land of their own (17 water-only parks left for a person); D5 21 name-only joins to a lease / agreement record. Switches OFF = no result changes.",
+   "scope": "none"
   }
  ]
 }
