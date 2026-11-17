@@ -6,7 +6,7 @@ name: KPC saved shapes (world + Canada)
 # the club's 20 GitHub slots. Each country is its own government server, so the width hurts nobody, and no job here
 # pushes to the repo, so the jobs cannot collide with each other or with the other bots. Never fails.
 on:
-  # SCHEDULE OFF, Brandon Nov 16 2026 ('the less downloading the less issues'): same reason as kpc-geo-cache.yml - this
+  # SCHEDULE OFF (KPC owner, 2026-11-16, to download less): same reason as kpc-geo-cache.yml - this
   # re-read every world layer blind on the 4th of each month. The keeper already checks every layer for change.
   # Read .claude/notes/layer-refresh.md before switching it back on. The by-hand button below still works.
   #schedule:
@@ -16,6 +16,10 @@ on:
       countries:
         description: 'Only these (blank = every country + CA). CA = all of Canada.'
         default: ''
+      from_requests:
+        description: "Serve only the keeper's layer requests (layer-requests.json on the boundary-cache release; none = nothing is fetched)"
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -37,13 +41,36 @@ jobs:
           gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' \
             --notes 'Official land outlines saved for the boundary answer keys. Not a release of anything.' || { kpc_rc=$?; echo "::warning title=Release::the saved-shapes release could not be made (exit $kpc_rc)"; echo "Release - the saved-shapes release could not be made (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - uses: actions/checkout@v5   # Nov 7 (world fix part A): only to read data/world-key/sheet-countries.json for the list
-        with:
-          sparse-checkout: data/world-key
+        with:                         # Handoff 3: + the request planner
+          sparse-checkout: |
+            data/world-key
+            .github/scripts
       - name: The list
         id: l
         env:
           WANT: ${{ inputs.countries }}
+          FROM_REQUESTS: ${{ inputs.from_requests }}
+          GH_TOKEN: ${{ github.token }}
+          # The owner's four layer-refresh rulings (RULED 2026-11-17, .claude/notes/layer-refresh.md): 180 days for a layer with no
+          # date, a dying layer gets a full-detail save first, a changed layer is re-read whole, the keeper or a chat may ask. A repo variable overrides. What each one does: .github/scripts/kpc_layer_refresh.py.
+          KPC_LR_STALE_DAYS: ${{ vars.KPC_LR_STALE_DAYS || '180' }}
+          KPC_LR_DYING: ${{ vars.KPC_LR_DYING || 'full' }}
+          KPC_LR_CHANGED_READ: ${{ vars.KPC_LR_CHANGED_READ || 'whole' }}
+          KPC_LR_WHO: ${{ vars.KPC_LR_WHO || 'keeper+hand' }}
         run: |
+          # Handoff 3 (KPC owner, 2026-11-17): the keeper asks, this job fetches. With from_requests the list is the keeper's request
+          # file (read only; no file, an unreadable one or nothing servable = no country = nothing is fetched), else exactly as before.
+          if [ "$FROM_REQUESTS" = true ]; then
+            mkdir -p "$RUNNER_TEMP/lr"
+            gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '[.assets[] | {name, updatedAt}]' > "$RUNNER_TEMP/lr/asset-dates.json" || echo '[]' > "$RUNNER_TEMP/lr/asset-dates.json"
+            if grep -q '"layer-requests.json"' "$RUNNER_TEMP/lr/asset-dates.json"; then
+              gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p layer-requests.json -D "$RUNNER_TEMP/lr" --clobber || { rm -f "$RUNNER_TEMP/lr/layer-requests.json"; echo "::warning title=Layer requests::the request file is on the release but could not be downloaded: nothing is fetched"; }
+            fi
+            python3 .github/scripts/kpc_layer_refresh.py plan --job world --requests "$RUNNER_TEMP/lr/layer-requests.json" --want "$WANT" \
+              --asset-dates "$RUNNER_TEMP/lr/asset-dates.json" --receipt "$RUNNER_TEMP/lr/receipt.json" --summary "$GITHUB_STEP_SUMMARY" >> "$GITHUB_OUTPUT" \
+              || { echo 'list=[]' >> "$GITHUB_OUTPUT"; echo "::warning title=Layer requests::the request planner stopped: nothing is fetched"; }
+            exit 0
+          fi
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
           # Nov 7 (world fix part A): + CO ZA CL and Brandon's sheet countries (AX DO ...), the same list the world key builds, so a
@@ -85,6 +112,7 @@ jobs:
           PY
   fetch:
     needs: prepare
+    if: ${{ needs.prepare.outputs.list != '[]' && needs.prepare.outputs.list != '' }}   # Handoff 3: no request to serve = nothing fetched
     runs-on: ubuntu-latest
     timeout-minutes: 300
     strategy:
