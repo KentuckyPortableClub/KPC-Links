@@ -3,9 +3,22 @@
 Owner's call, 16 Nov 2026, 9:37 PM Central: *"write a plan using keeper since it is doing the checks that when
 something out of date it request it ... put that somewhere we won't forget it."*
 
-**Status: PARKED.** Nothing is built. Every layer we hold was downloaded in the last few days, so nothing is
+**Status: WIRED, OFF (Nov 17, see below).** Before that, nothing was built. Every layer we hold was downloaded in the last few days, so nothing is
 stale and there is nothing to refresh yet. Pick this up when a real layer is actually out of date, or before
 the two monthly jobs are ever switched back on.
+
+## Built, off (Nov 17, Handoff 3)
+
+- Cache side (KPC-Links): `.github/scripts/kpc_layer_refresh.py` reads the request file `layer-requests.json` (an asset on the
+  `boundary-cache` release) and names the areas to re-read. `kpc-geo-cache.yml` and `kpc-world-cache.yml` got a `from_requests`
+  box on their by-hand button; ticked, they re-read only those areas with their own fetch, pacing, `save-check` and upload. No
+  request file, an unreadable one, or no row that may be served = nothing is fetched. No schedule block.
+- Keeper side (KPC-Store): a change file, `docs/layer-refresh-keeper-change.md`, for the owner to apply. Not applied.
+- The four rulings are repo variables, all UNSET: `KPC_LR_STALE_DAYS` (R-LR1), `KPC_LR_DYING` (R-LR2), `KPC_LR_CHANGED_READ`
+  (R-LR3), `KPC_LR_WHO` (R-LR4). Unset = nothing extra; with R-LR3 unset every changed-layer row is held, so the wire serves
+  nothing until the owner rules. What each value does: the top of `kpc_layer_refresh.py`.
+- The save unit is the area file (US-XX, W-XX, CA-ALL): a request for one layer re-reads its whole area once. A re-read of only
+  the requested layer inside an area needs a change to the key scripts (rules hash) and is not built.
 
 ## The problem
 

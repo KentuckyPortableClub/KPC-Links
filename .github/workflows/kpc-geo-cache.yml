@@ -3,7 +3,9 @@ name: KPC saved shapes
 # has used, and keeps them as files on the 'boundary-cache' release (not in the repo). After that the answer
 # keys can be rebuilt, and new matching rules tested, from the saved copy in minutes instead of hours.
 # Fable's review, Oct 22: 'nearly all the time is re-downloading the same geometry'.
-# Monthly, plus by hand. Six states at a time so the government servers are not hammered. Never fails.
+# By hand only (no schedule). Six states at a time so the government servers are not hammered. Never fails.
+# Handoff 3 (KPC owner, 2026-11-17): 'from_requests' re-reads only the states named in the keeper's layer requests, with the
+# same fetch, pacing, save-check and upload as below (.claude/notes/layer-refresh.md).
 on:
   # SCHEDULE OFF, Brandon Nov 16 2026 ('the less downloading the less issues'): this job re-read every layer blind
   # (GEO_CACHE_MODE: refresh) on the 3rd of each month, whether or not one line of it had moved. Every layer we hold was
@@ -18,6 +20,10 @@ on:
       states:
         description: 'Only these states (blank = all of them)'
         default: ''
+      from_requests:
+        description: "Serve only the keeper's layer requests (layer-requests.json on the boundary-cache release; none = nothing is fetched)"
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -38,11 +44,37 @@ jobs:
           gh release view boundary-cache -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
           gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' \
             --notes 'Official land outlines saved by the KPC saved shapes workflow, for the boundary answer keys. Not a release of anything.' || { kpc_rc=$?; echo "::warning title=Release::the saved-shapes release could not be made (exit $kpc_rc)"; echo "Release - the saved-shapes release could not be made (exit $kpc_rc)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+      - uses: actions/checkout@v5   # Handoff 3 (layer refresh): only to read the request planner
+        if: ${{ inputs.from_requests }}
+        with:
+          sparse-checkout: .github/scripts
       - name: Split the states into groups
         id: g
         env:
           WANT: ${{ inputs.states }}
+          FROM_REQUESTS: ${{ inputs.from_requests }}
+          GH_TOKEN: ${{ github.token }}
+          # The owner's four layer-refresh rulings (.claude/notes/layer-refresh.md, R-LR1..R-LR4). Repo variables, UNSET until ruled;
+          # unset = nothing extra is fetched. What each one does: .github/scripts/kpc_layer_refresh.py.
+          KPC_LR_STALE_DAYS: ${{ vars.KPC_LR_STALE_DAYS }}
+          KPC_LR_DYING: ${{ vars.KPC_LR_DYING }}
+          KPC_LR_CHANGED_READ: ${{ vars.KPC_LR_CHANGED_READ }}
+          KPC_LR_WHO: ${{ vars.KPC_LR_WHO }}
         run: |
+          # Handoff 3 (KPC owner, 2026-11-17): the keeper asks, this job fetches. With from_requests the list is the keeper's request
+          # file (read only; no file, an unreadable one or nothing servable = no state = nothing is fetched), else exactly as before.
+          if [ "$FROM_REQUESTS" = true ]; then
+            ALL='AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'
+            mkdir -p "$RUNNER_TEMP/lr"
+            gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '[.assets[] | {name, updatedAt}]' > "$RUNNER_TEMP/lr/asset-dates.json" || echo '[]' > "$RUNNER_TEMP/lr/asset-dates.json"
+            if grep -q '"layer-requests.json"' "$RUNNER_TEMP/lr/asset-dates.json"; then
+              gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p layer-requests.json -D "$RUNNER_TEMP/lr" --clobber || { rm -f "$RUNNER_TEMP/lr/layer-requests.json"; echo "::warning title=Layer requests::the request file is on the release but could not be downloaded: nothing is fetched"; }
+            fi
+            python3 .github/scripts/kpc_layer_refresh.py plan --job us --requests "$RUNNER_TEMP/lr/layer-requests.json" --want "$WANT" --known "$ALL" \
+              --asset-dates "$RUNNER_TEMP/lr/asset-dates.json" --receipt "$RUNNER_TEMP/lr/receipt.json" --summary "$GITHUB_STEP_SUMMARY" >> "$GITHUB_OUTPUT" \
+              || { echo 'groups=[]' >> "$GITHUB_OUTPUT"; echo "::warning title=Layer requests::the request planner stopped: nothing is fetched"; }
+            exit 0
+          fi
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
           ALL = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split()
@@ -81,6 +113,7 @@ jobs:
           PY
   fetch:
     needs: prepare
+    if: ${{ needs.prepare.outputs.groups != '[]' && needs.prepare.outputs.groups != '' }}   # Handoff 3: no request to serve = nothing fetched
     runs-on: ubuntu-latest
     timeout-minutes: 340
     strategy:
