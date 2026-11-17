@@ -82,3 +82,30 @@ After the name joins of a state, for every record joined by NAME (not a person's
 (0) wire the switches + hash them (reviewer B #7) -> (4) the scorecard -> (1) the contest -> NO-is-the-land + D1 ->
 (3) NPS codes -> (2) agency table + tie-break -> D3 by label + D7 -> bug fixes -> (5) leftovers list -> (6) world names.
 One offline proof per step on a state that has candidates (OH / WI / AR / CA / MD), then ONE rebuild.
+
+## Owner rulings, 17 Nov 12:25 PM ("Yes") on the three grey areas
+1. A record that names both kinds stays on both parks ('same land, two park numbers'). 2. A bare-name record nobody clearly
+owns leaves every park until a person answers (a pin for a while is fine: 33 parks at most). 3. A near-name world join
+shows as approximate until a person confirms.
+
+## 7. More ideas (Fable, 17 Nov 12:25 PM; counted on the US key + parkinfo activation counts, field 7)
+- **BUSIEST FIRST.** 1,088,509 activations in parkinfo: the top 1,000 parks carry 52% of them, the top 2,000 carry 67%.
+  Among the top 1,000 today: 54 pins, 23 approximate, 28 parks from the person cases. So: (a) every person list (contest
+  ties, near names, leftovers, size list) is sorted by activations, busiest first; (b) the scorecard reports two grades,
+  plain and weighted by activations; (c) the first goal is the top 1,000 parks right. Busiest pins today: Pike NF US-4404
+  (its NO was released today), Gulf Islands National Seashore US-0661 (an NPS code join), Chalco Hills SRA US-4011,
+  Pinelands US-6609; the trail parks at the top are line parks (no outline by nature).
+- **SIZES DISAGREE = a person's list, not a rule.** 69 parks have a name-joined extra record over 3 times their own-name
+  land (extras-bigger-than-park.csv). It cuts both ways: Spring Mountain Ranch SP (539 ac) takes Spring Mountains NRA
+  (321,709 ac) = wrong extra; Washington Crossing (1 ac own, 484 ac 'Historic Park') = the tiny one is the sliver. So the
+  list goes to a person, busiest first; the contest settles most of the wrong extras anyway. Needs reviewer A #9 (measure
+  acres from the shape when a record has none) to see the 0-acre rows.
+- **TRIPWIRE T6: same land through different records.** T1 only sees one record ID on two parks. Twin copies of a layer
+  (Missouri sgmoc / sgmoh, NC ncg / sgncb) put the same land on two parks under different ids. T6 in KPC-Data
+  kpc_tripwires.py: two parks whose outlines are 90%+ the same area and that share no record id = not sure for 2-fers
+  until a person says 'same land, two numbers' or one gives it back. Offline, report only.
+- **TESTED AND DROPPED: the words in the website address** (tnstateparks.com/parks/fort-loudoun as an 'also called' name).
+  10,010 parks have a page of their own; the address words equal a refused record's name for only 6 pins. Not worth a rule.
+  (The site's ADDRESS as the agency, section 2, is the part of the website that pays.)
+- To check, not counted: does anything re-match ONE park when POTA renames it or moves its pin? If not, the keeper's
+  'what changed' list should feed the park-scoped run (KPC_KEY_ONLY_PARKS).
