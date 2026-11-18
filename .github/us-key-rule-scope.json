@@ -304,6 +304,21 @@
     "saved_ids": true
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-17 9:12 PM"
+  },
+  {
+   "id": "2026-11-18-sonnet-grade2",
+   "when": "2026-11-18",
+   "from": "ddce87207dff",
+   "why": "Sonnet's grade of the whole-US rebuild (1,044 changed parks: 981 right, 60 unsure, 3 wrong). The 3 wrong, fixed: (1) the contest read 'State Reservation' as no type word (MA Mount Tom State Reserve lost its pieces): 'reservation' / 'state reserve' are one kind now; (2) R-G8 read 'Autauga County' inside 'Charles D. Kelley Autauga County Wildlife Management Area' as a county: a record holding every word of the park's name and the same kind is that park; (3) a trail park with an official line on file keeps the line, name-joined pieces go to check (MN Browns Creek State Trail).",
+   "scope": {
+    "states": [
+     "US-AL",
+     "US-MA",
+     "US-MN"
+    ],
+    "saved_ids": true
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-18 (owner: get US and Canada to excellent grades)"
   }
  ]
 }

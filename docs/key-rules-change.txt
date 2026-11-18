@@ -1,3 +1,5 @@
+Three fixes from Sonnet's grade of the whole-US rebuild, branch main, Nov 18 2026: US rules ddce87207dff -> e4872e914f08 (FINAL for this change) APPROVED, decided_by KPC owner, 2026-11-18. 'Reservation' / 'State Reserve' one type word; R-G8 lets a record that holds the park's whole name and kind stand; a trail park keeps its official line.
+Why: the grade's 3 wrong rows (MA US-8417, AL US-3679, MN US-9386).
 The eleven new key rules ON for every US state (owner 17 Nov 9:12 PM), branch main, Nov 17 2026: US rules 946a23b1c920 -> ddce87207dff (FINAL for this change) APPROVED, decided_by KPC owner, 2026-11-17. .github/key-switches.json lists every US state the US key builds on each of the eleven switches.
 Why: the owner: 'Wanna just run rest of us? We check it tomorrow?'
 Two fixes from Sonnet's grade of the first new-rule build, branch main, Nov 17 2026: US rules b1ee8bb63a89 -> 946a23b1c920 (FINAL for this change) APPROVED, decided_by KPC owner, 2026-11-17. The second-name-field join needs the record's layer kind to agree with the park; a trail park keeps its official line over an NPS unit-code piece.

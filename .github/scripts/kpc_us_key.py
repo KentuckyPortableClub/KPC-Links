@@ -2660,6 +2660,12 @@ def run(st):
                 STATE_COPY.append(ref)
             elif _cp and _fedweb and len(_cp) == len(m) and p['g'] == 'official':
                 p['g'] = 'approximate'; STATE_COPY.append(ref + ' (only a copy: approximate)')
+        if (m and ref in TRL and ref not in DRIVING_ONLY and _kr('KPC_ONE_RECORD_ONE_PARK') and pathlib.Path(f'data/trails/{ref}.json').exists()
+                and not any(str(x[3]).startswith('reviewed') for x in m)):
+            # Sonnet's grade 18 Nov (Browns Creek State Trail lost its line to two 3-acre 'BROWNS CREEK' pieces): a trail park with an
+            # official trail line on file IS that line (+ POTA's 100-ft band); name-joined pieces go to check, a person's join stays.
+            p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check (trail): the park is its official trail line; this piece was joined by name'] for x in m]
+            p['m'] = m = []
         if not m and ref in TRL and ref not in DRIVING_ONLY and pathlib.Path(f'data/trails/{ref}.json').exists():
             p['m'] = [[f"trl{ref.split('-')[1]}", TRL[ref].get('name') or p.get('n'), 0, f"official trail line ({TRL[ref].get('by')}): the park is the line + POTA's 100-ft band"]]
             p['g'] = 'official'; p['line'] = 1

@@ -630,6 +630,12 @@ def other_place_word(park_name, rec_name):
     if not rw: return ''
     pf = _full(park_name)
     if pf and (' ' + pf + ' ') in (' ' + _full(rec_name) + ' '): return ''
+    # Sonnet's grade 18 Nov: 'Charles D. Kelley Autauga County Wildlife Management Area' IS Charles D. Kelley WMA (the county is only
+    # where it lies): the record holds every word of the park's own name (type words aside) and names the same kind of place.
+    tw = type_words(park_name)
+    pc = _full(re.sub('|'.join(rx for _k, rx in TYPE_WORDS), ' ', str(park_name or '').lower()))
+    rf = ' ' + _full(rec_name) + ' '
+    if pc and all((' ' + w + ' ') in rf for w in pc.split()) and tw and (tw & type_words(rec_name)): return ''
     pw = {OTHER_PLACE[w] for w in pf.split() if w in OTHER_PLACE}
     left = [w for w in rw if w not in pw]
     return left[0] if left else ''
@@ -681,6 +687,7 @@ TYPE_WORDS = [('park', r'state (resort )?park|\bsp\b|\bsrp\b|national park|\bnp\
               ('historic', r'histori|\bshp\b|\bshs\b|\bhs\b|\bnhs\b|\bnhp\b'),
               ('recreation', r'recreation (area|site)|\bsra\b|\bnra\b|\bsrs\b'),
               ('preserve', r'\bpreserve\b|\bdnp\b|\bsnp\b|natural area|\bsna\b|nature reserve'),
+              ('reserve', r'\breservation\b|\bstate reserve\b'),   # Sonnet 18 Nov: Mount Tom State RESERVE = the 'Mount Tom State Reservation' records
               ('wilderness', r'wilderness(?! study)'), ('study', r'study area|\bwsa\b'), ('refuge', r'\brefuge\b|\bnwr\b'),
               ('fishing', r'fishing (lake|area)|\bsfl\b|\bpfl\b|fishing access'), ('monument', r'\bmonument\b'),
               ('conservation', r'conservation area|\bnca\b|\bsca\b'), ('herd', r'\bherd\b|\bhma\b'), ('rma', r'recreation management|\bs?rma\b')]
