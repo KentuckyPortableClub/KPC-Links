@@ -1,3 +1,5 @@
+The eleven new key rules ON for every US state (owner 17 Nov 9:12 PM), branch main, Nov 17 2026: US rules 946a23b1c920 -> ddce87207dff (FINAL for this change) APPROVED, decided_by KPC owner, 2026-11-17. .github/key-switches.json lists every US state the US key builds on each of the eleven switches.
+Why: the owner: 'Wanna just run rest of us? We check it tomorrow?'
 Two fixes from Sonnet's grade of the first new-rule build, branch main, Nov 17 2026: US rules b1ee8bb63a89 -> 946a23b1c920 (FINAL for this change) APPROVED, decided_by KPC owner, 2026-11-17. The second-name-field join needs the record's layer kind to agree with the park; a trail park keeps its official line over an NPS unit-code piece.
 Why: the grade found 12 Ohio wildlife areas, preserves and forests holding state park records, and the North Country Trail losing its line.
 The eleven new key rules ON for AR, DE, GA, MD, MI, OH, RI, TN (owner 17 Nov 7:10 PM), branch main, Nov 17 2026: US rules 8e5a564eff4f -> b1ee8bb63a89 (FINAL for this change) APPROVED, decided_by KPC owner, 2026-11-17. .github/key-switches.json lists the eight states on each switch; every other state keeps them off.

@@ -13,7 +13,7 @@ for a, b, want in (('yaw al debsa', 'yaw al dibsa', True), ('bialowieza', 'bialo
     ck(KR.near_name(a, b) is want, f'near_name({a!r}, {b!r}) is {want}')
 sw = json.load(open(ROOT / '.github' / 'key-switches.json'))['switches']
 for k in ('KPC_WORLD_NEAR_NAME', 'KPC_STATE_COPY', 'KPC_AGENCY_TIE'):
-    ck(KR.DEFAULTS.get(k) == '0' and k in sw and sw[k]['on'] in ([], ['AR', 'DE', 'GA', 'MD', 'MI', 'OH', 'RI', 'TN']), f'{k} is OFF by default and on only where the owner said (17 Nov 7:10 PM)')
+    ck(KR.DEFAULTS.get(k) == '0' and k in sw and sw[k]['on'] in ([], ['AR', 'DE', 'GA', 'MD', 'MI', 'OH', 'RI', 'TN'], sorted(x for x in __import__('kpc_area_hash').US_ALL if x != 'KY')), f'{k} is OFF by default and on only where the owner said (17 Nov 7:10 PM)')
 us = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8'); wk = (ROOT / '.github/scripts/kpc_world_key.py').read_text(encoding='utf-8')
 ck("_kr('KPC_STATE_COPY')" in us and "'compilation'" in us and "not str(x[3]).startswith('reviewed')" in us, "D7 reads the layer label and never moves a person's join")
 ck("_kr('KPC_WORLD_NEAR_NAME')" in wk and "pk['g'] = 'approx'" in wk and 'check (near name)' in wk, 'a near-name join is approximate and asked of a person')

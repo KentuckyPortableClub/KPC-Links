@@ -15,7 +15,9 @@ def check(ok, what): R.append(bool(ok)); print(('PASS ' if ok else 'FAIL ') + wh
 real = json.load(open(ROOT / '.github/key-switches.json'))
 # Owner 17 Nov 7:10 PM: the eleven new rules are ON for the eight tested states only (scope entry 2026-11-17-switch-on-8)
 EIGHT = ['AR', 'DE', 'GA', 'MD', 'MI', 'OH', 'RI', 'TN']
-check(all(v['on'] in ([], EIGHT) for v in real['switches'].values()), "the committed file has each switch off, or on for exactly the owner's eight tested states")
+import kpc_area_hash as _AH
+USALL = sorted(x for x in _AH.US_ALL if x != 'KY')
+check(all(v['on'] in ([], EIGHT, USALL) for v in real['switches'].values()), "the committed file has each switch off, or on for the owner's states (17 Nov: every US state the US key builds)")
 check(set(real['switches']) == {k for k, v in KR.DEFAULTS.items() if v == '0'}, 'every OFF-by-default switch is in the file (and only those)')
 check(KR.on('KPC_NO_ALL_PATHS', env={}, area='OH'), 'the default-ON switch (a NO on every path) stays on')
 
@@ -41,7 +43,7 @@ check(ok, 'an unreadable switch file raises')
 sl = AH.switch_slice(json.load(open(f)), {'NH', 'OH'})
 check(sl == {'NH': ['KPC_ONE_RECORD_ONE_PARK', 'KPC_SAVED_ID_LAND'], 'OH': ['KPC_SAVED_ID_LAND']}, f'the area hash slice: each state only its own switches ({sl})')
 alloff = {'switches': {k: {'on': []} for k in real['switches']}}
-check(AH.switch_slice(alloff, {'NH', 'OH'}) == {} and 'NH' not in AH.switch_slice(real, {'NH', 'OH'}), 'every switch off = no part for any state; a state with none on (NH) gets no part')
+check(AH.switch_slice(alloff, {'NH', 'OH'}) == {} and 'KY' not in AH.switch_slice(real, {'KY', 'OH'}), 'every switch off = no part for any state; a state with none on (KY: its own key) gets no part')
 check('.github/key-switches.json' in AH.SLICED_RULE_FILES and '.github/key-switches.json' in KF.RULE_FILES['us-key'],
       'the switch file is a US rule file and is sliced per state (not hashed whole as shared code)')
 ah = (ROOT / '.github/scripts/kpc_area_hash.py').read_text(encoding='utf-8')
