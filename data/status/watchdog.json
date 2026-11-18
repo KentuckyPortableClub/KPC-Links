@@ -665,18 +665,6 @@
   "kpc-world-pota.yml|2026-11-18T06:17:00+00:00": "2026-11-18T07:09+00:00 started",
   "pages-deploy.yml|2026-11-18T06:41:00+00:00": "2026-11-18T07:09+00:00 started"
  },
- "last": "2026-11-18T07:09+00:00",
- "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 18 06:18 UTC)",
-  "kpc-boards.yml (missed Nov 18 06:44 UTC)",
-  "kpc-bot-queue.yml (missed Nov 18 06:22 UTC)",
-  "kpc-discord-watch.yml (missed Nov 18 05:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 18 06:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 18 06:07 UTC)",
-  "kpc-park-notes.yml (missed Nov 18 06:41 UTC)",
-  "kpc-pota-discord.yml (missed Nov 18 06:19 UTC)",
-  "kpc-research-helpers.yml (missed Nov 18 05:23 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-world-pota.yml (missed Nov 18 06:17 UTC)",
-  "pages-deploy.yml (missed Nov 18 06:41 UTC)"
- ]
+ "last": "2026-11-18T07:50+00:00",
+ "last_restarted": []
 }
