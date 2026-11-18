@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T13:12:27Z",
+ "updated": "2026-11-18T19:05:25Z",
  "week": [
   {
    "name": "AWA Bruce Kelley 1929 QSO Party",
@@ -22,36 +22,6 @@
    "src": "WA7BNM"
   },
   {
-   "name": "A1Club AWT",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003grm2z",
-   "when": "1145Z-1300Z, Nov 18",
-   "segs": [
-    [
-     "2026-11-18T11:45Z",
-     "2026-11-18T13:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gggoi",
-   "when": "1300Z-1400Z, Nov 18",
-   "segs": [
-    [
-     "2026-11-18T13:00Z",
-     "2026-11-18T14:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
    "name": "VHF-UHF FT8 Activity Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ga1c2",
    "when": "1700Z-2100Z, Nov 18",
@@ -67,20 +37,6 @@
    "kinds": [
     "VHF"
    ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 40",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gsgxz",
-   "when": "1700Z-1759Z, Nov 18",
-   "segs": [
-    [
-     "2026-11-18T17:00Z",
-     "2026-11-18T17:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
    "src": "WA7BNM"
   },
   {
@@ -2371,7 +2327,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (33)",
+  "WA7BNM": "ok (30)",
   "CORRAL": "ok (57)"
  }
 }

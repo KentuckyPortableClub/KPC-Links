@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T13:12:19Z",
+ "updated": "2026-11-18T19:04:12Z",
  "stations": [
   {
    "title": "SVARA 50th Birthday",
@@ -121,6 +121,23 @@
    "note": ", SANDPOINT, ID. Quarter Century Wireless Association, Inc.. 3.540/7.035/14.040/21.050/28.050 CW 3.810/7.244/14.262/21.365/SSB 28.325 SSB Standard FT8/FT4 frequencies. Certificate & QSL. John R Kludt, Activity Manager, 1613 POPLAR ST, SANDPOINT, ID 83864-2081."
   },
   {
+   "title": "DECEMBER 3 INTERNATIONAL DAY OF PERSONS WITH DISABILITIES",
+   "start": "2026-12-03",
+   "end": "2026-12-03",
+   "times": "0800Z-1300Z",
+   "call": "TC3DIS",
+   "calls": [
+    "TC3DIS"
+   ],
+   "where": "Kınık, IZMIR, TURKEY",
+   "st": "",
+   "by": "TRAC",
+   "freqs": "7 MHZ 10 MHZ 14 MHZ 21 MHZ",
+   "qsl": "Certificate",
+   "url": "",
+   "note": ", Kınık, IZMIR, TURKEY. TRAC. 7 MHZ 10 MHZ 14 MHZ 21 MHZ . Certificate. TRAC QSL BUREU Güllük / ANTALYA / TURKIYE, P.K.73, Güllük, Passaic 07055, TURKEY."
+  },
+  {
    "title": "W2W Pearl Harbor Day Commemoration",
    "start": "2026-12-04",
    "end": "2026-12-14",
@@ -188,6 +205,23 @@
    "qsl": "Certificate",
    "url": "",
    "note": ", Jacksonville, FL. USS Orleck Amateur Radio Society (OARS). 7.190 7.250 14.250 14.320. Certificate. Kenneth Krull, 6143 Winding Bridge Dr, Jacksonville, FL 32099."
+  },
+  {
+   "title": "Pearl Harbor Remembrance Battleship USS Wisconsin BB-64 on the air",
+   "start": "2026-12-06",
+   "end": "2026-12-06",
+   "times": "1500Z-2030Z",
+   "call": "N4WIS",
+   "calls": [
+    "N4WIS"
+   ],
+   "where": "Norfolk, VA",
+   "st": "VA",
+   "by": "USS Wisconsin Radio Club",
+   "freqs": "7.264, 7.064 14.264, 14.064 21.264, 21.064 28.364, 28.064",
+   "qsl": "QSL",
+   "url": "http://n4wis.org",
+   "note": ", Norfolk, VA. USS Wisconsin Radio Club. 7.264, 7.064 14.264, 14.064 21.264, 21.064 28.364, 28.064. QSL. USS Wisconsin Radio Club (N4WIS) c/o Nauticus, One Waterside Drive, Norfolk, VA 23510."
   },
   {
    "title": "Pearl Harbor Day",
@@ -467,6 +501,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (24)"
+  "ARRL": "ok (26)"
  }
 }
