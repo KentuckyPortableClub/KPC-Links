@@ -554,6 +554,13 @@ def saved_land_moves(ov, by_id, refind):
     return ov, notes
 
 
+def brackets(t):
+    """The words in a name's brackets, as one lower-case string ('Horseshoe Canyon (North) BLM Wilderness Area' -> 'north');
+    '' when there are none. Fable's review of #271: a bracket word that tells two parks apart is part of the name."""
+    import re as _re
+    return ' '.join(' '.join(_re.sub(r"[^\w ]+", ' ', nf(x)).split()) for x in _re.findall(r'\((.*?)\)', str(t or '')))
+
+
 def _full(t):
     """A full name for D9: case and accents aside, brackets and punctuation out, spaces squeezed."""
     import re as _re
@@ -720,8 +727,10 @@ TYPE_WORDS = [('park', r'state (resort )?park|\bsp\b|\bsrp\b|national park|\bnp\
               ('wilderness', r'wilderness(?! study)'), ('study', r'study area|\bwsa\b'), ('refuge', r'\brefuge\b|\bnwr\b'),
               ('fishing', r'fishing (lake|area)|\bsfl\b|\bpfl\b|fishing access'), ('monument', r'\bmonument\b'),
               ('conservation', r'conservation area|\bnca\b|\bsca\b'), ('herd', r'\bherd\b|\bhma\b'), ('rma', r'recreation management|\bs?rma\b')]
-# a layer's own kind (state-gis 'kind', or the US key's kind tags of a national layer) when the record's name carries no type word
-LAYER_TYPE = {'park': 'park', 'sp': 'park', 'wild': 'wildlife', 'wma': 'wildlife', 'forest': 'forest', 'sf': 'forest', 'nf': 'forest',
+# a layer's own kind (state-gis 'kind', or the US key's kind tags of a national layer) when the record's name carries no type word.
+# Fable's review of #271 (18 Nov): the US kind tag 'wild' is WILDERNESS (the two federal wilderness layers); a state layer of kind
+# 'wild' (wildlife) arrives as 'wma' through the US key's SGK table. Before, bare wilderness names were typed 'wildlife'.
+LAYER_TYPE = {'park': 'park', 'sp': 'park', 'wild': 'wilderness', 'wma': 'wildlife', 'forest': 'forest', 'sf': 'forest', 'nf': 'forest',
               'preserve': 'preserve', 'snp': 'preserve', 'nwr': 'refuge', 'hma': 'herd', 'wsa': 'study', 'rma': 'rma', 'nps': 'park'}
 
 
@@ -840,18 +849,32 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None, size=No
     full = _full(record_name)
     w = [r for r, n in names.items() if _full(n) == full]
     if len(w) == 1: return 'win', w[0]
-    if len(w) == len(names) or len({_full(n) for n in names.values()}) == 1:
+    # Fable's review of #271 (18 Nov; Horseshoe Canyon (North) US-5833 / (South) US-5846): a bracket word that differs between the
+    # sharing parks is part of the name. Those parks are never 'the same name' nor 'the same place'; a record carrying one park's
+    # bracket word goes to that park.
+    bw = {r: brackets(n) for r, n in names.items()}
+    split = len(set(bw.values())) > 1
+    if split:
+        rb = brackets(record_name)
+        hit = [r for r in parks if rb and bw[r] == rb]
+        if len(hit) == 1: return 'win', hit[0]
+    if not split and (len(w) == len(names) or len({_full(n) for n in names.values()}) == 1):
         return 'both', None   # every sharing park has the same name: POTA lists one place twice ('same land, two park numbers')
     rs = type_words(record_name)
     ps = {r: type_words(v[0]) | type_words(v[1]) for r, v in parks.items()}
     if rs and re.search(r'\band\b|&|/', str(record_name).lower()) and all(ps[r] & rs for r in parks) and len({frozenset(ps[r] & rs) for r in parks}) == len(parks):
         return 'both', None
-    if not rs: rs = {LAYER_TYPE.get(k, k) for k in layer_kinds} & LAYER_KINDS   # (a) 18 Nov: a bare name's kind is its layer's
+    from_layer = False
     if not rs:
+        rs = {LAYER_TYPE.get(k, k) for k in layer_kinds} & LAYER_KINDS   # (a) 18 Nov: a bare name's kind is its layer's
+        from_layer = bool(rs)
+    k = [r for r in parks if ps[r] & rs] if rs else []
+    if not rs or (from_layer and not k):
+        # a bare name, or a layer kind that fits none of the parks (Fable's review of #271: a title is weaker evidence than land
+        # a park already holds): the bare-name path, size first, then agency, then a person
         g = (size(list(parks)) if size else None) or (agency(list(parks)) if agency else None)
         if g: return 'win', g
         return 'person', 'a bare name with no type word: which park it belongs to is for a person'
-    k = [r for r in parks if ps[r] & rs]
     if len(k) == 1: return 'win', k[0]
     if not k: return 'person', 'the record names a kind of place that none of these parks is'
     if place is not None:
@@ -862,7 +885,7 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None, size=No
     if len(ex) == 1: return 'win', ex[0]
     g = (size(k) if size else None) or (agency(k) if agency else None)
     if g: return 'win', g
-    if place is not None and len(k) == len(parks):
+    if place is not None and len(k) == len(parks) and not split:
         # (b) 18 Nov (West Foster Creek, Longview Saline): only where the contest could not choose, and every park the record is
         # shared with is the same PLACE (the same name once the kind words are left out) and a kind the record has: POTA lists one
         # piece of land under two numbers. Both keep it, labelled 'same land, two park numbers'. A record that fits ONE park's

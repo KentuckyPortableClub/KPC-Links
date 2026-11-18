@@ -67,6 +67,25 @@ check(KR.contest('Kirkpatrick Basin Wildlife Management Area', {'US-13614': ('Ki
       'two places of one kind (North / South) are never same land')
 check("parks[_r]['same_land'] = sorted(" in src and '_x == KR.SAME_LAND' in src, "the key labels both parks 'same_land' with the other park number")
 
+# Fable's review of #271 (18 Nov): bracket words, the wilderness kind word, size before a person
+HC = {'US-5833': ('Horseshoe Canyon (North) BLM Wilderness Area', 'Wilderness Area'), 'US-5846': ('Horseshoe Canyon (South) BLM Wilderness Area', 'Wilderness Area')}
+check(KR.brackets('Horseshoe Canyon (North) BLM Wilderness Area') == 'north' and KR.brackets('Bear Swamp(Cayuga County) State Forest') == 'cayuga county',
+      'bracket words are read (also with no space before the bracket)')
+check(KR.contest('Horseshoe Canyon (North)', HC, norm, ('wsa',)) == ('win', 'US-5833'),
+      "'Horseshoe Canyon (North)' (wsa978) goes to the North park, never to South and never 'same land'")
+check(KR.contest('Horseshoe Canyon', HC, norm, ('wsa',))[0] != 'both', 'two parks told apart by a bracket word are never the same name or the same place')
+check("len({KR.brackets(parks[r].get('n') or '') for r in _rs}) == 1" in src, "the key's same_land label also needs the same bracket words")
+check(KR.LAYER_TYPE['wild'] == 'wilderness', "the US kind tag 'wild' (the federal wilderness layers) is WILDERNESS, not wildlife")
+DC = {'US-6010': ('Deep Creek BLM Wilderness Area', 'Wilderness Area'), 'US-6011': ('Deep Creek North BLM Wilderness Area', 'Wilderness Area')}
+check(KR.contest('Deep Creek North', DC, norm, ('wild',)) == ('win', 'US-6011'), "layer kind ('wild',) alone: bare 'Deep Creek North' (wbl268) goes to Deep Creek North")
+WW = {'US-1': ('Foster Creek Wildlife Area', 'Wildlife Area'), 'US-2': ('Foster Creek BLM Wilderness Area', 'Wilderness Area')}
+check(KR.contest('Foster Creek', WW, norm, ('wild',)) == ('win', 'US-2'), 'a wilderness-layer record never fits a wildlife area of the same name')
+sz = lambda refs: 'US-13126' if 'US-13126' in refs else None
+DM = {'US-10844': ('Diamond BLM Herd Management Area', 'BLM Herd Management Area'), 'US-13126': ('Diamond Complex BLM Herd Management Area', 'BLM Herd Management Area')}
+check(KR.contest('Diamond', DM, norm, ('acec',), None, sz) == ('win', 'US-13126'),
+      'a layer kind that fits none of the parks falls back to the bare-name path: the land a park already holds decides first')
+check(KR.contest('Diamond', DM, norm, ('acec',))[1].startswith('a bare name'), '... and with no size or agency answer it goes to a person as a bare name')
+
 # (c) exact full name in any of the record's names
 lieber = {'OBJECTID': 'sginc3226', 'Unit_Nm': 'Cagles Mill Lake', 'Loc_Nm': 'Lieber State Recreation Area', 'GIS_Acres': 718.0}
 names = {KR._full(n) for n in KR.rec_names(lieber)}
@@ -84,6 +103,17 @@ check(bool(NH.search('National Heritage Area Abraham Lincoln National Heritage A
       'a national heritage area or corridor still gets pin + sits on')
 check('if NATIONAL_HERITAGE_RX.search(' in src, 'D3 tests the national heritage pattern')
 
+import os  # noqa: E402
+_data = pathlib.Path(os.environ.get('DATA') or (ROOT.parent / 'kpc-data'))
+if (_data / 'data/parkinfo').is_dir():
+    _h = []
+    for f in sorted((_data / 'data/parkinfo').glob('US-*.json')):
+        for ref, v in (json.loads(f.read_text(encoding='utf-8')).get('parks') or {}).items():
+            t = f"{v[2] if len(v) > 2 else ''} {v[0]}"
+            if ns['HERITAGE_RX'].search(t) and not NH.search(t): _h.append(ref)
+    check(sorted(set(_h)) == ['US-12413', 'US-12830'], f"the US parks named or typed heritage area / corridor that are NOT national are Spokane Plains Battlefield and Old Ruby, two small Washington state sites (a new one fails this: look at it) ({sorted(set(_h))})")
+else: print('SKIP heritage count: no KPC-Data checkout')
+
 # (e) the designation is the park, written another way
 dc = ns['_dcore']
 check(dc(KR._full('Pats Cabin WSA')).replace(' ', '') == dc(KR._full("Pat's Cabin Wilderness Area")).replace(' ', ''), "'Pats Cabin WSA' IS Pat's Cabin Wilderness Area (wsa1412)")
@@ -93,10 +123,10 @@ check(dc(KR._full('Phipps - Death Hollow ISA')) == dc(KR._full('Phipps-Death Hol
 
 # bookkeeping, by this change's own id
 sc = next((c for c in json.loads((ROOT / '.github/us-key-rule-scope.json').read_text())['changes'] if c.get('id') == '2026-11-18-held-states-contest-d3'), {})
-check(sc.get('from') == '7b1b6740c5e3' and len(sc.get('scope', {}).get('states', [])) == 50 and sc['scope'].get('saved_ids') is True
-      and 'APPROVED' in str(sc.get('approved')), 'scope entry 2026-11-18-held-states-contest-d3 (from the Q1 hash 7b1b6740c5e3, every US state the key builds, saved ids re-matched, approved)')
+check(sc.get('from') == '51840791a6b9' and len(sc.get('scope', {}).get('states', [])) == 50 and sc['scope'].get('saved_ids') is True
+      and 'APPROVED' in str(sc.get('approved')), 'scope entry 2026-11-18-held-states-contest-d3 (from the Q1 hash 51840791a6b9, every US state the key builds, saved ids re-matched, approved)')
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-own = next((x for x in log.splitlines() if 'branch prep/held-states-contest-d3' in x and 'US rules 7b1b6740c5e3 -> ' in x), '')
+own = next((x for x in log.splitlines() if 'branch prep/held-states-contest-d3' in x and 'US rules 51840791a6b9 -> ' in x), '')
 check(bool(own) and 'APPROVED' in own, "this change's own changelog line is there and approved by the owner")
 
 print('ALL PASS' if not FAILS else 'SOME FAILED')
