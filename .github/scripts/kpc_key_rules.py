@@ -73,6 +73,17 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           city, county, town, cemetery, church or airport is 'another kind of place' (to check), unless the park's own
                           name has that word or the record holds the park's full name ('Watkins Lake State Park and County Preserve').
                           Before: 'Tumalo Community School' and 'Ontario High School' were drawn into the state parks. OFF.
+  KPC_WORLD_NEAR_NAME  0  (matching plan section 6; owner YES 17 Nov, grey area 3) world key: a park with no join whose pin is inside ONE
+                          area of a kind that does not disagree, with a nearly identical name (near_name: one or two letters off, or
+                          the same word stems with other endings), joins it as APPROXIMATE and goes on a person's list. OFF.
+  KPC_STATE_COPY       0  (D7, KPC owner 17 Nov 6:06 AM) a record from a state layer D11 labels 'compilation' (a state's copy of other
+                          agencies' units) is not the managing agency's own record: beside the agency's own joined record it goes to
+                          check; alone it stays and the park is graded approximate. A person's join is never moved. OFF.
+  KPC_AGENCY_TIE       0  (matching plan section 2, the agency leg; HQ 17 Nov) in the contest, a record that would go to a person
+                          (a bare name, or it fits more than one park) goes to the ONE park whose POTA website's agency keeps its land
+                          in that record's manager: .github/key-agency-table.json, learned from the person-reviewed joins (website host
+                          -> managers, counted per park). Only when exactly one park's host has the manager on 2+ parks and every other
+                          park's host is in the table with 0. Unknown host = no evidence = a person, as today. OFF.
   KPC_MEASURED_ACRES   0  (Handoff 8 fix 4, reviewer A #9) a joined park with no union acreage ('ac') whose records include one with no
                           acres on file (0) gets 'ac' measured from the saved shapes (records with acres on file count their own acres),
                           and 'ac_how' = 'measured' says so. The join rows are not changed. Plain Python, no shapely. OFF.
@@ -98,13 +109,13 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           entry a person puts in overrides.json), only when the record really has separate tracts, and only
                           when the park's pin is inside its tract (or within 30 m of it). Everything else stays rule 18 (a pin).
 """
-import os, re, unicodedata
+import json, os, re, unicodedata
 
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
-            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0'}
+            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0'}
 
 
 # Reviewer B #7 (KPC owner, 2026-11-17): the switches live in .github/key-switches.json (a US rule file, sliced per area), so a
@@ -684,9 +695,76 @@ def type_words(s):
     return {k for k, rx in TYPE_WORDS if re.search(rx, t)}
 
 
-def contest(record_name, parks, place=None, layer_kinds=()):
+AGENCY_TABLE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'key-agency-table.json')
+_AGT = {}
+
+
+def agency_table(path=None):
+    """{host: {manager: parks, '_parks': n}} from .github/key-agency-table.json; {} when missing (no evidence, nothing decided)."""
+    path = path or AGENCY_TABLE
+    if path not in _AGT:
+        try:
+            with open(path, encoding='utf-8') as f: _AGT[path] = (json.load(f) or {}).get('hosts') or {}
+        except (OSError, ValueError): _AGT[path] = {}
+    return _AGT[path]
+
+
+def web_host(u):
+    """The host of a POTA website ('https://www.fws.gov/refuge/x' -> 'fws.gov'), as kpc_agency_table.py counts it."""
+    import urllib.parse
+    h = urllib.parse.urlparse(str(u or '')).netloc.lower().split(':')[0]
+    return h[4:] if h.startswith('www.') else h
+
+
+def _lev(a, b, cap=3):
+    """Edit distance between a and b, stopping at cap."""
+    if abs(len(a) - len(b)) >= cap: return cap
+    prev = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        cur = [i]
+        for j, cb in enumerate(b, 1): cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (ca != cb)))
+        if min(cur) >= cap: return cap
+        prev = cur
+    return min(prev[-1], cap)
+
+
+def near_name(a, b):
+    """World near names (Fable's rule sheet): two cleaned names that are NOT equal but nearly the same: one or two letters off
+    (both at least 6 letters; a number never differs), or the same words with other endings (each word pair shares its first
+    5 letters and differs only in its last 3). A name inside a longer name is not near."""
+    a, b = ' '.join(str(a or '').split()), ' '.join(str(b or '').split())
+    if not a or not b or a == b: return False
+    if re.findall(r'\d+', a) != re.findall(r'\d+', b): return False
+    if min(len(a), len(b)) >= 6 and _lev(a, b) <= 2: return True
+    wa, wb = a.split(), b.split()
+    if len(wa) != len(wb): return False
+    def st(x, y):
+        n = 0
+        while n < min(len(x), len(y)) and x[n] == y[n]: n += 1
+        return x == y or (n >= 5 and max(len(x), len(y)) - n <= 3)
+    return all(st(x, y) for x, y in zip(wa, wb))
+
+
+def agency_pick(manager, hosts, table, min_parks=2):
+    """KPC_AGENCY_TIE: hosts = {ref: website host}. The one ref whose host has `manager` on min_parks+ parks while every other
+    ref's host is in the table with none of it; else None (unknown host, two hosts that fit, no manager)."""
+    if not manager or not hosts: return None
+    fit, known = {}, True
+    for r, h in hosts.items():
+        t = table.get(h) if h else None
+        if t is None: known = False; continue
+        fit[r] = int(t.get(str(manager)) or 0)
+    w = [r for r, n in fit.items() if n >= min_parks]
+    if len(w) != 1 or not known: return None
+    if len({hosts[r] for r in hosts}) < 2: return None    # one agency on every side: the website cannot tell them apart
+    if any(n > 0 for r, n in fit.items() if r != w[0]): return None
+    return w[0]
+
+
+def contest(record_name, parks, place=None, layer_kinds=(), agency=None):
     """parks: {ref: (park name, park type)} of the parks a record is joined to by name. -> ('win', ref) | ('both', None) |
-    ('person', why). place(s) = the US key's norm() (place words only), used to break a tie between two parks of the same kind."""
+    ('person', why). place(s) = the US key's norm() (place words only), used to break a tie between two parks of the same kind.
+    agency(refs) -> ref or None (KPC_AGENCY_TIE: the record's manager vs the parks' websites) is asked before a 'person' answer."""
     names = {r: str(v[0] or '') for r, v in parks.items()}
     full = _full(record_name)
     w = [r for r, n in names.items() if _full(n) == full]
@@ -698,7 +776,10 @@ def contest(record_name, parks, place=None, layer_kinds=()):
     if rs and re.search(r'\band\b|&|/', str(record_name).lower()) and all(ps[r] & rs for r in parks) and len({frozenset(ps[r] & rs) for r in parks}) == len(parks):
         return 'both', None
     if not rs: rs = {LAYER_TYPE[k] for k in layer_kinds if k in LAYER_TYPE}
-    if not rs: return 'person', 'a bare name with no type word: which park it belongs to is for a person'
+    if not rs:
+        g = agency(list(parks)) if agency else None
+        if g: return 'win', g
+        return 'person', 'a bare name with no type word: which park it belongs to is for a person'
     k = [r for r in parks if ps[r] & rs]
     if len(k) == 1: return 'win', k[0]
     if not k: return 'person', 'the record names a kind of place that none of these parks is'
@@ -708,4 +789,6 @@ def contest(record_name, parks, place=None, layer_kinds=()):
         if len(eq) == 1: return 'win', eq[0]
     ex = [r for r in k if ps[r] == rs]
     if len(ex) == 1: return 'win', ex[0]
+    g = agency(k) if agency else None
+    if g: return 'win', g
     return 'person', 'the record fits more than one of these parks'

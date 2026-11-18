@@ -901,7 +901,7 @@ try:
             if not _u or not _l.get('nm') or _u in _have or not re.search(r'/\d+$', _u): continue
             # prefix = letters only ('sgfla'): the website splits an id into prefix + number with /^[a-z]+/
             XS.append((_pre(_st, _u), _u + '/query', _l['nm'], '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st},
-                       {'water': bool(_l.get('water')), 'where': _l.get('where') or '1=1', 'nm2': _l.get('nm2') or ''}))
+                       {'water': bool(_l.get('water')), 'where': _l.get('where') or '1=1', 'nm2': _l.get('nm2') or '', 'what': _l.get('what') or ''}))
 except Exception as _e: print(f'state-gis.json not read: {_e}', flush=True)  # noqa: BLE001
 RESOLVED = {}
 SFIELDS = {}   # Nov 6: prefix -> the layer's field list (read by resolve(), which already asks the layer for it)
@@ -1167,10 +1167,15 @@ EASEMENT_HELD = []
 LEASE_RX = re.compile(r'\bagreement\b|\blease[ds]?\b|cooperative (?:wildlife|management|area)', re.I)   # D5 (KPC owner, 2026-11-17)
 LAKE_TYPE_RX = re.compile(r'fishing lake|reservoir|\blakes?\b|\bpond', re.I)   # D4: a park TYPE that says it is the lake
 LEASE_HELD, LAKE_HELD = [], []
-DESIG_HELD, SITS_ON = [], []   # D3 (KPC owner, 2026-11-17 10:00 AM)
+DESIG_HELD, SITS_ON, STATE_COPY = [], [], []   # D3; D7 STATE_COPY (KPC owner, 2026-11-17 10:00 AM)
 # D3: the FEDERAL designation layers (a line drawn by a law or a plan): Forest Service designated areas, BLM monuments / NCAs,
 # wilderness (FS + BLM), BLM study areas. State layers labelled 'designation' (D11) join this list with D7, when 'what' is read.
 DESIG_PRE = {'fsod', 'nca', 'wld', 'wbl', 'wsa'}
+def _what(rid):
+    """D11's label of the state layer a record comes from ('owned' / 'designation' / 'water' / 'register' / 'compilation'; '' = none)."""
+    _m = re.match(r'[a-z]+', str(rid))
+    if not _m: return ''
+    return next(((x[8] or {}).get('what') or '' for x in XS if len(x) > 8 and x[0] == _m.group(0) and isinstance(x[8], dict)), '')
 DESIG_KIND = {'wld': {'wild'}, 'wbl': {'wild'}, 'wsa': {'wsa'}, 'nca': {'nps', 'ca'}}   # the kind a layer's bare record names carry
 HERITAGE_RX = re.compile(r'heritage (area|corridor)', re.I)
 DESIG_WORDS = frozenset('blm usfs nps wsa isa wilderness study instant area areas national monument conservation nca recreation nra the'.split())
@@ -2444,7 +2449,7 @@ def run(st):
     held_g, pin_wrong = [], []
     g8 = []
     EASEMENT_HELD.clear(); EASEMENT_KEPT.clear()
-    LEASE_HELD.clear(); LAKE_HELD.clear(); DESIG_HELD.clear(); SITS_ON.clear()
+    LEASE_HELD.clear(); LAKE_HELD.clear(); DESIG_HELD.clear(); SITS_ON.clear(); STATE_COPY.clear()
     def _g8tok(s):
         s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
         s = re.sub(r'\bft\b', 'fort', re.sub(r'\bmt\b', 'mount', re.sub(r'\bst\b', 'saint', s)))
@@ -2530,7 +2535,8 @@ def run(st):
                 _pk = kinds(p.get('n') or '') | kinds(p.get('t') or '')
                 def _desig(x):
                     _pre = re.match(r'[a-z]+', str(x[0]))
-                    return (_pre is not None and _pre.group(0) in DESIG_PRE) or (gs_.get(str(x[0])) or {}).get('Category') == 'Designation'
+                    return ((_pre is not None and _pre.group(0) in DESIG_PRE) or (gs_.get(str(x[0])) or {}).get('Category') == 'Designation'
+                            or _what(x[0]) == 'designation')   # D3 by D11's labels (HQ 17 Nov): a state layer labelled a designation line
                 def _is_it(x):   # the park IS the designation: the record's own name begins the park's name, or the same kind of place
                     _rn, _pn = KR._full(x[1]), KR._full(p.get('n') or '')
                     if _rn and (_pn == _rn or _pn.startswith(_rn + ' ')): return True
@@ -2630,12 +2636,24 @@ def run(st):
             pin_wrong.append(ref); p['pin_may_be_wrong'] = 1
         p['g'] = ('pin' if not m else 'approximate' if any(str(x[3]).startswith('reviewed-approx') for x in m) or all(str(x[3]).split(' · ')[0] in WEAK and not (_pw and _pw == words(x[1])) for x in m) else 'official')
         if m and all('water outline only' in str(x[3]) for x in m): p['g'] = 'approximate'   # Oct 31 (Fable #25): a lake surface is not the park's land line
+        if m and _kr('KPC_STATE_COPY'):
+            # D7 (KPC owner, 17 Nov 6:06 AM): a state layer's COPY of a federal or other agency's unit (a layer D11 labels
+            # 'compilation') is not the agency's own record. Beside the agency's own joined record the copy goes to check; alone it
+            # stays and the park is graded approximate. A person's own join is never moved.
+            _cp = [x for x in m if _what(x[0]) == 'compilation' and not str(x[3]).startswith('reviewed')]
+            if _cp and len(_cp) < len(m):
+                p['m'] = m = [x for x in m if x not in _cp]
+                p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check (D7): a compilation copy; the managing agency\'s own record is joined'] for x in _cp]
+                STATE_COPY.append(ref)
+            elif _cp and p['g'] == 'official':
+                p['g'] = 'approximate'; STATE_COPY.append(ref + ' (only a copy: approximate)')
         if not m and ref in TRL and ref not in DRIVING_ONLY and pathlib.Path(f'data/trails/{ref}.json').exists():
             p['m'] = [[f"trl{ref.split('-')[1]}", TRL[ref].get('name') or p.get('n'), 0, f"official trail line ({TRL[ref].get('by')}): the park is the line + POTA's 100-ft band"]]
             p['g'] = 'official'; p['line'] = 1
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
     if EASEMENT_HELD: notice(f'US key {st}', f"conservation easement records not joined by name alone (item 5): {len(EASEMENT_HELD)} piece(s) moved to CHECK: {', '.join(EASEMENT_HELD[:10])}")
     if LEASE_HELD: notice(f'US key {st}', f"D5 leased / agreement records not joined by name alone: {len(LEASE_HELD)} piece(s) to CHECK: {', '.join(LEASE_HELD[:10])}")
+    if STATE_COPY: notice(f'US key {st}', f"D7 compilation copies: {len(STATE_COPY)} park(s): {', '.join(STATE_COPY[:10])}")
     if DESIG_HELD: notice(f'US key {st}', f"D3 designation lines sent to CHECK (drawn only for the park that is the designation): {len(DESIG_HELD)} piece(s): {', '.join(DESIG_HELD[:10])}")
     if SITS_ON: notice(f'US key {st}', f"D3 heritage areas shown as pin + sits on: {len(SITS_ON)} park(s): {', '.join(SITS_ON[:10])}")
     if LAKE_HELD: notice(f'US key {st}', f"D4 lake surfaces sent to CHECK (who owns the water decides): {len(LAKE_HELD)} piece(s): {', '.join(LAKE_HELD[:10])}")
@@ -2865,14 +2883,18 @@ def run(st):
                 _rs = [r for r in _rs if any(str(q[0]) == _id for q in parks[r].get('m') or []) and _id not in (parks[r].get('parts') or {})]
                 if len(_rs) < 2: continue
                 _qn = next(q[1] for q in parks[_rs[0]]['m'] if str(q[0]) == _id)
-                _v, _x = KR.contest(_qn, {r: (parks[r].get('n') or '', parks[r].get('t') or '') for r in _rs}, norm, _lk(_id))
+                _ag = None
+                if _kr('KPC_AGENCY_TIE'):   # matching plan section 2: the record's manager vs the parks' POTA websites (learned table)
+                    _mg = (gs_.get(_id) or {}).get('Mang_Name')
+                    _ag = lambda refs, _mg=_mg: KR.agency_pick(_mg, {r: KR.web_host((P.get(r) or [None, ''])[1] if len(P.get(r) or []) > 1 else '') for r in refs}, KR.agency_table())
+                _v, _x = KR.contest(_qn, {r: (parks[r].get('n') or '', parks[r].get('t') or '') for r in _rs}, norm, _lk(_id), _ag)
                 if _v == 'both': continue
                 for _r in _rs:
                     if _v == 'win' and _r == _x: continue
                     _p = parks[_r]; _q = [q for q in _p['m'] if str(q[0]) == _id]
                     _p['m'] = [q for q in _p['m'] if str(q[0]) != _id]
                     if not _p['m']: _p['g'] = 'pin'
-                    _why = (f'check (contest): this record fits {_x} better (its own type words)' if _v == 'win'
+                    _why = (f'check (contest): this record fits {_x} better (its own type words, or its manager is {_x}\'s agency)' if _v == 'win'
                             else f"check (contest): shared with {', '.join(r for r in _rs if r != _r)}; {_x}: a person decides")
                     _p['c'] = [list(q[:3]) + [_why] for q in _q] + (_p.get('c') or [])
                     (_won if _v == 'win' else _person).append(_r)

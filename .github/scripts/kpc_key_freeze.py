@@ -42,7 +42,7 @@ REPO = 'KentuckyPortableClub/KPC-Data'
 # decide a join): kpc_host_pace.py (request pacing), kpc_save.py (file writer), the issue / answers / layers / lost-finds helpers.
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 VERSION_FILE = '.github/key-rules-version.json'
-RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_key_rules.py', '.github/scripts/kpc_match.py', '.github/key-switches.json'],
+RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_key_rules.py', '.github/scripts/kpc_match.py', '.github/key-switches.json', '.github/key-agency-table.json'],
               'ca-key': ['.github/scripts/kpc_ca_key.py', '.github/scripts/kpc_ca_fill_bounds.py', '.github/scripts/kpc_ca_hardlook.py'],
               'world-key': ['.github/scripts/kpc_world_key.py', '.github/scripts/kpc_match.py',
                             '.github/scripts/kpc_number_rules.py'],   # next round v3 C10: same_name's one-side number test (world only; not US)
@@ -78,7 +78,7 @@ RULE_FILES['us-key'].append('data/state-gis.json')
 RULE_FILES['ca-key'].append('.github/scripts/kpc_pin_fill.py')
 RULE_FILES['world-key'].append('.github/scripts/kpc_pin_fill.py')
 RULE_FILES['world-key'].append('.github/scripts/kpc_jp_crosswalk.py')
-NOT_RULES = {'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_keep_main.py', 'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
+NOT_RULES = {'kpc_agency_table.py', 'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_keep_main.py', 'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',
              'kpc_join_check.py',

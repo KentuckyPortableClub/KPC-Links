@@ -1,0 +1,909 @@
+{
+ "about": "Learned by .github/scripts/kpc_agency_table.py from the person-reviewed joins: host of the POTA website -> count of parks whose reviewed land is in that manager's records (_parks = parks counted). Read by the contest tie-break (kpc_key_rules.agency_pick, switch KPC_AGENCY_TIE). Do not edit by hand: run the script again.",
+ "learned": "2026-11-17",
+ "hosts": {
+  "agfc.com": {
+   "_parks": 13,
+   "SFW": 8,
+   "OTHS": 3,
+   "SGARA": 3,
+   "SPR": 1,
+   "USFS": 1
+  },
+  "agriculture.delaware.gov": {
+   "SGDEA": 3,
+   "_parks": 3
+  },
+  "alabamaforeverwild.com": {
+   "_parks": 8,
+   "SGALC": 6,
+   "SDNR": 2
+  },
+  "alltrails.com": {
+   "_parks": 3,
+   "SGMEA": 1,
+   "SGSCC": 1,
+   "SPR": 1,
+   "UNK": 1
+  },
+  "apps.web.maine.gov": {
+   "_parks": 12,
+   "SGMEA": 9,
+   "SPR": 3
+  },
+  "arcg.is": {
+   "_parks": 4,
+   "SGORA": 3,
+   "CITY": 1,
+   "IND": 1,
+   "SGINA": 1
+  },
+  "arcgis.com": {
+   "_parks": 45,
+   "SGIAA": 43,
+   "SGIAC": 3,
+   "SGNHB": 1,
+   "UNK": 1
+  },
+  "arkansasheritage.com": {
+   "_parks": 3,
+   "OTHS": 1,
+   "SFW": 1,
+   "SGARA": 1,
+   "SPR": 1
+  },
+  "arkansasstateparks.com": {
+   "_parks": 37,
+   "SGARB": 35,
+   "SPR": 3
+  },
+  "azgfd.com": {
+   "_parks": 2,
+   "SFW": 1,
+   "SGAZC": 1
+  },
+  "azstateparks.com": {
+   "_parks": 19,
+   "SGAZA": 16,
+   "SGAZE": 3,
+   "HMA": 1
+  },
+  "blm.gov": {
+   "_parks": 127,
+   "RST": 54,
+   "SGAKG": 44,
+   "RMA": 22,
+   "SGAKH": 20,
+   "WSA": 17,
+   "SGNMC": 11,
+   "WBL": 9,
+   "SGORF": 7,
+   "SGIDC": 4,
+   "SGCOE": 3,
+   "HMA": 2,
+   "NCA": 2,
+   "SGAZF": 2,
+   "SGNVH": 2,
+   "SGNVI": 2,
+   "SGWAD": 2,
+   "SGWYD": 2,
+   "OTHS": 1,
+   "SFW": 1,
+   "SGAKI": 1,
+   "SGCAD": 1,
+   "SGNVB": 1,
+   "SGNVF": 1,
+   "SGORE": 1,
+   "SGORG": 1,
+   "SPR": 1
+  },
+  "conservationgis.alabama.gov": {
+   "_parks": 19,
+   "SGALC": 16,
+   "SDNR": 2,
+   "SDOL": 1,
+   "SFW": 1,
+   "SGALB": 1
+  },
+  "cpw.state.co.us": {
+   "_parks": 49,
+   "SGCOB": 37,
+   "SGCOC": 5,
+   "COW": 4,
+   "SFW": 4,
+   "SGCOA": 1,
+   "SLB": 1,
+   "SPR": 1
+  },
+  "dcnr.pa.gov": {
+   "_parks": 124,
+   "SGPAA": 118,
+   "SGPAE": 6,
+   "SPR": 5,
+   "SGPAB": 1
+  },
+  "dcr.virginia.gov": {
+   "_parks": 50,
+   "SGVAD": 27,
+   "SGVAB": 15,
+   "SGVAC": 7,
+   "SGVAE": 1,
+   "UNK": 1
+  },
+  "dec.ny.gov": {
+   "_parks": 20,
+   "SDC": 18,
+   "SGNYA": 16
+  },
+  "dem.ri.gov": {
+   "SGRIA": 3,
+   "_parks": 3
+  },
+  "dep.nj.gov": {
+   "_parks": 17,
+   "SGNJB": 16,
+   "SFW": 2
+  },
+  "destateparks.com": {
+   "_parks": 18,
+   "SGDEA": 17,
+   "SGDED": 1
+  },
+  "dlnr.hawaii.gov": {
+   "_parks": 41,
+   "SGHIA": 25,
+   "SGHIB": 15,
+   "SPR": 6,
+   "SGHIC": 3,
+   "SDNR": 2,
+   "OTHS": 1
+  },
+  "dnr.alaska.gov": {
+   "_parks": 3,
+   "OTHS": 1,
+   "SGAKA": 1,
+   "SGAKB": 1,
+   "SGAKE": 1,
+   "SGAKF": 1
+  },
+  "dnr.illinois.gov": {
+   "_parks": 117,
+   "SGILA": 97,
+   "SGILB": 14,
+   "SDNR": 8,
+   "SGILD": 4,
+   "OTHS": 2,
+   "SDC": 2,
+   "SGILC": 1
+  },
+  "dnr.maryland.gov": {
+   "_parks": 8,
+   "UNK": 6,
+   "MDD": 1,
+   "SDNR": 1,
+   "SGMDA": 1,
+   "SGMDB": 1
+  },
+  "dnr.sc.gov": {
+   "SGSCA": 2,
+   "_parks": 2
+  },
+  "dnr.state.mn.us": {
+   "_parks": 111,
+   "SGMND": 48,
+   "SGMNA": 45,
+   "SGMNB": 8,
+   "SGMNF": 3,
+   "SPR": 3,
+   "SDNR": 2,
+   "SFW": 2,
+   "OTHS": 1
+  },
+  "dnr.wa.gov": {
+   "SDNR": 5,
+   "_parks": 5
+  },
+  "dnr.wisconsin.gov": {
+   "_parks": 156,
+   "WID": 127,
+   "SDNR": 35,
+   "SGWIA": 22,
+   "SGWID": 20,
+   "SGWIC": 15,
+   "SGWIB": 4,
+   "SGWIF": 2,
+   "MID": 1
+  },
+  "dnrec.maps.arcgis.com": {
+   "SFW": 2,
+   "SGDEA": 2,
+   "_parks": 2,
+   "OTHS": 1,
+   "SGDEC": 1,
+   "SGDEE": 1,
+   "UNK": 1
+  },
+  "dnrhistoric.illinois.gov": {
+   "SGILA": 16,
+   "_parks": 16,
+   "OTHS": 2
+  },
+  "documents.dnrec.delaware.gov": {
+   "SGDEA": 14,
+   "_parks": 14
+  },
+  "dof.virginia.gov": {
+   "SGVAA": 22,
+   "_parks": 22
+  },
+  "dwr.virginia.gov": {
+   "SGVAE": 5,
+   "_parks": 5
+  },
+  "dwrapps.utah.gov": {
+   "_parks": 26,
+   "UTW": 22,
+   "SFW": 4,
+   "SGUTB": 1
+  },
+  "emnrd.nm.gov": {
+   "SGNMB": 27,
+   "_parks": 27
+  },
+  "en.wikipedia.org": {
+   "_parks": 10,
+   "SGNYB": 5,
+   "SPR": 4,
+   "SGAKH": 1,
+   "WBL": 1
+  },
+  "experience.arcgis.com": {
+   "_parks": 4,
+   "SFW": 1,
+   "SGDEA": 1,
+   "SGDEE": 1,
+   "SGINA": 1,
+   "SGNHB": 1
+  },
+  "fdacs.gov": {
+   "SGFLB": 29,
+   "_parks": 29
+  },
+  "floridastateparks.org": {
+   "_parks": 158,
+   "SGFLA": 155,
+   "SPR": 6,
+   "FNL": 5
+  },
+  "forestry.alaska.gov": {
+   "SGAKC": 3,
+   "_parks": 3,
+   "SDNR": 1
+  },
+  "fpr.vermont.gov": {
+   "_parks": 25,
+   "SGVTA": 24,
+   "UNK": 3
+  },
+  "fs.usda.gov": {
+   "_parks": 19,
+   "USFS": 9,
+   "FWSR": 2,
+   "SGNVG": 2,
+   "WLD": 2,
+   "HMA": 1,
+   "SGIDD": 1,
+   "SGILA": 1,
+   "SGMTD": 1,
+   "SGVAE": 1,
+   "USACE": 1
+  },
+  "fwp.mt.gov": {
+   "_parks": 47,
+   "SGMTA": 46,
+   "SFW": 1,
+   "SGMTD": 1
+  },
+  "fws.gov": {
+   "_parks": 72,
+   "FWS": 28,
+   "SGVAE": 10,
+   "SGILA": 8,
+   "SGHIB": 7,
+   "SGIAC": 5,
+   "SGNVB": 5,
+   "SGMTD": 3,
+   "SGALC": 2,
+   "SGAZD": 2,
+   "SGMNG": 2,
+   "NHC": 1,
+   "SGIAA": 1,
+   "SGNHA": 1,
+   "SGNHD": 1,
+   "SGWAH": 1,
+   "UTW": 1
+  },
+  "gastateparks.org": {
+   "_parks": 47,
+   "SGGAB": 46,
+   "SDNR": 1
+  },
+  "gatrees.org": {
+   "_parks": 3,
+   "SDNR": 2,
+   "SGGAA": 1,
+   "SGGAC": 1
+  },
+  "geohub.oregon.gov": {
+   "SGORA": 5,
+   "_parks": 5,
+   "CITY": 1,
+   "OSP": 1,
+   "SGORB": 1,
+   "SGORD": 1,
+   "SGORE": 1
+  },
+  "georgiawildlife.com": {
+   "_parks": 111,
+   "SGGAA": 102,
+   "SDNR": 7,
+   "SGGAC": 5
+  },
+  "gf.nd.gov": {
+   "_parks": 57,
+   "SGNDA": 56,
+   "SFW": 3
+  },
+  "gfp.sd.gov": {
+   "_parks": 4,
+   "SPR": 3,
+   "SGSDA": 1
+  },
+  "gismaps.outdoornebraska.gov": {
+   "SGNEB": 3,
+   "_parks": 3
+  },
+  "historicsites.nc.gov": {
+   "SGNCA": 3,
+   "UNK": 3,
+   "_parks": 3
+  },
+  "history.nd.gov": {
+   "SGAKI": 5,
+   "_parks": 5
+  },
+  "huntillinois.org": {
+   "_parks": 19,
+   "SGILA": 16,
+   "SDNR": 5,
+   "SGILD": 2
+  },
+  "idfg.id.gov": {
+   "SFW": 2,
+   "_parks": 2
+  },
+  "idfg.idaho.gov": {
+   "_parks": 24,
+   "SGIDA": 23,
+   "SFW": 1
+  },
+  "in.gov": {
+   "_parks": 107,
+   "SGINA": 86,
+   "IND": 10,
+   "SGINB": 4,
+   "USACE": 4,
+   "SGIDE": 3,
+   "OTHS": 1,
+   "SDNR": 1,
+   "SFW": 1,
+   "SGINC": 1,
+   "SPR": 1
+  },
+  "iowadnr.gov": {
+   "_parks": 74,
+   "SGIAB": 40,
+   "SGIAA": 33,
+   "SGIAC": 1
+  },
+  "iowadnr.maps.arcgis.com": {
+   "_parks": 2,
+   "SGIAA": 1,
+   "SGIAB": 1
+  },
+  "ksoutdoors.com": {
+   "_parks": 2,
+   "CNTY": 1,
+   "OTHS": 1,
+   "SGKSC": 1
+  },
+  "ksoutdoors.gov": {
+   "_parks": 3,
+   "SGKSA": 2,
+   "SGKSC": 2,
+   "OTHS": 1,
+   "SFW": 1
+  },
+  "maine.gov": {
+   "_parks": 11,
+   "SGMEB": 7,
+   "SGMEA": 2,
+   "SPR": 2,
+   "SGMEC": 1,
+   "UNK": 1
+  },
+  "maine.maps.arcgis.com": {
+   "_parks": 9,
+   "SGMEB": 8,
+   "SGMEA": 1
+  },
+  "mainetrailfinder.com": {
+   "_parks": 2,
+   "SFW": 1,
+   "SPR": 1
+  },
+  "map.mysuwanneeriver.com": {
+   "_parks": 14,
+   "SGFLD": 13,
+   "CNTY": 1,
+   "FNL": 1,
+   "RWD": 1
+  },
+  "mapcarta.com": {
+   "_parks": 2,
+   "SGHIB": 1,
+   "SGMEB": 1
+  },
+  "maps.app.goo.gl": {
+   "_parks": 6,
+   "SGORA": 2,
+   "CITY": 1,
+   "OSP": 1,
+   "RMA": 1,
+   "RST": 1,
+   "SGIDE": 1,
+   "SGORB": 1
+  },
+  "maps.dsl.state.or.us": {
+   "_parks": 3,
+   "SGORA": 2,
+   "CITY": 1,
+   "SGORB": 1,
+   "SGORD": 1
+  },
+  "mass.gov": {
+   "UNK": 3,
+   "_parks": 3,
+   "SGMAA": 2,
+   "SGMAB": 1,
+   "SGMAD": 1
+  },
+  "mdc.mo.gov": {
+   "_parks": 145,
+   "SGMOC": 77,
+   "SGMOH": 76,
+   "SGMOF": 37,
+   "SGMOD": 22,
+   "UNK": 17,
+   "MOL": 7,
+   "SGMOA": 1,
+   "SGMOG": 1
+  },
+  "mdwfp.com": {
+   "_parks": 4,
+   "SGIDE": 2,
+   "MSZW": 1,
+   "UNK": 1
+  },
+  "michigan.gov": {
+   "MID": 4,
+   "_parks": 4,
+   "SDNR": 1
+  },
+  "michigandnr.com": {
+   "_parks": 22,
+   "SGMIB": 19,
+   "SFW": 6,
+   "FWS": 1,
+   "MID": 1,
+   "SDNR": 1
+  },
+  "mostateparks.com": {
+   "_parks": 80,
+   "SGMOA": 78,
+   "UNK": 3
+  },
+  "myfwc.com": {
+   "_parks": 3,
+   "RWD": 1,
+   "SGFLB": 1,
+   "SGFLD": 1,
+   "SGFLF": 1,
+   "SGFLG": 1
+  },
+  "myfwp.mt.gov": {
+   "SGMTB": 25,
+   "_parks": 25
+  },
+  "myodfw.com": {
+   "_parks": 7,
+   "SGORC": 4,
+   "SGORD": 2,
+   "SGIDE": 1
+  },
+  "ncparks.gov": {
+   "_parks": 10,
+   "SGNCD": 7,
+   "UNK": 2,
+   "SGNCA": 1
+  },
+  "ncwildlife.gov": {
+   "_parks": 10,
+   "SGNCC": 9,
+   "SGNCB": 2
+  },
+  "ncwildlife.org": {
+   "SGNCC": 13,
+   "_parks": 13,
+   "SGNCB": 1
+  },
+  "ndow.org": {
+   "SGNVA": 5,
+   "_parks": 5
+  },
+  "nebraskabirdingtrails.com": {
+   "_parks": 3,
+   "SGNEB": 2,
+   "FWS": 1
+  },
+  "nhfg.maps.arcgis.com": {
+   "SGNHB": 5,
+   "_parks": 5
+  },
+  "nhstateparks.org": {
+   "_parks": 7,
+   "NHC": 4,
+   "SGNHA": 3,
+   "UNK": 2,
+   "SDNR": 1,
+   "SGNHC": 1,
+   "SGNHD": 1
+  },
+  "nj.gov": {
+   "_parks": 41,
+   "SGNJB": 40,
+   "SDNR": 1,
+   "SFW": 1
+  },
+  "njpalisades.org": {
+   "REG": 2,
+   "_parks": 2
+  },
+  "njparksandforests.org": {
+   "SGNJB": 3,
+   "_parks": 3
+  },
+  "nmhistoricsites.org": {
+   "_parks": 3,
+   "OTHS": 1,
+   "RST": 1,
+   "SGAKG": 1,
+   "SGNMC": 1,
+   "TRIB": 1
+  },
+  "npgallery.nps.gov": {
+   "SGAKI": 2,
+   "_parks": 2
+  },
+  "nps.gov": {
+   "_parks": 70,
+   "NPS": 36,
+   "SGVAE": 12,
+   "SGAKD": 10,
+   "SGHIB": 5,
+   "SGAKI": 3,
+   "SDNR": 2,
+   "SGIAC": 2,
+   "WSRC": 2,
+   "SGMAC": 1,
+   "SGNCA": 1
+  },
+  "nrcm.org": {
+   "_parks": 5,
+   "SGMEB": 2,
+   "SPR": 2,
+   "SGMEA": 1,
+   "SGMEC": 1
+  },
+  "nrdnet.org": {
+   "_parks": 3,
+   "CITY": 1,
+   "REG": 1,
+   "SGNEB": 1
+  },
+  "nwfwater.com": {
+   "RWD": 6,
+   "_parks": 6
+  },
+  "ohiodnr.gov": {
+   "_parks": 169,
+   "SGOHB": 84,
+   "SGOHA": 64,
+   "SGOHC": 14,
+   "SDNR": 7,
+   "SGOHD": 2,
+   "OTHS": 1,
+   "SGOHE": 1
+  },
+  "okhistory.org": {
+   "_parks": 3,
+   "SGAKI": 2,
+   "SPR": 1
+  },
+  "oregon.gov": {
+   "_parks": 3,
+   "SGORD": 2,
+   "SLB": 1
+  },
+  "outdooralabama.com": {
+   "_parks": 4,
+   "SGALC": 3,
+   "TVA": 1
+  },
+  "outdoornebraska.gov": {
+   "_parks": 97,
+   "SGNEB": 96,
+   "NEP": 1,
+   "SFW": 1,
+   "SGNEC": 1
+  },
+  "pages.uoregon.edu": {
+   "OSP": 2,
+   "_parks": 2
+  },
+  "parkrec.nd.gov": {
+   "_parks": 14,
+   "SGNDB": 13,
+   "SGNDC": 1
+  },
+  "parks.ca.gov": {
+   "_parks": 117,
+   "SGCAB": 109,
+   "SPR": 9,
+   "REG": 1
+  },
+  "parks.nv.gov": {
+   "_parks": 21,
+   "SGNVB": 15,
+   "SGNVE": 5,
+   "SGNVD": 2
+  },
+  "parks.ny.gov": {
+   "SGNYB": 158,
+   "_parks": 158
+  },
+  "parks.wa.gov": {
+   "_parks": 2,
+   "OTHS": 1,
+   "SPR": 1
+  },
+  "parksandrecreation.idaho.gov": {
+   "SPR": 6,
+   "_parks": 6,
+   "SGIDE": 1
+  },
+  "pgc.pa.gov": {
+   "SGPAC": 2,
+   "_parks": 2
+  },
+  "portal.ct.gov": {
+   "_parks": 7,
+   "UNK": 6,
+   "SGCTB": 3,
+   "SGCTA": 2,
+   "SGCTC": 1
+  },
+  "public-lands-scdnr.hub.arcgis.com": {
+   "_parks": 12,
+   "SGSCC": 6,
+   "SGSCA": 5,
+   "SDNR": 3
+  },
+  "recreation.gov": {
+   "_parks": 2,
+   "MOL": 1,
+   "SGNMB": 1
+  },
+  "rigov.sharepoint.com": {
+   "_parks": 7,
+   "SGRIA": 6,
+   "UNK": 1
+  },
+  "riparks.com": {
+   "SGRIA": 3,
+   "_parks": 3
+  },
+  "riparks.ri.gov": {
+   "SGRIA": 9,
+   "_parks": 9
+  },
+  "rivers.gov": {
+   "_parks": 16,
+   "FWSR": 14,
+   "RST": 1,
+   "SGNCA": 1,
+   "WSRC": 1
+  },
+  "scfc.gov": {
+   "SGSCA": 2,
+   "_parks": 2
+  },
+  "sctrails.net": {
+   "_parks": 7,
+   "SGSCC": 5,
+   "SDNR": 4
+  },
+  "sfwmd.gov": {
+   "_parks": 7,
+   "RWD": 6,
+   "SGFLF": 1,
+   "SPR": 1
+  },
+  "southcarolinaparks.com": {
+   "SGSCB": 37,
+   "_parks": 37
+  },
+  "state.nj.us": {
+   "SGNJB": 33,
+   "_parks": 33
+  },
+  "stateparks.com": {
+   "_parks": 5,
+   "FWS": 1,
+   "SGNCD": 1,
+   "SGNVA": 1,
+   "SGTNC": 1,
+   "SPR": 1
+  },
+  "stateparks.oregon.gov": {
+   "_parks": 137,
+   "SGORA": 129,
+   "CITY": 19,
+   "SGORB": 16,
+   "SGORD": 6,
+   "OSP": 2,
+   "OTHS": 1
+  },
+  "stateparks.utah.gov": {
+   "_parks": 4,
+   "SGUTA": 2,
+   "SPR": 2,
+   "SGUTF": 1
+  },
+  "swfwmd.state.fl.us": {
+   "_parks": 4,
+   "FNL": 2,
+   "RWD": 2
+  },
+  "tinyurl.com": {
+   "_parks": 2,
+   "SGORA": 1,
+   "SPR": 1
+  },
+  "tn.gov": {
+   "_parks": 105,
+   "SGTNC": 75,
+   "SGTNF": 17,
+   "SGTND": 6,
+   "SGTNE": 5,
+   "SFW": 4,
+   "SGTNI": 2,
+   "SGTNH": 1
+  },
+  "tnstateparks.com": {
+   "_parks": 41,
+   "SGTNF": 38,
+   "OTHS": 2,
+   "SFW": 1,
+   "TND": 1
+  },
+  "tpwd.texas.gov": {
+   "_parks": 19,
+   "SGTXA": 11,
+   "SGTXC": 4,
+   "SFW": 2,
+   "SPR": 2,
+   "USFS": 2,
+   "SGTXB": 1,
+   "SGTXD": 1
+  },
+  "trailsnh.com": {
+   "_parks": 2,
+   "NHC": 1,
+   "SGNHA": 1,
+   "UNK": 1
+  },
+  "travelok.com": {
+   "_parks": 2,
+   "CITY": 1,
+   "SGAKI": 1
+  },
+  "tva.com": {
+   "TVA": 3,
+   "_parks": 3
+  },
+  "vtstateparks.com": {
+   "_parks": 35,
+   "SGVTA": 34,
+   "UNK": 3
+  },
+  "wdfw.wa.gov": {
+   "_parks": 15,
+   "SFW": 10,
+   "SGWAB": 3,
+   "OTHS": 1,
+   "SGWAF": 1,
+   "SPR": 1,
+   "WDW": 1
+  },
+  "wgfd.wyo.gov": {
+   "_parks": 19,
+   "SGWYC": 18,
+   "SFW": 1,
+   "SGWYD": 1
+  },
+  "wildlife.utah.gov": {
+   "_parks": 2,
+   "SFW": 1,
+   "UTW": 1
+  },
+  "wildlifedepartment.com": {
+   "_parks": 60,
+   "SGOKC": 57,
+   "ODW": 4,
+   "SGOKB": 2,
+   "SFW": 1
+  },
+  "wlf.louisiana.gov": {
+   "_parks": 56,
+   "SGLAA": 48,
+   "SGLAB": 5,
+   "SGLAC": 3
+  },
+  "wvdnr.gov": {
+   "SGWVA": 81,
+   "_parks": 81
+  },
+  "wvstateparks.com": {
+   "SGWVB": 6,
+   "_parks": 6
+  },
+  "www2.dnr.sc.gov": {
+   "_parks": 37,
+   "SGSCA": 22,
+   "SGSCC": 11,
+   "SDNR": 7
+  },
+  "www2.dnr.state.mi.us": {
+   "_parks": 66,
+   "SGMIB": 41,
+   "MID": 21,
+   "SFW": 4,
+   "SDNR": 3,
+   "SGMIA": 3,
+   "SGMIC": 2,
+   "FWS": 1,
+   "OTHS": 1
+  },
+  "wyohistory.org": {
+   "SPR": 3,
+   "_parks": 3,
+   "SGWYB": 1
+  },
+  "wyoparks.wyo.gov": {
+   "SGWYB": 26,
+   "_parks": 26,
+   "SPR": 3
+  }
+ }
+}

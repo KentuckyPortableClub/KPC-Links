@@ -99,13 +99,15 @@ SLICED_RULE_FILES = {'data/state-gis.json', '.github/key-switches.json'}   # Nov
 # of a state's slice: labelling the layers moves no area and starts no rebuild. The rule that first reads it (T5 / D3 / D4) must
 # take 'what' off this list in the same change (tests/test_d11_layer_list_nov17.py fails while a US / Canada rule file reads
 # 'what' and it is still listed here).
-SGIS_UNREAD = ('what',)
+SGIS_UNREAD = ('what',)   # left out of the slice of an area whose key reads no 'what' (Canada: no rule reads it yet)
+SGIS_READ_BY_US = ('what',)   # HQ 17 Nov: the US key reads 'what' (D3 by D11's labels, D7 compilation copies): a US state's slice keeps it
 
 
 def sgis_slice(v, areas):
     """This kind's areas' layers from data/state-gis.json, without the fields no rule reads (SGIS_UNREAD)."""
     if not isinstance(v, dict): return {}
-    return {k: [{f: y for f, y in l.items() if f not in SGIS_UNREAD} if isinstance(l, dict) else l for l in (x if isinstance(x, list) else [x])]
+    def _drop(k): return {f for f in SGIS_UNREAD if not (k in US_ALL and f in SGIS_READ_BY_US)}
+    return {k: [{f: y for f, y in l.items() if f not in _drop(k)} if isinstance(l, dict) else l for l in (x if isinstance(x, list) else [x])]
                 if isinstance(x, list) else x
             for k, x in (v.get('states') or {}).items() if k in areas}
 

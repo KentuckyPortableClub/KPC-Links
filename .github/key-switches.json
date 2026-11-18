@@ -21,6 +21,9 @@
     "KPC_CA_NONE_KEPT": {"on": []},
     "KPC_CA_SAVED_ID_LAND": {"on": []},
     "KPC_JP_A10_NAMES": {"on": []},
-    "KPC_MK_LAYER_93": {"on": []}
+    "KPC_MK_LAYER_93": {"on": []},
+    "KPC_AGENCY_TIE": {"on": []},
+    "KPC_STATE_COPY": {"on": []},
+    "KPC_WORLD_NEAR_NAME": {"on": []}
   }
 }

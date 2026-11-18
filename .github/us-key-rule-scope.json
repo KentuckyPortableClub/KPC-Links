@@ -194,6 +194,13 @@
    "from": "1c23e80c9068",
    "why": "Scorecard finding: the id-join name test (KPC_ID_JOIN_NAME) and the D1 saved-row test (KPC_SAVED_ID_LAND) read only a record's first name; Ohio's first name is a code ('CaesarCrkSP'), so 164 Ohio hand joins failed with KPC_ID_JOIN_NAME on. Both now accept any of the record's names (second name, and the key's shown 'second (first)'). Both switches OFF: no result changes.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-hq-batch2",
+   "when": "2026-11-17",
+   "from": "16bee7908b26",
+   "why": "HQ key batch 2 (Fable's matching plan): KPC_AGENCY_TIE (the contest asks the agency of each park's POTA website, from .github/key-agency-table.json learned from the person-reviewed joins, before a 'person' answer), KPC_STATE_COPY (D7: a record from a layer D11 labels 'compilation' goes to check beside the agency's own record, or grades the park approximate alone), D3 also reads D11's 'designation' label (under KPC_DESIGNATION_SPLIT). 'what' is now read by the US key, so a US state's state-gis.json slice keeps its labels (Canada's still leaves them out). Every switch OFF: no join changes.",
+   "scope": "none"
   }
  ]
 }

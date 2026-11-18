@@ -1580,6 +1580,27 @@ for cc in COUNTRIES:
                 if swap: pk['swap'] = [[r['id'], r['n'], r['src']] for r in swap[:2]]
     except Exception as e:  # noqa: BLE001
         notice(f'World key {cc}', f'boundary check stopped: {type(e).__name__}: {str(e)[:200]}')
+    # WORLD NEAR NAMES (matching plan section 6; Fable's rule sheet; owner YES 17 Nov 12:25 PM, grey area 3): a park with no join whose
+    # POTA pin is inside ONE area whose name is nearly the same (one or two letters off, or the same word stems with other endings)
+    # and whose kind does not disagree joins that area as APPROXIMATE, and a person is asked ('near name' check row). Switch
+    # KPC_WORLD_NEAR_NAME (kpc_key_rules.py), OFF.
+    if _kr('KPC_WORLD_NEAR_NAME'):
+        _nn = []
+        for ref, x in sorted(P.items()):
+            pk = parks.get(ref)
+            if not pk or pk.get('m'): continue
+            name, typ, la, lo = x[0], x[2], x[5], x[6]
+            if not la and not lo: continue
+            kp = kinds(cc, name) | kinds(cc, typ)
+            hit = [r for r in nearby(la, lo) if r['n'] and near(la, lo, r['_bb'], 0) and KM.inside(la, lo, r['_r'])
+                   and not (kp and r['_k'] and not (kp & r['_k'])) and KR.near_name(norm(cc, name), norm(cc, r['n']))]
+            if len(hit) != 1: continue
+            r = hit[0]
+            pk['m'] = [[r['id'], r['n'], r['src'], 'near name (the pin is inside it; one or two letters or the endings differ): approximate until a person confirms']]
+            pk['g'] = 'approx'; pk['gsrc'] = 'near name'
+            pk['c'] = (pk.get('c') or []) + [[r['id'], r['n'], r['src'], 'check (near name): is this the park? YES / NO']]
+            _nn.append(ref)
+        if _nn: notice(f'World key {cc}', f"near names: {len(_nn)} park(s) joined as approximate, a person confirms: {', '.join(_nn[:12])}")
     # SHADOW (Oct 22): the shared scoring's verdict for each park, written down ONLY where it disagrees with the join
     # above. Nothing it says changes a join. Names are read this script's way (each country's generic words, Baltic
     # endings, Japanese via romaji and the Wikidata bridge); kpc_match weighs the facts as it does for the US. PIN_JOIN

@@ -89,7 +89,8 @@ check('3. Canada, world and 2-fer hashes are not D11\'s (state-gis.json is not t
 # 4
 READS = [ROOT / r for r in F.RULE_FILES['us-key'] if r.endswith('.py')] + [ROOT / '.github/scripts/kpc_ca_key.py']
 readers = [p.name for p in READS if re.search(r"""\[\s*['"]what['"]\s*\]|\.get\(\s*['"]what['"]""", p.read_text(encoding='utf-8'))]
-check(f'4. no US / Canada key rule file reads what ({readers})', not readers)
+# HQ 17 Nov: the US key reads 'what' (D3 by labels, D7); Canada still does not
+check(f"4. only the US key reads what ({readers}); Canada's key does not", readers == ['kpc_us_key.py'] and 'what' in K.SGIS_READ_BY_US)
 def strip(d):
     d = copy.deepcopy(d); d.pop('what_note', None)
     for L in d['states'].values():
@@ -103,12 +104,13 @@ else:
     print('NOTE 4. origin/main already has the labels (or is not here): the before / after file check is for the D11 branch only')
 
 # 5
-check('5. the per-area hash slices state-gis.json per state, not as shared code', SG in K.SLICED_RULE_FILES and 'what' in K.SGIS_UNREAD)
+check('5. the per-area hash slices state-gis.json per state, not as shared code', SG in K.SLICED_RULE_FILES)
 us_areas = set(K.US_ALL); ca_areas = {st for st in doc['states'] if st not in K.US_ALL}
-check('5. labelling moves no US state and no province: the slices with and without the labels are the same',
-      K.sgis_slice(doc, us_areas) == K.sgis_slice(strip(doc), us_areas) and K.sgis_slice(doc, ca_areas) == K.sgis_slice(strip(doc), ca_areas))
+# HQ 17 Nov: D3 (labels) and D7 (compilation) read 'what', so it left SGIS_UNREAD: a label now moves its own state, like any layer field
+check('5. labelling moves no province (Canada reads no label); a US state keeps its labels in its slice (the US key reads them)',
+      K.sgis_slice(doc, ca_areas) == K.sgis_slice(strip(doc), ca_areas) and K.sgis_slice(doc, us_areas) != K.sgis_slice(strip(doc), us_areas))
 moved = copy.deepcopy(doc); moved['states']['TN'][0]['url'] += '0'
 check('5. a real layer change still moves its own state only', K.sgis_slice(moved, {'TN'}) != K.sgis_slice(doc, {'TN'}) and K.sgis_slice(moved, {'KY', 'GA'}) == K.sgis_slice(doc, {'KY', 'GA'}))
-check('5. a rule that reads what must take it off SGIS_UNREAD (guard: no reader while it is listed)', not readers or 'what' not in K.SGIS_UNREAD)
+check('5. a key that reads what keeps it in its slice (guard)', all(r != 'kpc_ca_key.py' for r in readers) or 'what' not in K.SGIS_UNREAD)
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

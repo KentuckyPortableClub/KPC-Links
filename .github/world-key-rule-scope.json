@@ -90,6 +90,13 @@
    "from": "24cd942eca01",
    "why": "Handoff 8 part 2 (world fixes 7-8: Japan A10 names next to the code; North Macedonia layer 93, proposed is never land). Both switches OFF: no result changes.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-near-names",
+   "when": "2026-11-17",
+   "from": "f56329a65b3d",
+   "why": "World near names (matching plan section 6; owner YES 17 Nov, grey area 3), switch KPC_WORLD_NEAR_NAME OFF: a park with no join whose pin is inside ONE area of a kind that does not disagree, with a nearly identical name, joins it as approximate and a person is asked. Offline AT / LT / PL: 4 parks (AT-0067, PL-0976, PL-1275, PL-2299), each the same place.",
+   "scope": "none"
   }
  ]
 }
