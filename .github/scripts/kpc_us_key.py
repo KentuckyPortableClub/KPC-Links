@@ -1174,6 +1174,7 @@ LEASE_RX = re.compile(r'\bagreement\b|\blease[ds]?\b|cooperative (?:wildlife|man
 LAKE_TYPE_RX = re.compile(r'fishing lake|reservoir|\blakes?\b|\bpond', re.I)   # D4: a park TYPE that says it is the lake
 LEASE_HELD, LAKE_HELD = [], []
 DESIG_HELD, SITS_ON, STATE_COPY = [], [], []   # D3; D7 STATE_COPY (KPC owner, 2026-11-17 10:00 AM)
+APPROX_PIN = []   # Q1 (KPC owner, 2026-11-18): parks whose saved answer is approximate, sent to pin only
 # D3: the FEDERAL designation layers (a line drawn by a law or a plan): Forest Service designated areas, BLM monuments / NCAs,
 # wilderness (FS + BLM), BLM study areas. State layers labelled 'designation' (D11) join this list with D7, when 'what' is read.
 DESIG_PRE = {'fsod', 'nca', 'wld', 'wbl', 'wsa'}
@@ -2457,7 +2458,7 @@ def run(st):
     held_g, pin_wrong = [], []
     g8 = []
     EASEMENT_HELD.clear(); EASEMENT_KEPT.clear()
-    LEASE_HELD.clear(); LAKE_HELD.clear(); DESIG_HELD.clear(); SITS_ON.clear(); STATE_COPY.clear()
+    LEASE_HELD.clear(); LAKE_HELD.clear(); DESIG_HELD.clear(); SITS_ON.clear(); STATE_COPY.clear(); APPROX_PIN.clear()
     def _g8tok(s):
         s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
         s = re.sub(r'\bft\b', 'fort', re.sub(r'\bmt\b', 'mount', re.sub(r'\bst\b', 'saint', s)))
@@ -2639,6 +2640,11 @@ def run(st):
                 p['m'] = sorted(ok, key=lambda x: -x[2])
                 p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece'] for x in left]
                 held_g.append(f'{ref} ({len(left)})')
+        if KR.approx_pin(p, OVR.get(ref), _kr('KPC_APPROX_PIN')):
+            # Q1 (KPC owner, 18 Nov 5:48 AM: 'Yes to 1-3'; key-quality.md section 11 step 1): a saved answer marked approximate gives
+            # NO outline until a person verifies one with evidence (pin only; its rows go to check). The fact check flagged 47% of
+            # these parks (Mt Etna = all of Salamonie Lake, three Nebraska areas on one county record).
+            APPROX_PIN.append(ref)
         m = p.get('m') or []
         if m and p.get('far') == 'well outside' and any(str(x[3]).split(' · ')[0] not in WEAK for x in m):
             pin_wrong.append(ref); p['pin_may_be_wrong'] = 1
@@ -2672,6 +2678,7 @@ def run(st):
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
     if EASEMENT_HELD: notice(f'US key {st}', f"conservation easement records not joined by name alone (item 5): {len(EASEMENT_HELD)} piece(s) moved to CHECK: {', '.join(EASEMENT_HELD[:10])}")
     if LEASE_HELD: notice(f'US key {st}', f"D5 leased / agreement records not joined by name alone: {len(LEASE_HELD)} piece(s) to CHECK: {', '.join(LEASE_HELD[:10])}")
+    if APPROX_PIN: notice(f'US key {st}', f"Q1 approximate saved answers sent to pin only: {len(APPROX_PIN)} park(s): {', '.join(APPROX_PIN[:12])}")
     if STATE_COPY: notice(f'US key {st}', f"D7 compilation copies: {len(STATE_COPY)} park(s): {', '.join(STATE_COPY[:10])}")
     if DESIG_HELD: notice(f'US key {st}', f"D3 designation lines sent to CHECK (drawn only for the park that is the designation): {len(DESIG_HELD)} piece(s): {', '.join(DESIG_HELD[:10])}")
     if SITS_ON: notice(f'US key {st}', f"D3 heritage areas shown as pin + sits on: {len(SITS_ON)} park(s): {', '.join(SITS_ON[:10])}")
@@ -2740,6 +2747,7 @@ def run(st):
         for ref, op in old.items():
             np_ = parks.get(ref)
             if not np_ or np_.get('m') or not op.get('m'): continue
+            if np_.get('approx_pin'): continue   # Q1: an approximate saved answer is pin only; its last outline is not kept
             no = {str(x) for x in (OVR.get(ref) or {}).get('no', [])}
             om = [x for x in op['m'] if str(x[0]) not in no and str(x[1]) not in no]
             if _kr('KPC_NO_ALL_PATHS'): om = KR.drop_no(om, OVR.get(ref) or {})   # Nov 2: a NO by name also wins over the kept outline
