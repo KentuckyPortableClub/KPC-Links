@@ -151,7 +151,7 @@ check('workflow: master check -> THE MASTER STEP -> build (the gate is inside th
 check('workflow: the gate is not in the master step and is unchanged in the build', 'kpc_master_cli.py gate' not in d['jobs']['build']['steps'][i_m]['run'] and 'kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt"' in d['jobs']['build']['steps'][i_b]['run'])
 on = d.get('on') or d.get(True)
 check('workflow: refresh input (blank or all), by hand only', 'refresh' in on['workflow_dispatch']['inputs'] and "inputs.refresh == 'all' && 'all'" in wf)
-check('workflow: no new cron (still 3)', len(on['schedule']) == 3)
+check('workflow: no new cron (2 since the owner turned the monthly one off, 17 Nov 7:29 PM)', len(on['schedule']) == 2)
 check('workflow: the join collects the parts and saves data/outlines; the needs rows go up as one release asset', 'kpc_master_cli.py collect parts/us-key-part-*/outlines' in wf and 'data/us-key data/status data/outlines' in wf and 'needs-download.json -R "$GITHUB_REPOSITORY" --clobber' in wf)
 
 # 8. PC helper: stdlib only, never fetches anything but GitHub, never opens a never row, fails closed on a short download

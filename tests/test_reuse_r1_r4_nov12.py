@@ -183,7 +183,8 @@ for wf, cron in MONTHLY.items():
     W = yaml.safe_load(txt)
     on = W.get(True) or W.get('on') or {}
     crons = [c.get('cron') if isinstance(c, dict) else c for c in (on.get('schedule') or [])]
-    check(f'R3 {wf} still has its existing monthly cron {cron!r} (no new cron added)', cron in crons)
+    # owner 17 Nov 7:29 PM: the monthly full builds are off (by hand only); the cron must not be back, and no cron is new
+    check(f'R3 {wf}: the monthly cron {cron!r} is off (owner 17 Nov) and no monthly full build is scheduled', cron not in crons and not any(str(c).split()[2:3] != ['*'] for c in crons))
     want = "FULL_REBUILD: ${{ inputs.full_rebuild || ((github.event.schedule || inputs.as_schedule) == '%s' && 'yes') || '' }}" % cron
     check(f'R3 {wf} forces a full rebuild on that monthly schedule (and only that string)', want in txt)
     # the same monthly string is the one in the schedule, not a made-up one

@@ -2,7 +2,7 @@ name: KPC KY answer key
 # The Kentucky park <-> outline answer key (data/ky-answer-key.json) + its review issue (label ky-answer-key).
 on:
   schedule:
-    - cron: '10 8 * * 1'   # G9 Nov 2: was '11 8 * * 1' (spread the start times; now 1 min earlier)
+    - cron: '10 8 2 * *'   # owner 17 Nov 7:29 PM: once a month, the 2nd (was every Monday)   # G9 Nov 2: was '11 8 * * 1' (spread the start times; now 1 min earlier)
   push:
     branches: [main]
     # Nov 11 (trigger only; the key logic is untouched): the files this run reads, not every ky-*.geojson. kpc-bounds.js loads these

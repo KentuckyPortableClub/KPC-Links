@@ -3,7 +3,7 @@ name: KPC Canada answer key
 on:
   # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   schedule:
-    - cron: '43 10 2 * *'   # monthly
+    # (monthly cron removed: was '43 10 2 * *')   # monthly   # OFF 17 Nov 2026 (owner 7:29 PM: 'tame them down ... only as needed, then a check every now and then'): by hand only
     - cron: '49 9 * * *'    # nightly, ONLY when BOT W wired a new province layer (data/ca-key/answers-provinces.txt)
   # Nov 4 (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4: "Full world rebuild yes after us and Canada..stand by for more"):
   # owner rule, 2026-11-10: no workflow_run trigger. The US key's chain job dispatches this key once per US run (chained=us-key).
