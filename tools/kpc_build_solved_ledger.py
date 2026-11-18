@@ -109,10 +109,10 @@ def stage(inp, out):
                                                           keep=['ref', 'name', 'answer', 'proposed_action', 'flags', 'intake_flags', 'decided_by'])))
     log.append(('nov5/JP_A10_crosswalk.csv', *stage_csv(inp / 'nov5-returned/JP_A10_crosswalk.csv', out / 'nov5/JP_A10_crosswalk.csv', 'plain')))
     for n in ('HANDOFF.md', 'MYSTERY_PARKS_PASS9_FABLE.md'): stage_text(inp / 'nov5-returned' / n, out / 'nov5' / n)
-    log.append(('lists/mystery-parks-open.csv', *stage_csv(inp / 'ledgers/mystery-parks-open.csv', out / 'lists/mystery-parks-open.csv', 'lists')))
+    log.append(('lists/mystery-parks-open.csv', *stage_csv(inp / 'ledgers/mystery-parks-open.csv', out / 'archive-solved/mystery-parks-open.csv', 'lists')))
     log.append(('lists/found-waiting-world-key.csv', *stage_csv(inp / 'ledgers/found-waiting-world-key.csv', out / 'lists/found-waiting-world-key.csv', 'lists')))
     log.append(('lists/solved-since.csv', *stage_csv(inp / 'ledgers/solved-since.csv', out / 'lists/solved-since.csv', 'solved')))
-    stage_text(inp / 'ledgers/MYSTERY_PARKS_FABLE.md', out / 'lists/MYSTERY_PARKS_FABLE.md')
+    stage_text(inp / 'ledgers/MYSTERY_PARKS_FABLE.md', out / 'archive-solved/MYSTERY_PARKS_FABLE.md')
     # sources: the Nov 5 ledger, the Thailand Protected Planet page dropped (a WDPA page is not a source), then the Nov 11 additions appended once
     cols, base = read(inp / 'nov5-returned/research-sources-all.csv')
     keep = [r for r in base if not RI.has_wdpa_data(r['url']) and not re.search(r'protected\s*planet', r['url'] + r['layer_name'], re.I)]
@@ -161,7 +161,7 @@ def build_ledger(ans):
     A5 = {r['ref']: r for r in a5}; A11 = {r['ref']: r for r in a11}
     LISTS = {}
     for lst, f in (('open', 'mystery-parks-open.csv'), ('solved-since', 'solved-since.csv'), ('found-waiting-world-key', 'found-waiting-world-key.csv')):
-        _, rows = read(ans / 'lists' / f)
+        _, rows = read(ans / ('archive-solved' if f == 'mystery-parks-open.csv' else 'lists') / f)
         for r in rows:
             assert r['ref'] not in LISTS, r['ref']; LISTS[r['ref']] = (lst, r)
     assert set(LISTS) == set(A5), 'the three prepared lists must cover the 832 Nov 5 rows exactly'

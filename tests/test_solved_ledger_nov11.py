@@ -127,7 +127,7 @@ check(len(ledger) == 832 and RI.solved_refs(ledger) == {r['ref'] for r in L if r
 check(not (SD & RI.solved_refs(ledger)), 'no solved ref is on the search list')
 check(SD == {r['ref'] for r in L if r['solved'] == 'no'} and len(S) == 278, 'the search list is exactly the unsolved parks (278)')
 check({'US-10274', 'FR-14979'} <= SD, 'Palmito and FR-14979 are on the search list (not a match / owner no)')
-open_rows = rd(ANS / 'lists/mystery-parks-open.csv')
+open_rows = rd(ANS / 'archive-solved/mystery-parks-open.csv')
 kept, skipped = RI.filter_unsolved(open_rows, ledger, key='ref')
 check(len(kept) + len(skipped) == 366 and skipped and all(RI.is_skipped(r['ref'], ledger) for r in skipped) and not any(RI.is_skipped(r['ref'], ledger) for r in kept),
       f'the Nov 11 open list loses its skipped refs ({len(skipped)} skipped, {len(kept)} kept)')
