@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T19:25:15Z",
+ "updated": "2026-11-18T13:12:27Z",
  "week": [
   {
    "name": "AWA Bruce Kelley 1929 QSO Party",
@@ -19,72 +19,6 @@
    "kinds": [
     "QSOPARTY"
    ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Classic Exchange, Phone",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fhye6",
-   "when": "1400Z, Nov 15 to 0800Z, Nov 16 and 1400Z, Nov 17 to 0800Z, Nov 18",
-   "segs": [
-    [
-     "2026-11-15T14:00Z",
-     "2026-11-16T08:00Z"
-    ],
-    [
-     "2026-11-17T14:00Z",
-     "2026-11-18T08:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Tuesday's Telegraphy Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gwrbo",
-   "when": "1930Z-2030Z, Nov 17",
-   "segs": [
-    [
-     "2026-11-17T19:30Z",
-     "2026-11-17T20:30Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "QRP Fox Hunt",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gxlza",
-   "when": "0200Z-0330Z, Nov 18",
-   "segs": [
-    [
-     "2026-11-18T02:00Z",
-     "2026-11-18T03:30Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QRP"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Phone Weekly Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gqr4h",
-   "when": "0230Z-0300Z, Nov 18",
-   "segs": [
-    [
-     "2026-11-18T02:30Z",
-     "2026-11-18T03:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
    "src": "WA7BNM"
   },
   {
@@ -531,6 +465,48 @@
     [
      "2026-11-23T19:00Z",
      "2026-11-23T20:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Worldwide Sideband Activity Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gq41c",
+   "when": "0100Z-0159Z, Nov 24",
+   "segs": [
+    [
+     "2026-11-24T01:00Z",
+     "2026-11-24T01:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003go6mo",
+   "when": "0300Z-0400Z, Nov 24",
+   "segs": [
+    [
+     "2026-11-24T03:00Z",
+     "2026-11-24T04:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Tuesday's Telegraphy Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gwz1g",
+   "when": "1930Z-2030Z, Nov 24",
+   "segs": [
+    [
+     "2026-11-24T19:30Z",
+     "2026-11-24T20:30Z"
     ]
    ],
    "modes": [],
@@ -1317,24 +1293,6 @@
    "src": "CORRAL",
    "bands": "1.8-14",
    "exch": "RST, name, QTH, equipment year, xmtr type, pwr"
-  },
-  {
-   "name": "Classic Exchange, Phone",
-   "url": "https://www.classicexchange.org",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-15T14:00Z",
-     "2026-11-18T08:01Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28,50,144",
-   "exch": "Name, RS, SPC, rcvr/xmtr model"
   },
   {
    "name": "VHF-UHF FT8 Activity Contest-NA",
@@ -2413,7 +2371,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (34)",
-  "CORRAL": "ok (58)"
+  "WA7BNM": "ok (33)",
+  "CORRAL": "ok (57)"
  }
 }

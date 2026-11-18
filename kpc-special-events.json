@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T12:25:59Z",
+ "updated": "2026-11-18T13:12:19Z",
  "stations": [
   {
    "title": "SVARA 50th Birthday",
@@ -51,23 +51,6 @@
    "qsl": "QSL",
    "url": "https://www.qrz.com/db/W3A",
    "note": ", Harleysville, PA. WV2M. 7.030 7.074 14.030 14.074. QSL. Frank Gallo, 106 Tweed Way, Harleysville, PA 19438."
-  },
-  {
-   "title": "NRA Birthday Celebration",
-   "start": "2026-11-17",
-   "end": "2026-11-17",
-   "times": "1500Z-2359Z",
-   "call": "K7GST",
-   "calls": [
-    "K7GST"
-   ],
-   "where": "Prescott, AZ",
-   "st": "AZ",
-   "by": "Yavapai Amateur Radio Club",
-   "freqs": "7.250 14.250 21.335 28.340",
-   "qsl": "Certificate",
-   "url": "",
-   "note": ", Prescott, AZ. Yavapai Amateur Radio Club. 7.250 14.250 21.335 28.340. Certificate. downloadable certificate only, None, Prescott, AZ 86304."
   },
   {
    "title": "VOYAGER 1. ONE LIGHT DAY AWAY",
@@ -484,6 +467,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (25)"
+  "ARRL": "ok (24)"
  }
 }
