@@ -1,7 +1,7 @@
 {
- "made": "2026-11-18 02:35 UTC",
+ "made": "2026-11-18 04:38 UTC",
  "counts": {
-  "A_decided_not_in_key": 70,
+  "A_decided_not_in_key": 69,
   "B_sure_area_not_asked": 6,
   "C_sure_line_not_drawn": 15
  },
@@ -41,13 +41,6 @@
    "Canyon de Chelly National Monument",
    "join",
    "2026-11-02 12:49: layers row YES 'Canyon de Chelly National Monument' (chat 11 (Oct 31); applied by kpc_key_answers)"
-  ],
-  [
-   "US-0915",
-   "CA",
-   "Cesar E. Chavez National Monument",
-   "join",
-   "2026-11-02 12:49: layers row YES 'César E. Chávez National Monument' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-0958",

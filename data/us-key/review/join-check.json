@@ -1,11 +1,11 @@
 {
  "key": "us",
  "mode": "hold",
- "files_checked": 8,
- "joined_parks": 619,
- "suspect": 391,
- "held": 0,
- "files_changed": 1,
+ "files_checked": 94,
+ "joined_parks": 11587,
+ "suspect": 317,
+ "held": 33,
+ "files_changed": 24,
  "official_acres_known": 0,
  "acres_check": "acres check off: no acres file",
  "approved_parks_known": 4965,
@@ -144,67 +144,12 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-1035",
-   "area": "US-AL",
-   "name": "Buck's Pocket State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-1039",
-   "area": "US-AL",
-   "name": "De Soto State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-12970",
-   "area": "US-AL",
-   "name": "Madison County Public State Fishing Lake",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.11,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-3602",
    "area": "US-AL",
    "name": "Birmingham Civil Rights National Monument",
    "outline_ac": 0,
    "official_ac": "",
    "pin_km": 0.1,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-3678",
-   "area": "US-AL",
-   "name": "Roland Cooper State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-9916",
-   "area": "US-AL",
-   "name": "Blackwater River State Nature Preserve",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
    "suspect": "the joined land has 0 acres",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
@@ -936,193 +881,6 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-10510",
-   "area": "US-AZ",
-   "name": "Dos Cabezas Mountains Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.14,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11028",
-   "area": "US-AZ",
-   "name": "Robbins Butte Wildlife Area State Wildlife Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11046",
-   "area": "US-AZ",
-   "name": "Eagletail Mountains Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11049",
-   "area": "US-AZ",
-   "name": "New Water Mountains Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11942",
-   "area": "US-AZ",
-   "name": "Wabayuma Peak BLM Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11979",
-   "area": "US-AZ",
-   "name": "Allen Severson State Wildlife Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.05,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11985",
-   "area": "US-AZ",
-   "name": "Raymond State Wildlife Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11987",
-   "area": "US-AZ",
-   "name": "White Mountain State Wildlife Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-4433",
-   "area": "US-AZ",
-   "name": "Agua Fria National Monument",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-4434",
-   "area": "US-AZ",
-   "name": "Ironwood Forest National Monument",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-4436",
-   "area": "US-AZ",
-   "name": "Vermilion Cliffs National Monument",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-7382",
-   "area": "US-AZ",
-   "name": "Arlington State Wildlife Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-7383",
-   "area": "US-AZ",
-   "name": "Tonto State Fish Hatchery",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-7887",
-   "area": "US-AZ",
-   "name": "Grand Canyon-Parashant National Monument",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8297",
-   "area": "US-AZ",
-   "name": "Muggins Mountain Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.01,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8298",
-   "area": "US-AZ",
-   "name": "Mittry Lake Wildlife Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11017",
-   "area": "US-CA",
-   "name": "Little Picacho Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-3572",
    "area": "US-CA",
    "name": "State Indian Museum State Park",
@@ -1156,94 +914,6 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-4541",
-   "area": "US-CA",
-   "name": "Carrizo Plain National Monument",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-4542",
-   "area": "US-CA",
-   "name": "Fort Ord National Monument",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-7379",
-   "area": "US-CA",
-   "name": "King Range National Conservation Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 1.44,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-0652",
-   "area": "US-CO",
-   "name": "Curecanti National Recreation Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.02,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11884",
-   "area": "US-CO",
-   "name": "The Palisade BLM Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.01,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11896",
-   "area": "US-CO",
-   "name": "Little Book Cliffs BLM Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11898",
-   "area": "US-CO",
-   "name": "Adobe Badlands BLM Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11914",
-   "area": "US-CO",
-   "name": "Black Mountain BLM Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.03,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-4404",
    "area": "US-CO",
    "name": "Pike National Forest",
@@ -1251,61 +921,6 @@
    "official_ac": "",
    "pin_km": 18.81,
    "suspect": "the nearest joined record is 18.8 km from the POTA pin (over 15 km)",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-9593",
-   "area": "US-CO",
-   "name": "Dominguez-Escalante BLM National Conservation Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-9594",
-   "area": "US-CO",
-   "name": "Gunnison Gorge BLM National Conservation Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 8.15,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-9595",
-   "area": "US-CO",
-   "name": "McInnis Canyons BLM National Conservation Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-9678",
-   "area": "US-CO",
-   "name": "Windy Gap Watchable State Wildlife Area",
-   "outline_ac": 806,
-   "official_ac": "",
-   "pin_km": 53.52,
-   "suspect": "the nearest joined record is 53.5 km from the POTA pin (over 15 km) (not held: signed override in overrides.json (decided_by Brandon (KZ4CP), Nov 7 2026 4:54 PM CST))",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-1660",
-   "area": "US-CT",
-   "name": "Day Pond State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
@@ -1442,28 +1057,6 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-10921",
-   "area": "US-HI",
-   "name": "Hawaii Capital National Historic District",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-10922",
-   "area": "US-HI",
-   "name": "Marconi Wireless Telegraphy Station Kahuku National Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-10071",
    "area": "US-ID",
    "name": "Hell's Half Acre (BLM) Natural Monument",
@@ -1552,6 +1145,17 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
+   "park": "US-7917",
+   "area": "US-IL",
+   "name": "Pullman National Historical Park",
+   "outline_ac": 0,
+   "official_ac": "",
+   "pin_km": 0.31,
+   "suspect": "the joined land has 0 acres",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
+  },
+  {
    "park": "US-5681",
    "area": "US-IN",
    "name": "Little Turtle State Recreation Area",
@@ -1607,72 +1211,6 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-2334",
-   "area": "US-KS",
-   "name": "Cross Timbers State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-5717",
-   "area": "US-KS",
-   "name": "Little Jerusalem Badlands State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-7397",
-   "area": "US-KS",
-   "name": "Pottawatomie No 2 State Fishing Lake",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.51,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-7412",
-   "area": "US-KS",
-   "name": "Black Kettle State Fishing Lake",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-7932",
-   "area": "US-KS",
-   "name": "Kansas Veterans State Wildlife Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-9190",
-   "area": "US-KS",
-   "name": "Marais des Cygnes Massacre State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-0802",
    "area": "US-MA",
    "name": "Boston African American National Historic Site",
@@ -1695,50 +1233,6 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-11589",
-   "area": "US-MA",
-   "name": "Delaney Wildlife Management Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.01,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11598",
-   "area": "US-MA",
-   "name": "King Phillip Woods Wildlife Management Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11615",
-   "area": "US-MA",
-   "name": "Camp Cachalot Wildlife Management Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11638",
-   "area": "US-MA",
-   "name": "Marconi Wildlife Management Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-8424",
    "area": "US-MA",
    "name": "Quincy Quarries State Reserve",
@@ -1750,89 +1244,12 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-4556",
-   "area": "US-MD",
-   "name": "Appalachian Trail National Scenic Trail",
-   "outline_ac": 1565,
-   "official_ac": "",
-   "pin_km": 790.9,
-   "suspect": "the nearest joined record is 790.9 km from the POTA pin (over 15 km) (not held: trail / linear feature (nearest part of the line measured))",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-7982",
    "area": "US-ME",
    "name": "Fort Halifax State Historic Site",
    "outline_ac": 0,
    "official_ac": "",
    "pin_km": 0.09,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8459",
-   "area": "US-ME",
-   "name": "Erle R. Kelley (Dresden Bog) Wildlife Management Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.11,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-9171",
-   "area": "US-ME",
-   "name": "St. John Ponds Ecological Reserve",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.06,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-4239",
-   "area": "US-MI",
-   "name": "North Country Trail National Scenic Trail",
-   "outline_ac": 81,
-   "official_ac": "",
-   "pin_km": 1338.59,
-   "suspect": "the nearest joined record is 1338.6 km from the POTA pin (over 15 km) (not held: trail / linear feature (nearest part of the line measured))",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-10143",
-   "area": "US-MO",
-   "name": "Lake City Range State Recreation Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-13258",
-   "area": "US-MO",
-   "name": "Possum Woods State Conservation Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.02,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-3346",
-   "area": "US-MO",
-   "name": "Deutschheim State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
    "suspect": "the joined land has 0 acres",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
@@ -1863,28 +1280,6 @@
    "park": "US-3365",
    "area": "US-MO",
    "name": "Thomas Hart Benton Home and Studio State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-6472",
-   "area": "US-MO",
-   "name": "Anita B Gorman Discovery Center State Conservation Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-6529",
-   "area": "US-MO",
-   "name": "Truman Reservoir Management Lands State Park",
    "outline_ac": 0,
    "official_ac": "",
    "pin_km": 0.0,
@@ -1937,94 +1332,6 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-8532",
-   "area": "US-ND",
-   "name": "Chateau De Mores State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8536",
-   "area": "US-ND",
-   "name": "Fort Buford State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8544",
-   "area": "US-ND",
-   "name": "Huff Indian Village State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8555",
-   "area": "US-ND",
-   "name": "Oscar-Zero Missile Alert Facility State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8559",
-   "area": "US-ND",
-   "name": "Welk Homestead State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-3492",
-   "area": "US-NE",
-   "name": "Willa Cather Memorial Prairie State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-2644",
-   "area": "US-NH",
-   "name": "Cardigan Mountain State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-2650",
-   "area": "US-NH",
-   "name": "Eisenhower Memorial Wayside State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.13,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-4894",
    "area": "US-NH",
    "name": "Davis-White State Forest",
@@ -2065,50 +1372,6 @@
    "official_ac": "",
    "pin_km": 22.01,
    "suspect": "the nearest joined record is 22.0 km from the POTA pin (over 15 km) (not held: signed override in overrides.json (decided_by Brandon (KZ4CP), Nov 7 2026 4:54 PM CST))",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-11779",
-   "area": "US-NM",
-   "name": "Bisti-De-Na-Zin Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.11,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-4552",
-   "area": "US-NM",
-   "name": "Prehistoric Trackways National Monument",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.66,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8228",
-   "area": "US-NM",
-   "name": "Fort Stanton Snowy River National Conservation Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8621",
-   "area": "US-NM",
-   "name": "Cabezon Wilderness Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
@@ -2509,17 +1772,6 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-10039",
-   "area": "US-NY",
-   "name": "Crailo State Historic Site",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-10084",
    "area": "US-NY",
    "name": "Harriet Tubman National Historical Park",
@@ -2531,31 +1783,9 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-2001",
-   "area": "US-NY",
-   "name": "Adirondack State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-5310",
    "area": "US-NY",
    "name": "Skenoh Island Wildlife Management Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8070",
-   "area": "US-NY",
-   "name": "Catskill State Park",
    "outline_ac": 0,
    "official_ac": "",
    "pin_km": 0.0,
@@ -2883,17 +2113,6 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-11977",
-   "area": "US-PA",
-   "name": "PA 339 State Game Land",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-7971",
    "area": "US-RI",
    "name": "Blackstone River Valley National Historical Park",
@@ -2905,45 +2124,12 @@
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
   },
   {
-   "park": "US-7844",
-   "area": "US-SD",
-   "name": "Adams Homestead State Nature Preserve",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-8195",
-   "area": "US-SD",
-   "name": "Spearfish Canyon Nature Recreation Area",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
    "park": "US-10277",
    "area": "US-TX",
    "name": "Acton State Historic Site",
    "outline_ac": 0,
    "official_ac": "",
    "pin_km": 0.15,
-   "suspect": "the joined land has 0 acres",
-   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
-   "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
-  },
-  {
-   "park": "US-13588",
-   "area": "US-TX",
-   "name": "Post Oak Ridge State Park",
-   "outline_ac": 0,
-   "official_ac": "",
-   "pin_km": 0.0,
    "suspect": "the joined land has 0 acres",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "evidence_only": "yes: a person verifies, then fixes; nothing is removed by this check"
@@ -4326,43 +3512,19 @@
  ],
  "kept_from_main": [
   "US-AK",
-  "US-AL",
   "US-AR",
-  "US-AZ",
-  "US-CA",
-  "US-CO",
-  "US-CT",
-  "US-DC",
   "US-DE",
   "US-FL",
   "US-GA",
-  "US-HI",
   "US-ID",
-  "US-IL",
   "US-IN",
-  "US-KS",
-  "US-MA",
-  "US-MD",
-  "US-ME",
-  "US-MI",
-  "US-MO",
   "US-MT",
-  "US-ND",
-  "US-NE",
-  "US-NH",
-  "US-NM",
   "US-NV",
-  "US-NY",
-  "US-OH",
   "US-OK",
   "US-OR",
-  "US-PA",
   "US-RI",
-  "US-SD",
-  "US-TX",
   "US-UT",
   "US-WA",
-  "US-WI",
   "US-WY"
  ]
 }
