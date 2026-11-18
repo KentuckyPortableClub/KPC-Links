@@ -384,3 +384,24 @@ and the changelog line carries "Reviewed: Fable, <date>". The PR brings:
 Fable checks: does it fix the cause or only the row; does anything verified get worse anywhere; is a hard case flipped;
 was it tuned on the parks it is graded on. A NO comes back with the reason and the smallest change that would pass.
 Wording, notes, tests and tools that decide no join need no review.
+
+## 14. FABLE'S FIRST REVIEW: #270 (Q1) and #271 (contest + D3), 18 Nov 1:50 PM: both NOT YET
+The changes asked for are in a comment on each PR. Standing lessons for every later rule PR:
+- **A rule about saved answers acts on the ROWS that rest on the answer, never on the override's flag.** Q1 as first built
+  emptied whole parks: it took an NPS unit code join (Bluestone), an official tract (Gran Quivira) and a park's own
+  exact-name records (Walton WMA) with it. An answer that loses its power cannot erase what the rules joined alone.
+- **This chat box has no shapely: an offline key has no union acreage** (`ac` = rows added up; SIZE_BIG 187 offline
+  against 55 published). Size flags and the size witness of an offline build are not usable. Use the deltas of outlines,
+  records, SHARED, OTHER_PARK, PIN_FAR, and always add old = the PUBLISHED key. The run's own keys get the full check.
+- **The fact check never reads a label the key wrote itself** (`same_land`): that is the key grading itself. SHARED stays
+  a question until a person or a gold row records the pair.
+- **Count the claim before it goes to Brandon.** "All 13 right outlines are back" was 9 of 13 (Lake Hinkle is D4 and was
+  never in the five fixes; three national heritage areas are pins by ruling). Corrected to him the same day.
+- **Found on the way (findings, cause B, not yet fixed):** a bracket word that tells two parks apart is dropped by the
+  contest's same-name test (Horseshoe Canyon (South) US-5846 holds North's record in the published key);
+  `LAYER_TYPE['wild']` typed the federal wilderness layers as wildlife; Acadia Cliffs SWA US-9442 holds nature-preserve
+  records by name.
+- **Lake Hinkle US-9167** (old outline graded right, lost to D4): a saved answer with evidence (section 11 step 5), not a rule.
+- **Canada's 70 approximate rows wait for step 10** (no loader, no fact check: nothing changes that cannot be measured).
+- **Held states:** with both PRs none of the 17 is estimated over the drop guard's 3%, so all would save; 33 of the 44
+  lost outlines stay pins there (13 graded wrong, 16 unsure, 4 graded right). Brandon hears that before the run.
