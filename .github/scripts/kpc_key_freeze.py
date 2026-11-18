@@ -142,7 +142,10 @@ NOT_RULES = {'kpc_agency_table.py', 'kpc_key_drop_guard.py', 'kpc_outlines_from_
              'kpc_ca_store_keep.py', 'kpc_world_store_gaps.py',   # KPC owner, 2026-11-15: Canada + world keys in store mode (decide no join)
              'kpc_fers_receipt.py',   # Nov 16 (KPC owner, 2026-11-16; item 1): the 2-fer receipt (counts and seconds per pass) and its done check; decides no pair
              # Nov 16 (KPC owner, 2026-11-16; items 2 and 3): the jump report and the one area driver; neither decides a pair
-             'kpc_fers_jump.py', 'kpc_fers_area_run.py'}
+             'kpc_fers_jump.py', 'kpc_fers_area_run.py',
+             # Nov 18 (KPC owner, 2026-11-18: 'we need accurate keys ... grading is hard'; .claude/notes/key-quality.md): the fact
+             # check of a built key and the blind grading packet + scorer. They read keys and write reports; neither decides a join.
+             'kpc_key_factcheck.py', 'kpc_key_grade.py'}
              # Nov 15 (KPC owner, 2026-11-15): kpc_fers_store.py left this list for the 2-fer RULE_FILES (the switch-over hook)
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)

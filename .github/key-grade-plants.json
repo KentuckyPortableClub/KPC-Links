@@ -1,0 +1,140 @@
+{
+ "about": "Line-ups with a KNOWN answer for kpc_key_grade.py (Fable, 2026-11-18). Each names a record by id + name + acres (ids get renumbered, so the record is proven the key's own way) and the verdicts that are right. Only cases settled by structure go here: one record on several parks, a parent park for a trail or a small unit, a state-wide fund record. Add a case only with its reason.",
+ "plants": {
+  "US-3486": {
+   "area": "US-NE",
+   "why": "one county-wide waterfowl record was joined to three single waterfowl areas (US-3486, US-3489, US-3490)",
+   "expect": [
+    {
+     "id": 4664,
+     "name": "Clay County Waterfowl Production Area Of Ne",
+     "acres": 7011,
+     "verdict": [
+      "BIGGER",
+      "NO"
+     ]
+    }
+   ]
+  },
+  "US-3489": {
+   "area": "US-NE",
+   "why": "same county-wide record as US-3486",
+   "expect": [
+    {
+     "id": 4664,
+     "name": "Clay County Waterfowl Production Area Of Ne",
+     "acres": 7011,
+     "verdict": [
+      "BIGGER",
+      "NO"
+     ]
+    }
+   ]
+  },
+  "US-3483": {
+   "area": "US-NE",
+   "why": "a county-wide waterfowl record for one waterfowl area",
+   "expect": [
+    {
+     "id": 4221,
+     "name": "Phelps County Waterfowl Production Area",
+     "acres": 4677,
+     "verdict": [
+      "BIGGER",
+      "NO"
+     ]
+    }
+   ]
+  },
+  "US-12127": {
+   "area": "US-FL",
+   "why": "one 47,574-acre record of ALL stormwater treatment areas joined to STA 1 West and STA 1 East",
+   "expect": [
+    {
+     "id": 190265,
+     "name": "Stormwater Treatment Areas",
+     "acres": 47574,
+     "verdict": [
+      "BIGGER",
+      "NO"
+     ]
+    }
+   ]
+  },
+  "US-5461": {
+   "area": "US-OR",
+   "why": "the state-wide Board of Forestry fund record (627,317 acres) is not one state forest",
+   "expect": [
+    {
+     "id": 241270,
+     "name": "Forest Development Fund (Board Of Forestry)",
+     "acres": 627317,
+     "verdict": [
+      "BIGGER",
+      "NO"
+     ]
+    }
+   ]
+  },
+  "US-4179": {
+   "area": "US-IN",
+   "why": "the whole 10,768-acre lake property joined to one small recreation area (and to two more)",
+   "expect": [
+    {
+     "id": "ind5037",
+     "name": "Salamonie Lake",
+     "acres": 10768,
+     "verdict": [
+      "BIGGER",
+      "NO"
+     ]
+    }
+   ]
+  },
+  "US-9907": {
+   "area": "US-VA",
+   "why": "a trail joined to the whole state park's record",
+   "expect": [
+    {
+     "id": 54565,
+     "name": "First Landing State Park",
+     "acres": 2916,
+     "verdict": [
+      "BIGGER",
+      "NO"
+     ]
+    }
+   ]
+  },
+  "US-9957": {
+   "area": "US-VA",
+   "why": "the wilderness is 79,579 acres inside the 195,790-acre national park",
+   "expect": [
+    {
+     "id": 3474,
+     "name": "Shenandoah National Park",
+     "acres": 195790,
+     "verdict": [
+      "BIGGER",
+      "NO"
+     ]
+    }
+   ]
+  },
+  "US-4560": {
+   "area": "US-MS",
+   "why": "the scenic trail joined to the whole parkway",
+   "expect": [
+    {
+     "id": 3552,
+     "name": "Natchez Trace Parkway",
+     "acres": 31527,
+     "verdict": [
+      "BIGGER",
+      "NO"
+     ]
+    }
+   ]
+  }
+ }
+}

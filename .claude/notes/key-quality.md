@@ -153,7 +153,7 @@ Do not delete them all and do not trust them. Each one keeps its power only on t
 - When answers lose power some parks drop to pin and the drop guard holds those states. The report lists every dropped
   park with its reason, so Brandon can release a held state knowingly (KPC_DROP_OK is his word, not ours).
 
-## 6. Order of work
+## 6. Order of work (written before the tools existed; steps 1-2 are DONE, the live order is section 11)
 1. Read this morning's whole-US run (44284543226) and the `key-held` files. Do not grade it against overrides.json.
 2. Build the fact check (A) and run it on all US states and Canada. This needs no ruling.
 3. Class every saved answer A / B / C from the built keys (scorecard hidden lists + the fact check). Report counts by state.
@@ -203,3 +203,184 @@ Files from the 18 Nov check: KPC-Data branch `tools-out`, folder `key-quality/20
 - **Opus:** wires and runs it all, classes the answers A / B / C, makes the rule and data fixes, rebuilds, reports.
 - **Sonnet:** the volume grading, from Fable's packet, with sources.
 - **Bots:** the fact check on every build, acreage tables, layer health (keeper). Nothing repeating is done by hand.
+
+## 9. THE TOOLS (built by Fable 18 Nov; Brandon 5:55 AM: "do 1-3 go so we start right")
+Both live in KPC-Links `.github/scripts`, standard library only, NOT rule files (in kpc_key_freeze.NOT_RULES; the rules
+hashes did not move). Tests: `tests/test_key_factcheck_nov18.py`, `tests/test_key_grade_nov18.py` (the 18 Nov hard cases).
+- **`kpc_key_factcheck.py run --keys data/us-key --cache <shapes> --parkinfo <KPC-Data>/data/parkinfo --truth
+  <KPC-Data>/data/truth --out DIR [--areas ..] [--prev-keys DIR]`**: every park of a BUILT key: witnesses, flags, class
+  (verified / two / one / none / flagged / pin). All 56 US areas take 5 minutes. Each key row is PROVEN in the shapes
+  (the key's own `saved_row_ok`, then layer + name + acres) before any shape test. `--prev-keys` adds CHURN.
+- **`kpc_key_grade.py`**: `sample` (seeded: random by method or class / busiest 25 per area / targeted / pin / gold mix),
+  `packet` (blind line-ups, look-alikes and neighbours mixed in, known answers planted, the answer key written to
+  `<out>-keys`, NEVER beside the packet), `score` (plants, two-grader merge, exact ranges, findings.csv with an empty
+  cause column, disputes.csv, `--gold FILE` adds settled parks), `gold` (scores a finished build; SEALED = numbers only;
+  `--show-sealed` reveals misses and moves them to TUNE for good).
+- **`.github/key-grade-plants.json`**: 9 known answers (the Nebraska county records, the lake property, the trail on the
+  state park, the wilderness on the national park, the state-wide fund record ...). Add a case only with its reason.
+- **How a grade runs:** fact check, then sample, then packet, then TWO Sonnet graders who get the packet folder only,
+  then score with `--gold`, then conflicts to Fable (`--adjudicated FILE`), then a cause code on every finding.
+- **Known limits (say them when reporting):** wetland-district tracts (ids `fws..`, read live at build) and trail lines
+  are not in the saved shapes: no shape test (389 parks, soft flag NOT_IN_READ). Canada and Kentucky need a loader
+  (Kentucky's key has `tracts`, not `m` rows). Only 634 parks have a usable official size. The `agency` witness is
+  learned from the key itself (weak). A SIZE flag is a question: Washington Crossing's "14 acres" and Bitterroot's
+  "743,000" were both bad page reads.
+- **Files of 18 Nov:** KPC-Data branch `tools-out`, `key-quality/2026-11-18/` (fact check of every state, the held-state
+  comparison, the pilot packets + answers + scores, the samples with their seeds, `gold-us.json`).
+
+## 10. FIRST RESULTS (the US key as saved 18 Nov 5:44 AM: 33 states rebuilt, 17 still on the older key)
+**Fact check, all US:** 13,118 park rows, 11,715 with an outline. **Verified by facts 8,304 (70%)**, two witnesses 2,185,
+one 634, none 43, **flagged 549 (4%)**. By activations: 87% verified, 2.4% flagged, 2.7% one or none.
+Hard flags: SHARED 278, PIN_FAR 225, SIZE_BIG 55, OTHER_PARK 44, BIG_PIECE 36.
+Witnesses seen: pin 10,652, name 10,451, agency 6,952, second layer 5,505, designation 3,320, **size 488**, code 375.
+**The size leg of "pin + name + size" exists for 4% of parks.** That is the biggest hole in verifying anything.
+
+| weakest method on the park | parks | verified | two | one / none | flagged |
+|---|---|---|---|---|---|
+| reviewed-approx | 106 | 14% | 22% | 16% | **47%** |
+| words | 786 | 60% | 25% | 8% | 5% |
+| name | 9,763 | 74% | 17% | 4% | 4% |
+| same (full name, far from pin) | 22 | 13% | 40% | 36% | 9% |
+| alias | 55 | 20% | 47% | 32% | 0% |
+| reviewed only (the outline rests on a saved answer) | 610 | 27% | 40% | 23% | 7% |
+| official line / NPS code | 373 | 100% | | | |
+
+- The saved answers: 610 parks rest on them alone. 165 are verified by facts (Class B: keep, stamp). 149 have one
+  witness or none and 48 are flagged (Class C: second look, busiest first). 248 have two witnesses (look after C).
+- Weakest states (one / none): ID 33%, DE 32%, WY 28%, NV 22%, UT 13%. Most flagged: CO 13%, NV 12%, AR 12%, IN 11%.
+- The 33 rebuilt states carry 3.3% flagged parks (247 of 7,530); the 17 held states, still on the old key, 7.2%.
+
+**The 17 held states, old key against this morning's would-be key (fact check on both):** outlines 4,185 to 4,143,
+verified 2,610 to 2,670, **flagged 300 to 190** (115 cleared, 5 new), SHARED 190 to 76. Of the 44 outlines lost, 25 were
+already flagged, 18 had one or two witnesses, and **ONE was verified: US-4393 Gold Butte National Monument (NV, 151
+activations).** The contest gave the 178,990-acre 'Gold Butte' record to the herd management area (right: it is the herd
+area) and then sent the monument's OWN records (`nca21295` from the national-monument layer, `sgnvf4422`) to "check" as
+"a bare name with no type word". A record's LAYER says what kind it is. Nevada stays held until that is fixed.
+**Were the 44 lost outlines right? (blind line-ups of the OLD outlines, two graders, both passed the planted answers.)**
+28 decided, 16 unsure. **15 old outlines were wrong (7 wrong land, 8 too big): dropping them is a correction.**
+**13 were right (8) or right but incomplete (5): losing them is a step back.** Why the would-be key dropped the 13:
+- "a bare name with no type word" (contest): US-6077 Red Cliffs NCA, US-3852 Buxton Woods, and Gold Butte. Same cause:
+  the record's LAYER names its kind.
+- "the record fits more than one of these parks" (contest): US-11142 + US-12277 West Foster Creek (two park numbers for
+  the same land: the rule says SHOW both with that label), US-7348 Longview Saline.
+- "fits US-n better" (contest): US-5685 Lieber SRA lost a record that carries its exact full name.
+- "a heritage area is drawn around other people's land" (D3): US-12830 Old Ruby State Park, a 7-acre STATE site. The
+  three NATIONAL heritage areas dropped by the same line (US-7884, US-7139, US-7893) are the rule working as ruled.
+- "a designation line only for the park that IS that designation" (D3): US-10475 Pat's Cabin, US-11322 Beech Creek.
+- "only a lake surface matched" (D4): US-9167 Lake Hinkle.
+By state: DE, FL and WY lost only outlines both graders call wrong or too big. MT and VA lost none (their official
+count fell for another reason: look before releasing). AK, AR, GA, IN, NC, NV, OK, OR, UT, WA each lose at least one
+right outline; ID and RI are unsure. Releasing a held state is Brandon's word (KPC_DROP_OK).
+In the 33 saved states no outline was lost by this morning's save (checked against the commit before it).
+
+**Pilot grade (47 parks from the gold mix, two blind graders each; a work list, NOT a rate):** right 35, missing pieces
+7, wrong land 3, too big 1, unsure 1. By fact class: verified 18 parks = 0 wrong land (3 missing pieces); two / one
+18 parks = 2 wrong land; flagged 7 = 1 wrong land, 1 too big. The classes sort the risk the right way.
+- WRONG LAND: **US-3933 Cheatham WMA** joined 'Cheatham Lake WMA' by name, and US-7578 Cheatham Lake WMA joined
+  'Cheatham WMA': the name matcher drops a last word like "Lake" (`variants()` strips park / forest / pond / lake /
+  reservoir / complex / memorial / reserve), which makes two different parks one name. **US-9268 Mount Irish Wilderness**
+  joined 'Mount Irish' (15,075 acres, an ACEC layer record, 6.4 km from the pin) by name: a bare name from a layer of
+  another kind. US-13486 Bellamy River WMA East joined the West lot (`reviewed-approx`).
+- TOO BIG: US-4179 Mt Etna (`reviewed-approx`). Q1 removes both `reviewed-approx` cases.
+- MISSING PIECES: US-10003 'Phillip P. Schneider' (the park is 'Phillip W.'), US-2786 'Grand Lake State Park (Honey
+  Creek Area)', US-7075 four Muscadine units, US-6359 a second McClellan-Kerr record, US-5932 Jordan River OHV,
+  US-4153 Kaskaskia (pin only, its record exists), US-7080 Sunflower WMA = Delta National Forest land (settled by
+  Fable from the agency page: "about 60,000 acres located in Delta National Forest").
+- The graders: both got the planted answers right. In 342 candidates they never split YES against NO; 10 times one was
+  unsure. **But only half (A) and a third (B) of their verdicts cite a page: nps.gov, fs.usda.gov, fws.gov and many
+  state sites would not open for them.** One cited map did not show what the grader said it showed (Hanging Bog).
+  So: the EVIDENCE must come in the packet, fetched by a bot with the open internet, and 5% of citations get re-opened.
+- Gold set so far: 61 parks (49 TUNE, 12 SEALED). Every finding of the pilot and of the held-state packet was read by
+  Fable, so those are TUNE. The sealed half grows only from parks nobody has looked at one by one.
+
+## 11. THE FIX PLAN, in order (each rule change goes through section 13)
+1. **Q1, approved: `reviewed-approx` to pin only** (106 parks, 47% flagged; 2 of the 4 wrong outlines of the pilot).
+2. **The contest and D3, five misses found in the held states** (section 10; causes B + C). Fix, rebuild the 17 held
+   states, fact-check old against new again, re-grade what is still lost:
+   (a) a bare name takes its kind from its LAYER (Gold Butte, Red Cliffs, Buxton Woods; and Mount Irish, where an
+   ACEC-layer record was joined to a wilderness); (b) two park numbers for the same land both keep the record, labelled;
+   (c) a record with the park's exact full name is never handed to another park; (d) the heritage line is for NATIONAL
+   heritage areas, not a 7-acre state site; (e) the designation line for a park that IS that study area (Pat's Cabin).
+3. **The dropped-last-word variant must not merge two parks** (cause B): when another park of the state owns the longer
+   name ('Cheatham Lake WMA'), `variants()` may not strip that word, in either direction. OTHER_PARK and SHARED find
+   the list: 44 + 278 parks.
+4. **Class the saved answers A / B / C from the fact check** (section 5): the 610 answer-only parks first.
+5. **Missing pieces** (cause C, lower cost, do after 1-4): a one-letter or one-initial slip with the pin inside and the
+   same agency; 'Park (Unit Area)' records; a second record of the same layer + name; units named after the park. Each
+   needs its own rule line and park list. Land under another designation (Sunflower on Delta NF) is NOT a rule: it is
+   a saved answer with its evidence (Class B).
+6. **The size witness** (a bot, yearly): unit acreage from the agencies' own tables; the page-read sizes stay "weak".
+7. **The evidence bot** (a bot): for every park in a packet, fetch the park's official page with the open internet
+   (kpc_lookup / the detective) and print its unit name, acreage sentence and map link IN the packet. Then re-run the
+   random samples: 300 parks by method (`name`, `words`, `reviewed`), every state, for the first real rates.
+8. **The busiest 25 per state** (Q2): 1,250 line-ups, after 7.
+9. **Kentucky, every park** (Q4): the Kentucky key needs a small loader first.
+10. **Canada**: the same five steps once its shapes load.
+Before each sign-off: fact check old against new (as for the held states above), the gold score, and the SEALED number
+recorded before `--show-sealed`.
+
+## 12. TWO JOBS FOR OPUS (Brandon 18 Nov 5:55 AM: "The 2 ideas yes, save that for Opus, give them instructions")
+Both DECIDE something for people, so RULES FIRST applies: these are the rule sheets. Chat 8 tries to break them, Brandon
+rules on the grey areas, then Opus builds. Fable reviews before either goes live.
+
+### A. The accuracy gate on the key bots (build this one first)
+1. **What holds a state's key** (the would-be key against main's, same shapes, same script): (a) a park that is
+   verified by facts on main has NO outline in the would-be key (Gold Butte); (b) a gold-set park turns wrong land or
+   too big (`kpc_key_grade.py gold`); (c) a NEW hard flag on one of the state's 25 busiest parks; (d) hard-flagged
+   parks rise by more than 2 and by more than 10%.
+2. **What does not:** soft flags; flags that fell; a park dropping to pin that was flagged or had under two witnesses
+   (that is the drop guard's count, and often a correction); a state the owner names in the variable KPC_GATE_OK.
+3. **Sources:** the fact check of both keys and the gold file. Never the saved answers.
+4. **Unsure:** if the fact check cannot run (no shapes, a crash) it is a warning, never red, and the key saves as today.
+5. **What people see:** one notice per held state with the park numbers and the reason; the would-be file goes on the
+   `key-held` release like the drop guard's. No issue comment unless a busiest-25 park is involved (email rule).
+   A SEALED gold miss is reported as "a sealed case failed", never by park number.
+6. **Examples:** Gold Butte loses a verified outline: HELD. Q1 sends 106 approximate parks to pin: flags fall, PASSES.
+   A rule lets wildlife areas take state park records: OTHER_PARK up by 12: HELD. A layer comes in short and parks go
+   to pin: the drop guard's case, not the gate's. A new POTA park with a far pin, not busy: PASSES with a notice. The
+   fact check crashes: warning, saved as before.
+- **Build notes:** a small `kpc_key_gate.py` (not a rule file) + one step in kpc-us-key.yml after the drop guard, reusing
+  the held-copies step. Variable `KPC_ACCURACY_GATE` = `report` (default: it only SAYS what it would hold) / `on` / `off`.
+  Two runs in `report`, read them with Brandon, then `on` with his word. The same step saves each run's fact check on
+  tools-out, so every build gets its report card for free. Then Canada and world keys.
+- **Grey areas for Brandon:** G-G1 the numbers in 1 (d); G-G2 does the gate replace the drop guard's 0% limit for parks
+  that were flagged (today those "losses" hold 16 states that look better)?
+
+### B. The phone page "Is this outline right?" (Club Room only)
+1. **What counts:** one park per screen. A member compares OUR outline with THE AGENCY'S OWN MAP and answers Looks right
+   / Something is wrong (too big, too small, wrong place, a piece missing + a short note) / Not sure. The buttons unlock
+   only after the official map link was opened. The answer is saved with the call sign and the date.
+2. **What does not:** an answer without the official map opened; a park with no official map on file (the screen then
+   only asks "do you know where the agency's map is?" and that goes to the map leads); guests.
+3. **Sources, best first:** the agency map link we hold (ky-official-maps.json, the documents bot's map links, then the
+   park's website). Never our map or POTA's map as the thing to compare with.
+4. **Unsure:** "Not sure" is a full answer. One member's answer is ONE witness ("a person looked"): it never changes a
+   key by itself. Two members who disagree go to the second-look list. A "wrong" on a busy park goes to the top of it.
+5. **What people see:** the short notice line "Maps and park info are a planning aid, not a guarantee ..." with the
+   About our information link. No 2-fer talk on the page (so no 2-fer notice). Members only, noindex, linked from the
+   Club Room only, not in the menu. Nothing about it is posted without Brandon's GO.
+6. **Examples:** Brandon checks a Kentucky park he knows: "Looks right" becomes a gold row "checked by a person, KZ4CP,
+   date, map link". A member says Mt Etna is too big: top of the second-look list. A park with no map link: only the
+   "where is the map" question. Two members disagree: second look. A trail park: the line and its 100-foot band are
+   shown and the question is about the line. A pin-only park: "we have no outline yet", only the map question.
+- **Build notes:** page through assemble.py (header / footer placeholders), member lock, noindex re-added, 390 px, test
+  that one page only. The queue (which park next) comes from the fact check: Kentucky first, then the member's state,
+  flagged and weak parks first, busiest first; one small JSON a bot writes. Answers go the SAME way Map Rep's do
+  (read notes/website.md + the Map Rep part of mapping.md first; no new back end), through the waiting room, and a
+  bot turns approved answers into gold rows. Practice text never uses a real call sign. Add the page to kpc-search.js
+  (members only) when it ships.
+- **Grey areas for Brandon:** G-P1 how many members must agree before a park counts as "checked by people" (Fable: two,
+  or Brandon alone); G-P2 may members check parks outside their own state; G-P3 is the call sign shown to other members.
+
+## 13. FABLE REVIEWS KEY RULE CHANGES (Brandon 18 Nov 5:55 AM: "leave Opus a note you have to review their rule changes")
+Any change that moves a key rules hash (US, Canada, world, Kentucky, 2-fer rule files; switches; what the saved answers
+may do) goes on a BRANCH as a draft PR. It is merged only after Brandon has taken it to a Fable chat ("review PR n")
+and the changelog line carries "Reviewed: Fable, <date>". The PR brings:
+1. the rule line in plain words and Brandon's ruling behind it (date + his words). No made-up rules for POTA.
+2. the findings it fixes, by park number and cause code (findings.csv), and the park list of every outline it changes;
+3. the fact check old against new on EVERY area (flags, classes, verified outlines lost), not three test states;
+4. the gold score old against new: TUNE by park, SEALED as numbers only;
+5. the new test with the real names and acres; the scope entry, the new hash and the changelog line.
+Fable checks: does it fix the cause or only the row; does anything verified get worse anywhere; is a hard case flipped;
+was it tuned on the parks it is graded on. A NO comes back with the reason and the smallest change that would pass.
+Wording, notes, tests and tools that decide no join need no review.
