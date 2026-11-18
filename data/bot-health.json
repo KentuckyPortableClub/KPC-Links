@@ -1,18 +1,14 @@
 {
  "open": [
-  "KPC-Data/kpc-copy-from-links.yml",
-  "KPC-Data/kpc-fers-pending.yml",
   "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-storage.yml",
   "guard:pubnoindex:kpc-log-checker.html",
   "kpc-boards.yml",
-  "kpc-bot-queue.yml",
   "kpc-discord-relay.yml",
-  "kpc-fb-comments.yml",
+  "kpc-discord-watch.yml",
   "kpc-hunters.json",
-  "kpc-park-alerts.yml",
+  "kpc-hunters.yml",
   "kpc-pota-discord.yml",
-  "kpc-world-key.yml",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
@@ -363,12 +359,14 @@
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Access_Sites/FeatureServer/28",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
+  "out:shrank:D:data/leaders",
+  "pages-deploy.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-17T18:45+00:00",
+ "checked": "2026-11-18T10:21+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3261,13 +3259,13 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2911
+   "b": 2916
   },
   "L:data/ky-answer-key.json": {
    "b": 31658
   },
   "L:data/us-key": {
-   "b": 50739402
+   "b": 53250161
   },
   "L:data/ca-key": {
    "b": 5833145
@@ -3276,7 +3274,7 @@
    "b": 38569625
   },
   "L:data/pota": {
-   "b": 9761816
+   "b": 10002410
   },
   "L:data/canada.json": {
    "b": 2558918
@@ -3318,44 +3316,44 @@
    "b": 2948
   },
   "L:kpc-conditions.json": {
-   "b": 18296,
-   "since": "2026-11-11"
+   "b": 11644
   },
   "L:data/kpc-whats-new.json": {
    "b": 684
   },
   "D:data/leaders": {
-   "b": 1035881
+   "b": 1035881,
+   "since": "2026-11-18"
   },
   "D:data/sota-land": {
    "b": 1697496
   },
   "D:data/parkinfo": {
-   "b": 12867585
+   "b": 15623318
   },
   "D:data/trails": {
-   "b": 31966627
+   "b": 32083811
   },
   "D:data/access": {
    "b": 5358732
   },
   "D:data/wwff": {
-   "b": 11701906
+   "b": 11711851
   },
   "D:data/review/scoreboard.json": {
-   "b": 137361
+   "b": 137418
   },
   "D:data/truth": {
-   "b": 19645880
+   "b": 26500719
   },
   "D:data/alerts/eu.json": {
-   "b": 257640
+   "b": 252330
   },
   "D:data/alerts/us-parks.json": {
    "b": 93698
   },
   "D:data/closures": {
-   "b": 168398
+   "b": 169218
   },
   "D:data/intake": {
    "b": 39695215,
@@ -3365,7 +3363,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1109024
+   "b": 1110810
   }
  }
 }
