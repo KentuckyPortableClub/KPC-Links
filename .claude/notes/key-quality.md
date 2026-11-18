@@ -402,6 +402,10 @@ The changes asked for are in a comment on each PR. Standing lessons for every la
   `LAYER_TYPE['wild']` typed the federal wilderness layers as wildlife; Acadia Cliffs SWA US-9442 holds nature-preserve
   records by name.
 - **Lake Hinkle US-9167** (old outline graded right, lost to D4): a saved answer with evidence (section 11 step 5), not a rule.
+- **Q1 READING, RULED (Brandon 18 Nov 1:45 PM: "Go with what you think is best right now you see more information then I can"):**
+  Q1 removes only the rows tagged `reviewed-approx` (271 rows). 89 parks have nothing else and go to pin. The other 23
+  (13 with rows the rules joined alone, 10 with the mark but no approximate row) keep what the rules joined alone and
+  are graded like any other park. Fable chose it; Brandon may still say "all to pin".
 - **Canada's 70 approximate rows wait for step 10** (no loader, no fact check: nothing changes that cannot be measured).
 - **Held states:** with both PRs none of the 17 is estimated over the drop guard's 3%, so all would save; 33 of the 44
   lost outlines stay pins there (13 graded wrong, 16 unsure, 4 graded right). Brandon hears that before the run.
