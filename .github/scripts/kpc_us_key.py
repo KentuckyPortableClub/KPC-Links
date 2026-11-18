@@ -1186,7 +1186,8 @@ def _what(rid):
     return next(((x[8] or {}).get('what') or '' for x in XS if len(x) > 8 and x[0] == _m.group(0) and isinstance(x[8], dict)), '')
 DESIG_KIND = {'wld': {'wild'}, 'wbl': {'wild'}, 'wsa': {'wsa'}, 'nca': {'nps', 'ca'}}   # the kind a layer's bare record names carry
 HERITAGE_RX = re.compile(r'heritage (area|corridor)', re.I)
-DESIG_WORDS = frozenset('blm usfs nps wsa isa wilderness study instant area areas national monument conservation nca recreation nra the'.split())
+NATIONAL_HERITAGE_RX = re.compile(r'national heritage (area|corridor)', re.I)   # (d) held states, 18 Nov
+DESIG_WORDS = frozenset('blm usfs nps wsa isa wilderness study instant area areas national monument conservation nca recreation nra the reserve'.split())   # (e) 18 Nov: + reserve
 def _dcore(t): return ' '.join(w for w in str(t or '').split() if w not in DESIG_WORDS)   # a designation name without its type words
 
 
@@ -2533,7 +2534,9 @@ def run(st):
         # kind it goes to CHECK. A person's join stands. Ownership share (approximate where the agency owns only part; herd areas on
         # checkerboard) is measured by a report first, like D2.
         if _kr('KPC_DESIGNATION_SPLIT') and m:
-            if HERITAGE_RX.search(str(p.get('t') or '') + ' ' + str(p.get('n') or '')):
+            # (d) held states, 18 Nov (Old Ruby State Park State Heritage Area, a 7-acre STATE site, lost its own record): the
+            # heritage line is for a NATIONAL heritage area or corridor only; any other park goes to the designation test below
+            if NATIONAL_HERITAGE_RX.search(str(p.get('t') or '') + ' ' + str(p.get('n') or '')):
                 _hx = [x for x in m if name_only(x[3])]
                 if _hx:
                     p['m'] = m = [x for x in m if x not in _hx]
@@ -2548,8 +2551,21 @@ def run(st):
                             or _what(x[0]) == 'designation')   # D3 by D11's labels (HQ 17 Nov): a state layer labelled a designation line
                 def _is_it(x):   # the park IS the designation: the record's own name begins the park's name, or the same kind of place
                     _rn, _pn = KR._full(x[1]), KR._full(p.get('n') or '')
+                    # (a) held states, 18 Nov (Mount Irish Wilderness took the 15,075-acre 'Mount Irish' ACEC record): a record whose name
+                    # has no type word takes its kind from its LAYER; when that kind and the park's kind are both known and do not
+                    # meet, the record is another designation of the same place, not this park
+                    # (a) only a layer record (a letter id: its Loc_Mang is the layer's title; a PAD-US record's is a manager's name).
+                    # POTA lists BLM study areas as 'BLM Wilderness Area' parks, so study and wilderness meet (Phipps - Death Hollow ISA).
+                    _lt = (KR.layer_type_words((gs_.get(str(x[0])) or {}).get('Loc_Mang'), _what(x[0]))
+                           if re.match(r'[a-z]', str(x[0])) and not KR.type_words(x[1]) else set())
+                    _ptw = KR.type_words(p.get('n') or '') | KR.type_words(p.get('t') or '')
+                    if {'study', 'wilderness'} & _lt: _lt = _lt | {'study', 'wilderness'}
+                    if _lt and _ptw and not (_lt & _ptw): return False
                     if _rn and (_pn == _rn or _pn.startswith(_rn + ' ')): return True
-                    if _rn and _dcore(_rn) and _dcore(_rn) == _dcore(_pn): return True   # 'Phipps - Death Hollow ISA' = 'Phipps-Death Hollow BLM Wilderness Area'
+                    # (e) held states, 18 Nov: the core name is compared with spaces left out, so an apostrophe does not split a word
+                    # ('Pats Cabin WSA' = "Pat's Cabin Wilderness Area"); 'reserve' is a designation word ('Beech Creek National
+                    # Scenic Area' = 'Beech Creek National Scenic Reserve')
+                    if _rn and _dcore(_rn) and _dcore(_rn).replace(' ', '') == _dcore(_pn).replace(' ', ''): return True   # 'Phipps - Death Hollow ISA' = 'Phipps-Death Hollow BLM Wilderness Area'
                     _pre = re.match(r'[a-z]+', str(x[0]))
                     _rk = kinds(x[1]) or DESIG_KIND.get(_pre.group(0) if _pre else '', set())
                     return bool(_rk & _pk)
@@ -2914,11 +2930,13 @@ def run(st):
             _pk = {x[0]: set(x[4] or ()) for x in XS if len(x) > 4}
             def _lk(_id):
                 _m = re.match(r'[a-z]+', _id)
-                if _m: return _pk.get(_m.group(0), set())
+                # (a) held states, 18 Nov: the layer's own title says what kind its bare-named records are (Gold Butte in the BLM
+                # monuments / NCAs layer is the monument's; a compilation layer's title says nothing)
+                if _m: return _pk.get(_m.group(0), set()) | KR.layer_type_words((gs_.get(_id) or {}).get('Loc_Mang'), _what(_id))
                 _a = gs_.get(_id) or {}
                 _d = DES.get(str(_a.get('Des_Tp') or '').upper())
                 return {_d} if _d else set()
-            _won, _person, _exact = [], [], []
+            _won, _person, _exact, _same = [], [], [], []
             for _id, _rs in _by.items():
                 _rs = [r for r in _rs if any(str(q[0]) == _id for q in parks[r].get('m') or []) and _id not in (parks[r].get('parts') or {})]
                 if len(_rs) < 2: continue
@@ -2929,8 +2947,20 @@ def run(st):
                     _ag = lambda refs, _mg=_mg: KR.agency_pick(_mg, {r: KR.web_host((P.get(r) or [None, ''])[1] if len(P.get(r) or []) > 1 else '') for r in refs}, KR.agency_table())
                 _ac0 = (gs_.get(_id) or {}).get('GIS_Acres')
                 _sz = (lambda refs, _ac0=_ac0, _id=_id: KR.size_pick(_ac0, {r: [x[2] for x in parks[r].get('m') or [] if str(x[0]) != _id] for r in refs}))
-                _v, _x = KR.contest(_qn, {r: (parks[r].get('n') or '', parks[r].get('t') or '') for r in _rs}, norm, _lk(_id), _ag, _sz)
-                if _v == 'both': continue
+                # (c) held states, 18 Nov (Lieber SRA lost 'Cagles Mill Lake' / 'Lieber State Recreation Area', 718 acres, to Cagles Mill
+                # Lake NRA): a STATE LAYER record that carries ONE sharing park's exact full name in either of its name fields stays with
+                # that park. Not a PAD-US record: its local name often names the forest that runs the land, not the land (Mt. Hood NF
+                # land 'Willamette National Forest', the Lake Tahoe Basin unit's land 'Tahoe National Forest')
+                _nms = ({KR._full(n) for n in (KR.rec_names(gs_.get(_id) or {}) or [])} | {KR._full(_qn)}) if re.match(r'[a-z]', _id) else set()
+                _fx = [r for r in _rs if KR._full(parks[r].get('n') or '') in _nms]
+                _v, _x = ('win', _fx[0]) if len(_fx) == 1 else KR.contest(_qn, {r: (parks[r].get('n') or '', parks[r].get('t') or '') for r in _rs}, norm, _lk(_id), _ag, _sz)
+                if _v == 'both':
+                    # (b) held states, 18 Nov: one piece of land under two park numbers: both keep the record, labelled
+                    if _x == KR.SAME_LAND or len({KR._full(parks[r].get('n') or '') for r in _rs}) == 1:
+                        for _r in _rs:
+                            parks[_r]['same_land'] = sorted(set(parks[_r].get('same_land') or []) | {r for r in _rs if r != _r})
+                        _same.append(_rs[0])
+                    continue
                 for _r in _rs:
                     if _v == 'win' and _r == _x: continue
                     _p = parks[_r]; _q = [q for q in _p['m'] if str(q[0]) == _id]
@@ -2954,6 +2984,7 @@ def run(st):
                     if not _p['m']: _p['g'] = 'pin'
                     _p['c'] = [list(q[:3]) + [f'check (exact name): this record carries the full name of {o}'] for q, o in _gone] + (_p.get('c') or [])
                     _exact.append(_r)
+            if _same: notice(f'US key {st}', f"contest: {len(_same)} record(s) kept on two park numbers as the same land (labelled 'same_land'): {', '.join(_same[:10])}")
             if _won or _person or _exact:
                 notice(f'US key {st}', f"contest: {len(_won)} park(s) gave a record to the park it fits better, {len(_person)} sent one to a person, "
                        f"{len(_exact)} gave back a record carrying another park's exact name: {', '.join((_won + _person + _exact)[:10])}")

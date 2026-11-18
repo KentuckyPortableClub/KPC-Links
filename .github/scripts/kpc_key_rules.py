@@ -716,13 +716,36 @@ TYPE_WORDS = [('park', r'state (resort )?park|\bsp\b|\bsrp\b|national park|\bnp\
               ('historic', r'histori|\bshp\b|\bshs\b|\bhs\b|\bnhs\b|\bnhp\b'),
               ('recreation', r'recreation (area|site)|\bsra\b|\bnra\b|\bsrs\b'),
               ('preserve', r'\bpreserve\b|\bdnp\b|\bsnp\b|natural area|\bsna\b|nature reserve'),
-              ('reserve', r'\breservation\b|\bstate reserve\b'),   # Sonnet 18 Nov: Mount Tom State RESERVE = the 'Mount Tom State Reservation' records
+              ('reserve', r'\breservation\b|\bstate reserve\b|\bcoastal reserve\b'),   # 18 Nov held states: NC's 'Buxton Woods Coastal Reserve' = Buxton Woods State Reserve   # Sonnet 18 Nov: Mount Tom State RESERVE = the 'Mount Tom State Reservation' records
               ('wilderness', r'wilderness(?! study)'), ('study', r'study area|\bwsa\b'), ('refuge', r'\brefuge\b|\bnwr\b'),
               ('fishing', r'fishing (lake|area)|\bsfl\b|\bpfl\b|fishing access'), ('monument', r'\bmonument\b'),
               ('conservation', r'conservation area|\bnca\b|\bsca\b'), ('herd', r'\bherd\b|\bhma\b'), ('rma', r'recreation management|\bs?rma\b')]
 # a layer's own kind (state-gis 'kind', or the US key's kind tags of a national layer) when the record's name carries no type word
 LAYER_TYPE = {'park': 'park', 'sp': 'park', 'wild': 'wildlife', 'wma': 'wildlife', 'forest': 'forest', 'sf': 'forest', 'nf': 'forest',
               'preserve': 'preserve', 'snp': 'preserve', 'nwr': 'refuge', 'hma': 'herd', 'wsa': 'study', 'rma': 'rma', 'nps': 'park'}
+
+
+# Held states, 18 Nov (key-quality.md section 11 step 2 (a), causes B + C): A RECORD'S LAYER SAYS WHAT KIND IT IS. A record whose own
+# name has no type word ('Gold Butte' in the BLM monuments / NCAs layer, 'Mount Irish' in the ACEC layer) takes its kind from the
+# title of the layer it comes from. Not for a layer that gathers many kinds of land from many owners (D11 'compilation' or
+# 'register'): its title says nothing about one record. 'acec' is a layer kind only (no park name carries it as a type word here).
+LAYER_TYPE_WORDS = TYPE_WORDS + [('acec', r'critical environmental concern|\bacec\b'), ('conservation', r'\bnca\b|national conservation')]
+
+
+LAYER_KINDS = {k for k, _ in LAYER_TYPE_WORDS}
+SAME_LAND = 'same land, two park numbers'
+
+
+def layer_type_words(title, what=''):
+    """The kinds of place a LAYER's own title says it holds ('BLM national monuments / conservation areas' -> {'monument',
+    'conservation'}; 'ACEC Designated Polygons' -> {'acec'}). Plurals count ('monuments', 'NCAs'). A compilation or register
+    layer (D11) -> set(): its title is about many kinds of land."""
+    if str(what or '') in ('compilation', 'register'): return set()
+    t = re.sub(r'\((land|water), state gis table\)', ' ', str(title or '').lower())
+    t = re.sub(r'(national )?(forest|park) service|fish and wildlife service|department of (fish and )?wildlife|wildlife resources', ' ', t)   # an agency's name is not a kind
+    t = re.sub(r'[^a-z ]', ' ', t)
+    t = re.sub(r'\b(\w{2,}[^s\W])s\b', r'\1', t)   # monuments -> monument, areas -> area, ncas -> nca (wilderness keeps its ss)
+    return {k for k, rx in LAYER_TYPE_WORDS if re.search(rx, t)}
 
 
 def type_words(s):
@@ -823,7 +846,7 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None, size=No
     ps = {r: type_words(v[0]) | type_words(v[1]) for r, v in parks.items()}
     if rs and re.search(r'\band\b|&|/', str(record_name).lower()) and all(ps[r] & rs for r in parks) and len({frozenset(ps[r] & rs) for r in parks}) == len(parks):
         return 'both', None
-    if not rs: rs = {LAYER_TYPE[k] for k in layer_kinds if k in LAYER_TYPE}
+    if not rs: rs = {LAYER_TYPE.get(k, k) for k in layer_kinds} & LAYER_KINDS   # (a) 18 Nov: a bare name's kind is its layer's
     if not rs:
         g = (size(list(parks)) if size else None) or (agency(list(parks)) if agency else None)
         if g: return 'win', g
@@ -839,4 +862,11 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None, size=No
     if len(ex) == 1: return 'win', ex[0]
     g = (size(k) if size else None) or (agency(k) if agency else None)
     if g: return 'win', g
+    if place is not None and len(k) == len(parks):
+        # (b) 18 Nov (West Foster Creek, Longview Saline): only where the contest could not choose, and every park the record is
+        # shared with is the same PLACE (the same name once the kind words are left out) and a kind the record has: POTA lists one
+        # piece of land under two numbers. Both keep it, labelled 'same land, two park numbers'. A record that fits ONE park's
+        # kinds exactly still goes to that park (Sam Houston NF WMA's own records stay with the WMA).
+        pl = {place(n) for n in names.values()}
+        if len(pl) == 1 and next(iter(pl)): return 'both', SAME_LAND
     return 'person', 'the record fits more than one of these parks'
