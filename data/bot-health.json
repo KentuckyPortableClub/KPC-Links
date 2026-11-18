@@ -1,13 +1,18 @@
 {
  "open": [
+  "KPC-Data/kpc-copy-from-links.yml",
+  "KPC-Data/kpc-eu-alerts.yml",
   "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-storage.yml",
+  "KPC-Data/kpc-watchdog.yml",
   "guard:pubnoindex:kpc-log-checker.html",
+  "kpc-band-alerts.yml",
   "kpc-boards.yml",
   "kpc-discord-relay.yml",
   "kpc-discord-watch.yml",
   "kpc-hunters.json",
   "kpc-hunters.yml",
+  "kpc-park-alerts.yml",
   "kpc-pota-discord.yml",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
@@ -366,7 +371,7 @@
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-18T10:21+00:00",
+ "checked": "2026-11-18T18:25+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3265,7 +3270,7 @@
    "b": 31658
   },
   "L:data/us-key": {
-   "b": 53250161
+   "b": 52249110
   },
   "L:data/ca-key": {
    "b": 5833145
@@ -3274,7 +3279,7 @@
    "b": 38569625
   },
   "L:data/pota": {
-   "b": 10002410
+   "b": 10201364
   },
   "L:data/canada.json": {
    "b": 2558918
@@ -3292,13 +3297,13 @@
    "b": 128874
   },
   "L:data/boundary-score.json": {
-   "b": 965685
+   "b": 966307
   },
   "L:data/campfed": {
    "b": 643240
   },
   "L:data/campstate": {
-   "b": 877962
+   "b": 879263
   },
   "L:data/nwr": {
    "b": 334294
@@ -3310,7 +3315,7 @@
    "b": 21245
   },
   "L:kpc-special-events.json": {
-   "b": 17150
+   "b": 16654
   },
   "L:kpc-youtube.json": {
    "b": 2948
@@ -3363,7 +3368,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1110810
+   "b": 1128304
   }
  }
 }
