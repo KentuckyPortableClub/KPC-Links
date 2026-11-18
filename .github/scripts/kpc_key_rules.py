@@ -750,7 +750,9 @@ def layer_type_words(title, what=''):
     'conservation'}; 'ACEC Designated Polygons' -> {'acec'}). Plurals count ('monuments', 'NCAs'). A compilation or register
     layer (D11) -> set(): its title is about many kinds of land."""
     if str(what or '') in ('compilation', 'register'): return set()
-    t = re.sub(r'\((land|water), state gis table\)', ' ', str(title or '').lower())
+    # the '(<kind>, state GIS table)' tail is the coarse state-gis kind of the whole layer, not its title (Alaska's legislatively
+    # designated areas carry 'preserve' and hold special management areas, refuges, habitat areas: Kenai River US-12708)
+    t = re.sub(r'\([a-z ]+, state gis table\)', ' ', str(title or '').lower())
     t = re.sub(r'(national )?(forest|park) service|fish and wildlife service|department of (fish and )?wildlife|wildlife resources', ' ', t)   # an agency's name is not a kind
     t = re.sub(r'[^a-z ]', ' ', t)
     t = re.sub(r'\b(\w{2,}[^s\W])s\b', r'\1', t)   # monuments -> monument, areas -> area, ncas -> nca (wilderness keeps its ss)
@@ -811,6 +813,14 @@ def near_name(a, b):
         while n < min(len(x), len(y)) and x[n] == y[n]: n += 1
         return x == y or (n >= 5 and max(len(x), len(y)) - n <= 3)
     return all(st(x, y) for x, y in zip(wa, wb))
+
+
+def box_overlap(b1, b2):
+    """Share of the smaller of two boxes [minx, miny, maxx, maxy] that the other covers (0 when either is missing)."""
+    if not b1 or not b2: return 0.0
+    w = max(0.0, min(b1[2], b2[2]) - max(b1[0], b2[0])); h = max(0.0, min(b1[3], b2[3]) - max(b1[1], b2[1]))
+    s = min((b1[2] - b1[0]) * (b1[3] - b1[1]), (b2[2] - b2[0]) * (b2[3] - b2[1])) or 1e-12
+    return w * h / s
 
 
 def size_pick(acres, held, tol=0.10, floor=5.0):

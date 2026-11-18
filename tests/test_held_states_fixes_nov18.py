@@ -86,6 +86,13 @@ check(KR.contest('Diamond', DM, norm, ('acec',), None, sz) == ('win', 'US-13126'
       'a layer kind that fits none of the parks falls back to the bare-name path: the land a park already holds decides first')
 check(KR.contest('Diamond', DM, norm, ('acec',))[1].startswith('a bare name'), '... and with no size or agency answer it goes to a person as a bare name')
 
+# second round (18 Nov): the state-gis kind tail is not a layer title; the size step needs the same box
+check(KR.layer_type_words('Alaska Department of Natural Resources (preserve, state GIS table)') == set(),
+      "Alaska's legislatively designated areas layer says no kind ('preserve' is the coarse state-gis tag): Kenai River US-12708 keeps 'Kenai River' (sgakb796)")
+check(KR.box_overlap([0, 0, 1, 1], [0.05, 0.05, 1.05, 1.05]) > .8 and KR.box_overlap([0, 0, 1, 1], [1.2, 0, 2.2, 1]) == 0, 'box overlap: a copy covers, a neighbour does not')
+check("KR.box_overlap(_bb0, (gs_.get(str(x[0])) or {}).get('_bb')) >= .6" in src,
+      "the contest's size step counts only a held record whose box covers this one (60%): Big Lake NWR (10,911 ac, boxes 47%) does not take the state's 'Big Lake' (10,804 ac, PAD-US 166827); Caddo Lake WMA keeps its 8,307-ac copy (70%)")
+
 # (c) exact full name in any of the record's names
 lieber = {'OBJECTID': 'sginc3226', 'Unit_Nm': 'Cagles Mill Lake', 'Loc_Nm': 'Lieber State Recreation Area', 'GIS_Acres': 718.0}
 names = {KR._full(n) for n in KR.rec_names(lieber)}

@@ -2946,7 +2946,13 @@ def run(st):
                     _mg = (gs_.get(_id) or {}).get('Mang_Name')
                     _ag = lambda refs, _mg=_mg: KR.agency_pick(_mg, {r: KR.web_host((P.get(r) or [None, ''])[1] if len(P.get(r) or []) > 1 else '') for r in refs}, KR.agency_table())
                 _ac0 = (gs_.get(_id) or {}).get('GIS_Acres')
-                _sz = (lambda refs, _ac0=_ac0, _id=_id: KR.size_pick(_ac0, {r: [x[2] for x in parks[r].get('m') or [] if str(x[0]) != _id] for r in refs}))
+                # the same land = within 10% of the acres AND the two boxes cover each other (60%): two neighbours of about the same
+                # size are not one piece of land (Big Lake NWR 10,911 ac and the state's 'Big Lake' 10,804 ac next to it: boxes 47%; Caddo Lake
+                # WMA's own 8,456 ac and its 8,307-ac copy: 70%; Silver Springs SP vs the forest's 4,880 ac: 0%; held states
+                # second round, 18 Nov). A record with no box gives no size answer.
+                _bb0 = (gs_.get(_id) or {}).get('_bb')
+                _sz = (lambda refs, _ac0=_ac0, _id=_id, _bb0=_bb0: KR.size_pick(_ac0, {r: [x[2] for x in parks[r].get('m') or [] if str(x[0]) != _id
+                                                                                       and KR.box_overlap(_bb0, (gs_.get(str(x[0])) or {}).get('_bb')) >= .6] for r in refs}))
                 # (c) held states, 18 Nov (Lieber SRA lost 'Cagles Mill Lake' / 'Lieber State Recreation Area', 718 acres, to Cagles Mill
                 # Lake NRA): a STATE LAYER record that carries ONE sharing park's exact full name in either of its name fields stays with
                 # that park. Not a PAD-US record: its local name often names the forest that runs the land, not the land (Mt. Hood NF

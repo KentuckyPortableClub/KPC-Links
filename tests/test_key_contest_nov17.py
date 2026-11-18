@@ -32,7 +32,7 @@ check(C('Blue Rock', {'US-1936': ('Blue Rock State Park', 'State Park'), 'US-543
 check(C('Mohican State Park', {'US-1977': ('Mohican State Park', 'State Park'), 'US-5444': ('Mohican-Memorial State Forest', 'State Forest')}) == ('win', 'US-1977'), 'full name first (D9)')
 check(C('North Platte National Wildlife Refuge', {'US-0445': ('North Platte National Wildlife Refuge', 'National Wildlife Refuge'), 'US-13433': ('North Platte National Wildlife Refuge', 'National Wildlife Refuge')}) == ('both', None), 'two POTA numbers with the same name keep the record (same land, two park numbers; NE proof)')
 check(KR.type_words('Cooper Lake SP - Doctors Creek Unit') == {'park'} and KR.type_words('Buffalo Bill Ranch SRA') == {'recreation'}, 'short forms are read')
-i0 = src.index('# THE CONTEST (matching plan section 1'); blk = src[i0:i0 + 6000]; pre = src[i0 - 2500:i0]
+i0 = src.index('# THE CONTEST (matching plan section 1'); blk = src[i0:i0 + 9000]; pre = src[i0 - 2500:i0]   # 18 Nov: the held-state fixes made the block longer
 check("if _kr('KPC_ONE_RECORD_ONE_PARK'):" in pre and 'KR.contest(' in blk and src[src.rfind('\n', 0, i0) + 1:i0] == ' ' * 12, 'the US key runs the contest inside the D9 switch block (same indentation as the D9 body)')
 check('a person decides' in blk and "'g'] = 'pin'" in blk, 'a person case leaves every park (a park left with nothing is a pin)')
 check('check (exact name)' in blk, 'a record whose full name is ANOTHER park of the state goes back from the park that took it (exact name wins)')
