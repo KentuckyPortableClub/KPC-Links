@@ -16,4 +16,9 @@ ck(KR.other_place_word('Tumalo State Park', 'Tumalo Community School') == 'schoo
 src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
 ck("'check (trail): the park is its official trail line" in src and "not any(str(x[3]).startswith('reviewed') for x in m)" in src,
    "a trail park with an official line keeps the line; name-joined pieces go to check, a person's join stays (MN US-9386)")
+sz = lambda refs: KR.size_pick(6806, {'US-1940': [10632, 6998, 6953], 'US-7850': [1200, 3400]})
+ck(KR.contest('CAESAR CREEK', {'US-1940': ('Caesar Creek State Park', 'State Park'), 'US-7850': ('Caesar Creek Lake State Wildlife Area', 'Wildlife Area')}, None, (), None, sz) == ('win', 'US-1940'),
+   "a bare-name copy goes to the park that already holds the same land (6,806 ac beside its own 6,953-ac record: Caesar Creek SP)")
+ck(KR.size_pick(100, {'a': [100], 'b': [95]}) is None and KR.size_pick(3, {'a': [3]}) is None, 'two parks that fit, or a tiny piece: a person decides')
+ck("p['ac'] > 1.1 * _sum" in src, "a park's union acreage is never shown bigger than its records' own acres added up (Savoy Mountain SF)")
 print('ALL PASS' if not bad else 'SOME FAILED'); sys.exit(1 if bad else 0)

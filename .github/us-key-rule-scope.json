@@ -319,6 +319,20 @@
     "saved_ids": true
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-18 (owner: get US and Canada to excellent grades)"
+  },
+  {
+   "id": "2026-11-18-size-pick",
+   "when": "2026-11-18",
+   "from": "e4872e914f08",
+   "why": "Sonnet's grade, the open rows: (1) the contest asks first whether ONE of the parks already holds the same land (a record within 10% of this one's acres): Ohio's bare 'CAESAR CREEK' / 'DELAWARE' / 'SHAWNEE' basemap copies go to the park that holds the same tract instead of a person; offline OH: FOUND 170 -> 171, extras 887 -> 744. (2) a park's union acreage is never shown bigger than its records' own acres added up (Savoy Mountain SF showed 49,593 for about 13,000).",
+   "scope": {
+    "states": [
+     "US-OH",
+     "US-MA"
+    ],
+    "saved_ids": true
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-18 4:16 AM (\"put your fixes in you think it needs\")"
   }
  ]
 }

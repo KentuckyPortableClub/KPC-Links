@@ -2709,6 +2709,10 @@ def run(st):
                 if g is not None: geoms.append(g)
             if geoms:
                 p['ac'] = round(_union(geoms).area / 4046.86); nac += 1
+                # Sonnet's grade 18 Nov (Savoy Mountain SF: 13,373 -> 49,593 ac): a union can never be bigger than its records'
+                # own acres added up; when it is, a ring was read wrong, so the records' total (an upper bound) is shown instead
+                _sum = sum(float(x[2] or 0) for x in p['m'] if str(x[0]) in ids or x[0] in ids)
+                if _kr('KPC_ONE_RECORD_ONE_PARK') and _sum > 0 and p['ac'] > 1.1 * _sum: p['ac'] = round(_sum)
         notice(f'US key {st}', f'{nac} parks with several records got one union acreage (ac)' + (f'; {skipped} too big or out of time (no ac)' if skipped else '')) if nac or skipped else None
     except ImportError: pass
     except Exception as e: notice(f'US key {st}', f'union acreage skipped: {str(e)[:120]}')  # noqa: BLE001
@@ -2906,14 +2910,16 @@ def run(st):
                 if _kr('KPC_AGENCY_TIE'):   # matching plan section 2: the record's manager vs the parks' POTA websites (learned table)
                     _mg = (gs_.get(_id) or {}).get('Mang_Name')
                     _ag = lambda refs, _mg=_mg: KR.agency_pick(_mg, {r: KR.web_host((P.get(r) or [None, ''])[1] if len(P.get(r) or []) > 1 else '') for r in refs}, KR.agency_table())
-                _v, _x = KR.contest(_qn, {r: (parks[r].get('n') or '', parks[r].get('t') or '') for r in _rs}, norm, _lk(_id), _ag)
+                _ac0 = (gs_.get(_id) or {}).get('GIS_Acres')
+                _sz = (lambda refs, _ac0=_ac0, _id=_id: KR.size_pick(_ac0, {r: [x[2] for x in parks[r].get('m') or [] if str(x[0]) != _id] for r in refs}))
+                _v, _x = KR.contest(_qn, {r: (parks[r].get('n') or '', parks[r].get('t') or '') for r in _rs}, norm, _lk(_id), _ag, _sz)
                 if _v == 'both': continue
                 for _r in _rs:
                     if _v == 'win' and _r == _x: continue
                     _p = parks[_r]; _q = [q for q in _p['m'] if str(q[0]) == _id]
                     _p['m'] = [q for q in _p['m'] if str(q[0]) != _id]
                     if not _p['m']: _p['g'] = 'pin'
-                    _why = (f'check (contest): this record fits {_x} better (its own type words, or its manager is {_x}\'s agency)' if _v == 'win'
+                    _why = (f'check (contest): this record fits {_x} better (its own type words, the same land {_x} already holds, or its manager is {_x}\'s agency)' if _v == 'win'
                             else f"check (contest): shared with {', '.join(r for r in _rs if r != _r)}; {_x}: a person decides")
                     _p['c'] = [list(q[:3]) + [_why] for q in _q] + (_p.get('c') or [])
                     (_won if _v == 'win' else _person).append(_r)

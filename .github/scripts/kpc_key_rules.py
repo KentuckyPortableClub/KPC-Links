@@ -752,6 +752,16 @@ def near_name(a, b):
     return all(st(x, y) for x, y in zip(wa, wb))
 
 
+def size_pick(acres, held, tol=0.10, floor=5.0):
+    """The one ref in held = {ref: [acres of the OTHER records it already holds]} with a record within tol of `acres` (a copy of
+    the same land in another layer), or None: no acres, two parks fit, or none."""
+    try: a = float(acres or 0)
+    except (TypeError, ValueError): return None
+    if a < floor: return None
+    w = [r for r, xs in held.items() if any(abs(float(x or 0) - a) <= tol * a for x in xs)]
+    return w[0] if len(w) == 1 else None
+
+
 def agency_pick(manager, hosts, table, min_parks=2):
     """KPC_AGENCY_TIE: hosts = {ref: website host}. The one ref whose host has `manager` on min_parks+ parks while every other
     ref's host is in the table with none of it; else None (unknown host, two hosts that fit, no manager)."""
@@ -768,10 +778,12 @@ def agency_pick(manager, hosts, table, min_parks=2):
     return w[0]
 
 
-def contest(record_name, parks, place=None, layer_kinds=(), agency=None):
+def contest(record_name, parks, place=None, layer_kinds=(), agency=None, size=None):
     """parks: {ref: (park name, park type)} of the parks a record is joined to by name. -> ('win', ref) | ('both', None) |
     ('person', why). place(s) = the US key's norm() (place words only), used to break a tie between two parks of the same kind.
-    agency(refs) -> ref or None (KPC_AGENCY_TIE: the record's manager vs the parks' websites) is asked before a 'person' answer."""
+    agency(refs) -> ref or None (KPC_AGENCY_TIE: the record's manager vs the parks' websites) is asked before a 'person' answer.
+    size(refs) -> ref or None (Sonnet's grade 18 Nov: Ohio's bare 'CAESAR CREEK' copy of 6,806 ac goes to the park that already holds
+    its own 6,953-ac record, Caesar Creek SP, not the wildlife area) is asked first: a copy of land one park already holds."""
     names = {r: str(v[0] or '') for r, v in parks.items()}
     full = _full(record_name)
     w = [r for r, n in names.items() if _full(n) == full]
@@ -784,7 +796,7 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None):
         return 'both', None
     if not rs: rs = {LAYER_TYPE[k] for k in layer_kinds if k in LAYER_TYPE}
     if not rs:
-        g = agency(list(parks)) if agency else None
+        g = (size(list(parks)) if size else None) or (agency(list(parks)) if agency else None)
         if g: return 'win', g
         return 'person', 'a bare name with no type word: which park it belongs to is for a person'
     k = [r for r in parks if ps[r] & rs]
@@ -796,6 +808,6 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None):
         if len(eq) == 1: return 'win', eq[0]
     ex = [r for r in k if ps[r] == rs]
     if len(ex) == 1: return 'win', ex[0]
-    g = agency(k) if agency else None
+    g = (size(k) if size else None) or (agency(k) if agency else None)
     if g: return 'win', g
     return 'person', 'the record fits more than one of these parks'
