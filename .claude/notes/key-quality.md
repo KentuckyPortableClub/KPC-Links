@@ -163,13 +163,43 @@ Do not delete them all and do not trust them. Each one keeps its power only on t
 7. Fix by cause code, rebuild only the states touched, repeat 2-5 until the numbers meet Brandon's targets. Then Canada.
 Files from the 18 Nov check: KPC-Data branch `tools-out`, folder `key-quality/2026-11-18/`.
 
-## Grey areas for Brandon (his rulings go here)
-- **Q1 `reviewed-approx` outlines** (271 rows, 106 parks, almost all of the live wrongs): drop to pin only until verified?
-  Fable: yes, the house rule already says SURE match or pin only.
-- **Q2 what "excellent" means in numbers.** Fable: wrong land under 1% of parks with an outline (300 sampled, none wrong),
-  none wrong in the 25 busiest parks of each state, no park over 2x its official acreage unexplained, every flag fixed or
-  explained. Coverage is reported, never a target.
-- **Q3 the rows marked "Brandon signed" (28 rows from a research list)**: treated like every other old answer?
-  Fable: yes, they were signed as a list, not checked one by one.
-- **Q4 Kentucky's own answer key** (ky-answer-key.json): same treatment, or are those truly Brandon's own? KY is the one
-  place his own word can be the gold set.
+## Brandon's rulings, 18 Nov 5:48 AM ("Yes to 1-3 ... 4 ... they should be verified too ... trust nothing, they are not my answer")
+- **Q1 YES: `reviewed-approx` outlines drop to pin only until verified** (271 rows, 106 parks). A key rule change: do it
+  through scope / hash / changelog, "APPROVED, decided_by KPC owner, 2026-11-18". Check no 2-fer tool still reads them
+  (data/fers-approx-outlines.json).
+- **Q2 YES: "excellent" in numbers.** Wrong land under 1% of parks with an outline (300 sampled, none wrong); none wrong in
+  the 25 busiest parks of each state; no park over 2x its official acreage unexplained; every flag fixed or explained.
+  Coverage is reported, never a target. This is the sign-off bar for US and Canada.
+- **Q3 YES: the 28 "Brandon signed" rows are checked like every other old answer.**
+- **Q4 Kentucky's answers are NOT his either: verify them too.** KY is 193 parks (data/ky-answer-key.json + ky-key-no.json,
+  built by kpc_ky_key.js): check EVERY park against the official map, no sampling. Kentucky is home and in full scope.
+- Standing: **trust nothing that has no evidence behind it.** Nothing in any key is "his answer" unless a row says he
+  checked it himself, with the date.
+
+## 7. More checks that cost little (Fable, 18 Nov 5:50 AM; Brandon: "this is maybe the most important part of the process")
+- **The 2-fer run is a too-big alarm.** Count overlaps per park before any 2-fer is shown. A small park that "overlaps" many
+  others, or two parks with nearly the same outline (and no "same land, two park numbers" record), is a key error first.
+- **The size witness needs its own check.** US-4236's "1,238 acres" was read off a page sentence about a different refuge
+  (Driftless Area). Rules: the sentence must name THIS park; prefer the agency's own yearly acreage tables by unit (Park
+  Service acreage reports, Fish & Wildlife annual lands report, Forest Service land areas report: research desk finds
+  them, a bot reads them once a year); a size from one page only is "weak" and cannot fail a park by itself.
+- **Whole-state totals.** Per agency per state: how many of its units have an outline, and total acres, against the
+  agency's own count. Catches a short or half-read layer that park-by-park checks miss.
+- **The approximate grade is three things.** 403 parks: 230 from the `words` rule alone, 71 from `name`, 102 with
+  `reviewed-approx` (Q1). Sample `words` FIRST: it is the loosest rule. A method that fails Q2 sends its parks to pin.
+- **Who writes a rule never grades it.** Opus builds, Sonnet grades blind, Fable settles disputes and re-checks 5% of
+  Sonnet's verdicts. A grade from the same model and the same evidence as the build is not a second opinion.
+- **PROPOSALS, each needs Brandon's GO (not built):**
+  (a) an accuracy gate in the key workflow, like the drop guard: a state's key is held when a saved hard case flips or
+  its flags rise, with the held copy kept for reading;
+  (b) a phone page in the Club Room, one park per screen: our outline beside the agency's own map link, three buttons
+  (Right / Wrong / Not sure), saved with name + date. Brandon's and members' own eyes on parks they know are the only
+  witness that is truly independent of every layer. Those rows go in the gold set as checked by a person.
+
+## 8. Who does what
+- **Fable (only):** builds the measuring tools once (the fact check; the grader packet: blind line-up, planted answers,
+  evidence); picks the gold-set parks and the TUNE / SEALED split; settles every dispute; reads the first cause-code
+  results and writes the fix plan; reviews rule-file changes before they land.
+- **Opus:** wires and runs it all, classes the answers A / B / C, makes the rule and data fixes, rebuilds, reports.
+- **Sonnet:** the volume grading, from Fable's packet, with sources.
+- **Bots:** the fact check on every build, acreage tables, layer health (keeper). Nothing repeating is done by hand.
