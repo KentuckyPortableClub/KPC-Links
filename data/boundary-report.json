@@ -1,37 +1,37 @@
 {
  "United States": {
   "totals": {
-   "matched": 11736,
-   "far": 2337,
+   "matched": 11746,
+   "far": 2300,
    "noshape": 0,
-   "edge": 2225,
-   "out": 112,
+   "edge": 2190,
+   "out": 110,
    "swap": 1
   },
   "states": [
    {
     "st": "AK",
-    "matched": 136,
-    "far": 37,
+    "matched": 137,
+    "far": 38,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 32
+    "edge": 33
    },
    {
     "st": "AL",
     "matched": 134,
-    "far": 36,
+    "far": 35,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 35
+    "edge": 34
    },
    {
     "st": "AR",
@@ -71,10 +71,10 @@
    },
    {
     "st": "CO",
-    "matched": 266,
-    "far": 112,
+    "matched": 267,
+    "far": 111,
     "noshape": 0,
-    "out": 13,
+    "out": 12,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
@@ -95,7 +95,7 @@
    },
    {
     "st": "DC",
-    "matched": 29,
+    "matched": 30,
     "far": 8,
     "noshape": 0,
     "out": 0,
@@ -119,15 +119,15 @@
    },
    {
     "st": "FL",
-    "matched": 437,
-    "far": 63,
+    "matched": 438,
+    "far": 39,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 62
+    "edge": 38
    },
    {
     "st": "GA",
@@ -156,18 +156,6 @@
    {
     "st": "IA",
     "matched": 179,
-    "far": 32,
-    "noshape": 0,
-    "out": 1,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 31
-   },
-   {
-    "st": "ID",
-    "matched": 232,
     "far": 31,
     "noshape": 0,
     "out": 1,
@@ -178,8 +166,20 @@
     "edge": 30
    },
    {
+    "st": "ID",
+    "matched": 231,
+    "far": 30,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 29
+   },
+   {
     "st": "IL",
-    "matched": 213,
+    "matched": 212,
     "far": 39,
     "noshape": 0,
     "out": 1,
@@ -191,7 +191,7 @@
    },
    {
     "st": "IN",
-    "matched": 218,
+    "matched": 217,
     "far": 33,
     "noshape": 0,
     "out": 1,
@@ -204,14 +204,14 @@
    {
     "st": "KS",
     "matched": 125,
-    "far": 20,
+    "far": 18,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 20
+    "edge": 18
    },
    {
     "st": "LA",
@@ -227,7 +227,7 @@
    },
    {
     "st": "MA",
-    "matched": 411,
+    "matched": 410,
     "far": 118,
     "noshape": 0,
     "out": 2,
@@ -240,30 +240,30 @@
    {
     "st": "MD",
     "matched": 178,
-    "far": 29,
+    "far": 27,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 27
+    "edge": 25
    },
    {
     "st": "ME",
     "matched": 141,
-    "far": 41,
+    "far": 40,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 41
+    "edge": 40
    },
    {
     "st": "MI",
-    "matched": 356,
+    "matched": 360,
     "far": 40,
     "noshape": 0,
     "out": 1,
@@ -275,15 +275,15 @@
    },
    {
     "st": "MN",
-    "matched": 312,
-    "far": 52,
+    "matched": 316,
+    "far": 51,
     "noshape": 0,
     "out": 5,
     "swap": 1,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 47
+    "edge": 46
    },
    {
     "st": "MO",
@@ -299,7 +299,7 @@
    },
    {
     "st": "MS",
-    "matched": 99,
+    "matched": 100,
     "far": 34,
     "noshape": 0,
     "out": 0,
@@ -335,7 +335,7 @@
    },
    {
     "st": "ND",
-    "matched": 116,
+    "matched": 115,
     "far": 30,
     "noshape": 0,
     "out": 1,
@@ -431,7 +431,7 @@
    },
    {
     "st": "OK",
-    "matched": 160,
+    "matched": 159,
     "far": 42,
     "noshape": 0,
     "out": 5,
@@ -455,15 +455,15 @@
    },
    {
     "st": "PA",
-    "matched": 489,
-    "far": 24,
+    "matched": 490,
+    "far": 23,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 23
+    "edge": 22
    },
    {
     "st": "RI",
@@ -492,30 +492,30 @@
    {
     "st": "SD",
     "matched": 118,
-    "far": 16,
+    "far": 13,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 16
+    "edge": 13
    },
    {
     "st": "TN",
-    "matched": 263,
-    "far": 82,
+    "matched": 264,
+    "far": 84,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 80
+    "edge": 82
    },
    {
     "st": "TX",
-    "matched": 207,
+    "matched": 208,
     "far": 26,
     "noshape": 0,
     "out": 0,
@@ -527,7 +527,7 @@
    },
    {
     "st": "UT",
-    "matched": 425,
+    "matched": 424,
     "far": 79,
     "noshape": 0,
     "out": 13,
@@ -563,15 +563,15 @@
    },
    {
     "st": "WA",
-    "matched": 494,
-    "far": 102,
+    "matched": 495,
+    "far": 101,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 102
+    "edge": 101
    },
    {
     "st": "WI",
@@ -588,9 +588,9 @@
    {
     "st": "WV",
     "matched": 165,
-    "far": 18,
+    "far": 17,
     "noshape": 0,
-    "out": 3,
+    "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
@@ -615,7 +615,7 @@
     "MN",
     "US-11152",
     "Heartland State Trail",
-    "HEARTLAND",
+    "Heartland State Trail",
     "HEARTLAND"
    ]
   ],
@@ -631,12 +631,6 @@
     "US-12185",
     "Grand Junction: West Lake State Wildlife Area",
     "Grand Junction - West Lake SWA"
-   ],
-   [
-    "CO",
-    "US-9678",
-    "Windy Gap Watchable State Wildlife Area",
-    "Windy Ridge STL"
    ],
    [
     "CT",
@@ -709,6 +703,12 @@
     "US-4955",
     "Saltmarsh Pond State Forest",
     "Saltmarsh Pond State Forest"
+   ],
+   [
+    "NH",
+    "US-8396",
+    "Nashua River Rail Trail State Trail",
+    "Nashua River Rail Trail State Trail"
    ],
    [
     "NV",
