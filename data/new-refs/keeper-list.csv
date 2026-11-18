@@ -1,4 +1,7 @@
 ref,name,pin_lat,pin_lon,type,change,date,run_id,source
+US-13667,Wild Rivers BLM Recreation Management Area,36.6804,-105.673,POTA,new,2026-11-18,44395530213,kpc_new_refs
+US-13666,Orilla Verde BLM Recreation Management Area,36.3378,-105.731,POTA,new,2026-11-18,44395530213,kpc_new_refs
+US-13665,Upper Bonito Dispersed Recreation Area National Recreation Area,33.4653,-105.8,POTA,new,2026-11-18,44395530213,kpc_new_refs
 US-13664,Hunters Campground Recreation Site,48.1259,-118.229,POTA,new,2026-11-14,,kpc_new_refs
 US-13663,Fort Spokane Campground Recreation Site,47.9089,-118.31,POTA,new,2026-11-14,,kpc_new_refs
 US-13662,Pioneer Park Campground Recreation Site,48.2114,-117.054,POTA,new,2026-11-14,,kpc_new_refs

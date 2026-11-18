@@ -1,8 +1,41 @@
 {
- "updated": "2026-11-18T13:12:03+00:00",
+ "updated": "2026-11-18T20:52:44+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13667",
+   "prog": "pota",
+   "name": "Wild Rivers BLM Recreation Management Area",
+   "st": [
+    "NM"
+   ],
+   "la": 36.6804,
+   "lo": -105.673,
+   "found": "2026-11-18"
+  },
+  {
+   "ref": "US-13666",
+   "prog": "pota",
+   "name": "Orilla Verde BLM Recreation Management Area",
+   "st": [
+    "NM"
+   ],
+   "la": 36.3378,
+   "lo": -105.731,
+   "found": "2026-11-18"
+  },
+  {
+   "ref": "US-13665",
+   "prog": "pota",
+   "name": "Upper Bonito Dispersed Recreation Area National Recreation Area",
+   "st": [
+    "NM"
+   ],
+   "la": 33.4653,
+   "lo": -105.8,
+   "found": "2026-11-18"
+  },
   {
    "ref": "US-13664",
    "prog": "pota",
