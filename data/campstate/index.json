@@ -189,7 +189,7 @@
   "MO": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "MS": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NC": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "NJ": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "NJ": "the state GIS server did not answer from GitHub (HTTP 500); ArcGIS Online had no camp layer from an account named like the state's agencies",
   "OK": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "RI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "SC": "the state GIS server did not answer from GitHub (<urlopen error services.arcgis.com: services*.arcgis.com is never contacted, rob); ArcGIS Online had no camp layer from an account named like the state's agencies",
