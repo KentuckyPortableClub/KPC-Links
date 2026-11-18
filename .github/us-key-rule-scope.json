@@ -208,6 +208,26 @@
    "from": "4b02e4750729",
    "why": "Scorecard finding: KPC_STATE_COPY (D7) took 56 hand-picked Tennessee state parks off their TDEC 'compilation' layer (TDEC's public lands hold TDEC's own parks). D7 now acts only on a park whose POTA website is a federal agency's (its ruling's case, a state copy of a federal unit): the copy goes to check beside a federal record, or grades the park approximate alone. Switch OFF: no result changes.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-17-switch-on-8",
+   "when": "2026-11-17",
+   "from": "8e5a564eff4f",
+   "why": "The owner's go (17 Nov 7:10 PM, 'go for what you want'): the eleven key rules built today are switched ON for the eight states the scorecard tested (AR, DE, GA, MD, MI, OH, RI, TN): KPC_NPS_UNIT_CODE, KPC_FS_RIVER_NAMES, KPC_G8_OTHER_PLACE, KPC_MEASURED_ACRES, KPC_SAVED_ID_LAND, KPC_ONE_RECORD_ONE_PARK, KPC_DESIGNATION_SPLIT, KPC_LAKE_ONLY_IF_LAKE, KPC_ID_JOIN_NAME, KPC_AGENCY_TIE, KPC_STATE_COPY. Offline grade, all on vs all off, people's answers hidden: FOUND 658 -> 665, WRONG 66 -> 51; one record lost (DE McGinnis Pond, a bare name shared by two parks, now a person's question). Builds stay by hand.",
+   "scope": {
+    "states": [
+     "US-AR",
+     "US-DE",
+     "US-GA",
+     "US-MD",
+     "US-MI",
+     "US-OH",
+     "US-RI",
+     "US-TN"
+    ],
+    "saved_ids": true
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-17 7:10 PM"
   }
  ]
 }
