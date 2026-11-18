@@ -228,6 +228,20 @@
     "saved_ids": true
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-17 7:10 PM"
+  },
+  {
+   "id": "2026-11-17-sonnet-grade-fixes",
+   "when": "2026-11-17",
+   "from": "b1ee8bb63a89",
+   "why": "Sonnet's grade of the first new-rule build (MD MI OH TN): (1) KPC_FS_RIVER_NAMES's second-name-field join took Ohio's STATE PARK records into 12 wildlife areas, nature preserves and state forests (Ohio keeps a code first, 'CaesarCrkSP', and the readable name second): a STATE LAYER record's own layer kind must now agree with the park (PAD-US records are not affected, so Ozone Falls SNA keeps its join). (2) KPC_NPS_UNIT_CODE replaced the North Country Trail's official trail line with an 81-acre NPS piece: a trail park keeps its line. Switches on only in the 8 states; offline OH / MI: FOUND unchanged, the 13 wrong joins gone, the trail line back.",
+   "scope": {
+    "states": [
+     "US-OH",
+     "US-MI"
+    ],
+    "saved_ids": true
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-17 (owner: Sonnet grades the new keys)"
   }
  ]
 }

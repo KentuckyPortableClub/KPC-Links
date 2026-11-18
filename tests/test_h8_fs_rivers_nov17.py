@@ -32,6 +32,8 @@ for ref, park, a in MUST:
     check(how(park, a, '0') != h, f'OFF: {ref} is not joined this way (today: {how(park, a, "0")!r})')
 oz = rec(255603, 'Cumberland Trail', 'Ozone Falls', 'Tennessee Department of Environment and Conservation', {'sp'})
 check(how('Ozone Falls State Natural Area', oz, '1') == 'name (second name field)', "ON: US-6259 Ozone Falls SNA joins 'Cumberland Trail' by its second name field 'Ozone Falls'")
+oh = rec('sgoha26', 'CaesarCrkSP', 'CAESAR CREEK', 'Ohio DNR state parks', {'sp'})
+check(how('Caesar Creek Lake State Wildlife Area', oh, '1') is None, "ON: Ohio's state park record (code 'CaesarCrkSP', second name 'CAESAR CREEK') does not join Caesar Creek Lake WILDLIFE AREA by the second name (Sonnet's grade, 17 Nov)")
 check(how('Ozone Falls State Natural Area', oz, '0') is None, 'OFF: US-6259 Ozone Falls SNA does not join (the record kind State Park blocks the second name)')
 check(how('Ozone Falls State Natural Area', oz, '1', close=False) is None,
       'the second name joins only near the pin (close=False: no join)')

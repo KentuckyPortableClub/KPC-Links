@@ -346,7 +346,13 @@ def join_how(name, kp, a, close, rules=True):
         # the record's SECOND name field on its own kind words, when it has none (Tennessee 'Cumberland Trail' / 'Ozone Falls' = Ozone
         # Falls State Natural Area): only near the pin, and never when the record's FIRST name says another kind of place
         # (Washington 'Klickitat Wildlife Area Complex' / 'Klickitat' is not the Klickitat Wild and Scenic River)
-        if loc and close and not kinds(loc) and not (kp and kinds(nm) and not (kp & kinds(nm))) and name_ok(name, loc, kp, set()):
+        # Sonnet's grade 17 Nov: Ohio's state-park layer keeps a CODE first ('CaesarCrkSP') and the readable name second ('CAESAR
+        # CREEK'), so the state park's record joined Caesar Creek WILDLIFE AREA here: a STATE LAYER record's own layer kind ('sp') and
+        # its code's type word must not disagree with the park either (a PAD-US record's kind comes from its designation code and
+        # does not count here: Ozone Falls SNA on the 'Cumberland Trail' State Park record stays).
+        if (loc and close and not kinds(loc) and not (kp and kinds(nm) and not (kp & kinds(nm)))
+                and not (isinstance(a.get('OBJECTID'), str) and kp and a['_k'] and not (kp & a['_k'])) and not (kp and KR.type_words(nm) and not (KR.type_words(nm) & {KR.LAYER_TYPE.get(k, k) for k in kp}))
+                and name_ok(name, loc, kp, set())):
             return 'name (second name field)'
     if isinstance(a.get('OBJECTID'), int) and not kinds(nm) and exact_name(name, nm) and name_ok(name, nm, kp, set()):
         # Oct 18 review: a bare PAD-US name ('Fort Fetterman', 'Trail End') whose only 'kind' came from its designation code,
@@ -1783,6 +1789,7 @@ def nps_code_joins(st, parks, recs, P, ovr=None, on=None):
                     p['c'] = list(p.get('c') or []) + [[row[0], row[1], row[2], f'check (NPS unit code {cd}): this record is {owner}\'s own unit; the name decides inside a shared unit']]
                     NPS_CODE_HIT.append([st, r, rid, cd, 'given back']); n += 1
             p = parks[owner]; ov = ovr.get(owner) or {}
+            if owner in TRL: continue   # Sonnet's grade 17 Nov: a trail park is its official LINE (North Country Trail); a unit-code piece is not its outline
             if any(str(x[0]) == rid for x in p.get('m') or []): continue
             if rid in {str(y) for y in ov.get('no') or []} or _nf(nm) in {_nf(y) for y in ov.get('no') or []} or KR.is_no(ov, rid, nm, a.get('GIS_Acres')): continue
             p['m'] = sorted(list(p.get('m') or []) + [[a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), tag]], key=lambda x: -(x[2] or 0))
