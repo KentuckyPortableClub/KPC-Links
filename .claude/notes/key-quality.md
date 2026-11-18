@@ -316,6 +316,9 @@ In the 33 saved states no outline was lost by this morning's save (checked again
 8. **The busiest 25 per state** (Q2): 1,250 line-ups, after 7.
 9. **Kentucky, every park** (Q4): the Kentucky key needs a small loader first.
 10. **Canada**: the same five steps once its shapes load.
+11. **Then the shelved 2-fer fixes** (Brandon 18 Nov 1:48 PM: "dont let us forget about that"): open
+    `.claude/notes/fers-fix-later.md` (ledger 78): the ten bugs first, then his seven questions. Whoever reports the
+    US key sign-off to Brandon names this as the next job in the same message.
 Before each sign-off: fact check old against new (as for the held states above), the gold score, and the SEALED number
 recorded before `--show-sealed`.
 
