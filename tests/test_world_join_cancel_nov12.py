@@ -220,7 +220,7 @@ tn = next(s for s in js if s.get('id') == 'tonight')
 check('join: --planned-groups and --expected go to the join', '--planned-groups "$PLAN_GROUPS" --expected "$EXPECTED"' in tn['run'] and tn['env']['EXPECTED'] == '${{ needs.plan.outputs.expected }}')
 st = next(s for s in js if 'stamp world-key' in str(s.get('run', '')))
 check('join: the stamp is told the expected holds', st['env'].get('KPC_HELD_EXPECTED') == '${{ needs.plan.outputs.expected }}')
-check('no new trigger, no cron change', sorted(W[True]) == ['schedule', 'workflow_dispatch'] and [c['cron'] for c in W[True]['schedule']] == ['17 11 3 * *', '7 10 * * *'])
+check('no new trigger, no cron change', sorted(W[True]) == ['schedule', 'workflow_dispatch'] and [c['cron'] for c in W[True]['schedule']] == ['7 10 * * *'])   # owner 17 Nov 7:29 PM: the monthly cron is off
 
 # the same cancel hole in the US and Canada keys: the join / Save never on a cancelled run
 US = yaml.safe_load((ROOT / '.github/workflows/kpc-us-key.yml').read_text(encoding='utf-8'))
