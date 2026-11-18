@@ -699,6 +699,7 @@ jobs:
           # HELD COPIES (KPC owner, 2026-11-18 3:35 AM: 'Does 1 hurt storage or anything?' - no): before the guard puts a state back
           # to main, keep this run's would-be file, so a held state can be graded without rebuilding it. Only the states the guard
           # holds are kept, as ONE release asset (release 'key-held', replaced each run): never in git history, never on main.
+          # (-R: the copies sit outside the checkout, so gh is told the repo; the first try on 18 Nov failed without it)
           rm -rf /tmp/kpc-built-keys; mkdir -p /tmp/kpc-built-keys; cp data/us-key/US-??.json /tmp/kpc-built-keys/ 2>/dev/null || true
           python3 .github/scripts/kpc_key_drop_guard.py --ref HEAD --mark /tmp/kpc-key-drop-bad --restore --failed-out /tmp/kpc-drop-failed.txt
           # a kept state's review rows come back from main too (its key file is main's again)
@@ -707,8 +708,8 @@ jobs:
             ( set +e; cd /tmp/kpc-built-keys
               files=$(for st in $(tr ',' ' ' < /tmp/kpc-drop-failed.txt); do st=${st#US-}; [ -f "US-$st.json" ] && echo "US-$st.json"; done)
               [ -n "$files" ] && tar -czf /tmp/key-held.tar.gz $files \
-                && { gh release view key-held >/dev/null 2>&1 || gh release create key-held --title 'US key: held states (would-be copies)' --notes 'The would-be key files of the states the drop guard held in the newest US key run (replaced each run). For grading only; never released.' >/dev/null 2>&1; } \
-                && gh release upload key-held /tmp/key-held.tar.gz --clobber >/dev/null 2>&1 \
+                && { gh release view key-held -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create key-held -R "$GITHUB_REPOSITORY" --title 'US key: held states (would-be copies)' --notes 'The would-be key files of the states the drop guard held in the newest US key run (replaced each run). For grading only; never released.' >/dev/null 2>&1; } \
+                && gh release upload key-held /tmp/key-held.tar.gz -R "$GITHUB_REPOSITORY" --clobber >/dev/null 2>&1 \
                 && echo "::notice title=Held copies::the would-be files of the held states are on the release 'key-held' ($(echo $files | wc -w) state(s))" \
                 || echo "::warning title=Held copies::could not keep the held states' would-be files (the run is not affected)"
               true )
