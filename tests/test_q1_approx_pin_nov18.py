@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Q1 (KPC owner, 18 Nov 5:48 AM: 'Yes to 1-3'; .claude/notes/key-quality.md section 11 step 1): a park whose saved answer is
-marked approximate ('reviewed-approx': the closest official land, bigger or another shape) is PIN ONLY until a person verifies an
-outline with evidence. Its rows go to check with the reason, and the last good outline is never kept for it.
+"""Q1 (KPC owner, 18 Nov 5:48 AM: 'Yes to 1-3'; reading ruled 1:45 PM: 'Go with what you think is best'; .claude/notes/
+key-quality.md sections 11 step 1 and 14): the rows of an approximate saved answer ('reviewed-approx': the closest official land,
+bigger or another shape) go to check until a person verifies an outline with evidence. Rows the rules joined alone stay
+(Walton WMA, Bluestone, Gran Quivira: Fable's review of #270). A park left with nothing is pin only, and its last good outline is
+never kept.
 Permanent cases with the real names and acres (key-quality.md section 1 (6)): Mt Etna on all of Salamonie Lake, and the
 Nebraska waterfowl areas on county-wide records (three parks on one 7,011-acre record). Also: this change's own scope entry
 and changelog line, found by their id."""
@@ -28,35 +30,45 @@ check(KR.on('KPC_APPROX_PIN', env={'KPC_APPROX_PIN': '0'}) is False, 'an environ
 etna = {'n': 'Mt Etna on Salamonie Lake State Recreation Area', 'g': 'approximate',
         'm': [['ind5037', 'Salamonie Lake', 10768, 'reviewed-approx']], 'c': []}
 check(KR.approx_pin(etna, {'join': ['ind5037'], 'approx': True}) is True, 'Mt Etna: an approximate saved answer acts')
-check(etna['m'] == [] and etna.get('approx_pin'), 'Mt Etna: no outline, marked pin only')
+check(etna['m'] == [] and etna.get('approx_pin'), 'Mt Etna: nothing left, marked pin only')
 check(etna['c'] == [['ind5037', 'Salamonie Lake', 10768, KR.APPROX_PIN_WHY]], 'Mt Etna: the Salamonie Lake row goes to check with the Q1 reason')
 
 # Nebraska: Moger, Massie and Smith Lagoon WPAs were all drawn as one 7,011-acre Clay County record
 for ref, name in (('US-3486', 'Moger'), ('US-3489', 'Massie'), ('US-3490', 'Smith Lagoon')):
     p = {'n': f'{name} National Waterfowl Production Area', 'm': [[4664, 'Clay County Waterfowl Production Area Of Ne', 7011, 'reviewed-approx']],
-         'twin': ['4664']}
+         'twin': ['4664']}   # (twin kept in m by the builder; it goes with its row)
     KR.approx_pin(p, {'join': [4664], 'approx': True})
     check(p['m'] == [] and 'twin' not in p and p['c'][0][:3] == [4664, 'Clay County Waterfowl Production Area Of Ne', 7011],
           f'{ref} {name}: no 7,011-acre county record, pin only, the record listed to check')
 
-# rows the rules joined on the same park go too (the ruling is pin only, not 'the rules result')
-p = {'m': [[3993, 'Kearney County Waterfowl Production Area', 2891, 'reviewed-approx'], [77, 'Jensen Lagoon', 40, 'name']]}
-KR.approx_pin(p, {'approx': True})
-check(p['m'] == [] and len(p['c']) == 2, 'Jensen Lagoon: every row of an approximate park goes to check, a name row too')
+# rows the rules joined alone STAY (Fable's review of #270, real rows from the 18 Nov offline build)
+walton = {'n': 'Walton Wildlife Management Area', 'm': [[195119, 'Walton Public Dove Field & Hatchery', 248, 'reviewed-approx'],
+          ['sggaa28', 'WALTON WMA', 246, 'reviewed-approx'], ['sggac763', 'WALTON WMA', 246, 'name']]}
+check(KR.approx_pin(walton, {'approx': True}) is True and walton['m'] == [['sggac763', 'WALTON WMA', 246, 'name']] and 'approx_pin' not in walton,
+      "Walton WMA (US-7902): the dove field (248 ac) and the row the answer named go to check; its own 'WALTON WMA' name row stays, no pin mark")
+check([x[0] for x in walton['c']] == [195119, 'sggaa28'], 'Walton WMA: exactly the two reviewed-approx rows are on the check list')
+blue = {'n': 'Bluestone National Wild and Scenic River', 'm': [['wsrc22', 'Bluestone Wild and Scenic River', 4336, 'name'],
+        [3555, 'Bluestone National Scenic River', 3035, 'NPS unit code BLUE (POTA website nps.gov/blue)']]}
+check(KR.approx_pin(blue, {'approx': True}) is False and len(blue['m']) == 2 and not blue.get('c'),
+      'Bluestone WSR (US-0697): marked approximate but no approximate row: the NPS unit code join and the corridor stay')
+gq = {'n': 'Salinas Pueblo Missions, Gran Quivira Unit, National Monument', 'm': [[3403, 'Salinas Pueblo Missions NM, Gran Quivira tract (PAD-US fee piece)', 611,
+      'reviewed (official tract: Gran Quivira of Salinas Pueblo Missions National Monument; rule 18 tract exception)']]}
+check(KR.approx_pin(gq, {'approx': True}) is False and len(gq['m']) == 1, 'Gran Quivira (US-0961): the rule-18 official tract (611 ac) stays')
 
 # what it never touches
-p = {'m': [['ind1', 'Salamonie Lake State Forest', 850, 'reviewed']]}
-check(KR.approx_pin(p, {'join': ['ind1']}) is False and p['m'], 'a plain reviewed answer (no approx mark) keeps its outline')
-check(KR.approx_pin(p, None) is False and p['m'], 'a park with no saved answer keeps its outline')
 p = {'m': [['ind5037', 'Salamonie Lake', 10768, 'reviewed-approx']]}
 check(KR.approx_pin(p, {'approx': True}, on_=False) is False and p['m'], 'switch off: nothing changes')
+p = {'m': [['ind5037', 'Salamonie Lake', 10768, 'reviewed']]}
+check(KR.approx_pin(p, {'join': ['ind5037']}) is False and p['m'], 'a plain reviewed answer (no approx mark) keeps its outline')
+check(KR.approx_pin(p, None) is False and p['m'], 'a park with no saved answer keeps its outline')
 
 # wiring in the builder: after every rule that edits m and before the grade; the keep-last-good guard never brings it back
 src = (SCR / 'kpc_us_key.py').read_text(encoding='utf-8')
 i = src.find("if KR.approx_pin(p, OVR.get(ref), _kr('KPC_APPROX_PIN')):")
 g = src.find("p['g'] = ('pin' if not m else 'approximate'")
 h = src.find("held_g.append(f'{ref} ({len(left)})')")
-check(0 < h < i < g, 'the Q1 step runs after rule G-1 and before the park is graded (so g = pin)')
+check(0 < h < i < g, 'the Q1 step runs after rule G-1 and before the park is graded')
+check("if _p.get('m'): _p.pop('approx_pin', None)" in src, 'the pin-only mark stays only on a park that ended with no outline (a trail park may get its line)')
 k = src.find("if np_.get('approx_pin'): continue")
 check(k > 0 and src.rfind('for ref, op in old.items():', 0, k) > g, 'keep-last-good skips a Q1 park (its old outline is not kept)')
 

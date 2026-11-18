@@ -2641,9 +2641,10 @@ def run(st):
                 p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece'] for x in left]
                 held_g.append(f'{ref} ({len(left)})')
         if KR.approx_pin(p, OVR.get(ref), _kr('KPC_APPROX_PIN')):
-            # Q1 (KPC owner, 18 Nov 5:48 AM: 'Yes to 1-3'; key-quality.md section 11 step 1): a saved answer marked approximate gives
-            # NO outline until a person verifies one with evidence (pin only; its rows go to check). The fact check flagged 47% of
-            # these parks (Mt Etna = all of Salamonie Lake, three Nebraska areas on one county record).
+            # Q1 (KPC owner, 18 Nov 5:48 AM: 'Yes to 1-3'; reading 1:45 PM; key-quality.md sections 11 step 1 and 14): the rows of an
+            # approximate saved answer go to check until a person verifies an outline with evidence; rows the rules joined alone
+            # stay; a park left with nothing is pin only. The fact check flagged 47% of these parks (Mt Etna = all of Salamonie Lake,
+            # three Nebraska areas on one county record).
             APPROX_PIN.append(ref)
         m = p.get('m') or []
         if m and p.get('far') == 'well outside' and any(str(x[3]).split(' · ')[0] not in WEAK for x in m):
@@ -2678,7 +2679,7 @@ def run(st):
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
     if EASEMENT_HELD: notice(f'US key {st}', f"conservation easement records not joined by name alone (item 5): {len(EASEMENT_HELD)} piece(s) moved to CHECK: {', '.join(EASEMENT_HELD[:10])}")
     if LEASE_HELD: notice(f'US key {st}', f"D5 leased / agreement records not joined by name alone: {len(LEASE_HELD)} piece(s) to CHECK: {', '.join(LEASE_HELD[:10])}")
-    if APPROX_PIN: notice(f'US key {st}', f"Q1 approximate saved answers sent to pin only: {len(APPROX_PIN)} park(s): {', '.join(APPROX_PIN[:12])}")
+    if APPROX_PIN: notice(f'US key {st}', f"Q1 approximate saved-answer rows sent to check: {len(APPROX_PIN)} park(s): {', '.join(APPROX_PIN[:12])}")
     if STATE_COPY: notice(f'US key {st}', f"D7 compilation copies: {len(STATE_COPY)} park(s): {', '.join(STATE_COPY[:10])}")
     if DESIG_HELD: notice(f'US key {st}', f"D3 designation lines sent to CHECK (drawn only for the park that is the designation): {len(DESIG_HELD)} piece(s): {', '.join(DESIG_HELD[:10])}")
     if SITS_ON: notice(f'US key {st}', f"D3 heritage areas shown as pin + sits on: {len(SITS_ON)} park(s): {', '.join(SITS_ON[:10])}")
@@ -2981,6 +2982,8 @@ def run(st):
         _bkk, _bkn = KF.stamp(parks, _bkpin, _bklook)
     except Exception as _e:  # noqa: BLE001
         _bkk, _bkn = {}, None; notice(f'US key {st}', f'pin distance / kind (bk) skipped: {type(_e).__name__}: {str(_e)[:120]}')
+    for _p in parks.values():   # Q1: the pin-only mark stays only on a park that really ended with no outline (a trail park may get its line later)
+        if _p.get('m'): _p.pop('approx_pin', None)
     out = {'updated': BUILD_DATE, 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
            'counts': counts, 'parks': parks, 'nonum': nonum[:300],
            'bk_about': KF.ABOUT, 'bk_kinds': {c: t for c, t in _bkk.items() if c != t},   # links-10

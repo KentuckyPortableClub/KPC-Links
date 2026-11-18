@@ -338,7 +338,7 @@
    "id": "2026-11-18-q1-approx-pin",
    "when": "2026-11-18",
    "from": "b85537a27b87",
-   "why": "Q1 (KPC owner 18 Nov 5:48 AM, 'Yes to 1-3'; key-quality.md section 11 step 1): a park whose saved answer is marked approximate ('reviewed-approx', the closest official land, bigger or another shape) is PIN ONLY until a person verifies an outline with evidence; its rows go to check and its last outline is never kept. Switch KPC_APPROX_PIN, default ON. Touches only the parks with an approximate saved answer (they are always re-matched, so saved ids need no re-match). The states are every state whose key holds such a park (a park in two states counts in both: Natchez Trace in AL, MS and TN).",
+   "why": "Q1 (KPC owner 18 Nov 5:48 AM, 'Yes to 1-3'; reading ruled 1:45 PM, 'Go with what you think is best'; key-quality.md sections 11 step 1 and 14): the rows of an approximate saved answer ('reviewed-approx', the closest official land, bigger or another shape) go to check until a person verifies an outline with evidence; rows the rules joined alone stay; a park left with nothing is pin only and its last outline is never kept. Switch KPC_APPROX_PIN, default ON. Parks with an approximate answer are always re-matched, so saved ids need no re-match. The states are every state whose key holds such a park (a park in two states counts in both: Natchez Trace in AL, MS and TN).",
    "scope": {
     "states": [
      "US-AK",
@@ -381,7 +381,7 @@
     ],
     "saved_ids": false
    },
-   "approved": "APPROVED, decided_by KPC owner, 2026-11-18 (Q1, 5:48 AM: 'Yes to 1-3'); waiting for Fable's review (key-quality.md section 13)"
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-18 (Q1, 5:48 AM: 'Yes to 1-3'; the rows-only reading 1:45 PM: 'Go with what you think is best right now you see more information then I can'); waiting for Fable's review (key-quality.md section 13)"
   }
  ]
 }
