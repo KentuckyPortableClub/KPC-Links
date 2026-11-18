@@ -1,6 +1,6 @@
 {
  "key": "us",
- "count": 33,
+ "count": 34,
  "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
  "about": "joins HELD before the build stamp (nearest outline part over 15 km from the pin, not approved by a person); a person verifies, then fixes",
  "parks": [
@@ -24,7 +24,7 @@
    "was_g": "official",
    "held_ids": "2165",
    "held_names": "",
-   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km)))))))))))))",
+   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km))))))))))))))",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person adds the id to the park's signed overrides.json 'join'"
   },
@@ -60,7 +60,7 @@
    "was_g": "official",
    "held_ids": "56939 | sgnhc2522 | sgnhc2651 | sgnhc2610 | sgnhc2298 | sgnhc2607 | sgnha10009 | sgnha10010 | sgnha10011 | sgnha10012 | sgnhd10009 | sgnhd10010 | sgnhd10011 | sgnhd10012",
    "held_names": "Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest | Annett State Forest",
-   "reason": "a person said NO to this land under its old id (56939 = sgnhc2522 \"Annett State Forest\", sgnhc2522 = sgnha10009 \"Annett State Forest\", sgnhc2651 = sgnha10009 \"Annett State Forest\", sgnhc2610 = sgnha10009 \"Annett State Forest\", sgnhc2298 = sgnha10009 \"Annett State Forest\", sgnhc2607 = sgnha10009 \"Annett State Forest\", sgnha10009 = sgnhc2522 \"Annett State Forest\", sgnha10010 = sgnhc2522 \"Annett State Forest\", sgnha10011 = sgnhc2522 \"Annett State Forest\", sgnha10012 = sgnhc2522 \"Annett State Forest\", sgnhd10009 = sgnhc2522 \"Annett State Forest\", sgnhd10010 = sgnhc2522 \"Annett State Forest\", sgnhd10011 = sgnhc2522 \"Annett State Forest\", sgnhd10012 = sgnhc2522 \"Annett State Forest\")",
+   "reason": "a person said NO to this land under its old id (56939 = sgnhc2522 \"Annett State Forest\", sgnhc2522 = 56939 \"Annett State Forest\", sgnhc2651 = sgnha10009 \"Annett State Forest\", sgnhc2610 = sgnha10009 \"Annett State Forest\", sgnhc2298 = sgnha10009 \"Annett State Forest\", sgnhc2607 = sgnha10009 \"Annett State Forest\", sgnha10009 = 56939 \"Annett State Forest\", sgnha10010 = 56939 \"Annett State Forest\", sgnha10011 = 56939 \"Annett State Forest\", sgnha10012 = 56939 \"Annett State Forest\", sgnhd10009 = 56939 \"Annett State Forest\", sgnhd10010 = 56939 \"Annett State Forest\", sgnhd10011 = 56939 \"Annett State Forest\", sgnhd10012 = 56939 \"Annett State Forest\")",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person signs the new id in overrides.json 'join' (with decided_by)"
   },
@@ -72,7 +72,7 @@
    "was_g": "official",
    "held_ids": "56956 | sgnhc66 | sgnha3 | sgnha138 | sgnha345 | sgnha346 | sgnha347 | sgnha495 | sgnha510 | sgnha917 | sgnhd3 | sgnhd138 | sgnhd345 | sgnhd346 | sgnhd347 | sgnhd495 | sgnhd510 | sgnhd917",
    "held_names": "Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest | Connecticut Lakes State Forest",
-   "reason": "a person said NO to this land under its old id (56956 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhc66 = sgnha3 \"Connecticut Lakes State Forest\", sgnha3 = sgnhc66 \"Connecticut Lakes State Forest\", sgnha138 = sgnhc66 \"Connecticut Lakes State Forest\", sgnha345 = sgnhc66 \"Connecticut Lakes State Forest\", sgnha346 = sgnhc66 \"Connecticut Lakes State Forest\", sgnha347 = sgnhc66 \"Connecticut Lakes State Forest\", sgnha495 = sgnhc66 \"Connecticut Lakes State Forest\", sgnha510 = sgnhc66 \"Connecticut Lakes State Forest\", sgnha917 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhd3 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhd138 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhd345 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhd346 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhd347 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhd495 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhd510 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhd917 = sgnhc66 \"Connecticut Lakes State Forest\")",
+   "reason": "a person said NO to this land under its old id (56956 = sgnhc66 \"Connecticut Lakes State Forest\", sgnhc66 = 56956 \"Connecticut Lakes State Forest\", sgnha3 = 56956 \"Connecticut Lakes State Forest\", sgnha138 = 56956 \"Connecticut Lakes State Forest\", sgnha345 = 56956 \"Connecticut Lakes State Forest\", sgnha346 = 56956 \"Connecticut Lakes State Forest\", sgnha347 = 56956 \"Connecticut Lakes State Forest\", sgnha495 = 56956 \"Connecticut Lakes State Forest\", sgnha510 = 56956 \"Connecticut Lakes State Forest\", sgnha917 = 56956 \"Connecticut Lakes State Forest\", sgnhd3 = 56956 \"Connecticut Lakes State Forest\", sgnhd138 = 56956 \"Connecticut Lakes State Forest\", sgnhd345 = 56956 \"Connecticut Lakes State Forest\", sgnhd346 = 56956 \"Connecticut Lakes State Forest\", sgnhd347 = 56956 \"Connecticut Lakes State Forest\", sgnhd495 = 56956 \"Connecticut Lakes State Forest\", sgnhd510 = 56956 \"Connecticut Lakes State Forest\", sgnhd917 = 56956 \"Connecticut Lakes State Forest\")",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person signs the new id in overrides.json 'join' (with decided_by)"
   },
@@ -399,38 +399,33 @@
    "reason": "the nearest part of the joined outline is 33.6 km from the POTA pin (over 15 km)",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person verifies; to keep the join add it to overrides.json 'join' (or a signed answer-sheet row)"
+  },
+  {
+   "park": "US-13535",
+   "area": "US-WI",
+   "name": "La Crosse Area Comprehensive State Fish and Wildlife Area",
+   "pin_km": 6.73,
+   "was_g": "official",
+   "held_ids": "wid712643 | wid713917",
+   "held_names": "",
+   "reason": "a new join (wid712643, wid713917) on a park already joined: the outline is 6.7 km from the POTA pin (over 5 km for a new join); the earlier joins stay",
+   "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
+   "to_keep_it": "a person verifies; to keep the new piece add it to overrides.json 'join' (or a signed answer-sheet row)"
   }
  ],
  "kept_from_main": [
+  "US-AL",
   "US-AR",
   "US-AZ",
-  "US-CA",
-  "US-CT",
   "US-DC",
   "US-DE",
   "US-GA",
   "US-HI",
-  "US-ID",
-  "US-IL",
-  "US-KS",
-  "US-MA",
-  "US-MD",
-  "US-ME",
-  "US-MO",
   "US-MT",
-  "US-ND",
-  "US-NE",
   "US-NM",
-  "US-NV",
   "US-NY",
-  "US-OH",
-  "US-OK",
   "US-OR",
-  "US-PA",
   "US-RI",
-  "US-SD",
-  "US-TN",
-  "US-TX",
   "US-WY"
  ]
 }
