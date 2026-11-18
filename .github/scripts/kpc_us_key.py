@@ -1171,6 +1171,7 @@ DESIG_HELD, SITS_ON, STATE_COPY = [], [], []   # D3; D7 STATE_COPY (KPC owner, 2
 # D3: the FEDERAL designation layers (a line drawn by a law or a plan): Forest Service designated areas, BLM monuments / NCAs,
 # wilderness (FS + BLM), BLM study areas. State layers labelled 'designation' (D11) join this list with D7, when 'what' is read.
 DESIG_PRE = {'fsod', 'nca', 'wld', 'wbl', 'wsa'}
+FED_HOSTS = {'nps.gov', 'fws.gov', 'fs.usda.gov', 'fs.fed.us', 'blm.gov', 'usace.army.mil', 'recreation.gov', 'usbr.gov', 'corpslakes.erdc.dren.mil'}   # D7: a federal unit's website
 def _what(rid):
     """D11's label of the state layer a record comes from ('owned' / 'designation' / 'water' / 'register' / 'compilation'; '' = none)."""
     _m = re.match(r'[a-z]+', str(rid))
@@ -2640,12 +2641,17 @@ def run(st):
             # D7 (KPC owner, 17 Nov 6:06 AM): a state layer's COPY of a federal or other agency's unit (a layer D11 labels
             # 'compilation') is not the agency's own record. Beside the agency's own joined record the copy goes to check; alone it
             # stays and the park is graded approximate. A person's own join is never moved.
-            _cp = [x for x in m if _what(x[0]) == 'compilation' and not str(x[3]).startswith('reviewed')]
-            if _cp and len(_cp) < len(m):
+            # Scorecard 17 Nov (TN lost 56 hand-picked state parks): a compilation can be the park agency's OWN layer (TDEC's public
+            # lands hold TDEC's state parks; Norris Dam SP sits beside TVA land), so D7 acts only on a FEDERAL park (its POTA website
+            # is a federal agency's), its ruling's case: the copy goes beside a federal record (Mang_Type FED), or alone grades it approximate.
+            _fed = lambda x: str((gs_.get(str(x[0])) or {}).get('Mang_Type') or '').upper() == 'FED'
+            _fedweb = KR.web_host(r[1] if len(r) > 1 else '') in FED_HOSTS
+            _cp = [x for x in m if _what(x[0]) == 'compilation' and not str(x[3]).startswith('reviewed')] if _fedweb else []   # only a FEDERAL park (its POTA website): a state park beside TVA / Corps land keeps its own agency's copy
+            if _cp and any(_fed(x) for x in m if x not in _cp):
                 p['m'] = m = [x for x in m if x not in _cp]
                 p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'check (D7): a compilation copy; the managing agency\'s own record is joined'] for x in _cp]
                 STATE_COPY.append(ref)
-            elif _cp and p['g'] == 'official':
+            elif _cp and _fedweb and len(_cp) == len(m) and p['g'] == 'official':
                 p['g'] = 'approximate'; STATE_COPY.append(ref + ' (only a copy: approximate)')
         if not m and ref in TRL and ref not in DRIVING_ONLY and pathlib.Path(f'data/trails/{ref}.json').exists():
             p['m'] = [[f"trl{ref.split('-')[1]}", TRL[ref].get('name') or p.get('n'), 0, f"official trail line ({TRL[ref].get('by')}): the park is the line + POTA's 100-ft band"]]
