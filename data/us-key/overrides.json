@@ -7,7 +7,7 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "d44d938328a878d6964ff453e2ad45f2e61ae07f29025edb1747906d669ca068",
+  "overrides-parks-01.json": "aa24c9102887288461a91627f49a2bf42891824efe96520e448d4aa9740aa8ce",
   "overrides-parks-02.json": "73a0497ca42fac33d6f757948432794b0122f459348916611643b275aaf7dcb1"
  },
  "parks": {
@@ -871,28 +871,6 @@
    },
    "when": "2026-11-02",
    "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Dardanelle Recreation Area': the Corps lake around the park, not the state park · 2026-11-02 12:49: layers row YES 'Lake Dardanelle State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 166846 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)"
-  },
-  "US-1092": {
-   "fp": {
-    "sgarb19": [
-     "Lake Fort Smith State Park",
-     257
-    ]
-   },
-   "join": [
-    "sgarb19"
-   ],
-   "no": [
-    "sgarb19"
-   ],
-   "nofp": {
-    "sgarb19": [
-     "Lake Fort Smith State Park",
-     1613.3
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Fort Smith State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb19 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)"
   },
   "US-1093": {
    "fp": {
