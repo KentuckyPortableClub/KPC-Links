@@ -89,7 +89,13 @@ check(KR.contest('Diamond', DM, norm, ('acec',))[1].startswith('a bare name'), '
 # second round (18 Nov): the state-gis kind tail is not a layer title; the size step needs the same box
 check(KR.layer_type_words('Alaska Department of Natural Resources (preserve, state GIS table)') == set(),
       "Alaska's legislatively designated areas layer says no kind ('preserve' is the coarse state-gis tag): Kenai River US-12708 keeps 'Kenai River' (sgakb796)")
-check(KR.box_overlap([0, 0, 1, 1], [0.05, 0.05, 1.05, 1.05]) > .8 and KR.box_overlap([0, 0, 1, 1], [1.2, 0, 2.2, 1]) == 0, 'box overlap: a copy covers, a neighbour does not')
+# the three measured cases behind the 60% line (Fable's round 2: as numbers), real boxes from the 18 Nov shape cache
+_bl = KR.box_overlap([-90.12109, 35.85828, -90.05557, 35.99851], [-90.14755, 35.84358, -90.09196, 35.99794])   # 'Big Lake' 166827 / Big Lake NWR 3630
+_cd = KR.box_overlap([-94.17246, 32.66531, -94.04507, 32.75671], [-94.17849, 32.6947, -94.07285, 32.77864])    # 'Caddo Lake' sgtxd137 / Caddo Lake WMA 261770
+_ss = KR.box_overlap([-82.05369, 29.22232, -81.99505, 29.28145], [-82.05768, 29.18176, -81.9865, 29.21929])    # 'Silver Springs' sgflf67842 / Silver Springs SP sgfla139
+check(round(_bl, 2) == 0.47 and _bl < .6, f"Big Lake: the state's 10,804 ac and the refuge's 10,911 ac boxes cover 47%: neighbours, no size answer ({_bl:.3f})")
+check(round(_cd, 2) == 0.70 and _cd >= .6, f"Caddo Lake: the 8,307-ac copy and the WMA's 8,456 ac cover 70%: the same land ({_cd:.3f})")
+check(_ss == 0, f"Silver Springs: the 4,880-ac record and the park's 4,751 ac do not touch: not the park's land ({_ss:.3f})")
 check("KR.box_overlap(_bb0, (gs_.get(str(x[0])) or {}).get('_bb')) >= .6" in src,
       "the contest's size step counts only a held record whose box covers this one (60%): Big Lake NWR (10,911 ac, boxes 47%) does not take the state's 'Big Lake' (10,804 ac, PAD-US 166827); Caddo Lake WMA keeps its 8,307-ac copy (70%)")
 
@@ -130,10 +136,10 @@ check(dc(KR._full('Phipps - Death Hollow ISA')) == dc(KR._full('Phipps-Death Hol
 
 # bookkeeping, by this change's own id
 sc = next((c for c in json.loads((ROOT / '.github/us-key-rule-scope.json').read_text())['changes'] if c.get('id') == '2026-11-18-held-states-contest-d3'), {})
-check(sc.get('from') == '51840791a6b9' and len(sc.get('scope', {}).get('states', [])) == 50 and sc['scope'].get('saved_ids') is True
-      and 'APPROVED' in str(sc.get('approved')), 'scope entry 2026-11-18-held-states-contest-d3 (from the Q1 hash 51840791a6b9, every US state the key builds, saved ids re-matched, approved)')
+check(sc.get('from') == '60cdb17f180e' and len(sc.get('scope', {}).get('states', [])) == 50 and sc['scope'].get('saved_ids') is True
+      and 'APPROVED' in str(sc.get('approved')), 'scope entry 2026-11-18-held-states-contest-d3 (from the Q1 hash 60cdb17f180e, every US state the key builds, saved ids re-matched, approved)')
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-own = next((x for x in log.splitlines() if 'branch prep/held-states-contest-d3' in x and 'US rules 51840791a6b9 -> ' in x), '')
+own = next((x for x in log.splitlines() if 'branch prep/held-states-contest-d3' in x and 'US rules 60cdb17f180e -> ' in x), '')
 check(bool(own) and 'APPROVED' in own, "this change's own changelog line is there and approved by the owner")
 
 print('ALL PASS' if not FAILS else 'SOME FAILED')
