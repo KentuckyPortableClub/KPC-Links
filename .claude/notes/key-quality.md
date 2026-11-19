@@ -1100,3 +1100,9 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      parks), E 25 (busiest new pins of the 11 waiting states), B 7 (second witness, Forest Service acres). Plants: Timucuan / Tallgrass,
      Flathead 2658 (YES) / Tillamook 241270 (NO-PART), MassGIS Great Brook Farm / Arkansas State Parks Mount Magazine, Cardigan / Hobbs.
      Scoring: plants first, a row counts where both passes agree, job F's 0.8x-1.25x rule (item 28), disagreements to Fable.
+   - **UPDATE 12:20 PM (Opus): #285 R-FJ1 MERGED** (b1039f5b; main's US rules = **c82bdade8675**). Packet run 44584564753 (green, folder
+     `review-packets/pr-285-33f2cdc/`): MT only, US-4501 1,115,748 -> 2,966,156 ac (+2660), nothing verified lost, gold the same: as
+     agreed, stamped "Reviewed: Fable" (agreed ahead). **Montana is off STOP** (cb4044b6); with no list, the guard holds all 11 waiting
+     states park by park. The next key start sees the new rules and rebuilds Montana; the guard holds it (red on purpose).
+     Brandon asked about the packet bot's PART 2: its instructions (PART-2-ADDITIONS.md, Fable 11:40 AM) were sent to him to give
+     the builder agent.
