@@ -1,3 +1,18 @@
+# 2-FER FIX SHELF: ANSWERED 19 Nov 2026 (Fable). Read this block; the 17 Nov text under the line is history.
+- **Most of the shelf was built on 17 Nov 3:50 PM (Handoff 9, KPC-Links #269), three hours after the note below was written.** Fixed:
+  the quiet failures, D10 on the PC runner, the world designation note, the problems list, the decided pairs in
+  `.github/fers-rulings.json`; the Python 3.13 byte test passes on 3.13.18. All seven questions were built as settings, all OFF.
+- **The owner answered all seven on 19 Nov 3:35-3:42 PM: rules R-2F0 to R-2F7** (key-quality.md section 19 item 38; mapping.md;
+  the rule sheet: KPC-Data tools-out `key-quality/2026-11-19/handoff-06/RULE-SHEET.md`). Q1 yes approximate. Q2 no. Q3 yes, the band
+  is one grid cell (5 m), not 8 m. Q4 only new-system rows are copied forward, and only while both parks' key entries are unchanged.
+  Q5 yes, no 100 m. Q6 no drawing, "Possible 2-fer. We are missing an official boundary here: check both official boundary maps
+  before you count it."; old rows of such parks are dropped. Q7 D10 approved; the thin-shelf fallback is NOT approved and goes.
+- **Nothing of that is in the code yet.** Hand-off 06 (the outside agent) builds it as draft PRs to KPC-Links; each moves the fers
+  hash, so each goes to a Fable chat first ("review PR n").
+- **Still left after hand-off 06:** fold Kentucky's separate path into the national one; pull the rules out of the code comments
+  into one table. Both need a plan first.
+
+---
 # 2-FER FIXES, SHELVED (owner 17 Nov 12:42 PM: "Shelf the reviews and your notes for 2fer to fix later")
 Pick up AFTER the key batch + rebuild. Nothing below is built.
 

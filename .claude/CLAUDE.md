@@ -14,7 +14,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - `.claude/notes/world-stages.md`: the staged WORLD 2-fer list (one country per Brandon GO).
 - `.claude/notes/matching-plan.md`: Fable's plan to make the key matching better (17 Nov): the contest, agency leg, NPS codes, scorecard. Read before building the key batch.
 - `.claude/notes/key-quality.md`: Fable's notes on GRADING the keys (18 Nov): the seven rules of the grade, what went wrong, fact checks, random samples, sealed gold set, how to brief a grader, saved answers by evidence. Read before any key grade, rebuild sign-off or change to the saved answers.
-- `.claude/notes/fers-fix-later.md`: the SHELVED 2-fer fixes + 7 owner questions (17 Nov); pick up after the key rebuild.
+- `.claude/notes/fers-fix-later.md`: the 2-fer fix shelf (17 Nov), ANSWERED 19 Nov: what #269 already built, the owner's seven answers (R-2F0 to R-2F7), what hand-off 06 builds. Read before any 2-fer rule work.
 - `.claude/notes/new-chat-starters.md`: one-line starters for a new chat per topic (Brandon Oct 24: one dedicated chat per area).
 - `.claude/notes/layer-refresh.md`: PARKED plan — the keeper already checks every layer for change (store/layers-seen.json), so when one is out of date it asks and the OLD cache bot fetches only that one, instead of the two monthly jobs re-downloading all 589 blind. Open it before switching kpc-geo-cache.yml / kpc-world-cache.yml back on, or before touching whole-layer refresh at all. Holds grey areas R-LR1 to R-LR4 for Brandon.
 **INBOXES (Oct 28):** each chat's tasks are in `.claude/inbox/chat-N.md`; when Brandon types 'inbox', read README.md there and do yours.

@@ -1278,3 +1278,70 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      (`fers-fix-later.md`): Fable writes hand-off 06 for the agent (draft PR, Fable reviews, the agent edits); the 7 owner questions
      come first. Fresh Fable chat starter: "Read CLAUDE.md, key-quality.md section 19 items 36-37 and fers-fix-later.md: bring me the 7
      questions, then write hand-off 06 (the shelved 2-fer fixes) for the outside agent."
+38. **THE SEVEN 2-FER QUESTIONS ANSWERED + HAND-OFF 06 (Fable, 19 Nov 3:15-4:00 PM CST; Brandon 3:13 PM: the starter of item 37).**
+   - **FINDING: `fers-fix-later.md` WAS OUT OF DATE.** It was written 17 Nov 12:43 PM ("nothing below is built"); the agent's fix list
+     (Handoff 9, KPC-Links #269) was merged at 3:50 PM that day. Run today on main: `tests/test_fers_handoff9_nov17.py` ALL PASS;
+     fers rules hash 0637d083bd98 = the changelog's. Of the 10 shelved bugs 6 are fixed, 2 are built behind settings, 2 are left;
+     all seven questions were already built as settings, ALL OFF. The note now says so at its top.
+   - **HIS ANSWERS (rule sheet R-2F0 to R-2F7: tools-out `key-quality/2026-11-19/handoff-06/RULE-SHEET.md`; also in mapping.md):**
+     Q1 summary-map outlines = APPROXIMATE ("Yes, approximate"). Q2 park beside a forest = NOT held back (17 Nov 4:04 PM). Q3 near a
+     size line = NOT SURE, the band is ONE GRID CELL (5 m at pass 3), never a typed number (N3; HQ's 8 m goes). Q4 "Need yo be from
+     the new better system we are building now...old efee data is not trustworthy pre rebuild....after rebuild i trust this system
+     more sp yeah maybe?" then "Yes, that's it" to: (1) a row made before this rebuild is never copied forward; (2) a new-system row
+     is copied only while the key entry of both its parks is unchanged. Q5 a separate overlap piece that passes the 25-yard test is
+     its own spot, NO 100 m (17 Nov 4:04 PM). Q6 "Say we are missing this boundary possible 2fer check for offical missing boundary
+     or something like thay": the drawing comes off, the row says "Possible 2-fer. We are missing an official boundary here: check
+     both official boundary maps before you count it."; the old rows of such parks: "Drop until re-checked". Q7 "D10 yes ...shelf i
+     trust the new shelf more theb the old system": D10's scope entry = approved; the THIN-SHELF fallback (an area under 90% stays
+     on the old path) is NOT approved and goes: every shelf area is read, what the shelf lacks is not tested and is counted.
+   - **R-2F0, his own summary of POTA's rules, 3:42 PM** (quoted whole in the rule sheet): overlapping parks, public land, you and
+     all your equipment in it, 100 ft each side of a trail / of the water's edge, no size requirement; "we need to be a touch
+     stricter to account for map errors being off a little". So no new number in the 2-fer code, ever, but POTA's, his, or the
+     measuring tool's own error. The 25-yard floor and the tight lists stay (N4).
+   - **MEASURED TODAY with the real 5 m grid** (made-up squares, 43 widths x 16 placements; `handoff-06/known-answers/`): a true
+     16-22 m overlap that gets past the 25-yard floor reads 23-27 m; a true 42-45 m reads up to 49; a true 46-49 m reads down to 45.
+     One cell (5 m) catches every one. On the 17 Nov 472-row file: 380 rows fall in the 5 m band (8 m: 385).
+   - **A DEFECT IN THE BUILT Q4 SETTING:** `kpc_fers_age.py` compares a row with the whole key's `build` in `data/us-key/index.json`,
+     which is the id of the last key RUN (today: US-44600381160, 39 areas reused, 0 rebuilt). Switched on as built it would throw
+     every copied row away after any key run, twice a day. Hand-off 06 replaces it with a per-park stamp (`made_on`).
+   - **HAND-OFF 06 = the 2-FER RULES PR** (tools-out 8375ceb, `key-quality/2026-11-19/handoff-06/`, zip sent to Brandon; ONE agent
+     session, a build). Part 1: one switch file `.github/fers-switches.json` under the fers hash (the key-switches pattern; a missing
+     file stops the bot; the receipt records every setting) + R-2F1 to R-2F7. Part 2: what the shelf still holds (a math guard test
+     instead of the dead `FERS_ALGO`; byte tests on Python 3.12 and 3.13; the test that writes into the repo: stray tracked file
+     `data/status/test_fers_final_redact_nov17.json`, commit 43720d6). Part 3: the 2-fer bot writes its own doubts in the NOT-SURE
+     list's shape. Part 4: a PROPOSAL only, measuring a near-line spot finer. 30 known answers, 27 must. NOT in it: the Kentucky
+     path, the rules-in-one-table job, any run.
+   - **EACH PART MOVES THE FERS HASH: draft PR to KPC-Links, then a Fable chat** ("review PR n"); nobody merges before that.
+   - **SAID TO BRANDON, HIS TO OVERRULE:** (a) the 25-yard floor was NOT lowered on "a touch stricter"; (b) every 2-fer row on file
+     today is old-system data: it is replaced area by area at the first fresh run, nothing is hidden meanwhile; (c) at the
+     switch-over a thin area (US-HI 9.5% on 17 Nov) will show only the pairs between parks on the shelf.
+39. **HAND-OFF 05 CAME BACK: FOUR DRAFT PRs, FABLE'S REVIEW = NOT YET, THREE SMALL CHANGES (Fable, 19 Nov 3:50-4:15 PM CST; Brandon
+   3:50 PM: "look at this, your fable so only do what fable needs to do wr have outside agents and opus and sonnet) your the brains,
+   reviewer and manager your responsibility is to make sure we are producing the best maps possible and efficiently and we have
+   very little errors and we catch and fix it").**
+   - **KPC-Data #126 (part 1, reader) <- #127 (part 2, worklist + workflow + `kpc_not_sure.py`) <- #129 (part 3, PC runner, person
+     page, intake) <- #130 (part 4, blind kits)**, stacked, all draft. Nothing merged, nothing started.
+   - **WHAT FABLE READ:** every part's notes, the +80 lines in `kpc_manners.py`, the guard test, the picture path, the workflow
+     (dispatch only, schedule commented out, `contents: read`, read job without credentials, one save job, no key twice: all good),
+     `kpc_not_sure.settle()`. NOT read line by line: `kpc_park_pages_rules.py` (1,285 lines), parts 3 and 4.
+   - **THE THREE CHANGES** (one comment on #126: issuecomment-7023249764; asked for as ONE more draft PR on top of part 4,
+     `prep/park-pages-part5-review`, no rebase): (1) the manners guard was loosened to "no new def but the picture one": any added
+     line inside `robots_ok` would pass, and it is skipped without origin/main: pin both files by sha256 instead; (2) pictures are
+     outside the request and time budget, are taken for information-only questions, and fall back to a shot of the whole window:
+     budget them, R-PR13's parks only, no map part = no picture, note the picture on the facts; (3) `settle()` closes a row for any
+     caller with an empty who / how: refuse those, refuse the reader, a bot only from a list in the module (empty today).
+   - **THE ACCURACY CLAIM is honest and small:** 0 wrong on 26 expected facts (inside_of: ONE fixture). Enough to merge a tool that
+     only reports. **G-PR2 stands: no key rule reads a block until a real run shows 95 in 100 right, measured blind with part 4's kits.**
+   - **ORDER FOR OPUS** (starter: "Read CLAUDE.md and key-quality.md section 19 items 36 and 39: check the release run, then item
+     39's order"): (a) item 36 NEXT (a)-(c) first (main got "US answer key" 6e110a6 at about 4 PM); (b) when part 5 is in: the
+     hand-off gate on a FULL machine at the top of the stack (the agent's 33 "new" failures are missing modules and no KPC-Links
+     checkout: GATE PASS here is the merge condition), a line read of `kpc_park_pages_rules.py` against R-PR1 to R-PR13 and of
+     part 2's 132 deleted lines, then merge #126 -> #127 -> #129 -> #130 -> part 5 in one sitting, no run between; (c) the seed
+     (104 rows) onto tools-out `not-sure/` by area, then ONE by-hand reader run, no browser, the not-sure parks first; read
+     `summary.md` the next session, never wait on it; (d) `kits --n 40`: two zips to Brandon for two fresh agent sessions,
+     `kits score`, the per-block table to Fable; (e) wire the club's bots to write not-sure rows (item 37 step 3); (f) a club
+     change of its own: anchor the documents bot's `gov_of` ([a-z]{2}.gov matches "idaho.gov" by its last letters).
+   - **THE AGENT'S QUEUE, in this order:** part 5 of hand-off 05 (small), then hand-off 06.
+   - **FABLE'S NEXT SITTINGS (only these):** "review PR n" for each hand-off 06 part; the reader's per-block accuracy table when the
+     two kit passes are back (which blocks a rule may read); the answer to hand-off 06's part 4 proposal.
+
