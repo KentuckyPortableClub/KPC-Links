@@ -469,6 +469,31 @@
     "saved_ids": true
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-19 (4:20 AM: 'Do section 15: #271 without (b), the Denali PR, and prep outside-agent kits A, B and C'); waiting for Fable's review (key-quality.md section 13)"
+  },
+  {
+   "id": "2026-11-19-r-pp1-park-preserve",
+   "when": "2026-11-19",
+   "from": "7c6e01e1bc2b",
+   "why": "R-PP1 (Fable 19 Nov; key-quality.md section 19 items 4 and 10; Brandon 6:04 AM 'use your judgment or maybe outside agent confirm'): a park number does NOT cover the national preserve beside it unless POTA's own name for that number says so. POTA numbers park and preserve apart where it wants them (Glacier Bay US-12607 + US-0029, Aniakchak US-0902 + US-0003, Great Sand Dunes US-0033 + US-8295). A Park Service record named Preserve that the NAME rules joined to a park-only number (Wrangell-St. Elias US-0069, Katmai US-0044, Lake Clark US-0048, Gates of the Arctic US-0026, Craters of the Moon NM US-0665), or a park / monument record joined to a preserve-only number, goes to check. A person's join stands. A combined 'Park and Preserve' or 'Monument and Preserve' name is both (Oregon Caves US-0953 keeps its one record). Switch KPC_PRESERVE_APART, default ON. The states are those whose shapes hold an NPS record named Preserve.",
+   "scope": {
+    "states": [
+     "US-AK",
+     "US-AL",
+     "US-CA",
+     "US-CO",
+     "US-FL",
+     "US-ID",
+     "US-KS",
+     "US-LA",
+     "US-NM",
+     "US-NV",
+     "US-OR",
+     "US-TX",
+     "US-WV"
+    ],
+    "saved_ids": true
+   },
+   "approved": "APPROVED, decided_by Fable (ruling R-PP1, 2026-11-19, key-quality.md section 19 item 4; Brandon may overrule), relayed by the KPC owner 2026-11-19 6:04 AM ('use your judgment or maybe outside agent confirm pota official page weblinks are for preserve or not'); waiting for Fable's review (key-quality.md section 13)"
   }
  ]
 }

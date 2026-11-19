@@ -1752,6 +1752,31 @@ def _nps_code(name):
 
 
 
+PRESERVE_HIT = []   # R-PP1: [state, park, record id, record name] for the run's notice
+def preserve_apart(st, parks, recs, on=None):
+    """R-PP1 (Fable 19 Nov; key-quality.md section 19 items 4 + 10, switch KPC_PRESERVE_APART): a park number does NOT cover the
+    national preserve beside it unless POTA's own name for that number says so. POTA numbers park and preserve apart where it
+    wants them (Glacier Bay US-12607 + US-0029, Aniakchak US-0902 + US-0003, Great Sand Dunes US-0033 + US-8295), so a Park
+    Service record named Preserve that the NAME rules gave to a park-only number (Wrangell-St. Elias US-0069, Katmai US-0044,
+    Lake Clark US-0048, Gates of the Arctic US-0026, Craters of the Moon NM US-0665), or a park / monument record given to a
+    preserve-only number, goes to check. A person's join ('reviewed...') stands: a saved answer with POTA's page as evidence
+    flips it. Combined 'Park & Preserve' names are both (KR.nps_part_clash). Changes `parks` in place; returns rows moved."""
+    if on is None: on = _kr('KPC_PRESERVE_APART')
+    if not on or KR is None: return 0
+    nps = {_oid(a) for a in recs if KR.nps_record_code(a) or str(a.get('Mang_Name') or '') == 'NPS'}
+    n = 0
+    for ref, p in parks.items():
+        keep, out = [], []
+        for x in p.get('m') or []:
+            if str(x[0]) in nps and not str(x[3]).startswith('reviewed') and KR.nps_part_clash(p.get('n') or '', x[1]): out.append(x)
+            else: keep.append(x)
+        if not out: continue
+        p['m'] = keep
+        have = {str(y[0]) for y in p.get('c') or []}
+        p['c'] = list(p.get('c') or []) + [[x[0], x[1], x[2], "check (R-PP1): a preserve is its own park to POTA; this park number's name does not name the preserve"] for x in out if str(x[0]) not in have]
+        for x in out: PRESERVE_HIT.append([st, ref, str(x[0]), x[1]]); n += 1
+    return n
+
 NPS_CODE_HIT = []   # Handoff 8 fix 1: [state, park, record id, code, what] for the run's notice
 def nps_code_joins(st, parks, recs, P, ovr=None, on=None):
     """Handoff 8 fix 1 (switch KPC_NPS_UNIT_CODE; matching plan section 3: hard numbers before names). A POTA park whose website is
@@ -2276,6 +2301,12 @@ def run(st):
     # Oct 29 (chat 8, 'wrong joins solved'): a record joined to two or more parks by NAME alone (Robert Moses Long Island +
     # Thousand Islands, NY county forests) stays only with the parks it is NEAR: a claim from a park whose pin is more than
     # 15 km from the record is dropped when another park's pin sits within 2 km of it. Hand joins ('reviewed') are never dropped.
+    if preserve_apart(st, parks, recs):   # R-PP1 (Fable 19 Nov): a park number does not cover the preserve beside it
+        _ph = [h for h in PRESERVE_HIT if h[0] == st]
+        _still = {str(x[0]) for p_ in parks.values() for x in p_.get('m') or []}
+        for x in list(used):
+            if str(x) in {h[2] for h in _ph} and str(x) not in _still: used.discard(x)
+        notice(f'US key {st}', f"R-PP1 park and preserve: {len(_ph)} record(s) to check: " + ', '.join(f'{h[1]} {h[3]}' for h in _ph[:12]))
     if _kr('KPC_NPS_UNIT_CODE'):   # Handoff 8 fix 1: Park Service unit codes before names
         if nps_code_joins(st, parks, recs, P):
             for p_ in parks.values(): used.update(x[0] for x in p_.get('m') or [])
