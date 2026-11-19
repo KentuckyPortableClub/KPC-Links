@@ -663,13 +663,11 @@
   "kpc-band-alerts.yml|2026-11-18T23:48:00+00:00": "2026-11-19T00:14+00:00 started",
   "kpc-boards.yml|2026-11-18T23:44:00+00:00": "2026-11-19T00:14+00:00 started",
   "kpc-discord-watch.yml|2026-11-18T23:47:00+00:00": "2026-11-19T00:14+00:00 started",
-  "kpc-youtube.yml|2026-11-18T23:23:00+00:00": "2026-11-19T00:14+00:00 started"
+  "kpc-youtube.yml|2026-11-18T23:23:00+00:00": "2026-11-19T00:14+00:00 started",
+  "kpc-hunters.yml|2026-11-19T00:07:00+00:00": "2026-11-19T00:39+00:00 started"
  },
- "last": "2026-11-19T00:14+00:00",
+ "last": "2026-11-19T00:39+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 18 23:48 UTC)",
-  "kpc-boards.yml (missed Nov 18 23:44 UTC)",
-  "kpc-discord-watch.yml (missed Nov 18 23:47 UTC)",
-  "kpc-youtube.yml (missed Nov 18 23:23 UTC)"
+  "kpc-hunters.yml (missed Nov 19 00:07 UTC)"
  ]
 }
