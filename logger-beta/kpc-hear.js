@@ -37,7 +37,8 @@
       if (h.band && bandOf(s.khz) && h.band !== bandOf(s.khz)) return;
       const refs = s.refs.filter(need); if (!refs.length) return;
       hits.push({ s, h, refs });
-      AP.notify('hear', `👂 ${s.call} (${refs.join(' + ')}) is spotted and YOUR radio hears it: ${(s.khz / 1000).toFixed(3)} ${s.mode || h.how}${h.db != null ? ', ' + (h.db > 0 ? '+' : '') + Math.round(h.db) + ' dB here' : ''}`, { key: s.call + '|' + bandOf(s.khz), every: 1800000, ref: refs[0] });
+      const pn = r => { const n = G.KPCParkNames && G.KPCParkNames[r]; return n ? r + ' ' + n : r; };   /* Nov 19: name the park */
+      AP.notify('hear', `${s.call} at ${refs.map(pn).join(' + ')} (a park you still need) is spotted and YOUR radio hears it: ${(s.khz / 1000).toFixed(3)} ${s.mode || h.how}${h.db != null ? ', ' + (h.db > 0 ? '+' : '') + Math.round(h.db) + ' dB here' : ''}`, { key: s.call + '|' + bandOf(s.khz), every: 1800000, ref: refs[0] });
     });
     return hits;
   }

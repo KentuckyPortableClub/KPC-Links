@@ -20,6 +20,11 @@
   const LS = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const SV = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   const S = Object.assign({ on: true, civSpan: 25000, civMode: 0, contrast: 1, afHi: 3000, pitch: 600 }, LS('kpcAppScope', {}));
+  /* Nov 19 2026 (Brandon: 'great looking scope with who is where and park number, all turn on or off'): what the picture shows, each a
+     switch on the scope's SHOW row. spots = name tags at all; calls / park = what a tag says; sota = SOTA summits; rbn = skimmer-only
+     calls (no human spot); plan = my licence class's band plan behind the trace; grid = lines; peak = a slow-falling peak line;
+     pass = my receive filter shaded on the picture. */
+  S.show = Object.assign({ spots: 1, calls: 1, park: 1, sota: 1, rbn: 0, plan: 1, grid: 1, peak: 1, pass: 1 }, S.show || {});
   const save = () => SV('kpcAppScope', S);
   const CIV_SCOPE = { ic7300: 1, ic705: 1, ic9700: 1, ic7610: 1, ic905: 1 };
 
@@ -239,26 +244,52 @@
           for (let yy = k * rp; yy < (k + 1) * rp && yy < WH; yy++) { const o = yy * rowB + x * 4; d[o] = R; d[o + 1] = Gc; d[o + 2] = B; d[o + 3] = 255; } } }
     }
     g.putImageData(w.img, 0, WT);
-    /* spectrum line (the newest row) */
-    g.beginPath(); for (let x = 0; x < CW; x++) { const v = r.v[Math.min(r.v.length - 1, Math.floor(x / CW * r.v.length))]; const y = SPH - 2 - v * (SPH - 6); if (x === 0) g.moveTo(x, y); else g.lineTo(x, y); }
-    g.strokeStyle = r.src === 'af' ? '#8fd3ff' : '#ffd46a'; g.lineWidth = 1.2 * dpr; g.stroke();
-    g.lineTo(CW, SPH); g.lineTo(0, SPH); g.closePath(); g.fillStyle = r.src === 'af' ? 'rgba(80,160,255,.18)' : 'rgba(255,200,80,.16)'; g.fill();
-    /* scale */
-    g.fillStyle = '#9AA6B5'; g.font = (10 * dpr) + 'px ui-monospace,monospace'; g.textAlign = 'center'; g.strokeStyle = 'rgba(150,150,150,.4)';
-    const span = r.hi - r.lo, steps = r.src === 'af' ? [100, 250, 500, 1000] : [0.5, 1, 2, 5, 10, 25, 50, 100], st = steps.find(s => span / s <= Wd / 70) || steps[steps.length - 1];
-    for (let f = Math.ceil(r.lo / st) * st; f <= r.hi; f += st) { const x = (f - r.lo) / span * CW; g.beginPath(); g.moveTo(x, SPH); g.lineTo(x, SPH + 4 * dpr); g.stroke(); g.fillText(r.src === 'af' ? String(Math.round(f)) : (st < 1 ? f.toFixed(1) : String(Math.round(f))), x, SPH + 13 * dpr); }
-    /* the dial */
+    /* ---- the top part: band plan, grid, my filter, the trace + its peak line, the scale, my dial, the name tags (Nov 19 2026) ---- */
+    const span = r.hi - r.lo, X = k => (k - r.lo) / span * CW, rf = r.src !== 'af', SW = S.show, TAGH = rf && SW.spots ? Math.round(32 * dpr) : 0;
     const dk = (G.KPCLog && KPCLog.dock) || {}, ld = G.KPCCat && KPCCat.lastDial && KPCCat.lastDial(), rk = simOn() ? +KPCCat.fake().khz : (ld && +ld.khz) || +dk.khz;
-    if (r.src !== 'af' && rk >= r.lo && rk <= r.hi) { const x = (rk - r.lo) / span * CW; g.strokeStyle = '#f43f5e'; g.lineWidth = 1.5 * dpr; g.beginPath(); g.moveTo(x, 0); g.lineTo(x, CH); g.stroke(); }
-    /* spot labels (RF only): from the internet, marked as spots */
-    w.hits = [];
-    if (r.src !== 'af') {
+    const md = String((ld && ld.mode) || dk.mode || '').toUpperCase();
+    if (rf && SW.plan && AP.bandPlan && AP.bandPlan.segments) {   /* my licence class: CW/data blue, phone amber, data purple; not mine = nothing */
+      for (const sg of AP.bandPlan.segments(AP.S.cls || 'E')) { if (sg[1] <= r.lo || sg[0] >= r.hi) continue; const k2 = sg[3];
+        g.fillStyle = /ph/.test(k2) ? 'rgba(232,184,74,.07)' : /dig|data/.test(k2) ? 'rgba(190,120,255,.08)' : /cw/.test(k2) ? 'rgba(109,180,245,.07)' : 'rgba(95,211,155,.06)';
+        const x0 = Math.max(0, X(sg[0])), x1 = Math.min(CW, X(sg[1])); g.fillRect(x0, TAGH, x1 - x0, SPH - TAGH); } }
+    if (SW.grid) { g.strokeStyle = 'rgba(255,255,255,.06)'; g.lineWidth = 1; for (let i = 1; i < 4; i++) { const y = TAGH + (SPH - TAGH) * i / 4; g.beginPath(); g.moveTo(0, y); g.lineTo(CW, y); g.stroke(); } }
+    if (rf && SW.pass && rk >= r.lo && rk <= r.hi) {   /* what I hear: the filter beside the dial (USB above, LSB below, CW / AM around it) */
+      const wkhz = (/CW/.test(md) ? 0.5 : /AM|FM/.test(md) ? 6 : 2.4), a0 = /LSB|DATAL/.test(md) ? rk - wkhz : /CW|AM|FM/.test(md) ? rk - wkhz / 2 : rk, a1 = a0 + wkhz;
+      g.fillStyle = 'rgba(255,182,72,.10)'; g.fillRect(X(a0), TAGH, X(a1) - X(a0), CH - TAGH); }
+    const pts = new Float32Array(CW); for (let x = 0; x < CW; x++) pts[x] = r.v[Math.min(r.v.length - 1, Math.floor(x / CW * r.v.length))];
+    const yOf = v => SPH - 2 - v * (SPH - TAGH - 6);
+    if (SW.peak) { if (!w.pk || w.pk.length !== CW || w.pkLo !== r.lo || w.pkHi !== r.hi) { w.pk = Float32Array.from(pts); w.pkLo = r.lo; w.pkHi = r.hi; } for (let x = 0; x < CW; x++) w.pk[x] = Math.max(pts[x], w.pk[x] - 0.004);
+      g.beginPath(); for (let x = 0; x < CW; x++) { const y = yOf(w.pk[x]); if (x) g.lineTo(x, y); else g.moveTo(x, y); } g.strokeStyle = 'rgba(255,182,72,.38)'; g.lineWidth = dpr; g.stroke(); }
+    g.beginPath(); for (let x = 0; x < CW; x++) { const y = yOf(pts[x]); if (x) g.lineTo(x, y); else g.moveTo(x, y); }
+    const line = rf ? '#9fe6ff' : '#8fd3ff'; g.strokeStyle = line; g.lineWidth = 1.2 * dpr; g.shadowColor = '#5fd0ff'; g.shadowBlur = 6 * dpr; g.stroke(); g.shadowBlur = 0;
+    g.lineTo(CW, SPH); g.lineTo(0, SPH); g.closePath(); const gr = g.createLinearGradient(0, TAGH, 0, SPH); gr.addColorStop(0, 'rgba(120,220,255,.5)'); gr.addColorStop(1, 'rgba(20,60,120,.04)'); g.fillStyle = gr; g.fill();
+    /* scale */
+    g.fillStyle = '#05070a'; g.fillRect(0, SPH, CW, AXH); g.fillStyle = '#9AA6B5'; g.font = '700 ' + (10 * dpr) + 'px ui-monospace,monospace'; g.textAlign = 'center'; g.strokeStyle = 'rgba(150,150,150,.4)';
+    const steps = rf ? [0.5, 1, 2, 5, 10, 25, 50, 100] : [100, 250, 500, 1000], st = steps.find(q => span / q <= Wd / 70) || steps[steps.length - 1];
+    for (let f = Math.ceil(r.lo / st) * st; f <= r.hi; f += st) { const x = X(f); g.beginPath(); g.moveTo(x, SPH); g.lineTo(x, SPH + 4 * dpr); g.stroke(); g.fillText(!rf ? String(Math.round(f)) : (f / 1000).toFixed(st < 1 ? 4 : 3), x, SPH + 13 * dpr);
+      if (SW.grid) { g.save(); g.strokeStyle = 'rgba(255,255,255,.06)'; g.beginPath(); g.moveTo(x, TAGH); g.lineTo(x, SPH); g.stroke(); g.restore(); } }
+    /* the dial */
+    if (rf && rk >= r.lo && rk <= r.hi) { const x = X(rk); g.strokeStyle = '#ff4d5e'; g.lineWidth = 1.5 * dpr; g.shadowColor = '#ff4d5e'; g.shadowBlur = 8 * dpr; g.beginPath(); g.moveTo(x, TAGH); g.lineTo(x, CH); g.stroke(); g.shadowBlur = 0; }
+    /* name tags (RF only, from the internet: a spot, never 'heard'): call + park number, coloured by kind; two lanes, then they wait */
+    w.hits = []; w.tags = 0;
+    if (rf && SW.spots) {
       const band = G.KPCLog && KPCLog.band ? KPCLog.band(rk || (r.lo + r.hi) / 2) : '', list = G.KPCSkim && band ? KPCSkim.mapSpots(band) : [];
-      g.font = '600 ' + (11 * dpr) + 'px ui-monospace,monospace'; g.textAlign = 'left'; const lanes = [];
-      for (const s of list) { if (s.khz < r.lo || s.khz > r.hi) continue; const x = (s.khz - r.lo) / span * CW, lab = '◇' + s.call, tw = g.measureText(lab).width + 6 * dpr;
-        let ln = lanes.findIndex(e => e < x - 2); if (ln === -1) { if (lanes.length >= 3) continue; ln = lanes.length; lanes.push(0); } lanes[ln] = x + tw;
-        const y = 3 * dpr + ln * 15 * dpr; g.fillStyle = 'rgba(5,8,15,.8)'; g.fillRect(x, y, tw, 13 * dpr); g.fillStyle = '#e6eaf0'; g.fillText(lab, x + 3 * dpr, y + 10 * dpr);
-        w.hits.push({ x: x / dpr, y: y / dpr, w: tw / dpr, h: 13, s }); }
+      const me = String((AP.me && AP.me().call) || AP.S.call || '').toUpperCase();
+      g.font = '800 ' + (10 * dpr) + 'px ui-monospace,monospace'; g.textAlign = 'left'; const lanes = [0, 0];
+      for (const sp of list) {
+        if (sp.khz < r.lo || sp.khz > r.hi) continue;
+        const refs = sp.refs || [], sota = refs.some(x => /\//.test(x)), wwff = refs.some(x => /^[A-Z0-9]*FF-/.test(x)), park = refs.some(x => /^[A-Z]{1,3}-\d{4,5}$/.test(x)), mine = me && sp.call === me;
+        if (sp.src === 'rbn' && !SW.rbn) continue; if (sota && !park && !SW.sota) continue;
+        const parts = []; if (SW.calls || !refs.length) parts.push(sp.call); if (SW.park && refs.length) parts.push(refs.slice(0, 2).join(' + ') + (refs.length > 2 ? ' +' + (refs.length - 2) : ''));
+        const icon = mine ? '● ' : park ? '🌲 ' : sota ? '▲ ' : wwff ? '🌳 ' : sp.src === 'rbn' ? '◦ ' : '◇ ', lab = icon + parts.join('  ');
+        const x = X(sp.khz), tw = g.measureText(lab).width + 8 * dpr, bx = Math.max(0, Math.min(x - 4 * dpr, g.canvas.width - tw));   /* a tag near the right edge slides left to stay whole */
+        let ln = lanes.findIndex(e => e < bx); if (ln === -1) continue; lanes[ln] = bx + tw + 4 * dpr;
+        const y = 2 * dpr + ln * 15 * dpr, bg = mine ? 'rgba(220,50,70,.92)' : park ? 'rgba(28,105,58,.92)' : sota ? 'rgba(130,80,210,.92)' : wwff ? 'rgba(20,110,120,.92)' : sp.src === 'rbn' ? 'rgba(60,66,76,.9)' : 'rgba(40,70,110,.92)';
+        g.fillStyle = bg; if (g.roundRect) { g.beginPath(); g.roundRect(bx, y, tw, 13 * dpr, 3 * dpr); g.fill(); } else g.fillRect(bx, y, tw, 13 * dpr);
+        g.fillStyle = '#fff'; g.fillText(lab, bx + 4 * dpr, y + 10 * dpr);
+        g.strokeStyle = bg; g.setLineDash([2 * dpr, 2 * dpr]); g.beginPath(); g.moveTo(x, y + 13 * dpr); g.lineTo(x, TAGH); g.stroke(); g.setLineDash([]);
+        w.hits.push({ x: bx / dpr, y: y / dpr, w: tw / dpr, h: 13, s: sp }); w.tags++;
+      }
     }
   }
   function status() {
@@ -284,11 +315,16 @@
     $('scChips').innerHTML = `<button type="button" class="chip${S.on ? ' on' : ''}" id="scOn">${S.on ? 'ON' : 'OFF'}</button>` +
       (civ || simOn() ? spans.map(([v, t]) => `<button type="button" class="chip${S.civSpan === v ? ' on' : ''}" data-scs="${v}">${t}</button>`).join('') + (civ ? '<button type="button" class="chip" id="scFix">FIXED</button>' : '') : '') +
       (f7 ? '<span class="kv"><i>RADIO SPAN</i></span>' + f7s.map(v => `<button type="button" class="chip${(+S.f7Span || 100) === v ? ' on' : ''}" data-f7s="${v}" title="Set the same SPAN on the FT-710">${v}k</button>`).join('') : '') +
-      `<button type="button" class="chip" data-scc="-1">dim</button><button type="button" class="chip" data-scc="1">bright</button>`;
+      `<button type="button" class="chip" data-scc="-1">dim</button><button type="button" class="chip" data-scc="1">bright</button>` +
+      `<span class="kv scshow"><i>SHOW</i></span>` + [['spots', '◇ TAGS'], ['calls', 'CALLS'], ['park', '🌲 PARK #'], ['sota', '▲ SOTA'], ['rbn', 'SKIMMERS'], ['plan', 'BAND PLAN'], ['pass', 'MY FILTER'], ['grid', 'GRID'], ['peak', 'PEAK']]
+        .map(([k, t]) => `<button type="button" class="chip${S.show[k] ? ' on' : ''}" data-scw="${k}" aria-pressed="${!!S.show[k]}">${t}</button>`).join('') +
+      `<button type="button" class="chip" id="scFull" title="The scope on the whole screen (Esc to come back)">⛶</button>`;
     $('scOn').onclick = async () => { S.on = !S.on; save(); if (!S.on) await civStop(); card(); };
     c.querySelectorAll('[data-scs]').forEach(b => { b.onclick = async () => { await civSpan(+b.dataset.scs); card(); }; });
     if ($('scFix')) $('scFix').onclick = () => civFixed();
     c.querySelectorAll('[data-f7s]').forEach(b => { b.onclick = () => { S.f7Span = +b.dataset.f7s; save(); card(); }; });
+    c.querySelectorAll('[data-scw]').forEach(b => { b.onclick = () => { const k = b.dataset.scw; S.show[k] = S.show[k] ? 0 : 1; save(); b.classList.toggle('on', !!S.show[k]); b.setAttribute('aria-pressed', !!S.show[k]); }; });
+    if ($('scFull')) $('scFull').onclick = () => { const el = $('rdScope'); if (document.fullscreenElement) document.exitFullscreen(); else if (el.requestFullscreen) el.requestFullscreen().catch(() => el.classList.toggle('scbig')); else el.classList.toggle('scbig'); };
     c.querySelectorAll('[data-scc]').forEach(b => { b.onclick = () => { S.contrast = Math.max(0.5, Math.min(3, (S.contrast || 1) * (b.dataset.scc === '1' ? 1.25 : 0.8))); save(); }; });
     mount($('scCv')); stat();
   }
@@ -296,5 +332,5 @@
   setInterval(() => { if (document.body.dataset.screen === 'radio') { if (!$('rdScope')) card(); stat(); } }, 1000);
   AP.on('screen', n => { if (n === 'radio') setTimeout(card, 50); });
 
-  G.KPCScope = { setTune: f => { TUNE_HOOK = f; }, _f7Row: f7Row, f7: () => Object.assign({}, F7), on: f => { subs.add(f); return () => subs.delete(f); }, S, tap, push, rows: () => ROWS, slow: () => SLOW, status, state: () => Object.assign({}, ST), underlay, mount, card, civFrame, hasCiv, civStart, civStop, civSpan, afBlock, simTick, _civBytes: civBytes, CIV_SCOPE };
+  G.KPCScope = { tags: () => (W1 && W1.tags) || 0, hits: () => (W1 ? W1.hits.slice() : []), setTune: f => { TUNE_HOOK = f; }, _f7Row: f7Row, f7: () => Object.assign({}, F7), on: f => { subs.add(f); return () => subs.delete(f); }, S, tap, push, rows: () => ROWS, slow: () => SLOW, status, state: () => Object.assign({}, ST), underlay, mount, card, civFrame, hasCiv, civStart, civStop, civSpan, afBlock, simTick, _civBytes: civBytes, CIV_SCOPE };
 })(window);

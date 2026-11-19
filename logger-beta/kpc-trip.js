@@ -17,7 +17,7 @@
   const esc = AP.esc;
   const LS = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
   const SV = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
-  const T = Object.assign({ stops: [], st: '', q: '', near: false, notMine: false, sat: true }, LS('kpcAppTrip', {}));
+  const T = Object.assign({ stops: [], st: '', q: '', near: false, notMine: false, sat: true, pin: null, within: 0 }, LS('kpcAppTrip', {}));
   if (!Array.isArray(T.stops)) T.stops = [];
   const save = () => SV('kpcAppTrip', T);
   const R = Math.PI / 180;
@@ -29,7 +29,9 @@
   scr.insertAdjacentHTML('afterbegin', '<div class="subtabs" id="mpSub" role="tablist"><button type="button" role="tab" class="on" data-msub="qso">🗺 CONTACTS</button><button type="button" role="tab" data-msub="trip">🚗 TRIP PLANNER</button></div>');
   scr.insertAdjacentHTML('beforeend', `<div class="trbox" id="trBox">
       <div class="trbar"><select id="trSt" aria-label="State"></select><input id="trQ" type="search" placeholder="Search: US-1234, a name, a county" autocomplete="off">
-        <button type="button" class="chip" id="trNear">📍 NEAR ME</button><button type="button" class="chip" id="trMine">NOT ACTIVATED BY ME</button><button type="button" class="chip" id="trSat"></button></div>
+        <button type="button" class="chip" id="trNear">📍 NEAR ME</button><button type="button" class="chip" id="trMine">NOT ACTIVATED BY ME</button><button type="button" class="chip" id="trSat"></button>
+        <span id="trProg"></span><button type="button" class="chip" id="trPin" title="Drop a pin on the map and plan from there">📌 DROP A PIN</button>
+        <select id="trWithin" aria-label="How far"><option value="0">any distance</option><option value="10">within 10 mi</option><option value="25">within 25 mi</option><option value="50">within 50 mi</option><option value="100">within 100 mi</option><option value="200">within 200 mi</option></select></div>
       <div class="trwrap"><div class="trmap"><canvas id="trCv" aria-label="Map: the parks found and the trip"></canvas></div>
         <div class="trside"><div class="card trtrip" id="trTrip"></div><div class="trfound"><div class="hint" id="trCnt"></div><div class="trlist" id="trList"></div></div></div></div>
     </div>`);
@@ -45,7 +47,11 @@
   let PACKS = [], ALL = [], ME = null, MAP = null, PICK = null;
   async function load() {
     PACKS = G.KPCParks ? await KPCParks.loaded() : [];
-    ALL = PACKS.flatMap(pk => (pk.parks || []).map(p => ({ p, st: pk.state, ol: (pk.outlines || {})[p.ref] || [] })));
+    ALL = PACKS.flatMap(pk => (pk.parks || []).map(p => ({ p, st: pk.state, ol: (pk.outlines || {})[p.ref] || [], prog: 'pota' })));
+    /* Nov 19 2026 (Brandon: WWFF and SOTA as options): the pack's WWFF references / SOTA summits join the list when switched on (🌳 / ▲),
+       each as its OWN program (never a 2-fer); a Kentucky park that shares ground lists them as 'Also:' (the website's own cross-check) */
+    if (G.KPCParks && KPCParks.others) PACKS.forEach(pk => KPCParks.others(pk).forEach(o => ALL.push({ p: o, st: pk.state, ol: [], prog: o.prog })));
+    if ($('trProg') && G.KPCParks && KPCParks.progChips) { $('trProg').innerHTML = KPCParks.progChips(); KPCParks.progWire($('trProg'), () => { redraw(); fit(); }); }
     const sts = PACKS.map(pk => pk.state).sort();
     if (!sts.includes(T.st)) T.st = sts[0] || '';
     $('trSt').innerHTML = sts.length ? sts.map(s => `<option value="${s}"${s === T.st ? ' selected' : ''}>${s}</option>`).join('') + '<option value="*">every state on this device</option>' : '<option value="">no state on this device</option>';
@@ -53,24 +59,33 @@
   }
   const activated = ref => G.KPCLog ? (KPCLog.activated ? KPCLog.activated(ref) : [...KPCLog.all().values()].some(q => !q.d && (q.myrefs || []).includes(ref))) : false;
   const olTxt = x => x.ol.length ? (x.ol.some(o => o.src === 'official') ? '✅ official outline' : '⚠ approximate outline (not official)') : 'pin only';
+  const also = x => { const a = [].concat(x.p.kff || [], x.p.sota || []).map(r => typeof r === 'string' ? r : (r && (r.ref || r.c)) || '').filter(Boolean); return a.length ? ' · Also: ' + esc(a.slice(0, 3).join(', ')) : ''; };   /* Kentucky: the website's own list of what shares ground; never called a 2-fer */
+  const from = () => T.pin || (T.near ? ME : null);   /* where distances are measured from */
+  let PINARM = false;
   function found() {
     const q = T.q.trim().toUpperCase();
-    let L = ALL.filter(x => T.st === '*' || x.st === T.st);
+    const PG = G.KPCParks && KPCParks.PROG || {};
+    let L = ALL.filter(x => (T.st === '*' || x.st === T.st) && (x.prog === 'pota' || PG[x.prog]));
     if (q) L = L.filter(x => (x.p.ref + ' ' + x.p.name + ' ' + (x.p.co || '') + ' ' + (x.p.kind || '')).toUpperCase().includes(q));
-    if (T.notMine) L = L.filter(x => !activated(x.p.ref));
-    if (T.near && ME) { L.forEach(x => { x.km = km(ME, x.p); }); L.sort((a, b) => a.km - b.km); } else L.sort((a, b) => a.p.ref.localeCompare(b.p.ref, undefined, { numeric: true }));
+    if (T.notMine) L = L.filter(x => x.prog !== 'pota' || !activated(x.p.ref));
+    /* Nov 19 2026 (to-dos 4 + 5): distances from the dropped PIN when there is one, else from me (NEAR ME); WITHIN keeps the parks that close */
+    const O = from();
+    if (O) L.forEach(x => { x.km = km(O, x.p); });
+    if (O && T.within > 0) L = L.filter(x => x.km <= T.within * 1.609344);
+    if (O && (T.near || T.pin)) L.sort((a, b) => a.km - b.km); else L.sort((a, b) => a.p.ref.localeCompare(b.p.ref, undefined, { numeric: true }));
     return L;
   }
   /* ---------------- drawing ---------------- */
   const inTrip = ref => T.stops.some(s => s.ref === ref);
   function drawList() {
     const L = found(), N = 80;
-    $('trCnt').textContent = !PACKS.length ? '' : L.length + ' park' + (L.length === 1 ? '' : 's') + (L.length > N ? ' (first ' + N + ' shown: search to narrow)' : '');
+    const nP = L.filter(x => x.prog === 'pota').length, nO = L.length - nP;
+    $('trCnt').textContent = !PACKS.length ? '' : nP + ' park' + (nP === 1 ? '' : 's') + (nO ? ' + ' + nO + ' WWFF / SOTA' : '') + (L.length > N ? ' (first ' + N + ' shown: search to narrow)' : '');
     if (!PACKS.length) { $('trList').innerHTML = `<div class="st">No parks on this device yet. Get a state's parks while you have signal; then this works with none.</div><div class="row"><button type="button" class="b gold" id="trGet">🌲 GET MY STATE'S PARKS</button><button type="button" class="b" id="trPk">STATION → PARKS</button></div>`;
       $('trGet').onclick = async () => { if (G.KPCParks) { await KPCParks.myState(true); await load(); redraw(); } };
       $('trPk').onclick = () => { AP.go('station'); const c = $('pkState'); if (c) c.scrollIntoView({ block: 'center' }); }; return; }
     $('trList').innerHTML = L.slice(0, N).map(x => { const cl = G.KPCAlerts && KPCAlerts.closuresFor ? KPCAlerts.closuresFor(x.p.ref) : [];
-      return `<div class="trp${PICK === x.p.ref ? ' pick' : ''}" data-trp="${esc(x.p.ref)}"><div><b>${esc(x.p.ref)}</b> ${esc(x.p.name)}<small>${esc(x.p.co || '')}${x.p.co ? ' · ' : ''}${esc(olTxt(x))}${T.near && ME ? ' · ' + dist(x.km) : ''}${activated(x.p.ref) ? ' · ✔ activated by me' : ''}${cl.length ? ' · <span class="bad">⚠ closure notice</span>' : ''}</small></div>
+      return `<div class="trp${PICK === x.p.ref ? ' pick' : ''}" data-trp="${esc(x.p.ref)}"><div><b>${esc(x.p.ref)}</b> ${esc(x.p.name)}<small>${esc(x.p.co || '')}${x.p.co ? ' · ' : ''}${x.prog === 'pota' ? esc(olTxt(x)) : KPCParks.progTag(x.p) + ' · its own program'}${also(x)}${from() && x.km != null ? ' · ' + dist(x.km) + (T.pin ? ' from the pin' : '') : ''}${x.prog === 'pota' && activated(x.p.ref) ? ' · ✔ activated by me' : ''}${cl.length ? ' · <span class="bad">⚠ closure notice</span>' : ''}</small></div>
         <button type="button" class="chip sm${inTrip(x.p.ref) ? ' on' : ''}" data-tradd="${esc(x.p.ref)}">${inTrip(x.p.ref) ? '✓ IN TRIP' : '+ ADD'}</button></div>`; }).join('');
   }
   function legs() { const out = []; let tot = 0; for (let i = 1; i < T.stops.length; i++) { const k = km(T.stops[i - 1], T.stops[i]); out.push(k); tot += k; } return { out, tot }; }
@@ -78,7 +93,7 @@
     const S = T.stops, lg = legs();
     $('trTrip').innerHTML = `<h2>🚗 The trip <small class="cxsub">${S.length} stop${S.length === 1 ? '' : 's'}${S.length > 1 ? ' · ' + dist(lg.tot) + ' in a straight line (roads are longer)' : ''}</small></h2>
       ${S.length ? '<ol class="trstops">' + S.map((s, i) => `<li><span class="trn">${i + 1}</span><div><b>${esc(s.ref)}</b> ${esc(s.name)}${i ? '<small>' + dist(lg.out[i - 1]) + ' from the stop before</small>' : ''}</div>
-        <span class="trbtn"><button type="button" class="chip sm" data-trup="${i}" aria-label="Move up">↑</button><button type="button" class="chip sm" data-trdn="${i}" aria-label="Move down">↓</button><button type="button" class="chip sm gold" data-trgo="${i}" title="This park becomes MY PARK and the log starts">🌲 START HERE</button><button type="button" class="chip sm" data-trrm="${i}" aria-label="Remove">✕</button></span></li>`).join('') + '</ol>'
+        <span class="trbtn"><button type="button" class="chip sm" data-trup="${i}" aria-label="Move up">↑</button><button type="button" class="chip sm" data-trdn="${i}" aria-label="Move down">↓</button>${s.prog === 'sota' ? '<span class="chip sm" title="A SOTA summit: log it with your SOTA logger; MY PARK stays as it is">▲ SOTA</span>' : `<button type="button" class="chip sm gold" data-trgo="${i}" title="This becomes MY PARK and the log starts">🌲 START HERE</button>`}<button type="button" class="chip sm" data-trrm="${i}" aria-label="Remove">✕</button></span></li>`).join('') + '</ol>'
       : '<p class="hint">Add parks from the list (+ ADD), or tap a park on the map.</p>'}
       ${S.length ? `<div class="row wrap"><button type="button" class="b sm" id="trOrder">⚡ NEAREST-NEXT ORDER</button><button type="button" class="b sm gold" id="trDir">🧭 DIRECTIONS</button><button type="button" class="b sm" id="trGpx">⬇ GPX</button><button type="button" class="b sm" id="trCsv">⬇ CSV</button><button type="button" class="b sm" id="trShare">📤 SHARE</button><button type="button" class="b sm" id="trClr">CLEAR</button></div>` : ''}`;
     if (!S.length) return;
@@ -93,17 +108,20 @@
         if (PICK) { const x = ALL.find(y => y.p.ref === PICK); if (x) for (const ol of x.ol) { const g = ol.g, polys = g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : [];
           for (const poly of polys) { ctx.beginPath(); for (const r of poly) r.forEach((c, i) => { const [px, py] = P(c[1], c[0]); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }); ctx.setLineDash(ol.src === 'official' ? [] : [6, 4]); ctx.lineWidth = 2.5; ctx.strokeStyle = '#E8B84A'; ctx.stroke(); ctx.setLineDash([]); } } }
         for (const x of L.slice(0, 1500)) { const [px, py] = P(x.p.la, x.p.lo); if (px < -10 || py < -10 || px > o.w + 10 || py > o.h + 10) continue;
-          ctx.fillStyle = inTrip(x.p.ref) ? '#E8B84A' : x.ol.length ? '#3fb950' : '#6DB4F5'; ctx.beginPath(); ctx.arc(px, py, z >= 9 ? 4 : 3, 0, 7); ctx.fill();
+          if (x.prog !== 'pota' && !inTrip(x.p.ref)) KPCParks.progMark(ctx, px, py, x.p, z >= 9 ? 4 : 3);
+          else { ctx.fillStyle = inTrip(x.p.ref) ? '#E8B84A' : x.ol.length ? '#3fb950' : '#6DB4F5'; ctx.beginPath(); ctx.arc(px, py, z >= 9 ? 4 : 3, 0, 7); ctx.fill(); }
           if (z >= 10) { ctx.font = '600 11px system-ui,sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = o.sat ? '#fff' : (o.dark ? '#E6EAF0' : '#1A1E24'); ctx.fillText(x.p.ref, px, py - 7); } }
         if (S.length > 1) { ctx.beginPath(); S.forEach((s, i) => { const [px, py] = P(s.la, s.lo); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }); ctx.strokeStyle = 'rgba(232,184,74,.9)'; ctx.lineWidth = 3; ctx.setLineDash([8, 6]); ctx.stroke(); ctx.setLineDash([]); }
         S.forEach((s, i) => { const [px, py] = P(s.la, s.lo); ctx.fillStyle = '#E8B84A'; ctx.strokeStyle = '#1a1206'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, 10, 0, 7); ctx.fill(); ctx.stroke();
           ctx.fillStyle = '#1a1206'; ctx.font = '800 11px system-ui,sans-serif'; ctx.textAlign = 'center'; ctx.fillText(String(i + 1), px, py + 4); });
+        if (T.pin) { const [px, py] = P(T.pin.la, T.pin.lo); ctx.fillStyle = '#ff5c5c'; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py - 14, 7, 0, 7); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px - 5, py - 10); ctx.lineTo(px + 5, py - 10); ctx.closePath(); ctx.fill(); }
         if (ME) { const [px, py] = P(ME.la, ME.lo); ctx.fillStyle = '#6DB4F5'; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, 6, 0, 7); ctx.fill(); ctx.stroke(); }
       }, tap(la, lo, tx, ty) {
+        if (PINARM) { PINARM = false; T.pin = { la, lo }; save(); redraw(); AP.toast('📌 Pin dropped. Distances, WITHIN and ⚡ NEAREST-NEXT now count from the pin. Tap 📌 again to take it away.', 4500, 'log'); return; }
         let hit = null, best = 22; for (const x of found().slice(0, 1500)) { const [px, py] = MAP.P(x.p.la, x.p.lo), d = Math.hypot(px - tx, py - ty); if (d < best) { best = d; hit = x; } }
         if (!hit && G.KPCParks) hit = found().find(x => x.ol.some(ol => KPCParks.inside(la, lo, ol.g)));
         if (hit) { PICK = hit.p.ref; drawList(); MAP.redraw(); const el = document.querySelector(`[data-trp="${hit.p.ref}"]`); if (el) el.scrollIntoView({ block: 'nearest' });
-          AP.toast(`<b>${esc(hit.p.ref)}</b> ${esc(hit.p.name)} · ${esc(olTxt(hit))}${inTrip(hit.p.ref) ? '' : ' · <u>tap + ADD in the list</u>'}`, 3500); }
+          AP.toast(`<b>${esc(hit.p.ref)}</b> ${esc(hit.p.name)} · ${hit.prog === 'pota' ? esc(olTxt(hit)) : KPCParks.progTag(hit.p)}${inTrip(hit.p.ref) ? '' : ' · <u>tap + ADD in the list</u>'}`, 3500); }
       } });
       fit();
     }
@@ -111,29 +129,29 @@
   }
   /* fit to where most of them are (one stray pin must not zoom the whole map out): the 3rd to 97th percentile */
   function fit() {
-    if (!MAP) return; let pts = T.stops.length ? T.stops.map(s => [s.la, s.lo]) : found().map(x => [x.p.la, x.p.lo]); if (ME && T.near) pts.push([ME.la, ME.lo]);
+    if (!MAP) return; let pts = T.stops.length ? T.stops.map(s => [s.la, s.lo]) : found().map(x => [x.p.la, x.p.lo]); if (ME && T.near) pts.push([ME.la, ME.lo]); if (T.pin) pts.push([T.pin.la, T.pin.lo]);
     if (pts.length > 10) { const q = (a, f) => { const b = a.slice().sort((x, y) => x - y); return b[Math.round(f * (b.length - 1))]; }, la = pts.map(p => p[0]), lo = pts.map(p => p[1]); pts = [[q(la, .03), q(lo, .03)], [q(la, .97), q(lo, .97)]]; }
     if (pts.length) MAP.fit(pts);
   }
-  function redraw() { drawTrip(); drawList(); if (MAP) MAP.redraw(); $('trNear').classList.toggle('on', T.near); $('trMine').classList.toggle('on', T.notMine); $('trSat').textContent = T.sat ? '🗺 PLAIN' : '🛰 SATELLITE'; }
+  function redraw() { drawTrip(); drawList(); if (MAP) MAP.redraw(); $('trNear').classList.toggle('on', T.near); $('trMine').classList.toggle('on', T.notMine); $('trPin').classList.toggle('on', !!T.pin || PINARM); $('trPin').textContent = T.pin ? '📌 PIN ✕' : PINARM ? '📌 TAP THE MAP…' : '📌 DROP A PIN'; $('trWithin').value = String(T.within || 0); $('trSat').textContent = KPCMap.name(KPCMap.next(T.sat)); }
 
   /* ---------------- actions ---------------- */
   function add(ref) {
     const x = ALL.find(y => y.p.ref === ref); if (!x) return;
     if (inTrip(ref)) { T.stops = T.stops.filter(s => s.ref !== ref); AP.toast(esc(ref) + ' taken out of the trip.', 1500); }
-    else { const ap = x.p.ap && x.p.ap[0]; T.stops.push({ ref, name: x.p.name, la: x.p.la, lo: x.p.lo, go: ap ? [ap[0], ap[1]] : null }); AP.toast('🚗 ' + esc(ref) + ' added: stop ' + T.stops.length + '.', 1500, 'log'); }
+    else { const ap = x.p.ap && x.p.ap[0]; T.stops.push({ ref, name: x.p.name, la: x.p.la, lo: x.p.lo, go: ap ? [ap[0], ap[1]] : null, prog: x.prog === 'pota' ? undefined : x.prog }); AP.toast('🚗 ' + esc(ref) + ' added: stop ' + T.stops.length + '.', 1500, 'log'); }
     save(); redraw();
   }
   function order() {
-    const from = ME || T.stops[0], left = T.stops.slice(), out = []; let at = from;
+    const from = T.pin || ME || T.stops[0], left = T.stops.slice(), out = []; let at = from;   /* Nov 19: the pin first */
     while (left.length) { let bi = 0, bd = 1e9; left.forEach((s, i) => { const d = km(at, s); if (d < bd) { bd = d; bi = i; } }); at = left.splice(bi, 1)[0]; out.push(at); }
-    T.stops = out; save(); redraw(); fit(); AP.toast('⚡ Re-ordered: nearest next' + (ME ? ', starting from where you are.' : ', starting from stop 1.'), 2500);
+    T.stops = out; save(); redraw(); fit(); AP.toast('⚡ Re-ordered: nearest next' + (T.pin ? ', starting from your pin.' : ME ? ', starting from where you are.' : ', starting from stop 1.'), 2500);
   }
   const ll = s => s.go ? s.go[0] + ',' + s.go[1] : s.la + ',' + s.lo;   /* an access point (parking) when the pack has one */
   function directions() {
     const S = T.stops; if (!S.length) return;
     const dest = ll(S[S.length - 1]), way = S.slice(0, -1).slice(0, 9).map(ll).join('|');
-    const url = 'https://www.google.com/maps/dir/?api=1' + (ME ? '&origin=' + ME.la + ',' + ME.lo : '') + '&destination=' + dest + (way ? '&waypoints=' + encodeURIComponent(way) : '') + '&travelmode=driving';
+    const url = 'https://www.google.com/maps/dir/?api=1' + (T.pin || ME ? '&origin=' + (T.pin || ME).la + ',' + (T.pin || ME).lo : '') + '&destination=' + dest + (way ? '&waypoints=' + encodeURIComponent(way) : '') + '&travelmode=driving';
     G.open(url, '_blank'); if (S.length > 10) AP.toast('The maps app takes 10 stops at a time: the first 10 are in.', 4000);
   }
   function gpx() {
@@ -149,7 +167,7 @@
     AP.saveFile(body, 'KPC-trip-' + new Date().toISOString().slice(0, 10) + '.csv', 'text/csv');
   }
   async function share() {
-    const txt = 'My POTA trip (KPC app):\n' + T.stops.map((s, i) => (i + 1) + '. ' + s.ref + ' ' + s.name).join('\n');
+    const txt = 'My trip (KPC app):\n' + T.stops.map((s, i) => (i + 1) + '. ' + s.ref + ' ' + s.name).join('\n');
     try { if (navigator.share) { await navigator.share({ title: 'KPC trip', text: txt }); return; } } catch (e) { return; }
     try { await navigator.clipboard.writeText(txt); AP.toast('📋 The trip is copied: paste it anywhere.', 2500, 'log'); } catch (e) { AP.toast('Could not share here.', 2500, 'bad'); }
   }
@@ -177,8 +195,10 @@
   $('trSt').onchange = () => { T.st = $('trSt').value; save(); redraw(); fit(); };
   let qT = 0; $('trQ').oninput = () => { clearTimeout(qT); qT = setTimeout(() => { T.q = $('trQ').value; save(); drawList(); if (MAP) MAP.redraw(); }, 200); };
   $('trNear').onclick = near;
-  $('trMine').onclick = () => { T.notMine = !T.notMine; save(); redraw(); };
-  $('trSat').onclick = () => { T.sat = !T.sat; save(); if (MAP) MAP.sat(T.sat); redraw(); };
+  $('trMine').onclick = () => { T.notMine = !T.notMine; save(); redraw(); if (T.notMine && G.KPCLog && KPCLog.needFile) KPCLog.needFile('a', 'only parks you have not activated'); };   /* Nov 19 (to-do 3) */
+  $('trPin').onclick = () => { if (T.pin) { T.pin = null; PINARM = false; save(); redraw(); AP.toast('📌 Pin taken away.', 1500); return; } PINARM = !PINARM; redraw(); if (PINARM) AP.toast('📌 Now tap the map where you want to plan from.', 3000, 'log'); };
+  $('trWithin').onchange = () => { T.within = +$('trWithin').value || 0; save(); redraw(); if (T.within && !from()) AP.toast('WITHIN needs a place to measure from: tap 📍 NEAR ME or 📌 DROP A PIN.', 4000, 'log'); };
+  $('trSat').onclick = () => { T.sat = KPCMap.next(T.sat); save(); if (MAP) MAP.sat(T.sat); redraw(); };   /* Nov 19: satellite → topo → plain */
   let opened = false;
   async function open() { await load(); $('trQ').value = T.q; redraw(); setTimeout(() => { drawMap(); if (!opened) { opened = true; fit(); } }, 30); }
 
@@ -197,5 +217,6 @@
 </style>`);
   sub(SUB === 'trip' ? 'trip' : 'qso');
   AP.on('screen', n => { if (n === 'map' && SUB === 'trip') open(); });
-  G.KPCTrip = { T, open, sub, add, order, startHere, legs, found: () => found(), load, _me: v => { ME = v; } };
+  AP.on('prog', () => { if (SUB === 'trip' && $('trBox').offsetParent) { redraw(); fit(); } });
+  G.KPCTrip = { T, open, sub, add, order, startHere, legs, found: () => found(), load, _me: v => { ME = v; }, _pinArm: () => { PINARM = true; } };
 })(window);

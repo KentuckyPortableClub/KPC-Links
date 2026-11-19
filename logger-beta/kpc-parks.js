@@ -46,6 +46,27 @@
     near.sort((a, b) => (a.edge != null ? Math.min(a.edge, a.km) : a.km) - (b.edge != null ? Math.min(b.edge, b.km) : b.km));
     return { inside: inside_, near: near.slice(0, 15), packs: packs.map(p => p.state) };
   }
+  /* Nov 19 2026 (Brandon: 'WWFF and SOTA as options'; per-state packs): the WWFF references and SOTA summits a pack carries (other
+     states: pack.wwff / pack.sota arrays from the website's build_app_pack.js; Kentucky: pack.kff / pack.summits objects), as one
+     shape. Shown as THEIR OWN PROGRAMS beside the parks, never as a 2-fer. PROG = which ones the member wants on (both off at first). */
+  const PROG = Object.assign({ wwff: false, sota: false }, LS('kpcAppProg', {}));
+  const progSave = () => { SV('kpcAppProg', PROG); AP.fire('prog', PROG); };
+  function others(pk) {
+    const out = [];
+    for (const r of pk.wwff || []) if (isFinite(r[2]) && isFinite(r[3])) out.push({ prog: 'wwff', ref: r[0], name: r[1] || '', la: r[2], lo: r[3], web: r[4] || '' });
+    for (const r of pk.sota || []) if (isFinite(r[2]) && isFinite(r[3])) out.push({ prog: 'sota', ref: r[0], name: r[1] || '', la: r[2], lo: r[3], ft: r[4] || 0, pts: r[5] || 0 });
+    if (!pk.wwff) for (const k of pk.kff || []) if (isFinite(k.la) && isFinite(k.lo)) out.push({ prog: 'wwff', ref: k.ref, name: k.name || '', la: k.la, lo: k.lo, web: '' });
+    if (!pk.sota) for (const x of pk.summits || []) if (isFinite(x.la) && isFinite(x.lo)) out.push({ prog: 'sota', ref: x.ref, name: x.name || '', la: x.la, lo: x.lo, ft: x.ft || 0, pts: 0 });
+    return out;
+  }
+  const progTag = o => o.prog === 'sota' ? '▲ SOTA' + (o.ft ? ' · ' + Number(o.ft).toLocaleString() + ' ft' : '') + (o.pts ? ' · ' + o.pts + ' pt' + (o.pts === 1 ? '' : 's') : '') : '🌳 WWFF';
+  const progCol = o => o.prog === 'sota' ? '#b48cff' : '#3fc1c9';
+  function progMark(ctx, px, py, o, r) { ctx.fillStyle = progCol(o); ctx.strokeStyle = '#000'; ctx.lineWidth = 1; ctx.beginPath();
+    if (o.prog === 'sota') { ctx.moveTo(px, py - r - 1); ctx.lineTo(px + r + 1, py + r); ctx.lineTo(px - r - 1, py + r); ctx.closePath(); } else ctx.rect(px - r, py - r, 2 * r, 2 * r);
+    ctx.fill(); ctx.stroke(); }
+  function progChips() { return `<button type="button" class="chip${PROG.wwff ? ' on' : ''}" data-prog="wwff" title="Show the WWFF references (their own program, not a 2-fer)">🌳 WWFF</button><button type="button" class="chip${PROG.sota ? ' on' : ''}" data-prog="sota" title="Show the SOTA summits (their own program)">▲ SOTA</button>`; }
+  function progWire(root, then) { (root || document).querySelectorAll('[data-prog]').forEach(b => { b.onclick = () => { PROG[b.dataset.prog] = !PROG[b.dataset.prog]; progSave(); b.classList.toggle('on', PROG[b.dataset.prog]); if (then) then(); }; }); }
+  async function othersOn() { const packs = await loaded(); return packs.flatMap(pk => others(pk).filter(o => PROG[o.prog]).map(o => Object.assign(o, { st: pk.state }))); }
   const worked = ref => G.KPCLog ? (KPCLog.hunted ? KPCLog.hunted(ref) : [...KPCLog.all().values()].some(q => !q.d && (q.refs || []).includes(ref))) : false;   /* + my POTA hunter file */
   const activated = ref => G.KPCLog ? (KPCLog.activated ? KPCLog.activated(ref) : [...KPCLog.all().values()].some(q => !q.d && (q.myrefs || []).includes(ref))) : false;
   async function name(ref) { for (const st of Object.keys(HAVE)) { const p = await get(st); const x = p && p.parks.find(q => q.ref === ref); if (x) return x.name; } return ''; }
@@ -104,6 +125,12 @@
     const w = await whereAmI(pos.la, pos.lo), L = w.near.filter(p => !w.inside.some(i => i.ref === p.ref)).slice(0, 12);
     AP.sheet('Next park', L.length ? `<div class="oplist">${L.map(p => { const ap = p.ap && p.ap[0], dest = ap ? ap[0] + ',' + ap[1] : p.la + ',' + p.lo, cl = G.KPCAlerts ? KPCAlerts.closuresFor(p.ref) : []; return `<div class="op"><b>${esc(p.ref)}</b> <span>${esc(p.name)}</span>${cl.length ? `<em class="bad" title="${esc(cl.map(c => c.details || c.kind).join(' · '))}"> 🚧 ${esc(String(cl[0].details || cl[0].kind || 'notice').slice(0, 70))}</em>` : ''}<i>${AP.dist(p.km)} ${dirOf(p.deg)}${p.edge != null ? ' · ' + AP.dist(p.edge) + ' to the line' : ''}${!activated(p.ref) ? ' · <b>NEW to activate</b>' : ''}${!worked(p.ref) ? ' · new to hunt' : ''}${ap ? ' · ' + esc(ap[2] || 'access point') : ''}</i><a class="ic sm" href="https://www.google.com/maps/dir/?api=1&destination=${dest}" target="_blank" rel="noopener" aria-label="Directions to ${esc(p.name)}">🧭</a></div>`; }).join('')}</div><p class="hint">🧭 opens directions in your maps app (to the access point when one is on file). Distances are straight lines.</p>`
       : '<p class="hint">No other park within 50 miles in the packs you have.</p>');
+    /* Nov 19: the WWFF references / SOTA summits within 50 miles, under the parks, when the member turned them on (their own programs) */
+    const O = (await othersOn()).map(o => Object.assign(o, geo(pos.la, pos.lo, o.la, o.lo))).filter(o => o.km < 80).sort((a, b) => a.km - b.km).slice(0, 12);
+    const box = $('sheetB');
+    if (box) box.insertAdjacentHTML('beforeend', `<h3 class="pkoh">Other programs <span class="row" style="display:inline-flex;gap:6px">${progChips()}</span></h3>` + (O.length ? `<div class="oplist">${O.map(o => `<div class="op"><b>${esc(o.ref)}</b> <span>${esc(o.name)}</span><i>${progTag(o)} · ${AP.dist(o.km)} ${dirOf(o.deg)}</i><a class="ic sm" href="https://www.google.com/maps/dir/?api=1&destination=${o.la},${o.lo}" target="_blank" rel="noopener" aria-label="Directions to ${esc(o.name)}">🧭</a></div>`).join('')}</div>`
+      : `<p class="hint">${PROG.wwff || PROG.sota ? 'None within 50 miles in the states on this device.' : 'Tap 🌳 WWFF or ▲ SOTA to list those too (their own programs, not 2-fers).'}</p>`));
+    progWire($('sheet'), () => { AP.shut(); next(); });
   }
   /* ---------------- the parks map (Brandon Oct 22: 'off line maps… no way to see them?') ----------------
      Everything downloaded, drawn on the device: outlines (solid = official, dashed = approximate), pins, me. Works with
@@ -113,9 +140,10 @@
     if (!packs.length) { AP.toast('Download a state first (DOWNLOAD, while you have signal).', 4000, 'bad'); return; }
     let sat = LS('kpcPkSat', false), me = null, pick = null;
     AP.sheet('Parks on this device', `<div class="pkmap"><canvas id="pkCv" aria-label="Map of the parks on this device"></canvas>
-      <div class="pkbar"><button type="button" class="chip" id="pkSat">${sat ? '🗺 PLAIN' : '🛰 SATELLITE + STREETS'}</button><button type="button" class="chip" id="pkMe">📍 ME</button><span class="hint" id="pkCnt"></span></div></div>
+      <div class="pkbar"><button type="button" class="chip" id="pkSat">${KPCMap.name(KPCMap.next(sat))}</button><button type="button" class="chip" id="pkMe">📍 ME</button>${progChips()}<span class="hint" id="pkCnt"></span></div></div>
       <div class="st" id="pkInfo">Tap a park. Solid line = official outline, dashed = approximate (not official), dot = a park with no outline on file.</div>`);
     const cv = $('pkCv'), all = packs.flatMap(pk => pk.parks.map(pp => ({ p: pp, ol: (pk.outlines || {})[pp.ref] || [] })));
+    const oth = packs.flatMap(pk => others(pk));   /* Nov 19: WWFF / SOTA, drawn when switched on */
     $('pkCnt').textContent = all.length + ' parks · ' + packs.map(pk => pk.state).join(' ');
     const m = G.KPCMap.create(cv, { sat, draw(ctx, P, z, o) {
       ctx.lineJoin = 'round';
@@ -131,8 +159,11 @@
         ctx.fillStyle = x.ol.length ? '#3fb950' : '#6DB4F5'; ctx.beginPath(); ctx.arc(px, py, z >= 9 ? 4 : 3, 0, 7); ctx.fill();
         if (z >= 10) { ctx.fillStyle = o.sat ? '#fff' : (o.dark ? '#E6EAF0' : '#1A1E24'); ctx.fillText(x.p.ref, px, py - 7); }
       }
+      for (const x of oth) { if (!PROG[x.prog]) continue; const [px, py] = P(x.la, x.lo); if (px < -20 || py < -20 || px > o.w + 20 || py > o.h + 20) continue; progMark(ctx, px, py, x, z >= 9 ? 4 : 3); if (z >= 11) { ctx.fillStyle = o.sat ? '#fff' : (o.dark ? '#E6EAF0' : '#1A1E24'); ctx.fillText(x.ref, px, py + 15); } }
       if (me) { const [px, py] = P(me.la, me.lo); ctx.fillStyle = '#E8B84A'; ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, 6, 0, 7); ctx.fill(); ctx.stroke(); }
     }, tap(la, lo, tx, ty) {
+      { let ob = null, bd = 16; for (const x of oth) { if (!PROG[x.prog]) continue; const [px, py] = m.P(x.la, x.lo), d = Math.hypot(px - tx, py - ty); if (d < bd) { bd = d; ob = x; } }
+        if (ob) { pick = null; m.redraw(); const el = $('pkInfo'); if (el) el.innerHTML = `<b>${esc(ob.ref)}</b> ${esc(ob.name)}<br><small>${progTag(ob)} · its own program (not a 2-fer)</small><div class="row"><a class="b sm" href="https://www.google.com/maps/dir/?api=1&destination=${ob.la},${ob.lo}" target="_blank" rel="noopener">🧭 DIRECTIONS</a></div>`; return; } }
       let hit = all.find(x => x.ol.some(ol => inside(la, lo, ol.g)));
       if (!hit) { let best = 24; for (const x of all) { const [px, py] = m.P(x.p.la, x.p.lo), d = Math.hypot(px - tx, py - ty); if (d < best) { best = d; hit = x; } } }
       pick = hit || null; m.redraw(); info();
@@ -150,7 +181,8 @@
     const q = (a, f) => { const b = a.slice().sort((x, y) => x - y); return b[Math.min(b.length - 1, Math.max(0, Math.round(f * (b.length - 1))))]; };
     const las = all.map(x => x.p.la).filter(isFinite), los = all.map(x => x.p.lo).filter(isFinite);
     m.fit(las.length > 10 ? [[q(las, .03), q(los, .03)], [q(las, .97), q(los, .97)]] : all.map(x => [x.p.la, x.p.lo]));
-    $('pkSat').onclick = () => { sat = !m.sat(); m.sat(sat); SV('kpcPkSat', sat); $('pkSat').textContent = sat ? '🗺 PLAIN' : '🛰 SATELLITE + STREETS'; if (sat && !AP.net.online()) AP.toast('No signal: satellite pictures need the internet. The outlines still show.', 4000); };
+    $('pkSat').onclick = () => { sat = KPCMap.next(m.sat()); m.sat(sat); SV('kpcPkSat', sat); $('pkSat').textContent = KPCMap.name(KPCMap.next(sat));   /* Nov 19: satellite → topo → plain */ if (sat && !AP.net.online()) AP.toast('No signal: map pictures need the internet. The outlines still show.', 4000); };
+    progWire($('sheetB'), () => m.redraw());
     $('pkMe').onclick = async () => { try { me = await gps(); m.view(me.la, me.lo, 12); info(); } catch (e) { AP.toast('📍 ' + esc(e.message), 5000, 'bad'); } };
     gps().then(p0 => { me = p0; m.redraw(); }).catch(() => {});
   }
@@ -266,5 +298,5 @@
   if (b2) b2.onclick = here;
   if (b3) b3.onclick = next;
   draw();
-  G.KPCParks = { mapView, download, del, get, loaded, whereAmI, name, inside, edgeKm, have: () => HAVE, STATES, url: URL0, refresh, myState, nearBox, stateNear, parkCheck, _rf: RF };
+  G.KPCParks = { others, othersOn, PROG, progSave, progTag, progCol, progMark, progChips, progWire, mapView, download, del, get, loaded, whereAmI, name, inside, edgeKm, have: () => HAVE, STATES, url: URL0, refresh, myState, nearBox, stateNear, parkCheck, _rf: RF };
 })(window);

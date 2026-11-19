@@ -62,7 +62,7 @@
     if (document.body.dataset.screen !== 'map') return;
     ROWS = list(); const on = ROWS.filter(r => r.a && r.b);
     $('qmScope').innerHTML = [['log', '📒 THIS LOG'], ['today', '📅 TODAY'], ['all', '📚 ALL']].map(([k, t]) => `<button type="button" class="chip${S.scope === k ? ' on' : ''}" data-qms="${k}">${t}</button>`).join('');
-    $('qmSat').textContent = S.sat ? '🗺 PLAIN MAP' : '🛰 SATELLITE + STREETS';
+    $('qmSat').textContent = KPCMap.name(KPCMap.next(S.sat));
     const sts = new Set(ROWS.map(r => String(r.q.st || '').toUpperCase()).filter(Boolean)), pks = new Set(ROWS.flatMap(r => r.q.refs || [])), far = on.slice().sort((a, b) => b.g.km - a.g.km)[0], tot = on.reduce((a, r) => a + r.g.km, 0);
     const bands = [...new Set(ROWS.map(r => r.q.band).filter(Boolean))];
     $('qmStats').innerHTML = `<span class="kv"><i>CONTACTS</i><b>${ROWS.length}</b></span><span class="kv"><i>ON THE MAP</i><b>${on.length}</b></span><span class="kv"><i>STATES</i><b>${sts.size}</b></span><span class="kv"><i>PARKS</i><b>${pks.size}</b></span>`
@@ -113,7 +113,7 @@
     const s = e.target.closest('[data-qms]'); if (s) { S.scope = s.dataset.qms; save(); SEL = null; draw(); if (MAP) fit(); return; }
     const r = e.target.closest('[data-qm]'); if (r) { SEL = SEL === r.dataset.qm ? null : r.dataset.qm; draw(); const x = ROWS.find(y => y.q.id === SEL); if (x && x.a && x.b && MAP) MAP.fit([[x.a.la, x.a.lo], [x.b.la, x.b.lo]]); }
   });
-  $('qmSat').onclick = () => { S.sat = !S.sat; save(); if (MAP) MAP.sat(S.sat); draw(); };
+  $('qmSat').onclick = () => { S.sat = KPCMap.next(S.sat); save(); if (MAP) MAP.sat(S.sat); draw(); };   /* Nov 19: satellite → topo → plain */
   $('qmFit').onclick = () => { SEL = null; draw(); if (MAP) fit(); };
   let WL = false; const loadWorld = () => { if (WL || G.KPC_WORLD) return; WL = true; const sc = document.createElement('script'); sc.src = 'kpc-world.js?v=20261026d'; sc.onload = () => { if (MAP) MAP.redraw(); }; document.head.appendChild(sc); };
   AP.on('screen', s => { if (s === 'map') { loadWorld(); loadPins().then(() => { draw(); if (MAP) { MAP.redraw(); fit(); } }); } });

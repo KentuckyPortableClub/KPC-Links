@@ -76,18 +76,110 @@
     const g = P.bands(sun && sun.sfi, sun && sun.kp, day) || {};
     document.querySelectorAll('#rdBands [data-rband]').forEach(b => { const q = g[b.dataset.rband]; b.classList.remove('q0', 'q1', 'q2'); if (q != null) b.classList.add('q' + q); });
   }
-  /* two columns on a wide screen (left: the VFO + the waterfall; right: every control), one column on a phone (the same order) */
+  /* Nov 19 2026 (Brandon: 'make it look real … all the bells and whistles … full screen usage tablet and desk top … phone make it work
+     best you can'; the approved mockup + the MODERN meters). THREE layouts, the same controls (every element keeps its id, only its
+     place changes, so kpc-radio / kpc-rigx / kpc-scope / kpc-nr / kpc-voice keep working):
+     · FIT (window ≥ 1100 x 600): LEFT = band, mode, memories, voice keyer, spots on this band; MIDDLE = the VFO panel, the meters, the
+       scope filling the height left; RIGHT = receive / transmit / CW / more controls (scrolls on its own), HOLD TO TALK pinned at its foot.
+     · PHONE (< 700 px): one column: VFO + meters (under the frequency) → scope → a thumb bar (TUNE + HOLD TO TALK) → bands, modes … the rest.
+     · in between (small laptop, tablet upright): two columns as before (VFO + scope | the controls). */
+  const wantFit = () => innerWidth >= 1100 && innerHeight >= 600 && document.body.dataset.screen === 'radio' && $('rdOn') && !$('rdOn').hidden;
+  function panel(id, title, el, hint) {   /* a left-column panel around an existing element */
+    let c = $(id); if (!c) { c = document.createElement('div'); c.className = 'card sdrcard'; c.id = id; c.innerHTML = `<h2>${title}</h2>` + (hint ? `<p class="hint sdrph">${hint}</p>` : ''); }
+    if (el && el.parentNode !== c) c.insertBefore(el, c.querySelector('.sdrph')); return c;
+  }
   function layout() {
     const on = $('rdOn'); if (!on) return;
-    let L = $('sdrL'), R = $('sdrR');
-    if (!L) { on.insertAdjacentHTML('afterbegin', '<div class="sdrcol" id="sdrL"></div><div class="sdrcol" id="sdrR"></div>'); L = $('sdrL'); R = $('sdrR'); }
+    let L = $('sdrL'), R = $('sdrR'), A = $('sdrA');
+    if (!L) { on.insertAdjacentHTML('afterbegin', '<div class="sdrcol" id="sdrA"></div><div class="sdrcol" id="sdrL"></div><div class="sdrcol" id="sdrR"></div>'); L = $('sdrL'); R = $('sdrR'); A = $('sdrA'); }
+    if (!A) { L.insertAdjacentHTML('beforebegin', '<div class="sdrcol" id="sdrA"></div>'); A = $('sdrA'); }
     const t = on.querySelector('.rdtop'), sc = $('rdScope');
     if (t && t.parentNode !== L) L.prepend(t);
     if (sc && sc.parentNode !== L) L.appendChild(sc);
-    [...on.children].forEach(c => { if (c !== L && c !== R) R.appendChild(c); });
+    [...on.children].forEach(c => { if (c !== L && c !== R && c !== A) R.appendChild(c); });
+    const F = wantFit(), narrow = innerWidth < 700, met = on.querySelector('.rdmet'), grid = on.querySelector('.rdgrid'), vf = t && t.querySelector('.rdvfo');
+    const bands = $('rdBands'), modes = $('rdModes'), spots = $('rdSpots'), steps = $('rdSteps'), mem = $('sdrMem'), vk = $('rdVk'), vmc = $('rdVmod'), v2 = $('sdrVfo2');
+    if (F) {   /* LEFT column, then the MIDDLE: VFO, meters, scope (a short window: the meters go to the top of the RIGHT column so the scope keeps its room) */
+      const want = [panel('sdrCBand', 'Band', bands, 'The coloured line under a band = today\'s opening.'), panel('sdrCMode', 'Mode', modes), panel('sdrCStep', 'Tuning step', steps),
+        panel('sdrCMem', 'Memories', mem), (c => { if (vk && vk.parentNode !== c) c.appendChild(vk); return c; })(panel('sdrCVk', 'Voice keyer', vmc)), panel('sdrCSp', 'Spots on this band', spots)].filter(c => c.querySelector('[id^="rd"],[id^="sdr"]'));
+      want.forEach((c, i) => { if (A.children[i] !== c) A.insertBefore(c, A.children[i] || null); });
+      if (met) { if (innerHeight < 900) { if (R.firstElementChild !== met) R.prepend(met); } else if (t && met.previousElementSibling !== t) t.after(met); }
+    } else {   /* everything back home */
+      if (steps && t && steps.parentNode !== t) (v2 && v2.parentNode === t ? v2 : vf || t.firstElementChild).after(steps);
+      if (steps && bands && bands.previousElementSibling !== steps) steps.after(bands);
+      if (bands && modes && modes.previousElementSibling !== bands) bands.after(modes);
+      if (modes && spots && spots.previousElementSibling !== modes) modes.after(spots);
+      if (v2 && mem && mem.parentNode !== v2) v2.appendChild(mem);
+      if (vk && $('sdrCVk') && vk.parentNode === $('sdrCVk')) { const lv = $('rdLv'); if (lv && lv.parentNode === R) R.insertBefore(vk, lv); else R.appendChild(vk); }
+      if (vk && vmc && vmc.nextElementSibling !== vk) vk.before(vmc);   /* the voice chip sits just above the voice keyer */
+      if (met && vf) { if (narrow && met.previousElementSibling !== vf) vf.after(met); else if (!narrow && grid && met.parentNode !== grid) grid.appendChild(met); }
+    }
+    /* the phone's thumb bar under the scope: the real TUNE and HOLD TO TALK buttons move there (the same buttons, the same safety).
+       Never moved while talking or sending: moving a held button drops its pointer and would END the transmission early. */
+    const tune = $('rdTune'), talk = $('rdTalk'), big = on.querySelector('.rdbig'), voice = $('rdVoice');
+    if (talk && (talk.classList.contains('on') || (AP.txing && AP.txing()))) return;
+    let pb = $('sdrThumb');
+    if (narrow && sc && sc.parentNode === L) {
+      if (!pb) { pb = document.createElement('div'); pb.className = 'sdrthumb'; pb.id = 'sdrThumb'; }
+      if (pb.previousElementSibling !== sc) sc.after(pb);
+      if (tune && tune.parentNode !== pb) pb.appendChild(tune);
+      if (talk && talk.parentNode !== pb) pb.appendChild(talk);
+      [...pb.children].forEach(c => { if (c !== tune && c !== talk) { if (voice && voice.parentNode === R) R.insertBefore(c, voice); else R.appendChild(c); } });   /* e.g. the noise-reduction card kpc-nr puts right before HOLD TO TALK */
+    } else {   /* home: TUNE first in the big-button row, HOLD TO TALK just above the voice choices (FIT pins it to the foot with CSS) */
+      if (tune && big && tune.parentNode !== big) big.prepend(tune);
+      if (talk && voice && voice.parentNode === R && talk.nextElementSibling !== voice) R.insertBefore(talk, voice);
+      else if (talk && talk.parentNode !== R && !(voice && voice.parentNode === R)) R.appendChild(talk);
+      if (pb) pb.remove();
+    }
   }
+  function fit() {
+    const on = $('rdOn'), ok = wantFit();
+    scr.classList.toggle('fit', !!ok); if (!ok) return;
+    const tb = document.querySelector('nav.tabs'), bot = tb && getComputedStyle(tb).position === 'fixed' ? tb.getBoundingClientRect().top : innerHeight;
+    const h = Math.max(380, Math.floor(bot - (on.getBoundingClientRect().top + scrollY) - 34));   /* from the page top; room for the foot line */
+    scr.style.setProperty('--fitH', h + 'px');
+  }
+  addEventListener('resize', () => { if (document.body.dataset.screen === 'radio') { layout(); fit(); } });
+  /* the VFO readout line (what a radio's own screen shows under the frequency) */
+  function exLine() {
+    const e = $('sdrEx'); if (!e) return; const x = rx(), can = caps(), st = document.querySelector('#rdSteps .on'), wd = $('rdWidth');
+    const off = +x.ritoff || 0, items = [];
+    if (can('rit') || can('ritoff')) items.push(['CLAR', x.rit || off ? (off > 0 ? '+' : '') + off + ' Hz' : 'off']);
+    if (can('xit')) items.push(['XIT', x.xit ? 'on' : 'off']);
+    if (st) items.push(['STEP', st.textContent.trim()]);
+    if (wd && wd.options.length && wd.selectedIndex >= 0 && wd.offsetParent) items.push(['FIL', wd.options[wd.selectedIndex].text]);
+    if (can('split')) items.push(['SPLIT', x.split ? 'ON' : 'off']);
+    const h = items.map(([k, v]) => `<span>${k} <em>${esc(String(v))}</em></span>`).join('');
+    if (e.dataset.k !== h) { e.innerHTML = h; e.dataset.k = h; }
+  }
+  /* the knob: drag up / down (or the wheel, or the arrow keys) = tune; it only sends the SAME wheel step the frequency readout already takes */
+  { const vf = scr.querySelector('.rdvfo'), kz = $('rdKhz');
+    if (vf && kz && !$('sdrKnob')) {
+      vf.insertAdjacentHTML('beforeend', '<div class="sdrknob" id="sdrKnob" role="slider" aria-label="Tuning knob: drag up or down, the mouse wheel or the arrow keys" tabindex="0"><i></i></div>');
+      const kb = $('sdrKnob'); let y0 = null, acc = 0, ang = 0;
+      const turn = d => { kz.dispatchEvent(new WheelEvent('wheel', { deltaY: d > 0 ? -1 : 1, bubbles: true, cancelable: true })); ang += d > 0 ? 15 : -15; kb.style.setProperty('--a', ang + 'deg'); };
+      kb.addEventListener('pointerdown', e => { y0 = e.clientY; acc = 0; try { kb.setPointerCapture(e.pointerId); } catch (x) {} });
+      kb.addEventListener('pointermove', e => { if (y0 == null) return; acc += y0 - e.clientY; y0 = e.clientY; while (Math.abs(acc) >= 12) { turn(acc); acc -= Math.sign(acc) * 12; } });
+      kb.addEventListener('pointerup', () => { y0 = null; }); kb.addEventListener('pointercancel', () => { y0 = null; });
+      kb.addEventListener('wheel', e => { e.preventDefault(); turn(-e.deltaY); }, { passive: false });
+      kb.addEventListener('keydown', e => { const k = e.key; if (k === 'ArrowUp' || k === 'ArrowRight') { e.preventDefault(); turn(1); } else if (k === 'ArrowDown' || k === 'ArrowLeft') { e.preventDefault(); turn(-1); } });
+    } }
+  { const p = $('sdrPlan'); if (p && !$('sdrEx')) p.insertAdjacentHTML('beforebegin', '<div class="sdrex" id="sdrEx"></div>'); }
+  /* the head: local time, RX / TX lights, FULL SCREEN; the foot: how many stations the scope names */
+  { const ck = scr.querySelector('.sdrclk');
+    if (ck && !$('sdrLoc')) ck.insertAdjacentHTML('afterend', '<div class="sdrclk sdrloc"><i>LOCAL</i><b id="sdrLoc">--:--</b></div><div class="sdrleds"><span><u id="sdrRx"></u><i>RX</i></span><span><u id="sdrTx"></u><i>TX</i></span></div><button type="button" class="sdrfs" id="sdrFs" title="Full screen (Esc to come back)">⛶ FULL</button>');
+    if ($('sdrFs')) $('sdrFs').onclick = () => { if (document.fullscreenElement) document.exitFullscreen(); else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => AP.toast('Full screen is not allowed here: use F11.', 3000)); };
+    if (!$('sdrFoot')) scr.insertAdjacentHTML('beforeend', '<div class="sdrfoot" id="sdrFoot"></div>'); }
+  function headLive() {
+    const d = new Date(); if ($('sdrLoc')) $('sdrLoc').textContent = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    const on = K.connected(), tx = !!(AP.txing && AP.txing());
+    if ($('sdrRx')) $('sdrRx').className = on && !tx ? 'on' : ''; if ($('sdrTx')) $('sdrTx').className = tx ? 'tx' : '';
+    const n = G.KPCScope && KPCScope.tags ? KPCScope.tags() : 0, f = $('sdrFoot');
+    if (f) { const t = on && !$('rdOn').hidden ? `<b>ON THE SCOPE</b> ${n} station${n === 1 ? '' : 's'} named from spots · tap a name tag = tune there + fill the log` : ''; if (f.dataset.k !== t) { f.innerHTML = t; f.dataset.k = t; } }
+  }
+  setInterval(() => { if (document.body.dataset.screen === 'radio') { headLive(); exLine(); } }, 500);
   function draw() {
-    layout();
+    layout(); fit();
     const on = K.connected(), r = G.KPCRadio ? KPCRadio.rig() : { khz: 0, mode: '' }, x = rx(), can = caps(), cg = K.get ? K.get() : {};
     scr.classList.toggle('lit', on); scr.dataset.view = S.view;
     $('sdrPwr').classList.toggle('on', on); $('sdrPwr').title = on ? 'The radio is ON and connected: tap to turn it off' : 'Not connected: tap to connect or turn the radio on';
@@ -134,9 +226,9 @@
     $('spOn').hidden = !!(K.canOn && !K.canOn());   /* 0.9.9: the FTX-1 cannot be switched on over CAT */
     $('spOn').onclick = () => { AP.shut(); const b = $('rdPwrOn'); if (b) b.click(); };
   }
-  { const o = $('rdOn'); if (o && G.MutationObserver) new MutationObserver(() => { const L = $('sdrL'); if ([...o.children].some(c => c.id !== 'sdrL' && c.id !== 'sdrR') || ($('rdScope') && $('rdScope').parentNode !== L)) layout(); }).observe(o, { childList: true, subtree: true }); }
+  { const o = $('rdOn'); if (o && G.MutationObserver) new MutationObserver(() => { const L = $('sdrL'); if ([...o.children].some(c => c.id !== 'sdrL' && c.id !== 'sdrR' && c.id !== 'sdrA') || ($('rdScope') && $('rdScope').parentNode !== L)) layout(); }).observe(o, { childList: true, subtree: true }); }
   AP.on('dial', () => { if (document.body.dataset.screen === 'radio') draw(); });
-  AP.on('screen', s => { if (s === 'radio') setTimeout(draw, 60); });
+  AP.on('screen', s => { if (s === 'radio') { setTimeout(draw, 60); setTimeout(fit, 400); } else scr.classList.remove('fit'); });
   setInterval(() => { if (document.body.dataset.screen === 'radio') draw(); }, 2000);
 
   /* ---------------- the look (black, lit buttons) ---------------- */
@@ -176,6 +268,75 @@
 #scrRadio.sdr .rdscope{background:#020304;border-color:var(--sdrl);padding:8px}#scrRadio.sdr .sccv{height:clamp(220px,38vh,420px)!important}
 @media (min-width:1100px){#scrRadio.sdr #rdOn:not([hidden]){display:flex;gap:14px;align-items:flex-start}#scrRadio.sdr #sdrL{flex:1 1 auto;min-width:0}#scrRadio.sdr #sdrR{flex:0 0 420px;min-width:0}
   #scrRadio.sdr .rdgrid{grid-template-columns:1fr}#scrRadio.sdr .sccv{height:clamp(320px,52vh,600px)!important}}
+/* Nov 19 2026 radio screen: FIT = three columns (left panels | VFO + meters + scope | controls, HOLD TO TALK pinned at the foot) */
+#scrRadio.sdr.fit{max-width:none;margin:-4px 0}
+#sdrA:empty{display:none}
+#scrRadio.sdr.fit #rdOn:not([hidden]){display:flex;gap:12px;align-items:stretch;height:var(--fitH,760px)}
+#scrRadio.sdr.fit #sdrA{flex:0 0 clamp(230px,15vw,300px);min-width:0;display:flex;flex-direction:column;gap:10px;overflow-y:auto;scrollbar-width:thin;height:100%}
+#scrRadio.sdr.fit #sdrA .card{margin:0;padding:9px 11px}
+#scrRadio.sdr.fit #sdrA .chips,#scrRadio.sdr.fit #sdrA .row{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:5px;margin:0}
+#scrRadio.sdr.fit #sdrA .chip{height:32px;padding:0 6px;justify-content:center;width:auto;margin:0}
+#scrRadio.sdr.fit #sdrA .sdrmem{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin:0}
+#scrRadio.sdr.fit #sdrA .sdrmem .mem{min-width:0;height:40px;padding:0 4px}#scrRadio.sdr.fit #sdrA .sdrmem .store{grid-column:1/-1;height:30px}
+#scrRadio.sdr.fit #sdrA #rdSpots{max-height:none}#scrRadio.sdr.fit #sdrA #rdSpots *{max-width:100%}
+#sdrCVk:has(#rdVk[hidden])::after{content:'No voice memories recorded yet.';display:block;font:12px var(--sans);color:#6f7884}
+#sdrCSp:has(#rdSpots[hidden])::after{content:'No spots on this band right now.';display:block;font:12px var(--sans);color:#6f7884}
+#scrRadio.sdr.fit #sdrA .sdrph{font-size:11px;margin:6px 0 0;color:#6f7884}#scrRadio.sdr.fit #sdrA #rdVk .kv{display:none}
+#scrRadio.sdr.fit #sdrR > .rdmet{padding:8px 10px}
+#scrRadio.sdr.fit #sdrR .grid2{grid-template-columns:minmax(0,1fr)}
+#scrRadio.sdr.fit #sdrR .kmm{grid-template-columns:minmax(0,1fr)}#scrRadio.sdr.fit #sdrR .kmr{grid-template-columns:repeat(auto-fit,minmax(64px,1fr))}#scrRadio.sdr.fit #sdrR .kring{max-width:84px}
+#scrRadio.sdr[data-view="simple"] #sdrCStep,#scrRadio.sdr[data-view="simple"] #sdrCVk{display:none!important}
+#scrRadio.sdr.fit #sdrR label.e.slide{grid-template-columns:auto auto minmax(0,1fr)}#scrRadio.sdr.fit #sdrR input[type=range]{min-width:0;width:100%}
+#scrRadio.sdr.fit #sdrA #rdVk{margin:0;padding:0;border:0;background:none;box-shadow:none}#scrRadio.sdr.fit #sdrA #rdVk > h2:first-child{display:none!important}
+#scrRadio.sdr.fit #sdrL{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;min-width:0;overflow-y:auto;scrollbar-width:thin}
+#scrRadio.sdr.fit #sdrL .rdmet{margin:10px 0 0;padding:8px 10px}
+#scrRadio.sdr.fit #sdrL .rdscope{flex:1 1 auto;display:flex;flex-direction:column;margin:10px 0 0;min-height:200px}
+#scrRadio.sdr.fit #sdrL .sccv{flex:1 1 0;height:auto!important;min-height:140px;width:100%}
+#scrRadio.sdr.fit #sdrL .rdscope h2{margin:0 0 4px}
+#scrRadio.sdr.fit #sdrL #scChips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-top:6px}
+#scrRadio.sdr.fit #sdrL #scSt{margin:4px 0 0;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#scrRadio.sdr.fit #sdrL .rdtop .chip{height:32px;padding:0 9px}
+#scrRadio.sdr.fit #sdrL .rdtop .chips,#scrRadio.sdr.fit #sdrL .rdtop .row{gap:5px;margin-top:6px}
+#scrRadio.sdr.fit #sdrR{flex:0 0 clamp(320px,23vw,430px);min-width:0;height:100%;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+#scrRadio.sdr.fit #sdrR .rdgrid{display:contents}
+#scrRadio.sdr.fit #sdrR > *,#scrRadio.sdr.fit #sdrR .rdgrid > *{margin-top:0;margin-bottom:10px;flex:0 0 auto}
+#scrRadio.sdr.fit #sdrR > #rdTalk:not(.on){background:linear-gradient(rgba(243,154,85,.14),rgba(243,154,85,.14)),#0a0b0d}
+#scrRadio.sdr.fit #sdrR > #rdTalk{order:99;position:sticky;bottom:0;z-index:3;margin:auto 0 0;box-shadow:0 -10px 14px #050608}#scrRadio.sdr.fit #sdrR > #rdMicLvl,#scrRadio.sdr.fit #sdrR > #rdVcLvl{order:98}
+#scrRadio.sdr.fit #rdMet .kmg{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+#scrRadio.sdr.fit #rdMet .kmg canvas{width:100%;height:auto}
+body:has(#scrRadio.sdr.fit) main{padding-bottom:0}
+@media (max-width:699px){#scrRadio.sdr .rdtop .rdmet{margin:8px 0 0;padding:6px 8px}#scrRadio.sdr .rdtop .rdmet h2{display:none}#scrRadio.sdr .rdtop .rdmet [data-kmst]{display:none}#scrRadio.sdr .rdtop .rdmet .kmh{flex-wrap:wrap;gap:5px}
+  #scrRadio.sdr .rdtop .chip{height:34px;padding:0 9px;font-size:12.5px}#scrRadio.sdr .rdtop .chips,#scrRadio.sdr .rdtop .row{gap:5px}
+  #scrRadio.sdr .sdrmem .mem{min-width:0;flex:1 1 calc(25% - 6px);height:40px}}
+#scrRadio.sdr.fit #sdrR .card{padding:9px 11px}
+#scrRadio.sdr.fit #sdrR .card h2{margin:0 0 6px}
+#scrRadio.sdr.fit #sdrR .b{min-height:34px;height:auto;padding-top:6px;padding-bottom:6px}
+#scrRadio.sdr.fit #sdrR .chip{height:30px}
+#scrRadio.sdr.fit #sdrR label.e{margin-top:2px}
+#scrRadio.sdr.fit #sdrR input[type=range]{margin:2px 0 6px}
+#scrRadio.sdr.fit #sdrR input[type=checkbox]{width:18px;height:18px;flex:0 0 18px;margin:2px 8px 0 0}
+#scrRadio.sdr.fit #sdrR .ck{align-items:flex-start;text-align:left;justify-content:flex-start;gap:0}
+#scrRadio.sdr.fit #sdrR .hint{font-size:11.5px;line-height:1.35;margin:4px 0}
+#scrRadio.sdr.fit #sdrR .rdbig{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#scrRadio.sdr.fit #sdrR .rdbig > *{width:auto;min-width:0;margin:0}
+#scrRadio.sdr.fit #sdrR label.e.slide{display:grid;grid-template-columns:auto auto minmax(80px,1fr);align-items:center;column-gap:8px;margin:2px 0}
+#scrRadio.sdr.fit #sdrR label.e.slide input[type=range]{margin:0}
+#scrRadio.sdr.fit #sdrR .row,#scrRadio.sdr.fit #sdrR .chips,#scrRadio.sdr.fit #sdrR .kmh,#scrRadio.sdr.fit #rdVoice{flex-wrap:wrap}
+/* the head extras, the VFO readout line, the knob, the foot, the phone thumb bar */
+.sdrleds{display:flex;gap:10px;align-items:center}.sdrleds span{display:flex;align-items:center;gap:4px}.sdrleds i{font:800 10px var(--sans);font-style:normal;letter-spacing:.12em;color:#7d8794}
+.sdrleds u{width:10px;height:10px;border-radius:50%;background:#1a1f26;border:1px solid #2a3039}.sdrleds u.on{background:#2bd47a;box-shadow:0 0 8px #2bd47a;border-color:#2bd47a}.sdrleds u.tx{background:#ff3b4e;box-shadow:0 0 10px #ff3b4e;border-color:#ff3b4e}
+.sdrfs{height:30px;padding:0 10px;border-radius:8px;background:#0d1014;border:1px solid #262c35;color:#9aa6b4;font:800 11px var(--sans);letter-spacing:.08em;cursor:pointer}.sdrfs:hover{color:var(--lit,#ffb648)}
+.sdrex{display:flex;flex-wrap:wrap;gap:4px 14px;margin:2px 0 8px;font:700 10.5px var(--sans);letter-spacing:.1em;color:#6f7884}.sdrex:empty{display:none}.sdrex em{font:700 12px var(--mono);font-style:normal;color:#8fd3ff;letter-spacing:0}
+.sdrknob{--a:0deg;position:relative;flex:0 0 auto;width:64px;height:64px;border-radius:50%;margin-left:auto;cursor:ns-resize;touch-action:none;
+  background:radial-gradient(circle at 50% 45%,#3a4049 0,#1d2127 55%,#0c0e11 100%);border:1px solid #2c323b;box-shadow:0 4px 10px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08),0 0 0 4px #0b0d10,0 0 0 5px #222831}
+.sdrknob::before{content:'';position:absolute;inset:8px;border-radius:50%;background:repeating-conic-gradient(from var(--a),#2a3038 0 4deg,#171a1f 4deg 8deg);opacity:.9}
+.sdrknob i{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px;border-radius:50%;background:#ffb648;box-shadow:0 0 8px #ffb648;transform:rotate(var(--a)) translateY(-20px)}
+.sdrknob:focus-visible{outline:2px solid #ffb648;outline-offset:4px}
+.sdrfoot{font:600 11.5px var(--sans);color:#6f7884;margin:6px 2px 0;min-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sdrfoot b{color:#c9a46a;letter-spacing:.12em;font-size:10.5px;margin-right:6px}
+.sdrthumb{display:grid;grid-template-columns:1fr 1.6fr;gap:8px;margin:10px 0}.sdrthumb > *{width:auto!important;min-width:0;margin:0!important}
+.sdrthumb #rdTalk{min-height:56px}
+@media (max-width:699px){.sdrknob{display:none}.sdrleds i{display:none}.sdrfs{display:none}.sdrloc{display:none}}
+@media (min-width:700px) and (max-width:1099px){.sdrknob{width:54px;height:54px}}
 </style>`);
   draw();
   G.KPCSdr = { draw, S, save, _lastB: () => LASTB };

@@ -43,16 +43,31 @@
 
   /* ---------------- the list ---------------- */
   /* kiwisdr_com.js text → [{url,name,loc,la,lo,users,max,lo_hz,hi_hz}] (offline ones left out). Never evaluated. */
-  function parseList(text) {
-    text = String(text || ''); const a = text.indexOf('['), b = text.lastIndexOf(']'); if (a < 0 || b < a) return [];
-    const body = text.slice(a, b + 1); let arr = null;
-    try { arr = JSON.parse(body.replace(/,\s*([\]}])/g, '$1')); } catch (e) { arr = null; }
-    if (!Array.isArray(arr)) {
-      arr = []; const re = /\{([^{}]*)\}/g; let m;
-      while ((m = re.exec(body))) { const o = {}, kv = /["']?([A-Za-z_]\w*)["']?\s*:\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[-+\d.eE]+|true|false|null)/g; let x;
-        while ((x = kv.exec(m[1]))) { let v = x[2]; if (/^["']/.test(v)) { try { v = v[0] === '"' ? JSON.parse(v) : v.slice(1, -1); } catch (e) { v = v.slice(1, -1); } } o[x[1]] = v; }
-        arr.push(o); }
+  /* Nov 18 2026 (Brandon: 'the list of radios never loads'): the list file can be cut short (the Windows app keeps at most a few MB of
+     an answer) and an entry can hold { } of its own. So the entries are read one by one by counting braces outside quoted text: a cut
+     file still gives every whole entry, and an entry with a nested object no longer hides its own name and url. */
+  function objs(t) {
+    const out = []; let i = t.search(/\[\s*\{/); if (i < 0) return out; i = t.indexOf('{', i);
+    while (i >= 0 && i < t.length) {
+      let d = 0, q = '', j = i;
+      for (; j < t.length; j++) { const c = t[j];
+        if (q) { if (c === '\\') j++; else if (c === q) q = ''; continue; }
+        if (c === '"' || c === "'") q = c; else if (c === '{') d++; else if (c === '}' && --d === 0) break; }
+      if (j >= t.length) break;   /* the last entry was cut off: stop with the whole ones */
+      out.push(t.slice(i, j + 1));
+      const nx = /^\s*,?\s*(.)/.exec(t.slice(j + 1, j + 400)); if (!nx || nx[1] !== '{') break;   /* ']' (or the end): the list ended */
+      i = j + nx[0].length;
     }
+    return out;
+  }
+  function parseList(text) {
+    text = String(text || '');
+    const arr = objs(text).map(o => {
+      try { return JSON.parse(o.replace(/,\s*([\]}])/g, '$1')); } catch (e) {}
+      const r = {}, kv = /["']?([A-Za-z_]\w*)["']?\s*:\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[-+\d.eE]+|true|false|null)/g; let x;
+      while ((x = kv.exec(o))) { if (x[1] in r) continue; let v = x[2]; if (/^["']/.test(v)) { try { v = v[0] === '"' ? JSON.parse(v) : v.slice(1, -1); } catch (e) { v = v.slice(1, -1); } } r[x[1]] = v; }
+      return r;
+    });
     const out = [];
     arr.forEach(o => {
       if (!o || typeof o !== 'object' || !o.url) return;
@@ -80,16 +95,16 @@
     listBusy = true; listErr = ''; paintList();
     try {
       let text = '', last = '';
-      for (const u of ['http://rx.linkfanel.net/kiwisdr_com.js', 'https://rx.linkfanel.net/kiwisdr_com.js']) {
+      for (const u of ['https://rx.linkfanel.net/kiwisdr_com.js', 'http://rx.linkfanel.net/kiwisdr_com.js']) {   /* Nov 18 2026: https first (Android may refuse plain http) */
         try {
-          if (AP.net.canRaw && AP.net.canRaw()) { const r = await AP.net.raw(u, { ms: 20000 }); if (r.ok && r.text) { text = r.text; break; } last = r.err || 'HTTP ' + r.status; }
-          else { const r = await AP.net.fetch(u, {}, 20000); if (r.ok) { text = await r.text(); break; } last = 'HTTP ' + r.status; }
+          if (AP.net.canRaw && AP.net.canRaw()) { const r = await AP.net.raw(u, { ms: 45000, max: 16 * 1024 * 1024 });   /* the whole list (several MB), 45 s on a slow line */ if (r.ok && r.text) { text = r.text; break; } last = r.err || 'HTTP ' + r.status; }
+          else { const r = await AP.net.fetch(u, {}, 45000); if (r.ok) { text = await r.text(); break; } last = 'HTTP ' + r.status; }
         } catch (e) { last = String(e.message || e); }
       }
       const list = parseList(text);
       if (!list.length) throw new Error(last || 'the list came back empty');
       LIST = { t: Date.now(), list }; SV('kpcKiwiList', LIST);
-    } catch (e) { listErr = 'Could not load the list of receivers (' + String(e.message || e).slice(0, 80) + ').' + (LIST ? ' Showing the saved one.' : ' Type an address instead.'); }
+    } catch (e) { const m = String(e.message || e); listErr = /cleartext/i.test(m) ? 'This phone blocked the list: it lives on a plain http:// site, and Android stops those unless the app allows them. Copy a report for the builders (STATION, Help).' + (LIST ? ' Showing the saved one.' : ' Type an address instead.') : 'Could not load the list of receivers (' + m.slice(0, 80) + ').' + (LIST ? ' Showing the saved one.' : ' Type an address instead.'); }
     listBusy = false; paintList(); return LIST ? LIST.list : [];
   }
   const recent = () => LS('kpcKiwiRecent', []).filter(r => r && r.url).slice(0, 5);

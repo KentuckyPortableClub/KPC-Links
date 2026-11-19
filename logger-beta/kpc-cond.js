@@ -29,12 +29,21 @@
     if (r) { if (!r.ok) throw new Error('HTTP ' + (r.status || r.err || '?')); return JSON.parse(r.text || 'null'); }
     const x = await AP.net.fetch(url, {}, o.ms || 15000); if (!x.ok) throw new Error('HTTP ' + x.status); return x.json();
   }
-  /* NOAA tables come as [[header…], [row…]] or as [{…}]: the last row as an object */
+  /* NOAA tables come as [[header…], [row…]] or as [{…}]: the NEWEST row that has every wanted number, as an object.
+     Nov 19 2026 (to-do 12): SWPC changed formats on Mar 31 2026 (k-index: header row → objects, all numbers unquoted; 10cm-flux: an
+     array) and REMOVED solar-wind/mag-5-minute + plasma-5-minute on Apr 30 2026 (now json/rtsw/rtsw_mag_1m.json + rtsw_wind_1m.json,
+     objects with 'source' + 'active'; speed is 'proton_speed'). So: keys are matched without caring about capitals, the newest
+     time_tag wins whatever the order, and a row marked active: false is used only when no active one has the value. */
+  const pick = (r, keys) => { if (!r) return undefined; for (const k of keys) { if (r[k] != null && r[k] !== '') return r[k]; const lk = Object.keys(r).find(x => x.toLowerCase() === k.toLowerCase()); if (lk && r[lk] != null && r[lk] !== '') return r[lk]; } return undefined; };
   function lastRow(j, want) {
     if (!Array.isArray(j) || !j.length) return null;
-    const rows = Array.isArray(j[0]) ? j.slice(1).map(r => Object.fromEntries(j[0].map((h, i) => [h, r[i]]))) : j;
-    for (let i = rows.length - 1; i >= 0; i--) { const r = rows[i]; if (want.every(k => r[k] != null && r[k] !== '' && isFinite(+r[k]))) return r; }
-    return null;
+    const rows = Array.isArray(j[0]) ? j.slice(1).map(r => Object.fromEntries(j[0].map((h, i) => [h, r[i]]))) : j.filter(r => r && typeof r === 'object');
+    const has = r => want.every(k => { const v = pick(r, [k]); return v != null && isFinite(+v); });
+    const L = rows.filter(has); if (!L.length) return null;
+    const act = L.filter(r => r.active !== false), use = act.length ? act : L;
+    const tt = r => String(pick(r, ['time_tag']) || '');
+    let best = use[use.length - 1]; if (use.some(r => tt(r))) for (const r of use) if (tt(r) > tt(best)) best = r;
+    return Object.assign({}, best, Object.fromEntries(want.map(k => [k, pick(best, [k])])));
   }
   const xClass = f => { f = +f; if (!(f > 0)) return null; const c = f >= 1e-4 ? 'X' : f >= 1e-5 ? 'M' : f >= 1e-6 ? 'C' : f >= 1e-7 ? 'B' : 'A', base = { X: 1e-4, M: 1e-5, C: 1e-6, B: 1e-7, A: 1e-8 }[c]; return c + (f / base).toFixed(1); };
 
@@ -45,11 +54,13 @@
     if (!AP.net.online()) return c;
     const v = { t: Date.now() };
     const tries = [
-      getJ(SW + 'products/summary/10cm-flux.json').then(j => { const r = Array.isArray(j) ? j[0] : j; v.sfi = +(r && (r.flux ?? r.Flux)); }),
-      getJ(SW + 'products/noaa-planetary-k-index.json').then(j => { const r = lastRow(j, ['Kp']); if (r) { v.kp = +r.Kp; if (r.a_running != null) v.a = +r.a_running; } }),
+      getJ(SW + 'products/summary/10cm-flux.json').then(j => { const r = Array.isArray(j) ? (lastRow(j, ['flux']) || j[0]) : j; v.sfi = +pick(r, ['flux']); }),
+      getJ(SW + 'products/noaa-planetary-k-index.json').then(j => { const r = lastRow(j, ['Kp']); if (r) { v.kp = +r.Kp; const a = pick(r, ['a_running']); if (a != null && isFinite(+a)) v.a = +a; } }),
       getJ(SW + 'json/goes/primary/xrays-6-hour.json').then(j => { const L = (j || []).filter(x => /0\.1-0\.8/.test(x.energy || '') && +x.flux > 0); if (L.length) v.xf = +L[L.length - 1].flux; }),
-      getJ(SW + 'products/solar-wind/mag-5-minute.json').then(j => { const r = lastRow(j, ['bz_gsm']); if (r) v.bz = +r.bz_gsm; }),
-      getJ(SW + 'products/solar-wind/plasma-5-minute.json').then(j => { const r = lastRow(j, ['speed']); if (r) v.sw = +r.speed; }),
+      getJ(SW + 'json/rtsw/rtsw_mag_1m.json').then(j => { const r = lastRow(j, ['bz_gsm']); if (r) v.bz = +r.bz_gsm; else throw new Error('no Bz'); })
+        .catch(() => getJ(SW + 'products/solar-wind/mag-5-minute.json').then(j => { const r = lastRow(j, ['bz_gsm']); if (r) v.bz = +r.bz_gsm; })),   /* the old file went on Apr 30 2026; kept as a fallback */
+      getJ(SW + 'json/rtsw/rtsw_wind_1m.json').then(j => { const r = lastRow(j, ['proton_speed']); if (r) v.sw = +r.proton_speed; else throw new Error('no speed'); })
+        .catch(() => getJ(SW + 'products/solar-wind/plasma-5-minute.json').then(j => { const r = lastRow(j, ['speed']); if (r) v.sw = +r.speed; })),
       getJ(SW + 'products/noaa-scales.json').then(j => { v.sc = j; })
     ];
     await Promise.allSettled(tries);

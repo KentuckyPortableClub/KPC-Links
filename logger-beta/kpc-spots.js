@@ -198,7 +198,7 @@
       if (k === 'done') { AP.shut(); return; }
       if (k === 'usual') reset(false); else if (k === 'all') reset(true);
       else if (k === 'src') tog(S.off, v); else if (k === 'band') tog(S.bands, v); else if (k === 'mode') tog(S.modes, v); else if (k === 'digi') tog(S.digi, v);
-      else if (k === 'ct') { S.ct = S.ct || []; tog(S.ct, v); } else if (k === 'need') S.need = S.need === v ? 'all' : v; else if (k === 'cls') S.inClass = !S.inClass;
+      else if (k === 'ct') { S.ct = S.ct || []; tog(S.ct, v); } else if (k === 'need') { S.need = S.need === v ? 'all' : v; if (S.need === 'park' && G.KPCLog && KPCLog.needFile) KPCLog.needFile('h', 'only parks new to you'); } else if (k === 'cls') S.inClass = !S.inClass;
       else if (k === 'age') S.ageMin = +v; else if (k === 'sort') { S.sort = v; S.rev = false; }
       save(); draw(); filtDraw();
     };
