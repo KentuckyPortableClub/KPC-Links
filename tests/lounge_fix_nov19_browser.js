@@ -30,9 +30,9 @@ const VIP = 'dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab';
     await P.evaluate(() => document.querySelector('#bfModal [data-mclose]').click()); await sleep(300);
     r = await P.evaluate(() => { const m = document.getElementById('bfModal'); return !m || getComputedStyle(m).display === 'none' || m.hidden; });
     ok(r, '✓ DONE closes them');
-    /* the radio: a plain 📻 RADIO (CAT) button near the top */
+    /* the radio: a plain 📻 RADIO button at the top */
     r = await P.evaluate(() => { const x = document.querySelector('[data-hxradio]'); if (!x) return null; const q = x.getBoundingClientRect(); return [x.offsetParent !== null, Math.round(q.top + scrollY)]; });
-    ok(r && r[0] && r[1] < 900, '📻 RADIO (CAT) button near the top of the page (at ' + (r && r[1]) + ' px)');
+    ok(r && r[0] && r[1] < 400, '📻 RADIO button at the top of the page (at ' + (r && r[1]) + ' px)');
     await P.evaluate(() => document.querySelector('[data-hxradio]').click()); await sleep(900);
     r = await P.evaluate(() => { const card = document.getElementById('hlRadio'), pop = document.getElementById('hxPop');
       if (card && card.offsetParent !== null) { const q = card.getBoundingClientRect(); return 'card ' + Math.round(q.top) + ' ' + /CONNECT MY RADIO/.test(card.textContent); }
