@@ -494,6 +494,19 @@
     "saved_ids": true
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-19 (10:12 AM: \"1-4 I agree with your thoughts for now maybe revist later if new rules or info changes\" to R-PP1a as amended; 8:13 AM: \"1 yes for now\"; for now until POTA answers); stamp agreed ahead by Fable (key-quality.md section 19 item 20)"
+  },
+  {
+   "id": "2026-11-19-r-fj1-far-join",
+   "when": "2026-11-19",
+   "from": "ee2b6f1e9673",
+   "why": "R-FJ1 (Fable's sheet, key-quality.md section 19 item 26; KPC owner 19 Nov 11:49 AM: 'yes pins are only references they are not always right'): a person's saved join may reach a record far from POTA's pin (past the 0.6 degree box) when the answer names that exact record id in both 'join' and 'far', carries decided_by and evidence (who, source, saw, date), and the record read today still fits its saved fingerprint (same name, acres within 10% or 20 ac). Never by name, never for a re-found id, never for an 'approx' answer, never past a NO. A far id that no longer fits goes to check; 'far' with no evidence is ignored. Switch KPC_FAR_JOIN, default ON. Only one answer carries 'far' today: Custer Gallatin NF US-4501 + PAD-US 2660 'Gallatin National Forest' (Montana).",
+   "scope": {
+    "states": [
+     "US-MT"
+    ],
+    "saved_ids": true
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-19 (11:49 AM: \"2 yes pins are only references they are not always right\"); stamp agreed ahead by Fable (key-quality.md section 19 item 26)"
   }
  ]
 }

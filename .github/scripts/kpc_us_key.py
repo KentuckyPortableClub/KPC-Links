@@ -1752,6 +1752,7 @@ def _nps_code(name):
 
 
 
+FAR_JOIN = []   # R-FJ1: [state, park, record id, record name] joined far from POTA's pin by a person's evidence answer
 PRESERVE_HIT = []   # R-PP1: [state, park, record id, record name] for the run's notice
 PRESERVE_ASK = []   # R-PP1a: [state, park, record id, record name] kept because POTA's own pin is inside: a person's question
 def preserve_apart(st, parks, recs, on=None, P=None):
@@ -2107,8 +2108,17 @@ def run(st):
                                  and abs((a.get('GIS_Acres') or 0) - (fa or 0)) <= max(20, .1 * (fa or 0))), want)
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
-                    if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (la is None or near(la, lo, a['_bb'], .6)):   # Oct 25: an id in 'no' is never re-added by a same-name join
+                    _near, _far = (la is None or near(la, lo, a['_bb'], .6)), False
+                    if not _near and _oid(a) == _want0 and str(want) == _want0 and _oid(a) not in no and _kr('KPC_FAR_JOIN'):
+                        # R-FJ1 (KPC owner, 19 Nov 11:49 AM: 'pins are only references they are not always right'): a person's evidence
+                        # answer naming this exact record (id in 'join' AND 'far', fingerprint still fits) joins at any distance
+                        _fs, _fw = KR.far_join_ok(ov, _want0, a)
+                        if _fs == 'ok': _far = True
+                        elif _fs == 'nofit' and not any(str(x[0]) == _oid(a) for x in c): c.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), _fw])
+                        elif _fs in ('noevidence', 'approx'): print(f'::warning title=US key {st}::{ref} {_want0}: {_fw}', flush=True)
+                    if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (_near or _far):   # Oct 25: an id in 'no' is never re-added by a same-name join
                         if _no_all(ov, a): continue   # Nov 2: a NO by name wins over a join by id
+                        if _far: FAR_JOIN.append([st, ref, _oid(a), nm])
                         if _kr('KPC_ID_JOIN_NAME') and _oid(a) == str(want) and _nf(nm) != _nf(want):
                             # scorecard 17 Nov: Ohio's first name is a code ('CaesarCrkSP'); any of the record's names may carry it
                             _ok, _why = next(((o_, w_) for o_, w_ in (KR.id_join_name_ok(name, n_, ((ov.get('fp') or {}).get(_want0) or [None])[0])
@@ -2316,6 +2326,8 @@ def run(st):
         outline_dates(parks[ref], recs)
         if shadow: parks[ref]['shadow'] = shadow
         if site: parks[ref]['a'] = site
+    _fj = [h for h in FAR_JOIN if h[0] == st]
+    if _fj: notice(f'US key {st}', "R-FJ1 far joins by a person's evidence: " + ', '.join(f'{h[1]} {h[2]} {h[3]}' for h in _fj[:12]))
     # Oct 29 (chat 8, 'wrong joins solved'): a record joined to two or more parks by NAME alone (Robert Moses Long Island +
     # Thousand Islands, NY county forests) stays only with the parks it is NEAR: a claim from a park whose pin is more than
     # 15 km from the record is dropped when another park's pin sits within 2 km of it. Hand joins ('reviewed') are never dropped.
