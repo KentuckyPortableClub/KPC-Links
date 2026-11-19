@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T19:04:12Z",
+ "updated": "2026-11-19T13:32:13Z",
  "stations": [
   {
    "title": "SVARA 50th Birthday",
@@ -17,57 +17,6 @@
    "qsl": "QSL",
    "url": "",
    "note": ", Greenville, TX. Sabine Valley Amateur Radio Association. 7.250 14.250 21.350 28.350. QSL. SVARA 50th Birthday, PO BOX 843, Greenville, TX 75403."
-  },
-  {
-   "title": "Adoption of the Articles of Confederation and Perpetual Union",
-   "start": "2026-11-11",
-   "end": "2026-11-18",
-   "times": "0000Z-2359Z",
-   "call": "WV2M",
-   "calls": [
-    "WV2M"
-   ],
-   "where": "Harleysville, PA",
-   "st": "PA",
-   "by": "WV2M",
-   "freqs": "14.074 7.074 7.030 14.030",
-   "qsl": "QSL",
-   "url": "http://www.wv2m.com",
-   "note": ", Harleysville, PA. WV2M. 14.074 7.074 7.030 14.030. QSL. Frank Gallo, 106 Tweed Way, Harleysville, PA 19438."
-  },
-  {
-   "title": "Articles of Confederation",
-   "start": "2026-11-11",
-   "end": "2026-11-18",
-   "times": "0000Z-2359Z",
-   "call": "W3A",
-   "calls": [
-    "W3A"
-   ],
-   "where": "Harleysville, PA",
-   "st": "PA",
-   "by": "WV2M",
-   "freqs": "7.030 7.074 14.030 14.074",
-   "qsl": "QSL",
-   "url": "https://www.qrz.com/db/W3A",
-   "note": ", Harleysville, PA. WV2M. 7.030 7.074 14.030 14.074. QSL. Frank Gallo, 106 Tweed Way, Harleysville, PA 19438."
-  },
-  {
-   "title": "VOYAGER 1. ONE LIGHT DAY AWAY",
-   "start": "2026-11-18",
-   "end": "2026-11-18",
-   "times": "1700Z-2100Z",
-   "call": "WE7GV",
-   "calls": [
-    "WE7GV"
-   ],
-   "where": "Sahuarita, AZ",
-   "st": "AZ",
-   "by": "Green Valley Amateur Radio Club",
-   "freqs": "14.242 14.246 14.248",
-   "qsl": "Certificate & QSL",
-   "url": "",
-   "note": ", Sahuarita, AZ. Green Valley Amateur Radio Club. 14.242 14.246 14.248. Certificate & QSL. Tom Lang K7VOA, 1085 W EL TORO RD, , Sahuarita, AZ 85629. Celebrating the success of Voyager 1."
   },
   {
    "title": "W6SFM On-Air Bug Roundup",
@@ -501,6 +450,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (26)"
+  "ARRL": "ok (23)"
  }
 }
