@@ -639,7 +639,9 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **The 487 "PC" rows explained** (handoff-02/README.md, corrections): 410 layers on hosts bots may not contact; only 118 feed a
      park in the key; 123 open rows repeat a layer already downloaded 10-11 Nov; none is needed for the release. **No hand download
      is uploaded before the release is signed off** (a hand file is merged by the next key run and would change the shapes).
-     After the release: the agent's own 49-file list first (41 already in the PC helper), busiest first.
+     After the release: the agent's own 49-file list, busiest first. **CORRECTION (Fable 8:35 AM, tested): the PC helper cannot use these
+     rows today.** `kpc_pc_helper.py --list` shows 0 layers: the 406 open rows have no state, and the helper takes only rows with a
+     state and a layer the US key has an entry for (the state rows of these layers are DONE). "Already in the PC helper" was wrong.
    - **Built:** the PC heartbeat (tools-out `key-quality/2026-11-19/pc-heartbeat/`, sent to Brandon): starts a watchdog only when it
      is over 115 minutes late. **The review packet bot goes to the OUTSIDE AGENT** (Brandon 8:25 AM: "no chat 10 no longer all chat numbers are retired ... give me handoff for outside agent"): hand-off 03A.
    - **OPUS'S ORDER NOW (fresh chat, the starter line of item 11):** (a) item 3 a-d on run 44528656941's files, the table to
@@ -657,4 +659,11 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **Found while writing 03A:** KPC-Links `kpc-discord-relay.yml` (it restarts itself every 30 minutes, so GitHub's timer skips do
      not stop it) already carries a heartbeat for KPC-DATA's watchdog. A few lines more there for KPC-Links' OWN watchdog would have
      caught the 19 Nov miss with no PC. The PC heartbeat sent to Brandon is the backup. Small change for a club session, not an agent.
+16. **THE PC HELPER IS NOT SET UP FOR HAND DOWNLOADS YET (Fable, 19 Nov 8:35 AM; Brandon: "My pc helper when the time comes everything
+   will be set up to run it?").** Before Brandon is asked to download anything (after the release is signed off): (a) pick the
+   files that are wanted: rows where hand-off 02 and 03B agree, plus a done layer only when its source changed; (b) each becomes a
+   row of `data/needs-download.json` with a STATE and a layer id the US key knows, `who` person, `status` open; a NEW layer first
+   gets its layer entry (`data/state-gis.json` is a rule file: draft PR, Fable reads it); (c) test exactly as on 19 Nov:
+   `python3 tools/kpc_pc_helper.py --list --needs <the list>` must show those layers, busiest first; (d) only then Brandon gets ONE
+   line to run. He checks it himself with `python tools\kpc_pc_helper.py --list`.
 
