@@ -1,6 +1,6 @@
 {
- "ver": "0.9.10",
+ "ver": "0.9.15",
  "when": "2026-11-19",
  "where": "https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build",
- "notes": "0.9.0: PSK31 + WSPR taken out for now (licence), FT8 reports honest on strong signals + contest lines shown, the rest of the listening fixes (blanker before the filter, fair A/B, CW 250 / 100 Hz, no pops, 96 kHz), 🏕 ready for the field + 📴 OFFLINE, 👂 can I hear them, 📍 in the park on LOG, AUTO buttons hidden (5–60 min). 0.8.8: 📻 the black radio page (power button, SIMPLE / FULL, V"
+ "notes": "0.9.15: WHO DOES THE TALKING? (HYBRID or ALL FROM THE APP) is now in set-up, above CONNECT, and a chip by the voice keyer and on the CW screen; WWFF and SOTA can be switched on beside the parks in the trip planner, the parks map and NEXT PARK 0.9.14: a new RADIO screen (whole window on a PC or tablet: bands and memories left, big frequency with a tuning knob, new modern meters and a scope that nam"
 }
