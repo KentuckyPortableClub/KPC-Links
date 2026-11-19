@@ -1,8 +1,8 @@
 {
- "made": "2026-11-19 10:45 UTC",
+ "made": "2026-11-19 14:02 UTC",
  "counts": {
-  "A_decided_not_in_key": 69,
-  "B_sure_area_not_asked": 6,
+  "A_decided_not_in_key": 155,
+  "B_sure_area_not_asked": 14,
   "C_sure_line_not_drawn": 15
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
@@ -50,11 +50,32 @@
    "2026-11-02 12:49: layers row YES 'Poverty Point National Monument' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
+   "US-10017",
+   "OR",
+   "Quartzville Creek BLM Wild and Scenic River",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-10021",
+   "OR",
+   "Topsy BLM Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-10179",
    "IN",
    "Ten O' Clock Line State Nature Preserve",
    "join",
    ": same place, official name written differently · Nov 2 map audit: chat 11 NO on 201050 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+  ],
+  [
+   "US-10237",
+   "IN",
+   "Mongoquinong State Nature Preserve",
+   "join",
+   "ov 9 10:08 AM CST: accept the name-matched groups, verify each; checked against the key row's names + acres; the POTA pin is never moved; Quality grade pending)"
   ],
   [
    "US-10251",
@@ -71,11 +92,67 @@
    "fferent site (Chena River SRS); pin · 2026-11-02 12:49: aliases-oct31 row YES 'Chena River State Recreation Site' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
+   "US-10479",
+   "OR",
+   "Oasis BLM Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-10483",
+   "OR",
+   "Jordan Craters Area of Environmental Concern National Nature Reserve",
+   "join",
+   "erent shape than the park (hand review Oct 22 (waiting list)) · 2026-11-08 13:55: layers row YES 'Jordan Craters' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10487",
+   "OR",
+   "Lake Abert and Abert Rim BLM Wilderness Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-10524",
+   "MT",
+   "Acton (BLM) Recreation Site",
+   "join",
+   "fferent shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 13:05: layers row YES 'Acton Recreation Area' (chat 11; applied by kpc_key_answers)"
+  ],
+  [
+   "US-10528",
+   "MT",
+   "Shepherd Ah Nei BLM Special Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-10529",
+   "MT",
+   "Sundance Lodge (BLM) Recreation Site",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-10544",
+   "RI",
+   "Jerimoth Hill State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-10547",
    "RI",
    "Silver Spring State Recreation Area",
    "alias",
    "a fishing access may be only a corner (chat 8 check) · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)"
+  ],
+  [
+   "US-10561",
+   "IN",
+   "Indiana War Memorial Plaza National Historical Site",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-10575",
@@ -92,11 +169,32 @@
    "hat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 chat 2 (US hard look list, R-G7): 'Rem-Love Creek' is the same land under another name; approximate"
   ],
   [
+   "US-10650",
+   "WI",
+   "Nevin Springs State Fish and Wildlife Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-10657",
+   "ID",
+   "Milner Historic Recreation Area BLM Historic Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-10661",
    "IL",
    "Oakwood Bottoms USFS Recreation Area",
    "alias",
    " that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Shawnee National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-10695",
+   "WA",
+   "Coffeepot Lake Nature Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-10788",
@@ -118,6 +216,13 @@
    "DeGray Lake Resort State Park",
    "join",
    "ixed. The drawn outli) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it"
+  ],
+  [
+   "US-10913",
+   "HI",
+   "Diamond Head Summit State Trail",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-10914",
@@ -155,11 +260,32 @@
    "2026-11-02 13:05: layers row YES 'Kolob Creek' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
+   "US-11169",
+   "UT",
+   "Bridge Hollow on the Green River BLM Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-11312",
    "ID",
    "Hawkins Reservoir Recreation Site BLM Recreation Management Area",
    "join",
    " the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on rst13911 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)"
+  ],
+  [
+   "US-11347",
+   "UT",
+   "Swinging Bridge Trailhead BLM Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-11351",
+   "IL",
+   "Weinberg-King Spunky Bottoms Unit State Park",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-11376",
@@ -176,6 +302,27 @@
    "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Burbank'; joins only with the POTA pin inside"
   ],
   [
+   "US-11711",
+   "UT",
+   "Elbow Ranch BLM Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-11746",
+   "UT",
+   "Devil's Rock Garden Day Use BLM Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-11761",
+   "UT",
+   "Quail Creek Reservoir Designated Dispersed Camping Area BLM Special Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-11798",
    "AK",
    "Tangle Lakes Archeological Reserve",
@@ -188,6 +335,27 @@
    "Blackwell School National Park",
    "join",
    "Brandon t938u recheck, verified on saved/official data): NPS Admin Boundaries (hand copy, BLSC): pin 0.013 km; name fits (NPS unit name vs POTA \"National Park\")"
+  ],
+  [
+   "US-11992",
+   "NJ",
+   "Whiting State Conservation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-12064",
+   "TN",
+   "Henderson Swamp State Wilderness Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-1208",
+   "CO",
+   "Arkansas River Headwaters Recreation Park",
+   "join",
+   " the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on rst13946 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   ],
   [
    "US-12122",
@@ -204,6 +372,41 @@
    "an the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 190265 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)"
   ],
   [
+   "US-12127",
+   "FL",
+   "Stormwater Treatment Area 1 West State Conservation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-12128",
+   "FL",
+   "Stormwater Treatment Area 1 East State Conservation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-12246",
+   "WA",
+   "Pacific Lake Recreation Site - Lakeview Ranch BLM Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-12358",
+   "WI",
+   "Pinnacle Rock State Fish and Wildlife Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-12381",
+   "AK",
+   "Delta BLM Wild and Scenic River",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-12426",
    "WA",
    "Hog Canyon State Fishing Lake",
@@ -211,11 +414,46 @@
    "Oct 29 5:20 AM: clue search, chat 2 + chat 8 agree (the state layer's own name within 3 km; joins only with the POTA pin inside)"
   ],
   [
+   "US-12725",
+   "WY",
+   "Sweetwater Rocks (Lankin Dome) State Wilderness Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-12831",
+   "WA",
+   "Ruby BLM Special Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-13097",
    "OR",
    "Strawberry Hill Wayside State Recreation Site",
    "alias",
    " name 'Strawberry Hill' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-13098",
+   "OR",
+   "Neptune South Wayside State Recreation Site",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-13099",
+   "OR",
+   "Neptune North Wayside State Recreation Site",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-13178",
+   "NV",
+   "Mt. Irish Archaeological Site Archeological Reserve",
+   "join",
+   "ifferent shape than the park (hand review Oct 22 (waiting list)) · 2026-11-08 13:55: layers row YES 'Mount Irish' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
    "US-13183",
@@ -232,11 +470,39 @@
    "alias, chat 2 + chat 8 agree (Oct 29): the official layer calls it 'Rockdale Highlands WMA'; joins only with the POTA pin inside"
   ],
   [
+   "US-13269",
+   "NV",
+   "Lake Tahoe-Eastshore Dr Byway Area of Outstanding Natural Beauty",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-13279",
+   "NV",
+   "Dayton State Historical Monument",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-13395",
    "WA",
    "County Line State Recreation Site",
    "alias",
    "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'County Line'; joins only with the POTA pin inside"
+  ],
+  [
+   "US-13397",
+   "WA",
+   "Modrow Bridge State Recreation Site",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-13398",
+   "WA",
+   "Beginner's Hole State Recreation Site",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-13399",
@@ -246,6 +512,27 @@
    "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Hand'; joins only with the POTA pin inside"
   ],
   [
+   "US-13486",
+   "NH",
+   "Bellamy River Wildlife Management Area - East Wildlife Management Area",
+   "join",
+   "rent shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Bellamy River WMA - East' (chat 11; applied by kpc_key_answers)"
+  ],
+  [
+   "US-13570",
+   "MI",
+   "Gladwin Field Trial Wildlife Management Area",
+   "join",
+   "hot; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Gladwin State Game Area' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+  ],
+  [
+   "US-1505",
+   "MI",
+   "Historic Mill Discovery State Park",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-2445",
    "MA",
    "Lynn Shores/Nahant Beach State Reserve",
@@ -253,11 +540,95 @@
    "Oct 29 5:20 AM: clue search, chat 2 + chat 8 agree (the state layer's own name within 3 km; joins only with the POTA pin inside)"
   ],
   [
+   "US-2644",
+   "NH",
+   "Cardigan Mountain State Park",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-3109",
+   "VT",
+   "Coolidge State Park",
+   "join",
+   "fferent shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Coolidge State Forest' (chat 11; applied by kpc_key_answers)"
+  ],
+  [
    "US-3121",
    "VT",
    "Kamp Kill Kare State Park",
    "alias",
    "that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Burton Island State Park' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  ],
+  [
+   "US-3131",
+   "VT",
+   "Maidstone State Park",
+   "join",
+   "ferent shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Maidstone State Forest' (chat 11; applied by kpc_key_answers)"
+  ],
+  [
+   "US-3147",
+   "VT",
+   "Thetford Hill State Park",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-3415",
+   "CA",
+   "California State Railroad Museum State Park",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-3483",
+   "NE",
+   "Atlanta National Waterfowl Production Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-3484",
+   "NE",
+   "Peterson National Waterfowl Production Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-3485",
+   "NE",
+   "Jensen Lagoon National Waterfowl Production Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-3486",
+   "NE",
+   "Moger National Waterfowl Production Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-3489",
+   "NE",
+   "Massie National Waterfowl Production Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-3490",
+   "NE",
+   "Smith Lagoon National Waterfowl Production Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-3692",
+   "AL",
+   "Heron Bay and Portersville Bay State Fish and Wildlife Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-3703",
@@ -272,6 +643,13 @@
    "Roosevelts Little White House State Historic Site",
    "alias",
    "EVELT STATE PARK' (chat 11; applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'F. D. Roosevelt State Park' (chat 11; applied by kpc_key_answers)"
+  ],
+  [
+   "US-3843",
+   "NC",
+   "Haw River at Iron Ore Access Belt State Park",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-3857",
@@ -309,6 +687,104 @@
    "he same land under another name; approximate · 2026-11-02 12:49: aliases-oct31 row NO 'Wehrspann Recreation Area' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
+   "US-4017",
+   "NE",
+   "Lincoln Saline Wetland State Park",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4162",
+   "IN",
+   "Mounds on Brookville Lake State Recreation Area",
+   "join",
+   "Oct 25 round 5 hand check (outside research bot)"
+  ],
+  [
+   "US-4168",
+   "IN",
+   "Frances Slocum on Mississinewa Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4169",
+   "IN",
+   "Miami on Mississinewa Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4170",
+   "IN",
+   "Hardin Ridge on Monroe Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4171",
+   "IN",
+   "Paynetown on Monroe Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4172",
+   "IN",
+   "Jackson on Patoka Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4173",
+   "IN",
+   "Lick Fork on Patoka Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4174",
+   "IN",
+   "Newton-Stewart on Patoka Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4175",
+   "IN",
+   "Tillery Hill on Patoka Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4177",
+   "IN",
+   "Dora-New Holland on Salamonie Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4179",
+   "IN",
+   "Mt Etna on Salamonie Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4180",
+   "IN",
+   "Mt Hope on Salamonie Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-4186",
+   "IN",
+   "Big Walnut - Tall Timbers Trail State Nature Preserve",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-4188",
    "IN",
    "Bryan Woods State Nature Preserve",
@@ -316,11 +792,46 @@
    "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 32.4 ac)"
   ],
   [
+   "US-4244",
+   "WI",
+   "Big Bay Sand Spit and Bog State Natural Area",
+   "join",
+   "pit and Bog' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Big Bay Sand Spit and Bog' (chat 11 (Oct 31); applied by kpc_key_answers)"
+  ],
+  [
+   "US-4263",
+   "WI",
+   "Piers Gorge Unit of Menominee River State Recreation Area",
+   "join",
+   "k (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 354 m from the edge, 164.1 ac; a piece where the park is bigger)"
+  ],
+  [
+   "US-4264",
+   "WI",
+   "Quiver Falls Unit of Menominee River State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-5564",
    "VT",
    "Essex Nursery State Forest",
    "alias",
    " · Oct 29 1 AM: chat 2 + chat 8 agree (POTA's own link + the official layer; joins only with the pin inside)"
+  ],
+  [
+   "US-5574",
+   "WA",
+   "Tiger Mountain State Forest",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-5730",
+   "IA",
+   "Blood Run State Historic Site",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-5763",
@@ -365,11 +876,46 @@
    "2026-11-02 13:05: layers row YES 'Willis Creek' (chat 11 (Oct 31); applied by kpc_key_answers)"
   ],
   [
+   "US-6035",
+   "UT",
+   "Zion NPS Wilderness Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-6058",
+   "UT",
+   "Red Cliffs Archeological Site BLM Historic Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-6060",
    "UT",
    "Hermit's Cabin/Cave State Recreation Area",
    "alias",
    "e name 'Hermit's Cabin' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-6062",
+   "UT",
+   "Red Cliffs Dinosaur Track Site BLM Historic Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-6157",
+   "WY",
+   "Split Rock BLM Interpretive Site",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-6188",
+   "WY",
+   "Point of Rocks Cemetery State Historic Site",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-6212",
@@ -400,6 +946,13 @@
    "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin inside; a piece where the park is bigger)"
   ],
   [
+   "US-6529",
+   "MO",
+   "Truman Reservoir Management Lands State Park",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-6532",
    "NY",
    "Erie Canalway Corridor National Heritage Area",
@@ -414,11 +967,32 @@
    "rm State Historic Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
   ],
   [
+   "US-6818",
+   "MI",
+   "Mackinac Island State Harbor",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
    "US-7139",
    "GA",
    "Arabia Mountain National Heritage Area",
    "join",
    " applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Arabia Mountain National Heritage Area' (auto recheck (AUTO-1); applied by kpc_key_answers)"
+  ],
+  [
+   "US-7189",
+   "MO",
+   "Beaver Creek State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-7399",
+   "KS",
+   "Tuttle Creek Willow State Fishing Lake",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-7529",
@@ -433,6 +1007,13 @@
    "Taylor Saw Mill State Historic Site",
    "alias",
    "lor Mill Historic Site' (chat 9 list, HQ 8:45 PM; Brandon 8:42 PM): alias, joins only when the official record has that exact name AND the POTA pin is inside it"
+  ],
+  [
+   "US-8063",
+   "NY",
+   "North-South Lake State Recreation Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-8064",
@@ -489,6 +1070,27 @@
    "Amache National Historic Site",
    "join",
    "by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Amache National Historic Site' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)"
+  ],
+  [
+   "US-9902",
+   "VA",
+   "Colonial National Parkway",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-9957",
+   "VA",
+   "Shenandoah Wilderness Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+  ],
+  [
+   "US-9981",
+   "OR",
+   "Molalla River Corridor BLM Recreation Management Area",
+   "join",
+   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ]
  ],
  "B": [
@@ -498,6 +1100,13 @@
    "National Mall and Memorial Parks National Park",
    "National Mall",
    "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
+  ],
+  [
+   "US-10524",
+   "MT",
+   "Acton (BLM) Recreation Site",
+   "Acton Recreation Area",
+   "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2"
   ],
   [
    "US-1080",
@@ -521,11 +1130,60 @@
    "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1"
   ],
   [
+   "US-13397",
+   "WA",
+   "Modrow Bridge State Recreation Site",
+   "Modrow Bridge",
+   "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/ManagedPlaces/MapServer/0"
+  ],
+  [
+   "US-13398",
+   "WA",
+   "Beginner's Hole State Recreation Site",
+   "Beginners' Hole",
+   "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/ManagedPlaces/MapServer/0"
+  ],
+  [
    "US-13482",
    "NV",
    "Galena Creek Fish Hatchery State Historical Monument",
    "GALENA CREEK REGIONAL PARK",
    "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0"
+  ],
+  [
+   "US-13486",
+   "NH",
+   "Bellamy River Wildlife Management Area - East Wildlife Management Area",
+   "Bellamy River WMA - East",
+   "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2"
+  ],
+  [
+   "US-3109",
+   "VT",
+   "Coolidge State Park",
+   "Coolidge State Forest",
+   "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38"
+  ],
+  [
+   "US-3131",
+   "VT",
+   "Maidstone State Park",
+   "Maidstone State Forest",
+   "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38"
+  ],
+  [
+   "US-3147",
+   "VT",
+   "Thetford Hill State Park",
+   "Thetford Hill State Forest",
+   "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38"
+  ],
+  [
+   "US-4244",
+   "WI",
+   "Big Bay Sand Spit and Bog State Natural Area",
+   "Big Bay Sand Spit and Bog",
+   "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/ER_DNR_NA_StateNaturalAreas_WTM/MapServer/2"
   ],
   [
    "US-5483",
