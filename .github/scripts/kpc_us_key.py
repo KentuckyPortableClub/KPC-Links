@@ -1794,6 +1794,12 @@ def nps_code_joins(st, parks, recs, P, ovr=None, on=None):
             if owner in TRL: continue   # Sonnet's grade 17 Nov: a trail park is its official LINE (North Country Trail); a unit-code piece is not its outline
             if any(str(x[0]) == rid for x in p.get('m') or []): continue
             if rid in {str(y) for y in ov.get('no') or []} or _nf(nm) in {_nf(y) for y in ov.get('no') or []} or KR.is_no(ov, rid, nm, a.get('GIS_Acres')): continue
+            if KR.nps_part_clash(p.get('n') or '', nm):
+                # Fable's last look (19 Nov): one code, a park and a preserve (Denali NP US-0022 took the 1,311,169-acre Denali National
+                # Preserve): a unit-code join never crosses park / preserve; the record goes to check
+                if not any(str(x[0]) == rid for x in p.get('c') or []):
+                    p['c'] = list(p.get('c') or []) + [[a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), f'check (NPS unit code {cd}): a preserve and a park share this code; the code does not join one to the other']]
+                NPS_CODE_HIT.append([st, owner, rid, cd, 'park / preserve kept apart']); continue
             p['m'] = sorted(list(p.get('m') or []) + [[a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), tag]], key=lambda x: -(x[2] or 0))
             p['c'] = [x for x in p.get('c') or [] if str(x[0]) != rid]
             NPS_CODE_HIT.append([st, owner, rid, cd, 'joined']); n += 1
