@@ -580,4 +580,14 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    hand-off zip (item 9c): for US-0069, US-0044, US-0048, US-0026, US-0665 open POTA's own park page and report its name, its
    website link, and whether POTA lists that preserve under any other number or name. If POTA's page says the number covers the
    preserve, the ruling flips for that park (a saved answer with the page as evidence). The R-PP1 draft PR does not wait for it.
+11. **SAVE USAGE ON THIS JOB (Brandon 19 Nov 6:07 AM: "plan stays its course but areas where we can optimize usage lets do it").**
+   - ONE Fable session per block, not per item: Opus finishes item 8 a to d2 first, then Fable reads the PR, the table and the
+     T1 report in one sitting.
+   - ONE release run for everything (Q1, held states, NPS, #277, R-PP1). No small runs, no reruns to look.
+   - Fact check the RUNNER'S files; no 50-state builds in chat. A review rebuilds only the states in the PR's scope.
+   - The forecast is saved outside the chat (tools-out `key-quality/2026-11-19/forecast/`), so a FRESH CHAT can do item 3.
+     Starter: "Read CLAUDE.md and key-quality.md section 19, do item 8 in order."
+   - Legwork goes to the outside agent and Brandon's PC (source finding, page checks, grading passes, blocked downloads).
+   - AFTER the release, a bot job (chat 10): the US key run writes its own old-against-new fact-check table per state, so no
+     chat has to build it again.
 
