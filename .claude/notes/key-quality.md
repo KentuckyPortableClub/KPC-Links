@@ -1255,3 +1255,4 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      evidence batch 03 (17 wrong NOs + the three gold-YES pins above + check AL sgala2's shape against 2,000 ac), draft for Fable;
      (e) kit D (random sample of the released files): the first real measure of the 1% bar; (f) the layer-completeness gate
      (item 35) and R-NET1's code; (g) wire the keeper + key run to write list drops once hand-off 05 part 2 is merged.
+   - Brandon's page ("Key Run Check, 19 Nov", slug 14b24a57-71d5-4f8c-87d2-a0c53b95a518) carries the release block at the top: version 1795121760-4655.
