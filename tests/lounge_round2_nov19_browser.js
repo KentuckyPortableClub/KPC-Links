@@ -47,6 +47,8 @@ const VIP = 'dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab';
   r = await F(() => KPCFt8Tab._offDial());
   ok(r === false, 'back on 14.074 DATA: fine');
 
+  r = await F(() => [KPCFt8Tab._knobOk({ khz: 14243, mode: 'USB' }), KPCFt8Tab._knobOk({ khz: 14090, mode: 'USB' }), KPCFt8Tab._knobOk({ khz: 14200, mode: 'DATA' }), KPCFt8Tab._knobOk({ khz: 14076, mode: 'CW' })]);
+  ok(r.join() === 'false,true,true,false', 'knob follow: voice frequency in USB no; 14.090 in USB yes (Icom reads USB-D as USB); DATA yes; CW no');
   console.log('FOX & HOUND');
   await F(() => { const h = document.getElementById('f8Hound'); h.checked = true; h.dispatchEvent(new Event('change')); }); await sleep(100);
   await F(() => KPCFt8Tab._feed(1010, [{ text: 'CQ VP8A FD86', db: -12, hz: 400 }, { text: 'Q4XYZ RR73; Q4OLD <VP8A> -15', db: -12, hz: 400 }])); await sleep(300);

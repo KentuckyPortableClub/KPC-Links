@@ -167,8 +167,13 @@
     try { const r = await KPCCat.read(); if (r && r.khz) LASTR = { khz: r.khz, mode: r.mode || '', t: Date.now() };
       /* Nov 19 2026 (app 0.9.9 rule): only a radio in a DATA mode moves FT8 / FT4's own dial; a voice / CW frequency is never taken over
          (it made the next CQ go out on 14.243 USB) */
-      if (r && r.khz && Math.abs(r.khz - dialK()) > 0.02 && Date.now() - tunedAt >= 4000 && (!/^FT[48]$/.test(S.mode) || /DATA|PKT|DIG|-D/i.test(r.mode || ''))) setDial(r.khz, true); } catch (e) {} }, 2500);
+      if (r && r.khz && Math.abs(r.khz - dialK()) > 0.02 && Date.now() - tunedAt >= 4000 && (!/^FT[48]$/.test(S.mode) || knobOk(r))) setDial(r.khz, true); } catch (e) {} }, 2500);
   let LASTR = { khz: 0, mode: '', t: 0 };
+  /* Fable review Nov 19: an Icom reads back plain 'USB' in USB-D, and some run FT8 in USB, so 'DATA mode only' would have stopped the
+     knob follow for them. Rule: a DATA mode always counts; USB / LSB / unknown counts only within 25 kHz of this mode's usual dial on
+     that band (covers DXpedition FT8 dials, never a voice frequency); CW / FM / AM never. */
+  function knobOk(r) { const m = String(r.mode || '').toUpperCase(); if (/DATA|PKT|DIG|-D/.test(m)) return true; if (/CW|FM|AM/.test(m)) return false;
+    const b = bandOfK(r.khz), std = b && (DIAL[S.mode] || {})[b]; return !!std && Math.abs(r.khz - std) <= 25; }
   /* the radio is known (a reading in the last 10 s, after our own tune settled) to be more than 1.5 kHz off this mode's dial */
   function offDial() { return /^FT[48]$/.test(S.mode) && LASTR.khz > 0 && Date.now() - LASTR.t < 10000 && Date.now() - tunedAt > 4000 && Math.abs(LASTR.khz - dialK()) > 1.5; }
   function setMode(m) { if (/^(PSK31|WSPR)$/.test(m)) m = 'FT8'; if (m === S.mode) return; S.mode = m; saveS(); bandOpts(); showDial(); radioTune(); resetEng(); gen(); slotSep(true); modeView(); }
@@ -959,7 +964,7 @@
     _wedge: () => { lastPass = nowS() - 100; lastN12 = -1; wdT = 0; }, _restarts: () => RESTARTS, _quiet: n => { quietSlots = n; wdSaid = 0; lastN12 = -1; wdT = 0; }, _hl: (x, hl) => { if (hl) S.hl = hl; spotHl.t = 0; qsHl.t = 0; return hlOf(x, /^(POTA|SOTA|WWFF)$/.test(x.cqw || '')); },
     _autoTest: hz => { const W = wf.width; if (!avgV || avgV.length !== W) avgV = new Float32Array(W).fill(-90); const a = Math.round(hzToX(hz - 25)), b = Math.round(hzToX(hz + 25)); for (let i = a; i <= b; i++) avgV[i] = -40; const before = S.txHz; autoSpotTick(); return { moved: S.txHz !== before, to: S.txHz }; },
     /* decoded lines made up for slot sl, then the same steps a real pass takes (lists, QSO box, sequencer) */
-    _held: () => HELD, _offDial: () => offDial(), _lastR: (khz, mode) => { LASTR = { khz, mode: mode || '', t: Date.now() }; tunedAt = 0; }, _foxes: () => Object.assign({}, FOXES),
+    _held: () => HELD, _knobOk: r => knobOk(r), _offDial: () => offDial(), _lastR: (khz, mode) => { LASTR = { khz, mode: mode || '', t: Date.now() }; tunedAt = 0; }, _foxes: () => Object.assign({}, FOXES),
     _feed: (sl, list) => { const me = myCall(), start = sl * slotLen(); LINES.push({ sep: sl, t: start, mode: S.mode }); for (const d of list) {
         const fx = /^(\S+) RR73; (\S+) <([^>]+)> ([+-]\d\d)$/.exec(d.text);   /* Nov 19: the Fox's two-in-one message, as the real pass reads it */
         if (fx) { const a = clean(fx[1]), b = clean(fx[2]), fox = clean(fx[3]); FOXES[fox] = Date.now(); LINES.push({ t: start, sl, par: sl % 2, db: d.db == null ? -10 : d.db, dt: 0.2, hz: d.hz || 1200, text: d.text, cq: false, cqw: '', to: me && a === me ? a : b, fr: QS.hound && QS.dx && (a === me || b === me) ? QS.dx : fox, me: !!me && (a === me || b === me), grid: '', fox: 1, fc: fox, dxa: a, dxb: b, dxr: fx[4] }); continue; }
