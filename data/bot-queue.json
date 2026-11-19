@@ -1,7 +1,8 @@
 {
  "note": "Boundary bot queue (Brandon Oct 20: 'set the bots up on a schedule to finish and start another run'; Oct 23: 'keep the mapping etc bots working on kpc trip planner'). Every hour kpc-bot-queue.yml starts the first job whose 'next' has come, when no boundary bot is running; a job with 'every' (days) goes to the back with its next date, so the US / Canada / world outline lists keep refreshing on a rotation. Stops after 'until'.",
  "until": "2027-06-30T00:00:00Z",
- "jobs": [
+ "jobs": [],
+ "paused_jobs": [
   {
    "wf": "kpc-us-key.yml",
    "inputs": {
@@ -82,5 +83,6 @@
    "every": 14,
    "next": "2026-12-03T16:32+00:00"
   }
- ]
+ ],
+ "paused_why": "Brandon 19 Nov 10:50 AM: 'we dont need constant key refreshed we have fable make plans to fix'. All nine key refreshes (US x7, Canada, world) parked here, untouched; the queue reads only 'jobs', so it now says 'nothing to do'. To bring one back, move it into 'jobs'. Fable plans the fixes instead (key-quality.md section 19 item 25; the parked keeper plan in notes/layer-refresh.md)."
 }

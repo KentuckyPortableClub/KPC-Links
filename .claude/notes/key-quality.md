@@ -940,3 +940,9 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      today: CT ID ME ND OH TN WV). Its "save new live reads to the saved outlines" step can change the shapes the fact check measured
      (item 13: nothing re-read before the release sign-off). Suggest pausing the queue's kpc-us-key jobs (move their `next` past the
      release) until the release is signed off. Not done: not asked.
+25. **KEY REFRESHES OFF THE BOT QUEUE (Opus, 19 Nov 10:55 AM CST; Brandon 10:50 AM: "Yeah we dont need constant key refreshed we have fable
+   make plans to fix").** All nine queue jobs (US key x7 groups, Canada, world) moved from `jobs` to `paused_jobs` in `data/bot-queue.json`,
+   untouched; the queue now says "nothing to do" (tested). To bring one back, move it into `jobs`. The run it started at 16:32 UTC
+   (44567326912: CT ID ME ND OH TN WV + held states) was left to finish; its drop guard holds what it should. **FOR FABLE:** plan the fixes
+   in place of blind refreshes: which layers need a re-read and when (the keeper's change check, notes/layer-refresh.md, parked plan R-LR1..4),
+   after the release sign-off, one by-hand run per batch of fixes.
