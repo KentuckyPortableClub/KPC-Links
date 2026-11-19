@@ -1053,3 +1053,26 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **OPUS'S ORDER NOW (fresh chat: "Read CLAUDE.md and key-quality.md section 19, do item 27's order"):** (a) hand-off 04, zip to
      Brandon; (b) read #284, mark ready, merge (no key run in flight); (c) R-FJ1's PR as item 26 says, ONE packet run MT, stamp,
      merge, then MT off `stop`; (d) wait for Brandon's yes per state, then item 26 (c). No release run before that.
+28. **WHAT IS KNOWN ABOUT THE 11 WAITING STATES (Fable, 19 Nov noon; Brandon 11:52 AM: "The 11 states i dont have enough information to
+   make them calls do you?"). Answer given: for 4 yes, for 6 not yet, Montana locked.** File: tools-out
+   `fable-sitting-4/shrinks-47-what-is-known.csv`.
+   - 48 outlines become pins (the safe direction: a pin claims nothing). **The risk is the 47 parks that keep an outline but lose a
+     fifth or more** (both Montana faults hid there). Against the agencies' own tables on file (kit C, ONE pass): 6 match within
+     about 1% (Glacier Bay N Preserve, Aniakchak NM + Preserve, Bitterroot NF's Montana part, Big Hole NB, Big Lake NWR); 4 are one
+     state's piece of a unit that crosses state lines (Yellowstone, Bighorn Canyon, Hovenweep, Fort Union); **9 refuges come out at
+     17-70% of the FWS total** (MT: Charles M. Russell, UL Bend, Red Rock Lakes, Lake Mason, Hailstone, Black Coulee; VA: Rappahannock
+     River Valley, Mason Neck; FL: Crystal River): the FWS total counts easements and other agencies' land, so it is no clean test;
+     1 is Custer Gallatin; **27 have NO official figure on file** (AR 9, FL 7, MT 3, DE 2, UT 2, VA 2, WY 1, AK 1).
+   - Only 158 of the 2,430 outlines in these states carry a clean official acre figure. The fact check's "verified" = pin, name, kind
+     and agency agree; it does NOT check size (Custer Gallatin stayed "verified"). Sitting 3's "12 pass" meant no unexplained lost
+     outline and no new hard flag, nothing more. The 18 Nov bar (Q2) is not yet measured on these files.
+   - R-PP1a in Alaska lands on the Park Service's own federal acres: Gates of the Arctic 7,279,313 (NPS 7,359,810), Katmai 3,624,170
+     (3,611,564), Lake Clark 2,487,856 (2,481,441).
+   - **Fable's call, for Brandon to say yes or no to: READY = RI and NC (outlines to pins only; NC also two trails to their line),
+     GA (4 pins, 5 trims of 3-11%), AK. WAIT for official sizes = WY 1, DE 2, UT 2, AR 9, FL 7 + 1 refuge, VA 2 + 2 refuges. LOCKED = MT.**
+   - **HAND-OFF 04 CHANGES: a new job goes FIRST, before item 27's A-E.** Job F: the official acres of the 27 "NO FIGURE" parks (the
+     agency's own page or table, quoted), and for the 9 refuges the acres BY KIND (owned in fee / easement / another agency's land),
+     which replaces job D's four. A shrink passes when the outline is between 0.8x and 1.25x of the figure both passes agree on;
+     anything outside goes to Fable. That table is what the yes for the six waiting states rests on.
+   - A yes for some states needs no extra run when the next key start rebuilds them anyway: Opus writes the list for the states he
+     names (`approve`, his words as decided_by) and checks which start will build them; else ONE by-hand run.
