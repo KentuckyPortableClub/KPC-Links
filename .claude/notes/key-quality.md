@@ -666,4 +666,24 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    gets its layer entry (`data/state-gis.json` is a rule file: draft PR, Fable reads it); (c) test exactly as on 19 Nov:
    `python3 tools/kpc_pc_helper.py --list --needs <the list>` must show those layers, busiest first; (d) only then Brandon gets ONE
    line to run. He checks it himself with `python tools\kpc_pc_helper.py --list`.
-
+17. **OPUS, ITEM 14's ORDER DONE (19 Nov ~9 AM CST; fresh chat, starter line of item 11).**
+   - **(a) FACT CHECK of run 44528656941 (rules 7c6e01e1bc2b): DONE, table to Brandon.** OLD = published key 8140d35, NEW = main d5ae6ad3
+     (37 saved) + release `key-held` (13 held); same shapes (boundary-cache unchanged since 18 Nov) and parkinfo/truth (unchanged since
+     c4415276). Outlines 11,715 -> 11,591, verified 8,304 -> 8,366, flagged 549 -> 386, SHARED 278 -> 116, OTHER_PARK 44 -> 15. Lost 126:
+     planned 125 (Q1 88, contest 18 incl. 2 exact-name, D4 15, D3 4, park-preserve 0), `reviewed-approx` rows left 0. Held states:
+     PASS AK AR DE GA MT NC RI UT VA WY; **STOP for Fable: FL + ID** (Rotenberger, Three Lakes, Bitterroot: SIZE_BIG on the SAME records;
+     the published key had no `ac`, the run measured the union) **and OR** (Tillamook US-5461: Q1 took the approximate 627,317-acre record,
+     the 21-acre one left is 40.3 km from the pin and held by the 5 Nov 15 km rule -> pin; the offline forecast lacked that rule). The 37
+     saved states: nothing unexplained; their new PIN_FAR (NV, OK, WA) are in the forecast. Gold on NEW: TUNE wrong land 8 -> 2, too big
+     9 -> 0, missing pieces 19 -> 29; SEALED 12: 0/0/0. Files: tools-out `key-quality/2026-11-19/factcheck-run-44528656941/` (README = the
+     table + STOP list). The release run must NOT be a rerun to look: it waits for Fable's STOP reading and Brandon's yes per state.
+   - **(b) #277 MERGED** (d19083c4, squash; no key run in flight; no small run, item 1).
+   - **(c) #278 ROUND 2 READY FOR FABLE** (299d354b, rebased on main; US 7c6e01e1bc2b -> **90b7fc0a1d2c**): R-PP1a pin exception
+     (`preserve_apart(..., P=P)`, the build's own `inside()`; a 0,0 pin is no pin; kept rows named once in a notice as a person's question):
+     real pins tested: Wrangell-St. Elias + Craters of the Moon KEEP the preserve, Katmai / Lake Clark / Gates of the Arctic move. Owner's
+     line in changelog + scope (`check_hash_pair` OK); Colorado named in the scope `why`. Florida: ONE measure run **44548425526** on the
+     branch, 13 scope states, commit off: read its notices in the Fable sitting. Round 1's `ac2ab4c` (03A's acceptance figures) is still
+     reachable by SHA (a tag push is blocked from the chat box).
+   - **(d) 03B kit: Fable's** (tools-out `handoff-03/`), nothing for Opus.
+   - **NEXT: ONE Fable sitting** (#278 round 2 + run 44548425526's notices, the table's STOP list, T1 run 2), then Brandon's yes per state ->
+     KPC_DROP_OK -> ONE release run (Q1, held states, NPS, #277, R-PP1a), then kit D, then the step 3 PR.
