@@ -2347,6 +2347,26 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Lake Charles State Park' (chat 11; applied by kpc_key_answers)"
   },
+  "US-1092": {
+   "fp": {
+    "sgarb19": [
+     "Lake Fort Smith State Park",
+     257
+    ]
+   },
+   "join": [
+    "sgarb19"
+   ],
+   "when": "2026-11-19",
+   "why": "2026-11-02 12:49: layers row YES 'Lake Fort Smith State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb19 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli) · 2026-11-19 evidence batch 03a: that NO is LIFTED. On 2 Nov the record sgarb19 held 1,613 acres (wrong land); in the 19 Nov saved shapes it holds 257 acres, the park's own size in the Arkansas State Parks layer (256.69), and both outside-agent passes of hand-off 04 say it IS the park (key-quality.md section 19 items 32, 34)",
+   "decided_by": "evidence batch 03a (Opus, 19 Nov; hand-off 04 job A, both passes YES; the owner's standing rule 1:56 PM)",
+   "evidence": {
+    "who": "outside research agent, two separate passes of hand-off 04 (job A, items A1-16 and A2-16), both YES",
+    "source": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0 (Arkansas State Parks StateParks layer, park_num PT27, last edited 2026-01-10); https://www.arkansas.com/state-parks/explore/parks/lake-fort-smith-state-park",
+    "saw": "layer record 'Lake Fort Smith State Park' (PT27) acres 256.685746; our record sgarb19 'Lake Fort Smith State Park' 257 ac. The park page gives no park acreage.",
+    "date": "2026-11-19"
+   }
+  },
   "US-1095": {
    "fp": {
     "sgarb31": [
