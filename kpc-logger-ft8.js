@@ -750,7 +750,11 @@
   $('f8Dx').onchange = () => { QS.dx = clean($('f8Dx').value); QS.logged = false; QS.state = 'call'; gen(); };
   $('f8DxG').oninput = e => { e.target.value = e.target.value.toUpperCase(); };
   $('f8Rpt').onchange = () => { QS.rs = $('f8Rpt').value.trim(); gen(); };
-  function halt(why, soft) { if (!soft) HELD = true; TXON = false; NOWTX = false; if (TXING) stopTx(); chk(); stat(); if (why) note(why, 2500); }
+  function halt(why, soft) { if (!soft) HELD = true; TXON = false; NOWTX = false;
+    /* Fable review Nov 19: a contact is now logged when the RR73 / 73 has gone out to the end, so say it when a stop cuts that message short */
+    const cut = TXING && !TUNE && (QS.next === 4 || QS.next === 5) && QS.dx && !QS.logged && (QS.next === 4 || QS.rr) ? QS.dx : '';
+    if (TXING) stopTx(); chk(); stat();
+    if (cut) note(`${why ? why + ' ' : ''}⚠️ ${cut} was NOT logged: your last message was cut short. If the contact was good, log it by hand.`, 9000); else if (why) note(why, 2500); }
   $('f8Tune').onclick = async () => { if (TXING && TUNE) { stopTx(); return; }
     /* Android: TUNE without START = the mic is never opened (same as playing a video). Test for low power (Brandon Oct 18) */
     if (!RUN && mediaOut()) { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); try { await AC.resume(); } catch (e) {} startTone(); note('TUNE with the mic closed (not listening).', 3000); return; }
