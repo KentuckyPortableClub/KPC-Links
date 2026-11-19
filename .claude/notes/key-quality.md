@@ -1188,3 +1188,70 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      be missing some".** For Fable's fix plan (item 26): a layer-completeness gate before any key build: build a state only when its
      layers are present and not short (the master check's short-copy test, the keeper's asks); otherwise wait and say which are missing.
      The release run itself goes ahead on today's saved shapes (the fact check measured those).
+36. **FABLE'S SITTING 5: HAND-OFF 05 (HELPER BOT), #286 / #287 / #288 MERGED, GOLD, JOB A, THE 11 STATES RELEASED (19 Nov ~2:10-3:10 PM CST;
+   Brandon 2:08 PM: "make me a handful for my other agent to build the helper bot ... make it the work horse it could be" then the
+   sitting; 2:15 PM: "accurate and reliable and very efficient in our time...bots, schedules, out side resources, other agents, my pc,
+   build tools I can run on my pc or you all start and come back later and fetch it"; 2:26 PM: "would it be smart if the tool i use on
+   the pc that prematches parks and pulls data made a list for the bot ... or the keeper made the list? ... should the bot screen shot
+   what it thinks are maps etc on the weblinks if it cant download it?").**
+   - **HAND-OFF 05, the PARK PAGE READER** (tools-out `key-quality/2026-11-19/handoff-05/`, zip sent to Brandon): KPC-Data
+     `kpc_park_pages.py` in four parts (reader + facts file; worklist + by-hand workflow + summary; PC runner + person page + intake;
+     blind two-pass kits). Four laws: reports never decides; silent beats wrong (every fact has its address and quote); fetches only
+     through `kpc_manners`; nobody feeds it. Rule sheet R-PR1 to R-PR13 (own page, name, kind words + combined unit +
+     `pota_numbers_part`, inside-of, labelled sizes, coordinates, address roles, maps + tracts, facts in an address, refusals, unsure,
+     what people see, map pictures). 30 known answers from today (six "& Preserve" heroes, Red Cliffs fixture, Laurel, McGinnis,
+     agency-home and unofficial links). **Both owner points are in it:** (a) LIST DROPS: the keeper, the key run and his PC pre-match
+     tool drop a small list on `intake-files:park-pages/lists/`, the reader picks lists up itself and writes answers back
+     (`lists-done/`); the club wires its tools to write that shape (chat 10 / Opus, after part 2); (b) MAP PICTURES (R-PR13): yes in a
+     browser run, only where the site let the page be read, only for a park still in question, one small JPEG in the run's output,
+     deleted when answered, never traced. **Fable's defaults, his to overrule:** G-PR1 a refusal holds on every machine (the PC run
+     never asks a host that said no); G-PR2 no key rule reads these facts until a block shows 95 in 100 right and a reviewed rule
+     change says so; G-PR3 schedule off until his GO; G-PR4 pictures stay in the run's output, never a branch or the site.
+   - **#286 R-PP1b: REVIEWED, MERGED (0e133c9f). Main's US rules hash = c64b8ace0411.** Two code lines read; packet pr-286-de445ba and
+     a combined Alaska test build both show exactly US-0022, US-0026, US-0044, US-0048 gaining their preserve record. The published
+     key has NO other park kept apart by R-PP1 except Great Sand Dunes (US-0033 / US-8295; stays apart), so the 13 declared states
+     change in Alaska only. **Gold: US-0022 record 3300 NO -> YES, graded 'adjudicated'** (tools-out d64e81a1 + ed00b051); no other
+     gold answer conflicts with today's rulings (US-6077 keeps the SRMA as YES and the 873-ac site as NO).
+   - **#287 Lake Fort Smith: REVIEWED, MERGED (d330a7b9).** sgarb19 = the state parks layer's own record, 256.69 ac, pin inside.
+   - **#288: Red Cliffs RIGHT; LAUREL WAS ONE RECORD SHORT.** DNREC's map (north to the left, the state line down the right edge)
+     shows FOUR parcels in three named tracts and the layer has four 'Industrial Forest Lands - Laurel Complex' records: sgdec38 +
+     sgdec21 = Whitesville Tract (two parcels), sgdec69 = Edwin Bell Tract (the pin), **sgdec25 (285 ac) = Ralph's Corner, added**:
+     Laurel = 1,378 ac. **Batch 03c added in the same change:** US-12918 Seven Sisters State Fish and Wildlife Area = FWP's 7.8-acre
+     fishing access site (POTA's own link), NO to the 1,554-ac WMA records it held (the one gold park still on wrong land, known
+     since 18 Nov); US-12646 (the WMA) NO to the site's records. Rebuilt on main after #287 (the two changes clashed on the parts
+     fingerprint lines), test builds DE / UT / MT: only US-12938, US-6063, US-12918, US-12646 change. **MERGED (bc5cac43).**
+   - **JOB A, the three rows settled:** Buck's Pocket AL US-1035, record 256239 (669 ac) = **PART** (the park is 2,000 acres:
+     Encyclopedia of Alabama); the NO stays. Deep River State Trail NC US-12717, 214825 (1,669 ac) = **PART**: an older copy; the
+     park already holds the state's own record (sgnca3303, 2,433 ac; NC Parks listed 1,274 ac in 2011, 1,277 in 2019 and has added
+     land every year since); the NO stays, nothing changes. Chatfield Hollow CT US-1656, sgcta4113 (399 ac) = **YES** (the park is
+     412 acres): the NO is lifted in batch 03 (17 YES now).
+   - **THE RELEASE CALL (owner's standing rule, item 34): ALL 11 RELEASED: AK AR DE FL GA MT NC RI UT VA WY.** What was read:
+     (1) the guard's own list of run 44600381160 (20:25 UTC): **50 parks** lose their outline or official grade, every one by a
+     planned rule (Q1 20, contest 14 incl. 2 exact-name, D4 9, D7 4 [outline stays, labelled approximate], D3 3); 0 unexplained.
+     (2) the 20:25 would-be files equal the 17:16 files hand-off 04 measured, but for US-4501 / US-4502 (fixed) and the Alaska
+     preserves (R-PP1b). (3) the 47 real shrinks: job F's 36 (19 pass by machine; the 9 refuges re-added by hand from both passes'
+     FWS Table 3 rows: land under FWS's own jurisdiction 0.87-1.07 of the outline; 2 Florida forests on the FFS layer; Deep Creek
+     North; Beaverhead Rock one witness; McGinnis by the owner's map; Lake Fort Smith and Red Cliffs FIXED), 6 on agency tables, 4
+     pieces of units across state lines, Custer Gallatin fixed. (4) the 29 gold parks of these states: wrong land or too big 9 on
+     today's map -> 0 after this release (Seven Sisters was the last); right 18 -> 17; pins 2 -> 12. **Five of those pins have a
+     known right record: 2 heritage areas (D3, the owner's rule) and US-7348 Longview Saline WMA (AR), US-6744 Terra Ceia Frog Creek
+     (FL), US-6045 Swasey Mountain HMA (UT): batch 03.** NOT proven and said so to Brandon: the 18 Nov bar "under 1% wrong land" on a
+     RANDOM sample (kit D, after the release) and "none wrong in the 25 busiest per state" as its own measure. Every CHANGE was
+     checked; unchanged outlines are the ones on today's map.
+   - **DONE BY FABLE:** list `.github/key-drop-approved.json` = the 50 parks by name (98ea4752, decided_by = the standing rule);
+     **ONE release run 44613348117 started 20:54 UTC**, states the 11. It will build about 22 states: #286's scope declares 13
+     (AK AL CA CO FL ID KS LA NM NV OR TX WV) and a rules change builds declared + not-yet-green states whatever the states input
+     says. A state outside the 11 that loses anything is held by the guard (red, nothing bad saved).
+   - **LESSON (test builds):** a local build differs from the bot's held file by the workflow's AFTER-build holds (Noatak 16 km
+     hold, White Mountains "not signed", 4 Utah, 2 Arkansas rows). Compare local base to local head, never local to the bot's file.
+   - **THE CRON REDS:** the two daily starts rebuild every not-yet-green state, so the 11 held states made a red run (an email) at
+     18:22 and 19:38 UTC today. The release ends that. Next time a state is held on purpose, park it in the scope or pause the
+     starts (Opus, with the layer gate below).
+   - **NEXT, Opus (one short session, when Brandon says "check the release run"):** (a) read run 44613348117: `gh api
+     repos/KentuckyPortableClub/KPC-Links/actions/jobs/<join job>/logs` and grep "Drop guard": the 11 must be "let through by
+     the named-parks list"; a held state = STOP, tell Fable; (b) ONE packet-bot `run` mode run (old = c556310c, the published key
+     before the release) and read it: Laurel 1,378 ac, Red Cliffs 873, Lake Fort Smith 257, Seven Sisters 8, the four Alaska
+     parks whole; (c) EMPTY `states` in key-drop-approved.json (the guard test's last check fails until then, by design); (d)
+     evidence batch 03 (17 wrong NOs + the three gold-YES pins above + check AL sgala2's shape against 2,000 ac), draft for Fable;
+     (e) kit D (random sample of the released files): the first real measure of the 1% bar; (f) the layer-completeness gate
+     (item 35) and R-NET1's code; (g) wire the keeper + key run to write list drops once hand-off 05 part 2 is merged.
