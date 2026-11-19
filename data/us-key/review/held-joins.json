@@ -24,7 +24,7 @@
    "was_g": "official",
    "held_ids": "2165",
    "held_names": "",
-   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km))))))))))))))",
+   "reason": "not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: not signed in overrides.json; the previous key had it out (2165: held: the nearest part of the joined outline is 23.2 km from the POTA pin (over 15 km)))))))))))))))",
    "decided_by": "Brandon standing rule 2026-11-05 verify-then-fix",
    "to_keep_it": "a person adds the id to the park's signed overrides.json 'join'"
   },
@@ -426,21 +426,15 @@
   }
  ],
  "kept_from_main": [
-  "US-AK",
   "US-AL",
-  "US-AR",
   "US-CA",
   "US-CO",
   "US-DC",
-  "US-DE",
-  "US-FL",
-  "US-GA",
   "US-IL",
   "US-KS",
   "US-MA",
   "US-ME",
   "US-MO",
-  "US-MT",
   "US-NH",
   "US-NV",
   "US-NY",
@@ -448,11 +442,8 @@
   "US-OK",
   "US-OR",
   "US-PA",
-  "US-RI",
   "US-TX",
-  "US-UT",
   "US-WA",
-  "US-WI",
-  "US-WY"
+  "US-WI"
  ]
 }
