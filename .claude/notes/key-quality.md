@@ -881,3 +881,15 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      columns of item 20 (shrinks 20%+, new land 100+ ac). Then Brandon's yes per state on his page -> the list -> ONE release run
      (Q1, held states, NPS, #277, R-PP1a, batch 02). Nothing is released before that. After the release: `measured_ac`, the Idaho
      ownership layer filter, R-NET1's code, the hand downloads both passes agree on, kit D.
+22. **KPC-Data #124 MERGED + THE ONE ACCEPTANCE RUN STARTED (Fable, 19 Nov 10:16 AM CST; Brandon 10:13 AM relayed the agent: "ready for
+   a club session to review and merge ... first run should be pull request 278 at the two hand-off commits, for AK, ID, and CO").**
+   - Third read (e15a873): no job asks for an `actions` permission; the shapes download is its own signed-in step; the builds run
+     with `env -u GH_TOKEN -u GITHUB_TOKEN`; tests ALL PASS; no repeated key. Squash-merged as KPC-Data **59465a7c**.
+   - **Run 44564132024** (KPC-Data `kpc-key-review-packet.yml`, by hand: pr 278, new ac2ab4c8, old 8140d35e, states AK ID CO). NOT
+     polled. Read next: tools-out `key-quality/review-packets/pr-278-ac2ab4c/summary.md` against
+     `handoff-03/A-build-review-packet-bot/reference/`. Expected: AK four parks (US-0026, US-0044, US-0048, US-0069), ID US-0665
+     verified -> flagged 22.7 km, CO 0 of 276 with the 2-record R-PP1 notice, gold the same both sides. No packet = read the job log
+     (`gh api repos/KentuckyPortableClub/KPC-Data/actions/jobs/<job id>/logs`), do not rerun to look.
+   - The red run 44550258133 (9:02 AM, push) was the agent's FIRST version: its workflow file was invalid (the repeated key), so
+     GitHub failed it on the push. Nothing ran. The later pushes made no run.
+   - Part 2 (`run` mode) waits for this packet to be read; Brandon starts the agent on it then.
