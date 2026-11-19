@@ -946,3 +946,83 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    (44567326912: CT ID ME ND OH TN WV + held states) was left to finish; its drop guard holds what it should. **FOR FABLE:** plan the fixes
    in place of blind refreshes: which layers need a re-read and when (the keeper's change check, notes/layer-refresh.md, parked plan R-LR1..4),
    after the release sign-off, one by-hand run per batch of fixes.
+26. **FABLE'S SITTING 4 (19 Nov 10:55 AM - 11:50 AM CST; Brandon 10:52 AM: "Fable your turn"; asked: review #281, rule on the Custer
+   Gallatin far join, plan the fixes in place of refreshes). Files: tools-out `key-quality/2026-11-19/fable-sitting-4/` (README).**
+   - **IDAHO AND OREGON WERE SAVED TO MAIN WITHOUT THE OWNER'S YES (run US-44567326912, bot queue start 16:32 UTC, commit 00d65a98,
+     17:16 UTC).** The drop guard's count is NET. Evidence batch 01 (#277) gave back Milner (ID), Topsy and Bear Gulch (OR), Nez Perce is
+     new in OR, so official 174 -> 174 and 344 -> 345 read as "no drop" while ID lost 3 outlines (US-2239, US-2240, US-2250, D4 lakes) +
+     one grade (US-11530) and OR lost 9 (Tillamook SF US-5461 among them). Every one is on the fact check's list and both states were
+     CLEARED in sitting 3; only the key files moved (data/outlines is not saved in a red run), but the site's tools read the key files.
+     Item 19.2's "nothing reaches the map until Brandon says yes" was WRONG for this reason. **Brandon decides: leave ID and OR as they
+     are (recommended: cleared, all planned) or put the two files back (`git show 00d65a98~1:data/us-key/US-ID.json`, tracts, index rows).**
+     With Flathead fixed, Montana's count would have read 242 -> 242: the old guard would have saved Montana with Custer Gallatin cut.
+   - **#281 THE DROP GUARD: REVIEWED, CHANGED, MERGED (3b033da6).** Not a rule file. Now: (1) NEVER WORSE IS JUDGED PARK BY PARK at
+     limit 0: a park that lost its outline or its official grade holds its state unless the owner named it; a gain elsewhere never
+     offsets it; (2) the list `.github/key-drop-approved.json` (state -> parks, decided_by) lets a state through only when every such
+     park is named; KPC_DROP_OK cannot override a list; (3) **`stop`: a state held whatever its list says. MONTANA IS ON IT** (take it
+     off only when R-FJ1 and its answer are merged); (4) the outline file follows the save's own rule (pin / in-no-key outlines left
+     out on purpose are no loss: as first written it would have held ID, MT, UT after a yes); (5) `approve --lost lost.json
+     grade-drops.json --states ... --decided-by ...` (refuses a stopped state). Proof: replay of that run's own files (main's guard 11
+     held, this one 13 with the parks named); rehearsal on run 44528656941's files: full list = all 13 through, one park off = held.
+     The guard's lost count equals lost.json in all 13 states (63 = 63).
+   - **SIX PARKS KEEP THE SAME OUTLINE BUT GET THE "APPROXIMATE" LABEL (D7 "only a copy"; not on any table until now):** MT US-4502
+     Flathead NF (190 act), US-11215 Bear Paw Battlefield, US-12630 Upper Missouri WSR; VA US-9899 Fort Hunt (106), US-9937 Meadowood
+     (96); ID US-11530 Hells Canyon Reservoir (saved today). `grade-drops.json`; they go on Brandon's list with the lost outlines.
+   - **FLATHEAD NF US-4502: A SAVED "NO" WAS WRONG = draft #284 (evidence batch 02a, answers only, no hash).** A 2 Nov chat NO ("pattern
+     OUTSIDE/FAR", no evidence) kept PAD-US 2658 'Flathead National Forest' (USFS fee, 2,414,171 ac) off the park; the Forest Service's
+     report says 2,414,170.7 NFS acres. The copy drawn today (sgmtd744, 2,649,452) is the gross boundary (report 2,650,379). #284 joins
+     2658 with fingerprint + evidence and drops the NO; Montana test build: exactly ONE park changes (approximate on the copy ->
+     official on 2658). Fable APPROVES on the facts; Opus reads it and merges (Montana is on STOP, so no release can ride on it).
+     **"Blocks only remove" (section 5) is not safe:** a NO on the agency's own record leaves the worse copy drawn.
+   - **#278 R-PP1a ROUND 3: STAMPED AND MERGED (20ad4c19; main's US rules = ee2b6f1e9673).** The measure run 44567629638 never ran (a
+     scheduled boundary check took its place in the key lock's line and GitHub cancelled it). Checked by Fable's own builds instead (AK, CO, ID;
+     main against the PR; KPC_KEY_REMATCH_IDS=1): AK exactly US-0026 / US-0044 / US-0048 lose the preserve record, US-0069 kept as a
+     question; CO 0 of 276 change, no question; ID 0 change, US-0665 a question; 0 outlines lost. **`kpc-key-measure.yml` does NOT set
+     KPC_KEY_REMATCH_IDS:** it prints a rule's notices but carries saved ids, so its keys show 0 change for parks joined already. For a
+     rule PR use the review packet bot (KPC-Data `kpc-key-review-packet.yml`), never the measure run.
+   - **RULE SHEET R-FJ1, A FAR JOIN BY A PERSON'S EVIDENCE (Fable draft; NOT IN FORCE: waits for the owner's yes).** Why: a saved join
+     takes a record only within 0.6 degrees of the box round POTA's pin; Custer Gallatin's pin is at the east end, the Gallatin record
+     (2660, 1,850,408 ac; report 1,850,468) 3.5 degrees west.
+     1. Counts: the answer names the record by its exact id in `join` AND in a new list `far`; it carries `decided_by` and `evidence`
+        (who, source, saw, date); the record read today still fits the saved fingerprint (same name, acres within 10% or 20 ac). The
+        row is a person's join ('reviewed').
+     2. Does not: a join by name; an id that is gone and found again by fingerprint (that search stays near the pin); no evidence or
+        no fingerprint; a record on the park's NO list; an `approx` answer (Q1 keeps it a pin).
+     3. Sources: the managing agency's own record + its published acres (Forest Service Land Areas Report; NPS and FWS acre reports).
+     4. Unsure (name or acres no longer fit): no join, one check row "check (R-FJ1): the far record no longer fits its saved name or acres".
+     5. People see the outline as any person's join; the run prints once per state "R-FJ1 far joins by a person's evidence: <park> <id> <name>".
+     6. Examples: US-4501 + 2660 joins; the same answer without `far` = today (nothing); `far` id now under another name = check;
+        `far` without evidence = ignored + warning; a NAME in `far` = ignored; Ouachita NF in Oklahoma US-4424 + 3001 would join
+        (batch 03); Pine Island SP -> 'Pine Island' (1 Nov) has no evidence answer = G-1 as today.
+     **Stamp agreed ahead (no new sitting) if exactly:** switch KPC_FAR_JOIN default ON; the join-path change; its test (the six
+     examples); scope US-MT; changelog "APPROVED, decided_by KPC owner" with his words; ONE answer: US-4501 gains join 2660 + fp +
+     `far` + evidence (the text of b913a01). ONE packet run, states MT, against main with #284 in: parks changed = US-4501 only
+     (2652 name + 2660 reviewed, about 2,966,156 ac, sgmtd1213 still on check); switch OFF = 0 parks. Then Montana comes off `stop`.
+   - **TWO SWEEPS (no network; saved answers and each key's `nonum` list against POTA's names):** 35 of the 738 saved NOs sit on a
+     record with the park's OWN full name (Flathead is one; busiest: Delaware Seashore SP, Lake Dardanelle SP, Sandy Point SP, DeGray
+     Lake, Buck's Pocket, Seneca Creek, Meramec): a second look by the outside agent, two blind passes (official acres; is this
+     record the park). And **four forest halves in another state are a pin today** with the Forest Service's own record unjoined and
+     its acres equal to the report within 10: Ouachita NF in Oklahoma (797 act), Sawtooth NF in Utah (163), Umatilla NF in Washington
+     (120), Manti-La Sal NF in Colorado (111). EVIDENCE BATCH 03 under R-FJ1, AFTER the release (they add land, take none away).
+   - **ALSO SEEN:** 12 old outlines of parks the key already grades pin sit in today's outline files (Henrys Lake Airstrip US-7816 in two
+     state files, Willard Spur US-5779 ...); the first save that is not red drops them. The release run also takes about 63 planned
+     outlines off the map in the 37 saved states (their outline files were never saved): they are on Brandon's page under all 50 states.
+   - **THE PLAN IN PLACE OF KEY REFRESHES (Brandon 10:50 AM: "we dont need constant key refreshed we have fable make plans to fix").**
+     What is OFF: the bot queue's nine 14-day key jobs (item 25) and the two monthly blind cache jobs (already off). What stays: the two
+     nightly key starts (9:17 and 11:46 UTC), which build only states that new answers or a rule change touch, from the saved shapes.
+     A layer is re-read only for a NAMED reason, one by-hand run per batch, each batch fact-checked old against new by the packet bot:
+     1. BEFORE THE RELEASE (no layer re-read at all): #284; R-FJ1 on the owner's yes; the list from Brandon's page; ONE release run.
+     2. RIGHT AFTER (answers and rule files, no re-read): evidence batch 03 (the four forest halves); `measured_ac` never adds across
+        layers; the step 3 PR (dropped last word, `_keep`, same_land label); the bot job that writes the run's own table.
+     3. FIRST RE-READS, by hand, one batch each: (a) the Idaho USFS ownership layer with its owner-class filter (11 forests);
+        (b) R-NET1's code, then one cache run for the rows it opens (440 ArcGIS rows, ncnhde, USFS); (c) the 30 short layers and the
+        three suspect baselines (CO sgcoa, OR sgorf, WA sgorf: reads cut off at 200).
+     4. AFTER THAT a layer is re-read only when the keeper says it changed, or a person's row asks (notes/layer-refresh.md: built,
+        off; turn it on by hand, `from_requests`), plus R-LR1's 180-day rule. No blind rotation again.
+     5. Agents meanwhile (two blind passes each): the 35 saved NOs, the four refuges, the 63 pins busiest first, G-NPS1, kit D.
+   - **OPUS'S ORDER NOW (fresh chat: "Read CLAUDE.md and key-quality.md section 19, do item 26's order"):** (a) read #284, mark ready,
+     merge when no key run is in flight; (b) on Brandon's yes to R-FJ1: its PR exactly as the sheet says, ONE packet run MT, stamp as
+     agreed, merge, then take MT off `stop` in `.github/key-drop-approved.json`; (c) on Brandon's yes per state: `approve --lost
+     lost.json grade-drops.json` for the states he names with his words as decided_by, commit, ONE release run (check first that no key
+     run is in flight and none is queued in the kpc-us-key lock), then empty `states`; (d) item 20's bot-table columns go to the packet
+     bot's part 2 (the other Fable chat's PART-2-ADDITIONS). Not Opus's: R-FJ1's yes, the ID / OR choice, the yes per state.
