@@ -1257,3 +1257,24 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      (item 35) and R-NET1's code; (g) wire the keeper + key run to write list drops once hand-off 05 part 2 is merged.
    - Brandon's page ("Key Run Check, 19 Nov", slug 14b24a57-71d5-4f8c-87d2-a0c53b95a518) carries the release block at the top: version 1795121760-4655.
    - **CORRECTION (Fable, 3:00 PM, from the run's own plan): run 44613348117 builds ALL 50 states, not 22** ("0 reused, code hash c64b8ace0411": any rules change moves the code hash, so no state reuses its build; 3 jobs of about 69 minutes). The other 39 states were built green earlier today, so they should come out as they are on main; a state that loses anything is held by the guard (red, nothing bad saved). Read the run about 80 minutes after 20:54 UTC.
+37. **THE NOT-SURE LIST + BOTS WIRED THROUGH IT (Fable, 19 Nov 3:10-3:20 PM CST; Brandon 3:07 PM: "The system should do the work before and
+   leaves us less head scratching...my 2fer, us and world tools probably should be updated some point...and the shelfed 2fer rules pr at
+   somepoint we should get the agent to make us a draft and you review and have them edit it how you want ...also all these bots should
+   be wired together to share the load and help to solve mysteries in how ever you think....we should also keep a list of parks we mot
+   100% sold on and why").**
+   - **STARTED: the list.** tools-out `not-sure/not-sure-parks.json` + `.csv` + README, **104 rows**, one park + one doubt + the reason in
+     plain words: wrong likely 21 (17 wrong NOs of job A incl. Chatfield Hollow, 3 pins whose right record is known, Noatak held 16 km
+     from its pin), unsure 60 (the release's 50 named parks by rule, 5 cannot-tell, White Mountains, 4 classes), incomplete 16 (12 part
+     records, 4 cross-state forest halves), fairly sure 5 (Laurel placed from the map picture, Red Cliffs name against link, Seven
+     Sisters, Beaverhead Rock, Moro Big Pine), unchecked 2 (the unchanged outlines: kit D; Idaho + Oregon as saved).
+   - **THE WIRING = THAT LIST.** Hand-off 05 ADDENDUM 1 (in the zip, tools-out handoff-05/): `kpc_not_sure.py`, one shared list every bot
+     writes (park, doubt code, why, what would settle it) and every bot reads (the rows it can help with), `tried` notes with quotes, a
+     row closes only with who + how, nothing deleted; what no bot settles is what a person or agent gets. The page reader works open
+     rows first and may never settle one. The club wires the key run, fact check, size checker, drop guard, keeper to write rows after
+     the module is merged (chat 10 / Opus).
+   - **ORDER (so nothing is built twice):** (1) Opus reads the release run (item 36 NEXT); (2) the agent builds hand-off 05 parts 1-2 +
+     addendum; (3) the club's bots write rows; (4) **Brandon's PC tools (2-fer, US, world) are updated ONCE, then**, to write list
+     drops / rows and read the answers (he connects their folder to the chat that does it); (5) **the shelved 2-fer fixes**
+     (`fers-fix-later.md`): Fable writes hand-off 06 for the agent (draft PR, Fable reviews, the agent edits); the 7 owner questions
+     come first. Fresh Fable chat starter: "Read CLAUDE.md, key-quality.md section 19 items 36-37 and fers-fix-later.md: bring me the 7
+     questions, then write hand-off 06 (the shelved 2-fer fixes) for the outside agent."
