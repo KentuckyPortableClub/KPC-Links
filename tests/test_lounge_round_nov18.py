@@ -22,7 +22,7 @@ for p in FT8:
     if p in PUB:
         ok('kpc-logger-ft8.js?v=20261020d' in t and 'kpc-logger-ft8.js?' + NEW not in t, p + ': public page keeps kpc-logger-ft8.js?v=20261020d')
     else:
-        ok(re.search(r'kpc-logger-ft8\.js\?v=20261118[a-z]', t) is not None, p + ': kpc-logger-ft8.js?v=20261118a or newer')
+        ok(re.search(r'kpc-logger-ft8\.js\?v=202611(18|19)[a-z]', t) is not None, p + ': kpc-logger-ft8.js?v=20261118a or newer')
 for p in NR:
     t = rd(p); ok('kpc-nr.js?' + NEW in t and 'kpc-nr.js?v=20261107a' not in t, p + ': kpc-nr.js?' + NEW)
 # PSK31 and WSPR: not on the website

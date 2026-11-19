@@ -8,7 +8,7 @@ def ok(c, m):
     global fails; print(('PASS ' if c else 'FAIL ') + m); fails += 0 if c else 1
 rd = lambda p: open(p, encoding='utf-8').read()
 git = lambda *a: subprocess.run(['git', *a], capture_output=True, text=True).stdout
-NEW = 'v=20261118b'  # Nov 18 2026: stage 1 (20261118a), then the smooth waterfall (20261118b)
+NEW = 'v=20261119a'  # Nov 19 2026: Lounge round stage 2 (HELD, dial rule, Hound, ON AIR). Before: Nov 18 2026: stage 1 (20261118a), then the smooth waterfall (20261118b)
 VIP = ['kpc-hunt.html', 'kpc-hunt-need.html', 'kpc-beta-room.html', 'kpc-beta-need.html', 'kpc-logger.html', '.claude/build/hunt/main.html']
 PUB = ['kpc-hunters.html', 'kpc-hunters-need.html']
 for p in VIP:
