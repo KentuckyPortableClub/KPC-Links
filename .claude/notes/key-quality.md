@@ -893,3 +893,15 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - The red run 44550258133 (9:02 AM, push) was the agent's FIRST version: its workflow file was invalid (the repeated key), so
      GitHub failed it on the push. Nothing ran. The later pushes made no run.
    - Part 2 (`run` mode) waits for this packet to be read; Brandon starts the agent on it then.
+23. **R-NET1, THE ARCGIS LINE IS SETTLED BY THE OWNER'S OWN EYES (Fable, 19 Nov 10:25 AM CST; Brandon 10:23 AM, a screenshot of his
+   phone).** `https://services.arcgis.com/robots.txt` in his browser shows two words, **"Invalid URL"**: no robots file. That is the
+   third reading that says so (our bot 31 Oct: 403; agent 2 on 19 Nov: 403 "Invalid URL"; the owner 19 Nov 10:23 AM) against agent 1's
+   "User-agent: * / Disallow: /", which is withdrawn. So in the sheet (item 19): point 3's polite case stays as a principle but has NO
+   example today, and point 6 changes: **services*.arcgis.com = YES like any other site** when the bot's own live read of that host's
+   robots.txt gives no rules (an error page with no robots lines, or a 4xx other than 429), at the usual manners, and STOP that host
+   for the run on a 401 / 403 / 429 from the data; a hub.arcgis.com download that redirects there = YES when every hop passes. The four
+   conditions of item 20 and the two-readings line of item 21 stand. **Nothing changes before the release sign-off** (item 19: newly
+   readable layers change the shapes the fact check measured): the code comes after, then 440 of the 487 PC rows of the hand-download
+   list become BOT rows and one by-hand cache run reads them. The outside agents may open those hosts under the same manners (the
+   owner already told agent 2 so).
+   - Acceptance run 44564132024 at 10:23 AM: scope and the three builds (AK, CO, ID) finished green, the packet job was running. Not read yet.
