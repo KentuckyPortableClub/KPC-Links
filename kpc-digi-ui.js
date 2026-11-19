@@ -99,7 +99,7 @@
     $('dgCalls').innerHTML = calls.map(c => { const sp = H.spotRef(c), L = H.LG(), wk = L && L.worked && L.worked(c); return `<button type="button" data-dgc="${esc(c)}" class="${sp ? 'park' : ''}${wk ? ' wk' : ''}">${esc(c)}${sp ? ' 🌲 ' + esc(sp.reference) : ''}${wk ? ' ✓' : ''}</button>`; }).join(''); }
   $('dgCalls').addEventListener('click', e => { const b = e.target.closest('[data-dgc]'); if (!b) return; $('dgCall').value = b.dataset.dgc; const sp = H.spotRef(b.dataset.dgc); if (sp) $('dgRef').value = sp.reference; });
   function mkRtty() { rtty = new D.RttyRx({ center: G.rtty.center, shift: G.rtty.shift, baud: G.rtty.baud, rev: G.rtty.rev }); let pend = ''; rtty.onChar = c => { /* squelch: noise passes only about half the stop bits, a real signal nearly all */ if (rtty.q > 0.72) { if (pend) { rxChar(pend); pend = ''; } rxChar(c); } else pend = (pend + c).slice(-8); }; }
-  let pGate = 0; function mkPsk() { psk = new D.PskRx(G.psk.hz); psk.afc = G.psk.afc; psk.sq = G.psk.sq / 100; psk.onChar = c => { if (performance.now() < pGate || G.psk.sq === 0) rxChar(c); }; }
+  let pGate = 0; function mkPsk() { if (!D.PskRx) { psk = null; return; } psk = new D.PskRx(G.psk.hz); psk.afc = G.psk.afc; psk.sq = G.psk.sq / 100; psk.onChar = c => { if (performance.now() < pGate || G.psk.sq === 0) rxChar(c); }; }
   /* only print when the waterfall shows a signal right there (a strong neighbour 50 Hz away also 'decodes', as garbage) */
   function pskGate(vals) { const srt = Array.from(vals).sort((a, b) => a - b), med = srt[Math.floor(srt.length * 0.5)]; let mx = -1e9; for (let f = psk.fc - 10; f <= psk.fc + 10; f += 2) mx = Math.max(mx, valAt(f)); if (mx > med + 8 && Math.abs(snapPsk(psk.fc) - psk.fc) < 7) pGate = performance.now() + 2500; }
   /* PSK31 signal browser: a decoder on every signal on the waterfall */
@@ -278,7 +278,7 @@
   /* ---------------- hooks for the FT8 screen ---------------- */
   let qT = 0;
   window.KPCDigiUI = {
-    mode(m) { const was = MODE; MODE = /^(RTTY|PSK31|HELL|SSTV|WSPR)$/.test(m) ? m : ''; if (was && was !== MODE) stopTx(); if (MODE !== 'SSTV' && sstv.img) sstv.stop();
+    mode(m) { const was = MODE; MODE = /^(RTTY|HELL|SSTV)$/.test(m) ? m : ''; /* PSK31 and WSPR are not on the website (Nov 18 2026) */ if (was && was !== MODE) stopTx(); if (MODE !== 'SSTV' && sstv.img) sstv.stop();
       if (!MODE) return; $('dgName').textContent = MODE; $('dgAfc').checked = MODE === 'PSK31' ? G.psk.afc : G.rtty.afc;
       $('dgRs').value = MODE === 'SSTV' ? '595' : '599'; $('dgRr').value = MODE === 'SSTV' ? '595' : '599'; $('dgHzT').textContent = G.rtty.center; $('dgPHzT').textContent = Math.round(G.psk.hz); $('dgHHzT').textContent = G.hell.hz;
       if (MODE === 'WSPR') wMsg(); if (MODE === 'PSK31') drawBr(); },
