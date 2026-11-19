@@ -599,4 +599,27 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    BOT 81, AGENT 24; `handoff-02-kit.zip` for the agent, key in `kit-keys/`). (a) + (b) WAIT on US key run **44528656941** (started
    by hand 12:57 UTC as the missed 11:46 backup, Brandon's yes 6:52 AM; GitHub skipped the cron and the watchdog). When it is done:
    item 3 a-d (OLD side saved: tools-out `key-quality/2026-11-19/factcheck-pub/`), the table to Brandon, then merge #277.
+13. **FABLE'S REVIEW OF WHAT OPUS HAD READY (19 Nov 8:10 AM CST; Brandon: "Review what Opus has ready").**
+   - **#278 R-PP1: NOT YET, two changes (comment on the PR; files tools-out `key-quality/2026-11-19/r-pp1/fable-review/`).** The rule's
+     exact test on all 50 areas: true for 8 rows, all AK + ID. The other scope states built: nothing moves (Colorado's Great Sand
+     Dunes pair is untangled one step earlier, same result; Florida not finished in chat). What fails: POTA's OWN PIN sits inside
+     the preserve record for Craters of the Moon US-0665 (78 activations, 22.7 km from the monument) and Wrangell-St. Elias US-0069
+     (41, 2.8 km from the park record); Katmai, Lake Clark, Gates of the Arctic have it in or beside the park part.
+   - **RULING R-PP1a (Fable, Brandon may overrule; replaces item 4's wording): a park number does NOT cover the preserve beside it
+     unless POTA's own name says so OR POTA's own pin for that number sits inside the preserve record.** Change 1: the rule leaves
+     such a row in place and names it as a person's question (US-0069 and US-0665 stay as they are until POTA answers; the other
+     three move). Change 2: the changelog line must say "APPROVED, decided_by KPC owner" with his words (`kpc_preflight` refuses
+     "decided_by Fable"): it waits for Brandon's yes to R-PP1a. Round 2: Opus shows Florida with ONE `kpc-key-measure.yml` run on
+     the branch (the R-PP1 notices), no chat builds. Denali: POTA has NO preserve number (#276's text was wrong, its rule is right).
+   - **GREY AREA G-PP2 for Brandon:** one combined record on a park-only POTA name (New River Gorge US-0696, Jean Lafitte US-0040,
+     Oregon Caves US-0953). Left whole, as today; recommended: stay whole, ask POTA with the six park-only numbers.
+   - **T1 run 44530520714: not enough to rule R-G9 on.** 13 traced of 60 (0 small / 9 middle / 4 large; spec 10 / 10 / 10). 5 drawn,
+     all 5 GOOD by area; 8 refused by the tracer's own checks (a refusal is a pin). The throwaway branch was never written (save
+     step bug), so maps and traces are gone; one line measure (US-11892) cannot be right. FIXED by Fable on KPC-Data main
+     (dfc66f44): the save step, outside-ring line measure with holes counted apart, the tracer's own report saved, input `list`.
+     **Run 2 on Brandon's go:** ONE run, list = `t1-list-2.json` (75 fact-verified parks that already have a stored official map
+     link, 25 per size class, 11-14 map hosts each). Fable writes the R-G9 sheet (T3) from run 2. The tracer ran blind (checked).
+   - **Hand-off 02: good to send.** One caution added: the 30 short layers a bot can re-read are NOT re-read before the release is
+     signed off (old and new must be measured on the same shapes); then one by-hand cache run from the requests.
+   - **Not ready, not reviewed:** item 3's table (US key run 44528656941 still going at 8:10 AM) and the #277 merge.
 
