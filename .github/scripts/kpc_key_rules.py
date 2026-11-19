@@ -554,6 +554,13 @@ def saved_land_moves(ov, by_id, refind):
     return ov, notes
 
 
+def brackets(t):
+    """The words in a name's brackets, as one lower-case string ('Horseshoe Canyon (North) BLM Wilderness Area' -> 'north');
+    '' when there are none. Fable's review of #271: a bracket word that tells two parks apart is part of the name."""
+    import re as _re
+    return ' '.join(' '.join(_re.sub(r"[^\w ]+", ' ', nf(x)).split()) for x in _re.findall(r'\((.*?)\)', str(t or '')))
+
+
 def _full(t):
     """A full name for D9: case and accents aside, brackets and punctuation out, spaces squeezed."""
     import re as _re
@@ -716,13 +723,40 @@ TYPE_WORDS = [('park', r'state (resort )?park|\bsp\b|\bsrp\b|national park|\bnp\
               ('historic', r'histori|\bshp\b|\bshs\b|\bhs\b|\bnhs\b|\bnhp\b'),
               ('recreation', r'recreation (area|site)|\bsra\b|\bnra\b|\bsrs\b'),
               ('preserve', r'\bpreserve\b|\bdnp\b|\bsnp\b|natural area|\bsna\b|nature reserve'),
-              ('reserve', r'\breservation\b|\bstate reserve\b'),   # Sonnet 18 Nov: Mount Tom State RESERVE = the 'Mount Tom State Reservation' records
+              ('reserve', r'\breservation\b|\bstate reserve\b|\bcoastal reserve\b'),   # 18 Nov held states: NC's 'Buxton Woods Coastal Reserve' = Buxton Woods State Reserve   # Sonnet 18 Nov: Mount Tom State RESERVE = the 'Mount Tom State Reservation' records
               ('wilderness', r'wilderness(?! study)'), ('study', r'study area|\bwsa\b'), ('refuge', r'\brefuge\b|\bnwr\b'),
               ('fishing', r'fishing (lake|area)|\bsfl\b|\bpfl\b|fishing access'), ('monument', r'\bmonument\b'),
               ('conservation', r'conservation area|\bnca\b|\bsca\b'), ('herd', r'\bherd\b|\bhma\b'), ('rma', r'recreation management|\bs?rma\b')]
-# a layer's own kind (state-gis 'kind', or the US key's kind tags of a national layer) when the record's name carries no type word
-LAYER_TYPE = {'park': 'park', 'sp': 'park', 'wild': 'wildlife', 'wma': 'wildlife', 'forest': 'forest', 'sf': 'forest', 'nf': 'forest',
+# a layer's own kind (state-gis 'kind', or the US key's kind tags of a national layer) when the record's name carries no type word.
+# Fable's review of #271 (18 Nov): the US kind tag 'wild' is WILDERNESS (the two federal wilderness layers); a state layer of kind
+# 'wild' (wildlife) arrives as 'wma' through the US key's SGK table. Before, bare wilderness names were typed 'wildlife'.
+LAYER_TYPE = {'park': 'park', 'sp': 'park', 'wild': 'wilderness', 'wma': 'wildlife', 'forest': 'forest', 'sf': 'forest', 'nf': 'forest',
               'preserve': 'preserve', 'snp': 'preserve', 'nwr': 'refuge', 'hma': 'herd', 'wsa': 'study', 'rma': 'rma', 'nps': 'park'}
+
+
+# Held states, 18 Nov (key-quality.md section 11 step 2 (a), causes B + C): A RECORD'S LAYER SAYS WHAT KIND IT IS. A record whose own
+# name has no type word ('Gold Butte' in the BLM monuments / NCAs layer, 'Mount Irish' in the ACEC layer) takes its kind from the
+# title of the layer it comes from. Not for a layer that gathers many kinds of land from many owners (D11 'compilation' or
+# 'register'): its title says nothing about one record. 'acec' is a layer kind only (no park name carries it as a type word here).
+LAYER_TYPE_WORDS = TYPE_WORDS + [('acec', r'critical environmental concern|\bacec\b'), ('conservation', r'\bnca\b|national conservation')]
+
+
+LAYER_KINDS = {k for k, _ in LAYER_TYPE_WORDS}
+SAME_LAND = 'same land, two park numbers'
+
+
+def layer_type_words(title, what=''):
+    """The kinds of place a LAYER's own title says it holds ('BLM national monuments / conservation areas' -> {'monument',
+    'conservation'}; 'ACEC Designated Polygons' -> {'acec'}). Plurals count ('monuments', 'NCAs'). A compilation or register
+    layer (D11) -> set(): its title is about many kinds of land."""
+    if str(what or '') in ('compilation', 'register'): return set()
+    # the '(<kind>, state GIS table)' tail is the coarse state-gis kind of the whole layer, not its title (Alaska's legislatively
+    # designated areas carry 'preserve' and hold special management areas, refuges, habitat areas: Kenai River US-12708)
+    t = re.sub(r'\([a-z ]+, state gis table\)', ' ', str(title or '').lower())
+    t = re.sub(r'(national )?(forest|park) service|fish and wildlife service|department of (fish and )?wildlife|wildlife resources', ' ', t)   # an agency's name is not a kind
+    t = re.sub(r'[^a-z ]', ' ', t)
+    t = re.sub(r'\b(\w{2,}[^s\W])s\b', r'\1', t)   # monuments -> monument, areas -> area, ncas -> nca (wilderness keeps its ss)
+    return {k for k, rx in LAYER_TYPE_WORDS if re.search(rx, t)}
 
 
 def type_words(s):
@@ -781,6 +815,14 @@ def near_name(a, b):
     return all(st(x, y) for x, y in zip(wa, wb))
 
 
+def box_overlap(b1, b2):
+    """Share of the smaller of two boxes [minx, miny, maxx, maxy] that the other covers (0 when either is missing)."""
+    if not b1 or not b2: return 0.0
+    w = max(0.0, min(b1[2], b2[2]) - max(b1[0], b2[0])); h = max(0.0, min(b1[3], b2[3]) - max(b1[1], b2[1]))
+    s = min((b1[2] - b1[0]) * (b1[3] - b1[1]), (b2[2] - b2[0]) * (b2[3] - b2[1])) or 1e-12
+    return w * h / s
+
+
 def size_pick(acres, held, tol=0.10, floor=5.0):
     """The one ref in held = {ref: [acres of the OTHER records it already holds]} with a record within tol of `acres` (a copy of
     the same land in another layer), or None: no acres, two parks fit, or none."""
@@ -817,18 +859,32 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None, size=No
     full = _full(record_name)
     w = [r for r, n in names.items() if _full(n) == full]
     if len(w) == 1: return 'win', w[0]
-    if len(w) == len(names) or len({_full(n) for n in names.values()}) == 1:
+    # Fable's review of #271 (18 Nov; Horseshoe Canyon (North) US-5833 / (South) US-5846): a bracket word that differs between the
+    # sharing parks is part of the name. Those parks are never 'the same name' nor 'the same place'; a record carrying one park's
+    # bracket word goes to that park.
+    bw = {r: brackets(n) for r, n in names.items()}
+    split = len(set(bw.values())) > 1
+    if split:
+        rb = brackets(record_name)
+        hit = [r for r in parks if rb and bw[r] == rb]
+        if len(hit) == 1: return 'win', hit[0]
+    if not split and (len(w) == len(names) or len({_full(n) for n in names.values()}) == 1):
         return 'both', None   # every sharing park has the same name: POTA lists one place twice ('same land, two park numbers')
     rs = type_words(record_name)
     ps = {r: type_words(v[0]) | type_words(v[1]) for r, v in parks.items()}
     if rs and re.search(r'\band\b|&|/', str(record_name).lower()) and all(ps[r] & rs for r in parks) and len({frozenset(ps[r] & rs) for r in parks}) == len(parks):
         return 'both', None
-    if not rs: rs = {LAYER_TYPE[k] for k in layer_kinds if k in LAYER_TYPE}
+    from_layer = False
     if not rs:
+        rs = {LAYER_TYPE.get(k, k) for k in layer_kinds} & LAYER_KINDS   # (a) 18 Nov: a bare name's kind is its layer's
+        from_layer = bool(rs)
+    k = [r for r in parks if ps[r] & rs] if rs else []
+    if not rs or (from_layer and not k):
+        # a bare name, or a layer kind that fits none of the parks (Fable's review of #271: a title is weaker evidence than land
+        # a park already holds): the bare-name path, size first, then agency, then a person
         g = (size(list(parks)) if size else None) or (agency(list(parks)) if agency else None)
         if g: return 'win', g
         return 'person', 'a bare name with no type word: which park it belongs to is for a person'
-    k = [r for r in parks if ps[r] & rs]
     if len(k) == 1: return 'win', k[0]
     if not k: return 'person', 'the record names a kind of place that none of these parks is'
     if place is not None:
@@ -839,4 +895,6 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None, size=No
     if len(ex) == 1: return 'win', ex[0]
     g = (size(k) if size else None) or (agency(k) if agency else None)
     if g: return 'win', g
+    # (b) 'same land, two park numbers' by place name was taken out (Fable's last look, 19 Nov: Seven Sisters US-12918 is a 7.8-acre
+    # fishing access site beside the 1,554-acre WMA US-12646). A pair is the same land only when a person recorded it with evidence.
     return 'person', 'the record fits more than one of these parks'
