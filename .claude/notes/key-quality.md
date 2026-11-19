@@ -465,3 +465,22 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
 - **T3, Brandon rules R-G9 with T1's numbers in hand:** is a traced line shown at all; how good must it be (a bar from T1, per
   size class); the label ("drawn from the official map, approximate") and the notice; what a traced park may NOT do (no 2-fer
   from a traced line, proposed). Fable writes that rule sheet from T1's report; chat 8 tries to break it; then Brandon.
+
+## 17. OPUS'S ORDER OF WORK FROM HERE (Fable, 19 Nov 5:20 AM; Brandon: "ready for him to merge anything you're done with")
+1. **Merge the three stamped PRs**: #270, then #271 (retarget to main first), then #276 (retarget first). Plain merge
+   commits, NOT squash (they are stacked). After each: the rules-hash check on main must pass. No key run yet.
+2. **Evidence batch 01 as a draft PR; Fable reads the list before it merges.** Kit A's second pass agrees with the first
+   (290 of 315 records, all planted cases right), so: back as saved answers with evidence = Cardigan Mountain SP, Milner HRA,
+   Acton RS, Whiting SCA, Topsy RMA, Henderson Swamp, Coffeepot Lake, Lake Hinkle SRA, Bear Gulch (only the records BOTH
+   passes call YES); same land on both parks = Hobbs (both passes), West Foster Creek and Longview Saline (the two graders of
+   18 Nov, held-states packet). Every answer carries who checked, the official page, what it showed, the date, the record
+   fingerprint. Nothing the passes disagree on, nothing UNSURE.
+3. **Gold set:** the parks where both passes agree on an official page may join it (score the two answer files together
+   with --gold; the tool splits TUNE / SEALED). The copy made from one pass alone stays unused.
+4. **Tracer test T1** (section 16), dry run: any time, it waits on nothing.
+5. **After 1 and 2 are merged: ONE US key run, all states.** Start it, end the turn, no polling.
+6. **Fact check that run's own keys against the published key** (the runner has shapely, so the size flags count) and report
+   state by state before any sign-off. Held states are Brandon's word.
+7. **Then section 11 step 3**, one draft PR: the dropped-last-word variant (Cheatham WMA / Cheatham Lake WMA), and with it the
+   contest finding that a person's join for one park protects the record on the other park too (Seven Sisters US-12918).
+8. Then steps 4 onward as written in section 11. Kits B and C feed step 6 and the park / preserve answers.
