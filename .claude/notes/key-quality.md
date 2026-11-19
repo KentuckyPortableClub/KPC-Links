@@ -504,3 +504,53 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    number cover its preserve when POTA has none? Denali was ruled wrong land. Great Sand Dunes is right (US-8295 = preserve).
    Tallgrass Prairie (33 ac vs 10,893) and Timucuan (16,646 vs 46,263) records are far under official: second look.
 6. **Tracer T1:** not started (waits for your go via Brandon; it needs no key).
+
+## 19. FABLE'S CATCH-UP (19 Nov 6 AM; Brandon: "catch up on all that only fable needs to do")
+1. **#277 evidence batch 01: APPROVED** (comment on the PR). Checked by Fable: all 47 joins YES in both passes, every fingerprint
+   matches the shape cache, the no-acres records measured from their shapes (Wells Wildlife Area sgwad2223 = 1,061 ac = the unit;
+   Lake Hinkle 977; Cardigan 5,889 + 13 + 30 vs official 5,655), and a test build of the 8 states: exactly the 13 parks change,
+   11 pins become outlines, nothing else moves. Merge it when no key run is in flight. NO small run of its own: its 8 states
+   are all held by the drop guard, so the release run (item 7e) rebuilds them with it.
+   Follow-ups for the step 3 PR: the builder copies `same_land` from a saved answer onto the key (only when both parks name each
+   other) so the 'same land, two park numbers' label shows; Lake Hinkle's outline is the lake surface (water-only, 2-fer rule 9).
+2. **THE KEY RUNS ARE RED ON PURPOSE (read once, 19 Nov 6 AM):** the drop guard's limit is 0: a state that loses ONE official
+   outline is held ("set KPC_DROP_OK for one run"), its would-be files go to the release `key-held`, data/outlines is not saved and
+   the master check goes red. The merged rules lose outlines on purpose (Q1 pins, D3, park / preserve), so the run on 7c6e01e1bc2b
+   holds most states. Nothing is wrong with the bot; nothing reaches the map until Brandon says yes per state.
+3. **FACT CHECK OF THAT RUN (section 17 step 6), how. Look once when Brandon says go; no polling.**
+   a. Take the held would-be files from the release `key-held` (asset download through `gh api`) and the saved states from main.
+      Make sure they come from the run on rules 7c6e01e1bc2b (the 10:10 UTC run was still on the old rules).
+   b. Fact check OLD = the published key as it was before the run, NEW = that run's files, the same inputs on both sides. These
+      were built on the runner, so SIZE_BIG and BIG_PIECE count this time.
+   c. Hold it against the FORECAST = the offline builds (work/npsfull against work/main). A lost outline or a new hard flag that
+      the forecast does not have goes on a STOP list for Fable; the state stays held.
+   d. One table for Brandon: state | outlines old -> new | lost as planned (Q1 / D3 / park-preserve / contest) | lost and NOT
+      explained | new hard flags. A state passes when the last two are empty. Score the gold set on the new files (TUNE misses
+      listed, SEALED as a count only, never --show-sealed).
+   e. Brandon's yes per state, then KPC_DROP_OK for those states and ONE run. Opus never releases a state on its own.
+4. **RULING R-PP1, park and preserve (Fable, Brandon may overrule): a park number does NOT cover the national preserve beside it
+   unless POTA's own name for that number says so ("... and Preserve").** Why: a preserve is its own legal designation; POTA numbers
+   preserves on their own where it wants them (Glacier Bay US-0029, Aniakchak US-0003, Great Sand Dunes US-8295); land with no
+   POTA number never counts; and the smaller outline is the cheaper mistake (missing pieces, not too big). Already so for the unit
+   code (#276, Denali). Now also for the NAME join: Wrangell-St. Elias US-0069, Katmai US-0044, Lake Clark US-0048, Gates of the
+   Arctic US-0026, Craters of the Moon NM US-0665 lose the preserve record; it goes on the check list with a plain line. Draft PR
+   for Fable, scope AK + ID. Second look after it: Craters of the Moon (the monument also has BLM-run land), Tallgrass Prairie,
+   Timucuan.
+5. **GOLD SET: done.** Pass 1 moved onto packet 01b's letters by record id, both passes scored together as two graders: 14 parks
+   joined, TUNE ONLY (the rule writers have read them and most are saved answers now). Gold = 77 parks, TUNE 65 / SEALED 12; files on
+   tools-out `key-quality/2026-11-19/gold-second-look/`. The SEALED half is too small to grade a release: **KIT D** = a seeded
+   RANDOM sample of 60 parks from the released key (`kpc_key_grade.py sample`), two outside-agent passes, hash split left alone.
+6. **TRACER T1 TEST MODE: YES, with these conditions.** A switch on the tracer, off by default; with it on the bot reads a fixed
+   list, skips the "park already has official records" check and writes ONLY to a throwaway branch `trace-test` on KPC-Data (never
+   `picture-maps`, the hold file or the waiting room). The list: a seeded draw of 60 fact-verified parks from the published key,
+   walked in order, first 10 small / 10 middle / 10 large for which the finder itself finds an official picture map; every skipped
+   park and why is a result (the map find rate). The tracer never sees the official outline; a separate measuring script does
+   (section 16 T1 points 3-4). ONE run by hand, steps that cannot fail (no emails), no comments. Picture maps of parks that have
+   GIS are test material only: the branch is deleted once the report is on tools-out. Fable reads the report and writes the R-G9
+   sheet (T3).
+7. **KIT C (official acres: NPS, FWS, USFS): use it AFTER the release, not in this fact check** (old and new must be measured with
+   the same inputs). Then it becomes a size witness: an outline passes between 0.8 x the smaller figure (federal) and 1.25 x the
+   larger (gross); outside that it is flagged. Draft PR, Fable reviews.
+8. **OPUS'S ORDER NOW:** (a) item 3 a-d, table to Brandon; (b) merge #277; (c) R-PP1 draft PR; (d) T1 test run; then Fable reads
+   (c), the table and the T1 report; (e) Brandon's yes -> KPC_DROP_OK -> ONE release run (Q1, held states, NPS, #277, R-PP1
+   together); (f) kit D; (g) section 11 step 3 PR (dropped last word, the `_keep` finding, the same_land label).

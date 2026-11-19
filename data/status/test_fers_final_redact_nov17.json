@@ -1,0 +1,9 @@
+{
+"about": "When each park-data file last CHANGED (the files themselves carry no time stamps, so unchanged runs save nothing). Written by .github/scripts/kpc_save.py.",
+"changed": {
+"/tmp/tmp_bzb8lco/US-ZZ.json": "2026-11-18",
+"/tmp/tmp_bzb8lco/looked-zz.json": "2026-11-18",
+"/tmp/tmp_bzb8lco/missing-zz.json": "2026-11-18",
+"/tmp/tmp_bzb8lco/report-zz.json": "2026-11-18"
+}
+}
