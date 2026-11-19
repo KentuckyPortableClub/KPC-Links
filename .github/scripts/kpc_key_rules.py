@@ -895,11 +895,6 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None, size=No
     if len(ex) == 1: return 'win', ex[0]
     g = (size(k) if size else None) or (agency(k) if agency else None)
     if g: return 'win', g
-    if place is not None and len(k) == len(parks) and not split:
-        # (b) 18 Nov (West Foster Creek, Longview Saline): only where the contest could not choose, and every park the record is
-        # shared with is the same PLACE (the same name once the kind words are left out) and a kind the record has: POTA lists one
-        # piece of land under two numbers. Both keep it, labelled 'same land, two park numbers'. A record that fits ONE park's
-        # kinds exactly still goes to that park (Sam Houston NF WMA's own records stay with the WMA).
-        pl = {place(n) for n in names.values()}
-        if len(pl) == 1 and next(iter(pl)): return 'both', SAME_LAND
+    # (b) 'same land, two park numbers' by place name was taken out (Fable's last look, 19 Nov: Seven Sisters US-12918 is a 7.8-acre
+    # fishing access site beside the 1,554-acre WMA US-12646). A pair is the same land only when a person recorded it with evidence.
     return 'person', 'the record fits more than one of these parks'

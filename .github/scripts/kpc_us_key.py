@@ -2961,9 +2961,11 @@ def run(st):
                 _fx = [r for r in _rs if KR._full(parks[r].get('n') or '') in _nms]
                 _v, _x = ('win', _fx[0]) if len(_fx) == 1 else KR.contest(_qn, {r: (parks[r].get('n') or '', parks[r].get('t') or '') for r in _rs}, norm, _lk(_id), _ag, _sz)
                 if _v == 'both':
-                    # (b) held states, 18 Nov: one piece of land under two park numbers: both keep the record, labelled
-                    if _x == KR.SAME_LAND or (len({KR._full(parks[r].get('n') or '') for r in _rs}) == 1
-                                              and len({KR.brackets(parks[r].get('n') or '') for r in _rs}) == 1):
+                    # one piece of land under two park numbers (the same full name): both keep the record, labelled
+                    # only where every sharing park has the same full name with the same bracket words (North Platte NWR x2);
+                    # 'same land' by place name alone was taken out (Fable's last look, 19 Nov: Seven Sisters)
+                    if (len({KR._full(parks[r].get('n') or '') for r in _rs}) == 1
+                            and len({KR.brackets(parks[r].get('n') or '') for r in _rs}) == 1):
                         for _r in _rs:
                             parks[_r]['same_land'] = sorted(set(parks[_r].get('same_land') or []) | {r for r in _rs if r != _r})
                         _same.append(_rs[0])

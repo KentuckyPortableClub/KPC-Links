@@ -53,19 +53,22 @@ check(0 < i < j and "re.match(r'[a-z]', str(x[0]))" in src[i:j] and "{'study', '
 k = src.find("if _m: return _pk.get(_m.group(0), set()) | KR.layer_type_words(")
 check(k > 0, "the contest's layer kinds include the layer title's kinds")
 
-# (b) same land, two park numbers
+# (b) 'same land' by place name was TAKEN OUT (Fable's last look, 19 Nov): a pair is the same land only when a person recorded it
+SS = {'US-12646': ('Seven Sisters Wildlife Management Area', 'Wildlife Management Area'), 'US-12918': ('Seven Sisters State Fish and Wildlife Area', 'State Fish and Wildlife Area')}
+check(KR.contest('Seven Sisters', SS, norm, ('wma',))[0] == 'person',
+      "Seven Sisters: the bare 1,554-acre 'Seven Sisters' (sgmtb8672) is not 'same land' with the 7.8-acre fishing access site US-12918 (FWP pages): a person decides")
+check(KR.contest('Seven Sisters Wildlife Management Area', SS, norm) == ('win', 'US-12646'), "the WMA's own full-name records (711 / 269 ac) go to the WMA")
 WF = {'US-11142': ('West Foster Creek Wildlife Area', 'Wildlife Area'), 'US-12277': ('West Foster Creek Wildlife Area State Fish and Wildlife Area', 'State Fish and Wildlife Area')}
-check(KR.contest('West Foster Creek', WF, norm, ('wma',)) == ('both', KR.SAME_LAND), 'West Foster Creek (1,061 acres): both park numbers keep the record, labelled')
+check(KR.contest('West Foster Creek', WF, norm, ('wma',))[0] == 'person', 'West Foster Creek: same land comes back as a saved answer with evidence, not by rule')
 LS = {'US-7348': ('Longview Saline Wildlife Management Area', 'Wildlife Management Area'), 'US-7183': ('Longview Saline State Natural Area', 'State Natural Area')}
-check(KR.contest('Longview Saline Natural Area WMA', LS, norm) == ('both', KR.SAME_LAND), "'Longview Saline Natural Area WMA' names both kinds of one place: both keep it, labelled")
+check(KR.contest('Longview Saline Natural Area WMA', LS, norm)[0] == 'person', 'Longview Saline: the same (evidence batch, not rule)')
 check(KR.contest('Big Lake', {'US-0163': ('Big Lake National Wildlife Refuge', 'NWR'), 'US-7265': ('Big Lake Wildlife Management Area', 'WMA')}, norm, ('wma',)) == ('win', 'US-7265'),
-      'one place, two kinds, a record of ONE kind: a contest win, not same land')
+      'one place, two kinds, a record of ONE kind: a contest win')
 SH = {'US-4417': ('Sam Houston National Forest', 'National Forest'), 'US-10509': ('Sam Houston National Forest Wildlife Management Area', 'Wildlife Management Area')}
-check(KR.contest('Sam Houston National Forest WMA', SH, norm) == ('win', 'US-10509'),
-      "'Sam Houston National Forest WMA' stays with the WMA (it fits the WMA's kinds exactly): same land is only for a record the contest cannot place")
-check(KR.contest('Kirkpatrick Basin Wildlife Management Area', {'US-13614': ('Kirkpatrick Basin North Wildlife Management Area', 'WMA'), 'US-13615': ('Kirkpatrick Basin South Wildlife Management Area', 'WMA')}, norm)[0] == 'person',
-      'two places of one kind (North / South) are never same land')
-check("parks[_r]['same_land'] = sorted(" in src and '_x == KR.SAME_LAND' in src, "the key labels both parks 'same_land' with the other park number")
+check(KR.contest('Sam Houston National Forest WMA', SH, norm) == ('win', 'US-10509'), "'Sam Houston National Forest WMA' stays with the WMA (it fits the WMA's kinds exactly)")
+NP = {'US-0445': ('North Platte National Wildlife Refuge', 'NWR'), 'US-13433': ('North Platte National Wildlife Refuge', 'NWR')}
+check(KR.contest('North Platte', NP, norm) == ('both', None), 'two park numbers with the same full name (North Platte NWR) still keep the record on both')
+check("parks[_r]['same_land'] = sorted(" in src and '_x == KR.SAME_LAND' not in src, "the same_land label only for the same full name with the same bracket words")
 
 # Fable's review of #271 (18 Nov): bracket words, the wilderness kind word, size before a person
 HC = {'US-5833': ('Horseshoe Canyon (North) BLM Wilderness Area', 'Wilderness Area'), 'US-5846': ('Horseshoe Canyon (South) BLM Wilderness Area', 'Wilderness Area')}
