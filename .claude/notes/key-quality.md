@@ -691,3 +691,8 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      https://claude.ai/artifact/3ZEKuejQhixfkd6HziB3CK ("Key Run Check, 19 Nov"): the totals, the 13 waiting states (green / red),
      and a card per changed park (131) with a small map: outline today, outline after the run, POTA's pin, the reason in plain words.
      Built from tools-out `factcheck-run-44528656941/`. Future tables to Brandon: give him a page like this, not only text.
+   - **BRANDON HOLDS HIS YES (19 Nov 9:04 AM: "I not confident i can make the right choice at this time we will let fable do his round
+     and see if has any more solutions at solving this...more research, bots etc etc").** No state is released, no KPC_DROP_OK, no
+     release run. FOR FABLE'S SITTING: besides #278 round 2, the STOP list and T1 run 2, bring Brandon ways to make the per-state call
+     easier or safer: what research, outside-agent passes or bots could settle the lost outlines (the Q1 pins, D4 lakes, contest
+     parks) before or after the release, so his yes rests on more than the rules. Show him on his review page, not only in text.
