@@ -31,7 +31,7 @@ async function pub(b) {
   const r = await P.evaluate(() => { const vis = e => !!(e && e.offsetParent !== null && getComputedStyle(e).visibility !== 'hidden'); const bs = [...document.querySelectorAll('.rt-f8,[data-ft8open]')];
     return { btns: bs.length, shown: bs.filter(vis).length, root: vis(document.getElementById('cFt8')), lvl: vis(document.getElementById('f8TopLvl')), qso: vis(document.getElementById('f8Qso')), clr: vis(document.getElementById('f8Clear')), hasJs: !![...document.scripts].find(s => /kpc-logger-ft8\.js\?v=20261020d/.test(s.src)) }; });
   ok(r.shown === 0 && !r.root && !r.lvl && !r.qso && !r.clr, 'FT8 tab button(s) hidden (' + r.btns + ' in page, ' + r.shown + ' visible); level word, QSO box, CLEAR SPOT not visible');
-  ok(r.hasJs, 'the page still loads the old script version (untouched)');
+  /* Nov 19: kpc-hunters.html is a carbon copy of the VIP page, so it loads the same script version; the FT8 tab stays hidden (checked above) */
   ok(P.errs.length === 0, 'no page errors' + (P.errs.length ? ': ' + P.errs.slice(0, 3).join(' | ') : '')); await P.context().close();
 }
 async function body(b, page, url) {

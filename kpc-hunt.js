@@ -1752,7 +1752,7 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
   }
   /* radio control (CAT, kpc-cat.js; set up on the CAT & QRZ tab): chip on the log + the log follows the radio's dial */
   let DKS = null;
-  const CATWHERE = PUB ? '📻 Radio not set: open RADIO CONTROL (under the spots) and press CONNECT MY RADIO.' : '📻 Radio not set: open the CAT & QRZ tab to connect it.';
+  const CATWHERE = '📻 Radio not set: tap 📻 RADIO (top of the page) and press CONNECT MY RADIO.';   /* Nov 19: both Lounges have the same RADIO CONTROL card */
   function catChip() { const c = $('dkCat'); if (!c || !window.KPCCat) return; const S = KPCCat.get(); c.hidden = !S.on; const on = KPCCat.connected();
     c.className = 'dk-cat mem-only ' + (on ? 'on' : 'off'); c.textContent = on ? '📻 CAT ON' : '📻 CAT: CONNECT'; c.title = on ? 'Your radio follows the spots you click' : 'Radio not connected: tap to set it up'; }
   if (window.KPCCat) {   // Oct 26: public Lounge too (its RADIO CONTROL box); #dkCat stays hidden there by CSS

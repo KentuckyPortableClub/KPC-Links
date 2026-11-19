@@ -42,7 +42,7 @@ check(o.get('round') == 3 and o.get('roundBad') == 0, 'the file the page writes 
 check("damaged line${parseAdif.bad === 1 ? ' was' : 's were'} left out" in src and 'parseAdif.bad = 0;' in src, 'N7: the import message says how many lines were left out')
 check('qSave.bad = !lsOk && !IDBok;' in src and 'NOT SAVED: this browser refused to save your log' in src, 'H22: a red NOT SAVED line while neither copy saves')
 pages = ['kpc-hunt.html', 'kpc-hunters.html', 'kpc-hunt-need.html', 'kpc-hunters-need.html', 'kpc-beta-room.html', 'kpc-beta-need.html', '.claude/build/hunt/main.html']
-check(all('kpc-hunt.js?v=20261118a' in (ROOT / p).read_text(encoding='utf-8') for p in pages), 'every Lounge page and the build source load kpc-hunt.js?v=20261118a')
+check(all('kpc-hunt.js?v=20261119a' in (ROOT / p).read_text(encoding='utf-8') for p in pages), 'every Lounge page and the build source load kpc-hunt.js?v=20261119a')
 m = re.search(r"  function fromSota\(x\) \{.*?\n  \}\n", src, re.S)
 r2 = subprocess.run(['node', '-e', "const nref = r => r, toMs = t => 0;\n" + (m.group(0) if m else '') + "\nconsole.log(JSON.stringify([1296.2, 14.062, 7.032, 50.13].map(f => fromSota({ frequency: f, activatorCallsign: 'k4test', associationCode: 'W4K', summitCode: 'EC-001' }).khz)))"], capture_output=True, text=True)
 check(r2.stdout.strip() == '[1296200,14062,7032,50130]', 'N11: SOTA spots are read as MHz, 23 cm too: ' + (r2.stdout.strip() or r2.stderr[-200:]))

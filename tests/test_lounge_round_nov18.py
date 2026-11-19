@@ -19,9 +19,9 @@ for p in FT8:
     w, f = t.find('kpc-ft8-wasm.js?' + NEW), t.find('kpc-ft8.js?' + NEW)
     ok(0 <= w < f and 'kpc-ft8.js?v=20261017a' not in t, p + ': kpc-ft8-wasm.js then kpc-ft8.js, both ?' + NEW)
     ok('kpc-digi.js?' + NEW in t and 'kpc-digi-ui.js?' + NEW in t and 'v=20261018h' not in t, p + ': kpc-digi.js and kpc-digi-ui.js ?' + NEW)
-    if p in PUB:
+    if p == 'kpc-hunters-need.html':
         ok('kpc-logger-ft8.js?v=20261020d' in t and 'kpc-logger-ft8.js?' + NEW not in t, p + ': public page keeps kpc-logger-ft8.js?v=20261020d')
-    else:
+    else:   # Nov 19: kpc-hunters.html = carbon copy of the VIP page (digi still hidden there by data-public)
         ok(re.search(r'kpc-logger-ft8\.js\?v=202611(18|19)[a-z]', t) is not None, p + ': kpc-logger-ft8.js?v=20261118a or newer')
 for p in NR:
     t = rd(p); ok('kpc-nr.js?' + NEW in t and 'kpc-nr.js?v=20261107a' not in t, p + ': kpc-nr.js?' + NEW)

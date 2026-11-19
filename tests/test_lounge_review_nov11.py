@@ -51,12 +51,12 @@ check(out == 'https://a.gov/x||HTTP://b.org||', 'okUrl(): only http(s) addresses
 check('okUrl(o.web)' in lounge and 'okUrl(h.link)' in lounge, 'activators lounge: the official website and hours links use okUrl')
 # the page source the two pages are built from (.claude/build/hunt/main.html) carries the same page edits
 main = rd('.claude/build/hunt/main.html')
-check('<input id="lgSt"' in main and '<input id="fSt"' not in main and 'aria-label="Park numbers to add to my chase list"' in main and 'kpc-hunt.js?v=20261118a' in main, '.claude/build/hunt/main.html: same state-box id, labels and script version as the built pages')
+check('<input id="lgSt"' in main and '<input id="fSt"' not in main and 'aria-label="Park numbers to add to my chase list"' in main and 'kpc-hunt.js?v=20261119a' in main, '.claude/build/hunt/main.html: same state-box id, labels and script version as the built pages')
 # page versions bumped for every file changed
 for n in ('kpc-hunters.html', 'kpc-hunt.html'):
     for f in ('kpc-hunt.js', 'kpc-hunt-x.js', 'kpc-hunt.css', 'kpc-lounge-radio.js'):
-        check(('%s?v=%s' % (f, '20261118a' if f == 'kpc-hunt.js' else '20261119d' if f == 'kpc-hunt-x.js' else '20261119b' if f == 'kpc-lounge-radio.js' else '20261119c' if f == 'kpc-hunt.css' else '20261111r')) in PAGES[n], n + ' loads ' + f + ' with the new version')   # kpc-hunt.js: Nov 18 2026 stage 3
-check('kpc-lounge.js?v=20261111r' in PAGES['kpc-activators-lounge.html'] and all('kpc-lounge-tabs.js?v=20261111r' in t for t in PAGES.values() if 'kpc-lounge-tabs.js' in t), 'activators lounge and tab strip versions bumped')
+        check(('%s?v=%s' % (f, '20261119a' if f == 'kpc-hunt.js' else '20261119d' if f == 'kpc-hunt-x.js' else '20261119b' if f == 'kpc-lounge-radio.js' else '20261119c' if f == 'kpc-hunt.css' else '20261111r')) in PAGES[n], n + ' loads ' + f + ' with the new version')   # kpc-hunt.js: Nov 18 2026 stage 3
+check('kpc-lounge.js?v=20261111r' in PAGES['kpc-activators-lounge.html'] and all('kpc-lounge-tabs.js?v=20261119a' in t for t in PAGES.values() if 'kpc-lounge-tabs.js' in t), 'activators lounge and tab strip versions bumped')
 # nothing in these files talks to a host the club never contacts, and no login is in them
 HOST = re.compile(r'services[0-9]*(-[a-z0-9]+)?\.arcgis\.com|apps\.fs\.usda\.gov|ncnhde\.natureserve\.org|33TOOklri9xpic7U')
 for n, t in [('kpc-hunt.js', hunt), ('kpc-hunt-x.js', hx), ('kpc-lounge.js', lounge), ('kpc-lounge-radio.js', lr), ('kpc-lounge-tabs.js', tabs)] + list(PAGES.items()):

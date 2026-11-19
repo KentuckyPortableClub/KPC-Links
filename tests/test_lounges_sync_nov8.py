@@ -29,11 +29,10 @@ check("af('POTA_REF', pota.join(','))" in src and "af('SIG_INFO', pota.join(',')
 check(src.count("ref.split(/[ ,]+/).filter(Boolean).forEach(r => { if (!WK.has(r))") == 2, 'every listed park is credited on save')
 # lounges in line
 tabs = ['kpc-activations.html', 'kpc-space-weather.html', 'kpc-hunt.html#live']
-for f in ['kpc-hunt.html', 'kpc-hunt-need.html', 'kpc-hunt-cat.html', 'kpc-top50.html']:
-    t = (ROOT / f).read_text(encoding='utf-8'); nav = re.search(r'<nav class="hl-ptabs.*?</nav>', t, re.S).group(0)
-    check(all(x in nav for x in tabs + ['kpc-hunt-need.html', 'kpc-top50.html', 'kpc-hunt-cat.html']), f + ': VIP tabs = old ones + board, conditions, live')
+t = (ROOT / 'kpc-lounge-tabs.js').read_text(encoding='utf-8')   # Nov 19: VIP pages use the one tab strip (vip set)
+check(all(x in t for x in ['kpc-activations.html?from=vip', 'kpc-space-weather.html?from=vip', 'kpc-hunt.html#live', 'kpc-hunt-need.html', 'kpc-top50.html', 'kpc-hunt-cat.html']), 'VIP tabs = old ones + board, conditions, live')
 v = (ROOT / 'kpc-hunt.html').read_text(encoding='utf-8')
-check('<section id="hlLive" hidden></section>' in v and 'id="kpc-vip-live"' in v and 'kpc-live.html?embed=1' in v, 'VIP Happening Now panel')
+check('<section id="hlLive" hidden></section>' in v and 'id="kpc-rel"' in v and 'kpc-live.html?embed=1' in v, 'VIP Happening Now panel')
 check('kpc-vip.js' in v, 'VIP lock kept')
 pub = (ROOT / 'kpc-hunters.html').read_text(encoding='utf-8')
 for s in ['kpc-lounge-tabs.js', 'id="hlRadio"', 'id="hlLive"', 'id="kpc-rel"', 'kpc-nr.js']:

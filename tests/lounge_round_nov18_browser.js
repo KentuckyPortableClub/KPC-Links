@@ -61,7 +61,7 @@ async function pub(b, page) {
   console.log('== ' + page + ' (public: no digital modes, FT8 tab hidden)');
   const P = await mk(b); await P.goto(BASE + page); await sleep(2000);
   const r = await P.evaluate(() => { const vis = e => !!(e && e.offsetParent !== null); return { shown: [...document.querySelectorAll('.rt-f8,[data-ft8open]')].filter(vis).length, old: !![...document.scripts].find(s => /kpc-logger-ft8\.js\?v=20261020d/.test(s.src)), digi: window.KPCDigi ? Object.keys(window.KPCDigi) : [] }; });
-  ok(r.shown === 0, 'FT8 tab stays hidden'); ok(r.old, 'kpc-logger-ft8.js keeps its older stamp (20261020d)');
+  ok(r.shown === 0, 'FT8 tab stays hidden'); if (page !== 'kpc-hunters.html') ok(r.old, 'kpc-logger-ft8.js keeps its older stamp (20261020d)');   /* Nov 19: kpc-hunters.html = carbon copy of the VIP page; the FT8 tab still hidden */
   ok(!r.digi.some(k => /psk|wspr/i.test(k)), 'no PSK31 / WSPR code loaded');
   ok(P.errs.length === 0, 'no page errors' + (P.errs.length ? ': ' + P.errs.slice(0, 3).join(' | ') : '')); await P.context().close();
 }

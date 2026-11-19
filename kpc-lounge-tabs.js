@@ -13,19 +13,23 @@
   var SETS = {
     hunters: { home: 'kpc-hunters.html', tabs: [['spots', '🎯 SPOTS & LOG', 'kpc-hunters.html#spots'], ['checker', '📋 PARK CHECKER', 'kpc-hunters-need.html'],
       ['board', '📝 ACTIVATION BOARD', 'kpc-activations.html?from=hunters'], ['radio', '☀️ RADIO CONDITIONS', 'kpc-space-weather.html?from=hunters'], ['live', '📡 HAPPENING NOW', 'kpc-hunters.html#live']] },
+    /* Nov 19 2026 (Brandon: 'both pages should be a carbon copy of each other ... just vip has more features'): the VIP Lounge gets
+       the same strip in the same place, with its two extra pages (PARKS I NEED, TOP 50, CAT & QRZ) */
+    vip: { home: 'kpc-hunt.html', tabs: [['spots', '🎯 SPOTS & LOG', 'kpc-hunt.html#spots'], ['need', '📋 PARKS I NEED', 'kpc-hunt-need.html'], ['top50', '🏆 TOP 50', 'kpc-top50.html'],
+      ['cat', '📻 CAT & QRZ', 'kpc-hunt-cat.html'], ['board', '📝 ACTIVATION BOARD', 'kpc-activations.html?from=vip'], ['radio', '☀️ RADIO CONDITIONS', 'kpc-space-weather.html?from=vip'], ['live', '📡 HAPPENING NOW', 'kpc-hunt.html#live']] },
     activators: { home: 'kpc-activators-lounge.html', tabs: [['tools', '🧰 TOOLS', 'kpc-activators-lounge.html#tools'], ['board', '📝 ACTIVATION BOARD', 'kpc-activations.html?from=activators'],
       ['weather', '🌦 WEATHER', 'kpc-weather.html?from=activators'], ['radio', '☀️ RADIO CONDITIONS', 'kpc-space-weather.html?from=activators'], ['live', '📡 HAPPENING NOW', 'kpc-activators-lounge.html#live']] }
   };
   var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  var set = /^kpc-hunters(-need)?\.html$/.test(page) ? 'hunters' : page === 'kpc-activators-lounge.html' ? 'activators' : '';
+  var set = /^kpc-hunters(-need)?\.html$/.test(page) ? 'hunters' : /^kpc-hunt(-need|-cat)?\.html$|^kpc-top50\.html$/.test(page) ? 'vip' : page === 'kpc-activators-lounge.html' ? 'activators' : '';
   if (!set) { var q = new URLSearchParams(location.search).get('from'); set = Object.prototype.hasOwnProperty.call(SETS, q) ? q : ''; }   /* Nov 11: ?from=constructor / toString used to pass the old test and break the build below */
-  if (!set) { var r = document.referrer || ''; set = /kpc-hunters(-need)?\.html/.test(r) ? 'hunters' : /kpc-activators-lounge\.html/.test(r) ? 'activators' : ''; }
+  if (!set) { var r = document.referrer || ''; set = /kpc-hunters(-need)?\.html/.test(r) ? 'hunters' : /kpc-hunt(-need|-cat)?\.html|kpc-top50\.html/.test(r) ? 'vip' : /kpc-activators-lounge\.html/.test(r) ? 'activators' : ''; }
   if (!set) return;
   var S = SETS[set];
   function current() {
-    if (page === 'kpc-hunters.html') return location.hash === '#live' ? 'live' : 'spots';
+    if (page === 'kpc-hunters.html' || page === 'kpc-hunt.html') return location.hash === '#live' ? 'live' : 'spots';
     if (page === 'kpc-activators-lounge.html') return location.hash === '#live' ? 'live' : 'tools';
-    return { 'kpc-hunters-need.html': 'checker', 'kpc-activations.html': 'board', 'kpc-space-weather.html': 'radio', 'kpc-weather.html': 'weather' }[page] || '';
+    return { 'kpc-hunters-need.html': 'checker', 'kpc-hunt-need.html': 'need', 'kpc-top50.html': 'top50', 'kpc-hunt-cat.html': 'cat', 'kpc-activations.html': 'board', 'kpc-space-weather.html': 'radio', 'kpc-weather.html': 'weather' }[page] || '';
   }
   var css = document.createElement('style');
   css.textContent = '#kpcLTabs{position:relative!important;top:auto!important;z-index:1;display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:100%;box-sizing:border-box;' +
@@ -44,7 +48,7 @@
     return c[0] || null;
   }
   function build() {
-    var n = document.createElement('div'); n.id = 'kpcLTabs'; n.setAttribute('role', 'navigation'); n.setAttribute('aria-label', set === 'hunters' ? 'Hunters Lounge' : 'Activators Lounge');
+    var n = document.createElement('div'); n.id = 'kpcLTabs'; n.setAttribute('role', 'navigation'); n.setAttribute('aria-label', set === 'hunters' ? 'Hunters Lounge' : set === 'vip' ? 'VIP Hunters Lounge' : 'Activators Lounge');
     n.innerHTML = '<a href="' + (page === S.home ? 'index.html' : S.home) + '" class="kl-back" data-kl="back">← BACK</a>' + S.tabs.map(function (t) { return '<a href="' + t[2] + '" data-kl="' + t[0] + '">' + t[1] + '</a>'; }).join('');
     var h = hero(), m = document.querySelector('main') || document.body;
     if (h) h.parentNode.insertBefore(n, h.nextSibling); else m.insertBefore(n, m.firstChild);

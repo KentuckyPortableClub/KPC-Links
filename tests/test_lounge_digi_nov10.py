@@ -10,7 +10,7 @@ rd = lambda p: open(p, encoding='utf-8').read()
 git = lambda *a: subprocess.run(['git', *a], capture_output=True, text=True).stdout
 NEW = 'v=20261119b'  # Nov 19 2026: Lounge round stage 2 (HELD, dial rule, Hound, ON AIR). Before: Nov 18 2026: stage 1 (20261118a), then the smooth waterfall (20261118b)
 VIP = ['kpc-hunt.html', 'kpc-hunt-need.html', 'kpc-beta-room.html', 'kpc-beta-need.html', 'kpc-logger.html', '.claude/build/hunt/main.html']
-PUB = ['kpc-hunters.html', 'kpc-hunters-need.html']
+PUB = ['kpc-hunters-need.html']   # Nov 19: kpc-hunters.html is a carbon copy of kpc-hunt.html (digi hidden there by data-public)
 for p in VIP:
     t = rd(p); ok('kpc-logger-ft8.js?' + NEW in t and 'kpc-logger-ft8.js?v=20261020d' not in t, p + ' loads kpc-logger-ft8.js?' + NEW)
     ok('kpc-ft8.css?v=20261118b' in t, p + ' loads kpc-ft8.css?v=20261118b')
