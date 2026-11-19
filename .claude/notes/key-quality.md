@@ -1344,4 +1344,15 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **THE AGENT'S QUEUE, in this order:** part 5 of hand-off 05 (small), then hand-off 06.
    - **FABLE'S NEXT SITTINGS (only these):** "review PR n" for each hand-off 06 part; the reader's per-block accuracy table when the
      two kit passes are back (which blocks a rule may read); the answer to hand-off 06's part 4 proposal.
+40. **HAND-OFF 07: THE WHOLE MAP PIPELINE FOR AN OUTSIDE REVIEWER (Fable, 19 Nov 4:05-4:20 PM CST; Brandon 4:05 PM: "Give me a quick
+   handoff to review our process from store room, keys, 2fer, matching the helping bots etc all map related ....give plenty of
+   details, known issues, usage, what works good what doesn't..your thoughts for improvements etc").**
+   - ONE file, read-only review, sent to Brandon and on tools-out e4ef95e
+     `key-quality/2026-11-19/handoff-07/KPC-hand-off-07-map-pipeline-review.md`: the chain stage by stage (layers, the store room,
+     keys and matching, 2-fers, the helper bots, who does what), each with its numbers and known issues, every number tagged with
+     the day it was measured; what works; what does not, ranked; usage; Fable's ten thoughts; twelve questions; what to send back.
+   - It comes back as ONE report (findings ranked, file / line or park number, the smallest fix, how to test it). It goes to a
+     Fable chat: "Read CLAUDE.md and key-quality.md section 19 item 40: read the reviewer's report and turn it into an order of work."
+   - Tagged in it as NOT re-checked today (from the 17-18 Nov notes): the PC push check, the waiting room's 497 files, the repo
+     sizes, the name traps of the 18 Nov grade. The reviewer is asked to test them, and to list every place notes and code disagree.
 
