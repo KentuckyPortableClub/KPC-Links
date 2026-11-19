@@ -44,6 +44,7 @@
   const utc = (t, sec) => { const d = new Date(t * 1000); const p = n => String(n).padStart(2, '0'); return p(d.getUTCHours()) + p(d.getUTCMinutes()) + (sec ? p(d.getUTCSeconds()) : ''); };
   const clean = c => String(c || '').replace(/[<>]/g, '').toUpperCase();
   const isGrid = t => /^[A-R]{2}\d{2}$/i.test(t) && t.toUpperCase() !== 'RR73';
+  const h10 = c => { try { const A = ' 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ/', t = (String(c).toUpperCase().replace(/[<>]/g, '') + '           ').slice(0, 11); let n = 0n; for (const ch of t) n = 38n * n + BigInt(Math.max(0, A.indexOf(ch))); return Number(((47055833459n * n) & ((1n << 64n) - 1n)) >> 54n); } catch (e) { return -1; } };   /* Nov 19 (Lounge round, from the app): the 10-bit call code a Fox's message carries */
   const isRpt = t => /^[+-]\d{2}$/.test(t);
   const isRRpt = t => /^R[+-]\d{2}$/.test(t);
   const fmtDb = n => (n >= 0 ? '+' : '-') + String(Math.min(49, Math.abs(Math.round(n)))).padStart(2, '0');
@@ -99,6 +100,7 @@
   <div class="f8-chks">
     <label><input type="checkbox" id="f8Auto"> Auto seq</label>
     <label><input type="checkbox" id="f8First"> Call 1st</label>
+    <label title="DXpedition (Fox & Hound) mode: tap the Fox to call it"><input type="checkbox" id="f8Hound"> 🦊 Hound</label>
     <label><input type="checkbox" id="f8Even"> Tx even/1st</label>
     <label><input type="checkbox" id="f8Hold"> Hold Tx freq</label>
     <label><input type="checkbox" id="f8Keep"> Keep calling CQ after each contact</label>
@@ -162,7 +164,18 @@
   $('f8Std').onclick = () => { if (S.ov) delete S.ov[ovKey()]; saveS(); showDial(); radioTune(); };
   /* follow the radio's knob while CAT is connected (not right after we tuned it) */
   setInterval(async () => { if (root.hidden || document.hidden || !window.KPCCat || !KPCCat.get().on || !KPCCat.connected() || Date.now() - tunedAt < 4000 || document.activeElement === $('f8Khz') || TXING) return;
-    try { const r = await KPCCat.read(); if (r && r.khz && Math.abs(r.khz - dialK()) > 0.02 && Date.now() - tunedAt >= 4000) setDial(r.khz, true); } catch (e) {} }, 2500);
+    try { const r = await KPCCat.read(); if (r && r.khz) LASTR = { khz: r.khz, mode: r.mode || '', t: Date.now() };
+      /* Nov 19 2026 (app 0.9.9 rule): only a radio in a DATA mode moves FT8 / FT4's own dial; a voice / CW frequency is never taken over
+         (it made the next CQ go out on 14.243 USB) */
+      if (r && r.khz && Math.abs(r.khz - dialK()) > 0.02 && Date.now() - tunedAt >= 4000 && (!/^FT[48]$/.test(S.mode) || knobOk(r))) setDial(r.khz, true); } catch (e) {} }, 2500);
+  let LASTR = { khz: 0, mode: '', t: 0 };
+  /* Fable review Nov 19: an Icom reads back plain 'USB' in USB-D, and some run FT8 in USB, so 'DATA mode only' would have stopped the
+     knob follow for them. Rule: a DATA mode always counts; USB / LSB / unknown counts only within 25 kHz of this mode's usual dial on
+     that band (covers DXpedition FT8 dials, never a voice frequency); CW / FM / AM never. */
+  function knobOk(r) { const m = String(r.mode || '').toUpperCase(); if (/DATA|PKT|DIG|-D/.test(m)) return true; if (/CW|FM|AM/.test(m)) return false;
+    const b = bandOfK(r.khz), std = b && (DIAL[S.mode] || {})[b]; return !!std && Math.abs(r.khz - std) <= 25; }
+  /* the radio is known (a reading in the last 10 s, after our own tune settled) to be more than 1.5 kHz off this mode's dial */
+  function offDial() { return /^FT[48]$/.test(S.mode) && LASTR.khz > 0 && Date.now() - LASTR.t < 10000 && Date.now() - tunedAt > 4000 && Math.abs(LASTR.khz - dialK()) > 1.5; }
   function setMode(m) { if (/^(PSK31|WSPR)$/.test(m)) m = 'FT8'; if (m === S.mode) return; S.mode = m; saveS(); bandOpts(); showDial(); radioTune(); resetEng(); gen(); slotSep(true); modeView(); }
   function modeView() { CWON = S.mode === 'CW'; root.dataset.m = S.mode === 'CW' ? 'cw' : isDG() ? S.mode.toLowerCase().replace('31', '') : 'ft'; if (S.mode !== 'CW' && TXING && CWTX) cwHalt(); if (DG()) DG().mode(S.mode); fftFit(); wfRange(); drawScale(); }
   function fftFit() { if (AN && AC) { const want = S.mode === 'WSPR' ? 32768 : AC.sampleRate > 30000 ? 8192 : 4096; if (AN.fftSize !== want) AN.fftSize = want; } }
@@ -524,9 +537,17 @@
     if (D.length) { const dts = D.map(d => d.dt).sort((a, b) => a - b); dtAvg.push(dts[Math.floor(dts.length / 2)]); if (dtAvg.length > 8) dtAvg.shift(); clockHint(); }
     LINES.push({ sep: sl, t: start, mode: S.mode });
     for (const d of D) {
+      /* Nov 19 2026 (Lounge round, the app's 0.8.1-0.8.7 Fox & Hound): the Fox finishes one Hound and calls the next in ONE message 'A RR73; B <FOX> -12' */
+      const fx = /^(\S+) RR73; (\S+) <([^>]+)> ([+-]\d\d)$/.exec(d.text);
+      if (fx) { const a = clean(fx[1]), b = clean(fx[2]), fox = clean(fx[3]); if (fox !== '...') FOXES[fox] = Date.now();
+        LINES.push({ t: start, sl, par, db: d.db, dt: d.dt, hz: d.hz, text: d.text, cq: false, cqw: '', to: me && a === me ? a : b, fr: QS.hound && QS.dx && (a === me || b === me) ? QS.dx : fox, me: !!me && (a === me || b === me), grid: '', fox: 1, fc: fox, dxa: a, dxb: b, dxr: fx[4] });
+        continue; }
+      if (d.text[0] === '~') continue;   /* a message the decoder heard but cannot print */
       const tk = d.text.split(/\s+/), to = clean(tk[0]), fr = clean(tk[0] === 'CQ' ? (tk.length > 3 ? tk[2] : tk[1]) : tk[1]);
       LINES.push({ t: start, sl, par, db: d.db, dt: d.dt, hz: d.hz, text: d.text, cq: tk[0] === 'CQ', cqw: tk[0] === 'CQ' && tk.length > 3 ? tk[1] : '', to, fr, me: !!me && to === me, grid: tk.length >= 3 && isGrid(tk[tk.length - 1]) ? tk[tk.length - 1].toUpperCase() : '' });
     }
+    { const per = {}; LINES.forEach(x => { if (x.sl === sl && x.sep == null && x.fr && !x.cq && !/\.\.\./.test(x.fr)) per[x.fr] = (per[x.fr] || 0) + 1; });
+      Object.keys(per).forEach(c => { if (per[c] >= 2) FOXES[c] = Date.now(); }); }   /* one station sending 2+ messages in a slot = a Fox */
     if (LINES.length > MAXL) LINES = LINES.slice(-MAXL);
     for (const x of LINES) if (x.sl === sl && x.grid && x.fr && !/\.\.\./.test(x.fr)) GRIDS[x.fr] = x.grid;
     clearTimeout(gridSave); gridSave = setTimeout(() => { const k = Object.keys(GRIDS); if (k.length > 3000) k.slice(0, k.length - 3000).forEach(c => delete GRIDS[c]); put('kpcFt8Grids', GRIDS); }, 2000);
@@ -585,11 +606,14 @@
     const me = myCall(); const other = x.me ? x.fr : (x.cq ? x.fr : (x.fr && x.fr !== me ? x.fr : x.to));
     if (!other || other === '...' || /\.\.\./.test(other)) { note('That call is hidden (a long or odd call sign). Wait for them to send their full call.'); return; }
     const keepG = QS.dx === other ? QS.grid : ''; QS.dx = other; QS.grid = x.grid || keepG; QS.rs = fmtDb(x.db); QS.rr = ''; QS.state = 'call'; QS.logged = false; QS.tries = 0; QS.since = nowS(); QS.ref = (spotRef(other) || {}).reference || QS.ref || '';
-    S.rxHz = x.hz; if (!S.hold) S.txHz = x.hz; S.even = x.par === 1; saveS();
+    S.rxHz = x.hz; if (!S.hold) S.txHz = x.hz; S.even = x.par === 1;
+    QS.hound = !!(S.hound || isFox(other) || x.fox); QS.r3 = 0; $('f8Hound').checked = QS.hound || !!S.hound;   /* a Fox switches HOUND on for this contact only */
+    if (QS.hound) { QS.callHz = houndHz(); S.txHz = QS.callHz; }
+    saveS();
     $('f8Dx').value = QS.dx; $('f8DxG').value = QS.grid; $('f8Rpt').value = QS.rs;
     gen();
     /* answering them: if they're already calling me, jump ahead like WSJT-X */
-    let n = S.noGrid ? 2 : 1; if (x.me) { const tk = x.text.split(/\s+/), last = tk[tk.length - 1]; if (isRpt(last)) { QS.rr = last; n = 3; } else if (isRRpt(last)) { QS.rr = last.slice(1); n = 4; } else if (last === 'RR73' || last === 'RRR') n = 5; else n = 2; }
+    let n = S.noGrid && !QS.hound ? 2 : 1; if (x.me && QS.hound) { const r = houndRx(x); if (r) n = r; } else if (x.me) { const tk = x.text.split(/\s+/), last = tk[tk.length - 1]; if (isRpt(last)) { QS.rr = last; n = 3; } else if (isRRpt(last)) { QS.rr = last.slice(1); n = 4; } else if (last === 'RR73' || last === 'RRR') n = 5; else n = 2; }
     QS.cq = false; nextTx(n); txOn(true); hzBoxes(); drawScale(); drawRx(); chk(); if (TXON) note('📞 Calling ' + other + ' (Tx' + n + ')', 2000);
   }
   /* Nov 10 (from the KPC app 0.6.2 / 0.6.3 / Oct 24): the QSO box under TX1-6: the stations calling ME + both sides of the contact in hand; SENT / RCVD in the header ('missing report' = the one they send me) */
@@ -698,10 +722,20 @@
   $('f8Txm').addEventListener('click', e => { const a = e.target.closest('[data-nx]'), b = e.target.closest('[data-now]');
     if (a) nextTx(+a.dataset.nx); if (b) { nextTx(+b.dataset.now); txOn(true); NOWTX = true; } });
   let TXON = false, TXING = false, NOWTX = false, TUNE = null;
+  /* Nov 19 2026 (Lounge round, from the KPC app 0.9.7 HELD fix; Fable review before live): HELD = the operator stopped TX (HALT, Esc,
+     STOP ALL, ENABLE TX off). Before, a station answering after HALT made seq() switch TX back on by itself. Only the operator
+     (ENABLE TX / CQ / a TX button) clears it. The no-answer timer is a SOFT stop and does not hold. */
+  let HELD = false;
+  /* Nov 19 2026 (Lounge round): ● ON AIR + ■ STOP ALL (kpc-onair.js, loaded here so no page needs a new tag) */
+  function onAir(id, o) { const reg = () => { if (window.KPCOnAir) KPCOnAir.add(id, o); else setTimeout(reg, 300); }; reg();
+    if (!window.KPCOnAir && !document.getElementById('kpcOnAirJs')) { const s = document.createElement('script'); s.id = 'kpcOnAirJs'; s.src = 'kpc-onair.js?v=20261119a'; document.head.appendChild(s); } }
+  onAir('ft8', { label: 'FT8 / FT4', busy: () => TXING, stop: () => halt('■ STOP ALL: TX stopped.') });
   /* Nov 10 (from the KPC app 0.6.8, KPC owner, 2026-11-10): the CQ and the first call carry my grid, so with none TX will not switch on.
      ⚡ Fast QSO (no grid) answering a station sends reports only, so that path still works. */
   function needGrid() { if (myGrid()) return false; note(main && main.id === 'hl' ? 'Put your grid in MY LOG FILES first: the CQ and the first call carry it' : 'Put your grid in MY STATION first: the CQ and the first call carry it', 6000); return true; }
-  function txOn(on) { if (on && !(S.noGrid && QS.next >= 2 && QS.next <= 5) && needGrid()) { TXON = false; chk(); stat(); return; } TXON = !!on; if (on && !RUN) startAudio(); if (on) QS.since = QS.since || nowS(); chk(); stat(); }
+  function txOn(on) { if (on && !(S.noGrid && QS.next >= 2 && QS.next <= 5) && needGrid()) { TXON = false; chk(); stat(); return; }
+    if (on && offDial()) { note(`📻 The radio is on ${(LASTR.khz / 1000).toFixed(4)} MHz, not ${S.mode}'s ${(dialK() / 1000).toFixed(4)}: tuning it first. Press again once it is there.`, 6000); radioTune(); TXON = false; chk(); stat(); return; }
+    HELD = !on; TXON = !!on; if (on && !RUN) startAudio(); if (on) QS.since = QS.since || nowS(); chk(); stat(); }
   function chk() { $('f8En').classList.toggle('on', TXON); $('f8Cq').classList.toggle('on', TXON && QS.next === 6); }
   function stat() { const e = $('f8St'); e.textContent = TXING ? 'TX ' + (TUNE ? 'TUNE' : '') : RUN ? (TXON ? 'RX · TX ON' : 'RX') : 'OFF'; e.className = 'f8-st ' + (TXING ? 'tx' : RUN ? 'rx' : ''); }
   $('f8En').onclick = () => { if (!RUN) { startAudio().then(ok => ok && txOn(!TXON)); return; } txOn(!TXON); };
@@ -714,7 +748,7 @@
   $('f8Dx').onchange = () => { QS.dx = clean($('f8Dx').value); QS.logged = false; QS.state = 'call'; gen(); };
   $('f8DxG').oninput = e => { e.target.value = e.target.value.toUpperCase(); };
   $('f8Rpt').onchange = () => { QS.rs = $('f8Rpt').value.trim(); gen(); };
-  function halt(why) { TXON = false; NOWTX = false; if (TXING) stopTx(); chk(); stat(); if (why) note(why, 2500); }
+  function halt(why, soft) { if (!soft) HELD = true; TXON = false; NOWTX = false; if (TXING) stopTx(); chk(); stat(); if (why) note(why, 2500); }
   $('f8Tune').onclick = async () => { if (TXING && TUNE) { stopTx(); return; }
     /* Android: TUNE without START = the mic is never opened (same as playing a video). Test for low power (Brandon Oct 18) */
     if (!RUN && mediaOut()) { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); try { await AC.resume(); } catch (e) {} startTone(); note('TUNE with the mic closed (not listening).', 3000); return; }
@@ -724,13 +758,14 @@
   function seq(sl, D) {
     const me = myCall(); if (!me || !S.auto) return;
     const L = LINES.filter(x => x.sl === sl && x.me);
+    if (QS.hound && QS.dx) { houndSeq(sl, L); return; }
     let mine = L.find(x => QS.dx && x.fr === QS.dx);
     if (!mine && (QS.state === 'cq' || (QS.next === 6 && TXON)) && L.length) {
       /* someone answered my CQ: Call 1st = the first one, else the strongest */
       const c = L.slice().sort((a, b) => S.first ? 0 : b.db - a.db)[0];
       if (c && c.fr && !/\.\.\./.test(c.fr)) { QS.dx = c.fr; QS.grid = c.grid || ''; QS.rs = fmtDb(c.db); QS.rr = ''; QS.logged = false; QS.tries = 0; QS.since = nowS(); QS.ref = ''; S.even = c.par === 1; $('f8Dx').value = QS.dx; $('f8DxG').value = QS.grid; $('f8Rpt').value = QS.rs; mine = c; }
     }
-    if (!mine) { /* watchdog: 6 minutes of calling with no answer */ const wd = (+S.wd || 2) * 60; if (TXON && QS.since && nowS() - QS.since > wd) { halt(`⏱ No answer for ${S.wd || 2} minute${(+S.wd || 2) > 1 ? 's' : ''}: TX turned off. Change this in ⚙ SETTINGS.`); QS.since = 0; } return; }
+    if (!mine) { /* watchdog: 6 minutes of calling with no answer */ const wd = (+S.wd || 2) * 60; if (TXON && QS.since && nowS() - QS.since > wd) { halt(`⏱ No answer for ${S.wd || 2} minute${(+S.wd || 2) > 1 ? 's' : ''}: TX turned off. Change this in ⚙ SETTINGS.`, true); QS.since = 0; } return; }
     const tk = mine.text.split(/\s+/), last = tk[tk.length - 1].toUpperCase();
     QS.since = nowS(); if (!QS.rs) QS.rs = fmtDb(mine.db);
     S.even = mine.par === 1;
@@ -742,9 +777,48 @@
     else if (isRRpt(last)) { QS.rr = last.slice(1); gen(); nextTx(4); QS.state = 'rr73'; /* logged when RR73 goes out */ }
     else if (last === 'RR73' || last === 'RRR') { if (!QS.logged) logIt(); nextTx(5); QS.state = 'send73'; }
     else if (last === '73') { if (!QS.logged && QS.rr) logIt(); afterQso(); }
-    $('f8DxG').value = QS.grid; $('f8Rpt').value = QS.rs; if (!TXON && QS.state !== 'done') txOn(true);
+    $('f8DxG').value = QS.grid; $('f8Rpt').value = QS.rs; if (!TXON && QS.state !== 'done' && !HELD) txOn(true);   /* never after HALT / STOP ALL (HELD) */
     chk(); drawRx();
   }
+  /* ---- 🦊 FOX & HOUND (Nov 19 2026, Lounge round; ported from the KPC app's kpc-digi.js, 0.8.1 + Fable's 0.8.2 / 0.8.7 reviews: the
+     rules come from WSJT-X's DXpedition mode). A Hound calls the Fox above 1000 Hz with Tx1 (grid); the Fox answers 'ME FOX -12' or in
+     its two-in-one message; the first R+report goes out AT the Fox's frequency, later tries 300 Hz off; the Fox's RR73 = logged, no 73.
+     SuperFox is not decoded here. FABLE REVIEWS BEFORE LIVE (it decides when TX switches on). */
+  const FOXES = {};
+  const isFox = c => !!c && Date.now() - (FOXES[c] || 0) < 20 * 60000;
+  function houndHz() {
+    if (S.txHz >= 1000 && S.txHz <= 2700) return S.txHz;
+    if (avgV && isFT()) { const bw = S.mode === 'FT4' ? 83 : 50; let best = null, bv = 1e9; for (let hz = 1000; hz <= 2700 - bw; hz += 5) { if (spotTaken(hz + bw / 2)) continue; const r = avgAt(hz, hz + bw), v = r.avg + r.pk * 0.5; if (v < bv) { bv = v; best = hz; } } if (best != null) return Math.round(best + bw / 2); }
+    return 1100 + Math.round(Math.random() * 1400);
+  }
+  function houndRx(x) {
+    const me = myCall();
+    if (x.fox) { if (x.fc && x.fc !== '...' && QS.dx && clean(x.fc) !== clean(QS.dx) && h10(x.fc) !== h10(QS.dx)) return null;   /* a different code = a different Fox */
+      if (x.dxa === me) return 0; if (x.dxb === me) { QS.rr = x.dxr; return 3; } return null; }
+    const tk = x.text.split(/\s+/), last = tk[tk.length - 1].toUpperCase();
+    if (isRpt(last)) { QS.rr = last; return 3; } if (isRRpt(last)) { QS.rr = last.slice(1); return 3; }
+    if (last === 'RR73' || last === 'RRR' || last === '73') return 0; return null;
+  }
+  function houndBack() { if (QS.callHz) { S.txHz = QS.callHz; saveS(); hzBoxes(); drawScale(); } }
+  function houndSeq(sl, L) {
+    const x = L.find(y => y.fr === QS.dx), wd = (+S.wd || 2) * 60;
+    if (!x) { if (TXON && QS.since && nowS() - QS.since > wd) { houndBack(); if (!S.hound) { QS.hound = false; $('f8Hound').checked = false; } halt('🦊 No answer from the Fox for ' + (S.wd || 2) + ' minute' + ((+S.wd || 2) > 1 ? 's' : '') + ': TX is off. Try again in a while, or another band.', true); QS.since = 0; } return; }
+    if (QS.state === 'done') return;   /* the Fox repeats RR73 for a while: logged once is enough */
+    QS.since = nowS(); S.even = x.par === 1;
+    const r = houndRx(x);
+    if (r === 3) { QS.rs = fmtDb(x.db); QS.r3 = (QS.r3 || 0) + 1; const hz = QS.r3 === 1 ? x.hz : x.hz > 600 ? x.hz - 300 : x.hz + 300;
+      S.txHz = Math.max(200, Math.min(2700, hz)); saveS(); hzBoxes(); drawScale();
+      if (QS.r3 === 1) note('🦊 The Fox answered: sending R' + QS.rs + ' at ' + S.txHz + ' Hz.', 3500);
+      gen(); nextTx(3); QS.state = 'sentrrpt'; if (!TXON && !HELD) txOn(true); }
+    else if (r === 0) { if (!QS.logged) logIt(); QS.state = 'done'; TXON = false; chk(); stat(); houndBack();
+      if (!S.hound) { QS.hound = false; $('f8Hound').checked = false; }
+      note('🦊✅ ' + QS.dx + ' worked! The Fox sent RR73: logged. (Hounds don\'t send 73.)', 6000, 'log'); }
+    saveS(); $('f8Rpt').value = QS.rs; drawRx();
+  }
+  $('f8Hound').checked = !!S.hound;
+  $('f8Hound').onchange = () => { S.hound = $('f8Hound').checked; saveS(); if (QS.dx && QS.state !== 'done') QS.hound = S.hound; else if (!S.hound) QS.hound = false;
+    if (S.hound) { if (S.txHz < 1000) { S.txHz = houndHz(); saveS(); hzBoxes(); drawScale(); } note('🦊 HOUND on: tap the Fox (the DXpedition) to call it. You call above 1000 Hz; the page does the rest. Turn it off for normal FT8.', 6000); }
+    else note('🦊 HOUND off: normal FT8.', 2500); };
   function afterQso() {
     QS.state = 'done';
     if (S.keepCq && QS.cq) { QS.dx = ''; QS.grid = ''; QS.rr = ''; QS.logged = false; QS.state = 'cq'; QS.since = nowS(); $('f8Dx').value = ''; $('f8DxG').value = ''; gen(); nextTx(6); }
@@ -777,6 +851,7 @@
     const late = S.mode === 'FT4' ? 1.2 : 2.5; if (into > late && !NOWTX) return;
     if (into > (S.mode === 'FT4' ? 3 : 8)) return;
     if (!myCall()) { halt(); note('Put YOUR call in ⚙ STATION first: nothing was sent.', 5000); return; }
+    if (offDial()) { halt(`📻 Not sent: the radio is on ${(LASTR.khz / 1000).toFixed(4)} MHz, not ${S.mode}'s dial ${(dialK() / 1000).toFixed(4)}. Tap the dial to put it back.`); return; }   /* Nov 19 (app 0.9.9 rule) */
     lastTxSlot = sl; NOWTX = false;
     const n = QS.next || 6; let m = msgOf(n); if (!m) return;
     if (/DXCALL/.test(m) && clean($('f8Dx').value)) { QS.dx = clean($('f8Dx').value); gen(); m = msgOf(n); }
@@ -889,7 +964,11 @@
     _wedge: () => { lastPass = nowS() - 100; lastN12 = -1; wdT = 0; }, _restarts: () => RESTARTS, _quiet: n => { quietSlots = n; wdSaid = 0; lastN12 = -1; wdT = 0; }, _hl: (x, hl) => { if (hl) S.hl = hl; spotHl.t = 0; qsHl.t = 0; return hlOf(x, /^(POTA|SOTA|WWFF)$/.test(x.cqw || '')); },
     _autoTest: hz => { const W = wf.width; if (!avgV || avgV.length !== W) avgV = new Float32Array(W).fill(-90); const a = Math.round(hzToX(hz - 25)), b = Math.round(hzToX(hz + 25)); for (let i = a; i <= b; i++) avgV[i] = -40; const before = S.txHz; autoSpotTick(); return { moved: S.txHz !== before, to: S.txHz }; },
     /* decoded lines made up for slot sl, then the same steps a real pass takes (lists, QSO box, sequencer) */
-    _feed: (sl, list) => { const me = myCall(), start = sl * slotLen(); LINES.push({ sep: sl, t: start, mode: S.mode }); for (const d of list) { const tk = d.text.split(/\s+/), to = clean(tk[0]), fr = clean(tk[0] === 'CQ' ? (tk.length > 3 ? tk[2] : tk[1]) : tk[1]);
+    _held: () => HELD, _knobOk: r => knobOk(r), _offDial: () => offDial(), _lastR: (khz, mode) => { LASTR = { khz, mode: mode || '', t: Date.now() }; tunedAt = 0; }, _foxes: () => Object.assign({}, FOXES),
+    _feed: (sl, list) => { const me = myCall(), start = sl * slotLen(); LINES.push({ sep: sl, t: start, mode: S.mode }); for (const d of list) {
+        const fx = /^(\S+) RR73; (\S+) <([^>]+)> ([+-]\d\d)$/.exec(d.text);   /* Nov 19: the Fox's two-in-one message, as the real pass reads it */
+        if (fx) { const a = clean(fx[1]), b = clean(fx[2]), fox = clean(fx[3]); FOXES[fox] = Date.now(); LINES.push({ t: start, sl, par: sl % 2, db: d.db == null ? -10 : d.db, dt: 0.2, hz: d.hz || 1200, text: d.text, cq: false, cqw: '', to: me && a === me ? a : b, fr: QS.hound && QS.dx && (a === me || b === me) ? QS.dx : fox, me: !!me && (a === me || b === me), grid: '', fox: 1, fc: fox, dxa: a, dxb: b, dxr: fx[4] }); continue; }
+        const tk = d.text.split(/\s+/), to = clean(tk[0]), fr = clean(tk[0] === 'CQ' ? (tk.length > 3 ? tk[2] : tk[1]) : tk[1]);
         LINES.push({ t: start, sl, par: sl % 2, db: d.db == null ? -10 : d.db, dt: 0.2, hz: d.hz || 1200, text: d.text, cq: tk[0] === 'CQ', cqw: tk[0] === 'CQ' && tk.length > 3 ? tk[1] : '', to, fr, me: !!me && to === me, grid: tk.length >= 3 && isGrid(tk[tk.length - 1]) ? tk[tk.length - 1].toUpperCase() : '' }); }
       lastDecSlot = sl; drawBand(); drawRx(); seq(sl, []); }, pick: id => { pick(byId[id]); return true; }, ids: () => Object.keys(byId) };
   window.KPCFT8UI = {

@@ -262,6 +262,13 @@
     try { if (t.gate) t.gate.gain.value = 0; } catch (e) {} try { if (t.el) t.el.pause(); } catch (e) {} try { if (t.ctx) t.ctx.close(); } catch (e) {}
     cool(); if (t.key) { await t.key; await K().ptt(false, 'cat'); }
   }
+  /* Nov 19 2026 (Lounge round): ● ON AIR + ■ STOP ALL (kpc-onair.js, loaded here so no page needs a new tag) */
+  function onAir(id, o) { const reg = () => { if (window.KPCOnAir) KPCOnAir.add(id, o); else setTimeout(reg, 300); }; reg();
+    if (!window.KPCOnAir && !document.getElementById('kpcOnAirJs')) { const s = document.createElement('script'); s.id = 'kpcOnAirJs'; s.src = 'kpc-onair.js?v=20261119a'; document.head.appendChild(s); } }
+  let CWUNTIL = 0;
+  onAir('talk', { label: 'hold to talk', busy: () => !!TK, stop: () => talkUp() });
+  onAir('cw', { label: 'CW', busy: () => Date.now() < CWUNTIL, stop: () => { CWUNTIL = 0; try { const k = K(); if (k.cwStop) k.cwStop(); } catch (e) {} } });
+  onAir('scan', { label: 'scan', busy: () => false, stop: () => { if (scT) scStop('■ Scan stopped.'); } });
   G.addEventListener('blur', () => talkUp());
   /* Nov 11: the radio must also unkey when the tab is hidden or closed while the talk button is held */
   G.addEventListener('pagehide', () => talkUp()); document.addEventListener('visibilitychange', () => { if (document.hidden) talkUp(); });
@@ -289,7 +296,8 @@
   async function cwSend(t) {
     if (!t) { note('Nothing to send (is the call box empty?).', true); return; }
     const k = K(); if (!conn() || !(k.cwCan && k.cwCan())) { note('Connect a radio that takes typed CW first.', true); return; }
-    const ok = await k.cw(t, CW.wpm); note(ok ? '📟 ' + t : 'The radio did not take the CW.', !ok);
+    CWUNTIL = Date.now() + Math.ceil(t.length * 10 * 1200 / (CW.wpm || 20)) + 1500;   /* about how long the radio sends it: for ● ON AIR */
+    const ok = await k.cw(t, CW.wpm); if (!ok) CWUNTIL = 0; note(ok ? '📟 ' + t : 'The radio did not take the CW.', !ok);
   }
 
   /* ================================================================ keep things in step with the radio */
