@@ -687,3 +687,7 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **(d) 03B kit: Fable's** (tools-out `handoff-03/`), nothing for Opus.
    - **NEXT: ONE Fable sitting** (#278 round 2 + run 44548425526's notices, the table's STOP list, T1 run 2), then Brandon's yes per state ->
      KPC_DROP_OK -> ONE release run (Q1, held states, NPS, #277, R-PP1a), then kit D, then the step 3 PR.
+   - **Brandon's eyes (19 Nov 8:56 AM: "Give my eyes.. I cant see all the information you all see"):** one page for him, private to him:
+     https://claude.ai/artifact/3ZEKuejQhixfkd6HziB3CK ("Key Run Check, 19 Nov"): the totals, the 13 waiting states (green / red),
+     and a card per changed park (131) with a small map: outline today, outline after the run, POTA's pin, the reason in plain words.
+     Built from tools-out `factcheck-run-44528656941/`. Future tables to Brandon: give him a page like this, not only text.
