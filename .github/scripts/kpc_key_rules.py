@@ -107,6 +107,11 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           the rows that rest on an approximate saved answer ('reviewed-approx': the closest official land, bigger
                           or another shape) go to check until a person verifies an outline with evidence; every other row stays.
                           A park left with nothing is pin only and its last outline is never kept. ON for the US key (default).
+  KPC_PRESERVE_APART   1  (R-PP1, Fable 19 Nov, key-quality.md section 19 items 4 + 10) a park number does NOT cover the national
+                          preserve beside it unless POTA's own name for that number says so ('... and Preserve'). A Park Service
+                          record named Preserve that the NAME rules joined to a park whose POTA name has no 'Preserve' (or a
+                          park / monument record joined to a preserve-only number) goes to check. A person's join stands; a
+                          combined 'Park & Preserve' record or park is both. ON for the US key (default).
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -120,7 +125,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
             'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0',
-            'KPC_APPROX_PIN': '1'}
+            'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1'}
 
 
 # Reviewer B #7 (KPC owner, 2026-11-17): the switches live in .github/key-switches.json (a US rule file, sliced per area), so a
@@ -822,7 +827,7 @@ def nps_part_clash(park_name, record_name):
     def part(t):
         t = str(t or '').lower()
         if not re.search(r'\bpreserve\b', t): return 'other'
-        return 'both' if re.search(r'\bpark\b', t) else 'preserve'   # 'Wrangell-St. Elias National Park & Preserve' is both
+        return 'both' if re.search(r'\b(park|monument)\b', t) else 'preserve'   # 'Wrangell-St. Elias National Park & Preserve' is both; R-PP1: so is 'Oregon Caves National Monument and Preserve' (one record)
     return {part(park_name), part(record_name)} == {'preserve', 'other'}
 
 
