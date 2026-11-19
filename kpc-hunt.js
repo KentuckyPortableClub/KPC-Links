@@ -147,7 +147,8 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
       la: g ? g[0] : +x.latitude, lo: g ? g[1] : +x.longitude, t: toMs(x.spotTime), by: x.spotter || '', com: x.comments || '', us: /^US-/.test(loc) || /^US-/.test(ref), ca: /^CA-/.test(ref) };
   }
   function fromSota(x) {
-    const khz = toKhz(x.frequency); if (!khz) return null; const a = String(x.associationCode || ''), ref = (a + '/' + (x.summitCode || '')).toUpperCase();
+    /* Nov 18 2026 (N11, from the KPC app 0.9.8): SOTA always gives MHz, so a 23 cm spot (1296.2) is not read as kHz */
+    const fm = Number(x.frequency), khz = isFinite(fm) && fm > 0 ? Math.round(fm * 1e6) / 1000 : null; if (!khz) return null; const a = String(x.associationCode || ''), ref = (a + '/' + (x.summitCode || '')).toUpperCase();
     return { p: 'SOTA', call: String(x.activatorCallsign || '').toUpperCase(), khz, mode: String(x.mode || '').toUpperCase(), ref, name: x.summitDetails || '', loc: a, st: '', la: NaN, lo: NaN,
       t: toMs(x.timeStamp), by: x.callsign || '', com: x.comments || '', us: /^(W\d|K[HL]\d|W[0-9]?[A-Z])/.test(a), ca: /^(VE|VA|VY|VO)/.test(a) };
   }
