@@ -7,7 +7,7 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "180c2619fd744adcc64358f1894b8abb332a8a7b6ef5f473a54f120663eeb754",
+  "overrides-parks-01.json": "568aa4fa9fb52d2a2dff12c2b492611cef1fc2748e4c5a8ad3c8a99d813d1f6f",
   "overrides-parks-02.json": "73a0497ca42fac33d6f757948432794b0122f459348916611643b275aaf7dcb1"
  },
  "parks": {
@@ -2398,19 +2398,6 @@
    },
    "when": "2026-11-02",
    "why": "Nov 2 map audit: chat 11 NO on 2675 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
-  },
-  "US-4502": {
-   "no": [
-    "2658"
-   ],
-   "nofp": {
-    "2658": [
-     "Flathead National Forest",
-     2414171.0
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "Nov 2 map audit: chat 11 NO on 2658 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-4537": {
    "no": [
