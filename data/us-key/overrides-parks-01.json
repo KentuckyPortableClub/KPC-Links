@@ -26290,13 +26290,28 @@
     "sgidd145": [
      "Custer Gallatin National Forest",
      3020884
+    ],
+    "2660": [
+     "Gallatin National Forest",
+     1850408
     ]
    },
    "join": [
-    "sgidd145"
+    "sgidd145",
+    "2660"
    ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Custer Gallatin National Forest' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-19",
+   "why": "2026-11-02 13:05: layers row YES 'Custer Gallatin National Forest' (chat 11; applied by kpc_key_answers) · 2026-11-19 evidence batch 02 + rule R-FJ1: PAD-US 2660 'Gallatin National Forest' is the Gallatin half of this forest (its own Loc_Nm says Custer Gallatin National Forest; USFS Land Areas Report FY2025); it lies 3.5 degrees west of POTA's pin, so it is a far join by a person's evidence (key-quality.md section 19 items 20, 26, 27)",
+   "far": [
+    "2660"
+   ],
+   "decided_by": "evidence batch 02 (key-quality.md section 19 items 20-21, Fable; R-FJ1 approved by the KPC owner 2026-11-19 11:49 AM: \"yes pins are only references they are not always right\")",
+   "evidence": {
+    "who": "Fable (sitting 3, 19 Nov) from the 19 Nov saved shapes; acres from kit C (one outside-agent pass of the Forest Service file the owner downloaded by hand)",
+    "source": "https://usfs-public.app.box.com/s/rhq1lm3rq3wauhtz6yulanuzoijaaqsw/folder/360409342995 (Land Areas of the National Forest System FY2025, LAR_FY2025.xlsx); PAD-US fee records 2652 and 2660",
+    "saw": "PAD-US 2660 Unit_Nm 'Gallatin National Forest', Loc_Nm 'Custer Gallatin National Forest', USFS fee, 1,850,408 ac; PAD-US 2652 Unit_Nm 'Custer National Forest', same Loc_Nm, 1,115,748 ac (already joined). Report: Custer NF Montana 1,115,757 NFS ac (Table 5) + Gallatin NF 1,850,468 NFS ac (Table 3) = 2,966,225; the two records 2,966,156. Custer Gallatin is one administrative unit (0111, Table 28).",
+    "date": "2026-11-19"
+   }
   },
   "US-4502": {
    "join": [

@@ -112,6 +112,13 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           record named Preserve that the NAME rules joined to a park whose POTA name has no 'Preserve' (or a
                           park / monument record joined to a preserve-only number) goes to check. A person's join stands; a
                           combined 'Park & Preserve' record or park is both. ON for the US key (default).
+  KPC_FAR_JOIN         1  (R-FJ1, KPC owner 19 Nov 11:49 AM: 'yes pins are only references they are not always right'; key-quality.md
+                          section 19 items 26-27) a person's saved join may reach a record FAR from POTA's pin (past the 0.6 degree
+                          box) when the answer names that record by its exact id in BOTH 'join' and 'far', carries decided_by and
+                          evidence (who, source, saw, date), and the record read today still fits the saved fingerprint (same name,
+                          acres within 10% or 20 ac). Never by name, never for a re-found id, never for an 'approx' answer, never
+                          past a NO. A far id that no longer fits goes to check; a 'far' with no evidence is ignored (warning).
+                          ON for the US key (default).
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -125,7 +132,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
             'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0',
-            'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1'}
+            'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1'}
 
 
 # Reviewer B #7 (KPC owner, 2026-11-17): the switches live in .github/key-switches.json (a US rule file, sliced per area), so a
@@ -510,6 +517,33 @@ def rec_names(rec):
     out = [x for x in (u, l) if x]
     if u and l: out += [f'{l} ({u})', f'{u} ({l})']
     return out
+
+
+FAR_EVIDENCE = ('who', 'source', 'saw', 'date')
+
+
+def far_join_ok(ov, rid, rec):
+    """R-FJ1 (KPC owner, 2026-11-19 11:49 AM: 'yes pins are only references they are not always right'): may the saved answer `ov`
+    join record `rec` (id `rid`) although it lies far from POTA's pin? -> (status, why):
+      'ok'          the id is in both 'join' and 'far', the answer has decided_by + evidence, the record fits its fingerprint
+      'nofit'       asked for, but the record read today has another name or acres more than 10% (20 ac) off: check, no join
+      'noevidence'  asked for, but no decided_by, no evidence (who, source, saw, date) or no fingerprint: ignored, warning
+      'approx'      asked for on an 'approx' answer (Q1 keeps those a pin): ignored
+      None          not asked for (the id is not in 'far', or not in 'join')."""
+    rid = str(rid)
+    if rid not in {str(x) for x in (ov or {}).get('far') or []} or rid not in {str(x) for x in (ov or {}).get('join') or []}: return None, ''
+    if ov.get('approx'): return 'approx', "R-FJ1: 'far' on an approximate answer is ignored (Q1 keeps it a pin)"
+    ev = ov.get('evidence') if isinstance(ov.get('evidence'), dict) else {}
+    fp = (ov.get('fp') or {}).get(rid)
+    if not str(ov.get('decided_by') or '').strip() or not all(str(ev.get(k) or '').strip() for k in FAR_EVIDENCE) or not fp:
+        return 'noevidence', "R-FJ1: 'far' needs decided_by, evidence (who, source, saw, date) and the record's fingerprint: ignored"
+    fn, fa = (list(fp) + [None, None])[:2]
+    names = {nf(x) for x in rec_names(rec or {})}
+    try: ra, fa_ = float((rec or {}).get('GIS_Acres') or 0), float(fa or 0)
+    except (TypeError, ValueError): ra, fa_ = 0.0, 0.0
+    if nf(fn) not in names: return 'nofit', f"check (R-FJ1): the far record no longer fits its saved name ('{fn}')"
+    if abs(ra - fa_) > max(20.0, .1 * fa_): return 'nofit', f"check (R-FJ1): the far record no longer fits its saved acres ({round(fa_):,} saved, {round(ra):,} now)"
+    return 'ok', 'R-FJ1: a person\'s evidence names this exact record'
 
 
 def saved_row_ok(row, rec):
