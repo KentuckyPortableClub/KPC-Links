@@ -147,7 +147,8 @@
       const home = LR().home && LR().home(); if (home) { home.appendChild(box); box.removeAttribute('data-hxtab'); try { LR().draw(); } catch (e) {} } else box.remove();
     }
     if (SHOWS[tab] && !box) pane.innerHTML = '<p class="hx-n">The radio extras did not load on this page.</p>';
-    if (tab === 'radio') radioPane(pane);
+    if (tab === 'radio') { radioPane(pane);   /* Nov 19 2026: the app's big radio page, here too (the Lounge radio card has it as well) */
+      pane.insertAdjacentHTML('beforeend', '<p class="hx-n"><a class="lr-c lr-big" href="logger-beta/kpc-logger-beta.html#radio">🖤 BIG RADIO SCREEN (beta)</a> the app\'s full radio page; it opens in this tab, connect the radio again there.</p>'); }
     if (tab === 'meters') metersPane(pane);
     if (tab === 'audio') txPane(tx);
     if (tab === 'cw') cwPane(pane);
@@ -274,6 +275,11 @@
   onAir('talk', { label: 'hold to talk', busy: () => !!TK, stop: () => talkUp() });
   onAir('cw', { label: 'CW', busy: () => Date.now() < CWUNTIL, stop: () => { CWUNTIL = 0; try { const k = K(); if (k.cwStop) k.cwStop(); } catch (e) {} } });
   onAir('scan', { label: 'scan', busy: () => false, stop: () => { if (scT) scStop('■ Scan stopped.'); } });
+  /* Nov 19 2026 (Brandon: 'I dont see cat control set up'): the radio lived behind a small ⚙ in the log dock, far down the page. The new
+     📻 RADIO (CAT) button at the top goes to the page's radio card (public Hunters Lounge) or opens the ⚙ radio window (VIP). */
+  document.addEventListener('click', e => { const b = e.target.closest('[data-hxradio]'); if (!b) return; e.preventDefault();
+    const card = $('hlRadio'); if (card && card.offsetParent !== null) { if (card.tagName === 'DETAILS') card.open = true; card.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    gearMount(); open('radio'); });
   G.addEventListener('blur', () => talkUp());
   /* Nov 11: the radio must also unkey when the tab is hidden or closed while the talk button is held */
   G.addEventListener('pagehide', () => talkUp()); document.addEventListener('visibilitychange', () => { if (document.hidden) talkUp(); });
@@ -333,7 +339,7 @@
 .hx-talk{display:block;width:100%;min-height:54px;margin:8px 0;border:2px solid #f0c96b;border-radius:14px;background:#2a1708;color:#fff;font:900 16px Arial;cursor:pointer;touch-action:none;user-select:none}.hx-talk.on{background:#8a1d12;border-color:#ff8a7a}.hx-talk:disabled{opacity:.45}.hx-talk small{font-weight:400;font-size:12px}
 .hx-mem{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:6px 0}.hx-mem .hx-c{border-radius:10px;text-align:left}.hx-mem small{display:block;font-weight:400;font-size:11px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hx-ed summary{cursor:pointer;font:900 11px Arial;letter-spacing:1px;color:#e9c77d;margin:8px 0}
-#hxHost #lrBox{margin:0}#hxHost #lrBox>details{display:none}#hxHost #lrBox[data-hxtab="band"]>#lrBand,#hxHost #lrBox[data-hxtab="audio"]>#lrHear,#hxHost #lrBox[data-hxtab="more"]>#lrMore,#hxHost #lrBox[data-hxtab="more"]>#lrScope,#hxHost #lrBox[data-hxtab="more"]>#lrGuide{display:block}
+#hxHost #lrBox{margin:0}#hxHost #lrBox>details,#hxHost #lrBox>.lr-bigrow{display:none}#hxHost #lrBox[data-hxtab="band"]>#lrBand,#hxHost #lrBox[data-hxtab="audio"]>#lrHear,#hxHost #lrBox[data-hxtab="more"]>#lrMore,#hxHost #lrBox[data-hxtab="more"]>#lrScope,#hxHost #lrBox[data-hxtab="more"]>#lrGuide{display:block}
 #hxMsg{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:99999;max-width:min(560px,92vw);padding:12px 16px;border-radius:12px;background:#1d1208;border:1px solid #f0c96b;color:#fff;font:700 14px Arial;box-shadow:0 6px 24px rgba(0,0,0,.5)}#hxMsg.bad{border-color:#ff8a7a;background:#2a0e0a}
 @media (max-width:520px){.hx-pop{left:4px!important;right:4px;width:auto!important;top:auto!important;bottom:4px;max-height:78vh}.hx-mem{grid-template-columns:repeat(2,1fr)}}`;
   document.head.appendChild(css);
