@@ -1,10 +1,10 @@
 {
  "United States": {
   "totals": {
-   "matched": 11746,
-   "far": 2300,
+   "matched": 11679,
+   "far": 2299,
    "noshape": 0,
-   "edge": 2190,
+   "edge": 2189,
    "out": 110,
    "swap": 1
   },
@@ -23,7 +23,7 @@
    },
    {
     "st": "AL",
-    "matched": 134,
+    "matched": 133,
     "far": 35,
     "noshape": 0,
     "out": 1,
@@ -59,7 +59,7 @@
    },
    {
     "st": "CA",
-    "matched": 393,
+    "matched": 392,
     "far": 88,
     "noshape": 0,
     "out": 2,
@@ -71,7 +71,7 @@
    },
    {
     "st": "CO",
-    "matched": 267,
+    "matched": 266,
     "far": 111,
     "noshape": 0,
     "out": 12,
@@ -143,7 +143,7 @@
    },
    {
     "st": "HI",
-    "matched": 90,
+    "matched": 89,
     "far": 19,
     "noshape": 0,
     "out": 0,
@@ -155,7 +155,7 @@
    },
    {
     "st": "IA",
-    "matched": 179,
+    "matched": 178,
     "far": 31,
     "noshape": 0,
     "out": 1,
@@ -167,7 +167,7 @@
    },
    {
     "st": "ID",
-    "matched": 231,
+    "matched": 228,
     "far": 30,
     "noshape": 0,
     "out": 1,
@@ -179,7 +179,7 @@
    },
    {
     "st": "IL",
-    "matched": 212,
+    "matched": 211,
     "far": 39,
     "noshape": 0,
     "out": 1,
@@ -191,7 +191,7 @@
    },
    {
     "st": "IN",
-    "matched": 217,
+    "matched": 202,
     "far": 33,
     "noshape": 0,
     "out": 1,
@@ -203,7 +203,7 @@
    },
    {
     "st": "KS",
-    "matched": 125,
+    "matched": 124,
     "far": 18,
     "noshape": 0,
     "out": 0,
@@ -263,7 +263,7 @@
    },
    {
     "st": "MI",
-    "matched": 360,
+    "matched": 355,
     "far": 40,
     "noshape": 0,
     "out": 1,
@@ -287,7 +287,7 @@
    },
    {
     "st": "MO",
-    "matched": 553,
+    "matched": 551,
     "far": 82,
     "noshape": 0,
     "out": 0,
@@ -347,7 +347,7 @@
    },
    {
     "st": "NE",
-    "matched": 187,
+    "matched": 180,
     "far": 17,
     "noshape": 0,
     "out": 1,
@@ -359,7 +359,7 @@
    },
    {
     "st": "NH",
-    "matched": 195,
+    "matched": 194,
     "far": 80,
     "noshape": 0,
     "out": 8,
@@ -395,7 +395,7 @@
    },
    {
     "st": "NV",
-    "matched": 222,
+    "matched": 219,
     "far": 72,
     "noshape": 0,
     "out": 16,
@@ -407,7 +407,7 @@
    },
    {
     "st": "NY",
-    "matched": 830,
+    "matched": 829,
     "far": 130,
     "noshape": 0,
     "out": 0,
@@ -443,15 +443,15 @@
    },
    {
     "st": "OR",
-    "matched": 389,
-    "far": 74,
+    "matched": 382,
+    "far": 73,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 70
+    "edge": 69
    },
    {
     "st": "PA",
@@ -551,7 +551,7 @@
    },
    {
     "st": "VT",
-    "matched": 94,
+    "matched": 91,
     "far": 18,
     "noshape": 0,
     "out": 3,
@@ -563,7 +563,7 @@
    },
    {
     "st": "WA",
-    "matched": 495,
+    "matched": 487,
     "far": 101,
     "noshape": 0,
     "out": 0,
@@ -575,7 +575,7 @@
    },
    {
     "st": "WI",
-    "matched": 334,
+    "matched": 329,
     "far": 46,
     "noshape": 0,
     "out": 2,
@@ -649,6 +649,12 @@
     "US-4236",
     "Upper Mississippi River National Wildlife Refuge",
     "UPPER MISSISSIPPI RIVER FISH & WILDLIFE REFUGE"
+   ],
+   [
+    "IN",
+    "US-10237",
+    "Mongoquinong State Nature Preserve",
+    ""
    ],
    [
     "MD",
@@ -786,7 +792,7 @@
     "OR",
     "US-9159",
     "Lower Deschutes National Wild and Scenic River",
-    "Lower Deschutes"
+    ""
    ],
    [
     "OR",
