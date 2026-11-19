@@ -1,68 +1,198 @@
 #!/usr/bin/env python3
-"""kpc_fers_age.py: how old a carried 2-fer row may get (Handoff 9, bug 4 / owner question 4; KPC owner's fix list, 2026-11-17).
+"""kpc_fers_age.py: which old 2-fer row may be copied into the new file (hand-off 06, R-2F4).
 
-Several 'keep the old row' paths copy a row from the previous public file unchanged (a pair skipped for time or that crashed in
-pass 1, a small-batch run, a withheld park's rows, the store's keep-the-old-row and partial-boundary rows). None of them asked how
-old the row was or which key built it: on Nov 17, 42 public files (1,849 shown rows) were made before the Oct 29-30 key rebuild.
+A row is copied only when it carries a made_on stamp and, for both of its parks, that stamp still matches today:
+the park's key entry, and the outline fingerprint when the store index has one. A row with no stamp is never copied.
+The whole-key build id is not used: that id changes on every key run, even when no park was rebuilt.
 
-Setting KPC_FERS_CARRY_MAX (default 'off' = today's behaviour, nothing changes):
-  key   never past a key rebuild: a row is carried only when it was made on the area's CURRENT key build. A row that carries its
-        key build stamp ('key_build', written on every decided row while the setting is on) must match the key's build id; an
-        older row without a stamp must have been checked on or after the day the key was built. Anything else is NOT carried:
-        the next run measures the pair again (the row is listed for a person in the private folder, counted in the report).
-        A key whose build date cannot be read = not carried (fail closed, said in the reason).
-Standard library only. Decides no pair itself: it only says whether an old row may be reused."""
-import json, os, pathlib
+The stamp is written on every row the bot decides, whether or not this check is on. The check itself follows
+KPC_FERS_CARRY_MADE_ON (the switch file; an environment variable of the same name wins). Off = every row, as before.
 
-SETTING = 'KPC_FERS_CARRY_MAX'
-KEY_DIRS = {'US-': 'data/us-key', 'CA-': 'data/ca-key', 'W-': 'data/world-key'}
-_BUILT = {}
-NOT_CARRIED = []   # [{'area', 'refs', 'kind', 'why'}]: for a person, private folder only
+A key file that cannot be read, or a park missing from it, is not copied. Where the store index has no fingerprint
+for a park (a public shelf does not list a park it left off), the stamp checks the key entry only.
 
+Standard library only. It decides no pair."""
+import hashlib, json, os, pathlib
 
-def mode():
-    v = str(os.environ.get(SETTING) or 'off').strip().lower()
-    return 'key' if v == 'key' else 'off'
+SETTING = 'KPC_FERS_CARRY_MADE_ON'
+NOT_CARRIED = []
+_INDEX = {}
 
 
-def key_build(area, root='.'):
-    """(build id, 'YYYY-MM-DD' built) of the key the area's parks come from; ('', '') when it cannot be read."""
-    pre = next((p for p in KEY_DIRS if str(area or '').startswith(p)), None)
-    if pre is None: return '', ''
-    k = (str(root), pre)
-    if k not in _BUILT:
-        try:
-            d = json.loads((pathlib.Path(root) / KEY_DIRS[pre] / 'index.json').read_text(encoding='utf-8'))
-            _BUILT[k] = (str(d.get('build') or ''), str(d.get('built') or '')[:10])
-        except (OSError, ValueError): _BUILT[k] = ('', '')
-    return _BUILT[k]
+def _sw():
+    import kpc_fers_switches as SW
+    return SW
 
 
-def stamp(row, area, root='.'):
-    """While the setting is on, a row decided now carries the key build it was made on."""
-    if mode() != 'key' or not isinstance(row, dict): return
-    b, _ = key_build(area, root)
-    if b: row['key_build'] = b
+def enabled():
+    return _sw().on(SETTING)
+
+
+def _fp(obj):
+    return hashlib.sha1(json.dumps(obj, sort_keys=True, separators=(',', ':'), default=str).encode()).hexdigest()[:16]
+
+
+def _bits(p):
+    """The key entry as the 2-fer loader reads it: joined rows, grade, and a line record when the key has one.
+    No date, no run id, no check row, no count."""
+    rows = []
+    for x in p.get('m') or []:
+        if isinstance(x, (list, tuple)):
+            rows.append([x[i] if len(x) > i else '' for i in range(4)])
+    return {'m': rows, 'g': p.get('g') or '', 'line': p.get('line') if 'line' in p else None}
+
+
+def _bits_ky(p):
+    tr = []
+    for t in p.get('tracts') or []:
+        if isinstance(t, (list, tuple)):
+            tr.append([t[0] if len(t) > 0 else '', t[1] if len(t) > 1 else ''])
+    return {'m': tr, 'g': p.get('g') or '', 'line': p.get('line') if 'line' in p else None}
+
+
+def _parks(root):
+    """{ref: bits} from the key files, or None when a key file cannot be read."""
+    root = str(root or '.')
+    if root in _INDEX:
+        return _INDEX[root]
+    found, rootp = {}, pathlib.Path(root)
+    try:
+        for folder, pat in (('data/us-key', 'US-*.json'), ('data/ca-key', 'CA-*.json'), ('data/world-key', '*.json')):
+            d = rootp / folder
+            if not d.is_dir():
+                continue
+            for f in sorted(d.glob(pat)):
+                if f.name == 'index.json':
+                    continue
+                doc = json.loads(f.read_text(encoding='utf-8'))
+                for ref, p in (doc.get('parks') or {}).items():
+                    if isinstance(p, dict):
+                        found[ref] = _bits(p)
+        ky = rootp / 'data/ky-answer-key.json'
+        if ky.is_file():
+            doc = json.loads(ky.read_text(encoding='utf-8'))
+            for ref, p in (doc.get('parks') or {}).items():
+                if isinstance(p, dict) and ref not in found:
+                    found[ref] = _bits_ky(p)
+    except (OSError, ValueError):
+        _INDEX[root] = None
+        return None
+    _INDEX[root] = found
+    return found
+
+
+def key_fingerprint(ref, root='.'):
+    """(fingerprint, reason). reason is set when the key cannot be read or the park is not in it."""
+    parks = _parks(root)
+    if parks is None:
+        return '', f'the key file could not be read, so no old row is copied (fail closed)'
+    bits = parks.get(ref)
+    if bits is None:
+        return '', f'{ref} is not in the key, so no old row of it is copied (fail closed)'
+    return _fp(bits), ''
+
+
+def stamp(row, area='', root='.', store_fp=None):
+    """Write made_on on a row the bot just decided. Always, not only while the copy check is on.
+    store_fp is {ref: the store index fingerprint} when this is a store run and the index has one.
+    No date, no run id, no count."""
+    if not isinstance(row, dict):
+        return row
+    made = {}
+    for ref in row.get('refs') or []:
+        key, _why = key_fingerprint(ref, root)
+        outline = ''
+        if isinstance(store_fp, dict) and store_fp.get(ref):
+            outline = str(store_fp[ref])
+        made[str(ref)] = {'key': key, 'outline': outline}
+    row['made_on'] = made
+    return row
+
+
+def _store_fp(ref):
+    """The store index fingerprint for ref, without reading the outline, or ('', reason).
+    ('', '') when this run has no store index to check (the stamp then checks the key only)."""
+    try:
+        import kpc_fers_store as KS
+    except Exception:
+        return '', ''
+    fn = getattr(KS, 'outline_fp', None)
+    if not callable(fn):
+        return '', ''
+    try:
+        return fn(ref)
+    except Exception:
+        return '', 'the store index could not be read, so no old row is copied (fail closed)'
 
 
 def too_old(row, area, file_date=None, root='.'):
-    """'' when the row may be carried; else the plain reason it may not (setting on only)."""
-    if mode() != 'key' or not isinstance(row, dict): return ''
-    b, d = key_build(area, root)
-    if not d: return f'the {area} key build date could not be read, so no old row is carried (fail closed)'
-    if row.get('key_build'):
-        return '' if row['key_build'] == b else f"made on key build {row['key_build']}, the key is now {b} (built {d})"
-    rd = str(row.get('checked') or row.get('found') or file_date or '')[:10]
-    if rd and rd >= d: return ''
-    return f"made {rd or 'on an unknown date'}, before the key was rebuilt on {d} (never past a key rebuild)"
+    """'' when the row may be copied; else the plain reason it may not. The check off = ''."""
+    if not enabled() or not isinstance(row, dict):
+        return ''
+    made = row.get('made_on')
+    if not isinstance(made, dict) or not made:
+        return 'no stamp: made before this rule, so the new system measures the pair again'
+    refs = [str(r) for r in (row.get('refs') or [])] or list(made)
+    for ref in refs:
+        got = made.get(ref) if isinstance(made.get(ref), dict) else None
+        if not got:
+            return f'{ref} has no stamp, so the row is not copied'
+        key, why = key_fingerprint(ref, root)
+        if why:
+            return why
+        if got.get('key') != key:
+            return f"{ref}: the key entry changed, so the row is not copied"
+        stored = str(got.get('outline') or '')
+        if stored:
+            now, owhy = _store_fp(ref)
+            if owhy:
+                return owhy
+            if not now or now != stored:
+                return f"{ref}: the outline fingerprint changed, so the row is not copied"
+    return ''
+
+
+def _store_present():
+    try:
+        import kpc_fers_store as KS
+    except Exception:
+        return False
+    return bool(getattr(KS, 'STORE_ON', False))
 
 
 def keep_fresh(rows, area, file_date=None, root='.'):
-    """The rows that may be carried; the others are listed in NOT_CARRIED. Setting off = every row, unchanged."""
-    if mode() != 'key': return list(rows)
+    """The rows that may be copied. The others are listed in NOT_CARRIED. The check off = every row."""
+    if not enabled():
+        return list(rows)
     out = []
     for x in rows:
         why = too_old(x, area, file_date, root)
-        if why: NOT_CARRIED.append({'area': area, 'refs': list((x or {}).get('refs') or []), 'kind': (x or {}).get('kind'), 'why': why})
-        else: out.append(x)
+        if why:
+            NOT_CARRIED.append({'area': area, 'refs': list((x or {}).get('refs') or []), 'kind': (x or {}).get('kind'), 'why': why})
+        else:
+            out.append(x)
     return out
+
+
+def old_system_areas(out_dir):
+    """Area codes whose public file still has rows and none of them carries made_on. Counts only."""
+    d = pathlib.Path(out_dir)
+    if not d.is_dir():
+        return []
+    old = []
+    for f in sorted(d.glob('*.json')):
+        name = f.name
+        if not name[:1].isalpha() or name.startswith(('report', 'receipt', 'reuse', 'store-', 'looked', 'missing')):
+            continue
+        try:
+            doc = json.loads(f.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            continue
+        spots = doc.get('spots') if isinstance(doc, dict) else None
+        area = (doc.get('st') if isinstance(doc, dict) else None) or f.stem
+        if not isinstance(spots, list) or not spots:
+            continue
+        if any(isinstance(s, dict) and s.get('made_on') for s in spots):
+            continue
+        old.append(str(area))
+    return old

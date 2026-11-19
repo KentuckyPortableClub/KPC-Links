@@ -18,6 +18,7 @@ import gzip, hashlib, json, os, pathlib, socket, subprocess, sys, tempfile
 
 for k in list(os.environ):
     if 'proxy' in k.lower(): os.environ.pop(k)
+os.environ['KPC_FERS_CARRY_MADE_ON'] = '0'  # R-2F4 is tested in test_fers_owner_answers_nov19.py
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / '.github' / 'scripts'))
 OPENED = []
@@ -581,6 +582,7 @@ if have:
         b, w, runner = e2e_world(name)
         env = {k: v for k, v in os.environ.items() if 'proxy' not in k.lower() and k not in ('GITHUB_ACTIONS', 'KPC_FERS_PRIVATE_RUNNER')}
         env.update(KPC_FERS_FROM_STORE='on', KPC_FERS_STORE_DIR=str(b / 'store'), KPC_FERS_STORE_MAX_DAYS='100000', STATES='US-RI', PASS='1', REGION='na', MINUTES='5',
+                   KPC_FERS_CARRY_MADE_ON='0', KPC_FERS_STRIP_HELD='0',  # this file proves never-worse; R-2F4 and R-2F6 are the owner-answers test
                    TRIES_OUT=str(b / 'tries.json'), **extra)
         r = subprocess.run([sys.executable, str(runner)], cwd=w, capture_output=True, text=True, env=env, timeout=900)
         tries = json.loads((b / 'tries.json').read_text()) if (b / 'tries.json').is_file() else None

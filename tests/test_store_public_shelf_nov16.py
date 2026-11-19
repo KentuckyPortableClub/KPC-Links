@@ -236,8 +236,8 @@ class ReviewCases(unittest.TestCase):
         self.assertIn('US-9300', skip_full)
         self.assertEqual(skip_shelf.get('US-9300'), skip_full['US-9300'], 'the shelf must skip a by-name river line exactly as the full store does')
 
-    def test_a_thin_shelf_area_is_left_on_the_old_path_by_itself(self):
-        """KPC owner, 2026-11-17: no hand-kept list. The shelf writes its own coverage and the reader decides."""
+    def test_a_thin_shelf_is_read_and_the_report_counts_it(self):
+        """R-2F7 (KPC owner, 19 Nov 2026): the floor is gone. A thin shelf is read. The report gives the counts."""
         held = [F.park(f'US-95{i:02d}', [F.record(f'h{i}secret', 'heldlayerq', sq(i), publishable=False)]) for i in range(8)]
         ok = [F.park('US-9501', [F.record('g1', 'openlayer', sq(20))])]
         over = {p['ref']: {'park_public': p['ref'] == 'US-9501'} for p in held + ok}
@@ -248,15 +248,19 @@ class ReviewCases(unittest.TestCase):
         self.assertLess(idx['coverage']['share'], 0.90)
         st = FS.Store(self.out, kind='public')
         self.assertAlmostEqual(st.shelf_share(AREA), idx['coverage']['share'], places=4)
-        why = st.thin_shelf(AREA)
-        self.assertTrue(why and 'under 90%' in why, why)
-        for t in HELD_REFS + HELD_NAMES + HELD_KEYS:   # the reason never names a held park
-            self.assertNotIn(t, why)
-        # a full shelf is read, and the private store is never judged thin
+        line = st.shelf_line(AREA)
+        n, m = idx['coverage']['parks_on_shelf'], idx['coverage']['parks_in_store']
+        self.assertEqual(line, f'{AREA}: {n} of {m} parks on the shelf; 2-fers are measured only between those.')
+        self.assertEqual(n, 1)
+        self.assertGreater(m, n)
+        for t in HELD_REFS + HELD_NAMES + HELD_KEYS:
+            self.assertNotIn(t, line)
+        self.assertFalse(hasattr(st, 'thin_shelf'))
         F.write_store(self.st, AREA, ok, fmt='kpc-outline-store-index/4', index_override={'US-9501': {'park_public': True}}, top=MADE)
         SP.build_area(self.st, AREA, self.out)
-        self.assertEqual(FS.Store(self.out, kind='public').thin_shelf(AREA), '')
-        self.assertEqual(FS.Store(self.st, kind='public').thin_shelf(AREA), '')
+        full = FS.Store(self.out, kind='public').shelf_line(AREA)
+        self.assertIn('1 of 1 parks on the shelf', full)
+        self.assertEqual(FS.Store(self.st, kind='public').shelf_line(AREA), '')
 
     def test_an_odd_source_value_is_dropped_not_copied(self):
         rec = F.record('o9', 'openlayer', sq(9), source='have:C:/Users/someone/private/State_Land.geojson')

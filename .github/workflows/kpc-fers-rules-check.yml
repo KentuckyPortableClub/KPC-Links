@@ -11,6 +11,7 @@ on:
       - '.github/scripts/kpc_owned.py'
       - '.github/fers-rule-scope.json'
       - '.github/fers-rulings.json'
+      - '.github/fers-switches.json'
       - 'docs/key-rules-change.txt'
 permissions:
   contents: read
@@ -38,7 +39,7 @@ jobs:
           for t in tests/test_fers_store_switch_nov15.py tests/test_fers_store_nov13.py tests/test_partial_boundary_nov15.py \
                    tests/test_fers_q1_q3_nov17.py tests/test_fers_final_redact_nov17.py tests/test_fers_d10_not_sure_nov17.py \
                    tests/test_fers_store_three_passes_nov16.py tests/test_fers_breakage_nov9.py \
-                   tests/test_fers_handoff9_nov17.py; do
+                   tests/test_fers_handoff9_nov17.py tests/test_fers_owner_answers_nov19.py; do
             echo "== $t"
             out=$(python3 "$t" 2>&1) || { echo "$out" | grep -E '^(FAIL|SKIP)' | head -20; echo "::error title=2-fer rules check::$t failed"; exit 1; }
             echo "$out" | grep -E '^(FAIL|SKIP|ALL PASS)|checks passed' | head -5

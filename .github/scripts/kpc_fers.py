@@ -57,7 +57,8 @@ import cv2
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
 import kpc_fers_count as FCOUNT  # noqa: E402  Nov 6: 2-fer count switch, KPC_FERS_COUNT_MODE (default whole_park = today, untouched)
-import kpc_fers_age as _AGE  # noqa: E402  Handoff 9 bug 4 (2026-11-17): how old a carried row may get (KPC_FERS_CARRY_MAX, off)
+import kpc_fers_age as _AGE  # noqa: E402  R-2F4: a copied row must carry made_on, and both parks must still match
+import kpc_fers_switches as _SW  # noqa: E402  hand-off 06: the owner's answers, one file
 _save_json_raw = save_json
 
 # ---- OWNER RULE (KPC owner, 2026-11-15 23:14, his words: "We marking nothing not a 2 fer fyi... we just show what we think are
@@ -96,16 +97,21 @@ def load_rulings(path=None):
 
 RULINGS = load_rulings()
 
-# ---- Handoff 9: owner-question settings. Each is OFF (today's behaviour) until the KPC owner rules; HQ turns one on in the workflow.
-# Q3 / bug 2 (owner ruling N3, 16 Nov: a pair near a size line is NOT SURE): metres either side of the 25-yard and 50-yard lines
-NEAR_LINE_M = float(os.environ.get('KPC_FERS_NEAR_LINE_M') or 0)
-# Q4 / bug 4: how old a carried row may get: KPC_FERS_CARRY_MAX=key = never past a key rebuild (read in kpc_fers_age.py, used by every
-# keep-the-old-row path here and in kpc_fers_store.py)
-# Q1: an outline whose every record comes from a summary map (compilation), a historic-register shape, a lake surface, a Michigan
-# project line or the Mississippi general-area file is APPROXIMATE until the agency's own map is found
-SUMMARY_APPROX = os.environ.get('KPC_FERS_SUMMARY_APPROX') == '1'
-# Q2: a national park / refuge and the national forest next door = NOT SURE unless one is a designation laid on the other
-FED_NEIGHBOUR = os.environ.get('KPC_FERS_FED_NEIGHBOUR') == '1'
+# ---- Hand-off 06: the owner's answers are on, from .github/fers-switches.json. An environment variable of the same name wins.
+def _switch_on(name):
+    if name in os.environ:
+        return str(os.environ.get(name) or '').strip().lower() not in ('0', 'off', 'false', 'no', '')
+    return _SW.on(name)
+
+
+def summary_approx():
+    """R-2F1. On unless the environment turns it off."""
+    return _switch_on('KPC_FERS_SUMMARY_APPROX')
+
+
+def near_line_on():
+    """R-2F3. On / off only. The band is one grid cell, read from CELL."""
+    return _switch_on('KPC_FERS_NEAR_LINE')
 
 
 # A row brought back from an older file EXACTLY as it was: never this run's verdict, and the store's 'never worse' rule and the
@@ -278,6 +284,8 @@ def no_denials(path, d):
             if tuple(sorted(y['refs'])) + (y['kind'],) not in want: continue
             k = key_of(y)
             if k in shown: continue
+            if not _AGE.keep_fresh([y], str(d.get('st') or ''), (old or {}).get('pass1') if isinstance(old, dict) else None):
+                continue   # R-2F4: an unstamped row, or a park that changed, is not put back
             z = json.loads(json.dumps(y)); z[NOT_WORSE_FIELD] = NOT_WORSE_TAG
             back.append(z); shown.add(k)
     except StopIteration: back = []
@@ -1084,11 +1092,13 @@ LINE_NAMES = ((22.86, 'the 25-yard'), (45.72, 'the 50-yard'))   # the two size l
 
 
 def near_line(s, band=None):
-    """Bug 2 / owner ruling N3 (16 Nov 2026: a pair near a size line, on anything but the fine level, is NOT SURE). The final grid
-    is 5 m: in the Handoff 6 test on made-up squares a true 16-20 m overlap passed the 25-yard (22.86 m) floor and a true 46 m read
-    45 m. An area row whose measured width is within `band` metres of the 25-yard or the 50-yard line -> the plain reason; '' when
-    not (or when the setting is 0 = off, today's behaviour)."""
-    band = NEAR_LINE_M if band is None else float(band)
+    """R-2F3 / owner ruling N3 (16 Nov 2026). An area row whose measured width is within ONE GRID CELL of the 25-yard
+    (22.86 m) or 50-yard (45.72 m) line is NOT SURE. The band is CELL for the pass that measured the width, never a typed
+    number of metres. Off = ''."""
+    if band is None:
+        band = CELL if near_line_on() else 0.0
+    else:
+        band = float(band)
     if band <= 0 or s.get('kind') != 'area' or s.get('wide_m') is None: return ''
     w = float(s['wide_m'])
     for m, nm in LINE_NAMES:
@@ -1132,20 +1142,6 @@ def summary_only(ref, parks):
     return True
 
 
-FED_LAND = re.compile(r'\bNational (Park|Wildlife Refuge|Preserve)\b', re.I)
-FED_FOREST = re.compile(r'\bNational (Forest|Grassland)s?\b', re.I)
-
-
-def fed_neighbours(refs, parks, PIN):
-    """Q2: 'park x forest' when a national park / refuge / preserve pairs with a national forest / grassland and neither is a
-    designation laid on the other (wild and scenic river, wilderness, a PAD-US designation record ...); '' otherwise."""
-    nm = {r: str((PIN.get(r) or [''])[0] or '') for r in refs}
-    land = [r for r in refs if FED_LAND.search(nm[r]) and not FED_FOREST.search(nm[r])]
-    forest = [r for r in refs if FED_FOREST.search(nm[r])]
-    if not land or not forest: return ''
-    if any(designation_only(r, parks) or re.search(r'wilderness|wild and scenic|scenic river|recreation area|national monument', nm[r], re.I) for r in refs):
-        return ''
-    return f'{nm[land[0]]} x {nm[forest[0]]}'
 WDPA_RX = re.compile(r'wdpa|protectedplanet|protected.?planet|unep-?wcmc|world_database_of_protected', re.I)
 WDPA_SKIP = []   # refs whose outline is WDPA / Protected Planet (internal file only)
 APX_PARKS = set()
@@ -3952,12 +3948,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     if _land and all(designation_only(r, parks) for r in _land):   # Q1 (KPC owner, 2026-11-17): no proof the ground is public
         s['approx'] = True; s['approx_refs'] = sorted(set(s.get('approx_refs') or []) | set(_land)); s['approx_note'] = PRIVATE_NOTE
         s['may_contain_private'] = True
-    if FED_NEIGHBOUR and s['kind'] == 'area':   # Q2 (setting KPC_FERS_FED_NEIGHBOUR=1, off): side-by-side federal land, not shared ground
-        _fn = fed_neighbours(refs, parks, PIN)
-        if _fn:
-            s['status'] = ('not sure: two agencies\' maps disagree here (' + _fn + '): a national park or refuge and the national forest next '
-                           'to it are normally side by side; check both official maps'); s['names'] = {r: PIN[r][0] for r in refs}; return
-    if SUMMARY_APPROX:   # Q1 (setting KPC_FERS_SUMMARY_APPROX=1, off): a summary-map outline is approximate until the agency's own map is found
+    if summary_approx():   # R-2F1: a summary-map outline is approximate until the agency's own map is found
         _sm = [r for r in refs if summary_only(r, parks)]
         if _sm:
             s['approx'] = True; s['approx_refs'] = sorted(set(s.get('approx_refs') or []) | set(_sm)); s['approx_note'] = SUMMARY_NOTE
@@ -3965,9 +3956,13 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     if s['kind'] == 'area' and (s.get('wide_m') or 0) < TIGHT_M:
         s['status'] = VERY_TIGHT; s['list'] = 'Very tight (members only)'   # rule 4: its own list, never the main one
     _nl = near_line(s)
-    if _nl:   # owner ruling N3 (16 Nov): near a size line = NOT SURE (setting KPC_FERS_NEAR_LINE_M, off; lean 8 m)
+    if _nl:   # R-2F3: within one grid cell of a size line = NOT SURE
         s['status'] = 'not sure: ' + _nl; s.pop('list', None)
-    _AGE.stamp(s, (st_of(refs[0]) if callable(st_of) else '') or '')   # Handoff 9 bug 4: the key build the row was made on (setting on only)
+    _fps = {}
+    _KS = sys.modules.get('kpc_fers_store')
+    if _KS is not None and callable(getattr(_KS, 'outline_fps', None)):
+        _fps = _KS.outline_fps(refs)
+    _AGE.stamp(s, (st_of(refs[0]) if callable(st_of) else '') or '', store_fp=_fps)   # R-2F4: made_on, always
     s['access'] = nearest_access(s, st_of)
     try: s['access_pin'] = access_pin(s, G, LN, st_of)
     except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
@@ -4204,32 +4199,71 @@ def water_prefetch():
 
 
 def fine_only_mode():
-    v = str(os.environ.get(FINE_ONLY_SWITCH) or 'off').strip().lower()
+    v = str(_sw_value(FINE_ONLY_SWITCH) or 'off').strip().lower()
     return 'count' if v == 'count' and _store_mod() is not None else 'off'   # only where the shapes are the same in every pass
 
 
-# Q5 (Handoff 9; owner question 5, WL7): with KPC_FERS_FINE_ONLY=count and KPC_FERS_FINE_100M=1, a spot no row took becomes its own row only when it is at
-# least 25 yards across AND more than FINE_GAP_M from every row of the same pair; a smaller or nearby piece is the same patch as its
-# row and is listed only. Its own setting KPC_FERS_FINE_100M=1 (OFF: with count on, every leftover spot is a row, as the switch did
-# before); the owner's lean is both on together.
-FINE_GAP_M = 100.0
-FINE_100M = os.environ.get('KPC_FERS_FINE_100M') == '1'
+def _sw_value(name):
+    if name in os.environ:
+        return os.environ.get(name)
+    v, _src = _SW.value(name)
+    return v
 
 
-def _gap_m(a, b):
-    la1, lo1 = a; la2, lo2 = b
-    return math.hypot((lo1 - lo2) * 111320 * math.cos(math.radians((la1 + la2) / 2)), (la1 - la2) * 110574)
+def _piece_box(obj):
+    """[min lon, min lat, max lon, max lat] from a row's box, else from its shape. None when neither is there."""
+    b = obj.get('box') if isinstance(obj, dict) else None
+    if isinstance(b, (list, tuple)) and len(b) >= 4:
+        try:
+            return [float(b[0]), float(b[1]), float(b[2]), float(b[3])]
+        except (TypeError, ValueError):
+            return None
+    shape = obj.get('shape') if isinstance(obj, dict) else None
+    pts = []
+    if isinstance(shape, list):
+        for p in shape:
+            if isinstance(p, (list, tuple)) and len(p) >= 2 and isinstance(p[0], (int, float)):
+                pts.append(p)
+            elif isinstance(p, (list, tuple)):
+                for q in p:
+                    if isinstance(q, (list, tuple)) and len(q) >= 2 and isinstance(q[0], (int, float)):
+                        pts.append(q)
+    if len(pts) < 2:
+        return None
+    xs = [float(p[0]) for p in pts]; ys = [float(p[1]) for p in pts]
+    return [min(xs), min(ys), max(xs), max(ys)]
+
+
+def _boxes_touch(a, b):
+    return not (a[2] < b[0] or b[2] < a[0] or a[3] < b[1] or b[3] < a[1])
+
+
+def fine_piece(n, rows):
+    """R-2F5. (True, '') when n is its own row: it passes the same size test as every row, and its box does not touch a
+    listed row of the same pair. (False, reason) otherwise. No distance. A row with no shape and no box cannot be tested."""
+    if n.get('kind') == 'area':
+        if (n.get('wide_m') or 0) < SHRINK:
+            return False, 'under 25 yards across'
+    elif (n.get('len_m') or 0) < STRETCH:
+        return False, 'under the line stretch'
+    pk = tuple(sorted((n.get('refs') or [])[:2]))
+    nb = _piece_box(n)
+    if nb is None:
+        return False, 'the new piece has no shape and no box, so it is not made a row'
+    for r in rows:
+        if tuple(sorted((r.get('refs') or [])[:2])) != pk:
+            continue
+        rb = _piece_box(r)
+        if rb is None:
+            return False, 'a listed row has no shape and no box, so the new piece is not made a row'
+        if _boxes_touch(nb, rb):
+            return False, 'it touches a listed spot of the same pair'
+    return True, ''
 
 
 def fine_own_row(n, rows):
-    """Q5's 100 m rule for one fine-grid spot n against the file's rows. True = it becomes its own row."""
-    if n.get('kind') == 'area' and (n.get('wide_m') or 0) < SHRINK: return False   # under 25 yards across
-    pk = tuple(sorted((n.get('refs') or [])[:2]))
-    c = n.get('center')
-    if not c: return False
-    for r in rows:
-        if tuple(sorted((r.get('refs') or [])[:2])) == pk and r.get('center') and _gap_m(c, r['center']) <= FINE_GAP_M: return False
-    return True
+    """R-2F5. True when the fine-grid piece becomes its own row."""
+    return fine_piece(n, rows)[0]
 
 
 def fine_only_spots(d, newk, today, st):
@@ -4243,10 +4277,11 @@ def fine_only_spots(d, newk, today, st):
         for n in newk[k]:
             if n.get('_used') or n.get('_fine') or tuple(sorted(n['refs'][:2])) not in here: continue
             n['_fine'] = 1
+            own, why = fine_piece(n, d.get('spots') or [])
             FINE_ONLY.append({'area': st, 'pass': PASS, 'grid_m': CELL, 'refs': list(n['refs']), 'kind': n.get('kind'), 'center': n.get('center'),
-                              **{x: n[x] for x in ('acres', 'wide_m', 'len_m', 'box') if x in n}})
-            if not count: continue
-            if FINE_100M and not fine_own_row(n, d.get('spots', [])): continue   # Q5: a small or nearby piece stays with its row (listed only)
+                              **{x: n[x] for x in ('acres', 'wide_m', 'len_m', 'box') if x in n},
+                              **({'not_a_row': why} if not own else {})})
+            if not count or not own: continue   # R-2F5: a piece that is not separate, or under the size test, stays off the file
             g = {x: v for x, v in n.items() if not x.startswith('_')}
             g['id'] = key_of(g) + '@%.3f,%.3f' % tuple(g['center'])
             if g['id'] in have: continue
@@ -4345,7 +4380,8 @@ def write_receipt(counts, parks, G, bad, rules, refs=None, stopped='', note=''):
                'seconds per stage': STAGES.table(), 'seconds': round(time.time() - T0, 1), 'areas': verd,
                'neighbours': {a: f'neighbour store missing: {n} parks' for a, n in sorted(nb.items())},
                'stopped_for_time': bool(counts.get('stopped for time')), 'stopped': stopped, **({'note': note} if note else {}),
-               'fine-only spots': {'listed': len(FINE_ONLY), 'mode': fine_only_mode()} if PASS in (2, 3) and KS is not None else None}
+               'fine-only spots': {'listed': len(FINE_ONLY), 'mode': fine_only_mode()} if PASS in (2, 3) and KS is not None else None,
+               'switches': _SW.snapshot()}
         tag = RUN_TAG or area_name()
         p, doc = RECEIPT.merge(OUT, tag, PASS, sec)
         save_json(p, doc, indent=1)
@@ -5051,7 +5087,11 @@ def main():
     # Handoff 9 bug 5: the public report keeps the COUNT of problem lines; the full list goes to the private folder (save_problems)
     _pf, _pn = save_problems(LOG)
     _ag = len(getattr(sys.modules.get('kpc_fers_age'), 'NOT_CARRIED', []) or [])
-    if _ag: counts['old rows not carried: made before the key rebuild (setting KPC_FERS_CARRY_MAX=key)'] = _ag
+    if _ag: counts['old rows not copied (no stamp, or a park changed)'] = _ag
+    if _AGE.enabled():
+        _old_areas = _AGE.old_system_areas(OUT)
+        if _old_areas:
+            counts['areas whose public file is still from before this rule'] = _old_areas
     if LOG: counts['...problem lines'] = (f'{_pn} line(s), written for a person in the private folder' if _pf is not None else
                                           f'{_pn} line(s); no private folder was given, so the list was not written anywhere')
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=len(LOG))

@@ -5,15 +5,13 @@ Every check below FAILS on main 36dc58cf (the fix is not there) and passes with 
  1b the PAD-US closed-area map gives no answer -> the row is NOT SURE ('closed areas not checked'); an answer of 'nothing closed' still passes
  1c a pair test that crashes is counted, listed in the private folder, and its area's receipt says 'not finished' (red), never 'measured'
  1d a park whose outline could not be read makes its area's receipt say 'not finished' and names the count
- 2  owner ruling N3 / Q3: KPC_FERS_NEAR_LINE_M (OFF = 0): a measured width within the band of the 25-yard or 50-yard line is NOT SURE;
-    the real 5 m grid on made-up squares (Handoff 6 WL3 script) and the 472 old rows near a line (WL3 CSV) are the proof
  3  D10 on the PC runner: the runner and the area runner point the bot at KPC-Data's not-sure list; a missing list prints a warning
- 4  Q4: KPC_FERS_CARRY_MAX=key (OFF): a carried row from an older key build is not carried (stamp, or checked before the build date)
  5  the public report keeps the problem COUNT; the full list goes to the private folder
  6  world designation layers (UK national parks ...) get the 'May contain private land' rule like US designation lines
  8  KNOWN_LIVE / KY_DROP / SAME_LAND_PAIRS / MAPFIX come from .github/fers-rulings.json, unchanged, each with a date and who ruled
- Q1 KPC_FERS_SUMMARY_APPROX (OFF): a summary-map-only outline is approximate; Q2 KPC_FERS_FED_NEIGHBOUR (OFF): park/refuge x
-    national forest is NOT SURE unless one is a designation; Q5 the 100 m rule for fine-grid rows; Q6 KPC_FERS_STRIP_HELD (OFF)"""
+ Hand-off 06 removed the checks of rules that no longer exist: the 8 m band (section 2), the whole-key age (section 4),
+ Q2 (a park beside a forest) and the 100 m fine-grid rule (Q5). Those are in tests/test_fers_owner_answers_nov19.py.
+ Q6 still checks that a stamped row can be carried with the pieces stripped; the note text is the owner's 19 Nov words."""
 import argparse, contextlib, csv, io, json, math, os, pathlib, sys, tempfile, types
 HERE = pathlib.Path(__file__).resolve().parent.parent
 S = HERE / '.github/scripts'
@@ -158,33 +156,6 @@ K.UNREAD_PARKS.clear()
 check("_tp = {tuple(sorted(p_)) for p_ in TIMED_PAIRS} | {tuple(sorted(p_)) for p_ in CRASHED_PAIRS}" in src,
       '1c pass 1 carries a crashed pair\'s old rows like a pair skipped for time (never lost)')
 
-# ------------------------------------------------------------------ 2 the size-line band (N3)
-check(K.NEAR_LINE_M == 0 and K.near_line({'kind': 'area', 'wide_m': 25}) == '', '2 setting OFF by default: nothing changes (today\'s rows)')
-slips, read45 = [], None
-for w in (16, 18, 20):
-    for ang in (0, 17, 45):
-        for off in (0, 1.3, 2.6):
-            _, s = spot(w, ang, off)
-            if s is not None: slips.append((w, ang, off, s['wide_m'], K.near_line(s, 8)))
-_, s46 = spot(46, 0, 0)
-check(slips and all(n.startswith('near a size line') and 'the 25-yard line' in n for *_, n in slips),
-      f'2 every 16-20 m overlap the 5 m grid lets past the 25-yard floor is NOT SURE with an 8 m band ({[(w, m) for w, _, _, m, _ in slips]})')
-check(s46 is not None and K.near_line(s46, 8).startswith('near a size line') and 'the 50-yard line' in K.near_line(s46, 8),
-      f'2 a true 46 m overlap read as {s46 and s46["wide_m"]} m is NOT SURE near the 50-yard line')
-check(K.near_line({'kind': 'area', 'wide_m': 200}, 8) == '' and K.near_line({'kind': 'river', 'len_m': 25}, 8) == '', '2 a wide area row and a line row are not touched')
-rows = list(csv.DictReader(open(HERE / 'tests/fixtures/fers-wl3-near-line-rows.csv', encoding='utf-8')))
-area_rows = [r for r in rows if r['line'] in ('25-yard', '50-yard') and r['status'] != 'water only']
-hit = [r for r in area_rows if K.near_line({'kind': 'area', 'wide_m': float(r['wide_m'])}, 8)]
-check(len(rows) == 472 and len(hit) == len(area_rows), f'2 the old rows near the 25 / 50-yard lines all fall in the 8 m band ({len(hit)} of {len(area_rows)}; 472 in the CSV)')
-check(not [r for r in area_rows if K.near_line({'kind': 'area', 'wide_m': float(r['wide_m'])}, 0)], '2 band 0 (off): none of them changes')
-with offline_decide():
-    _, s = spot(18, 17, 1.3)
-    if s is None: _, s = spot(20, 0, 0)
-    K.NEAR_LINE_M = 8.0
-    st = decided(s, two_parks(18, 17, 1.3)[0])
-    K.NEAR_LINE_M = 0.0
-    check(st.startswith('not sure: near a size line'), f'2 with the setting on, decide() makes it NOT SURE ({st!r})')
-
 # ------------------------------------------------------------------ 3 D10 on the PC runner
 import kpc_pc_run as PC
 kd = TD / 'kpcdata-elsewhere'
@@ -205,28 +176,7 @@ os.environ['KPC_FERS_NOT_SURE'] = str(kd / 'data/waiting/tripwires/not-sure.json
 check(K.tripwire_parks() == {'US-9901': ['T1']}, '3 with the list passed, D10 reads it')
 os.environ.pop('KPC_FERS_NOT_SURE'); K._TRIPWIRE.clear()
 
-# ------------------------------------------------------------------ 4 never past a key rebuild
-(TD / 'data/us-key').mkdir(parents=True, exist_ok=True)
-(TD / 'data/us-key/index.json').write_text(json.dumps({'build': 'US-200', 'built': '2026-10-30 18:00 UTC'}))
-AGE._BUILT.clear(); AGE.NOT_CARRIED.clear()
-old_row = {'refs': ['US-9901', 'US-9902'], 'kind': 'area', 'status': 'candidate', 'checked': '2026-10-29', 'passes': [1, 1, 1]}
-new_row = dict(old_row, checked='2026-11-02')
-check(AGE.keep_fresh([old_row, new_row], 'US-ZZ') == [old_row, new_row], '4 setting OFF: every old row is carried as before')
-os.environ['KPC_FERS_CARRY_MAX'] = 'key'
-kept = AGE.keep_fresh([old_row, new_row, dict(old_row, key_build='US-199'), dict(old_row, key_build='US-200')], 'US-ZZ')
-check(kept == [new_row, dict(old_row, key_build='US-200')], f'4 key: a row made before the Oct 30 build (or stamped with build US-199) is not carried ({len(kept)} of 4 kept)')
-check(len(AGE.NOT_CARRIED) == 2 and 'before the key was rebuilt on 2026-10-30' in AGE.NOT_CARRIED[0]['why'], f'4 each one is listed with the reason ({AGE.NOT_CARRIED[:1]})')
-x = {}; AGE.stamp(x, 'US-ZZ')
-check(x == {'key_build': 'US-200'}, '4 a row decided while the setting is on carries its key build')
-check(AGE.too_old(old_row, 'CA-ZZ').startswith('the CA-ZZ key build date could not be read'), '4 a key with no build date: not carried (fail closed)')
 import kpc_fers_store as KS
-new = {'st': 'US-ZZ', 'spots': []}
-n = KS.carry_rows(new, {'st': 'US-ZZ', 'pass1': '2026-10-29', 'spots': [old_row]}, {})
-check(n == 0, f'4 the store\'s carry_rows does not bring back a row from before the rebuild ({n})')
-os.environ.pop('KPC_FERS_CARRY_MAX'); AGE.NOT_CARRIED.clear()
-n = KS.carry_rows({'st': 'US-ZZ', 'spots': []}, {'st': 'US-ZZ', 'pass1': '2026-10-29', 'spots': [old_row]}, {})
-check(n == 1, f'4 setting OFF: carry_rows brings it back as before ({n})')
-
 # ------------------------------------------------------------------ 5 problems: count in public, list in private
 check("problems=len(LOG))" in src and 'problems=LOG[:40]' not in src, '5 the public report keeps the problem count only')
 check(doc.get('problems') == ['US-9901 + US-9902: made-up crash'] and pn == 1, '5 the full problem list is in the private folder')
@@ -275,36 +225,22 @@ K.SUMMARY_SG.clear(); K.SUMMARY_SG.update({'sgmtd': 'compilation', 'sgaki': 'reg
 qp = {'US-4502': {'ids': ['sgmtd744']}, 'US-6823': {'ids': ['mid17']}, 'US-0822': {'ids': ['sgaki3']}, 'US-0030': {'ids': [12345, 'sgmtd1']}}
 check(K.summary_only('US-4502', qp) and K.summary_only('US-6823', qp) and K.summary_only('US-0822', qp), 'Q1 compilation / Michigan project / register-only outlines are summary maps')
 check(not K.summary_only('US-0030', qp), 'Q1 a park with one record of its agency\'s own land is not')
-check(K.SUMMARY_APPROX is False and 'if SUMMARY_APPROX:' in src, 'Q1 setting KPC_FERS_SUMMARY_APPROX is OFF by default')
-# ------------------------------------------------------------------ Q2 park / refuge x national forest
-fp = {'US-0030': ('Grand Canyon National Park',), 'US-4430': ('Kaibab National Forest',), 'US-0056': ('Olympic National Park',),
-      'US-4532': ('Olympic National Forest',), 'US-0046': ('Yosemite National Park',), 'US-1999': ('Merced Wild and Scenic River',),
-      'US-8004': ('Swan River National Wildlife Refuge',), 'US-4502': ('Flathead National Forest',), 'US-1000': ('Some State Park',)}
-nop = {r: {'ids': ['sgzz1']} for r in fp}
-check(K.fed_neighbours(['US-0030', 'US-4430'], nop, fp) == 'Grand Canyon National Park x Kaibab National Forest', 'Q2 Grand Canyon NP x Kaibab NF is flagged')
-check(K.fed_neighbours(['US-0056', 'US-4532'], nop, fp) and K.fed_neighbours(['US-8004', 'US-4502'], nop, fp), 'Q2 Olympic NP x NF and a refuge x forest are flagged')
-check(K.fed_neighbours(['US-0046', 'US-1999'], nop, fp) == '' and K.fed_neighbours(['US-1000', 'US-4502'], nop, fp) == '', 'Q2 a designation laid on a park, and a state park, are not')
-check(K.FED_NEIGHBOUR is False, 'Q2 setting KPC_FERS_FED_NEIGHBOUR is OFF by default')
-# ------------------------------------------------------------------ Q5 the 100 m rule
-row = {'refs': ['US-9901', 'US-9902'], 'center': [LAT0, LON0]}
-far = {'refs': ['US-9901', 'US-9902'], 'kind': 'area', 'wide_m': 30, 'center': [LAT0 + .009, LON0]}   # about 1 km north
-near = dict(far, center=[LAT0 + .0004, LON0])                                                     # about 44 m north
-small = dict(far, wide_m=15)
-check(K.fine_own_row(far, [row]) and not K.fine_own_row(near, [row]) and not K.fine_own_row(small, [row]),
-      'Q5 a 30 m patch 1 km away is its own row; one 44 m away or under 25 yards across stays with its row')
-check(K.fine_only_mode() == 'off' and K.FINE_100M is False and 'if FINE_100M and not fine_own_row(n, d.get(\'spots\', [])): continue' in src,
-      'Q5 KPC_FERS_FINE_ONLY and KPC_FERS_FINE_100M are both OFF by default; with both on, the 100 m rule picks the rows')
 # ------------------------------------------------------------------ Q6 strip a held park's outline from carried rows
+# The copy rule is off here so this check still tests the strip, not the stamp. The new note is the owner's 19 Nov words.
+os.environ['KPC_FERS_CARRY_MADE_ON'] = '0'
 KS.withheld_refs = lambda: {'US-9902'}
 KF = types.SimpleNamespace(PASS=1, OUT=str(TD / 'data/fers'))
 held_row = {'refs': ['US-9901', 'US-9902'], 'kind': 'area', 'status': 'candidate', 'passes': [1, 1, 1], 'center': [LAT0, LON0],
             'acres': 50, 'shape': [[LON0, LAT0], [LON0 + .001, LAT0]], 'lines': [[1, 2]]}
+KS.STRIP_HELD = False
 d = {'st': 'US-ZZ', 'spots': []}; KS.carry_held_rows(KF, d, {'spots': [held_row]})
-check(d['spots'] and 'shape' in d['spots'][0], 'Q6 setting OFF: the carried row is an exact copy, as before')
+check(d['spots'] and 'shape' in d['spots'][0], 'Q6 with the strip off: the carried row keeps its pieces')
 KS.STRIP_HELD = True
 d = {'st': 'US-ZZ', 'spots': []}; KS.carry_held_rows(KF, d, {'spots': [held_row]})
 x = d['spots'][0] if d['spots'] else {}
-check(x and 'shape' not in x and 'lines' not in x and x.get('center') and x.get('acres') == 50 and x.get('held_outline', '').startswith('there may be a 2-fer here'),
-      'Q6 KPC_FERS_STRIP_HELD=1: the withheld park\'s pieces leave the row; "there may be a 2-fer here" stays')
+check(x and 'shape' not in x and 'lines' not in x and x.get('center') and x.get('acres') == 50
+      and x.get('held_outline') == 'Possible 2-fer. We are missing an official boundary here: check both official boundary maps before you count it.',
+      'Q6 the withheld park\'s pieces leave the row and the owner\'s note stays')
 KS.STRIP_HELD = False
+os.environ.pop('KPC_FERS_CARRY_MADE_ON', None)
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

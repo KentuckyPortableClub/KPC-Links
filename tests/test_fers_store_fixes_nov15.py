@@ -14,6 +14,8 @@ import gzip, hashlib, json, os, pathlib, shutil, subprocess, sys, tempfile, warn
 
 for k in list(os.environ):
     if 'proxy' in k.lower(): os.environ.pop(k)
+os.environ['KPC_FERS_CARRY_MADE_ON'] = '0'  # R-2F4 is tested in test_fers_owner_answers_nov19.py
+os.environ['KPC_FERS_STRIP_HELD'] = '0'  # R-2F6 is tested in test_fers_owner_answers_nov19.py
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SCR = ROOT / '.github' / 'scripts'
 sys.path.insert(0, str(SCR))
@@ -280,6 +282,7 @@ else:
     e = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'PASS', 'MINUTES', 'STATES', 'REGION', 'RUN_TAG', 'PARKS', 'GITHUB_', 'WATER_STORE'))}
     e.update({'MINUTES': '5', 'STATES': 'US-RI', 'REGION': 'na', 'RUN_TAG': 'testri', 'KPC_FERS_LIVE_DIR': str(t / 'cache/fers'), 'KPC_FERS_FROM_STORE': 'on',
               'KPC_FERS_STORE_DIR': str(t / 'store'), 'KPC_FERS_STORE_MAX_DAYS': '100000', 'KPC_FERS_STORE_KIND': 'public', 'KPC_FERS_PRIVATE_LOG': str(priv),
+              'KPC_FERS_CARRY_MADE_ON': '0', 'KPC_FERS_STRIP_HELD': '0',  # this file proves never-worse; R-2F4 and R-2F6 are the owner-answers test
               'TRIES_OUT': str(TMP / 'tries.txt'), 'EXPORT_OUT': str(TMP / 'export.jsonl')})
     outs = []
     for p in (1, 2, 3, 5):
