@@ -119,6 +119,13 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           acres within 10% or 20 ac). Never by name, never for a re-found id, never for an 'approx' answer, never
                           past a NO. A far id that no longer fits goes to check; a 'far' with no evidence is ignored (warning).
                           ON for the US key (default).
+  KPC_PRESERVE_WITH_PARK 1 (R-PP1b, KPC owner 19 Nov 1:32 PM: 'I looked the website up from pota and each one says national park+
+                          preserve or etc...no need to email them') a park number KEEPS the national preserve of its own unit (POTA's
+                          website for the number is the combined 'Park & Preserve' unit) unless POTA numbers that preserve itself:
+                          park and preserve are kept apart (R-PP1, the NPS unit-code step) only where another POTA park of the state
+                          carries the record's own full name (Glacier Bay US-12607 / US-0029, Aniakchak US-0902 / US-0003, Great Sand
+                          Dunes US-0033 / US-8295). Denali, Gates of the Arctic, Katmai, Lake Clark, Wrangell-St. Elias and Craters of
+                          the Moon keep their preserve. OFF = R-PP1a as before. ON for the US key (default).
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -132,7 +139,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
             'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0',
-            'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1'}
+            'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1', 'KPC_PRESERVE_WITH_PARK': '1'}
 
 
 # Reviewer B #7 (KPC owner, 2026-11-17): the switches live in .github/key-switches.json (a US rule file, sliced per area), so a
@@ -852,6 +859,12 @@ def near_name(a, b):
         while n < min(len(x), len(y)) and x[n] == y[n]: n += 1
         return x == y or (n >= 5 and max(len(x), len(y)) - n <= 3)
     return all(st(x, y) for x, y in zip(wa, wb))
+
+
+def pota_numbers_part(record_name, parks, ref):
+    """R-PP1b (KPC owner, 19 Nov 1:32 PM): does POTA number this part itself? The other POTA park of the state whose full name is
+    the record's own name (D9), or None. parks = {ref: park name} of the state; `ref` (the park being built) is left out."""
+    return d9_winner(record_name, {r: n for r, n in (parks or {}).items() if r != ref})
 
 
 def nps_part_clash(park_name, record_name):

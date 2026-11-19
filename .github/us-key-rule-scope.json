@@ -507,6 +507,31 @@
     "saved_ids": true
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-19 (11:49 AM: \"2 yes pins are only references they are not always right\"); stamp agreed ahead by Fable (key-quality.md section 19 item 26)"
+  },
+  {
+   "id": "2026-11-19-r-pp1b-preserve-with-park",
+   "when": "2026-11-19",
+   "from": "c82bdade8675",
+   "why": "R-PP1b (KPC owner 19 Nov 1:32 PM: 'I looked the website up from pota and each one says national park+preserve or etc...no need to email them'; 1:36 PM: 'The Alaska parks was easy clicked on link at pota and read the hero'): a park number KEEPS the national preserve of its own unit unless POTA numbers that preserve itself. Park and preserve stay apart (R-PP1 and the NPS unit-code step) only where another POTA park of the state carries the record's own full name: Glacier Bay US-12607 / US-0029, Aniakchak US-0902 / US-0003, Great Sand Dunes US-0033 / US-8295. Denali US-0022, Gates of the Arctic US-0026, Katmai US-0044, Lake Clark US-0048 get their preserve back; Wrangell-St. Elias US-0069 and Craters of the Moon US-0665 keep it with no question for POTA. Switch KPC_PRESERVE_WITH_PARK, default ON. The states are R-PP1's.",
+   "scope": {
+    "states": [
+     "US-AK",
+     "US-AL",
+     "US-CA",
+     "US-CO",
+     "US-FL",
+     "US-ID",
+     "US-KS",
+     "US-LA",
+     "US-NM",
+     "US-NV",
+     "US-OR",
+     "US-TX",
+     "US-WV"
+    ],
+    "saved_ids": true
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-19 (1:32 PM: \"no I looked the website up from pota and each one says national park+preserve or etc...no need to email them\"); waiting for Fable's review (key-quality.md section 13)"
   }
  ]
 }
