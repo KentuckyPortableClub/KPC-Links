@@ -97,13 +97,40 @@ with tempfile.TemporaryDirectory() as t:
     rc, out = run(td, ap3)
     check(rc == 0 and 'US-MT::2 park(s) lost their outline or their official grade, every one on the approved list' in out, 'the same grade drop, named: let through')
 
+    # NEVER WORSE, PARK BY PARK (the real event: run US-44567326912 saved Idaho and Oregon because evidence batch 01's regained
+    # outlines offset the lost ones in the net count). NV, on no list, loses one outline and gains another: official 10 -> 10.
+    write_now(k, main, {})
+    d = json.loads((k / 'US-NV.json').read_text()); d['parks']['US-9001'] = park(False); d['parks']['US-9999'] = park(True)
+    (k / 'US-NV.json').write_text(json.dumps(d, indent=1))
+    rc, out = run(td)
+    check(rc == 1 and 'US-NV::1 park(s) lost their outline or their official grade: US-9001' in out and 'official parks 10 ->' not in out,
+          'limit 0: one outline lost, one gained (net 0): the state is HELD by the park, where the count rule saw nothing')
+    rc, out = run(td, env={'KPC_DROP_PCT': '3', 'KPC_DROP_MIN': '1'})
+    check(rc == 0, 'outside store mode (3%, more than 1 park) the percent rule is unchanged: not held')
+    rc, out = run(td, env={'KPC_DROP_OK': 'NV'})
+    check(rc == 0 and 'US-NV::1 park(s) lost their outline or their official grade (US-9001), let through by KPC_DROP_OK' in out, 'KPC_DROP_OK still lets an unlisted state through')
+    ap4 = td / 'approved4.json'; ap4.write_text(json.dumps({'states': {'NV': {'parks': ['US-9001'], 'decided_by': 'KPC owner, test'}}}))
+    rc, out = run(td, ap4)
+    check(rc == 0 and 'US-NV::1 park(s) lost their outline or their official grade, every one on the approved list' in out, 'the same loss, named by the owner: let through')
+
+    # STOP: a state named in "stop" is held whatever its list says (Montana: Custer Gallatin keeps an outline but loses two thirds
+    # of its land, which no list of lost outlines can see); a stopped state that was not rebuilt is left alone; approve refuses it
+    write_now(k, main, {'MT': {'US-4548'}})
+    ap5 = td / 'approved5.json'
+    ap5.write_text(json.dumps({'states': {'MT': {'parks': ['US-4548'], 'decided_by': 'KPC owner, test'}}, 'stop': {'MT': 'US-4501 waits for rule R-FJ1.'}}))
+    rc, out = run(td, ap5)
+    check(rc == 1 and 'US-MT::STOP: US-4501 waits for rule R-FJ1.' in out, 'STOP holds a state even when every lost park is named')
+    write_now(k, main, {})
+    rc, out = run(td, ap5)
+    check(rc == 0 and 'STOP' not in out, 'a stopped state that this run did not change is not reported')
+
     # a list entry with no decided_by is ignored: MT goes back to the percent rule
     write_now(k, main, {'MT': {'US-4548'}})
     ap2 = td / 'approved2.json'
     ap2.write_text(json.dumps({'states': {'MT': {'parks': ['US-4548']}}}))
     rc, out = run(td, ap2)
-    check('approved list has no decided_by: ignored' in out and rc == 1 and 'US-MT::official parks 12 -> 11' in out,
-          'an entry with no decided_by is ignored (percent rule, held)')
+    check('approved list has no decided_by: ignored' in out and rc == 1 and 'US-MT::official parks 12 -> 11' in out and 'US-MT::1 park(s) lost their outline or their official grade: US-4548' in out,
+          'an entry with no decided_by is ignored (held by the count and by the park)')
 
     # no list at all = exactly the old guard
     write_now(k, main, {})
@@ -118,6 +145,12 @@ with tempfile.TemporaryDirectory() as t:
     r = subprocess.run([sys.executable, str(GUARD), 'approve', '--lost', str(lj), str(gj), '--states', 'MT AK', '--decided-by', 'KPC owner, test', '--out', str(out_f)],
                        capture_output=True, text=True)
     d = json.loads(out_f.read_text())
+    st_f = td / 'stopfile.json'; st_f.write_text(json.dumps({'states': {}, 'stop': {'MT': 'US-4501 waits for rule R-FJ1.'}}))
+    r2 = subprocess.run([sys.executable, str(GUARD), 'approve', '--lost', str(lj), str(gj), '--states', 'MT AK', '--decided-by', 'KPC owner, test', '--out', str(st_f)],
+                        capture_output=True, text=True)
+    d2 = json.loads(st_f.read_text())
+    check('MT: NOT WRITTEN, the state is on STOP' in r2.stdout and 'MT' not in d2['states'] and d2['states']['AK']['parks'] == ['US-0026'] and d2['stop'].get('MT'),
+          'approve refuses a stopped state, writes the others and keeps the stop')
     check(r.returncode == 0 and d['states']['MT']['parks'] == ['US-4502', 'US-4548'] and d['states']['AK']['parks'] == ['US-0026'] and 'NV' not in d['states'],
           'approve writes the lost outlines and the grade drops of the named states only, with decided_by')
 

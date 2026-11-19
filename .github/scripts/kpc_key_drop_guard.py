@@ -23,6 +23,13 @@ Fable's review, 19 Nov (dress rehearsal on run 44528656941's would-be files): (1
 more counts as lost even when it keeps its rows (D7 'only a copy: approximate': 6 parks in ID, MT, VA), so the named list is never
 weaker than the limit-0 rule; (2) in the outline FILE only an outline the keys still grade above pin counts (the save leaves out
 pin and not-in-any-key parks on purpose: 12 old outlines of pin parks sit in today's files and would have held ID, MT, UT).
+NEVER WORSE IS JUDGED PARK BY PARK (Fable, 19 Nov, after run US-44567326912 saved Idaho and Oregon without the owner's yes): the
+count rule is NET, so the outlines evidence batch 01 gave back (Milner in ID; Topsy and Bear Gulch in OR, plus Nez Perce new) hid
+the outlines those states lost (ID 3 + a grade drop, OR 9 with Tillamook SF) and the guard let both through. At limit 0 (store mode:
+KPC_DROP_PCT 0 and KPC_DROP_MIN 0) EVERY state is now judged by park: any park that lost its outline or its official grade and is
+not named on the approved list holds the state, whatever was gained elsewhere. KPC_DROP_OK still lets an unlisted state through.
+STOP: the same file may carry "stop": {"MT": "why"}: that state is held whatever its list or KPC_DROP_OK says (a known fault that a
+lost-outline list cannot see, such as an outline that keeps its place but loses most of its land). `approve` refuses a stopped state.
 
   python3 .github/scripts/kpc_key_drop_guard.py [--ref HEAD] [--key data/us-key] [--mark FILE] [--approved FILE]
   python3 .github/scripts/kpc_key_drop_guard.py approve --lost lost.json [grade-drops.json] --states "AK MT" --decided-by "KPC owner, <date> (<words>)" [--out FILE]"""
@@ -63,6 +70,14 @@ def load_approved(path):
     return out
 
 
+def load_stop(path):
+    """{state: why} of the states that must not be saved (the file's "stop"); an unreadable file stops nothing here (load_approved
+    already reported it and then no state is let through by name)."""
+    try: d = json.load(open(path, encoding='utf-8'))
+    except (FileNotFoundError, ValueError): return {}
+    return {str(k).upper().replace('US-', ''): str(v) for k, v in (d.get('stop') or {}).items() if str(v).strip()}
+
+
 def judge_named(lost, approved):
     """lost: {state: set of parks that lost their outline}; approved: {state: set}. Only states on the approved list are judged.
     Returns (held rows, let-through rows); a row = (state, lost count, sorted parks NOT on the list)."""
@@ -97,8 +112,9 @@ def main():
     a = ap.parse_args()
     pct = float(os.environ.get('KPC_DROP_PCT') or 3); mn = int(os.environ.get('KPC_DROP_MIN') or 1)
     ok = set((os.environ.get('KPC_DROP_OK') or '').replace(',', ' ').upper().split())
+    strict = pct == 0 and mn == 0   # store mode 'never worse': judged park by park (a gain elsewhere never offsets a loss)
     apath = a.approved or os.environ.get('KPC_DROP_APPROVED') or os.path.join(a.repo, APPROVED_FILE)
-    named = load_approved(apath)
+    named = load_approved(apath); stop = load_stop(apath)
     before, now, unread, lost = {}, {}, [], {}
     for f in sorted(glob.glob(os.path.join(a.repo, a.key, 'US-??.json'))):
         st = os.path.basename(f)[3:5]
@@ -126,7 +142,7 @@ def main():
             before_refs = set(M.recs_of_doc(M.load_doc_parts(name, main_read)))
             now_refs = set(M.load_area(f'US-{st}', os.path.dirname(f)))
             ob[st] = len(before_refs - M.pin_drops(f'US-{st}', before_refs, key_dir)); on[st] = len(now_refs)
-            if st in named:   # Nov 19: an outline gone from the file counts too, unless the save left it out on purpose (pin / in no key)
+            if st in named or strict:   # Nov 19: an outline gone from the file counts too, unless the save left it out on purpose (pin / in no key)
                 gone = before_refs - now_refs
                 lost[st] = lost.get(st, set()) | (gone - M.pin_drops(f'US-{st}', gone, key_dir) - M.not_in_key_drops(f'US-{st}', gone, key_dir))
         except Exception: unread.append(st)  # noqa: BLE001
@@ -138,9 +154,28 @@ def main():
     for st, n_, extra in nheld:
         print(f'::error title=Drop guard US-{st}::{len(extra)} park(s) lost their outline or their official grade and are NOT on the approved list: {", ".join(extra[:12])}'
               f'{" ..." if len(extra) > 12 else ""}. The state is held.')
-    failed = [r for r in failed if r[0] not in named]; of = [r for r in of if r[0] not in named]
-    allowed = [r for r in allowed if r[0] not in named]
+    _own = set(named) | set(stop)   # judged by their list or their STOP alone: the count rule's lines would only mislead
+    failed = [r for r in failed if r[0] not in _own]; of = [r for r in of if r[0] not in _own]
+    allowed = [r for r in allowed if r[0] not in _own]; oa = [r for r in oa if r[0] not in _own]
     held_named = [st for st, _, _ in nheld]
+    for st in sorted(stop):   # STOP: held whatever its list says, when this run built it differently from main
+        if st not in before or st in held_named: continue
+        r = subprocess.run(['git', 'show', f'{a.ref}:{a.key}/US-{st}.json'], cwd=a.repo, capture_output=True)
+        if r.returncode == 0 and r.stdout == open(os.path.join(a.repo, a.key, f'US-{st}.json'), 'rb').read(): continue   # not rebuilt: nothing to hold
+        held_named.append(st); print(f'::error title=Drop guard US-{st}::STOP: {stop[st]} The state is held whatever its list says.')
+    # NEVER WORSE, PARK BY PARK (limit 0): a state with no list is held by any park that lost its outline or its official grade
+    sok = 0
+    if strict:
+        for st in sorted(before):
+            lo = sorted(lost.get(st) or ())
+            if st in named or st in stop or not lo: continue
+            tail = f'{", ".join(lo[:12])}{" ..." if len(lo) > 12 else ""}'
+            if st in ok:
+                sok += 1; print(f'::warning title=Drop guard US-{st}::{len(lo)} park(s) lost their outline or their official grade ({tail}), let through by KPC_DROP_OK for this run')
+            else:
+                held_named.append(st)
+                print(f'::error title=Drop guard US-{st}::{len(lo)} park(s) lost their outline or their official grade: {tail}. Never worse is judged park by park '
+                      f'(a gain elsewhere does not offset it): the state is held until the owner names these parks (.github/key-drop-approved.json).')
     for st, b, n, p in oa: print(f'::warning title=Drop guard US-{st}::outlines {b} -> {n} (-{p}%), let through by KPC_DROP_OK for this run')
     for st, b, n, p in of:
         print(f'::error title=Drop guard US-{st}::outlines {b} -> {n} (-{p}%, limit {pct:g}%). The run saves nothing.')
@@ -152,7 +187,7 @@ def main():
         print(f'::error title=Drop guard US-{st}::official parks {b} -> {n} (-{p}%, limit {pct:g}%). The run saves nothing. '
               f'If the drop is expected, set the repo variable KPC_DROP_OK to "{st}" for one run.')
     print(f'drop guard: {len(before)} state(s) compared with {a.ref}; {len(set([r[0] for r in failed] + unread + held_named))} failed, '
-          f'{len(allowed) + len(nok)} let through ({len(nok)} by the named-parks list)')
+          f'{len(set(r[0] for r in allowed) | set(r[0] for r in nok)) + sok} let through ({len(nok)} by the named-parks list)')
     if failed or unread or held_named:
         bad = sorted(set([r[0] for r in failed] + unread + held_named))
         if a.restore:   # Nov 12 (KPC owner, 2026-11-12): each state stands alone
@@ -211,7 +246,9 @@ def approve(argv):
     doc['note'] = ('Named parks the owner let lose their outline in ONE key run (kpc_key_drop_guard.py, key-quality.md section 19 item 21c). '
                    'A state listed here is held if it loses any outline NOT named. Empty "states" after the release run.')
     doc.setdefault('states', {})
+    stopped = {str(k).upper().replace('US-', ''): v for k, v in (doc.get('stop') or {}).items()}
     for st in sorted(sts):
+        if st in stopped: print(f'{st}: NOT WRITTEN, the state is on STOP: {stopped[st]}'); continue
         parks = sorted({str(r['ref']) for r in rows if str(r.get('area', '')).upper().replace('US-', '') == st})
         doc['states'][st] = {'parks': parks, 'decided_by': a.decided_by, 'source': a.source or ' + '.join(os.path.basename(f) for f in a.lost)}
         print(f'{st}: {len(parks)} park(s)')
