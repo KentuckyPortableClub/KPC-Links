@@ -573,3 +573,11 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    d. BRANDON'S PC: it is on home internet with a real browser, so it can download the layers that block the bots (as with the
       KDFWR file for Salato) straight from the list's PC rows. His 2-fer tool and the full PC run wait for the released keys
       (running them on today's keys wastes the run); HQ's open line (pins.json + store tool update) comes first.
+10. **R-PP1 STANDS, the outside agent confirms (Brandon 19 Nov 6:04 AM: "use your judgment or maybe outside agent confirm pota
+   official page weblinks are for preserve or not").** POTA's own list numbers park and preserve apart in three Park Service
+   units: Glacier Bay NP US-12607 + Preserve US-0029, Aniakchak NM US-0902 + Preserve US-0003, Great Sand Dunes NP US-0033 +
+   Preserve US-8295. So a preserve is its own park to POTA; where it has no number it is not a POTA park yet. Job 4 in the
+   hand-off zip (item 9c): for US-0069, US-0044, US-0048, US-0026, US-0665 open POTA's own park page and report its name, its
+   website link, and whether POTA lists that preserve under any other number or name. If POTA's page says the number covers the
+   preserve, the ruling flips for that park (a saved answer with the page as evidence). The R-PP1 draft PR does not wait for it.
+
