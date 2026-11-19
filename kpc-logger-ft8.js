@@ -27,10 +27,11 @@
     WSPR: { '160m': 1836.6, '80m': 3568.6, '60m': 5287.2, '40m': 7038.6, '30m': 10138.7, '20m': 14095.6, '17m': 18104.6, '15m': 21094.6, '12m': 24924.6, '10m': 28124.6, '6m': 50293, '2m': 144489 }
   };
   const isFT = () => S.mode === 'FT8' || S.mode === 'FT4';
-  const isDG = () => /^(RTTY|PSK31|HELL|SSTV|WSPR)$/.test(S.mode);
+  const isDG = () => /^(RTTY|HELL|SSTV)$/.test(S.mode);
   const DG = () => window.KPCDigiUI || null;
   const S = Object.assign({ mode: 'FT8', band: '20m', inDev: '', outDev: '', ptt: 'vox', txHz: 1500, rxHz: 1500, hold: true, auto: true, first: true, even: true, keepCq: false, cqw: 'POTA', lvl: 0.3, deep: false, wd: 2, cwHz: 600, cwWpm: 20, cwVia: 'cat', cwBw: 'auto', cwMac: null, aPark: true, aState: false, aGrid: false, watch: '', mm: 'hear', as: '', asList: '', noGrid: false, autoClear: true, wfB: 0, wfC: 0, hl: { park: 1, dxped: 1, event: 1, dx: 0, newc: 0, newb: 0 } }, get('kpcFt8', {}));
   if (!S.hl || typeof S.hl !== 'object') S.hl = { park: 1, dxped: 1, event: 1, dx: 0, newc: 0, newb: 0 };   /* Nov 10 (from the KPC app 0.6.9 / Oct 24): highlight choices, auto clear spot (default ON like the app), waterfall brightness + contrast */
+  if (/^(PSK31|WSPR)$/.test(S.mode)) S.mode = 'FT8'; /* Nov 18 2026: PSK31 and WSPR are not on the website; a saved one starts on FT8 */
   const saveS = () => put('kpcFt8', S);
   const slotLen = () => S.mode === 'FT4' ? 7.5 : 15;
   const stdK = () => (DIAL[S.mode] || DIAL.FT8)[S.band] || DIAL.FT8['20m'];
@@ -51,7 +52,7 @@
   root.innerHTML = `
   <div class="f8-top">
     <button type="button" class="f8-back" id="f8Back">← LOGGER</button>
-    <div class="f8-modes" role="group" aria-label="Mode"><button type="button" data-f8m="FT8">FT8</button><button type="button" data-f8m="FT4">FT4</button><button type="button" data-f8m="CW">CW</button><button type="button" data-f8m="RTTY">RTTY</button><button type="button" data-f8m="PSK31">PSK31</button><button type="button" data-f8m="HELL" title="Feld Hellschreiber">HELL</button><button type="button" data-f8m="SSTV">SSTV</button><button type="button" data-f8m="WSPR">WSPR</button></div>
+    <div class="f8-modes" role="group" aria-label="Mode"><button type="button" data-f8m="FT8">FT8</button><button type="button" data-f8m="FT4">FT4</button><button type="button" data-f8m="CW">CW</button><button type="button" data-f8m="RTTY">RTTY</button><button type="button" data-f8m="HELL" title="Feld Hellschreiber">HELL</button><button type="button" data-f8m="SSTV">SSTV</button></div>
     <select id="f8Band" aria-label="Band"></select>
     <b class="f8-dial" id="f8Dial">14.074 000</b>
     <span class="f8-clk"><b id="f8Utc">--:--:--</b><i class="f8-slot"><i id="f8SlotBar"></i></i></span>
@@ -128,7 +129,7 @@
       <p class="f8-mic" id="f8MicT" hidden>Using the built-in mic and speaker: put the phone right next to the radio's speaker (radio volume about half), and the radio's mic close to the phone's speaker. Turn the radio's <b>VOX</b> on so it keys when the phone plays, and keep the room quiet. It works, but a cable (Digirig, the radio's USB) decodes far more stations.</p>
       <div class="f8-catrow"><button type="button" class="f8-b" id="f8Cat">📻 CONNECT MY RADIO (CAT)</button><span id="f8CatT"></span></div>
     </div>
-    <p class="f8-help">How it works: it listens to the radio's audio and shows everyone it decodes each 15 seconds (FT4: 7.5 s). Tap a station to call them: the six messages fill in and TX turns on. With <b>Auto seq</b> on it answers by itself (grid → report → R-report → RR73 → 73) and the contact goes into your log as soon as it's complete. <b>📣 CQ</b> calls CQ (CQ POTA when you have a park number). Set the radio to USB (or DATA/USB-D), the dial on the FT8 frequency, and keep the TX audio low. Your computer's or phone's clock must be right within about a second (turn on "set time automatically"). Engine: ft8_lib by Karlis Goba (MIT license). Practice calls on this page: K4TEST.</p>
+    <p class="f8-help">How it works: it listens to the radio's audio and shows everyone it decodes each 15 seconds (FT4: 7.5 s). Tap a station to call them: the six messages fill in and TX turns on. With <b>Auto seq</b> on it answers by itself (grid → report → R-report → RR73 → 73) and the contact goes into your log as soon as it's complete. <b>📣 CQ</b> calls CQ (CQ POTA when you have a park number). Set the radio to USB (or DATA/USB-D), the dial on the FT8 frequency, and keep the TX audio low. Your computer's or phone's clock must be right within about a second (turn on "set time automatically"). Engine: ft8_lib by Karlis Goba (MIT license; <a href="notices/README.txt" target="_blank" rel="noopener">licence notices</a>). Practice calls on this page: K4TEST.</p>
   </details>
   <div class="f8-note" id="f8Note" hidden></div>`;
 
@@ -162,7 +163,7 @@
   /* follow the radio's knob while CAT is connected (not right after we tuned it) */
   setInterval(async () => { if (root.hidden || document.hidden || !window.KPCCat || !KPCCat.get().on || !KPCCat.connected() || Date.now() - tunedAt < 4000 || document.activeElement === $('f8Khz') || TXING) return;
     try { const r = await KPCCat.read(); if (r && r.khz && Math.abs(r.khz - dialK()) > 0.02 && Date.now() - tunedAt >= 4000) setDial(r.khz, true); } catch (e) {} }, 2500);
-  function setMode(m) { if (m === S.mode) return; S.mode = m; saveS(); bandOpts(); showDial(); radioTune(); resetEng(); gen(); slotSep(true); modeView(); }
+  function setMode(m) { if (/^(PSK31|WSPR)$/.test(m)) m = 'FT8'; if (m === S.mode) return; S.mode = m; saveS(); bandOpts(); showDial(); radioTune(); resetEng(); gen(); slotSep(true); modeView(); }
   function modeView() { CWON = S.mode === 'CW'; root.dataset.m = S.mode === 'CW' ? 'cw' : isDG() ? S.mode.toLowerCase().replace('31', '') : 'ft'; if (S.mode !== 'CW' && TXING && CWTX) cwHalt(); if (DG()) DG().mode(S.mode); fftFit(); wfRange(); drawScale(); }
   function fftFit() { if (AN && AC) { const want = S.mode === 'WSPR' ? 32768 : AC.sampleRate > 30000 ? 8192 : 4096; if (AN.fftSize !== want) AN.fftSize = want; } }
   bandOpts(); showDial();
@@ -172,7 +173,7 @@
 
   /* ---------------- decoder engine ---------------- */
   let ENG = null, engP = null;
-  const engine = () => engP || (engP = (window.KPCFT8 ? KPCFT8.load('kpc-ft8.wasm?v=20261017a') : Promise.reject(new Error('kpc-ft8.js missing'))).then(e => (ENG = e)));
+  const engine = () => engP || (engP = (window.KPCFT8 ? KPCFT8.load('kpc-ft8.wasm?v=20261118a') : Promise.reject(new Error('kpc-ft8.js missing'))).then(e => (ENG = e)));
   function resetEng() { /* the engine is started fresh for every slot */ lastPass = nowS(); quietSlots = 0; }
 
   /* ---------------- audio ---------------- */
@@ -892,7 +893,7 @@
       map(hear, me) { XH = hear || []; XM = me || []; mapDraw(); }, setMode(m) { setMode(m); }, refresh() { bandOpts(); showDial(); modeView(); }, mapOpen: () => $('f8MapW').open },
     /* from the logger's spot list: tab over, set the band + their audio spot, and get ready to call them */
     go(o) {
-      if (/^(RTTY|PSK31)$/.test(o.mode) && DG()) { open(); setMode(o.mode); const k = +o.khz; let best = null; for (const [b, f] of Object.entries(DIAL[S.mode])) { const off = (k - f) * 1000; if (off > -500 && off < 4000 && (!best || Math.abs(off - 1500) < Math.abs(best[1] - 1500))) best = [b, off]; }
+      if (o.mode === 'RTTY' && DG()) { open(); setMode(o.mode); const k = +o.khz; let best = null; for (const [b, f] of Object.entries(DIAL[S.mode])) { const off = (k - f) * 1000; if (off > -500 && off < 4000 && (!best || Math.abs(off - 1500) < Math.abs(best[1] - 1500))) best = [b, off]; }
         if (best) { S.band = best[0]; $('f8Band').value = S.band; saveS(); showDial(); radioTune(); } DG().go(o, best ? best[1] : null); return; }
       open(); const m = o.mode === 'FT4' ? 'FT4' : 'FT8'; if (m !== S.mode) { S.mode = m; bandOpts(); }
       const k = +o.khz; let best = null; for (const [b, f] of Object.entries(DIAL[S.mode])) { const off = (k - f) * 1000; if (off > -500 && off < 4000 && (!best || Math.abs(off - 1500) < Math.abs(best[1] - 1500))) best = [b, off]; }

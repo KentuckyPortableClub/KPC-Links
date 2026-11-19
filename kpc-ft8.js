@@ -27,9 +27,17 @@
     url = url || 'kpc-ft8.wasm?v=20261017a';
     var M = Math;
     var imp = { env: { cos: M.cos, sin: M.sin, sinf: M.sin, cosf: M.cos, log10f: M.log10, expf: M.exp, exit: function () { throw new Error('ft8 exit'); } } };
-    var go = (WebAssembly.instantiateStreaming && typeof fetch === 'function' && typeof window !== 'undefined')
-      ? WebAssembly.instantiateStreaming(fetch(url), imp).catch(function () { return fetch(url).then(function (r) { return r.arrayBuffer(); }).then(function (b) { return WebAssembly.instantiate(b, imp); }); })
+    /* Oct 22 (Brandon: 'Windows: FT8 not decoding'): the Windows app opens its page from a file, and a web page may not fetch() a file,
+       so the decoder never loaded there. The app's own bridge (window.kpcNet.asset) reads it from disk instead. */
+    var viaApp = function () { if (typeof window !== 'undefined' && window.kpcNet && window.kpcNet.asset) return window.kpcNet.asset(url.split('?')[0]).then(function (b64) { var bin = atob(b64), u = new Uint8Array(bin.length); for (var i = 0; i < u.length; i++) u[i] = bin.charCodeAt(i); return WebAssembly.instantiate(u.buffer, imp); }); return Promise.reject(new Error('no app bridge')); };
+    var isFile = typeof location !== 'undefined' && location.protocol === 'file:';
+    /* Oct 24: the decoder bytes also travel inside kpc-ft8-wasm.js (window.KPC_FT8_WASM_B64), so no file/fetch rules can stop it loading */
+    var viaText = function () { var b64 = typeof window !== 'undefined' && window.KPC_FT8_WASM_B64; if (!b64) return Promise.reject(new Error('no embedded wasm')); var bin = atob(b64), u = new Uint8Array(bin.length); for (var i = 0; i < u.length; i++) u[i] = bin.charCodeAt(i); return WebAssembly.instantiate(u.buffer, imp).then(function (r) { load.how = 'embedded'; return r; }); };
+    var go0 = isFile ? viaApp().catch(function () { return fetch(url).then(function (r) { return r.arrayBuffer(); }).then(function (b) { return WebAssembly.instantiate(b, imp); }); })
+      : (WebAssembly.instantiateStreaming && typeof fetch === 'function' && typeof window !== 'undefined')
+      ? WebAssembly.instantiateStreaming(fetch(url), imp).catch(function () { return fetch(url).then(function (r) { return r.arrayBuffer(); }).then(function (b) { return WebAssembly.instantiate(b, imp); }); }).catch(viaApp)
       : (typeof fetch === 'function' && typeof window !== 'undefined' ? fetch(url).then(function (r) { return r.arrayBuffer(); }) : Promise.resolve(require('fs').readFileSync(url.split('?')[0]))).then(function (b) { return WebAssembly.instantiate(b, imp); });
+    var go = viaText().catch(function (e1) { return go0.then(function (r) { load.how = load.how || (isFile ? 'app bridge / fetch' : 'fetch'); return r; }).catch(function (e2) { load.err = String((e1 && e1.message) || e1) + ' | ' + String((e2 && e2.message) || e2); throw e2; }); });
     return go.then(function (r) {
       var x = r.instance.exports, bs = 0, ft4 = 0, pend = new Float32Array(0);
       var mem = function () { return x.memory.buffer; };
@@ -44,9 +52,9 @@
         },
         blocks: function () { return x.kft_blocks(); },
         decode: function (minScore, iters) {
-          var n = x.kft_decode(minScore || 10, iters || 25), nums = new Float32Array(mem(), x.kft_nums(), n * 3), tx = new Uint8Array(mem(), x.kft_texts(), n * 40), out = [];
+          var W = x.kft_width ? x.kft_width() : 40, n = x.kft_decode(minScore || 10, iters || 25), nums = new Float32Array(mem(), x.kft_nums(), n * 3), tx = new Uint8Array(mem(), x.kft_texts(), n * W), out = [];
           for (var i = 0; i < n; i++) {
-            var s = ''; for (var j = 0; j < 40; j++) { var c = tx[i * 40 + j]; if (!c) break; s += String.fromCharCode(c); }
+            var s = ''; for (var j = 0; j < W; j++) { var c = tx[i * W + j]; if (!c) break; s += String.fromCharCode(c); }
             /* score → rough dB like WSJT-X (calibrated against test signals, Oct 17) */
             out.push({ db: Math.max(-30, Math.min(30, Math.round(nums[i * 3]))), dt: Math.round((nums[i * 3 + 1] - 0.6) * 10) / 10, hz: Math.round(nums[i * 3 + 2]), text: s.trim() });
           }
@@ -57,7 +65,14 @@
           for (var i = 0; i < 64; i++) b[i] = i < s.length ? s.charCodeAt(i) : 0;
           var n = x.kft_encode(f4 ? 1 : 0); if (n <= 0) return null;
           return new Uint8Array(mem(), x.kft_tones(), n).slice();
-        }
+        },
+        /* Nov 10 (builders' tests): tones of a raw 77-bit payload (10 bytes), e.g. a pretend Fox's 'A RR73; B <FOX> -08' */
+        tonesRaw: function (pl, f4) {
+          if (!x.kft_encode_raw) return null; var b = new Uint8Array(mem(), x.kft_txt(), 64); for (var i = 0; i < 10; i++) b[i] = pl[i] || 0;
+          var n = x.kft_encode_raw(f4 ? 1 : 0); return n > 0 ? new Uint8Array(mem(), x.kft_tones(), n).slice() : null;
+        },
+        dx: !!x.kft_encode_raw,
+        memBytes: function () { return x.memory.buffer.byteLength; }   /* Nov 18: for the leak test */
       };
       return e;
     });

@@ -8,14 +8,14 @@ def ok(c, m):
     global fails; print(('PASS ' if c else 'FAIL ') + m); fails += 0 if c else 1
 rd = lambda p: open(p, encoding='utf-8').read()
 git = lambda *a: subprocess.run(['git', *a], capture_output=True, text=True).stdout
-NEW = 'v=20261111a'
+NEW = 'v=20261118a'  # Nov 18 2026 Lounge round stage 1 (was v=20261111a)
 VIP = ['kpc-hunt.html', 'kpc-hunt-need.html', 'kpc-beta-room.html', 'kpc-beta-need.html', 'kpc-logger.html', '.claude/build/hunt/main.html']
 PUB = ['kpc-hunters.html', 'kpc-hunters-need.html']
 for p in VIP:
     t = rd(p); ok('kpc-logger-ft8.js?' + NEW in t and 'kpc-logger-ft8.js?v=20261020d' not in t, p + ' loads kpc-logger-ft8.js?' + NEW)
     ok('kpc-ft8.css?v=20261110d' in t, p + ' loads kpc-ft8.css?v=20261110d')
 for p in PUB:
-    t = rd(p); ok(NEW not in t and 'kpc-logger-ft8.js?v=20261020d' in t, p + ' not touched by this round (public pages: digi modes are VIP only)')
+    t = rd(p); ok('kpc-logger-ft8.js?' + NEW not in t and 'kpc-logger-ft8.js?v=20261020d' in t, p + ' not touched by this round (public pages: digi modes are VIP only)')
 js = rd('kpc-logger-ft8.js'); css = rd('kpc-ft8.css')
 for i in ['f8LvlBar', 'f8LvlW', 'f8TopLvl', 'f8Qso', 'f8QsoDx', 'f8QsoR', 'f8QsoL', 'f8QsoClr', 'f8Clear', 'f8AutoClr', 'f8WfB', 'f8WfC', 'f8WfBT', 'f8WfCT', 'f8Hl']:
     ok('id="%s"' % i in js, 'new id ' + i)
