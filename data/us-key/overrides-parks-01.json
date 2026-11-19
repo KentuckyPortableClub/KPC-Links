@@ -26290,23 +26290,31 @@
     "sgidd145": [
      "Custer Gallatin National Forest",
      3020884
-    ],
-    "2660": [
-     "Gallatin National Forest",
-     1850408
     ]
    },
    "join": [
-    "sgidd145",
-    "2660"
+    "sgidd145"
    ],
+   "when": "2026-11-02",
+   "why": "2026-11-02 13:05: layers row YES 'Custer Gallatin National Forest' (chat 11; applied by kpc_key_answers)"
+  },
+  "US-4502": {
+   "join": [
+    "2658"
+   ],
+   "fp": {
+    "2658": [
+     "Flathead National Forest",
+     2414171
+    ]
+   },
    "when": "2026-11-19",
-   "why": "2026-11-02 13:05: layers row YES 'Custer Gallatin National Forest' (chat 11; applied by kpc_key_answers) · 2026-11-19 evidence batch 02: PAD-US 2660 'Gallatin National Forest' is the Gallatin half of this forest (its own Loc_Nm says Custer Gallatin National Forest; USFS Land Areas Report FY2025) (key-quality.md section 19 items 20-21)",
-   "decided_by": "evidence batch 02 (key-quality.md section 19 item 21: approved ahead by Fable if exactly this one answer; owner 10:12 AM \"1-4 I agree with your thoughts for now\")",
+   "why": "Nov 2 map audit: chat 11 NO on 2658 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-19 evidence batch 02: that NO is LIFTED. PAD-US 2658 is the Forest Service's own fee record, named exactly as the park, and its acres are the Forest Service's own NFS figure to the acre; the state's copy that was drawn in its place is the gross boundary (key-quality.md section 19 item 26)",
+   "decided_by": "evidence batch 02 (Fable sitting 4, 19 Nov: found in the dress rehearsal of the named-parks guard; the 2 Nov NO carried no official evidence, owner's standing rule 18 Nov 'trust nothing that has no evidence behind it')",
    "evidence": {
-    "who": "Fable (sitting 3, 19 Nov) from the 19 Nov saved shapes; acres from kit C (one outside-agent pass of the Forest Service file the owner downloaded by hand)",
-    "source": "https://usfs-public.app.box.com/s/rhq1lm3rq3wauhtz6yulanuzoijaaqsw/folder/360409342995 (Land Areas of the National Forest System FY2025, LAR_FY2025.xlsx); PAD-US fee records 2652 and 2660",
-    "saw": "PAD-US 2660 Unit_Nm 'Gallatin National Forest', Loc_Nm 'Custer Gallatin National Forest', USFS fee, 1,850,408 ac; PAD-US 2652 Unit_Nm 'Custer National Forest', same Loc_Nm, 1,115,748 ac (already joined). Report: Custer NF Montana 1,115,757 NFS ac (Table 5) + Gallatin NF 1,850,468 NFS ac (Table 3) = 2,966,225; the two records 2,966,156. Custer Gallatin is one administrative unit (0111, Table 28).",
+    "who": "Fable (sitting 4, 19 Nov) from the 19 Nov saved shapes; acres from kit C (one outside-agent pass of the Forest Service file the owner downloaded by hand)",
+    "source": "https://usfs-public.app.box.com/s/rhq1lm3rq3wauhtz6yulanuzoijaaqsw/folder/360409342995 (Land Areas of the National Forest System FY2025, LAR_FY2025.xlsx, Tables 3 and 28); PAD-US fee record 2658",
+    "saw": "PAD-US 2658 Unit_Nm and Loc_Nm 'Flathead National Forest', USFS fee, 2,414,171 ac. Report: Flathead NF 2,414,170.7 NFS acres, 2,650,379 gross (Table 3). The state's copy sgmtd744 is 2,649,452 ac = the gross boundary, which holds land the Forest Service does not own.",
     "date": "2026-11-19"
    }
   },
