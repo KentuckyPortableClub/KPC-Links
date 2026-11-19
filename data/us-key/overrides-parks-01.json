@@ -2277,10 +2277,36 @@
   },
   "US-1085": {
    "join": [
-    "Hobbs State Park / Conservation Management Area"
+    "166869",
+    "arw1722",
+    "sgarb7"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-19",
+   "why": "Oct 18 review: same place, official name written differently · 2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)",
+   "fp": {
+    "166869": [
+     "Hobbs State Park / Conservation Management Area",
+     12157.0
+    ],
+    "arw1722": [
+     "Hobbs State Park Conservation Area WMA",
+     0.0
+    ],
+    "sgarb7": [
+     "Hobbs State Park-Conservation Area",
+     12178.0
+    ]
+   },
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.arkansasstateparks.com/parks/hobbs-state-park-conservation-area",
+    "saw": "12,157 acres, pin inside; park and WMA are the same jointly managed land. Park 12,173 acres (ASP: \"Hobbs is Arkansas' largest state park, spanning 12,173 acres\"); WMA 12,055 acres (AGFC: \"The area is 12,055 acres in size\"); AGFC: \"Three state agencies, Arkansas State Parks, Arkansas Game and Fish Commission and Natural Heritage Commission are responsible for managing the natural resources\" ... \"a ",
+    "date": "2026-11-19"
+   },
+   "same_land": [
+    "US-7293"
+   ]
   },
   "US-1086": {
    "fp": {
@@ -15263,12 +15289,74 @@
    "why": "2026-11-02 12:49: layers row YES 'Washoe Lake State Park' (chat 11; applied by kpc_key_answers)"
   },
   "US-2644": {
-   "approx": true,
    "join": [
-    "nhc2202"
+    "nhc2202",
+    "sgnha2200",
+    "sgnha2201",
+    "sgnha2202",
+    "sgnhc692",
+    "sgnhc750",
+    "sgnhc770",
+    "sgnhc832",
+    "sgnhd2200",
+    "sgnhd2201",
+    "sgnhd2202"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-19",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)",
+   "fp": {
+    "nhc2202": [
+     "Cardigan Mountain State Forest",
+     0.0
+    ],
+    "sgnha2200": [
+     "Cardigan Mountain State Forest",
+     0.0
+    ],
+    "sgnha2201": [
+     "Cardigan Mountain State Forest",
+     0.0
+    ],
+    "sgnha2202": [
+     "Cardigan Mountain State Forest",
+     0.0
+    ],
+    "sgnhc692": [
+     "Cardigan Mountain State Forest",
+     728.7
+    ],
+    "sgnhc750": [
+     "Cardigan Mountain State Forest",
+     39.6
+    ],
+    "sgnhc770": [
+     "Cardigan Mountain State Forest",
+     52.4
+    ],
+    "sgnhc832": [
+     "Cardigan Mountain State Forest",
+     4689.6
+    ],
+    "sgnhd2200": [
+     "Cardigan Mountain State Forest",
+     0.0
+    ],
+    "sgnhd2201": [
+     "Cardigan Mountain State Forest",
+     0.0
+    ],
+    "sgnhd2202": [
+     "Cardigan Mountain State Forest",
+     0.0
+    ]
+   },
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.nhstateparks.org/NHStateParks/media/NHStateParks/PDFs/Committees/SB5FullFinalReport.pdf",
+    "saw": "State Forest property managed by NH Parks as the park; pin inside; size within ~5% of 5,655. Official 5,655 acres: \"Cardigan Mountain State Park spans 5,655 acres\". NH Parks SB5 report Appendix A \"PROPERTIES MANAGED BY THE DIVISION\" lists the property as \"Cardigan Mountain State Forest Orange\".",
+    "date": "2026-11-19"
+   }
   },
   "US-2650": {
    "join": [

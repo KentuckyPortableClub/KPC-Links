@@ -3365,10 +3365,36 @@
   },
   "US-7293": {
    "join": [
-    "Hobbs State Park / Conservation Management Area"
+    "166869",
+    "arw1722",
+    "sgarb7"
    ],
-   "when": "2026-10-18",
-   "why": "Oct 18 review: same place, official name written differently"
+   "when": "2026-11-19",
+   "why": "Oct 18 review: same place, official name written differently · 2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)",
+   "fp": {
+    "166869": [
+     "Hobbs State Park / Conservation Management Area",
+     12157.0
+    ],
+    "arw1722": [
+     "Hobbs State Park Conservation Area WMA",
+     0.0
+    ],
+    "sgarb7": [
+     "Hobbs State Park-Conservation Area",
+     12178.0
+    ]
+   },
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.agfc.com/en/zone-map/710/",
+    "saw": "12,157 acres, pin inside; park and WMA are the same jointly managed land. Park 12,173 acres (ASP: \"Hobbs is Arkansas' largest state park, spanning 12,173 acres\"); WMA 12,055 acres (AGFC: \"The area is 12,055 acres in size\"); AGFC: \"Three state agencies, Arkansas State Parks, Arkansas Game and Fish Commission and Natural Heritage Commission are responsible for managing the natural resources\" ... \"a ",
+    "date": "2026-11-19"
+   },
+   "same_land": [
+    "US-1085"
+   ]
   },
   "US-7298": {
    "join": [
@@ -9328,6 +9354,26 @@
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
    "decided_by": "KPC owner, Nov 17 2026"
   },
+  "US-9167": {
+   "join": [
+    "sgarc50"
+   ],
+   "fp": {
+    "sgarc50": [
+     "Lake Hinkle",
+     0.0
+    ]
+   },
+   "when": "2026-11-19",
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.agfc.com/wp-content/uploads/2023/05/lakehinkle.pdf",
+    "saw": "977 acres, pin inside. AGFC Lake Hinkle map: \"Appoximate Acres: 970\"; map shows Little Pines Rec Area labelled USFS and separately \"Upper Jones Creek Lake\" and \"Nursery Pond\". CHECK: no official 'State Recreation Area' exists; this is the AGFC lake.",
+    "date": "2026-11-19"
+   },
+   "why": "2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)"
+  },
   "US-9170": {
    "join": [
     "Machias River Watershed - MDOC",
@@ -13956,14 +14002,49 @@
    "why": "Oct 18 review: same place, official name written differently"
   },
   "US-10021": {
-   "approx": true,
    "join": [
-    "rst12988",
     "rma11215",
-    "rst11215"
+    "rst11215",
+    "rst12988",
+    "sgakg11215",
+    "sgakg12988",
+    "sgorf185"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-19",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)",
+   "fp": {
+    "rma11215": [
+     "Topsy Campground",
+     6.3
+    ],
+    "rst11215": [
+     "Topsy Campground",
+     6.3
+    ],
+    "rst12988": [
+     "Topsy Recreation Site",
+     13.9
+    ],
+    "sgakg11215": [
+     "Topsy Campground",
+     6.3
+    ],
+    "sgakg12988": [
+     "Topsy Recreation Site",
+     13.9
+    ],
+    "sgorf185": [
+     "Topsy Recreation Site",
+     13.9
+    ]
+   },
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.blm.gov/visit/topsy-campground",
+    "saw": "Topsy Campground, pin inside. No acreage on BLM page; \"Drive 1.5 miles on Topsy Road to the campground.\" Page also captions \"Topsy Recreation Site Entrance Sign\".",
+    "date": "2026-11-19"
+   }
   },
   "US-10023": {
    "fp": {
@@ -15416,19 +15497,29 @@
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
   },
   "US-10524": {
-   "approx": true,
    "fp": {
-    "sgnmc10988": [
+    "rst10988": [
      "Acton Recreation Area",
-     3664
+     3697.7
+    ],
+    "sgakg10988": [
+     "Acton Recreation Area",
+     3697.7
     ]
    },
    "join": [
     "rst10988",
-    "sgnmc10988"
+    "sgakg10988"
    ],
-   "when": "2026-11-02",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 13:05: layers row YES 'Acton Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "when": "2026-11-19",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 13:05: layers row YES 'Acton Recreation Area' (chat 11; applied by kpc_key_answers) · 2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)",
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.blm.gov/visit/acton-recreation-area",
+    "saw": "3,698 acres, pin inside. Official 3,800 acres: \"this 3,800-acre parcel of land allows for many wildlife-viewing opportunities.\"",
+    "date": "2026-11-19"
+   }
   },
   "US-10525": {
    "fp": {
@@ -15995,12 +16086,34 @@
    "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   },
   "US-10657": {
-   "approx": true,
    "join": [
-    "rst13871"
+    "rst13871",
+    "sgakg13871",
+    "sgidc825"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-19",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)",
+   "fp": {
+    "rst13871": [
+     "Milner",
+     2068.5
+    ],
+    "sgakg13871": [
+     "Milner",
+     2068.5
+    ],
+    "sgidc825": [
+     "Milner",
+     2068.5
+    ]
+   },
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.blm.gov/press-release/blm-opens-new-boat-ramp-milner-historic-recreation-area",
+    "saw": "2,069 acres, pin inside. Official ~2,050 acres: \"It is a little over 2,050 acres and includes boat ramps, campsites and a walking path.\" (BLM Burley FO business plan: \"2055 acres\").",
+    "date": "2026-11-19"
+   }
   },
   "US-10662": {
    "fp": {
@@ -16064,13 +16177,34 @@
    "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-10695": {
-   "approx": true,
    "join": [
     "rma9874",
-    "rst9874"
+    "rst9874",
+    "sgakg9874"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-19",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)",
+   "fp": {
+    "rma9874": [
+     "Coffeepot Lake Public Fishing Access",
+     5.9
+    ],
+    "rst9874": [
+     "Coffeepot Lake Public Fishing Access",
+     5.9
+    ],
+    "sgakg9874": [
+     "Coffeepot Lake Public Fishing Access",
+     5.9
+    ]
+   },
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.blm.gov/visit/coffeepot-lake-recreation-site",
+    "saw": "BLM site polygon with pin inside; BLM page describes this site (boat launch, fishing dock, 7 campsites). No acreage for the site itself; BLM: \"More than 900 acres bordering the lake are managed for wildlife habitat as well as recreational opportunities.\" CHECK: if POTA means the 900+ acre managed area, this 6 acres is only one piece.",
+    "date": "2026-11-19"
+   }
   },
   "US-10696": {
    "fp": {
@@ -17341,6 +17475,44 @@
    ],
    "when": "2026-11-08",
    "why": "2026-11-02 12:49: layers row YES 'Deep Ford Access' (chat 11; applied by kpc_key_answers) · 2026-11-08 13:55: layers row YES 'Deep Ford Access' (chat 11; applied by kpc_key_answers)"
+  },
+  "US-11142": {
+   "join": [
+    "158410",
+    "sgwab1473",
+    "sgwaf1473",
+    "sgwad2223"
+   ],
+   "fp": {
+    "158410": [
+     "West Foster Creek",
+     1062.0
+    ],
+    "sgwab1473": [
+     "West Foster Creek",
+     0.0
+    ],
+    "sgwaf1473": [
+     "West Foster Creek",
+     0.0
+    ],
+    "sgwad2223": [
+     "Wells Wildlife Area",
+     0.0
+    ]
+   },
+   "when": "2026-11-19",
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "two separate graders (Sonnet A and B, held-states packet lost-01, 18 Nov); both YES on all four records",
+    "source": "https://wdfw.wa.gov/places-to-go/wildlife-areas/west-foster-creek-wildlife-area-unit",
+    "saw": "WDFW: the West Foster Creek unit is 1,063 acres; records 1,061-1,077 acres, pin inside; US-11142 and US-12277 are the same unit under two park numbers",
+    "date": "2026-11-19"
+   },
+   "same_land": [
+    "US-12277"
+   ],
+   "why": "2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)"
   },
   "US-11144": {
    "fp": {
@@ -19468,18 +19640,29 @@
    "why": "2026-11-02 12:49: layers row YES 'South Branch Wildlife Management Area' (chat 11; applied by kpc_key_answers)"
   },
   "US-11992": {
-   "approx": true,
    "fp": {
     "229060": [
      "Whiting Wildlife Management Area",
-     1188
+     1188.0
+    ],
+    "sgnjb244": [
+     "Whiting Wildlife Management Area",
+     1192.8
     ]
    },
    "join": [
-    "229060"
+    "229060",
+    "sgnjb244"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-19",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)",
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.nj.gov/dep/fgw/pdf/wmamaps/whiting.pdf",
+    "saw": "Pin inside, 1,188/1,193 acres. Official 1,212 acres (NJ DFW map: \"Whiting Wildlife Management Area Ocean County - Manchester Township 1,212 Acres\"). dep.nj.gov page on file was an anti-bot (Incapsula) page, not read.",
+    "date": "2026-11-19"
+   }
   },
   "US-11993": {
    "fp": {
@@ -19855,18 +20038,39 @@
    "decided_by": "Brandon t927u"
   },
   "US-12064": {
-   "approx": true,
    "fp": {
     "255796": [
      "Henderson Swamp Public Hunting Area",
-     24
+     24.0
+    ],
+    "sgtnc409": [
+     "Henderson Swamp PHA",
+     29.2
+    ],
+    "sgtne21": [
+     "Henderson Swamp PHA",
+     29.2
+    ],
+    "sgtni29": [
+     "Henderson Swamp",
+     24.1
     ]
    },
    "join": [
-    "255796"
+    "255796",
+    "sgtnc409",
+    "sgtne21",
+    "sgtni29"
    ],
-   "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "when": "2026-11-19",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)",
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.tn.gov/twra/wildlife-management-areas/east-tennessee-r4/henderson-swamp-pha.html",
+    "saw": "TWRA's own Henderson Swamp PHA record, Washington Co., 0.01-0.05 km from pin (packet: agency layer + exact unit + pin). No official acreage on the TWRA page; it only says \"Big Springs (Sullivan Co.) and Henderson Swamp (Washington Co.)\" and \"PHAs are generally small and isolated from other TWRA-managed lands.\" CHECK: versions disagree, 29 acres (A,B) vs 24 acres (D,E).",
+    "date": "2026-11-19"
+   }
   },
   "US-12069": {
    "none": true,
@@ -20465,6 +20669,44 @@
    ],
    "when": "2026-10-29",
    "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 10988.1 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgwad1165 (bot: pin inside)"
+  },
+  "US-12277": {
+   "join": [
+    "158410",
+    "sgwab1473",
+    "sgwaf1473",
+    "sgwad2223"
+   ],
+   "fp": {
+    "158410": [
+     "West Foster Creek",
+     1062.0
+    ],
+    "sgwab1473": [
+     "West Foster Creek",
+     0.0
+    ],
+    "sgwaf1473": [
+     "West Foster Creek",
+     0.0
+    ],
+    "sgwad2223": [
+     "Wells Wildlife Area",
+     0.0
+    ]
+   },
+   "when": "2026-11-19",
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "two separate graders (Sonnet A and B, held-states packet lost-01, 18 Nov); both YES on all four records",
+    "source": "https://wdfw.wa.gov/places-to-go/wildlife-areas/west-foster-creek-wildlife-area-unit",
+    "saw": "WDFW: the West Foster Creek unit is 1,063 acres; records 1,061-1,077 acres, pin inside; US-11142 and US-12277 are the same unit under two park numbers",
+    "date": "2026-11-19"
+   },
+   "same_land": [
+    "US-11142"
+   ],
+   "why": "2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)"
   },
   "US-12295": {
    "join": [
@@ -23089,6 +23331,26 @@
    ],
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Canyon Creek Forest' (chat 11; applied by kpc_key_answers)"
+  },
+  "US-13075": {
+   "join": [
+    "sgakh1841"
+   ],
+   "fp": {
+    "sgakh1841": [
+     "Bear Gulch",
+     350.2
+    ]
+   },
+   "when": "2026-11-19",
+   "decided_by": "evidence batch 01 (key-quality.md section 17), read by Fable before merge",
+   "evidence": {
+    "who": "outside research agent (Brandon), two separate passes: second-look 01 (18 Nov) and 01b (19 Nov, briefed to prove it wrong); every record here is YES in both",
+    "source": "https://www.govinfo.gov/content/pkg/FR-1995-06-05/html/95-13579.htm",
+    "saw": "350-acre ACEC (official 330), pin 0.01 km. Federal Register 1995 (Roseburg District RMP): \"Bear Gulch ACEC/RNA 330 acres\". Packet website is BLM OR ACEC layer (item \"BLM OR Areas of Critical Environmental Concern Historic Polygon Hub\"), so this \"wilderness\" is really the ACEC.",
+    "date": "2026-11-19"
+   },
+   "why": "2026-11-19 evidence batch 01: official page + two separate checks agree (Class B, key-quality.md section 5)"
   },
   "US-13076": {
    "fp": {
