@@ -661,13 +661,17 @@
   "kpc-band-alerts.yml|2026-11-19T09:18:00+00:00": "2026-11-19T10:10+00:00 started",
   "kpc-bot-health.yml|2026-11-19T09:44:00+00:00": "2026-11-19T10:10+00:00 started",
   "kpc-reports.yml|2026-11-19T09:29:00+00:00": "2026-11-19T10:10+00:00 started",
-  "kpc-us-key.yml|2026-11-19T09:17:00+00:00": "2026-11-19T10:10+00:00 started"
+  "kpc-us-key.yml|2026-11-19T09:17:00+00:00": "2026-11-19T10:10+00:00 started",
+  "kpc-ca-key.yml|2026-11-19T09:49:00+00:00": "2026-11-19T10:38+00:00 started",
+  "kpc-discord-watch.yml|2026-11-19T09:47:00+00:00": "2026-11-19T10:38+00:00 started",
+  "kpc-hunters.yml|2026-11-19T10:07:00+00:00": "2026-11-19T10:38+00:00 started",
+  "kpc-world-key.yml|2026-11-19T10:07:00+00:00": "2026-11-19T10:38+00:00 started"
  },
- "last": "2026-11-19T10:10+00:00",
+ "last": "2026-11-19T10:38+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 19 09:18 UTC)",
-  "kpc-bot-health.yml (missed Nov 19 09:44 UTC)",
-  "kpc-reports.yml (missed Nov 19 09:29 UTC)",
-  "kpc-us-key.yml (missed Nov 19 09:17 UTC)"
+  "kpc-ca-key.yml (missed Nov 19 09:49 UTC)",
+  "kpc-discord-watch.yml (missed Nov 19 09:47 UTC)",
+  "kpc-hunters.yml (missed Nov 19 10:07 UTC)",
+  "kpc-world-key.yml (missed Nov 19 10:07 UTC)"
  ]
 }
