@@ -34,9 +34,9 @@
     cat: { power: 'LOW', ops: 'SINGLE-OP', assisted: false, tx: 'ONE', bands: 'ALL', mode: 'MIXED', overlay: '' },
     watts: 100, psrc: 'GENERATOR', bonus: {}, om: 1, club: '', level: 'division' }, LS('kpcAppCx', {}));
   CF.feat = Object.assign({ log: true, map: true, skim: true, cos: false, share: false }, CF.feat || {});
-  const COS = Object.assign({ on: false, user: '', pass: '', url: COS_URL, last: null }, LS('kpcAppCxCos', {}));
+  const COS = Object.assign({ on: false, user: '', pass: '', url: COS_URL, last: null }, G.KPCSec ? KPCSec.openObj(LS('kpcAppCxCos', {}), ['pass']) : LS('kpcAppCxCos', {}));
   const save = () => { SV('kpcAppCx', CF); };
-  const saveCos = () => SV('kpcAppCxCos', COS);
+  const saveCos = () => SV('kpcAppCxCos', G.KPCSec ? KPCSec.sealObj(COS, ['pass']) : COS);   /* Nov 18 (SEC-2): sealed at rest */
   const on = f => CF.on && (!f || CF.feat[f]);
 
   /* ======================================================================== ARRL / RAC SECTIONS (85: 71 US + 14 RAC, 2025 list)
@@ -386,7 +386,10 @@
 
   /* ======================================================================== FILES: Cabrillo + contest ADIF tags */
   const cabMode = q => { const mc = mcOf(q.mode); return mc === 'CW' ? 'CW' : mc === 'PH' ? (q.mode === 'FM' ? 'FM' : 'PH') : q.mode === 'RTTY' ? 'RY' : 'DG'; };
-  const cabFreq = q => { const v = { '6m': '50', '2m': '144', '1.25m': '222', '70cm': '432', '33cm': '902', '23cm': '1.2G' }[String(q.band).toLowerCase()]; return v || String(Math.round(+q.khz || 0)); };
+  /* Nov 18 (Opus review): a contact typed in with a band but no frequency wrote 'QSO:     0' (the log checkers reject it): use the band's
+     own lower edge in kHz, as Cabrillo allows for HF */
+  const CABBAND = { '160m': '1800', '80m': '3500', '60m': '5330', '40m': '7000', '30m': '10100', '20m': '14000', '17m': '18068', '15m': '21000', '12m': '24890', '10m': '28000' };
+  const cabFreq = q => { const b = String(q.band || '').toLowerCase(), v = { '6m': '50', '2m': '144', '1.25m': '222', '70cm': '432', '33cm': '902', '23cm': '1.2G' }[b]; return v || (+q.khz > 0 ? String(Math.round(+q.khz)) : CABBAND[b] || '0'); };
   function cabrillo() {
     recalc(); const D = def(), me = AP.me(), call = me.station || me.call, k = CF.cat, ops = [...new Set(R.list.map(q => q.op).filter(Boolean))];
     const h = ['START-OF-LOG: 3.0', 'CONTEST: ' + D.cab, 'CALLSIGN: ' + call, 'LOCATION: ' + (CF.sent.sec || CF.sent.loc || (me.cnty || '').split(',')[0] || ''),

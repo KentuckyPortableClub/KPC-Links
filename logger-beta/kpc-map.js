@@ -15,6 +15,15 @@
   const LO = (x, z) => x / (T * 2 ** z) * 360 - 180;
   const LA = (y, z) => { const n = Math.PI - 2 * Math.PI * y / (T * 2 ** z); return 180 / Math.PI * Math.atan(0.5 * (Math.exp(n) - Math.exp(-n))); };
   const tiles = new Map();
+  /* the Natural Earth land, borders and state lines (kpc-world.js, public domain, loaded on first use) */
+  let WL = false;
+  function world(ctx, P, dark, again) {
+    const Wd = G.KPC_WORLD; if (!Wd) { if (!WL) { WL = true; const sc = document.createElement('script'); sc.src = 'kpc-world.js?v=20261026d'; sc.onload = () => again(); document.head.appendChild(sc); } return; }
+    const q = Wd.q, path = (L, close) => { for (const a of L) { ctx.beginPath(); for (let i = 0; i < a.length; i += 2) { const [x, y] = P(a[i + 1] * q, a[i] * q); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); } if (close) { ctx.closePath(); ctx.fill(); } else ctx.stroke(); } };
+    ctx.save(); ctx.fillStyle = dark ? '#1d2a22' : '#d9dccb'; path(Wd.land, true);
+    ctx.lineWidth = 1; ctx.strokeStyle = dark ? 'rgba(227,162,74,.25)' : 'rgba(90,70,30,.3)'; path(Wd.states, false);
+    ctx.lineWidth = 1.2; ctx.strokeStyle = dark ? 'rgba(227,162,74,.45)' : 'rgba(90,70,30,.55)'; path(Wd.borders, false); ctx.restore();
+  }
   function create(cv, o) {
     o = o || {};
     let la = 37.8, lo = -85.5, z = 7, sat = !!o.sat, raf = 0; const MINZ = o.minZ || 3;   /* the QSO map zooms out to the whole world (minZ 1) */
@@ -41,6 +50,7 @@
           if (ty < 0 || ty >= n) continue; for (let L = 0; L < LAYERS.length; L++) { const im = tile(zi, ((tx % n) + n) % n, ty, L); if (im) ctx.drawImage(im, (tx * T - x0) * sc, (ty * T - y0) * sc, T * sc + 0.5, T * sc + 0.5); }
         }
       }
+      if (!(sat && online)) world(ctx, P, dark, redraw);   /* Nov 18 review: no pictures (offline, or sat off) = the built-in world map, not a blank box */
       if (o.draw) { try { o.draw(ctx, P, z, { w, h, sat: sat && online, dark }); } catch (e) { console.error('map draw: ' + e.message); } }
       ctx.font = '10px system-ui, sans-serif'; ctx.textAlign = 'right'; ctx.fillStyle = sat && online ? '#fff' : (dark ? '#9AA6B5' : '#5A6270');
       ctx.fillText(sat && online ? 'Imagery + labels © Esri, Maxar, Earthstar Geographics, HERE, Garmin' : (sat ? 'No signal: satellite pictures need the internet' : ''), w - 6, h - 6);

@@ -14,7 +14,7 @@
   const save = () => SV('kpcAppSpots', S);
   const SRC = {}, SP = [];                                 /* sources by id; the spots, newest last */
   const alerted = {};
-  const base = c => String(c || '').toUpperCase().replace(/^([A-Z0-9]+\/)?([A-Z0-9]+)(\/[A-Z0-9]+)?$/, '$2');
+  const base = c => { const P = String(c || '').toUpperCase().split('/').filter(Boolean); if (P.length < 2) return P[0] || ''; return P.filter(x => /\d/.test(x) && /[A-Z]/.test(x)).sort((a, b) => b.length - a.length)[0] || P.sort((a, b) => b.length - a.length)[0]; };   /* Nov 10: 'Q4SPB/P' → Q4SPB (the old pattern gave 'P') */
   const bandOf = k => (G.KPCLog && KPCLog.band(k)) || '';
   /* Oct 24 (Brandon: 'spots I dont see filters for digi modes'): the digital group splits into FT8 / FT4 / other digital */
   const digiOf = m => /FT8/i.test(m) ? 'FT8' : /FT4/i.test(m) ? 'FT4' : 'OTHER';
@@ -28,11 +28,12 @@
   function feed(src, list) {
     let n = 0;
     (list || []).forEach(x => {
-      const call = base(x.call), khz = +x.khz; if (!call || call.length < 3 || !(khz > 100)) return;
+      /* Nov 18 full review (S1): the spot keeps the FULL call (VE3/K4ABC, K4ABC/P) for the log line and the re-spot; base() only groups */
+      const call = String(x.call || '').toUpperCase().replace(/[^A-Z0-9/]/g, ''), bc = base(call), khz = +x.khz; if (!bc || bc.length < 3 || !(khz > 100)) return;
       const t = +x.t || Date.now(), mode = String(x.mode || '').toUpperCase(), refs = (x.refs || []).map(r => String(r).toUpperCase()).filter(Boolean);
-      const old = SP.find(s => s.call === call && Math.abs(s.khz - khz) <= 2 && Math.abs(s.t - t) < 15 * 60000);
-      if (old) { if (t >= old.t) { old.t = t; old.khz = khz; if (mode) old.mode = mode; if (x.comment) old.comment = x.comment; } refs.forEach(r => { if (!old.refs.includes(r)) old.refs.push(r); }); if (!old.src.includes(src)) old.src.push(src); if (x.grid) old.grid = x.grid; if (x.st && !old.st) old.st = String(x.st).toUpperCase(); old.n++; return; }
-      SP.push({ id: ++sid, call, khz, band: bandOf(khz), mode, refs, st: String(x.st || '').toUpperCase(), t, comment: String(x.comment || '').slice(0, 120), grid: String(x.grid || '').toUpperCase(), spotter: x.spotter || '', src: [src], n: 1, cont: x.cont || '', cty: x.cty || '', sig: x.sig || '', ...posOf(x) });
+      const old = SP.find(s => base(s.call) === bc && Math.abs(s.khz - khz) <= 2 && Math.abs(s.t - t) < 15 * 60000);
+      if (old) { if (call.length > old.call.length) old.call = call; if (t >= old.t) { old.t = t; old.khz = khz; if (mode) old.mode = mode; if (x.comment) { old.comment = x.comment; old.split = splitOf(x.comment, old.khz, old.mode); } } refs.forEach(r => { if (!old.refs.includes(r)) old.refs.push(r); }); if (!old.src.includes(src)) old.src.push(src); if (x.grid) old.grid = x.grid; if (x.st && !old.st) old.st = String(x.st).toUpperCase(); old.n++; return; }
+      SP.push({ id: ++sid, call, khz, band: bandOf(khz), mode, refs, st: String(x.st || '').toUpperCase(), t, comment: String(x.comment || '').slice(0, 120), grid: String(x.grid || '').toUpperCase(), spotter: x.spotter || '', src: [src], n: 1, cont: x.cont || '', cty: x.cty || '', sig: x.sig || '', split: splitOf(x.comment, khz, mode), ...posOf(x) });
       n++;
       if (S.watch.includes(call) && Date.now() - (alerted[call] || 0) > 30 * 60000) { alerted[call] = Date.now(); const msg = call + ' is on: ' + mhz(khz) + ' ' + mode + (refs.length ? ' · ' + refs.join('+') : ''); if (AP.notify) AP.notify('watch', msg, { key: call, every: 30 * 60000 }); else { AP.toast('👀 ' + esc(msg), 8000, 'log'); try { if (navigator.vibrate) navigator.vibrate([120, 60, 120]); } catch (e) {} } }
     });
@@ -71,7 +72,7 @@
     const head = `<div class="sphead" role="row"><button type="button" data-ssort="new">AGE${arrow('new')}</button><button type="button" data-ssort="call">CALL${arrow('call')}</button><button type="button" data-ssort="park">PARK${arrow('park')}</button><button type="button" data-ssort="st">ST${arrow('st')}</button><button type="button" data-ssort="freq">MHz${arrow('freq')}</button><button type="button" data-ssort="mode">MODE${arrow('mode')}</button><button type="button" class="w" data-ssort="freq">BAND</button><span class="w">PARK · WHERE · COMMENT</span><span class="w">SPOTTED BY</span></div>`;
     const html = L.length ? head + L.slice(0, 250).map(s => { const wk = G.KPCLog && KPCLog.worked(s.call), watch = S.watch.includes(s.call), np = newPk(s);
       return `<div class="sp1${wk ? ' wk' : ''}${watch ? ' watch' : ''}${np ? ' np' : ''}" data-sp="${s.id}" role="row" tabindex="0" title="${esc([s.comment, 'by ' + (s.spotter || s.src.join('+'))].filter(Boolean).join(' · '))}">
-        <span class="a">${age(s.t)}</span><span class="c">${watch ? '👀' : ''}${esc(s.call)}${wk ? ' <i>✓</i>' : ''}</span><span class="p"${np ? ' title="★ a park you have not hunted yet"' : ''}>${np ? '★ ' : ''}${esc(s.refs.join('+') || '—')}</span><span class="s">${esc(s.st || '')}</span><span class="f">${mhz(s.khz)}</span><span class="m">${esc(s.mode || '')}</span><span class="w bd">${esc(s.band || '')}</span><span class="w i">${esc(s.comment || (s.grid ? s.grid : ''))}</span><span class="w by">${esc(s.spotter || '')}<small>${esc(s.src.map(x => (SRC[x] && SRC[x].label) || x).join(' + '))}</small></span></div>`; }).join('')
+        <span class="a">${age(s.t)}</span><span class="c">${watch ? '👀' : ''}${esc(s.call)}${wk ? ' <i>✓</i>' : ''}</span><span class="p"${np ? ' title="★ a park you have not hunted yet"' : ''}>${np ? '★ ' : ''}${esc(s.refs.join('+') || '—')}</span><span class="s">${esc(s.st || '')}</span><span class="f">${mhz(s.khz)}</span><span class="m">${esc(s.mode || '')}</span><span class="w bd">${esc(s.band || '')}</span><span class="w i">${s.split ? `<b class="spl" title="${esc(s.call)} listens on ${mhz(s.split.khz)}" style="color:var(--gold,#e6b422)">↗ SPLIT ${esc(s.split.why)}</b> ` : ''}${esc(s.comment || (s.grid ? s.grid : ''))}</span><span class="w by">${esc(s.spotter || '')}<small>${esc(s.src.map(x => (SRC[x] && SRC[x].label) || x).join(' + '))}</small></span></div>`; }).join('')
       : '<div class="empty">' + (all ? 'Every spot is filtered out. Loosen the ⚙ FILTERS.' : (AP.net.online() ? 'No spots yet: POTA, SOTA, WWFF and the DX cluster are checked every minute or three.' : 'No signal: spots come back when this device is online. Stations calling CQ POTA/SOTA/WWFF on the FT8 screen still land here.')) + '</div>';
     el.innerHTML = html;
     /* Oct 26 (Brandon: 'spot screen looks bare on desktop'): a band strip above the list = how many spots per band, tap = show only that band */
@@ -96,18 +97,75 @@
     $('spTune').onclick = () => { AP.shut(); tune(s); };
     $('spWatch').onclick = () => { const i = S.watch.indexOf(s.call); if (i < 0) S.watch.push(s.call); else S.watch.splice(i, 1); save(); AP.shut(); draw(); };
   }
+  /* Nov 10: SPLIT FROM THE COMMENT. 'UP 5', 'UP5', 'up 5-10' (low end), 'DN 2' / 'DOWN 2', 'QSX 14.205' / 'QSX 14205' / 'QSX 205' (last 3 digits, same MHz as the spot),
+     'listening 14.210'. CW / SSB only (FT8 / FT4 Fox & Hound is handled on the FT8 screen). Result {khz, why} or null. */
+  function splitOf(comment, khz, mode) {
+    const c = String(comment || ''); if (!c || !(khz > 100) || modeGroup(mode || '') === 'DATA') return null;
+    const num = '(\\d+(?:[.,]\\d+)?)'; let m, out = null;
+    if ((m = new RegExp('\\b(?:QSX|LISTENING|LISTEN)\\s*(?:ON\\s*|@\\s*)?' + num, 'i').exec(c))) {
+      const t = m[1].replace(',', '.'), v = parseFloat(t); let k = 0;
+      if (t.includes('.')) k = v < 1000 ? v * 1000 : v;
+      else if (t.length === 3) k = Math.floor(khz / 1000) * 1000 + v;
+      else if (t.length >= 4 && t.length <= 5) k = v;
+      if (k > 100) out = { khz: Math.round(k * 1000) / 1000, why: 'QSX ' + (k / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '') };
+    }
+    /* Nov 10 review: 'pick up 2 parks' / 'back up 10 min' are not split: the word before UP and the word after the number must not read as English */
+    const ok = (m, what) => { const pre = c.slice(0, m.index), post = c.slice(m.index + m[0].length);
+      if (/\b(pick(?:ing|ed)?|back(?:ing)?|set(?:ting)?|signals?|band|bands|is|was|are|comes?|coming|came|line(?:d)?|went|goes?|going|warm(?:ing)?|heat(?:ing)?|fir(?:e|ing)|power(?:ed|ing)?|turn(?:ed|ing)?|stack(?:ed|ing)?|catch(?:ing)?|log(?:s|ged)?|count(?:s|ed)?|team(?:ed)?|sign(?:ed)?|wrap(?:ped|ping)?|end(?:ed)?|ramp(?:ed|ing)?|move(?:d)?|moving|qsy)\s*$/i.test(pre)) return false;
+      if (/^\s*(?:-?\s*\d+\s*)?(?:parks?|mins?|minutes?|hours?|hrs?|qsos?|contacts?|ops?|watts?|w\b|db\b|ft\b|feet|miles?|mi\b|km\b|stations?|spots?|calls?|times?|x\b|more|today|tonight|%)/i.test(post)) return false;
+      return true; };
+    if (!out && (m = new RegExp('\\bUP\\s*' + num + '(?:\\s*-\\s*\\d+(?:[.,]\\d+)?)?(?![\\d.])', 'i').exec(c)) && ok(m)) { const v = parseFloat(m[1].replace(',', '.')); if (v > 0 && v <= 100) out = { khz: Math.round((khz + v) * 1000) / 1000, why: 'UP ' + m[1] }; }
+    if (!out && (m = new RegExp('\\b(?:DN|DOWN)\\s*' + num, 'i').exec(c)) && ok(m)) { const v = parseFloat(m[1].replace(',', '.')); if (v > 0 && v <= 100) out = { khz: Math.round((khz - v) * 1000) / 1000, why: 'DN ' + m[1] }; }
+    return out && Math.abs(out.khz - khz) <= 100 && out.khz !== khz ? out : null;
+  }
+  let splitByUs = false;   /* split was turned on by a spot tap: the next normal spot turns it off again */
+  async function splitFor(s) {
+    if (s.split) {
+      const t = mhz(s.split.khz), msg = '↗ Split on: listening ' + t + ' (' + s.split.why + ') — you transmit there';
+      /* Nov 10 review: never put my transmitter outside the band or my licence class (the class is in STATION → 👤 ME) */
+      const cls = AP.S.cls || '';
+      if (!AP.bandPlan.allowed(s.split.khz, cls || 'E', s.mode)) {
+        if (splitByUs && AP.catConnected() && G.KPCCat && KPCCat.splitOff) { splitByUs = false; await KPCCat.splitOff(); }
+        AP.toast('⚠ ' + esc(s.call) + ' listens on ' + t + ' (' + esc(s.split.why) + '), which is outside ' + (cls ? 'your licence class' : 'the band') + ' for ' + esc(s.mode || 'this mode') + '. Split NOT turned on: don\'t transmit there.', 8000, 'bad'); return;
+      }
+      if (AP.catConnected() && G.KPCCat && KPCCat.splitTx) {
+        const ok = await KPCCat.splitTx(s.split.khz);
+        if (ok) { splitByUs = true; AP.toast(esc(msg), 6000, 'log'); } else AP.toast('↗ ' + esc(s.call) + ' listens on ' + t + ' (' + esc(s.split.why) + '). Set VFO B and SPLIT on your radio by hand.', 7000);
+      } else AP.toast('↗ ' + esc(s.call) + ' listens on ' + t + ' (' + esc(s.split.why) + '). Set your transmit VFO B there and turn SPLIT on.', 7000);
+    } else if (splitByUs && AP.catConnected() && G.KPCCat && KPCCat.splitOff) { splitByUs = false; await KPCCat.splitOff(); AP.toast('↗ Split off again.', 2500); }
+  }
+  /* Nov 10 (Brandon): a tap fills in EVERY op spotted on the same park within 1 kHz ('CALL1, CALL2' = one contact each on the LOG line).
+     Same park = any ref in common; same mode group when the spot has a mode; no park = only the tapped call. Newest first, tapped call first. */
+  function crowd(s) {
+    const out = [s.call], seen = new Set([base(s.call)]), refs = s.refs || [];
+    if (!refs.length) return { calls: out, ref: '' };
+    const mg = s.mode ? modeGroup(s.mode) : '';
+    let ref = '';
+    for (const x of SP.slice().sort((a, b) => b.t - a.t)) {
+      if (x === s || !(x.refs || []).some(r => refs.includes(r)) || Math.abs(x.khz - s.khz) > 1 || (mg && x.mode && modeGroup(x.mode) !== mg) || seen.has(base(x.call))) continue;
+      seen.add(base(x.call)); out.push(x.call); if (!ref) ref = x.refs.find(r => refs.includes(r));
+    }
+    return { calls: out, ref: ref || refs[0] };
+  }
+  function fill(s, st) {
+    if (!(G.KPCLog && KPCLog.prefill)) return;
+    const c = crowd(s);
+    KPCLog.prefill({ call: c.calls.join(', '), refs: s.refs, mode: s.mode, khz: s.khz, g: c.calls.length > 1 ? '' : s.grid, st: c.calls.length > 1 ? '' : st });
+    if (c.calls.length > 1) AP.toast('👥 ' + c.calls.length + ' ops at ' + esc(c.ref) + ': ' + esc(c.calls.join(', ')) + ' — one contact each', 5000);
+  }
   async function tune(s) {
     AP.fire('spot-tune', s);   /* Nov 6: kpc-rotor.js turns the beam to it */
     /* on the link to the home PC (and no radio here): the PC's radio goes to the spot (Brandon Oct 22: 'click spots would be nice if you are remote') */
-    if (G.KPCRemote && KPCRemote.link().paired && !AP.catConnected()) { if (G.KPCLog && KPCLog.prefill) KPCLog.prefill({ call: s.call, refs: s.refs, mode: s.mode, khz: s.khz, g: s.grid }); KPCRemote.spot(s); return; }
+    if (G.KPCRemote && KPCRemote.link().paired && !AP.catConnected()) { fill(s, ''); KPCRemote.spot(s); return; }
     const digi = /^FT[48]$/.test(s.mode) && G.KPCModes && KPCModes.get(s.mode);
     /* Nov 1 (Brandon: 'clicking on the spot list … cw should see that and it took me to ft8 page'): a CW / RTTY / PSK31 spot opens THAT mode's screen */
     const m5 = String(s.mode || '').toUpperCase().replace(/^PSK$/, 'PSK31'), d5 = /^(CW|RTTY|PSK31)$/.test(m5) && AP.catConnected() && G.KPCModes5 && KPCModes5.tuneSpot && G.KPCModes && KPCModes.get(m5);   /* no radio connected = log it by hand on the LOG screen, as before */
-    if (d5) { KPCModes.use(m5); AP.go('digi'); KPCModes5.tuneSpot(s); if (G.KPCLog && KPCLog.prefill) KPCLog.prefill({ call: s.call, refs: s.refs, mode: s.mode, khz: s.khz, g: s.grid, st: s.st }); return; }
+    if (d5) { KPCModes.use(m5); AP.go('digi'); KPCModes5.tuneSpot(s); fill(s, s.st); splitFor(s); return; }
     if (digi) { KPCModes.use(s.mode); const b = bandOf(s.khz); if (b) KPCModes.active().setBand(b); }
     else if (AP.catConnected()) { const ok = await KPCCat.tune(s.khz, s.mode || ''); if (!ok) AP.toast('The radio did not take ' + mhz(s.khz) + '. Set it by hand.', 4000, 'bad'); }
     else AP.toast('📻 Set the radio to ' + mhz(s.khz) + ' MHz ' + esc(s.mode || '') + ' (connect it in STATION → Radio control to have the app do it).', 5000);
-    if (G.KPCLog && KPCLog.prefill) KPCLog.prefill({ call: s.call, refs: s.refs, mode: s.mode, khz: s.khz, g: s.grid, st: s.st });
+    fill(s, s.st);
+    await splitFor(s);
     if (digi) { AP.go('digi'); if ($('dgDx')) $('dgDx').value = s.call; } else AP.go('log');
   }
   /* the filter panel, laid out like the Hunters Lounge (Brandon Oct 24): a label + chips per row, every tap works at once */

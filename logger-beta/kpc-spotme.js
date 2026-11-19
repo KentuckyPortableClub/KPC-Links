@@ -1,4 +1,4 @@
-/* KPC app: SPOT ME + RE-SPOT (Opus, Oct 25; Brandon: 'go ahead with the spotting for the 3 programs and respotting pota stations').
+/* KPC app: SPOT ME + RE-SPOT by hand + AUTO SPOT ME for activators (Nov 17) (Opus, Oct 25; Brandon: 'go ahead with the spotting for the 3 programs and respotting pota stations').
    POTA: api.pota.app/spot/ takes a spot from any program, no sign-in (what pota.app's own page, HAMRS and PoLo use):
      POST JSON {activator, spotter, frequency (kHz), reference, mode, source, comments}.
    SOTA: SOTAwatch only takes spots from a signed-in SOTA account (no open door for apps): the button opens SOTAwatch's spot page.
@@ -64,56 +64,98 @@
   /* the 📣 chip on the LOG dock (activating only) */
   const chips = $('lgDock') && $('lgDock').querySelector('.chips');
   if (chips && !$('dkSpot')) { const p = $('dkP2p'); (p || chips.lastElementChild).insertAdjacentHTML('beforebegin', '<button type="button" class="chip" id="dkSpot" title="Spot me on POTA (QRM check first)">📣 SPOT ME</button>'); $('dkSpot').onclick = () => sheet(''); }
-  const showChip = () => { const c = $('dkSpot'); if (c) c.hidden = AP.me().hunt; };
-  AP.on('me', showChip); showChip();
-  /* ---------------- AUTO RE-SPOT (Brandon Oct 30: 'add auto respot on pota with comments rcvd/sent report') ----------------
-     When I log a contact as a HUNTER with a POTA park (typed, a spot tap, FT8 / AUTO HUNT), the app re-spots that activator
-     on POTA by itself, with the reports in the comment ('sent -12 / rcvd -08 · TU'; a template with {SENT} {RCVD} {MODE} {CALL}).
-     Only: the switch on (STATION → Log files → 📣 AUTO RE-SPOT, on to start), my real call, signal, the contact made in the last
-     15 min (not an earlier contact typed in later, not a file or a sync), once per activator + park + band + mode per 30 min. */
-  const RS = Object.assign({ on: true, tpl: '', add: '' }, (() => { try { return JSON.parse(localStorage.getItem('kpcAppRespot') || '{}'); } catch (e) { return {}; } })());
-  const rsSave = () => { try { localStorage.setItem('kpcAppRespot', JSON.stringify(RS)); } catch (e) {} rsBtn(); };
-  const DONE = {};
-  /* Oct 30 (Brandon: 'add a line … so we can add to the comment, example 73 from KY'): RS.add goes on the end; {ST} = my state */
-  const mySt = () => { const m = AP.S.mcn || {}; return String(AP.S.st || m.st || '').toUpperCase(); };
-  const fill = t => String(t || '').replace(/\{ST\}|\{STATE\}/gi, mySt()).replace(/\{CALL\}/gi, AP.myCall());
-  function rsComment(q) { const base = rsBase(q), add = fill(RS.add).trim(); return (add ? (base ? base + ' ' : '') + add : base).replace(/\s+/g, ' ').trim().slice(0, 60); }
-  function rsBase(q) {
-    const sent = String(q.rs || '').trim(), rcvd = String(q.rr || '').trim();
-    if (RS.tpl) return fill(RS.tpl).replace(/\{SENT\}/gi, sent).replace(/\{RCVD\}/gi, rcvd).replace(/\{MODE\}/gi, modeOut(q.mode)).replace(/\{CALL\}/gi, AP.myCall()).replace(/\s+/g, ' ').trim().slice(0, 60);
-    return ([sent && 'sent ' + sent, rcvd && 'rcvd ' + rcvd].filter(Boolean).join(' / ') + ' · TU').replace(/^ · /, '').slice(0, 60);
-  }
-  async function autoRespot(q) {
-    const me = AP.myCall();
-    if (!RS.on || !q || q.d || !me || !AP.stdCall(me) || (AP.me && !AP.me().hunt && (q.myrefs || []).length)) return;
-    const pr = (q.refs || []).filter(r => sigOf(r) === 'POTA'); if (!pr.length || !(q.khz > 100)) return;
-    if (Date.now() - (+q.t || 0) > 15 * 60000) return;
-    const mode = modeOut(q.mode), k = [q.call, pr.join('+'), q.band, mode].join('|');
-    if (DONE[k] && Date.now() - DONE[k] < 30 * 60000) return;
-    if (!AP.net.online()) return;
-    DONE[k] = Date.now();
-    const com = rsComment(q);
+  /* Nov 17: no park number = no 📣 SPOT ME chip (spotting is for activators) */
+  const showChip = () => { const c = $('dkSpot'); if (c) c.hidden = AP.me().hunt || !String(AP.S.ref || '').trim(); };
+  AP.on('me', showChip); AP.on('log', showChip); setInterval(showChip, 5000); showChip();
+  /* Nov 17 (Brandon: 'Hunters side remove it not needed'): the hunter AUTO RE-SPOT (Oct 30) is gone, with its STATION
+     button and its kpcAppRespot setting. A hunter can still re-spot by hand (📣 RE-SPOT on a spot's sheet). */
+  try { localStorage.removeItem('kpcAppRespot'); } catch (e) {}
+
+  /* ---------------- AUTO SPOT ME for the ACTIVATOR (to-do 2; Brandon Nov 11 + Nov 17) ----------------
+     After my FIRST logged contact at a park, and again on a new band, mode or frequency (QSY), the app OFFERS once to spot
+     me: it shows exactly what will go to POTA and waits for YES. Never after every contact, never on its own the first time.
+     Only with a POTA park number set (Nov 17: 'remove the spot if they dont have a pota park number in'); with a WWFF or
+     SOTA reference it offers the 🌳 Spotline / ⛰ SOTAwatch page instead (neither lets an app post), details shown to copy.
+     KEEP ME SPOTTED (OFF / 10 / 15 / 20 min): after a YES, the app spots me again on that timer, only while I am still
+     logging contacts on that same frequency and mode; it stops when I go quiet (no contact in that many minutes) and stops
+     on a QSY (the next contact there asks afresh). Limits on what the app sends by itself: 1 spot per 5 minutes, 4 an hour.
+     DON'T ASK AGAIN THIS ACTIVATION = quiet until the park or the UTC day changes. A practice call never spots. */
+  const AS = Object.assign({ ask: true, keep: 0 }, (() => { try { return JSON.parse(localStorage.getItem('kpcAppAutoSpot') || '{}'); } catch (e) { return {}; } })());
+  const asSave = () => { try { localStorage.setItem('kpcAppAutoSpot', JSON.stringify(AS)); } catch (e) {} asBtn(); };
+  const tolOf = m => /^(SSB|AM|FM)$/.test(m) ? 2 : 1;   /* kHz: further than this from the last spot = a QSY */
+  const myRefsAll = () => [...new Set(String(AP.S.ref || '').toUpperCase().split(/[\s,;+]+/).map(x => x.trim()).filter(x => /^[A-Z0-9]+(\/[A-Z]{2})?-[A-Z0-9]+$/.test(x)))];
+  const potaRefs = () => myRefsAll().filter(r => sigOf(r) === 'POTA' && /^[A-Z0-9]{1,3}-\d{4,5}$/.test(r));
+  const utcDay = () => new Date(AP.now ? AP.now() : Date.now()).toISOString().slice(0, 10);
+  const actKey = () => myRefsAll().join('+') + '|' + utcDay();
+  const SENT = [];          /* times the app spotted me by itself (offer YES or keep-me-spotted) */
+  let ON = null;            /* what was last offered / spotted: {act, khz, mode, at (last spot), yes, lastQ} */
+  let QUIET = '';           /* actKey() of 'don't ask again this activation' */
+  const room = () => { const t = Date.now(); while (SENT.length && t - SENT[0] > 3600000) SENT.shift(); return !(SENT.length && t - SENT[SENT.length - 1] < 300000) && SENT.length < 4; };
+  async function spotNow(khz, mode, com, why) {
+    const me = AP.myCall(), pr = potaRefs();
+    if (!me || !AP.stdCall(me) || !pr.length || !(khz > 100)) return false;
+    if (!room()) { if (why !== 'keep') AP.toast('Not spotted: the app keeps to 1 spot every 5 minutes and 4 an hour. 📣 SPOT ME by hand still works.', 4500, 'bad'); return false; }
+    if (!AP.net.online()) { AP.toast('No signal right now: the spot did not go out.', 4000, 'bad'); return false; }
+    SENT.push(Date.now());
     try {
-      for (const ref of pr) await postPota({ activator: q.call, spotter: me, khz: q.khz, ref, mode, comment: com });
-      LAST = { t: Date.now(), khz: q.khz, auto: q.call, comment: com };
-      AP.toast('📣 Re-spotted ' + esc(q.call) + ' on POTA · ' + esc(com), 3500, 'log');
-      if (G.KPCSpots && KPCSpots.feed) KPCSpots.feed('own', [{ call: q.call, khz: q.khz, mode, refs: pr, comment: com, spotter: me, t: Date.now() }]);
-    } catch (e) { delete DONE[k]; AP.toast('The automatic re-spot did not go: ' + esc(e.message || e), 4000, 'bad'); }
+      for (const ref of pr) await API._post({ activator: me, spotter: me, khz, ref, mode, comment: com || '' });
+      LAST = { t: Date.now(), khz, auto: why };
+      if (ON) ON.at = Date.now();
+      AP.toast('📣 ' + (why === 'keep' ? 'Kept you spotted' : 'Spotted') + ' on POTA: ' + esc(me) + ' ' + (khz / 1000).toFixed(3) + ' ' + esc(mode) + ' ' + esc(pr.join(' + ')), 3500, 'log');
+      if (G.KPCSpots && KPCSpots.feed) KPCSpots.feed('own', [{ call: me, khz, mode, refs: pr, comment: com || '', spotter: me, t: Date.now() }]);
+      return true;
+    } catch (e) { SENT.pop(); AP.toast('The spot did not go: ' + esc(e.message || e), 5000, 'bad'); return false; }
   }
-  AP.on('log', e => { if (e && e.why === 'add') (e.recs || []).forEach(q => { setTimeout(() => autoRespot(q), 800); }); });
-  function rsBtn() { const b = $('stRespot'); if (b) b.textContent = '📣 AUTO RE-SPOT: ' + (RS.on ? 'ON' : 'OFF'); }
-  function rsSheet() {
-    AP.sheet('📣 Auto re-spot', `<p class="hint">When you log a park as a <b>hunter</b>, the app re-spots that activator on POTA by itself, with the reports in the comment, so other hunters know they are still on and how they are getting out.</p>
-      <label class="ck"><input type="checkbox" id="rsOn"${RS.on ? ' checked' : ''}> Re-spot POTA activators I log (once per activator, park, band and mode per 30 minutes)</label>
-      <label class="e wide">COMMENT<input id="rsTpl" maxlength="60" value="${esc(RS.tpl)}" placeholder="sent {SENT} / rcvd {RCVD} · TU"></label>
-      <label class="e wide">ADD ON THE END<input id="rsAdd" maxlength="30" value="${esc(RS.add)}" placeholder="73 from {ST}"></label>
-      <p class="hint">Empty = 'sent -12 / rcvd -08 · TU'. You can use {SENT} {RCVD} {MODE} {CALL} {ST} (your state). POTA keeps about 60 letters. Example now: <b id="rsEx">${esc(rsComment({ rs: '59', rr: '57', mode: 'SSB' }))}</b></p>
-      <p class="hint">Never with a practice call, never for an earlier contact you type in later, and only with signal.</p>`);
-    $('rsOn').onchange = () => { RS.on = $('rsOn').checked; rsSave(); };
-    const ex = () => { $('rsEx').textContent = rsComment({ rs: '59', rr: '57', mode: 'SSB' }); };
-    $('rsTpl').oninput = () => { RS.tpl = $('rsTpl').value.trim(); rsSave(); ex(); };
-    $('rsAdd').oninput = () => { RS.add = $('rsAdd').value; rsSave(); ex(); };
+  function offer(khz, mode) {
+    const me = AP.myCall(), pr = potaRefs(), other = myRefsAll().filter(r => sigOf(r) !== 'POTA'), progs = [...new Set(other.map(sigOf))];
+    ON = { act: actKey(), khz, mode, at: 0, yes: false, lastQ: Date.now() };
+    if (!pr.length && !other.length) return;
+    const near = pr.length ? qrmNear(khz, mode, me) : [];
+    AP.sheet('📣 Spot me?', `
+      <p><b>${esc(me)}</b> · ${esc((khz / 1000).toFixed(3))} MHz ${esc(mode)} · ${esc(myRefsAll().join(' + '))}</p>
+      ${near.length ? `<p class="bad">⚠ Someone else is close: ${near.slice(0, 3).map(x => `<b>${esc(x.call)}</b> ${esc((x.khz / 1000).toFixed(3))} ${esc(x.mode || '')}`).join(' · ')}.</p>` : ''}
+      ${pr.length ? `<label class="e wide">COMMENT<input id="asCom" maxlength="60" value="" placeholder="optional: QRV, 2-fer…"></label>
+      <label class="e wide">KEEP ME SPOTTED<select id="asKeep">${[0, 10, 15, 20].map(m => `<option value="${m}"${+AS.keep === m ? ' selected' : ''}>${m ? 'every ' + m + ' min while I keep logging here' : 'OFF (just this once)'}</option>`).join('')}</select></label>` : ''}
+      <div class="row">${pr.length ? '<button type="button" class="b gold" id="asYes">📣 YES, SPOT ME ON POTA</button>' : ''}
+        ${progs.includes('WWFF') ? '<button type="button" class="b" id="asWwff">🌳 WWFF SPOTLINE ›</button>' : ''}${progs.includes('SOTA') ? '<button type="button" class="b" id="asSota">⛰ SOTAWATCH ›</button>' : ''}
+        <button type="button" class="b" id="asNo">NOT NOW</button><button type="button" class="b" id="asQuiet">DON'T ASK AGAIN THIS ACTIVATION</button></div>
+      <p class="hint">${pr.length ? 'Nothing goes to POTA until you press YES. ' : ''}${progs.length ? 'WWFF and SOTA do not take spots from apps, so their button opens the spot page: type the frequency and mode shown above. ' : ''}The app asks again only on a new band, mode or frequency. Turn this off in STATION → Log files → 📣 AUTO SPOT ME.</p>`);
+    if ($('asYes')) $('asYes').onclick = async () => { AS.keep = +$('asKeep').value || 0; asSave(); const com = $('asCom').value.trim(); ON.com = com; AP.shut(); ON.yes = await spotNow(khz, mode, com, 'offer'); };
+    if ($('asWwff')) $('asWwff').onclick = () => G.open('https://spots.wwff.co/', '_blank');
+    if ($('asSota')) $('asSota').onclick = () => G.open('https://sotawatch.sota.org.uk/en/', '_blank');
+    $('asNo').onclick = () => AP.shut();
+    $('asQuiet').onclick = () => { QUIET = actKey(); AP.shut(); AP.toast('OK: no more spot offers at this park today.', 3000); };
   }
-  if ($('stRespot')) { $('stRespot').onclick = rsSheet; rsBtn(); }
-  G.KPCSpotMe = { sheet: w => sheet(w), respot: s => sheet('', s), qrmNear, last: () => LAST, _post: postPota, respotSheet: rsSheet, _auto: autoRespot, _rs: RS };
+  function onLog(q) {
+    if (!AS.ask || !q || q.d || AP.me().hunt) return;
+    if (Date.now() - (+q.t || Date.now()) > 15 * 60000) return;   /* an earlier contact typed in later */
+    const me = AP.myCall(); if (!me || !AP.stdCall(me) || !myRefsAll().length || QUIET === actKey()) return;
+    const khz = +q.khz || where().khz, mode = modeOut(q.mode || where().mode); if (!(khz > 100)) return;
+    const same = ON && ON.act === actKey() && ON.mode === mode && Math.abs(ON.khz - khz) <= tolOf(mode);
+    if (same) { ON.lastQ = Date.now(); return; }
+    if (LAST && Date.now() - LAST.t < 300000 && Math.abs(LAST.khz - khz) <= tolOf(mode)) { ON = { act: actKey(), khz, mode, at: LAST.t, yes: true, lastQ: Date.now() }; return; }   /* spotted by hand just now */
+    if (!$('sheet').hidden) return;   /* another sheet is up: ask on the next contact */
+    offer(khz, mode);
+  }
+  AP.on('log', e => { if (e && e.why === 'add') { const q = (e.recs || []).slice(-1)[0]; if (q) setTimeout(() => onLog(q), 600); } });
+  function keepTick() {
+    if (!ON || !ON.yes || !(+AS.keep) || AP.me().hunt || ON.act !== actKey() || !potaRefs().length) return;
+    const k = +AS.keep * 60000, now = Date.now(), w = where();
+    if (now - ON.lastQ > k) return;                                                      /* gone quiet: stop */
+    if (w.khz > 100 && (Math.abs(w.khz - ON.khz) > tolOf(ON.mode) || (w.mode && modeOut(w.mode) !== ON.mode))) return;   /* QSY: stop */
+    if (now - ON.at < k) return;
+    spotNow(ON.khz, ON.mode, ON.com || '', 'keep');
+  }
+  setInterval(keepTick, 30000);
+  function asBtn() { const b = $('stAutoSpot'); if (b) b.textContent = '📣 AUTO SPOT ME: ' + (!AS.ask ? 'OFF' : 'ASK' + (+AS.keep ? ' · KEEP ' + AS.keep + ' MIN' : '')); }
+  function asSheet() {
+    AP.sheet('📣 Auto spot me (activating)', `<p class="hint">When you <b>activate</b> a park, the app offers to spot you after your first contact, and again when you change band, mode or frequency. Nothing goes out until you press YES. It needs a POTA park number; with a WWFF or SOTA reference it opens their spot page instead.</p>
+      <label class="ck"><input type="checkbox" id="asAsk"${AS.ask ? ' checked' : ''}> Offer to spot me</label>
+      <label class="e wide">KEEP ME SPOTTED<select id="asKeep2">${[0, 10, 15, 20].map(m => `<option value="${m}"${+AS.keep === m ? ' selected' : ''}>${m ? 'every ' + m + ' min' : 'OFF'}</option>`).join('')}</select></label>
+      <p class="hint">Keep me spotted re-spots you only while you are still logging contacts on the same frequency; it stops when you go quiet or QSY. The app sends at most 1 spot every 5 minutes and 4 an hour by itself. Never with a practice call.</p>`);
+    $('asAsk').onchange = () => { AS.ask = $('asAsk').checked; asSave(); };
+    $('asKeep2').onchange = () => { AS.keep = +$('asKeep2').value || 0; asSave(); };
+  }
+  if ($('stAutoSpot')) { $('stAutoSpot').onclick = asSheet; asBtn(); }
+  const API = G.KPCSpotMe = { sheet: w => sheet(w), respot: s => sheet('', s), qrmNear, last: () => LAST, _post: postPota, autoSheet: asSheet, _as: AS, _on: () => ON, _sent: SENT, _tick: keepTick, _onLog: onLog, _reset: () => { ON = null; QUIET = ''; SENT.length = 0; LAST = null; } };
 })(window);

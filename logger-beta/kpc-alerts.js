@@ -12,10 +12,12 @@
   const AP = G.KPCApp, esc = AP.esc;
   const LS = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const SV = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
-  const KINDS = { watch: '👀 Watchlist: a friend is on the air', need: '🌲 A park you still need is spotted', closure: '🚧 Park closures from the club bots', hunters: '🏹 Hunters are out', calling: '📞 Someone is calling you', clock: '⏱ Clock warnings', info: 'ℹ️ Other' };
+  const KINDS = { hear: '👂 A park you need, and your radio hears it', wx: '⚡ Weather warnings for your spot', space: '☀ Space weather storms', ptt: '⚠ The radio may still be transmitting', watch: '👀 Watchlist: a friend is on the air', need: '🌲 A park you still need is spotted', closure: '🚧 Park closures from the club bots', hunters: '🏹 Hunters are out', calling: '📞 Someone is calling you', clock: '⏱ Clock warnings', info: 'ℹ️ Other' };
   const S = Object.assign({ on: { watch: 1, need: 0, closure: 1, hunters: 1, calling: 1, clock: 1, info: 1 }, buzz: 1, push: 1 }, LS('kpcAppAlerts', {}));
   /* Oct 23 (Brandon: 'new park alerts lets set to default off'): the 'park you still need' alert starts OFF (once for everyone) */
   if (S.nv !== 1) { S.on.need = 0; S.nv = 1; SV('kpcAppAlerts', S); }
+  /* Nov 18: new kinds start ON for everyone (a saved list from before does not have them) */
+  ['hear', 'wx', 'space', 'ptt'].forEach(k => { if (S.on[k] == null) S.on[k] = 1; });
   const save = () => SV('kpcAppAlerts', S);
   let LOG = LS('kpcAlertLog', []);
   const SEEN = LS('kpcAlertSeen', {});
@@ -26,11 +28,22 @@
     if (KA && KA.notify) { try { await KA.notify({ title, text }); return; } catch (e) {} }
     try { if (typeof Notification === 'function') { if (Notification.permission === 'default') await Notification.requestPermission(); if (Notification.permission === 'granted') new Notification(title, { body: text, silent: false }); } } catch (e) {}
   }
+  let BURST = [], HELD = 0, HELDT = 0;
   function notify(kind, text, o) {
     o = o || {}; kind = KINDS[kind] ? kind : 'info';
     if (!S.on[kind]) return false;
     if (o.key) { const k = kind + ':' + o.key; if (SEEN[k] && Date.now() - SEEN[k] < (o.every || 3600000)) return false; SEEN[k] = Date.now(); const ks = Object.keys(SEEN); if (ks.length > 500) ks.slice(0, 200).forEach(x => delete SEEN[x]); SV('kpcAlertSeen', SEEN); }
     LOG.push({ kind, text, t: Date.now(), ref: o.ref || '' }); if (LOG.length > 100) LOG = LOG.slice(-100); SV('kpcAlertLog', LOG);
+    /* Nov 18 (Opus review, alert storms): a burst (a band opening with 20 watched calls, a pile of closures) gave 20 toasts, 20 buzzes and
+       20 notifications in a row. Now at most 3 in any 10 s show and buzz; the rest still go in the list (STATION → Alerts) and one line
+       says how many more. 'The radio may still be transmitting' always shows. */
+    const now = Date.now(); BURST = BURST.filter(t => now - t < 10000);
+    /* Fable (merge, 0.9.8): a weather / lightning warning and anything marked bad (red) are never held back either */
+    if (kind !== 'ptt' && kind !== 'wx' && !o.bad && BURST.length >= 3) {
+      HELD++; if (!HELDT) HELDT = setTimeout(() => { if (HELD) AP.toast('🔔 ' + HELD + ' more alert' + (HELD > 1 ? 's' : '') + ': see STATION → Alerts.', 5000, 'log'); HELD = 0; HELDT = 0; }, Math.max(500, 10000 - (now - BURST[0])));
+      draw(); AP.fire('alert', { kind, text, held: true }); return true;
+    }
+    BURST.push(now);
     AP.toast(KINDS[kind].slice(0, 2) + ' ' + esc(text), o.ms || 7000, o.bad ? 'bad' : 'log');
     if (S.buzz) { try { if (navigator.vibrate) navigator.vibrate(kind === 'calling' ? [200, 80, 200, 80, 200] : [120, 60, 120]); } catch (e) {} }
     if (!o.quiet && (document.hidden || o.push)) push(KINDS[kind].replace(/^\S+\s/, ''), text);
@@ -92,5 +105,5 @@
   setInterval(() => { closures(); hunters(); huntTick(); }, 10 * 60000);
   AP.on('online', on => { if (on) { closures(); hunters(); } });
   AP.notify = notify;
-  G.KPCAlerts = { S, save, notify, log: () => LOG, closuresFor, conditions: () => COND, hunters: () => HUNT, KINDS };
+  G.KPCAlerts = { S, save, notify, log: () => LOG, _held: () => HELD, closuresFor, conditions: () => COND, hunters: () => HUNT, KINDS };
 })(window);

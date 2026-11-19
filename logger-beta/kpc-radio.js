@@ -50,6 +50,7 @@
       <div class="strip rdvk" id="rdVk" aria-label="Voice keyer"></div>
       <div class="rdlv" id="rdLv"></div>
       <button type="button" class="talk" id="rdTalk">🎙 HOLD TO TALK <small>(this computer's microphone)</small></button>
+      <div class="row"><button type="button" class="b sm" data-lvlh="voice">🎚 SET MY VOICE LEVEL</button></div>
       <div class="strip" id="rdVoice" aria-label="Voice shaping"><span class="kv"><i>VOICE</i></span><button type="button" class="chip" data-rvoice="natural" title="Your voice as it is">NATURAL</button><button type="button" class="chip" data-rvoice="punch" title="A little brighter and tighter">PUNCH</button><button type="button" class="chip" data-rvoice="contest" title="Bright and compressed, like a contest mic: cuts through a pile-up">CONTEST</button></div>
       <p class="hint" id="rdTalkH">Voice from this computer goes to the radio's USB sound card: the radio's SSB MOD SOURCE must be REAR (or STATION → Radio control → VOICE FROM THIS DEVICE = DATA). Keyboard: hold <b>Space</b> on this screen to talk.</p>
     </div>
@@ -81,6 +82,7 @@
     document.querySelectorAll('[data-rx]').forEach(x => { const n = x.dataset.rx; x.hidden = !ex.includes(n); x.classList.toggle('on', !!EX[n]); x.textContent = n.toUpperCase() + (EX[n] ? ' ON' : ' OFF'); });
     $('rdNoEx').textContent = ex.length ? '' : 'This radio family takes only frequency and mode over CAT.';
     $('rdTune').hidden = !ex.includes('atu');
+    $('rdPwrOn').hidden = !!(K.canOn && !K.canOn());   /* 0.9.9: the FTX-1 cannot be switched on over CAT (PS takes only 0) */
     if ($('rdLv') && !$('rdLv').innerHTML) $('rdLv').innerHTML = (AP.lvHtml ? AP.lvHtml('vc') : '') + '<div class="row"><button type="button" class="b" data-mon>🔊 HEAR HERE</button></div>' + (AP.lvHtml ? AP.lvHtml('mon') : '');
     const vk = G.KPCVoice ? KPCVoice.names().filter(x => x.has) : [];
     $('rdVk').innerHTML = vk.length ? '<span class="kv"><i>VOICE KEYER</i></span>' + vk.map(x => `<button type="button" class="chip${KPCVoice.playing() === x.i ? ' on' : ''}" data-rvk="${x.i}">${x.i + 1} ${esc(x.n)}</button>`).join('') + '<button type="button" class="chip halt" data-rvk="stop">⏹ STOP</button>' : '';
@@ -112,7 +114,7 @@
   $('rdWidth').onchange = () => { EX.width = +$('rdWidth').value; saveEx(); K.extra('width', EX.width).then(ok => { if (!ok) AP.toast('The radio did not take the filter width.', 3000, 'bad'); }); };
   [['rdPower', 'power', ' %'], ['rdMic', 'mic', '']].forEach(([id, n, u]) => { const r = $(id); r.oninput = () => { $(id + 'T').textContent = r.value + u; }; r.onchange = () => { EX[n] = +r.value; saveEx(); K.extra(n, EX[n]).then(ok => { if (!ok) AP.toast('The radio did not take ' + n + '.', 3000, 'bad'); }); }; });
   $('rdTune').onclick = async () => { if (AP.txing()) return; if (G.KPCRigX) { KPCRigX.tuneAsk(); return; }   /* Nov 6: asks first, then reports the SWR */ const ok = await K.extra('atu', 1); AP.toast(ok ? '🔧 The radio\'s tuner is tuning: watch the SWR.' : 'The radio did not take the tune command.', 3500, ok ? 'log' : 'bad'); };
-  $('rdPwrOn').onclick = async () => { const ok = K.power ? await K.power(true) : false; AP.toast(ok ? '⏻ Radio ON sent: connecting again in a few seconds.' : 'The radio did not take RADIO ON.', 4000, ok ? 'log' : 'bad'); if (ok) setTimeout(() => K.connect(false).then(() => { AP.keyCheck(); draw(); }), 4000); };
+  $('rdPwrOn').onclick = async () => { if (K.canOn && !K.canOn()) { AP.toast('This radio cannot be switched on over the cable: press its own power button, then 📻 CONNECT.', 5000); return; }   /* 0.9.9: FTX-1 */ const ok = K.power ? await K.power(true) : false; AP.toast(ok ? '⏻ Radio ON sent: connecting again in a few seconds.' : 'The radio did not take RADIO ON.', 4000, ok ? 'log' : 'bad'); if (ok) setTimeout(() => K.connect(false).then(() => { AP.keyCheck(); draw(); }), 4000); };
   $('rdPwrOff').onclick = () => { AP.sheet('⏻ Turn the radio OFF?', '<p>The radio switches off. RADIO ON can wake it again over the same cable (most Yaesu / Kenwood / Icom radios; some need their USB powered).</p><div class="row"><button type="button" class="b halt" id="rdOffGo">⏻ YES, TURN IT OFF</button></div>');
     $('rdOffGo').onclick = async () => { AP.shut(); if (AP.txing()) return; const ok = K.power ? await K.power(false) : false; AP.toast(ok ? '⏻ Radio OFF sent.' : 'The radio did not take RADIO OFF.', 3500, ok ? 'log' : 'bad'); }; };
   $('rdConn').onclick = () => { const b = $('stConn'); if (b && $('stRig') && $('stRig').value) b.click(); else { AP.go('station'); const c = $('stRig'); if (c) c.scrollIntoView({ block: 'center' }); AP.toast('Pick your radio in MY RADIO, then CONNECT RADIO.', 4000); } setTimeout(draw, 2500); setTimeout(draw, 6000); };
@@ -128,7 +130,7 @@
     if (/CW/.test(RIG.mode || '')) { AP.toast('The radio is in CW: pick LSB / USB first.', 3000, 'bad'); return; }
     if (AP.native) { AP.toast('🎙 On a phone at the radio, talk into the radio\'s own microphone.', 4000); return; }
     if (!AP.running() && !(await AP.start())) return;
-    /* Nov 8 (KPC owner, 2026-11-10): key the radio AT ONCE, while the microphone opens (and the mic stays warm for a
+    /* Nov 8 (Brandon: 'key is little delayed'): key the radio AT ONCE, while the microphone opens (and the mic stays warm for a
        minute after you let go, so the next press does not wait for Windows to open it again) */
     TALK = { t0: Date.now() }; $('rdTalk').classList.add('on');
     const T0 = TALK; T0.key = AP.pttOn(true, { voice: true });
@@ -136,19 +138,29 @@
       const mic = (G.KPCVoice && KPCVoice.S && KPCVoice.S.mic) || '';
       clearTimeout(WARM.t);
       let st = WARM.st && WARM.dev === mic && WARM.st.getAudioTracks().some(t => t.readyState === 'live') ? WARM.st : null;
-      if (!st) { if (WARM.st) WARM.st.getTracks().forEach(t => t.stop()); st = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: mic ? { exact: mic } : undefined, echoCancellation: false, noiseSuppression: true, autoGainControl: true } }); WARM.st = st; WARM.dev = mic; }
+      if (!st) { AP.toast('🎙 Opening the microphone… start talking when the 🎙 bar moves.', 2500); if (WARM.st) WARM.st.getTracks().forEach(t => t.stop()); st = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: mic ? { exact: mic } : undefined, echoCancellation: false, noiseSuppression: true, autoGainControl: false } }); WARM.st = st; WARM.dev = mic; }   /* Nov 18 (OP-W2): the browser's auto gain fought the compressor: off, the limiter keeps the peaks */
       if (TALK !== T0) { coolMic(); return; }
-      TALK.st = st; TALK.p = AP.audio.pipe(st, AP.S.voice || 'natural'); if (!TALK.p) throw new Error('the sound is not running');
+      /* Nov 11: 🗣 DIGITAL VOICE on (kpc-dv-ui.js strip) = the mic goes out through the FreeDV modem; off = exactly the old call */
+      TALK.st = st; TALK.p = G.KPCDV && KPCDV.on() ? AP.audio.pipe(st, AP.S.voice || 'natural', { dv: true }) : AP.audio.pipe(st, AP.S.voice || 'natural'); if (!TALK.p) throw new Error('the sound is not running');
       if (TALK.p.level) TALK.p.level(+AP.S.vdb || 0);
-      const keyed = await T0.key; if (TALK !== T0) return; if (!keyed) throw new Error('the radio did not key'); TALK.p.gate(true);
+      const micAt = Date.now();
+      const keyed = await T0.key; if (TALK !== T0) return; if (!keyed) throw new Error('the radio did not key');
+      /* Nov 18 SSB review (1.2-D): what was said between the press and the radio keying (the DATA switch, a cold mic) is held in a delay
+         line and goes out right after key-up, instead of being cut off; the release waits the same time so the tail isn't cut either */
+      if (TALK.p.delay) TALK.p.delay((Date.now() - (st === WARM.st && micAt - T0.t0 < 50 ? T0.t0 : micAt)) / 1000 + 0.03);
+      TALK.p.gate(true);
       TALK.lim = setTimeout(() => { talkUp(); AP.toast('🎙 Talk limit: PTT let go.', 3000); }, Math.max(30, +AP.S.rmTalk || 180) * 1000);
+      /* Nov 18 (OP-W2): 🎙 TX level while talking: green = good, gold = the limiter is working, red = turn VOICE LEVEL down */
+      if (TALK.p.txDb) { let mb = $('rdMicLvl'); if (!mb) { $('rdTalk').insertAdjacentHTML('afterend', '<div class="kmbar" id="rdMicLvl" style="height:8px;margin:4px 0;background:#222;border-radius:4px;overflow:hidden"><i style="display:block;height:100%;width:0"></i></div>' + (AP.lvHtml ? '<div id="rdVcLvl">' + AP.lvHtml('vc') + '</div>' : '')); mb = $('rdMicLvl'); }   /* the VOICE LEVEL slider right under the bar it moves */
+        mb.hidden = false; TALK.mt = setInterval(() => { if (!TALK || !TALK.p) return; const v = TALK.p.txDb(), w = Math.max(0, Math.min(100, (v.db + 40) / 40 * 100)), i = mb.firstChild; i.style.width = w + '%'; i.style.background = v.lim <= -6 ? '#e5484d' : v.lim <= -1 ? '#e3a24a' : '#3ddc84'; mb.title = 'TX ' + v.db + ' dB · limiter ' + v.lim + ' dB'; }, 120); }
     } catch (e) { AP.toast('🎙 The microphone did not open: ' + esc(e.message || e) + '. Pick it in the voice keyer (🎙 KEYER → RECORD / EDIT → RECORD WITH).', 6000, 'bad'); talkUp(); }
   }
-  async function talkUp() { const t = TALK; if (!t) return; TALK = null; clearTimeout(t.lim); $('rdTalk').classList.remove('on');
+  async function talkUp() { const t = TALK; if (!t) return; TALK = null; clearTimeout(t.lim); clearInterval(t.mt); const mb = $('rdMicLvl'); if (mb) mb.hidden = true; $('rdTalk').classList.remove('on');
+    const dly = t.p && t.p.delayed ? t.p.delayed() : 0; if (dly > 0) await new Promise(r => setTimeout(r, dly * 1000 + 30));   /* the held tail goes out first */
     try { if (t.p) { t.p.gate(false); t.p.stop(); } } catch (e) {} coolMic(); if (t.key) { await t.key; await AP.pttOn(false, { voice: true }); } }
   const WARM = { st: null, dev: '', t: 0 };
   function coolMic() { clearTimeout(WARM.t); WARM.t = setTimeout(() => { if (WARM.st && !TALK) { WARM.st.getTracks().forEach(x => x.stop()); WARM.st = null; } }, 60000); }
-  /* Nov 8 (KPC owner, 2026-11-10): the same NATURAL / PUNCH / CONTEST as the
+  /* Nov 8 (Brandon: 'is the contest voice changer still in the app desktop and remote?'): the same NATURAL / PUNCH / CONTEST as the
      phone's REMOTE screen, here for the PC's own HOLD TO TALK. One saved choice (AP.S.voice) for both; changing it while talking re-shapes at once. */
   const vPaint = () => document.querySelectorAll('[data-rvoice]').forEach(b => b.classList.toggle('on', b.dataset.rvoice === (AP.S.voice || 'natural')));
   document.querySelectorAll('[data-rvoice]').forEach(b => { b.onclick = () => { AP.S.voice = b.dataset.rvoice; AP.save(); vPaint(); try { if (TALK && TALK.p && TALK.p.shape) TALK.p.shape(AP.S.voice); } catch (e) {} AP.fire('voice', AP.S.voice); AP.toast('🎙 Voice: ' + b.textContent, 1500, 'log'); }; });

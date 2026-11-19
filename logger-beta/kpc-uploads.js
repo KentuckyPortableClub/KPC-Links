@@ -10,16 +10,20 @@
   const AP = G.KPCApp, esc = AP.esc;
   const LS = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const SV = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
-  const U = Object.assign({ qrz: { on: false, key: '' }, eqsl: { on: false, user: '', pass: '', nick: '' }, wavelog: { on: false, url: '', key: '', profile: '1' }, sent: {} }, LS('kpcAppUp', {}));
-  const save = () => SV('kpcAppUp', U);
-  const one = q => G.KPCLog.adif([q]).replace(/^[\s\S]*?<EOH>\s*/i, '');   /* one record, no header */
+  const UF = ['qrz.key', 'eqsl.pass', 'wavelog.key'];   /* Nov 18 (SEC-2): sealed at rest */
+  const U = Object.assign({ qrz: { on: false, key: '' }, eqsl: { on: false, user: '', pass: '', nick: '' }, wavelog: { on: false, url: '', key: '', profile: '1' }, sent: {} }, G.KPCSec ? KPCSec.openObj(LS('kpcAppUp', {}), UF) : LS('kpcAppUp', {}));
+  const save = () => SV('kpcAppUp', G.KPCSec ? KPCSec.sealObj(U, UF) : U);
+  const one = q => G.KPCLog.adif([q], undefined, { one: true }).replace(/^[\s\S]*?<EOH>\s*/i, '');   /* one record, no header */
   const T = {
     qrz: {
       label: 'QRZ logbook', ready: () => !!U.qrz.key, why: 'needs your QRZ logbook API key (QRZ.com → Logbook → Settings → API key; a QRZ subscription with the logbook API)',
       async send(q) {
-        const r = await AP.net.raw('https://logbook.qrz.com/api', { method: 'POST', body: new URLSearchParams({ KEY: U.qrz.key, ACTION: 'INSERT', ADIF: one(q) }), ms: 15000 });
+        const id0 = q.up && q.up.qrzId;
+        if (id0 && changedSince(q, 'qrz')) { await AP.net.raw('https://logbook.qrz.com/api', { method: 'POST', body: new URLSearchParams({ KEY: U.qrz.key, ACTION: 'DELETE', LOGIDS: String(id0) }), ms: 15000 }).catch(() => null); }
+        const r = await AP.net.raw('https://logbook.qrz.com/api', { method: 'POST', body: new URLSearchParams({ KEY: U.qrz.key, ACTION: 'INSERT', OPTION: 'REPLACE', ADIF: one(q) }), ms: 15000 });
         if (!r.ok && !r.text) throw new Error(r.err || 'no answer');
-        if (/RESULT=(OK|REPLACE)/.test(r.text) || /duplicate/i.test(r.text)) return 'ok';
+        const lid = (/LOGID=(\d+)/.exec(r.text) || [])[1];
+        if (/RESULT=(OK|REPLACE)/.test(r.text) || /duplicate/i.test(r.text)) return lid ? { r: 'ok', qrzId: lid } : 'ok';
         const why = decodeURIComponent(((/REASON=([^&]*)/.exec(r.text) || [, ''])[1]).replace(/\+/g, ' ')).trim();
         if (/AUTH/.test(r.text)) throw Object.assign(new Error('QRZ refused the key' + (why ? ': ' + why : '')), { stop: true });
         throw new Error(why || r.text.slice(0, 80) || 'HTTP ' + r.status);
@@ -50,7 +54,12 @@
     pota: { label: 'POTA', ready: () => false, why: 'comes with the POTA sign-in (step 4); until then SAVE ADIF FILE and upload it on pota.app', soon: true },
     lotw: { label: 'LoTW', ready: () => false, why: 'LoTW only takes files signed by TQSL on a computer: SAVE ADIF FILE, then sign and upload it there', soon: true }
   };
-  const waiting = t => G.KPCLog ? [...KPCLog.all().values()].filter(q => !q.d && q.t > Date.now() - 366 * 86400000 && !(q.up && q.up[t] === 'ok')).sort((a, b) => a.t - b.t) : [];
+  /* Nov 18 full review (L24): what went up is remembered as a short fingerprint (up.<t>H); a contact FIXED after it went up (call, time,
+     band, mode, reports, parks…) is sent again — QRZ: the old record is deleted by its LOGID first, so the wrong one doesn't stay */
+  function fnv(s) { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(16); }
+  const fp = q => fnv(JSON.stringify([q.call, Math.floor(q.t / 60000), q.band, q.mode, q.khz, q.rs, q.rr, q.refs, q.myrefs, q.st, q.g, q.name]));
+  const changedSince = (q, t) => !!(q.up && q.up[t] === 'ok' && q.up[t + 'H'] && q.up[t + 'H'] !== fp(q));
+  const waiting = t => G.KPCLog ? [...KPCLog.all().values()].filter(q => !q.d && q.t > Date.now() - 366 * 86400000 && (!(q.up && q.up[t] === 'ok') || changedSince(q, t))).sort((a, b) => a.t - b.t) : [];
   let busy = false;
   async function flush(force) {
     if (busy || !G.KPCLog || !AP.net.online()) return 0;
@@ -68,7 +77,7 @@
     if (n) AP.toast('☁ ' + n + ' contact' + (n > 1 ? 's' : '') + ' uploaded.', 3000, 'log');
     return n;
   }
-  function mark(q, t, r) { const up = Object.assign({}, q.up || {}); up[t] = r; up[t + 'T'] = Date.now(); KPCLog.edit(q.id, { up }); }
+  function mark(q, t, r) { const up = Object.assign({}, q.up || {}); if (r && typeof r === 'object') { if (r.qrzId) up.qrzId = r.qrzId; r = r.r; } up[t] = r; up[t + 'T'] = Date.now(); if (r === 'ok') up[t + 'H'] = fp(q); KPCLog.edit(q.id, { up }); }
   function status() { return Object.keys(T).filter(t => U[t] && U[t].on).map(t => T[t].label + ': ' + (U.sent[t] || 0) + ' sent · ' + waiting(t).length + ' waiting').join(' · ') || 'No uploads turned on.'; }
   function draw() { const e = $('stUpT'); if (e) e.textContent = status(); }
   /* Oct 23 (Brandon: 'need to hide that info too once it is entered' + 'box on or off be easier'): one big ON/OFF per service,

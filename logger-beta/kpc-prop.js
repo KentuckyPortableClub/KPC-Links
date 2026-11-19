@@ -39,7 +39,7 @@
     const c = LS('kpcAppSun', null);
     if (!force && c && Date.now() - c.t < 30 * 60000) return c;
     try {
-      const j = async u => { const r = AP.net.raw ? await AP.net.raw(u, { ms: 12000 }) : null; if (r && r.ok) return JSON.parse(r.text); const x = await fetch(u); return x.json(); };
+      const j = async u => { const r = AP.net.raw ? await AP.net.raw(u, { ms: 12000 }) : null; if (r && r.ok) return JSON.parse(r.text); const x = await fetch(u, G.AbortSignal && AbortSignal.timeout ? { signal: AbortSignal.timeout(10000) } : {}); return x.json(); };
       const [k, f] = await Promise.all([j('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json'), j('https://services.swpc.noaa.gov/products/summary/10cm-flux.json')]);
       let kp = null, sfi = null;
       try { const r = k[k.length - 1]; kp = Number(Array.isArray(r) ? r[1] : r.Kp); } catch (e) {}
@@ -91,7 +91,9 @@
       <h3 class="sh">Day and night right now</h3><canvas id="prMap" class="prmap" aria-label="World map with the night side shaded"></canvas>
       <p class="hint" id="prSun"></p>
       <p class="hint">A rough guide from the solar flux, the Kp index and whether it is day or night where you are. The real test is the band: look at SPOTS and 📡 WHO HEARD ME. Numbers from NOAA's Space Weather Prediction Center.</p>`);
-    const v = await solar();
+    /* Nov 18 review (X1): no internet = the saved numbers at once (the map and sun times need none); online, at most 10 s */
+    const v = !AP.net.online() ? LS('kpcAppSun', null) : await Promise.race([solar(), new Promise(r => setTimeout(() => r(LS('kpcAppSun', null)), 10000))]);
+    if (!v && $('prTop')) $('prTop').textContent = AP.net.online() ? 'No answer from NOAA right now.' : 'No internet: no solar numbers, but the day / night map and your sun times below still work.';
     const kp = v && v.kp, sfi = v && v.sfi, ageM = v ? Math.round((Date.now() - v.t) / 60000) : null;
     const storm = kp != null && kp >= 5, lvl = storm ? 'ROUGH (storm)' : sfi == null ? '?' : sfi >= 150 ? 'GREAT' : sfi >= 100 ? 'GOOD' : sfi >= 80 ? 'FAIR' : 'SO-SO';
     if ($('prTop')) $('prTop').innerHTML = v ? `<b class="prl">HF ${lvl}</b> Solar flux <b>${sfi != null ? Math.round(sfi) : '?'}</b> · Kp <b>${kp != null ? (+kp).toFixed(kp % 1 ? 1 : 0) : '?'}</b> · ${day ? '☀ daytime' : '🌙 night'} at ${esc(AP.myGrid() || 'your grid (set it in STATION)')}${ageM > 45 ? ' · <i>last reading ' + (ageM < 120 ? ageM + ' min' : Math.round(ageM / 60) + ' h') + ' old (no signal)</i>' : ''}` : 'No solar numbers yet: they need signal once. The day / night map works anyway.';
@@ -101,7 +103,7 @@
     const cv = $('prMap'); if (!cv || !G.KPCMap) return;
     const spots = G.KPCSpots ? KPCSpots.shown().filter(s => isFinite(s.la) && isFinite(s.lo)).slice(0, 300) : [];
     const m = KPCMap.create(cv, { sat: AP.net.online(), draw(ctx, P) {
-      if (!AP.net.online()) { ctx.fillStyle = '#23466e'; ctx.fillRect(0, 0, cv.clientWidth, cv.clientHeight); }
+      /* offline: kpc-map.js draws the built-in world map underneath (Nov 18) */
       grid(ctx, P);
       drawNight(ctx, P, Date.now());
       ctx.fillStyle = '#58a6ff'; spots.forEach(s => { const [x, y] = P(s.la, s.lo); ctx.beginPath(); ctx.arc(x, y, 3, 0, 7); ctx.fill(); });

@@ -4,7 +4,7 @@
 (function (G) {
   'use strict';
   let CHP, KAP;   /* plugin handles, registered once (Oct 24) */
-  const VER = '0.8.0';
+  const VER = '0.9.10';
   /* KPC Lite (Oct 28, HQ): kpc-flavor.js (overwritten by the nightly build for the Lite APK) or ?lite=1. index.html already skipped the left-out files. */
   const LITE = !!document.documentElement.dataset.lite, LITE_OFF = { remote: 1 };
   const $ = id => document.getElementById(id);
@@ -47,7 +47,7 @@
   document.querySelectorAll('[data-look]').forEach(b => { b.onclick = () => { if (b.dataset.style) { document.documentElement.dataset.style = b.dataset.style; try { localStorage.setItem('kpcStyle', b.dataset.style); } catch (e) {} } look(b.dataset.look); }; });
 
   /* ---------------- screens ---------------- */
-  const TITLE = { logs: 'My logs', log: 'Log', digi: 'Digital modes', station: 'Station', remote: 'Remote', spots: 'Spots', map: 'Contacts map', radio: 'Radio' };
+  const TITLE = { logs: 'My logs', log: 'Log', digi: 'Digi', station: 'Station', remote: 'Remote', spots: 'Spots', map: 'Map', radio: 'Radio' };
   function go(name) {
     if (LITE && LITE_OFF[name]) name = 'log';
     document.body.dataset.screen = name; $('ttl').textContent = TITLE[name] || 'KPC';
@@ -145,12 +145,14 @@
     const db = c.db, pct = Math.max(0, Math.min(100, (db + 80) / 80 * 100));
     /* nothing coming in for 8 s = almost always the wrong sound card picked (Brandon Oct 22: Windows did not decode) */
     if (db > -70) quietSince = 0; else if (!quietSince) quietSince = Date.now(); else if (Date.now() - quietSince > 8000 && Date.now() - quietSaid > 120000) { quietSaid = Date.now(); toast('🔇 No sound is coming in (' + db.toFixed(0) + ' dB). Under STATION → Sound pick the radio\'s USB sound card as RADIO SOUND IN (not the ' + (N.native ? 'tablet' : 'PC') + ' microphone), press STOP then START LISTENING, and turn the radio\'s USB OUT level up.', 10000, 'bad'); }
-    const i = $('stLvl'); i.style.width = pct + '%'; i.className = db > -3 ? 'bad' : '';
+    /* Nov 18 full review (A1): band noise peaks 10-12 dB over its average, so the bar goes red on the PEAK (clipping), not only the average */
+    const clip = +c.peak >= 0.98;
+    const i = $('stLvl'); i.style.width = pct + '%'; i.className = db > -3 || clip ? 'bad' : '';
     $('stLvlT').textContent = (c.tx ? 'TX · ' : '') + db.toFixed(0) + ' dB';
     const d = $('dgLvl'); if (d) d.textContent = db.toFixed(0) + ' dB';
     /* Brandon Oct 22: 'rx bar in ft8 so I can see if incoming is to loud or not' — a bar with a word: too quiet / good / loud / TOO LOUD */
     const bar = $('dgLvlBar'), w = $('dgLvlW');
-    if (bar && !c.tx) { const z = db < -55 ? ['low', 'too quiet'] : db <= -10 ? ['ok', 'good'] : db <= -3 ? ['hot', 'loud'] : ['bad', 'TOO LOUD']; bar.style.width = pct + '%'; bar.className = z[0]; if (w) { w.textContent = z[1]; w.className = z[0]; } }
+    if (bar && !c.tx) { const z = clip ? ['bad', 'CLIPPING'] : db < -55 ? ['low', 'too quiet'] : db <= -10 ? ['ok', 'good'] : db <= -3 ? ['hot', 'loud'] : ['bad', 'TOO LOUD']; bar.style.width = pct + '%'; bar.className = z[0]; if (w) { w.textContent = z[1]; w.className = z[0]; } }
   }
   async function start() {
     if (RUN) return true;
@@ -185,7 +187,9 @@
   }
   A.onLost = why => { soundLost(why); };
   setInterval(() => { if (RUN && !TXING && lastBlk && Date.now() - lastBlk > 6000 && !N.native) soundLost('no sound blocks for 6 s'); }, 2000);
-  async function stop() { RUN = false; lastBlk = 0; try { await A.stop(); } catch (e) {} $('stLvl').style.width = '0'; $('stLvlT').textContent = 'off'; state(); fire('run', false); }
+  /* Nov 18 public-release review (0.9.7): the sound going off in the middle of a transmission (STOP LISTENING, the sound card lost, a
+     phone on the link pressing stop) unkeys the radio first: a keyed radio with no sound is a dead carrier or silence on the air */
+  async function stop() { if (TXING) { try { await stopAll('🔇 The sound stopped while transmitting, so transmitting was stopped too.'); } catch (e) {} } RUN = false; lastBlk = 0; try { await A.stop(); } catch (e) {} $('stLvl').style.width = '0'; $('stLvlT').textContent = 'off'; state(); fire('run', false); }
   /* TX LEVEL + RX LEVEL sliders: the same two live in STATION → Sound and in the FT8 / FT4 settings (Brandon Oct 22).
      Any slider marked data-lv="tx" or "rx" works, wherever it is on screen. */
   const LV = { tx: { k: 'db', lo: -40, hi: 0 }, rx: { k: 'rxDb', lo: -20, hi: 20 }, vc: { k: 'vdb', lo: -20, hi: 30 }, mon: { k: 'monDb', lo: -30, hi: 20 } };   /* vc = VOICE LEVEL (Oct 27, apart from the FT8 TX LEVEL); mon = 🔊 HEAR THE RADIO HERE */
@@ -207,7 +211,7 @@
     return Promise.resolve();
   }
   function lvHtml(w) {
-    const L = LV[w], tx = w === 'tx', nm = { tx: 'TX LEVEL (FT8 / digital tones)', rx: 'RX LEVEL (what the decoders get)', vc: '🎙 VOICE LEVEL (keyer, hold to talk)', mon: '🔊 RADIO LOUDNESS HERE' }[w];
+    const L = LV[w], tx = w === 'tx', nm = { tx: 'TX LEVEL · FT8 and digital modes ONLY (not your voice)', rx: 'RX LEVEL (what the decoders get)', vc: '🎙 VOICE LEVEL · your voice (hold to talk, the phone, the keyer): keep the 🎙 bar green', mon: '🔊 RADIO LOUDNESS HERE' }[w];   /* Nov 18 SSB review (1.5-B): which slider is which, said plainly */
     return `<label class="e slide">${nm} <b data-lvt="${w}">${dbTxt(+S[L.k] || 0)}</b>
       <span class="pw"><button type="button" class="ic sm" data-lvs="${w}" data-d="-0.5" aria-label="${tx ? 'Transmit' : 'Receive'} level down">−</button><input type="range" data-lv="${w}" min="${L.lo}" max="${L.hi}" step="0.5" value="${+S[L.k] || 0}" aria-label="${tx ? 'Transmit' : 'Receive'} level in dB"><button type="button" class="ic sm" data-lvs="${w}" data-d="0.5" aria-label="${tx ? 'Transmit' : 'Receive'} level up">+</button></span></label>`;
   }
@@ -225,17 +229,115 @@
      transmission, then puts the sideband back (S.vmod 'data' = do that, 'mic' = leave the mode alone: the radio's own menu is set to REAR). */
   let VMODE = '', VKHZ = 0, DIALR = null;
   on('dial', r => { if (r && r.khz) DIALR = { r, t: Date.now() }; });
-  const dialNow = ms => DIALR && Date.now() - DIALR.t < (ms || 15000) ? DIALR.r : null;   /* the last dial CHANGE seen (follow fires on change), if under ms old */
-  async function pttOn(on, o) {
+  /* Nov 18 public-release review (0.9.7): what the app itself last set on the radio (KPCCat.lastSet: a tune to a spot, a mode change)
+     counts as the newest dial knowledge when it is newer than the last dial reading. Before, HOLD TO TALK / the voice keyer pressed
+     within 1.5 s of such a tune could still see the old DATA mode, skip the switch to DATA, and send the voice with the radio listening
+     to its MIC socket: a silent transmission. */
+  const lastKnown = () => { let s = null; try { s = G.KPCCat && KPCCat.lastSet && KPCCat.lastSet(); } catch (e) {} return s && s.khz && s.mode && (!DIALR || s.t >= DIALR.t) ? { r: { khz: s.khz, mode: s.mode }, t: s.t } : DIALR; };
+  const dialNow = ms => { const d = lastKnown(); return d && Date.now() - d.t < (ms || 15000) ? d.r : null; };   /* the last dial CHANGE seen (follow fires on change) or the app's own last tune, if under ms old */
+  /* Nov 18 full review (OP-B1): every key / unkey goes through ONE ordered line. Before, a quick tap (key → unkey) could let the unkey
+     reach the radio first while the key was still reading the mode, and the radio stayed keyed. WANT = what was asked for last: a key
+     that finds the operator has already let go does not key at all. */
+  let PQ = Promise.resolve(), WANT = false, TXT0 = 0, WDOG = null;
+  const TXMAX = () => Math.max(5, Math.min(600, +S.txMax || 180));   /* backup: no single transmission over 3 min (OP-R6/X4) */
+  function pttOn(on, o) { WANT = !!on; const p = PQ.then(() => pttOn1(on, o)); PQ = p.catch(() => false); return p; }
+  async function pttOn1(on, o) {
+    if (on && !WANT) return false;
+    const r = await pttOn2(on, o);
+    if (on && !WANT) { await pttOn2(false, o); return false; }   /* let go while the key was going on: take it straight back off */
+    /* Nov 18 public-release review (0.9.7): the backup timer runs from the FIRST key-down of a transmission. Before, every further
+       pttOn(true) started it again, so a sender that kept asking for the key could hold the radio keyed for ever. */
+    if (on) { if (!TXT0) { TXT0 = Date.now(); clearTimeout(WDOG); WDOG = setTimeout(() => stopAll('⏱ Transmitting for ' + Math.round(TXMAX() / 60 * 10) / 10 + ' min: stopped as a safety. (STATION → Radio control → LONGEST TRANSMISSION)'), TXMAX() * 1000); } }
+    else { clearTimeout(WDOG); TXT0 = 0; }
+    return r;
+  }
+  /* STOP EVERY KIND OF TRANSMITTING (backup timer, lost phone link, closing the app; the STOP ALL button will use it too) */
+  async function stopAll(why) {
+    try { document.querySelectorAll('.scr .halt:not(#d5StopRx), #scrRadio .halt').forEach(b => { try { b.click(); } catch (e) {} }); } catch (e) {}   /* 0.9.7: not the SSTV picture being RECEIVED */
+    try { if (G.KPCVoice) KPCVoice.stop(); } catch (e) {}
+    try { if (G.KPCModes5 && KPCModes5.stopTx) KPCModes5.stopTx(); } catch (e) {}
+    try { if (G.KPCRadio && KPCRadio.talking()) KPCRadio._talkUp(); } catch (e) {}
+    try { if (G.KPCModes && KPCModes.talking()) KPCModes._talkUp(); } catch (e) {}
+    try { await A.stopTx(); } catch (e) {}
+    let ok = await pttOn(false).catch(() => false);
+    if (ok === false) { await new Promise(r => setTimeout(r, 300)); ok = await pttOn(false).catch(() => false); }
+    if (why) { if (G.KPCApp && KPCApp.notify) KPCApp.notify('ptt', why, { bad: true, ms: 9000 }); else toast(why, 9000, 'bad'); }
+    return ok;
+  }
+  /* Nov 18 review (layout #8): FIRST-RUN SETUP in 5 steps — call, grid (GPS), hunter or activator (+ park), radio (CONNECT), sound
+     (START with the level showing). Opens by itself when no call sign is set yet (not in tests), and from STATION → 🧭 SET UP STEP BY STEP.
+     Each step writes the same STATION boxes (their own change handlers save), so nothing is set two ways. */
+  function setup(step) {
+    step = step || 1; const put = (id, v) => { const e = $(id); if (e) { e.value = v; e.dispatchEvent(new Event('change')); } };
+    const nav = (back, nextLabel) => `<div class="row">${back ? '<button type="button" class="b" id="wzBack">◀ BACK</button>' : ''}<button type="button" class="b gold big" id="wzNext">${nextLabel || 'NEXT ▶'}</button></div>`;
+    const head = t => `<p class="step">STEP ${step} OF 5</p><h3>${t}</h3>`;
+    let body = '';
+    if (step === 1) body = head('Your call sign') + `<label class="e">MY CALL SIGN<input id="wzCall" autocapitalize="characters" spellcheck="false" value="${esc(S.call || '')}" placeholder="your call sign"></label>` + nav(false);
+    if (step === 2) body = head('Where you are (grid square)') + `<label class="e">GRID SQUARE<input id="wzGrid" autocapitalize="characters" maxlength="6" value="${esc(S.grid || '')}" placeholder="e.g. EM78"></label><div class="row"><button type="button" class="b" id="wzGps">📍 USE MY LOCATION</button></div>` + nav(true);
+    if (step === 3) body = head('Hunting or activating?') + `<div class="row"><button type="button" class="b big${S.role === 'hunt' ? ' gold' : ''}" data-wzr="hunt">🎯 HUNTING FROM HOME</button><button type="button" class="b big${S.role !== 'hunt' ? ' gold' : ''}" data-wzr="act">🏕 ACTIVATING A PARK</button></div><label class="e" id="wzRefL"${S.role === 'hunt' ? ' hidden' : ''}>MY PARK (POTA number, e.g. US-1234)<input id="wzRef" name="kpc-my-parks" autocapitalize="characters" value="${esc(S.ref || '')}"></label>` + nav(true);
+    if (step === 4) body = head('Your radio') + `<label class="e">MY RADIO<select id="wzRadio"></select></label><div class="row"><button type="button" class="b gold big" id="wzConn">📻 CONNECT</button></div><div class="st" id="wzConnT">${G.KPCCat && KPCCat.connected() ? '✅ Connected.' : 'Turn the radio on, plug in its USB cable, then CONNECT. No radio here? Skip: you can log by hand.'}</div>` + nav(true, 'NEXT ▶ (or skip)');
+    if (step === 5) body = head('Sound from the radio') + `<p class="hint">For FT8 and the other digital modes the app listens to the radio's USB sound. Press START and talk near nothing: the bar should move with band noise.</p><div class="row"><button type="button" class="b gold big" id="wzStart">🎧 START LISTENING</button></div><div class="st" id="wzLvl">—</div>` + nav(true, '✅ DONE');
+    sheet('🧭 Set up KPC', '<div class="wiz">' + body + '</div>');
+    const go2 = n => { clearInterval(setup.t); setup(n); };
+    if ($('wzBack')) $('wzBack').onclick = () => go2(step - 1);
+    if (step === 1) $('wzNext').onclick = () => { const v = $('wzCall').value.trim().toUpperCase(); if (v.length < 3) { toast('Type your call sign first.', 3000, 'bad'); return; } put('stCall', v); go2(2); };
+    if (step === 2) { $('wzGps').onclick = async () => { try { const p = await gps(); $('wzGrid').value = toGrid(p.la, p.lo); } catch (e) { toast('No location: type the grid (your call book page has it).', 4000, 'bad'); } }; $('wzNext').onclick = () => { const v = $('wzGrid').value.trim().toUpperCase(); if (v) put('stGrid', v); go2(3); }; }
+    if (step === 3) { document.querySelectorAll('[data-wzr]').forEach(b => { b.onclick = () => { put('stRole', b.dataset.wzr); go2(3); }; }); $('wzNext').onclick = () => { if ($('wzRef') && S.role !== 'hunt') put('stRef', $('wzRef').value.trim().toUpperCase()); go2(4); }; }
+    if (step === 4) { const sel = $('wzRadio'); if (G.KPCCat && KPCCat.fillSelect) KPCCat.fillSelect(sel); sel.onchange = () => { if (KPCCat.pickRadio) KPCCat.pickRadio(sel.value); };
+      $('wzConn').onclick = async () => { $('wzConnT').textContent = 'Connecting…'; const ok = await KPCCat.connect(true); keyCheck(); $('wzConnT').textContent = ok ? '✅ The radio answers.' : '✗ ' + (catLast.t || 'no answer'); };
+      $('wzNext').onclick = () => go2(5); }
+    if (step === 5) { $('wzStart').onclick = () => start(); setup.t = setInterval(() => { const e = $('wzLvl'); if (!e) { clearInterval(setup.t); return; } e.textContent = RUN ? '🎧 Listening · ' + ($('stLvlT') ? $('stLvlT').textContent : '') : 'Not listening yet.'; }, 300);
+      $('wzNext').onclick = () => { clearInterval(setup.t); try { localStorage.setItem('kpcSetupDone', '1'); } catch (e) {} shut(); go(S.role === 'hunt' ? 'spots' : 'log'); toast('✅ All set. STATION has every setting if you want to change one.', 4000, 'log'); }; }
+  }
+  if ($('stSetup')) $('stSetup').onclick = () => setup(1);
+  setTimeout(() => { if (!S.call && !HEADLESS && !navigator.webdriver && !/[?&](headless|fake)=1/.test(location.search) && !localStorage.getItem('kpcSetupDone')) setup(1); }, 4500);
+  /* Nov 18 reviews (layout #1): ● ON AIR + seconds + what is sending, and ■ STOP ALL, on every screen whenever anything transmits
+     (PTT through pttOn, typed / keyed CW, FT8, and on a phone on the remote link the PC's transmitter). Esc = STOP ALL on a PC. */
+  let AIR0 = 0;
+  function onAirWhat() {
+    if (G.KPCRemote && KPCRemote.link && KPCRemote.link().paired && !KPCRemote.base) { const st = KPCRemote.state && KPCRemote.state(); if (st && (st.tx || st.ptt || st.tune)) return 'the PC\'s radio' + (st.tune ? ' · TUNE' : st.ptt ? ' · voice' : ''); return ''; }
+    const m = G.KPCModes && KPCModes.active && KPCModes.active();
+    if (TXING) return (m && m.txing && m.txing() ? m.id : G.KPCVoice && KPCVoice.playing && KPCVoice.playing() >= 0 ? 'voice keyer' : G.KPCRadio && KPCRadio.talking && KPCRadio.talking() ? 'hold to talk' : 'radio keyed') + (G.KPCRemote && KPCRemote.ptt && KPCRemote.ptt() ? ' (phone)' : '');
+    if (G.KPCModes5 && KPCModes5.txing && KPCModes5.txing()) return 'CW / ' + ((m && m.id) || 'sending');
+    return '';
+  }
+  function onAirTick() {
+    const el = $('onAir'); if (!el) return; const w = onAirWhat(), on = !!w;
+    if (on && !AIR0) AIR0 = Date.now(); if (!on) AIR0 = 0;
+    if (el.hidden === on) { el.hidden = !on; document.body.classList.toggle('onair-on', on); }
+    if (on) { const s2 = Math.floor((Date.now() - AIR0) / 1000); $('onAirT').textContent = Math.floor(s2 / 60) + ':' + String(s2 % 60).padStart(2, '0'); $('onAirW').textContent = w; }
+  }
+  async function stopAllBtn() {
+    if (G.KPCRemote && KPCRemote.link && KPCRemote.link().paired && !KPCRemote.base && KPCRemote.stopAll) { KPCRemote.stopAll(); toast('■ STOP ALL sent to the PC.', 2500); return; }
+    await stopAll(''); toast('■ Everything stopped.', 2500);
+  }
+  if ($('onAirStop')) $('onAirStop').onclick = stopAllBtn;
+  addEventListener('keydown', e => { if (e.key === 'Escape' && $('onAir') && !$('onAir').hidden) { e.preventDefault(); stopAllBtn(); } }, true);
+  setInterval(onAirTick, 250);
+  /* Nov 18 review: after the PC sleeps, the COM port and the sound are usually dead: stop anything keyed, then reopen the radio and
+     restart the sound that was running (Windows app: electron powerMonitor 'resume') */
+  async function resumed() {
+    try { if (TXING) await stopAll(''); } catch (e) {}
+    const wasRun = RUN, cat = G.KPCCat && KPCCat.connected && KPCCat.connected();
+    setTimeout(async () => {
+      try { if (cat) { await KPCCat.disconnect(true); await KPCCat.connect(false); keyCheck(); } } catch (e) {}
+      try { if (wasRun) { await stop(); await start(); } } catch (e) {}
+      toast('💤 The computer woke up: radio and sound reopened' + (cat ? '' : ' (sound)') + '.', 4000);
+    }, 2500);
+  }
+  if (G.kpcPower && kpcPower.onResume) kpcPower.onResume(resumed);   /* Windows app only: a phone or a browser tab in the background is not a sleeping PC */
+  /* OP-R1: the app closing or reloading mid-transmission: unkey on the way out (best effort; the radio's own TOT is the last guard) */
+  G.addEventListener && G.addEventListener('pagehide', () => { if (TXING && G.KPCCat) { try { KPCCat.ptt(false, pttKind()); } catch (e) {} } });
+  async function pttOn2(on, o) {
     o = o || {};
     if (on && o.voice && S.vmod === 'data' && G.KPCCat && KPCCat.connected() && KPCCat.mode && S.ptt !== 'vox' && !VMODE) {
-      try { const r = DIALR && Date.now() - DIALR.t < 1500 ? DIALR.r : await KPCCat.read();   /* a fresh dial read saves the 300 ms round trip before the voice starts */ if (r && /^(USB|LSB)$/.test(r.mode || '')) { if (await KPCCat.mode(r.mode === 'LSB' ? 'DATAL' : 'DATA', r.khz)) { VMODE = r.mode; VKHZ = r.khz; } } } catch (e) {}
+      try { const d0 = lastKnown(), r = d0 && Date.now() - d0.t < 1500 ? d0.r : await KPCCat.read();   /* a fresh dial read saves the 300 ms round trip before the voice starts */ if (r && /^(USB|LSB)$/.test(r.mode || '')) { if (await KPCCat.mode(r.mode === 'LSB' ? 'DATAL' : 'DATA', r.khz)) { VMODE = r.mode; VKHZ = r.khz; } } } catch (e) {}
     }
     TXING = !!on; state();
     if (S.ptt === 'vox' || !G.KPCCat) { if (!on) vmodeBack(); return true; }
     try {
       if (on) KPCCat.set({ follow: false });               /* no dial reads while transmitting */
-      const ok = await KPCCat.ptt(on, S.ptt);
+      const ok = await KPCCat.ptt(on, pttKind());
       if (on && N.serial && N.serial.letGo) { try { await N.serial.letGo(); } catch (e) {} }
       if (!on && S.follow) KPCCat.set({ follow: true });
       if (!on) vmodeBack();
@@ -253,6 +355,10 @@
     if (bad) e.textContent = c + ' is not an ordinary call sign, so FT8 sends it as a short code instead of the letters. Contacts still work with most stations, but a few will not answer. Plain call signs like K4AB or KA4ABC go out in full.';
   }
 
+  /* Nov 18 radio round (0.9.9; Brandon: yes, let a Digirig key FT8 and voice too): KEY THE RADIO WITH also offers the RTS or DTR line of
+     the radio's cable. PC only: on Android the app lets go of the USB port while it sends, which drops the line. kpc-cat.js is told
+     the choice, so that line is held DOWN whenever the port opens and is never raised when it looks for a silent Yaesu. */
+  const pttKind = () => S.ptt === 'vox' ? 'vox' : (S.ptt === 'rts' || S.ptt === 'dtr') && !N.native ? S.ptt : 'cat';
   /* can anything key the radio at all? (CAT connected OR VOX) — Brandon Oct 21 */
   const canKey = () => !!myCall() && (S.ptt === 'vox' || !!(G.KPCCat && KPCCat.connected()));
   function keyCheck() { callWarn(); fire('key', canKey()); catVis(); }
@@ -265,14 +371,20 @@
   function catT(t, ok) { catLast = { t: String(t || ''), ok }; const e = $('stCatT'); e.textContent = t; e.className = 'st' + (ok === true ? ' ok' : ok === false ? ' bad' : ''); }
   if (G.KPCCat) {
     KPCCat.fillSelect($('stRig'));
-    KPCCat.set({ on: true, ptt: S.ptt === 'vox' ? 'vox' : 'cat', follow: !!S.follow });
+    KPCCat.set({ on: true, ptt: pttKind(), follow: !!S.follow });
     KPCCat.onStatus((t, ok) => { catT(t, ok); keyCheck(); });
-    $('stRig').onchange = () => { KPCCat.pickRadio($('stRig').value); KPCCat.set({ on: true, ptt: S.ptt }); };
+    $('stRig').onchange = () => { KPCCat.pickRadio($('stRig').value); KPCCat.set({ on: true, ptt: pttKind() }); ampUi(); };
     KPCCat.follow(r => { if (!TXING) fire('dial', r); });
   }
+  /* 0.9.9 radio round: the FTX-1 sets its power in WATTS, and differently with the SPA-1 amplifier on (PC2nnn) than as the field head
+     alone (PC1nnn), so the POWER slider needs to know which. Shown only for the FTX-1; the radio's own answer also sets it. */
+  function ampUi() { if (!G.KPCCat || !$('stAmpW')) return; const c = KPCCat.get(); $('stAmpW').hidden = c.radio !== 'ftx1'; $('stAmp').value = c.amp === 'spa1' ? 'spa1' : ''; }
+  if ($('stAmp')) $('stAmp').onchange = () => { if (!G.KPCCat) return; KPCCat.set({ amp: $('stAmp').value }); toast($('stAmp').value === 'spa1' ? 'FTX-1 with the SPA-1: the POWER slider now goes up to 100 watts.' : 'FTX-1 field head: the POWER slider now goes from 5 to 10 watts.', 3500); };
+  on('screen', s => { if (s === 'station') ampUi(); });   /* the set-up helper can pick the radio too */
   /* the radio frame (Oct 22): link + profiles */
   function linkUi() {
     if (!G.KPCCat) return;
+    ampUi();
     const c = KPCCat.get(), link = c.link || 'serial', L = KPCCat.links();
     $('stLink').innerHTML = L.map(l => `<option value="${l.id}"${l.id === link ? ' selected' : ''}${l.ok ? '' : ' disabled'}>${esc(l.label)}${l.ok ? '' : ' (not here)'}</option>`).join('');
     $('stPortW').hidden = link !== 'serial'; $('stHostW').hidden = !/^(rigctld|flrig)$/.test(link); $('stTcpW').hidden = !/^(rigctld|flrig)$/.test(link);
@@ -283,7 +395,7 @@
   $('stLink').onchange = () => { KPCCat.set({ link: $('stLink').value, port: $('stLink').value === 'flrig' ? 12345 : 4532 }); KPCCat.disconnect(true); linkUi(); keyCheck(); };
   $('stHost').onchange = () => KPCCat.set({ host: $('stHost').value.trim() || 'localhost' });
   $('stTcpPort').onchange = () => KPCCat.set({ port: +$('stTcpPort').value || 0 });
-  $('stProf').onchange = async () => { const v = $('stProf').value; if (!v) return; if (v[0] === '-') { KPCCat.dropProfile(v.slice(1)); toast('Profile removed.', 2500); } else { await KPCCat.useProfile(v); const c = KPCCat.get(); if (c.ptt) S.ptt = c.ptt === 'vox' ? 'vox' : 'cat'; if (c.follow != null) S.follow = c.follow ? 1 : 0; save(); fields(); } linkUi(); keyCheck(); };
+  $('stProf').onchange = async () => { const v = $('stProf').value; if (!v) return; if (v[0] === '-') { KPCCat.dropProfile(v.slice(1)); toast('Profile removed.', 2500); } else { await KPCCat.useProfile(v); const c = KPCCat.get(); if (c.ptt) { S.ptt = c.ptt; S.ptt = pttKind(); } if (c.follow != null) S.follow = c.follow ? 1 : 0; save(); fields(); } linkUi(); keyCheck(); };
   $('stProfSave').onclick = () => {
     const c = KPCCat.get();
     sheet('Save this radio setup as a profile', `<label class="e">NAME<input id="prName" maxlength="30" value="${esc(c.profile || (KPCCat.RADIO[c.radio] ? KPCCat.RADIO[c.radio].label : ''))}" placeholder="Field rig"></label><p class="hint">Saves the radio type, speed, CI-V address, link, port and how it is keyed. Pick it back from RADIO PROFILE any time.</p>`,
@@ -344,7 +456,7 @@
   function fields() {
     $('stCall').value = S.call || ''; $('stGrid').value = S.grid || ''; $('stRef').value = S.ref || '';
     $('stRole').value = S.role || 'act'; $('stGoalN').value = String(S.goal || 0);
-    $('stPtt').value = S.ptt === 'vox' ? 'vox' : 'cat'; $('stFollow').value = S.follow ? '1' : '0';
+    $('stPtt').value = pttKind(); $('stFollow').value = S.follow ? '1' : '0';
     asOpts(); lvShow(); $('stCls').value = S.cls || ''; $('stUnits').value = S.units || 'mi'; $('stPwr').value = S.pwr || ''; $('stMyRig').value = S.rig || ''; $('stAnt').value = S.ant || '';
     if ($('stCnty')) $('stCnty').value = S.cnty || ''; cntyShow();
   }
@@ -359,8 +471,18 @@
   /* Oct 24 (Brandon: 'give users plenty of options'): power / rig / antenna go on each contact and into the ADIF */
   /* Oct 25: the MY RIG box was id stRig, the same id as the MY RADIO drop-down below it (Brandon: 'my radio field is blank, can not select what radio'): now stMyRig */
   [['stPwr', 'pwr'], ['stMyRig', 'rig'], ['stAnt', 'ant']].forEach(([id, k]) => { $(id).onchange = () => { S[k] = $(id).value.trim(); save(); }; });
+  if ($('stTxMax')) { $('stTxMax').value = String([60, 120, 180, 300, 600].includes(+S.txMax) ? +S.txMax : 180); $('stTxMax').onchange = () => { S.txMax = +$('stTxMax').value; save(); }; }
   if ($('stVmod')) { $('stVmod').value = S.vmod === 'data' ? 'data' : 'mic'; $('stVmod').onchange = () => { S.vmod = $('stVmod').value; save(); }; }
-  $('stPtt').onchange = () => { S.ptt = $('stPtt').value; save(); if (G.KPCCat) KPCCat.set({ ptt: S.ptt }); keyCheck(); };
+  if (N.native) $('stPtt').querySelectorAll('option[value="rts"], option[value="dtr"]').forEach(o => o.remove());
+  $('stPtt').onchange = async () => {
+    if (TXING) { try { await stopAll(''); } catch (e) {} }   /* never change how the radio is keyed in the middle of a transmission */
+    S.ptt = $('stPtt').value; S.ptt = pttKind(); save(); if (G.KPCCat) KPCCat.set({ ptt: S.ptt }); keyCheck();
+    if (S.ptt === 'rts' || S.ptt === 'dtr') {
+      try { if (G.KPCCat && KPCCat.connected()) await KPCCat.ptt(false, S.ptt); } catch (e) {}   /* the chosen line goes DOWN now (it may have been held up for a Yaesu) */
+      const cwSame = G.KPCModes5 && KPCModes5.S && KPCModes5.S.cw && KPCModes5.S.cw.via === S.ptt;
+      toast('📻 The ' + S.ptt.toUpperCase() + ' line now keys the radio for FT8, voice and the other modes. On a Yaesu set the CAT RTS menu to OFF.' + (cwSame ? ' ⚠ CW is set to key the same line (⚙ CW → SEND WITH): pick the other line for one of them.' : ''), cwSame ? 9000 : 6000, cwSame ? 'bad' : undefined);
+    }
+  };
   $('stFollow').onchange = () => { S.follow = $('stFollow').value === '1' ? 1 : 0; save(); if (G.KPCCat) KPCCat.set({ follow: !!S.follow }); };
   /* OPERATORS (Oct 22, Fable): several people on one install. Each has a call, grid, name and CQ word; the log keeps every
      contact with the operator's call, and the LOG screen shows the operator who is signed in. Nothing is copied when you switch. */
@@ -488,12 +610,44 @@
   $('stDev').onclick = () => devices().then(() => toast('Looked for sound cards again.', 2000));
   $('stIn').onchange = () => { S.inDev = $('stIn').value; const t = twin(S.inDev); if (t && $('stOut').value !== String(t.id)) { $('stOut').value = t.id; S.outDev = t.id; toast('RADIO SOUND OUT set to the same sound card: ' + esc(t.name), 4000); } save(); if (RUN) toast('Press STOP then START LISTENING to use the new sound card.', 4000); };
   $('stOut').onchange = () => { S.outDev = $('stOut').value; save(); if (RUN) toast('Press STOP then START LISTENING to use the new sound card.', 4000); };
-  $('stLevels').innerHTML = lvHtml('tx') + lvHtml('vc') + lvHtml('rx') + `<div class="row monrow"><button type="button" class="b" id="stMon">🔊 HEAR THE RADIO HERE</button><select id="stMonDev" aria-label="Which speaker"><option value="">This computer's speakers</option></select></div>` + lvHtml('mon') + '<p class="hint">🔊 HEAR THE RADIO HERE plays the radio on this computer\'s speakers (never on the radio\'s own sound card): work the radio from the desk with the PC mic and speakers.</p>';
+  $('stLevels').innerHTML = lvHtml('tx') + lvHtml('vc') + lvHtml('rx') + `<div class="row monrow"><button type="button" class="b" id="stMon">🔊 HEAR THE RADIO HERE</button><select id="stMonDev" aria-label="Which speaker"><option value="">This computer's speakers</option></select></div>` + lvHtml('mon') + '<p class="hint">🔊 HEAR THE RADIO HERE plays the radio on this computer\'s speakers (never on the radio\'s own sound card): work the radio from the desk with the PC mic and speakers.</p>'
+    + '<label class="tog"><input type="checkbox" id="stVmon"> 🎧 Hear my processed voice while I talk (what really goes to the radio: shaper, limiter, 2.8 kHz band-limit). Plays on the HEAR THE RADIO HERE speakers, so turn that on too; use headphones.</label>'
+    + '<div class="row"><button type="button" class="b gold" id="stLvlHelp">🎚 SET MY LEVELS (ALC HELPER)</button></div>';
   /* 🔊 HEAR THE RADIO HERE (Oct 27, Fable; Brandon: 'play audio out PC and talk into PC, work semi-remote from the desktop') */
   async function monDevs() { const sel = $('stMonDev'); if (!sel || !navigator.mediaDevices) return; try { const ds = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'audiooutput' && d.deviceId && d.deviceId !== 'communications' && d.deviceId !== S.outDev);
     sel.innerHTML = '<option value="">This computer\'s speakers</option>' + ds.map(d => `<option value="${esc(d.deviceId)}"${S.monDev === d.deviceId ? ' selected' : ''}>${esc(d.deviceId === 'default' ? 'Windows default (' + (d.label || '').replace(/^Default - /, '') + ')' : d.label || 'Speaker')}</option>`).join(''); } catch (e) {} }
   function monShow() { const b = $('stMon'); if (b) { b.classList.toggle('on', !!S.mon); b.textContent = S.mon ? '🔊 HEARING THE RADIO HERE · TAP TO STOP' : '🔊 HEAR THE RADIO HERE'; } document.querySelectorAll('[data-mon]').forEach(x => { x.classList.toggle('on', !!S.mon); x.textContent = S.mon ? '🔊 ON' : '🔊 HEAR HERE'; }); }
   async function monSet(on) { S.mon = !!on; save(); monShow(); if (!A.monitor) return; if (S.mon && !RUN) { const ok = await start(); if (!ok) { S.mon = false; save(); monShow(); return; } } const r = await A.monitor(S.mon, S.monDev || '', S.monDb); if (S.mon && r && r.err) toast('Could not play the radio here: ' + esc(r.err), 5000, 'bad'); else if (S.mon) toast('🔊 The radio plays on ' + esc((r && r.where) || 'this computer\'s speakers') + '.', 3000); }
+  /* Nov 18 review: 🎧 hear my processed voice (kpc-native.js pipe → the monitor output) */
+  A.voiceMon = !!S.vmon;
+  if ($('stVmon')) { $('stVmon').checked = !!S.vmon; $('stVmon').onchange = () => { S.vmon = $('stVmon').checked; A.voiceMon = S.vmon; save(); if (S.vmon && !S.mon) toast('🎧 Turn 🔊 HEAR THE RADIO HERE on too: your voice plays on those speakers (headphones, or it feeds back).', 6000); }; }
+  /* Nov 18 review: 🎚 SET MY LEVELS — the ALC helper. Digital: a steady TUNE tone, the radio's ALC / power read live, TX LEVEL − / + right
+     there until ALC barely moves at full power. Voice: HOLD TO TALK, the 🎙 bar + ALC live, VOICE LEVEL − / +. Without meters (Android
+     while transmitting, a radio that doesn't report ALC) it says to watch the radio's own ALC meter instead. */
+  function lvlHelper(kind) {
+    kind = kind || 'digi';
+    const meter = () => { const m = G.KPCMeters && KPCMeters.last && KPCMeters.last(); return m && Date.now() - (m.at || 0) < 4000 ? m : null; };
+    const advice = () => {
+      const m = meter(); if (!TXING) return kind === 'digi' ? 'Press ▶ SEND A TEST TONE (10 s), then watch here.' : 'Hold 🎙 HOLD TO TALK on the RADIO screen and talk normally ("hello test, KZ4CP"), then watch here.';
+      if (!m || m.alc == null) return 'This radio is not sending its ALC meter here' + (N.native ? ' (Android can\'t read meters while transmitting)' : '') + ': watch the ALC on the radio. Turn ' + (kind === 'digi' ? 'TX LEVEL' : 'VOICE LEVEL') + ' down until it barely moves.';
+      const a = m.alc, po = m.po;
+      if (a > 35) return '🔴 ALC ' + a + ' %: too much. Press − a few times.';
+      if (a > 12) return '🟡 ALC ' + a + ' %: a little high. Press − once or twice.';
+      if (po != null && po < 40) return '🟡 ALC ' + a + ' %, power ' + po + ' %: low. Press + until the power is up (keep ALC under about 10 %).';
+      return '🟢 ALC ' + a + ' %' + (po != null ? ', power ' + po + ' %' : '') + ': good. Leave it here.';
+    };
+    const k = kind === 'digi' ? 'tx' : 'vc';
+    sheet('🎚 Set my levels', `<div class="row"><button type="button" class="b${kind === 'digi' ? ' gold' : ''}" data-lvk="digi">FT8 / DIGITAL</button><button type="button" class="b${kind === 'voice' ? ' gold' : ''}" data-lvk="voice">MY VOICE (SSB)</button></div>
+      <p class="hint">${kind === 'digi' ? 'Radio in DATA-U (USB-D), power where you want it. The aim: full power with the ALC barely moving. Too much ALC = a wide, dirty signal.' : 'The aim: the 🎙 bar green when you talk, the ALC barely moving, full power on your voice peaks.'}</p>
+      ${lvHtml(k)}
+      ${kind === 'digi' ? '<div class="row"><button type="button" class="b gold" id="lhTone">▶ SEND A TEST TONE (10 s)</button></div>' : ''}
+      <div class="st" id="lhAdv" style="font-size:18px;font-weight:700"></div>`);
+    document.querySelectorAll('[data-lvk]').forEach(b => { b.onclick = () => lvlHelper(b.dataset.lvk); });
+    if ($('lhTone')) $('lhTone').onclick = async () => { if (!canKey()) { toast('Connect the radio (CAT) or pick VOX first.', 4000, 'bad'); return; } if (!RUN && !(await start())) return; if (G.KPCDigi && KPCDigi.tune) KPCDigi.tune(); };
+    clearInterval(lvlHelper.t); lvlHelper.t = setInterval(() => { const e = $('lhAdv'); if (!e || $('sheet').hidden) { clearInterval(lvlHelper.t); return; } e.textContent = advice(); }, 400);
+  }
+  if ($('stLvlHelp')) $('stLvlHelp').onclick = () => lvlHelper('digi');
+  document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-lvlh]'); if (b) lvlHelper(b.dataset.lvlh); });
   if ($('stMon')) { $('stMon').onclick = () => monSet(!S.mon); $('stMonDev').onchange = () => { S.monDev = $('stMonDev').value; save(); if (S.mon) A.monitor && A.monitor(true, S.monDev, S.monDb); }; monDevs(); monShow(); }
   document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-mon]'); if (b) monSet(!S.mon); });
   on('run', o => { if (o && S.mon && A.monitor) setTimeout(() => A.monitor(true, S.monDev || '', S.monDb), 300); });
@@ -516,7 +670,7 @@
     const off = Math.abs(dt);
     const e = $('stClk');
     const cal = S.clkOff ? ' Calibrated by ' + (S.clkOff > 0 ? '+' : '') + (S.clkOff / 1000).toFixed(2) + ' s.' : '';
-    const bc = $('stClkCal'); if (bc) { bc.hidden = off < 0.3 && !S.clkOff; bc.textContent = S.clkOff ? '⏱ CLEAR THE CALIBRATION' : '⏱ CALIBRATE (+' + dt.toFixed(1) + ' s)'; }
+    const bc = $('stClkCal'); if (bc) { bc.hidden = off < 0.3 && !S.clkOff; bc.textContent = S.clkOff ? '⏱ CLEAR THE CALIBRATION' : '⏱ CALIBRATE (' + (dt >= 0 ? '+' : '') + dt.toFixed(1) + ' s)'; }
     if (off < 1) { e.textContent = 'Clock: good (about ' + dt.toFixed(1) + ' s off, ' + from + ').' + cal; e.className = 'st ok'; return; }
     e.textContent = 'Clock: about ' + off.toFixed(1) + ' s ' + (dt > 0 ? 'slow' : 'fast') + ' (' + from + '). FT8 needs it right within a second: turn on "set time automatically", or press CALIBRATE and the app corrects for it.' + cal;
     e.className = 'st bad';
@@ -641,8 +795,22 @@
     return ['KPC app report ' + new Date().toISOString(), 'version ' + VER + (LITE ? ' Lite' : '') + ' · ' + (N.native ? 'Android' : N.platform) + ' · ' + navigator.userAgent, 'screen ' + innerWidth + 'x' + innerHeight + ' · online ' + net.online() + ' · queued posts ' + NQ.length,
       'sound: running ' + RUN + ' txing ' + TXING + ' ' + JSON.stringify(au), 'radio: ' + JSON.stringify(catLast) + (G.KPCCat ? ' ' + JSON.stringify(KPCCat.get ? KPCCat.get() : {}) : ''), 'tunes (asked → radio said, then 3 s later): ' + (G.KPCCat && KPCCat.tuneLog ? JSON.stringify(KPCCat.tuneLog()) : '-') + (G.KPCCat && KPCCat.keyPortInfo ? ' · CW key port: ' + JSON.stringify(KPCCat.keyPortInfo()) : '') + (G.KPCCat && KPCCat.modeLog ? ' · dial put back after a mode change: ' + JSON.stringify(KPCCat.modeLog()) : '') + ' · voice: ' + JSON.stringify({ vmod: S.vmod || 'mic', vdb: +S.vdb || 0, mon: !!S.mon }) + (G.KPCModes5 ? ' · cw: ' + JSON.stringify({ via: KPCModes5.S.cw.via, park: KPCModes5.S.cw.park || 'cw', wpm: KPCModes5.S.cw.wpm }) : ''),
       'mode: ' + (G.KPCModes ? JSON.stringify(KPCModes.state()) : '-'), 'decoder: ' + (G.KPCDigi && KPCDigi.diag ? JSON.stringify(KPCDigi.diag()) : '-'), 'remote: ' + (G.KPCRemote ? JSON.stringify(KPCRemote.link()) : '-'), 'sound link (this end as a phone): ' + (G.KPCRemote && KPCRemote.rtcPhone ? JSON.stringify(KPCRemote.rtcPhone()) : '-'), 'sound links (this end as the PC): ' + (G.KPCRemote && KPCRemote.rtcReport ? JSON.stringify(await KPCRemote.rtcReport().catch(e => String(e))) : '-'),
+      'radio log (last 40): ' + (G.KPCCat && KPCCat.catLog ? '\n  ' + KPCCat.catLog(40).join('\n  ') : '-'),
       'settings: ' + JSON.stringify(s), 'log: ' + (G.KPCLog ? KPCLog.count() + ' shown / ' + KPCLog.all().size + ' kept' : '-'), '--- last console lines ---'].concat(CLOG).join('\n');
   }
+  /* Nov 17: 📜 RADIO LOG (the verbose CAT log): what the app sent the radio (>) and what came back (<), live */
+  function catLogSheet() {
+    const K = G.KPCCat; if (!K || !K.catLog) return;
+    const txt = () => K.catLog().join('\n') || '(nothing yet: connect the radio, then turn the dial or tap a spot)';
+    sheet('📜 Radio log', `<p class="hint">The last 200 things the app said to the radio (<b>&gt;</b>) and what the radio answered (<b>&lt;</b>), times in UTC. When a radio does not do what it should, COPY this and send it with the app report. Nothing secret is in it.</p>
+      <pre class="clog" id="clT" style="max-height:52vh;overflow:auto;font:11px/1.35 var(--mono);background:var(--panel2);padding:8px;border-radius:8px;white-space:pre-wrap;word-break:break-all"></pre>
+      <div class="row"><button type="button" class="b gold" id="clCopy">📋 COPY</button><button type="button" class="b" id="clClr">CLEAR</button></div>`, () => K.catLogWatch(null));
+    const show = () => { const e = $('clT'); if (!e) return; const end = e.scrollTop + e.clientHeight >= e.scrollHeight - 20; e.textContent = txt(); if (end) e.scrollTop = e.scrollHeight; };
+    show(); let q = 0; K.catLogWatch(() => { if (!q) q = setTimeout(() => { q = 0; show(); }, 250); });
+    $('clCopy').onclick = async () => { try { await navigator.clipboard.writeText(txt()); toast('Radio log copied.', 2500, 'log'); } catch (e) { toast('Copy did not work here: hold the text to select it.', 4000); } };
+    $('clClr').onclick = () => { K.catLogClear(); show(); };
+  }
+  if ($('stCatLog')) $('stCatLog').onclick = catLogSheet;
   const stRep = $('stReport');
   if (stRep) stRep.onclick = async () => { const t = await report(); try { await navigator.clipboard.writeText(t); toast('The report is copied. Paste it to whoever is fixing the app (nothing secret is in it).', 5000, 'log'); } catch (e) { const ta = $('stAdifT'); ta.hidden = false; ta.value = t; toast('Copy did not work here: the report is in the box under Log files, hold to select it.', 6000); } };
 
@@ -670,13 +838,19 @@
 
   /* ---------------- backup + restore, and 'a new build is out' (Oct 22) ----------------
      The backup = every setting this app keeps (incl. the log file) in one .kpcbackup. RESTORE merges the log and puts the settings back. */
-  const BK_KEYS = ['kpcApp', 'kpcAppDigi', 'kpcAppAprs', 'kpcAppSpots', 'kpcAppAlerts', 'kpcAppUp', 'kpcCat', 'kpcQrz', 'kpcAppDock', 'kpcTheme', 'kpcStyle', 'kpcMode', 'kpcPacks', 'kpcDev', 'kpcLogOpts', 'kpcAppLk', 'kpcAppPotaF', 'kpcPortNick', 'kpcAppOps', 'kpcAppVk', 'kpcApp5', 'kpcAppMeters', 'kpcAppCx', 'kpcAppSkim', 'kpcSkimLoc', 'kpcAppQp', 'kpcAppScope', 'kpcAppRot', 'kpcAppNr', 'kpcAppRigX', 'kpcAppBandMem', 'kpcAppWorks'];
-  function backupText() { const st = {}; BK_KEYS.forEach(k => { const v = localStorage.getItem(k); if (v != null) st[k] = v; }); return JSON.stringify({ kpcbackup: 1, ver: VER, when: Date.now(), settings: st, log: G.KPCLog ? JSON.parse(KPCLog.fileText()) : null }); }
+  const BK_KEYS = ['kpcApp', 'kpcAppDigi', 'kpcAppAprs', 'kpcAppSpots', 'kpcAppAlerts', 'kpcAppUp', 'kpcCat', 'kpcQrz', 'kpcAppDock', 'kpcTheme', 'kpcStyle', 'kpcMode', 'kpcPacks', 'kpcDev', 'kpcLogOpts', 'kpcAppLk', 'kpcAppPotaF', 'kpcPortNick', 'kpcAppOps', 'kpcAppVk', 'kpcApp5', 'kpcAppMeters', 'kpcAppCx', 'kpcAppSkim', 'kpcSkimLoc', 'kpcAppQp', 'kpcAppScope', 'kpcAppRot', 'kpcAppNr', 'kpcAppRigX', 'kpcAppBandMem', 'kpcAppWorks', 'kpcAppTrip', 'kpcAppSdr', 'kpcAppChk', 'kpcAppAutoSpot'   /* Nov 18: trip, radio page, log check, auto spot … */];
+  /* Nov 18 full review (L17): the backup file carries NO passwords, API keys, remote-link key or device id. After a restore the
+     passwords already on this device stay; on a new device they are typed in again. kpcDev never moves (two devices would look like one). */
+  const BK_SECRET = { kpcAppUp: ['qrz.key', 'eqsl.pass', 'wavelog.key'], kpcQrz: ['key'], kpcAppLk: ['pass'], kpcApp: ['rmTok', 'rmId'] }, BK_SKIP = { kpcDev: 1 };
+  const pathGet = (o, p) => p.split('.').reduce((a, k) => a == null ? a : a[k], o), pathSet = (o, p, v) => { const k = p.split('.'), l = k.pop(); let a = o; for (const x of k) { if (a[x] == null || typeof a[x] !== 'object') a[x] = {}; a = a[x]; } a[l] = v; };
+  function bkClean(k, raw) { if (!BK_SECRET[k]) return raw; try { const o = JSON.parse(raw); BK_SECRET[k].forEach(p => { if (pathGet(o, p) != null) pathSet(o, p, ''); }); return JSON.stringify(o); } catch (e) { return raw; } }
+  function bkKeep(k, raw) { if (!BK_SECRET[k]) return raw; try { const o = JSON.parse(raw), here = JSON.parse(localStorage.getItem(k) || '{}'); BK_SECRET[k].forEach(p => { const v = pathGet(here, p); if (v && !pathGet(o, p)) pathSet(o, p, v); }); return JSON.stringify(o); } catch (e) { return raw; } }
+  function backupText() { const st = {}; BK_KEYS.forEach(k => { const v = localStorage.getItem(k); if (v != null && !BK_SKIP[k]) st[k] = bkClean(k, v); }); return JSON.stringify({ kpcbackup: 1, ver: VER, when: Date.now(), settings: st, log: G.KPCLog ? JSON.parse(KPCLog.fileText()) : null }); }
   function restoreText(txt) {
     let j; try { j = JSON.parse(txt); } catch (e) { return { ok: false, msg: 'that is not a KPC backup file' }; }
     if (!j || !j.kpcbackup) return { ok: false, msg: 'that is not a KPC backup file' };
-    let n = 0; if (j.log && G.KPCLog) n = KPCLog.merge(j.log.qso || [], 'file').length;
-    Object.keys(j.settings || {}).forEach(k => { if (BK_KEYS.includes(k)) { try { localStorage.setItem(k, j.settings[k]); } catch (e) {} } });
+    let n = 0; if (j.log && G.KPCLog) n = (KPCLog.restoreRecs ? KPCLog.restoreRecs(j.log.qso || [], 'file').n : KPCLog.merge(j.log.qso || [], 'file').length);   /* Nov 18 (L1): offers back what was deleted here */
+    Object.keys(j.settings || {}).forEach(k => { if (BK_KEYS.includes(k) && !BK_SKIP[k]) { try { localStorage.setItem(k, bkKeep(k, j.settings[k])); } catch (e) {} } });
     return { ok: true, n };
   }
   const bkS = $('stBackup'), bkR = $('stRestore'), bkF = $('stRestoreFile');
@@ -695,7 +869,7 @@
     const last = LS('kpcUpdAt', 0); if (Date.now() - last < 6 * 3600000 && !$('stUpd').dataset.force) return;
     try { const r = await net.fetch('https://kentuckyportableclub.github.io/KPC-Links/app/version.json?v=' + Date.now().toString(36).slice(0, 7), {}, 10000); if (!r.ok) return; const j = await r.json(); SV('kpcUpdAt', Date.now());
       SV('kpcUpdLast', j);
-      if (j.ver && newer(j.ver, VER)) { updBar(j); e.hidden = false; e.className = 'st ok'; e.innerHTML = '⬆ A newer test build is out: <b>' + esc(j.ver) + '</b> (' + esc(j.when || '') + ')' + (j.notes ? ' — ' + esc(j.notes) : '') + (j.where ? ' <a href="' + esc(j.where) + '" target="_blank" rel="noopener">GET IT</a>' : ''); if (LS('kpcUpdSaid', '') !== j.ver) { SV('kpcUpdSaid', j.ver); toast('⬆ A newer test build (' + esc(j.ver) + ') is out. See STATION → Alerts & help.', 7000, 'log'); } }
+      if (j.ver && newer(j.ver, VER)) { updBar(j); e.hidden = false; e.className = 'st ok'; e.innerHTML = '⬆ A newer test build is out: <b>' + esc(j.ver) + '</b> (' + esc(j.when || '') + ')' + (j.notes ? ' — ' + esc(j.notes) : '') + (j.where ? ' <a href="' + esc(j.where) + '" target="_blank" rel="noopener">GET IT</a>' : ''); if (LS('kpcUpdSaid', '') !== j.ver) { SV('kpcUpdSaid', j.ver); toast('⬆ A newer test build (' + esc(j.ver) + ') is out. See STATION → ❓ HELP.', 7000, 'log'); } }
       else { e.hidden = false; e.className = 'st'; e.textContent = 'This is the newest build (' + VER + ').'; }
     } catch (err) { console.warn('update check: ' + (err && err.message)); }
   }
@@ -778,13 +952,13 @@
     saveFile,
     VER, S, save, toast, sheet, shut, go, on, fire, esc, utc, toGrid,
     myCall, myGrid, dist, distUnit, toUnit, pickSerial, portLabel, chipName, native: N.native, platform: N.platform,
-    devices, start, stop, soundLost, setDb, lvSet, dialNow, monSet, lvHtml, lvShow, pttOn, catMsg: () => catLast, canKey, keyCheck, clock, stdCall,
+    devices, start, stop, soundLost, setDb, lvSet, dialNow, monSet, lvHtml, lvShow, pttOn, stopAll, stopAllBtn, lvlHelper, setup, txSince: () => TXT0, _resumed: resumed, catMsg: () => catLast, canKey, keyCheck, clock, stdCall,
     running: () => RUN, txing: () => TXING, rigTips: () => TIPS, rigFam: id => rigFam(id),
-    audio: A, rate: A.rate, bandPlan, net, report, can, backupText, restoreText, headless: HEADLESS, now, gps, pc: PC,
+    audio: A, rate: A.rate, bandPlan, net, report, can, backupText, restoreText, clockCheck: onlineClock, headless: HEADLESS, now, gps, pc: PC,
     cat: () => G.KPCCat || null, catConnected: () => !!(G.KPCCat && KPCCat.connected()),
     /* station = the call that goes out on the air (SEND AS); op = who is at the key (OPERATORS); ctl = the control operator when
        someone else holds the key from afar (set by the remote link), kept apart as Part 97.119 wants */
-    county, gridLL, myCounty,
+    county, gridLL, toGrid, myCounty,
     me: () => ({ cnty: myCounty(), call: myCall(), station: String(S.call || '').toUpperCase(), grid: myGrid(), ref: String(S.ref || '').toUpperCase(), hunt: S.role === 'hunt', goal: +S.goal || 0,
       op: String(S.op || S.call || '').toUpperCase(), ctl: String(CTL || '').toUpperCase() }),
     ctl: c => { if (c !== undefined) { CTL = String(c || '').toUpperCase(); fire('me'); } return CTL; }

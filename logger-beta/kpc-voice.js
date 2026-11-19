@@ -48,13 +48,24 @@
   const fToI16 = f => { let s = ''; for (let i = 0; i < f.length; i++) { const v = Math.max(-1, Math.min(1, f[i])) * 32767 | 0, u = v < 0 ? v + 65536 : v; s += String.fromCharCode(u & 255, u >> 8); } return btoa(s); };
   const up48 = f => { const o = new Float32Array(f.length * 3); for (let i = 0; i < f.length; i++) { const a = f[i], b = i + 1 < f.length ? f[i + 1] : a; o[3 * i] = a; o[3 * i + 1] = a + (b - a) / 3; o[3 * i + 2] = a + 2 * (b - a) / 3; } return o; };
   /* Oct 27: 🎙 VOICE LEVEL (STATION → Sound, S.vdb) scales the memory before it goes out — apart from the FT8 TX LEVEL */
+  /* Nov 18 SSB review: a keyer memory goes through the SAME voice chain as live talk (preset, compressor, VOICE LEVEL, ceiling, the 2.8 kHz
+     band-limit), rendered before it plays: before, a 16 kHz clip went out wide and VOICE LEVEL hard-clipped it */
+  async function shaped(f48) {
+    const VC = G.KPCNative && KPCNative._voiceChain, OAC = G.OfflineAudioContext || G.webkitOfflineAudioContext;
+    if (!VC || !OAC) return vlevel(f48);
+    try {
+      const R = 48000, pad = 1024, ctx = new OAC(1, f48.length + pad, R), b = ctx.createBuffer(1, f48.length, R); b.getChannelData(0).set(f48);
+      const src = ctx.createBufferSource(); src.buffer = b; const ch = VC(ctx, src, ctx.destination, AP.S.voice || 'natural'); ch.gate(true); ch.level(+AP.S.vdb || 0); src.start();
+      const out = (await ctx.startRendering()).getChannelData(0); return out.slice(511);   /* the band-limit's 511-sample delay taken back out */
+    } catch (e) { return vlevel(f48); }
+  }
   const vlevel = f => { const g = Math.pow(10, (+AP.S.vdb || 0) / 20); if (Math.abs(g - 1) < 0.01) return f; const o = new Float32Array(f.length); for (let i = 0; i < f.length; i++) { const v = f[i] * g; o[i] = v > 1 ? 1 : v < -1 ? -1 : v; } return o; };
   async function play(i, quiet) {
     const w = whyNot(); if (w) { if (!quiet) AP.toast(esc(w), 5000, 'bad'); return false; }
     if (PLAYING >= 0 || AP.txing()) { if (!quiet) AP.toast('Something is already transmitting.', 2500); return false; }
     const m = await get(i); if (!m || !m.pcm) { if (!quiet) AP.toast('Memory ' + (i + 1) + ' is empty: record it first.', 3000); return false; }
     PLAYING = i; stopFlag = false; draw(); say('📡 Sending ' + S.names[i] + '…');
-    try { await AP.pttOn(true, { voice: true }); const r = await A.play(vlevel(up48(i16toF(m.pcm))), 0, 'vk'); return !(r && r.state === 'stopped') && !stopFlag; }
+    try { await AP.pttOn(true, { voice: true }); const r = await A.play(await shaped(up48(i16toF(m.pcm))), 0, 'vk'); return !(r && r.state === 'stopped') && !stopFlag; }
     catch (e) { AP.toast('The voice keyer could not send: ' + esc(e.message || e), 5000, 'bad'); return false; }
     finally { await AP.pttOn(false, { voice: true }); PLAYING = -1; draw(); if (!AUTO) say(''); }
   }
@@ -153,7 +164,7 @@
     $('vkDel').onclick = async () => { await put(i, null); HAS.delete(i); draw(); AP.shut(); };
   }
 
-  G.KPCVoice = { S, play, stop, autoOn, autoOff, names: () => S.names.map((n, i) => ({ i, n, has: HAS.has(i) })), playing: () => PLAYING, auto: () => !!AUTO,
+  G.KPCVoice = { _shaped: shaped, S, play, stop, autoOn, autoOff, names: () => S.names.map((n, i) => ({ i, n, has: HAS.has(i) })), playing: () => PLAYING, auto: () => !!AUTO,
     _put: (i, f) => put(i, { pcm: fToI16(f), secs: f.length / RATE, t: Date.now() }).then(() => { HAS.add(i); draw(); }) };
   load().catch(() => draw());
 })(window);

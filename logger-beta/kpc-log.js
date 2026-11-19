@@ -37,14 +37,40 @@
     });
   }
   function idbAll(db) { return new Promise(res => { try { const rq = db.transaction('qso').objectStore('qso').getAll(); rq.onsuccess = () => res(rq.result || []); rq.onerror = () => res([]); } catch (e) { res([]); } }); }
-  function idbPut(recs) {
-    if (!IDB || !recs.length) return Promise.resolve();
-    return new Promise(res => { try { const tx = IDB.transaction('qso', 'readwrite'), st = tx.objectStore('qso'); recs.forEach(r => st.put(r)); tx.oncomplete = () => res(); tx.onerror = () => res(); tx.onabort = () => res(); } catch (e) { res(); } });
+  function idbPut(recs) {   /* → true when the database really took them (Nov 18 full review L3: the answer is checked now) */
+    if (!IDB || !recs.length) return Promise.resolve(true);
+    return new Promise(res => { try { const tx = IDB.transaction('qso', 'readwrite'), st = tx.objectStore('qso'); recs.forEach(r => st.put(r)); tx.oncomplete = () => res(true); tx.onerror = () => res(false); tx.onabort = () => res(false); } catch (e) { res(false); } });
   }
   function idbClear() { if (!IDB) return Promise.resolve(); return new Promise(res => { try { const tx = IDB.transaction('qso', 'readwrite'); tx.objectStore('qso').clear(); tx.oncomplete = () => res(); tx.onerror = () => res(); } catch (e) { res(); } }); }
   /* localStorage is the fallback when IndexedDB is missing (and a safety copy of the last 2,000 while it works) */
-  function lsSave() { try { const live = [...ALL.values()]; SV('kpcAppQso2', idbOk ? live.slice(-2000) : live); } catch (e) {} }
-  async function persist(recs) { lsSave(); await idbPut(recs); }   /* Oct 24: the safety copy first (sync), so a contact survives the app being closed a moment after logging */
+  /* Nov 18 full review (L15): the safety copy is the 2,000 most recently CHANGED records (an edit to an old contact is in it too),
+     not the 2,000 added last. → false when localStorage refused it (full). */
+  function lsSave() {
+    try { let live = [...ALL.values()]; if (idbOk && live.length > 2000) live = live.sort((a, b) => (+a.u || 0) - (+b.u || 0)).slice(-2000);
+      localStorage.setItem('kpcAppQso2', JSON.stringify(live)); return true; } catch (e) { return false; }
+  }
+  /* Nov 18 full review (L3): a contact that could not be stored is never lost in silence: a red NOT SAVED bar on the LOG screen, a retry,
+     and a button for the KPC log file (which holds everything that is in memory right now). */
+  let UNSAVED = 0;
+  async function persist(recs) {   /* Oct 24: the safety copy first (sync), so a contact survives the app being closed a moment after logging */
+    const lsOk = lsSave();
+    let ok = await idbPut(recs);
+    if (IDB && !ok) { await new Promise(r => setTimeout(r, 800)); ok = await idbPut(recs); }
+    const bad = IDB ? !ok && !lsOk || !ok && ALL.size > 2000 : !lsOk;
+    if (bad) { UNSAVED += recs.length; notSaved(IDB ? 'this device\'s storage refused the write (full?)' : 'this device\'s storage is full'); }
+    else if (UNSAVED && ok && (IDB || lsOk)) { UNSAVED = 0; notSaved(''); }
+    return !bad;
+  }
+  function notSaved(why) {
+    let b = $('lgNotSaved');
+    if (!why) { if (b) b.hidden = true; return; }
+    if (!b) { const st = $('lgStrip'); if (!st) return; st.insertAdjacentHTML('beforebegin', '<div class="st bad" id="lgNotSaved" role="alert" style="font-weight:700"></div>'); b = $('lgNotSaved'); }
+    b.hidden = false;
+    b.innerHTML = '⚠ NOT SAVED: ' + esc(why) + '. ' + UNSAVED + ' change' + (UNSAVED === 1 ? '' : 's') + ' are only in memory. <button type="button" class="b gold" id="lgNsSave">💾 SAVE THE KPC LOG FILE NOW</button> <button type="button" class="b" id="lgNsTry">TRY AGAIN</button>';
+    $('lgNsSave').onclick = () => saveFile(fileText(), fname('.kpclog'), 'application/json');
+    $('lgNsTry').onclick = () => persist([...ALL.values()]);
+    if (!notSaved.said || Date.now() - notSaved.said > 60000) { notSaved.said = Date.now(); AP.toast('⚠ A contact could NOT be saved on this device (' + esc(why) + '). Save the KPC log file now (LOG screen).', 9000, 'bad'); }
+  }
 
   function upgrade(o, old) {                               /* an old-style contact (no id) → a record */
     const q = Object.assign({}, o);
@@ -54,11 +80,18 @@
     delete q.myref; q.ref = q.refs[0] || '';
     q.id = q.id || hashId(q); q.v = +q.v || 1; q.u = +q.u || +q.t || Date.now(); q.d = q.d ? 1 : 0; q.src = q.src || (old ? 'old' : DEV);
     q.t = +q.t || Date.now(); q.call = String(q.call || '').toUpperCase();
+    ['mode', 'band'].forEach(k => { if (q[k] != null && typeof q[k] !== 'string') q[k] = typeof q[k] === 'number' ? String(q[k]) : ''; });   /* 0.9.7: a hand-edited log file with an odd type here must not break the screens that read it */
     return q;
   }
+  /* Nov 18 full review (L2, L9): the log is filtered by operator ONLY when OPERATORS are set up (STATION → 👤 ME). Before, a new call sign
+     (vanity, upgrade, a typo fixed) hid every older contact, and a club / Field Day file with other OPERATORs showed nothing. With
+     operators set up, the home station still sees what it logged under any call this device has had (MYC). */
+  const MYC = new Set(LS('kpcAppMyCalls', []));
+  function myCallsAdd() { const c = String(AP.S.call || '').toUpperCase(); if (c && !MYC.has(c)) { MYC.add(c); SV('kpcAppMyCalls', [...MYC].slice(-20)); } }
   function view() {
-    const op = AP.me().op;
-    Q = [...ALL.values()].filter(q => !q.d && (!op || !q.op || q.op === op)).sort((a, b) => a.t - b.t || (a.id < b.id ? -1 : 1));
+    myCallsAdd();
+    const op = AP.me().op, opsOn = !!((AP.S.ops || []).length || AP.S.op), home = !AP.S.op;
+    Q = [...ALL.values()].filter(q => !q.d && (!opsOn || !op || !q.op || q.op === op || (home && MYC.has(q.op)))).sort((a, b) => a.t - b.t || (a.id < b.id ? -1 : 1));
     V = CUR ? Q.filter(q => opOf(q) === CUR) : Q;
   }
   let V = [];   /* Oct 25: the contacts of the log that is open (CUR), or all of them */
@@ -78,7 +111,7 @@
     }
     /* tombstones older than a year go */
     const cut = Date.now() - YEAR; [...ALL.values()].forEach(q => { if (q.d && q.u < cut) ALL.delete(q.id); });
-    ready = true; view(); draw(); AP.fire('log', { why: 'load', n: ALL.size });
+    ready = true; view(); draw(); undoChip(); AP.fire('log', { why: 'load', n: ALL.size });
   }
 
   /* the merge rule: by id, higher v wins, tie → later u wins. Returns the records that changed here. */
@@ -86,17 +119,34 @@
     const changed = [];
     (recs || []).forEach(r => {
       if (!r || !r.call) return;
-      const q = upgrade(r), old = ALL.get(q.id);
-      if (old && (old.v > q.v || (old.v === q.v && old.u >= q.u))) return;
+      let q = upgrade(r); const old = ALL.get(q.id);
+      /* Nov 18 full review (L10, L19): the link merges FIELD BY FIELD — each edit stamps the fields it changed (fu), so a report fixed on the
+         PC and a name added on the phone both survive, and an upload mark never wipes a call-sign fix made on the other device */
+      if (old && why === 'merge' && !old.d && !q.d && (old.fu || q.fu)) { const m = fieldMerge(old, q); if (JSON.stringify(m) === JSON.stringify(old)) return; q = m; }
+      else if (old && (old.v > q.v || (old.v === q.v && old.u >= q.u))) return;
+      if (why === 'file' || why === 'adif') q.u = Math.max(+q.u || 0, Date.now());   /* Nov 18 (L11): new HERE now, so the catch-up sync sends it on */
       ALL.set(q.id, q); changed.push(q);
     });
     if (changed.length) { persist(changed); view(); draw(); AP.fire('log', { why: why || 'merge', recs: changed }); }
     return changed;
   }
+  const NOF = { id: 1, v: 1, u: 1, d: 1, src: 1, fu: 1, ref: 1 };
+  const ftime = (q, k) => (q.fu && +q.fu[k]) || 0;
+  function fieldMerge(a, b) {
+    const win = a.v > b.v || (a.v === b.v && a.u >= b.u) ? a : b, lose = win === a ? b : a;
+    const out = Object.assign({}, win, { fu: Object.assign({}, win.fu || {}) }); let took = false;
+    new Set([...Object.keys(a), ...Object.keys(b)]).forEach(k => {
+      if (NOF[k]) return;
+      if (ftime(lose, k) > ftime(win, k) && JSON.stringify(lose[k]) !== JSON.stringify(win[k])) { out[k] = lose[k]; out.fu[k] = ftime(lose, k); took = true; }
+    });
+    if (took) { out.v = Math.max(+a.v || 1, +b.v || 1) + 1; out.u = Math.max(+a.u || 0, +b.u || 0); }
+    out.ref = (out.refs || [])[0] || '';
+    return out;
+  }
   const changes = since => [...ALL.values()].filter(q => q.u > (+since || 0)).sort((a, b) => a.u - b.u);
   function touch(q) { q.v = (+q.v || 1) + 1; q.u = Date.now(); q.src = DEV; }
   function remove(id) { const q = ALL.get(id); if (!q || q.d) return null; q.d = 1; touch(q); persist([q]); view(); draw(); AP.fire('log', { why: 'del', recs: [q] }); return q; }
-  function edit(id, patch) { const q = ALL.get(id); if (!q) return null; Object.assign(q, patch); q.ref = (q.refs || [])[0] || ''; touch(q); persist([q]); view(); draw(); AP.fire('log', { why: 'edit', recs: [q] }); return q; }
+  function edit(id, patch) { const q = ALL.get(id); if (!q) return null; const now = Date.now(); q.fu = Object.assign({}, q.fu || {}); Object.keys(patch || {}).forEach(k => { if (JSON.stringify(q[k]) !== JSON.stringify(patch[k])) q.fu[k] = now; }); Object.assign(q, patch); q.ref = (q.refs || [])[0] || ''; touch(q); persist([q]); view(); draw(); AP.fire('log', { why: 'edit', recs: [q] }); return q; }
 
   const D = Object.assign({ khz: 14074, mode: 'FT8' }, LS('kpcAppDock', {}));
   const saveD = () => SV('kpcAppDock', D);
@@ -125,10 +175,13 @@
   function bandSel(id, cur) { return `<select id="${id}"><option value="">(from the frequency)</option>${BANDS.map(b => `<option${b[0] === cur ? ' selected' : ''}>${b[0]}</option>`).join('')}</select>`; }
   const bandOf = k => { const b = BANDS.find(r => k >= r[1] && k <= r[2]); return b ? b[0] : ''; };
   const isFT = m => /^FT[428]$/.test(m);
+  const modeGroupL = m => { m = String(m || '').toUpperCase(); return /^(SSB|USB|LSB|AM|FM|DV|FREEDV|DIGITALVOICE)$/.test(m) ? 'PH' : /^CW/.test(m) ? 'CW' : 'DG'; };   /* POTA's three modes */
   const rstDef = m => isFT(m) || /^(FT|JS8|FST4|Q65|JT|MSK|WSPR)/.test(m) ? '' : m === 'CW' || isData(m) ? (m === 'SSTV' ? '595' : '599') : '59';
-  const base = c => String(c || '').toUpperCase().replace(/^([A-Z0-9]+\/)?([A-Z0-9]+)(\/[A-Z0-9]+)?$/, '$2');
+  /* Nov 10: a hand-typed FT8 / FT4 (or other WSJT-type) contact with the boxes empty logs -10 / -10; WSPR has no QSO. Old contacts / the edit sheet / ADIF import keep their blanks. */
+  const typedRst = m => /^(FT|JS8|FST4|Q65|JT|MSK)/.test(m) ? '-10' : rstDef(m);
+  const base = c => { const P = String(c || '').toUpperCase().split('/').filter(Boolean); if (P.length < 2) return P[0] || ''; return P.filter(x => /\d/.test(x) && /[A-Z]/.test(x)).sort((a, b) => b.length - a.length)[0] || P.sort((a, b) => b.length - a.length)[0]; };   /* Nov 10: 'Q4SPB/P' → Q4SPB (the old pattern gave 'P') */
   const dayOf = ms => new Date(ms).toISOString().slice(0, 10);
-  const refList = s => String(s || '').toUpperCase().split(/[\s,;+]+/).map(x => x.trim().replace(/^([A-Z0-9]+)-(\d{1,3})$/, (m, a, b) => a + '-' + b.padStart(4, '0'))).filter(x => /^[A-Z0-9]+-[A-Z0-9]+$/.test(x)).filter((x, i, a) => a.indexOf(x) === i);
+  const refList = s => String(s || '').toUpperCase().split(/[\s,;+]+/).map(x => x.trim().replace(/@.*$/, '').replace(/^([A-Z0-9]+)-(\d{1,3})$/, (m, a, b) => a + '-' + b.padStart(4, '0'))).filter(x => /^[A-Z0-9]+-[A-Z0-9]+$/.test(x)).filter((x, i, a) => a.indexOf(x) === i);
   const myRefs = () => refList(AP.S.ref);
 
   /* ================= MY LOGS (Brandon Oct 25: 'look at PoLo and HAMRS … they start out with a page with a list of your logs and you can
@@ -284,8 +337,13 @@
     const today = dayOf(Date.now());
     /* Oct 25: in an activation log the count is for THIS park (since the last BREAK), so the 10 for the activation is easy to see */
     const m = CUR ? opMeta(CUR) : null, st = m && m.kind === 'act' && (m.stops || []).length ? m.stops[m.stops.length - 1] : null;
-    const n = st ? V.filter(q => q.t >= st.t).length : Q.filter(q => dayOf(q.t) === today).length;
-    const nl = $('lgN') && $('lgN').previousElementSibling; if (nl) nl.textContent = st ? 'THIS PARK' : 'TODAY';
+    /* Nov 18 full review (L13): the count POTA uses — this UTC day only, each call once per band and mode — and a warning at 0000z */
+    const d0 = Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate());
+    const uniq = L => new Set(L.map(q => base(q.call) + '|' + (q.band || bandOf(q.khz)) + '|' + modeGroupL(q.mode))).size;
+    const n = st ? uniq(V.filter(q => q.t >= Math.max(st.t, d0))) : uniq(Q.filter(q => dayOf(q.t) === today));
+    const nl = $('lgN') && $('lgN').previousElementSibling; if (nl) nl.textContent = st ? 'THIS PARK · TODAY UTC' : 'TODAY (UTC)';
+    if (st && counts.day && counts.day !== today && V.some(q => q.t >= st.t && q.t < d0)) AP.toast('🕛 New UTC day: the activation count starts again at 0 (POTA counts each UTC day on its own).', 9000, 'bad');
+    counts.day = today;
     $('lgN').textContent = n; $('lgAll').textContent = CUR ? V.length : Q.length; const al = $('lgAll').previousElementSibling; if (al) al.textContent = CUR ? 'THIS LOG' : 'ALL';
     const g = AP.me().goal;
     $('lgGoalW').hidden = !g; if (g) $('lgGoal').textContent = n + '/' + g;
@@ -325,15 +383,21 @@
       <span class="r">${esc([q.rs, q.rr].filter(Boolean).join('/'))}${upMark(q)}</span>
       <span class="x"><button type="button" data-del="${esc(q.id)}" aria-label="Take ${esc(q.call)} out of the log">✕</button></span></div>`;
   }
+  let SHOWN = 300;
+  document.addEventListener('click', e => { if (e.target.closest && e.target.closest('[data-lgmore]')) { SHOWN += 500; draw(); } });
   function draw() {
     const el = $('lgList');
     /* the open log: its contacts, with the BREAK lines (🚗 next park) and the notes (NOTE / WEATHER / SOLAR) in their places */
-    const m = CUR ? opMeta(CUR) : null, items = V.map(q => ({ t: q.t, h: row(q) }));
+    /* Nov 18 review (L18): only the newest SHOWN rows are drawn (300, + 500 per SHOW MORE): with 10,000 contacts every ENTER redrew them all */
+    if (draw.cur !== CUR) { draw.cur = CUR; SHOWN = 300; }
+    const m = CUR ? opMeta(CUR) : null, V2 = V.length > SHOWN ? V.slice(-SHOWN) : V, t0 = V2.length ? V2[0].t : 0, items = V2.map(q => ({ t: q.t, h: row(q) }));
     if (m) { (m.stops || []).slice(1).forEach(st => items.push({ t: st.t, h: `<div class="qsep brk">🚗 ${esc(AP.utc(st.t))} · BREAK → <b>${esc((st.refs || []).join(' + ') || 'a new spot')}</b>${st.grid ? ' · ' + esc(st.grid) : ''}</div>` }));
       (m.notes || []).forEach(nt => items.push({ t: nt.t, h: `<div class="qsep note">📝 ${esc(AP.utc(nt.t))} · ${esc(nt.text)}</div>` })); }
+    if (V.length > SHOWN) for (let i = items.length - 1; i >= 0; i--) if (items[i].t < t0) items.splice(i, 1);
     items.sort((a, b) => a.t - b.t);
+    const more = V.length > SHOWN ? `<div class="qsep"><button type="button" class="b sm" data-lgmore="1">⬇ SHOW ${Math.min(500, V.length - SHOWN)} OLDER (${V.length - SHOWN} not drawn)</button></div>` : '';
     const head = ''; if ($('lgBarN')) { $('lgBarN').textContent = m ? m.name : 'Every contact (the regular logger)'; $('lgBarC').textContent = V.length + ' contact' + (V.length === 1 ? '' : 's'); $('lgBar').classList.toggle('every', !m); }
-    el.innerHTML = head + (items.length ? items.map(x => x.h).reverse().join('')
+    el.innerHTML = head + (items.length ? items.map(x => x.h).reverse().join('') + more
       : '<div class="empty">' + (ready ? 'No contacts yet. Type a call sign below and press the gold button — or work someone on the FT8 screen and it lands here by itself. Type <b>HELP</b> in the CALL box for the commands.' : 'Opening the log…') + '</div>');
     counts();
   }
@@ -386,8 +450,9 @@
       <p class="hint">${q ? 'Station ' + esc(q.station || '?') + ' · operator ' + esc(q.op || '?') + (q.ctl ? ' · control op ' + esc(q.ctl) : '') + '. ' : ''}Times are UTC. The band follows the frequency; pick one only when there is no frequency. Two park numbers with a space = a 2-fer.</p>`,
       () => {
         const call = v('edCall', true).replace(/[<>\s]/g, ''); if (!call || call.length < 3) { AP.toast((q ? 'Not changed' : 'Not added') + ': that call sign is too short.', 3000, 'bad'); return; }
-        const kz = parseFloat(String(v('edKhz')).replace(',', '.')), khz = isFinite(kz) && kz > 100 ? Math.round(kz * 1000) / 1000 : 0, bpick = v('edBand');
+        const kz0 = parseFloat(String(v('edKhz')).replace(',', '.')), kz = isFinite(kz0) && kz0 > 0 && kz0 < 1000 ? kz0 * 1000 : kz0, khz = isFinite(kz) && kz > 100 ? Math.round(kz * 1000) / 1000 : 0, bpick = v('edBand');   /* Nov 18 (L6): '14.250' is MHz = 14250 kHz */
         const band = khz ? (bandOf(khz) || bpick) : bpick, t = whenOf(v('edDate'), v('edTime'), t0), mode = modeVal('edMode') || nq.mode;
+        if (!khz && !band) { AP.toast((q ? 'Not changed' : 'Not added') + ': it needs a frequency (kHz or MHz) or a band.', 4000, 'bad'); return false; }
         const patch = { call, mode, t, khz, band, rs: v('edRs'), rr: v('edRr'), st: v('edSt', true), g: v('edG', true), refs: refList(v('edRefs')), myrefs: refList(v('edMy')), name: v('edName'), note: v('edNote'), mc: v('edMc'), cn: v('edCn') };
         if (q) { edit(id, patch); AP.toast('✅ ' + esc(call) + ' fixed.', 2500, 'log'); }
         else { const r = add(Object.assign({}, patch, { opn: CUR || '' })); AP.toast(r.ok ? '✅ ' + esc(call) + ' added at ' + esc(AP.utc(t)) + ' UTC.' : 'Not added: ' + esc(r.msg), 3000, r.ok ? 'log' : 'bad'); }
@@ -426,7 +491,7 @@
       <p class="hint">This is what goes in the log for contacts you type in by hand. Picking a BAND puts the usual frequency for that band and mode. Two park numbers with a space = a 2-fer (every contact counts for both). The FT8 screen uses its own band and mode. You can also type <b>20m</b>, <b>CW</b>, <b>14.070</b> or <b>.247</b> in the CALL box and press the gold button.</p>`,
       () => {
         if ($('shMode')) D.mode = modeVal('shMode') || D.mode;
-        const k = parseFloat($('shKhz') && $('shKhz').value), bp = $('shBand') && $('shBand').value;
+        const k0 = parseFloat(String($('shKhz') && $('shKhz').value).replace(',', '.')), k = k0 > 0 && k0 < 1000 ? k0 * 1000 : k0, bp = $('shBand') && $('shBand').value;   /* Nov 18 (L6): MHz typed = fine */
         if (bp && (!isFinite(k) || bandOf(k) !== bp)) D.khz = bandKhz(bp, D.mode); else if (isFinite(k) && k > 100) D.khz = Math.round(k * 1000) / 1000;
         if ($('shRef')) { AP.S.ref = refList($('shRef').value).join(' '); AP.save(); $('stRef').value = AP.S.ref; }
         saveD(); dockChips();
@@ -491,9 +556,9 @@
   /* ---------------- call book (Brandon Oct 24: 'the auto look up is not working … the world will be able to use it') ----------------
      QRZ XML when the ham has a QRZ XML subscription (worldwide, STATION → Log files → 📖 CALL LOOK-UP), else free:
      callook.info (FCC) for US calls, HamDB for the rest. Answers kept 30 days in localStorage kpcAppLkC. */
-  const LK = (() => { try { return JSON.parse(localStorage.getItem('kpcAppLk') || '{}'); } catch (e) { return {}; } })();
+  const LK = (() => { try { const o = JSON.parse(localStorage.getItem('kpcAppLk') || '{}'); return G.KPCSec ? KPCSec.openObj(o, ['pass']) : o; } catch (e) { return {}; } })();   /* Nov 18 (SEC-2): the QRZ password sealed at rest */
   const LKC = (() => { try { return JSON.parse(localStorage.getItem('kpcAppLkC') || '{}'); } catch (e) { return {}; } })();
-  const lkSave = () => { try { localStorage.setItem('kpcAppLk', JSON.stringify(LK)); } catch (e) {} };
+  const lkSave = () => { try { localStorage.setItem('kpcAppLk', JSON.stringify(G.KPCSec ? KPCSec.sealObj(LK, ['pass']) : LK)); } catch (e) {} };
   const tc = x => { x = String(x || '').trim(); return !x || /[a-z]/.test(x) ? x : x.toLowerCase().replace(/\b([a-z])/g, m => m.toUpperCase()); };
   const okCall = c => /^[A-Z0-9]{1,3}[0-9][A-Z0-9]{0,3}[A-Z]$/.test(c) && /\d/.test(c);
   const jget = async url => { const r = await AP.net.raw(url, { ms: 9000 }); if (!r.ok) throw new Error(r.err || 'HTTP ' + r.status); return r.text; };
@@ -586,7 +651,12 @@
     if (!c || c.length < 3) { el.innerHTML = ''; return; }
     const hit = Q.filter(q => base(q.call) === c);
     const last = hit[hit.length - 1];
-    const mine = !hit.length ? '<span class="nw">🆕 First time with this call.</span>' : `🔁 Worked ${hit.length} time${hit.length > 1 ? 's' : ''} · last <b>${esc(last.band || bandOf(last.khz))} ${esc(last.mode)}</b> on ${esc(new Date(last.t).toISOString().slice(0, 10))}${last.refs && last.refs.length ? ' · <b>' + esc(last.refs.join('+')) + '</b>' : ''}`;
+    /* Nov 18 full review (L20): a real DUPE (same call, band, mode and UTC day — and my same park) says so in red */
+    const dB = bandOf(D.khz), dM = modeGroupL(D.mode), dDay = dayOf(Date.now()), myp = myRefs().join('+');
+    const dupe = hit.some(q => dayOf(q.t) === dDay && (q.band || bandOf(q.khz)) === dB && modeGroupL(q.mode) === dM && (q.myrefs || []).join('+') === myp);
+    { const gb = $('eGo') || document.querySelector('#scrLog .go'); if (gb) gb.classList.toggle('dupe', dupe); }   /* the gold LOG button turns red-edged on a dupe too */
+    const dTag = dupe ? '<span class="st bad" id="eDupe" style="display:inline-block;padding:2px 8px;font-weight:700">DUPE: ' + esc(dB) + ' ' + esc(D.mode) + ' today (UTC)</span> ' : '';
+    const mine = dTag + (!hit.length ? '<span class="nw">🆕 First time with this call.</span>' : `🔁 Worked ${hit.length} time${hit.length > 1 ? 's' : ''} · last <b>${esc(last.band || bandOf(last.khz))} ${esc(last.mode)}</b> on ${esc(new Date(last.t).toISOString().slice(0, 10))}${last.refs && last.refs.length ? ' · <b>' + esc(last.refs.join('+')) + '</b>' : ''}`);
     el.innerHTML = mine;
     if (!okCall(c) || LK.off) return;
     clearTimeout(lookUp.t); lookUp.t = setTimeout(async () => {
@@ -610,12 +680,18 @@
       const up = {};
       if (!q.mc && AP.me().cnty) up.mc = AP.me().cnty;
       const bk = await callBook(q.call).catch(() => null);   /* name / state / grid for contacts logged from FT8 or the remote */
-      if (bk) { if (!q.name && bk.name) up.name = bk.name; if (!q.st && /^[A-Z]{2}$/.test(bk.st || '')) up.st = bk.st; if (!q.g && bk.g) up.g = bk.g; if (!q.cn && bk.cn && !(q.refs || []).length) up.cn = bk.cn; }
+      /* Nov 18 full review (L12): a station at a park, /P /M /MM, or with a prefix (VE3/K4ABC) is NOT at its call-book home: state and grid
+         come from the park's pin (below), never from the home address */
+      const away = (q.refs || []).length > 0 || /\/(P|M|MM|AM|QRP|PM)$/.test(q.call) || /^[A-Z0-9]{1,4}\/[A-Z0-9]/.test(q.call);
+      if (bk) { if (!q.name && bk.name) up.name = bk.name; if (!away && !q.st && /^[A-Z]{2}$/.test(bk.st || '')) up.st = bk.st; if (!away && !q.g && bk.g) up.g = bk.g; if (!q.cn && bk.cn && !away) up.cn = bk.cn; }
+      if (away && (!q.g || !q.st) && q.ref && G.KPCParks && KPCParks.loaded) {
+        for (const pk of await KPCParks.loaded()) { const x = (pk.parks || []).find(z => z.ref === q.ref); if (x && isFinite(x.la)) { if (!q.g && AP.toGrid) up.g = AP.toGrid(x.la, x.lo); if (!q.st && /^[A-Z]{2}$/.test(x.st || '')) up.st = x.st; break; } }
+      }
       if (!q.cn && AP.county) {
         let p = null;
         if (q.ref && G.KPCParks && KPCParks.loaded) { for (const pk of await KPCParks.loaded()) { const x = (pk.parks || []).find(z => z.ref === q.ref); if (x && isFinite(x.la)) { p = { la: x.la, lo: x.lo }; break; } } }
         const g6 = up.g || q.g || '';
-        if (!p && !up.cn && bk && isFinite(bk.la) && bk.la && !(q.refs || []).length) p = { la: bk.la, lo: bk.lo };   /* at home: the call book's address */
+        if (!p && !up.cn && bk && isFinite(bk.la) && bk.la && !away) p = { la: bk.la, lo: bk.lo };   /* at home: the call book's address */
         if (!p && !up.cn && /^[A-R]{2}\d{2}[A-X]{2}$/i.test(g6)) p = AP.gridLL(g6);
         if (p && !up.cn) { const v = await AP.county(p.la, p.lo); if (v) { up.cn = v.st + ',' + v.c; if (!q.st && v.st) up.st = v.st; } }
       }
@@ -625,7 +701,7 @@
   function add(o) {
     const call = String(o.call || '').toUpperCase().replace(/[<>\s]/g, '');
     if (!call || call.length < 3) return { ok: false, msg: 'that call sign is too short' };
-    const khz = 'khz' in o && o.band && !+o.khz ? 0 : (+o.khz || D.khz), mode = (o.mode || D.mode || 'FT8').toUpperCase(), me = AP.me(), t = +o.t || Date.now();
+    const khz = 'khz' in o && o.band && !+o.khz ? 0 : (+o.khz || D.khz), mode = (o.mode || D.mode || 'FT8').toUpperCase(), me = AP.me(), t = +o.t || Math.round(AP.now ? AP.now() : Date.now());   /* Nov 18 (L23): the CALIBRATEd clock */
     const refs = Array.isArray(o.refs) ? refList(o.refs.join(' ')) : refList(o.ref);
     const q = {
       id: newId(t), v: 1, u: Date.now(), d: 0, src: DEV,
@@ -653,13 +729,13 @@
     if (!raw) { AP.toast('Type a call sign first (or HELP for the commands).', 2500, 'bad'); $('eCall').focus(); return; }
     if (command(raw)) { $('eCall').value = ''; $('eLook').innerHTML = ''; return; }
     /* Oct 25 (PoLo): several calls with commas = one contact each, same reports */
-    const calls = raw.split(/\s*,\s*/).map(c => c.replace(/\./g, '/')).filter(Boolean);
+    const calls = raw.split(/[\s,;]+/).map(c => c.replace(/\./g, '/')).filter(Boolean);
     const st = (!isFT(D.mode) && v('eSt', true)) || MORE.st;
     let r = null, n = 0;
     for (const call of calls) {
       const lh = calls.length === 1 && LKHIT && LKHIT.call === base(call) ? LKHIT : null;
       const t = D.hold && !isFT(D.mode) ? D.hold : 0;
-      r = add({ call, t, khz: D.khz, mode: D.mode, rs: $('eRs').value.trim() || rstDef(D.mode), rr: $('eRr').value.trim() || rstDef(D.mode), st: calls.length === 1 ? (st || (lh && /^[A-Z]{2}$/.test(lh.st) ? lh.st : '')) : '', refs: MORE.refs, g: calls.length === 1 ? (MORE.g || (lh ? lh.g : '')) : '', name: calls.length === 1 ? (MORE.name || (lh ? lh.name : '')) : '', note: MORE.note, cx: G.KPCContest ? KPCContest.entryCx() : null });
+      r = add({ call, t, khz: D.khz, mode: D.mode, rs: $('eRs').value.trim() || typedRst(D.mode), rr: $('eRr').value.trim() || typedRst(D.mode), st: calls.length === 1 ? (st || (lh && /^[A-Z]{2}$/.test(lh.st) ? lh.st : '')) : '', refs: MORE.refs, g: calls.length === 1 ? (MORE.g || (lh ? lh.g : '')) : '', name: calls.length === 1 ? (MORE.name || (lh ? lh.name : '')) : '', note: MORE.note, cx: G.KPCContest ? KPCContest.entryCx() : null });
       if (!r.ok) { AP.toast('Not logged: ' + esc(r.msg) + (calls.length > 1 ? ' (' + esc(call) + ')' : ''), 4000, 'bad'); return; }
       n++; if (D.hold) { D.hold += 60000; saveD(); }
     }
@@ -688,18 +764,27 @@
     if (q.mc) out.push(cty(q.mc).replace(/^([^,]+),/, '$1 County,'));
     const op = q.op || '', st = q.station || '';
     if (op && st && op !== st) out.push('op ' + op);
-    return out.join(' · ');
+    return out.join(' - ');
   }
-  function adif(list, onlyMy) {
-    const me = AP.me(), f = (k, v2) => v2 ? '<' + k + ':' + String(v2).length + '>' + v2 + ' ' : '';
+  /* Nov 18 full review:
+     L4  a contact with a 2-fer / 3-fer activator = ONE LINE PER THEIR PARK (each with its own SIG_INFO), as POTA's P2P rules want;
+         o.one (QRZ / eQSL / Wavelog uploads) keeps one line per contact, the other parks in the comment.
+     L7  no FREQ tag when the frequency isn't known (a band-only contact), never FREQ 0.000000.
+     L14 ADI is ASCII: the comment joins with ' - ', accented letters go plain in the file (the app keeps the real ones). */
+  const asc7 = v => String(v).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[ßæøÆØ]/g, c => ({ 'ß': 'ss', 'æ': 'ae', 'ø': 'o', 'Æ': 'AE', 'Ø': 'O' })[c]).replace(/[^\x20-\x7e\n]/g, '');
+  function adif(list, onlyMy, o) {
+    o = o || {};
+    const me = AP.me(), f = (k, v2) => { if (!v2 && v2 !== 0) return ''; v2 = asc7(v2); return v2 ? '<' + k + ':' + v2.length + '>' + v2 + ' ' : ''; };
     list = list || Q;
     let out = 'KPC app log (' + list.length + ' contacts' + (onlyMy ? ', park ' + onlyMy : '') + ')\n<ADIF_VER:5>3.1.4 <PROGRAMID:3>KPC <PROGRAMVERSION:' + AP.VER.length + '>' + AP.VER + '\n<EOH>\n';
     for (const q of list) {
       const d = new Date(q.t), day = d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()), tm = pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds());
-      const refs = q.refs || [], r0 = refs[0] || '', more = refs.slice(1);
+      const refs = q.refs || [];
       const mine = (q.myrefs && q.myrefs.length ? q.myrefs : ['']).filter(m => !onlyMy || m === onlyMy);
-      for (const my of mine) {
-        out += f('CALL', q.call) + f('QSO_DATE', day) + f('TIME_ON', tm) + f('BAND', q.band) + f('FREQ', (q.khz / 1000).toFixed(6)) +
+      const theirs = o.one || refs.length < 2 ? [refs[0] || ''] : refs;
+      for (const my of mine) for (const r0 of theirs) {
+        const more = o.one ? refs.slice(1) : [];
+        out += f('CALL', q.call) + f('QSO_DATE', day) + f('TIME_ON', tm) + f('BAND', q.band || bandOf(q.khz)) + (+q.khz > 0 ? f('FREQ', (q.khz / 1000).toFixed(6)) : '') +
           f('MODE', adMode(q.mode)[0]) + f('SUBMODE', adMode(q.mode)[1]) +
           f('RST_SENT', q.rs) + f('RST_RCVD', q.rr) + f('STATE', q.st) + f('GRIDSQUARE', q.g) + f('NAME', q.name) +
           f('STATION_CALLSIGN', q.station || me.call) + f('OPERATOR', q.op || q.station || me.call) + f('APP_KPC_CONTROL_OP', q.ctl) + f('MY_GRIDSQUARE', q.mg || me.grid) +
@@ -709,19 +794,20 @@
           (LO.ad.pwr ? f('TX_PWR', String(q.pw || '').replace(/[^0-9.]/g, '')) : '') + (LO.ad.rig ? f('MY_RIG', q.rig) + f('MY_ANTENNA', q.ant) : '') +
           (LO.ad.cnty ? f('MY_CNTY', q.mc) + f('MY_STATE', String(q.mc || '').split(',')[0].length === 2 ? String(q.mc).split(',')[0] : '') + f('CNTY', q.cn) : '') +
           (q.cx && G.KPCContest ? KPCContest.adifTags(q) : '') +
-          f('COMMENT', [LO.ad.auto ? autoNote(q, my) : '', LO.ad.note ? q.note : '', more.length ? 'also ' + more.join(' ') : ''].filter(Boolean).join(' · ')) + '<EOR>\n';
+          f('COMMENT', (() => { const an = LO.ad.auto ? autoNote(q, my) : '', nt = LO.ad.note ? String(q.note || '') : ''; return [an && !nt.replace(/ · /g, ' - ').includes(an) ? an : '', nt, more.length ? 'also ' + more.join(' ') : ''].filter(Boolean).join(' - '); })())   /* Nov 18: an imported ADIF already has the automatic comment: not twice */ + '<EOR>\n';
       }
     }
     return out;
   }
-  function fname(ext, park) { return 'KPC-' + (AP.me().call || 'log').replace(/[^A-Z0-9]/gi, '') + (park ? '-' + park : '') + '-' + new Date().toISOString().slice(0, 10) + (ext || '.adi'); }
+  /* Nov 18 review (L25): the file carries the date of its first contact (the activation's date), not today's */
+  function fname(ext, park, list) { const L = list || (park ? Q.filter(q => (q.myrefs || []).includes(park)) : V.length ? V : Q), t = L.length ? Math.min(...L.map(q => +q.t || Date.now())) : Date.now(); return 'KPC-' + (AP.me().call || 'log').replace(/[^A-Z0-9]/gi, '') + (park ? '-' + park : '') + '-' + new Date(t).toISOString().slice(0, 10) + (ext || '.adi'); }
   const saveFile = (txt, name, mime) => AP.saveFile(txt, name, mime);   /* Oct 22: Android needs the plugin (see kpc-app.js) */
   $('stAdif').onclick = () => {
     if (!Q.length) { AP.toast('Nothing in the log yet.', 3000, 'bad'); return; }
     const parks = [...new Set(Q.flatMap(q => q.myrefs || []))];
     if (parks.length > 1) {                                /* more than one of my parks in the log: one file per park */
       AP.sheet('Which park?', '<p class="hint">Your log has contacts from more than one park. POTA wants one file per park.</p><div class="row">' +
-        parks.map(p => `<button type="button" class="b gold" data-park="${esc(p)}">${esc(p)}</button>`).join('') + '<button type="button" class="b" data-park="*">EVERYTHING IN ONE FILE</button></div>');
+        parks.map(p => `<button type="button" class="b gold" data-park="${esc(p)}">${esc(p)}</button>`).join('') + '<button type="button" class="b" data-park="*">EVERYTHING IN ONE FILE</button></div><p class="hint">⚠ EVERYTHING IN ONE FILE is for your own records or QRZ: <b>don\'t upload it to POTA</b> (POTA wants one file per park).</p>');
       document.querySelectorAll('[data-park]').forEach(b => { b.onclick = () => { AP.shut(); const p = b.dataset.park === '*' ? '' : b.dataset.park; const txt = adif(p ? Q.filter(q => (q.myrefs || []).includes(p)) : Q, p); saveFile(txt, fname('.adi', p)); show(txt); }; });
       return;
     }
@@ -740,41 +826,114 @@
     if (!Q.length) return;
     AP.sheet('Clear the log?', `<p class="hint">This takes all ${Q.length} of ${esc(AP.me().op || 'your')} contacts out of this device. Save the ADIF or KPC log file first if you still need them. A phone or PC that syncs with this one learns they are gone too.</p>
       <div class="row"><button type="button" class="b halt" id="shYes">YES, CLEAR IT</button><button type="button" class="b" id="shNo">KEEP MY LOG</button></div>`);
-    $('shYes').onclick = () => { const gone = Q.map(q => { q.d = 1; touch(q); return q; }); persist(gone); view(); draw(); AP.shut(); AP.fire('log', { why: 'clear', recs: gone }); AP.toast('The log is empty now.', 3000); };
+    $('shYes').onclick = () => { const gone = Q.map(q => { q.d = 1; touch(q); return q; }); persist(gone); view(); draw(); AP.shut(); AP.fire('log', { why: 'clear', recs: gone }); SV('kpcAppLastClear', { at: Date.now(), ids: gone.map(q => q.id) }); undoChip(); AP.toast('The log is empty now. ↩ UNDO CLEAR on the LOG screen brings it back (30 days).', 5000); };
     $('shNo').onclick = () => AP.shut();
   };
 
+  /* Nov 18 review (L22): ↩ UNDO CLEAR for 30 days after a CLEAR (the cleared contacts are tombstones: they come back, and to the other device too) */
+  function undoChip() {
+    const lc = LS('kpcAppLastClear', null), st = $('lgStrip'); if (!st) return;
+    let b = $('lgUndo'); const ok = lc && lc.ids && lc.ids.length && Date.now() - lc.at < 30 * 864e5 && lc.ids.some(id => { const q = ALL.get(id); return q && q.d; });
+    if (!ok) { if (b) b.remove(); return; }
+    if (!b) { st.insertAdjacentHTML('beforeend', '<button type="button" class="chip" id="lgUndo"></button>'); b = $('lgUndo'); }
+    b.textContent = '↩ UNDO CLEAR (' + lc.ids.length + ')';
+    b.onclick = () => { const k = revive(lc.ids.map(id => ALL.get(id)).filter(q => q && q.d)); try { localStorage.removeItem('kpcAppLastClear'); } catch (e) {} undoChip(); AP.toast('↩ ' + k + ' contact' + (k === 1 ? '' : 's') + ' back in the log.', 4000, 'log'); };
+  }
   /* ---------------- the KPC log file (.kpclog): every record as JSON, for moving a log between devices with no link ---------------- */
   function fileText() { return JSON.stringify({ kpclog: 1, ver: AP.VER, dev: DEV, when: Date.now(), n: ALL.size, qso: [...ALL.values()] }); }
   function importText(txt) {
     let j; try { j = JSON.parse(txt); } catch (e) { j = null; }
-    if (j && Array.isArray(j.qso)) return { ok: true, n: merge(j.qso, 'file').length, of: j.qso.length };
-    if (/<EOR>/i.test(txt)) { const recs = adifParse(txt); return { ok: true, n: merge(recs, 'adif').length, of: recs.length }; }
+    if (j && Array.isArray(j.qso)) return restoreRecs(j.qso, 'file');
+    if (/<EOR>/i.test(txt)) { const recs = adifParse(txt), r = restoreRecs(recs, 'adif'); r.skipped = adifParse.skipped || 0; return r; }
     return { ok: false, msg: 'that is not a KPC log file or an ADIF file' };
+  }
+  /* Nov 18 full review (L1): a RESTORE could never bring back what was deleted or CLEARed here: the delete has the higher edit count, so
+     the merge kept it deleted. Now the file is merged as before, and contacts that are live in the file but deleted here are counted
+     and offered back ('Bring back N deleted contacts?'). Nothing comes back without the yes. */
+  function deadIn(recs) {
+    const out = [];
+    (recs || []).forEach(r => { if (!r || !r.call || r.d) return; const q = upgrade(r), h = ALL.get(q.id); if (h && h.d) out.push(q); });
+    return out;
+  }
+  function revive(list) {
+    const back = [];
+    (list || []).forEach(q => { const h = ALL.get(q.id); if (!h || !h.d) return; const n = Object.assign({}, q, { d: 0, v: Math.max(+h.v || 1, +q.v || 1) + 1, u: Date.now(), src: DEV }); ALL.set(n.id, n); back.push(n); });
+    if (back.length) { persist(back); view(); draw(); AP.fire('log', { why: 'edit', recs: back }); }
+    return back.length;
+  }
+  function restoreRecs(recs, why) {
+    /* Nov 18 (L16): an ADIF line with no APP_KPC_ID that is a contact already here (same call, minute, band, mode) takes that contact's id,
+       so re-importing your own file never doubles the log */
+    if (why === 'adif') {
+      const key = q => [q.call, Math.floor((+q.t || 0) / 60000), String(q.band || '').toLowerCase(), String(q.mode || '').toUpperCase()].join('|'), have = new Map();
+      ALL.forEach(q => { const k = key(q); if (!have.has(k) || !q.d) have.set(k, q.id); });
+      (recs || []).forEach(r => { if (r && !r.id) { const id = have.get(key(r)); if (id) r.id = id; } });
+    }
+    const dead = deadIn(recs), n = merge(recs, why).length;
+    if (dead.length) setTimeout(() => {
+      AP.sheet('Bring back deleted contacts?', `<p>${dead.length} contact${dead.length > 1 ? 's' : ''} in this file ${dead.length > 1 ? 'were' : 'was'} deleted or CLEARed on this device${dead.length > 1 ? '' : ''}. Bring ${dead.length > 1 ? 'them' : 'it'} back?</p>
+        <p class="hint">A phone or PC that syncs with this one gets them back too.</p>
+        <div class="row"><button type="button" class="b gold" id="shRevive">↩ BRING BACK ${dead.length}</button><button type="button" class="b" id="shNoRev">LEAVE THEM DELETED</button></div>`);
+      $('shRevive').onclick = () => { const k = revive(dead); AP.shut(); AP.toast('↩ ' + k + ' contact' + (k === 1 ? '' : 's') + ' back in the log.', 4000, 'log'); };
+      $('shNoRev').onclick = () => AP.shut();
+    }, 50);
+    return { ok: true, n, of: (recs || []).length, dead: dead.length };
   }
   function adifParse(txt) {
     const body = txt.replace(/^[\s\S]*?<EOH>/i, ''), out = [];
+    adifParse.skipped = 0;
     body.split(/<EOR>/i).forEach(rec => {
       const F = {}; rec.replace(/<([A-Z0-9_]+):(\d+)(?::[^>]*)?>/gi, (m, k, n, off) => { F[k.toUpperCase()] = rec.substr(off + m.length, +n); return m; });
       if (!F.CALL || !F.QSO_DATE) return;
-      const tm = (F.TIME_ON || '0000').padEnd(6, '0'), d = F.QSO_DATE;
+      const tm = (F.TIME_ON || '0000').trim().padEnd(6, '0'), d = F.QSO_DATE.trim();
       const t = Date.UTC(+d.slice(0, 4), +d.slice(4, 6) - 1, +d.slice(6, 8), +tm.slice(0, 2), +tm.slice(2, 4), +tm.slice(4, 6));
+      /* Nov 18 public-release review (0.9.7): a line from a damaged file whose call sign or date cannot be read is counted and left out.
+         Before, a bad date was logged as a contact made NOW, and a wrong field length put the next tags inside the call sign. */
+      F.CALL = F.CALL.trim();
+      if (!/^[^\s<>]{3,20}$/.test(F.CALL) || !/^\d{8}$/.test(d) || !/^\d{6}/.test(tm) || !isFinite(t) || +d.slice(4, 6) < 1 || +d.slice(4, 6) > 12 || +d.slice(6, 8) < 1 || +d.slice(6, 8) > 31 || +tm.slice(0, 2) > 23 || +tm.slice(2, 4) > 59) { adifParse.skipped++; return; }
       const khz = F.FREQ ? Math.round(parseFloat(F.FREQ) * 1e6) / 1000 : 0, sub = (F.SUBMODE || '').toUpperCase(), mo = (F.MODE || '').toUpperCase(), mode = sub && sub !== 'USB' && sub !== 'LSB' ? (sub === 'VARA HF' ? 'VARA' : sub) : sub || mo;   /* any mode is kept as written; USB/LSB stay USB/LSB */
-      const refs = refList([F.APP_KPC_REFS || '', F.SIG_INFO || F.POTA_REF || ''].join(' '));
+      const refs = refList([F.APP_KPC_REFS || '', F.SIG_INFO || '', F.POTA_REF || ''].join(' '));   /* Nov 18 (L21): PoLo / HAMRS park LISTS in POTA_REF / MY_POTA_REF are read whole */
       out.push({ id: F.APP_KPC_ID || '', t, call: F.CALL.toUpperCase(), khz, band: (F.BAND || bandOf(khz)).toLowerCase(), mode, rs: F.RST_SENT || '', rr: F.RST_RCVD || '', st: F.STATE || '', g: F.GRIDSQUARE || '', name: F.NAME || '', note: F.COMMENT || '',
-        refs, myrefs: refList(F.MY_SIG_INFO || F.MY_POTA_REF || ''), station: F.STATION_CALLSIGN || '', mg: F.MY_GRIDSQUARE || '', mc: F.MY_CNTY || '', cn: F.CNTY || '', op: F.OPERATOR || F.STATION_CALLSIGN || '', ctl: F.APP_KPC_CONTROL_OP || '', pw: F.TX_PWR || '', rig: F.MY_RIG || '', ant: F.MY_ANTENNA || '', v: 1, u: t, src: 'adif' });
+        refs, myrefs: refList((F.MY_SIG_INFO || '') + ' ' + (F.MY_POTA_REF || '')), station: F.STATION_CALLSIGN || '', mg: F.MY_GRIDSQUARE || '', mc: F.MY_CNTY || '', cn: F.CNTY || '', op: F.OPERATOR || F.STATION_CALLSIGN || '', ctl: F.APP_KPC_CONTROL_OP || '', pw: F.TX_PWR || '', rig: F.MY_RIG || '', ant: F.MY_ANTENNA || '', v: 1, u: t, src: 'adif' });
     });
-    return out;
+    /* Nov 18 full review (L5): a 2-fer is written one line per park (mine and theirs): lines of the SAME contact (same APP_KPC_ID, or with
+       no id the same call, minute, band and mode) are joined back into one contact with all the parks */
+    const by = new Map(), joined = [];
+    for (const r of out) {
+      const k = r.id ? 'i' + r.id : 'k' + [r.call, Math.floor(r.t / 60000), r.band, r.mode, r.station].join('|');
+      const h = by.get(k);
+      if (!h) { by.set(k, r); joined.push(r); continue; }
+      r.refs.forEach(x => { if (!h.refs.includes(x)) h.refs.push(x); }); r.myrefs.forEach(x => { if (!h.myrefs.includes(x)) h.myrefs.push(x); });
+    }
+    return joined;
   }
   const bSave = $('stKpcSave'), bAdd = $('stKpcAdd'), fIn = $('stKpcFile');
   if (bSave) bSave.onclick = () => { if (!ALL.size) { AP.toast('Nothing in the log yet.', 3000, 'bad'); return; } saveFile(fileText(), fname('.kpclog'), 'application/json'); };
-  if (bAdd && fIn) { bAdd.onclick = () => fIn.click(); fIn.onchange = async () => { const f = fIn.files && fIn.files[0]; fIn.value = ''; if (!f) return; const r = importText(await f.text()); AP.toast(r.ok ? '✅ ' + r.n + ' of ' + r.of + ' contacts were new or newer and went into the log.' : 'Not added: ' + esc(r.msg), 5000, r.ok ? 'log' : 'bad'); }; }
+  if (bAdd && fIn) { bAdd.onclick = () => fIn.click(); fIn.onchange = async () => { const f = fIn.files && fIn.files[0]; fIn.value = ''; if (!f) return; const r = importText(await f.text()); AP.toast(r.ok ? '✅ ' + r.n + ' of ' + r.of + ' contacts were new or newer and went into the log.' + (r.skipped ? ' ⚠ ' + r.skipped + ' line' + (r.skipped === 1 ? ' was' : 's were') + ' left out: no readable call sign or date.' : '') : 'Not added: ' + esc(r.msg), r.ok && r.skipped ? 9000 : 5000, r.ok ? 'log' : 'bad'); }; }
 
   /* ---------------- hide what can't work yet ---------------- */
   AP.on('me', () => { view(); draw(); dockChips(); counts(); });
+  /* Nov 18 full review (L8): the dock follows the radio's MODE too, not only its dial. USB / LSB → SSB, CW → CW, AM, FM; a DATA mode keeps
+     the dock's digital mode. FT8 on the dock with the radio in plain USB/LSB/CW and the FT8 screen NOT running = an SSB / CW operator on a
+     fresh install: the dock becomes SSB / CW on the radio's dial. */
+  const radioMode = m => { m = String(m || '').toUpperCase(); return /^(USB|LSB)$/.test(m) ? 'SSB' : /^CW/.test(m) ? 'CW' : m === 'AM' ? 'AM' : /^FM|^NFM|^WFM/.test(m) ? 'FM' : ''; };
+  AP.on('dial', r => {
+    if (!r || !r.khz || !r.mode) return;
+    const rm = radioMode(r.mode), digiOn = G.KPCDigi && KPCDigi.running && KPCDigi.running();
+    /* Nov 18 public-release review (0.9.7): an FT8 / FT4 dock is only kept while the radio really sits on the FT8 / FT4 frequency (within
+       3 kHz of the FT8 screen's dial, or of the band's usual FT8 spot). Before, the sound simply being on kept it: after some FT8 the
+       operator turned the radio to 14.250 USB, and every voice contact typed on LOG went in as FT8 on 14.074. */
+    const near = (a, b2) => a > 0 && b2 > 0 && Math.abs(a - b2) <= 3;
+    const ftHere = !!digiOn && (near(r.khz, KPCDigi.dialKhz ? KPCDigi.dialKhz() : 0) || near(r.khz, bandKhz(bandOf(r.khz), 'FT8')));
+    const keep = isFT(D.mode) ? ftHere : (rm === 'SSB' && /^(JS8|RTTY|PSK|SSTV|FREEDV|DV)/.test(D.mode) && digiOn);
+    if (rm && rm !== D.mode && !keep) {
+      const was = D.mode; D.mode = rm; if (isFT(was)) D.khz = r.khz; saveD(); dockChips();
+    }
+  });
   AP.on('dial', r => { if (r && r.khz && !isFT(D.mode)) { const off = (G.KPCModes5 && KPCModes5.cwOff && document.body.dataset.screen === 'digi') ? KPCModes5.cwOff(r) : 0; D.khz = r.khz + off; saveD(); dockChips(); } });   /* tone CW parks the dial one tone low: log the CW frequency */
 
   draw(); dockChips(); moreChip(); parkBox($('stRef'));
+  setInterval(() => { try { if (ready) counts(); } catch (e) {} }, 60000);   /* Nov 18 (L13): the 0000z turn shows without a new contact */
   load().then(() => { const L = opList(), last = L[0]; if (G.KPC_FRESH || (!navigator.webdriver && !/[?&](headless|fake)=1/.test(location.search) && (!last || Date.now() - last.t1 > 6 * 36e5))) logsCard(); });
   /* ＋ a contact missed earlier: on the LOG strip */
   { const st = $('lgStrip'); if (st && !$('lgAdd')) { st.insertAdjacentHTML('beforeend', '<button type="button" class="chip" id="lgAdd" title="Add a contact you missed, with its own time">＋ EARLIER CONTACT</button>'); $('lgAdd').onclick = () => editSheet(null); } }
@@ -795,7 +954,7 @@
     add, qs: () => Q, prefill, all: () => ALL, me: AP.me, band: bandOf, toast: AP.toast, adif, dock: D, saveDock: saveD,
     worked: call => { const b = base(call); return Q.some(q => base(q.call) === b); },
     count: () => Q.length, spots: () => [], newPark: () => false,
-    merge, changes, remove, edit, get: id => ALL.get(id), fileText, importText, adifParse, ready: () => ready, dev: DEV, refList,
+    merge, changes, remove, edit, get: id => ALL.get(id), fileText, importText, adifParse, restoreRecs, revive, deadIn, _persist: persist, _unsaved: () => UNSAVED, _fname: fname, _undoChip: undoChip, ready: () => ready, dev: DEV, refList,
     hunted: r => huntedRef(r), activated: r => activatedRef(r), potaFile, potaSet, potaFiles: () => PF, potaSheet: () => pfSheet(),
     command, ops: () => opList(), opNew, opOpen, opBreak, opNote, cur: () => CUR, shown: () => V, hold: () => D.hold || 0, holdSet, logsCard, editSheet, bands: BANDS, modes: ALLMODES, adMode, bandKhz
   };

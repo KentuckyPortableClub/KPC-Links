@@ -42,17 +42,20 @@
 
   const PROTOS = {
     kenwood: { // Kenwood, Elecraft K3/K4/KX2/KX3, QRP Labs QMX/QDX, (tr)uSDX, Lab599 TX-500, FlexRadio (SmartSDR CAT)
-      tune(khz, k) { const md = { LSB: 1, USB: 2, CW: 3, FM: 4, AM: 5, DATA: S.data === 'data' ? (S.model === 'elecraft' ? 6 : 2) : 2, DATAL: S.data === 'data' ? (S.model === 'elecraft' ? 9 : 1) : 1 }[k] || 2;
-        const out = [asc('FA' + pad(khz * 1000, 11) + ';'), asc('MD' + md + ';')]; if (/^DATA/.test(k) && S.data === 'data' && S.model !== 'elecraft') out.push(asc('DA1;')); return out; },
-      ask: () => asc('FA;IF;'),
-      parse(t) { const f = /FA(\d{11});/.exec(t); const md = /IF[\d+\- ]{27}(\d)/.exec(t); if (!f) return null;
+      tune(khz, k) {
+        if (K890[S.radio]) { const om = { LSB: '1', USB: '2', CW: '3', FM: '4', AM: '5', DATA: S.data === 'data' ? 'D' : '2', DATAL: S.data === 'data' ? 'C' : '1' }[k] || '2'; return [asc('FA' + pad(khz * 1000, 11) + ';'), asc('OM0' + om + ';')]; }   /* TS-890: OM0 + mode (D = USB-D, C = LSB-D) */
+        const md = { LSB: 1, USB: 2, CW: 3, FM: 4, AM: 5, DATA: S.data === 'data' ? (S.model === 'elecraft' ? 6 : 2) : 2, DATAL: S.data === 'data' ? (S.model === 'elecraft' ? 9 : 1) : 1 }[k] || 2;
+        const out = [asc('FA' + pad(khz * 1000, 11) + ';'), asc('MD' + md + ';')]; if (/^DATA/.test(k) && S.data === 'data' && S.model !== 'elecraft' && S.radio !== 'ts480') out.push(asc('DA1;')); return out; },   /* 0.9.9: the TS-480 command list has no DA (it answered ?;) */
+      ask: () => asc(K890[S.radio] ? 'FA;OM0;' : 'FA;IF;'),
+      parse(t) { const f = /FA(\d{11});/.exec(t); const om = /OM0([0-9A-F]);/.exec(t); if (f && om) return { khz: +f[1] / 1000, mode: ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 9: 'DATA', A: 'DATA', B: 'DATA', C: 'DATAL', D: 'DATA', E: 'FM', F: 'AM' }[om[1]] || '') };
+        const md = /IF[\d+\- ]{27}(\d)/.exec(t); if (!f) return null;
         return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 9: 'DATA' }[md[1]] || '') : '' }; }
     },
     yaesu: { // newer Yaesu CAT: FT-991A, FT-891, FT-710, FTDX10, FTDX101, FT-DX3000/5000
       tune(khz, k) { const md = { LSB: '1', USB: '2', CW: '3', FM: '4', AM: '5', DATA: S.data === 'data' ? 'C' : '2', DATAL: S.data === 'data' ? '8' : '1' }[k] || '2'; return [asc('FA' + pad(khz * 1000, 9) + ';'), asc('MD0' + md + ';')]; },
       ask: () => asc('FA;MD0;'),
       parse(t) { const f = /FA(\d{9});/.exec(t); const md = /MD0([0-9A-E]);/.exec(t); if (!f) return null;
-        return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 8: 'DATAL', 9: 'DATA', C: 'DATA', B: 'FM' }[md[1]] || '') : '' }; }
+        return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 8: 'DATAL', 9: 'DATA', A: 'FM', B: 'FM', C: 'DATA', D: 'AM', E: 'DATA', F: 'FM' }[md[1]] || '') : '' }; }
     },
     yaesu8: { // older 'new CAT' Yaesu with 8-digit frequency: FT-450D, FT-950, FT-2000, FTDX1200, FTDX3000, FTDX5000
       tune(khz, k) { const md = { LSB: '1', USB: '2', CW: '3', FM: '4', AM: '5', DATA: S.data === 'data' ? 'C' : '2', DATAL: S.data === 'data' ? '8' : '1' }[k] || '2'; return [asc('FA' + pad(khz * 1000, 8) + ';'), asc('MD0' + md + ';')]; },
@@ -228,18 +231,50 @@
     if (window.kpcNet && window.kpcNet.portList && window.KPCApp && KPCApp.pickSerial) { const p = await KPCApp.pickSerial('Pick the radio\'s port', PICK); if (!p) throw Object.assign(new Error('No port picked'), { name: 'NotFoundError' }); return p; }
     return navigator.serial.requestPort(PICK);
   }
-  async function openPort(p) {
+  async function openPort(p, up) {
     port = p; await port.open({ baudRate: +S.baud || 38400, dataBits: 8, stopBits: S.proto === 'yaesuold' ? 2 : 1, parity: 'none', flowControl: 'none' });
     /* Oct 22 (Brandon's FT-710 on Windows: 'connected, but the radio did not answer'): Yaesu's CAT RTS menu is ON from the factory, and then
        the radio ignores every command unless the RTS line is held up. On a PC hold RTS + DTR up (unless one of them IS the PTT line).
        On Android the held line keeps the USB port open and mutes the radio's sound card, so there they stay down as before. */
-    const pcLines = !port.isNative && !port.isTcp;
-    try { await port.setSignals({ dataTerminalReady: S.ptt === 'dtr' ? false : (pcLines ? true : !!S.dtr), requestToSend: S.ptt === 'rts' ? false : (pcLines ? true : !!S.rts) }); } catch (e) {}
+    /* Nov 18 full review (OP-R2): raising both lines on EVERY port tried could key a Digirig (its RTS is the PTT). So ports open with the
+       lines down; probe() raises them only for a Yaesu that stayed silent, and drops them again if it still doesn't answer. */
+    await lines(up);
     writer = port.writable.getWriter(); readLoop();
     say('Radio connected.', true); return true;
   }
+  async function lines(up) {
+    const pcLines = !port.isNative && !port.isTcp, u = !!up && pcLines;
+    try { await port.setSignals({ dataTerminalReady: S.ptt === 'dtr' ? false : (u || !!S.dtr), requestToSend: S.ptt === 'rts' ? false : (u || !!S.rts) }); } catch (e) {}
+  }
+  const YAE = () => S.proto === 'yaesu' || S.proto === 'yaesu8' || S.proto === 'yaesuold';
+  /* Nov 18 radio round (0.9.9, found by Opus): a Yaesu that stays silent had RTS + DTR raised for about 0.6 s on EVERY port CONNECT tried
+     (up to six). On a Digirig — or any cable whose RTS / DTR is the PTT or the CW key — and on a Yaesu's own Standard COM port set to
+     RTS / DTR keying, that keys the transmitter. Now the RTS try is only made where it can be right:
+       · the one port that is KNOWN to need it (it answered only with the lines up last time: S.rtsPorts[radio] = that port), or
+       · a port the operator picked by hand (PICKED: STATION's port list or PICK A DIFFERENT PORT), or
+       · with nothing known yet for this radio: a port that is a Yaesu's OWN USB (Silicon Labs dual CP2105, 10C4:EA70 — the FT-710,
+         FTDX10, FT-891, FT-991A, FTDX101 and the SCU-17 box), when CONNECT is pressed (a Yaesu fresh from the factory has its CAT RTS
+         menu ON and must be found), and by itself only on the port that answered last time.
+     Never on a single-port cable by itself (a Digirig is a CP2102, a CT-62 cable an FTDI: a Yaesu on one of those that needs RTS is
+     picked by hand once), never on the CW key port, never when this radio is known to answer with the lines down ('' in S.rtsPorts),
+     and when the known port is plugged in but silent (radio off) no other port is tried with the lines up. portId = what the port is
+     + which one of its kind (the two ports of a Yaesu's USB look the same to the browser). */
+  const yaesuUsb = p => { const f = (p.getInfo && p.getInfo()) || {}; return f.usbVendorId === 0x10C4 && f.usbProductId === 0xEA70; };
+  const portId = (p, ps) => { const k = keyOf(p); let i = 0; for (const q of ps || []) { if (q === p) break; if (keyOf(q) === k) i++; } return k + '#' + i; };
+  const rtsKey = () => S.radio || S.proto || '';
+  let PICKED = '', REM = '';
+  function rtsOk(p, ps, ask) {
+    if (S.keyPort && S.keyPort !== 'cat' && keyOf(p) === S.keyPort) return false;
+    const id = portId(p, ps), known = (S.rtsPorts || {})[rtsKey()];
+    if (PICKED && PICKED === id) return true;
+    if (known) { if (known === id) return true; return (ps || []).some(q => portId(q, ps) === known) ? false : !!ask && yaesuUsb(p); }
+    if (known === '') return false;
+    if (!yaesuUsb(p)) return false;
+    return ask ? true : !!(REM && keyOf(p) === REM);
+  }
+  let RTSSKIP = 0;
   async function readLoop() {
-    try { reader = port.readable.getReader(); for (;;) { const { value, done } = await reader.read(); if (done) break; if (value) { const v = S.proto === 'icom' && window.KPCScope ? KPCScope.tap(value) : value; if (v.length) rbuf.push(...v); if (rbuf.length > 4096) rbuf = rbuf.slice(-2048); } } }   /* Nov 6: Icom scope frames (27 00) go to kpc-scope.js, never into rbuf */
+    try { reader = port.readable.getReader(); for (;;) { const { value, done } = await reader.read(); if (done) break; if (value) { const v = S.proto === 'icom' && window.KPCScope ? KPCScope.tap(value) : value; if (v.length) { rbuf.push(...v); clog('<', v); } if (rbuf.length > 4096) rbuf = rbuf.slice(-2048); } } }   /* Nov 6: Icom scope frames (27 00) go to kpc-scope.js, never into rbuf */
     catch (e) {} finally { try { reader.releaseLock(); } catch (e) {} }
   }
   /* ---- WHICH PORT (Fable, Oct 23; Brandon's laptop: 'Failed to open serial port' every time after 0.6.6 saved port 9 of 10 — a Bluetooth one;
@@ -256,24 +291,36 @@
     const score = p => { if (key && keyOf(p) === key) return 0; const f = (p.getInfo && p.getInfo()) || {}; if (p.isNative || p.isTcp) return 1; if (f.usbVendorId == null) return 9; return fam.includes(f.usbVendorId) ? 2 : 3; };
     return ps.map((p, i) => ({ p, i, s: score(p) })).sort((a, b) => a.s - b.s || a.i - b.i);
   }
+  /* every job on the radio line gets 20 s at most (room for CONNECT to try the ports); a stuck WRITE gives up after 2.5 s */
+  const STEP = (fn, ms) => () => withTimeout(fn(), ms || 20000, 'the radio did not finish a command in ' + (ms || 20000) / 1000 + ' s');
   const withTimeout = (pr, ms, what) => Promise.race([pr, new Promise((_, x) => setTimeout(() => x(new Error(what || 'no answer in ' + ms / 1000 + ' s')), ms))]);
   /* open it, ask the radio once, keep it only if it answers */
-  async function probe(p) {
+  /* how: undefined = ask with the lines down, then (where rtsOk allows) with them up; 'down' = lines down only, and say if the try
+     with the lines up is still owed; 'up' = straight to the try with the lines up (the lines-down ask was made in the first round) */
+  async function probe(p, ps, askd, how) {
     try { await withTimeout(openPort(p), 4000, 'the port did not open in 4 s'); } catch (e) { try { await p.close(); } catch (e2) {} port = writer = reader = null; return { ok: false, why: String(e.message || e) }; }
     const P = PROTOS[LINK() === 'rigctld' ? 'hamlib' : S.proto] || PROTOS.kenwood;
     let r = null;
-    for (let t = 0; t < 2 && !r; t++) { rbuf = []; try { await write(P.ask()); } catch (e) { break; } await sleep(300); const raw = rbuf.slice(); r = P.parse(String.fromCharCode(...raw), raw); }
+    const ask = async n => { for (let t = 0; t < n && !r; t++) { rbuf = []; try { await write(P.ask()); } catch (e) { break; } await sleep(300); const raw = rbuf.slice(); r = P.parse(String.fromCharCode(...raw), raw); } };
+    if (how !== 'up') await ask(2);
+    const pc = !port.isNative && !port.isTcp; let up = false;
+    if (!r && YAE() && pc) {   /* Yaesu CAT RTS menu ON: it answers only with RTS up */
+      if (rtsOk(p, ps, askd)) { if (how === 'down') { await disconnect(true); return { ok: false, why: 'silent', owed: true }; } up = true; await lines(true); await ask(2); if (!r) await lines(false); }
+      else RTSSKIP++;
+    }
     if (!r) { await disconnect(true); return { ok: false, why: 'silent' }; }
+    if (YAE() && pc) { S.rtsPorts = Object.assign({}, S.rtsPorts); S.rtsPorts[rtsKey()] = up ? portId(p, ps) : ''; }   /* remembered with the port (saved just below) */
+    if (!UNK0) { UNK0 = true; try { for (const b of (PTTC[S.proto] || PTTC.kenwood)(false)) await write(b); } catch (e) {} }   /* OP-R1: first connect after the app starts = unkey, in case it closed mid-transmission */
     S.portKey = keyOf(p); SV('kpcCat', S); lastRead = r; return { ok: true, r };
   }
-  let lastRead = null, connecting = null;
+  let lastRead = null, connecting = null, UNK0 = false, SPLITON = false;
   function connect(ask) {
     if (connecting) return connecting;
     connecting = connect2(ask).finally(() => { connecting = null; });
     return connecting;
   }
   async function connect2(ask) {
-    if (LINK() === 'fake') { if (!fakeOk()) { say('The pretend radio is off (STATION → Alerts & help).', false); return false; } if (!FAKE.on) { FAKE.on = true; say('Pretend radio connected (no real radio).', true); } return true; }
+    if (LINK() === 'fake') { if (!fakeOk()) { say('The pretend radio is off (STATION → ❓ HELP).', false); return false; } if (!FAKE.on) { FAKE.on = true; say('Pretend radio connected (no real radio).', true); } return true; }
     if (LINK() === 'flrig') { if (flrigOn) return true; try { FLRIG.modes = null; await FLRIG.get(); flrigOn = true; say('flrig connected.', true); return true; } catch (e) { flrigOn = false; say(e.message || String(e), false); return false; } }
     if (!linkOk()) { say(linkWhy(), false); return false; }
     if (port && writer) {
@@ -286,30 +333,62 @@
       const none = /no (port|device) selected|NotFoundError/i.test(String(e && (e.name + ' ' + e.message)));
       say(none ? (ANDROID ? 'No radio picked. Plug the radio into the tablet/phone with a USB cable (a data cable, not charge-only), turn the radio on, then press CONNECT and pick it in the list. If Android asks to allow access to the USB device, say yes.' : 'No port picked. Plug in the radio, turn it on and press CONNECT again.') : 'Could not open the radio: ' + (e.message || e), false); return false; } }
     if (!ps.length) { if (ask) say('No USB port found. Plug the radio in with a data cable and press CONNECT again.', false); return false; }
-    const tried = [];
+    const tried = [], owed = []; RTSSKIP = 0; REM = S.portKey || '';
+    /* 0.9.9: with nothing known yet for this Yaesu, EVERY port is asked with the lines down first; only when none answers do the ports
+       that may get the try with RTS / DTR up (rtsOk) get it. A radio set as the app's own guide says (CAT RTS off, the Standard port's
+       RTS = PTT for other programs) answers in the first round, so its Standard port is never raised: no blip of transmit. */
+    const first = YAE() && LINK() === 'serial' && (S.rtsPorts || {})[rtsKey()] === undefined;
+    const found = (r, i) => { say('Radio answers on port ' + (i + 1) + ' (' + (r.r.khz / 1000).toFixed(4) + ' MHz ' + (r.r.mode || '') + ').', true); return true; };
+    const failed = (p, i, r) => { tried.push('port ' + (i + 1) + ': ' + (r.why === 'silent' ? 'opens but the radio does not answer there' : r.why)); if (S.portKey && keyOf(p) === S.portKey) { S.portKey = ''; SV('kpcCat', S); } };   /* the remembered one failed: forget it */
     for (const { p, i } of orderPorts(ps)) {
-      if (LINK() !== 'rigctld' && tried.length >= 6 && !(S.portKey && keyOf(p) === S.portKey)) break;   /* a laptop with ten ports: six probes is plenty */
+      if (LINK() !== 'rigctld' && tried.length + owed.length >= 6 && !(S.portKey && keyOf(p) === S.portKey)) break;   /* a laptop with ten ports: six probes is plenty */
       if (ask) say('Trying port ' + (i + 1) + ' of ' + ps.length + '…', null);
-      const r = await probe(p);
-      if (r.ok) { say('Radio answers on port ' + (i + 1) + ' (' + (r.r.khz / 1000).toFixed(4) + ' MHz ' + (r.r.mode || '') + ').', true); return true; }
-      tried.push('port ' + (i + 1) + ': ' + (r.why === 'silent' ? 'opens but the radio does not answer there' : r.why));
-      if (S.portKey && keyOf(p) === S.portKey) { S.portKey = ''; SV('kpcCat', S); }   /* the remembered one failed: forget it */
+      const r = await probe(p, ps, ask, first ? 'down' : undefined);
+      if (r.ok) return found(r, i);
+      if (r.owed) owed.push({ p, i }); else failed(p, i, r);
     }
-    say('No port answered as a ' + (RADIO[S.radio] ? RADIO[S.radio].label : S.proto) + ' (' + tried.join(' · ') + '). Check: the radio type in MY RADIO, its CAT RATE menu = ' + (S.baud || 38400) + ', a data cable, and that no other program (WSJT-X, flrig) holds the port. PICK A DIFFERENT PORT lets you choose by hand.', false);
+    for (const { p, i } of owed) {
+      if (ask) say('Trying port ' + (i + 1) + ' again, holding RTS up…', null);
+      const r = await probe(p, ps, ask, 'up');
+      if (r.ok) return found(r, i);
+      failed(p, i, r);
+    }
+    say('No port answered as a ' + (RADIO[S.radio] ? RADIO[S.radio].label : S.proto) + ' (' + tried.join(' · ') + '). Check: the radio type in MY RADIO, its CAT RATE menu = ' + (S.baud || 38400) + ', a data cable, and that no other program (WSJT-X, flrig) holds the port. PICK A DIFFERENT PORT lets you choose by hand.' + (YAE() && RTSSKIP ? ' A Yaesu with its CAT RTS menu ON only answers with RTS held up. On a cable that is not the radio\'s own USB the app only tries that on a port YOU pick (so it cannot key a radio through a Digirig): press PICK A DIFFERENT PORT and choose it, or switch the radio\'s CAT RTS menu OFF.' : ''), false);
     return false;
   }
   const lastDial = () => lastRead;
   const TLOG = []; const tuneLog = () => TLOG.slice();
   async function disconnect(quiet) { flrigOn = false; FAKE.on = false; await keyPortClose(); try { if (reader) await reader.cancel(); } catch (e) {} try { if (writer) writer.releaseLock(); } catch (e) {} try { if (port) await port.close(); } catch (e) {} port = writer = reader = null; if (!quiet) say('Radio disconnected.', false); }
-  async function write(bytes) { await writer.write(bytes); await sleep(S.proto === 'yaesuold' ? 80 : 40); }
+  /* Nov 17 (to-do: 📜 RADIO LOG, the 'verbose CAT log' other loggers have): the last 200 things said to and heard from the
+     radio, ASCII as it is (Icom CI-V as hex), for STATION → Radio control → 📜 RADIO LOG and the app report. */
+  const CLOG = [];
+  const clTxt = b => { b = Array.from(b || []); return S.proto === 'icom' ? b.map(x => x.toString(16).padStart(2, '0').toUpperCase()).join(' ') : b.map(x => x === 10 ? '\\n' : x === 13 ? '\\r' : x < 32 || x > 126 ? '\\x' + x.toString(16).padStart(2, '0') : String.fromCharCode(x)).join(''); };
+  function clog(dir, b) {
+    if (!b || !b.length) return; const t = Date.now(), last = CLOG[CLOG.length - 1];
+    if (dir === '<' && last && last.dir === '<' && t - last.at < 60 && last.txt.length < 400) { last.txt += (S.proto === 'icom' ? ' ' : '') + clTxt(b); last.at = t; }
+    else { CLOG.push({ at: t, dir, txt: clTxt(b) }); if (CLOG.length > 200) CLOG.splice(0, CLOG.length - 200); }
+    if (clogSub) clogSub();
+  }
+  let clogSub = null;
+  const catLog = n => CLOG.slice(-(n || 200)).map(e => new Date(e.at).toISOString().slice(11, 23) + ' ' + e.dir + ' ' + e.txt);
+  /* Nov 18 full review (OP-B5): every write has a time limit, so one stuck command can't hold up the unkey behind it. */
+  async function write(bytes) { clog('>', bytes); await withTimeout(writer.write(bytes), 2500, 'the radio port did not take a command in 2.5 s'); await sleep(S.proto === 'yaesuold' ? 80 : 40); }
+  /* Nov 18 public-release review (0.9.7): LASTSET = what the APP itself last set on the radio (frequency + mode) and when. A dial reading
+     from before that moment is old news; kpc-app.js (lastKnown) uses whichever is newer. Before, HOLD TO TALK / the voice keyer / a CW key
+     tap within 2 s of the app tuning the radio (a spot tap) still saw the OLD reading: voice could go out with the radio left in SSB
+     (listening to its MIC socket: silence), and tone CW could put the radio back on the old frequency after the over. */
+  let LASTSET = null; const setDone = (p, khz) => { p.then(ok => { if (ok === true) LASTSET = { khz: +khz || (LASTSET && LASTSET.khz) || (lastRead && lastRead.khz) || 0, mode: lastMode, t: Date.now() }; }, () => {}); return p; };
   function tune(khz, mode) {
     khz = +khz; if (!S.on || !khz) return Promise.resolve(false);
-    busy = busy.then(async () => {
+    busy = busy.then(STEP(async () => {
       if (!await connect(false)) { say('Radio not connected: open the CAT & QRZ tab and press CONNECT MY RADIO.', false); return false; }
       const k = sb(kind(mode, khz), khz); lastMode = k;
-      if (LINK() === 'fake') { await sleep(60); FAKE.khz = khz; FAKE.mode = k; say(`📻 Pretend radio set to ${(khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '')} MHz ${k}.`, true); return true; }
+      if (LINK() === 'fake') { await sleep(60); if (SPLITON) { SPLITON = false; FAKE.split = { on: false }; } FAKE.khz = khz; FAKE.mode = k; say(`📻 Pretend radio set to ${(khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '')} MHz ${k}.`, true); return true; }
       if (LINK() === 'flrig') { try { await FLRIG.setFreqMode(khz, k); say(`📻 Radio set to ${(khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '')} MHz ${k} (flrig).`, true); return true; } catch (e) { flrigOn = false; say('flrig did not answer: ' + (e.message || e), false); return false; } }
       const P = PROTOS[LINK() === 'rigctld' ? 'hamlib' : S.proto] || PROTOS.kenwood;
+      /* Nov 18 full review (OP-B4): split from an earlier spot goes OFF on every new tune (a split spot turns it on again straight after),
+         so a later FT8 / SSB tune never transmits on the old VFO B */
+      if (SPLITON) { SPLITON = false; const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto]; if (E && E.split) { try { for (const b of E.split(false)) await write(b); } catch (e) {} } }
       try { const C = P.tune(khz, k); for (const b of C.slice(1)) await write(b); await write(C[0]);   /* Oct 22 (Brandon: SSB spots 'sometimes 14.283 → 14282.3'): MODE FIRST, then the frequency — a Yaesu moves the dial by the CW offset when it leaves CW, so a mode sent after the frequency knocked it 0.7 kHz off */ say(`📻 Radio set to ${(khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '')} MHz ${k}.`, true);
         /* Oct 25 (Brandon: 21.282 → the radio shows 21.2855, 7.186 → 7.1861; cause still unknown): read the dial straight back and again 3 s later,
            keep the last 12 in the report (KPCCat.tuneLog) and say it out loud when the radio sits more than 50 Hz from what was asked */
@@ -318,18 +397,18 @@
           /* Oct 27 (Fable; Brandon: 7286 → 7285.3 on TX): a Yaesu shifts the dial by its CW / DATA offset when the MODE changes, after the
              frequency it was sent — so when the read-back sits more than 20 Hz off, send the frequency ONCE MORE and read again */
           if (r && r.khz && Math.abs(r.khz - khz) > 0.02) { try { await write(C[0]); await sleep(120); rbuf = []; await write(P.ask()); await sleep(260); const r3 = P.parse(String.fromCharCode(...rbuf), rbuf.slice()); if (r3 && r3.khz) { e.fixed = r3.khz; r = r3; } } catch (e2) {} }
-          if (r && r.khz && Math.abs(r.khz - khz) > 0.05) say(`⚠ Asked for ${(khz / 1000).toFixed(4)} MHz, the radio says ${(r.khz / 1000).toFixed(4)} (${((r.khz - khz) * 1000).toFixed(0)} Hz off). Copy a builders' report now (STATION → Alerts & help).`, false);
+          if (r && r.khz && Math.abs(r.khz - khz) > 0.05) say(`⚠ Asked for ${(khz / 1000).toFixed(4)} MHz, the radio says ${(r.khz / 1000).toFixed(4)} (${((r.khz - khz) * 1000).toFixed(0)} Hz off). Copy a builders' report now (STATION → ❓ HELP).`, false);
           setTimeout(() => { read().then(r2 => { e.later = r2 && r2.khz; e.laterMode = r2 && r2.mode; if (r2 && r2.khz && Math.abs(r2.khz - khz) > 0.05 && !(r && r.khz && Math.abs(r.khz - khz) > 0.05)) console.warn('tune: asked ' + khz + ' ' + k + ', radio moved to ' + r2.khz + ' ' + (r2.mode || '') + ' within 3 s (scan? dial-follow? another tune?)'); }).catch(() => {}); }, 3000); } catch (e) {}
         return true; }
       catch (e) { const m = 'Radio did not answer: ' + (e.message || e); await disconnect(true); say(m, false); return false; }
-    }).catch(() => false);
-    return busy;
+    })).catch(() => false);
+    return setDone(busy, khz);
   }
   /* Oct 26 (Fable): set only the MODE, fast (no frequency, no read-back): the voice keyer / HOLD TO TALK put an SSB radio into DATA-U/L
      for the length of the transmission so the USB audio goes out (Brandon's FT-710: 'SSB no power out' = the radio's SSB MOD SOURCE is MIC;
      DATA MOD SOURCE = USB already works for FT8), then put the sideband back. */
   function mode(k, keep) {
-    busy = busy.then(async () => {
+    busy = busy.then(STEP(async () => {
       if (!await connect(false)) return false;
       k = kind(k, 0); lastMode = k; keep = +keep || 0;
       if (LINK() === 'fake') { await sleep(20); FAKE.mode = k; return true; }
@@ -340,31 +419,31 @@
           await sleep(150); rbuf = []; await write(P.ask()); await sleep(200); const r = P.parse(String.fromCharCode(...rbuf), rbuf.slice());
           if (r && r.khz && Math.abs(r.khz - keep) > 0.02) { await write(P.tune(keep, k)[0]); MLOG.push({ at: new Date().toISOString().slice(11, 19), mode: k, was: keep, moved: r.khz }); if (MLOG.length > 8) MLOG.shift(); } }
         return true; } catch (e) { return false; }
-    }).catch(() => false);
-    return busy;
+    })).catch(() => false);
+    return setDone(busy, keep);
   }
   const MLOG = [];
   /* mode + frequency in ONE go, no read-back (the CW screen flips CW ⇄ DATA around every over: it has to be quick) */
   function tuneFast(khz, k) {
     khz = +khz; if (!S.on || !khz) return Promise.resolve(false);
-    busy = busy.then(async () => {
+    busy = busy.then(STEP(async () => {
       if (!await connect(false)) return false;
       k = sb(kind(k, khz), khz); lastMode = k;
       if (LINK() === 'fake') { await sleep(15); FAKE.khz = khz; FAKE.mode = k; return true; }
       if (LINK() === 'flrig') { try { await FLRIG.setFreqMode(khz, k); return true; } catch (e) { return false; } }
       const P = PROTOS[LINK() === 'rigctld' ? 'hamlib' : S.proto] || PROTOS.kenwood;
       try { const C = P.tune(khz, k); for (const b of C.slice(1)) await write(b); await write(C[0]); return true; } catch (e) { return false; }
-    }).catch(() => false);
+    })).catch(() => false);
     return busy;
   }
   function read() {
-    busy = busy.then(async () => {
+    busy = busy.then(STEP(async () => {
       if (LINK() === 'fake') { if (!FAKE.on) return null; await sleep(30); return { khz: FAKE.khz, mode: FAKE.mode }; }
       if (LINK() === 'flrig') { if (!flrigOn) return null; try { return await FLRIG.get(); } catch (e) { flrigOn = false; return null; } }
       if (!port || !writer) return null; const P = PROTOS[LINK() === 'rigctld' ? 'hamlib' : S.proto] || PROTOS.kenwood;
       rbuf = []; try { await write(P.ask()); } catch (e) { return null; } await sleep(260);
       const raw = rbuf.slice(); const t = String.fromCharCode(...raw); return P.parse(t, raw);
-    }).catch(() => null);
+    })).catch(() => null);
     return busy;
   }
   /* PTT for the FT8 tab in the KPC Logger (Brandon Oct 17). via: 'cat' (radio command), 'rts' / 'dtr' (serial line, e.g. Digirig), 'vox' (nothing sent) */
@@ -372,17 +451,75 @@
      extra(name, value): width (Hz), notch (0/1 auto notch), nb (0/1), nr (0/1), power (percent of full), mic (0-100).
      Set only (the panel remembers what it asked for); extras() lists what THIS radio family takes, so the panel hides the rest. */
   const YSH = { ssb: [200, 400, 600, 850, 1100, 1350, 1500, 1650, 1800, 1950, 2100, 2250, 2400, 2450, 2500, 2600, 2700, 2800, 2900, 3000, 3200], cw: [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 800, 1200, 1400, 1700, 2000, 2400, 3000] };
+  /* Nov 18 full review (OP-B6): the FT-710, FTDX10 and FTDX101 take SH P1 P2 P3P3 (P2 = 0, then the 2-digit width code from their own
+     table), not the FT-991A's SH0nn. From the Yaesu CAT manuals; not yet checked on a real radio. */
+  /* Nov 18 manual check (Kenwood TS-890S PC Control Command Reference rev1; Elecraft K3S/K3/KX3/KX2 Programmer's Reference G5):
+     K890 = the TS-890 / TS-990 command set: mode is OM0<code> (no MD / DA), NB1<0|1>, AGC = GC<0-3> (GT is the time constants),
+     processor PR0<0|1>, S-meter SM; (0-70 dots), meters RM<n><read> then RM; with 1 ALC, 2 SWR, 3 COMP (0-70). TS-990: same family,
+     not checked against its own manual. */
+  const K890 = { ts890: 1, ts990: 1 };
+  const near2 = (tab, v) => tab.reduce((b, x, i) => Math.abs(x - v) <= Math.abs(tab[b] - v) ? i : b, 0);   /* a tie goes to the wider one */
+  /* filter width: Elecraft BW in 10 Hz units (Programmer's Ref: BW on the KX, FW legacy); TS-590 (PC command ref: SH / SL / FW):
+     CW = FW in Hz from its list, SSB-DATA = SL is the width, SSB = low cut 300 Hz (SL04) + the nearest high cut to it */
+  const KCW = [50, 80, 100, 150, 200, 250, 300, 400, 500, 600, 1000, 1500, 2000, 2500], KSH = [1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3400, 4000, 5000];
+  function kwWidth(hz, m) {
+    hz = +hz || 2400; m = String(m || '');
+    if (S.model === 'elecraft') return [asc((/^kx/.test(S.radio) ? 'BW' : 'FW') + pad(Math.round(hz / 10), 4) + ';')];
+    if (S.radio !== 'ts590') return null;
+    if (/CW/.test(m)) return [asc('FW' + pad(KCW[near2(KCW, hz)], 4) + ';')];
+    if (/^DATA/.test(m) && S.data === 'data') return [asc('SL' + pad(near2(KCW, hz), 2) + ';')];
+    if (/^(USB|LSB|SSB|DATA)/.test(m) || !m) return [asc('SL04;'), asc('SH' + pad(near2(KSH, hz + 300), 2) + ';')];
+    return null;
+  }
+  const EMAX = { kx2: 10, kx3: 15, k4: 100, k3: 100, k2: 15, kh1: 5 };   /* Elecraft full power, watts */
+  const YNEW = { ft710: 1, ftdx10: 1, ftdx101: 1, ftx1: 1 };   /* Nov 18 manual check: FT-710 CAT manual 2306-C p.19 / FTDX10 2308-F Table 3: DATA-U, DATA-L, PSK and RTTY use the CW column (50 Hz-4 kHz), only LSB/USB the SSB one */
+  const YSH10 = { ssb: [300, 400, 600, 850, 1100, 1200, 1500, 1650, 1800, 1950, 2100, 2250, 2400, 2450, 2500, 2600, 2700, 2800, 2900, 3000, 3200, 3500, 4000], cw: [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 800, 1200, 1400, 1700, 2000, 2400, 3000, 3200, 3500, 4000] };
   const near = (tab, hz) => { let b = 0; tab.forEach((v, i) => { if (Math.abs(v - hz) < Math.abs(tab[b] - hz)) b = i; }); return b + 1; };
+  /* Nov 18 radio round (0.9.9), from the makers' CAT manuals (Opus's table notes/radio-commands-check-2.md, each row read a second time):
+     FT-991A (CAT manual p.16) and FT-891 (CAT Reference Book p.17) share one width table: SSB 2400 Hz = code 14 (11 = 2100, 12 = 2200,
+     13 = 2300) and DATA / RTTY / PSK use the CW column (2400 = 16, 500 = 10). The FT-891 format has one more digit: SH P1 P2 P3P3
+     (P2 0 = width off, 1 = on). FTDX101 (1912-D, Table 3): its own SSB column (2400 = 14), CW / RTTY / PSK column stops at 3000 = 18.
+     Not checked on a real radio yet (Brandon's cards 7 and 8). */
+  const YSH9 = { ssb: [200, 400, 600, 850, 1100, 1350, 1500, 1650, 1800, 1950, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3200], cw: YSH.cw };
+  const YSH101 = { ssb: [300, 400, 600, 850, 1100, 1200, 1500, 1650, 1800, 1950, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3200], cw: [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 800, 1200, 1400, 1700, 2000, 2400, 3000] };
+  const Y9 = { ft991: 1, ft891: 1 };
+  function yWidth(hz, m) {
+    const r = S.proto === 'yaesu' ? S.radio : '', nar = /CW|DATA|PSK|RTTY/.test(m || '');
+    if (r === 'ftdx101') return [asc('SH00' + pad(near(nar ? YSH101.cw : YSH101.ssb, hz), 2) + ';')];
+    if (YNEW[r]) return [asc('SH00' + pad(near(nar ? YSH10.cw : YSH10.ssb, hz), 2) + ';')];
+    if (Y9[r]) return [asc((r === 'ft891' ? 'SH01' : 'SH0') + pad(near(nar ? YSH9.cw : YSH9.ssb, hz), 2) + ';')];
+    return [asc('SH0' + pad(near(/CW/.test(m) ? YSH.cw : YSH.ssb, hz), 2) + ';')];
+  }
+  /* FTX-1 (CAT manual 2507-B): no NB / NR commands: the noise blanker is NL0 + 000 (off) or 001-010, the noise reduction RL0 + 00 (off)
+     or 01-10. RF power is PC P1 nnn in WATTS: P1 1 = the field head alone (005-010), 2 = with the SPA-1 amplifier (005-100); the radio
+     answers PC; the same way (PC1006;). S.amp === 'spa1' = the operator said the SPA-1 is on (STATION), or the radio said so (P1 = 2). */
+  const FTX = () => S.radio === 'ftx1' && S.proto === 'yaesu';
+  const T990 = () => S.radio === 'ts990' && S.proto === 'kenwood' && S.model !== 'elecraft';
+  const FXL = { nb: 5, nr: 5 };
+  const lim = (v, a, b) => Math.max(a, Math.min(b, Math.round(+v || 0)));
+  const ftxPower = p => S.amp === 'spa1' ? 'PC2' + pad(lim(p, 5, 100), 3) + ';' : 'PC1' + pad(lim(p / 10, 5, 10), 3) + ';';
+  /* the radio's answer to PC; → the set power as a percent of full (what the POWER slider shows). null = no answer. */
+  function yPwr(t) {
+    if (!FTX()) { const m = /PC(\d{3});/.exec(t); return m ? +m[1] : null; }
+    const m = /PC([12])(\d{3});/.exec(t); if (!m) return null;
+    if (m[1] === '2' && S.amp !== 'spa1') { S.amp = 'spa1'; SV('kpcCat', S); }   /* the radio says the amplifier is on: believe it */
+    return m[1] === '2' ? Math.min(100, +m[2]) : Math.min(100, +m[2] * 10);
+  }
   const pct255 = v => { const x = Math.round(Math.max(0, Math.min(100, v)) * 2.55), d = pad(x, 4); return [parseInt(d.slice(0, 2), 16), parseInt(d.slice(2), 16)]; };
   const EXTRA = {
-    yaesu: { width: (hz, m) => [asc('SH0' + pad(near(/CW/.test(m) ? YSH.cw : YSH.ssb, hz), 2) + ';')], notch: on => [asc('BC0' + (on ? 1 : 0) + ';')], nb: on => [asc('NB0' + (on ? 1 : 0) + ';')], nr: on => [asc('NR0' + (on ? 1 : 0) + ';')], power: p => [asc('PC' + pad(Math.max(5, Math.min(100, p)), 3) + ';')], mic: v => [asc('MG' + pad(Math.max(0, Math.min(100, v)), 3) + ';')] },
-    kenwood: { power: p => [asc('PC' + pad(Math.max(5, Math.min(100, p)), 3) + ';')], mic: v => [asc('MG' + pad(Math.max(0, Math.min(100, v)), 3) + ';')], nb: on => [asc('NB' + (on ? 1 : 0) + ';')], nr: on => [asc('NR' + (on ? 1 : 0) + ';')], notch: on => [asc('BC' + (on ? 1 : 0) + ';')], width: (hz, m) => S.model === 'elecraft' ? [asc('FW' + pad(Math.round(hz / 10), 4) + ';')] : null },
+    yaesu: { width: (hz, m) => yWidth(hz, m), notch: on => [asc('BC0' + (on ? 1 : 0) + ';')], nb: on => [asc(FTX() ? 'NL0' + pad(on ? FXL.nb : 0, 3) + ';' : 'NB0' + (on ? 1 : 0) + ';')], nr: on => [asc(FTX() ? 'RL0' + pad(on ? FXL.nr : 0, 2) + ';' : 'NR0' + (on ? 1 : 0) + ';')], power: p => [asc(FTX() ? ftxPower(p) : 'PC' + pad(Math.max(5, Math.min(100, p)), 3) + ';')], mic: v => [asc('MG' + pad(Math.max(0, Math.min(100, v)), 3) + ';')] },
+    /* Nov 18 full review (OP-W4): an Elecraft's PC is in WATTS, so the app's percent is turned into watts for that radio (50 % of a KX2 = 5 W,
+       never 'PC050;' = full power) */
+    /* Nov 18 radio round (0.9.9), TS-990S PC Control Command Reference rev1: every receiver command carries a main / sub band digit first
+       (NB1 P1 P2, NR P1 P2, BC P1 P2, GC P1 P2, RA P1 P2, PA P1 P2, SM P1); PC is in WATTS 005-200 (so percent × 2); MG is 000-255
+       (the guide sends only the FM mic gain to the menu, so the MIC slider stays); split is TB1 / TB0 (no FR / FT in the guide). */
+    kenwood: { power: p => [asc('PC' + pad(S.model === 'elecraft' ? Math.max(1, Math.round(Math.max(1, Math.min(100, p)) / 100 * (EMAX[S.radio] || 10))) : T990() ? lim(p * 2, 5, 200) : Math.max(5, Math.min(100, p)), 3) + ';')], mic: v => [asc('MG' + pad(S.model === 'elecraft' ? Math.round(Math.max(0, Math.min(100, v)) * 0.6) : T990() ? lim(v * 2.55, 0, 255) : Math.max(0, Math.min(100, v)), 3) + ';')], nb: on => [asc((K890[S.radio] ? 'NB1' : 'NB') + (T990() ? '0' : '') + (on ? 1 : 0) + ';')], nr: on => [asc('NR' + (T990() ? '0' : '') + (on ? 1 : 0) + ';')], notch: on => [asc('BC' + (T990() ? '0' : '') + (on ? 1 : 0) + ';')], width: (hz, m) => kwWidth(hz, m) },
     icom: { width: (hz, m) => [icom([0x1A, 0x03, parseInt(pad(hz <= 500 ? Math.max(0, Math.round(hz / 50) - 1) : Math.min(49, 9 + Math.round((hz - 500) / 100)), 2), 16)])], notch: on => [icom([0x16, 0x41, on ? 1 : 0])], nb: on => [icom([0x16, 0x22, on ? 1 : 0])], nr: on => [icom([0x16, 0x40, on ? 1 : 0])], power: p => [icom([0x14, 0x0A, ...pct255(p)])], mic: v => [icom([0x14, 0x0B, ...pct255(v)])] },
     hamlib: { width: (hz, m) => [asc('M ' + (m || 'USB') + ' ' + Math.round(hz) + '\n')], notch: on => [asc('U ANF ' + (on ? 1 : 0) + '\n')], nb: on => [asc('U NB ' + (on ? 1 : 0) + '\n')], nr: on => [asc('U NR ' + (on ? 1 : 0) + '\n')], power: p => [asc('L RFPOWER ' + (Math.max(5, Math.min(100, p)) / 100).toFixed(2) + '\n')], mic: v => [asc('L MICGAIN ' + (Math.max(0, Math.min(100, v)) / 100).toFixed(2) + '\n')] }
   };
   /* Oct 26 (Brandon: 'tune button … real radio tuning'): start the radio's own antenna tuner. Yaesu AC002 (FT-710 / 991A / FTDX10 / 891 with an ATU),
      Kenwood AC111, Icom 0x1C 0x01 0x02, Hamlib vfo op TUNE. Elecraft / QRP kits: no (their tuners answer other commands or none). */
-  EXTRA.yaesu.atu = () => [asc('AC002;')];
+  EXTRA.yaesu.atu = () => [asc(S.radio === 'ft710' || FTX() ? 'AC003;' : 'AC002;')];   /* Nov 18 manual check: FT-710 and FTX-1 AC P3 3 = Tuning Start (2 is unused); FTDX10 / FT-991A / FT-891 / FTDX101 2 = start */
   EXTRA.kenwood.atu = () => S.model === 'elecraft' ? null : [asc('AC111;')];
   EXTRA.icom.atu = () => [icom([0x1C, 0x01, 0x02])];
   EXTRA.hamlib.atu = () => [asc('G TUNE\n')];
@@ -399,25 +536,36 @@
   const l255 = p => Math.round(clamp(p, 0, 100) * 2.55);
   const bcd1 = v => parseInt(pad(clamp(v, 0, 99), 2), 16);
   const DX10 = { ftdx10: 1, ftdx101: 1, ft710: 1, ftx1: 1 };      /* Yaesu's newest CAT: IS with the extra 0, ATT 6/12/18 dB steps, CLAR instead of RT/XT */
-  const ysh = hz => { hz = Math.round(clamp(hz, -1200, 1200) / 20) * 20; const s = (hz < 0 ? '-' : '+') + pad(Math.abs(hz), 4); return asc((DX10[S.radio] ? 'IS00' : 'IS0') + s + ';'); };
+  /* 0.9.9: FT-891 IF shift is IS P1 P2 ±nnnn (P2 0 = shift off, 1 = on), CAT Reference Book p.10 */
+  const ysh = hz => { hz = Math.round(clamp(hz, -1200, 1200) / 20) * 20; const s = (hz < 0 ? '-' : '+') + pad(Math.abs(hz), 4); return asc((DX10[S.radio] ? 'IS00' : S.radio === 'ft891' && S.proto === 'yaesu' ? 'IS0' + (hz ? 1 : 0) : 'IS0') + s + ';'); };
   const YAGC = { off: 0, fast: 1, mid: 2, slow: 3, auto: 4 };
-  const yatt = db => DX10[S.radio] ? Math.max(0, [0, 6, 12, 18].indexOf(+db)) : (+db > 0 ? 1 : 0);
+  /* Nov 18 manual check (FT-710 2306-C / FTDX10 2308-F, CF): these radios have no RT / XT / RC / RU / RD: the clarifier is CF.
+     CF0 0 0 <RX on><TX on>000 = RX / TX clarifier on-off; CF0 0 1 <+/-><4 digits> = the offset (Hz). */
+  /* 0.9.9 radio round: the FTDX101 has NO CF command (1912-D command list): its clarifier is RT / XT, RC, RU / RD with 4 digits, like the
+     FT-991A. The FT-891 has no RT / XT: its clarifier is CF P1 P2 P3 (CF010; on, CF000; off), receive only, offset by RC / RU / RD.
+     The FT-991A has no ST: split is FT3 (transmit on VFO-B) / FT2. The FTX-1 attenuator is on / off only (RA00 / RA01).
+     COMP: FT-891 PR00 off / PR01 on; the FT-991A and the newest ones PR01 off / PR02 on. */
+  const YCF = { ftdx10: 1, ft710: 1, ftx1: 1 };
+  const Y891 = () => S.radio === 'ft891' && S.proto === 'yaesu';
+  const CLR = { rx: 0, tx: 0 };
+  const ycf = () => asc('CF000' + CLR.rx + CLR.tx + '000;');
+  const yatt = db => DX10[S.radio] && !FTX() ? Math.max(0, [0, 6, 12, 18].indexOf(+db)) : (+db > 0 ? 1 : 0);
   const MORE = {
-    yaesu: { shift: hz => [ysh(hz)], nrl: p => [asc('RL0' + pad(1 + Math.round(clamp(p, 0, 100) / 100 * 14), 2) + ';')], nbl: p => [asc('NL0' + pad(Math.round(clamp(p, 0, 100) / 10), 3) + ';')],
+    yaesu: { shift: hz => [ysh(hz)], nrl: p => FTX() ? (FXL.nr = 1 + Math.round(clamp(p, 0, 100) / 100 * 9), [asc('RL0' + pad(FXL.nr, 2) + ';')]) : [asc('RL0' + pad(1 + Math.round(clamp(p, 0, 100) / 100 * 14), 2) + ';')], nbl: p => FTX() ? (FXL.nb = Math.max(1, Math.round(clamp(p, 0, 100) / 10)), [asc('NL0' + pad(FXL.nb, 3) + ';')]) : [asc('NL0' + pad(Math.round(clamp(p, 0, 100) / 10), 3) + ';')],
       agc: a => YAGC[a] == null ? null : [asc('GT0' + YAGC[a] + ';')], att: db => [asc('RA0' + yatt(db) + ';')], pre: n => [asc('PA0' + clamp(n, 0, 2) + ';')],
       contour: on => [asc('CO0000' + (on ? '01' : '00') + ';')], apf: on => [asc('CO0200' + (on ? '01' : '00') + ';')],
       mnotch: on => [asc('BP0000' + (on ? 1 : 0) + ';')], mnotchf: hz => [asc('BP01' + pad(clamp(Math.round(hz / 10), 1, 320), 3) + ';')],
-      split: on => [asc(on ? 'ST1;' : 'ST0;')], rit: on => [asc(on ? 'RT1;' : 'RT0;')], xit: on => [asc(on ? 'XT1;' : 'XT0;')],
-      ritoff: hz => { hz = Math.round(clamp(hz, -9990, 9990)); return hz ? [asc('RC;'), asc((hz > 0 ? 'RU' : 'RD') + pad(Math.abs(hz), 4) + ';')] : [asc('RC;')]; },
+      split: on => [asc(S.radio === 'ft991' && S.proto === 'yaesu' ? (on ? 'FT3;' : 'FT2;') : on ? 'ST1;' : 'ST0;')], rit: on => YCF[S.radio] ? (CLR.rx = on ? 1 : 0, [ycf()]) : Y891() ? [asc(on ? 'CF010;' : 'CF000;')] : [asc(on ? 'RT1;' : 'RT0;')], xit: on => YCF[S.radio] ? (CLR.tx = on ? 1 : 0, [ycf()]) : Y891() ? null : [asc(on ? 'XT1;' : 'XT0;')],
+      ritoff: hz => { hz = Math.round(clamp(hz, -9990, 9990)); if (YCF[S.radio]) return [asc('CF001' + (hz < 0 ? '-' : '+') + pad(Math.abs(hz), 4) + ';')]; return hz ? [asc('RC;'), asc((hz > 0 ? 'RU' : 'RD') + pad(Math.abs(hz), 4) + ';')] : [asc('RC;')]; },
       swap: () => [asc('SV;')], ab: () => [asc('AB;')], keyspd: w => [asc('KS' + pad(clamp(w, 4, 60), 3) + ';')], bkin: n => [asc('BI' + (n ? 1 : 0) + ';')] },
     kenwood: { nrl: p => [asc('RL' + pad(1 + Math.round(clamp(p, 0, 100) / 100 * 9), 2) + ';')], nbl: p => [asc('NL' + pad(1 + Math.round(clamp(p, 0, 100) / 100 * 9), 3) + ';')],
-      agc: a => S.model === 'elecraft' ? (a === 'fast' ? [asc('GT002;')] : a === 'slow' ? [asc('GT004;')] : null) : ({ off: 0, slow: 1, mid: 2, fast: 3 }[a] == null ? null : [asc('GT' + { off: 0, slow: 1, mid: 2, fast: 3 }[a] + ';')]),
-      att: db => (S.radio === 'ts890' || S.radio === 'ts990') ? [asc('RA' + Math.max(0, [0, 6, 12, 18].indexOf(+db)) + ';')] : [asc('RA0' + (+db > 0 ? 1 : 0) + ';')], pre: n => [asc('PA' + (n ? 1 : 0) + ';')],
+      agc: a => S.model === 'elecraft' ? (a === 'fast' ? [asc('GT002;')] : a === 'slow' ? [asc('GT004;')] : null) : ({ off: 0, slow: 1, mid: 2, fast: 3 }[a] == null ? null : [asc((T990() ? 'GC0' : K890[S.radio] ? 'GC' : 'GT') + { off: 0, slow: 1, mid: 2, fast: 3 }[a] + ';')]),
+      att: db => (S.radio === 'ts890' || S.radio === 'ts990') ? [asc((T990() ? 'RA0' : 'RA') + Math.max(0, [0, 6, 12, 18].indexOf(+db)) + ';')] : [asc('RA0' + (+db > 0 ? 1 : 0) + ';')], pre: n => [asc('PA' + (T990() ? '0' : '') + (n ? 1 : 0) + ';')],
       apf: on => [asc('AP' + (on ? 1 : 0) + ';')],
-      split: on => S.model === 'elecraft' ? [asc(on ? 'FT1;' : 'FT0;')] : on ? [asc('FR0;'), asc('FT1;')] : [asc('FR0;'), asc('FT0;')],
+      split: on => S.model === 'elecraft' ? [asc(on ? 'FT1;' : 'FT0;')] : T990() ? [asc(on ? 'TB1;' : 'TB0;')] : on ? [asc('FR0;'), asc('FT1;')] : [asc('FR0;'), asc('FT0;')],
       rit: on => [asc(on ? 'RT1;' : 'RT0;')], xit: on => [asc(on ? 'XT1;' : 'XT0;')],
-      ritoff: hz => { hz = Math.round(clamp(hz, -9990, 9990)); if (S.model === 'elecraft' || !hz) return [asc('RC;')]; return [asc('RC;'), asc((hz > 0 ? 'RU' : 'RD') + pad(Math.abs(hz), 5) + ';')]; },
-      ab: () => [asc('VV;')], keyspd: w => [asc('KS' + pad(clamp(w, 4, 60), 3) + ';')] },
+      ritoff: hz => { hz = Math.round(clamp(hz, -9990, 9990)); if (S.model === 'elecraft') return [asc('RO' + (hz < 0 ? '-' : ' ') + pad(Math.abs(hz), 4) + ';')]; if (!hz) return [asc('RC;')];   /* Elecraft RO s nnnn (space = +) */ return [asc('RC;'), asc((hz > 0 ? 'RU' : 'RD') + pad(Math.abs(hz), 5) + ';')]; },
+      ab: () => [asc('VV;')], keyspd: w => [asc('KS' + pad(S.model === 'elecraft' ? clamp(w, 8, 50) : clamp(w, S.radio === 'ts480' ? 10 : 4, 60), 3) + ';')] },   /* TS-480 command reference: KS 010-060 */
     icom: { shift: hz => { const l = Math.round(clamp(128 + clamp(hz, -1200, 1200) / 1200 * 127, 0, 255)); return [icom([0x14, 0x07, ...bcd4(l)]), icom([0x14, 0x08, ...bcd4(l)])]; },
       nrl: p => [icom([0x14, 0x06, ...bcd4(l255(p))])], nbl: p => [icom([0x14, 0x12, ...bcd4(l255(p))])],
       agc: a => a === 'off' ? [icom([0x1A, 0x04, 0x00])] : { fast: 1, mid: 2, slow: 3 }[a] ? [icom([0x16, 0x12, { fast: 1, mid: 2, slow: 3 }[a]])] : null,
@@ -425,7 +573,7 @@
       mnotch: on => [icom([0x16, 0x48, on ? 1 : 0])], mnotchf: hz => [icom([0x14, 0x0D, ...bcd4(Math.round(clamp((hz - 200) / 2800, 0, 1) * 255))])],
       split: on => [icom([0x0F, on ? 1 : 0])], rit: on => [icom([0x21, 0x01, on ? 1 : 0])], xit: on => [icom([0x21, 0x02, on ? 1 : 0])],
       ritoff: hz => { hz = Math.round(clamp(hz, -9999, 9999)); const a = Math.abs(hz), d = pad(a, 4); return [icom([0x21, 0x00, parseInt(d.slice(2), 16), parseInt(d.slice(0, 2), 16), hz < 0 ? 1 : 0])]; },
-      swap: () => [icom([0x07, 0xB0])], ab: () => [icom([0x07, 0xA0])],
+      swap: () => [icom([0x07, 0xB0])], ab: () => [icom([0x07, S.radio === 'ic7610' ? 0xB1 : 0xA0])],   /* 0.9.9: IC-7610 CI-V guide: 07 B1 = equalize main and sub bands (it has no 07 A0) */
       keyspd: w => [icom([0x14, 0x0C, ...bcd4(Math.round((clamp(w, 6, 48) - 6) / 42 * 255))])], bkin: n => [icom([0x16, 0x47, clamp(n, 0, 2)])] },
     hamlib: { shift: hz => [asc('L IF ' + Math.round(clamp(hz, -1200, 1200)) + '\n')], nrl: p => [asc('L NR ' + (clamp(p, 0, 100) / 100).toFixed(2) + '\n')], nbl: p => [asc('L NB ' + (clamp(p, 0, 100) / 100).toFixed(2) + '\n')],
       agc: a => ({ off: 0, fast: 2, mid: 5, slow: 3, auto: 6 }[a] == null ? null : [asc('L AGC ' + { off: 0, fast: 2, mid: 5, slow: 3, auto: 6 }[a] + '\n')]),
@@ -434,34 +582,78 @@
       split: on => [asc(on ? 'S 1 VFOB\n' : 'S 0 VFOA\n')], rit: on => [asc('U RIT ' + (on ? 1 : 0) + '\n')], xit: on => [asc('U XIT ' + (on ? 1 : 0) + '\n')], ritoff: hz => [asc('J ' + Math.round(hz) + '\n')],
       swap: () => [asc('G XCHG\n')], ab: () => [asc('G CPY\n')], keyspd: w => [asc('L KEYSPD ' + Math.round(clamp(w, 4, 60)) + '\n')], bkin: n => [asc('U FBKIN ' + (n === 2 ? 1 : 0) + '\n'), asc('U SBKIN ' + (n === 1 ? 1 : 0) + '\n')] }
   };
+  /* Nov 18 (Brandon: 'give me all the options'): VOX, speech processor (COMP) and MONITOR, from the makers' CAT manuals.
+     Icom CI-V 16 46 / 16 44 / 16 45 (00 off, 01 on); Kenwood VX / PR; Yaesu VX (and PR0 + 1 off / 2 on on the newest: FT-710,
+     FTDX10, FTDX101, FTX-1); Hamlib VOX / COMP / MON. Not checked on a real radio yet: the 📜 RADIO LOG shows what was sent. */
+  MORE.icom.vox = on => [icom([0x16, 0x46, on ? 1 : 0])]; MORE.icom.comp = on => [icom([0x16, 0x44, on ? 1 : 0])]; MORE.icom.mon = on => [icom([0x16, 0x45, on ? 1 : 0])];
+  MORE.kenwood.vox = on => [asc(on ? 'VX1;' : 'VX0;')]; MORE.kenwood.comp = on => [asc((K890[S.radio] ? 'PR0' : 'PR') + (on ? 1 : 0) + ';')];
+  MORE.yaesu.mon = on => [asc(on ? 'ML0001;' : 'ML0000;')];   /* FT-710 / FTDX10 ML: P1 0 = MONI on/off */
+  MORE.yaesu.vox = on => [asc(on ? 'VX1;' : 'VX0;')]; MORE.yaesu.comp = on => [asc(Y891() ? (on ? 'PR01;' : 'PR00;') : on ? 'PR02;' : 'PR01;')];
+  MORE.hamlib.vox = on => [asc('U VOX ' + (on ? 1 : 0) + '\n')]; MORE.hamlib.comp = on => [asc('U COMP ' + (on ? 1 : 0) + '\n')]; MORE.hamlib.mon = on => [asc('U MON ' + (on ? 1 : 0) + '\n')];
   MORE.yaesu8 = Object.assign({}, MORE.yaesu, { split: on => [asc(on ? 'FT3;' : 'FT2;')] });
   EXTRA.yaesu8 = Object.assign({}, EXTRA.yaesu);   /* its own copy now: the old ones split with FT3 / FT2 */
+  /* Nov 10: SPLIT FROM A SPOT ('UP 5' in the comment): set VFO B (where the DX listens) and turn split on. Returns false where a family cannot. */
+  const hzOf = khz => Math.round(+khz * 1000);
+  function splitCmds(khz) {
+    const hz = hzOf(khz), pr = LINK() === 'rigctld' ? 'hamlib' : S.proto;
+    if (!(hz > 100000)) return null;
+    /* Nov 10 review: A=B first, so VFO B has the same MODE (and filter) as A before its frequency is set: no SSB DX worked on CW */
+    const ab = (p) => { const M = MORE[p]; return (M && M.ab && S.model !== 'elecraft' && M.ab()) || []; };   /* Elecraft: no plain A=B over CAT here */
+    if (pr === 'kenwood') return [...ab('kenwood'), asc('FB' + pad(hz, 11) + ';'), ...MORE.kenwood.split(true)];
+    if (pr === 'yaesu') return [...ab('yaesu'), asc('FB' + pad(hz, 9) + ';'), ...MORE.yaesu.split(true)];
+    if (pr === 'yaesu8') return [...ab('yaesu8'), asc('FB' + pad(hz, 8) + ';'), ...MORE.yaesu8.split(true)];
+    if (pr === 'icom') { const f = bcdLE(hz, 5); return ICOM_NEW[S.radio] ? [...ab('icom'), icom([0x25, 0x01, ...f]), icom([0x0F, 0x01])] : [...ab('icom'), icom([0x07, 0x01]), icom([0x05, ...f]), icom([0x07, 0x00]), icom([0x0F, 0x01])]; }
+    if (pr === 'hamlib') return [...ab('hamlib'), asc('I ' + hz + '\n'), asc('S 1 VFOB\n')];
+    return null;   /* yaesuold (FT-817 / 857 / 897): no VFO B command here → by hand */
+  }
+  function splitTx(khz) {
+    khz = +khz; if (!S.on || !khz) return Promise.resolve(false);
+    busy = busy.then(STEP(async () => {
+      if (!await connect(false)) return false;
+      if (LINK() === 'fake') { await sleep(30); FAKE.split = { on: true, khz }; SPLITON = true; return true; }
+      if (LINK() === 'flrig') { try { await FLRIG.call('rig.set_vfoB', [hzOf(khz)]); await FLRIG.call('rig.set_split', [1]); return true; } catch (e) { return false; } }
+      const C = splitCmds(khz); if (!C) return false;
+      try { for (const b of C) await write(b); SPLITON = true; return true; } catch (e) { return false; }
+    })).catch(() => false);
+    return busy;
+  }
+  function splitOff() {
+    busy = busy.then(STEP(async () => {
+      if (!await connect(false)) return false;
+      if (LINK() === 'fake') { FAKE.split = { on: false }; SPLITON = false; return true; }
+      if (LINK() === 'flrig') { try { await FLRIG.call('rig.set_split', [0]); return true; } catch (e) { return false; } }
+      const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto]; if (!E || !E.split) return false;
+      try { for (const b of E.split(false)) await write(b); SPLITON = false; return true; } catch (e) { return false; }
+    })).catch(() => false);
+    return busy;
+  }
   Object.keys(MORE).forEach(p => { EXTRA[p] = Object.assign(EXTRA[p] || {}, MORE[p]); });
   /* which radio takes which (the radio list's id → what to leave out, and the choices its AGC / ATT / PRE knobs have) */
-  const ALLK = ['shift', 'nrl', 'nbl', 'agc', 'att', 'pre', 'contour', 'apf', 'mnotch', 'mnotchf', 'split', 'rit', 'xit', 'ritoff', 'swap', 'ab', 'keyspd', 'bkin'];
+  const ALLK = ['shift', 'nrl', 'nbl', 'agc', 'att', 'pre', 'contour', 'apf', 'mnotch', 'mnotchf', 'split', 'rit', 'xit', 'ritoff', 'swap', 'ab', 'keyspd', 'bkin', 'vox', 'comp', 'mon'];
   const ICOM_NEW = { ic7300: 1, ic705: 1, ic9700: 1, ic7610: 1, ic905: 1, ic7851: 1 };
   const ICOM_PRE2 = { ic7300: 1, ic7610: 1, ic7851: 1, ic7100: 1, ic756: 1, ic7600: 1, ic7700: 1, ic7800: 1, ic7410: 1 };
-  const ICOM_ATT = { ic7610: [0, 6, 12, 18], ic7851: [0, 6, 12, 18], ic7800: [0, 6, 12, 18], ic7700: [0, 6, 12, 18], ic756: [0, 6, 12, 18], ic9700: [0, 10], ic905: [0, 10] };
+  const ICOM_ATT = { ic7610: [0, 6, 12, 18], ic7851: [0, 6, 12, 18], ic7800: [0, 6, 12, 18], ic7700: [0, 6, 12, 18], ic756: [0, 6, 12, 18], ic9700: [0, 10], ic905: [0, 10], ic7100: [0, 12] };   /* IC-7100: 11 00 / 11 12 only */
   function caps(id) {
     id = id == null ? S.radio : id; const r = RADIO[id] || { proto: S.proto, model: S.model };
     const L = LINK(), pr = L === 'rigctld' ? 'hamlib' : L === 'flrig' ? 'flrig' : L === 'fake' ? 'fake' : r.proto;
     let out = [], agc = [], att = [], pre = [];
     if (pr === 'fake' || pr === 'hamlib') { out = ALLK.slice(); agc = ['off', 'fast', 'mid', 'slow', 'auto']; att = [0, 6, 12, 18]; pre = [0, 1, 2]; }
     else if (pr === 'yaesu' || pr === 'yaesu8') {
-      out = ALLK.filter(k => !(DX10[id] && (k === 'rit' || k === 'xit')));
-      agc = ['off', 'fast', 'mid', 'slow', 'auto']; att = DX10[id] ? [0, 6, 12, 18] : [0, 12]; pre = (id === 'ft891' || id === 'ft450') ? [0, 1] : [0, 1, 2];
+      const txk = pr === 'yaesu' && (DX10[id] || Y9[id]);   /* 0.9.9: COMP (PR0) and MONITOR (ML0) are in the FT-891 and FT-991A manuals too */
+      out = ALLK.filter(k => !(k === 'mon' && !txk) && !(k === 'comp' && !txk) && !(k === 'xit' && id === 'ft891' && pr === 'yaesu'));   /* Nov 18: RIT / XIT on the FT-710 / FTDX10 / FTX-1 = the CF clarifier; MONITOR = ML0. FT-891: no TX clarifier command */
+      agc = ['off', 'fast', 'mid', 'slow', 'auto']; att = DX10[id] && id !== 'ftx1' ? [0, 6, 12, 18] : [0, 12]; pre = (id === 'ft891' || id === 'ft450') ? [0, 1] : [0, 1, 2];
     } else if (pr === 'icom') {
       if (r.model === 'xiegu') { out = ['split', 'swap', 'ab', 'att', 'pre']; att = [0, 20]; pre = [0, 1]; }
       else {
-        const old = !ICOM_NEW[id] && id !== 'ic7100';
+        const old = !ICOM_NEW[id];   /* 0.9.9: the IC-7100 table has no command 21 (RIT / ΔTX) and no 16 32 (APF), so it counts as 'old' here too */
         const mn = ICOM_NEW[id] || /^ic(7100|7600|7700|7800|7410|756)$/.test(id);
-        out = ALLK.filter(k => k !== 'contour' && !(old && ['rit', 'xit', 'ritoff', 'apf'].includes(k)) && !(id === 'ic718' && k === 'shift') && !(!mn && (k === 'mnotch' || k === 'mnotchf')));
+        out = ALLK.filter(k => k !== 'contour' && !(old && ['rit', 'xit', 'ritoff', 'apf'].includes(k)) && !(k === 'apf' && (id === 'ic7300' || id === 'ic705' || id === 'ic9700'))   /* Nov 18 manual check: no 16 32 (APF) in the IC-7300 / IC-705 / IC-9700 command tables */ && !(k === 'xit' && id === 'ic9700')   /* IC-9700: 21 00 / 21 01 only, no ΔTX */ && !(id === 'ic718' && k === 'shift') && !(!mn && (k === 'mnotch' || k === 'mnotchf')));
         agc = ICOM_NEW[id] ? ['off', 'fast', 'mid', 'slow'] : ['fast', 'mid', 'slow']; att = ICOM_ATT[id] || [0, 20]; pre = ICOM_PRE2[id] ? [0, 1, 2] : [0, 1];
       }
     } else if (pr === 'kenwood') {
       if (r.model === 'elecraft') { out = ['agc', 'att', 'pre', 'apf', 'split', 'rit', 'xit', 'ritoff', 'keyspd']; agc = ['fast', 'slow']; att = [0, 10]; pre = [0, 1]; }
-      else if (id === 'ts590') { out = ['nrl', 'nbl', 'att', 'pre', 'split', 'rit', 'xit', 'ritoff', 'ab', 'keyspd']; att = [0, 12]; pre = [0, 1]; }
-      else if (id === 'ts890' || id === 'ts990') { out = ['agc', 'att', 'pre', 'split', 'rit', 'xit', 'ritoff', 'ab', 'keyspd']; agc = ['off', 'slow', 'mid', 'fast']; att = [0, 6, 12, 18]; pre = [0, 1]; }
+      else if (id === 'ts590') { out = ['nrl', 'nbl', 'att', 'pre', 'split', 'rit', 'xit', 'ritoff', 'ab', 'keyspd', 'vox', 'comp']; att = [0, 12]; pre = [0, 1]; }
+      else if (id === 'ts890' || id === 'ts990') { out = ['agc', 'att', 'pre', 'split', 'rit', 'xit', 'ritoff', 'ab', 'keyspd', 'vox', 'comp']; agc = ['off', 'slow', 'mid', 'fast']; att = [0, 6, 12, 18]; pre = [0, 1]; }
       else if (/^ts(480|2000|570)$/.test(id)) { out = ['att', 'pre', 'split', 'rit', 'xit', 'ritoff', 'keyspd']; att = [0, 12]; pre = [0, 1]; }
       else if (id === 'flex') { out = ['split', 'rit', 'xit', 'ritoff', 'keyspd']; }
       else if (/^(qmx|qdx|qcx|trusdx|tx500|discovery)$/.test(id)) { out = ['split', 'keyspd']; }
@@ -481,10 +673,19 @@
      from the radio's own scale: Yaesu RM1 / Icom 0x15 0x02 = 0–255 with S9 ≈ 120 and S9+60 ≈ 241; Kenwood SM0 = 0–30 with S9 = 15;
      hamlib STRENGTH is already dB over S9; flrig smeter 0–100 (×2.55). COMP / IDD / VDD where Yaesu gives them (RM3 / RM7 / RM8, 0–100 %). */
   const sdb = (v, s9, top) => v == null || !isFinite(v) ? null : v <= s9 ? Math.round((v / s9 * 9 - 9) * 6) : Math.round((v - s9) / (top - s9) * 60);
+  const icSwr = v => { if (v == null) return null; const r = v <= 48 ? 1 + v / 48 * 0.5 : v <= 80 ? 1.5 + (v - 48) / 32 * 0.5 : v <= 120 ? 2 + (v - 80) / 40 : 3 + (v - 120) / 60; return Math.round(Math.min(100, r <= 2 ? (r - 1) * 30 : r <= 3 ? 30 + (r - 2) * 30 : 60 + (r - 3) / 2 * 40)); };   /* Icom SWR meter (0048 = 1.5, 0080 = 2, 0120 = 3) → the screen's bar */
   let PTTW = 0;
+  function icomMeter(r, sub2) {
+    for (let i = r.length - 1; i >= 8; i--) {
+      if (r[i] !== 0xFD) continue;
+      const f = r.slice(i - 8, i + 1);   /* FE FE E0 radio 15 sub hi lo FD */
+      if (f[0] === 0xFE && f[1] === 0xFE && f[2] === 0xE0 && f[4] === 0x15 && f[5] === sub2) { const hi = f[6], lo = f[7]; if ((hi >> 4) > 9 || (hi & 15) > 9 || (lo >> 4) > 9 || (lo & 15) > 9) return null; return (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); }
+    }
+    return null;
+  }
   function meters() {
     if (!S.on) return Promise.resolve(null);
-    busy = busy.then(async () => {
+    busy = busy.then(STEP(async () => {
       if (PTTW) return null;
       const L = LINK();
       if (L === 'fake') { if (!FAKE.on) return null; const tx = !!(window.KPCApp && KPCApp.txing && KPCApp.txing()); return { s: tx ? null : Math.round(-18 + Math.random() * 30), alc: tx ? 30 + Math.round(Math.random() * 20) : 0, po: tx ? 70 + Math.round(Math.random() * 10) : 0, swr: tx ? 12 : 0, comp: tx ? 20 : 0, idd: tx ? 55 : 8, vdd: 54, pwr: FAKE.pwr || 100 }; }
@@ -492,14 +693,34 @@
       if (!port || !writer || connecting) return null;   /* Nov 6 (Opus, found by the scope tests): a meter read DURING CONNECT's probe emptied rbuf under it → 'the radio does not answer there' */
       const pr = L === 'rigctld' ? 'hamlib' : S.proto;
       try {
-        if (pr === 'yaesu' || pr === 'yaesu8') { rbuf = []; await write(asc('RM1;RM3;RM4;RM5;RM6;RM7;RM8;PC;')); await sleep(260); const t = String.fromCharCode(...rbuf); const g = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? M255(+m[1]) : null; }, pc = /PC(\d{3});/.exec(t);   /* Oct 25: the FT-710 / FTDX10 answer 'RM4120000;' (value + three fixed zeros): the old 3-digit match never fitted, so the bars stayed empty */ const raw = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? +m[1] : null; }; return { s: sdb(raw('RM1'), 120, 241), comp: g('RM3'), alc: g('RM4'), po: g('RM5'), swr: g('RM6'), idd: g('RM7'), vdd: g('RM8'), pwr: pc ? +pc[1] : null }; }
-        if (pr === 'kenwood') { rbuf = []; await write(asc('SM0;PC;')); await sleep(220); const t = String.fromCharCode(...rbuf), pc = /PC(\d{3});/.exec(t), sm = /SM0(\d{4});/.exec(t); return { s: sm ? sdb(+sm[1], 15, 30) : null, alc: null, po: null, swr: null, pwr: pc ? +pc[1] : null }; }
+        if (pr === 'yaesu' || pr === 'yaesu8') { rbuf = []; await write(asc('RM1;RM3;RM4;RM5;RM6;RM7;RM8;PC;')); await sleep(260); const t = String.fromCharCode(...rbuf); const g = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? M255(+m[1]) : null; }, pw = yPwr(t);   /* Oct 25: the FT-710 / FTDX10 answer 'RM4120000;' (value + three fixed zeros): the old 3-digit match never fitted, so the bars stayed empty */ const raw = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? +m[1] : null; }; return { s: sdb(raw('RM1'), 120, 241), comp: g('RM3'), alc: g('RM4'), po: g('RM5'), swr: g('RM6'), idd: g('RM7'), vdd: g('RM8'), pwr: pw }; }
+        if (pr === 'kenwood') {
+          /* Nov 18 manual checks. TS-590: SM0; (0-30 dots, S9 = 15), RM; = 1 SWR, 2 COMP, 3 ALC (0-30). TS-890 / 990: SM; (0-70 dots; S9 taken
+             as 35, not in the excerpt read), RM11 / RM21 / RM31 switch ALC / SWR / COMP reading on, RM; = 1 ALC, 2 SWR, 3 COMP (0-70).
+             Elecraft: SM; (0-15, S9 = 6), SW; = SWR in tenths, PO; = watts in tenths (KX). */
+          const el = S.model === 'elecraft', k8 = !el && K890[S.radio], k5 = !el && S.radio === 'ts590';
+          rbuf = []; await write(asc(el ? 'SM;PC;SW;' + (/^kx/.test(S.radio) ? 'PO;' : '') : k8 ? (T990() ? 'SM0;PC;RM11;RM21;RM31;RM;' : 'SM;PC;RM11;RM21;RM31;RM;') : k5 ? 'SM0;PC;RM;' : 'SM0;PC;')); await sleep(240);
+          const t = String.fromCharCode(...rbuf), pc = /PC(\d{3})/.exec(t), num = re => { const m = re.exec(t); return m ? +m[1] : null; }, pct = (v, full) => v == null ? null : Math.round(Math.min(100, v / full * 100));
+          const rmv = (n, full) => pct(num(new RegExp('RM' + n + '(\\d{4});')), full);
+          const ratioBar = r => r == null ? null : Math.round(Math.min(100, r <= 2 ? (r - 1) * 30 : r <= 3 ? 30 + (r - 2) * 30 : 60 + (r - 3) / 2 * 40));
+          const pw = pc ? (el ? Math.min(100, Math.round(+pc[1] / (EMAX[S.radio] || 10) * 100)) : T990() ? Math.min(100, Math.round(+pc[1] / 2)) : +pc[1]) : null;   /* TS-990: watts of 200 */
+          if (el) { const sm = num(/SM(\d{4});/), sw = num(/SW(\d{3});/), po = num(/PO(\d{3});/); return { s: sm == null ? null : sdb(sm, 6, 15), alc: null, po: po == null ? null : pct(po / 10, EMAX[S.radio] || 10), swr: sw ? ratioBar(sw / 10) : null, pwr: pw }; }
+          if (k8) { const sm = num(T990() ? /SM0(\d{4});/ : /SM(\d{4});/);   /* TS-990: SM0; → SM0nnnn; (main band) */ return { s: sm == null ? null : sdb(sm, 35, 70), alc: rmv(1, 70), comp: rmv(3, 70), po: null, swr: null, swrDots: rmv(2, 70), pwr: pw }; }
+          const sm = num(/SM0(\d{4});/), t48 = S.radio === 'ts480';   /* TS-480 command reference: the S-meter answer is 0000-0020 (S9 taken as 10: not given) */ return { s: sm == null ? null : sdb(sm, t48 ? 10 : 15, t48 ? 20 : 30), alc: k5 ? rmv(3, 30) : null, comp: k5 ? rmv(2, 30) : null, po: null, swr: null, swrDots: k5 ? rmv(1, 30) : null, pwr: pw };
+        }
         if (pr === 'hamlib') { rbuf = []; await write(asc('\\get_level ALC\n\\get_level SWR\n\\get_level RFPOWER\n\\get_level STRENGTH\n')); await sleep(340); const t = String.fromCharCode(...rbuf).split(/\s+/).map(Number).filter(x => isFinite(x)); return { s: t[3] != null ? Math.round(t[3]) : null, alc: t[0] != null ? Math.round(Math.min(100, t[0] * 100)) : null, po: null, swr: t[1] != null ? Math.round(Math.min(100, (t[1] - 1) * 50)) : null, pwr: t[2] != null ? Math.round(t[2] * 100) : null }; }
-        if (pr === 'icom') { const one = async sub2 => { if (PTTW) return null; rbuf = []; await write(icom([0x15, sub2])); await sleep(180); const r = rbuf.slice(); const i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i); const hi = d[d.length - 2], lo = d[d.length - 1]; const v = (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); return M255(v); }; const sRaw = async () => { rbuf = []; await write(icom([0x15, 0x02])); await sleep(180); const r = rbuf.slice(), i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i), hi = d[d.length - 2], lo = d[d.length - 1]; return (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); };
-          return { s: sdb(await sRaw(), 120, 241), alc: await one(0x13), po: await one(0x11), swr: await one(0x12), comp: await one(0x14), idd: await one(0x16), vdd: await one(0x15), pwr: null }; }
+        /* Nov 18 full review (OP-B7): only the radio's own ANSWER to this meter counts (FE FE E0 <radio> 15 <sub> hi lo FD): the echo of
+           the question (CI-V echo on) and a late answer to the meter before are skipped, so no meter reads another one's value */
+        if (pr === 'icom') { const one = async sub2 => { if (PTTW) return null; const v = await sRaw(sub2); return v == null ? null : M255(v); }; const sRaw = async sub2 => { sub2 = sub2 == null ? 0x02 : sub2; rbuf = []; await write(icom([0x15, sub2])); await sleep(180); return icomMeter(rbuf.slice(), sub2); };
+          /* Nov 18 manual check (IC-7300 manual p.19-3, IC-705 CI-V guide): PO 0213 = 100 %, ALC 0120 = maximum, SWR 0048 = 1.5, 0080 = 2.0,
+             0120 = 3.0. Turned into the meter scale the screen and the SWR guard use (the Yaesu-style bar: 30 = 2.0, 60 = 3.0). */
+          const raw = async sub2 => { if (PTTW) return null; return sRaw(sub2); };
+          const pct = (v, full) => v == null ? null : Math.round(Math.min(100, v / full * 100));
+          const s0 = await sRaw(), po = await raw(0x11), al = await raw(0x13), sw = await raw(0x12);
+          return { s: sdb(s0, 120, 241), alc: pct(al, 120), po: pct(po, 213), swr: icSwr(sw), comp: await one(0x14), idd: await one(0x16), vdd: await one(0x15), pwr: null }; }
       } catch (e) { return null; }
       return null;
-    }).catch(() => null);
+    })).catch(() => null);
     return busy;
   }
   /* Nov 1 (Brandon: 'cw decoder broken … loud and not decoding'): with the radio IN CW mode the station sounds at the RADIO's
@@ -507,7 +728,7 @@
      DX10 / DX101 / 891), Icom 0x14 0x09 (0-255 = 300-900 Hz), Hamlib CWPITCH, the pretend radio 600. */
   function cwPitch() {
     if (!S.on) return Promise.resolve(null);
-    busy = busy.then(async () => {
+    busy = busy.then(STEP(async () => {
       const L = LINK();
       if (L === 'fake') return FAKE.on ? 600 : null;
       if (L === 'flrig' || !port || !writer) return null;
@@ -518,58 +739,84 @@
         if (pr === 'hamlib') { rbuf = []; await write(asc('\\get_level CWPITCH\n')); await sleep(250); const v = parseFloat(String.fromCharCode(...rbuf)); return v > 200 && v < 1500 ? Math.round(v) : null; }
       } catch (e) { return null; }
       return null;
-    }).catch(() => null);
+    })).catch(() => null);
     return busy;
   }
   /* radio on / off over CAT. Off always works; ON works only when the radio listens while off (Yaesu/Kenwood: the CAT port stays awake on most USB radios; Icom needs the 0xFE wake-up string). */
   function power(on) {
     if (!S.on) return Promise.resolve(false);
-    busy = busy.then(async () => {
+    busy = busy.then(STEP(async () => {
       const L = LINK();
       if (L === 'fake') { FAKE.on = !!on; await sleep(60); return true; }
       if (L === 'flrig') { try { await FLRIG.call('rig.set_power_on', [on ? 1 : 0]); return true; } catch (e) { return false; } }
       if (!port || !writer) { if (!await connect(false)) return false; }
       const pr = L === 'rigctld' ? 'hamlib' : S.proto;
       try {
+        if (on && !canOn()) return false;
         if (pr === 'yaesu' || pr === 'yaesu8' || pr === 'kenwood') { if (on) { await write(asc('PS1;')); await sleep(1200); } await write(asc(on ? 'PS1;' : 'PS0;')); return true; }
         if (pr === 'hamlib') { await write(asc('\\set_powerstat ' + (on ? 1 : 0) + '\n')); return true; }
         if (pr === 'icom') { if (on) { const wake = new Uint8Array(150).fill(0xFE); await writer.write(wake); await sleep(50); } await write(icom([0x18, on ? 1 : 0])); return true; }
       } catch (e) { return false; }
       return false;
-    }).catch(() => false);
+    })).catch(() => false);
     return busy;
   }
+  const canOn = () => !(FTX() && LINK() === 'serial');   /* 0.9.9: FTX-1 CAT manual: PS takes only 0 (off); it cannot be switched on over CAT */
   function extras() {
     if (LINK() === 'flrig') return Object.keys(FLX);
     if (LINK() === 'fake') return ['width', 'notch', 'nb', 'nr', 'power', 'mic', 'atu'].concat(ALLK);
-    const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto] || {}, C = caps(); return Object.keys(E).filter(k => !(k === 'width' && S.proto === 'kenwood' && S.model !== 'elecraft') && !(k === 'atu' && (S.model === 'elecraft' || S.model === 'xiegu')) && (!ALLK.includes(k) || C.keys.includes(k)));
+    const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto] || {}, C = caps(); return Object.keys(E).filter(k => !(k === 'width' && S.proto === 'kenwood' && S.model !== 'elecraft' && S.radio !== 'ts590') && !(k === 'nr' && S.model === 'elecraft') && !(k === 'atu' && (S.model === 'elecraft' || S.model === 'xiegu' || (S.radio === 'ic9700' && S.proto === 'icom'))) && (!ALLK.includes(k) || C.keys.includes(k)));
   }
   let lastMode = '';
   function extra(name, value) {
-    busy = busy.then(async () => {
+    busy = busy.then(STEP(async () => {
       if (!await connect(false)) return false;
       if (LINK() === 'fake') { await sleep(40); return true; }
       if (LINK() === 'flrig') { if (!FLX[name]) return false; try { await FLX[name](value); return true; } catch (e) { return false; } }
       const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto]; if (!E || !E[name]) return false;
       const cmds = E[name](value, lastMode); if (!cmds) return false;
       try { for (const b of cmds) await write(b); return true; } catch (e) { return false; }
-    }).catch(() => false);
+    })).catch(() => false);
     return busy;
   }
-  const PTTC = { kenwood: on => [asc(on ? 'TX;' : 'RX;')], yaesu: on => [asc(on ? 'TX1;' : 'TX0;')], yaesu8: on => [asc(on ? 'TX1;' : 'TX0;')], yaesuold: on => [new Uint8Array([0, 0, 0, 0, on ? 0x08 : 0x88])], icom: on => [icom([0x1C, 0x00, on ? 1 : 0])] };
+  /* Nov 18 full review (OP-R5): the TS-590 / 890 / 990 take sound from the MIC on TX; — TX1; = send the USB / rear (data) sound, which is
+     what this app always sends. Elecraft and the other Kenwood-style radios keep TX;. */
+  const KTX1 = { ts590: 1, ts890: 1, ts990: 1 };
+  const PTTC = { kenwood: on => [asc(on ? (KTX1[S.radio] ? 'TX1;' : 'TX;') : 'RX;')], yaesu: on => [asc(on ? 'TX1;' : 'TX0;')], yaesu8: on => [asc(on ? 'TX1;' : 'TX0;')], yaesuold: on => [new Uint8Array([0, 0, 0, 0, on ? 0x08 : 0x88])], icom: on => [icom([0x1C, 0x00, on ? 1 : 0])] };
+  /* is the radio transmitting? true / false / null (can't tell). Yaesu TX; → TX0/1/2; Kenwood-style IF; → 29th character; Icom 1C 00. */
+  async function txState() {
+    try {
+      if (S.proto === 'yaesu' || S.proto === 'yaesu8') { rbuf = []; await write(asc('TX;')); await sleep(150); const m = /TX([0-2]);/.exec(String.fromCharCode(...rbuf)); return m ? m[1] === '1' : null; }   /* TX1 = CAT keyed; TX2 = the radio's own PTT / mic is pressed (not ours to undo) */
+      if (S.proto === 'kenwood' && K890[S.radio]) return null;   /* TS-890 IF layout not confirmed from its manual: no read-back rather than a wrong one */
+      if (S.proto === 'kenwood') { rbuf = []; await write(asc('IF;')); await sleep(150); const t = String.fromCharCode(...rbuf), i = t.lastIndexOf('IF'); if (i < 0 || t.length < i + 30) return null; const c = t[i + 28]; return c === '1' ? true : c === '0' ? false : null; }
+      if (S.proto === 'icom') { rbuf = []; await write(icom([0x1C, 0x00])); await sleep(150); const r = rbuf.slice(); for (let i = r.length - 1; i >= 6; i--) if (r[i] === 0xFD && r[i - 3] === 0x1C && r[i - 2] === 0x00 && r[i - 6] !== undefined) return r[i - 1] === 1; return null; }
+    } catch (e) {}
+    return null;
+  }
+  function stuckSay(e) {
+    const m = '⚠ The radio may still be TRANSMITTING: the unkey did not go through' + (e ? ' (' + (e.message || e) + ')' : '') + '. Press the radio\'s own MOX / PTT, or turn the power down.';
+    say(m, false);
+    try { if (window.KPCApp && KPCApp.notify) KPCApp.notify('ptt', m, { bad: true, ms: 12000 }); } catch (e2) {}
+  }
   function ptt(on, via) {
     via = via || S.ptt || 'cat'; if (via === 'vox') return Promise.resolve(true);
-    PTTW++;   /* Nov 8 (KPC owner, 2026-11-10): a waiting PTT makes the queued meter reads step aside */
-    busy = busy.then(async () => {
+    PTTW++;   /* Nov 8 (Brandon: 'key is little delayed'): a waiting PTT makes the queued meter reads step aside */
+    busy = busy.then(STEP(async () => {
       PTTW = Math.max(0, PTTW - 1);
       if (!await connect(false)) { say('Radio not connected, so no PTT. Connect it, or use VOX.', false); return false; }
       if (LINK() === 'fake') { FAKE.ptt = !!on; return true; }
       if (LINK() === 'flrig') { try { await FLRIG.ptt(!!on); return true; } catch (e) { say('flrig PTT did not work: ' + (e.message || e), false); return false; } }
       if (LINK() === 'rigctld') { try { await write(asc('T ' + (on ? 1 : 0) + '\n')); return true; } catch (e) { say('rigctld PTT did not work: ' + (e.message || e), false); return false; } }
       try { if (via === 'rts' || via === 'dtr') { await port.setSignals(via === 'rts' ? { requestToSend: !!on } : { dataTerminalReady: !!on }); return true; }
-        for (const b of (PTTC[S.proto] || PTTC.kenwood)(!!on)) await write(b); return true; }
-      catch (e) { say('PTT did not work: ' + (e.message || e), false); return false; }
-    }).catch(() => false);
+        for (const b of (PTTC[S.proto] || PTTC.kenwood)(!!on)) await write(b);
+        if (!on) {   /* OP-B5: read back that the radio really went to receive; send the unkey again once if not */
+          let tx = await txState();
+          if (tx === true) { for (const b of (PTTC[S.proto] || PTTC.kenwood)(false)) await write(b); await sleep(150); tx = await txState(); }
+          if (tx === true) { stuckSay(); return false; }
+        }
+        return true; }
+      catch (e) { if (!on) stuckSay(e); else say('PTT did not work: ' + (e.message || e), false); return false; }
+    })).catch(() => false);
     return busy;
   }
   /* ---- CW from the keyboard (Brandon Oct 17: 'cw keyboard to cw') ----
@@ -587,20 +834,20 @@
     if (S.proto === 'icom') { const lv = Math.round((wpm - 6) / 42 * 255), d = pad(lv, 4); await write(icom([0x14, 0x0C, parseInt(d.slice(0, 2), 16), parseInt(d.slice(2), 16)])); } }
   function cw(text, wpm) {
     text = String(text || '').toUpperCase().replace(/[^A-Z0-9 /?.,=+\-]/g, '');
-    busy = busy.then(async () => {
+    busy = busy.then(STEP(async () => {
       if (!await connect(false)) { say('Radio not connected.', false); return false; }
       if (!cwCan()) { say('This radio type can\'t take typed CW over CAT: use the DTR or RTS key line, or audio.', false); return false; }
       try { if (wpm) await cwSpeed(wpm);
         if (yky() === 2) { for (let i = 0; i < text.length; i += 50) { await write(asc('KM5' + text.slice(i, i + 50) + ';')); await write(asc('KYA;')); } }
         else if (yky()) { for (let i = 0; i < text.length; i += 48) await write(asc('KY0 ' + text.slice(i, i + 48).padEnd(48, ' ') + ';')); }
-        else if (S.proto === 'kenwood') { for (let i = 0; i < text.length; i += 24) await write(asc('KY ' + text.slice(i, i + 24).padEnd(24, ' ') + ';')); }
+        else if (S.proto === 'kenwood') { for (let i = 0; i < text.length; i += 24) await write(asc('KY ' + (S.model === 'elecraft' ? text.slice(i, i + 24) : text.slice(i, i + 24).padEnd(24, ' ')) + ';')); }   /* Nov 18 (OP-W4): Elecraft takes any length: no padding = no gaps between chunks */
         else { for (let i = 0; i < text.length; i += 30) await write(icom([0x17, ...asc(text.slice(i, i + 30))])); }
         return true; }
       catch (e) { say('CW did not send: ' + (e.message || e), false); return false; }
-    }).catch(() => false);
+    })).catch(() => false);
     return busy;
   }
-  async function cwStop() { try { if (!port || !writer) return; if (yky()) await write(asc('KY0 ;TX0;')); else if (S.proto === 'kenwood') await write(asc('RX;'));
+  async function cwStop() { try { if (!port || !writer) return; if (yky()) await write(asc('KY0 ;TX0;')); else if (S.proto === 'kenwood') { if (S.model !== 'elecraft') await write(asc('KY0;')); await write(asc('RX;')); }   /* TS-590 ref: KY0; stops the typed-CW buffer */
     if (S.proto === 'icom') await write(icom([0x17, 0xFF])); } catch (e) {} }
   /* ---- THE KEY PORT (Fable, Oct 25; Brandon's FT-710: 'never keys up in DTR or RTS') ----
      A Yaesu with two USB serial ports (FT-710, FT-991A, FTDX10/101) takes CW keying on its SECOND port (Windows: 'Standard COM Port';
@@ -655,7 +902,10 @@
 
   function follow(fn) {
     if (fol) clearInterval(fol); fol = null; if (!fn) return; let last = '';
-    fol = setInterval(async () => { if (!S.on || !S.follow || !port || document.hidden) return; const r = await read(); if (!r) return; const k = r.khz + '|' + r.mode; if (k !== last) { last = k; fn(r); } }, 2000);
+    /* Nov 18 public-release review (0.9.7): follow the dial on EVERY kind of link. Before, it only ran with a serial port open, so with
+       flrig (and the pretend radio) the log, FT8 band and RADIO screen never saw the knob being turned. */
+    const linked = () => LINK() === 'fake' ? FAKE.on : LINK() === 'flrig' ? flrigOn : !!port;
+    fol = setInterval(async () => { if (!S.on || !S.follow || !linked() || document.hidden) return; let r = null; if (LINK() === 'flrig') { try { r = await FLRIG.get(); } catch (e) { r = null; } } else r = await read();   /* flrig: a missed poll is just skipped (read() would mark the link as down) */ if (!r) return; const k = r.khz + '|' + r.mode; if (k !== last) { last = k; fn(r); } }, 2000);
   }
   /* change the port (Brandon Oct 17: 'a menu to change port if someone selects the wrong one') */
   const VEND = { 0x10C4: 'Silicon Labs CP210x (Icom, Yaesu, Xiegu, Elecraft cables)', 0x0403: 'FTDI (many CAT cables)', 0x067B: 'Prolific (older CAT cables)', 0x1A86: 'CH340 (QRP Labs, truSDX, cheap cables)', 0x0483: 'STMicro (QMX/QDX)', 0x2341: 'Arduino', 0x239A: 'Adafruit', 0x2E8A: 'Raspberry Pi Pico', 0x1FC9: 'NXP', 0x04D8: 'Microchip' };
@@ -670,11 +920,14 @@
       if (window.KPCApp && KPCApp.portLabel && !NAT()) { const l = KPCApp.portLabel(p, i); if (!/USB port \d|COM port \d/.test(l)) return { i, now: p === port, label: l.replace(/^\S+ /, '') }; }
       return { i, now: p === port, label: (v != null ? (VEND[v] || 'USB maker ' + v.toString(16).toUpperCase().padStart(4, '0')) : 'Serial port') + (f.usbProductId != null ? ' · product ' + f.usbProductId.toString(16).toUpperCase().padStart(4, '0') : '') + (f.usbInterface != null ? (f.usbInterface === 0 ? ' · port 1 (CAT)' : ' · port ' + (f.usbInterface + 1) + ' (PTT / keying)') : '') }; }
   }
-  async function usePort(i) { await disconnect(); const ps = await allPorts(); const p = ps[i]; if (!p) return false; S.portKey = keyOf(p); S.portIx = i; SV('kpcCat', S); return connect(false); }
+  async function usePort(i) { await disconnect(); const ps = await allPorts(); const p = ps[i]; if (!p) return false; S.portKey = keyOf(p); S.portIx = i; PICKED = portId(p, ps); SV('kpcCat', S); return connect(false); }
   async function pickNew() {
     if (!('serial' in navigator) && !navigator.usb && !NAT()) return false;
     let p; try { p = await askPort(); } catch (e) { say('No port picked.', false); return false; }
-    await disconnect(); const ps = await allPorts(); S.portIx = Math.max(0, ps.indexOf(p)); S.portKey = keyOf(p); SV('kpcCat', S);
+    await disconnect(); const ps = await allPorts(); S.portIx = Math.max(0, ps.indexOf(p)); S.portKey = keyOf(p); PICKED = portId(p, ps); SV('kpcCat', S);
+    /* 0.9.9: a port picked by hand is asked first (with the RTS try for a Yaesu: this is the one place a single-port cable gets it);
+       if the radio stays silent the port is still opened, as before */
+    try { const r = await probe(p, ps, true); if (r.ok) { say('Radio answers on the port you picked (' + (r.r.khz / 1000).toFixed(4) + ' MHz ' + (r.r.mode || '') + ').', true); return true; } } catch (e) {}
     try { return await openPort(p); } catch (e) { port = writer = null; say('Could not open that port: ' + (e.message || e) + '. Close other radio programs and try again.', false); return false; }
   }
   async function forget(i) {
@@ -684,7 +937,7 @@
     S.portIx = 0; S.portKey = ''; SV('kpcCat', S); say(p.forget ? 'Port forgotten. Press PICK A DIFFERENT PORT to choose the right one.' : 'This browser can\'t forget ports: pick the right one with PICK A DIFFERENT PORT.', null);
   }
   /* radio PROFILES (Brandon Oct 20: 'home rig, field rig'): everything about one radio saved under a name, picked back in one tap */
-  const PKEYS = ['radio', 'proto', 'baud', 'civ', 'model', 'data', 'link', 'host', 'port', 'portKey', 'ptt', 'dtr', 'rts', 'follow'];
+  const PKEYS = ['radio', 'proto', 'baud', 'civ', 'model', 'data', 'link', 'host', 'port', 'portKey', 'ptt', 'dtr', 'rts', 'follow', 'amp'];
   function profiles() { return (S.profiles || []).map(p => ({ name: p.name, cfg: p.cfg, now: p.name === S.profile })); }
   function saveProfile(name) { name = String(name || '').trim().slice(0, 30); if (!name) return false; const cfg = {}; PKEYS.forEach(k => { if (S[k] !== undefined) cfg[k] = S[k]; }); S.profiles = (S.profiles || []).filter(p => p.name !== name).concat([{ name, cfg }]); S.profile = name; SV('kpcCat', S); return true; }
   async function useProfile(name) { const p = (S.profiles || []).find(x => x.name === name); if (!p) return false; await disconnect(true); S = Object.assign({}, S, p.cfg, { profile: name }); FLRIG.modes = null; SV('kpcCat', S); say('Profile ' + name + ' picked: ' + (RADIO[S.radio] ? RADIO[S.radio].label : S.proto) + ' over ' + LINK() + '.', null); return true; }
@@ -696,11 +949,11 @@
     links: () => [{ id: 'serial', label: 'USB cable (CAT)', ok: 'serial' in navigator || !!navigator.usb || !!NAT() }, { id: 'rigctld', label: 'Hamlib rigctld (TCP)', ok: !!KN() }, { id: 'flrig', label: 'flrig (XML-RPC)', ok: true }].concat(fakeOk() ? [{ id: 'fake', label: '🧪 Pretend radio (no cable)', ok: true }] : []), link: LINK,
     profiles, saveProfile, useProfile, dropProfile, protos: PROTOS,
     raw(bytes) { busy = busy.then(async () => { if (LINK() !== 'serial' || !port || !writer) return false; try { await write(bytes); return true; } catch (e) { return false; } }).catch(() => false); return busy; },   /* Nov 6: kpc-scope.js turns the Icom scope on / off */
-    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine, sdb, cwPitch, keyPortOpen, keyPortClose, pickKeyPort, keyPortInfo, extra, extras, caps, cmdText, TESTED, MOREKEYS: ALLK, lastDial, tuneLog, meters, power, mode, tuneFast, modeLog: () => MLOG.slice()
+    onStatus(fn) { subs.push(fn); }, lastSet: () => LASTSET, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine, sdb, cwPitch, keyPortOpen, keyPortClose, pickKeyPort, keyPortInfo, extra, extras, caps, cmdText, canOn, _yPwr: t => yPwr(String(t)), splitTx, splitOff, splitCmds, _icomMeter: icomMeter, _icSwr: icSwr, _tuneText: (khz, k) => (PROTOS[S.proto] || PROTOS.kenwood).tune(khz, k).map(b => b instanceof Uint8Array && S.proto !== 'icom' ? new TextDecoder().decode(b) : Array.from(b).map(x => x.toString(16).padStart(2, '0')).join(' ')).join(' | '), _kwWidth: (hz, m) => (kwWidth(hz, m) || []).map(b => new TextDecoder().decode(b)).join(' | '), _txState: () => txState(), _pttText: on => (PTTC[S.proto] || PTTC.kenwood)(!!on).map(b => new TextDecoder().decode(b)).join(''), TESTED, MOREKEYS: ALLK, lastDial, tuneLog, meters, power, mode, tuneFast, modeLog: () => MLOG.slice(), catLog, catLogClear: () => { CLOG.length = 0; }, catLogWatch: f => { clogSub = f; }, _clog: clog
   };
 
   /* ---- QRZ logbook (ACTION=INSERT with the logbook's own API key; needs a QRZ XML/logbook subscription) ---- */
-  let Z = Object.assign({ on: false, key: '' }, LS('kpcQrz') || {});
+  let Z = Object.assign({ on: false, key: '' }, (window.KPCSec ? KPCSec.openObj(LS('kpcQrz') || {}, ['key']) : LS('kpcQrz')) || {});   /* Nov 18 (SEC-2): sealed at rest */
   /* QRZ answers web pages but doesn't let them read the answer (no CORS, checked Oct 17). With the KPC QRZ relay
      (kpc-qrz-relay.json url = a Google Apps Script web app) the page gets QRZ's real answer; without it, it sends ONCE
      straight to QRZ (before Oct 17 it sent twice) and can only say 'sent'. */
@@ -712,7 +965,7 @@
     try { const r = await fetch(u, { method: 'POST', body: JSON.stringify({ key: Z.key, action, adif: rec || '' }) }); const j = await r.json(); return String(j.reply || ''); } catch (e) { return null; }
   }
   window.KPCQrz = {
-    get: () => Object.assign({}, Z), set(o) { Z = Object.assign({}, Z, o || {}); SV('kpcQrz', Z); }, on: () => !!(Z.on && Z.key),
+    get: () => Object.assign({}, Z), set(o) { Z = Object.assign({}, Z, o || {}); SV('kpcQrz', window.KPCSec ? KPCSec.sealObj(Z, ['key']) : Z); }, on: () => !!(Z.on && Z.key),
     relay: async () => !!(await relayUrl()),
     /* QRZ's OWN answer in a new tab (no relay needed): a normal form post opens logbook.qrz.com/api in a tab, and QRZ's
        plain-text reply (RESULT=OK / FAIL / AUTH + REASON) shows right there (Oct 17, Brandon: 'qrz still not working') */

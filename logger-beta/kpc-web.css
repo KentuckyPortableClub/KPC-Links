@@ -10,3 +10,5 @@ section.card[data-grp^="remote "],#scrRemote,[data-go="remote"],.updbar{display:
 a.b[href="radio-check.html"]{display:none!important}
 .kw-name{display:flex;gap:8px;flex:1 1 100%;align-items:center}.kw-name input{flex:1;min-width:0}
 .kw-ph{flex:1 1 100%;margin:4px 0 0}
+/* Lounge round stage 2 (Nov 18 2026): app-only switches stay off on the website (kpc-web-pre.js turns them off) */
+#stAutoSpot, #dgRun, #dgHunt, #dgBoth, .btns.autob, label:has(#shShowAuto), label:has(#stVmon), #stLvlHelp, [data-lvlh], [data-lvk] { display: none !important; }

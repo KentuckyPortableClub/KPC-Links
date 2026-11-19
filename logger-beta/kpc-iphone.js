@@ -1,4 +1,4 @@
-/* KPC app: THE iPHONE PAGE (Nov 8 2026; KPC owner, 2026-11-10).
+/* KPC app: THE iPHONE PAGE (Opus, Nov 8 2026; Brandon: 'the apple mobile webpage for the app and remote').
    There is no KPC app for iPhone, so an iPhone (or iPad, or any browser) opens the app's own page, either
    - from the PC with the radio:  http://<PC address>:8731/phone/  at home (listen + run the radio, no talking: Safari only allows the
      microphone on https), or  https://<pc>.<tailnet>.ts.net/phone/  through 'tailscale serve' (everything, talking too, home or away), or
