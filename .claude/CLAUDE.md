@@ -3,6 +3,7 @@
 Owner: Brandon White, KZ4CP (brandonwhite42166@gmail.com). Plain-language answers please; he is a ham, not a web developer.
 Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from `main`, repo KentuckyPortableClub/KPC-Links).
 
+- `.claude/notes/handoff-app-lounges-nov19.md`: where the APP + LOUNGES stand (Nov 19), what waits on Brandon, the carbon-copy rule. Read first in a new app/Lounge chat.
 **Notes are split by topic (Oct 20, to save usage). Read ONLY the file for the job at hand:**
 - `.claude/notes/mapping.md`: boundaries + answer keys (KY/US/Canada/world), trip planners, Park Control/Commander, Am I in the Park, Kit, Info Finder, Map Rep/Suggest, 2-fers, KY park data + access points, trails, boundary bots.
 - `.claude/notes/logger-lounge-digi.md`: KPC Logger, Hunters Lounge (public, VIP, beta room), DIGI tab + FT8 Android-audio history, CAT, QRZ, the KPC APP LOOK recipe, FT8 app build notes are in ideas.md.
