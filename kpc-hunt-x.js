@@ -249,7 +249,12 @@
       hp.type = 'highpass'; pk.type = 'peaking'; lp.type = 'lowpass'; gate.gain.value = 0; vg.gain.value = Math.pow(10, TX.db / 20);
       me.shape = n => { const q = VP[n] || VP.natural; hp.frequency.value = q.hp; pk.frequency.value = q.pkHz; pk.Q.value = 1.1; pk.gain.value = q.pkDb; lp.frequency.value = q.lp; comp.threshold.value = q.th; comp.ratio.value = q.ratio; comp.attack.value = 0.003; comp.release.value = 0.12; comp.knee.value = 6; mk.gain.value = q.mk; };
       me.shape(TX.voice); me.vg = vg; me.gate = gate;
-      src.connect(hp); hp.connect(pk); pk.connect(lp); lp.connect(comp); comp.connect(mk); mk.connect(vg); vg.connect(gate);
+      /* Nov 19 2026 (Lounge round 3, from the app's 0.9.1 / 0.9.2 SSB review): a limiter (−3 dB, 20:1) and a soft clip after the voice level, so a
+         loud word or a raised slider cannot overdrive the radio's input (splatter). Same numbers as the app's voiceChain. */
+      const lim = c.createDynamicsCompressor(); lim.threshold.value = -3; lim.knee.value = 0; lim.ratio.value = 20; lim.attack.value = 0.002; lim.release.value = 0.1;
+      const lg = c.createGain(); lg.gain.value = Math.pow(10, -1.8 / 20);
+      const sc = c.createWaveShaper(), cv = new Float32Array(2049); for (let i = 0; i < cv.length; i++) { const x = i / 1024 - 1, a = Math.abs(x), k = 0.85; cv[i] = Math.sign(x) * (a <= k ? a : Math.min(0.98, k + (1 - k) * Math.tanh((a - k) / (1 - k)))); } sc.curve = cv;
+      src.connect(hp); hp.connect(pk); pk.connect(lp); lp.connect(comp); comp.connect(mk); mk.connect(vg); vg.connect(lim); lim.connect(lg); lg.connect(sc); sc.connect(gate);
       if (TX.out && 'setSinkId' in HTMLMediaElement.prototype) { const d = c.createMediaStreamDestination(); gate.connect(d); me.el = new Audio(); me.el.srcObject = d.stream; await me.el.setSinkId(TX.out).catch(() => {}); await me.el.play().catch(() => {}); }
       else gate.connect(c.destination);
       const ok = await me.key; if (TK !== me) return; if (!ok) throw new Error('the radio did not key');

@@ -62,6 +62,7 @@ const VIP = 'dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab';
   r = await F(() => [KPCFt8Tab.qso().next, KPCFt8Tab.S.txHz, KPCFt8Tab.qso().rs, KPCFt8Tab.qso().rr]);
   ok(r[0] === 3 && r[1] === 400 && r[2] === '-09' && r[3] === '-12', 'the Fox answers: R+report AT the Fox\'s frequency (Tx3 at ' + r[1] + ' Hz, sent ' + r[2] + ', rcvd ' + r[3] + ')');
   await F(() => KPCFt8Tab._feed(1014, [{ text: 'K4TEST RR73; Q4NEXT <VP8A> -11', db: -9, hz: 400 }])); await sleep(300);
+  await until(() => F(() => /VP8A/.test(localStorage.getItem('kpcHuntQSO') || '')), 4000);   /* the logger saves a moment later */
   r = await F(() => [KPCFt8Tab.qso().state, KPCFt8Tab.txOn(), JSON.parse(localStorage.getItem('kpcHuntQSO') || '{}').q.map(q => q.call || q.c).join()]);
   ok(r[0] === 'done' && r[1] === false && /VP8A/.test(r[2]), 'the Fox sends RR73 in its two-in-one message: logged, TX off, no 73 (' + r[2] + ')');
   await F(() => KPCFt8Tab._feed(1016, [{ text: 'K4TEST RR73; Q4MORE <VP8A> -11', db: -9, hz: 400 }])); await sleep(200);

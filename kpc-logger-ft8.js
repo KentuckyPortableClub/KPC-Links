@@ -45,6 +45,8 @@
   const clean = c => String(c || '').replace(/[<>]/g, '').toUpperCase();
   const isGrid = t => /^[A-R]{2}\d{2}$/i.test(t) && t.toUpperCase() !== 'RR73';
   const h10 = c => { try { const A = ' 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ/', t = (String(c).toUpperCase().replace(/[<>]/g, '') + '           ').slice(0, 11); let n = 0n; for (const ch of t) n = 38n * n + BigInt(Math.max(0, A.indexOf(ch))); return Number(((47055833459n * n) & ((1n << 64n) - 1n)) >> 54n); } catch (e) { return -1; } };   /* Nov 19 (Lounge round, from the app): the 10-bit call code a Fox's message carries */
+  /* Nov 19 2026 (Lounge round 3, the app's FT8 review #8): 'CQ POTA W9XYZ' (no grid) read POTA as the call. A CQ word = letters only, up to 4, and a call after it */
+  const cqFr = tk => { const w = tk[1] || '', two = /^[A-Z]{1,4}$/.test(w) && tk.length >= 3; return { fr: two ? tk[2] : w, cqw: two ? w : '' }; };
   const isRpt = t => /^[+-]\d{2}$/.test(t);
   const isRRpt = t => /^R[+-]\d{2}$/.test(t);
   const fmtDb = n => (n >= 0 ? '+' : '-') + String(Math.min(49, Math.abs(Math.round(n)))).padStart(2, '0');
@@ -543,8 +545,8 @@
         LINES.push({ t: start, sl, par, db: d.db, dt: d.dt, hz: d.hz, text: d.text, cq: false, cqw: '', to: me && a === me ? a : b, fr: QS.hound && QS.dx && (a === me || b === me) ? QS.dx : fox, me: !!me && (a === me || b === me), grid: '', fox: 1, fc: fox, dxa: a, dxb: b, dxr: fx[4] });
         continue; }
       if (d.text[0] === '~') continue;   /* a message the decoder heard but cannot print */
-      const tk = d.text.split(/\s+/), to = clean(tk[0]), fr = clean(tk[0] === 'CQ' ? (tk.length > 3 ? tk[2] : tk[1]) : tk[1]);
-      LINES.push({ t: start, sl, par, db: d.db, dt: d.dt, hz: d.hz, text: d.text, cq: tk[0] === 'CQ', cqw: tk[0] === 'CQ' && tk.length > 3 ? tk[1] : '', to, fr, me: !!me && to === me, grid: tk.length >= 3 && isGrid(tk[tk.length - 1]) ? tk[tk.length - 1].toUpperCase() : '' });
+      const tk = d.text.split(/\s+/), to = clean(tk[0]), cq8 = tk[0] === 'CQ' ? cqFr(tk) : null, fr = clean(cq8 ? cq8.fr : tk[1]);
+      LINES.push({ t: start, sl, par, db: d.db, dt: d.dt, hz: d.hz, text: d.text, cq: tk[0] === 'CQ', cqw: cq8 ? cq8.cqw : '', to, fr, me: !!me && to === me, grid: tk.length >= 3 && isGrid(tk[tk.length - 1]) ? tk[tk.length - 1].toUpperCase() : '' });
     }
     { const per = {}; LINES.forEach(x => { if (x.sl === sl && x.sep == null && x.fr && !x.cq && !/\.\.\./.test(x.fr)) per[x.fr] = (per[x.fr] || 0) + 1; });
       Object.keys(per).forEach(c => { if (per[c] >= 2) FOXES[c] = Date.now(); }); }   /* one station sending 2+ messages in a slot = a Fox */
@@ -554,7 +556,7 @@
     $('f8Cnt').textContent = D.length + ' decoded';
     alerts(sl); drawBand(); drawRx(); seq(sl, D); mapDraw(); autoSpotTick();
   }
-  function clockHint() { if (dtAvg.length < 3) return; const m = dtAvg.slice().sort((a, b) => a - b)[Math.floor(dtAvg.length / 2)]; if (Math.abs(m) > 1) note(`⏱ Most stations show DT ${m > 0 ? '+' : ''}${m.toFixed(1)} s: your clock is about ${Math.abs(m).toFixed(1)} s ${m > 0 ? 'slow' : 'fast'}. Turn on "set time automatically" or FT8 contacts may fail.`, 8000, 'clk'); }
+  function clockHint() { if (dtAvg.length < 3) return; const m = dtAvg.slice().sort((a, b) => a - b)[Math.floor(dtAvg.length / 2)]; if (Math.abs(m) > 1) note(`⏱ Most stations show DT ${m > 0 ? '+' : ''}${m.toFixed(1)} s: your clock is about ${Math.abs(m).toFixed(1)} s ${m > 0 ? 'fast' : 'slow'}. Turn on "set time automatically" or FT8 contacts may fail.`, 8000, 'clk'); }
   /* is this station a park activator right now? (on the POTA / WWFF / SOTA spot lists; FT8/FT4 spots first) — Brandon Oct 17: 'highlight other pota stations' */
   const spotRef = call => { const L = LG(); if (!L || !call) return null; const A = (L.spots() || []).filter(x => x.activator === call && x.reference); return A.find(x => /FT8|FT4/i.test(x.mode || '')) || A[0] || null; };
   /* Nov 10 (from the KPC app, Oct 24 'FT8 HIGHLIGHTS'): what lights up in the lists. DXpedition / special event come from the Lounge's spot list (window.KPCHuntShown: p = DXPED / EVENT)
@@ -762,7 +764,8 @@
     let mine = L.find(x => QS.dx && x.fr === QS.dx);
     if (!mine && (QS.state === 'cq' || (QS.next === 6 && TXON)) && L.length) {
       /* someone answered my CQ: Call 1st = the first one, else the strongest */
-      const c = L.slice().sort((a, b) => S.first ? 0 : b.db - a.db)[0];
+      const ans = x => { const t = x.text.split(/\s+/), l = (t[t.length - 1] || '').toUpperCase(); return !x.fox && (isGrid(l) || isRpt(l) || t.length === 2); };   /* Nov 19 (app FT8 review #6) */
+      const c = L.filter(ans).sort((a, b) => S.first ? 0 : b.db - a.db)[0];
       if (c && c.fr && !/\.\.\./.test(c.fr)) { QS.dx = c.fr; QS.grid = c.grid || ''; QS.rs = fmtDb(c.db); QS.rr = ''; QS.logged = false; QS.tries = 0; QS.since = nowS(); QS.ref = ''; S.even = c.par === 1; $('f8Dx').value = QS.dx; $('f8DxG').value = QS.grid; $('f8Rpt').value = QS.rs; mine = c; }
     }
     if (!mine) { /* watchdog: 6 minutes of calling with no answer */ const wd = (+S.wd || 2) * 60; if (TXON && QS.since && nowS() - QS.since > wd) { halt(`⏱ No answer for ${S.wd || 2} minute${(+S.wd || 2) > 1 ? 's' : ''}: TX turned off. Change this in ⚙ SETTINGS.`, true); QS.since = 0; } return; }
@@ -885,11 +888,13 @@
     src.start(at, sk);
     MYQ.push({ t: sl * slotLen(), tx: 1, hz: S.txHz, text: m }); if (MYQ.length > 40) MYQ.shift(); drawRx();
     const dur = au.length / rate - sk;
-    src.onended = () => { if (TXSRC === src) stopTx(); };
-    clearTimeout(txStopT); txStopT = setTimeout(() => { if (TXSRC === src) stopTx(); }, (dur + wait + 0.4) * 1000);
-    /* RR73 / 73 sent: WSJT-X logs here when I'm the one who called CQ */
-    if (n === 4) { if (!QS.logged) logIt(); setTimeout(afterQso, 300); }
-    if (n === 5) { if (!QS.logged && QS.rr) logIt(); setTimeout(afterQso, 300); }
+    /* RR73 / 73 sent: WSJT-X logs here when I'm the one who called CQ. Nov 19 2026 (Lounge round 3, the app's FT8 review #7): only once the
+       message has really gone out to the end; a HALT / STOP ALL part-way (stopTx() clears TXSRC first) logs nothing */
+    const done = () => { if (TXSRC !== src) return; stopTx();
+      if (n === 4) { if (!QS.logged) logIt(); setTimeout(afterQso, 300); }
+      if (n === 5) { if (!QS.logged && QS.rr) logIt(); setTimeout(afterQso, 300); } };
+    src.onended = done;
+    clearTimeout(txStopT); txStopT = setTimeout(done, (dur + wait + 0.4) * 1000);
     if (n === 1 || n === 6) QS.tries++;
   }
   function stopTx() { try { TXSRC && TXSRC.stop(); } catch (e) {} TXSRC = null; TUNE = null; TXING = false; clearTimeout(txStopT); setTimeout(async () => { await ptt(false); txMicOn(); rxBack(); }, 80); stat(); }
@@ -954,7 +959,8 @@
   function topFix() { const h = document.querySelector('header.site-nav'), b = h && !(main && getComputedStyle(main).position === 'fixed') ? Math.max(0, Math.round(h.getBoundingClientRect().bottom)) : 0; root.style.top = b + 'px'; }
   addEventListener('resize', () => { if (!root.hidden) topFix(); });
   function open() { root.hidden = false; topFix(); setTimeout(topFix, 80); main.setAttribute('data-ft8', ''); document.documentElement.classList.add('f8-open'); put('kpcFt8Open:' + location.pathname, 1); setTimeout(() => { wfSize(); drawScale(); drawBand(); drawRx(); }, 30); if (!myGrid()) note(main && main.id === 'hl' ? 'Tip: put your grid square in MY LOG FILES so your messages carry it.' : 'Tip: put your grid square in ⚙ STATION so your messages carry it.', 4000); }
-  function back() { root.hidden = true; main.removeAttribute('data-ft8'); document.documentElement.classList.remove('f8-open'); put('kpcFt8Open:' + location.pathname, 0); }
+  function back() { if (TXON || TXING) halt('📴 Left the FT8 screen: transmitting is off.');   /* Nov 19 (Lounge round 3): TX never stays armed behind your back */
+    root.hidden = true; main.removeAttribute('data-ft8'); document.documentElement.classList.remove('f8-open'); put('kpcFt8Open:' + location.pathname, 0); }
   function tabDot() { document.querySelectorAll('[data-ft8open]').forEach(b => b.classList.toggle('live', RUN)); }
   $('f8Back').onclick = back;
   document.querySelectorAll('[data-ft8open]').forEach(b => b.onclick = open);
@@ -968,8 +974,8 @@
     _feed: (sl, list) => { const me = myCall(), start = sl * slotLen(); LINES.push({ sep: sl, t: start, mode: S.mode }); for (const d of list) {
         const fx = /^(\S+) RR73; (\S+) <([^>]+)> ([+-]\d\d)$/.exec(d.text);   /* Nov 19: the Fox's two-in-one message, as the real pass reads it */
         if (fx) { const a = clean(fx[1]), b = clean(fx[2]), fox = clean(fx[3]); FOXES[fox] = Date.now(); LINES.push({ t: start, sl, par: sl % 2, db: d.db == null ? -10 : d.db, dt: 0.2, hz: d.hz || 1200, text: d.text, cq: false, cqw: '', to: me && a === me ? a : b, fr: QS.hound && QS.dx && (a === me || b === me) ? QS.dx : fox, me: !!me && (a === me || b === me), grid: '', fox: 1, fc: fox, dxa: a, dxb: b, dxr: fx[4] }); continue; }
-        const tk = d.text.split(/\s+/), to = clean(tk[0]), fr = clean(tk[0] === 'CQ' ? (tk.length > 3 ? tk[2] : tk[1]) : tk[1]);
-        LINES.push({ t: start, sl, par: sl % 2, db: d.db == null ? -10 : d.db, dt: 0.2, hz: d.hz || 1200, text: d.text, cq: tk[0] === 'CQ', cqw: tk[0] === 'CQ' && tk.length > 3 ? tk[1] : '', to, fr, me: !!me && to === me, grid: tk.length >= 3 && isGrid(tk[tk.length - 1]) ? tk[tk.length - 1].toUpperCase() : '' }); }
+        const tk = d.text.split(/\s+/), to = clean(tk[0]), cq8 = tk[0] === 'CQ' ? cqFr(tk) : null, fr = clean(cq8 ? cq8.fr : tk[1]);
+        LINES.push({ t: start, sl, par: sl % 2, db: d.db == null ? -10 : d.db, dt: 0.2, hz: d.hz || 1200, text: d.text, cq: tk[0] === 'CQ', cqw: cq8 ? cq8.cqw : '', to, fr, me: !!me && to === me, grid: tk.length >= 3 && isGrid(tk[tk.length - 1]) ? tk[tk.length - 1].toUpperCase() : '' }); }
       lastDecSlot = sl; drawBand(); drawRx(); seq(sl, []); }, pick: id => { pick(byId[id]); return true; }, ids: () => Object.keys(byId) };
   window.KPCFT8UI = {
     open, back,
