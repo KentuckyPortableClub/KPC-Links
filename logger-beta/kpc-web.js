@@ -84,4 +84,6 @@
   /* the members door is drawn by ../kpc-gate.js with links for the site's top folder */
   function fix(root) { [].forEach.call((root || document).querySelectorAll('#kpcDoor a[href], #kpcDoor img[src]'), function (a) { var at = a.tagName === 'IMG' ? 'src' : 'href', h = a.getAttribute(at); if (h && !/^(https?:|data:|#|\.\.\/|\/|mailto:)/.test(h)) a.setAttribute(at, '../' + h); }); }
   fix(); new MutationObserver(function () { fix(); }).observe(document.documentElement, { childList: true, subtree: true });
+  /* Nov 19 2026 (Lounge round 3): the Lounges' 🖤 BIG RADIO SCREEN button opens this page with #radio = straight to the app's RADIO screen */
+  if (/^#radio$/.test(location.hash)) { var tries = 0, t = setInterval(function () { tries++; if (window.KPCApp && KPCApp.go) { clearInterval(t); KPCApp.go('radio'); } else if (tries > 40) clearInterval(t); }, 250); }
 })();
