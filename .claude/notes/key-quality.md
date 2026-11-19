@@ -443,3 +443,25 @@ The changes asked for are in a comment on each PR. Standing lessons for every la
   D. Missing official boundary layers: Tillamook SF (Oregon Dept of Forestry), Maidstone SP (Vermont FPR), Florida state
      park boundaries; the map service address and layer for each (state open-data portal first).
   E. Later: Kentucky's 193 parks, the official map link for each (step 9).
+
+## 16. ALL THREE STAMPED + THE TRACERS (Fable, 19 Nov 5 AM)
+**#270, #271, #276 carry `Reviewed: Fable, 2026-11-19`.** Merge in that order (Brandon's word), retargeting each to main as the
+one below it lands. Then ONE US key run, then the fact check of the run's own keys before sign-off.
+
+**THE TRACERS (bots that draw an outline from an official picture map; Brandon 19 Nov 4:49 AM: "when you think it is best have
+opus turn the tracers back on ... get them ready to run"). A traced line that is wrong is WRONG LAND, the worst outcome; a pin
+is honest. So they come back in three steps, and nothing traced goes on the map before Brandon rules on R-G9.**
+- **T1, NOW, in dry run (needs no clean key): the accuracy test against known parks (ledger 91).** Opus runs it; this is its spec.
+  1. Parks: 30, drawn by a seeded random pick (never by hand) from parks that have BOTH an official picture map and an outline
+     the fact check calls verified. Ten small (under 100 acres), ten middle, ten large; at least five agencies.
+  2. Blind: the tracer gets the picture map and the pin, never the official outline or its acres.
+  3. For every park report: traced acres / official acres; the share of the official outline the trace covers; the share of the
+     trace that lies outside the official outline; how far the traced line is from the official line (middle and worst tenth,
+     in feet); and plain failures (no trace, the wrong feature traced, the map had no boundary).
+  4. Sum up with the grade's own words: of 30, how many would be WRONG LAND (most of the trace outside), TOO BIG (over 1.25
+     times), MISSING PIECES (under 0.8 covered), GOOD; ranges, not single numbers. Files on tools-out; no map, no key touched.
+- **T2, after the US key run is signed off:** the keeper's list of pin parks (data/keeper-asks/latest.json, ledger 92-93) is
+  fresh then. A real trace run, results on the branch only.
+- **T3, Brandon rules R-G9 with T1's numbers in hand:** is a traced line shown at all; how good must it be (a bar from T1, per
+  size class); the label ("drawn from the official map, approximate") and the notice; what a traced park may NOT do (no 2-fer
+  from a traced line, proposed). Fable writes that rule sheet from T1's report; chat 8 tries to break it; then Brandon.
