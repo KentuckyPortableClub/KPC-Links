@@ -940,3 +940,84 @@ button.b.halt,.halt{border-color:#e5484d;color:#ff6b6b}
 /* the ⚡ storm warning line on LOG (kpc-cond.js) was pale pink text: unreadable on the light looks and too bright for NIGHT */
 :root[data-theme="light"] .wxbar,:root[data-style="sun"] .wxbar{color:#7a0000;background:#ffe3e3}
 :root[data-style="night"] .wxbar{color:var(--tx);background:#1a0000}
+
+/* ===== Opus Nov 19 2026 (app to-do list, items 1-9): new CSS lives in this one block, for an easy merge ===== */
+/* to-do 9: the CW waterfall's span button, top right over the waterfall, CW only */
+.dg5 .d5span{position:absolute;top:6px;right:6px;z-index:2;min-height:30px;padding:0 10px;background:rgba(0,0,0,.65);color:#f0c96b;border-color:rgba(240,201,107,.5)}
+.dg5:not([data-m=cw]) .d5span{display:none}
+/* to-dos 4 + 5: the trip planner's pin button and WITHIN choice sit in the same bar */
+#scrMap .trbar #trWithin{flex:0 0 auto;width:auto;max-width:170px}
+#trWithin{height:38px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:0 8px;font:inherit}
+/* ===== Opus Nov 19 2026 LOG ROUND (Brandon '2,3,5,6'): one-tap reports, park look-up line, two-row dock, big log line, find + fix several ===== */
+#lgDock .dk2{flex:1 0 100%;display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0}
+#lgDock .dk2::-webkit-scrollbar{display:none}
+#lgDock .dk2.more{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+#lgDock .dk2 > *{flex:0 0 auto}
+#lgDock #dkFreq{flex:1 1 0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#dkSpot{order:1}#dkP2p{order:2}#dkMore{order:3}#dkCmd{order:4}#dkVk{order:5}#dkBrk{order:6}#dkSet{order:7}
+@media (min-width:700px){ #lgDock .dk2{flex:1 1 auto} #lgDock #dkFreq{flex:0 1 auto} }
+.rstq{display:flex;align-items:center;gap:5px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:4px 0 0}
+.rstq::-webkit-scrollbar{display:none}
+.rstq .rl{font-size:11px;letter-spacing:.06em;opacity:.7;margin:0 1px 0 6px}
+.rstq .rl:first-child{margin-left:0}
+.rstq .chip{height:34px;min-width:40px;justify-content:center;font-variant-numeric:tabular-nums}
+.rstq .chip.on{background:var(--gold);color:#1a1205;border-color:var(--gold);font-weight:700}
+.parklk{font-size:13px;line-height:1.45;margin:4px 0 0;min-height:0}
+.lgfind{display:flex;gap:6px;align-items:center;margin:6px 0}
+.lgfind input{flex:1 1 auto;min-width:0;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:0 10px;font:inherit}
+.lgselbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
+.lgselbar b{margin-right:4px}
+.qrow.pick{outline:2px solid var(--gold);outline-offset:-2px;background:rgba(227,162,74,.16)}
+body.lgsel .qrow .x{visibility:hidden}
+body.lgsel .qrow{cursor:pointer}
+body.biglog .entry input{height:60px}
+body.biglog .entry .e.call input{font-size:26px}
+body.biglog .entry .e:not(.call) input{font-size:24px}
+body.biglog .entry .go{width:66px;height:66px;font-size:28px}
+body.biglog .rstq .chip{height:46px;min-width:52px;font-size:18px}
+body.biglog #lgDock .chip{height:42px;font-size:15px}
+/* the counter strip stays over the LOG column on wide screens (the spots column's own strip sits beside it), wrapping when 🔍 FIND / ☑ FIX MANY do not fit */
+@media (min-width:900px){ #lgStrip{max-width:calc(54% - 14px)} }
+@media (min-width:1200px){ #lgStrip{max-width:calc(55.5% - 14px)} }
+@media (min-width:1700px){ #lgStrip{max-width:calc(58% - 14px)} }
+/* ===== Opus Nov 19 2026 (to-do 15): the QR code for the iPhone on the PC's Remote card ===== */
+.rmqr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:10px 0;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+.rmqrc{flex:0 0 auto;line-height:0;border-radius:8px;overflow:hidden;background:#fff}
+.rmqrc svg{width:170px;height:170px;display:block}
+.rmqrt{flex:1 1 200px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.rmqrt .mono{font:700 13px var(--mono);word-break:break-all}
+.rmqrt small{opacity:.8;line-height:1.4}
+/* ===== Opus Nov 19 2026 (radio screen round): the MODERN meters (kpc-meters.js style 'modern'), on every screen that shows meters ===== */
+.kmm{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:12px;align-items:center}
+.kmm:not(:has(.kmt)),.kmm:not(:has(.kmr)){grid-template-columns:minmax(0,1fr)}
+.kmt{background:linear-gradient(180deg,#05080c,#020305);border:1px solid #1b2430;border-radius:10px;padding:7px 10px 6px;box-shadow:inset 0 0 22px rgba(60,140,255,.08);color:#e9f4ff}
+.kmt-r{display:grid;grid-template-columns:24px minmax(0,1fr) 84px;gap:8px;align-items:center}
+.kmt-k{font:900 13px ui-monospace,Menlo,monospace;color:#8fd3ff;text-shadow:0 0 6px rgba(143,211,255,.6)}
+.kmt-sc{position:relative;height:13px}.kmt-sc span{position:absolute;transform:translateX(-50%);font:800 10px ui-monospace,Menlo,monospace;color:#9fb3c8}.kmt-sc .rd{color:#ff6b78}
+.kmt-r b{font:900 13px ui-monospace,Menlo,monospace;text-align:right;color:#e9f4ff;white-space:nowrap}.kmt-big{font-size:18px!important;text-shadow:0 0 10px rgba(143,211,255,.5)}
+.kmt-seg{position:relative;height:15px;border-radius:3px;background:repeating-linear-gradient(90deg,#0e1622 0 5px,transparent 5px 7px)}
+.kmt-s{margin:3px 92px 6px 32px}
+.kmt-seg i{position:absolute;left:0;top:0;bottom:0;width:0;transition:width .12s linear;
+  -webkit-mask:repeating-linear-gradient(90deg,#000 0 5px,transparent 5px 7px);mask:repeating-linear-gradient(90deg,#000 0 5px,transparent 5px 7px)}
+.kmt-s i{background:linear-gradient(90deg,#4dc3ff 0,#4dc3ff var(--red,101%),#ff4d5e var(--red,101%));filter:drop-shadow(0 0 5px rgba(77,195,255,.7))}
+.kmt-po i{background:#ffb648;filter:drop-shadow(0 0 5px rgba(255,182,72,.7))}
+.kmt-seg u{position:absolute;top:-2px;bottom:-2px;width:3px;margin-left:-1px;background:#fff;box-shadow:0 0 6px #fff;border-radius:1px;left:0}
+.kmr{display:grid;grid-template-columns:repeat(auto-fit,minmax(58px,1fr));gap:6px;min-width:0}
+.kring{position:relative;aspect-ratio:1;max-width:92px;width:100%;justify-self:center}
+.kring svg{width:100%;height:100%;transform:rotate(135deg)}
+.kring circle{fill:none;stroke-width:9;stroke-linecap:round;stroke-dasharray:188.5 251.3}
+.kring .bk{stroke:#121a24}.kring .fg{stroke:var(--c);stroke-dasharray:calc(188.5 * var(--v)) 251.3;filter:drop-shadow(0 0 4px var(--c));transition:stroke-dasharray .15s linear}
+.kring[data-w="mid"]{--c:#ffb648!important}.kring[data-w="bad"]{--c:#ff4d5e!important}
+.kring b{position:absolute;left:0;right:0;top:34%;text-align:center;font:900 14px ui-monospace,Menlo,monospace;color:#e9f4ff}
+.kring span{position:absolute;left:0;right:0;bottom:12%;text-align:center;font:800 9px system-ui,sans-serif;letter-spacing:.12em;color:#8091a3}
+.kmbar .kmm{grid-template-columns:minmax(0,1fr) auto}.kmbar .kmr{grid-template-columns:repeat(auto-fit,54px)}.kmbar .kring b{font-size:12px}
+@media (max-width:700px){.kmm{grid-template-columns:minmax(0,1fr)}.kmt-r{grid-template-columns:22px minmax(0,1fr) 70px}.kmt-s{margin-right:78px;margin-left:30px}.kmt-big{font-size:15px!important}.kmr{grid-template-columns:repeat(auto-fit,minmax(50px,1fr))}.kring b{font-size:12px}}
+
+/* ===== Opus Nov 19 2026 (job 1: HYBRID / ALL FROM THE APP easy to find) ===== */
+.vmodw{display:grid;gap:8px;margin:8px 0}
+.vmodb{display:flex;flex-direction:column;align-items:flex-start;text-align:left;height:auto!important;min-height:64px;padding:10px 12px!important;white-space:normal;gap:4px}
+.vmodb b{font-size:15px;letter-spacing:.06em}.vmodb small{font:500 12.5px/1.35 var(--sans);opacity:.85;text-transform:none;letter-spacing:0}
+.vmodst{border:1px solid var(--gold,#d5a63a);border-radius:10px;padding:8px 10px;margin:8px 0;background:rgba(213,166,58,.06)}
+.vmodc{white-space:nowrap}#rdVmod{margin:6px 0}
+#scrRadio.sdr.fit #sdrA #rdVmod{width:100%;justify-content:center;margin:0 0 6px}
+.vmodb b,.vmodb small{display:block;width:100%;text-align:left}

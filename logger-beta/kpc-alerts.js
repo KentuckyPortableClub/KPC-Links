@@ -13,7 +13,15 @@
   const LS = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const SV = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   const KINDS = { hear: '👂 A park you need, and your radio hears it', wx: '⚡ Weather warnings for your spot', space: '☀ Space weather storms', ptt: '⚠ The radio may still be transmitting', watch: '👀 Watchlist: a friend is on the air', need: '🌲 A park you still need is spotted', closure: '🚧 Park closures from the club bots', hunters: '🏹 Hunters are out', calling: '📞 Someone is calling you', clock: '⏱ Clock warnings', info: 'ℹ️ Other' };
-  const S = Object.assign({ on: { watch: 1, need: 0, closure: 1, hunters: 1, calling: 1, clock: 1, info: 1 }, buzz: 1, push: 1 }, LS('kpcAppAlerts', {}));
+  /* Nov 19 2026 (to-do 1): the toast says WHAT KIND of alert it is, not just an emoji */
+  const LBL = { hear: 'Park you need, heard here', wx: 'Weather warning', space: 'Space weather', ptt: 'Radio check', watch: 'Watchlist', need: 'Park you need', closure: 'Park closure', hunters: 'Hunters are out', calling: 'Calling you', clock: 'Clock', info: '' };
+  /* a park's name: from the spots (KPCParkNames, kpc-sources.js), else '' (packs are asked separately, they are async) */
+  const pn = r => { const n = G.KPCParkNames && G.KPCParkNames[String(r || '').toUpperCase()]; return n ? r + ' ' + n : String(r || ''); };
+  /* Nov 19 2026 (to-do 2, Brandon: 'new' + 'leave weather on'): a NEW user starts with every alert OFF except weather warnings and
+     'the radio may still be transmitting' (a safety check, not a nice-to-know). Someone who already has alert settings keeps them. */
+  const FRESH = LS('kpcAppAlerts', null) == null;
+  const S = Object.assign({ on: FRESH ? { hear: 0, wx: 1, space: 0, ptt: 1, watch: 0, need: 0, closure: 0, hunters: 0, calling: 0, clock: 0, info: 0 } : { watch: 1, need: 0, closure: 1, hunters: 1, calling: 1, clock: 1, info: 1 }, buzz: 1, push: 1 }, LS('kpcAppAlerts', {}));
+  if (FRESH) SV('kpcAppAlerts', Object.assign({}, S, { nv: 1 }));
   /* Oct 23 (Brandon: 'new park alerts lets set to default off'): the 'park you still need' alert starts OFF (once for everyone) */
   if (S.nv !== 1) { S.on.need = 0; S.nv = 1; SV('kpcAppAlerts', S); }
   /* Nov 18: new kinds start ON for everyone (a saved list from before does not have them) */
@@ -44,7 +52,7 @@
       draw(); AP.fire('alert', { kind, text, held: true }); return true;
     }
     BURST.push(now);
-    AP.toast(KINDS[kind].slice(0, 2) + ' ' + esc(text), o.ms || 7000, o.bad ? 'bad' : 'log');
+    AP.toast(KINDS[kind].slice(0, 2) + ' ' + (LBL[kind] ? '<b>' + esc(LBL[kind]) + ':</b> ' : '') + esc(text), o.ms || 7000, o.bad ? 'bad' : 'log');
     if (S.buzz) { try { if (navigator.vibrate) navigator.vibrate(kind === 'calling' ? [200, 80, 200, 80, 200] : [120, 60, 120]); } catch (e) {} }
     if (!o.quiet && (document.hidden || o.push)) push(KINDS[kind].replace(/^\S+\s/, ''), text);
     draw(); AP.fire('alert', { kind, text }); return true;
@@ -64,7 +72,10 @@
       const mine = new Set(String(AP.S.ref || '').toUpperCase().split(/[\s,;+]+/).filter(Boolean)), packed = new Set();
       try { if (G.KPCParks && KPCParks.loaded) (await KPCParks.loaded()).forEach(pk => (pk.parks || []).forEach(p => packed.add(p.ref))); } catch (e) {}
       const care = x => /^pa-/.test(x.id) || (x.ref && (mine.has(x.ref) || packed.has(x.ref)));
-      if (!first) items.filter(x => !old.has(x.id) && care(x)).slice(0, 5).forEach(x => notify('closure', (x.ref ? x.ref + ': ' : '') + String(x.details || x.kind || '').slice(0, 160), { key: x.id, every: 7 * 86400000, ref: x.ref }));
+      /* Nov 19 2026 (to-do 1): name the park, and say why this one reached you */
+      const why = x => x.ref && mine.has(x.ref) ? 'It is your park.' : x.ref && packed.has(x.ref) ? 'It is in a state you downloaded.' : /^pa-/.test(x.id) ? 'A Kentucky state park (the club watches them all).' : '';
+      const nm = async x => { if (!x.ref) return ''; if (x.name) return x.ref + ' ' + x.name; const p = pn(x.ref); if (p !== x.ref) return p; try { const n = G.KPCParks && await KPCParks.name(x.ref); if (n) return x.ref + ' ' + n; } catch (e) {} return x.ref; };
+      if (!first) for (const x of items.filter(x => !old.has(x.id) && care(x)).slice(0, 5)) { const n = await nm(x); notify('closure', (n ? n + ': ' : '') + String(x.details || x.kind || '').slice(0, 160) + (why(x) ? ' ' + why(x) : ''), { key: x.id, every: 7 * 86400000, ref: x.ref }); }
       draw();
     } catch (e) {}
   }
@@ -83,7 +94,7 @@
     if (!G.KPCSpots || !G.KPCLog) return;
     const recent = KPCSpots.all().filter(s => Date.now() - s.t < 20 * 60000 && s.refs.length && s.src.includes(ev.src));
     const all = [...KPCLog.all().values()].filter(q => !q.d);
-    for (const s of recent.slice(-5)) { const need = s.refs.filter(r => KPCLog.hunted ? !KPCLog.hunted(r) : !all.some(q => (q.refs || []).includes(r))); if (need.length) notify('need', s.call + ' is at ' + need.join('+') + ' on ' + (s.khz / 1000).toFixed(3) + ' ' + s.mode + ' — you have not hunted it yet.', { key: need[0], every: 2 * 3600000, ref: need[0] }); }
+    for (const s of recent.slice(-5)) { const need = s.refs.filter(r => KPCLog.hunted ? !KPCLog.hunted(r) : !all.some(q => (q.refs || []).includes(r))); if (need.length) notify('need', s.call + ' is at ' + need.map(pn).join(' + ') + ' on ' + (s.khz / 1000).toFixed(3) + ' ' + s.mode + ' — you have not hunted it yet.', { key: need[0], every: 2 * 3600000, ref: need[0] }); }
   });
 
   /* ---------------- the card ---------------- */

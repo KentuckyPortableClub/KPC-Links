@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <script src="../kpc-gate.js"></script>
-<script src="kpc-web-pre.js?v=202611182131"></script>
+<script src="kpc-web-pre.js?v=202611191643"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="KPC"><link rel="apple-touch-icon" href="img/kpc-logo.png">
 <meta name="color-scheme" content="dark light">
 <title>KPC Logger (beta) | KPC</title>
-<link rel="stylesheet" href="app.css?v=098a">
-<link rel="stylesheet" href="kpc-web.css?v=202611182131">
+<link rel="stylesheet" href="app.css?v=0915a">
+<link rel="stylesheet" href="kpc-web.css?v=202611191643">
 <script src="kpc-flavor.js?v=20261028b"></script>
 <script>try{if((window.KPC_FLAVOR&&KPC_FLAVOR.lite)||/[?&]lite=1/.test(location.search))document.documentElement.dataset.lite='1';}catch(e){}</script>
 <script>try{var t=localStorage.getItem('kpcTheme');if(t)document.documentElement.dataset.theme=t;document.documentElement.dataset.style=localStorage.getItem('kpcStyle')||'lodge';}catch(e){document.documentElement.dataset.style='lodge'}</script>
@@ -65,10 +65,11 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
       <button type="button" class="chip" id="dkRole" title="Activating a park or hunting from home">🏕 ACT</button>
       <button type="button" class="chip p2p" id="dkP2p" title="Park to park: put their park number in fast">🌲 P2P</button>
       <button type="button" class="chip" id="dkMore" title="More: park number, name, notes">✏️</button>
+      <button type="button" class="chip" id="dkCmd" title="Shortcuts you can type in CALL (or type HELP)" aria-label="Shortcuts for the CALL box">⌨</button>
       <button type="button" class="chip" id="dkSet" title="My station and radio settings">⚙</button>
     </div>
     <form class="entry" id="lgForm" autocomplete="off">
-      <label class="e call">CALL<input id="eCall" autocapitalize="characters" spellcheck="false" enterkeyhint="done" placeholder="their call"></label>
+      <label class="e call">CALL<input id="eCall" autocapitalize="characters" spellcheck="false" enterkeyhint="done" placeholder="call or HELP"></label>
       <label class="e">SENT<input id="eRs" inputmode="numeric" maxlength="3"></label>
       <label class="e">RCVD<input id="eRr" inputmode="numeric" maxlength="3"></label>
       <label class="e sta" id="eStW">STATE<input id="eSt" autocapitalize="characters" spellcheck="false" maxlength="2" enterkeyhint="done"></label>
@@ -304,10 +305,11 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
         <option value="dtr">DTR line on the radio's cable</option>
         <option value="vox">VOX (the radio keys on the sound)</option>
       </select></label>
-      <label class="e catx">VOICE FROM THIS DEVICE (keyer, hold to talk, the phone)<select id="stVmod"><option value="mic">Leave the radio's mode alone (radio's SSB MOD SOURCE = REAR)</option><option value="data">Switch the radio to DATA while it sends</option></select></label>
+      
       <label class="e">LONGEST TRANSMISSION (safety stop)<select id="stTxMax"><option value="60">1 min</option><option value="120">2 min</option><option value="180">3 min</option><option value="300">5 min</option><option value="600">10 min</option></select></label>
       <label class="e catx">DIAL<select id="stFollow"><option value="1">Follow the radio's knob</option><option value="0">Leave the radio alone</option></select></label>
     </div>
+    <label class="e wide vmodst" id="stVmodW">🎙 WHO DOES THE TALKING? (the app's voice keyer, hold to talk, a phone on the link)<select id="stVmod"><option value="mic">ALL FROM THE APP: leave the radio's mode alone (radio menu SSB MOD SOURCE = REAR; the radio's own mic is off then)</option><option value="data">HYBRID: the app's keyer / talk switch the radio to DATA only while they send, then back to USB / LSB for the radio's own mic</option></select></label>
     <div class="row">
       <button type="button" class="b gold" id="stConn">📻 CONNECT RADIO</button>
       <button type="button" class="b catx" id="stRead">READ DIAL</button>
@@ -457,25 +459,25 @@ window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-mo
 <script src="kpc-ft8-wasm.js?v=20261118c"></script><script src="kpc-ft8.js?v=20261118a"></script>
 <script src="kpc-cat.js?v=099a"></script>
 <script src="kpc-fake.js?v=097a"></script>
-<script src="kpc-app.js?v=0910a"></script>
-<script src="kpc-log.js?v=097a"></script><script src="kpc-voice.js?v=20261118w"></script>
+<script src="kpc-app.js?v=0915a"></script>
+<script src="kpc-log.js?v=0913a"></script><script src="kpc-voice.js?v=20261118w"></script>
 <script src="kpc-mode.js?v=20261118z"></script>
 <script src="kpc-digi.js?v=099a"></script>
 <script>/* KPC Lite (kpc-flavor.js) leaves these out: APRS and the step-5 modes; uploads, park packs and the remote link below. */
-if(!document.documentElement.dataset.lite)document.write('<script src="kpc-ax25.js?v=20261028b"><\/script><script src="kpc-aprs.js?v=20261028b"><\/script><script src="kpc-dsp.js?v=20261118c"><\/script><script src="kpc-modes5.js?v=20261118p"><\/script>');</script>
+if(!document.documentElement.dataset.lite)document.write('<script src="kpc-ax25.js?v=20261028b"><\/script><script src="kpc-aprs.js?v=20261028b"><\/script><script src="kpc-dsp.js?v=20261118c"><\/script><script src="kpc-modes5.js?v=0915a"><\/script>');</script>
 <script src="kpc-cont.js?v=20261028b"></script><script src="kpc-spots.js?v=20261118z"></script>
 <script src="kpc-sources.js?v=0910a"></script>
 <script>if(!document.documentElement.dataset.lite)document.write('<script src="kpc-uploads.js?v=20261118y"><\/script>');</script>
 <script src="kpc-map.js?v=20261118p"></script><script src="kpc-prop.js?v=20261118p"></script><script src="kpc-cond.js?v=098a"></script>
-<script>if(!document.documentElement.dataset.lite)document.write('<script src="kpc-parks.js?v=0910a"><\/script>');</script>
+<script>if(!document.documentElement.dataset.lite)document.write('<script src="kpc-parks.js?v=0915a"><\/script>');</script>
 <script src="kpc-alerts.js?v=098a"></script>
-<script src="kpc-meters.js?v=20261106b"></script>
+<script src="kpc-meters.js?v=0915a"></script>
 <script src="kpc-spotme.js?v=20261117a"></script><script src="kpc-logcheck.js?v=20261117a"></script>
 <script src="kpc-pota.js?v=20261118z"></script>
-<script src="kpc-radio.js?v=099a"></script>
-<script src="kpc-qsomap.js?v=20261028b"></script><script src="kpc-trip.js?v=0910a"></script><script src="kpc-field.js?v=20261118c"></script><script src="kpc-hear.js?v=20261118c"></script>
-<script src="kpc-contest.js?v=098a"></script><script src="kpc-skim.js?v=20261106b"></script><script src="kpc-scope.js?v=20261118b"></script><script src="kpc-rotor.js?v=20261106a"></script><script src="kpc-kiwi.js?v=20261110a"></script><script src="kpc-rigx.js?v=097a"></script><script src="kpc-sdr.js?v=099a"></script><script src="kpc-help.js?v=099a"></script>
-<script src="kpc-tidy.js?v=20261110a"></script>
-<script src="kpc-web.js?v=202611182131"></script>
+<script src="kpc-radio.js?v=0915a"></script>
+<script src="kpc-qsomap.js?v=20261028b"></script><script src="kpc-trip.js?v=0915a"></script><script src="kpc-field.js?v=20261118c"></script><script src="kpc-hear.js?v=20261118c"></script>
+<script src="kpc-contest.js?v=098a"></script><script src="kpc-skim.js?v=20261106b"></script><script src="kpc-scope.js?v=0915a"></script><script src="kpc-rotor.js?v=20261106a"></script><script src="kpc-kiwi.js?v=20261110a"></script><script src="kpc-rigx.js?v=097a"></script><script src="kpc-sdr.js?v=0915a"></script><script src="kpc-help.js?v=0913a"></script>
+<script src="kpc-qr.js?v=20261119a"></script><script src="kpc-tidy.js?v=20261110a"></script>
+<script src="kpc-web.js?v=202611191643"></script>
 </body>
 </html>

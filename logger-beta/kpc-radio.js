@@ -47,6 +47,7 @@
         <div class="card rdmet"><h2>Meters</h2><div id="rdMet"></div></div>
       </div>
       <div class="rdbig"><button type="button" class="b rdtune" id="rdTune">🔧 TUNE (antenna tuner)</button><button type="button" class="b" id="rdPwrOn">⏻ RADIO ON</button><button type="button" class="b" id="rdPwrOff">⏻ RADIO OFF</button></div>
+      <button type="button" class="chip vmodc" id="rdVmod" title="Who does the talking when the app sends voice: tap to change"></button>
       <div class="strip rdvk" id="rdVk" aria-label="Voice keyer"></div>
       <div class="rdlv" id="rdLv"></div>
       <button type="button" class="talk" id="rdTalk">🎙 HOLD TO TALK <small>(this computer's microphone)</small></button>
@@ -87,6 +88,7 @@
     const vk = G.KPCVoice ? KPCVoice.names().filter(x => x.has) : [];
     $('rdVk').innerHTML = vk.length ? '<span class="kv"><i>VOICE KEYER</i></span>' + vk.map(x => `<button type="button" class="chip${KPCVoice.playing() === x.i ? ' on' : ''}" data-rvk="${x.i}">${x.i + 1} ${esc(x.n)}</button>`).join('') + '<button type="button" class="chip halt" data-rvk="stop">⏹ STOP</button>' : '';
     $('rdVk').hidden = !vk.length;
+    { const c = $('rdVmod'); if (c && AP.vmodName) { const t = '🎙 VOICE: ' + AP.vmodName() + ' ▾'; if (c.textContent !== t) c.textContent = t; } }
   }
   /* moving the radio */
   async function tuneTo(khz, mode) {
@@ -109,6 +111,8 @@
   });
   $('rdUp').onclick = () => nudge(1); $('rdDn').onclick = () => nudge(-1);
   $('rdKhz').addEventListener('wheel', e => { e.preventDefault(); nudge(e.deltaY < 0 ? 1 : -1); }, { passive: false });
+  if ($('rdVmod')) $('rdVmod').onclick = () => AP.vmodSheet && AP.vmodSheet();   /* Nov 19: the voice choice by the voice keyer */
+  AP.on('vmod', () => draw());
   $('rdKhz').onclick = () => { AP.sheet('📻 Frequency', `<label class="e wide">FREQUENCY (MHz or kHz)<input id="rdK" inputmode="decimal" value="${RIG.khz ? (RIG.khz / 1000).toFixed(4) : ''}"></label><div class="row"><button type="button" class="b gold" id="rdKGo">GO</button></div>`);
     const go = () => { let v = parseFloat($('rdK').value); if (!isFinite(v)) return; if (v < 1000) v *= 1000; AP.shut(); tuneTo(Math.round(v * 1000) / 1000, ''); }; $('rdKGo').onclick = go; $('rdK').addEventListener('keydown', e => { if (e.key === 'Enter') go(); }); setTimeout(() => $('rdK').select(), 50); };
   $('rdWidth').onchange = () => { EX.width = +$('rdWidth').value; saveEx(); K.extra('width', EX.width).then(ok => { if (!ok) AP.toast('The radio did not take the filter width.', 3000, 'bad'); }); };
@@ -121,15 +125,16 @@
   $('rdSet').onclick = () => { AP.go('station'); const c = $('stRig'); if (c) c.scrollIntoView({ block: 'center' }); };
 
   /* 🎙 HOLD TO TALK through this computer's microphone (the voice keyer's mic choice); voice PTT = kpc-app pttOn(…, {voice}) */
-  let TALK = null;
+  let TALK = null, HELD = false;   /* Fable Nov 19 review: HELD = the button / Space is still down (a release while the sound was still starting used to key with nobody holding) */
   async function talkDown() {
+    HELD = true;
     if (TALK) return; const cls = AP.S.cls || 'E';
     if (!AP.canKey()) { AP.toast('Nothing can key the radio yet: connect it (CAT) or pick VOX.', 4000, 'bad'); return; }
     if (AP.txing()) { AP.toast('Already transmitting.', 2500, 'bad'); return; }
     if (RIG.khz && /^(LSB|USB|AM|FM|DATA|DATAL)$/.test(RIG.mode || '') && !AP.bandPlan.allowed(RIG.khz, cls, 'SSB')) { AP.toast('🎙 Voice is not allowed on ' + (RIG.khz / 1000).toFixed(3) + (AP.S.cls ? ' for your licence' : '') + ': move to the phone part of the band.', 5000, 'bad'); return; }
     if (/CW/.test(RIG.mode || '')) { AP.toast('The radio is in CW: pick LSB / USB first.', 3000, 'bad'); return; }
     if (AP.native) { AP.toast('🎙 On a phone at the radio, talk into the radio\'s own microphone.', 4000); return; }
-    if (!AP.running() && !(await AP.start())) return;
+    if (!AP.running()) { if (!(await AP.start())) return; if (!HELD || TALK) return; }
     /* Nov 8 (Brandon: 'key is little delayed'): key the radio AT ONCE, while the microphone opens (and the mic stays warm for a
        minute after you let go, so the next press does not wait for Windows to open it again) */
     TALK = { t0: Date.now() }; $('rdTalk').classList.add('on');
@@ -155,7 +160,7 @@
         mb.hidden = false; TALK.mt = setInterval(() => { if (!TALK || !TALK.p) return; const v = TALK.p.txDb(), w = Math.max(0, Math.min(100, (v.db + 40) / 40 * 100)), i = mb.firstChild; i.style.width = w + '%'; i.style.background = v.lim <= -6 ? '#e5484d' : v.lim <= -1 ? '#e3a24a' : '#3ddc84'; mb.title = 'TX ' + v.db + ' dB · limiter ' + v.lim + ' dB'; }, 120); }
     } catch (e) { AP.toast('🎙 The microphone did not open: ' + esc(e.message || e) + '. Pick it in the voice keyer (🎙 KEYER → RECORD / EDIT → RECORD WITH).', 6000, 'bad'); talkUp(); }
   }
-  async function talkUp() { const t = TALK; if (!t) return; TALK = null; clearTimeout(t.lim); clearInterval(t.mt); const mb = $('rdMicLvl'); if (mb) mb.hidden = true; $('rdTalk').classList.remove('on');
+  async function talkUp() { HELD = false; const t = TALK; if (!t) return; TALK = null; clearTimeout(t.lim); clearInterval(t.mt); const mb = $('rdMicLvl'); if (mb) mb.hidden = true; $('rdTalk').classList.remove('on');
     const dly = t.p && t.p.delayed ? t.p.delayed() : 0; if (dly > 0) await new Promise(r => setTimeout(r, dly * 1000 + 30));   /* the held tail goes out first */
     try { if (t.p) { t.p.gate(false); t.p.stop(); } } catch (e) {} coolMic(); if (t.key) { await t.key; await AP.pttOn(false, { voice: true }); } }
   const WARM = { st: null, dev: '', t: 0 };
@@ -170,12 +175,13 @@
   ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(n => tb.addEventListener(n, () => talkUp())); tb.addEventListener('contextmenu', e => e.preventDefault());
   addEventListener('keydown', e => { if (document.body.dataset.screen !== 'radio' || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName || '') || !$('sheet').hidden) return;
     if (e.code === 'Space') { e.preventDefault(); if (!e.repeat) talkDown(); } else if (e.key === 'ArrowUp' || e.key === 'ArrowRight') { e.preventDefault(); nudge(1); } else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') { e.preventDefault(); nudge(-1); } });
-  addEventListener('keyup', e => { if (e.code === 'Space' && TALK) talkUp(); });
+  addEventListener('keyup', e => { if (e.code === 'Space') talkUp(); });
   G.addEventListener('blur', () => talkUp());
 
   /* the meters (the same widget as the LOG / DIGI bars, with the tuner) */
   let MW = null;
-  function meters() { if (MW || !G.KPCMeters || !$('rdMet')) return; MW = KPCMeters.mount($('rdMet'), { tune: { ok: () => K.connected() && K.extras && K.extras().includes('atu'), go: () => $('rdTune').click() } }); }
+  /* Nov 19 2026: the RADIO screen's meters start open, phone too (own fold state); the look = the member's (MODERN by default) */
+  function meters() { if (MW || !G.KPCMeters || !$('rdMet')) return; MW = KPCMeters.mount($('rdMet'), { own: true, tune: { ok: () => K.connected() && K.extras && K.extras().includes('atu'), go: () => $('rdTune').click() } }); }
 
   AP.on('dial', r => { if (r && r.khz && !busy && !pend) { RIG = { khz: r.khz, mode: r.mode || RIG.mode }; draw(); } });
   AP.on('screen', s => { tabVis(); if (s !== 'radio') { talkUp(); return; } meters(); if (K.connected() && !AP.txing()) K.read().then(r => { if (r && r.khz) { RIG = { khz: r.khz, mode: r.mode || '' }; AP.fire('dial', r); } draw(); }); draw(); });

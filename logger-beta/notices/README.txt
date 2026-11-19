@@ -57,6 +57,11 @@ Other things the app uses
 - Satellite map pictures come from Esri World Imagery (or USGS) over the
   internet and are credited on the map whenever they show. They are not stored
   in the app.
+- The TOPO map pictures come from USGS The National Map (the USGSTopo map,
+  https://basemap.nationalmap.gov), over the internet. They are a work of the
+  US government and in the public domain; the map says "Topo map: USGS The
+  National Map" whenever they show, as a thank-you. They are not stored in the
+  app, so the topo map needs a signal; with none, the built-in map shows.
 - Contest helper files (CTY.DAT from country-files.com, MASTER.SCP from
   supercheckpartial.com) are not part of the app. The app only downloads them
   when you press the button for them.

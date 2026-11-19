@@ -61,6 +61,8 @@ const KPCPotaDoor = window.KPCPota;   /* kept: kpc-pota.js (POTA sign-in) takes 
   SPx.source({ id: 'pota', label: 'POTA', every: 60, poll: async () => {
     const L = await potaList();
     const so = so0(); if (so) { const v = SPx.potaVia(); so.title = 'via ' + v.via + (v.age != null ? ', ' + (v.age < 60 ? 'under 1 min' : Math.round(v.age / 60) + ' min') + ' old' : '') + ' ·'; }
+    /* Nov 19 2026 (to-do 1, alerts that say what they are): remember each park's name from the spots, so an alert can name the park */
+    const PN = G.KPCParkNames = G.KPCParkNames || {}; (L || []).forEach(x => { if (x.reference && x.name) PN[String(x.reference).toUpperCase()] = String(x.name).slice(0, 60); });
     return (L || []).map(x => ({ call: x.activator, khz: toKhz(x.frequency), mode: x.mode, refs: x.reference ? [x.reference] : [], t: toMs(x.spotTime),
       comment: [x.name, x.locationDesc, x.comments].filter(Boolean).join(' · '), grid: x.grid6 || x.grid4 || '', spotter: x.spotter || '', la: +x.latitude, lo: +x.longitude, st: stOf(x.locationDesc) })).filter(s => s.khz);
   } });

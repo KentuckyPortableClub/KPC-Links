@@ -10,6 +10,12 @@
   /* Brandon Oct 22: 'sat+street please' = the pictures, then roads and place names on top (Esri's reference layers) */
   const LAYERS = [AG + 'World_Imagery/MapServer/tile/', AG + 'Reference/World_Transportation/MapServer/tile/', AG + 'Reference/World_Boundaries_and_Places/MapServer/tile/'];
   const USGS = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/';
+  /* Nov 19 2026 (to-do 6, Brandon: 'topo yes'): a TOPO map = USGS The National Map 'USGSTopo' (US government work, public domain, no key;
+     contours, trails, forest and park land, roads, names). Loaded from the internet, not stored. Outside the US it has no pictures, so the
+     built-in world map shows through. sat = true (satellite + streets) | 'topo' | false (the built-in plain map). */
+  const TOPO = 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/';
+  const NEXT = v => v === true ? 'topo' : v === 'topo' ? false : true;
+  const NAME = { true: '🛰 SATELLITE + STREETS', topo: '⛰ TOPO MAP', false: '🗺 PLAIN MAP' };
   const X = (lo, z) => (lo + 180) / 360 * T * 2 ** z;
   const Y = (la, z) => { const s = Math.sin(la * Math.PI / 180); return (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * T * 2 ** z; };
   const LO = (x, z) => x / (T * 2 ** z) * 360 - 180;
@@ -26,7 +32,7 @@
   }
   function create(cv, o) {
     o = o || {};
-    let la = 37.8, lo = -85.5, z = 7, sat = !!o.sat, raf = 0; const MINZ = o.minZ || 3;   /* the QSO map zooms out to the whole world (minZ 1) */
+    let la = 37.8, lo = -85.5, z = 7, sat = o.sat === 'topo' ? 'topo' : !!o.sat, raf = 0; const MINZ = o.minZ || 3;   /* the QSO map zooms out to the whole world (minZ 1) */
     const ctx = cv.getContext('2d');
     function size() { const r = cv.getBoundingClientRect(), d = G.devicePixelRatio || 1, w = Math.max(100, Math.round(r.width)), h = Math.max(100, Math.round(r.height)); if (cv.width !== w * d || cv.height !== h * d) { cv.width = w * d; cv.height = h * d; } ctx.setTransform(d, 0, 0, d, 0, 0); return [w, h]; }
     function P(a, b) { const [w, h] = [cv.clientWidth, cv.clientHeight]; return [X(b, z) - X(lo, z) + w / 2, Y(a, z) - Y(la, z) + h / 2]; }
@@ -37,23 +43,25 @@
         /* Oct 24 (Brandon: 'sat and streets has a black background' on the tablet): a picture that fails tries the USGS
            imagery + roads map once (US, free, no key); the first failure goes in the builders' report */
         t.onerror = () => { if (!t.alt && !L) { t.alt = 1; if (!tile.said) { tile.said = 1; console.warn('map: satellite tile failed, trying USGS: ' + t.src); } t.src = USGS + tz + '/' + ty + '/' + tx; return; } t.bad = 1; if (!tile.said2) { tile.said2 = 1; console.warn('map: tile failed: ' + t.src); } redraw(); };
-        t.src = LAYERS[L || 0] + tz + '/' + ty + '/' + tx; tiles.set(k, t); if (tiles.size > 900) tiles.delete(tiles.keys().next().value); }
+        t.src = (L === 'T' ? TOPO : LAYERS[L || 0]) + tz + '/' + ty + '/' + tx; tiles.set(k, t); if (tiles.size > 900) tiles.delete(tiles.keys().next().value); }
       return t.complete && !t.bad && t.naturalWidth ? t : null;
     }
     function paint() {
       raf = 0; const [w, h] = size(), dark = document.documentElement.dataset.theme !== 'light';
       ctx.fillStyle = dark ? '#0b0f14' : '#eef0e8'; ctx.fillRect(0, 0, w, h);
       const online = navigator.onLine !== false, zi = Math.max(0, Math.min(19, Math.round(z)));
+      if (sat === 'topo' && online) world(ctx, P, dark, redraw);   /* under the topo pictures, for outside the US */
       if (sat && online) {
         const sc = 2 ** (z - zi), cx = X(lo, zi), cy = Y(la, zi), x0 = cx - w / 2 / sc, y0 = cy - h / 2 / sc, n = 2 ** zi;
         for (let ty = Math.floor(y0 / T); ty <= Math.floor((y0 + h / sc) / T); ty++) for (let tx = Math.floor(x0 / T); tx <= Math.floor((x0 + w / sc) / T); tx++) {
-          if (ty < 0 || ty >= n) continue; for (let L = 0; L < LAYERS.length; L++) { const im = tile(zi, ((tx % n) + n) % n, ty, L); if (im) ctx.drawImage(im, (tx * T - x0) * sc, (ty * T - y0) * sc, T * sc + 0.5, T * sc + 0.5); }
+          if (ty < 0 || ty >= n) continue; for (const L of (sat === 'topo' ? ['T'] : LAYERS.map((_, i) => i))) { if (L === 'T' && zi > 16) continue; const im = tile(zi, ((tx % n) + n) % n, ty, L); if (im) ctx.drawImage(im, (tx * T - x0) * sc, (ty * T - y0) * sc, T * sc + 0.5, T * sc + 0.5); }
         }
       }
-      if (!(sat && online)) world(ctx, P, dark, redraw);   /* Nov 18 review: no pictures (offline, or sat off) = the built-in world map, not a blank box */
-      if (o.draw) { try { o.draw(ctx, P, z, { w, h, sat: sat && online, dark }); } catch (e) { console.error('map draw: ' + e.message); } }
-      ctx.font = '10px system-ui, sans-serif'; ctx.textAlign = 'right'; ctx.fillStyle = sat && online ? '#fff' : (dark ? '#9AA6B5' : '#5A6270');
-      ctx.fillText(sat && online ? 'Imagery + labels © Esri, Maxar, Earthstar Geographics, HERE, Garmin' : (sat ? 'No signal: satellite pictures need the internet' : ''), w - 6, h - 6);
+      if (!(sat && online)) world(ctx, P, dark, redraw);   /* (topo: drawn above, under its pictures) */   /* Nov 18 review: no pictures (offline, or sat off) = the built-in world map, not a blank box */
+      if (o.draw) { try { o.draw(ctx, P, z, { w, h, sat: sat === true && online, topo: sat === 'topo' && online, dark: sat === 'topo' && online ? false : dark });   /* a topo map is light: dark labels on it */ } catch (e) { console.error('map draw: ' + e.message); } }
+      ctx.font = '10px system-ui, sans-serif'; ctx.textAlign = 'right'; ctx.fillStyle = sat === true && online ? '#fff' : (dark ? '#9AA6B5' : '#5A6270');
+      if (sat === 'topo' && online) { ctx.fillStyle = '#1A1E24'; ctx.globalAlpha = .75; ctx.fillRect(w - 182, h - 17, 182, 17); ctx.globalAlpha = 1; ctx.fillStyle = '#fff'; }
+      ctx.fillText(sat === 'topo' ? (online ? 'Topo map: USGS The National Map' : 'No signal: the topo map needs the internet') : sat && online ? 'Imagery + labels © Esri, Maxar, Earthstar Geographics, HERE, Garmin' : (sat ? 'No signal: satellite pictures need the internet' : ''), w - 6, h - 6);
     }
     function redraw() { if (!raf) raf = requestAnimationFrame(paint); }
     /* touch + mouse */
@@ -79,10 +87,10 @@
         z = 16; while (z > MINZ && (X(d, z) - X(c, z) > w * 0.85 || Y(a, z) - Y(b, z) > h * 0.85)) z -= 0.5;
         redraw(); return m;
       },
-      redraw, P, sat(on) { if (on !== undefined) { sat = !!on; redraw(); } return sat; }, center: () => [la, lo, z]
+      redraw, P, sat(on) { if (on !== undefined) { sat = on === 'topo' ? 'topo' : !!on; redraw(); } return sat; }, center: () => [la, lo, z]
     };
     redraw();
     return m;
   }
-  G.KPCMap = { create };
+  G.KPCMap = { create, next: NEXT, name: v => NAME[v === 'topo' ? 'topo' : !!v] };   /* next(v) = the map a tap on the map button gives; name(v) = its button words */
 })(window);

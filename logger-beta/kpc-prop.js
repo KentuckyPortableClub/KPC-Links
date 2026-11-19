@@ -42,8 +42,12 @@
       const j = async u => { const r = AP.net.raw ? await AP.net.raw(u, { ms: 12000 }) : null; if (r && r.ok) return JSON.parse(r.text); const x = await fetch(u, G.AbortSignal && AbortSignal.timeout ? { signal: AbortSignal.timeout(10000) } : {}); return x.json(); };
       const [k, f] = await Promise.all([j('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json'), j('https://services.swpc.noaa.gov/products/summary/10cm-flux.json')]);
       let kp = null, sfi = null;
-      try { const r = k[k.length - 1]; kp = Number(Array.isArray(r) ? r[1] : r.Kp); } catch (e) {}
-      try { sfi = Number((Array.isArray(f) ? f[0] : f).flux); } catch (e) {}
+      /* Nov 19 2026 (to-do 12): SWPC's Mar 31 2026 formats: the k-index rows are objects now (numbers unquoted); any order: newest time_tag */
+      const pk = (r, k) => { if (!r || typeof r !== 'object') return undefined; const lk = Object.keys(r).find(x => x.toLowerCase() === k); return lk ? r[lk] : undefined; };
+      try { const hdr = Array.isArray(k[0]) ? k[0].findIndex(h => String(h).toLowerCase() === 'kp') : -1; const rows = Array.isArray(k[0]) ? k.slice(1) : k;
+        let best = null; for (const r of rows) { const v = Number(Array.isArray(r) ? r[hdr < 0 ? 1 : hdr] : pk(r, 'kp')); if (!isFinite(v) || String(Array.isArray(r) ? r[hdr < 0 ? 1 : hdr] : pk(r, 'kp')) === '') continue; const t = String((Array.isArray(r) ? r[0] : pk(r, 'time_tag')) || ''); if (!best || t >= best.t) best = { t, v }; }
+        if (best) kp = best.v; } catch (e) {}
+      try { const L = Array.isArray(f) ? f : [f]; let best = null; for (const r of L) { const v = Number(pk(r, 'flux')); if (!isFinite(v) || !(v > 0)) continue; const t = String(pk(r, 'time_tag') || ''); if (!best || t >= best.t) best = { t, v }; } if (best) sfi = best.v; } catch (e) {}
       if (!isFinite(kp)) kp = null; if (!isFinite(sfi)) sfi = null;
       if (kp == null && sfi == null) return c;
       const v = { kp, sfi, t: Date.now() }; SV('kpcAppSun', v); return v;

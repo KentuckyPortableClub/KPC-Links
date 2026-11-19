@@ -4,7 +4,7 @@
 (function (G) {
   'use strict';
   let CHP, KAP;   /* plugin handles, registered once (Oct 24) */
-  const VER = '0.9.10';
+  const VER = '0.9.15';
   /* KPC Lite (Oct 28, HQ): kpc-flavor.js (overwritten by the nightly build for the Lite APK) or ?lite=1. index.html already skipped the left-out files. */
   const LITE = !!document.documentElement.dataset.lite, LITE_OFF = { remote: 1 };
   const $ = id => document.getElementById(id);
@@ -267,16 +267,26 @@
   /* Nov 18 review (layout #8): FIRST-RUN SETUP in 5 steps — call, grid (GPS), hunter or activator (+ park), radio (CONNECT), sound
      (START with the level showing). Opens by itself when no call sign is set yet (not in tests), and from STATION → 🧭 SET UP STEP BY STEP.
      Each step writes the same STATION boxes (their own change handlers save), so nothing is set two ways. */
+  /* Nov 19 2026 (Brandon: 'easy for people to notice the options during set up … when they go to cat control the option is right there'):
+     who does the talking when the app sends voice. Same setting as STATION → VOICE FROM THIS DEVICE (S.vmod, unchanged values / default). */
+  const vmodName = () => S.vmod === 'data' ? 'HYBRID' : 'ALL FROM THE APP';
+  const VMODTXT = { mic: ['ALL FROM THE APP', 'The app never changes the radio\'s mode for voice. Set the radio\'s SSB MOD SOURCE (Icom: DATA OFF MOD) to REAR / USB: then the voice keyer and HOLD TO TALK go out, and the radio\'s own hand mic is OFF while that menu says REAR.'],
+    data: ['HYBRID', 'Example: you call CQ with the app\'s voice keyer, then answer on the radio\'s own mic. The app switches the radio to DATA (USB-D / LSB-D) only while IT sends, then back to USB / LSB. The radio menu stays on MIC.'] };
+  function vmodHtml(cls) { return Object.keys(VMODTXT).map(k => `<button type="button" class="b big vmodb${S.vmod === k || (k === 'mic' && S.vmod !== 'data') ? ' gold' : ''}${cls ? ' ' + cls : ''}" data-vmod="${k}"><b>${VMODTXT[k][0]}</b><small>${esc(VMODTXT[k][1])}</small></button>`).join(''); }
+  function vmodSet(v) { S.vmod = v === 'data' ? 'data' : 'mic'; save(); if ($('stVmod')) $('stVmod').value = S.vmod; fire('vmod', S.vmod); }
+  function vmodWire(root, then) { (root || document).querySelectorAll('[data-vmod]').forEach(b => { b.onclick = () => { vmodSet(b.dataset.vmod); (root || document).querySelectorAll('[data-vmod]').forEach(x => x.classList.toggle('gold', x.dataset.vmod === S.vmod)); if (then) then(); }; }); }
+  function vmodSheet() { sheet('🎙 Who does the talking?', '<p class="hint">For the voice keyer, HOLD TO TALK and a phone on the remote link. CW has the same choice in DIGI → CW → ⚙.</p><div class="vmodw">' + vmodHtml() + '</div>'); vmodWire($('sheet'), () => { toast('🎙 Voice: ' + vmodName(), 1800, 'log'); shut(); }); }
   function setup(step) {
     step = step || 1; const put = (id, v) => { const e = $(id); if (e) { e.value = v; e.dispatchEvent(new Event('change')); } };
     const nav = (back, nextLabel) => `<div class="row">${back ? '<button type="button" class="b" id="wzBack">◀ BACK</button>' : ''}<button type="button" class="b gold big" id="wzNext">${nextLabel || 'NEXT ▶'}</button></div>`;
-    const head = t => `<p class="step">STEP ${step} OF 5</p><h3>${t}</h3>`;
+    const head = t => `<p class="step">STEP ${step} OF 6</p><h3>${t}</h3>`;
     let body = '';
     if (step === 1) body = head('Your call sign') + `<label class="e">MY CALL SIGN<input id="wzCall" autocapitalize="characters" spellcheck="false" value="${esc(S.call || '')}" placeholder="your call sign"></label>` + nav(false);
     if (step === 2) body = head('Where you are (grid square)') + `<label class="e">GRID SQUARE<input id="wzGrid" autocapitalize="characters" maxlength="6" value="${esc(S.grid || '')}" placeholder="e.g. EM78"></label><div class="row"><button type="button" class="b" id="wzGps">📍 USE MY LOCATION</button></div>` + nav(true);
     if (step === 3) body = head('Hunting or activating?') + `<div class="row"><button type="button" class="b big${S.role === 'hunt' ? ' gold' : ''}" data-wzr="hunt">🎯 HUNTING FROM HOME</button><button type="button" class="b big${S.role !== 'hunt' ? ' gold' : ''}" data-wzr="act">🏕 ACTIVATING A PARK</button></div><label class="e" id="wzRefL"${S.role === 'hunt' ? ' hidden' : ''}>MY PARK (POTA number, e.g. US-1234)<input id="wzRef" name="kpc-my-parks" autocapitalize="characters" value="${esc(S.ref || '')}"></label>` + nav(true);
     if (step === 4) body = head('Your radio') + `<label class="e">MY RADIO<select id="wzRadio"></select></label><div class="row"><button type="button" class="b gold big" id="wzConn">📻 CONNECT</button></div><div class="st" id="wzConnT">${G.KPCCat && KPCCat.connected() ? '✅ Connected.' : 'Turn the radio on, plug in its USB cable, then CONNECT. No radio here? Skip: you can log by hand.'}</div>` + nav(true, 'NEXT ▶ (or skip)');
-    if (step === 5) body = head('Sound from the radio') + `<p class="hint">For FT8 and the other digital modes the app listens to the radio's USB sound. Press START and talk near nothing: the bar should move with band noise.</p><div class="row"><button type="button" class="b gold big" id="wzStart">🎧 START LISTENING</button></div><div class="st" id="wzLvl">—</div>` + nav(true, '✅ DONE');
+    if (step === 5) body = head('Who does the talking?') + '<p class="hint">When the app sends voice (the voice keyer, HOLD TO TALK, a phone on the link). You can change it any time: STATION → Radio control, or the 🎙 chip on the RADIO screen.</p><div class="vmodw">' + vmodHtml() + '</div>' + nav(true);
+    if (step === 6) body = head('Sound from the radio') + `<p class="hint">For FT8 and the other digital modes the app listens to the radio's USB sound. Press START and talk near nothing: the bar should move with band noise.</p><div class="row"><button type="button" class="b gold big" id="wzStart">🎧 START LISTENING</button></div><div class="st" id="wzLvl">—</div>` + nav(true, '✅ DONE');
     sheet('🧭 Set up KPC', '<div class="wiz">' + body + '</div>');
     const go2 = n => { clearInterval(setup.t); setup(n); };
     if ($('wzBack')) $('wzBack').onclick = () => go2(step - 1);
@@ -286,7 +296,8 @@
     if (step === 4) { const sel = $('wzRadio'); if (G.KPCCat && KPCCat.fillSelect) KPCCat.fillSelect(sel); sel.onchange = () => { if (KPCCat.pickRadio) KPCCat.pickRadio(sel.value); };
       $('wzConn').onclick = async () => { $('wzConnT').textContent = 'Connecting…'; const ok = await KPCCat.connect(true); keyCheck(); $('wzConnT').textContent = ok ? '✅ The radio answers.' : '✗ ' + (catLast.t || 'no answer'); };
       $('wzNext').onclick = () => go2(5); }
-    if (step === 5) { $('wzStart').onclick = () => start(); setup.t = setInterval(() => { const e = $('wzLvl'); if (!e) { clearInterval(setup.t); return; } e.textContent = RUN ? '🎧 Listening · ' + ($('stLvlT') ? $('stLvlT').textContent : '') : 'Not listening yet.'; }, 300);
+    if (step === 5) { vmodWire($('sheet')); $('wzNext').onclick = () => go2(6); }
+    if (step === 6) { $('wzStart').onclick = () => start(); setup.t = setInterval(() => { const e = $('wzLvl'); if (!e) { clearInterval(setup.t); return; } e.textContent = RUN ? '🎧 Listening · ' + ($('stLvlT') ? $('stLvlT').textContent : '') : 'Not listening yet.'; }, 300);
       $('wzNext').onclick = () => { clearInterval(setup.t); try { localStorage.setItem('kpcSetupDone', '1'); } catch (e) {} shut(); go(S.role === 'hunt' ? 'spots' : 'log'); toast('✅ All set. STATION has every setting if you want to change one.', 4000, 'log'); }; }
   }
   if ($('stSetup')) $('stSetup').onclick = () => setup(1);
@@ -472,7 +483,7 @@
   /* Oct 25: the MY RIG box was id stRig, the same id as the MY RADIO drop-down below it (Brandon: 'my radio field is blank, can not select what radio'): now stMyRig */
   [['stPwr', 'pwr'], ['stMyRig', 'rig'], ['stAnt', 'ant']].forEach(([id, k]) => { $(id).onchange = () => { S[k] = $(id).value.trim(); save(); }; });
   if ($('stTxMax')) { $('stTxMax').value = String([60, 120, 180, 300, 600].includes(+S.txMax) ? +S.txMax : 180); $('stTxMax').onchange = () => { S.txMax = +$('stTxMax').value; save(); }; }
-  if ($('stVmod')) { $('stVmod').value = S.vmod === 'data' ? 'data' : 'mic'; $('stVmod').onchange = () => { S.vmod = $('stVmod').value; save(); }; }
+  if ($('stVmod')) { $('stVmod').value = S.vmod === 'data' ? 'data' : 'mic'; $('stVmod').onchange = () => vmodSet($('stVmod').value); }
   if (N.native) $('stPtt').querySelectorAll('option[value="rts"], option[value="dtr"]').forEach(o => o.remove());
   $('stPtt').onchange = async () => {
     if (TXING) { try { await stopAll(''); } catch (e) {} }   /* never change how the radio is keyed in the middle of a transmission */
@@ -753,7 +764,7 @@
       const body = o.body == null ? undefined : (typeof o.body === 'string' ? o.body : o.body instanceof URLSearchParams ? o.body.toString() : JSON.stringify(o.body));
       const headers = Object.assign({}, o.headers || {});
       if (body != null && !Object.keys(headers).some(k => k.toLowerCase() === 'content-type')) headers['content-type'] = o.body instanceof URLSearchParams ? 'application/x-www-form-urlencoded' : typeof o.body === 'string' ? 'text/plain' : 'application/json';
-      if (G.kpcNet && G.kpcNet.fetch) return G.kpcNet.fetch({ url, method: o.method || (body != null ? 'POST' : 'GET'), headers, body, ms: o.ms || 15000 });
+      if (G.kpcNet && G.kpcNet.fetch) return G.kpcNet.fetch({ url, method: o.method || (body != null ? 'POST' : 'GET'), headers, body, ms: o.ms || 15000, max: o.max });   /* Nov 18 2026: max = a bigger answer for the KiwiSDR list */
       /* Oct 24 (Brandon's tablet: 'Capacitor plugin CapacitorHttp already registered' every ~70 s): register the plugin ONCE, not on every spots poll */
       if (CHP === undefined) CHP = N.native && G.Capacitor && G.Capacitor.registerPlugin ? G.Capacitor.registerPlugin('CapacitorHttp') : null;
       const CH = CHP;
@@ -761,7 +772,7 @@
         try { const r = await CH.request({ url, method: o.method || (body != null ? 'POST' : 'GET'), headers, data: body, connectTimeout: o.ms || 15000, readTimeout: o.ms || 15000, responseType: 'text' }); return { ok: r.status >= 200 && r.status < 300, status: r.status, text: typeof r.data === 'string' ? r.data : JSON.stringify(r.data || ''), headers: r.headers || {} }; }
         catch (e) { return { ok: false, status: 0, text: '', err: String(e.message || e) }; }
       }
-      try { const r = await net.fetch(url, { method: o.method || (body != null ? 'POST' : 'GET'), headers, body }, o.ms); const text = await r.text(); return { ok: r.ok, status: r.status, text, headers: {} }; }
+      try { const r = await net.fetch(url, { method: o.method || (body != null ? 'POST' : 'GET'), headers, body }, o.ms); const text = await r.text(); const hd = {}; try { r.headers.forEach((v, k) => { hd[k] = v; }); } catch (e) {} return { ok: r.ok, status: r.status, text, headers: hd }; }   /* Nov 18 2026: the headers too (the spot relay's age), like the Windows and Android paths */
       catch (e) { return { ok: false, status: 0, text: '', err: String(e.message || e) }; }
     },
     canRaw: () => !!((G.kpcNet && G.kpcNet.fetch) || (N.native && G.Capacitor && G.Capacitor.registerPlugin)),
@@ -838,7 +849,7 @@
 
   /* ---------------- backup + restore, and 'a new build is out' (Oct 22) ----------------
      The backup = every setting this app keeps (incl. the log file) in one .kpcbackup. RESTORE merges the log and puts the settings back. */
-  const BK_KEYS = ['kpcApp', 'kpcAppDigi', 'kpcAppAprs', 'kpcAppSpots', 'kpcAppAlerts', 'kpcAppUp', 'kpcCat', 'kpcQrz', 'kpcAppDock', 'kpcTheme', 'kpcStyle', 'kpcMode', 'kpcPacks', 'kpcDev', 'kpcLogOpts', 'kpcAppLk', 'kpcAppPotaF', 'kpcPortNick', 'kpcAppOps', 'kpcAppVk', 'kpcApp5', 'kpcAppMeters', 'kpcAppCx', 'kpcAppSkim', 'kpcSkimLoc', 'kpcAppQp', 'kpcAppScope', 'kpcAppRot', 'kpcAppNr', 'kpcAppRigX', 'kpcAppBandMem', 'kpcAppWorks', 'kpcAppTrip', 'kpcAppSdr', 'kpcAppChk', 'kpcAppAutoSpot'   /* Nov 18: trip, radio page, log check, auto spot … */];
+  const BK_KEYS = ['kpcAppLists', 'kpcApp', 'kpcAppDigi', 'kpcAppAprs', 'kpcAppSpots', 'kpcAppAlerts', 'kpcAppUp', 'kpcCat', 'kpcQrz', 'kpcAppDock', 'kpcTheme', 'kpcStyle', 'kpcMode', 'kpcPacks', 'kpcDev', 'kpcLogOpts', 'kpcAppLk', 'kpcAppPotaF', 'kpcPortNick', 'kpcAppOps', 'kpcAppVk', 'kpcApp5', 'kpcAppMeters', 'kpcAppCx', 'kpcAppSkim', 'kpcSkimLoc', 'kpcAppQp', 'kpcAppScope', 'kpcAppRot', 'kpcAppNr', 'kpcAppRigX', 'kpcAppBandMem', 'kpcAppWorks', 'kpcAppTrip', 'kpcAppSdr', 'kpcAppChk', 'kpcAppAutoSpot'   /* Nov 18: trip, radio page, log check, auto spot … */];
   /* Nov 18 full review (L17): the backup file carries NO passwords, API keys, remote-link key or device id. After a restore the
      passwords already on this device stay; on a new device they are typed in again. kpcDev never moves (two devices would look like one). */
   const BK_SECRET = { kpcAppUp: ['qrz.key', 'eqsl.pass', 'wavelog.key'], kpcQrz: ['key'], kpcAppLk: ['pass'], kpcApp: ['rmTok', 'rmId'] }, BK_SKIP = { kpcDev: 1 };
@@ -950,7 +961,7 @@
 
   G.KPCApp = {
     saveFile,
-    VER, S, save, toast, sheet, shut, go, on, fire, esc, utc, toGrid,
+    VER, S, save, toast, sheet, shut, go, on, fire, esc, utc, toGrid, vmodSheet, vmodName,
     myCall, myGrid, dist, distUnit, toUnit, pickSerial, portLabel, chipName, native: N.native, platform: N.platform,
     devices, start, stop, soundLost, setDb, lvSet, dialNow, monSet, lvHtml, lvShow, pttOn, stopAll, stopAllBtn, lvlHelper, setup, txSince: () => TXT0, _resumed: resumed, catMsg: () => catLast, canKey, keyCheck, clock, stdCall,
     running: () => RUN, txing: () => TXING, rigTips: () => TIPS, rigFam: id => rigFam(id),

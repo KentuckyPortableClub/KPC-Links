@@ -45,6 +45,18 @@
      LISTENS in CW mode (its own narrow CW filter), and flips to DATA one tone low only while sending (`cwArm`), back to CW 1.2 s after
      the last element; 'data' = parked in DATA the whole time (the fastest first dit). Both only when SEND WITH = sound. */
   const parkData = () => toneCw() && S.cw.park === 'data';
+  /* Nov 19 2026 (Brandon: the keyer choice easy to notice): a chip on the CW screen = S.cw.park, only when SEND WITH = sound (the key
+     line / the radio's own keyer keep the radio in CW and need no choice). Same setting and same re-tune as ⚙ CW → THE RADIO WHILE SENDING BY SOUND. */
+  function parkChip() { const c = $('d5Park'); if (!c) return; c.hidden = !toneCw(); const t = '⌨ CW: ' + (S.cw.park === 'data' ? 'ALL FROM THE APP' : 'HYBRID') + ' ▾'; if (c.textContent !== t) c.textContent = t; }
+  function parkSheet() {
+    const B = (k, h, d) => `<button type="button" class="b big vmodb${(S.cw.park === 'data') === (k === 'data') ? ' gold' : ''}" data-cwpk="${k}"><b>${h}</b><small>${d}</small></button>`;
+    AP.sheet('⌨ CW sent by sound', '<p class="hint">Only when ⚙ CW → SEND WITH is the sound. With the DTR / RTS key line or the radio\'s own keyer the radio stays in CW.</p><div class="vmodw">'
+      + B('cw', 'HYBRID', 'Listen in CW with the radio\'s own CW filter, key and paddle; the app flips the radio to DATA only while IT sends, then back to CW.')
+      + B('data', 'ALL FROM THE APP', 'The radio stays in DATA one tone below the whole time the CW screen is up: the fastest first dit, but the radio\'s own key / paddle and CW filter are not in use.') + '</div>');
+    document.querySelectorAll('[data-cwpk]').forEach(b => { b.onclick = () => { const was = S.cw.park === 'data' ? 'data' : 'cw'; S.cw.park = b.dataset.cwpk === 'data' ? 'data' : 'cw'; save(); AP.shut(); parkChip();
+      if (S.cw.park !== was && MODE === 'CW' && AP.catConnected() && G.KPCCat && !(AP.txing && AP.txing())) KPCCat.tune(dialOut('CW'), radioMode('CW')).catch(() => {});   /* the same re-tune the ⚙ sheet does */
+      AP.toast('⌨ CW: ' + (S.cw.park === 'data' ? 'ALL FROM THE APP' : 'HYBRID'), 1800, 'log'); }; });
+  }
   const dialOut = m => (m || MODE) === 'CW' && parkData() ? Math.round((dialK('CW') - (S.cw.tone || S.cw.hz || 600) / 1000) * 1000) / 1000 : dialK(m);
   const ARM = { on: false, back: 0, t: 0, busy: null };
   const cwTxDial = () => Math.round((dialK('CW') - (S.cw.tone || S.cw.hz || 600) / 1000) * 1000) / 1000;
@@ -77,10 +89,11 @@
       <span class="kv"><i id="d5HzL">PITCH</i><b class="mono" id="d5Hz">600</b></span>
       <span class="kv d5q" title="How well the signal under the marker is copying"><i>SIGNAL</i><span class="lvbar"><i id="d5Q"></i></span></span>
       <span class="kv d5-cw"><i>WPM</i><b class="mono" id="d5Wpm">—</b></span>
+      <button type="button" class="chip vmodc d5-cw" id="d5Park" title="When the app sends CW by sound: who does the sending. Tap to change"></button>
       <button type="button" class="chip" id="d5Clr" title="Clear this mode's text">🧹 CLEAR</button>
     </div>
     <div class="chips spstrip" id="d5Spots" hidden aria-label="Spots on this band in this mode"></div>
-    <div class="wfbox d5wfb"><canvas id="d5Wf" height="150" aria-label="Waterfall: tap a signal to tune to it"></canvas><canvas id="d5Sc" height="18"></canvas>
+    <div class="wfbox d5wfb"><canvas id="d5Wf" height="150" aria-label="Waterfall: tap a signal to tune to it"></canvas><button type="button" class="chip sm d5span" id="d5Span" title="How wide the CW waterfall is"></button><canvas id="d5Sc" height="18"></canvas>
       <div class="wfoff" id="d5Off"><button type="button" class="gold big" id="d5Start">🎧 START LISTENING</button><span>Radio on the band below; the app moves it there when CAT is connected.</span></div></div>
     <div class="d5-kb">
       <div class="d5br d5-psk" id="d5Br"></div>
@@ -129,9 +142,13 @@
   const N = 2048, HOP = 1024, ring = new Float32Array(N); let rn = 0, hopN = 0, VALS = null, BINS = null;
   const win = new Float32Array(N).map((_, i) => 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (N - 1)));
   const re = new Float64Array(N), im = new Float64Array(N);
-  const F = () => RANGE[MODE] || [200, 2800];
+  /* Nov 19 2026 (to-do 9, Brandon: the CW waterfall span is too small to make anything out): CW gets a span to choose
+     (1.2 kHz as before, 2.4 kHz, 3 kHz), and the waterfall is drawn sharp on a scaled-up screen (see wfSize). Receive only. */
+  const CWSPAN = [[200, 1400], [100, 2500], [100, 3100]];
+  const F = () => MODE === 'CW' ? CWSPAN[+S.cw.span || 0] || CWSPAN[0] : RANGE[MODE] || [200, 2800];
+  const WFR = () => (G.devicePixelRatio || 1) >= 1.25 ? 2 : 1;   /* 2 dots per screen point on a 125 %+ screen */
   const hzToX = hz => (hz - F()[0]) / (F()[1] - F()[0]) * wf.width, xToHz = x => F()[0] + x / wf.width * (F()[1] - F()[0]);
-  function wfSize() { const w = Math.max(200, Math.round(wf.clientWidth || 600)); if (wf.width !== w) { wf.width = w; sc.width = w; drawScale(); } }
+  function wfSize() { const cw = Math.max(200, Math.round(wf.clientWidth || 600)), Rr = WFR(), w = cw * Rr, h = Math.round((wf.clientHeight || 150) * Rr); if (wf.width !== w || wf.height !== h) { wf.width = w; wf.height = h; sc.width = cw; drawScale(); } }
   function spectrum() {
     for (let i = 0; i < N; i++) { re[i] = ring[(rn + i) % N] * win[i]; im[i] = 0; }
     D.fft(re, im);
@@ -146,13 +163,14 @@
   function wfRow(vals) {
     VALS = vals; const t = performance.now(); if (document.hidden || P.hidden || t - wfT < 45) return; wfT = t;
     const srt = Array.from(vals).sort((a, b) => a - b), lo = srt[Math.floor(srt.length * 0.2)], hi = lo + 32;
-    wx.drawImage(wf, 0, 0, wf.width, wf.height - 1, 0, 1, wf.width, wf.height - 1);
+    const Rr = WFR(); wx.drawImage(wf, 0, 0, wf.width, wf.height - Rr, 0, Rr, wf.width, wf.height - Rr);   /* Rr rows a step: the same scroll speed on every screen */
     const row = wx.createImageData(wf.width, 1);
     for (let x = 0; x < wf.width; x++) { const v = Math.max(0, Math.min(1, (vals[x] - lo) / (hi - lo))), i = Math.round(v * 255) * 3; row.data.set([PAL[i], PAL[i + 1], PAL[i + 2], 255], x * 4); }   /* Nov 18: the SDR page's palette (black floor) */
-    wx.putImageData(row, 0, 0);
+    for (let i = 0; i < Rr; i++) wx.putImageData(row, 0, i);
   }
   function drawScale() {
-    const W = sc.width, H = sc.height, [f0, f1] = F(); sx.clearRect(0, 0, W, H); sx.fillStyle = 'rgba(140,150,170,.8)'; sx.font = '10px monospace'; sx.textAlign = 'center';
+    const W = sc.width, H = sc.height, [f0, f1] = F(), hzToX = hz => (hz - f0) / (f1 - f0) * W; sx.clearRect(0, 0, W, H);   /* the scale keeps screen points (its own width) */
+    { const b = $('d5Span'); if (b) b.textContent = '↔ ' + ((f1 - f0) / 1000).toFixed(1) + ' kHz'; } sx.fillStyle = 'rgba(140,150,170,.8)'; sx.font = '10px monospace'; sx.textAlign = 'center';
     const step = f1 - f0 > 1500 ? 500 : f1 - f0 > 600 ? 200 : 50;
     for (let f = Math.ceil(f0 / step) * step; f <= f1; f += step) { const x = hzToX(f); sx.fillRect(x, 0, 1, 4); sx.fillText(String(f), x, H - 2); }
     const mk = (hz, w, col, h) => { const x = hzToX(hz), ww = Math.max(2, w / (f1 - f0) * W); sx.fillStyle = col; sx.fillRect(x - ww / 2, 0, ww, h || 5); };
@@ -169,8 +187,10 @@
   const snapPsk = hz => { if (!VALS) return hz; let sw = 0, s2 = 0; for (let f = hz - 22; f <= hz + 22; f += 1) { const p = Math.pow(10, valAt(f) / 10); sw += p; s2 += p * f; } return sw ? s2 / sw : hz; };
   const snapRtty = hz => { let best = hz, bv = -1e9; for (let c = hz - 120; c <= hz + 120; c += 2) { const a = valAt(c + S.rtty.shift / 2), b = valAt(c - S.rtty.shift / 2), s = Math.min(a, b) * 2 + a + b; if (s > bv) { bv = s; best = c; } } return best; };
   wf.addEventListener('click', e => { const r = wf.getBoundingClientRect(), hz = xToHz((e.clientX - r.left) / r.width * wf.width); click(hz); });
+  /* Nov 19 2026 (to-do 9): a wider span shows signals the decoder's pitch (250-1300 Hz) can't sit on: say so instead of landing on the edge */
+  $('d5Span').onclick = () => { S.cw.span = ((+S.cw.span || 0) + 1) % CWSPAN.length; save(); wx.fillStyle = '#000'; wx.fillRect(0, 0, wf.width, wf.height); drawScale(); };
   function click(hz) {
-    if (MODE === 'CW') cwPitch(peakIn(hz - 40, hz + 40) || hz);
+    if (MODE === 'CW') { const f = peakIn(hz - 40, hz + 40) || hz; if (f < 250 || f > 1300) { AP.toast('📡 That signal is at ' + Math.round(f) + ' Hz. The CW decoder listens from 250 to 1300 Hz: turn the radio\'s knob about ' + Math.round(Math.abs(f - S.cw.hz)) + ' Hz toward it (or tap a signal nearer the green mark).', 6000, 'log'); return; } cwPitch(f); }
     else if (MODE === 'RTTY') rttyTune(snapRtty(hz));
     else if (MODE === 'PSK31') pskTune(snapPsk(hz));
     else if (MODE === 'HELL') { S.hell.hz = Math.max(300, Math.min(2700, Math.round(snapPsk(hz)))); save(); hell.tune(S.hell.hz); drawScale(); }
@@ -195,7 +215,7 @@
      half-heard letter), and the box says which mode it is. */
   const TXTS = {}, CALLSS = {};
   function clearText() { TXT = ''; CALLS = []; C.cur = ''; $('d5Calls').innerHTML = ''; BR.length = 0; $('d5Br').innerHTML = ''; drawRx(); if (MODE === 'HELL') hellClear(); AP.toast('🧹 ' + MODE + ' text cleared.', 1500); }
-  $('d5Clr').onclick = clearText;
+  $('d5Clr').onclick = clearText; if ($('d5Park')) $('d5Park').onclick = parkSheet;
   $('d5Call').oninput = e => { e.target.value = e.target.value.toUpperCase().replace(/\s/g, ''); };
 
   /* ================= CW: decoder (the website logger's) ================= */
@@ -204,7 +224,10 @@
   const TOM = {}; for (const k in MORSE) if (MORSE[k].length === 1) TOM[MORSE[k]] = k;
   const C = { gate: 0, lvl: 0, a: [0, 0, 0, 0, 0, 0], n: 0, ph: 0, env: 0, sig: 1e-6, flo: 1e-6, on: false, run: 0, mk: 0, sp: 0, dit: Math.max(20, Math.min(240, 1200 / (+S.cw.wpm || 20))), cur: '', spaced: true, snr: 0 };   /* Nov 18 (C2): starts at MY speed, not a fixed 20 wpm */
   /* Nov 18 review (C3): the tone filter is narrower, closer to a matched filter for one dit (1.4 / dit instead of 2.5 / dit). Bench (20 wpm, 3 runs each, SNR in 2.5 kHz): errors at −6 dB 26 % → 18 %, at −8 dB 105 % → about 50 %; noise-only and fast senders unchanged. */
-  let CWK = 1.4, GATE2 = 0;   /* bench knobs (_cwTune): filter width in dits⁻¹, and a second, lower gate held over two waterfall rows (off: it let junk through) */
+  /* Nov 19 2026 (to-do 10, Brandon: real signals print E's and T's since 0.9.10): back to 2.5 / dit (0.9.6 had 1.4). The narrow filter was only
+     checked on perfect signals on pitch; in the lab (tools/cwlab: the radio's own narrow CW filter, AGC, nearby stations, off-pitch signals)
+     1.4 turned a nearby station into strings of T's. */
+  let CWK = 2.5, GATE2 = 0;   /* bench knobs (_cwTune): filter width in dits⁻¹, and a second, lower gate held over two waterfall rows (off: it let junk through) */
   const cwBwHz = () => S.cw.bw === 'auto' ? Math.max(40, Math.min(160, 1200 / C.dit * CWK)) : +S.cw.bw || 100;
   function cwFeed(v) {
     const w = 2 * Math.PI * S.cw.hz / R; C.ph += w; if (C.ph > 6.283185307) C.ph -= 6.283185307;
@@ -235,8 +258,12 @@
   /* Nov 18 full review (C2): a NEW sender's first letters (often the CQ) were garbled above ~33 wpm while the speed was still being learned.
      Now the start-up dit comes from the last sender (or my own WPM), and the first marks of a new sender are HELD until 6 of them have
      been sorted into dits and dahs, then decoded again with the learned speed and printed (PRE = the held marks and gaps). */
-  let PRE = [], cwKeyTip = false; C.learn = true;
-  function cwRelearn() { C.learn = true; PRE = []; }
+  /* Nov 19 2026 (to-do 10): the quick pick-up of a NEW sender (0.9.1) now has a switch in ⚙ CW (S.cw.learn, ON unless turned off). While
+     learning it counts every short blip as a dot, so it printed the noise the gate let through as E's. With the gate fixed (the pitch's own
+     noise floor in cwGate) the lab measured it ON as better than OFF (it gets a new sender's first letters right); the switch is the way out
+     if a band still shows stray E's at the start of a station. */
+  let PRE = [], cwKeyTip = false; C.learn = S.cw.learn !== false;
+  function cwRelearn() { C.learn = S.cw.learn !== false; PRE = []; }
   /* the held marks fall into two clean groups (2+ dits and 2+ dahs, dahs 2 to 4.5 times the dits)? a noise blip or two merged marks don't */
   /* a mark over 4.5 × the short ones (the first tone merging with the gate opening, a noise burst) is left out of the learning */
   function trimOut() { const so = MARKS.slice().sort((a, b) => a - b), lo = so[Math.floor(so.length * 0.25)]; for (let i = MARKS.length - 1; i >= 0; i--) if (MARKS[i] > 4.5 * lo) MARKS.splice(i, 1); }
@@ -270,10 +297,17 @@
   function cwGate() { if (!BINS) return; const bin = R / N, w = cwBwHz() / 2 + 15, kp = S.cw.hz / bin, R1 = Math.max(w, 70) / bin, R2 = Math.max(w * 2.5, 250) / bin, ring = [];
     let mx = -1e9; for (let k = Math.max(1, Math.floor(kp - R2)); k <= Math.min(N / 2 - 1, Math.ceil(kp + R2)); k++) { const d = Math.abs(k - kp); if (d <= w / bin) mx = Math.max(mx, BINS[k]); else if (d > R1) ring.push(BINS[k]); }
     ring.sort((a, b) => a - b); const med = ring.length ? ring[Math.floor(ring.length * 0.65)] : -100;
-    C.lvl = mx - med; const sq = +S.cw.sq || 14; C.g2 = GATE2 && mx - med > GATE2 ? (C.g2 || 0) + 1 : 0; if (mx - med > sq || C.g2 >= 2) C.gate = R * 1.2; }
-  function cwPitch(hz) { S.cw.hz = Math.max(250, Math.min(1300, Math.round(hz))); save(); C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; cwRelearn(); drawScale(); }
-  let afcN = 0;
-  function cwAfc() { if (!S.cw.afc || TXB) return; const pk = peakIn(F()[0] + 50, F()[1] - 50); if (pk && Math.abs(pk - S.cw.hz) > 25 && Math.abs(pk - S.cw.hz) < 350) { if (++afcN > 8) { cwPitch(pk); afcN = 0; } } else afcN = 0; }
+    /* Nov 19 2026 (to-do 10): the pitch is ALSO judged against its own recent floor (10th percentile of the last ~5 s at the pitch, less 6 dB).
+       The 0.7.7 rule (noise judged only around the pitch) stays; this adds that with the radio's narrow CW filter (250 / 100 Hz) the ring
+       around the pitch is half outside the filter, near silence, so plain noise at the pitch looked 14 dB loud and printed E's and T's. */
+    const FL = C.fl || (C.fl = []); FL.push(mx); if (FL.length > 60) FL.shift();
+    const fls = FL.length >= 8 ? FL.slice().sort((a, b) => a - b) : null, ref = Math.max(med, fls ? fls[Math.floor(fls.length * 0.1)] - 6 : -1e9);
+    C.ref = ref; C.lvl = mx - ref; const sq = +S.cw.sq || 14; C.g2 = GATE2 && mx - med > GATE2 ? (C.g2 || 0) + 1 : 0; if (mx - ref > sq || C.g2 >= 2) C.gate = R * 1.2; }
+  /* Nov 19 2026 (to-do 10): AFC passes follow = true for a move under 60 Hz: the SAME sender a few Hz away, so the learned speed and levels stay (lab: starting
+     over mid-call learned from the blips of the re-start and printed every dit as a T for 10 s). A bigger move, a tap or a new spot still starts over (the speed was learned off the signal). */
+  function cwPitch(hz, follow) { S.cw.hz = Math.max(250, Math.min(1300, Math.round(hz))); save(); C.fl = []; if (follow) { drawScale(); return; } C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; cwRelearn(); drawScale(); }
+  let afcN = 0, afcHz = 0, afcAge = 0;
+  function cwAfc() { if (!S.cw.afc || TXB) return; const pk = peakIn(Math.max(250, S.cw.hz - 350), Math.min(1300, S.cw.hz + 350));   /* 0.9.12: look only near the pitch, so a louder station far off on the wide span cannot stall it */ /* Nov 19 2026 (to-do 10): a move needs 9 rows with the peak at the SAME spot (within 20 Hz) inside about 2 s. With the narrower 0.9.12 window, plain noise peaks near a weak signal counted between its letters and pulled the pitch off it (lab: a weak CQ lost its first CQ). Rows where the peak is elsewhere (noise, gaps between letters) neither count nor reset; a peak on the pitch resets, as before. */ const off = pk ? Math.abs(pk - S.cw.hz) : 0; if (pk && off <= 25) { afcN = 0; return; } if (afcN && ++afcAge > 24) afcN = 0; if (!pk || off >= 350 || (C.gate > 0 && off >= 60)) return; if (BINS && C.ref != null) { const k = Math.round(pk / (R / N)); if (Math.max(BINS[k - 1] || -1e9, BINS[k], BINS[k + 1] || -1e9) - C.ref < (+S.cw.sq || 14)) return; }   /* only a signal loud enough to open the gate pulls the pitch (a weak birdie did, while the station I follow was between overs), and while the station on the pitch is sending (gate open) only a small move (drift) is allowed: a station 90 Hz away took the pitch between its letters */ if (!afcN) { afcHz = pk; afcN = 1; afcAge = 0; } else if (Math.abs(pk - afcHz) < 20 && ++afcN > 8) { cwPitch(afcHz, Math.abs(afcHz - S.cw.hz) < 60); afcN = 0; } }
   const elems = (t, wpm) => { const u = 1200 / wpm, out = []; for (const w of t.split(' ')) { if (!w) continue; if (out.length) out.push([0, 6 * u]); const toks = w.match(/<[A-Z]{2}>|./g) || []; toks.forEach((ch, i) => { const k = ch.length > 1 ? Object.keys(MORSE).find(x => MORSE[x] === ch) : TOM[ch]; if (!k) return; if (i) out.push([0, 2 * u]); [...k].forEach((e, j) => { if (j) out.push([0, u]); out.push([1, e === '.' ? u : 3 * u]); }); out.push([0, u]); }); } return out; };   /* letter gap = u + 2u = 3u, word gap = u + 6u = 7u */
   const CWAB = [['THANK YOU', 'TU'], ['THANKS', 'TNX'], ['PLEASE', 'PSE'], ['YOUR', 'UR'], ['YOU', 'U'], ['ARE', 'R'], ['GOOD MORNING', 'GM'], ['GOOD AFTERNOON', 'GA'], ['GOOD EVENING', 'GE'], ['REPORT', 'RPT'], ['WEATHER', 'WX'], ['ANTENNA', 'ANT'], ['AGAIN', 'AGN'], ['FOR', 'FER'], ['AND', 'ES'], ['BEST REGARDS', '73'], ['POWER', 'PWR'], ['HERE', 'HR'], ['VERY', 'VY'], ['GOOD', 'GUD']];
   const cwShort = t => { let x = ' ' + t + ' '; for (const [a, b] of CWAB) x = x.split(' ' + a + ' ').join(' ' + b + ' '); return x.replace(/\s+/g, ' ').trim(); };
@@ -658,8 +692,8 @@
       <label class="e">SEND WITH${sel('s5Via', S.cw.via, [['dtr', 'DTR key line (Yaesu 2nd USB port, Digirig…)'], ['rts', 'RTS key line'], ['cat', 'The radio\'s own keyer over CAT (Icom, Kenwood, Elecraft, QRP Labs, FT-710 / 991A / FTDX10)'], ['audio', 'Sound: a tone through the USB sound card (the app puts the radio in DATA while it sends)']])}</label>
       <label class="e">FILTER${sel('s5Bw', S.cw.bw, [['auto', 'Follows their speed'], ['50', '50 Hz'], ['100', '100 Hz'], ['200', '200 Hz'], ['500', '500 Hz']])}</label>
       <label class="e">TONE I SEND (Hz, blank = the pitch I listen on)<input id="s5Tone" inputmode="numeric" value="${S.cw.tone || ''}"></label></div>
-      ${ck('s5Afc', S.cw.afc, 'Follow the strongest signal (AFC)')}${ck('s5Abbr', S.cw.abbr, 'Shorten what I type to CW short-hand (THANK YOU → TU, AND → ES…)')}
-      <label class="e wide">THE RADIO WHILE SENDING BY SOUND${sel('s5Park', S.cw.park || 'cw', [['cw', 'Listen in CW (the radio\'s CW filter); flip to DATA only while sending'], ['data', 'Stay in DATA one tone below the whole time (fastest first dit)']])}</label>
+      ${ck('s5Afc', S.cw.afc, 'Follow the strongest signal (AFC)')}${ck('s5Learn', S.cw.learn !== false, 'Quick pick-up of a new, fast sender (turn off if stray E\'s print when a station starts)')}${ck('s5Abbr', S.cw.abbr, 'Shorten what I type to CW short-hand (THANK YOU → TU, AND → ES…)')}
+      <label class="e wide">THE RADIO WHILE SENDING BY SOUND${sel('s5Park', S.cw.park || 'cw', [['cw', 'HYBRID: listen in CW (the radio\'s CW filter and its own key / paddle); flip to DATA only while the app sends'], ['data', 'ALL FROM THE APP: stay in DATA one tone below the whole time (fastest first dit)']])}</label>
       <div class="grid2"><label class="e">PADDLES${sel('s5Iam', S.cw.iam || 'B', [['B', 'Iambic B (most keyers)'], ['A', 'Iambic A'], ['U', 'Ultimatic'], ['G', 'Bug (dit paddle automatic, dah = straight key)']])}</label><label class="e">AUTO CQ GAP (s)<input id="s5Gap" inputmode="numeric" value="${S.gap5 || 6}"></label></div>
       <label class="e catx">KEY LINE PORT${sel('s5Kp', (G.KPCCat && KPCCat.get().keyPort) || '', [['', 'The radio\'s 2nd USB port, found by itself (FT-710, FT-991A, FTDX10…)'], ['cat', 'The CAT port itself (a one-port cable: Digirig, SignaLink-type)']].concat((G.KPCCat && KPCCat.get().keyPort && !/^cat$/.test(KPCCat.get().keyPort)) ? [[KPCCat.get().keyPort, 'The port picked by hand']] : []))}</label>
       <p class="hint" ${AP.catConnected() ? 'hidden' : ''}>The DTR / RTS key line and the radio's own keyer need the radio connected (STATION → Radio control); until then CW goes out as a tone through the sound card.</p>
@@ -674,7 +708,7 @@
     setTimeout(() => { const b = $('s5KpPick'); if (b) b.onclick = () => { if (!G.KPCCat || !KPCCat.pickKeyPort) return; KPCCat.pickKeyPort().then(ok => { const st = $('s5KpSt'); if (st) st.textContent = ok ? 'Key port now: ' + KPCCat.keyPortInfo().which : 'No port picked.'; }); }; }, 0);
     AP.sheet(MODE + ' settings', body, () => {
       const v = id => $(id) ? $(id).value : null, c = id => $(id) ? $(id).checked : null;
-      if (MODE === 'CW') { S.cw.wpm = Math.max(8, Math.min(45, +v('s5Wpm') || 20)); S.cw.via = v('s5Via'); S.cw.bw = v('s5Bw'); const t = +v('s5Tone'); S.cw.tone = t ? Math.max(300, Math.min(1200, t)) : 0; S.cw.afc = c('s5Afc'); S.cw.abbr = c('s5Abbr'); S.cw.iam = v('s5Iam') || 'B'; S.cw.park = v('s5Park') === 'data' ? 'data' : 'cw'; PADS.forEach(p => p.draw()); S.gap5 = Math.max(2, Math.min(30, +v('s5Gap') || 6));
+      if (MODE === 'CW') { S.cw.wpm = Math.max(8, Math.min(45, +v('s5Wpm') || 20)); S.cw.via = v('s5Via'); S.cw.bw = v('s5Bw'); const t = +v('s5Tone'); S.cw.tone = t ? Math.max(300, Math.min(1200, t)) : 0; S.cw.afc = c('s5Afc'); S.cw.learn = c('s5Learn'); if (!S.cw.learn) cwRelearn(); S.cw.abbr = c('s5Abbr'); S.cw.iam = v('s5Iam') || 'B'; S.cw.park = v('s5Park') === 'data' ? 'data' : 'cw'; parkChip(); PADS.forEach(p => p.draw()); S.gap5 = Math.max(2, Math.min(30, +v('s5Gap') || 6));
         if (G.KPCCat && v('s5Kp') != null && v('s5Kp') !== (KPCCat.get().keyPort || '')) { KPCCat.set({ keyPort: v('s5Kp') }); KPCCat.keyPortClose && KPCCat.keyPortClose(); }
         if (AP.catConnected() && G.KPCCat) KPCCat.tune(dialOut('CW'), radioMode('CW')).catch(() => {});
         if ((S.cw.via === 'dtr' || S.cw.via === 'rts') && G.KPCCat && AP.catConnected() && KPCCat.keyPortOpen) KPCCat.keyPortOpen().then(() => { const i = KPCCat.keyPortInfo(); AP.toast('CW key line: ' + i.which + '.', 3500); }); }
@@ -741,7 +775,7 @@
   function spots5() { if (!G.KPCSpots || !KPCSpots.strip) return; if (!SP5) SP5 = KPCSpots.strip($('d5Spots'), { band: () => band(), modes: MODERX[MODE] || /./, max: 12, tap: s => tuneSpot(s) }); else SP5.update({ modes: MODERX[MODE] || /./ }); }
   function activate(id) {
     if (MODE && MODE !== id) { TXTS[MODE] = TXT; CALLSS[MODE] = CALLS; }
-    TXT = TXTS[id] || ''; CALLS = CALLSS[id] || []; C.cur = '';
+    TXT = TXTS[id] || ''; CALLS = CALLSS[id] || []; C.cur = ''; setTimeout(parkChip, 0);
     MODE = id; P.dataset.m = id.toLowerCase().replace('31', ''); $('d5HzL').textContent = id === 'CW' ? 'PITCH' : id === 'RTTY' ? 'CENTER' : id === 'PSK31' ? 'CARRIER' : id === 'WSPR' ? 'MY TX' : 'TONE';
     $('d5Rs').value = id === 'SSTV' ? '595' : '599'; $('d5Rr').value = id === 'SSTV' ? '595' : '599';
     if (id !== 'SSTV' && sstv.img) sstv.stop(); bandSel(); macDraw(); drawScale(); drawRx(); callScan(); chk(); if (id === 'WSPR') wMsg(); spots5();
@@ -765,5 +799,5 @@
     });
   }
   mkRtty(); if (D.PskRx) mkPsk();
-  G.KPCModes5 = { heardCalls: cut => HEARD.filter(h => h.t >= cut), S, save, sendText, send, stopTx, elems, cwTone, dialK, dialOut, cwOff, band, tuneSpot, pitchFromRadio, txing: () => TXB, text: () => TXT, _feed: rx, _cw: () => C, _cwTune: (k, g2) => { if (k) CWK = k; if (g2 != null) GATE2 = g2; return { CWK, GATE2 }; }, _cwReset: () => { C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; C.gate = 0; C.on = false; C.mk = 0; C.sp = 0; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; cwRelearn(); }, _sstv: sstv, why: whyNot, cwOut, keyDown, keyUp, keyIsDown: () => !!WANT, keyPad, keyWhy, autoOn5, autoOff5, auto: () => !!AUTO5 };
+  G.KPCModes5 = { heardCalls: cut => HEARD.filter(h => h.t >= cut), S, save, sendText, send, stopTx, elems, cwTone, dialK, dialOut, cwOff, band, tuneSpot, pitchFromRadio, txing: () => TXB, text: () => TXT, _feed: rx, _cw: () => C, _cwTune: (k, g2) => { if (k) CWK = k; if (g2 != null) GATE2 = g2; return { CWK, GATE2 }; }, _cwReset: () => { C.fl = []; C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; C.gate = 0; C.on = false; C.mk = 0; C.sp = 0; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; cwRelearn(); }, _sstv: sstv, why: whyNot, cwOut, keyDown, keyUp, keyIsDown: () => !!WANT, keyPad, keyWhy, autoOn5, autoOff5, auto: () => !!AUTO5 };
 })(window);

@@ -10,8 +10,11 @@
   const AP = G.KPCApp, $ = id => document.getElementById(id), esc = AP && AP.esc;
   if (!AP) return;
   const LS = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
-  const S = Object.assign({ style: 'analog', show: ['s', 'po', 'alc', 'swr'], open: !(G.matchMedia && matchMedia('(max-width: 600px)').matches) }, LS('kpcAppMeters', {}));   /* a phone starts folded */
+  const S = Object.assign({ style: 'modern', show: ['s', 'po', 'alc', 'swr'], open: !(G.matchMedia && matchMedia('(max-width: 600px)').matches) }, LS('kpcAppMeters', {}));   /* a phone starts folded */
   const save = () => { try { localStorage.setItem('kpcAppMeters', JSON.stringify(S)); } catch (e) {} };
+  /* Nov 19 2026 (Brandon: the needle dial 'looks old and the radio looks new'): MODERN = a TFT-style S / PO strip (glowing segments, peak hold)
+     + ring gauges for the rest; it is the look for everyone once (mv), ANALOG and DIGITAL stay in ⚙ METERS */
+  if (!S.mv) { if (S.style === 'analog') S.style = 'modern'; S.mv = 1; save(); }
   /* each meter: label, scale (value → 0..1 of the arc), ticks, red-zone start (0..1), how to print it */
   const sTxt = v => v == null ? '—' : v <= 0 ? 'S' + Math.max(0, Math.min(9, Math.round(9 + v / 6))) : 'S9+' + Math.round(v);
   const swrOf = v => v <= 0 ? 1 : v <= 30 ? 1 + v / 30 : v <= 60 ? 2 + (v - 30) / 30 : 3 + (v - 60) / 40 * 2;   /* Yaesu bar → SWR (same as the remote) */
@@ -35,19 +38,43 @@
     W.push(w); draw(w); return w;
   }
   function shown(m) { return S.show.filter(k => DEF[k] && (k === 's' ? true : m ? m[k] != null : true)); }
+  /* ---------- MODERN (Nov 19 2026) ---------- */
+  const fS = v => Math.max(0, Math.min(1, v <= 0 ? (v + 54) / 54 * 0.5 : 0.5 + v / 60 * 0.5));   /* S9 in the middle, +60 at the end */
+  const RINGC = { alc: '#ffb648', swr: '#4dff9a', comp: '#8fd3ff', idd: '#8fd3ff', vdd: '#4dff9a' };
+  const warn = (k, v) => v == null ? '' : k === 'swr' ? (v >= 60 ? 'bad' : v >= 30 ? 'mid' : '') : k === 'alc' ? (v >= 90 ? 'bad' : v >= 60 ? 'mid' : '') : k === 'idd' ? (v >= 90 ? 'mid' : '') : '';
+  function modernHtml(keys) {
+    const rows = [], rings = keys.filter(k => k !== 's' && k !== 'po');
+    if (keys.includes('s')) rows.push(`<div class="kmt-r"><span class="kmt-k">S</span><div class="kmt-sc">${DEF.s.ticks.map(([v, t]) => `<span style="left:${(fS(v) * 100).toFixed(1)}%"${v > 0 ? ' class="rd"' : ''}>${t}</span>`).join('')}</div><b class="kmt-big" data-kt="s">—</b></div>
+      <div class="kmt-seg kmt-s"><i data-kb="s"></i><u data-kpk="s"></u></div>`);
+    if (keys.includes('po')) rows.push(`<div class="kmt-r"><span class="kmt-k">PO</span><div class="kmt-seg kmt-po"><i data-kb="po"></i></div><b data-kt="po">—</b></div>`);
+    return `<div class="kmm">${rows.length ? `<div class="kmt">${rows.join('')}</div>` : ''}${rings.length ? `<div class="kmr">${rings.map(k => `<div class="kring" data-kr="${k}" style="--c:${RINGC[k] || '#8fd3ff'};--v:0"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="bk" cx="50" cy="50" r="40"/><circle class="fg" cx="50" cy="50" r="40"/></svg><b data-kt="${k}">—</b><span>${esc(DEF[k].label === 'PWR OUT' ? 'PO' : DEF[k].label)}</span></div>`).join('')}</div>` : ''}</div>`;
+  }
+  function modernSet(w, keys, m) {
+    const now = Date.now();
+    keys.forEach(k => { const v = m ? m[k] : null, t = w.el.querySelector(`[data-kt="${k}"]`); if (t) t.textContent = DEF[k].txt(v);
+      if (k === 's') { const f = v == null ? 0 : fS(v), b = w.el.querySelector('[data-kb="s"]'); if (b) { b.style.width = (f * 100).toFixed(1) + '%'; b.style.setProperty('--red', (f > 0.5 ? 50 / f : 101).toFixed(1) + '%'); }
+        if (v != null) { if (v >= w.peak.v || now - w.peak.t > 1500) { if (v >= w.peak.v) { w.peak.v = v; w.peak.t = now; } else w.peak.v = Math.max(v, w.peak.v - 2); } }
+        const pk = w.el.querySelector('[data-kpk="s"]'); if (pk) pk.style.left = (v == null ? 0 : fS(w.peak.v) * 100).toFixed(1) + '%'; return; }
+      if (k === 'po') { const b = w.el.querySelector('[data-kb="po"]'); if (b) b.style.width = (v == null ? 0 : Math.max(0, Math.min(1, DEF.po.f(v))) * 100).toFixed(1) + '%'; return; }
+      const r = w.el.querySelector(`[data-kr="${k}"]`); if (!r) return; r.style.setProperty('--v', v == null ? 0 : Math.max(0, Math.min(1, DEF[k].f(v))).toFixed(3)); r.dataset.w = warn(k, v); });
+  }
   function draw(w) {
     const m = w.opts.get ? w.opts.get() : LAST, keys = shown(m), tx = m && m.tx;
+    /* Nov 19 2026 (to-do 11, Brandon: 'on the phone … bar meters'): a widget may pick its own look (opts.style() → 'digital' = bars) and keep
+       its own open / folded state (opts.own), so the RADIO screen on a phone shows bars while the LOG / DIGI bars keep the member's choice */
+    const ST = w.opts.style ? w.opts.style() || S.style : S.style, MOD = ST === 'modern', OPEN = w.opts.own ? w.open !== false : S.open;
     /* folded (▸): one line with the numbers, still live — a phone keeps its screen for the waterfall */
-    if (!S.open) { const sum = m ? keys.map(k => (k === 's' ? '' : DEF[k].label.replace('PWR OUT', 'PO') + ' ') + DEF[k].txt(m[k])).join(' · ') : 'waiting for the radio…';
+    if (!OPEN) { const sum = m ? keys.map(k => (k === 's' ? '' : DEF[k].label.replace('PWR OUT', 'PO') + ' ') + DEF[k].txt(m[k])).join(' · ') : 'waiting for the radio…';
       if (w.sig !== 'closed') { w.sig = 'closed'; w.el.innerHTML = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Show the meters">▸</button><b>📟</b>${w.opts.tune && w.opts.tune.ok() ? '<button type="button" class="chip sm kmtune" data-kmtune title="Start the radio\'s antenna tuner">🔧 TUNE</button>' : ''}<span class="kms mono"></span></div>`; }
       const e = w.el.querySelector('.kms'); if (e) e.textContent = (tx ? '📡 ' : '') + sum; return; }
-    const head = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Fold the meters to one line">▾</button><b>📟 METERS</b>${w.opts.tune && w.opts.tune.ok() ? '<button type="button" class="chip sm kmtune" data-kmtune title="Start the radio\'s antenna tuner">🔧 TUNE</button>' : ''}<button type="button" class="chip sm" data-kmst>${S.style === 'analog' ? '◐ ANALOG' : '▮ DIGITAL'}</button><button type="button" class="chip sm" data-kmset aria-label="Which meters">⚙ METERS</button><span class="kma">${m ? (tx ? '📡 TX · ' : '') + (m.pwr != null ? 'power set ' + m.pwr + '%' : '') : 'waiting for the radio…'}</span></div>`;
-    const sig = keys.join(',') + '|' + S.style + '|' + !!(w.opts.tune && w.opts.tune.ok());
-    if (w.sig !== sig) { w.sig = sig; w.el.innerHTML = head + (S.style === 'analog' ? `<div class="kmg">${keys.map(k => `<div class="kgw"><canvas data-km="${k}" width="200" height="118" aria-label="${esc(DEF[k].label)} meter"></canvas></div>`).join('')}</div>`
+    const head = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Fold the meters to one line">▾</button><b>📟 METERS</b>${w.opts.tune && w.opts.tune.ok() ? '<button type="button" class="chip sm kmtune" data-kmtune title="Start the radio\'s antenna tuner">🔧 TUNE</button>' : ''}<button type="button" class="chip sm" data-kmst>${S.style === 'modern' ? '◉ MODERN' : S.style === 'analog' ? '◐ ANALOG' : '▮ DIGITAL'}</button><button type="button" class="chip sm" data-kmset aria-label="Which meters">⚙ METERS</button><span class="kma">${m ? (tx ? '📡 TX · ' : '') + (m.pwr != null ? 'power set ' + m.pwr + '%' : '') : 'waiting for the radio…'}</span></div>`;
+    const sig = keys.join(',') + '|' + ST + '|' + !!(w.opts.tune && w.opts.tune.ok());
+    if (w.sig !== sig) { w.sig = sig; w.el.innerHTML = head + (MOD ? modernHtml(keys) : ST === 'analog' ? `<div class="kmg">${keys.map(k => `<div class="kgw"><canvas data-km="${k}" width="200" height="118" aria-label="${esc(DEF[k].label)} meter"></canvas></div>`).join('')}</div>`
       : `<div class="kmd">${keys.map(k => `<div class="mrow"><span>${esc(DEF[k].label)}</span><div class="mt"><div class="mb" data-kb="${k}"></div></div><b data-kt="${k}">—</b></div>`).join('')}</div>`); w.cv = {}; }
     else { const a = w.el.querySelector('.kma'); if (a) a.textContent = m ? (tx ? '📡 TX · ' : '') + (m.pwr != null ? 'power set ' + m.pwr + '%' : '') : 'waiting for the radio…'; }
-    keys.forEach(k => { const v = m ? m[k] : null; if (S.style === 'analog') { w.cur[k] = v; } else { const b = w.el.querySelector(`[data-kb="${k}"]`), t = w.el.querySelector(`[data-kt="${k}"]`); if (!b) return; const f = v == null ? 0 : Math.max(0, Math.min(1, DEF[k].f(v))); b.style.width = (f * 100) + '%'; b.className = 'mb ' + (v == null ? 'off' : f >= DEF[k].red ? 'bad' : f >= DEF[k].red * 0.8 ? 'warn' : 'ok'); if (t) t.textContent = DEF[k].txt(v); } });
-    if (S.style === 'analog') anim();
+    if (MOD) { modernSet(w, keys, m); return; }
+    keys.forEach(k => { const v = m ? m[k] : null; if (ST === 'analog') { w.cur[k] = v; } else { const b = w.el.querySelector(`[data-kb="${k}"]`), t = w.el.querySelector(`[data-kt="${k}"]`); if (!b) return; const f = v == null ? 0 : Math.max(0, Math.min(1, DEF[k].f(v))); b.style.width = (f * 100) + '%'; b.className = 'mb ' + (v == null ? 'off' : f >= DEF[k].red ? 'bad' : f >= DEF[k].red * 0.8 ? 'warn' : 'ok'); if (t) t.textContent = DEF[k].txt(v); } });
+    if (ST === 'analog') anim();
   }
   /* ---------- the needle dials ---------- */
   let rafOn = false;
@@ -85,11 +112,11 @@
   /* ---------- the controls (one handler for every widget) ---------- */
   document.addEventListener('click', e => {
     const tb = e.target.closest('[data-kmtune]'); if (tb) { const w = W.find(x => x.el.contains(tb)); if (w && w.opts.tune) w.opts.tune.go(); return; }
-    if (e.target.closest('[data-kmopen]')) { S.open = !S.open; save(); W.forEach(w => { w.sig = ''; draw(w); }); return; }
-    if (e.target.closest('[data-kmst]')) { S.style = S.style === 'analog' ? 'digital' : 'analog'; save(); W.forEach(w => { w.sig = ''; draw(w); }); return; }
+    if (e.target.closest('[data-kmopen]')) { const w0 = W.find(x => x.el.contains(e.target)); if (w0 && w0.opts.own) { w0.open = w0.open === false; w0.sig = ''; draw(w0); return; } S.open = !S.open; save(); W.forEach(w => { w.sig = ''; draw(w); }); return; }
+    if (e.target.closest('[data-kmst]')) { S.style = S.style === 'modern' ? 'analog' : S.style === 'analog' ? 'digital' : 'modern'; save(); W.forEach(w => { w.sig = ''; draw(w); }); return; }
     if (e.target.closest('[data-kmset]')) {
-      AP.sheet('📟 Meters', `<p class="hint">Pick the meters to show. ANALOG = needle dials like the radio's own; DIGITAL = bars with numbers. A meter your radio does not send stays hidden.</p>
-        <div class="row"><button type="button" class="b${S.style === 'analog' ? ' gold' : ''}" data-kms="analog">◐ ANALOG</button><button type="button" class="b${S.style === 'digital' ? ' gold' : ''}" data-kms="digital">▮ DIGITAL</button></div>
+      AP.sheet('📟 Meters', `<p class="hint">Pick the meters to show. MODERN = a glowing S / power strip like a new radio's screen + round gauges; ANALOG = needle dials; DIGITAL = plain bars with numbers. A meter your radio does not send stays hidden.</p>
+        <div class="row"><button type="button" class="b${S.style === 'modern' ? ' gold' : ''}" data-kms="modern">◉ MODERN</button><button type="button" class="b${S.style === 'analog' ? ' gold' : ''}" data-kms="analog">◐ ANALOG</button><button type="button" class="b${S.style === 'digital' ? ' gold' : ''}" data-kms="digital">▮ DIGITAL</button></div>
         ${ORDER.map(k => `<label class="ck" style="display:flex;margin:8px 0"><input type="checkbox" data-kmk="${k}"${S.show.includes(k) ? ' checked' : ''}> <span>${esc(DEF[k].label)}${k === 's' ? ' (signal strength: S1–S9, dB over S9)' : k === 'comp' ? ' (speech compressor)' : k === 'idd' ? ' (drain current)' : k === 'vdd' ? ' (supply voltage)' : ''}</span></label>`).join('')}`,
         () => { S.show = ORDER.filter(k => { const c = document.querySelector(`[data-kmk="${k}"]`); return c && c.checked; }); if (!S.show.length) S.show = ['s']; save(); W.forEach(w => { w.sig = ''; draw(w); }); });
       document.querySelectorAll('[data-kms]').forEach(b => { b.onclick = () => { S.style = b.dataset.kms; save(); document.querySelectorAll('[data-kms]').forEach(x => x.classList.toggle('gold', x === b)); }; });

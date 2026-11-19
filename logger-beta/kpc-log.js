@@ -94,6 +94,7 @@
     Q = [...ALL.values()].filter(q => !q.d && (!opsOn || !op || !q.op || q.op === op || (home && MYC.has(q.op)))).sort((a, b) => a.t - b.t || (a.id < b.id ? -1 : 1));
     V = CUR ? Q.filter(q => opOf(q) === CUR) : Q;
   }
+  let FIND = '', SEL = null;   /* Nov 19: 🔍 FIND text and the ☑ FIX SEVERAL picks (declared up here: draw() reads them) */
   let V = [];   /* Oct 25: the contacts of the log that is open (CUR), or all of them */
   async function load() {
     IDB = await idbOpen(); idbOk = !!IDB;
@@ -306,16 +307,217 @@
     if (x === 'WEATHER' || x === 'WX') { wxNote(); return true; }
     if (/^(QRV|QSY|QRT|SPOTME|SPME)$/.test(x)) { if (G.KPCSpotMe) KPCSpotMe.sheet(x === 'SPOTME' || x === 'SPME' ? '' : x); else done('Spotting is not ready here.', true); return true; }
     if (x === 'HELP' || x === '?') { cmdHelp(); return true; }
+    /* Nov 19 2026 (Brandon, PoLo's list + ours): SPME/comment, NOTE alone, CQ, UNDO, GRID, 25WPM, ADIF, the pile-up stack (// or ..)
+       and call lists (..NAME). None of these logs a contact. CQ only starts what the voice keyer / the CW screen's F1 already send. */
+    if ((m = /^(?:SPOTME|SPME)\/\s*(.{1,60})$/.exec(x))) { if (G.KPCSpotMe) KPCSpotMe.sheet(String(raw).trim().replace(/^\S+?\/\s*/, '').slice(0, 60)); else done('Spotting is not ready here.', true); return true; }
+    if (x === 'NOTE') { noteAsk(); return true; }
+    if (x === 'BIG') { bigSet(!document.body.classList.contains('biglog')); return done('🔠 Big log line ' + (document.body.classList.contains('biglog') ? 'ON' : 'OFF') + '.'); }
+    if (x === 'CQ') return cqCmd(done);
+    if (x === 'UNDO') { undoAsk(); return true; }
+    if (x === 'ADIF') { saveAdifList(V.length ? V : Q, CUR && OPS[CUR] ? 'this log' : 'your log'); return true; }
+    if (x === 'GRID') { const b = $('stGps'); if (b) b.click(); else done('No GPS button here: type GRID EM77.', true); return true; }
+    if ((m = /^GRID\s*([A-R]{2}\d{2}(?:[A-X]{2})?)$/.exec(x))) { const g = m[1].slice(0, 4) + m[1].slice(4).toLowerCase(); AP.S.grid = g; AP.save(); const e = $('stGrid'); if (e) e.value = g; AP.fire('me'); return done('📍 My grid is ' + g + ' now (FT8, the log and the map use it).'); }
+    if ((m = /^(\d{1,2})WPM$/.exec(x))) return wpmCmd(+m[1], done);
+    if ((m = /^(?:\.\.|\/\/)([A-Z0-9]+)$/.exec(x))) { const L = callLists(), k = m[1]; if (!L[k]) return done('No call list called ' + esc(k) + '. Make one: tap ⌨ on the log line → MY CALL LISTS.', true); FILL = L[k].join(', '); return done('📋 ' + esc(k) + ': ' + L[k].length + ' calls in the box. Press ⬆ again to log one contact each.'); }
+    if (/[A-Z0-9](\/\/|\.\.)[A-Z0-9]/.test(x)) { const f = x.split(/\/\/+|\.\.+/).map(c => c.replace(/\./g, '/')).filter(Boolean); FILL = f.shift(); STACK = f.concat(STACK); drawStack(); return done('🥞 ' + (f.length + 1) + ' calls stacked. Fix this one, log it, the next comes up by itself.'); }
     /* not a command and not a call sign (a call has a letter AND a digit): say so instead of logging it */
     if (!/,/.test(x) && !(/[A-Z]/.test(x) && /\d/.test(x) && /^[A-Z0-9/.]+$/.test(x)) || /^\d+(\.\d+)?M$/.test(x)) return done('“' + esc(String(raw).trim()) + '” is not a call sign or a command. Type HELP for the list.', true);
     return false;
   }
+  /* Nov 19 2026 (Brandon: 'add a way people can find the shortcuts easily'): ⌨ on the log line, HELP in CALL, and a hint under CALL
+     while a command is being typed all open / show this list; a tap on a gold word puts it in CALL. */
+  const CMDS = [
+    ['On the air', [['CQ', 'send my CQ: voice memory 1, or F1 on the CW screen'], ['SPOTME', 'spot me on POTA'], ['SPME/QRV 20 CW', 'spot me with my own comment'], ['QRV', 'spot me: QRV (also QSY, QRT)'], ['25WPM', 'CW speed: the app\'s keyer and the radio']]],
+    ['Band, mode, frequency', [['20m', 'the band (40m, 2m…)'], ['CW', 'the mode (SSB, FT8, FM…)'], ['14.070', 'the frequency (or 14070)'], ['.247', 'only the kHz: 14.245 → 14.247'], ['5W', 'my power']]],
+    ['Time (paper logs)', [['14:30', 'hold the clock at 14:30z'], ['05-09', 'the date'], ['+3m', 'move the clock (-1h, +1d…)'], ['NOW', 'back to the real time']]],
+    ['Pile-ups and groups', [['K4AB//W1XY', 'stack calls: log one, the next comes up'], ['..CLUB', 'one of MY CALL LISTS (below)'], ['K4AB,W1XY', 'one contact each, same reports'], ['K4AB.P', 'a dot is a slash: K4AB/P']]],
+    ['My log', [['UNDO', 'take out the last contact (asks first)'], ['NOTE', 'a note in this log (or NOTE text…)'], ['BREAK', 'next park, same log'], ['LOGS', 'my logs'], ['ADIF', 'save this log\'s ADIF file'], ['WEATHER', 'the weather, saved as a note'], ['SOLAR', 'flux + Kp, saved as a note']]],
+    ['Me', [['GRID', 'my grid from the GPS (or GRID EM77)'], ['OP/K4XYZ', 'who is at the key'], ['BIG', 'big log line on / off (gloves, sunlight)']]]];
+  /* what a tap puts in CALL: an example that needs more typing gives only its start */
+  const STEM = { 'SPME/QRV 20 CW': 'SPME/', 'OP/K4XYZ': 'OP/', '..CLUB': '..', 'K4AB//W1XY': '', 'K4AB,W1XY': '', 'K4AB.P': '' };
+  const stemOf = k => k in STEM ? STEM[k] : k;
   function cmdHelp() {
-    AP.sheet('⌨ Commands in the CALL box', `<p class="hint">Type one in CALL and press the gold button. Nothing is logged.</p><div class="cmdl">
-      <p><b>20m</b>, <b>40m</b>, <b>2m</b>… the band · <b>CW</b>, <b>SSB</b>, <b>FT8</b>, <b>FM</b>… the mode</p><p><b>14.070</b> or <b>14070</b> the frequency · <b>.247</b> only the kHz (14.245 → 14.247)</p>
-      <p><b>5W</b>, <b>100W</b> my power · <b>OP/K4XYZ</b> who is at the key</p><p><b>14:30</b> hold the clock (paper logs) · <b>05-09</b> the date · <b>+3m</b>, <b>-1h</b>, <b>+1d</b> move it · <b>NOW</b> let go</p>
-      <p><b>BREAK</b> the next park, same log · <b>LOGS</b> my logs</p><p><b>NOTE</b> text… a note in this log · <b>WEATHER</b> · <b>SOLAR</b> saved as notes</p>
-      <p><b>SPOTME</b> spot me · <b>QRV</b> / <b>QSY</b> / <b>QRT</b> spot me with that word</p><p><b>K4ABC,K4XYZ</b> several calls at once · a dot in a call becomes a slash (K4ABC.P → K4ABC/P)</p></div>`);
+    const L = callLists();
+    AP.sheet('⌨ Shortcuts for the CALL box', `<p class="hint">Type one in CALL and press the gold ⬆. Nothing is logged. Tap a gold word to put it in CALL.</p><div class="cmdl">` +
+      CMDS.map(([h, a]) => `<h3 class="sh">${esc(h)}</h3>` + a.map(([k, d]) => `<p><button type="button" class="chip sm gold" data-cmdx="${esc(k)}">${esc(k)}</button> ${esc(d)}</p>`).join('')).join('') +
+      `<h3 class="sh">📋 MY CALL LISTS</h3><p class="hint">One list per line: a name, a colon, the calls. Then ..NAME in CALL fills them in (press ⬆ again to log one contact each).</p>
+      <textarea id="cmdLists" rows="4" style="width:100%" spellcheck="false" autocapitalize="characters" placeholder="CLUB: K4AB, W1XY, N4KPC">${esc(Object.keys(L).map(k => k + ': ' + L[k].join(', ')).join('\n'))}</textarea>
+      <div class="row"><button type="button" class="b gold" id="cmdListsOk">💾 SAVE MY LISTS</button></div></div>`);
+    document.querySelectorAll('[data-cmdx]').forEach(b => { b.onclick = () => { AP.shut(); AP.go('log'); const e = $('eCall'); e.value = stemOf(b.dataset.cmdx); e.focus(); lookUp(); }; });
+    $('cmdListsOk').onclick = () => {
+      const o = {}; for (const ln of $('cmdLists').value.toUpperCase().split(/\n/)) { const m = /^\s*([A-Z0-9]{1,12})\s*[:=]\s*(.+)$/.exec(ln); if (!m) continue; const c = m[2].split(/[\s,;]+/).map(x => x.replace(/\./g, '/')).filter(x => /[A-Z]/.test(x) && /\d/.test(x)); if (c.length) o[m[1]] = c.slice(0, 50); }
+      try { localStorage.setItem('kpcAppLists', JSON.stringify(o)); } catch (e) {}
+      AP.toast('📋 ' + Object.keys(o).length + ' call list' + (Object.keys(o).length === 1 ? '' : 's') + ' saved' + (Object.keys(o).length ? ': ' + esc(Object.keys(o).map(k => '..' + k).join(' ')) : '') + '.', 4000, 'log');
+    };
+  }
+  const callLists = () => { const o = LS('kpcAppLists', {}); return o && typeof o === 'object' ? o : {}; };
+  /* the hint under CALL while a command is being typed (a call sign has a digit, so it never gets one) */
+  function cmdHints(v) {
+    const x = String(v || '').toUpperCase().trim(); if (!x) return '';
+    if (/^(\.\.|\/\/)/.test(x)) { const L = Object.keys(callLists()); return '📋 ' + (L.length ? 'My call lists: ' + L.map(k => `<button type="button" class="chip sm gold" data-cmdh="..${esc(k)}">..${esc(k)}</button>`).join(' ') : 'No call lists yet: <button type="button" class="chip sm" data-cmdh="?">⌨ MAKE ONE</button>'); }
+    if (/[A-Z0-9](\/\/|\.\.)/.test(x)) return '🥞 Pile-up stack: press ⬆ and the first call comes up to fix and log; the rest wait in line.';
+    if (/\d/.test(x) || x.length < 2) return '';
+    const hit = CMDS.flatMap(g => g[1]).filter(([k]) => !/^(\d|\.|K4AB)/.test(k) && k.replace(/[\/ ].*$/, '').startsWith(x));
+    if (!hit.length) return '';
+    return '⌨ ' + hit.slice(0, 4).map(([k, d]) => `<button type="button" class="chip sm gold" data-cmdh="${esc(k)}">${esc(k)}</button> <small>${esc(d)}</small>`).join(' · ') + ' · <button type="button" class="chip sm" data-cmdh="?">ALL</button>';
+  }
+  $('eLook').addEventListener('click', e => { const b = e.target.closest('[data-cmdh]'); if (!b) return; const k = b.dataset.cmdh; if (k === '?') { cmdHelp(); return; } $('eCall').value = stemOf(k); $('eCall').focus(); lookUp(); });
+  if ($('dkCmd')) $('dkCmd').onclick = () => cmdHelp();
+
+  /* ================= Nov 19 2026 LOG ROUND (Brandon: '2,3,5,6': one-tap reports, their park looked up, a tidier log line, fix several
+     contacts at once + search). Nothing here touches the radio. ================= */
+
+  /* 2. ONE-TAP REPORTS: shown while a call is in CALL; tap = that report in SENT or RCVD (empty still means 59 / 599 / -10) */
+  $('lgForm').insertAdjacentHTML('afterend', '<div class="rstq" id="eRstQ" hidden></div>');
+  const rstSet = () => { const m = String(D.mode || '').toUpperCase(); return isFT(m) ? ['-05', '-10', '-15'] : /^(SSB|USB|LSB|AM|FM|PHONE|DSTAR|DMR|C4FM|FREEDV|M17)$/.test(m) ? (innerWidth < 520 ? ['59', '57', '55'] : ['59', '57', '55', '53']) : ['599', '579', '559']; };   /* a phone gets three a side so both fit */
+  function drawRst() {
+    const el = $('eRstQ'); if (!el) return;
+    const on = !!$('eCall').value.trim() && !document.body.classList.contains('cx-on') && !/^(NOTE|SPME|SPOTME|GRID|\.\.|\/\/)/i.test($('eCall').value.trim());
+    el.hidden = !on; if (!on) return;
+    const L = rstSet(), s = $('eRs').value.trim(), r = $('eRr').value.trim();
+    el.innerHTML = '<span class="rl">SENT</span>' + L.map(x => `<button type="button" class="chip sm${s === x ? ' on' : ''}" data-rq="s" data-v="${x}">${x}</button>`).join('') +
+      '<span class="rl">RCVD</span>' + L.map(x => `<button type="button" class="chip sm${r === x ? ' on' : ''}" data-rq="r" data-v="${x}">${x}</button>`).join('');
+  }
+  $('eRstQ').addEventListener('click', e => { const b = e.target.closest('[data-rq]'); if (!b) return; const box = $(b.dataset.rq === 's' ? 'eRs' : 'eRr'); box.value = box.value === b.dataset.v ? '' : b.dataset.v; drawRst(); $('eCall').focus(); });
+  ['eCall', 'eRs', 'eRr'].forEach(i => $(i).addEventListener('input', () => setTimeout(drawRst, 0)));
+  $('lgForm').addEventListener('submit', () => setTimeout(drawRst, 0));
+  $('eClr').addEventListener('click', () => setTimeout(drawRst, 0));
+  AP.on('dial', () => setTimeout(drawRst, 0));
+
+  /* 3. THEIR PARK LOOKED UP: name, state and grid from a downloaded park pack, else POTA's park page (api.pota.app, the same
+     server the spots come from), else the name a spot carried. Kept 90 days in kpcParkInfo. Fills THEIR STATE / GRID when empty. */
+  const PI = LS('kpcParkInfo', {});
+  async function parkInfo(ref) {
+    ref = String(ref || '').toUpperCase(); if (!/^[A-Z0-9]+-\d{3,5}$/.test(ref)) return null;
+    if (PI[ref] && Date.now() - PI[ref].at < 90 * 864e5) return PI[ref];
+    let r = null;
+    try { if (G.KPCParks && KPCParks.have) for (const st of Object.keys(KPCParks.have() || {})) { const pk = await KPCParks.get(st), x = pk && (pk.parks || []).find(q => q.ref === ref);
+      if (x) { r = { name: x.name || '', g: isFinite(x.la) && AP.toGrid ? AP.toGrid(x.la, x.lo) : '', st: /^US-[A-Z]{2}$/.test(st) ? st.slice(3) : '', src: 'pack' }; break; } } } catch (e) {}
+    if (!r) try { const a = await AP.net.raw('https://api.pota.app/park/' + encodeURIComponent(ref), { ms: 8000 }), j = JSON.parse(a && a.text || 'null');
+      if (j && j.name) { const loc = String(j.locationDesc || ''); r = { name: String(j.name).slice(0, 80), g: String(j.grid6 || j.grid4 || '').slice(0, 6), st: /^(US|CA)-[A-Z]{2}$/.test(loc) ? loc.slice(3) : '', loc, src: 'pota' }; } } catch (e) {}
+    if (!r && G.KPCParkNames && KPCParkNames[ref]) return { name: KPCParkNames[ref], g: '', st: '', src: 'spot' };
+    if (r) { r.at = Date.now(); PI[ref] = r; const ks = Object.keys(PI); if (ks.length > 3000) ks.sort((a, b) => PI[a].at - PI[b].at).slice(0, ks.length - 3000).forEach(k => delete PI[k]); SV('kpcParkInfo', PI); }
+    return r;
+  }
+  const parkTxt = (ref, r) => r ? `🌲 <b>${esc(ref)}</b> ${esc(r.name)}${r.st ? ' · ' + esc(r.st) : r.loc ? ' · ' + esc(r.loc) : ''}${r.g ? ' · ' + esc(r.g) : ''}` : `❓ <b>${esc(ref)}</b>: no park found yet (check the number; with no signal only downloaded states are known)`;
+  /* the line under a park box while typing */
+  function parkLook(inp) {
+    if (!inp || inp.dataset.pl) return; inp.dataset.pl = '1';
+    inp.insertAdjacentHTML('afterend', '<div class="look parklk" aria-live="polite"></div>'); const out = inp.nextElementSibling;
+    let t = null, n = 0;
+    const go = () => { clearTimeout(t); t = setTimeout(async () => { const my = ++n, refs = refList(inp.value).filter(r => /-\d{4,5}$/.test(r)).slice(0, 8); if (!refs.length) { out.innerHTML = ''; return; }
+      const L = await Promise.all(refs.map(parkInfo)); if (my !== n) return; out.innerHTML = refs.map((r, i) => parkTxt(r, L[i])).join('<br>'); }, 350); };
+    inp.addEventListener('input', go); go();
+  }
+  /* after the P2P / More sheet: THEIR STATE + GRID from the park (only boxes left empty; a 2-fer in two states fills no state) */
+  async function parkFill() {
+    const refs = MORE.refs || []; if (!refs.length) return;
+    const L = (await Promise.all(refs.map(parkInfo))).filter(Boolean), sts = [...new Set(L.map(x => x.st).filter(Boolean))];
+    let n = 0; const A = parkFill.a || (parkFill.a = {});   /* what WE filled last time: a new park replaces it, a hand-typed one stays */
+    const stOk = (!MORE.st || MORE.st === A.st) && (!$('eSt').value || $('eSt').value === A.st), gOk = !MORE.g || String(MORE.g).toUpperCase() === String(A.g || '').toUpperCase();
+    if (stOk) { const ns = sts.length === 1 ? sts[0] : ''; if (ns || A.st) { MORE.st = ns; $('eSt').value = ns; A.st = ns; n++; } }
+    if (gOk && L[0] && L[0].g) { MORE.g = L[0].g; A.g = L[0].g; n++; }
+    if (n) { moreChip(); AP.toast(parkTxt(refs[0], L[0]) + (refs.length > 1 ? ' + ' + (refs.length - 1) + ' more' : ''), 3500, 'log'); }
+  }
+  setTimeout(() => { const p2p0 = $('dkP2p').onclick, more0 = $('dkMore').onclick;   /* after the whole file: those two handlers are set further down */
+    $('dkP2p').onclick = () => { p2p0(); parkLook($('shPall')); };
+    $('dkMore').onclick = () => { more0(); parkLook($('shQref')); }; }, 0);   /* both sheets call moreChip() when they close: it starts parkFill() when their park changed */
+
+  /* 5. A TIDIER LOG LINE: the dock's chips in two rows on a phone (CSS), and 🔠 BIG LOG LINE (gloves / sunlight): STATION → 📋 LOG or BIG in CALL */
+  const bigSet = on => { document.body.classList.toggle('biglog', !!on); try { localStorage.setItem('kpcBigLog', on ? '1' : ''); } catch (e) {} const b = $('stBig'); if (b) b.textContent = '🔠 BIG LOG LINE: ' + (on ? 'ON' : 'OFF'); };
+  if ($('stCols') && !$('stBig')) { $('stCols').insertAdjacentHTML('afterend', '<button type="button" class="b" id="stBig" title="Bigger CALL box, report buttons and gold button: for gloves and sunlight"></button>'); $('stBig').onclick = () => bigSet(!document.body.classList.contains('biglog')); }
+  bigSet((() => { try { return localStorage.getItem('kpcBigLog') === '1'; } catch (e) { return false; } })());
+
+  /* the dock's chips: row 1 = frequency / mode / my park + ACT-HUNT; row 2 = everything else in ONE row that slides sideways on a phone
+     (it was three rows, 220 px of a phone screen). Chips other files add later land in row 2 by themselves. */
+  { const ch = document.querySelector('#lgDock .chips'); if (ch && !$('dk2')) { ch.insertAdjacentHTML('beforeend', '<div class="dk2" id="dk2"></div>'); const r2 = $('dk2'), keep = new Set(['dkFreq', 'dkRole', 'dkHold', 'dk2']);
+    const mv = () => [...ch.children].forEach(el => { if (!keep.has(el.id)) r2.appendChild(el); }); mv(); new MutationObserver(mv).observe(ch, { childList: true });
+    const fade = () => r2.classList.toggle('more', r2.scrollWidth - r2.clientWidth - r2.scrollLeft > 4); r2.addEventListener('scroll', fade, { passive: true }); addEventListener('resize', fade); new MutationObserver(() => setTimeout(fade, 0)).observe(r2, { childList: true, subtree: true }); setTimeout(fade, 300); } }   /* a soft fade on the right edge while more chips sit off screen */
+  /* 6. FIND + FIX SEVERAL: 🔍 filters the list (call, park, name, state, note, band, mode); ☑ FIX SEVERAL picks rows, then one sheet
+     changes band / frequency, mode, my park(s) or their park(s) on all of them at once */
+  const FINDT = {};
+  { const st = $('lgStrip'); if (st && !$('lgFind')) { st.insertAdjacentHTML('beforeend', '<button type="button" class="chip" id="lgFind" title="Find a call, park or note in this log">🔍 FIND</button><button type="button" class="chip" id="lgSel" title="Pick several contacts and fix their band, mode or park at once">☑ FIX MANY</button>');
+    st.insertAdjacentHTML('afterend', '<div class="lgfind" id="lgFindW" hidden><input id="lgFindT" type="search" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="call, park, name, note…" aria-label="Find in this log"><button type="button" class="chip" id="lgFindX" aria-label="Stop finding">✕</button></div><div class="lgselbar" id="lgSelBar" hidden></div>'); } }
+  const hits = q => { if (!FIND) return true; const f = FIND; return [q.call, (q.refs || []).join(' '), (q.myrefs || []).join(' '), q.name, q.st, q.note, q.band || bandOf(q.khz), q.mode, q.g].some(x => String(x || '').toUpperCase().includes(f)); };
+  $('lgFind').onclick = () => { const w = $('lgFindW'); w.hidden = !w.hidden; if (!w.hidden) $('lgFindT').focus(); else { FIND = ''; $('lgFindT').value = ''; draw(); } };
+  $('lgFindX').onclick = () => { FIND = ''; $('lgFindT').value = ''; $('lgFindW').hidden = true; draw(); };
+  $('lgFindT').addEventListener('input', () => { FIND = $('lgFindT').value.trim().toUpperCase(); clearTimeout(FINDT.t); FINDT.t = setTimeout(draw, 150); });
+  function selBar() {
+    const b = $('lgSelBar'); document.body.classList.toggle('lgsel', !!SEL); b.hidden = !SEL; if (!SEL) return;
+    b.innerHTML = `<b>☑ ${SEL.size} picked</b><button type="button" class="chip" id="lgSelAll">ALL SHOWN</button><button type="button" class="chip gold" id="lgSelFix"${SEL.size ? '' : ' disabled'}>🔧 FIX THEM</button><button type="button" class="chip" id="lgSelX">✕ DONE</button>`;
+    $('lgSelAll').onclick = () => { shownRows().forEach(q => SEL.add(q.id)); selBar(); draw(); };
+    $('lgSelX').onclick = () => { SEL = null; selBar(); draw(); };
+    $('lgSelFix').onclick = fixSheet;
+  }
+  const shownRows = () => { const L = V.filter(hits); return L.length > SHOWN ? L.slice(-SHOWN) : L; };
+  $('lgSel').onclick = () => { SEL = SEL ? null : new Set(); selBar(); draw(); if (SEL) AP.toast('Tap the contacts to fix, then 🔧 FIX THEM.', 3000); };
+  function fixSheet() {
+    const ids = [...SEL].filter(id => { const q = ALL.get(id); return q && !q.d; }); if (!ids.length) return;
+    AP.sheet('🔧 Fix ' + ids.length + ' contact' + (ids.length > 1 ? 's' : ''), `<p class="hint">Leave a box as it is to keep what each contact has. Only what you change is changed, on all ${ids.length}.</p>
+      <div class="grid2"><label class="e">BAND<select id="fxBand"><option value="">(keep)</option>${BANDS.map(b => `<option>${b[0]}</option>`).join('')}</select></label>
+      <label class="e">FREQUENCY (kHz)<input id="fxKhz" inputmode="decimal" placeholder="(keep)"></label>
+      <label class="e">MODE<select id="fxMode"><option value="">(keep)</option>${MODES.map(([g, L]) => `<optgroup label="${esc(g)}">${L.map(m => `<option>${esc(m)}</option>`).join('')}</optgroup>`).join('')}</select></label>
+      <label class="e wide">MY PARK(S)<input id="fxMy" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="(keep)"></label>
+      <label class="e wide">THEIR PARK(S)<input id="fxTheir" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="(keep)"></label></div>
+      <label class="ck"><input type="checkbox" id="fxTheirX"> take THEIR park off these (not park to park)</label>
+      <div class="row"><button type="button" class="b gold" id="fxOk">🔧 FIX ${ids.length}</button><button type="button" class="b" id="fxNo">CANCEL</button></div>`);
+    parkBox($('fxMy')); parkBox($('fxTheir')); parkLook($('fxTheir'));
+    $('fxNo').onclick = () => AP.shut();
+    $('fxOk').onclick = () => {
+      const band = $('fxBand').value, kRaw = $('fxKhz').value.trim(), mode = $('fxMode').value, my = refList($('fxMy').value), th = refList($('fxTheir').value), thX = $('fxTheirX').checked;
+      let khz = kRaw ? parseFloat(kRaw) : NaN; if (kRaw && khz < 1000 && khz > 0) khz = Math.round(khz * 1000 * 1000) / 1000;   /* 14.074 typed as MHz */
+      if (kRaw && !bandOf(khz)) { AP.toast('That frequency is not in a ham band.', 3000, 'bad'); return; }
+      if (!band && !kRaw && !mode && !my.length && !th.length && !thX) { AP.toast('Nothing to change: pick a band, mode or park first.', 3000, 'bad'); return; }
+      const recs = [];
+      for (const id of ids) { const q = ALL.get(id); if (!q) continue; const pt = {};
+        if (kRaw) { pt.khz = khz; pt.band = bandOf(khz); } else if (band && band !== (q.band || bandOf(q.khz))) { pt.band = band; if (!(q.khz && bandOf(q.khz) === band)) pt.khz = 0; }   /* a frequency outside the new band goes: the band alone is a valid ADIF contact */
+        if (mode) pt.mode = mode; if (my.length) pt.myrefs = my; if (th.length) pt.refs = th; else if (thX) pt.refs = [];
+        const now = Date.now(); q.fu = Object.assign({}, q.fu || {}); let ch = false; Object.keys(pt).forEach(k => { if (JSON.stringify(q[k]) !== JSON.stringify(pt[k])) { q.fu[k] = now; ch = true; } });
+        if (!ch) continue; Object.assign(q, pt); q.ref = (q.refs || [])[0] || ''; touch(q); recs.push(q); }
+      AP.shut();
+      if (!recs.length) { AP.toast('They already had that: nothing changed.', 3000); return; }
+      persist(recs); view(); SEL = null; selBar(); draw(); AP.fire('log', { why: 'edit', recs });
+      AP.toast('🔧 Fixed ' + recs.length + ' contact' + (recs.length > 1 ? 's' : '') + '.', 3000, 'log');
+    };
+  }
+  let FILL = '', STACK = [], LASTIDS = [];
+  function drawStack() {
+    let el = $('eStack'); if (!el) { $('eLook').insertAdjacentHTML('beforebegin', '<div class="look" id="eStack" hidden></div>'); el = $('eStack'); }
+    el.hidden = !STACK.length;
+    el.innerHTML = STACK.length ? '🥞 Next: ' + STACK.map((c, i) => `<button type="button" class="chip sm" data-stk="${i}">${esc(c)}</button>`).join(' ') + ' <button type="button" class="chip sm" data-stk="x" aria-label="Clear the stack">✕</button>' : '';
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-stk]'); if (!b) return; if (b.dataset.stk === 'x') { STACK = []; drawStack(); return; }
+    const i = +b.dataset.stk, cur = $('eCall').value.trim().toUpperCase(); const c = STACK[i]; if (cur) STACK[i] = cur; else STACK.splice(i, 1); $('eCall').value = c; drawStack(); $('eCall').focus(); lookUp(); });
+  function noteAsk() {
+    AP.sheet('📝 A note in this log', '<label class="e wide">NOTE<textarea id="noteT" rows="3" maxlength="300" style="width:100%"></textarea></label><div class="row"><button type="button" class="b gold" id="noteOk">💾 SAVE THE NOTE</button></div>');
+    setTimeout(() => { const t = $('noteT'); if (t) t.focus(); }, 50);
+    $('noteOk').onclick = () => { const t = $('noteT').value.trim(); if (!t) { AP.toast('Type the note first.', 2500, 'bad'); return; } AP.shut(); opNote(t); AP.toast('📝 Note saved in this log.', 2500, 'log'); };
+  }
+  function cqCmd(done) {
+    const md = String(D.mode || '').toUpperCase(), act = G.KPCModes && KPCModes.active && KPCModes.active();
+    if (md === 'CW') {
+      if (act && act.id === 'CW') { KPCModes.op('mac', { i: 0 }); return done('📡 CW F1 (CQ) going out. STOP or Esc stops it.'); }
+      return done('CW CQ goes from the CW screen: DIGI → CW, then CQ here or F1 there.', true);
+    }
+    if (/^(SSB|USB|LSB|AM|FM|PHONE)$/.test(md)) { if (!G.KPCVoice) return done('The voice keyer is not in this app.', true); KPCVoice.play(0); return true; }   /* play() says itself why it cannot (practice call, empty memory, already sending) */
+    return done(isFT(md) ? 'FT8 / FT4: use the CQ button on the DIGI screen.' : 'CQ from here works in SSB / AM / FM (voice memory 1) and CW (F1 on the CW screen).', true);
+  }
+  function wpmCmd(w, done) {
+    if (w < 5 || w > 60) return done('CW speed 5 to 60 WPM.', true);
+    const out = [];
+    if (G.KPCModes5 && KPCModes5.S) { KPCModes5.S.cw.wpm = Math.max(8, Math.min(45, w)); KPCModes5.save(); out.push('the app\'s keyer ' + KPCModes5.S.cw.wpm); }
+    const K = G.KPCCat;
+    if (K && K.connected && K.connected() && K.extras && K.extras().includes('keyspd') && G.KPCRigX) { KPCRigX.X.keyspd = w; KPCRigX.save(); KPCRigX.go('keyspd', w).then(ok => { if (ok) AP.toast('⏩ The radio\'s keyer: ' + w + ' WPM.', 2500, 'log'); try { KPCRigX.draw(); } catch (e) {} }); out.push('the radio (sending)'); }
+    return done(out.length ? '⏩ CW ' + w + ' WPM: ' + out.join(', ') + '.' : 'No CW keyer here to set.', !out.length);
+  }
+  function undoAsk() {
+    let ids = LASTIDS.filter(id => { const q = ALL.get(id); return q && !q.d; });
+    if (!ids.length) { const live = V.filter(q => !q.d); const q = live.slice().sort((a, b) => (+b.u || 0) - (+a.u || 0))[0]; if (q) ids = [q.id]; }
+    if (!ids.length) { AP.toast('Nothing to take out.', 2500, 'bad'); return; }
+    const qs = ids.map(id => ALL.get(id));
+    AP.sheet('↩ Take out the last contact?', `<p>${qs.map(q => `<b>${esc(q.call)}</b> · ${esc(q.band || bandOf(q.khz) || '')} ${esc(q.mode)} · ${esc(isoT(q.t).slice(0, 5))}z`).join('<br>')}</p><div class="row"><button type="button" class="b halt" id="undoOk">✕ TAKE ${qs.length > 1 ? 'THEM' : 'IT'} OUT</button><button type="button" class="b" id="undoNo">KEEP</button></div>`);
+    $('undoNo').onclick = () => AP.shut();
+    $('undoOk').onclick = () => { AP.shut(); qs.forEach(q => remove(q.id)); LASTIDS = []; AP.toast('↩ Taken out: ' + esc(qs.map(q => q.call).join(', ')) + '.', 3000, 'log'); };
   }
   async function solarNote() {
     try { const p = G.KPCProp && KPCProp.solar ? await KPCProp.solar(true) : null; if (p && (p.sfi != null || p.kp != null)) { opNote('☀ Solar: flux ' + (p.sfi != null ? p.sfi : '?') + ', Kp ' + (p.kp != null ? p.kp : '?')); AP.toast('☀ Saved in the log: flux ' + (p.sfi != null ? p.sfi : '?') + ', Kp ' + (p.kp != null ? p.kp : '?'), 4000, 'log'); return; } } catch (e) {}
@@ -376,7 +578,7 @@
   /* Brandon Oct 22: 'call then state under it same with band and signal takes up to much space' — ONE line per contact */
   function row(q) {
     const refs = (q.refs || []).join('+');
-    return `<div class="qrow one" data-q="${esc(q.id)}" role="row">
+    return `<div class="qrow one${SEL && SEL.has(q.id) ? ' pick' : ''}" data-q="${esc(q.id)}" role="row"${SEL ? ' aria-selected="' + SEL.has(q.id) + '"' : ''}>
       <span class="t">${AP.utc(q.t)}</span>
       <span class="c"><b>${esc(q.call)}</b>${q.st ? `<em>${esc(q.st)}</em>` : ''}${refs ? `<u>🌲${esc(refs)}</u>` : ''}${xcols(q)}</span>
       <span class="m"><s>${esc(q.band || bandOf(q.khz) || '')}</s> ${q.khz ? MHZ(q.khz) : ''} <b>${esc(q.mode)}</b></span>
@@ -390,20 +592,21 @@
     /* the open log: its contacts, with the BREAK lines (🚗 next park) and the notes (NOTE / WEATHER / SOLAR) in their places */
     /* Nov 18 review (L18): only the newest SHOWN rows are drawn (300, + 500 per SHOW MORE): with 10,000 contacts every ENTER redrew them all */
     if (draw.cur !== CUR) { draw.cur = CUR; SHOWN = 300; }
-    const m = CUR ? opMeta(CUR) : null, V2 = V.length > SHOWN ? V.slice(-SHOWN) : V, t0 = V2.length ? V2[0].t : 0, items = V2.map(q => ({ t: q.t, h: row(q) }));
-    if (m) { (m.stops || []).slice(1).forEach(st => items.push({ t: st.t, h: `<div class="qsep brk">🚗 ${esc(AP.utc(st.t))} · BREAK → <b>${esc((st.refs || []).join(' + ') || 'a new spot')}</b>${st.grid ? ' · ' + esc(st.grid) : ''}</div>` }));
+    const m = CUR ? opMeta(CUR) : null, VF = FIND ? V.filter(hits) : V, V2 = VF.length > SHOWN ? VF.slice(-SHOWN) : VF, t0 = V2.length ? V2[0].t : 0, items = V2.map(q => ({ t: q.t, h: row(q) }));   /* Nov 19: 🔍 FIND shows only matching contacts */
+    if (m && !(FIND)) { (m.stops || []).slice(1).forEach(st => items.push({ t: st.t, h: `<div class="qsep brk">🚗 ${esc(AP.utc(st.t))} · BREAK → <b>${esc((st.refs || []).join(' + ') || 'a new spot')}</b>${st.grid ? ' · ' + esc(st.grid) : ''}</div>` }));
       (m.notes || []).forEach(nt => items.push({ t: nt.t, h: `<div class="qsep note">📝 ${esc(AP.utc(nt.t))} · ${esc(nt.text)}</div>` })); }
     if (V.length > SHOWN) for (let i = items.length - 1; i >= 0; i--) if (items[i].t < t0) items.splice(i, 1);
     items.sort((a, b) => a.t - b.t);
     const more = V.length > SHOWN ? `<div class="qsep"><button type="button" class="b sm" data-lgmore="1">⬇ SHOW ${Math.min(500, V.length - SHOWN)} OLDER (${V.length - SHOWN} not drawn)</button></div>` : '';
     const head = ''; if ($('lgBarN')) { $('lgBarN').textContent = m ? m.name : 'Every contact (the regular logger)'; $('lgBarC').textContent = V.length + ' contact' + (V.length === 1 ? '' : 's'); $('lgBar').classList.toggle('every', !m); }
     el.innerHTML = head + (items.length ? items.map(x => x.h).reverse().join('') + more
-      : '<div class="empty">' + (ready ? 'No contacts yet. Type a call sign below and press the gold button — or work someone on the FT8 screen and it lands here by itself. Type <b>HELP</b> in the CALL box for the commands.' : 'Opening the log…') + '</div>');
+      : FIND ? '<div class="empty">Nothing in this log matches “' + esc(FIND) + '”.</div>' : '<div class="empty">' + (ready ? 'No contacts yet. Type a call sign below and press the gold button — or work someone on the FT8 screen and it lands here by itself. Type <b>HELP</b> in the CALL box for the commands.' : 'Opening the log…') + '</div>');
     counts();
   }
   document.addEventListener('click', e => { if (e.target.closest('[data-oplist]')) logsCard(); });
   AP.on('log', () => { if (document.body.dataset.screen === 'logs') setTimeout(() => logsCard(), 0); });
   $('lgList').addEventListener('click', e => {
+    if (SEL) { const r0 = e.target.closest('[data-q]'); if (r0) { const id = r0.dataset.q; if (SEL.has(id)) SEL.delete(id); else SEL.add(id); r0.classList.toggle('pick', SEL.has(id)); selBar(); } return; }   /* Nov 19: ☑ FIX SEVERAL picks rows */
     const d = e.target.closest('[data-del]');
     if (d) {   /* Brandon Oct 22: 'if deleting a qso needs are you sure? question' */
       const q0 = ALL.get(d.dataset.del); if (!q0) return;
@@ -551,7 +754,7 @@
   }
   const v = (id, up) => { const e = $(id); let x = e ? e.value.trim() : ''; return up ? x.toUpperCase() : x; };
   let MORE = {};
-  function moreChip() { const n = Object.values(MORE).filter(x => Array.isArray(x) ? x.length : x).length; $('dkMore').textContent = n ? '✏️ ' + n : '✏️'; }
+  function moreChip() { const n = Object.values(MORE).filter(x => Array.isArray(x) ? x.length : x).length; $('dkMore').textContent = n ? '✏️ ' + n : '✏️'; const k = (MORE.refs || []).join(); if (k !== moreChip.k) { moreChip.k = k; if (k && G.KPCLog) setTimeout(() => parkFill(), 50); } }
 
   /* ---------------- call book (Brandon Oct 24: 'the auto look up is not working … the world will be able to use it') ----------------
      QRZ XML when the ham has a QRZ XML subscription (worldwide, STATION → Log files → 📖 CALL LOOK-UP), else free:
@@ -648,6 +851,7 @@
   function lookUp() {
     const c = base($('eCall').value);
     const el = $('eLook'), n = ++lkN; LKHIT = null;
+    { const h = cmdHints($('eCall').value); if (h) { el.innerHTML = h; return; } }   /* Nov 19: typing a shortcut shows what it does */
     if (!c || c.length < 3) { el.innerHTML = ''; return; }
     const hit = Q.filter(q => base(q.call) === c);
     const last = hit[hit.length - 1];
@@ -667,7 +871,7 @@
       if (!isFT(D.mode) && $('eSt') && !$('eSt').value && r.st && /^[A-Z]{2}$/.test(r.st)) $('eSt').value = r.st;
     }, 450);
   }
-  $('eCall').oninput = () => { let x = $('eCall').value.toUpperCase(); if (!/^NOTE\b/.test(x)) x = x.replace(/\s/g, ''); if (/[A-Z]\d*\.[A-Z0-9]*$/.test(x) && /[A-Z]/.test(x.split('.')[0])) x = x.replace(/\./g, '/'); $('eCall').value = x; clearTimeout(lkT); lkT = setTimeout(lookUp, 150); };
+  $('eCall').oninput = () => { let x = $('eCall').value.toUpperCase(); const free = /^(NOTE\b|SPME\/|SPOTME\/|GRID\b)/.test(x); if (!free) x = x.replace(/\s/g, ''); if (!free) x = x.replace(/(.)(?:[.\/]{2,})/g, (a, c) => c + '//');   /* Nov 19: a pile-up stack (.. or //, after the dot-to-slash below has turned one dot into a slash) */ if (!free && /[A-Z]\d*\.[A-Z0-9]*$/.test(x) && /[A-Z]/.test(x.split('.')[0])) x = x.replace(/\./g, '/'); $('eCall').value = x; clearTimeout(lkT); lkT = setTimeout(lookUp, 150); };
   let lkT = null;
   $('eSt').oninput = () => { $('eSt').value = $('eSt').value.toUpperCase().replace(/[^A-Z]/g, ''); };
   $('eClr').onclick = () => { ['eCall', 'eRs', 'eRr', 'eSt'].forEach(i => { $(i).value = ''; }); $('eLook').innerHTML = ''; $('eCall').focus(); };
@@ -727,22 +931,24 @@
     e.preventDefault();
     const raw = $('eCall').value.trim();
     if (!raw) { AP.toast('Type a call sign first (or HELP for the commands).', 2500, 'bad'); $('eCall').focus(); return; }
-    if (command(raw)) { $('eCall').value = ''; $('eLook').innerHTML = ''; return; }
+    if (command(raw)) { $('eCall').value = FILL; FILL = ''; $('eLook').innerHTML = ''; if ($('eCall').value) lookUp(); return; }
     /* Oct 25 (PoLo): several calls with commas = one contact each, same reports */
     const calls = raw.split(/[\s,;]+/).map(c => c.replace(/\./g, '/')).filter(Boolean);
     const st = (!isFT(D.mode) && v('eSt', true)) || MORE.st;
-    let r = null, n = 0;
+    let r = null, n = 0; const ids = [];
     for (const call of calls) {
       const lh = calls.length === 1 && LKHIT && LKHIT.call === base(call) ? LKHIT : null;
       const t = D.hold && !isFT(D.mode) ? D.hold : 0;
       r = add({ call, t, khz: D.khz, mode: D.mode, rs: $('eRs').value.trim() || typedRst(D.mode), rr: $('eRr').value.trim() || typedRst(D.mode), st: calls.length === 1 ? (st || (lh && /^[A-Z]{2}$/.test(lh.st) ? lh.st : '')) : '', refs: MORE.refs, g: calls.length === 1 ? (MORE.g || (lh ? lh.g : '')) : '', name: calls.length === 1 ? (MORE.name || (lh ? lh.name : '')) : '', note: MORE.note, cx: G.KPCContest ? KPCContest.entryCx() : null });
       if (!r.ok) { AP.toast('Not logged: ' + esc(r.msg) + (calls.length > 1 ? ' (' + esc(call) + ')' : ''), 4000, 'bad'); return; }
-      n++; if (D.hold) { D.hold += 60000; saveD(); }
+      n++; ids.push(r.q.id); if (D.hold) { D.hold += 60000; saveD(); }
     }
     MORE = {}; moreChip(); dockChips();
     const cnt = $('lgN') ? $('lgN').textContent : r.n;
     AP.toast('✅ ' + (n > 1 ? n + ' contacts' : esc(r.q.call)) + ' logged · ' + esc(r.q.band) + ' ' + esc(r.q.mode) + ' · ' + cnt + (AP.me().hunt ? ' today' : ' at this park') + (D.hold ? ' · ⏸ clock now ' + isoT(D.hold).slice(0, 5) + 'z' : ''), 2600, 'log');
+    LASTIDS = ids;
     $('eClr').onclick();
+    if (STACK.length) { $('eCall').value = STACK.shift(); drawStack(); lookUp(); }   /* the pile-up stack: the next call comes up by itself */
   };
 
   /* ---------------- the ADIF file ----------------
@@ -802,19 +1008,22 @@
   /* Nov 18 review (L25): the file carries the date of its first contact (the activation's date), not today's */
   function fname(ext, park, list) { const L = list || (park ? Q.filter(q => (q.myrefs || []).includes(park)) : V.length ? V : Q), t = L.length ? Math.min(...L.map(q => +q.t || Date.now())) : Date.now(); return 'KPC-' + (AP.me().call || 'log').replace(/[^A-Z0-9]/gi, '') + (park ? '-' + park : '') + '-' + new Date(t).toISOString().slice(0, 10) + (ext || '.adi'); }
   const saveFile = (txt, name, mime) => AP.saveFile(txt, name, mime);   /* Oct 22: Android needs the plugin (see kpc-app.js) */
-  $('stAdif').onclick = () => {
-    if (!Q.length) { AP.toast('Nothing in the log yet.', 3000, 'bad'); return; }
-    const parks = [...new Set(Q.flatMap(q => q.myrefs || []))];
+  $('stAdif').onclick = () => saveAdifList(Q, 'the log');
+  /* Nov 19 2026: the ADIF save, for SAVE ADIF FILE (every contact) and the ADIF shortcut in CALL (the open log) */
+  function saveAdifList(list, what) {
+    list = (list || []).filter(q => !q.d);
+    if (!list.length) { AP.toast('Nothing in ' + esc(what || 'the log') + ' yet.', 3000, 'bad'); return; }
+    const parks = [...new Set(list.flatMap(q => q.myrefs || []))];
     if (parks.length > 1) {                                /* more than one of my parks in the log: one file per park */
       AP.sheet('Which park?', '<p class="hint">Your log has contacts from more than one park. POTA wants one file per park.</p><div class="row">' +
         parks.map(p => `<button type="button" class="b gold" data-park="${esc(p)}">${esc(p)}</button>`).join('') + '<button type="button" class="b" data-park="*">EVERYTHING IN ONE FILE</button></div><p class="hint">⚠ EVERYTHING IN ONE FILE is for your own records or QRZ: <b>don\'t upload it to POTA</b> (POTA wants one file per park).</p>');
-      document.querySelectorAll('[data-park]').forEach(b => { b.onclick = () => { AP.shut(); const p = b.dataset.park === '*' ? '' : b.dataset.park; const txt = adif(p ? Q.filter(q => (q.myrefs || []).includes(p)) : Q, p); saveFile(txt, fname('.adi', p)); show(txt); }; });
+      document.querySelectorAll('[data-park]').forEach(b => { b.onclick = () => { AP.shut(); const p = b.dataset.park === '*' ? '' : b.dataset.park; const txt = adif(p ? list.filter(q => (q.myrefs || []).includes(p)) : list, p); saveFile(txt, fname('.adi', p, p ? list.filter(q => (q.myrefs || []).includes(p)) : list)); show(txt); }; });
       return;
     }
-    const txt = adif();
-    saveFile(txt, fname());
+    const txt = adif(list);
+    saveFile(txt, fname('.adi', '', list));
     show(txt);
-  };
+  }
   function show(txt) { const t = $('stAdifT'); t.hidden = false; t.value = txt; }
   $('stCopy').onclick = async () => {
     if (!Q.length) { AP.toast('Nothing in the log yet.', 3000, 'bad'); return; }
@@ -956,6 +1165,9 @@
     count: () => Q.length, spots: () => [], newPark: () => false,
     merge, changes, remove, edit, get: id => ALL.get(id), fileText, importText, adifParse, restoreRecs, revive, deadIn, _persist: persist, _unsaved: () => UNSAVED, _fname: fname, _undoChip: undoChip, ready: () => ready, dev: DEV, refList,
     hunted: r => huntedRef(r), activated: r => activatedRef(r), potaFile, potaSet, potaFiles: () => PF, potaSheet: () => pfSheet(),
+    /* Nov 19 2026 (to-do 3): a 'new to me' choice with no POTA file loaded yet takes the member to MY POTA FILES and says why (one tap,
+       no empty list with no word). k = 'h' (hunted: SPOTS) or 'a' (activated: TRIP PLANNER). true = the file is there. */
+    needFile: (k, what) => { if (PF[k] && PF[k].refs && PF[k].refs.length) return true; AP.toast('📄 To show ' + what + ', the app needs your POTA ' + (k === 'a' ? 'activator' : 'hunter') + ' file (pota.app → My Stats → EXPORT CSV). Load it here; until then it only knows the contacts in this app.', 9000, 'log'); setTimeout(pfSheet, 300); return false; },
     command, ops: () => opList(), opNew, opOpen, opBreak, opNote, cur: () => CUR, shown: () => V, hold: () => D.hold || 0, holdSet, logsCard, editSheet, bands: BANDS, modes: ALLMODES, adMode, bandKhz
   };
 })(window);
