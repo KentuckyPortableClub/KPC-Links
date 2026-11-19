@@ -1256,3 +1256,4 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      (e) kit D (random sample of the released files): the first real measure of the 1% bar; (f) the layer-completeness gate
      (item 35) and R-NET1's code; (g) wire the keeper + key run to write list drops once hand-off 05 part 2 is merged.
    - Brandon's page ("Key Run Check, 19 Nov", slug 14b24a57-71d5-4f8c-87d2-a0c53b95a518) carries the release block at the top: version 1795121760-4655.
+   - **CORRECTION (Fable, 3:00 PM, from the run's own plan): run 44613348117 builds ALL 50 states, not 22** ("0 reused, code hash c64b8ace0411": any rules change moves the code hash, so no state reuses its build; 3 jobs of about 69 minutes). The other 39 states were built green earlier today, so they should come out as they are on main; a state that loses anything is held by the guard (red, nothing bad saved). Read the run about 80 minutes after 20:54 UTC.
