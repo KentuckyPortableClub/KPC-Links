@@ -718,3 +718,32 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      fail-closed when robots says no)? (2) a 4xx on robots.txt: allowed (the standard) or blocked (our old reading)? Recommended: (1) yes,
      (2) allowed for 404, ask for 401/403. Only after the release sign-off: a host change reads layers anew and would change the shapes.
      Hand-off 03B's README now says ArcGIS is not off limits; robots.txt is the only test.
+19. **RULE SHEET R-NET1, WHO THE BOTS MAY ASK (Opus draft, 19 Nov 9:15 AM; Brandon 9:11 AM: "Set the rule up as you see fit so we
+   are polite and following the rules. We only avoid restrictions etc"; 9:12 AM: "Have fable review the rule"). NOT IN FORCE: Fable
+   reviews first; no code until then.** Replaces G-NET1's questions (item 18).
+   1. **What counts as allowed:** any plain http(s) address whose site's robots.txt allows our ONE honest name
+      `KPC (kentuckyportableclub.github.io)` (never changed to get around a no), read with the club's existing reading (store engine
+      3.6.2, `kpc_manners` / `kpc_inbox_manners.robots_page`): 404, 410, 401, 403 and any other 4xx but 429 = no rules (the standard,
+      RFC 9309); a page with no robots lines from the site's own address = no rules. ArcGIS is like any other site.
+   2. **What does not:** a robots.txt "no" for us or for every agent, redirects included (each hop checked); 429 / 5xx / no answer on
+      robots.txt = no for this run, try another day; a 401 / 403 / 429 on the DATA request = stop that host for the run (no retry
+      with tricks); a site's terms that forbid automated use (`never_contact` true in layers.json, with the terms as the reason); a
+      sign-in or a key (except the two keyed APIs Brandon approved); WDPA / Protected Planet geometry (licence).
+   3. **Sources, best first:** the site's own live robots.txt; when it cannot be read by us (4xx) but a dated public reading says
+      "no" to EVERY agent, that reading stands (polite case: services*.arcgis.com said "User-agent: * / Disallow: /" to the outside
+      agent on 19 Nov while it answered our bot 403 on 31 Oct). Re-read monthly; the reading lives in a small table with its date.
+   4. **When unsure:** no request; the row goes to the hand-download list (Brandon's PC or the agent), never a workaround.
+   5. **Manners kept as today:** 1 request per 2 s per host, hub portals 60 s, Crawl-delay obeyed when longer, back off on 429 / 5xx,
+      three strikes, contact nobody. **Dropped:** the hard-coded host bans that act BEFORE robots.txt (services*.arcgis.com,
+      apps.fs.usda.gov, ncnhde.natureserve.org, the Grant County NM server; Brandon already dropped them for the agents, t245u).
+   6. **Examples (from the agent's 19 Nov notes and the 31 Oct test):** services*.arcgis.com = NO (its published no to every agent;
+      a person downloads); hub.arcgis.com download that redirects there = NO at the redirect; www.arcgis.com catalog = YES;
+      an agency's own ArcGIS Server (kygisserver.ky.gov/arcgis/rest) = YES if its robots allows; ncnhde.natureserve.org = YES at 10 s
+      (Crawl-delay 10; today banned by us); apps.fs.usda.gov = YES (robots 403 = no rules), STOP if the data answers 403;
+      api.pota.app = YES (robots 403 = no rules, as today); gis.ohiodnr.gov, resources.gisdata.mn.gov, lastateparks.com = NO
+      (Disallow: /); papionrd.org = NO (names our agent); floridastateparks.org pages answer 403 = STOP.
+   **Code after Fable's yes (one draft PR per repo):** KPC-Links `kpc_net_guard.py` (drop SERVICES_RE / NEVER, add the dated
+   readings table), `kpc_master.py` (NEVER_CONTACT, SAVED_ONLY_HOSTS, the arcgis check in live_ok), `kpc_preflight.HOST`; KPC-Data
+   `kpc_host_rules.py` (same). Tests: the 6 examples. **Merged only AFTER the release is signed off** (newly readable layers change
+   the shapes the fact check measured). Then one by-hand cache run for the rows it opens (ncnhde NC heritage, the USFS files).
+   **For Fable:** is point 3's polite case right, or should a 403 to us simply mean "no rules" for ArcGIS too?
