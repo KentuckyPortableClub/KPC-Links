@@ -877,7 +877,7 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      says, ONE measure run states AK CO ID, read its JOB LOG, stamp and merge if it reads as agreed; (b) evidence batch 02 as above;
      (c) the named-parks drop guard: `kpc_key_drop_guard.py` takes an approved list (state -> park numbers, written from Brandon's page:
      the lost outlines of `factcheck-run-44528656941/lost.json` for the states he names) and holds a state that loses any outline not
-     on it; test both ways; (d) #124: read the agent's last fix, merge, the ONE acceptance run; (e) the run's table gets the two new
+     on it; test both ways; (d) #124: MERGED and the ONE acceptance run STARTED by Fable (item 22): do NOT merge or run again, only READ its packet against the hand figures and tell Brandon whether it matches (Brandon 10:24 AM: Opus checks it at 12, then he starts the agent on part 2; a mismatch = part 2 waits); (e) the run's table gets the two new
      columns of item 20 (shrinks 20%+, new land 100+ ac). Then Brandon's yes per state on his page -> the list -> ONE release run
      (Q1, held states, NPS, #277, R-PP1a, batch 02). Nothing is released before that. After the release: `measured_ac`, the Idaho
      ownership layer filter, R-NET1's code, the hand downloads both passes agree on, kit D.
