@@ -1131,3 +1131,23 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      Flathead were fixed after the held files: read them in the release run's packet). **AR** after the Lake Fort Smith answer (saved
      answers only, no hash). **UT** after Fable on Red Cliffs (or say yes with Red Cliffs named). **DE**: two small parks no agent could
      check; Brandon's own browser can open Delaware's pages, or say yes knowingly.
+33. **BRANDON'S OWN LOOK-UPS (Opus, 19 Nov ~1:30-1:55 PM CST).**
+   - **PARK AND PRESERVE, R-PP1b (owner 1:32 PM: "no I looked the website up from pota and each one says national park+preserve or
+     etc...no need to email them"; 1:36 PM: "The Alaska parks was easy clicked on link at pota and read the hero"; other parks: official
+     site or PDF map).** No question to POTA. A park number keeps its own unit's preserve unless POTA numbers the preserve itself
+     (Glacier Bay, Aniakchak, Great Sand Dunes stay apart). **Draft KPC-Links #286** (US c82bdade8675 -> c64b8ace0411, switch
+     KPC_PRESERVE_WITH_PARK): offline AK CO ID builds: Denali, Gates of the Arctic, Katmai, Lake Clark get their preserve back; CO, ID 0.
+     Packet run 44602628319 (AK CO ID) started. **For Fable:** review #286 (it moves the hash); the packet must show those four only.
+     Alaska's would-be file then changes: 3 shrinks gone (Glacier Bay Preserve and the two Aniakchak rows still shrink, rightly).
+   - **DELAWARE: McGinnis Pond is RIGHT.** DNREC's own map (Brandon's screenshot, documents.dnrec...): the Wildlife Area boundary runs
+     along the pond's shore; the pond is not in it. POTA numbers both: US-5722 McGinnis Pond State Wildlife Area (the land, sgdec16
+     108 ac) and US-10682 McGinnis Pond State Fishing Lake (the pond, sgdea751 49 ac). The new outline is the pond. **Laurel** keeps one
+     of the three 'Industrial Forest Lands - Laurel Complex' tracts (359 of 1,093 ac; the other two held by G-1, far from the pin):
+     missing pieces, the safe kind of mistake; Brandon wants more before calling it.
+   - **Brandon asked (1:36 PM) "why do I have to decide them states? Are you all not sure?"** Answered: the guard holds any state that
+     loses an outline until a PERSON names the parks (his rule, 18 Nov: KPC_DROP_OK is his word, not ours). Offered him a standing
+     rule instead: release a state when every lost or shrinking park passes the two-pass size check; ask him only about the rest.
+   - **Brandon asked (1:41-1:42 PM) for a bot that opens POTA's park web link and reads name, location, park type, maps, directions.**
+     Have today: link harvester (finds an official page / map when POTA gives none), truth bot (opens the official page, reads the
+     park's size), docs bot (map + rules links). Missing: the page's own heading (the designation: "National Park & Preserve"), and
+     the location / address. Would be a reading step added to the truth bot (KPC-Data), built by the outside agent, robots.txt manners.
