@@ -1026,3 +1026,30 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      lost.json grade-drops.json` for the states he names with his words as decided_by, commit, ONE release run (check first that no key
      run is in flight and none is queued in the kpc-us-key lock), then empty `states`; (d) item 20's bot-table columns go to the packet
      bot's part 2 (the other Fable chat's PART-2-ADDITIONS). Not Opus's: R-FJ1's yes, the ID / OR choice, the yes per state.
+27. **BRANDON'S ANSWERS TO SITTING 4 (Fable, 19 Nov 11:50 AM CST; Brandon 11:49 AM: "1 leave them 2 yes pins are only references they are
+   not always right...have opus make handoff for the outaide agent").**
+   - **Idaho and Oregon STAY as the 11:16 AM save left them** ("1 leave them"). They are released. Waiting for his yes now: 11 states
+     (AK AR DE FL GA MT NC RI UT VA WY), Montana on STOP.
+   - **R-FJ1 IS APPROVED, decided_by KPC owner, 2026-11-19 (11:49 AM: "2 yes pins are only references they are not always right").**
+     The sheet of item 26 is in force as written; the PR's changelog line quotes those words. Stamp agreed ahead on item 26's
+     conditions (ONE packet run, states MT, parks changed = US-4501 only). His reason is a principle to keep: POTA's pin is a
+     reference, not proof; a person's evidence about a named record outranks the distance to the pin.
+   - **HAND-OFF 04 FOR THE OUTSIDE AGENT: OPUS MAKES IT** (tools-out `key-quality/2026-11-19/handoff-04/`; the form of hand-offs 02
+     and 03: README-FOR-THE-AGENT, one answer sheet per job, no keys in the zip, planted known answers with their key apart in
+     `kit-keys/`, TWO fresh sessions, never pass 1's answers to pass 2, a row counts only where both agree; robots.txt is the only
+     host test, ArcGIS included). Each row asks the same four things: the official page, the official acres, where the official
+     outline lives, and a YES / NO / PART on the record named. Jobs, busiest parks first:
+     A. the 34 saved NOs on a park's own full name (`fable-sitting-4/saved-no-on-own-name-35.csv` without Flathead): is the refused
+        record the park? Give the record's name and acres, never our NO or its reason (blind).
+     B. a SECOND WITNESS for the seven Forest Service figures that rest on one pass (kit C): the report's NFS acres for Flathead NF,
+        Custer NF in Montana, Gallatin NF, and the state portions of Ouachita (OK), Sawtooth (UT), Umatilla (WA), Manti-La Sal (CO)
+        (`cross-state-forests.md`): table and row named. Batch 03 and R-FJ1's answer count on it.
+     C. the five parks left with only a state's copy (`grade-drops.json` without Flathead): Fort Hunt, Meadowood, Bear Paw
+        Battlefield, Upper Missouri River, Hells Canyon Reservoir: does the managing agency publish its own outline, and its acres.
+     D. the four refuges of item 20 (US-0399, US-0408, US-0563, US-0572): acres by kind (owned / easement / another agency's land).
+     E. the parks that become pins in the 11 waiting states, busiest 25 first (`factcheck-run-44528656941/lost.json`).
+     Planted answers only from what is proven (Flathead's record = YES, 2,414,171 ac; evidence batch 01's records; gold TUNE, never
+     SEALED). Kit D (60 random parks, item 5 / item 20) is its own kit, after this one.
+   - **OPUS'S ORDER NOW (fresh chat: "Read CLAUDE.md and key-quality.md section 19, do item 27's order"):** (a) hand-off 04, zip to
+     Brandon; (b) read #284, mark ready, merge (no key run in flight); (c) R-FJ1's PR as item 26 says, ONE packet run MT, stamp,
+     merge, then MT off `stop`; (d) wait for Brandon's yes per state, then item 26 (c). No release run before that.
