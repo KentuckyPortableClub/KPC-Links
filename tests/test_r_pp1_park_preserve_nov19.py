@@ -39,7 +39,7 @@ src = (SCR / 'kpc_us_key.py').read_text(encoding='utf-8')
 m = re.search(r"^PRESERVE_HIT = \[\].*?^def preserve_apart\(.*?(?=^NPS_CODE_HIT = \[\])", src, re.S | re.M)
 check(bool(m), 'preserve_apart() is in kpc_us_key.py, before the NPS unit-code join')
 SRC_GEO = ''.join(re.search(rf"^def {fn}\(.*?(?=^def |\Z)", src, re.S | re.M).group(0) for fn in ('rings', 'in_ring', 'inside'))
-ns = {'KR': KR, '_oid': lambda a: str(a['OBJECTID']), '_kr': lambda name: True, 'P_ALL': {}}
+ns = {'KR': KR, '_oid': lambda a: str(a['OBJECTID']), '_kr': lambda name: name != 'KPC_PRESERVE_WITH_PARK', 'P_ALL': {}}   # R-PP1a as it stands with R-PP1b's switch OFF (its own test: test_r_pp1b_preserve_with_park_nov19.py)
 exec(SRC_GEO, ns)
 exec(m.group(0) if m else 'def preserve_apart(*a, **k): return 0', ns)
 recs = [{'OBJECTID': 3480, 'Unit_Nm': 'Wrangell-St. Elias National Park', 'Mang_Name': 'NPS', 'Loc_Nm': 'WRST'},

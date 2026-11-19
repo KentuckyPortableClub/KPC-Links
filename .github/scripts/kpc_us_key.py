@@ -1783,6 +1783,8 @@ def preserve_apart(st, parks, recs, on=None, P=None):
         keep, out = [], []
         for x in p.get('m') or []:
             if str(x[0]) in nps and not str(x[3]).startswith('reviewed') and KR.nps_part_clash(p.get('n') or '', x[1]):
+                if _kr('KPC_PRESERVE_WITH_PARK') and KR.pota_numbers_part(x[1], {r: q.get('n') or '' for r, q in parks.items()}, ref) is None:
+                    keep.append(x); continue   # R-PP1b (owner 19 Nov 1:32 PM): POTA has no number for this part: the park number keeps it
                 pp, g = pin(ref), nps[str(x[0])].get('_g')
                 own = KR.d9_winner(x[1], {r: q.get('n') or '' for r, q in parks.items() if r != ref})   # round 3: POTA has its own number for this part
                 if own is None and pp and g and rings(g) and inside(pp[0], pp[1], g):   # R-PP1a: POTA's own pin is in this record: it stays
@@ -1838,7 +1840,8 @@ def nps_code_joins(st, parks, recs, P, ovr=None, on=None):
             if owner in TRL: continue   # Sonnet's grade 17 Nov: a trail park is its official LINE (North Country Trail); a unit-code piece is not its outline
             if any(str(x[0]) == rid for x in p.get('m') or []): continue
             if rid in {str(y) for y in ov.get('no') or []} or _nf(nm) in {_nf(y) for y in ov.get('no') or []} or KR.is_no(ov, rid, nm, a.get('GIS_Acres')): continue
-            if KR.nps_part_clash(p.get('n') or '', nm):
+            if KR.nps_part_clash(p.get('n') or '', nm) and not (_kr('KPC_PRESERVE_WITH_PARK') and KR.pota_numbers_part(nm, {r: q.get('n') or '' for r, q in parks.items()}, owner) is None):
+                # R-PP1b (owner 19 Nov 1:32 PM): apart only where POTA numbers the other part itself (Denali has no preserve number: joined)
                 # Fable's last look (19 Nov): one code, a park and a preserve (Denali NP US-0022 took the 1,311,169-acre Denali National
                 # Preserve): a unit-code join never crosses park / preserve; the record goes to check
                 if not any(str(x[0]) == rid for x in p.get('c') or []):
