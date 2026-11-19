@@ -696,3 +696,25 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      release run. FOR FABLE'S SITTING: besides #278 round 2, the STOP list and T1 run 2, bring Brandon ways to make the per-state call
      easier or safer: what research, outside-agent passes or bots could settle the lost outlines (the Q1 pins, D4 lakes, contest
      parks) before or after the release, so his yes rests on more than the rules. Show him on his review page, not only in text.
+18. **HAND-OFF 03A CAME BACK + A HOST RULE THAT MAY BE WRONG (Opus, 19 Nov 9:10 AM; Brandon 9:07-9:08 AM: "my outside agents keep
+   thinking they was told not to use arcgis...they should check robot.txt" / "It maybe a rule on the repo that is wrong"). FOR FABLE'S SITTING.**
+   - **03A = KPC-Data draft PR #124** (the review packet bot, three files, not merged, never run). The agent could not fork and was told not
+     to run jobs on club repos, so it built AK, ID, CO offline from 8140d35 and ac2ab4c: scope 13 states, the same five parks, the R-PP1
+     notice lines word for word (Colorado's Great Sand Dunes line too), US-0665 verified -> flagged 22.7 km, US-0069 pin 0 -> 2.79 km, gold
+     the same both sides. Small differences left as they came: ID FAR_PIECE 12 vs our 13; gold missing pieces 20 vs our 19 of 65; a few
+     notice lines one sentence apart (likely shapely on its side: our hand files were built without it; section 14). Ten states not
+     built; part 2 (`run` mode) not added. **NO FORK NEEDED:** the hand-off's rule was "a club session reads it before it is merged or
+     started": a club session reads #124's code, then starts its acceptance run on KPC-Data itself (by hand, never red, writes only
+     tools-out `key-quality/review-packets/`) against #278 at ac2ab4c (still reachable by SHA). Then the agent adds part 2.
+   - **GREY AREA G-NET1, the host rules.** The bots' `kpc_net_guard.py` (KPC-Links + `kpc_master.NEVER_CONTACT`, `kpc_preflight.HOST`)
+     HARD-CODES: services*.arcgis.com, apps.fs.usda.gov, ncnhde.natureserve.org, Grant County NM: no request of any kind, robots.txt
+     included. Brandon told the outside agent (t245u, its NOTES item 6): "all old per-host bans dropped ... robots.txt is the only test".
+     What robots.txt says (agent, 19 Nov): services*.arcgis.com = "User-agent: * / Disallow: /" (so those stay off under either rule:
+     ArcGIS's own no, not ours; a person's browser download is the way); **ncnhde.natureserve.org ALLOWS (Crawl-delay 10)**: our ban is
+     stricter than its robots; apps.fs.usda.gov answers robots.txt with 403 (RFC 9309: a 4xx = no rules = allowed; the agent treated it
+     as blocked, but treated POTA's 403 as allowed: inconsistent). History: an Oct 31 test report (KPC-Data `draft/tools/kpc_parcels/
+     TEST_REPORT.md`) got a 403 from services*.arcgis.com robots for our UA and the layers opened; a later club rule read "a 403 counts
+     as a disallow", then the hard ban. Questions for Brandon: (1) bots too: robots.txt the ONLY test (drop the hard-coded list, keep
+     fail-closed when robots says no)? (2) a 4xx on robots.txt: allowed (the standard) or blocked (our old reading)? Recommended: (1) yes,
+     (2) allowed for 404, ask for 401/403. Only after the release sign-off: a host change reads layers anew and would change the shapes.
+     Hand-off 03B's README now says ArcGIS is not off limits; robots.txt is the only test.
