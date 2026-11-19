@@ -1169,3 +1169,22 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      Arkansas test build: exactly ONE park changes. For the Fable sitting with #286; R-PP1b packet run 44602628319 still running.
      **Fable starter:** "Read CLAUDE.md and key-quality.md section 19, items 33 and 34: review #286 and #287, Red Cliffs, the job-A
      disagreements, and make the release call under the owner's standing rule."
+35. **RED CLIFFS + LAUREL SETTLED FROM POTA'S OWN LINKS; R-PP1b PACKET; TWO OWNER POINTS (Opus, 19 Nov ~2:00-2:15 PM CST).**
+   - **Draft KPC-Links #288 (evidence batch 03b, saved answers only):** the owner read POTA's links himself (2:01 PM). US-6063 Red Cliffs
+     BLM RMA = BLM's Red Cliffs Recreation Area (campground site; POTA's pin; 872.88 GIS ac): join rma9123 + rst9123, NO the 61,251-ac
+     'Red Cliffs SRMA' (NCA-sized; POTA numbers the NCA, US-6077). US-12938 Laurel = DNREC's 'Laurel Complex' tracts: join all three
+     records (359 + 462 + 272). Test builds: DE only US-12938 changes (approximate -> official), UT only US-6063. So Utah and Delaware
+     have no open problem left once #288 is merged.
+   - **#286 R-PP1b packet run 44602628319 (green, `review-packets/pr-286-de445ba/`):** AK exactly US-0022, US-0026, US-0044, US-0048 gain
+     their preserve record; CO, ID 0; nothing verified lost or worse. **The gold score moves: US-0022 Denali = WRONG LAND** because the
+     gold answer was graded under the old reading ("Denali National Preserve is other land"). The owner's 1:32 PM ruling names Denali
+     among the park numbers whose POTA link is the combined unit. **FOR FABLE:** update the gold answer for US-0022 to the ruling (a
+     ruling changes the answer key, not the other way round), then stamp #286.
+   - **Owner 2:02 PM: "I think our bots and them gathering information for the ones our program dont solve from the beginning we have
+     way less issues".** Agreed: everything settled today (preserves, Red Cliffs, Laurel, Flathead, Custer Gallatin) came from reading the
+     park's OWN page (POTA's link) and the agency's own acres. Plan: the POTA-link reading step (item 33) runs FIRST for every park the
+     rules leave unsure, before any outline goes to a person; the agents only get what that step cannot read.
+   - **Owner 2:04 PM: "We should also only build keys if we have most of our layers so we dont rebuild over and over...I know we always
+     be missing some".** For Fable's fix plan (item 26): a layer-completeness gate before any key build: build a state only when its
+     layers are present and not short (the master check's short-copy test, the keeper's asks); otherwise wait and say which are missing.
+     The release run itself goes ahead on today's saved shapes (the fact check measured those).
