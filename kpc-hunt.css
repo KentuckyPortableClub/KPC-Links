@@ -1046,6 +1046,3 @@ main#hl[data-public="1"] .hl-ptabs.pub-tabs{display:flex!important}
 main#hl .hl-tick.tk-open{overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
 main#hl .hl-tick.tk-open::-webkit-scrollbar{display:none}
 main#hl .hl-tick .hl-tkmore{position:sticky;right:0;z-index:3}
-/* Nov 19 2026 (Brandon: 'a simple button at the top both pages'): 📻 RADIO, first thing on the Lounge pages */
-main#hl .hl-radiotop{display:flex;justify-content:flex-end;padding:10px 14px 0}
-main#hl .hl-radiotop .hl-btn{min-height:44px;font-size:16px;padding:8px 22px}

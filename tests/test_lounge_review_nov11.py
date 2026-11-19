@@ -55,7 +55,7 @@ check('<input id="lgSt"' in main and '<input id="fSt"' not in main and 'aria-lab
 # page versions bumped for every file changed
 for n in ('kpc-hunters.html', 'kpc-hunt.html'):
     for f in ('kpc-hunt.js', 'kpc-hunt-x.js', 'kpc-hunt.css', 'kpc-lounge-radio.js'):
-        check(('%s?v=%s' % (f, '20261118a' if f == 'kpc-hunt.js' else '20261119d' if f == 'kpc-hunt-x.js' else '20261119b' if f == 'kpc-lounge-radio.js' else '20261119b' if f == 'kpc-hunt.css' else '20261111r')) in PAGES[n], n + ' loads ' + f + ' with the new version')   # kpc-hunt.js: Nov 18 2026 stage 3
+        check(('%s?v=%s' % (f, '20261118a' if f == 'kpc-hunt.js' else '20261119d' if f == 'kpc-hunt-x.js' else '20261119b' if f == 'kpc-lounge-radio.js' else '20261119c' if f == 'kpc-hunt.css' else '20261111r')) in PAGES[n], n + ' loads ' + f + ' with the new version')   # kpc-hunt.js: Nov 18 2026 stage 3
 check('kpc-lounge.js?v=20261111r' in PAGES['kpc-activators-lounge.html'] and all('kpc-lounge-tabs.js?v=20261111r' in t for t in PAGES.values() if 'kpc-lounge-tabs.js' in t), 'activators lounge and tab strip versions bumped')
 # nothing in these files talks to a host the club never contacts, and no login is in them
 HOST = re.compile(r'services[0-9]*(-[a-z0-9]+)?\.arcgis\.com|apps\.fs\.usda\.gov|ncnhde\.natureserve\.org|33TOOklri9xpic7U')

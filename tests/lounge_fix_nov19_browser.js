@@ -30,14 +30,14 @@ const VIP = 'dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab';
     await P.evaluate(() => document.querySelector('#bfModal [data-mclose]').click()); await sleep(300);
     r = await P.evaluate(() => { const m = document.getElementById('bfModal'); return !m || getComputedStyle(m).display === 'none' || m.hidden; });
     ok(r, '✓ DONE closes them');
-    /* the radio: a plain 📻 RADIO button at the top */
+    /* the radio: 📻 RADIO with the hero's other buttons; both Lounges have the same RADIO CONTROL card */
     r = await P.evaluate(() => { const x = document.querySelector('[data-hxradio]'); if (!x) return null; const q = x.getBoundingClientRect(); return [x.offsetParent !== null, Math.round(q.top + scrollY)]; });
-    ok(r && r[0] && r[1] < 400, '📻 RADIO button at the top of the page (at ' + (r && r[1]) + ' px)');
+    ok(r && r[0] && r[1] < 1100 && await P.evaluate(() => !!document.querySelector('.hl-acts [data-hxradio]')), '📻 RADIO button in the hero buttons (at ' + (r && r[1]) + ' px)');
     await P.evaluate(() => document.querySelector('[data-hxradio]').click()); await sleep(900);
     r = await P.evaluate(() => { const card = document.getElementById('hlRadio'), pop = document.getElementById('hxPop');
       if (card && card.offsetParent !== null) { const q = card.getBoundingClientRect(); return 'card ' + Math.round(q.top) + ' ' + /CONNECT MY RADIO/.test(card.textContent); }
       return pop && !pop.hidden ? 'window ' + /MY RADIO/.test(pop.innerText) + ' ' + /BIG RADIO PAGE/.test(pop.innerText) : 'nothing'; });
-    ok(/^card -?\d+ true$/.test(r) && +r.split(' ')[1] < 600 || /^window true true$/.test(r), 'it goes to the radio set-up (' + r + ')');
+    ok(/^card -?\d+ true$/.test(r) && +r.split(' ')[1] < 600, 'it goes to the RADIO CONTROL card (' + r + ')');
     /* everything a member should find on the page */
     const has = await P.evaluate(() => ({ spots: !!document.querySelector('#hlList, .hl-list, [data-fopen]'), log: !!document.getElementById('dkForm'), gear: !!document.getElementById('hxGear'),
       ft8: [...document.querySelectorAll('[data-ft8open]')].some(x => x.offsetParent !== null), lr: !!document.getElementById('lrBox') || !!window.KPCLoungeRadio, onair: !!window.KPCOnAir || !!document.getElementById('kpcOnAirJs') || true,
