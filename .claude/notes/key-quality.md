@@ -1355,4 +1355,40 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      Fable chat: "Read CLAUDE.md and key-quality.md section 19 item 40: read the reviewer's report and turn it into an order of work."
    - Tagged in it as NOT re-checked today (from the 17-18 Nov notes): the PC push check, the waiting room's 497 files, the repo
      sizes, the name traps of the 18 Nov grade. The reviewer is asked to test them, and to list every place notes and code disagree.
+41. **THE PUBLIC MAP IS STILL THE 11 NOV RELEASE: "RELEASED" MEANT THE KEY, NOT THE MAP (Fable, 19 Nov 4:15-4:40 PM CST; Brandon 4:13 PM
+   sent Opus's report of items 36 + 39).**
+   - **OPUS'S REPORT, taken as read:** release run 44613348117: no state held, 11 let through by the named list, the 50 named parks
+     exactly; key saved 6e110a6c; red only on the outline master check (408 problems, 412 before). Packet run 44625389642 started
+     (old = c556310c). `states` emptied (5a702d3). Part 5 of hand-off 05 = KPC-Data #131, covers the three changes. Stopped at the
+     gate: no shapely / pyproj / fitz in the chat, installs blocked. His flag: "the US map's outline files weren't re-saved".
+   - **WHAT FABLE FOUND BEHIND THAT FLAG (checked in the repo):** the public pages read `data/released/` ONLY
+     (`data/released/RELEASED.json`, written only by `kpc_release.py`; `kpc-bounds.js` draws a US park from the released copy of
+     `data/outlines/US-XX.geojson.gz`). **The by-hand Release (`kpc-release.yml`) last ran for the US on 11 Nov 22:10 UTC (from
+     addf5c4e), CA and KY on 12 Nov. Nothing since.** The working outline files `data/outlines/US-XX` were also last written 11 Nov
+     (store mode, 15 Nov, skips the key run's outline step). So every key change of 12-19 Nov is in the working key only.
+   - **Examples (released copy against today's working key):** US-12918 Seven Sisters: on the map with the 1,554-ac WMA records; key
+     today = the 8-ac fishing access site. US-4502 Flathead and US-4501 Custer Gallatin: on the map with the state copy. US-12938
+     Laurel: map approximate 1,093 ac, key official 1,378. Montana 50 of 254 parks differ, Delaware 29 of 89.
+   - **CORRECTION TO ITEM 36 (Fable's own):** "ALL 11 RELEASED" = their keys were saved to main. "Wrong land ... 9 on today's map ->
+     0 after this release" was WRONG as written: the map did not change. Fable did not check what the map reads. Told to Brandon.
+   - **THE RELEASE'S OWN CONDITIONS:** only Brandon's login may start it; a commit on main; per area; green, no worse than live, and
+     RELEASE-READY: YES in a Quality verdicts file (`data/status/quality/verdicts.json` is NOT on main; Quality is retired).
+   - **ORDER FOR OPUS** (starter: "Read CLAUDE.md and key-quality.md section 19 items 39 and 41: do item 41's order"):
+     (a) read packet run 44625389642 once (item 36 b); (b) FIND AND SAY, five lines, no fix yet: which job writes
+     `data/outlines/US-XX` in store mode (kpc-us-key.yml's master steps, or the keeper's display copy), why the key run skips it,
+     and the master check's 408 problems by kind (are they key-against-outline disagreements?); what `kpc_release.py` wants in a
+     verdicts file; (c) ONE run that brings the working outline files in line with the saved key, all states, working files only
+     (a change that moves a rules hash = draft PR to Fable first); (d) ONE packet-bot run, mode `run`, OLD = the RELEASED files
+     (commit addf5c4e, what the public sees), NEW = today's key + the rebuilt outlines: per state outlines lost / gained / shrunk
+     20%+, flagged and verified before and after, to tools-out `key-quality/2026-11-19/public-vs-working/`; (e) then stop: Fable
+     reads (d) in one sitting and writes the verdicts (YES / HOLD per state, with the reason); (f) Brandon's GO, and HE starts
+     "Release map files (by hand)": Opus gives him the three values (area, areas, source_sha). Nothing public changes before (f).
+   - **HAND-OFF 05, after Opus's stop:** do the line reads now (`kpc_park_pages_rules.py` against R-PR1 to R-PR13, part 2's 132
+     deleted lines): they need no gate. THE GATE RUNS ON GITHUB, never in a chat: look at KPC-Data `kpc-tool-tests.yml`; if it
+     cannot run `kpc_full_suite.py` on a branch with both checkouts, a by-hand, never-red gate workflow is a small club build
+     (every later hand-off needs it too). Brandon changes no setting. The `settle()` kind gap (a bot could say "person") is NOT a
+     merge blocker: when the club wires its bots, add a repo test that no bot script passes kind person / reviewer.
+   - **STANDING FIX (for the readiness board, hand-off 07 idea 4):** every day one line per state: key saved <date>, outlines
+     written <date>, public Release <date>. A gap between the three is shown, never found by accident.
+   - Hand-off 07 has this as stage C2 and as its first known issue (tools-out 852f13d).
 
