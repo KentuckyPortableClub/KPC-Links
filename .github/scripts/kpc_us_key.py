@@ -1753,22 +1753,36 @@ def _nps_code(name):
 
 
 PRESERVE_HIT = []   # R-PP1: [state, park, record id, record name] for the run's notice
-def preserve_apart(st, parks, recs, on=None):
+PRESERVE_ASK = []   # R-PP1a: [state, park, record id, record name] kept because POTA's own pin is inside: a person's question
+def preserve_apart(st, parks, recs, on=None, P=None):
     """R-PP1 (Fable 19 Nov; key-quality.md section 19 items 4 + 10, switch KPC_PRESERVE_APART): a park number does NOT cover the
     national preserve beside it unless POTA's own name for that number says so. POTA numbers park and preserve apart where it
     wants them (Glacier Bay US-12607 + US-0029, Aniakchak US-0902 + US-0003, Great Sand Dunes US-0033 + US-8295), so a Park
     Service record named Preserve that the NAME rules gave to a park-only number (Wrangell-St. Elias US-0069, Katmai US-0044,
     Lake Clark US-0048, Gates of the Arctic US-0026, Craters of the Moon NM US-0665), or a park / monument record given to a
     preserve-only number, goes to check. A person's join ('reviewed...') stands: a saved answer with POTA's page as evidence
-    flips it. Combined 'Park & Preserve' names are both (KR.nps_part_clash). Changes `parks` in place; returns rows moved."""
+    flips it. Combined 'Park & Preserve' names are both (KR.nps_part_clash). R-PP1a (Fable 19 Nov, owner 8:13 AM '1 yes for now'):
+    a row whose record holds POTA's OWN PIN for that number stays where it is (the pin is POTA's own statement of where the park
+    is) and is listed once in the run's notice as a person's question (Wrangell-St. Elias US-0069, Craters of the Moon US-0665).
+    Changes `parks` in place; returns rows moved."""
     if on is None: on = _kr('KPC_PRESERVE_APART')
     if not on or KR is None: return 0
-    nps = {_oid(a) for a in recs if KR.nps_record_code(a) or str(a.get('Mang_Name') or '') == 'NPS'}
+    nps = {_oid(a): a for a in recs if KR.nps_record_code(a) or str(a.get('Mang_Name') or '') == 'NPS'}
+    P = P_ALL if P is None else P
+    def pin(ref):   # POTA's own pin; none for a missing or 0,0 pin
+        r_ = P.get(ref) or []
+        try: la_, lo_ = float(r_[5]), float(r_[6])
+        except (IndexError, TypeError, ValueError): return None
+        return None if (la_ == 0 and lo_ == 0) else (la_, lo_)
     n = 0
     for ref, p in parks.items():
         keep, out = [], []
         for x in p.get('m') or []:
-            if str(x[0]) in nps and not str(x[3]).startswith('reviewed') and KR.nps_part_clash(p.get('n') or '', x[1]): out.append(x)
+            if str(x[0]) in nps and not str(x[3]).startswith('reviewed') and KR.nps_part_clash(p.get('n') or '', x[1]):
+                pp, g = pin(ref), nps[str(x[0])].get('_g')
+                if pp and g and rings(g) and inside(pp[0], pp[1], g):   # R-PP1a: POTA's own pin is in this record: it stays
+                    keep.append(x); PRESERVE_ASK.append([st, ref, str(x[0]), x[1]])
+                else: out.append(x)
             else: keep.append(x)
         if not out: continue
         p['m'] = keep
@@ -2301,7 +2315,12 @@ def run(st):
     # Oct 29 (chat 8, 'wrong joins solved'): a record joined to two or more parks by NAME alone (Robert Moses Long Island +
     # Thousand Islands, NY county forests) stays only with the parks it is NEAR: a claim from a park whose pin is more than
     # 15 km from the record is dropped when another park's pin sits within 2 km of it. Hand joins ('reviewed') are never dropped.
-    if preserve_apart(st, parks, recs):   # R-PP1 (Fable 19 Nov): a park number does not cover the preserve beside it
+    _pa = preserve_apart(st, parks, recs, P=P)   # R-PP1 (Fable 19 Nov): a park number does not cover the preserve beside it
+    _pq = [h for h in PRESERVE_ASK if h[0] == st]
+    if _pq:   # R-PP1a: kept because POTA's own pin is inside the record; named once as a person's question
+        notice(f'US key {st}', "R-PP1a park and preserve, a person's question (POTA's own pin is inside, so the record stays until POTA answers): "
+               + ', '.join(f'{h[1]} {h[3]}' for h in _pq[:12]))
+    if _pa:
         _ph = [h for h in PRESERVE_HIT if h[0] == st]
         _still = {str(x[0]) for p_ in parks.values() for x in p_.get('m') or []}
         for x in list(used):
