@@ -1076,3 +1076,9 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      anything outside goes to Fable. That table is what the yes for the six waiting states rests on.
    - A yes for some states needs no extra run when the next key start rebuilds them anyway: Opus writes the list for the states he
      names (`approve`, his words as decided_by) and checks which start will build them; else ONE by-hand run.
+29. **BRANDON HOLDS ALL 11 STATES (Fable, 19 Nov 12:01 PM CST; Brandon 12:00 PM: "I am waiting till we have more info better to be right
+   then wrong back to opus now").** No state is named, no list is written, no release run, the four "ready" states included. The
+   guard holds all 11 by park and Montana by STOP, so nothing can slip. His yes comes after hand-off 04's job F table is back from
+   two agreeing passes. **OPUS'S ORDER (fresh chat: "Read CLAUDE.md and key-quality.md section 19, do item 27's order with item 28's
+   job F first"):** (a) hand-off 04, job F first, zip to Brandon; (b) read and merge #284; (c) R-FJ1's PR, ONE packet run MT, stamp,
+   merge, MT off `stop`. Then wait: nothing is released without his word per state.
