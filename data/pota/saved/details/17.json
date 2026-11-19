@@ -1,0 +1,38 @@
+{
+"US-13668":{
+"data":{
+"accessMethods":"Automobile,Foot",
+"accessibility":null,
+"activationMethods":"Automobile,Pedestrian",
+"active":1,
+"agencies":null,
+"agencyURLs":null,
+"createdByAdmin":"Steven Veci",
+"entityDeleted":0,
+"entityId":291,
+"entityName":"United States of America",
+"firstActivationDate":"2026-11-18",
+"firstActivator":"KC3CIL",
+"firstHuntDate":"2026-11-18",
+"firstHunter":"KO4TUP",
+"grid4":"FN41",
+"grid6":"FN41ct",
+"latitude":41.8324,
+"locationDesc":"US-CT",
+"locationName":"Connecticut",
+"longitude":-71.811,
+"name":"Quanduck Brook",
+"parkComments":"Opened 11/16/2026. Hunting in the WMA. Obey all postings. Check both deep maps for parking and locations not to park. Park lot 711 Bailey Hill Road, Killingly.",
+"parkId":150656,
+"parkURLs":null,
+"parktypeDesc":"Wildlife Management Area",
+"parktypeId":123,
+"reference":"US-13668",
+"referencePrefix":"US",
+"sensitivity":null,
+"uniqueHunters":51,
+"website":"https://portal.ct.gov/deep/wildlife/wildlife-mangement-areas/quanduck-brook-wma?fbclid=IwY2xjawVoajZleHRuA2FlbQIxMABwZG9mAWJyaWQRMWk0MWZnOFVEdVJpNWxJR3BzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEfCr9cKSqVkzJL26oF48ynukB47gNq-y8hdE4BH_N-qXUovfslMRSnkO89tLI_ae"
+},
+"saved":1795080426
+}
+}

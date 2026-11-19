@@ -1,0 +1,34 @@
+{
+"US-13669":{
+"data":{
+"accessMethods":"Automobile,Foot",
+"accessibility":null,
+"activationMethods":"Automobile,Pedestrian",
+"active":1,
+"agencies":null,
+"agencyURLs":null,
+"createdByAdmin":"Tracy Lenocker",
+"entityDeleted":0,
+"entityId":291,
+"entityName":"United States of America",
+"grid4":"CN80",
+"grid6":"CN80sl",
+"latitude":40.4938,
+"locationDesc":"US-CA",
+"locationName":"California",
+"longitude":-122.467,
+"name":"Clear Creek Greenway",
+"parkComments":"",
+"parkId":150657,
+"parkURLs":null,
+"parktypeDesc":"BLM Recreation Management Area",
+"parktypeId":224,
+"reference":"US-13669",
+"referencePrefix":"US",
+"sensitivity":null,
+"uniqueHunters":0,
+"website":"https://www.blm.gov/visit/clear-creek-greenway"
+},
+"saved":1795080424
+}
+}
