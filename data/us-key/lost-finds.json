@@ -1,5 +1,5 @@
 {
- "made": "2026-11-19 17:15 UTC",
+ "made": "2026-11-19 19:48 UTC",
  "counts": {
   "A_decided_not_in_key": 148,
   "B_sure_area_not_asked": 13,
@@ -751,14 +751,14 @@
   ],
   [
    "US-4263",
-   "MI",
+   "WI",
    "Piers Gorge Unit of Menominee River State Recreation Area",
    "join",
    "k (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 354 m from the edge, 164.1 ac; a piece where the park is bigger)"
   ],
   [
    "US-4264",
-   "MI",
+   "WI",
    "Quiver Falls Unit of Menominee River State Recreation Area",
    "join",
    "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
@@ -1182,7 +1182,7 @@
   ],
   [
    "US-10421",
-   "WA",
+   "ID",
    "International Selkirk Loop National Scenic Byway National Parkway",
    "International Selkirk Loop",
    "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/107"
@@ -1231,7 +1231,7 @@
   ],
   [
    "US-8014",
-   "NH",
+   "MA",
    "Nashua, Squannacook, and Nissitissit National Wild and Scenic River",
    "Nashua,Squannacook,and Nissitissit Wild and Scenic Rivers",
    "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
