@@ -298,11 +298,16 @@
   const wf = $('f8Wf'), sc = $('f8Scale'); let wfRow = null, lastSlotLine = 0;
   let F0 = 100, F1 = 3100;
   function wfRange() { DGON = isDG(); if (S.mode === 'CW') { F0 = 200; F1 = 1400; } else if (isDG() && DG()) { [F0, F1] = DG().range(); } else { F0 = 100; F1 = 3100; } }
-  function wfSize() { const w = Math.max(300, Math.round(wf.clientWidth || 600)); if (wf.width !== w) { wf.width = w; sc.width = w; drawScale(); } }
+  /* Nov 18 2026 (Brandon: 'not very sharp'): on a hi-res screen (Windows scaling 125 % and up, phones) the waterfall is drawn with 2 dots
+     for every screen point, so it is sharp instead of stretched; the scale under it stays at screen points (its text keeps its size) */
+  const WFR = () => (window.devicePixelRatio || 1) >= 1.25 ? 2 : 1;
+  function wfSize() { const cw = Math.max(300, Math.round(wf.clientWidth || 600)), R = WFR(), w = cw * R, h = Math.round((wf.clientHeight || 150) * R);
+    if (wf.width !== w || wf.height !== h) { wf.width = w; wf.height = h; sc.width = cw; drawScale(); } }
   const hzToX = hz => (hz - F0) / (F1 - F0) * wf.width;
   const xToHz = x => Math.round(F0 + x / wf.width * (F1 - F0));
   function drawScale() {
-    const g = sc.getContext('2d'); g.clearRect(0, 0, sc.width, sc.height); g.fillStyle = '#0b0805'; g.fillRect(0, 0, sc.width, sc.height);
+    const g = sc.getContext('2d'), hzToX = hz => (hz - F0) / (F1 - F0) * sc.width;   /* the scale has its own width (see wfSize) */
+    g.clearRect(0, 0, sc.width, sc.height); g.fillStyle = '#0b0805'; g.fillRect(0, 0, sc.width, sc.height);
     g.fillStyle = '#c9b48a'; g.font = '10px monospace'; g.strokeStyle = '#6b5a3a';
     for (let hz = Math.ceil(F0 / (F1 - F0 > 1500 ? 500 : 200)) * (F1 - F0 > 1500 ? 500 : 200); hz < F1; hz += F1 - F0 > 1500 ? 500 : 200) { if (hz <= F0) continue; const x = hzToX(hz); g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 5); g.stroke(); g.fillText(String(hz), x - 12, 15); }
     const mark = (hz, c, w) => { const x = hzToX(hz), bw = (S.mode === 'FT4' ? 83 : 50) / (F1 - F0) * sc.width; g.fillStyle = c; g.fillRect(x, 0, Math.max(2, bw), w); };
@@ -318,12 +323,14 @@
     wfSize(); const g = wf.getContext('2d'), W = wf.width, H = wf.height;
     const n = AN.frequencyBinCount, d = new Float32Array(n); AN.getFloatFrequencyData(d);
     const binHz = AC.sampleRate / AN.fftSize, row = g.createImageData(W, 1), vals = new Float32Array(W);
-    for (let x = 0; x < W; x++) { const hz = xToHz(x), b = Math.min(n - 1, Math.round(hz / binHz)); vals[x] = d[b]; }
+    /* Nov 18 2026 (Brandon: the waterfall is far too blocky on a wide PC screen): each pixel blends the two nearest FFT steps instead of
+       repeating one, so a signal is a smooth line, not a row of blocks (display only) */
+    for (let x = 0; x < W; x++) { const fb = (F0 + x / W * (F1 - F0)) / binHz, b0 = Math.max(0, Math.min(n - 2, Math.floor(fb))), k = Math.max(0, Math.min(1, fb - b0)); vals[x] = d[b0] * (1 - k) + d[b0 + 1] * k; }
     const sorted = Array.from(vals).sort((a, b) => a - b), med = sorted[Math.floor(W * 0.4)] || -100;
     for (let x = 0; x < W; x++) { const [r, gg, b] = COL((vals[x] - med + 2 + (+S.wfB || 0) / 10) / (26 * Math.pow(2, -(+S.wfC || 0) / 50))); row.data[x * 4] = r; row.data[x * 4 + 1] = gg; row.data[x * 4 + 2] = b; row.data[x * 4 + 3] = 255; }
-    g.drawImage(wf, 0, 0, W, H - 1, 0, 1, W, H - 1); g.putImageData(row, 0, 0);
+    const R = WFR(); g.drawImage(wf, 0, 0, W, H - R, 0, R, W, H - R); for (let i = 0; i < R; i++) g.putImageData(row, 0, i);   /* R rows a step: same scroll speed on every screen */
     lastVals = vals; if (isFT()) { if (!avgV || avgV.length !== W) avgV = Float32Array.from(vals); else for (let x = 0; x < W; x++) avgV[x] = avgV[x] * 0.9 + vals[x] * 0.1; }
-    if (S.mode === 'CW') { cwWf(vals); } else if (isDG() && DG()) DG().wf(vals); const sl = Math.floor(nowS() / slotLen()); if (isFT() && sl !== lastSlotLine) { lastSlotLine = sl; g.fillStyle = 'rgba(240,201,107,.75)'; g.fillRect(0, 0, W, 1); g.font = '10px monospace'; g.fillText(utc(sl * slotLen(), true), 4, 11); }
+    if (S.mode === 'CW') { cwWf(vals); } else if (isDG() && DG()) DG().wf(vals); const sl = Math.floor(nowS() / slotLen()); if (isFT() && sl !== lastSlotLine) { lastSlotLine = sl; g.fillStyle = 'rgba(240,201,107,.75)'; g.fillRect(0, 0, W, WFR()); g.font = (10 * WFR()) + 'px monospace'; g.fillText(utc(sl * slotLen(), true), 4 * WFR(), 11 * WFR()); }
     /* level meter (dB above full-scale silence) */
     const db = peak > 0 ? 20 * Math.log10(peak) + 90 : 0; $('f8Lvl').style.width = Math.max(0, Math.min(100, db)) + '%'; $('f8Lvl').className = db < 20 || db > 80 ? 'bad' : '';
     topLvl(peak > 0 ? 20 * Math.log10(peak) : -99);
