@@ -23,6 +23,7 @@
 .github/scripts/kpc_fers.py text eol=lf
 .github/scripts/kpc_fers_age.py text eol=lf
 .github/scripts/kpc_fers_switches.py text eol=lf
+.github/scripts/kpc_fers_not_sure.py text eol=lf
 .github/scripts/kpc_fers_count.py text eol=lf
 .github/scripts/kpc_fers_guard.py text eol=lf
 .github/scripts/kpc_fers_key_status.py text eol=lf

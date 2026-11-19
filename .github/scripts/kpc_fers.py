@@ -4464,6 +4464,41 @@ def write_receipt(counts, parks, G, bad, rules, refs=None, stopped='', note=''):
         print(f'::warning title=2-fer receipt::not written: {str(e)[:120]}', flush=True)
 
 
+def _write_not_sure(out, parks, names_pin):
+    """Hand-off 06 part 3. The bot's own doubts, beside the report. A withheld park is never in it.
+    It does not settle anything and it is not read back."""
+    import kpc_fers_not_sure as NS
+    KS = sys.modules.get('kpc_fers_store')
+    held = set(KS.withheld_refs()) if KS is not None and getattr(KS, 'STORE_ON', False) and callable(getattr(KS, 'withheld_refs', None)) else set()
+    try:
+        tw = set(tripwire_parks())
+    except Exception:
+        tw = set()
+    names = {}
+    for ref, pin in (names_pin or {}).items():
+        if isinstance(pin, (list, tuple)) and pin:
+            names[ref] = str(pin[0])
+    spots = {}
+    d = pathlib.Path(out)
+    if d.is_dir():
+        for f in sorted(d.glob('*.json')):
+            if not re.fullmatch(r'(US|CA|W)-[A-Z]{2}', f.stem):
+                continue
+            try:
+                doc = json.loads(f.read_text(encoding='utf-8'))
+            except (OSError, ValueError):
+                continue
+            if isinstance(doc, dict):
+                spots[doc.get('st') or f.stem] = doc.get('spots') or []
+    got = NS.rows_from(spots, parks, names, summary_only, held, tw)
+    tag = RUN_TAG or area_name()
+    path = d / f'not-sure-rows-{tag}.json'
+    if KS is not None and getattr(KS, 'STORE_ON', False) and callable(getattr(KS, 'guard_write', None)):
+        KS.guard_write(path, got)   # the same write guard as every other 2-fer file; a withheld park stops the run
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(NS.dumps(got), encoding='utf-8')
+
+
 def main():
     if HARD_END: _arm()   # Nov 9 PM: the step's hard end is armed from the start (exit 3 = red, never a silent time-out)
     if str(os.environ.get('KPC_FERS_FROM_STORE') or '').strip().lower() in ('1', 'on', 'yes', 'true'):   # KPC owner, 2026-11-15: outlines from the
@@ -5185,6 +5220,12 @@ def main():
     if LOG: notice('2-fer bot problems', f'pass {PASS}: {len(LOG)} · ' + ' | '.join(dict.fromkeys(l[:90] for l in LOG))[:700])   # ONE line: GitHub keeps only 10 notes a step
     mark('report')
     _L = locals()
+    try:
+        _write_not_sure(OUT, _L.get('parks') or {}, PIN)
+    except SystemExit:
+        raise
+    except Exception as e:  # noqa: BLE001
+        notice('2-fer bot', f'the not-sure list was not written: {type(e).__name__}: {str(e)[:160]}')
     write_receipt(counts, _L.get('parks') or {}, _L.get('G') or {}, _L.get('bad') or set(), rep.get('fers_rules'),
                   refs=None if PASS == 1 else (_L.get('refs') or []))
     if PASS == 1 and EMPTY_AREAS:

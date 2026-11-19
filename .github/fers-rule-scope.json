@@ -369,6 +369,15 @@
       },
       "scope_note": "US-MATH-GUARD is not a park. No pair is retested. The fixture's fingerprint and this entry's fingerprint are the same. Refreshing the fixture alone does not pass.",
       "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-not-sure-rows",
+      "when": "2026-11-19",
+      "from": "1cc599edb3dc",
+      "why": "Hand-off 06 part 3. At the end of a run the 2-fer bot writes not-sure-rows-<tag>.json beside its report: its own doubts only, in the shared list's shape. A summary-map park wants an official layer. A park in a pair that is not sure near a size line wants a map and a person. A tripwire park is left to the tripwire bot. A withheld park is never named. The bot does not settle a row, does not read the list back, and does not hold a pair because of it.",
+      "scope": "none",
+      "scope_note": "No pair is remeasured and no row is labelled differently. The new file is a report.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
     }
   ]
 }
