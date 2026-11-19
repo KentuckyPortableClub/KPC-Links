@@ -1,8 +1,8 @@
 {
- "made": "2026-11-19 14:02 UTC",
+ "made": "2026-11-19 17:15 UTC",
  "counts": {
-  "A_decided_not_in_key": 155,
-  "B_sure_area_not_asked": 14,
+  "A_decided_not_in_key": 148,
+  "B_sure_area_not_asked": 13,
   "C_sure_line_not_drawn": 15
  },
  "about": "LOST FINDS CHECK (chat 2, Nov 1 2026; Brandon 1:40 PM: 'there is a flaw in our system when we are finding stuff but it never makes",
@@ -57,13 +57,6 @@
    "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
-   "US-10021",
-   "OR",
-   "Topsy BLM Recreation Management Area",
-   "join",
-   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
-  ],
-  [
    "US-10179",
    "IN",
    "Ten O' Clock Line State Nature Preserve",
@@ -111,13 +104,6 @@
    "Lake Abert and Abert Rim BLM Wilderness Area",
    "join",
    "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
-  ],
-  [
-   "US-10524",
-   "MT",
-   "Acton (BLM) Recreation Site",
-   "join",
-   "fferent shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 13:05: layers row YES 'Acton Recreation Area' (chat 11; applied by kpc_key_answers)"
   ],
   [
    "US-10528",
@@ -176,25 +162,11 @@
    "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
-   "US-10657",
-   "ID",
-   "Milner Historic Recreation Area BLM Historic Area",
-   "join",
-   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
-  ],
-  [
    "US-10661",
    "IL",
    "Oakwood Bottoms USFS Recreation Area",
    "alias",
    " that exact name AND the POTA pin is inside it · 2026-10-29 23:15: gis-hunter row NO 'Shawnee National Forest' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
-  ],
-  [
-   "US-10695",
-   "WA",
-   "Coffeepot Lake Nature Recreation Area",
-   "join",
-   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-10788",
@@ -335,20 +307,6 @@
    "Blackwell School National Park",
    "join",
    "Brandon t938u recheck, verified on saved/official data): NPS Admin Boundaries (hand copy, BLSC): pin 0.013 km; name fits (NPS unit name vs POTA \"National Park\")"
-  ],
-  [
-   "US-11992",
-   "NJ",
-   "Whiting State Conservation Area",
-   "join",
-   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
-  ],
-  [
-   "US-12064",
-   "TN",
-   "Henderson Swamp State Wilderness Area",
-   "join",
-   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-1208",
@@ -538,13 +496,6 @@
    "Lynn Shores/Nahant Beach State Reserve",
    "alias",
    "Oct 29 5:20 AM: clue search, chat 2 + chat 8 agree (the state layer's own name within 3 km; joins only with the POTA pin inside)"
-  ],
-  [
-   "US-2644",
-   "NH",
-   "Cardigan Mountain State Park",
-   "join",
-   "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
   ],
   [
    "US-3109",
@@ -800,14 +751,14 @@
   ],
   [
    "US-4263",
-   "WI",
+   "MI",
    "Piers Gorge Unit of Menominee River State Recreation Area",
    "join",
    "k (hand review Oct 22 (waiting list)) · Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 354 m from the edge, 164.1 ac; a piece where the park is bigger)"
   ],
   [
    "US-4264",
-   "WI",
+   "MI",
    "Quiver Falls Unit of Menominee River State Recreation Area",
    "join",
    "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
@@ -1102,13 +1053,6 @@
    "https://services1.arcgis.com/fBc8EJBxQRMcHlei/ArcGIS/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2"
   ],
   [
-   "US-10524",
-   "MT",
-   "Acton (BLM) Recreation Site",
-   "Acton Recreation Area",
-   "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2"
-  ],
-  [
    "US-1080",
    "AR",
    "DeGray Lake Resort State Park",
@@ -1238,7 +1182,7 @@
   ],
   [
    "US-10421",
-   "ID",
+   "WA",
    "International Selkirk Loop National Scenic Byway National Parkway",
    "International Selkirk Loop",
    "https://geo.dot.gov/server/rest/services/US_Scenic_Byways/MapServer/107"
@@ -1287,7 +1231,7 @@
   ],
   [
    "US-8014",
-   "MA",
+   "NH",
    "Nashua, Squannacook, and Nissitissit National Wild and Scenic River",
    "Nashua,Squannacook,and Nissitissit Wild and Scenic Rivers",
    "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0"
