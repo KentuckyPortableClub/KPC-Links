@@ -318,7 +318,9 @@
     wfSize(); const g = wf.getContext('2d'), W = wf.width, H = wf.height;
     const n = AN.frequencyBinCount, d = new Float32Array(n); AN.getFloatFrequencyData(d);
     const binHz = AC.sampleRate / AN.fftSize, row = g.createImageData(W, 1), vals = new Float32Array(W);
-    for (let x = 0; x < W; x++) { const hz = xToHz(x), b = Math.min(n - 1, Math.round(hz / binHz)); vals[x] = d[b]; }
+    /* Nov 18 2026 (Brandon: the waterfall is far too blocky on a wide PC screen): each pixel blends the two nearest FFT steps instead of
+       repeating one, so a signal is a smooth line, not a row of blocks (display only) */
+    for (let x = 0; x < W; x++) { const fb = (F0 + x / W * (F1 - F0)) / binHz, b0 = Math.max(0, Math.min(n - 2, Math.floor(fb))), k = Math.max(0, Math.min(1, fb - b0)); vals[x] = d[b0] * (1 - k) + d[b0 + 1] * k; }
     const sorted = Array.from(vals).sort((a, b) => a - b), med = sorted[Math.floor(W * 0.4)] || -100;
     for (let x = 0; x < W; x++) { const [r, gg, b] = COL((vals[x] - med + 2 + (+S.wfB || 0) / 10) / (26 * Math.pow(2, -(+S.wfC || 0) / 50))); row.data[x * 4] = r; row.data[x * 4 + 1] = gg; row.data[x * 4 + 2] = b; row.data[x * 4 + 3] = 255; }
     g.drawImage(wf, 0, 0, W, H - 1, 0, 1, W, H - 1); g.putImageData(row, 0, 0);

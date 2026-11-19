@@ -20,7 +20,7 @@ html.f8-open,html.f8-open body{overflow:hidden}
 .f8-startbox[hidden]{display:none}
 .f8-go{padding:12px 18px;border-radius:999px;border:0;background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05;font-weight:900!important;letter-spacing:.5px}
 .f8-wfw{margin-top:8px;border-radius:8px;overflow:hidden;border:1px solid #2a313b;background:#000}
-.f8-wfw canvas{display:block;width:100%}#f8Wf{height:150px;cursor:crosshair;image-rendering:pixelated}#f8Scale{height:18px}
+.f8-wfw canvas{display:block;width:100%}#f8Wf{height:150px;cursor:crosshair}#f8Scale{height:18px}
 .f8-lists{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 .f8-lists h3{margin:0;padding:5px 8px;font:900 11px Arial;letter-spacing:1.2px;color:#f6d58a;background:#14171c;border:1px solid #2a313b;border-bottom:0;border-radius:8px 8px 0 0}
 .f8-lists h3 small{color:#9aa3ad;font-weight:700;letter-spacing:.3px;margin-left:6px}
