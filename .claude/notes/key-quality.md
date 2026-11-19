@@ -1082,3 +1082,21 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    two agreeing passes. **OPUS'S ORDER (fresh chat: "Read CLAUDE.md and key-quality.md section 19, do item 27's order with item 28's
    job F first"):** (a) hand-off 04, job F first, zip to Brandon; (b) read and merge #284; (c) R-FJ1's PR, ONE packet run MT, stamp,
    merge, MT off `stop`. Then wait: nothing is released without his word per state.
+30. **OPUS, ITEM 27's ORDER (19 Nov ~12:05-12:25 PM CST; "Read CLAUDE.md and key-quality.md section 19, do item 27's order", job F first per item 29).**
+   - **(b) #284 Flathead NF MERGED** (6efe1d7b, squash). Read against today's main: only US-4502 differs; saved-answer tests pass.
+   - **(c) R-FJ1 = draft KPC-Links #285** (prep/r-fj1-far-join; US ee2b6f1e9673 -> **c82bdade8675**). `KR.far_join_ok` (rules file) +
+     the saved-join loop: an id in `join` AND `far`, decided_by + evidence (who, source, saw, date), fingerprint still fits = joins past
+     the 0.6 degree box; never by name, never a re-found id, never `approx`, never past a NO; misfit = check row; no evidence = warning.
+     Switch KPC_FAR_JOIN (default ON). US-4501's answer: join + far 2660, fp, evidence (b913a01's text), decided_by with the owner's
+     11:49 words. Montana test build (re-match mode, main with #284): ONLY US-4501 changes (2652 name + 2660 reviewed; sgmtd1213 still on
+     check); switch OFF = 0 parks. Test `test_r_fj1_far_join_nov19.py` ALL PASS (the six examples, the join path, NO wins, name never
+     far, scope, changelog); R-PP1 test ALL PASS; preflight: the known master check only. **ONE packet run 44584564753** (KPC-Data,
+     pr 285, states MT), started 18:08 UTC. **NEXT:** read `tools-out key-quality/review-packets/pr-285-*/summary.md` once: parks changed
+     must be US-4501 only (record 2660 gained). If so: changelog "Reviewed: Fable, 2026-11-19 (stamp agreed ahead, item 26)", ready,
+     squash merge, then delete `MT` from `stop` in `.github/key-drop-approved.json` (Montana then waits for his yes like the others).
+   - **(a) HAND-OFF 04 DONE, zips sent to Brandon** (tools-out `key-quality/2026-11-19/handoff-04/`, README there). Two blind kits
+     (pass 1, pass 2: same rows, different order, item numbers and plants; key in `kit-keys/`, never to an agent). Jobs, F first: F 36
+     (27 no-figure shrinks + 9 refuges by kind; replaces item 27's D), A 34 (saved NOs on the park's own name, blind), C 5 (state-copy
+     parks), E 25 (busiest new pins of the 11 waiting states), B 7 (second witness, Forest Service acres). Plants: Timucuan / Tallgrass,
+     Flathead 2658 (YES) / Tillamook 241270 (NO-PART), MassGIS Great Brook Farm / Arkansas State Parks Mount Magazine, Cardigan / Hobbs.
+     Scoring: plants first, a row counts where both passes agree, job F's 0.8x-1.25x rule (item 28), disagreements to Fable.
