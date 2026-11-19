@@ -103,6 +103,10 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           natural rarities but no national park; ON also reads MapServer/93 of the same service (the areas layer:
                           Galichica, Mavrovo, Pelister), code only, no data file. A record whose own Prot_Stat says 'proposed' never
                           gives official land: it leaves 'm' and is listed for a person in 'c'. OFF.
+  KPC_APPROX_PIN       1  (Q1, KPC owner 18 Nov 5:48 AM: 'Yes to 1-3'; reading 1:45 PM; key-quality.md sections 11 step 1 and 14)
+                          the rows that rest on an approximate saved answer ('reviewed-approx': the closest official land, bigger
+                          or another shape) go to check until a person verifies an outline with evidence; every other row stays.
+                          A park left with nothing is pin only and its last outline is never kept. ON for the US key (default).
   (no switch)             RULE 18 TRACT EXCEPTION (Brandon, Nov 2 8:38 PM CST): when an official source (NPS, PAD-US) shows one
                           park as separate TRACTS and POTA lists each tract as its own park, each POTA park gets its own tract
                           of that record, never the whole. Only for parks a person reviewed (TRACT_SPLITS below, or a 'tract'
@@ -115,7 +119,8 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
-            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0'}
+            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0',
+            'KPC_APPROX_PIN': '1'}
 
 
 # Reviewer B #7 (KPC owner, 2026-11-17): the switches live in .github/key-switches.json (a US rule file, sliced per area), so a
@@ -126,6 +131,30 @@ _SW = {}
 
 
 class SwitchFileError(RuntimeError): pass
+
+
+APPROX_PIN_WHY = 'check (Q1): an approximate saved answer is pin only until a person verifies the outline'
+
+
+def approx_pin(p, ov, on_=True):
+    """Q1 (KPC owner, 18 Nov 5:48 AM: 'Yes to 1-3'; reading ruled 18 Nov 1:45 PM: 'Go with what you think is best'; key-quality.md
+    sections 11 step 1 and 14). The rows that rest on an APPROXIMATE saved answer (tagged 'reviewed-approx': the closest official
+    land, bigger or another shape) give no outline until a person verifies one with evidence: those rows move to check with the
+    reason. Every other row stays (an answer that loses its power does not erase what the rules joined alone: Walton WMA's own
+    records, Bluestone's NPS unit code, Gran Quivira's official tract). The park is marked pin only when nothing is left.
+    Returns True when a row moved. A park without the mark, or the switch off, is not touched."""
+    if not on_ or not (ov or {}).get('approx'): return False
+    _m = p.get('m') or []
+    _ap = [x for x in _m if str(x[3] if len(x) > 3 else '').startswith('reviewed-approx')]
+    if not _ap: return False
+    p['c'] = list(p.get('c') or []) + [[x[0], x[1], x[2], APPROX_PIN_WHY] for x in _ap]
+    p['m'] = [x for x in _m if x not in _ap]
+    if p.get('twin'):
+        _left = {str(x[0]) for x in p['m']}
+        p['twin'] = [t for t in p['twin'] if t in _left]
+        if not p['twin']: p.pop('twin')
+    if not p['m']: p['approx_pin'] = 'Q1: approximate saved answer, pin only until verified'
+    return True
 
 
 def switch_file(path=None):

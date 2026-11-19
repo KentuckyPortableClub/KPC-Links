@@ -1174,6 +1174,7 @@ LEASE_RX = re.compile(r'\bagreement\b|\blease[ds]?\b|cooperative (?:wildlife|man
 LAKE_TYPE_RX = re.compile(r'fishing lake|reservoir|\blakes?\b|\bpond', re.I)   # D4: a park TYPE that says it is the lake
 LEASE_HELD, LAKE_HELD = [], []
 DESIG_HELD, SITS_ON, STATE_COPY = [], [], []   # D3; D7 STATE_COPY (KPC owner, 2026-11-17 10:00 AM)
+APPROX_PIN = []   # Q1 (KPC owner, 2026-11-18): parks whose saved answer is approximate, sent to pin only
 # D3: the FEDERAL designation layers (a line drawn by a law or a plan): Forest Service designated areas, BLM monuments / NCAs,
 # wilderness (FS + BLM), BLM study areas. State layers labelled 'designation' (D11) join this list with D7, when 'what' is read.
 DESIG_PRE = {'fsod', 'nca', 'wld', 'wbl', 'wsa'}
@@ -2457,7 +2458,7 @@ def run(st):
     held_g, pin_wrong = [], []
     g8 = []
     EASEMENT_HELD.clear(); EASEMENT_KEPT.clear()
-    LEASE_HELD.clear(); LAKE_HELD.clear(); DESIG_HELD.clear(); SITS_ON.clear(); STATE_COPY.clear()
+    LEASE_HELD.clear(); LAKE_HELD.clear(); DESIG_HELD.clear(); SITS_ON.clear(); STATE_COPY.clear(); APPROX_PIN.clear()
     def _g8tok(s):
         s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
         s = re.sub(r'\bft\b', 'fort', re.sub(r'\bmt\b', 'mount', re.sub(r'\bst\b', 'saint', s)))
@@ -2639,6 +2640,12 @@ def run(st):
                 p['m'] = sorted(ok, key=lambda x: -x[2])
                 p['c'] = (p.get('c') or []) + [[x[0], x[1], x[2], 'held (rule G-1): a similar-name piece more than 2 km from the pin and from every passed piece'] for x in left]
                 held_g.append(f'{ref} ({len(left)})')
+        if KR.approx_pin(p, OVR.get(ref), _kr('KPC_APPROX_PIN')):
+            # Q1 (KPC owner, 18 Nov 5:48 AM: 'Yes to 1-3'; reading 1:45 PM; key-quality.md sections 11 step 1 and 14): the rows of an
+            # approximate saved answer go to check until a person verifies an outline with evidence; rows the rules joined alone
+            # stay; a park left with nothing is pin only. The fact check flagged 47% of these parks (Mt Etna = all of Salamonie Lake,
+            # three Nebraska areas on one county record).
+            APPROX_PIN.append(ref)
         m = p.get('m') or []
         if m and p.get('far') == 'well outside' and any(str(x[3]).split(' · ')[0] not in WEAK for x in m):
             pin_wrong.append(ref); p['pin_may_be_wrong'] = 1
@@ -2672,6 +2679,7 @@ def run(st):
     if g8: notice(f'US key {st}', f"rule R-G8: {len(g8)} parks had shared-words pieces moved to CHECK (waiting room): {', '.join(g8[:10])}")
     if EASEMENT_HELD: notice(f'US key {st}', f"conservation easement records not joined by name alone (item 5): {len(EASEMENT_HELD)} piece(s) moved to CHECK: {', '.join(EASEMENT_HELD[:10])}")
     if LEASE_HELD: notice(f'US key {st}', f"D5 leased / agreement records not joined by name alone: {len(LEASE_HELD)} piece(s) to CHECK: {', '.join(LEASE_HELD[:10])}")
+    if APPROX_PIN: notice(f'US key {st}', f"Q1 approximate saved-answer rows sent to check: {len(APPROX_PIN)} park(s): {', '.join(APPROX_PIN[:12])}")
     if STATE_COPY: notice(f'US key {st}', f"D7 compilation copies: {len(STATE_COPY)} park(s): {', '.join(STATE_COPY[:10])}")
     if DESIG_HELD: notice(f'US key {st}', f"D3 designation lines sent to CHECK (drawn only for the park that is the designation): {len(DESIG_HELD)} piece(s): {', '.join(DESIG_HELD[:10])}")
     if SITS_ON: notice(f'US key {st}', f"D3 heritage areas shown as pin + sits on: {len(SITS_ON)} park(s): {', '.join(SITS_ON[:10])}")
@@ -2743,10 +2751,19 @@ def run(st):
             no = {str(x) for x in (OVR.get(ref) or {}).get('no', [])}
             om = [x for x in op['m'] if str(x[0]) not in no and str(x[1]) not in no]
             if _kr('KPC_NO_ALL_PATHS'): om = KR.drop_no(om, OVR.get(ref) or {})   # Nov 2: a NO by name also wins over the kept outline
+            _q1c = []
+            if (OVR.get(ref) or {}).get('approx') and _kr('KPC_APPROX_PIN'):
+                # Q1 (Fable's round 2 on #270, 18 Nov): the old rows of an approximate saved answer are never kept, also when this run's
+                # read missed their land (Split Rock US-6157, Jordan Craters US-10483): they go to check; the rest may be kept
+                _q1 = {'m': list(om), 'c': []}
+                if KR.approx_pin(_q1, {'approx': True}): om, _q1c = _q1['m'], _q1['c']
+                if not om:
+                    np_['c'] = list(np_.get('c') or []) + _q1c
+                    np_['approx_pin'] = 'Q1: approximate saved answer, pin only until verified'; continue
             if om and ref in TR and any(str(x[0]) in ids_here for x in om):
                 # Oct 28 (HQ, Brandon): a TRANSFERRED park (handed to a county / city, POTA number kept) never loses its outline:
                 # its land is still in the read but no longer under the old name: keep the last good join, say why
-                np_['m'] = [x for x in om if str(x[0]) in ids_here]; np_['c'] = []
+                np_['m'] = [x for x in om if str(x[0]) in ids_here]; np_['c'] = _q1c
                 np_['kept'] = f"transferred to {TR[ref].get('by')}: the last official outline is kept"; kept += 1; continue
             if om and not any(str(x[0]) in ids_here for x in om):
                 # boundary review #3: the same land under a new PAD-US id (a new PAD-US version) = found by name + acres
@@ -2761,9 +2778,9 @@ def run(st):
                                 and not (_kr('KPC_REFOUND_NEAR') and _pla is not None and not near(_pla, _plo, a['_bb'], .6))), None)
                     if hit: fp.append([hit['OBJECTID'], x[1], round(hit.get('GIS_Acres') or 0), (str(x[3]) if str(x[3]).startswith('reviewed') else 'same land, new PAD-US id (name + acres)')])
                 if fp and len(fp) == sum(1 for x in om if isinstance(x[0], int)):
-                    np_['m'] = fp + [x for x in om if not isinstance(x[0], int) and str(x[0]) in ids_here]; np_['c'] = []; np_['refound'] = PADVER[0]; kept += 1
+                    np_['m'] = fp + [x for x in om if not isinstance(x[0], int) and str(x[0]) in ids_here]; np_['c'] = _q1c; np_['refound'] = PADVER[0]; kept += 1
                     continue
-                np_['m'] = om; np_['c'] = []; np_['kept'] = 'its land was not in this run\'s map read; the last good join is kept'
+                np_['m'] = om; np_['c'] = _q1c; np_['kept'] = 'its land was not in this run\'s map read; the last good join is kept'
                 for k in ('read', 'src'):
                     if op.get(k): np_[k] = op[k]   # rule B7: a kept outline keeps the day it was last read (the clock keeps running)
                 if op.get('far'): np_['far'] = op['far']
@@ -2973,6 +2990,8 @@ def run(st):
         _bkk, _bkn = KF.stamp(parks, _bkpin, _bklook)
     except Exception as _e:  # noqa: BLE001
         _bkk, _bkn = {}, None; notice(f'US key {st}', f'pin distance / kind (bk) skipped: {type(_e).__name__}: {str(_e)[:120]}')
+    for _p in parks.values():   # Q1: the pin-only mark stays only on a park that really ended with no outline (a trail park may get its line later)
+        if _p.get('m'): _p.pop('approx_pin', None)
     out = {'updated': BUILD_DATE, 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
            'counts': counts, 'parks': parks, 'nonum': nonum[:300],
            'bk_about': KF.ABOUT, 'bk_kinds': {c: t for c, t in _bkk.items() if c != t},   # links-10

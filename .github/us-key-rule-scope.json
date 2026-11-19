@@ -333,6 +333,55 @@
     "saved_ids": true
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-18 4:16 AM (\"put your fixes in you think it needs\")"
+  },
+  {
+   "id": "2026-11-18-q1-approx-pin",
+   "when": "2026-11-18",
+   "from": "b85537a27b87",
+   "why": "Q1 (KPC owner 18 Nov 5:48 AM, 'Yes to 1-3'; reading ruled 1:45 PM, 'Go with what you think is best'; key-quality.md sections 11 step 1 and 14): the rows of an approximate saved answer ('reviewed-approx', the closest official land, bigger or another shape) go to check until a person verifies an outline with evidence; rows the rules joined alone stay; a park left with nothing is pin only and its last outline is never kept. Switch KPC_APPROX_PIN, default ON. Parks with an approximate answer are always re-matched, so saved ids need no re-match. The states are every state whose key holds such a park (a park in two states counts in both: Natchez Trace in AL, MS and TN). Fable's round 2: keep-last-good (kept, refound, transferred) takes an approximate park's old reviewed-approx rows out first, so a run whose read misses their land does not bring them back (Split Rock, Jordan Craters, Lake Abert, Devil's Rock Garden).",
+   "scope": {
+    "states": [
+     "US-AK",
+     "US-AL",
+     "US-CA",
+     "US-CO",
+     "US-FL",
+     "US-GA",
+     "US-HI",
+     "US-IA",
+     "US-ID",
+     "US-IL",
+     "US-IN",
+     "US-KS",
+     "US-MD",
+     "US-MI",
+     "US-MO",
+     "US-MS",
+     "US-MT",
+     "US-NC",
+     "US-NE",
+     "US-NH",
+     "US-NJ",
+     "US-NM",
+     "US-NV",
+     "US-NY",
+     "US-OH",
+     "US-OK",
+     "US-OR",
+     "US-PA",
+     "US-RI",
+     "US-TN",
+     "US-UT",
+     "US-VA",
+     "US-VT",
+     "US-WA",
+     "US-WI",
+     "US-WV",
+     "US-WY"
+    ],
+    "saved_ids": false
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-18 (Q1, 5:48 AM: 'Yes to 1-3'; the rows-only reading 1:45 PM: 'Go with what you think is best right now you see more information then I can'); waiting for Fable's review (key-quality.md section 13)"
   }
  ]
 }
