@@ -815,6 +815,17 @@ def near_name(a, b):
     return all(st(x, y) for x, y in zip(wa, wb))
 
 
+def nps_part_clash(park_name, record_name):
+    """Fable's last look (19 Nov; the outside agent's second look): one NPS unit code can hold a PARK and a PRESERVE (DENA = Denali
+    National Park and Denali National Preserve, which POTA numbers apart). A unit-code join never puts a Preserve record on a park
+    that is not a preserve, nor the other way round. True = the two disagree (the record goes to check)."""
+    def part(t):
+        t = str(t or '').lower()
+        if not re.search(r'\bpreserve\b', t): return 'other'
+        return 'both' if re.search(r'\bpark\b', t) else 'preserve'   # 'Wrangell-St. Elias National Park & Preserve' is both
+    return {part(park_name), part(record_name)} == {'preserve', 'other'}
+
+
 def box_overlap(b1, b2):
     """Share of the smaller of two boxes [minx, miny, maxx, maxy] that the other covers (0 when either is missing)."""
     if not b1 or not b2: return 0.0

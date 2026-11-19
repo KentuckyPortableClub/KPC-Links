@@ -444,6 +444,31 @@
     "saved_ids": true
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-18 (7:06 AM: 'do section 11 in order starting with steps 1 and 2. Every rule change is a draft PR'); waiting for Fable's review (key-quality.md section 13)"
+  },
+  {
+   "id": "2026-11-19-nps-park-preserve",
+   "when": "2026-11-19",
+   "from": "99e1aa58edd9",
+   "why": "Fable's last look (19 Nov; key-quality.md section 15; the outside agent's second look): the NPS unit-code join never puts a Preserve record on a park that is not a preserve, nor the other way round (Denali National Park US-0022 took the 1,311,169-acre Denali National Preserve by the shared code DENA); a combined 'Park & Preserve' park takes both. Under switch KPC_NPS_UNIT_CODE. The states are those whose shapes hold an NPS record named Preserve.",
+   "scope": {
+    "states": [
+     "US-AK",
+     "US-AL",
+     "US-CA",
+     "US-CO",
+     "US-FL",
+     "US-ID",
+     "US-KS",
+     "US-LA",
+     "US-NM",
+     "US-NV",
+     "US-OR",
+     "US-TX",
+     "US-WV"
+    ],
+    "saved_ids": true
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-19 (4:20 AM: 'Do section 15: #271 without (b), the Denali PR, and prep outside-agent kits A, B and C'); waiting for Fable's review (key-quality.md section 13)"
   }
  ]
 }
