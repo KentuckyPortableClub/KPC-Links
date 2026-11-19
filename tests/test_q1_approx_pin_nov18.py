@@ -69,8 +69,16 @@ g = src.find("p['g'] = ('pin' if not m else 'approximate'")
 h = src.find("held_g.append(f'{ref} ({len(left)})')")
 check(0 < h < i < g, 'the Q1 step runs after rule G-1 and before the park is graded')
 check("if _p.get('m'): _p.pop('approx_pin', None)" in src, 'the pin-only mark stays only on a park that ended with no outline (a trail park may get its line)')
-k = src.find("if np_.get('approx_pin'): continue")
-check(k > 0 and src.rfind('for ref, op in old.items():', 0, k) > g, 'keep-last-good skips a Q1 park (its old outline is not kept)')
+k = src.find("if (OVR.get(ref) or {}).get('approx') and _kr('KPC_APPROX_PIN'):\n                # Q1 (Fable's round 2")
+check(k > 0 and src.rfind('for ref, op in old.items():', 0, k) > g and src.find("np_['c'] = _q1c; np_['kept']", k) > k
+      and src.find("np_['c'] = _q1c; np_['refound']", k) > k and src.find("np_['c'] = _q1c\n", k) > k,
+      'keep-last-good (kept, refound and transferred) takes the reviewed-approx rows out first and lists them to check')
+check("if np_.get('approx_pin'): continue" not in src, 'the guard no longer hangs on the pin-only mark')
+# Split Rock (US-6157, WY; Fable's round 2): its approximate WSA record was not in the read, so keep-last-good met its old rows
+sr_old = [['wsa29617', 'Split Rock', 0, 'reviewed-approx']]
+q = {'m': list(sr_old), 'c': []}
+check(KR.approx_pin(q, {'approx': True}) is True and q['m'] == [] and q['c'][0][:2] == ['wsa29617', 'Split Rock'],
+      'Split Rock: its old approximate row (wsa29617) is not kept; it goes to check, and the park is pin only')
 
 # bookkeeping, by this change's own id
 sc = next((c for c in json.loads((ROOT / '.github/us-key-rule-scope.json').read_text())['changes'] if c.get('id') == '2026-11-18-q1-approx-pin'), {})

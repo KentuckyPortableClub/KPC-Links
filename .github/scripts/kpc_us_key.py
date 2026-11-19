@@ -2748,14 +2748,22 @@ def run(st):
         for ref, op in old.items():
             np_ = parks.get(ref)
             if not np_ or np_.get('m') or not op.get('m'): continue
-            if np_.get('approx_pin'): continue   # Q1: an approximate saved answer is pin only; its last outline is not kept
             no = {str(x) for x in (OVR.get(ref) or {}).get('no', [])}
             om = [x for x in op['m'] if str(x[0]) not in no and str(x[1]) not in no]
             if _kr('KPC_NO_ALL_PATHS'): om = KR.drop_no(om, OVR.get(ref) or {})   # Nov 2: a NO by name also wins over the kept outline
+            _q1c = []
+            if (OVR.get(ref) or {}).get('approx') and _kr('KPC_APPROX_PIN'):
+                # Q1 (Fable's round 2 on #270, 18 Nov): the old rows of an approximate saved answer are never kept, also when this run's
+                # read missed their land (Split Rock US-6157, Jordan Craters US-10483): they go to check; the rest may be kept
+                _q1 = {'m': list(om), 'c': []}
+                if KR.approx_pin(_q1, {'approx': True}): om, _q1c = _q1['m'], _q1['c']
+                if not om:
+                    np_['c'] = list(np_.get('c') or []) + _q1c
+                    np_['approx_pin'] = 'Q1: approximate saved answer, pin only until verified'; continue
             if om and ref in TR and any(str(x[0]) in ids_here for x in om):
                 # Oct 28 (HQ, Brandon): a TRANSFERRED park (handed to a county / city, POTA number kept) never loses its outline:
                 # its land is still in the read but no longer under the old name: keep the last good join, say why
-                np_['m'] = [x for x in om if str(x[0]) in ids_here]; np_['c'] = []
+                np_['m'] = [x for x in om if str(x[0]) in ids_here]; np_['c'] = _q1c
                 np_['kept'] = f"transferred to {TR[ref].get('by')}: the last official outline is kept"; kept += 1; continue
             if om and not any(str(x[0]) in ids_here for x in om):
                 # boundary review #3: the same land under a new PAD-US id (a new PAD-US version) = found by name + acres
@@ -2770,9 +2778,9 @@ def run(st):
                                 and not (_kr('KPC_REFOUND_NEAR') and _pla is not None and not near(_pla, _plo, a['_bb'], .6))), None)
                     if hit: fp.append([hit['OBJECTID'], x[1], round(hit.get('GIS_Acres') or 0), (str(x[3]) if str(x[3]).startswith('reviewed') else 'same land, new PAD-US id (name + acres)')])
                 if fp and len(fp) == sum(1 for x in om if isinstance(x[0], int)):
-                    np_['m'] = fp + [x for x in om if not isinstance(x[0], int) and str(x[0]) in ids_here]; np_['c'] = []; np_['refound'] = PADVER[0]; kept += 1
+                    np_['m'] = fp + [x for x in om if not isinstance(x[0], int) and str(x[0]) in ids_here]; np_['c'] = _q1c; np_['refound'] = PADVER[0]; kept += 1
                     continue
-                np_['m'] = om; np_['c'] = []; np_['kept'] = 'its land was not in this run\'s map read; the last good join is kept'
+                np_['m'] = om; np_['c'] = _q1c; np_['kept'] = 'its land was not in this run\'s map read; the last good join is kept'
                 for k in ('read', 'src'):
                     if op.get(k): np_[k] = op[k]   # rule B7: a kept outline keeps the day it was last read (the clock keeps running)
                 if op.get('far'): np_['far'] = op['far']
