@@ -36,7 +36,7 @@ const VIP = 'dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab';
     await P.evaluate(() => document.querySelector('[data-hxradio]').click()); await sleep(900);
     r = await P.evaluate(() => { const card = document.getElementById('hlRadio'), pop = document.getElementById('hxPop');
       if (card && card.offsetParent !== null) { const q = card.getBoundingClientRect(); return 'card ' + Math.round(q.top) + ' ' + /CONNECT MY RADIO/.test(card.textContent); }
-      return pop && !pop.hidden ? 'window ' + /MY RADIO/.test(pop.innerText) + ' ' + /BIG RADIO SCREEN/.test(pop.innerText) : 'nothing'; });
+      return pop && !pop.hidden ? 'window ' + /MY RADIO/.test(pop.innerText) + ' ' + /BIG RADIO PAGE/.test(pop.innerText) : 'nothing'; });
     ok(/^card -?\d+ true$/.test(r) && +r.split(' ')[1] < 600 || /^window true true$/.test(r), 'it goes to the radio set-up (' + r + ')');
     /* everything a member should find on the page */
     const has = await P.evaluate(() => ({ spots: !!document.querySelector('#hlList, .hl-list, [data-fopen]'), log: !!document.getElementById('dkForm'), gear: !!document.getElementById('hxGear'),

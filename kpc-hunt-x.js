@@ -148,7 +148,7 @@
     }
     if (SHOWS[tab] && !box) pane.innerHTML = '<p class="hx-n">The radio extras did not load on this page.</p>';
     if (tab === 'radio') { radioPane(pane);   /* Nov 19 2026: the app's big radio page, here too (the Lounge radio card has it as well) */
-      pane.insertAdjacentHTML('beforeend', '<p class="hx-n"><a class="lr-c lr-big" href="logger-beta/kpc-logger-beta.html#radio">🖤 BIG RADIO SCREEN (beta)</a> the app\'s full radio page; it opens in this tab, connect the radio again there.</p>'); }
+      pane.insertAdjacentHTML('beforeend', '<p class="hx-n"><a class="lr-c lr-big" href="logger-beta/kpc-logger-beta.html#radio">🖤 BIG RADIO PAGE (beta)</a> a bigger radio page on this website, in your browser (no app needed); it opens in this tab, connect the radio again there.</p>'); }
     if (tab === 'meters') metersPane(pane);
     if (tab === 'audio') txPane(tx);
     if (tab === 'cw') cwPane(pane);

@@ -180,7 +180,7 @@
     const scopeOk = C.proto === 'icom' && SCOPE_RIGS[K.get().radio];
     /* Nov 19 2026 (Lounge round 3; Brandon Nov 17: the new black radio page as an OPTION, this card stays the default): the KPC Logger beta IS the
        app's own screens, so this opens its RADIO screen (members only: the gate hides the link from guests). The radio connects again there. */
-    const big = `<div class="lr-row lr-bigrow"><a class="lr-c lr-big" href="logger-beta/kpc-logger-beta.html#radio" title="The app's black radio screen: big frequency, meters, scope with who is where, every control">🖤 BIG RADIO SCREEN (beta)</a><span class="lr-n">The app's full radio page. It opens in this tab; connect the radio again there.</span></div>`;
+    const big = `<div class="lr-row lr-bigrow"><a class="lr-c lr-big" href="logger-beta/kpc-logger-beta.html#radio" title="A bigger radio page on this website: big frequency, meters, scope with who is where, every control">🖤 BIG RADIO PAGE (beta)</a><span class="lr-n">A bigger radio page on this website, in your browser: no app needed. It opens in this tab; connect the radio again there.</span></div>`;
     return big + `<details id="lrMore"${X.oMore ? ' open' : ''}><summary>🎛 MORE CONTROLS <small>${esc(tested)}${on ? '' : ' · radio not connected'}</small></summary>${more}</details>
       <details id="lrBand"${X.oBand ? ' open' : ''}><summary>📍 BANDS + TUNE + SWR <small>band memory, the radio's tuner, the SWR guard</small></summary>
         <div class="lr-row">${bm}</div><p class="lr-n">A band button goes back to the last frequency and mode you used on that band (• = remembered).</p>
