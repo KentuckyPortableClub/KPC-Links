@@ -21833,19 +21833,6 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Flatbrook Roy Wildlife Management Area' (chat 11; applied by kpc_key_answers)"
   },
-  "US-12646": {
-   "fp": {
-    "sgmtb8564": [
-     "Seven Sisters",
-     1557
-    ]
-   },
-   "join": [
-    "sgmtb8564"
-   ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Seven Sisters' (chat 11; applied by kpc_key_answers)"
-  },
   "US-12647": {
    "fp": {
     "sgmtb8565": [
@@ -22949,6 +22936,41 @@
    ],
    "when": "2026-10-29",
    "why": "alias from chat 8's name-mismatch list (Oct 29): the official layer calls it 'Diamond Craters'; joins only with the POTA pin inside"
+  },
+  "US-12938": {
+   "join": [
+    "sgdec69",
+    "sgdec38",
+    "sgdec21",
+    "sgdec25"
+   ],
+   "fp": {
+    "sgdec69": [
+     "Industrial Forest Lands - Laurel Complex",
+     359
+    ],
+    "sgdec38": [
+     "Industrial Forest Lands - Laurel Complex",
+     462
+    ],
+    "sgdec21": [
+     "Industrial Forest Lands - Laurel Complex",
+     272
+    ],
+    "sgdec25": [
+     "Industrial Forest Lands - Laurel Complex",
+     285
+    ]
+   },
+   "when": "2026-11-19",
+   "why": "2026-11-19 evidence batch 03b: DNREC's own map 'Industrial Forest Land - Laurel Complex - General Overview' (POTA's link for US-12938) draws the complex as several tracts (Whitesville Tract, Edwin Bell Tract, Ralph's Corner) east and south of Laurel; the three state-layer records named 'Industrial Forest Lands - Laurel Complex' (359 + 462 + 272 ac) are those tracts; rule G-1 held the two more than 2 km from the pin (key-quality.md section 19 item 35) · 2026-11-19 Fable (review of batch 03b): the map shows FOUR parcels in three named tracts, and the state layer has four records named 'Industrial Forest Lands - Laurel Complex': sgdec38 + sgdec21 = Whitesville Tract (two parcels, at the state line), sgdec69 = Edwin Bell Tract (POTA's pin), sgdec25 (285 ac, 13 km west of the pin) = Ralph's Corner. Placed by laying the map (north to the left, the state line along the right edge) over the records' positions. sgdec25 added.",
+   "decided_by": "evidence batch 03b (the KPC owner read POTA's link himself, 19 Nov 2:01 PM; Opus); fourth record added by Fable in review, 19 Nov",
+   "evidence": {
+    "who": "the KPC owner (POTA's own link, 19 Nov 2:01 PM)",
+    "source": "DNREC Division of Fish and Wildlife map 'INDUSTRIAL FOREST LAND - LAUREL COMPLEX - General Overview' (documents.dnrec.delaware.gov, POTA's website for US-12938)",
+    "saw": "The map outlines the wildlife area in yellow in several tracts: Whitesville Tract (two parcels), Edwin Bell Tract and Ralph's Corner, apart from Midlands and Nanticoke Wildlife Areas drawn on the same sheet. Boundaries 'approximate and should only be used as a guide'. No acreage on the map. Fable, 19 Nov: Ralph's Corner sits about 11 km west and 3 km north of the Edwin Bell Tract on the map, where record sgdec25 (38.492-38.504 N, 75.644-75.664 W, 285 ac, same layer name) lies.",
+    "date": "2026-11-19"
+   }
   },
   "US-12941": {
    "fp": {

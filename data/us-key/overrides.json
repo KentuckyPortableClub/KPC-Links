@@ -8,7 +8,7 @@
  ],
  "parts_sha256": {
   "overrides-parks-01.json": "aa24c9102887288461a91627f49a2bf42891824efe96520e448d4aa9740aa8ce",
-  "overrides-parks-02.json": "73a0497ca42fac33d6f757948432794b0122f459348916611643b275aaf7dcb1"
+  "overrides-parks-02.json": "126c9b781d720016c6b3c16c971a14c590dc38f05d810c7d5eed7bd00e2f040b"
  },
  "parks": {
   "US-0043": {
@@ -2817,6 +2817,45 @@
    },
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: gis-hunter row NO 'Pavant Butte' (chat 11; applied by kpc_key_answers)"
+  },
+  "US-6063": {
+   "join": [
+    "rma9123",
+    "rst9123"
+   ],
+   "fp": {
+    "rma9123": [
+     "Red Cliffs Recreation Area",
+     873
+    ],
+    "rst9123": [
+     "Red Cliffs Recreation Area",
+     873
+    ]
+   },
+   "no": [
+    "rst9145",
+    "sgakg9145"
+   ],
+   "nofp": {
+    "rst9145": [
+     "Red Cliffs SRMA",
+     61251
+    ],
+    "sgakg9145": [
+     "Red Cliffs SRMA",
+     61251
+    ]
+   },
+   "when": "2026-11-19",
+   "why": "2026-11-19 evidence batch 03b: POTA's own link for US-6063 is BLM's Red Cliffs Recreation Area page (campground, picnic area, trails 'within the Red Cliffs National Conservation Area') and its pin is that site; BLM's recreation layer holds it as 'Red Cliffs Recreation Area', 872.88 GIS acres (both passes of hand-off 04). The 61,251-acre 'Red Cliffs SRMA' is conservation-area-sized land; POTA numbers the NCA itself (US-6077). Joined: the 873-acre site; NO: the SRMA (key-quality.md section 19 item 35)",
+   "decided_by": "evidence batch 03b (the KPC owner read POTA's link himself, 19 Nov 2:01 PM; Opus)",
+   "evidence": {
+    "who": "the KPC owner (POTA's own link, 19 Nov 2:01 PM) and the outside research agent, both passes of hand-off 04 (job F)",
+    "source": "https://www.blm.gov/visit/red-cliffs-recreation-area (POTA website for US-6063); BLM recreation site layer (FET_NAME Red Cliffs Recreation Area, FET_SUBTYPE Campground, GIS_ACRES 872.88)",
+    "saw": "BLM page: 'Red Cliffs Recreation Area | Utah ... This welcomed oasis within the Red Cliffs National Conservation Area ... a small campground, shaded picnic area ... miles of trails'; map marker 'Red Cliffs Recreation Area' at -113.405, 37.224 (POTA's pin 37.224, -113.405). BLM publishes no acreage for it; its layer: 872.88 GIS acres. Red Cliffs NCA = 44,859 BLM acres (+13,728 state, 2,638 private; BLM Public Land Statistics 2025).",
+    "date": "2026-11-19"
+   }
   },
   "US-6068": {
    "no": [
@@ -6604,6 +6643,45 @@
    "when": "2026-10-29",
    "why": "2026-10-29 23:15: gis-hunter row NO 'Golconda Marina State Recreation Area' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
+  "US-12646": {
+   "fp": {
+    "sgmtb8564": [
+     "Seven Sisters",
+     1557
+    ]
+   },
+   "join": [
+    "sgmtb8564"
+   ],
+   "when": "2026-11-19",
+   "why": "2026-11-02 12:49: layers row YES 'Seven Sisters' (chat 11; applied by kpc_key_answers) · 2026-11-19 evidence batch 03c: NO on the three 8-acre fishing access site records: they are the land of US-12918 (POTA's link for US-12918 is FWP's Seven Sisters Fishing Access Site, 7.8 acres), a separate FWP site beside this wildlife management area",
+   "no": [
+    "211792",
+    "sgmtc41272",
+    "sgmtd654"
+   ],
+   "nofp": {
+    "211792": [
+     "Seven Sisters Fishing Access Site",
+     8
+    ],
+    "sgmtc41272": [
+     "Seven Sisters",
+     8
+    ],
+    "sgmtd654": [
+     "Seven Sisters Fishing Access Site",
+     8
+    ]
+   },
+   "decided_by": "evidence batch 03c (Fable, 19 Nov: two outside passes agree; POTA's own links for US-12918 and US-12646)",
+   "evidence": {
+    "who": "outside research agent, two separate passes (second look, 19 Nov; gold set US-12918), read by Fable",
+    "source": "https://myfwp.mt.gov/fishMT/fas/39754581 (fishing access site, POTA website for US-12918); https://myfwp.mt.gov/fwpPub/landsMgmt/siteDetail.action?lmsId=39754345 (this WMA)",
+    "saw": "two FWP sites: the fishing access site (7.8 acres) and the wildlife management area (1,554 acres); POTA numbers each",
+    "date": "2026-11-19"
+   }
+  },
   "US-12662": {
    "no": [
     "sgnca5870"
@@ -6737,6 +6815,65 @@
    },
    "when": "2026-11-02",
    "why": "Oct 29 5:55 PM: waiting-room piece 'Fawn Creek Campground' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Fawn Creek Campground' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · Oct 30 12:05 AM: chat 11 KEY NO until pinned (held-key sample): a 3-acre campground, not the recreation area; pin · 2026-11-02 12:49: key-pieces row NO 'Fawn Creek Campground' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+  },
+  "US-12918": {
+   "join": [
+    "sgmtd654",
+    "211792",
+    "sgmtc41272"
+   ],
+   "fp": {
+    "sgmtd654": [
+     "Seven Sisters Fishing Access Site",
+     8
+    ],
+    "211792": [
+     "Seven Sisters Fishing Access Site",
+     8
+    ],
+    "sgmtc41272": [
+     "Seven Sisters",
+     8
+    ]
+   },
+   "no": [
+    "sgmtb8672",
+    "211769",
+    "sgmtd360",
+    "78877",
+    "78878"
+   ],
+   "nofp": {
+    "sgmtb8672": [
+     "Seven Sisters",
+     1554
+    ],
+    "211769": [
+     "Seven Sisters Wildlife Management Area",
+     1556
+    ],
+    "sgmtd360": [
+     "Seven Sisters Wildlife Management Area",
+     1554
+    ],
+    "78877": [
+     "Seven Sisters Wildlife Management Area 4",
+     711
+    ],
+    "78878": [
+     "Seven Sisters Wildlife Management Area 5",
+     269
+    ]
+   },
+   "when": "2026-11-19",
+   "why": "2026-11-19 evidence batch 03c: POTA's own link for US-12918 'Seven Sisters State Fish and Wildlife Area' is Montana FWP's Seven Sisters FISHING ACCESS SITE page (7.8 acres); the 1,554-acre Seven Sisters Wildlife Management Area beside it is another POTA park, US-12646, with its own FWP page. The key held the WMA's record sgmtb8672 on US-12918 (wrong land, 199x the official size; known since 18 Nov, key-quality.md 'same land, two park numbers is never decided by name'). Two outside passes (second look, 19 Nov) agree: the 8-acre fishing access site records are the park, the WMA records are not.",
+   "decided_by": "evidence batch 03c (Fable, 19 Nov: two outside passes agree and POTA's own link names the fishing access site; the owner's standing rule, 18 Nov: 'trust nothing that has no evidence behind it')",
+   "evidence": {
+    "who": "outside research agent, two separate passes (second look, 19 Nov; gold set US-12918), read by Fable",
+    "source": "https://myfwp.mt.gov/fishMT/fas/39754581 (POTA website for US-12918); https://myfwp.mt.gov/fwpPub/landsMgmt/siteDetail.action?lmsId=39754345 (POTA website for US-12646, the WMA)",
+    "saw": "FWP fishing access site page 'Seven Sisters', 7.8 acres; the WMA page is a different FWP site (1,554 ac). Layer records: 'Seven Sisters Fishing Access Site' 8 ac (sgmtd654, 211792), 'Seven Sisters' 8 ac (sgmtc41272).",
+    "date": "2026-11-19"
+   }
   },
   "US-12957": {
    "no": [
