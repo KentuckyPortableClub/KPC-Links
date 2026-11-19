@@ -147,7 +147,8 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
       la: g ? g[0] : +x.latitude, lo: g ? g[1] : +x.longitude, t: toMs(x.spotTime), by: x.spotter || '', com: x.comments || '', us: /^US-/.test(loc) || /^US-/.test(ref), ca: /^CA-/.test(ref) };
   }
   function fromSota(x) {
-    const khz = toKhz(x.frequency); if (!khz) return null; const a = String(x.associationCode || ''), ref = (a + '/' + (x.summitCode || '')).toUpperCase();
+    /* Nov 18 2026 (N11, from the KPC app 0.9.8): SOTA always gives MHz, so a 23 cm spot (1296.2) is not read as kHz */
+    const fm = Number(x.frequency), khz = isFinite(fm) && fm > 0 ? Math.round(fm * 1e6) / 1000 : null; if (!khz) return null; const a = String(x.associationCode || ''), ref = (a + '/' + (x.summitCode || '')).toUpperCase();
     return { p: 'SOTA', call: String(x.activatorCallsign || '').toUpperCase(), khz, mode: String(x.mode || '').toUpperCase(), ref, name: x.summitDetails || '', loc: a, st: '', la: NaN, lo: NaN,
       t: toMs(x.timeStamp), by: x.callsign || '', com: x.comments || '', us: /^(W\d|K[HL]\d|W[0-9]?[A-Z])/.test(a), ca: /^(VE|VA|VY|VO)/.test(a) };
   }
@@ -1126,6 +1127,7 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
     Q.u = Date.now();
     const lsOk = put(QK, Q);
     try { await idbPut('qso', JSON.parse(JSON.stringify(Q))); IDBok = true; } catch (e) { IDBok = false; }
+    qSave.bad = !lsOk && !IDBok;   /* Nov 18 2026 (H22): drives the red NOT SAVED line in safe() */
     if (!lsOk && !IDBok && !qSave.warned) { qSave.warned = 1; setTimeout(() => { qSave.warned = 0; }, 6e4); toast('⚠ This browser would not save your log (storage full or blocked). Download an ADIF copy now so nothing is lost.'); }
     if (PERSIST === null && navigator.storage && navigator.storage.persist) { try { PERSIST = await navigator.storage.persist(); } catch (e) { PERSIST = false; } }
     if (FH && FHok) { try { const w = await FH.createWritable(); await w.write(adif(Q.q)); await w.close(); } catch (e) { FHok = false; } }
@@ -1141,7 +1143,7 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
   }
   function safe() {
     const n = Q.q.length, nx = Q.q.filter(q => !q.x).length, c = [];
-    c.push(`<span>✓ ${n} contact${n === 1 ? '' : 's'} saved on this device</span>`);
+    c.push(qSave.bad ? '<span class="warn bad">✗ NOT SAVED: this browser refused to save your log. Download an ADIF copy now.</span>' : `<span>✓ ${n} contact${n === 1 ? '' : 's'} saved on this device</span>`);
     if (IDBok) c.push('<span>✓ second copy kept</span>');
     c.push(PERSIST ? '<span>✓ browser told to keep it</span>' : '<span class="warn">this browser may clear site data when space runs low: download a copy now and then</span>');
     if (FH) c.push(FHok ? `<span>✓ backup file kept up to date${FH.name ? ': ' + esc(FH.name) : ''}</span>` : '<button type="button" class="hl-btn line sm" id="lgRe">🔄 TAP TO RECONNECT THE BACKUP FILE</button>');
@@ -1154,7 +1156,9 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
   };
   /* ---------- ADIF ---------- */
   const enc = new TextEncoder();
-  const af = (k, v) => { v = String(v == null ? '' : v).replace(/[<>]/g, ''); return v === '' ? '' : `<${k}:${enc.encode(v).length}>${v} `; };
+  /* Nov 18 2026 (Lounge round stage 3, H23 from the KPC app 0.9.x): an .adi file is plain ASCII, so accented letters go in plain
+     (é → e); the log itself keeps the real ones. Lengths still count bytes, so an older file with accents still reads back. */
+  const af = (k, v) => { v = String(v == null ? '' : v).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[ßæøÆØ]/g, c => ({ 'ß': 'ss', 'æ': 'ae', 'ø': 'o', 'Æ': 'AE', 'Ø': 'O' })[c]).replace(/[^\x20-\x7e\n]/g, '').replace(/[<>]/g, ''); return v === '' ? '' : `<${k}:${enc.encode(v).length}>${v} `; };
   /* ADIF LAT/LON look like N037 30.000 (Oct 17) */
   const adLL = (v, p, n) => { const a = Math.abs(v), d = Math.floor(a), m = (a - d) * 60; return (v < 0 ? n : p) + String(d).padStart(3, '0') + ' ' + m.toFixed(3).padStart(6, '0'); };
   /* my grid square: the Lounge setting, else the KPC Logger's, else the spot the conditions bar uses (GPS), so MY_GRIDSQUARE is filled */
@@ -1182,7 +1186,7 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
     L.forEach(q => {
       const [md, sm] = adMode(q.mode), refs = String(q.ref || '').toUpperCase().split(/[ ,]+/).filter(Boolean);
       const pota = refs.filter(r => progOf(r) === 'POTA'), wwff = refs.filter(r => progOf(r) === 'WWFF'), sota = refs.filter(r => progOf(r) === 'SOTA');
-      o += af('CALL', q.call) + af('QSO_DATE', q.d) + af('TIME_ON', q.tm) + af('FREQ', q.f) + af('BAND', q.band) + af('MODE', md) + af('SUBMODE', sm) + af('RST_SENT', q.rs) + af('RST_RCVD', q.rr)
+      o += af('CALL', q.call) + af('QSO_DATE', q.d) + af('TIME_ON', q.tm) + af('FREQ', +q.f > 0 ? q.f : '') + af('BAND', +q.f > 0 && bandOf(+q.f * 1000) !== 'OTHER' ? bandOf(+q.f * 1000) : q.band) + af('MODE', md) + af('SUBMODE', sm) + af('RST_SENT', q.rs) + af('RST_RCVD', q.rr)
         + af('TIME_OFF', q.tm) + af('STATION_CALLSIGN', q.my || CALL) + af('OPERATOR', q.my || CALL) + af('MY_GRIDSQUARE', q.grid || myGrid())
         + af('POTA_REF', pota.join(',')) + af('WWFF_REF', wwff[0] || '') + af('SOTA_REF', sota[0] || '')
         + (pota.length ? af('SIG', 'POTA') + af('SIG_INFO', pota.join(',')) : wwff.length ? af('SIG', 'WWFF') + af('SIG_INFO', wwff[0]) : '')
@@ -1195,14 +1199,14 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
   const u8 = c => c < 0x80 ? 1 : c < 0x800 ? 2 : c < 0x10000 ? 3 : 4;
   function take(str, n) { let b = 0, i = 0; while (i < str.length && b < n) { const c = str.codePointAt(i); b += u8(c); i += c > 0xffff ? 2 : 1; } return str.slice(0, i); }
   function parseAdif(t) {
-    const out = []; t = String(t || ''); const h = t.search(/<eoh>/i); if (h >= 0) t = t.slice(h + 5);
+    const out = []; t = String(t || ''); parseAdif.bad = 0; const h = t.search(/<eoh>/i); if (h >= 0) t = t.slice(h + 5);
     t.split(/<eor>/i).forEach(rec => {
       const r = {}; const re = /<(\w+):(\d+)(?::\w)?>/g; let m;
       const E = /\s*(?:<|$)/y, edge = i => { E.lastIndex = i; return E.test(rec); };   /* a field ends where the next one (or the record's end) starts */
       while ((m = re.exec(rec))) { let v = rec.substr(re.lastIndex, +m[2]);
         if (/[^\x00-\x7f]/.test(v)) { const a = take(v, +m[2]); if (edge(re.lastIndex + a.length) || !edge(re.lastIndex + v.length)) v = a; }
         r[m[1].toUpperCase()] = v; re.lastIndex += v.length; }
-      if (!r.CALL || !r.QSO_DATE) return;
+      if (!r.CALL || !r.QSO_DATE) { if (Object.keys(r).length) parseAdif.bad++; return; }   /* Nov 18 2026 (N7): a damaged record is left out and counted, never logged as now */
       const refs = [r.POTA_REF, r.WWFF_REF, r.SOTA_REF, r.SIG_INFO].filter(Boolean).join(',').toUpperCase().split(/[ ,]+/).filter(Boolean).map(nref);
       out.push({ id: 'i' + Math.random().toString(36).slice(2, 10), call: r.CALL.toUpperCase(), d: r.QSO_DATE, tm: String(r.TIME_ON || '').slice(0, 4), f: r.FREQ || '', band: (r.BAND || '').toLowerCase(), mode: r.SUBMODE || r.MODE || '',
         ref: [...new Set(refs)].join(', '), name: '', st: r.STATE || '', rs: r.RST_SENT || '', rr: r.RST_RCVD || '', note: r.NOTES || '', my: r.STATION_CALLSIGN || '', grid: r.MY_GRIDSQUARE || '', x: 1, t: Date.now() });
@@ -1229,11 +1233,11 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
   $('lgCsv').onclick = () => { const h = 'date_utc,time_utc,call,freq_mhz,band,mode,ref,name,state,rst_sent,rst_rcvd,note\n'; download(`KPC-hunting-log-${CALL || 'mine'}.csv`, h + Q.q.map(q => [fmtD(q.d), fmtT(q.tm), q.call, q.f, q.band, q.mode, q.ref, q.name, q.st, q.rs, q.rr, q.note].map(v => '"' + String(v || '').replace(/"/g, '""') + '"').join(',')).join('\n'), 'text/csv'); };
   $('lgLoad').onchange = async e => {
     const f = e.target.files[0]; e.target.value = ''; if (!f) return;
-    const L = parseAdif(await f.text()); if (!L.length) { toast('No contacts found in that file.'); return; }
+    const L = parseAdif(await f.text()); if (!L.length) { toast('No contacts found in that file.' + (parseAdif.bad ? ` ${parseAdif.bad} damaged line${parseAdif.bad === 1 ? '' : 's'} left out (no call or no date).` : '')); return; }
     const key = q => [base(q.call), q.d, q.tm, q.band, String(q.ref || '').replace(/\s/g, '')].join('|'), have = new Set(Q.q.map(key));
     const add = L.filter(q => !have.has(key(q))); Q.q = Q.q.concat(add);
     add.forEach(q => String(q.ref || '').split(/[ ,]+/).filter(Boolean).forEach(r => WK.add(r))); saveLog(); logInfo();
-    await qSave(); qList(); toast(`↥ ${add.length} contact${add.length === 1 ? '' : 's'} added (${L.length - add.length} already in your log).`);
+    await qSave(); qList(); toast(`↥ ${add.length} contact${add.length === 1 ? '' : 's'} added (${L.length - add.length} already in your log)${parseAdif.bad ? `. ${parseAdif.bad} damaged line${parseAdif.bad === 1 ? ' was' : 's were'} left out (no call or no date)` : ''}.`);
   };
   $('lgMy').onchange = () => { CALL = base($('lgMy').value); $('lgMy').value = CALL; $('hCall').value = CALL; put('kpcMyCall', CALL); myStats(); topDraw(); myCallBar(); };
   $('lgGrid').onchange = () => { Q.grid = $('lgGrid').value.trim().toUpperCase().slice(0, 6); $('lgGrid').value = Q.grid; qSave(); };
