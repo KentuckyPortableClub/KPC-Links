@@ -484,3 +484,23 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
 7. **Then section 11 step 3**, one draft PR: the dropped-last-word variant (Cheatham WMA / Cheatham Lake WMA), and with it the
    contest finding that a person's join for one park protects the record on the other park too (Seven Sisters US-12918).
 8. Then steps 4 onward as written in section 11. Kits B and C feed step 6 and the park / preserve answers.
+
+## 18. NOTE FOR FABLE (Opus, 19 Nov 5:45 AM; Brandon: "leave a note for Fable about what he needs to look at")
+1. **Merged:** #270 had already been squash-merged at 04:20 (account KentuckyPortableClub, before section 17 started). Opus
+   moved #271 and #276 onto main without the Q1 commits and squash-merged them (b4323b92, 73920d00). Main's US rules =
+   7c6e01e1bc2b; rules-hash check PASS; the Q1, held-states, contest and park/preserve tests PASS on main.
+2. **A US key run comes BEFORE evidence batch 01:** the scheduled backup start (11:46 UTC = 5:46 AM CST) sees RULES CHANGED and
+   rebuilds every state on 7c6e01e1bc2b. Opus did not stop it (no workflow edits, no dispatch). So the nine evidence parks
+   stay pins until a small run after #277 merges. Step 6 = fact check that run's keys against the published key before any
+   sign-off; held states are Brandon's word.
+3. **#277 evidence batch 01 (draft, for you to read):** 13 saved answers (9 Class B + Hobbs x2 + West Foster Creek x2), only
+   records both passes call YES, each with who / source / what it showed / date / fingerprint; approx mark off. Longview
+   Saline left OUT (its graders cited the packet only). Acton: sgnmc10988 dropped (not in either packet).
+4. **Gold set (step 3) NOT done:** the two passes are different packets (different letters, keys); the scorer takes one key.
+   Your call how to add them (a merged answer file per record id, or a third packet).
+5. **Kit B (park and preserve, outside agent) finding:** the NAME matcher (not the unit code) gives the preserve to the park on
+   five park-only POTA numbers: Wrangell-St. Elias NP (Preserve 4.3M ac), Katmai NP (328,054), Lake Clark NP (1.25M), Gates of
+   the Arctic NP (945,247), Craters of the Moon NM (411,913). POTA has no preserve number for these. Ruling needed: does a park
+   number cover its preserve when POTA has none? Denali was ruled wrong land. Great Sand Dunes is right (US-8295 = preserve).
+   Tallgrass Prairie (33 ac vs 10,893) and Timucuan (16,646 vs 46,263) records are far under official: second look.
+6. **Tracer T1:** not started (waits for your go via Brandon; it needs no key).
