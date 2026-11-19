@@ -621,5 +621,6 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      link, 25 per size class, 11-14 map hosts each). Fable writes the R-G9 sheet (T3) from run 2. The tracer ran blind (checked).
    - **Hand-off 02: good to send.** One caution added: the 30 short layers a bot can re-read are NOT re-read before the release is
      signed off (old and new must be measured on the same shapes); then one by-hand cache run from the requests.
-   - **Not ready, not reviewed:** item 3's table (US key run 44528656941 still going at 8:10 AM) and the #277 merge.
+   - **Not ready, not reviewed:** item 3's table and the #277 merge. US key run 44528656941 FINISHED 14:03 UTC (8:03 AM CST), red on
+     purpose (held states): a fresh Opus chat does item 3 a-d now (starter line in item 11), then merges #277.
 
