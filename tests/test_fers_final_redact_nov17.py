@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Ledger 59 (KPC owner, 2026-11-17): a public side file written BEFORE a park was held is redacted again at exit against the
 final withheld set (refs and names), carried rows kept, and a file with nothing secret is left alone."""
-import json, pathlib, sys, tempfile
+import json, os, pathlib, sys, tempfile
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / '.github/scripts'))
 import kpc_fers_store as S
 import kpc_save
@@ -16,6 +16,7 @@ def reset():
     S.NAMES.clear(); S._NAME_CACHE.clear(); S.CARRIED_JSON.clear(); S.PRIVATE_OUT = None
 
 tmp = pathlib.Path(tempfile.mkdtemp())
+os.chdir(tmp)  # kpc_save writes data/status/<this test>.json in the working directory; keep that out of the repo
 def write(name, doc):
     p = tmp / name; kpc_save.save_json(p, doc); S.PUBLIC_WRITTEN[str(p)] = (kpc_save.save_json, (), {}); return p
 

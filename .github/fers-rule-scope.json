@@ -341,6 +341,19 @@
       "scope": "none",
       "scope_note": "No outline is remeasured. A row pass 3 settles is stamped. An unstamped row is still left out. merge() is not changed.",
       "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-math-guard-baseline",
+      "when": "2026-11-19",
+      "from": "8fb1b48a66a8",
+      "why": "Hand-off 06 part 2. The measuring math is fingerprinted (find_spots and the functions under it, plus the size constants that are not in pair_fp). This entry is the baseline. It names a park that does not exist, so no real pair is retested. A later change to that math updates tests/fixtures/fers-math-guard.json and points it at a scope entry that is not none.",
+      "scope": {
+        "parks": [
+          "US-MATH-GUARD"
+        ]
+      },
+      "scope_note": "US-MATH-GUARD is not a park. No pair is retested. The guard fails if the measuring source changes and this fixture still names a none scope or an old fingerprint.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
     }
   ]
 }
