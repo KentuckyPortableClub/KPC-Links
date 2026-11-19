@@ -1116,3 +1116,18 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    158,302 vs 158,798) and the grid 1-6% high (edge cells). Not run yet: the fact check and gold inside `run` (wired, they run live).
    The agency-acres check (addition 5) was not built: optional, later. **Use:** after the release run, ONE by-hand run, mode `run`,
    old = the published key commit before the release; read `review-packets/run-<date>/` once.
+32. **HAND-OFF 04 IS BACK AND SCORED (Opus, 19 Nov ~1:35 PM CST; Brandon 1:18 PM sent both zips).** tools-out
+   `key-quality/2026-11-19/handoff-04/SCORE-READ-FIRST.md` (+ answers-pass1/, answers-pass2/). **Planted 8 of 8 right.**
+   - **Job F (the yes rests on it): 31 of 36 shrinks PASS** (outline 0.8-1.25x of the size both passes agree on; refuges on FWS Table 3
+     primary-jurisdiction land, no easements, no secondary overlay). One witness (Beaverhead Rock, fits). No figure: DE McGinnis Pond,
+     DE Laurel (Delaware refuses automated visitors). **Problems:** AR US-1092 Lake Fort Smith SP = an empty outline (one 0-acre record
+     166847; official 256.69; job A: both passes say sgarb19 IS the park: lift that NO); UT US-6063 Red Cliffs RMA = outline 61,479 ac
+     against an 873-ac recreation area / 44,859-ac NCA: **Fable**.
+   - **Job A:** 16 old NOs are wrong by both passes (the record IS the park: evidence batch 03, after the release unless the park is in
+     a waiting state and matters: Lake Fort Smith AR, DeGray Lake AR is a pin today), 10 PART keep their NO, 5 agreed CANNOT TELL,
+     3 differ (Buck's Pocket, Deep River ST, Chatfield Hollow): Fable.
+   - Jobs C, E: background for after the release. Job B: pass 2 blocked; pass 1 read the owner's file: same as kit C.
+   - **Per state (Opus):** READY = AK GA NC RI (item 28) + **FL VA WY** (every shrink fits) + **MT** (all fit; Custer Gallatin and
+     Flathead were fixed after the held files: read them in the release run's packet). **AR** after the Lake Fort Smith answer (saved
+     answers only, no hash). **UT** after Fable on Red Cliffs (or say yes with Red Cliffs named). **DE**: two small parks no agent could
+     check; Brandon's own browser can open Delaware's pages, or say yes knowingly.
