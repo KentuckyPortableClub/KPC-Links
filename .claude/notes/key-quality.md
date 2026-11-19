@@ -641,9 +641,20 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      is uploaded before the release is signed off** (a hand file is merged by the next key run and would change the shapes).
      After the release: the agent's own 49-file list first (41 already in the PC helper), busiest first.
    - **Built:** the PC heartbeat (tools-out `key-quality/2026-11-19/pc-heartbeat/`, sent to Brandon): starts a watchdog only when it
-     is over 115 minutes late. **Handed to chat 10:** the review packet bot (inbox/chat-10.md).
+     is over 115 minutes late. **The review packet bot goes to the OUTSIDE AGENT** (Brandon 8:25 AM: "no chat 10 no longer all chat numbers are retired ... give me handoff for outside agent"): hand-off 03A.
    - **OPUS'S ORDER NOW (fresh chat, the starter line of item 11):** (a) item 3 a-d on run 44528656941's files, the table to
      Brandon; (b) merge #277; (c) #278 round 2: the pin exception of R-PP1a, the owner's approval line, Colorado named, Florida
-     shown by ONE `kpc-key-measure.yml` run on the branch (no chat builds); (d) the second-pass kit for hand-off 02 (jobs 2 and 4
-     and job 3's 47 GIS answers, a fresh agent session briefed to prove each wrong). Then ONE Fable sitting: (c), the table, T1 run 2.
+     shown by ONE `kpc-key-measure.yml` run on the branch (no chat builds); (d) NOT Opus's any more: Fable made the second-pass kit (hand-off 03B, with Brandon).
+     Then ONE Fable sitting: (c), the table, T1 run 2.
+15. **HAND-OFF 03 (Fable, 19 Nov 8:35 AM CST), tools-out `key-quality/2026-11-19/handoff-03/` (README there). Chat numbers are retired
+   (Brandon 8:25 AM): nothing is handed to a numbered chat any more; builds a bot can be given to go to the outside agent.**
+   - **03A, a BUILD job:** the review packet bot, in KPC-Data (KPC-Links cannot write to KPC-Data): `kpc-key-review-packet.yml` +
+     `kpc_key_review_packet.py` + a test; by hand, never red, writes only tools-out `key-quality/review-packets/`. It comes back as a
+     draft PR or a zip: a club session reads it before it is merged or started. Acceptance = #278 at ac2ab4c against 8140d35.
+   - **03B, the SECOND PASS of hand-off 02** for a FRESH agent session (never give it `handoff-02/answers-pass1/`): jobs 2, 3 (pass
+     1's 47 GIS + 8 open rows) and 4 (+ Denali + the three combined units of G-PP2), blind, reshuffled, 5 new planted answers.
+     The key: `handoff-03/kit-keys/`. A row counts only where both passes agree; disagreements to Fable.
+   - **Found while writing 03A:** KPC-Links `kpc-discord-relay.yml` (it restarts itself every 30 minutes, so GitHub's timer skips do
+     not stop it) already carries a heartbeat for KPC-DATA's watchdog. A few lines more there for KPC-Links' OWN watchdog would have
+     caught the 19 Nov miss with no PC. The PC heartbeat sent to Brandon is the backup. Small change for a club session, not an agent.
 
