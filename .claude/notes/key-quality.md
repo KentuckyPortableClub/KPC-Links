@@ -551,6 +551,25 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
 7. **KIT C (official acres: NPS, FWS, USFS): use it AFTER the release, not in this fact check** (old and new must be measured with
    the same inputs). Then it becomes a size witness: an outline passes between 0.8 x the smaller figure (federal) and 1.25 x the
    larger (gross); outside that it is flagged. Draft PR, Fable reviews.
-8. **OPUS'S ORDER NOW:** (a) item 3 a-d, table to Brandon; (b) merge #277; (c) R-PP1 draft PR; (d) T1 test run; then Fable reads
+8. **OPUS'S ORDER NOW:** (a) item 3 a-d, table to Brandon; (b) merge #277; (c) R-PP1 draft PR; (d) T1 test run; (d2) item 9, the layers + the hand-off zip; then Fable reads
    (c), the table and the T1 report; (e) Brandon's yes -> KPC_DROP_OK -> ONE release run (Q1, held states, NPS, #277, R-PP1
    together); (f) kit D; (g) section 11 step 3 PR (dropped last word, the `_keep` finding, the same_land label).
+9. **MISSING LAYERS + HAND-OFF (Brandon 19 Nov 5:58 AM: "we was missing layers ... older pr was going to have keeper fetch what
+   we was missing, confirm we got them, then hand download list ... give me hand off to have external agent help ... all
+   resources are on the table"). For Opus, one pass, read the files once:**
+   a. CONFIRM: what the keeper asked for and what came in (ledger 93 + the 18 Nov HQ line: KPC-Store keeper 9aae1032,
+      `layer-requests.json`, the SHORT layer counts, KPC-Data `data/keeper-asks/latest.json`), plus the master check's suspect
+      baselines (CO sgcoa, OR sgorf, WA sgorf: "expected 200, the file held more" = a read cut off at 200). Tell Brandon three
+      numbers and the names: asked, arrived, still short.
+   b. HAND-DOWNLOAD LIST: every layer no bot can read (blocked host, login, download-only file) and every park whose true
+      boundary is in no layer we hold (Tillamook SF US-5461, Tallgrass Prairie, Timucuan, Craters of the Moon's BLM land,
+      Longview Saline). One row each: state, agency, layer, official page, the file to get, busiest parks first, and who can get
+      it: BOT / PC / AGENT. Files land on KPC-Data branch `intake-files`.
+   c. ONE ZIP for the outside agent (no keys in it, as before): job 1 = find the official GIS source for each row of the list
+      (research order: open-data portal, agency maps page, then web search; return the layer address or the file, the date and
+      the licence line); job 2 = second look 02 (the parks named in b plus Osage WMA, Acadia Cliffs, Diamond HMA: official page,
+      official acres, where the official outline lives); job 3 = the busiest 100 pin-only parks: is there an official GIS layer
+      or only a picture map. Kit D (random sample, item 5) follows after the release.
+   d. BRANDON'S PC: it is on home internet with a real browser, so it can download the layers that block the bots (as with the
+      KDFWR file for Salato) straight from the list's PC rows. His 2-fer tool and the full PC run wait for the released keys
+      (running them on today's keys wastes the run); HQ's open line (pins.json + store tool update) comes first.
