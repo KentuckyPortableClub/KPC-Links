@@ -1391,4 +1391,29 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **STANDING FIX (for the readiness board, hand-off 07 idea 4):** every day one line per state: key saved <date>, outlines
      written <date>, public Release <date>. A gap between the three is shown, never found by accident.
    - Hand-off 07 has this as stage C2 and as its first known issue (tools-out 852f13d).
+42. **HAND-OFF 06 IS BACK + WHO GATES THE PUBLIC RELEASE (Fable, 19 Nov 4:30 PM CST; Brandon 4:26 PM relayed the agent, then: "Just
+   got this send new one to agent? We release once you think keys are excellent").**
+   - **IN, all draft, nothing merged:** KPC-Data #131 (hand-off 05 part 5, the three review changes). KPC-Links #289 (06 part 1,
+     20 files, +1,141 / -247) <- #290 (part 2) <- #292 (part 3); the part 4 proposal is in part 1's notes. fers 0637d083bd98 ->
+     9cee86692de2 across the three; US / CA / world hashes unchanged. The agent's own numbers: 14 targeted tests pass; R-2F1 recount
+     127 summary-map parks (74 on 17 Nov: ask why it rose); the full gate not finished (Python 3.12 only on its machine).
+   - **THE OWNER'S RULING: the public Release waits on Fable's judgement of the keys** ("We release once you think keys are
+     excellent"). He still starts it (only his login can). This replaces "Brandon's GO" as a separate step in item 41 (f).
+   - **HOW FABLE APPLIES IT (told to Brandon, his to overrule):** two different yeses. (1) A STATE GOES TO THE PUBLIC MAP when the
+     public-against-working table of item 41 (d) is clean for it: every outline lost or shrunk 20%+ against what is on the map NOW
+     is explained or passes the size check, and nothing the fact check calls verified gets worse. The map up today is the 11 Nov
+     key with known wrong outlines, so a better key is not held back for a number. (2) THE KEY IS CALLED "EXCELLENT" only on a
+     measured number, the 18 Nov bar: a blind random sample of 300 outlined parks, two outside-agent passes that must agree, wrong
+     land under 1% (0 wrong in 300 is what proves that; 1 or 2 wrong = "up to about 2%", said as that), and none wrong among the
+     25 busiest parks of each state (blind line-ups only for the ones the fact check does not already verify). Reported with its
+     range, never one number.
+   - **THE SAMPLE = KIT D, Opus builds it with `kpc_key_grade.py`** (sample seeded, packet blind with plants, keys apart) from the
+     key that goes public, two zips to Brandon for two fresh agent sessions, score, table to Fable. After item 41 (a)-(d).
+   - **THE THREE 2-FER PRs NEED FABLE BEFORE ANY MERGE (each moves the fers hash). A FRESH Fable chat** (this one is very long):
+     "Read CLAUDE.md, key-quality.md section 19 items 38 and 42, and the rule sheet on tools-out
+     key-quality/2026-11-19/handoff-06/RULE-SHEET.md: review KPC-Links #289, #290 and #292 and answer the part 4 proposal."
+     The agent cannot see comments on KPC-Links PRs: Brandon passes the review on. 2-fer runs stay parked; this review does not
+     hold up the map Release.
+   - **HAND-OFF 07 GOES TO A FRESH AGENT SESSION** (not the one that built 05 and 06: it would be reviewing its own work).
+   - **THE GATE WORKFLOW (item 41) runs Python 3.12 AND 3.13** (hand-off 06 part 2 asks for both; the agent had 3.12 only).
 
