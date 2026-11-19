@@ -946,3 +946,41 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    (44567326912: CT ID ME ND OH TN WV + held states) was left to finish; its drop guard holds what it should. **FOR FABLE:** plan the fixes
    in place of blind refreshes: which layers need a re-read and when (the keeper's change check, notes/layer-refresh.md, parked plan R-LR1..4),
    after the release sign-off, one by-hand run per batch of fixes.
+24. **WHO DOES WHAT NOW (Fable, 19 Nov 11:40 AM CST; Brandon 11:29 AM: "What can opus do...lets get him to do all he can staying in the
+   efficient use rule and using bots, outside agents, my pc tools etc"). This REPLACES item 21's order. Starter for a fresh Opus chat:
+   "Read CLAUDE.md and key-quality.md section 19, do item 24."**
+   - **The packet bot is ACCEPTED.** Run 44564132024 (10:16-10:26 AM, all green) wrote tools-out
+     `key-quality/review-packets/pr-278-ac2ab4c/`; its park table equals the hand figures on all five rows, the state counts,
+     notices and gold too. From now on NO chat builds for a pull request: ONE packet run (KPC-Data `kpc-key-review-packet.yml`, by
+     hand: pr, states) and read its folder. The builder agent has its go-ahead for PART 2 with five additions (tools-out
+     `handoff-03/A-build-review-packet-bot/PART-2-ADDITIONS.md`: shrinks 20%+, new land 100+ ac, an unused record under a dropped
+     copy, acres added up, agency acres; known answers given). Brandon starts that agent.
+   - **OPUS, BLOCK 1: the three things the release waits on (in this order, each small).**
+     (1) #278 round 3 as item 20 says. Its check is now ONE packet run (pr 278, states AK CO ID) instead of the measure run:
+     `notices-only-new.txt` must hold AK `R-PP1 ... 6 record(s)` + `R-PP1a ... US-0069`, CO `R-PP1 ... 2 record(s)` and no R-PP1a
+     line, ID `R-PP1a ... US-0665`; parks changed = US-0026, US-0044, US-0048 only; verified got worse = none. Then the stamp of
+     item 20 and merge. (2) Evidence batch 02 as item 21 says; its check = ONE packet run (states MT): parks changed = US-4501 only,
+     record 2660 gained, about 2,966,156 ac. Then merge (agreed ahead). (3) The named-parks drop guard + its test (item 21 c).
+   - **OPUS, BLOCK 2: two kits, so the agents work while he builds (zips on tools-out `key-quality/2026-11-19/handoff-04/`, no keys
+     inside, planted known answers, the answer key apart; every research job goes to TWO fresh sessions; a row counts where both agree).**
+     *Hand-off 04 (research):* job A the four refuges (US-0399, US-0408, US-0563, US-0572): the agency's own acres by kind (owned /
+     easement / another agency's land), which of it is open to the public, where its own boundary layer lives; job B the two Idaho
+     rivers (US-10429, US-0890): the designated stretches and the official corridor acres; job C the 63 parks that become pins,
+     busiest first (`factcheck-run-44528656941/lost.json`): official page, official acres, where the official outline lives, the
+     record's name and acres (job 2's sheet); job D one look-up: the owner-class field and its values in the Forest Service's
+     `EDW_BasicOwnership` layer, with the Bitterroot rows. *Kit D, moved BEFORE the yes:* a seeded random 60 parks from the 13 held
+     states' would-be files (`kpc_key_grade.py sample`), kit A's format, briefed to prove each outline wrong.
+   - **BLOCK 3: the yes and the release.** Opus writes the approved list per state from Brandon's page; Brandon says yes per state
+     (Montana after batch 02); ONE release run (Q1, held states, NPS, #277, R-PP1a, batch 02) with the guard on that list; part 2's
+     `run` packet (or, if it is not merged yet, the scripts of `fable-sitting-3/scripts/`) gives the old-against-new table with the
+     shrink columns. Then ONE Fable sitting: that table, batch 03 (the refuges, from job A), the two rule drafts below.
+   - **OPUS, BLOCK 4: drafts made ready while he waits on agents or on Brandon. NONE is merged and no layer is re-read before the
+     release is signed off.** (a) R-NET1's code, one draft PR per repo with the sheet's examples as tests (items 19, 20, 21, 23:
+     ArcGIS = like any site); (b) `measured_ac` never adds across layers (rule file: Fable reads); (c) the Idaho ownership layer
+     filter once job D names the field (rule file: Fable reads); (d) the PC helper made ready for the rows that stay hand downloads
+     after R-NET1 (item 16: about 47 of 487, gis.ohiodnr.gov and the like).
+   - **BRANDON'S PC:** nothing to download before the release (and after it the bots take 440 of the 487 rows). One open thing:
+     run `1-TEST-HEARTBEAT.bat` once (ledger, PC heartbeat). His 2-fer tool and the full PC run wait for the released keys.
+   - **ONLY BRANDON:** the question to POTA on park and preserve (both agent passes say POTA's pages do not answer it); his yes per state.
+   - **USAGE (item 11 stands):** blocks in order, one packet run per change, read the folder or the job log once (no polling, no
+     annotations), no 50-state builds in chat, legwork to the agents, ONE Fable sitting per block (the next one after the release run).
