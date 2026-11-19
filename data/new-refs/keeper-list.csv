@@ -1,4 +1,6 @@
 ref,name,pin_lat,pin_lon,type,change,date,run_id,source
+US-13669,Clear Creek Greenway BLM Recreation Management Area,40.4938,-122.467,POTA,new,2026-11-19,44534306156,kpc_new_refs
+US-13668,Quanduck Brook Wildlife Management Area,41.8324,-71.811,POTA,new,2026-11-19,44534306156,kpc_new_refs
 US-13667,Wild Rivers BLM Recreation Management Area,36.6804,-105.673,POTA,new,2026-11-18,44395530213,kpc_new_refs
 US-13666,Orilla Verde BLM Recreation Management Area,36.3378,-105.731,POTA,new,2026-11-18,44395530213,kpc_new_refs
 US-13665,Upper Bonito Dispersed Recreation Area National Recreation Area,33.4653,-105.8,POTA,new,2026-11-18,44395530213,kpc_new_refs
@@ -6,9 +8,3 @@ US-13664,Hunters Campground Recreation Site,48.1259,-118.229,POTA,new,2026-11-14
 US-13663,Fort Spokane Campground Recreation Site,47.9089,-118.31,POTA,new,2026-11-14,,kpc_new_refs
 US-13662,Pioneer Park Campground Recreation Site,48.2114,-117.054,POTA,new,2026-11-14,,kpc_new_refs
 US-13661,Panhandle Campground Recreation Site,48.5086,-117.269,POTA,new,2026-11-14,,kpc_new_refs
-US-13660,Hidden Splendor BLM Backcountry Airstrip,38.5686,-110.957,POTA,new,2026-11-12,,kpc_new_refs
-US-13659,Red Canyon USFS Recreation Park,37.7456,-112.319,POTA,new,2026-11-12,,kpc_new_refs
-US-13658,Wild Rose Wildlife Management Area,45.6292,-92.9611,POTA,new,2026-11-12,,kpc_new_refs
-US-13657,Nessel Wildlife Management Area,45.7061,-93.1146,POTA,new,2026-11-12,,kpc_new_refs
-US-13656,Rush Lake Wildlife Management Area,45.683,-93.0298,POTA,new,2026-11-12,,kpc_new_refs
-US-13655,Janet Johnson Memorial Wildlife Management Area,45.4976,-92.9513,POTA,new,2026-11-12,,kpc_new_refs
