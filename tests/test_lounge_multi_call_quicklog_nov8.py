@@ -11,7 +11,7 @@ def check(c, m):
     print(('PASS ' if c else 'FAIL ') + m); ok = ok and bool(c)
 def grab(pat):
     m = re.search(pat, src, re.S); check(bool(m), 'found ' + pat[:40]); return m.group(0) if m else ''
-parts = [grab(r"  function rstFor\(m\).*?\n  function groupCalls\(s\).*?\n"), grab(r"  const af = .*?\n"), grab(r"  function adMode\(m\).*?\n"), grab(r"  function adif\(L\) \{.*?\n  \}\n")]
+parts = [grab(r"  function rstFor\(m\).*?\n  function groupCalls\(s\).*?\n"), grab(r"  const BANDS = .*?\n  const bandOf = .*?\n"), grab(r"  const af = .*?\n"), grab(r"  function adMode\(m\).*?\n"), grab(r"  function adif\(L\) \{.*?\n  \}\n")]
 js = """const enc = new TextEncoder(), CALL = 'KZ4CP', ST = {KY: 1}, myGrid = () => 'EM78', isQrt = s => !!s.qrt;
 const progOf = r => /^[A-Z0-9]{1,4}-\\d{4,5}$/.test(r) ? 'POTA' : /FF-/.test(r) ? 'WWFF' : 'SOTA';
 let SP = [];
