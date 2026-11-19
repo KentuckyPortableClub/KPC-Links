@@ -833,3 +833,51 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      wording; R-NET1 with the four conditions; R-G9 (traced lines stay off the map). **OPUS'S ORDER when he answers:** (a) #278 round 3;
      (b) evidence batch 02 (draft PR, Fable reads); (c) the named-parks guard + its test; (d) #124's three fixes go back to the outside
      agent; then Brandon's yes per state on the page -> ONE release run. Nothing is released before that.
+21. **BRANDON'S ANSWERS + 03B SCORED + #124 SECOND READ (Fable, 19 Nov 10:15 AM CST).**
+   - **The owner's yeses to item 20's five questions.** 10:06 AM: "1-4 no clue what your asking 5 i agree" (asked again in plain words on
+     his page); 10:12 AM: **"1-4 I agree with your thoughts for now maybe revist later if new rules or info changes"**. So, all FOR NOW:
+     (1) Montana waits for evidence batch 02 (Custer Gallatin US-4501); (2) the named-parks drop guard is built before the release run;
+     (3) **R-PP1a as amended is APPROVED FOR NOW, decided_by KPC owner, 2026-11-19 (10:12 AM)**: the pin exception only where POTA has
+     no number of its own for that part (#278 round 3's changelog line quotes his 10:12 words); (4) **R-NET1 with the four conditions
+     is APPROVED FOR NOW** (code after the release, as written); (5) **R-G9: traced lines stay off the map** until the bigger test of
+     the draft sheet passes (10:06 AM "5 i agree").
+   - **Evidence batch 02, approved AHEAD (no new sitting) if it is exactly this:** ONE saved answer joining PAD-US 2660 "Gallatin National
+     Forest" (its own Loc_Nm is "Custer Gallatin National Forest") to US-4501, fingerprint from the shape cache, evidence = that Loc_Nm +
+     the USFS Land Areas Report FY2025 (Custer NF Montana 1,115,757 + Gallatin NF 1,850,468 NFS acres); a test build of Montana in which
+     exactly ONE park changes (US-4501 gains 2660; about 2,966,156 ac); the tests pass. Anything more goes to a Fable sitting. The
+     refuges (US-0399, US-0408, US-0563, US-0572) are NOT in it: they wait for an outside agent's look.
+   - **HAND-OFF 03B, PASS 2, IS BACK AND SCORED** (tools-out `key-quality/2026-11-19/handoff-03/answers-pass2/`, SCORE-READ-FIRST.md).
+     Planted answers 3 of 5: job 2 and job 4 right; job 3 one right, one left empty, **one WRONG (Mount Magazine SP: NOTHING where the
+     Arkansas State Parks layer holds it)**: a pass-2 NOTHING is not proof. **Job 2: 9 of 9 rows agree with pass 1**: those official
+     acres now count (Tallgrass 10,882.67 / 33.12 federal; Timucuan 46,262.76 / 17,122.67; Craters NM 53,437.64 with the preserve its
+     own row; Osage 7,329 + 3,722; Acadia Cliffs 273 / 275.25; Diamond HMA 166,632; Longview Saline 6,020, WMA and natural area the
+     same land; Tillamook 364,000 in the plan, 359,8xx Board of Forestry land in two districts; ODF's own zip is at
+     gisapps.odf.oregon.gov, no forest-name field). **Job 4: both passes agree on every row**: no preserve number, POTA's page does
+     NOT SAY (the five R-PP1 parks, Denali, New River Gorge, Jean Lafitte, Oregon Caves): only POTA can settle R-PP1a and G-PP2.
+     **Job 3: both say GIS for 18 parks** (21 rows; `SCORE-job3-both-passes.csv`); 24 rows where pass 1 said GIS do NOT count (TVA dam
+     parks with no park-named record, four rivers with no boundary in the Park Service's own layer, containing areas); 10 open rows
+     are NOTHING. **Six of the 18 are Forest Service BOUNDARY layers** (Custer Gallatin 3,412,203 ac = the report's gross): never drawn
+     (owned land only). Nothing is a saved answer or a layer yet; no hand download before the release sign-off (item 14).
+   - **R-NET1, A CORRECTION TO ITEM 20: the ArcGIS "published no" is NOT shown.** Pass 1 (agent 1) wrote services*.arcgis.com robots.txt
+     = "User-agent: * / Disallow: /". Pass 2 (agent 2) got 403 "Invalid URL" (no robots file), re-checked, says the owner checked too,
+     and then read layers on services, services1, 2, 6, 7, 9 (about 120 requests, none refused). Our bot got 403 on 31 Oct. Two readings
+     against one. Added to the conditions: **a "no" our bot cannot read for itself needs two readings that agree, or the owner's own
+     eyes.** For ArcGIS that is not met, so point 1 decides when the code is built: robots.txt 403 = no rules = allowed, with the manners,
+     and STOP on a 401 / 403 / 429 from the data. My line "ArcGIS-hosted layers stay a person's download" is withdrawn. Asked of
+     Brandon, no hurry (nothing changes before the release): what his phone shows at services.arcgis.com/robots.txt. 440 of the 487
+     PC rows of the hand-download list are on those hosts.
+   - **KPC-Data #124, second read (5fb5803; the agent acted on the PR comment by itself within three minutes): the three fixes are
+     right** (no repeated key, signed-in `gh`, read-only except the `save` job, outside pull requests refused, tests ALL PASS). **One
+     small thing left (second comment on the PR):** `build` and `packet` ask for `actions: write` (not needed to upload a run file),
+     and the build step holds `GH_TOKEN` while it runs the pull request's key builder: drop the permission, keep the token out of that
+     step. Then: a club session MERGES it (GitHub starts a by-hand workflow only when its file is on main), then ONE acceptance run:
+     pull request 278, new ac2ab4c80723ae3ebf19261339c339b3da6f849c, old 8140d35e14923e7fa17cc25254c854d78e3a86c2, states AK ID CO.
+     **A comment on that PR starts the outside agent: write there only what it should act on.**
+   - **OPUS'S ORDER NOW (fresh chat: "Read CLAUDE.md and key-quality.md section 19, do item 21's order"):** (a) #278 round 3 as item 20
+     says, ONE measure run states AK CO ID, read its JOB LOG, stamp and merge if it reads as agreed; (b) evidence batch 02 as above;
+     (c) the named-parks drop guard: `kpc_key_drop_guard.py` takes an approved list (state -> park numbers, written from Brandon's page:
+     the lost outlines of `factcheck-run-44528656941/lost.json` for the states he names) and holds a state that loses any outline not
+     on it; test both ways; (d) #124: read the agent's last fix, merge, the ONE acceptance run; (e) the run's table gets the two new
+     columns of item 20 (shrinks 20%+, new land 100+ ac). Then Brandon's yes per state on his page -> the list -> ONE release run
+     (Q1, held states, NPS, #277, R-PP1a, batch 02). Nothing is released before that. After the release: `measured_ac`, the Idaho
+     ownership layer filter, R-NET1's code, the hand downloads both passes agree on, kit D.
