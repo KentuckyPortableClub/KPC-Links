@@ -590,4 +590,13 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - Legwork goes to the outside agent and Brandon's PC (source finding, page checks, grading passes, blocked downloads).
    - AFTER the release, a bot job (chat 10): the US key run writes its own old-against-new fact-check table per state, so no
      chat has to build it again.
+12. **OPUS, ITEM 8 STATUS (19 Nov 7:20 AM CST).** (c) DONE: R-PP1 = draft **#278** (US 7c6e01e1bc2b -> 98b1f03ec6ed, switch
+   KPC_PRESERVE_APART; the five lose their preserve record; 0 outlines lost; **Craters of the Moon US-0665 goes verified -> flagged**:
+   POTA's pin is 22.7 km out, inside the preserve; job 4 decides; files tools-out `key-quality/2026-11-19/r-pp1/`). (d) STARTED:
+   KPC-Data `kpc-trace-test.yml` + `kpc_trace_measure.py` (f307c407), ONE run 44530520714; list + report on tools-out
+   `key-quality/2026-11-19/t1/` (report in `run-<id>/`), maps on throwaway branch `trace-test` (delete after Fable reads). (d2) DONE:
+   tools-out `key-quality/2026-11-19/handoff-02/` (asked 64 layers, arrived 0, still short 64; hand-download list 592 rows: PC 487,
+   BOT 81, AGENT 24; `handoff-02-kit.zip` for the agent, key in `kit-keys/`). (a) + (b) WAIT on US key run **44528656941** (started
+   by hand 12:57 UTC as the missed 11:46 backup, Brandon's yes 6:52 AM; GitHub skipped the cron and the watchdog). When it is done:
+   item 3 a-d (OLD side saved: tools-out `key-quality/2026-11-19/factcheck-pub/`), the table to Brandon, then merge #277.
 
