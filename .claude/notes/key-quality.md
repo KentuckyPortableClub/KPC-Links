@@ -1151,3 +1151,16 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      Have today: link harvester (finds an official page / map when POTA gives none), truth bot (opens the official page, reads the
      park's size), docs bot (map + rules links). Missing: the page's own heading (the designation: "National Park & Preserve"), and
      the location / address. Would be a reading step added to the truth bot (KPC-Data), built by the outside agent, robots.txt manners.
+34. **STANDING RULE FOR RELEASING STATES (KPC owner, 19 Nov 1:56 PM: '"release a state when every lost or shrinking park passes the
+   two-agent size check; ask me only about the problems....if fable thinks the error ratio is low and we done excellent job matching
+   parks release them bring me the problems you can not figure out').** Replaces "Brandon's yes per state" (items 3e, 29).
+   - A state is RELEASED (written into `.github/key-drop-approved.json` with decided_by = this rule + the date, then ONE release run)
+     when: (1) every park that loses its outline or official grade, and every park that shrinks 20%+, passes the two-agent size check
+     (both passes agree, the new outline 0.8-1.25x of that size) or is explained (a planned rule: Q1 / D3 / D4 / contest / a piece of a
+     unit across state lines); (2) **Fable** has read the numbers and says the error ratio is low and the matching excellent (the 18 Nov
+     bar, Q2: wrong land under 1% of outlines, none in the 25 busiest of each state, nothing over 2x official unexplained).
+   - Brandon hears only the problems the chats and agents cannot settle, by park number. Open now: **US-6063 Red Cliffs BLM RMA (UT)**
+     and **US-12938 Laurel Industrial Forest Land SWA (DE)** (given to him 1:57 PM). Red Cliffs goes to Fable first.
+   - **NEXT (one Fable sitting):** #286 R-PP1b review (packet run 44602628319), Red Cliffs, the 3 job-A disagreements, and the yes under
+     this rule for the waiting states (Opus's reading: AK GA NC RI FL VA WY MT pass; AR after Lake Fort Smith; UT after Red Cliffs;
+     DE after Laurel). Then Opus: Lake Fort Smith saved answer, the list, ONE release run, the `run` packet, empty the list.
