@@ -13,7 +13,9 @@
   const AK = 'kpcAppPotaAuth', SK = 'kpcAppPotaStats';
   const get = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? d : v; } catch (e) { return d; } };
   const put = (k, v) => { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
-  let AUTH = get(AK, null), ST = get(SK, null), BUSY = false, PLUG = null;
+  /* Nov 18 (X5): the POTA sign-in tickets are sealed at rest where the device can (kpc-sec.js) */
+  const AF = ['id', 'rt'], getA = () => { const a = get(AK, null); return a && G.KPCSec ? KPCSec.openObj(a, AF) : a; }, putA = a => put(AK, a && G.KPCSec ? KPCSec.sealObj(a, AF) : a);
+  let AUTH = getA(), ST = get(SK, null), BUSY = false, PLUG = null;
 
   /* runs ON pota.app: the sign-in ticket as JSON, or null while not signed in yet */
   const FINDER = "(function(){try{var o={},i,k,m;for(i=0;i<localStorage.length;i++){k=localStorage.key(i);m=k.match(/^CognitoIdentityServiceProvider\\.([^.]+)\\.(.+)\\.(idToken|refreshToken)$/);if(m){o.client=m[1];o.user=m[2];o[m[3]]=localStorage.getItem(k);}}if(o.idToken)return JSON.stringify(o);"
@@ -24,7 +26,7 @@
     const b = body(o.idToken);
     AUTH = { id: o.idToken, rt: o.refreshToken || '', client: o.client || '', region: (String(b.iss || '').match(/cognito-idp\.([a-z0-9-]+)\.amazonaws\.com/) || [])[1] || '',
       call: String(b['pota:callsign'] || '').toUpperCase(), exp: (+b.exp || 0) * 1000, t: Date.now() };
-    put(AK, AUTH);
+    putA(AUTH);
   }
   async function signIn() {
     let raw = null;
@@ -50,7 +52,7 @@
         body: JSON.stringify({ AuthFlow: 'REFRESH_TOKEN_AUTH', ClientId: AUTH.client, AuthParameters: { REFRESH_TOKEN: AUTH.rt } }) }).catch(() => null);
       let j = null; try { j = r && JSON.parse(r.text); } catch (e) {}
       const id = j && j.AuthenticationResult && j.AuthenticationResult.IdToken;
-      if (id) { AUTH.id = id; AUTH.exp = (+body(id).exp || 0) * 1000; put(AK, AUTH); return id; }
+      if (id) { AUTH.id = id; AUTH.exp = (+body(id).exp || 0) * 1000; putA(AUTH); return id; }
     }
     return '';
   }
@@ -78,7 +80,7 @@
       if (!quiet) AP.toast('✅ POTA for ' + esc(S2.call || 'you') + ': ' + S2.nh.toLocaleString() + ' parks hunted · ' + S2.na.toLocaleString() + ' activated · ' + S2.earned.length + ' awards', 5000, 'log');
       return true;
     } catch (e) {
-      if (e.message === 'auth') { if (AUTH) { AUTH.exp = 0; put(AK, AUTH); } if (!quiet) AP.toast('POTA says the sign-in is no good any more: tap 🔑 SIGN IN TO POTA again.', 6000, 'bad'); }
+      if (e.message === 'auth') { if (AUTH) { AUTH.exp = 0; putA(AUTH); } if (!quiet) AP.toast('POTA says the sign-in is no good any more: tap 🔑 SIGN IN TO POTA again.', 6000, 'bad'); }
       else if (!quiet) AP.toast(esc(e.message || String(e)), 6000, 'bad');
       return false;
     } finally { BUSY = false; draw(); }
@@ -130,7 +132,7 @@
     $('bmOpen').onclick = () => { try { window.open('https://pota.app/', '_blank'); } catch (e) {} };
     $('bmBack').onclick = () => { AP.shut(); sheet(); };
   }
-  function signOut() { AUTH = null; put(AK, null); AP.toast('Signed out: the app forgot its POTA sign-in on this device (your stats stay until you clear them).', 5000); draw(); }
+  function signOut() { AUTH = null; putA(null); AP.toast('Signed out: the app forgot its POTA sign-in on this device (your stats stay until you clear them).', 5000); draw(); }
 
   /* ---------------- the stats sheet (the Hunters Lounge's tiles) ---------------- */
   const FE = [0, 10, 20, 30, 40, 50, 75, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000];

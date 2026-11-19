@@ -140,13 +140,15 @@
     for (let x = 0; x < W; x++) { const a = Math.floor((f0 + x / W * (f1 - f0)) / bin), b = Math.max(a + 1, Math.floor((f0 + (x + 1) / W * (f1 - f0)) / bin)); let m = 0; for (let k = a; k < b && k < N / 2; k++) m = Math.max(m, re[k] * re[k] + im[k] * im[k]); out[x] = 10 * Math.log10(m + 1e-12); }
     return out;
   }
+  const PAL = (() => { const ST = [[0, 0, 0, 0], [.22, 2, 8, 30], [.40, 10, 40, 130], [.55, 25, 120, 230], [.68, 50, 210, 220], [.80, 120, 240, 110], [.91, 255, 225, 60], [1, 255, 140, 30]], t = new Uint8Array(768);
+    for (let i = 0; i < 256; i++) { const v = i / 255; let a = ST[0], b = ST[ST.length - 1]; for (let k = 0; k < ST.length - 1; k++) if (v >= ST[k][0] && v <= ST[k + 1][0]) { a = ST[k]; b = ST[k + 1]; break; } const f = b[0] === a[0] ? 0 : (v - a[0]) / (b[0] - a[0]); for (let c = 1; c < 4; c++) t[i * 3 + c - 1] = a[c] + (b[c] - a[c]) * f; } return t; })();
   let wfT = 0;
   function wfRow(vals) {
     VALS = vals; const t = performance.now(); if (document.hidden || P.hidden || t - wfT < 45) return; wfT = t;
     const srt = Array.from(vals).sort((a, b) => a - b), lo = srt[Math.floor(srt.length * 0.2)], hi = lo + 32;
     wx.drawImage(wf, 0, 0, wf.width, wf.height - 1, 0, 1, wf.width, wf.height - 1);
     const row = wx.createImageData(wf.width, 1);
-    for (let x = 0; x < wf.width; x++) { const v = Math.max(0, Math.min(1, (vals[x] - lo) / (hi - lo))); const r = v < .5 ? 0 : (v - .5) * 2 * 255, g = v < .33 ? 0 : v < .8 ? (v - .33) / .47 * 255 : 255, b = v < .5 ? 60 + v * 2 * 195 : 255 - (v - .5) * 2 * 155; row.data.set([r, g, b, 255], x * 4); }
+    for (let x = 0; x < wf.width; x++) { const v = Math.max(0, Math.min(1, (vals[x] - lo) / (hi - lo))), i = Math.round(v * 255) * 3; row.data.set([PAL[i], PAL[i + 1], PAL[i + 2], 255], x * 4); }   /* Nov 18: the SDR page's palette (black floor) */
     wx.putImageData(row, 0, 0);
   }
   function drawScale() {
@@ -177,12 +179,13 @@
 
   /* ================= receive text, calls heard ================= */
   let TXT = '', CALLS = [];
+  const HEARD = [];   /* Nov 18: calls the CW decoder copied, with when (👂 CAN I HEAR THEM, kpc-hear.js) */
   const CALLRE = /\b((?:[A-Z]{1,2}|\d[A-Z])\d{1,2}[A-Z]{1,4})(?:\/[A-Z0-9]+)?\b/g;
   function rxChar(ch) { TXT = (TXT + ch).slice(-6000); if (/\s/.test(ch)) callScan(); clearTimeout(rxChar.t); rxChar.t = setTimeout(drawRx, 80); }
   function drawRx() { const el = $('d5Rx'), stick = el.scrollTop + el.clientHeight >= el.scrollHeight - 30; el.dataset.mode = MODE; el.innerHTML = (TXT ? '' : '<span class="ph">' + esc(MODE) + ' copy shows here.</span>') + esc(TXT).replace(/\[TX\]/g, '<i class="tx">▶</i>') + (MODE === 'CW' && C.cur ? '<span class="cur">' + esc(C.cur) + '</span>' : '<span class="cur">▌</span>'); if (stick) el.scrollTop = el.scrollHeight; }
   function callScan() {
     const tail = TXT.slice(-200), my = AP.myCall(); let m; CALLRE.lastIndex = 0;
-    while ((m = CALLRE.exec(tail))) { const c = m[1]; if (c === my || c.length < 4) continue; CALLS = [c].concat(CALLS.filter(x => x !== c)).slice(0, 8); }
+    while ((m = CALLRE.exec(tail))) { const c = m[1]; if (c === my || c.length < 4) continue; CALLS = [c].concat(CALLS.filter(x => x !== c)).slice(0, 8); if (MODE === 'CW') { HEARD.push({ call: c, t: Date.now(), khz: dialK('CW') }); if (HEARD.length > 50) HEARD.shift(); } }
     $('d5Calls').innerHTML = CALLS.map(c => { const sp = spotOf(c), wk = G.KPCLog && KPCLog.worked(c); return `<button type="button" class="chip${sp ? ' park' : ''}${wk ? ' wk' : ''}" data-d5c="${esc(c)}">${esc(c)}${sp ? ' 🌲 ' + esc(sp) : ''}${wk ? ' ✓' : ''}</button>`; }).join('');
   }
   const spotOf = c => { if (!G.KPCSpots) return ''; const s = KPCSpots.all().find(x => x.call === c && x.refs.length); return s ? s.refs[0] : ''; };
@@ -199,8 +202,10 @@
   const MORSE = { '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F', '--.': 'G', '....': 'H', '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P', '--.-': 'Q', '.-.': 'R', '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y', '--..': 'Z',
     '-----': '0', '.----': '1', '..---': '2', '...--': '3', '....-': '4', '.....': '5', '-....': '6', '--...': '7', '---..': '8', '----.': '9', '.-.-.-': '.', '--..--': ',', '..--..': '?', '-..-.': '/', '-...-': '=', '.-.-.': '+', '-....-': '-', '...-.-': '<SK>', '-.--.': '<KN>', '.-...': '<AS>' };
   const TOM = {}; for (const k in MORSE) if (MORSE[k].length === 1) TOM[MORSE[k]] = k;
-  const C = { gate: 0, lvl: 0, a: [0, 0, 0, 0, 0, 0], n: 0, ph: 0, env: 0, sig: 1e-6, flo: 1e-6, on: false, run: 0, mk: 0, sp: 0, dit: 60, cur: '', spaced: true, snr: 0 };
-  const cwBwHz = () => S.cw.bw === 'auto' ? Math.max(40, Math.min(160, 1200 / C.dit * 2.5)) : +S.cw.bw || 100;
+  const C = { gate: 0, lvl: 0, a: [0, 0, 0, 0, 0, 0], n: 0, ph: 0, env: 0, sig: 1e-6, flo: 1e-6, on: false, run: 0, mk: 0, sp: 0, dit: Math.max(20, Math.min(240, 1200 / (+S.cw.wpm || 20))), cur: '', spaced: true, snr: 0 };   /* Nov 18 (C2): starts at MY speed, not a fixed 20 wpm */
+  /* Nov 18 review (C3): the tone filter is narrower, closer to a matched filter for one dit (1.4 / dit instead of 2.5 / dit). Bench (20 wpm, 3 runs each, SNR in 2.5 kHz): errors at −6 dB 26 % → 18 %, at −8 dB 105 % → about 50 %; noise-only and fast senders unchanged. */
+  let CWK = 1.4, GATE2 = 0;   /* bench knobs (_cwTune): filter width in dits⁻¹, and a second, lower gate held over two waterfall rows (off: it let junk through) */
+  const cwBwHz = () => S.cw.bw === 'auto' ? Math.max(40, Math.min(160, 1200 / C.dit * CWK)) : +S.cw.bw || 100;
   function cwFeed(v) {
     const w = 2 * Math.PI * S.cw.hz / R; C.ph += w; if (C.ph > 6.283185307) C.ph -= 6.283185307;
     const i = v * Math.cos(C.ph), q = v * Math.sin(C.ph), fa = 1 - Math.exp(-2 * Math.PI * (cwBwHz() / 2 / 0.51) / R), a = C.a;
@@ -227,18 +232,36 @@
     if (GAPS.length >= 12) { const [g1, g3, g7] = cl(GAPS, 3, [C.dit, C.dit * 3, C.dit * 7]);
       C.chTh = g3 > g1 * 1.5 ? Math.sqrt(g1 * g3) : C.dit * 2; C.wdTh = g7 > g3 * 1.4 ? Math.sqrt(g3 * g7) : Math.max(C.chTh * 2.2, C.dit * 5); }
   }
+  /* Nov 18 full review (C2): a NEW sender's first letters (often the CQ) were garbled above ~33 wpm while the speed was still being learned.
+     Now the start-up dit comes from the last sender (or my own WPM), and the first marks of a new sender are HELD until 6 of them have
+     been sorted into dits and dahs, then decoded again with the learned speed and printed (PRE = the held marks and gaps). */
+  let PRE = [], cwKeyTip = false; C.learn = true;
+  function cwRelearn() { C.learn = true; PRE = []; }
+  /* the held marks fall into two clean groups (2+ dits and 2+ dahs, dahs 2 to 4.5 times the dits)? a noise blip or two merged marks don't */
+  /* a mark over 4.5 × the short ones (the first tone merging with the gate opening, a noise burst) is left out of the learning */
+  function trimOut() { const so = MARKS.slice().sort((a, b) => a - b), lo = so[Math.floor(so.length * 0.25)]; for (let i = MARKS.length - 1; i >= 0; i--) if (MARKS[i] > 4.5 * lo) MARKS.splice(i, 1); }
+  function sorted() { trimOut(); if (MARKS.length < 4) return false; const [d1, d3] = cl(MARKS, 2, [Math.min(...MARKS), Math.max(...MARKS)]), th = Math.sqrt(d1 * d3); const nd = MARKS.filter(x => x < th).length; return d3 / d1 >= 2 && d3 / d1 <= 4.5 && nd >= 2 && MARKS.length - nd >= 2; }
+  function replay() {
+    if (MARKS.length >= 4) { const [d1, d3] = cl(MARKS, 2, [Math.min(...MARKS), Math.max(...MARKS)]); if (d3 > d1 * 1.8) { C.dit = Math.max(20, Math.min(240, (d1 + d3 / 3) / 2)); C.mTh = Math.sqrt(d1 * d3); } }
+    C.learn = false; const ev = PRE; PRE = [];
+    const th = C.mTh || 2 * C.dit, chTh = C.chTh || C.dit * 2.2, wdTh = C.wdTh || C.dit * 5.5; let cur = '';
+    for (const [k, d] of ev) { if (k === 'm') cur += d < th ? '.' : '-'; else if (d > chTh) { if (cur) rxChar(MORSE[cur] || (cur.length > 7 ? '' : '*')); cur = ''; if (d > wdTh) rxChar(' '); } }
+    C.cur = cur.length > 8 ? '' : cur; C.spaced = !cur;
+  }
   function cwTime() { if (C.on) C.mk += 2; else { C.sp += 2; const chTh = C.chTh || C.dit * 2.2, wdTh = C.wdTh || C.dit * 5.5;
+    if (C.learn) { const pm = PRE.filter(e => e[0] === 'm').map(e => e[1]); if (pm.length && C.sp > Math.max(250, 8 * Math.min(...pm))) { PRE.push(['g', C.sp]); if (sorted()) cwLearn(); else { const mn = Math.min(...pm); if (mn > 2 * C.dit || mn * 3 < C.dit) C.dit = Math.max(20, Math.min(240, mn)); C.mTh = 0; } replay(); } return; }   /* the sender stopped before 6 marks: decode what was held (a slower or faster one-letter sender gets its own dit) */
     if (C.cur && C.sp > chTh) { rxChar(MORSE[C.cur] || (C.cur.length > 7 ? '' : '*')); C.cur = ''; }
     if (!C.spaced && C.sp > wdTh) { rxChar(' '); C.spaced = true; }
-    if (C.sp > 20 * C.dit && GAPS.length) { GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; } } }   /* a long silence = maybe a new sender: learn again */
-  function cwMark(d) { if (d < Math.max(10, C.dit / 3)) return; const dit = C.dit;
+    if (C.sp > 20 * C.dit && GAPS.length) { GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; cwRelearn(); } } }   /* a long silence = maybe a new sender: learn again */
+  function cwMark(d) { if (d < (C.learn ? 12 : Math.max(10, C.dit / 3))) return; const dit = C.dit;   /* while learning a new sender any real mark counts (a fast sender's dits are under a third of the last sender's dit) */
     MARKS.push(d); if (MARKS.length > 40) MARKS.shift();
+    if (C.learn) { PRE.push(['m', d]); C.spaced = false; if (MARKS.length >= 6 && (sorted() || MARKS.length >= 14)) { cwLearn(); replay(); } return; }
     /* dit or dah: between the two groups of marks once there are a few (a fast sender's dah no longer reads as a dit), else at 2 dits;
        the first marks of a new sender move the dit estimate quickly, later ones gently */
     const th = C.mTh || 2 * dit, fast = MARKS.length < 12 ? .35 : .15;
     if (d < th) { C.cur += '.'; C.dit = Math.max(20, Math.min(240, dit * (1 - fast) + d * fast)); } else { C.cur += '-'; C.dit = Math.max(20, Math.min(240, dit * (1 - fast * .7) + d / 3 * fast * .7)); }
     C.spaced = false; if (C.cur.length > 8) C.cur = ''; cwLearn(); }
-  function cwGap(d) { if (d < Math.max(10, C.dit / 3) || d > 20 * C.dit) return; GAPS.push(d); if (GAPS.length > 60) GAPS.shift(); }
+  function cwGap(d) { if (d < (C.learn ? 12 : Math.max(10, C.dit / 3)) || d > (C.learn ? 2000 : 20 * C.dit)) return; GAPS.push(d); if (GAPS.length > 60) GAPS.shift(); if (C.learn && PRE.length) PRE.push(['g', d]); }
   /* Oct 25: a SIGNAL GATE from the waterfall — plain noise used to print as E's and T's. The CW copy only counts while a tone stands (14 dB; noise reads up to ~8, a weak −4 dB signal ~28)
      8 dB or more above the band's noise right at the pitch (checked every waterfall row, held open 1.5 s after it fades). */
   /* Oct 27 (Fable; Brandon in CW-U with the radio's narrow filter: 'lots of extra E's'): the reference was the median of the WHOLE waterfall, which
@@ -247,8 +270,8 @@
   function cwGate() { if (!BINS) return; const bin = R / N, w = cwBwHz() / 2 + 15, kp = S.cw.hz / bin, R1 = Math.max(w, 70) / bin, R2 = Math.max(w * 2.5, 250) / bin, ring = [];
     let mx = -1e9; for (let k = Math.max(1, Math.floor(kp - R2)); k <= Math.min(N / 2 - 1, Math.ceil(kp + R2)); k++) { const d = Math.abs(k - kp); if (d <= w / bin) mx = Math.max(mx, BINS[k]); else if (d > R1) ring.push(BINS[k]); }
     ring.sort((a, b) => a - b); const med = ring.length ? ring[Math.floor(ring.length * 0.65)] : -100;
-    C.lvl = mx - med; const sq = +S.cw.sq || 14; if (mx - med > sq) C.gate = R * 1.2; }
-  function cwPitch(hz) { S.cw.hz = Math.max(250, Math.min(1300, Math.round(hz))); save(); C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; drawScale(); }
+    C.lvl = mx - med; const sq = +S.cw.sq || 14; C.g2 = GATE2 && mx - med > GATE2 ? (C.g2 || 0) + 1 : 0; if (mx - med > sq || C.g2 >= 2) C.gate = R * 1.2; }
+  function cwPitch(hz) { S.cw.hz = Math.max(250, Math.min(1300, Math.round(hz))); save(); C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; cwRelearn(); drawScale(); }
   let afcN = 0;
   function cwAfc() { if (!S.cw.afc || TXB) return; const pk = peakIn(F()[0] + 50, F()[1] - 50); if (pk && Math.abs(pk - S.cw.hz) > 25 && Math.abs(pk - S.cw.hz) < 350) { if (++afcN > 8) { cwPitch(pk); afcN = 0; } } else afcN = 0; }
   const elems = (t, wpm) => { const u = 1200 / wpm, out = []; for (const w of t.split(' ')) { if (!w) continue; if (out.length) out.push([0, 6 * u]); const toks = w.match(/<[A-Z]{2}>|./g) || []; toks.forEach((ch, i) => { const k = ch.length > 1 ? Object.keys(MORSE).find(x => MORSE[x] === ch) : TOM[ch]; if (!k) return; if (i) out.push([0, 2 * u]); [...k].forEach((e, j) => { if (j) out.push([0, u]); out.push([1, e === '.' ? u : 3 * u]); }); out.push([0, u]); }); } return out; };   /* letter gap = u + 2u = 3u, word gap = u + 6u = 7u */
@@ -259,7 +282,12 @@
 
   /* ================= RTTY / PSK31 / HELL ================= */
   let rtty = null, psk = null;
-  function mkRtty() { rtty = new D.RttyRx({ center: S.rtty.center, shift: S.rtty.shift, baud: S.rtty.baud, rev: S.rtty.rev }); let pend = ''; rtty.onChar = c => { if (rtty.q > 0.72) { if (pend) { rxChar(pend); pend = ''; } rxChar(c); } else pend = (pend + c).slice(-8); }; }
+  /* Nov 18 full review (D2): RTTY prints only while a signal is really there — the quality gate PLUS a level squelch like fldigi's:
+     the mark or space tone on the waterfall must stand 9 dB over the band's median for two waterfall rows running (held 2.5 s) */
+  let rGate = 0, rHit = 0, RS = 0;   /* RS = RTTY samples fed so far */
+  function rttyGate() { if (!VALS || !rtty) return; const med = Array.from(VALS).sort((a, b) => a - b)[Math.floor(VALS.length / 2)], h = (S.rtty.shift || 170) / 2; let mx = -1e9; for (const f0 of [S.rtty.center - h, S.rtty.center + h]) { let sm = 0, n = 0; for (let f = f0 - 6; f <= f0 + 6; f += 2) { sm += valAt(f); n++; } mx = Math.max(mx, sm / n); } rHit = mx > med + 9 ? rHit + 1 : 0; if (rHit >= 2) rGate = RS + 30000; }   /* held for 2.5 s of AUDIO (30 000 samples), not of wall time; the AVERAGE over each tone (a noise spike in one bin doesn't open it) */
+  const rOpen = () => S.rtty.sq === 0 || RS < rGate;
+  function mkRtty() { rtty = new D.RttyRx({ center: S.rtty.center, shift: S.rtty.shift, baud: S.rtty.baud, rev: S.rtty.rev }); let pend = ''; rtty.onChar = c => { if (rtty.q > 0.72 && rOpen()) { if (pend) { rxChar(pend); pend = ''; } rxChar(c); } else pend = rOpen() ? (pend + c).slice(-8) : ''; }; }
   let pGate = 0;
   function mkPsk() { psk = new D.PskRx(S.psk.hz); psk.afc = S.psk.afc; psk.sq = S.psk.sq / 100; psk.onChar = c => { if (performance.now() < pGate || S.psk.sq === 0) rxChar(c); }; }
   function pskGate() { if (!VALS || !psk) return; const med = Array.from(VALS).sort((a, b) => a - b)[Math.floor(VALS.length / 2)]; let mx = -1e9; for (let f = psk.fc - 10; f <= psk.fc + 10; f += 2) mx = Math.max(mx, valAt(f)); if (mx > med + 8) pGate = performance.now() + 2500; }
@@ -411,7 +439,7 @@
   function stopTx() { stopFlag = true; if (typeof AUTO5 !== 'undefined' && AUTO5) autoOff5('Stopped.'); if (typeof KEY !== 'undefined' && KEY.down) keyUp(); PADS.forEach(p => { p.P.dit = p.P.dah = false; }); if (TXB) { Promise.resolve().then(() => A.stopTx()).catch(() => {}); } if (G.KPCCat) { try { if (KPCCat.cwStop) KPCCat.cwStop(); if (S.cw.via === 'dtr' || S.cw.via === 'rts') KPCCat.keyLine(false, S.cw.via); } catch (e) {} } }
   async function sendText(t) {
     t = fill(t).toUpperCase().trim(); if (!t) return false;
-    if (MODE === 'CW' && S.cw.abbr) t = cwShort(t);
+    if (MODE === 'CW' && S.cw.abbr) { const t0 = t; t = cwShort(t); if (t !== t0) AP.toast('✂ Short forms on: sending ' + esc(t.slice(0, 80)), 4000); }   /* Nov 18 (C6): say what actually goes out */
     const w = whyNot(); if (w) { AP.toast(esc(w), 5000, 'bad'); return false; }
     TXT += '\n[TX] ' + t + '\n'; drawRx();
     if (MODE === 'CW') return cwOut(t, 0, true);
@@ -427,7 +455,15 @@
       const wpm = +wpm0 || +S.cw.wpm || 20, via = S.cw.via;
       if (via === 'cat') { if (!KPCCat.cwCan()) { AP.toast('This radio cannot take typed CW over CAT: pick "a key line" or "sound" under ⚙ CW → SEND WITH.', 6000, 'bad'); return false; }
         TXB = true; chk(); try { await KPCCat.cw(t, wpm); await sleep(elems(t, wpm).reduce((a, e) => a + e[1], 0) + 200); } finally { TXB = false; chk(); } return true; }
-      if (via === 'dtr' || via === 'rts') { TXB = true; stopFlag = false; chk(); try { let t1 = performance.now(); for (const [k, d] of elems(t, wpm)) { if (stopFlag) break; await KPCCat.keyLine(!!k, via); t1 += d; const ww = t1 - performance.now(); if (ww > 0) await sleep(ww); } } finally { await KPCCat.keyLine(false, via); TXB = false; chk(); } return true; }
+      if (via === 'dtr' || via === 'rts') {
+        /* Nov 18 full review (C5): the key line is timed by the page, so (1) a key-down never lasts over 3 dits — a backup timer lets go
+           if the page is late; (2) the page going to the background (timers slow to 1 s) stops the sending, key up; (3) if the radio has
+           its own keyer over CAT, say once that it keeps better time */
+        if (!cwKeyTip && G.KPCCat && KPCCat.cwCan && KPCCat.cwCan()) { cwKeyTip = true; AP.toast('Tip: this radio has its own CW keyer over CAT, which keeps perfect time: ⚙ CW → SEND WITH → the radio\'s keyer.', 6000); }
+        const dit = 1200 / Math.max(5, wpm || S.cw.wpm || 20); let wd = null, bg = false;
+        TXB = true; stopFlag = false; chk(); try { let t1 = performance.now(); for (const [k, d] of elems(t, wpm)) { if (stopFlag) break; if (document.hidden) { bg = true; break; } clearTimeout(wd); await KPCCat.keyLine(!!k, via); if (k) wd = setTimeout(() => { KPCCat.keyLine(false, via); }, Math.max(d, 3 * dit) + 20); t1 += d; const ww = t1 - performance.now(); if (ww > 0) await sleep(ww); } } finally { clearTimeout(wd); await KPCCat.keyLine(false, via); TXB = false; chk(); }
+        if (bg) AP.toast('CW stopped: the app went to the background, where its timing can\'t be trusted on the key line.', 6000, 'bad');
+        return !bg; }
       /* a tone through the sound card only reaches the air in a DATA/USB mode: a radio sitting in CW ignores its USB sound (Brandon Oct 25:
          'power out but nothing in the monitor'). Put it in DATA, one tone lower, send, and put it back on CW. */
       const tone = S.cw.tone || S.cw.hz;
@@ -588,10 +624,10 @@
   let qT = 0;
   function rx(c) {
     const blk = c.pcm; if (!blk || !blk.length) return;
-    for (let i = 0; i < blk.length; i++) { ring[rn] = blk[i]; rn = (rn + 1) % N; if (++hopN >= HOP) { hopN = 0; wfSize(); const v = spectrum(); wfRow(v); if (MODE === 'PSK31') { pskGate(); brFind(); } if (MODE === 'CW') { cwGate(); cwAfc(); } } }
+    for (let i = 0; i < blk.length; i++) { ring[rn] = blk[i]; rn = (rn + 1) % N; if (++hopN >= HOP) { hopN = 0; wfSize(); const v = spectrum(); wfRow(v); if (MODE === 'PSK31') { pskGate(); brFind(); } if (MODE === 'RTTY') rttyGate(); if (MODE === 'CW') { cwGate(); cwAfc(); } } }
     if (TXB && MODE !== 'CW') return;
     if (MODE === 'CW') for (let i = 0; i < blk.length; i++) cwFeed(blk[i]);
-    else if (MODE === 'RTTY') { for (let i = 0; i < blk.length; i++) rtty.feed(blk[i]); rttyAfc(); }
+    else if (MODE === 'RTTY') { for (let i = 0; i < blk.length; i++) rtty.feed(blk[i]); RS += blk.length; rttyAfc(); }
     else if (MODE === 'PSK31') for (let i = 0; i < blk.length; i++) { const x = blk[i]; psk.feed(x); for (const ch of BR) ch.rx.feed(x); }
     else if (MODE === 'HELL') for (let i = 0; i < blk.length; i++) hell.feed(blk[i]);
     else if (MODE === 'SSTV') { sstvClip = c.peak >= 0.98 ? sstvClip + 1 : Math.max(0, sstvClip - 1); for (let i = 0; i < blk.length; i++) sstv.feed(blk[i]); }
@@ -712,7 +748,11 @@
     if (AP.catConnected()) KPCCat.tune(dialOut(id), radioMode(id)).then(() => { if (id === 'CW') setTimeout(pitchFromRadio, 500); }).catch(() => {});
   }
   const lines = () => TXT.split('\n').filter(Boolean).slice(-30).map((t, i) => ({ id: i, t: Date.now(), text: t, cls: /^\[TX\]/.test(t) ? 'mine' : '' }));
+  /* Nov 18 (Brandon: 'hide the ones with license issues we move later'): PSK31 + WSPR are hidden (their sound code was GPL and is out
+     of kpc-dsp.js). The screens stay in this file for when they come back with code of our own. */
+  const HIDDEN = { PSK31: !D.PskRx, WSPR: !D.wsprDecode };
   for (const id of Object.keys(INFO)) {
+    if (HIDDEN[id]) continue;
     G.KPCModes.add({
       id, label: INFO[id][0], panel: P, title: INFO[id][1], hello: INFO[id][2],
       bands: Object.keys(DIAL[id]), band: () => band(id), setBand: b => { if (MODE !== id) S.band[id] = b; else setBand(b); save(); return true; }, khz: () => dialK(id),
@@ -724,6 +764,6 @@
       state: () => ({ hz: Math.round(audioHz()), wpm: id === 'CW' ? Math.round(1200 / C.dit) : 0 })
     });
   }
-  mkRtty(); mkPsk();
-  G.KPCModes5 = { S, save, sendText, send, stopTx, elems, cwTone, dialK, dialOut, cwOff, band, tuneSpot, pitchFromRadio, txing: () => TXB, text: () => TXT, _feed: rx, _cw: () => C, _cwReset: () => { C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; C.gate = 0; C.on = false; C.mk = 0; C.sp = 0; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; }, _sstv: sstv, why: whyNot, cwOut, keyDown, keyUp, keyPad, keyWhy, autoOn5, autoOff5, auto: () => !!AUTO5 };
+  mkRtty(); if (D.PskRx) mkPsk();
+  G.KPCModes5 = { heardCalls: cut => HEARD.filter(h => h.t >= cut), S, save, sendText, send, stopTx, elems, cwTone, dialK, dialOut, cwOff, band, tuneSpot, pitchFromRadio, txing: () => TXB, text: () => TXT, _feed: rx, _cw: () => C, _cwTune: (k, g2) => { if (k) CWK = k; if (g2 != null) GATE2 = g2; return { CWK, GATE2 }; }, _cwReset: () => { C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; C.gate = 0; C.on = false; C.mk = 0; C.sp = 0; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; cwRelearn(); }, _sstv: sstv, why: whyNot, cwOut, keyDown, keyUp, keyIsDown: () => !!WANT, keyPad, keyWhy, autoOn5, autoOff5, auto: () => !!AUTO5 };
 })(window);

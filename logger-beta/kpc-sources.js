@@ -22,10 +22,11 @@ async function parkList(loc,ms){const k='kpcPotaList:'+loc;let c=null;try{c=JSON
  catch(e){if(c&&Array.isArray(c.rows))return c.rows;throw e}finally{if(tm)clearTimeout(tm)}}
 function poll(fn,ms){let last=Date.now();const id=setInterval(()=>{if(document.hidden)return;last=Date.now();fn()},ms);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-last>ms){last=Date.now();fn()}});return id}
 return{spots,spotsResponse,parkList,poll,age,setting}})();
+const KPCPotaDoor = window.KPCPota;   /* kept: kpc-pota.js (POTA sign-in) takes the name window.KPCPota later */
 /* KPC app: THE REAL SPOT SOURCES (Opus, Oct 22, step 4; Brandon: 'Spots they not pota,wwff,sota,dx cluster etc').
    Each one is a poll function on the spot frame (kpc-spots.js), the same way the website's Hunters Lounge reads them
    (kpc-links/kpc-hunt.js):
-     POTA   the club spot relay (address in kpc-spots.json) every 60 s; the relay asks POTA at most every 2 min (Nov 16)
+     POTA   the club spot relay (kpc-spots…workers.dev), POTA itself as the backup   every 60 s
      SOTA   api2.sota.org.uk/api/spots/50/all      every 60 s
      WWFF + DX cluster   spothole.app (one ~1 MB list for both, a small hobby service: every 3 min, and only while one of
             the two is switched on; RBN skimmer spots are left out, they swamp the list)
@@ -45,15 +46,31 @@ return{spots,spotsResponse,parkList,poll,age,setting}})();
 
   /* Oct 26 (Brandon: 'make sure the spots show state'): POTA's locationDesc 'US-KY' (or 'US-KY,US-TN' on a line) → 'KY' / 'KY/TN'; Canada 'CA-ON' → 'ON' */
   const stOf = d => [...new Set(String(d || '').split(/[,\s]+/).map(c => (/^(US|CA|MX|AU)-([A-Z]{2,3})$/i.exec(c) || [])[2]).filter(Boolean).map(x => x.toUpperCase()))].join('/');
+  /* Nov 17 (Brandon: 'here is my relay leave pota as a back up for the spots'): the club's spot relay first, POTA as the
+     backup, the same way the website does it (KPC-Links window.KPCPota, PR #239). The relay is the club's free Cloudflare
+     Worker (KPC-Links tools/kpc-spot-relay.js): it asks POTA at most once every 2 minutes for everybody and hands out the
+     same list, so the club's apps do not each knock on POTA's door. Read-only: SPOT ME posts still go straight to POTA.
+     Fall back to POTA itself when the relay is down, slow (6 s), or its copy is over 10 minutes old; asking POTA
+     directly then goes at most once every 2 minutes. */
+  /* website copy (sync.sh): spots come through the site's browser door (kpc-spots.json relay first, POTA only as its backup) */
+  const PS = { via: '', age: null, at: 0, direct: 0 };
+  async function potaList() { const L = await KPCPotaDoor.spots(); PS.via = 'the club spot feed'; PS.age = KPCPotaDoor.age(); PS.at = Date.now(); return L; }
+  SPx.potaVia = () => PS.via ? { via: PS.via, age: PS.age == null ? null : PS.age + Math.round((Date.now() - PS.at) / 1000) } : null;
+  SPx._potaReset = () => { PS.via = ''; PS.age = null; PS.at = 0; PS.direct = 0; };   /* tests only: forget the last direct POTA ask */
+  const so0 = () => (SPx.sources() || {}).pota;
   SPx.source({ id: 'pota', label: 'POTA', every: 60, poll: async () => {
-    const L = await KPCPota.spots();
+    const L = await potaList();
+    const so = so0(); if (so) { const v = SPx.potaVia(); so.title = 'via ' + v.via + (v.age != null ? ', ' + (v.age < 60 ? 'under 1 min' : Math.round(v.age / 60) + ' min') + ' old' : '') + ' ·'; }
     return (L || []).map(x => ({ call: x.activator, khz: toKhz(x.frequency), mode: x.mode, refs: x.reference ? [x.reference] : [], t: toMs(x.spotTime),
       comment: [x.name, x.locationDesc, x.comments].filter(Boolean).join(' · '), grid: x.grid6 || x.grid4 || '', spotter: x.spotter || '', la: +x.latitude, lo: +x.longitude, st: stOf(x.locationDesc) })).filter(s => s.khz);
   } });
 
+  /* Nov 18 (Opus review): SOTA always gives MHz. toKhz() guesses the unit from the size, so a 23 cm spot (1296.2 MHz) or a
+     10 GHz one (10368.1) was read as kHz and landed on 160 m / 30 m */
+  const sotaKhz = f => { f = Number(f); return isFinite(f) && f > 0 ? Math.round(f * 1000 * 10) / 10 : null; };
   SPx.source({ id: 'sota', label: 'SOTA', every: 60, poll: async () => {
     const L = await getJson('https://api2.sota.org.uk/api/spots/50/all');
-    return (L || []).map(x => ({ call: x.activatorCallsign, khz: toKhz(x.frequency), mode: x.mode, refs: x.associationCode ? [(x.associationCode + '/' + (x.summitCode || '')).toUpperCase()] : [],
+    return (L || []).map(x => ({ call: x.activatorCallsign, khz: sotaKhz(x.frequency), mode: x.mode, refs: x.associationCode ? [(x.associationCode + '/' + (x.summitCode || '')).toUpperCase()] : [],
       t: toMs(x.timeStamp), comment: [x.summitDetails, x.comments].filter(Boolean).join(' · '), spotter: x.callsign || '' })).filter(s => s.khz);
   } });
 

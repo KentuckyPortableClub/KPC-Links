@@ -1,1 +1,1 @@
-app 0.8.0 (Nov 8 build) www, synced 2026-11-10
+app 0.9.10 www (KPC-App zip, VER 0.9.10, Nov 18 2026), synced 2026-11-18

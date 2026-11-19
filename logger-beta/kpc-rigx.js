@@ -38,12 +38,14 @@
       <div class="btns rxtog"><button type="button" class="b" data-xt="split">SPLIT</button><button type="button" class="b" data-xo="swap">A ⇄ B</button><button type="button" class="b" data-xo="ab">A = B</button></div>
       <div class="btns rxtog"><button type="button" class="b" data-xt="rit">RIT</button><button type="button" class="b" data-xt="xit">XIT</button></div>
       <div class="rxg" data-k="ritoff"><span class="kv"><i>OFFSET</i><b id="${I('RitT')}">0 Hz</b></span><button type="button" class="chip" data-xr="-1">−</button><button type="button" class="chip" data-xr="1">+</button><span class="chips" id="${I('RitS')}"></span><button type="button" class="chip" data-xr="0">CLEAR</button></div>
+      <h3 class="rxh" data-k="txh">TRANSMIT</h3>
+      <div class="btns rxtog"><button type="button" class="b" data-xt="vox">VOX</button><button type="button" class="b" data-xt="comp">COMP</button><button type="button" class="b" data-xt="mon">MONITOR</button></div>
       <h3 class="rxh" data-k="cw">CW</h3>
       <div class="rxg" data-k="keyspd"><label class="e slide">KEYER SPEED <b id="${I('WpmT')}"></b><input type="range" id="${I('Wpm')}" min="6" max="48" step="1"></label></div>
       <div class="rxg" data-k="bkin"><span class="kv"><i>BREAK-IN</i></span><span class="chips" id="${I('Bk')}"></span></div>
       ${local ? `<h3 class="rxh">Safety &amp; memory</h3>
       <div class="grid2"><label class="e">SWR LIMIT<select id="rxSwr"><option value="2">2 : 1</option><option value="2.5">2.5 : 1</option><option value="3">3 : 1</option><option value="0">off</option></select></label>
-        <label class="e">WHEN THE SWR IS OVER IT<select id="rxSwrA"><option value="warn">warn me</option><option value="power">warn + power to 25 %</option><option value="stop">warn + stop transmitting</option></select></label></div>
+        <label class="e">WHEN THE SWR IS OVER IT<select id="rxSwrA"><option value="warn">warn me</option><option value="power">warn + power to 25 %</option><option value="stop">warn + stop transmitting</option></select></label></div>${AP.native ? '<p class="hint">⚠ On Android the radio\'s USB port is let go while transmitting (or its sound card goes quiet), so the app cannot read SWR during a transmission: this guard works in the Windows app. Keep the radio\'s own SWR protection on. (Nov 18 review OP-R4)</p>' : ''}
       <label class="tog"><input type="checkbox" id="rxTune"> Ask before 🔧 TUNE (it transmits a carrier)</label>
       <label class="tog"><input type="checkbox" id="rxMem"> 📍 Band memory: a band button goes back to that band's last frequency, mode and filter</label>
       <label class="tog"><input type="checkbox" id="rxStrip"> 📊 Band strip on the DIGI screen</label>
@@ -71,7 +73,7 @@
     });
     function drawP() {
       const x = src.x(), C = src.caps() || { keys: [] }, can = k => src.can(k);
-      root.querySelectorAll('[data-k]').forEach(el => { const k = el.dataset.k; el.hidden = k === 'vfo' ? !['split', 'swap', 'ab', 'rit', 'xit'].some(can) : k === 'cw' ? !['keyspd', 'bkin'].some(can) : !can(k); });
+      root.querySelectorAll('[data-k]').forEach(el => { const k = el.dataset.k; el.hidden = k === 'vfo' ? !['split', 'swap', 'ab', 'rit', 'xit'].some(can) : k === 'cw' ? !['keyspd', 'bkin'].some(can) : k === 'txh' ? !['vox', 'comp', 'mon'].some(can) : !can(k); });
       root.querySelectorAll('[data-xt]').forEach(b => { const k = b.dataset.xt; b.hidden = !can(k); b.classList.toggle('on', !!x[k]); b.textContent = b.textContent.replace(/ (ON|OFF)$/, '') + (x[k] ? ' ON' : ' OFF'); });
       root.querySelectorAll('[data-xo]').forEach(b => { b.hidden = !can(b.dataset.xo); });
       root.querySelectorAll('.rxtog').forEach(r => { r.hidden = ![...r.children].some(b => !b.hidden); });
@@ -89,7 +91,7 @@
     P.draw(); return P;
   }
   /* what the PC's state carries for the phone (kpc-remote.js baseState → rx) */
-  const RXK = ['shift', 'nrl', 'nbl', 'agc', 'att', 'pre', 'contour', 'apf', 'mnotch', 'mnotchf', 'split', 'rit', 'xit', 'ritoff', 'ritstep', 'keyspd', 'bkin'];
+  const RXK = ['shift', 'nrl', 'nbl', 'agc', 'att', 'pre', 'contour', 'apf', 'mnotch', 'mnotchf', 'split', 'rit', 'xit', 'ritoff', 'ritstep', 'keyspd', 'bkin', 'vox', 'comp', 'mon'];
   function testedTxt() { const C = K.caps ? K.caps() : {}, r = K.RADIO && K.RADIO[K.get().radio];
     return C.proto === 'fake' ? '· pretend radio' : C.proto === 'hamlib' ? '· through Hamlib' : C.tested ? '· ✓ checked on a real ' + (r ? r.label : 'radio') : r ? '· ' + r.label + ': not checked on a real radio yet' : ''; }
   function remoteState() {
@@ -122,7 +124,7 @@
     $('rxWorks').onclick = () => { if (G.KPCHelp) KPCHelp.works(); };
     $('rxGuide').onclick = () => { if (G.KPCHelp) KPCHelp.guide(K.get().radio || ''); };
   }
-  const LBL = { shift: 'IF SHIFT', nrl: 'NR LEVEL', nbl: 'NB LEVEL', agc: 'AGC', att: 'ATT', pre: 'PRE', contour: 'CONTOUR', apf: 'APF', mnotch: 'MANUAL NOTCH', mnotchf: 'NOTCH', split: 'SPLIT', rit: 'RIT', xit: 'XIT', ritoff: 'RIT OFFSET', swap: 'A ⇄ B', ab: 'A = B', keyspd: 'KEYER SPEED', bkin: 'BREAK-IN' };
+  const LBL = { vox: 'VOX', comp: 'COMP (speech processor)', mon: 'MONITOR', shift: 'IF SHIFT', nrl: 'NR LEVEL', nbl: 'NB LEVEL', agc: 'AGC', att: 'ATT', pre: 'PRE', contour: 'CONTOUR', apf: 'APF', mnotch: 'MANUAL NOTCH', mnotchf: 'NOTCH', split: 'SPLIT', rit: 'RIT', xit: 'XIT', ritoff: 'RIT OFFSET', swap: 'A ⇄ B', ab: 'A = B', keyspd: 'KEYER SPEED', bkin: 'BREAK-IN' };
   async function go(k, v, label) {
     if (AP.txing() && !['keyspd', 'bkin'].includes(k)) { AP.toast('Transmitting: change that after.', 2500, 'bad'); return false; }
     const ok = await K.extra(k, v);
@@ -178,7 +180,9 @@
     AP.toast('⚠ HIGH SWR: about ' + s.toFixed(1) + ' : 1.' + what + ' Check the antenna, or 🔧 TUNE.', 8000, 'bad');
     try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {}
     if (X.swrAct === 'power') { await K.extra('power', 25); }
-    if (X.swrAct === 'stop') { document.querySelectorAll('.scr .halt, #scrRadio .halt').forEach(b => { if (b.offsetParent) b.click(); }); if (G.KPCRadio && KPCRadio.talking()) KPCRadio._talkUp(); if (AP.txing()) await AP.pttOn(false); }
+    /* Nov 18 public-release review (0.9.7): STOP = the app's one stopAll(). Before, only the STOP buttons of the screen in view were
+       pressed, so with the operator on LOG a voice AUTO CQ or an enabled FT8 keyed again a few seconds later, into the same bad SWR. */
+    if (X.swrAct === 'stop') { if (AP.stopAll) await AP.stopAll(''); else { document.querySelectorAll('.scr .halt, #scrRadio .halt').forEach(b => { if (b.offsetParent) b.click(); }); if (G.KPCRadio && KPCRadio.talking()) KPCRadio._talkUp(); if (AP.txing()) await AP.pttOn(false); } }
     AP.fire('swr-high', { swr: s, act: X.swrAct });
   }
   setInterval(guard, 400);

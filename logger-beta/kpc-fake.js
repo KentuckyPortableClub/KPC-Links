@@ -1,4 +1,4 @@
-/* KPC app: THE PRETEND RADIO + PRETEND SOUND (Fable, Oct 22). With it on (STATION → Alerts & help, or ?fake=1) the app
+/* KPC app: THE PRETEND RADIO + PRETEND SOUND (Fable, Oct 22). With it on (STATION → ❓ HELP, or ?fake=1) the app
    runs end to end with no cable: the sound card is a made-up band with FT8 stations calling CQ POTA (and answering you),
    an APRS beacon now and then, TUNE/TX 'go out' and come back, and the radio link is a pretend FT-710 that takes every
    command. For Brandon on a phone with no radio handy, and for the automated tests. Never on by itself. */
@@ -54,10 +54,14 @@
     }, 100);
     return { ok: true, source: 'fake', latencyMs: 20, rate: R12 };
   }
-  async function stop() { cb = null; clearInterval(tick); tick = null; }
-  function play(pcm, atMs, id) { return new Promise(res => { const ms = pcm.length / RATE * 1000, wait = atMs ? Math.max(0, atMs - Date.now()) : 0; txUntil = Date.now() + wait + ms; A.txing = true; if (A.onTx) A.onTx({ state: 'start', id }); setTimeout(() => { A.txing = false; const ev = { state: txUntil ? 'end' : 'stopped', id }; if (A.onTx) A.onTx(ev); res(ev); }, wait + ms); }); }
+  /* Nov 18 (0.9.7): like the real sound, a stopped pretend sound ends its play() promise at once ('stopped'), not at its natural end */
+  let FIN = null;
+  async function stop() { cb = null; clearInterval(tick); tick = null; stopTx(); }
+  function play(pcm, atMs, id) { return new Promise(res => { stopTx(); const ms = pcm.length / RATE * 1000, wait = atMs ? Math.max(0, atMs - Date.now()) : 0; txUntil = Date.now() + wait + ms; A.txing = true; if (A.onTx) A.onTx({ state: 'start', id });
+    let done = false, tm = null; const fin = st => { if (done) return; done = true; clearTimeout(tm); if (FIN === fin) FIN = null; A.txing = false; const ev = { state: st, id }; if (A.onTx) A.onTx(ev); res(ev); };
+    FIN = fin; tm = setTimeout(() => fin('end'), wait + ms); }); }
   function tone(hz, seconds, id) { return play(new Float32Array(Math.round((seconds || 10) * RATE)), 0, id || 'tone'); }
-  function stopTx() { txUntil = 0; A.txing = false; return Promise.resolve(); }
+  function stopTx() { txUntil = 0; A.txing = false; const f = FIN; FIN = null; if (f) f('stopped'); return Promise.resolve(); }
   Object.assign(A, { native: false, start, stop, play, tone, stopTx, setGain: g => { A.gain = +g || 0; return Promise.resolve(); }, status: () => Promise.resolve({ running: !!tick, txing: Date.now() < txUntil, gain: A.gain, fake: true }),
     devices: async () => ({ inputs: [{ id: 'fake', name: '🧪 Pretend radio sound', usb: true }], outputs: [{ id: 'fake', name: '🧪 Pretend radio sound', usb: true }] }), rxStream: () => null, pipe: () => { const p = { gated: null, lvl: 0, level: db => { p.lvl = +db || 0; }, gate: on => { p.gated = !!on; }, shape: () => {}, stop: () => { p.stopped = true; } }; A._pipes = (A._pipes || 0) + 1; A._lastPipe = p; return p; } });
 })(window);

@@ -52,9 +52,9 @@
         },
         blocks: function () { return x.kft_blocks(); },
         decode: function (minScore, iters) {
-          var n = x.kft_decode(minScore || 10, iters || 25), nums = new Float32Array(mem(), x.kft_nums(), n * 3), tx = new Uint8Array(mem(), x.kft_texts(), n * 40), out = [];
+          var W = x.kft_width ? x.kft_width() : 40, n = x.kft_decode(minScore || 10, iters || 25), nums = new Float32Array(mem(), x.kft_nums(), n * 3), tx = new Uint8Array(mem(), x.kft_texts(), n * W), out = [];
           for (var i = 0; i < n; i++) {
-            var s = ''; for (var j = 0; j < 40; j++) { var c = tx[i * 40 + j]; if (!c) break; s += String.fromCharCode(c); }
+            var s = ''; for (var j = 0; j < W; j++) { var c = tx[i * W + j]; if (!c) break; s += String.fromCharCode(c); }
             /* score → rough dB like WSJT-X (calibrated against test signals, Oct 17) */
             out.push({ db: Math.max(-30, Math.min(30, Math.round(nums[i * 3]))), dt: Math.round((nums[i * 3 + 1] - 0.6) * 10) / 10, hz: Math.round(nums[i * 3 + 2]), text: s.trim() });
           }
@@ -65,7 +65,14 @@
           for (var i = 0; i < 64; i++) b[i] = i < s.length ? s.charCodeAt(i) : 0;
           var n = x.kft_encode(f4 ? 1 : 0); if (n <= 0) return null;
           return new Uint8Array(mem(), x.kft_tones(), n).slice();
-        }
+        },
+        /* Nov 10 (builders' tests): tones of a raw 77-bit payload (10 bytes), e.g. a pretend Fox's 'A RR73; B <FOX> -08' */
+        tonesRaw: function (pl, f4) {
+          if (!x.kft_encode_raw) return null; var b = new Uint8Array(mem(), x.kft_txt(), 64); for (var i = 0; i < 10; i++) b[i] = pl[i] || 0;
+          var n = x.kft_encode_raw(f4 ? 1 : 0); return n > 0 ? new Uint8Array(mem(), x.kft_tones(), n).slice() : null;
+        },
+        dx: !!x.kft_encode_raw,
+        memBytes: function () { return x.memory.buffer.byteLength; }   /* Nov 18: for the leak test */
       };
       return e;
     });

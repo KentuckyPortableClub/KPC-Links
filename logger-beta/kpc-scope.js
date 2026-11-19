@@ -108,7 +108,7 @@
   }
   const ring = new Float32Array(AFN); let rpos = 0, rfill = 0, afT = 0, afFloor = -90, afTop = -30;
   function afBlock(c) {
-    const p = c && c.pcm; if (!p || !S.on || civOn || simOn()) return;
+    const p = c && c.pcm; if (!p || !S.on || civOn || simOn() || f7Fresh()) return;
     for (let i = 0; i < p.length; i++) { ring[rpos] = p[i]; rpos = (rpos + 1) % AFN; } rfill += p.length;
     const now = Date.now(); if (rfill < AFN || now - afT < 90) return; afT = now;
     for (let i = 0; i < AFN; i++) { are[i] = ring[(rpos + i) % AFN] * aw[i]; aim[i] = 0; }
@@ -137,11 +137,42 @@
   }
   setInterval(() => { if (simOn() && S.on) { if (!simT) simT = setInterval(simTick, 120); } else if (simT) { clearInterval(simT); simT = null; } }, 1000);
 
+  /* ======================================================================== RF: the FT-710's own scope (Nov 18)
+     Its separate FT4222 USB port (radio menu SCU-LAN10 = ON), read by the Windows app's Python helper (electron/ft710.js +
+     ft710_bridge.py; clean-room, from the tests on Brandon's FT-710, Nov 17). 851 points a line, ~28 lines a second; value =
+     127 − (byte & 0x7F) (bigger = stronger). The picture is centred on the dial (the radio's scope in CENTER) and is about
+     1.065 × the radio's SPAN wide (measured: 79 points per 10 kHz at SPAN 100 kHz, 40 at 200). The radio does not tell the
+     app its SPAN, so the SPAN chips here must match the radio's. Windows app only: no FT4222 driver on Android or in a browser. */
+  const F7 = { on: false, last: 0, err: '', floor: 18, n: 0 };
+  let TUNE_HOOK = null;
+  const phones = () => !!(G.KPCRemote && KPCRemote.base && KPCRemote.clients && KPCRemote.clients().length);   /* a phone on the remote link gets the waterfall too */
+  const f7Radio = () => !!(G.KPCCat && KPCCat.get().radio === 'ft710');
+  const f7Fresh = () => Date.now() - F7.last < 2000;
+  function f7Row(b64) {
+    let bin; try { bin = atob(b64); } catch (e) { return; }
+    const n = bin.length; if (n < 100) return;
+    const raw = new Float32Array(n); for (let i = 0; i < n; i++) raw[i] = 127 - (bin.charCodeAt(i) & 0x7F);
+    const srt = Array.from(raw.subarray(4)).sort((a, b) => a - b); F7.floor = F7.floor * 0.9 + srt[srt.length >> 1] * 0.1;
+    const fl = F7.floor + 2, v = new Float32Array(n); for (let i = 0; i < n; i++) v[i] = Math.max(0, Math.min(1, (raw[i] - fl) / 40));
+    const ld = G.KPCCat && KPCCat.lastDial && KPCCat.lastDial(), dk = (G.KPCLog && KPCLog.dock) || {}, c = (ld && +ld.khz) || +dk.khz || 14074;
+    const w = (+S.f7Span || 100) * 1.065;
+    F7.last = Date.now(); F7.n++; F7.err = '';
+    push({ t: F7.last, lo: c - w / 2, hi: c + w / 2, v, src: 'ft710' });
+  }
+  if (G.kpcFt710) { try { G.kpcFt710.onRow(f7Row); G.kpcFt710.onState(st => { F7.err = (st && st.err) || ''; if (st && !st.on) F7.on = false; }); } catch (e) {} }
+  setInterval(() => {
+    if (!G.kpcFt710) return;
+    const want = S.on && f7Radio() && G.KPCCat && KPCCat.connected() && (/^(radio|contest|digi)$/.test(document.body.dataset.screen || '') || phones());
+    if (want && !F7.on && !F7.err) { F7.on = true; G.kpcFt710.start().then(st => { if (st && st.err) F7.err = st.err; }).catch(e => { F7.err = String(e.message || e); F7.on = false; }); }
+    else if (!want && F7.on) { F7.on = false; G.kpcFt710.stop().catch(() => {}); }
+  }, 1500);
   /* start / stop the radio's scope with the CAT link and the switch */
-  setInterval(() => { const want = S.on && hasCiv() && (document.body.dataset.screen === 'radio' || document.body.dataset.screen === 'contest'); if (want && !civOn) civStart(); else if (!want && civOn) civStop(); }, 1500);
+  setInterval(() => { const want = S.on && hasCiv() && (document.body.dataset.screen === 'radio' || document.body.dataset.screen === 'contest' || phones()); if (want && !civOn) civStart(); else if (!want && civOn) civStop(); }, 1500);
 
   /* ======================================================================== drawing */
-  const STOPS = [[0, 4, 8, 28], [.18, 12, 26, 96], [.38, 22, 70, 170], [.55, 28, 130, 205], [.70, 50, 200, 215], [.84, 160, 235, 150], [.93, 240, 225, 80], [1, 255, 255, 230]];
+  /* Nov 18 (Brandon, the SDR mockup: 'nailed the waterfall'): a BLACK floor, then deep blue, blue, cyan, green, yellow, orange: the noise
+     stays near black and only signals light up (the old floor was navy, which washed the picture out) */
+  const STOPS = [[0, 0, 0, 0], [.22, 2, 8, 30], [.40, 10, 40, 130], [.55, 25, 120, 230], [.68, 50, 210, 220], [.80, 120, 240, 110], [.91, 255, 225, 60], [1, 255, 140, 30]];
   const LUT = (() => { const t = new Uint8Array(256 * 3); for (let i = 0; i < 256; i++) { const x = i / 255; let a = STOPS[0], b = STOPS[STOPS.length - 1]; for (let k = 0; k < STOPS.length - 1; k++) if (x >= STOPS[k][0] && x <= STOPS[k + 1][0]) { a = STOPS[k]; b = STOPS[k + 1]; break; } const f = b[0] === a[0] ? 0 : (x - a[0]) / (b[0] - a[0]); for (let c = 0; c < 3; c++) t[i * 3 + c] = a[c + 1] + (b[c + 1] - a[c + 1]) * f; } return t; })();
   const colOf = x => { const i = Math.max(0, Math.min(255, Math.round(x * 255))) * 3; return [LUT[i], LUT[i + 1], LUT[i + 2]]; };
   const valAt = (row, k) => { const n = row.v.length; const p = (k - row.lo) / (row.hi - row.lo) * (n - 1); if (p < 0 || p > n - 1) return -1; return row.v[Math.round(p)]; };
@@ -184,6 +215,7 @@
         AP.toast('That sound is at ' + Math.round(f) + ' Hz ≈ ' + ((+dk.khz + sign * f / 1000) / 1000).toFixed(4) + ' MHz. (Audio picture: tap-to-tune works on CW here, and on the RF scope.)', 4000);
         return;
       }
+      if (TUNE_HOOK) { TUNE_HOOK(Math.round(f * 10) / 10); return; }   /* Nov 18: the phone on the remote link tunes the PC's radio */
       if (G.KPCCat && KPCCat.connected()) { const dk = (G.KPCLog && KPCLog.dock) || {}; KPCCat.tune(Math.round(f * 10) / 10, dk.mode || 'USB'); }
     };
     const loop = () => { if (w.stop || !cv.isConnected) return; drawW(w); requestAnimationFrame(loop); };
@@ -194,7 +226,7 @@
     if (cv.width !== Math.round(Wd * dpr) || cv.height !== Math.round(Hd * dpr)) { cv.width = Math.round(Wd * dpr); cv.height = Math.round(Hd * dpr); w.img = null; w.lastN = 0; }
     const g = cv.getContext('2d'), CW = cv.width, CH = cv.height, SPH = Math.round(CH * 0.3), AXH = Math.round(16 * dpr), WT = SPH + AXH, WH = CH - WT;
     const r = ROWS[ROWS.length - 1];
-    g.fillStyle = '#05080f'; g.fillRect(0, 0, CW, SPH + AXH);
+    g.fillStyle = '#000'; g.fillRect(0, 0, CW, SPH + AXH);   /* Nov 18: black, like the radio's own scope */
     if (!r) { g.fillStyle = '#05080f'; g.fillRect(0, 0, CW, CH); g.fillStyle = '#9AA6B5'; g.font = (13 * dpr) + 'px sans-serif'; g.textAlign = 'center'; g.fillText(status().line, CW / 2, CH / 2); return; }
     /* waterfall: scroll by the number of new rows, paint them at the top */
     if (!w.img || w.img.width !== CW || w.img.height !== WH) { w.img = g.createImageData(CW, WH); w.lastN = ST.n; for (let i = 3; i < w.img.data.length; i += 4) w.img.data[i] = 255; }
@@ -233,6 +265,9 @@
     const r = ROWS[ROWS.length - 1], fresh = r && Date.now() - r.t < 4000, id = radioId(), cat = G.KPCCat && KPCCat.connected();
     if (!S.on) return { cls: '', line: 'Scope is off.' };
     if (fresh && r.src === 'civ') return { cls: 'ok', line: '📡 RF scope from the radio · ' + ST.mode + ' · ' + r.lo.toFixed(1) + '–' + r.hi.toFixed(1) + ' kHz · ' + ST.fps + ' a second · ◇ = a spot from the internet, not heard here' };
+    if (fresh && r.src === 'ft710') return { cls: 'ok', line: '📡 RF scope from the FT-710 (its own USB port) · SPAN ' + (+S.f7Span || 100) + ' kHz: set the same SPAN on the radio, scope in CENTER · ◇ = a spot from the internet, not heard here' };
+    if (f7Radio() && F7.err) return { cls: 'warn', line: 'FT-710 scope: ' + F7.err };
+    if (f7Radio() && G.kpcFt710 && F7.on && !fresh) return { cls: 'warn', line: '⏳ Starting the FT-710 scope reader… (radio menu SCU-LAN10 = ON; close other scope programs)' };
     if (fresh && r.src === 'sim') return { cls: 'ok', line: '🧪 Pretend RF scope (no radio): carriers at the spots · ◇ = a spot from the internet' };
     if (fresh && r.src === 'af') return { cls: 'af', line: '🔊 AUDIO picture (0–' + (S.afHi || 3000) + ' Hz) from the radio\'s USB sound: only what is inside the radio\'s filter, not the band' };
     if (cat && G.KPCCat.get().proto === 'icom' && CIV_SCOPE[id] && G.KPCCat.link() !== 'serial') return { cls: 'warn', line: 'The scope needs the USB cable link (not rigctld / flrig).' };
@@ -244,13 +279,16 @@
   function card() {
     const on = $('rdOn'); if (!on) return; let c = $('rdScope');
     if (!c) { const grid = on.querySelector('.rdgrid'); if (!grid) return; grid.insertAdjacentHTML('beforebegin', '<div class="card rdscope" id="rdScope"><h2>🌊 Scope <span class="cxsub" id="scSrc"></span></h2><canvas id="scCv" class="sccv"></canvas><div class="chips" id="scChips"></div><p class="hint" id="scSt"></p></div>'); c = $('rdScope'); }
+    const f7 = f7Radio() && !!G.kpcFt710, f7s = [20, 50, 100, 200, 500];
     const civ = hasCiv(), spans = [[2500, '±2.5k'], [5000, '±5k'], [10000, '±10k'], [25000, '±25k'], [50000, '±50k'], [100000, '±100k']];
     $('scChips').innerHTML = `<button type="button" class="chip${S.on ? ' on' : ''}" id="scOn">${S.on ? 'ON' : 'OFF'}</button>` +
       (civ || simOn() ? spans.map(([v, t]) => `<button type="button" class="chip${S.civSpan === v ? ' on' : ''}" data-scs="${v}">${t}</button>`).join('') + (civ ? '<button type="button" class="chip" id="scFix">FIXED</button>' : '') : '') +
+      (f7 ? '<span class="kv"><i>RADIO SPAN</i></span>' + f7s.map(v => `<button type="button" class="chip${(+S.f7Span || 100) === v ? ' on' : ''}" data-f7s="${v}" title="Set the same SPAN on the FT-710">${v}k</button>`).join('') : '') +
       `<button type="button" class="chip" data-scc="-1">dim</button><button type="button" class="chip" data-scc="1">bright</button>`;
     $('scOn').onclick = async () => { S.on = !S.on; save(); if (!S.on) await civStop(); card(); };
     c.querySelectorAll('[data-scs]').forEach(b => { b.onclick = async () => { await civSpan(+b.dataset.scs); card(); }; });
     if ($('scFix')) $('scFix').onclick = () => civFixed();
+    c.querySelectorAll('[data-f7s]').forEach(b => { b.onclick = () => { S.f7Span = +b.dataset.f7s; save(); card(); }; });
     c.querySelectorAll('[data-scc]').forEach(b => { b.onclick = () => { S.contrast = Math.max(0.5, Math.min(3, (S.contrast || 1) * (b.dataset.scc === '1' ? 1.25 : 0.8))); save(); }; });
     mount($('scCv')); stat();
   }
@@ -258,5 +296,5 @@
   setInterval(() => { if (document.body.dataset.screen === 'radio') { if (!$('rdScope')) card(); stat(); } }, 1000);
   AP.on('screen', n => { if (n === 'radio') setTimeout(card, 50); });
 
-  G.KPCScope = { S, tap, push, rows: () => ROWS, slow: () => SLOW, status, state: () => Object.assign({}, ST), underlay, mount, card, civFrame, hasCiv, civStart, civStop, civSpan, afBlock, simTick, _civBytes: civBytes, CIV_SCOPE };
+  G.KPCScope = { setTune: f => { TUNE_HOOK = f; }, _f7Row: f7Row, f7: () => Object.assign({}, F7), on: f => { subs.add(f); return () => subs.delete(f); }, S, tap, push, rows: () => ROWS, slow: () => SLOW, status, state: () => Object.assign({}, ST), underlay, mount, card, civFrame, hasCiv, civStart, civStop, civSpan, afBlock, simTick, _civBytes: civBytes, CIV_SCOPE };
 })(window);

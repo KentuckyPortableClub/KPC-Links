@@ -22,7 +22,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
 body{padding-bottom:calc(var(--tabh) + env(safe-area-inset-bottom))}
 body[data-screen="log"]{padding-bottom:calc(var(--tabh) + var(--doch) + env(safe-area-inset-bottom))}
 .mono{font-family:var(--mono)}
-small{font-size:11px}
+small{font-size:12px}
 
 /* ---------- header ---------- */
 .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;
@@ -31,7 +31,7 @@ small{font-size:11px}
   font:700 13px/1 var(--mono);letter-spacing:.04em;text-decoration:none}
 .ttl{font-size:16px;font-weight:600;flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .clk{font:700 13px var(--mono);color:var(--sub)}
-.state{font:700 10px/1 var(--sans);letter-spacing:.1em;padding:5px 7px;border-radius:6px;background:var(--panel2);color:var(--sub)}
+.state{font:700 11px/1 var(--sans);letter-spacing:.1em;padding:5px 7px;border-radius:6px;background:var(--panel2);color:var(--sub)}
 .state.rx{background:rgba(109,180,245,.16);color:var(--rx)}
 .state.tx{background:rgba(243,154,85,.2);color:var(--tx)}
 .ic{width:38px;height:38px;flex:0 0 auto;border-radius:19px;border:1px solid var(--line);background:var(--panel2);color:var(--text);font-size:17px;cursor:pointer}
@@ -46,7 +46,7 @@ body[data-screen="logs"] #scrLogs,body[data-screen="log"] #scrLog,body[data-scre
 .strip{display:flex;align-items:center;gap:6px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:2px 0 6px}
 .strip::-webkit-scrollbar{display:none}
 .kv{display:inline-flex;align-items:baseline;gap:5px;flex:0 0 auto;padding:4px 8px;border-radius:8px;background:var(--panel2)}
-.kv i{font:700 9px var(--sans);letter-spacing:.12em;color:var(--sub);font-style:normal}
+.kv i{font:700 11px var(--sans);letter-spacing:.12em;color:var(--sub);font-style:normal}
 .kv b{font:700 13px var(--mono)}
 .chip{flex:0 0 auto;height:34px;padding:0 11px;border-radius:17px;border:1px solid var(--line);background:var(--panel2);color:var(--text);
   font:700 12px var(--sans);letter-spacing:.04em;cursor:pointer;white-space:nowrap}
@@ -69,7 +69,7 @@ body[data-screen="logs"] #scrLogs,body[data-screen="log"] #scrLog,body[data-scre
 @media (min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
 
 /* ---------- inputs ---------- */
-label.e{display:flex;flex-direction:column;gap:4px;font:700 10px var(--sans);letter-spacing:.12em;color:var(--sub);min-width:0}
+label.e{display:flex;flex-direction:column;gap:4px;font:700 11px var(--sans);letter-spacing:.12em;color:var(--sub);min-width:0}
 label.e.slide{margin-top:10px}
 input,select,textarea{height:44px;padding:0 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);
   font:600 15px var(--mono);width:100%;min-width:0;letter-spacing:0}
@@ -97,7 +97,7 @@ button.b.cq.on{background:linear-gradient(180deg,#f6d58a,#d5a63a);border-color:v
 button.big{height:48px;padding:0 20px;font-size:14px;border-radius:14px;border:1px solid var(--gold);cursor:pointer}
 button:disabled,a.b[aria-disabled="true"]{opacity:.42;cursor:default}
 .btns{display:flex;gap:8px;margin-top:10px}
-.btns .b{flex:1 1 0;min-width:0;padding:0 4px;font-size:11px;letter-spacing:.03em}
+.btns .b{flex:1 1 0;min-width:0;padding:0 4px;font-size:12px;letter-spacing:.03em}
 
 /* ---------- log screen ---------- */
 .list{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:auto;-webkit-overflow-scrolling:touch}
@@ -156,7 +156,7 @@ body[data-screen="log"] .toast{bottom:calc(var(--tabh) + var(--doch) + 16px)}
 .dial.warn::before{content:"⚠ ";font-size:12px}
 .tunew{display:flex;align-items:center;gap:10px;margin:0 0 8px}
 .tunew span{flex:1 1 auto;min-width:0}
-.b.sm{height:36px;flex:0 0 auto;padding:0 10px;font-size:11px}
+.b.sm{height:36px;flex:0 0 auto;padding:0 10px;font-size:12px}
 h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:700 11px var(--sans);letter-spacing:.14em;color:var(--goldT);text-transform:uppercase}
 .sbody h3.sh:first-child{margin-top:0;padding-top:0;border-top:0}
 .dxrow{display:flex;gap:8px;align-items:flex-end;margin-top:10px;flex-wrap:wrap}
@@ -169,10 +169,10 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 .tm.on .n{background:var(--gold);color:var(--onGold)}
 .tm .m{flex:1 1 auto;min-width:0;padding:11px 10px;font:700 14px var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
 .tm.skip .m{opacity:.45;text-decoration:line-through}
-.tm .w{flex:0 0 52px;border:0;border-left:1px solid var(--line);background:transparent;color:var(--goldT);font:700 10px var(--sans);letter-spacing:.08em;cursor:pointer}
+.tm .w{flex:0 0 52px;border:0;border-left:1px solid var(--line);background:transparent;color:var(--goldT);font:700 11px var(--sans);letter-spacing:.08em;cursor:pointer}
 
 .list.dec{max-height:46vh;min-height:150px;margin-top:0;font:600 12px var(--mono)}
-.dsep{padding:3px 9px;background:var(--panel2);color:var(--sub);font:700 10px var(--mono);letter-spacing:.06em;position:sticky;top:0}
+.dsep{padding:3px 9px;background:var(--panel2);color:var(--sub);font:700 11px var(--mono);letter-spacing:.06em;position:sticky;top:0}
 .dl{display:grid;grid-template-columns:44px 34px 32px 42px minmax(0,1fr);gap:6px;padding:7px 9px;border-top:1px solid var(--line);cursor:pointer}
 .dl span:nth-child(-n+4){color:var(--sub)}
 .dl .m{color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -201,7 +201,7 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;display:flex;height:calc(var(--tabh) + env(safe-area-inset-bottom));
   padding-bottom:env(safe-area-inset-bottom);background:var(--panel);border-top:1px solid var(--line)}
 .tabs button{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-  border:0;background:transparent;color:var(--sub);font:700 10px var(--sans);letter-spacing:.1em;cursor:pointer;position:relative}
+  border:0;background:transparent;color:var(--sub);font:700 11px var(--sans);letter-spacing:.1em;cursor:pointer;position:relative}
 .tabs button i{font-size:19px;font-style:normal;line-height:1}
 .tabs button.on{color:var(--goldT)}
 .tabs button.on::before{content:"";position:absolute;top:0;left:22%;right:22%;height:3px;border-radius:0 0 3px 3px;background:var(--gold)}
@@ -233,15 +233,15 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 .talk.on{background:linear-gradient(180deg,#f7b57c,#e07f33);color:#2a1505;box-shadow:0 0 0 4px rgba(243,154,85,.35)}
 .talk:disabled{opacity:.45}
 .paircode{margin:10px 0 6px;padding:12px;border-radius:12px;background:var(--panel2);text-align:center}
-.paircode i{display:block;font:600 10px/1 var(--sans);letter-spacing:.12em;color:var(--sub);margin-bottom:6px;font-style:normal}
+.paircode i{display:block;font:600 11px/1 var(--sans);letter-spacing:.12em;color:var(--sub);margin-bottom:6px;font-style:normal}
 .paircode b{font-size:34px;letter-spacing:.14em;color:var(--goldT)}
 .addrs div{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
-.addrs div span{color:var(--sub);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.addrs div span{color:var(--sub);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
 .oplist{display:flex;flex-direction:column;gap:6px;margin:6px 0 10px}
 .oplist .op{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:var(--panel2);font-size:13px}
-.oplist .op i{color:var(--sub);font-style:normal;font-size:11px;flex:1 1 auto}
+.oplist .op i{color:var(--sub);font-style:normal;font-size:12px;flex:1 1 auto}
 .oplist .op small{color:var(--sub)}
-.oplist .op .ic.sm{width:auto;padding:0 10px;height:30px;font-size:10px;letter-spacing:.06em}
+.oplist .op .ic.sm{width:auto;padding:0 10px;height:30px;font-size:12px;letter-spacing:.06em}
 .e.small{flex:0 0 auto;min-width:120px}
 #scrRemote .dialrow{margin-top:8px}
 #scrRemote .dec{height:min(38vh,320px);margin-top:10px}
@@ -257,7 +257,7 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 #aprsPanel #apMsgs{max-height:24vh;min-height:80px}
 /* ---- spots ---- */
 #spSrc{display:flex;gap:6px}
-.qrow.sp .m small{display:block;color:var(--sub);font:600 10px var(--sans);letter-spacing:.04em}
+.qrow.sp .m small{display:block;color:var(--sub);font:600 11px var(--sans);letter-spacing:.04em}
 .qrow.sp.watch{box-shadow:inset 3px 0 0 var(--gold)}
 .qrow.sp.wk .c b{color:var(--sub)}
 .chips.wrap{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
@@ -270,10 +270,10 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 
 /* ---------- Oct 22 (Brandon's 0.6.0 test): one-line log rows, wide park boxes ---------- */
 .qrow.one{grid-template-columns:44px minmax(0,1fr) auto auto 30px;gap:7px;padding:5px 10px;min-height:36px}
-.qrow.one .t{font-size:11px}
+.qrow.one .t{font-size:12px}
 .qrow.one .c{display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap}
 .qrow.one .c b{font:700 14px var(--mono);overflow:hidden;text-overflow:ellipsis}
-.qrow.one .c em{font:700 10px var(--sans);font-style:normal;color:var(--sub);border:1px solid var(--line);border-radius:5px;padding:1px 4px;flex:none}
+.qrow.one .c em{font:700 11px var(--sans);font-style:normal;color:var(--sub);border:1px solid var(--line);border-radius:5px;padding:1px 4px;flex:none}
 .qrow.one .c u{font:600 11px var(--mono);text-decoration:none;color:var(--ok, #3fb950);overflow:hidden;text-overflow:ellipsis;min-width:0}
 .qrow.one .m,.qrow.one .r{font:600 11px var(--mono);color:var(--sub);white-space:nowrap;text-align:right}
 .qrow.one .x button{width:26px;height:26px;font-size:12px}
@@ -292,7 +292,7 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 .txrow{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:8px;margin-top:10px;align-items:stretch}
 .txrow .txm{margin-top:0}
 .qso{border:1px solid var(--line);border-radius:12px;background:var(--panel);display:flex;flex-direction:column;min-width:0;overflow:hidden}
-.qso .qh{padding:6px 8px;border-bottom:1px solid var(--line);background:var(--panel2);font:600 10px var(--sans);color:var(--sub);letter-spacing:.04em}
+.qso .qh{padding:6px 8px;border-bottom:1px solid var(--line);background:var(--panel2);font:600 11px var(--sans);color:var(--sub);letter-spacing:.04em}
 .qso .qh b#dgQsoDx{display:block;font:700 12px var(--mono);color:var(--goldT)}
 .qso .qh span b{color:var(--text);font-family:var(--mono)}
 .qso .ql{flex:1 1 auto;overflow:auto;max-height:240px;font:600 11px var(--mono)}
@@ -304,7 +304,7 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 .qso .ql .mine{background:rgba(232,184,74,.13)}
 .qso .ql .empty{padding:10px;font:500 11px var(--sans);color:var(--sub);white-space:normal}
 @media (max-width:560px){
-  .tm .n{flex-basis:34px;font-size:10px}
+  .tm .n{flex-basis:34px;font-size:12px}
   .tm .m{padding:9px 6px;font-size:12px}
   .tm .w{flex-basis:38px;font-size:9px;letter-spacing:0}
 }
@@ -312,7 +312,7 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 .pkmap{position:relative;margin:-2px 0 10px}
 #pkCv{display:block;width:100%;height:56vh;border-radius:12px;border:1px solid var(--line);background:var(--panel)}
 .pkbar{position:absolute;left:8px;top:8px;right:8px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.pkbar .hint{margin:0 0 0 auto;background:rgba(0,0,0,.55);color:#fff;padding:2px 7px;border-radius:6px;font-size:10px}
+.pkbar .hint{margin:0 0 0 auto;background:rgba(0,0,0,.55);color:#fff;padding:2px 7px;border-radius:6px;font-size:12px}
 .sbox:has(#pkCv){max-width:980px}
 #apSat{display:block;width:100%;height:340px;border-radius:12px;border:1px solid var(--line);margin-top:10px}
 #apSat[hidden]{display:none}
@@ -322,9 +322,9 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 .lvbar::after{content:"";position:absolute;left:31%;right:12%;top:0;bottom:0;border-left:1px dashed rgba(255,255,255,.25);border-right:1px dashed rgba(255,255,255,.25)}
 .lvbar i{position:absolute;left:0;top:0;bottom:0;width:0;background:#3fb950;transition:width .15s}
 .lvbar i.low{background:#d9a400}.lvbar i.hot{background:#e8a43a}.lvbar i.bad{background:#f85149}
-.lvk em{font:700 9px var(--sans);font-style:normal;letter-spacing:.06em;text-transform:uppercase}
+.lvk em{font:700 11px var(--sans);font-style:normal;letter-spacing:.06em;text-transform:uppercase}
 .lvk em.ok{color:#3fb950}.lvk em.low{color:#d9a400}.lvk em.hot{color:#e8a43a}.lvk em.bad{color:#f85149}
-.qso .qclr{float:right;border:1px solid var(--line);background:transparent;color:var(--sub);font:700 9px var(--sans);letter-spacing:.06em;border-radius:6px;padding:3px 6px;cursor:pointer;margin-left:6px}
+.qso .qclr{float:right;border:1px solid var(--line);background:transparent;color:var(--sub);font:700 11px var(--sans);letter-spacing:.06em;border-radius:6px;padding:3px 6px;cursor:pointer;margin-left:6px}
 #dgRr{opacity:.85}
 .dxrow .e{flex:1 1 68px;min-width:0}
 .dxrow .e input{min-width:0}
@@ -335,7 +335,7 @@ h3.sh{margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line);font:7
 .dialbig{height:56px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--goldT);font-size:28px;font-weight:700;letter-spacing:.04em;cursor:pointer}
 .vfo .rigmode{grid-column:2;text-align:center;font:700 11px/1 var(--sans);letter-spacing:.12em;color:var(--sub)}
 .chips.steps{margin:0 0 8px;justify-content:center}
-.chips.steps .chip{height:28px;padding:0 10px;font-size:11px}
+.chips.steps .chip{height:28px;padding:0 10px;font-size:12px}
 #rmPModes,#rmModes{display:flex;gap:6px}
 #scrRemote .dialrow{flex-wrap:wrap}
 .panel{border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;background:var(--panel)}
@@ -365,24 +365,24 @@ button.b.on{background:linear-gradient(180deg,#f6d58a,#d5a63a);border-color:var(
 .hlk.hl-park{background:rgba(63,185,80,.25)}.hlk.hl-dxped{background:rgba(219,61,120,.3)}.hlk.hl-event{background:rgba(56,139,253,.28)}.hlk.hl-dx{background:rgba(163,113,247,.28)}.hlk.hl-newc{background:rgba(232,184,74,.3)}.hlk.hl-newb{background:rgba(88,166,255,.25)}
 :root[data-theme=light] .dl.hl-park .m{color:#1a7f37}:root[data-theme=light] .dl.hl-dxped .m{color:#b3135a}:root[data-theme=light] .dl.hl-event .m{color:#0b5cad}:root[data-theme=light] .dl.hl-dx .m{color:#6b3fc0}
 /* 0.6.11 (Oct 24): the remote screen's QSO box + last contacts (Brandon: decodes showed, not who was calling him and not the log) */
-#rmQso,#rmLog{padding:0;overflow:hidden;font:600 12px var(--mono)}#rmQso .qh,#rmLog .qh{padding:6px 8px;border-bottom:1px solid var(--line);background:var(--panel2);font:600 10px var(--sans);color:var(--sub);letter-spacing:.04em;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}#rmQso .qh>b,#rmLog .qh>b{font:700 12px var(--mono);color:var(--goldT)}#rmQso .qh span b{color:var(--text)}
+#rmQso,#rmLog{padding:0;overflow:hidden;font:600 12px var(--mono)}#rmQso .qh,#rmLog .qh{padding:6px 8px;border-bottom:1px solid var(--line);background:var(--panel2);font:600 11px var(--sans);color:var(--sub);letter-spacing:.04em;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}#rmQso .qh>b,#rmLog .qh>b{font:700 12px var(--mono);color:var(--goldT)}#rmQso .qh span b{color:var(--text)}
 #rmQso .dl,#rmLog .dl{display:grid;grid-template-columns:38px 30px 10px 42px 1fr;gap:6px;padding:4px 8px;border-bottom:1px solid var(--line)}#rmLog .dl{grid-template-columns:38px 1fr}#rmQso .dl.mine{color:var(--goldT)}#rmQso .dl.me{background:rgba(232,184,74,.12)}#rmQso .m,#rmLog .m{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#rmLog .empty{padding:8px;color:var(--sub);font:500 12px var(--sans)}
 #scrRemote #rmLog{height:auto;max-height:160px;overflow:auto}#rmHear{margin-top:8px;width:100%}
 /* 0.6.11: remote meters + band view */
 #rmMeters.meters{padding:8px 10px}.mrow{display:grid;grid-template-columns:62px 1fr 52px;gap:8px;align-items:center;margin:3px 0;font:600 11px var(--sans);color:var(--sub)}.mrow b{white-space:nowrap;text-align:right;font:700 12px var(--mono);color:var(--text);text-align:right}.mt{height:10px;border-radius:5px;background:rgba(127,127,127,.18);overflow:hidden}.mb{height:100%;width:0;border-radius:5px;transition:width .25s}.mb.ok{background:#2ecc71}.mb.warn{background:var(--goldT)}.mb.bad{background:#e0533d}.mb.off{background:rgba(127,127,127,.35)}
-.mfoot{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between;margin-top:6px;font:600 11px var(--sans);color:var(--sub)}.mfoot b{color:var(--text);font-family:var(--mono)}.mfoot .pw{display:flex;gap:6px}.mfoot .pw .b{min-height:34px;padding:4px 10px;font-size:11px}
+.mfoot{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between;margin-top:6px;font:600 11px var(--sans);color:var(--sub)}.mfoot b{color:var(--text);font-family:var(--mono)}.mfoot .pw{display:flex;gap:6px}.mfoot .pw .b{min-height:34px;padding:4px 10px;font-size:12px}
 .specw{margin-top:8px}.specw canvas{display:block;width:100%;height:72px;border-radius:8px;background:var(--panel2);cursor:crosshair}.specw .hint{margin:4px 0 0}
 
-.newpk{font-style:normal;font-size:10px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#1a1205;border-radius:6px;padding:1px 5px;margin-left:6px}
+.newpk{font-style:normal;font-size:12px;font-weight:900;letter-spacing:1px;background:var(--gold);color:#1a1205;border-radius:6px;padding:1px 5px;margin-left:6px}
 
 /* Oct 24: spot filter panel (Hunters Lounge style) */
 .fpanel .frow{display:flex;gap:10px;align-items:flex-start;margin:9px 0}
 .fpanel .frow>span{flex:0 0 86px;font:900 10.5px var(--sans,Arial);letter-spacing:1.2px;color:var(--goldT);padding-top:8px}
 .fpanel .frow>div{display:flex;flex-wrap:wrap;gap:6px;flex:1;min-width:0}
-.fpanel .chip{font-size:11.5px}
+.fpanel .chip{font-size:12px}
 .fpanel .fin{flex:1;min-width:0;max-width:180px}.fpanel .fin.wide{max-width:none}
 .fpanel .fend{justify-content:flex-end;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
-.fnum{font-style:normal;background:var(--gold);color:#1a1205;border-radius:9px;padding:0 6px;margin-left:4px;font-size:10px}
+.fnum{font-style:normal;background:var(--gold);color:#1a1205;border-radius:9px;padding:0 6px;margin-left:4px;font-size:12px}
 @media (max-width:520px){.fpanel .frow{flex-wrap:wrap;gap:4px}.fpanel .frow>span{flex-basis:100%;padding-top:0}}
 
 .updbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--gold);background:linear-gradient(90deg,rgba(232,184,74,.22),rgba(232,184,74,.08));font:600 12.5px/1.3 var(--sans)}
@@ -409,7 +409,7 @@ button.b.on{background:linear-gradient(180deg,#f6d58a,#d5a63a);border-color:var(
 .d5bl{display:grid;grid-template-columns:46px 1fr;gap:8px;padding:4px 8px;border-radius:8px;border:1px solid var(--line);font:600 12px var(--mono);cursor:pointer}.d5bl.on{border-color:var(--gold);background:rgba(232,184,74,.1)}.d5bl b{color:var(--goldT)}
 .d5hell canvas{display:block;width:100%;height:auto;border-radius:10px;background:#0b0d10}
 .d5pics canvas,#d5TxCv{display:block;max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin:6px 0}
-.d5gal{display:flex;gap:6px;overflow-x:auto}.d5gal button{border:1px solid var(--line);background:none;padding:2px;border-radius:8px}.d5gal img{display:block;width:80px;height:64px;object-fit:cover;border-radius:6px}.d5gal small{display:block;font-size:10px;color:var(--mute)}
+.d5gal{display:flex;gap:6px;overflow-x:auto}.d5gal button{border:1px solid var(--line);background:none;padding:2px;border-radius:8px}.d5gal img{display:block;width:80px;height:64px;object-fit:cover;border-radius:6px}.d5gal small{display:block;font-size:12px;color:var(--mute)}
 .d5log{display:grid;grid-template-columns:2fr 1fr 1fr 2fr auto;gap:8px;align-items:end}
 .d5txl{display:flex;gap:8px}.d5txl input{flex:1;min-width:0}
 .d5send summary{cursor:pointer;font-weight:800;color:var(--goldT);padding:6px 0}
@@ -450,12 +450,12 @@ button.b.on{background:linear-gradient(180deg,#f6d58a,#d5a63a);border-color:var(
 /* Oct 25 (Opus): spots on ONE line, like the Hunters Lounge, with sortable column heads */
 .sphead,.sp1{display:grid;grid-template-columns:38px minmax(0,1.1fr) minmax(0,1fr) 36px 62px 44px;gap:6px;align-items:center;padding:0 10px}
 .sphead{position:sticky;top:0;z-index:1;background:var(--panel);border-bottom:1px solid var(--line)}
-.sphead button{border:0;background:transparent;color:var(--sub);font:800 10px var(--sans);letter-spacing:.1em;text-align:left;padding:8px 0;cursor:pointer}
+.sphead button{border:0;background:transparent;color:var(--sub);font:800 11px var(--sans);letter-spacing:.1em;text-align:left;padding:8px 0;cursor:pointer}
 .sphead button:nth-child(5),.sphead button:nth-child(6){text-align:right}
 .sp1{min-height:36px;border-bottom:1px solid var(--line);cursor:pointer;font-size:13px}
 .sp1:hover{background:var(--panel2)}
 .sp1 .a{font:600 11px var(--mono);color:var(--sub)}
-.sp1 .c{font:700 14px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp1 .c i{color:var(--ok);font-style:normal;font-size:11px}
+.sp1 .c{font:700 14px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp1 .c i{color:var(--ok);font-style:normal;font-size:12px}
 .sp1 .p{font:600 12px var(--mono);color:var(--goldT);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sp1 .f{font:700 12px var(--mono);text-align:right}.sp1 .m{font:600 11px var(--sans);color:var(--sub);text-align:right;white-space:nowrap;overflow:hidden}
 .sp1.wk .c{color:var(--sub)}.sp1.watch{box-shadow:inset 3px 0 0 var(--gold)}
@@ -555,7 +555,7 @@ main{max-width:none}
 .kmbar{margin:0 0 10px;padding:8px 10px;border-radius:14px;border:1px solid rgba(213,166,58,.2);background:var(--panel)}
 .kmeters .kmh{display:flex;align-items:center;gap:8px;margin-bottom:6px}.kmeters .kmh b{font:800 11px var(--sans);letter-spacing:.14em;color:var(--goldT)}
 .kmeters .kmh .kma{margin-left:auto;font:600 11px var(--sans);color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.chip.sm{height:28px;padding:0 10px;font-size:11px}
+.chip.sm{height:28px;padding:0 10px;font-size:12px}
 .kmg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
 .kgw canvas{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
 .kmd .mrow{display:grid;grid-template-columns:62px 1fr 56px}
@@ -567,11 +567,11 @@ main{max-width:none}
   background:linear-gradient(100deg,rgba(213,166,58,.20),rgba(213,166,58,.05) 45%,var(--panel) 80%);box-shadow:0 6px 20px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,230,170,.08)}
 .logbar:hover{border-color:var(--gold)}
 .logbar .i{font-size:22px}.logbar .t{display:flex;flex-direction:column;min-width:0;flex:1}
-.logbar .t i{font:800 10px var(--sans);letter-spacing:.16em;color:var(--goldT);font-style:normal}
+.logbar .t i{font:800 11px var(--sans);letter-spacing:.16em;color:var(--goldT);font-style:normal}
 .logbar .t b{font:700 17px Georgia,'Times New Roman',serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .logbar .c{font:700 13px var(--mono);color:var(--sub);white-space:nowrap}
 .logbar .g{font:800 11px var(--sans);letter-spacing:.1em;color:#1a1408;background:linear-gradient(180deg,#f0c75e,#c9962c);padding:7px 12px;border-radius:999px;white-space:nowrap}
-@media (max-width:520px){.logbar .c{display:none}.logbar .g{padding:6px 9px;font-size:10px}.logbar .t b{font-size:15px}}
+@media (max-width:520px){.logbar .c{display:none}.logbar .g{padding:6px 9px;font-size:12px}.logbar .t b{font-size:15px}}
 #scrLogs{max-width:1100px;margin:0 auto}
 .opspage{padding:6px 0 30px}
 .opspage .opsh{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:6px 0 16px;padding-bottom:14px;border-bottom:1px solid rgba(213,166,58,.35)}
@@ -588,8 +588,8 @@ main{max-width:none}
 .opspage .opsl h3{margin:4px 0 2px;font:800 11px var(--sans);letter-spacing:.16em;color:var(--sub)}
 .opspage .opr{grid-template-columns:40px 1fr auto;grid-template-areas:"k n b" "k d b";padding:12px 14px;border-radius:14px;position:relative}
 .opspage .opr .ki{grid-area:k;font-size:24px;align-self:center}
-.opspage .opr .n{font-size:16px}.opspage .opr b{display:flex;flex-direction:column;align-items:flex-end;line-height:1;font-size:22px}.opspage .opr b small{font:700 9px var(--sans);letter-spacing:.12em;color:var(--sub);margin-top:3px}
-.opspage .opr em{position:absolute;top:-8px;right:14px;font:800 9px var(--sans);letter-spacing:.14em;font-style:normal;padding:2px 8px;border-radius:999px;background:var(--gold);color:#1a1408}
+.opspage .opr .n{font-size:16px}.opspage .opr b{display:flex;flex-direction:column;align-items:flex-end;line-height:1;font-size:22px}.opspage .opr b small{font:700 11px var(--sans);letter-spacing:.12em;color:var(--sub);margin-top:3px}
+.opspage .opr em{position:absolute;top:-8px;right:14px;font:800 11px var(--sans);letter-spacing:.14em;font-style:normal;padding:2px 8px;border-radius:999px;background:var(--gold);color:#1a1408}
 .opspage .opr:hover{border-color:rgba(213,166,58,.6)}
 .opspage .opr.every{border-color:rgba(61,220,132,.45);background:linear-gradient(100deg,rgba(61,220,132,.10),var(--panel2) 50%)}
 @media (min-width:900px){.opspage .opsl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.opspage .opsl h3{grid-column:1/-1}}
@@ -598,7 +598,7 @@ main{max-width:none}
 .bdstrip{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
 .bdc{display:flex;flex-direction:column;align-items:center;min-width:58px;padding:6px 10px;border-radius:12px;border:1px solid var(--line);background:var(--panel2);color:var(--text);cursor:pointer;font:inherit}
 .bdc b{font:800 12px var(--mono)}.bdc i{font:700 11px var(--mono);color:var(--goldT);font-style:normal}
-.bdc.on{border-color:var(--gold);background:linear-gradient(180deg,rgba(213,166,58,.28),var(--panel2))}.bdc.all{justify-content:center;font:800 10px var(--sans);letter-spacing:.1em;color:var(--sub)}
+.bdc.on{border-color:var(--gold);background:linear-gradient(180deg,rgba(213,166,58,.28),var(--panel2))}.bdc.all{justify-content:center;font:800 11px var(--sans);letter-spacing:.1em;color:var(--sub)}
 @media (min-width:1100px){
   #scrSpots .sphead,#scrSpots .sp1{grid-template-columns:48px 130px 150px 46px 84px 64px 52px minmax(0,1fr) 130px;gap:12px;padding:0 16px}
   #scrSpots .sphead .w,#scrSpots .sp1 .w{display:block}
@@ -607,7 +607,7 @@ main{max-width:none}
   #scrSpots .sp1:nth-child(odd){background:rgba(255,255,255,.015)}#scrSpots .sp1:hover{background:rgba(213,166,58,.08)}
   .sp1 .bd{font:700 12px var(--mono);color:var(--sub)}
   .sp1 .i{font-size:12.5px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .sp1 .by{font:600 12px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}.sp1 .by small{display:block;font:600 10px var(--sans);color:var(--sub)}
+  .sp1 .by{font:600 12px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}.sp1 .by small{display:block;font:600 11px var(--sans);color:var(--sub)}
   #scrSpots #spList{max-height:calc(100vh - 290px);overflow:auto}
 }
 .vkfold{margin-left:auto}
@@ -678,7 +678,7 @@ body.cat-on .catmore{display:none}
 :root[data-style="lodge"]:not([data-theme="light"]) .bdc{background:#2b1a0e;border-color:rgba(227,162,74,.3)}
 :root[data-style="lodge"]:not([data-theme="light"]) .kmbar{background:rgba(30,18,9,.92);border-color:rgba(227,162,74,.3)}
 .kv.hzi{padding-top:2px;padding-bottom:2px}.kv.hzi input{height:26px!important;min-height:0;box-shadow:none}
-.sphead span{color:var(--sub);font:800 10px var(--sans);letter-spacing:.1em;padding:8px 0}
+.sphead span{color:var(--sub);font:800 11px var(--sans);letter-spacing:.1em;padding:8px 0}
 
 /* Oct 26: the QSO MAP tab */
 .qmstats{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
@@ -694,11 +694,11 @@ body.cat-on .catmore{display:none}
 .qminfo{margin-bottom:10px}
 .qmcard{padding:12px 14px;border-radius:14px;border:1px solid var(--gold);background:var(--panel)}
 .qmcard .h{display:flex;align-items:center;gap:10px;margin-bottom:8px}.qmcard .h b{font:800 20px var(--mono);color:var(--goldT)}.qmcard .h span{flex:1;color:var(--sub);font-size:13px}
-.qmcard .g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px;font-size:13px}.qmcard .g i{display:block;font:800 9px var(--sans);letter-spacing:.12em;color:var(--sub);font-style:normal}
+.qmcard .g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px;font-size:13px}.qmcard .g i{display:block;font:800 11px var(--sans);letter-spacing:.12em;color:var(--sub);font-style:normal}
 @media (min-width:1000px){.qmwrap{grid-template-columns:minmax(0,1.6fr) minmax(320px,1fr)}#qmCv{height:calc(100vh - 250px)}.qmlist{max-height:calc(100vh - 470px)}}
 .qmstrip{flex-wrap:wrap;overflow:visible}.qmstrip .chips{display:contents}
 .sp1 .s{font:700 12px var(--mono);color:var(--text);white-space:nowrap;overflow:hidden}
-@media (max-width:600px){.sp1 .s{font-size:10.5px}}
+@media (max-width:600px){.sp1 .s{font-size:12px}}
 /* Oct 26 (Fable): the remote's VOLUME at the top, big (Brandon could not find it) */
 .rmvol{display:flex;align-items:center;gap:10px;margin:0 0 10px;padding:10px 12px;border-radius:14px;border:1px solid rgba(227,162,74,.45);background:var(--panel)}
 .rmvol .l{font:800 12px var(--sans);letter-spacing:.12em;color:var(--goldT);white-space:nowrap}
@@ -724,7 +724,7 @@ input[type=range]{accent-color:var(--gold)}
   #scrSpots .sphead .w,#scrSpots .sp1 .w{display:block}#scrSpots .sphead .w:nth-last-child(2),#scrSpots .sp1 .i{display:none!important}
   #scrSpots .sp1{min-height:44px;font-size:14px}#scrSpots .sp1 .c{font-size:15px}#scrSpots .sp1 .f{font-size:14px;color:var(--goldT)}
   #scrSpots .sp1:nth-child(odd){background:rgba(255,255,255,.015)}
-  .sp1 .bd{font:700 12px var(--mono);color:var(--sub)}.sp1 .by{font:600 12px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp1 .by small{display:block;font:600 10px var(--sans);color:var(--sub)}
+  .sp1 .bd{font:700 12px var(--mono);color:var(--sub)}.sp1 .by{font:600 12px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp1 .by small{display:block;font:600 11px var(--sans);color:var(--sub)}
 }
 .rmpcs{width:100%;margin:0 0 10px}
 .monrow{margin:8px 0 4px}.monrow select{flex:1;min-width:0}#stMon.on,[data-mon].on{border-color:var(--ok);color:var(--ok)}
@@ -732,7 +732,7 @@ input[type=range]{accent-color:var(--gold)}
 .rdkhz i{white-space:nowrap}@media (max-width:520px){.rdkhz{flex-wrap:wrap;gap:2px 6px}.rdkhz i{flex-basis:100%;text-align:center;margin:0;font-size:12px}}
 /* Oct 27: spots on this band (RADIO tab, the mode screens, the FT8 dial) */
 .spstrip{flex-wrap:wrap;gap:5px;margin:8px 0 0;justify-content:center}.spstrip .kv{height:28px}
-.chip.spc{height:28px;padding:0 9px;font:600 11px var(--mono);gap:4px}.chip.spc b{font-weight:800}.chip.spc i{font-style:normal;color:var(--sub);font-size:10px}.chip.spc em{font-style:normal}.chip.spc.np{border-color:var(--gold)}.chip.spc.wk{opacity:.6}
+.chip.spc{height:28px;padding:0 9px;font:600 11px var(--mono);gap:4px}.chip.spc b{font-weight:800}.chip.spc i{font-style:normal;color:var(--sub);font-size:12px}.chip.spc em{font-style:normal}.chip.spc.np{border-color:var(--gold)}.chip.spc.wk{opacity:.6}
 .rdbands .chip{position:relative}.rdbands .bn{position:absolute;top:-6px;right:-4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--gold);color:#1a1408;font:800 10px/16px var(--sans)}
 
 /* KPC Lite (Oct 28): the parts the Lite build leaves out (kpc-flavor.js / ?lite=1 sets html[data-lite]) */
@@ -747,17 +747,17 @@ html[data-lite] [data-lite="off"] { display: none !important; }
 .ptiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin: 6px 0 10px; }
 .pt { background: var(--panel2, rgba(255,255,255,.04)); border: 1px solid var(--line, rgba(255,255,255,.12)); border-radius: 10px; padding: 8px 10px; }
 .pt b { display: block; font-size: 22px; color: var(--gold, #e3a24a); }
-.pt span { display: block; font-size: 11px; letter-spacing: .04em; opacity: .85; }
+.pt span { display: block; font-size: 12px; letter-spacing: .04em; opacity: .85; }
 .pt .pbar { height: 5px; border-radius: 3px; background: rgba(255,255,255,.1); margin: 5px 0 3px; overflow: hidden; }
 .pt .pbar i { display: block; height: 100%; background: var(--gold, #e3a24a); }
-.pt small { font-size: 11px; opacity: .75; }
+.pt small { font-size: 12px; opacity: .75; }
 
 /* ===== 🏆 CONTESTING (Nov 5 2026, kpc-contest.js + kpc-skim.js): the CONTEST tab, the exchange row on the LOG line, skimmers by region, band map ===== */
 body[data-screen="contest"] #scrCx{display:block}
 #scrCx{padding:10px 12px 18px}
 body.cx-on{--doch:168px}
 .cxrow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:5px;padding:0 0 7px}
-.cxrow .cxname{font:700 10px var(--sans);letter-spacing:.1em;color:var(--goldT);text-transform:uppercase;align-self:center;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cxrow .cxname{font:700 11px var(--sans);letter-spacing:.1em;color:var(--goldT);text-transform:uppercase;align-self:center;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cxrow .cxe{flex:0 0 calc(var(--w,3) * 13px + 34px)}
 .cxrow .cxe input{height:38px;font:700 16px var(--mono);text-transform:uppercase;text-align:center;padding:0 4px}
 .cxrow .chip{height:38px}
@@ -771,16 +771,16 @@ body.cx-on{--doch:168px}
 .cxgrid{display:grid;grid-template-columns:1fr;gap:0 12px}
 @media (min-width:900px){.cxgrid{grid-template-columns:1fr 1fr}.cxmapc{grid-column:1 / -1}}
 .cxbig{font:800 34px var(--mono);color:var(--goldT);line-height:1.1}
-.cxsub{font:600 10px var(--sans);letter-spacing:.06em;color:var(--sub);text-transform:none;margin-left:6px}
+.cxsub{font:600 11px var(--sans);letter-spacing:.06em;color:var(--sub);text-transform:none;margin-left:6px}
 .cxtab{width:100%;border-collapse:collapse;margin-top:8px;font:600 12px var(--mono)}
-.cxtab th{font:700 9px var(--sans);letter-spacing:.12em;color:var(--sub);text-align:left;padding:4px 6px;border-bottom:1px solid var(--line)}
+.cxtab th{font:700 11px var(--sans);letter-spacing:.12em;color:var(--sub);text-align:left;padding:4px 6px;border-bottom:1px solid var(--line)}
 .cxtab td{padding:4px 6px;border-bottom:1px solid var(--line)}
 .cxsweep{display:flex;flex-wrap:wrap;gap:3px;margin-top:10px}
-.cxsweep span{font:700 10px var(--mono);padding:3px 4px;border-radius:4px;background:var(--panel2);color:var(--sub);min-width:30px;text-align:center}
+.cxsweep span{font:700 11px var(--mono);padding:3px 4px;border-radius:4px;background:var(--panel2);color:var(--sub);min-width:30px;text-align:center}
 .cxsweep span.on{background:var(--gold);color:var(--onGold)}
 .cxwf{display:block;width:100%;height:360px;border-radius:10px;border:1px solid var(--line);touch-action:none;cursor:crosshair;margin-top:6px}
 @media (min-width:1200px){.cxwf{height:460px}}
-.cxleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;font-size:11px;color:var(--sub)}
+.cxleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;font-size:12px;color:var(--sub)}
 .cxleg span::before{content:'';display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
 .cxleg .m::before{background:#f5b301}.cxleg .n::before{background:#3ddc84}.cxleg .d::before{background:#6b7280}.cxleg .x::before{background:#ef4444}.cxleg .me::before{background:#e879f9}
 .cxbon{display:flex;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid var(--line);font-size:13px}
@@ -796,7 +796,7 @@ body.cx-on{--doch:168px}
 
 /* ===== 🌊 SCOPE (kpc-scope.js) on the RADIO screen + 🧭 ROTATOR (kpc-rotor.js) in STATION (Nov 6 2026) ===== */
 .rdscope{margin-bottom:12px}
-.sccv{display:block;width:100%;height:300px;border-radius:10px;border:1px solid var(--line);background:#05080f;cursor:crosshair;touch-action:manipulation}
+.sccv{display:block;width:100%;height:300px;border-radius:10px;border:1px solid var(--line);background:#000;cursor:crosshair;touch-action:manipulation}
 @media (min-width:900px){.sccv{height:380px}}
 .rdscope .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .sc-ok{color:var(--ok)}.sc-af{color:var(--rx)}.sc-warn{color:var(--goldT)}
@@ -813,7 +813,7 @@ body.cx-on{--doch:168px}
 /* ===== 🎚 LISTENING CLEAN-UP (kpc-nr.js, Nov 6 2026): STATION → Sound and the RADIO screen ===== */
 .nrbox{margin:10px 0;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}
 .nrh{font:700 11px var(--sans);letter-spacing:.08em;color:var(--goldT);margin-bottom:6px}.nrh small{font-weight:500;letter-spacing:0;color:var(--sub);text-transform:none}
-.nrrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:5px 0}.nrrow>span{flex:0 0 118px;font:700 10px var(--sans);letter-spacing:.08em;color:var(--sub)}
+.nrrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:5px 0}.nrrow>span{flex:0 0 118px;font:700 11px var(--sans);letter-spacing:.08em;color:var(--sub)}
 @media (max-width:420px){.nrrow>span{flex:1 1 100%}}
 .nrab.on{background:var(--rx)!important;color:#05080f!important}
 
@@ -842,3 +842,101 @@ body.cx-on{--doch:168px}
 .dgstrip{margin:0 0 8px}.dgstrip canvas{display:block;width:100%;height:92px;border-radius:10px;border:1px solid var(--line);touch-action:pan-y}
 .dgstrip[hidden]{display:none}
 .cxerow .b{flex:0 0 auto}
+
+/* Nov 18 review: a dupe on the entry line edges the gold LOG button red too */
+#eGo.dupe { box-shadow: 0 0 0 3px #e5484d; }
+
+/* Nov 18 reviews: ON AIR banner + STOP ALL — a slim strip (Brandon: 'make the banner small'), the same red as every HALT */
+.onair { position: fixed; left: 0; right: 0; top: 0; z-index: 9000; display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 8px; padding-top: env(safe-area-inset-top);
+  background: #c62828; color: #fff; font-weight: 700; font-size: 13px; box-shadow: 0 1px 6px rgba(0,0,0,.45); }
+.onair[hidden] { display: none; }
+.onair b { letter-spacing: .4px; animation: onairBlink 1s steps(2) infinite; }
+.onair #onAirT { font-variant-numeric: tabular-nums; }
+.onair #onAirW { flex: 1; font-weight: 500; font-size: 12px; opacity: .9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.onair button { height: 24px; padding: 0 10px; border: 0; border-radius: 5px; background: #fff; color: #b71c1c; font-weight: 800; font-size: 12px; cursor: pointer; }
+.onair button small { font-weight: 500; opacity: .7; }
+@media (prefers-reduced-motion: reduce) { .onair b { animation: none; } }
+@keyframes onairBlink { 50% { opacity: .55; } }
+body.onair-on { padding-top: 30px; }
+
+/* ================= Nov 18 layout pass (full review section 4) ================= */
+/* bigger tap targets: 38 px chips everywhere, 44 px on touch screens */
+.chip{height:38px}
+@media (pointer:coarse){ .chip{height:44px} button.b,.btns .b{min-height:44px} .ic{min-width:44px;min-height:44px} }
+/* chip rows wrap instead of running off the right edge (LOG line, mode tabs) */
+#lgStrip,#modeStrip{flex-wrap:wrap;overflow-x:visible}
+/* toasts at the top where the bottom holds transmit buttons */
+body[data-screen="digi"] .toast,body[data-screen="radio"] .toast,body[data-screen="remote"] .toast{top:calc(env(safe-area-inset-top) + 70px);bottom:auto}
+body.onair-on[data-screen="digi"] .toast,body.onair-on[data-screen="radio"] .toast,body.onair-on[data-screen="remote"] .toast{top:calc(env(safe-area-inset-top) + 100px)}
+/* every screen clears the bottom tabs (STATION → Sound was half hidden) */
+.scr{padding-bottom:calc(var(--tabh) + 24px)}
+/* the same red for every HALT / STOP */
+button.b.halt,.halt{border-color:#e5484d;color:#ff6b6b}
+/* CW memory keys F1–F6: big, one row */
+.d5mac{flex-wrap:nowrap;overflow-x:auto}
+.d5mac button{min-height:44px;font-size:15px;flex:1 0 auto}
+/* phone: the FT8 transmit row stays above the bottom tabs */
+@media (max-width:700px){ #scrDigi .txrow,#scrDigi .dgtx{position:sticky;bottom:calc(var(--tabh) + env(safe-area-inset-bottom));z-index:5;background:var(--panel)} }
+/* spots on a phone: the park on its own line (was cut to 'DE-0…') */
+@media (max-width:520px){ .spl .p,.sprow .p{display:block;white-space:normal;max-width:none} }
+
+/* 🔴 NIGHT: dim red on black, no pictures (keeps night vision at a dark park) */
+:root[data-style="night"]{--bg:#000;--panel:#060000;--panel2:#100202;--panel3:#180404;--line:#3a0c0c;--text:#d23a3a;--sub:#8c2a2a;--gold:#a81e1e;--goldT:#e04646;--onGold:#000;--rx:#b83030;--tx:#ff5a5a;--red:#ff4040;--ok:#b03434;--glow:none;--bgimg:none}
+:root[data-style="night"] body,:root[data-style="night"] .top,:root[data-style="night"] .tabs,:root[data-style="night"] .card,:root[data-style="night"] .card h2{background-image:none!important;background-color:var(--panel)!important;color:var(--text)}
+:root[data-style="night"] body{background:#000!important}
+:root[data-style="night"] img{filter:grayscale(1) brightness(.35) sepia(1) hue-rotate(-50deg) saturate(3)}
+:root[data-style="night"] canvas{filter:grayscale(1) sepia(1) hue-rotate(-50deg) saturate(4) brightness(.8)}
+:root[data-style="night"] .embers{display:none}
+/* 🌞 SUNLIGHT: black on white, bold, high contrast, no pictures */
+:root[data-style="sun"]{--bg:#fff;--panel:#fff;--panel2:#f1f1f1;--panel3:#e3e3e3;--line:#000;--text:#000;--sub:#1d1d1d;--gold:#ffc400;--goldT:#000;--onGold:#000;--rx:#0039b3;--tx:#a82800;--red:#c00000;--ok:#00632a;--glow:none;--bgimg:none}
+:root[data-style="sun"] body,:root[data-style="sun"] .top,:root[data-style="sun"] .tabs,:root[data-style="sun"] .card,:root[data-style="sun"] .card h2{background-image:none!important;background-color:var(--panel)!important;color:#000}
+:root[data-style="sun"] body{font-weight:600;background:#fff!important}
+:root[data-style="sun"] .chip,:root[data-style="sun"] button.b{border-width:2px;border-color:#000}
+:root[data-style="sun"] .embers{display:none}
+
+/* first-run setup */
+.wiz .step{font-size:13px;color:var(--sub);margin:0 0 6px}
+.wiz input,.wiz select{font-size:18px}
+.wiz .big{font-size:17px;min-height:48px}
+/* remote: the link status big and plain */
+.rmbig{font-size:18px;font-weight:700;padding:10px 12px;border-radius:10px;background:var(--panel2);margin:6px 0}
+.rmbig.ok{color:var(--ok)}.rmbig.bad{color:var(--red)}
+/* PC: the gold LOG button sits right after the boxes (it was ~1,000 px away at 1920 px wide); the chip row wraps */
+@media (min-width:900px){ .dock .entry{max-width:880px} .dock .entry .e.call{flex:0 1 320px} }
+.dock .chips{flex-wrap:wrap;overflow-x:visible}
+
+/* ---------- Nov 18 looks sweep (Opus): every screen in NIGHT and SUNLIGHT, 320 px phone and landscape tablet ---------- */
+/* phone 320 px: the RADIO screen's RECEIVE & TRANSMIT card stood 70 px past the right edge (NOTCH cut off): grid items may shrink, the button row wraps */
+.rdgrid>*,.grid2>*{min-width:0}
+.rdctl .btns{flex-wrap:wrap}
+/* phone 320 px: the REMOTE mode buttons (LSB … DATA) ran off the edge */
+#rmPModes,#rmModes{flex-wrap:wrap}
+/* STATION's tab row (👤 ME, 📻 RADIO & SOUND …) used an unset colour (#eee): white on white in SUNLIGHT and in LIGHT */
+#scrStation .tdy-bar button{color:var(--text)}
+#scrStation .tdy-bar button.on{color:var(--onGold,#1a1405)}
+/* 🔴 NIGHT: the dim labels (tabs, UTC, field names) were 2.4 : 1 on black; lifted to about 3.3 : 1, still dim red.
+   The gold (selected buttons, Tx row in use) was 2.9 : 1 under black text; now about 3.7 : 1. */
+:root[data-style="night"]{--sub:#b03434;--gold:#c42a2a}
+/* 🔴 NIGHT: the black radio page kept its amber, green and blue lights: turned to red like the rest (its canvases are already inside) */
+:root[data-style="night"] #scrRadio.sdr{filter:grayscale(1) brightness(.5) sepia(1) hue-rotate(-45deg) saturate(8)}
+:root[data-style="night"] #scrRadio.sdr canvas{filter:none}
+/* 🌞 SUNLIGHT: card titles on the radio page were light gold on white (2.3 : 1); HALT was pink on grey (2.5 : 1) */
+:root[data-style="sun"] #scrRadio.sdr .card h2{color:#000}
+:root[data-theme="light"] #dgHalt,:root[data-style="sun"] #dgHalt{color:var(--red)}
+/* 🌞 SUNLIGHT: the black front panel stays black: its grey small print and the HOLD TO TALK words made brighter */
+:root[data-style="sun"] #scrRadio.sdr .mem small,:root[data-style="sun"] #scrRadio.sdr .sdrsw button:not(.on),:root[data-style="sun"] #scrRadio.sdr #sdrSplit{color:#b4bfcc}
+:root[data-style="sun"] #scrRadio.sdr #rdTalk{color:#ff8a65}
+/* 🌞 SUNLIGHT with the dark switch: the 'plug the cable in' note on the waterfall was dark grey on dark */
+:root[data-style="sun"] .wfoff{background:rgba(255,255,255,.95);color:#000}
+/* small print under 11 px on DIGI and RADIO (0.9.6 rule: 12 px, 11 px for capital-letter labels) */
+#dgTxm .tm .w{font-size:11px}
+#scrDigi #dgSlotT{font-size:11px}
+#scrRadio .sdrclk i,#scrRadio .sdre,#scrRadio .sdrlab,#scrRadio .mem small,#scrRadio .dvbox .kv.dvt i{font-size:11px}
+/* 🔴 NIGHT: the gold buttons (LOG ⬆, ALL MY LOGS, chips that are on, the KPC badge) kept their bright yellow; now the night red */
+:root[data-style="night"] .chip.on,:root[data-style="night"] button.b.gold,:root[data-style="night"] button.gold,:root[data-style="night"] button.b.cq.on,:root[data-style="night"] button.b.on,:root[data-style="night"] button.go,:root[data-style="night"] .top .badge{background:var(--gold)!important;border-color:var(--gold);color:#000;box-shadow:none;text-shadow:none}
+:root[data-style="night"] .logbar{background:linear-gradient(100deg,rgba(196,42,42,.18),rgba(196,42,42,.04) 45%,var(--panel))!important}
+:root[data-style="night"] .logbar .g{background:var(--gold)!important;color:#000}
+:root[data-style="night"] #dgSlotBar{background:linear-gradient(90deg,rgba(196,42,42,.35),var(--gold))!important}
+/* the ⚡ storm warning line on LOG (kpc-cond.js) was pale pink text: unreadable on the light looks and too bright for NIGHT */
+:root[data-theme="light"] .wxbar,:root[data-style="sun"] .wxbar{color:#7a0000;background:#ffe3e3}
+:root[data-style="night"] .wxbar{color:var(--tx);background:#1a0000}
