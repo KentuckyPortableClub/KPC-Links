@@ -415,3 +415,31 @@ The changes asked for are in a comment on each PR. Standing lessons for every la
 - **Canada's 70 approximate rows wait for step 10** (no loader, no fact check: nothing changes that cannot be measured).
 - **Held states:** with both PRs none of the 17 is estimated over the drop guard's 3%, so all would save; 33 of the 44
   lost outlines stay pins there (13 graded wrong, 16 unsure, 4 graded right). Brandon hears that before the run.
+
+## 15. LAST LOOK + THE OUTSIDE AGENT (Fable, 19 Nov 4:30 AM)
+**#270 PASSES, stamped `Reviewed: Fable, 2026-11-19`** (merge = Brandon's word). **#271 NOT YET: (b) comes out** (comment on the PR).
+- **"Same land, two park numbers" is never decided by name.** (b) touched four pairs and one was wrong: Seven Sisters
+  US-12918 is a 7.8-acre fishing access site beside the 1,554-acre WMA US-12646. A pair is same land only when a person
+  recorded it with evidence (a saved join on both parks). West Foster Creek, Longview Saline and Hobbs come back that way.
+- **The outside agent works** (Brandon's, open internet): second-look 01 = 194 answers, its planted case right, two thirds of
+  the decided answers on an official page. Results: KPC-Data tools-out `key-quality/2026-11-18/second-look-01/RESULT.md`.
+  One agent is ONE grader: nothing joins the gold set and no saved answer is written until a second, separate pass
+  (briefed to prove the outline wrong) agrees. Opus's local gold copy with the 13 parks is not pushed.
+- **BEFORE THE NEXT US KEY RUN, in this order:** (1) merge #270; (2) #271 without (b), Fable, merge; (3) a small draft PR
+  for the NPS unit code: no Preserve record on a park that is not a preserve, nor the other way (Denali NP US-0022 takes the
+  1.3-million-acre Denali National Preserve; it goes live when Alaska is released); (4) EVIDENCE BATCH 01, saved answers each
+  with who checked, the official page, what it showed, the date and the record fingerprint, Fable reads the list first:
+  back as Class B = Cardigan Mountain SP, Milner HRA, Acton RS, Whiting SCA, Topsy RMA, Henderson Swamp, Coffeepot Lake,
+  Lake Hinkle SRA, Bear Gulch (the park IS the 350-acre ACEC); same land on both = West Foster Creek, Longview Saline, Hobbs;
+  (5) then the run, and the fact check of the run's own keys before sign-off.
+- **Findings for the work list (cause B, not fixed):** a person's join for one park protects the record on the other park
+  too (`_keep` in the contest caller: US-12918 holds the WMA's sgmtb8672); Tillamook SF's real boundary is not in our layers.
+- **OUTSIDE-AGENT JOBS, Opus prepares each as a kit (instruction page, packet, answer sheet, planted cases; the answer key
+  never leaves tools-out):**
+  A. Second pass on second-look 01: a fresh agent session, briefed to prove each YES wrong, letters reshuffled, three new plants.
+  B. Park and preserve list: every NPS unit that is a park or monument AND a preserve; POTA's number for each part, the
+     official acres of each part (NPS acreage report), and which boundary record is which.
+  C. Official acreage tables (step 6): NPS, Fish & Wildlife and Forest Service yearly lists as CSV: unit, code, acres, source link.
+  D. Missing official boundary layers: Tillamook SF (Oregon Dept of Forestry), Maidstone SP (Vermont FPR), Florida state
+     park boundaries; the map service address and layer for each (state open-data portal first).
+  E. Later: Kentucky's 193 parks, the official map link for each (step 9).
