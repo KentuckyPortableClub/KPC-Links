@@ -1,7 +1,5 @@
 {
  "note": "Named parks the owner let lose their outline in ONE key run (kpc_key_drop_guard.py, key-quality.md section 19 items 21c + 26). A state listed under 'states' is held if it loses any outline or official grade NOT named. 'stop' = held whatever its list says. Empty 'states' after the release run.",
  "states": {},
- "stop": {
-  "MT": "Custer Gallatin NF US-4501 keeps an outline but loses two thirds of its land (the Gallatin record 2660 is not joined); Montana waits for rule R-FJ1 and its evidence answer (Fable, 19 Nov; key-quality.md section 19 items 20 + 26)."
- }
+ "stop": {}
 }
