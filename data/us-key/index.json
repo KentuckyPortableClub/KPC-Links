@@ -2315,9 +2315,9 @@
   "data/us-key/area-tables.json",
   ".github/key-rules-version.json"
  ],
- "rules_of_run": "b85537a27b87",
- "build": "US-44382095873",
- "built": "2026-11-18 20:18 UTC",
+ "rules_of_run": "60cdb17f180e",
+ "build": "US-44503181603",
+ "built": "2026-11-19 10:46 UTC",
  "failed": [
   "AK",
   "AR",
