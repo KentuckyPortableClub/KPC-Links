@@ -1,0 +1,98 @@
+name: KPC US outlines from the saved key (by hand)
+# 19 Nov 2026 (Opus, key-quality.md section 19 item 41 c): since store mode (15 Nov) the US key run skips its outline step, so
+# data/outlines/US-XX was last written 11 Nov and no longer agrees with the saved key (master check: 408 problems on run 44613348117).
+# This brings the WORKING outline files in line with data/us-key on main. It changes no key, no rule, no released file:
+# the public map reads data/released/ only, and only the by-hand Release changes that.
+# Per state: kpc_outlines_from_key.py (offline, from the state's saved copy on the boundary-cache release) rebuilds every outline
+# whose records are not the key's, drops pin outlines, adds missing ones. Then the master check for THAT state. A state that
+# passes is kept; a state that fails is put back to main's files, untouched, and listed with why. Never red; nothing is
+# saved for a state that is not clean. Shares the US key run's lock, so the two never write data/outlines at the same time.
+on:
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'states, for example MT DE; blank = every state with a key file and a saved copy'
+        required: false
+        default: ''
+        type: string
+      save:
+        description: 'save the clean states to main (no = build and report only)'
+        required: false
+        default: 'yes'
+        type: choice
+        options:
+          - 'yes'
+          - 'no'
+permissions:
+  contents: write
+concurrency:
+  group: kpc-us-key
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build each state's outlines from the saved key, keep only the states the master check passes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STATES_IN: ${{ inputs.states }}
+        run: |
+          set +e
+          mkdir -p "$RUNNER_TEMP/sync" .okcache
+          R="$RUNNER_TEMP/sync"
+          pip install --quiet --break-system-packages shapely > "$R/pip.txt" 2>&1 || { echo "::error title=Outlines sync::shapely did not install: nothing was built"; echo "shapely did not install" > "$R/stopped.txt"; exit 0; }
+          gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '.assets[].name' > "$R/assets.txt" || { echo "::error title=Outlines sync::the boundary-cache list could not be read: nothing was built"; echo "no asset list" > "$R/stopped.txt"; exit 0; }
+          if [ -n "$STATES_IN" ]; then STATES="$STATES_IN"; else STATES=$(ls data/us-key/US-??.json | sed -E 's#.*/US-([A-Z]{2})\.json#\1#' | tr '\n' ' '); fi
+          printf 'state\tresult\tbefore problems\tafter problems\tnote\n' > "$R/table.tsv"
+          for st in $STATES; do
+            area="US-$st"
+            before=$(python3 .github/scripts/kpc_master_cli.py check --repo . --areas "$area" 2>&1 | grep -c "::error title=master check::$area.geojson.gz")
+            if ! grep -qx "$area.json.gz" "$R/assets.txt"; then printf '%s\tNO COPY\t%s\t%s\tno saved copy on boundary-cache: left as it is\n' "$st" "$before" "$before" >> "$R/table.tsv"; continue; fi
+            if ! gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p "$area.json.gz" -D .okcache --clobber > /dev/null 2>&1; then
+              printf '%s\tNO COPY\t%s\t%s\tsaved copy did not download: left as it is\n' "$st" "$before" "$before" >> "$R/table.tsv"; continue
+            fi
+            python3 .github/scripts/kpc_outlines_from_key.py --cache .okcache --states "$st" > "$R/build-$st.txt" 2>&1
+            rc=$?
+            rm -f ".okcache/$area.json.gz"
+            python3 .github/scripts/kpc_master_cli.py check --repo . --areas "$area" > "$R/check-$st.txt" 2>&1
+            crc=$?
+            after=$(grep -c "::error title=master check::$area.geojson.gz" "$R/check-$st.txt")
+            other=$(grep "::error title=master check::" "$R/check-$st.txt" | grep -vc "::error title=master check::$area.geojson.gz")
+            skipped=$(grep -c '^  skipped ' "$R/build-$st.txt")
+            if [ "$rc" -eq 0 ] && [ "$crc" -eq 0 ]; then
+              changed=$(git status --porcelain -- "data/outlines/$area.geojson.gz" "data/outlines/$area.p*.geojson.gz" | wc -l)
+              printf '%s\tCLEAN\t%s\t0\t%s file(s) changed, %s park(s) skipped by the builder\n' "$st" "$before" "$changed" "$skipped" >> "$R/table.tsv"
+            else
+              # put back only this state's files (part 1 + its parts); the clean states built before it keep theirs
+              tracked=$(git ls-files -- "data/outlines/$area.geojson.gz" "data/outlines/$area.p*.geojson.gz")
+              [ -n "$tracked" ] && git checkout -q HEAD -- $tracked
+              git clean -fq -- "data/outlines/$area.p*.geojson.gz" > /dev/null 2>&1
+              printf '%s\tHELD\t%s\t%s\tbuilder exit %s, check exit %s, %s other-file problem(s), %s park(s) skipped: main'"'"'s files kept\n' "$st" "$before" "$after" "$rc" "$crc" "$other" "$skipped" >> "$R/table.tsv"
+              continue
+            fi
+          done
+          rm -rf .okcache
+          python3 .github/scripts/kpc_master_cli.py check --repo . > "$R/check-all.txt" 2>&1
+          echo "whole check after the sync (every state, the held ones still on main's files):" >> "$R/table.tsv"
+          grep -E "title=master check::[0-9]+ problem|all clear" "$R/check-all.txt" | tail -1 >> "$R/table.tsv"
+          { echo '### US outlines from the saved key'; echo; echo '```'; column -t -s "$(printf '\t')" "$R/table.tsv"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          echo "::notice title=Outlines sync::$(grep -c $'\tCLEAN\t' "$R/table.tsv") clean, $(grep -c $'\tHELD\t' "$R/table.tsv") held, $(grep -c $'\tNO COPY\t' "$R/table.tsv") without a saved copy"
+          exit 0
+      - name: Report (artifact)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: us-outlines-sync-${{ github.run_id }}
+          retention-days: 30
+          path: ${{ runner.temp }}/sync/
+      - name: Save the clean states (data/outlines only)
+        if: ${{ inputs.save == 'yes' }}
+        env:
+          KPC_SAVE_RED: 'no'
+        run: |
+          if [ -z "$(git status --porcelain -- data/outlines)" ]; then echo "::notice title=Outlines sync::no outline file changed: nothing to save"; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          bash .github/scripts/kpc_save_overwrite.sh --copy "US outlines in line with the saved key (by hand, run ${{ github.run_id }})" - -- data/outlines
