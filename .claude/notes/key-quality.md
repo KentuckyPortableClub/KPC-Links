@@ -1106,3 +1106,13 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      states park by park. The next key start sees the new rules and rebuilds Montana; the guard holds it (red on purpose).
      Brandon asked about the packet bot's PART 2: its instructions (PART-2-ADDITIONS.md, Fable 11:40 AM) were sent to him to give
      the builder agent.
+31. **PACKET BOT PART 2 (`run` mode) MERGED (Opus, 19 Nov 12:55 PM CST; KPC-Data #125 -> 968aec29).** Brandon deleted the first
+   builder agent at 12:20; a new session got the catch-up kit (tools-out `handoff-03/KPC-hand-off-03A-part2-catch-up.zip`) and opened
+   #125. Read before merge: permissions read-only except `save`; every `gh` step signed in, every KPC-Links script run with the tokens
+   removed; no repeated keys; tests ALL PASS, `--selftest` ok, KPC-Data's hidden-failure tests 0 FAIL; shapely installed in the shared
+   inputs step. Its offline test: the same 60 shrinks, 4 new-land parks and 126 lost outlines (same causes) as the known answers;
+   24 shrinks differ from Fable's grid by more than 2%, none across the 20% line. **The gaps are the grid's:** against the records' own
+   measured acres the bot is within about 1-2% (Custer Gallatin 2652 1,107,363 vs 1,115,748; Lake Dardanelle 202 vs 206; Yellowstone MT
+   158,302 vs 158,798) and the grid 1-6% high (edge cells). Not run yet: the fact check and gold inside `run` (wired, they run live).
+   The agency-acres check (addition 5) was not built: optional, later. **Use:** after the release run, ONE by-hand run, mode `run`,
+   old = the published key commit before the release; read `review-packets/run-<date>/` once.
