@@ -747,3 +747,89 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    `kpc_host_rules.py` (same). Tests: the 6 examples. **Merged only AFTER the release is signed off** (newly readable layers change
    the shapes the fact check measured). Then one by-hand cache run for the rows it opens (ncnhde NC heritage, the USFS files).
    **For Fable:** is point 3's polite case right, or should a 403 to us simply mean "no rules" for ArcGIS too?
+20. **FABLE'S SITTING 3 (19 Nov ~10 AM CST; Brandon 9:14 AM: "Review what Opus has ready (items 17, 18 and 19) ... look for more
+   research, outside-agent checks or bots that would make my yes per state safer, and show me on my review page").** Files: tools-out
+   `key-quality/2026-11-19/fable-sitting-3/` (README). Read-only: no bot run, no key or rule changed. Brandon's page is updated.
+   - **#278 round 2: NOT YET, ONE small change (comment on the PR).** Both round 1 changes are right; hash 90b7fc0a1d2c and the gate OK;
+     the rule's own function on real shapes / rows / pins, all 13 states: AK moves Gates of the Arctic, Katmai, Lake Clark and keeps
+     Wrangell-St. Elias; ID keeps Craters of the Moon; Florida and ten more: nothing. What fails: **Colorado.** The pin of the PRESERVE
+     number US-8295 Great Sand Dunes is inside the National PARK record, so the pin exception kept the park's land on the preserve's
+     number and printed it as a question for POTA. POTA numbers both (US-0033 + US-8295): nothing to ask. The unit-code step gave the
+     record back, so the key ends right, but the rule is wrong there and the notice is false. **R-PP1a amended (Fable; waits for the
+     owner's yes):** ... OR POTA's own pin sits inside that record AND POTA has no number of its own for that part. Round 3: keep a row by
+     the pin only when `KR.d9_winner(record name, the OTHER parks' names)` is None; test with US-8295's real pin; new hash. **Stamp agreed
+     ahead** (no new sitting) if the diff is only that + its test + the hash lines, tests ALL PASS, and ONE measure run, states AK CO ID,
+     shows in its JOB LOG: AK as now; CO `R-PP1 ... 2 record(s)` and no R-PP1a line; ID R-PP1a US-0665. Anything else: back to Fable.
+   - **NOTICES: READ THE JOB LOG, NOT THE ANNOTATIONS.** GitHub keeps the first 10 notices of a step. Run 44548425526's annotations held
+     Alaska only; `gh api repos/<repo>/actions/jobs/<job id>/logs` gave all 111 notice lines from the chat box. CLAUDE.md's annotations
+     line loses every state after the first in a one-step, many-state run. The measure run also does not apply the 15 km hold (OR 382
+     joined there, 378 in the release run's files; NV 219 / 195): it shows a rule's notices, it is not a forecast of the release.
+   - **STOP LIST: FL, ID, OR CLEARED.** The three SIZE_BIG flags are a COUNTING error: with no union `ac` (the shapely union skips parks
+     over 400 rings / 60,000 points), `KR.measured_ac` (KPC_MEASURED_ACRES) ADDS the rows: PAD-US + the state copies of the same land.
+     Reproduced to the acre. True union: Rotenberger 31,847 (key 67,913; agency 29,000+), Three Lakes 66,020 (189,872; 63,000+),
+     Bitterroot 1,651,125 (2,117,033; USFS report NFS 1,594,735, gross 1,664,512; the "official 743,000" is the wilderness share).
+     Same records as the published key: the outlines do not change. Country-wide: 116 parks carry an added-up `ac` with 2+ rows, 84 are
+     1.10x or more over, **10 SIZE_BIG flags are false** (FL 2, WI 6, CT 1, PA 1), no size witness is false, no SIZE_SMALL is hidden.
+     Cause + fix AFTER the release (rule file: draft PR, Fable reads): `measured_ac` never adds across layers (union, or the largest
+     layer family as the fact check's estimate does); test = the three parks. OR: Tillamook to a pin is RIGHT: record 241270 is every
+     Board of Forestry forest in Oregon (608 pieces, 468 km north to south, 627,317 ac; the forest is about 360,000); the ODF layer is
+     known (hand-off 02 pass 1, a person's download).
+   - **NEW STOP: MONTANA, US-4501 Custer Gallatin NF (285 activations).** D7 sends the statewide copy sgmtd1213 to check "the managing
+     agency's own record is joined", but only PAD-US 2652 (Custer NF, 1,115,748 ac) is joined; PAD-US 2660 "Gallatin National Forest"
+     (1,850,408 ac, same Loc_Nm) sits in `nonum`. Outline 3,399,571 -> 1,143,001 ac; class stays verified (the pin is in the Custer
+     part), no flag, not on the table. 2652 + 2660 = 2,966,156; the USFS report's Montana NFS = 2,966,225. **Fix before the release
+     run: evidence batch 02**, one saved answer joining 2660 to US-4501 (evidence: the report + the two PAD-US fee records), Fable
+     reads it like #277. Of 160 parks with a D7 row (all 50 states) this is the only one with an unjoined record of the same manager
+     under the copy. **To look at (outside agent, which acres are open public land):** MT US-0399 Charles M. Russell NWR (FWS 935,617;
+     joined 422,061; the dropped copy 954,399), US-0408 UL Bend (56,090 / 39,036); VA US-0563 Mason Neck (2,277 / 1,467), US-0572
+     Rappahannock River Valley (11,365 / 7,938). Some FWS acres are private easements (Hailstone, Black Coulee: smaller is right).
+   - **WHAT A YES CHANGES, 13 held states (the table counted lost outlines only):** 63 outline -> pin; 107 keep an outline but shrink 2%+;
+     115 same land (copies dropped); 17 trails to the trail line; 4 bigger + 2 new outlines (Nez Perce NHP in MT and OR by unit code).
+     New land of 100+ acres in 4 parks only: ID US-10429 Middle Fork Clearwater +44,581 and US-0890 Salmon +15,257 (each a federal
+     record with its exact name), MT US-0054 +196, AR US-7184 +190. **Item 3d's table gets two columns from now on:** "keeps an outline
+     but loses 20%+" and "new land 100+ ac", both by park.
+   - **FOUND ON THE WAY, ON THE MAP TODAY (not this run): the Idaho key joins the USFS ownership layer's NOT-Forest-Service record.**
+     Layer `EDW_BasicOwnership_02` (sgidd, `what: owned`, joined by `forestname` alone) holds one record of Forest Service land and one
+     or two of other owners per forest; 11 parks carry both (US-4398 4474 4475 4477 4478 4479 4480 4481 4500 4505 4387), about
+     2,902,000 acres. In ten of the eleven the largest record = the report's NFS acres within 1% and the rest = its gross minus NFS
+     within 3-17%. Breaks "agency-owned land, never proclamation lines". Fix AFTER the release: a filter on the layer's owner-class
+     field in `data/state-gis.json` (rule file: draft PR, Fable reads), then that layer re-read.
+   - **T1 RUN 2 (44542262740): READ. Enough to rule; the answer is NOT ON THE MAP YET.** 30 traced (10 / 10 / 10 by the list; US-1601 was
+     binned small on a wrong 57 ac). 19 refused (11 NO FIT, 6 NO LINE, 2 NEEDS A PERSON): safe, a refusal is a pin. 11 DRAWN, all GeoPDF
+     (every control-point fit was refused): 7 GOOD, 2 TOO BIG (US-5427 Mount Hunger SF 1.42x, US-1601 Susquehanna SP 1.37x: a third of
+     the trace outside, the colour fill swallowed neighbouring land), 2 MISSING PIECES (US-9058; US-9074 one of five parts), 0 WRONG
+     LAND. The measure reproduces (US-5427: 838.9 / 590.3 ac, covered 0.986, outside 0.306). 8 of 11 drawn are NY DEC maps: not a
+     general result. The throwaway branch `trace-test` can be deleted (traces are on tools-out).
+     **DRAFT SHEET R-G9 (T3), NOT IN FORCE, for Brandon:** (1) counts: nothing yet; a traced line is never an official outline and
+     never feeds a 2-fer. (2) does not: any trace from a map without its own coordinates; any trace the tracer refused. (3) sources:
+     the agency's own GeoPDF, then the agency's published acres as the size check (a number the tracer never sees). (4) unsure = pin.
+     (5) if ever shown: its own layer, labelled "traced from the agency's picture map (unofficial)", with the short notice. (6) the
+     bar before any is shown: a gate of traced acres within 10% of the agency's acres (run 2: 5 pass, all GOOD: too few to prove),
+     then a test of 60 gated traces with at most 1 TOO BIG and 0 WRONG LAND; plus "take every shape of that colour on the page or
+     none" for missing parts.
+   - **KPC-Data #124 (review packet bot): NOT YET, three fixes (comment on the PR). Do not merge, do not start.** (1) the workflow is
+     invalid: `continue-on-error` twice on two steps; (2) no `GH_TOKEN` on any `gh` step: no shapes, an empty packet; (3) workflow-wide
+     `contents: write` + `actions: write` while the PR's own code runs, the write credential kept in the packet job's checkout, and a
+     typed PR number may be a stranger's fork: read-only everywhere, one last save job that runs no PR code, refuse a head repo that is
+     not KPC-Links. The script is clean (no network, writes only in the packet folder, selftest passes, matched AK / ID / CO).
+   - **R-NET1: YES WITH FOUR CONDITIONS (waits for Brandon's yes to the sheet as amended; code after the release, as written).** The
+     polite case of point 3 is RIGHT: a 403 to us is not "no rules" when a dated reading shows the site says no to every agent. Checked
+     against RFC 9309 (4xx = unavailable, may fetch; 5xx / no answer = assume no; rules belong to the exact host; a read is good for
+     24 hours) and `kpc_inbox_manners.robots_verdict` (already reads it so). Conditions: (a) one dated reading per EXACT host
+     (services, services1 ... each has its own robots.txt); (b) a reading older than 35 days with no re-read = unsure = no request,
+     never a silent yes; a no turning into a yes needs a person's eyes; (c) robots.txt 401 / 403 AND the first data request 401 / 403 =
+     the host is parked in the table until a person looks, not tried every run; (d) the readings table missing or unreadable = no
+     request at all (fail closed, as the never_contact flags). Also: "no" is tested per address, longest match, Allow wins a tie; the
+     live robots.txt is read every run. I could not read services.arcgis.com/robots.txt from the chat box: its "Disallow: /" is the
+     outside agent's 19 Nov reading only.
+   - **WAYS TO MAKE THE YES SAFER (on Brandon's page):** (1) a yes for NAMED PARKS: `kpc_key_drop_guard.py` lets ANY drop through for a
+     state in KPC_DROP_OK; give it an approved list (state -> park numbers) and hold a state that loses any other outline; (2) the run's
+     own table gets the shrink watch, the unjoined-record-under-a-dropped-copy check, true-union acres and the kit C tables (no
+     network; scripts in fable-sitting-3/scripts are the pattern); (3) evidence batch 02 before the release run; (4) outside agent, two
+     blind passes: the four refuges, the two Idaho river corridors, then the 63 pins busiest first; (5) kit D moved BEFORE the yes: 60
+     random parks from the 13 states' would-be files; (6) the undo path written down (a state's files as of 8140d35); (7) after: the
+     members' page, the POTA question.
+   - **WAITING FOR BRANDON:** Montana waits for evidence batch 02; the named-parks guard before the release run; R-PP1a's amended
+     wording; R-NET1 with the four conditions; R-G9 (traced lines stay off the map). **OPUS'S ORDER when he answers:** (a) #278 round 3;
+     (b) evidence batch 02 (draft PR, Fable reads); (c) the named-parks guard + its test; (d) #124's three fixes go back to the outside
+     agent; then Brandon's yes per state on the page -> ONE release run. Nothing is released before that.

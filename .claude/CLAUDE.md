@@ -67,6 +67,6 @@ When you add a note, put it in the right topic file (one short bullet, dated, Br
 - Before editing: `git fetch && git reset --hard origin/main`, because the bots commit too.
 - Commit, then `git push origin HEAD:main`.
 - Check the deploy: `gh run list -R KentuckyPortableClub/KPC-Links --workflow=pages-deploy.yml -L 1` (switched to GitHub Actions as the Pages source Oct 28; the old `-w 372361621` branch-deploy pipeline is retired). A notes/inbox-only push (only `.claude/**`) doesn't trigger it at all.
-- Getting Actions results: `gh run view --log` is blocked here. Scripts print `::notice title=...::` lines, so read them with `gh api repos/KentuckyPortableClub/KPC-Links/check-runs/<job id>/annotations`.
+- Getting Actions results: `gh run view --log` is blocked here. Scripts print `::notice title=...::` lines, so read them with `gh api repos/KentuckyPortableClub/KPC-Links/check-runs/<job id>/annotations`. GitHub keeps only the FIRST 10 notices of a step (Fable 19 Nov: a 13-state measure run showed Alaska only), so for a step that prints more, read the whole job log: `gh api repos/KentuckyPortableClub/KPC-Links/actions/jobs/<job id>/logs` (works from the chat box).
 - Use REST rather than GraphQL for issues.
 - Dispatch workflow runs one at a time; queued runs in the same concurrency group cancel each other.
