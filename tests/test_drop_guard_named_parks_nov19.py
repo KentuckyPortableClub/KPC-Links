@@ -63,14 +63,14 @@ with tempfile.TemporaryDirectory() as t:
                                          'MT': {'parks': ['US-4548'], 'decided_by': 'KPC owner, test'}}}))
     rc, out = run(td, ap)
     check(rc == 1, f'a held state fails the run without --restore (rc {rc})')
-    check('US-AK::2 outline(s) lost, every one on the approved list' in out, 'AK: every lost outline is named: let through')
-    check('US-MT::1 outline(s) lost that are NOT on the approved list: US-4501' in out, 'MT: one lost outline is not named (US-4501): held, and it is named in the message')
+    check('US-AK::2 park(s) lost their outline or their official grade, every one on the approved list' in out, 'AK: every lost outline is named: let through')
+    check('US-MT::1 park(s) lost their outline or their official grade and are NOT on the approved list: US-4501' in out, 'MT: one lost outline is not named (US-4501): held, and it is named in the message')
     check('title=Drop guard US-NV::official parks 10 -> 9' in out, 'NV, not on the list: the old percent rule still holds it')
     check('KPC_DROP_OK to "MT"' not in out and 'KPC_DROP_OK to "AK"' not in out, 'a named state never gets the "set KPC_DROP_OK" advice')
 
     # KPC_DROP_OK does not let a named state through, and still works for a state not on the list
     rc, out = run(td, ap, env={'KPC_DROP_OK': 'MT NV'})
-    check('US-MT::1 outline(s) lost that are NOT on the approved list' in out, 'KPC_DROP_OK=MT does not override the named list for MT')
+    check('US-MT::1 park(s) lost their outline or their official grade and are NOT on the approved list' in out, 'KPC_DROP_OK=MT does not override the named list for MT')
     check('US-NV::official parks 10 -> 9 (-10.0%), let through by KPC_DROP_OK' in out, 'KPC_DROP_OK still lets a state that is not on the list through')
 
     # --restore: MT and NV are put back byte for byte, AK is kept as built
@@ -84,7 +84,18 @@ with tempfile.TemporaryDirectory() as t:
     # the other way: every lost outline named -> no state held
     write_now(k, main, {'AK': {'US-0026'}, 'MT': {'US-4548'}})
     rc, out = run(td, ap)
-    check(rc == 0 and 'Drop guard US-MT::1 outline(s) lost, every one on the approved list' in out, 'all lost outlines named: nothing held, exit 0')
+    check(rc == 0 and 'Drop guard US-MT::1 park(s) lost their outline or their official grade, every one on the approved list' in out, 'all lost outlines named: nothing held, exit 0')
+
+    # Fable's review (1): a park that keeps its rows but is no longer graded official must be named too (real case: Flathead NF
+    # US-4502, same record sgmtd744, official -> approximate by D7 'only a copy' in run 44528656941's Montana file)
+    write_now(k, main, {'MT': {'US-4548'}})
+    d = json.loads((k / 'US-MT.json').read_text()); d['parks']['US-4501']['g'] = 'approximate'; (k / 'US-MT.json').write_text(json.dumps(d, indent=1))
+    rc, out = run(td, ap)
+    check(rc == 1 and 'NOT on the approved list: US-4501' in out, 'a park that keeps its outline but loses its official grade, not named: held')
+    ap3 = td / 'approved3.json'
+    ap3.write_text(json.dumps({'states': {'MT': {'parks': ['US-4548', 'US-4501'], 'decided_by': 'KPC owner, test'}}}))
+    rc, out = run(td, ap3)
+    check(rc == 0 and 'US-MT::2 park(s) lost their outline or their official grade, every one on the approved list' in out, 'the same grade drop, named: let through')
 
     # a list entry with no decided_by is ignored: MT goes back to the percent rule
     write_now(k, main, {'MT': {'US-4548'}})
@@ -103,11 +114,12 @@ with tempfile.TemporaryDirectory() as t:
     lj = td / 'lost.json'
     lj.write_text(json.dumps([{'area': 'US-MT', 'ref': 'US-4548'}, {'area': 'US-AK', 'ref': 'US-0026'}, {'area': 'US-NV', 'ref': 'US-9001'}]))
     out_f = td / 'written.json'
-    r = subprocess.run([sys.executable, str(GUARD), 'approve', '--lost', str(lj), '--states', 'MT AK', '--decided-by', 'KPC owner, test', '--out', str(out_f)],
+    gj = td / 'grade-drops.json'; gj.write_text(json.dumps([{'area': 'US-MT', 'ref': 'US-4502'}]))
+    r = subprocess.run([sys.executable, str(GUARD), 'approve', '--lost', str(lj), str(gj), '--states', 'MT AK', '--decided-by', 'KPC owner, test', '--out', str(out_f)],
                        capture_output=True, text=True)
     d = json.loads(out_f.read_text())
-    check(r.returncode == 0 and d['states']['MT']['parks'] == ['US-4548'] and d['states']['AK']['parks'] == ['US-0026'] and 'NV' not in d['states'],
-          'approve writes the lost outlines of the named states only, with decided_by')
+    check(r.returncode == 0 and d['states']['MT']['parks'] == ['US-4502', 'US-4548'] and d['states']['AK']['parks'] == ['US-0026'] and 'NV' not in d['states'],
+          'approve writes the lost outlines and the grade drops of the named states only, with decided_by')
 
 check(not (ROOT / '.github' / 'key-drop-approved.json').exists() or
       json.loads((ROOT / '.github' / 'key-drop-approved.json').read_text()).get('states') in ({}, None),

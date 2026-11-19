@@ -19,9 +19,13 @@ outline on --ref (joined records) and has none now must be on that state's appro
 page (the lost outlines of the fact check, for the states the owner said yes to). One outline lost that is NOT on the list = the
 state is held (restored, red), whatever its percent and whatever KPC_DROP_OK says. All lost outlines on the list = let through
 for this run. An entry without decided_by is ignored (warning). Empty the file after the release run.
+Fable's review, 19 Nov (dress rehearsal on run 44528656941's would-be files): (1) a park that was graded official and is not any
+more counts as lost even when it keeps its rows (D7 'only a copy: approximate': 6 parks in ID, MT, VA), so the named list is never
+weaker than the limit-0 rule; (2) in the outline FILE only an outline the keys still grade above pin counts (the save leaves out
+pin and not-in-any-key parks on purpose: 12 old outlines of pin parks sit in today's files and would have held ID, MT, UT).
 
   python3 .github/scripts/kpc_key_drop_guard.py [--ref HEAD] [--key data/us-key] [--mark FILE] [--approved FILE]
-  python3 .github/scripts/kpc_key_drop_guard.py approve --lost lost.json --states "AK MT" --decided-by "KPC owner, <date> (<words>)" [--out FILE]"""
+  python3 .github/scripts/kpc_key_drop_guard.py approve --lost lost.json [grade-drops.json] --states "AK MT" --decided-by "KPC owner, <date> (<words>)" [--out FILE]"""
 import argparse, glob, gzip, json, os, pathlib, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -33,6 +37,15 @@ APPROVED_FILE = '.github/key-drop-approved.json'
 def outlined(doc):
     """The parks of a key file that have an outline: joined records (the key's 'm'), whatever their grade."""
     return {r for r, p in (doc.get('parks') or {}).items() if isinstance(p, dict) and p.get('m')}
+
+
+def official_set(doc):
+    return {r for r, p in (doc.get('parks') or {}).items() if isinstance(p, dict) and p.get('g') == 'official'}
+
+
+def lost_parks(before_doc, now_doc):
+    """The parks a person must have named: had an outline and has none now, or was graded official and is not any more."""
+    return (outlined(before_doc) - outlined(now_doc)) | (official_set(before_doc) - official_set(now_doc))
 
 
 def load_approved(path):
@@ -93,7 +106,7 @@ def main():
         if r.returncode != 0: continue                       # not on main yet: a new state has nothing to drop from
         try:
             db, dn = json.loads(r.stdout), json.load(open(f, encoding='utf-8'))
-            before[st] = official(db); now[st] = official(dn); lost[st] = outlined(db) - outlined(dn)
+            before[st] = official(db); now[st] = official(dn); lost[st] = lost_parks(db, dn)
         except ValueError: unread.append(st)
     failed, allowed = judge(before, now, pct, mn, ok - set(named))
     ob, on = {}, {}
@@ -113,15 +126,17 @@ def main():
             before_refs = set(M.recs_of_doc(M.load_doc_parts(name, main_read)))
             now_refs = set(M.load_area(f'US-{st}', os.path.dirname(f)))
             ob[st] = len(before_refs - M.pin_drops(f'US-{st}', before_refs, key_dir)); on[st] = len(now_refs)
-            if st in named: lost[st] = lost.get(st, set()) | (before_refs - now_refs)   # Nov 19: an outline gone from the file counts too
+            if st in named:   # Nov 19: an outline gone from the file counts too, unless the save left it out on purpose (pin / in no key)
+                gone = before_refs - now_refs
+                lost[st] = lost.get(st, set()) | (gone - M.pin_drops(f'US-{st}', gone, key_dir) - M.not_in_key_drops(f'US-{st}', gone, key_dir))
         except Exception: unread.append(st)  # noqa: BLE001
     of, oa = judge(ob, on, pct, mn, ok - set(named))
     # Nov 19 NAMED PARKS: a state on the approved list stands or falls by its list alone
     nheld, nok = judge_named(lost, {st: v for st, v in named.items() if st in before})
     for st, n_, extra in nok:
-        print(f'::warning title=Drop guard US-{st}::{n_} outline(s) lost, every one on the approved list ({len(named[st])} named): let through for this run')
+        print(f'::warning title=Drop guard US-{st}::{n_} park(s) lost their outline or their official grade, every one on the approved list ({len(named[st])} named): let through for this run')
     for st, n_, extra in nheld:
-        print(f'::error title=Drop guard US-{st}::{len(extra)} outline(s) lost that are NOT on the approved list: {", ".join(extra[:12])}'
+        print(f'::error title=Drop guard US-{st}::{len(extra)} park(s) lost their outline or their official grade and are NOT on the approved list: {", ".join(extra[:12])}'
               f'{" ..." if len(extra) > 12 else ""}. The state is held.')
     failed = [r for r in failed if r[0] not in named]; of = [r for r in of if r[0] not in named]
     allowed = [r for r in allowed if r[0] not in named]
@@ -185,12 +200,12 @@ def restore(repo, key, ref, states):
 
 def approve(argv):
     """Write the named-parks list from a fact check's lost.json ([{area, ref, ...}]) for the states the owner said yes to."""
-    ap = argparse.ArgumentParser(prog='kpc_key_drop_guard.py approve'); ap.add_argument('--lost', required=True)
+    ap = argparse.ArgumentParser(prog='kpc_key_drop_guard.py approve'); ap.add_argument('--lost', required=True, nargs='+', help='one or more lists of [{area, ref}] the owner was shown (lost outlines, grade drops)')
     ap.add_argument('--states', required=True); ap.add_argument('--decided-by', required=True)
     ap.add_argument('--out', default=str(ROOT / APPROVED_FILE)); ap.add_argument('--source', default='')
     a = ap.parse_args(argv)
     sts = {s.upper().replace('US-', '') for s in a.states.replace(',', ' ').split()}
-    rows = json.load(open(a.lost, encoding='utf-8'))
+    rows = [r for f in a.lost for r in json.load(open(f, encoding='utf-8'))]
     try: doc = json.load(open(a.out, encoding='utf-8'))
     except FileNotFoundError: doc = {}
     doc['note'] = ('Named parks the owner let lose their outline in ONE key run (kpc_key_drop_guard.py, key-quality.md section 19 item 21c). '
@@ -198,7 +213,7 @@ def approve(argv):
     doc.setdefault('states', {})
     for st in sorted(sts):
         parks = sorted({str(r['ref']) for r in rows if str(r.get('area', '')).upper().replace('US-', '') == st})
-        doc['states'][st] = {'parks': parks, 'decided_by': a.decided_by, 'source': a.source or os.path.basename(a.lost)}
+        doc['states'][st] = {'parks': parks, 'decided_by': a.decided_by, 'source': a.source or ' + '.join(os.path.basename(f) for f in a.lost)}
         print(f'{st}: {len(parks)} park(s)')
     pathlib.Path(a.out).write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     return 0
