@@ -1164,3 +1164,8 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **NEXT (one Fable sitting):** #286 R-PP1b review (packet run 44602628319), Red Cliffs, the 3 job-A disagreements, and the yes under
      this rule for the waiting states (Opus's reading: AK GA NC RI FL VA WY MT pass; AR after Lake Fort Smith; UT after Red Cliffs;
      DE after Laurel). Then Opus: Lake Fort Smith saved answer, the list, ONE release run, the `run` packet, empty the list.
+   - **UPDATE 2:05 PM (Opus):** Lake Fort Smith = **draft KPC-Links #287** (evidence batch 03a, saved answers only): the 2 Nov NO was right
+     for the 1,613-ac shape sgarb19 held then; today sgarb19 is the 257-ac park (Arkansas State Parks layer 256.69; both passes YES).
+     Arkansas test build: exactly ONE park changes. For the Fable sitting with #286; R-PP1b packet run 44602628319 still running.
+     **Fable starter:** "Read CLAUDE.md and key-quality.md section 19, items 33 and 34: review #286 and #287, Red Cliffs, the job-A
+     disagreements, and make the release call under the owner's standing rule."
