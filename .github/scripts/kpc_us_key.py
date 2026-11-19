@@ -1764,6 +1764,9 @@ def preserve_apart(st, parks, recs, on=None, P=None):
     flips it. Combined 'Park & Preserve' names are both (KR.nps_part_clash). R-PP1a (Fable 19 Nov, owner 8:13 AM '1 yes for now'):
     a row whose record holds POTA's OWN PIN for that number stays where it is (the pin is POTA's own statement of where the park
     is) and is listed once in the run's notice as a person's question (Wrangell-St. Elias US-0069, Craters of the Moon US-0665).
+    Round 3 (Fable 19 Nov sitting 3, owner 10:12 AM 'I agree ... for now'): the pin keeps a row only when POTA has NO number of its
+    own for that part (KR.d9_winner of the record name over the state's OTHER parks is None): Great Sand Dunes Preserve US-8295's pin
+    is inside the National Park record, but POTA numbers the park US-0033, so that record moves and nothing is asked.
     Changes `parks` in place; returns rows moved."""
     if on is None: on = _kr('KPC_PRESERVE_APART')
     if not on or KR is None: return 0
@@ -1780,7 +1783,8 @@ def preserve_apart(st, parks, recs, on=None, P=None):
         for x in p.get('m') or []:
             if str(x[0]) in nps and not str(x[3]).startswith('reviewed') and KR.nps_part_clash(p.get('n') or '', x[1]):
                 pp, g = pin(ref), nps[str(x[0])].get('_g')
-                if pp and g and rings(g) and inside(pp[0], pp[1], g):   # R-PP1a: POTA's own pin is in this record: it stays
+                own = KR.d9_winner(x[1], {r: q.get('n') or '' for r, q in parks.items() if r != ref})   # round 3: POTA has its own number for this part
+                if own is None and pp and g and rings(g) and inside(pp[0], pp[1], g):   # R-PP1a: POTA's own pin is in this record: it stays
                     keep.append(x); PRESERVE_ASK.append([st, ref, str(x[0]), x[1]])
                 else: out.append(x)
             else: keep.append(x)

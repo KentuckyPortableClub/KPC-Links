@@ -88,6 +88,30 @@ check(ids2('US-0069') == ['3314', '3480'] and ids2('US-0665') == ['3299', '3358'
 check(sorted(h[1] for h in ns['PRESERVE_ASK']) == ['US-0069', 'US-0665'], "R-PP1a: the two kept rows are listed as a person's question")
 check(ns['preserve_apart']('AK', {'US-0069': {'n': 'Wrangell-St. Elias National Park', 'm': [[3314, 'Wrangell-St. Elias National Preserve', 4334094, 'name']]}},
                            recs2, on=True, P={'US-0069': ['x', '', '', '', '', 0, 0]}) == 1, 'a 0,0 POTA pin is no pin: the rule acts')
+# 2c. Round 3 (Fable sitting 3, owner 10:12 AM '1-4 I agree with your thoughts for now'): the pin keeps a row only when POTA has
+# NO number of its own for that part. Great Sand Dunes Preserve US-8295's real pin (37.7335, -105.512) is inside the National Park
+# record 3446, but POTA numbers the park US-0033 ('Great Sand Dunes National Park'): the record moves, nothing is asked.
+recs3 = [{'OBJECTID': 3446, 'Unit_Nm': 'Great Sand Dunes National Park', 'Mang_Name': 'NPS', 'Loc_Nm': 'GRSA', '_g': sq(37.7335, -105.512)},
+         {'OBJECTID': 3303, 'Unit_Nm': 'Great Sand Dunes National Preserve', 'Mang_Name': 'NPS', 'Loc_Nm': 'GRSA', '_g': sq(37.90, -105.45)}]
+pins3 = {'US-0033': ['Great Sand Dunes National Park', '', '', '', '', 37.7942, -105.581],
+         'US-8295': ['Great Sand Dunes National Preserve', '', '', '', '', 37.7335, -105.512]}
+parks3 = {'US-0033': {'n': 'Great Sand Dunes National Park', 'm': [[3446, 'Great Sand Dunes National Park', 104902, 'name'], [3303, 'Great Sand Dunes National Preserve', 41702, 'name']], 'c': []},
+          'US-8295': {'n': 'Great Sand Dunes National Preserve', 'm': [[3303, 'Great Sand Dunes National Preserve', 41702, 'name'], [3446, 'Great Sand Dunes National Park', 104902, 'name']], 'c': []}}
+ns['PRESERVE_ASK'].clear()
+n3 = ns['preserve_apart']('CO', parks3, recs3, on=True, P=pins3)
+ids3 = lambda r: sorted(str(x[0]) for x in parks3[r]['m'])
+check(n3 == 2 and ids3('US-0033') == ['3446'] and ids3('US-8295') == ['3303'],
+      f"round 3: Great Sand Dunes US-0033 / US-8295 each keep their own record; US-8295's pin in the park record does not keep it (moved {n3})")
+check(ns['PRESERVE_ASK'] == [], "round 3: POTA numbers the park (US-0033), so nothing is asked of POTA for Colorado")
+ns['PRESERVE_ASK'].clear()
+parks4 = {'US-8295': {'n': 'Great Sand Dunes National Preserve', 'm': [[3446, 'Great Sand Dunes National Park', 104902, 'name']], 'c': []}}
+check(ns['preserve_apart']('CO', parks4, recs3, on=True, P=pins3) == 0 and len(ns['PRESERVE_ASK']) == 1,
+      'round 3: with no POTA number for the park part, the pin exception still keeps the row and asks')
+ns['PRESERVE_ASK'].clear()
+parks2b = {k: {'n': v['n'], 'm': [list(x) for x in v['m']], 'c': []} for k, v in parks2.items() if k != 'US-0044'}
+check(ns['preserve_apart']('AK', parks2b, recs2, on=True, P=pins) == 0 and sorted(h[1] for h in ns['PRESERVE_ASK']) == ['US-0069', 'US-0665'],
+      'round 3: Wrangell-St. Elias and Craters of the Moon still keep the preserve (POTA has no preserve number)')
+
 src_i = src.find('_pa = preserve_apart(st, parks, recs, P=P)')
 check(src_i > 0 and "R-PP1a park and preserve, a person's question" in src, "the build passes POTA's pins and names the kept rows once in the run's notice")
 
