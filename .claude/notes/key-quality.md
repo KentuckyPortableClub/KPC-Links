@@ -623,4 +623,27 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      signed off (old and new must be measured on the same shapes); then one by-hand cache run from the requests.
    - **Not ready, not reviewed:** item 3's table and the #277 merge. US key run 44528656941 FINISHED 14:03 UTC (8:03 AM CST), red on
      purpose (held states): a fresh Opus chat does item 3 a-d now (starter line in item 11), then merges #277.
+14. **BRANDON'S YESES + THE AGENT'S ZIP (Fable, 19 Nov 8:30 AM CST). Brandon 8:13 AM: "1 yes for now, 2 yes, 3 yes 4 yes ... stay
+   the course of the plan and limit usage so we can make it through the week ... accuracy and great work is very important".**
+   - **R-PP1a: APPROVED FOR NOW by the owner.** #278's changelog line reads `APPROVED, decided_by KPC owner, 2026-11-19 (8:13 AM:
+     "1 yes for now" to R-PP1a)`. It stays "for now" until POTA answers (a draft question for POTA is with Brandon).
+   - **T1 run 2 STARTED 14:18 UTC: run 44542262740** (list `t1-list-2.json`). Report + the drawn traces: tools-out
+     `key-quality/2026-11-19/t1/run-44542262740/`; maps on throwaway branch `trace-test`. Fable reads it and writes the R-G9 sheet.
+   - **Hand-off 02, pass 1 is back** (tools-out `handoff-02/answers-pass1/`, READ-FIRST.md): 6 of 6 planted answers right. Job 4:
+     POTA's pages link the combined unit and do not say; POTA's own comment on US-0665 sends activators to the southern expanded
+     land (fits R-PP1a). Job 3: an official GIS layer named for 47 of the 100 busiest pin-only parks. ONE grader: nothing is used
+     until a second pass agrees. **Correct our key: Denali NP = 4,740,911.16 acres** (we wrote 4,740,091).
+   - **GREY AREA G-NPS1 for Brandon (from job 2):** Tallgrass Prairie US-3673 and Timucuan US-0658: our record is the FEDERAL land
+     only (33 of 10,883 acres; 17,123 of 46,263); the unit's own boundary is in the NPS boundaries layer. Is an NPS park its whole
+     unit boundary or only the federal land? Not ruled; nothing changes until it is.
+   - **The 487 "PC" rows explained** (handoff-02/README.md, corrections): 410 layers on hosts bots may not contact; only 118 feed a
+     park in the key; 123 open rows repeat a layer already downloaded 10-11 Nov; none is needed for the release. **No hand download
+     is uploaded before the release is signed off** (a hand file is merged by the next key run and would change the shapes).
+     After the release: the agent's own 49-file list first (41 already in the PC helper), busiest first.
+   - **Built:** the PC heartbeat (tools-out `key-quality/2026-11-19/pc-heartbeat/`, sent to Brandon): starts a watchdog only when it
+     is over 115 minutes late. **Handed to chat 10:** the review packet bot (inbox/chat-10.md).
+   - **OPUS'S ORDER NOW (fresh chat, the starter line of item 11):** (a) item 3 a-d on run 44528656941's files, the table to
+     Brandon; (b) merge #277; (c) #278 round 2: the pin exception of R-PP1a, the owner's approval line, Colorado named, Florida
+     shown by ONE `kpc-key-measure.yml` run on the branch (no chat builds); (d) the second-pass kit for hand-off 02 (jobs 2 and 4
+     and job 3's 47 GIS answers, a fresh agent session briefed to prove each wrong). Then ONE Fable sitting: (c), the table, T1 run 2.
 
