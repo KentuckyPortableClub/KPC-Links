@@ -1417,3 +1417,63 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **HAND-OFF 07 GOES TO A FRESH AGENT SESSION** (not the one that built 05 and 06: it would be reviewing its own work).
    - **THE GATE WORKFLOW (item 41) runs Python 3.12 AND 3.13** (hand-off 06 part 2 asks for both; the agent had 3.12 only).
 
+43. **ITEM 41's ORDER DONE TO (e) + THE GATE ON GITHUB + THE LINE READS (Opus, 19 Nov 4:30-5:30 PM CST; Brandon 4:30 PM: the item 41 starter).**
+   - **(a) PACKET run-2026-11-19 (44625389642) IS WRONG, DO NOT READ IT:** it laid the 20:25 UTC `key-held` files (run 44600381160, before
+     #286/#287/#288) over the 21:52 key, because the release run held nothing and so never replaced `key-held`. That is why it showed
+     Laurel 1,093 -> 359, Seven Sisters 5,676 -> 1,554, Lake Fort Smith 0, the four Alaska parks losing their preserves. Its table is
+     right on one thing: only the 11 states change (46 outlines lost + the 4 D7 grade drops = the 50 named). **FIXED** (KPC-Data 4137506):
+     the packet bot lays `key-held` over only when it was written at most 20 minutes before the new side's index `built` (same run); the
+     summary says when it was not. New input `folder` (key runs). Tested on today's times: stale = refused, the 20:25 key's own = laid.
+   - **(b) FOUND:** (1) NOTHING writes `data/outlines/US-XX` in store mode: kpc-us-key.yml's "Outlines from the key" step (the only US
+     writer, `kpc_outlines_from_key.py`, which DOES rebuild an outline whose records are not the key's and drops pin outlines; the
+     workflow comment "never replaced" is stale) has `if: KPC_KEY_SOURCE != 'store'`; the keeper writes no display copy. (2) The 408 are
+     ALL key-against-outline disagreements, 44 states: 123 "the key grades the park PIN; it must not have an outline", 285 "holds
+     record(s) not in the key's m"; the rest of the check was clean. (3) `kpc_release.py` per area wants: a `verdicts.json` with `sha`
+     (= source_sha), optional `build` (= the area's build in data/us-key/index.json), and `areas: {"US-MT": {"RELEASE-READY": "YES"}}`
+     (or a top-level `RELEASE-READY: YES`); PLUS a key-check `data/status/key-check/us-<build>.json` with `gate: PASS` at source_sha
+     (none for US-44613348117: the key run's postcheck was skipped because the run ended red; last is US-43293787778, 13 Nov); PLUS
+     green in the index; PLUS `no_worse_than_live`: **fewer outlined parks than the released file = refused. All 11 states lose
+     outlines on purpose, so the Release as written refuses every one of them** (needs a named-parks rule like the drop guard's: Fable /
+     owner); PLUS no outline holding a record not in the key (fixed by (c)).
+   - **(c) DONE:** new by-hand workflow `kpc-us-outlines-sync.yml` (KPC-Links 224f053; never red, the US key run's lock, per state:
+     `kpc_outlines_from_key.py` from the saved copy + the master check for that state; a state that fails keeps main's files; no rules
+     file touched). Run 44630258977: **50 clean, 0 held**, saved edf15be8. Master check on main after it, run here: **all clear** (3 suspect
+     baselines as before). Working files only; the public map is unchanged (data/released/).
+   - **(d) STARTED, NOT READ:** KPC-Data packet run 44630734620, mode run, OLD = addf5c4e (what the public sees), NEW = today's key
+     (6e110a6c; the bot draws outlines from the key's records + the saved copies, the same thing (c) wrote), `key-held` refused by the
+     new rule, to tools-out `key-quality/2026-11-19/public-vs-working/`. Read it once next session. Caveat for (e): the old side is the
+     KEY at addf5c4e, not `data/released/` itself (the release copied the outline files made from that key, pins dropped).
+   - **(e) = FABLE.** For (f), the three values once the verdicts exist: area `US`, areas = the YES states (`US-MT US-DE ...`),
+     source_sha = the main commit that holds the key, the outlines (edf15be8 or later) AND the verdicts + key-check files.
+   - **THE GATE IS ON GITHUB NOW:** KPC-Data `kpc-handoff-gate.yml` (bbb7c35; by hand, never red, read only): checks out the branch,
+     main and KPC-Links main (LINKS), installs every library the tests import, runs `kpc_full_suite.py` on MAIN first and uses main's
+     failures of today as the baseline (known-fail-main.txt is from 7 Nov), Python 3.12 + 3.13. Verdict = the notice line "GATE PASS /
+     GATE FAIL" per Python. **First run 44631073762 on `prep/park-pages-part5-review` (#131, top of the hand-off 05 stack): read it
+     next session.** GATE PASS on both = the merge condition of item 39 (b). (Artifacts cannot be downloaded from a chat: read the
+     job log with `gh api .../actions/jobs/<id>/logs`.)
+   - **PART 2's 132 DELETED LINES (#127): OK.** 130 are `kpc_park_pages.py`: the per-area read loop rebuilt as one worklist sequence
+     (stop + `left` for the next run), the old fingerprint skip now a 30-day refresh plus a same-fingerprint skip after the fetch, and
+     `cmd_read` split into `_prepare` / `_finish`; every rule of the old loop is still there (no page, agency home, budget, refused /
+     dead / script-built, list page, evidence drafts). New: no fixtures + KPC_NO_NET=1 reads nothing. One old edge kept: a park marked
+     unchanged with no old fact on disk is written as an empty stub (a fresh --out with an old --state).
+   - **`kpc_park_pages_rules.py` AGAINST R-PR1 TO R-PR13 (read whole, 1,285 lines). Three real defects, each reproduced on the code:**
+     **(A) R-PR4 "a sentence about THIS place" is not tested:** only trail / campground / visitor-place subjects are refused, so "The
+     Gauley River flows within the New River Gorge National Park" and "Nearby, Babcock State Park is part of the Monongahela National
+     Forest ..." are stored as `inside_of` facts. **(B) A park inside ITSELF:** `inside_units` never uses the park's name and
+     `match_unit_ref` does not skip the park's own number: "Recreation sites within the Red Cliffs National Conservation Area ..." on
+     that NCA's page = INSIDE_BIGGER_UNIT with its OWN number. **(C) R-PR9 `center=<lon>,<lat>`:** read as lat,lon whenever |lon| <= 90,
+     so every such point east of -90 (all of the East, Kentucky too) is turned around and then dropped (silent, not wrong).
+     Smaller: R-PR3's kind list is hand-written, not built from the parkinfo types (no National Grassland / Scenic Area / Heritage Area
+     / Natural Area / Game Land: those stay silent); a "GPS:" line is always role `park` (R-PR6 says label-led); tract words add
+     `Corner` (for Laurel) and `Unit` / `Section` catch office names (questions only); a 2-park shared page gives its sizes and
+     inside_of to both parks (G-PR2 must not let a key rule read those for a shared page); a list page reuses the code
+     AGENCY_HOME_ONLY. What holds: unofficial host = no sizes / location / inside / maps; agency home and lists read nothing; two
+     units = neither stored; heading-vs-title disagreement = best null; sizes only through `sizes_in`, never added; no geocoder;
+     pictures only per R-PR13 after part 5; quotes clipped at 200.
+   - **OPUS'S CALL, Fable's to overrule:** (A) and (B) are wrong facts, so they would count WRONG in the blind kits: fix them BEFORE
+     `kits --n 40` (a small part 6 for the agent: subject must be this park's name / "the park" / "this <kind>", or the page's own
+     heading; skip a unit whose core + kind equal the park's own; `match_unit_ref` skips `ref`; center = lon,lat when the key is
+     `center` and the numbers are degrees). They do not block the MERGE (the tool only reports, G-PR2), so merge #126 -> #131 on GATE
+     PASS, then part 6.
+   - NOT DONE (next, in order): read 44630734620 + 44631073762; merge the stack on GATE PASS; the seed + ONE by-hand reader run; kits
+     after part 6; wire the not-sure rows; anchor `gov_of`.
