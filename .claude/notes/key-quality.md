@@ -409,6 +409,9 @@ The changes asked for are in a comment on each PR. Standing lessons for every la
   Q1 removes only the rows tagged `reviewed-approx` (271 rows). 89 parks have nothing else and go to pin. The other 23
   (13 with rows the rules joined alone, 10 with the mark but no approximate row) keep what the rules joined alone and
   are graded like any other park. Fable chose it; Brandon may still say "all to pin".
+- **Round 2 (18 Nov evening): #271's content passes; #270 has one hole.** A guard may not hang on a mark that is only set when
+  rows were found: four parks whose approximate records were not in the read (Jordan Craters, Lake Abert, Devil's Rock
+  Garden, Split Rock) got their old `reviewed-approx` rows back through keep-last-good. Count the tag in the finished key: 0.
 - **Canada's 70 approximate rows wait for step 10** (no loader, no fact check: nothing changes that cannot be measured).
 - **Held states:** with both PRs none of the 17 is estimated over the drop guard's 3%, so all would save; 33 of the 44
   lost outlines stay pins there (13 graded wrong, 16 unsure, 4 graded right). Brandon hears that before the run.
