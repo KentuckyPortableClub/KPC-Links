@@ -905,3 +905,38 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    list become BOT rows and one by-hand cache run reads them. The outside agents may open those hosts under the same manners (the
    owner already told agent 2 so).
    - Acceptance run 44564132024 at 10:23 AM: scope and the three builds (AK, CO, ID) finished green, the packet job was running. Not read yet.
+24. **OPUS, ITEM 21's ORDER (19 Nov ~10:30-11 AM CST; fresh chat, "Read CLAUDE.md and key-quality.md section 19, do item 21's order").**
+   - **(a) #278 ROUND 3 PUSHED, NOT YET STAMPED** (3dd62f44; US 7c6e01e1bc2b -> **ee2b6f1e9673**). `preserve_apart` keeps a row by POTA's pin
+     only when `KR.d9_winner(record name, the state's OTHER parks' names)` is None. Test with US-8295's real pin (37.7335, -105.512): the park
+     record 3446 moves, nothing asked; with no POTA number for the park part the pin still keeps the row; US-0069 / US-0665 still keep the
+     preserve. Scope `why` + `approved` and the changelog quote the owner's 10:12 words; `check_hash_pair` OK; R-PP1 test ALL PASS; preflight:
+     only the known master check FAIL (3 suspect baselines, same on main). Diff = that + its test + the hash lines. **ONE measure run
+     44567629638** (branch, us, states AK CO ID, commit off) was QUEUED behind the bot queue's live-refresh key run 44567326912 (same lock,
+     started 16:32 UTC by kpc-bot-queue). **NEXT (no polling): read its JOB LOG** (`gh api repos/KentuckyPortableClub/KPC-Links/actions/jobs/<id>/logs`),
+     expect AK as now (R-PP1 3 moved + R-PP1a US-0069), CO `R-PP1 ... 2 record(s)` and NO R-PP1a line, ID R-PP1a US-0665; if so add
+     "Reviewed: Fable, 2026-11-19 (stamp agreed ahead, item 20)" to the changelog line, mark ready, merge (squash).
+   - **(b) EVIDENCE BATCH 02 CANNOT BE DONE AS APPROVED: FOR FABLE.** The saved answer exactly as item 21 says (join 2660, fp ['Gallatin
+     National Forest', 1850408], evidence = Loc_Nm + LAR FY2025 Table 3/5/28, Box link of the owner's download) is on branch
+     `prep/evidence-batch-02` (b913a01, NO PR). A Montana test build (19 Nov saved shapes, main's rules, same start files both sides)
+     changes **0 parks**: the saved-answer join path takes a record only when it lies within 0.6 deg of the box around POTA's pin
+     (`near(la, lo, a['_bb'], .6)`, also in the fingerprint re-find). POTA's pin is in the Ashland district (45.5048, -105.997); 2660's box ends at
+     -109.556. G-1 (far same-name pieces) does not help: 2660's own name is 'Gallatin National Forest'. **To make it count = a rule change
+     (moves the hash, owner's yes):** e.g. a person's join BY ID with an `evidence` block and a matching fingerprint (same id, or same name +
+     acres within 10% in the SAME layer) joins at any distance, as G-1 does for names. Montana stays held until then; the release run
+     can go without Montana.
+   - **(c) NAMED-PARKS DROP GUARD = draft KPC-Links #281** (not a rule file; hash unchanged). `.github/key-drop-approved.json` {state:
+     parks, decided_by}; a listed state is held if it loses ANY outline (key joins or outline file) not named, whatever its percent or
+     KPC_DROP_OK; `approve --lost lost.json --states ... --decided-by ...` writes it. No list in the repo today. Test both ways ALL PASS.
+     Fable reads it in the next sitting; merged before the release run.
+   - **(d) #124 ACCEPTANCE PACKET (run 44564132024): MATCHES the hand figures** (tools-out `review-packets/pr-278-ac2ab4c/` against
+     `handoff-03/A-build-review-packet-bot/reference/`): the same five parks, records, acres and class (US-0665 verified -> flagged 22.7 km,
+     US-0069 pin 0 -> 2.79 km), AK / ID counts as the reference fact check, CO 0 of 266 changed with the 2-record R-PP1 notice, gold the
+     same both sides. The packet CSV has three empty 'record gained' columns more: fine. **Brandon may start the agent on part 2.**
+   - **(e) TWO NEW COLUMNS DONE:** tools-out `factcheck-run-44528656941/table-two-new-columns.md` + `shrink20-new100-parks.csv`, and on
+     Brandon's page (each state chip). 60 parks shrink 20%+ (MT 15, AR 10, FL 8, ID 8 ...), 4 gain 100+ ac (ID 2 rivers, MT Nez Perce,
+     AR Moro Big Pine). Biggest shrink: Yellowstone in MT 2,187,128 -> 160,257: RIGHT (D7 drops a statewide copy of the whole park; WY and
+     ID keep their parts: 3483 2,003,734 / 3481 36,921).
+   - **FOR BRANDON / FABLE: the bot queue keeps starting US key live refreshes** (kpc-bot-queue.yml, every 14 days per group; 16:32 UTC
+     today: CT ID ME ND OH TN WV). Its "save new live reads to the saved outlines" step can change the shapes the fact check measured
+     (item 13: nothing re-read before the release sign-off). Suggest pausing the queue's kpc-us-key jobs (move their `next` past the
+     release) until the release is signed off. Not done: not asked.
