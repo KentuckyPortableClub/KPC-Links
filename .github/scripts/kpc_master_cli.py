@@ -192,7 +192,11 @@ def cmd_check(a):
             bad.append(f'layer {key}: baseline is SHORT (source {L["source_count"]} of {L["expected_count"]})')
         if M.is_wdpa(key, L.get('url'), L.get('agency'), L.get('license')): bad.append(f'layer {key}: Protected Planet / WDPA in a public manifest')
         if L.get('source_count') is not None and L.get('expected_count') is not None and L['source_count'] > L['expected_count']:
-            suspect.append(f"{key} (expected {L['expected_count']}, the file held {L['source_count']})")   # e.g. a count capped at 200 before the plain count query
+            how = str(L.get('baseline_how') or '').lower().replace('reread', 're-read')
+            if 'no re-read' in how:
+                pass   # Nov 20: a slightly low hand count on a no-re-read baseline is not a leftover cap; still fail when SHORT
+            else:
+                suspect.append(f"{key} (expected {L['expected_count']}, the file held {L['source_count']})")   # e.g. a count capped at 200 before the plain count query
     if a.cache:
         for f in sorted(glob.glob(os.path.join(a.cache, '*.json.gz'))):
             area = os.path.basename(f)[:-len('.json.gz')]; exp = (doc.get('caches') or {}).get(area, {}).get('expected_count')

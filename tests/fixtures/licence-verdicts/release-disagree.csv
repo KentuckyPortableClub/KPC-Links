@@ -1,0 +1,5 @@
+# fixture for the licence-table CI check; codes only, no layer addresses
+layer,key id,publish,licence class,credit line,date read
+sha256:89ecaa53e6ccdc8f,US:sgzza,yes,PUBLIC DOMAIN,Example agency,2026-11-18
+sha256:4a4235a3ec11daf4,US:sgzzb,yes,NON-COMMERCIAL / NO REDISTRIBUTION,n/a (not published),2026-11-18
+sha256:a1ddbf2b014f85ae,CA:sgzzc,yes,OPEN,Example ministry,2026-11-19
