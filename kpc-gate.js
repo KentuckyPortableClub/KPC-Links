@@ -33,12 +33,16 @@
        and fix() below). Bringing one back = take its name out of this list. */
     'kpc-access-finder.html', 'kpc-access-finder-classic.html', 'kpc-in-park.html', 'kpc-kit.html', 'kpc-park-info.html', 'kpc-park-sheet.html',
     'kpc-overlap-finder.html', 'kpc-overlap-preview.html', 'kpc-multi-park-spots.html', 'kpc-maprep.html',
-    'kpc-checker.html', 'kpc-rare.html', 'kpc-tracker.html', 'kpc-sota.html', 'kpc-lookup.html'];
+    'kpc-checker.html', 'kpc-rare.html', 'kpc-tracker.html', 'kpc-sota.html', 'kpc-lookup.html', 'kpc-map-coverage.html'];
   /* Two members' map tools that no site file may name (they are shared by hand; their own tests check it) are matched by pattern. */
   var MAINT_RX = /^kpc-map(rep-reps|-placer)\.html$/;
   function isDown(f) { return MAINT.indexOf(f) >= 0 || MAINT_RX.test(f); }
-  /* The same order, for a map that sits inside a page that stays up: the map box is hidden and says 'Down for maintenance'. */
-  var MAPBOX = { 'kpc-club.html': ['clubMap', 'cMap'], 'kpc-guide-pota.html': ['gWildMap'] };
+  /* The same order, for what sits INSIDE a page that stays up (Brandon Nov 20 8:12 AM: 'hide'): hidden outright, no note. The maps in
+     the Club Room and the POTA guide, and every 2-fer note, badge, list and index (campground and park-note cards, the guide, the Club
+     Room). Only for real visitors: test browsers and the PDF printer (navigator.webdriver) still get everything. */
+  if (!navigator.webdriver) document.documentElement.classList.add('kpc-nomap');
+  var NOMAP = '.kpc-nomap .p-2fer,.kpc-nomap .g-2fer,.kpc-nomap .g-line:has(a[href="#fers"]),.kpc-nomap #fers,.kpc-nomap a[href="#fers"],.kpc-nomap li:has(> a[href="#fers"]),' +
+    '.kpc-nomap #kentucky-2fers,.kpc-nomap a[href="#kentucky-2fers"],.kpc-nomap #gWildMap,.kpc-nomap div:has(> #clubMap),.kpc-nomap div:has(> #cMap){display:none!important}';
   if (isDown(page) && !navigator.webdriver) { location.replace('kpc-maintenance.html?from=' + page.replace(/\.html?$/, '')); return; }
   var ok = false; try { ok = localStorage.getItem(KEY) === MH; } catch (e) {}
   if (navigator.webdriver) ok = true; /* the guide PDF printer */
@@ -54,7 +58,7 @@
     '#kpcDoor button{width:100%;margin-top:12px;min-height:50px;border:0;border-radius:999px;background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05;font:900 15px Arial;letter-spacing:1px;cursor:pointer}' +
     '#kpcDoor .err{min-height:20px;margin-top:10px;color:#ff9b8a;font-size:13px;font-weight:700}#kpcDoor .links{display:flex;justify-content:space-between;gap:10px;margin-top:10px;flex-wrap:wrap}#kpcDoor a{color:#f0c96b;font-size:13.5px;font-weight:700}' +
     '#kpcDoor .x{position:absolute;top:14px;right:16px;width:auto;min-height:0;margin:0;padding:6px 12px;background:#2a2310;color:#f6d58a;border:1px solid rgba(240,201,107,.5)}' +
-    '[data-kpc-hide]{display:none!important}' +
+    '[data-kpc-hide]{display:none!important}' + NOMAP +
     '.kpc-mem-btn{display:inline-flex!important;align-items:center;gap:5px;padding:6px 12px!important;border:1px solid rgba(240,201,107,.65)!important;border-radius:999px!important;color:#f6d58a!important;font-weight:900!important;font-size:12.5px!important;letter-spacing:.6px;white-space:nowrap;text-decoration:none!important}' +
     '.kpc-mem-btn.on{background:rgba(240,201,107,.12)}@media(max-width:760px){.kpc-mem-btn{justify-content:center;margin:8px 0}}' +
     /* sign-out box (Oct 26 2026: a phone's browser can silently block confirm(), so the sign-out question is drawn in the page) */
@@ -122,8 +126,6 @@
   if (!isPub && !ok) { de.classList.add('kpc-door'); ready(function () { door(false); }); return; }
   ready(function () {
     memBtn();
-    (MAPBOX[page] || []).forEach(function (id) { var el = document.getElementById(id); if (!el || navigator.webdriver) return; el.setAttribute('data-kpc-hide', '');
-      var n = document.createElement('p'); n.textContent = 'Down for maintenance'; n.style.cssText = 'margin:10px 0;padding:14px;border:1px solid rgba(240,201,107,.6);border-radius:12px;background:#140d06;color:#f6d58a;font:700 15px Georgia,serif;text-align:center'; el.parentNode.insertBefore(n, el); });
     if (!ok) de.classList.add('kpc-guest');
     if (!navigator.webdriver) fix(document);   /* members too since Nov 20: links and cards to tools that are down are hidden for everyone */
     if (navigator.webdriver) return;
