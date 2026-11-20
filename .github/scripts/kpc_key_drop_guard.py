@@ -92,6 +92,14 @@ def official(doc):
     return sum(1 for p in (doc.get('parks') or {}).values() if isinstance(p, dict) and p.get('g') == 'official')
 
 
+def limits(env=None):
+    """(percent, min parks, [states let through]) this run uses: KPC_DROP_PCT (3), KPC_DROP_MIN (1), KPC_DROP_OK.
+    One reader for the guard and for the build stamp (S2, keys-first rev 3.1: index.json records the drop limits)."""
+    env = os.environ if env is None else env
+    return (float(env.get('KPC_DROP_PCT') or 3), int(env.get('KPC_DROP_MIN') or 1),
+            sorted(set((env.get('KPC_DROP_OK') or '').replace(',', ' ').upper().split())))
+
+
 def judge(before, now, pct=3.0, min_parks=1, ok_states=()):
     """before / now: {state: official count}. Returns (failed rows, allowed rows); a row = (state, before, now, percent)."""
     failed, allowed = [], []
@@ -110,8 +118,11 @@ def main():
     ap.add_argument('--failed-out', help='with --restore: write the kept states here (one per line), for the stamp')
     ap.add_argument('--approved', help='Nov 19: the named-parks list (default .github/key-drop-approved.json, or KPC_DROP_APPROVED)')
     a = ap.parse_args()
-    pct = float(os.environ.get('KPC_DROP_PCT') or 3); mn = int(os.environ.get('KPC_DROP_MIN') or 1)
-    ok = set((os.environ.get('KPC_DROP_OK') or '').replace(',', ' ').upper().split())
+    pct, mn, ok = limits()
+    if os.environ.get('KPC_DROP_LIMITS_OUT'):   # Fable's review of #294 (3): the stamp records what the guard ran with, from here
+        try: open(os.environ['KPC_DROP_LIMITS_OUT'], 'w', encoding='utf-8').write(json.dumps({'pct': pct, 'min_parks': mn, 'let_through': ok}))
+        except OSError as e: print(f'::warning title=Drop guard::the limits it ran with could not be written for the stamp: {e}')
+    ok = set(ok)
     strict = pct == 0 and mn == 0   # store mode 'never worse': judged park by park (a gain elsewhere never offsets a loss)
     apath = a.approved or os.environ.get('KPC_DROP_APPROVED') or os.path.join(a.repo, APPROVED_FILE)
     named = load_approved(apath); stop = load_stop(apath)

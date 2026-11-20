@@ -131,7 +131,13 @@ def record(parts, planned_groups, failed_file='', drop_file='', out_key='data/us
         elif st in failed: r = ('no', '-', 'failed', 'named failed in the stamp')
         else: r = ('yes', 'green', 'built', 'built and saved')
         areas[st] = {'built': r[0], 'verdict': r[1], 'code': r[2], 'why': r[3], 'action': 'saved' if r[2] == 'built' else 'kept'}
-    return {'rows_key': 'states', 'areas': areas, 'red': sorted(a for a, x in areas.items() if x['action'] != 'saved'), 'problems': []}
+    # S2 (keys-first rev 3.1, F21; Opus 19 Nov; Fable's review of #294, 1): a state HELD by the drop guard or the master gate is
+    # the system working and ends the run as a warning; a state whose build failed (named failed, or not built) is a real
+    # problem and turns the run red.
+    HELD = ('drop-guard', 'held-gate')
+    red = sorted(a for a, x in areas.items() if x['action'] != 'saved')
+    faults = sorted(a for a in red if areas[a]['code'] not in HELD)
+    return {'rows_key': 'states', 'areas': areas, 'red': red, 'held': [a for a in red if a not in faults], 'faults': faults, 'problems': []}
 
 
 def main(argv=None):
@@ -142,7 +148,8 @@ def main(argv=None):
         a = ap.parse_args(argv)
         rec = record(a.parts, a.planned_groups, a.failed, a.drop)
         pathlib.Path(a.out).write_text(json.dumps(rec, indent=1, sort_keys=True) + '\n', encoding='utf-8')
-        if rec['red']: print(f"::error title=US key run::RED: not saved this run, previous join kept from main: {' '.join(rec['red'])}", flush=True)
+        if rec['held']: print(f"::warning title=US key run::HELD (not saved this run, previous key kept from main): {' '.join(rec['held'])}", flush=True)
+        if rec['faults']: print(f"::error title=US key run::RED: the build failed for: {' '.join(rec['faults'])} (previous key kept from main)", flush=True)
         return 0
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('parts', nargs='*'); ap.add_argument('--out', default='data/us-key')

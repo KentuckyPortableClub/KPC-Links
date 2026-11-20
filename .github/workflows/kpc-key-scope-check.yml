@@ -1,0 +1,43 @@
+name: KPC key scope check
+# Keys-first hand-off rev 3.1, S2 (F7; Opus 19 Nov 2026): a pull request that edits a US key rule file must add a NEW entry to
+# .github/us-key-rule-scope.json whose 'from' is the last build's rules hash, or it is refused (the run would read the change
+# as undeclared and rebuild all 50 states). Reads files only, pull requests only (no schedule, no dispatch), so it emails only
+# when it FAILS (owner's Actions setting).
+on:
+  pull_request:
+    paths:
+      - '.github/scripts/kpc_us_key.py'
+      - '.github/scripts/kpc_key_rules.py'
+      - '.github/scripts/kpc_match.py'
+      - '.github/scripts/kpc_key_facts.py'
+      - '.github/key-switches.json'
+      - '.github/us-key-rule-scope.json'
+      - '.github/key-agency-table.json'
+      - '.github/key-rules-version.json'
+      - 'data/state-gis.json'
+      - 'data/us-key/area-tables.json'
+      - '.github/scripts/kpc_key_scope_check.py'
+permissions:
+  contents: read
+concurrency:
+  group: key-scope-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: The pull request's base, read only
+        run: |
+          git fetch --quiet --depth 1 origin "${{ github.event.pull_request.base.sha }}"
+          git worktree add --quiet --detach ../base "${{ github.event.pull_request.base.sha }}"
+      - name: The check's own test
+        run: python3 tests/test_key_scope_check_nov19.py
+      - name: Refuse a rule-file edit with no scope entry
+        run: python3 .github/scripts/kpc_key_scope_check.py --base ../base --head . --kind us-key
