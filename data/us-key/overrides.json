@@ -7,7 +7,7 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "aa24c9102887288461a91627f49a2bf42891824efe96520e448d4aa9740aa8ce",
+  "overrides-parks-01.json": "1d939f282fd5b2d94df8a387b36c15d31bb61270bbc19c5988d93aeac5c555b7",
   "overrides-parks-02.json": "126c9b781d720016c6b3c16c971a14c590dc38f05d810c7d5eed7bd00e2f040b"
  },
  "parks": {
@@ -1491,6 +1491,35 @@
     "Legion Lake State Park"
    ],
    "why": "Legion Lake is a different place"
+  },
+  "US-2635": {
+   "fp": {
+    "sgnve18": [
+     "Spring Mountain Ranch State Park",
+     533
+    ]
+   },
+   "join": [
+    "sgnve18"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Spring Mountain Ranch State Park' (chat 11; applied by kpc_key_answers) · 2026-11-20: NO on fsod68 (Spring Mountains National Recreation Area, 321,709 ac). The state park is the 528-acre ranch on the Nevada State Parks history page, not that recreation area.",
+   "no": [
+    "fsod68"
+   ],
+   "nofp": {
+    "fsod68": [
+     "Spring Mountains National Recreation Area",
+     321709
+    ]
+   },
+   "decided_by": "outside agent, 20 Nov 2026 (key-quality.md section 5; not an owner acceptance)",
+   "evidence": {
+    "who": "outside agent, 20 Nov 2026",
+    "source": "https://parks.nv.gov/learn/park-histories/spring-mountain-ranch-history",
+    "saw": "Nevada State Parks' own history page: the park was a 528-acre ranch ('The park was a 528-acre oasis'; 'The 528-acre property'). The saved key already joins two records of the state park itself at 539 acres (sgnve18, a person's yes, and 230201). Record fsod68 is named Spring Mountains National Recreation Area and is 321,709 acres, so it is the recreation area, not the ranch.",
+    "date": "2026-11-20"
+   }
   },
   "US-2764": {
    "fp": {
