@@ -239,7 +239,7 @@ jobs:
             && git -C .pf sparse-checkout set --no-cone data/park-facts.json.gz 2>/dev/null && git -C .pf checkout -q 2>/dev/null \
             && echo "PARK_FACTS=$PWD/.pf/data/park-facts.json.gz" >> "$GITHUB_ENV" \
             && PARK_FACTS="$PWD/.pf/data/park-facts.json.gz" python3 .github/scripts/kpc_park_facts_read.py acres --out data/acres.json \
-            || echo "::warning title=Park facts::KPC-Data's park facts file was not read; the size readers go on without official sizes"
+            || { kpc_rc=$?; echo "::warning title=Park facts::KPC-Data's park facts file was not read (exit $kpc_rc); the size readers go on without official sizes"; echo "Park facts - KPC-Data's park facts file was not read (exit $kpc_rc); the size readers go on without official sizes" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - name: Master outlines - read master first (is the checked master whole; which layer, if any, needs a live read)
@@ -558,7 +558,7 @@ jobs:
             && git -C .pf sparse-checkout set --no-cone data/park-facts.json.gz 2>/dev/null && git -C .pf checkout -q 2>/dev/null \
             && echo "PARK_FACTS=$PWD/.pf/data/park-facts.json.gz" >> "$GITHUB_ENV" \
             && PARK_FACTS="$PWD/.pf/data/park-facts.json.gz" python3 .github/scripts/kpc_park_facts_read.py acres --out data/acres.json \
-            || echo "::warning title=Park facts::KPC-Data's park facts file was not read; the size readers go on without official sizes"
+            || { kpc_rc=$?; echo "::warning title=Park facts::KPC-Data's park facts file was not read (exit $kpc_rc); the size readers go on without official sizes"; echo "Park facts - KPC-Data's park facts file was not read (exit $kpc_rc); the size readers go on without official sizes" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - uses: actions/download-artifact@v4
