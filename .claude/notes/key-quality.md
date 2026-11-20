@@ -1498,3 +1498,29 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **STILL FABLE'S, NOT DONE:** item 43 (e), the public-against-working table (packet run 44630734620). The release steps are stopped by the ruling above anyway.
    - **A catch-up zip for a fresh outside-agent chat** (`KPC-catch-up-19-Nov.zip`: jobs A = 06 second round, B = the five key drafts) was given to Brandon at 6:05 PM. At that time GitHub showed no second-round push and no key-draft branch.
    - **OPUS, 19 Nov 7:10 PM (saving this item):** done so far of the order: (1) both US key starts + the nightly boundary rebuild off (KPC-Links ad948ef); (3) the 05 stack's first gate FAILED only on the stack being behind main and the reader workflow's commented `cron:` line (the club's schedule guards count it); fixed, GATE PASS 3.12 + 3.13 (KPC-Data run 44643536837), landed in main b9b8e28; faults A / B / C fixed with one test each, GATE PASS (run 44645715357), main 2ea99d0; the ONE Kentucky reader run = KPC-Data run 44647016424 (read next). Item 43 (d)'s packet (44630734620) was NOT saved (the named-folder save staged only review-packets/; fixed fd34b10) and is not rerun. Next: the blind check of the Kentucky facts, then S1.
+46. **OPUS, 19 Nov 7:10-8:00 PM CST: the information bot's Kentucky run, S1 DONE, the sample kit and Kit C pass 2 handed out.**
+   - **Kentucky reader:** run 44647016424 stopped at the start (the flat not-sure seed sat beside the area files; fixed KPC-Data a82e06e,
+     two tests; the 104 seed rows are now area files on tools-out `not-sure/`, cc23aa4, all kept). Run 44651852948 read NOTHING:
+     `data/parkinfo` leaves Kentucky out on purpose. The reader now fills US-KY from POTA's saved list
+     (`data/pota/saved/parks/US-KY.json.gz`, type from `data/docs/US-KY.json`; f652660, one test; 193 parks, worklist 193).
+     **Run 44654168919 is the real first Kentucky run: read it next, then the blind check of its facts before any tool reads them.**
+   - **S1 DONE.** KPC-Store 9e29899: `key-quality/` holds gold-us.json and 96 answer files (every kit-keys/, answers*/, score/,
+     gold-old/new.txt, hand-off 04's rows.json + scored files), same paths as on tools-out; README there. The 12 SEALED rows were
+     public: all 77 gold rows are TUNE now (`was_sealed_until`). **New sealed set:** 12 parks of the sample nobody had seen (not in any
+     kit, packet, answer file, gold, the not-sure list or these notes), named only in the sample's private key (`sealed_next`).
+     tools-out: the 96 files deleted (no history rewrite; `key-quality/ANSWERS-MOVED.md`); squash it later as item 45 says.
+     Packet bot (KPC-Data 7b92c0e + 19166c3): reads no gold; its summary says where gold is scored. **Gold is scored only in
+     KPC-Store, "KPC gold score (private, by hand)"** (`kpc-store-gold-score.yml`): KPC-Links MAIN's grader at the commit it records,
+     a read-only scoring job, counts only in the log, results on the private branch `gold-scores`. First run 44653805226 (TUNE only,
+     so flattering): release key addf5c4e wrong land 10.4%, too big 11.7%, missing pieces 28.6%; today's key 1.3% / 0.0% / 26.3%.
+   - **THE SAMPLE KIT** (KPC-Store `key-quality/2026-11-19/sample/`, seeded `scripts/make_sample.py`, key US-44613348117): population
+     11,585 outlined parks (official + approximate) in the 50 areas of the US key (Kentucky has its own key). Job S = 300 random +
+     8 planted per pass (gold TUNE rows: 8 show only the right records = YES, 8 add one wrong record); job T = the 25 busiest of each
+     state less those in S, 1,193 rows. Two passes: different order, item numbers and plants. Zips `KPC-sample-19-Nov-pass1.zip` /
+     `-pass2.zip` given to Brandon for two fresh agent sessions; Kit C's second-pass packet `KPC-kitC-pass2.zip` too.
+     **Answers come back into KPC-Store, never tools-out.**
+   - **NEXT (fresh Opus chat, order of item 45):** read Kentucky run 44654168919 + the blind check; S2's workflow parts (a held state
+     ends as a warning, not a failed run; the check that refuses a rule-file edit with no scope entry; `index.json` records source
+     mode, drop limits and every switch value; both starts are already off); S3 (the three baselines from the saved copies' counts,
+     the gate refuses a stale baseline and treats a missing copy as a finding, the ready check as a report with its blocking part
+     behind a switch, OFF); S5 waits for the agent's S4. Then the gate on 3.12 + 3.13 for each outside-agent stack.
