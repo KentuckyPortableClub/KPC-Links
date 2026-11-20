@@ -72,7 +72,7 @@ All five are open as drafts, switched off, with green automatic checks. None is 
 
 ## N1 to N6: owners named (Fable, 19 Nov 10:20 PM; hand-offs given to Brandon)
 
-- **N1, N2, N3 = job C:** the outside agent that wrote #295 to #299. Draft pull requests in KPC-Links, refuse only, no rebuild, no rules hash moved.
+- **N1, N2, N3 = job C:** a NEW outside agent (owner, 19 Nov 10:39 PM: the agent that wrote #295 to #299 said its chat was full, so he gave the zip to someone else). ONE owner still. The #295 to #299 agent is out: fixes from Fable's read of those five need an owner when the read is done. Draft pull requests in KPC-Links, refuse only, no rebuild, no rules hash moved.
 - **N4, N5:** Opus (they need the private store). N5 first.
 - **N6:** the chat that did the two-day size check on KPC-Data. Steps 1 and 2 now; the history restart stays held.
 - **Rule for every draft from now on (Fable, after the owner found the unused size check):** the pull request says which code-map tools it looked at and why they were not enough.
