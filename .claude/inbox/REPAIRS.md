@@ -70,7 +70,12 @@ All five are open as drafts, switched off, with green automatic checks. None is 
 - [ ] **F4. After the sample:** rule sheets for names that collide, the size test, and switching the piece rule and D5 on.
 - [ ] **F5. After the sample: may the winner test in #296 read short forms** (WMA, SP, SF, NWR, SFL)? Without it #296 does nothing.
 
-## Nobody has these yet
+## N1 to N6: owners named (Fable, 19 Nov 10:20 PM; hand-offs given to Brandon)
+
+- **N1, N2, N3 = job C:** the outside agent that wrote #295 to #299. Draft pull requests in KPC-Links, refuse only, no rebuild, no rules hash moved.
+- **N4, N5:** Opus (they need the private store). N5 first.
+- **N6:** the chat that did the two-day size check on KPC-Data. Steps 1 and 2 now; the history restart stays held.
+- **Rule for every draft from now on (Fable, after the owner found the unused size check):** the pull request says which code-map tools it looked at and why they were not enough.
 
 - [ ] **N1. The Release guard's blind spots, with three test cases** (Grok F1).
 - [ ] **N2. The daily "public map is this far behind the key" line** (Grok F3).
@@ -84,7 +89,7 @@ N1 to N3 must be done before any Release.
 ## Brandon
 
 - [ ] **B1. Job A agent:** send `REVIEW-hand-off-06-ROUND-2.md` and `review-06-round2-probe.zip`.
-- [ ] **B2. Name who takes N1 to N6.**
+- [x] **B2. Name who takes N1 to N6.** **DONE by Fable, 19 Nov 10:20 PM (owners above). Brandon: send each hand-off to its one owner.**
 - [ ] **B3. One question when ready:** the measuring step still joins pieces of one pair within about 100 m into one spot. Leave it, or fix it before the first fresh 2-fer run?
 - [ ] **B4. The sample:** give the pass 1 zip to ONE fresh agent session. The pass 2 zip and the Kit C zip stay unused unless you say otherwise.
 - [x] **B5. Opus has the hand-off file.** **DONE: #294 and #300 are built from it.**
@@ -131,3 +136,4 @@ From Opus (19 Nov, 9:20-10:30 PM):
 - **Why the bots did not fetch the 2 "hand downloads" (owner 9:57 PM: "Why didnt keeper or our bots download it?"):** services*.arcgis.com's own robots.txt says no to every robot, so the key's bots may not ask. BUT the keeper (KPC-Store) has both layers on its allow list (`engine/verified-layers.csv`, fetch yes) and its store already mentions the Corps layer in 13 state files and the NPS tract layer in 12. **The key builder never reads the keeper's store:** it reads only boundary-cache copies plus hand files. Two systems keep the same layers apart; that is why rows sit open and people are asked for files the club already has. For Fable: one fix (the key's master step takes a layer the keeper already holds), not a new tool. The owner's Corps download (19 Nov 9:59 PM) held 22 areas of 2 Kentucky lakes only (the download took what was on screen), so it is not the whole layer; his NPS tract file (108 MB) came whole. (Opus, 19 Nov 10:05 PM.)
 - **ArcGIS robots.txt, read live (owner 10:05 PM: "Check arcgis robot.txt?"; Opus, built-in browser, 19 Nov ~10:10 PM CST):** `https://services1.arcgis.com/robots.txt` and `https://services7.arcgis.com/robots.txt` both answer **HTTP 403 "Invalid URL": there is no robots.txt, and no "Disallow"**. By the standard (RFC 9309) and the keeper's own reading (owner decision 8), a 4xx means "no rules": allowed. The earlier note that ArcGIS says "User-agent: * / Disallow: /" to every agent (outside agent, 19 Nov) does not hold today. So the key bots' ban on services*.arcgis.com is **our own rule** (`kpc_net_guard.py` SERVICES_RE, `kpc_master.py` live_ok), not ArcGIS's. Rule sheet R-NET1 (key-quality item 19: drop the hard-coded bans, robots.txt the only test) waits for Fable; by its own text it merges only after the release sign-off. Owner's call whether that order still stands.
 - **CORRECTION (Opus, 19 Nov 10:20 PM, from the owner's code map v5, KPC-Store `docs/code-map/`):** the ArcGIS question is not open. **The owner ruled on 15 Nov:** arcgis.com and Forest Service sites are allowed (slow, one at a time), robots.txt always obeyed; the map then said the guard files were "not yet brought in line (on the owner's list)". They never were, which is why the key bots still refuse ArcGIS and asked for two hand downloads tonight. Also from the map: "Keeper refreshes the public saved copies" is **Planned**, never built (the keys read only boundary-cache). Both are unfinished owner decisions of 15 Nov, not new questions. CLAUDE.md now points every chat to the code map and states the 15 Nov host ruling.
+- **Size checks already in the repo and not used (owner, 10:01 PM: "pretty sure we had one them all ready probably never got used"; Fable read the code and the 15 Nov code map):** `KPC_SELF_CHECKS` (2 Nov, joined acres against official acres, 0.2x to 5x) is OFF for every state in `.github/key-switches.json`; `kpc_join_check.py` (6 Nov, acreage + distance) runs after each key build and a failure is only a warning; `kpc_pin_edge.py` measures acres from an outline; `kpc_source_fields.py` holds the official-acres field per source; `kpc_key_trend.py` counts acres that disagree, report only. F2 reads #298 and #299 against these first.
