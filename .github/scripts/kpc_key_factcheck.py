@@ -35,7 +35,7 @@ SOFT flags (reading aids, they pick parks for the targeted sample):
   CHURN       (with --prev-keys) the outline was lost, or its size or half its records changed since the last build
 
   python3 .github/scripts/kpc_key_factcheck.py run --keys data/us-key --cache DIR --parkinfo DIR --truth DIR --out DIR
-          [--areas "US-OH US-IN"] [--prev-keys DIR] [--date YYYY-MM-DD] [--outline-acres DIR [PREV_DIR]]
+          [--areas "US-OH US-IN"] [--prev-keys DIR] [--date YYYY-MM-DD] [--outline-acres DIR [PREV_DIR]] [--strict-verified]
       --keys      the built key files (US-XX.json / CA-XX.json: {'parks': {ref: {'n','t','g','m': [[id, name, acres, how]], 'ac'}}})
       --cache     the saved shapes the key was built from (US-XX.json.gz 'recs' with '_r' rings; hand-US-XX.<layer>.geojson.gz)
       --parkinfo  KPC-Data data/parkinfo (name, website, type, .., lat, lon, activations)
@@ -45,6 +45,9 @@ SOFT flags (reading aids, they pick parks for the targeted sample):
                   from that outline (kpc_outline_acres.py), not by the key's 'ac' (not a measurement: often missing, and on some
                   parks it fell to the row acres while the outline did not change). PREV_DIR = the outlines of --prev-keys
                   (data/released/outlines): CHURN compares measured acres when both sides are measured, else 'ac' as before.
+      --strict-verified  (2026-11-19, outside review F6; the reviewer's first slice, step S6c; OFF unless given) 'verified' needs
+                  the size witness (the one witness not read from the joined record), 'code' counts only when every row is a code
+                  row and a record was found, and FAR_PIECE / HOLDS_PINS / SIZE_SMALL keep a park out; the entry says why ('strict_why').
 Output (never inside data/): <out>/factcheck-<AREA>.json per area, factcheck-summary.json + .txt, factcheck-flags.csv
 (one line per flag, busiest park first). Standard library only."""
 import argparse, csv, datetime, glob, gzip, json, math, os, pathlib, re, sys
@@ -128,12 +131,40 @@ def fit_rank(park_name, rec, row):
     return 2 if f == 'exact' else 1 if f == 'part' else 0
 
 
-def classify(e):
-    """verified = a code join, or the name + two more witnesses; flagged = any HARD flag."""
+def classify(e, strict=False):
+    """verified = a code join, or the name + two more witnesses; flagged = any HARD flag.
+    strict (2026-11-19, outside review F6; the reviewer's first slice, step S6c; --strict-verified, OFF unless given): the old
+    'verified' must also pass strict_why(); a park that fails falls to the ladder (two / one / none) and its entry gets
+    'strict_why' (the reason). With strict off nothing is written and the class is the old one."""
     w = e.get('witnesses') or []
+    if strict: e.pop('strict_why', None)
     if any(f[0] in HARD for f in e.get('flags') or []): return 'flagged'
-    if 'code' in w or ('name' in w and len([x for x in w if x not in ('name', 'code')]) >= 2): return 'verified'
+    if 'code' in w or ('name' in w and len([x for x in w if x not in ('name', 'code')]) >= 2):
+        if not strict: return 'verified'
+        why = strict_why(e)
+        if not why: return 'verified'
+        e['strict_why'] = why
     return 'two' if len(w) >= 2 else 'one' if len(w) == 1 else 'none'
+
+
+# 2026-11-19 (outside review F6; the reviewer's first slice, step S6c): name, designation, agency and second layer are all read
+# from the record the name joined (the second layer is looked up by the park's own place words), so they agree by construction.
+# Only the size witness stands apart from that record. The pin is left out too: it does not see wrong land joined beside the right land.
+STRICT_SOFT = ('FAR_PIECE', 'HOLDS_PINS', 'SIZE_SMALL')   # soft shape flags that keep a park out of 'verified'
+
+
+def strict_why(e):
+    """'' when an old 'verified' park passes the strict rule, else the first reason it does not (one short line)."""
+    w, fl = e.get('witnesses') or [], [f[0] for f in e.get('flags') or []]
+    soft = [f for f in STRICT_SOFT if f in fl]
+    if soft: return 'soft shape flag ' + '/'.join(soft)
+    if 'code' in w:
+        if any(m not in STRONG_HOW for m in e.get('methods') or []): code_why = 'code row beside a non-code row'
+        elif e.get('not_in_read', 0) >= e.get('rows', 0): code_why = 'code rows, but no record found in the saved shapes'
+        else: return ''
+    else: code_why = ''
+    if 'name' in w and 'size' in w and len([x for x in w if x not in ('name', 'code')]) >= 2: return ''
+    return code_why or 'no size witness: every witness is read from the joined record'
 
 
 def method(how):
@@ -291,7 +322,7 @@ def size_strength(park_name, off):
 
 
 # ---------------- one area ----------------
-def check_area(area, key, by_id, pinfo, truth, agency=None, prev=None, today=None, measured=None, prev_measured=None):
+def check_area(area, key, by_id, pinfo, truth, agency=None, prev=None, today=None, measured=None, prev_measured=None, strict=False):
     parks = {r: p for r, p in (key.get('parks') or {}).items() if isinstance(p, dict)}
     ix = name_index(by_id); cx = core_index(by_id)
     full = {}      # full name of every park of the area -> refs (for OTHER_PARK)
@@ -443,7 +474,7 @@ def check_area(area, key, by_id, pinfo, truth, agency=None, prev=None, today=Non
             if (measured or {}).get(ref, 0) > 0 and (prev_measured or {}).get(ref, 0) > 0: pa, na = round(prev_measured[ref]), round(measured[ref])
             if a and (len(a & b) < 0.5 * len(a) or (pa and na and abs(na - pa) > 0.1 * pa)):
                 e['flags'].append(['CHURN', f'{len(a)} records / {pa} acres last build, {len(b)} / {na} now'])
-        e['class'] = classify(e)
+        e['class'] = classify(e, strict)   # 2026-11-19 (outside review F6, step S6c): strict only with --strict-verified
     return {'area': area, 'made': today or datetime.date.today().isoformat(), 'key_read': key.get('read') or '', 'parks': out}
 
 
@@ -472,6 +503,7 @@ def main(argv=None):
     for k in ('keys', 'cache', 'parkinfo', 'out'): r.add_argument('--' + k, required=True)
     r.add_argument('--truth'); r.add_argument('--areas'); r.add_argument('--prev-keys'); r.add_argument('--date')
     r.add_argument('--outline-acres', nargs='+', metavar='DIR')   # 2026-11-19 (outside review F9, step S4): DIR [PREV_DIR]; off unless given
+    r.add_argument('--strict-verified', action='store_true')   # 2026-11-19 (outside review F6, step S6c): the strict class rule; off unless given
     a = ap.parse_args(argv)
     if a.outline_acres and len(a.outline_acres) > 2: ap.error('--outline-acres takes DIR [PREV_DIR]')
     OA = None
@@ -508,7 +540,7 @@ def main(argv=None):
         if OA:
             meas = OA.state_acres(a.outline_acres[0], area)
             if len(a.outline_acres) > 1: pmeas = OA.state_acres(a.outline_acres[1], area)
-        doc = check_area(area, key, by_id, _j(a.parkinfo, area + '.json'), _j(a.truth, area + '.json'), agency, prev, a.date, meas, pmeas)
+        doc = check_area(area, key, by_id, _j(a.parkinfo, area + '.json'), _j(a.truth, area + '.json'), agency, prev, a.date, meas, pmeas, a.strict_verified)
         docs.append(doc); print(f'{area} checked', flush=True)
     # a park in two areas has its pin in one of them: PIN_FAR stands only when no checked area holds the pin
     best, done = {}, {d['area'] for d in docs}
@@ -521,7 +553,7 @@ def main(argv=None):
             if any(f[0] == 'PIN_FAR' for f in fl):
                 if best.get(ref, 1e9) <= max(PIN_FAR_KM, 0.25 * math.sqrt(max((e.get('acres') or {}).get('outline') or 1, 1) * 0.004047 / math.pi)): e['flags'] = [f for f in fl if f[0] != 'PIN_FAR']
                 elif (in_areas.get(ref) or set()) - done: e['flags'] = [['PIN_AWAY', f[1] + '; the park also lies in ' + ', '.join(sorted(in_areas[ref] - done))] if f[0] == 'PIN_FAR' else f for f in fl]
-                if e.get('rows'): e['class'] = classify(e)
+                if e.get('rows'): e['class'] = classify(e, a.strict_verified)
     for doc in docs:
         area = doc['area']
         c = summarize(doc); doc['counts'] = c
