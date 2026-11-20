@@ -61,6 +61,8 @@ His full rules: `.claude/CLAUDE.md` in KPC-Links.
 2. The switch file can only set it to report. The word "hold" cannot be reached from the switch file, and `setting()` is called without the state.
 3. It adds up every joined row, so land held from two layers counts twice.
 
+**Update 7:20 AM, the real cause [read]:** the same missing file, `data/acres.json`, is what three tools wait for: this check, the join check (`kpc_join_check.py`, which can hold joins) and the key health report. The acreage bot writes its file to KPC-Data `tools-out` `acres/acres.json` instead. With that file, the check could test 1,694 of 11,182 outlined parks (15%). At 0.33 to 3 times the official size it would hold 91 parks, and on the sample it catches 2 of the 5 wrong parks it can see and holds no right one. The check's own limit (0.2 to 5 times) catches none. The full job spec is in REPAIRS under "SIZE CHECK, the real cause". Before the file is put in place, read what the join check does with it: it wakes up too.
+
 **C. Boundary lines joined as park land.** Some layers are legal or outer boundaries, not land an agency owns. The sample found them wrong most of the time (ids `sgmnb`, `mid`, `sggaa`, `sgiac`). New York's `sgnyc` is the Adirondack Blue Line and is the same kind of thing. The owner's own rule says a park is agency-owned land, never a proclamation line.
 
 **D. One public outline in three was never built from the key.** 3,862 public outlines were made by a second, looser matcher (pin inside the shape and the names agree). Only the one build replaces them. The guard refuses them meanwhile. **[read]**
@@ -116,7 +118,7 @@ Fable cannot see the runs list or the Actions page, and cannot open or close pul
 1. Switch off in the Actions page the 17 bots marked STOP in `KPC-bots-keep-or-stop-20-Nov.csv` (also listed in REPAIRS under "Bots: keep or stop"), after the owner's yes. Change no file.
 2. Switch off `kpc-fers-line.yml` in KPC-Data.
 3. Close #297 and #299 as landed (their code is on main).
-4. Open a pull request for branch `prep/nov20-ready-builder-ids` (4f42412a4) and merge it. Fable has read it and it passes. No rule file.
+4. (Done by Fable 7:10 AM: the layers report fix is merged, main 6cc6108f. Nothing to do.)
 5. Read the repo variable `KPC_KEY_SOURCE`. It must be `store`. Nobody has confirmed it.
 6. Check whether the keeper's timer and its `public-shelf` job are really running, and whether the secret it needs is set.
 7. Keep doing what found the Canada build: check claims against the repos and say when a line in REPAIRS is wrong.
