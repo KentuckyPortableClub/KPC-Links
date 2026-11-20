@@ -18,11 +18,17 @@
     'kpc-guide-wwff.html', 'kpc-guide-sota.html', 'kpc-park-notes.html', 'kpc-park-notes-us.html', 'kpc-campgrounds.html',
     'kpc-community.html', 'kpc-spots.html', '404.html', 'kpc-planner-us.html', 'kpc-hunters.html', 'kpc-hunters-need.html',
     'kpc-beta-room.html', 'kpc-beta-need.html', 'kpc-beta-cat.html',
-    /* release Oct 29 2026 (Plan A) */ 'kpc-activators-lounge.html', 'kpc-log-checker.html', 'kpc-about-info.html', 'find.html', 'kpc-rare.html', 'kpc-guide-top25.html', 'kpc-tracker.html', 'kpc-sota.html', 'kpc-sota-az.html', 'kpc-park-info.html', 'kpc-in-park.html', 'kpc-kit.html', 'kpc-park-sheet.html', 'kpc-access-finder.html', 'kpc-weather.html', 'kpc-space-weather.html', 'kpc-band-plan.html', 'kpc-rules-you-should-know.html', 'kpc-new-to-pota.html', 'kpc-new-to-wwff.html', 'kpc-new-to-sota.html', 'kpc-pota-room.html', 'kpc-wwff-room.html', 'kpc-sota-room.html', 'finder.html', 'kpc-planner.html', 'kpc-lookup.html', 'kpc-checker.html', 'parks.html', 'kpc-activations.html', 'kpc-live.html', 'kpc-map-room.html'];   /* beta test room: its own password (kpc-vip.js data-lock="room") */
+    /* release Oct 29 2026 (Plan A) */ 'kpc-activators-lounge.html', 'kpc-log-checker.html', 'kpc-about-info.html', 'find.html', 'kpc-rare.html', 'kpc-guide-top25.html', 'kpc-tracker.html', 'kpc-sota.html', 'kpc-sota-az.html', 'kpc-park-info.html', 'kpc-in-park.html', 'kpc-kit.html', 'kpc-park-sheet.html', 'kpc-access-finder.html', 'kpc-weather.html', 'kpc-space-weather.html', 'kpc-band-plan.html',
+    /* Nov 19 2026: the maintenance notice */ 'kpc-maintenance.html', 'kpc-rules-you-should-know.html', 'kpc-new-to-pota.html', 'kpc-new-to-wwff.html', 'kpc-new-to-sota.html', 'kpc-pota-room.html', 'kpc-wwff-room.html', 'kpc-sota-room.html', 'finder.html', 'kpc-planner.html', 'kpc-lookup.html', 'kpc-checker.html', 'parks.html', 'kpc-activations.html', 'kpc-live.html', 'kpc-map-room.html'];   /* beta test room: its own password (kpc-vip.js data-lock="room") */
   var SWAP = { };
   var LABEL = { }; /* menu wording for guests when the target is swapped */
   var de = document.documentElement, page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   if (!/\.html?$/.test(page)) page = 'index.html';
+  /* DOWN FOR MAINTENANCE (Brandon Nov 19 2026: 'make ky park commander and us trip planner go to down for maintenance page'): every page
+     in MAINT sends guests AND members to kpc-maintenance.html; the tool's own files are untouched. To bring a tool back, take its
+     name out of MAINT (empty list = all back). Test browsers and the bots (navigator.webdriver) still open the real tool. */
+  var MAINT = ['finder.html', 'kpc-park-control.html', 'kpc-planner-us.html', 'kpc-planner.html'];
+  if (MAINT.indexOf(page) >= 0 && !navigator.webdriver) { location.replace('kpc-maintenance.html?from=' + page.replace(/\.html?$/, '')); return; }
   var ok = false; try { ok = localStorage.getItem(KEY) === MH; } catch (e) {}
   if (navigator.webdriver) ok = true; /* the guide PDF printer */
   var isPub = PUBLIC.indexOf(page) >= 0 || de.hasAttribute("data-kpc-public");   /* 404.html carries it: GitHub shows it at the missing address */
