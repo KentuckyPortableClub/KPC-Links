@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """KPC_SAVED_ANSWERS_SAY (2026-11-19, outside review finding F5; reviewer's first slice, step S6b; a DRAFT for the reviewer). The US
-key's saved joins say what they could not do: a join not found in the read, a fingerprint that fits two records (no join from that
-answer on this build; OFF the first one wins, as today), and one record under both 'join' and 'no' of a park (said; which wins is not
+key's saved joins say what they could not do: a join not found in the read, a fingerprint that fits two records (the first one
+joins, on or off; ON it is also said), and one record under both 'join' and 'no' of a park (said; which wins is not
 changed). Said in the build's notice and the state's counts, never as a check row. Switch OFF unless set.
 Real names: Arkansas DeGray Lake Resort State Park US-1080, record sgarb44 under both join and no (saved answers of 19 Nov).
 Run:  python3 tests/test_saved_answers_say_nov19.py"""
@@ -57,8 +57,8 @@ for sw in (False, True):
 j, c, say = build(False, OV, R2)
 check(j == ['sgarb101'] and not say and not c, 'OFF: two fits: the first one joins, as today, nothing said')
 j, c, say = build(True, OV, R2)
-check(j == [] and c == [] and [h[1:4] for h in say] == [['two fits', 'US-1080', 'sgarb44']] and 'sgarb101 sgarb103' in say[0][4],
-      'ON: two fits: no join from that answer, no check row, said with both candidate ids')
+check(j == ['sgarb101'] and c == [] and [h[1:4] for h in say] == [['two fits', 'US-1080', 'sgarb44']] and 'sgarb101 sgarb103' in say[0][4],
+      'ON: two fits: the first one joins as before (Fable + owner, 20 Nov), no check row, said with both candidate ids')
 R0 = [rec('sgarb7', 'Other Place', 50)]
 j, c, say = build(False, OV, R0)
 check(j == [] and not say and not c, 'OFF: not found: nothing joined, nothing said (today)')

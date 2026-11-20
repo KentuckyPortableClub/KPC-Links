@@ -2113,11 +2113,11 @@ def run(st):
                     # WSA, 4.3 km off, and tagged 'reviewed'): the re-found record must come from the SAME layer (id family: PAD-US
                     # numbers, 'sgmta', 'wsa' ...). An id reset happens inside one layer, never across layers.
                     _fam = re.match(r'\D*', _want0).group()
-                    if _say:   # F5 (switch KPC_SAVED_ANSWERS_SAY): the same test; two fits = no join from this answer on this build
+                    if _say:   # F5 (switch KPC_SAVED_ANSWERS_SAY): the same test; two fits = the first one joins as before AND it is said (Fable + owner, 20 Nov)
                         _rv, _rh = KR.refind_saved(fn, fa, _fam, [(_oid(a), a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('GIS_Acres'))
                                                                   for a in recs if la is None or near(la, lo, a['_bb'], .6)])
                         if _rv == 'one': want = _rh
-                        elif _rv == 'two': SAVED_SAY.append([st, 'two fits', ref, _want0, f"{fn} {fa} ac fits {' '.join(_rh)}"])
+                        elif _rv == 'two': want = _rh[0]; SAVED_SAY.append([st, 'two fits', ref, _want0, f"{fn} {fa} ac fits {' '.join(_rh)}; the first one joined, as before"])
                     else:
                         want = next((_oid(a) for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(fn) and (la is None or near(la, lo, a['_bb'], .6))
                                      and re.match(r'\D*', _oid(a)).group() == _fam
@@ -3090,37 +3090,6 @@ def run(st):
             if _won or _person or _exact:
                 notice(f'US key {st}', f"contest: {len(_won)} park(s) gave a record to the park it fits better, {len(_person)} sent one to a person, "
                        f"{len(_exact)} gave back a record carrying another park's exact name: {', '.join((_won + _person + _exact)[:10])}")
-        # 2026-11-19 (outside review finding F2; reviewer's go 19 Nov; switch KPC_ANSWER_HOLDERS, OFF): the table above leaves out a
-        # person's rows, so a record a person joined to one park and the name joined to another looked held once and both kept it
-        # (Tennessee: Cheatham WMA US-3933 / Cheatham Lake WMA US-7578). This step reads only a record held by a person's row AND by
-        # another row (trail ids and B12 parts left out, as D9); the D9 winner test decides (KR.answer_holder_moves). The person's
-        # park wins: the other parks give their name rows back to check. A park that holds it by name only wins (the saved answer
-        # and the record's own name disagree): nothing moves, the parks are named in a notice (a check row beside a joined row of
-        # the same id would make kpc_join_check.py take that joined row off on the next build). A person's row is never moved.
-        if _kr('KPC_ANSWER_HOLDERS'):
-            _hum = lambda q: bool(re.search(r'review|chat|hand|answer', str(q[3] if len(q) > 3 else ''), re.I))
-            _ah = {}
-            for _r, _p in parks.items():
-                for _q in _p.get('m') or []:
-                    if str(_q[0]).startswith('trl') or str(_q[0]) in (_p.get('parts') or {}): continue
-                    _ah.setdefault(str(_q[0]), {}).setdefault(_r, []).append(_q)
-            _amv, _adis = [], []
-            for _id, _hs in _ah.items():
-                if len(_hs) < 2: continue
-                _qn = next((q[1] for qs in _hs.values() for q in qs if not _hum(q)), None)
-                if _qn is None: continue
-                _v, _w, _rs = KR.answer_holder_moves(_qn, {r: (parks[r].get('n') or '', any(_hum(q) for q in qs)) for r, qs in _hs.items()})
-                if _v == 'disagree': _adis.append(f'{_id} "{_qn}" is {_w}\'s own by its full name, a person joined it to {_rs[1]}')
-                if _v != 'moved': continue
-                for _r in _rs:
-                    _p = parks[_r]; _q = [q for q in _p['m'] if str(q[0]) == _id and not _hum(q)]
-                    if not _q: continue
-                    _p['m'] = [q for q in _p['m'] if not (str(q[0]) == _id and not _hum(q))]
-                    if not _p['m']: _p['g'] = 'pin'   # owner rule, 2026-11-10: no joined record left = a pin
-                    _p['c'] = [list(q[:3]) + [f'check (D9, saved answer): this record is {_w}\'s own (its full name) and a person joined it there; one record, one park unless a person says same land'] for q in _q] + (_p.get('c') or [])
-                    _amv.append(_r)
-            if _amv: notice(f'US key {st}', f"answer holders: {len(_amv)} park(s) gave back a record a person joined to the park it names: {', '.join(_amv[:10])}")
-            if _adis: notice(f'US key {st}', f"answer holders: the saved answer and the record's own name disagree on {len(_adis)} record(s); nothing moved, a person looks: {'; '.join(_adis)}")
     # 2026-11-19 (outside review finding F10; reviewer's go 19 Nov; switch KPC_HOLD_ON_PASS_ERROR, OFF): an error in this pass used to
     # save the state with its shared records still in place. Switch ON: KR.pass_error raises, run() fails for this state and the state
     # is held (no key file written, its saved copy on main kept). OFF: it hands back the error and the notice reads as before.
