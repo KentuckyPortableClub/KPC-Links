@@ -13,8 +13,8 @@ tests/test_loaders_released_ca_ky_nov11.py       # 2026-11-16: released ky-usace
 # all of them pass on a machine with those packages (run 20 Nov, Python 3.13). Install the packages before the gate; never list a test here for a missing package.
 # Added 2026-11-20 (job 7, gate on main f3e6636dc, python3.12 and 3.13, DATA and KPC_DATA set): these fail because the code or data is wrong, not the test.
 tests/test_area_tables_nov12.py                  # 2026-11-20: code wrong: two rule files assign tables keyed by area codes (kpc_us_key.py EASEMENT_RECHECK_STATES, kpc_world_key.py SRC['MK']), against D6; moving them to area-tables.json moves rules hashes (owner's call)
-tests/test_keys_store_mode_nov16.py              # 2026-11-20: code wrong: kpc-us-key.yml's drop-guard step uploads a release asset (held copies, Nov 18) in store mode
-tests/test_nextround_hidden_failures_nov5.py     # 2026-11-20: code wrong: kpc-us-key.yml has a bare || echo ::error site and an unmarked || true (line 706, held copies step)
+# Taken out 2026-11-20 (job 11): test_keys_store_mode_nov16 and test_nextround_hidden_failures_nov5. The held-copies upload
+# is its own step and does not run in store mode, the bare warning echo records the line, and the || true on the copy is marked # ok.
 tests/test_pota_door_nov16.py                    # 2026-11-20: code wrong: the logger-beta copy of app 0.9.15 (#282) brought 2 direct api.pota.app calls into logger-beta/kpc-log.js
 tests/test_pin_outlines_parts_nov11.py           # 2026-11-20: data wrong: working outline files and the keys disagree on pin / approximate grades; wants the next outline save, not a test change
 tests/test_us_outlines_vs_live_nov13.py          # 2026-11-20: data wrong: working US outlines still hold parks the Nov 13 check says are gone, and AK's count moved; wants the next outline save
