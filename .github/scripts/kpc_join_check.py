@@ -229,14 +229,24 @@ def new_ids(p, prev):
     return [x[0] for x in (p.get('m') or []) if isinstance(x, list) and x and str(x[0]) not in old]
 
 
+def _previous_out_is_check_only(why):
+    """A previous-key 'c' check row is not a hold or a person's NO — do not take land off for it (Nov 20)."""
+    w = str(why or '').strip().lower()
+    if w.startswith('held') or 'a person said no' in w:
+        return False
+    return w.startswith('check')
+
+
 def unsigned_on_signed(ref, p, prev):
-    """Nov 8 should-fix 3: the signed exemption is PER ID. On a park with a signed override, a joined record the person did not
-    sign, that the previous key had held / checked / NO'd (in 'c'), goes back to 'c'. Returns [(id, the previous reason)]."""
+    """Nov 8 should-fix 3, Nov 20: the signed exemption is PER ID. On a park with a signed override, a joined record the person
+    did not sign, that the previous key had held or a person said NO to (in 'c'), goes back to 'c'. A mere previous 'c' check
+    row does not take land off. Returns [(id, the previous reason)]."""
     sg = SIGNED.get(ref)
     if not sg: return []
     was = {str(x[0]): str(x[3]) for x in ((prev or {}).get('c') or []) if isinstance(x, list) and len(x) > 3}
     return [(x[0], was[str(x[0])]) for x in (p.get('m') or []) if isinstance(x, list) and x and str(x[0]) not in sg
-            and not (len(x) > 1 and str(x[1]) in sg) and str(x[0]) in was]
+            and not (len(x) > 1 and str(x[1]) in sg) and str(x[0]) in was
+            and not _previous_out_is_check_only(was[str(x[0])])]
 
 
 def drop_ids(p, ids, why):
@@ -503,6 +513,32 @@ def selftest():
     check("multi-state park: the far state piece is measured to the nearest part of the WHOLE outline (another file: 0 km): kept",
           (r2['held'], bool(json.load(open(td / 'data/us-key/US-BB.json'))['parks']['US-0006']['m'])), (0, True))
     check('a second run holds nothing more (idempotent)', run({'KEY': 'us', 'ALL': '1'}, root=str(td), plain=True)['held'], 0)
+    # Nov 20: a previous 'c' check row must not take land off a signed park; a hold or a person's NO still does
+    _saved_sg = dict(SIGNED)
+    try:
+        SIGNED.clear(); SIGNED['US-8001'] = {'1'}; SIGNED['US-8002'] = {'1'}; SIGNED['US-8003'] = {'1'}
+        p_now = {'m': [[1, 'Main', 10, 'name'], [2, 'Extra', 4, 'name']], 'c': []}
+        check('unsigned_on_signed: a previous check row is not dropped',
+              unsigned_on_signed('US-8001', p_now, {'c': [[2, 'Extra', 4, 'check (name close)']]}), [])
+        held_why = 'held: the nearest part of the joined outline is 22.0 km from the pin'
+        check('unsigned_on_signed: a previous held id is still listed',
+              unsigned_on_signed('US-8002', p_now, {'c': [[2, 'Extra', 4, held_why]]}), [(2, held_why)])
+        held_g1 = 'held (rule G-1): a similar-name piece more than 2 km from the pin'
+        check('unsigned_on_signed: a held reason without a colon is still held',
+              unsigned_on_signed('US-8002', p_now, {'c': [[2, 'Extra', 4, held_g1]]}), [(2, held_g1)])
+        no_why = 'a person said NO to this land under its old id (2 = other "Extra")'
+        check('unsigned_on_signed: a previous person-NO id is still listed',
+              unsigned_on_signed('US-8003', p_now, {'c': [[2, 'Extra', 4, no_why]]}), [(2, no_why)])
+        with tempfile.TemporaryDirectory() as t3:
+            t3 = pathlib.Path(t3); (t3 / 'data/us-key').mkdir(parents=True)
+            cur = {'US-8001': {'n': 'Sample Signed', 'g': 'official', 'm': [[1, 'Main', 10, 'name'], [2, 'Extra', 4, 'name']], 'c': [], 'bk': [1, 0.1]}}
+            json.dump({'parks': cur}, open(t3 / 'data/us-key/US-ZZ.json', 'w'))
+            ev, held_rows, ch = mark_file(str(t3 / 'data/us-key/US-ZZ.json'), {}, True, 'hold', {'US-8001': {'1'}}, False, {}, str(t3),
+                                          {'US-8001': {'n': 'Sample Signed', 'g': 'official', 'm': [[1, 'Main', 10, 'name']], 'c': [[2, 'Extra', 4, 'check (name close)']], 'bk': [1, 0.1]}})
+            after = json.load(open(t3 / 'data/us-key/US-ZZ.json'))['parks']['US-8001']
+            check('mark_file: a signed park keeps a record that was only a previous check row', [x[0] for x in after['m']], [1, 2])
+    finally:
+        SIGNED.clear(); SIGNED.update(_saved_sg)
     # KPC owner, 2026-11-16 (item 5): the easement review file lists each state's existing name-alone easement joins, nothing else
     with tempfile.TemporaryDirectory() as t2:
         t2 = pathlib.Path(t2); (t2 / 'data/us-key').mkdir(parents=True)

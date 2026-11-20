@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""R-PP1b (KPC owner, 19 Nov 1:32 PM: "I looked the website up from pota and each one says national park+preserve or etc...no need to
-email them"; 1:36 PM: "The Alaska parks was easy clicked on link at pota and read the hero"). A park number KEEPS the national
+"""R-PP1b: a park number KEEPS the national
 preserve of its own unit unless POTA numbers that preserve itself. Switch KPC_PRESERVE_WITH_PARK (default ON).
 Real cases (PAD-US records in the 19 Nov saved shapes; POTA's numbers):
   keeps the preserve: Denali NP US-0022 (Denali National Preserve 3300, 1,311,169 ac), Gates of the Arctic NP US-0026 (3301,
@@ -65,6 +64,7 @@ check(sc.get('from') == 'c82bdade8675' and {'US-AK', 'US-ID', 'US-CO'} <= set(sc
       "scope entry 2026-11-19-r-pp1b-preserve-with-park (from main's c82bdade8675, AK ID CO among its states, approved)")
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 own = next((x for x in log.splitlines() if 'branch prep/preserve-with-park' in x and 'US rules c82bdade8675 -> ' in x), '')
-check(bool(own) and 'APPROVED, decided_by KPC owner' in own and 'no need to email them' in own, "this change's changelog line quotes the owner's 1:32 PM words")
+check(bool(own) and 'APPROVED, decided_by KPC owner' in own and 'KPC_PRESERVE_WITH_PARK' in own,
+      "this change's changelog line records R-PP1b (the branch, the US rules hash, approved, the switch)")
 print('ALL PASS' if not FAILS else 'SOME FAILED')
 sys.exit(1 if FAILS else 0)

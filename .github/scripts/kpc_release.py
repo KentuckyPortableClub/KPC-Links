@@ -597,7 +597,7 @@ def outline_refuse_why(repo, kind, unit, sha):
             return ''
         recs, _, _ = M.key_fix(unit, recs, kd)
         held = M.held_record_refs(unit, recs, kd)
-        if not held: return ''
+        if not held: return us_guard_why(repo, unit, recs, kd)   # Nov 20: N1 + N3 when an area outline exists (CA / world)
         bits = [f"{r} holds {', '.join(ids)}" for r, ids in sorted(held.items())]
         return 'outline holds record(s) the key did not join: ' + '; '.join(bits)
 
