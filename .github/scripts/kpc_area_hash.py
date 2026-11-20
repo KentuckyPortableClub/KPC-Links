@@ -113,14 +113,17 @@ def sgis_slice(v, areas):
 
 
 def switch_slice(v, areas):
-    """{state: [switches on there]} from .github/key-switches.json ('*' = every state). A state with no switch on gets NO part, so
-    adding the file (every switch off) moves no area hash, and turning a switch on moves only the states it is on for."""
+    """{state: [switches on there]} from .github/key-switches.json ('*' = every state). A 'hold' list counts as on for that
+    state (the size check). A state with no switch on gets NO part, so adding the file (every switch off) moves no area hash,
+    and turning a switch on moves only the states it is on for."""
     sw = (v or {}).get('switches') if isinstance(v, dict) else {}
     out = {}
     for k, x in sorted((sw or {}).items()):
-        on_ = set((x or {}).get('on') or []) if isinstance(x, dict) else set()
+        on_ = set((x or {}).get('on') or []) if isinstance(x, dict) and isinstance((x or {}).get('on'), list) else set()
+        hold_ = set((x or {}).get('hold') or []) if isinstance(x, dict) and isinstance((x or {}).get('hold'), list) else set()
+        listed = on_ | hold_
         for a in sorted(areas):
-            if '*' in on_ or a in on_ or ('US-' + a) in on_: out.setdefault(a, []).append(k)
+            if '*' in listed or a in listed or ('US-' + a) in listed: out.setdefault(a, []).append(k)
     return out
 
 
