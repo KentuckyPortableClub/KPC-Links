@@ -59,7 +59,9 @@ RULE_FILES = {'us-key': ['.github/scripts/kpc_us_key.py', '.github/scripts/kpc_k
                        # carried-row age check (bug 4) decide rows too
                        '.github/fers-rulings.json', '.github/scripts/kpc_fers_age.py',
                        # Hand-off 06 (KPC owner, 2026-11-19): the seven answers live in one switch file, read by every run
-                       '.github/fers-switches.json', '.github/scripts/kpc_fers_switches.py']}
+                       '.github/fers-switches.json', '.github/scripts/kpc_fers_switches.py',
+                       # Hand-off 06 part 3: the bot's own doubts, in the shared list's shape. It settles nothing.
+                       '.github/scripts/kpc_fers_not_sure.py']}
 # Nov 9 evening (Brandon t915u, 4:40 PM CST; KZ4CP 5:12 PM CST): every rule change DECLARES what it touches, in a scope file that is part
 # of that key's rules hash (so a scope edit moves the hash and is visible). A rules change rebuilds only the declared states; a park
 # with saved record ids keeps its result (kpc_us_key.py); a full rebuild ('states: all' by hand) is for emergencies only.

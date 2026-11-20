@@ -251,7 +251,8 @@ else:
         fm, fc = files_of(tm), files_of(tc)
         def differ(a, b):
             # KPC owner, 2026-11-16 (item 1): this code also writes its run receipt (receipt-<tag>.json, new); main has none
-            a = {k: v for k, v in a.items() if not k.startswith('receipt-')}; b = {k: v for k, v in b.items() if not k.startswith('receipt-')}
+            a = {k: v for k, v in a.items() if not k.startswith(('receipt-', 'not-sure-rows-'))}
+            b = {k: v for k, v in b.items() if not k.startswith(('receipt-', 'not-sure-rows-'))}
             def wo_mark(raw):
                 # R-2F4 second round: an area file this code writes carries written_by_rule. The spots are compared without that mark.
                 try:

@@ -133,6 +133,13 @@ def write_area(t, parks, ca=(), old=None):
     """parks: [(ref, state, name, lat, lon, rings)]; writes POTA pins, the key and the saved PAD-US / Canadian outlines."""
     for d in ('data/parkinfo', 'data/trails', 'data/us-key', 'data/ca-key', 'data/canada-bounds', 'data/fers', 'cache/us', 'cache/ca', 'cache/fers'):
         (t / d).mkdir(parents=True, exist_ok=True)
+    # The not-sure writer reads the summary-map layer list. A missing file is an error on purpose.
+    # This fixture is not a broken checkout, so it uses the repo's list.
+    repo = pathlib.Path(__file__).resolve().parent.parent
+    for src, dst in ((repo / 'data/state-gis.json', t / 'data/state-gis.json'),
+                     (repo / 'data/us-key/layers.json', t / 'data/us-key/layers.json')):
+        if src.is_file() and not dst.exists():
+            dst.symlink_to(src)
     (t / 'data/trails/index.json').write_text('[]')
     pin, key, recs = {}, {}, {}
     for oid, (ref, st, name, la, lo, rings) in enumerate(parks, start=1000):
@@ -254,7 +261,8 @@ def normal_area(script_dir):
         rc, out = run(t, script_dir, env)
         today = time.strftime('%Y-%m-%d')
         h = hashlib.sha256()
-        names = sorted(p.name for p in (t / 'data/fers').glob('*.json') if not p.name.startswith('receipt-'))   # Nov 16 (item 1): the new run receipt is not main's
+        # Nov 16 (item 1): the run receipt is not main's. Part 3: not-sure-rows- is the bot's doubt list, left out the same way.
+        names = sorted(p.name for p in (t / 'data/fers').glob('*.json') if not p.name.startswith(('receipt-', 'not-sure-rows-')))
         for n in names:
             d = json.load(open(t / 'data/fers' / n))
             if n.startswith('report-'): d.pop('fers_rules', None)

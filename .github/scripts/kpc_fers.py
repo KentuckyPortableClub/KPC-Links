@@ -4464,6 +4464,81 @@ def write_receipt(counts, parks, G, bad, rules, refs=None, stopped='', note=''):
         print(f'::warning title=2-fer receipt::not written: {str(e)[:120]}', flush=True)
 
 
+def _own_area(area):
+    """True when the area is one this run writes. A neighbour loaded for a border pair is not."""
+    area = str(area or '')
+    if REGION == 'ky':
+        return area == 'US-KY'
+    if ONLY:
+        return area in own_areas()
+    if REGION == 'world':
+        return bool(re.fullmatch(r'W-[A-Z]{2}', area))
+    return bool(re.fullmatch(r'(US|CA)-[A-Z]{2}', area)) and area != 'US-KY'
+
+
+def _tripwire_unread():
+    """How many tripwire list files are present and cannot be read. A missing file is not counted."""
+    cands = [os.environ['KPC_FERS_NOT_SURE']] if os.environ.get('KPC_FERS_NOT_SURE') else list(TRIPWIRE_LISTS)
+    n = 0
+    for c in cands:
+        if not c or not os.path.isfile(c):
+            continue
+        try:
+            json.load(open(c, encoding='utf-8'))
+        except Exception as e:  # noqa: BLE001
+            print(f'::error title=2-fer bot::the tripwire list {c} could not be read ({e}): '
+                  'it is counted, and no tripwire park is left out of the not-sure file', flush=True)
+            n += 1
+    return n
+
+
+def _write_not_sure(out, parks, names_pin):
+    """Hand-off 06 part 3. The bot's own doubts, beside the report, for this run's own areas.
+    A withheld park is never in it. The file goes through save_json, like every other 2-fer file.
+    It does not settle anything and it is not read back. Returns how many tripwire lists could not be read."""
+    import kpc_fers_not_sure as NS
+    KS = sys.modules.get('kpc_fers_store')
+    held = set(KS.withheld_refs()) if KS is not None and getattr(KS, 'STORE_ON', False) and callable(getattr(KS, 'withheld_refs', None)) else set()
+    unread = _tripwire_unread()
+    try:
+        tw = set(tripwire_parks())
+    except Exception:  # noqa: BLE001
+        tw = set()
+        unread = max(unread, 1)
+    names = {}
+    for ref, pin in (names_pin or {}).items():
+        if isinstance(pin, (list, tuple)) and pin:
+            names[ref] = str(pin[0])
+    spots = {}
+    d = pathlib.Path(out)
+    if d.is_dir():
+        for f in sorted(d.glob('*.json')):
+            if not re.fullmatch(r'(US|CA|W)-[A-Z]{2}', f.stem):
+                continue
+            try:
+                area_doc = json.loads(f.read_text(encoding='utf-8'))
+            except (OSError, ValueError):
+                continue
+            if not isinstance(area_doc, dict):
+                continue
+            area = str(area_doc.get('st') or f.stem)
+            if not _own_area(area):
+                continue
+            spots[area] = area_doc.get('spots') or []
+    own_parks = {r: p for r, p in (parks or {}).items() if isinstance(p, dict) and _own_area(p.get('st'))}
+    got = NS.rows_from(spots, own_parks, names, summary_only, held, tw)
+    tag = RUN_TAG or area_name()
+    path = d / f'not-sure-rows-{tag}.json'
+    doc = {'about': "The 2-fer bot's own doubts, in the shape of the shared list. The bot does not settle a row.",
+           'rows': got}
+    if unread:
+        doc['tripwire list could not be read'] = unread
+    if KS is not None and getattr(KS, 'STORE_ON', False) and callable(getattr(KS, 'guard_write', None)):
+        KS.guard_write(path, doc)   # a dict, so a withheld park in the rows is refused
+    save_json(path, doc)
+    return unread
+
+
 def main():
     if HARD_END: _arm()   # Nov 9 PM: the step's hard end is armed from the start (exit 3 = red, never a silent time-out)
     if str(os.environ.get('KPC_FERS_FROM_STORE') or '').strip().lower() in ('1', 'on', 'yes', 'true'):   # KPC owner, 2026-11-15: outlines from the
@@ -5177,6 +5252,16 @@ def main():
             counts['rows copied on the key entry only (this run did not read the park)'] = _ko
     if LOG: counts['...problem lines'] = (f'{_pn} line(s), written for a person in the private folder' if _pf is not None else
                                           f'{_pn} line(s); no private folder was given, so the list was not written anywhere')
+    _L = locals()
+    _tw_bad = 0
+    try:
+        _tw_bad = _write_not_sure(OUT, _L.get('parks') or {}, PIN) or 0
+    except SystemExit:
+        raise
+    except Exception as e:  # noqa: BLE001
+        notice('2-fer bot', f'the not-sure list was not written: {type(e).__name__}: {str(e)[:160]}')
+    if _tw_bad:
+        counts['tripwire list could not be read'] = _tw_bad
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=len(LOG))
     rep['per state'] = per
     save_json(RF, rep, indent=1)
@@ -5184,7 +5269,6 @@ def main():
     notice('2-fer bot', json.dumps({k: v for k, v in counts.items() if k != 'left out'})[:800])
     if LOG: notice('2-fer bot problems', f'pass {PASS}: {len(LOG)} · ' + ' | '.join(dict.fromkeys(l[:90] for l in LOG))[:700])   # ONE line: GitHub keeps only 10 notes a step
     mark('report')
-    _L = locals()
     write_receipt(counts, _L.get('parks') or {}, _L.get('G') or {}, _L.get('bad') or set(), rep.get('fers_rules'),
                   refs=None if PASS == 1 else (_L.get('refs') or []))
     if PASS == 1 and EMPTY_AREAS:

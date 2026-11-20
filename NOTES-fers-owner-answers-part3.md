@@ -1,0 +1,83 @@
+# 2-fer owner answers, part 3
+
+## What is NOT built
+
+- The bot does not settle a row, does not read the not-sure list back, and does not hold a pair because a park is on it. Whether a park on that list should be NOT SURE for 2-fers is the owner's question, not this hand-off.
+- Tripwire parks are not written here. The tripwire bot owns those rows.
+- Part 4 is not built. The review (19 Nov, section 5) says yes to a second look later, on its terms. No finer-grid code.
+- No real area was run. No key or outline was changed. There is no park-by-park change list.
+
+## Third round
+
+Rebased onto part 2 at `66566ec91c50` (part 1 at `40c9a5c612c6`, `origin/main` at `9ee20aa`). Main's 2-fer hash is `0637d083bd98`. This pull request's final hash is `6a9d67ea4100`.
+
+The changelog keeps one line for this pull request. The tools (`kpc_preflight.changelog_hashes` and `tests/test_kpc_matcher_nov13.py`) read only the newest line, and they accept the move only when that line's first arrow starts at main's own hash. So the line says `0637d083bd98 -> 6a9d67ea4100`, and on the same line this pull request's step `66566ec91c50 -> 6a9d67ea4100`. The earlier round hashes (`b9881640b28f`, `9cee86692de2`, `76c2faa3e59f`, `082e787b3f86`) stay in this file.
+
+`save_json` is main's one line. The second return is gone. `kpc_fers_not_sure.py` is in the hostguard `DECLARED` list. Scope entries `2026-11-19-not-sure-rows` and `2026-11-19-not-sure-rows-own` start from `66566ec91c50`.
+
+The gate after the rebase onto `origin/main` `9c2f93fb8`. The branch was then rebased onto `2d793bd63`. Those later main commits are the ledger and REPAIRS only. DATA was not set. Two skips both times: `test_map_store_hook_nov15.py`, `test_outlines_match_key_nov13.py`. `git status` afterwards showed `data/status/kpc_key_drop_guard.json`, rewritten by `test_drop_guard_named_parks_nov19.py`, which fails on main too. On main the same suite also rewrites `data/status/test_fers_final_redact_nov17.json`. Both were put back.
+
+Python 3.12.3:
+
+`TOTAL tests: 307/332 pass; with selftests: 317/342 pass; skipped: 2; NEW failures: 22; stale baseline entries: 0 -> GATE FAIL`
+
+The same suite on `origin/main` (`9c2f93fb8`): `304/329` pass, 22 new failures. Main fails `test_fers_final_redact_nov17.py` and this stack does not. `test_save_merge.py` timed out on this stack while the two suites ran together, and passed on its own (5 of 5, under a second). No other test fails here that passes on main.
+
+Python 3.13.18:
+
+`TOTAL tests: 312/332 pass; with selftests: 322/342 pass; skipped: 2; NEW failures: 17; stale baseline entries: 0 -> GATE FAIL`
+
+The same suite on `origin/main`: `308/329` pass, 18 new failures. The only test main fails and this stack does not is `test_fers_final_redact_nov17.py`. No test fails here that passes on main.
+
+## Second round (review of 19 Nov, sections 3.1 to 3.3)
+
+Restack base is part 2 at `1cc599edb3dc`. The first-round not-sure file, restacked, was `b9881640b28f` (before the restack the line was `180dcd51a7b0` -> `9cee86692de2`). This round moves the 2-fer rules hash `b9881640b28f` -> `76c2faa3e59f`. US, Canada and world did not move (`c64b8ace0411`, `dfef94b3dfd3`, `b1f23bf0deea`).
+
+Scope entry `2026-11-19-not-sure-rows-own`, scope `none`.
+
+1. The file is written through `save_json`, the same guarded write as every other 2-fer file. It is a document `{"about", "rows"}`, not a bare list, so the write guard sees the rows. A store run with a withheld park was written and then read: that park is not in the file.
+2. Both halves use this run's own areas. A neighbour loaded for a border pair is not in the file. A run with no `STATES` uses the region's own area names (US and Canada, not Kentucky, for a North America run).
+3. An unreadable tripwire list is counted. The report key is `tripwire list could not be read`. A missing list is the old warning, not this count. `tests/test_fers_area_boxes_time_nov11.py` leaves `not-sure-rows-` out of its golden hash, the same way it leaves `receipt-` out, because that file is not one of main's files. That fixture also links `data/state-gis.json` and `data/us-key/layers.json`, so the loud missing-file error is not raised in a fixture that is not a broken checkout.
+
+The gate on Python 3.12.3 (numpy 2.5.3, OpenCV 5.0.0) finished. Last line:
+
+`TOTAL tests: 301/329 pass; with selftests: 311/339 pass; skipped: 2; NEW failures: 25; stale baseline entries: 0 -> GATE FAIL`
+
+Every 2-fer test in this stack passed, including `test_fers_owner_answers_nov19.py`, `test_fers_math_guard_nov19.py`, `test_fers_not_sure_nov19.py`, `test_fers_area_boxes_time_nov11.py`, `test_fers_one_program_nov16.py`, `test_fers_store_nov13.py` and `test_fers_store_switch_nov15.py`. The 25 new failures compare this branch with `origin/main` (`34f6605`), which is 9 commits ahead of the stack's base `7b36ae5` (the no-building rule and the outline sync). Those commits are not in this stack. Two tests skipped because DATA is not set: `test_map_store_hook_nov15.py`, `test_outlines_match_key_nov13.py`.
+
+The newest fers changelog arrow is `082e787b3f86 -> 76c2faa3e59f`. `082e787b3f86` is what this branch's rule list computes for `origin/main` (the new rule files are not on main, so they count as missing). The stack's own steps are the lines under it.
+
+The Python 3.12 gate above was the commit before that arrow was pointed at `origin/main`. Python 3.13.18 (numpy 2.5.3, OpenCV 5.0.0, plus PyYAML, pyshp and openpyxl, which the 3.13 install did not have until they were added) was run after it. Last line:
+
+`TOTAL tests: 306/329 pass; with selftests: 316/339 pass; skipped: 2; NEW failures: 20; stale baseline entries: 0 -> GATE FAIL`
+
+Same two skips. The 2-fer tests passed on 3.13 as well. `git status` was clean after restoring `data/status/kpc_key_drop_guard.json`, which `test_drop_guard_named_parks_nov19.py` rewrites. That test is one of the new failures. It is not a 2-fer test.
+
+## What is built
+
+At the end of a run the bot writes `not-sure-rows-<tag>.json` next to the report, through `save_json`. The rows are the shared list's shape: `ref`, `area`, `name`, `code`, `how_sure`, `shows_now`, `why`, `wants`, `found_by` (`2-fer bot`), `evidence`. They are sorted by park number, then code.
+
+Its own doubts only:
+
+| Code | Plain line | Wants |
+|---|---|---|
+| `SUMMARY_MAP_ONLY` | Every joined record is a summary map, not the agency's own land. | official layer |
+| `NEAR_SIZE_LINE` | An overlap is within one grid cell of a size line, so the grid cannot tell which side it is on. | map, a person |
+
+`how_sure` is `unsure`. The bot does not say a row is wrong.
+
+A withheld park is left out before the write, and the document then goes through the write guard. A tripwire park is left out.
+
+The code names above are a proposal for the list's README. They are not free text.
+
+## Guesses
+
+1. "Park number" is the digits at the end of the ref, so US-2 sorts before US-10.
+2. A run with no such doubt still writes the file, with an empty `rows` list, so the name is always there. The store-switch byte compare ignores `not-sure-rows-*`, the same way it ignores the receipt.
+3. Evidence is one quote, the status line or the fixed sentence, and `where` is the area file or "the key join". There is no page address in a 2-fer row.
+
+## Grey areas
+
+1. A near-line row's status does not name the other park in the tests that passed. If a status names a withheld park, that row is left out rather than written. The file that was read did not contain the withheld park.
+2. `how_sure` is `unsure`. The shared list's word list is not in this repository (`kpc_not_sure.py` was not here to check). The review could not check it either. The word is unchanged.
+3. A tripwire list that is missing is not the same as one that will not parse. Only a file that is there and cannot be read is counted.
