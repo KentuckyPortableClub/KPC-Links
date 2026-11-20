@@ -5830,16 +5830,6 @@
    }
   },
   "US-10918": {
-   "approx": true,
-   "fp": {
-    "195408": [
-     "Waahila Ridge State Recreation Area",
-     72
-    ]
-   },
-   "join": [
-    "195408"
-   ],
    "no": [
     "195408"
    ],
@@ -5849,8 +5839,15 @@
      71.6
     ]
    },
-   "when": "2026-11-02",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 195408 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-20",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 195408 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 195408 is dropped, the NO stands",
+   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://dlnr.hawaii.gov/dsp/hiking/oahu/waahila-ridge-trail/",
+    "saw": "Hawaii Division of State Parks: the Wa'ahila Ridge Trail is 2.4 miles; it 'originates in Wa'ahila Ridge State Recreation Area' and climbs the ridge between Manoa and Palolo valleys. PAD-US 195408 is the 72-acre recreation area at the trailhead, not the trail (the key draws the trail line). The later NO (chat 11, 2 Nov) stands; the approximate join is dropped.",
+    "date": "2026-11-20"
+   }
   },
   "US-10963": {
    "no": [
