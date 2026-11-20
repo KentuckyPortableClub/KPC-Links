@@ -17,7 +17,13 @@ Scope entry `2026-11-19-not-sure-rows-own`, scope `none`.
 2. Both halves use this run's own areas. A neighbour loaded for a border pair is not in the file. A run with no `STATES` uses the region's own area names (US and Canada, not Kentucky, for a North America run).
 3. An unreadable tripwire list is counted. The report key is `tripwire list could not be read`. A missing list is the old warning, not this count. `tests/test_fers_area_boxes_time_nov11.py` leaves `not-sure-rows-` out of its golden hash, the same way it leaves `receipt-` out, because that file is not one of main's files. That fixture also links `data/state-gis.json` and `data/us-key/layers.json`, so the loud missing-file error is not raised in a fixture that is not a broken checkout.
 
-The gate on Python 3.12 and 3.13 is run on this branch. The last lines are at the bottom of this file once that run has finished.
+The gate on Python 3.12.3 (numpy 2.5.3, OpenCV 5.0.0) finished. Last line:
+
+`TOTAL tests: 301/329 pass; with selftests: 311/339 pass; skipped: 2; NEW failures: 25; stale baseline entries: 0 -> GATE FAIL`
+
+Every 2-fer test in this stack passed, including `test_fers_owner_answers_nov19.py`, `test_fers_math_guard_nov19.py`, `test_fers_not_sure_nov19.py`, `test_fers_area_boxes_time_nov11.py`, `test_fers_one_program_nov16.py`, `test_fers_store_nov13.py` and `test_fers_store_switch_nov15.py`. The 25 new failures compare this branch with `origin/main` (`34f6605`), which is 9 commits ahead of the stack's base `7b36ae5` (the no-building rule and the outline sync). Those commits are not in this stack. Two tests skipped because DATA is not set: `test_map_store_hook_nov15.py`, `test_outlines_match_key_nov13.py`.
+
+The newest fers changelog arrow is `082e787b3f86 -> 76c2faa3e59f`. `082e787b3f86` is what this branch's rule list computes for `origin/main` (the new rule files are not on main, so they count as missing). The stack's own steps are the lines under it. Python 3.13 is recorded below when that run finishes.
 
 ## What is built
 
