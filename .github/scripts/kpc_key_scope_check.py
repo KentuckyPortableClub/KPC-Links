@@ -2,8 +2,9 @@
 """Refuse a key rule-file edit that declares no scope (keys-first hand-off rev 3.1, S2, F7; Opus 19 Nov 2026).
 
 A change that moves the US key's rules hash (any file in kpc_key_freeze.RULE_FILES['us-key']) must add one NEW entry to
-.github/us-key-rule-scope.json, and that entry's 'from' must be the hash of the last build (data/us-key/index.json 'rules').
-Without it the next run reads the change as undeclared and rebuilds all 50 states (kpc_key_freeze.pending_scope).
+.github/us-key-rule-scope.json, and the run's own reader (kpc_key_freeze.pending_scope) must find the change declared: the
+chain of entries starts at the one whose 'from' is the last build (data/us-key/index.json 'rules'). Without it the next run
+reads the change as undeclared and rebuilds all 50 states.
 
     python3 .github/scripts/kpc_key_scope_check.py --base <main checkout> --head <this checkout> [--kind us-key]
 
@@ -47,9 +48,12 @@ def check(base, head, kind='us-key'):
         sc = c.get('scope')
         if not (sc in SCOPES or isinstance(sc, dict)):
             why.append(f"the new scope entry {cid} has scope {sc!r}: use 'none', 'all' or {{'states': [...], 'parks': [...]}}")
-        if built and c.get('from') != built:
-            why.append(f"the new scope entry {cid} says from {c.get('from')!r}, but the last build is on {built}: "
-                       'the run would not find it and would rebuild every state')
+    # Fable's review of #294 (19 Nov, 2): ask the run's own reader. pending_scope starts at the entry whose 'from' is the last
+    # build and takes every entry after it (a chain), so a stacked draft whose entry is from the hash the draft before it moved to
+    # is declared. Undeclared = None = the run would rebuild every state.
+    if new and built and F.pending_scope(kind, built, head)[0] is None:
+        why.append(f'the run would read this change as UNDECLARED (no scope entry chains from the last build {built}) and rebuild '
+                   f"every state: the first new entry since that build needs from: '{built}'")
     return why
 
 

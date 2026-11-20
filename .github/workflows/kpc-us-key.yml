@@ -689,6 +689,7 @@ jobs:
           KPC_DROP_OK: ${{ vars.KPC_DROP_OK }}   # states whose drop a person expects, for one run ("NV" or "NV UT"); clear it after
           KPC_DROP_PCT: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}   # KPC owner, 2026-11-15: store mode = never worse (any lost official park or outline keeps the state from main)
           KPC_DROP_MIN: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}
+          KPC_DROP_LIMITS_OUT: /tmp/kpc-drop-limits.json   # S2: what it ran with, for the build stamp (one source of the three values)
         run: |
           # After the join check, so every hold of this run is counted; BEFORE the stamp, so a kept state is named failed. Compares each
           # data/us-key/US-XX.json with the copy on main (this job's checkout). Offline. Nov 12 (KPC owner, 2026-11-12; each state stands
@@ -717,9 +718,7 @@ jobs:
         id: us_stamp   # Nov 12 (KPC owner, 2026-11-12): Save needs this step green (an unstamped key is not saved)
         env:
           KPC_KEY_SOURCE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'store' || 'live' }}   # S2 (keys-first rev 3.1): recorded in index.json 'settings'
-          KPC_DROP_OK: ${{ vars.KPC_DROP_OK }}   # the same three drop values the drop guard step ran with, recorded in 'settings'
-          KPC_DROP_PCT: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}
-          KPC_DROP_MIN: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}
+          KPC_DROP_LIMITS_FILE: /tmp/kpc-drop-limits.json   # the drop limits the guard step ran with (it writes them), recorded in 'settings'
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
           AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (KPC owner, 2026-11-12): default reuse; KPC_AREA_HASH=shadow writes nothing; =add records hashes but does not leave states out
@@ -893,7 +892,7 @@ jobs:
           python3 .github/scripts/kpc_us_key_join.py record parts/us-key-part-* --planned-groups "$PLAN_GROUPS" --failed /tmp/kpc-build-failed.txt --drop /tmp/kpc-drop-failed.txt --out /tmp/us-join.json
           python3 .github/scripts/kpc_area_join.py summary --record /tmp/us-join.json --index data/us-key/index.json --title 'US key join'
           # S2 (keys-first rev 3.1, F21; Opus 19 Nov): a held state is a warning (no failure email); a part that never came back is red
-          python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')); sys.exit(1 if r.get('faults', r.get('red')) else 0)" || { echo "::error title=US key run::RED: a build part never came back (see the table above); the others were saved"; exit 1; }
+          python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')); sys.exit(1 if r.get('faults', r.get('red')) else 0)" || { echo "::error title=US key run::RED: a state's build failed (see the table above); the others were saved"; exit 1; }
           python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')); sys.exit(1 if r.get('held') else 0)" || echo "::warning title=US key run::HELD: the states above were kept from main (not saved this run); the others were saved"
       - name: Master check verdict (owner rule, 2026-11-10) - data/outlines was kept out of the save; go red
         if: ${{ always() }}

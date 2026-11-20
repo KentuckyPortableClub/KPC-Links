@@ -119,6 +119,9 @@ def main():
     ap.add_argument('--approved', help='Nov 19: the named-parks list (default .github/key-drop-approved.json, or KPC_DROP_APPROVED)')
     a = ap.parse_args()
     pct, mn, ok = limits()
+    if os.environ.get('KPC_DROP_LIMITS_OUT'):   # Fable's review of #294 (3): the stamp records what the guard ran with, from here
+        try: open(os.environ['KPC_DROP_LIMITS_OUT'], 'w', encoding='utf-8').write(json.dumps({'pct': pct, 'min_parks': mn, 'let_through': ok}))
+        except OSError as e: print(f'::warning title=Drop guard::the limits it ran with could not be written for the stamp: {e}')
     ok = set(ok)
     strict = pct == 0 and mn == 0   # store mode 'never worse': judged park by park (a gain elsewhere never offsets a loss)
     apath = a.approved or os.environ.get('KPC_DROP_APPROVED') or os.path.join(a.repo, APPROVED_FILE)

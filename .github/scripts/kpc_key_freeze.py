@@ -422,6 +422,13 @@ def run_settings(kind, env=None, root=None):
     import kpc_key_drop_guard as DG
     import kpc_key_rules as KR
     pct, mn, ok = DG.limits(env)
+    used = env.get('KPC_DROP_LIMITS_FILE')   # Fable's review of #294 (3): what the drop guard actually ran with, when it wrote it
+    if used and os.path.exists(used):
+        try:
+            u = json.load(open(used, encoding='utf-8'))
+            pct, mn, ok = float(u['pct']), int(u['min_parks']), list(u['let_through'])
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning title=US key stamp::the drop guard's limits file could not be read ({e}); the environment's are recorded")
     apath = env.get('KPC_DROP_APPROVED') or str(root / DG.APPROVED_FILE)
     try: asha = hashlib.sha256(same_lines(open(apath, 'rb').read())).hexdigest()[:12]
     except OSError: asha = 'missing'

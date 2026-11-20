@@ -68,7 +68,19 @@ check('the same edit with a new entry from the last build, scope none: fine', C.
 
 h = tree(); set_built(h, built); flip_switch(h); add_entry(h, **{'from': 'abc123abc123'})
 w = C.check(base, h)
-check('a new entry from the wrong hash is REFUSED (the run would rebuild all 50)', len(w) == 1 and 'would not find it' in w[0])
+check('a lone new entry from the wrong hash is REFUSED (the run would rebuild all 50)', len(w) == 1 and 'UNDECLARED' in w[0])
+
+# Fable's review of #294 (2, probe_scope.py): a STACKED draft. Main holds a merged-OFF draft whose entry is from the last build;
+# the next draft's entry is from the hash the first one moved to. The run (pending_scope) reads the chain as declared.
+b2 = tree(); set_built(b2, built); flip_switch(b2); add_entry(b2, **{'id': 'draft-1', 'from': built})
+h2 = tree(); set_built(h2, built); flip_switch(h2); add_entry(h2, **{'id': 'draft-1', 'from': built})
+p_ = h2 / '.github/key-switches.json'; d_ = json.loads(p_.read_text()); d_['KPC_TEST_ONLY_SWITCH_2'] = 'off'; p_.write_text(json.dumps(d_, indent=1))
+add_entry(h2, **{'id': 'draft-2', 'from': F.rules_hash('us-key', b2)})
+check('the run itself reads the stacked draft as declared', F.pending_scope('us-key', built, h2)[0] is not None)
+check('a stacked draft (its entry from the hash the draft before it moved to) is FINE', C.check(b2, h2) == [])
+h3 = tree(); set_built(h3, built); flip_switch(h3); add_entry(h3, **{'id': 'draft-1', 'from': built})
+p_ = h3 / '.github/key-switches.json'; d_ = json.loads(p_.read_text()); d_['KPC_TEST_ONLY_SWITCH_2'] = 'off'; p_.write_text(json.dumps(d_, indent=1))
+check('a stacked draft that adds NO entry of its own is REFUSED', any('has no new entry' in x for x in C.check(b2, h3)))
 
 h = tree(); set_built(h, built); flip_switch(h); add_entry(h, **{'from': built, 'scope': 'some'})
 w = C.check(base, h)

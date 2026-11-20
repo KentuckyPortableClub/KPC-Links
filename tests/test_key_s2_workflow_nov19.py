@@ -41,7 +41,17 @@ rec = J.record([p1], json.dumps([{'states': 'TN KY OH'}]), drop_file=str(drop))
 check('a state held by the master gate or the drop guard is HELD, not a fault',
       rec['held'] == ['KY', 'OH'] and rec['faults'] == [] and rec['red'] == ['KY', 'OH'])
 rec2 = J.record([p1], groups, drop_file=str(drop))
-check('a planned state whose part never came back is a FAULT (the run stays red for it)', rec2['faults'] == ['WV'] and 'WV' not in rec2['held'])
+check('a planned state whose part never came back (not-built) is a FAULT (the run stays red for it)', rec2['faults'] == ['WV'] and 'WV' not in rec2['held'])
+# Fable's review of #294 (1): one line per code
+p2 = part(t, 'us-key-part-1', ['GA', 'AL', 'MS'], failed=['AL'])
+ff = t / 'failed.txt'; ff.write_text('MS\n')
+rec3 = J.record([p2], json.dumps([{'states': 'GA AL MS'}]), failed_file=str(ff))
+codes = {a: x['code'] for a, x in rec3['areas'].items()}
+check("code 'failed' (planned but not built / a short shape source not refilled) is a FAULT", codes['AL'] == 'failed' and 'AL' in rec3['faults'])
+check("code 'failed' (named failed in the stamp) is a FAULT", codes['MS'] == 'failed' and 'MS' in rec3['faults'])
+check("code 'held-gate' is HELD (a warning)", rec['areas']['KY']['code'] == 'held-gate' and 'KY' in rec['held'])
+check("code 'drop-guard' is HELD (a warning)", rec['areas']['OH']['code'] == 'drop-guard' and 'OH' in rec['held'])
+check("code 'built' is neither", 'GA' not in rec3['faults'] and 'GA' not in rec3['held'] and rec3['areas']['GA']['code'] == 'built')
 out = t / 'rec.json'
 buf = io.StringIO()
 with contextlib.redirect_stdout(buf):
@@ -89,8 +99,15 @@ finally:
 check("the build stamp writes 'settings' into index.json (source mode, drop limits, switches)",
       d.get('build') == 'US-1' and d.get('settings', {}).get('source_mode') == 'store'
       and 'drop_limits' in d['settings'] and len(d['settings'].get('switches') or {}) >= 20)
-check("the stamp step passes the source mode and the drop guard's three values",
-      all(x in wf.split('id: us_stamp')[1].split('run:')[0] for x in ('KPC_KEY_SOURCE:', 'KPC_DROP_OK:', 'KPC_DROP_PCT:', 'KPC_DROP_MIN:')))
+_st_env = wf.split('id: us_stamp')[1].split('run:')[0]
+check("the stamp records the drop limits the guard ran with (the guard writes them; the three values are set once, on the guard step)",
+      'KPC_KEY_SOURCE:' in _st_env and 'KPC_DROP_LIMITS_FILE: /tmp/kpc-drop-limits.json' in _st_env
+      and not any(x in _st_env for x in ('KPC_DROP_OK:', 'KPC_DROP_PCT:', 'KPC_DROP_MIN:'))
+      and 'KPC_DROP_LIMITS_OUT: /tmp/kpc-drop-limits.json' in wf)
+lf = pathlib.Path(tempfile.mkdtemp()) / 'limits.json'
+lf.write_text(json.dumps({'pct': 0.0, 'min_parks': 0, 'let_through': ['MT']}))
+got = F.run_settings('us-key', env={'KPC_DROP_LIMITS_FILE': str(lf), 'KPC_DROP_PCT': '3'})['drop_limits']
+check("the stamp takes the guard's file over the environment", got['pct'] == 0.0 and got['min_parks'] == 0 and got['let_through'] == ['MT'] and got['by_park'])
 check('no rule file is edited by S2 workflow parts (they move no rules hash)',
       not any(f in F.RULE_FILES['us-key'] for f in ('.github/scripts/kpc_key_freeze.py', '.github/scripts/kpc_us_key_join.py',
                                                      '.github/scripts/kpc_key_drop_guard.py', '.github/scripts/kpc_key_scope_check.py')))
