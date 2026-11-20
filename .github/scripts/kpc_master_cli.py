@@ -262,12 +262,13 @@ def cmd_gate(a):
     sg = KRD.load_json(a.state_gis, {}) if getattr(a, 'state_gis', '') else {}
     needs = KRD.needs_rows(getattr(a, 'needs', ''))
     stale_on, ready_on = KRD.switch('KPC_GATE_STALE_REFUSE'), KRD.switch('KPC_READY_BLOCK')
-    rep = {'stale': {}, 'ready': {}, 'missing_copies': [], 'switches': {'KPC_GATE_STALE_REFUSE': stale_on, 'KPC_READY_BLOCK': ready_on}}
+    rep = {'stale': {}, 'ready': {}, 'hand_downloads': [], 'missing_copies': [], 'switches': {'KPC_GATE_STALE_REFUSE': stale_on, 'KPC_READY_BLOCK': ready_on}}
     have = {f.name[:-len('.json.gz')] for f in cache.glob('*.json.gz')}
     for stem in sorted(set((getattr(a, 'expect', '') or '').split()) - have):
         rep['missing_copies'].append(stem)
         warn('master gate MISSING COPY', f'{stem}: this job expects a saved copy and there is none (a finding, not a skip)')
-        if sg or needs: rep['ready'][stem] = KRD.ready(stem, None, sg, doc, needs)
+        if sg or needs:
+            rep['ready'][stem] = KRD.ready(stem, None, sg, doc, needs); rep['hand_downloads'] += KRD.hand_downloads(stem, None, sg, doc, needs)
     for f in sorted(cache.glob('*.json.gz')):
         stem = f.name[:-len('.json.gz')]
         try: blob = M.load_saved(f); sha = M.sha256_file(f)
@@ -286,6 +287,7 @@ def cmd_gate(a):
             warn('master gate SHORT OF BASELINE', f'{stem}: {fmt(shortf)} (report only: KPC_GATE_STALE_REFUSE is off)')
         if sg or needs:
             r = KRD.ready(stem, blob, sg, doc, needs); rep['ready'][stem] = r
+            rep['hand_downloads'] += KRD.hand_downloads(stem, blob, sg, doc, needs)   # the real ones: the copy holds none of the layer
             if r and ready_on and any(KRD.blocks(k) for k in r.values()):
                 err('master gate NOT READY', f'{stem}: ' + ', '.join(f'{l} {"+".join(k)}' for l, k in sorted(r.items()) if KRD.blocks(k)) + ': moved aside (KPC_READY_BLOCK on)')
                 aside(f, stem); continue

@@ -103,7 +103,12 @@ needs_na = [{'area': '', 'layer': 'sgzzc', 'who': 'person', 'status': 'open'},
 sg2 = {'states': {'ZZ': [{}, {'url': 'https://x.gov/zz/1'}, {}]}}
 r4 = K.ready('US-ZZ', blob, sg2, doc, needs_na)
 check('a needs-download row with NO area is matched by its layer id (sgzzc) or by its address (url: -> sgzzb); another state\'s id is not',
-      r4.get('sgzzc') == ['hand'] and r4.get('sgzzb') == ['hand'] and 'sgqqa' not in r4)
+      r4.get('sgzzc') == ['hand'] and r4.get('sgzzb') == ['hand-held'] and 'sgqqa' not in r4)
+check("Fable (19 Nov): an open hand download whose layer the copy already holds is 'hand-held' (row never closed); none in the copy is 'hand'",
+      r4.get('sgzzb') == ['hand-held'] and r4.get('sgzzc') == ['hand'] and not K.blocks(['hand-held']))
+hd = K.hand_downloads('US-ZZ', blob, sg2, doc, needs_na + [{'area': None, 'layer': 'sgzzc', 'who': 'person', 'status': 'open', 'url': 'https://x.gov/zz/3', 'page': 'https://x.gov/p'}])
+check('the real download list holds only layers the copy has none of, with their links',
+      {h['layer'] for h in hd} == {'sgzzc'} and any(h['url'] == 'https://x.gov/zz/3' and h['page'] == 'https://x.gov/p' for h in hd))
 d5 = {'caches': {'US-ZZ': {'expected_count': 7}}, 'layers': {'US-ZZ.sgzza': {'expected_count': 4}, 'US-ZZ.sgzzb': {'expected_count': 3}}}
 up = K.raise_low_baselines(d5, 'US-ZZ', blob, 'test')
 check('the sweep raises a baseline lower than its copy (state 7 -> 10, sgzza 4 -> 5) and never lowers one (sgzzb 3 stays, copy 2)',

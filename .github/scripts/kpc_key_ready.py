@@ -98,18 +98,14 @@ def key_layers(stem, state_gis, layers_doc):
     return list(dict.fromkeys(ids))
 
 
-def ready(stem, blob, state_gis, layers_doc, needs_rows):
-    """{layer id: [kinds]} for one state; kinds = missing, short, bot, hand. blob None = no saved copy (every layer missing)."""
-    L = layers_doc.get('layers') or {}
-    rows = layer_rows(blob) if blob is not None else collections.Counter()
+def _waiting(stem, state_gis, layers_doc, needs_rows):
+    """{layer id: [needs-download rows]} of this state: rows with its area, and rows with no area matched by layer id or address
+    (Fable's review of #300, 4: 405 of the 406 open person rows on 19 Nov carry no area)."""
     mine = key_layers(stem, state_gis, layers_doc)
-    # Fable's review of #300 (4): most open rows for a person carry no area (405 of 406 on 19 Nov), only a layer id: 'sgtnb', or
-    # 'url:<address>'. A row with no area belongs to this state when its id is one of this state's key layers, or its address is
-    # one of this state's state-gis entries (that entry's id is used).
     st = stem.split('-', 1)[1]
-    by_url = {str(e.get('url') or '').strip(): lid for lid, e in zip(sg_ids(st, len(((state_gis or {}).get('states') or {}).get(st) or [])),
-                                                                 ((state_gis or {}).get('states') or {}).get(st) or []) if isinstance(e, dict) and e.get('url')}
-    wait = {}
+    ents = ((state_gis or {}).get('states') or {}).get(st) or []
+    by_url = {str(e.get('url') or '').strip(): lid for lid, e in zip(sg_ids(st, len(ents)), ents) if isinstance(e, dict) and e.get('url')}
+    out = {}
     for r in needs_rows or []:
         lid = str(r.get('layer') or r.get('src') or '')
         if r.get('area'):
@@ -121,10 +117,24 @@ def ready(stem, blob, state_gis, layers_doc, needs_rows):
             lid = by_url[str(r.get('url')).strip()]
         elif lid not in mine:
             continue
-        if r.get('who') == 'bot' and r.get('status') in BOT_WAITING:
-            wait.setdefault(lid, set()).add('bot')
-        elif r.get('who') == 'person' and r.get('status') == 'open':
-            wait.setdefault(lid, set()).add('hand')
+        out.setdefault(lid, []).append(r)
+    return out
+
+
+def ready(stem, blob, state_gis, layers_doc, needs_rows):
+    """{layer id: [kinds]} for one state; kinds = missing, short, bot, hand, hand-held. blob None = no saved copy.
+    hand = a person's download is open and the copy holds NONE of the layer (a real download);
+    hand-held = a person's download is open but the copy already holds the layer (the row was never closed; Fable, 19 Nov)."""
+    L = layers_doc.get('layers') or {}
+    rows = layer_rows(blob) if blob is not None else collections.Counter()
+    mine = key_layers(stem, state_gis, layers_doc)
+    wait = {}
+    for lid, rs in _waiting(stem, state_gis, layers_doc, needs_rows).items():
+        for r in rs:
+            if r.get('who') == 'bot' and r.get('status') in BOT_WAITING:
+                wait.setdefault(lid, set()).add('bot')
+            elif r.get('who') == 'person' and r.get('status') == 'open':
+                wait.setdefault(lid, set()).add('hand')
     out = {}
     for lid in mine + sorted(set(wait) - set(mine)):
         kinds = []
@@ -139,8 +149,28 @@ def ready(stem, blob, state_gis, layers_doc, needs_rows):
         kinds += sorted(wait.get(lid, ()))
         if 'hand' in kinds:   # waiting for a person's download: that is why it is missing or short, and a hand download never blocks
             kinds = [k for k in kinds if k not in ('missing', 'short')]
+            if got > 0:
+                kinds = ['hand-held' if k == 'hand' else k for k in kinds]
         if kinds:
             out[lid] = kinds
+    return out
+
+
+def hand_downloads(stem, blob, state_gis, layers_doc, needs_rows):
+    """The REAL hand downloads of one state (Fable, 19 Nov): open person rows whose layer the saved copy holds none of, with the
+    links a person needs. [{area, layer, copy_rows, url, page, why, id}]"""
+    rows = layer_rows(blob) if blob is not None else collections.Counter()
+    out = []
+    for lid, rs in sorted(_waiting(stem, state_gis, layers_doc, needs_rows).items()):
+        if rows.get(lid, 0) > 0:
+            continue
+        for r in rs:
+            if r.get('who') == 'person' and r.get('status') == 'open':
+                u = str(r.get('url') or '')
+                if not u and str(r.get('layer') or '').startswith('url:'):
+                    u = str(r['layer'])[4:]
+                out.append({'area': stem, 'layer': lid, 'copy_rows': 0, 'url': u, 'page': r.get('page') or '', 'why': (r.get('why') or '')[:200],
+                            'id': r.get('id') or ''})
     return out
 
 
