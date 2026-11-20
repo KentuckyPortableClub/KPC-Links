@@ -2602,13 +2602,6 @@ def grid_pairs(boxes):
 # differs (a changed answer, outline, line, pin, code or constant). Identical by construction: the same inputs, the same function.
 import copy, hashlib
 REUSE, REUSE_NEW, REUSE_FILE = {}, {}, None
-CODE_HASH = hashlib.sha1(b''.join(open(pathlib.Path(__file__).parent / n, 'rb').read() for n in ('kpc_fers.py', 'kpc_owned.py', 'kpc_http_cache.py'))).hexdigest()
-# Nov 2 review (speed): CODE_HASH changes on ANY edit to these files (a comment, a log line), and then every pair is computed
-# again (~all night). FERS_ALGO is a version name for the 2-fer MATH: bump it by hand whenever a change can move a spot.
-# Switch KPC_FERS_REUSE_KEY: 'code' (default, today: the file hash) | 'algo' (FERS_ALGO, so edits that cannot move a spot keep
-# the saved spots). The pass constants (PASS, CELL, DET, PREC, REGION) stay in the fingerprint either way.
-FERS_ALGO = 'fers-2026-11-02.1'
-REUSE_KEY = FERS_ALGO if os.environ.get('KPC_FERS_REUSE_KEY', 'code').strip().lower() == 'algo' else CODE_HASH
 # Nov 9 evening (Brandon t914u-t917u, 4:37-4:42 PM CST: 'only redo the parts that changed'; KISS): a pair is tested again only when
 # one of its two parks changed (outline, record ids, POTA pin/name, line) or a DECLARED rule change names it. The code hash is no
 # longer in the fingerprint: every rule change declares its scope in .github/fers-rule-scope.json (states, park kinds, flags such

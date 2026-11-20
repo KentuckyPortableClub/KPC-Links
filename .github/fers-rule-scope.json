@@ -341,6 +341,34 @@
       "scope": "none",
       "scope_note": "No outline is remeasured. A row pass 3 settles is stamped. An unstamped row is still left out. merge() is not changed.",
       "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-math-guard-baseline",
+      "when": "2026-11-19",
+      "from": "40c9a5c612c6",
+      "why": "Hand-off 06 part 2. The measuring math is fingerprinted (find_spots and the functions under it, plus the size constants that are not in pair_fp). This entry is the baseline. It names a park that does not exist, so no real pair is retested. A later change to that math updates tests/fixtures/fers-math-guard.json and points it at a scope entry that is not none.",
+      "fingerprint": "0162b452da97751fcfad7650ae9c4dcf3ea1f30f7676cfc50ba458ff41f738a1",
+      "scope": {
+        "parks": [
+          "US-MATH-GUARD"
+        ]
+      },
+      "scope_note": "US-MATH-GUARD is not a park. No pair is retested. This entry covers the first-round fingerprint only (11 functions). A new fingerprint needs its own entry.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-math-guard-calls",
+      "when": "2026-11-19",
+      "from": "40c9a5c612c6",
+      "why": "Hand-off 06 part 2, second round. The guard also fingerprints merge, Win, sample, line_m, close_m, water_route, nhd_water, pair_fp, rule_stamp and answers_unchanged. This entry carries that fingerprint. It names a park that does not exist, so no real pair is retested.",
+      "fingerprint": "5ebe37a361c8f10835ad5e12e6cb4373a570cb309a0b6adcc6a770e1a8d50f4a",
+      "scope": {
+        "parks": [
+          "US-MATH-GUARD"
+        ]
+      },
+      "scope_note": "US-MATH-GUARD is not a park. No pair is retested. The fixture's fingerprint and this entry's fingerprint are the same. Refreshing the fixture alone does not pass.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
     }
   ]
 }
