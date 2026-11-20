@@ -43,6 +43,14 @@ jobs:
       skip: ${{ steps.skipped.outputs.skip }}   # next round C1: 1 = this start built nothing (frozen / waits / chained and up to date)
     steps:
       - uses: actions/checkout@v5
+      - name: Park facts from KPC-Data (read only; the official sizes for the size readers; the owner, 20 Nov 2:51 PM)
+        continue-on-error: true
+        run: |
+          rm -rf .pf; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pf 2>/dev/null \
+            && git -C .pf sparse-checkout set --no-cone data/park-facts.json.gz 2>/dev/null && git -C .pf checkout -q 2>/dev/null \
+            && echo "PARK_FACTS=$PWD/.pf/data/park-facts.json.gz" >> "$GITHUB_ENV" \
+            && PARK_FACTS="$PWD/.pf/data/park-facts.json.gz" python3 .github/scripts/kpc_park_facts_read.py acres --out data/acres.json \
+            || echo "::warning title=Park facts::KPC-Data's park facts file was not read; the size readers go on without official sizes"
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 4 links-04) - a held build on the CURRENT rules, at most 3 days old, with no person's sign-off (Brandon / KZ4CP, after the Nov 2 restart; or signed YES and not yet released) means no new build
         env:
           KPC_INDEX_REF: origin/main   # Nov 4 PM fix bundle (items 1-2): decide on the NEWEST main's stamp, not this queued run's checkout

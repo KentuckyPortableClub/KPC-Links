@@ -479,6 +479,14 @@ jobs:
       - uses: actions/checkout@v5
         with:
           ref: main   # the newest main (other bots saved while the build ran)
+      - name: Park facts from KPC-Data (read only; the official sizes for the size readers; the owner, 20 Nov 2:51 PM)
+        continue-on-error: true
+        run: |
+          rm -rf .pf; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pf 2>/dev/null \
+            && git -C .pf sparse-checkout set --no-cone data/park-facts.json.gz 2>/dev/null && git -C .pf checkout -q 2>/dev/null \
+            && echo "PARK_FACTS=$PWD/.pf/data/park-facts.json.gz" >> "$GITHUB_ENV" \
+            && PARK_FACTS="$PWD/.pf/data/park-facts.json.gz" python3 .github/scripts/kpc_park_facts_read.py acres --out data/acres.json \
+            || echo "::warning title=Park facts::KPC-Data's park facts file was not read; the size readers go on without official sizes"
       # Nov 11 (KPC owner, 2026-11-11): the download is tried up to 3 times too, each into an empty folder (no half download is mixed in);
       # a part that still comes short fails its verdict's file list and its countries are held.
       - name: Download the parts (try 1 of 3)

@@ -19,3 +19,7 @@ data/access/
 raw-layers/
 *.gdb/
 *.gdb.zip
+
+# park facts read by the key jobs (KPC-Data copy; never committed here)
+.pf/
+data/acres.json

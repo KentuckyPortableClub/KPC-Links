@@ -232,6 +232,14 @@ jobs:
       - uses: actions/checkout@v5
         with:
           ref: main   # Nov 2 review: see the overrides BOT A pushed in the plan job (github.sha predates them)
+      - name: Park facts from KPC-Data (read only; the official sizes for the size readers; the owner, 20 Nov 2:51 PM)
+        continue-on-error: true
+        run: |
+          rm -rf .pf; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pf 2>/dev/null \
+            && git -C .pf sparse-checkout set --no-cone data/park-facts.json.gz 2>/dev/null && git -C .pf checkout -q 2>/dev/null \
+            && echo "PARK_FACTS=$PWD/.pf/data/park-facts.json.gz" >> "$GITHUB_ENV" \
+            && PARK_FACTS="$PWD/.pf/data/park-facts.json.gz" python3 .github/scripts/kpc_park_facts_read.py acres --out data/acres.json \
+            || echo "::warning title=Park facts::KPC-Data's park facts file was not read; the size readers go on without official sizes"
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - name: Master outlines - read master first (is the checked master whole; which layer, if any, needs a live read)
@@ -543,6 +551,14 @@ jobs:
       - uses: actions/checkout@v5
         with:
           ref: main   # Nov 2 review: see the overrides BOT A pushed in the plan job (github.sha predates them)
+      - name: Park facts from KPC-Data (read only; the official sizes for the size readers; the owner, 20 Nov 2:51 PM)
+        continue-on-error: true
+        run: |
+          rm -rf .pf; GIT_TERMINAL_PROMPT=0 git -c credential.helper= clone -q --depth 1 --filter=blob:none --no-checkout https://github.com/KentuckyPortableClub/KPC-Data .pf 2>/dev/null \
+            && git -C .pf sparse-checkout set --no-cone data/park-facts.json.gz 2>/dev/null && git -C .pf checkout -q 2>/dev/null \
+            && echo "PARK_FACTS=$PWD/.pf/data/park-facts.json.gz" >> "$GITHUB_ENV" \
+            && PARK_FACTS="$PWD/.pf/data/park-facts.json.gz" python3 .github/scripts/kpc_park_facts_read.py acres --out data/acres.json \
+            || echo "::warning title=Park facts::KPC-Data's park facts file was not read; the size readers go on without official sizes"
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
       - uses: actions/download-artifact@v4
