@@ -1524,3 +1524,16 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
      mode, drop limits and every switch value; both starts are already off); S3 (the three baselines from the saved copies' counts,
      the gate refuses a stale baseline and treats a missing copy as a finding, the ready check as a report with its blocking part
      behind a switch, OFF); S5 waits for the agent's S4. Then the gate on 3.12 + 3.13 for each outside-agent stack.
+47. **OPUS, 19 Nov 7:35-8:10 PM CST: item 46's NEXT. The Kentucky run had read nothing; two crashes fixed; the real run started.**
+   - **Run 44654168919 read NOTHING:** it stopped on park 1 of 193 (US-3791) with `NameError: re` in `_extra_urls` and stayed green
+     (the reader step ends in a warning). An offline dress rehearsal (all 193 KY parks through the whole reader, fixture pages, no
+     network) then found a SECOND stop the live run would have hit: the refuge (FWS) path handed `urlunsplit` urlparse's six parts.
+     Both fixed (KPC-Data main 4816f03f), one test each, plus: each park is read inside a guard (a page the reader cannot handle is
+     skipped, named in a warning and in summary.md "Skipped on a reader error", read again next run; the others carry on) and a test
+     that every reader file uses only names it imports. Reader tests ALL PASS on 3.12 + 3.13; full suite = main's same 23 failures
+     (libraries missing here), none new. Rehearsal after the fix: 193 of 193 read, 0 left.
+   - **THE REAL FIRST KENTUCKY RUN = KPC-Data run 44656781088 (on 4816f03f, areas US-KY).** Read it next: summary.md (asked 193?
+     any "Skipped on a reader error"?), then the blind check of its facts before any tool reads them.
+   - **S2 workflow parts and S3 NOT STARTED:** `KPC-hand-off-keys-first-for-Opus.md` (revision 3.1) is in none of the three repos;
+     item 46 holds only one-line summaries, and these edit kpc-us-key.yml's hold / freeze logic. Asked Brandon to attach the file;
+     when it comes, save it to KPC-Store `key-quality/2026-11-19/` so the next chat has it. S5 still waits for the agent's S4.
