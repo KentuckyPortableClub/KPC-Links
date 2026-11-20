@@ -227,7 +227,7 @@
   /* Nov 19 2026 (to-do 10, Brandon: real signals print E's and T's since 0.9.10): back to 2.5 / dit (0.9.6 had 1.4). The narrow filter was only
      checked on perfect signals on pitch; in the lab (tools/cwlab: the radio's own narrow CW filter, AGC, nearby stations, off-pitch signals)
      1.4 turned a nearby station into strings of T's. */
-  let CWK = 2.5, GATE2 = 0;   /* bench knobs (_cwTune): filter width in dits⁻¹, and a second, lower gate held over two waterfall rows (off: it let junk through) */
+  let CWK = 2.5, GATE2 = 0, PRIOR = 1, WSPLIT = 1;   /* bench knobs (_cwTune): filter width in dits⁻¹, and a second, lower gate held over two waterfall rows (off: it let junk through); PRIOR / WSPLIT (_cwFix) = the Nov 19 speed guard and word-gap fix */
   const cwBwHz = () => S.cw.bw === 'auto' ? Math.max(40, Math.min(160, 1200 / C.dit * CWK)) : +S.cw.bw || 100;
   function cwFeed(v) {
     const w = 2 * Math.PI * S.cw.hz / R; C.ph += w; if (C.ph > 6.283185307) C.ph -= 6.283185307;
@@ -250,10 +250,24 @@
      a dit is ignored (was a fixed 6 ms), and the first few seconds use the textbook 2 / 5 dit thresholds. */
   const GAPS = [], MARKS = [];
   const cl = (arr, k, init) => { const L = arr.map(Math.log); let c = init.map(Math.log); for (let it = 0; it < 8; it++) { const sum = c.map(() => 0), n = c.map(() => 0); for (const v of L) { let b = 0; for (let j = 1; j < c.length; j++) if (Math.abs(v - c[j]) < Math.abs(v - c[b])) b = j; sum[b] += v; n[b]++; } c = c.map((x, j) => n[j] ? sum[j] / n[j] : x); } return c.map(Math.exp); };
+  /* Nov 19 2026 (Brandon's POTA pile-up recording): after a 7 s noisy pause the decoder learned the speed again from noise blips (dit 29 ms;
+     the station's was 60), so every real dit read as a dah (strings of T's for 11 s), and a shorter dit widened the filter and let in more
+     noise that kept it short. Now: how well a dit length explains the marks (each mark near 1 or 3 dits, on a log scale, 0 = perfect) */
+  const fitD = (d, arr) => { let s = 0; for (const m of arr) s += Math.min(Math.abs(Math.log(m / d)), Math.abs(Math.log(m / (3 * d)))); return s / arr.length; };
   function cwLearn() {
-    if (MARKS.length >= 6) { const [d1, d3] = cl(MARKS, 2, [Math.min(...MARKS), Math.max(...MARKS)]); if (d3 > d1 * 1.8) { C.dit = Math.max(20, Math.min(240, (d1 + d3 / 3) / 2)); C.mTh = Math.sqrt(d1 * d3); } }
+    if (MARKS.length >= 6) { const [d1, d3] = cl(MARKS, 2, [Math.min(...MARKS), Math.max(...MARKS)]); if (d3 > d1 * 1.8) { let nd = Math.max(20, Math.min(240, (d1 + d3 / 3) / 2)), th = Math.sqrt(d1 * d3);
+      /* a new speed must explain the marks clearly better than the last sender's (a pause is usually the same station, or one at a similar speed) */
+      if (PRIOR && C.dPrev && Math.abs(Math.log(nd / C.dPrev)) > .25 && fitD(C.dPrev, MARKS) <= fitD(nd, MARKS) + .06) { nd = C.dPrev; th = 2 * nd; }
+      C.dit = nd; C.mTh = th; } }
     if (GAPS.length >= 12) { const [g1, g3, g7] = cl(GAPS, 3, [C.dit, C.dit * 3, C.dit * 7]);
-      C.chTh = g3 > g1 * 1.5 ? Math.sqrt(g1 * g3) : C.dit * 2; C.wdTh = g7 > g3 * 1.4 ? Math.sqrt(g3 * g7) : Math.max(C.chTh * 2.2, C.dit * 5); }
+      C.chTh = g3 > g1 * 1.5 ? Math.sqrt(g1 * g3) : C.dit * 2; C.wdTh = g7 > g3 * 1.4 ? Math.sqrt(g3 * g7) : Math.max(C.chTh * 2.2, C.dit * 5);
+      /* Nov 19 2026 (Brandon's W1AW slow-code recording, Farnsworth: letters at 14 wpm, 550 ms between letters, 1.3 s between words): the three
+         groups started at 1 / 3 / 7 dits, so the 550 ms letter gaps fell in the 'word' group and every letter printed with a space after it.
+         The word line now comes from the gaps longer than the letter line alone: two groups (between letters / between words) if they are
+         clearly apart, else they are all letter gaps and a word gap is taken as 1.8 x them. */
+      if (WSPLIT) { let lg = GAPS.filter(g => g > C.chTh); const md = lg.slice().sort((a, b) => a - b)[lg.length >> 1]; lg = lg.filter(g => g < 4 * md);   /* a long pause is not a word gap */
+        if (lg.length >= 6) { const [l1, l2] = cl(lg, 2, [Math.min(...lg), Math.max(...lg)]), nl = lg.filter(g => g < Math.sqrt(l1 * l2)).length;
+          if (nl >= 3 && l1 > C.wdTh) C.wdTh = l2 > l1 * 1.6 ? Math.sqrt(l1 * l2) : l1 * 1.8; } } }   /* only when the old line cuts through the letter gaps themselves (Farnsworth spacing) */
   }
   /* Nov 18 full review (C2): a NEW sender's first letters (often the CQ) were garbled above ~33 wpm while the speed was still being learned.
      Now the start-up dit comes from the last sender (or my own WPM), and the first marks of a new sender are HELD until 6 of them have
@@ -263,13 +277,13 @@
      noise floor in cwGate) the lab measured it ON as better than OFF (it gets a new sender's first letters right); the switch is the way out
      if a band still shows stray E's at the start of a station. */
   let PRE = [], cwKeyTip = false; C.learn = S.cw.learn !== false;
-  function cwRelearn() { C.learn = S.cw.learn !== false; PRE = []; }
+  function cwRelearn() { C.learn = S.cw.learn !== false; PRE = []; C.dPrev = C.dit; }   /* the speed learned so far (the last station's, or my own WPM) is the one a new start is checked against */
   /* the held marks fall into two clean groups (2+ dits and 2+ dahs, dahs 2 to 4.5 times the dits)? a noise blip or two merged marks don't */
   /* a mark over 4.5 × the short ones (the first tone merging with the gate opening, a noise burst) is left out of the learning */
   function trimOut() { const so = MARKS.slice().sort((a, b) => a - b), lo = so[Math.floor(so.length * 0.25)]; for (let i = MARKS.length - 1; i >= 0; i--) if (MARKS[i] > 4.5 * lo) MARKS.splice(i, 1); }
   function sorted() { trimOut(); if (MARKS.length < 4) return false; const [d1, d3] = cl(MARKS, 2, [Math.min(...MARKS), Math.max(...MARKS)]), th = Math.sqrt(d1 * d3); const nd = MARKS.filter(x => x < th).length; return d3 / d1 >= 2 && d3 / d1 <= 4.5 && nd >= 2 && MARKS.length - nd >= 2; }
   function replay() {
-    if (MARKS.length >= 4) { const [d1, d3] = cl(MARKS, 2, [Math.min(...MARKS), Math.max(...MARKS)]); if (d3 > d1 * 1.8) { C.dit = Math.max(20, Math.min(240, (d1 + d3 / 3) / 2)); C.mTh = Math.sqrt(d1 * d3); } }
+    if (MARKS.length >= 4) { const [d1, d3] = cl(MARKS, 2, [Math.min(...MARKS), Math.max(...MARKS)]); if (d3 > d1 * 1.8) { let nd = Math.max(20, Math.min(240, (d1 + d3 / 3) / 2)), th = Math.sqrt(d1 * d3); if (PRIOR && C.dPrev && Math.abs(Math.log(nd / C.dPrev)) > .25 && fitD(C.dPrev, MARKS) <= fitD(nd, MARKS) + .06) { nd = C.dPrev; th = 2 * nd; } C.dit = nd; C.mTh = th; } }
     C.learn = false; const ev = PRE; PRE = [];
     const th = C.mTh || 2 * C.dit, chTh = C.chTh || C.dit * 2.2, wdTh = C.wdTh || C.dit * 5.5; let cur = '';
     for (const [k, d] of ev) { if (k === 'm') cur += d < th ? '.' : '-'; else if (d > chTh) { if (cur) rxChar(MORSE[cur] || (cur.length > 7 ? '' : '*')); cur = ''; if (d > wdTh) rxChar(' '); } }
@@ -287,6 +301,8 @@
        the first marks of a new sender move the dit estimate quickly, later ones gently */
     const th = C.mTh || 2 * dit, fast = MARKS.length < 12 ? .35 : .15;
     if (d < th) { C.cur += '.'; C.dit = Math.max(20, Math.min(240, dit * (1 - fast) + d * fast)); } else { C.cur += '-'; C.dit = Math.max(20, Math.min(240, dit * (1 - fast * .7) + d / 3 * fast * .7)); }
+    /* 10 dahs in a row (no real text does that: 0 is 5): the speed is wrong, so the last 10 marks are sorted again on their own */
+    if (PRIOR) { C.run1 = d < th ? 0 : (C.run1 || 0) + 1; if (C.run1 >= 10) { const last = MARKS.slice(-10), [e1, e3] = cl(last, 2, [Math.min(...last), Math.max(...last)]); if (e3 > e1 * 1.8) { C.dit = Math.max(20, Math.min(240, (e1 + e3 / 3) / 2)); C.mTh = Math.sqrt(e1 * e3); } else { C.dit = Math.max(20, Math.min(240, e1)); C.mTh = 2 * C.dit; } MARKS.splice(0, MARKS.length, ...last); C.run1 = 0; } }
     C.spaced = false; if (C.cur.length > 8) C.cur = ''; cwLearn(); }
   function cwGap(d) { if (d < (C.learn ? 12 : Math.max(10, C.dit / 3)) || d > (C.learn ? 2000 : 20 * C.dit)) return; GAPS.push(d); if (GAPS.length > 60) GAPS.shift(); if (C.learn && PRE.length) PRE.push(['g', d]); }
   /* Oct 25: a SIGNAL GATE from the waterfall — plain noise used to print as E's and T's. The CW copy only counts while a tone stands (14 dB; noise reads up to ~8, a weak −4 dB signal ~28)
@@ -799,5 +815,5 @@
     });
   }
   mkRtty(); if (D.PskRx) mkPsk();
-  G.KPCModes5 = { heardCalls: cut => HEARD.filter(h => h.t >= cut), S, save, sendText, send, stopTx, elems, cwTone, dialK, dialOut, cwOff, band, tuneSpot, pitchFromRadio, txing: () => TXB, text: () => TXT, _feed: rx, _cw: () => C, _cwTune: (k, g2) => { if (k) CWK = k; if (g2 != null) GATE2 = g2; return { CWK, GATE2 }; }, _cwReset: () => { C.fl = []; C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; C.gate = 0; C.on = false; C.mk = 0; C.sp = 0; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; cwRelearn(); }, _sstv: sstv, why: whyNot, cwOut, keyDown, keyUp, keyIsDown: () => !!WANT, keyPad, keyWhy, autoOn5, autoOff5, auto: () => !!AUTO5 };
+  G.KPCModes5 = { heardCalls: cut => HEARD.filter(h => h.t >= cut), S, save, sendText, send, stopTx, elems, cwTone, dialK, dialOut, cwOff, band, tuneSpot, pitchFromRadio, txing: () => TXB, text: () => TXT, _feed: rx, _cw: () => C, _cwTune: (k, g2) => { if (k) CWK = k; if (g2 != null) GATE2 = g2; return { CWK, GATE2 }; }, _cwFix: (p, w) => { if (p != null) PRIOR = p; if (w != null) WSPLIT = w; return { PRIOR, WSPLIT }; }, _cwReset: () => { C.run1 = 0; C.fl = []; C.sig = 1e-6; C.flo = 1e-6; C.warm = 0; C.cur = ''; C.gate = 0; C.on = false; C.mk = 0; C.sp = 0; GAPS.length = 0; MARKS.length = 0; C.chTh = C.wdTh = C.mTh = 0; cwRelearn(); }, _sstv: sstv, why: whyNot, cwOut, keyDown, keyUp, keyIsDown: () => !!WANT, keyPad, keyWhy, autoOn5, autoOff5, auto: () => !!AUTO5 };
 })(window);

@@ -16,7 +16,7 @@ Read this first in the new chat, then only the notes it points to.
 
 ## Waiting on Brandon (do not start without these)
 1. **Radio cards 6, 7, 8, 12** (IC-7100, FT-891, FTX-1, Digirig; KPC-App `notes/radio-checks-for-brandon.md`). They unlock: split from spots in the Lounges + copying the app's kpc-cat.js to the site (both key a radio: Fable reviews).
-2. ~~Two CW recordings~~ DONE Nov 19 evening: Brandon sent 8 (KPC-Data intake-files/cw-recordings-nov19). Decoder fix = KPC-App PR #8 (draft, for Fable; notes/opus-cw-real-nov19.md there). Still to unlock after the merge: the website CW/RTTY decoder port.
+2. ~~Two CW recordings~~ DONE Nov 19 evening: Brandon sent 8 (KPC-Data intake-files/cw-recordings-nov19). Decoder fix MERGED by Brandon's word = app 0.9.16 (KPC-App #8; notes/opus-cw-real-nov19.md there) + logger-beta copy. NOT ported yet: the VIP Lounge / web logger FT8 screen's own older CW decoder (kpc-logger-ft8.js, Oct 17).
 3. **Fable check (optional, Brandon's call):** the public Hunters Lounge now loads the same reviewed `kpc-logger-ft8.js?v=20261119b` as VIP (carbon copy); its FT8 tab stays hidden. Brandon was offered putting the old file back until Fable looks.
 4. Confirm on his phone: parks bar closes, 📻 RADIO opens the card, both Lounges look alike.
 
