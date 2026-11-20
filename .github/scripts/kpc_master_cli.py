@@ -263,7 +263,10 @@ def cmd_gate(a):
     needs = KRD.needs_rows(getattr(a, 'needs', ''))
     usl = KRD.load_json(a.us_layers, None) if getattr(a, 'us_layers', '') else None   # the builder's ids for shared layers (Opus, 20 Nov)
     stale_on, ready_on = KRD.switch('KPC_GATE_STALE_REFUSE'), KRD.switch('KPC_READY_BLOCK')
-    rep = {'stale': {}, 'ready': {}, 'hand_downloads': [], 'missing_copies': [], 'switches': {'KPC_GATE_STALE_REFUSE': stale_on, 'KPC_READY_BLOCK': ready_on}}
+    appr = KRD.load_ready_approved(getattr(a, 'ready_approved', ''))   # the owner's yes to build these states as they are (20 Nov 9:10 AM)
+    rep = {'stale': {}, 'ready': {}, 'hand_downloads': [], 'missing_copies': [], 'switches': {'KPC_GATE_STALE_REFUSE': stale_on, 'KPC_READY_BLOCK': ready_on},
+           'approved_as_is': {}, 'held_for_a_layer': []}
+    if appr: notice('master gate approved as is', f"{len(appr.get('states') or {})} state(s) built on their saved copies as they are: {appr.get('approved_by')}, {appr.get('when')}")
     have = {f.name[:-len('.json.gz')] for f in cache.glob('*.json.gz')}
     for stem in sorted(set((getattr(a, 'expect', '') or '').split()) - have):
         rep['missing_copies'].append(stem)
@@ -282,16 +285,23 @@ def cmd_gate(a):
         fmt = lambda xs: '; '.join(f'{k} {key}: baseline {b}, copy {n}' for k, key, b, n in xs[:6]) + (f' (+{len(xs) - 6} more)' if len(xs) > 6 else '')
         if low:   # Fable's ruling 5.1: never a hold; the baseline is raised to the copy (raise_low_baselines), no re-read
             warn('master gate LOW BASELINE', f'{stem}: {fmt(low)}: the baseline is lower than the copy (raise it; never a hold)')
+        if shortf and appr:   # the owner's approval covers the shorts it names (the copy no worse than when approved)
+            left = KRD.stale_unapproved(stem, shortf, appr)
+            if len(left) < len(shortf): rep['approved_as_is'].setdefault(stem, {})['short_of_baseline'] = [x[1] for x in shortf if x not in left]
+            shortf = left
         if shortf:   # ruling 5.2-5.3: a copy with fewer rows than its baseline is short; layer level is report only until explained
             if stale_on:
-                err('master gate SHORT OF BASELINE', f'{stem}: {fmt(shortf)}: moved aside (KPC_GATE_STALE_REFUSE on)'); aside(f, stem); continue
+                err('master gate SHORT OF BASELINE', f'{stem}: {fmt(shortf)}: moved aside (KPC_GATE_STALE_REFUSE on)'); rep['held_for_a_layer'].append(stem); aside(f, stem); continue
             warn('master gate SHORT OF BASELINE', f'{stem}: {fmt(shortf)} (report only: KPC_GATE_STALE_REFUSE is off)')
         if sg or needs:
             r = KRD.ready(stem, blob, sg, doc, needs, usl); rep['ready'][stem] = r
             rep['hand_downloads'] += KRD.hand_downloads(stem, blob, sg, doc, needs, usl)   # the real ones: the copy holds none of the layer
-            if r and ready_on and any(KRD.blocks(k) for k in r.values()):
-                err('master gate NOT READY', f'{stem}: ' + ', '.join(f'{l} {"+".join(k)}' for l, k in sorted(r.items()) if KRD.blocks(k)) + ': moved aside (KPC_READY_BLOCK on)')
-                aside(f, stem); continue
+            left = KRD.ready_unapproved(stem, r, blob, appr) if appr else {l: k for l, k in (r or {}).items() if KRD.blocks(k)}
+            if appr and len(left) < sum(1 for k in (r or {}).values() if KRD.blocks(k)):
+                rep['approved_as_is'].setdefault(stem, {})['layers'] = sorted(l for l, k in r.items() if KRD.blocks(k) and l not in left)
+            if left and ready_on:
+                err('master gate NOT READY', f'{stem}: ' + ', '.join(f'{l} {"+".join(k)}' for l, k in sorted(left.items())) + ': moved aside (KPC_READY_BLOCK on)')
+                rep['held_for_a_layer'].append(stem); aside(f, stem); continue
         how, exp, why = M.gate_baseline(f.name, blob, sha, caches, approved, allow_trimmed=a.allow_trimmed)
         if how == 'refuse' and a.first_ok and (caches.get(stem) or {}).get('expected_count') is None and stem not in approved and not M.is_trimmed(blob):
             notice('master gate NO BASELINE YET', f'{stem}: no baseline in the manifest (caches) yet: used (--first-ok); the first good full read records it'); continue
@@ -311,6 +321,7 @@ def cmd_gate(a):
     if getattr(a, 'ready_report', ''):
         pathlib.Path(a.ready_report).write_text(json.dumps(rep, indent=1, sort_keys=True) + '\n', encoding='utf-8')
     nr = sum(1 for r in rep['ready'].values() if any(KRD.blocks(k) for k in r.values()))
+    notice('master gate report', f"held for a layer reason: {len(rep['held_for_a_layer'])} ({' '.join(rep['held_for_a_layer']) or 'none'}); built as they are by the owner's approval: {len(rep['approved_as_is'])}")
     notice('master gate report', f"baseline findings in {len(rep['stale'])} cop(ies) (low = raise, short = report); ready check: {nr} state(s) with a missing / short / bot layer; "
            f"{len(rep['missing_copies'])} expected cop(ies) missing" + ('' if (stale_on or ready_on) else ' (report only: both switches off)'))
     notice('master gate', 'no short saved copy' if not short else f'SHORT saved copy moved aside: {" ".join(short)}')
@@ -501,6 +512,7 @@ def main(argv=None):
     g.add_argument('--expect', default='', help='the saved copies this job expects, e.g. "US-CO US-OR" (a missing one is a finding)')
     g.add_argument('--state-gis', default='', help='data/state-gis.json (read only), for the ready check')
     g.add_argument('--needs', default='', help="KPC-Data's data/needs-download.json, for the ready check")
+    g.add_argument('--ready-approved', default='data/outlines/ready-approved.json', help="the owner's signed approval to build named states on their saved copies as they are; '' = none")
     g.add_argument('--us-layers', default='data/us-key/layers.json', help="the US key's id table (read only): shared layers are counted under the builder's id; '' = by position")
     g.add_argument('--ready-report', default='', help='write the baseline findings + the ready check here (JSON); report only unless switched on')
     g.add_argument('--first-ok', action='store_true', help='a saved copy with NO baseline yet passes (notice); a short one is still held')

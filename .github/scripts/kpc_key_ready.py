@@ -217,6 +217,35 @@ def blocks(kinds):
     return any(k in ('missing', 'short', 'bot') for k in kinds)
 
 
+def load_ready_approved(path):
+    """The owner's approval to build states the layers gate would hold, on their saved copies AS THEY ARE (KPC owner, 20 Nov 2026
+    9:10 AM: "1 yes"). File: data/outlines/ready-approved.json = {approved_by, when, words, states: {stem: {layer: {kinds, rows}}},
+    stale: {stem: {key: {baseline, rows}}}}. Read only when approved_by names the KPC owner; anything else = {} (fail closed)."""
+    doc = load_json(path, {}) if path else {}
+    if not isinstance(doc, dict) or 'KPC owner' not in str(doc.get('approved_by') or ''): return {}
+    return doc
+
+
+def ready_unapproved(stem, r, blob, appr):
+    """{layer: kinds} of the blocking layers NOT covered by the owner's approval. A layer is covered only when the approval names it
+    for this state with the same blocking kinds and the copy holds at least as many of its rows as when it was approved (never worse)."""
+    ok = ((appr or {}).get('states') or {}).get(stem) or {}
+    rows = layer_rows(blob) if blob is not None else collections.Counter()
+    out = {}
+    for lid, kinds in (r or {}).items():
+        if not blocks(kinds): continue
+        a = ok.get(lid)
+        if a and set(k for k in kinds if blocks([k])) <= set(a.get('kinds') or []) and rows.get(lid, 0) >= int(a.get('rows') or 0): continue
+        out[lid] = kinds
+    return out
+
+
+def stale_unapproved(stem, shortf, appr):
+    """The short-of-baseline findings NOT covered by the owner's approval (same key, the copy holds at least the approved count)."""
+    ok = ((appr or {}).get('stale') or {}).get(stem) or {}
+    return [x for x in shortf if not (x[1] in ok and int(x[3]) >= int(ok[x[1]].get('rows') or 0))]
+
+
 def load_json(p, default):
     try:
         return json.loads(pathlib.Path(p).read_text(encoding='utf-8'))
