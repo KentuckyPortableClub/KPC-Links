@@ -1,4 +1,4 @@
-# ONE licence answer per layer (REPAIRS R14): the store's answers as KPC-Store keeper/licence_public.py writes them (store 5d2365a37; the keeper also sends this file to the boundary-cache release). The address is coded (sha256 of the normalised address, 16 hex); no address or reason text is public. Army Corps layers allowed by the owner (20 Nov 9:39 AM).
+# ONE licence answer per layer (REPAIRS R14): the store's answers as KPC-Store keeper/licence_public.py writes them (store 44f252215, 20 Nov 11:25 AM). The address is coded (sha256 of the normalised address, 16 hex); no address or reason text is public. Army Corps allowed by the owner (20 Nov 9:39 AM); WI / MT / MN rows on the reviewer's check (20 Nov 10:52 AM). Pushed by hand: the keeper is stopped (owner, 20 Nov 11:25 AM), so its own upload of this file is not running.
 layer,key id,publish,licence class,credit line,date read
 sha256:0052850c891efb3c,US:sgvah,no,NON-COMMERCIAL / NO REDISTRIBUTION,n/a (not published),2026-11-14
 sha256:005a827569bd68cb,US:sgscc,yes,NO TERMS STATED,South Carolina Department of Natural Resources,2026-11-13
@@ -45,9 +45,11 @@ sha256:20659f1167d92b4a,US:sgnhb,yes,DISCLAIMER ONLY,New Hampshire Fish and Game
 sha256:21cd441df7481c24,US:mdd,yes,OPEN,"State of Maryland, MD iMAP and Maryland Department of Natural Resources (DNR Owned Properties).",2026-11-14
 sha256:234a65fc08e064e8,US:sgorb,no,OPEN,Oregon Parks and Recreation Department / State of Oregon,2026-11-13
 sha256:23594490060f166c,CA:AB-PLUZ Gove,yes,OPEN,Contains information licensed under the Open Government Licence – Alberta. Source: Government of Alberta.,2026-11-14
+sha256:252072087efb48df,US:sgwia,yes,DISCLAIMER ONLY,Wisconsin Department of Natural Resources; Bureau of Facilities and Lands,2026-11-20
 sha256:258f5b04deab33c1,US:sgdee,yes,NO TERMS STATED,"DNREC Division of Parks and Recreation (Delaware FirstMap, Public Protected Lands)",2026-11-14
 sha256:25ecb32efd36379c,US:sgnvg,yes,DISCLAIMER ONLY,USDA Forest Service,2026-11-14
 sha256:26135c53aafd2c13,US:sgmoa,yes,NO TERMS STATED,"Missouri Department of Natural Resources, Division of State Parks, Planning and Development Program, and Missouri Office of Administration, Information Technology Services Division",2026-11-14
+sha256:269c4bd3e7e0f04a,US:sgwib,yes,DISCLAIMER ONLY,Wisconsin Department of Natural Resources - Parks and Recreation Management,2026-11-20
 sha256:26e606627715487b,US:bsna,no,NOT READ,,2026-11-14
 sha256:26eaad27245a9e36,CA:Hard look~2,no,NOT A PARK LAYER,n/a,2026-11-14
 sha256:272ed3688c9f55c2,CA:NB-PP Govern,yes,OPEN,Contains information licensed under the Open Government Licence – New Brunswick.,2026-11-14
@@ -82,6 +84,7 @@ sha256:42e7305c50ea4b91,US:sgaka,yes,DISCLAIMER ONLY,"Alaska Department of Natur
 sha256:43543922aade7608,US:sgcta,yes,OPEN,Connecticut Department of Energy and Environmental Protection (DEEP),2026-11-13
 sha256:478a866eb959fe97,CA:Hard look~5,no,NOT FOUND,Hard look~5,
 sha256:48007a809e7ffafa,CA:ON-ERCA Esse,no,NOT FOUND,Essex Region Conservation Authority,
+sha256:48398c50d079fa0c,US:sgwid,yes,DISCLAIMER ONLY,Wisconsin Department of Natural Resources; Bureau of Facilities and Lands,2026-11-20
 sha256:48f2d0ff58a21590,CA:Alberta publ,yes,OPEN,Contains information licensed under the Open Government Licence – Alberta. Source: Government of Alberta.,2026-11-14
 sha256:490884c45a571957,CA:Hard look~10,no,NOT FOUND,Hard look~10,
 sha256:490df40a4165d17c,US:akht,yes,PUBLIC DOMAIN,National Park Service,2026-11-13
@@ -143,6 +146,7 @@ sha256:7913e32aa59decaa,CA:New Brunswic~1,no,NO TERMS STATED,n/a (not published)
 sha256:7b3dce91073226eb,US:sgnea,yes,OPEN,Nebraska Game and Parks Commission,2026-11-13
 sha256:7bf3bc29044d72fe,US:sgflf,yes,DISCLAIMER ONLY,"Florida Department of Environmental Protection, Division of State Lands (FL-SOLARIS State Owned Lands)",2026-11-14
 sha256:7c05367bcba70e54,US:sgtxb,yes,DISCLAIMER ONLY,Texas Parks and Wildlife Department,2026-11-14
+sha256:7c0696b661e7746f,US:sgmnf,yes,OPEN WITH CONDITIONS,Minnesota Department of Natural Resources (MNDNR),2026-11-20
 sha256:7db006ecb9245c55,US:sgtxc,yes,DISCLAIMER ONLY,Texas Parks and Wildlife Department,2026-11-13
 sha256:7e3eae2af1e430bb,US:sgutc,no,NO TERMS STATED,Utah Division of State History,2026-11-14
 sha256:80400824b5241cb3,US:sgtnd,yes,DISCLAIMER ONLY,"Tennessee Department of Agriculture, Division of Forestry (Forest Data and Analysis Unit)",2026-11-14
@@ -168,6 +172,7 @@ sha256:9227d74a331fa18c,CA:ON-GSCA Grey,no,NO TERMS FOUND,County of Grey / Grey 
 sha256:92e0c886b2065727,US:sgvaa,yes,OPEN,Virginia Department of Forestry,2026-11-14
 sha256:936ae59a7448a9ce,US:sgtxd,yes,DISCLAIMER ONLY,Texas Parks and Wildlife Department,2026-11-13
 sha256:948a3b8a68437112,US:sgnha,yes,NO TERMS STATED,"NH GRANIT (UNH), New Hampshire Conservation/Public Lands",2026-11-14
+sha256:976ec0d5db34c00c,US:sgwif,no,OTHER RESTRICTED (contact the agency first),n/a (not published),2026-11-20
 sha256:97c0ed44c70c5355,US:sghic,no,OTHER RESTRICTED,State of Hawaii (DLNR Division of State Parks),2026-11-13
 sha256:98b146ceaca886a0,US:sgnhc,yes,NO TERMS STATED,"NH GRANIT (UNH), New Hampshire Recreation Resources",2026-11-14
 sha256:98b286b7dee2099f,CA:CPCAD,yes,OPEN,"Contains information licensed under the Open Government Licence – Canada. Source: Environment and Climate Change Canada, CPCAD.",2026-11-14
@@ -217,6 +222,7 @@ sha256:ccfe527f34b53480,CA:Hard look~4,no,NOT FOUND,Hard look~4,
 sha256:cd84880ccee19fa9,US:sgpac,yes,NO TERMS STATED,Pennsylvania Game Commission,2026-11-13
 sha256:cd8cff2c98ca4486,US:sgarc,no,OTHER RESTRICTED (use limited to one event),Arkansas Game and Fish Commission,2026-11-14
 sha256:cdd5f7ea76f47e71,US:osp,yes,DISCLAIMER ONLY,Oregon Parks and Recreation Department,2026-11-14
+sha256:cfe4ddcacf8dad3b,US:sgmtd,yes,DISCLAIMER ONLY (with conditions),Montana State Library; Montana Natural Heritage Program,2026-11-20
 sha256:cfea75d084cc5a6b,US:sgcad,yes,DISCLAIMER ONLY,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
 sha256:d18a37587ec983ac,US:sgmoh,yes,DISCLAIMER ONLY,Missouri Department of Conservation,2026-11-14
 sha256:d216574b14f2ac16,US:sgmtb,no,NOT FOUND,"Montana Fish, Wildlife & Parks",2026-11-13
