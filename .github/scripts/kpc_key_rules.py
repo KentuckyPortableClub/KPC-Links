@@ -47,6 +47,11 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           back and it goes to check (a person may say it is the same land under two numbers). No single
                           winner = left as it is (the tripwire list shows it). A park given its own parts of the record (rule
                           B12 'parts') and hand joins are never moved. OFF until the owner says ON (count first, one state).
+  KPC_HOLD_ON_PASS_ERROR 0  (outside review finding F10, 2026-11-19; reviewer's go 19 Nov 2026) an error
+                          inside the US key's one-record-two-parks pass (the kind pass, D9, the contest) HOLDS the state: run() fails
+                          for it like any other error of a state, no key file is written and its saved copy on main is kept
+                          (pass_error below). OFF = today: the notice 'one-record-two-parks pass skipped', and the state is saved.
+                          No error = no change either way.
   KPC_NO_LEASE_BY_NAME 0  (KPC owner, 2026-11-17, ruling D5) a record whose name says leased / lease / agreement / cooperative area is
                           the easement family: never joined by name alone, it goes to check; a person may say yes for one park.
   KPC_LAKE_ONLY_IF_LAKE 0 (KPC owner, 2026-11-17, ruling D4, rewritten 9:17 AM after the research: WHO OWNS THE WATER decides, not
@@ -138,7 +143,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
-            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0',
+            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0',
             'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1', 'KPC_PRESERVE_WITH_PARK': '1'}
 
 
@@ -215,6 +220,19 @@ def areas_on(area, path=None):
     """The switches the file turns on for one area (kpc_area_hash slices the file with this)."""
     a = str(area or '')
     return sorted(k for k, s in switch_file(path).items() if '*' in s or a in s or ('US-' + a) in s)
+
+
+class PassError(RuntimeError): pass
+
+
+def pass_error(area, err, hold):
+    """2026-11-19 (outside review finding F10; reviewer's go 19 Nov; switch KPC_HOLD_ON_PASS_ERROR, OFF): the US key's
+    one-record-two-parks pass stopped with error `err` for `area`. hold False (today): returns `err` unchanged, so the caller's
+    notice 'one-record-two-parks pass skipped: <error>' reads word for word as before and the state carries on. hold True:
+    raises PassError naming the area, so run() fails for that state the way every other error of a state does (the builder
+    says FAILED, writes no key file for it, and the state keeps its saved copy on main: held, fail closed)."""
+    if hold: raise PassError(f'{area}: one-record-two-parks pass stopped with an error, so {area} is held (its saved copy is kept): {type(err).__name__}: {err}') from err
+    return err
 
 
 def nf(t):

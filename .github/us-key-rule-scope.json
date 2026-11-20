@@ -532,6 +532,13 @@
     "saved_ids": true
    },
    "approved": "APPROVED, decided_by KPC owner, 2026-11-19 (1:32 PM: \"no I looked the website up from pota and each one says national park+preserve or etc...no need to email them\"); waiting for Fable's review (key-quality.md section 13)"
+  },
+  {
+   "id": "2026-11-19-f10-hold-on-pass-error",
+   "when": "2026-11-19",
+   "from": "c64b8ace0411",
+   "why": "F10 (outside review, confirmed by a second checker; reviewer's go 19 Nov): an error inside the US key's one-record-two-parks pass (the kind pass, D9 and the contest) printed 'one-record-two-parks pass skipped' and the state was saved with its shared records in place. Behind the new switch KPC_HOLD_ON_PASS_ERROR (OFF): such an error holds the state the way any other error of a state does (run() fails, the builder names it FAILED, no key file is written and the state keeps its saved copy on main). No error = no change, switch on or off; merged OFF = the notice reads word for word as before. No result changes, nothing is rebuilt.",
+   "scope": "none"
   }
  ]
 }
