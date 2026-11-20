@@ -1,3 +1,5 @@
+> **NEWER: `HANDOFF-EVERYTHING-20-Nov.md` (20 Nov 9:45 AM) covers every report finding and replaces sections 1 to 7 of this file. Section 8 here (statements that were wrong) still stands.**
+
 # KPC map keys: hand-off of every open issue and the plan (20 Nov 2026, 7:00 AM Central)
 
 From Fable (the reviewer chat) to the owner's outside agent. The owner is Brandon White, KZ4CP. He works from a phone and wants short, plain answers.
