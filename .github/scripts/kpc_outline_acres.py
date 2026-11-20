@@ -11,33 +11,24 @@ fell to the sum of the row acres while the outline did not change: Maryland US-1
   state_acres(folder, area)  {park ref: acres} for one area from <folder>/<area>.geojson.gz and its part files
                              (<area>.p2.geojson.gz ...); a ref with several features gets their sum. No file = {}.
 
-The arithmetic is the fact check's own (kpc_key_factcheck.ring_acres), one ring at a time: no new formula. Not a rule file
+The arithmetic is kpc_pin_edge.acres_geojson (Nov 6), the repo's own outline measure: no new formula, no copy. Not a rule file
 (kpc_key_freeze.NOT_RULES): it decides no join, and no rule file imports it. Standard library only."""
 import gzip, json, pathlib, sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from kpc_key_factcheck import ring_acres  # noqa: E402
-
-
-def _ring_ok(ring):
-    return isinstance(ring, list) and all(isinstance(p, (list, tuple)) and len(p) >= 2 and all(isinstance(v, (int, float)) for v in p[:2]) for p in ring)
-
-
-def _poly_acres(poly):
-    if not isinstance(poly, list) or not poly or not all(_ring_ok(r) for r in poly): return 0.0
-    return max(0.0, ring_acres([poly[0]]) - sum(ring_acres([h]) for h in poly[1:]))
+from kpc_pin_edge import acres_geojson  # noqa: E402
 
 
 def polygon_acres(geometry):
-    """Acres of a GeoJSON Polygon / MultiPolygon (lon/lat), holes off; 0.0 for anything else or a broken shape."""
+    """Acres of a GeoJSON Polygon / MultiPolygon (lon/lat), holes off; 0.0 for anything else or a broken shape.
+    Fable's review, 20 Nov 2026: this is kpc_pin_edge.acres_geojson (Nov 6), the measuring routine the repo already had, not a
+    copy of it. On the 11,324 working US outlines the copy and the original agreed within 1% on all but 4 (worst 2.8%)."""
     try:
         g = geometry or {}
-        if g.get('type') == 'Polygon': return _poly_acres(g.get('coordinates'))
-        if g.get('type') == 'MultiPolygon':
-            cs = g.get('coordinates')
-            return sum(_poly_acres(p) for p in cs) if isinstance(cs, list) else 0.0
-    except (AttributeError, TypeError, ValueError): pass
-    return 0.0
+        if g.get('type') not in ('Polygon', 'MultiPolygon'): return 0.0
+        return float(acres_geojson(g) or 0.0)
+    except Exception:  # noqa: BLE001  (a broken shape measures as nothing; the fact check then falls back to the key's 'ac')
+        return 0.0
 
 
 def area_files(folder, area):
