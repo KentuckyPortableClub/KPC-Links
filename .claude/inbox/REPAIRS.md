@@ -223,3 +223,42 @@ From Opus (19 Nov, 9:20-10:30 PM):
 - **MORE JOBS TO THE OWNER'S OUTSIDE AGENT (owner, 20 Nov 7:05 AM: "Outside agent can do more then the size check fix maybe they can get alot of the key problems fixed"):** `.claude/inbox/JOBS-OUTSIDE-AGENT-20-Nov.md`, seven jobs, that agent the ONE owner of each, Fable reads each draft: (1) the size check; (2) the "already applied" fault in `kpc_master_fill.py` that Opus found; (3) licence readings for five layers (the 19 parks the fill step refuses, and the Army Corps layer the two licence tables disagree on); (4) where the wrong joins really come from; (5) US-2635 and the #296 rows by a saved "no" with evidence; (6) one list per switch; (7) the test gate made honest.
 - **Wrong records by kind of layer, counted on the sample (Fable, 20 Nov 7:08 AM by the clock; counts only):** national layers (PAD-US and the like) 16 wrong of 586 records (2.7%); state layers marked "owned" 8 of 1,596 (0.5%); "compilation" 5 of 838 (0.6%). Across all keys 25,612 joined records on 10,353 parks come from national layers. **This corrects issue C of the hand-off and Fable's earlier line:** "boundary-line layers" are a few small layers (`sgmnb`, `mid`, New York's `sgnyc`), real but minor; the national layer joined by name is the largest source of wrong land. Plan step 3 becomes job 4 of the agent's list: find what separates wrong from right national-layer joins, rule sheet first, numbers on the sample.
 - **Opus's report, 20 Nov ~7:00 AM (read by Fable, not re-run):** the keeper is healthy (GitHub starts it 9 to 10 hours late every day; the last four runs green; the public shelf uploads, 1,098 of 1,247 parks). The 25 parks could NOT be filled: 19 are refused by the licence gate ("no licence or terms recorded": `dcnps`, `sggaf`, `dnrsf`, `usaceproj`), 6 are skipped by a fault ("already applied", `kpc_master_fill.py` about line 282). Nothing changed, so no round 5 report. Both go to the outside agent as jobs 2 and 3.
+
+## Wiring check: files a bot reads that no bot delivers (Fable, 20 Nov 7:25 AM by the clock; owner 7:10 AM: "all the unfinished work holes etc go un repaired....this bot talking to that bot")
+
+How: every bot script and workflow in KPC-Links and KPC-Data (481 files) was scanned for the file paths it reads; each path was checked against every file that exists on main in both repos. A first pass by pattern, so each line is a CANDIDATE until someone reads the code; 4 were read by hand. Not covered: paths built from variables, side branches other than what the code names, and the store's own bots.
+
+- **29 candidates.** Two are confirmed dead and matter now:
+  - `data/acres.json`: six bots read it, the acreage bot writes it somewhere else. (Job 1 of the outside agent.)
+  - `data/status/quality/verdicts.json`: the Release reads it and refuses every area without it; NOTHING writes it. So even after a perfect build no state could be released. **New plan step 9b: after the sample, the grade for each state is written into that file in the form `kpc_release.grade_allows` reads (the commit, the build, and per state RELEASE-READY: YES). The owner's yes is what the file records.**
+- The list:
+  - `data/acres.json` (read by 6): CONFIRMED DEAD by hand: the acreage bot writes tools-out acres/acres.json instead; three size tools wait for it
+  - `data/status/quality/verdicts.json` (read by 2): CONFIRMED DEAD by hand: nothing writes it; the Release refuses every area without it (kpc_release.grade_allows)
+  - `data/intake/ready.json` (read by 6)
+  - `data/intake/external-results.json` (read by 4)
+  - `data/pota/activity.json` (read by 3): FINE: written to tools-out and the readers look there too
+  - `data/waiting/in/data/pile-solver/needs-person.csv` (read by 3)
+  - `data/waiting/tripwires/not-sure.json` (read by 3): FINE: its writer is new (#292) and has not run
+  - `data/intake/collector.json` (read by 2)
+  - `data/waiting/in/data/pile-solver/solved-join.csv` (read by 2)
+  - `data/waiting/questions/hardlook.json` (read by 2)
+  - `data/waiting/questions/map-audit-auto.json` (read by 2)
+  - `data/waiting/questions/map-audit.json` (read by 2)
+  - `data/waiting/questions/world-finder.json` (read by 2)
+  - `data/agreement-ledger/trend.csv` (read by 1)
+  - `data/ca-key/area-tables.json` (read by 1)
+  - `data/hunters/work.json` (read by 1)
+  - `data/parkinfo/US-KY.json` (read by 1)
+  - `data/pile-solver/US-TN.json` (read by 1)
+  - `data/status/fers-chain/gate-log.md` (read by 1)
+  - `data/status/kpc_owned.json` (read by 1)
+  - `data/status/source-fields-coverage.json` (read by 1)
+  - `data/us-key/US-KY.json` (read by 1)
+  - `data/waiting/in/data/access/US-NY.json` (read by 1)
+  - `data/waiting/in/data/pile-solver/DE.json` (read by 1)
+  - `data/waiting/in/data/pile-solver/override-not-from-brandon.csv` (read by 1)
+  - `data/waiting/in/data/pile-solver/patterns.csv` (read by 1)
+  - `data/waiting/questions/no-recheck.json` (read by 1)
+  - `data/waiting/questions/pin-typos.json` (read by 1)
+  - `data/world-finder/stage.json` (read by 1)
+- **Job 8 for the outside agent (added to its list):** go through the candidates not yet read by hand. For each: is there a writer the scan missed, is the file one a person fills in, or is it a dead link? Dead links get one line each: who should write it, or which reader should be retired. No new bot without the owner's word.

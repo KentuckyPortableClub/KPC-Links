@@ -72,6 +72,12 @@ From saved files only: for D5 (leased land never joined by name) and the piece r
 
 Main's gate is red and `tests/known-fail-main.txt` is from 7 Nov, so "no new failures" leans on an old list. For each test failing on main today: is the test wrong, or the code? Fix the test or list it with a one-line reason and today's date. No rule file.
 
+## Job 8. The wiring check: files a bot reads that no bot delivers
+
+Fable scanned 481 bot files in both repos: 29 files are read by some bot, exist nowhere on main, and have no clear writer. The list is in `REPAIRS.md` under "Wiring check". Two are confirmed dead: `data/acres.json` (job 1) and `data/status/quality/verdicts.json` (the Release refuses every state without it and nothing writes it).
+
+For each of the others: read the code and say which it is: a writer the scan missed, a file a person fills in, a tool nobody uses any more, or a dead link. For a dead link, one line: who should write it, or which reader should be retired. Build no new bot; the owner decides on each.
+
 ## What Fable does
 
 Reads each draft and the rule sheet, checks your numbers against the repo, and says pass or not yet in one reply. Fable did not write these, so the read is independent.
