@@ -2249,6 +2249,26 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Daisy State Park' (chat 11; applied by kpc_key_answers)"
   },
+  "US-1080": {
+   "fp": {
+    "sgarb44": [
+     "DeGray Lake Resort State Park",
+     819
+    ]
+   },
+   "join": [
+    "sgarb44"
+   ],
+   "when": "2026-11-20",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'DeGray Lake Resort State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb44 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the NO on sgarb44 is lifted, the join stands (before: decided_by KPC owner, Nov 17 2026)",
+   "decided_by": "evidence batch 05, second pass (20 Nov 2026)",
+   "evidence": {
+    "who": "the owner's research agent, second pass (20 Nov 2026), from the agency's own page (club rule 15); first pass 20 Nov 2026 stood",
+    "source": "https://www.arkansasstateparks.com/parks/degray-lake-resort-state-park ; https://www.arkansas.com/sites/default/files/2026-01/DeGray%20Lake%20Resort%20Park%20Information%20Brochure%202026.pdf",
+    "saw": "Arkansas State Parks page (second pass, 20 Nov 2026): the park 'is located on the shores of beautiful DeGray Lake' and gives no park acreage. Official Arkansas State Parks brochure (2026, same site): 'On the shore of the 13,800-acre DeGray Lake ... is 938-acre DeGray Lake Resort State Park.' The NO's saved fingerprint (12,342.6 ac) is lake-sized; record sgarb44 in the 11 Nov read is named 'DeGray Lake Resort State Park', 828 ac (park-scale, 12% under the official 938; the join saved 819). The NO stood for other land (the lake), so it comes off the park's own record; the lake stays with the D4 check. The Corps Vicksburg District page was not readable in this pass (the server refused the request); the official brochure is the lake-acreage witness.",
+    "date": "2026-11-20"
+   }
+  },
   "US-1082": {
    "fp": {
     "sgarb29": [
@@ -2365,6 +2385,46 @@
     "source": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0 (Arkansas State Parks StateParks layer, park_num PT27, last edited 2026-01-10); https://www.arkansas.com/state-parks/explore/parks/lake-fort-smith-state-park",
     "saw": "layer record 'Lake Fort Smith State Park' (PT27) acres 256.685746; our record sgarb19 'Lake Fort Smith State Park' 257 ac. The park page gives no park acreage.",
     "date": "2026-11-19"
+   }
+  },
+  "US-1093": {
+   "fp": {
+    "sgarb27": [
+     "Lake Frierson State Park",
+     119
+    ]
+   },
+   "join": [
+    "sgarb27"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Lake Frierson State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb27 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline ) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the NO on sgarb27 is lifted, the join stands",
+   "decided_by": "evidence batch 05, second pass (20 Nov 2026)",
+   "evidence": {
+    "who": "the owner's research agent, second pass (20 Nov 2026), from the agency's own page (club rule 15); first pass 20 Nov 2026 stood",
+    "source": "https://www.arkansasstateparks.com/parks/lake-frierson-state-park",
+    "saw": "Arkansas State Parks (second pass, 20 Nov 2026): 'Located on the shores of 335-acre Lake Frierson'. The NO's saved fingerprint (455.4 ac) is the park's record (119 ac saved with the join) plus the 335-acre lake; record sgarb27 in the 11 Nov read is 'Lake Frierson State Park', 115 ac. The NO stood for the lake, so it comes off the park's own record; the lake stays with the D4 check.",
+    "date": "2026-11-20"
+   }
+  },
+  "US-1094": {
+   "fp": {
+    "sgarb13": [
+     "Lake Ouachita State Park",
+     459
+    ]
+   },
+   "join": [
+    "sgarb13"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Lake Ouachita State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb13 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the NO on sgarb13 is lifted, the join stands",
+   "decided_by": "evidence batch 05, second pass (20 Nov 2026)",
+   "evidence": {
+    "who": "the owner's research agent, second pass (20 Nov 2026), from the agency's own page (club rule 15); first pass 20 Nov 2026 stood",
+    "source": "https://www.arkansasstateparks.com/parks/lake-ouachita-state-park",
+    "saw": "Arkansas State Parks (second pass, 20 Nov 2026): 'Lake Ouachita, offers 40,000 acres of clear, clean water'. The NO's saved fingerprint (39,495.8 ac) is the lake; record sgarb13 in the 11 Nov read is 'Lake Ouachita State Park', 472 ac (459 saved with the join). The NO stood for the lake, so it comes off the park's own record; the lake stays with the D4 check.",
+    "date": "2026-11-20"
    }
   },
   "US-1095": {
@@ -8123,6 +8183,26 @@
    ],
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Long Branch State Park' (chat 11; applied by kpc_key_answers)"
+  },
+  "US-1773": {
+   "fp": {
+    "sgmoa1495": [
+     "Meramec State Park",
+     6652
+    ]
+   },
+   "join": [
+    "sgmoa1495"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Meramec State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgmoa1495 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline ) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the NO on sgmoa1495 is lifted, the join stands",
+   "decided_by": "evidence batch 05, second pass (20 Nov 2026)",
+   "evidence": {
+    "who": "the owner's research agent, second pass (20 Nov 2026), from the agency's own page (club rule 15); first pass 20 Nov 2026 stood",
+    "source": "https://mostateparks.com/sites/g/files/zuston361/files/media/pdf/2025/02/MissouriStatePark_Designation_Acreages.pdf",
+    "saw": "Missouri State Parks acreage report (second pass, 20 Nov 2026; official PDF opened): 'Meramec 6,896.33' acres. Record sgmoa1495 in the 12 Nov read is 'Meramec State Park', 6,673 ac (3% under; 6,652 saved with the join). The NO's saved fingerprint (10,690.1 ac) is 55% over the official park size, so it stood for other land and comes off the park's own record.",
+    "date": "2026-11-20"
+   }
   },
   "US-1774": {
    "fp": {

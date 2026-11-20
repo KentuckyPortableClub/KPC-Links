@@ -1067,7 +1067,12 @@ def zip_state(st, have):
             if bad_shp: notice(f'US key {st}', f'{label}: {bad_shp} empty / broken shapes skipped (the rest read)')
             XCOUNT[pre] = XCOUNT.get(pre, 0) + n
             LAYERS_ZIP[pre] = [url, nf, label]
-        except Exception as e: notice(f'US key {st}', f'{label} not read ({str(e)[:120]})')  # noqa: BLE001
+        except Exception as e:  # noqa: BLE001
+            # 2026-11-20 (job 9; R6; review F10 'a missing layer is only a notice', about line 1070; switch KPC_HOLD_ON_PASS_ERROR,
+            # OFF): ON, a zipped layer that cannot be read (download, zip, shapefile, or pyshp / pyproj missing) holds the state
+            # (run() fails, no key file, saved copy kept). OFF: the notice, as before.
+            KR.hold_state(st, f'{label} not read ({str(e)[:120]})', KR.on('KPC_HOLD_ON_PASS_ERROR', area=st))
+            notice(f'US key {st}', f'{label} not read ({str(e)[:120]})')
     return out
 
 
@@ -1093,6 +1098,9 @@ def extra_state(st, have, only=None):
         else:
             try: url, nf, af, oidf = resolve(pre, url, nf, af)
             except Exception as e:  # noqa: BLE001
+                # 2026-11-20 (job 9; R6; review F10 'a missing layer is only a notice'; switch KPC_HOLD_ON_PASS_ERROR, OFF): ON, a
+                # layer that cannot be found holds the state (run() fails, no key file, saved copy kept). OFF: the notice, as before.
+                KR.hold_state(st, f'{label} layer not found ({e})', KR.on('KPC_HOLD_ON_PASS_ERROR', area=st))
                 notice(f'US key {st}', f'{label} layer not found ({e})'); continue
         n = 0
         # Nov 6 (big key / 2-fer patch): the layer's stable id / official acres / owner / parent fields (kpc_source_fields: the one
@@ -1917,8 +1925,32 @@ def _fs_owned_note(parks):
             p['owned_only'] = 'Forest Service-owned land only (Basic Ownership map: OWNERCLASSIFICATION = USDA FOREST SERVICE)'
 
 
+OUTLINE_LAYERS = 'data/outlines/layers.json'
+_OBL = {}
+def outline_baseline(st, pre):
+    """2026-11-20 (job 9): the saved-copy baseline (expected_count) of layer `pre` in state `st` from data/outlines/layers.json, or None."""
+    if 'l' not in _OBL:
+        try: _OBL['l'] = json.load(open(OUTLINE_LAYERS, encoding='utf-8')).get('layers') or {}
+        except Exception: _OBL['l'] = {}  # noqa: BLE001  (a missing file holds the state first: rule_data_files)
+    n = (_OBL['l'].get(f'US-{st}.{pre}') or {}).get('expected_count')
+    return n if isinstance(n, int) and not isinstance(n, bool) and n > 0 else None
+
+
+def rule_data_files():
+    """2026-11-20 (job 9; review F14): the rule data files a US state is built from, where a missing file used to read as 'no rule'
+    (no saved joins or nos, no retired numbers, no transfers, no state layers, new layer prefixes, no baselines; the agency
+    table only when KPC_AGENCY_TIE is on for this state)."""
+    fs = [str(OUT / 'overrides.json'), 'data/retired-refs.json', 'data/park-transfers.json', 'data/state-gis.json', str(OUT / 'layers.json'), OUTLINE_LAYERS]
+    if _kr('KPC_AGENCY_TIE'): fs.append(KR.AGENCY_TABLE)
+    return fs
+
+
 def run(st):
     CUR_ST['st'] = st   # the rule switches are read for this state (key-switches.json)
+    # 2026-11-20 (job 9; R6; review F14 'missing rule data means no rule'; switch KPC_HOLD_ON_PASS_ERROR, OFF): ON, a rule data file
+    # that is missing or unreadable holds the state instead of reading as 'no rule'. OFF: as before (each file read as it always was).
+    _rd = KR.rule_data_missing(rule_data_files())
+    if _rd: KR.hold_state(st, 'rule data missing or unreadable: ' + ', '.join(f'{p} {w}' for p, w in _rd), _kr('KPC_HOLD_ON_PASS_ERROR'))
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']; P_ALL.clear(); P_ALL.update(P)
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
     try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}   # Oct 29: retired numbers leave the key (issue #17)
@@ -1950,6 +1982,14 @@ def run(st):
                 if len(x) > 7 and x[7] is not None and st not in x[7]:
                     continue
                 if saved_only(url):
+                    # 2026-11-20 (job 9; R6; review F10 'saved-copy-only layers are never short-checked'; switch KPC_HOLD_ON_PASS_ERROR,
+                    # OFF): no live count may be asked of such a host, so ON compares the saved copy with the layer's baseline in
+                    # data/outlines/layers.json; under 97% of it holds the state (it cannot be re-read). OFF: skipped, as before.
+                    if KR.on('KPC_HOLD_ON_PASS_ERROR', area=st):
+                        _bl = outline_baseline(st, pre)
+                        _nh = sum(1 for a in recs if str(a.get('OBJECTID') or '').startswith(pre) and str(a.get('OBJECTID'))[len(pre):].isdigit())
+                        if _bl and _nh < 0.97 * _bl:
+                            KR.hold_state(st, f'saved copy of {pre} is short ({_nh} areas, baseline {_bl}) and its host is saved-copy only, so it cannot be re-read', True)
                     continue
                 opt = x[8] if len(x) > 8 else {}
                 n_have = sum(1 for a in recs if str(a.get('OBJECTID') or '').startswith(pre) and str(a.get('OBJECTID'))[len(pre):].isdigit())
@@ -2008,6 +2048,12 @@ def run(st):
         old = load_cache(st) if st in FAILED_READ else None
         # only when this read actually came back SHORT (a source that fails every time is already missing from the
         # saved copy too, and must not freeze the state on an old copy forever)
+        # 2026-11-20 (job 9; R6; review F10 'a state read up to 3% short of the last one is accepted'; switch KPC_HOLD_ON_PASS_ERROR,
+        # OFF): ON, a failed layer read that the state would be built from anyway (no saved copy, or under 3% short of it) holds
+        # the state. A read more than 3% short still falls back to the saved copy below (nothing dropped). OFF: as before.
+        if st in FAILED_READ and not (old is not None and len(recs) < .97 * len(old[0])):
+            KR.hold_state(st, f'a layer read failed and the state would be built from that read ({len(recs)} areas read, '
+                          + (f'{len(old[0])} saved)' if old is not None else 'no saved copy)'), _kr('KPC_HOLD_ON_PASS_ERROR'))
         if old is not None and len(recs) < .97 * len(old[0]):
             notice(f'US key {st}', f'a map did not answer ({len(recs)} areas read, {len(old[0])} saved), so the saved copy was used (nothing dropped)')
             recs, seen, used_detail = old; CACHE_USED.append(st)
@@ -2048,6 +2094,28 @@ def run(st):
         if _moved:
             notice(f'US key {st}', 'D1 a person\'s rows = the land: ' + ', '.join(f"{k} {sum(1 for x in _moved if x[1] == k)}" for k in ('join moved', 'join check', 'no moved', 'no kept') if any(x[1] == k for x in _moved))
                    + ' (' + '; '.join(f'{x[0]} {x[1]} {x[2]}->{x[3]}' for x in _moved[:12]) + ')')
+    if _kr('KPC_NO_FOLLOWS_FP'):
+        # Job 10 (Fable's 20 Nov jobs list; outside review R4 / finding F7, Arkansas US-1080): a person's NO named a record id; after a
+        # layer refresh renumbers that record, the NO no longer applied and the land joined again. A 'no' id gone from the read
+        # follows its saved fingerprint ('nofp': name + acres within 10%, the SAME layer, near the pin), as a saved join does.
+        _ids = {_oid(a) for a in recs}
+        _fol = []
+        for ref in sorted(P):
+            ov_ = OVR.get(ref)
+            if not ov_ or not ov_.get('nofp') or not ov_.get('no'): continue
+            r_ = P[ref]; la_, lo_ = (r_[5], r_[6]) if len(r_) > 6 else (None, None)
+            if la_ is None and ref in pins(): la_, lo_ = pins()[ref]
+            def _rfn(old, nm, ac, la_=la_, lo_=lo_):
+                fam = re.match(r'\D*', old).group()
+                return [a for a in recs if re.match(r'\D*', _oid(a)).group() == fam and _nf(nm) in {_nf(n_) for n_ in KR.rec_names(a) or [a.get('Unit_Nm') or a.get('Loc_Nm') or '']}
+                        and (la_ is None or near(la_, lo_, a['_bb'], .6))]
+            nov, notes = KR.follow_gone_no(ov_, lambda i: i in _ids, _rfn)
+            if not notes: continue
+            OVR[ref] = nov
+            _fol += [(ref,) + n for n in notes]
+        if _fol:
+            notice(f'US key {st}', 'a NO follows its record (KPC_NO_FOLLOWS_FP): ' + ', '.join(f"{k} {sum(1 for x in _fol if x[1] == k)}" for k in ('no followed', 'no not found', 'no meets join') if any(x[1] == k for x in _fol))
+                   + ' (' + '; '.join(f"{x[0]} {x[1]} {x[2]}->{'+'.join(x[3]) or '-'}" for x in _fol[:12]) + ')')
     parks, used = {}, set()
     RD.clear()
     SAVED_SAY[:] = [h for h in SAVED_SAY if h[0] != st]   # F5: a state built twice in one run is counted once
