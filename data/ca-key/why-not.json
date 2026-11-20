@@ -2,7 +2,7 @@
  "about": "R-GC8 'why not' tag for every Canada park with NO outline in the current Canada key (kpc_ca_whynot.py, after each Canada key build). Same tags as the US file: no-layer / picture-map-only / private / name-mismatch / needs-parcel / pin-doubt.",
  "counts": {
   "needs-parcel": 295,
-  "no-layer": 1165,
+  "no-layer": 1164,
   "name-mismatch": 28,
   "private": 9
  },
@@ -3913,11 +3913,6 @@
    "why": "the province's Fable file says so"
   },
   "CA-5505": {
-   "st": "ON",
-   "tag": "no-layer",
-   "why": "the province's Fable file says so"
-  },
-  "CA-5506": {
    "st": "ON",
    "tag": "no-layer",
    "why": "the province's Fable file says so"

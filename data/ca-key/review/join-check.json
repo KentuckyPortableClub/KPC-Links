@@ -1,7 +1,7 @@
 {
  "key": "ca",
  "mode": "hold",
- "files_checked": 10,
+ "files_checked": 24,
  "joined_parks": 4276,
  "suspect": 50,
  "held": 19,
@@ -581,7 +581,6 @@
   "CA-NL",
   "CA-NS",
   "CA-NT",
-  "CA-ON",
   "CA-QC",
   "CA-SK",
   "CA-YT"

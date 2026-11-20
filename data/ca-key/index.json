@@ -2,11 +2,11 @@
  "gate": {
   "bad": [],
   "checked": 5,
-  "date": "2026-11-16",
+  "date": "2026-11-20",
   "result": "PASS"
  },
- "previous_build": "CA-43803071681",
- "previous_built": "2026-11-16 04:21 UTC",
+ "previous_build": "CA-43866754543",
+ "previous_built": "2026-11-16 12:31 UTC",
  "provinces": {
   "AB": {
    "check": 2,
@@ -19,12 +19,12 @@
    "pin_swap": 0,
    "pin_well_outside": 5,
    "site": 20,
-   "rules": "ba480fa34fb6",
-   "area_hash": "094503e30da5",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "fe268926311d",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -43,7 +43,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "807d8728b0b58a61a7b1b105035db1366c3d9f6081a817949fff0b4fb508f99a",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "BC": {
    "check": 8,
@@ -56,12 +56,12 @@
    "pin_swap": 0,
    "pin_well_outside": 6,
    "site": 13,
-   "rules": "ba480fa34fb6",
-   "area_hash": "6e1098f0ed4d",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "e93a1f45bb14",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -82,7 +82,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "e118bb7d09e8685521da41daf764fb0756f4b355888a316928d624bd200737a0",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "MB": {
    "check": 0,
@@ -95,12 +95,12 @@
    "pin_swap": 0,
    "pin_well_outside": 3,
    "site": 5,
-   "rules": "ba480fa34fb6",
-   "area_hash": "f4676d9b7e46",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "ae15702939c3",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -117,7 +117,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "fe344f83cd6ecc8a71d858c77bdd4b769678b045d1abddc042e16ca3bcfd185c",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "NB": {
    "check": 8,
@@ -130,12 +130,12 @@
    "pin_swap": 0,
    "pin_well_outside": 27,
    "site": 185,
-   "rules": "ba480fa34fb6",
-   "area_hash": "a27000f1ad12",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "b69c9a493f4d",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -157,7 +157,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "742a98f4bf97d1aed88c9d90d64dd398f205d9e86bc5f34b13e7eb98daef7d8f",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "NL": {
    "check": 1,
@@ -169,13 +169,13 @@
    "pin_outside": 28,
    "pin_swap": 0,
    "pin_well_outside": 1,
-   "rules": "ba480fa34fb6",
+   "rules": "dfef94b3dfd3",
    "site": 1,
-   "area_hash": "b94ee100825b",
+   "area_hash": "27aef304d5f5",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -207,12 +207,12 @@
    "pin_swap": 0,
    "pin_well_outside": 2,
    "site": 11,
-   "rules": "ba480fa34fb6",
-   "area_hash": "812ee7c057e2",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "220eb6c7a6fb",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -231,7 +231,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "6c1035d3075e0d39e884afa2fba2ebf65c59557a345a0ec442e3ee2a69b34798",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "NT": {
    "check": 0,
@@ -244,12 +244,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "site": 4,
-   "rules": "ba480fa34fb6",
-   "area_hash": "25358050ca8d",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "e7a76b4fb2fd",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -268,7 +268,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "f3db611d9d383d90d07c572881a1d92b17c9d13610f2a5d99fdf565e36088550",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "NU": {
    "check": 0,
@@ -281,12 +281,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "site": 2,
-   "rules": "ba480fa34fb6",
-   "area_hash": "a53561f2185a",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "0dc763e2a658",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -304,25 +304,25 @@
     "version": "37c450043f9e"
    },
    "out_sha": "b4488ea111db85f69aa928ba2208fb279d667e89ba221ad3e0540870a4bbc53d",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "ON": {
    "check": 10,
    "detail": 0.02,
    "matched": 956,
-   "none": 191,
-   "parks": 1180,
+   "none": 190,
+   "parks": 1179,
    "pin_no_shape": 16,
-   "pin_outside": 387,
+   "pin_outside": 386,
    "pin_swap": 0,
    "pin_well_outside": 7,
    "site": 27,
-   "rules": "ba480fa34fb6",
-   "area_hash": "f634898d384a",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "7db38a7cced2",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -331,20 +331,21 @@
     "data:data/ca-key/overrides.json": "b1fdbf619d90",
     "data:data/canada-bounds/*": "e9073db2a795",
     "data:data/intake/official-pins-nov12.json": "7ca02fe25936",
+    "data:data/retired-refs.json": "75523abffff0",
     "data:data/state-gis.json": "085a3bd88d51",
-    "data:data/trails/*": "c6d0c5baa2f4",
-    "data:data/trails/index": "a2e67c278a49",
+    "data:data/trails/*": "08a0ba5ff21b",
+    "data:data/trails/index": "9514c2dddf1a",
     "gate:CA-ALL": "031b8db275d4",
     "hosts": "0567ed19698d",
     "hosts:shared-code-urls": "df70238ba6aa",
-    "pins": "e5be22f555f1",
+    "pins": "3ccbf0e75033",
     "rules-version": "a7da912f6586",
     "shared:data/ca-key/area-tables.json!missing": "ffa63583dfa6",
     "shared:data/ca-key/layers.json": "56393f0b75be",
     "version": "37c450043f9e"
    },
-   "out_sha": "605655b0257987359ea154a3851e5693bfa3f03082b28c8b1954702cee98b080",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "out_sha": "8ad26feb6dba5f69838e77aada2bc8901ef668a89d853a56774cc4775e5dd115",
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "PE": {
    "check": 1,
@@ -357,12 +358,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "site": 7,
-   "rules": "ba480fa34fb6",
-   "area_hash": "383612515a42",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "5265072214ea",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -380,7 +381,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "0995edce4e823abafb98f521d229ab9c16cd2dfbb8519846e3090f3f484991ff",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "QC": {
    "check": 29,
@@ -393,12 +394,12 @@
    "pin_swap": 0,
    "pin_well_outside": 5,
    "site": 35,
-   "rules": "ba480fa34fb6",
-   "area_hash": "a92c9e0670b4",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "ba3c34a9decd",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -418,7 +419,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "c39cefb6118bcf1f3a3eeb1500668e8b9c167236cdad7442189f45b3871d0df1",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "SI": {
    "check": 0,
@@ -431,12 +432,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "site": 0,
-   "rules": "ba480fa34fb6",
-   "area_hash": "79ec25ec2b82",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "652d79434543",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -452,7 +453,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "1716b4259d87a8eee9e5772f30072dbe0003c1744684ecd1883771019bcdf1d5",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "SK": {
    "check": 0,
@@ -465,12 +466,12 @@
    "pin_swap": 0,
    "pin_well_outside": 17,
    "site": 28,
-   "rules": "ba480fa34fb6",
-   "area_hash": "3023bc253707",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "b167220a9d8b",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -491,7 +492,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "cc3ae76985f19847a239b47d6b80dbc35eab6a190049ec3fe4981492c9b2ae73",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "SP": {
    "check": 0,
@@ -504,12 +505,12 @@
    "pin_swap": 0,
    "pin_well_outside": 0,
    "site": 0,
-   "rules": "ba480fa34fb6",
-   "area_hash": "f62b48ac32e4",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "c62b0e5f5b39",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -524,7 +525,7 @@
     "version": "37c450043f9e"
    },
    "out_sha": "d2012eb41f1135316907ac95eb5e311683b96a25a1dca93b9c5c29063559965c",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   },
   "YT": {
    "check": 0,
@@ -537,12 +538,12 @@
    "pin_swap": 0,
    "pin_well_outside": 1,
    "site": 9,
-   "rules": "ba480fa34fb6",
-   "area_hash": "c17f62596843",
+   "rules": "dfef94b3dfd3",
+   "area_hash": "c56fdcf1a533",
    "area_parts": {
     "code:.github/scripts/kpc_ca_fill_bounds.py": "c1d6875b2820",
     "code:.github/scripts/kpc_ca_hardlook.py": "5a8b2e705acc",
-    "code:.github/scripts/kpc_ca_key.py": "2161ac7f1f1c",
+    "code:.github/scripts/kpc_ca_key.py": "3a831b086ec3",
     "code:.github/scripts/kpc_key_facts.py": "ecd3fa2e02e1",
     "code:.github/scripts/kpc_pin_fill.py": "764e91fcf3dd",
     "composition": "292f8bff4e84",
@@ -561,10 +562,10 @@
     "version": "37c450043f9e"
    },
    "out_sha": "345f929d4a001aa5159a79d83c3798d3d35b45cbd83802f7131536fa4d506f51",
-   "built_sha": "a7514acbdb5c0cba355df02d98d9aa53a8bd8173"
+   "built_sha": "35076ee86f968eeba7e775af81f0ed3f071f8e91"
   }
  },
- "rules": "ba480fa34fb6",
+ "rules": "dfef94b3dfd3",
  "rules_files": [
   ".github/ca-key-rule-scope.json",
   ".github/scripts/kpc_ca_fill_bounds.py",
@@ -574,12 +575,12 @@
   ".github/scripts/kpc_pin_fill.py",
   ".github/key-rules-version.json"
  ],
- "rules_of_run": "ba480fa34fb6",
+ "rules_of_run": "dfef94b3dfd3",
  "inputs": {
-  "us-key": "US-43788025927"
+  "us-key": "US-44613348117"
  },
- "build": "CA-43866754543",
- "built": "2026-11-16 12:31 UTC",
+ "build": "CA-44729612014",
+ "built": "2026-11-20 11:45 UTC",
  "areas_rebuilt": [
   "AB",
   "BC",
