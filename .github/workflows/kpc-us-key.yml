@@ -687,8 +687,6 @@ jobs:
           rm -rf .pi .solver-cache
       - name: Drop guard (KPC owner, 2026-11-11) - a state that loses more than 3% of its official parks is kept from main (Nov 12) and the run ends red
         env:
-          GH_TOKEN: ${{ github.token }}   # held copies only: one release asset on this repo (contents: write)
-          KPC_HELD_COPIES: ${{ vars.KPC_HELD_COPIES || '1' }}   # 0 = do not keep the held states' would-be files
           KPC_DROP_OK: ${{ vars.KPC_DROP_OK }}   # states whose drop a person expects, for one run ("NV" or "NV UT"); clear it after
           KPC_DROP_PCT: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}   # KPC owner, 2026-11-15: store mode = never worse (any lost official park or outline keeps the state from main)
           KPC_DROP_MIN: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}
@@ -699,23 +697,32 @@ jobs:
           # alone): a failed state is put back to main byte for byte (key, tracts, outlines, index row) and named failed; the other states
           # are saved; the verdict step at the end goes red. Only a state that cannot be put back leaves the mark (nothing saved).
           : > /tmp/kpc-drop-failed.txt
-          # HELD COPIES (KPC owner, 2026-11-18 3:35 AM: 'Does 1 hurt storage or anything?' - no): before the guard puts a state back
-          # to main, keep this run's would-be file, so a held state can be graded without rebuilding it. Only the states the guard
-          # holds are kept, as ONE release asset (release 'key-held', replaced each run): never in git history, never on main.
-          # (-R: the copies sit outside the checkout, so gh is told the repo; the first try on 18 Nov failed without it)
-          rm -rf /tmp/kpc-built-keys; mkdir -p /tmp/kpc-built-keys; cp data/us-key/US-??.json /tmp/kpc-built-keys/ 2>/dev/null || true
+          # The would-be files are copied aside BEFORE the guard puts a held state back. The upload itself is the next step, and that
+          # step does not run in store mode (a GitHub variable cannot turn the upload on while KPC_KEY_SOURCE is store).
+          rm -rf /tmp/kpc-built-keys; mkdir -p /tmp/kpc-built-keys; cp data/us-key/US-??.json /tmp/kpc-built-keys/ 2>/dev/null || true   # ok: a state with no key file yet is fine; the copies are what the held-copies step uploads
           python3 .github/scripts/kpc_key_drop_guard.py --ref HEAD --mark /tmp/kpc-key-drop-bad --restore --failed-out /tmp/kpc-drop-failed.txt
           # a kept state's review rows come back from main too (its key file is main's again)
           if [ -s /tmp/kpc-drop-failed.txt ]; then python3 .github/scripts/kpc_area_join.py keep-rows --unchanged --key-dir data/us-key --review data/us-key/review; fi
+      - name: Held copies (KPC owner, 2026-11-18) - the would-be files of the states the drop guard held
+        if: ${{ vars.KPC_KEY_SOURCE != 'store' }}   # store mode never uploads a release; the if is in the workflow, not only a variable
+        env:
+          GH_TOKEN: ${{ github.token }}   # one release asset on this repo (contents: write)
+          KPC_HELD_COPIES: ${{ vars.KPC_HELD_COPIES || '1' }}   # 0 = do not keep the held states' would-be files
+        run: |
+          # HELD COPIES (KPC owner, 2026-11-18 3:35 AM: 'Does 1 hurt storage or anything?' - no). Only the states the guard
+          # holds are kept, as ONE release asset (release 'key-held', replaced each run): never in git history, never on main.
+          # (-R: the copies sit outside the checkout, so gh is told the repo; the first try on 18 Nov failed without it)
+          # This step does not run in store mode. The drop-guard step already copied the would-be files to /tmp/kpc-built-keys.
           if [ -s /tmp/kpc-drop-failed.txt ] && [ "${KPC_HELD_COPIES:-1}" = 1 ]; then
-            ( set +e; cd /tmp/kpc-built-keys
-              files=$(for st in $(tr ',' ' ' < /tmp/kpc-drop-failed.txt); do st=${st#US-}; [ -f "US-$st.json" ] && echo "US-$st.json"; done)
-              [ -n "$files" ] && tar -czf /tmp/key-held.tar.gz $files \
+            cd /tmp/kpc-built-keys
+            files=$(for st in $(tr ',' ' ' < /tmp/kpc-drop-failed.txt); do st=${st#US-}; [ -f "US-$st.json" ] && echo "US-$st.json"; done)
+            if [ -n "$files" ]; then
+              tar -czf /tmp/key-held.tar.gz $files \
                 && { gh release view key-held -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create key-held -R "$GITHUB_REPOSITORY" --title 'US key: held states (would-be copies)' --notes 'The would-be key files of the states the drop guard held in the newest US key run (replaced each run). For grading only; never released.' >/dev/null 2>&1; } \
                 && gh release upload key-held /tmp/key-held.tar.gz -R "$GITHUB_REPOSITORY" --clobber >/dev/null 2>&1 \
                 && echo "::notice title=Held copies::the would-be files of the held states are on the release 'key-held' ($(echo $files | wc -w) state(s))" \
-                || echo "::warning title=Held copies::could not keep the held states' would-be files (the run is not affected)"
-              true )
+                || { kpc_rc=$?; echo "::warning title=Held copies::could not keep the held states' would-be files (exit $kpc_rc; the run is not affected)"; echo "Held copies - could not keep the held states' would-be files (exit $kpc_rc; the run is not affected)" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
+            fi
           fi
       - name: BUILD STAMP (Brandon Nov 2) - this build's id in data/us-key/index.json, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when every state built)
         id: us_stamp   # Nov 12 (KPC owner, 2026-11-12): Save needs this step green (an unstamped key is not saved)
@@ -896,7 +903,7 @@ jobs:
           python3 .github/scripts/kpc_area_join.py summary --record /tmp/us-join.json --index data/us-key/index.json --title 'US key join'
           # S2 (keys-first rev 3.1, F21; Opus 19 Nov): a held state is a warning (no failure email); a part that never came back is red
           python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')); sys.exit(1 if r.get('faults', r.get('red')) else 0)" || { echo "::error title=US key run::RED: a state's build failed (see the table above); the others were saved"; exit 1; }
-          python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')); sys.exit(1 if r.get('held') else 0)" || echo "::warning title=US key run::HELD: the states above were kept from main (not saved this run); the others were saved"
+          python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')); sys.exit(1 if r.get('held') else 0)" || { echo "::warning title=US key run::HELD: the states above were kept from main (not saved this run); the others were saved"; echo "US key run - HELD: the states above were kept from main (not saved this run); the others were saved" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Master check verdict (owner rule, 2026-11-10) - data/outlines was kept out of the save; go red
         if: ${{ always() }}
         run: |

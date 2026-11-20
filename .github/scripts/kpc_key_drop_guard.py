@@ -30,6 +30,9 @@ KPC_DROP_PCT 0 and KPC_DROP_MIN 0) EVERY state is now judged by park: any park t
 not named on the approved list holds the state, whatever was gained elsewhere. KPC_DROP_OK still lets an unlisted state through.
 STOP: the same file may carry "stop": {"MT": "why"}: that state is held whatever its list or KPC_DROP_OK says (a known fault that a
 lost-outline list cannot see, such as an outline that keeps its place but loses most of its land). `approve` refuses a stopped state.
+O9 (20 Nov, report only, nothing held): a park that still has joined records on both sides can have its records swapped, can have
+gained land, or can have quietly shrunk. The lost-outline count cannot see any of those. The guard prints one REPORT line with the
+three counts between the released key (data/released/us-key) and today's key. That line never holds a state.
 
   python3 .github/scripts/kpc_key_drop_guard.py [--ref HEAD] [--key data/us-key] [--mark FILE] [--approved FILE]
   python3 .github/scripts/kpc_key_drop_guard.py approve --lost lost.json [grade-drops.json] --states "AK MT" --decided-by "KPC owner, <date> (<words>)" [--out FILE]"""
@@ -53,6 +56,89 @@ def official_set(doc):
 def lost_parks(before_doc, now_doc):
     """The parks a person must have named: had an outline and has none now, or was graded official and is not any more."""
     return (outlined(before_doc) - outlined(now_doc)) | (official_set(before_doc) - official_set(now_doc))
+
+
+def record_moves(before_doc, now_doc):
+    """REPORT only (O9). Parks that still have joined records on both sides, so the lost-outline count cannot see them.
+    swapped   some old record ids are gone and different ones came in
+    gained    it kept every old record id and either a new one came in, or (same ids) its acres are over 2x what they were
+    shrank    no new record id came in and either an old one is gone, or (same ids) its acres are under half what they were
+    The 0.5x and 2x are kpc_key_health.RATIO, the band key health already uses. A park that joined to nothing is not here
+    (lost_parks already counts it). Returns {kind: [park ref]} plus 'why': {ref: 'ids' or 'acres'}."""
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    import kpc_key_health as KH  # noqa: E402  (RATIO, and acres_of / ids_of via the post-check it already uses)
+    import kpc_key_postcheck as PK  # noqa: E402
+    lo, hi = KH.RATIO
+    bp, np = (before_doc or {}).get('parks') or {}, (now_doc or {}).get('parks') or {}
+    out = {'swapped': [], 'gained': [], 'shrank': [], 'why': {}}
+    for ref in sorted(set(bp) & set(np)):
+        b, n = bp.get(ref), np.get(ref)
+        if not (isinstance(b, dict) and isinstance(n, dict) and b.get('m') and n.get('m')): continue
+        ib, inn = PK.ids_of(b), PK.ids_of(n)
+        lost, got = ib - inn, inn - ib
+        if lost and got:
+            out['swapped'].append(ref); out['why'][ref] = 'ids'; continue
+        if got:
+            out['gained'].append(ref); out['why'][ref] = 'ids'; continue
+        if lost:
+            out['shrank'].append(ref); out['why'][ref] = 'ids'; continue
+        ab, an = PK.acres_of(b), PK.acres_of(n)
+        if not ab or an is None or ab <= 0: continue
+        if an > ab * hi:
+            out['gained'].append(ref); out['why'][ref] = 'acres'
+        elif an < ab * lo:
+            out['shrank'].append(ref); out['why'][ref] = 'acres'
+    return out
+
+
+def report_line(counts):
+    """The one REPORT line. Counts only: it names no park, and it is a notice, so it cannot hold a state."""
+    return (f'::notice title=Drop guard report::between the released key and today\'s key: '
+            f'{counts.get("swapped", 0)} park(s) had their records swapped, {counts.get("gained", 0)} gained land, '
+            f'{counts.get("shrank", 0)} quietly shrank. Report only: nothing is held for these.')
+
+
+def released_counts(repo, key='data/us-key'):
+    """(counts, skipped states) between data/released/us-key and the working key. None when that folder is not here
+    (a test repo, or a checkout that has not unpacked a release). A state whose parts do not join is skipped, not half-counted."""
+    rel = pathlib.Path(repo) / 'data' / 'released' / 'us-key'
+    if not rel.is_dir(): return None
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    import kpc_release as REL  # noqa: E402  (join: the same part-joining the release already uses)
+    counts = {'swapped': 0, 'gained': 0, 'shrank': 0}
+    detail = {'swapped_ids': 0, 'gained_ids': 0, 'gained_acres': 0, 'shrank_ids': 0, 'shrank_acres': 0}
+    skipped = []
+    for f in sorted(pathlib.Path(repo, key).glob('US-??.json')):
+        st = f.name[3:5]
+        paths = [p for p in [rel / f'US-{st}.json'] if p.is_file()] + sorted(rel.glob(f'US-{st}.p*.json'))
+        if not paths: continue
+        try:
+            docs = [json.loads(p.read_text(encoding='utf-8')) for p in paths]
+            docs.sort(key=lambda d: (d.get('kpc_part') or [1])[0])
+            before = REL.join(docs) if any(isinstance(d, dict) and d.get('kpc_part') for d in docs) else docs[0]
+            now = json.loads(f.read_text(encoding='utf-8'))
+            moves = record_moves(before, now)
+        except Exception:  # noqa: BLE001  a part that will not join is left out of the count, never a hold
+            skipped.append(st); continue
+        for knd in ('swapped', 'gained', 'shrank'):
+            counts[knd] += len(moves[knd])
+            for ref in moves[knd]: detail[knd + '_' + moves['why'][ref]] += 1
+    counts['detail'] = detail
+    return counts, skipped
+
+
+def _print_released_report(repo, key):
+    """Print the REPORT line. A failure here is a notice: it never changes the guard's exit code."""
+    try: rep = released_counts(repo, key)
+    except Exception as e:  # noqa: BLE001
+        print(f'::notice title=Drop guard report::the released-key count was not made ({type(e).__name__}: {str(e)[:120]}). Nothing is held for it.')
+        return
+    if rep is None: return
+    counts, skipped = rep
+    print(report_line(counts))
+    if skipped:
+        print(f'::notice title=Drop guard report::the released key for {", ".join("US-" + s for s in skipped)} could not be joined, '
+              f'so those states are not in the three counts. Nothing is held for it.')
 
 
 def load_approved(path):
@@ -197,6 +283,7 @@ def main():
     for st, b, n, p in failed:
         print(f'::error title=Drop guard US-{st}::official parks {b} -> {n} (-{p}%, limit {pct:g}%). The run saves nothing. '
               f'If the drop is expected, set the repo variable KPC_DROP_OK to "{st}" for one run.')
+    _print_released_report(a.repo, a.key)   # O9: report only, after the hold decision, and it cannot change it
     print(f'drop guard: {len(before)} state(s) compared with {a.ref}; {len(set([r[0] for r in failed] + unread + held_named))} failed, '
           f'{len(set(r[0] for r in allowed) | set(r[0] for r in nok)) + sok} let through ({len(nok)} by the named-parks list)')
     if failed or unread or held_named:
