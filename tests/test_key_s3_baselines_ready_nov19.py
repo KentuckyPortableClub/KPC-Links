@@ -82,7 +82,12 @@ check('switches OFF: nothing is held, the copy is used, the report names the sta
 check('a missing expected copy is a FINDING (named in the report and a warning), not a skip, and it holds nothing',
       rep.get('missing_copies') == ['US-YY'] and 'MISSING COPY' in out and 'US-YY' in rep.get('ready', {}))
 rc, out, rep, held = gate({'KPC_GATE_STALE_REFUSE': '1'})
-check('KPC_GATE_STALE_REFUSE on: the copy with a stale baseline is moved aside (held)', rc == 7 and held and 'STALE BASELINE' in out)
+check('KPC_GATE_STALE_REFUSE on: a copy with FEWER rows than a baseline (sgzzb 2 of 3) is moved aside', rc == 7 and held and 'SHORT OF BASELINE' in out)
+_saved_doc = json.loads(json.dumps(doc)); doc['layers']['US-ZZ.sgzzb']['expected_count'] = 1   # now every baseline is at or below the copy
+rc, out, rep, held = gate({'KPC_GATE_STALE_REFUSE': '1'})
+check('KPC_GATE_STALE_REFUSE on: a baseline LOWER than its copy (sgzzb 1, copy 2) never holds; it is named to be raised',
+      not held and 'LOW BASELINE' in out and rep['stale']['US-ZZ']['low_baseline'] and not rep['stale']['US-ZZ']['short'])
+doc.clear(); doc.update(_saved_doc)
 rc, out, rep, held = gate({'KPC_READY_BLOCK': '1'})
 check('KPC_READY_BLOCK on: a state with a missing / short / bot layer is moved aside', rc == 7 and held and 'NOT READY' in out)
 
@@ -90,6 +95,31 @@ check('KPC_READY_BLOCK on: a state with a missing / short / bot layer is moved a
 doc_clean = {'caches': {}, 'layers': {'US-ZZ.sgzza': {'expected_count': 5}}}
 r2 = K.ready('US-ZZ', {'recs': rows('sgzza', 5)}, {'states': {'ZZ': [{}]}}, doc_clean, [{'area': 'US-ZZ', 'layer': 'h', 'who': 'person', 'status': 'open'}])
 check('a layer waiting for a hand download is reported as hand only and never blocks the state', r2 == {'h': ['hand']} and not any(K.blocks(k) for k in r2.values()))
+
+# --- Fable's review of #300: (4) rows with no area, (5.1) raise low baselines, (5.4) source gaps, (6) the ids tied to the builder ---
+needs_na = [{'area': '', 'layer': 'sgzzc', 'who': 'person', 'status': 'open'},
+            {'area': None, 'layer': 'url:https://x.gov/zz/1', 'who': 'person', 'status': 'open'},
+            {'area': None, 'layer': 'sgqqa', 'who': 'person', 'status': 'open'}]
+sg2 = {'states': {'ZZ': [{}, {'url': 'https://x.gov/zz/1'}, {}]}}
+r4 = K.ready('US-ZZ', blob, sg2, doc, needs_na)
+check('a needs-download row with NO area is matched by its layer id (sgzzc) or by its address (url: -> sgzzb); another state\'s id is not',
+      r4.get('sgzzc') == ['hand'] and r4.get('sgzzb') == ['hand'] and 'sgqqa' not in r4)
+d5 = {'caches': {'US-ZZ': {'expected_count': 7}}, 'layers': {'US-ZZ.sgzza': {'expected_count': 4}, 'US-ZZ.sgzzb': {'expected_count': 3}}}
+up = K.raise_low_baselines(d5, 'US-ZZ', blob, 'test')
+check('the sweep raises a baseline lower than its copy (state 7 -> 10, sgzza 4 -> 5) and never lowers one (sgzzb 3 stays, copy 2)',
+      up == [('US-ZZ', 7, 10), ('US-ZZ.sgzza', 4, 5)] and d5['layers']['US-ZZ.sgzzb']['expected_count'] == 3
+      and d5['caches']['US-ZZ']['baseline_how'] == 'test')
+check('a server count beside the baseline is information (source gap), never a hold',
+      K.source_gaps('US-ZZ', {'layers': {'US-ZZ.a': {'expected_count': 317, 'source_count': 324}}}) == [('US-ZZ.a', 317, 324)])
+import re as _re
+_src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
+_m = _re.search(r"k = (f'sg\{st\.lower\(\)\}' \+ \(chr\(97 \+ n\) if n < 26 else chr\(97 \+ n // 26 - 1\) \+ chr\(97 \+ n % 26\)\))", _src)
+check("sg_ids() names the layers exactly as kpc_us_key.py does (the builder's line, run for 0..60)",
+      _m is not None and [eval(_m.group(1), {'st': 'CO', 'n': n}) for n in range(60)] == K.sg_ids('CO', 60))
+_c = json.loads((ROOT / 'data/outlines/layers.json').read_text(encoding='utf-8'))['caches']
+check('the sweep is in the file: 24 US state baselines carry the ruling (FL 21,993 -> 84,718, MA 62,739 -> 119,649)',
+      _c['US-FL']['expected_count'] == 84718 and _c['US-MA']['expected_count'] == 119649
+      and sum(1 for k, v in _c.items() if k.startswith('US-') and 'Fable' in str(v.get('baseline_how', ''))) == 24)
 
 # --- wiring ---
 wf = (ROOT / '.github/workflows/kpc-us-key.yml').read_text(encoding='utf-8')

@@ -273,12 +273,17 @@ def cmd_gate(a):
         try: blob = M.load_saved(f); sha = M.sha256_file(f)
         except Exception as e: err('master gate', f'{f.name}: unreadable ({e})'); aside(f, stem); continue  # noqa: BLE001
         found = KRD.stale_baselines(stem, blob, doc) if not M.is_trimmed(blob) else []
-        if found:
-            rep['stale'][stem] = [list(x) for x in found]
-            line = '; '.join(f'{k} {key}: baseline {b}, count {n}' for k, key, b, n in found[:6]) + (f' (+{len(found) - 6} more)' if len(found) > 6 else '')
+        low = [x for x in found if not KRD.is_short(x)]; shortf = [x for x in found if KRD.is_short(x)]
+        gaps = KRD.source_gaps(stem, doc)
+        if found or gaps:
+            rep['stale'][stem] = {'low_baseline': [list(x) for x in low], 'short': [list(x) for x in shortf], 'source_gap': [list(x) for x in gaps]}
+        fmt = lambda xs: '; '.join(f'{k} {key}: baseline {b}, copy {n}' for k, key, b, n in xs[:6]) + (f' (+{len(xs) - 6} more)' if len(xs) > 6 else '')
+        if low:   # Fable's ruling 5.1: never a hold; the baseline is raised to the copy (raise_low_baselines), no re-read
+            warn('master gate LOW BASELINE', f'{stem}: {fmt(low)}: the baseline is lower than the copy (raise it; never a hold)')
+        if shortf:   # ruling 5.2-5.3: a copy with fewer rows than its baseline is short; layer level is report only until explained
             if stale_on:
-                err('master gate STALE BASELINE', f'{stem}: {line}: moved aside (KPC_GATE_STALE_REFUSE on)'); aside(f, stem); continue
-            warn('master gate STALE BASELINE', f'{stem}: {line} (report only: KPC_GATE_STALE_REFUSE is off)')
+                err('master gate SHORT OF BASELINE', f'{stem}: {fmt(shortf)}: moved aside (KPC_GATE_STALE_REFUSE on)'); aside(f, stem); continue
+            warn('master gate SHORT OF BASELINE', f'{stem}: {fmt(shortf)} (report only: KPC_GATE_STALE_REFUSE is off)')
         if sg or needs:
             r = KRD.ready(stem, blob, sg, doc, needs); rep['ready'][stem] = r
             if r and ready_on and any(KRD.blocks(k) for k in r.values()):
@@ -303,7 +308,7 @@ def cmd_gate(a):
     if getattr(a, 'ready_report', ''):
         pathlib.Path(a.ready_report).write_text(json.dumps(rep, indent=1, sort_keys=True) + '\n', encoding='utf-8')
     nr = sum(1 for r in rep['ready'].values() if any(KRD.blocks(k) for k in r.values()))
-    notice('master gate report', f"stale baselines in {len(rep['stale'])} cop(ies); ready check: {nr} state(s) with a missing / short / bot layer; "
+    notice('master gate report', f"baseline findings in {len(rep['stale'])} cop(ies) (low = raise, short = report); ready check: {nr} state(s) with a missing / short / bot layer; "
            f"{len(rep['missing_copies'])} expected cop(ies) missing" + ('' if (stale_on or ready_on) else ' (report only: both switches off)'))
     notice('master gate', 'no short saved copy' if not short else f'SHORT saved copy moved aside: {" ".join(short)}')
     return 7 if short else 0

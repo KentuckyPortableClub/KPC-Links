@@ -27,14 +27,16 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-CA": {
-   "expected_count": 9098,
+   "expected_count": 9101,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-CO": {
-   "expected_count": 5094,
+   "expected_count": 5095,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-CT": {
    "expected_count": 18654,
@@ -47,14 +49,16 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-DE": {
-   "expected_count": 2003,
+   "expected_count": 3114,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-FL": {
-   "expected_count": 21993,
+   "expected_count": 84718,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-GA": {
    "expected_count": 1042,
@@ -67,9 +71,10 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-IA": {
-   "expected_count": 9014,
+   "expected_count": 9034,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-ID": {
    "expected_count": 7135,
@@ -77,19 +82,22 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-IL": {
-   "expected_count": 8917,
+   "expected_count": 15961,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-17), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-IN": {
-   "expected_count": 1985,
+   "expected_count": 2070,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-17), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-KS": {
-   "expected_count": 698,
+   "expected_count": 855,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-LA": {
    "expected_count": 556,
@@ -97,9 +105,10 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-MA": {
-   "expected_count": 62739,
+   "expected_count": 119649,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-MD": {
    "expected_count": 2180,
@@ -107,9 +116,10 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-ME": {
-   "expected_count": 5626,
+   "expected_count": 5702,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-MI": {
    "expected_count": 1965,
@@ -117,19 +127,22 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-MN": {
-   "expected_count": 24988,
+   "expected_count": 24995,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-MO": {
-   "expected_count": 5990,
+   "expected_count": 5994,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-MS": {
-   "expected_count": 309,
+   "expected_count": 433,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-MT": {
    "expected_count": 3658,
@@ -142,9 +155,10 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-ND": {
-   "expected_count": 1484,
+   "expected_count": 1565,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-NE": {
    "expected_count": 1421,
@@ -167,29 +181,34 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-NV": {
-   "expected_count": 3617,
+   "expected_count": 3638,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-NY": {
-   "expected_count": 6603,
+   "expected_count": 6605,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-OH": {
-   "expected_count": 3904,
+   "expected_count": 4073,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-OK": {
-   "expected_count": 574,
+   "expected_count": 852,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-OR": {
-   "expected_count": 20323,
+   "expected_count": 20457,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-PA": {
    "expected_count": 2651,
@@ -207,19 +226,22 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-SD": {
-   "expected_count": 1299,
+   "expected_count": 1393,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-TN": {
-   "expected_count": 2142,
+   "expected_count": 2352,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-18), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-TX": {
-   "expected_count": 13389,
+   "expected_count": 14052,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-UT": {
    "expected_count": 6692,
@@ -237,9 +259,10 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-WA": {
-   "expected_count": 10564,
+   "expected_count": 10760,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-12), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-WI": {
    "expected_count": 81615,
@@ -247,9 +270,10 @@
    "read_how": "live key file counts.padus (complete published total; not the index row)"
   },
   "US-WV": {
-   "expected_count": 461,
+   "expected_count": 641,
    "read_date": "2026-11-10",
-   "read_how": "live key file counts.padus (complete published total; not the index row)"
+   "read_how": "live key file counts.padus (complete published total; not the index row)",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-WY": {
    "expected_count": 19786,
@@ -1056,7 +1080,7 @@
    "areas": [
     "US-AL"
    ],
-   "expected_count": 227,
+   "expected_count": 228,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -1070,7 +1094,8 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 227,
-   "url": ""
+   "url": "",
+   "baseline_how": "raised to the saved copy's count (boundary-cache copy of 2026-11-11), no re-read: Fable's ruling of 19 Nov 2026 (a baseline lower than its copy never holds)"
   },
   "US-AL.sgalc": {
    "agency": "ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table)",

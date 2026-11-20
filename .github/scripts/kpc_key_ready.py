@@ -3,7 +3,8 @@
 
 Reads files only and decides nothing by itself: the gate (kpc_master_cli.py gate) prints these findings and writes the report;
 whether a finding HOLDS a state is behind two switches, both OFF until the reviewer has read the first report:
-  KPC_GATE_STALE_REFUSE=1   a saved copy whose baseline differs from the count it should match is moved aside (held)
+  KPC_GATE_STALE_REFUSE=1   a saved copy with FEWER records or rows than its baseline is moved aside (held). A baseline
+                            LOWER than its copy never holds: it is raised to the copy's count (raise_low_baselines).
   KPC_READY_BLOCK=1         a state with a key layer that is missing, short, or waiting on a bot is held (a hand download never holds)
 
 The counts:
@@ -59,6 +60,37 @@ def stale_baselines(stem, blob, layers_doc):
     return out
 
 
+def is_short(finding):
+    """A copy with FEWER records / rows than its baseline (Fable's ruling, 19 Nov: only this may ever hold a copy)."""
+    return finding[3] < finding[2]
+
+
+def raise_low_baselines(doc, stem, blob, how):
+    """Fable's ruling (19 Nov, review of #300, 5.1): a baseline LOWER than its saved copy is raised to the copy's count, no re-read;
+    it never holds. The state baseline (caches) and every 'STEM.<id>' layer baseline. A baseline is never lowered here.
+    Returns [(key, old, new)]."""
+    out = []
+    n = len((blob or {}).get('recs') or [])
+    c = (doc.get('caches') or {}).get(stem)
+    if isinstance(c, dict) and c.get('expected_count') is not None and c['expected_count'] < n:
+        out.append((stem, c['expected_count'], n)); c['expected_count'] = n; c['baseline_how'] = how
+    rows = layer_rows(blob)
+    for key, L in sorted((doc.get('layers') or {}).items()):
+        if not key.startswith(stem + '.') or L.get('expected_count') is None:
+            continue
+        got = rows.get(key.split('.', 1)[1], 0)
+        if got > L['expected_count']:
+            out.append((key, L['expected_count'], got)); L['expected_count'] = got; L['baseline_how'] = how
+    return out
+
+
+def source_gaps(stem, layers_doc):
+    """Ruling 5.4: a layer whose server count (source_count) differs from its baseline; information, never a hold."""
+    return [(k, L['expected_count'], L['source_count']) for k, L in sorted((layers_doc.get('layers') or {}).items())
+            if k.startswith(stem + '.') and L.get('expected_count') is not None and L.get('source_count') is not None
+            and L['source_count'] != L['expected_count']]
+
+
 def key_layers(stem, state_gis, layers_doc):
     st = stem.split('-', 1)[1]
     ids = sg_ids(st, len(((state_gis or {}).get('states') or {}).get(st) or []))
@@ -70,17 +102,31 @@ def ready(stem, blob, state_gis, layers_doc, needs_rows):
     """{layer id: [kinds]} for one state; kinds = missing, short, bot, hand. blob None = no saved copy (every layer missing)."""
     L = layers_doc.get('layers') or {}
     rows = layer_rows(blob) if blob is not None else collections.Counter()
+    mine = key_layers(stem, state_gis, layers_doc)
+    # Fable's review of #300 (4): most open rows for a person carry no area (405 of 406 on 19 Nov), only a layer id: 'sgtnb', or
+    # 'url:<address>'. A row with no area belongs to this state when its id is one of this state's key layers, or its address is
+    # one of this state's state-gis entries (that entry's id is used).
+    st = stem.split('-', 1)[1]
+    by_url = {str(e.get('url') or '').strip(): lid for lid, e in zip(sg_ids(st, len(((state_gis or {}).get('states') or {}).get(st) or [])),
+                                                                 ((state_gis or {}).get('states') or {}).get(st) or []) if isinstance(e, dict) and e.get('url')}
     wait = {}
     for r in needs_rows or []:
-        if r.get('area') != stem:
-            continue
         lid = str(r.get('layer') or r.get('src') or '')
+        if r.get('area'):
+            if r.get('area') != stem:
+                continue
+        elif lid.startswith('url:') and lid[4:].strip() in by_url:
+            lid = by_url[lid[4:].strip()]
+        elif str(r.get('url') or '').strip() in by_url and lid not in mine:
+            lid = by_url[str(r.get('url')).strip()]
+        elif lid not in mine:
+            continue
         if r.get('who') == 'bot' and r.get('status') in BOT_WAITING:
             wait.setdefault(lid, set()).add('bot')
         elif r.get('who') == 'person' and r.get('status') == 'open':
             wait.setdefault(lid, set()).add('hand')
     out = {}
-    for lid in key_layers(stem, state_gis, layers_doc) + sorted(set(wait) - set(key_layers(stem, state_gis, layers_doc))):
+    for lid in mine + sorted(set(wait) - set(mine)):
         kinds = []
         got = rows.get(lid, 0)
         total = (L.get(lid) or {}).get('expected_count')
