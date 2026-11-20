@@ -6942,16 +6942,6 @@
    "why": "Nov 2 map audit: chat 11 NO on sgmoc248 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-12708": {
-   "approx": true,
-   "fp": {
-    "165883": [
-     "Kenai River Special Management Area",
-     1404
-    ]
-   },
-   "join": [
-    "165883"
-   ],
    "no": [
     "165883"
    ],
@@ -6961,8 +6951,15 @@
      45768.5
     ]
    },
-   "when": "2026-11-02",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 165883 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-20",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 165883 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 165883 is dropped, the NO stands",
+   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://dnr.alaska.gov/parks/aspunits/kenai/krsma.htm ; https://dnr.alaska.gov/parks/asp/kenairiver_recstudy_oct2010.pdf",
+    "saw": "Alaska State Parks: the KRSMA 'consists of more than 105 linear miles of river and lakes, including Kenai Lake, Skilak Lake'; the State Parks study gives Kenai Lake 14,500 acres and Skilak Lake 25,000 acres. PAD-US 165883 is a 1,404-acre piece, not the area; the Oct 22 join was an approximate 'closest official land' (Class C, key-quality.md section 5). The later NO (chat 11, 2 Nov) stands; the park keeps what the rules join.",
+    "date": "2026-11-20"
+   }
   },
   "US-12717": {
    "join": [
