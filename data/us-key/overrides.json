@@ -7,7 +7,7 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "8f63377fdd54f73be2ae69cefa145b4043027d7d2c11bc6eb4d5275b8052be03",
+  "overrides-parks-01.json": "8562833eb89f51dd1197ce3e8e8495a1ab46003c280694e8822026735891ec21",
   "overrides-parks-02.json": "15095c24bb4009a50cc11220e39a7732b95948229ccf57c48d5265be5c389189"
  },
  "parks": {
@@ -1205,28 +1205,6 @@
    },
    "when": "2026-11-02",
    "why": "Oct 29 5:55 PM: 'Wilmington and Western Railroad' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Wilmington and Western Railroad' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 9725 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
-  },
-  "US-1773": {
-   "fp": {
-    "sgmoa1495": [
-     "Meramec State Park",
-     6652
-    ]
-   },
-   "join": [
-    "sgmoa1495"
-   ],
-   "no": [
-    "sgmoa1495"
-   ],
-   "nofp": {
-    "sgmoa1495": [
-     "Meramec State Park",
-     10690.1
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Meramec State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgmoa1495 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )"
   },
   "US-1804": {
    "no": [

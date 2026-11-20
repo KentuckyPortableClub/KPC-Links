@@ -8184,6 +8184,26 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Long Branch State Park' (chat 11; applied by kpc_key_answers)"
   },
+  "US-1773": {
+   "fp": {
+    "sgmoa1495": [
+     "Meramec State Park",
+     6652
+    ]
+   },
+   "join": [
+    "sgmoa1495"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Meramec State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgmoa1495 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline ) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the NO on sgmoa1495 is lifted, the join stands",
+   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://mostateparks.com/sites/g/files/zuston361/files/media/pdf/2025/02/MissouriStatePark_Designation_Acreages.pdf",
+    "saw": "Missouri State Parks acreage report: 'Meramec 6,896.33' acres. Record sgmoa1495 in the 12 Nov read is 'Meramec State Park', 6,673 ac (3% under; 6,652 saved with the join). The NO's saved fingerprint (10,690.1 ac) is 55% over the park: about the park plus the neighbouring Meramec Conservation Area (3,879 ac in the same read), which the key gives to its own park. The NO stood for other land, so it comes off the park's own record.",
+    "date": "2026-11-20"
+   }
+  },
   "US-1774": {
    "fp": {
     "sgmoa1545": [
