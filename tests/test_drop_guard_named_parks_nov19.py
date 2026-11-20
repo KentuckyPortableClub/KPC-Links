@@ -50,7 +50,8 @@ def run(td, approved=None, env=None, restore=False):
     e.pop('KPC_DROP_APPROVED', None)
     cmd = [sys.executable, str(GUARD), '--repo', str(td), '--ref', 'HEAD', '--approved', str(approved or td / 'none.json')]
     if restore: cmd += ['--restore', '--failed-out', str(td / 'failed.txt')]
-    r = subprocess.run(cmd, capture_output=True, text=True, env=e)
+    # Nov 20 (job 7): run in the throwaway repo, so kpc_save's status file (data/status/, relative to the working folder) lands there, not in this checkout
+    r = subprocess.run(cmd, capture_output=True, text=True, env=e, cwd=td)
     return r.returncode, r.stdout + r.stderr
 
 

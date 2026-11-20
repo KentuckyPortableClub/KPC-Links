@@ -113,7 +113,10 @@ def carry(rematch=''):
         parks = {'US-1': {'n': 'New name', 'm': [['11', 'X', 9, 'name']]}, 'US-2': {'m': [['21', 'Y', 9, 'name']]}, 'US-3': {'m': [['31', 'Z', 9, 'name']]},
                  'US-4': {'m': []}, 'US-5': {'m': [['50', 'E', 5, 'id']]}}
         g = {'os': os, 'json': json, 'OUT': t, 'st': 'TN', 'recs': [{'OBJECTID': x} for x in (10, 11, 20, 21, 31, 40, 50)], '_oid': lambda a: str(a['OBJECTID']),
-             'parks': parks, 'OVR': {'US-2': {'join': ['21']}}, 'BLOCKED': {'US-4': {'40'}}, 'notice': lambda *a: None}
+             'parks': parks, 'OVR': {'US-2': {'join': ['21']}}, 'BLOCKED': {'US-4': {'40'}}, 'notice': lambda *a: None,
+             # Nov 20 (job 7): names the carry reads since the Nov 16 easement rule and D1 (KPC_SAVED_ID_LAND, OFF): switches off, no easement rows
+             '_kr': lambda name: False, 'gs_': {}, 'name_only': lambda how: False, 'easement_record': lambda a: False, 'EASEMENT_RECHECK_STATES': set(),
+             'EASEMENT_HELD': [], 'SAVED_ID_MOVED': []}
         old = os.environ.get('KPC_KEY_REMATCH_IDS'); os.environ['KPC_KEY_REMATCH_IDS'] = rematch
         try: exec(blk, g)
         finally:

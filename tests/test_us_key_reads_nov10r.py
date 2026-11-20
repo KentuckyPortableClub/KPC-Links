@@ -144,7 +144,8 @@ blk = textwrap.dedent(blk).replace('try:\n', 'if True:\n', 1)
 KIND = {'Woodson State Wildlife Area': {'wma'}, 'Woodson State Fishing Lake': {'lake'}}
 parks = {'US-1': {'n': 'Woodson State Wildlife Area', 'm': [['sgks5', 'Woodson State Wildlife Area', 10, 'name']], 'g': 'official'},
          'US-2': {'n': 'Woodson State Fishing Lake', 'm': [['sgks5', 'Woodson State Wildlife Area', 10, 'name']], 'g': 'official'}}
-exec(compile(blk, 'kpc_us_key.py', 'exec'), {'parks': parks, 'kinds': lambda s: KIND.get(s, set()), 're': re, 'notice': lambda t, m: None, 'st': 'KS'})
+# Nov 20 (job 7): the pass now reads its switches through _kr (#295 KPC_HOLD_ON_PASS_ERROR); the switches stay at their default, OFF
+exec(compile(blk, 'kpc_us_key.py', 'exec'), {'parks': parks, 'kinds': lambda s: KIND.get(s, set()), 're': re, 'notice': lambda t, m: None, 'st': 'KS', '_kr': lambda name: False})
 check(f"one-record-two-parks: the park that gave its only record back is a pin ({parks['US-2']['g']}), the other keeps it",
       parks['US-2']['m'] == [] and parks['US-2']['g'] == 'pin' and parks['US-1']['g'] == 'official' and parks['US-2']['c'])
 

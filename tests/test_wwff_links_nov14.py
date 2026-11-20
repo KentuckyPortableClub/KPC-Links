@@ -268,7 +268,10 @@ else:
     print('     ' + out.replace('\n', ' / '))
     chg = {l.split()[1]: (l.split()[2], l.split()[3]) for l in out.splitlines() if l.startswith('  change')}
     want = {k: v for k, v in CHG.items()}; want.update({'KFF-4642': 'US-4475', 'KFF-4643': 'US-4475', 'KFF-4645': 'US-4475'})
-    check({k: v[1] for k, v in chg.items()} == want, f'real: the only links that change are the 11 two-source fixes and the 3 Caribou-Targhee fixes ({len(chg)})')
+    # Nov 20 (job 7): the 14 fixes were applied to locations.json after Nov 14, so the preview may now show none; then they must already be there
+    _have = {x[1]: x[7] for x in loc if x[0] == 'WWFF' and len(x) > 7}
+    check({k: v[1] for k, v in chg.items()} == want or (not chg and all(_have.get(k) == v for k, v in want.items())),
+          f'real: the only links that change are the 11 two-source fixes and the 3 Caribou-Targhee fixes, or all 14 are already applied ({len(chg)} pending)')
     shutil.rmtree(t, ignore_errors=True)
 
 os.chdir(tempfile.mkdtemp(prefix='kpc-wwff-end-'))   # kpc_save writes its status file at exit, relative to here: never into this checkout

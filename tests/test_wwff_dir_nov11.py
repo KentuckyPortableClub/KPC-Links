@@ -6,6 +6,8 @@ file. Offline: urlopen is replaced in this process."""
 import contextlib, io, json, os, pathlib, runpy, sys, tempfile, urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+# Nov 20 (job 7): since #238 the shrink guard also reads $DATA's committed files; this test is offline and about its own temp folder only
+os.environ.pop('DATA', None)
 SCR = ROOT / '.github' / 'scripts'
 sys.path.insert(0, str(SCR))
 ok = True

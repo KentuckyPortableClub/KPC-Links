@@ -68,7 +68,8 @@ try:
         for f in ('locations.json', 'kpc-us-states.json', 'data/state-gis.json', 'data/retired-refs.json', 'data/nps-units.json', 'data/park-transfers.json', 'data/acres.json'):
             if (ROOT / f).exists(): (S / f).parent.mkdir(parents=True, exist_ok=True); shutil.copy(ROOT / f, S / f)
         k = S / 'data/us-key'; (k / 'tracts').mkdir(parents=True)
-        for f in ('overrides.json', 'layers.json', 'index.json', 'US-CA.json', 'US-TX.json', 'tracts/US-CA.json', 'tracts/US-TX.json'):
+        # Nov 20 (job 7): + the per-state tables (D6, Nov 12: the build fails closed without them) and the split saved-answer parts (Nov 11)
+        for f in ('overrides.json', 'overrides-parks-01.json', 'overrides-parks-02.json', 'area-tables.json', 'layers.json', 'index.json', 'US-CA.json', 'US-TX.json', 'tracts/US-CA.json', 'tracts/US-TX.json'):
             if (ROOT / 'data/us-key' / f).exists(): shutil.copy(ROOT / 'data/us-key' / f, k / f)
         (S / 'data/parkinfo').mkdir(parents=True)
         for f in ('US-CA.json', 'US-TX.json', 'index.json'): shutil.copy(DATA / 'data/parkinfo' / f, S / 'data/parkinfo' / f)

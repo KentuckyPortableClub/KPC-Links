@@ -9,8 +9,10 @@ def ok(c, m):
     global fails; print(('PASS ' if c else 'FAIL ') + m); fails += 0 if c else 1
 rd = lambda p: open(p, encoding='utf-8').read()
 L = 'logger-beta/'
-ok('0.9.10' in rd(L + 'FROM-APP-COMMIT.txt'), 'FROM-APP-COMMIT.txt: app 0.9.10')
-ok("const VER = '0.9.10'" in rd(L + 'kpc-app.js'), "kpc-app.js is the app's 0.9.10")
+# Nov 20 (job 7): the beta is re-copied from newer apps (#282: 0.9.15, build bae702c), so 0.9.10 is the floor, not the exact version
+_ver = re.search(r"const VER = '(\d+)\.(\d+)\.(\d+)'", rd(L + 'kpc-app.js'))
+ok(re.search(r'\b(0\.9\.\d+|[0-9a-f]{7,40})\b', rd(L + 'FROM-APP-COMMIT.txt')), 'FROM-APP-COMMIT.txt names the app version or commit it was copied from')
+ok(_ver and tuple(map(int, _ver.groups())) >= (0, 9, 10), "kpc-app.js is the app's 0.9.10 or later")
 ok(not glob.glob(L + 'kpc-dv*') and not os.path.exists(L + 'kpc-remote.js') and not os.path.exists(L + 'capacitor.js'), 'no FreeDV, remote or Android bridge files (app only)')
 ok(not os.path.exists(L + 'test.js') and not os.path.exists(L + 'radio-check.html'), "no builders' test screens")
 h = rd(L + 'kpc-logger-beta.html')
