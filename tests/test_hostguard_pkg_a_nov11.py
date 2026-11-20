@@ -121,7 +121,9 @@ DECLARED = {'.github/scripts/kpc_fers.py', '.github/fers-rule-scope.json',
             # use (kpc_fers_store.store_ids calls it); it decides no join, and the move is declared and approved like any other
             '.github/scripts/kpc_record_key.py',
             # Hand-off 06 part 1 (the owner's seven answers, fers 0637d083bd98 -> its newest changelog line): the switch file and the copy check
-            '.github/fers-switches.json', '.github/scripts/kpc_fers_switches.py', '.github/scripts/kpc_fers_age.py'}
+            '.github/fers-switches.json', '.github/scripts/kpc_fers_switches.py', '.github/scripts/kpc_fers_age.py',
+            # Hand-off 06 part 3 (the bot's own doubts, fers 66566ec91c50 -> its newest changelog line): the not-sure file
+            '.github/scripts/kpc_fers_not_sure.py'}
 moved = [f for f in moved if f not in DECLARED]
 # KPC owner, 2026-11-11 (job 6, world rules change approved): a rule file may differ from origin/main only when EVERY key it feeds has its
 # hash move declared and approved (kpc_preflight.check_hash_pair: the newest changelog line old -> new, APPROVED, decided_by KPC owner, and a

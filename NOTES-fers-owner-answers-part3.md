@@ -7,6 +7,14 @@
 - Part 4 is not built. The review (19 Nov, section 5) says yes to a second look later, on its terms. No finer-grid code.
 - No real area was run. No key or outline was changed. There is no park-by-park change list.
 
+## Third round
+
+Rebased onto part 2 at `66566ec91c50` (part 1 at `40c9a5c612c6`, `origin/main` at `9ee20aa`). Main's 2-fer hash is `0637d083bd98`. This pull request's final hash is `6a9d67ea4100`.
+
+The changelog keeps one line for this pull request. The tools (`kpc_preflight.changelog_hashes` and `tests/test_kpc_matcher_nov13.py`) read only the newest line, and they accept the move only when that line's first arrow starts at main's own hash. So the line says `0637d083bd98 -> 6a9d67ea4100`, and on the same line this pull request's step `66566ec91c50 -> 6a9d67ea4100`. The earlier round hashes (`b9881640b28f`, `9cee86692de2`, `76c2faa3e59f`, `082e787b3f86`) stay in this file.
+
+`save_json` is main's one line. The second return is gone. `kpc_fers_not_sure.py` is in the hostguard `DECLARED` list. Scope entries `2026-11-19-not-sure-rows` and `2026-11-19-not-sure-rows-own` start from `66566ec91c50`.
+
 ## Second round (review of 19 Nov, sections 3.1 to 3.3)
 
 Restack base is part 2 at `1cc599edb3dc`. The first-round not-sure file, restacked, was `b9881640b28f` (before the restack the line was `180dcd51a7b0` -> `9cee86692de2`). This round moves the 2-fer rules hash `b9881640b28f` -> `76c2faa3e59f`. US, Canada and world did not move (`c64b8ace0411`, `dfef94b3dfd3`, `b1f23bf0deea`).

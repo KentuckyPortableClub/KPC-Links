@@ -373,7 +373,7 @@
     {
       "id": "2026-11-19-not-sure-rows",
       "when": "2026-11-19",
-      "from": "1cc599edb3dc",
+      "from": "66566ec91c50",
       "why": "Hand-off 06 part 3. At the end of a run the 2-fer bot writes not-sure-rows-<tag>.json beside its report: its own doubts only, in the shared list's shape. A summary-map park wants an official layer. A park in a pair that is not sure near a size line wants a map and a person. A tripwire park is left to the tripwire bot. A withheld park is never named. The bot does not settle a row, does not read the list back, and does not hold a pair because of it.",
       "scope": "none",
       "scope_note": "No pair is remeasured and no row is labelled differently. The new file is a report.",
@@ -382,7 +382,7 @@
     {
       "id": "2026-11-19-not-sure-rows-own",
       "when": "2026-11-19",
-      "from": "b9881640b28f",
+      "from": "66566ec91c50",
       "why": "Hand-off 06 part 3, second round. The not-sure file is written through save_json. Both halves use this run's own areas, not a neighbour and not every file in the folder. An unreadable tripwire list is counted in the report. Scope none: no pair is remeasured.",
       "scope": "none",
       "scope_note": "No pair is remeasured. The file is a report of doubts the bot already has.",
