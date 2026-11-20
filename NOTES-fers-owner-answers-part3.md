@@ -15,7 +15,7 @@ The changelog keeps one line for this pull request. The tools (`kpc_preflight.ch
 
 `save_json` is main's one line. The second return is gone. `kpc_fers_not_sure.py` is in the hostguard `DECLARED` list. Scope entries `2026-11-19-not-sure-rows` and `2026-11-19-not-sure-rows-own` start from `66566ec91c50`.
 
-The gate after the rebase onto `origin/main` `9c2f93fb8`. DATA was not set. Two skips both times: `test_map_store_hook_nov15.py`, `test_outlines_match_key_nov13.py`. `git status` afterwards showed `data/status/kpc_key_drop_guard.json`, rewritten by `test_drop_guard_named_parks_nov19.py`, which fails on main too. On main the same suite also rewrites `data/status/test_fers_final_redact_nov17.json`. Both were put back.
+The gate after the rebase onto `origin/main` `9c2f93fb8`. The branch was then rebased onto `2d793bd63`. Those later main commits are the ledger and REPAIRS only. DATA was not set. Two skips both times: `test_map_store_hook_nov15.py`, `test_outlines_match_key_nov13.py`. `git status` afterwards showed `data/status/kpc_key_drop_guard.json`, rewritten by `test_drop_guard_named_parks_nov19.py`, which fails on main too. On main the same suite also rewrites `data/status/test_fers_final_redact_nov17.json`. Both were put back.
 
 Python 3.12.3:
 
