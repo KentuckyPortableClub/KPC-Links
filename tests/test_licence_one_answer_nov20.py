@@ -13,16 +13,20 @@ def check(ok, what): RESULTS.append((bool(ok), what)); print(('PASS' if ok else 
 
 with tempfile.TemporaryDirectory() as d:
     d = pathlib.Path(d)
+    _c = M.licence_code
     (d / 'licence-verdicts.csv').write_text(
-        '# test\nlayer address,key id,publish,why,evidence URL,date read\n'
-        'https://x.example/a/FeatureServer/0,US:sgzza,yes,PUBLIC DOMAIN: yes,https://x.example/terms,2026-11-18\n'
-        'https://x.example/b/FeatureServer/0,US:sgzzb,no,OTHER RESTRICTED: no (terms forbid redistribution),https://x.example/t,2026-11-18\n'
-        'https://x.example/c/FeatureServer/0,CA:Hard look~1,yes,OPEN: yes,,\n'
-        'https://x.example/d/FeatureServer/0,CA:Hard look~2,no,NOT FOUND: no,,\n', encoding='utf-8')
+        '# test\nlayer,key id,publish,licence class,credit line,date read\n'
+        f"{_c('https://x.example/a/FeatureServer/0')},US:sgzza,yes,PUBLIC DOMAIN,Example agency,2026-11-18\n"
+        f"{_c('https://x.example/b/FeatureServer/0')},US:sgzzb,no,OTHER RESTRICTED,,2026-11-18\n"
+        f"{_c('https://x.example/c/FeatureServer/0')},CA:Hard look~1,yes,OPEN,,\n"
+        f"{_c('https://x.example/d/FeatureServer/0')},CA:Hard look~2,no,NOT FOUND,,\n", encoding='utf-8')
     (d / 'download-sources.json').write_text(json.dumps({'sources': {'h1': {'layer_url': 'https://x.example/e/FeatureServer/0', 'terms': 'see the source page'}}}))
     sb = lambda url, lay: M.share_block({'area': 'US-ZZ', 'layer': lay, 'url': url}, d)
     check(sb('https://x.example/a/FeatureServer/0/query', 'sgzza') == '', 'publish=yes passes (the address, /query ignored)')
-    check('licence verdict no' in sb('https://x.example/b/FeatureServer/0', 'sgzzb'), 'publish=no blocks, with its reason')
+    check('licence verdict no' in sb('https://x.example/b/FeatureServer/0', 'sgzzb'), 'publish=no blocks, with its licence class')
+    check(M.licence_code('https://X.example/a/FeatureServer/0/query') == M.licence_code('https://x.example/a/featureserver/0/'), 'the code ignores case, /query and a trailing slash, as the keeper does')
+    _pub = (ROOT / 'data/outlines/licence-verdicts.csv').read_text(encoding='utf-8').lower()
+    check('/rest/services/' not in _pub and 'noreader://' not in _pub and 'featureserver' not in _pub and 'mapserver' not in _pub, 'the public file holds no layer address (only coded ones)')
     check('licence verdict no' in sb('', 'sgzzb'), 'a hand file with no address: its key id decides when it names one row')
     check(sb('https://x.example/c/FeatureServer/0', 'Hard look') == '' and 'verdict no' in sb('https://x.example/d/FeatureServer/0', 'Hard look'),
           'the address decides before a key id that names several rows')
