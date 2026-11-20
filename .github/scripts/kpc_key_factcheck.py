@@ -35,11 +35,16 @@ SOFT flags (reading aids, they pick parks for the targeted sample):
   CHURN       (with --prev-keys) the outline was lost, or its size or half its records changed since the last build
 
   python3 .github/scripts/kpc_key_factcheck.py run --keys data/us-key --cache DIR --parkinfo DIR --truth DIR --out DIR
-          [--areas "US-OH US-IN"] [--prev-keys DIR] [--date YYYY-MM-DD]
+          [--areas "US-OH US-IN"] [--prev-keys DIR] [--date YYYY-MM-DD] [--outline-acres DIR [PREV_DIR]]
       --keys      the built key files (US-XX.json / CA-XX.json: {'parks': {ref: {'n','t','g','m': [[id, name, acres, how]], 'ac'}}})
       --cache     the saved shapes the key was built from (US-XX.json.gz 'recs' with '_r' rings; hand-US-XX.<layer>.geojson.gz)
       --parkinfo  KPC-Data data/parkinfo (name, website, type, .., lat, lon, activations)
       --truth     KPC-Data data/truth (official acreage as read from the agency's page; optional)
+      --outline-acres  (2026-11-19, outside review F9; the reviewer's first slice, step S4; OFF unless given) the outline files
+                  (data/outlines: US-XX.geojson.gz + part files): a park whose outline is there is sized by the acres MEASURED
+                  from that outline (kpc_outline_acres.py), not by the key's 'ac' (not a measurement: often missing, and on some
+                  parks it fell to the row acres while the outline did not change). PREV_DIR = the outlines of --prev-keys
+                  (data/released/outlines): CHURN compares measured acres when both sides are measured, else 'ac' as before.
 Output (never inside data/): <out>/factcheck-<AREA>.json per area, factcheck-summary.json + .txt, factcheck-flags.csv
 (one line per flag, busiest park first). Standard library only."""
 import argparse, csv, datetime, glob, gzip, json, math, os, pathlib, re, sys
@@ -286,7 +291,7 @@ def size_strength(park_name, off):
 
 
 # ---------------- one area ----------------
-def check_area(area, key, by_id, pinfo, truth, agency=None, prev=None, today=None):
+def check_area(area, key, by_id, pinfo, truth, agency=None, prev=None, today=None, measured=None, prev_measured=None):
     parks = {r: p for r, p in (key.get('parks') or {}).items() if isinstance(p, dict)}
     ix = name_index(by_id); cx = core_index(by_id)
     full = {}      # full name of every park of the area -> refs (for OTHER_PARK)
@@ -334,9 +339,12 @@ def check_area(area, key, by_id, pinfo, truth, agency=None, prev=None, today=Non
         for row, rec in recs: by_fam[family(row[0])] = by_fam.get(family(row[0]), 0.0) + float(rec.get('GIS_Acres') or row[2] or 0)
         est = max(by_fam.values()) if by_fam else sum(float(r[2] or 0) for r in rows if len(r) > 2)
         ac = float(p['ac']) if isinstance(p.get('ac'), (int, float)) and p['ac'] > 0 else est
+        # 2026-11-19 (outside review F9, step S4): with --outline-acres, the acres measured from the park's own outline win
+        meas = (measured or {}).get(ref) or 0
+        if meas > 0: ac = meas
         off = (truth.get(ref) or {}).get('official'); strength = size_strength(name, off)
         oac = float(off['acres']) if strength else None
-        e['acres'] = {'outline': round(ac), 'from': 'key' if 'ac' in p else 'estimate', 'official': oac, 'official_is': strength,
+        e['acres'] = {'outline': round(ac), 'from': 'outline' if meas > 0 else 'key' if 'ac' in p else 'estimate', 'official': oac, 'official_is': strength,
                       'official_url': (off or {}).get('url') if strength else None, 'official_says': str((off or {}).get('sent') or '')[:160] if strength else None}
         flags, wit = [], []
         if any(method(r[3]) in STRONG_HOW for r in rows): wit.append('code')
@@ -431,6 +439,8 @@ def check_area(area, key, by_id, pinfo, truth, agency=None, prev=None, today=Non
         if prev is not None:
             q = prev.get(ref) or {}; a, b = {str(m[0]) for m in q.get('m') or []}, {str(m[0]) for m in (key['parks'][ref].get('m') or [])}
             pa, na = q.get('ac'), key['parks'][ref].get('ac')
+            # 2026-11-19 (outside review F9, step S4): with --outline-acres DIR PREV_DIR, measured acres on both sides win
+            if (measured or {}).get(ref, 0) > 0 and (prev_measured or {}).get(ref, 0) > 0: pa, na = round(prev_measured[ref]), round(measured[ref])
             if a and (len(a & b) < 0.5 * len(a) or (pa and na and abs(na - pa) > 0.1 * pa)):
                 e['flags'].append(['CHURN', f'{len(a)} records / {pa} acres last build, {len(b)} / {na} now'])
         e['class'] = classify(e)
@@ -461,7 +471,11 @@ def main(argv=None):
     r = sub.add_parser('run')
     for k in ('keys', 'cache', 'parkinfo', 'out'): r.add_argument('--' + k, required=True)
     r.add_argument('--truth'); r.add_argument('--areas'); r.add_argument('--prev-keys'); r.add_argument('--date')
+    r.add_argument('--outline-acres', nargs='+', metavar='DIR')   # 2026-11-19 (outside review F9, step S4): DIR [PREV_DIR]; off unless given
     a = ap.parse_args(argv)
+    if a.outline_acres and len(a.outline_acres) > 2: ap.error('--outline-acres takes DIR [PREV_DIR]')
+    OA = None
+    if a.outline_acres: import kpc_outline_acres as OA   # noqa: E402 (only when asked: the default run reads no outline)
     out = pathlib.Path(a.out).resolve()
     root = HERE.parents[1]
     if root in out.parents and out.relative_to(root).parts[:1] == ('data',):
@@ -490,7 +504,11 @@ def main(argv=None):
         if a.prev_keys:
             try: prev = {r: p for r, p in (json.load(open(os.path.join(a.prev_keys, area + '.json'), encoding='utf-8')).get('parks') or {}).items() if isinstance(p, dict)}
             except (OSError, ValueError): prev = None
-        doc = check_area(area, key, by_id, _j(a.parkinfo, area + '.json'), _j(a.truth, area + '.json'), agency, prev, a.date)
+        meas = pmeas = None
+        if OA:
+            meas = OA.state_acres(a.outline_acres[0], area)
+            if len(a.outline_acres) > 1: pmeas = OA.state_acres(a.outline_acres[1], area)
+        doc = check_area(area, key, by_id, _j(a.parkinfo, area + '.json'), _j(a.truth, area + '.json'), agency, prev, a.date, meas, pmeas)
         docs.append(doc); print(f'{area} checked', flush=True)
     # a park in two areas has its pin in one of them: PIN_FAR stands only when no checked area holds the pin
     best, done = {}, {d['area'] for d in docs}
