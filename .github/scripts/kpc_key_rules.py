@@ -52,6 +52,11 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           for it like any other error of a state, no key file is written and its saved copy on main is kept
                           (pass_error below). OFF = today: the notice 'one-record-two-parks pass skipped', and the state is saved.
                           No error = no change either way.
+                          2026-11-20 (job 9; R6; review F10 and F14): the same switch also holds the state at four more places
+                          (hold_state below): a zipped layer that cannot be read or a map layer that cannot be found, a failed layer read the state would be built from anyway
+                          (no saved copy, or a read under 3% short), a saved-copy-only layer under 97% of its baseline in
+                          data/outlines/layers.json, and a rule data file that is missing or unreadable (rule_data_missing below).
+                          The shape guard (kpc_shape_guard.py) reads it too: ON, a state under 97% of the live key's shapes fails.
   KPC_SAVED_ANSWERS_SAY 0 (outside review finding F5, 2026-11-19; reviewer's first slice, step S6b; the owner's word of 19 Nov 2026)
                           the US key's saved joins say what they could not do: a join not found in the read (no record with
                           that id, none of that name near the pin, the fingerprint finds none), a fingerprint that fits two
@@ -59,6 +64,12 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           grader; Fable + owner, 20 Nov), and one record under both 'join' and 'no' of a park (join_and_no; which wins is not changed).
                           Said in the build's notice and in the state's counts (saved_join_not_found / _two_fits / _join_and_no),
                           never as a check row. Bare-name joins are not changed. OFF = today.
+  KPC_NO_FOLLOWS_FP    0  (job 10 of Fable's 20 Nov jobs list; outside review R4 / finding F7: a saved NO does not follow a renumbered
+                          record, Arkansas US-1080) a person's 'no' id that is GONE from the read, saved with its fingerprint in
+                          'nofp' [name, acres], is found again the way a saved join already is (the Oct 27 re-find): the same name,
+                          acres within 10% (20 acres at least), the SAME layer (id family) and near the pin. Every fit is ruled out
+                          (a NO only removes land, so two copies of one land are both out); a fit that the same park joins BY ID is
+                          left alone and said. Said in the build's notice. A NO id still in the read is D1's (saved_land_moves). OFF = today.
   KPC_NO_LEASE_BY_NAME 0  (KPC owner, 2026-11-17, ruling D5) a record whose name says leased / lease / agreement / cooperative area is
                           the easement family: never joined by name alone, it goes to check; a person may say yes for one park.
   KPC_LAKE_ONLY_IF_LAKE 0 (KPC owner, 2026-11-17, ruling D4, rewritten 9:17 AM after the research: WHO OWNS THE WATER decides, not
@@ -150,7 +161,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
-            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0', 'KPC_SAVED_ANSWERS_SAY': '0',
+            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0', 'KPC_NO_FOLLOWS_FP': '0', 'KPC_SAVED_ANSWERS_SAY': '0',
             'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1', 'KPC_PRESERVE_WITH_PARK': '1'}
 
 
@@ -240,6 +251,37 @@ def pass_error(area, err, hold):
     says FAILED, writes no key file for it, and the state keeps its saved copy on main: held, fail closed)."""
     if hold: raise PassError(f'{area}: one-record-two-parks pass stopped with an error, so {area} is held (its saved copy is kept): {type(err).__name__}: {err}') from err
     return err
+
+
+def hold_state(area, why, hold):
+    """2026-11-20 (job 9; R6; outside review findings F10 and F14; switch KPC_HOLD_ON_PASS_ERROR, OFF): the US key builder found
+    something in `area` that it used to carry on past (a layer it could not find, a failed read it would build from anyway, a
+    saved-copy-only layer short of its baseline, a rule data file missing). hold False (today): returns `why` and the caller
+    goes on exactly as before. hold True: raises PassError naming the area, so run() fails for that state like any other error
+    of a state (FAILED, no key file written, its saved copy on main kept: held, fail closed)."""
+    if hold: raise PassError(f'{area}: {why}, so {area} is held (its saved copy is kept)')
+    return why
+
+
+_RULE_DATA = {}
+
+
+def rule_data_missing(paths):
+    """2026-11-20 (job 9; outside review finding F14): [(path, what is wrong)] for each rule data file in `paths` that is missing
+    or cannot be read as JSON. A missing rule file must never read as 'no rule'. Read once per path per run (the files do not
+    change during a run). Says nothing and decides nothing itself: the caller holds the state through hold_state."""
+    import json
+    out = []
+    for p in paths:
+        p = str(p)
+        if p not in _RULE_DATA:
+            try:
+                with open(p, encoding='utf-8') as f: json.load(f)
+                _RULE_DATA[p] = ''
+            except FileNotFoundError: _RULE_DATA[p] = 'missing'
+            except (OSError, ValueError) as e: _RULE_DATA[p] = f'unreadable ({type(e).__name__})'
+        if _RULE_DATA[p]: out.append((p, _RULE_DATA[p]))
+    return out
 
 
 def nf(t):
@@ -651,6 +693,40 @@ def saved_land_moves(ov, by_id, refind):
     if nofp or 'nofp' in ov: ov['nofp'] = nofp
     if 'join' in ov or join: ov['join'] = join
     if 'no' in ov or no: ov['no'] = no
+    return ov, notes
+
+
+def follow_gone_no(ov, in_read, refind):
+    """KPC_NO_FOLLOWS_FP (job 10, R4 / F7): a person's NO follows its record by fingerprint after the layer renumbers it, the way a
+    saved join does. ov = one park's overrides; in_read(id) -> True when that record id is in this read; refind(old_id, name,
+    acres) -> records of the SAME layer near the pin with that name (the caller filters, as for D1). Returns (new_ov, notes); new_ov
+    is a copy (ov is not touched) whose 'no' and 'nofp' also hold each re-found id; notes are (kind, old id, [new ids], saved name,
+    saved acres) with kind 'no followed' / 'no not found' / 'no meets join' (a fit the same park joins by id: never ruled out here).
+    Only a 'no' id that is not in the read and has a saved name is looked at."""
+    ov = dict(ov or {})
+    nofp = dict(ov.get('nofp') or {})
+    no = list(ov.get('no') or [])
+    joined = {str(x) for x in ov.get('join') or []}
+    have = {str(x) for x in no}
+    notes = []
+    for old in list(no):
+        sv = nofp.get(str(old))
+        if not sv or not sv[0] or in_read(str(old)): continue
+        row = [old, sv[0], sv[1] if len(sv) > 1 else 0]
+        hits = [a for a in refind(str(old), sv[0], row[2]) if str(a.get('OBJECTID')) != str(old) and saved_row_ok(row, a)]
+        meet = [str(a.get('OBJECTID')) for a in hits if str(a.get('OBJECTID')) in joined]
+        new = [str(a.get('OBJECTID')) for a in hits if str(a.get('OBJECTID')) not in joined]
+        if meet: notes.append(('no meets join', str(old), meet, sv[0], row[2]))
+        if new:
+            for n in new:
+                if n not in have: no.append(n); have.add(n)
+                nofp.setdefault(n, list(sv))
+            notes.append(('no followed', str(old), new, sv[0], row[2]))
+        elif not meet:
+            notes.append(('no not found', str(old), [], sv[0], row[2]))
+    if notes:
+        ov['no'] = no
+        ov['nofp'] = nofp
     return ov, notes
 
 

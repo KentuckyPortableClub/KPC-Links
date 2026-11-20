@@ -15,13 +15,26 @@ decides a join and never touches Canada or the world key.
   python3 kpc_shape_guard.py --built data/us-key --live-index path/index.json --states "WI IA"
   exit 0  every listed state is at least half the live count, or the live key has no count
   exit 2  one or more states are short; stdout is 'ST got live' per state
-  exit 3  the live index could not be read
+  exit 3  the live index (or the switch file, .github/key-switches.json) could not be read
 """
 import gzip, json, os, pathlib, sys
 
 # Under half the last live key's shape count. Half itself is kept (a real shrink
 # can be large; Wisconsin's missed layers were about 98% of that state's shapes).
 FAR = 0.5
+# 2026-11-20 (job 9; R6; review F10 'the shape guard fails a state only below half its shapes'): a state that has the switch
+# KPC_HOLD_ON_PASS_ERROR on (.github/key-switches.json, OFF everywhere) fails under 97% of the live count instead, the same 3%
+# the builder allows a re-read. A rule that drops records on purpose (KPC_PADUS_DEDUPE) also lowers the count: such a state is
+# held until a person accepts the new count. OFF: half, as before.
+HOLD_FAR = 0.97
+HOLD_SWITCH = 'KPC_HOLD_ON_PASS_ERROR'
+
+
+def far_for(st):
+    """HOLD_FAR for a state with KPC_HOLD_ON_PASS_ERROR on, else FAR. A switch file that cannot be read stops the guard (exit 3)."""
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    import kpc_key_rules as KR
+    return HOLD_FAR if KR.on(HOLD_SWITCH, area=st) else FAR
 
 
 def is_short(got, live, far=FAR):
@@ -80,7 +93,7 @@ def short_rows(built_dir, live_index, states):
                 got = count_of(json.loads(path.read_text(encoding='utf-8')))
             except (OSError, ValueError):
                 got = None
-        if is_short(got, live[st]):
+        if is_short(got, live[st], far_for(st)):
             rows.append((st, 'none' if got is None else got, live[st]))
     return rows
 
@@ -126,7 +139,10 @@ def main(argv):
     except (OSError, ValueError) as e:
         print(f'live index not read ({e})', file=sys.stderr)
         return 3
-    rows = short_rows(built, index, _states(states))
+    try: rows = short_rows(built, index, _states(states))
+    except RuntimeError as e:   # kpc_key_rules.SwitchFileError: never guess the switch
+        print(f'switch file not read ({e})', file=sys.stderr)
+        return 3
     for st, got, live in rows:
         print(f'{st} {got} {live}')
     return 2 if rows else 0
