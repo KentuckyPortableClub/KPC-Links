@@ -234,7 +234,10 @@ with tempfile.TemporaryDirectory() as t:
 # each with numpy 2.5.5 + opencv-python-headless 5.0.0 (17 Nov). The hash depends on the raster library (numpy / OpenCV drawing the
 # outlines), not on the Python version: with other numpy / OpenCV versions it may move while every row is right. Print it with
 # KPC_FERS_PRINT_GOLDEN=1 on main's code and on this code before reading a mismatch as a rule change.
-GOLDEN = '6d7c5c5b7e33a0c5'
+# 19 Nov second round (R-2F4 review 1.4): 6d7c5c5b7e33a0c5 -> f757225e9e94173c on numpy 2.5.3 + OpenCV 5.0.0.
+# US-WA.json carries written_by_rule R-2F4. The report no longer lists US-WA as still from before this rule (the run just wrote it).
+# The two rows are the same. reuse, looked, missing and same-outline are unchanged apart from that report line.
+GOLDEN = 'f757225e9e94173c'
 
 
 def normal_area(script_dir):

@@ -62,6 +62,14 @@ with contextlib.redirect_stdout(buf):
 check(v == '0' and src_of == 'env' and 'comes from the environment' in buf.getvalue(),
       'KA-24 an environment variable wins and the run prints one notice')
 os.environ.pop('KPC_FERS_NEAR_LINE')
+os.environ['KPC_FERS_SUMMARY_APPROX'] = '0'
+SW._SAID.discard('KPC_FERS_SUMMARY_APPROX')
+buf = io.StringIO()
+with contextlib.redirect_stdout(buf):
+    on = K._switch_on('KPC_FERS_SUMMARY_APPROX')
+check(on is False and 'comes from the environment' in buf.getvalue(),
+      'kpc_fers uses the one switch reader, so the notice is printed whichever path asks')
+os.environ.pop('KPC_FERS_SUMMARY_APPROX')
 K.write_receipt({'pairs tested': 0}, {}, {}, set(), 'rules')
 recs = list((TD / 'data/fers').glob('receipt-*.json')) if (TD / 'data/fers').is_dir() else []
 doc = json.loads(recs[0].read_text()) if recs else {}
@@ -132,6 +140,22 @@ if HAVE:
     mid = [measure(w, 0, 0) for w in (30, 31, 32)]
     check(all(s is not None and 31 <= s['wide_m'] <= 37 and K.near_line(s) == '' for s in mid),
           f'KA-05 30 to 32 m reads 31 to 37 m and is not NOT SURE ({[None if s is None else s["wide_m"] for s in mid]})')
+
+    def gap_spots(gap):
+        """Two 30 m strips of one pair, `gap` metres apart, on the real grid (shapes, not hand-made boxes)."""
+        big = rect(-1500, -1500, 1500, 1500)
+        def piece(x0):
+            return rect(x0, 0, x0 + 30, 300)
+        pts = big[0][0]
+        box = [min(p[0] for p in pts), min(p[1] for p in pts), max(p[0] for p in pts), max(p[1] for p in pts)]
+        return K.area_spots({'US-9901': big, 'US-9902': piece(0) + piece(30 + gap)}, ['US-9901', 'US-9902'], box)
+
+    far_g, near_g = gap_spots(1000), gap_spots(120)
+    close_g = gap_spots(44)
+    check(len(far_g) == 2 and len(near_g) == 2,
+          f'KA-13 two 30 m strips on the real grid are two spots at 1 km and at 120 m ({len(far_g)}, {len(near_g)})')
+    check(len(close_g) == 1,
+          f'KA-13 the same strips 44 m apart are one spot: merge() joins pieces within 0.0005 degrees ({len(close_g)})')
 else:
     print('SKIP the live grid readings (numpy / cv2 not installed)')
 
@@ -151,13 +175,22 @@ check(K.summary_only('US-1', qp) and K.summary_only('US-2', qp) and K.summary_on
       'KA-21 a compilation, a Michigan project line, the Mississippi file and a register are summary maps')
 check(not K.summary_only('US-5', qp), 'KA-21 trap: one record of the agency\'s own land is not a summary map')
 check(not K.summary_only('US-6', qp), 'KA-21 unsure: a layer with no label is not a summary map')
+saved_sg = dict(K.SUMMARY_SG)
+K.SUMMARY_SG.clear()
+buf = io.StringIO()
+with contextlib.redirect_stdout(buf):
+    K._summary_sg()
+check('could not be read' in buf.getvalue() and 'R-2F1' in buf.getvalue(),
+      'a missing state-gis.json is said loudly (R-2F1 is not off in silence)')
+K.SUMMARY_SG.clear()
+K.SUMMARY_SG.update(saved_sg)
 
 
 @contextlib.contextmanager
 def quiet_decide():
     saved = {n: getattr(K, n) for n in ('key_line_match', 'same_records_verdict', 'saved_missing_why', 'is_picture_trace',
                                         'load_key_status', 'pin_inside', 'nearest_access', 'access_pin', 'map_link',
-                                        'line_rows', 'how_checked', 'land_check')}
+                                        'line_rows', 'how_checked', 'land_check', 'ownership_step')}
     real = FKS.status_for
     K.key_line_match = lambda *a, **k: ''
     K.same_records_verdict = lambda *a, **k: ()
@@ -189,6 +222,13 @@ if HAVE:
         K.decide(s, parks, {}, {}, pin, '2026-11-19', set(), lambda r: 'US-ZZ')
     check(s.get('status') == 'candidate' and 'not sure' not in s.get('status', ''),
           f'KA-08 Grand Canyon National Park x Kaibab National Forest is decided like any pair ({s.get("status")!r})')
+    pin_ol = {'US-9901': ('Olympic National Park', LAT0, LON0, '', '', 'ZZ'),
+              'US-9902': ('Olympic National Forest', LAT0, LON0, '', '', 'ZZ')}
+    with quiet_decide():
+        s = json.loads(json.dumps(spot))
+        K.decide(s, parks, {}, {}, pin_ol, '2026-11-19', set(), lambda r: 'US-ZZ')
+    check(s.get('status') == 'candidate' and 'not sure' not in s.get('status', ''),
+          f'KA-08 Olympic National Park x Olympic National Forest is decided like any pair ({s.get("status")!r})')
     with quiet_decide():
         FKS.status_for = lambda r, a=None: 'approximate'
         s = json.loads(json.dumps(spot))
@@ -290,8 +330,103 @@ KS._FP_CACHE.clear()
 AGE.NOT_CARRIED.clear()
 check(AGE.keep_fresh([fp_row], 'US-ZZ', root=str(root)) == [], 'a changed store fingerprint is not copied')
 check('outline fingerprint changed' in AGE.NOT_CARRIED[0]['why'], f'the reason names the outline ({AGE.NOT_CARRIED[0]["why"]})')
+(store / 'index-US-ZZ.json').write_text(json.dumps({'parks': {'US-4': {'fp': 'bbb'}}}))
+KS._FP_CACHE.clear()
+AGE.NOT_CARRIED.clear()
+check(AGE.keep_fresh([fp_row], 'US-ZZ', root=str(root)) == [],
+      'a stamp that holds a store fingerprint is not copied when today\'s index has none')
+check('outline fingerprint changed' in AGE.NOT_CARRIED[0]['why'],
+      f'the reason is the outline, not a silent keep ({AGE.NOT_CARRIED[0]["why"]})')
 KS.STORE_ON = False
 KS.STORE = None
+
+# parts, approx, and a Kentucky tract's acres and how are in the key fingerprint
+AGE._INDEX.clear()
+s0 = AGE.key_fingerprint('US-3', str(root))[0]
+key['parks']['US-3']['parts'] = {'c': [[-84.5, 37.4, -84.4, 37.6]]}
+(root / 'data/us-key/US-ZZ.json').write_text(json.dumps(key))
+AGE._INDEX.clear()
+check(AGE.key_fingerprint('US-3', str(root))[0] != s0, 'parts (a clipped shared record) changes the stamp')
+key['parks']['US-3'].pop('parts')
+key['parks']['US-3']['approx'] = True
+(root / 'data/us-key/US-ZZ.json').write_text(json.dumps(key))
+AGE._INDEX.clear()
+check(AGE.key_fingerprint('US-3', str(root))[0] != s0, 'approx changes the stamp')
+key['parks']['US-3'].pop('approx')
+(root / 'data/us-key/US-ZZ.json').write_text(json.dumps(key))
+(root / 'data/ky-answer-key.json').write_text(json.dumps({'parks': {'KY-1': {'tracts': [['bstate', 'Sample Park', 10, 'name', 2]]}}}))
+AGE._INDEX.clear()
+ky0 = AGE.key_fingerprint('KY-1', str(root))[0]
+(root / 'data/ky-answer-key.json').write_text(json.dumps({'parks': {'KY-1': {'tracts': [['bstate', 'Sample Park', 11, 'name', 2]]}}}))
+AGE._INDEX.clear()
+check(AGE.key_fingerprint('KY-1', str(root))[0] != ky0, 'a Kentucky tract\'s acres are in the stamp')
+ky_name = AGE.key_fingerprint('KY-1', str(root))[0]
+(root / 'data/ky-answer-key.json').write_text(json.dumps({'parks': {'KY-1': {'tracts': [['bstate', 'Sample Park', 11, 'file', 2]]}}}))
+AGE._INDEX.clear()
+check(AGE.key_fingerprint('KY-1', str(root))[0] != ky_name, 'a Kentucky tract\'s how is in the stamp')
+(root / 'data/ky-answer-key.json').write_text(json.dumps({'parks': {'KY-1': {'tracts': [['bstate', 'Sample Park', 11, 'name', 9]]}}}))
+AGE._INDEX.clear()
+check(AGE.key_fingerprint('KY-1', str(root))[0] == ky_name, 'the fifth tract number is a count and is not in the stamp')
+
+# every status decide() returns carries made_on, and a small batch that does not read the park keeps the row
+def plain_spot():
+    return {'refs': ['US-1', 'US-2'], 'kind': 'area', 'wide_m': 200, 'acres': 40, 'id': 'US-1+US-2@area',
+            'center': [LAT0, LON0], 'box': [LON0 - .01, LAT0 - .01, LON0 + .01, LAT0 + .01],
+            'passes': [1, 1, 0], 'status': 'pass 2', 'shape': [[LON0, LAT0], [LON0 + .01, LAT0]]}
+
+
+rows_settled = []
+with quiet_decide():
+    s = plain_spot(); K.decide(s, {'US-1': {'st': 'US-ZZ', 'ids': ['a']}, 'US-2': {'st': 'US-ZZ', 'ids': ['b']}}, {}, {},
+                               {'US-1': ('One', LAT0, LON0, '', '', 'ZZ'), 'US-2': ('Two', LAT0, LON0, '', '', 'ZZ')},
+                               '2026-11-19', set(), lambda r: 'US-ZZ')
+    rows_settled.append(s)
+    check(s.get('made_on') and s['made_on']['US-1'].get('outline') and s['made_on']['US-1'].get('outline_kind') == 'outline',
+          'a plain overlap on a run without the store carries an outline hash, marked outline')
+with quiet_decide():
+    K.land_check = lambda *a, **k: 'water'
+    s = plain_spot(); K.decide(s, {'US-1': {'ids': ['a']}, 'US-2': {'ids': ['b']}}, {}, {},
+                               {'US-1': ('One', LAT0, LON0), 'US-2': ('Two', LAT0, LON0)}, '2026-11-19', set(), lambda r: 'US-ZZ')
+    rows_settled.append(s)
+    check(str(s.get('status')).startswith('water only') and s.get('made_on'), f'a water-only row carries made_on ({s.get("status")!r})')
+with quiet_decide():
+    K.ownership_step = lambda *a, **k: ('not sure', 'the owner maps disagree')
+    s = plain_spot(); K.decide(s, {'US-1': {'ids': ['a']}, 'US-2': {'ids': ['b']}}, {}, {},
+                               {'US-1': ('One', LAT0, LON0), 'US-2': ('Two', LAT0, LON0)}, '2026-11-19', set(), lambda r: 'US-ZZ')
+    rows_settled.append(s)
+    check(str(s.get('status')).startswith('not sure') and s.get('made_on'), f'a not-sure row carries made_on ({s.get("status")!r})')
+K.KNOWN_LIVE[('US-1', 'US-2')] = 'the owner activated it in person'
+with quiet_decide():
+    s = plain_spot(); K.decide(s, {'US-1': {'ids': ['a']}, 'US-2': {'ids': ['b']}}, {}, {},
+                               {'US-1': ('One', LAT0, LON0), 'US-2': ('Two', LAT0, LON0)}, '2026-11-19', set(), lambda r: 'US-ZZ')
+    rows_settled.append(s)
+    check(s.get('status') == 'candidate' and s.get('known') and s.get('made_on'), 'the owner\'s known answer carries made_on')
+K.KNOWN_LIVE.pop(('US-1', 'US-2'), None)
+dropped = plain_spot()
+dropped['status'] = 'dropped in pass 3: the finer official outlines show no shared patch here (the first, coarse look overlapped by drawing error only)'
+K._stamp_row(dropped, {}, {}, lambda r: 'US-ZZ')
+rows_settled.append(dropped)
+check(dropped.get('made_on'), 'a row dropped in pass 3 carries made_on')
+K.CURG.clear(); K.CURLN.clear()
+AGE.NOT_CARRIED.clear(); AGE.KEY_ONLY.clear()
+kept = AGE.keep_fresh(rows_settled, 'US-ZZ', root=str(root))
+check(kept == rows_settled and len(AGE.KEY_ONLY) == len(rows_settled),
+      f'a later run that does not read those parks keeps every stamped row and counts the key-only check ({len(kept)}, {len(AGE.KEY_ONLY)})')
+K.CURG['US-1'] = [[[LON0, LAT0], [LON0 + 1, LAT0], [LON0 + 1, LAT0 + 1], [LON0, LAT0]]]
+AGE.NOT_CARRIED.clear()
+check(AGE.keep_fresh([rows_settled[0]], 'US-ZZ', root=str(root)) == [],
+      'when this run has the park\'s outline and it differs, the row is not copied')
+K.CURG.clear()
+
+# the old-file list reads the mark, and only this run's region
+markdir = TD / 'marks'; markdir.mkdir()
+(markdir / 'US-WA.json').write_text(json.dumps({'st': 'US-WA', 'written_by_rule': 'R-2F4', 'spots': [{'status': 'pass 1'}]}))
+(markdir / 'US-OR.json').write_text(json.dumps({'st': 'US-OR', 'spots': [{'status': 'candidate'}]}))
+(markdir / 'W-FR.json').write_text(json.dumps({'st': 'W-FR', 'spots': [{'status': 'candidate'}]}))
+(markdir / 'report-x.json').write_text('{}')
+check(AGE.old_system_areas(markdir, 'na') == ['US-OR'],
+      f'the list is the unmarked areas of this region ({AGE.old_system_areas(markdir, "na")})')
+check(AGE.old_system_areas(markdir, 'world') == ['W-FR'], 'a world run lists world files only')
 
 # --- R-2F5 a separate piece (KA-13, KA-14, KA-15) ---
 check('FINE_GAP_M' not in src and 'KPC_FERS_FINE_100M' not in src and 'FINE_100M' not in src, 'KA-15 no distance in metres between spots')
@@ -300,9 +435,9 @@ far = {'refs': ['US-1', 'US-2'], 'kind': 'area', 'wide_m': 30, 'box': [LON0 + .0
 apart = {'refs': ['US-1', 'US-2'], 'kind': 'area', 'wide_m': 30, 'box': [LON0 + .0006, LAT0, LON0 + .0008, LAT0 + .0002]}
 touch = {'refs': ['US-1', 'US-2'], 'kind': 'area', 'wide_m': 30, 'box': [LON0 + .0001, LAT0, LON0 + .0004, LAT0 + .0002]}
 small = {'refs': ['US-1', 'US-2'], 'kind': 'area', 'wide_m': 15, 'box': [LON0 + .02, LAT0, LON0 + .0202, LAT0 + .0002]}
-check(K.fine_own_row(far, [listed]) and K.fine_own_row(apart, [listed]), 'KA-13 a 30 m piece 1 km away, and one 44 m away that does not touch, is its own row')
+check(K.fine_own_row(far, [listed]), 'a 30 m piece whose box does not meet a listed spot is its own row')
 own, why = K.fine_piece(touch, [listed])
-check(not own and 'touches' in why, f'KA-14 a piece that touches a listed spot is not a new row ({why})')
+check(not own and 'box meets' in why, f'KA-14 a piece whose box meets a listed spot is not a new row ({why})')
 own, why = K.fine_piece(small, [listed])
 check(not own and '25 yards' in why, f'KA-14 a 15 m piece is never a row ({why})')
 bare = {'refs': ['US-1', 'US-2'], 'kind': 'area', 'center': [LAT0, LON0]}

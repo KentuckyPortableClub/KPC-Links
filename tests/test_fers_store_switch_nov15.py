@@ -252,10 +252,20 @@ else:
         def differ(a, b):
             # KPC owner, 2026-11-16 (item 1): this code also writes its run receipt (receipt-<tag>.json, new); main has none
             a = {k: v for k, v in a.items() if not k.startswith('receipt-')}; b = {k: v for k, v in b.items() if not k.startswith('receipt-')}
+            def wo_mark(raw):
+                # R-2F4 second round: an area file this code writes carries written_by_rule. The spots are compared without that mark.
+                try:
+                    d = json.loads(raw)
+                except (ValueError, TypeError):
+                    return raw
+                if isinstance(d, dict):
+                    d.pop('written_by_rule', None)
+                return json.dumps(d, sort_keys=True)
             out = sorted(set(a) ^ set(b))
             for k in sorted(set(a) & set(b)):
                 if a[k] == b[k]: continue
                 if k.startswith('report') and report_wo_hash(a[k]) == report_wo_hash(b[k]): continue
+                if k.endswith('.json') and wo_mark(a[k]) == wo_mark(b[k]): continue
                 out.append(k)
             return out
         spots = [x for x in json.loads(fm.get('US-RI.json', b'{}')).get('spots') or []]
@@ -263,8 +273,12 @@ else:
         check([rc for _, rc, _ in oc] == [0, 0, 0] and differ(fm, fc) == [],
               f'switch off, this code with main\'s scope file: every file byte for byte main\'s (the report\'s own fers_rules hash aside) ({differ(fm, fc)})')
         dd = differ(fm, fb)
-        check(dd == [] and fm['US-RI.json'] == fb['US-RI.json'],
-              f'switch off, as merged: every file byte for byte main\'s, reuse fingerprints included (the declared scope is none: no pair is re-stamped) ({dd})')
+        def _spots(raw):
+            d = json.loads(raw)
+            d.pop('written_by_rule', None)
+            return d
+        check(dd == [] and _spots(fm['US-RI.json']) == _spots(fb['US-RI.json']),
+              f'switch off, as merged: spots and reuse match main (the area file also carries written_by_rule; scope none, no pair re-stamped) ({dd})')
         # the next ordinary run after this change: main's saved pair answers are reused, none is tested again
         ro = run(tm, SCR, {}, WRAP_OFF, passes=(1,))
         rp = json.loads((tm / 'data/fers/report-testri.json').read_text()).get('pass1') or {}

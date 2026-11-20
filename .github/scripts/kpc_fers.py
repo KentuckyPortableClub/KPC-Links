@@ -99,8 +99,7 @@ RULINGS = load_rulings()
 
 # ---- Hand-off 06: the owner's answers are on, from .github/fers-switches.json. An environment variable of the same name wins.
 def _switch_on(name):
-    if name in os.environ:
-        return str(os.environ.get(name) or '').strip().lower() not in ('0', 'off', 'false', 'no', '')
+    """The one reader. The environment wins, and that path prints the notice."""
     return _SW.on(name)
 
 
@@ -296,7 +295,15 @@ def no_denials(path, d):
 
 
 def save_json(p, d, *a, **k):  # noqa: F811
-    return _save_json_raw(p, no_denials(p, FCOUNT.apply(p, d)), *a, **k)
+    d = no_denials(p, FCOUNT.apply(p, d))
+    # R-2F4: an area file this code writes carries a mark. The "still from before this rule" list reads that mark.
+    try:
+        stem = pathlib.Path(str(p)).stem
+    except TypeError:
+        stem = ''
+    if isinstance(d, dict) and re.fullmatch(FILES, stem):
+        d[_AGE.FILE_MARK_FIELD] = _AGE.FILE_MARK
+    return _save_json_raw(p, d, *a, **k)
 import kpc_owned as KO
 import kpc_fers_guard as FG   # Nov 4 (Mapping 2-fer review): bad POTA pins, one-record same land, overrides 'no'
 import kpc_fers_key_status as FKS  # Nov 6 (Quality 2-fer grade): area/same-land follow key PIN/approximate
@@ -1116,17 +1123,21 @@ SUMMARY_NOTE = ("Not the agency's own map: this outline comes from a summary map
 
 
 def _summary_sg():
-    """{layer prefix: what} for the state-gis layers labelled compilation / register / water, once (Q1)."""
+    """{layer prefix: what} for the state-gis layers labelled compilation / register / water, once (Q1).
+    A missing or broken file is said out loud: R-2F1 would otherwise be off with no word."""
     if SUMMARY_SG: return SUMMARY_SG
     try:
         L = json.load(open('data/us-key/layers.json'))
         by = {str(v[0]).split('/query')[0].rstrip('/'): k for k, v in L.items() if isinstance(v, list) and v}
-        for lays in json.load(open('data/state-gis.json'))['states'].values():
+        doc = json.load(open('data/state-gis.json'))
+        for lays in doc['states'].values():
             for l in lays:
                 if l.get('what') in SUMMARY_KINDS:
                     k = by.get(str(l.get('url') or '').rstrip('/'))
                     if k: SUMMARY_SG[k] = l['what']
-    except Exception: pass  # noqa: BLE001
+    except (OSError, ValueError, KeyError, TypeError) as e:
+        print(f'::error title=2-fer bot::the summary-map layer list could not be read ({e}): '
+              'R-2F1 is off until data/state-gis.json and data/us-key/layers.json can be read', flush=True)
     SUMMARY_SG['_'] = ''
     return SUMMARY_SG
 
@@ -3835,8 +3846,50 @@ def same_records_mark(x, v, parks, PIN):
     return False
 
 
+def outline_stamp(ref, G, LN):
+    """The outline hash pair_fp reads for one park: its outline, and its line without the read date.
+    A store fingerprint is a different kind and is never compared with this."""
+    line = None
+    if isinstance(LN, dict) and ref in LN and isinstance(LN.get(ref), dict):
+        line = {k: v for k, v in LN[ref].items() if k != 'date'}
+    geom = G.get(ref) if isinstance(G, dict) else None
+    return _h([geom, line])
+
+
+def _stamp_row(s, G, LN, st_of):
+    """R-2F4. made_on on a row pass 3 settled, whatever its status. Store run: the index fingerprint.
+    Any other run: the outline hash, marked so the two are never compared."""
+    if not isinstance(s, dict):
+        return s
+    refs = [str(r) for r in (s.get('refs') or [])]
+    KS = sys.modules.get('kpc_fers_store')
+    store_on = KS is not None and getattr(KS, 'STORE_ON', False)
+    store_fp = outlines = None
+    if store_on and callable(getattr(KS, 'outline_fps', None)):
+        store_fp = KS.outline_fps(refs)
+    else:
+        outlines = {r: outline_stamp(r, G, LN) for r in refs}
+    area = ''
+    if refs and callable(st_of):
+        try:
+            area = st_of(refs[0]) or ''
+        except Exception:  # noqa: BLE001
+            area = ''
+    return _AGE.stamp(s, area, store_fp=store_fp, outlines=outlines)
+
+
 def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
-    """Pass 3: the rules decide what a spot that passed all three geometry passes is."""
+    """Pass 3: the rules decide what a spot that passed all three geometry passes is.
+    Every normal return stamps made_on. A crash does not: the row was not settled."""
+    try:
+        _decide_work(s, parks, G, LN, PIN, today, saved_only, st_of)
+    except Exception:
+        raise
+    else:
+        _stamp_row(s, G, LN, st_of)
+
+
+def _decide_work(s, parks, G, LN, PIN, today, saved_only, st_of):
     refs = s['refs']
     s['checked'] = today
     s['map_dates'] = {r: MAPDATE.get(r) or ('saved copy' if r in saved_only else 'official line (trails bot)' if r in LN else 'Kentucky official file' if REGION == 'ky' else 'saved copy') for r in refs}
@@ -3958,11 +4011,6 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     _nl = near_line(s)
     if _nl:   # R-2F3: within one grid cell of a size line = NOT SURE
         s['status'] = 'not sure: ' + _nl; s.pop('list', None)
-    _fps = {}
-    _KS = sys.modules.get('kpc_fers_store')
-    if _KS is not None and callable(getattr(_KS, 'outline_fps', None)):
-        _fps = _KS.outline_fps(refs)
-    _AGE.stamp(s, (st_of(refs[0]) if callable(st_of) else '') or '', store_fp=_fps)   # R-2F4: made_on, always
     s['access'] = nearest_access(s, st_of)
     try: s['access_pin'] = access_pin(s, G, LN, st_of)
     except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
@@ -4041,7 +4089,7 @@ STAGES = RECEIPT.Stages(T0)   # this pass's seconds per stage (the receipt)
 # KPC owner, 2026-11-16 (item 2, OWNER DECISION PENDING): in a store run passes 1, 2 and 3 read the same shapes (about 2 m); only the
 # grid changes (20 m, 10 m, 5 m). A spot a finer grid finds that no row of its pair took ('new here only (not counted)') is LISTED
 # on every store run (fine-only-<tag>-p<pass>.json in the private folder, counts in the receipt). KPC_FERS_FINE_ONLY=count makes
-# such a spot a row of its own (decided by pass 3 like any row, marked 'fine_only'); off (the default) = today, nothing counted.
+# such a spot a row of its own (decided by pass 3 like any row, marked 'fine_only'). The switch file is count. off = listed, not counted.
 FINE_ONLY_SWITCH = 'KPC_FERS_FINE_ONLY'
 FINE_ONLY = []   # this pass's listed spots (no names; refs, kind, place, size)
 EMPTY_AREAS = {}   # area -> why pass 1 measured nothing there (its file is kept; exit 85)
@@ -4204,8 +4252,7 @@ def fine_only_mode():
 
 
 def _sw_value(name):
-    if name in os.environ:
-        return os.environ.get(name)
+    """The one reader. The environment wins, and that path prints the notice."""
     v, _src = _SW.value(name)
     return v
 
@@ -4239,8 +4286,8 @@ def _boxes_touch(a, b):
 
 
 def fine_piece(n, rows):
-    """R-2F5. (True, '') when n is its own row: it passes the same size test as every row, and its box does not touch a
-    listed row of the same pair. (False, reason) otherwise. No distance. A row with no shape and no box cannot be tested."""
+    """R-2F5. (True, '') when n is its own row: it passes the same size test as every row, and its box does not meet the
+    box of a listed row of the same pair. (False, reason) otherwise. No distance. A row with no shape and no box cannot be tested."""
     if n.get('kind') == 'area':
         if (n.get('wide_m') or 0) < SHRINK:
             return False, 'under 25 yards across'
@@ -4257,7 +4304,7 @@ def fine_piece(n, rows):
         if rb is None:
             return False, 'a listed row has no shape and no box, so the new piece is not made a row'
         if _boxes_touch(nb, rb):
-            return False, 'it touches a listed spot of the same pair'
+            return False, 'its box meets the box of a listed spot'
     return True, ''
 
 
@@ -5007,7 +5054,9 @@ def main():
                     # outline cannot be read is NOT SURE with the reason (review list), never 'waiting' forever
                     _sm = [saved_missing_why(r) for r in ub if r in MISSING_SAVED]
                     s['status'] = (f"not sure: {'; '.join(_sm)} ({', '.join(PIN.get(r, [r])[0] for r in ub if r in MISSING_SAVED)})" if _sm else
-                                   f"not sure: the official outline of {', '.join(PIN.get(r, [r])[0] for r in ub)} could not be read in pass {PASS} (the next run tries again)"); continue
+                                   f"not sure: the official outline of {', '.join(PIN.get(r, [r])[0] for r in ub)} could not be read in pass {PASS} (the next run tries again)")
+                    if PASS == 3: _stamp_row(s, G, LN, st_of)   # R-2F4: pass 3 settled this row without decide()
+                    continue
                 if pk not in TESTED and len(s['refs']) == 2:   # out of time before this pair: the next run carries on
                     s['status'] = f'waiting for pass {PASS}'; continue
                 m = assign.get(id(s))
@@ -5029,6 +5078,8 @@ def main():
                 if REGION == 'ky' and 'US-4484' in s['refs'] and set(s['refs']) & KY_FS_MANAGED:
                     s['label'] = 'Forest Service land managed by KDFWR'   # Oct 27 (HQ ruling 2): one agency owns, another manages = a real 2-fer
                 if PASS == 3 and m: _decide3(s)
+                elif PASS == 3 and str(s.get('status') or '').startswith('dropped in pass'):
+                    _stamp_row(s, G, LN, st_of)   # R-2F4: dropped in pass 3 is settled, so it carries made_on
             _lr, _lw = leftover_spots(d, newk, today)   # KPC owner, 2026-11-15 (M5, D5): a real spot is never lost: it becomes a row
             left_rows += len(_lr); left_warn += _lw
             _lr += fine_only_spots(d, newk, today, st)   # KPC owner, 2026-11-16 (item 2): listed; rows only with the owner's switch on
@@ -5089,9 +5140,12 @@ def main():
     _ag = len(getattr(sys.modules.get('kpc_fers_age'), 'NOT_CARRIED', []) or [])
     if _ag: counts['old rows not copied (no stamp, or a park changed)'] = _ag
     if _AGE.enabled():
-        _old_areas = _AGE.old_system_areas(OUT)
+        _old_areas = _AGE.old_system_areas(OUT, REGION)
         if _old_areas:
             counts['areas whose public file is still from before this rule'] = _old_areas
+        _ko = len(getattr(_AGE, 'KEY_ONLY', []) or [])
+        if _ko:
+            counts['rows copied on the key entry only (this run did not read the park)'] = _ko
     if LOG: counts['...problem lines'] = (f'{_pn} line(s), written for a person in the private folder' if _pf is not None else
                                           f'{_pn} line(s); no private folder was given, so the list was not written anywhere')
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=len(LOG))

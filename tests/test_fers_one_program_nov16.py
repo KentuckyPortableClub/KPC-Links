@@ -177,8 +177,8 @@ else:
     check(not any(n in blob for n, *_ in PINS.values()) and 'US-990' not in blob and 'store-copy' not in blob, 'the receipt holds counts only: no park name, no ref, no store path')
     fo = sorted((TMP / ('priv-' + tc.name)).glob('fine-only-testri-p*.json'))
     # main (Nov 16, store runs: three passes of work): a store run's pass 2 does nothing, so only pass 3 lists them
-    check([f.name for f in fo] == ['fine-only-testri-p3.json'] and all(json.loads(f.read_text())['mode'] == 'off' for f in fo),
-          f'the finer-grid-only spots are listed for pass 3 in the private folder (pass 2 is skipped in a store run), switch off ({[f.name for f in fo]})')
+    check([f.name for f in fo] == ['fine-only-testri-p3.json'] and all(json.loads(f.read_text())['mode'] == 'count' for f in fo),
+          f'the finer-grid-only spots are listed for pass 3 in the private folder (pass 2 is skipped in a store run); the switch file is count ({[f.name for f in fo]})')
     # ------------------------------------------------------------ 1 an area the store does not hold: store missing, red
     tm = TMP / 'missing'; tm.mkdir(); layout(tm, extra_area='US-ZQ')
     rc, out = go(tm, store_env(tm, PASS='1', STATES='US-RI US-ZQ'))
@@ -194,11 +194,16 @@ else:
     ST.STORE_ON = True; sys.modules['kpc_fers_store'] = ST
     check(KF.fine_only_mode() == 'count', "with the store on, KPC_FERS_FINE_ONLY=count is read")
     os.environ.pop('KPC_FERS_FINE_ONLY')
-    check(KF.fine_only_mode() == 'off', 'the default is off (today: not counted)')
+    check(KF.fine_only_mode() == 'count', 'the switch file is count, so a store run counts a separate piece')
+    os.environ['KPC_FERS_FINE_ONLY'] = 'off'
+    check(KF.fine_only_mode() == 'off', 'the environment can turn that count off')
     KF.set_pass(3)
-    d = {'spots': [{'id': 'a', 'refs': ['US-1', 'US-2'], 'kind': 'area', 'passes': [1, 1, 0], 'status': 'pass 2'}]}
-    nk = {'US-1+US-2@area': [{'refs': ['US-1', 'US-2'], 'kind': 'area', 'center': [41.0, -71.0], 'acres': 3.0, '_used': 1},
-                             {'refs': ['US-1', 'US-2'], 'kind': 'area', 'center': [41.2, -71.2], 'acres': 2.0}]}
+    # The made-up spot needs a width and a box. Without them the size test and the box test cannot run (R-2F5).
+    d = {'spots': [{'id': 'a', 'refs': ['US-1', 'US-2'], 'kind': 'area', 'passes': [1, 1, 0], 'status': 'pass 2',
+                    'wide_m': 80, 'box': [-71.05, 41.00, -71.04, 41.01]}]}
+    nk = {'US-1+US-2@area': [{'refs': ['US-1', 'US-2'], 'kind': 'area', 'center': [41.0, -71.0], 'acres': 3.0, 'wide_m': 80, '_used': 1},
+                             {'refs': ['US-1', 'US-2'], 'kind': 'area', 'center': [41.2, -71.2], 'acres': 2.0, 'wide_m': 30,
+                              'box': [-71.30, 41.20, -71.29, 41.21]}]}
     KF.FINE_ONLY.clear(); add = KF.fine_only_spots(d, nk, '2026-11-16', 'US-RI')
     check(add == [] and len(d['spots']) == 1 and len(KF.FINE_ONLY) == 1 and KF.FINE_ONLY[0]['grid_m'] == 5.0, 'switch off: the 5 m-only spot is listed, no row is added')
     os.environ['KPC_FERS_FINE_ONLY'] = 'count'
