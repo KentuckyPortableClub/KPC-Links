@@ -74,9 +74,11 @@ live = ROOT / 'data' / 'outlines' / 'licence-verdicts.csv'
 if live.is_file():
     live_p = C.problems_in(live)
     check(live_p == [], 'the live licence-verdicts.csv is in the coded public form (no addresses)')
-    check('http://' not in live.read_text(encoding='utf-8').lower()
-          and 'https://' not in live.read_text(encoding='utf-8').lower(),
-          'the live table file contains no http(s) addresses')
+    # A DOI citation in a credit line is allowed (same rule as the fixture above); a layer address is not.
+    live_txt = live.read_text(encoding='utf-8')
+    extras = [m.group(0) for m in __import__('re').finditer(r'https?://[^\s",]+', live_txt, __import__('re').I)
+              if 'doi.org/' not in m.group(0).lower()]
+    check(extras == [], 'the live table has no http(s) addresses other than a DOI citation in a credit line')
 else:
     with tempfile.TemporaryDirectory() as td:
         rc = C.main(['--root', td])
