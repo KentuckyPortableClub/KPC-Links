@@ -4197,19 +4197,6 @@
    "when": "2026-10-29",
    "why": "alias from the no-boundary hunt (Oct 29): the official layer calls it 'Charlotte Anne Finnell Neal Wildlife Management Area' and the POTA pin is inside it; joins only with the pin inside · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 493.8 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id sgtne95 (bot: pin inside)"
   },
-  "US-7578": {
-   "fp": {
-    "sgtnc308": [
-     "Cheatham Lake WMA",
-     2101
-    ]
-   },
-   "join": [
-    "sgtnc308"
-   ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cheatham Lake WMA' (chat 11; applied by kpc_key_answers)"
-  },
   "US-7580": {
    "fp": {
     "sgtnc687": [
@@ -9455,19 +9442,6 @@
    ],
    "when": "2026-10-18",
    "why": "Oct 18 review: same place, official name written differently"
-  },
-  "US-9202": {
-   "fp": {
-    "sgsca110": [
-     "Santee Coastal Reserve WMA",
-     23457
-    ]
-   },
-   "join": [
-    "sgsca110"
-   ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Santee Coastal Reserve WMA' (chat 11; applied by kpc_key_answers)"
   },
   "US-9204": {
    "fp": {
