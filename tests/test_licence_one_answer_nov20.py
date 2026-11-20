@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ONE licence answer per layer (Opus, 20 Nov 2026; REPAIRS R14). kpc_master.share_block reads data/outlines/licence-verdicts.csv first
 (the store's researched table, copied): publish=no blocks, publish=yes passes; the layer address decides, a key id only when it names
-one row; a placeholder 'see the source page' is not a licence; the Army Corps layers are held by the owner. Invented rows and the real file.
+one row; a placeholder 'see the source page' is not a licence; the Army Corps layers are allowed by the owner (20 Nov 9:39 AM). Invented rows and the real file.
 Run:  python3 tests/test_licence_one_answer_nov20.py"""
 import sys as _sys; _sys.dont_write_bytecode = True
 import pathlib, sys, tempfile, json
@@ -30,8 +30,8 @@ with tempfile.TemporaryDirectory() as d:
     check('no licence or terms recorded' in sb('https://x.example/e/FeatureServer/0', 'sgzze'), "'see the source page' is not a licence")
     check('no licence or terms recorded' in sb('https://x.example/f/FeatureServer/0', 'sgzzf'), 'a layer in neither table stays blocked')
 
-real = M.licence_verdict('', 'sgide', ROOT / 'data/outlines')
-check(real is not None and real[0] is False and 'HELD by the KPC owner' in real[1], 'the real file: the Army Corps recreation areas are held by the owner')
-real = M.licence_verdict('', 'usaceproj', ROOT / 'data/outlines')
-check(real is not None and real[0] is False, 'the real file: the Army Corps projects (Mississippi) are held too')
+# the owner, 20 Nov 2026 9:39 AM ("Use it"): both Army Corps layers allowed, credit "US Army Corps of Engineers data"
+for lay in ('sgide', 'usaceproj'):
+    real = M.licence_verdict('', lay, ROOT / 'data/outlines')
+    check(real is not None and real[0] is True and 'US Army Corps of Engineers data' in real[1], f'the real file: the Army Corps layer {lay} is allowed, with its credit')
 n = sum(1 for ok, _ in RESULTS if ok); print(f'\n{n}/{len(RESULTS)} checks passed'); sys.exit(0 if n == len(RESULTS) else 1)
