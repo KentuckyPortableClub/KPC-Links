@@ -65,6 +65,12 @@ jobs:
           # Handoff 3 (KPC owner, 2026-11-17): the keeper asks, this job fetches. With from_requests the list is the keeper's request
           # file (read only; no file, an unreadable one or nothing servable = no state = nothing is fetched), else exactly as before.
           if [ "$FROM_REQUESTS" = true ]; then
+            # R11 / F17 (20 Nov). The keeper's asks do not open a public fetch. KPC_LR_* is not read.
+            # A GitHub variable cannot turn this on. The by-hand list below (from_requests off) is unchanged.
+            echo 'groups=[]' >> "$GITHUB_OUTPUT"
+            echo "Keeper asks: switched off in code. A GitHub switch cannot open a public fetch. Nothing is fetched."
+            echo "- Keeper asks: switched off in code. A GitHub switch cannot open a public fetch. Nothing is fetched." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
             ALL='AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'
             mkdir -p "$RUNNER_TEMP/lr"
             gh release view boundary-cache -R "$GITHUB_REPOSITORY" --json assets -q '[.assets[] | {name, updatedAt}]' > "$RUNNER_TEMP/lr/asset-dates.json" || echo '[]' > "$RUNNER_TEMP/lr/asset-dates.json"

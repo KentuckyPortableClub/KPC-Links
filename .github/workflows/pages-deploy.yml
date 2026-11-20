@@ -97,6 +97,10 @@ jobs:
           KPC_DISPLAY_MAX_MB: '300'
         run: |
           say() { echo "$1"; echo "- $1" >> "$GITHUB_STEP_SUMMARY"; }
+          # R11 / F17 (20 Nov). Switched off in this file. KPC_DISPLAY_PUSH is not read.
+          # The lines below stay for the day this path goes through the same gate as a Release.
+          say "Display copy: switched off in code. A GitHub switch cannot add it. Nothing added (the map draws today's outlines)."
+          exit 0
           AREA_RX='^((US|CA)-[A-Z]{2,3}|W-[A-Z]{2})$'
           CAP=$(( KPC_DISPLAY_MAX_MB * 1000000 ))
           W=$(mktemp -d); mkdir "$W/tree" "$W/ok"

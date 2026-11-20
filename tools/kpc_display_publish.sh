@@ -19,6 +19,11 @@
 # It never touches any other branch. Old copies: the previous commit stays on map-display-prev until the next publish.
 set -euo pipefail
 if [ $# -lt 3 ]; then echo "usage: $0 REMOTE NEW_DIR AREA [AREA ...]" >&2; exit 2; fi
+# R11 / F17 (20 Nov). Switched off in this file. KPC_DISPLAY_PUSH and every other environment
+# variable are ignored. Nothing is published. Take this block out only when this path goes
+# through the same gate as a Release (kpc_release.py).
+echo "STOP: the display copy is switched off in code. A GitHub switch cannot publish it. Nothing was pushed." >&2
+exit 1
 REMOTE=$1; NEW=$2; shift 2
 HERE=$(cd "$(dirname "$0")" && pwd)
 PY=${PYTHON:-python3}
