@@ -2387,6 +2387,26 @@
     "date": "2026-11-19"
    }
   },
+  "US-1093": {
+   "fp": {
+    "sgarb27": [
+     "Lake Frierson State Park",
+     119
+    ]
+   },
+   "join": [
+    "sgarb27"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Lake Frierson State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb27 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline ) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the NO on sgarb27 is lifted, the join stands",
+   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://www.arkansasstateparks.com/parks/lake-frierson-state-park",
+    "saw": "Arkansas State Parks: the park is 'Located on the shores of 335-acre Lake Frierson'. The NO's saved fingerprint (455.4 ac) is the park's record (119 ac saved with the join) plus the 335-acre lake; record sgarb27 in the 11 Nov read is 'Lake Frierson State Park', 115 ac, and PAD-US 166848 (114 ac), already in the park's key, is the same land. The NO stood for the lake, so it comes off the park's own record; the lake stays with the D4 check.",
+    "date": "2026-11-20"
+   }
+  },
   "US-1095": {
    "fp": {
     "sgarb31": [
