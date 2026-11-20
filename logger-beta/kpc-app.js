@@ -4,7 +4,7 @@
 (function (G) {
   'use strict';
   let CHP, KAP;   /* plugin handles, registered once (Oct 24) */
-  const VER = '0.9.15';
+  const VER = '0.9.16';
   /* KPC Lite (Oct 28, HQ): kpc-flavor.js (overwritten by the nightly build for the Lite APK) or ?lite=1. index.html already skipped the left-out files. */
   const LITE = !!document.documentElement.dataset.lite, LITE_OFF = { remote: 1 };
   const $ = id => document.getElementById(id);
