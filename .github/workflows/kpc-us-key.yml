@@ -338,6 +338,8 @@ jobs:
           GEO_DETAIL: ${{ vars.KPC_KEY_SOURCE == 'store' && '0.001' || (vars.KPC_KEY_LIVE == '1' && '' || '0.001') }}
           KPC_KEY_OFFLINE: ${{ vars.KPC_KEY_SOURCE == 'store' && '1' || '' }}   # KPC owner, 2026-11-15: store mode = the key opens no connection (kpc_key_offline.py via kpc_host_pace; a refusal = exit 89, the area keeps its key)
           GEO_PAGE: '200'
+          KPC_GATE_STALE_REFUSE: ${{ vars.KPC_GATE_STALE_REFUSE || '0' }}   # S3: OFF; the reviewer turns it on after the first report
+          KPC_READY_BLOCK: ${{ vars.KPC_READY_BLOCK || '0' }}   # S3: OFF; a hand download never holds a state
         run: |
           set -o pipefail
           pip install --quiet --break-system-packages pyshp pyproj shapely || { kpc_rc=$?; echo "::warning title=install::an install step failed (exit $kpc_rc); the next steps may not work"; echo "install - an install step failed (exit $kpc_rc); the next steps may not work" >> "$RUNNER_TEMP/kpc-hidden.txt"; }   # Oct 28: zipped-shapefile layers (Mississippi)
@@ -352,7 +354,7 @@ jobs:
           PLANNED_STATES="$STATES"; python3 .github/scripts/kpc_key_freeze.py mark-rows data/us-key/index.json "$STATES"   # owner rule, 2026-11-10: a row the builder does not rewrite = not built
           # Nov 10 (master outlines, read master first): a saved copy shorter than its layer's own baseline (the Nov 3 truncated copies) is moved aside
           # and its state is NOT built tonight; the job goes red at the end (Master gate verdict) so a short read never becomes the key.
-          rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt" && mg=0 || mg=$?
+          rm -f "$RUNNER_TEMP/master-short.txt"; python3 .github/scripts/kpc_master_cli.py gate --cache cache/us --report "$RUNNER_TEMP/master-short.txt" --expect "$(for st in $STATES; do grep -qx "US-$st" "$RUNNER_TEMP/download-held.txt" 2>/dev/null || printf 'US-%s ' "$st"; done)" --state-gis data/state-gis.json $( [ -f .mdata/data/needs-download.json ] && echo --needs .mdata/data/needs-download.json ) --ready-report part-ready.json && mg=0 || mg=$?   # S3 (keys-first rev 3.1): findings + ready check, report only (KPC_GATE_STALE_REFUSE / KPC_READY_BLOCK off)
           [ "$mg" = 0 ] || [ "$mg" = 7 ] || { echo "::error title=Master gate::stopped (exit $mg)"; exit 1; }
           cat "$RUNNER_TEMP/download-held.txt" >> "$RUNNER_TEMP/master-short.txt" 2>/dev/null || true   # ok: no held download = nothing added
           [ -s "$RUNNER_TEMP/master-short.txt" ] || rm -f "$RUNNER_TEMP/master-short.txt"
@@ -453,6 +455,7 @@ jobs:
           rm -rf .pi
           if [ -s /tmp/shape-guard-fail ]; then cp /tmp/shape-guard-fail part/shape-guard-fail; fi
           { cat /tmp/shape-guard-failed-states 2>/dev/null; cat /tmp/not-built-states.txt 2>/dev/null; true; } | sort -u | grep . > part/failed-states.txt || rm -f part/failed-states.txt   # ok: none failed = no file
+          [ -s part-ready.json ] && cp part-ready.json part/master-ready.json   # S3: the gate's baseline findings + ready check, for the reviewer
           if [ -s "$RUNNER_TEMP/master-short.txt" ]; then cp "$RUNNER_TEMP/master-short.txt" part/master-short.txt; fi   # Nov 10: states NOT built (short saved copy); the join keeps them on the rebuild list
       - uses: actions/upload-artifact@v4
         if: ${{ always() }}   # a red group's part (master-short, failed states) still reaches the join

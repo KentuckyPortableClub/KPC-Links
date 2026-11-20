@@ -1770,7 +1770,7 @@
    "areas": [
     "US-CO"
    ],
-   "expected_count": 200,
+   "expected_count": 317,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -1784,7 +1784,8 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 324,
-   "url": ""
+   "url": "",
+   "baseline_how": "S3 keys-first rev 3.1 (19 Nov 2026): this layer's rows in the saved copy (boundary-cache, 2026-11-12), no re-read; was 200, a capped count"
   },
   "US-CO.sgcob": {
    "agency": "Colorado Parks & Wildlife (park, state GIS table)",
@@ -5006,7 +5007,7 @@
    "areas": [
     "US-OR"
    ],
-   "expected_count": 200,
+   "expected_count": 2150,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -5020,7 +5021,8 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 2153,
-   "url": ""
+   "url": "",
+   "baseline_how": "S3 keys-first rev 3.1 (19 Nov 2026): this layer's rows in the saved copy (boundary-cache, 2026-11-12), no re-read; was 200, a capped count"
   },
   "US-OR.sgorg": {
    "agency": "Bureau of Land Management, Oregon State Office (wild and scenic river corridors) (wild, state GIS table)",
@@ -6098,7 +6100,7 @@
    "areas": [
     "US-WA"
    ],
-   "expected_count": 200,
+   "expected_count": 228,
    "g": "official",
    "id_fields": [],
    "last_edit": null,
@@ -6112,7 +6114,8 @@
    "read_how": "geojson",
    "record_id_field": null,
    "source_count": 228,
-   "url": ""
+   "url": "",
+   "baseline_how": "S3 keys-first rev 3.1 (19 Nov 2026): this layer's rows in the saved copy (boundary-cache, 2026-11-12), no re-read; was 200, a capped count"
   },
   "US-WA.sgwab": {
    "agency": "Washington Department of Fish and Wildlife (wild, state GIS table)",
