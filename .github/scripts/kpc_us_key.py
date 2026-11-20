@@ -1739,22 +1739,39 @@ def pins():
 
 ACRES_OFF = None
 def _official_acres():
+    """Official sizes, read the same way the key health report reads them (kpc_key_health.official_acres): OFFICIAL_ACRES when
+    set, else data/acres.json, else $DATA/data/acres.json. A row is a number or an object with 'acres'. The waiting-room copy
+    is not read: a held file is not a size this check may use."""
     global ACRES_OFF
-    if ACRES_OFF is None:
-        ACRES_OFF = {}
-        try:
-            d = json.load(open('data/acres.json')); d = d.get('parks', d) if isinstance(d, dict) else {}
-            for r_, v in d.items():
-                try: ACRES_OFF[r_] = float(v.get('acres') if isinstance(v, dict) else v)
-                except (TypeError, ValueError): pass
-        except Exception: pass  # noqa: BLE001
+    if ACRES_OFF is not None: return ACRES_OFF
+    ACRES_OFF = {}
+    env_f = (os.environ.get('OFFICIAL_ACRES') or '').strip()
+    if env_f: cands = [env_f]
+    else:
+        cands = ['data/acres.json']
+        if os.environ.get('DATA'): cands.append(os.path.join(os.environ['DATA'], 'data', 'acres.json'))
+    for f in cands:
+        if not f or not os.path.exists(f): continue
+        try: d = json.load(open(f, encoding='utf-8'))
+        except Exception: continue  # noqa: BLE001
+        d = d.get('parks', d) if isinstance(d, dict) else {}
+        if not isinstance(d, dict): continue
+        out = {}
+        for r_, v in d.items():
+            a = v.get('acres') if isinstance(v, dict) else v
+            if isinstance(a, bool) or not isinstance(a, (int, float)) or not a > 0: continue
+            out[str(r_)] = float(a)
+        ACRES_OFF = out
+        return ACRES_OFF
     return ACRES_OFF
 
 
 def _selfchk(st, parks, recs):
-    """Nov 2 review. KPC_SELF_CHECKS=report notes problems in parks[ref]['self']; =hold also moves the park to check (no outline).
+    """Nov 2 review. KPC_SELF_CHECKS=report notes problems in parks[ref]['self']; =hold moves the park to check for the SIZE
+    line only (measured outline vs official size, 0.33x-3x). Layer kind and a pin outside the state stay a note. The state is
+    passed so the switch file's hold list can name one state. A park with no official size is not held.
     KPC_CONF_SORT=1 writes review/unsure-US-<st>.json: only the parks a person needs to see, each with a one-line reason."""
-    mode = KR.setting('KPC_SELF_CHECKS') if KR is not None else '0'
+    mode = KR.setting('KPC_SELF_CHECKS', area=st) if KR is not None else '0'
     if KR is None or (mode in ('0', 'off', '') and not _kr('KPC_CONF_SORT')): return
     bbs = [a['_bb'] for a in recs if a.get('_bb')]
     box_ = (min(b[1] for b in bbs), min(b[0] for b in bbs), max(b[3] for b in bbs), max(b[2] for b in bbs)) if bbs else None
@@ -1767,8 +1784,9 @@ def _selfchk(st, parks, recs):
         bad = KR.self_checks(ref, q, box_, _official_acres().get(ref), ko)
         if not bad: continue
         probs[ref] = bad; p['self'] = bad
-        if mode == 'hold' and p.get('m'):
-            p['c'] = [x[:3] + ['self-check: ' + bad[0]] for x in p['m']] + list(p.get('c') or []); p['m'] = []
+        size = [b for b in bad if str(b).startswith('acres: measured outline')]
+        if mode == 'hold' and size and p.get('m'):
+            p['c'] = [x[:3] + ['self-check: ' + size[0]] for x in p['m']] + list(p.get('c') or []); p['m'] = []
     if probs: notice(f'US key {st}', f'self-checks: {len(probs)} park(s) with a problem ({mode})')
     if _kr('KPC_CONF_SORT'):
         for ref, p in parks.items(): p['conf'], p['conf_why'] = KR.confidence(p, probs.get(ref) or ())
