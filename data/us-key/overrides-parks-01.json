@@ -2407,6 +2407,26 @@
     "date": "2026-11-20"
    }
   },
+  "US-1094": {
+   "fp": {
+    "sgarb13": [
+     "Lake Ouachita State Park",
+     459
+    ]
+   },
+   "join": [
+    "sgarb13"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Lake Ouachita State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb13 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the NO on sgarb13 is lifted, the join stands",
+   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://www.arkansasstateparks.com/parks/lake-ouachita-state-park",
+    "saw": "Arkansas State Parks: 'Lake Ouachita, offers 40,000 acres of clear, clean water'. The NO's saved fingerprint (39,495.8 ac) is the lake; record sgarb13 in the 11 Nov read is 'Lake Ouachita State Park', 472 ac (459 saved with the join), and PAD-US 166849 (461 ac), already in the park's key, is the same land. The NO stood for the lake, so it comes off the park's own record; the lake stays with the D4 check.",
+    "date": "2026-11-20"
+   }
+  },
   "US-1095": {
    "fp": {
     "sgarb31": [
