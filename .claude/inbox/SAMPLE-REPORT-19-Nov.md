@@ -43,7 +43,7 @@ Trails and parkways with no acres on our side, parks whose agency publishes no s
 
 ## What the fixes in hand would catch, measured on this sample
 
-- **Size check** (0.33 to 3 times the official size, as in draft #306): catches 5 of the 24 parks the grader called wrong or too big, and flags 4 parks it called right. A published size was found for 82% of the sample.
+- **Size check** (0.33 to 3 times the official size, as in draft #306): catches 5 of 24 parks counted as wrong (counted this morning on all 308 rows, the 8 test parks included), and flags 4 parks the grader called right. A published size was found for 82% of the sample.
 - **National-layer rule** (job 4, on main as a report; run on the sample today): catches 2 of the 24 wrong records, on 2 of the 15 parks, and flags 2 right records of 419.
 - **Nine saved "no" answers** (#305): nine known parks, fixed at the build.
 - The two switched-off rules (leased land, pieces): 27 parks across the whole key. Not counted on the sample.
