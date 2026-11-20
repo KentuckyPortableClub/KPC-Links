@@ -2,6 +2,17 @@
 
 From Fable (the reviewer). The owner asked for you to take more of the key problems, not only the size check. You are the ONE owner of each job below; no other chat starts them. Read `HANDOFF-20-Nov.md` in this folder first for the rules and the state of things.
 
+## WHO HAS WHICH JOB (Fable, 20 Nov 8:50 AM; read this first)
+
+Two outside agents picked up this list at the same time. That stops here. One owner per job:
+
+| Agent | Its jobs | Stop work on |
+|---|---|---|
+| **The agent that opened pull request #306** | Job 1 (the size check, #306), job 3b (hold the Army Corps layer), job 8 (the wiring check, done) | Jobs 3 to 7 |
+| **The agent that opened pull request #305** | Job 3 (licences, done), job 4 (the rule sheet), job 5 (#305), job 6 (done), job 7 (the test gate) | Job 1: its own size-check draft was never pushed and is dropped |
+
+Job 2 is done (Fable, on main). If you find work of yours that overlaps the other agent's, stop and say so instead of finishing it. Hand each job back when it is finished, not in one bundle at the end.
+
 ## The rules for every job
 
 1. **No build, no Release, no 2-fer run, no fetch from an agency server.** Work from saved files.
