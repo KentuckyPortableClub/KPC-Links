@@ -2094,6 +2094,28 @@ def run(st):
         if _moved:
             notice(f'US key {st}', 'D1 a person\'s rows = the land: ' + ', '.join(f"{k} {sum(1 for x in _moved if x[1] == k)}" for k in ('join moved', 'join check', 'no moved', 'no kept') if any(x[1] == k for x in _moved))
                    + ' (' + '; '.join(f'{x[0]} {x[1]} {x[2]}->{x[3]}' for x in _moved[:12]) + ')')
+    if _kr('KPC_NO_FOLLOWS_FP'):
+        # Job 10 (Fable's 20 Nov jobs list; outside review R4 / finding F7, Arkansas US-1080): a person's NO named a record id; after a
+        # layer refresh renumbers that record, the NO no longer applied and the land joined again. A 'no' id gone from the read
+        # follows its saved fingerprint ('nofp': name + acres within 10%, the SAME layer, near the pin), as a saved join does.
+        _ids = {_oid(a) for a in recs}
+        _fol = []
+        for ref in sorted(P):
+            ov_ = OVR.get(ref)
+            if not ov_ or not ov_.get('nofp') or not ov_.get('no'): continue
+            r_ = P[ref]; la_, lo_ = (r_[5], r_[6]) if len(r_) > 6 else (None, None)
+            if la_ is None and ref in pins(): la_, lo_ = pins()[ref]
+            def _rfn(old, nm, ac, la_=la_, lo_=lo_):
+                fam = re.match(r'\D*', old).group()
+                return [a for a in recs if re.match(r'\D*', _oid(a)).group() == fam and _nf(nm) in {_nf(n_) for n_ in KR.rec_names(a) or [a.get('Unit_Nm') or a.get('Loc_Nm') or '']}
+                        and (la_ is None or near(la_, lo_, a['_bb'], .6))]
+            nov, notes = KR.follow_gone_no(ov_, lambda i: i in _ids, _rfn)
+            if not notes: continue
+            OVR[ref] = nov
+            _fol += [(ref,) + n for n in notes]
+        if _fol:
+            notice(f'US key {st}', 'a NO follows its record (KPC_NO_FOLLOWS_FP): ' + ', '.join(f"{k} {sum(1 for x in _fol if x[1] == k)}" for k in ('no followed', 'no not found', 'no meets join') if any(x[1] == k for x in _fol))
+                   + ' (' + '; '.join(f"{x[0]} {x[1]} {x[2]}->{'+'.join(x[3]) or '-'}" for x in _fol[:12]) + ')')
     parks, used = {}, set()
     RD.clear()
     SAVED_SAY[:] = [h for h in SAVED_SAY if h[0] != st]   # F5: a state built twice in one run is counted once

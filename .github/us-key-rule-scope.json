@@ -554,6 +554,13 @@
    "from": "7e4883bfbb45",
    "why": "Job 9 (R6; outside review findings F10 and F14): #295 made an error in the one-record-two-parks pass hold the state behind KPC_HOLD_ON_PASS_ERROR (OFF). The same switch now also holds the state at the review's four other places where the US key builder carried on: a zipped-shapefile layer that cannot be read or a map layer that cannot be found (each was only a notice), a failed layer read the state would be built from anyway (no saved copy, or under 3% short of it), a saved-copy-only layer under 97% of its baseline in data/outlines/layers.json (it was never short-checked), and the shape guard (kpc_shape_guard.py; under 97% of the live key's shapes instead of under half). A rule data file that is missing or unreadable (overrides.json, retired-refs.json, park-transfers.json, state-gis.json, data/us-key/layers.json, data/outlines/layers.json, and the agency table when KPC_AGENCY_TIE is on) holds the state instead of reading as 'no rule'. Held = run() fails for that state (FAILED, no key file written, its saved copy on main kept). The switch is on for no area: switch OFF = every place reads and saves exactly as before. No result changes, nothing is rebuilt.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-20-no-follows-fp",
+   "when": "2026-11-20",
+   "from": "c93555706dc2",
+   "why": "KPC_NO_FOLLOWS_FP (job 10 of Fable's 20 Nov jobs list; outside review R4 / finding F7, Arkansas US-1080): a person's saved NO named a record id, and after a layer refresh renumbered that record the NO no longer applied and the land could join again. Behind the new switch (OFF, on for no area): a 'no' id that is gone from the read follows its saved fingerprint ('nofp': name + acres within 10%, the SAME layer, near the pin), as a saved join already does (the Oct 27 re-find); every fit is ruled out, a fit the same park joins by id is left alone; all of it is said in the build's notice. Merged OFF = no result changes, nothing is rebuilt. On the saved reads of 11-12 Nov (no pin test, so an upper bound): 409 saved NO ids carry a fingerprint, 41 of them are gone from the read; ON, 6 follow their record (16 new ids on 4 parks, 1 of them joined in today's key) and 35 are not found again.",
+   "scope": "none"
   }
  ]
 }
