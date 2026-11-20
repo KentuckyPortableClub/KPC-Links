@@ -669,8 +669,11 @@
   "kpc-community.yml|2026-11-20T20:17:00+00:00": "2026-11-20T21:31+00:00 started",
   "kpc-discord-watch.yml|2026-11-20T20:47:00+00:00": "2026-11-20T21:31+00:00 started",
   "kpc-fb-comments.yml|2026-11-20T20:32:00+00:00": "2026-11-20T21:31+00:00 skipped (not restarted)",
-  "kpc-park-alerts.yml|2026-11-20T20:03:00+00:00": "2026-11-20T21:31+00:00 started"
+  "kpc-park-alerts.yml|2026-11-20T20:03:00+00:00": "2026-11-20T21:31+00:00 started",
+  "kpc-reports.yml|2026-11-20T21:29:00+00:00": "2026-11-20T21:55+00:00 started"
  },
- "last": "2026-11-20T21:45+00:00",
- "last_restarted": []
+ "last": "2026-11-20T21:55+00:00",
+ "last_restarted": [
+  "kpc-reports.yml (missed Nov 20 21:29 UTC)"
+ ]
 }
