@@ -151,7 +151,9 @@ NOT_RULES = {'kpc_agency_table.py', 'kpc_key_drop_guard.py', 'kpc_outlines_from_
              # check of a built key and the blind grading packet + scorer. They read keys and write reports; neither decides a join.
              'kpc_key_factcheck.py', 'kpc_key_grade.py',
              # 2026-11-19 (outside review F9; the reviewer's first slice, step S4): measures an outline's acres for the fact check; decides no join
-             'kpc_outline_acres.py'}
+             'kpc_outline_acres.py',
+             # 20 Nov 2026 (job 4): read-only national-layer level check; prints counts, decides no join
+             'kpc_national_level_check.py'}
              # Nov 15 (KPC owner, 2026-11-15): kpc_fers_store.py left this list for the 2-fer RULE_FILES (the switch-over hook)
 MAX_DAYS_DEFAULT = 3
 GRADERS = ('quality', 'brandon', 'kz4cp')   # who may grade a build NO for graded_no() (a hold only, never an unfreeze)
