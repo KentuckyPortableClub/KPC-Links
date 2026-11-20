@@ -56,8 +56,10 @@ try:
           [254043, 'LPD - Twin Bays Tract', 218, 'words']], 'c': []}
     pv = {'n': 'Little Pee Dee', 'g': 'official', 'm': [[254129, 'x', 298, 'name']], 'c': [['sgscc11', 'LPD HP/WMA', 10455, 'check (rule R-G8)'], [254043, 'Twin Bays', 218, 'held (rule G-1)']]}
     p, h = run({'US-3917': pc}, {'US-3917': pv}, signed={'US-3917': ['254041']})
-    check([x[0] for x in p['US-3917']['m']] == [254041] and {str(x[0]) for x in p['US-3917']['c']} >= {'sgscc11', '254043'} and 'ac' not in p['US-3917'],
-          '3: only the signed 254041 stays joined; sgscc11 and 254043 go back to c')
+    m_ids = [x[0] for x in p['US-3917']['m']]
+    c_ids = {str(x[0]) for x in p['US-3917']['c']}
+    check(m_ids == ['sgscc11', 254041] and 254043 not in m_ids and '254043' in c_ids and 'sgscc11' not in c_ids,
+          '3: the signed 254041 and the previous check row stay joined; the previous held 254043 goes back to c')
     # Nov 8: Quality KEY YES on US-42504172086 -> the us-key entry is gone; the join check compares with git HEAD again
     jb = (ROOT / 'data/key-join-base.json')
     check(not jb.is_file() or 'us-key' not in json.loads(jb.read_text(encoding='utf-8')), 'data/key-join-base.json has no us-key entry after the accepted rebuild')
@@ -78,7 +80,9 @@ try:
         check(all(res[r]['g'] == 'pin' for r in far7 + ['US-13181']), 'real: the 7 far NV HMAs and US-13181 Pine Forest are pins again')
         hm = [r for r, p in res.items() if 'Herd Management' in str(p.get('t')) and 'a person said NO' in str((p.get('held') or {}).get('why'))]
         check(len(hm) >= 22, f'real: {len(hm)} NV HMAs held by a carried NO (Quality counted 22)')
-        check([x[0] for x in res['US-3917']['m']] == [254041], 'real: US-3917 joins only the signed 254041')
+        m_ids = [x[0] for x in res['US-3917']['m']]
+        check(254041 in m_ids and 254043 not in m_ids,
+              'real: the signed 254041 stays joined; the previous held 254043 does not')
     else: print('SKIP real-data check (fbacca65 not in this clone)')
 finally:
     shutil.rmtree(T, ignore_errors=True)

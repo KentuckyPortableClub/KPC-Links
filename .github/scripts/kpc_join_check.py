@@ -232,7 +232,7 @@ def new_ids(p, prev):
 def _previous_out_is_check_only(why):
     """A previous-key 'c' check row is not a hold or a person's NO — do not take land off for it (Nov 20)."""
     w = str(why or '').strip().lower()
-    if w.startswith('held:') or 'a person said no' in w:
+    if w.startswith('held') or 'a person said no' in w:
         return False
     return w.startswith('check')
 
@@ -523,6 +523,9 @@ def selftest():
         held_why = 'held: the nearest part of the joined outline is 22.0 km from the pin'
         check('unsigned_on_signed: a previous held id is still listed',
               unsigned_on_signed('US-8002', p_now, {'c': [[2, 'Extra', 4, held_why]]}), [(2, held_why)])
+        held_g1 = 'held (rule G-1): a similar-name piece more than 2 km from the pin'
+        check('unsigned_on_signed: a held reason without a colon is still held',
+              unsigned_on_signed('US-8002', p_now, {'c': [[2, 'Extra', 4, held_g1]]}), [(2, held_g1)])
         no_why = 'a person said NO to this land under its old id (2 = other "Extra")'
         check('unsigned_on_signed: a previous person-NO id is still listed',
               unsigned_on_signed('US-8003', p_now, {'c': [[2, 'Extra', 4, no_why]]}), [(2, no_why)])
