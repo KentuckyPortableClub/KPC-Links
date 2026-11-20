@@ -52,6 +52,11 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           for it like any other error of a state, no key file is written and its saved copy on main is kept
                           (pass_error below). OFF = today: the notice 'one-record-two-parks pass skipped', and the state is saved.
                           No error = no change either way.
+                          2026-11-20 (job 9; R6; review F10 and F14): the same switch also holds the state at four more places
+                          (hold_state below): a zipped layer that cannot be read or a map layer that cannot be found, a failed layer read the state would be built from anyway
+                          (no saved copy, or a read under 3% short), a saved-copy-only layer under 97% of its baseline in
+                          data/outlines/layers.json, and a rule data file that is missing or unreadable (rule_data_missing below).
+                          The shape guard (kpc_shape_guard.py) reads it too: ON, a state under 97% of the live key's shapes fails.
   KPC_SAVED_ANSWERS_SAY 0 (outside review finding F5, 2026-11-19; reviewer's first slice, step S6b; the owner's word of 19 Nov 2026)
                           the US key's saved joins say what they could not do: a join not found in the read (no record with
                           that id, none of that name near the pin, the fingerprint finds none), a fingerprint that fits two
@@ -240,6 +245,37 @@ def pass_error(area, err, hold):
     says FAILED, writes no key file for it, and the state keeps its saved copy on main: held, fail closed)."""
     if hold: raise PassError(f'{area}: one-record-two-parks pass stopped with an error, so {area} is held (its saved copy is kept): {type(err).__name__}: {err}') from err
     return err
+
+
+def hold_state(area, why, hold):
+    """2026-11-20 (job 9; R6; outside review findings F10 and F14; switch KPC_HOLD_ON_PASS_ERROR, OFF): the US key builder found
+    something in `area` that it used to carry on past (a layer it could not find, a failed read it would build from anyway, a
+    saved-copy-only layer short of its baseline, a rule data file missing). hold False (today): returns `why` and the caller
+    goes on exactly as before. hold True: raises PassError naming the area, so run() fails for that state like any other error
+    of a state (FAILED, no key file written, its saved copy on main kept: held, fail closed)."""
+    if hold: raise PassError(f'{area}: {why}, so {area} is held (its saved copy is kept)')
+    return why
+
+
+_RULE_DATA = {}
+
+
+def rule_data_missing(paths):
+    """2026-11-20 (job 9; outside review finding F14): [(path, what is wrong)] for each rule data file in `paths` that is missing
+    or cannot be read as JSON. A missing rule file must never read as 'no rule'. Read once per path per run (the files do not
+    change during a run). Says nothing and decides nothing itself: the caller holds the state through hold_state."""
+    import json
+    out = []
+    for p in paths:
+        p = str(p)
+        if p not in _RULE_DATA:
+            try:
+                with open(p, encoding='utf-8') as f: json.load(f)
+                _RULE_DATA[p] = ''
+            except FileNotFoundError: _RULE_DATA[p] = 'missing'
+            except (OSError, ValueError) as e: _RULE_DATA[p] = f'unreadable ({type(e).__name__})'
+        if _RULE_DATA[p]: out.append((p, _RULE_DATA[p]))
+    return out
 
 
 def nf(t):
