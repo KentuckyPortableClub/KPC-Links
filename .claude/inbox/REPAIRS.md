@@ -113,6 +113,34 @@ N1 to N3 must be done before any Release.
 - [ ] **Z2. Fact check and a sample** on that key.
 - [ ] **Z3. Release by numbers,** state by state. Brandon presses the button.
 
+## The two outside reviews, finding by finding: what has NO fix yet (Fable, 20 Nov 4:55 AM, for the owner's "what is not done")
+
+41 findings in all: the Claude review (C-F1 to C-F24, `KPC-hand-off-07-review-report.md`) and Grok's (G-F1 to G-F17, `KPC-pipeline-review-2026-11-19.md`). Fixed, or drafted and passed by Fable: C-F1/G-F1 (guard, #302), G-F3 (#303), C-F6/G-F5 (#299), C-F8/G-F9 (sample, answers private), C-F9 (fact check only, #298), C-F11 (#300), C-F15 and G-F11's rules (#289 to #292), C-F17 (store #25, one change left), C-F21, C-F22/G-F12 (#294), C-F10 (ONE of its five places, #295), C-F5 (the saying half, #297). From the checklist, not re-proved one by one.
+
+NOT DONE, the matching itself:
+- [ ] **R1. A name join still has no size test and the name test is loose** (C-F3, G-F6). The 2 Nov size check exists and is OFF in every state. Waits for F4 (rule sheet) and the sample's second look.
+- [ ] **R2. Rules already ruled but switched off in all 50 states** (C-F4, G-F8): D5 (leased land never by name), the piece rule, and others in `.github/key-switches.json`. They go on at the one build, each with its list.
+- [ ] **R3. One record held by a person's answer in one park and by name in another** (C-F2): #296 parked, 70 records with no winner, 12 that disagree.
+- [ ] **R4. Saved answers:** a "no" does not follow a renumbered record (G-F7, AR US-1080); 15 parks hold one id under join and no; 472 bare-name joins; the two-fit list of 64 for a grader (C-F5).
+- [ ] **R5. The key's own acres field is still wrong** (C-F9): only the fact check reads the measured outline. `KPC_MEASURED_ACRES` is OFF.
+- [ ] **R6. The builder still fails open in four of five places** (C-F10); missing rule data still means "no rule" (C-F14); rule settings live in the environment and the runners disagree (C-F13).
+- [ ] **R7. The drop guard sees only a lost outline,** not a swap, a wrong gain or a quiet shrink (C-F7, G-F4). O9 is the report half and is open.
+
+NOT DONE, outlines and the public map:
+- [ ] **R8. The outlines are not rebuilt from the key** (C-F1, G-F2): one public outline in three is name + pin; nothing writes outlines in store mode. Only the one build fixes it; the guard (#302) just refuses meanwhile.
+- [ ] **R9. The 2,379 public 2-fer rows are old and unstamped** (C-F12): withdraw them now or leave them until a fresh run? Owner question, not asked yet. With B3 (pieces within 100 m) and C-F16.
+- [ ] **R10. Public coverage is far below the 85.2% in the notes** (G-F16): the number in the notes is not corrected.
+- [ ] **R11. Two side paths to public files skip the gates** (G-F17).
+
+NOT DONE, layers and the store:
+- [ ] **R12. The key builder never reads the keeper's store; the saved-copy refresh is three steps short; the 15 Nov host ruling is not in the code** (G-F10; REPAIRS d119b32 and 521ed98: the next Opus chat's first job). The 2 hand downloads wait on this.
+- [ ] **R13. The store's own tests are red on main and the world engine has drifted from the US one** (G-F15). **R14. Two licence tables disagree and the test is skipped** (C-F18, G-F14).
+
+NOT DONE, cost and housekeeping:
+- [ ] **R15. Main's test gate is red and its known-failures list is from 7 Nov** (Found later). Every "no new failures" tonight leans on it.
+- [ ] **R16. About 430 scheduled runs a day planned** (C-F20); a chat reads about 35,000 tokens before it starts and status is written by hand (C-F19); dead weight and overlap (C-F24); the few files that make most of the churn (C-F23: layers.json.gz done in KPC-Data #132, the rest not); repo size and the history restart (G-F13).
+
+
 ## Found later
 
 From Fable's gate runs (9 PM):
