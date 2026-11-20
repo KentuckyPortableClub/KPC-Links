@@ -580,22 +580,19 @@
    "why": "Oct 29 7:20 PM: chat 11 verdict on chat 9's key-piece probe: NO: the 46-ac state park is a piece; the POTA park is the national reserve · 2026-11-02 12:49: gis-hunter row YES 'Ebey's Landing National Historical Reser' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: key-pieces row NO 'Ebey's Landing' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
   },
   "US-0697": {
-   "approx": true,
-   "fp": {
-    "2441": [
-     "Bluestone Recreation Area",
-     22147
-    ]
-   },
-   "join": [
-    "2441"
-   ],
    "no": [
     "2441",
     "Bluestone Recreation Area"
    ],
-   "when": "2026-10-29",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Oct 29 6:05 AM: the 22,147-ac 'Bluestone Recreation Area' record is not the Bluestone National Scenic River (chat 8); the river's own record + line stay"
+   "when": "2026-11-20",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Oct 29 6:05 AM: the 22,147-ac 'Bluestone Recreation Area' record is not the Bluestone National Scenic River (chat 8); the river's own record + line stay · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 2441 is dropped, the NO stands",
+   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://www.nps.gov/blue/index.htm",
+    "saw": "National Park Service: 'The park protects a 10.5-mile section of the Bluestone River in southern West Virginia.' PAD-US 2441 is the Army Corps of Engineers' 22,147-acre Bluestone recreation record (the lake project), not the river unit; the rules join the river's own records (the NPS unit and the wild and scenic river). The later NO (29 Oct, chat 8) stands; the approximate join is dropped.",
+    "date": "2026-11-20"
+   }
   },
   "US-0732": {
    "join": [
