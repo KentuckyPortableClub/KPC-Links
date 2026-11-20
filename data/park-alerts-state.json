@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20 10:11",
+ "updated": "2026-11-20 12:57",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -131,20 +131,6 @@
    "first": "2026-10-21",
    "runs": 2,
    "missing": 0,
-   "announced": true
-  },
-  "lbl-x-fort-henry-trail-is-closed-from-point-1": {
-   "who": "Land Between the Lakes",
-   "title": "Fort Henry Trail is Closed from Point 1-23 and Picket Loop from tornado damage.",
-   "text": "Fort Henry Trail is Closed from Point 1-23 and Picket Loop from tornado damage.",
-   "link": "https://www.landbetweenthelakes.us/alerts/",
-   "routine": false,
-   "refs": [
-    "US-3792"
-   ],
-   "first": "2026-10-21",
-   "runs": 2,
-   "missing": 1,
    "announced": true
   },
   "kdfwr-regulatory-amendments-filed-pending-and-recently-enacted": {
