@@ -59,6 +59,13 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           holds it by name only (the answer and the record's own name disagree): nothing moves, the parks are
                           named in the build's notice. No single winner, or two people's parks: nothing moves. A person's row
                           is never moved. Trail ids and B12 parts left out, as D9. OFF.
+  KPC_SAVED_ANSWERS_SAY 0 (outside review finding F5, 2026-11-19; reviewer's first slice, step S6b; the owner's word of 19 Nov 2026)
+                          the US key's saved joins say what they could not do: a join not found in the read (no record with
+                          that id, none of that name near the pin, the fingerprint finds none), a fingerprint that fits two
+                          or more records (refind_saved 'two': NO join from that answer on this build; today the first one
+                          wins), and one record under both 'join' and 'no' of a park (join_and_no; which wins is not changed).
+                          Said in the build's notice and in the state's counts (saved_join_not_found / _two_fits / _join_and_no),
+                          never as a check row. Bare-name joins are not changed. OFF = today.
   KPC_NO_LEASE_BY_NAME 0  (KPC owner, 2026-11-17, ruling D5) a record whose name says leased / lease / agreement / cooperative area is
                           the easement family: never joined by name alone, it goes to check; a person may say yes for one park.
   KPC_LAKE_ONLY_IF_LAKE 0 (KPC owner, 2026-11-17, ruling D4, rewritten 9:17 AM after the research: WHO OWNS THE WATER decides, not
@@ -150,7 +157,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_ANSWER_HOLDERS': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
-            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0',
+            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0', 'KPC_SAVED_ANSWERS_SAY': '0',
             'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1', 'KPC_PRESERVE_WITH_PARK': '1'}
 
 
@@ -549,6 +556,34 @@ def rec_names(rec):
     out = [x for x in (u, l) if x]
     if u and l: out += [f'{l} ({u})', f'{u} ({l})']
     return out
+
+
+def refind_saved(fp_name, fp_acres, family, cands):
+    """KPC_SAVED_ANSWERS_SAY (2026-11-19, outside review finding F5; reviewer's first slice, step S6b): a saved join id gone from
+    the read is looked for again by its fingerprint, the builder's own test: the same name (nf), the same id family (the
+    letters before the number: PAD-US numbers, 'sgmta', 'wsa' ...) and acres within 10% (at least 20). cands = [(id, name,
+    acres)] of the records near the pin (the caller tests the distance). -> ('one', id) / ('none', None) / ('two', [ids]).
+    'two' = two or more different records fit: the builder takes none of them (today the first one wins)."""
+    hits = []
+    for i, n, a in cands or []:
+        i = str(i)
+        if (nf(n) == nf(fp_name) and re.match(r'\D*', i).group() == family
+                and abs((a or 0) - (fp_acres or 0)) <= max(20, .1 * (fp_acres or 0)) and i not in hits): hits.append(i)
+    if not hits: return 'none', None
+    return ('one', hits[0]) if len(hits) == 1 else ('two', hits)
+
+
+def join_not_found(want, ids, near_names):
+    """KPC_SAVED_ANSWERS_SAY (F5): True when a saved join `want` (an id, or a bare name) finds nothing in the read: no record has
+    that id (ids = every record id read) and no record near the pin has that name (near_names, nf-normalised; both may be lazy)."""
+    return str(want) not in (ids or ()) and nf(want) not in near_names
+
+
+def join_and_no(ov):
+    """KPC_SAVED_ANSWERS_SAY (F5): the ids one park's saved answer holds under both 'join' and 'no', sorted. Said only: which of
+    the two wins is not changed."""
+    o = ov or {}
+    return sorted({str(x) for x in o.get('join') or []} & {str(x) for x in o.get('no') or []})
 
 
 FAR_EVIDENCE = ('who', 'source', 'saw', 'date')
