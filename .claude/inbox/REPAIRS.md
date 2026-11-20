@@ -113,6 +113,18 @@ N1 to N3 must be done before any Release.
 - [ ] **Z2. Fact check and a sample** on that key.
 - [ ] **Z3. Release by numbers,** state by state. Brandon presses the button.
 
+## The plan to the one build (Fable, 20 Nov 5:00 AM; owner: "hopefully you have a plan"). Six steps, one owner each, nothing added in between.
+
+1. **Merge the nine passed drafts** (Opus; order above). Done when: main shows them.
+2. **Read Montana** (Opus, O3): the information bot's answers scored against the Montana parks already settled by hand. Good = Nevada, then every state by the bot itself. Bad = say so and go on without it.
+3. **ONE rule sheet for size** (Fable, F4; closes R1 and R5): switch on the 2 Nov check that already exists, with a tighter band, fed by the sizes already collected (acreage bot 1,675 parks, the page reader, measured outlines). One ruling from the owner: what happens to a park with no official size.
+4. **One list per switch that goes on** (ONE agent, from saved files, no build): size check, measured acres, D5 leased land, the piece rule, hold-on-error, saved-answers-say (closes R2). Each list = the parks that change. Plus the plain wrong cases fixed by a saved "no" (G3).
+5. **The one build, every passed switch on** (Opus, on the owner's GO). The parks that change must be exactly the lists of step 4. The outlines are rebuilt from the key in the same run (closes R8).
+6. **A fresh sample of 300, same method** (one grading agent). Last night: 5.0% hold a record that is not the park, 14% cannot be told. Better = release state by state through the new guard, the owner presses the button. Not better = STOP and say so; no more patches on top.
+
+NOT in this plan, on purpose, until step 6 is read: R3, R4, R6, R7, R9 to R16, any 2-fer run, part 4, the world, the history restart.
+The owner's part: one ruling (step 3), one GO (step 5), the release button (step 6).
+
 ## The two outside reviews, finding by finding: what has NO fix yet (Fable, 20 Nov 4:55 AM, for the owner's "what is not done")
 
 41 findings in all: the Claude review (C-F1 to C-F24, `KPC-hand-off-07-review-report.md`) and Grok's (G-F1 to G-F17, `KPC-pipeline-review-2026-11-19.md`). Fixed, or drafted and passed by Fable: C-F1/G-F1 (guard, #302), G-F3 (#303), C-F6/G-F5 (#299), C-F8/G-F9 (sample, answers private), C-F9 (fact check only, #298), C-F11 (#300), C-F15 and G-F11's rules (#289 to #292), C-F17 (store #25, one change left), C-F21, C-F22/G-F12 (#294), C-F10 (ONE of its five places, #295), C-F5 (the saying half, #297). From the checklist, not re-proved one by one.
