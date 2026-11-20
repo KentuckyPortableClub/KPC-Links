@@ -539,6 +539,13 @@
    "from": "c64b8ace0411",
    "why": "F10 (outside review, confirmed by a second checker; reviewer's go 19 Nov): an error inside the US key's one-record-two-parks pass (the kind pass, D9 and the contest) printed 'one-record-two-parks pass skipped' and the state was saved with its shared records in place. Behind the new switch KPC_HOLD_ON_PASS_ERROR (OFF): such an error holds the state the way any other error of a state does (run() fails, the builder names it FAILED, no key file is written and the state keeps its saved copy on main). No error = no change, switch on or off; merged OFF = the notice reads word for word as before. No result changes, nothing is rebuilt.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-19-answer-holders",
+   "when": "2026-11-19",
+   "from": "a34f224459cc",
+   "why": "KPC_ANSWER_HOLDERS (outside review finding F2; reviewer's go 19 Nov 2026): the one-record-two-parks table leaves out a person's rows, so a record a person joined to one park and the name joined to another looked held once and both kept it (Tennessee: Cheatham WMA US-3933 / Cheatham Lake WMA US-7578). Behind the switch (OFF), one more step reads only a record held by a person's row AND by another row (trail ids and B12 parts left out, as D9) and asks the D9 winner test (kpc_key_rules.answer_holder_moves): the person's park wins = the other parks give their name rows back to check (a park left with nothing is a pin); a park holding it by name only wins = the saved answer and the record's own name disagree, nothing moves and the build's notice names both parks; no single winner or two people's parks = nothing moves. A person's row is never moved. The winner test is D9's full-name test, so a short record name (WMA, SP) finds no winner: the Cheatham records 'Cheatham WMA' / 'Cheatham Lake WMA' are left as they are. Switch OFF = no result changes. Predicted from the saved key (not a build): 0 parks give a row back, 12 records disagree, 70 have no single winner.",
+   "scope": "none"
   }
  ]
 }
