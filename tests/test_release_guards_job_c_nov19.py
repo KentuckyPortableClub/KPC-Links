@@ -44,6 +44,7 @@ with tempfile.TemporaryDirectory() as t:
         'US-99903': {'g': 'official', 'n': 'Other Forest', 'm': [[2658, 'Other Forest', 10, 'reviewed']]},
         'US-99904': {'g': 'official', 'n': 'Short Park', 'm': [['d1', 'Short Park', 10, 'name'], ['d2', 'Short Park Annex', 4, 'name']]},
         'US-99905': {'g': 'official', 'n': 'Two Piece', 'm': [['e1', 'Two Piece', 10, 'name'], ['e2', 'Two Piece', 4, 'name']]},
+        'US-99915': {'g': 'official', 'n': 'Twin Park', 'm': [['t1', 'Twin Park', 10, 'name'], ['t2', 'TWIN  park', 4, 'name']]},   # Fable, 20 Nov
         'US-99906': {'g': 'official', 'n': 'Line Trail', 'm': [['trl99906', 'Line Trail', 0, 'official trail line']]},
     })
     clean = {'US-99901': rec('US-99901', ['a1', 'a2'])}
@@ -72,6 +73,8 @@ with tempfile.TemporaryDirectory() as t:
           has(p, 'US-99904', 'holds 1 of the key\'s 2 records and misses d2 (Short Park Annex)'), p)
     p = probs('US-KY', {'US-99905': rec('US-99905', ['e1'])}, kd)
     check('N1 case 3 control: a short outline whose missing piece has the same name as a piece it holds passes', p == [], p)
+    p = probs('US-KY', {'US-99915': rec('US-99915', ['t1'])}, kd)
+    check('N1 case 3 control: a missing twin whose name differs only in letter case or spacing passes (Fable, 20 Nov)', p == [], p)
 
 # ------------------------------------------------------------------ N3 item 1: only in the file of a state whose key lists the park
 with tempfile.TemporaryDirectory() as t:

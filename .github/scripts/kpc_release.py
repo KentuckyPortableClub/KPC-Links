@@ -462,8 +462,9 @@ def us_outline_recs_at(repo, sha, unit):
 
 
 def _norm_rec_name(s):
-    """A record name compared as its text (job C, N1 case 3): the review counted 23 parks by the exact name; only outer spaces are ignored."""
-    return str(s or '').strip()
+    """A record name as compared in N1 case 3: letter case and spacing are ignored (Fable's review, 20 Nov 2026: 4 of the review's 23
+    parks missed only a same-name twin written in other letters, 'DuPuis Reserve' / 'Dupuis Reserve'; 19 are left)."""
+    return re.sub(r'\s+', ' ', str(s or '')).strip().casefold()
 
 
 def load_name_pin_approved(repo=None, path=None):
