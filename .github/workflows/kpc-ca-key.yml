@@ -50,7 +50,7 @@ jobs:
             && git -C .pf sparse-checkout set --no-cone data/park-facts.json.gz 2>/dev/null && git -C .pf checkout -q 2>/dev/null \
             && echo "PARK_FACTS=$PWD/.pf/data/park-facts.json.gz" >> "$GITHUB_ENV" \
             && PARK_FACTS="$PWD/.pf/data/park-facts.json.gz" python3 .github/scripts/kpc_park_facts_read.py acres --out data/acres.json \
-            || echo "::warning title=Park facts::KPC-Data's park facts file was not read; the size readers go on without official sizes"
+            || { kpc_rc=$?; echo "::warning title=Park facts::KPC-Data's park facts file was not read (exit $kpc_rc); the size readers go on without official sizes"; echo "Park facts - KPC-Data's park facts file was not read (exit $kpc_rc); the size readers go on without official sizes" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: FREEZE CHECK (Brandon Nov 2 7:11 AM; Nov 4 links-04) - a held build on the CURRENT rules, at most 3 days old, with no person's sign-off (Brandon / KZ4CP, after the Nov 2 restart; or signed YES and not yet released) means no new build
         env:
           KPC_INDEX_REF: origin/main   # Nov 4 PM fix bundle (items 1-2): decide on the NEWEST main's stamp, not this queued run's checkout

@@ -486,7 +486,7 @@ jobs:
             && git -C .pf sparse-checkout set --no-cone data/park-facts.json.gz 2>/dev/null && git -C .pf checkout -q 2>/dev/null \
             && echo "PARK_FACTS=$PWD/.pf/data/park-facts.json.gz" >> "$GITHUB_ENV" \
             && PARK_FACTS="$PWD/.pf/data/park-facts.json.gz" python3 .github/scripts/kpc_park_facts_read.py acres --out data/acres.json \
-            || echo "::warning title=Park facts::KPC-Data's park facts file was not read; the size readers go on without official sizes"
+            || { kpc_rc=$?; echo "::warning title=Park facts::KPC-Data's park facts file was not read (exit $kpc_rc); the size readers go on without official sizes"; echo "Park facts - KPC-Data's park facts file was not read (exit $kpc_rc); the size readers go on without official sizes" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       # Nov 11 (KPC owner, 2026-11-11): the download is tried up to 3 times too, each into an empty folder (no half download is mixed in);
       # a part that still comes short fails its verdict's file list and its countries are held.
       - name: Download the parts (try 1 of 3)
