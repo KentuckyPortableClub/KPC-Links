@@ -1753,6 +1753,7 @@ def _nps_code(name):
 
 
 FAR_JOIN = []   # R-FJ1: [state, park, record id, record name] joined far from POTA's pin by a person's evidence answer
+SAVED_SAY = []  # 2026-11-19 (outside review finding F5; switch KPC_SAVED_ANSWERS_SAY): [state, kind, park, saved id, detail] for the run's notice
 PRESERVE_HIT = []   # R-PP1: [state, park, record id, record name] for the run's notice
 PRESERVE_ASK = []   # R-PP1a: [state, park, record id, record name] kept because POTA's own pin is inside: a person's question
 def preserve_apart(st, parks, recs, on=None, P=None):
@@ -2049,6 +2050,7 @@ def run(st):
                    + ' (' + '; '.join(f'{x[0]} {x[1]} {x[2]}->{x[3]}' for x in _moved[:12]) + ')')
     parks, used = {}, set()
     RD.clear()
+    SAVED_SAY[:] = [h for h in SAVED_SAY if h[0] != st]   # F5: a state built twice in one run is counted once
     clusters = name_clusters(recs)
     for ref, r in sorted(P.items()):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
@@ -2096,8 +2098,13 @@ def run(st):
             no = {str(x) for x in ov.get('no', [])}
             m = [x for x in m if str(x[0]) not in no and _nf(x[1]) not in {_nf(y) for y in no}]
             if _kr('KPC_NO_BY_NAME'): m = KR.drop_no(m, ov)   # Nov 2: a NO survives a PAD-US renumbering (name + acres saved with it)
+            # 2026-11-19 (outside review finding F5; reviewer's first slice, step S6b; switch KPC_SAVED_ANSWERS_SAY): a saved join
+            # that is not found, that fits two records, or that is also a NO of the same park is SAID in the build's notice and in
+            # counts. Never a check row: kpc_join_check.py reads the previous key's 'c' and takes a joined id off a signed park.
+            if _kr('KPC_SAVED_ANSWERS_SAY'):
+                for _x in KR.join_and_no(ov): SAVED_SAY.append([st, 'join and no', ref, _x, 'one record under both join and no'])
             for want in ov.get('join', []):
-                _want0 = str(want)
+                _want0, _rv, _say = str(want), None, _kr('KPC_SAVED_ANSWERS_SAY')
                 # Oct 27 (boundary review #3): PAD-US gives its records NEW ids in each version. A hand join by id whose id is gone
                 # is found again by its fingerprint (name + acres within 10%, near the pin), saved with it in overrides.json 'fp'
                 if not any(_oid(a) == str(want) for a in recs) and str(want) in (ov.get('fp') or {}):
@@ -2106,9 +2113,17 @@ def run(st):
                     # WSA, 4.3 km off, and tagged 'reviewed'): the re-found record must come from the SAME layer (id family: PAD-US
                     # numbers, 'sgmta', 'wsa' ...). An id reset happens inside one layer, never across layers.
                     _fam = re.match(r'\D*', _want0).group()
-                    want = next((_oid(a) for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(fn) and (la is None or near(la, lo, a['_bb'], .6))
-                                 and re.match(r'\D*', _oid(a)).group() == _fam
-                                 and abs((a.get('GIS_Acres') or 0) - (fa or 0)) <= max(20, .1 * (fa or 0))), want)
+                    if _say:   # F5 (switch KPC_SAVED_ANSWERS_SAY): the same test; two fits = the first one joins as before AND it is said (Fable + owner, 20 Nov)
+                        _rv, _rh = KR.refind_saved(fn, fa, _fam, [(_oid(a), a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('GIS_Acres'))
+                                                                  for a in recs if la is None or near(la, lo, a['_bb'], .6)])
+                        if _rv == 'one': want = _rh
+                        elif _rv == 'two': want = _rh[0]; SAVED_SAY.append([st, 'two fits', ref, _want0, f"{fn} {fa} ac fits {' '.join(_rh)}; the first one joined, as before"])
+                    else:
+                        want = next((_oid(a) for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(fn) and (la is None or near(la, lo, a['_bb'], .6))
+                                     and re.match(r'\D*', _oid(a)).group() == _fam
+                                     and abs((a.get('GIS_Acres') or 0) - (fa or 0)) <= max(20, .1 * (fa or 0))), want)
+                if _say and _rv != 'two' and KR.join_not_found(want, (_oid(a) for a in recs), (_nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') for a in recs if la is None or near(la, lo, a['_bb'], .6))):
+                    SAVED_SAY.append([st, 'not found', ref, _want0, 'fingerprint ' + ' '.join(map(str, ((ov.get('fp') or {}).get(_want0) or ['none'])[:2]))])
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
                     _near, _far = (la is None or near(la, lo, a['_bb'], .6)), False
@@ -2331,6 +2346,9 @@ def run(st):
         if site: parks[ref]['a'] = site
     _fj = [h for h in FAR_JOIN if h[0] == st]
     if _fj: notice(f'US key {st}', "R-FJ1 far joins by a person's evidence: " + ', '.join(f'{h[1]} {h[2]} {h[3]}' for h in _fj[:12]))
+    _ss = [h for h in SAVED_SAY if h[0] == st]   # F5 (switch KPC_SAVED_ANSWERS_SAY): saved joins not found, two fits, join and no
+    if _ss: notice(f'US key {st}', 'saved answers: ' + ', '.join(f"{k} {sum(1 for h in _ss if h[1] == k)}" for k in ('not found', 'two fits', 'join and no'))
+                   + ' (' + '; '.join(f'{h[1]}: {h[2]} {h[3]} {h[4]}' for h in _ss[:20]) + ('; ...' if len(_ss) > 20 else '') + ')')
     # Oct 29 (chat 8, 'wrong joins solved'): a record joined to two or more parks by NAME alone (Robert Moses Long Island +
     # Thousand Islands, NY county forests) stays only with the parks it is NEAR: a claim from a park whose pin is more than
     # 15 km from the record is dropped when another park's pin sits within 2 km of it. Hand joins ('reviewed') are never dropped.
@@ -3089,6 +3107,8 @@ def run(st):
               'shadow_demote': sum(1 for p in parks.values() if p.get('m') and (p.get('shadow') or {}).get('v') in ('check', 'none')),
               'shadow_add': sum(1 for p in parks.values() if not p.get('m') and (p.get('shadow') or {}).get('v') == 'join'),
               'shadow_other_place': sum(1 for p in parks.values() if p.get('m') and (p.get('shadow') or {}).get('v') == 'join')}
+    if _kr('KPC_SAVED_ANSWERS_SAY'):   # F5: plain counts (every reader of 'counts' reads its own named keys); only with the switch on
+        for _k in ('not found', 'two fits', 'join and no'): counts['saved_join_' + _k.replace(' ', '_')] = sum(1 for h in SAVED_SAY if h[0] == st and h[1] == _k)
     _selfchk(st, parks, recs)   # Nov 2 review: pre-handoff self-checks + confidence (switches KPC_SELF_CHECKS / KPC_CONF_SORT; off = today)
     # Nov 4 PM fix bundle (item 11a, Quality v3 should-fix; Brandon's yes relayed via Super Head Bot, 4:53 PM CST Nov 4): the self-checks
     # run BEFORE 'bk' is written, so a park that KPC_SELF_CHECKS=hold moves from joined to check gets its bk from what is left.

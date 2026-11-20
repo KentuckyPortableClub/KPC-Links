@@ -539,6 +539,14 @@
    "from": "c64b8ace0411",
    "why": "F10 (outside review, confirmed by a second checker; reviewer's go 19 Nov): an error inside the US key's one-record-two-parks pass (the kind pass, D9 and the contest) printed 'one-record-two-parks pass skipped' and the state was saved with its shared records in place. Behind the new switch KPC_HOLD_ON_PASS_ERROR (OFF): such an error holds the state the way any other error of a state does (run() fails, the builder names it FAILED, no key file is written and the state keeps its saved copy on main). No error = no change, switch on or off; merged OFF = the notice reads word for word as before. No result changes, nothing is rebuilt.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-19-saved-answers-say",
+   "when": "2026-11-19",
+   "from": "a34f224459cc",
+   "why": "KPC_SAVED_ANSWERS_SAY (outside review finding F5; reviewer's first slice, step S6b; the owner's word of 19 Nov 2026): the US key's saved joins failed in silence. A saved join whose record is not in the read and whose fingerprint finds nothing joined nothing and said nothing; a fingerprint that fit two or more records took the first; one record under both 'join' and 'no' of a park (Arkansas US-1080, sgarb44) was not reported. Behind the switch (OFF): each is said in the build's notice (park, saved id, fingerprint or the fitting ids) and counted in the state's counts (saved_join_not_found, saved_join_two_fits, saved_join_join_and_no), never as a check row (kpc_join_check.py takes a joined id off a signed park when the previous key had it in 'c'); a fingerprint that fits two or more records still joins the first one, as before the switch, and the park is named for a grader (kpc_key_rules.refind_saved; Fable + owner, 20 Nov 2026: no join is taken away and nothing new waits on a person); which of join and no wins is not changed (kpc_key_rules.join_and_no); bare-name joins are not changed. Switch OFF = no result changes. Predicted from the saved keys (not a build): 280 saved join ids in no row of their park whose fingerprint fits no row either (276 parks, 25 of them pins), 15 parks with one id under join and no, at least 64 saved fingerprints that fit two or more rows of their park while the saved id is in no row (Wisconsin US-4352 and US-9855; a lower bound: the read is not in the key).",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (4:31 AM, to Fable: \"Just do what you think\"); restacked onto F10 without the holder table (#296, parked) by Fable"
   }
  ]
 }
