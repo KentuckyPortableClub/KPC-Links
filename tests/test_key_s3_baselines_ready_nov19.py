@@ -66,7 +66,7 @@ def gate(env, expect='US-ZZ US-YY', needs_rows=None):
         with contextlib.redirect_stdout(out):
             rc = CLI.main(['gate', '--cache', str(t / 'cache'), '--root', str(t / 'root'), '--report', str(t / 'short.txt'),
                            '--expect', expect, '--state-gis', str(t / 'sg.json'), '--needs', str(t / 'needs.json'),
-                           '--ready-report', str(t / 'ready.json')])
+                           '--ready-report', str(t / 'ready.json'), '--us-layers', ''])   # made-up states: ids by position
     finally:
         for k, v in old.items():
             if v is None: os.environ.pop(k, None)
@@ -133,6 +133,22 @@ check("the US gate step passes --expect, --state-gis, --needs, --ready-report an
       and "KPC_GATE_STALE_REFUSE: ${{ vars.KPC_GATE_STALE_REFUSE || '0' }}" in wf and "KPC_READY_BLOCK: ${{ vars.KPC_READY_BLOCK || '0' }}" in wf)
 check('S3 edits no rule file (the ready helper and the gate move no rules hash)',
       not any(x in F.RULE_FILES['us-key'] for x in ('.github/scripts/kpc_key_ready.py', '.github/scripts/kpc_master_cli.py', 'data/outlines/layers.json')))
+
+# Opus, 20 Nov: with the key's id table a layer is counted under the id the builder gave its ADDRESS (34 rows of round 3 were not)
+SH = 'https://x.example/arcgis/rest/services/Shared/FeatureServer/3'
+usl = {'sgyya': [SH + '/query', 'NAME'], 'sgzza': ['https://x.example/arcgis/rest/services/Own/FeatureServer/0/query', 'NAME']}
+sg3 = {'states': {'YY': [{'url': SH, 'nm': 'NAME'}],
+                  'ZZ': [{'url': 'https://x.example/arcgis/rest/services/Own/FeatureServer/0', 'nm': 'NAME'},
+                         {'url': SH + '/', 'nm': 'NAME'}, {'url': 'https://x.example/no-number', 'nm': 'NAME'}, {'url': SH.replace('/3', '/4')},
+                         {'url': 'https://x.example/arcgis/rest/services/New/FeatureServer/1', 'nm': 'NAME'}]}}
+ids = [lid for _, lid in K.layer_ids(sg3, usl)['ZZ']]
+check(f"a shared address keeps the builder's id; entries it never reads are left out; a new address gets the next free id {ids}",
+      ids == ['sgzza', 'sgyya', 'sgzzb'])
+doc3 = {'layers': {}}
+r5 = K.ready('US-ZZ', {'recs': rows('sgzza', 3) + rows('sgyya', 4)}, sg3, doc3, [], usl)
+check(f'with the table: the shared layer\'s rows in the copy count, only the new layer is missing {r5}', r5 == {'sgzzb': ['missing']})
+r6 = K.ready('US-ZZ', {'recs': rows('sgzza', 3) + rows('sgyya', 4)}, sg3, doc3, [])
+check(f'without the table: the old reading by position, unchanged {sorted(r6)}', sorted(r6) == ['sgzzb', 'sgzzc', 'sgzzd', 'sgzze'])
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
