@@ -9,36 +9,13 @@
 # test_world_fr_patrinat_overrides_nov11, test_world_fr_patrinat_layers_nov11, test_trail_join_guard_nov11, test_tracts_nov7.
 # Do not list a test here only because it fails on an older base or without DATA: compare the INPUTS line of the two reports first.
 tests/test_loaders_released_ca_ky_nov11.py       # 2026-11-16: released ky-usace parts / ky-overlaps / trail line differ from the working files until the next KY release (owner's)
-# 2026-11-20: failures on main today (Python 3.12). Each line says test or code. No rule file was changed.
-tests/test_area_tables_nov12.py                  # 2026-11-20: the test wants an older builder layout (a state-code table, and two builders byte-identical). The code has moved. Not fixed here.
-tests/test_ca_pin_fill_hold_nov13.py             # 2026-11-20: the test still wants the 13 Nov changelog line to be the newest. The test is stale.
-tests/test_drop_guard_named_parks_nov19.py       # 2026-11-20: the checks pass, then the test writes data/status/kpc_key_drop_guard.json, so the gate marks it dirty.
-tests/test_fers_area_boxes_time_nov11.py         # 2026-11-20: the time-limit case does not cut the slow pair. The test and the current timer disagree.
-tests/test_fers_area_own_rows_nov12.py           # 2026-11-20: the Alaska stand-in exits 1 and never writes its report.
-tests/test_fers_full_100ft_nov14.py              # 2026-11-20: needs cv2, which this machine does not have. Not a code fault.
-tests/test_fers_math_guard_nov19.py              # 2026-11-20: needs cv2, which this machine does not have. Not a code fault.
-tests/test_fers_not_sure_nov19.py                # 2026-11-20: needs cv2, which this machine does not have. Not a code fault.
-tests/test_fers_owner_answers_nov19.py           # 2026-11-20: needs cv2, which this machine does not have. Not a code fault.
-tests/test_fers_picture_trace_inside_nov11.py    # 2026-11-20: cv2 is present but has no fillPoly. Not a code fault.
-tests/test_fers_q1_q3_nov17.py                   # 2026-11-20: needs cv2, which this machine does not have. Not a code fault.
-tests/test_fers_ready_gate_hash_nov8.py          # 2026-11-20: the test wants an old approval line next to the 2-fer hash. The test is stale.
-tests/test_fers_same_record_units_nov10r.py      # 2026-11-20: needs cv2, which this machine does not have. Not a code fault.
-tests/test_fers_stretch_key_nov11.py             # 2026-11-20: needs cv2, which this machine does not have. Not a code fault.
-tests/test_h8_jp_a10_names_nov17.py              # 2026-11-20: needs the shapefile package, which this machine does not have. Not a code fault.
-tests/test_held_parks_todo_nov14.py              # 2026-11-20: the test expects only the to-do file to be new, and another file is new. Not fixed here.
-tests/test_key_scope_nov9eve.py                  # 2026-11-20: a saved-id park does not keep its result in the test's stand-in, then cv2 is missing. Not fixed here.
-tests/test_keys_store_mode_ca_world_nov15.py     # 2026-11-20: the world store-gap selftest does not pass. Not fixed here.
-tests/test_keys_store_mode_nov16.py              # 2026-11-20: the test reads a key-build step as a forbidden start. The workflow text and the test disagree.
-tests/test_logger_beta_stage2_nov18.py           # 2026-11-20: the test still wants app 0.9.10. The test is stale.
-tests/test_nextround_hidden_failures_nov5.py     # 2026-11-20: kpc-us-key.yml still has a bare error echo the test forbids. Not fixed here.
-tests/test_nps_park_preserve_nov19.py            # 2026-11-20: the test wants the preserve check before the unit-code join. The code order has moved.
-tests/test_partial_boundary_nov15.py             # 2026-11-20: needs cv2, which this machine does not have. Not a code fault.
-tests/test_per_area_release_nov13.py             # 2026-11-20: the test says a scope-none change still names countries to rebuild. Not fixed here (that would be a rule change).
-tests/test_pin_outlines_parts_nov11.py           # 2026-11-20: saved outlines and the key disagree on real parks (a pin with no outline file, an approximate grade). Data, not a rule file.
-tests/test_pota_door_nov16.py                    # 2026-11-20: logger-beta/kpc-log.js calls api.pota.app. The test is right; the code was not changed here.
-tests/test_research_inbox_nov9amend2.py          # 2026-11-20: needs openpyxl, which this machine does not have. Not a code fault.
-tests/test_research_t955_t956.py                 # 2026-11-20: needs openpyxl, which this machine does not have. Not a code fault.
-tests/test_store_public_shelf_nov16.py           # 2026-11-20: needs cv2, which this machine does not have. Not a code fault.
-tests/test_us_outlines_vs_live_nov13.py          # 2026-11-20: saved outlines and the live key disagree on real parks. Data, not a rule file.
-tests/test_us_short_copy_refill_nov10.py         # 2026-11-20: the stand-in cannot import kpc_key_ready, so the master gate stops. The test harness is short.
-
+# 2026-11-20 (Fable, merge of #308 over #309): the 25 lines #309 added for tests that fail only where a package is missing (cv2, openpyxl, pyshp) or that #308 repaired are taken out;
+# all of them pass on a machine with those packages (run 20 Nov, Python 3.13). Install the packages before the gate; never list a test here for a missing package.
+# Added 2026-11-20 (job 7, gate on main f3e6636dc, python3.12 and 3.13, DATA and KPC_DATA set): these fail because the code or data is wrong, not the test.
+tests/test_area_tables_nov12.py                  # 2026-11-20: code wrong: two rule files assign tables keyed by area codes (kpc_us_key.py EASEMENT_RECHECK_STATES, kpc_world_key.py SRC['MK']), against D6; moving them to area-tables.json moves rules hashes (owner's call)
+tests/test_fers_ready_gate_hash_nov8.py          # 2026-11-20: code wrong: the #297 entry in docs/key-rules-change.txt quotes the owner; the public changelog keeps no quotes
+tests/test_keys_store_mode_nov16.py              # 2026-11-20: code wrong: kpc-us-key.yml's drop-guard step uploads a release asset (held copies, Nov 18) in store mode
+tests/test_nextround_hidden_failures_nov5.py     # 2026-11-20: code wrong: kpc-us-key.yml has a bare || echo ::error site and an unmarked || true (line 706, held copies step)
+tests/test_pota_door_nov16.py                    # 2026-11-20: code wrong: the logger-beta copy of app 0.9.15 (#282) brought 2 direct api.pota.app calls into logger-beta/kpc-log.js
+tests/test_pin_outlines_parts_nov11.py           # 2026-11-20: data wrong: working outline files and the keys disagree on pin / approximate grades; wants the next outline save, not a test change
+tests/test_us_outlines_vs_live_nov13.py          # 2026-11-20: data wrong: working US outlines still hold parks the Nov 13 check says are gone, and AK's count moved; wants the next outline save

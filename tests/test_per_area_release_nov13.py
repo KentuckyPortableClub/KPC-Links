@@ -198,8 +198,12 @@ sc, _, _ = F.pending_scope('ca-key', '2a4d0154d95c')
 check('only the declared area rebuilds: the CA pin-fill hold is CA-QC only (not a full CA rebuild)',
       sc == {'CA-QC'}, sc)
 scw, _, _ = F.pending_scope('world-key', 'a47e0479ad41')
+# Nov 20 (job 7): pending_scope adds up every world change after this one (later world changes declare their own countries), so
+# the hold's own entry is checked: it asks for no country
+_w_sc = json.load(open(ROOT / '.github/world-key-rule-scope.json', encoding='utf-8'))
+_hold = next((e for e in _w_sc['changes'] if e.get('from') == 'a47e0479ad41'), {})
 check('world pin-fill hold is scope none: no country is rebuilt for that change',
-      scw == set(), scw)
+      _hold.get('id') == '2026-11-13-hold-ca-2241-1974-1997' and F.scope_of(_hold.get('scope')) in ('none', set()), (_hold.get('id'), _hold.get('scope'), scw))
 scu, _, _ = F.pending_scope('us-key', 'd4ebfafce438')
 # KPC owner, 2026-11-16 (handoff item 6): a later change may declare its own US scope (checked by its own id in its own test);
 # this work itself must not ask for a full US rebuild

@@ -27,7 +27,8 @@ check(not KR.nps_part_clash('Big Cypress National Preserve', 'Big Cypress Nation
 check(KR.nps_part_clash('Great Sand Dunes National Park', 'Great Sand Dunes National Preserve'), 'Great Sand Dunes: park and preserve kept apart')
 
 src = (SCR / 'kpc_us_key.py').read_text(encoding='utf-8')
-i = src.find('if KR.nps_part_clash(p.get(\'n\') or \'\', nm):')
+# Nov 20 (job 7): the condition now goes on (the KPC_PRESERVE_WITH_PARK switch, R-PP1a), so find it without its colon
+i = src.find('if KR.nps_part_clash(p.get(\'n\') or \'\', nm)')
 j = src.find("p['m'] = sorted(list(p.get('m') or []) + [[a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), tag]]")
 check(0 < i < j, 'nps_code_joins tests park / preserve before it joins a record by the code')
 

@@ -87,14 +87,16 @@ cur = {k: KF.rules_hash(k) for k in ('us-key', 'ca-key', 'world-key', 'fers')}
 check(cur['us-key'] in ('d4ebfafce438', PF.newest_hash('us-key')) and cur['fers'] == PF.newest_hash('fers'),
       f"US hash unchanged, fers hash = its newest changelog line ({cur['us-key']}, {cur['fers']})")
 # Nov 16 (KPC owner, 2026-11-16): the world hash moved later in its own entry (the NO list on every build path); it must equal its newest changelog line
-check(cur['ca-key'] == 'ba480fa34fb6' and cur['world-key'] == PF.newest_hash('world-key'),
-      f"CA and world hashes are the post-hold hashes ({cur['ca-key']}, {cur['world-key']})")
+# Nov 20 (job 7): the CA hash also moved later in its own declared entries (same rule as the US hash above): post-hold value OR newest changelog hash
+check(cur['ca-key'] in ('ba480fa34fb6', PF.newest_hash('ca-key')) and cur['world-key'] == PF.newest_hash('world-key'),
+      f"CA and world hashes are the post-hold hashes or their newest changelog lines ({cur['ca-key']}, {cur['world-key']})")
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
-o_ca, n_ca, ln_ca = PF.changelog_hashes(log, 'ca-key')
+# Nov 20 (job 7): later declared entries come after this hold, so the hold's own line is found by its content, not as the newest line
 o_w, n_w, ln_w = PF.changelog_hashes(log, 'world-key')
-check(o_ca == '2a4d0154d95c' and n_ca == cur['ca-key'] and 'world rules a47e0479ad41 -> 158325de87ce' in ln_ca and n_w == cur['world-key']
+ln_ca = next((ln for ln in log.splitlines() if 'CA rules 2a4d0154d95c -> ba480fa34fb6' in ln), '')
+check(ln_ca and 'world rules a47e0479ad41 -> 158325de87ce' in ln_ca and n_w == cur['world-key']
       and 'APPROVED, decided_by KPC owner, 2026-11-13' in ln_ca and 'CA-QC' in ln_ca,
-      'the newest changelog line is this hold: CA 2a4d0154d95c -> ba480fa34fb6, world a47e0479ad41 -> 158325de87ce, decided_by KPC owner, 2026-11-13')
+      'the changelog has this hold: CA 2a4d0154d95c -> ba480fa34fb6, world a47e0479ad41 -> 158325de87ce, decided_by KPC owner, 2026-11-13')
 sc_ca = json.loads((ROOT / '.github/ca-key-rule-scope.json').read_text(encoding='utf-8'))
 sc_w = json.loads((ROOT / '.github/world-key-rule-scope.json').read_text(encoding='utf-8'))
 e_ca = next((c for c in sc_ca['changes'] if c.get('id') == '2026-11-13-hold-ca-2241-1974-1997'), {})

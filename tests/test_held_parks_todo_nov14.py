@@ -73,7 +73,9 @@ if old_src.returncode == 0 and b'held-parks-todo' not in old_src.stdout:
         quiet(OJ.run, env, root=str(a), plain=True); quiet(JC.run, env, root=str(b), plain=True)
         same = all((ka / 'review' / n).read_bytes() == (kb / 'review' / n).read_bytes() for n in OLD) and (ka / 'US-AA.json').read_bytes() == (kb / 'US-AA.json').read_bytes()
         check('held-joins.json/.csv, the ledger, join-check.* and the key file: byte-identical to the join check without the to-do', same)
-        check('only the to-do file is new', sorted(p.name for p in (kb / 'review').iterdir()) == sorted(OLD + ['held-parks-todo.csv']) and not (ka / 'review/held-parks-todo.csv').exists())
+        # Nov 20 (job 7): a later change (the Nov 16 easement rule) adds easement-name-joins.csv to the same review folder; it is not this change's file
+        LATER = ['easement-name-joins.csv']
+        check('only the to-do file is new (besides files later changes add)', sorted(p.name for p in (kb / 'review').iterdir() if p.name not in LATER) == sorted(OLD + ['held-parks-todo.csv']) and not (ka / 'review/held-parks-todo.csv').exists())
 else:
     print('INFO the parent commit has no older join check: the byte check is skipped')
 
