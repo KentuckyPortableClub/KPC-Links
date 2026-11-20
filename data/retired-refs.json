@@ -5905,6 +5905,516 @@
    "d": "2026-11-19",
    "src": "world"
   },
+  "SI-0701": {
+   "n": "Pot kurirjev in vezistov - odsek 58 / Škocjan-Vinji Vrh Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0702": {
+   "n": "Pot kurirjev in vezistov - odsek 59 / Vinji Vrh-Šmarješke toplice Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0703": {
+   "n": "Pot kurirjev in vezistov - odsek 60 / Šmarješke toplice-Trška gora Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0704": {
+   "n": "Pot kurirjev in vezistov - odsek 61 / Trška gora-Otočec Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0705": {
+   "n": "Pot kurirjev in vezistov - odsek 62 / Otočec-Tolsti vrh Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0706": {
+   "n": "Pot kurirjev in vezistov - odsek 63 / Tolsti Vrh-Gabrje Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0707": {
+   "n": "Pot kurirjev in vezistov - odsek 64 / Gabrje-Planinski dom na Gospodični Gorjanci Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0708": {
+   "n": "Pot kurirjev in vezistov - odsek 65 / Planinski dom na Gospodični Gorjanci-Prelaz Vahta Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0709": {
+   "n": "Pot kurirjev in vezistov - odsek 66 / Prelaz Vahta-Dolnji Suhor pri Metliki Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0710": {
+   "n": "Pot kurirjev in vezistov - odsek 67 / Dolnji Suhor pri Metliki-Metlika Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0711": {
+   "n": "Pot kurirjev in vezistov - odsek 68 / Metlika-Gradac Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0712": {
+   "n": "Pot kurirjev in vezistov - odsek 69 / Gradac-Črnomelj Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0713": {
+   "n": "Pot kurirjev in vezistov - odsek 70 / Črnomelj-Rožič Vrh Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0714": {
+   "n": "Pot kurirjev in vezistov - odsek 71 / Rožič Vrh-Planina Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0715": {
+   "n": "Pot kurirjev in vezistov - odsek 72 / Planina -Planinski dom na Mirni gori Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0716": {
+   "n": "Pot kurirjev in vezistov - odsek 73 / Planinski dom na Mirni gori-Gače Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0717": {
+   "n": "Pot kurirjev in vezistov - odsek 74 / Gače-Črmošnjice Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0718": {
+   "n": "Pot kurirjev in vezistov - odsek 75 / Čermošnjice-Občice Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0719": {
+   "n": "Pot kurirjev in vezistov - odsek 76 / Občice-Baza 20 na Rogu Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0720": {
+   "n": "Pot kurirjev in vezistov - odsek 77 / Baza 20 na Rogu-Partizanska bolnišnica Jelendol Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0721": {
+   "n": "Pot kurirjev in vezistov - odsek 78 / Partizanska bolnišnica Jelendol-Podstenice Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0722": {
+   "n": "Pot kurirjev in vezistov - odsek 79 / Podstenice-Pugled pri Starem Logu Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0723": {
+   "n": "Pot kurirjev in vezistov - odsek 80 / Pugled pri Starem Logu-Kočevje Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0724": {
+   "n": "Pot kurirjev in vezistov - odsek 81 / Kočevje-Ribnica Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0725": {
+   "n": "Pot kurirjev in vezistov - odsek 82 / Ribnica-Nova Štifta Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0726": {
+   "n": "Pot kurirjev in vezistov - odsek 83 / Nova Štifta-Dom na Travni Gori Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0727": {
+   "n": "Pot kurirjev in vezistov - odsek 84 / Dom na Travni Gori-Hrib Loški potok Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0728": {
+   "n": "Pot kurirjev in vezistov - odsek 85 / Hrib Loški potok-Racna gora Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0729": {
+   "n": "Pot kurirjev in vezistov - odsek 86 / Racna gora-Stari trg pri Ložu Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0730": {
+   "n": "Pot kurirjev in vezistov - odsek 87 / Stari Trg pri Ložu-Lož Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0731": {
+   "n": "Pot kurirjev in vezistov - odsek 88 / Lož-Grahovo Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0732": {
+   "n": "Pot kurirjev in vezistov - odsek 89 / Grahovo-Dom na Slivnici Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0733": {
+   "n": "Pot kurirjev in vezistov - odsek 90 / Dom na Slivnici-Sveta Trojica Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0734": {
+   "n": "Pot kurirjev in vezistov - odsek 91 / Sveta Trojica-Zavrh Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0735": {
+   "n": "Pot kurirjev in vezistov - odsek 92 / Zavrh-Krvava Peč Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0736": {
+   "n": "Pot kurirjev in vezistov - odsek 93 / Krvava Peč-Mokrec Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0737": {
+   "n": "Pot kurirjev in vezistov - odsek 94 / Mokrec-Planinski dom na Kureščku Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0738": {
+   "n": "Pot kurirjev in vezistov - odsek 95 / Planinski dom na Kureščku-Turjak Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0739": {
+   "n": "Pot kurirjev in vezistov - odsek 96 / Tujrak-Rašica Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0740": {
+   "n": "Pot kurirjev in vezistov - odsek 97 / Rašica-Velika Ilova Gora Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0741": {
+   "n": "Pot kurirjev in vezistov - odsek 98 / Velika Ilova Gora-Ravni Dol Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0742": {
+   "n": "Pot kurirjev in vezistov - odsek 99 / Ravni Dol-Polževo Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0743": {
+   "n": "Pot kurirjev in vezistov - odsek 100 / Polževo-Višnja Gora Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0744": {
+   "n": "Pot kurirjev in vezistov - odsek 101 / Višnja Gora-Veliko Trebeljevo Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0745": {
+   "n": "Pot kurirjev in vezistov - odsek 102 / Veliko Trebeljevo-Prežganje Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0746": {
+   "n": "Pot kurirjev in vezistov - odsek 103 / Prežganje-Planinski dom 2.grupe  Janče Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0747": {
+   "n": "Pot kurirjev in vezistov - odsek 104 / Planinski dom 2 grupe Janče-Besnica Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0748": {
+   "n": "Pot kurirjev in vezistov - odsek 105 / Besnica -Sv.Urh Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0749": {
+   "n": "Pot kurirjev in vezistov - odsek 106 / Sv.Urh-Ljubljana Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0750": {
+   "n": "Pot kurirjev in vezistov - odsek 107 /Ljubljana-Rašica Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0751": {
+   "n": "Pot kurirjev in vezistov - odsek 108 / Rašica-Šentvid Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0752": {
+   "n": "Pot kurirjev in vezistov - odsek 109 / Šentvid-Toško čelo Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0753": {
+   "n": "Pot kurirjev in vezistov - odsek 110 / Toško Čelo-Topol pri Medvodah Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0754": {
+   "n": "Pot kurirjev in vezistov - odsek 111 / Topol pri Medvodah-Tošč Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0755": {
+   "n": "Pot kurirjev in vezistov - odsek 112 / Tošč-Črni Vrh Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0756": {
+   "n": "Pot kurirjev in vezistov - odsek 113 / Črni vrh - Bukov vrh Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0757": {
+   "n": "Pot kurirjev in vezistov - odsek 114 / Bukov vrh-Poljane nad Škofjo Loko Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0758": {
+   "n": "Pot kurirjev in vezistov - odsek 115 / Poljane nad Škofjo Loko-Delnice Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0759": {
+   "n": "Pot kurirjev in vezistov - odsek 116 / Delnice-Javorje Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0760": {
+   "n": "Pot kurirjev in vezistov - odsek 117 / Javorje-Četna Ravan Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0761": {
+   "n": "Pot kurirjev in vezistov - odsek 118 / Četna Ravan-Gornja Žetina Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0762": {
+   "n": "Pot kurirjev in vezistov - odsek 119 / Gorenja Žetina-Črni kal Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0763": {
+   "n": "Pot kurirjev in vezistov - odsek 120 / Črni kal-Blegoš Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0764": {
+   "n": "Pot kurirjev in vezistov - odsek 121 / Blegoš-Koča na Blegošu Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0765": {
+   "n": "Pot kurirjev in vezistov - odsek 122 / Koča na Blegošu-Železniki Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0766": {
+   "n": "Pot kurirjev in vezistov - odsek 123 / Železniki-Dražgoše Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0767": {
+   "n": "Pot kurirjev in vezistov - odsek 124 / Dražgoše-Partizanski dom na Vodiški planini Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0768": {
+   "n": "Pot kurirjev in vezistov - odsek 125 / Partizanski dom Vodiška Planina-Soriška Planina Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0769": {
+   "n": "Pot kurirjev in vezistov - odsek 126 / Soriška planina-Petrovo Brdo Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0770": {
+   "n": "Pot kurirjev in vezistov - odsek 127 / Petrovo Brdo- Dom Andreja Žvana-Borisa na Poreznu Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0771": {
+   "n": "Pot kurirjev in vezistov - odsek 128 / Dom Andreja Žvana - Borisa na Poreznu-Partizanska bolnišnica Franja Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0772": {
+   "n": "Pot kurirjev in vezistov - odsek 129 / Partizanska bolnišnica Franja-Cerkno Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0773": {
+   "n": "Pot kurirjev in vezistov - odsek 130 / Cerkno-Cerkljanski vrh Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0774": {
+   "n": "Pot kurirjev in vezistov - odsek 131 / Cerkljanski Vrh-Bevkov vrh Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0775": {
+   "n": "Bevkov vrh-Mrzli Vrh na Vodicah Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0776": {
+   "n": "Pot kurirjev in vezistov - odsek 133 / Mrzli Vrh-Na Vodicah-Ledine Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0777": {
+   "n": "Pot kurirjev in vezistov - odsek 134 / Ledine-Spodnja Idrija Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0778": {
+   "n": "Pot kurirjev in vezistov - odsek 135 / Spodnja Idrija-Partizanska tiskarna Slovenija Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0779": {
+   "n": "Pot kurirjev in vezistov - odsek 136 / Partizanska tiskarna Slovenija-Vojsko Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0780": {
+   "n": "Pot kurirjev in vezistov - odsek 137 / Vojsko-Gorenja Trebuša Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0781": {
+   "n": "Pot kurirjev in vezistov - odsek 138 / Dolenja Trebuša-Lokve Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0782": {
+   "n": "Pot kurirjev in vezistov - odsek 139 / Lokve-Trnovo pri Gorici Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0783": {
+   "n": "Pot kurirjev in vezistov - odsek 140 / Trnovo pri Gorici-Koča Antona Bavčerja na Čavnu Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0784": {
+   "n": "Pot kurirjev in vezistov - odsek 141 / Koča Antona Bavčerja na Čavnu-Predmeja Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0785": {
+   "n": "Pot kurirjev in vezistov - odsek 143 / Col-Podkraj Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0786": {
+   "n": "Pot kurirjev in vezistov - odsek 144 / Podkraj- Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0787": {
+   "n": "Pot kurirjev in vezistov - odsek 145 / Podkraj-Furlanovo zavetišče pri Abramu Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0788": {
+   "n": "Pot kurirjev in vezistov - odsek 146 / Furlanovo zavetišče pri Abramu-Vojkova koča na Nanosu Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0789": {
+   "n": "Pot kurirjev in vezistov - odsek 147 / Vojkova koča na Nanosu-Predjama Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0790": {
+   "n": "Pot kurirjev in vezistov - odsek 148 / Predjama-Postonjska jama Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0791": {
+   "n": "Pot kurirjev in vezistov - odsek 149 / Postonjska jama-Postojna Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0792": {
+   "n": "Pot kurirjev in vezistov - odsek 150 / Postojna-Veliki Javornik Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0793": {
+   "n": "Pot kurirjev in vezistov - odsek 151 /  Veliki Javornik-Mašun Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0794": {
+   "n": "Pot kurirjev in vezistov - odsek 152 / Mašun-Veliki Snežnik Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0795": {
+   "n": "Pot kurirjev in vezistov - odsek 153 / Veliki Snežnik-Planinski dom na Sviščakih Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0796": {
+   "n": "Pot kurirjev in vezistov - odsek 154 / Veliki Snežnik-Planinski dom na Sviščakih Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0797": {
+   "n": "Pot kurirjev in vezistov - odsek 155 / Planinski dom na Sviščakih-Planinska koča na Kozleku Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0798": {
+   "n": "Pot kurirjev in vezistov - odsek 156 / Planinska koča na Kozleku-Ilirska Bistrica Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0799": {
+   "n": "Pot kurirjev in vezistov - odsek 157 / Ilirska Bistrica-Pregarje Recreation Park",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0800": {
+   "n": "Pot kurirjev in vezistov - odsek 158 / Pregarje-Tatre Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0801": {
+   "n": "Pot kurirjev in vezistov - odsek 159 / Tatre-Markovščina Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
+  "SI-0802": {
+   "n": "Pot kurirjev in vezistov - odsek 160 / Markovščina-Tumova koča na Slavniku Recreation Site",
+   "d": "2026-11-20",
+   "src": "world"
+  },
   "SI-1176": {
    "n": "Vzletišče Nova Vas National Park",
    "d": "2026-11-19",
@@ -6007,5 +6517,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-19"
+ "updated": "2026-11-20"
 }
