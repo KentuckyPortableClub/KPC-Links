@@ -417,6 +417,34 @@ AGE.NOT_CARRIED.clear()
 check(AGE.keep_fresh([rows_settled[0]], 'US-ZZ', root=str(root)) == [],
       'when this run has the park\'s outline and it differs, the row is not copied')
 K.CURG.clear()
+# A pass 3 stamp (6 decimals) checked against the same land read at pass 1 (5 decimals) is copied
+# on the key entry only. The same detail with a changed outline is not copied.
+ring6 = [[-84.123456 + i * 0.000137, 37.654321 + ((i * 7) % 5) * 0.000211] for i in range(12)]
+ring6.append(ring6[0])
+ring5 = [[round(x, 5), round(y, 5)] for x, y in ring6]
+detail_row = {'refs': ['US-1', 'US-2'], 'kind': 'area', 'status': 'candidate', 'wide_m': 80}
+K._stamp_row(detail_row, {'US-1': [[ring6]], 'US-2': [[ring6]]}, {}, lambda r: 'US-ZZ')
+check(detail_row['made_on']['US-1'].get('outline_detail', {}).get('prec') == 6,
+      'the stamp records the pass detail the outline was hashed at')
+K.CURG.clear(); K.CURG.update({'US-1': [[ring5]], 'US-2': [[ring5]]})
+AGE.NOT_CARRIED.clear(); AGE.KEY_ONLY.clear()
+kept = AGE.keep_fresh([detail_row], 'US-ZZ', root=str(root))
+check(kept == [detail_row] and len(AGE.KEY_ONLY) == 1,
+      'a coarser pass-1 copy of the same outline is copied and counted key-entry-only')
+_saved = (K.PASS, K.PREC, K.DET)
+K.PASS, K.PREC, K.DET = 1, 5, 0.0005
+K.CURG.clear(); K.CURG.update({'US-1': [[ring6]], 'US-2': [[ring6]]})
+AGE.NOT_CARRIED.clear(); AGE.KEY_ONLY.clear()
+kept = AGE.keep_fresh([detail_row], 'US-ZZ', root=str(root))
+check(kept == [detail_row] and len(AGE.KEY_ONLY) == 1,
+      'a pass 1 run does not compare its outline to a pass 3 stamp; the row is copied key-entry-only')
+K.PASS, K.PREC, K.DET = _saved
+changed = [[round(x + 0.01, 6), round(y, 6)] for x, y in ring6]
+K.CURG.clear(); K.CURG.update({'US-1': [[changed]], 'US-2': [[ring6]]})
+AGE.NOT_CARRIED.clear(); AGE.KEY_ONLY.clear()
+check(AGE.keep_fresh([detail_row], 'US-ZZ', root=str(root)) == [] and not AGE.KEY_ONLY,
+      'at the same detail, a changed outline is not copied')
+K.CURG.clear()
 
 # the old-file list reads the mark, and only this run's region
 markdir = TD / 'marks'; markdir.mkdir()

@@ -295,15 +295,7 @@ def no_denials(path, d):
 
 
 def save_json(p, d, *a, **k):  # noqa: F811
-    d = no_denials(p, FCOUNT.apply(p, d))
-    # R-2F4: an area file this code writes carries a mark. The "still from before this rule" list reads that mark.
-    try:
-        stem = pathlib.Path(str(p)).stem
-    except TypeError:
-        stem = ''
-    if isinstance(d, dict) and re.fullmatch(FILES, stem):
-        d[_AGE.FILE_MARK_FIELD] = _AGE.FILE_MARK
-    return _save_json_raw(p, d, *a, **k)
+    return _save_json_raw(p, no_denials(p, FCOUNT.apply(p, d)), *a, **k)
 import kpc_owned as KO
 import kpc_fers_guard as FG   # Nov 4 (Mapping 2-fer review): bad POTA pins, one-record same land, overrides 'no'
 import kpc_fers_key_status as FKS  # Nov 6 (Quality 2-fer grade): area/same-land follow key PIN/approximate
@@ -3856,6 +3848,47 @@ def outline_stamp(ref, G, LN):
     return _h([geom, line])
 
 
+def coord_prec(obj):
+    """Finest decimal count in a coordinate list. None when there is no coordinate.
+    Pass 1 asks for 5 decimals and pass 3 for 6. A coarser copy of the same land is not the same reading."""
+    best = None
+
+    def see(v):
+        nonlocal best
+        if isinstance(v, bool) or not isinstance(v, (int, float)):
+            return
+        n = 8
+        for i in range(0, 9):
+            if abs(float(v) - round(float(v), i)) <= 1e-9:
+                n = i
+                break
+        if best is None or n > best:
+            best = n
+
+    def walk(x):
+        if isinstance(x, (list, tuple)):
+            if len(x) >= 2 and isinstance(x[0], (int, float)) and not isinstance(x[0], bool) and isinstance(x[1], (int, float)) and not isinstance(x[1], bool):
+                see(x[0]); see(x[1])
+            else:
+                for y in x:
+                    walk(y)
+        elif isinstance(x, dict):
+            for y in x.values():
+                walk(y)
+    walk(obj)
+    return best
+
+
+def _outline_spec(ref, G, LN):
+    """The outline hash plus the pass detail it was read at."""
+    line = None
+    if isinstance(LN, dict) and ref in LN and isinstance(LN.get(ref), dict):
+        line = {k: v for k, v in LN[ref].items() if k != 'date'}
+    geom = G.get(ref) if isinstance(G, dict) else None
+    return {'hash': outline_stamp(ref, G, LN),
+            'detail': {'pass': PASS, 'det': DET, 'prec': PREC, 'geom_prec': coord_prec([geom, line])}}
+
+
 def _stamp_row(s, G, LN, st_of):
     """R-2F4. made_on on a row pass 3 settled, whatever its status. Store run: the index fingerprint.
     Any other run: the outline hash, marked so the two are never compared."""
@@ -3868,7 +3901,7 @@ def _stamp_row(s, G, LN, st_of):
     if store_on and callable(getattr(KS, 'outline_fps', None)):
         store_fp = KS.outline_fps(refs)
     else:
-        outlines = {r: outline_stamp(r, G, LN) for r in refs}
+        outlines = {r: _outline_spec(r, G, LN) for r in refs}
     area = ''
     if refs and callable(st_of):
         try:
@@ -4990,8 +5023,11 @@ def main():
                 sp = sp + _AGE.keep_fresh([x for x in (old.get(st) or {}).get('spots', []) if tuple(sorted((x.get('refs') or [])[:2])) in _tp and len(x.get('refs') or []) == 2],
                                           st, (old.get(st) or {}).get('pass1'))   # Handoff 9 bug 4: never past a key rebuild (setting, off)
             mem = stable_ids([x for x in sp if x.get('center') and x.get('refs') and x.get('kind') and '@channel@' not in str(x.get('id'))], id_memory(old.get(st)))
-            save_json(file_of(st), pc_tag({'st': st, 'about': ABOUT, 'pass1': today, 'ids': mem, 'spots': slim(sorted(sp, key=lambda s: s['id'])),
-                                    **({'incomplete': 'pass 1 stopped for time before every pair here was tested: run again'} if st in undone else {})}), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
+            # R-2F4: the mark means pass 1 built this area file. A later pass keeps whatever the file already carries.
+            _p1 = {'st': st, 'about': ABOUT, 'pass1': today, 'ids': mem, 'spots': slim(sorted(sp, key=lambda s: s['id'])),
+                   _AGE.FILE_MARK_FIELD: _AGE.FILE_MARK,
+                   **({'incomplete': 'pass 1 stopped for time before every pair here was tested: run again'} if st in undone else {})}
+            save_json(file_of(st), pc_tag(_p1), indent=None)  # Nov 2: spot files compact everywhere (indent made Alaska 824 MB)
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again

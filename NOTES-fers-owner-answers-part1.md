@@ -9,6 +9,14 @@
 - No real area was run. No key, outline, or KPC-Data file was changed.
 - Nothing was pushed to `main`. No workflow was started. No pull request was merged.
 
+## Third round (review of 19 Nov, A and B)
+
+Rebased onto `origin/main` `9ee20aa`. Main's 2-fer hash, from `kpc_preflight.base_hash`, is `0637d083bd98`. This pull request's final hash is `40c9a5c612c6`. One changelog line: `0637d083bd98` -> `40c9a5c612c6`. The round hashes (`a18d26726099`, then `8fb1b48a66a8` before this round's code) stay here, not in the changelog.
+
+A. The outline stamp now records the pass, the detail and the decimal count it was hashed at (`outline_detail`). A later run compares that hash only when it holds the outline at the same pass detail, and the coordinates are not a coarser rounding. Otherwise the row is copied on the key entry only and counted. A pass 3 stamp checked in pass 1 is that case. At the same detail, a changed outline is not copied. A pass-1 hash was not also written onto pass 1 rows: those files are compared byte for byte, and the rows are not decided until pass 3.
+
+B. `written_by_rule` is set only on the dict pass 1 builds. `save_json` is main's one line again. A later pass saves the file it loaded, so the mark stays if pass 1 wrote it and stays off if the file is still the old one.
+
 ## Second round (review of 19 Nov, sections 1.1 to 1.7)
 
 The 2-fer rules hash moved `a18d26726099` -> `8fb1b48a66a8`. US, Canada and world did not move (`c64b8ace0411`, `dfef94b3dfd3`, `b1f23bf0deea`). Scope entry `2026-11-19-r2f4-stamp-complete`, scope `none`. No park was remeasured, so there is no park-by-park change list. The 127 summary-map parks are the same list as the first round.

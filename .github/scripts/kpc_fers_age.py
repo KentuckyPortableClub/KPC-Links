@@ -119,7 +119,12 @@ def stamp(row, area='', root='.', store_fp=None, outlines=None):
         if isinstance(store_fp, dict) and store_fp.get(ref):
             made[ref] = {'key': key, 'outline': str(store_fp[ref]), 'outline_kind': 'store'}
         elif isinstance(outlines, dict) and outlines.get(ref):
-            made[ref] = {'key': key, 'outline': str(outlines[ref]), 'outline_kind': 'outline'}
+            spec = outlines[ref]
+            if isinstance(spec, dict):
+                made[ref] = {'key': key, 'outline': str(spec.get('hash') or ''), 'outline_kind': 'outline',
+                             'outline_detail': spec.get('detail') or {}}
+            else:
+                made[ref] = {'key': key, 'outline': str(spec), 'outline_kind': 'outline'}
         else:
             made[ref] = {'key': key, 'outline': '', 'outline_kind': ''}
     row['made_on'] = made
@@ -156,6 +161,38 @@ def _outline_now(ref):
     return K.outline_stamp(ref, getattr(K, 'CURG', {}) or {}, getattr(K, 'CURLN', {}) or {})
 
 
+def _detail_now():
+    """The pass this run read outlines at. Pass 1 is 5 decimals; pass 3 is 6."""
+    import kpc_fers as K
+    return {'pass': getattr(K, 'PASS', None), 'prec': getattr(K, 'PREC', None)}
+
+
+def _geom_prec_in_hand(ref):
+    import kpc_fers as K
+    G = getattr(K, 'CURG', {}) or {}
+    LN = getattr(K, 'CURLN', {}) or {}
+    line = None
+    if ref in LN and isinstance(LN.get(ref), dict):
+        line = {k: v for k, v in LN[ref].items() if k != 'date'}
+    return K.coord_prec([G.get(ref), line])
+
+
+def _same_outline_reading(got, ref):
+    """True when the stamp's outline and the outline in hand were read at the same detail.
+    A stamp with no detail is the older form: the hash is compared as before."""
+    detail = got.get('outline_detail') or {}
+    if not detail:
+        return True
+    now = _detail_now()
+    if detail.get('pass') != now.get('pass') or detail.get('prec') != now.get('prec'):
+        return False
+    gp = detail.get('geom_prec')
+    seen = _geom_prec_in_hand(ref)
+    if gp is not None and seen is not None and seen != gp:
+        return False
+    return True
+
+
 def too_old(row, area, file_date=None, root='.'):
     """'' when the row may be copied; else the plain reason it may not. The check off = ''.
     Sets _key_only when an outline-hash stamp was checked on the key entry only, because this run
@@ -188,11 +225,12 @@ def too_old(row, area, file_date=None, root='.'):
             if not now or now != stored:
                 return f"{ref}: the outline fingerprint changed, so the row is not copied"
         elif kind == 'outline' and stored:
-            if _outline_in_hand(ref):
-                if _outline_now(ref) != stored:
-                    return f"{ref}: the outline hash changed, so the row is not copied"
-            else:
+            if not _outline_in_hand(ref) or not _same_outline_reading(got, ref):
+                # Not read, or read at another pass's detail (pass 3 is 6 decimals, pass 1 is 5).
+                # Do not compare those hashes: the same land would look changed. Key entry only.
                 _key_only = True
+            elif _outline_now(ref) != stored:
+                return f"{ref}: the outline hash changed, so the row is not copied"
     return ''
 
 
