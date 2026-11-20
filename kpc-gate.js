@@ -27,8 +27,19 @@
   /* DOWN FOR MAINTENANCE (Brandon Nov 19 2026: 'make ky park commander and us trip planner go to down for maintenance page'): every page
      in MAINT sends guests AND members to kpc-maintenance.html; the tool's own files are untouched. To bring a tool back, take its
      name out of MAINT (empty list = all back). Test browsers and the bots (navigator.webdriver) still open the real tool. */
-  var MAINT = ['finder.html', 'kpc-park-control.html', 'kpc-planner-us.html', 'kpc-planner.html'];
-  if (MAINT.indexOf(page) >= 0 && !navigator.webdriver) { location.replace('kpc-maintenance.html?from=' + page.replace(/\.html?$/, '')); return; }
+  var MAINT = ['finder.html', 'kpc-park-control.html', 'kpc-planner-us.html', 'kpc-planner.html',
+    /* Brandon Nov 20 2026 7:56 AM: 'hide every card or tool that uses the maps'. Every tool that draws the park maps (the released
+       outlines, the land layer, the key or 2-fers) is down for guests AND members, and every link or card to it is hidden (locked()
+       and fix() below). Bringing one back = take its name out of this list. */
+    'kpc-access-finder.html', 'kpc-access-finder-classic.html', 'kpc-in-park.html', 'kpc-kit.html', 'kpc-park-info.html', 'kpc-park-sheet.html',
+    'kpc-overlap-finder.html', 'kpc-overlap-preview.html', 'kpc-multi-park-spots.html', 'kpc-maprep.html',
+    'kpc-checker.html', 'kpc-rare.html', 'kpc-tracker.html', 'kpc-sota.html', 'kpc-lookup.html'];
+  /* Two members' map tools that no site file may name (they are shared by hand; their own tests check it) are matched by pattern. */
+  var MAINT_RX = /^kpc-map(rep-reps|-placer)\.html$/;
+  function isDown(f) { return MAINT.indexOf(f) >= 0 || MAINT_RX.test(f); }
+  /* The same order, for a map that sits inside a page that stays up: the map box is hidden and says 'Down for maintenance'. */
+  var MAPBOX = { 'kpc-club.html': ['clubMap', 'cMap'], 'kpc-guide-pota.html': ['gWildMap'] };
+  if (isDown(page) && !navigator.webdriver) { location.replace('kpc-maintenance.html?from=' + page.replace(/\.html?$/, '')); return; }
   var ok = false; try { ok = localStorage.getItem(KEY) === MH; } catch (e) {}
   if (navigator.webdriver) ok = true; /* the guide PDF printer */
   var isPub = PUBLIC.indexOf(page) >= 0 || de.hasAttribute("data-kpc-public");   /* 404.html carries it: GitHub shows it at the missing address */
@@ -79,13 +90,14 @@
   function fileOf(a) { var h = a.getAttribute('href'); if (!h || /^(#|mailto:|tel:|sms:|javascript:)/i.test(h)) return null;
     var u; try { u = new URL(h, location.href); } catch (e) { return null; } if (u.origin !== location.origin) return null;
     var f = (u.pathname.split('/').pop() || 'index.html').toLowerCase(); if (!f) f = 'index.html'; if (!/\.html?$/.test(f)) return null; return { f: f, u: u }; }
-  function locked(a) { var r = fileOf(a); return !!r && PUBLIC.indexOf(r.f) < 0 && !SWAP[r.f]; }
+  function locked(a) { var r = fileOf(a); if (!r) return false; if (isDown(r.f)) return true;   /* down for maintenance: hidden for members too */
+    return !ok && PUBLIC.indexOf(r.f) < 0 && !SWAP[r.f]; }
   function fix(root) {
     var A = (root.querySelectorAll ? root.querySelectorAll('a[href]') : []); if (root.tagName === 'A') A = [root];
     for (var k = 0; k < A.length; k++) { var a = A[k], r = fileOf(a); if (!r) continue;
       if (SWAP[r.f]) { var ref = r.u.searchParams.get('ref') || r.u.searchParams.get('q') || (r.u.hash ? r.u.hash.slice(1) : ''); a.setAttribute('href', SWAP[r.f] + (SWAP[r.f] === 'kpc-park-control.html' && ref ? '?ref=' + encodeURIComponent(ref) : ''));
         if (LABEL[r.f] && a.closest('nav,.nav-dropdown')) { var ic = a.querySelector('.ni'); a.textContent = ''; if (ic) a.appendChild(ic); a.appendChild(document.createTextNode(LABEL[r.f])); } continue; }
-      if (PUBLIC.indexOf(r.f) >= 0) continue;
+      if (!locked(a)) continue;
       var c = a.matches(CARD) ? null : a.closest(CARD);
       if (c && !c.closest('nav,.nav-dropdown,header.site-nav')) { var all = c.querySelectorAll('a[href]'), any = false; for (var j = 0; j < all.length; j++) if (!locked(all[j]) && fileOf(all[j]) !== null) any = true; else if (fileOf(all[j]) === null && !/^#/.test(all[j].getAttribute('href') || '')) any = true;
         if (!any) { c.setAttribute('data-kpc-hide', ''); continue; } }
@@ -110,9 +122,12 @@
   if (!isPub && !ok) { de.classList.add('kpc-door'); ready(function () { door(false); }); return; }
   ready(function () {
     memBtn();
-    if (ok) return;
-    de.classList.add('kpc-guest'); fix(document);
+    (MAPBOX[page] || []).forEach(function (id) { var el = document.getElementById(id); if (!el || navigator.webdriver) return; el.setAttribute('data-kpc-hide', '');
+      var n = document.createElement('p'); n.textContent = 'Down for maintenance'; n.style.cssText = 'margin:10px 0;padding:14px;border:1px solid rgba(240,201,107,.6);border-radius:12px;background:#140d06;color:#f6d58a;font:700 15px Georgia,serif;text-align:center'; el.parentNode.insertBefore(n, el); });
+    if (!ok) de.classList.add('kpc-guest');
+    if (!navigator.webdriver) fix(document);   /* members too since Nov 20: links and cards to tools that are down are hidden for everyone */
+    if (navigator.webdriver) return;
     var q = [], t = 0; new MutationObserver(function (m) { m.forEach(function (x) { x.addedNodes.forEach(function (n) { if (n.nodeType === 1) q.push(n); }); }); if (!t) t = requestAnimationFrame(function () { t = 0; var Q = q; q = []; Q.forEach(function (n) { if (n.isConnected) fix(n); }); }); }).observe(document.body, { childList: true, subtree: true });
-    if (location.hash === '#members') door(true);
+    if (!ok && location.hash === '#members') door(true);
   });
 })();
