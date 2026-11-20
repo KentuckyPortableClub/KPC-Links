@@ -15,7 +15,7 @@ every run. This module holds everything that keeps those files trustworthy:
 Not a rule file: it never decides a park-to-land join, so it is listed in NOT_RULES (kpc_key_freeze.py) and does not move any
 rules hash. Standard library only (a Shapefile or GDB input needs pyshp / ogr2ogr on the machine; the tool says so if missing).
 """
-import copy, datetime, gzip, hashlib, json, math, os, pathlib, re, time, urllib.error, urllib.parse, urllib.request, zlib
+import csv, copy, datetime, gzip, hashlib, json, math, os, pathlib, re, time, urllib.error, urllib.parse, urllib.request, zlib
 from urllib import robotparser
 import kpc_net_guard
 kpc_net_guard.install()   # process-wide: never-contact hosts are refused for every request, every redirect hop
@@ -1395,6 +1395,37 @@ def owner_licence_accepted(area, layer, root):
     return False
 
 
+def licence_code(url):
+    """The keeper's public code of a layer address: 'sha256:' + 16 hex of its norm_layer (host + path lower case, no /query, no
+    trailing slash, no query string; KPC-Store engine/kpc_outline_store.norm_layer)."""
+    sp = urllib.parse.urlsplit(str(url or '').replace('svc:', '', 1).split('|')[0].strip())
+    path = re.sub(r'/query/?$', '', urllib.parse.unquote(sp.path or ''), flags=re.I).rstrip('/')
+    host = (sp.hostname or '').lower().rstrip('.')
+    try: port = sp.port
+    except ValueError: port = -1
+    if port not in (None, 443): host = f'{host}:{port}'
+    return 'sha256:' + hashlib.sha256(f'{host}{path.lower()}'.encode('utf-8')).hexdigest()[:16]
+
+
+def licence_verdict(url, layer, root=None):
+    """(publish: bool, why) from data/outlines/licence-verdicts.csv (the store's answers, written by KPC-Store keeper/licence_public.py)
+    for this layer; None = not in the table. The coded address decides first; a key id only when it names one row.
+    20 Nov 2026 (REPAIRS R14): KPC-Links and KPC-Store give ONE answer per layer."""
+    p = pathlib.Path(root or OUTLINES) / 'licence-verdicts.csv'
+    try: lines = [x for x in p.read_text(encoding='utf-8').splitlines() if not x.startswith('#')]
+    except OSError: return None
+    rows = list(csv.DictReader(lines))
+    ans = lambda r: (str(r.get('publish') or '').strip().lower() == 'yes',
+                     f"{r.get('licence class') or ''}: publish {r.get('publish') or ''}" + (f"; credit: {r.get('credit line')}" if r.get('credit line') else ''))
+    if url:
+        c = licence_code(url)
+        for r in rows:
+            if str(r.get('layer') or '') == c: return ans(r)
+    kid = lambda r: str(r.get('key id') or '').split(':', 1)[-1].split('~')[0]
+    same = [r for r in rows if layer and kid(r) == layer]
+    return ans(same[0]) if len(same) == 1 else None
+
+
 def share_block(row, root=None):
     """'' when a layer's checked file may be packed / uploaded / merged; else why not. Refused: anything that looks like Protected Planet /
     WDPA or SPREP, a layer / download source marked `redistribute: "no"`, or a row with no licence or terms in data/outlines/layers.json or download-sources.json (optional
@@ -1406,6 +1437,9 @@ def share_block(row, root=None):
     root = pathlib.Path(root or OUTLINES)
     nu = lambda u: re.sub(r'/query/?$', '', str(u or '').replace('svc:', '', 1).split('|')[0].split('?')[0]).rstrip('/').lower()
     u, area, lay = nu(r.get('url')), r.get('area'), str(r.get('layer') or '')
+    v = licence_verdict(u, lay, root)   # 20 Nov 2026 (REPAIRS R14): ONE answer per layer, the store's researched verdict, read first
+    if v is not None:
+        return '' if v[0] else f"{area}|{lay}: licence verdict no ({v[1]}): not packed, uploaded or merged"
     for k, L in ((load_layers(root) or {}).get('layers') or {}).items():
         if str((L or {}).get('redistribute', '')).lower() == 'no' and (k in (f'{area}.{lay}', lay) or (u and nu(L.get('url')) == u)):
             return f'{area}|{lay}: layer {k} is marked redistribute=no in layers.json: not packed, uploaded or merged'
@@ -1434,6 +1468,7 @@ def share_block(row, root=None):
                     if str((S or {}).get(kk) or '').strip():
                         lic = str(S.get(kk)).strip(); break
             if lic: break
+    if re.fullmatch(r'see the source page\.?', lic, re.I): lic = ''   # 20 Nov 2026: a placeholder is not a licence (227 rows said only this)
     if not lic:
         return f"{area}|{lay}: no licence or terms recorded: not packed, uploaded or merged"
     if re.match(r'not\s+stated\b', lic, re.I) and not owner_licence_accepted(area, lay, root):

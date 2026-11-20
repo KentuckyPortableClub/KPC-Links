@@ -1,0 +1,281 @@
+# ONE licence answer per layer: the store's answers as KPC-Store keeper/licence_public.py writes them (store 44f252215, 20 Nov 11:25 AM). The address is coded (sha256 of the normalised address, 16 hex); no address or reason text is public.
+layer,key id,publish,licence class,credit line,date read
+sha256:0052850c891efb3c,US:sgvah,no,NON-COMMERCIAL / NO REDISTRIBUTION,n/a (not published),2026-11-14
+sha256:005a827569bd68cb,US:sgscc,yes,NO TERMS STATED,South Carolina Department of Natural Resources,2026-11-13
+sha256:006154cb6e686efa,US:sgutd,yes,PUBLIC DOMAIN,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:006fa9c6ffaecc06,US:sgscb,no,NOT FOUND,"South Carolina Parks, Recreation and Tourism",2026-11-13
+sha256:00be0c3404be34ef,US:sgflg,yes,DISCLAIMER ONLY,Florida Fish and Wildlife Conservation Commission (FWC),2026-11-14
+sha256:00ee29a7c32516d5,US:sgnvh,yes,PUBLIC DOMAIN,"Bureau of Land Management, U.S. Department of the Interior (cite BLM as data source; do not imply BLM endorsement)",2026-11-14
+sha256:016081533f00ca61,US:sgorc,yes,NO TERMS STATED,Oregon Department of Fish and Wildlife,2026-11-13
+sha256:055a6ac092bb7b1e,US:sgdea,yes,DISCLAIMER ONLY,Delaware Department of Natural Resources and Environmental Control (DNREC) via Delaware FirstMap,2026-11-14
+sha256:0575e519d19b4623,CA:BC RegionalP,yes,OPEN,Metro Vancouver Regional Parks. Contains information licensed under the Open Government Licence – Metro Vancouver.,2026-11-14
+sha256:05fe9d0af9a35d6b,CA:Manitoba wil,yes,OPEN,"Contains information from the Manitoba government, licensed under the OpenMB licence (Manitoba.ca/OpenMB); sample wording at gov.mb.ca/legal/copyright.html",2026-11-13
+sha256:06a4bdb29552f3e7,US:bstate,yes,NO TERMS STATED,"Kentucky State Parks, Commonwealth of Kentucky (via the Kentucky Geography Network).",2026-11-14
+sha256:070f7697b850d3b0,US:sgcoe,yes,DISCLAIMER ONLY,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:08c111f04f9ec91e,CA:Hard look~6,yes,OPEN,Contains information licensed under the Open Government Licence – Ontario.,2026-11-14
+sha256:0a556e87e78d7783,US:sgctb,yes,OPEN,Connecticut Department of Energy and Environmental Protection (CT DEEP),2026-11-14
+sha256:0adda3157ad2ae73,US:lar,yes,NO TERMS STATED,Louisiana Department of Wildlife and Fisheries,2026-11-13
+sha256:0b2d1fb80136fd37,US:sgmac,yes,DISCLAIMER ONLY,"National Park Service, Land Resources Division",2026-11-14
+sha256:0b468b6b4c49ae03,US:sggac,yes,DISCLAIMER ONLY,Georgia DNR Wildlife Resources Division,2026-11-13
+sha256:0bab1f0a5ee02d05,US:sgore,yes,NO TERMS STATED,"State of Oregon, Oregon Parks and Recreation Department (Oregon Parklands layer)",2026-11-14
+sha256:0dbb71cde53ce642,US:sgwae,no,NO TERMS FOUND,Washington State Department of Ecology (if cleared),2026-11-14
+sha256:0fba5b4228023414,CA:Ontario fede,yes,OPEN,Contains information licensed under the Open Government Licence – Ontario.,2026-11-14
+sha256:10553ac8615f6993,US:trte-route,yes,DISCLAIMER ONLY,National Park Service - National Trails Intermountain Region,2026-11-14
+sha256:1084a60ce6b2b43f,US:fwsr,yes,OPEN,USDA Forest Service,2026-11-14
+sha256:123002076d5f3efb,US:sgncd,no,NOT FOUND,ParkBoundaries,
+sha256:12370f833c413708,US:sgazf,yes,OPEN,Bureau of Land Management,2026-11-13
+sha256:12733f00ca6f7ae1,US:sgnmb,yes,NO TERMS STATED,New Mexico EMNRD State Parks Division,2026-11-13
+sha256:13add9b7019c2741,US:sgidd,yes,DISCLAIMER ONLY,"U.S. Forest Service, Enterprise Data Warehouse (EDW), Basic Ownership. Modified for the KPC park map.",2026-11-14
+sha256:13c3af011d78674e,US:usaceproj,yes,OPEN,US Army Corps of Engineers data,2026-11-20
+sha256:152c2e237fcc425e,CA:Manitoba Par,yes,OPEN,"Contains information from the Manitoba government, licensed under the OpenMB licence (Manitoba.ca/OpenMB); sample wording at gov.mb.ca/legal/copyright.html",2026-11-13
+sha256:16425483e6868775,CA:Québec prote,yes,OPEN,"Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs; Données Québec; licence CC BY 4.0.",2026-11-14
+sha256:17bf7749ffbdb873,US:sgtna,yes,DISCLAIMER ONLY,"Tennessee State Parks, Tennessee Department of Environment and Conservation",2026-11-13
+sha256:17cb3ee0a5349528,CA:NB Parks~1,no,NO TERMS STATED,"City of Fredericton, Parks and Trees",2026-11-14
+sha256:181a29cae64cdb9b,US:cow,yes,NO TERMS STATED,Colorado Parks and Wildlife,2026-11-13
+sha256:19366f83cfa1fc99,US:wdw,yes,NO TERMS STATED,"Washington Department of Fish and Wildlife (Wildlife Areas), via the Washington Geospatial Open Data Portal. Provided as is.",2026-11-14
+sha256:19e443600fcdefb1,US:sgtne,yes,DISCLAIMER ONLY,Tennessee Wildlife Resources Agency,2026-11-13
+sha256:1ac1ed33b34c0ec2,US:sgnvf,yes,DISCLAIMER ONLY,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:1af58c666bdd036d,CA:Manitoba wil~1,yes,OPEN,"Contains information from the Manitoba government, licensed under the OpenMB licence (Manitoba.ca/OpenMB); sample wording at gov.mb.ca/legal/copyright.html",2026-11-13
+sha256:1c46d8d263c70a6d,US:sgvaf,no,NOT FOUND,Virginia DCR,
+sha256:1ce226028bf4b2cd,CA:Nova Scotia ~2,yes,OPEN,Contains information licensed under the Open Government Licence - Nova Scotia,2026-11-13
+sha256:1d17e2a7178b214c,US:sgwaa,yes,DISCLAIMER ONLY,Washington State Parks and Recreation Commission,2026-11-14
+sha256:1d3164c747e143b9,CA:Québec recog,yes,OPEN,"Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs; Données Québec; licence CC BY 4.0.",2026-11-14
+sha256:20573ef863c09af1,CA:ON-SVCA Grey,no,NO TERMS FOUND,County of Grey / Saugeen Valley Conservation Authority (unconfirmed),2026-11-14
+sha256:20659f1167d92b4a,US:sgnhb,yes,DISCLAIMER ONLY,New Hampshire Fish and Game Department,2026-11-14
+sha256:21cd441df7481c24,US:mdd,yes,OPEN,"State of Maryland, MD iMAP and Maryland Department of Natural Resources (DNR Owned Properties).",2026-11-14
+sha256:234a65fc08e064e8,US:sgorb,no,OPEN,Oregon Parks and Recreation Department / State of Oregon,2026-11-13
+sha256:23594490060f166c,CA:AB-PLUZ Gove,yes,OPEN,Contains information licensed under the Open Government Licence – Alberta. Source: Government of Alberta.,2026-11-14
+sha256:252072087efb48df,US:sgwia,yes,DISCLAIMER ONLY,Wisconsin Department of Natural Resources; Bureau of Facilities and Lands,2026-11-20
+sha256:258f5b04deab33c1,US:sgdee,yes,NO TERMS STATED,"DNREC Division of Parks and Recreation (Delaware FirstMap, Public Protected Lands)",2026-11-14
+sha256:25ecb32efd36379c,US:sgnvg,yes,DISCLAIMER ONLY,USDA Forest Service,2026-11-14
+sha256:26135c53aafd2c13,US:sgmoa,yes,NO TERMS STATED,"Missouri Department of Natural Resources, Division of State Parks, Planning and Development Program, and Missouri Office of Administration, Information Technology Services Division",2026-11-14
+sha256:269c4bd3e7e0f04a,US:sgwib,yes,DISCLAIMER ONLY,Wisconsin Department of Natural Resources - Parks and Recreation Management,2026-11-20
+sha256:26e606627715487b,US:bsna,no,NOT READ,,2026-11-14
+sha256:26eaad27245a9e36,CA:Hard look~2,no,NOT A PARK LAYER,n/a,2026-11-14
+sha256:272ed3688c9f55c2,CA:NB-PP Govern,yes,OPEN,Contains information licensed under the Open Government Licence – New Brunswick.,2026-11-14
+sha256:29deced8dfef48ad,US:sgksb,yes,DISCLAIMER ONLY,Kansas Department of Wildlife and Parks,2026-11-13
+sha256:2b330744c6d6ae49,US:sgmab,yes,NO TERMS STATED,Commonwealth of Massachusetts (DCR / MassWildlife via MassGIS),2026-11-13
+sha256:2b98d1b5445e57ef,US:rst,yes,PUBLIC DOMAIN,"Bureau of Land Management, U.S. Department of the Interior (cite BLM as data source; do not imply BLM endorsement)",2026-11-14
+sha256:2bde11564fac02e7,US:idw,no,OTHER RESTRICTED,Idaho Department of Fish and Game,2026-11-13
+sha256:2d1c475abb56d876,US:wsrc,yes,DISCLAIMER ONLY,"National Park Service, Land Resources Division",2026-11-14
+sha256:2da9c1354852a29f,US:sgorf,yes,PUBLIC DOMAIN,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:2ebada5437a36fc0,US:sgnhd,yes,NO TERMS STATED,"NH GRANIT (UNH), New Hampshire Conservation/Public Lands",2026-11-14
+sha256:2f813dd0351c632c,US:wld,yes,OPEN,"U.S. Forest Service, Enterprise Data Warehouse (EDW), National Wilderness Areas. Licensed CC BY 4.0. Modified for the KPC park map.",2026-11-14
+sha256:2f8fa5162b6395eb,US:hma,yes,PUBLIC DOMAIN,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:300c13d60f7a70ca,CA:Hard look~11,no,NOT FOUND,Hard look~11,
+sha256:3151c0e74827a2bc,US:sgnma,no,NOT FOUND,New Mexico Department of Game & Fish,
+sha256:340fa1499c2dc31a,US:sgmea,yes,DISCLAIMER ONLY,Maine Office of GIS / Bureau of Parks and Lands,2026-11-13
+sha256:3422e66517f00c6f,US:sgmob,no,NO TERMS STATED,n/a (not published),2026-11-14
+sha256:377399c164373bcc,US:sgwvc,yes,DISCLAIMER ONLY,West Virginia Department of Natural Resources (data); West Virginia Department of Transportation (service). Provided for general reference; not warranted.,2026-11-14
+sha256:37a48e153253f259,US:sggab,no,NO TERMS STATED,"Georgia Department of Natural Resources, State Parks and Historic Sites (unconfirmed)",2026-11-14
+sha256:3810143ca6d35620,US:rma,yes,NO TERMS STATED,"Bureau of Land Management, U.S. Department of the Interior",2026-11-14
+sha256:38e98ab3f0cc790f,US:sgpae,yes,DISCLAIMER ONLY,"Pennsylvania Department of Conservation and Natural Resources, Bureau of Forestry. Boundaries are not a legal description.",2026-11-14
+sha256:3a5e5241ae35a5a1,US:mid,no,NOT RECORDED,,
+sha256:3d00096d970d8e96,US:sgwyc,yes,DISCLAIMER ONLY,Wyoming Game and Fish Department,2026-11-13
+sha256:3dbc2541dbf76838,CA:ON-GANA Gana,no,NO TERMS FOUND,Grand River Conservation Authority (if cleared under the GRCA Open Data Licence v2),2026-11-14
+sha256:3e635b200aa58c64,CA:SK-ALL Gover,yes,OPEN,Contains information licensed under the Government of Saskatchewan Standard Unrestricted Use Data Licence (Version 2.0).,2026-11-14
+sha256:3ec12635d6156af8,US:sghia,yes,DISCLAIMER ONLY,"State of Hawaii, Department of Land and Natural Resources, Division of State Parks, via the Hawaii Statewide GIS Program (Office of Planning and Sustainable Development). Data for general reference only; the State does not vouch for its quality or timeliness.",2026-11-14
+sha256:3f0b42401c6eee07,CA:Hard look~16,yes,OPEN,Contains information licensed under the Open Government Licence – Ontario.,2026-11-14
+sha256:3fd809e2b7f6b5fa,US:sgmng,yes,NO TERMS STATED,U.S. Fish and Wildlife Service,2026-11-14
+sha256:406702ac18ae8482,US:bsnp,yes,NO TERMS STATED,"Office of Kentucky Nature Preserves, Commonwealth of Kentucky.",2026-11-14
+sha256:4242594d70c17f1e,CA:ON-LTVCA Low,no,NOT FOUND,Lower Thames Valley Conservation Authority,
+sha256:42def861c6b68882,US:sgdec,yes,NO TERMS STATED,"Delaware Department of Natural Resources and Environmental Control, Division of Fish and Wildlife",2026-11-14
+sha256:42e7305c50ea4b91,US:sgaka,yes,DISCLAIMER ONLY,"Alaska Department of Natural Resources, Division of Parks and Outdoor Recreation. Data modified for the KPC map; not approved by Alaska DNR.",2026-11-14
+sha256:43543922aade7608,US:sgcta,yes,OPEN,Connecticut Department of Energy and Environmental Protection (DEEP),2026-11-13
+sha256:478a866eb959fe97,CA:Hard look~5,no,NOT FOUND,Hard look~5,
+sha256:48007a809e7ffafa,CA:ON-ERCA Esse,no,NOT FOUND,Essex Region Conservation Authority,
+sha256:48398c50d079fa0c,US:sgwid,yes,DISCLAIMER ONLY,Wisconsin Department of Natural Resources; Bureau of Facilities and Lands,2026-11-20
+sha256:48f2d0ff58a21590,CA:Alberta publ,yes,OPEN,Contains information licensed under the Open Government Licence – Alberta. Source: Government of Alberta.,2026-11-14
+sha256:490884c45a571957,CA:Hard look~10,no,NOT FOUND,Hard look~10,
+sha256:490df40a4165d17c,US:akht,yes,PUBLIC DOMAIN,National Park Service,2026-11-13
+sha256:496903855df92b0a,US:hab,yes,PUBLIC DOMAIN,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:49ca71ca59b7b56d,US:ncg,yes,DISCLAIMER ONLY,North Carolina Wildlife Resources Commission,2026-11-13
+sha256:49f12bb25084a114,CA:SK-PT Govern,no,RESTRICTED IN WRITING,n/a (not published),2026-11-14
+sha256:49f3c55ed5e89c76,US:sgric,yes,NO TERMS STATED,Rhode Island Department of Environmental Management (RIDEM); Rhode Island Geographic Information System (RIGIS),2026-11-14
+sha256:4b1094615354ea0e,US:sgilb,yes,NO TERMS STATED,Illinois Department of Natural Resources,2026-11-13
+sha256:4bb3f3d9c20c3034,US:sgmic,yes,OPEN,Michigan Department of Natural Resources,2026-11-14
+sha256:4bcb8f233a79473a,US:odw,yes,DISCLAIMER ONLY,"Oklahoma Department of Wildlife Conservation (ODWC), Wildlife Management Area boundaries",2026-11-14
+sha256:4bd5b40f536ed0cc,US:law,yes,NO TERMS STATED,Louisiana Department of Wildlife and Fisheries,2026-11-13
+sha256:4c4a4380f1023920,US:sgarb,yes,NO TERMS STATED,"Arkansas Department of Parks and Tourism, Arkansas State Parks",2026-11-14
+sha256:4ec9f5f421c637b3,US:sgksc,yes,DISCLAIMER ONLY,Kansas Biological Survey,2026-11-13
+sha256:50b82e4b16d1f0bd,US:bwma,yes,DISCLAIMER ONLY,"Kentucky Department of Fish & Wildlife Resources (KDFWR), via the Kentucky Division of Geographic Information. Provided without warranty of accuracy.",2026-11-14
+sha256:5230222321db468a,US:sgmnd,no,OTHER RESTRICTED,Minnesota Department of Natural Resources (acknowledged as data contributor),2026-11-13
+sha256:53187f613c8a9ce8,CA:Alberta Park,yes,OPEN,Contains information licensed under the Open Government Licence – Alberta. Source: Government of Alberta.,2026-11-14
+sha256:5376225c5cdded71,US:sgakh,yes,PUBLIC DOMAIN,"Bureau of Land Management, U.S. Department of the Interior (cite BLM as data source; do not imply BLM endorsement)",2026-11-14
+sha256:54f06103fff29504,CA:ON-TRCA Toro,yes,OPEN,Contains information made available under the Toronto and Region Conservation Authority (TRCA)'s Open Data Licence v 1.0 (prescribed credit; see page),2026-11-13
+sha256:550376e9bcf4a2e1,US:sgakg,yes,PUBLIC DOMAIN,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:55cf3cd1edd2c5a7,US:sgtnc,yes,DISCLAIMER ONLY,Tennessee Wildlife Resources Agency,2026-11-13
+sha256:56d6bfdd60b19df1,US:sgnyb,no,OTHER RESTRICTED (no redistribution),"New York State Office of Parks, Recreation and Historic Preservation",2026-11-14
+sha256:56fd459443511ff4,US:sgmof,yes,DISCLAIMER ONLY,Missouri Department of Conservation,2026-11-14
+sha256:5ae64925574b2558,US:sgmad,yes,DISCLAIMER ONLY,"MassGIS, Executive Office of Energy and Environmental Affairs",2026-11-14
+sha256:5b6cd0be29103154,US:sgakd,yes,PUBLIC DOMAIN (US FEDERAL),"National Park Service, Land Resources Division",2026-11-14
+sha256:5cee2329f6f535f5,US:sgorg,yes,PUBLIC DOMAIN,"Bureau of Land Management (BLM), Oregon State Office",2026-11-14
+sha256:5de093caf1123f3f,US:sglab,yes,NO TERMS STATED,Louisiana Department of Wildlife and Fisheries,2026-11-13
+sha256:5eb4681fdc686c3b,US:sghib,yes,DISCLAIMER ONLY,"State of Hawaii, Department of Land and Natural Resources, Division of Forestry and Wildlife; Hawaii Statewide GIS Program. Disclaimer: derived from public records, does not replace a site survey, not warranted for content or accuracy, positional accuracy not guaranteed by the State of Hawaii.",2026-11-14
+sha256:5f135f40112344fd,US:sguta,yes,DISCLAIMER ONLY,Utah Division of State Parks,2026-11-14
+sha256:5fb31a63e1f46094,CA:NS-NHS Nova,no,NO TERMS FOUND,"Government of Nova Scotia (NovaROC), if cleared",2026-11-14
+sha256:6085b9ea7a7f5d64,US:sgazb,no,NEEDS A PERSON,Arizona Game and Fish Department,2026-11-14
+sha256:627ab2e091f2b7cc,CA:NL Provincia,no,OTHER RESTRICTED,"Government of Newfoundland and Labrador, Parks Division",2026-11-13
+sha256:65b70ebd5fa419c0,US:sgnvi,yes,DISCLAIMER ONLY,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:66c64271cde507e1,US:sgazg,yes,DISCLAIMER ONLY,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:66e1b2f6b22e17c4,US:bdbnf,yes,DISCLAIMER ONLY,"USDA Forest Service, Daniel Boone National Forest boundary (via the Kentucky Division of Geographic Information).",2026-11-14
+sha256:6765e12e33c1e799,US:sgina,no,NOT FOUND,Indiana Department of Natural Resources,
+sha256:678ef61e33cda075,US:sgnvj,no,NOT FOUND,Nevada Department of Wildlife,
+sha256:67e5a8ce1f28ddee,US:sgtnh,no,NO TERMS STATED,Tennessee Department of Environment and Conservation,2026-11-14
+sha256:68d512502904bb89,CA:NS NS_Lands_,yes,OPEN,Government of Nova Scotia. Contains information licensed under the Open Government Licence – Nova Scotia.,2026-11-14
+sha256:69575c51ca103a2b,CA:Hard look~7,no,NOT FOUND,Hard look~7,
+sha256:6a69036be093c6cd,US:sgokb,no,NOT FOUND,Oklahoma Department of Wildlife Conservation,
+sha256:6b0e6d990db1c821,US:sgakc,yes,DISCLAIMER ONLY,"State of Alaska, Department of Natural Resources, Division of Forestry & Fire Protection. Modified for the KPC park map (outlines simplified); not approved by the State of Alaska.",2026-11-14
+sha256:6c2346608983a3a5,US:sgnyc,yes,DISCLAIMER ONLY,Adirondack Park Agency,2026-11-13
+sha256:6c5a4203713e8a35,US:sggaa,no,NO TERMS STATED,Georgia DNR Wildlife Resources Division,2026-11-14
+sha256:6d45de1a5d61ddee,US:sgazc,no,NEEDS A PERSON,Arizona Game and Fish Department,2026-11-14
+sha256:6e15806875e49ac0,US:sgnja,no,RESTRICTED IN WRITING,n/a (not published),2026-11-14
+sha256:6f74a425b4ed2ff9,CA:NB Parks,yes,OPEN,Contains information licensed under the Open Government Licence - City of Saint John,2026-11-14
+sha256:7014fdaec021c69b,US:wsa,yes,PUBLIC DOMAIN,"Bureau of Land Management, U.S. Department of the Interior (cite BLM as data source; do not imply BLM endorsement)",2026-11-14
+sha256:7197e44495958c33,US:sggae,no,NEEDS A PERSON,National Park Service (if cleared),2026-11-14
+sha256:7219272f99179e0b,US:sgazd,yes,NO TERMS STATED,U.S. Fish and Wildlife Service,2026-11-14
+sha256:7321b8270fc766e9,US:sgord,no,NEEDS A PERSON,Oregon Department of State Lands (State Land Inventory),2026-11-14
+sha256:733e0aa84be6af21,US:mol,yes,DISCLAIMER ONLY,Missouri Department of Conservation,2026-11-14
+sha256:763e7701ad3041e8,US:ndw,no,OTHER RESTRICTED,North Dakota Game and Fish Department,2026-11-13
+sha256:773e90789c002737,US:sgded,yes,NO TERMS STATED,"Delaware Department of Natural Resources and Environmental Control, Division of Parks and Recreation (Nature Preserves)",2026-11-14
+sha256:778ccf0390def5d1,US:sgnmc,yes,PUBLIC DOMAIN,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:780147b74a79a98e,CA:ON-ABCA Ausa,yes,NO TERMS STATED,Ausable Bayfield Conservation Authority,2026-11-13
+sha256:780b310572b5d0c4,US:bforest,yes,DISCLAIMER ONLY,"Kentucky Department of Forestry, via the Kentucky Division of Geographic Information. Provided without warranty of accuracy.",2026-11-14
+sha256:78a22d5050504cad,US:sgwyb,yes,DISCLAIMER ONLY,"Wyoming State Parks, Historic Sites and Trails (WYSPHST)",2026-11-14
+sha256:7913e32aa59decaa,CA:New Brunswic~1,no,NO TERMS STATED,n/a (not published),2026-11-14
+sha256:7b3dce91073226eb,US:sgnea,yes,OPEN,Nebraska Game and Parks Commission,2026-11-13
+sha256:7bf3bc29044d72fe,US:sgflf,yes,DISCLAIMER ONLY,"Florida Department of Environmental Protection, Division of State Lands (FL-SOLARIS State Owned Lands)",2026-11-14
+sha256:7c05367bcba70e54,US:sgtxb,yes,DISCLAIMER ONLY,Texas Parks and Wildlife Department,2026-11-14
+sha256:7c0696b661e7746f,US:sgmnf,yes,OPEN WITH CONDITIONS,Minnesota Department of Natural Resources (MNDNR),2026-11-20
+sha256:7db006ecb9245c55,US:sgtxc,yes,DISCLAIMER ONLY,Texas Parks and Wildlife Department,2026-11-13
+sha256:7e3eae2af1e430bb,US:sgutc,no,NO TERMS STATED,Utah Division of State History,2026-11-14
+sha256:80400824b5241cb3,US:sgtnd,yes,DISCLAIMER ONLY,"Tennessee Department of Agriculture, Division of Forestry (Forest Data and Analysis Unit)",2026-11-14
+sha256:81182e912765a53f,US:sgide,yes,OPEN,US Army Corps of Engineers data,2026-11-20
+sha256:822ba47ed94a39e2,US:sgvac,no,NO TERMS STATED,Virginia DCR (unconfirmed),2026-11-14
+sha256:830d98ff72e8a5ce,CA:Hard look~15,no,NOT FOUND,Hard look~15,
+sha256:8343ee60e3d50dec,US:sgtng,yes,NON-COMMERCIAL,"Tennessee State Parks, Tennessee Department of Environment and Conservation",2026-11-13
+sha256:83a53a1d4e85abec,CA:ON-MVC Missi,no,NO TERMS STATED,Mississippi Valley Conservation Authority (unconfirmed),2026-11-14
+sha256:8475c99654b597bb,US:sgmoc,yes,DISCLAIMER ONLY,Missouri Department of Conservation,2026-11-14
+sha256:8580cb934637846a,CA:Ontario cons,yes,OPEN,Contains information licensed under the Open Government Licence – Ontario.,2026-11-14
+sha256:864bce61e8cbd3dd,CA:ON-LTC Lower,no,NOT FOUND,Lower Trent Conservation,
+sha256:86c26572afd657fa,CA:NS-PPA Nova,yes,OPEN,Contains information licensed under the Open Government Licence - Nova Scotia,2026-11-13
+sha256:8709dd270c9bddf4,US:sgtnb,no,NOT FOUND,Tennessee State Natural Areas,
+sha256:8843c4cc9561bc55,US:sgcac,yes,OPEN,"California Department of Fish and Wildlife (CDFW), Biogeographic Data Branch (BIOS), CDFW Owned and Operated Lands and Conservation Easements [ds3092]. Licensed CC BY 4.0. Modified for the KPC park map.",2026-11-14
+sha256:8b693fd32ef7808b,US:sgfld,yes,DISCLAIMER ONLY,Suwannee River Water Management District,2026-11-13
+sha256:8cba088fdea7e954,US:nhc,yes,NO TERMS STATED,"NH GRANIT (UNH), New Hampshire Conservation/Public Lands",2026-11-14
+sha256:8da63d5d3f126003,US:sgiad,yes,NO TERMS STATED,Iowa Department of Natural Resources,2026-11-14
+sha256:8ed9fa79fbe3098f,CA:NS-F111 Nova,no,NO TERMS FOUND,"Government of Nova Scotia (NovaROC), if cleared",2026-11-14
+sha256:8eeb97c27100524e,US:sgwva,yes,NO TERMS STATED,West Virginia Division of Natural Resources,2026-11-13
+sha256:904f5bf8bedc49a3,CA:PE NCC_AT_Na,no,NOT FOUND,NCC_AT_Nature_Reserves_Public_Map,
+sha256:908e5c775e0645c2,CA:ON-CRCA Cata,yes,NO TERMS STATED,"Produced using information under License with Cataraqui Conservation (c), [year] (their pattern)",2026-11-13
+sha256:9227d74a331fa18c,CA:ON-GSCA Grey,no,NO TERMS FOUND,County of Grey / Grey Sauble Conservation Authority (unconfirmed),2026-11-14
+sha256:92e0c886b2065727,US:sgvaa,yes,OPEN,Virginia Department of Forestry,2026-11-14
+sha256:936ae59a7448a9ce,US:sgtxd,yes,DISCLAIMER ONLY,Texas Parks and Wildlife Department,2026-11-13
+sha256:948a3b8a68437112,US:sgnha,yes,NO TERMS STATED,"NH GRANIT (UNH), New Hampshire Conservation/Public Lands",2026-11-14
+sha256:976ec0d5db34c00c,US:sgwif,no,OTHER RESTRICTED (contact the agency first),n/a (not published),2026-11-20
+sha256:97c0ed44c70c5355,US:sghic,no,OTHER RESTRICTED,State of Hawaii (DLNR Division of State Parks),2026-11-13
+sha256:98b146ceaca886a0,US:sgnhc,yes,NO TERMS STATED,"NH GRANIT (UNH), New Hampshire Recreation Resources",2026-11-14
+sha256:98b286b7dee2099f,CA:CPCAD,yes,OPEN,"Contains information licensed under the Open Government Licence – Canada. Source: Environment and Climate Change Canada, CPCAD.",2026-11-14
+sha256:9926ab11eb243f55,US:sgaza,no,NO TERMS STATED,Arizona State Parks and Trails (unconfirmed),2026-11-14
+sha256:9a771701061a3a8d,US:fsod,yes,OPEN,"U.S. Forest Service, Enterprise Data Warehouse (EDW), Other National Designated Areas. Licensed CC BY 4.0. Modified for the KPC park map.",2026-11-14
+sha256:9aae10af37ecf7f5,CA:ON-CVC Credi,yes,OPEN,"""Contains Information made available under..."" the CVC Open Data Licence v1.0 (exact line is on the licence page)",2026-11-13
+sha256:9d35400b801bdcb9,US:sgwah,no,NOT FOUND,Hanford Reach,
+sha256:a32978fa6d188f2d,US:sgmaa,no,NOT FOUND,"MassGIS, Executive Office of Energy and Environmental Affairs (Commonwealth of Massachusetts)",
+sha256:a33e6f3facc50414,US:sgwvb,no,OTHER RESTRICTED (no redistribution without a data use agreement),West Virginia Division of Natural Resources,2026-11-14
+sha256:a52705ad3f2f04d0,CA:Hard look~8,no,NO TERMS FOUND,"City of Barrie (Park PB), if cleared",2026-11-14
+sha256:a58843b631c40a5f,US:wbl,yes,PUBLIC DOMAIN,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:a5e0d3f06b492e46,US:sgfle,yes,DISCLAIMER ONLY,St. Johns River Water Management District,2026-11-13
+sha256:a6b1fd55b400373e,US:sgmdb,no,NO TERMS STATED,n/a (not published),2026-11-14
+sha256:a720e4406718bf00,US:cajo-centerline,no,PRIVATE UNTIL LICENCE READ,National Park Service,2026-11-14
+sha256:a8afd1b7d7eb9492,US:sgvad,yes,NON-COMMERCIAL,"Virginia Department of Conservation and Recreation (VA-DCR), Natural Heritage. Data not for legal use; no warranty.",2026-11-14
+sha256:aeb7a4904a6881f5,US:fnl,yes,DISCLAIMER ONLY,Florida Natural Areas Inventory,2026-11-13
+sha256:af70219aef6dc86d,US:sgpaa,yes,NO TERMS STATED,"Pennsylvania Department of Conservation and Natural Resources, Bureau of State Parks",2026-11-14
+sha256:afc437a92dab0113,US:sgwic,yes,NO TERMS STATED,Wisconsin Department of Natural Resources (WDNR-ER),2026-11-14
+sha256:b14be66e95b682e9,US:nep,yes,OPEN,Nebraska Game and Parks Commission,2026-11-13
+sha256:b29c337e1419df7f,CA:AB Public La,yes,OPEN,Contains information licensed under the Open Government Licence – Alberta. Source: Government of Alberta.,2026-11-14
+sha256:b3a874d5a8129ef5,US:maw,yes,NO TERMS STATED,Commonwealth of Massachusetts (DCR / MassWildlife via MassGIS),2026-11-13
+sha256:b3a9b9dc5fa208b0,US:sgnvc,no,NOT FOUND,Nevada Division of State Parks,
+sha256:b43cb1eb8cef6854,US:fws,yes,NO TERMS STATED,U.S. Fish and Wildlife Service,2026-11-14
+sha256:b444df71540f79d0,US:sgsca,no,NOT FOUND,South Carolina Department of Natural Resources,
+sha256:b4712b57ece26a21,US:sgmod,yes,DISCLAIMER ONLY,Missouri Department of Conservation,2026-11-14
+sha256:b57ccbf40a0adf37,US:sgild,yes,NO TERMS STATED,Illinois Department of Natural Resources (IDNR Properties),2026-11-14
+sha256:ba9a5b1f38e65b91,CA:NT Nagwichoo,no,NO TERMS STATED,Government of the Northwest Territories (if cleared),2026-11-14
+sha256:bb56362e87f05c6e,CA:New Brunswic~2,no,NOT A PARK LAYER,n/a,2026-11-14
+sha256:bd44a42d9b4f11e9,US:sgiac,yes,NO TERMS STATED,Iowa Department of Natural Resources,2026-11-14
+sha256:bd924d8ed4b937a5,CA:Hard look~1,no,NOT FOUND,Hard look~1,
+sha256:bdcc8ee35912ae6e,CA:ON-KRCA Kawa,no,NOT FOUND,Kawartha Conservation (Kawartha Region Conservation Authority),
+sha256:bf2b9a2e5422e629,CA:Ontario Park,yes,OPEN,Contains information licensed under the Open Government Licence – Ontario.,2026-11-14
+sha256:bf8d34eedca4ffa5,US:sgncc,yes,DISCLAIMER ONLY,North Carolina Wildlife Resources Commission,2026-11-13
+sha256:c09eb29b4f486185,CA:BC Park Inve,yes,OPEN,City of Burnaby. Contains information licensed under the Open Government Licence – City of Burnaby.,2026-11-14
+sha256:c1e2f78d4d2e1ca4,CA:Hard look~13,no,NOT FOUND,Hard look~13,
+sha256:c21f569b1b42c0ca,US:sgwyd,yes,DISCLAIMER ONLY,Wyoming Game and Fish Department,2026-11-13
+sha256:c26463ac5df47d3c,CA:NS HRM Parks,yes,OPEN,Halifax Regional Municipality (Open Government Licence - Halifax),2026-11-13
+sha256:c2766918ebb53e4a,US:sgmeb,no,NON-COMMERCIAL / NO REDISTRIBUTION,n/a (not published),2026-11-14
+sha256:c2e210372563a0d5,US:sgilc,yes,NO TERMS STATED,Illinois Department of Natural Resources,2026-11-13
+sha256:c313a564c9ea30ee,US:sgcab-replacement,no,NOT FOUND,California Department of Parks and Recreation,
+sha256:c3fb51d000f0a628,US:sgila,yes,NO TERMS STATED,Illinois Department of Natural Resources,2026-11-13
+sha256:c746cfb0868f5765,US:sgfla,yes,NO TERMS STATED,"Florida Department of Environmental Protection, Division of Recreation and Parks",2026-11-14
+sha256:c7622fc1e12691b8,US:sgndb,yes,DISCLAIMER ONLY,North Dakota GIS Hub / North Dakota Parks and Recreation,2026-11-13
+sha256:c934fdf0b581391c,US:sgutf,no,NOT FOUND,state_park_boundaries_dissolved,
+sha256:c98064885a6ce988,US:sgnvb,yes,OPEN,Nevada Division of Outdoor Recreation (Nevada Department of Conservation and Natural Resources). Data modified for the KPC map; not approved by the land managers.,2026-11-14
+sha256:ccfe527f34b53480,CA:Hard look~4,no,NOT FOUND,Hard look~4,
+sha256:cd84880ccee19fa9,US:sgpac,yes,NO TERMS STATED,Pennsylvania Game Commission,2026-11-13
+sha256:cd8cff2c98ca4486,US:sgarc,no,OTHER RESTRICTED (use limited to one event),Arkansas Game and Fish Commission,2026-11-14
+sha256:cdd5f7ea76f47e71,US:osp,yes,DISCLAIMER ONLY,Oregon Parks and Recreation Department,2026-11-14
+sha256:cfe4ddcacf8dad3b,US:sgmtd,yes,DISCLAIMER ONLY (with conditions),Montana State Library; Montana Natural Heritage Program,2026-11-20
+sha256:cfea75d084cc5a6b,US:sgcad,yes,DISCLAIMER ONLY,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:d18a37587ec983ac,US:sgmoh,yes,DISCLAIMER ONLY,Missouri Department of Conservation,2026-11-14
+sha256:d216574b14f2ac16,US:sgmtb,no,NOT FOUND,"Montana Fish, Wildlife & Parks",2026-11-13
+sha256:d21ce9600e1f21ca,US:sgnva,yes,OPEN,Map services and data available from the Nevada Department of Wildlife.,2026-11-14
+sha256:d33d3eb0ea44d07e,US:sgakf,yes,DISCLAIMER ONLY,"Alaska Department of Natural Resources, Division of Parks and Outdoor Recreation. Data modified for the KPC map; not approved by Alaska DNR.",2026-11-14
+sha256:d360c60299529010,US:sgvae,no,OTHER RESTRICTED,"Virginia DCR Conservation Lands (credit each source agency, TNC if used)",2026-11-13
+sha256:d540e17fd2210195,CA:Québec ecolo,yes,OPEN,"Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs; Données Québec; licence CC BY 4.0.",2026-11-14
+sha256:d6aab330628dccf3,CA:QC PoleConne,no,CONFIDENTIAL / PMAD USE ONLY,n/a (not published),2026-11-14
+sha256:d7ae169ee2d6f7df,US:sgmtc,no,NOT FOUND,"Montana Fish, Wildlife & Parks",2026-11-13
+sha256:d80fbdd13bfdeeac,US:sgake,yes,DISCLAIMER ONLY,"Alaska Department of Natural Resources, Division of Parks and Outdoor Recreation. Data modified for the KPC map; not approved by Alaska DNR.",2026-11-14
+sha256:d8289f1f2c4da461,US:sgrib,yes,DISCLAIMER ONLY,"Rhode Island Geographic Information System (RIGIS) and RIDEM. Disclaimer to print on maps: These data were created by RIDEM for informational, planning and guidance use only. They are meant for use as a general reference, not a legally authoritative source for the location of natural or manmade features.",2026-11-14
+sha256:d9e256d63322092b,US:sgscd,no,NOT FOUND,South Carolina Department of Natural Resources,
+sha256:db2f86ebc7ca531d,US:padus,yes,PUBLIC DOMAIN,"U.S. Geological Survey (USGS) Gap Analysis Project (GAP), 2024, Protected Areas Database of the United States (PAD-US) 4.1: U.S. Geological Survey data release, https://doi.org/10.5066/P96WBCHS",2026-11-14
+sha256:dc2a2cb44b9c5045,US:sgtnj,no,NO TERMS STATED (unconfirmed),n/a (not published),2026-11-14
+sha256:dd11a6d37c6c38ab,CA:ON-NPCA Niag,no,NEEDS A PERSON,NPCA (Niagara Peninsula Conservation Authority),2026-11-14
+sha256:dd1803dd435bb469,US:sgaze,no,NO TERMS STATED,Arizona State Parks and Trails (unconfirmed),2026-11-14
+sha256:de59891d7ce7d71a,US:sgcab,no,NC + NO REDISTRIBUTION OR NO DERIVATIVES,California State Parks,2026-11-13
+sha256:dfb5baca0ded89c8,US:sgneb,yes,OPEN,Nebraska Game and Parks Commission,2026-11-13
+sha256:dfed8510355f868c,CA:BC BC Parks,yes,OPEN,Contains information licensed under the Open Government Licence - British Columbia.,2026-11-13
+sha256:e122aff3513fdcee,US:sgwya,no,NO TERMS STATED,Wyoming State Parks (unconfirmed),2026-11-14
+sha256:e2897ec0bb7cf07b,US:sgaki,no,NOT A PARK LAYER (FEDERAL PUBLIC DOMAIN),n/a,2026-11-14
+sha256:e29cf43969a34b54,CA:New Brunswic,yes,OPEN,"Government of New Brunswick, Department of Natural Resources and Energy Development (Protected Natural Areas). Contains information licensed under the Open Government Licence – New Brunswick.",2026-11-14
+sha256:e35b95bb0cb900f6,US:sglac,yes,NO TERMS STATED,Louisiana Department of Wildlife and Fisheries,2026-11-13
+sha256:e3d0edc50a4921cb,US:sgmia,yes,OPEN,Michigan Department of Natural Resources,2026-11-14
+sha256:e400fa6cd21d414f,US:bwild,yes,NO TERMS STATED,"Office of Kentucky Nature Preserves, Commonwealth of Kentucky (Kentucky Wild Rivers).",2026-11-14
+sha256:e4ba5d75ee678f57,US:sgnjb,no,OTHER RESTRICTED,NJDEP GIS (use required disclaimer),2026-11-13
+sha256:e58d36d382362391,US:sgflb,no,NEEDS A PERSON,"Florida Department of Agriculture and Consumer Services, Florida Forest Service",2026-11-14
+sha256:e66e46841a5d73cc,US:sgidc,yes,DISCLAIMER ONLY,Bureau of Land Management (BLM). Boundaries redrawn for the KPC park map; not endorsed by BLM.,2026-11-14
+sha256:e7253506d57dc201,US:sgutb,yes,NO TERMS STATED,Utah Division of Wildlife Resources,2026-11-13
+sha256:ec31843f3d5fcd11,CA:Manitoba pro,yes,OPEN,"Contains information from the Manitoba government, licensed under the OpenMB licence (Manitoba.ca/OpenMB); sample wording at gov.mb.ca/legal/copyright.html",2026-11-13
+sha256:ec71fd051ad368df,US:sgtxa,yes,DISCLAIMER ONLY,Texas Parks and Wildlife Department,2026-11-13
+sha256:ecaef9f002043750,US:sgakb,yes,OPEN,"Alaska Department of Natural Resources, Information Resource Management (Legislatively Designated Area). Boundaries matched and simplified by the Kentucky Portable Club; changes not approved by the State of Alaska.",2026-11-14
+sha256:ed8671a9a12e832b,US:sggad,yes,OPEN,"U.S. Forest Service, Enterprise Data Warehouse (EDW), Special Interest Management Areas. Licensed CC BY 4.0. Modified for the KPC park map.",2026-11-14
+sha256:ee0cfa529a4c81c3,US:nca,yes,PUBLIC DOMAIN,"Bureau of Land Management, U.S. Department of the Interior (cite BLM as data source; do not imply BLM endorsement)",2026-11-14
+sha256:eeededa8c52d4b85,US:sgidb,no,OTHER RESTRICTED,Idaho Department of Fish and Game,2026-11-13
+sha256:f1418d7a58fca0cc,US:sgria,yes,NO TERMS STATED,Rhode Island Department of Environmental Management (RIDEM); Rhode Island Geographic Information System (RIGIS),2026-11-14
+sha256:f28f177a9ab1c8ee,US:sgcaa,yes,OPEN,"California Department of Fish and Wildlife (CDFW), Biogeographic Data Branch (BIOS), CDFW Public Access Lands [ds3077]. Licensed CC BY 4.0. Modified for the KPC park map.",2026-11-14
+sha256:f2a123fd91781ff6,CA:NS NS_Lands_~1,yes,OPEN,Government of Nova Scotia. Contains information licensed under the Open Government Licence – Nova Scotia.,2026-11-14
+sha256:f2f0776d2ea2aea6,US:sgmib,yes,OPEN,Michigan Department of Natural Resources,2026-11-14
+sha256:f303c38b0afcdd2f,US:sgoka,yes,NO TERMS STATED,Oklahoma Tourism and Recreation Department,2026-11-13
+sha256:f44dca9c52181347,CA:Saskatchewan~6,yes,OPEN,"Saskatchewan Ministry of Parks, Culture and Sport (PCS Regional Parks). Contains information licensed under the Government of Saskatchewan Standard Unrestricted Use Data Licence (Version 2.0).",2026-11-14
+sha256:f50b4468d1d05137,US:lecl-designated,no,PRIVATE UNTIL LICENCE READ,National Park Service,2026-11-14
+sha256:f59d17b9d57994e2,US:sgnya,no,OTHER RESTRICTED,NYS Department of Environmental Conservation,2026-11-13
+sha256:f68ede3859004127,US:utw,yes,NO TERMS STATED,Utah Division of Wildlife Resources,2026-11-13
+sha256:f7409c86b77296e4,CA:Hard look~19,no,NOT FOUND,Hard look~19,
+sha256:f748f0896fafe7f7,US:sgiab,yes,NO TERMS STATED,Iowa Department of Natural Resources,2026-11-14
+sha256:f74d0126eba0172d,US:sgvab,no,OTHER RESTRICTED,"Virginia DCR, Natural Heritage Program",2026-11-13
+sha256:f898c848cc7626e0,CA:Hard look~3,no,NOT A PARK LAYER,n/a,2026-11-14
+sha256:f9ca71480674b37d,US:sgndc,yes,NO TERMS STATED,North Dakota Parks and Recreation Department,2026-11-14
+sha256:fad9dc4a4c1a1453,US:sgctc,no,NOT FOUND,Connecticut DEEP,2026-11-13
+sha256:fbb3b8dbb44dd859,US:sgmta,no,NOT FOUND,"Montana Fish, Wildlife & Parks",2026-11-13
+sha256:fd18f58bf3e37ded,US:sgmog,yes,DISCLAIMER ONLY,Missouri Department of Conservation,2026-11-14
+sha256:fd7db4ebd068329d,CA:Manitoba wil~2,yes,OPEN,"Contains information from the Manitoba government, licensed under the OpenMB licence (Manitoba.ca/OpenMB); sample wording at gov.mb.ca/legal/copyright.html",2026-11-13
+sha256:fd80d7eab1b7f3ab,US:sgdeb,yes,DISCLAIMER ONLY,Delaware Department of Natural Resources and Environmental Control (Forestry) via Delaware FirstMap,2026-11-14
+sha256:fe19a722c27b507c,CA:Parks Canada,yes,OPEN,Parks Canada. Contains information licensed under the Open Government Licence – Canada.,2026-11-14
+sha256:fecea572b8cca49f,US:sgnve,yes,DISCLAIMER ONLY,"State of Nevada, Department of Conservation and Natural Resources, Nevada Division of State Lands and Nevada Division of State Parks (NDSP State Park Boundaries). Illustrative only; not a survey.",2026-11-14
