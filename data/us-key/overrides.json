@@ -7,7 +7,7 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "a3aa134edb1241df438a604e8d08fb06b65964a291ae80322dddc0fa97dfb32a",
+  "overrides-parks-01.json": "8f63377fdd54f73be2ae69cefa145b4043027d7d2c11bc6eb4d5275b8052be03",
   "overrides-parks-02.json": "15095c24bb4009a50cc11220e39a7732b95948229ccf57c48d5265be5c389189"
  },
  "parks": {
@@ -845,28 +845,6 @@
    },
    "when": "2026-11-02",
    "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Dardanelle Recreation Area': the Corps lake around the park, not the state park · 2026-11-02 12:49: layers row YES 'Lake Dardanelle State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 166846 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)"
-  },
-  "US-1094": {
-   "fp": {
-    "sgarb13": [
-     "Lake Ouachita State Park",
-     459
-    ]
-   },
-   "join": [
-    "sgarb13"
-   ],
-   "no": [
-    "sgarb13"
-   ],
-   "nofp": {
-    "sgarb13": [
-     "Lake Ouachita State Park",
-     39495.8
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Ouachita State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb13 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)"
   },
   "US-1112": {
    "fp": {
