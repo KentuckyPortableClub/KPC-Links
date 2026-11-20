@@ -41,15 +41,47 @@ check([r['code'] for r in rows if r['ref'] == 'US-2'] == ['NEAR_SIZE_LINE', 'SUM
 
 out = pathlib.Path(tempfile.mkdtemp())
 (out / 'US-ZZ.json').write_text(json.dumps({'st': 'US-ZZ', 'spots': spots['US-ZZ']}), encoding='utf-8')
+(out / 'US-OR.json').write_text(json.dumps({'st': 'US-OR', 'spots': [
+    {'refs': ['US-555', 'US-2'], 'status': 'not sure: near a size line: neighbour', 'kind': 'area'}]}), encoding='utf-8')
 K.RUN_TAG = 't'
+K.ONLY = {'US-ZZ'}
+K.REGION = 'na'
 K.PIN = {}
-K._write_not_sure(out, parks, {'US-2': ('Two',), 'US-9': ('Nine',), 'US-10': ('Ten',)})
+K._write_not_sure(out, dict(parks, **{'US-555': {'st': 'US-OR', 'ids': [5]}}),
+                  {'US-2': ('Two',), 'US-9': ('Nine',), 'US-10': ('Ten',), 'US-555': ('Neighbour',)})
 # summary_only in the real writer is K.summary_only, which these made-up ids do not trip, so only the near-line row for parks
 # that are not tripwire. US-10 is not on the tripwire list here. US-9 is not withheld because the store is off.
+# US-OR is a neighbour of this run (ONLY is US-ZZ), so its row is not in the file.
 text = (out / 'not-sure-rows-t.json').read_text(encoding='utf-8')
 again = text
 K._write_not_sure(out, parks, {'US-2': ('Two',), 'US-9': ('Nine',), 'US-10': ('Ten',)})
 check((out / 'not-sure-rows-t.json').read_text(encoding='utf-8') == again, 'the written file is the same the second time')
-check('not sure: near a size line' in text, 'the near-line doubt is in the written file')
+check('not sure: near a size line' in text and 'US-555' not in text and '"rows"' in text,
+      'the near-line doubt is in the written file, a neighbour area is not, and the file is the rows document')
+# a store run: a withheld park is not in the file we then read
+import kpc_fers_store as KS
+KS.STORE_ON = True
+KS.withheld_refs = lambda: {'US-777'}
+held_spots = {'US-ZZ': [
+    {'refs': ['US-2', 'US-777'], 'status': 'not sure: near a size line: beside US-777 Secret Park', 'kind': 'area'},
+    {'refs': ['US-4', 'US-2'], 'status': 'not sure: near a size line: measured 25 m', 'kind': 'area'},
+]}
+(out / 'US-ZZ.json').write_text(json.dumps({'st': 'US-ZZ', 'spots': held_spots['US-ZZ']}), encoding='utf-8')
+held_parks = {'US-2': {'st': 'US-ZZ', 'ids': ['sg1']}, 'US-4': {'st': 'US-ZZ', 'ids': [4]},
+              'US-777': {'st': 'US-ZZ', 'ids': [7]}}
+K._write_not_sure(out, held_parks, {'US-2': ('Two',), 'US-4': ('Four',), 'US-777': ('Secret Park',)})
+written = json.loads((out / 'not-sure-rows-t.json').read_text(encoding='utf-8'))
+blob = json.dumps(written)
+check('US-777' not in blob and 'Secret' not in blob, 'a store run with a withheld park: that park is not in the file we read')
+check(any(r.get('ref') == 'US-4' for r in written.get('rows') or []), 'the other park of this run is still in the file')
+KS.STORE_ON = False
+bad = out / 'trip.json'
+bad.write_text('{', encoding='utf-8')
+os.environ['KPC_FERS_NOT_SURE'] = str(bad)
+n = K._write_not_sure(out, parks, {'US-2': ('Two',)})
+os.environ.pop('KPC_FERS_NOT_SURE', None)
+check(n == 1 and 'tripwire list could not be read' in (out / 'not-sure-rows-t.json').read_text(encoding='utf-8'),
+      'an unreadable tripwire list is counted')
+K.ONLY = set()
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

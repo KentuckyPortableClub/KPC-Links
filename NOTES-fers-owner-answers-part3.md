@@ -4,19 +4,24 @@
 
 - The bot does not settle a row, does not read the not-sure list back, and does not hold a pair because a park is on it. Whether a park on that list should be NOT SURE for 2-fers is the owner's question, not this hand-off.
 - Tripwire parks are not written here. The tripwire bot owns those rows.
-- Part 4 is still only the proposal in the part 1 notes. No finer-grid code.
-- The full gate was not run. This machine has Python 3.12.3 and not 3.13.
-- No real area was run. No key or outline was changed.
+- Part 4 is not built. The review (19 Nov, section 5) says yes to a second look later, on its terms. No finer-grid code.
+- No real area was run. No key or outline was changed. There is no park-by-park change list.
 
-## Baseline
+## Second round (review of 19 Nov, sections 3.1 to 3.3)
 
-Part 2 left the 2-fer rules hash at `180dcd51a7b0`. This part moves it to `9cee86692de2`.
+Restack base is part 2 at `1cc599edb3dc`. The first-round not-sure file, restacked, was `b9881640b28f` (before the restack the line was `180dcd51a7b0` -> `9cee86692de2`). This round moves the 2-fer rules hash `b9881640b28f` -> `76c2faa3e59f`. US, Canada and world did not move (`c64b8ace0411`, `dfef94b3dfd3`, `b1f23bf0deea`).
 
-`tests/test_fers_not_sure_nov19.py` and `tests/test_fers_math_guard_nov19.py` ended ALL PASS.
+Scope entry `2026-11-19-not-sure-rows-own`, scope `none`.
+
+1. The file is written through `save_json`, the same guarded write as every other 2-fer file. It is a document `{"about", "rows"}`, not a bare list, so the write guard sees the rows. A store run with a withheld park was written and then read: that park is not in the file.
+2. Both halves use this run's own areas. A neighbour loaded for a border pair is not in the file. A run with no `STATES` uses the region's own area names (US and Canada, not Kentucky, for a North America run).
+3. An unreadable tripwire list is counted. The report key is `tripwire list could not be read`. A missing list is the old warning, not this count. `tests/test_fers_area_boxes_time_nov11.py` leaves `not-sure-rows-` out of its golden hash, the same way it leaves `receipt-` out, because that file is not one of main's files. That fixture also links `data/state-gis.json` and `data/us-key/layers.json`, so the loud missing-file error is not raised in a fixture that is not a broken checkout.
+
+The gate on Python 3.12 and 3.13 is run on this branch. The last lines are at the bottom of this file once that run has finished.
 
 ## What is built
 
-At the end of a run the bot writes `not-sure-rows-<tag>.json` next to the report. The rows are the shared list's shape: `ref`, `area`, `name`, `code`, `how_sure`, `shows_now`, `why`, `wants`, `found_by` (`2-fer bot`), `evidence`. They are sorted by park number, then code. The JSON keys are sorted, so two runs on the same inputs write the same bytes.
+At the end of a run the bot writes `not-sure-rows-<tag>.json` next to the report, through `save_json`. The rows are the shared list's shape: `ref`, `area`, `name`, `code`, `how_sure`, `shows_now`, `why`, `wants`, `found_by` (`2-fer bot`), `evidence`. They are sorted by park number, then code.
 
 Its own doubts only:
 
@@ -27,16 +32,18 @@ Its own doubts only:
 
 `how_sure` is `unsure`. The bot does not say a row is wrong.
 
-A withheld park is left out before the write, and the file then goes through the same write guard as every other 2-fer file. A tripwire park is left out.
+A withheld park is left out before the write, and the document then goes through the write guard. A tripwire park is left out.
 
 The code names above are a proposal for the list's README. They are not free text.
 
 ## Guesses
 
 1. "Park number" is the digits at the end of the ref, so US-2 sorts before US-10.
-2. A run with no such doubt still writes the file, as an empty list, so the name is always there. The store-switch byte compare ignores `not-sure-rows-*`, the same way it ignores the receipt.
+2. A run with no such doubt still writes the file, with an empty `rows` list, so the name is always there. The store-switch byte compare ignores `not-sure-rows-*`, the same way it ignores the receipt.
 3. Evidence is one quote, the status line or the fixed sentence, and `where` is the area file or "the key join". There is no page address in a 2-fer row.
 
 ## Grey areas
 
-1. A near-line row's status does not name the other park. If a later status did, and that other park were withheld, the row is dropped rather than written. Silent beats a leak.
+1. A near-line row's status does not name the other park in the tests that passed. If a status names a withheld park, that row is left out rather than written. The file that was read did not contain the withheld park.
+2. `how_sure` is `unsure`. The shared list's word list is not in this repository (`kpc_not_sure.py` was not here to check). The review could not check it either. The word is unchanged.
+3. A tripwire list that is missing is not the same as one that will not parse. Only a file that is there and cannot be read is counted.

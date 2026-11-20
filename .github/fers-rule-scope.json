@@ -378,6 +378,15 @@
       "scope": "none",
       "scope_note": "No pair is remeasured and no row is labelled differently. The new file is a report.",
       "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-not-sure-rows-own",
+      "when": "2026-11-19",
+      "from": "b9881640b28f",
+      "why": "Hand-off 06 part 3, second round. The not-sure file is written through save_json. Both halves use this run's own areas, not a neighbour and not every file in the folder. An unreadable tripwire list is counted in the report. Scope none: no pair is remeasured.",
+      "scope": "none",
+      "scope_note": "No pair is remeasured. The file is a report of doubts the bot already has.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
     }
   ]
 }
