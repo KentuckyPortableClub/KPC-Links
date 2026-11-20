@@ -919,6 +919,8 @@ SFIELDS = {}   # Nov 6: prefix -> the layer's field list (read by resolve(), whi
 SFMAP = {}     # Nov 6: prefix -> kpc_source_fields mapping
 import kpc_source_fields as SF  # noqa: E402
 import kpc_tracts as TR  # noqa: E402
+import kpc_match_checks as MC  # noqa: E402  (KPC owner, 20 Nov 2026: match by more than name)
+import kpc_park_facts_read as PFR  # noqa: E402
 def resolve(pre, url, nf, af):
     # 'svc:<service>|<layer name regex>' → (query url, name field, acres field, object id field)
     def rq(u):
@@ -1864,6 +1866,62 @@ def nps_code_joins(st, parks, recs, P, ovr=None, on=None):
             p['c'] = [x for x in p.get('c') or [] if str(x[0]) != rid]
             NPS_CODE_HIT.append([st, owner, rid, cd, 'joined']); n += 1
     return n
+
+MATCH_HIT = []   # [state, park, what, record id] for the run's notice (KPC_MATCH_CHECKS)
+def _url_of(a):
+    """The address of the layer a record came from ('' for PAD-US / FWS: their ids are read by kind, not by layer)."""
+    oid = str((a or {}).get('OBJECTID'))
+    pre = re.match(r'[a-z]*', oid).group(0)
+    if not pre or pre == 'fws': return ''
+    return next((x[1] for x in XS if x[0] == pre), '')
+
+
+def _saved_no(ref, rid, a):
+    """A person's saved NO for this park and record (overrides), the same test the name join uses."""
+    o = OVR.get(ref) or {}
+    return rid in {str(y) for y in o.get('no') or []} or bool(KR.is_no(o, rid, a.get('Unit_Nm'), a.get('GIS_Acres')))
+
+
+def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
+    """KPC owner, 20 Nov 2026 (APPROVED, docs/key-rules-change.txt): match by MORE than name (kpc_match_checks.pass_state).
+    A same-kind id from POTA's own link confirms (and stands in for the name); any other name-joined record keeps drawing the
+    outline only when it passes agency (when known), pin 3c, another park's name, the national-layer rule and a tagged size;
+    kind is a note only. A failure goes to check with its reason; a park left with no record shows its pin.
+    Switch KPC_MATCH_CHECKS.
+    Fails CLOSED: switch on and a missing or empty park facts file, or any error here, raises and the state is held (run()
+    fails for the state: no key file written, the saved copy on main stays). Returns the pass counts ({} = switch off)."""
+    on = _kr('KPC_MATCH_CHECKS') if on is None else on
+    if not on: return {}
+    facts = PFR.parks() if facts is None else facts
+    if not facts:
+        raise RuntimeError(f'US key {st}: KPC_MATCH_CHECKS is on but the park facts file (PARK_FACTS) is missing '
+                           'or empty: the state is held, never built without the rule')
+    byid = {_oid(a): a for a in recs}
+
+    def _pins_of(ref):
+        r = P.get(ref) or []
+        pts = [(r[5], r[6])] if len(r) > 6 and r[5] is not None and r[6] is not None else []
+        return pts + MC.page_pins(facts.get(ref))
+
+    def _place(ref, ids):
+        shaped = [byid[i] for i in ids if i in byid and rings(byid[i].get('_g'))]
+        pts = _pins_of(ref)
+        if not shaped or not pts: return None
+        return any(inside(la, lo, a['_g']) or (near(la, lo, a.get('_bb'), .01) and near_ring(la, lo, a['_g'], MC.NEAR_KM))
+                   for la, lo in pts for a in shaped)
+
+    def _holds(ref, rid):
+        r, a = P.get(ref) or [], byid.get(rid)
+        if not a or not rings(a.get('_g')) or len(r) <= 6 or r[5] is None or r[6] is None: return None
+        return bool(inside(r[5], r[6], a['_g']))
+
+    hits = []
+    res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL), st, MC.load_nps_units(), hits, _holds)
+    res['facts'] = MC.facts_stamp(PFR.find())   # which park facts file decided (plan L6: a changed file is visible)
+    for h in hits:
+        MATCH_HIT.append([st] + h)
+        if h[1] == 'joined (id)': used.add(byid[h[2]]['OBJECTID'])
+    return res
 
 def _tract_store(st, parks, recs):
     """Nov 6 (big key / 2-fer patch): the side file data/us-key/tracts/US-<st>.json (kpc_tracts.py): one tract record per official
@@ -3166,6 +3224,15 @@ def run(st):
     # save the state with its shared records still in place. Switch ON: KR.pass_error raises, run() fails for this state and the state
     # is held (no key file written, its saved copy on main kept). OFF: it hands back the error and the notice reads as before.
     except Exception as _e: notice(f'US key {st}', f'one-record-two-parks pass skipped: {KR.pass_error(st, _e, _kr("KPC_HOLD_ON_PASS_ERROR"))}')  # noqa: BLE001
+    # KPC owner, 20 Nov 2026 (APPROVED): match by more than name. Raises (the state is held) on a missing facts file or an error.
+    _mc = match_checks_pass(st, parks, recs, P, used)
+    if _mc:
+        _still = {str(x[0]) for p_ in parks.values() for x in p_.get('m') or []}
+        _hit = {h[3] for h in MATCH_HIT if h[0] == st}
+        for x in list(used):
+            if str(x) not in _still and str(x) in _hit: used.discard(x)
+        notice(f'US key {st}', f"match checks: {_mc['confirmed']} confirmed, {_mc['outlined']} outlined, {_mc['pin']} pin only of "
+                               f"{_mc['parks']} joined parks; {_mc['gained']} record(s) joined by the park's own link id, {_mc['moved']} row(s) to check")
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
@@ -3206,6 +3273,7 @@ def run(st):
            'counts': counts, 'parks': parks, 'nonum': nonum[:300],
            'bk_about': KF.ABOUT, 'bk_kinds': {c: t for c, t in _bkk.items() if c != t},   # links-10
            'easement_name_joins': sorted(EASEMENT_KEPT)}   # KPC owner, 2026-11-16 (item 5): existing name-alone easement joins, for review
+    if _mc: out['match_checks'] = _mc   # KPC owner, 20 Nov 2026: the pass counts and the park facts file that decided
     # plain-words review page for this state (GitHub shows .md files nicely)
     R = OUT / 'review'; R.mkdir(exist_ok=True)
     L = [f'# {st}: POTA parks vs official land (USGS PAD-US)', '', f"Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **{counts['matched']} of {counts['parks']}** parks joined to official land "

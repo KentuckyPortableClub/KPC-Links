@@ -57,6 +57,14 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           (no saved copy, or a read under 3% short), a saved-copy-only layer under 97% of its baseline in
                           data/outlines/layers.json, and a rule data file that is missing or unreadable (rule_data_missing below).
                           The shape guard (kpc_shape_guard.py) reads it too: ON, a state under 97% of the live key's shapes fails.
+  KPC_MATCH_CHECKS 0 (KPC owner, 20 Nov 2026, APPROVED: match by more than name). kpc_match_checks.py, checks against
+                          KPC-Data's park facts and POTA's pin, as the 19 Nov graded sample scored them: a same-kind id from
+                          POTA's own link = confirmed (it stands in for the name); any other name-joined record keeps the
+                          outline only when it passes agency (when both sides are known), pin 3c (the pin is in another of the
+                          park's records and in none of this record's name), another park's name, the national-layer rule and
+                          size (only a size with an explicit independent-witness tag; none today). Kind is a note only. A failure
+                          sends the record to check with its reason; a park left with no record shows its pin. Code rows and a
+                          person's join stand. A missing park facts file or any error HOLDS the state.
   KPC_SAVED_ANSWERS_SAY 0 (outside review finding F5, 2026-11-19; reviewer's first slice, step S6b; the owner's word of 19 Nov 2026)
                           the US key's saved joins say what they could not do: a join not found in the read (no record with
                           that id, none of that name near the pin, the fingerprint finds none), a fingerprint that fits two
@@ -162,6 +170,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
             'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0', 'KPC_NO_FOLLOWS_FP': '0', 'KPC_SAVED_ANSWERS_SAY': '0',
+            'KPC_MATCH_CHECKS': '0',
             'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1', 'KPC_PRESERVE_WITH_PARK': '1'}
 
 
