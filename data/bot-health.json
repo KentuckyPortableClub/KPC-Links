@@ -1,17 +1,15 @@
 {
  "open": [
-  "KPC-Data/kpc-copy-from-links.yml",
+  "KPC-Data/kpc-camp-weekly.yml",
   "KPC-Data/kpc-eu-alerts.yml",
-  "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-storage.yml",
   "guard:pubnoindex:kpc-log-checker.html",
+  "guard:pubnoindex:kpc-maintenance.html",
   "kpc-bot-queue.yml",
-  "kpc-discord-watch.yml",
   "kpc-fb-comments.yml",
   "kpc-hunters.json",
   "kpc-hunters.yml",
   "kpc-pota-discord.yml",
-  "kpc-us-key.yml",
   "kpc-watchdog.yml",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
@@ -364,12 +362,13 @@
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
   "out:shrank:D:data/leaders",
+  "pages-deploy.yml",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-19T18:40+00:00",
+ "checked": "2026-11-20T11:41+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3277,7 +3276,7 @@
    "b": 38569625
   },
   "L:data/pota": {
-   "b": 10255331
+   "b": 10242957
   },
   "L:data/canada.json": {
    "b": 2558918
@@ -3356,7 +3355,7 @@
    "b": 93698
   },
   "D:data/closures": {
-   "b": 169167
+   "b": 169135
   },
   "D:data/intake": {
    "b": 39695215,
@@ -3366,7 +3365,7 @@
    "b": 326271
   },
   "D:data/map-observations.json": {
-   "b": 1128319
+   "b": 1141146
   }
  }
 }
