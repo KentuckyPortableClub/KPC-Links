@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T13:32:13Z",
+ "updated": "2026-11-20T18:51:50Z",
  "stations": [
   {
    "title": "SVARA 50th Birthday",
@@ -391,6 +391,23 @@
    "qsl": "Certificate",
    "url": "https://www.w9rh.org/special-event-station-w9rh-110",
    "note": ", Milwaukee, WI. Milwaukee Radio Amateurs' Club. 7.250 14.250 28.490. Certificate. Milwaukee Radio Amateurs' Club, P.O. Box 26938, Milwaukee, WI 53226. The Milwaukee Radio Amateur's Club is celebrating 110 years of service to amateur radio operators in the Greater Milwaukee area. Join our celebration and contact W9RH/110. All QSOs will be sent a commemorative certificate if requested by email. Vis"
+  },
+  {
+   "title": "Discovery of Gold in California 179th Anniversary Special Event Station",
+   "start": "2027-01-23",
+   "end": "2027-01-25",
+   "times": "1700Z-0000Z",
+   "call": "AG6AU",
+   "calls": [
+    "AG6AU"
+   ],
+   "where": "Placerville, CA",
+   "st": "CA",
+   "by": "CERA",
+   "freqs": "7.248 14.248 21.248",
+   "qsl": "QSL",
+   "url": "http://edcarc.net",
+   "note": ", Placerville, CA. CERA. 7.248 14.248 21.248. QSL. El Dorado County ARC, PO Box 451, Placerville, CA 95667."
   }
  ],
  "yearly": [
@@ -450,6 +467,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (23)"
+  "ARRL": "ok (24)"
  }
 }
