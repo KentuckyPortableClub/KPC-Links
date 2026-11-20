@@ -95,7 +95,8 @@ check(sc.get('from') == 'ee2b6f1e9673' and sc.get('scope', {}).get('states') == 
       "scope entry 2026-11-19-r-fj1-far-join (from main's ee2b6f1e9673, Montana, approved)")
 log = (ROOT / 'docs/key-rules-change.txt').read_text(encoding='utf-8')
 own = next((x for x in log.splitlines() if 'branch prep/r-fj1-far-join' in x and 'US rules ee2b6f1e9673 -> ' in x), '')
-check(bool(own) and 'APPROVED, decided_by KPC owner' in own and 'pins are only references' in own, "this change's changelog line quotes the owner's 11:49 AM words")
+# 20 Nov 2026: the public changelog keeps hashes, dates and times only, no quoted words (test_fers_ready_gate_hash_nov8); the time names the approval
+check(bool(own) and 'APPROVED, decided_by KPC owner' in own and '11:49 AM' in own and '"' not in own, "this change's changelog line names the owner's 11:49 AM approval, with no quoted words")
 
 print('ALL PASS' if not FAILS else 'SOME FAILED')
 sys.exit(1 if FAILS else 0)
