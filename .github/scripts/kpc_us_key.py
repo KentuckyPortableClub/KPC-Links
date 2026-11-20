@@ -3072,7 +3072,10 @@ def run(st):
             if _won or _person or _exact:
                 notice(f'US key {st}', f"contest: {len(_won)} park(s) gave a record to the park it fits better, {len(_person)} sent one to a person, "
                        f"{len(_exact)} gave back a record carrying another park's exact name: {', '.join((_won + _person + _exact)[:10])}")
-    except Exception as _e: notice(f'US key {st}', f'one-record-two-parks pass skipped: {_e}')  # noqa: BLE001
+    # 2026-11-19 (outside review finding F10; reviewer's go 19 Nov; switch KPC_HOLD_ON_PASS_ERROR, OFF): an error in this pass used to
+    # save the state with its shared records still in place. Switch ON: KR.pass_error raises, run() fails for this state and the state
+    # is held (no key file written, its saved copy on main kept). OFF: it hands back the error and the notice reads as before.
+    except Exception as _e: notice(f'US key {st}', f'one-record-two-parks pass skipped: {KR.pass_error(st, _e, _kr("KPC_HOLD_ON_PASS_ERROR"))}')  # noqa: BLE001
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
