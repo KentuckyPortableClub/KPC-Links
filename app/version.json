@@ -1,6 +1,6 @@
 {
- "ver": "0.9.15",
- "when": "2026-11-19",
+ "ver": "0.9.16",
+ "when": "2026-11-20",
  "where": "https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build",
- "notes": "0.9.15: WHO DOES THE TALKING? (HYBRID or ALL FROM THE APP) is now in set-up, above CONNECT, and a chip by the voice keyer and on the CW screen; WWFF and SOTA can be switched on beside the parks in the trip planner, the parks map and NEXT PARK 0.9.14: a new RADIO screen (whole window on a PC or tablet: bands and memories left, big frequency with a tuning knob, new modern meters and a scope that nam"
+ "notes": "0.9.16: CW decoder reads real radios better (Brandon's IC-7300 recordings): no more strings of T's after a noisy pause in a pile-up, W1AW-style slow code (Farnsworth) comes out as words, and much less junk from noise on weak stations 0.9.15: WHO DOES THE TALKING? (HYBRID or ALL FROM THE APP) is now in set-up, above CONNECT, and a chip by the voice keyer and on the CW screen; WWFF and SOTA can be s"
 }
