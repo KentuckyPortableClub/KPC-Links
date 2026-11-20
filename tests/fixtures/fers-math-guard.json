@@ -1,6 +1,6 @@
 {
-  "about": "Fingerprint of the 2-fer measuring math. Update it in the same pull request that changes that math, and point scope_id at an entry whose scope is not none.",
-  "fingerprint": "0162b452da97751fcfad7650ae9c4dcf3ea1f30f7676cfc50ba458ff41f738a1",
+  "about": "Fingerprint of the 2-fer measuring math. The scope entry scope_id names carries this same fingerprint. A new fingerprint needs a new scope entry, not a refreshed fixture alone.",
+  "fingerprint": "5ebe37a361c8f10835ad5e12e6cb4373a570cb309a0b6adcc6a770e1a8d50f4a",
   "functions": [
     "find_spots",
     "area_spots",
@@ -12,7 +12,17 @@
     "tiles",
     "dt",
     "bbox_groups",
-    "bbox_lines"
+    "bbox_lines",
+    "merge",
+    "Win",
+    "sample",
+    "line_m",
+    "close_m",
+    "water_route",
+    "nhd_water",
+    "pair_fp",
+    "rule_stamp",
+    "answers_unchanged"
   ],
   "constants": [
     "SHRINK",
@@ -25,5 +35,5 @@
     "ROUTE_KM",
     "BANK"
   ],
-  "scope_id": "2026-11-19-math-guard-baseline"
+  "scope_id": "2026-11-19-math-guard-calls"
 }
