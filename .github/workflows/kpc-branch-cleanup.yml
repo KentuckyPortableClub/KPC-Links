@@ -1,0 +1,30 @@
+name: KPC branch clean-up (one time, by hand)
+# Nov 19 2026 (Brandon 6:12 PM 'Do the bot then'): deletes the merged branches listed in .github/branch-cleanup-nov19.txt.
+# By hand only (no schedule), owner only. Rules + keep-list: .github/scripts/kpc_branch_cleanup.sh. Mode 'dry' only lists.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'delete = remove the listed merged branches; dry = only say what would go'
+        type: choice
+        options: [delete, dry]
+        default: delete
+permissions:
+  contents: write
+  pull-requests: read
+concurrency:
+  group: kpc-branch-cleanup
+jobs:
+  cleanup:
+    if: github.triggering_actor == 'KentuckyPortableClub'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github
+      - name: Delete the listed merged branches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRY: ${{ inputs.mode == 'dry' && '1' || '0' }}
+        run: bash .github/scripts/kpc_branch_cleanup.sh
