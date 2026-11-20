@@ -1,5 +1,5 @@
 {
- "about": "Per-state tables of the US answer key (kpc_us_key.py reads this file at start; a missing or malformed file stops the build: nothing is written). Moved out of the rule script on Nov 12 (KPC owner, 2026-11-12; D6), unchanged in content. BOX_ADD = land the drawn state outline (kpc-us-states.json) leaves out: [west, south, east, north] added to the state's box. XS = official agency layers read for the listed states ONLY (areas), each stored once; kpc_area_hash.py counts an entry for every state it lists. Fields: prefix (record-id prefix, never reuse one), url (query url, or svc:<service>|<layer-name regex>), name_field / acres_field ('?' = found at run time), kinds, label, owner (STAT / FED), options (where, water, nm2, not_in). Order: the national layers in the code are read first, then these in file order; 'after' = read right after that national layer instead (kept so the read order is exactly what it was). notes = where each entry came from (not read by the builder, not in any hash).",
+ "about": "Per-state tables of the US answer key (kpc_us_key.py reads this file at start; a missing or malformed file stops the build: nothing is written). Moved out of the rule script on Nov 12 (KPC owner, 2026-11-12; D6), unchanged in content. BOX_ADD = land the drawn state outline (kpc-us-states.json) leaves out: [west, south, east, north] added to the state's box. XS = official agency layers read for the listed states ONLY (areas), each stored once; kpc_area_hash.py counts an entry for every state it lists. Fields: prefix (record-id prefix, never reuse one), url (query url, or svc:<service>|<layer-name regex>), name_field / acres_field ('?' = found at run time), kinds, label, owner (STAT / FED), options (where, water, nm2, not_in). Order: the national layers in the code are read first, then these in file order; 'after' = read right after that national layer instead (kept so the read order is exactly what it was). EASEMENT_RECHECK_STATES = states whose existing name-alone conservation-easement joins are re-checked (they go to CHECK); a per-state map, so only those states' area hashes move. notes = where each entry came from (not read by the builder, not in any hash).",
  "format": 1,
  "notes": {
   "FL": [
@@ -7,6 +7,9 @@
   ],
   "HI": [
    "XS akht, Oct 26 (round 11): the NPS Ala Kahakai National Historic Trail official corridor (one polygon)."
+  ],
+  "NY": [
+   "EASEMENT_RECHECK_STATES, 20 Nov 2026: New York re-checks existing name-alone conservation-easement joins (they go to CHECK). Moved out of kpc_us_key.py (D6 leftover)."
   ],
   "*": [
    "XS state layers: Oct 18 (owner: 'go ahead'): the state agencies' own land maps (owner = the agency) for states with many unmatched parks; Oct 20: probe rounds 2 and 4 (owner = the state agency / state GIS office)."
@@ -326,5 +329,8 @@
    "label": "Maryland DNR lands",
    "owner": "STAT"
   }
- ]
+ ],
+ "EASEMENT_RECHECK_STATES": {
+  "NY": true
+ }
 }

@@ -97,6 +97,14 @@
    "from": "f56329a65b3d",
    "why": "World near names (matching plan section 6; owner YES 17 Nov, grey area 3), switch KPC_WORLD_NEAR_NAME OFF: a park with no join whose pin is inside ONE area of a kind that does not disagree, with a nearly identical name, joins it as approximate and a person is asked. Offline AT / LT / PL: 4 parks (AT-0067, PL-0976, PL-1275, PL-2299), each the same place.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-20-d6-src-switch-mk",
+   "when": "2026-11-20",
+   "from": "b1f23bf0deea",
+   "why": "D6 leftover: the North Macedonia switch-gated official layer leaves kpc_world_key.py for data/world-key/area-tables.json under SRC_SWITCH, and is appended (not assigned) only when KPC_MK_LAYER_93 is on (off by default). With the switch off, SRC[MK] is unchanged and no join change is predicted; today's saved keys would stay byte-identical. The world rules hash moves because the table file and this scope file are in RULE_FILES. Every world area hash also moves because the loader line and this scope entry are shared; the new table row itself is attributed only to MK. Scope none: nothing is rebuilt until the owner approves and says GO. DRAFT PR, not merged.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"
   }
  ]
 }

@@ -198,6 +198,12 @@ def area_tables(path=None):
                 try: re.compile(rx)
                 except re.error as e: bad(f'table {name}[{cc}]: not a regular expression ({e})')
     if any(cc not in t['LOC'] for cc, v in t['EU'].items() if v): bad('an EU country has no LOC words')
+    sw = t.get('SRC_SWITCH')
+    if not isinstance(sw, dict) or not sw: bad('SRC_SWITCH missing or empty')
+    row_ok = shape['SRC']
+    for cc, rows in sw.items():
+        if not re.fullmatch(r'[A-Z]{2}', str(cc)) or not row_ok(rows): bad(f'table SRC_SWITCH: entry {cc!r} is not in the expected form')
+    if 'MK' not in sw: bad('SRC_SWITCH has no MK entry')
     return t
 
 
@@ -259,8 +265,10 @@ MK94 = 'https://portal.app.gov.mk/arcgis/rest/services/PPRSM/karta37_PPRSM_namen
 MK93 = MK94[:-2] + '93'
 if _kr('KPC_MK_LAYER_93') and 'MK' in SRC:
     _m94 = [s for s in SRC['MK'] if str(s[2]).rstrip('/').lower() == MK94.lower()]
+    _extra = [tuple(x) for x in _AT['SRC_SWITCH']['MK']]
+    if not _extra: raise SystemExit(f'::error title=World key tables::{AREA_TABLES_FILE}: SRC_SWITCH.MK is empty while KPC_MK_LAYER_93 is on. Nothing is built.')
     if _m94 and not any(str(s[2]).rstrip('/').lower() == MK93.lower() for s in SRC['MK']):
-        SRC['MK'] = SRC['MK'] + [('Заштитени подрачја (areas, MapServer/93)', 'arcgis', MK93)]
+        for _row in _extra: SRC['MK'].append(_row)
     if any(u.lower() == MK94.lower() for u in SHEET_URLS): SHEET_URLS.add(MK93)
     for _u in [u for u in LAYER_NAMEF if u.lower() == MK94.lower()]: LAYER_NAMEF.setdefault(MK93, LAYER_NAMEF[_u])
 PROPOSED_WHY = "the record is only PROPOSED for protection (Prot_Stat 'proposed'): never official land (Handoff 8 fix 8)"

@@ -547,6 +547,14 @@
    "why": "KPC_SAVED_ANSWERS_SAY (outside review finding F5; reviewer's first slice, step S6b; the owner's word of 19 Nov 2026): the US key's saved joins failed in silence. A saved join whose record is not in the read and whose fingerprint finds nothing joined nothing and said nothing; a fingerprint that fit two or more records took the first; one record under both 'join' and 'no' of a park (Arkansas US-1080, sgarb44) was not reported. Behind the switch (OFF): each is said in the build's notice (park, saved id, fingerprint or the fitting ids) and counted in the state's counts (saved_join_not_found, saved_join_two_fits, saved_join_join_and_no), never as a check row (kpc_join_check.py takes a joined id off a signed park when the previous key had it in 'c'); a fingerprint that fits two or more records still joins the first one, as before the switch, and the park is named for a grader (kpc_key_rules.refind_saved; Fable + owner, 20 Nov 2026: no join is taken away and nothing new waits on a person); which of join and no wins is not changed (kpc_key_rules.join_and_no); bare-name joins are not changed. Switch OFF = no result changes. Predicted from the saved keys (not a build): 280 saved join ids in no row of their park whose fingerprint fits no row either (276 parks, 25 of them pins), 15 parks with one id under join and no, at least 64 saved fingerprints that fit two or more rows of their park while the saved id is in no row (Wisconsin US-4352 and US-9855; a lower bound: the read is not in the key).",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (4:31 AM, to Fable: \"Just do what you think\"); restacked onto F10 without the holder table (#296, parked) by Fable"
+  },
+  {
+   "id": "2026-11-20-d6-easement-recheck-table",
+   "when": "2026-11-20",
+   "from": "7e4883bfbb45",
+   "why": "D6 leftover: EASEMENT_RECHECK_STATES leaves kpc_us_key.py for data/us-key/area-tables.json, stored as a per-state map (New York re-checks existing name-alone conservation-easement joins; they go to CHECK). The loaded set is unchanged ({NY}). No join change is predicted; today's saved keys would stay byte-identical. The US rules hash moves because the table file and this scope file are in RULE_FILES. Every US area hash also moves because the loader line and this scope entry are shared; the new table row itself is attributed only to NY. Scope none: nothing is rebuilt until the owner approves and says GO. DRAFT PR, not merged.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"
   }
  ]
 }
