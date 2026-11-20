@@ -47,10 +47,10 @@ K.RUN_TAG = 't'
 K.ONLY = {'US-ZZ'}
 K.REGION = 'na'
 K.PIN = {}
+os.chdir(out)   # kpc_save writes data/status/<this test>.json in the working directory; keep that out of the repo
 K._write_not_sure(out, dict(parks, **{'US-555': {'st': 'US-OR', 'ids': [5]}}),
                   {'US-2': ('Two',), 'US-9': ('Nine',), 'US-10': ('Ten',), 'US-555': ('Neighbour',)})
-# summary_only in the real writer is K.summary_only, which these made-up ids do not trip, so only the near-line row for parks
-# that are not tripwire. US-10 is not on the tripwire list here. US-9 is not withheld because the store is off.
+# summary_only in the real writer is K.summary_only, which these made-up ids do not trip.
 # US-OR is a neighbour of this run (ONLY is US-ZZ), so its row is not in the file.
 text = (out / 'not-sure-rows-t.json').read_text(encoding='utf-8')
 again = text
@@ -58,7 +58,6 @@ K._write_not_sure(out, parks, {'US-2': ('Two',), 'US-9': ('Nine',), 'US-10': ('T
 check((out / 'not-sure-rows-t.json').read_text(encoding='utf-8') == again, 'the written file is the same the second time')
 check('not sure: near a size line' in text and 'US-555' not in text and '"rows"' in text,
       'the near-line doubt is in the written file, a neighbour area is not, and the file is the rows document')
-# a store run: a withheld park is not in the file we then read
 import kpc_fers_store as KS
 KS.STORE_ON = True
 KS.withheld_refs = lambda: {'US-777'}
