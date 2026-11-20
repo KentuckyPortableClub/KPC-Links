@@ -7,8 +7,8 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "aa24c9102887288461a91627f49a2bf42891824efe96520e448d4aa9740aa8ce",
-  "overrides-parks-02.json": "126c9b781d720016c6b3c16c971a14c590dc38f05d810c7d5eed7bd00e2f040b"
+  "overrides-parks-01.json": "42355a0889f5f5990d2287abe3bc3dd1f9df4d03cf80ef1d3c070c4099750d4f",
+  "overrides-parks-02.json": "15095c24bb4009a50cc11220e39a7732b95948229ccf57c48d5265be5c389189"
  },
  "parks": {
   "US-0043": {
@@ -1492,6 +1492,35 @@
    ],
    "why": "Legion Lake is a different place"
   },
+  "US-2635": {
+   "fp": {
+    "sgnve18": [
+     "Spring Mountain Ranch State Park",
+     533
+    ]
+   },
+   "join": [
+    "sgnve18"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Spring Mountain Ranch State Park' (chat 11; applied by kpc_key_answers) · 2026-11-20 evidence batch 04 (job 5): NO fsod68: the 321,709-acre Forest Service national recreation area is not the 528-acre state park",
+   "no": [
+    "fsod68"
+   ],
+   "nofp": {
+    "fsod68": [
+     "Spring Mountains National Recreation Area",
+     321709
+    ]
+   },
+   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://parks.nv.gov/parks/spring-mountain-ranch ; https://www.fs.usda.gov/r04/humboldt-toiyabe/recreation/spring-mountains-national-recreation-area",
+    "saw": "Nevada State Parks: 'The park was a 528-acre oasis originally developed into a combination working ranch and luxurious retreat'. Forest Service: the Spring Mountains NRA is 'Spanning 317,000 acres'. The park's own records (230201, sgnve18) are 539 acres; fsod68 is the 321,709-acre Forest Service national recreation area.",
+    "date": "2026-11-20"
+   }
+  },
   "US-2764": {
    "fp": {
     "sgndb80": [
@@ -1957,6 +1986,35 @@
    },
    "when": "2026-11-02",
    "why": "Nov 2 map audit: chat 11 NO on sgtnc80 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)"
+  },
+  "US-3933": {
+   "fp": {
+    "sgtnc23": [
+     "Cheatham WMA",
+     19680
+    ]
+   },
+   "join": [
+    "sgtnc23"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Cheatham WMA' (chat 11; applied by kpc_key_answers) · 2026-11-20 evidence batch 04 (job 5): NO sgtnc308: a Cheatham Lake WMA record is not Cheatham WMA",
+   "no": [
+    "sgtnc308"
+   ],
+   "nofp": {
+    "sgtnc308": [
+     "Cheatham Lake WMA",
+     2152
+    ]
+   },
+   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://www.tn.gov/twra/wildlife-management-areas/middle-tennessee-r2/cheatham-wma.html ; https://www.tn.gov/twra/wildlife-management-areas/middle-tennessee-r2/cheatham-lake-wma.html",
+    "saw": "TWRA: 'Cheatham WMA is approximately 20,810 acres'; Cheatham Lake WMA is a separate area, 'Approximately 5,152 acres'. sgtnc308 is a 2,152-acre Cheatham Lake WMA record (US-7578's).",
+    "date": "2026-11-20"
+   }
   },
   "US-4009": {
    "join": [
@@ -2485,6 +2543,36 @@
    },
    "when": "2026-11-02",
    "why": "Nov 2 map audit: chat 11 NO on 57965 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+  },
+  "US-5154": {
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: key-pieces row YES 'Cameron State Forest' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: key-pieces row YES 'Cameron State Forest' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-20 evidence batch 04 (job 5): the 2 Nov YES on 'Cameron State Forest' (sgnya64544, 236464) is withdrawn and becomes a NO: Cameron State Forest (1,990 ac) is a different forest from Cameron Mills State Forest (544 ac)",
+   "no": [
+    "236464",
+    "sgnya64544",
+    "sgnya68324"
+   ],
+   "nofp": {
+    "sgnya68324": [
+     "Cameron State Forest",
+     1967
+    ],
+    "sgnya64544": [
+     "Cameron State Forest",
+     1967
+    ],
+    "236464": [
+     "Cameron State Forest",
+     1966
+    ]
+   },
+   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://dec.ny.gov/places/cameron-state-forest ; https://dec.ny.gov/places/cameron-mills-state-forest",
+    "saw": "NYSDEC: 'The 1,990-acre Cameron State Forest includes Cameron Pond'; 'The 544-acre Cameron Mills State Forest'. Two forests. The park's own records are 236463 / sgnya68308 'Cameron Mills State Forest', 544 acres; the 1,966-1,967-acre 'Cameron State Forest' records belong to US-5153.",
+    "date": "2026-11-20"
+   }
   },
   "US-5484": {
    "no": [
@@ -3683,6 +3771,46 @@
    "when": "2026-11-02",
    "why": "Nov 2 map audit: chat 11 NO on sgarc478 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)"
   },
+  "US-7461": {
+   "no": [
+    "sggaa111"
+   ],
+   "nofp": {
+    "sggaa111": [
+     "OCMULGEE WMA",
+     13524
+    ]
+   },
+   "when": "2026-11-20",
+   "why": "2026-11-20 evidence batch 04 (job 5): NO sggaa111: the WMA record is Ocmulgee WMA, not the public fishing area's 106-acre lake",
+   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://georgiawildlife.com/ocmulgee-pfa ; https://georgiawildlife.com/ocmulgee-wma",
+    "saw": "GA DNR: 'Ocmulgee PFA offers a 106-acre lake'; 'Ocmulgee Wildlife Management Area ... This 15,000-acre property'. The PFA page lists the WMA as its own property. sggaa111 is the 13,524-acre WMA record; the WMA park (US-3762) holds it.",
+    "date": "2026-11-20"
+   }
+  },
+  "US-7462": {
+   "no": [
+    "sggaa66"
+   ],
+   "nofp": {
+    "sggaa66": [
+     "BIG LAZER CREEK WMA",
+     7019
+    ]
+   },
+   "when": "2026-11-20",
+   "why": "2026-11-20 evidence batch 04 (job 5): NO sggaa66: the WMA record is Big Lazer Creek WMA, not the PFA's 195-acre lake",
+   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://georgiawildlife.com/big-lazer-creek-pfa ; https://georgiawildlife.com/big-lazer-creek-wma",
+    "saw": "GA DNR: 'Big Lazer Creek Public Fishing Area is a 195-acre lake located on the 5,900-acre Big Lazer Creek Wildlife Management Area'; WMA page: 'This 7,200-acre property'. sggaa66 is the 7,019-acre WMA record; the WMA park (US-4586) holds it.",
+    "date": "2026-11-20"
+   }
+  },
   "US-7467": {
    "no": [
     "195024"
@@ -3743,6 +3871,55 @@
    ],
    "when": "2026-10-29",
    "why": "Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11) · Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11) · Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11) · Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11) · Oct 29 5:55 PM: 'Pachaug Pond' NO (chat 11) · 2026-10-29 23:15: key-pieces row NO 'Pachaug Pond' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row NO 'Pachaug Pond' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row NO 'Pachaug Pond' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row NO 'Pachaug Pond' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row NO 'Pachaug Pond' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
+  },
+  "US-7578": {
+   "fp": {
+    "sgtnc308": [
+     "Cheatham Lake WMA",
+     2101
+    ]
+   },
+   "join": [
+    "sgtnc308"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Cheatham Lake WMA' (chat 11; applied by kpc_key_answers) · 2026-11-20 evidence batch 04 (job 5): NO sgtnc23: Cheatham WMA (20,810 ac) is not Cheatham Lake WMA (5,152 ac)",
+   "no": [
+    "sgtnc23"
+   ],
+   "nofp": {
+    "sgtnc23": [
+     "Cheatham WMA",
+     19769
+    ]
+   },
+   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://www.tn.gov/twra/wildlife-management-areas/middle-tennessee-r2/cheatham-lake-wma.html ; https://www.tn.gov/twra/wildlife-management-areas/middle-tennessee-r2/cheatham-wma.html",
+    "saw": "TWRA: Cheatham Lake WMA 'Approximately 5,152 acres are primarily managed for wintering waterfowl'; 'Cheatham WMA is approximately 20,810 acres and consists primarily of upland hardwood forests'. Two WMAs; sgtnc23 is the 19,769-acre Cheatham WMA record (US-3933's).",
+    "date": "2026-11-20"
+   }
+  },
+  "US-7581": {
+   "no": [
+    "sgtnc687"
+   ],
+   "nofp": {
+    "sgtnc687": [
+     "Cordell Hull WMA",
+     20238
+    ]
+   },
+   "when": "2026-11-20",
+   "why": "2026-11-20 evidence batch 04 (job 5): NO sgtnc687: the 20,238-acre WMA record is not the 600-acre waterfowl refuge",
+   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://www.tn.gov/twra/wildlife-management-areas/cumberland-plateau-r3/cordell-hull-waterfowl-refuge.html ; https://www.tn.gov/twra/wildlife-management-areas/cumberland-plateau-r3/cordell-hull-wma.html",
+    "saw": "TWRA: 'Waterfowl refuge consists of 600 acres of Army Corps of Engineers property adjacent to the Cumberland River'; Cordell Hull WMA is its own TWRA area, from Cordell Hull Lock and Dam to the Clay / Jackson county line. sgtnc687 is a 20,238-acre Cordell Hull WMA record (US-7580's).",
+    "date": "2026-11-20"
+   }
   },
   "US-7610": {
    "fp": {
@@ -4636,6 +4813,35 @@
    },
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: gis-hunter row NO 'John Brown Memorial Park' (chat 11; applied by kpc_key_answers)"
+  },
+  "US-9202": {
+   "fp": {
+    "sgsca110": [
+     "Santee Coastal Reserve WMA",
+     23457
+    ]
+   },
+   "join": [
+    "sgsca110"
+   ],
+   "when": "2026-11-20",
+   "why": "2026-11-02 12:49: layers row YES 'Santee Coastal Reserve WMA' (chat 11; applied by kpc_key_answers) · 2026-11-20 evidence batch 04 (job 5): NO sgsca111: Santee-Delta WMA is a separate SCDNR property",
+   "no": [
+    "sgsca111"
+   ],
+   "nofp": {
+    "sgsca111": [
+     "Santee Delta WMA",
+     1899
+    ]
+   },
+   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://www.dnr.sc.gov/news/2018/mar/mar1_shorebirds.html",
+    "saw": "SCDNR lists two properties: 'The Santee-Delta WMA consists of 1,721 acres' and 'Santee Coastal Reserve consists of 24,000 acres'. sgsca111 is the 1,899-acre Santee Delta WMA record (joined by shared words); the Santee-Delta park (US-9208) holds it.",
+    "date": "2026-11-20"
+   }
   },
   "US-9208": {
    "fp": {
@@ -6434,6 +6640,26 @@
    "none": true,
    "when": "2026-10-29",
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-10-29 23:15: gis-hunter row NO 'Snake River' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Snake River' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-10-29 23:15: gis-hunter row NO 'Snake River' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
+  },
+  "US-12233": {
+   "no": [
+    "sgida73156"
+   ],
+   "nofp": {
+    "sgida73156": [
+     "CJ STRIKE WMA",
+     11363
+    ]
+   },
+   "when": "2026-11-20",
+   "why": "2026-11-20 evidence batch 04 (job 5): NO sgida73156: the WMA borders the reservoir; it is not the reservoir park",
+   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://idfg.idaho.gov/visit/wma/cj-strike",
+    "saw": "Idaho Fish and Game: 'The C.J. Strike WMA is an 11,008-acre area of mixed ownership bordering the 7,500 surface acres of C.J. Strike Reservoir.' sgida73156 is the 11,363-acre WMA record; the WMA park (US-5599) holds it.",
+    "date": "2026-11-20"
+   }
   },
   "US-12298": {
    "no": [

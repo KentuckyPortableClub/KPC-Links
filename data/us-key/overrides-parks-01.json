@@ -15239,19 +15239,6 @@
    "when": "2026-10-29",
    "why": "Oct 29 5:55 PM: waiting-room piece 'Mormon Station Historic State Monument' YES (chat 11, rechecked: name + kind + size) · Oct 29 5:55 PM: waiting-room piece 'Mormon Station Historic State Monument' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'Mormon Station Historic State Monument' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Mormon Station Historic State Monument' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers)"
   },
-  "US-2635": {
-   "fp": {
-    "sgnve18": [
-     "Spring Mountain Ranch State Park",
-     533
-    ]
-   },
-   "join": [
-    "sgnve18"
-   ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Spring Mountain Ranch State Park' (chat 11; applied by kpc_key_answers)"
-  },
   "US-2636": {
    "fp": {
     "sgnvb42": [
@@ -22187,19 +22174,6 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Cedar Hill Swamp' (chat 11; applied by kpc_key_answers)"
   },
-  "US-3933": {
-   "fp": {
-    "sgtnc23": [
-     "Cheatham WMA",
-     19680
-    ]
-   },
-   "join": [
-    "sgtnc23"
-   ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cheatham WMA' (chat 11; applied by kpc_key_answers)"
-  },
   "US-3937": {
    "fp": {
     "sgtnc64": [
@@ -28066,24 +28040,6 @@
    ],
    "when": "2026-10-18",
    "why": "Oct 18 review: same place, official name written differently"
-  },
-  "US-5154": {
-   "fp": {
-    "236464": [
-     "Cameron State Forest",
-     1966
-    ],
-    "sgnya64544": [
-     "Cameron State Forest",
-     1967
-    ]
-   },
-   "join": [
-    "sgnya64544",
-    "236464"
-   ],
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: key-pieces row YES 'Cameron State Forest' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: key-pieces row YES 'Cameron State Forest' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
   },
   "US-5218": {
    "join": [
