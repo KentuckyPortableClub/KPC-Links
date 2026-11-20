@@ -103,7 +103,8 @@ check('event=push' not in json.dumps(pd) and 'go=no' in json.dumps(pd), 'pages-d
 # 4. us-key never on a push
 uk = on_of(docs['kpc-us-key.yml'])
 check('push' not in uk and 'pull_request' not in uk and 'pull_request_target' not in uk, 'kpc-us-key.yml: no push / pull_request trigger (feature-branch pushes start nothing)')
-check({'schedule', 'workflow_dispatch'} <= set(uk), 'kpc-us-key.yml: schedule + by hand kept')
+# 19 Nov 2026 6 PM CST (owner, no key build until the sample kit is graded): both daily starts are OFF, by hand only.
+check('workflow_dispatch' in uk and 'schedule' not in uk, 'kpc-us-key.yml: by hand only (owner 19 Nov: both daily starts off)')
 
 # 5. guide PDFs: retry, summary, green when nothing changed
 gp = docs['kpc-guide-pdf.yml']['jobs']['pdf']['steps']

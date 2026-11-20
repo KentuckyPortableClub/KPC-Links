@@ -4,8 +4,8 @@ name: KPC boundary check
 # (edited, never commented, so nobody is emailed). Nightly, so the answers pile up without anyone sitting here.
 # Never fails. Run it by hand with a list of states to do those instead.
 on:
-  schedule:
-    - cron: '37 7 * * *'          # 1:37 AM CST (2:37 AM in daylight time)
+  # schedule: OFF 19 Nov 2026 6 PM CST with the US key's two starts (owner: no key build): it rebuilt two states' keys a night.
+  # Was '37 7 * * *' (1:37 AM CST). By hand only until the owner turns it back on.
   workflow_dispatch:
     inputs:
       states:
