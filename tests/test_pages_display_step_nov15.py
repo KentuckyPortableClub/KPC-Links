@@ -68,13 +68,13 @@ try:
         (site / 'data').mkdir(parents=True); (site / 'index.html').write_text('site\n')
         summ = tmp / 'summary.md'; summ.write_text('')
         if not origin_ok: git('remote', 'set-url', 'origin', str(tmp / 'no-such.git'), cwd=work)
-        r = subprocess.run(['bash', '-e', '-c', SCRIPT], cwd=work, env=dict(ENV, GITHUB_STEP_SUMMARY=str(summ), KPC_DISPLAY_MAX_MB=str(cap if cap is not None else st['env']['KPC_DISPLAY_MAX_MB'])), capture_output=True, text=True, timeout=300)
+        r = subprocess.run(['bash', '-e', '-c', SCRIPT], cwd=work, env=dict(ENV, GITHUB_STEP_SUMMARY=str(summ), KPC_DISPLAY_PUSH='on', KPC_DISPLAY_MAX_MB=str(cap if cap is not None else st['env']['KPC_DISPLAY_MAX_MB'])), capture_output=True, text=True, timeout=300)
         if not origin_ok: git('remote', 'set-url', 'origin', str(bare), cwd=work)
         return r, site, summ.read_text()
 
     r, site, summ = run_step()
     check('no map-display branch: exit 0 and nothing added', r.returncode == 0 and not (site / 'data' / 'display').exists()
-          and 'no map-display branch yet' in summ)
+          and 'switched off in code' in summ)
     r, site, summ = run_step(origin_ok=False)
     check('origin cannot be read: exit 0 and nothing added', r.returncode == 0 and not (site / 'data' / 'display').exists())
 
@@ -90,14 +90,11 @@ try:
     git('add', '-A', cwd=pub); git('commit', '-q', '-m', 'display', cwd=pub); git('push', '-q', str(bare), 'HEAD:refs/heads/map-display', cwd=pub)
     r, site, summ = run_step()
     d = site / 'data' / 'display'
-    check('a branch with a good and a bad area: exit 0', r.returncode == 0)
-    check('the good area is copied whole', (d / 'US-ZA' / 'INDEX.json').is_file() and K.check(d.parent / 'display', 'US-ZA', public=True) == [])
-    check('the area that fails check --public is left out, and so is a folder that is not an area',
-          not (d / 'US-ZB').exists() and not (d / 'notes').exists() and 'US-ZB' in summ)
+    check('a good display branch with KPC_DISPLAY_PUSH=on still adds nothing', r.returncode == 0 and not d.exists() and 'switched off in code' in summ)
     check('the rest of the site is untouched', (site / 'index.html').read_text() == 'site\n')
     check('the checkout itself is not changed (only _site)', git('status', '--porcelain', '--untracked-files=no', cwd=work).stdout.strip() == '')
     r, site, summ = run_step(cap=0)
-    check('over the size cap: exit 0 and nothing added', r.returncode == 0 and not (site / 'data' / 'display').exists() and 'size cap' in summ)
+    check('a size cap cannot turn the copy back on: exit 0 and nothing added', r.returncode == 0 and not (site / 'data' / 'display').exists() and 'switched off in code' in summ)
 
     # grade fix: links and odd names. Each case is a branch of its own: US-ZA good + one bad thing.
     outside = tmp / 'outside-secret'; outside.mkdir(); (outside / 'secret.txt').write_text('private')
@@ -122,13 +119,12 @@ try:
         links = [q for q in d.rglob('*') if q.is_symlink()] if d.exists() else []
         leaked = 'private' in ''.join(q.read_text(errors='ignore') for q in d.rglob('*') if q.is_file()) if d.exists() else False
         bad_area = 'US-ZD' if fn is top_link else 'US-ZC'
-        check(f'{what}: exit 0, the good area copied, the bad one left out, no link and nothing from outside in _site',
-              r.returncode == 0 and (d / 'US-ZA' / 'INDEX.json').is_file() and (fn in (top_link, nl_top) or not (d / bad_area).exists())
-              and not (d / 'US-ZD').exists() and not links and not leaked)
+        check(f'{what}: exit 0, nothing added, no link and nothing from outside in _site',
+              r.returncode == 0 and not d.exists() and not links and not leaked)
         log = r.stdout + r.stderr + summ
         check(f'{what}: no name read from the branch reaches the log or the summary (no injected workflow command)',
               'injected' not in log and not any(ln.startswith('::error') for ln in log.splitlines()))
-    check('only plain files and folders end up in _site', all(q.is_file() or q.is_dir() for q in (site / 'data' / 'display').rglob('*')))
+    check('nothing was added under _site/data/display', not (site / 'data' / 'display').exists())
 finally:
     shutil.rmtree(tmp, ignore_errors=True); shutil.rmtree(ENV['HOME'], ignore_errors=True)
 print('ALL PASS' if not FAILS else f'SOME FAILED ({len(FAILS)})')
