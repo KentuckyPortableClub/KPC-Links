@@ -39,6 +39,14 @@ The fill step refuses 19 parks with "no licence or terms recorded", and the stor
 
 For each: find the agency's own terms of use or licence statement for that data, give the address, the date read and the exact sentence that allows or forbids republishing. Put the five readings in one table for the owner. He accepts or refuses each; only then does anyone write a licence row or his acceptance in `data/outlines/hand/owner-licence-acceptance.json`. Do not write those files yourself.
 
+## Job 3b. Hold the Army Corps layer until the owner has permission (small; before the build)
+
+The Corps' page for this layer says "No License Provided / Request permission to use" (read by Fable, 20 Nov). The owner pointed at that line (7:41 AM): we do not have permission. KPC-Links' licence gate passes the layer anyway, and since the fill-step fix (efe36340) the next fill would merge it into 22 more public saved copies.
+- Make the gate refuse `sgide` (address `.../usace_recreation_areas/FeatureServer/0`) with the reason "no licence on the agency's page; permission not yet given", the same way it refuses a layer with no terms recorded. Use the existing licence table or gate; do not write a second one.
+- One test: a hand file of that layer is refused at the fill; another layer's is not.
+- Count from the release files, change nothing: which public saved copies already hold `sgide` rows (Fable counted 13 states on 20 Nov: IL IN KS MS ND OH OK OR SD TN TX WA WV). Taking them out changes public files, so that waits for the owner's word.
+- It comes back with one line when the owner records permission.
+
 ## Job 4. Where the wrong joins really come from (the biggest one)
 
 Counted by Fable today on the 300-park sample, by the kind of layer each record came from:
