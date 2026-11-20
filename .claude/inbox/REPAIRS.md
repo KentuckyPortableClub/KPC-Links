@@ -80,8 +80,8 @@ All five are open as drafts, switched off, with green automatic checks. None is 
 - [ ] **N1. The Release guard's blind spots, with three test cases** (Grok F1).
 - [ ] **N2. The daily "public map is this far behind the key" line** (Grok F3).
 - [ ] **N3. Three release checks:** an outline sits only in the file of a state whose key lists the park; none is `via: name+pin` unless named; US-2635 held or fixed.
-- [ ] **N4. Push check:** `installed` not true means "no list"; two more tests (store repo).
-- [ ] **N5. Two shown 2-fer rows that involve a held park:** check against the private list. Never named in a public file.
+- [x] **N4. Push check:** `installed` not true means "no list"; two more tests (store repo). **DONE as a draft (Opus, 19 Nov ~10:55 PM): KPC-Store #25. Both holes shown by tests first (5 failed before), fixed: 54/54 + 166/166. Also closed: a neighbour's held park outside a pair row now fails. Waits for Fable's read (diff + test output handed back).**
+- [x] **N5. Two shown 2-fer rows that involve a held park:** check against the private list. Never named in a public file. **CHECKED, 0 SHOWN, NO EDIT (Opus, 19 Nov ~10:45 PM): both held parks are PIN in the released and working key, so the site already hides both rows; neither is withheld for privacy, and no private withheld list exists in KPC-Store (the store 2-fer job never ran).**
 - [ ] **N6. KPC-Data housekeeping:** save `layers.json.gz` and the scoreboard only on change; the cleanup, keeping `tools-out`, `intake-files`, `lookup`, `picture-maps` and every branch with an open pull request.
 
 N1 to N3 must be done before any Release.
