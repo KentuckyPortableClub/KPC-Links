@@ -1537,3 +1537,8 @@ is honest. So they come back in three steps, and nothing traced goes on the map 
    - **S2 workflow parts and S3 NOT STARTED:** `KPC-hand-off-keys-first-for-Opus.md` (revision 3.1) is in none of the three repos;
      item 46 holds only one-line summaries, and these edit kpc-us-key.yml's hold / freeze logic. Asked Brandon to attach the file;
      when it comes, save it to KPC-Store `key-quality/2026-11-19/` so the next chat has it. S5 still waits for the agent's S4.
+48. **OPUS, 19 Nov 8:27-9:10 PM CST: the rev 3.1 file came; S2 + S3 drafted; the Kentucky run read; REPAIRS.md is the one list.**
+   - The hand-off file is saved in KPC-Store `key-quality/2026-11-19/keys-first/` (34834e6). **S2 workflow parts = draft #294**, **S3 = draft #300**. Neither moves a rules hash (US c64b8ace0411).
+   - **S3, for the reviewer:** the three layer baselines are now 317 / 2,150 / 228 (the saved copies' rows, no re-read). On all 50 saved copies (tools-out fbeca817): 24 state baselines are LOWER than their copies (Nov 10 baselines; copies grew), 90 layer baselines differ in 48 states, and the ready check would hold 48 of 50 states. So both blocking parts are switches, OFF (KPC_GATE_STALE_REFUSE, KPC_READY_BLOCK), until the reviewer sets which count a baseline must match.
+   - **Kentucky run 44656781088:** 193 of 193 read, 0 skipped, 53 resting (read again next run), 73 AGENCY_HOME_ONLY. Facts: KPC-Data tools-out `park-pages/facts/US-KY.json`. NEXT: the blind check, before any tool reads them.
+   - **`.claude/inbox/REPAIRS.md`** (Fable's checklist, 9:05 PM) is the ONE list for every map chat; ticked only with proof.
