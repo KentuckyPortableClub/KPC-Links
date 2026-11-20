@@ -239,6 +239,27 @@ def check_other(path, area, layer, root, parks, store, work):
     return True, f'{area} {layer}: {len(feats)} records checked ({exp} expected), {n} park outline(s) of {area} in the master records; kept in the checked store', 0
 
 
+def copy_holds_layer(cache, area, layer):
+    """20 Nov 2026 (Opus found it, Fable fixed it; the owner's 25 parks): does the saved copy of `area` really hold rows of `layer`?
+    None = cannot tell (no cache folder given, or no saved copy of that area), so the caller keeps its old answer."""
+    if not cache: return None
+    cp = pathlib.Path(cache) / f'{area}.json.gz'
+    if not cp.exists(): return None
+    try: return M.prefix_counts(M.load_saved(cp)).get(layer, 0) > 0
+    except Exception: return None  # noqa: BLE001  (an unreadable copy is reported by the checks further down, not here)
+
+
+def hand_already_applied(sha, applied, cache, area, layer):
+    """A hand file counts as applied only when its fingerprint is in raw-manifest.json AND the saved copy still holds rows of its
+    layer. Before 20 Nov 2026 the fingerprint alone decided. Two real faults came from that: (1) one national download cut into a
+    file per state carries the SAME raw fingerprint in every piece, so once the download was recorded every other state's piece was
+    skipped (Army Corps recreation areas, 11 Nov: hand-US-AL.sgide holds 163 areas, the Alabama copy held none); (2) a copy rebuilt
+    after the file was applied lost the rows and the file was never applied again. When the copy cannot be read here (None) the old
+    answer stands."""
+    if sha not in applied: return False
+    return copy_holds_layer(cache, area, layer) is not False
+
+
 def fill(a):
     # areas: US-XX from --states (the US key job) plus any --areas ids (US-XX, CA-XX / CA-ALL, W-XX); anything else is refused
     want = [f'US-{s}' for s in (a.states or '').split() if s and s != 'KY'] + (getattr(a, 'areas', None) or '').replace(',', ' ').split()
@@ -278,7 +299,7 @@ def fill(a):
         if not got: warn('Master step', f'{p.name}: not named hand-<AREA>.<layer>.geojson.gz (AREA = US-XX, CA-XX / CA-ALL, W-XX): refused'); continue
         ar, lay = got
         if ar not in areas: continue
-        if ar.startswith('US-') and M.sha256_file(p) in applied: continue
+        if ar.startswith('US-') and hand_already_applied(M.sha256_file(p), applied, a.cache, ar, lay): continue
         why = M.hand_file_problem(p, ar, lay)
         if why: warn('Master step', why); continue
         meta, _ = M.read_layer_file(p)
@@ -287,7 +308,7 @@ def fill(a):
         # Missing licence/terms does not skip check_other (pin/trim). apply_world_hand_file refuses
         # a merge into the public saved copy when licence is missing (Quality #179 M6).
         if ar.startswith('US-'):
-            if (meta.get('raw') or {}).get('sha256') in applied: continue
+            if hand_already_applied((meta.get('raw') or {}).get('sha256'), applied, a.cache, ar, lay): continue
             nm = p.name[len('hand-'):]; shutil.copy(p, lin / nm); hand.append(nm)
         else: other.append((p, ar, lay, meta))
     for p, ar, lay, meta in other:   # Canada / world: check_other first; world files merge only after that check passes (Quality #179 M6)

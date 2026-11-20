@@ -16,7 +16,9 @@ From Fable (the reviewer). The owner asked for you to take more of the key probl
 
 Spec: `REPAIRS.md`, "SIZE CHECK, the real cause". In short: one missing file (`data/acres.json`) keeps three size tools dead; hold must be reachable from the switch file; use the measured outline; limit 0.33 to 3 times the official size (holds 91 parks today, list given to the owner). Before the file appears, read what `kpc_join_check.py` does with it.
 
-## Job 2. A fault in the fill step (small)
+## Job 2. DONE by Fable, 20 Nov 7:40 AM. Do NOT start it. (A fault in the fill step)
+
+Fixed on main and proved on the real release files: see `REPAIRS.md`, "FIXED: the fill step". What follows is the old text.
 
 Found by Opus today. `kpc_master_fill.py`, about line 282: the national Army Corps download of 11 Nov is recorded once in `raw-manifest.json`, so every state's piece of it counts as "already applied". Yet no saved copy holds a single `sgide` row. Four hand files (AL, AR, CA, NE) are skipped because of it.
 - Fix the check so "applied" means the copy really holds the rows.
