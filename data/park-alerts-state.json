@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17 17:28",
+ "updated": "2026-11-20 10:11",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -144,7 +144,7 @@
    ],
    "first": "2026-10-21",
    "runs": 2,
-   "missing": 0,
+   "missing": 1,
    "announced": true
   },
   "kdfwr-regulatory-amendments-filed-pending-and-recently-enacted": {
