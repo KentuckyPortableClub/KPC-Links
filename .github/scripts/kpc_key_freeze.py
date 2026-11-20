@@ -410,6 +410,35 @@ def may_stamp(kind, ref=None):
     return wf in STAMPERS.get(kind, ())
 
 
+def run_settings(kind, env=None, root=None):
+    """S2 (keys-first rev 3.1, F7; Opus 19 Nov 2026): what this build ran with, for index.json 'settings': the source mode
+    (KPC_KEY_SOURCE: store = saved copies only, else live), the drop limits (kpc_key_drop_guard.limits + the stop list and the
+    named-parks file's hash), and every rule switch (the areas the switch file turns it on for, its default, and an environment
+    value when one is set, which wins). Reads files only; nothing here decides anything."""
+    env = os.environ if env is None else env
+    root = pathlib.Path(root or ROOT)
+    here = str(pathlib.Path(__file__).resolve().parent)
+    if here not in sys.path: sys.path.insert(0, here)
+    import kpc_key_drop_guard as DG
+    import kpc_key_rules as KR
+    pct, mn, ok = DG.limits(env)
+    apath = env.get('KPC_DROP_APPROVED') or str(root / DG.APPROVED_FILE)
+    try: asha = hashlib.sha256(same_lines(open(apath, 'rb').read())).hexdigest()[:12]
+    except OSError: asha = 'missing'
+    sw_path = str(root / '.github/key-switches.json')
+    sw = KR.switch_file(sw_path)
+    switches = {}
+    for name in sorted(set(KR.DEFAULTS) | set(sw)):
+        row = {'on': sorted(sw.get(name) or []), 'default': str(KR.DEFAULTS.get(name, '0'))}
+        if str(env.get(name, '') or '').strip(): row['env'] = str(env.get(name)).strip()
+        switches[name] = row
+    src = (env.get('KPC_KEY_SOURCE') or '').strip() or 'live'
+    return {'source_mode': src,
+            'drop_limits': {'pct': pct, 'min_parks': mn, 'let_through': ok, 'by_park': pct == 0 and mn == 0,
+                            'stop': sorted(DG.load_stop(apath)), 'approved_file': asha},
+            'switches': switches}
+
+
 def stamp(kind):
     p = f'data/{kind}/index.json'
     if not may_stamp(kind):
@@ -428,6 +457,11 @@ def stamp(kind):
     if INPUTS.get(kind): d['inputs'] = inputs_of(kind)
     bid = f"{PRE[kind]}-{os.environ.get('GITHUB_RUN_ID') or time.strftime('%Y%m%d%H%M')}"
     d['build'] = bid; d['built'] = time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())
+    if kind == 'us-key':   # S2 (keys-first rev 3.1): every build records its source mode, drop limits and every switch value
+        try: d['settings'] = run_settings(kind)
+        except Exception as e:  # noqa: BLE001 - the stamp itself never stops on this; the gap is named in the index
+            d['settings'] = {'error': f'{type(e).__name__}: {e}'[:300]}
+            print(f"::warning title=US key stamp::the run settings could not be recorded: {type(e).__name__}: {e}"[:400])
     # Nov 2 review (Mapping #18): parts that failed in this build are named in the stamp (KPC_BUILD_FAILED_FILE = one code per line)
     failed = []
     ff = os.environ.get('KPC_BUILD_FAILED_FILE')

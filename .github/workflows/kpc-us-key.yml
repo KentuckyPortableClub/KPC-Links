@@ -8,6 +8,7 @@ on:
   # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
   # schedule: OFF 19 Nov 2026 6 PM CST (owner, after Fable's review of revision 3: no key build until the sample kit is graded).
   # The two daily starts were '17 9 * * *' (nightly) and '46 11 * * *' (backup). By hand only until the owner turns them back on.
+  # S2 (keys-first rev 3.1, F22): when the owner turns the schedule back on, only the nightly start returns; the backup start is gone.
   workflow_dispatch:
     inputs:
       as_schedule:
@@ -715,6 +716,10 @@ jobs:
       - name: BUILD STAMP (Brandon Nov 2) - this build's id in data/us-key/index.json, Brandon / KZ4CP sign off only this id (Nov 4 links-04 - plus the rules hash when every state built)
         id: us_stamp   # Nov 12 (KPC owner, 2026-11-12): Save needs this step green (an unstamped key is not saved)
         env:
+          KPC_KEY_SOURCE: ${{ vars.KPC_KEY_SOURCE == 'store' && 'store' || 'live' }}   # S2 (keys-first rev 3.1): recorded in index.json 'settings'
+          KPC_DROP_OK: ${{ vars.KPC_DROP_OK }}   # the same three drop values the drop guard step ran with, recorded in 'settings'
+          KPC_DROP_PCT: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}
+          KPC_DROP_MIN: ${{ vars.KPC_KEY_SOURCE == 'store' && '0' || '' }}
           KPC_FULL_BUILD: ${{ (needs.plan.outputs.full == '1' && needs.build.result == 'success') && '1' || '0' }}
           PLAN_GROUPS: ${{ needs.plan.outputs.groups }}
           AREA_MODE: ${{ vars.KPC_AREA_HASH || 'reuse' }}   # Nov 12 (KPC owner, 2026-11-12): default reuse; KPC_AREA_HASH=shadow writes nothing; =add records hashes but does not leave states out
@@ -887,7 +892,9 @@ jobs:
         run: |
           python3 .github/scripts/kpc_us_key_join.py record parts/us-key-part-* --planned-groups "$PLAN_GROUPS" --failed /tmp/kpc-build-failed.txt --drop /tmp/kpc-drop-failed.txt --out /tmp/us-join.json
           python3 .github/scripts/kpc_area_join.py summary --record /tmp/us-join.json --index data/us-key/index.json --title 'US key join'
-          python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')).get('red'); sys.exit(1 if r else 0)" || { echo "::error title=US key run::RED: the states above were kept from main (not saved this run); the others were saved"; exit 1; }
+          # S2 (keys-first rev 3.1, F21; Opus 19 Nov): a held state is a warning (no failure email); a part that never came back is red
+          python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')); sys.exit(1 if r.get('faults', r.get('red')) else 0)" || { echo "::error title=US key run::RED: a build part never came back (see the table above); the others were saved"; exit 1; }
+          python3 -c "import json,sys; r=json.load(open('/tmp/us-join.json')); sys.exit(1 if r.get('held') else 0)" || echo "::warning title=US key run::HELD: the states above were kept from main (not saved this run); the others were saved"
       - name: Master check verdict (owner rule, 2026-11-10) - data/outlines was kept out of the save; go red
         if: ${{ always() }}
         run: |
