@@ -35,7 +35,7 @@ The fill step refuses 19 parks with "no licence or terms recorded", and the stor
 | `sggaf` | a Georgia state layer | 6 |
 | `dnrsf` | Michigan DNR state forests | 6 |
 | `usaceproj` | Army Corps projects (Mississippi) | 3 |
-| `sgide` | Army Corps recreation areas (national) | 6; the store says not publishable, KPC-Links' gate passes it |
+| `sgide` | Army Corps recreation areas (national) | DONE by Fable 20 Nov: the Corps' page says "No License Provided / Request permission to use". The owner decides. Do not redo |
 
 For each: find the agency's own terms of use or licence statement for that data, give the address, the date read and the exact sentence that allows or forbids republishing. Put the five readings in one table for the owner. He accepts or refuses each; only then does anyone write a licence row or his acceptance in `data/outlines/hand/owner-licence-acceptance.json`. Do not write those files yourself.
 
