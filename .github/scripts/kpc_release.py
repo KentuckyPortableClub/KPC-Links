@@ -57,7 +57,7 @@ How a page reads a Canada outline (the loader half, for whoever writes it):
      (no working-copy fall back). One extra fetch per page, and only when a Canada park outline is asked for.
 A new release of the area always writes a new INDEX.json (its sha / time change), so its v changes too.
 Pages built before subs existed ignore it: they read only areas and files (tests/test_release_ca_outlines_ky_nov11.py proves it)."""
-import argparse, tempfile, gzip, hashlib, json, pathlib, re, subprocess, sys, time
+import argparse, datetime, tempfile, gzip, hashlib, json, pathlib, re, subprocess, sys, time
 
 CAP = 1_000_000
 # Nov 11 (job 3): the Kentucky layer files the pages fetch from the repo root, a REVIEWED list (not a loose pattern), so a file is
@@ -85,6 +85,16 @@ BLOCKED_BUILDS = frozenset({'US-42797939226'})
 # World countries that stay off a public release until a graded world build exists (Quality, Nov 13).
 HELD_UNTIL_GRADED = frozenset({'AU'})
 EXPECTED_HOLDS_AT = 'data/outlines/world-expected-holds.approved.json'
+# Nov 19 (job C, N3 item 3; KPC owner, 2026-11-19): a park whose state may not be released until it is fixed (the key no longer joins the
+# bad record and no outline holds it) or held (the state's key grades it PIN, so no outline ships). The fix itself is a saved "no"
+# (job G3), not this file. ref -> (state, bad record ids, plain reason).
+MUST_FIX_FIRST = {
+    'US-2635': ('US-NV', ('fsod68',), 'the key joins the Forest Service national recreation area record fsod68 to this state park '
+                'and the outline holds it; job G3 (a saved "no") fixes it'),
+}
+# Nov 19 (job C, N3 item 2): the named list of name+pin outlines a person approved for release. Read from the checkout that runs the
+# release (like the code), never from the commit being released. A missing file = an empty list = every name+pin outline refuses.
+NAME_PIN_APPROVED_AT = '.github/release-name-pin-approved.json'
 KEY_CHECK_PREFIX = {'US': 'us', 'CA': 'ca', 'world': 'world'}
 INDEX_AT = {'US': 'data/us-key/index.json', 'CA': 'data/ca-key/index.json', 'world': 'data/world-key/index.json'}
 SHARED_REL = re.compile(r'(^|/)(layers|refs)\.json$')
@@ -451,6 +461,115 @@ def us_outline_recs_at(repo, sha, unit):
     return M.recs_of_doc(M.load_doc_parts(f'{unit}.geojson.gz', read))
 
 
+def _norm_rec_name(s):
+    """A record name compared as its text (job C, N1 case 3): the review counted 23 parks by the exact name; only outer spaces are ignored."""
+    return str(s or '').strip()
+
+
+def load_name_pin_approved(repo=None, path=None):
+    """{state: {ref: entry}} of the name+pin outlines a person approved for release (N3 item 2). An entry counts only when it names
+    the state and the ref, has a reason, and approved_by is a person (kpc_key_freeze.is_person: Brandon / KZ4CP or another name in
+    KPC_PERSONS; a Quality or bot name never counts) with a real approved_date. Anything else is left out (fail closed)."""
+    f = pathlib.Path(path) if path else pathlib.Path(repo or pathlib.Path(__file__).resolve().parents[2]) / NAME_PIN_APPROVED_AT
+    try: doc = json.loads(f.read_text(encoding='utf-8'))
+    except (OSError, ValueError): return {}
+    rows = (doc or {}).get('approved') if isinstance(doc, dict) else None
+    if not isinstance(rows, dict): return {}
+    import kpc_key_freeze as KF
+    out = {}
+    for st, refs in rows.items():
+        if not re.fullmatch(r'US-[A-Z]{2}', str(st)) or not isinstance(refs, dict): continue
+        for ref, e in refs.items():
+            if not isinstance(e, dict) or not str(e.get('reason') or '').strip(): continue
+            if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', str(e.get('approved_date') or '')): continue
+            who = str(e.get('approved_by') or '')
+            if who.casefold() == 'brandon (kz4cp)': who = 'KZ4CP'   # the documented display form only
+            if not KF.is_person(who): continue
+            try: date = datetime.date.fromisoformat(e['approved_date'])
+            except ValueError: continue
+            if date > datetime.datetime.now(datetime.timezone.utc).date(): continue
+            out.setdefault(st, {})[str(ref)] = e
+    return out
+
+
+def _us_key_listing(key_dir, unit):
+    """(this state's key parks {ref: park}, the joined record names of this state's key {ref: {id: name}}). Ids as strings; trail
+    lines (trl...) are left out of the joined records, as in kpc_master.held_record_refs."""
+    try: parks = json.loads((pathlib.Path(key_dir) / f'{unit}.json').read_text(encoding='utf-8')).get('parks') or {}
+    except (OSError, ValueError, AttributeError): parks = {}
+    joined = {}
+    for r, p in parks.items():
+        if not isinstance(p, dict): continue
+        joined[r] = {str(x[0]): (x[1] if len(x) > 1 else '') for x in (p.get('m') or [])
+                     if isinstance(x, list) and x and not str(x[0]).startswith('trl')}
+    return parks, joined
+
+
+def us_release_guard_problems(unit, recs, key_dir, approved=None):
+    """Job C (N1 + N3; KPC owner, 2026-11-19): plain-word reasons the US state `unit` must not be released, one per outline, from the
+    outline records as the release would ship them (after kpc_master.key_fix trimmed PIN and not-in-key parks) and the state's key.
+    Refuse only: nothing here rebuilds or changes an outline. Empty = the state passes these checks.
+      N1 case 1  the outline has no real record id, only row numbers (row219): it was not built from the key
+      N1 case 2  the outline shares no record id with the records this state's key joined for the park (a key whose m holds only
+                 trail lines counts as joining no land record; a park with no m at all is not compared)
+      N1 case 3  the outline holds fewer records than the key, and a missing record has a name none of its records has
+      N3 item 1  the outline sits in this state's file, but this state's key does not list the park
+      N3 item 2  the outline is via name+pin and is not on the named list a person approved (NAME_PIN_APPROVED_AT)
+      N3 item 3  a park on MUST_FIX_FIRST is neither fixed nor held
+    The held-record check (an outline that holds a record the key did not join) stays in kpc_master.held_record_refs."""
+    import kpc_master as M
+    parks, joined = _us_key_listing(key_dir, unit)
+    ok_np = (approved or {}).get(unit) or {}
+    out = []
+    for r in sorted(recs):
+        o = recs[r] or {}
+        k = parks.get(r)
+        if not isinstance(k, dict):
+            out.append(f"{r}: sits in the {unit} file, but the {unit} key does not list it (an outline may sit only in the file of a "
+                       f"state whose key lists the park)")
+            continue
+        if str(o.get('via') or '') == 'name+pin' and r not in ok_np:
+            out.append(f"{r}: made by name + pin (via name+pin) and not on the approved name+pin list ({NAME_PIN_APPROVED_AT})")
+        if k.get('g') == 'pin': continue   # graded PIN here (kept only for another state's grade): nothing to compare with
+        ids = [str(i) for i in (o.get('record_ids') or [])]
+        real = set(M.outline_record_ids(o))
+        rows = [i for i in ids if re.fullmatch(r'row[0-9]+', i)]
+        m = joined.get(r) or {}
+        if not real and rows:
+            out.append(f"{r}: the outline has no real record id, only row numbers ({', '.join(rows[:3])}{' ...' if len(rows) > 3 else ''}): "
+                       f"it was not built from the key")
+        elif k.get('m') and not (real & set(m)) and (real or m):   # a key with no m at all has nothing to compare with (as before)
+            out.append(f"{r}: the outline shares no record id with "
+                       + (f"the {len(m)} record(s) the {unit} key joined" if m else f"the {unit} key, which joined only a trail line (no land record)")
+                       + (f" (it holds {', '.join(sorted(real)[:3])}{' ...' if len(real) > 3 else ''})" if real else ' (it holds none)'))
+        elif real and real < set(m):
+            have = {_norm_rec_name(m[i]) for i in real}
+            other = sorted(i for i in set(m) - real if _norm_rec_name(m[i]) not in have)
+            if other:
+                out.append(f"{r}: the outline holds {len(real)} of the key's {len(m)} records and misses "
+                           + ', '.join(f'{i} ({m[i]})' for i in other[:3]) + (' ...' if len(other) > 3 else '')
+                           + ', a record with a name none of its records has')
+    for ref, (st, bad, why) in sorted(MUST_FIX_FIRST.items()):
+        if st != unit: continue
+        k = parks.get(ref)
+        if isinstance(k, dict) and k.get('g') == 'pin' and ref not in recs: continue   # held: the key grades it PIN, no outline ships
+        in_key = sorted(set(bad) & set((joined.get(ref) or {})))
+        in_outline = sorted(set(bad) & {str(i) for i in ((recs.get(ref) or {}).get('record_ids') or [])})
+        if in_key or in_outline:
+            out.append(f"{ref}: must be fixed or held before {unit} is released ({why}); "
+                       + '; '.join(([f"the key still joins {', '.join(in_key)}"] if in_key else [])
+                                   + ([f"the outline still holds {', '.join(in_outline)}"] if in_outline else [])))
+    return out
+
+
+def us_guard_why(repo, unit, recs, key_dir):
+    """The job C refusal for a US state (all its reasons in plain words), or ''."""
+    probs = us_release_guard_problems(unit, recs, key_dir, approved=load_name_pin_approved(repo))
+    if not probs: return ''
+    return (f"{unit}: refused by the release guards, {len(probs)} outline problem(s): " + '; '.join(probs[:5])
+            + (f'; and {len(probs) - 5} more' if len(probs) > 5 else ''))
+
+
 def outline_refuse_why(repo, kind, unit, sha):
     """Why this area's outlines must not be released, or '' when they can be trimmed and shipped.
     PIN and not-in-key features are trimmed at release; an outline that still holds a record not in the key's m refuses the area
@@ -468,7 +587,7 @@ def outline_refuse_why(repo, kind, unit, sha):
             recs = us_outline_recs_at(repo, sha, unit)
             recs, _, _ = M.key_fix(unit, recs, kd)
             held = M.held_record_refs(unit, recs, kd)
-            if not held: return ''
+            if not held: return us_guard_why(repo, unit, recs, kd)   # Nov 19 (job C): N1 + N3 refusals
             bits = [f"{r} holds {', '.join(ids)}" for r, ids in sorted(held.items())]
             return 'outline holds record(s) the key did not join: ' + '; '.join(bits)
         # CA / world: missing key already refused; held-record check when an area outline exists
@@ -501,6 +620,8 @@ def trim_built_outlines(repo, sha, built, units=None):
             if held:
                 bits = [f"{r} holds {', '.join(ids)}" for r, ids in sorted(held.items())]
                 raise ReleaseError(f'{unit}: outline holds record(s) the key did not join: ' + '; '.join(bits))
+            why = us_guard_why(repo, unit, recs, kd)   # Nov 19 (job C): N1 + N3, the same refusal as outline_refuse_why
+            if why: raise ReleaseError(why)
             if not drop:
                 # still rewrite if the working bytes were already clean? leave them (byte-identical copy)
                 continue

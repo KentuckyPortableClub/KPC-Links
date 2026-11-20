@@ -161,8 +161,10 @@ for p in sorted((ROOT / 'data/outlines').glob('US-??.geojson.gz')):
 else: check('every outline file has the fixed gzip header (mtime 0, XFL 2, OS 255, its own name): the same zlib gives the same file', True)
 with tempfile.TemporaryDirectory() as t:
     d = pathlib.Path(t); root = d / 'data/outlines'; kd = d / 'data/us-key'; root.mkdir(parents=True); git_repo(d)
-    keyfile(kd, 'AK', {'US-7000': {'g': 'official', 'm': [['sgaka1', 'x', 1, 'name']]}, 'US-7001': {'g': 'approximate'}, 'US-7002': {'g': 'pin'}})
-    M.save_area('US-AK', {r: rec(r) for r in ('US-7000', 'US-7001')}, root)
+    # Nov 19 (job C): the outlines hold the records the key joined, or the release guards (N1) refuse US-AK before the byte checks below
+    keyfile(kd, 'AK', {'US-7000': {'g': 'official', 'm': [['sgaka1', 'x', 1, 'name']]}, 'US-7001': {'g': 'approximate', 'm': [['sgaka2', 'y', 1, 'name']]}, 'US-7002': {'g': 'pin'}})
+    keyfile(kd, 'DC', {'US-0001': {'g': 'official', 'm': [['1', 'z', 1, 'name']]}})   # job C N3 item 1: a released outline needs its state's key to list it
+    M.save_area('US-AK', {'US-7000': rec('US-7000', ids=['sgaka1']), 'US-7001': rec('US-7001', g='approximate', ids=['sgaka2'])}, root)
     M.save_area('US-DC', {'US-0001': rec('US-0001')}, root)
     def other_zlib(f):   # the same content, packed at another level (other bytes), as another zlib build would
         raw = gzip.decompress(f.read_bytes()); b = gzip.compress(raw, compresslevel=1, mtime=0); assert b != f.read_bytes(); f.write_bytes(b); return b
@@ -196,7 +198,7 @@ with tempfile.TemporaryDirectory() as t:
     check('release: a released file with the same content is not rewritten and keeps its version',
           rf.read_bytes() == before and idx['files']['outlines/US-AK.geojson.gz'][0][1] == __import__('hashlib').sha256(before).hexdigest()[:12])
     # a real change IS written (the new park is in the key, or M2 would drop it)
-    keyfile(kd, 'AK', {'US-7000': {'g': 'official', 'm': [['sgaka1', 'x', 1, 'name']]}, 'US-7001': {'g': 'approximate'}, 'US-7002': {'g': 'pin'}, 'US-7009': {'g': 'official'}})
+    keyfile(kd, 'AK', {'US-7000': {'g': 'official', 'm': [['sgaka1', 'x', 1, 'name']]}, 'US-7001': {'g': 'approximate', 'm': [['sgaka2', 'y', 1, 'name']]}, 'US-7002': {'g': 'pin'}, 'US-7009': {'g': 'official'}})
     have = M.load_area('US-AK', root); have['US-7009'] = rec('US-7009'); M.save_area('US-AK', have, root)
     check('a real content change IS written (git sees it)', 'US-7009' in M.load_area('US-AK', root) and 'data/outlines/US-AK.geojson.gz' in sh(d, 'git', 'status', '--porcelain', '--', 'data/outlines').stdout)
     check('... and keep_main keeps it', K.run(d, root, 'HEAD') == 0 and 'US-7009' in M.load_area('US-AK', root) and (root / 'US-AK.geojson.gz').read_bytes() != ci['US-AK.geojson.gz'])
@@ -366,9 +368,10 @@ if node:
                  'US-9003': {'g': 'official', 'n': 'Big', 'm': [['a3', 'Big', 1, 'name']]}, 'US-9004': {'g': 'pin', 'n': 'Pin', 'm': [['a4', 'Pin', 1, 'name']]}}
         parks.update({f'US-95{i:02d}': {'g': 'official', 'n': f'Fill {i}', 'm': [[f'a95{i:02d}', 'x', 1, 'name']]} for i in range(20)})
         keyfile(kd, 'ZZ', parks)
-        rs = {'US-9001': rec('US-9001', geom=big_multi(2, 400, -150)), 'US-9002': rec('US-9002', 'approximate', geom=big_multi(2, 400, -149)),
-              'US-9003': rec('US-9003', geom=big_multi(12, 400, -148)), 'US-9004': rec('US-9004')}
-        rs.update({f'US-95{i:02d}': rec(f'US-95{i:02d}', geom=big_multi(1, 300, -140 + i)) for i in range(20)})
+        # Nov 19 (job C): each outline holds the record its key joined (a1, a2, ...), or the release guards (N1) refuse US-ZZ
+        rs = {'US-9001': rec('US-9001', geom=big_multi(2, 400, -150), ids=['a1']), 'US-9002': rec('US-9002', 'approximate', geom=big_multi(2, 400, -149), ids=['a2']),
+              'US-9003': rec('US-9003', geom=big_multi(12, 400, -148), ids=['a3']), 'US-9004': rec('US-9004', ids=['a4'])}
+        rs.update({f'US-95{i:02d}': rec(f'US-95{i:02d}', geom=big_multi(1, 300, -140 + i), ids=[f'a95{i:02d}']) for i in range(20)})
         M.save_area('US-ZZ', rs, root, cap=12_000)
         nparts = len(M.area_files('US-ZZ', root))
         want = sorted(set(rs) - {'US-9004'})

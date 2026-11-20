@@ -1,0 +1,4 @@
+{
+ "about": "Release guard N3 item 2 (job C; KPC owner, 2026-11-19). The named list of US outlines made by name + pin (via: name+pin, kpc_master.py trim) that a person approved for the public map. kpc_release.py refuses a US state while any outline it would release is via name+pin and is not listed here for that state. Read from the checkout that runs the release, never from the commit being released. An entry counts only with a reason, approved_by naming a person (Brandon / KZ4CP or another name in KPC_PERSONS; a Quality or bot name never counts) and approved_date (YYYY-MM-DD). Shape: approved = {\"US-XX\": {\"US-1234\": {\"reason\": \"...\", \"approved_by\": \"Brandon (KZ4CP)\", \"approved_date\": \"2026-11-19\"}}}. Empty on purpose: nobody has approved a name+pin outline yet.",
+ "approved": {}
+}
