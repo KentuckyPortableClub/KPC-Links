@@ -615,6 +615,39 @@
    "why": "Confirm stack rebased onto current main: match checks so a name alone never draws an outline (#327 layer table, #328 confirm by the park's own page address, jobs A/B/C). A same-kind id from the park's own page can confirm; other name-joins keep the outline only if they pass agency, pin 3c, another park's name, the national-layer rule, and an independently witnessed size. Job B: saved records can keep the agency id fields named in keep-record-fields.json, and never a WDPA field. Job A: tie by the web address on the record and by the agency's own park list. Job C: a hand-copied size counts only when it names its source. It reads every state's parks, so every state is rebuilt once.",
    "scope": "all",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-21"
-  }
+  },
+  {
+   "id": "2026-11-20-d5-lease-by-name-on",
+   "when": "2026-11-20",
+   "from": "1e5d876824bc",
+   "why": "D5 (KPC owner, 2026-11-17) switched ON in all 50 US key areas (49 states and DC; Kentucky has its own key) (KPC_NO_LEASE_BY_NAME): a record whose name says leased / lease / agreement / cooperative area is never joined by name alone; it goes to check and a person may say yes for one park. Predicted from the saved keys of 20 Nov with the builder's own LEASE_RX and name_only (not a build): 18 parks in 4 states (NC 14, MI 2, CT 1, OH 1); 17 keep other land, 1 becomes a pin. States only in this entry; no park is named.",
+   "scope": {
+    "states": [
+     "US-CT",
+     "US-MI",
+     "US-NC",
+     "US-OH"
+    ],
+    "saved_ids": false
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"
+  },
+  {
+   "id": "2026-11-20-piece-name-on",
+   "when": "2026-11-20",
+   "from": "1e5d876824bc",
+   "why": "The piece rule (rule 18, Nov 2; KPC_PIECE_NAME) switched ON in all 50 US key areas (49 states and DC; Kentucky has its own key): a POTA park that names a piece (unit / tract / parcel / zone) joins only a record carrying that piece's own word; the whole area or a sibling unit goes to check. Predicted from the saved keys and copies of 20 Nov with kpc_key_rules.piece_ok (not a build): 9 parks in 6 states (MN 3, GA 2, NM 1, OK 1, TX 1, WI 1); 6 keep other land, 3 become pins. States only in this entry; no park is named.",
+   "scope": {
+    "states": [
+     "US-GA",
+     "US-MN",
+     "US-NM",
+     "US-OK",
+     "US-TX",
+     "US-WI"
+    ],
+    "saved_ids": false
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"  }
  ]
 }
