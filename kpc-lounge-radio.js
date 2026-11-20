@@ -38,7 +38,7 @@
        contour · apf · mnotch (manual notch on / off) + mnotchf (Hz) · split · rit · xit · ritoff (RIT / clarifier offset Hz, absolute; 0 = clear)
        swap (VFO A ⇄ B) · ab (A = B) · keyspd (wpm) · bkin (0 off, 1 semi, 2 full).
      CAPS below says which radio takes which, so the RADIO screen only shows what that radio understands. A radio not yet tried on the air
-     with KPC says 'not checked on a real radio yet' (TESTED lists the ones that have been: Brandon's 'works on my radio' reports go there). */
+     with KPC is not marked either way on the page (Brandon Nov 19: no 'not checked' lines); TESTED lists the ones that have been: Brandon's 'works on my radio' reports go there. */
   const clamp = (v, a, b) => Math.max(a, Math.min(b, +v || 0));
   const bcd4 = v => { const d = pad(clamp(v, 0, 9999), 4); return [parseInt(d.slice(0, 2), 16), parseInt(d.slice(2), 16)]; };
   const l255 = p => Math.round(clamp(p, 0, 100) * 2.55);
@@ -163,7 +163,7 @@
     const fS = v => (v > 0 ? '+' : '') + v + ' Hz', fP = v => v + ' %';
     const has = k => C.keys.includes(k);
     const yae = C.proto === 'yaesu' || C.proto === 'yaesu8';
-    const tested = !r ? 'pick your radio above first' : C.tested ? '✓ checked on a real ' + r.label : r.label + ': not checked on a real radio yet';
+    const tested = !r ? 'pick your radio above first' : '';   /* Nov 19 2026 (Brandon: no 'not checked on a real radio' lines on the public pages) */
     const more = !C.keys.length ? `<p class="lr-n">${r ? 'This radio takes none of these over CAT.' : 'Pick your radio in MY RADIO above, so the page knows which ones it takes.'}</p>` :
       (has('shift') ? sl('shift', -1200, 1200, 20, fS) : '') + (has('nrl') ? sl('nrl', 0, 100, 5, fP) : '') + (has('nbl') ? sl('nbl', 0, 100, 10, fP) : '') +
       (has('agc') ? `<div class="lr-row"><span class="lr-k">AGC</span>${C.agc.map(a => chip('agc', a, AGCL[a], X.agc)).join('')}</div>` : '') +
@@ -180,8 +180,9 @@
     const scopeOk = C.proto === 'icom' && SCOPE_RIGS[K.get().radio];
     /* Nov 19 2026 (Lounge round 3; Brandon Nov 17: the new black radio page as an OPTION, this card stays the default): the KPC Logger beta IS the
        app's own screens, so this opens its RADIO screen (members only: the gate hides the link from guests). The radio connects again there. */
-    const big = `<div class="lr-row lr-bigrow"><a class="lr-c lr-big" href="logger-beta/kpc-logger-beta.html#radio" title="A bigger radio page on this website: big frequency, meters, scope with who is where, every control">🖤 BIG RADIO PAGE (beta)</a><span class="lr-n">A bigger radio page on this website, in your browser: no app needed. It opens in this tab; connect the radio again there.</span></div>`;
-    return big + `<details id="lrMore"${X.oMore ? ' open' : ''}><summary>🎛 MORE CONTROLS <small>${esc(tested)}${on ? '' : ' · radio not connected'}</small></summary>${more}</details>
+    /* Nov 19 2026 night (Brandon): the big page has the DIGI modes = VIP only, so no link to it on the public Hunters Lounge */
+    const big = document.querySelector('[data-public="1"]') ? '' : `<div class="lr-row lr-bigrow"><a class="lr-c lr-big" href="logger-beta/kpc-logger-beta.html#radio" title="A bigger radio page on this website: big frequency, meters, scope with who is where, every control">🖤 BIG RADIO PAGE (beta)</a><span class="lr-n">A bigger radio page on this website, in your browser: no app needed. It opens in this tab; connect the radio again there.</span></div>`;
+    return big + `<details id="lrMore"${X.oMore ? ' open' : ''}><summary>🎛 MORE CONTROLS <small>${esc([tested, on ? '' : 'radio not connected'].filter(Boolean).join(' · '))}</small></summary>${more}</details>
       <details id="lrBand"${X.oBand ? ' open' : ''}><summary>📍 BANDS + TUNE + SWR <small>band memory, the radio's tuner, the SWR guard</small></summary>
         <div class="lr-row">${bm}</div><p class="lr-n">A band button goes back to the last frequency and mode you used on that band (• = remembered).</p>
         <label class="lr-t"><input type="checkbox" id="lrBm"${X.bandMem ? ' checked' : ''}> Band memory on</label>

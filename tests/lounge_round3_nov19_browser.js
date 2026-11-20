@@ -41,7 +41,7 @@ const VIP = 'dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab';
   ok(P.errs.length === 0, 'no page errors on the VIP page' + (P.errs.length ? ': ' + P.errs.slice(0, 2).join(' | ') : ''));
   await P.context().close(); P = await mk(false); await P.goto(BASE + 'kpc-hunters.html'); await sleep(2500);   /* the VIP page draws the card only inside its ⚙ pop-up */
   r = await P.evaluate(() => { const a = document.querySelector('.lr-big'); return a && [a.getAttribute('href'), a.textContent]; });
-  ok(r && /logger-beta\/kpc-logger-beta\.html#radio/.test(r[0]) && /BIG RADIO PAGE/.test(r[1]), 'member: 🖤 BIG RADIO SCREEN (beta) on the radio card → the beta logger\'s RADIO screen');
+  ok(!r, 'public Lounge: no 🖤 BIG RADIO PAGE link (that page has the DIGI modes, VIP only: Brandon, Nov 19 night)');
   ok(P.errs.length === 0, 'no page errors' + (P.errs.length ? ': ' + P.errs.slice(0, 2).join(' | ') : ''));
   await P.context().close();
   P = await mk(true); await P.goto(BASE + 'kpc-hunters.html'); await sleep(2500);

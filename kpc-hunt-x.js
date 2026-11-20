@@ -147,8 +147,8 @@
       const home = LR().home && LR().home(); if (home) { home.appendChild(box); box.removeAttribute('data-hxtab'); try { LR().draw(); } catch (e) {} } else box.remove();
     }
     if (SHOWS[tab] && !box) pane.innerHTML = '<p class="hx-n">The radio extras did not load on this page.</p>';
-    if (tab === 'radio') { radioPane(pane);   /* Nov 19 2026: the app's big radio page, here too (the Lounge radio card has it as well) */
-      pane.insertAdjacentHTML('beforeend', '<p class="hx-n"><a class="lr-c lr-big" href="logger-beta/kpc-logger-beta.html#radio">🖤 BIG RADIO PAGE (beta)</a> a bigger radio page on this website, in your browser (no app needed); it opens in this tab, connect the radio again there.</p>'); }
+    if (tab === 'radio') { radioPane(pane);   /* Nov 19 2026: the app's big radio page, here too (the Lounge radio card has it as well); not on the public Lounge: it has the DIGI modes = VIP only (Brandon, Nov 19 night) */
+      if (!document.querySelector('[data-public="1"]')) pane.insertAdjacentHTML('beforeend', '<p class="hx-n"><a class="lr-c lr-big" href="logger-beta/kpc-logger-beta.html#radio">🖤 BIG RADIO PAGE (beta)</a> a bigger radio page on this website, in your browser (no app needed); it opens in this tab, connect the radio again there.</p>'); }
     if (tab === 'meters') metersPane(pane);
     if (tab === 'audio') txPane(tx);
     if (tab === 'cw') cwPane(pane);
@@ -278,8 +278,7 @@
   /* Nov 19 2026 (Brandon: 'I dont see cat control set up'): the radio lived behind a small ⚙ in the log dock, far down the page. The new
      📻 RADIO (CAT) button at the top goes to the page's radio card (public Hunters Lounge) or opens the ⚙ radio window (VIP). */
   document.addEventListener('click', e => { const b = e.target.closest('[data-hxradio]'); if (!b) return; e.preventDefault();
-    const card = $('hlRadio'); if (card && card.offsetParent !== null) { if (card.tagName === 'DETAILS') card.open = true; card.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
-    gearMount(); open('radio'); });
+    gearMount(); open('radio'); });   /* Nov 19 2026 (Brandon: 'radio button was suppose to open the radio not go to the settings'): both Lounges open the radio window; set-up stays in the 📻 RADIO CONTROL card */
   G.addEventListener('blur', () => talkUp());
   /* Nov 11: the radio must also unkey when the tab is hidden or closed while the talk button is held */
   G.addEventListener('pagehide', () => talkUp()); document.addEventListener('visibilitychange', () => { if (document.hidden) talkUp(); });
@@ -292,16 +291,24 @@
   function cwPane(p) {
     const k = K(), on = conn(), can = on && k.cwCan && k.cwCan();
     if (!on) { p.innerHTML = '<p class="hx-n">Connect the radio first (📻 Radio tab). The CW keyer uses the radio\'s own keyer over CAT.</p>'; return; }
+    /* Nov 19 2026 (Brandon: 'no cw setting on the radio change speed etc'): the radio's own CW settings sit here too: one SPEED for the radio's
+       keyer and the memories, and BREAK-IN, sent over CAT when this radio takes them (the 🎛 More tab has the same commands). */
+    const has = x => { try { return !!(LR() && LR().caps(k.get().radio).keys.includes(x) && LR().cmds(x, x === 'keyspd' ? 20 : 0)); } catch (e) { return false; } };
+    const spd = has('keyspd'), bk = has('bkin'), bkv = CW.bk == null ? -1 : CW.bk;
     p.innerHTML = `${can ? '' : '<p class="hx-n">This radio can\'t take typed CW over CAT (older Yaesu, Xiegu…). Use a CW key line or the radio\'s own keyer memories.</p>'}
       <div class="hx-mem${can ? '' : ' off'}">${CW.m.map((m, i) => `<button type="button" class="hx-c" data-cwm="${i}" title="${esc(m)}"${can ? '' : ' disabled'}>M${i + 1} <small>${esc(m.slice(0, 14))}</small></button>`).join('')}</div>
       <div class="hx-row"><input id="hxCwT" placeholder="type CW to send, Enter sends" maxlength="120"${can ? '' : ' disabled'}><button type="button" class="hx-b gold" id="hxCwGo"${can ? '' : ' disabled'}>SEND</button><button type="button" class="hx-b" id="hxCwStop"${can ? '' : ' disabled'}>⏹ STOP</button></div>
-      <div class="hx-row"><span class="hx-k">WPM</span><input type="range" id="hxWpm" min="6" max="48" step="1" value="${CW.wpm}"${can ? '' : ' disabled'}><span class="hx-v" id="hxWpmT">${CW.wpm}</span></div>
+      <div class="hx-row"><span class="hx-k">SPEED (WPM)</span><input type="range" id="hxWpm" min="6" max="48" step="1" value="${CW.wpm}"${can || spd ? '' : ' disabled'}><span class="hx-v" id="hxWpmT">${CW.wpm}</span></div>
+      ${spd ? '<p class="hx-n">Sets the radio\'s own keyer speed too (paddle and memories).</p>' : ''}
+      ${bk ? `<div class="hx-row"><span class="hx-k">BREAK-IN</span>${[[0, 'OFF'], [1, 'SEMI'], [2, 'FULL']].map(([n, t]) => `<button type="button" class="hx-c${bkv === n ? ' on' : ''}" data-cwbk="${n}">${t}</button>`).join('')}</div>` : ''}
       <details class="hx-ed"><summary>✏ EDIT THE MEMORIES</summary>${CW.m.map((m, i) => `<label class="hx-l">M${i + 1}<input data-cwe="${i}" value="${esc(m)}" maxlength="80"></label>`).join('')}<p class="hx-n">{CALL} = the (first) call in the log box · {MY} = your call.</p></details>`;
     p.querySelectorAll('[data-cwm]').forEach(b => { b.onclick = () => cwSend(fillTxt(CW.m[+b.dataset.cwm])); });
     $('hxCwGo').onclick = () => { const v = $('hxCwT').value; if (v.trim()) { cwSend(fillTxt(v)); $('hxCwT').value = ''; } };
     $('hxCwT').onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); $('hxCwGo').click(); } };
     $('hxCwStop').onclick = () => { k.cwStop && k.cwStop(); note('⏹ CW stopped.'); };
-    $('hxWpm').oninput = () => { $('hxWpmT').textContent = $('hxWpm').value; }; $('hxWpm').onchange = () => { CW.wpm = +$('hxWpm').value; cwSave(); };
+    $('hxWpm').oninput = () => { $('hxWpmT').textContent = $('hxWpm').value; };
+    $('hxWpm').onchange = async () => { CW.wpm = +$('hxWpm').value; cwSave(); if (spd) { const ok = await LR().send('keyspd', CW.wpm); note(ok ? '📟 Radio keyer: ' + CW.wpm + ' WPM' : 'The radio did not take the speed.', !ok); } };
+    p.querySelectorAll('[data-cwbk]').forEach(b => { b.onclick = async () => { const n = +b.dataset.cwbk, ok = await LR().send('bkin', n); if (ok) { CW.bk = n; cwSave(); p.querySelectorAll('[data-cwbk]').forEach(x => x.classList.toggle('on', x === b)); } note(ok ? '📟 Break-in ' + b.textContent : 'The radio did not take break-in.', !ok); }; });
     p.querySelectorAll('[data-cwe]').forEach(inp => { inp.onchange = () => { CW.m[+inp.dataset.cwe] = inp.value.toUpperCase(); cwSave(); }; });
   }
   async function cwSend(t) {

@@ -2,7 +2,7 @@
    on the radio … is there a way to trigger the radio's tune for mismatch (swr)?' and 'make sure you do all the options for more radios than I own').
    - 🎛 MORE CONTROLS card on the RADIO screen: IF SHIFT / PBT, NR + NB level, AGC, ATT, PRE / IPO, CONTOUR, APF, MANUAL NOTCH (+ where),
      SPLIT, A ⇄ B, A = B, RIT / XIT + offset, keyer speed, break-in. Only what THIS radio takes over CAT shows (KPCCat.caps()).
-     A radio nobody has tried yet with KPC says so ('not checked on a real radio yet').
+     A radio that has been tried with KPC says ✓; the others say nothing (Brandon Nov 19: no 'not checked' lines).
    - 📍 BAND MEMORY: each band remembers its last frequency, mode and filter; a band button on the RADIO screen goes back there.
    - 🔧 TUNE ASKS FIRST: the radio's tuner only runs after a YES (it transmits a carrier). Never on its own.
    - ⚠ SWR GUARD: while transmitting, an SWR over the limit (2 reads in a row) warns, or lowers the power to 25 %, or stops transmitting.
@@ -93,7 +93,7 @@
   /* what the PC's state carries for the phone (kpc-remote.js baseState → rx) */
   const RXK = ['shift', 'nrl', 'nbl', 'agc', 'att', 'pre', 'contour', 'apf', 'mnotch', 'mnotchf', 'split', 'rit', 'xit', 'ritoff', 'ritstep', 'keyspd', 'bkin', 'vox', 'comp', 'mon'];
   function testedTxt() { const C = K.caps ? K.caps() : {}, r = K.RADIO && K.RADIO[K.get().radio];
-    return C.proto === 'fake' ? '· pretend radio' : C.proto === 'hamlib' ? '· through Hamlib' : C.tested ? '· ✓ checked on a real ' + (r ? r.label : 'radio') : r ? '· ' + r.label + ': not checked on a real radio yet' : ''; }
+    return C.proto === 'fake' ? '· pretend radio' : C.proto === 'hamlib' ? '· through Hamlib' : C.tested ? '· ✓ checked on a real ' + (r ? r.label : 'radio') : ''; }   /* Nov 19 2026 (Brandon): no 'not checked on a real radio' lines */
   function remoteState() {
     if (!K.connected()) return null; const C = K.caps(), ex = K.extras ? K.extras() : [], x = {}; RXK.forEach(k => { x[k] = X[k]; });
     return { caps: { keys: C.keys.filter(k => ex.includes(k)), agc: C.agc, att: C.att, pre: C.pre, proto: C.proto }, x, tested: testedTxt(), swr: { max: X.swrMax, act: X.swrAct } };

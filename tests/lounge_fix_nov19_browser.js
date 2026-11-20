@@ -34,10 +34,10 @@ const VIP = 'dba69f2b5025da744d35d1c9136204ac81c4b1f23fa16a05c6cc63899cf23dab';
     r = await P.evaluate(() => { const x = document.querySelector('[data-hxradio]'); if (!x) return null; const q = x.getBoundingClientRect(); return [x.offsetParent !== null, Math.round(q.top + scrollY)]; });
     ok(r && r[0] && r[1] < 1100 && await P.evaluate(() => !!document.querySelector('.hl-acts [data-hxradio]')), '📻 RADIO button in the hero buttons (at ' + (r && r[1]) + ' px)');
     await P.evaluate(() => document.querySelector('[data-hxradio]').click()); await sleep(900);
-    r = await P.evaluate(() => { const card = document.getElementById('hlRadio'), pop = document.getElementById('hxPop');
-      if (card && card.offsetParent !== null) { const q = card.getBoundingClientRect(); return 'card ' + Math.round(q.top) + ' ' + /CONNECT MY RADIO/.test(card.textContent); }
-      return pop && !pop.hidden ? 'window ' + /MY RADIO/.test(pop.innerText) + ' ' + /BIG RADIO PAGE/.test(pop.innerText) : 'nothing'; });
-    ok(/^card -?\d+ true$/.test(r) && +r.split(' ')[1] < 600, 'it goes to the RADIO CONTROL card (' + r + ')');
+    /* Nov 19 2026 night (Brandon: 'radio button was suppose to open the radio not go to the settings'): both Lounges open the radio window */
+    r = await P.evaluate(() => { const pop = document.getElementById('hxPop');
+      return pop && !pop.hidden ? 'window ' + pop.dataset.tab + ' ' + /MY RADIO/.test(pop.innerText) : 'nothing'; });
+    ok(r === 'window radio true', 'it opens the radio window on its Radio tab (' + r + ')');
     /* everything a member should find on the page */
     const has = await P.evaluate(() => ({ spots: !!document.querySelector('#hlList, .hl-list, [data-fopen]'), log: !!document.getElementById('dkForm'), gear: !!document.getElementById('hxGear'),
       ft8: [...document.querySelectorAll('[data-ft8open]')].some(x => x.offsetParent !== null), lr: !!document.getElementById('lrBox') || !!window.KPCLoungeRadio, onair: !!window.KPCOnAir || !!document.getElementById('kpcOnAirJs') || true,
