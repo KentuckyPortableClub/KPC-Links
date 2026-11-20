@@ -2,9 +2,9 @@ name: KPC Canada answer key
 # Canada: CA- POTA parks joined to CPCAD land only when name + kind match; the rest goes on review lists (issue label ca-answer-key).
 on:
   # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
-  schedule:
+  # schedule: OFF 20 Nov 2026 6:15 AM CST (owner's stop of 19 Nov 5:53 PM: no key build of any kind; a Canada build ran at 5:41 AM today because only the US starts were off, and the watchdog restarts any cron it finds). By hand only until the owner turns it back on.
     # (monthly cron removed: was '43 10 2 * *')   # monthly   # OFF 17 Nov 2026 (owner 7:29 PM: 'tame them down ... only as needed, then a check every now and then'): by hand only
-    - cron: '49 9 * * *'    # nightly, ONLY when BOT W wired a new province layer (data/ca-key/answers-provinces.txt)
+    # was: cron '49 9 * * *'    # nightly, ONLY when BOT W wired a new province layer (data/ca-key/answers-provinces.txt)
   # Nov 4 (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4: "Full world rebuild yes after us and Canada..stand by for more"):
   # owner rule, 2026-11-10: no workflow_run trigger. The US key's chain job dispatches this key once per US run (chained=us-key).
   # After a rules change this key waits for the key before it (kpc_key_order.py). A chained start builds ONLY a new-rules

@@ -215,7 +215,7 @@ check('W1 the plan job still decides expected holds from the APPROVED file (AU /
       'kpc_world_key_join.py expected --file data/outlines/world-expected-holds.approved.json' in next(s for s in W['jobs']['plan']['steps'] if s.get('id') == 'p')['run'])
 check('W1 the signed baselines gate stays (--approved data/outlines/world-baselines.approved.json)',
       '--approved data/outlines/world-baselines.approved.json' in next(s for s in W['jobs']['build']['steps'] if s.get('id') == 'kept_green_master')['run'])
-check('W1 no new trigger, no cron change', sorted(W[True]) == ['schedule', 'workflow_dispatch'] and [c['cron'] for c in W[True]['schedule']] == ['7 10 * * *'])   # owner 17 Nov 7:29 PM: the monthly cron is off
+check('W1 no new trigger, no cron change', sorted(W[True]) == ['workflow_dispatch'])   # owner 17 Nov 7:29 PM: the monthly cron is off; 20 Nov 2026 (owner's stop): the nightly start is off too, by hand only
 pl = next(s for s in W['jobs']['plan']['steps'] if s.get('name', '').startswith("Tonight's list"))['run']
 check('W1 plan: a rules catch-up builds only the countries not yet on the current code hash (RULES_SCOPE), else every country', 'SCOPE_LIST' in pl and 'RULES_SCOPE' in pl)
 

@@ -8,9 +8,9 @@ name: KPC world answer key
 #   join  = puts the parts together (index.json merged country by country), the BUILD STAMP, ONE save, the world-bounds branch.
 on:
   # Nov 2 review (G11): a watchdog restart passes as_schedule=<the missed cron>, so it runs exactly like that scheduled run.
-  schedule:
+  # schedule: OFF 20 Nov 2026 6:15 AM CST (owner's stop of 19 Nov 5:53 PM: no key build of any kind; a Canada build ran at 5:41 AM today because only the US starts were off, and the watchdog restarts any cron it finds). By hand only until the owner turns it back on.
     # (monthly cron removed: was '17 11 3 * *')   # monthly   # OFF 17 Nov 2026 (owner 7:29 PM: 'tame them down ... only as needed, then a check every now and then'): by hand only
-    - cron: '7 10 * * *'    # nightly, ONLY the countries BOT W wired a new approved layer for (data/world-key/answers-countries.txt)
+    # was: cron '7 10 * * *'    # nightly, ONLY the countries BOT W wired a new approved layer for (data/world-key/answers-countries.txt)
   # Nov 4 (links-06; per Brandon via Super Head Bot (relayed), 5:48 AM CST Nov 4: "Full world rebuild yes after us and Canada..stand by for more"):
   # owner rule, 2026-11-10: no workflow_run trigger. The Canada key's chain job dispatches this key once per Canada run
   # (chained=ca-key). After a rules change this key waits for the keys before it (kpc_key_order.py). A chained start builds ONLY

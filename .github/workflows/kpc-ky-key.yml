@@ -1,8 +1,8 @@
 name: KPC KY answer key
 # The Kentucky park <-> outline answer key (data/ky-answer-key.json) + its review issue (label ky-answer-key).
 on:
-  schedule:
-    - cron: '10 8 2 * *'   # owner 17 Nov 7:29 PM: once a month, the 2nd (was every Monday)   # G9 Nov 2: was '11 8 * * 1' (spread the start times; now 1 min earlier)
+  # schedule: OFF 20 Nov 2026 6:15 AM CST (owner's stop of 19 Nov 5:53 PM: no key build of any kind; a Canada build ran at 5:41 AM today because only the US starts were off, and the watchdog restarts any cron it finds). By hand only until the owner turns it back on.
+  # was: cron '10 8 2 * *'   # owner 17 Nov 7:29 PM: once a month, the 2nd (was every Monday)   # G9 Nov 2: was '11 8 * * 1' (spread the start times; now 1 min earlier)
   push:
     branches: [main]
     # Nov 11 (trigger only; the key logic is untouched): the files this run reads, not every ky-*.geojson. kpc-bounds.js loads these
@@ -21,6 +21,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   run:
+    # 20 Nov 2026 (owner's stop): a push of the files above no longer builds the Kentucky key; only a start by hand does.
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5

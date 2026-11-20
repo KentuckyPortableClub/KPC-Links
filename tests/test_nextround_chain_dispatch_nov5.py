@@ -57,7 +57,8 @@ check('gh workflow run kpc-world-key.yml' in c['steps'][0]['run'] and '-f chaine
 check(W['ca']['jobs']['run']['outputs']['skip'] == '${{ steps.skipped.outputs.skip }}' and any(s.get('id') == 'skipped' and s.get('if') == 'always()' for s in W['ca']['jobs']['run']['steps']), 'Canada run job: exposes skip from an always() step')
 check('chain' not in W['world']['jobs'], 'the world key dispatches nothing (it is last)')
 # 19 Nov 2026 6 PM CST (owner, no key build until the sample kit is graded): the US key's two daily starts are OFF.
-check('schedule' not in on('us') and [x['cron'] for x in on('ca')['schedule']] == ['49 9 * * *'] and [x['cron'] for x in on('world')['schedule']] == ['7 10 * * *'], 'no new cron in the three keys (the US key has none since 19 Nov)')
+# 20 Nov 2026 6:15 AM CST (owner's stop covers every key: a Canada build ran at 5:41 AM): the Canada and world nightly starts are OFF too.
+check('schedule' not in on('us') and 'schedule' not in on('ca') and 'schedule' not in on('world'), 'no cron in the three keys (the US key has none since 19 Nov)')
 check('workflow_run' not in on('ca') and 'workflow_run' not in on('world'), 'no workflow_run trigger on the Canada or world key (dispatch only)')
 check('kpc_key_order.py' in KF.NOT_RULES and all('kpc_key_order.py' not in ' '.join(v) for v in KF.RULE_FILES.values()), 'kpc_key_order.py is not a rule file (no rules hash moves)')
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)
