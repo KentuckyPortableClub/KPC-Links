@@ -99,6 +99,24 @@ Fable scanned 481 bot files in both repos: 29 files are read by some bot, exist 
 
 For each of the others: read the code and say which it is: a writer the scan missed, a file a person fills in, a tool nobody uses any more, or a dead link. For a dead link, one line: who should write it, or which reader should be retired. Build no new bot; the owner decides on each.
 
+## THE REVIEWS' MAIN FINDINGS THAT HAD NO OWNER (added 20 Nov 9:05 AM; owner: "very little of that fixes the main issues found in 3 reports")
+
+He is right: jobs 1 to 8 covered 4 of the 16 open findings (R1 to R16 in `REPAIRS.md`, each with the report and finding number). These four are the code fixes the reports asked for that nobody had. Draft pull requests, no build, one owner each, after your current job.
+
+### Job 9 (the agent that opened #305). The builder still saves a state after an error (R6; Claude review F10 and F14)
+#295 fixed ONE of five places where the US key builder carries on after an error. Fix the other four the same way (behind the existing switch `KPC_HOLD_ON_PASS_ERROR`, or say in one line each why a place must not hold). Also: where a rule's data file is missing, the builder treats it as "no rule" and carries on; make a missing rule file stop that state. One test per place.
+
+### Job 10 (the agent that opened #305). Saved answers that go wrong quietly (R4; Grok F7, Claude F5)
+(a) A saved "no" names a record id; after a layer refresh renumbers the record, the "no" no longer applies and the record joins again (Arkansas US-1080). Make a "no" follow the record by its fingerprint, the way a saved join already does. (b) 15 parks hold one record under both join and no: list them and fix each saved answer with its evidence (the list is `S6b-297-join-and-no.csv` from the outside review). Count on today's saved keys how many answers each fix touches.
+
+### Job 11 (the agent that opened #306). The drop guard only sees a lost outline (R7; Claude F7, Grok F4)
+`kpc_key_drop_guard.py` counts a park as lost only when it goes from joined to nothing. It misses a park whose records were swapped for others, one that gained land it should not have, and one that quietly shrank. Add those three as REPORT lines first (no hold), with the count each would give between the released key and today's key. O9 on the checklist is the same report: this job closes it.
+
+### Job 12 (the agent that opened #306). Two side paths to public files skip the gates (R11; Grok F17)
+Read finding F17 in `KPC-pipeline-review-2026-11-19.md` (the keeper's asks, and the display copy that is switched off). For each path: either it goes through the same gate as a Release, or it is switched off in code so a GitHub switch alone cannot open it. One test each.
+
+NOT given to you, and why: R8 (outlines rebuilt from the key) happens only at the one build; R2 (rules switched off) go on at the build with the lists of job 6; R3 (#296) waits for the owner's answer on short names; R9 (old 2-fer rows) is the owner's call; R12 to R14 are in the private store (Opus); R16 (cost) is the owner's bot list, already acted on.
+
 ## What Fable does
 
 Reads each draft and the rule sheet, checks your numbers against the repo, and says pass or not yet in one reply. Fable did not write these, so the read is independent.
