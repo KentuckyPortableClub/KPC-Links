@@ -115,6 +115,9 @@ He is right: jobs 1 to 8 covered 4 of the 16 open findings (R1 to R16 in `REPAIR
 ### Job 12 (the agent that opened #306). Two side paths to public files skip the gates (R11; Grok F17)
 Read finding F17 in `KPC-pipeline-review-2026-11-19.md` (the keeper's asks, and the display copy that is switched off). For each path: either it goes through the same gate as a Release, or it is switched off in code so a GitHub switch alone cannot open it. One test each.
 
+### Job 13 (the agent that opened #306). The second, separate pass on #305's nine saved "no" answers
+The club's rule (key-quality.md section 15): a saved answer merges only after a second pass, by someone who did not write it, agrees. #305 was written by the other agent, so this one is yours. For each of the nine parks (US-2635, US-3933, US-5154, US-7461, US-7462, US-7578, US-7581, US-9202, US-12233): open the official pages named in its `evidence`, read them yourself, and say AGREE or DISAGREE with one line of what the page shows. Do not read the first agent's reasoning before you have your own answer. Hand back one table. No code.
+
 NOT given to you, and why: R8 (outlines rebuilt from the key) happens only at the one build; R2 (rules switched off) go on at the build with the lists of job 6; R3 (#296) waits for the owner's answer on short names; R9 (old 2-fer rows) is the owner's call; R12 to R14 are in the private store (Opus); R16 (cost) is the owner's bot list, already acted on.
 
 ## What Fable does
