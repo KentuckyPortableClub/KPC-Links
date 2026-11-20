@@ -89,7 +89,7 @@ Command line (no network in any of them):
 import array, atexit, collections.abc, datetime, gzip, hashlib, json, math, os, pathlib, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kpc_record_key   # noqa: E402  KPC owner, 2026-11-16 (item 4)
-import kpc_fers_age as _AGE   # noqa: E402  Handoff 9 bug 4 (2026-11-17): never past a key rebuild (KPC_FERS_CARRY_MAX, off)
+import kpc_fers_age as _AGE   # noqa: E402  R-2F4: copy a row only when its made_on stamp still matches
 
 FORMAT = 1
 STORE_FORMAT_VERSION = 'kpc-outline-store-index/3'   # the outline store tool 'full 3' index contract this reader was written for
@@ -105,6 +105,7 @@ BOT_BASE_MB = 400              # measured: Python + numpy + cv2 + kpc_fers + pin
 TILE_FLOOR_MB = 500            # water + ownership tiles kept near the pair in hand when the process is at its limit
 WDPA_RX = re.compile(r'wdpa|protectedplanet|protected.?planet|unep-?wcmc|world_database_of_protected', re.I)   # = kpc_fers.WDPA_RX
 STORE_ON = False   # set True by install() (the switch-over hook in kpc_fers.main() reads it)
+STORE = None       # the Store object of this run, set by install()
 FLAGS = {}         # ref -> why the park is held
 PRIVATE = {}       # ref -> the licence classes of the records it used that are not publishable
 AREA_ROWS = {}     # area -> {'verdict', 'why', 'points', 'estimate_mb', 'limit_mb'}
@@ -129,12 +130,8 @@ STORE_AREAS_FILE = pathlib.Path(__file__).resolve().parents[1] / 'fers-store-are
 STORE_AREA_RX = re.compile(r'(US|CA)-[A-Z]{2}')
 STORE_ALL = 'all-us-ca'
 NEVER_STORE = {'US-KY': 'Kentucky runs on its own files (the REGION ky run), never on the outline store'}
-# KPC owner, 2026-11-17: a PUBLIC SHELF area whose own coverage block says less than this share of its parks made it onto the shelf
-# is left on the OLD path for this run, by itself. In a thin area most parks would be held, so a store run would CARRY most of its
-# rows unchecked instead of re-testing them, which is worse than not using the store at all. The share is written by
-# tools/kpc_store_public.py from the store it was built from, so nothing has to be kept by hand as licences are confirmed: an area
-# joins in on its own once enough of its layers are confirmed. KPC_FERS_SHELF_MIN overrides it (0 = never leave an area out).
-THIN_SHELF = 0.90
+# R-2F7 (KPC owner, 19 Nov 2026): the thin-shelf floor is gone. A store run reads every area the shelf holds, however thin.
+# A park the shelf does not hold is not tested and is counted, as before. The report says the counts for every store area.
 KEPT_TAG = 'kept: not checked in a store run'
 STORE_STAMP = '2026-11-15-store-switch'   # the declared rule change (.github/fers-rule-scope.json): stamped only in a store run
 KEPT = {'n': 0}    # rows kept by the keep-the-old-row rule this run
@@ -271,6 +268,45 @@ def wdpa_text(obj, _depth=0):
 def _err(e): return f'{type(e).__name__}: {str(e)[:100]}'
 
 
+_FP_CACHE = {}
+
+
+def outline_fp(ref):
+    """(fingerprint, reason) from the store index, without reading the outline.
+    ('', '') when this run has no store, or the index lists no fingerprint for the park (a public shelf
+    does not list a park it left off: the stamp then checks the key only). A reason when an index cannot be read."""
+    if not STORE_ON or STORE is None:
+        return '', ''
+    key = str(getattr(STORE, 'dir', '') or '')
+    if key not in _FP_CACHE:
+        table = {}
+        try:
+            for p in pathlib.Path(key).glob('index-*.json'):
+                idx = json.loads(p.read_text(encoding='utf-8'))
+                parks = idx.get('parks') if isinstance(idx, dict) else None
+                for r, e in (parks or {}).items():
+                    if isinstance(e, dict) and e.get('fp'):
+                        table[r] = str(e['fp'])
+        except (OSError, ValueError):
+            _FP_CACHE[key] = None
+        else:
+            _FP_CACHE[key] = table
+    table = _FP_CACHE.get(key)
+    if table is None:
+        return '', 'the store index could not be read, so no old row is copied (fail closed)'
+    return table.get(ref) or '', ''
+
+
+def outline_fps(refs):
+    """{ref: fingerprint} for the refs the store index can fingerprint. Refs with none are left out."""
+    out = {}
+    for ref in refs or []:
+        fp, why = outline_fp(ref)
+        if fp and not why:
+            out[ref] = fp
+    return out
+
+
 # ------------------------------------------------------------------ one area of the store
 class AreaStore:
     """The index of one area plus its file(s). Every damage is caught: the area (bad index) or the park (bad entry / piece) is
@@ -399,15 +435,18 @@ class Store:
         except (TypeError, ValueError): return None
         return v if 0.0 <= v <= 1.0 else None
 
-    def thin_shelf(self, area):
-        """-> why this area is left on the old path this run (a thin public shelf), or '' when it may be read."""
-        raw = str(os.environ.get('KPC_FERS_SHELF_MIN') or '').strip()
-        if raw in ('0', '0.0', 'off', 'none'): return ''   # the floor is off: every shelf area is read, however thin
-        want = env_float(os.environ, 'KPC_FERS_SHELF_MIN', THIN_SHELF, 1.0)
-        v = self.shelf_share(area)
-        if v is None or v >= want: return ''
-        return (f'the public shelf holds only {v * 100:.0f}% of {area} (under {want * 100:.0f}%): left as it is this run, so its rows '
-                f'are not carried unchecked. It joins in by itself once more of its layers have their terms confirmed.')
+    def shelf_line(self, area):
+        """R-2F7. One plain line of counts for a store area, or '' when the index has no coverage block."""
+        a = self.area(area)
+        idx = a.idx if a is not None else None
+        if idx is None:
+            try: idx = json.loads((self.dir / f'index-{area}.json').read_text(encoding='utf-8'))
+            except Exception: return ''  # noqa: BLE001
+        c = idx.get('coverage') if isinstance(idx, dict) else None
+        if not isinstance(c, dict): return ''
+        try: n, m = int(c.get('parks_on_shelf')), int(c.get('parks_in_store'))
+        except (TypeError, ValueError): return ''
+        return f'{area}: {n} of {m} parks on the shelf; 2-fers are measured only between those.'
 
     def public_shelf(self, area):
         """True when this area is read from the PUBLIC SHELF (tools/kpc_store_public.py: index 'shelf': 'public'). The shelf holds only
@@ -883,8 +922,8 @@ def partial_only_adds(doc, old):
             keep.append(x); continue   # the pair is still shown by another row of the same pair: not a denial
         y = olds.get(_pk(x))
         out += 1
-        if y is not None:
-            z = json.loads(_canon(y)); z['partial_kept'] = PARTIAL_KEPT; back.append(z)
+        if y is not None and _AGE.keep_fresh([y], str((doc or {}).get('st') or ''), (old or {}).get('pass1') if isinstance(old, dict) else None):
+            z = json.loads(_canon(y)); z['partial_kept'] = PARTIAL_KEPT; back.append(z)   # R-2F4: an unstamped row is not put back
     doc['spots'] = keep + back
     PARTIAL['kept'] += len(back); PARTIAL['denials_blocked'] += out
     return len(back), out
@@ -893,9 +932,17 @@ def partial_only_adds(doc, old):
 HELD_TAG = 'not re-checked (outline held privately)'
 # Q6 (Handoff 9; owner question 6, WL9; privacy): a carried row of a withheld park keeps 'there may be a 2-fer here' (refs, kind, status,
 # center, size) but drops the drawn pieces of the overlap (shape, lines), which trace the withheld park's private outline
-STRIP_HELD = os.environ.get('KPC_FERS_STRIP_HELD') == '1'
+def strip_held():
+    """R-2F6. On from the switch file. An environment variable wins. A test may set STRIP_HELD after import."""
+    if 'KPC_FERS_STRIP_HELD' in os.environ:
+        return os.environ.get('KPC_FERS_STRIP_HELD') == '1'
+    return STRIP_HELD
+
+
 STRIP_KEYS = ('shape', 'lines')
-STRIP_NOTE = 'there may be a 2-fer here; its outline is held privately, so the overlap is not drawn'
+STRIP_NOTE = 'Possible 2-fer. We are missing an official boundary here: check both official boundary maps before you count it.'
+import kpc_fers_switches as _FSW  # noqa: E402
+STRIP_HELD = _FSW.on('KPC_FERS_STRIP_HELD')
 CARRIED = {}       # area -> rows carried unchanged by carry_held_rows in the last save of this process (every status)
 CARRIED_LIVE = {}  # area -> of those, the live ones (candidate, very tight, water only, not sure ...: not dropped or merged)
 CARRIED_JSON = {}  # area -> the exact JSON of each carried row: the write step lets exactly these through (nothing else naming the park)
@@ -934,7 +981,7 @@ def carry_held_rows(KF, d, old):
         orig = _AGE.keep_fresh(orig, area, (old or {}).get('pass1'))   # Handoff 9 bug 4: never past a key rebuild (setting, off)
         for x in orig:
             x['store_held'] = HELD_TAG
-            if STRIP_HELD:   # Q6 (setting KPC_FERS_STRIP_HELD=1, off): the withheld park's outline pieces leave the public row
+            if strip_held():   # R-2F6: the withheld park's outline pieces leave the public row; the owner's note stays
                 for k in STRIP_KEYS: x.pop(k, None)
                 x['held_outline'] = STRIP_NOTE
         held = sorted({r for x in orig for r in x.get('refs') or [] if r in sec})
@@ -1920,7 +1967,7 @@ def install(KF, env=None, store=None):
     damaged), is left out of this run with its reason (its row in store-missing-<tag>.json; it keeps its previous files). Exits
     87 when no area is left (or the list cannot be read, or the run names no area), 88 when the run will not fit, 89 when a world
     store run is not a private store run. Nothing is unpacked here."""
-    global STORE_ON
+    global STORE_ON, STORE
     env = os.environ if env is None else env
     if mode(env) != 'on': return False
     if getattr(KF, '_STORE_INSTALLED', False): return True   # once per process (kpc_fers_store.py run + the hook in kpc_fers.main())
@@ -2002,12 +2049,14 @@ def install(KF, env=None, store=None):
         raise SystemExit(EXIT_NOT_READY)
     st.allow = lambda a: area_use(a, cfg)
     off = {a: area_use(a, cfg) for a in areas if area_use(a, cfg)}
-    # KPC owner, 2026-11-17: a PUBLIC SHELF area too thin to be worth reading stays on the old path, the same as one on the except
-    # list. It is worked out from the shelf's own coverage block, so no list is kept by hand (see THIN_SHELF).
+    # R-2F7: every area the shelf holds is read, however thin. One plain line of counts, for every store area.
+    shelf_lines = {}
     for a in areas:
         if a not in off:
-            w = st.thin_shelf(a)
-            if w: off[a] = w
+            line = st.shelf_line(a)
+            if line:
+                shelf_lines[a] = line
+                public_print(line)
     if len(off) == len(areas):   # every named area stays on the old path: the bot runs as today for all of them
         st.allow = None
         public_print(f'::notice title=2-fer outline store::{SWITCH} is on, but no area of this run uses the store (' + '; '.join(f'{a}: {w}' for a, w in sorted(off.items()))
@@ -2026,6 +2075,9 @@ def install(KF, env=None, store=None):
     budget = int(env.get('KPC_FERS_STORE_BUDGET') or 2_000_000)
     ok, rows = fit_check(st, ready, int(env.get('KPC_FERS_STORE_LIMIT_MB') or 3000), budget, env_float(env, 'KPC_FERS_STORE_NEIGHBOURS', 1.5, 10.0), lazy)
     AREA_ROWS.update(rows)
+    for a, line in shelf_lines.items():
+        if a in AREA_ROWS and isinstance(AREA_ROWS[a], dict):
+            AREA_ROWS[a]['shelf'] = line
     if not ok:
         write_rows()
         for a, r in sorted(rows.items()):
@@ -2122,7 +2174,7 @@ def install(KF, env=None, store=None):
         KF.missing_list = missing_list
     KF.download, KF.saved_us, KF.saved_ca, KF.live_load, KF.pc_tag = download, (lambda parks: saved_corridors(KF)), saved_ca, live_load, pc_tag
     if world_on: KF.saved_world = saved_world
-    KF.STORE = st; STORE_ON = True; KF._STORE_INSTALLED = True
+    KF.STORE = st; STORE = st; STORE_ON = True; KF._STORE_INSTALLED = True
     def rows_at_exit():
         try: write_rows()
         except LeakRefused: sys.stdout.flush(); sys.stderr.flush(); os._exit(EXIT_LEAK)   # at exit too: the run fails, nothing written

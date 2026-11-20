@@ -36,6 +36,7 @@ Run: python3 tests/test_partial_boundary_nov15.py"""
 import gzip, hashlib, json, os, pathlib, sys, tempfile
 for k in list(os.environ):
     if 'proxy' in k.lower(): os.environ.pop(k)
+os.environ['KPC_FERS_CARRY_MADE_ON'] = '0'  # R-2F4 is tested in test_fers_owner_answers_nov19.py
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / '.github' / 'scripts')); sys.path.insert(0, str(ROOT / 'tools')); sys.path.insert(0, str(ROOT / 'tests'))
 import kpc_fers_store as S  # noqa: E402

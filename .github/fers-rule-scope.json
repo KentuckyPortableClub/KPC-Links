@@ -192,7 +192,7 @@
       "why": "A PUBLIC SHELF area too thin to be worth reading is left on the OLD path for that run, worked out from the shelf's own coverage block (tools/kpc_store_public.py writes parks_in_store / parks_on_shelf / share), not from a list kept by hand. Why it matters: in a thin area most parks are held, so a store run would CARRY most of its rows unchecked instead of re-testing them, which is worse than not using the store there at all. Measured 17 Nov from every store index: 85.2% of parks pass the licence gate overall, and 23 of 66 areas are under 90% (US-HI 9.5% to US-AK 89.2%). The floor is THIN_SHELF = 0.90, and KPC_FERS_SHELF_MIN overrides it (0 or 'off' = read every shelf area however thin). An area joins in BY ITSELF once enough of its layers have their terms confirmed on the PC store tool, so nothing is edited and no hash moves as coverage improves.",
       "scope": "none",
       "scope_note": "No pair answer changes. A thin area is handled exactly as one on the except list already was (verdict NOT USED, it keeps its previous files), the public 2-fer bot does not read the store at all yet, and the private store is never judged thin (only an index that says shelf: public carries a coverage block).",
-      "approved": "WAITING FOR THE KPC OWNER'S APPROVAL"
+      "approved": "NOT APPROVED: replaced by 2026-11-19-shelf-no-floor (KPC owner, 2026-11-19: \"shelf i trust the new shelf more theb the old system\")"
     },
     {
       "id": "2026-11-17-d10-tripwire-not-sure",
@@ -201,7 +201,7 @@
       "why": "D10 (owner ruling, 17 Nov 2026): a park on tripwire T1 (one of its records is joined to another park too), T2 (a piece of its land is cut off from its pin) or T4 (its pin is off its land and no person is behind the join) is NOT SURE for 2-fers until a person clears it; its outline stays on the map. kpc_fers.hold_tripwire() (passes 3 and 5, beside the no-ownership hold) turns every row of this run's verdict that shows a pair with a listed park into 'not sure: tripwire <ref> <T1+T4> (a person clears it; its outline stays on the map)'. The list is KPC-Data data/waiting/tripwires/not-sure.json, written by the tripwire bot (KPC-Data kpc_tripwires.py; a person's clears in data/waiting/tripwires/cleared.json are left out of it); the 2-fer workflows read it from their kpcdata/ checkout.",
       "scope": "none",
       "scope_note": "No pair answer changes and nothing re-runs: there is no list on KPC-Data yet and no 2-fer run is going (owner, 17 Nov: ground level first), and with no list hold_tripwire() holds nothing and adds no count line. Once the tripwire bot publishes a list, the next ordinary run of an area holds that area's listed parks' rows; no area is rebuilt for it.",
-      "approved": "WAITING FOR THE KPC OWNER'S APPROVAL"
+      "approved": "APPROVED, decided_by KPC owner, 2026-11-19 (\"D10 yes\"; ruling D10, 17 Nov 2026)"
     },
     {
       "id": "2026-11-17-final-redact",
@@ -218,11 +218,11 @@
       "from": "8d707638b366",
       "why": "Owner rulings 17 Nov 11:14 AM on the HQ 2-fer review. Q1: a pair whose every land half is only a line drawn by a law or a plan (wilderness / study area, monument / NCA, FS designated area, herd area, BLM planning area, ACEC, wild and scenic river corridor, PAD-US Designation / Proclamation, a state layer labelled 'designation') is shown in the approximate tier with the note 'May contain private land ... Research the ground before you go.' One half that is owned land = public ground, as before. Q2 (his words: 'it is only about the overlap'): the 29 Oct 'state land inside a federal line' drop stays retired; overlapping official boundaries on public ground are a 2-fer. Q3: never worse is for inputs that went missing (the store keeps those rows); a row this run's rules drop is no longer put back (KPC_FERS_KEEP_DROPPED=1 = the old rule). Nothing is ever written saying 'not a 2-fer'.",
       "scope": {
-      "flags": [
-        "designation"
-      ]
-    },
-    "scope_note": "Q1: the pairs of parks whose land is only designation lines (rule_stamp flag 'designation', from designation_only()) are tested again. Q3 changes what a file write keeps, not a pair answer.",
+        "flags": [
+          "designation"
+        ]
+      },
+      "scope_note": "Q1: the pairs of parks whose land is only designation lines (rule_stamp flag 'designation', from designation_only()) are tested again. Q3 changes what a file write keeps, not a pair answer.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-17 11:14 AM"
     },
     {
@@ -278,6 +278,69 @@
       "scope": "none",
       "scope_note": "No pair answer changes with the settings off: the new NOT SURE answers come only from a failed check, which pass 3 decides again on every run. World 2-fers are off. Turning a setting on needs its own scope entry.",
       "approved": "APPROVED, decided_by KPC owner, 2026-11-17"
+    },
+    {
+      "id": "2026-11-19-r2f1-summary-approx",
+      "when": "2026-11-19",
+      "from": "0637d083bd98",
+      "why": "R-2F1 (KPC owner, 19 Nov 2026, \"Yes, approximate\"). A park whose every joined record is a summary map (compilation, register, water, a Michigan project line, or the Mississippi general-area file) is an approximate 2-fer, with the note already in the code, until the agency's own map is found. A park the key grades approximate was already an approximate 2-fer (decide() builds _apx from the key grade).",
+      "scope": "none",
+      "scope_note": "Pass 3 labels the row. No outline is remeasured.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-r2f3-near-cell",
+      "when": "2026-11-19",
+      "from": "0637d083bd98",
+      "why": "R-2F3 (owner ruling N3, 16 Nov, \"I agree with fine lines for 2fers\", kept 17 Nov). An area row within one grid cell of the 25-yard line (22.86 m) or the 50-yard line (45.72 m) is NOT SURE. The band is CELL, not a typed number of metres. The 8 m lean is gone. Line rows and the 100-yard label are not touched.",
+      "scope": "none",
+      "scope_note": "Pass 3 labels the row. The measuring math is unchanged.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-r2f4-made-on",
+      "when": "2026-11-19",
+      "from": "0637d083bd98",
+      "why": "R-2F4 (KPC owner, 19 Nov 2026: \"Need yo be from the new better system we are building now...old efee data is not trustworthy pre rebuild\" and \"Yes, that's it\"). A row is copied forward only when it carries made_on and both parks still match: the key entry the 2-fer loader reads, and the store index fingerprint when the index has one. A row with no stamp is never copied. The whole-key build id is not used.",
+      "scope": "none",
+      "scope_note": "No outline is remeasured. What a file keeps changes: an unstamped row is left out (never written as \"not a 2-fer\") and listed for a person.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-r2f5-separate-piece",
+      "when": "2026-11-19",
+      "from": "0637d083bd98",
+      "why": "R-2F5 (KPC owner, 17 Nov 2026). A fine-grid spot no row took becomes its own row when it passes the same size test as every row and its box does not touch a listed spot of the same pair. The 100 m distance is removed. A piece with nothing to test against is not made a row.",
+      "scope": "none",
+      "scope_note": "No pair is remeasured. A store run may add a row for a separate piece the finer grid already found.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-r2f6-held-note",
+      "when": "2026-11-19",
+      "from": "0637d083bd98",
+      "why": "R-2F6 (KPC owner, 19 Nov 2026: \"Say we are missing this boundary possible 2fer check for offical missing boundary or something like thay\" and \"Drop until re-checked\"). A stamped row of a withheld park keeps the two parks, the kind, the status, the centre and the size, drops shape and lines, and carries the owner's note. An unstamped row is dropped (R-2F4).",
+      "scope": "none",
+      "scope_note": "No outline is remeasured. The public row of a withheld park no longer carries a coordinate list.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-shelf-no-floor",
+      "when": "2026-11-19",
+      "from": "0637d083bd98",
+      "why": "R-2F7 (KPC owner, 19 Nov 2026: \"D10 yes\" and \"shelf i trust the new shelf more theb the old system\"). The 0.90 floor is removed. A store run reads every area the shelf holds. The report says, for every store area, how many of its parks are on the shelf. An area the store does not hold, or whose index is stale or damaged, is still left out.",
+      "scope": "none",
+      "scope_note": "No pair answer is relabelled. A thin shelf area is read on a store run instead of being left on the old path.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
+    },
+    {
+      "id": "2026-11-19-r2f4-stamp-complete",
+      "when": "2026-11-19",
+      "from": "0637d083bd98",
+      "why": "R-2F4 second round (review of hand-off 06, 19 Nov). Every row pass 3 settles carries made_on: a water-only row, a not-sure row, the owner's known answer, a row dropped in pass 3, and a row whose outline could not be read. The key fingerprint includes parts and approx, and a Kentucky tract's acres and how. A run without the store stamps the outline hash pair_fp reads for that park, marked outline, so it is never compared with a store fingerprint. When this run did not read the park, the check is the key entry only and the report counts those rows. An area file this code writes carries written_by_rule, and the old-file list reads that mark for this run's region only.",
+      "scope": "none",
+      "scope_note": "No outline is remeasured. A row pass 3 settles is stamped. An unstamped row is still left out. merge() is not changed.",
+      "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
     }
   ]
 }

@@ -1,0 +1,40 @@
+{
+  "about": "The 2-fer rule switches (hand-off 06, KPC owner, 19 Nov 2026). One value everywhere. An environment variable of the same name wins for a test. A missing or broken file stops the bot.",
+  "switches": {
+    "KPC_FERS_SUMMARY_APPROX": {
+      "value": "1",
+      "rule": "R-2F1",
+      "date": "2026-11-19",
+      "ruled_by": "KPC owner",
+      "words": "Yes, approximate"
+    },
+    "KPC_FERS_NEAR_LINE": {
+      "value": "1",
+      "rule": "R-2F3",
+      "date": "2026-11-16",
+      "ruled_by": "KPC owner",
+      "words": "I agree with fine lines for 2fers"
+    },
+    "KPC_FERS_CARRY_MADE_ON": {
+      "value": "1",
+      "rule": "R-2F4",
+      "date": "2026-11-19",
+      "ruled_by": "KPC owner",
+      "words": "Need yo be from the new better system we are building now...old efee data is not trustworthy pre rebuild....after rebuild i trust this system more sp yeah maybe? Yes, that's it"
+    },
+    "KPC_FERS_FINE_ONLY": {
+      "value": "count",
+      "rule": "R-2F5",
+      "date": "2026-11-17",
+      "ruled_by": "KPC owner",
+      "words": "A separate overlap piece that passes the 25-yard test is its own spot; a piece joined to a listed spot is that spot."
+    },
+    "KPC_FERS_STRIP_HELD": {
+      "value": "1",
+      "rule": "R-2F6",
+      "date": "2026-11-19",
+      "ruled_by": "KPC owner",
+      "words": "Say we are missing this boundary possible 2fer check for offical missing boundary or something like thay"
+    }
+  }
+}

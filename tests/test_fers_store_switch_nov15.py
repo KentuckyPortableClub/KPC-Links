@@ -22,6 +22,7 @@ import gzip, json, os, pathlib, re, shutil, subprocess, sys, tempfile
 
 for k in list(os.environ):
     if 'proxy' in k.lower(): os.environ.pop(k)
+os.environ['KPC_FERS_CARRY_MADE_ON'] = '0'  # the in-process keep-the-old-row checks; R-2F4 is test_fers_owner_answers_nov19.py
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SCR = ROOT / '.github' / 'scripts'
 FIX = ROOT / 'tests' / 'fixtures' / 'fers-store-v4'
@@ -208,7 +209,9 @@ def report_wo_hash(b):
         # Handoff 9 bug 5 (2026-11-17): the public report keeps the COUNT of problem lines (main wrote the first 40 lines); the full list
         # goes to the private folder, so main's list is compared by its length and the new '...problem lines' note is left out
         if isinstance(o, dict): return {k: (len(x) if k == 'problems' and isinstance(x, list) else _strip(x)) for k, x in o.items()
-                                        if k not in ('shown, owner from a name', 'shown, owner from records only', '...problem lines')}
+                                        if k not in ('shown, owner from a name', 'shown, owner from records only', '...problem lines',
+                                                     'old rows not copied (no stamp, or a park changed)',
+                                                     'areas whose public file is still from before this rule')}
         if isinstance(o, list): return [_strip(x) for x in o]
         return o
     return json.dumps(_strip(d), sort_keys=True)
@@ -249,10 +252,20 @@ else:
         def differ(a, b):
             # KPC owner, 2026-11-16 (item 1): this code also writes its run receipt (receipt-<tag>.json, new); main has none
             a = {k: v for k, v in a.items() if not k.startswith('receipt-')}; b = {k: v for k, v in b.items() if not k.startswith('receipt-')}
+            def wo_mark(raw):
+                # R-2F4 second round: an area file this code writes carries written_by_rule. The spots are compared without that mark.
+                try:
+                    d = json.loads(raw)
+                except (ValueError, TypeError):
+                    return raw
+                if isinstance(d, dict):
+                    d.pop('written_by_rule', None)
+                return json.dumps(d, sort_keys=True)
             out = sorted(set(a) ^ set(b))
             for k in sorted(set(a) & set(b)):
                 if a[k] == b[k]: continue
                 if k.startswith('report') and report_wo_hash(a[k]) == report_wo_hash(b[k]): continue
+                if k.endswith('.json') and wo_mark(a[k]) == wo_mark(b[k]): continue
                 out.append(k)
             return out
         spots = [x for x in json.loads(fm.get('US-RI.json', b'{}')).get('spots') or []]
@@ -260,8 +273,12 @@ else:
         check([rc for _, rc, _ in oc] == [0, 0, 0] and differ(fm, fc) == [],
               f'switch off, this code with main\'s scope file: every file byte for byte main\'s (the report\'s own fers_rules hash aside) ({differ(fm, fc)})')
         dd = differ(fm, fb)
-        check(dd == [] and fm['US-RI.json'] == fb['US-RI.json'],
-              f'switch off, as merged: every file byte for byte main\'s, reuse fingerprints included (the declared scope is none: no pair is re-stamped) ({dd})')
+        def _spots(raw):
+            d = json.loads(raw)
+            d.pop('written_by_rule', None)
+            return d
+        check(dd == [] and _spots(fm['US-RI.json']) == _spots(fb['US-RI.json']),
+              f'switch off, as merged: spots and reuse match main (the area file also carries written_by_rule; scope none, no pair re-stamped) ({dd})')
         # the next ordinary run after this change: main's saved pair answers are reused, none is tested again
         ro = run(tm, SCR, {}, WRAP_OFF, passes=(1,))
         rp = json.loads((tm / 'data/fers/report-testri.json').read_text()).get('pass1') or {}
@@ -276,6 +293,7 @@ else:
     # ------------------------------------------------------------ 2 + 3 switch ON: zero sockets, keep the old row
     tn = TMP / 'on'; tn.mkdir(); layout(tn, {'US-RI': OLD_RI})
     env_on = {'KPC_FERS_FROM_STORE': 'on', 'KPC_FERS_STORE_DIR': str(tn / 'store-copy' / 'store'), 'KPC_FERS_STORE_MAX_DAYS': '100000', 'KPC_FERS_STORE_KIND': 'public',
+              'KPC_FERS_CARRY_MADE_ON': '0',  # this file still proves same-spot and the leak guard; R-2F4 is the owner-answers test
               'TRIES_OUT': str(TMP / 'tries-on.json')}
     on = run(tn, SCR, env_on, WRAP_ON)
     tries = json.loads((TMP / 'tries-on.json').read_text())
