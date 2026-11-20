@@ -547,6 +547,71 @@
    "why": "KPC_SAVED_ANSWERS_SAY (outside review finding F5; reviewer's first slice, step S6b; the owner's word of 19 Nov 2026): the US key's saved joins failed in silence. A saved join whose record is not in the read and whose fingerprint finds nothing joined nothing and said nothing; a fingerprint that fit two or more records took the first; one record under both 'join' and 'no' of a park (Arkansas US-1080, sgarb44) was not reported. Behind the switch (OFF): each is said in the build's notice (park, saved id, fingerprint or the fitting ids) and counted in the state's counts (saved_join_not_found, saved_join_two_fits, saved_join_join_and_no), never as a check row (kpc_join_check.py takes a joined id off a signed park when the previous key had it in 'c'); a fingerprint that fits two or more records still joins the first one, as before the switch, and the park is named for a grader (kpc_key_rules.refind_saved; Fable + owner, 20 Nov 2026: no join is taken away and nothing new waits on a person); which of join and no wins is not changed (kpc_key_rules.join_and_no); bare-name joins are not changed. Switch OFF = no result changes. Predicted from the saved keys (not a build): 280 saved join ids in no row of their park whose fingerprint fits no row either (276 parks, 25 of them pins), 15 parks with one id under join and no, at least 64 saved fingerprints that fit two or more rows of their park while the saved id is in no row (Wisconsin US-4352 and US-9855; a lower bound: the read is not in the key).",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (4:31 AM, to Fable: \"Just do what you think\"); restacked onto F10 without the holder table (#296, parked) by Fable"
+  },
+  {
+   "id": "2026-11-20-d5-lease-by-name-on",
+   "when": "2026-11-20",
+   "from": "7e4883bfbb45",
+   "why": "D5 (KPC owner, 2026-11-17) switched ON in all 50 states for the build (KPC_NO_LEASE_BY_NAME): a record whose name says leased / lease / agreement / cooperative area is never joined by name alone; it goes to check and a person may say yes for one park. Who changes, from the saved keys of 20 Nov (the outside agent's list, recounted by Opus with the builder's own LEASE_RX and name_only): 18 parks in 4 states (NC 14, MI 2, CT 1, OH 1); 17 keep other land, 1 becomes a pin.",
+   "scope": {
+    "states": [
+     "US-CT",
+     "US-MI",
+     "US-NC",
+     "US-OH"
+    ],
+    "parks": [
+     "US-1487",
+     "US-1527",
+     "US-2722",
+     "US-6877",
+     "US-6888",
+     "US-6892",
+     "US-6903",
+     "US-6909",
+     "US-6913",
+     "US-6920",
+     "US-6925",
+     "US-6934",
+     "US-6935",
+     "US-6940",
+     "US-6946",
+     "US-6955",
+     "US-7520",
+     "US-8106"
+    ],
+    "saved_ids": false
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (9:00 AM, REPAIRS R2: \"Opus now\": the rules already ruled and switched off go ON for the build, with their lists); waiting for Fable's review (key-quality.md section 13)"
+  },
+  {
+   "id": "2026-11-20-piece-name-on",
+   "when": "2026-11-20",
+   "from": "7e4883bfbb45",
+   "why": "The piece rule (rule 18, Nov 2; KPC_PIECE_NAME) switched ON in all 50 states for the build: a POTA park that names a piece (unit / tract / parcel / zone) joins only a record carrying that piece's own word; the whole area or a sibling unit goes to check. Who changes, from the saved keys and copies of 20 Nov (the outside agent's list, recounted by Opus with kpc_key_rules.piece_ok as piece_why calls it): 9 parks in 6 states (MN 3, GA 2, NM 1, OK 1, TX 1, WI 1); 6 keep other land, 3 become pins.",
+   "scope": {
+    "states": [
+     "US-GA",
+     "US-MN",
+     "US-NM",
+     "US-OK",
+     "US-TX",
+     "US-WI"
+    ],
+    "parks": [
+     "US-11866",
+     "US-12685",
+     "US-13203",
+     "US-13221",
+     "US-4343",
+     "US-6367",
+     "US-6571",
+     "US-7906",
+     "US-9797"
+    ],
+    "saved_ids": false
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (9:00 AM, REPAIRS R2: \"Opus now\": the rules already ruled and switched off go ON for the build, with their lists); waiting for Fable's review (key-quality.md section 13)"
   }
  ]
 }
