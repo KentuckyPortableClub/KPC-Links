@@ -7,7 +7,7 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "42355a0889f5f5990d2287abe3bc3dd1f9df4d03cf80ef1d3c070c4099750d4f",
+  "overrides-parks-01.json": "d2412803fd0a3ab60be3f5820772e82b92354c8dfe59612b57e91911e09ac61c",
   "overrides-parks-02.json": "15095c24bb4009a50cc11220e39a7732b95948229ccf57c48d5265be5c389189"
  },
  "parks": {
@@ -800,29 +800,6 @@
    ],
    "when": "2026-11-02",
    "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Bull Shoals Recreation Area': the Corps lake around the park, not the state park · 2026-11-02 12:49: layers row YES 'Bull Shoals-White River State Park' (chat 11; applied by kpc_key_answers)"
-  },
-  "US-1080": {
-   "fp": {
-    "sgarb44": [
-     "DeGray Lake Resort State Park",
-     819
-    ]
-   },
-   "join": [
-    "sgarb44"
-   ],
-   "no": [
-    "sgarb44"
-   ],
-   "nofp": {
-    "sgarb44": [
-     "DeGray Lake Resort State Park",
-     12342.6
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'DeGray Lake Resort State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb44 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it",
-   "decided_by": "KPC owner, Nov 17 2026"
   },
   "US-1090": {
    "fp": {

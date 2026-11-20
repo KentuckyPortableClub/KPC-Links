@@ -2249,6 +2249,26 @@
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Daisy State Park' (chat 11; applied by kpc_key_answers)"
   },
+  "US-1080": {
+   "fp": {
+    "sgarb44": [
+     "DeGray Lake Resort State Park",
+     819
+    ]
+   },
+   "join": [
+    "sgarb44"
+   ],
+   "when": "2026-11-20",
+   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'DeGray Lake Resort State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb44 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli) · 2026-11-17: the Oct 22 'none' is cleared (HQ, owner 4:24 PM): the park has its own land again; the new rules and the scorecard check it · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the NO on sgarb44 is lifted, the join stands (before: decided_by KPC owner, Nov 17 2026)",
+   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://www.arkansasstateparks.com/parks/degray-lake-resort-state-park ; https://www.mvk.usace.army.mil/Missions/Recreation/DeGray-Lake/",
+    "saw": "Arkansas State Parks: the park 'is located on the shores of beautiful DeGray Lake'. Army Corps, Vicksburg District: DeGray Lake spans '13,800 acres', 'over 13,400 acres of water surface alone'. The NO's saved fingerprint (12,342.6 ac) is lake-sized; record sgarb44 in the 11 Nov read is 'DeGray Lake Resort State Park', 828 ac, the size the join saved (819). The NO stood for other land (the drawn outline with the lake), so it comes off the park's own record; the lake stays with the D4 check (who owns the water). The page gives no park acreage: the record is named as the park, with one more witness wanted (Fable's read).",
+    "date": "2026-11-20"
+   }
+  },
   "US-1082": {
    "fp": {
     "sgarb29": [
