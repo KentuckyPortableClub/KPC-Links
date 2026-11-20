@@ -11,8 +11,11 @@ The counts:
   state baseline   layers.json caches[US-XX].expected_count  vs  the records in the saved copy (cache/us/US-XX.json.gz)
   layer baseline   layers.json layers['US-XX.<id>'].expected_count  vs  the copy's rows of that layer (OBJECTID '<id><number>')
   layer total      layers.json layers['<id>'].expected_count (the layer's own count, returnCountOnly), when there is one
-Key layers of a state = its data/state-gis.json entries (id 'sg' + state + letter, the way kpc_us_key.py names them) and every
-layers.json 'US-XX.<id>' entry. Not a rule file: it moves no rules hash, and it never edits data/state-gis.json.
+Key layers of a state = its data/state-gis.json entries and every layers.json 'US-XX.<id>' entry. An entry's id: with the
+key's id table (data/us-key/layers.json, gate --us-layers) the id the builder gave that ADDRESS (a layer several states list, or a
+national layer, keeps one id: Opus 20 Nov, 34 rows of round 3 were counted under the wrong id); an address not in the table gets the
+next free id, as kpc_us_key.py's _pre does; entries the builder never reads (no name field, no layer number) are left out, as
+kpc_master_fill.new_layer_states does. Without the table: 'sg' + state + letter by position (the old reading). Not a rule file: it moves no rules hash, and it never edits data/state-gis.json.
 """
 import collections, json, os, pathlib, re
 
@@ -41,6 +44,42 @@ def layer_rows(blob):
         if m:
             c[m.group(1)] += 1
     return c
+
+
+def _u(u):
+    """A layer address the way kpc_master_fill._u writes it (no '/query', no trailing slash, no 'svc:')."""
+    return re.sub(r'/query/?$', '', str(u or '').replace('svc:', '', 1).split('|')[0].strip()).rstrip('/')
+
+
+def layer_ids(state_gis, us_layers):
+    """{st: [(entry, id)]} for the entries the US key reads, with the builder's ids (kpc_us_key.py, the state-GIS block: an address
+    keeps the id data/us-key/layers.json holds for it, else the next free 'sg' + state + letters; states in sorted order)."""
+    byurl = {_u(v[0]): k for k, v in (us_layers or {}).items() if isinstance(v, list) and v}
+    taken = set(us_layers or {})
+    out = {}
+    for st, ents in sorted(((state_gis or {}).get('states') or {}).items()):
+        for e in ents or []:
+            u = _u((e or {}).get('url')) if isinstance(e, dict) else ''
+            if not u or not e.get('nm') or not re.search(r'/\d+$', u):
+                continue
+            lid = byurl.get(u)
+            if lid is None:
+                n = 0
+                while True:
+                    lid = f'sg{st.lower()}' + (chr(97 + n) if n < 26 else chr(97 + n // 26 - 1) + chr(97 + n % 26))
+                    if lid not in taken: break
+                    n += 1
+                taken.add(lid); byurl[u] = lid
+            out.setdefault(st, []).append((e, lid))
+    return out
+
+
+def _entries(st, state_gis, ids):
+    """[(entry, id)] of one state: the builder's ids when the id table is given, else by position."""
+    if ids is not None:
+        return list(layer_ids(state_gis, ids).get(st) or [])
+    ents = ((state_gis or {}).get('states') or {}).get(st) or []
+    return list(zip(ents, sg_ids(st, len(ents))))
 
 
 def stale_baselines(stem, blob, layers_doc):
@@ -91,20 +130,19 @@ def source_gaps(stem, layers_doc):
             and L['source_count'] != L['expected_count']]
 
 
-def key_layers(stem, state_gis, layers_doc):
+def key_layers(stem, state_gis, layers_doc, us_layers=None):
     st = stem.split('-', 1)[1]
-    ids = sg_ids(st, len(((state_gis or {}).get('states') or {}).get(st) or []))
+    ids = [lid for _, lid in _entries(st, state_gis, us_layers)]
     ids += [k.split('.', 1)[1] for k in (layers_doc.get('layers') or {}) if k.startswith(stem + '.')]
     return list(dict.fromkeys(ids))
 
 
-def _waiting(stem, state_gis, layers_doc, needs_rows):
+def _waiting(stem, state_gis, layers_doc, needs_rows, us_layers=None):
     """{layer id: [needs-download rows]} of this state: rows with its area, and rows with no area matched by layer id or address
     (Fable's review of #300, 4: 405 of the 406 open person rows on 19 Nov carry no area)."""
-    mine = key_layers(stem, state_gis, layers_doc)
+    mine = key_layers(stem, state_gis, layers_doc, us_layers)
     st = stem.split('-', 1)[1]
-    ents = ((state_gis or {}).get('states') or {}).get(st) or []
-    by_url = {str(e.get('url') or '').strip(): lid for lid, e in zip(sg_ids(st, len(ents)), ents) if isinstance(e, dict) and e.get('url')}
+    by_url = {str(e.get('url') or '').strip(): lid for e, lid in _entries(st, state_gis, us_layers) if isinstance(e, dict) and e.get('url')}
     out = {}
     for r in needs_rows or []:
         lid = str(r.get('layer') or r.get('src') or '')
@@ -121,15 +159,15 @@ def _waiting(stem, state_gis, layers_doc, needs_rows):
     return out
 
 
-def ready(stem, blob, state_gis, layers_doc, needs_rows):
+def ready(stem, blob, state_gis, layers_doc, needs_rows, us_layers=None):
     """{layer id: [kinds]} for one state; kinds = missing, short, bot, hand, hand-held. blob None = no saved copy.
     hand = a person's download is open and the copy holds NONE of the layer (a real download);
     hand-held = a person's download is open but the copy already holds the layer (the row was never closed; Fable, 19 Nov)."""
     L = layers_doc.get('layers') or {}
     rows = layer_rows(blob) if blob is not None else collections.Counter()
-    mine = key_layers(stem, state_gis, layers_doc)
+    mine = key_layers(stem, state_gis, layers_doc, us_layers)
     wait = {}
-    for lid, rs in _waiting(stem, state_gis, layers_doc, needs_rows).items():
+    for lid, rs in _waiting(stem, state_gis, layers_doc, needs_rows, us_layers).items():
         for r in rs:
             if r.get('who') == 'bot' and r.get('status') in BOT_WAITING:
                 wait.setdefault(lid, set()).add('bot')
@@ -156,12 +194,12 @@ def ready(stem, blob, state_gis, layers_doc, needs_rows):
     return out
 
 
-def hand_downloads(stem, blob, state_gis, layers_doc, needs_rows):
+def hand_downloads(stem, blob, state_gis, layers_doc, needs_rows, us_layers=None):
     """The REAL hand downloads of one state (Fable, 19 Nov): open person rows whose layer the saved copy holds none of, with the
     links a person needs. [{area, layer, copy_rows, url, page, why, id}]"""
     rows = layer_rows(blob) if blob is not None else collections.Counter()
     out = []
-    for lid, rs in sorted(_waiting(stem, state_gis, layers_doc, needs_rows).items()):
+    for lid, rs in sorted(_waiting(stem, state_gis, layers_doc, needs_rows, us_layers).items()):
         if rows.get(lid, 0) > 0:
             continue
         for r in rs:
