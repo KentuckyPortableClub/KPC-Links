@@ -50,11 +50,11 @@ Usage has to last the week. No second agent pass on a file another agent already
 
 All five are open as drafts, switched off, with green automatic checks. None is read by the reviewer yet. Lists: `KPC-draft-lists-19-Nov.zip`.
 
-- [ ] **K1. #295, hold a state on an error.** US rules `c64b8ace0411 -> a34f224459cc`. One of the four places is changed; the pull request says why the other three are not.
-- [ ] **K2. #296, the holder table.** `-> ac55685ff9c0`. **As agreed it moves no row:** the winner test needs full names and the records use short ones ("Cheatham WMA"). Waits for F5.
-- [ ] **K3. #297, saved answers say what happened.** `-> 530776fd7b7e`. Uses a build notice and counts, not check rows.
-- [ ] **K4. #298, acres measured from the outline.** No rule file.
-- [ ] **K5. #299, a stricter "verified".** Sits on #298. Predicted: 8,125 verified parks become 428 until a size table exists.
+- [ ] **K1. #295, hold a state on an error.** US rules `c64b8ace0411 -> a34f224459cc`. One of the four places is changed; the pull request says why the other three are not. **READ BY FABLE 20 Nov: the code PASSES (one small switch, OFF; ON = an error in the one-record-two-parks pass fails the state and its saved copy is kept). NOT STAMPED: its changelog line says "awaiting the KPC owner's decision", so the preflight refuses it until the owner says yes.**
+- [ ] **K2. #296, the holder table.** `-> ac55685ff9c0`. **As agreed it moves no row:** the winner test needs full names and the records use short ones ("Cheatham WMA"). Waits for F5. **READ BY FABLE 20 Nov: NOT YET, park it. By its own count it moves 0 parks (12 disagree, 70 no winner), it is one more name test behind one more OFF switch, and its "person's row" test is a loose word match (review|chat|hand|answer: 12,999 of 132,338 rows on today's keys, every saved answer). It comes back only if F5 is answered. #297 sits on it and must be restacked onto #295 without it.**
+- [ ] **K3. #297, saved answers say what happened.** `-> 530776fd7b7e`. Uses a build notice and counts, not check rows. **READ BY FABLE 20 Nov: the code PASSES (saved joins that fail now say so: not found / two fits / join and no; notice and counts only). Two things before it goes ON: the "two fits" case stops joining at least 64 saved fingerprints (a lower bound: the exact park list is owed before the one build), and it needs the owner's yes like #295. Restack onto #295 without #296: Fable does it on the owner's yes.**
+- [x] **K4. #298, acres measured from the outline.** No rule file. **PASSES (Fable, 20 Nov), head `203cff511`. No rule file. Fable swapped its copy of the measuring code for `kpc_pin_edge.acres_geojson`, the routine the repo already had (they agreed within 1% on 11,320 of 11,324 real outlines); its 22 + 3 checks pass, 3 of them on real Maryland outlines. It does not add a size check: it makes the fact check size a park from its drawn outline instead of the key's `ac`. Ready to merge.**
+- [x] **K5. #299, a stricter "verified".** Sits on #298. Predicted: 8,125 verified parks become 428 until a size table exists. **PASSES (Fable, 20 Nov), head `59ab8a67b`. No rule file, grading tool only, off unless asked (`--strict-verified`): "verified" needs the size witness, the one witness not read from the joined record. 51 checks pass (invented parks). Not a copy of the builder's size checks. Ready to merge after #298.**
 
 ## Graders and fresh agent sessions
 
@@ -65,7 +65,7 @@ All five are open as drafts, switched off, with green automatic checks. None is 
 ## Fable (the reviewer)
 
 - [x] **F1. Read job A's third round.** **DONE 20 Nov: all three pass and are stamped (A1 to A3). The agent's gate result was read, not rerun.**
-- [ ] **F2. Read the five key drafts, in this order:** #295 and #298, then #299, #297, #296. One sitting, with the lists.
+- [x] **F2. Read the five key drafts, in this order:** #295 and #298, then #299, #297, #296. One sitting, with the lists. **DONE 20 Nov: #298 and #299 pass; #295 and #297 pass on the code and wait for the owner's yes; #296 not yet (K1 to K5). Tests run by Fable: only the drafts' own new tests, once.**
 - [ ] **F3. The public-against-working table** (item 43 step e). Start from `S4-acres-released-vs-working.csv`: 219 parks fall to 0.8 or less, 749 rise to 1.5 times or more, none judged. The 25 busiest of each state first.
 - [ ] **F4. After the sample:** rule sheets for names that collide, the size test, and switching the piece rule and D5 on.
 - [ ] **F5. After the sample: may the winner test in #296 read short forms** (WMA, SP, SF, NWR, SFL)? Without it #296 does nothing.
