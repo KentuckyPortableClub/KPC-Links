@@ -5810,16 +5810,6 @@
    "why": "2026-10-29 23:15: gis-hunter row NO '3 Patches Picnic Area' (chat 11 (Oct 29-30); applied by kpc_key_answers)"
   },
   "US-10914": {
-   "approx": true,
-   "fp": {
-    "195379": [
-     "Kaena Point State Park",
-     1138
-    ]
-   },
-   "join": [
-    "195379"
-   ],
    "no": [
     "195379"
    ],
@@ -5829,8 +5819,15 @@
      1137.5
     ]
    },
-   "when": "2026-11-02",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 195379 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
+   "when": "2026-11-20",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 195379 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 195379 is dropped, the NO stands",
+   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://dlnr.hawaii.gov/dsp/hiking/oahu/kaena-point-trail/",
+    "saw": "Hawaii Division of State Parks: the Ka'ena Point Trail is a 2.5-mile trail ('Park Name: Ka'ena Point State Park') that follows an old railroad bed to the Natural Area Reserve. PAD-US 195379 is the 1,138-acre state park the trail runs through, not the trail. The later NO (chat 11, 2 Nov) stands; the approximate join is dropped.",
+    "date": "2026-11-20"
+   }
   },
   "US-10918": {
    "approx": true,
