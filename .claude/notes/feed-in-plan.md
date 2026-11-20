@@ -21,4 +21,11 @@ Opus, 20 Nov 2026, from Brandon's 12:16 PM word ("write it down, but not build i
 - **FI-1:** reported acres or GIS acres when a list gives both (ME, MO, RI, SC, VT, VA, NH)?
 - **FI-2:** how far apart the official size and the drawn outline can be before a park is held.
 - **FI-3:** does an approved size go through chat 11 row by row, or does the rule sheet approve whole lists from an official agency?
-- **FI-4:** which page-reader facts count outside Kentucky (sizes only?).
+- **FI-4: RULED (relayed 20 Nov ~1:17 PM): sizes only for now.**
+
+## Later, after the size witness: the agency address point (reviewer 20 Nov 1:17 PM; NOT ruled, NOT built)
+A check, never the matcher: one more pin per park that comes from the agency and not from the name.
+- **Catches:** a park joined to same-name land somewhere else; a bad POTA pin. **Misses:** wrong land next door or all around the park (Cheatham, Nevada US-2635: the address point sits inside the wrong outline too). Size and the id check catch those.
+- **Traps:** the address is often the office in town (the no-office rule applies); many forests, wildlife areas and trails have no street address; rural addresses can convert a mile or more off.
+- **How:** the address from the agency page the page reader already visits (no new fetching); the agency's own coordinates when it gives them (no conversion); otherwise a government converter (the Census Bureau's free one for US addresses; some commercial ones forbid saving results). Used like the id: flag a park when the point is far outside its outline, never pick land with it.
+- **Needs first:** Brandon's word (it is a new page-reader fact, and FI-4 says sizes only), then its own rule sheet (how far is "far", what an office address does).
