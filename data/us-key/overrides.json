@@ -6450,16 +6450,6 @@
    "why": "Oct 18 review: same place, official name written differently · Nov 2 map audit: chat 11 NO on 190247 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t)"
   },
   "US-12126": {
-   "approx": true,
-   "fp": {
-    "190265": [
-     "Stormwater Treatment Areas",
-     47574
-    ]
-   },
-   "join": [
-    "190265"
-   ],
    "no": [
     "190265"
    ],
@@ -6469,8 +6459,15 @@
      47575.9
     ]
    },
-   "when": "2026-11-02",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 190265 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on)"
+   "when": "2026-11-20",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 190265 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 190265 is dropped, the NO stands",
+   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "evidence": {
+    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "source": "https://app.myfwc.com/hgm/hgmsearch/wmad?brochureTitle=Stormwater+Treatment+Area+5%2F6 ; https://www.sfwmd.gov/sites/default/files/documents/trailguide_sta5_6.pdf",
+    "saw": "FWC and the South Florida Water Management District: 'Stormwater Treatment Area 5/6 (STA 5/6) is a 16,508 acre constructed wetland'. PAD-US 190265 'Stormwater Treatment Areas' is 47,574 acres, every treatment area together, not STA 5/6. The later NO (chat 11, 2 Nov) stands; the approximate join is dropped.",
+    "date": "2026-11-20"
+   }
   },
   "US-12133": {
    "join": [
