@@ -571,6 +571,40 @@
    "why": "KPC_NO_FOLLOWS_FP (job 10 of Fable's 20 Nov jobs list; outside review R4 / finding F7, Arkansas US-1080): a person's saved NO named a record id, and after a layer refresh renumbered that record the NO no longer applied and the land could join again. Behind the new switch (OFF, on for no area): a 'no' id that is gone from the read follows its saved fingerprint ('nofp': name + acres within 10%, the SAME layer, near the pin), as a saved join already does (the Oct 27 re-find); every fit is ruled out, a fit the same park joins by id is left alone; all of it is said in the build's notice. Merged OFF = no result changes, nothing is rebuilt. On the saved reads of 11-12 Nov (no pin test, so an upper bound): 409 saved NO ids carry a fingerprint, 41 of them are gone from the read; ON, 6 follow their record (16 new ids on 4 parks, 1 of them joined in today's key) and 35 are not found again.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"
+  },
+  {
+   "id": "2026-11-20-d5-lease-by-name-on",
+   "when": "2026-11-20",
+   "from": "a257a3276829",
+   "why": "D5 (KPC owner, 2026-11-17) switched ON in all 50 US key areas (49 states and DC; Kentucky has its own key) (KPC_NO_LEASE_BY_NAME): a record whose name says leased / lease / agreement / cooperative area is never joined by name alone; it goes to check and a person may say yes for one park. Predicted from the saved keys of 20 Nov with the builder's own LEASE_RX and name_only (not a build): 18 parks in 4 states (NC 14, MI 2, CT 1, OH 1); 17 keep other land, 1 becomes a pin. States only in this entry; no park is named.",
+   "scope": {
+    "states": [
+     "US-CT",
+     "US-MI",
+     "US-NC",
+     "US-OH"
+    ],
+    "saved_ids": false
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"
+  },
+  {
+   "id": "2026-11-20-piece-name-on",
+   "when": "2026-11-20",
+   "from": "a257a3276829",
+   "why": "The piece rule (rule 18, Nov 2; KPC_PIECE_NAME) switched ON in all 50 US key areas (49 states and DC; Kentucky has its own key): a POTA park that names a piece (unit / tract / parcel / zone) joins only a record carrying that piece's own word; the whole area or a sibling unit goes to check. Predicted from the saved keys and copies of 20 Nov with kpc_key_rules.piece_ok (not a build): 9 parks in 6 states (MN 3, GA 2, NM 1, OK 1, TX 1, WI 1); 6 keep other land, 3 become pins. States only in this entry; no park is named.",
+   "scope": {
+    "states": [
+     "US-GA",
+     "US-MN",
+     "US-NM",
+     "US-OK",
+     "US-TX",
+     "US-WI"
+    ],
+    "saved_ids": false
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"
   }
  ]
 }
