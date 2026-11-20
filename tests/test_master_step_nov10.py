@@ -153,7 +153,9 @@ on = d.get('on') or d.get(True)
 check('workflow: refresh input (blank or all), by hand only', 'refresh' in on['workflow_dispatch']['inputs'] and "inputs.refresh == 'all' && 'all'" in wf)
 # 20 Nov 2026 (Fable): the owner's stop took both daily US starts off on 19 Nov (ad948ef); this line then crashed (KeyError) and no
 # check below it ran. No timer is the state until the owner turns one back on; at most the one nightly start returns.
-check('workflow: no new cron (none since the owner\'s stop of 19 Nov; at most the one nightly start may come back)', len(on.get('schedule') or []) <= 1)
+# Opus's read of efe36340 (20 Nov): while the owner's stop holds this must be NONE, so a timer added without his word fails here.
+# Change this line only when he turns a timer back on.
+check('workflow: no cron at all while the owner\'s stop of 19 Nov holds', not on.get('schedule'))
 check('workflow: the join collects the parts and saves data/outlines; the needs rows go up as one release asset', 'kpc_master_cli.py collect parts/us-key-part-*/outlines' in wf and 'data/us-key data/status data/outlines' in wf and 'needs-download.json -R "$GITHUB_REPOSITORY" --clobber' in wf)
 
 # 8. PC helper: stdlib only, never fetches anything but GitHub, never opens a never row, fails closed on a short download
