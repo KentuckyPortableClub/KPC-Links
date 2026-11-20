@@ -7,7 +7,7 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "d2412803fd0a3ab60be3f5820772e82b92354c8dfe59612b57e91911e09ac61c",
+  "overrides-parks-01.json": "a3aa134edb1241df438a604e8d08fb06b65964a291ae80322dddc0fa97dfb32a",
   "overrides-parks-02.json": "15095c24bb4009a50cc11220e39a7732b95948229ccf57c48d5265be5c389189"
  },
  "parks": {
@@ -845,28 +845,6 @@
    },
    "when": "2026-11-02",
    "why": "Oct 29 (chat 2 review of joins 10x+ bigger than the real match): not 'Dardanelle Recreation Area': the Corps lake around the park, not the state park · 2026-11-02 12:49: layers row YES 'Lake Dardanelle State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 166846 (NO (chat 11, Nov 2, pattern WAY OFF): PIN until fixed. The drawn outli)"
-  },
-  "US-1093": {
-   "fp": {
-    "sgarb27": [
-     "Lake Frierson State Park",
-     119
-    ]
-   },
-   "join": [
-    "sgarb27"
-   ],
-   "no": [
-    "sgarb27"
-   ],
-   "nofp": {
-    "sgarb27": [
-     "Lake Frierson State Park",
-     455.4
-    ]
-   },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Frierson State Park' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on sgarb27 (NO (chat 11, Nov 2, pattern OFF bigger): PIN until fixed. The outline )"
   },
   "US-1094": {
    "fp": {
