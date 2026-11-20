@@ -7,7 +7,7 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "8562833eb89f51dd1197ce3e8e8495a1ab46003c280694e8822026735891ec21",
+  "overrides-parks-01.json": "6adfac2a1ddbf249ed3723818bbc84bea970b5d0fdd0424bf548d2699dfaad52",
   "overrides-parks-02.json": "15095c24bb4009a50cc11220e39a7732b95948229ccf57c48d5265be5c389189"
  },
  "parks": {
@@ -586,11 +586,11 @@
    ],
    "when": "2026-11-20",
    "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Oct 29 6:05 AM: the 22,147-ac 'Bluestone Recreation Area' record is not the Bluestone National Scenic River (chat 8); the river's own record + line stay · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 2441 is dropped, the NO stands",
-   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "decided_by": "evidence batch 05, second pass (20 Nov 2026)",
    "evidence": {
-    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "who": "the owner's research agent, second pass (20 Nov 2026), from the agency's own page (club rule 15); first pass 20 Nov 2026 stood",
     "source": "https://www.nps.gov/blue/index.htm",
-    "saw": "National Park Service: 'The park protects a 10.5-mile section of the Bluestone River in southern West Virginia.' PAD-US 2441 is the Army Corps of Engineers' 22,147-acre Bluestone recreation record (the lake project), not the river unit; the rules join the river's own records (the NPS unit and the wild and scenic river). The later NO (29 Oct, chat 8) stands; the approximate join is dropped.",
+    "saw": "National Park Service (second pass, 20 Nov 2026): 'The park protects a 10.5-mile section of the Bluestone River in southern West Virginia.' PAD-US 2441 is the Army Corps of Engineers' 22,147-acre recreation record (the lake project), not the river unit. The later NO stands.",
     "date": "2026-11-20"
    }
   },
@@ -5729,11 +5729,11 @@
    },
    "when": "2026-11-20",
    "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 195379 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 195379 is dropped, the NO stands",
-   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "decided_by": "evidence batch 05, second pass (20 Nov 2026)",
    "evidence": {
-    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "who": "the owner's research agent, second pass (20 Nov 2026), from the agency's own page (club rule 15); first pass 20 Nov 2026 stood",
     "source": "https://dlnr.hawaii.gov/dsp/hiking/oahu/kaena-point-trail/",
-    "saw": "Hawaii Division of State Parks: the Ka'ena Point Trail is a 2.5-mile trail ('Park Name: Ka'ena Point State Park') that follows an old railroad bed to the Natural Area Reserve. PAD-US 195379 is the 1,138-acre state park the trail runs through, not the trail. The later NO (chat 11, 2 Nov) stands; the approximate join is dropped.",
+    "saw": "Hawaii Division of State Parks (second pass, 20 Nov 2026): Ka'ena Point Trail, 'Trail Length 2.5 miles', 'Park Name: Ka'ena Point State Park'; 'The trail to Ka'ena Point follows an old railroad bed' to the Natural Area Reserve. PAD-US 195379 is the 1,138-acre state park the trail runs through, not the trail. The later NO stands.",
     "date": "2026-11-20"
    }
   },
@@ -5749,11 +5749,11 @@
    },
    "when": "2026-11-20",
    "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 195408 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 195408 is dropped, the NO stands",
-   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "decided_by": "evidence batch 05, second pass (20 Nov 2026)",
    "evidence": {
-    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "who": "the owner's research agent, second pass (20 Nov 2026), from the agency's own page (club rule 15); first pass 20 Nov 2026 stood",
     "source": "https://dlnr.hawaii.gov/dsp/hiking/oahu/waahila-ridge-trail/",
-    "saw": "Hawaii Division of State Parks: the Wa'ahila Ridge Trail is 2.4 miles; it 'originates in Wa'ahila Ridge State Recreation Area' and climbs the ridge between Manoa and Palolo valleys. PAD-US 195408 is the 72-acre recreation area at the trailhead, not the trail (the key draws the trail line). The later NO (chat 11, 2 Nov) stands; the approximate join is dropped.",
+    "saw": "Hawaii Division of State Parks (second pass, 20 Nov 2026): Wa'ahila Ridge Trail, 'Trail Length 2.4 miles', 'Park Name: Wa'ahila Ridge State Recreation Area'; 'This ridge hike originates in Wa'ahila Ridge State Recreation Area' and 'ascends up the ridge between Manoa and Palolo Valleys'. PAD-US 195408 is the 72-acre recreation area at the trailhead, not the trail. The later NO stands.",
     "date": "2026-11-20"
    }
   },
@@ -6363,11 +6363,11 @@
    },
    "when": "2026-11-20",
    "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 190265 (NO (chat 11, Nov 2, pattern MISMATCH part): PIN. The record is only on) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 190265 is dropped, the NO stands",
-   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "decided_by": "evidence batch 05, second pass (20 Nov 2026)",
    "evidence": {
-    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "who": "the owner's research agent, second pass (20 Nov 2026), from the agency's own page (club rule 15); first pass 20 Nov 2026 stood",
     "source": "https://app.myfwc.com/hgm/hgmsearch/wmad?brochureTitle=Stormwater+Treatment+Area+5%2F6 ; https://www.sfwmd.gov/sites/default/files/documents/trailguide_sta5_6.pdf",
-    "saw": "FWC and the South Florida Water Management District: 'Stormwater Treatment Area 5/6 (STA 5/6) is a 16,508 acre constructed wetland'. PAD-US 190265 'Stormwater Treatment Areas' is 47,574 acres, every treatment area together, not STA 5/6. The later NO (chat 11, 2 Nov) stands; the approximate join is dropped.",
+    "saw": "South Florida Water Management District trail guide (second pass, 20 Nov 2026; official PDF opened): 'STA 5/6 is' a '16,508-acre constructed wetland'. The FWC brochure search page did not render in this pass (a scripted page). PAD-US 190265 'Stormwater Treatment Areas' is 47,574 acres, every treatment area together, not STA 5/6. The later NO stands.",
     "date": "2026-11-20"
    }
   },
@@ -6852,11 +6852,11 @@
    },
    "when": "2026-11-20",
    "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · Nov 2 map audit: chat 11 NO on 165883 (NO (chat 11, Nov 2, pattern OUTSIDE/FAR): PIN. The name differs from t) · 2026-11-20 evidence batch 05 (job 10, one record under both join and no): the join of 165883 is dropped, the NO stands",
-   "decided_by": "evidence batch 05 (job 10 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "decided_by": "evidence batch 05, second pass (20 Nov 2026)",
    "evidence": {
-    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page and the 11-12 Nov saved reads; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
+    "who": "the owner's research agent, second pass (20 Nov 2026), from the agency's own page (club rule 15); first pass 20 Nov 2026 stood",
     "source": "https://dnr.alaska.gov/parks/aspunits/kenai/krsma.htm ; https://dnr.alaska.gov/parks/asp/kenairiver_recstudy_oct2010.pdf",
-    "saw": "Alaska State Parks: the KRSMA 'consists of more than 105 linear miles of river and lakes, including Kenai Lake, Skilak Lake'; the State Parks study gives Kenai Lake 14,500 acres and Skilak Lake 25,000 acres. PAD-US 165883 is a 1,404-acre piece, not the area; the Oct 22 join was an approximate 'closest official land' (Class C, key-quality.md section 5). The later NO (chat 11, 2 Nov) stands; the park keeps what the rules join.",
+    "saw": "Alaska State Parks (second pass, 20 Nov 2026): the KRSMA 'consists of more than 105 linear miles of river and lakes, including Kenai Lake, Skilak Lake'. The State Parks study (Oct 2010) gives Kenai Lake 14,500 acres and Skilak Lake 25,000 acres. PAD-US 165883 is a 1,404-acre piece, not the area; the later NO stands.",
     "date": "2026-11-20"
    }
   },

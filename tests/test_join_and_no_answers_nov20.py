@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Job 10b (Fable's 20 Nov jobs list; outside review R4, list S6b-297-join-and-no.csv): 15 parks held one record under both 'join'
-and 'no' of their saved answer. Nine are settled with official evidence (evidence batch 05, first pass): five keep the later NO
+and 'no' of their saved answer. Nine are settled with official evidence (evidence batch 05, second pass, 20 Nov 2026): five keep the later NO
 and drop the old approximate join, four keep the join and lose a NO whose saved fingerprint was other land (the lake, or the
 drawn outline). Six are left for a person, with the reason in the hand-back. This test fails while any of the nine still holds
 one record under both lists, or when a new park starts to.
@@ -28,7 +28,7 @@ for ref, rid in LIFT_NO.items():
 for ref in list(DROP_JOIN) + list(LIFT_NO):
     v = P.get(ref) or {}
     ev = v.get('evidence') if isinstance(v.get('evidence'), dict) else {}
-    check(str(v.get('decided_by') or '').startswith('evidence batch 05') and all(str(ev.get(k) or '').strip() for k in ('who', 'source', 'saw', 'date'))
+    check(str(v.get('decided_by') or '').startswith('evidence batch 05, second pass') and all(str(ev.get(k) or '').strip() for k in ('who', 'source', 'saw', 'date'))
           and all(s.strip().startswith('https://') for s in ev.get('source', '').split(' ; ')), f'{ref}: who, official source, what it shows and the date')
 both = {r for r, v in P.items() if isinstance(v, dict) and ids(v, 'join') & ids(v, 'no')}
 check(both == LEFT, f'one record under both join and no: only the {len(LEFT)} parks left for a person ({len(both)} now)')
