@@ -53,6 +53,23 @@ check(rc == 1, 'CLI exits 1 when the release publish answer disagrees')
 rc = C.main(['--table', str(bad)])
 check(rc == 1, 'CLI exits 1 on a table that has a layer address')
 
+# A credit-line DOI and an accented key id are allowed; a layer address in a credit line is not
+with tempfile.TemporaryDirectory() as td:
+    td = pathlib.Path(td)
+    good = (
+        "layer,key id,publish,licence class,credit line,date read\n"
+        f"{c1},CA:Québec prote,yes,OPEN,\"Example ministry, https://doi.org/10.5066/EXAMPLE\",2026-11-18\n"
+    )
+    bad_credit = (
+        "layer,key id,publish,licence class,credit line,date read\n"
+        f"{c1},US:sgzza,yes,PUBLIC DOMAIN,see https://example.org/arcgis/rest/services/X/FeatureServer/0,2026-11-18\n"
+    )
+    (td / 'doi.csv').write_text(good, encoding='utf-8')
+    (td / 'layer-in-credit.csv').write_text(bad_credit, encoding='utf-8')
+    check(C.problems_in(td / 'doi.csv') == [], 'a DOI in the credit line and an accented key id are allowed')
+    check(any('address' in x or 'FeatureServer' in x for x in C.problems_in(td / 'layer-in-credit.csv')),
+          'a layer address in a credit line is still rejected')
+
 live = ROOT / 'data' / 'outlines' / 'licence-verdicts.csv'
 if live.is_file():
     live_p = C.problems_in(live)

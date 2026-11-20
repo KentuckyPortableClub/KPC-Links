@@ -34,12 +34,14 @@ from pathlib import Path
 COLUMNS = ['layer', 'key id', 'publish', 'licence class', 'credit line', 'date read']
 LAYER_CODE = re.compile(r'^sha256:[0-9a-f]{16}$')
 PUBLISH = {'yes', 'no'}
-# A cell that looks like a layer address (or a host/path of one) must never appear in this public table.
+# A cell that looks like a layer address (host/path of a map service) must never appear in this public table.
+# A DOI or other citation in a credit line is not a layer address.
 ADDRESS_RX = re.compile(
-    r'(?i)(https?://|www\.|[a-z0-9.-]+\.(?:arcgis|googleapis|mapbox)\.com|/FeatureServer/|/MapServer/|/FeatureServer\b|/MapServer\b)'
+    r'(?i)((?:https?://)?(?:www\.)?[a-z0-9.-]+\.(?:arcgis|googleapis|mapbox)\.com\S*|/FeatureServer(?:/|\b)|/MapServer(?:/|\b))'
 )
 DATE_RX = re.compile(r'^\d{4}-\d{2}-\d{2}$')
-CODE_ID = re.compile(r'^[A-Za-z0-9:._~ -]{1,80}$')
+# Key ids may include spaces, tildes, and letters such as é in a province name.
+CODE_ID = re.compile(r'^[\w:._~ -]{1,80}$', re.UNICODE)
 
 
 def licence_code(url: str) -> str:
