@@ -15,6 +15,20 @@ The changelog keeps one line for this pull request. The tools (`kpc_preflight.ch
 
 `save_json` is main's one line. The second return is gone. `kpc_fers_not_sure.py` is in the hostguard `DECLARED` list. Scope entries `2026-11-19-not-sure-rows` and `2026-11-19-not-sure-rows-own` start from `66566ec91c50`.
 
+The gate after the rebase onto `origin/main` `731040747`. DATA was not set. Two skips both times: `test_map_store_hook_nov15.py`, `test_outlines_match_key_nov13.py`. `git status` afterwards showed only `data/status/kpc_key_drop_guard.json`, rewritten by `test_drop_guard_named_parks_nov19.py`, which fails on main too. It was put back.
+
+Python 3.12.3:
+
+`TOTAL tests: 306/329 pass; with selftests: 316/339 pass; skipped: 2; NEW failures: 20; stale baseline entries: 0 -> GATE FAIL`
+
+The same suite on `origin/main` (`731040747`): `302/326` pass, 21 new failures. The one test main fails and this stack does not is `test_fers_final_redact_nov17.py`. No test fails here that passes on main.
+
+Python 3.13.18:
+
+`TOTAL tests: 311/329 pass; with selftests: 321/339 pass; skipped: 2; NEW failures: 15; stale baseline entries: 0 -> GATE FAIL`
+
+The same suite on `origin/main`: `308/326` pass, 15 new failures. The failing tests are the same set. No test fails here that passes on main.
+
 ## Second round (review of 19 Nov, sections 3.1 to 3.3)
 
 Restack base is part 2 at `1cc599edb3dc`. The first-round not-sure file, restacked, was `b9881640b28f` (before the restack the line was `180dcd51a7b0` -> `9cee86692de2`). This round moves the 2-fer rules hash `b9881640b28f` -> `76c2faa3e59f`. US, Canada and world did not move (`c64b8ace0411`, `dfef94b3dfd3`, `b1f23bf0deea`).
