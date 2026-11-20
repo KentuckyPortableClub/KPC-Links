@@ -7,6 +7,10 @@
 - No real area was run. No park was remeasured. There is no park-by-park change list. `US-MATH-GUARD` is not a park.
 - The measuring step `merge()` was not changed. Its 0.0005 degree join is the owner's question G1, recorded on part 1.
 
+## Third round
+
+Rebased onto part 1 at `40c9a5c612c6` (itself on `origin/main`). One changelog line: `40c9a5c612c6` -> `66566ec91c50`. The earlier round hashes (`180dcd51a7b0`, `b158bbb4bd3d`, `1cc599edb3dc`) stay in this file, not in the changelog. No code of the guard changed in this round.
+
 ## Second round (review of 19 Nov, sections 2.1 to 2.3)
 
 Restack base is part 1 at `8fb1b48a66a8`. The first-round guard, restacked, was `b158bbb4bd3d` (before the restack the line was `a18d26726099` -> `180dcd51a7b0`). This round moves the 2-fer rules hash `b158bbb4bd3d` -> `1cc599edb3dc`. US, Canada and world did not move (`c64b8ace0411`, `dfef94b3dfd3`, `b1f23bf0deea`).
