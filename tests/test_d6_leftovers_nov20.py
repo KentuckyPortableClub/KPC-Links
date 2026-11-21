@@ -19,7 +19,9 @@ import kpc_area_hash as AH  # noqa: E402
 # kpc_key_freeze is run as a subprocess so this test never imports a builder.
 
 FAILS = []
-MAIN = 'origin/main'
+# The base is the commit just before D6 (bfe61e69) landed, so the check still
+# means 'new versus before D6' after D6 is on main.
+MAIN = 'bfe61e691~1'
 
 
 def check(ok, what):
