@@ -1113,7 +1113,7 @@ def extra_state(st, have, only=None):
         # Nov 6 (big key / 2-fer patch): the layer's stable id / official acres / owner / parent fields (kpc_source_fields: the one
         # table, or AUTO from the field list a state layer already gave resolve()). ADDED to this same query; refused = asked without.
         _sfm = SF.mapping(url, x[5], SFIELDS.get(pre))
-        _sfx = [f for f in SF.extra_fields(_sfm) if f and f.lower() not in {str(q).lower() for q in (oidf, nf, af, opt.get('nm2')) if q}]
+        _sfx = state_layer_extra(pre, _sfm, SFIELDS.get(pre), (oidf, nf, af, opt.get('nm2')))
         SFMAP[pre] = _sfm
         order = True   # Oct 29 (chat 2, Nags Head Woods missing): paging WITHOUT a sort order can skip records between pages; sort by the id
         seen_ids = set()
@@ -1164,7 +1164,7 @@ def extra_state(st, have, only=None):
             out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
                         'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': _sane_ac(_num(a.get(af.lower()) if af else 0), bbox(g)), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
                         **({'Water': 1} if opt.get('water') else {}), **({'Rec_Type': _rt} if _rt else {}),
-                        **({'SA': {f: a.get(f.lower()) for f in _sfx if a.get(f.lower()) not in (None, '', ' ')}} if _sfx and any(a.get(f.lower()) not in (None, '', ' ') for f in _sfx) else {})})
+                        **saved_attrs(a, _sfx)})
             n += 1
         XCOUNT[pre] = XCOUNT.get(pre, 0) + n
     return out
@@ -1222,6 +1222,27 @@ def name_only(how):
     """A join made by the name alone (the matcher's 'name' / 'words' rows), not by a person or a saved id."""
     h = str(how or '').split(' · ')[0].strip().lower()
     return h == 'words' or h.startswith('name')
+
+
+def state_layer_extra(pre, mp, fields, have=()):
+    """The fields ADDED to a state layer's query and kept on its saved records (record['SA']): the source table's id / acres /
+    owner / parent fields (kpc_source_fields.mapping), plus the agency id fields of the keep-list config
+    (.github/keep-record-fields.json; KPC owner, 2026-11-21, job B: Minnesota's sgmnb sft and sgmnc pgrm_project were dropped).
+    A field already read (have) is not added twice. Never a WDPA field (keep_fields leaves them out)."""
+    skip = {str(q).lower() for q in have if q}
+    out = [f for f in SF.extra_fields(mp) if f and f.lower() not in skip]
+    keep = getattr(SF, 'keep_fields', None)   # an older stand-in for SF (tests) has no keep-list: nothing added
+    for f in (keep(pre, fields) if keep else ()):
+        if f and f.lower() not in skip and f.lower() not in {g.lower() for g in out}:
+            out.append(f)
+    return out
+
+
+def saved_attrs(a, sfx):
+    """{'SA': {field: value}} of the added fields a record carries ({} when it carries none). a = the record's attributes with
+    lower-case keys, as the state reader holds them."""
+    sa = {f: a.get(f.lower()) for f in sfx if a.get(f.lower()) not in (None, '', ' ')}
+    return {'SA': sa} if sa else {}
 
 
 def _in_box(g, box):

@@ -1,0 +1,1087 @@
+{
+ "about": "The agency id fields the key keeps on each saved record (kpc_source_fields.keep_fields). Made by kpc_keep_fields.py from the id finder's layers.csv and the crosswalk's pairs.csv (counts only). WDPA fields are never kept. Change the inputs or the rule, never this file by hand.",
+ "layers": {
+  "AB Public La": {
+   "fields": [
+    "PLUZ_CODE"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "AB-PLUZ Gove": {
+   "fields": [
+    "PLUZ_CODE"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Alberta Park": {
+   "fields": [
+    "PASITES_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "BC BC Parks": {
+   "fields": [
+    "ADMIN_AREA_SID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "BC RegionalP": {
+   "fields": [
+    "parkcode"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "BC local and": {
+   "fields": [
+    "LOCAL_REG_GREENSPACE_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "BC recreatio": {
+   "fields": [
+    "FOREST_FILE_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "BC-HP Govern": {
+   "fields": [
+    "BORDENNUMBER"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "CPCAD": {
+   "fields": [
+    "PARENT_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "NL Provincia": {
+   "fields": [
+    "PARENT_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "NS HRM Parks": {
+   "fields": [
+    "CIVIC_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "New Brunswic": {
+   "fields": [
+    "PNA_CODE"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "New Brunswic~1": {
+   "fields": [
+    "UID_"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "ON-ABCA Ausa": {
+   "fields": [
+    "STREET_NUM"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade A)"
+   ]
+  },
+  "ON-CVC Credi": {
+   "fields": [
+    "gisid"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "ON-LSRCA Lak": {
+   "fields": [
+    "GISLANDID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "ON-ORCA Oton": {
+   "fields": [
+    "RollNumber"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "Ontario Park": {
+   "fields": [
+    "OGF_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Ontario cons": {
+   "fields": [
+    "OGF_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Ontario fede": {
+   "fields": [
+    "OGF_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "PAD-US": {
+   "fields": [
+    "Source_PAID"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade A)",
+    "crosswalk: SAME ID with NPS unit code"
+   ]
+  },
+  "Parks Canada": {
+   "fields": [
+    "BAID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Québec Parc ~3": {
+   "fields": [
+    "ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Québec Refug": {
+   "fields": [
+    "ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Québec Réser": {
+   "fields": [
+    "CODE_ADMINISTRATIF"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Québec Zone": {
+   "fields": [
+    "CODE_ADMINISTRATIF"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Québec ecolo": {
+   "fields": [
+    "MACODE"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Québec prote": {
+   "fields": [
+    "MACODE"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Québec recog": {
+   "fields": [
+    "MACODE"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "Yukon parks": {
+   "fields": [
+    "PARK250_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "bsna": {
+   "fields": [
+    "MA_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "bsnp": {
+   "fields": [
+    "MA_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "bwild": {
+   "fields": [
+    "MA_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "bwma": {
+   "fields": [
+    "KDFWR_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "fnl": {
+   "fields": [
+    "MA_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "fsod": {
+   "fields": [
+    "othnatldesgid"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "fws": {
+   "fields": [
+    "LIT"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "fwsr": {
+   "fields": [
+    "areaid"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "hab": {
+   "fields": [
+    "HA_NO"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "hma": {
+   "fields": [
+    "HMA_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "idw": {
+   "fields": [
+    "WMAID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "mid": {
+   "fields": [
+    "ProjectID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "mol": {
+   "fields": [
+    "Area_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "ncg": {
+   "fields": [
+    "GameLandID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "nep": {
+   "fields": [
+    "DB_AreaNumber"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgaka": {
+   "fields": [
+    "UID_"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgakb": {
+   "fields": [
+    "FILENUMBER"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgakd": {
+   "fields": [
+    "AreaID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgake": {
+   "fields": [
+    "UID_"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgakf": {
+   "fields": [
+    "UID_"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgalb": {
+   "fields": [
+    "AcqNum"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgara": {
+   "fields": [
+    "macode"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgarb": {
+   "fields": [
+    "park_num"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgaza": {
+   "fields": [
+    "SUM_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgcab": {
+   "fields": [
+    "UNITNBR"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgcta": {
+   "fields": [
+    "DEP_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgctb": {
+   "fields": [
+    "PAR_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgctc": {
+   "fields": [
+    "DEP_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgdea": {
+   "fields": [
+    "FACILITYID"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade A)"
+   ]
+  },
+  "sgdee": {
+   "fields": [
+    "FACILITYID"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade A)"
+   ]
+  },
+  "sgfla": {
+   "fields": [
+    "UNIT_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgfld": {
+   "fields": [
+    "TRACT_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgfle": {
+   "fields": [
+    "MA_NUMBER"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgflf": {
+   "fields": [
+    "FL_SOLARIS_LAND_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgiaa": {
+   "fields": [
+    "Hunt_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgiab": {
+   "fields": [
+    "CRL_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgiac": {
+   "fields": [
+    "Hunt_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgida": {
+   "fields": [
+    "WMAID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgidb": {
+   "fields": [
+    "GNIS_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgide": {
+   "fields": [
+    "RECPROJECTSITEAREAID"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade A)"
+   ]
+  },
+  "sgilb": {
+   "fields": [
+    "NP_Number"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgmaa": {
+   "fields": [
+    "PROJ_ID1"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgmac": {
+   "fields": [
+    "UNIT_CODE"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)",
+    "crosswalk: SAME ID with NPS unit code"
+   ]
+  },
+  "sgmad": {
+   "fields": [
+    "TOWN_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgmea": {
+   "fields": [
+    "CL_UNIQUEID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmia": {
+   "fields": [
+    "LinkID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmna": {
+   "fields": [
+    "lam_program_project_code"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgmnb": {
+   "fields": [
+    "sft"
+   ],
+   "why": [
+    "crosswalk: SAME ID with MN DNR unit id"
+   ]
+  },
+  "sgmnc": {
+   "fields": [
+    "pgrm_project"
+   ],
+   "why": [
+    "crosswalk: SAME ID with MN DNR unit id"
+   ]
+  },
+  "sgmne": {
+   "fields": [
+    "su_id"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmng": {
+   "fields": [
+    "LIT"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmoa": {
+   "fields": [
+    "PARK_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgmoc": {
+   "fields": [
+    "Area_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmod": {
+   "fields": [
+    "Area_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgmof": {
+   "fields": [
+    "Area_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmoh": {
+   "fields": [
+    "Area_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmta": {
+   "fields": [
+    "SITEID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmtb": {
+   "fields": [
+    "SITEID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmtc": {
+   "fields": [
+    "SITEID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgmtd": {
+   "fields": [
+    "MA_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgncb": {
+   "fields": [
+    "GameLandID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgncc": {
+   "fields": [
+    "GameLandID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgneb": {
+   "fields": [
+    "DB_AreaNumber"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgnec": {
+   "fields": [
+    "DB_AreaNumber"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgnha": {
+   "fields": [
+    "cobkpg"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade B)"
+   ]
+  },
+  "sgnhc": {
+   "fields": [
+    "pid"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgnhd": {
+   "fields": [
+    "COBKPG"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade B)"
+   ]
+  },
+  "sgnjb": {
+   "fields": [
+    "LAND_FACILITY_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgnva": {
+   "fields": [
+    "LandID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgnvf": {
+   "fields": [
+    "NLCS_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgnvi": {
+   "fields": [
+    "HMA_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgnvj": {
+   "fields": [
+    "DSL_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgnyb": {
+   "fields": [
+    "MasterAreaID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgorb": {
+   "fields": [
+    "PARK_HUB_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgorc": {
+   "fields": [
+    "LandID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgpae": {
+   "fields": [
+    "DistrictNumber"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgria": {
+   "fields": [
+    "USFW_GrntID"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade A)"
+   ]
+  },
+  "sgrib": {
+   "fields": [
+    "USFW_GrntID"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade A)"
+   ]
+  },
+  "sgric": {
+   "fields": [
+    "USFW_GrntID"
+   ],
+   "why": [
+    "id finder: ID on part of the layer (unit id, grade A)"
+   ]
+  },
+  "sgsca": {
+   "fields": [
+    "ParentPropertyID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgscc": {
+   "fields": [
+    "ParentPropertyID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgscd": {
+   "fields": [
+    "ParentPropertyID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgtna": {
+   "fields": [
+    "TSP_UID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgtnd": {
+   "fields": [
+    "AbbrCode"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgtnh": {
+   "fields": [
+    "TSP_UID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgtnj": {
+   "fields": [
+    "TSP_UID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgtxb": {
+   "fields": [
+    "PH_UnitNum"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgtxc": {
+   "fields": [
+    "LoCode"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sguta": {
+   "fields": [
+    "parkabbid"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgvac": {
+   "fields": [
+    "MA_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgvad": {
+   "fields": [
+    "TRACTCODE"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgwaa": {
+   "fields": [
+    "ParkCode"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgwae": {
+   "fields": [
+    "GNIS_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgwia": {
+   "fields": [
+    "PROP_CODE"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgwic": {
+   "fields": [
+    "SNA_NO"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgwid": {
+   "fields": [
+    "PROP_CODE"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgwif": {
+   "fields": [
+    "SNA_NO"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgwva": {
+   "fields": [
+    "LocCode"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "sgwyb": {
+   "fields": [
+    "SB_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "utw": {
+   "fields": [
+    "id"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "wbl": {
+   "fields": [
+    "NLCS_ID"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "wdw": {
+   "fields": [
+    "SubUnitID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "wld": {
+   "fields": [
+    "areaid"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "wsa": {
+   "fields": [
+    "CASEFILE_NO"
+   ],
+   "why": [
+    "id finder: ID found (unit id, grade A)"
+   ]
+  },
+  "wsrc": {
+   "fields": [
+    "RIVER_ID"
+   ],
+   "why": [
+    "id finder: ID found (record id, grade A)"
+   ]
+  }
+ }
+}

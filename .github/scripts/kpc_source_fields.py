@@ -202,6 +202,34 @@ def mapping(url='', label='', fields=None):
     return out
 
 
+KEEP_FILE = __import__('os').path.join(__import__('os').path.dirname(__import__('os').path.abspath(__file__)), '..', 'keep-record-fields.json')
+_KEEP = {}
+_WDPA_FIELD = re.compile(r'wdpa', re.I)
+
+
+def _keep_table(path=None):
+    p = path or KEEP_FILE
+    if p not in _KEEP:
+        import json
+        try:
+            with open(p, encoding='utf-8') as f:
+                _KEEP[p] = (json.load(f) or {}).get('layers') or {}
+        except (OSError, ValueError):
+            _KEEP[p] = {}
+    return _KEEP[p]
+
+
+def keep_fields(layer, fields=None, path=None):
+    """KPC owner, 2026-11-21 (job B): the agency id fields to keep on this layer's saved records, from the config file
+    .github/keep-record-fields.json (kpc_keep_fields.py makes it from the id finder and the crosswalk). Spelled as the layer
+    spells them when its field list is known (a field the layer does not list is left out); never a WDPA field."""
+    want = [f for f in ((_keep_table(path).get(layer) or {}).get('fields') or []) if f and not _WDPA_FIELD.search(str(f))]
+    if fields:
+        got = [_ci(fields, f) for f in want]
+        return [g for g in got if g and g in fields]
+    return want
+
+
 def extra_fields(mp):
     """The field names to ADD to a query that already reads this layer."""
     return [mp[k] for k in ('id', 'id2', 'acres', 'acres2', 'owner', 'owner2', 'own_type', 'parent', 'access', 'basis') if mp.get(k)]
