@@ -7,7 +7,10 @@ It is a US rule file (kpc_key_freeze.RULE_FILES['us-key']): a change here moves 
 
 The checks (none of them reads the POTA side from the record being checked):
   id        the id in POTA's link to the park's own agency page against the record's id of the SAME kind (NPS unit code,
-            Minnesota DNR unit id today); ids of different kinds are never compared
+            Minnesota DNR unit id on sgmna uniqueid, sgmnb sft and sgmnc pgrm_project); ids of different kinds are never compared;
+            a record whose same-kind id differs goes to check
+  link      the park's own agency page in the park's state, when the address names the park in full (strong); with pin 3c
+            passing and size or place passing, the park is confirmed by link; a part name in the address is a note only
   agency    the agency of POTA's own link (KPC-Data's park facts file) against the agency that owns the record (PAD-US
             Mang_Name / Mang_Type; the club's layer table for the federal layers by prefix); applied only where both are known
   place     'pin 3c': POTA's pin is outside the record, another joined record of the park holds the pin, and no joined
@@ -21,9 +24,12 @@ The checks (none of them reads the POTA side from the record being checked):
   kind      POTA's type against the record's kind: ADVISORY only (the sample: 1 wrong record caught, 71 right ones flagged)
 
 The rule:
-  - a record whose same-kind id agrees with POTA's link = confirmed (the id stands in for the name);
-  - another name-joined record keeps drawing the outline only when it passes agency (when known), place (3c), name,
-    national and size (when there is a tagged size); kind is written down as a note, never a reason;
+  - a record whose same-kind id agrees with POTA's link = confirmed by id (the id stands in for the name);
+  - a name-joined park that passes agency (when known), place (3c), name, national and size (when there is a tagged size)
+    is confirmed by size when a tagged size agrees, or confirmed by link when POTA's own agency page (in the park's state)
+    names the park in full in the address and place (the pin is in or near the outline) also passes; a part name in the
+    address is a note only, like kind;
+  - another name-joined record keeps drawing the outline only when it passes those checks; kind is written down as a note, never a reason;
   - a failure sends the record to check with its reason; a park with no record left shows its pin;
   - code rows (NPS unit code, official line, link id) and a person's saved join ('reviewed...') are kept as they are;
   - two fits = not sure is the builder's one-record-two-parks pass (it runs before this one); a link id on two parks
@@ -65,11 +71,13 @@ NAME_HOW_NOTE = 'name, words, alias, same name, answer sheet: all name-linked'
 # says the layer carries this kind; 'rx': the value shape (anything else from that layer is not this kind).
 ID_KINDS = {
     'NPS unit code': {'rec': 'nps', 'rx': r'[A-Z]{4}'},
-    'MN DNR unit id': {'url': 'us_mn_state_dnr/', 'sa': ('uniqueid',), 'rx': r'(WMA|AMA|SNA)\d{5,8}'},
+    'MN DNR unit id': {'url': 'us_mn_state_dnr/', 'pre': ('sgmna', 'sgmnb', 'sgmnc'),
+                      'sa': ('uniqueid', 'sft', 'pgrm_project'), 'rx': r'(WMA|AMA|SNA|SFT|SPK|SRA)\d{5,8}'},
 }
-# Checked 20 Nov against the saved records of every US state: only these two kinds are carried by a layer the key reads.
-# The other link kinds (NY DEC, CA State Parks, OR State Parks, MI DNR, MT FWP, AR, SC, TX, ME, Forest Service, Recreation.gov)
-# are on no saved record today, so they give no id vote until the keeper saves the agency's id field (plan O5).
+# Checked 20-21 Nov: these two kinds are carried by a layer the key reads. Minnesota's same-id fields (crosswalk 20 Nov) are
+# sgmna uniqueid, sgmnb sft and sgmnc pgrm_project; they confirm like a Park Service unit code. The other link kinds (NY DEC,
+# CA State Parks, OR State Parks, MI DNR, MT FWP, AR, SC, TX, ME, Forest Service, Recreation.gov) are on no saved record today,
+# so they give no id vote until the keeper saves the agency's id field (plan O5).
 
 SHORT = {'np': 'national park', 'nwr': 'national wildlife refuge', 'sp': 'state park', 'wma': 'wildlife management area',
          'sf': 'state forest', 'nf': 'national forest', 'nm': 'national monument', 'nra': 'national recreation area',
@@ -135,6 +143,78 @@ def link_tie(fact, nps_units=None):
         if val not in nps_units: return None, None, "the Park Service's unit list has no such code"
         if nps_units[val] and st and st not in nps_units[val]: return None, None, "the code's unit is in another state"
     return kind, val, 'own agency page'
+
+
+# The address-name test of kpc_link_ids, from POTA's saved park list (no fetch). 'strong' = the address names the park in full.
+LINK_GENERIC = {'index', 'home', 'default', 'details', 'detail', 'info', 'information', 'visit', 'about', 'aboutus', 'about-us',
+                'pages', 'page', 'park', 'parks', 'maps', 'map', 'planyourvisit', 'basicinfo', 'recreation', 'overview', 'en',
+                'fr', 'eng', 'fra', 'detail_report', 'main', 'welcome', 'directions', 'history', 'learn', 'historyculture',
+                'files', 'pdf', 'pdfs', 'documents', 'uploads', 'content', 'download', 'location', 'locations', 'property'}
+LINK_EXT = re.compile(r'\.(html?|aspx?|php|cfm|shtml|dot|action|pl|jsp|pdf|png|jpe?g|ashx)$', re.I)
+LINK_STOP = {'the', 'of', 'and', 'at', 'in', 'a', 'an', 'on', 'for', 'de', 'du', 'la', 'le', 'des', 'st', 'saint', 'mt', 'mount', 'no'}
+LINK_KINDWORDS = {'state', 'park', 'parks', 'national', 'provincial', 'wildlife', 'management', 'area', 'areas', 'forest', 'refuge',
+                  'historic', 'historical', 'site', 'recreation', 'recreational', 'conservation', 'natural', 'nature', 'preserve',
+                  'reserve', 'game', 'land', 'lands', 'wma', 'sp', 'sf', 'nwr', 'sna', 'swa', 'sgl', 'sra', 'shs', 'nhs', 'wsa',
+                  'hma', 'memorial', 'monument', 'trail', 'river', 'lake', 'fishing', 'access', 'public', 'unit', 'tract',
+                  'wilderness', 'study', 'herd', 'heritage', 'scenic', 'wild', 'ecological', 'county', 'regional', 'municipal',
+                  'city', 'beach', 'marine', 'seashore', 'lakeshore', 'battlefield', 'military', 'fish', 'hatchery', 'waterfowl',
+                  'production', 'sanctuary', 'habitat', 'protected', 'easement', 'grassland', 'grasslands'}
+
+
+def _link_words(text):
+    import urllib.parse
+    t = re.sub(r'([a-z])([A-Z])', r'\1 \2', urllib.parse.unquote(str(text or '')))
+    return [w for w in re.split(r'[^a-z0-9]+', t.lower().replace("'", '').replace('\u2019', '')) if w]
+
+
+def web_name(url_or_segs):
+    """The agency's own words for the place, taken from the address: the last part that is not a filler or a number."""
+    import urllib.parse
+    if isinstance(url_or_segs, (list, tuple)):
+        segs = list(url_or_segs)
+    else:
+        u = str(url_or_segs or '').strip()
+        if not u: return ''
+        if not re.match(r'[a-z][a-z0-9+.-]*://', u, re.I): u = 'http://' + u
+        try: pu = urllib.parse.urlsplit(u)
+        except ValueError:
+            return ''
+        segs = [s for s in pu.path.split('/') if s]
+    for s in reversed(segs):
+        base = LINK_EXT.sub('', urllib.parse.unquote(s))
+        w = _link_words(base)
+        if not w or all(x.isdigit() for x in w) or base.lower() in LINK_GENERIC or (len(w) == 1 and w[0] in LINK_GENERIC):
+            continue
+        return ' '.join(w)
+    return ''
+
+
+def name_match(park_name, wname):
+    """strong / part / none / '' (no name in the address). Every significant word of the park's name is in the address (strong);
+    at least half (part). Same scoring as kpc_link_ids, from the address text only."""
+    if not wname: return ''
+    pw = [w for w in _link_words(park_name) if w not in LINK_STOP]
+    key = [w for w in pw if w not in LINK_KINDWORDS] or pw
+    ww = set(_link_words(wname)); squashed = ''.join(_link_words(wname))
+    hit = sum(1 for w in key if w in ww or (len(w) >= 4 and w in squashed))
+    if key and hit == len(key): return 'strong'
+    return 'part' if key and hit * 2 >= len(key) and hit else 'none'
+
+
+def link_name_agree(fact):
+    """'strong' | 'part' | ''. The park's own agency page, the website not in another state, and the address names the park.
+    Reads the link facts already taken from POTA's saved park list (no fetch). 'part' is advisory only."""
+    f = fact or {}
+    lk = f.get('link') or {}
+    page = lk.get('page_kind') or lk.get('page') or ''
+    if page != 'own page': return ''
+    if lk.get('site') not in ('agency (known)', 'government site'): return ''
+    if str(lk.get('state_check') or '').startswith('OTHER'): return ''
+    nm = lk.get('name_match') or ''
+    if nm not in ('strong', 'part', 'none'):
+        wname = lk.get('web_name') or web_name(lk.get('url') or lk.get('link') or '')
+        if wname: nm = name_match(f.get('name') or '', wname)
+    return nm if nm in ('strong', 'part') else ''
 
 
 def shared_names(facts):
@@ -222,13 +302,16 @@ def nps_code_of(rec):
 
 def ids_from(rec, url=''):
     """{id kind: value} a record carries: its Park Service unit code, and its layer's own id when that layer carries a kind.
-    url = the address of the layer the record came from."""
+    url = the address of the layer the record came from; a known layer prefix on the record id also counts (sgmnb, sgmnc)."""
     out = {}
     c = nps_code_of(rec)
     if c: out['NPS unit code'] = c
     sa = (rec or {}).get('SA') or {}
+    pre = re.match(r'[a-z]*', str((rec or {}).get('OBJECTID') or '')).group(0)
     for k, spec in ID_KINDS.items():
-        if not spec.get('url') or spec['url'] not in str(url or ''): continue
+        on_url = bool(spec.get('url') and spec['url'] in str(url or ''))
+        on_pre = bool(pre and pre in (spec.get('pre') or ()))
+        if not on_url and not on_pre: continue
         for fld in spec.get('sa') or ():
             v = next((sa[x] for x in sa if str(x).lower() == fld.lower()), None)
             if v not in (None, '') and re.fullmatch(spec['rx'], norm_id(v)): out[k] = norm_id(v); break
@@ -407,7 +490,8 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
     None (pin inside or near; used to join a record by the park's link id); holds_fn(ref, record id) -> True / False / None
     (POTA's pin strictly inside that record; pin 3c); layer_table = load_layer_table() (each layer's owner); is_no(ref, rid, rec) = a person's saved NO; skip = parks never touched
     here (official trail lines). Every joined park gets park['match'] = {'status': 'confirmed' | 'outlined' | 'pin',
-    'why': [reasons], 'notes': [advisory]} (pin = no outline). Returns counts and appends [park, what, record id] to hits."""
+    'why': [reasons], 'notes': [advisory], 'by': 'id' | 'size' | 'link'} (pin = no outline; 'by' only when confirmed).
+    Returns counts and appends [park, what, record id] to hits."""
     hits = [] if hits is None else hits
     holds_fn = holds_fn or (lambda ref, i: None)
     shared = shared_names(facts)
@@ -417,7 +501,8 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         for k, v in d.items(): index.setdefault((k, v), []).append(i)
     names = {}
     for ref, p in parks.items(): names.setdefault(full(p.get('n') or ''), set()).add(ref)
-    out = {'parks': 0, 'confirmed': 0, 'outlined': 0, 'pin': 0, 'gained': 0, 'moved': 0, 'why': {}, 'notes': {}}
+    out = {'parks': 0, 'confirmed': 0, 'outlined': 0, 'pin': 0, 'gained': 0, 'moved': 0, 'why': {}, 'notes': {},
+           'by_id': 0, 'by_link': 0, 'by_size': 0}
 
     def to_check(p, rows, why):
         ids_ = {id(q) for q in rows}
@@ -476,14 +561,24 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             out['moved'] += len(name_left)
         left = p.get('m') or []
         id_ok = bool(kind) and any(record_id_of(kind, rids.get(str(q[0])) or {}) == val for q in left)
+        link_nm = link_name_agree(f)
+        if link_nm == 'part': notes.append('link name')
+        place_ok = bool(left) and place_fn(ref, [str(q[0]) for q in left]) is True
+        how = None
         if not left:
             p['g'] = 'pin'; st_ = 'pin'
         else:
-            st_ = 'confirmed' if (id_ok or sv[0] == 'agrees') else 'outlined'
+            if id_ok: st_, how = 'confirmed', 'id'
+            elif sv[0] == 'agrees': st_, how = 'confirmed', 'size'
+            elif link_nm == 'strong' and place_ok: st_, how = 'confirmed', 'link'
+            else: st_ = 'outlined'
         p['match'] = {'status': st_, 'why': sorted(set(why))}
         if notes: p['match']['notes'] = sorted(set(notes))
+        if how: p['match']['by'] = how
         if id_ok: p['match']['id'] = f'{kind} {val}'
+        if link_nm == 'strong': p['match']['link'] = 'strong'
         out[st_] += 1
+        if how: out['by_' + how] += 1
         for w in set(why): out['why'][w] = out['why'].get(w, 0) + 1
         for w in set(notes): out['notes'][w] = out['notes'].get(w, 0) + 1
     return out
@@ -519,6 +614,11 @@ def selftest():
     ok('NPS code not in unit list is no tie', link_tie(f, {'ABCD': {'ZZ'}})[0] is None)
     ok('state link vs federal record differs', agency_check(f, {'OBJECTID': 1, 'Mang_Name': 'USFS', 'Mang_Type': 'FED'}, 'ZZ') == 'differs')
     ok('state park vs wildlife area differs', kind_check('State Park', {'_k': ['wma']}) == 'differs')
+    ok('address names the park in full', name_match('Invented Creek State Park', web_name('https://parks.example.gov/state-parks/invented-creek')) == 'strong')
+    ok('a part name in the address is only part', name_match('Invented Creek State Park', 'creek') == 'part')
+    ok('Minnesota forest id on sft is a same-kind id', ids_from({'OBJECTID': 'sgmnb1', 'SA': {'sft': 'SFT0000100'}}) == {'MN DNR unit id': 'SFT0000100'})
+    lk = dict(f['link'], name_match='strong', state_check='same state', page_kind='own page', id_value='')
+    ok("own page in the park's state with a strong address name agrees", link_name_agree({'name': 'Invented Lake State Park', 'link': lk}) == 'strong')
     return not bad
 
 

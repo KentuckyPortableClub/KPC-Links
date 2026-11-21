@@ -52,12 +52,16 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           for it like any other error of a state, no key file is written and its saved copy on main is kept
                           (pass_error below). OFF = today: the notice 'one-record-two-parks pass skipped', and the state is saved.
                           No error = no change either way.
-  KPC_MATCH_CHECKS 0 (KPC owner, 20 Nov 2026, APPROVED: match by more than name). kpc_match_checks.py, checks against
+  KPC_MATCH_CHECKS 0 (KPC owner, 20 Nov 2026, APPROVED: match by more than name; 21 Nov: confirm by link, Minnesota sft / pgrm_project). kpc_match_checks.py, checks against
                           KPC-Data's park facts and POTA's pin, as the 19 Nov graded sample scored them: a same-kind id from
-                          POTA's own link = confirmed (it stands in for the name); any other name-joined record keeps the
+                          POTA's own link = confirmed by id (it stands in for the name; Minnesota DNR unit ids on sgmna uniqueid,
+                          sgmnb sft and sgmnc pgrm_project, like a Park Service code; a different same-kind id goes to check);
+                          a name-joined park that passes the checks is confirmed by size when a tagged size agrees, or confirmed
+                          by link when POTA's own agency page in the park's state names the park in full in the address and place
+                          also passes (a part name in the address is a note only). Any other name-joined record keeps the
                           outline only when it passes agency (when both sides are known), pin 3c (the pin is in another of the
                           park's records and in none of this record's name), another park's name, the national-layer rule and
-                          size (only a size with an explicit independent-witness tag; none today). Kind is a note only. A failure
+                          size (only a size with an explicit independent-witness tag). Kind is a note only. A failure
                           sends the record to check with its reason; a park left with no record shows its pin. Code rows and a
                           person's join stand. A missing park facts file or any error HOLDS the state.
   KPC_SAVED_ANSWERS_SAY 0 (outside review finding F5, 2026-11-19; reviewer's first slice, step S6b; the owner's word of 19 Nov 2026)
