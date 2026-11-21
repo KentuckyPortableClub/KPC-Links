@@ -1,0 +1,1173 @@
+{
+ "format": 1,
+ "about": "New and partial official layers, wired to the bot that will provide each one, all OFF until the licence allows our use and robots.txt allows the path. target keeper = a keeper fetch request (the keeper reads this file; only the keeper fetches agency servers); intake = the layer intake bot (kpc_layer_intake.py, its sidecar fields under intake); hand = a person downloads it from the official page (links only); fix = already on the box, needs a merge or a needs-download status fix, no download; none = already wired. Checked by .github/scripts/kpc_layer_requests.py. Counts only: no park is named. Never WDPA, never a saved-copies-only host as a live fetch.",
+ "made": "2026-11-21",
+ "by": "KPC owner",
+ "rows": [
+  {
+   "status": "off",
+   "licence": "none stated: the service licenseInfo is empty and the page states no licence",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 4,
+   "notes": "The download page answered the box HTTP 403; the official REST service on feature.geographic.texas.gov is not a saved-only host. Parcels are ownership, not designation: a join needs the owner rule for parcels. Large: never commit the file.",
+   "id": "US-TX|txgio-parcels",
+   "area": "US-TX",
+   "target": "keeper",
+   "agency": "Texas Geographic Information Office (TxGIO) StratMap",
+   "what": "statewide land parcels (ownership)",
+   "page": "https://www.geographic.texas.gov/stratmap/land-parcels.html",
+   "service": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/0",
+   "checked": "2026-11-21",
+   "why_off": "no licence stated; robots.txt not read"
+  },
+  {
+   "status": "off",
+   "licence": "Wisconsin DNR terms and conditions of use (a disclaimer; read in full before use)",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 1,
+   "notes": "The box got a TLS reset. The current copy lives on the DNR ArcGIS hub (data-wi-dnr.opendata.arcgis.com), which is saved-copies-only; the 2023 zip on gisdata.wisc.edu is the archived official copy.",
+   "id": "US-WI|widnr-managed-parcels-2023",
+   "area": "US-WI",
+   "target": "keeper",
+   "agency": "Wisconsin DNR",
+   "what": "DNR Managed Land Parcels 2023 (82,668 objects)",
+   "page": "https://geodata.wisc.edu/catalog/6D537DD4-EEB3-4267-8347-F76B1481ED75/metadata",
+   "service": "https://gisdata.wisc.edu/public/WI_DNR_Managed_Land_Parcels_2023.zip",
+   "checked": "2026-11-21",
+   "why_off": "the DNR terms are not read in full yet; robots.txt not read"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 18,
+   "notes": "Never a regulation-limit layer. Lead for all three: the Conservation Ontario Open Data Hub, category Conservation lands (an ArcGIS hub: saved copies only).",
+   "id": "CA-ON|hca",
+   "area": "CA-ON",
+   "target": "hand",
+   "agency": "Hamilton Conservation Authority",
+   "what": "conservation-area / property polygons",
+   "page": "https://hca-open-data-camaps.hub.arcgis.com/",
+   "checked": "2026-11-21",
+   "why_off": "the open-data hub is an ArcGIS hub (saved copies only); a conservation-land property layer is listed under Conservation lands but not confirmed as property polygons"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 10,
+   "notes": "Never a regulation-limit layer. Lead for all three: the Conservation Ontario Open Data Hub, category Conservation lands (an ArcGIS hub: saved copies only).",
+   "id": "CA-ON|nvca",
+   "area": "CA-ON",
+   "target": "hand",
+   "agency": "Nottawasaga Valley Conservation Authority",
+   "what": "conservation-area / property polygons",
+   "page": "https://www.nvca.on.ca/",
+   "checked": "2026-11-21",
+   "why_off": "no property or conservation-area layer found (the Grey County NVCA regulation layer gave 0 parks and is a regulation limit)"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 7,
+   "notes": "Never a regulation-limit layer. Lead for all three: the Conservation Ontario Open Data Hub, category Conservation lands (an ArcGIS hub: saved copies only).",
+   "id": "CA-ON|lprca",
+   "area": "CA-ON",
+   "target": "hand",
+   "agency": "Long Point Region Conservation Authority",
+   "what": "conservation-area / property polygons",
+   "page": "https://lprca.on.ca/",
+   "checked": "2026-11-21",
+   "why_off": "no property layer found; only a regulated-area mapping tool"
+  },
+  {
+   "status": "done",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 7,
+   "notes": "Whether the keeper walks it is in the store (cannot be seen here).",
+   "id": "CA-ON|ON-LSRCA",
+   "area": "CA-ON",
+   "target": "none",
+   "agency": "Lake Simcoe Region Conservation Authority",
+   "what": "already on the Canada key layer list (ON-LSRCA)",
+   "page": "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46",
+   "checked": "2026-11-21",
+   "why_off": "already on data/ca-key/layers.json; not added again"
+  },
+  {
+   "status": "done",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "",
+   "id": "US-IL|sgilc",
+   "area": "US-IL",
+   "target": "fix",
+   "agency": "Illinois Chicago Wilderness",
+   "what": "already on the box: hand-US-IL.sgilc.geojson.gz (boundary-cache, 11 Nov)",
+   "page": "https://clearinghouse.isgs.illinois.edu/outmeta/IL_ADMIN_Conservation_Areas_Py.html",
+   "checked": "2026-11-21",
+   "on_box": "hand-US-IL.sgilc.geojson.gz",
+   "why_off": "no download: needs the merge, and its needs-download rows closed (KPC-Data fixes file)"
+  },
+  {
+   "status": "done",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "",
+   "id": "W-PF|h210",
+   "area": "W-PF",
+   "target": "fix",
+   "agency": "French Polynesia TeFenua marine protected areas",
+   "what": "already on the box: hand-W-PF.h210.geojson.gz (boundary-cache, 11 Nov)",
+   "page": "https://www.tefenua.data.gov.pf/datasets/ef2bdc8e55f049318a3888f8134349b0_0/about",
+   "checked": "2026-11-21",
+   "on_box": "hand-W-PF.h210.geojson.gz",
+   "why_off": "no download: needs the merge, and its open needs-download row closed (KPC-Data fixes file)"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "",
+   "id": "US-MA|sgmaa",
+   "area": "US-MA",
+   "target": "hand",
+   "agency": "MassGIS",
+   "what": "Protected and Recreational OpenSpace (already on the US key list)",
+   "page": "https://www.mass.gov/info-details/massgis-data-protected-and-recreational-openspace",
+   "checked": "2026-11-21",
+   "why_off": "mass.gov answered 403: a person downloads it"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "",
+   "id": "US-VT|vta",
+   "area": "US-VT",
+   "target": "hand",
+   "agency": "Vermont ANR",
+   "what": "ANR Land Dataset Unit polygons (already on the US key list)",
+   "page": "https://geodata.vermont.gov/datasets/VTANR::anr-land-dataset-unit",
+   "checked": "2026-11-21",
+   "why_off": "the portal download API answered 400/404: a person downloads the polygon layer"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "",
+   "id": "CA-BC|bc-local-greenspaces",
+   "area": "CA-BC",
+   "target": "hand",
+   "agency": "BC Data Catalogue",
+   "what": "local and regional greenspaces",
+   "page": "https://catalogue.data.gov.bc.ca/",
+   "checked": "2026-11-21",
+   "why_off": "an order form / email download"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "",
+   "id": "CA-BC|bc-recreation-polygons",
+   "area": "CA-BC",
+   "target": "hand",
+   "agency": "BC Data Catalogue",
+   "what": "recreation polygons",
+   "page": "https://catalogue.data.gov.bc.ca/",
+   "checked": "2026-11-21",
+   "why_off": "an order form / email download"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "",
+   "id": "CA-BC|bc-historic-places-82",
+   "area": "CA-BC",
+   "target": "hand",
+   "agency": "BC Data Catalogue",
+   "what": "Historic Places layer 82",
+   "page": "https://catalogue.data.gov.bc.ca/",
+   "checked": "2026-11-21",
+   "why_off": "an order form / email download; confirm the Access Only licence first"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 390,
+   "notes": "",
+   "id": "W-AR|administración-de-parques-naci",
+   "area": "W-AR",
+   "target": "hand",
+   "agency": "Administración de Parques Nacionales (SIB)",
+   "what": "Argentina: protected-area polygons",
+   "page": "https://sib.gob.ar/cartografia",
+   "checked": "2026-11-21",
+   "why_off": "the shapefile/GeoJSON address is not visible without a browser"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 42,
+   "notes": "",
+   "id": "W-CR|sinac",
+   "area": "W-CR",
+   "target": "hand",
+   "agency": "SINAC",
+   "what": "Costa Rica: protected-area polygons",
+   "page": "https://www.sinac.go.cr/",
+   "checked": "2026-11-21",
+   "why_off": "no public service confirmed; check SIGSINAC and snitcr.go.cr"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 221,
+   "notes": "",
+   "id": "W-HU|tir",
+   "area": "W-HU",
+   "target": "hand",
+   "agency": "TIR (ministry viewer)",
+   "what": "Hungary: protected-area polygons",
+   "page": "http://geo.kvvm.hu/",
+   "checked": "2026-11-21",
+   "why_off": "no public WMS/WFS/REST found; may need the ministry"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 192,
+   "notes": "",
+   "id": "W-BA|e-prirodafbih-federal-geodetic",
+   "area": "W-BA",
+   "target": "hand",
+   "agency": "e-prirodafbih / Federal Geodetic Administration",
+   "what": "Bosnia and Herzegovina (FBiH): protected-area polygons",
+   "page": "https://www.e-prirodafbih.ba/",
+   "checked": "2026-11-21",
+   "why_off": "no endpoint found"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 1044,
+   "notes": "",
+   "id": "W-SI|arso-protected-area-polygons",
+   "area": "W-SI",
+   "target": "hand",
+   "agency": "ARSO protected-area polygons (eProstor)",
+   "what": "Slovenia: protected-area polygons",
+   "page": "https://podatki.gov.si/dataset/zavarovana-obmocja-poligoni",
+   "checked": "2026-11-21",
+   "why_off": "the open-data page names no open licence yet"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 1248,
+   "notes": "",
+   "id": "W-FR|inpn-patrinat-protected-areas",
+   "area": "W-FR",
+   "target": "hand",
+   "agency": "INPN / PatriNat protected areas",
+   "what": "France: protected-area polygons",
+   "page": "https://inpn.mnhn.fr/",
+   "checked": "2026-11-21",
+   "why_off": "country total shared with the ONF row"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 1248,
+   "notes": "",
+   "id": "W-FR|onf-biological-reserves",
+   "area": "W-FR",
+   "target": "hand",
+   "agency": "ONF biological reserves",
+   "what": "France: protected-area polygons",
+   "page": "https://www.data.gouv.fr/",
+   "checked": "2026-11-21",
+   "why_off": "the WFS base address needs a browser; country total shared with the INPN row"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 18,
+   "notes": "",
+   "id": "W-LI|naturschutzgebiete",
+   "area": "W-LI",
+   "target": "hand",
+   "agency": "Naturschutzgebiete (llv.li geodata)",
+   "what": "Liechtenstein: protected-area polygons",
+   "page": "https://opendata.swiss/",
+   "checked": "2026-11-21",
+   "why_off": "the catalogue entry has no WFS/WMS link"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 114,
+   "notes": "",
+   "id": "W-UA|e-cadastre",
+   "area": "W-UA",
+   "target": "hand",
+   "agency": "e-cadastre (eco.mepr.gov.ua)",
+   "what": "Ukraine: protected-area polygons",
+   "page": "https://eco.mepr.gov.ua/",
+   "checked": "2026-11-21",
+   "why_off": "no documented OGC endpoint"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 10,
+   "notes": "",
+   "id": "W-LT|vstt-state-cadastre-of-protect",
+   "area": "W-LT",
+   "target": "hand",
+   "agency": "VSTT State Cadastre of Protected Areas",
+   "what": "Lithuania: protected-area polygons",
+   "page": "https://vstt.lrv.lt/en/cadastre/",
+   "checked": "2026-11-21",
+   "why_off": "request form only when last checked"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 8766,
+   "notes": "",
+   "id": "W-RU|oopt",
+   "area": "W-RU",
+   "target": "hand",
+   "agency": "OOPT (NextGIS resource)",
+   "what": "Russia: protected-area polygons",
+   "page": "https://ooptaari.nextgis.ru/",
+   "checked": "2026-11-21",
+   "why_off": "the resource id has to be found in a browser"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 232,
+   "notes": "",
+   "id": "W-MD|ministerul-mediului-ieg.asm.md",
+   "area": "W-MD",
+   "target": "hand",
+   "agency": "Ministerul Mediului / ieg.asm.md",
+   "what": "Moldova: protected-area polygons",
+   "page": "https://ieg.asm.md/",
+   "checked": "2026-11-21",
+   "why_off": "dataset.gov.md had no spatial resource"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 268,
+   "notes": "",
+   "id": "W-SK|sop-sr-map-portal",
+   "area": "W-SK",
+   "target": "hand",
+   "agency": "SOP SR map portal",
+   "what": "Slovakia: protected-area polygons",
+   "page": "https://www.sopsr.sk/",
+   "checked": "2026-11-21",
+   "why_off": "no endpoint surfaced; an embedded map app"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 212,
+   "notes": "",
+   "id": "W-BG|exea-iaos-protected-area-regis",
+   "area": "W-BG",
+   "target": "hand",
+   "agency": "ExEA / IAOS protected-area register",
+   "what": "Bulgaria: protected-area polygons",
+   "page": "https://eea.government.bg/zpo",
+   "checked": "2026-11-21",
+   "why_off": "no WFS/WMS found; never the EEA WISE copy in its place"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 83,
+   "notes": "",
+   "id": "W-EE|maaruum-public-wms/wfs",
+   "area": "W-EE",
+   "target": "hand",
+   "agency": "Maaruum public WMS/WFS",
+   "what": "Estonia: protected-area polygons",
+   "page": "https://geoportaal.maaruum.ee/",
+   "checked": "2026-11-21",
+   "why_off": "direct fetch was blocked; the GetCapabilities address needs a browser"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 64,
+   "notes": "",
+   "id": "W-GR|ypen-natura-2000-viewer",
+   "area": "W-GR",
+   "target": "hand",
+   "agency": "YPEN Natura 2000 viewer",
+   "what": "Greece: protected-area polygons",
+   "page": "https://www.gov.gr/",
+   "checked": "2026-11-21",
+   "why_off": "follow through to the INSPIRE geoportal"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 1287,
+   "notes": "",
+   "id": "W-KR|korea-forest-service-mountain-",
+   "area": "W-KR",
+   "target": "hand",
+   "agency": "Korea Forest Service Mountain Safety Map",
+   "what": "Korea: protected-area polygons",
+   "page": "https://www.forest.go.kr/",
+   "checked": "2026-11-21",
+   "why_off": "confirm it has park polygons, not only markers"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 859,
+   "notes": "",
+   "id": "W-TH|department-of-national-parks",
+   "area": "W-TH",
+   "target": "hand",
+   "agency": "Department of National Parks",
+   "what": "Thailand: protected-area polygons",
+   "page": "https://www.dnp.go.th/",
+   "checked": "2026-11-21",
+   "why_off": "check gis.dnp.go.th for a public REST/WFS"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 16,
+   "notes": "",
+   "id": "W-CK|national-environment-service",
+   "area": "W-CK",
+   "target": "hand",
+   "agency": "National Environment Service (via SPREP metadata)",
+   "what": "Cook Islands: protected-area polygons",
+   "page": "https://pacificdata.org/",
+   "checked": "2026-11-21",
+   "why_off": "original national file only, never a SPREP-derived polygon"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 2,
+   "notes": "",
+   "id": "W-NU|niue-government",
+   "area": "W-NU",
+   "target": "hand",
+   "agency": "Niue government (via SPREP metadata)",
+   "what": "Niue: protected-area polygons",
+   "page": "https://pacificdata.org/",
+   "checked": "2026-11-21",
+   "why_off": "original national file only"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 45,
+   "notes": "",
+   "id": "W-FM|fsm-states",
+   "area": "W-FM",
+   "target": "hand",
+   "agency": "FSM states (via SPREP metadata)",
+   "what": "Micronesia (FSM): protected-area polygons",
+   "page": "https://pacificdata.org/",
+   "checked": "2026-11-21",
+   "why_off": "original state files only"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 2,
+   "notes": "",
+   "id": "W-NR|nauru-government",
+   "area": "W-NR",
+   "target": "hand",
+   "agency": "Nauru government (via SPREP metadata)",
+   "what": "Nauru: protected-area polygons",
+   "page": "https://pacificdata.org/",
+   "checked": "2026-11-21",
+   "why_off": "no public GIS portal found; may be a dead end"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 12,
+   "notes": "",
+   "id": "W-GH|forestry-commission-wildlife-d",
+   "area": "W-GH",
+   "target": "hand",
+   "agency": "Forestry Commission / Wildlife Division",
+   "what": "Ghana: protected-area polygons",
+   "page": "https://fc.gov.gh/wildlife-division/",
+   "checked": "2026-11-21",
+   "why_off": "no public endpoint; may need a request"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 9,
+   "notes": "",
+   "id": "W-CD|iccn",
+   "area": "W-CD",
+   "target": "hand",
+   "agency": "ICCN (via a WRI forest-atlas layer that cites ICCN)",
+   "what": "DR Congo: protected-area polygons",
+   "page": "",
+   "checked": "2026-11-21",
+   "why_off": "only a layer that cites ICCN as the original source"
+  },
+  {
+   "status": "hand",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": 15,
+   "notes": "",
+   "id": "W-JM|forestry-department-nepa",
+   "area": "W-JM",
+   "target": "hand",
+   "agency": "Forestry Department / NEPA",
+   "what": "Jamaica: protected-area polygons",
+   "page": "https://www.data.gov.jm/",
+   "checked": "2026-11-21",
+   "why_off": "check data.gov.jm and NEPA"
+  },
+  {
+   "status": "off",
+   "licence": "Open Government Licence v3 (stated in the service metadata)",
+   "licence_ok": true,
+   "terms_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "GB-SCT. Fees and access: none. Also offered as a download at gis-downloads.nature.scot. The name field and the full record count (expected) are read from the service when it is switched on; none is guessed here.",
+   "id": "W-GB|naturescot-pa30x30",
+   "area": "W-GB",
+   "target": "intake",
+   "agency": "NatureScot",
+   "what": "protectedareas:pa30x30 (PA_Type), EPSG:27700",
+   "page": "https://www.data.gov.uk/dataset/30-x-30-protected-areas",
+   "service": "https://ogc.nature.scot/geoserver/protectedareas/wfs",
+   "checked": "2026-11-21",
+   "why_off": "robots.txt not read (the intake bot reads it when it runs)",
+   "intake": {
+    "area": "W-GB",
+    "layer": "gb-sct-pa30x30",
+    "source_url": "https://ogc.nature.scot/geoserver/protectedareas/wfs",
+    "license": "OGL v3",
+    "expected": null,
+    "name_fields": []
+   }
+  },
+  {
+   "status": "off",
+   "licence": "Open Government Licence v3 (stated on the data.gov.uk dataset pages)",
+   "licence_ok": true,
+   "terms_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "GB-ENG. Attribution: © Natural England copyright; contains Ordnance Survey data © Crown copyright and database right. The name field and the full record count (expected) are read from the service when it is switched on; none is guessed here.",
+   "id": "W-GB|ne-national-nature-reserves-england",
+   "area": "W-GB",
+   "target": "intake",
+   "agency": "Natural England (Defra)",
+   "what": "national nature reserves england, EPSG:27700",
+   "page": "https://www.data.gov.uk/search?q=national-nature-reserves-england",
+   "service": "https://environment.data.gov.uk/spatialdata/national-nature-reserves-england/wfs",
+   "checked": "2026-11-21",
+   "why_off": "robots.txt not read (the intake bot reads it when it runs)",
+   "intake": {
+    "area": "W-GB",
+    "layer": "gb-eng-national-nature-rese",
+    "source_url": "https://environment.data.gov.uk/spatialdata/national-nature-reserves-england/wfs",
+    "license": "OGL v3",
+    "expected": null,
+    "name_fields": []
+   }
+  },
+  {
+   "status": "off",
+   "licence": "Open Government Licence v3 (stated on the data.gov.uk dataset pages)",
+   "licence_ok": true,
+   "terms_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "GB-ENG. Attribution: © Natural England copyright; contains Ordnance Survey data © Crown copyright and database right. The name field and the full record count (expected) are read from the service when it is switched on; none is guessed here.",
+   "id": "W-GB|ne-sites-of-special-scientific-interest-england",
+   "area": "W-GB",
+   "target": "intake",
+   "agency": "Natural England (Defra)",
+   "what": "sites of special scientific interest england, EPSG:27700",
+   "page": "https://www.data.gov.uk/search?q=sites-of-special-scientific-interest-england",
+   "service": "https://environment.data.gov.uk/spatialdata/sites-of-special-scientific-interest-england/wfs",
+   "checked": "2026-11-21",
+   "why_off": "robots.txt not read (the intake bot reads it when it runs)",
+   "intake": {
+    "area": "W-GB",
+    "layer": "gb-eng-sites-of-special-sci",
+    "source_url": "https://environment.data.gov.uk/spatialdata/sites-of-special-scientific-interest-england/wfs",
+    "license": "OGL v3",
+    "expected": null,
+    "name_fields": []
+   }
+  },
+  {
+   "status": "off",
+   "licence": "Open Government Licence v3 (stated on the data.gov.uk dataset pages)",
+   "licence_ok": true,
+   "terms_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "GB-ENG. Attribution: © Natural England copyright; contains Ordnance Survey data © Crown copyright and database right. The name field and the full record count (expected) are read from the service when it is switched on; none is guessed here.",
+   "id": "W-GB|ne-local-nature-reserves-england",
+   "area": "W-GB",
+   "target": "intake",
+   "agency": "Natural England (Defra)",
+   "what": "local nature reserves england, EPSG:27700",
+   "page": "https://www.data.gov.uk/search?q=local-nature-reserves-england",
+   "service": "https://environment.data.gov.uk/spatialdata/local-nature-reserves-england/wfs",
+   "checked": "2026-11-21",
+   "why_off": "robots.txt not read (the intake bot reads it when it runs)",
+   "intake": {
+    "area": "W-GB",
+    "layer": "gb-eng-local-nature-reserve",
+    "source_url": "https://environment.data.gov.uk/spatialdata/local-nature-reserves-england/wfs",
+    "license": "OGL v3",
+    "expected": null,
+    "name_fields": []
+   }
+  },
+  {
+   "status": "off",
+   "licence": "Open Government Licence v3 (stated on the data.gov.uk dataset pages)",
+   "licence_ok": true,
+   "terms_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "GB-ENG. Attribution: © Natural England copyright; contains Ordnance Survey data © Crown copyright and database right. The name field and the full record count (expected) are read from the service when it is switched on; none is guessed here.",
+   "id": "W-GB|ne-country-parks-england",
+   "area": "W-GB",
+   "target": "intake",
+   "agency": "Natural England (Defra)",
+   "what": "country parks england, EPSG:27700",
+   "page": "https://www.data.gov.uk/search?q=country-parks-england",
+   "service": "https://environment.data.gov.uk/spatialdata/country-parks-england/wfs",
+   "checked": "2026-11-21",
+   "why_off": "robots.txt not read (the intake bot reads it when it runs)",
+   "intake": {
+    "area": "W-GB",
+    "layer": "gb-eng-country-parks-englan",
+    "source_url": "https://environment.data.gov.uk/spatialdata/country-parks-england/wfs",
+    "license": "OGL v3",
+    "expected": null,
+    "name_fields": []
+   }
+  },
+  {
+   "status": "off",
+   "licence": "Norsk lisens for offentlige data (NLOD) 2.0 (product sheet); the INSPIRE copy is CC BY 4.0",
+   "licence_ok": true,
+   "terms_url": "https://data.norge.no/nlod/no/2.0",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "Attribution: Kilde: Miljødirektoratet. The name field and the full record count (expected) are read from the service when it is switched on; none is guessed here.",
+   "id": "W-NO|naturvernomrader",
+   "area": "W-NO",
+   "target": "intake",
+   "agency": "Miljødirektoratet (Geonorge)",
+   "what": "Naturvernområder (protected areas)",
+   "page": "https://kartkatalog.geonorge.no/Metadata/uuid/891dabe8-6306-41e8-ae34-9a10b033be9d",
+   "service": "https://nedlasting.geonorge.no/",
+   "checked": "2026-11-21",
+   "why_off": "robots.txt not read; the download address (Geonorge API) still to pick",
+   "intake": {
+    "area": "W-NO",
+    "layer": "no-naturvernomrader",
+    "source_url": "https://nedlasting.geonorge.no/",
+    "license": "NLOD 2.0",
+    "expected": null,
+    "name_fields": []
+   }
+  },
+  {
+   "status": "hold",
+   "licence": "",
+   "licence_ok": false,
+   "terms_url": "",
+   "robots": {
+    "result": "not read",
+    "date": ""
+   },
+   "parks_missing": null,
+   "notes": "",
+   "id": "W-SE|naturvardsregistret",
+   "area": "W-SE",
+   "target": "intake",
+   "agency": "Naturvårdsverket",
+   "what": "SkyddadeOmraden, EPSG:3006 (paging required)",
+   "page": "https://geodata.naturvardsverket.se/naturvardsregistret/wfs",
+   "service": "https://geodata.naturvardsverket.se/naturvardsregistret/wfs",
+   "checked": "2026-11-21",
+   "why_off": "HOLD: the service states no licence; stays off until the agency page is confirmed"
+  }
+ ],
+ "partial_id": {
+  "about": "Layers whose id field is filled on only part of the layer (ID finder 20 Nov run on the store copy; counts and layer ids only). A different id never throws a record out; it only fails to confirm. A companion official source is wired here only when one exists; none needs a download today.",
+  "counts": {
+   "ID found: filled on the whole layer": 112,
+   "ID found: filled on 95-99.9%": 10,
+   "ID found: under 95%": 2,
+   "possible ID: whole": 17,
+   "possible ID: 95-99.9%": 1,
+   "possible ID: under 95%": 1,
+   "ID on part of the layer": 10
+  },
+  "layers": [
+   {
+    "layer": "PAD-US",
+    "verdict": "ID on part",
+    "id_field": "Source_PAID",
+    "filled_pct": 42.0,
+    "parks": 8230,
+    "companion": "per source: the agency's own state layer carries the id where PAD-US does not (CA State Parks and MT FWP addresses in Comments: link-id-ties.json, job A); no download"
+   },
+   {
+    "layer": "sgmaa",
+    "verdict": "ID found",
+    "id_field": "PROJ_ID1",
+    "filled_pct": 87.0,
+    "parks": 384,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgnha",
+    "verdict": "ID on part",
+    "id_field": "cobkpg",
+    "filled_pct": 22.0,
+    "parks": 173,
+    "companion": "not an agency id (a book and page reference): do not use as an id"
+   },
+   {
+    "layer": "sgnhd",
+    "verdict": "ID on part",
+    "id_field": "COBKPG",
+    "filled_pct": 22.0,
+    "parks": 172,
+    "companion": "not an agency id (a book and page reference): do not use as an id"
+   },
+   {
+    "layer": "sgfld",
+    "verdict": "ID found",
+    "id_field": "TRACT_ID",
+    "filled_pct": 99.0,
+    "parks": 73,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgdea",
+    "verdict": "ID on part",
+    "id_field": "FACILITYID",
+    "filled_pct": 38.0,
+    "parks": 47,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgvad",
+    "verdict": "ID found",
+    "id_field": "TRACTCODE",
+    "filled_pct": 99.0,
+    "parks": 44,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgmnf",
+    "verdict": "possible",
+    "id_field": "PGRM_PROJECT",
+    "filled_pct": 99.0,
+    "parks": 168,
+    "companion": "the record's own web address (WEB_LINK1, state forest page id): link-id-ties.json, job A; no download"
+   },
+   {
+    "layer": "sgdee",
+    "verdict": "ID on part",
+    "id_field": "FACILITYID",
+    "filled_pct": 29.0,
+    "parks": 70,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "wbl",
+    "verdict": "ID found",
+    "id_field": "NLCS_ID",
+    "filled_pct": 98.0,
+    "parks": 98,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgnjb",
+    "verdict": "ID found",
+    "id_field": "LAND_FACILITY_ID",
+    "filled_pct": 95.0,
+    "parks": 108,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgmia",
+    "verdict": "ID found",
+    "id_field": "LinkID",
+    "filled_pct": 96.0,
+    "parks": 99,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgwva",
+    "verdict": "ID found",
+    "id_field": "LocCode",
+    "filled_pct": 99.0,
+    "parks": 94,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sguta",
+    "verdict": "ID found",
+    "id_field": "parkabbid",
+    "filled_pct": 97.0,
+    "parks": 44,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "mid",
+    "verdict": "ID found",
+    "id_field": "ProjectID",
+    "filled_pct": 93.0,
+    "parks": 43,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgtxc",
+    "verdict": "ID found",
+    "id_field": "LoCode",
+    "filled_pct": 98.0,
+    "parks": 46,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgfle",
+    "verdict": "ID found",
+    "id_field": "MA_NUMBER",
+    "filled_pct": 98.0,
+    "parks": 57,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgrib",
+    "verdict": "ID on part",
+    "id_field": "USFW_GrntID",
+    "filled_pct": 22.0,
+    "parks": 35,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgric",
+    "verdict": "ID on part",
+    "id_field": "USFW_GrntID",
+    "filled_pct": 22.0,
+    "parks": 35,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgria",
+    "verdict": "ID on part",
+    "id_field": "USFW_GrntID",
+    "filled_pct": 20.0,
+    "parks": 34,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgide",
+    "verdict": "ID on part",
+    "id_field": "RECPROJECTSITEAREAID",
+    "filled_pct": 75.0,
+    "parks": 27,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "sgwyb",
+    "verdict": "ID found",
+    "id_field": "SB_ID",
+    "filled_pct": 97.0,
+    "parks": 29,
+    "companion": "none found yet: needs an official companion table or field (off until licence and robots)"
+   },
+   {
+    "layer": "ON-ABCA Ausa",
+    "verdict": "ID on part",
+    "id_field": "STREET_NUM",
+    "filled_pct": 67.0,
+    "parks": 8,
+    "companion": "not an agency id (a street number): do not use as an id"
+   },
+   {
+    "layer": "ON-GANA Gana",
+    "verdict": "possible",
+    "id_field": "roll",
+    "filled_pct": 86.0,
+    "parks": 7,
+    "companion": "not an agency id (an assessment roll number): do not use as an id"
+   }
+  ]
+ }
+}
