@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T11:42:03Z",
+ "updated": "2026-11-21T11:58:51Z",
  "week": [
   {
    "name": "AWA Bruce Kelley 1929 QSO Party",
@@ -19,20 +19,6 @@
    "kinds": [
     "QSOPARTY"
    ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gkyux",
-   "when": "2000Z-2100Z, Nov 20",
-   "segs": [
-    [
-     "2026-11-20T20:00Z",
-     "2026-11-20T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
    "src": "WA7BNM"
   },
   {
@@ -438,6 +424,66 @@
    "modes": [
     "CW"
    ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC FT4 Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gv99x",
+   "when": "0100Z-0130Z, Nov 27",
+   "segs": [
+    [
+     "2026-11-27T01:00Z",
+     "2026-11-27T01:30Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Weekly RTTY Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gw45d",
+   "when": "0145Z-0215Z, Nov 27",
+   "segs": [
+    [
+     "2026-11-27T01:45Z",
+     "2026-11-27T02:15Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gudvg",
+   "when": "0230Z-0300Z, Nov 27",
+   "segs": [
+    [
+     "2026-11-27T02:30Z",
+     "2026-11-27T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gl6kp",
+   "when": "2000Z-2100Z, Nov 27",
+   "segs": [
+    [
+     "2026-11-27T20:00Z",
+     "2026-11-27T21:00Z"
+    ]
+   ],
+   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   }
@@ -2221,7 +2267,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (29)",
+  "WA7BNM": "ok (32)",
   "CORRAL": "ok (53)"
  }
 }
