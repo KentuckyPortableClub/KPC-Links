@@ -579,6 +579,13 @@
    "why": "Match by more than name (kpc_match_checks.py, switch KPC_MATCH_CHECKS on in every built state): a same-kind id from POTA's own link confirms a record; any other name-joined record keeps the outline only when it passes agency (when known), pin 3c, another park's name, the national-layer rule and a tagged size (none today); kind is a note only. Records that fail go to check and a park left with none shows its pin. It reads every state's parks, so every state is rebuilt once.",
    "scope": "all",
    "approved": "APPROVED by owner Nov 20, decided_by KPC owner, 2026-11-20"
+  },
+  {
+   "id": "2026-11-21-link-name",
+   "when": "2026-11-21",
+   "from": "fb5d8d5a3a2d",
+   "why": "Confirm a name join by more than the name: a park whose own agency page in the park's state names it in full in the address, and whose pin 3c and size or place pass, is confirmed by link (a part name in the address is a note only). Minnesota DNR unit ids on sgmnb sft and sgmnc pgrm_project confirm like a Park Service code; a joined record whose same-kind id differs from POTA's link goes to check. Reads POTA's saved park list (no fetch). It reads every state's parks, so every state is rebuilt once.",
+   "scope": "all"
   }
  ]
 }

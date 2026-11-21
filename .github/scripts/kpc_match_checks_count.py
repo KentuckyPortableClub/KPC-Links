@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""kpc_match_checks_count.py: what the six match checks (kpc_match_checks.py) would do to the saved US keys. Counts only.
+"""kpc_match_checks_count.py: what the match checks (kpc_match_checks.py) would do to the saved US keys. Counts only, including confirmed by id, by link and by size.
 
 Offline and read-only: reads the saved key files (data/us-key/US-XX.json), a saved copy of the records the key reads (the
 builder's own cache files US-XX.json.gz, with outlines), KPC-Data's park facts file and data/nps-units.json. It contacts
@@ -107,6 +107,7 @@ def predict_state(st, key, recs, facts, layers, units, seen=None, table=None):
     res = TA.pass_state(parks, recs, facts, place, url_of, is_no, skip, st, units, hits, holds, table)
     if seen is not None: seen.update(hits=hits, parks=parks, recs=recs)
     c = {k: 0 for k in ('parks', 'joined_before', 'nonname_before', 'confirmed', 'outlined', 'pin', 'gain', 'lose', 'id_confirmed',
+                        'confirmed_by_id', 'confirmed_by_link', 'confirmed_by_size',
                         'rows_to_check', 'rows_joined_by_id', 'nat_before', 'nat_name_before', 'nat_after', 'nat_parks_before',
                         'nat_parks_after', 'rec_missing', 'line_untouched')}
     for ref, p0 in before.items():
@@ -120,6 +121,8 @@ def predict_state(st, key, recs, facts, layers, units, seen=None, table=None):
             elif not j1: c['pin'] += 1
             else: c['line_untouched'] += 1          # an official trail line park: not checked here, kept as it is
         c['id_confirmed'] += bool((p1.get('match') or {}).get('id'))
+        by = (p1.get('match') or {}).get('by')
+        if by in ('id', 'link', 'size'): c['confirmed_by_' + by] += 1
         n0 = [q for q in p0.get('m') or [] if is_national(q[0])]
         n1 = [q for q in p1.get('m') or [] if is_national(q[0])]
         c['nat_before'] += len(n0); c['nat_after'] += len(n1)
