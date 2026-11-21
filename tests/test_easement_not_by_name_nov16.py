@@ -45,7 +45,12 @@ check("'check: a conservation easement record is never joined by name alone" in 
 check("**({'Rec_Type': _rt} if _rt else {})" in src, "the state layer read keeps the record's own type (a record with no type field is unchanged)")
 
 # existing joins (v4 answer 1): kept and listed, not removed; New York re-checks them
-check(U.EASEMENT_RECHECK_STATES == {'NY'}, 'only New York re-checks its existing name-alone easement joins')
+# The recheck set lives in data/us-key/area-tables.json (D6, 20 Nov 2026), loaded next to _AT, not in this helper slice.
+_ers = json.loads((ROOT / 'data/us-key/area-tables.json').read_text(encoding='utf-8'))['EASEMENT_RECHECK_STATES']
+check({st for st, on in _ers.items() if on} == {'NY'}, 'only New York re-checks its existing name-alone easement joins')
+check("EASEMENT_RECHECK_STATES = {st for st, on in _AT['EASEMENT_RECHECK_STATES'].items() if on}" in src
+      and src.find('_AT = area_tables()') < src.find("EASEMENT_RECHECK_STATES = {st for st, on in _AT"),
+      'the recheck set is loaded from the table file at table-load time')
 k0 = src.find("keep['kept_ids'] = 'saved record ids kept through a rules change"); k1 = src.find('parks[ref] = keep; carried += 1')
 blk = src[k0:k1]
 check(0 < k0 < k1 and 'EASEMENT_KEPT.extend' in blk and 'st in EASEMENT_RECHECK_STATES' in blk,

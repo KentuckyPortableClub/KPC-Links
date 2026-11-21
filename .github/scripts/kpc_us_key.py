@@ -826,6 +826,10 @@ def area_tables(path=None):
         if not ok: bad(f"XS entry {str(e.get('prefix') if isinstance(e, dict) else e)[:40]!r} is not in the expected form")
         if e['prefix'] in seen: bad(f"XS prefix {e['prefix']!r} listed twice (store an entry once and list its states in 'areas')")
         seen.add(e['prefix'])
+    ers = t.get('EASEMENT_RECHECK_STATES')
+    if not isinstance(ers, dict) or not ers: bad('EASEMENT_RECHECK_STATES missing or empty')
+    for st, on in ers.items():
+        if st not in ALL or not isinstance(on, bool): bad(f'EASEMENT_RECHECK_STATES {st!r} is not a state mapped to true or false')
     return t
 
 
@@ -843,6 +847,7 @@ def with_state_layers(national, entries):
 
 
 _AT = area_tables()
+EASEMENT_RECHECK_STATES = {st for st, on in _AT['EASEMENT_RECHECK_STATES'].items() if on}
 BOX_ADD = {st: tuple(b) for st, b in _AT['BOX_ADD'].items()}   # [west, south, east, north] added to the state's box (st_box)
 
 
@@ -1165,7 +1170,6 @@ READ_ONCE = {}   # (query url, where, box, fields, order) -> a complete read of 
 # 'easement_name_joins'). New York (EASEMENT_RECHECK_STATES) also re-checks its existing ones (they go to CHECK). The type is read
 # from the record's own fields: PAD-US Category / Des_Tp / d_Des_Tp, a state layer's own type field (Rec_Type: CATEGORY, TYPE,
 # CLASS, INTEREST ...) and its source fields. A join a person made (overrides, 'reviewed') is not a name-alone join.
-EASEMENT_RECHECK_STATES = {'NY'}
 EASEMENT_KEPT = []   # [ref, record id] of this state's existing name-alone easement joins (listed for review, not removed)
 EASEMENT_RX = re.compile(r'\beasements?\b|^\s*(cone|ease)\s*$', re.I)
 TYPE_KEY_RX = re.compile(r'^(category|des_tp|d_des_tp|rec_type|type|class|interest|inttype\d*|prot_type|land_type|acq_type|feat_type|ownership_type|own_type_desc)$', re.I)

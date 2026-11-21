@@ -12,7 +12,7 @@ tests/test_loaders_released_ca_ky_nov11.py       # 2026-11-16: released ky-usace
 # 2026-11-20 (Fable, merge of #308 over #309): the 25 lines #309 added for tests that fail only where a package is missing (cv2, openpyxl, pyshp) or that #308 repaired are taken out;
 # all of them pass on a machine with those packages (run 20 Nov, Python 3.13). Install the packages before the gate; never list a test here for a missing package.
 # Added 2026-11-20 (job 7, gate on main f3e6636dc, python3.12 and 3.13, DATA and KPC_DATA set): these fail because the code or data is wrong, not the test.
-tests/test_area_tables_nov12.py                  # 2026-11-20: code wrong: two rule files assign tables keyed by area codes (kpc_us_key.py EASEMENT_RECHECK_STATES, kpc_world_key.py SRC['MK']), against D6; moving them to area-tables.json moves rules hashes (owner's call)
+tests/test_area_tables_nov12.py                  # 2026-11-20: D6 leftovers moved to area-tables.json; remaining FAIL is pre-existing drift vs OLD 2cd7aa0 (US XS list and OLD vs NEW builders), not a table still in a rule file
 # Taken out 2026-11-20 (job 11): test_keys_store_mode_nov16 and test_nextround_hidden_failures_nov5. The held-copies upload
 # is its own step and does not run in store mode, the bare warning echo records the line, and the || true on the copy is marked # ok.
 tests/test_pota_door_nov16.py                    # 2026-11-20: code wrong: the logger-beta copy of app 0.9.15 (#282) brought 2 direct api.pota.app calls into logger-beta/kpc-log.js

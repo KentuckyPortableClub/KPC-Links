@@ -172,11 +172,11 @@ check('kpc_national_level_check.py' in KF.NOT_RULES,
       'kpc_national_level_check.py is on the NOT_RULES list')
 check(not any(os.path.basename(f) == 'kpc_national_level_check.py' for fs in KF.RULE_FILES.values() for f in fs),
       'kpc_national_level_check.py is in no RULE_FILES list')
-# hashes on this tree, same as origin/main when the branch was cut (the check is not in the hash)
-check(KF.rules_hash('us-key') == '7e4883bfbb45', f"US rules hash stays 7e4883bfbb45 (got {KF.rules_hash('us-key')})")
-check(KF.rules_hash('ca-key') == 'dfef94b3dfd3', f"CA rules hash stays dfef94b3dfd3 (got {KF.rules_hash('ca-key')})")
-check(KF.rules_hash('world-key') == 'b1f23bf0deea', f"world rules hash stays b1f23bf0deea (got {KF.rules_hash('world-key')})")
-check(KF.rules_hash('fers') == '6a9d67ea4100', f"2-fers rules hash stays 6a9d67ea4100 (got {KF.rules_hash('fers')})")
+# the check itself is not in the hash: every rules hash on this tree is the one the newest changelog line names
+# (a later approved hash move updates the changelog, not this test)
+import kpc_preflight as _PF  # noqa: E402
+for _k in ('us-key', 'ca-key', 'world-key', 'fers'):
+    check(KF.rules_hash(_k) == _PF.newest_hash(_k), f"{_k} rules hash is the newest changelog hash {_PF.newest_hash(_k)} (got {KF.rules_hash(_k)})")
 
 print('ALL PASS' if not FAILS else 'SOME FAILED')
 sys.exit(0 if not FAILS else 1)

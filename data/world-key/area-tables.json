@@ -1,5 +1,5 @@
 {
- "about": "Per-country tables of the world answer key (kpc_world_key.py reads this file at start; a missing or malformed file stops the build: nothing is written). Moved out of the rule script on Nov 12 (KPC owner, 2026-11-12; D6), unchanged in content. Each table is keyed by country code, so an edit here moves only that country's area hash (kpc_area_hash.py slices this file per country). SRC = the country's built-in official layers, read in this order [label, reader, address, where-list or WFS type name]; layers from extra-layers.json and sheet-countries.json come after. EU = true: an EEA country (EU name rules: Natura codes in names, n2k kinds). GEN = the generic words dropped from names (regular expression), LOC = the same for EEA countries (the EU and English words are added in code). KINDS = [kind code, regular expression] read from a name. SIDE_NOT = words that are NOT a side (north / upper ...) in that country. TYPE_PREFER = POTA park type -> the layer labels preferred when several hold the pin. SPLIT_LAYERS = layers of extra-layers.json that are read WITHOUT the records a built-in source already reads (rest_where). notes = where each entry came from (not read by the builder, not in any hash).",
+ "about": "Per-country tables of the world answer key (kpc_world_key.py reads this file at start; a missing or malformed file stops the build: nothing is written). Moved out of the rule script on Nov 12 (KPC owner, 2026-11-12; D6), unchanged in content. Each table is keyed by country code, so an edit here moves only that country's area hash (kpc_area_hash.py slices this file per country). SRC = the country's built-in official layers, read in this order [label, reader, address, where-list or WFS type name]; layers from extra-layers.json and sheet-countries.json come after. EU = true: an EEA country (EU name rules: Natura codes in names, n2k kinds). GEN = the generic words dropped from names (regular expression), LOC = the same for EEA countries (the EU and English words are added in code). KINDS = [kind code, regular expression] read from a name. SIDE_NOT = words that are NOT a side (north / upper ...) in that country. TYPE_PREFER = POTA park type -> the layer labels preferred when several hold the pin. SPLIT_LAYERS = layers of extra-layers.json that are read WITHOUT the records a built-in source already reads (rest_where). SRC_SWITCH = extra official layers added only when a named key switch is on (default off); keyed by country, so an edit moves only that country's area hash. notes = where each entry came from (not read by the builder, not in any hash).",
  "format": 1,
  "notes": {
   "AU": [
@@ -39,6 +39,9 @@
   ],
   "CL": [
    "Oct 30 (owner's yes): SIMBIO protected areas (MMA)."
+  ],
+  "MK": [
+   "SRC_SWITCH.MK, 20 Nov 2026: when KPC_MK_LAYER_93 is on, the sheet's MapServer/93 layer is added after MapServer/94. Default off. Moved out of kpc_world_key.py (D6 leftover)."
   ],
   "*": [
    "EU countries (EU = true): the European Environment Agency layers (Natura 2000 sites + nationally designated areas, ex-CDDA), each filtered to the country; Oct 18 / Oct 19 (owner: 'go ahead')."
@@ -1322,5 +1325,14 @@
    "rest_where": "esttype<>'SF' OR esttype IS NULL",
    "sf_where": "esttype='SF'"
   }
+ },
+ "SRC_SWITCH": {
+  "MK": [
+   [
+    "Заштитени подрачја (areas, MapServer/93)",
+    "arcgis",
+    "https://portal.app.gov.mk/arcgis/rest/services/PPRSM/karta37_PPRSM_namena_na_zemjiste_WMS_novo/MapServer/93"
+   ]
+  ]
  }
 }
