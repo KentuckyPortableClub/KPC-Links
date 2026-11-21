@@ -91,7 +91,7 @@ def test_ids_same_kind_only():
 
 def test_size_witness_counts_only_the_two_proof_tags():
     for tag, counts in (('agency_document', True), ('hand_copy', True), ('same_record', False), ('other_layer', False), ('unknown', False)):
-        assert bool(MC.size_witnesses(fact(size={'acres': 2000, 'witness': tag}))) == counts, tag
+        assert bool(MC.size_witnesses(fact(size={'acres': 2000, 'witness': tag, 'source_url': 'https://agency.invented.example/p'}))) == counts, tag
     assert not MC.size_witnesses(fact(size={'acres': 2000, 'record_name': 'Invented Lake'}))            # untagged
     assert not MC.size_witnesses(fact(size={'acres': 2000, 'witness': 'agency_document', 'witness_counts': False}))
     pg = fact(page={'own_page': 'own', 'unofficial': False, 'name_vs_pota': 'same', 'sizes': [{'acres': 2000, 'total': True, 'clean': True}]})

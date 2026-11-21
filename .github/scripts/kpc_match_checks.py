@@ -236,9 +236,17 @@ WITNESS_PROOF = ('agency_document', 'hand_copy')   # KPC-Data park facts `size.w
 
 def tagged_witness(row):
     """True only for a size row whose `witness` tag (KPC-Data park facts) is agency_document or hand_copy and that does not say
-    witness_counts false. same_record, other_layer, unknown and an untagged row never count: fail closed."""
+    witness_counts false. same_record, other_layer, unknown and an untagged row never count: fail closed.
+    Job C (KPC owner, 2026-11-21): a hand_copy counts only when it names its source (a web address in source_url); a hand
+    copy with no page ('page not given') is a typed number nobody can check, so it never counts."""
     if not isinstance(row, dict): return False
+    if row.get('witness') == 'hand_copy' and not hand_copy_sourced(row): return False
     return row.get('witness') in WITNESS_PROOF and row.get('witness_counts', True) is not False
+
+
+def hand_copy_sourced(row):
+    """True when a hand-copied size names the page it was copied from (source_url is a web address)."""
+    return bool(re.match(r'^https?://\S+\.\S+', str((row or {}).get('source_url') or '').strip(), re.I))
 
 
 def size_witnesses(fact, shared=None):

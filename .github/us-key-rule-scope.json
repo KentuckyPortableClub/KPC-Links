@@ -600,6 +600,13 @@
    "from": "4a9629d2fab7",
    "why": "A web id the map record carries inside its own web address field (.github/link-id-ties.json: NY DEC, CA State Parks, MT FWP, MN DNR state forests, some Park Service layers), or that the agency's own park list maps to a map id (KPC-Data park facts link.map_tie, from the keeper's agency-crosswalk files), ties the record to the park like a direct id tie. Agree-only for the address: another address id never drops a record. PAD-US and the state layers keep those address fields on save. It changes what every state's records carry, so every state is rebuilt once.",
    "scope": "all"
+  },
+  {
+   "id": "2026-11-21-hand-copy-source",
+   "when": "2026-11-21",
+   "from": "3ff834ba1e1a",
+   "why": "A hand-copied official size (park facts witness hand_copy) counts in the size check only when it names its source page (source_url is a web address). A hand copy with no page never casts a size vote. It can change any state's size votes, so every state is rebuilt once.",
+   "scope": "all"
   }
  ]
 }
