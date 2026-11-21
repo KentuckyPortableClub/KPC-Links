@@ -1884,6 +1884,10 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
     if not facts:
         raise RuntimeError(f'US key {st}: KPC_MATCH_CHECKS is on but the park facts file (PARK_FACTS) is missing '
                            'or empty: the state is held, never built without the rule')
+    try: table = MC.load_layer_table()
+    except Exception as e:  # noqa: BLE001
+        raise RuntimeError(f'US key {st}: KPC_MATCH_CHECKS is on but the layer table (.github/layer-agency-kind.json) is missing '
+                           f'or unreadable ({e}): the state is held, never built without the rule') from e
     byid = {_oid(a): a for a in recs}
 
     def _pins_of(ref):
@@ -1904,7 +1908,7 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
         return bool(inside(r[5], r[6], a['_g']))
 
     hits = []
-    res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL), st, MC.load_nps_units(), hits, _holds)
+    res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL), st, MC.load_nps_units(), hits, _holds, table)
     res['facts'] = MC.facts_stamp(PFR.find())   # which park facts file decided (plan L6: a changed file is visible)
     for h in hits:
         MATCH_HIT.append([st] + h)

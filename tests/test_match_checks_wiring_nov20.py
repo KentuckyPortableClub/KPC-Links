@@ -11,7 +11,8 @@ socket.socket.connect = _no_net
 import kpc_match_checks as MC  # noqa: E402
 
 UNITS = {'INVP': {'ZZ'}, 'OTHR': {'YY'}}
-TAG = {'source_kind': 'agency-list', 'same_record_as_key': False, 'size_link': 'exact-name', 'spot_check': 'passed'}   # an explicit independent-witness tag
+TAG = {'witness': 'agency_document', 'witness_counts': True}   # a park-facts size tag that counts
+TABLE = {'nps': {'agency': 'NPS', 'kind': 'park'}, 'fws': {'agency': 'FWS', 'kind': 'refuge'}, 'sgzza': {'agency': 'state parks', 'kind': 'park'}}
 SQ = [[[-80.0, 40.0], [-79.9, 40.0], [-79.9, 40.1], [-80.0, 40.1], [-80.0, 40.0]]]   # about 2,100 acres
 STATE_LINK = {'site': 'agency (known)', 'agency': 'ZZ State Parks'}
 NPS_LINK = {'site': 'agency (known)', 'agency': 'US National Park Service', 'id_kind': 'NPS unit code', 'id_value': 'INVP'}
@@ -65,11 +66,24 @@ def test_builder_pass_raises_without_facts():
         raise AssertionError('no facts must hold the state')
     assert ns['match_checks_pass']('ZZ', {}, [], {}, set(), on=False) == {}
 
+    class _MC:                                                                   # facts present, layer table missing
+        @staticmethod
+        def load_layer_table(path=None): raise FileNotFoundError('no table')
+    ns2 = {'_kr': lambda name: True, 'PFR': _PFR, 'MC': _MC}
+    exec(fn, ns2)
+    try:
+        ns2['match_checks_pass']('ZZ', {}, [], {}, set(), facts={'US-9001': {}})
+    except RuntimeError as e:
+        assert 'layer table' in str(e) and 'held' in str(e)
+    else:
+        raise AssertionError('no layer table must hold the state')
+
 
 def test_rules_hash_and_switches():
     import kpc_key_freeze as F, kpc_key_rules as KR
     assert '.github/scripts/kpc_match_checks.py' in F.RULE_FILES['us-key']
     assert '.github/scripts/kpc_park_facts_read.py' in F.RULE_FILES['us-key']
+    assert '.github/layer-agency-kind.json' in F.RULE_FILES['us-key']
     assert {'kpc_match_checks_count.py', 'kpc_match_checks_sample.py'} <= F.NOT_RULES
     assert KR.DEFAULTS['KPC_MATCH_CHECKS'] == '0'
     sw = json.load(open(ROOT / '.github/key-switches.json'))['switches']

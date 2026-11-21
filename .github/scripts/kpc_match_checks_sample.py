@@ -72,8 +72,10 @@ def main(argv=None):
     ap.add_argument('--cache', required=True, action='append')
     ap.add_argument('--facts', required=True)
     ap.add_argument('--units', default='data/nps-units.json')
+    ap.add_argument('--layer-table')
     ap.add_argument('--out')
     a = ap.parse_args(argv)
+    table = MC.load_layer_table(a.layer_table)
     rows = read_sample(a.sample)
     facts = json.load(gzip.open(a.facts, 'rt') if a.facts.endswith('.gz') else open(a.facts))['parks']
     layers = json.load(open(os.path.join(a.keys, 'layers.json')))
@@ -84,7 +86,7 @@ def main(argv=None):
         recs = CNT.load_recs(a.cache, st)
         if not os.path.exists(kf) or recs is None: continue
         seen = {}
-        CNT.predict_state(st, json.load(open(kf)), recs, facts, layers, units, seen)
+        CNT.predict_state(st, json.load(open(kf)), recs, facts, layers, units, seen, table)
         per[st] = seen
     rep = dict(score(rows, per), about='counts only; no park or record named')
     print(json.dumps(rep, sort_keys=True))

@@ -49,7 +49,7 @@ def klass_rows(m):
     return {TA.row_class(q) for q in m}
 
 
-def predict_state(st, key, recs, facts, layers, units, seen=None):
+def predict_state(st, key, recs, facts, layers, units, seen=None, table=None):
     parks = copy.deepcopy(key['parks'])
     recs = dict(recs)
     before = key['parks']
@@ -104,7 +104,7 @@ def predict_state(st, key, recs, facts, layers, units, seen=None):
 
     skip = {r for r, p in before.items() if p.get('line')}
     hits = []
-    res = TA.pass_state(parks, recs, facts, place, url_of, is_no, skip, st, units, hits, holds)
+    res = TA.pass_state(parks, recs, facts, place, url_of, is_no, skip, st, units, hits, holds, table)
     if seen is not None: seen.update(hits=hits, parks=parks, recs=recs)
     c = {k: 0 for k in ('parks', 'joined_before', 'nonname_before', 'confirmed', 'outlined', 'pin', 'gain', 'lose', 'id_confirmed',
                         'rows_to_check', 'rows_joined_by_id', 'nat_before', 'nat_name_before', 'nat_after', 'nat_parks_before',
@@ -152,8 +152,10 @@ def main(argv=None):
     ap.add_argument('--cache', required=True, action='append', help='a folder of US-XX.json.gz record copies (repeat: the first holding a record wins)')
     ap.add_argument('--facts', required=True)
     ap.add_argument('--units', default='data/nps-units.json')
+    ap.add_argument('--layer-table', help="each layer's owner (KPC-Links .github/layer-agency-kind.json; default: this repo's)")
     ap.add_argument('--out')
     a = ap.parse_args(argv)
+    table = TA.load_layer_table(a.layer_table)
     facts = json.load(gzip.open(a.facts, 'rt') if a.facts.endswith('.gz') else open(a.facts))['parks']
     layers = json.load(open(os.path.join(a.keys, 'layers.json')))
     units = TA.load_nps_units(a.units)
@@ -165,7 +167,7 @@ def main(argv=None):
             recs = load_recs(a.cache, st)
             if recs is None: per[st] = {'no_cache': 1}; continue
             key = json.load(open(f))
-            per[st] = predict_state(st, key, recs, facts, layers, units)
+            per[st] = predict_state(st, key, recs, facts, layers, units, table=table)
         tot = {}
         for v in per.values():
             for k, n in v.items(): tot[k] = tot.get(k, 0) + n
