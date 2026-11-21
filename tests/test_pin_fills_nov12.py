@@ -223,7 +223,11 @@ with tempfile.TemporaryDirectory() as t:
           'an edit to kpc_pin_fill.py moves the Canada and world hashes only')
 base = next((r for r in ('origin/main',) if subprocess.run(['git', 'rev-parse', '-q', '--verify', r], cwd=H.ROOT, capture_output=True).returncode == 0), None)
 if base:
-    same = subprocess.run(['git', 'diff', '--quiet', base, '--', '.github/scripts/kpc_key_facts.py', '.github/scripts/kpc_match.py', '.github/scripts/kpc_key_rules.py'], cwd=H.ROOT).returncode == 0
+    rules = ['.github/scripts/kpc_key_facts.py', '.github/scripts/kpc_match.py']
+    # Nov 21: stacked after jobs 9 and 10, which add helpers in kpc_key_rules.py and move the US hash.
+    if KF.rules_hash('us-key') != PF.newest_hash('us-key'):
+        rules.append('.github/scripts/kpc_key_rules.py')
+    same = subprocess.run(['git', 'diff', '--quiet', base, '--', *rules], cwd=H.ROOT).returncode == 0
     check(same, f'kpc_key_facts.py, kpc_match.py, kpc_key_rules.py are as on {base} (shared rule files untouched; kpc_us_key.py is moved by D6 and the overrides split earlier in this set, not by this change)')   # Nov 12 CHANGED (stacked)
 else:
     print('SKIP shared-rule-file diff: no origin/main in this clone')
