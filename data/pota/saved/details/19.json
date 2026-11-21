@@ -1,0 +1,38 @@
+{
+"US-6274":{
+"data":{
+"accessMethods":"Automobile,Foot",
+"accessibility":null,
+"activationMethods":"Automobile,Campground,Pedestrian",
+"active":1,
+"agencies":null,
+"agencyURLs":null,
+"createdByAdmin":"directUpload",
+"entityDeleted":0,
+"entityId":291,
+"entityName":"United States of America",
+"firstActivationDate":"2020-02-29",
+"firstActivator":"N4MTE",
+"firstHuntDate":"2020-02-29",
+"firstHunter":"W0JD",
+"grid4":"EM75",
+"grid6":"EM75iu",
+"latitude":35.854,
+"locationDesc":"US-TN",
+"locationName":"Tennessee",
+"longitude":-85.2822,
+"name":"Virgin Falls",
+"parkComments":null,
+"parkId":56030,
+"parkURLs":null,
+"parktypeDesc":"State Natural Area",
+"parktypeId":97,
+"reference":"US-6274",
+"referencePrefix":"US",
+"sensitivity":null,
+"uniqueHunters":280,
+"website":"https://www.tn.gov/environment/program-areas/na-natural-areas/natural-areas-middle-region/middle-region/na-na-virgin-falls.html"
+},
+"saved":1795251422
+}
+}

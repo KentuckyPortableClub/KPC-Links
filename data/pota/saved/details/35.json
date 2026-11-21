@@ -1,0 +1,34 @@
+{
+"US-13672":{
+"data":{
+"accessMethods":"Automobile,Foot",
+"accessibility":null,
+"activationMethods":"Automobile,Pedestrian",
+"active":1,
+"agencies":null,
+"agencyURLs":null,
+"createdByAdmin":"Wayne Fussell",
+"entityDeleted":0,
+"entityId":291,
+"entityName":"United States of America",
+"grid4":"DM65",
+"grid6":"DM65tf",
+"latitude":35.2136,
+"locationDesc":"US-NM",
+"locationName":"New Mexico",
+"longitude":-106.409,
+"name":"Balsam Glade",
+"parkComments":"Restroom- vault toilet, No water at this site. Picnic tables are available\nLocated within US-4514, Cibola National Forest\n",
+"parkId":150674,
+"parkURLs":null,
+"parktypeDesc":"National Recreation Area",
+"parktypeId":46,
+"reference":"US-13672",
+"referencePrefix":"US",
+"sensitivity":null,
+"uniqueHunters":0,
+"website":"https://www.fs.usda.gov/r03/cibola/recreation/balsam-glade-picnic-site"
+},
+"saved":1795251414
+}
+}

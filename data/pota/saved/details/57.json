@@ -1,0 +1,34 @@
+{
+"US-13671":{
+"data":{
+"accessMethods":"Automobile,Foot",
+"accessibility":null,
+"activationMethods":"Automobile,Pedestrian",
+"active":1,
+"agencies":null,
+"agencyURLs":null,
+"createdByAdmin":"Wayne Fussell",
+"entityDeleted":0,
+"entityId":291,
+"entityName":"United States of America",
+"grid4":"DM65",
+"grid6":"DM65tf",
+"latitude":35.2163,
+"locationDesc":"US-NM",
+"locationName":"New Mexico",
+"longitude":-106.416,
+"name":"Capulin Springs",
+"parkComments":"Open year round unless winter weather conditions are present. Reservations for the pavilion are available May 15 - October 15.\nLocated within US-4514, Cibola National Forest\n",
+"parkId":150673,
+"parkURLs":null,
+"parktypeDesc":"National Recreation Area",
+"parktypeId":46,
+"reference":"US-13671",
+"referencePrefix":"US",
+"sensitivity":null,
+"uniqueHunters":0,
+"website":"https://www.fs.usda.gov/r03/cibola/recreation/capulin-spring-picnic-site"
+},
+"saved":1795251412
+}
+}

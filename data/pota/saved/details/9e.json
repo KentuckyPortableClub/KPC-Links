@@ -1,0 +1,38 @@
+{
+"US-13670":{
+"data":{
+"accessMethods":"Automobile,Foot",
+"accessibility":null,
+"activationMethods":"Automobile,Campground,Pedestrian,Shelter",
+"active":1,
+"agencies":null,
+"agencyURLs":null,
+"createdByAdmin":"TOM SUGGS",
+"entityDeleted":0,
+"entityId":291,
+"entityName":"United States of America",
+"firstActivationDate":"2026-11-19",
+"firstActivator":"W4BGA",
+"firstHuntDate":"2026-11-19",
+"firstHunter":"W9AV",
+"grid4":"EM86",
+"grid6":"EM86td",
+"latitude":36.1373,
+"locationDesc":"US-TN",
+"locationName":"Tennessee",
+"longitude":-82.3537,
+"name":"Rock Creek",
+"parkComments":"",
+"parkId":150670,
+"parkURLs":null,
+"parktypeDesc":"Recreation Site",
+"parktypeId":173,
+"reference":"US-13670",
+"referencePrefix":"US",
+"sensitivity":null,
+"uniqueHunters":7,
+"website":"https://www.fs.usda.gov/mapfinder/"
+},
+"saved":1795251416
+}
+}

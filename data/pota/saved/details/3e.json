@@ -1,0 +1,38 @@
+{
+"US-6257":{
+"data":{
+"accessMethods":"Automobile,Foot",
+"accessibility":null,
+"activationMethods":"Automobile,Pedestrian",
+"active":1,
+"agencies":null,
+"agencyURLs":null,
+"createdByAdmin":"directUpload",
+"entityDeleted":0,
+"entityId":291,
+"entityName":"United States of America",
+"firstActivationDate":"2020-02-15",
+"firstActivator":"N4MTE",
+"firstHuntDate":"2020-02-15",
+"firstHunter":"N5HA",
+"grid4":"EM75",
+"grid6":"EM75ad",
+"latitude":35.1538,
+"locationDesc":"US-TN",
+"locationName":"Tennessee",
+"longitude":-85.9222,
+"name":"Natural Bridge",
+"parkComments":null,
+"parkId":56013,
+"parkURLs":null,
+"parktypeDesc":"State Natural Area",
+"parktypeId":97,
+"reference":"US-6257",
+"referencePrefix":"US",
+"sensitivity":null,
+"uniqueHunters":526,
+"website":"https://www.tn.gov/environment/program-areas/na-natural-areas/natural-areas-east-region/east-region-/na-na-natural-bridge.html"
+},
+"saved":1795251420
+}
+}
