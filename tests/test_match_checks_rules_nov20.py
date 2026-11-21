@@ -11,7 +11,8 @@ socket.socket.connect = _no_net
 import kpc_match_checks as MC  # noqa: E402
 
 UNITS = {'INVP': {'ZZ'}, 'OTHR': {'YY'}}
-TAG = {'source_kind': 'agency-list', 'same_record_as_key': False, 'size_link': 'exact-name', 'spot_check': 'passed'}   # an explicit independent-witness tag
+TAG = {'witness': 'agency_document', 'witness_counts': True}   # a park-facts size tag that counts
+TABLE = {'nps': {'agency': 'NPS', 'kind': 'park'}, 'fws': {'agency': 'FWS', 'kind': 'refuge'}, 'sgzza': {'agency': 'state parks', 'kind': 'park'}}
 SQ = [[[-80.0, 40.0], [-79.9, 40.0], [-79.9, 40.1], [-80.0, 40.1], [-80.0, 40.0]]]   # about 2,100 acres
 STATE_LINK = {'site': 'agency (known)', 'agency': 'ZZ State Parks'}
 NPS_LINK = {'site': 'agency (known)', 'agency': 'US National Park Service', 'id_kind': 'NPS unit code', 'id_value': 'INVP'}
@@ -61,8 +62,8 @@ def test_agency_check():
     assert MC.agency_check(f, srec(Mang_Type='UNK', Mang_Name='UNK'), 'ZZ') == 'no data'
     assert MC.agency_check(fact(link={'site': 'other site', 'agency': 'ZZ State Parks'}), srec(), 'ZZ') == 'no data'
     nps = fact(link=NPS_LINK)
-    assert MC.agency_check(nps, {'OBJECTID': 'nps7'}, 'ZZ') == 'agrees'                  # owner from the layer table, not the name
-    assert MC.agency_check(nps, {'OBJECTID': 'fws7', 'Unit_Nm': 'Invented National Park'}, 'ZZ') == 'differs'
+    assert MC.agency_check(nps, {'OBJECTID': 'nps7'}, 'ZZ', TABLE) == 'agrees'           # owner from the layer table, not the name
+    assert MC.agency_check(nps, {'OBJECTID': 'fws7', 'Unit_Nm': 'Invented National Park'}, 'ZZ', TABLE) == 'differs'
     assert MC.agency_check(fact(link={'site': 'government site', 'agency': 'Recreation.gov'}), srec(Mang_Type='FED', Mang_Name='USACE'), 'ZZ') == 'agrees'
 
 
@@ -88,14 +89,27 @@ def test_ids_same_kind_only():
     assert MC.ids_from({'OBJECTID': 2, 'Mang_Name': 'FWS', 'Loc_Nm': 'ABCD'}) == {}       # a refuge code is not an NPS unit code
 
 
-def test_size_witness_needs_an_explicit_tag():
-    assert MC.size_witnesses(fact(size=dict(TAG, acres=2000, record_name='Invented Lake')))
-    assert not MC.size_witnesses(fact(size={'acres': 2000, 'record_name': 'Invented Lake'}))            # 'name+kind', untagged
-    assert not MC.size_witnesses(fact(size={'acres': 2000, 'how': 'hand copy (page not given)'}))       # hand copy, untagged
-    assert not MC.size_witnesses(fact(size=dict(TAG, acres=2000, same_record_as_key=True)))
-    assert not MC.size_witnesses(fact(size=dict(TAG, acres=2000, spot_check='pending')))
+def test_size_witness_counts_only_the_two_proof_tags():
+    for tag, counts in (('agency_document', True), ('hand_copy', True), ('same_record', False), ('other_layer', False), ('unknown', False)):
+        assert bool(MC.size_witnesses(fact(size={'acres': 2000, 'witness': tag}))) == counts, tag
+    assert not MC.size_witnesses(fact(size={'acres': 2000, 'record_name': 'Invented Lake'}))            # untagged
+    assert not MC.size_witnesses(fact(size={'acres': 2000, 'witness': 'agency_document', 'witness_counts': False}))
     pg = fact(page={'own_page': 'own', 'unofficial': False, 'name_vs_pota': 'same', 'sizes': [{'acres': 2000, 'total': True, 'clean': True}]})
     assert not MC.size_witnesses(pg)
+
+
+def test_layer_table_gives_the_owner():
+    assert MC.record_agency({'OBJECTID': 'sgzza4'}, TABLE) == 'STATE'
+    assert MC.record_agency({'OBJECTID': 'sgzza4'}, None) is None                            # no table: no data
+    assert MC.record_agency({'OBJECTID': 'sgzzq4'}, TABLE) is None                           # a layer the table does not hold
+    for words, fam in (('state (many owners)', None), ('several agencies', None), ('unknown', None), ('state water district', 'DIST'),
+                       ('state wildlife', 'STATE'), ('BLM', 'BLM'), ('many owners (national list)', None)):
+        assert MC.layer_family(words) == fam, words
+    assert MC.record_agency({'OBJECTID': 4, 'Mang_Type': 'STAT', 'Mang_Name': 'SPR'}, TABLE) == 'STATE'   # PAD-US: its own fields
+    with tempfile.TemporaryDirectory() as t:
+        try: MC.load_layer_table(os.path.join(t, 'none.json'))
+        except OSError: pass
+        else: raise AssertionError('a missing layer table must raise')
 
 if __name__ == '__main__':
     bad = 0

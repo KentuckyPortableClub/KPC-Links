@@ -11,7 +11,8 @@ socket.socket.connect = _no_net
 import kpc_match_checks as MC  # noqa: E402
 
 UNITS = {'INVP': {'ZZ'}, 'OTHR': {'YY'}}
-TAG = {'source_kind': 'agency-list', 'same_record_as_key': False, 'size_link': 'exact-name', 'spot_check': 'passed'}   # an explicit independent-witness tag
+TAG = {'witness': 'agency_document', 'witness_counts': True}   # a park-facts size tag that counts
+TABLE = {'nps': {'agency': 'NPS', 'kind': 'park'}, 'fws': {'agency': 'FWS', 'kind': 'refuge'}, 'sgzza': {'agency': 'state parks', 'kind': 'park'}}
 SQ = [[[-80.0, 40.0], [-79.9, 40.0], [-79.9, 40.1], [-80.0, 40.1], [-80.0, 40.0]]]   # about 2,100 acres
 STATE_LINK = {'site': 'agency (known)', 'agency': 'ZZ State Parks'}
 NPS_LINK = {'site': 'agency (known)', 'agency': 'US National Park Service', 'id_kind': 'NPS unit code', 'id_value': 'INVP'}
@@ -51,9 +52,10 @@ def test_counter_counts_only():
                            'US-9002': fact(name='Invented National Park', kind='National Park', link=NPS_LINK),
                            'US-9003': fact(name='Invented Ridge State Park', link=STATE_LINK)}}
         with gzip.open(t / 'pf.json.gz', 'wt') as fh: json.dump(facts, fh)
+        (t / 'lak.json').write_text(json.dumps({'layers': TABLE}))
         (t / 'units.json').write_text(json.dumps({'units': [{'code': 'INVP', 'name': 'x', 'states': 'ZZ'}]}))
         r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_match_checks_count.py'), '--keys', str(t / 'keys'), '--cache', str(t / 'cache'),
-                            '--facts', str(t / 'pf.json.gz'), '--units', str(t / 'units.json'), '--out', str(t / 'o.json')], capture_output=True, text=True)
+                            '--facts', str(t / 'pf.json.gz'), '--units', str(t / 'units.json'), '--layer-table', str(t / 'lak.json'), '--out', str(t / 'o.json')], capture_output=True, text=True)
         assert r.returncode == 0, r.stderr
         o = json.load(open(t / 'o.json'))['modes']['rule']['total']
         assert (o['joined_before'], o['confirmed'], o['outlined'], o['pin'], o['gain'], o['lose']) == (2, 1, 1, 1, 1, 1), o

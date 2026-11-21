@@ -16,7 +16,8 @@ The checks (none of them reads the POTA side from the record being checked):
   name      the record's full name (short forms such as WMA spelled out) is another park's own full name in the state
   national  a national-layer record joined by name whose manager level (FED / STAT) differs from the level in the park's
             name, unless it is a copy (size within 10 percent) of land the park already holds at its own level
-  size      only a size row carrying an explicit independent-witness tag counts (none do today: fail closed)
+  size      only a size whose park-facts `witness` tag is agency_document or hand_copy counts (same_record, other_layer,
+            unknown and untagged rows never do: fail closed)
   kind      POTA's type against the record's kind: ADVISORY only (the sample: 1 wrong record caught, 71 right ones flagged)
 
 The rule:
@@ -148,23 +149,20 @@ def shared_names(facts):
     return out
 
 
-WITNESS_KINDS = ('agency-list', 'agency-page')
+
+
+WITNESS_PROOF = ('agency_document', 'hand_copy')   # KPC-Data park facts `size.witness`: the only two tags that count
 
 
 def tagged_witness(row):
-    """True only for a size row that SAYS it is an independent witness: `witness` true, or `source_kind` agency-list /
-    agency-page with `same_record_as_key` explicitly false, `size_link` number / exact-name / person and, when given,
-    `spot_check` passed. An untagged row (the acreage bot's 'name+kind' and 'hand copy' rows today) never counts: fail closed."""
+    """True only for a size row whose `witness` tag (KPC-Data park facts) is agency_document or hand_copy and that does not say
+    witness_counts false. same_record, other_layer, unknown and an untagged row never count: fail closed."""
     if not isinstance(row, dict): return False
-    if row.get('witness') is True: return True
-    if row.get('source_kind') not in WITNESS_KINDS: return False
-    if row.get('same_record_as_key') is not False: return False
-    if row.get('size_link') not in ('number', 'exact-name', 'person'): return False
-    return row.get('spot_check', 'passed') == 'passed'
+    return row.get('witness') in WITNESS_PROOF and row.get('witness_counts', True) is not False
 
 
 def size_witnesses(fact, shared=None):
-    """-> [(acres, source_kind, why)]: official sizes that may witness this park's join. Empty = none.
+    """-> [(acres, witness tag, why)]: official sizes that may witness this park's join. Empty = none.
     Only rows carrying an explicit independent-witness tag (tagged_witness); a full name two parks of the state share = none."""
     f = fact or {}
     pname, area = f.get('name') or '', f.get('area')
@@ -175,7 +173,7 @@ def size_witnesses(fact, shared=None):
         if not tagged_witness(s): continue
         try: ac = float(s.get('acres'))
         except (TypeError, ValueError): continue
-        if ac > 0: out.append((ac, s.get('source_kind') or 'tagged', 'tagged independent witness'))
+        if ac > 0: out.append((ac, s.get('witness'), 'tagged independent witness'))
     return out
 
 
@@ -249,9 +247,6 @@ FED_LINK = {'US National Park Service': 'NPS', 'US Fish and Wildlife Service': '
             'US Bureau of Land Management': 'BLM', 'US Army Corps of Engineers': 'USACE', 'US Bureau of Reclamation': 'BOR',
             'National Wild and Scenic Rivers': 'FED', 'Recreation.gov': 'FED'}
 FEDERAL = {'NPS', 'FWS', 'USFS', 'BLM', 'USACE', 'BOR', 'FED'}
-# the club's layer table for the national layers the US key reads (kpc_us_key.XS prefixes): who owns their records
-LAYER_AGENCY = {'wld': 'USFS', 'fwsr': 'USFS', 'fsod': 'USFS', 'hma': 'BLM', 'hab': 'BLM', 'rma': 'BLM', 'rst': 'BLM', 'nca': 'BLM',
-                'wsa': 'BLM', 'wbl': 'BLM', 'wsrc': 'NPS', 'fws': 'FWS', 'nps': 'NPS'}
 PAD_MANG = {'NPS': 'NPS', 'FWS': 'FWS', 'USFS': 'USFS', 'BLM': 'BLM', 'USACE': 'USACE', 'USBR': 'BOR', 'BOR': 'BOR'}
 
 
@@ -268,14 +263,39 @@ def link_agency(fact, st=''):
     return None
 
 
-def record_agency(rec):
-    """Who owns a record, from the layer table, never from its name: PAD-US Mang_Name / Mang_Type, the national layers by
-    prefix, a state GIS table layer (Mang_Type STAT) = 'STATE'. None = not known."""
+LAYER_TABLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'layer-agency-kind.json')
+FED_AGENCIES = ('NPS', 'FWS', 'USFS', 'BLM', 'USACE', 'BOR')
+
+
+def load_layer_table(path=None):
+    """{layer prefix: {'agency', 'kind', 'why'}} from KPC-Links .github/layer-agency-kind.json (kpc_layer_agency_kind.py).
+    Missing or unreadable RAISES: the caller holds the state (the agency check is never run without the club's table)."""
+    with open(path or LAYER_TABLE, encoding='utf-8') as fh:
+        d = json.load(fh)
+    t = d.get('layers')
+    if not isinstance(t, dict) or not t: raise ValueError('layer-agency-kind.json has no layers')
+    return t
+
+
+def layer_family(agency):
+    """The table's agency words -> 'NPS' / 'FWS' / 'USFS' / 'BLM' / 'USACE' / 'BOR' / 'STATE' / 'DIST' / None (several or
+    many owners, unknown: no data)."""
+    a = str(agency or '').strip()
+    if a in FED_AGENCIES: return a
+    if a.startswith('state'):
+        if 'many owners' in a: return None
+        return 'DIST' if 'water district' in a else 'STATE'
+    return None
+
+
+def record_agency(rec, table=None):
+    """Who owns a record, never from its name: PAD-US records by their own Mang_Name / Mang_Type; every other layer by the
+    club's layer table (load_layer_table). None = not known (also: no table, or a layer the table does not hold)."""
     rec = rec or {}
     oid = str(rec.get('OBJECTID'))
     pre = re.match(r'[a-z]*', oid).group(0)
-    if pre.startswith('fws'): return 'FWS'
-    if pre in LAYER_AGENCY: return LAYER_AGENCY[pre]
+    if pre:
+        return layer_family(((table or {}).get(pre) or {}).get('agency'))
     mn, mt = str(rec.get('Mang_Name') or '').upper(), str(rec.get('Mang_Type') or '').upper()
     if mn in PAD_MANG: return PAD_MANG[mn]
     if mt == 'FED': return 'FED:' + (mn or '?')
@@ -284,9 +304,9 @@ def record_agency(rec):
     return None
 
 
-def agency_check(fact, rec, st=''):
+def agency_check(fact, rec, st='', table=None):
     """'agrees' | 'differs' | 'no data'."""
-    a, b = link_agency(fact, st), record_agency(rec)
+    a, b = link_agency(fact, st), record_agency(rec, table)
     if a is None or b is None: return 'no data'
     if a == 'FED': return 'agrees' if (b in FEDERAL or b.startswith('FED:')) else 'differs'
     if a == 'STATE': return 'agrees' if b == 'STATE' else 'differs'
@@ -381,11 +401,11 @@ def outline_size(p, m):
 
 
 def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda ref, rid, a: False, skip=(), st='',
-               units=None, hits=None, holds_fn=None):
+               units=None, hits=None, holds_fn=None, layer_table=None):
     """The whole pass for one state, shared by the US builder and the offline counter (one implementation).
     parks = the key's park rows (changed in place); recs = {record id: record}; place_fn(ref, [record ids]) -> True / False /
     None (pin inside or near; used to join a record by the park's link id); holds_fn(ref, record id) -> True / False / None
-    (POTA's pin strictly inside that record; pin 3c); is_no(ref, rid, rec) = a person's saved NO; skip = parks never touched
+    (POTA's pin strictly inside that record; pin 3c); layer_table = load_layer_table() (each layer's owner); is_no(ref, rid, rec) = a person's saved NO; skip = parks never touched
     here (official trail lines). Every joined park gets park['match'] = {'status': 'confirmed' | 'outlined' | 'pin',
     'why': [reasons], 'notes': [advisory]} (pin = no outline). Returns counts and appends [park, what, record id] to hits."""
     hits = [] if hits is None else hits
@@ -417,7 +437,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         if kind:
             have = {str(q[0]) for q in p.get('m') or []}
             cand = [i for i in index.get((kind, val), []) if i not in have and not is_no(ref, i, recs[i])
-                    and agency_check(f, recs[i], st) != 'differs']
+                    and agency_check(f, recs[i], st, layer_table) != 'differs']
             if cand and place_fn(ref, cand):
                 for i in cand:
                     a = recs[i]
@@ -441,7 +461,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if rec is None: drop.append((q, 'no data: the record was not read this build')); continue
             if other_park_name(q[1], nm, others):
                 drop.append((q, "name: this record carries another park's own full name")); continue
-            if agency_check(f, rec, st) == 'differs': drop.append((q, "agency: the record belongs to another agency than POTA's link")); continue
+            if agency_check(f, rec, st, layer_table) == 'differs': drop.append((q, "agency: the record belongs to another agency than POTA's link")); continue
             if national_flag(q, m, recs, nm): drop.append((q, "national: a national-layer record of another level of government than the park's name")); continue
             if pin_3c(q, m, holds): drop.append((q, "place: POTA's pin is in another of the park's records, none of this record's name")); continue
             if kind_check(typ, rec) == 'differs': notes.append('kind')                 # advisory only

@@ -11,7 +11,8 @@ socket.socket.connect = _no_net
 import kpc_match_checks as MC  # noqa: E402
 
 UNITS = {'INVP': {'ZZ'}, 'OTHR': {'YY'}}
-TAG = {'source_kind': 'agency-list', 'same_record_as_key': False, 'size_link': 'exact-name', 'spot_check': 'passed'}   # an explicit independent-witness tag
+TAG = {'witness': 'agency_document', 'witness_counts': True}   # a park-facts size tag that counts
+TABLE = {'nps': {'agency': 'NPS', 'kind': 'park'}, 'fws': {'agency': 'FWS', 'kind': 'refuge'}, 'sgzza': {'agency': 'state parks', 'kind': 'park'}}
 SQ = [[[-80.0, 40.0], [-79.9, 40.0], [-79.9, 40.1], [-80.0, 40.1], [-80.0, 40.0]]]   # about 2,100 acres
 STATE_LINK = {'site': 'agency (known)', 'agency': 'ZZ State Parks'}
 NPS_LINK = {'site': 'agency (known)', 'agency': 'US National Park Service', 'id_kind': 'NPS unit code', 'id_value': 'INVP'}
@@ -52,6 +53,7 @@ def test_sample_rescore_counts_only():
         with gzip.open(t / 'cache' / 'US-ZZ.json.gz', 'wt') as fh: json.dump({'recs': recs}, fh)
         facts = {'parks': {r: fact(name=key['parks'][r]['n'], link=STATE_LINK) for r in key['parks']}}
         with gzip.open(t / 'pf.json.gz', 'wt') as fh: json.dump(facts, fh)
+        (t / 'lak.json').write_text(json.dumps({'layers': TABLE}))
         (t / 'units.json').write_text(json.dumps({'units': []}))
         (t / 'sample/kit-keys/sample-answer-key.json').write_text(json.dumps({'plants': ['S9']}))
         with open(t / 'sample/answers-pass1/jobS-random-sample.answers.csv', 'w', newline='') as fh:
@@ -61,7 +63,7 @@ def test_sample_rescore_counts_only():
             w.writerow({'item': 'S9', 'ref': 'US-9004', 'area': 'US-ZZ', V: 'NO', W: '4', R: '4 | Invented Bend | 2000'})   # a plant: left out
         r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_match_checks_sample.py'), '--sample', str(t / 'sample'),
                             '--keys', str(t / 'keys'), '--cache', str(t / 'cache'), '--facts', str(t / 'pf.json.gz'),
-                            '--units', str(t / 'units.json'), '--out', str(t / 'o.json')], capture_output=True, text=True)
+                            '--units', str(t / 'units.json'), '--layer-table', str(t / 'lak.json'), '--out', str(t / 'o.json')], capture_output=True, text=True)
         assert r.returncode == 0, r.stderr
         o = json.load(open(t / 'o.json'))
         c = o['counts']

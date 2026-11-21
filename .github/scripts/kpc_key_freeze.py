@@ -82,9 +82,9 @@ RULE_FILES['us-key'].append('data/state-gis.json')
 RULE_FILES['ca-key'].append('.github/scripts/kpc_pin_fill.py')
 RULE_FILES['world-key'].append('.github/scripts/kpc_pin_fill.py')
 RULE_FILES['world-key'].append('.github/scripts/kpc_jp_crosswalk.py')
-# Nov 20 (KPC owner, 2026-11-20, APPROVED: match by more than name): the match checks and the one reader of the park
-# facts file they use decide joins, so both are US rule files.
-RULE_FILES['us-key'] += ['.github/scripts/kpc_match_checks.py', '.github/scripts/kpc_park_facts_read.py']
+# Nov 20 (KPC owner, 2026-11-20, APPROVED: match by more than name): the match checks, the one reader of the park facts file
+# they use and the layer table that gives each layer's owner (kpc_layer_agency_kind.py) decide joins: all three are US rule files.
+RULE_FILES['us-key'] += ['.github/scripts/kpc_match_checks.py', '.github/scripts/kpc_park_facts_read.py', '.github/layer-agency-kind.json']
 NOT_RULES = {'kpc_match_checks_count.py', 'kpc_match_checks_sample.py',   # Nov 20: offline counts / sample re-score of the match checks; decide no join
              'kpc_agency_table.py', 'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_keep_main.py', 'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
