@@ -397,6 +397,9 @@ def fields():
         # Nov 6 (big key / 2-fer patch): + Source_PAID (the provider's own STABLE id), Own_Name, Loc_Own (the owner) for the tract
         # records (kpc_tracts.py; field names from kpc_source_fields.py). Only fields the layer lists are asked for (below).
         want = 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Own_Name,Loc_Own,Mang_Type,Mang_Name,Loc_Mang,Des_Tp,d_Des_Tp,Pub_Access,GIS_Acres,Category,Agg_Src,Source_PAID'.split(',')
+        # Nov 21 (KPC owner, job A): + the keep-list's PAD-US fields (Comments carries a park's own web address with its id)
+        _kf = getattr(globals().get('SF'), 'keep_fields', None)
+        want += [w for w in (_kf('PAD-US') if _kf else []) if w not in want]
         FIELDS = ','.join(w for w in want if not have or w in have)
         notice('PAD-US fields', FIELDS + (' (field list not read)' if not have else ''))
     return FIELDS

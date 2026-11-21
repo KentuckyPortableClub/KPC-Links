@@ -18,6 +18,7 @@ import csv, json, os, re, sys, tempfile
 OUT = '.github/keep-record-fields.json'
 KEEP_VERDICTS = ('ID found', 'ID on part of the layer')
 KEEP_PAIRS = ('SAME ID', 'MAPPED')
+TIES = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'link-id-ties.json')
 WDPA = re.compile(r'wdpa', re.I)
 
 
@@ -26,7 +27,7 @@ def _rows(path):
         return list(csv.DictReader(f))
 
 
-def build(layers_csv, pairs_csv=None):
+def build(layers_csv, pairs_csv=None, ties_json=None):
     keep = {}
 
     def add(layer, field, why):
@@ -44,8 +45,12 @@ def build(layers_csv, pairs_csv=None):
         for r in _rows(pairs_csv):
             if r.get('verdict') in KEEP_PAIRS and r.get('layer') and r.get('id field'):
                 add(r['layer'], r['id field'], f"crosswalk: {r['verdict']} with {r.get('link id kind')}")
+    if ties_json and os.path.exists(ties_json):   # job A (21 Nov): the web address fields that carry a link id
+        with open(ties_json, encoding='utf-8') as f:
+            for t in json.load(f).get('ties') or []:
+                add(t.get('layer'), t.get('field'), f"web address carries the {t.get('kind')} (link-id-ties.json)")
     return {'about': "The agency id fields the key keeps on each saved record (kpc_source_fields.keep_fields). Made by "
-                     "kpc_keep_fields.py from the id finder's layers.csv and the crosswalk's pairs.csv (counts only). "
+                     "kpc_keep_fields.py from the id finder's layers.csv, the crosswalk's pairs.csv (counts only) and link-id-ties.json. "
                      "WDPA fields are never kept. Change the inputs or the rule, never this file by hand.",
             'layers': dict(sorted(keep.items()))}
 
@@ -76,6 +81,12 @@ def selftest():
         check('a possible ID the crosswalk proved SAME ID is kept', d.get('sgzzc', {}).get('fields') == ['sft'])
         check('row number only, and a NOT THE SAME pair, keep nothing', 'sgzzd' not in d)
         check('a WDPA field is never kept', 'sgzze' not in d)
+        tp = os.path.join(t, 'ties.json')
+        json.dump({'ties': [{'kind': 'ZZ page', 'layer': 'sgzzf', 'field': 'URL', 'rx': 'x/(\\d+)'},
+                            {'kind': 'ZZ page', 'layer': 'wdpa', 'field': 'WDPA_URL', 'rx': 'x/(\\d+)'}]}, open(tp, 'w'))
+        d = build(lp, pp, tp)['layers']
+        check('a web address field of link-id-ties.json is kept', d.get('sgzzf', {}).get('fields') == ['URL'])
+        check('never a WDPA address field', 'wdpa' not in d)
     print('SELF-TEST PASSED' if not bad else f'SELF-TEST FAILED: {len(bad)}')
     return 0 if not bad else 1
 
@@ -88,7 +99,8 @@ def main(argv=None):
         print(__doc__); return 2
     lp = argv[argv.index('--layers') + 1]
     pp = argv[argv.index('--pairs') + 1] if '--pairs' in argv else None
-    doc = build(lp, pp)
+    tj = argv[argv.index('--ties') + 1] if '--ties' in argv else TIES
+    doc = build(lp, pp, tj)
     with open(OUT, 'w', encoding='utf-8') as f:
         f.write(dumps(doc))
     print(f"wrote {OUT}: {len(doc['layers'])} layers")

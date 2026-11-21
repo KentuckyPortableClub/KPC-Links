@@ -1,0 +1,16 @@
+{
+ "about": "Web ids a map record carries inside its own web address field. When the park's own POTA link holds the same id, the record is tied to the park like a direct id tie. Agree-only: a record whose address holds another id is NOT dropped for it (an address can point to a neighbouring page). Checked 21 Nov 2026 on the keeper's store copy. Never WDPA. Read by kpc_match_checks.ids_from; the fields are kept on save by .github/keep-record-fields.json.",
+ "ties": [
+  {"kind": "NY DEC page number", "layer": "sgnya", "field": "URL", "rx": "dec\\.ny\\.gov/(?:lands|outdoor)/(\\d+)\\.html"},
+  {"kind": "CA State Parks page id", "layer": "PAD-US", "field": "Comments", "rx": "parks\\.ca\\.gov/(?:default\\.asp)?\\?page_id=(\\d+)"},
+  {"kind": "MT FWP lands id", "layer": "PAD-US", "field": "Comments", "rx": "myfwp\\.mt\\.gov/(?:fishMT/fas/|fwpPub/landsMgmt/siteDetail\\.action\\?lmsId=+(?:d=)?)(\\d+)"},
+  {"kind": "MT FWP lands id", "layer": "sgmtb", "field": "WEB_PAGE", "rx": "myfwp\\.mt\\.gov/(?:fishMT/fas/|fwpPub/landsMgmt/siteDetail\\.action\\?lmsId=+(?:d=)?)(\\d+)"},
+  {"kind": "MT FWP lands id", "layer": "sgmtc", "field": "WEB_PAGE", "rx": "myfwp\\.mt\\.gov/(?:fishMT/fas/|fwpPub/landsMgmt/siteDetail\\.action\\?lmsId=+(?:d=)?)(\\d+)"},
+  {"kind": "MT FWP lands id", "layer": "sgmtf", "field": "WEB_PAGE", "rx": "myfwp\\.mt\\.gov/(?:fishMT/fas/|fwpPub/landsMgmt/siteDetail\\.action\\?lmsId=+(?:d=)?)(\\d+)"},
+  {"kind": "MT FWP lands id", "layer": "sgmtd", "field": "URL", "rx": "myfwp\\.mt\\.gov/(?:fishMT/fas/|fwpPub/landsMgmt/siteDetail\\.action\\?lmsId=+(?:d=)?)(\\d+)"},
+  {"kind": "NPS unit code", "layer": "sgmtd", "field": "URL", "rx": "nps\\.gov/([a-z]{4})(?:/|$)"},
+  {"kind": "MN DNR unit id", "layer": "sgmnf", "field": "WEB_LINK1", "rx": "state_forests/(sft\\d{5})/"},
+  {"kind": "NPS unit code", "layer": "sgvae", "field": "LANDLINK", "rx": "nps\\.gov/([a-z]{4})(?:/|$)"},
+  {"kind": "NPS unit code", "layer": "sgakd", "field": "METADATA", "rx": "tractsnet/documents/([A-Za-z]{4})/"}
+ ]
+}

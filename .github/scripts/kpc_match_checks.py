@@ -300,9 +300,53 @@ def nps_code_of(rec):
     return None
 
 
-def ids_from(rec, url=''):
+LINK_TIES_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'link-id-ties.json')
+_LINK_TIES = {}
+
+
+def load_link_ties(path=None):
+    """[{kind, layer, field, rx}] of .github/link-id-ties.json: web ids a record carries inside its own web address field
+    (KPC owner, 2026-11-21, job A). A missing or unreadable file = no address ties. Never a WDPA layer or field."""
+    path = path or LINK_TIES_FILE
+    if path not in _LINK_TIES:
+        try:
+            with open(path, encoding='utf-8') as f:
+                rows = json.load(f).get('ties') or []
+        except (OSError, ValueError):
+            rows = []
+        _LINK_TIES[path] = [dict(t, rx_c=re.compile(t['rx'], re.I)) for t in rows
+                            if t.get('kind') and t.get('layer') and t.get('field') and t.get('rx')
+                            and not re.search(r'wdpa|protectedplanet', t['layer'] + t['field'], re.I)]
+    return _LINK_TIES[path]
+
+
+def layer_of(rec):
+    """A record's layer: the letters of its record id (sgnya, sgmtb...), or 'PAD-US' for a PAD-US record (numeric id)."""
+    rec = rec or {}
+    pre = re.match(r'[a-z]*', str(rec.get('OBJECTID') or '')).group(0)
+    if pre: return pre
+    return 'PAD-US' if any(k in rec for k in ('Unit_Nm', 'Mang_Name', 'Des_Tp')) else ''
+
+
+def field_value(rec, field):
+    """A field of a record, from its saved extra fields (SA) or its own attributes, any letter case."""
+    rec = rec or {}
+    for src in (rec.get('SA') or {}, rec):
+        for k, v in src.items():
+            if str(k).lower() == str(field).lower() and v not in (None, ''): return v
+    return None
+
+
+def addr_key(kind):
+    """The ids_from key of an id read from a record's web address (agree-only: it can confirm, never drop)."""
+    return 'addr:' + kind
+
+
+def ids_from(rec, url='', ties=None):
     """{id kind: value} a record carries: its Park Service unit code, and its layer's own id when that layer carries a kind.
-    url = the address of the layer the record came from; a known layer prefix on the record id also counts (sgmnb, sgmnc)."""
+    url = the address of the layer the record came from; a known layer prefix on the record id also counts (sgmnb, sgmnc).
+    Job A (21 Nov): an id inside the record's own web address field (link-id-ties.json) is added as addr_key(kind): it agrees
+    or says nothing (an address can point to a neighbouring page), so a different address id never drops a record."""
     out = {}
     c = nps_code_of(rec)
     if c: out['NPS unit code'] = c
@@ -315,7 +359,35 @@ def ids_from(rec, url=''):
         for fld in spec.get('sa') or ():
             v = next((sa[x] for x in sa if str(x).lower() == fld.lower()), None)
             if v not in (None, '') and re.fullmatch(spec['rx'], norm_id(v)): out[k] = norm_id(v); break
+    lay = layer_of(rec)
+    for t in (load_link_ties() if ties is None else ties):
+        if t['layer'] != lay or addr_key(t['kind']) in out: continue
+        m = t['rx_c'].search(str(field_value(rec, t['field']) or ''))
+        if m and m.group(1): out[addr_key(t['kind'])] = norm_id(m.group(1))
     return out
+
+
+def map_tie_of(fact):
+    """The agency list's tie for the park's own link id (KPC-Data park facts link.map_tie, from the keeper's agency-crosswalk
+    files): {map_layer, map_field, map_id, agency, source_url} or None. Never WDPA."""
+    t = ((fact or {}).get('link') or {}).get('map_tie') or None
+    if not isinstance(t, dict) or not (t.get('map_layer') and t.get('map_field') and t.get('map_id')): return None
+    if re.search(r'wdpa|protectedplanet', str(t['map_layer']) + str(t['map_field']), re.I): return None
+    return t
+
+
+def map_tie_holds(tie, rec):
+    """True when the record is on the agency list's layer and carries the list's map id in its field."""
+    return bool(tie and rec is not None and layer_of(rec) == tie['map_layer']
+                and norm_id(field_value(rec, tie['map_field'])) == norm_id(tie['map_id']))
+
+
+def id_agrees(kind, val, rec_ids, rec=None, tie=None):
+    """The record carries the park's own link id: as its own id, inside its web address, or through the agency's list."""
+    if not kind: return False
+    if record_id_of(kind, rec_ids) == val: return True
+    if rec_ids and rec_ids.get(addr_key(kind)) and norm_id(rec_ids[addr_key(kind)]) == val: return True
+    return map_tie_holds(tie, rec)
 
 
 STATES = {'alabama': 'AL', 'alaska': 'AK', 'arizona': 'AZ', 'arkansas': 'AR', 'california': 'CA', 'colorado': 'CO', 'connecticut': 'CT',
@@ -514,6 +586,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         if ref in skip: continue
         f = facts.get(ref)
         kind, val, _w = link_tie(f, units)
+        tie = map_tie_of(f) if kind else None
         typ = p.get('t') or (f or {}).get('type') or ''
         nm = p.get('n') or ''
         others = {n for n, rs in names.items() if len(rs - {ref}) == 1}    # one other park has that name (two: not sure)
@@ -521,7 +594,9 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         # the id used as a matcher: the record(s) carrying the park's own link id, missed by the name rules
         if kind:
             have = {str(q[0]) for q in p.get('m') or []}
-            cand = [i for i in index.get((kind, val), []) if i not in have and not is_no(ref, i, recs[i])
+            pool = list(index.get((kind, val), [])) + [i for i in index.get((addr_key(kind), val), []) if i not in index.get((kind, val), [])]
+            if tie: pool += [i for i, a in recs.items() if i not in pool and map_tie_holds(tie, a)]
+            cand = [i for i in pool if i not in have and not is_no(ref, i, recs[i])
                     and agency_check(f, recs[i], st, layer_table) != 'differs']
             if cand and place_fn(ref, cand):
                 for i in cand:
@@ -542,7 +617,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             v = record_id_of(kind, rids.get(i) or {}) if kind else None
             if row_class(q) != 'name': continue
             if v is not None and v != val: drop.append((q, f"id: this record's {kind} is not {val}, the id in POTA's own link")); continue
-            if v is not None and v == val: continue                                  # the id agrees: confirmed, stands in for the name
+            if id_agrees(kind, val, rids.get(i) or {}, rec, tie): continue           # the id agrees (own id, address or agency list): stands in for the name
             if rec is None: drop.append((q, 'no data: the record was not read this build')); continue
             if other_park_name(q[1], nm, others):
                 drop.append((q, "name: this record carries another park's own full name")); continue
@@ -552,15 +627,15 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if kind_check(typ, rec) == 'differs': notes.append('kind')                 # advisory only
         for q, w in drop: to_check(p, [q], w); out['moved'] += 1; hits.append([ref, reason_of(w), str(q[0])]); why.append(reason_of(w))
         left = p.get('m') or []
-        name_left = [q for q in left if row_class(q) == 'name' and not (kind and record_id_of(kind, rids.get(str(q[0])) or {}) == val)]
+        name_left = [q for q in left if row_class(q) == 'name' and not id_agrees(kind, val, rids.get(str(q[0])) or {}, recs.get(str(q[0])), tie)]
         sv = size_vote(size_witnesses(f, shared), outline_size(p, left))
-        id_ok = bool(kind) and any(record_id_of(kind, rids.get(str(q[0])) or {}) == val for q in left)
+        id_ok = bool(kind) and any(id_agrees(kind, val, rids.get(str(q[0])) or {}, recs.get(str(q[0])), tie) for q in left)
         if name_left and sv[0] == 'far off' and not id_ok:
             to_check(p, name_left, f"size: the outline is {sv[1]} times the agency's own figure"); why.append('size')
             hits.extend([ref, 'size', str(q[0])] for q in name_left)
             out['moved'] += len(name_left)
         left = p.get('m') or []
-        id_ok = bool(kind) and any(record_id_of(kind, rids.get(str(q[0])) or {}) == val for q in left)
+        id_ok = bool(kind) and any(id_agrees(kind, val, rids.get(str(q[0])) or {}, recs.get(str(q[0])), tie) for q in left)
         link_nm = link_name_agree(f)
         if link_nm == 'part': notes.append('link name')
         place_ok = bool(left) and place_fn(ref, [str(q[0]) for q in left]) is True

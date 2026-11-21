@@ -1,5 +1,5 @@
 {
- "about": "The agency id fields the key keeps on each saved record (kpc_source_fields.keep_fields). Made by kpc_keep_fields.py from the id finder's layers.csv and the crosswalk's pairs.csv (counts only). WDPA fields are never kept. Change the inputs or the rule, never this file by hand.",
+ "about": "The agency id fields the key keeps on each saved record (kpc_source_fields.keep_fields). Made by kpc_keep_fields.py from the id finder's layers.csv, the crosswalk's pairs.csv (counts only) and link-id-ties.json. WDPA fields are never kept. Change the inputs or the rule, never this file by hand.",
  "layers": {
   "AB Public La": {
    "fields": [
@@ -163,11 +163,14 @@
   },
   "PAD-US": {
    "fields": [
-    "Source_PAID"
+    "Source_PAID",
+    "Comments"
    ],
    "why": [
     "id finder: ID on part of the layer (unit id, grade A)",
-    "crosswalk: SAME ID with NPS unit code"
+    "crosswalk: SAME ID with NPS unit code",
+    "web address carries the CA State Parks page id (link-id-ties.json)",
+    "web address carries the MT FWP lands id (link-id-ties.json)"
    ]
   },
   "Parks Canada": {
@@ -380,10 +383,12 @@
   },
   "sgakd": {
    "fields": [
-    "AreaID"
+    "AreaID",
+    "METADATA"
    ],
    "why": [
-    "id finder: ID found (record id, grade A)"
+    "id finder: ID found (record id, grade A)",
+    "web address carries the NPS unit code (link-id-ties.json)"
    ]
   },
   "sgake": {
@@ -643,6 +648,14 @@
     "id finder: ID found (record id, grade A)"
    ]
   },
+  "sgmnf": {
+   "fields": [
+    "WEB_LINK1"
+   ],
+   "why": [
+    "web address carries the MN DNR unit id (link-id-ties.json)"
+   ]
+  },
   "sgmng": {
    "fields": [
     "LIT"
@@ -701,26 +714,41 @@
   },
   "sgmtb": {
    "fields": [
-    "SITEID"
+    "SITEID",
+    "WEB_PAGE"
    ],
    "why": [
-    "id finder: ID found (record id, grade A)"
+    "id finder: ID found (record id, grade A)",
+    "web address carries the MT FWP lands id (link-id-ties.json)"
    ]
   },
   "sgmtc": {
    "fields": [
-    "SITEID"
+    "SITEID",
+    "WEB_PAGE"
    ],
    "why": [
-    "id finder: ID found (record id, grade A)"
+    "id finder: ID found (record id, grade A)",
+    "web address carries the MT FWP lands id (link-id-ties.json)"
    ]
   },
   "sgmtd": {
    "fields": [
-    "MA_ID"
+    "MA_ID",
+    "URL"
    ],
    "why": [
-    "id finder: ID found (record id, grade A)"
+    "id finder: ID found (record id, grade A)",
+    "web address carries the MT FWP lands id (link-id-ties.json)",
+    "web address carries the NPS unit code (link-id-ties.json)"
+   ]
+  },
+  "sgmtf": {
+   "fields": [
+    "WEB_PAGE"
+   ],
+   "why": [
+    "web address carries the MT FWP lands id (link-id-ties.json)"
    ]
   },
   "sgncb": {
@@ -817,6 +845,14 @@
    ],
    "why": [
     "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgnya": {
+   "fields": [
+    "URL"
+   ],
+   "why": [
+    "web address carries the NY DEC page number (link-id-ties.json)"
    ]
   },
   "sgnyb": {
@@ -969,6 +1005,14 @@
    ],
    "why": [
     "id finder: ID found (record id, grade A)"
+   ]
+  },
+  "sgvae": {
+   "fields": [
+    "LANDLINK"
+   ],
+   "why": [
+    "web address carries the NPS unit code (link-id-ties.json)"
    ]
   },
   "sgwaa": {
