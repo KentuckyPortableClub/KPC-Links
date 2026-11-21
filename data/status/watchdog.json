@@ -670,8 +670,6 @@
   "pages-deploy.yml|2026-11-21T00:41:00+00:00": "2026-11-21T02:56+00:00 started",
   "kpc-fb-comments.yml|2026-11-21T02:32:00+00:00": "2026-11-21T03:06+00:00 skipped (not restarted)"
  },
- "last": "2026-11-21T03:06+00:00",
- "last_restarted": [
-  "kpc-fb-comments.yml (missed Nov 21 02:32 UTC, NOT restarted: its next scheduled run catches up)"
- ]
+ "last": "2026-11-21T03:22+00:00",
+ "last_restarted": []
 }
