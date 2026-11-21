@@ -1,0 +1,1341 @@
+{
+ "note": "Each map layer's owning agency and kind, from the layer's own words (kpc_layer_agency_kind.py). \"unknown\" = its words don't say; nothing is guessed. Change the rules, never this file by hand.",
+ "counts": {
+  "layers": 266,
+  "agency unknown": 4,
+  "kind unknown": 63,
+  "both known": 201
+ },
+ "layers": {
+  "PAD-US": {
+   "agency": "many owners (PAD-US)",
+   "kind": "mixed",
+   "why": "agency: its description says \"PAD-US\"; kind: PAD-US holds every kind"
+  },
+  "akht": {
+   "agency": "NPS",
+   "kind": "trail",
+   "why": "agency: its description says \"NPS\"; kind: its description says trail"
+  },
+  "arw": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game and Fish\"; kind: its description says wildlife area"
+  },
+  "cow": {
+   "agency": "state parks and wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"Parks and Wildlife\"; kind: no kind named"
+  },
+  "ctd": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DEEP\"; kind: no kind named"
+  },
+  "fnl": {
+   "agency": "state natural heritage",
+   "kind": "unknown",
+   "why": "agency: its description says \"Natural Areas\"; kind: no kind named"
+  },
+  "fsod": {
+   "agency": "USFS",
+   "kind": "monument or conservation area",
+   "why": "agency: its description says \"Forest Service\"; kind: its description says monument or conservation area"
+  },
+  "fws": {
+   "agency": "FWS",
+   "kind": "refuge",
+   "why": "agency: its description says \"US Fish and Wildlife Service\"; kind: its description says refuge"
+  },
+  "fwsr": {
+   "agency": "USFS",
+   "kind": "river corridor",
+   "why": "agency: its description says \"Forest Service\"; kind: its description says river corridor"
+  },
+  "hab": {
+   "agency": "BLM",
+   "kind": "herd area",
+   "why": "agency: its description says \"BLM\"; kind: its description says herd area"
+  },
+  "hma": {
+   "agency": "BLM",
+   "kind": "herd area",
+   "why": "agency: its description says \"BLM\"; kind: its description says herd area"
+  },
+  "idw": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish and Game\"; kind: its description says wildlife area"
+  },
+  "ind": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "lar": {
+   "agency": "state wildlife",
+   "kind": "refuge",
+   "why": "agency: its description says \"Wildlife and Fisheries\"; kind: its description says refuge"
+  },
+  "law": {
+   "agency": "state wildlife",
+   "kind": "mixed",
+   "why": "agency: its description says \"Wildlife and Fisheries\"; kind: its description names wildlife area, refuge"
+  },
+  "maw": {
+   "agency": "state wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"MassWildlife\"; kind: no kind named"
+  },
+  "mdd": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "mid": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "mol": {
+   "agency": "state wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"Dept. of Conservation\"; kind: no kind named"
+  },
+  "mszp": {
+   "agency": "state parks and wildlife",
+   "kind": "park",
+   "why": "agency: its description says \"Wildlife, Fisheries & Parks\"; kind: its description says park"
+  },
+  "mszw": {
+   "agency": "state parks and wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Wildlife, Fisheries & Parks\"; kind: its description says wildlife area"
+  },
+  "nca": {
+   "agency": "BLM",
+   "kind": "monument or conservation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says monument or conservation area"
+  },
+  "ncg": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Wildlife Resources\"; kind: its description says wildlife area"
+  },
+  "ndw": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game and Fish\"; kind: its description says wildlife area"
+  },
+  "nep": {
+   "agency": "state parks and wildlife",
+   "kind": "park",
+   "why": "agency: its description says \"Game and Parks\"; kind: its address says park"
+  },
+  "nhc": {
+   "agency": "state (many owners)",
+   "kind": "unknown",
+   "why": "agency: its description says \"GRANIT\"; kind: no kind named"
+  },
+  "odw": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Wildlife Conservation\"; kind: its description says wildlife area"
+  },
+  "osp": {
+   "agency": "state parks",
+   "kind": "unknown",
+   "why": "agency: its description says \"State Parks\"; kind: no kind named"
+  },
+  "rma": {
+   "agency": "BLM",
+   "kind": "recreation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says recreation area"
+  },
+  "rst": {
+   "agency": "BLM",
+   "kind": "recreation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says recreation area"
+  },
+  "sgaka": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgakb": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"Department of Natural Resources\"; kind: the state GIS table says preserve"
+  },
+  "sgakc": {
+   "agency": "state forestry",
+   "kind": "forest",
+   "why": "agency: its description says \"Division of Forestry\"; kind: its address (the state GIS table says forest too) says forest"
+  },
+  "sgakd": {
+   "agency": "NPS",
+   "kind": "park",
+   "why": "agency: its description says \"National Park Service\"; kind: the state GIS table says park"
+  },
+  "sgake": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: its description says park"
+  },
+  "sgakf": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Division of Parks\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgakg": {
+   "agency": "BLM",
+   "kind": "recreation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says recreation area"
+  },
+  "sgakh": {
+   "agency": "BLM",
+   "kind": "special area",
+   "why": "agency: its description says \"BLM\"; kind: its description says special area"
+  },
+  "sgaki": {
+   "agency": "many owners (national list)",
+   "kind": "unknown",
+   "why": "agency: its description says \"National Register of Historic Places\"; kind: no kind named"
+  },
+  "sgala": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgalb": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"Conservation and Natural Resources\"; kind: the state GIS table says preserve"
+  },
+  "sgalc": {
+   "agency": "state natural resources agency",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"ADCNR\"; kind: the state GIS table says wildlife area"
+  },
+  "sgald": {
+   "agency": "state natural resources agency",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"ADCNR\"; kind: the state GIS table says wildlife area"
+  },
+  "sgara": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Heritage\"; kind: the state GIS table says preserve"
+  },
+  "sgarb": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgarc": {
+   "agency": "state wildlife",
+   "kind": "water",
+   "why": "agency: its description says \"Game and Fish\"; kind: its address says water"
+  },
+  "sgaza": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks & Trails\"; kind: the state GIS table says park"
+  },
+  "sgazb": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game and Fish\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgazc": {
+   "agency": "state wildlife",
+   "kind": "hatchery",
+   "why": "agency: its description says \"Game and Fish\"; kind: its address says hatchery"
+  },
+  "sgazd": {
+   "agency": "FWS",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"US Fish and Wildlife Service\"; kind: the state GIS table says wildlife area"
+  },
+  "sgaze": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks and Trails\"; kind: its description says park"
+  },
+  "sgazf": {
+   "agency": "BLM",
+   "kind": "monument or conservation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says monument or conservation area"
+  },
+  "sgazg": {
+   "agency": "BLM",
+   "kind": "recreation area",
+   "why": "agency: its description says \"Bureau of Land Management\"; kind: its description says recreation area"
+  },
+  "sgcaa": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish & Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgcab": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgcac": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish and Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgcad": {
+   "agency": "BLM",
+   "kind": "park",
+   "why": "agency: its description says \"BLM\"; kind: the state GIS table says park"
+  },
+  "sgcoa": {
+   "agency": "state parks and wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Parks & Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgcob": {
+   "agency": "state parks and wildlife",
+   "kind": "park",
+   "why": "agency: its description says \"Parks & Wildlife\"; kind: the state GIS table says park"
+  },
+  "sgcoc": {
+   "agency": "state parks and wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Parks & Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgcod": {
+   "agency": "state parks and wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"Parks and Wildlife\"; kind: no kind named"
+  },
+  "sgcoe": {
+   "agency": "BLM",
+   "kind": "recreation area",
+   "why": "agency: its description says \"Bureau of Land Management\"; kind: its description says recreation area"
+  },
+  "sgcta": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DEEP\"; kind: no kind named"
+  },
+  "sgctb": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DEEP\"; kind: no kind named"
+  },
+  "sgctc": {
+   "agency": "state natural resources agency",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"DEEP\"; kind: its address says wildlife area"
+  },
+  "sgdea": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNREC\"; kind: no kind named"
+  },
+  "sgdeb": {
+   "agency": "state forestry",
+   "kind": "forest",
+   "why": "agency: its description says \"Delaware Forest Service\"; kind: the state GIS table says forest"
+  },
+  "sgdec": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish & Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgded": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"DNREC\"; kind: its description says preserve"
+  },
+  "sgdee": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNREC\"; kind: no kind named"
+  },
+  "sgfla": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgflb": {
+   "agency": "state forestry",
+   "kind": "forest",
+   "why": "agency: its description says \"Florida Forest Service\"; kind: its address (the state GIS table says forest too) says forest"
+  },
+  "sgflc": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish & Wildlife\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgfld": {
+   "agency": "state water district",
+   "kind": "unknown",
+   "why": "agency: its description says \"Water Management District\"; kind: no kind named"
+  },
+  "sgfle": {
+   "agency": "state water district",
+   "kind": "unknown",
+   "why": "agency: its description says \"Water Management District\"; kind: no kind named"
+  },
+  "sgflf": {
+   "agency": "state (many owners)",
+   "kind": "unknown",
+   "why": "agency: its description says \"State Lands\"; kind: no kind named"
+  },
+  "sgflg": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"FWC\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sggaa": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Wildlife Resources\"; kind: the state GIS table says wildlife area"
+  },
+  "sggab": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sggac": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Wildlife Resources\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sggad": {
+   "agency": "USFS",
+   "kind": "forest",
+   "why": "agency: its address says \"EDW_\"; kind: the state GIS table says forest"
+  },
+  "sggae": {
+   "agency": "many owners (national list)",
+   "kind": "unknown",
+   "why": "agency: its description says \"National_Heritage_Areas\"; kind: no kind named"
+  },
+  "sggaf": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sghia": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Division of State Parks\"; kind: the state GIS table says park"
+  },
+  "sghib": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"DOFAW\"; kind: the state GIS table says wildlife area"
+  },
+  "sghic": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgiaa": {
+   "agency": "state natural resources agency",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"DNR\"; kind: the state GIS table says wildlife area"
+  },
+  "sgiab": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: the state GIS table says park, its address says trail"
+  },
+  "sgiac": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sgiad": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sgida": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish & Game\"; kind: the state GIS table says wildlife area"
+  },
+  "sgidb": {
+   "agency": "state wildlife",
+   "kind": "water",
+   "why": "agency: its description says \"Fish and Game\"; kind: its description says water"
+  },
+  "sgidc": {
+   "agency": "BLM",
+   "kind": "recreation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says recreation area"
+  },
+  "sgidd": {
+   "agency": "USFS",
+   "kind": "forest",
+   "why": "agency: its address says \"EDW_\"; kind: the state GIS table says forest"
+  },
+  "sgide": {
+   "agency": "USACE",
+   "kind": "recreation area",
+   "why": "agency: its address says \"usace\"; kind: its description says recreation area"
+  },
+  "sgila": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"Department of Natural Resources\"; kind: the state GIS table says preserve"
+  },
+  "sgilb": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"Department of Natural Resources\"; kind: the state GIS table says preserve"
+  },
+  "sgilc": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Nature Preserves Commission\"; kind: the state GIS table says preserve"
+  },
+  "sgild": {
+   "agency": "state natural resources agency",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"IDNR\"; kind: the state GIS table says wildlife area"
+  },
+  "sgina": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sginb": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Heritage\"; kind: its description says preserve"
+  },
+  "sginc": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sgksa": {
+   "agency": "state parks and wildlife",
+   "kind": "park",
+   "why": "agency: its description says \"Wildlife & Parks\"; kind: its description says park"
+  },
+  "sgksb": {
+   "agency": "state parks and wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"KDWPT\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgksc": {
+   "agency": "several agencies",
+   "kind": "unknown",
+   "why": "agency: its description names \"KDWPT\" and \"Natural Heritage\"; kind: no kind named"
+  },
+  "sglaa": {
+   "agency": "state wildlife",
+   "kind": "mixed",
+   "why": "agency: its description says \"Department of Wildlife\"; kind: its address (the state GIS table says wild too) names wildlife area, refuge"
+  },
+  "sglab": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"LDWF\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sglac": {
+   "agency": "state wildlife",
+   "kind": "mixed",
+   "why": "agency: its description says \"Wildlife and Fisheries\"; kind: its description names wildlife area, refuge, monument or conservation area"
+  },
+  "sgmaa": {
+   "agency": "state (many owners)",
+   "kind": "unknown",
+   "why": "agency: its description says \"MassGIS\"; kind: no kind named"
+  },
+  "sgmab": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DCR\"; kind: no kind named"
+  },
+  "sgmac": {
+   "agency": "NPS",
+   "kind": "park",
+   "why": "agency: its description says \"National Park Service\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgmad": {
+   "agency": "state (many owners)",
+   "kind": "unknown",
+   "why": "agency: its description says \"MassGIS\"; kind: no kind named"
+  },
+  "sgmda": {
+   "agency": "state natural resources agency",
+   "kind": "mixed",
+   "why": "agency: its description says \"DNR\"; kind: its description names park, wildlife area, forest"
+  },
+  "sgmdb": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Areas\"; kind: the state GIS table says preserve"
+  },
+  "sgmea": {
+   "agency": "several agencies",
+   "kind": "unknown",
+   "why": "agency: its description names \"IFW\" and \"Bureau of Parks and Lands\"; kind: no kind named"
+  },
+  "sgmeb": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"WMA_Boundaries\"; kind: the state GIS table says wildlife area"
+  },
+  "sgmec": {
+   "agency": "state parks",
+   "kind": "preserve",
+   "why": "agency: its description says \"Bureau of Parks and Lands\"; kind: its description says preserve"
+  },
+  "sgmia": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Parks & Recreation\"; kind: the state GIS table says park"
+  },
+  "sgmib": {
+   "agency": "state natural resources agency",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Department of Natural Resources\"; kind: the state GIS table says wildlife area"
+  },
+  "sgmic": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Park Boundaries\"; kind: the state GIS table says park"
+  },
+  "sgmna": {
+   "agency": "state natural resources agency",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"DNR\"; kind: the state GIS table says wildlife area"
+  },
+  "sgmnb": {
+   "agency": "state natural resources agency",
+   "kind": "forest",
+   "why": "agency: its description says \"DNR\"; kind: its address (the state GIS table says forest too) says forest"
+  },
+  "sgmnc": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"DNR\"; kind: its address (the state GIS table says preserve too) says preserve"
+  },
+  "sgmnd": {
+   "agency": "state parks",
+   "kind": "recreation area",
+   "why": "agency: its description says \"State Parks\"; kind: its address (the state GIS table says park too) says recreation area"
+  },
+  "sgmne": {
+   "agency": "state natural resources agency",
+   "kind": "mixed",
+   "why": "agency: its description says \"DNR\"; kind: its description names park, trail"
+  },
+  "sgmnf": {
+   "agency": "state natural resources agency",
+   "kind": "forest",
+   "why": "agency: its description says \"DNR\"; kind: the state GIS table says forest"
+  },
+  "sgmng": {
+   "agency": "FWS",
+   "kind": "refuge",
+   "why": "agency: its description says \"FWSBoundaries\"; kind: its address (the state GIS table says wild too) says refuge"
+  },
+  "sgmoa": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgmob": {
+   "agency": "state natural heritage",
+   "kind": "unknown",
+   "why": "agency: its description says \"Natural Areas\"; kind: the state GIS table says preserve, its address says park"
+  },
+  "sgmoc": {
+   "agency": "state wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"Department of Conservation\"; kind: no kind named"
+  },
+  "sgmod": {
+   "agency": "state wildlife",
+   "kind": "preserve",
+   "why": "agency: its description says \"Department of Conservation\"; kind: the state GIS table says preserve"
+  },
+  "sgmoe": {
+   "agency": "state parks",
+   "kind": "unknown",
+   "why": "agency: its description says \"Division of State Parks\"; kind: the state GIS table says wild, its address says park"
+  },
+  "sgmof": {
+   "agency": "state wildlife",
+   "kind": "forest",
+   "why": "agency: its description says \"MDC\"; kind: the state GIS table says forest"
+  },
+  "sgmog": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Areas\"; kind: the state GIS table says preserve"
+  },
+  "sgmoh": {
+   "agency": "state wildlife",
+   "kind": "monument or conservation area",
+   "why": "agency: its description says \"Department of Conservation\"; kind: its description says monument or conservation area"
+  },
+  "sgmta": {
+   "agency": "state parks and wildlife",
+   "kind": "park",
+   "why": "agency: its description says \"Fish, Wildlife & Parks\"; kind: the state GIS table says park"
+  },
+  "sgmtb": {
+   "agency": "state parks and wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish, Wildlife & Parks\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgmtc": {
+   "agency": "state parks and wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"Fish, Wildlife & Parks\"; kind: no kind named"
+  },
+  "sgmtd": {
+   "agency": "unknown",
+   "kind": "unknown",
+   "why": "agency: no agency named in its description or address; kind: no kind named"
+  },
+  "sgmte": {
+   "agency": "state parks and wildlife",
+   "kind": "park",
+   "why": "agency: its description says \"Fish, Wildlife & Parks\"; kind: its description says park"
+  },
+  "sgmtf": {
+   "agency": "state parks and wildlife",
+   "kind": "fishing access",
+   "why": "agency: its description says \"Fish, Wildlife & Parks\"; kind: its description says fishing access"
+  },
+  "sgnca": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Heritage\"; kind: the state GIS table says preserve"
+  },
+  "sgncb": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"NCWRC\"; kind: the state GIS table says wildlife area"
+  },
+  "sgncc": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game Lands\"; kind: the state GIS table says wildlife area"
+  },
+  "sgncd": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"ParkBoundaries\"; kind: the state GIS table says park"
+  },
+  "sgnda": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game & Fish\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgndb": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Parks & Recreation\"; kind: the state GIS table says park"
+  },
+  "sgndc": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Parks and Recreation\"; kind: the state GIS table says park"
+  },
+  "sgndd": {
+   "agency": "state forestry",
+   "kind": "forest",
+   "why": "agency: its description says \"North Dakota Forest Service\"; kind: its address (the state GIS table says forest too) says forest"
+  },
+  "sgnea": {
+   "agency": "state parks and wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game and Parks\"; kind: the state GIS table says wildlife area"
+  },
+  "sgneb": {
+   "agency": "state parks and wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"NGPC\"; kind: no kind named"
+  },
+  "sgnec": {
+   "agency": "state parks and wildlife",
+   "kind": "park",
+   "why": "agency: its description says \"Game and Parks\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgnha": {
+   "agency": "state (many owners)",
+   "kind": "unknown",
+   "why": "agency: its description says \"GRANIT\"; kind: no kind named"
+  },
+  "sgnhb": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish and Game\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgnhc": {
+   "agency": "state (many owners)",
+   "kind": "recreation area",
+   "why": "agency: its description says \"GRANIT\"; kind: its description says recreation area"
+  },
+  "sgnhd": {
+   "agency": "state (many owners)",
+   "kind": "unknown",
+   "why": "agency: its description says \"GRANIT\"; kind: no kind named"
+  },
+  "sgnja": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"DEP\"; kind: its description says preserve"
+  },
+  "sgnjb": {
+   "agency": "state (many owners)",
+   "kind": "unknown",
+   "why": "agency: its description says \"open space\"; kind: no kind named"
+  },
+  "sgnma": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game & Fish\"; kind: the state GIS table says wildlife area"
+  },
+  "sgnmb": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgnmc": {
+   "agency": "BLM",
+   "kind": "recreation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says recreation area"
+  },
+  "sgnva": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Department of Wildlife\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgnvb": {
+   "agency": "state parks",
+   "kind": "recreation area",
+   "why": "agency: its description says \"Division of State Parks\"; kind: its description says recreation area"
+  },
+  "sgnvc": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Division of State Parks\"; kind: the state GIS table says park"
+  },
+  "sgnvd": {
+   "agency": "state (many owners)",
+   "kind": "recreation area",
+   "why": "agency: its description says \"SCORP\"; kind: its description says recreation area"
+  },
+  "sgnve": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Division of State Parks\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgnvf": {
+   "agency": "BLM",
+   "kind": "monument or conservation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says monument or conservation area"
+  },
+  "sgnvg": {
+   "agency": "USFS",
+   "kind": "forest",
+   "why": "agency: its address says \"EDW_\"; kind: its description says forest"
+  },
+  "sgnvh": {
+   "agency": "BLM",
+   "kind": "special area",
+   "why": "agency: its address says \"BLM\"; kind: its description says special area"
+  },
+  "sgnvi": {
+   "agency": "BLM",
+   "kind": "herd area",
+   "why": "agency: its description says \"Bureau of Land Management\"; kind: its description says herd area"
+  },
+  "sgnvj": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Department of Wildlife\"; kind: its description says wildlife area"
+  },
+  "sgnya": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DEC\"; kind: no kind named"
+  },
+  "sgnyb": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgnyc": {
+   "agency": "state (many owners)",
+   "kind": "park",
+   "why": "agency: its description says \"Adirondack Park Agency\"; kind: its description says park"
+  },
+  "sgnyd": {
+   "agency": "state natural resources agency",
+   "kind": "park",
+   "why": "agency: its description says \"DEC\"; kind: its description says park"
+  },
+  "sgoha": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Division of Parks\"; kind: the state GIS table says park"
+  },
+  "sgohb": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Division of Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgohc": {
+   "agency": "state forestry",
+   "kind": "forest",
+   "why": "agency: its description says \"Division of Forestry\"; kind: the state GIS table says forest"
+  },
+  "sgohd": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Areas\"; kind: its description says preserve"
+  },
+  "sgohe": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sgohf": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sgohg": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sgoka": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgokb": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Department of Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgokc": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"ODWC\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgora": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Parks & Recreation\"; kind: the state GIS table says park"
+  },
+  "sgorb": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Parks and Recreation\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgorc": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish and Wildlife\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgord": {
+   "agency": "state (many owners)",
+   "kind": "unknown",
+   "why": "agency: its description says \"state owned and managed lands\"; kind: no kind named"
+  },
+  "sgore": {
+   "agency": "unknown",
+   "kind": "park",
+   "why": "agency: no agency named in its description or address; kind: its description says park"
+  },
+  "sgorf": {
+   "agency": "BLM",
+   "kind": "recreation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says recreation area"
+  },
+  "sgorg": {
+   "agency": "BLM",
+   "kind": "river corridor",
+   "why": "agency: its description says \"Bureau of Land Management\"; kind: its description says river corridor"
+  },
+  "sgpaa": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Bureau of State Parks\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgpab": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgpac": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game Commission\"; kind: the state GIS table says wildlife area"
+  },
+  "sgpad": {
+   "agency": "state parks",
+   "kind": "preserve",
+   "why": "agency: its description says \"Bureau of State Parks\"; kind: the state GIS table says preserve"
+  },
+  "sgpae": {
+   "agency": "state forestry",
+   "kind": "forest",
+   "why": "agency: its description says \"State Forests\"; kind: its address (the state GIS table says forest too) says forest"
+  },
+  "sgria": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DEM\"; kind: no kind named"
+  },
+  "sgrib": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DEM\"; kind: no kind named"
+  },
+  "sgric": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DEM\"; kind: no kind named"
+  },
+  "sgsca": {
+   "agency": "state natural resources agency",
+   "kind": "mixed",
+   "why": "agency: its description says \"DNR\"; kind: its description names wildlife area, preserve"
+  },
+  "sgscb": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgscc": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"DNR\"; kind: its description says preserve"
+  },
+  "sgscd": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"Department of Natural Resources\"; kind: no kind named"
+  },
+  "sgsda": {
+   "agency": "state parks and wildlife",
+   "kind": "park",
+   "why": "agency: its description says \"Game, Fish and Parks\"; kind: the state GIS table says park"
+  },
+  "sgsdb": {
+   "agency": "state parks and wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"Game, Fish and Parks\"; kind: no kind named"
+  },
+  "sgtna": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgtnb": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Areas\"; kind: the state GIS table says preserve"
+  },
+  "sgtnc": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Wildlife Resources\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgtnd": {
+   "agency": "state forestry",
+   "kind": "forest",
+   "why": "agency: its description says \"Division of Forestry\"; kind: its address (the state GIS table says forest too) says forest"
+  },
+  "sgtne": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Wildlife Resources\"; kind: the state GIS table says wildlife area"
+  },
+  "sgtnf": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"Environment and Conservation\"; kind: no kind named"
+  },
+  "sgtng": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: its description says park"
+  },
+  "sgtnh": {
+   "agency": "state natural heritage",
+   "kind": "mixed",
+   "why": "agency: its description says \"Natural Areas\"; kind: its description names park, preserve"
+  },
+  "sgtni": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Wildlife Resources\"; kind: the state GIS table says wildlife area"
+  },
+  "sgtnj": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"Park Boundaries\"; kind: its description says park"
+  },
+  "sgtxa": {
+   "agency": "state parks and wildlife",
+   "kind": "park",
+   "why": "agency: its description says \"Parks & Wildlife\"; kind: its description says park"
+  },
+  "sgtxb": {
+   "agency": "state parks and wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Parks & Wildlife\"; kind: its description says wildlife area"
+  },
+  "sgtxc": {
+   "agency": "state parks and wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"TPWD\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgtxd": {
+   "agency": "state parks and wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"Parks and Wildlife\"; kind: no kind named"
+  },
+  "sguta": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgutb": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Division of Wildlife\"; kind: its address says wildlife area"
+  },
+  "sgutc": {
+   "agency": "many owners (national list)",
+   "kind": "unknown",
+   "why": "agency: its description says \"National Historic Landmarks\"; kind: no kind named"
+  },
+  "sgutd": {
+   "agency": "BLM",
+   "kind": "recreation area",
+   "why": "agency: its description says \"BLM\"; kind: its description says recreation area"
+  },
+  "sgute": {
+   "agency": "BLM",
+   "kind": "river corridor",
+   "why": "agency: its address says \"BLM\"; kind: its description says river corridor"
+  },
+  "sgutf": {
+   "agency": "unknown",
+   "kind": "park",
+   "why": "agency: no agency named in its description or address; kind: its address (the state GIS table says park too) says park"
+  },
+  "sgvaa": {
+   "agency": "state forestry",
+   "kind": "forest",
+   "why": "agency: its description says \"Department of Forestry\"; kind: its address (the state GIS table says forest too) says forest"
+  },
+  "sgvab": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Heritage\"; kind: its address (the state GIS table says preserve too) says preserve"
+  },
+  "sgvac": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgvad": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgvae": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DCR\"; kind: no kind named"
+  },
+  "sgvaf": {
+   "agency": "state natural resources agency",
+   "kind": "park",
+   "why": "agency: its description says \"DCR\"; kind: its description says park"
+  },
+  "sgvag": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Department of Wildlife\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgvah": {
+   "agency": "state historic preservation",
+   "kind": "unknown",
+   "why": "agency: its description says \"Historic Resources\"; kind: no kind named"
+  },
+  "sgvta": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"Agency of Natural Resources\"; kind: the state GIS table says preserve"
+  },
+  "sgwaa": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgwab": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish and Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgwac": {
+   "agency": "state natural resources agency",
+   "kind": "preserve",
+   "why": "agency: its description says \"Department of Natural Resources\"; kind: the state GIS table says preserve"
+  },
+  "sgwad": {
+   "agency": "several agencies",
+   "kind": "unknown",
+   "why": "agency: its description names \"WDFW\" and \"State Parks\"; kind: no kind named"
+  },
+  "sgwae": {
+   "agency": "state natural resources agency",
+   "kind": "water",
+   "why": "agency: its description says \"Department of Ecology\"; kind: its description says water"
+  },
+  "sgwaf": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish and Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgwag": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Fish and Wildlife\"; kind: the state GIS table says wildlife area"
+  },
+  "sgwah": {
+   "agency": "unknown",
+   "kind": "unknown",
+   "why": "agency: no agency named in its description or address; kind: no kind named"
+  },
+  "sgwia": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sgwib": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgwic": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Heritage\"; kind: the state GIS table says preserve"
+  },
+  "sgwid": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "sgwie": {
+   "agency": "state natural resources agency",
+   "kind": "forest",
+   "why": "agency: its description says \"DNR\"; kind: its description says forest"
+  },
+  "sgwif": {
+   "agency": "state natural heritage",
+   "kind": "preserve",
+   "why": "agency: its description says \"Natural Area\"; kind: the state GIS table says preserve"
+  },
+  "sgwva": {
+   "agency": "state natural resources agency",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"DNR\"; kind: the state GIS table says wildlife area"
+  },
+  "sgwvb": {
+   "agency": "state forestry",
+   "kind": "forest",
+   "why": "agency: its description says \"State Forests\"; kind: its address (the state GIS table says forest too) says forest"
+  },
+  "sgwvc": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgwya": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks\"; kind: the state GIS table says park"
+  },
+  "sgwyb": {
+   "agency": "state parks",
+   "kind": "park",
+   "why": "agency: its description says \"State Parks, Historic Sites & Trails\"; kind: the state GIS table says park"
+  },
+  "sgwyc": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game and Fish\"; kind: its address (the state GIS table says wild too) says wildlife area"
+  },
+  "sgwyd": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"Game and Fish\"; kind: the state GIS table says wildlife area"
+  },
+  "tnd": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"TDEC\"; kind: no kind named"
+  },
+  "trl": {
+   "agency": "several agencies",
+   "kind": "mixed",
+   "why": "agency: its description names \"Park Service\" and \"BLM\" and \"Forest Service\"; kind: its description names park, trail"
+  },
+  "utw": {
+   "agency": "state wildlife",
+   "kind": "unknown",
+   "why": "agency: its description says \"DWR\"; kind: no kind named"
+  },
+  "vta": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"ANR\"; kind: no kind named"
+  },
+  "wbl": {
+   "agency": "BLM",
+   "kind": "wilderness",
+   "why": "agency: its description says \"BLM\"; kind: its address says wilderness"
+  },
+  "wdw": {
+   "agency": "state wildlife",
+   "kind": "wildlife area",
+   "why": "agency: its description says \"WDFW\"; kind: its description says wildlife area"
+  },
+  "wid": {
+   "agency": "state natural resources agency",
+   "kind": "unknown",
+   "why": "agency: its description says \"DNR\"; kind: no kind named"
+  },
+  "wld": {
+   "agency": "USFS",
+   "kind": "wilderness",
+   "why": "agency: its description says \"Forest Service\"; kind: its description says wilderness"
+  },
+  "wsa": {
+   "agency": "BLM",
+   "kind": "wilderness",
+   "why": "agency: its description says \"BLM\"; kind: its description says wilderness"
+  },
+  "wsrc": {
+   "agency": "NPS",
+   "kind": "river corridor",
+   "why": "agency: its description says \"NPS\"; kind: its description says river corridor"
+  }
+ }
+}
