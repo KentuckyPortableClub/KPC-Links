@@ -1,17 +1,18 @@
 {
  "open": [
   "KPC-Data/kpc-camp-weekly.yml",
-  "KPC-Data/kpc-copy-from-links.yml",
   "KPC-Data/kpc-eu-alerts.yml",
-  "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-storage.yml",
   "guard:pubnoindex:kpc-log-checker.html",
   "guard:pubnoindex:kpc-maintenance.html",
+  "kpc-band-alerts.yml",
+  "kpc-boards.yml",
   "kpc-bot-queue.yml",
-  "kpc-discord-watch.yml",
+  "kpc-discord-relay.yml",
+  "kpc-fb-comments.yml",
   "kpc-hunters.json",
-  "kpc-hunters.yml",
   "kpc-pota-discord.yml",
+  "kpc-watchdog.yml",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
   "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
@@ -368,7 +369,7 @@
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-20T18:01+00:00",
+ "checked": "2026-11-21T11:57+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3261,7 +3262,7 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2915
+   "b": 2917
   },
   "L:data/ky-answer-key.json": {
    "b": 31658
@@ -3276,7 +3277,7 @@
    "b": 38569625
   },
   "L:data/pota": {
-   "b": 10242682
+   "b": 10192619
   },
   "L:data/canada.json": {
    "b": 2558918
@@ -3312,13 +3313,13 @@
    "b": 21245
   },
   "L:kpc-special-events.json": {
-   "b": 16310
+   "b": 16802
   },
   "L:kpc-youtube.json": {
    "b": 2948
   },
   "L:kpc-conditions.json": {
-   "b": 11644
+   "b": 11265
   },
   "L:data/kpc-whats-new.json": {
    "b": 684
@@ -3355,7 +3356,7 @@
    "b": 93698
   },
   "D:data/closures": {
-   "b": 169149
+   "b": 169131
   },
   "D:data/intake": {
    "b": 39695215,
