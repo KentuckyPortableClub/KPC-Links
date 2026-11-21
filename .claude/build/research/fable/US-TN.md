@@ -30,4 +30,7 @@ ONE ROW PER PARK from now on: update the park's row in place (add to its cells),
 | US-6273 TN | Vine Cedar Glade State Natural Area | https://www.tn.gov/environment/natural-areas/what-we-do/sna/cb/vine-cedar-glade.html | to read | to read | 36.0346, -86.3535 |
 
 Chat 8 (Oct 30): TDEC's point-test only hit the broad TDEC_Public_Lands container for 4 SNAs + Cherokee Trail of Tears -- none of their own dedicated boundary layers (TN has 3 near-duplicate state-park layers + 1 natural-area layer, see atlas) were name-searched yet, just point-tested. Filed a page look-up (8-fable-tn, tn.gov pages are 403 to this session) and asked chat 9 to run a name search on the dedicated layers. NOT YET DONE -- holding open pending those two answers rather than tagging name-mismatch on a point-test alone.
-
+| US-6274 | Virgin Falls State Natural Area | new park (POTA, found 2026-11-21); pin 35.854, -85.2822 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-21 |
+| US-6257 | Natural Bridge State Natural Area | new park (POTA, found 2026-11-21); pin 35.1538, -85.9222 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-21 |
+| US-6253 | Lost Creek State Natural Area | new park (POTA, found 2026-11-21); pin 35.8403, -85.3606 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-21 |
+| US-13670 | Rock Creek Recreation Site | new park (POTA, found 2026-11-21); pin 36.1373, -82.3537 | R-G7 step 1 | why-not: new park, no outline yet (GIS hunter areas-run + look-up read started) | 10 (bot) | 2026-11-21 |
