@@ -256,13 +256,106 @@ def size_witnesses(fact, shared=None):
     pname, area = f.get('name') or '', f.get('area')
     if pname and full(pname) in ((shared or {}).get(area) or set()): return []
     out = []
-    rows = [f.get('size')] + list(((f.get('page') or {}).get('sizes') or []))
+    rows = [f.get('size')] + [page_size_witness(f, s) for s in ((f.get('page') or {}).get('sizes') or [])]
     for s in rows:
         if not tagged_witness(s): continue
         try: ac = float(s.get('acres'))
         except (TypeError, ValueError): continue
         if ac > 0: out.append((ac, s.get('witness'), 'tagged independent witness'))
     return out
+
+
+# ---------------------------------------------------------------------------------------------------------------------------
+# 22 Nov 2026 (owner 3:55 PM "go for all"; notes/mapping.md plan P1-P7 and rule sheet PN): the park's OWN agency page helps the
+# match. Nothing from a page that is not the park's own (P6): own_page() is the one gate every page fact passes.
+SECOND_NAME_PLACE = re.compile(r'\b(park|forest|refuge|wildlife|area|preserve|reserve|lake|river|trail|monument|site|recreation|'
+                               r'sanctuary|wma|conservation|marsh|island|beach|reservoir|creek|natural|historic|seashore|lakeshore|'
+                               r'battlefield|grassland|wilderness|hma|viewpoint|wayside|game lands?|fishing|access|unit|tract)\b', re.I)
+SECOND_NAME_SPLIT = re.compile(r'\s*(?:\||•|·|–|—|\s-\s|:)\s*')
+SITE_HEADING_PARKS = 3     # the same text on this many parks' pages of one host = a site heading, never a park's name
+TRACT_KM = 5.0             # P4: a tract's record lies within 5 km of the park's pin
+LAYER_KIND_CODES = {'wildlife area': {'wma'}, 'park': {'sp'}, 'preserve': {'snp'}, 'forest': {'nf', 'sf'}, 'recreation area': {'sp', 'rma'},
+                    'refuge': {'nwr'}, 'herd area': {'hma'}, 'wilderness': {'wild'}, 'river corridor': {'wsr'}, 'trail': {'trh'}}
+
+
+def own_page(fact):
+    """P6: True only for the park's OWN page on an agency or government site (the reader's own-page test, not an unofficial host).
+    A page POTA links that is another park's page, a list or the agency's front page gives this park nothing."""
+    f = fact or {}
+    pg, lk = f.get('page') or {}, f.get('link') or {}
+    if pg.get('own_page') != 'own' or pg.get('unofficial'): return False
+    return str(lk.get('site') or '') in ('agency (known)', 'government site') or not lk
+
+
+def page_size_witness(fact, s):
+    """P1: a size the park's own agency page states as the park's clean total counts as an agency document (an untagged page
+    size, or one from any other page, never counts)."""
+    if not isinstance(s, dict) or s.get('witness'): return s
+    if own_page(fact) and s.get('total') and s.get('clean'):
+        return dict(s, witness='agency_document', witness_why="the park's own agency page states its total size")
+    return s
+
+
+def second_names(fact, park_name, heading_count=None, names_in_state=None):
+    """P2 (rule sheet PN): the place names the park's own page gives it that differ from POTA's, cleaned: the page heading cut at
+    | • – — ' - ' ':' and each part that reads as a place name. Never a site heading (the same text on SITE_HEADING_PARKS or
+    more parks' pages of that host), never another POTA park's name in the state, never POTA's own name."""
+    if not own_page(fact): return []
+    pg = (fact or {}).get('page') or {}
+    raw = str(pg.get('name_on_page') or '').strip()
+    if not raw or '\ufffd' in raw: return []
+    if heading_count and heading_count.get((pg.get('host'), full(raw)), 0) >= SITE_HEADING_PARKS: return []
+    mine, out = full(park_name), []
+    for part in [raw] + SECOND_NAME_SPLIT.split(raw):
+        part = part.strip()
+        n = full(part)
+        if not n or n == mine or len(n.split()) < 2 or not SECOND_NAME_PLACE.search(part): continue
+        if heading_count and heading_count.get((pg.get('host'), n), 0) >= SITE_HEADING_PARKS: continue
+        if names_in_state and n in names_in_state: continue
+        if n not in out: out.append(n)
+    return out
+
+
+def parent_units(fact):
+    """P5: the bigger units the park's own page says it lies inside (the reader's sure 'inside_of', never 'maybe inside')."""
+    if not own_page(fact): return []
+    return [u for u in ((fact or {}).get('page') or {}).get('inside_of') or [] if isinstance(u, dict) and full(u.get('unit'))]
+
+
+def tract_names(fact):
+    """P4: the tract names the park's own page lists."""
+    if not own_page(fact): return []
+    return [full(t) for t in ((fact or {}).get('page') or {}).get('parts') or [] if full(t) and len(full(t)) > 3]
+
+
+def rec_name(a):
+    return (a or {}).get('Unit_Nm') or (a or {}).get('Loc_Nm') or ''
+
+
+def layer_kinds(rec, table=None):
+    """A record's kinds: its own (record_kinds) plus its layer's kind from the layer table (P7)."""
+    k = set(record_kinds(rec))
+    t = (table or {}).get(layer_of(rec)) or {}
+    return k | LAYER_KIND_CODES.get(str(t.get('kind') or '').lower(), set())
+
+
+def near_box(lat, lon, bb, km_):
+    """True when (lat, lon) lies within km_ of the box [w, s, e, n]."""
+    if not bb or lat is None or lon is None: return False
+    w, s_, e, n = bb
+    dla = km_ / 111.2; dlo = km_ / max(1e-6, 111.2 * math.cos(math.radians(lat)))
+    return (s_ - dla) <= lat <= (n + dla) and (w - dlo) <= lon <= (e + dlo)
+
+
+def claim_fit(park, rec, table=None):
+    """P7: how well a park fits a record two parks claim: name (2 exact, 1 with 'state' left out, 0 other) plus kind
+    (+1 agrees, -1 differs, 0 no data)."""
+    rn, pn = full(rec_name(rec)), full(park.get('n') or '')
+    loose = lambda t: ' '.join(w for w in t.split() if w != 'state')
+    sc = 2 if rn and rn == pn else (1 if rn and loose(rn) == loose(pn) else 0)
+    a, b = kinds(park.get('t') or park.get('n') or ''), layer_kinds(rec, table)
+    if a and b: sc += 1 if (a & b or any(a & c and b & c for c in US_COMPAT)) else -1
+    return sc
 
 
 def page_pins(fact):
@@ -682,12 +775,52 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
     names = {}
     for ref, p in parks.items(): names.setdefault(full(p.get('n') or ''), set()).add(ref)
     out = {'parks': 0, 'confirmed': 0, 'outlined': 0, 'pin': 0, 'gained': 0, 'moved': 0, 'why': {}, 'notes': {},
-           'by_id': 0, 'by_link': 0, 'by_size': 0}
+           'by_id': 0, 'by_link': 0, 'by_size': 0, 'second_name': 0, 'tract': 0, 'parent': 0, 'shared_record': 0}
 
     def to_check(p, rows, why):
         ids_ = {id(q) for q in rows}
         p['m'] = [q for q in p.get('m') or [] if id(q) not in ids_]
         p['c'] = [list(q[:3]) + [f'check ({why})'] for q in rows] + list(p.get('c') or [])
+
+    # 22 Nov 2026 (plan P2/P4/P7): what the park pages of this state say, read once
+    all_names = set(names)
+    heading_count = {}
+    for ref in parks:
+        pg = ((facts.get(ref) or {}).get('page') or {})
+        h = pg.get('host')
+        for t in {full(pg.get('name_on_page'))} | {full(x) for x in SECOND_NAME_SPLIT.split(str(pg.get('name_on_page') or ''))}:
+            if h and t: heading_count[(h, t)] = heading_count.get((h, t), 0) + 1
+    by_name = {}
+    for i, a in recs.items():
+        n = full(rec_name(a))
+        if n: by_name.setdefault(n, []).append(i)
+
+    def add_row(p, i, how):
+        a = recs[i]
+        p['m'] = sorted(list(p.get('m') or []) + [[a['OBJECTID'], rec_name(a), round(float(a.get('GIS_Acres') or 0)), how]],
+                        key=lambda x: -(x[2] or 0))
+        p['c'] = [x for x in p.get('c') or [] if str(x[0]) != i]
+        if p.get('g') in (None, 'pin'): p['g'] = 'official'
+
+    # P7: one record that two parks of the state claim by NAME stays with the park whose name and kind fit it best; the others go
+    # to check. Equal fits keep it for both (real 'same land, two park numbers').
+    claims = {}
+    for ref in sorted(parks):
+        if ref in skip: continue
+        for q in parks[ref].get('m') or []:
+            if row_class(q) == 'name': claims.setdefault(str(q[0]), []).append(ref)
+    for i, refs_ in sorted(claims.items()):
+        if len(refs_) < 2 or i not in recs: continue
+        fit = {r: claim_fit(parks[r], recs[i], layer_table) for r in refs_}
+        best = max(fit.values())
+        winners = [r for r in refs_ if fit[r] == best]
+        if len(winners) == len(refs_): continue
+        for r in refs_:
+            if fit[r] == best: continue
+            rows = [q for q in parks[r].get('m') or [] if str(q[0]) == i and row_class(q) == 'name']
+            if not rows: continue
+            to_check(parks[r], rows, f"another park's record: {rec_name(recs[i])[:60]} fits {', '.join(winners)} better")
+            out['moved'] += len(rows); out['shared_record'] += 1; hits.append([r, 'shared record', i])
 
     for ref in sorted(parks):
         p = parks[ref]
@@ -714,6 +847,32 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                     p['c'] = [x for x in p.get('c') or [] if str(x[0]) != i]
                     out['gained'] += 1; hits.append([ref, 'joined (id)', i])
                 if p.get('g') in (None, 'pin'): p['g'] = 'official'
+        # P2 (rule sheet PN): a second name from the park's own agency page joins a record of exactly that name that holds the pin
+        have = {str(q[0]) for q in p.get('m') or []} | {str(q[0]) for q in p.get('c') or []}
+        for n2 in second_names(f, nm, heading_count, all_names - {full(nm)}):
+            cand = [i for i in by_name.get(n2, []) if i not in have and not is_no(ref, i, recs[i])
+                    and agency_check(f, recs[i], st, layer_table) != 'differs' and holds_fn(ref, i) is True]
+            if len(cand) == 1:
+                add_row(p, cand[0], f'name: second name "{n2[:60]}" (the park\'s own page) + pin inside')
+                out['gained'] += 1; out['second_name'] += 1; hits.append([ref, 'joined (second name)', cand[0]]); have.add(cand[0])
+            elif len(cand) > 1:
+                p['c'] = [[recs[i]['OBJECTID'], rec_name(recs[i]), round(float(recs[i].get('GIS_Acres') or 0)),
+                           f'check (second name "{n2[:60]}": {len(cand)} records carry it)'] for i in cand] + list(p.get('c') or [])
+                have |= set(cand)
+        # P4: the tracts the park's own page names join their records on a layer the park is already joined to, within 5 km of the pin
+        tracts = tract_names(f)
+        pin = (f or {}).get('pin') or []
+        if tracts and len(pin) == 2 and p.get('m'):
+            lays = {layer_of(recs.get(str(q[0]))) for q in p.get('m') or [] if recs.get(str(q[0]))} - {''}
+            words = {w for w in full(nm).split() if w not in ('state', 'national', 'park', 'area', 'wildlife', 'management')}
+            for i, a in recs.items():
+                if i in have or layer_of(a) not in lays: continue
+                rn = full(rec_name(a))
+                if not rn or not any(rn == t or (rn.endswith(' ' + t) and words & set(rn.split())) for t in tracts): continue
+                if is_no(ref, i, a) or not near_box(pin[0], pin[1], a.get('_bb'), TRACT_KM): continue
+                if other_park_name(rec_name(a), nm, others): continue
+                add_row(p, i, f'name: tract "{rn[:60]}" (the park\'s own page lists it)')
+                out['gained'] += 1; out['tract'] += 1; hits.append([ref, 'joined (tract)', i]); have.add(i)
         m = list(p.get('m') or [])
         if not m: continue
         out['parks'] += 1
@@ -729,6 +888,10 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if rec is None: drop.append((q, 'no data: the record was not read this build')); continue
             if other_park_name(q[1], nm, others):
                 drop.append((q, "name: this record carries another park's own full name")); continue
+            par = [u for u in parent_units(f) if full(u.get('unit')) == full(q[1]) and full(u.get('unit')) != full(nm) and u.get('pota_ref') != ref]
+            if par:   # P5: the park's own page says it lies inside this unit: the unit's record is not the park's own outline
+                drop.append((q, f"place: the park's own page says it lies inside {str(par[0].get('unit'))[:60]}; that record is the bigger unit"))
+                out['parent'] += 1; continue
             if agency_check(f, rec, st, layer_table) == 'differs': drop.append((q, "agency: the record belongs to another agency than POTA's link")); continue
             if compilation_kind_clash(nm, q[1], rec, layer_table):
                 drop.append((q, "kind: a compilation layer's record (no agency vote) names another kind of place than the park")); continue
