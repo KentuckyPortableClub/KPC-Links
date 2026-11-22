@@ -169,7 +169,7 @@ us_now, ca_now, wo_now, fe_now = rules('us-key'), rules('ca-key'), rules('world-
 check(us_now != '7e4883bfbb45', f'US rules hash moved from 7e4883bfbb45 to {us_now}')
 check(wo_now != 'b1f23bf0deea', f'world rules hash moved from b1f23bf0deea to {wo_now}')
 check(ca_now == PF.newest_hash('ca-key'), f'Canada rules hash equals the newest declared changelog line ({ca_now})')
-check(fe_now == '621a2106111b', f'2-fer rules hash is unchanged since review F16, 22 Nov ({fe_now})')
+check(fe_now == '62e77c250cc5', f'2-fer rules hash is the review F16 saved-core-m2 hash, 22 Nov ({fe_now})')
 print(f'HASHES us={us_now} ca={ca_now} world={wo_now} fers={fe_now}', flush=True)
 
 # 5. New table parts are attributed only to NY (US) and MK (world).

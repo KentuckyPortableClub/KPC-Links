@@ -269,15 +269,30 @@ def _words_minus_once(hay, needle):
     return None
 
 
+_F3_SHORT = (('national wildlife refuge', 'nwr'), ('wildlife management area', 'wma'), ('state recreation area', 'sra'),
+             ('state fish hatchery', 'fish hatchery'), ('state park', 'park'))
+
+
+def _f3_short(s):
+    """The name with long type phrases written as their short forms, so 'X Wildlife Management Area' matches 'X WMA Goose Pond'."""
+    t = ' ' + ' '.join(_f3_words(s)) + ' '
+    for a, b in _F3_SHORT:
+        t = t.replace(' ' + a + ' ', ' ' + b + ' ')
+    return t.split()
+
+
 def f3_same_place(park, rec):
     """True when the two names are plainly the same park, so F3 must not drop the join.
     The record contains the park's full name ('Fall Creek Falls State Park & WMA'), or the park
     contains the record's whole name and the only extra is State Park / SP / Park
-    ('Ginkgo Petrified Forest State Park' / 'Ginkgo Petrified Forest')."""
+    ('Ginkgo Petrified Forest State Park' / 'Ginkgo Petrified Forest'), or the record contains the
+    park after short forms (WMA, NWR, SRA, Park, Fish Hatchery) are treated as the same words."""
     pw, rw = _f3_words(park), _f3_words(rec)
     if not pw or not rw:
         return False
     if _words_contain(rw, pw):
+        return True
+    if _words_contain(_f3_short(rec), _f3_short(park)):   # '[name] WMA Goose Pond' is part of '[name] Wildlife Management Area'
         return True
     extra = _words_minus_once(pw, rw)
     return extra in _F3_PARK_ONLY

@@ -424,6 +424,15 @@
    "fingerprint": "534ac4bb9d1ec9b4f6bd845934c9f22ee55c76caa2e795edd8ad72c3d10d4c1f",
    "scope_note": "The named park does not exist; no real pair is retested.",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-saved-core-m2",
+   "when": "2026-11-22",
+   "from": "621a2106111b",
+   "why": "Review F16 A must-fix (22 Nov 2026). A saved overlap measured before core_m2 has no core area, so drawing_error_sliver must not use the old whole-overlap length; if core_m2 is missing the row is counted (the length on the core is unknown). Scope none: no pair is remeasured until a 2-fer run; decide-time then counts those older saved pairs instead of dropping them as a drawing error.",
+   "scope": "none",
+   "scope_note": "No pair is remeasured. Decide-time counts a saved 25-to-50-yard overlap that has no core_m2.",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
   }
  ]
 }

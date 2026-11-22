@@ -241,6 +241,12 @@
    "b": "Silver Creek National Forest",
    "same": false,
    "why": "22 Nov F3: a state park and a national forest of the same words are different places, so they stay apart."
+  },
+  {
+   "a": "Sample Wildlife Management Area",
+   "b": "Sample WMA Goose Pond",
+   "same": true,
+   "why": "22 Nov F3: a record that uses the short form WMA and then a water word is still the same place as the wildlife management area."
   }
  ],
  "alerts": [

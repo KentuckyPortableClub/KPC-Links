@@ -83,7 +83,7 @@ want = [(x['a'], x['b']) for x in CASES.get('matcher_us_names_changes') or []]
 check(changed == want, f'old US golden name cases whose answer changes under the new matcher: {changed} (recorded: {want})')
 p = subprocess.run([sys.executable, '-B', str(HERE / 'tests' / 'run_match_tests.py')], capture_output=True, text=True, cwd=HERE,
                    env={k: v for k, v in os.environ.items() if 'proxy' not in k.lower()})
-check(p.returncode == 0 and '72 of 72 golden cases right' in p.stdout, 'the existing 72 golden cases still pass (run_match_tests.py, including the 22 Nov F3 pairs)')
+check(p.returncode == 0 and '73 of 73 golden cases right' in p.stdout, 'the existing 73 golden cases still pass (run_match_tests.py, including the 22 Nov F3 pairs)')
 
 # ------------------------------------------------------------------ small pure functions
 check(M.kinds_of('Cedar SP')[0] == {'sp'} and M.kinds_of('Cedar NP')[0] == {'nps'} and M.kinds_of('Cedar NF')[0] == {'nf'}, 'gap 1: SP / NP / NF short forms are kinds')

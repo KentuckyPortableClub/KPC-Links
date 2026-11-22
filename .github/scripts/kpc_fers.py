@@ -1194,7 +1194,7 @@ def sliver_aspect(s):
 def drawing_error_sliver(s, aspect_min=None):
     """True when a 25-yard-or-wider overlap is a thin offset of the same shared line (length/width at or over
     the documented aspect in KPC_FERS_SLIVER_ASPECT). False for a more compact real gap, a sliver under 25 yards,
-    or when length is unknown (do not guess a drawing error)."""
+    or when length is unknown, including an older saved overlap with no core_m2 (do not guess a drawing error)."""
     if aspect_min is None:
         aspect_min = sliver_aspect_min()
     try:
@@ -1204,6 +1204,8 @@ def drawing_error_sliver(s, aspect_min=None):
     if w < SLIVER_M or w >= TIGHT_M:
         # only the 25-to-50-yard very-tight band: a wider overlap is counted even when it is long
         return False
+    if s.get('core_m2') in (None, ''):
+        return False   # measured before core_m2 (22 Nov): length on the core unknown, so it is counted
     a = sliver_aspect(s)
     if a is None:
         return False

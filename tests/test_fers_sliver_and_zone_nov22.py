@@ -113,13 +113,17 @@ check(K.fed_neighbours(['US-9906', 'US-9902'], parks, PIN) == ''
 
 # --- F16 A: drawing-error vs real-gap (aspect 8 in the switch file) ---
 check(K.sliver_aspect_min() == 8.0, 'F16 A the switch file sets the drawing-error aspect at 8')
-ribbon = {'kind': 'area', 'wide_m': 25.0, 'len_m': 200.0}          # 25 x 200 m, aspect 8.0
-longer = {'kind': 'area', 'wide_m': 25.0, 'len_m': 250.0}          # aspect 10
-compact = {'kind': 'area', 'wide_m': 30.0, 'len_m': 80.0}           # aspect ~2.67, a real gap
+def _core(w, length):
+    """core_m2 for a uniform-width overlap, so sliver_len_m returns `length`."""
+    return length * max(w - K.SLIVER_M, K.CELL)
+ribbon = {'kind': 'area', 'wide_m': 25.0, 'len_m': 200.0, 'core_m2': _core(25.0, 200.0)}          # 25 x 200 m, aspect 8.0
+longer = {'kind': 'area', 'wide_m': 25.0, 'len_m': 250.0, 'core_m2': _core(25.0, 250.0)}          # aspect 10
+compact = {'kind': 'area', 'wide_m': 30.0, 'len_m': 80.0, 'core_m2': _core(30.0, 80.0)}           # aspect ~2.67, a real gap
 thin_short = {'kind': 'area', 'wide_m': 20.0, 'len_m': 400.0}       # under 25 yards, not this rule
 unknown = {'kind': 'area', 'wide_m': 30.0}                         # length unknown: do not guess
 # acres path: 25 m * 200 m / 4046.86 ≈ 1.235 acres
-from_acres = {'kind': 'area', 'wide_m': 25.0, 'acres': 25.0 * 200.0 / 4046.86}
+from_acres = {'kind': 'area', 'wide_m': 25.0, 'acres': 25.0 * 200.0 / 4046.86, 'core_m2': _core(25.0, 200.0)}
+acres_only = {'kind': 'area', 'wide_m': 25.0, 'acres': 25.0 * 200.0 / 4046.86}  # no core_m2: sliver_len_m still has the acres fallback
 check(K.drawing_error_sliver(ribbon) and K.drawing_error_sliver(longer),
       'F16 A a 25-yard-wide sliver at or over aspect 8 is a drawing error')
 check(not K.drawing_error_sliver(compact),
@@ -129,11 +133,13 @@ check(not K.drawing_error_sliver(thin_short),
 check(not K.drawing_error_sliver(unknown),
       'F16 A a sliver whose length is not known is not guessed to be a drawing error')
 check(K.drawing_error_sliver(from_acres) and abs(K.sliver_len_m(from_acres) - 200.0) < 0.01,
-      'F16 A length comes from acres / width when len_m is missing')
-just_under = {'kind': 'area', 'wide_m': 25.0, 'len_m': 199.0}       # aspect 7.96
+      'F16 A a 25-yard-wide sliver with core_m2 at aspect 8 is a drawing error (length from the core)')
+check(abs(K.sliver_len_m(acres_only) - 200.0) < 0.01 and not K.drawing_error_sliver(acres_only),
+      'F16 A without core_m2, length can still be read from acres / width, but the row is counted')
+just_under = {'kind': 'area', 'wide_m': 25.0, 'len_m': 199.0, 'core_m2': _core(25.0, 199.0)}       # aspect 7.96
 check(not K.drawing_error_sliver(just_under),
       'F16 A an aspect just under 8 is counted as a real gap')
-wide_ribbon = {'kind': 'area', 'wide_m': 45.72, 'len_m': 45.72 * 10}   # 50 yards wide, aspect 10
+wide_ribbon = {'kind': 'area', 'wide_m': 45.72, 'len_m': 45.72 * 10, 'core_m2': _core(45.72, 45.72 * 10)}   # 50 yards wide, aspect 10
 check(not K.drawing_error_sliver(wide_ribbon),
       'F16 A an overlap 50 yards or wider is counted even when it is long and thin')
 
@@ -174,8 +180,10 @@ check(not K.drawing_error_sliver(gap_alone) and K.sliver_aspect(gap_alone) < 8,
       'F16 A a compact 40 x 50 m gap is counted (aspect well under 8)')
 check(not K.drawing_error_sliver(gap_ribbon) and K.sliver_aspect(gap_ribbon) < 8,
       'F16 A a compact gap with a thin drawing-offset ribbon is still counted (length from core_m2)')
-check(K.drawing_error_sliver(whole_only) and K.sliver_aspect(whole_only) > 8,
-      'F16 A without core_m2, the same gap+ribbon (acres of the whole overlap) would be dropped as a drawing error')
+check(not K.drawing_error_sliver(whole_only) and K.sliver_aspect(whole_only) > 8,
+      'F16 A without core_m2, the same gap+ribbon is counted (length on the core is unknown; the old whole-overlap length is not used)')
+check(K.fed_sliver_filter(whole_only, ['US-9901', 'US-9902'], parks, PIN) == '',
+      'F16 A a fed-neighbour saved overlap with no core_m2 is counted, not dropped')
 check(K.drawing_error_sliver(thin_core) and K.sliver_aspect(thin_core) > 8,
       'F16 A a long thin offset whose core is the sliver itself is still a drawing error')
 check(K.fed_sliver_filter(gap_ribbon, ['US-9901', 'US-9902'], parks, PIN) == '',
@@ -188,6 +196,8 @@ check("'core_m2': int((comp & (core > 0)).sum()) * CELL * CELL" in src,
       'F16 A area_spots writes core_m2 from the 25-yard-or-wider cells')
 check("('center', 'shape', 'box', 'acres', 'wide_m', 'len_m', 'core_m2')" in src,
       'F16 A pass 3 copies core_m2 onto the saved row')
+check("if s.get('core_m2') in (None, ''):" in src and 'return False   # measured before core_m2 (22 Nov)' in src,
+      'F16 A fail-without: drawing_error_sliver counts a saved overlap that has no core_m2')
 
 # bookkeeping drop, not a "these two are not a 2-fer" denial
 st = 'dropped: shared-boundary drawing error: length 200 m / width 25 m = aspect 8.0, at or over the drawing-error line 8'

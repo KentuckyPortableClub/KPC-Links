@@ -116,5 +116,21 @@ check(not joined('Silver Creek State Park', 'Silver Creek Forest Preserve'),
 check(not joined('Silver Creek State Park', 'Silver Creek National Forest'),
       'F3 a state park and a national forest of the same words stay apart')
 
+check(joined('Sample Wildlife Management Area', 'Sample WMA Goose Pond'),
+      'F3 a WMA short form plus a water word still matches the wildlife management area')
+check(us.f3_same_place('Sample Wildlife Management Area', 'Sample WMA Goose Pond')
+      and us._f3_short('Sample Wildlife Management Area') == ['sample', 'wma']
+      and us._f3_short('Sample WMA Goose Pond') == ['sample', 'wma', 'goose', 'pond'],
+      'F3 fail-without: short forms (WMA, NWR, SRA, Park, Fish Hatchery) make the record contain the park')
+check("_words_contain(_f3_short(rec), _f3_short(park))" in src,
+      'F3 fail-without: f3_same_place keeps a record that contains the park after short forms')
+check(joined('Sample National Wildlife Refuge', 'Sample NWR Long Lake')
+      and joined('Sample State Park', 'Sample Park Pond')
+      and joined('Sample State Fish Hatchery', 'Sample Fish Hatchery Pond')
+      and joined('Sample State Recreation Area', 'Sample SRA Pond'),
+      'F3 NWR, Park, Fish Hatchery and SRA short forms still match a water record of the same place')
+check(not joined('Silver Creek Wildlife Management Area', 'Silver Creek Lake'),
+      'F3 a wildlife area and a lake of the same words still stay apart when the record does not use the short form plus a water word')
+
 print(f'{len(FAILS)} failed' if FAILS else 'ALL PASS')
 sys.exit(1 if FAILS else 0)
