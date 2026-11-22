@@ -1,6 +1,6 @@
 {
  "about": "Errors and warnings a step caught itself (kept green), from each timed bot's last timed run (G8 'Hidden failures' lines). Written by the check-up (kpc_bot_health.py); next round C4, Nov 5. A job marked safe to fail goes red on a caught error (repo variable KPC_HIDDEN_RED=off turns that off).",
- "checked": "2026-11-22T10:23+00:00",
+ "checked": "2026-11-22T17:36+00:00",
  "runs_checked": 82,
  "runs_unread": 0,
  "with_hidden": [
@@ -30,9 +30,9 @@
    "warnings": 0,
    "kept_green_steps": 0,
    "workflow": "KPC-Data/kpc-tool-trial.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/43716327152",
-   "created": "2026-11-15T12:55:46Z",
-   "conclusion": "cancelled"
+   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/45028150242",
+   "created": "2026-11-22T13:33:58Z",
+   "conclusion": "success"
   },
   {
    "job": "run",
@@ -40,9 +40,9 @@
    "warnings": 0,
    "kept_green_steps": 0,
    "workflow": "KPC-Data/kpc-tool-trial.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/43716327152",
-   "created": "2026-11-15T12:55:46Z",
-   "conclusion": "cancelled"
+   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/45028150242",
+   "created": "2026-11-22T13:33:58Z",
+   "conclusion": "success"
   },
   {
    "job": "waiting",
@@ -68,20 +68,10 @@
    "job": "read",
    "errors": 0,
    "warnings": 1,
-   "kept_green_steps": 1,
+   "kept_green_steps": 0,
    "workflow": "KPC-Data/kpc-park-pages.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/44971375579",
-   "created": "2026-11-22T01:25:12Z",
-   "conclusion": "success"
-  },
-  {
-   "job": "save",
-   "errors": 0,
-   "warnings": 1,
-   "kept_green_steps": 1,
-   "workflow": "KPC-Data/kpc-park-pages.yml",
-   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/44971375579",
-   "created": "2026-11-22T01:25:12Z",
+   "run": "https://github.com/KentuckyPortableClub/KPC-Data/actions/runs/45018337480",
+   "created": "2026-11-22T11:38:46Z",
    "conclusion": "success"
   }
  ]

@@ -14,8 +14,11 @@
   "guard:pubnoindex:kpc-log-checker.html",
   "guard:pubnoindex:kpc-maintenance.html",
   "kpc-bot-queue.yml",
+  "kpc-discord-watch.yml",
+  "kpc-fb-comments.yml",
   "kpc-hunters.json",
   "kpc-hunters.yml",
+  "kpc-watchdog.yml",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
@@ -362,6 +365,9 @@
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Access_Sites/FeatureServer/28",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
+  "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195",
+  "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206",
+  "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16",
   "out:shrank:D:data/leaders",
   "refs:gone:CA-ON:CA-6621",
   "refs:gone:CA-SI:CA-0120",
@@ -369,7 +375,7 @@
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-22T10:23+00:00",
+ "checked": "2026-11-22T17:36+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -482,6 +488,13 @@
      "twice": true,
      "msg": "trails-hand.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1 → host not answering",
      "confirmed": true
+    },
+    {
+     "key": "links:https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/2 → no answer (<urlopen error timed out>)",
+     "confirmed": false
     },
     {
      "key": "links:https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9",
@@ -2854,21 +2867,21 @@
      "chat": 2,
      "twice": true,
      "msg": "state-gis.json: https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195 → HTTP 504",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206",
      "chat": 2,
      "twice": true,
      "msg": "state-gis.json: https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206 → HTTP 504",
-     "confirmed": false
+     "confirmed": true
     },
     {
      "key": "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16",
      "chat": 2,
      "twice": true,
      "msg": "state-gis.json: https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16 → HTTP 504",
-     "confirmed": false
+     "confirmed": true
     }
    ],
    "notes": [
@@ -2898,7 +2911,7 @@
     }
    ],
    "ok": [
-    "302 of 656 map-server / data addresses answered"
+    "301 of 656 map-server / data addresses answered"
    ]
   }
  },
@@ -2911,6 +2924,7 @@
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublish_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+  "links:https://arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/2",
   "links:https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9",
   "links:https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0",
   "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
@@ -3270,7 +3284,7 @@
    "b": 38569625
   },
   "L:data/pota": {
-   "b": 10192186
+   "b": 10208711
   },
   "L:data/canada.json": {
    "b": 2558918
@@ -3334,13 +3348,13 @@
    "b": 5358732
   },
   "D:data/wwff": {
-   "b": 11785013
+   "b": 11785033
   },
   "D:data/review/scoreboard.json": {
    "b": 137418
   },
   "D:data/truth": {
-   "b": 26500719
+   "b": 26492220
   },
   "D:data/alerts/eu.json": {
    "b": 252330
