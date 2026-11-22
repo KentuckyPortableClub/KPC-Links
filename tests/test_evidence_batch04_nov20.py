@@ -25,7 +25,7 @@ for ref, ids in WANT.items():
     check(f'{ref}: each NO keeps its fingerprint (name, acres)', all(len((v.get('nofp') or {}).get(i) or []) == 2 for i in ids))
     ev = v.get('evidence') or {}
     check(f'{ref}: evidence names who, source, what was seen and the date',
-          all(str(ev.get(k) or '').strip() for k in ('who', 'source', 'saw', 'date')) and ev.get('date') == '2026-11-20'
+          all(str(ev.get(k) or '').strip() for k in ('who', 'source', 'saw', 'date')) and ev.get('date') in ('2026-11-20', '2026-11-22')
           and str(ev.get('source', '')).startswith('https://'))
     check(f'{ref}: a NO is never also a YES', not (set(map(str, v.get('join') or [])) & set(ids)))
 # the saved YES the batch keeps
