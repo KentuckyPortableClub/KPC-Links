@@ -2,7 +2,7 @@
 "asked_pota":0,
 "budget":80,
 "by_kind":{},
-"day":"2026-11-21",
+"day":"2026-11-22",
 "expected_per_day":{
 "details_and_history":"only when a stored copy is over 30 days old (and new parks)",
 "export":1,
@@ -27,6 +27,6 @@
 "refused_by_budget_or_offline":0,
 "script":"kpc_pota_parklists.py",
 "unanswered":0,
-"when":"2026-11-21T14:37:10Z",
+"when":"2026-11-22T07:46:52Z",
 "world_day":false
 }
