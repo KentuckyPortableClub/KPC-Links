@@ -64,7 +64,8 @@ def build(states, P, rows, recs):
                 json.dump({'recs': recs.get(st, []), 'seen': len(recs.get(st, [])), 'detail': 0.01}, f)
         env = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'GEO_', 'STATES'))}
         r = subprocess.run([sys.executable, '-c', CHILD, str(KEY)], cwd=t, capture_output=True, text=True, timeout=600,
-                           env=dict(env, STATES=' '.join(states), GEO_CACHE_MODE='only', no_proxy='*', HTTPS_PROXY='', HTTP_PROXY='', https_proxy='', http_proxy=''))
+                           env=dict(env, STATES=' '.join(states), GEO_CACHE_MODE='only', no_proxy='*', HTTPS_PROXY='', HTTP_PROXY='', https_proxy='', http_proxy='',
+                                    KPC_HOLD_ON_PASS_ERROR='0'))   # 22 Nov F10: this proof is the corridor join, not the hold-on-missing-rule-data switch
         out = {}
         for st in states:
             f = t / f'data/us-key/US-{st}.json'
