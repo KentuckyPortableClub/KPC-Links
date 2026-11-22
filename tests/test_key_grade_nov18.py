@@ -114,11 +114,14 @@ ck(lo == 0 and abs(most - 0.00994) < 0.0005 and 0.0120 < hi < 0.0125, f'300 park
 ck(abs(hi1 - 0.0456) < 0.002 and lo1 < 0.001, f'1 wrong in 120 is NOT "about 0.8%": the range is {100 * lo1:.2f}% to {100 * hi1:.2f}%')
 # ---- gold: settled parks go in; sealed misses are not shown; looking moves them to TUNE
 gold = t / 'gold.json'
+(t / 'sealed.json').write_text(json.dumps({'parks': ['US-0001', 'US-0005']}))   # M7: the private sealed list (KPC-Store in real use)
+G.load_sealed(str(t / 'sealed.json'))
 G.write_score(rep3, parks3, ans3, str(t / 'score'), str(gold))
 g = json.loads(gold.read_text())
 ck(set(g['parks']) >= {'US-0001', 'US-0003'} and g['parks']['US-0001']['half'] == 'TUNE' and g['parks']['US-0002']['half'] == 'TUNE',
    'gold: settled parks are added; an adjudicated park and a plant are TUNE (people looked at them)')
-ck(g['parks']['US-0003']['half'] == G.half_of('US-0003') and {G.half_of(f'US-{i:04d}') for i in range(40)} == {'TUNE', 'SEALED'}, 'gold: the half comes from a hash of the park number (nobody chooses)')
+ck(g['parks']['US-0003']['half'] == G.half_of('US-0003') == 'TUNE' and G.half_of('US-0005') == 'SEALED', 'gold: the half comes from the private sealed list (M7), never a public hash')
+(t / 'sealed.json').write_text(json.dumps({'parks': ['US-0001', 'US-0003', 'US-0005']})); G.load_sealed(str(t / 'sealed.json'))
 for r in ('US-0001', 'US-0003', 'US-0005'): g['parks'][r]['half'] = 'SEALED'
 gold.write_text(json.dumps(g))
 lines = G.gold_score(str(gold), str(t / 'keys'), str(t / 'cache'), str(t / 'pinfo'))
@@ -129,7 +132,7 @@ g2 = json.loads(gold.read_text())
 ck(any('US-0003' in x for x in lines) and g2['parks']['US-0003']['half'] == 'TUNE' and g2['parks']['US-0001']['half'] == 'SEALED' and 'moved to TUNE' in g2['log'][-1],
    'looking at sealed misses moves them to TUNE for good (and says so in the log); sealed parks that pass stay sealed')
 fnd = list(csv.DictReader(open(t / 'score' / 'findings.csv')))
-want = {r for r in ('US-0003', 'US-0005') if G.half_of(r) == 'TUNE'}
+want = {'US-0003'}   # the score was written with the first private list: US-0005 sealed, US-0003 TUNE
 ck({x['ref'] for x in fnd} == want and (not fnd or 'cause (A-F)' in fnd[0]) and 'SEALED half and are not listed' in (t / 'score' / 'score.txt').read_text(),
    f'findings.csv with a gold set: only the TUNE half is listed, with an empty cause column; sealed findings are counted, not named ({sorted(want)})')
 G.write_score(rep3, parks3, ans3, str(t / 'score2'))

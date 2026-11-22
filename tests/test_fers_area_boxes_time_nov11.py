@@ -11,6 +11,7 @@ and saved nothing. Offline: no network (the real kpc_fers.py runs in a subproces
 4 the near-pairs list stops 4 minutes before the step's hard end (the pass still saves instead of exit 3)
 5 a normal area's files are byte for byte what the code before this change wrote (golden made with main 11f908d9)
 6 the memory collect runs at most once a minute (it ran after every pair once the outlines alone were over the cap)"""
+import os as _os_m8; _os_m8.environ.setdefault('KPC_FERS_NOT_SURE', 'none')   # review M8 (22 Nov): no D10 list here on purpose; D10 has its own tests
 import contextlib, gzip, hashlib, io, json, math, os, pathlib, re, subprocess, sys, tempfile, time, types
 HERE = pathlib.Path(__file__).resolve().parent.parent
 S = HERE / '.github/scripts'
@@ -176,6 +177,7 @@ runpy.run_path(S + '/kpc_fers.py', run_name='__main__')
 def run(t, script_dir, env, timeout=150):
     (t / 'wrap_offline.py').write_text(WRAP)
     e = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'PASS', 'MINUTES', 'STATES', 'REGION', 'RUN_TAG', 'PARKS'))}
+    e['KPC_FERS_NOT_SURE'] = 'none'   # review M8 (22 Nov): the fixture has no D10 list on purpose
     e.update(env)
     r = subprocess.run([sys.executable, '-B', str(t / 'wrap_offline.py'), str(script_dir)], cwd=t, env=e, capture_output=True, text=True, timeout=timeout)
     return r.returncode, r.stdout + r.stderr
@@ -242,6 +244,7 @@ with tempfile.TemporaryDirectory() as t:
 # outlines), not on the Python version: with other numpy / OpenCV versions it may move while every row is right. Print it with
 # KPC_FERS_PRINT_GOLDEN=1 on main's code and on this code before reading a mismatch as a rule change.
 # 19 Nov second round (R-2F4 review 1.4): 6d7c5c5b7e33a0c5 -> f757225e9e94173c on numpy 2.5.3 + OpenCV 5.0.0.
+# 22 Nov F16 A: area rows also carry core_m2. The golden is hashed without that field, so it stays f757225e9e94173c.
 # US-WA.json carries written_by_rule R-2F4. The report no longer lists US-WA as still from before this rule (the run just wrote it).
 # The two rows are the same. reuse, looked, missing and same-outline are unchanged apart from that report line.
 GOLDEN = 'f757225e9e94173c'
@@ -266,6 +269,14 @@ def normal_area(script_dir):
         for n in names:
             d = json.load(open(t / 'data/fers' / n))
             if n.startswith('report-'): d.pop('fers_rules', None)
+            # F16 A (22 Nov): core_m2 is a decide-time length field; hashed without it so this check still pins the rest of the files.
+            def drop_core(o):
+                if isinstance(o, dict):
+                    return {k: drop_core(v) for k, v in o.items() if k != 'core_m2'}
+                if isinstance(o, list):
+                    return [drop_core(x) for x in o]
+                return o
+            d = drop_core(d)
             h.update(n.encode() + b'\0' + json.dumps(d, sort_keys=True).replace(today, 'TODAY').encode() + b'\0')
         spots = sum(len(json.load(open(t / 'data/fers' / n)).get('spots') or []) for n in names if re.fullmatch(r'(US|CA)-[A-Z]{2}\.json', n))
         return rc, h.hexdigest()[:16], names, spots

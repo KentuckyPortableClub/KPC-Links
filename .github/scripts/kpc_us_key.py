@@ -176,23 +176,173 @@ def kinds(s):
 DES = {'SP': 'sp', 'SREC': 'sp', 'SHCA': 'hist', 'NWR': 'nwr', 'NF': 'nf', 'NG': 'nf', 'NP': 'nps', 'NM': 'nps', 'NRA': 'nps', 'NHS': 'hist', 'WA': 'wild'}
 
 
-def variants(s):
+# 22 Nov F3 (owner-approved form): a name join is dropped only for (1) a water/beach RECORD
+# whose last type word is lake/pond/ponds/reservoir/beach when the PARK does not already carry that
+# water kind (lake/pond/reservoir are one kind; 'Taylorsville Lake State Park' still matches
+# 'Taylorsville Lake'), or (2) one name is a park (state park / SP / SRA / recreation area) and the
+# other is a wildlife area (WMA / wildlife area / game land / refuge / NWR) or a state forest
+# (only State Forest, National Forest, or Forest Preserve). A join is kept when the record's name
+# contains the park's full name, when the park's name contains the record's whole name and the only
+# extra is State Park / SP / Park, or when the record's last type word sits only inside brackets.
+# Reserve, preserve, CA/conservation area, complex, memorial and area are not different kinds.
+WATER_LAST = {'pond': 'water', 'ponds': 'water', 'lake': 'water', 'reservoir': 'water', 'beach': 'beach'}
+# leftover words that still mean the same park when the park name already contains the record name
+_F3_PARK_ONLY = {('state', 'park'), ('state', 'parks'), ('sp',), ('park',), ('parks',)}
+
+
+def _name_words(s):
+    # raw tokens, not norm(): norm() already drops GEN phrases such as 'state park', which would hide the type kind
+    return re.findall(r'[a-z0-9]+', str(s or '').lower())
+
+
+def _strip_brackets(s):
+    """Drop parenthetical text so it is not used as a last type word ('Holland State Park (Ottawa Beach)')."""
+    return re.sub(r'\([^()]*\)|\[[^\[\]]*\]', ' ', str(s or ''))
+
+
+def last_water_kind(s):
+    """The water/beach kind of the last type word, or ''. Text in brackets is ignored."""
+    w = _name_words(_strip_brackets(s))
+    return WATER_LAST.get(w[-1], '') if w else ''
+
+
+def carries_water_kind(s, kind):
+    """True if the name already carries that water kind (any word, not only the last)."""
+    if not kind:
+        return False
+    return kind in {WATER_LAST[w] for w in _name_words(s) if w in WATER_LAST}
+
+
+def land_roles(s):
+    """{'park', 'wildlife', 'forest'} roles a name carries. Reserve / preserve / CA / complex / memorial / area are not roles.
+    Only 'State Forest', 'National Forest' and 'Forest Preserve' count as a forest record; a bare 'Forest' does not."""
+    raw, w, roles = str(s or ''), _name_words(s), set()
+    if re.search(r'\bwildlife management areas?\b|\bwildlife areas?\b|\bWMAs?\b|\bgame lands?\b|\bgame areas?\b|'
+                 r'\b(?:national )?wildlife refuges?\b|\bNWRs?\b', raw, re.I) or (w and w[-1] in ('refuge', 'nwr', 'wma')):
+        roles.add('wildlife')
+    if re.search(r'\bstate parks?\b|\b(?:state )?marine parks?\b|\bstate recreation areas?\b|'
+                 r'\brecreation(?:al)? areas?\b|\b(?:SRA|SP)\b', raw, re.I) or (w and w[-1] in ('park', 'parks')):
+        roles.add('park')
+    if re.search(r'\b(?:state|national) forests?\b|\bforest preserves?\b', raw, re.I):
+        roles.add('forest')
+    return roles
+
+
+def f3_water_apart(park, rec):
+    """True when the record's last type word is a water body or beach and the park does not already carry that kind."""
+    kind = last_water_kind(rec)
+    return bool(kind) and not carries_water_kind(park, kind)
+
+
+def f3_land_apart(a, b):
+    """True when one name is a park and the other is a wildlife area or a state forest."""
+    ra, rb = land_roles(a), land_roles(b)
+    # Wildlife contrast still applies when one name also says park ('X State Park WMA'), unless
+    # f3_same_place already kept the pair (the record contains the park's full name).
+    # Forest contrast does not, when both names already claim the park: 'State Forest State Park'
+    # is one park (the forest words are part of its name), and 'X State Park and Y State Forest'
+    # still names the park.
+    park_vs_wildlife = ('park' in ra and 'wildlife' in rb) or ('park' in rb and 'wildlife' in ra)
+    park_vs_forest = ('park' in ra and 'forest' in rb) or ('park' in rb and 'forest' in ra)
+    if park_vs_forest and ('park' in ra and 'park' in rb):
+        park_vs_forest = False
+    return park_vs_wildlife or park_vs_forest
+
+
+def _f3_words(s):
+    """Lowercase word list, brackets dropped, punctuation treated as spaces."""
+    return _name_words(_strip_brackets(s))
+
+
+def _words_contain(hay, needle):
+    n = len(needle)
+    if not n or n > len(hay):
+        return False
+    return any(hay[i:i + n] == needle for i in range(len(hay) - n + 1))
+
+
+def _words_minus_once(hay, needle):
+    n = len(needle)
+    for i in range(len(hay) - n + 1):
+        if hay[i:i + n] == needle:
+            return tuple(hay[:i] + hay[i + n:])
+    return None
+
+
+_F3_SHORT = (('national wildlife refuge', 'nwr'), ('wildlife management area', 'wma'), ('state recreation area', 'sra'),
+             ('state fish hatchery', 'fish hatchery'), ('state park', 'park'))
+
+
+def _f3_short(s):
+    """The name with long type phrases written as their short forms, so 'X Wildlife Management Area' matches 'X WMA Goose Pond'."""
+    t = ' ' + ' '.join(_f3_words(s)) + ' '
+    for a, b in _F3_SHORT:
+        t = t.replace(' ' + a + ' ', ' ' + b + ' ')
+    return t.split()
+
+
+def f3_same_place(park, rec):
+    """True when the two names are plainly the same park, so F3 must not drop the join.
+    The record contains the park's full name ('Fall Creek Falls State Park & WMA'), or the park
+    contains the record's whole name and the only extra is State Park / SP / Park
+    ('Ginkgo Petrified Forest State Park' / 'Ginkgo Petrified Forest'), or the record contains the
+    park after short forms (WMA, NWR, SRA, Park, Fish Hatchery) are treated as the same words."""
+    pw, rw = _f3_words(park), _f3_words(rec)
+    if not pw or not rw:
+        return False
+    if _words_contain(rw, pw):
+        return True
+    if _words_contain(_f3_short(rec), _f3_short(park)):   # '[name] WMA Goose Pond' is part of '[name] Wildlife Management Area'
+        return True
+    extra = _words_minus_once(pw, rw)
+    return extra in _F3_PARK_ONLY
+
+
+def f3_apart(park, rec):
+    """22 Nov F3: these two names must not name-join (park first, record second for the water half)."""
+    if str(park or '').strip().lower() == str(rec or '').strip().lower():
+        return False
+    if f3_same_place(park, rec):
+        return False
+    return f3_water_apart(park, rec) or f3_land_apart(park, rec)
+
+
+def keep_last_type(this, other):
+    """Unused as a keep-filter: F3 is enforced in name_ok / join_how via f3_apart (water is
+    directed, park first, so a park that itself ends in lake is not treated as the record).
+    Returning False keeps same_name / exact_name on the pre-F3 path for every pair F3 does not drop."""
+    return False
+
+
+def variants(s, keep_last=False):
     # other ways of writing the same name: no middle initial, bracket words left out ('Reifsnider (Frank)'), no leading 'Mount'
     v = {norm(s), norm(s, True), norm(re.sub(r'\(.*?\)', ' ', str(s or '')))}
     v |= {re.sub(r'^mount ', '', x) for x in v}
-    v |= {re.sub(r' (park|forest|pond|ponds|lake|reservoir|complex|memorial|reserve)$', '', x) for x in v}         # 'Fort Revere Park' = Fort Revere, 'Coulee Experimental Forest'
+    # 'Fort Revere Park' = Fort Revere, 'Coulee Experimental Forest'. 22 Nov F3: do not drop the last type word
+    # when the other name's last type word is a different kind (keep_last=True).
+    if not keep_last:
+        v |= {re.sub(r' (park|forest|pond|ponds|lake|reservoir|complex|memorial|reserve)$', '', x) for x in v}
     return {x for x in v if x}
 
 
 def _nosp(a, b):
     # Oct 26 (gap hunt): one name written as one word, the other as two: 'Hard Trigger' = BLM 'Hardtrigger', 'Blackridge' =
     # 'Black Ridge'. EQUAL only once the spaces are gone (no typo allowance here: 'World War I' / 'World War II' stay apart)
-    va = {x.replace(' ', '') for x in variants(a)}; vb = {x.replace(' ', '') for x in variants(b)}
+    ka, kb = keep_last_type(a, b), keep_last_type(b, a)
+    va = {x.replace(' ', '') for x in variants(a, keep_last=ka)}; vb = {x.replace(' ', '') for x in variants(b, keep_last=kb)}
     return any(len(x) >= 8 for x in va & vb)
 
 
 def same_name(a, b):
     if str(a or '').strip().lower() == str(b or '').strip().lower(): return True
+    ka, kb = keep_last_type(a, b), keep_last_type(b, a)
+    if ka or kb:
+        # last type words disagree and are not already in the other name: do not drop them, and do not let
+        # _same()'s 60% shared-start rule treat 'silver creek' as the same as 'silver creek lake'
+        if _nosp(a, b): return True
+        va, vb = variants(a, keep_last=ka), variants(b, keep_last=kb)
+        if va & vb: return True
+        return False
     if _nosp(a, b): return True
     a1, b1 = norm(a), norm(b)
     if _same(a1, b1) or any(_same(x, y) for x in variants(a) for y in variants(b)): return True
@@ -218,18 +368,26 @@ def exact_name(a, b):
     # no 'starts with' allowance: used when only one of the two names says what kind of place it is.
     # Only 'soft' words may differ (Torrey Pines Reserve = Torrey Pines State Reserve, Big Bend = Big Bend - 2015)
     if str(a or '').strip().lower() == str(b or '').strip().lower(): return True
+    ka, kb = keep_last_type(a, b), keep_last_type(b, a)
     if _nosp(a, b): return True
-    va, vb = variants(a), variants(b)
-    va |= {_soft(x) for x in va if _soft(x)}; vb |= {_soft(x) for x in vb if _soft(x)}
+    va, vb = variants(a, keep_last=ka), variants(b, keep_last=kb)
+    # 22 Nov F3: when the last type words disagree, do not also strip them through _soft() ('lake', 'park', 'forest')
+    if not (ka or kb):
+        va |= {_soft(x) for x in va if _soft(x)}; vb |= {_soft(x) for x in vb if _soft(x)}
     if va & vb or {_sing(x) for x in va} & {_sing(x) for x in vb}: return True
+    if ka or kb:
+        return False
     return any(len(x) >= 8 and len(y) >= 8 and not re.search(r'\d', x + y) and _ed1(x, y) for x in va for y in vb)   # one-letter typo ('Pishkin' / 'Pishkun')
 
 
 def name_ok(a, b, ka, kb):
+    if f3_apart(a, b): return False   # 22 Nov F3: water/beach record, or park vs wildlife/forest (kinds() misses SP/SRA)
     if not same_kind(ka, kb): return False
     if ('nfh' in ka) != ('nfh' in kb): return False                      # a hatchery only joins a hatchery (Dworshak Reservoir is not the hatchery)
     if bool(re.search(r'\btrail\b', str(a), re.I)) != bool(re.search(r'\btrail\b', str(b), re.I)): return False   # a trail only joins a trail
-    return exact_name(a, b) if (bool(ka) != bool(kb)) else same_name(a, b)
+    if bool(ka) != bool(kb):
+        return exact_name(a, b)
+    return same_name(a, b) or exact_name(a, b)   # F3 keep: a soft-word or mid-name water difference still matches when we do not drop
 
 
 def _sing(s): return ' '.join(w[:-1] if len(w) > 3 and w.endswith('s') else w for w in s.split())
@@ -358,7 +516,7 @@ def join_how(name, kp, a, close, rules=True):
         # Oct 18 review: a bare PAD-US name ('Fort Fetterman', 'Trail End') whose only 'kind' came from its designation code,
         # and the whole name matches: the designation code is often off, so the name decides
         return 'name (designation code ignored)'
-    if close and (same_words(name, nm, kp, a['_k']) or (loc and same_words(name, loc, kp, a['_k']))):
+    if close and ((not f3_apart(name, nm) and same_words(name, nm, kp, a['_k'])) or (loc and not f3_apart(name, loc) and same_words(name, loc, kp, a['_k']))):
         return 'words'
     return None
 
@@ -1763,6 +1921,9 @@ def _official_acres():
             out[str(r_)] = float(a)
         ACRES_OFF = out
         return ACRES_OFF
+    # 22 Nov 2026 (review F9 / N3): say it once when no official sizes file was found or read (it used to be skipped without a word)
+    notice('US key', 'no official sizes file found or readable (OFFICIAL_ACRES, data/acres.json, $DATA/data/acres.json): '
+           'the size check has no official sizes this build')
     return ACRES_OFF
 
 
@@ -3275,7 +3436,9 @@ def run(st):
         # (a check row beside a joined row of the same id would make kpc_join_check.py take that joined row off on the next build).
         # A person's row is never moved.
         if _kr('KPC_ANSWER_HOLDERS'):
-            _hum = lambda q: bool(re.search(r'review|chat|hand|answer', str(q[3] if len(q) > 3 else ''), re.I))
+            # 22 Nov 2026 review M2: a person's row is the builder's own rule (tag starts with 'reviewed'); an answer-sheet row
+            # whose nightly check is not green is a name row, so it never holds the record as a person's.
+            _hum = lambda q: str(q[3] if len(q) > 3 else '').startswith('reviewed')
             _ah = {}
             for _r, _p in parks.items():
                 for _q in _p.get('m') or []:

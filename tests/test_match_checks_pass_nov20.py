@@ -135,6 +135,17 @@ def test_gain_by_link_id_needs_place():
         assert out['gained'] == want and len(p['US-9001']['m']) == want
         if want: assert MC.row_class(p['US-9001']['m'][0]) == 'code' and p['US-9001']['match']['status'] == 'confirmed'
 
+
+def test_reviewed_approx_and_sheet_rows_stand():
+    """22 Nov 2026 review M1: the builder also writes 'reviewed-approx' (a person picked the closest land) and
+    'reviewed-sheet' (an answer-sheet row whose nightly check is green). Both are a person's join, never sent to check."""
+    for tag in ('reviewed-approx', 'reviewed-sheet', 'reviewed-approx · closest official land'):
+        assert MC.row_class([5, 'Invented Lake', 2000, tag]) == 'person', tag
+        p = {'US-9001': park(rows=[[5, 'Invented Lake', 2000, tag]])}
+        run(p, {'5': srec(5, Mang_Type='FED', Mang_Name='BLM')}, {'US-9001': fact(link=STATE_LINK, size=dict(TAG, acres=100, record_name='Invented Lake'))})
+        assert [q[0] for q in p['US-9001']['m']] == [5] and not p['US-9001']['c'], tag
+    assert MC.row_class([5, 'Invented Lake', 2000, 'answer sheet (nightly check not green)']) == 'name'
+
 if __name__ == '__main__':
     bad = 0
     for k, f in list(globals().items()):

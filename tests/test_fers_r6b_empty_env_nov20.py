@@ -60,7 +60,7 @@ got = subprocess.check_output(
     [sys.executable, str(S / 'kpc_key_freeze.py'), 'rules', 'fers'],
     cwd=str(ROOT), text=True,
 ).strip()
-check(got == '6a9d67ea4100', f'2-fer rules hash is unchanged ({got})')
+check(got == '62e77c250cc5', f'2-fer rules hash is the review F16 saved-core-m2 hash, 22 Nov ({got})')
 
 if FAILS:
     print(f'{len(FAILS)} FAIL', flush=True)

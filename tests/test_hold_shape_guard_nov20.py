@@ -19,17 +19,25 @@ json.dump({'states': {'NH': {'padus': 100}, 'VT': {'padus': 100}, 'ME': {'padus'
 
 def guard(on):
     env = {k: v for k, v in os.environ.items() if k != 'KPC_HOLD_ON_PASS_ERROR'}
-    if on: env['KPC_HOLD_ON_PASS_ERROR'] = '1'
+    if on is True:
+        env['KPC_HOLD_ON_PASS_ERROR'] = '1'
+    elif on is False:
+        env['KPC_HOLD_ON_PASS_ERROR'] = '0'
     r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_shape_guard.py'), '--built', str(tmp / 'built'),
                         '--live-index', str(tmp / 'index.json'), '--states', 'NH VT ME'], capture_output=True, text=True, env=env, cwd=str(tmp))
     return r.returncode, sorted(r.stdout.split('\n')[:-1])
 
 rc, rows = guard(False)
-check(rc == 0 and rows == [], f'switch OFF: 60, 96 and 98 of 100 all pass (only under half is short), as before ({rc}, {rows})')
+check(rc == 0 and rows == [], f'switch OFF (env 0): 60, 96 and 98 of 100 all pass (only under half is short) ({rc}, {rows})')
 rc, rows = guard(True)
-check(rc == 2 and rows == ['NH 60 100', 'VT 96 100'], f'switch ON: 60 and 96 of 100 are short, 98 passes ({rc}, {rows})')
+check(rc == 2 and rows == ['NH 60 100', 'VT 96 100'], f'switch ON (env 1): 60 and 96 of 100 are short, 98 passes ({rc}, {rows})')
 sw = json.load(open(ROOT / '.github/key-switches.json', encoding='utf-8'))['switches']
-check(sw.get('KPC_HOLD_ON_PASS_ERROR') == {'on': []}, 'the committed switch is on for no state, so the guard reads as before at merge')
+on = list((sw.get('KPC_HOLD_ON_PASS_ERROR') or {}).get('on') or [])
+check(len(on) == 50 and 'KY' not in on and 'NH' in on and 'VT' in on and 'ME' in on,
+      'the committed switch is on in the same 50 areas as KPC_MATCH_CHECKS (including NH, VT, ME; not KY)')
+rc, rows = guard(None)
+check(rc == 2 and rows == ['NH 60 100', 'VT 96 100'],
+      f'with the committed file and no env, 60 and 96 of 100 are short, 98 passes ({rc}, {rows})')
 y = (ROOT / '.github/workflows/kpc-us-key.yml').read_text(encoding='utf-8')
 check('shape guard stopped (exit $sc)' in y, "the workflow fails the job on any other exit (3 = the switch file or live index not read)")
 n = sum(1 for ok, _ in RESULTS if ok); print(f'\n{n}/{len(RESULTS)} checks passed')

@@ -16,18 +16,22 @@ WHY IT IS BUILT THIS WAY (18 Nov: a grade that was shown the pre-sort and asked 
             settles it (score --adjudicated FILE).
   RANGES    every rate comes with its exact 95% range and the 'at most' figure (one-sided 95%). 'Under 1%' needs about 300
             parks with none wrong. A rate is only ever worked out from a RANDOM sample, never from a targeted one.
-  GOLD      settled parks go in the gold set, split by a hash of the park number into TUNE (rules may be developed against
-            it) and SEALED (scores a finished build; its misses are not shown). Looking at sealed misses (--show-sealed)
-            moves them to TUNE for good, so the seal cannot be peeked through.
+  GOLD      settled parks go in the gold set, split into TUNE (rules may be developed against it) and SEALED (scores a
+            finished build; its misses are not shown). Looking at sealed misses (--show-sealed) moves them to TUNE for good,
+            so the seal cannot be peeked through.
+            22 Nov 2026 (review M7): WHICH parks are SEALED comes only from a PRIVATE list kept in KPC-Store (--sealed FILE, or
+            the path in KPC_GOLD_SEALED), never from a hash with a salt in public code. No list = the gold steps stop (exit 4).
+            A gold row's own 'half' decides first (KPC-Store marked every leaked row TUNE); a row with no half takes the list (N13).
 
-  sample   --fact DIR --kind random|busiest|targeted|pin|gold [--by method|class] [--n 300] [--per-area 25] --seed S --out FILE
+  sample   --fact DIR --kind random|busiest|targeted|pin|gold [--by none|method|class] [--n 300] [--per-area 25] --seed S --out FILE
   packet   --sample FILE.. --keys DIR --cache DIR --parkinfo DIR --fact DIR [--truth DIR] --out DIR --label L
            (the grader gets ONLY the folder --out; the answer keys go to <out>-keys, which a grader must never see)
            [--size 60] [--plants-file .github/key-grade-plants.json] [--plant-share 0.1] [--overlap 0.1] --seed S
-  score    --key packet*.key.json.. --answers grader*.csv.. --out DIR [--adjudicated FILE] [--gold FILE]
-  gold     --gold FILE --keys DIR --cache DIR --parkinfo DIR [--show-sealed] [--out DIR]
+  score    --key packet*.key.json.. --answers grader*.csv.. --out DIR [--adjudicated FILE] [--gold FILE --sealed FILE]
+  gold     --gold FILE --sealed FILE --keys DIR --cache DIR --parkinfo DIR [--show-sealed] [--out DIR]
+           (--sealed defaults to the path in KPC_GOLD_SEALED; the private sealed list lives in KPC-Store only)
 Standard library only. Outputs never go inside data/ (BRANCH FIRST: KPC-Data tools-out)."""
-import argparse, csv, datetime, glob, hashlib, json, math, os, pathlib, random, re, sys
+import argparse, csv, datetime, glob, json, math, os, pathlib, random, re, sys
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -36,7 +40,8 @@ import kpc_key_factcheck as FC      # noqa: E402
 
 VERDICTS = ('YES', 'BIGGER', 'NO', 'UNSURE')
 PLANT_PASS = 0.90
-GOLD_SALT = 'kpc-gold-v1:'
+SEALED_ENV = 'KPC_GOLD_SEALED'   # M7: path of the private sealed list (KPC-Store); the list itself is never in this repo
+_SEALED = None                   # set by load_sealed(); None = not loaded, and the gold steps stop
 # place words too common to make a record a look-alike by themselves ('lake' would bring in half a state)
 COMMON = set('lake lakes river creek mountain mountains point island islands springs spring valley falls fort north south east west upper lower little big old new saint mount bay canyon hill hills rock rocks pond fork bend ridge city town cedar pine oak bear deer eagle wolf blue green red white black grand long clear'.split())
 
@@ -75,8 +80,43 @@ Do not skip a candidate. Do not add columns. Do not change any other file.
 
 
 # ---------------- small tools ----------------
+class NoSealedList(SystemExit):
+    pass
+
+
+def load_sealed(path=None):
+    """M7: read the private sealed list ({'parks': [ref, ...]} or [ref, ...]) from path or $KPC_GOLD_SEALED. Fails closed:
+    no path, a missing or unreadable file, or no refs -> NoSealedList (exit 4). Returns the set and keeps it for half_of()."""
+    global _SEALED
+    path = path or os.environ.get(SEALED_ENV) or ''
+    if not path:
+        print(f'::error title=Gold::no private sealed list (--sealed FILE or {SEALED_ENV}): the gold steps stop', file=sys.stderr)
+        raise NoSealedList(4)
+    try:
+        v = json.loads(pathlib.Path(path).read_text(encoding='utf-8'))
+        # N13: KPC-Store's sample answer key keeps the private draw under 'sealed_next'; a plain sealed list uses 'parks'
+        refs = (v.get('sealed_next') if 'sealed_next' in v else v.get('parks')) if isinstance(v, dict) else v
+        if isinstance(refs, dict): refs = list(refs)
+        if not isinstance(refs, list) or not refs or not all(isinstance(r, str) and r for r in refs): raise ValueError('no refs')
+    except Exception as e:  # noqa: BLE001
+        print(f'::error title=Gold::the private sealed list could not be read ({type(e).__name__}): the gold steps stop', file=sys.stderr)
+        raise NoSealedList(4) from e
+    _SEALED = frozenset(refs)
+    return _SEALED
+
+
+def gold_half(gold_doc, ref):
+    """N13: a gold row's own 'half' decides first (Store marked every leaked row TUNE); a row with no half takes the private list."""
+    h = (((gold_doc or {}).get('parks') or {}).get(ref) or {}).get('half')
+    return h if h in ('TUNE', 'SEALED') else half_of(ref)
+
+
 def half_of(ref):
-    return 'SEALED' if int(hashlib.sha256((GOLD_SALT + ref).encode()).hexdigest(), 16) % 2 == 0 else 'TUNE'
+    """SEALED only when the park is on the private sealed list (M7). Not loaded = stop (fail closed), never a guess."""
+    if _SEALED is None:
+        print(f'::error title=Gold::the private sealed list is not loaded (--sealed FILE or {SEALED_ENV}): the gold steps stop', file=sys.stderr)
+        raise NoSealedList(4)
+    return 'SEALED' if ref in _SEALED else 'TUNE'
 
 
 def _cdf(k, n, p):
@@ -133,7 +173,9 @@ def sample(fact, kind, seed, n=300, by='method', per_area=25):
     picks = []
     def add(refs, stratum):
         for r in refs: picks.append({'ref': r, 'area': pool[r][0], 'stratum': stratum})
-    if kind == 'random':
+    if kind == 'random' and by == 'none':   # M7 / F8: one plain simple random sample of every park with an outline (the rate)
+        add(sorted(rng.sample(with_out, min(n, len(with_out)))), 'random')
+    elif kind == 'random':
         strata = {}
         for r in with_out: strata.setdefault(pool[r][1].get('weakest' if by == 'method' else 'class') or '?', []).append(r)
         for s, refs in sorted(strata.items()): add(sorted(rng.sample(refs, min(n, len(refs)))), f'{by}:{s}')
@@ -462,6 +504,9 @@ def score(key_paths, answer_paths, adjudicated=None):
 
 
 def write_score(rep, parks, ans, out, gold=None):
+    gdoc = {}
+    if gold and pathlib.Path(gold).is_file():   # N13: the rows' own halves, read before anything is hidden or listed
+        gdoc = json.loads(pathlib.Path(gold).read_text(encoding='utf-8'))
     out = pathlib.Path(out); out.mkdir(parents=True, exist_ok=True)
     L = ['GRADERS']
     for g, r in sorted(rep['graders'].items()):
@@ -475,7 +520,7 @@ def write_score(rep, parks, ans, out, gold=None):
     conf = [d for d in rep['disputes'] if d.get('kind') == 'conflict']
     L.append(f"DISPUTES for Fable: {len(conf)} conflict(s) (one says YES, one says no) on {len({d['ref'] for d in conf})} park(s); {len(rep['disputes']) - len(conf)} candidate(s) where one grader was unsure")
     (out / 'score.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
-    shown = dict(rep, parks={ref: (r if not (gold and half_of(ref) == 'SEALED' and not r['plant'] and r['graded'] != 'adjudicated') else {'area': r['area'], 'stratum': r['stratum'], 'sealed': True})
+    shown = dict(rep, parks={ref: (r if not (gold and gold_half(gdoc, ref) == 'SEALED' and not r['plant'] and r['graded'] != 'adjudicated') else {'area': r['area'], 'stratum': r['stratum'], 'sealed': True})
                              for ref, r in rep['parks'].items()})
     (out / 'score.json').write_text(json.dumps(shown, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     if rep['disputes']:
@@ -487,7 +532,7 @@ def write_score(rep, parks, ans, out, gold=None):
         rows, hidden = [], 0
         for ref, r in rep['parks'].items():
             if r['plant'] or r['outcome'].startswith('RIGHT') or r['outcome'] == 'PIN IS RIGHT': continue
-            if gold and half_of(ref) == 'SEALED' and r['graded'] != 'adjudicated': hidden += 1; continue      # the sealed half is never listed: it scores the next finished build first
+            if gold and gold_half(gdoc, ref) == 'SEALED' and r['graded'] != 'adjudicated': hidden += 1; continue      # the sealed half is never listed: it scores the next finished build first
             p = parks[ref]
             for Lr in r['letters'] or ['']:
                 c = p['cands'].get(Lr, {})
@@ -508,7 +553,7 @@ def write_score(rep, parks, ans, out, gold=None):
             need = [Lr for Lr, c in p['cands'].items() if c['joined'] or r['verdicts'][Lr] in ('YES', 'BIGGER')]
             if r['graded'] == 'single' and not all(any(x.lower().startswith('http') for x in srcs[Lr]) for Lr in need): continue
             g['parks'][ref] = {'area': r['area'], 'name': r['name'], 'graded': r['graded'], 'date': datetime.date.today().isoformat(),
-                               'half': 'TUNE' if (p['plant'] or r['graded'] == 'adjudicated') else (g['parks'].get(ref) or {}).get('half') or half_of(ref),
+                               'half': 'TUNE' if (p['plant'] or r['graded'] == 'adjudicated') else gold_half(g, ref),
                                'cands': [{'family': c['family'], 'name': c['name'], 'acres': c['acres'], 'recs': c.get('recs') or [], 'n_recs': c.get('n_ids') or len(c.get('recs') or []),
                                           'verdict': r['verdicts'][Lr], 'sources': srcs[Lr][:2]} for Lr, c in p['cands'].items()]}
             added += 1
@@ -546,7 +591,8 @@ def gold_score(gold_path, keys_dir, cache_dir, pinfo_dir, show_sealed=False):
                 elif c['verdict'] == 'YES' and share < 0.8: miss.append(c['name'])
             new = [k[1] for k in now_groups if k not in {(c['family'], KR.nf(c['name'])) for c in p['cands']}]
             o = 'WRONG LAND' if wrong else 'TOO BIG' if big else 'MISSING PIECES' if miss else 'NEW RECORD (ungraded)' if new else 'RIGHT'
-            res[p['half']].append((ref, area, p['name'], o, (wrong + big + miss + new)[:3]))
+            half = gold_half(g, ref)   # N13: the row's own half first, else the private list (never a public hash)
+            res[half].append((ref, area, p['name'], o, (wrong + big + miss + new)[:3]))
     lines = []
     for half in ('TUNE', 'SEALED'):
         rows = res[half]; n = len([r for r in rows if not r[3].startswith('NEW')])
@@ -575,10 +621,10 @@ def main(argv=None):
     p.add_argument('--truth'); p.add_argument('--size', type=int, default=60); p.add_argument('--plants-file', default=str(HERE.parent / 'key-grade-plants.json'))
     p.add_argument('--plant-share', type=float, default=0.1); p.add_argument('--overlap', type=float, default=0.1)
     c = sub.add_parser('score'); c.add_argument('--key', nargs='+', required=True); c.add_argument('--answers', nargs='+', required=True)
-    c.add_argument('--out', required=True); c.add_argument('--adjudicated'); c.add_argument('--gold')
+    c.add_argument('--out', required=True); c.add_argument('--adjudicated'); c.add_argument('--gold'); c.add_argument('--sealed')
     gd = sub.add_parser('gold'); gd.add_argument('--gold', required=True)
     for k in ('keys', 'cache', 'parkinfo'): gd.add_argument('--' + k, required=True)
-    gd.add_argument('--show-sealed', action='store_true'); gd.add_argument('--out')
+    gd.add_argument('--show-sealed', action='store_true'); gd.add_argument('--out'); gd.add_argument('--sealed')
     a = ap.parse_args(argv)
     if a.cmd == 'sample':
         fact = load_fact(a.fact, set(a.areas.replace(',', ' ').split()) if a.areas else None)
@@ -596,9 +642,11 @@ def main(argv=None):
         for stem, n, npl in packet(samples, a.keys, a.cache, a.parkinfo, fact, a.truth, a.out, a.label, a.seed, a.size, plants, a.plant_share, a.overlap):
             print(f'{stem}: {n} parks ({npl} with a known answer)')
     elif a.cmd == 'score':
+        if a.gold: load_sealed(a.sealed)   # M7: stop before scoring when the private sealed list is missing
         rep, parks, ans = score(a.key, a.answers, a.adjudicated)
         print('\n'.join(write_score(rep, parks, ans, a.out, a.gold)))
     elif a.cmd == 'gold':
+        load_sealed(a.sealed)
         lines = gold_score(a.gold, a.keys, a.cache, a.parkinfo, a.show_sealed)
         print('\n'.join(lines))
         if a.out: pathlib.Path(a.out).mkdir(parents=True, exist_ok=True); (pathlib.Path(a.out) / 'gold-score.txt').write_text('\n'.join(lines) + '\n', encoding='utf-8')

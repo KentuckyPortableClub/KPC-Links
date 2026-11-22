@@ -164,14 +164,21 @@ check(PC.tripwire_list(kd) is None, '3 no list in the KPC-Data checkout -> None 
 (kd / 'data/waiting/tripwires/not-sure.json').write_text(json.dumps({'parks': {'US-9901': ['T1']}}))
 check(PC.tripwire_list(kd) == (kd / 'data/waiting/tripwires/not-sure.json').resolve(), '3 the runner finds the list in the KPC-Data checkout')
 pcs = (HERE / 'tools/pc-runner/kpc_pc_run.py').read_text(encoding='utf-8')
-check("env['KPC_FERS_NOT_SURE'] = str(nsl)" in pcs and 'WARNING: D10 is OFF for this run' in pcs, '3 the runner passes it to the bot (KPC_FERS_NOT_SURE) or warns')
+check("env['KPC_FERS_NOT_SURE'] = str(nsl)" in pcs and 'the 2-fer bot will stop (exit 4' in pcs, '3 the runner passes it to the bot (KPC_FERS_NOT_SURE) or warns that the bot will stop')
 import kpc_fers_area_run as AR
 r = AR.Run(argparse.Namespace(links=str(TD), kpcdata=str(kd), python=None, tag='t', states='US-ZZ', region='na', store='off', dry_run=True))
 check(r.env().get('KPC_FERS_NOT_SURE') == str(kd.resolve() / 'data/waiting/tripwires/not-sure.json'), '3 the area runner passes the list from a KPC-Data checkout anywhere')
 K._TRIPWIRE.clear()
 buf = io.StringIO()
+_code = None
+with contextlib.redirect_stdout(buf):
+    try: K.tripwire_parks()
+    except SystemExit as _e: _code = _e.code
+check(_code == 4 and '::error' in buf.getvalue(), f'3 the bot stops (exit 4, review M8) when no list is found ({buf.getvalue()[:90]!r})')
+os.environ['KPC_FERS_NOT_SURE'] = 'none'; K._TRIPWIRE.clear(); buf = io.StringIO()
 with contextlib.redirect_stdout(buf): got = K.tripwire_parks(); K.tripwire_parks()
-check(got == {} and buf.getvalue().count('D10 is off for this run') == 1, f'3 the bot warns once when no list is found ({buf.getvalue()[:90]!r})')
+check(got == {} and buf.getvalue().count('D10 is off for this run on purpose') == 1, '3 KPC_FERS_NOT_SURE=none runs without D10 and says so once')
+os.environ.pop('KPC_FERS_NOT_SURE'); K._TRIPWIRE.clear()
 os.environ['KPC_FERS_NOT_SURE'] = str(kd / 'data/waiting/tripwires/not-sure.json'); K._TRIPWIRE.clear()
 check(K.tripwire_parks() == {'US-9901': ['T1']}, '3 with the list passed, D10 reads it')
 os.environ.pop('KPC_FERS_NOT_SURE'); K._TRIPWIRE.clear()

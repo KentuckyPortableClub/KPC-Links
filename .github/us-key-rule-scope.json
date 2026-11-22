@@ -664,6 +664,46 @@
    "why": "Holder table (outside review F2; decided 22 Nov 2026): a record a person joined to one park and the name joined to another is decided by the D9 full-name winner test. Ties hold. A short form is not a full name, so nothing moves. A name-only join never takes the record. A person's row is never moved. Switch KPC_ANSWER_HOLDERS stays off for every area, so no park changes until it is turned on.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-review-fixes",
+   "when": "2026-11-22",
+   "from": "849ebbe772e9",
+   "why": "Review fixes (22 Nov 2026). M1: the match checks treat any join tagged reviewed (reviewed-approx, reviewed-sheet) as a person's join, as the builder already does. M2: the holder table counts a person's row by the builder's own rule (tag starts with reviewed), so an unchecked answer-sheet row is a name row; its switch KPC_ANSWER_HOLDERS stays off. F4: a switch listed in the switch file is off everywhere it is not listed, so an empty list turns a default-on rule off; the switch file is not changed and lists none of the four default-on rules (KPC_APPROX_PIN, KPC_PRESERVE_APART, KPC_FAR_JOIN, KPC_PRESERVE_WITH_PARK), so they stay on and no result changes. F9: one notice when no official sizes file is found. M1 takes effect at the full US build #334 already needs; nothing else changes a park.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-review-on-and-names",
+   "when": "2026-11-22",
+   "from": "2161e243ce05",
+   "why": "Review F2, F3, F5 and F10 (22 Nov 2026). KPC_ANSWER_HOLDERS, KPC_SAVED_ANSWERS_SAY and KPC_HOLD_ON_PASS_ERROR are on in the same 50 areas as KPC_MATCH_CHECKS (including DC, not Kentucky). F3: a last type word is kept when the two names carry different type kinds, so a park and a lake of the same words stay apart; a park name that already carries the other type word (Taylorsville Lake State Park / Taylorsville Lake) still matches. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-f3-water-and-land",
+   "when": "2026-11-22",
+   "from": "764a670fa99d",
+   "why": "Review F3, owner-approved form (22 Nov 2026). A name join is dropped only when (1) the record's last type word is a water body or beach (lake/pond/ponds/reservoir/beach) and the park does not already carry that water kind (lake/pond/reservoir are one kind, so a park name that already carries the word still matches), or (2) one name is a park (state park / SP / SRA / recreation area) and the other is a wildlife area (WMA / wildlife area / game land / refuge / NWR) or a state forest. Reserve, preserve, CA/conservation area, complex, memorial and area are not different kinds. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-f3-same-place",
+   "when": "2026-11-22",
+   "from": "e1842a12b532",
+   "why": "Review F3, same-place keeps (22 Nov 2026). A name join is still dropped only for a water/beach record the park does not already carry, or a park versus a wildlife area or a state forest, but the join is kept when the record's name contains the park's full name, when the park's name contains the record's whole name and the only extra is State Park / SP / Park, or when the record's last type word sits only inside brackets. Only State Forest, National Forest and Forest Preserve count as a state-forest record; a bare Forest that is part of the park's own name does not. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-f3-short-forms",
+   "when": "2026-11-22",
+   "from": "9f7922a0e7e5",
+   "why": "Review F3 short-form tweak (22 Nov 2026, owner-approved). A record that uses the short form of the park's type word and then a water word is still the same place: WMA, NWR, SRA, Park and Fish Hatchery count as the same name as Wildlife Management Area, National Wildlife Refuge, State Recreation Area, State Park and State Fish Hatchery. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
   }
  ]
 }

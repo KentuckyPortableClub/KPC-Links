@@ -9,7 +9,8 @@ Standard library only. kpc_fers.py, kpc_fers_store.py and kpc_fers_age.py all re
 import json, os, pathlib
 
 FILE = pathlib.Path(__file__).resolve().parent.parent / 'fers-switches.json'
-NAMES = ('KPC_FERS_SUMMARY_APPROX', 'KPC_FERS_NEAR_LINE', 'KPC_FERS_CARRY_MADE_ON', 'KPC_FERS_FINE_ONLY', 'KPC_FERS_STRIP_HELD')
+NAMES = ('KPC_FERS_SUMMARY_APPROX', 'KPC_FERS_NEAR_LINE', 'KPC_FERS_CARRY_MADE_ON', 'KPC_FERS_FINE_ONLY', 'KPC_FERS_STRIP_HELD',
+         'KPC_FERS_FED_NEIGHBOUR', 'KPC_FERS_SLIVER_ASPECT')
 NEED = ('value', 'rule', 'date', 'ruled_by', 'words')
 _DOC = {'loaded': False, 'switches': None}
 _SAID = set()

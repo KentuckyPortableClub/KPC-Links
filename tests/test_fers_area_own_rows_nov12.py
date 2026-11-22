@@ -7,6 +7,7 @@ subprocess whose map reads and network all fail at once).
   area (British Columbia) outside the boxes is still left for its own area
 2 an n-fer (3-fer and up) stage cut for time marks the pass stopped for time and its parks unfinished (pass 1 keeps the previous
   file / saves it marked incomplete; pass 2 and 3 leave the n-fer row waiting, never 'dropped')"""
+import os as _os_m8; _os_m8.environ.setdefault('KPC_FERS_NOT_SURE', 'none')   # review M8 (22 Nov): no D10 list here on purpose; D10 has its own tests
 import contextlib, gzip, io, json, math, os, pathlib, subprocess, sys, tempfile, types
 HERE = pathlib.Path(__file__).resolve().parent.parent
 S = HERE / '.github/scripts'
@@ -87,6 +88,7 @@ runpy.run_path(S + '/kpc_fers.py', run_name='__main__')
 def run(t, script_dir, env, timeout=150):
     (t / 'wrap_offline.py').write_text(WRAP)
     e = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'PASS', 'MINUTES', 'STATES', 'REGION', 'RUN_TAG', 'PARKS'))}
+    e['KPC_FERS_NOT_SURE'] = 'none'   # review M8 (22 Nov): the fixture has no D10 list on purpose
     e.update(env)
     r = subprocess.run([sys.executable, '-B', str(t / 'wrap_offline.py'), str(script_dir)], cwd=t, env=e, capture_output=True, text=True, timeout=timeout)
     return r.returncode, r.stdout + r.stderr

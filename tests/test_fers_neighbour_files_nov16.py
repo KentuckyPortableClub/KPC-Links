@@ -3,6 +3,7 @@
 neighbours' parks (border pairs) and used to rewrite each neighbour's file as a pass-1 file; passes 2 to 5 take only the run's
 own areas, so a neighbour's finished rows were reset and never finished again (W-AT after a W-CH run: 57 candidates -> 53).
 Offline, on the made-up store fixture of tests/test_fers_proof_of_work_nov16.py."""
+import os as _os_m8; _os_m8.environ.setdefault('KPC_FERS_NOT_SURE', 'none')   # review M8 (22 Nov): no D10 list here on purpose; D10 has its own tests
 import json, pathlib, sys
 
 HERE = pathlib.Path(__file__).resolve().parent

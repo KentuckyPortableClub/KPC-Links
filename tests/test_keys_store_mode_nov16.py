@@ -210,7 +210,8 @@ def build(store, with_copy=True, keep_file=None):
             with gzip.open(t / 'cache/us/US-RI.json.gz', 'wt', encoding='utf-8') as f: json.dump({'recs': RECS, 'seen': len(RECS), 'detail': 0.001}, f)
         env = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'GEO_', 'STATES'))}
         env.update(STATES='RI', GEO_DETAIL='0.001', no_proxy='*', HTTPS_PROXY='', HTTP_PROXY='', https_proxy='', http_proxy='', KPC_MASTER_OWNS='1',
-                   KPC_OFFLINE_LOG=str(t / 'refused.txt'))
+                   KPC_OFFLINE_LOG=str(t / 'refused.txt'),
+                   KPC_HOLD_ON_PASS_ERROR='0')   # 22 Nov F10: this proof is store mode, not the hold-on-missing-rule-data switch
         if store: cmd, env['GEO_CACHE_MODE'], env['KPC_KEY_OFFLINE'] = [sys.executable, str(KEY)], 'only', '1'
         else: cmd, env['GEO_CACHE_MODE'] = [sys.executable, '-c', CHILD, str(KEY)], 'use'
         r = subprocess.run(cmd, cwd=t, capture_output=True, text=True, timeout=600, env=env)

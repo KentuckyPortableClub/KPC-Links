@@ -387,6 +387,52 @@
       "scope": "none",
       "scope_note": "No pair is remeasured. The file is a report of doubts the bot already has.",
       "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
-    }
-  ]
+    },
+  {
+   "id": "2026-11-22-fail-closed",
+   "when": "2026-11-22",
+   "from": "6a9d67ea4100",
+   "why": "Review M8 / F14 (22 Nov 2026): a missing or unreadable rule-scope file, or a missing or unreadable D10 not-sure list, stops the 2-fer bot (exit 4) instead of reusing every pair or turning D10 off. KPC_FERS_NOT_SURE=none runs without D10 on purpose. Scope none: no pair is remeasured.",
+   "scope": "none",
+   "scope_note": "No pair is remeasured. The bot only stops when a rule-data file is missing or unreadable.",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-sliver-and-zone",
+   "when": "2026-11-22",
+   "from": "458f74a106cb",
+   "why": "Review F16 (22 Nov 2026, owner questions 5 and 6). A: a sliver in the 25-to-50-yard very-tight band next to federal land is counted only when it is a real gap, not a drawing error (length/width at or over the aspect in KPC_FERS_SLIVER_ASPECT, documented default 8). The old blanket forest hold stays gone; a compact real gap, a sliver whose length is not known, or any overlap 50 yards or wider is counted. B: a trail or river 100-foot zone (zone_wide_m, else strip_wide_m) gets the same one-grid-cell not-sure band as the area 25-yard and 50-yard lines. Scope none: no pair is remeasured until a 2-fer run.",
+   "scope": "none",
+   "scope_note": "No pair is remeasured. The 85 Kentucky ungraded rows are not run in this change; a ky-region rerun can grade and stamp them with the existing stamp() path.",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-sliver-core-and-zone-pass",
+   "when": "2026-11-22",
+   "from": "4830230a591f",
+   "why": "Review F16 follow-up (22 Nov 2026). A: length of a 25-to-50-yard sliver is measured on the 25-yard-or-wider core (core_m2, written in area_spots and carried through pass 3), so a compact real gap with a thin drawing-offset ribbon attached is counted, not dropped as a drawing error. B: near_line for a trail or river 100-foot zone runs in rule15 (pass 5/6), where the zone width is written; river rows get a zone the same way as trails; the 10-yard very-tight test stays trails only. Scope none: no pair is remeasured until a 2-fer run.",
+   "scope": "none",
+   "scope_note": "No pair is remeasured. Decide-time and pass 5/6 zone rules; each area picks them up on its next run.",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-math-guard-sliver-core",
+   "when": "2026-11-22",
+   "from": "c9a22584796e",
+   "why": "Review F16 A follow-up (22 Nov 2026). area_spots writes core_m2 (the 25-yard-or-wider core) and merge sums it, so sliver length is measured on that core rather than the whole overlap. This entry carries that fingerprint. It names a park that does not exist, so no real pair is retested.",
+   "scope": {"parks": ["US-MATH-GUARD"]},
+   "fingerprint": "534ac4bb9d1ec9b4f6bd845934c9f22ee55c76caa2e795edd8ad72c3d10d4c1f",
+   "scope_note": "The named park does not exist; no real pair is retested.",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-saved-core-m2",
+   "when": "2026-11-22",
+   "from": "621a2106111b",
+   "why": "Review F16 A must-fix (22 Nov 2026). A saved overlap measured before core_m2 has no core area, so drawing_error_sliver must not use the old whole-overlap length; if core_m2 is missing the row is counted (the length on the core is unknown). Scope none: no pair is remeasured until a 2-fer run; decide-time then counts those older saved pairs instead of dropping them as a drawing error.",
+   "scope": "none",
+   "scope_note": "No pair is remeasured. Decide-time counts a saved 25-to-50-yard overlap that has no core_m2.",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  }
+ ]
 }

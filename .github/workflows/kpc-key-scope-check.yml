@@ -17,6 +17,18 @@ on:
       - 'data/state-gis.json'
       - 'data/us-key/area-tables.json'
       - '.github/scripts/kpc_key_scope_check.py'
+      # 22 Nov 2026 (review F22): the Canada and world rule files and scope files too
+      - '.github/scripts/kpc_ca_key.py'
+      - '.github/scripts/kpc_ca_fill_bounds.py'
+      - '.github/scripts/kpc_ca_hardlook.py'
+      - '.github/scripts/kpc_pin_fill.py'
+      - '.github/scripts/kpc_park_facts_read.py'
+      - '.github/ca-key-rule-scope.json'
+      - '.github/scripts/kpc_world_key.py'
+      - '.github/scripts/kpc_jp_crosswalk.py'
+      - '.github/scripts/kpc_number_rules.py'
+      - '.github/world-key-rule-scope.json'
+      - 'data/world-key/area-tables.json'
 permissions:
   contents: read
 concurrency:
@@ -39,5 +51,10 @@ jobs:
           git worktree add --quiet --detach ../base "${{ github.event.pull_request.base.sha }}"
       - name: The check's own test
         run: python3 tests/test_key_scope_check_nov19.py
-      - name: Refuse a rule-file edit with no scope entry
-        run: python3 .github/scripts/kpc_key_scope_check.py --base ../base --head . --kind us-key
+      - name: Refuse a rule-file edit with no scope entry (US, Canada and world keys; review F22)
+        run: |
+          rc=0
+          for kind in us-key ca-key world-key; do
+            python3 .github/scripts/kpc_key_scope_check.py --base ../base --head . --kind "$kind" || rc=1
+          done
+          exit "$rc"

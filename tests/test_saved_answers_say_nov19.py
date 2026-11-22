@@ -14,8 +14,8 @@ RESULTS = []
 def check(ok, what): RESULTS.append((bool(ok), what)); print(('PASS' if ok else 'FAIL') + ': ' + what, flush=True)
 
 check(not KR.on('KPC_SAVED_ANSWERS_SAY', {}) and KR.DEFAULTS.get('KPC_SAVED_ANSWERS_SAY') == '0', 'the switch KPC_SAVED_ANSWERS_SAY is OFF unless set')
-check('KPC_SAVED_ANSWERS_SAY' in KR.switch_file() and not any('KPC_SAVED_ANSWERS_SAY' in KR.areas_on(a) for a in ('AR', 'KY', 'TN')),
-      'the switch file lists it, on for no area')
+check('KPC_SAVED_ANSWERS_SAY' in KR.switch_file() and 'KPC_SAVED_ANSWERS_SAY' in KR.areas_on('AR') and 'KPC_SAVED_ANSWERS_SAY' in KR.areas_on('TN') and 'KPC_SAVED_ANSWERS_SAY' not in KR.areas_on('KY'),
+      'the switch is on in the 50 areas (AR and TN) and not in KY')
 
 # the pure decisions
 C = [('sgarb101', 'DeGray Lake Resort State Park', 830), ('sgarb102', 'DeGray Lake', 830), ('wsa9', 'DeGray Lake Resort State Park', 819)]

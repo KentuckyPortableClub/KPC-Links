@@ -66,7 +66,7 @@ _save_json_raw = save_json
 # write carries a verdict that a pair is NOT a 2-fer, whatever shape it was worked out from (a full official outline, a PARTIAL
 # boundary, a saved copy or a line): "no overlap found" is not a finding about the parks, it is the end of our looking. The two
 # statuses below are NOT denials of a pair: they say one ROW stands in for another row of the SAME pair, so they stay.
-DENY_KEEP = re.compile(r'^(dropped: the same stretch twice|merged into one row)')
+DENY_KEEP = re.compile(r'^(dropped: the same stretch twice|merged into one row|dropped: shared-boundary drawing error)')
 NOT_SHOWN = {}     # area -> [[refs, kind, the reason we stopped, the row id]]: for a person, in a PRIVATE file only (not_shown_file)
 # The mark on a row never-worse puts back. Its own field, NOT 'kept' (kpc_fers_store.keep_old_rows writes its own note there), and
 # NOT on KEPT_MARKS: if a later pass turned such a row into a denial, it must go through this rule again and be put back again.
@@ -1092,19 +1092,137 @@ LINE_NAMES = ((22.86, 'the 25-yard'), (45.72, 'the 50-yard'))   # the two size l
 
 def near_line(s, band=None):
     """R-2F3 / owner ruling N3 (16 Nov 2026). An area row whose measured width is within ONE GRID CELL of the 25-yard
-    (22.86 m) or 50-yard (45.72 m) line is NOT SURE. The band is CELL for the pass that measured the width, never a typed
-    number of metres. Off = ''."""
+    (22.86 m) or 50-yard (45.72 m) line is NOT SURE. 22 Nov F16 B: a trail or river row whose 100-foot zone width
+    (zone_wide_m, else strip_wide_m) is within one grid cell of the 100-foot line (ZONE, 30.48 m) is NOT SURE the same way.
+    The band is CELL for the pass that measured the width, never a typed number of metres. Off = ''."""
     if band is None:
         band = CELL if near_line_on() else 0.0
     else:
         band = float(band)
-    if band <= 0 or s.get('kind') != 'area' or s.get('wide_m') is None: return ''
-    w = float(s['wide_m'])
-    for m, nm in LINE_NAMES:
+    if band <= 0: return ''
+    kind, lines, w = s.get('kind'), None, None
+    if kind == 'area' and s.get('wide_m') is not None:
+        w, lines = float(s['wide_m']), LINE_NAMES
+    elif kind in ('trail', 'river'):
+        raw = s.get('zone_wide_m') if s.get('zone_wide_m') is not None else s.get('strip_wide_m')
+        if raw is not None:
+            w, lines = float(raw), ((ZONE, 'the 100-foot zone'),)
+    if w is None or not lines: return ''
+    for m, nm in lines:
         if abs(w - m) <= band:
             return (f'near a size line: measured {w:g} m wide on the {CELL:g} m grid, within {band:g} m of {nm} line ({m:g} m); '
                     "the grid can't tell which side it is on, so a person or the fine lines decide it")
     return ''
+
+
+FED_LAND = re.compile(r'\bNational (Park|Wildlife Refuge|Preserve)\b', re.I)
+FED_FOREST = re.compile(r'\bNational (Forest|Grassland)s?\b', re.I)
+SLIVER_M = 22.86   # 25 yards: only slivers this wide or wider are considered (F16 A, 22 Nov)
+
+
+def fed_neighbour_on():
+    """F16 A (22 Nov). On unless the environment turns it off."""
+    return _switch_on('KPC_FERS_FED_NEIGHBOUR')
+
+
+def fed_neighbours(refs, parks, PIN):
+    """A national park / refuge / preserve paired with a national forest / grassland, when neither is a designation
+    laid on the other (wilderness, wild and scenic, a recreation area, a national monument, or designation_only).
+    Returns 'Park Name x Forest Name', or '' when the pair is not that case. Restored 22 Nov (F16 A) from the rule
+    removed with R-2F2; the old blanket not-sure on every such pair stays gone."""
+    nm = {r: str((PIN.get(r) or [''])[0] or '') for r in refs}
+    land = [r for r in refs if FED_LAND.search(nm[r]) and not FED_FOREST.search(nm[r])]
+    forest = [r for r in refs if FED_FOREST.search(nm[r])]
+    if not land or not forest: return ''
+    if any(designation_only(r, parks) or re.search(r'wilderness|wild and scenic|scenic river|recreation area|national monument', nm[r], re.I) for r in refs):
+        return ''
+    return f'{nm[land[0]]} x {nm[forest[0]]}'
+
+
+def sliver_aspect_min():
+    """The length/width ratio at or above which a 25-yard-or-wider sliver is a drawing error. From
+    KPC_FERS_SLIVER_ASPECT in the switch file (documented default 8). A value that is not a number > 0 falls back to 8."""
+    try:
+        n = float(_SW.value('KPC_FERS_SLIVER_ASPECT')[0])
+    except (TypeError, ValueError, SystemExit):
+        n = 8.0
+    return n if n > 0 else 8.0
+
+
+def sliver_len_m(s):
+    """Length of the overlap along the shared edge. Prefers the 25-yard-or-wider core (core_m2 / max(wide_m - SLIVER_M, CELL))
+    so a thin drawing-offset ribbon attached to a compact real gap does not inflate the length. Else len_m, else acres * 4046.86 / wide_m. None if unknown."""
+    try:
+        w = float(s['wide_m']) if s.get('wide_m') not in (None, '') else 0.0
+    except (TypeError, ValueError):
+        w = 0.0
+    if s.get('core_m2') not in (None, '', 0, 0.0) and w > 0:
+        try:
+            core = float(s['core_m2'])
+        except (TypeError, ValueError):
+            core = 0.0
+        if core > 0:
+            return core / max(w - SLIVER_M, CELL)
+    if s.get('len_m') not in (None, '', 0, 0.0):
+        try:
+            n = float(s['len_m'])
+        except (TypeError, ValueError):
+            n = 0.0
+        if n > 0: return n
+    ac = s.get('acres')
+    try:
+        ac = float(ac)
+    except (TypeError, ValueError):
+        return None
+    if w > 0 and ac > 0:
+        return ac * 4046.86 / w
+    return None
+
+
+def sliver_aspect(s):
+    """length / width, or None when either is unknown."""
+    w, L = s.get('wide_m'), sliver_len_m(s)
+    try:
+        w = float(w)
+    except (TypeError, ValueError):
+        return None
+    if not w or w <= 0 or L is None or L <= 0:
+        return None
+    return L / w
+
+
+def drawing_error_sliver(s, aspect_min=None):
+    """True when a 25-yard-or-wider overlap is a thin offset of the same shared line (length/width at or over
+    the documented aspect in KPC_FERS_SLIVER_ASPECT). False for a more compact real gap, a sliver under 25 yards,
+    or when length is unknown, including an older saved overlap with no core_m2 (do not guess a drawing error)."""
+    if aspect_min is None:
+        aspect_min = sliver_aspect_min()
+    try:
+        w = float(s.get('wide_m'))
+    except (TypeError, ValueError):
+        return False
+    if w < SLIVER_M or w >= TIGHT_M:
+        # only the 25-to-50-yard very-tight band: a wider overlap is counted even when it is long
+        return False
+    if s.get('core_m2') in (None, ''):
+        return False   # measured before core_m2 (22 Nov): length on the core unknown, so it is counted
+    a = sliver_aspect(s)
+    if a is None:
+        return False
+    return a >= aspect_min
+
+
+def fed_sliver_filter(s, refs, parks, PIN):
+    """If this area row is a 25-yard-or-wider drawing-error sliver next to federal land, the reason it is not counted; else ''.
+    A real compact gap, or a sliver whose length is not known, is left to be counted. Large park-in-forest overlays are not held."""
+    if not fed_neighbour_on() or s.get('kind') != 'area':
+        return ''
+    if not fed_neighbours(refs, parks, PIN):
+        return ''
+    if not drawing_error_sliver(s):
+        return ''
+    L, w, a, m = sliver_len_m(s), float(s['wide_m']), sliver_aspect(s), sliver_aspect_min()
+    return (f'length {L:g} m / width {w:g} m = aspect {a:.1f}, at or over the drawing-error line {m:g} in KPC_FERS_SLIVER_ASPECT')
 
 
 SUMMARY_KINDS = ('compilation', 'register', 'water')   # data/state-gis.json 'what' labels that are not the agency's own land
@@ -2344,7 +2462,8 @@ def area_spots(G, refs, box):
             shape = [F.ll(int(c), int(r)) for c, r in ap]
             w = round(max(0.0, float(d.max()) - CELL * .5) * 2)   # the distance map counts to the next cell's middle: half a cell less = the real width
             out.append({'refs': sorted(refs), 'kind': 'area', 'center': F.ll(int(c0), int(r0))[::-1],
-                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': w, 'shape': shape,
+                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': w,
+                        'core_m2': int((comp & (core > 0)).sum()) * CELL * CELL, 'shape': shape,
                         **({'masked_out': sorted({OWNED[r] for r in refs if r in OWNED})} if masked_out else {})})
     return merge(out)
 
@@ -2358,6 +2477,7 @@ def merge(spots):
         if t:
             if not s.get('masked_out'): t.pop('masked_out', None)   # one piece on agency-owned land = a real spot
             if 'acres' in t or 'acres' in s: t['acres'] = round(t.get('acres', 0) + s.get('acres', 0), 1)   # line spots have none
+            if 'core_m2' in t or 'core_m2' in s: t['core_m2'] = (t.get('core_m2') or 0) + (s.get('core_m2') or 0)
             if s.get('wide_m', 0) > t.get('wide_m', 0): t['center'], t['wide_m'] = s['center'], s['wide_m']
             if s.get('len_m'): t['len_m'] = round(t.get('len_m', 0) + s['len_m'])
             t['_b'] = [min(t['_b'][0], b[0]), min(t['_b'][1], b[1]), max(t['_b'][2], b[2]), max(t['_b'][3], b[3])]
@@ -2609,8 +2729,15 @@ REUSE, REUSE_NEW, REUSE_FILE = {}, {}, None
 # KPC_FERS_FULL=1 = redo every pair (emergency switch; the areas workflow also uses it for its one round-robin full area per run).
 FULL = str(os.environ.get('KPC_FERS_FULL') or '').strip().lower() in ('1', 'yes', 'true', 'y')
 RECHECK_ANSWERS = os.environ.get('KPC_FERS_RECHECK_ANSWERS') == '1'   # the old 'read every server answer again' check (off)
-try: SCOPE = json.load(open(pathlib.Path(__file__).resolve().parents[1] / 'fers-rule-scope.json')).get('changes') or []
-except Exception: SCOPE = []  # noqa: BLE001
+# 22 Nov 2026 (review M8 / F14): a missing or unreadable scope file used to mean 'no declared change', so every pair was reused (fail
+# open). Now the bot stops (exit 4). A file that reads but declares no change is still a real, empty scope.
+try:
+    _scope_doc = json.load(open(pathlib.Path(__file__).resolve().parents[1] / 'fers-rule-scope.json', encoding='utf-8'))
+    if not isinstance(_scope_doc, dict) or not isinstance(_scope_doc.get('changes', []), list): raise ValueError('not {"changes": [...]}')
+    SCOPE = _scope_doc.get('changes') or []
+except Exception as _e:  # noqa: BLE001
+    print(f'::error title=2-fer bot::.github/fers-rule-scope.json is missing or unreadable ({type(_e).__name__}): stopping', flush=True)
+    sys.exit(4)
 _STAMP = {}
 
 
@@ -3257,11 +3384,14 @@ def dedupe_line_rows(spots):
 
 
 LINE_WORD = re.compile(r'\btrail\b|\btrace\b|scenic byway', re.I)
+RIVER_WORD = re.compile(r'\briver\b|\bcreek\b|\bwsr\b|wild (and|&) scenic', re.I)
 def line_zone(x, G, PIN):
     """Oct 27 (chat 3): the TRUE 2-fer ground of a trail stretch = the 100-ft band around the trail that is also inside the other
-    park (5 m in from its line, its owned land for an agency-land park) = 'zone' rings, + its acres and how wide it gets at most."""
-    if x.get('kind') != 'trail' or not x.get('shape'): return None
-    lref = next((r for r in x['refs'] if LINE_WORD.search((PIN.get(r) or [''])[0])), None)
+    park (5 m in from its line, its owned land for an agency-land park) = 'zone' rings, + its acres and how wide it gets at most.
+    F16 B (22 Nov): a river stretch is measured the same way (RIVER_WORD finds the river park the way LINE_WORD finds the trail)."""
+    if x.get('kind') not in ('trail', 'river') or not x.get('shape'): return None
+    word = RIVER_WORD if x.get('kind') == 'river' else LINE_WORD
+    lref = next((r for r in x['refs'] if word.search((PIN.get(r) or [''])[0])), None)
     oref = next((r for r in x['refs'] if r != lref and r in G), None)
     if not lref or not oref: return None
     b = x.get('box') or bbox_lines([x['shape']])
@@ -3311,7 +3441,7 @@ def add_zones(files, G, PIN, today):
     for d in files.values():
         dedupe_line_rows(d.get('spots', []))
         for x in d.get('spots', []):
-            if x.get('kind') != 'trail' or str(x.get('status', '')).startswith('dropped') or late(): continue
+            if x.get('kind') not in ('trail', 'river') or str(x.get('status', '')).startswith('dropped') or late(): continue
             try:
                 zz = line_zone(x, G, PIN)
                 if zz is not None: x.update(zz); x['zone_read'] = today; n += 1
@@ -3322,18 +3452,24 @@ def add_zones(files, G, PIN, today):
 
 def rule15(spots):
     """RULE 15: a trail row (with the stretches folded into it) whose strip is under 10 yards wide EVERYWHERE = 'very tight
-    (members only)', the same tier as a 25-50 yard overlap. A row whose strip was not measured is left as it is."""
+    (members only)', the same tier as a 25-50 yard overlap. A row whose strip was not measured is left as it is.
+    F16 B (22 Nov): the 100-foot zone width is only known here (pass 5/6). A trail or river row whose zone is within one
+    grid cell of the 100-foot line is NOT SURE. The 10-yard very-tight test stays trails only."""
     for m in spots:
-        if m.get('kind') != 'trail' or not str(m.get('status', '')).startswith(('candidate', VERY_TIGHT)): continue
-        mem = [x for x in spots if str(x.get('status', '')) == 'merged into one row: ' + m['id']]
+        if m.get('kind') not in ('trail', 'river') or not str(m.get('status', '')).startswith(('candidate', VERY_TIGHT)): continue
+        mem = [x for x in spots if str(x.get('status', '')) == 'merged into one row: ' + m.get('id', '')]
         ws = [x['zone_wide_m'] for x in [m] + mem if x.get('zone_wide_m') is not None]
         if not ws: continue
         m['strip_wide_m'] = max(ws)
-        if max(ws) < STRIP_MIN_M:
-            m['status'] = VERY_TIGHT; m['tier'] = VERY_TIGHT; m['list'] = 'Very tight (members only)'
-            m['rule15'] = f'strip at most {round(max(ws) / 0.9144, 1)} yards wide (under 10 yards everywhere: rule 15)'
-        elif m.pop('rule15', None):
-            m['status'] = 'candidate'; m.pop('tier', None); m.pop('list', None)
+        if m.get('kind') == 'trail':
+            if max(ws) < STRIP_MIN_M:
+                m['status'] = VERY_TIGHT; m['tier'] = VERY_TIGHT; m['list'] = 'Very tight (members only)'
+                m['rule15'] = f'strip at most {round(max(ws) / 0.9144, 1)} yards wide (under 10 yards everywhere: rule 15)'
+            elif m.pop('rule15', None):
+                m['status'] = 'candidate'; m.pop('tier', None); m.pop('list', None)
+        _nl = near_line(m)   # F16 B: the zone width is only known here (pass 5/6)
+        if _nl:
+            m['status'] = 'not sure: ' + _nl; m.pop('list', None); m.pop('tier', None)
 
 def file_of(st): return OUT / f'{st}.json'
 
@@ -3644,14 +3780,21 @@ def hold_no_owner(spots, root=None):
 # clears it. Its outline stays on the map: only the 2-fer rows are held. The list is written by the tripwire bot (KPC-Data
 # .github/scripts/kpc_tripwires.py) to KPC-Data data/waiting/tripwires/not-sure.json ({"parks": {ref: ["T1", ...]}}, a person's
 # clears already left out); the 2-fer workflows check KPC-Data out as kpcdata/, so that is read first. KPC_FERS_NOT_SURE = another
-# file. No list (or an unreadable one: a warning) = no park is held here, exactly as before.
+# file. 22 Nov 2026 (review M8 / F14): no list, or an unreadable one, STOPS the bot (exit 4): D10 never turns itself off.
+# KPC_FERS_NOT_SURE=none is the one explicit way to run without D10 (a person chose it; the run says so).
 TRIPWIRE_LISTS = ('kpcdata/data/waiting/tripwires/not-sure.json', 'data/waiting/tripwires/not-sure.json')
 TRIPWIRE_HOLD = 'not sure: tripwire'
 _TRIPWIRE = {}
 
 
 def tripwire_parks(path=None):
-    """{ref: ['T1', 'T4', ...]} from the not-sure list (read once per file); {} when there is no list."""
+    """{ref: ['T1', 'T4', ...]} from the not-sure list (read once per file). No list or an unreadable one = exit 4 (M8), unless
+    KPC_FERS_NOT_SURE=none (D10 off on purpose: {} and a notice)."""
+    if not path and str(os.environ.get('KPC_FERS_NOT_SURE') or '').strip().lower() == 'none':
+        if '_none' not in _TRIPWIRE:
+            _TRIPWIRE['_none'] = {}
+            print('::notice title=2-fer bot::D10 is off for this run on purpose (KPC_FERS_NOT_SURE=none): no tripwire park is held', flush=True)
+        return {}
     cands = [path] if path else ([os.environ['KPC_FERS_NOT_SURE']] if os.environ.get('KPC_FERS_NOT_SURE') else list(TRIPWIRE_LISTS))
     for c in cands:
         if not c or not os.path.isfile(c): continue
@@ -3662,16 +3805,15 @@ def tripwire_parks(path=None):
         except Exception as e:  # noqa: BLE001
             got = None; LOG.append(f'tripwire not-sure list {c}: unreadable ({type(e).__name__}); no park held for it')
         if got is None:
-            print(f'::warning title=2-fer bot::the tripwire not-sure list ({c}) could not be read: no park is held for it this run', flush=True)
-            got = {}
+            print(f'::error title=2-fer bot::the tripwire not-sure list ({c}) could not be read: stopping (exit 4); '
+                  'set KPC_FERS_NOT_SURE=none only to run without D10 on purpose', flush=True)
+            sys.exit(4)
         _TRIPWIRE[c] = got
         return got
-    # Handoff 9 bug 3: no list = D10 holds nothing. Say so ONCE (a PC run used to look in the wrong folder and stay silent)
-    if '_missing' not in _TRIPWIRE:
-        _TRIPWIRE['_missing'] = {}
-        print('::warning title=2-fer bot::D10 is off for this run: the tripwire not-sure list was not found (looked in '
-              + ', '.join(str(c) for c in cands if c) + '); set KPC_FERS_NOT_SURE to KPC-Data data/waiting/tripwires/not-sure.json', flush=True)
-    return {}
+    # M8: no list = stop (it used to mean 'D10 holds nothing' with a warning)
+    print('::error title=2-fer bot::the tripwire not-sure list was not found (looked in ' + ', '.join(str(c) for c in cands if c)
+          + '): stopping (exit 4). Set KPC_FERS_NOT_SURE to KPC-Data data/waiting/tripwires/not-sure.json, or to none to run without D10', flush=True)
+    sys.exit(4)
 
 
 def hold_tripwire(spots, listed=None):
@@ -4034,6 +4176,10 @@ def _decide_work(s, parks, G, LN, PIN, today, saved_only, st_of):
     s['status'] = 'candidate' if not s.get('fresh') else 'candidate (saved outline only)'
     if s['kind'] == 'area' and (s.get('wide_m') or 0) < TIGHT_M:
         s['status'] = VERY_TIGHT; s['list'] = 'Very tight (members only)'   # rule 4: its own list, never the main one
+    _fn = fed_sliver_filter(s, refs, parks, PIN)
+    if _fn:   # F16 A (22 Nov): a 25-yard-or-wider drawing-error sliver next to federal land is not counted
+        s['status'] = 'dropped: shared-boundary drawing error: ' + _fn; s.pop('list', None)
+        s['names'] = {r: PIN[r][0] for r in refs}; return
     _nl = near_line(s)
     if _nl:   # R-2F3: within one grid cell of a size line = NOT SURE
         s['status'] = 'not sure: ' + _nl; s.pop('list', None)
@@ -4545,6 +4691,7 @@ def main():
         import kpc_fers_store   # outline store (switch-over; off = nothing imported, the run as before; areas: .github/fers-store-areas.json)
         kpc_fers_store.install(sys.modules[__name__])
     if os.environ.get('WATER_PREFETCH') == '1': return water_prefetch()
+    tripwire_parks()   # M8 (22 Nov 2026): stop now (exit 4), before any work, when the D10 not-sure list is missing or unreadable
     # Nov 8 (Brandon t808u): only areas declared ready (ownership + management). Skip others with a clear log; no silent world run.
     global ONLY
     _run_areas = sorted(ONLY) if ONLY else (
@@ -4655,7 +4802,7 @@ def main():
 
     if PASS == 6:   # Oct 27 (HQ 5:36 PM): ONLY the live boundary lines around each area spot (Kentucky after its run; later runs do it in pass 5)
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
-        lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') in ('area', 'trail') and not str(x.get('status', '')).startswith('dropped')]
+        lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') in ('area', 'trail', 'river') and not str(x.get('status', '')).startswith('dropped')]
         refs = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids']})
         G, bad = ky_geom(parks, refs) if REGION == 'ky' else download(parks, refs, DET, PREC)
         inject_apx_geom(G, parks, refs)
@@ -4828,7 +4975,7 @@ def main():
         # making a list to review later'); they go on the review list, nothing is deleted
         n['river channels listed as water only (boat spots)'] = channel_rows(files, G, today)
         mark(f"boundary lines for {n['spots given their boundary lines']} spots")
-        tw = [] if late() else sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'trail' for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
+        tw = [] if late() else sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') in ('trail', 'river') for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if tw:
             g3, _ = ky_geom(parks, tw) if REGION == 'ky' else download(parks, tw, DET, PREC)
             G.update(g3)
@@ -5167,7 +5314,7 @@ def main():
                 if m:
                     s['passes'][PASS - 1] = 1; agree += 1
                     if _from1: s['passes'][1] = 1   # the same outlines: pass 3's finer test stands for pass 2
-                    for k in ('center', 'shape', 'box', 'acres', 'wide_m', 'len_m'):
+                    for k in ('center', 'shape', 'box', 'acres', 'wide_m', 'len_m', 'core_m2'):
                         if k in m: s[k] = m[k]
                     if m.get('masked_out'): s['masked_out'] = m['masked_out']
                     else: s.pop('masked_out', None)
