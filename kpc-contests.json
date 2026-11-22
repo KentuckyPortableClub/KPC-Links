@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T17:48:04Z",
+ "updated": "2026-11-22T12:29:35Z",
  "week": [
   {
    "name": "AWA Bruce Kelley 1929 QSO Party",
@@ -58,34 +58,6 @@
    "src": "WA7BNM"
   },
   {
-   "name": "All Austrian 160-Meter Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gbiz0",
-   "when": "1600Z-2359Z, Nov 21",
-   "segs": [
-    [
-     "2026-11-21T16:00Z",
-     "2026-11-21T23:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "REF 160-Meter Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gf6gu",
-   "when": "1700Z-2400Z, Nov 21",
-   "segs": [
-    [
-     "2026-11-21T17:00Z",
-     "2026-11-22T00:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
    "name": "South American Integration Contest CW",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gflzs",
    "when": "1800Z, Nov 21 to 2100Z, Nov 22",
@@ -98,34 +70,6 @@
    "modes": [
     "CW"
    ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Feld Hell Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g6dz8",
-   "when": "1900Z-2059Z, Nov 21",
-   "segs": [
-    [
-     "2026-11-21T19:00Z",
-     "2026-11-21T20:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "RSGB 1.8 MHz Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gfdws",
-   "when": "2000Z-2300Z, Nov 21",
-   "segs": [
-    [
-     "2026-11-21T20:00Z",
-     "2026-11-21T23:00Z"
-    ]
-   ],
-   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   },
@@ -484,6 +428,38 @@
     ]
    ],
    "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ARRL EME Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003drsoh",
+   "when": "0000Z, Nov 28 to 2359Z, Nov 29",
+   "segs": [
+    [
+     "2026-11-28T00:00Z",
+     "2026-11-29T23:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CQ Worldwide DX Contest, CW",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gc64g",
+   "when": "0000Z, Nov 28 to 2400Z, Nov 29",
+   "segs": [
+    [
+     "2026-11-28T00:00Z",
+     "2026-11-30T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
    "kinds": [],
    "src": "WA7BNM"
   }
@@ -1269,61 +1245,6 @@
    "exch": "RST, name, QTH, equipment year, xmtr type, pwr"
   },
   {
-   "name": "LZ DX Contest",
-   "url": "https://lzdx.bfra.bg",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-21T12:00Z",
-     "2026-11-22T12:01Z"
-    ]
-   ],
-   "modes": [
-    "CW",
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5-28",
-   "exch": "RS(T), 2-letter LZ district or ITU zone"
-  },
-  {
-   "name": "All Austrian 160-Meter Contest",
-   "url": "https://www.oevsv.at",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-21T16:00Z",
-     "2026-11-22T00:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8",
-   "exch": "RST, serial, district code (if OE)"
-  },
-  {
-   "name": "REF 160-Meter Contest",
-   "url": "https://concours.r-e-f.org",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-21T17:00Z",
-     "2026-11-22T00:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8",
-   "exch": "RST, serial, department code"
-  },
-  {
    "name": "South American Integration Contest CW",
    "url": "https://sacw.cwsp.com.br",
    "when": "",
@@ -1340,42 +1261,6 @@
    "src": "CORRAL",
    "bands": "3.5,7,21,28",
    "exch": "RST, \"M\" (if mbr) or \"QRP\" or \"YL\" or ITU zone"
-  },
-  {
-   "name": "Feld Hell Sprint",
-   "url": "https://sites.google.com/site/feldhellclub",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-21T19:00Z",
-     "2026-11-21T21:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28,50",
-   "exch": "See rules"
-  },
-  {
-   "name": "RSGB 1.8 MHz Contest",
-   "url": "https://www.rsgbcc.org",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-21T20:00Z",
-     "2026-11-21T23:01Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8",
-   "exch": "RST, serial, district code (if UK)"
   },
   {
    "name": "ARRL November Sweepstakes, SSB",
@@ -2267,7 +2152,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (32)",
-  "CORRAL": "ok (53)"
+  "WA7BNM": "ok (30)",
+  "CORRAL": "ok (48)"
  }
 }
