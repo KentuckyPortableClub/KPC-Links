@@ -39,9 +39,11 @@ G.load_sealed(str(t / 's.json'))
 g = {'parks': {'US-0007': {'area': 'US-XX', 'name': 'Invented A', 'half': 'SEALED', 'cands': []},
                'US-0009': {'area': 'US-XX', 'name': 'Invented B', 'half': 'SEALED', 'cands': []}}, 'log': []}
 (t / 'g.json').write_text(json.dumps(g)); (t / 'US-XX.json').write_text('{"parks": {}}')
+g['parks']['US-0009'].pop('half'); g['parks']['US-0010'] = {'area': 'US-XX', 'name': 'Invented C', 'half': 'TUNE', 'cands': []}
+(t / 'g.json').write_text(json.dumps(g))
 lines = G.gold_score(str(t / 'g.json'), str(t), str(t / 'nocache'), str(t))
-ck(any(x.startswith('SEALED: 1 gold parks') for x in lines) and any(x.startswith('TUNE: 1 gold parks') for x in lines),
-   f'an old park marked SEALED but on no private list counts as TUNE ({[x[:30] for x in lines]})')
+ck(any(x.startswith('SEALED: 1 gold parks') for x in lines) and any(x.startswith('TUNE: 2 gold parks') for x in lines),
+   f'N13: a row\'s own half decides first; a row with no half takes the private list, never a public hash ({[x[:30] for x in lines]})')
 fact = {'US-XX': {f'US-{i:04d}': {'rows': [[i]], 'weakest': ('name' if i % 3 else 'reviewed'), 'class': 'one'} for i in range(1, 31)}}
 s1 = G.sample(fact, 'random', 'seed-a', n=10, by='none')
 ck(len(s1['parks']) == 10 and {p['stratum'] for p in s1['parks']} == {'random'} and s1 == G.sample(fact, 'random', 'seed-a', n=10, by='none'),

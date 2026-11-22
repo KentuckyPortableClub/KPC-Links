@@ -21,7 +21,7 @@ WHY IT IS BUILT THIS WAY (18 Nov: a grade that was shown the pre-sort and asked 
             so the seal cannot be peeked through.
             22 Nov 2026 (review M7): WHICH parks are SEALED comes only from a PRIVATE list kept in KPC-Store (--sealed FILE, or
             the path in KPC_GOLD_SEALED), never from a hash with a salt in public code. No list = the gold steps stop (exit 4).
-            A park on no private list is TUNE, so every park of the old, publicly hashed gold set counts as TUNE.
+            A gold row's own 'half' decides first (KPC-Store marked every leaked row TUNE); a row with no half takes the list (N13).
 
   sample   --fact DIR --kind random|busiest|targeted|pin|gold [--by none|method|class] [--n 300] [--per-area 25] --seed S --out FILE
   packet   --sample FILE.. --keys DIR --cache DIR --parkinfo DIR --fact DIR [--truth DIR] --out DIR --label L
@@ -94,7 +94,8 @@ def load_sealed(path=None):
         raise NoSealedList(4)
     try:
         v = json.loads(pathlib.Path(path).read_text(encoding='utf-8'))
-        refs = v.get('parks') if isinstance(v, dict) else v
+        # N13: KPC-Store's sample answer key keeps the private draw under 'sealed_next'; a plain sealed list uses 'parks'
+        refs = (v.get('sealed_next') if 'sealed_next' in v else v.get('parks')) if isinstance(v, dict) else v
         if isinstance(refs, dict): refs = list(refs)
         if not isinstance(refs, list) or not refs or not all(isinstance(r, str) and r for r in refs): raise ValueError('no refs')
     except Exception as e:  # noqa: BLE001
@@ -102,6 +103,12 @@ def load_sealed(path=None):
         raise NoSealedList(4) from e
     _SEALED = frozenset(refs)
     return _SEALED
+
+
+def gold_half(gold_doc, ref):
+    """N13: a gold row's own 'half' decides first (Store marked every leaked row TUNE); a row with no half takes the private list."""
+    h = (((gold_doc or {}).get('parks') or {}).get(ref) or {}).get('half')
+    return h if h in ('TUNE', 'SEALED') else half_of(ref)
 
 
 def half_of(ref):
@@ -497,6 +504,9 @@ def score(key_paths, answer_paths, adjudicated=None):
 
 
 def write_score(rep, parks, ans, out, gold=None):
+    gdoc = {}
+    if gold and pathlib.Path(gold).is_file():   # N13: the rows' own halves, read before anything is hidden or listed
+        gdoc = json.loads(pathlib.Path(gold).read_text(encoding='utf-8'))
     out = pathlib.Path(out); out.mkdir(parents=True, exist_ok=True)
     L = ['GRADERS']
     for g, r in sorted(rep['graders'].items()):
@@ -510,7 +520,7 @@ def write_score(rep, parks, ans, out, gold=None):
     conf = [d for d in rep['disputes'] if d.get('kind') == 'conflict']
     L.append(f"DISPUTES for Fable: {len(conf)} conflict(s) (one says YES, one says no) on {len({d['ref'] for d in conf})} park(s); {len(rep['disputes']) - len(conf)} candidate(s) where one grader was unsure")
     (out / 'score.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
-    shown = dict(rep, parks={ref: (r if not (gold and half_of(ref) == 'SEALED' and not r['plant'] and r['graded'] != 'adjudicated') else {'area': r['area'], 'stratum': r['stratum'], 'sealed': True})
+    shown = dict(rep, parks={ref: (r if not (gold and gold_half(gdoc, ref) == 'SEALED' and not r['plant'] and r['graded'] != 'adjudicated') else {'area': r['area'], 'stratum': r['stratum'], 'sealed': True})
                              for ref, r in rep['parks'].items()})
     (out / 'score.json').write_text(json.dumps(shown, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     if rep['disputes']:
@@ -522,7 +532,7 @@ def write_score(rep, parks, ans, out, gold=None):
         rows, hidden = [], 0
         for ref, r in rep['parks'].items():
             if r['plant'] or r['outcome'].startswith('RIGHT') or r['outcome'] == 'PIN IS RIGHT': continue
-            if gold and half_of(ref) == 'SEALED' and r['graded'] != 'adjudicated': hidden += 1; continue      # the sealed half is never listed: it scores the next finished build first
+            if gold and gold_half(gdoc, ref) == 'SEALED' and r['graded'] != 'adjudicated': hidden += 1; continue      # the sealed half is never listed: it scores the next finished build first
             p = parks[ref]
             for Lr in r['letters'] or ['']:
                 c = p['cands'].get(Lr, {})
@@ -543,7 +553,7 @@ def write_score(rep, parks, ans, out, gold=None):
             need = [Lr for Lr, c in p['cands'].items() if c['joined'] or r['verdicts'][Lr] in ('YES', 'BIGGER')]
             if r['graded'] == 'single' and not all(any(x.lower().startswith('http') for x in srcs[Lr]) for Lr in need): continue
             g['parks'][ref] = {'area': r['area'], 'name': r['name'], 'graded': r['graded'], 'date': datetime.date.today().isoformat(),
-                               'half': 'TUNE' if (p['plant'] or r['graded'] == 'adjudicated') else (g['parks'].get(ref) or {}).get('half') or half_of(ref),
+                               'half': 'TUNE' if (p['plant'] or r['graded'] == 'adjudicated') else gold_half(g, ref),
                                'cands': [{'family': c['family'], 'name': c['name'], 'acres': c['acres'], 'recs': c.get('recs') or [], 'n_recs': c.get('n_ids') or len(c.get('recs') or []),
                                           'verdict': r['verdicts'][Lr], 'sources': srcs[Lr][:2]} for Lr, c in p['cands'].items()]}
             added += 1
@@ -554,7 +564,6 @@ def write_score(rep, parks, ans, out, gold=None):
 
 # ---------------- gold: score a finished build ----------------
 def gold_score(gold_path, keys_dir, cache_dir, pinfo_dir, show_sealed=False):
-    half_of('')   # M7: stop before reading anything when the private sealed list is not loaded
     gp = pathlib.Path(gold_path); g = json.loads(gp.read_text(encoding='utf-8'))
     per_area = {}
     for ref, p in g['parks'].items(): per_area.setdefault(p['area'], []).append(ref)
@@ -582,7 +591,7 @@ def gold_score(gold_path, keys_dir, cache_dir, pinfo_dir, show_sealed=False):
                 elif c['verdict'] == 'YES' and share < 0.8: miss.append(c['name'])
             new = [k[1] for k in now_groups if k not in {(c['family'], KR.nf(c['name'])) for c in p['cands']}]
             o = 'WRONG LAND' if wrong else 'TOO BIG' if big else 'MISSING PIECES' if miss else 'NEW RECORD (ungraded)' if new else 'RIGHT'
-            half = 'SEALED' if p.get('half') != 'TUNE' and half_of(ref) == 'SEALED' else 'TUNE'   # M7: old hashed halves count as TUNE
+            half = gold_half(g, ref)   # N13: the row's own half first, else the private list (never a public hash)
             res[half].append((ref, area, p['name'], o, (wrong + big + miss + new)[:3]))
     lines = []
     for half in ('TUNE', 'SEALED'):
