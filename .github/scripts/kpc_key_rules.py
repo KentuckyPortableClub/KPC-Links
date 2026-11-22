@@ -50,6 +50,12 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           back and it goes to check (a person may say it is the same land under two numbers). No single
                           winner = left as it is (the tripwire list shows it). A park given its own parts of the record (rule
                           B12 'parts') and hand joins are never moved. OFF until the owner says ON (count first, one state).
+  KPC_ANSWER_HOLDERS   0  (outside review finding F2, 2026-11-19; decided 22 Nov 2026): a record a person joined to one park
+                          (reviewed / chat / hand / answer rows) and joined by name to another. The D9 full-name winner test
+                          decides (answer_holder_moves). Ties hold: no unique full-name winner, a disagree, or two people's
+                          parks, and nothing moves. Short forms (WMA, SP) do not decide; they are not a full name. A name-only
+                          join never takes the record. A person's row is never moved. Winner = the person's park: the other
+                          parks give their name rows back to check. OFF.
   KPC_HOLD_ON_PASS_ERROR 0  (outside review finding F10, 2026-11-19; reviewer's go 19 Nov 2026) an error
                           inside the US key's one-record-two-parks pass (the kind pass, D9, the contest) HOLDS the state: run() fails
                           for it like any other error of a state, no key file is written and its saved copy on main is kept
@@ -174,7 +180,7 @@ import json, os, re, unicodedata
 
 DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': '0', 'KPC_REFOUND_NEAR': '0',
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
-            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
+            'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_ANSWER_HOLDERS': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
             'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0', 'KPC_NO_FOLLOWS_FP': '0', 'KPC_SAVED_ANSWERS_SAY': '0',
             'KPC_MATCH_CHECKS': '0',
@@ -795,6 +801,28 @@ def d9_winner(record_name, parks):
     if not rn: return None
     w = [r for r, n in parks.items() if _full(n) == rn]
     return w[0] if len(w) == 1 else None
+
+
+def answer_holder_moves(record_name, holders):
+    """KPC_ANSWER_HOLDERS (finding F2; decided 22 Nov 2026): one record held by a person's row on one park and by name on another.
+    holders = {park ref: (park name, True when that park holds it by a person's row)}. The D9 full-name winner test decides
+    -> (case, winner, refs). Ties hold, and a short form is not a full name, so those cases do not move. A name-only join
+    never takes the record. A person's row is never in refs as one to move.
+      'moved'      the winner holds it by a person's row: refs = the other parks, which give their (name) rows back to check
+      'disagree'   the winner holds it by name only, so the saved answer and the record's own name disagree: refs = the winner
+                   and the person's park; nothing moves
+      'no-winner'  no park, or more than one, carries the record's own full name: nothing moves
+      'people'     two or more parks hold it by a person's row: nothing moves
+      'skip'       not a record with a person's row AND another row: nothing to do
+    """
+    hs = holders or {}
+    people = [r for r, v in hs.items() if v[1]]
+    if not people or len(people) == len(hs): return 'skip', None, []
+    if len(people) > 1: return 'people', None, []
+    w = d9_winner(record_name, {r: v[0] for r, v in hs.items()})
+    if not w: return 'no-winner', None, []
+    if w == people[0]: return 'moved', w, [r for r in hs if r != w]
+    return 'disagree', w, [w, people[0]]
 
 
 def lake_inside_land(water_bb, water_acres, land_bbs, land_acres, pad=0.0):
