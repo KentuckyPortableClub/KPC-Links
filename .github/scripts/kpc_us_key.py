@@ -180,9 +180,14 @@ DES = {'SP': 'sp', 'SREC': 'sp', 'SHCA': 'hist', 'NWR': 'nwr', 'NF': 'nf', 'NG':
 # whose last type word is lake/pond/ponds/reservoir/beach when the PARK does not already carry that
 # water kind (lake/pond/reservoir are one kind; 'Taylorsville Lake State Park' still matches
 # 'Taylorsville Lake'), or (2) one name is a park (state park / SP / SRA / recreation area) and the
-# other is a wildlife area (WMA / wildlife area / game land / refuge / NWR) or a state forest.
+# other is a wildlife area (WMA / wildlife area / game land / refuge / NWR) or a state forest
+# (only State Forest, National Forest, or Forest Preserve). A join is kept when the record's name
+# contains the park's full name, when the park's name contains the record's whole name and the only
+# extra is State Park / SP / Park, or when the record's last type word sits only inside brackets.
 # Reserve, preserve, CA/conservation area, complex, memorial and area are not different kinds.
 WATER_LAST = {'pond': 'water', 'ponds': 'water', 'lake': 'water', 'reservoir': 'water', 'beach': 'beach'}
+# leftover words that still mean the same park when the park name already contains the record name
+_F3_PARK_ONLY = {('state', 'park'), ('state', 'parks'), ('sp',), ('park',), ('parks',)}
 
 
 def _name_words(s):
@@ -190,9 +195,14 @@ def _name_words(s):
     return re.findall(r'[a-z0-9]+', str(s or '').lower())
 
 
+def _strip_brackets(s):
+    """Drop parenthetical text so it is not used as a last type word ('Holland State Park (Ottawa Beach)')."""
+    return re.sub(r'\([^()]*\)|\[[^\[\]]*\]', ' ', str(s or ''))
+
+
 def last_water_kind(s):
-    """The water/beach kind of the last type word, or ''."""
-    w = _name_words(s)
+    """The water/beach kind of the last type word, or ''. Text in brackets is ignored."""
+    w = _name_words(_strip_brackets(s))
     return WATER_LAST.get(w[-1], '') if w else ''
 
 
@@ -204,7 +214,8 @@ def carries_water_kind(s, kind):
 
 
 def land_roles(s):
-    """{'park', 'wildlife', 'forest'} roles a name carries. Reserve / preserve / CA / complex / memorial / area are not roles."""
+    """{'park', 'wildlife', 'forest'} roles a name carries. Reserve / preserve / CA / complex / memorial / area are not roles.
+    Only 'State Forest', 'National Forest' and 'Forest Preserve' count as a forest record; a bare 'Forest' does not."""
     raw, w, roles = str(s or ''), _name_words(s), set()
     if re.search(r'\bwildlife management areas?\b|\bwildlife areas?\b|\bWMAs?\b|\bgame lands?\b|\bgame areas?\b|'
                  r'\b(?:national )?wildlife refuges?\b|\bNWRs?\b', raw, re.I) or (w and w[-1] in ('refuge', 'nwr', 'wma')):
@@ -212,7 +223,7 @@ def land_roles(s):
     if re.search(r'\bstate parks?\b|\b(?:state )?marine parks?\b|\bstate recreation areas?\b|'
                  r'\brecreation(?:al)? areas?\b|\b(?:SRA|SP)\b', raw, re.I) or (w and w[-1] in ('park', 'parks')):
         roles.add('park')
-    if re.search(r'\b(?:state|national) forests?\b', raw, re.I) or (w and w[-1] in ('forest', 'forests') and 'park' not in roles):
+    if re.search(r'\b(?:state|national) forests?\b|\bforest preserves?\b', raw, re.I):
         roles.add('forest')
     return roles
 
@@ -226,7 +237,8 @@ def f3_water_apart(park, rec):
 def f3_land_apart(a, b):
     """True when one name is a park and the other is a wildlife area or a state forest."""
     ra, rb = land_roles(a), land_roles(b)
-    # Wildlife contrast still applies when one name also says park ('X State Park WMA').
+    # Wildlife contrast still applies when one name also says park ('X State Park WMA'), unless
+    # f3_same_place already kept the pair (the record contains the park's full name).
     # Forest contrast does not, when both names already claim the park: 'State Forest State Park'
     # is one park (the forest words are part of its name), and 'X State Park and Y State Forest'
     # still names the park.
@@ -237,9 +249,45 @@ def f3_land_apart(a, b):
     return park_vs_wildlife or park_vs_forest
 
 
+def _f3_words(s):
+    """Lowercase word list, brackets dropped, punctuation treated as spaces."""
+    return _name_words(_strip_brackets(s))
+
+
+def _words_contain(hay, needle):
+    n = len(needle)
+    if not n or n > len(hay):
+        return False
+    return any(hay[i:i + n] == needle for i in range(len(hay) - n + 1))
+
+
+def _words_minus_once(hay, needle):
+    n = len(needle)
+    for i in range(len(hay) - n + 1):
+        if hay[i:i + n] == needle:
+            return tuple(hay[:i] + hay[i + n:])
+    return None
+
+
+def f3_same_place(park, rec):
+    """True when the two names are plainly the same park, so F3 must not drop the join.
+    The record contains the park's full name ('Fall Creek Falls State Park & WMA'), or the park
+    contains the record's whole name and the only extra is State Park / SP / Park
+    ('Ginkgo Petrified Forest State Park' / 'Ginkgo Petrified Forest')."""
+    pw, rw = _f3_words(park), _f3_words(rec)
+    if not pw or not rw:
+        return False
+    if _words_contain(rw, pw):
+        return True
+    extra = _words_minus_once(pw, rw)
+    return extra in _F3_PARK_ONLY
+
+
 def f3_apart(park, rec):
     """22 Nov F3: these two names must not name-join (park first, record second for the water half)."""
     if str(park or '').strip().lower() == str(rec or '').strip().lower():
+        return False
+    if f3_same_place(park, rec):
         return False
     return f3_water_apart(park, rec) or f3_land_apart(park, rec)
 

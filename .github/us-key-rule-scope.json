@@ -688,6 +688,14 @@
    "why": "Review F3, owner-approved form (22 Nov 2026). A name join is dropped only when (1) the record's last type word is a water body or beach (lake/pond/ponds/reservoir/beach) and the park does not already carry that water kind (lake/pond/reservoir are one kind, so a park name that already carries the word still matches), or (2) one name is a park (state park / SP / SRA / recreation area) and the other is a wildlife area (WMA / wildlife area / game land / refuge / NWR) or a state forest. Reserve, preserve, CA/conservation area, complex, memorial and area are not different kinds. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-f3-same-place",
+   "when": "2026-11-22",
+   "from": "e1842a12b532",
+   "why": "Review F3, same-place keeps (22 Nov 2026). A name join is still dropped only for a water/beach record the park does not already carry, or a park versus a wildlife area or a state forest, but the join is kept when the record's name contains the park's full name, when the park's name contains the record's whole name and the only extra is State Park / SP / Park, or when the record's last type word sits only inside brackets. Only State Forest, National Forest and Forest Preserve count as a state-forest record; a bare Forest that is part of the park's own name does not. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
   }
  ]
 }

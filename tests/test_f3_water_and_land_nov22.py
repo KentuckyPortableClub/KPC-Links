@@ -87,5 +87,34 @@ check(joined('Maple Ridge State CA', 'Maple Ridge Reserve'),
 check(joined('Silver Creek WMA', 'Silver Creek Wildlife Area'),
       'F3 a WMA and a wildlife area of the same words still match')
 
+# --- same-park keeps (22 Nov, after the first F3 recount) ---
+check(joined('Cedar Hollow State Park', 'Cedar Hollow State Park & Wildlife Management Area'),
+      'F3 a record that contains the park\'s full name still matches (park plus a wildlife-area tag)')
+check(joined('Cedar Hollow State Park', 'Cedar Hollow State Park (Ottawa Beach)'),
+      'F3 a record that contains the park\'s full name still matches, even with a beach in brackets')
+check(joined('Willow Bend Recreation Area', 'Willow Bend (Beach)'),
+      'F3 text in brackets is ignored for the record\'s last type word, so a trailing (Beach) still matches')
+check(us.last_water_kind('Willow Bend (Beach)') == '' and us.last_water_kind('Cedar Hollow State Park (Ottawa Beach)') == '',
+      'F3 fail-without: last_water_kind ignores text in brackets')
+check(joined('Petrified Ridge State Park', 'Petrified Ridge Forest'),
+      'F3 a bare Forest that is part of the name is not a state-forest record, so they still match')
+check('forest' not in us.land_roles('Petrified Ridge Forest') and 'forest' in us.land_roles('Silver Creek State Forest')
+      and 'forest' in us.land_roles('Silver Creek National Forest') and 'forest' in us.land_roles('Silver Creek Forest Preserve'),
+      'F3 fail-without: only State Forest, National Forest and Forest Preserve count as a forest record')
+check(joined('Petrified Ridge Forest State Park', 'Petrified Ridge Forest'),
+      'F3 the park\'s name contains the record\'s whole name and the only extra is State Park, so they still match')
+check(joined('Cedar Hollow Forest Preserve State Park', 'Cedar Hollow Forest Preserve'),
+      'F3 the park\'s name contains the record\'s whole name and the only extra is State Park, even when the record is a forest preserve')
+check(us.f3_same_place('Cedar Hollow State Park', 'Cedar Hollow State Park & Wildlife Management Area')
+      and us.f3_same_place('Petrified Ridge Forest State Park', 'Petrified Ridge Forest')
+      and not us.f3_same_place('Silver Creek State Park', 'Silver Creek WMA'),
+      'F3 fail-without: f3_same_place keeps a record that contains the park, or a park that adds only State Park')
+check('if f3_same_place(park, rec):' in src,
+      'F3 fail-without: f3_apart keeps a pair that f3_same_place flags')
+check(not joined('Silver Creek State Park', 'Silver Creek Forest Preserve'),
+      'F3 a state park and a forest preserve of the same words stay apart')
+check(not joined('Silver Creek State Park', 'Silver Creek National Forest'),
+      'F3 a state park and a national forest of the same words stay apart')
+
 print(f'{len(FAILS)} failed' if FAILS else 'ALL PASS')
 sys.exit(1 if FAILS else 0)

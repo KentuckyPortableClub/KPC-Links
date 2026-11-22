@@ -193,6 +193,54 @@
    "b": "Silver Creek Beach",
    "same": false,
    "why": "22 Nov F3: the record is a beach and the park does not already carry that water word, so they stay apart."
+  },
+  {
+   "a": "Cedar Hollow State Park",
+   "b": "Cedar Hollow State Park & Wildlife Management Area",
+   "same": true,
+   "why": "22 Nov F3: the record's name contains the park's full name, so they still match (the same park, plus a wildlife-area tag)."
+  },
+  {
+   "a": "Cedar Hollow State Park",
+   "b": "Cedar Hollow State Park (Ottawa Beach)",
+   "same": true,
+   "why": "22 Nov F3: text in brackets is ignored for the record's last type word, and the record still contains the park's full name, so they match."
+  },
+  {
+   "a": "Willow Bend Recreation Area",
+   "b": "Willow Bend (Beach)",
+   "same": true,
+   "why": "22 Nov F3: text in brackets is ignored for the record's last type word, so a trailing (Beach) does not make this a beach record."
+  },
+  {
+   "a": "Petrified Ridge State Park",
+   "b": "Petrified Ridge Forest",
+   "same": true,
+   "why": "22 Nov F3: a bare Forest that is part of the name is not a state-forest record, so they still match."
+  },
+  {
+   "a": "Petrified Ridge Forest State Park",
+   "b": "Petrified Ridge Forest",
+   "same": true,
+   "why": "22 Nov F3: the park's name contains the record's whole name and the only extra is State Park, so they still match."
+  },
+  {
+   "a": "Cedar Hollow Forest Preserve State Park",
+   "b": "Cedar Hollow Forest Preserve",
+   "same": true,
+   "why": "22 Nov F3: the park's name contains the record's whole name and the only extra is State Park, so they still match even though the record is a forest preserve."
+  },
+  {
+   "a": "Silver Creek State Park",
+   "b": "Silver Creek Forest Preserve",
+   "same": false,
+   "why": "22 Nov F3: a state park and a forest preserve of the same words are different places, so they stay apart."
+  },
+  {
+   "a": "Silver Creek State Park",
+   "b": "Silver Creek National Forest",
+   "same": false,
+   "why": "22 Nov F3: a state park and a national forest of the same words are different places, so they stay apart."
   }
  ],
  "alerts": [
@@ -2597,6 +2645,27 @@
    "old": "same",
    "new": "UNCLEAR likely yes",
    "why": "22 Nov F3: join_how keeps a conservation area and a reserve; the new matcher does not MATCH by name alone (no layer kind)."
+  },
+  {
+   "a": "Willow Bend Recreation Area",
+   "b": "Willow Bend (Beach)",
+   "old": "same",
+   "new": "UNCLEAR likely yes",
+   "why": "22 Nov F3: join_how keeps a record whose last type word is only in brackets; the new matcher does not MATCH by name alone (no layer kind)."
+  },
+  {
+   "a": "Petrified Ridge State Park",
+   "b": "Petrified Ridge Forest",
+   "old": "same",
+   "new": "UNCLEAR likely yes",
+   "why": "22 Nov F3: join_how keeps a bare Forest that is part of the name; the new matcher does not MATCH by name alone (no layer kind)."
+  },
+  {
+   "a": "Petrified Ridge Forest State Park",
+   "b": "Petrified Ridge Forest",
+   "old": "same",
+   "new": "UNCLEAR likely yes",
+   "why": "22 Nov F3: join_how keeps a park that adds only State Park to the record name; the new matcher does not MATCH by name alone (no layer kind)."
   }
  ]
 }
