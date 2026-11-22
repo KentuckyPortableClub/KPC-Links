@@ -607,6 +607,14 @@
    "from": "3ff834ba1e1a",
    "why": "A hand-copied official size (park facts witness hand_copy) counts in the size check only when it names its source page (source_url is a web address). A hand copy with no page never casts a size vote. It can change any state's size votes, so every state is rebuilt once.",
    "scope": "all"
+  },
+  {
+   "id": "2026-11-21-confirm-stack",
+   "when": "2026-11-21",
+   "from": "a257a3276829",
+   "why": "Confirm stack rebased onto current main: match checks so a name alone never draws an outline (#327 layer table, #328 confirm by the park's own page address, jobs A/B/C). A same-kind id from the park's own page can confirm; other name-joins keep the outline only if they pass agency, pin 3c, another park's name, the national-layer rule, and an independently witnessed size. Job B: saved records can keep the agency id fields named in keep-record-fields.json, and never a WDPA field. Job A: tie by the web address on the record and by the agency's own park list. Job C: a hand-copied size counts only when it names its source. It reads every state's parks, so every state is rebuilt once.",
+   "scope": "all",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-21"
   }
  ]
 }

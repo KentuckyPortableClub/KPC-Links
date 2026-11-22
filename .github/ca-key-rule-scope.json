@@ -78,6 +78,14 @@
    "from": "ba480fa34fb6",
    "why": "Handoff 8 part 2 (Canada fixes 5-6: a park marked none takes no name join; a saved hand-join id keeps its land by CPCAD ZONE_ID). Both switches OFF: no result changes.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-21-park-facts-read-in-hash",
+   "when": "2026-11-21",
+   "from": "dfef94b3dfd3",
+   "why": "kpc_park_facts_read.py is in the Canada RULE_FILES (it was already a US rule file; Canada key runs already called it). A later edit to it moves the Canada hash. No join result changes; no province is rebuilt for this alone.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-21"
   }
  ]
 }
