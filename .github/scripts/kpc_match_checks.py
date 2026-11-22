@@ -302,6 +302,7 @@ def second_names(fact, park_name, heading_count=None, names_in_state=None):
     more parks' pages of that host), never another POTA park's name in the state, never POTA's own name."""
     if not own_page(fact): return []
     pg = (fact or {}).get('page') or {}
+    if pg.get('kind') != 'html': return []   # PN-G4: an html page's heading only, never a PDF's title or first line
     raw = str(pg.get('name_on_page') or '').strip()
     if not raw or '\ufffd' in raw: return []
     if heading_count and heading_count.get((pg.get('host'), full(raw)), 0) >= SITE_HEADING_PARKS: return []
@@ -365,6 +366,12 @@ def km_to_record(lat, lon, rec):
             d = math.hypot(ax + t_ * dx, ay + t_ * dy)
             best = d if best is None or d < best else best
     return best
+
+
+def on_edge(pin, rec):
+    """PN-G2: True when the pin lies ON the record's edge (within 1 mm): on the line is not strictly inside."""
+    d = km_to_record(pin[0], pin[1], rec) if pin and len(pin) == 2 else None
+    return d is not None and d < 1e-6
 
 
 def claim_fit(park, rec, table=None):
@@ -672,7 +679,7 @@ def other_park_name(rec_name, own_name, names_in_state):
     hit = _LOOSE_NAMES.get(key)
     if hit is None or hit[0] is not names_in_state or hit[1] != len(names_in_state):
         hit = (names_in_state, len(names_in_state), {loose(n) for n in names_in_state})
-        _LOOSE_NAMES[key] = hit
+        _LOOSE_NAMES.clear(); _LOOSE_NAMES[key] = hit   # keep only the newest set (pass_state builds a new one per park)
     return loose(r) in hit[2]
 
 
@@ -873,9 +880,9 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         for n2 in second_names(f, nm, heading_count, all_names - {full(nm)}):
             pre = [i for i in by_name.get(n2, []) if i not in have and not is_no(ref, i, recs[i])
                    and agency_check(f, recs[i], st, layer_table) != 'differs']
-            cand = [i for i in pre if holds_fn(ref, i) is True]
+            pin_ = (f or {}).get('pin') or []
+            cand = [i for i in pre if holds_fn(ref, i) is True and not on_edge(pin_, recs[i])]   # PN-G2: strictly inside
             if not cand and len(pre) == 1:   # report only: the one record of that name, missed only because the pin is outside it
-                pin_ = (f or {}).get('pin') or []
                 d = km_to_record(pin_[0], pin_[1], recs[pre[0]]) if len(pin_) == 2 else None
                 for w, k_ in NEAR_MISS_KM:
                     if d is not None and d <= k_: out['second_name_near'][w] += 1

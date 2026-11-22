@@ -30,7 +30,7 @@ TABLE = {'sgzza': {'agency': 'state parks', 'kind': 'park'}, 'sgzzw': {'agency':
 
 
 def page(**kw):
-    return dict({'own_page': 'own', 'unofficial': False, 'host': 'parks.zz.example.gov', 'name_on_page': '', 'sizes': [],
+    return dict({'kind': 'html', 'own_page': 'own', 'unofficial': False, 'host': 'parks.zz.example.gov', 'name_on_page': '', 'sizes': [],
                  'coords': [], 'parts': [], 'inside_of': []}, **kw)
 
 
@@ -89,6 +89,14 @@ p = {'US-9002': park('Invented Hollow State Park')}
 run(p, {'sgzzn7': rec('sgzzn7', 'Hollow Creek Natural Area')}, {'US-9002': fact('Invented Hollow State Park',
     pg=page(own_page='shared', name_on_page='Hollow Creek Natural Area'))})
 check('P6: no second name from a page that is not the park\'s own', not p['US-9002']['m'])
+p = {'US-9002': park('Invented Hollow State Park')}
+run(p, {'sgzzn7': rec('sgzzn7', 'Hollow Creek Natural Area')}, {'US-9002': fact('Invented Hollow State Park', pg=page(kind='pdf', name_on_page='Hollow Creek Natural Area'))})
+check('PN-G4: a PDF\'s title or first line is never a second name', not p['US-9002']['m'])
+p = {'US-9002': park('Invented Hollow State Park')}
+f_edge = fact('Invented Hollow State Park', pg=page(name_on_page='Hollow Creek Natural Area')); f_edge['pin'] = [40.05, -80.0]
+out = run(p, {'sgzzn7': rec('sgzzn7', 'Hollow Creek Natural Area')}, {'US-9002': f_edge}, holds=True)
+check('PN-G2: a pin ON the record\'s edge is not strictly inside (not joined; counted as a near miss)',
+      not p['US-9002']['m'] and out['second_name_near']['within 100 ft'] == 1)
 heads = {f'US-91{i:02d}': fact(f'Park Number {i} State Park', pg=page(name_on_page='Division of State Parks and Natural Areas')) for i in range(4)}
 parks_h = {r: park(f['name']) for r, f in heads.items()}
 run(parks_h, {'sgzzn9': rec('sgzzn9', 'Division of State Parks and Natural Areas')}, heads)
@@ -96,16 +104,17 @@ check('P2: a heading the site puts on 3+ parks\' pages is never a name', not any
 both = {'US-9003': fact('Invented Hollow State Park', pg=page(name_on_page='Other Pond State Park')), 'US-9004': fact('Other Pond State Park')}
 pb = {'US-9003': park('Invented Hollow State Park'), 'US-9004': park('Other Pond State Park')}
 run(pb, {'sgzza4': rec('sgzza4', 'Other Pond State Park')}, both)
-check('P2: a page naming ANOTHER POTA park of the state gives no second name', not pb['US-9003']['m'])
+check('P2: a page naming ANOTHER POTA park of the state gives no second name',
+      not pb['US-9003']['m'] and not any(str(q[0]) == 'sgzza4' for q in pb['US-9003']['c']))
 
 # ---- P4 tracts
 f4 = fact('Invented River Wildlife Area', 'Wildlife Area', pg=page(parts=['North Unit', 'South Unit']))
 p = {'US-9005': park('Invented River Wildlife Area', [['sgzzw1', 'Invented River Wildlife Area', 900, 'name']], t='Wildlife Area')}
 far = rec('sgzzw4', 'Invented River North Unit', _bb=[-70.0, 30.0, -69.9, 30.1])
 out = run(p, {'sgzzw1': rec('sgzzw1', 'Invented River Wildlife Area', 900), 'sgzzw2': rec('sgzzw2', 'Invented River South Unit', 300),
-              'sgzzw3': rec('sgzzn3', 'Invented River North Unit', 200), 'sgzzw4': far}, {'US-9005': f4})
+              'sgzzn3': rec('sgzzn3', 'Invented River North Unit', 200), 'sgzzw4': far}, {'US-9005': f4})
 got = sorted(str(q[0]) for q in p['US-9005']['m'])
-check('P4: a tract the page names joins on the park\'s own layer near the pin', 'sgzzw2' in got and out['tract'] >= 1)
+check('P4: a tract the page names joins on the park\'s own layer near the pin', 'sgzzw2' in got and out['tract'] == 1)
 check('P4: not a tract record on another layer, nor one far from the pin', 'sgzzn3' not in got and 'sgzzw4' not in got)
 
 # ---- P5 parent unit
@@ -116,12 +125,18 @@ check('P5: the bigger unit the page says the park lies inside never stays as its
       not p['US-9006']['m'] and 'bigger unit' in p['US-9006']['c'][0][3] and out['parent'] == 1)
 
 # ---- P7 one record, two parks
-pa = {'US-9007': park('Chalky Bluff State Natural Area', [['sgzzn5', 'Chalky Bluff Natural Area', 400, 'name']], t='State Natural Area'),
-      'US-9008': park('Chalky Bluff Battlefield Park', [['sgzzn5', 'Chalky Bluff Natural Area', 400, 'name']], t='Recreation Park')}
-out = run(pa, {'sgzzn5': rec('sgzzn5', 'Chalky Bluff Natural Area', 400)}, {'US-9007': fact('Chalky Bluff State Natural Area', 'State Natural Area'),
-                                                                          'US-9008': fact('Chalky Bluff Battlefield Park', 'Recreation Park')})
+pa = {'US-9007': park('Willow Knob State Natural Area', [['sgzzn5', 'Willow Knob Natural Area', 400, 'name']], t='State Natural Area'),
+      'US-9008': park('Willow Knob Battlefield Park', [['sgzzn5', 'Willow Knob Natural Area', 400, 'name']], t='Recreation Park')}
+out = run(pa, {'sgzzn5': rec('sgzzn5', 'Willow Knob Natural Area', 400)}, {'US-9007': fact('Willow Knob State Natural Area', 'State Natural Area'),
+                                                                          'US-9008': fact('Willow Knob Battlefield Park', 'Recreation Park')})
 check('P7: the record stays with the park whose name and kind fit it', [q[0] for q in pa['US-9007']['m']] == ['sgzzn5'])
 check('P7: the other park goes to check', not pa['US-9008']['m'] and 'another park' in pa['US-9008']['c'][0][3])
+pk = {'US-9011': park('Reed Flats Wildlife Area', [['sgzzw7', 'Reed Flats', 600, 'name']], t='Wildlife Area'),
+      'US-9012': park('Reed Flats State Park', [['sgzzw7', 'Reed Flats', 600, 'name']], t='State Park')}
+out = run(pk, {'sgzzw7': rec('sgzzw7', 'Reed Flats', 600)}, {'US-9011': fact('Reed Flats Wildlife Area', 'Wildlife Area'),
+                                                            'US-9012': fact('Reed Flats State Park', 'State Park')})
+check('P7 alone (no other-park name in play): the record stays with the park whose kind fits; the other goes to check',
+      [q[0] for q in pk['US-9011']['m']] == ['sgzzw7'] and not pk['US-9012']['m'] and out['shared_record'] == 1)
 pe = {'US-9009': park('Twin Marsh Wildlife Area', [['sgzzw6', 'Twin Marsh', 500, 'name']], t='Wildlife Area'),
       'US-9010': park('Twin Marsh Wildlife Area', [['sgzzw6', 'Twin Marsh', 500, 'name']], t='Wildlife Area')}
 run(pe, {'sgzzw6': rec('sgzzw6', 'Twin Marsh', 500)}, {'US-9009': fact('Twin Marsh Wildlife Area', 'Wildlife Area'), 'US-9010': fact('Twin Marsh Wildlife Area', 'Wildlife Area')})
