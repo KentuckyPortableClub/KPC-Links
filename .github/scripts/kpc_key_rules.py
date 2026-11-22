@@ -261,7 +261,9 @@ def setting(name, env=None, area=None, path=None):
     path = path or SWITCH_FILE
     areas = switch_file(path).get(name)
     if _area_hit((_HOLD.get(path) or {}).get(name), area): return 'hold'
-    if _area_hit(areas, area): return '1'
+    # 22 Nov 2026 (review F4): a switch the file lists is ON only for its areas and OFF everywhere else, even when its code default
+    # is on, so an empty list really turns a default-on rule off. A switch the file does not list keeps its code default.
+    if areas is not None: return '1' if _area_hit(areas, area) else '0'
     return DEFAULTS.get(name, '0')
 
 
