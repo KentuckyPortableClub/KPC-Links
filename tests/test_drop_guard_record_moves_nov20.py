@@ -86,5 +86,37 @@ with tempfile.TemporaryDirectory() as t:
     check('::notice title=Drop guard report::between the released key and today\'s key: 1 park(s) had their records swapped, 0 gained land, 0 quietly shrank' in out,
           'the report line counts the swap between the released key and today')
 
+
+# 22 Nov F7: under limit 0, a swap is held like a lost park. Default limits (3% / 1) still do not hold a swap
+# (the block above already checks that). Invented parks only.
+with tempfile.TemporaryDirectory() as t:
+    td = pathlib.Path(t)
+    k = td / 'data' / 'us-key'; k.mkdir(parents=True)
+    before = {'st': 'ZZ', 'parks': {'US-9002': park([1, 2]), 'US-9008': park([9])}}
+    (k / 'US-ZZ.json').write_text(json.dumps(before))
+    subprocess.run(['git', 'init', '-q'], cwd=td, check=True)
+    subprocess.run(['git', '-c', 'user.email=t@t', '-c', 'user.name=t', 'add', '-A'], cwd=td, check=True)
+    subprocess.run(['git', '-c', 'user.email=t@t', '-c', 'user.name=t', 'commit', '-q', '-m', 'main'], cwd=td, check=True)
+    now = {'st': 'ZZ', 'parks': {'US-9002': park([2, 3]), 'US-9008': park([9])}}
+    (k / 'US-ZZ.json').write_text(json.dumps(now))
+    env = dict(os.environ)
+    env['KPC_DROP_PCT'] = '0'
+    env['KPC_DROP_MIN'] = '0'
+    env.pop('KPC_DROP_OK', None)
+    r = subprocess.run([sys.executable, str(ROOT / '.github' / 'scripts' / 'kpc_key_drop_guard.py'),
+                        '--repo', str(td), '--ref', 'HEAD', '--approved', str(td / 'none.json')],
+                       cwd=td, capture_output=True, text=True, env=env)
+    out = r.stdout + r.stderr
+    check(r.returncode != 0, f'F7 limit 0: a swap holds the state (rc {r.returncode})')
+    check('the state is held' in out and 'US-9002' in out and 'had their records swapped' in out,
+          'F7 limit 0: the hold names the swapped park and says the records were swapped')
+    env['KPC_DROP_OK'] = 'ZZ'
+    r2 = subprocess.run([sys.executable, str(ROOT / '.github' / 'scripts' / 'kpc_key_drop_guard.py'),
+                         '--repo', str(td), '--ref', 'HEAD', '--approved', str(td / 'none.json')],
+                        cwd=td, capture_output=True, text=True, env=env)
+    out2 = r2.stdout + r2.stderr
+    check(r2.returncode == 0 and 'let through by KPC_DROP_OK' in out2 and 'The state is held' not in out2,
+          'F7 limit 0: KPC_DROP_OK still lets a swap through for this run')
+
 print(f'{len(FAILS)} failed' if FAILS else 'ALL PASS')
 sys.exit(1 if FAILS else 0)

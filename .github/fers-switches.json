@@ -35,6 +35,20 @@
       "date": "2026-11-19",
       "ruled_by": "KPC owner",
       "words": "Say we are missing this boundary possible 2fer check for offical missing boundary or something like thay"
+    },
+    "KPC_FERS_FED_NEIGHBOUR": {
+      "value": "1",
+      "rule": "F16-A",
+      "date": "2026-11-22",
+      "ruled_by": "KPC owner",
+      "words": "Shared-boundary slivers 25 yards or wider next to federal land are counted only when they are a real gap, not a drawing error. The old blanket forest hold stays gone."
+    },
+    "KPC_FERS_SLIVER_ASPECT": {
+      "value": "8",
+      "rule": "F16-A",
+      "date": "2026-11-22",
+      "ruled_by": "KPC owner",
+      "words": "A sliver in the 25-to-50-yard very-tight band is a drawing error when its length divided by its width is at least 8 (a thin offset along the shared edge). A more compact overlap in that band, a sliver whose length is not known, or any overlap 50 yards or wider, is counted. Length is len_m when present, else acres * 4046.86 / wide_m."
     }
   }
 }

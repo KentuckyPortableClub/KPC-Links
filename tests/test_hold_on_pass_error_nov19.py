@@ -14,8 +14,11 @@ def check(ok, what): RESULTS.append((bool(ok), what)); print(('PASS' if ok else 
 
 NAME = 'KPC_HOLD_ON_PASS_ERROR'
 sw = json.load(open(ROOT / '.github/key-switches.json', encoding='utf-8'))['switches']
-check(KR.DEFAULTS.get(NAME) == '0' and sw.get(NAME) == {'on': []}, 'the switch is OFF by default and listed in key-switches.json with no area')
-check(not KR.on(NAME, env={}, area='OH') and not KR.on(NAME, env={}, area='NH'), 'the switch is OFF unless set (committed switch file, no environment)')
+on = list((sw.get(NAME) or {}).get('on') or [])
+check(KR.DEFAULTS.get(NAME) == '0' and len(on) == 50 and 'KY' not in on and 'DC' in on and 'OH' in on,
+      'the switch defaults off in code and is on in all 50 areas (including DC, not KY) in the committed switch file')
+check(KR.on(NAME, env={}, area='OH') and KR.on(NAME, env={}, area='NH') and not KR.on(NAME, env={}, area='KY'),
+      'the committed switch file turns it on in OH and NH, and leaves KY off')
 check(KR.on(NAME, env={NAME: '1'}, area='OH'), 'an environment variable of the same name turns it on (offline proofs)')
 
 # the helper alone

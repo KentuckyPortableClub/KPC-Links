@@ -127,6 +127,24 @@
    "same": false,
    "switch": "KPC_NO_OFFICE_JOIN",
    "why": "Nov 2: an office with no real place name never joins by name."
+  },
+  {
+   "a": "Silver Creek State Park",
+   "b": "Silver Creek Lake",
+   "same": false,
+   "why": "22 Nov F3: a last type word that names a different kind of place is kept, so a park and a lake of the same words stay apart."
+  },
+  {
+   "a": "Silver Creek State Park",
+   "b": "Silver Creek State Forest",
+   "same": false,
+   "why": "22 Nov F3: park and forest are different type words, so the last word is kept and they stay apart."
+  },
+  {
+   "a": "Silver Creek Wildlife Management Area",
+   "b": "Silver Creek Lake",
+   "same": false,
+   "why": "22 Nov F3: a wildlife area and a lake of the same words stay apart when the last type words differ."
   }
  ],
  "alerts": [

@@ -212,7 +212,7 @@ def main():
     strict = pct == 0 and mn == 0   # store mode 'never worse': judged park by park (a gain elsewhere never offsets a loss)
     apath = a.approved or os.environ.get('KPC_DROP_APPROVED') or os.path.join(a.repo, APPROVED_FILE)
     named = load_approved(apath); stop = load_stop(apath)
-    before, now, unread, lost = {}, {}, [], {}
+    before, now, unread, lost, swapped = {}, {}, [], {}, {}
     for f in sorted(glob.glob(os.path.join(a.repo, a.key, 'US-??.json'))):
         st = os.path.basename(f)[3:5]
         r = subprocess.run(['git', 'show', f'{a.ref}:{a.key}/US-{st}.json'], cwd=a.repo, capture_output=True)
@@ -220,6 +220,7 @@ def main():
         try:
             db, dn = json.loads(r.stdout), json.load(open(f, encoding='utf-8'))
             before[st] = official(db); now[st] = official(dn); lost[st] = lost_parks(db, dn)
+            swapped[st] = set(record_moves(db, dn)['swapped'])   # 22 Nov F7: a swap is held under limit 0 like a lost park
         except ValueError: unread.append(st)
     failed, allowed = judge(before, now, pct, mn, ok - set(named))
     ob, on = {}, {}
@@ -260,18 +261,19 @@ def main():
         r = subprocess.run(['git', 'show', f'{a.ref}:{a.key}/US-{st}.json'], cwd=a.repo, capture_output=True)
         if r.returncode == 0 and r.stdout == open(os.path.join(a.repo, a.key, f'US-{st}.json'), 'rb').read(): continue   # not rebuilt: nothing to hold
         held_named.append(st); print(f'::error title=Drop guard US-{st}::STOP: {stop[st]} The state is held whatever its list says.')
-    # NEVER WORSE, PARK BY PARK (limit 0): a state with no list is held by any park that lost its outline or its official grade
+    # NEVER WORSE, PARK BY PARK (limit 0): a state with no list is held by any park that lost its outline or its official grade,
+    # or that had its records swapped (22 Nov F7: record_moves()['swapped'] is treated like lost_parks under this rule)
     sok = 0
     if strict:
         for st in sorted(before):
-            lo = sorted(lost.get(st) or ())
+            lo = sorted((lost.get(st) or set()) | (swapped.get(st) or set()))
             if st in named or st in stop or not lo: continue
             tail = f'{", ".join(lo[:12])}{" ..." if len(lo) > 12 else ""}'
             if st in ok:
-                sok += 1; print(f'::warning title=Drop guard US-{st}::{len(lo)} park(s) lost their outline or their official grade ({tail}), let through by KPC_DROP_OK for this run')
+                sok += 1; print(f'::warning title=Drop guard US-{st}::{len(lo)} park(s) lost their outline or their official grade, or had their records swapped ({tail}), let through by KPC_DROP_OK for this run')
             else:
                 held_named.append(st)
-                print(f'::error title=Drop guard US-{st}::{len(lo)} park(s) lost their outline or their official grade: {tail}. Never worse is judged park by park '
+                print(f'::error title=Drop guard US-{st}::{len(lo)} park(s) lost their outline or their official grade, or had their records swapped: {tail}. Never worse is judged park by park '
                       f'(a gain elsewhere does not offset it): the state is held until the owner names these parks (.github/key-drop-approved.json).')
     for st, b, n, p in oa: print(f'::warning title=Drop guard US-{st}::outlines {b} -> {n} (-{p}%), let through by KPC_DROP_OK for this run')
     for st, b, n, p in of:

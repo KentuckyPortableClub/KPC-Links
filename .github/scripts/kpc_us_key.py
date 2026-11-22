@@ -176,23 +176,72 @@ def kinds(s):
 DES = {'SP': 'sp', 'SREC': 'sp', 'SHCA': 'hist', 'NWR': 'nwr', 'NF': 'nf', 'NG': 'nf', 'NP': 'nps', 'NM': 'nps', 'NRA': 'nps', 'NHS': 'hist', 'WA': 'wild'}
 
 
-def variants(s):
+LAST_TYPE = {'park': 'park', 'forest': 'forest', 'pond': 'pond', 'ponds': 'pond',
+             'lake': 'lake', 'reservoir': 'reservoir', 'complex': 'complex',
+             'memorial': 'memorial', 'reserve': 'reserve',
+             'wma': 'wildlife', 'wildlife': 'wildlife', 'refuge': 'refuge', 'nwr': 'refuge',
+             'preserve': 'preserve'}   # 22 Nov F3: type words used to decide when variants() may drop the last word
+
+
+def _name_words(s):
+    # raw tokens, not norm(): norm() already drops GEN phrases such as 'state park', which would hide the type kind
+    return re.findall(r'[a-z0-9]+', str(s or '').lower())
+
+
+def last_type(s):
+    """The kind of the last type word, or ''."""
+    w = _name_words(s)
+    return LAST_TYPE.get(w[-1], '') if w else ''
+
+
+def name_kinds(s):
+    """Every type kind a name already carries, including a mid-name word such as 'lake' in 'Taylorsville Lake State Park'.
+    Uses the raw name (and KR.type_words when loaded), because norm() has already dropped phrases such as 'state park'."""
+    kinds = {LAST_TYPE[w] for w in _name_words(s) if w in LAST_TYPE}
+    kr = globals().get('KR')
+    if kr is not None and hasattr(kr, 'type_words'):
+        kinds |= kr.type_words(s)
+    return kinds
+
+
+def keep_last_type(this, other):
+    """22 Nov F3: keep this name's last type word when the two names carry different type kinds
+    (compare the way KR.contest uses type words). So 'Silver Creek State Park' and 'Silver Creek Lake'
+    stay apart, but 'Taylorsville Lake State Park' still matches 'Taylorsville Lake' because the park
+    name already carries 'lake'."""
+    kt, ko = name_kinds(this), name_kinds(other)
+    return bool(kt and ko and not (kt & ko))
+
+
+def variants(s, keep_last=False):
     # other ways of writing the same name: no middle initial, bracket words left out ('Reifsnider (Frank)'), no leading 'Mount'
     v = {norm(s), norm(s, True), norm(re.sub(r'\(.*?\)', ' ', str(s or '')))}
     v |= {re.sub(r'^mount ', '', x) for x in v}
-    v |= {re.sub(r' (park|forest|pond|ponds|lake|reservoir|complex|memorial|reserve)$', '', x) for x in v}         # 'Fort Revere Park' = Fort Revere, 'Coulee Experimental Forest'
+    # 'Fort Revere Park' = Fort Revere, 'Coulee Experimental Forest'. 22 Nov F3: do not drop the last type word
+    # when the other name's last type word is a different kind (keep_last=True).
+    if not keep_last:
+        v |= {re.sub(r' (park|forest|pond|ponds|lake|reservoir|complex|memorial|reserve)$', '', x) for x in v}
     return {x for x in v if x}
 
 
 def _nosp(a, b):
     # Oct 26 (gap hunt): one name written as one word, the other as two: 'Hard Trigger' = BLM 'Hardtrigger', 'Blackridge' =
     # 'Black Ridge'. EQUAL only once the spaces are gone (no typo allowance here: 'World War I' / 'World War II' stay apart)
-    va = {x.replace(' ', '') for x in variants(a)}; vb = {x.replace(' ', '') for x in variants(b)}
+    ka, kb = keep_last_type(a, b), keep_last_type(b, a)
+    va = {x.replace(' ', '') for x in variants(a, keep_last=ka)}; vb = {x.replace(' ', '') for x in variants(b, keep_last=kb)}
     return any(len(x) >= 8 for x in va & vb)
 
 
 def same_name(a, b):
     if str(a or '').strip().lower() == str(b or '').strip().lower(): return True
+    ka, kb = keep_last_type(a, b), keep_last_type(b, a)
+    if ka or kb:
+        # last type words disagree and are not already in the other name: do not drop them, and do not let
+        # _same()'s 60% shared-start rule treat 'silver creek' as the same as 'silver creek lake'
+        if _nosp(a, b): return True
+        va, vb = variants(a, keep_last=ka), variants(b, keep_last=kb)
+        if va & vb: return True
+        return False
     if _nosp(a, b): return True
     a1, b1 = norm(a), norm(b)
     if _same(a1, b1) or any(_same(x, y) for x in variants(a) for y in variants(b)): return True
@@ -218,10 +267,15 @@ def exact_name(a, b):
     # no 'starts with' allowance: used when only one of the two names says what kind of place it is.
     # Only 'soft' words may differ (Torrey Pines Reserve = Torrey Pines State Reserve, Big Bend = Big Bend - 2015)
     if str(a or '').strip().lower() == str(b or '').strip().lower(): return True
+    ka, kb = keep_last_type(a, b), keep_last_type(b, a)
     if _nosp(a, b): return True
-    va, vb = variants(a), variants(b)
-    va |= {_soft(x) for x in va if _soft(x)}; vb |= {_soft(x) for x in vb if _soft(x)}
+    va, vb = variants(a, keep_last=ka), variants(b, keep_last=kb)
+    # 22 Nov F3: when the last type words disagree, do not also strip them through _soft() ('lake', 'park', 'forest')
+    if not (ka or kb):
+        va |= {_soft(x) for x in va if _soft(x)}; vb |= {_soft(x) for x in vb if _soft(x)}
     if va & vb or {_sing(x) for x in va} & {_sing(x) for x in vb}: return True
+    if ka or kb:
+        return False
     return any(len(x) >= 8 and len(y) >= 8 and not re.search(r'\d', x + y) and _ed1(x, y) for x in va for y in vb)   # one-letter typo ('Pishkin' / 'Pishkun')
 
 

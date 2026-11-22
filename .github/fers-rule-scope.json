@@ -396,6 +396,15 @@
    "scope": "none",
    "scope_note": "No pair is remeasured. The bot only stops when a rule-data file is missing or unreadable.",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-sliver-and-zone",
+   "when": "2026-11-22",
+   "from": "458f74a106cb",
+   "why": "Review F16 (22 Nov 2026, owner questions 5 and 6). A: a sliver in the 25-to-50-yard very-tight band next to federal land is counted only when it is a real gap, not a drawing error (length/width at or over the aspect in KPC_FERS_SLIVER_ASPECT, documented default 8). The old blanket forest hold stays gone; a compact real gap, a sliver whose length is not known, or any overlap 50 yards or wider is counted. B: a trail or river 100-foot zone (zone_wide_m, else strip_wide_m) gets the same one-grid-cell not-sure band as the area 25-yard and 50-yard lines. Scope none: no pair is remeasured until a 2-fer run.",
+   "scope": "none",
+   "scope_note": "No pair is remeasured. The 85 Kentucky ungraded rows are not run in this change; a ky-region rerun can grade and stamp them with the existing stamp() path.",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
   }
  ]
 }

@@ -66,7 +66,7 @@ _save_json_raw = save_json
 # write carries a verdict that a pair is NOT a 2-fer, whatever shape it was worked out from (a full official outline, a PARTIAL
 # boundary, a saved copy or a line): "no overlap found" is not a finding about the parks, it is the end of our looking. The two
 # statuses below are NOT denials of a pair: they say one ROW stands in for another row of the SAME pair, so they stay.
-DENY_KEEP = re.compile(r'^(dropped: the same stretch twice|merged into one row)')
+DENY_KEEP = re.compile(r'^(dropped: the same stretch twice|merged into one row|dropped: shared-boundary drawing error)')
 NOT_SHOWN = {}     # area -> [[refs, kind, the reason we stopped, the row id]]: for a person, in a PRIVATE file only (not_shown_file)
 # The mark on a row never-worse puts back. Its own field, NOT 'kept' (kpc_fers_store.keep_old_rows writes its own note there), and
 # NOT on KEPT_MARKS: if a later pass turned such a row into a denial, it must go through this rule again and be put back again.
@@ -1092,19 +1092,123 @@ LINE_NAMES = ((22.86, 'the 25-yard'), (45.72, 'the 50-yard'))   # the two size l
 
 def near_line(s, band=None):
     """R-2F3 / owner ruling N3 (16 Nov 2026). An area row whose measured width is within ONE GRID CELL of the 25-yard
-    (22.86 m) or 50-yard (45.72 m) line is NOT SURE. The band is CELL for the pass that measured the width, never a typed
-    number of metres. Off = ''."""
+    (22.86 m) or 50-yard (45.72 m) line is NOT SURE. 22 Nov F16 B: a trail or river row whose 100-foot zone width
+    (zone_wide_m, else strip_wide_m) is within one grid cell of the 100-foot line (ZONE, 30.48 m) is NOT SURE the same way.
+    The band is CELL for the pass that measured the width, never a typed number of metres. Off = ''."""
     if band is None:
         band = CELL if near_line_on() else 0.0
     else:
         band = float(band)
-    if band <= 0 or s.get('kind') != 'area' or s.get('wide_m') is None: return ''
-    w = float(s['wide_m'])
-    for m, nm in LINE_NAMES:
+    if band <= 0: return ''
+    kind, lines, w = s.get('kind'), None, None
+    if kind == 'area' and s.get('wide_m') is not None:
+        w, lines = float(s['wide_m']), LINE_NAMES
+    elif kind in ('trail', 'river'):
+        raw = s.get('zone_wide_m') if s.get('zone_wide_m') is not None else s.get('strip_wide_m')
+        if raw is not None:
+            w, lines = float(raw), ((ZONE, 'the 100-foot zone'),)
+    if w is None or not lines: return ''
+    for m, nm in lines:
         if abs(w - m) <= band:
             return (f'near a size line: measured {w:g} m wide on the {CELL:g} m grid, within {band:g} m of {nm} line ({m:g} m); '
                     "the grid can't tell which side it is on, so a person or the fine lines decide it")
     return ''
+
+
+FED_LAND = re.compile(r'\bNational (Park|Wildlife Refuge|Preserve)\b', re.I)
+FED_FOREST = re.compile(r'\bNational (Forest|Grassland)s?\b', re.I)
+SLIVER_M = 22.86   # 25 yards: only slivers this wide or wider are considered (F16 A, 22 Nov)
+
+
+def fed_neighbour_on():
+    """F16 A (22 Nov). On unless the environment turns it off."""
+    return _switch_on('KPC_FERS_FED_NEIGHBOUR')
+
+
+def fed_neighbours(refs, parks, PIN):
+    """A national park / refuge / preserve paired with a national forest / grassland, when neither is a designation
+    laid on the other (wilderness, wild and scenic, a recreation area, a national monument, or designation_only).
+    Returns 'Park Name x Forest Name', or '' when the pair is not that case. Restored 22 Nov (F16 A) from the rule
+    removed with R-2F2; the old blanket not-sure on every such pair stays gone."""
+    nm = {r: str((PIN.get(r) or [''])[0] or '') for r in refs}
+    land = [r for r in refs if FED_LAND.search(nm[r]) and not FED_FOREST.search(nm[r])]
+    forest = [r for r in refs if FED_FOREST.search(nm[r])]
+    if not land or not forest: return ''
+    if any(designation_only(r, parks) or re.search(r'wilderness|wild and scenic|scenic river|recreation area|national monument', nm[r], re.I) for r in refs):
+        return ''
+    return f'{nm[land[0]]} x {nm[forest[0]]}'
+
+
+def sliver_aspect_min():
+    """The length/width ratio at or above which a 25-yard-or-wider sliver is a drawing error. From
+    KPC_FERS_SLIVER_ASPECT in the switch file (documented default 8). A value that is not a number > 0 falls back to 8."""
+    try:
+        n = float(_SW.value('KPC_FERS_SLIVER_ASPECT')[0])
+    except (TypeError, ValueError, SystemExit):
+        n = 8.0
+    return n if n > 0 else 8.0
+
+
+def sliver_len_m(s):
+    """Length of the overlap along the shared edge: len_m when present, else acres * 4046.86 / wide_m. None if unknown."""
+    if s.get('len_m') not in (None, '', 0, 0.0):
+        try:
+            n = float(s['len_m'])
+        except (TypeError, ValueError):
+            n = 0.0
+        if n > 0: return n
+    w, ac = s.get('wide_m'), s.get('acres')
+    try:
+        w, ac = float(w), float(ac)
+    except (TypeError, ValueError):
+        return None
+    if w > 0 and ac > 0:
+        return ac * 4046.86 / w
+    return None
+
+
+def sliver_aspect(s):
+    """length / width, or None when either is unknown."""
+    w, L = s.get('wide_m'), sliver_len_m(s)
+    try:
+        w = float(w)
+    except (TypeError, ValueError):
+        return None
+    if not w or w <= 0 or L is None or L <= 0:
+        return None
+    return L / w
+
+
+def drawing_error_sliver(s, aspect_min=None):
+    """True when a 25-yard-or-wider overlap is a thin offset of the same shared line (length/width at or over
+    the documented aspect in KPC_FERS_SLIVER_ASPECT). False for a more compact real gap, a sliver under 25 yards,
+    or when length is unknown (do not guess a drawing error)."""
+    if aspect_min is None:
+        aspect_min = sliver_aspect_min()
+    try:
+        w = float(s.get('wide_m'))
+    except (TypeError, ValueError):
+        return False
+    if w < SLIVER_M or w >= TIGHT_M:
+        # only the 25-to-50-yard very-tight band: a wider overlap is counted even when it is long
+        return False
+    a = sliver_aspect(s)
+    if a is None:
+        return False
+    return a >= aspect_min
+
+
+def fed_sliver_filter(s, refs, parks, PIN):
+    """If this area row is a 25-yard-or-wider drawing-error sliver next to federal land, the reason it is not counted; else ''.
+    A real compact gap, or a sliver whose length is not known, is left to be counted. Large park-in-forest overlays are not held."""
+    if not fed_neighbour_on() or s.get('kind') != 'area':
+        return ''
+    if not fed_neighbours(refs, parks, PIN):
+        return ''
+    if not drawing_error_sliver(s):
+        return ''
+    L, w, a, m = sliver_len_m(s), float(s['wide_m']), sliver_aspect(s), sliver_aspect_min()
+    return (f'length {L:g} m / width {w:g} m = aspect {a:.1f}, at or over the drawing-error line {m:g} in KPC_FERS_SLIVER_ASPECT')
 
 
 SUMMARY_KINDS = ('compilation', 'register', 'water')   # data/state-gis.json 'what' labels that are not the agency's own land
@@ -4047,6 +4151,10 @@ def _decide_work(s, parks, G, LN, PIN, today, saved_only, st_of):
     s['status'] = 'candidate' if not s.get('fresh') else 'candidate (saved outline only)'
     if s['kind'] == 'area' and (s.get('wide_m') or 0) < TIGHT_M:
         s['status'] = VERY_TIGHT; s['list'] = 'Very tight (members only)'   # rule 4: its own list, never the main one
+    _fn = fed_sliver_filter(s, refs, parks, PIN)
+    if _fn:   # F16 A (22 Nov): a 25-yard-or-wider drawing-error sliver next to federal land is not counted
+        s['status'] = 'dropped: shared-boundary drawing error: ' + _fn; s.pop('list', None)
+        s['names'] = {r: PIN[r][0] for r in refs}; return
     _nl = near_line(s)
     if _nl:   # R-2F3: within one grid cell of a size line = NOT SURE
         s['status'] = 'not sure: ' + _nl; s.pop('list', None)

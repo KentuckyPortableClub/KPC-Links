@@ -672,6 +672,14 @@
    "why": "Review fixes (22 Nov 2026). M1: the match checks treat any join tagged reviewed (reviewed-approx, reviewed-sheet) as a person's join, as the builder already does. M2: the holder table counts a person's row by the builder's own rule (tag starts with reviewed), so an unchecked answer-sheet row is a name row; its switch KPC_ANSWER_HOLDERS stays off. F4: a switch listed in the switch file is off everywhere it is not listed, so an empty list turns a default-on rule off; the switch file is not changed and lists none of the four default-on rules (KPC_APPROX_PIN, KPC_PRESERVE_APART, KPC_FAR_JOIN, KPC_PRESERVE_WITH_PARK), so they stay on and no result changes. F9: one notice when no official sizes file is found. M1 takes effect at the full US build #334 already needs; nothing else changes a park.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-review-on-and-names",
+   "when": "2026-11-22",
+   "from": "2161e243ce05",
+   "why": "Review F2, F3, F5 and F10 (22 Nov 2026). KPC_ANSWER_HOLDERS, KPC_SAVED_ANSWERS_SAY and KPC_HOLD_ON_PASS_ERROR are on in the same 50 areas as KPC_MATCH_CHECKS (including DC, not Kentucky). F3: a last type word is kept when the two names carry different type kinds, so a park and a lake of the same words stay apart; a park name that already carries the other type word (Taylorsville Lake State Park / Taylorsville Lake) still matches. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
   }
  ]
 }

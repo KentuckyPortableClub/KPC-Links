@@ -159,9 +159,11 @@ if HAVE:
 else:
     print('SKIP the live grid readings (numpy / cv2 not installed)')
 
-# --- R-2F2 the forest rule is gone (KA-08) ---
-check('fed_neighbours' not in src and 'FED_NEIGHBOUR' not in src and "two agencies" not in src,
-      'KA-08 the words "two agencies\' maps disagree" are nowhere in the code')
+# --- R-2F2 the blanket forest hold is still gone (KA-08); F16 A brings back only the sliver filter ---
+check("two agencies" not in src and 'normally side by side' not in src,
+      'KA-08 the old blanket forest hold ("two agencies maps disagree") is still gone')
+check(hasattr(K, 'fed_neighbours') and hasattr(K, 'drawing_error_sliver') and hasattr(K, 'fed_sliver_filter'),
+      'F16 A the sliver check next to federal land is back, with a drawing-error filter')
 check('KPC_FERS_FED_NEIGHBOUR' not in pc_src and 'KPC_FERS_NEAR_LINE_M' not in pc_src and 'KPC_FERS_CARRY_MAX' not in pc_src,
       'the PC runner passes none of these settings')
 check('KPC_FERS_SUMMARY_APPROX' not in ar_src and 'KPC_FERS_FINE_ONLY' not in ar_src and 'KPC_FERS_STRIP_HELD' not in ar_src,
