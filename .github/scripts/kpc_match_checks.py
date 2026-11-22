@@ -347,6 +347,26 @@ def near_box(lat, lon, bb, km_):
     return (s_ - dla) <= lat <= (n + dla) and (w - dlo) <= lon <= (e + dlo)
 
 
+NEAR_MISS_KM = (('within 100 ft', 0.03048), ('within 0.5 km', 0.5))   # report only (owner 22 Nov 4:41 PM): the pin rule is not changed
+
+
+def km_to_record(lat, lon, rec):
+    """Kilometres from (lat, lon) to the nearest edge of a record's rings (segment distance), None when it has no shape."""
+    g = (rec or {}).get('_g') or {}
+    rs = g.get('rings') or (g.get('coordinates') if g.get('type') == 'Polygon' else
+                           [r for poly in g.get('coordinates') or [] for r in poly] if g.get('type') == 'MultiPolygon' else [])
+    if lat is None or lon is None or not rs: return None
+    k, best = math.cos(math.radians(lat)) * 111.32, None
+    for r in rs:
+        for (x1, y1), (x2, y2) in zip(r, r[1:]):
+            ax, ay, bx, by = (x1 - lon) * k, (y1 - lat) * 110.57, (x2 - lon) * k, (y2 - lat) * 110.57
+            dx, dy = bx - ax, by - ay; L = dx * dx + dy * dy
+            t_ = 0 if L == 0 else max(0, min(1, -(ax * dx + ay * dy) / L))
+            d = math.hypot(ax + t_ * dx, ay + t_ * dy)
+            best = d if best is None or d < best else best
+    return best
+
+
 def claim_fit(park, rec, table=None):
     """P7: how well a park fits a record two parks claim: name (2 exact, 1 with 'state' left out, 0 other) plus kind
     (+1 agrees, -1 differs, 0 no data)."""
@@ -775,7 +795,8 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
     names = {}
     for ref, p in parks.items(): names.setdefault(full(p.get('n') or ''), set()).add(ref)
     out = {'parks': 0, 'confirmed': 0, 'outlined': 0, 'pin': 0, 'gained': 0, 'moved': 0, 'why': {}, 'notes': {},
-           'by_id': 0, 'by_link': 0, 'by_size': 0, 'second_name': 0, 'tract': 0, 'parent': 0, 'shared_record': 0}
+           'by_id': 0, 'by_link': 0, 'by_size': 0, 'second_name': 0, 'tract': 0, 'parent': 0, 'shared_record': 0,
+           'second_name_near': {w: 0 for w, _k in NEAR_MISS_KM}}
 
     def to_check(p, rows, why):
         ids_ = {id(q) for q in rows}
@@ -850,8 +871,14 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         # P2 (rule sheet PN): a second name from the park's own agency page joins a record of exactly that name that holds the pin
         have = {str(q[0]) for q in p.get('m') or []} | {str(q[0]) for q in p.get('c') or []}
         for n2 in second_names(f, nm, heading_count, all_names - {full(nm)}):
-            cand = [i for i in by_name.get(n2, []) if i not in have and not is_no(ref, i, recs[i])
-                    and agency_check(f, recs[i], st, layer_table) != 'differs' and holds_fn(ref, i) is True]
+            pre = [i for i in by_name.get(n2, []) if i not in have and not is_no(ref, i, recs[i])
+                   and agency_check(f, recs[i], st, layer_table) != 'differs']
+            cand = [i for i in pre if holds_fn(ref, i) is True]
+            if not cand and len(pre) == 1:   # report only: the one record of that name, missed only because the pin is outside it
+                pin_ = (f or {}).get('pin') or []
+                d = km_to_record(pin_[0], pin_[1], recs[pre[0]]) if len(pin_) == 2 else None
+                for w, k_ in NEAR_MISS_KM:
+                    if d is not None and d <= k_: out['second_name_near'][w] += 1
             if len(cand) == 1:
                 add_row(p, cand[0], f'name: second name "{n2[:60]}" (the park\'s own page) + pin inside')
                 out['gained'] += 1; out['second_name'] += 1; hits.append([ref, 'joined (second name)', cand[0]]); have.add(cand[0])

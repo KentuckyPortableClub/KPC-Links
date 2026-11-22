@@ -74,6 +74,14 @@ check('P2: the own page\'s name joins the one record of exactly that name that h
 p = {'US-9002': park('Invented Hollow State Park')}
 run(p, {'sgzzn7': rec('sgzzn7', 'Hollow Creek Natural Area')}, {'US-9002': f2}, holds=False)
 check('P2: not when the pin is outside the record', not p['US-9002']['m'])
+near_rec = rec('sgzzn7', 'Hollow Creek Natural Area', _g={'type': 'Polygon', 'coordinates': [[[-79.9499, 40.0], [-79.9, 40.0], [-79.9, 40.1], [-79.9499, 40.1], [-79.9499, 40.0]]]})
+p = {'US-9002': park('Invented Hollow State Park')}
+out = run(p, {'sgzzn7': near_rec}, {'US-9002': f2}, holds=False)
+check('near misses are counted, report only: a pin about 10 m outside is within 100 ft and within 0.5 km, and is NOT joined',
+      not p['US-9002']['m'] and out['second_name_near'] == {'within 100 ft': 1, 'within 0.5 km': 1})
+far_rec = rec('sgzzn7', 'Hollow Creek Natural Area', _g={'type': 'Polygon', 'coordinates': [[[-79.946, 40.0], [-79.9, 40.0], [-79.9, 40.1], [-79.946, 40.1], [-79.946, 40.0]]]})
+out = run({'US-9002': park('Invented Hollow State Park')}, {'sgzzn7': far_rec}, {'US-9002': f2}, holds=False)
+check('a pin about 340 m outside counts within 0.5 km only', out['second_name_near'] == {'within 100 ft': 0, 'within 0.5 km': 1})
 p = {'US-9002': park('Invented Hollow State Park')}
 run(p, {'sgzzn7': rec('sgzzn7', 'Hollow Creek Natural Area'), 'sgzzn8': rec('sgzzn8', 'Hollow Creek Natural Area')}, {'US-9002': f2})
 check('P2: two records with that name go to check, never both joined', not p['US-9002']['m'] and len(p['US-9002']['c']) == 2)

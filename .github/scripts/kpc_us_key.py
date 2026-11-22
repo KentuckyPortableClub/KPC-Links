@@ -3473,7 +3473,10 @@ def run(st):
         for x in list(used):
             if str(x) not in _still and str(x) in _hit: used.discard(x)
         notice(f'US key {st}', f"match checks: {_mc['confirmed']} confirmed, {_mc['outlined']} outlined, {_mc['pin']} pin only of "
-                               f"{_mc['parks']} joined parks; {_mc['gained']} record(s) joined by the park's own link id, {_mc['moved']} row(s) to check")
+                               f"{_mc['parks']} joined parks; {_mc['gained']} record(s) joined by the park's own link id, {_mc['moved']} row(s) to check"
+                               + (f"; own page: {_mc.get('second_name', 0)} by second name, {_mc.get('tract', 0)} tract(s), {_mc.get('parent', 0)} parent unit(s) "
+                                  f"to check, {_mc.get('shared_record', 0)} shared record(s) to check; second-name near misses (report only): "
+                                  + ', '.join(f'{v} {w}' for w, v in (_mc.get('second_name_near') or {}).items()) if 'second_name' in _mc else ''))
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
