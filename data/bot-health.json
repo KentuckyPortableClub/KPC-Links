@@ -1,20 +1,21 @@
 {
  "open": [
+  "KPC-Data/kpc-answer-sheet-check.yml",
   "KPC-Data/kpc-camp-weekly.yml",
+  "KPC-Data/kpc-detective.yml",
   "KPC-Data/kpc-eu-alerts.yml",
+  "KPC-Data/kpc-fetch-files.yml",
   "KPC-Data/kpc-flow.yml",
-  "KPC-Data/kpc-pages-sync.yml",
+  "KPC-Data/kpc-helpers.yml",
+  "KPC-Data/kpc-map-pictures.yml",
+  "KPC-Data/kpc-scoreboard.yml",
   "KPC-Data/kpc-storage.yml",
+  "KPC-Data/kpc-watch.yml",
   "guard:pubnoindex:kpc-log-checker.html",
   "guard:pubnoindex:kpc-maintenance.html",
   "kpc-bot-queue.yml",
-  "kpc-discord-watch.yml",
   "kpc-hunters.json",
   "kpc-hunters.yml",
-  "kpc-pota-discord.yml",
-  "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
-  "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
-  "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
@@ -23,7 +24,6 @@
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublish_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
-  "links:https://dpt.colorado.gov/localities",
   "links:https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9",
   "links:https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0",
   "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
@@ -363,16 +363,17 @@
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
   "out:shrank:D:data/leaders",
+  "refs:gone:CA-ON:CA-6621",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-21T16:57+00:00",
+ "checked": "2026-11-22T10:23+00:00",
  "weekly": {
   "site": {
    "part": "site",
-   "date": "2026-11-15",
+   "date": "2026-11-22",
    "problems": [
     {
      "key": "site:wide:kpc-live.html:desktop",
@@ -382,15 +383,20 @@
    ],
    "notes": [],
    "ok": [
-    "60 public pages opened as a guest at phone width (390px)",
+    "62 public pages opened as a guest at phone width (390px)",
     "members door checked on M-eb1a (members page), M-04b8 (members page), M-cbb8 (members page), M-e281 (members page)",
-    "60 public pages opened as a guest at desktop width (1280px)"
+    "62 public pages opened as a guest at desktop width (1280px)"
    ]
   },
   "refs": {
    "part": "refs",
-   "date": "2026-11-15",
+   "date": "2026-11-22",
    "problems": [
+    {
+     "key": "refs:gone:CA-ON:CA-6621",
+     "chat": 2,
+     "msg": "CA-ON: 1 park number(s) POTA no longer lists, still in our data: CA-6621 (access points)"
+    },
     {
      "key": "refs:gone:CA-SI:CA-0120",
      "chat": 2,
@@ -410,42 +416,17 @@
    "notes": [
     {
      "chat": 2,
-     "msg": "US-FL: 1 name(s) differ from POTA (renamed or spelled differently): US-0635 ours \"St. George State Park\" / POTA \"Dr. Julian G. Bruce St. George Island State Park\""
-    },
-    {
-     "chat": 2,
      "msg": "US-HI: 1 name(s) differ from POTA (renamed or spelled differently): US-0121 ours \"Kure Atoll\" / POTA \"Kure Atoll State Wildlife Area\""
     }
    ],
    "ok": [
-    "18950 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
+    "18960 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
    ]
   },
   "links": {
    "part": "links",
-   "date": "2026-11-15",
+   "date": "2026-11-22",
    "problems": [
-    {
-     "key": "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
-     "chat": 2,
-     "twice": true,
-     "msg": "state-gis.json: https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38 → server error: json",
-     "confirmed": true
-    },
-    {
-     "key": "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
-     "chat": 2,
-     "twice": true,
-     "msg": "access-layers.json: https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2 → server error: json",
-     "confirmed": true
-    },
-    {
-     "key": "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
-     "chat": 2,
-     "twice": true,
-     "msg": "access-layers.json: https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23 → server error: json",
-     "confirmed": true
-    },
     {
      "key": "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
      "chat": 2,
@@ -500,13 +481,6 @@
      "chat": 2,
      "twice": true,
      "msg": "trails-hand.json: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1 → host not answering",
-     "confirmed": true
-    },
-    {
-     "key": "links:https://dpt.colorado.gov/localities",
-     "chat": 2,
-     "twice": true,
-     "msg": "land-owner.json: https://dpt.colorado.gov/localities → HTTP 404",
      "confirmed": true
     },
     {
@@ -2874,6 +2848,27 @@
      "twice": true,
      "msg": "state-gis.json: https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1 → host not answering",
      "confirmed": true
+    },
+    {
+     "key": "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195 → HTTP 504",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206 → HTTP 504",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16 → HTTP 504",
+     "confirmed": false
     }
    ],
    "notes": [
@@ -2903,14 +2898,11 @@
     }
    ],
    "ok": [
-    "301 of 656 map-server / data addresses answered"
+    "302 of 656 map-server / data addresses answered"
    ]
   }
  },
  "link_fail_prev": [
-  "links:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
-  "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/2",
-  "links:https://anrmaps.vermont.gov/arcgis/rest/services/map_services/MAP_ANR_ANRATLASFPR_WM_NOCACHE/MapServer/23",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
@@ -2919,7 +2911,6 @@
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublish_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
-  "links:https://dpt.colorado.gov/localities",
   "links:https://gisdnr.state.co.us/arcgis/rest/services/ECMC_Public/High_Priority_Habitat_2026/MapServer/9",
   "links:https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0",
   "links:https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
@@ -3257,11 +3248,14 @@
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Parking_Areas/FeatureServer/38",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Access_Sites/FeatureServer/28",
   "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
-  "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1"
+  "links:https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
+  "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195",
+  "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206",
+  "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16"
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2917
+   "b": 2915
   },
   "L:data/ky-answer-key.json": {
    "b": 31658
@@ -3340,7 +3334,7 @@
    "b": 5358732
   },
   "D:data/wwff": {
-   "b": 11711851
+   "b": 11785013
   },
   "D:data/review/scoreboard.json": {
    "b": 137418
@@ -3355,7 +3349,7 @@
    "b": 93698
   },
   "D:data/closures": {
-   "b": 169131
+   "b": 169427
   },
   "D:data/intake": {
    "b": 39695215,
