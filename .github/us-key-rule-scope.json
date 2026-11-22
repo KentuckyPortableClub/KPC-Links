@@ -656,6 +656,14 @@
    "why": "Size check (KPC owner, 20 Nov 2026): hold parks that do not pass. The size line compares the measured outline (the ac field) with the official size at 0.33 to 3 times; the sum of joined rows is not used. Hold is a per-state hold list on KPC_SELF_CHECKS; the builder passes the state. Layer kind and a pin outside the state are noted and do not hold. A park with no official size is not held. The hold list is empty and the on list is empty, so no park changes. The official sizes stay in the waiting room until a person releases them. The builder reads the acres file the same way the key health report does, and does not read the waiting-room copy.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-20"
+  },
+  {
+   "id": "2026-11-22-answer-holders",
+   "when": "2026-11-22",
+   "from": "1e21e2f70075",
+   "why": "Holder table (outside review F2; decided 22 Nov 2026): a record a person joined to one park and the name joined to another is decided by the D9 full-name winner test. Ties hold. A short form is not a full name, so nothing moves. A name-only join never takes the record. A person's row is never moved. Switch KPC_ANSWER_HOLDERS stays off for every area, so no park changes until it is turned on.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
   }
  ]
 }
