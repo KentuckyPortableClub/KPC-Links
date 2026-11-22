@@ -552,7 +552,18 @@ def other_park_name(rec_name, own_name, names_in_state):
     if not r or r == mine: return False
     loose = lambda t: ' '.join(w for w in t.split() if w != 'state')
     if loose(r) == loose(mine): return False
-    return r in names_in_state
+    if r in names_in_state: return True
+    # 22 Nov 2026 (owner 3:47 PM; Arkansas: a battlefield park joined to "X Natural Area", the record of "X State Natural Area"):
+    # the word "state" is left out on BOTH sides, as it already is for the park's own name
+    key = id(names_in_state)
+    hit = _LOOSE_NAMES.get(key)
+    if hit is None or hit[0] is not names_in_state or hit[1] != len(names_in_state):
+        hit = (names_in_state, len(names_in_state), {loose(n) for n in names_in_state})
+        _LOOSE_NAMES[key] = hit
+    return loose(r) in hit[2]
+
+
+_LOOSE_NAMES = {}
 
 
 def reason_of(w):
