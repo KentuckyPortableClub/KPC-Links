@@ -115,6 +115,7 @@ nov11_wf |= {'.github/workflows/kpc-state-gis.yml'}   # KPC owner, 2026-11-14: t
 nov11_wf |= {'.github/workflows/kpc-pota-discord.yml', '.github/workflows/kpc-world-pota.yml', '.github/workflows/kpc-hunters.yml',
              '.github/workflows/kpc-social.yml', '.github/workflows/kpc-band-alerts.yml'}
 nov11_wf |= {'.github/workflows/kpc-fers-rules-check.yml'}   # KPC owner, 2026-11-17 (Handoff 9): the 2-fer rules check lists its new test and the rulings file; not a key workflow
+nov11_wf |= {'.github/workflows/kpc-key-scope-check.yml'}   # KPC owner, 2026-11-22 (review F22): the PR scope check also loops over the Canada and world keys; not a key build workflow
 extra_wf = [ln for ln in changed_wf if ln not in allowed_wf | world_wf | round4_wf | nov8_wf | nov9_wf | nov10_wf | nov11_wf]
 check(wf.returncode == 0 and not extra_wf, 'workflows other than the Canada and US key gzip checkouts are unchanged'
       + ((' (' + ', '.join(extra_wf) + ')') if extra_wf else ''))

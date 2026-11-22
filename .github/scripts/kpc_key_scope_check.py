@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Refuse a key rule-file edit that declares no scope (keys-first hand-off rev 3.1, S2, F7; Opus 19 Nov 2026).
 
-A change that moves the US key's rules hash (any file in kpc_key_freeze.RULE_FILES['us-key']) must add one NEW entry to
-.github/us-key-rule-scope.json, and the run's own reader (kpc_key_freeze.pending_scope) must find the change declared: the
+A change that moves a key's rules hash (any file in kpc_key_freeze.RULE_FILES[kind], kind us-key, ca-key or world-key) must add
+one NEW entry to that kind's scope file (.github/us-key-rule-scope.json, ca-key-rule-scope.json, world-key-rule-scope.json), and the run's own reader (kpc_key_freeze.pending_scope) must find the change declared: the
 chain of entries starts at the one whose 'from' is the last build (data/us-key/index.json 'rules'). Without it the next run
 reads the change as undeclared and rebuilds all 50 states.
 
@@ -16,7 +16,8 @@ import argparse, json, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_key_freeze as F  # noqa: E402
 
-INDEX = {'us-key': 'data/us-key/index.json'}
+# 22 Nov 2026 (review F22): Canada and world too, so an undeclared Canada or world rule edit is refused the same way.
+INDEX = {'us-key': 'data/us-key/index.json', 'ca-key': 'data/ca-key/index.json', 'world-key': 'data/world-key/index.json'}
 SCOPES = ('none', 'all')
 
 
