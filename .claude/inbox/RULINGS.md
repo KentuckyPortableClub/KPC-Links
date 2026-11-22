@@ -82,3 +82,15 @@ Sorted by what it unlocks. HQ records answers in the owning topic file and moves
 - **Nov 2 10:07 AM 2-FERS ON HOLD UNTIL THE NEW KEYS ARE DONE (Brandon: 'since the new keys are being made we can do whatever we need to with the 2-fer files till the new keys are complete and we can start over with the 2-fer files'; the Overlap Finder is beta, Brandon + 3 people only):** the current 2-fer files (data/fers, held fers in data/waiting/in, the fers-bundles release, the reviewed list) are DISPOSABLE: chat 10 may slim, archive or delete them for storage; NO 2-fer reruns, NO chat 11 / 12 grading of 2-fer files and NO G10 2-fer preview until the US + Canada keys are complete and live; then ONE fresh 2-fer run on the new keys (stable ids, FERS_ALGO) and chat 11 grades it. The beta Overlap Finder keeps showing what it has meanwhile.
 - **Nov 2 10:18 AM PROOF RUNS NOW, NOT TOMORROW (Brandon: 'force the bots to get test results sooner'):** when a fix waits only for a bot's next scheduled run to prove it, start that bot by hand ONCE now (one at a time, never a probe loop; a by-hand run only emails if it fails). 2-fers stay paused: no sense building them on keys that are not done.
 - **Nov 2 10:57 AM 2-FERS: ROLLING RESTART (replaces 'wait for all keys', Brandon: 'yes'):** KENTUCKY 2-fers restart NOW (its own key, checked for weeks). Every other state / province restarts its 2-fers as soon as BOTH: its key is released AND its map-audit pass comes back clean (worst rows fixed or held as pins). One fresh run per area on the new key (stable ids, FERS_ALGO), then chat 11 grades that area. Never on an area with open audit flags.
+- **22 Nov 2:28 AM, AGENCY DATA AND THE KEEPER (Brandon: "We can read arcgis....switch on all switches you need to pull the info you need off my pc...and if it is agency data not sure i need to approve any of that agree with the rest"):**
+  (1) the keeper reads arcgis.com and Forest Service hosts (his 15 Nov ruling), its agency-list run too (KPC-Data #155 + the keeper's
+  setting KPC_KEEPER_HOST_RULES=owner-2026-11-15); robots.txt always wins; KPC-Data bots stay saved-copies only.
+  (2) AGENCY DATA needs no per-item owner approval: an agency's own park list, or an agency's own map layer, goes on when it passes
+  the checks (list: the web id and map id columns tie on the rows, >= 80% the same park, the PC's agency field check; layer: the
+  record is named for the park AND holds its pin, the licence is read and does not say no). Anything not the managing agency's own
+  stays a suggestion.
+  (3) MAP FINDERS -> KEEPER (Handoff 2), agreed: a finder's find becomes a one-time keeper download only under (2); everything else
+  stays in the finder's own list.
+  (4) KEEPER SIZES, agreed: never the matched record's own acres (the size check would grade itself); the keeper's sizes come from
+  the agency's own park list (its acres column, independent of the outline). Until a list is on, data/keeper-sizes stays empty.
+
