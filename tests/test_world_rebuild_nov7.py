@@ -534,8 +534,12 @@ ch = subprocess.run(['git', 'diff', '--name-only', BASE, '--', '.github/scripts/
 _rules = set(KZ.RULE_FILES['world-key'])  # Nov 8: ignore the separate 'fers' kind so us/ca/world checks stay honest
 ch = [c for c in ch if c in _rules]
 # Nov 12 (M2): kpc_pin_fill.py and kpc_jp_crosswalk.py are world RULE helpers now; they may change too
-_ok = {'.github/scripts/kpc_world_key.py', '.github/scripts/kpc_pin_fill.py', '.github/scripts/kpc_jp_crosswalk.py'}
-check(not OLD or ('.github/scripts/kpc_world_key.py' in ch and set(ch) <= _ok), f'only kpc_world_key.py (plus the pin_fill / jp_crosswalk helpers) changed among the RULE files (kpc_match / kpc_key_facts / kpc_number_rules untouched): {ch}')
+# Nov 21 (freeze 0002): kpc_park_facts_read.py is a world RULE file, so it may appear in the changed list
+_ok = {'.github/scripts/kpc_world_key.py', '.github/scripts/kpc_pin_fill.py', '.github/scripts/kpc_jp_crosswalk.py',
+       '.github/scripts/kpc_park_facts_read.py'}
+check('.github/scripts/kpc_park_facts_read.py' in _ok,
+      'allow-list includes kpc_park_facts_read.py (a world RULE file since freeze 0002)')
+check(not OLD or ('.github/scripts/kpc_world_key.py' in ch and set(ch) <= _ok), f'only kpc_world_key.py (plus the pin_fill / jp_crosswalk / park-facts-reader helpers) changed among the RULE files (kpc_match / kpc_key_facts / kpc_number_rules untouched): {ch}')
 
 
 # ================================================================== the five tests named in Brandon's Part 2 handoff (Nov 7)
