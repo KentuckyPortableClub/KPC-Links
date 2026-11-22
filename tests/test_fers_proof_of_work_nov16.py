@@ -5,6 +5,7 @@
   previous file and is never 'measured'; a store run writes one receipt per area (expected, read, held, pairs, rules hash, store
   date, engine, seconds per stage) and 'kpc_fers_receipt.py check' decides done from it (no receipt = red); an area the store
   does not hold is 'store missing', never an answer"""
+import os as _os_m8; _os_m8.environ.setdefault('KPC_FERS_NOT_SURE', 'none')   # review M8 (22 Nov): no D10 list here on purpose; D10 has its own tests
 import gzip, json, os, pathlib, shutil, subprocess, sys, tempfile
 
 for k in list(os.environ):
@@ -93,6 +94,7 @@ runpy.run_path(S + '/kpc_fers.py', run_name='__main__')
 
 def env_for(t, **kw):
     e = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'PASS', 'MINUTES', 'STATES', 'REGION', 'RUN_TAG', 'PARKS', 'GITHUB_', 'WATER_STORE'))}
+    e['KPC_FERS_NOT_SURE'] = 'none'   # review M8 (22 Nov): the fixture has no D10 list on purpose
     e.update({'MINUTES': '60', 'STATES': 'US-RI', 'REGION': 'na', 'RUN_TAG': 'testri', 'KPC_FERS_LIVE_DIR': str(t / 'cache/fers')})
     e.update(kw); return e
 

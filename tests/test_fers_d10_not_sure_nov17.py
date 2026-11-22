@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """D10 (owner ruling, 17 Nov 2026): a park on the tripwire not-sure list is NOT SURE for 2-fers; its outline stays on the map.
 Offline, no network. KPC owner, 2026-11-17.
-1 no list (none in kpcdata/, none in data/, no KPC_FERS_NOT_SURE) = no row changes, nothing counted
+1 no list (none in kpcdata/, none in data/, no KPC_FERS_NOT_SURE) = the bot stops (exit 4, review M8 22 Nov); KPC_FERS_NOT_SURE=none = no row changes
 2 a listed park's shown rows of this run become 'not sure: tripwire <ref> <T..>'; other parks' rows are byte-identical
 3 a row already not sure keeps its own reason; denials / merges stay as they are; rows reproduced from an older file stay exact
 4 the list the tripwire bot writes (KPC-Data data/waiting/tripwires/not-sure.json) is read from the workflows' kpcdata/ checkout
-5 an unreadable list holds nothing and warns (never red); no park's outline / key data is touched (the hold only edits rows)
+5 an unreadable list stops the bot (exit 4, review M8); no park's outline / key data is touched (the hold only edits rows)
 6 both hold sites (pass 3 and pass 5) call it, beside the no-ownership hold
 7 the fers rules hash moves once (b2d826ea5e3b -> the changelog's newest), scope entry 'none' waiting for the owner; US / CA / world unchanged"""
 import copy, io, json, os, pathlib, sys, tempfile, types, contextlib
@@ -48,8 +48,16 @@ LIST = {'about': 'parks the tripwires question (T1 / T2 / T4); not sure for 2-fe
 try:
     # 1
     a = rows(); before = json.dumps(a, sort_keys=True)
-    n = K.hold_tripwire(a)
-    check(n == 0 and json.dumps(a, sort_keys=True) == before and K.tripwire_parks() == {}, '1 no list anywhere: 0 rows held, every row byte-identical')
+    def _stops(fn):
+        try:
+            with contextlib.redirect_stdout(io.StringIO()): fn()
+        except SystemExit as e: return e.code == 4
+        return False
+    check(_stops(lambda: K.hold_tripwire(a)) and json.dumps(a, sort_keys=True) == before, '1 no list anywhere: the bot stops (exit 4), no row changed')
+    os.environ['KPC_FERS_NOT_SURE'] = 'none'; K._TRIPWIRE.clear()
+    with contextlib.redirect_stdout(io.StringIO()): n = K.hold_tripwire(a)
+    check(n == 0 and json.dumps(a, sort_keys=True) == before and K.tripwire_parks() == {}, '1 KPC_FERS_NOT_SURE=none: 0 rows held, every row byte-identical')
+    os.environ.pop('KPC_FERS_NOT_SURE'); K._TRIPWIRE.clear()
     # 2 / 3
     a = rows(); ref = rows()
     n = K.hold_tripwire(a, listed={r: sorted(v) for r, v in LIST['parks'].items()})
@@ -80,10 +88,11 @@ try:
     check(K.tripwire_parks() == {'US-0003': ['T2']}, '4 KPC_FERS_NOT_SURE names another file')
     # 5
     (TD / 'other.json').write_text('{"parks": {"US-0003"', encoding='utf-8')
-    K._TRIPWIRE.clear(); buf = io.StringIO()
+    K._TRIPWIRE.clear(); buf = io.StringIO(); a = rows(); code = None
     with contextlib.redirect_stdout(buf):
-        a = rows(); n = K.hold_tripwire(a)
-    check(n == 0 and a == rows() and '::warning' in buf.getvalue() and '::error' not in buf.getvalue(), '5 an unreadable list holds nothing and only warns')
+        try: K.hold_tripwire(a)
+        except SystemExit as e: code = e.code
+    check(code == 4 and a == rows() and '::error' in buf.getvalue(), '5 an unreadable list stops the bot (exit 4) and changes no row')
     os.environ.pop('KPC_FERS_NOT_SURE')
     src = (S / 'kpc_fers.py').read_text(encoding='utf-8')
     body = src[src.index('def hold_tripwire'):src.index('SAME_RECORDS_HOLD = ')]

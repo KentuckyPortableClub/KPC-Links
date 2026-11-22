@@ -2609,8 +2609,15 @@ REUSE, REUSE_NEW, REUSE_FILE = {}, {}, None
 # KPC_FERS_FULL=1 = redo every pair (emergency switch; the areas workflow also uses it for its one round-robin full area per run).
 FULL = str(os.environ.get('KPC_FERS_FULL') or '').strip().lower() in ('1', 'yes', 'true', 'y')
 RECHECK_ANSWERS = os.environ.get('KPC_FERS_RECHECK_ANSWERS') == '1'   # the old 'read every server answer again' check (off)
-try: SCOPE = json.load(open(pathlib.Path(__file__).resolve().parents[1] / 'fers-rule-scope.json')).get('changes') or []
-except Exception: SCOPE = []  # noqa: BLE001
+# 22 Nov 2026 (review M8 / F14): a missing or unreadable scope file used to mean 'no declared change', so every pair was reused (fail
+# open). Now the bot stops (exit 4). A file that reads but declares no change is still a real, empty scope.
+try:
+    _scope_doc = json.load(open(pathlib.Path(__file__).resolve().parents[1] / 'fers-rule-scope.json', encoding='utf-8'))
+    if not isinstance(_scope_doc, dict) or not isinstance(_scope_doc.get('changes', []), list): raise ValueError('not {"changes": [...]}')
+    SCOPE = _scope_doc.get('changes') or []
+except Exception as _e:  # noqa: BLE001
+    print(f'::error title=2-fer bot::.github/fers-rule-scope.json is missing or unreadable ({type(_e).__name__}): stopping', flush=True)
+    sys.exit(4)
 _STAMP = {}
 
 
@@ -3644,14 +3651,21 @@ def hold_no_owner(spots, root=None):
 # clears it. Its outline stays on the map: only the 2-fer rows are held. The list is written by the tripwire bot (KPC-Data
 # .github/scripts/kpc_tripwires.py) to KPC-Data data/waiting/tripwires/not-sure.json ({"parks": {ref: ["T1", ...]}}, a person's
 # clears already left out); the 2-fer workflows check KPC-Data out as kpcdata/, so that is read first. KPC_FERS_NOT_SURE = another
-# file. No list (or an unreadable one: a warning) = no park is held here, exactly as before.
+# file. 22 Nov 2026 (review M8 / F14): no list, or an unreadable one, STOPS the bot (exit 4): D10 never turns itself off.
+# KPC_FERS_NOT_SURE=none is the one explicit way to run without D10 (a person chose it; the run says so).
 TRIPWIRE_LISTS = ('kpcdata/data/waiting/tripwires/not-sure.json', 'data/waiting/tripwires/not-sure.json')
 TRIPWIRE_HOLD = 'not sure: tripwire'
 _TRIPWIRE = {}
 
 
 def tripwire_parks(path=None):
-    """{ref: ['T1', 'T4', ...]} from the not-sure list (read once per file); {} when there is no list."""
+    """{ref: ['T1', 'T4', ...]} from the not-sure list (read once per file). No list or an unreadable one = exit 4 (M8), unless
+    KPC_FERS_NOT_SURE=none (D10 off on purpose: {} and a notice)."""
+    if not path and str(os.environ.get('KPC_FERS_NOT_SURE') or '').strip().lower() == 'none':
+        if '_none' not in _TRIPWIRE:
+            _TRIPWIRE['_none'] = {}
+            print('::notice title=2-fer bot::D10 is off for this run on purpose (KPC_FERS_NOT_SURE=none): no tripwire park is held', flush=True)
+        return {}
     cands = [path] if path else ([os.environ['KPC_FERS_NOT_SURE']] if os.environ.get('KPC_FERS_NOT_SURE') else list(TRIPWIRE_LISTS))
     for c in cands:
         if not c or not os.path.isfile(c): continue
@@ -3662,16 +3676,15 @@ def tripwire_parks(path=None):
         except Exception as e:  # noqa: BLE001
             got = None; LOG.append(f'tripwire not-sure list {c}: unreadable ({type(e).__name__}); no park held for it')
         if got is None:
-            print(f'::warning title=2-fer bot::the tripwire not-sure list ({c}) could not be read: no park is held for it this run', flush=True)
-            got = {}
+            print(f'::error title=2-fer bot::the tripwire not-sure list ({c}) could not be read: stopping (exit 4); '
+                  'set KPC_FERS_NOT_SURE=none only to run without D10 on purpose', flush=True)
+            sys.exit(4)
         _TRIPWIRE[c] = got
         return got
-    # Handoff 9 bug 3: no list = D10 holds nothing. Say so ONCE (a PC run used to look in the wrong folder and stay silent)
-    if '_missing' not in _TRIPWIRE:
-        _TRIPWIRE['_missing'] = {}
-        print('::warning title=2-fer bot::D10 is off for this run: the tripwire not-sure list was not found (looked in '
-              + ', '.join(str(c) for c in cands if c) + '); set KPC_FERS_NOT_SURE to KPC-Data data/waiting/tripwires/not-sure.json', flush=True)
-    return {}
+    # M8: no list = stop (it used to mean 'D10 holds nothing' with a warning)
+    print('::error title=2-fer bot::the tripwire not-sure list was not found (looked in ' + ', '.join(str(c) for c in cands if c)
+          + '): stopping (exit 4). Set KPC_FERS_NOT_SURE to KPC-Data data/waiting/tripwires/not-sure.json, or to none to run without D10', flush=True)
+    sys.exit(4)
 
 
 def hold_tripwire(spots, listed=None):
@@ -4545,6 +4558,7 @@ def main():
         import kpc_fers_store   # outline store (switch-over; off = nothing imported, the run as before; areas: .github/fers-store-areas.json)
         kpc_fers_store.install(sys.modules[__name__])
     if os.environ.get('WATER_PREFETCH') == '1': return water_prefetch()
+    tripwire_parks()   # M8 (22 Nov 2026): stop now (exit 4), before any work, when the D10 not-sure list is missing or unreadable
     # Nov 8 (Brandon t808u): only areas declared ready (ownership + management). Skip others with a clear log; no silent world run.
     global ONLY
     _run_areas = sorted(ONLY) if ONLY else (

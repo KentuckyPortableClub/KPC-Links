@@ -3,6 +3,7 @@
 (about 2 m), so pass 2 (the 10 m grid) could only repeat pass 3's test on a coarser grid. In a store run PASS=2 does nothing
 (exit 0, its receipt section says why, no 2-fer file changes) and pass 3 takes every pass-1 row on the 5 m grid. A run that
 downloads from the agencies is unchanged. Offline, on the made-up store fixture of tests/test_fers_proof_of_work_nov16.py."""
+import os as _os_m8; _os_m8.environ.setdefault('KPC_FERS_NOT_SURE', 'none')   # review M8 (22 Nov): no D10 list here on purpose; D10 has its own tests
 import json, pathlib, sys
 
 HERE = pathlib.Path(__file__).resolve().parent

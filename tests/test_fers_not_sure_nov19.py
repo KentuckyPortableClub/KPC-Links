@@ -48,6 +48,7 @@ K.ONLY = {'US-ZZ'}
 K.REGION = 'na'
 K.PIN = {}
 os.chdir(out)   # kpc_save writes data/status/<this test>.json in the working directory; keep that out of the repo
+os.environ['KPC_FERS_NOT_SURE'] = 'none'   # review M8 (22 Nov 2026): no list stops the bot; these checks run without D10 on purpose
 K._write_not_sure(out, dict(parks, **{'US-555': {'st': 'US-OR', 'ids': [5]}}),
                   {'US-2': ('Two',), 'US-9': ('Nine',), 'US-10': ('Ten',), 'US-555': ('Neighbour',)})
 # summary_only in the real writer is K.summary_only, which these made-up ids do not trip.
@@ -77,10 +78,11 @@ KS.STORE_ON = False
 bad = out / 'trip.json'
 bad.write_text('{', encoding='utf-8')
 os.environ['KPC_FERS_NOT_SURE'] = str(bad)
-n = K._write_not_sure(out, parks, {'US-2': ('Two',)})
-os.environ.pop('KPC_FERS_NOT_SURE', None)
-check(n == 1 and 'tripwire list could not be read' in (out / 'not-sure-rows-t.json').read_text(encoding='utf-8'),
-      'an unreadable tripwire list is counted')
+K._TRIPWIRE.clear(); _code = None
+try: K._write_not_sure(out, parks, {'US-2': ('Two',)})
+except SystemExit as _e: _code = _e.code
+os.environ.pop('KPC_FERS_NOT_SURE', None); K._TRIPWIRE.clear()
+check(_code == 4, 'an unreadable tripwire list stops the bot (exit 4, review M8 22 Nov 2026)')
 K.ONLY = set()
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

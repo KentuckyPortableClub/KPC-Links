@@ -18,6 +18,7 @@ area, a line, a pin and one water tile; made-up squares and made-up park refs US
 6 Kentucky runs never use the store; world runs never use it while "world" is "off" (exactly main's notice, nothing replaced); with
   it on: a private store run only, a made-up world area is read, a WDPA-derived world record is refused, publish refuses world rows
 7 hashes: fers moves only by its newest declared changelog line; US, CA and world unchanged"""
+import os as _os_m8; _os_m8.environ.setdefault('KPC_FERS_NOT_SURE', 'none')   # review M8 (22 Nov): no D10 list here on purpose; D10 has its own tests
 import gzip, json, os, pathlib, re, shutil, subprocess, sys, tempfile
 
 for k in list(os.environ):
@@ -187,6 +188,7 @@ runpy.run_path(S + '/kpc_fers.py', run_name='__main__')
 def run(t, script_dir, env, wrap, passes=(1, 2, 3)):
     (t / 'wrap.py').write_text(wrap)
     e = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'PASS', 'MINUTES', 'STATES', 'REGION', 'RUN_TAG', 'PARKS', 'GITHUB_', 'WATER_STORE'))}
+    e['KPC_FERS_NOT_SURE'] = 'none'   # review M8 (22 Nov): the fixture has no D10 list on purpose
     e.update({'MINUTES': '5', 'STATES': 'US-RI', 'REGION': 'na', 'RUN_TAG': 'testri', 'KPC_FERS_LIVE_DIR': str(t / 'cache/fers')})
     e.update(env)
     outs = []

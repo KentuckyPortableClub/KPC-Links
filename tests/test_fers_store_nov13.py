@@ -14,6 +14,7 @@ matches missing_list(); one row per pair (a merged narrow patch is never read as
 read, /5 refused; area records only make outlines (lines, pins, unknown kinds left out and counted); line parks on today's
 100-ft line rule (a trail across a park pairs, a trail 40 m outside does not; a wide river pairs from its bank tile, never from
 its centre line); water tiles from the store; the river centre-line fallback switch, both settings."""
+import os as _os_m8; _os_m8.environ.setdefault('KPC_FERS_NOT_SURE', 'none')   # review M8 (22 Nov): no D10 list here on purpose; D10 has its own tests
 import gzip, hashlib, json, os, pathlib, socket, subprocess, sys, tempfile
 
 for k in list(os.environ):

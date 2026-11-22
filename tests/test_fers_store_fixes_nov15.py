@@ -10,6 +10,7 @@ M4  kpc_fers_expected.py on a public store run leaves withheld parks out (counte
     no readable withheld list = no file
 C1 far line parks not listed as held; C2 store wording; C7 the change list goes to the private folder; C8 no float overflow;
 C9 the run's total of withheld parks"""
+import os as _os_m8; _os_m8.environ.setdefault('KPC_FERS_NOT_SURE', 'none')   # review M8 (22 Nov): no D10 list here on purpose; D10 has its own tests
 import gzip, hashlib, json, os, pathlib, shutil, subprocess, sys, tempfile, warnings
 
 for k in list(os.environ):
@@ -176,6 +177,7 @@ S.HELD_PRIVATE.clear(); S.CARRIED_PUBLIC.clear(); S.READ_OK_RUN.clear(); S.PRIVA
 oldf, newf = TMP / 'old.json', TMP / 'new.json'
 oldf.write_text(json.dumps(old)); newf.write_text(json.dumps(d1))
 env = {k: v for k, v in os.environ.items() if not k.startswith('KPC_')}
+env['KPC_FERS_NOT_SURE'] = 'none'   # review M8 (22 Nov): the fixture has no D10 list on purpose
 r = subprocess.run([sys.executable, str(SCR / 'kpc_fers_store.py'), 'diff', '--old', str(oldf), '--new', str(newf), '--out', str(ROOT / 'tmp-change-list')],
                    capture_output=True, text=True, env=env)
 check(r.returncode == 2 and not list(ROOT.glob('tmp-change-list*')), 'C7: diff --out inside a git work tree is refused (the list names parks)')
@@ -280,6 +282,7 @@ else:
     priv = TMP / 'e2e-private'
     (t / 'wrap.py').write_text(WRAP)
     e = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'PASS', 'MINUTES', 'STATES', 'REGION', 'RUN_TAG', 'PARKS', 'GITHUB_', 'WATER_STORE'))}
+    e['KPC_FERS_NOT_SURE'] = 'none'   # review M8 (22 Nov): the fixture has no D10 list on purpose
     e.update({'MINUTES': '5', 'STATES': 'US-RI', 'REGION': 'na', 'RUN_TAG': 'testri', 'KPC_FERS_LIVE_DIR': str(t / 'cache/fers'), 'KPC_FERS_FROM_STORE': 'on',
               'KPC_FERS_STORE_DIR': str(t / 'store'), 'KPC_FERS_STORE_MAX_DAYS': '100000', 'KPC_FERS_STORE_KIND': 'public', 'KPC_FERS_PRIVATE_LOG': str(priv),
               'KPC_FERS_CARRY_MADE_ON': '0', 'KPC_FERS_STRIP_HELD': '0',  # this file proves never-worse; R-2F4 and R-2F6 are the owner-answers test

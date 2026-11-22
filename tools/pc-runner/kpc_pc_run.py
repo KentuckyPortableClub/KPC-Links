@@ -450,7 +450,8 @@ def cmd_run(a):
     # silently off: point the bot at the list in the KPC-Data checkout, and say so loudly when it is not there.
     nsl = tripwire_list(kd)
     if nsl: env['KPC_FERS_NOT_SURE'] = str(nsl); say(f'D10 tripwire list: {nsl}')
-    else: say('WARNING: D10 is OFF for this run: no tripwire not-sure list at ' + str(kd / NOT_SURE_REL) + ' (get KPC-Data again); no park is held for it')
+    else: say('WARNING: no tripwire not-sure list at ' + str(kd / NOT_SURE_REL) + ' (get KPC-Data again): the 2-fer bot will stop (exit 4, review M8); '
+              'set KPC_FERS_NOT_SURE=none only to run without D10 on purpose')
     # --- the GitHub job's set-up steps (Nov 16): without them the bot stops on its first line
     bad = lay_overlay(links, kd)
     if bad:

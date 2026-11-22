@@ -11,6 +11,7 @@ and saved nothing. Offline: no network (the real kpc_fers.py runs in a subproces
 4 the near-pairs list stops 4 minutes before the step's hard end (the pass still saves instead of exit 3)
 5 a normal area's files are byte for byte what the code before this change wrote (golden made with main 11f908d9)
 6 the memory collect runs at most once a minute (it ran after every pair once the outlines alone were over the cap)"""
+import os as _os_m8; _os_m8.environ.setdefault('KPC_FERS_NOT_SURE', 'none')   # review M8 (22 Nov): no D10 list here on purpose; D10 has its own tests
 import contextlib, gzip, hashlib, io, json, math, os, pathlib, re, subprocess, sys, tempfile, time, types
 HERE = pathlib.Path(__file__).resolve().parent.parent
 S = HERE / '.github/scripts'
@@ -176,6 +177,7 @@ runpy.run_path(S + '/kpc_fers.py', run_name='__main__')
 def run(t, script_dir, env, timeout=150):
     (t / 'wrap_offline.py').write_text(WRAP)
     e = {k: v for k, v in os.environ.items() if not k.startswith(('KPC_', 'PASS', 'MINUTES', 'STATES', 'REGION', 'RUN_TAG', 'PARKS'))}
+    e['KPC_FERS_NOT_SURE'] = 'none'   # review M8 (22 Nov): the fixture has no D10 list on purpose
     e.update(env)
     r = subprocess.run([sys.executable, '-B', str(t / 'wrap_offline.py'), str(script_dir)], cwd=t, env=e, capture_output=True, text=True, timeout=timeout)
     return r.returncode, r.stdout + r.stderr
