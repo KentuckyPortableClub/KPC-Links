@@ -220,6 +220,11 @@
    "d": "2026-10-25",
    "src": "world"
   },
+  "ES-2114": {
+   "n": "Alborán Natura 2000",
+   "d": "2026-11-22",
+   "src": "world"
+  },
   "FR-0004": {
    "n": "SOUS LA GRANDE ROCHE Biological Reserve",
    "d": "2026-11-11",
@@ -8055,6 +8060,11 @@
    "d": "2026-10-25",
    "src": "world"
   },
+  "GB-3369": {
+   "n": "Four Acre Wood Nature Reserve",
+   "d": "2026-11-22",
+   "src": "world"
+  },
   "LU-0002": {
    "n": "Öewersauer Nature Park",
    "d": "2026-11-11",
@@ -8248,6 +8258,11 @@
   "SI-0230": {
    "n": "Kužno znamenje - Prvačina National Historical Site",
    "d": "2026-11-21",
+   "src": "world"
+  },
+  "SI-0242": {
+   "n": "Villa in posestvo Starkenfels  - Rožna Dolina National Historic Site",
+   "d": "2026-11-22",
    "src": "world"
   },
   "SI-0245": {
@@ -8528,6 +8543,11 @@
   "SI-0575": {
    "n": "Iz Nove Gorice na Škabrijel Recreation Site",
    "d": "2026-11-21",
+   "src": "world"
+  },
+  "SI-0598": {
+   "n": "Spomenik padlim v Prvi svetovni vojni - Ljubljana Historic Site",
+   "d": "2026-11-22",
    "src": "world"
   },
   "SI-0605": {
@@ -9932,5 +9952,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-21"
+ "updated": "2026-11-22"
 }
