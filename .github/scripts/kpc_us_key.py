@@ -3275,7 +3275,9 @@ def run(st):
         # (a check row beside a joined row of the same id would make kpc_join_check.py take that joined row off on the next build).
         # A person's row is never moved.
         if _kr('KPC_ANSWER_HOLDERS'):
-            _hum = lambda q: bool(re.search(r'review|chat|hand|answer', str(q[3] if len(q) > 3 else ''), re.I))
+            # 22 Nov 2026 review M2: a person's row is the builder's own rule (tag starts with 'reviewed'); an answer-sheet row
+            # whose nightly check is not green is a name row, so it never holds the record as a person's.
+            _hum = lambda q: str(q[3] if len(q) > 3 else '').startswith('reviewed')
             _ah = {}
             for _r, _p in parks.items():
                 for _q in _p.get('m') or []:

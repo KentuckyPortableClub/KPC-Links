@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """KPC_ANSWER_HOLDERS (finding F2; decided 22 Nov 2026). A record a person joined to one park
-(reviewed / chat / hand / answer row) and joined by name to another: the D9 full-name winner test
+(a row tagged reviewed, reviewed-approx or reviewed-sheet) and joined by name to another: the D9 full-name winner test
 decides (kpc_key_rules.answer_holder_moves). Ties hold. A short form is not a full name, so nothing
 moves. A name-only join never takes the record. A person's row is never moved. Switch OFF unless set.
 Invented parks only. Run: python3 tests/test_answer_holders_nov19.py"""
@@ -74,4 +74,15 @@ k = {A: {'n': LAKE, 'g': 'official', 'm': [[255408, LAKE, 2095, 'reviewed']], 'c
      B: {'n': WMA, 'g': 'official', 'm': [[255408, LAKE, 2095, 'name']], 'c': [], 'parts': {'255408': [[0, 0, 1, 1]]}}}
 k0 = {r: dict(p, m=[list(x) for x in p['m']]) for r, p in k.items()}; build(True, k)
 check(k == k0, 'ON: a park given only its own parts of the record (B12) is not a holder')
+# 22 Nov 2026 review M2: an answer-sheet row whose nightly check is NOT green is not a person's row, so it never wins the record;
+# a green sheet row (reviewed-sheet) and a close-enough row (reviewed-approx) are a person's, as the builder says.
+k = {A: {'n': LAKE, 'g': 'official', 'm': [[255408, LAKE, 2095, 'answer sheet (nightly check not green)']], 'c': []},
+     B: {'n': WMA, 'g': 'official', 'm': [[255408, LAKE, 2095, 'name']], 'c': []}}
+k0 = {r: dict(p, m=[list(x) for x in p['m']]) for r, p in k.items()}; said = build(True, k)
+check(k == k0 and not said, 'ON: an unchecked answer-sheet row is a name row: it is not a person\'s, so nothing moves')
+for tag in ('reviewed-sheet', 'reviewed-approx'):
+    k = {A: {'n': LAKE, 'g': 'official', 'm': [[255408, LAKE, 2095, tag]], 'c': []},
+         B: {'n': WMA, 'g': 'official', 'm': [[255408, LAKE, 2095, 'name']], 'c': []}}
+    build(True, k)
+    check(k[A]['m'] == [[255408, LAKE, 2095, tag]] and k[B]['m'] == [] and len(k[B]['c']) == 1, f'ON: a {tag} row is a person\'s row and keeps the record')
 n = sum(1 for ok, _ in RESULTS if ok); print(f'\n{n}/{len(RESULTS)} checks passed'); sys.exit(0 if n == len(RESULTS) else 1)
