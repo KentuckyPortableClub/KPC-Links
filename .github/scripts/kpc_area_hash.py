@@ -48,7 +48,13 @@ COMPOSITION = 'ah1'   # the area-hash composition id: it is in the `version` par
 # code-hash move of the same patch (every US / world area moves once anyway: no extra rebuild).
 # Nov 12 (Quality #178 M3): US also hashes data/trails and data/access-leads (KPC-Data, via --data), Canada hashes data/trails,
 # so US is 'ah3' and Canada is 'ah2'. World stays 'ah2'; 2-fers stay 'ah1'.
-COMPOSITION_OF = {'us': 'ah3', 'world': 'ah2', 'ca': 'ah2'}
+# Nov 22 (KPC owner, 2026-11-22; review M3): since #334 the park facts file decides US joins (kpc_match_checks), and the size check
+# reads data/acres.json, so US also hashes KPC-Data data/park-facts.json.gz (by state) and data/acres.json (by park ref): US is 'ah4'.
+# The agency crosswalk reaches the key only through the facts file (link.map_tie), so it is in the facts slice. Canada and world
+# list the facts reader but no rule of theirs reads the facts, so they stay 'ah2'.
+COMPOSITION_OF = {'us': 'ah4', 'world': 'ah2', 'ca': 'ah2'}
+PARK_FACTS = 'data/park-facts.json.gz'   # M3: a KPC-Data file (read from --data), one row per park with its 'area'
+ACRES = 'data/acres.json'   # M3: official sizes by park ref (this checkout, else --data); optional: the builder falls back to the facts
 
 
 def composition(kind): return COMPOSITION_OF.get(kind, COMPOSITION)
@@ -589,6 +595,54 @@ class Kind:
                 recs.extend(x for x in (d.get(k) or {}).get(a, []) if isinstance(x, dict) and x.get('la') and x.get('lo'))
             parts[a]['data:data/access-leads/keyed-pull-raw.json.gz'] = H(canon(recs))
 
+    def park_facts(self, parts, shared):
+        """M3 (KPC owner, 2026-11-22): the park facts the US builder reads (KPC-Data data/park-facts.json.gz, given by --data; the
+        match checks decide joins from it, and its link.map_tie carries the agency crosswalk). Each row counts for its own state
+        ('area' US-XX, else the states the park's key or pin file puts it in). A row of another country is not read by the US key.
+        A US row with no state is a shared part. No --data = not counted (like the pins part); --data given but the file missing or
+        unreadable = a shared part (every US area moves: fail closed)."""
+        if not self.data or self.kind != 'us': return
+        f = pathlib.Path(self.data) / PARK_FACTS
+        try:
+            d = json.load(gzip.open(f, 'rt', encoding='utf-8'))
+        except Exception as e:  # noqa: BLE001
+            shared[f'shared:{PARK_FACTS}' + ('!unreadable' if f.is_file() else '')] = H(type(e).__name__.encode() if f.is_file() else b'missing')
+            return
+        pk = d.get('parks') if isinstance(d, dict) else None
+        if not isinstance(pk, dict): shared[f'shared:{PARK_FACTS}!unreadable'] = H(b'!'); return
+        by, un = {}, {}
+        for ref, row in pk.items():
+            ar = str(row.get('area') or '') if isinstance(row, dict) else ''
+            if ar.startswith('US-') and ar[3:] in self.areas_set: own = [ar[3:]]
+            elif ar and not ar.startswith('US-'): continue   # another country (CA-..): no US rule reads it
+            else: own = [a for a in (self.ref_area.get(str(ref)) or ()) if a in self.areas_set]
+            if not own:
+                if str(ref).startswith(('US-', 'KY-')) and not ar.startswith('US-'): un[str(ref)] = row
+                continue   # KY and parks outside every US area are not read by this key
+            for a in own: by.setdefault(a, {})[str(ref)] = row
+        for a, x in by.items(): parts[a][f'data:{PARK_FACTS}'] = H(canon(x))
+        if un: shared[f'shared:{PARK_FACTS}#rows-of-no-area'] = H(canon(un))
+
+    def acres(self, parts, shared):
+        """M3: the official sizes the size check reads (kpc_us_key._official_acres): data/acres.json in this checkout, else --data's.
+        Sliced by park ref like the overrides. Missing = no part (the build writes it from the facts file, which is hashed above);
+        unreadable = a shared part (fail closed)."""
+        if self.kind != 'us': return
+        if self.t.oid(ACRES) is not None:
+            self.slice_file(ACRES, parts, shared); return
+        if not self.data: return
+        f = pathlib.Path(self.data) / ACRES
+        if not f.is_file(): return
+        try: v = json.loads(f.read_text(encoding='utf-8'))
+        except Exception as e: shared[f'shared:{ACRES}!unreadable'] = H(type(e).__name__); return  # noqa: BLE001
+        v = v.get('parks', v) if isinstance(v, dict) else None
+        if not isinstance(v, dict): shared[f'shared:{ACRES}!unreadable'] = H(b'!'); return
+        by = {}
+        for r, x in v.items():
+            for a in (self.ref_area.get(str(r)) or ()):
+                if a in self.areas_set: by.setdefault(a, {})[str(r)] = x
+        for a, x in by.items(): parts[a][f'data:{ACRES}'] = H(canon(x))
+
     def parts(self):
         """{area: {part: digest}} for every area of the kind."""
         self.areas_set = set(self.areas)
@@ -610,6 +664,8 @@ class Kind:
             for f in ('data/nps-units.json',): self.slice_file(f, parts, sh)
             self.trails(parts, sh)
             self.access_leads(parts, sh)
+            self.park_facts(parts, sh)   # M3 (2026-11-22): new facts move only their own states
+            self.acres(parts, sh)
             self.gate(parts, sh, lambda a: f'US-{a}')
         elif self.kind == 'ca':
             self.slice_file('data/ca-key/overrides.json', parts, sh)
@@ -1131,6 +1187,17 @@ FORMAT_ONLY_PARTS = frozenset({'composition', 'version'})
 # counting as a real-input change (the #178 trails / access-leads slices). A first override, pins, or
 # official-pins part is NOT listed and does rebuild.
 COMPOSITION_MIGRATIONS = {
+    # M3 (2026-11-22): the facts and acres slices first appear at ah4 without a rebuild of their own (the full US rebuild #334
+    # already needs carries them); after that, a facts change moves only its states. A missing / unreadable shared part is not listed.
+    'ah4': frozenset({
+        'data:data/trails/index',
+        'data:data/trails/*',
+        'data:data/access-leads/keyed-pull-raw.json.gz',
+        'shared:data/trails#rows-in-no-key',
+        'data:data/park-facts.json.gz',
+        'data:data/acres.json',
+        'shared:data/park-facts.json.gz#rows-of-no-area',
+    }),
     'ah3': frozenset({
         'data:data/trails/index',
         'data:data/trails/*',
