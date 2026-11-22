@@ -246,7 +246,13 @@ def us_fixture(work, dated):
         (work / f'data/parkinfo/US-{st}.json').write_text(json.dumps({'parks': pk, 'state': st}))
         blob = dict({'recs': R[st], 'seen': len(R[st]), 'detail': 0.01}, **({'saved': '2026-10-20'} if dated else {}))
         with gzip.GzipFile(work / f'cache/us/US-{st}.json.gz', 'wb', mtime=0) as z: z.write(json.dumps(blob).encode())
-    return {'STATES': ' '.join(P)}
+    # KPC_MATCH_CHECKS is on in every built state: a missing or empty park facts file holds the state.
+    # Synthetic refs only (the fixture's US-990xx); no real park names. PARK_FACTS wins over $DATA.
+    facts = {'made': '2026-11-21', 'parks': {ref: {'area': 'US-' + st}
+             for st, pk in P.items() for ref in pk}}
+    pf = work / 'data/park-facts.json'
+    pf.write_text(json.dumps(facts), encoding='utf-8')
+    return {'STATES': ' '.join(P), 'PARK_FACTS': str(pf)}
 
 
 try:
