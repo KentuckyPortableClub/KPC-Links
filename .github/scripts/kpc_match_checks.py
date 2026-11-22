@@ -112,7 +112,7 @@ def how_word(row):
 def row_class(row):
     w = how_word(row)
     if w in CODE_HOW: return 'code'
-    if w in PERSON_HOW: return 'person'
+    if w in PERSON_HOW or w.startswith('reviewed'): return 'person'   # reviewed-approx, reviewed-sheet: a person's too (builder rule)
     return 'name'
 
 
