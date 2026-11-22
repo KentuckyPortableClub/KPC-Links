@@ -664,6 +664,14 @@
    "why": "Holder table (outside review F2; decided 22 Nov 2026): a record a person joined to one park and the name joined to another is decided by the D9 full-name winner test. Ties hold. A short form is not a full name, so nothing moves. A name-only join never takes the record. A person's row is never moved. Switch KPC_ANSWER_HOLDERS stays off for every area, so no park changes until it is turned on.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-review-fixes",
+   "when": "2026-11-22",
+   "from": "849ebbe772e9",
+   "why": "Review fixes (22 Nov 2026). M1: the match checks treat any join tagged reviewed (reviewed-approx, reviewed-sheet) as a person's join, as the builder already does. M2: the holder table counts a person's row by the builder's own rule (tag starts with reviewed), so an unchecked answer-sheet row is a name row; its switch KPC_ANSWER_HOLDERS stays off. F4: a switch listed in the switch file is off everywhere it is not listed, so an empty list turns a default-on rule off; the switch file is not changed and lists none of the four default-on rules (KPC_APPROX_PIN, KPC_PRESERVE_APART, KPC_FAR_JOIN, KPC_PRESERVE_WITH_PARK), so they stay on and no result changes. F9: one notice when no official sizes file is found. M1 takes effect at the full US build #334 already needs; nothing else changes a park.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
   }
  ]
 }

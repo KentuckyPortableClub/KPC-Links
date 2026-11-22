@@ -387,6 +387,15 @@
       "scope": "none",
       "scope_note": "No pair is remeasured. The file is a report of doubts the bot already has.",
       "approved": "WAITING: Reviewed: Fable, 19 Nov 2026 + APPROVED, decided_by KPC owner"
-    }
-  ]
+    },
+  {
+   "id": "2026-11-22-fail-closed",
+   "when": "2026-11-22",
+   "from": "6a9d67ea4100",
+   "why": "Review M8 / F14 (22 Nov 2026): a missing or unreadable rule-scope file, or a missing or unreadable D10 not-sure list, stops the 2-fer bot (exit 4) instead of reusing every pair or turning D10 off. KPC_FERS_NOT_SURE=none runs without D10 on purpose. Scope none: no pair is remeasured.",
+   "scope": "none",
+   "scope_note": "No pair is remeasured. The bot only stops when a rule-data file is missing or unreadable.",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  }
+ ]
 }
