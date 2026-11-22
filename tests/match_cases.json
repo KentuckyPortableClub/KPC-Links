@@ -132,19 +132,67 @@
    "a": "Silver Creek State Park",
    "b": "Silver Creek Lake",
    "same": false,
-   "why": "22 Nov F3: a last type word that names a different kind of place is kept, so a park and a lake of the same words stay apart."
+   "why": "22 Nov F3: the record is a lake and the park does not already carry that water word, so they stay apart."
   },
   {
    "a": "Silver Creek State Park",
    "b": "Silver Creek State Forest",
    "same": false,
-   "why": "22 Nov F3: park and forest are different type words, so the last word is kept and they stay apart."
+   "why": "22 Nov F3: a state park and a state forest of the same words are different places, so they stay apart."
   },
   {
    "a": "Silver Creek Wildlife Management Area",
    "b": "Silver Creek Lake",
    "same": false,
-   "why": "22 Nov F3: a wildlife area and a lake of the same words stay apart when the last type words differ."
+   "why": "22 Nov F3: the record is a lake and the wildlife area does not already carry that water word, so they stay apart."
+  },
+  {
+   "a": "Cedar Hollow State Park",
+   "b": "Cedar Hollow Pond",
+   "same": false,
+   "why": "22 Nov F3: the record is a pond and the park does not already carry that water word, so they stay apart."
+  },
+  {
+   "a": "Oak Ridge State Marine Reserve",
+   "b": "Oak Ridge State Marine Park",
+   "same": true,
+   "why": "22 Nov F3: a reserve and a park of the same words still match; reserve is not a different kind from park."
+  },
+  {
+   "a": "Maple Ridge State CA",
+   "b": "Maple Ridge Lake CA",
+   "same": true,
+   "why": "22 Nov F3: the record ends in CA, not a water word, so a mid-name lake does not drop the join."
+  },
+  {
+   "a": "Pine Ridge SRA",
+   "b": "Pine Ridge Lake Complex",
+   "same": true,
+   "why": "22 Nov F3: the record ends in Complex, not a water word, so they still match."
+  },
+  {
+   "a": "Maple Ridge State CA",
+   "b": "Maple Ridge Reserve",
+   "same": true,
+   "why": "22 Nov F3: a conservation area and a reserve of the same words still match."
+  },
+  {
+   "a": "Silver Creek State Park",
+   "b": "Silver Creek WMA",
+   "same": false,
+   "why": "22 Nov F3: a state park and a wildlife area of the same words are different places, so they stay apart."
+  },
+  {
+   "a": "Silver Creek WMA",
+   "b": "Silver Creek Wildlife Area",
+   "same": true,
+   "why": "22 Nov F3: a WMA and a wildlife area of the same words still match; they are the same kind of place."
+  },
+  {
+   "a": "Silver Creek State Park",
+   "b": "Silver Creek Beach",
+   "same": false,
+   "why": "22 Nov F3: the record is a beach and the park does not already carry that water word, so they stay apart."
   }
  ],
  "alerts": [
@@ -2521,6 +2569,34 @@
    "old": "same",
    "new": "UNCLEAR likely yes",
    "why": "gap 2: a bare record name never MATCHes by name alone. It MATCHes when PAD-US's designation (SP), the record's class field or the layer's declared kind says State Park."
+  },
+  {
+   "a": "Oak Ridge State Marine Reserve",
+   "b": "Oak Ridge State Marine Park",
+   "old": "same",
+   "new": "UNCLEAR likely yes",
+   "why": "22 Nov F3: join_how keeps a reserve and a park of the same words; the new matcher does not MATCH by name alone (no layer kind)."
+  },
+  {
+   "a": "Maple Ridge State CA",
+   "b": "Maple Ridge Lake CA",
+   "old": "same",
+   "new": "UNCLEAR likely yes",
+   "why": "22 Nov F3: join_how keeps a record ending in CA; the new matcher does not MATCH by name alone (no layer kind)."
+  },
+  {
+   "a": "Pine Ridge SRA",
+   "b": "Pine Ridge Lake Complex",
+   "old": "same",
+   "new": "UNCLEAR likely yes",
+   "why": "22 Nov F3: join_how keeps a record ending in Complex; the new matcher does not MATCH by name alone (no layer kind)."
+  },
+  {
+   "a": "Maple Ridge State CA",
+   "b": "Maple Ridge Reserve",
+   "old": "same",
+   "new": "UNCLEAR likely yes",
+   "why": "22 Nov F3: join_how keeps a conservation area and a reserve; the new matcher does not MATCH by name alone (no layer kind)."
   }
  ]
 }

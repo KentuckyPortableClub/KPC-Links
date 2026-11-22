@@ -176,11 +176,13 @@ def kinds(s):
 DES = {'SP': 'sp', 'SREC': 'sp', 'SHCA': 'hist', 'NWR': 'nwr', 'NF': 'nf', 'NG': 'nf', 'NP': 'nps', 'NM': 'nps', 'NRA': 'nps', 'NHS': 'hist', 'WA': 'wild'}
 
 
-LAST_TYPE = {'park': 'park', 'forest': 'forest', 'pond': 'pond', 'ponds': 'pond',
-             'lake': 'lake', 'reservoir': 'reservoir', 'complex': 'complex',
-             'memorial': 'memorial', 'reserve': 'reserve',
-             'wma': 'wildlife', 'wildlife': 'wildlife', 'refuge': 'refuge', 'nwr': 'refuge',
-             'preserve': 'preserve'}   # 22 Nov F3: type words used to decide when variants() may drop the last word
+# 22 Nov F3 (owner-approved form): a name join is dropped only for (1) a water/beach RECORD
+# whose last type word is lake/pond/ponds/reservoir/beach when the PARK does not already carry that
+# water kind (lake/pond/reservoir are one kind; 'Taylorsville Lake State Park' still matches
+# 'Taylorsville Lake'), or (2) one name is a park (state park / SP / SRA / recreation area) and the
+# other is a wildlife area (WMA / wildlife area / game land / refuge / NWR) or a state forest.
+# Reserve, preserve, CA/conservation area, complex, memorial and area are not different kinds.
+WATER_LAST = {'pond': 'water', 'ponds': 'water', 'lake': 'water', 'reservoir': 'water', 'beach': 'beach'}
 
 
 def _name_words(s):
@@ -188,29 +190,65 @@ def _name_words(s):
     return re.findall(r'[a-z0-9]+', str(s or '').lower())
 
 
-def last_type(s):
-    """The kind of the last type word, or ''."""
+def last_water_kind(s):
+    """The water/beach kind of the last type word, or ''."""
     w = _name_words(s)
-    return LAST_TYPE.get(w[-1], '') if w else ''
+    return WATER_LAST.get(w[-1], '') if w else ''
 
 
-def name_kinds(s):
-    """Every type kind a name already carries, including a mid-name word such as 'lake' in 'Taylorsville Lake State Park'.
-    Uses the raw name (and KR.type_words when loaded), because norm() has already dropped phrases such as 'state park'."""
-    kinds = {LAST_TYPE[w] for w in _name_words(s) if w in LAST_TYPE}
-    kr = globals().get('KR')
-    if kr is not None and hasattr(kr, 'type_words'):
-        kinds |= kr.type_words(s)
-    return kinds
+def carries_water_kind(s, kind):
+    """True if the name already carries that water kind (any word, not only the last)."""
+    if not kind:
+        return False
+    return kind in {WATER_LAST[w] for w in _name_words(s) if w in WATER_LAST}
+
+
+def land_roles(s):
+    """{'park', 'wildlife', 'forest'} roles a name carries. Reserve / preserve / CA / complex / memorial / area are not roles."""
+    raw, w, roles = str(s or ''), _name_words(s), set()
+    if re.search(r'\bwildlife management areas?\b|\bwildlife areas?\b|\bWMAs?\b|\bgame lands?\b|\bgame areas?\b|'
+                 r'\b(?:national )?wildlife refuges?\b|\bNWRs?\b', raw, re.I) or (w and w[-1] in ('refuge', 'nwr', 'wma')):
+        roles.add('wildlife')
+    if re.search(r'\bstate parks?\b|\b(?:state )?marine parks?\b|\bstate recreation areas?\b|'
+                 r'\brecreation(?:al)? areas?\b|\b(?:SRA|SP)\b', raw, re.I) or (w and w[-1] in ('park', 'parks')):
+        roles.add('park')
+    if re.search(r'\b(?:state|national) forests?\b', raw, re.I) or (w and w[-1] in ('forest', 'forests') and 'park' not in roles):
+        roles.add('forest')
+    return roles
+
+
+def f3_water_apart(park, rec):
+    """True when the record's last type word is a water body or beach and the park does not already carry that kind."""
+    kind = last_water_kind(rec)
+    return bool(kind) and not carries_water_kind(park, kind)
+
+
+def f3_land_apart(a, b):
+    """True when one name is a park and the other is a wildlife area or a state forest."""
+    ra, rb = land_roles(a), land_roles(b)
+    # Wildlife contrast still applies when one name also says park ('X State Park WMA').
+    # Forest contrast does not, when both names already claim the park: 'State Forest State Park'
+    # is one park (the forest words are part of its name), and 'X State Park and Y State Forest'
+    # still names the park.
+    park_vs_wildlife = ('park' in ra and 'wildlife' in rb) or ('park' in rb and 'wildlife' in ra)
+    park_vs_forest = ('park' in ra and 'forest' in rb) or ('park' in rb and 'forest' in ra)
+    if park_vs_forest and ('park' in ra and 'park' in rb):
+        park_vs_forest = False
+    return park_vs_wildlife or park_vs_forest
+
+
+def f3_apart(park, rec):
+    """22 Nov F3: these two names must not name-join (park first, record second for the water half)."""
+    if str(park or '').strip().lower() == str(rec or '').strip().lower():
+        return False
+    return f3_water_apart(park, rec) or f3_land_apart(park, rec)
 
 
 def keep_last_type(this, other):
-    """22 Nov F3: keep this name's last type word when the two names carry different type kinds
-    (compare the way KR.contest uses type words). So 'Silver Creek State Park' and 'Silver Creek Lake'
-    stay apart, but 'Taylorsville Lake State Park' still matches 'Taylorsville Lake' because the park
-    name already carries 'lake'."""
-    kt, ko = name_kinds(this), name_kinds(other)
-    return bool(kt and ko and not (kt & ko))
+    """Unused as a keep-filter: F3 is enforced in name_ok / join_how via f3_apart (water is
+    directed, park first, so a park that itself ends in lake is not treated as the record).
+    Returning False keeps same_name / exact_name on the pre-F3 path for every pair F3 does not drop."""
+    return False
 
 
 def variants(s, keep_last=False):
@@ -280,10 +318,13 @@ def exact_name(a, b):
 
 
 def name_ok(a, b, ka, kb):
+    if f3_apart(a, b): return False   # 22 Nov F3: water/beach record, or park vs wildlife/forest (kinds() misses SP/SRA)
     if not same_kind(ka, kb): return False
     if ('nfh' in ka) != ('nfh' in kb): return False                      # a hatchery only joins a hatchery (Dworshak Reservoir is not the hatchery)
     if bool(re.search(r'\btrail\b', str(a), re.I)) != bool(re.search(r'\btrail\b', str(b), re.I)): return False   # a trail only joins a trail
-    return exact_name(a, b) if (bool(ka) != bool(kb)) else same_name(a, b)
+    if bool(ka) != bool(kb):
+        return exact_name(a, b)
+    return same_name(a, b) or exact_name(a, b)   # F3 keep: a soft-word or mid-name water difference still matches when we do not drop
 
 
 def _sing(s): return ' '.join(w[:-1] if len(w) > 3 and w.endswith('s') else w for w in s.split())
@@ -412,7 +453,7 @@ def join_how(name, kp, a, close, rules=True):
         # Oct 18 review: a bare PAD-US name ('Fort Fetterman', 'Trail End') whose only 'kind' came from its designation code,
         # and the whole name matches: the designation code is often off, so the name decides
         return 'name (designation code ignored)'
-    if close and (same_words(name, nm, kp, a['_k']) or (loc and same_words(name, loc, kp, a['_k']))):
+    if close and ((not f3_apart(name, nm) and same_words(name, nm, kp, a['_k'])) or (loc and not f3_apart(name, loc) and same_words(name, loc, kp, a['_k']))):
         return 'words'
     return None
 

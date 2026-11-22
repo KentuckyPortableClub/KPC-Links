@@ -680,6 +680,14 @@
    "why": "Review F2, F3, F5 and F10 (22 Nov 2026). KPC_ANSWER_HOLDERS, KPC_SAVED_ANSWERS_SAY and KPC_HOLD_ON_PASS_ERROR are on in the same 50 areas as KPC_MATCH_CHECKS (including DC, not Kentucky). F3: a last type word is kept when the two names carry different type kinds, so a park and a lake of the same words stay apart; a park name that already carries the other type word (Taylorsville Lake State Park / Taylorsville Lake) still matches. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-22-f3-water-and-land",
+   "when": "2026-11-22",
+   "from": "764a670fa99d",
+   "why": "Review F3, owner-approved form (22 Nov 2026). A name join is dropped only when (1) the record's last type word is a water body or beach (lake/pond/ponds/reservoir/beach) and the park does not already carry that water kind (lake/pond/reservoir are one kind, so a park name that already carries the word still matches), or (2) one name is a park (state park / SP / SRA / recreation area) and the other is a wildlife area (WMA / wildlife area / game land / refuge / NWR) or a state forest. Reserve, preserve, CA/conservation area, complex, memorial and area are not different kinds. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
   }
  ]
 }
