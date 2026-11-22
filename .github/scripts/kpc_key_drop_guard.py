@@ -266,14 +266,21 @@ def main():
     sok = 0
     if strict:
         for st in sorted(before):
-            lo = sorted((lost.get(st) or set()) | (swapped.get(st) or set()))
+            lo_lost, lo_sw = set(lost.get(st) or ()), set(swapped.get(st) or ())
+            lo = sorted(lo_lost | lo_sw)
             if st in named or st in stop or not lo: continue
             tail = f'{", ".join(lo[:12])}{" ..." if len(lo) > 12 else ""}'
+            if lo_sw and lo_lost:
+                why = 'lost their outline or their official grade, or had their records swapped'
+            elif lo_sw:
+                why = 'had their records swapped'
+            else:
+                why = 'lost their outline or their official grade'
             if st in ok:
-                sok += 1; print(f'::warning title=Drop guard US-{st}::{len(lo)} park(s) lost their outline or their official grade, or had their records swapped ({tail}), let through by KPC_DROP_OK for this run')
+                sok += 1; print(f'::warning title=Drop guard US-{st}::{len(lo)} park(s) {why} ({tail}), let through by KPC_DROP_OK for this run')
             else:
                 held_named.append(st)
-                print(f'::error title=Drop guard US-{st}::{len(lo)} park(s) lost their outline or their official grade, or had their records swapped: {tail}. Never worse is judged park by park '
+                print(f'::error title=Drop guard US-{st}::{len(lo)} park(s) {why}: {tail}. Never worse is judged park by park '
                       f'(a gain elsewhere does not offset it): the state is held until the owner names these parks (.github/key-drop-approved.json).')
     for st, b, n, p in oa: print(f'::warning title=Drop guard US-{st}::outlines {b} -> {n} (-{p}%), let through by KPC_DROP_OK for this run')
     for st, b, n, p in of:
