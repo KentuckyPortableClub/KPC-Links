@@ -72,6 +72,8 @@ def scan(src):
 ALLOW = {
     ('kpc_us_key.py', 'DES'): 'PAD-US designation codes (SP state park, NF, NM national monument, WA wilderness area ...): the keys look like '
                               'state codes but are record types, the same for every state',
+    ('kpc_match_checks.py', 'DES'): 'designation-to-kind map (SP, NWR, NF, WA wilderness, NM national monument, ...): the keys look like '
+                                    'state codes but are record types, the same for every state, not a leftover per-area table',
     ('kpc_us_key.py', 'SZ_US'): 'the two Mississippi zipped-shapefile layers: kpc_us_key_join.zip_owners reads SZ_US from the code as its '
                                 'join-safety check, so it stays; kpc_area_hash.py counts it for MS only (TABLES)',
     ('kpc_ca_key.py', 'PROVS'): 'the whole province list (which state-gis.json rows are Canada\'s): the same for every province, no per-area value',
