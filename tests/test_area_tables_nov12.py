@@ -72,6 +72,8 @@ def scan(src):
 ALLOW = {
     ('kpc_us_key.py', 'DES'): 'PAD-US designation codes (SP state park, NF, NM national monument, WA wilderness area ...): the keys look like '
                               'state codes but are record types, the same for every state',
+    ('kpc_match_checks.py', 'DES'): 'designation-to-kind map (SP, NWR, NF, WA wilderness, NM national monument, ...): the keys look like '
+                                    'state codes but are record types, the same for every state, not a leftover per-area table',
     ('kpc_us_key.py', 'SZ_US'): 'the two Mississippi zipped-shapefile layers: kpc_us_key_join.zip_owners reads SZ_US from the code as its '
                                 'join-safety check, so it stays; kpc_area_hash.py counts it for MS only (TABLES)',
     ('kpc_ca_key.py', 'PROVS'): 'the whole province list (which state-gis.json rows are Canada\'s): the same for every province, no per-area value',
@@ -244,7 +246,13 @@ def us_fixture(work, dated):
         (work / f'data/parkinfo/US-{st}.json').write_text(json.dumps({'parks': pk, 'state': st}))
         blob = dict({'recs': R[st], 'seen': len(R[st]), 'detail': 0.01}, **({'saved': '2026-10-20'} if dated else {}))
         with gzip.GzipFile(work / f'cache/us/US-{st}.json.gz', 'wb', mtime=0) as z: z.write(json.dumps(blob).encode())
-    return {'STATES': ' '.join(P)}
+    # KPC_MATCH_CHECKS is on in every built state: a missing or empty park facts file holds the state.
+    # Synthetic refs only (the fixture's US-990xx); no real park names. PARK_FACTS wins over $DATA.
+    facts = {'made': '2026-11-21', 'parks': {ref: {'area': 'US-' + st}
+             for st, pk in P.items() for ref in pk}}
+    pf = work / 'data/park-facts.json'
+    pf.write_text(json.dumps(facts), encoding='utf-8')
+    return {'STATES': ' '.join(P), 'PARK_FACTS': str(pf)}
 
 
 try:

@@ -35,9 +35,12 @@
 .github/scripts/kpc_key_facts.py text eol=lf
 .github/scripts/kpc_key_rules.py text eol=lf
 .github/scripts/kpc_match.py text eol=lf
+.github/scripts/kpc_match_checks.py text eol=lf
 .github/scripts/kpc_number_rules.py text eol=lf
 .github/scripts/kpc_owned.py text eol=lf
+.github/scripts/kpc_park_facts_read.py text eol=lf
 .github/scripts/kpc_pin_fill.py text eol=lf
+.github/scripts/kpc_source_fields.py text eol=lf
 .github/scripts/kpc_us_key.py text eol=lf
 .github/scripts/kpc_world_key.py text eol=lf
 

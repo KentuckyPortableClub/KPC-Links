@@ -105,6 +105,14 @@
    "why": "D6 leftover: the North Macedonia switch-gated official layer leaves kpc_world_key.py for data/world-key/area-tables.json under SRC_SWITCH, and is appended (not assigned) only when KPC_MK_LAYER_93 is on (off by default). With the switch off, SRC[MK] is unchanged and no join change is predicted; today's saved keys would stay byte-identical. The world rules hash moves because the table file and this scope file are in RULE_FILES. Every world area hash also moves because the loader line and this scope entry are shared; the new table row itself is attributed only to MK. Scope none: nothing is rebuilt until the owner approves and says GO. DRAFT PR, not merged.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"
+  },
+  {
+   "id": "2026-11-21-park-facts-read-in-hash",
+   "when": "2026-11-21",
+   "from": "21e858156b22",
+   "why": "kpc_park_facts_read.py is in the world RULE_FILES (it was already a US rule file; world key runs already called it). A later edit to it moves the world hash. No join result changes; no country is rebuilt for this alone.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-21"
   }
  ]
 }

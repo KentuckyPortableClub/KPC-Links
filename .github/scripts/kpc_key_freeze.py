@@ -82,13 +82,27 @@ RULE_FILES['us-key'].append('data/state-gis.json')
 RULE_FILES['ca-key'].append('.github/scripts/kpc_pin_fill.py')
 RULE_FILES['world-key'].append('.github/scripts/kpc_pin_fill.py')
 RULE_FILES['world-key'].append('.github/scripts/kpc_jp_crosswalk.py')
-NOT_RULES = {'kpc_agency_table.py', 'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_keep_main.py', 'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
+# Nov 20 (KPC owner, 2026-11-20, APPROVED: match by more than name): the match checks, the one reader of the park facts file
+# they use and the layer table that gives each layer's owner (kpc_layer_agency_kind.py) decide joins: all three are US rule files.
+RULE_FILES['us-key'].append('.github/scripts/kpc_match_checks.py')
+RULE_FILES['us-key'].append('.github/scripts/kpc_park_facts_read.py')
+RULE_FILES['us-key'].append('.github/layer-agency-kind.json')
+# Canada and world keys also run kpc_park_facts_read.py (sizes feed the size check), so it is a rule file there too.
+RULE_FILES['ca-key'].append('.github/scripts/kpc_park_facts_read.py')
+RULE_FILES['world-key'].append('.github/scripts/kpc_park_facts_read.py')
+# KPC owner, 2026-11-21 (job B): the keep-list of agency id fields (and the module that reads it) decide what a saved record carries
+RULE_FILES['us-key'].append('.github/keep-record-fields.json')
+RULE_FILES['us-key'].append('.github/scripts/kpc_source_fields.py')
+# KPC owner, 2026-11-21 (job A): the web address fields that carry a park's link id decide id ties
+RULE_FILES['us-key'].append('.github/link-id-ties.json')
+NOT_RULES = {'kpc_match_checks_count.py', 'kpc_match_checks_sample.py',   # Nov 20: offline counts / sample re-score of the match checks; decide no join
+             'kpc_keep_fields.py',   # Nov 21 (job B): writes the keep-list config, decides nothing itself (the config is a rule file)
+             'kpc_agency_table.py', 'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_keep_main.py', 'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',
              'kpc_key_layers.py', 'kpc_ca_answers.py', 'kpc_world_answers.py', 'kpc_lost_finds.py', 'kpc_ca_whynot.py', 'kpc_overlay.sh',
              'kpc_save_overwrite.sh', 'kpc_push_data.sh',
              'kpc_join_check.py',
-             # Nov 20 2026: reads KPC-Data's park facts file and, only when data/acres.json is missing, writes the official sizes there;
-             # it contacts nothing and never decides a join (the size readers that use the file are unchanged)
-             'kpc_park_facts_read.py',
+             # Nov 20 2026: kpc_park_facts_read.py was listed here (it read the park facts file for sizes only); with the six match checks
+             # its parks() decides joins, so it moved to the US RULE_FILES above (KPC owner, 2026-11-20, APPROVED)
              # Nov 11 / Nov 12 2026 (KPC owner, KPC-Links #151): reads / writes data/us-key/overrides.json and its parts; never decides a join
              'kpc_overrides.py', 'kpc_precheck_whole.py',
              # Nov 11 r2 (KPC owner, 2026-11-11): the US key join puts the build parts together per state and fails closed on a conflict;

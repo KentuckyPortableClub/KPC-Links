@@ -16,6 +16,7 @@ S = ROOT / '.github/scripts'
 sys.path.insert(0, str(S))
 
 import kpc_area_hash as AH  # noqa: E402
+import kpc_preflight as PF  # noqa: E402
 # kpc_key_freeze is run as a subprocess so this test never imports a builder.
 
 FAILS = []
@@ -155,7 +156,8 @@ check('missing or empty' in load_us(u_miss) and load_us(uj) == 'loaded',
 check('missing or empty' in load_w(w_miss) and load_w(wj) == 'loaded',
       'world tables fail closed if SRC_SWITCH is missing')
 
-# 4. Rules fingerprints: US and world move; Canada and 2-fers do not.
+# 4. Rules fingerprints: US and world moved from the pre-D6 hashes; Canada equals
+# the newest declared changelog line (so a later declared Canada move is not a leftovers failure); 2-fers stay put.
 def rules(kind):
     return subprocess.check_output(
         [sys.executable, str(S / 'kpc_key_freeze.py'), 'rules', kind],
@@ -166,7 +168,7 @@ def rules(kind):
 us_now, ca_now, wo_now, fe_now = rules('us-key'), rules('ca-key'), rules('world-key'), rules('fers')
 check(us_now != '7e4883bfbb45', f'US rules hash moved from 7e4883bfbb45 to {us_now}')
 check(wo_now != 'b1f23bf0deea', f'world rules hash moved from b1f23bf0deea to {wo_now}')
-check(ca_now == 'dfef94b3dfd3', f'Canada rules hash is unchanged ({ca_now})')
+check(ca_now == PF.newest_hash('ca-key'), f'Canada rules hash equals the newest declared changelog line ({ca_now})')
 check(fe_now == '6a9d67ea4100', f'2-fer rules hash is unchanged ({fe_now})')
 print(f'HASHES us={us_now} ca={ca_now} world={wo_now} fers={fe_now}', flush=True)
 

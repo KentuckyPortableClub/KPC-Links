@@ -571,6 +571,50 @@
    "why": "KPC_NO_FOLLOWS_FP (job 10 of Fable's 20 Nov jobs list; outside review R4 / finding F7, Arkansas US-1080): a person's saved NO named a record id, and after a layer refresh renumbered that record the NO no longer applied and the land could join again. Behind the new switch (OFF, on for no area): a 'no' id that is gone from the read follows its saved fingerprint ('nofp': name + acres within 10%, the SAME layer, near the pin), as a saved join already does (the Oct 27 re-find); every fit is ruled out, a fit the same park joins by id is left alone; all of it is said in the build's notice. Merged OFF = no result changes, nothing is rebuilt. On the saved reads of 11-12 Nov (no pin test, so an upper bound): 409 saved NO ids carry a fingerprint, 41 of them are gone from the read; ON, 6 follow their record (16 new ids on 4 parks, 1 of them joined in today's key) and 35 are not found again.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"
+  },
+  {
+   "id": "2026-11-20-more-than-name",
+   "when": "2026-11-20",
+   "from": "7e4883bfbb45",
+   "why": "Match by more than name (kpc_match_checks.py, switch KPC_MATCH_CHECKS on in every built state): a same-kind id from POTA's own link confirms a record; any other name-joined record keeps the outline only when it passes agency (when known), pin 3c, another park's name, the national-layer rule and a tagged size (none today); kind is a note only. Records that fail go to check and a park left with none shows its pin. It reads every state's parks, so every state is rebuilt once.",
+   "scope": "all",
+   "approved": "APPROVED by owner Nov 20, decided_by KPC owner, 2026-11-20"
+  },
+  {
+   "id": "2026-11-21-link-name",
+   "when": "2026-11-21",
+   "from": "fb5d8d5a3a2d",
+   "why": "Confirm a name join by more than the name: a park whose own agency page in the park's state names it in full in the address, and whose pin 3c and size or place pass, is confirmed by link (a part name in the address is a note only). Minnesota DNR unit ids on sgmnb sft and sgmnc pgrm_project confirm like a Park Service code; a joined record whose same-kind id differs from POTA's link goes to check. Reads POTA's saved park list (no fetch). It reads every state's parks, so every state is rebuilt once.",
+   "scope": "all"
+  },
+  {
+   "id": "2026-11-21-keep-id-fields",
+   "when": "2026-11-21",
+   "from": "134c2e0abe67",
+   "why": "Saved state-layer records keep the agency id field of each layer the ID finder marked 'ID found' or 'ID on part of the layer' (the keep-list .github/keep-record-fields.json, never WDPA), so the id match can see it. It changes what every state's records carry, so every state is rebuilt once.",
+   "scope": "all"
+  },
+  {
+   "id": "2026-11-21-link-id-ties",
+   "when": "2026-11-21",
+   "from": "4a9629d2fab7",
+   "why": "A web id the map record carries inside its own web address field (.github/link-id-ties.json: NY DEC, CA State Parks, MT FWP, MN DNR state forests, some Park Service layers), or that the agency's own park list maps to a map id (KPC-Data park facts link.map_tie, from the keeper's agency-crosswalk files), ties the record to the park like a direct id tie. Agree-only for the address: another address id never drops a record. PAD-US and the state layers keep those address fields on save. It changes what every state's records carry, so every state is rebuilt once.",
+   "scope": "all"
+  },
+  {
+   "id": "2026-11-21-hand-copy-source",
+   "when": "2026-11-21",
+   "from": "3ff834ba1e1a",
+   "why": "A hand-copied official size (park facts witness hand_copy) counts in the size check only when it names its source page (source_url is a web address). A hand copy with no page never casts a size vote. It can change any state's size votes, so every state is rebuilt once.",
+   "scope": "all"
+  },
+  {
+   "id": "2026-11-21-confirm-stack",
+   "when": "2026-11-21",
+   "from": "a257a3276829",
+   "why": "Confirm stack rebased onto current main: match checks so a name alone never draws an outline (#327 layer table, #328 confirm by the park's own page address, jobs A/B/C). A same-kind id from the park's own page can confirm; other name-joins keep the outline only if they pass agency, pin 3c, another park's name, the national-layer rule, and an independently witnessed size. Job B: saved records can keep the agency id fields named in keep-record-fields.json, and never a WDPA field. Job A: tie by the web address on the record and by the agency's own park list. Job C: a hand-copied size counts only when it names its source. It reads every state's parks, so every state is rebuilt once.",
+   "scope": "all",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-21"
   }
  ]
 }
