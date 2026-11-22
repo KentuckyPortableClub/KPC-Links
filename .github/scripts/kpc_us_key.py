@@ -1763,6 +1763,9 @@ def _official_acres():
             out[str(r_)] = float(a)
         ACRES_OFF = out
         return ACRES_OFF
+    # 22 Nov 2026 (review F9 / N3): say it once when no official sizes file was found or read (it used to be skipped without a word)
+    notice('US key', 'no official sizes file found or readable (OFFICIAL_ACRES, data/acres.json, $DATA/data/acres.json): '
+           'the size check has no official sizes this build')
     return ACRES_OFF
 
 
