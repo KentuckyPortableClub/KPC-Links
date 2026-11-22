@@ -43,7 +43,8 @@ finally: A.close(); B.close()
 def main():
     tool = os.environ.get('KPC_STORE_TOOL_DIR', '')
     if not tool or not (pathlib.Path(tool) / 'kpc_outline_store.py').is_file() or not (pathlib.Path(tool) / 'tests' / 'test_store_full.py').is_file():
-        print('SKIP: set KPC_STORE_TOOL_DIR to an unzipped store tool (full 3) to run this test'); print('ALL PASS'); return 0
+        # 22 Nov 2026 (review F18): a skip used to print ALL PASS, so the two licence tables were never compared and looked green
+        print('FAIL: KPC_STORE_TOOL_DIR is not set (or not a full store tool): the two licence tables were not compared'); return 1
     tool = pathlib.Path(tool).resolve()
     env = {k: v for k, v in os.environ.items() if k.lower() not in ('http_proxy', 'https_proxy', 'all_proxy', 'ftp_proxy')}
     env['NO_PROXY'] = env['no_proxy'] = '127.0.0.1,localhost'
