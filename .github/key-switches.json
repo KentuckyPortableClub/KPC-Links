@@ -1,5 +1,5 @@
 {
-  "about": "Rule switches of the keys (reviewer B #7, KPC owner 17 Nov 2026). A switch is ON for the areas in its 'on' list ('US-OH', ...; '*' = every area) and OFF everywhere else. Switching one on = a commit to this file with a changelog line marked APPROVED by the owner: the file is a US rule file and is sliced per area, so only the areas whose switches changed are rebuilt. An environment variable of the same name still wins (offline proofs, the scorecard). The meaning of each switch is in .github/scripts/kpc_key_rules.py (DEFAULTS and the note above it).",
+  "about": "Rule switches of the keys (reviewer B #7, KPC owner 17 Nov 2026). A switch is ON for the areas in its 'on' list ('US-OH', ...; '*' = every area) and OFF everywhere else. A 'hold' list is on for those areas too, and the size check reads it as hold (one state at a time). Switching one on = a commit to this file with a changelog line marked APPROVED by the owner: the file is a US rule file and is sliced per area, so only the areas whose switches changed are rebuilt. An environment variable of the same name still wins (offline proofs, the scorecard). The meaning of each switch is in .github/scripts/kpc_key_rules.py (DEFAULTS and the note above it).",
   "switches": {
     "KPC_SAVED_ID_LAND": {"on": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]},
     "KPC_ONE_RECORD_ONE_PARK": {"on": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]},
@@ -9,7 +9,7 @@
     "KPC_NO_BY_NAME": {"on": []},
     "KPC_ID_JOIN_NAME": {"on": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]},
     "KPC_REFOUND_NEAR": {"on": []},
-    "KPC_SELF_CHECKS": {"on": []},
+    "KPC_SELF_CHECKS": {"on": [], "hold": []},
     "KPC_CONF_SORT": {"on": []},
     "KPC_PADUS_DEDUPE": {"on": []},
     "KPC_PIECE_NAME": {"on": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]},

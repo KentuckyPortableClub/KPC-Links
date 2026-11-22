@@ -648,6 +648,14 @@
     ],
     "saved_ids": false
    },
-   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"  }
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"  },
+  {
+   "id": "2026-11-20-size-check-hold",
+   "when": "2026-11-20",
+   "from": "0cfe178f9281",
+   "why": "Size check (KPC owner, 20 Nov 2026): hold parks that do not pass. The size line compares the measured outline (the ac field) with the official size at 0.33 to 3 times; the sum of joined rows is not used. Hold is a per-state hold list on KPC_SELF_CHECKS; the builder passes the state. Layer kind and a pin outside the state are noted and do not hold. A park with no official size is not held. The hold list is empty and the on list is empty, so no park changes. The official sizes stay in the waiting room until a person releases them. The builder reads the acres file the same way the key health report does, and does not read the waiting-room copy.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20"
+  }
  ]
 }

@@ -13,8 +13,11 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
   KPC_ID_JOIN_NAME     0  a hand join by id also needs the record's name to look like the park (or the saved fingerprint name);
                           an id that now points at other land goes to 'check' with a reason. Today: the id alone joins.
   KPC_REFOUND_NEAR     0  a kept outline found again under a new PAD-US id must lie within ~0.6 deg of the pin. Today: anywhere.
-  KPC_SELF_CHECKS      0  pre-handoff checks on each joined park (acres sanity, layer kind, missing fields, pin inside the state);
-                          'report' = note them in the park ('self'), 'hold' = also move the park to check. 0 = off (today).
+  KPC_SELF_CHECKS      0  pre-handoff checks on each joined park (acres sanity, layer kind, missing fields, pin inside the state).
+                          'report' (the switch file's 'on' list) notes them in the park ('self'). 'hold' (the switch file's
+                          'hold' list, per state) moves the park to check for the SIZE line only: the measured outline ('ac')
+                          against the official size, 0.33x to 3x. Layer kind and a pin outside the state are noted and do not
+                          hold. A park with no official size is not held. 0 = off (today; the hold list is empty).
   KPC_CONF_SORT        0  each park gets a confidence (sure / likely / unsure) and a one-line reason; only 'unsure' parks are
                           listed for chat 11 (data/us-key/review/unsure-US-XX.json). Today every check item goes to chat 11.
   KPC_PADUS_DEDUPE     0  (Nov 2, mapping agent) PAD-US keeps an OLDER copy of the same place from the same data provider
@@ -183,6 +186,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
 # variable of the same name still wins (offline proofs, the scorecard).
 SWITCH_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'key-switches.json')
 _SW = {}
+_HOLD = {}   # path -> {switch: set of areas whose mode is hold} (the size check; other switches ignore it)
 
 
 class SwitchFileError(RuntimeError): pass
@@ -212,23 +216,35 @@ def approx_pin(p, ov, on_=True):
     return True
 
 
+def _area_hit(areas, area):
+    """True when `area` (a state code or 'US-XX') is in the list, or the list is '*'."""
+    if not areas: return False
+    a = str(area or '')
+    return '*' in areas or (a and (a in areas or ('US-' + a) in areas))
+
+
 def switch_file(path=None):
-    """{switch: set of areas it is on for} from the switch file. A missing file = every switch at its DEFAULT; a file that cannot
-    be read or has the wrong shape raises (the build must stop, never run with every switch silently off)."""
+    """{switch: set of areas it is on for} from the switch file. A 'hold' list counts as on (the size check reads it as hold).
+    A missing file = every switch at its DEFAULT; a file that cannot be read or has the wrong shape raises (the build must stop,
+    never run with every switch silently off)."""
     path = path or SWITCH_FILE
     if path in _SW: return _SW[path]
     import json
-    if not os.path.exists(path): _SW[path] = {}; return _SW[path]
+    if not os.path.exists(path): _SW[path] = {}; _HOLD[path] = {}; return _SW[path]
     try: d = json.load(open(path, encoding='utf-8'))
     except (OSError, ValueError) as e: raise SwitchFileError(f'{path} cannot be read: {e}')
     sw = d.get('switches') if isinstance(d, dict) else None
     if not isinstance(sw, dict): raise SwitchFileError(f"{path}: no 'switches' object")
-    out = {}
+    out, hold = {}, {}
     for k, v in sw.items():
         on_ = (v or {}).get('on') if isinstance(v, dict) else None
         if not isinstance(on_, list) or not all(isinstance(a, str) for a in on_): raise SwitchFileError(f"{path}: {k} needs an 'on' list of areas")
-        out[k] = set(on_)
+        h_ = (v or {}).get('hold', []) if isinstance(v, dict) else []
+        if not isinstance(h_, list) or not all(isinstance(a, str) for a in h_): raise SwitchFileError(f"{path}: {k} needs a 'hold' list of areas")
+        out[k] = set(on_) | set(h_)
+        hold[k] = set(h_)
     _SW[path] = out
+    _HOLD[path] = hold
     return out
 
 
@@ -236,10 +252,10 @@ def setting(name, env=None, area=None, path=None):
     env = os.environ if env is None else env
     v = str(env.get(name, '') or '').strip()
     if v: return v
+    path = path or SWITCH_FILE
     areas = switch_file(path).get(name)
-    if areas is not None and areas:
-        a = str(area or '')
-        if '*' in areas or (a and (a in areas or ('US-' + a) in areas)): return '1'
+    if _area_hit((_HOLD.get(path) or {}).get(name), area): return 'hold'
+    if _area_hit(areas, area): return '1'
     return DEFAULTS.get(name, '0')
 
 
@@ -368,10 +384,23 @@ def id_join_name_ok(park_name, rec_name, fp_name=None):
 
 
 # ------------------------------------------------------------------ pre-handoff self-checks
+# Owner 20 Nov 2026, 4:52 AM: size check holds parks that do not pass; the band is the one counted on the sample (0.33x-3x).
+SIZE_LO, SIZE_HI = 0.33, 3.0
+
+
+def measured_acres(park):
+    """The park's own outline, the key's 'ac' field (measured while KPC_MEASURED_ACRES is on). None when it was not measured.
+    The sum of the joined rows is not the size: the same land from two layers would count twice."""
+    ac = (park or {}).get('ac')
+    if isinstance(ac, bool) or not isinstance(ac, (int, float)): return None
+    return float(ac)
+
+
 def self_checks(ref, park, state_box=None, official_acres=None, kind_ok=None):
     """Plain-words problems with one built park before it is handed to chat 11 / the waiting room. park = the key entry
     {'n','t','m','c',...}. state_box = (south, west, north, east) or None; official_acres = the park's own acres or None;
-    kind_ok(park_type, record_name) -> bool or None."""
+    kind_ok(park_type, record_name) -> bool or None. The size line uses the measured outline, not the sum of the rows, and
+    only when an official size is known. A park with no official size is not a size failure."""
     out = []
     for k in ('n', 'm', 'c'):
         if k not in park: out.append(f'missing field {k}')
@@ -380,12 +409,14 @@ def self_checks(ref, park, state_box=None, official_acres=None, kind_ok=None):
     for x in m:
         if not isinstance(x, (list, tuple)) or len(x) < 4: out.append(f'joined row is not [id, name, acres, how]: {str(x)[:60]}'); continue
         if x[0] in (None, ''): out.append(f"joined row with no id ({x[1]})")
-    tot = sum(float(x[2] or 0) for x in m if isinstance(x, (list, tuple)) and len(x) > 2 and isinstance(x[2], (int, float)))
-    if m and official_acres:
+    tot = sum(float(x[2] or 0) for x in m if isinstance(x, (list, tuple)) and len(x) > 2 and isinstance(x[2], (int, float)) and not isinstance(x[2], bool))
+    measured = measured_acres(park)
+    if m and official_acres and measured is not None:
         try: oa = float(official_acres)
         except (TypeError, ValueError): oa = 0
-        if oa > 0 and not (.2 * oa <= tot <= 5 * oa):
-            out.append(f'acres: joined {tot:,.0f} ac vs the official {oa:,.0f} ac ({tot / oa:.2f}x, outside 0.2x-5x)')
+        if oa > 0 and not (SIZE_LO * oa <= measured <= SIZE_HI * oa):
+            out.append(f'acres: measured outline {measured:,.0f} ac vs the official {oa:,.0f} ac ({measured / oa:.2f}x, outside 0.33x-3x). '
+                       'The official size was matched to this park by name and kind from an agency list')
     if m and tot <= 0: out.append('acres: the joined land has 0 acres')
     if m and kind_ok is not None:
         bad = [x[1] for x in m if isinstance(x, (list, tuple)) and len(x) > 1 and kind_ok(park.get('t') or '', x[1]) is False]
