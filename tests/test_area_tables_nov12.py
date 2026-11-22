@@ -252,7 +252,7 @@ def us_fixture(work, dated):
              for st, pk in P.items() for ref in pk}}
     pf = work / 'data/park-facts.json'
     pf.write_text(json.dumps(facts), encoding='utf-8')
-    return {'STATES': ' '.join(P), 'PARK_FACTS': str(pf)}
+    return {'STATES': ' '.join(P), 'PARK_FACTS': str(pf), 'KPC_HOLD_ON_PASS_ERROR': '0'}
 
 
 try:

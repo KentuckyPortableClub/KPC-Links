@@ -257,13 +257,18 @@ else:
             b = {k: v for k, v in b.items() if not k.startswith(('receipt-', 'not-sure-rows-'))}
             def wo_mark(raw):
                 # R-2F4 second round: an area file this code writes carries written_by_rule. The spots are compared without that mark.
+                # F16 A (22 Nov): core_m2 is a decide-time length field on area rows; compared without it so a switch-off run still matches main.
                 try:
                     d = json.loads(raw)
                 except (ValueError, TypeError):
                     return raw
-                if isinstance(d, dict):
-                    d.pop('written_by_rule', None)
-                return json.dumps(d, sort_keys=True)
+                def drop(o):
+                    if isinstance(o, dict):
+                        return {k: drop(v) for k, v in o.items() if k not in ('written_by_rule', 'core_m2')}
+                    if isinstance(o, list):
+                        return [drop(x) for x in o]
+                    return o
+                return json.dumps(drop(d), sort_keys=True)
             out = sorted(set(a) ^ set(b))
             for k in sorted(set(a) & set(b)):
                 if a[k] == b[k]: continue
@@ -279,7 +284,13 @@ else:
         def _spots(raw):
             d = json.loads(raw)
             d.pop('written_by_rule', None)
-            return d
+            def drop(o):
+                if isinstance(o, dict):
+                    return {k: drop(v) for k, v in o.items() if k != 'core_m2'}
+                if isinstance(o, list):
+                    return [drop(x) for x in o]
+                return o
+            return drop(d)
         check(dd == [] and _spots(fm['US-RI.json']) == _spots(fb['US-RI.json']),
               f'switch off, as merged: spots and reuse match main (the area file also carries written_by_rule; scope none, no pair re-stamped) ({dd})')
         # the next ordinary run after this change: main's saved pair answers are reused, none is tested again

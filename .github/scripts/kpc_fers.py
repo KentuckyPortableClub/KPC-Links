@@ -1150,16 +1150,28 @@ def sliver_aspect_min():
 
 
 def sliver_len_m(s):
-    """Length of the overlap along the shared edge: len_m when present, else acres * 4046.86 / wide_m. None if unknown."""
+    """Length of the overlap along the shared edge. Prefers the 25-yard-or-wider core (core_m2 / max(wide_m - SLIVER_M, CELL))
+    so a thin drawing-offset ribbon attached to a compact real gap does not inflate the length. Else len_m, else acres * 4046.86 / wide_m. None if unknown."""
+    try:
+        w = float(s['wide_m']) if s.get('wide_m') not in (None, '') else 0.0
+    except (TypeError, ValueError):
+        w = 0.0
+    if s.get('core_m2') not in (None, '', 0, 0.0) and w > 0:
+        try:
+            core = float(s['core_m2'])
+        except (TypeError, ValueError):
+            core = 0.0
+        if core > 0:
+            return core / max(w - SLIVER_M, CELL)
     if s.get('len_m') not in (None, '', 0, 0.0):
         try:
             n = float(s['len_m'])
         except (TypeError, ValueError):
             n = 0.0
         if n > 0: return n
-    w, ac = s.get('wide_m'), s.get('acres')
+    ac = s.get('acres')
     try:
-        w, ac = float(w), float(ac)
+        ac = float(ac)
     except (TypeError, ValueError):
         return None
     if w > 0 and ac > 0:
@@ -2448,7 +2460,8 @@ def area_spots(G, refs, box):
             shape = [F.ll(int(c), int(r)) for c, r in ap]
             w = round(max(0.0, float(d.max()) - CELL * .5) * 2)   # the distance map counts to the next cell's middle: half a cell less = the real width
             out.append({'refs': sorted(refs), 'kind': 'area', 'center': F.ll(int(c0), int(r0))[::-1],
-                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': w, 'shape': shape,
+                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': w,
+                        'core_m2': int((comp & (core > 0)).sum()) * CELL * CELL, 'shape': shape,
                         **({'masked_out': sorted({OWNED[r] for r in refs if r in OWNED})} if masked_out else {})})
     return merge(out)
 
@@ -2462,6 +2475,7 @@ def merge(spots):
         if t:
             if not s.get('masked_out'): t.pop('masked_out', None)   # one piece on agency-owned land = a real spot
             if 'acres' in t or 'acres' in s: t['acres'] = round(t.get('acres', 0) + s.get('acres', 0), 1)   # line spots have none
+            if 'core_m2' in t or 'core_m2' in s: t['core_m2'] = (t.get('core_m2') or 0) + (s.get('core_m2') or 0)
             if s.get('wide_m', 0) > t.get('wide_m', 0): t['center'], t['wide_m'] = s['center'], s['wide_m']
             if s.get('len_m'): t['len_m'] = round(t.get('len_m', 0) + s['len_m'])
             t['_b'] = [min(t['_b'][0], b[0]), min(t['_b'][1], b[1]), max(t['_b'][2], b[2]), max(t['_b'][3], b[3])]
@@ -3368,11 +3382,14 @@ def dedupe_line_rows(spots):
 
 
 LINE_WORD = re.compile(r'\btrail\b|\btrace\b|scenic byway', re.I)
+RIVER_WORD = re.compile(r'\briver\b|\bcreek\b|\bwsr\b|wild (and|&) scenic', re.I)
 def line_zone(x, G, PIN):
     """Oct 27 (chat 3): the TRUE 2-fer ground of a trail stretch = the 100-ft band around the trail that is also inside the other
-    park (5 m in from its line, its owned land for an agency-land park) = 'zone' rings, + its acres and how wide it gets at most."""
-    if x.get('kind') != 'trail' or not x.get('shape'): return None
-    lref = next((r for r in x['refs'] if LINE_WORD.search((PIN.get(r) or [''])[0])), None)
+    park (5 m in from its line, its owned land for an agency-land park) = 'zone' rings, + its acres and how wide it gets at most.
+    F16 B (22 Nov): a river stretch is measured the same way (RIVER_WORD finds the river park the way LINE_WORD finds the trail)."""
+    if x.get('kind') not in ('trail', 'river') or not x.get('shape'): return None
+    word = RIVER_WORD if x.get('kind') == 'river' else LINE_WORD
+    lref = next((r for r in x['refs'] if word.search((PIN.get(r) or [''])[0])), None)
     oref = next((r for r in x['refs'] if r != lref and r in G), None)
     if not lref or not oref: return None
     b = x.get('box') or bbox_lines([x['shape']])
@@ -3422,7 +3439,7 @@ def add_zones(files, G, PIN, today):
     for d in files.values():
         dedupe_line_rows(d.get('spots', []))
         for x in d.get('spots', []):
-            if x.get('kind') != 'trail' or str(x.get('status', '')).startswith('dropped') or late(): continue
+            if x.get('kind') not in ('trail', 'river') or str(x.get('status', '')).startswith('dropped') or late(): continue
             try:
                 zz = line_zone(x, G, PIN)
                 if zz is not None: x.update(zz); x['zone_read'] = today; n += 1
@@ -3433,18 +3450,24 @@ def add_zones(files, G, PIN, today):
 
 def rule15(spots):
     """RULE 15: a trail row (with the stretches folded into it) whose strip is under 10 yards wide EVERYWHERE = 'very tight
-    (members only)', the same tier as a 25-50 yard overlap. A row whose strip was not measured is left as it is."""
+    (members only)', the same tier as a 25-50 yard overlap. A row whose strip was not measured is left as it is.
+    F16 B (22 Nov): the 100-foot zone width is only known here (pass 5/6). A trail or river row whose zone is within one
+    grid cell of the 100-foot line is NOT SURE. The 10-yard very-tight test stays trails only."""
     for m in spots:
-        if m.get('kind') != 'trail' or not str(m.get('status', '')).startswith(('candidate', VERY_TIGHT)): continue
-        mem = [x for x in spots if str(x.get('status', '')) == 'merged into one row: ' + m['id']]
+        if m.get('kind') not in ('trail', 'river') or not str(m.get('status', '')).startswith(('candidate', VERY_TIGHT)): continue
+        mem = [x for x in spots if str(x.get('status', '')) == 'merged into one row: ' + m.get('id', '')]
         ws = [x['zone_wide_m'] for x in [m] + mem if x.get('zone_wide_m') is not None]
         if not ws: continue
         m['strip_wide_m'] = max(ws)
-        if max(ws) < STRIP_MIN_M:
-            m['status'] = VERY_TIGHT; m['tier'] = VERY_TIGHT; m['list'] = 'Very tight (members only)'
-            m['rule15'] = f'strip at most {round(max(ws) / 0.9144, 1)} yards wide (under 10 yards everywhere: rule 15)'
-        elif m.pop('rule15', None):
-            m['status'] = 'candidate'; m.pop('tier', None); m.pop('list', None)
+        if m.get('kind') == 'trail':
+            if max(ws) < STRIP_MIN_M:
+                m['status'] = VERY_TIGHT; m['tier'] = VERY_TIGHT; m['list'] = 'Very tight (members only)'
+                m['rule15'] = f'strip at most {round(max(ws) / 0.9144, 1)} yards wide (under 10 yards everywhere: rule 15)'
+            elif m.pop('rule15', None):
+                m['status'] = 'candidate'; m.pop('tier', None); m.pop('list', None)
+        _nl = near_line(m)   # F16 B: the zone width is only known here (pass 5/6)
+        if _nl:
+            m['status'] = 'not sure: ' + _nl; m.pop('list', None); m.pop('tier', None)
 
 def file_of(st): return OUT / f'{st}.json'
 
@@ -4777,7 +4800,7 @@ def main():
 
     if PASS == 6:   # Oct 27 (HQ 5:36 PM): ONLY the live boundary lines around each area spot (Kentucky after its run; later runs do it in pass 5)
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
-        lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') in ('area', 'trail') and not str(x.get('status', '')).startswith('dropped')]
+        lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') in ('area', 'trail', 'river') and not str(x.get('status', '')).startswith('dropped')]
         refs = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids']})
         G, bad = ky_geom(parks, refs) if REGION == 'ky' else download(parks, refs, DET, PREC)
         inject_apx_geom(G, parks, refs)
@@ -4950,7 +4973,7 @@ def main():
         # making a list to review later'); they go on the review list, nothing is deleted
         n['river channels listed as water only (boat spots)'] = channel_rows(files, G, today)
         mark(f"boundary lines for {n['spots given their boundary lines']} spots")
-        tw = [] if late() else sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'trail' for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
+        tw = [] if late() else sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') in ('trail', 'river') for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if tw:
             g3, _ = ky_geom(parks, tw) if REGION == 'ky' else download(parks, tw, DET, PREC)
             G.update(g3)
@@ -5289,7 +5312,7 @@ def main():
                 if m:
                     s['passes'][PASS - 1] = 1; agree += 1
                     if _from1: s['passes'][1] = 1   # the same outlines: pass 3's finer test stands for pass 2
-                    for k in ('center', 'shape', 'box', 'acres', 'wide_m', 'len_m'):
+                    for k in ('center', 'shape', 'box', 'acres', 'wide_m', 'len_m', 'core_m2'):
                         if k in m: s[k] = m[k]
                     if m.get('masked_out'): s['masked_out'] = m['masked_out']
                     else: s.pop('masked_out', None)
