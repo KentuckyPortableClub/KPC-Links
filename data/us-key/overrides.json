@@ -1421,12 +1421,12 @@
      321709
     ]
    },
-   "decided_by": "evidence batch 04 (job 5 of Fable's 20 Nov jobs list; outside research agent, first pass)",
+   "decided_by": "KPC owner's assistant, 2026-11-22",
    "evidence": {
-    "who": "the owner's outside research agent, first pass (20 Nov 2026), from the agency's own page; a second, separate pass (key-quality.md section 15) and Fable's read come before merge",
-    "source": "https://parks.nv.gov/parks/spring-mountain-ranch ; https://www.fs.usda.gov/r04/humboldt-toiyabe/recreation/spring-mountains-national-recreation-area",
-    "saw": "Nevada State Parks: 'The park was a 528-acre oasis originally developed into a combination working ranch and luxurious retreat'. Forest Service: the Spring Mountains NRA is 'Spanning 317,000 acres'. The park's own records (230201, sgnve18) are 539 acres; fsod68 is the 321,709-acre Forest Service national recreation area.",
-    "date": "2026-11-20"
+    "who": "KPC owner's assistant, 2026-11-22 (checked official state, Forest Service and BLM pages, and the saved record boxes and sizes)",
+    "source": "https://parks.nv.gov/parks/spring-mountain-ranch ; https://lands.nv.gov/uploads/documents/Final_Land_Portfolio_FY_2026.pdf ; https://www.fs.usda.gov/r04/humboldt-toiyabe/recreation/spring-mountains-national-recreation-area ; https://www.blm.gov/sites/default/files/docs/2026-01/RRCKeystone_Jan2026.pdf",
+    "saw": "Nevada State Parks: the park was a 528-acre working ranch (history on the official park page). Nevada Division of State Lands FY2026 portfolio: 539 acres, state-owned park, Blue Diamond, Clark County. Forest Service: Spring Mountains National Recreation Area spans 317,000 acres (FY2022 forest report 317,279). BLM Red Rock visitor guide maps the state park as its own stop, not the national recreation area. POTA pin 36.0698, -115.459 sits inside the two state-park record boxes (539 and 538.5 ac, box -115.4732..-115.4465, 36.0601..36.0787) and only on the edge of the 321,709-acre Forest Service record box (-116.0147..-115.4315, 35.9111..36.509). The measured outline of the saved key (321,254 ac) is the recreation-area record, not the ranch.",
+    "date": "2026-11-22"
    }
   },
   "US-2764": {
