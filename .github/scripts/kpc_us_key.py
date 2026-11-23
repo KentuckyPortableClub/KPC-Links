@@ -586,6 +586,31 @@ class RecordGrid:
         return [self.recs[i] for i in sorted(got)]
 
 
+def name_clusters_swept(items):
+    """kpc_match.name_clusters, the same answer found faster (22 Nov 2026, speed): how many separate places carry each name.
+    Boxes are swept west to east; two boxes can only touch when the eastern one starts within 0.1 degree of the western one's
+    east edge, so each box is compared only with the boxes that start before that (Florida: 17,293 parcels of one name were
+    150 million pairs). The same pairs touch (kpc_match._apart), so the same places are counted. Kept here so the world key's
+    copy (and its rules hash) is untouched."""
+    byname = {}
+    for nn, bb in items:
+        if bb: byname.setdefault(nn, []).append(bb)
+    out = {}
+    for nn, bbs in byname.items():
+        par = list(range(len(bbs)))
+        def f(i):
+            while par[i] != i: par[i] = par[par[i]]; i = par[i]
+            return i
+        order = sorted(range(len(bbs)), key=lambda i: bbs[i][0])
+        for a, i in enumerate(order):
+            reach = bbs[i][2] + 0.1
+            for j in order[a + 1:]:
+                if bbs[j][0] > reach: break
+                if not KM._apart(bbs[i], bbs[j]): par[f(i)] = f(j)
+        out[nn] = len({f(i) for i in range(len(bbs))})
+    return out
+
+
 _BY_ID = [None, None, None]
 def by_id(recs):
     """{record id: record} for this record list, built once (it was rebuilt for every joined park: 84,718 records x 434 parks
@@ -1529,7 +1554,7 @@ from kpc_save import save_json, save_text  # noqa: E402  (Oct 25 storage plan: w
 
 def name_clusters(recs):
     for a in recs: a['_nn'] = norm(a.get('Unit_Nm') or a.get('Loc_Nm') or '')
-    return KM.name_clusters([(a['_nn'], a['_bb']) for a in recs])
+    return name_clusters_swept([(a['_nn'], a['_bb']) for a in recs])
 
 
 # Oct 22 review (162 of 202 'check' cases were the SAME land the key already used): words that change between two

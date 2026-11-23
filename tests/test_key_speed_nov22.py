@@ -14,7 +14,7 @@ def check(name, ok):
 
 
 tree = ast.parse(SRC)
-want = {'norm', '_norm_once', 'near', 'RecordGrid', 'by_id', '_oid'}
+want = {'norm', '_norm_once', 'near', 'RecordGrid', 'by_id', '_oid', 'name_clusters_swept'}
 got = {n.name: n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef)) and n.name in want}
 check('the builder has the name memory, the record grid and the id lookup', set(got) >= want)
 if set(got) >= want:
@@ -79,8 +79,10 @@ for i in range(1500):
     x, y = rnd2.uniform(-85, -80), rnd2.uniform(25, 30)
     w, h = rnd2.choice([0.001, 0.05, 0.3]), rnd2.choice([0.001, 0.05, 0.3])
     items.append((rnd2.choice(['test a', 'test b', 'test c', 'test d']), [x, y, x + w, y + h] if i % 40 else None))
+swept = ns.get('name_clusters_swept') if 'ns' in dir() else None
+if swept: swept.__globals__['KM'] = KM
 check('the west-to-east sweep counts the same separate places as every pair did (1,500 invented boxes)',
-      KM.name_clusters(items) == clusters_brute(items))
+      bool(swept) and swept(items) == clusters_brute(items) == KM.name_clusters(items))
 calls = []
 rows = [[f'r{i}', 'Test', 1, 'same name'] for i in range(30)]
 holds_fn = lambda ref, i: calls.append(i) or i in ('r3', 'r7')

@@ -190,14 +190,8 @@ def name_clusters(items):
         def f(i):
             while par[i] != i: par[i] = par[par[i]]; i = par[i]
             return i
-        # 22 Nov 2026 (speed, same answers): sweep from west to east. Two boxes can only touch when the eastern one starts
-        # within pad of the western one's east edge, so each box is compared only with the boxes that start before that
-        # (Florida: 17,293 parcels of one name were 150 million pairs). The same pairs touch, so the same places are counted.
-        order = sorted(range(len(bbs)), key=lambda i: bbs[i][0])
-        for a, i in enumerate(order):
-            reach = bbs[i][2] + 0.1
-            for j in order[a + 1:]:
-                if bbs[j][0] > reach: break
+        for i in range(len(bbs)):
+            for j in range(i + 1, len(bbs)):
                 if not _apart(bbs[i], bbs[j]): par[f(i)] = f(j)
         out[nn] = len({f(i) for i in range(len(bbs))})
     return out
