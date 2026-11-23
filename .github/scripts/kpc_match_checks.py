@@ -1353,6 +1353,13 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             # when any joined record reaches the town's circle (a park of many pieces: the far ones are its own pieces, W8).
             votes_ = {str(q[0]): near_town_vote(recs.get(str(q[0])), npts) for q in left}
             right_ = any(v == 'inside' for v in votes_.values()) or any(holds(str(q[0])) is True for q in left)
+            # 23 Nov 3 PM (the owner's 'did you make it worse' check: one park, confirmed by its link, lost its land to a town
+            # line 36 km off): a town point is approximate. It never moves land POTA's pin lies in or by, nor land inside a
+            # county the same page names; those are the better witnesses.
+            if not right_ and place_fn(ref, [str(q[0]) for q in left]) is True:
+                right_ = True
+            if not right_ and careas and not any(outside_counties(recs.get(str(q[0])), careas) for q in left):
+                right_ = True
             far_ = [] if right_ else [q for q in left if votes_[str(q[0])] == 'far']
             if far_:
                 fr_ = npts[0][3][:60]

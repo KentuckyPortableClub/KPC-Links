@@ -33,12 +33,12 @@ rec = lambda oid, name, x0, y0: {'OBJECTID': oid, 'Unit_Nm': name, 'Mang_Type': 
 TOWN = {'lat': 44.50, 'lon': -88.50, 'within_km': 3.0, 'from': '3.2 km E of Otterville (town list)'}
 
 
-def run(recs, rows, near=(TOWN,), own='own', unofficial=False, sizes=(), name_vs='differs', holds=()):
+def run(recs, rows, near=(TOWN,), own='own', unofficial=False, sizes=(), name_vs='differs', holds=(), place=False, counties=()):
     parks = {'US-9001': {'n': 'Mud Lake State Wildlife Area', 't': 'State Wildlife Area', 'g': 'official', 'c': [], 'm': [list(r) for r in rows]}}
     f = {'US-9001': {'area': 'US-ZZ', 'name': 'Mud Lake State Wildlife Area', 'type': 'State Wildlife Area', 'pin': [44.9, -89.4], 'link': dict(LINK),
                      'page': {'kind': 'html', 'own_page': own, 'unofficial': unofficial, 'host': 'dnr.zz.example.gov', 'name_vs_pota': name_vs,
-                              'name_on_page': '', 'sizes': list(sizes), 'coords': [], 'parts': [], 'inside_of': [], 'near': list(near)}}}
-    out = MC.pass_state(parks, recs, f, lambda ref, ids: False, st='ZZ', holds_fn=lambda ref, i: i in holds, layer_table=TABLE)
+                              'name_on_page': '', 'sizes': list(sizes), 'coords': [], 'parts': [], 'inside_of': [], 'near': list(near), 'county_areas': list(counties)}}}
+    out = MC.pass_state(parks, recs, f, lambda ref, ids: place, st='ZZ', holds_fn=lambda ref, i: i in holds, layer_table=TABLE)
     p = parks['US-9001']
     return [q[0] for q in p.get('m') or []], [(x[0], x[3]) for x in p.get('c') or []], p.get('match') or {}, out
 
@@ -56,6 +56,12 @@ m, c, st, _ = run({'sgzza1': BY, 'sgzza2': FAR}, [ROW(BY), ROW(FAR)])
 check('a park with land by the town keeps its far pieces too (a park of many pieces)', sorted(m) == ['sgzza1', 'sgzza2'] and c == [])
 m, c, st, _ = run({'sgzza2': FAR}, [ROW(FAR)], holds=('sgzza2',))
 check("a record holding POTA's pin never moves, however far the town", m == ['sgzza2'] and c == [])
+m, c, st, _ = run({'sgzza2': FAR}, [ROW(FAR)], place=True)
+check("POTA's pin lies in or by the land (the better witness): a far town line never moves it (Rock Island Trail, 23 Nov 3 PM)", m == ['sgzza2'] and c == [])
+m, c, st, _ = run({'sgzza2': FAR}, [ROW(FAR)], counties=({'name': 'Door', 'lat': 45.12, 'lon': -87.18, 'radius_km': 30.0},))
+check('the land lies in the county the same page names: a far town line never moves it', m == ['sgzza2'] and c == [])
+m, c, st, _ = run({'sgzza2': FAR}, [ROW(FAR)], counties=({'name': 'Otter', 'lat': 44.5, 'lon': -88.5, 'radius_km': 22.3},))
+check('town and county both say the land is far: it goes to check', m == [] and len(c) == 1)
 m, c, st, _ = run({'sgzza1': BY}, [ROW(BY)], name_vs='same')
 check("the page's own name agrees and the land reaches the town's circle: CONFIRMED near a town",
       m == ['sgzza1'] and st.get('status') == 'confirmed' and st.get('by') == 'near a town')
