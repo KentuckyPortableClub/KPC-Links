@@ -39,7 +39,8 @@ check('1. kpc_area_hash reads the same RULE_FILES (the literal append is seen)',
 check(f'2. every one of the {len(layers)} layers has what in {sorted(WHAT)}', layers and all(l.get('what') in WHAT for _, l in layers))
 check('2. what comes right after kind in every layer', all(list(l)[list(l).index('kind') + 1] == 'what' for _, l in layers))
 land = [l for _, l in layers if l.get('kind') == 'land']
-check(f'2. the {len(land)} layers filed as kind land are all labelled (131 on 17 Nov)', len(land) == 131 and all(l.get('what') in WHAT for l in land))
+w11 = [l for l in land if 'rule W11' in str(l.get('note') or '')]   # 23 Nov 2026 (rule W11): copies of land layers listed for the state a park crosses into
+check(f'2. the {len(land)} layers filed as kind land are all labelled (131 on 17 Nov, + {len(w11)} W11 copies on 23 Nov)', len(land) - len(w11) == 131 and all(l.get('what') in WHAT for l in land))
 def by(rx): return {l['what'] for _, l in layers if re.search(rx, l['url'] + ' ' + l['ag'], re.I)}
 check('2. BLM ACECs, national monuments / NCAs, heritage areas and NPS legal boundaries are designation lines',
       by(r'BLM_Natl_ACEC') == {'designation'} and by(r'National_Heritage_Areas') == {'designation'} and by(r'NPS_Land_Resources_Division_Boundary') == {'designation'}
