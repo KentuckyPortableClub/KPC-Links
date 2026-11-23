@@ -783,6 +783,14 @@
    "why": "Owner's yes (23 Nov 2026, 5:53 AM: 'Yes and yes'; rule W7). The PC test of 22 Nov showed Wisconsin's check rows jump from 5,903 to 10,658. The cause: a park with no union acreage got a measured 'ac' (KPC_MEASURED_ACRES) that added up every joined row, so a property saved in a managed-lands layer, a parcel layer and the national list was counted three or four times; the size check then read about 4 times the agency's own figure and sent every row to the check list. Now the rows are totalled one layer at a time: the biggest layer counts in full, a smaller layer is added only when it lies on other ground (under 80% of its box in a counted layer's box), and a twin row is left out. A park with no 0-acre row whose rows come from two or more layers is measured the same way (before: no 'ac', and every reader added the layers up). One layer, or a layer with no saved shape: as before. On the saved US keys with the 23 Nov park facts (count only): check rows 6,961 -> 3,033, all of it Wisconsin (4,670 -> 742); 5 parks stop failing the size check and the agency's figure confirms them; 88 parks' measured acreage comes down (60 to under half), 341 stay the same, 63 parks with none get one; the parks called too small stay at 35. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "owner's yes, KPC owner, 2026-11-23 (5:53 AM 'Yes and yes'); merged only on his word after his own review"
+  },
+  {
+   "id": "2026-11-23-agency-labels",
+   "when": "2026-11-23",
+   "from": "e8b9c526e1f6",
+   "why": "Owner's rulings (23 Nov 2026, 6:42 AM 'Yes on all but 5', after he asked for them in plain words at 6:37 AM). W-G11: the agency check read one label of a land record, its manager; a state link now agrees with a national-list record the STATE owns (Own_Type STAT), whatever its manager label says (Oregon: 111 rows of state park land labelled CITY; state-owned land run by a private operator or a local body). Only national-list records: a layer with its own table row is read by the table. W-G12: a state link against a record of the Corps of Engineers, Reclamation or TVA gives no agency vote when the record carries the park's own name (the same full name, or the same bare name and the same kind of place); the national-list level rule follows the same exception, or the same rows would reach the check list under another reason. The lake project's own record, another kind of place and 'one name holds the other' still go to the check list. Counted on the saved US keys with the 23 Nov park facts: check rows 6,961 -> 6,679; parks with an agency row 481 -> 257; 6 parks keep their outline instead of dropping to a pin; nothing is newly confirmed. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "owner's rulings, KPC owner, 2026-11-23 (6:42 AM 'Yes on all but 5'); merged only on his word after his own review"
   }
  ]
 }

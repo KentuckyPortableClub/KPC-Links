@@ -682,12 +682,41 @@ def record_agency(rec, table=None):
     return None
 
 
+RESERVOIR_OWNERS = ('USACE', 'BOR', 'FED:TVA')   # W-G12: the federal agencies that own the land under many state-run lake parks
+
+
+def owner_family(rec):
+    """W-G11 (owner 23 Nov 2026, 6:42 AM 'Yes'): the OWNER label of a national-list record: 'STATE' when its Own_Type is STAT.
+    None for anything else, and for every record of a layer with its own table row: there Own_Type is the saved copy's tag
+    for the table it came from, not an owner."""
+    rec = rec or {}
+    if re.match(r'[a-z]*', str(rec.get('OBJECTID'))).group(0): return None
+    return 'STATE' if str(rec.get('Own_Type') or '').strip().upper() == 'STAT' else None
+
+
+def same_park_name(park_name, rec_name):
+    """W-G12: the record carries the park's own name: the same full name, or the same bare name with the same kind of place
+    ('Otter Lake State Park' and 'Otter Lake Recreation Area'). A record that names no kind ('Otter Lake': the whole lake
+    project) or another kind, and 'one name holds the other', are NOT the same."""
+    a, b = full(park_name or ''), full(rec_name or '')
+    if not a or not b: return False
+    if a == b: return True
+    return bool(bare_name(park_name)) and bare_name(park_name) == bare_name(rec_name) and bool(kinds(a) & kinds(b))
+
+
 def agency_check(fact, rec, st='', table=None):
-    """'agrees' | 'differs' | 'no data'."""
+    """'agrees' | 'differs' | 'no data'.
+    W-G11: a state link agrees with a national-list record the STATE OWNS, whatever its manager label says (Oregon: state park
+    land labelled 'CITY'; a state reservation run by a private operator). W-G12: a state link against a record of the Corps of
+    Engineers, Reclamation or TVA gives NO agency vote when the record carries the park's own name (the state runs the park on
+    the federal agency's lake land); any other name still differs."""
     a, b = link_agency(fact, st), record_agency(rec, table)
     if a is None or b is None: return 'no data'
     if a == 'FED': return 'agrees' if (b in FEDERAL or b.startswith('FED:')) else 'differs'
-    if a == 'STATE': return 'agrees' if b == 'STATE' else 'differs'
+    if a == 'STATE':
+        if b == 'STATE' or owner_family(rec) == 'STATE': return 'agrees'
+        if b in RESERVOIR_OWNERS and same_park_name((fact or {}).get('name'), (rec or {}).get('Unit_Nm')): return 'no data'
+        return 'differs'
     return 'agrees' if b == a else 'differs'
 
 
@@ -778,6 +807,7 @@ def national_flag(q, rows, recs, park_name):
     plev = park_level(park_name)
     lev = str((recs.get(i) or {}).get('Mang_Type') or '').upper()
     if not plev or lev not in ('FED', 'STAT') or lev == plev: return False
+    if plev == 'STAT' and record_agency(recs.get(i)) in RESERVOIR_OWNERS and same_park_name(park_name, q[1]): return False   # W-G12: the state's park on federal lake land
     try: a = float(q[2] or 0)
     except (TypeError, ValueError): return True
     if a < 5.0: return True
