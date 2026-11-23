@@ -1,6 +1,6 @@
 {
  "source": "Each WMA page on app.fw.ky.gov (Public Lands Search)",
- "updated": "2026-11-16 14:56 UTC",
+ "updated": "2026-11-23 14:25 UTC",
  "wmas": {
   "Asher Hunting Access Area": {
    "read": "2026-10-26",
@@ -63,7 +63,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9088"
   },
   "Boatwright WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=222"
@@ -99,7 +99,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38"
   },
   "Carr Creek Lake WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by U.S. Army Corps of Engineers.",
    "type": "Corps",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=131"
@@ -117,13 +117,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9075"
   },
   "Clay WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources, portions purchased with funds from the Heritage Lands Conservation Fund.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=155"
   },
   "Clear Creek WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Kentucky Department of Fish & Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9006"
@@ -135,7 +135,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9125"
   },
   "Continental Hunting Access Area": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Access to the Letcher county property via Wright’s Fork Road of US 23 is not permitted Owned by Continental Land Company LLC. No ATV’s, camping, horseback riding, rock climbing, or hunting with the aid of or over bait is allowed on the area.",
    "type": "Private",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9222"
@@ -153,7 +153,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9002"
   },
   "Curtis Gates Lloyd WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=153"
@@ -165,7 +165,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=28"
   },
   "Daniel Boone National Forest": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "NOTE: Much land within forest boundaries is still privately owned and permission should be obtained before entering these private holdings.",
    "type": "Private",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9089"
@@ -183,13 +183,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148"
   },
   "Dewey Lake WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by U.S. Army Corps of Engineers.",
    "type": "Corps",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=26"
   },
   "Dix River WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by the Kentucky Department of Fish and Wildlife.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9032"
@@ -237,7 +237,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9715"
   },
   "Fishtrap Lake WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25"
@@ -255,7 +255,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9076"
   },
   "Fort Knox Military Reservation": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9077"
@@ -369,7 +369,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9080"
   },
   "Kentucky Lake WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Tennessee Valley Authority.",
    "type": "Federal",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=227"
@@ -381,7 +381,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=186"
   },
   "Kentucky Ridge State Forest": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Kentucky Division of Forestry.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=185"
@@ -399,7 +399,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9121"
   },
   "Knobs State Forest and WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Kentucky Division of Forestry and Kentucky Department of Fish and Wildlife portions purchased with funds from the Heritage Lands Conservation Fund.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9121"
@@ -453,7 +453,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9117"
   },
   "Marion County WMA and State Forest": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Kentucky Department of Fish and Wildlife, Kentucky Division of Forestry and Marion County Fiscal Court.",
    "type": "Local",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9133"
@@ -465,7 +465,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9131"
   },
   "Martins Fork Lake WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by U.S. Army Corps of Engineers.",
    "type": "Corps",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=41"
@@ -495,13 +495,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=15"
   },
   "Mud Camp Creek WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=146"
   },
   "Mullins WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=12"
@@ -531,7 +531,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=134"
   },
   "Old Trace Creek WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Old Trace Creek WMA is owned by Ky. Dept. Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9609"
@@ -543,7 +543,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9199"
   },
   "Paintsville Lake WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by U.S. Army Corps of Engineers.",
    "type": "Corps",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=24"
@@ -555,7 +555,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9105"
   },
   "Peabody WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Upland Bird and Rabbit Hunters MUST check in/out at Kiosks using HangTag (last page of map document) Owned/leased by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=229"
@@ -609,7 +609,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9074"
   },
   "Robinson Forest WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by University of Kentucky.",
    "type": "University",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9120"
@@ -639,7 +639,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=30"
   },
   "Shillalah Creek WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=170"
@@ -669,7 +669,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9232"
   },
   "Stone Mountain WMA and State Natural Area": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Purchased with Kentucky Heritage Land Conservation funds and is jointly owned and managed by the Kentucky Department of Fish and Wildlife Resources and the Kentucky State Nature Preserves Commission",
    "type": "Private",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9014"
@@ -705,7 +705,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=13"
   },
   "Twin Knobs Campground": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Owned by U.S. Forest Service",
    "type": "Federal",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9116"
@@ -717,13 +717,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9085"
   },
   "University of the Cumberlands WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9727"
   },
   "Veterans Memorial WMA": {
-   "read": "2026-10-19",
+   "read": "2026-11-23",
    "says": "Veterans Memorial WMA is owned by the Kentucky Department of Fish and Wildlife.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9202"
