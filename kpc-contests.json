@@ -1,72 +1,6 @@
 {
- "updated": "2026-11-22T18:03:00Z",
+ "updated": "2026-11-23T13:27:38Z",
  "week": [
-  {
-   "name": "AWA Bruce Kelley 1929 QSO Party",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=0039xrm7",
-   "when": "2300Z, Nov 14 to 0300Z, Nov 16 and 2300Z, Nov 21 to 0300Z, Nov 23",
-   "segs": [
-    [
-     "2026-11-14T23:00Z",
-     "2026-11-16T03:00Z"
-    ],
-    [
-     "2026-11-21T23:00Z",
-     "2026-11-23T03:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [
-    "QSOPARTY"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "South American Integration Contest CW",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gflzs",
-   "when": "1800Z, Nov 21 to 2100Z, Nov 22",
-   "segs": [
-    [
-     "2026-11-21T18:00Z",
-     "2026-11-22T21:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ARRL Sweepstakes Contest, SSB",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gbyea",
-   "when": "2100Z, Nov 21 to 0300Z, Nov 23",
-   "segs": [
-    [
-     "2026-11-21T21:00Z",
-     "2026-11-23T03:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gk3zt",
-   "when": "0000Z-0100Z, Nov 23",
-   "segs": [
-    [
-     "2026-11-23T00:00Z",
-     "2026-11-23T01:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "ICWC Medium Speed Test",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gm1gw",
@@ -1189,62 +1123,6 @@
    "exch": "RS(T), age (avg age for multiops)"
   },
   {
-   "name": "AWA Bruce Kelley 1929 QSO Party",
-   "url": "https://antiquewireless.org",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-14T23:00Z",
-     "2026-11-23T03:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [
-    "QSOPARTY"
-   ],
-   "src": "CORRAL",
-   "bands": "1.8-14",
-   "exch": "RST, name, QTH, equipment year, xmtr type, pwr"
-  },
-  {
-   "name": "South American Integration Contest CW",
-   "url": "https://sacw.cwsp.com.br",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-21T18:00Z",
-     "2026-11-22T21:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5,7,21,28",
-   "exch": "RST, \"M\" (if mbr) or \"QRP\" or \"YL\" or ITU zone"
-  },
-  {
-   "name": "ARRL November Sweepstakes, SSB",
-   "url": "https://www.arrl.org/sweepstakes",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-21T21:00Z",
-     "2026-11-23T03:01Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28",
-   "exch": "Serial, precedence, your call, check, ARRL/RAC Section"
-  },
-  {
    "name": "SKCC Sprint",
    "url": "https://www.skccgroup.com",
    "when": "",
@@ -1340,26 +1218,6 @@
   }
  ],
  "big": [
-  {
-   "name": "ARRL November Sweepstakes (Phone)",
-   "url": "https://www.arrl.org/sweepstakes",
-   "when": "Usual dates (ARRL); check the rules",
-   "segs": [
-    [
-     "2026-11-21T21:00Z",
-     "2026-11-23T03:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [
-    "BIG"
-   ],
-   "src": "RULE",
-   "by": "ARRL",
-   "exch": "number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY)"
-  },
   {
    "name": "CQ World Wide DX Contest (CW)",
    "url": "https://cqww.com/rules.htm",
@@ -2116,7 +1974,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (28)",
-  "CORRAL": "ok (48)"
+  "WA7BNM": "ok (24)",
+  "CORRAL": "ok (45)"
  }
 }
