@@ -150,5 +150,23 @@ check(f'with the table: the shared layer\'s rows in the copy count, only the new
 r6 = K.ready('US-ZZ', {'recs': rows('sgzza', 3) + rows('sgyya', 4)}, sg3, doc3, [])
 check(f'without the table: the old reading by position, unchanged {sorted(r6)}', sorted(r6) == ['sgzzb', 'sgzzc', 'sgzzd', 'sgzze'])
 
+# Opus, 20 Nov: the owner's approval to build named states on their saved copies as they are (KPC owner 9:10 AM, "1 yes")
+import json as _j, tempfile as _tf
+with _tf.TemporaryDirectory() as _d:
+    ap = pathlib.Path(_d) / 'ready-approved.json'
+    ap.write_text(_j.dumps({'approved_by': 'KPC owner', 'states': {'US-ZZ': {'sgzzb': {'kinds': ['missing'], 'rows': 0}, 'sgzza': {'kinds': ['short'], 'rows': 3}}},
+                            'stale': {'US-ZZ': {'US-ZZ.sgzza': {'baseline': 5, 'rows': 3}}}}))
+    A = K.load_ready_approved(str(ap))
+    blob = {'recs': rows('sgzza', 3)}
+    check('approved gaps do not hold the state', K.ready_unapproved('US-ZZ', {'sgzza': ['short'], 'sgzzb': ['missing']}, blob, A) == {})
+    check('a copy that got smaller than when approved still holds', K.ready_unapproved('US-ZZ', {'sgzza': ['short']}, {'recs': rows('sgzza', 2)}, A) == {'sgzza': ['short']})
+    check('a gap the approval does not name still holds', K.ready_unapproved('US-ZZ', {'sgzzc': ['missing']}, blob, A) == {'sgzzc': ['missing']})
+    check('another state is not covered', K.ready_unapproved('US-YY', {'sgzza': ['short']}, blob, A) == {'sgzza': ['short']})
+    check('a short of baseline is covered only at the approved count or more',
+          K.stale_unapproved('US-ZZ', [('layer', 'US-ZZ.sgzza', 5, 3)], A) == [] and K.stale_unapproved('US-ZZ', [('layer', 'US-ZZ.sgzza', 5, 2)], A) == [('layer', 'US-ZZ.sgzza', 5, 2)])
+    ap.write_text(_j.dumps({'approved_by': 'someone', 'states': {'US-ZZ': {}}}))
+    check('an approval not signed by the KPC owner is not read (fail closed)', K.load_ready_approved(str(ap)) == {})
+    check('no approval file = nothing approved', K.load_ready_approved(str(pathlib.Path(_d) / 'none.json')) == {} and K.load_ready_approved('') == {})
+
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

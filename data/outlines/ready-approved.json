@@ -1,0 +1,910 @@
+{
+ "approved_by": "KPC owner",
+ "recorded_by": "Opus, 20 Nov 2026, from the gate's own ready report on the boundary-cache copies of 18 Nov (last change 01:20 UTC)",
+ "rule": "A state named here is not held for the layers named, as long as each copy holds at least the rows it held when approved. Any other layer gap, or a copy that got smaller, still holds it. Nothing else is approved.",
+ "stale": {
+  "US-AR": {
+   "US-AR.arw": {
+    "baseline": 143,
+    "rows": 137
+   },
+   "US-AR.sgide": {
+    "baseline": 355,
+    "rows": 0
+   }
+  },
+  "US-AZ": {
+   "US-AZ.hab": {
+    "baseline": 17,
+    "rows": 6
+   }
+  },
+  "US-CA": {
+   "US-CA.hab": {
+    "baseline": 185,
+    "rows": 98
+   },
+   "US-CA.nca": {
+    "baseline": 982,
+    "rows": 980
+   },
+   "US-CA.sgide": {
+    "baseline": 82,
+    "rows": 0
+   }
+  },
+  "US-CO": {
+   "US-CO.hab": {
+    "baseline": 14,
+    "rows": 11
+   },
+   "US-CO.sgcoc": {
+    "baseline": 921,
+    "rows": 886
+   },
+   "US-CO.sgide": {
+    "baseline": 10,
+    "rows": 0
+   }
+  },
+  "US-DC": {
+   "US-DC.dcnps": {
+    "baseline": 456,
+    "rows": 0
+   },
+   "US-DC.dcparks": {
+    "baseline": 252,
+    "rows": 0
+   }
+  },
+  "US-DE": {
+   "US-DE.sgdea": {
+    "baseline": 1326,
+    "rows": 1311
+   },
+   "US-DE.sgdee": {
+    "baseline": 868,
+    "rows": 866
+   }
+  },
+  "US-FL": {
+   "US-FL.nca": {
+    "baseline": 1,
+    "rows": 0
+   },
+   "US-FL.sgfld": {
+    "baseline": 1574,
+    "rows": 1573
+   },
+   "US-FL.sgide": {
+    "baseline": 39,
+    "rows": 0
+   }
+  },
+  "US-GA": {
+   "US-GA.sggaf": {
+    "baseline": 671,
+    "rows": 0
+   },
+   "US-GA.sgide": {
+    "baseline": 363,
+    "rows": 0
+   }
+  },
+  "US-IA": {
+   "US-IA.sgiaa": {
+    "baseline": 1846,
+    "rows": 1845
+   },
+   "US-IA.sgiab": {
+    "baseline": 344,
+    "rows": 325
+   },
+   "US-IA.sgiac": {
+    "baseline": 5450,
+    "rows": 5439
+   },
+   "US-IA.sgiad": {
+    "baseline": 326,
+    "rows": 307
+   },
+   "US-IA.sgide": {
+    "baseline": 125,
+    "rows": 0
+   }
+  },
+  "US-ID": {
+   "US-ID.hab": {
+    "baseline": 17,
+    "rows": 8
+   },
+   "US-ID.nca": {
+    "baseline": 3,
+    "rows": 2
+   },
+   "US-ID.sgakh": {
+    "baseline": 134,
+    "rows": 133
+   }
+  },
+  "US-IN": {
+   "US-IN.ind": {
+    "baseline": 654,
+    "rows": 457
+   },
+   "US-IN.sgina": {
+    "baseline": 654,
+    "rows": 653
+   },
+   "US-IN.sginb": {
+    "baseline": 196,
+    "rows": 187
+   },
+   "US-IN.sginc": {
+    "baseline": 102,
+    "rows": 101
+   }
+  },
+  "US-MA": {
+   "US-MA.sgmad": {
+    "baseline": 59508,
+    "rows": 57108
+   }
+  },
+  "US-MD": {
+   "US-MD.mdd": {
+    "baseline": 580,
+    "rows": 342
+   },
+   "US-MD.sgide": {
+    "baseline": 9,
+    "rows": 0
+   },
+   "US-MD.sgmda": {
+    "baseline": 580,
+    "rows": 550
+   }
+  },
+  "US-MI": {
+   "US-MI.dnrsf": {
+    "baseline": 6,
+    "rows": 0
+   },
+   "US-MI.sgide": {
+    "baseline": 7,
+    "rows": 0
+   }
+  },
+  "US-MN": {
+   "US-MN.sgide": {
+    "baseline": 47,
+    "rows": 0
+   },
+   "US-MN.sgmna": {
+    "baseline": 1753,
+    "rows": 1751
+   },
+   "US-MN.sgmnc": {
+    "baseline": 239,
+    "rows": 238
+   },
+   "US-MN.sgmne": {
+    "baseline": 13490,
+    "rows": 13295
+   },
+   "US-MN.sgmnf": {
+    "baseline": 6715,
+    "rows": 6713
+   }
+  },
+  "US-MO": {
+   "US-MO.sgide": {
+    "baseline": 343,
+    "rows": 0
+   },
+   "US-MO.sgmod": {
+    "baseline": 192,
+    "rows": 117
+   }
+  },
+  "US-MS": {
+   "US-MS.usaceproj": {
+    "baseline": 5,
+    "rows": 0
+   }
+  },
+  "US-MT": {
+   "US-MT.hab": {
+    "baseline": 13,
+    "rows": 10
+   },
+   "US-MT.sgide": {
+    "baseline": 43,
+    "rows": 0
+   }
+  },
+  "US-NH": {
+   "US-NH.nhc": {
+    "baseline": 13501,
+    "rows": 11973
+   },
+   "US-NH.sgnha": {
+    "baseline": 13501,
+    "rows": 12801
+   },
+   "US-NH.sgnhc": {
+    "baseline": 2718,
+    "rows": 2399
+   },
+   "US-NH.sgnhd": {
+    "baseline": 13501,
+    "rows": 12801
+   }
+  },
+  "US-NJ": {
+   "US-NJ.sgnja": {
+    "baseline": 117,
+    "rows": 112
+   }
+  },
+  "US-NM": {
+   "US-NM.hab": {
+    "baseline": 4,
+    "rows": 3
+   }
+  },
+  "US-NV": {
+   "US-NV.hab": {
+    "baseline": 176,
+    "rows": 92
+   },
+   "US-NV.sgide": {
+    "baseline": 32,
+    "rows": 0
+   },
+   "US-NV.sgnvb": {
+    "baseline": 759,
+    "rows": 757
+   },
+   "US-NV.sgnvd": {
+    "baseline": 756,
+    "rows": 754
+   }
+  },
+  "US-NY": {
+   "US-NY.sgide": {
+    "baseline": 62,
+    "rows": 0
+   },
+   "US-NY.sgnyc": {
+    "baseline": 1,
+    "rows": 0
+   }
+  },
+  "US-OH": {
+   "US-OH.sgohf": {
+    "baseline": 865,
+    "rows": 864
+   },
+   "US-OH.sgohg": {
+    "baseline": 623,
+    "rows": 610
+   }
+  },
+  "US-OR": {
+   "US-OR.hab": {
+    "baseline": 46,
+    "rows": 24
+   },
+   "US-OR.osp": {
+    "baseline": 422,
+    "rows": 388
+   },
+   "US-OR.sgakh": {
+    "baseline": 226,
+    "rows": 225
+   },
+   "US-OR.sgore": {
+    "baseline": 6345,
+    "rows": 6343
+   }
+  },
+  "US-RI": {
+   "US-RI.sgria": {
+    "baseline": 1039,
+    "rows": 1036
+   },
+   "US-RI.sgric": {
+    "baseline": 1039,
+    "rows": 1036
+   }
+  },
+  "US-TN": {
+   "US-TN.sgtni": {
+    "baseline": 228,
+    "rows": 227
+   }
+  },
+  "US-TX": {
+   "US-TX.hab": {
+    "baseline": 2,
+    "rows": 1
+   },
+   "US-TX.sgtxb": {
+    "baseline": 463,
+    "rows": 82
+   }
+  },
+  "US-UT": {
+   "US-UT.hab": {
+    "baseline": 46,
+    "rows": 26
+   },
+   "US-UT.wsa": {
+    "baseline": 430,
+    "rows": 387
+   }
+  },
+  "US-VT": {
+   "US-VT.sgvta": {
+    "baseline": 515,
+    "rows": 509
+   },
+   "US-VT.vta": {
+    "baseline": 484,
+    "rows": 198
+   }
+  },
+  "US-WA": {
+   "US-WA.sgwac": {
+    "baseline": 18844,
+    "rows": 909
+   },
+   "US-WA.sgwad": {
+    "baseline": 2148,
+    "rows": 1968
+   }
+  },
+  "US-WI": {
+   "US-WI.sgide": {
+    "baseline": 12,
+    "rows": 0
+   },
+   "US-WI.sgwia": {
+    "baseline": 1796,
+    "rows": 1758
+   },
+   "US-WI.sgwid": {
+    "baseline": 82488,
+    "rows": 75431
+   },
+   "US-WI.wid": {
+    "baseline": 1796,
+    "rows": 1389
+   }
+  },
+  "US-WY": {
+   "US-WY.hab": {
+    "baseline": 39,
+    "rows": 29
+   }
+  }
+ },
+ "states": {
+  "US-AR": {
+   "arw": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 137
+   }
+  },
+  "US-AZ": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 6
+   }
+  },
+  "US-CA": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 98
+   },
+   "nca": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 980
+   }
+  },
+  "US-CO": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 11
+   },
+   "rst": {
+    "kinds": [
+     "bot"
+    ],
+    "rows": 264
+   },
+   "sgakg": {
+    "kinds": [
+     "bot"
+    ],
+    "rows": 264
+   },
+   "sgcoa": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 317
+   },
+   "sgcoc": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 886
+   }
+  },
+  "US-DC": {
+   "dcnps": {
+    "kinds": [
+     "missing"
+    ],
+    "rows": 0
+   },
+   "dcparks": {
+    "kinds": [
+     "missing"
+    ],
+    "rows": 0
+   }
+  },
+  "US-DE": {
+   "sgdea": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 1311
+   },
+   "sgdee": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 866
+   }
+  },
+  "US-FL": {
+   "nca": {
+    "kinds": [
+     "missing"
+    ],
+    "rows": 0
+   }
+  },
+  "US-GA": {
+   "sggaf": {
+    "kinds": [
+     "bot",
+     "missing"
+    ],
+    "rows": 0
+   }
+  },
+  "US-IA": {
+   "sgiaa": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 1845
+   },
+   "sgiab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 325
+   },
+   "sgiac": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 5439
+   },
+   "sgiad": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 307
+   }
+  },
+  "US-ID": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 8
+   },
+   "nca": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 2
+   },
+   "sgakh": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 133
+   }
+  },
+  "US-IN": {
+   "ind": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 457
+   },
+   "sgina": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 653
+   },
+   "sginb": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 187
+   },
+   "sginc": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 101
+   }
+  },
+  "US-MA": {
+   "sgmad": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 57108
+   }
+  },
+  "US-MD": {
+   "mdd": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 342
+   },
+   "sgmda": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 550
+   }
+  },
+  "US-MI": {
+   "dnrsf": {
+    "kinds": [
+     "missing"
+    ],
+    "rows": 0
+   }
+  },
+  "US-MN": {
+   "sgmna": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 1751
+   },
+   "sgmnc": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 238
+   },
+   "sgmne": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 13295
+   },
+   "sgmnf": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 6713
+   }
+  },
+  "US-MO": {
+   "sgmod": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 117
+   }
+  },
+  "US-MS": {
+   "usaceproj": {
+    "kinds": [
+     "missing"
+    ],
+    "rows": 0
+   }
+  },
+  "US-MT": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 10
+   }
+  },
+  "US-ND": {
+   "sgakh": {
+    "kinds": [
+     "missing"
+    ],
+    "rows": 0
+   }
+  },
+  "US-NH": {
+   "nhc": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 11973
+   },
+   "sgnha": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 12801
+   },
+   "sgnhc": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 2399
+   },
+   "sgnhd": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 12801
+   }
+  },
+  "US-NJ": {
+   "sgnja": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 112
+   }
+  },
+  "US-NM": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 3
+   }
+  },
+  "US-NV": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 92
+   },
+   "sgnvb": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 757
+   },
+   "sgnvd": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 754
+   },
+   "sgnvh": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 165
+   }
+  },
+  "US-NY": {
+   "sgnyc": {
+    "kinds": [
+     "missing"
+    ],
+    "rows": 0
+   }
+  },
+  "US-OH": {
+   "sgohf": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 864
+   },
+   "sgohg": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 610
+   }
+  },
+  "US-OR": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 24
+   },
+   "osp": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 388
+   },
+   "sgakh": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 225
+   },
+   "sgore": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 6343
+   }
+  },
+  "US-RI": {
+   "sgria": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 1036
+   },
+   "sgric": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 1036
+   }
+  },
+  "US-TN": {
+   "sgtni": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 227
+   }
+  },
+  "US-TX": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 1
+   },
+   "sgtxb": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 82
+   }
+  },
+  "US-UT": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 26
+   },
+   "sgute": {
+    "kinds": [
+     "missing"
+    ],
+    "rows": 0
+   },
+   "wsa": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 387
+   }
+  },
+  "US-VT": {
+   "sgvta": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 509
+   },
+   "vta": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 198
+   }
+  },
+  "US-WA": {
+   "sgwac": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 909
+   },
+   "sgwad": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 1968
+   }
+  },
+  "US-WI": {
+   "sgwia": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 1758
+   },
+   "sgwib": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 80
+   },
+   "sgwic": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 661
+   },
+   "sgwid": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 75431
+   },
+   "sgwif": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 789
+   },
+   "wid": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 1389
+   }
+  },
+  "US-WY": {
+   "hab": {
+    "kinds": [
+     "short"
+    ],
+    "rows": 29
+   }
+  }
+ },
+ "when": "2026-11-20 9:10 AM Central",
+ "words": "\"1 yes\" to: the 34 states the layers gate would hold are built on the saved copies as they are (REPAIRS, \"THE OWNER'S TWO ANSWERS FOR THE BUILD\")"
+}
