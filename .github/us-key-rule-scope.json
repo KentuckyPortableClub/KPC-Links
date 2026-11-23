@@ -823,6 +823,14 @@
     "why": "Owner's ruling W-G6 (23 Nov 2026, 6:37 AM: '4 I say yes'): a 'near a town' point the park's own official page gives in words (park facts page.near, made on the PC from the town lists, with how far off it may be) is a place witness. Land reaching its circle with a name that agrees confirms ('near a town'); when ALL the joined land lies far from there (over 3 times the circle and 25 km), it goes to the check list, never a record holding POTA's pin, never when an id or the agency's own size speaks for it. Measured on the saved US keys with the 23 Nov 12:32 PM park facts: 21 parks confirmed near a town, 1 park's joined land to the check list. Scope none: no park is rebuilt until the owner starts a build.",
     "scope": "none",
     "approved": "owner's ruling, KPC owner, 2026-11-23 (6:37 AM '4 I say yes'); merged only on his own review"
+  },
+  {
+   "id": "2026-11-23-w8b-safe-own-pieces",
+   "when": "2026-11-23",
+   "from": "5f9d4e8f6450",
+   "why": "Owner's ruling W8b (23 Nov 2026, 2:55 PM: 'Go ahead with the safer version'), after the outside agent's accuracy test of W8 (756 place rows cleared on name alone, 19 of them another place: a water body, road or business named like the park, a same-name area of another county, another owner's piece). The place test (pin 3c) now leaves a same-name record alone only when (1) its name is the park's (or a pin record's) exact name or another spelling / short form, plus at most a unit / county / section ending, and it names no road, water body, business, HOA, cemetery, school or utility the park's name does not carry; (2) it has the same agency or owner type as the park; (3) it touches or lies within 500 m of the park's other joined land. Plus one narrow case: a POTA name covering two units, a record named exactly the one half, same kind and agency, while a pin record is named the other half. The 22 Nov rule (the same bare name) is unchanged. Measured on the saved US keys (23 Nov park facts, morning and 12:31 PM): place rows 1,798 -> 1,138 (W8: 1,042); 660 rows cleared, 1 of them risky by the agent's evidence. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "owner's ruling, KPC owner, 2026-11-23 (2:55 PM 'Go ahead with the safer version'); merged only on his own review"
   }
  ]
 }

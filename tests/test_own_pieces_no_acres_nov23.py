@@ -52,7 +52,9 @@ for rec, park in SEND:
 rows = [['1', 'Heron Bend Wildlife Management Area', 900, 'name'], ['2', 'Heron Bend WMA - Montgomery Tract', 120, 'name'],
         ['3', 'Heron Bend River', 40, 'name']]
 holds = lambda i: i == '1'
-check('pin 3c keeps the tract of the park', MC.pin_3c(rows[1], rows, holds, 'Heron Bend Wildlife Management Area') is False)
+# W8b (23 Nov 2026, 2:55 PM): the tract stays only when its owner and place agree too (tests/test_safe_own_pieces_nov23.py)
+check('pin 3c keeps the tract of the park', MC.pin_3c(rows[1], rows, holds, 'Heron Bend Wildlife Management Area',
+                                                      same_owner=lambda q: True, near_land=lambda q: True) is False)
 check('pin 3c still flags a river named like the park', MC.pin_3c(rows[2], rows, holds, 'Heron Bend Wildlife Management Area') is True)
 
 # W9: what one record adds to the cap after the union

@@ -2327,9 +2327,16 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
         if not a or not rings(a.get('_g')) or len(r) <= 6 or r[5] is None or r[6] is None: return None
         return bool(inside(r[5], r[6], a['_g']))
 
+    def _near(ref, rid, ids):
+        # 23 Nov 2026 (W8b): the record touches or lies within NEAR_KM of the park's other joined land
+        a = byid.get(rid)
+        if not a or not rings(a.get('_g')): return None
+        other = [r for j in ids if byid.get(j) for r in rings(byid[j].get('_g'))]
+        return MC.rings_near(rings(a['_g']), other) if other else None
+
     hits = []
     res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL), st, MC.load_nps_units(), hits, _holds, table,
-                        page_holds_fn=_page_holds)
+                        page_holds_fn=_page_holds, near_fn=_near)
     _grid_notes(st, parks, P, res)
     _page_point_checks(st, parks, byid, facts, res)
     _map_name_checks(st, parks, byid, facts, res)

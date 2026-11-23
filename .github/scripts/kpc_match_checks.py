@@ -952,19 +952,162 @@ def all_parcels_ok(park_name, names):
     return len(names) >= 2 and bool(park_name) and all(same_bare(n, park_name) or own_piece(n, park_name) for n in names)
 
 
-def pin_3c(q, rows, holds, park_name='', held=None):
+# 23 Nov 2026 (owner 2:55 PM "Go ahead with the safer version", rule W8b; the outside agent's accuracy test of W8 on the 1,798
+# job-4 rows: W8 cleared 756 rows, 19 of them another place). W8's name test alone kept water bodies, roads and businesses named
+# like the park, and a same-name area of another county. A same-name record is the park's own piece only with ALL three:
+# (1) the park's exact name or another spelling / short form, plus at most a unit / county / section ending; (2) the same agency
+# or owner type as the park; (3) it touches or lies within NEAR_KM of the park's other joined land. One narrow case besides:
+# a POTA name made of two units ('A B C D State Forest', 'A B and C D State Forest'): a record named exactly the one half, of the
+# same kind and agency, while a record holding the pin is named the other half.
+W8B_KIND_WORDS = {'state', 'park', 'area', 'recreation', 'forest', 'wildlife', 'management', 'wma', 'swa', 'sna', 'nap', 'ca', 'shp',
+                  'sra', 'sp', 'sf', 'natural', 'conservation', 'fish', 'fishery', 'and', 'preserve', 'reserve', 'nature', 'historic',
+                  'historical', 'site', 'reservation', 'game', 'lands', 'land', 'public', 'access', 'stl', 'refuge', 'national'}
+W8B_TAIL = re.compile(r'^(?:(?:north|south|east|west|ne|nw|se|sw|upper|lower|[0-9ivx]+)\s+)*(?:units?|tracts?|additions?|annex|'
+                      r'sections?|parcels?|phase|count(?:y|ies)|parish)?(?:\s+[0-9ivx]+)?$')
+W8B_TAIL_END = re.compile(r'(.*?)\s+((?:north|south|east|west)\s+)?(units?|tracts?|additions?|annex|sections?|parcels?)(\s+[0-9ivx]+)?$', re.I)
+W8B_PIECE_WORD = re.compile(r'\b(unit|tract|addition|annex|section|parcel|county|parish)\b')
+W8B_FEATURES = (('road', r'\b(road|rd|drive|dr|highway|hwy|parkway|pkwy|street|st|avenue|ave|lane|boulevard|blvd|right of way|row|trail corridor|rail)\b'),
+                ('water', r'\b(river|stream|creek|brook|run|branch|canal|ditch|pond|lake|reservoir|lagoon|bay|harbor|marina|dam|spillway|boat ramp|landing)\b'),
+                ('business', r'\b(resort|inc|llc|company|co|corp|club|golf|country club|campground|marina|motel|hotel|lodge|store|ranch|farm)\b'),
+                ('hoa', r'\b(hoa|homeowners?|association|estates|subdivision|condo|condominium|village green)\b'),
+                ('cemetery', r'\b(cemetery|cemeteries|burial|memorial gardens)\b'),
+                ('school', r'\b(school|elementary|college|university|academy|campus)\b'),
+                ('utility', r'\b(substation|utility|sewer|water works|treatment plant|easement|transmission)\b'))
+W8B_LAND_END = re.compile(r'\b(units?|tracts?|additions?|annex|sections?|parcels?|area|wma|swa|sna|park|forest|preserve|refuge|reserve|access|zone)\b(\s+[0-9ivx]+)?$')
+
+
+def feature_of(name, park_name=''):
+    """W8b: the kind of non-park feature a name says it is ('road', 'water', 'business', 'hoa', 'cemetery', 'school', 'utility'),
+    or None. A word the park's own name carries says nothing; a road or water word followed by a land word ('Hurricane Creek
+    Addition', 'Cobb Lake Unit') is a piece of land named after it."""
+    r, p = full(re.sub(r'[()]', ' ', str(name or ''))), full(park_name)   # words in brackets count here ('X Area (Y Lake)')
+    for k, rx in W8B_FEATURES:
+        for m_ in re.finditer(rx, r):
+            w = m_.group(0)
+            if re.search(r'\b' + re.escape(w) + r'\b', p): continue
+            rest = r[m_.end():]
+            if k in ('road', 'water') and rest.strip() and W8B_LAND_END.search(rest): continue
+            return k
+    return None
+
+
+def _core_words(name): return [w for w in full(re.sub(r'[()]', ' ', str(name or ''))).split() if w not in W8B_KIND_WORDS]
+
+
+
+def same_name_piece(rec_name, name, counties=()):
+    """W8b (1): the record carries the park NAME (the park's POTA name or a pin record's): the same full name or bare name (a
+    kind that fits) followed only by a unit / tract / addition / section / parcel / county ending or the name of one of the
+    state's counties (counties = full() county names, 'county' left out); or the same name in another spelling or short form
+    (the same words once kind words and short forms are left out, words in brackets kept: 'X SHP' for X State Historical
+    Park, 'X Access' for X State Recreation Area; never 'X State Recreation Area (Y Lake)' for X State Forest)."""
+    rec, name = str(rec_name or ''), str(name or '')
+    if not rec or not name: return False
+    cr = _core_words(rec)
+    if cr and cr == _core_words(name): return True
+    bits = PIECE_SEP.split(rec, maxsplit=1)
+    if len(bits) == 2: lead, tail = bits[0].strip(), bits[1].strip(' )')
+    else:
+        m_ = W8B_TAIL_END.match(rec)
+        if not m_: return False
+        lead, tail = m_.group(1), rec[len(m_.group(1)):].strip()
+    t = full(tail)
+    t2 = re.sub(r'\b(county|counties|parish|unit|units)\b', '', t).strip()
+    cs = set(counties or ())
+    ok = (bool(W8B_TAIL.match(t)) and t != '') or t2 in cs or (t2 != '' and all(w in cs or w == 'and' for w in t2.split()))
+    if not ok and W8B_PIECE_WORD.search(t): ok = len(t.split()) <= 4 and not feature_of(tail)
+    if not ok: return False
+    if full(lead) == full(name): return True
+    bl, kl = bare_name(lead), kinds(full(lead))
+    return bool(bl) and bl == bare_name(name) and (not kl or bool(kl & kinds(full(name))))
+
+
+TWO_UNIT_SPLIT = re.compile(r'\s+(?:and|&)\s+|\s*[-\u2013\u2014/]\s*')
+
+
+def two_unit_half(rec_name, park_name, held_names):
+    """W8b (E): the POTA name covers two units ('A B C D State Forest'; also joined by 'and' / '&' / '-'): True when the record
+    is named exactly the one half (same kind of place as the park) and a record that holds the pin is named the other half."""
+    rec, park = str(rec_name or ''), str(park_name or '')
+    if not rec or not park or kinds(full(rec)) != kinds(full(park)) or not kinds(full(park)): return False
+    rb = bare_name(rec)
+    pb = ' '.join(x for x in TWO_UNIT_SPLIT.split(bare_name(park)) if x)
+    if not rb or rb == pb: return False
+    if pb.startswith(rb + ' '): rest = pb[len(rb):].strip()
+    elif pb.endswith(' ' + rb): rest = pb[:-len(rb)].strip()
+    else: return False
+    rest = ' '.join(x for x in TWO_UNIT_SPLIT.split(rest) if x and x not in ('and', '&'))
+    return bool(rest) and any(bare_name(h) == rest for h in held_names or [])
+
+
+def pin_3c(q, rows, holds, park_name='', held=None, same_owner=None, near_land=None, counties=()):
     """holds(record id) -> True / False / None (POTA's pin strictly inside the record). True = flag q.
     22 Nov 2026: a record that does not hold the pin stays when its bare name is the bare name of a record that holds it, or
     of the park's own POTA name, or differs from one only by piece words (same_bare). held = the rows that hold the pin, when
-    the caller already has them (22 Nov 2026, speed: worked out once per park, not once per row)."""
+    the caller already has them (22 Nov 2026, speed: worked out once per park, not once per row).
+    W8b (23 Nov 2026, replaces W8's name-only own_piece here): a same-name piece (same_name_piece) that names no road, water
+    body, business, HOA, cemetery, school or utility the park's own name does not carry (feature_of) stays only when
+    same_owner(q) is True AND near_land(q) is True; a two-unit half (two_unit_half) stays when same_owner(q) is True.
+    same_owner / near_land missing or not True (no data) = the check list, as before W8."""
     if holds(str(q[0])) is not False: return False
     held = [x for x in rows if holds(str(x[0])) is True] if held is None else held
     if not held: return False                                   # no record holds the pin: says nothing about this one
     me = full(q[1])
     if any(full(x[1]) == me for x in held): return False
     names = [x[1] for x in held] + ([park_name] if park_name else [])
-    if any(own_piece(q[1], n) for n in names): return False   # W8 (23 Nov): the park's own piece, under a piece's label
-    return not any(same_bare(q[1], n) for n in names)
+    if any(same_bare(q[1], n) for n in names): return False
+    owner_ok = bool(same_owner) and same_owner(q) is True
+    if owner_ok and park_name and two_unit_half(q[1], park_name, [x[1] for x in held]): return False
+    if owner_ok and not feature_of(q[1], park_name) and any(same_name_piece(q[1], n, counties) for n in names) \
+            and bool(near_land) and near_land(q) is True:
+        return False                                            # W8b: the park's own piece (name, owner and place agree)
+    return True
+
+
+def rings_near(ra, rb, km=None):
+    """W8b (3): True when two shapes (lists of [lon, lat] rings) touch, overlap or come within km (NEAR_KM) of each other;
+    None when either has no shape. Up to ~120 points of each ring are tested (the keys read a rough working copy)."""
+    km = NEAR_KM if km is None else km
+    ra = [r for r in ra or [] if len(r) >= 3]; rb = [r for r in rb or [] if len(r) >= 3]
+    if not ra or not rb: return None
+    def box_(rr):
+        xs = [p[0] for r in rr for p in r]; ys = [p[1] for r in rr for p in r]
+        return min(xs), min(ys), max(xs), max(ys)
+    A, B = box_(ra), box_(rb)
+    pad = km / 80.0
+    if A[0] > B[2] + pad or B[0] > A[2] + pad or A[1] > B[3] + pad or B[1] > A[3] + pad: return False
+    def in_r(x, y, r):
+        ins, j = False, len(r) - 1
+        for i in range(len(r)):
+            xi, yi, xj, yj = r[i][0], r[i][1], r[j][0], r[j][1]
+            if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / ((yj - yi) or 1e-12) + xi: ins = not ins
+            j = i
+        return ins
+    def near_r(la, lo, rr):
+        k = math.cos(math.radians(la)) * 111.32
+        for r in rr:
+            for (x1, y1), (x2, y2) in zip(r, r[1:]):
+                ax, ay, bx, by = (x1 - lo) * k, (y1 - la) * 110.57, (x2 - lo) * k, (y2 - la) * 110.57
+                dx, dy = bx - ax, by - ay; L = dx * dx + dy * dy
+                t = 0 if L == 0 else max(0, min(1, -(ax * dx + ay * dy) / L))
+                if math.hypot(ax + t * dx, ay + t * dy) <= km: return True
+        return False
+    for x in ra:
+        for (lo, la) in x[::max(1, len(x) // 120)]:
+            if any(in_r(lo, la, y) for y in rb) or near_r(la, lo, rb): return True
+    for y in rb:
+        for (lo, la) in y[::max(1, len(y) // 120)]:
+            if any(in_r(lo, la, x) for x in ra): return True
+    return False
+
+
+def _fam_same(p, r):
+    """W8b (2): the park's agency family p against a record's r: True / False / None (no data)."""
+    if p is None or r is None: return None
+    if p == r: return True
+    fed = lambda z: 'FED' if z.startswith('FED') or z in FED_AGENCIES else z
+    if p == 'FED' or r == 'FED': return fed(p) == fed(r)
+    return False
 
 
 def reason_of(w):
@@ -977,15 +1120,25 @@ def outline_size(p, m):
 
 
 def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda ref, rid, a: False, skip=(), st='',
-               units=None, hits=None, holds_fn=None, layer_table=None, page_holds_fn=None):
+               units=None, hits=None, holds_fn=None, layer_table=None, page_holds_fn=None, near_fn=None):
     """The whole pass for one state, shared by the US builder and the offline counter (one implementation).
     parks = the key's park rows (changed in place); recs = {record id: record}; place_fn(ref, [record ids]) -> True / False /
     None (pin inside or near; used to join a record by the park's link id); holds_fn(ref, record id) -> True / False / None
     (POTA's pin strictly inside that record; pin 3c); layer_table = load_layer_table() (each layer's owner); is_no(ref, rid, rec) = a person's saved NO; skip = parks never touched
     here (official trail lines). Every joined park gets park['match'] = {'status': 'confirmed' | 'outlined' | 'pin',
     'why': [reasons], 'notes': [advisory], 'by': 'id' | 'size' | 'link'} (pin = no outline; 'by' only when confirmed).
+    near_fn(ref, record id, [record ids]) -> True / False / None: the record touches or lies within NEAR_KM of those records
+    (W8b; missing = no data, the same-name piece stays on the check list).
     Returns counts and appends [park, what, record id] to hits."""
     hits = [] if hits is None else hits
+    near_fn = near_fn or (lambda ref, i, ids: None)
+    counties = set()    # W8b: the state's county names, from the park pages
+    for _v in facts.values():
+        _pg = (_v or {}).get('page') or {}
+        if st and str((_v or {}).get('area', ''))[-2:] != st: continue
+        for _c in list(_pg.get('counties') or []) + [(_x or {}).get('name', '') for _x in _pg.get('county_areas') or []]:
+            _t = full(_c).replace(' county', '').strip()
+            if _t: counties.add(_t)
     holds_fn = holds_fn or (lambda ref, i: None)
     shared = shared_names(facts)
     names_n = None       # W5: how many records of the state carry each name (made when the first map-link name comes up)
@@ -1108,6 +1261,18 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         # 22 Nov 2026 (speed, same answers): really remembered now (setdefault worked holds_fn out on every call)
         holds = lambda i: held[i] if i in held else held.setdefault(i, holds_fn(ref, i))
         held_rows = []
+        anchor = []          # W8b: the rows the place test leaves alone on name (22 Nov rule): the park's other joined land
+        fam_ = []
+
+        def park_fam():
+            if not fam_:
+                a_ = link_agency(f, st)
+                if a_ is None:
+                    fs_ = [record_agency(recs.get(str(x[0])), layer_table) or owner_family(recs.get(str(x[0]))) for x in (anchor[0] if anchor else [])]
+                    fs_ = [z for z in fs_ if z]
+                    a_ = max(sorted(set(fs_)), key=fs_.count) if fs_ else None
+                fam_.append(a_)
+            return fam_[0]
         # 22 Nov 2026 (owner: "more options to match other than name"): a point on the park's own official page inside a record
         page_in = {}
         on_page = lambda i: page_in[i] if i in page_in else page_in.setdefault(i, (page_holds_fn(ref, i) is True) if page_holds_fn else False)
@@ -1130,7 +1295,9 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                 drop.append((q, "kind: a compilation layer's record (no agency vote) names another kind of place than the park")); continue
             if national_flag(q, m, recs, nm): drop.append((q, "national: a national-layer record of another level of government than the park's name")); continue
             if not held_rows: held_rows.append([x for x in m if holds(str(x[0])) is True])
-            if pin_3c(q, m, holds, nm, held_rows[0]):
+            if not anchor: anchor.append([x for x in m if not pin_3c(x, m, holds, nm, held_rows[0])])   # W8b: the park's other land
+            if pin_3c(q, m, holds, nm, held_rows[0], same_owner=lambda x: _fam_same(park_fam(), record_agency(recs.get(str(x[0])), layer_table) or owner_family(recs.get(str(x[0])))),
+                      near_land=lambda x: near_fn(ref, str(x[0]), [str(y[0]) for y in anchor[0] if y is not x]), counties=counties):
                 if on_page(i): out['kept_by_page_point'] = out.get('kept_by_page_point', 0) + 1; continue   # the park's own page puts it here
                 drop.append((q, "place: POTA's pin is in another of the park's records, none of this record's name")); continue
             if kind_check(typ, rec) == 'differs': notes.append('kind')                 # advisory only
