@@ -38,7 +38,7 @@ Agency rows, by the pair "link says -> record says": FWS -> STATE 191 (NC 79); S
 | 8 | Second-witness checks on the Canada key | rule sheet, count on saved Canada keys, draft PR (Canada hash moves) | owner's yes |
 | 9 | Wetland district tracts (22 districts) into the keeper's list | KPC-Store; the keeper is the only fetcher | owner's yes |
 | 10 | Site-by-site finders for the low-confirm states (NY 679 unconfirmed, PA 325, MI 304, OR 298, UT 296) | KPC-Data reader; re-read kept pages with `--reextract` | the upload |
-| 11 | W-G6: a "near a town" point as a place witness | `kpc_match_checks.py` | owner's ruling 3 |
+| 11 | W-G6: a "near a town" point as a place witness. RULED YES (owner 23 Nov 6:37 AM). Rule sheet line, count, draft PR | `kpc_match_checks.py` | the upload (the points come from the 23 Nov read) |
 
 Every key rule change: a rule sheet line (mapping.md, rule sheet W) first; a test that fails without the fix; a scope entry in `.github/us-key-rule-scope.json`; a changelog line at the TOP of `docs/key-rules-change.txt` holding "<old hash> -> <new hash>" and the words "APPROVED, decided_by KPC owner" (the preflight looks for both); a count before and after with `kpc_match_checks_count.py`; a draft PR; merged only on the owner's word. Say whether a shared helper changed. Python 3.12 while working: the touched tests, `tests/run_match_tests.py` (73 of 73), `kpc_preflight.py --quick`.
 
