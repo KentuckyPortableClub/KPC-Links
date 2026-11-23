@@ -451,13 +451,52 @@ def layer_family(agency):
     return None
 
 
+# A record's OWN manager field (never its name): a field the keeper saves later (plan O5) as 'manager', or a saved source field
+# ('SA') with one of these names. Owner fields are not manager fields.
+OWN_MANAGER_FIELD = re.compile(r'^(manager|manager_name|managed_by|manage_by|managing_agency|managingagency|mang_name|mgr_name|mgr)$', re.I)
+MANAGER_WORDS = [('FWS', r'\bFWS\b|\bUSFWS\b|fish (and|&) wildlife service'), ('NPS', r'\bNPS\b|national park service'),
+                 ('USFS', r'\bUSFS\b|(us|u\.s\.|united states|usda) forest service'), ('BLM', r'\bBLM\b|bureau of land management'),
+                 ('USACE', r'\bUSACE\b|corps of engineers'), ('BOR', r'\bUSBR\b|bureau of reclamation')]
+
+
+def layer_is_compilation(pre, table=None):
+    """True when the layer table marks the layer a compilation (D11 'what' = compilation: many owners' lands gathered by one
+    office; the same layers the D7 'compilation copy' rule reads)."""
+    return bool(pre) and ((table or {}).get(pre) or {}).get('what') == 'compilation'
+
+
+def own_manager(rec):
+    """The record's own manager field value, '' when it carries none."""
+    rec = rec or {}
+    if str(rec.get('manager') or '').strip(): return str(rec['manager']).strip()
+    for k, v in (rec.get('SA') or {}).items():
+        if OWN_MANAGER_FIELD.match(str(k)) and str(v or '').strip(): return str(v).strip()
+    return ''
+
+
+def manager_family(v):
+    """A manager field's words -> 'NPS' / 'FWS' / 'USFS' / 'BLM' / 'USACE' / 'BOR' / 'STATE' / None, read like PAD-US's
+    Mang_Name (its codes) and Mang_Type ('STAT')."""
+    t = str(v or '').strip()
+    if t.upper() in PAD_MANG: return PAD_MANG[t.upper()]
+    if t.upper() == 'STAT': return 'STATE'
+    for fam, rx in MANAGER_WORDS:
+        if re.search(rx, t, re.I): return fam
+    if re.search(r'\bstate\b|department|\bdept\b|division|commission|\bdnr\b|\bdcr\b|\bdec\b|\bwdfw\b|\btpwd\b', t, re.I): return 'STATE'
+    return None
+
+
 def record_agency(rec, table=None):
     """Who owns a record, never from its name: PAD-US records by their own Mang_Name / Mang_Type; every other layer by the
-    club's layer table (load_layer_table). None = not known (also: no table, or a layer the table does not hold)."""
+    club's layer table (load_layer_table). None = not known (also: no table, or a layer the table does not hold).
+    22 Nov 2026 (owner's go): a COMPILATION layer (one office's list of many agencies' land) gives no agency vote: None,
+    unless the record carries its own manager field, which is then read like a PAD-US record's."""
     rec = rec or {}
     oid = str(rec.get('OBJECTID'))
     pre = re.match(r'[a-z]*', oid).group(0)
     if pre:
+        if layer_is_compilation(pre, table):
+            return manager_family(own_manager(rec))
         return layer_family(((table or {}).get(pre) or {}).get('agency'))
     mn, mt = str(rec.get('Mang_Name') or '').upper(), str(rec.get('Mang_Type') or '').upper()
     if mn in PAD_MANG: return PAD_MANG[mn]
@@ -474,6 +513,20 @@ def agency_check(fact, rec, st='', table=None):
     if a == 'FED': return 'agrees' if (b in FEDERAL or b.startswith('FED:')) else 'differs'
     if a == 'STATE': return 'agrees' if b == 'STATE' else 'differs'
     return 'agrees' if b == a else 'differs'
+
+
+CLASH_KINDS = {'sp', 'wma', 'nwr', 'sf', 'nf'}   # park, wildlife area, refuge, state / national forest (the F3 land kinds)
+
+
+def compilation_kind_clash(park_name, rec_name, rec, table=None):
+    """22 Nov 2026 (owner): with no agency vote from a compilation layer, a record that names another kind of place than the
+    park (a park against a wildlife area, refuge or state forest; a refuge against a wildlife area) still never stays joined.
+    Kinds from KINDS on full() names (SP, WMA, NWR written out), only park / wildlife area / refuge / forest; a name with none of
+    them says nothing. Only on a compilation layer whose record has no manager field of its own."""
+    pre = re.match(r'[a-z]*', str((rec or {}).get('OBJECTID'))).group(0)
+    if not layer_is_compilation(pre, table) or record_agency(rec, table) is not None: return False
+    a, b = kinds(full(park_name)) & CLASH_KINDS, kinds(full(rec_name)) & CLASH_KINDS
+    return bool(a) and bool(b) and not (a & b)
 
 
 def record_kinds(rec):
@@ -545,13 +598,49 @@ def national_flag(q, rows, recs, park_name):
     return not any(abs(b - a) <= 0.10 * a for b in same)     # a copy of land the park already holds at its own level is not flagged
 
 
-def pin_3c(q, rows, holds):
-    """holds(record id) -> True / False / None (POTA's pin strictly inside the record). True = flag q."""
+# 22 Nov 2026 (owner's go, PC test): the type words 3c leaves out are the kinds of KINDS (the builder's own kind table) for the
+# kinds of land a park's pieces are named by, after full() has written the short forms out (SHORT). No second word list.
+BARE_KINDS = ('sp', 'nps', 'hist', 'wma', 'nwr', 'ca', 'snp', 'nf', 'sf')
+_BARE_RX = re.compile('|'.join(f'(?:{r})' for k, r in KINDS if k in BARE_KINDS))
+# what may be all that is left between the record and the park: a piece of the same park
+PIECE_WORD = re.compile(r'^(additions?|units?|tracts?|parcels?|annex|extension|north|south|east|west|\d+|(?=[ivx])x{0,2}(ix|iv|v?i{0,3}))$')
+
+
+def bare_name(name):
+    """full(name) with the kind words of KINDS left out and then a loose 'state' / 'national' / 'park' at the ends (the
+    'state' check 4 leaves out): 'Lake Test State Park' -> 'lake test', 'Ft. Test' -> 'fort test'."""
+    t = _BARE_RX.sub(' ', full(name))
+    w = t.split()
+    while w and w[-1] in ('state', 'national', 'park', 'parks'): w.pop()
+    while w and w[0] in ('state', 'national'): w.pop(0)
+    return ' '.join(w)
+
+
+def same_bare(a, b):
+    """True when two names are one park's: the same bare name, or the same once piece words are left out (Addition, Unit,
+    Tract, Parcel, Annex, Extension, North / South / East / West, a number). 'One name holds the other' is NOT the same,
+    and neither are two names of two different kinds (KINDS)."""
+    x, y = bare_name(a), bare_name(b)
+    if not x or not y: return False
+    ka, kb = kinds(full(a)), kinds(full(b))
+    if ka and kb and not (ka & kb or any(ka & c and kb & c and (ka | kb) & c == c for c in US_COMPAT)):
+        return False                                            # two kinds of place ('X WMA' / 'X State Park'): never one park's
+    if x == y: return True
+    px = [t for t in x.split() if not PIECE_WORD.match(t)]
+    py = [t for t in y.split() if not PIECE_WORD.match(t)]
+    return bool(px) and px == py
+
+
+def pin_3c(q, rows, holds, park_name=''):
+    """holds(record id) -> True / False / None (POTA's pin strictly inside the record). True = flag q.
+    22 Nov 2026: a record that does not hold the pin stays when its bare name is the bare name of a record that holds it, or
+    of the park's own POTA name, or differs from one only by piece words (same_bare)."""
     if holds(str(q[0])) is not False: return False
     held = [x for x in rows if holds(str(x[0])) is True]
     if not held: return False                                   # no record holds the pin: says nothing about this one
     me = full(q[1])
-    return not any(full(x[1]) == me for x in held)
+    if any(full(x[1]) == me for x in held): return False
+    return not any(same_bare(q[1], n) for n in [x[1] for x in held] + ([park_name] if park_name else []))
 
 
 def reason_of(w):
@@ -630,8 +719,10 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if other_park_name(q[1], nm, others):
                 drop.append((q, "name: this record carries another park's own full name")); continue
             if agency_check(f, rec, st, layer_table) == 'differs': drop.append((q, "agency: the record belongs to another agency than POTA's link")); continue
+            if compilation_kind_clash(nm, q[1], rec, layer_table):
+                drop.append((q, "kind: a compilation layer's record (no agency vote) names another kind of place than the park")); continue
             if national_flag(q, m, recs, nm): drop.append((q, "national: a national-layer record of another level of government than the park's name")); continue
-            if pin_3c(q, m, holds): drop.append((q, "place: POTA's pin is in another of the park's records, none of this record's name")); continue
+            if pin_3c(q, m, holds, nm): drop.append((q, "place: POTA's pin is in another of the park's records, none of this record's name")); continue
             if kind_check(typ, rec) == 'differs': notes.append('kind')                 # advisory only
         for q, w in drop: to_check(p, [q], w); out['moved'] += 1; hits.append([ref, reason_of(w), str(q[0])]); why.append(reason_of(w))
         left = p.get('m') or []

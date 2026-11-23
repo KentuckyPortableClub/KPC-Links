@@ -4,7 +4,8 @@
   "layers": 266,
   "agency unknown": 4,
   "kind unknown": 63,
-  "both known": 201
+  "both known": 201,
+  "compilation": 19
  },
  "layers": {
   "PAD-US": {
@@ -325,7 +326,8 @@
   "sgctb": {
    "agency": "state natural resources agency",
    "kind": "unknown",
-   "why": "agency: its description says \"DEEP\"; kind: no kind named"
+   "why": "agency: its description says \"DEEP\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgctc": {
    "agency": "state natural resources agency",
@@ -355,7 +357,8 @@
   "sgdee": {
    "agency": "state natural resources agency",
    "kind": "unknown",
-   "why": "agency: its description says \"DNREC\"; kind: no kind named"
+   "why": "agency: its description says \"DNREC\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgfla": {
    "agency": "state parks",
@@ -450,7 +453,8 @@
   "sgiac": {
    "agency": "state natural resources agency",
    "kind": "unknown",
-   "why": "agency: its description says \"DNR\"; kind: no kind named"
+   "why": "agency: its description says \"DNR\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgiad": {
    "agency": "state natural resources agency",
@@ -530,7 +534,8 @@
   "sgksc": {
    "agency": "several agencies",
    "kind": "unknown",
-   "why": "agency: its description names \"KDWPT\" and \"Natural Heritage\"; kind: no kind named"
+   "why": "agency: its description names \"KDWPT\" and \"Natural Heritage\"; kind: no kind named",
+   "what": "compilation"
   },
   "sglaa": {
    "agency": "state wildlife",
@@ -550,7 +555,8 @@
   "sgmaa": {
    "agency": "state (many owners)",
    "kind": "unknown",
-   "why": "agency: its description says \"MassGIS\"; kind: no kind named"
+   "why": "agency: its description says \"MassGIS\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgmab": {
    "agency": "state natural resources agency",
@@ -565,7 +571,8 @@
   "sgmad": {
    "agency": "state (many owners)",
    "kind": "unknown",
-   "why": "agency: its description says \"MassGIS\"; kind: no kind named"
+   "why": "agency: its description says \"MassGIS\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgmda": {
    "agency": "state natural resources agency",
@@ -580,7 +587,8 @@
   "sgmea": {
    "agency": "several agencies",
    "kind": "unknown",
-   "why": "agency: its description names \"IFW\" and \"Bureau of Parks and Lands\"; kind: no kind named"
+   "why": "agency: its description names \"IFW\" and \"Bureau of Parks and Lands\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgmeb": {
    "agency": "state wildlife",
@@ -700,7 +708,8 @@
   "sgmtd": {
    "agency": "unknown",
    "kind": "unknown",
-   "why": "agency: no agency named in its description or address; kind: no kind named"
+   "why": "agency: no agency named in its description or address; kind: no kind named",
+   "what": "compilation"
   },
   "sgmte": {
    "agency": "state parks and wildlife",
@@ -770,7 +779,8 @@
   "sgnha": {
    "agency": "state (many owners)",
    "kind": "unknown",
-   "why": "agency: its description says \"GRANIT\"; kind: no kind named"
+   "why": "agency: its description says \"GRANIT\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgnhb": {
    "agency": "state wildlife",
@@ -780,12 +790,14 @@
   "sgnhc": {
    "agency": "state (many owners)",
    "kind": "recreation area",
-   "why": "agency: its description says \"GRANIT\"; kind: its description says recreation area"
+   "why": "agency: its description says \"GRANIT\"; kind: its description says recreation area",
+   "what": "compilation"
   },
   "sgnhd": {
    "agency": "state (many owners)",
    "kind": "unknown",
-   "why": "agency: its description says \"GRANIT\"; kind: no kind named"
+   "why": "agency: its description says \"GRANIT\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgnja": {
    "agency": "state natural resources agency",
@@ -820,7 +832,8 @@
   "sgnvb": {
    "agency": "state parks",
    "kind": "recreation area",
-   "why": "agency: its description says \"Division of State Parks\"; kind: its description says recreation area"
+   "why": "agency: its description says \"Division of State Parks\"; kind: its description says recreation area",
+   "what": "compilation"
   },
   "sgnvc": {
    "agency": "state parks",
@@ -830,7 +843,8 @@
   "sgnvd": {
    "agency": "state (many owners)",
    "kind": "recreation area",
-   "why": "agency: its description says \"SCORP\"; kind: its description says recreation area"
+   "why": "agency: its description says \"SCORP\"; kind: its description says recreation area",
+   "what": "compilation"
   },
   "sgnve": {
    "agency": "state parks",
@@ -915,7 +929,8 @@
   "sgohg": {
    "agency": "state natural resources agency",
    "kind": "unknown",
-   "why": "agency: its description says \"DNR\"; kind: no kind named"
+   "why": "agency: its description says \"DNR\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgoka": {
    "agency": "state parks",
@@ -1005,7 +1020,8 @@
   "sgric": {
    "agency": "state natural resources agency",
    "kind": "unknown",
-   "why": "agency: its description says \"DEM\"; kind: no kind named"
+   "why": "agency: its description says \"DEM\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgsca": {
    "agency": "state natural resources agency",
@@ -1065,7 +1081,8 @@
   "sgtnf": {
    "agency": "state natural resources agency",
    "kind": "unknown",
-   "why": "agency: its description says \"Environment and Conservation\"; kind: no kind named"
+   "why": "agency: its description says \"Environment and Conservation\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgtng": {
    "agency": "state parks",
@@ -1105,7 +1122,8 @@
   "sgtxd": {
    "agency": "state parks and wildlife",
    "kind": "unknown",
-   "why": "agency: its description says \"Parks and Wildlife\"; kind: no kind named"
+   "why": "agency: its description says \"Parks and Wildlife\"; kind: no kind named",
+   "what": "compilation"
   },
   "sguta": {
    "agency": "state parks",
@@ -1160,7 +1178,8 @@
   "sgvae": {
    "agency": "state natural resources agency",
    "kind": "unknown",
-   "why": "agency: its description says \"DCR\"; kind: no kind named"
+   "why": "agency: its description says \"DCR\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgvaf": {
    "agency": "state natural resources agency",
@@ -1200,7 +1219,8 @@
   "sgwad": {
    "agency": "several agencies",
    "kind": "unknown",
-   "why": "agency: its description names \"WDFW\" and \"State Parks\"; kind: no kind named"
+   "why": "agency: its description names \"WDFW\" and \"State Parks\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgwae": {
    "agency": "state natural resources agency",
