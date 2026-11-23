@@ -944,21 +944,62 @@ def ring_acres(rings):
     return abs(tot) / 4046.8564224
 
 
-def measured_ac(rows, rings_of, parts=None):
+SAME_GROUND = 0.8   # two layers lie on the same ground when 80%+ of the smaller one's box is in the other's (the builder's own twin test)
+
+
+def _rings_box(rr):
+    xs = [q[0] for r in rr for q in r]; ys = [q[1] for r in rr for q in r]
+    return (min(xs), min(ys), max(xs), max(ys)) if xs else None
+
+
+def _box_join(a, b):
+    if a is None or b is None: return a or b
+    return (min(a[0], b[0]), min(a[1], b[1]), max(a[2], b[2]), max(a[3], b[3]))
+
+
+def _box_share(a, b):
+    """How much of the smaller box lies in the other (0..1)."""
+    w = max(0.0, min(a[2], b[2]) - max(a[0], b[0])); h = max(0.0, min(a[3], b[3]) - max(a[1], b[1]))
+    return w * h / (min((a[2] - a[0]) * (a[3] - a[1]), (b[2] - b[0]) * (b[3] - b[1])) or 1e-12)
+
+
+def measured_ac(rows, rings_of, parts=None, twins=None):
     """Handoff 8 fix 4: (acres, n measured) for a park's joined rows [id, name, acres, how] when at least one has no acres on file:
     rows with acres count their own acres, rows without are measured from their saved shape (rings_of(id) -> rings; only the
-    rings inside the park's own part boxes when the park has 'parts'). None when no row lacks acres or a 0-acre row has no shape."""
-    zero = [x for x in rows or [] if not (x[2] if len(x) > 2 else 0)]
-    if not zero: return None
-    tot, n = sum(float(x[2] or 0) for x in rows if len(x) > 2 and x[2]), 0
-    for x in zero:
-        rr = [r for r in (rings_of(str(x[0])) or []) if len(r) > 3]
-        boxes = (parts or {}).get(str(x[0]))
+    rings inside the park's own part boxes when the park has 'parts'). None when a 0-acre row has no shape.
+    W7 (owner 23 Nov 2026, 5:53 AM 'Yes'): the same land is never counted once per LAYER. The rows are totalled one layer at a
+    time (a twin row, the builder's own 'same land again', is left out); the biggest layer counts in full, and a smaller layer
+    is added only when it lies on other ground (under SAME_GROUND of its box in a counted layer's box). A layer with no saved
+    shape cannot be placed and is added, as before. So a park held in a managed-lands layer, a parcel layer and the national
+    list gets the land once, and a park made of pieces from two layers side by side still gets both.
+    Also measured now: a park with no 0-acre row whose rows come from two or more layers (before: None, and every reader
+    added the layers up). One layer and no 0-acre row = None, as before (the plain total is right)."""
+    rows = [x for x in rows or [] if x]
+    tw = {str(t) for t in twins or []}
+    pre = lambda x: re.match(r'[a-z]*', str(x[0])).group(0)
+    zero = [x for x in rows if not (x[2] if len(x) > 2 else 0)]
+    if not zero and len({pre(x) for x in rows if str(x[0]) not in tw}) < 2: return None
+    lay, n = {}, 0     # layer -> [acres, box of its shapes]
+    for x in rows:
+        i = str(x[0])
+        if i in tw: continue
+        ac = float(x[2] or 0) if len(x) > 2 else 0.0
+        rr = [r for r in (rings_of(i) or []) if len(r) > 3]
+        boxes = (parts or {}).get(i)
         if boxes:
             rr = [r for r in rr if any(b[0] - .01 <= (min(q[0] for q in r) + max(q[0] for q in r)) / 2 <= b[2] + .01
                                      and b[1] - .01 <= (min(q[1] for q in r) + max(q[1] for q in r)) / 2 <= b[3] + .01 for b in boxes)]
-        if not rr: return None
-        tot += ring_acres(rr); n += 1
+        if not ac:
+            if not rr: return None
+            ac = ring_acres(rr); n += 1
+        L = lay.setdefault(pre(x), [0.0, None])
+        L[0] += ac
+        if rr: L[1] = _box_join(L[1], _rings_box(rr))
+    tot, counted = 0.0, []
+    for ac, box in sorted(lay.values(), key=lambda L: -L[0]):
+        if box is not None and any(_box_share(box, k) >= SAME_GROUND for k in counted): continue   # the same ground as a bigger layer
+        tot += ac
+        if box is not None: counted.append(box)
     return round(tot), n
 
 # ---------------------------------------------------------------- THE CONTEST (matching plan section 1; Fable 17 Nov, owner YES)
