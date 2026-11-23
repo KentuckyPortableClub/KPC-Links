@@ -2,6 +2,13 @@
 
 Owner 7:30 AM: "hand off for opus to finish the bot like you wanted". He had been told (another chat, same morning) that the job was not started, and that two questions were open: a web-search service, and where the links go. Both are answered below from rules already in force. Nothing here needs a new ruling from him.
 
+## STATUS 23 Nov 8:30 AM (Opus): BUILT, waits for the owner
+KPC-Data draft PR #186, KPC-Links draft PR #354, rule sheet L as built in mapping.md (on #354). Changes from the plan: the second
+witness is a page point within 5 km of the PIN (the PC has no outlines) or the sister parks' list on a key-agency-table host; a page
+point further off is unsure; the county witness and sitemaps are not used. A park whose sites were busy is looked for again next run.
+PC files sent and read back equal; owner order: 2e, then 2f-FIND-OWN-PAGES.bat (NH trial, then all), then upload the newest pack;
+after it, one by-hand `only: reader` run of kpc-official-links.yml.
+
 ## The job in one line
 
 For parks whose page the reader cannot read (POTA lists no link, the link is dead, or the link is only the agency's home page), find the park's OWN page on its managing agency's own site, keep it only on a SURE match, and count what was found.
