@@ -2,23 +2,25 @@
  "open": [
   "KPC-Data/kpc-answer-sheet-check.yml",
   "KPC-Data/kpc-camp-weekly.yml",
+  "KPC-Data/kpc-convert-layers.yml",
   "KPC-Data/kpc-detective.yml",
   "KPC-Data/kpc-eu-alerts.yml",
   "KPC-Data/kpc-fetch-files.yml",
   "KPC-Data/kpc-flow.yml",
   "KPC-Data/kpc-helpers.yml",
   "KPC-Data/kpc-map-pictures.yml",
+  "KPC-Data/kpc-pages-sync.yml",
   "KPC-Data/kpc-scoreboard.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-watch.yml",
   "guard:pubnoindex:kpc-log-checker.html",
   "guard:pubnoindex:kpc-maintenance.html",
+  "kpc-band-alerts.yml",
+  "kpc-boards.yml",
   "kpc-bot-queue.yml",
-  "kpc-discord-watch.yml",
-  "kpc-fb-comments.yml",
+  "kpc-discord-relay.yml",
   "kpc-hunters.json",
-  "kpc-hunters.yml",
-  "kpc-watchdog.yml",
+  "kpc-pota-discord.yml",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
@@ -369,13 +371,14 @@
   "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/206",
   "links:https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/PlanningCadastre_LCC/MapServer/16",
   "out:shrank:D:data/leaders",
+  "pages-deploy.yml",
   "refs:gone:CA-ON:CA-6621",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-22T17:36+00:00",
+ "checked": "2026-11-23T10:37+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3269,7 +3272,7 @@
  ],
  "sizes": {
   "L:kpc-hunters.json": {
-   "b": 2915
+   "b": 2914
   },
   "L:data/ky-answer-key.json": {
    "b": 31658
@@ -3284,7 +3287,7 @@
    "b": 38569625
   },
   "L:data/pota": {
-   "b": 10208711
+   "b": 10207800
   },
   "L:data/canada.json": {
    "b": 2558918
@@ -3354,7 +3357,7 @@
    "b": 137418
   },
   "D:data/truth": {
-   "b": 26492220
+   "b": 26487332
   },
   "D:data/alerts/eu.json": {
    "b": 252330
@@ -3363,7 +3366,7 @@
    "b": 93698
   },
   "D:data/closures": {
-   "b": 169427
+   "b": 169940
   },
   "D:data/intake": {
    "b": 39695215,
