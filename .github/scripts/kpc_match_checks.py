@@ -763,12 +763,13 @@ def same_bare(a, b):
     return bool(px) and px == py
 
 
-def pin_3c(q, rows, holds, park_name=''):
+def pin_3c(q, rows, holds, park_name='', held=None):
     """holds(record id) -> True / False / None (POTA's pin strictly inside the record). True = flag q.
     22 Nov 2026: a record that does not hold the pin stays when its bare name is the bare name of a record that holds it, or
-    of the park's own POTA name, or differs from one only by piece words (same_bare)."""
+    of the park's own POTA name, or differs from one only by piece words (same_bare). held = the rows that hold the pin, when
+    the caller already has them (22 Nov 2026, speed: worked out once per park, not once per row)."""
     if holds(str(q[0])) is not False: return False
-    held = [x for x in rows if holds(str(x[0])) is True]
+    held = [x for x in rows if holds(str(x[0])) is True] if held is None else held
     if not held: return False                                   # no record holds the pin: says nothing about this one
     me = full(q[1])
     if any(full(x[1]) == me for x in held): return False
@@ -912,10 +913,12 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         if not m: continue
         out['parks'] += 1
         held = {}
-        holds = lambda i: held.setdefault(i, holds_fn(ref, i))
+        # 22 Nov 2026 (speed, same answers): really remembered now (setdefault worked holds_fn out on every call)
+        holds = lambda i: held[i] if i in held else held.setdefault(i, holds_fn(ref, i))
+        held_rows = []
         # 22 Nov 2026 (owner: "more options to match other than name"): a point on the park's own official page inside a record
         page_in = {}
-        on_page = lambda i: page_in.setdefault(i, (page_holds_fn(ref, i) is True) if page_holds_fn else False)
+        on_page = lambda i: page_in[i] if i in page_in else page_in.setdefault(i, (page_holds_fn(ref, i) is True) if page_holds_fn else False)
         drop = []
         for q in m:
             i = str(q[0]); rec = recs.get(i)
@@ -934,7 +937,8 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if compilation_kind_clash(nm, q[1], rec, layer_table):
                 drop.append((q, "kind: a compilation layer's record (no agency vote) names another kind of place than the park")); continue
             if national_flag(q, m, recs, nm): drop.append((q, "national: a national-layer record of another level of government than the park's name")); continue
-            if pin_3c(q, m, holds, nm):
+            if not held_rows: held_rows.append([x for x in m if holds(str(x[0])) is True])
+            if pin_3c(q, m, holds, nm, held_rows[0]):
                 if on_page(i): out['kept_by_page_point'] = out.get('kept_by_page_point', 0) + 1; continue   # the park's own page puts it here
                 drop.append((q, "place: POTA's pin is in another of the park's records, none of this record's name")); continue
             if kind_check(typ, rec) == 'differs': notes.append('kind')                 # advisory only

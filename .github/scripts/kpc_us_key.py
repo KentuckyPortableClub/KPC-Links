@@ -128,7 +128,18 @@ ABBR = {'sulphur': 'sulfur', 'sulpher': 'sulfur', 'vehicular': 'vehicle', 'recre
 # Oct 24: the Oct 22 'keep a leading type word' rule must not keep a leading article or filler - 'The 400 State Trail'
 # came out as 'the 400 trail' and no longer met '400 State Trail' (found measuring the WI key)
 NOTNAME = {'the', 'of', 'and', 'state', 'national', 'no', 'number', 'blm', 'designated', 'a', 'an'}
+_NORM_MEMO = {}
 def norm(s, drop1=False):
+    # 22 Nov 2026 (owner: "fix the mapping so it is quicker building"): the same names are cleaned millions of times per
+    # state (Texas: 8.2 million calls, 90% of the build). The answer for a name never changes, so it is worked out once.
+    k = (str(s or ''), bool(drop1))
+    v = _NORM_MEMO.get(k)
+    if v is None:
+        v = _NORM_MEMO[k] = _norm_once(*k)
+    return v
+
+
+def _norm_once(s, drop1=False):
     s = str(s or '')
     # Oct 26 (gap hunt): Michigan DNR names its State Game Lands 'Bill Rollo Memorial Grouse Enhanced Mgmt.Sys.(GEMS)(SWMA)';
     # POTA says 'Bill Rollo Memorial State Game Land'. The GEMS words (and anything after, '... of Plum Creek') are not the name
@@ -535,6 +546,53 @@ def in_ring(x, y, r):
     return ins
 def inside(la, lo, g): return sum(1 for r in rings(g) if in_ring(lo, la, r)) % 2 == 1
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
+
+
+class RecordGrid:
+    """22 Nov 2026 (speed, same answers): the state's records in map squares of CELL degrees (each record in every square
+    its box, widened by pad, touches) and by cleaned name. around(la, lo, nn) -> the records that can be near() the pin within
+    pad, or that carry the cleaned name nn, in the records' own order. No pin: every record. A record whose box would cover
+    too many squares is always looked at."""
+    CELL = 0.5
+    MAX_CELLS = 2500
+
+    def __init__(self, recs, pad):
+        import math as _m
+        self.recs, self.cells, self.names, self.always = recs, {}, {}, []
+        for i, a in enumerate(recs):
+            self.names.setdefault(norm(a.get('Unit_Nm') or a.get('Loc_Nm') or ''), []).append(i)
+            b = a.get('_bb')
+            if not b:
+                continue          # no box: never near() a pin (only the same-name rule can reach it)
+            x0, x1 = _m.floor((b[0] - pad) / self.CELL), _m.floor((b[2] + pad) / self.CELL)
+            y0, y1 = _m.floor((b[1] - pad) / self.CELL), _m.floor((b[3] + pad) / self.CELL)
+            if (x1 - x0 + 1) * (y1 - y0 + 1) > self.MAX_CELLS:
+                self.always.append(i); continue
+            for gx in range(x0, x1 + 1):
+                for gy in range(y0, y1 + 1):
+                    self.cells.setdefault((gx, gy), []).append(i)
+
+    def around(self, la, lo, nn):
+        if la is None or lo is None:
+            return list(self.recs)
+        import math as _m
+        try:
+            key = (_m.floor(lo / self.CELL), _m.floor(la / self.CELL))
+        except (TypeError, ValueError, OverflowError):
+            return list(self.recs)         # a pin that is not a number: look at everything, as before
+        got = set(self.cells.get(key, ()))
+        got.update(self.names.get(nn, ()))
+        got.update(self.always)
+        return [self.recs[i] for i in sorted(got)]
+
+
+_BY_ID = [None, None, None]
+def by_id(recs):
+    """{record id: record} for this record list, built once (it was rebuilt for every joined park: 84,718 records x 434 parks
+    in Florida). The last record of an id wins, as in the dict it replaces."""
+    if _BY_ID[0] is not recs or _BY_ID[1] != len(recs):
+        _BY_ID[:] = [recs, len(recs), {_oid(a): a for a in recs}]
+    return _BY_ID[2]
 
 
 FIELDS = None
@@ -2459,12 +2517,17 @@ def run(st):
     RD.clear()
     SAVED_SAY[:] = [h for h in SAVED_SAY if h[0] != st]   # F5: a state built twice in one run is counted once
     clusters = name_clusters(recs)
+    # 22 Nov 2026 (owner: "so it dont search every piece... grid squares"): the records sorted once into squares of the map
+    # (each record in every square its box, padded by the 0.6-degree search reach, touches) and by cleaned name. A park
+    # then looks only at the records in its pin's square plus the records of its own cleaned name (the far same-name rule),
+    # in the same order as before, so every answer is the same; it just skips the records that could never join.
+    near_idx = RecordGrid(recs, pad=.6)
     for ref, r in sorted(P.items()):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
         if la is None and ref in pins(): la, lo = pins()[ref]
         kp = kinds(name) | kinds(typ)
         m, c, farm = [], [], []
-        for a in recs:
+        for a in near_idx.around(la, lo, norm(name)):
             nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
             close = la is None or near(la, lo, a['_bb'], .6)
             if not close:
@@ -2713,7 +2776,7 @@ def run(st):
         # tested that - a joined park was simply counted as a success. So: does the park's own pin actually
         # fall inside the land we joined it to? 'far' = it does not, and that join wants looking at.
         if m and la is not None:
-            gs = {_oid(a): a for a in recs}
+            gs = by_id(recs)
             mine = [gs[str(x[0])] for x in m if str(x[0]) in gs]
             # Does the joined land have a shape at all? Some services hand back records with no rings, and
             # then 'the pin is outside' means nothing - it is the CHECK that is blind, not the match.

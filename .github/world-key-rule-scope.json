@@ -113,6 +113,14 @@
    "why": "kpc_park_facts_read.py is in the world RULE_FILES (it was already a US rule file; world key runs already called it). A later edit to it moves the world hash. No join result changes; no country is rebuilt for this alone.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-21"
+  },
+  {
+   "id": "2026-11-22-key-speed",
+   "when": "2026-11-22",
+   "from": "5bdc51d2d809",
+   "why": "Speed only, same answers: kpc_match.name_clusters sweeps west to east instead of comparing every pair of boxes of one name; the same pairs touch, so the same places are counted (test: tests/test_key_speed_nov22.py against the every-pair count). No country is rebuilt for this alone.",
+   "scope": "none",
+   "approved": "DRAFT: NOT REVIEWED"
   }
  ]
 }
