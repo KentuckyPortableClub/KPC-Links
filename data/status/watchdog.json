@@ -1,13 +1,5 @@
 {
  "restarted": {
-  "kpc-boards.yml|2026-11-16T01:14:00+00:00": "2026-11-16T01:51+00:00 started",
-  "kpc-bot-queue.yml|2026-11-16T00:22:00+00:00": "2026-11-16T01:51+00:00 started",
-  "kpc-discord-watch.yml|2026-11-16T00:47:00+00:00": "2026-11-16T01:51+00:00 started",
-  "kpc-fb-comments.yml|2026-11-16T00:32:00+00:00": "2026-11-16T01:51+00:00 skipped (not restarted)",
-  "kpc-park-notes.yml|2026-11-16T00:41:00+00:00": "2026-11-16T01:51+00:00 started",
-  "kpc-pota-discord.yml|2026-11-16T01:19:00+00:00": "2026-11-16T01:51+00:00 started",
-  "kpc-youtube.yml|2026-11-15T23:23:00+00:00": "2026-11-16T01:51+00:00 started",
-  "pages-deploy.yml|2026-11-16T00:41:00+00:00": "2026-11-16T01:51+00:00 started",
   "kpc-band-alerts.yml|2026-11-16T03:48:00+00:00": "2026-11-16T04:31+00:00 started",
   "kpc-boards.yml|2026-11-16T03:44:00+00:00": "2026-11-16T04:31+00:00 started",
   "kpc-bot-queue.yml|2026-11-16T02:22:00+00:00": "2026-11-16T04:31+00:00 started",
@@ -636,8 +628,25 @@
   "kpc-park-alerts.yml|2026-11-22T23:03:00+00:00": "2026-11-22T23:31+00:00 started",
   "kpc-pota-discord.yml|2026-11-22T22:19:00+00:00": "2026-11-22T23:31+00:00 started",
   "kpc-reports.yml|2026-11-22T21:29:00+00:00": "2026-11-22T23:31+00:00 started",
-  "pages-deploy.yml|2026-11-22T22:41:00+00:00": "2026-11-22T23:31+00:00 started"
+  "pages-deploy.yml|2026-11-22T22:41:00+00:00": "2026-11-22T23:31+00:00 started",
+  "kpc-campground-notes.yml|2026-11-23T01:53:00+00:00": "2026-11-23T02:21+00:00 started",
+  "kpc-discord-watch.yml|2026-11-23T01:47:00+00:00": "2026-11-23T02:21+00:00 started",
+  "kpc-fb-comments.yml|2026-11-23T00:32:00+00:00": "2026-11-23T02:21+00:00 skipped (not restarted)",
+  "kpc-hunters.yml|2026-11-23T01:07:00+00:00": "2026-11-23T02:21+00:00 started",
+  "kpc-park-notes.yml|2026-11-23T00:41:00+00:00": "2026-11-23T02:21+00:00 started",
+  "kpc-pota-discord.yml|2026-11-23T01:19:00+00:00": "2026-11-23T02:21+00:00 started",
+  "kpc-youtube.yml|2026-11-22T23:23:00+00:00": "2026-11-23T02:21+00:00 started",
+  "pages-deploy.yml|2026-11-23T00:41:00+00:00": "2026-11-23T02:21+00:00 started"
  },
- "last": "2026-11-22T23:44+00:00",
- "last_restarted": []
+ "last": "2026-11-23T02:21+00:00",
+ "last_restarted": [
+  "kpc-campground-notes.yml (missed Nov 23 01:53 UTC)",
+  "kpc-discord-watch.yml (missed Nov 23 01:47 UTC)",
+  "kpc-fb-comments.yml (missed Nov 23 00:32 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-hunters.yml (missed Nov 23 01:07 UTC)",
+  "kpc-park-notes.yml (missed Nov 23 00:41 UTC)",
+  "kpc-pota-discord.yml (missed Nov 23 01:19 UTC)",
+  "kpc-youtube.yml (missed Nov 22 23:23 UTC)",
+  "pages-deploy.yml (missed Nov 23 00:41 UTC)"
+ ]
 }
