@@ -791,6 +791,14 @@
    "why": "Owner's rulings (23 Nov 2026, 6:42 AM 'Yes on all but 5', after he asked for them in plain words at 6:37 AM). W-G11: the agency check read one label of a land record, its manager; a state link now agrees with a national-list record the STATE owns (Own_Type STAT), whatever its manager label says (Oregon: 111 rows of state park land labelled CITY; state-owned land run by a private operator or a local body). Only national-list records: a layer with its own table row is read by the table. W-G12: a state link against a record of the Corps of Engineers, Reclamation or TVA gives no agency vote when the record carries the park's own name (the same full name, or the same bare name and the same kind of place); the national-list level rule follows the same exception, or the same rows would reach the check list under another reason. The lake project's own record, another kind of place and 'one name holds the other' still go to the check list. Counted on the saved US keys with the 23 Nov park facts: check rows 6,961 -> 6,679; parks with an agency row 481 -> 257; 6 parks keep their outline instead of dropping to a pin; nothing is newly confirmed. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "owner's rulings, KPC owner, 2026-11-23 (6:42 AM 'Yes on all but 5'); merged only on his word after his own review"
+  },
+  {
+   "id": "2026-11-23-w8-own-pieces-w9-no-acres",
+   "when": "2026-11-23",
+   "from": "c6f3a95b1018",
+   "why": "Owner's go (23 Nov 2026, 8:45 AM: 'Go'; rules W8 and W9, from the outside agent's jobs 4 and 6). W8: the place test (pin 3c) sent the park's own pieces to the check list when a piece is named the park's name plus a short label ('X WMA - Y Tract', 'X Fishery Area-Polk', 'X State Park - Y Unit') or carries one part of a two-part park name of the same kind; they stay now, and a river, lake or road named like the park, another kind of place and a longer name that holds the park's still go to the check list. W9: the cap after the union counted a record with no acres on file as 0 acres (the two Maryland DNR layers), so 10 Maryland parks shrank to a few small pieces and dropped to a pin; such a record now adds its own measured area. On the saved US keys with the 23 Nov park facts (count only): place rows 1,798 -> 1,042; all check rows 6,679 -> 5,904; pin-only 96 -> 86 (Maryland 10); confirmed 6,308 -> 6,318 (W9 estimated without shapely). Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "owner's go, KPC owner, 2026-11-23 (8:45 AM 'Go'); merged only on his own review"
   }
  ]
 }

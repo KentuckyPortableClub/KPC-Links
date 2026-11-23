@@ -3354,7 +3354,7 @@ def run(st):
             nr = sum(len(rings(byid[i]['_g'])) for i in ids)
             if not pts or len(pts) > 60000 or nr > 400: skipped += 1; continue   # huge refuges / forests: too heavy, left without 'ac'
             la0 = sum(q[1] for q in pts) / len(pts); kx, ky = 111320 * math.cos(math.radians(la0)), 110574
-            geoms = []
+            geoms, area_of = [], {}
             for i in ids:
                 rr = [r for r in rings(byid[i]['_g']) if len(r) > 3]
                 boxes = (p.get('parts') or {}).get(i)
@@ -3366,12 +3366,15 @@ def run(st):
                     for r in rr:
                         pg = _Poly([(q[0] * kx, q[1] * ky) for q in r]).buffer(0)
                         g = pg if g is None else g.symmetric_difference(pg)
-                if g is not None: geoms.append(g)
+                if g is not None: geoms.append(g); area_of[i] = g.area / 4046.86
             if geoms:
                 p['ac'] = round(_union(geoms).area / 4046.86); nac += 1
                 # Sonnet's grade 18 Nov (Savoy Mountain SF: 13,373 -> 49,593 ac): a union can never be bigger than its records'
                 # own acres added up; when it is, a ring was read wrong, so the records' total (an upper bound) is shown instead
-                _sum = sum(float(x[2] or 0) for x in p['m'] if str(x[0]) in ids or x[0] in ids)
+                # W9 (23 Nov 2026, owner 8:45 AM "Go"; outside agent's job 6): a record with NO acres on file (0 or blank, e.g. the two
+                # Maryland DNR layers) adds its own measured area to that total, never 0; else the cap shrank 10 Maryland parks (85 in
+                # 21 states) to a few small pieces and the size check sent them to a pin
+                _sum = sum(KR.cap_acres(x[2], area_of.get(str(x[0]))) for x in p['m'] if str(x[0]) in ids or x[0] in ids)
                 if _kr('KPC_ONE_RECORD_ONE_PARK') and _sum > 0 and p['ac'] > 1.1 * _sum: p['ac'] = round(_sum)
         notice(f'US key {st}', f'{nac} parks with several records got one union acreage (ac)' + (f'; {skipped} too big or out of time (no ac)' if skipped else '')) if nac or skipped else None
     except ImportError: pass
