@@ -396,6 +396,19 @@ def page_name_agrees(fact):
     return own_page(fact) and str((((fact or {}).get('page') or {}).get('name_vs_pota')) or '') in PAGE_NAME_OK
 
 
+def map_link_names(fact):
+    """W5 MAP-LINK NAME (owner 23 Nov 2026: 12:51 AM 'Yes', 4:28 AM 'yes for both'): the names the park's OWN page on an official
+    site hands to the agency's own map viewer in its map link (KPC-Data park facts page.map_names; Wisconsin DNR:
+    ...Public_Access_Lands&ID=MACK WILDLIFE AREA), as bare names (bare_name: the kind words and a loose 'state' left out, so the
+    map's 'MACK WILDLIFE AREA' is the record's 'Mack State Wildlife Area'). A list, a shared page or an unofficial site gives none."""
+    if not own_page(fact): return []
+    out = []
+    for m in ((fact or {}).get('page') or {}).get('map_names') or []:
+        n = bare_name((m or {}).get('name')) if isinstance(m, dict) else ''
+        if n and len(n) > 3 and n not in out: out.append(n)
+    return out[:3]
+
+
 def page_pins(fact):
     pg = (fact or {}).get('page') or {}
     if pg.get('own_page') != 'own' or pg.get('unofficial'): return []
@@ -808,6 +821,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
     hits = [] if hits is None else hits
     holds_fn = holds_fn or (lambda ref, i: None)
     shared = shared_names(facts)
+    names_n = None       # W5: how many records of the state carry each name (made when the first map-link name comes up)
     rids = {i: ids_from(a, url_of(a)) for i, a in recs.items()}
     index = {}
     for i, d in rids.items():
@@ -965,6 +979,10 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         left = p.get('m') or []
         id_ok = bool(kind) and any(id_agrees(kind, val, rids.get(str(q[0])) or {}, recs.get(str(q[0])), tie) for q in left)
         link_nm = link_name_agree(f)
+        mnames = map_link_names(f)
+        if mnames and names_n is None:
+            names_n = {}
+            for a_ in recs.values(): names_n[bare_name(rec_name(a_))] = names_n.get(bare_name(rec_name(a_)), 0) + 1
         if link_nm == 'part': notes.append('link name')
         place_ok = bool(left) and place_fn(ref, [str(q[0]) for q in left]) is True
         how = None
@@ -979,8 +997,16 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             # W-G1 with the page's name as the name that agrees, the page's own point does). Confirms only: nothing is moved.
             elif page_name_agrees(f) and place_ok: st_, how = 'confirmed', 'page name'
             elif page_name_agrees(f) and any(on_page(str(q[0])) for q in left): st_, how = 'confirmed', 'page name and point'
+            # W5 (23 Nov 2026): the park's own page links the agency's own map under this record's name, and exactly ONE
+            # record of the state carries that bare name (two records of one name: unsure, nothing). Confirms only.
+            elif mnames and any(bare_name(q[1]) in mnames and names_n.get(bare_name(q[1])) == 1 for q in left): st_, how = 'confirmed', 'map link name'
             else: st_ = 'outlined'
         p['match'] = {'status': st_, 'why': sorted(set(why))}
+        if mnames and left and not any(bare_name(q[1]) in mnames for q in left):
+            # W5: the park's own page links the agency's map under ANOTHER name than the joined record's. A note for a person
+            # (it catches a same-name unit in another county); nothing moves until the owner rules.
+            p['match'].setdefault('notes', []).append("the page's map link names another record")
+            out['map_link_other'] = out.get('map_link_other', 0) + 1
         if notes: p['match']['notes'] = sorted(set(notes))
         if how: p['match']['by'] = how
         if id_ok: p['match']['id'] = f'{kind} {val}'

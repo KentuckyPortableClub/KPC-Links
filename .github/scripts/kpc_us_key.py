@@ -2224,6 +2224,31 @@ def _page_point_checks(st, parks, byid, facts, res):
     res['page_point_checks'] = n
 
 
+def _map_name_checks(st, parks, byid, facts, res):
+    """23 Nov 2026 (owner's ruling W-G7, 4:28 AM, 'yes for both': the check list): a park with no outline (pin only) whose OWN
+    official page links the agency's own map under a name that exactly ONE record of the state carries gets that record on its
+    check list for a person, never drawn. The row says why. A piece a person already said no to, or already on the list, is
+    not added again. Two records of one name: unsure, nothing. Counted."""
+    n, idx = 0, None
+    for ref, p in parks.items():
+        if p.get('m'): continue
+        names = MC.map_link_names(facts.get(ref))
+        if not names: continue
+        if idx is None:
+            idx = {}
+            for i, a in byid.items(): idx.setdefault(MC.bare_name(MC.rec_name(a)), []).append(i)
+        have = {str(x[0]) for x in p.get('c') or []}
+        no = {str(x) for x in (OVR.get(ref) or {}).get('no') or []}
+        for nm in names:
+            ids = idx.get(nm) or []
+            if len(ids) != 1 or str(ids[0]) in have or str(ids[0]) in no: continue
+            a = byid[ids[0]]
+            p['c'] = list(p.get('c') or []) + [[a['OBJECTID'], MC.rec_name(a), round(a.get('GIS_Acres') or 0),
+                                                 "check (map link: the park's own page links the agency's map under this record's name; a person decides)"]]
+            have.add(str(ids[0])); n += 1
+    res['map_name_checks'] = n
+
+
 def _grid_notes(st, parks, P, res):
     """22 Nov 2026 (owner: "we have the grid squares of every park"): POTA's grid square is worked out from its pin for almost
     every park; when the two disagree, the pin (or the grid) is wrong. A note for a person, counted; nothing moves."""
@@ -2299,6 +2324,7 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
                         page_holds_fn=_page_holds)
     _grid_notes(st, parks, P, res)
     _page_point_checks(st, parks, byid, facts, res)
+    _map_name_checks(st, parks, byid, facts, res)
     res['facts'] = MC.facts_stamp(PFR.find())   # which park facts file decided (plan L6: a changed file is visible)
     for h in hits:
         MATCH_HIT.append([st] + h)
@@ -3661,7 +3687,11 @@ def run(st):
                                + f"; by id {_mc.get('by_id', 0)}, by page point {_mc.get('by_page point', 0)}, pieces kept by a page point "
                                  f"{_mc.get('kept_by_page_point', 0)}; store id fields on {RA_USED.get(st, 0)} record(s); POTA grid square "
                                  f"differs from the pin: {_mc.get('grid_differs', 0)}; pin-only parks given a page-point check row: "
-                                 f"{_mc.get('page_point_checks', 0)}")
+                                 f"{_mc.get('page_point_checks', 0)}"
+                               # 23 Nov 2026: the page's own name and its map link, counted
+                               + f"; by page name {_mc.get('by_page name', 0) + _mc.get('by_page name and point', 0)}, by map link name "
+                                 f"{_mc.get('by_map link name', 0)}; pin-only parks given a map-link check row: {_mc.get('map_name_checks', 0)}; joined parks whose "
+                                 f"map link names another record (a note): {_mc.get('map_link_other', 0)}")
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),

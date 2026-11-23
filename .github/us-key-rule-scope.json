@@ -751,6 +751,14 @@
    "why": "Owner rulings W-G4 and W-G5 (23 Nov 2026 12:51 AM: 'Yes I think so', 'Yes'): the park's own page on an official site that carries the park's own name (the page reader's name check: the same name, the same core, or the same words calling the place another kind) confirms a joined park when POTA's pin lies in the joined record ('page name'), or when the page's own point does ('page name and point', ruling W-G1 with the page's name as the name that agrees). It confirms only: no piece is joined, moved to check or dropped by it. A list, a shared page, an unofficial site or a page that names another place gives nothing. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (12:51 AM rulings 'Yes I think so' and 'Yes'); the merge waits for the owner's own review"
+  },
+  {
+   "id": "2026-11-23-map-link-name",
+   "when": "2026-11-23",
+   "from": "cd669e137e53",
+   "why": "Owner rulings (23 Nov 2026 12:51 AM 'Yes' to the map-link tie; 4:28 AM 'yes for both', W-G7 the check list): when the park's own page on an official site links the agency's own map viewer under a name (KPC-Data park facts page.map_names) and exactly one record of the state carries that name, a joined park whose joined record it is is confirmed ('map link name'), and a pin-only park gets that record on its check list for a person (the row says why); it is never drawn. Two records of one name: nothing. Nothing is joined, moved or dropped by it. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (12:51 AM 'Yes'; 4:28 AM 'yes for both'); the merge waits for the owner's own review"
   }
  ]
 }
