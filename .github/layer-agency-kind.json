@@ -5,7 +5,7 @@
   "agency unknown": 4,
   "kind unknown": 63,
   "both known": 201,
-  "compilation": 19
+  "compilation": 22
  },
  "layers": {
   "PAD-US": {
@@ -378,17 +378,20 @@
   "sgfld": {
    "agency": "state water district",
    "kind": "unknown",
-   "why": "agency: its description says \"Water Management District\"; kind: no kind named"
+   "why": "agency: its description says \"Water Management District\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgfle": {
    "agency": "state water district",
    "kind": "unknown",
-   "why": "agency: its description says \"Water Management District\"; kind: no kind named"
+   "why": "agency: its description says \"Water Management District\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgflf": {
    "agency": "state (many owners)",
    "kind": "unknown",
-   "why": "agency: its description says \"State Lands\"; kind: no kind named"
+   "why": "agency: its description says \"State Lands\"; kind: no kind named",
+   "what": "compilation"
   },
   "sgflg": {
    "agency": "state wildlife",

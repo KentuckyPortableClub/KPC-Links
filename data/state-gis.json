@@ -351,7 +351,7 @@
    },
    {
     "kind": "land",
-    "what": "owned",
+    "what": "compilation",
     "ag": "Suwannee River Water Management District",
     "nm": "TRACT_NAME",
     "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0",
@@ -359,7 +359,7 @@
    },
    {
     "kind": "land",
-    "what": "owned",
+    "what": "compilation",
     "ag": "St. Johns River Water Management District",
     "nm": "CONSERVATION_AREA",
     "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0",
@@ -367,7 +367,7 @@
    },
    {
     "kind": "land",
-    "what": "owned",
+    "what": "compilation",
     "ag": "Florida DEP Division of State Lands",
     "nm": "PROJECT_NAME",
     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0",

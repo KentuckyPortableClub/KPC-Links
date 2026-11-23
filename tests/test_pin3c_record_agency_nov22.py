@@ -9,6 +9,9 @@ Fix 2 (record_agency): a compilation layer (D11 'what' = compilation, the layers
 carries its own manager field; the agency never comes from the record's name. A same-name WMA or refuge on such a layer still
 never stays with a state park (F3 at the name join; the kind clash in the pass), and the refuge's own record still joins the refuge.
 
+Florida (owner's yes, 8:28 PM): the FL layers listing several agencies' land carry D11 'compilation', so a refuge's own record
+there is no longer pulled as 'another agency'.
+
 Fails without the fixes: on main, 'Test Lake', 'Ft. Test' and 'Test Lake Addition' go to check by place, the refuge's own record
 on a compilation layer goes to check by agency, and a same-name WMA / refuge on a compilation layer stays with the state park.
 
@@ -115,6 +118,19 @@ check(kept(p) == ['sgzzc1'], "the refuge's own record on a compilation layer sta
 r_ = rec('sgzzc1', R[0][1]); r_['SA'] = {'MANAGER': 'ZZ Department of Natural Resources'}
 p = run('Test Creek National Wildlife Refuge', R, {'sgzzc1': r_}, link=FWS_LINK)
 check(checked(p).get('sgzzc1', '').startswith('check (agency'), "a compilation record whose own manager field is another agency still goes to check")
+
+# ---------- Florida (owner's yes, 22 Nov 2026 8:28 PM): the FL layers that list several agencies' land are compilations ----------
+check(sorted(k for k, v in LT.items() if k.startswith('sgfl') and v.get('what') == 'compilation') == ['sgfld', 'sgfle', 'sgflf'],
+      "the FL layers that list several agencies' land (two water-district layers, state-owned lands) are marked; parks, forests, WMAs are not")
+R = [['sgfld1', 'Test Key National Wildlife Refuge', 900, 'name']]
+p = {'US-9001': {'n': 'Test Key National Wildlife Refuge', 't': 'National Wildlife Refuge', 'm': [list(r) for r in R], 'c': [], 'g': 'official'}}
+MC.pass_state(p, {'sgfld1': rec('sgfld1', R[0][1])}, {'US-9001': dict(fact(R[0][1], FWS_LINK), area='US-FL')},
+              lambda ref, ids: True, st='FL', units={}, layer_table=LT)
+check(kept(p['US-9001']) == ['sgfld1'] and not checked(p['US-9001']),
+      "a refuge's own record on an FL compilation layer is no longer pulled as 'another agency'")
+r_ = rec('sgfla1', 'Test Key National Wildlife Refuge')
+check(MC.agency_check(dict(fact('x', FWS_LINK), area='US-FL'), r_, 'FL', LT) == 'differs',
+      "an FL agency's own layer (state parks) still votes: a refuge-named record there still differs from a refuge link")
 
 # ---------- the owner's guard: same-name WMA / refuge on a compilation layer never stays with a state park ----------
 for nm in ('Test Creek WMA', 'Test Creek NWR'):

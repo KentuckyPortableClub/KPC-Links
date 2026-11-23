@@ -89,8 +89,10 @@ check('3. Canada, world and 2-fer hashes are not D11\'s (state-gis.json is not t
 # 4
 READS = [ROOT / r for r in F.RULE_FILES['us-key'] if r.endswith('.py')] + [ROOT / '.github/scripts/kpc_ca_key.py']
 readers = [p.name for p in READS if re.search(r"""\[\s*['"]what['"]\s*\]|\.get\(\s*['"]what['"]""", p.read_text(encoding='utf-8'))]
-# HQ 17 Nov: the US key reads 'what' (D3 by labels, D7); Canada still does not
-check(f"4. only the US key reads what ({readers}); Canada's key does not", readers == ['kpc_us_key.py'] and 'what' in K.SGIS_READ_BY_US)
+# HQ 17 Nov: the US key reads 'what' (D3 by labels, D7); Canada still does not. 22 Nov 2026 (#347): the US key's shared match-check
+# helper reads the layer table's copy of the compilation label (the agency check gives a compilation layer no vote)
+check(f"4. only the US key reads what ({readers}); Canada's key does not",
+      'kpc_us_key.py' in readers and set(readers) <= {'kpc_us_key.py', 'kpc_match_checks.py'} and 'what' in K.SGIS_READ_BY_US)
 def strip(d):
     d = copy.deepcopy(d); d.pop('what_note', None)
     for L in d['states'].values():
