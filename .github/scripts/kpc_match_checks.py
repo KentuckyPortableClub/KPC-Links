@@ -983,6 +983,22 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         if mnames and names_n is None:
             names_n = {}
             for a_ in recs.values(): names_n[bare_name(rec_name(a_))] = names_n.get(bare_name(rec_name(a_)), 0) + 1
+        if mnames and left and not any(bare_name(q[1]) in mnames for q in left):
+            if not id_ok and sv[0] != 'agrees' and any(names_n.get(n) for n in mnames):
+                # W-G10 (owner 23 Nov 2026 5:01 AM, 'yes'): the park's own page links the agency's map under ANOTHER record's
+                # name (a record of the state carries the map's name; none of the park's joined records does) and neither an
+                # id nor the agency's size speaks for the joined records: they go to the check list, as when an id disagrees
+                # (a same-name unit of another county: the map says 'Mud Lake Wildlife Area-Columbia', the key joined '-Door')
+                rows_ = list(left)
+                to_check(p, rows_, "map link: the park's own page links the agency's map under another record's name")
+                why.append('map link'); hits.extend([ref, 'map link', str(q[0])] for q in rows_)
+                out['moved'] += len(rows_); out['map_link_moved'] = out.get('map_link_moved', 0) + 1
+                left = p.get('m') or []
+            else:
+                # no record of the state carries the map's name (a spelling, a cut-off value), or an id or the size speaks
+                # for the joined record: a note for a person, nothing moves
+                notes.append("the page's map link names another record")
+                out['map_link_other'] = out.get('map_link_other', 0) + 1
         if link_nm == 'part': notes.append('link name')
         place_ok = bool(left) and place_fn(ref, [str(q[0]) for q in left]) is True
         how = None
@@ -1002,11 +1018,6 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             elif mnames and any(bare_name(q[1]) in mnames and names_n.get(bare_name(q[1])) == 1 for q in left): st_, how = 'confirmed', 'map link name'
             else: st_ = 'outlined'
         p['match'] = {'status': st_, 'why': sorted(set(why))}
-        if mnames and left and not any(bare_name(q[1]) in mnames for q in left):
-            # W5: the park's own page links the agency's map under ANOTHER name than the joined record's. A note for a person
-            # (it catches a same-name unit in another county); nothing moves until the owner rules.
-            p['match'].setdefault('notes', []).append("the page's map link names another record")
-            out['map_link_other'] = out.get('map_link_other', 0) + 1
         if notes: p['match']['notes'] = sorted(set(notes))
         if how: p['match']['by'] = how
         if id_ok: p['match']['id'] = f'{kind} {val}'

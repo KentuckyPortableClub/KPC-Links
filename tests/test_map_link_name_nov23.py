@@ -38,7 +38,7 @@ def fact(map_names, own='own', unofficial=False):
                      'map_names': [{'name': n, 'host': 'dnrmaps.zz.example.gov', 'param': 'id'} for n in map_names]}}
 
 
-NOTES = []
+NOTES, ROWS = [], []
 
 
 def joined(map_names, recs=None, **kw):
@@ -48,6 +48,7 @@ def joined(map_names, recs=None, **kw):
     MC.pass_state(parks, recs, {'US-9001': fact(map_names, **kw)}, lambda ref, ids: False, st='ZZ', holds_fn=lambda ref, i: False, layer_table=TABLE)
     p = parks['US-9001']
     NOTES[:] = (p.get('match') or {}).get('notes') or []
+    ROWS[:] = p.get('c') or []
     return (p.get('match') or {}).get('status'), (p.get('match') or {}).get('by'), [q[0] for q in p.get('m') or []], len(p.get('c') or [])
 
 
@@ -60,8 +61,14 @@ check("the map says 'OTTER MARSH WILDLIFE AREA', the record 'Otter Marsh State W
       joined(['OTTER MARSH WILDLIFE AREA'], recs=wi)[:2] == ('confirmed', 'map link name'))
 check('no map-link name: as before (not confirmed)', joined([])[0] == 'outlined')
 r = joined(['HERON ROCK WILDLIFE AREA'])
-check('the map link names another place: not confirmed, nothing moved, and a note says so',
+check('the map link gives a name no record of the state carries (a spelling, a cut-off value): a note, nothing moved',
       r[0] == 'outlined' and r[2:] == (['sgzza1'], 0) and NOTES == ["the page's map link names another record"])
+# W-G10 (owner 5:01 AM 'yes'): another record of the state carries the map's name
+other = {'sgzza1': rec('sgzza1', 'Otter Marsh Wildlife Area', -80.0), 'sgzza7': rec('sgzza7', 'Heron Rock Wildlife Area', -78.0)}
+r = joined(['HERON ROCK WILDLIFE AREA'], recs=other)
+check("the map link names ANOTHER record of the state: the joined piece goes to the check list, the park is pin only",
+      r[0] == 'pin' and r[2] == [] and r[3] == 1)
+check('the check row says why', ROWS and ROWS[0][0] == 'sgzza1' and ROWS[0][3].startswith('check (map link:'))
 joined(['OTTER MARSH WILDLIFE AREA'])
 check('no note when the map link names the joined record', NOTES == [])
 two = {'sgzza1': rec('sgzza1', 'Otter Marsh Wildlife Area', -80.0), 'sgzza9': rec('sgzza9', 'Otter Marsh Wildlife Area', -78.0)}
