@@ -17,7 +17,7 @@ on:
         description: 'Map finder: pages to read this run (default 600)'
         default: '600'
       only:
-        description: 'all, linkcheck (only check that the map links load), or agency (only the state agencies park pages for official maps)'
+        description: 'all, linkcheck (only check that the map links load), agency (only the state agencies park pages for official maps), or reader (only the page reader own-page finds from the park facts: no web request)'
         default: 'all'
 permissions:
   contents: write
@@ -33,6 +33,15 @@ jobs:
       - uses: actions/checkout@v5
       - name: Read the moved data from KPC-Data (Step B, read only)
         run: bash .github/scripts/kpc_overlay.sh
+      - name: Read the park facts from KPC-Data (only reader, read only)
+        # 23 Nov 2026 (rule sheet L): the page reader's own-page finds travel in data/park-facts.json.gz; a missing file stops here
+        if: ${{ inputs.only == 'reader' }}
+        run: |
+          set -euo pipefail
+          git -C .kpcdata sparse-checkout add data/park-facts.json.gz
+          git -C .kpcdata checkout -q
+          test -s .kpcdata/data/park-facts.json.gz
+          cp .kpcdata/data/park-facts.json.gz "$RUNNER_TEMP/park-facts.json.gz"
       - name: Harvest official links
         id: kept_green_1
         continue-on-error: true
@@ -42,6 +51,7 @@ jobs:
           RIDB_API_KEY: ${{ (github.event_name == 'workflow_dispatch' && !inputs.as_schedule) && secrets.RIDB_API_KEY || '' }}   # Oct 29 (Brandon 9:34 AM): no recurring keyed calls
           MINUTES: '150'
           ONLY: ${{ inputs.only }}
+          PARK_FACTS: ${{ runner.temp }}/park-facts.json.gz
         run: python3 .github/scripts/kpc_link_harvest.py || { kpc_rc=$?; echo "::error title=kpc_link_harvest.py::stopped with an error (exit $kpc_rc), see the log above"; echo "kpc_link_harvest.py - stopped with an error (exit $kpc_rc), see the log above" | tee -a "$RUNNER_TEMP/kpc-hidden-errors.txt" >> "$RUNNER_TEMP/kpc-hidden.txt"; }
       - name: Save
         if: always()
@@ -85,7 +95,7 @@ jobs:
               sys.exit(1)
           PY
   maps:
-    if: ${{ inputs.only != 'linkcheck' && inputs.only != 'agency' }}
+    if: ${{ inputs.only != 'linkcheck' && inputs.only != 'agency' && inputs.only != 'reader' }}
     runs-on: ubuntu-latest
     timeout-minutes: 170
     steps:
@@ -142,7 +152,7 @@ jobs:
   linkcheck:
     # Oct 26 (research desk + HQ): every map link must load before a tool shows it; held links are cleared only when they load
     needs: harvest
-    if: ${{ always() }}
+    if: ${{ always() && inputs.only != 'reader' }}
     runs-on: ubuntu-latest
     timeout-minutes: 140
     steps:

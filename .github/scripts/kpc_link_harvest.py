@@ -8,6 +8,8 @@ pulled from sources that are official by nature, into data/parkinfo-web.json (ne
      nps.gov/<code>/planyourvisit/maps.htm is added only when it answers.
   3. Recreation.gov RIDB recreation areas (secret RIDB_API_KEY): the agency's own links (Forest Service, Corps, BLM…),
      matched by name and within 40 km of the POTA pin.
+  4. (23 Nov, ONLY=reader) the page reader's own-page finds (KPC-Data park facts, page.found 'sure'): no request at all; a find
+     may stand in for a POTA link the facts call dead or only the agency's front page (rule sheet L).
 
 A bot value is written as {'web' or 'map': url, 'by': 'bot: <source>'}; a value a person filled in (no 'by', or not a
 bot) is never changed. Data only (hidden until used). Monthly, time-limited, never fails. Keys are never printed."""
@@ -235,6 +237,42 @@ def from_agency_pages(P, found):
 STOF = {}
 
 
+READER_OVER = set()   # parks whose POTA link the park facts call dead or only the agency's front page
+
+
+def from_reader(P, found):
+    """23 Nov 2026 (rule sheet L; owner 7:41 AM "Finish the bot"): the page reader's own-page finder, read from KPC-Data's park
+    facts (PARK_FACTS, data/park-facts.json.gz). A park whose facts hold a SURE find gets that page as its 'web', tagged
+    'bot: page reader, agency site (<host>)'. No request is made: the reader already read the page on the owner's PC. A find
+    for a park whose POTA link is dead or only the agency's front page may stand in for that link (READER_OVER). -> count"""
+    import gzip
+    path = pathlib.Path(os.environ.get('PARK_FACTS') or 'data/park-facts.json.gz')
+    try:
+        doc = json.loads(gzip.decompress(path.read_bytes()))
+    except (OSError, ValueError, EOFError):
+        LOG.append(f'page reader: no park facts at {path.name}; nothing taken')
+        return 0
+    n = 0
+    for ref, row in (doc.get('parks') or {}).items():
+        fd = ((row or {}).get('page') or {}).get('found') or {}
+        url = str(fd.get('url') or '')
+        if ref not in P:
+            continue
+        if fd.get('level') != 'sure' or not url.startswith('https://'):
+            if fd.get('level') in ('unsure', 'no'):
+                STALE.add(ref)
+            continue
+        host = urllib.parse.urlparse(url).netloc.lower()
+        found.setdefault(ref, {})['web'] = (url, f'bot: page reader, agency site ({host})')
+        if fd.get('for') in ('dead link', 'agency home only'):
+            READER_OVER.add(ref)
+        n += 1
+    return n
+
+
+STALE = set()   # parks the finder no longer calls sure: an earlier 'bot: page reader' value is taken out
+
+
 def _st_of(ref):
     if not STOF:
         for f in pathlib.Path('data/parkinfo').glob('US-*.json'):
@@ -245,7 +283,9 @@ def _st_of(ref):
 def main():
     P = parks()
     found = {}
-    if (os.environ.get('ONLY') or '') == 'agency':   # Oct 27: only the agency park pages (one batch run)
+    if (os.environ.get('ONLY') or '') == 'reader':   # 23 Nov: only the page reader's own-page finds (no web request at all)
+        counts = {'page reader': from_reader(P, found)}
+    elif (os.environ.get('ONLY') or '') == 'agency':   # Oct 27: only the agency park pages (one batch run)
         counts = {'agency pages': from_agency_pages(P, found)}
     else:
         counts = {'layers': from_layers(P, found), 'nps': from_nps(P, found), 'ridb': from_ridb(P, found), 'agency pages': from_agency_pages(P, found)}
@@ -254,13 +294,19 @@ def main():
     for ref, kinds in found.items():
         e = d['parks'].setdefault(ref, {})
         for kind, (url, by) in kinds.items():
-            if kind == 'web' and P.get(ref) and P[ref][1]: continue          # the park already has its page
+            if kind == 'web' and P.get(ref) and P[ref][1] and ref not in READER_OVER: continue   # the park already has its page
             if e.get(kind) and not str(e.get(kind + '_by', '')).startswith('bot:'): continue   # a person's value wins
             if e.get(kind) != url: added[kind] += 1
             # research-bots review #2: the day this link was last read from its source (same link = kept for a month)
             e[kind + '_read'] = read_dates({kind: e.get(kind)}, {kind: url}, {kind: e.get(kind + '_read')})[kind]
             e[kind] = url; e[kind + '_by'] = by
         if not e: d['parks'].pop(ref, None)
+    for ref in sorted(STALE - set(found)):   # 23 Nov: a page-reader find no longer sure is taken out (a person's value never)
+        e = d['parks'].get(ref) or {}
+        if str(e.get('web_by') or '').startswith('bot: page reader'):
+            for k in ('web', 'web_by', 'web_read'): e.pop(k, None)
+            added['web'] += 1
+            if not e: d['parks'].pop(ref, None)
     for ref, f in FACTS.items():   # research-bots review #4: hours + fees with the day they were read (unchanged = kept a month)
         e = d['parks'].setdefault(ref, {})
         old = e.get('nps_facts') or {}
