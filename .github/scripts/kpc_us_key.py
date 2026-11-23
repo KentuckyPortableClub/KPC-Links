@@ -3078,7 +3078,24 @@ def run(st):
             m.append([rec['OBJECTID'], rec['Unit_Nm'], round(rec['GIS_Acres'] or 0), 'reviewed: the district = FWS fee (owned) tracts only, easements left out (Brandon Oct 29)'])
         if not m: continue
         parks[ref]['m'] = sorted(m, key=lambda x: -x[2]); parks[ref].pop('c', None); nwmd += 1
-    if wmd: notice(f'US key {st}', f'{nwmd} of {len(wmd)} wetland districts joined to their FWS-owned (fee) tracts' + (f'; {wmd_no} tract(s) left out by a person\'s no' if wmd_no else ''))
+    # W12 (owner 23 Nov 2026 2:12 PM, approving the outside agent's job 9): a district the FWS realty copy gives no tract (6 of 22:
+    # the saved copy holds no tract under its complex name) joins the Fish and Wildlife Service's own Waterfowl Production Area
+    # records that HOLD POTA's pin or CARRY the district's place name ('Oxford Slough Waterfowl Production Area'). A pin inside a
+    # separate refuge, or a production area only NEAR the pin (it may be another district's), joins nothing.
+    nw12 = 0
+    for ref in wmd:
+        if parks[ref].get('m'): continue
+        core = re.sub(r'\s*(wpa\s+)?wetland management district.*$', '', parks[ref]['n'], flags=re.I).strip()
+        la_, lo_ = PIN.get(ref, (None, None))
+        picks, _no = KR.district_wpa_picks(core, la_, lo_, recs, lambda a: bool(a.get('_bb')) and bool(near(la_, lo_, a['_bb'], 0)) and KM.inside(la_, lo_, a['_g']),
+                                           lambda a: KR.is_no(OVR.get(ref) or {}, _oid(a), str(a.get('Unit_Nm') or ''), a.get('GIS_Acres')))
+        wmd_no += _no
+        if not picks: continue
+        parks[ref]['m'] = sorted(([_oid(a), a.get('Unit_Nm'), round(a.get('GIS_Acres') or 0),
+                                   'W12: the district\'s own Waterfowl Production Area (it holds the pin or carries the district\'s name)']
+                                  for a in picks), key=lambda x: -x[2])
+        parks[ref].pop('c', None); nw12 += 1
+    if wmd: notice(f'US key {st}', f'{nwmd} of {len(wmd)} wetland districts joined to their FWS-owned (fee) tracts' + (f'; {nw12} more to the production area that holds the pin or carries the name (W12)' if nw12 else '') + (f'; {wmd_no} tract(s) left out by a person\'s no' if wmd_no else ''))
     for r_ in DBG & set(parks): dbg(r_, 'D before rule G', {k: parks[r_].get(k) for k in ('m', 'parts')})
     # RULE SHEET G (one boundary pipeline; Brandon Oct 29 12:09 PM 'implement this now', rulings 12:14 + 12:18; notes/mapping.md):
     # G-1 the AGENCY'S OWN RECORD that names the park is the proof and joins at ANY distance (pins can be wrong). A piece matched
