@@ -117,6 +117,38 @@
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 6 of 9",
     "water": 1
+   },
+   {
+    "kind": "park",
+    "what": "designation",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "OBJECTID IN (1122)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for AK (a park across the state line). Same address, so the prefix stays sgakd; the keeper saves them for AR."
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "BdyOwn_LSRS_BasicOwnership",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (113)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for ID (a park across the state line). Same address, so the prefix stays sgidd; the keeper saves them for AR."
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "Administrative Forest Boundaries - National Extent",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (94)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for NV (a park across the state line). Same address, so the prefix stays sgnvg; the keeper saves them for AR."
    }
   ],
   "CA": [
@@ -278,6 +310,17 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 3 sheet parks"
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "BdyOwn_LSRS_BasicOwnership",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (65)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for ID (a park across the state line). Same address, so the prefix stays sgidd; the keeper saves them for CO."
    }
   ],
   "DE": [
@@ -391,6 +434,16 @@
     "host": "agency",
     "where": "ORGCODE IN (41570,22560)",
     "note": "FWS approved acquisition boundary, only Merritt Island + Imperial (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "park",
+    "what": "designation",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "OBJECTID IN (894)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for AK (a park across the state line). Same address, so the prefix stays sgakd; the keeper saves them for FL."
    }
   ],
   "GA": [
@@ -607,6 +660,27 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-2236"
+   },
+   {
+    "kind": "park",
+    "what": "designation",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "OBJECTID IN (1186)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for AK (a park across the state line). Same address, so the prefix stays sgakd; the keeper saves them for ID."
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "Administrative Forest Boundaries - National Extent",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (41,45,81)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for NV (a park across the state line). Same address, so the prefix stays sgnvg; the keeper saves them for ID."
    }
   ],
   "IN": [
@@ -729,6 +803,16 @@
     "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0",
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks"
+   },
+   {
+    "kind": "park",
+    "what": "designation",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "OBJECTID IN (1143)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for AK (a park across the state line). Same address, so the prefix stays sgakd; the keeper saves them for LA."
    }
   ],
   "MI": [
@@ -1067,6 +1151,17 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-12593"
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "BdyOwn_LSRS_BasicOwnership",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (20)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for ID (a park across the state line). Same address, so the prefix stays sgidd; the keeper saves them for NM."
    }
   ],
   "NV": [
@@ -1256,6 +1351,17 @@
     "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/Catskill_Park_Boundary/FeatureServer/0",
     "host": "agol",
     "note": "KPC owner, 2026-11-11: checked hand file (person download, saved copies only host); one polygon, NAME set to Catskill Park (the layer has no name field)"
+   },
+   {
+    "kind": "land",
+    "what": "designation",
+    "ag": "National_Heritage_Areas_Updated2023",
+    "nm": "RESNAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Heritage_Areas_Updated2023/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (34)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for GA (a park across the state line). Same address, so the prefix stays sggae; the keeper saves them for NY."
    }
   ],
   "OK": [
@@ -1304,6 +1410,17 @@
     "host": "agency",
     "lic": "see layer",
     "note": "KPC owner, 2026-11-11: checked hand file hand-US-OK.sgide (person download, saved copies only host); its matches to National Wildlife Refuges are left out of the master outlines"
+   },
+   {
+    "kind": "wild",
+    "what": "owned",
+    "ag": "FWSBoundaries",
+    "nm": "ORGNAME",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (979)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for MN (a park across the state line). Same address, so the prefix stays sgmng; the keeper saves them for OK."
    }
   ],
   "OR": [
@@ -1400,6 +1517,38 @@
     "host": "agency",
     "lic": "see layer",
     "note": "KPC owner, 2026-11-11: checked hand file hand-US-OR.sgide (person download, saved copies only host); Corps recreation-area polygons"
+   },
+   {
+    "kind": "park",
+    "what": "designation",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "OBJECTID IN (1189)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for AK (a park across the state line). Same address, so the prefix stays sgakd; the keeper saves them for OR."
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "BdyOwn_LSRS_BasicOwnership",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (148)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for ID (a park across the state line). Same address, so the prefix stays sgidd; the keeper saves them for OR."
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "Administrative Forest Boundaries - National Extent",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (69)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for NV (a park across the state line). Same address, so the prefix stays sgnvg; the keeper saves them for OR."
    }
   ],
   "PA": [
@@ -1459,6 +1608,17 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11); park US-5472"
+   },
+   {
+    "kind": "wild",
+    "what": "owned",
+    "ag": "FWSBoundaries",
+    "nm": "ORGNAME",
+    "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (732)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for MN (a park across the state line). Same address, so the prefix stays sgmng; the keeper saves them for PA."
    }
   ],
   "RI": [
@@ -1747,6 +1907,17 @@
     "lic": "see layer",
     "where": "OBJECTID IN (401149)",
     "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in UT were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-13000. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
+   },
+   {
+    "kind": "park",
+    "what": "owned",
+    "ag": "BLM Natl Recreation Site Polygons",
+    "nm": "FET_NAME",
+    "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Recreation_Site_Polygons/FeatureServer/2",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (9412,9413,9570,9609,9893,9903,10016)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for NM (a park across the state line). Same address, so the prefix stays sgnmc; the keeper saves them for UT."
    }
   ],
   "VA": [
@@ -2000,6 +2171,17 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-07: chat 11 YES (chat 11 (Oct 31)); park US-4244"
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "Administrative Forest Boundaries - National Extent",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (107)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for NV (a park across the state line). Same address, so the prefix stays sgnvg; the keeper saves them for WI."
    }
   ],
   "WV": [
@@ -2118,6 +2300,17 @@
     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/All_River_Access_Points/FeatureServer/0",
     "host": "agency",
     "note": "Nov 10: POINTS (no outline): no \"nm\", so the outline key skips it; kept in the table for the point tier. Saved-copy only host; the records are a checked hand file"
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "Administrative Forest Boundaries - National Extent",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (36)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for NV (a park across the state line). Same address, so the prefix stays sgnvg; the keeper saves them for WY."
    }
   ],
   "OH": [
@@ -2280,6 +2473,17 @@
     "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Eco_Reserves/FeatureServer/0",
     "host": "agol",
     "note": "KPC owner, 2026-11-11: checked hand file (person download, saved copies only host)"
+   },
+   {
+    "kind": "land",
+    "what": "register",
+    "ag": "National Register of Historic Places Polygons",
+    "nm": "RESNAME",
+    "url": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (400845)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for AK (a park across the state line). Same address, so the prefix stays sgaki; the keeper saves them for ME."
    }
   ],
   "MD": [
@@ -2361,6 +2565,27 @@
     "lic": "see layer",
     "where": "OBJECTID IN (379681,383567)",
     "note": "2026-11-09 weekly batch: the NRHP layer was listed only under AK, so these hand joins in AL were never read (problem solver: 'the key names no held record'). Only the hand-joined records: US-0042, US-0025. Each OBJECTID checked live Nov 9 (mapservices.nps.gov, robots.txt 404 = allowed): the name matches the saved fp and the POTA pin is inside."
+   },
+   {
+    "kind": "park",
+    "what": "designation",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "OBJECTID IN (1062)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for AK (a park across the state line). Same address, so the prefix stays sgakd; the keeper saves them for AL."
+   },
+   {
+    "kind": "park",
+    "what": "owned",
+    "ag": "Recreation Area",
+    "nm": "RECPROJECTSITEAREANAME",
+    "url": "https://services7.arcgis.com/n1YM8pTrFmm7L4hs/arcgis/rest/services/usace_recreation_areas/FeatureServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (611)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for ID (a park across the state line). Same address, so the prefix stays sgide; the keeper saves them for AL."
    }
   ],
   "AZ": [
@@ -2448,6 +2673,27 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by hand Nov 7 2026 from the outside agent's outline-source sheet (reviewed; ?f=json read Nov 7: polygon layer, name field checked); parks 8 sheet parks"
+   },
+   {
+    "kind": "park",
+    "what": "designation",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "OBJECTID IN (1125)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for AK (a park across the state line). Same address, so the prefix stays sgakd; the keeper saves them for AZ."
+   },
+   {
+    "kind": "forest",
+    "what": "owned",
+    "ag": "BdyOwn_LSRS_BasicOwnership",
+    "nm": "forestname",
+    "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
+    "host": "agency",
+    "lic": "see layer",
+    "where": "OBJECTID IN (189)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for ID (a park across the state line). Same address, so the prefix stays sgidd; the keeper saves them for AZ."
    }
   ],
   "MO": [
@@ -3382,6 +3628,18 @@
     "host": "agency",
     "lic": "see layer",
     "note": "wired by kpc_key_layers.py 2026-11-02: chat 11 YES (chat 11 (Oct 31)); park CA-4558"
+   }
+  ],
+  "DC": [
+   {
+    "kind": "park",
+    "what": "designation",
+    "ag": "National Park Service (legal boundary)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2",
+    "host": "agency",
+    "where": "OBJECTID IN (1288)",
+    "note": "23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): the records this state's saved answers need from a layer saved only for AK (a park across the state line). Same address, so the prefix stays sgakd; the keeper saves them for DC."
    }
   ]
  },
