@@ -1,5 +1,5 @@
 {
- "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26 (HQ): official maps for the 300 busiest US parks outside KY, two research files merged (KPC_Official_Maps_done + KPC_Round12_park_maps_done): map = the park's map (a PDF wins when the two files differ), map_page = the other file's link, map_confirmed = both files gave the same link, map_note 'map on the park page' when the map link is the park page, agency_map = a general agency map page used for 3+ parks (agency-level). Oct 26 11:30 (research desk verdict): 12 fixes applied (map_fix); group_site = the managing group's / support group's own site (not an agency); map_hold = do not show until kpc_map_linkcheck.py says the link loads (it clears the hold itself); map_check = {status, date} for every map / map_page / agency_map link. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed.",
+ "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26 (HQ): official maps for the 300 busiest US parks outside KY, two research files merged (KPC_Official_Maps_done + KPC_Round12_park_maps_done): map = the park's map (a PDF wins when the two files differ), map_page = the other file's link, map_confirmed = both files gave the same link, map_note 'map on the park page' when the map link is the park page, agency_map = a general agency map page used for 3+ parks (agency-level). Oct 26 11:30 (research desk verdict): 12 fixes applied (map_fix); group_site = the managing group's / support group's own site (not an agency); map_hold = do not show until kpc_map_linkcheck.py says the link loads (it clears the hold itself); map_check = {status, date} for every map / map_page / agency_map link. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed.",
  "parks": {
   "CA-0016": {
    "web": "https://www.canada.ca/en/environment-climate-change/services/national-wildlife-areas/locations/chignecto.html",
@@ -5046,6 +5046,11 @@
     "map": "ok"
    },
    "web": "https://www.blm.gov/visit/judith-landing"
+  },
+  "US-10530": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/coeur-dalene-parkway/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
   },
   "US-1055": {
    "map": "https://azstateparks.com/catalina/explore/maps",
@@ -10617,6 +10622,11 @@
     "map": "ok"
    }
   },
+  "US-2546": {
+   "web": "https://www.mdwfp.com/wildlife-hunting/wmas/leroy-percy-wma",
+   "web_by": "bot: page reader, agency site (www.mdwfp.com)",
+   "web_read": "2026-11-23"
+  },
   "US-2547": {
    "map": "https://www.nps.gov/natc/planyourvisit/maps.htm",
    "map_by": "bot: Recreation.gov RIDB (agency link)",
@@ -15828,7 +15838,10 @@
    "map_check": {
     "date": "2026-11-09",
     "map": "ok"
-   }
+   },
+   "web": "https://tpwd.texas.gov/huntwild/hunt/wma/find_a_wma/list/?id=6",
+   "web_by": "bot: page reader, agency site (tpwd.texas.gov)",
+   "web_read": "2026-11-23"
   },
   "US-6559": {
    "agency": "Texas Historical Commission",
@@ -16750,6 +16763,16 @@
     "map": "blocked (opens in a browser)"
    }
   },
+  "US-7096": {
+   "web": "https://www.mdwfp.com/wildlife-hunting/wmas/canal-section-wma",
+   "web_by": "bot: page reader, agency site (www.mdwfp.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-7101": {
+   "web": "https://www.mdwfp.com/wildlife-hunting/wmas/charles-ray-nix-wma",
+   "web_by": "bot: page reader, agency site (www.mdwfp.com)",
+   "web_read": "2026-11-23"
+  },
   "US-7106": {
    "agency": "Mississippi Department of Wildlife, Fisheries, and Parks",
    "map": "https://www.mdwfp.com/wildlife-hunting/wma",
@@ -16801,6 +16824,26 @@
    "map_confirmed": true,
    "map_date": "2025",
    "map_what": "Official Minnesota DNR Map and Guide PDF for Minnesota Valley State Recreation Area and Trail"
+  },
+  "US-7158": {
+   "web": "https://www.agfc.com/wma/benson-creek-natural-area-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-7162": {
+   "web": "https://www.agfc.com/wma/cove-creek-natural-area-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-7165": {
+   "web": "https://www.agfc.com/wma/devils-knob-natural-area-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-7182": {
+   "web": "https://www.agfc.com/wma/kingsland-prairie-natural-area-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
   },
   "US-7185": {
    "web": "https://www.agfc.com/wma/pine-city-natural-area-wma/",
@@ -19297,6 +19340,16 @@
     "map": "ok"
    },
    "web": "https://cpw.state.co.us/state-wildlife-areas/dome-lakes-swa"
+  },
+  "US-9647": {
+   "web": "https://cpw.state.co.us/body-of-water/echo-canyon-reservoir",
+   "web_by": "bot: page reader, agency site (cpw.state.co.us)",
+   "web_read": "2026-11-23"
+  },
+  "US-9678": {
+   "web": "https://cpw.state.co.us/state-wildlife-areas/windy-gap-watchable-wildlife-area",
+   "web_by": "bot: page reader, agency site (cpw.state.co.us)",
+   "web_read": "2026-11-23"
   },
   "US-9681": {
    "group_site": "https://www.camdenexpedition.org/highwaymap.php",
