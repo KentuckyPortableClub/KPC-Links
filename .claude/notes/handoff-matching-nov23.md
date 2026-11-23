@@ -39,7 +39,7 @@ Agency rows, by the pair "link says -> record says": FWS -> STATE 191 (NC 79); S
 
 ## Jobs, in order
 
-**23 Nov 9:25 AM:** jobs 4, 6, 7 DONE by the outside agent (reports on tools-out key-quality/2026-11-23/). From them: W8 + W9 built as KPC-Links draft PR #355 (US rules -> 80554d0c21b6), waits for the owner. Job 7's fix (saved answers whose record numbers changed in the WI / MI / UT layers) is not built: it changes what saved answers may do, so it needs its own plain-words ask first.
+**23 Nov 9:25 AM:** jobs 4, 6, 7 DONE by the outside agent (reports on tools-out key-quality/2026-11-23/). From them: W8 + W9 built as KPC-Links draft PR #355 (US rules -> 80554d0c21b6), waits for the owner. W8 + W9 MERGED 9:10 AM (US rules 80554d0c21b6, kit 23d on the PC). Job 7: the owner answered at 9:20 AM; W10 built as KPC-Links draft PR #356 (US rules -> 479d0c7cbbc8), waits for him; after merge: kit 23e.
 
 **23 Nov 8:25 AM (owner 8:18 AM): jobs 4, 6 and 7 are the OUTSIDE AGENT's** (`.claude/inbox/JOBS-OUTSIDE-AGENT-23-Nov.md`, counts only). No chat starts them; this chat reads the reports.
 
