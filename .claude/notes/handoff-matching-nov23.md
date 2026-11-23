@@ -24,6 +24,16 @@ Agency rows, by the pair "link says -> record says": FWS -> STATE 191 (NC 79); S
 - MA 33: Own_Type STAT, Mang_Name PVT (an operator or a utility).
 - NC 79: the records are the state's game-lands and natural-heritage layers. Probably other land; look before changing anything.
 
+## Update 23 Nov 7:15 AM (owner 6:42 AM: "Yes on all but 5 they has to be a better solution")
+
+- MERGED on his word: #352 (W7). Main US rules `e8b9c526e1f6`. PC kit update 23b sent and read back equal: his next report must say `US e8b9c526e1f6, Canada c978f75b94fe`.
+- DRAFT, waits for his word: #353 (W-G11 owner label, W-G12 state park on federal lake land). US rules -> `c6f3a95b1018`. After the merge: PC kit update "c" (job 1 below, same steps).
+- W-G6 YES (a "near a town" point counts): build after the upload (job 11).
+- Jobs 5, 8 and 9 below are NOT approved as written. Better ways for 5, counted on the saved keys (no list for a person, nothing downloaded):
+  - **Pins outside the land** (2,222 of 11,098 parks tested): 1,161 are already confirmed by another proof (link 838, id 171, size 94, page name 58). Of the 1,061 not confirmed, 679 are within 500 m of the land (a gate or office pin). That leaves 382, and only 147 are over 2 km (36 over 10 km). 471 of the unconfirmed have no own page read, 530 an own page with no point: the 23 Nov read is what settles them. Recount after the upload; only the leftover number goes to the owner.
+  - **Wetland districts** (22 parks): 16 already have an outline on the website key (1,989 rows, layer `fws`) and keep it (last good outline). 6 are pin only. The saved copies already hold 897 records naming a wetland district or waterfowl production area (fws 393, padus 422, state layers 82). So: look whether the 6 can be joined from what is saved before anything new is fetched.
+  - **Canada**: no Canada rule sheet. Point the US proofs the owner already ruled (id, link, size, page name, page point) at the saved Canada keys as a COUNT first; bring him the number; switching it on is then one yes (the Canada hash moves, so still a draft PR).
+
 ## Jobs, in order
 
 | # | Job | Where | Waits for |
