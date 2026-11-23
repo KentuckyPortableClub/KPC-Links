@@ -409,6 +409,37 @@ def map_link_names(fact):
     return out[:3]
 
 
+COUNTY_FAR_X = 2.0     # W6: how many county radii from the county's middle a record may lie and still count as in or by it
+COUNTY_FAR_KM = 25.0   # ... and never nearer than this
+
+
+def county_areas_of(fact):
+    """W6 COUNTY (owner 23 Nov 2026: 12:51 AM 'Yes', 4:28 AM 'yes for both', ruling W-G8 the check list; 5:24 AM "I dont want key
+    bots to do internet stuff"): the counties the park's OWN page on an official site names, each with its middle point and the
+    radius of a circle of its size. The PC's converter looked them up; park facts carries them (page.county_areas); nothing
+    is fetched here. A list, a shared page or an unofficial site gives none."""
+    if not own_page(fact): return []
+    out = []
+    for c in ((fact or {}).get('page') or {}).get('county_areas') or []:
+        try: out.append((str(c.get('name') or ''), float(c['lat']), float(c['lon']), float(c['radius_km'])))
+        except (TypeError, ValueError, KeyError): continue
+    return [c for c in out if c[0] and c[3] > 0][:4]
+
+
+def outside_counties(rec, areas):
+    """True when the record's box lies well outside EVERY county the page names: its nearest corner or edge is farther from the
+    county's middle than COUNTY_FAR_X radii (and COUNTY_FAR_KM). A county is no circle, so this only catches land that is
+    clearly somewhere else (the same name in another part of the state); a record with no box is never called outside."""
+    bb = (rec or {}).get('_bb')
+    if not areas or not bb or len(bb) != 4: return False
+    for _n, la, lo, r in areas:
+        x, y = min(max(lo, bb[0]), bb[2]), min(max(la, bb[1]), bb[3])
+        dy = (y - la) * 110.574
+        dx = (x - lo) * 111.320 * math.cos(math.radians(la))
+        if math.hypot(dx, dy) <= max(COUNTY_FAR_KM, COUNTY_FAR_X * r): return False
+    return True
+
+
 def page_pins(fact):
     pg = (fact or {}).get('page') or {}
     if pg.get('own_page') != 'own' or pg.get('unofficial'): return []
@@ -999,6 +1030,18 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                 # for the joined record: a note for a person, nothing moves
                 notes.append("the page's map link names another record")
                 out['map_link_other'] = out.get('map_link_other', 0) + 1
+        careas = county_areas_of(f)
+        if careas and left and not id_ok and sv[0] != 'agrees':
+            # W6 / W-G8 (owner 23 Nov 2026, 'yes'): the park's own page names its county, and a joined record lies well
+            # outside it (the same name in another part of the state): that record goes to the check list. Not when an id
+            # or the agency's own size speaks for the joined records.
+            far_ = [q for q in left if outside_counties(recs.get(str(q[0])), careas)]
+            if far_:
+                cn_ = ' / '.join(c[0] for c in careas)[:60]
+                to_check(p, far_, f"county: the park's own page names {cn_} County; this land lies outside it")
+                why.append('county'); hits.extend([ref, 'county', str(q[0])] for q in far_)
+                out['moved'] += len(far_); out['county_moved'] = out.get('county_moved', 0) + len(far_)
+                left = p.get('m') or []
         if link_nm == 'part': notes.append('link name')
         place_ok = bool(left) and place_fn(ref, [str(q[0]) for q in left]) is True
         how = None
