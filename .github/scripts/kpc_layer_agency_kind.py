@@ -2,7 +2,8 @@
 """kpc_layer_agency_kind.py: each map layer's owning agency and kind, for the key's agency and kind checks.
 
 Reads the club's layer table (data/us-key/layers.json: id -> [address, name field, description]) plus the key's two national
-layers, and writes .github/layer-agency-kind.json: {id: {agency, kind, why}}. Each answer comes from the layer's OWN words
+layers, and writes .github/layer-agency-kind.json: {id: {agency, kind, why[, what]}} ('what': 'compilation' for the
+layers data/state-gis.json labels so, D11). Each answer comes from the layer's OWN words
 (its description and address) by the fixed rules below. When the words don't say, or say two different things, the answer is
 'unknown': nothing is guessed. To change an answer, change the rule (or put the layer in HAND with a reason), never the file.
 
@@ -13,6 +14,7 @@ layers, and writes .github/layer-agency-kind.json: {id: {agency, kind, why}}. Ea
 import json, os, re, sys
 
 LAYERS = 'data/us-key/layers.json'
+STATE_GIS = 'data/state-gis.json'   # D11 'what' labels: a 'compilation' layer is marked so (22 Nov 2026)
 OUT = '.github/layer-agency-kind.json'
 NATIONAL = {   # the key's national layers (kpc_us_key.py Q and FWS); not in layers.json
     'PAD-US': ['https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query', 'Unit_Nm',
@@ -156,18 +158,35 @@ def classify(lid, row):
     return {'agency': agency, 'kind': kind, 'why': f'agency: {a_why}; kind: {k_why}'}
 
 
-def build(layers_path=LAYERS):
+def compilations(rows, state_gis_path=STATE_GIS):
+    """{layer id} of the state layers D11 labels 'compilation' in data/state-gis.json ('what': many owners' lands gathered by
+    one office), found by the layer's address, the way the US key finds them for D7. 22 Nov 2026: the agency check gives such a
+    layer no vote. A missing or unreadable file = none."""
+    try:
+        with open(state_gis_path, encoding='utf-8') as f:
+            sg = json.load(f).get('states') or {}
+    except (OSError, ValueError):
+        return set()
+    urls = {str(l.get('url') or '').rstrip('/') for ls in sg.values() if isinstance(ls, list) for l in ls
+            if isinstance(l, dict) and l.get('what') == 'compilation'}
+    return {lid for lid, v in rows.items() if lid.startswith('sg') and str(v[0]).split('/query')[0].rstrip('/') in urls}
+
+
+def build(layers_path=LAYERS, state_gis_path=STATE_GIS):
     with open(layers_path, encoding='utf-8') as f:
         layers = json.load(f)
     rows = dict(NATIONAL, **{k: v for k, v in layers.items() if isinstance(v, list)})
     out = {lid: classify(lid, rows[lid]) for lid in sorted(rows)}
+    for lid in compilations(rows, state_gis_path):
+        out[lid]['what'] = 'compilation'
     n = len(out)
     return {'note': 'Each map layer\'s owning agency and kind, from the layer\'s own words (kpc_layer_agency_kind.py). '
                     '"unknown" = its words don\'t say; nothing is guessed. Change the rules, never this file by hand.',
             'counts': {'layers': n,
                        'agency unknown': sum(1 for v in out.values() if v['agency'] == 'unknown'),
                        'kind unknown': sum(1 for v in out.values() if v['kind'] == 'unknown'),
-                       'both known': sum(1 for v in out.values() if v['agency'] != 'unknown' and v['kind'] != 'unknown')},
+                       'both known': sum(1 for v in out.values() if v['agency'] != 'unknown' and v['kind'] != 'unknown'),
+                       'compilation': sum(1 for v in out.values() if v.get('what') == 'compilation')},
             'layers': out}
 
 
@@ -209,6 +228,15 @@ def selftest():
     check('the table and the address agree: the address word wins', classify('t', ['https://x/arcgis/rest/services/National_Wildlife_Refuge_System_Boundaries/FeatureServer/0', 'N', 'FWSBoundaries (wild, state GIS table)'])['kind'], 'refuge')
     check('the table and the address disagree: unknown', classify('t', ['https://x/arcgis/rest/services/Recreation/Lakes/MapServer/9', 'N', 'Iowa DNR (wild, state GIS table)'])['kind'], 'unknown')
     check('every answer says why', bool(C('Idaho Fish and Game WMAs')['why']), True)
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        sgp = os.path.join(td, 'sg.json')
+        with open(sgp, 'w', encoding='utf-8') as f:
+            json.dump({'states': {'ZZ': [{'url': 'https://z.example/rest/services/All_Lands/FeatureServer/0', 'what': 'compilation'},
+                                         {'url': 'https://z.example/rest/services/Parks/FeatureServer/0', 'what': 'owned'}]}}, f)
+        rows_ = {'sgzza': ['https://z.example/rest/services/Parks/FeatureServer/0/query', 'N', 'ZZ State Parks'],
+                 'sgzzb': ['https://z.example/rest/services/All_Lands/FeatureServer/0/query', 'N', 'ZZ conserved lands']}
+        check("a layer D11 labels 'compilation' is marked so, an owned layer is not", sorted(compilations(rows_, sgp)), ['sgzzb'])
     print('SELF-TEST PASSED' if not bad else f'SELF-TEST FAILED: {len(bad)}: ' + '; '.join(bad))
     return 0 if not bad else 1
 
