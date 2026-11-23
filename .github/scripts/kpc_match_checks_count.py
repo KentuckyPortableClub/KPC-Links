@@ -104,7 +104,12 @@ def predict_state(st, key, recs, facts, layers, units, seen=None, table=None):
 
     skip = {r for r, p in before.items() if p.get('line')}
     hits = []
-    res = TA.pass_state(parks, recs, facts, place, url_of, is_no, skip, st, units, hits, holds, table)
+    def near(ref, i, ids):   # W8b: the record against the park's other joined land (saved shapes)
+        if i not in geo: return None
+        other = [r for j in ids if j in geo for r in geo[j][0]]
+        return TA.rings_near(geo[i][0], other) if other else None
+
+    res = TA.pass_state(parks, recs, facts, place, url_of, is_no, skip, st, units, hits, holds, table, near_fn=near)
     if seen is not None: seen.update(hits=hits, parks=parks, recs=recs)
     c = {k: 0 for k in ('parks', 'joined_before', 'nonname_before', 'confirmed', 'outlined', 'pin', 'gain', 'lose', 'id_confirmed',
                         'confirmed_by_id', 'confirmed_by_link', 'confirmed_by_size',
