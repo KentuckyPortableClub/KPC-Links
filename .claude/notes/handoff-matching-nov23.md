@@ -39,6 +39,9 @@ Agency rows, by the pair "link says -> record says": FWS -> STATE 191 (NC 79); S
 
 ## Jobs, in order
 
+**23 Nov 8:25 AM (owner 8:18 AM): jobs 4, 6 and 7 are the OUTSIDE AGENT's** (`.claude/inbox/JOBS-OUTSIDE-AGENT-23-Nov.md`, counts only). No chat starts them; this chat reads the reports.
+
+
 | # | Job | Where | Waits for |
 |---|---|---|---|
 | 1 | PC kit update "b" after #352 merges | steps below | owner: "merge 352" |
