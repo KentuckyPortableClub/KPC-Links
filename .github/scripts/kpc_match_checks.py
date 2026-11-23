@@ -440,6 +440,65 @@ def outside_counties(rec, areas):
     return True
 
 
+NEAR_TOWN_FAR_X = 3.0     # W-G6: land farther than this many times the point's own 'within' distance from a 'near a town' point ...
+NEAR_TOWN_FAR_KM = 25.0   # ... and farther than this, lies far from where the park's own page puts the park
+
+
+def near_points_of(fact):
+    """W-G6 NEAR A TOWN (owner 23 Nov 2026 6:37 AM, '4 I say yes'): the approximate points the park's OWN page on an official
+    site gives in words ('2 miles east of Shiocton'), each with how far off it may be. The PC's reader made them from the
+    Census / Natural Resources Canada town lists (park facts page.near); nothing is fetched here. A list, a shared page or an
+    unofficial site gives none."""
+    if not own_page(fact): return []
+    out = []
+    for n in ((fact or {}).get('page') or {}).get('near') or []:
+        try:
+            la, lo, w = float(n['lat']), float(n['lon']), float(n.get('within_km') or 0)
+        except (TypeError, ValueError, KeyError):
+            continue
+        if -90 <= la <= 90 and -180 <= lo <= 180 and w > 0: out.append((la, lo, w, str(n.get('from') or '')))
+    return out[:3]
+
+
+def _in_rings(lat, lon, rec):
+    g = (rec or {}).get('_g') or {}
+    rs = g.get('rings') or (g.get('coordinates') if g.get('type') == 'Polygon' else
+                           [r for poly in g.get('coordinates') or [] for r in poly] if g.get('type') == 'MultiPolygon' else [])
+    ins = False
+    for r in rs:
+        j = len(r) - 1
+        for i in range(len(r)):
+            xi, yi, xj, yj = r[i][0], r[i][1], r[j][0], r[j][1]
+            if (yi > lat) != (yj > lat) and lon < (xj - xi) * (lat - yi) / ((yj - yi) or 1e-12) + xi: ins = not ins
+            j = i
+    return ins
+
+
+def _km_to_box(lat, lon, bb):
+    if not bb or len(bb) != 4: return None
+    x, y = min(max(lon, bb[0]), bb[2]), min(max(lat, bb[1]), bb[3])
+    return math.hypot((x - lon) * 111.320 * math.cos(math.radians(lat)), (y - lat) * 110.574)
+
+
+def near_town_vote(rec, pts):
+    """W-G6: 'inside' when the record's land reaches into a point's circle (the point inside the land, or its edge within the
+    point's 'within' distance; the record's box when it has no shape); 'far' when its box lies farther than NEAR_TOWN_FAR_X
+    times 'within' (and NEAR_TOWN_FAR_KM) from EVERY point; else None (no vote). A record with no box is never far."""
+    if not pts or not rec: return None
+    bb = rec.get('_bb')
+    far_all = bool(bb and len(bb) == 4)
+    for la, lo, w, _f in pts:
+        d = km_to_record(la, lo, rec)
+        if d is None:
+            d = _km_to_box(la, lo, bb)
+        elif _in_rings(la, lo, rec):
+            d = 0.0
+        if d is not None and d <= w: return 'inside'
+        db = _km_to_box(la, lo, bb)
+        if db is None or db <= max(NEAR_TOWN_FAR_KM, NEAR_TOWN_FAR_X * w): far_all = False
+    return 'far' if far_all else None
+
+
 def page_pins(fact):
     pg = (fact or {}).get('page') or {}
     if pg.get('own_page') != 'own' or pg.get('unofficial'): return []
@@ -1119,6 +1178,21 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                 why.append('county'); hits.extend([ref, 'county', str(q[0])] for q in far_)
                 out['moved'] += len(far_); out['county_moved'] = out.get('county_moved', 0) + len(far_)
                 left = p.get('m') or []
+        npts = near_points_of(f)
+        if npts and left and not id_ok and sv[0] != 'agrees':
+            # W-G6 (owner 23 Nov 2026 6:37 AM, 'yes'): the park's own page puts the park near a town ('2 miles east of X'), and
+            # ALL its joined land lies far from there (the same name somewhere else): those records go to the check list. Not
+            # when an id or the agency's own size speaks for the joined records; never a record holding POTA's pin; and not
+            # when any joined record reaches the town's circle (a park of many pieces: the far ones are its own pieces, W8).
+            votes_ = {str(q[0]): near_town_vote(recs.get(str(q[0])), npts) for q in left}
+            right_ = any(v == 'inside' for v in votes_.values()) or any(holds(str(q[0])) is True for q in left)
+            far_ = [] if right_ else [q for q in left if votes_[str(q[0])] == 'far']
+            if far_:
+                fr_ = npts[0][3][:60]
+                to_check(p, far_, f"town: the park's own page puts it {fr_}; this land lies far from there")
+                why.append('town'); hits.extend([ref, 'town', str(q[0])] for q in far_)
+                out['moved'] += len(far_); out['town_moved'] = out.get('town_moved', 0) + len(far_)
+                left = p.get('m') or []
         if link_nm == 'part': notes.append('link name')
         place_ok = bool(left) and place_fn(ref, [str(q[0]) for q in left]) is True
         how = None
@@ -1136,6 +1210,10 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             # W5 (23 Nov 2026): the park's own page links the agency's own map under this record's name, and exactly ONE
             # record of the state carries that bare name (two records of one name: unsure, nothing). Confirms only.
             elif mnames and any(bare_name(q[1]) in mnames and names_n.get(bare_name(q[1])) == 1 for q in left): st_, how = 'confirmed', 'map link name'
+            # W-G6 (23 Nov 2026): a name that agrees (the link's or the park's own page's) and the joined land reaches into the
+            # circle of the 'near a town' point the park's own page gives. Confirms only: nothing is moved.
+            elif (link_nm in ('strong', 'part') or page_name_agrees(f)) and npts and any(
+                    near_town_vote(recs.get(str(q[0])), npts) == 'inside' for q in left): st_, how = 'confirmed', 'near a town'
             else: st_ = 'outlined'
         p['match'] = {'status': st_, 'why': sorted(set(why))}
         if notes: p['match']['notes'] = sorted(set(notes))
