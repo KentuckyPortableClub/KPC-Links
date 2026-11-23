@@ -86,6 +86,14 @@
    "why": "kpc_park_facts_read.py is in the Canada RULE_FILES (it was already a US rule file; Canada key runs already called it). A later edit to it moves the Canada hash. No join result changes; no province is rebuilt for this alone.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-21"
+  },
+  {
+   "id": "2026-11-23-job8-canada-proofs",
+   "when": "2026-11-23",
+   "from": "c978f75b94fe",
+   "why": "Job 8 (KPC owner 23 Nov 2026 2:12 PM, approving the outside agent's count; 4:43 PM 'Do it'): the US proofs on the Canada key. kpc_match_checks.canada_pass confirms a joined Canadian park by the agency's own size, POTA's link naming it with the pin in or by the land, the link and a page point inside it, or the park's own page carrying its name (pin in or by the land, or a page point inside it); name-joined rows 3 times off the agency's own figure go to the check list. No other check runs on Canada. Counted on the saved Canada keys and outlines with the 23 Nov park facts: 2,892 of 4,387 joined parks confirmed (link 2,239, page name 527, page point 60, page name and point 11, size 55); 80 rows of 27 parks to the check list by size. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (2:12 PM; 4:43 PM 'Do it'); merged only on his own review"
   }
  ]
 }

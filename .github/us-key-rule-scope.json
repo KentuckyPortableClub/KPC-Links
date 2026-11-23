@@ -847,6 +847,14 @@
     "why": "Owner's approval (23 Nov 2026 2:12 PM, the outside agent's job 9; 4:43 PM 'Do it'): a Wetland Management District the FWS realty copy gives no tract joins the Fish and Wildlife Service's own Waterfowl Production Area records that hold POTA's pin or carry the district's place name; a pin inside a separate refuge, a production area only near the pin, a state tag at the end of a name or another agency's record joins nothing. Measured on the saved copies: 4 of the 6 pin-only districts get an outline (Idaho, Maine, Nebraska, South Dakota); Iowa (pin inside a refuge) and Minnesota Valley (no production area holds the pin or carries the name) stay a pin. Scope none: no park is rebuilt until the owner starts a build.",
     "scope": "none",
     "approved": "KPC owner, 2026-11-23 2:12 PM (job 9) and 4:43 PM 'Do it'; merged only on his own review"
+  },
+  {
+   "id": "2026-11-23-job8-canada-pass-shared",
+   "when": "2026-11-23",
+   "from": "a17edd6a6080",
+   "why": "kpc_match_checks.py (a US rule file) gains canada_pass for the Canada key (job 8). The US pass is untouched: no US join result changes.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (job 8); merged only on his own review"
   }
  ]
 }

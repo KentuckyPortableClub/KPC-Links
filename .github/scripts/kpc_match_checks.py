@@ -1401,6 +1401,52 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
     return out
 
 
+
+def canada_pass(parks, recs, facts, place_fn, page_holds_fn=None):
+    """Job 8 (owner 23 Nov 2026 2:12 PM, approving the outside agent's count; 4:43 PM 'Do it'): the US proofs on the Canada key.
+    Canada joins by name alone; these proofs confirm a joined park, the same way and with the same words as the US pass:
+    the agency's own size (size), POTA's link naming the park with the pin in or by the land (link), the link naming it and a
+    point on the park's own page inside the land (page point), the park's own page carrying its name with the pin in or by the
+    land (page name), or with a page point inside it (page name and point). The size check is the one that MOVES: name-joined
+    rows whose outline is 3 times off the agency's own figure go to the check list (the US rule). Nothing else changes: no
+    agency, place, national or other-name check runs here (not counted, not approved for Canada).
+    parks = one province's key rows (changed in place); recs = {record id: record with Unit_Nm, GIS_Acres, _g}."""
+    shared = shared_names(facts)
+    out = {'confirmed': 0, 'outlined': 0, 'pin': 0, 'moved': 0, 'why': {}}
+    for ref, p in parks.items():
+        m = p.get('m') or []
+        if not m:
+            continue
+        f = facts.get(ref) or {}
+        why = []
+        name_left = [q for q in m if row_class(q) == 'name']
+        sv = size_vote(size_witnesses(f, shared), outline_size(p, m))
+        if name_left and sv[0] == 'far off':
+            ids_ = {id(q) for q in name_left}
+            p['m'] = [q for q in m if id(q) not in ids_]
+            p['c'] = [list(q[:3]) + [f"check (size: the outline is {sv[1]} times the agency's own figure)"] for q in name_left] + list(p.get('c') or [])
+            why.append('size'); out['moved'] += len(name_left)
+        left = p.get('m') or []
+        if not left:
+            st_, how = 'pin', None
+        else:
+            place_ok = place_fn(ref, [str(q[0]) for q in left]) is True
+            on_page = lambda i: bool(page_holds_fn and page_holds_fn(ref, i) is True)
+            link_nm = link_name_agree(f)
+            how = None
+            if sv[0] == 'agrees': how = 'size'
+            elif link_nm == 'strong' and place_ok: how = 'link'
+            elif link_nm in ('strong', 'part') and any(on_page(str(q[0])) for q in left): how = 'page point'
+            elif page_name_agrees(f) and place_ok: how = 'page name'
+            elif page_name_agrees(f) and any(on_page(str(q[0])) for q in left): how = 'page name and point'
+            st_ = 'confirmed' if how else 'outlined'
+        p['match'] = {'status': st_, 'why': sorted(set(why))}
+        if how: p['match']['by'] = how
+        out[st_] += 1
+        if how: out['by_' + how] = out.get('by_' + how, 0) + 1
+        for w in why: out['why'][w] = out['why'].get(w, 0) + 1
+    return out
+
 def facts_stamp(path):
     """'<made date> <first 12 of the file's sha256>' of the park facts file, or '' (plan L6: the input that decided is named)."""
     import gzip, hashlib
