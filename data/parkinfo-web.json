@@ -1,6 +1,36 @@
 {
- "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26 (HQ): official maps for the 300 busiest US parks outside KY, two research files merged (KPC_Official_Maps_done + KPC_Round12_park_maps_done): map = the park's map (a PDF wins when the two files differ), map_page = the other file's link, map_confirmed = both files gave the same link, map_note 'map on the park page' when the map link is the park page, agency_map = a general agency map page used for 3+ parks (agency-level). Oct 26 11:30 (research desk verdict): 12 fixes applied (map_fix); group_site = the managing group's / support group's own site (not an agency); map_hold = do not show until kpc_map_linkcheck.py says the link loads (it clears the hold itself); map_check = {status, date} for every map / map_page / agency_map link. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed.",
+ "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26 (HQ): official maps for the 300 busiest US parks outside KY, two research files merged (KPC_Official_Maps_done + KPC_Round12_park_maps_done): map = the park's map (a PDF wins when the two files differ), map_page = the other file's link, map_confirmed = both files gave the same link, map_note 'map on the park page' when the map link is the park page, agency_map = a general agency map page used for 3+ parks (agency-level). Oct 26 11:30 (research desk verdict): 12 fixes applied (map_fix); group_site = the managing group's / support group's own site (not an agency); map_hold = do not show until kpc_map_linkcheck.py says the link loads (it clears the hold itself); map_check = {status, date} for every map / map_page / agency_map link. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed.",
  "parks": {
+  "CA-0016": {
+   "web": "https://www.canada.ca/en/environment-climate-change/services/national-wildlife-areas/locations/chignecto.html",
+   "web_by": "bot: page reader, agency site (www.canada.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-0041": {
+   "web": "https://www.canada.ca/en/environment-climate-change/services/national-wildlife-areas/locations/john-lusby-marsh.html",
+   "web_by": "bot: page reader, agency site (www.canada.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-0064": {
+   "web": "https://www.canada.ca/en/environment-climate-change/services/national-wildlife-areas/locations/nirjutiqavvik.html",
+   "web_by": "bot: page reader, agency site (www.canada.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-0087": {
+   "web": "https://www.canada.ca/en/environment-climate-change/services/national-wildlife-areas/locations/sand-pond.html",
+   "web_by": "bot: page reader, agency site (www.canada.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-0089": {
+   "web": "https://www.canada.ca/en/environment-climate-change/services/national-wildlife-areas/locations/sea-wolf-island.html",
+   "web_by": "bot: page reader, agency site (www.canada.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-0480": {
+   "web": "https://novascotia.com/listing/summerville-beach-provincial-park/",
+   "web_by": "bot: page reader, agency site (novascotia.com)",
+   "web_read": "2026-11-23"
+  },
   "CA-0653": {
    "agency": "Alberta Parks, Government of Alberta",
    "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area",
@@ -110,6 +140,11 @@
     "map": "ok"
    }
   },
+  "CA-1099": {
+   "web": "https://saskregionalparks.ca/park/cabri/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
+  },
   "CA-1112": {
    "agency": "Jean Louis Legare Regional Park Authority (listed by Saskatchewan Regional Parks)",
    "map": "https://saskregionalparks.ca/park/jean-louis-legare/",
@@ -118,6 +153,51 @@
     "map": "ok"
    },
    "web": "https://saskregionalparks.ca/park/jean-louis-legare/"
+  },
+  "CA-1114": {
+   "web": "https://saskregionalparks.ca/park/kindersley/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-1115": {
+   "web": "https://saskregionalparks.ca/park/kipabiskau/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-1116": {
+   "web": "https://saskregionalparks.ca/park/lac-pelletier/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-1124": {
+   "web": "https://saskregionalparks.ca/park/mainprize/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-1128": {
+   "web": "https://saskregionalparks.ca/park/mcnab/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-1136": {
+   "web": "https://saskregionalparks.ca/park/nickle-lake/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-1141": {
+   "web": "https://saskregionalparks.ca/park/palliser/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-1151": {
+   "web": "https://saskregionalparks.ca/park/st-brieux/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-1158": {
+   "web": "https://saskregionalparks.ca/park/wakaw-lake/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
   },
   "CA-1163": {
    "agency": "Alberta Parks, Government of Alberta",
@@ -317,6 +397,16 @@
    },
    "web": "https://cms.albertaparks.ca/parks/south/wyndham-carseland-pp/"
   },
+  "CA-1659": {
+   "web": "https://www.grandriver.ca/outdoor-recreation/conservation-lands/dumfries/",
+   "web_by": "bot: page reader, agency site (www.grandriver.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-1660": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/edenvale/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
   "CA-1668": {
    "agency": "City of Markham",
    "map": "https://www.markham.ca/sites/default/files/neighbourhood-sevices/city-of-markham-cycling/FINAL-Cycling%2BMap%2B2023-aug-9-v2.pdf",
@@ -325,6 +415,11 @@
     "map": "ok"
    },
    "web": "https://www.markham.ca/sites/default/files/neighbourhood-sevices/city-of-markham-cycling/FINAL-Cycling%2BMap%2B2023-aug-9-v2.pdf"
+  },
+  "CA-1678": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/new-lowell/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
   },
   "CA-2034": {
    "agency": "Parc linéaire Le P’tit Train du Nord (official park operator)",
@@ -370,6 +465,11 @@
     "map": "ok"
    },
    "web": "https://legacy.winnipeg.ca/publicworks/parks/st-vital.stm"
+  },
+  "CA-2917": {
+   "web": "https://saskregionalparks.ca/park/woodlawn/",
+   "web_by": "bot: page reader, agency site (saskregionalparks.ca)",
+   "web_read": "2026-11-23"
   },
   "CA-2921": {
    "agency": "Alberta Parks, Government of Alberta",
@@ -1177,6 +1277,11 @@
    "map": "",
    "web": "https://www.parks.canada.ca/lhn-nhs/qc/louisjosephpapineau"
   },
+  "CA-4927": {
+   "web": "https://parks.canada.ca/lhn-nhs/sk/tourond",
+   "web_by": "bot: page reader, agency site (parks.canada.ca)",
+   "web_read": "2026-11-23"
+  },
   "CA-4948": {
    "agency": "Corporation de gestion et de mise en valeur du mont Saint-Joseph",
    "map": "https://montsaintjoseph.com/wp-content/uploads/2020/06/Carte_rando_complete_MSJ_2020.pdf",
@@ -1286,6 +1391,11 @@
    "map": "",
    "web": "https://www.sherbrooke.ca/fr/culture-sports-et-loisirs/parcs-et-espaces-de-plein-air/espaces-de-plein-air"
   },
+  "CA-5141": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/lemoine-point/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
   "CA-5288": {
    "agency": "Parks Canada / Prince Edward Island National Park",
    "map": "https://parks.canada.ca/pn-np/pe/pei-ipe/visit/~/media/pn-np/pe/pei-ipe/pdfs/visitors-guide-2016-eng.ashx",
@@ -1294,6 +1404,101 @@
     "map": "ok"
    },
    "web": "https://parks.canada.ca/culture/designation/phare-lighthouse"
+  },
+  "CA-5295": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/baxter/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5312": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/nottawasaga-bluffs/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5314": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/tottenham/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5315": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/utopia/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5538": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/j-henry-tweed/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5542": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/foley-mountain/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5570": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/westfield-heritage-village/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5606": {
+   "web": "https://www.grandriver.ca/outdoor-recreation/conservation-lands/hanlon-creek/",
+   "web_by": "bot: page reader, agency site (www.grandriver.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5610": {
+   "web": "https://www.grandriver.ca/outdoor-recreation/conservation-lands/woolwich-reservoir/",
+   "web_by": "bot: page reader, agency site (www.grandriver.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5619": {
+   "web": "https://www.catfishcreek.ca/conservation-areas/springwater-forest/",
+   "web_by": "bot: page reader, agency site (www.catfishcreek.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5669": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/holiday-beach/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5925": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/falls-reserve/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5936": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/fanshawe/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5937": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/pittock/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5938": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/wildwood/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5947": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/devonwood/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5955": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/mill-pond/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-5957": {
+   "web": "https://ontarioconservationareas.ca/conservation-areas/portland-bay/",
+   "web_by": "bot: page reader, agency site (ontarioconservationareas.ca)",
+   "web_read": "2026-11-23"
+  },
+  "CA-6567": {
+   "web": "https://novascotia.com/listing/roseway-beach/",
+   "web_by": "bot: page reader, agency site (novascotia.com)",
+   "web_read": "2026-11-23"
   },
   "US-0001": {
    "map": "https://www.nps.gov/acad/planyourvisit/maps.htm",
@@ -1834,6 +2039,16 @@
    "map_date": "2022-12-17",
    "map_what": "PDF refuge map (official U.S. Fish & Wildlife Service)"
   },
+  "US-0162": {
+   "web": "https://www.fws.gov/locations/bald-knob-national-wildlife-refuge",
+   "web_by": "bot: page reader, agency site (www.fws.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-0164": {
+   "web": "https://www.fws.gov/locations/cache-river-national-wildlife-refuge",
+   "web_by": "bot: page reader, agency site (www.fws.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-0184": {
    "agency": "Colorado Parks and Wildlife",
    "map": "https://cpw.state.co.us/sites/default/files/dam/vhuuk6xtqt/ramahswa_geo.pdf",
@@ -1923,6 +2138,11 @@
    },
    "web": "https://www.fws.gov/refuge/silvio-o-conte"
   },
+  "US-0340": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/spring-creek-hatchery-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-0364": {
    "map": "https://www.fws.gov/refuge/minnesota-valley/visit-us/trails",
    "map_check": {
@@ -1934,6 +2154,11 @@
    "map_page": "https://www.fws.gov/refuge/minnesota-valley/map",
    "map_what": "Official USFWS trails page with unit trail maps"
   },
+  "US-0382": {
+   "web": "https://www.fws.gov/locations/coldwater-river-national-wildlife-refuge",
+   "web_by": "bot: page reader, agency site (www.fws.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-0456": {
    "agency": "U.S. Fish and Wildlife Service",
    "map": "https://www.fws.gov/refuge/wallkill-river/visit-us",
@@ -1942,6 +2167,11 @@
     "map": "ok"
    },
    "web": "https://www.fws.gov/refuge/wallkill-river"
+  },
+  "US-0459": {
+   "web": "https://www.fws.gov/locations/las-vegas-national-wildlife-refuge",
+   "web_by": "bot: page reader, agency site (www.fws.gov)",
+   "web_read": "2026-11-23"
   },
   "US-0522": {
    "map": "https://www.fws.gov/media/savannah-nwr-full-and-trail-maps",
@@ -1982,6 +2212,11 @@
    "map_date": "Map created 03/03/2022",
    "map_page": "https://www.fws.gov/refuge/hagerman/map",
    "map_what": "Official refuge map image/download"
+  },
+  "US-0573": {
+   "web": "https://www.fws.gov/locations/wallops-island-national-wildlife-refuge",
+   "web_by": "bot: page reader, agency site (www.fws.gov)",
+   "web_read": "2026-11-23"
   },
   "US-0583": {
    "map": "https://www.nps.gov/lewi/planyourvisit/maps.htm",
@@ -6921,6 +7156,11 @@
    },
    "map_read": "2026-11-09"
   },
+  "US-11875": {
+   "web": "https://www.iowadnr.gov/places-go/state-parks/all-parks/blackburn-state-park",
+   "web_by": "bot: page reader, agency site (www.iowadnr.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-1189": {
    "map": "https://www.parks.ca.gov/pages/631/files/rrcspbrochuremappdf%202014.pdf",
    "map_by": "bot: California State Parks park page (\"Red Rock Canyon State Park Map\")",
@@ -7707,6 +7947,11 @@
    },
    "map_read": "2026-11-09"
   },
+  "US-12601": {
+   "web": "https://www.fws.gov/locations/hackmatack-national-wildlife-refuge",
+   "web_by": "bot: page reader, agency site (www.fws.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-12604": {
    "map": "https://portal.ct.gov/-/media/deep/wildlife/pdf_files/maps/maps_hunting_area/map291.pdf",
    "map_by": "bot: CT DEEP (credit: Department of Energy & Environmental Protec (Map_Link field)",
@@ -7875,6 +8120,11 @@
     "map": "ok"
    },
    "web": "https://wildlife.ca.gov/Lands/Places-to-Visit/Spenceville-WA"
+  },
+  "US-12705": {
+   "web": "https://www.fws.gov/locations/logan-cave-national-wildlife-refuge",
+   "web_by": "bot: page reader, agency site (www.fws.gov)",
+   "web_read": "2026-11-23"
   },
   "US-12740": {
    "map": "https://conservationgis.alabama.gov/Documents/NoHunting.pdf",
@@ -9074,7 +9324,10 @@
    "map_check": {
     "date": "2026-11-09",
     "map": "blocked (opens in a browser)"
-   }
+   },
+   "web": "https://mostateparks.com/park/table-rock-state-park",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
   },
   "US-1800": {
    "map": "https://wvstateparks.com/wp-content/uploads/2025/06/2024.10.24_WVSP_BeechFork_Map_FINAL.pdf",
@@ -10068,6 +10321,91 @@
    },
    "web": "https://dlnr.hawaii.gov/dsp/parks/hawaii/akaka-falls-state-park/"
   },
+  "US-2228": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/bear-lake-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2229": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/bruneau-dunes-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2230": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/castle-rocks-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2232": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/dworshak-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2234": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/farragut-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2235": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/harriman-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2236": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/hells-gate-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2237": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/henrys-lake-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2238": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/heyburn-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2239": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/lake-cascade-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2241": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/land-of-the-yankee-fork-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2243": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/massacre-rocks-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2245": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/ponderosa-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2247": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/round-lake-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2248": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/thousand-springs-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2249": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/three-island-crossing-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2250": {
+   "web": "https://parksandrecreation.idaho.gov/state-park/winchester-lake-state-park/",
+   "web_by": "bot: page reader, agency site (parksandrecreation.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-2252": {
    "map": "https://www.in.gov/dnr/state-parks/files/chain_o_lakes_trail.pdf",
    "map_check": {
@@ -10166,6 +10504,11 @@
    "map_page": "https://www.iowadnr.gov/media/1248/download?inline",
    "map_refind": "2026-11-09",
    "map_what": "PDF park map (official Iowa DNR)"
+  },
+  "US-2324": {
+   "web": "https://www.iowadnr.gov/places-go/state-parks/all-parks/union-grove-state-park",
+   "web_by": "bot: page reader, agency site (www.iowadnr.gov)",
+   "web_read": "2026-11-23"
   },
   "US-2332": {
    "map": "http://www.nwk.usace.army.mil/Portals/29/docs/lakesites/clinton/Hunting-Brochure.pdf",
@@ -10318,6 +10661,11 @@
    "map_date": "Map dates not stated",
    "map_page": "https://www.ncparks.gov/maps/carvers-creek-state-park-sandhills-access-map/open",
    "map_what": "Official NC State Parks page with Long Valley Farm and Sandhills access PDF maps"
+  },
+  "US-2724": {
+   "web": "https://www.ncparks.gov/state-parks/chimney-rock-state-park",
+   "web_by": "bot: page reader, agency site (www.ncparks.gov)",
+   "web_read": "2026-11-23"
   },
   "US-2725": {
    "map": "https://www.ncparks.gov/maps/cliffs-neuse-state-park-map/open",
@@ -10608,6 +10956,21 @@
     "date": "2026-11-09",
     "map": "blocked (opens in a browser)"
    }
+  },
+  "US-2875": {
+   "web": "https://riparks.ri.gov/parks/fort-wetherill-state-park",
+   "web_by": "bot: page reader, agency site (riparks.ri.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2876": {
+   "web": "https://riparks.ri.gov/parks/goddard-memorial-state-park",
+   "web_by": "bot: page reader, agency site (riparks.ri.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-2877": {
+   "web": "https://riparks.ri.gov/parks/haines-memorial-state-park",
+   "web_by": "bot: page reader, agency site (riparks.ri.gov)",
+   "web_read": "2026-11-23"
   },
   "US-2880": {
    "agency": "Rhode Island Department of Environmental Management, Division of Agriculture and Forest Environment",
@@ -11124,6 +11487,11 @@
    },
    "map_read": "2026-11-09"
   },
+  "US-3034": {
+   "web": "https://tpwd.texas.gov/state-parks/longhorn-cavern",
+   "web_by": "bot: page reader, agency site (tpwd.texas.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-3035": {
    "agency": "Texas Parks and Wildlife Department",
    "map": "https://tpwd.texas.gov/state-parks/lyndon-b-johnson/map",
@@ -11411,6 +11779,76 @@
     "map": "blocked (opens in a browser)"
    }
   },
+  "US-3154": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/alta-lake-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3155": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/anderson-lake-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3156": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/battle-ground-lake-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3158": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/beacon-rock-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3159": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/belfair-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3160": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/birch-bay-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3161": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/blake-island-marine-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3162": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/blind-island-marine-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3164": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/bottle-beach-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3165": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/bridgeport-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3167": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/brooks-memorial-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3168": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/cama-beach-historical-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3169": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/camano-island-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3170": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/cape-disappointment-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-3171": {
    "map": "https://parks.wa.gov/DocumentCenter/View/9837/Centennial-Trail-State-Park-PDF?bidId=",
    "map_check": {
@@ -11423,6 +11861,61 @@
    "map_refind": "2026-11-09",
    "map_what": "PDF trail brochure/map (official Washington State Parks)"
   },
+  "US-3172": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/clark-island-marine-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3174": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/conconully-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3176": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/curlew-lake-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3178": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/daroga-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3179": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/dash-point-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3180": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/deception-pass-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3181": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/doe-island-marine-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3182": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/dosewallips-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3184": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/eagle-island-marine-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3186": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/fields-spring-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3214": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/lake-easton-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-3216": {
    "map": "https://parks.wa.gov/sites/default/files/2024-01/Lake%20Sammamish%20full%20color%20Map.pdf",
    "map_check": {
@@ -11432,6 +11925,36 @@
    "map_confirmed": true,
    "map_date": "Revised January 2, 2024",
    "map_what": "PDF park map (official Washington State Parks)"
+  },
+  "US-3226": {
+   "web": "https://wdfw.wa.gov/places-to-go/water-access-sites/loomis-lake-1536",
+   "web_by": "bot: page reader, agency site (wdfw.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3231": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/millersylvania-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3236": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/nolte-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3239": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/olallie-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3241": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/pacific-beach-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3255": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/rasar-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
   },
   "US-3257": {
    "map": "https://parks.wa.gov/sites/default/files/2024-08/Riverside%20State%20Park%20Brochure.pdf",
@@ -11443,6 +11966,26 @@
    "map_date": "Revised 2024-08-12",
    "map_page": "https://parks.wa.gov/sites/default/files/2024-08/Riverside%20Overview%20Map.pdf",
    "map_what": "PDF park brochure/map (official Washington State Parks)"
+  },
+  "US-3258": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/rockport-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3265": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/seaquest-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3272": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/squak-mountain-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-3286": {
+   "web": "https://parks.wa.gov/find-parks/state-parks/twin-harbors-state-park",
+   "web_by": "bot: page reader, agency site (parks.wa.gov)",
+   "web_read": "2026-11-23"
   },
   "US-3290": {
    "agency": "Washington State Parks and Recreation Commission",
@@ -11475,6 +12018,136 @@
    "map_date": "Map date not stated",
    "map_page": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/island_lake_map.pdf",
    "map_what": "PDF park map (official Michigan DNR)"
+  },
+  "US-3335": {
+   "web": "https://mostateparks.com/historic-site/arrow-rock-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3336": {
+   "web": "https://mostateparks.com/historic-site/battle-athens-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3337": {
+   "web": "https://mostateparks.com/historic-site/battle-carthage-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3341": {
+   "web": "https://mostateparks.com/historic-site/bollinger-mill-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3342": {
+   "web": "https://mostateparks.com/historic-site/boones-lick-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3343": {
+   "web": "https://mostateparks.com/historic-site/bothwell-lodge-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3345": {
+   "web": "https://mostateparks.com/historic-site/confederate-memorial-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3346": {
+   "web": "https://mostateparks.com/historic-site/deutschheim-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3347": {
+   "web": "https://mostateparks.com/historic-site/dillard-mill-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3349": {
+   "web": "https://mostateparks.com/historic-site/first-missouri-state-capitol-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3350": {
+   "web": "https://mostateparks.com/historic-site/gen-john-j-pershing-boyhood-home-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3351": {
+   "web": "https://mostateparks.com/historic-site/gov-daniel-dunklins-grave-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3352": {
+   "web": "https://mostateparks.com/historic-site/hunter-dawson-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3353": {
+   "web": "https://mostateparks.com/historic-site/iliniwek-village-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3354": {
+   "web": "https://mostateparks.com/historic-site/jewell-cemetery-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3355": {
+   "web": "https://mostateparks.com/historic-site/locust-creek-covered-bridge-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3356": {
+   "web": "https://mostateparks.com/historic-site/mark-twain-birthplace-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3357": {
+   "web": "https://mostateparks.com/historic-site/mastodon-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3361": {
+   "web": "https://mostateparks.com/historic-site/osage-village-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3362": {
+   "web": "https://mostateparks.com/historic-site/sandy-creek-covered-bridge-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3363": {
+   "web": "https://mostateparks.com/historic-site/sappington-cemetery-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3364": {
+   "web": "https://mostateparks.com/historic-site/scott-joplin-house-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3365": {
+   "web": "https://mostateparks.com/historic-site/thomas-hart-benton-home-and-studio-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3366": {
+   "web": "https://mostateparks.com/historic-site/towosahgy-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3367": {
+   "web": "https://mostateparks.com/historic-site/union-covered-bridge-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-3368": {
+   "web": "https://mostateparks.com/historic-site/watkins-woolen-mill-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
   },
   "US-3378": {
    "agency": "National Park Service",
@@ -13672,6 +14345,11 @@
    "map_page": "https://www.nps.gov/waro/planyourvisit/maps.htm",
    "map_what": "brochure with map"
   },
+  "US-4587": {
+   "web": "https://mostateparks.com/historic-site/harry-s-truman-birthplace-state-historic-site",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
   "US-4598": {
    "map": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2023-2024/SOA/SOA_Little_River.pdf",
    "map_by": "bot: Alabama Dept of Conservation and Natural Resources, State La (PMapLink field)",
@@ -13720,6 +14398,16 @@
     "map": "ok"
    },
    "web": "https://www.iowadnr.gov/places-go/state-forests/backbone-state-forest"
+  },
+  "US-4663": {
+   "web": "https://www.iowadnr.gov/places-go/state-forests/white-pine-hollow-state-forest",
+   "web_by": "bot: page reader, agency site (www.iowadnr.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-4664": {
+   "web": "https://www.iowadnr.gov/places-go/state-forests/yellow-river-state-forest",
+   "web_by": "bot: page reader, agency site (www.iowadnr.gov)",
+   "web_read": "2026-11-23"
   },
   "US-4667": {
    "agency": "Indiana Department of Natural Resources, Division of Forestry",
@@ -14021,6 +14709,51 @@
    },
    "map_read": "2026-11-09"
   },
+  "US-5592": {
+   "web": "https://idfg.idaho.gov/visit/wma/blackfoot-river",
+   "web_by": "bot: page reader, agency site (idfg.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-5597": {
+   "web": "https://idfg.idaho.gov/visit/wma/cartier-slough",
+   "web_by": "bot: page reader, agency site (idfg.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-5599": {
+   "web": "https://idfg.idaho.gov/visit/wma/cj-strike",
+   "web_by": "bot: page reader, agency site (idfg.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-5605": {
+   "web": "https://idfg.idaho.gov/visit/wma/georgetown-summit",
+   "web_by": "bot: page reader, agency site (idfg.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-5607": {
+   "web": "https://idfg.idaho.gov/visit/wma/market-lake",
+   "web_by": "bot: page reader, agency site (idfg.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-5610": {
+   "web": "https://idfg.idaho.gov/visit/wma/montpelier",
+   "web_by": "bot: page reader, agency site (idfg.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-5615": {
+   "web": "https://idfg.idaho.gov/visit/wma/portneuf",
+   "web_by": "bot: page reader, agency site (idfg.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-5618": {
+   "web": "https://idfg.idaho.gov/visit/wma/sand-creek",
+   "web_by": "bot: page reader, agency site (idfg.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-5620": {
+   "web": "https://idfg.idaho.gov/visit/wma/sterling",
+   "web_by": "bot: page reader, agency site (idfg.idaho.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-5633": {
    "map": "https://www.parks.ca.gov/pages/660/files/SouthCarlsbadSBCampMap_092825_FINAL.pdf",
    "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")",
@@ -14220,6 +14953,21 @@
     "map": "ok"
    },
    "map_read": "2026-11-09"
+  },
+  "US-5714": {
+   "web": "https://mostateparks.com/park/shepherd-hills-state-park",
+   "web_by": "bot: page reader, agency site (mostateparks.com)",
+   "web_read": "2026-11-23"
+  },
+  "US-5735": {
+   "web": "https://www.iowadnr.gov/places-go/state-parks/all-parks/lower-gar-state-recreation-area",
+   "web_by": "bot: page reader, agency site (www.iowadnr.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-5737": {
+   "web": "https://www.iowadnr.gov/places-go/state-parks/all-parks/volga-river-state-recreation-area",
+   "web_by": "bot: page reader, agency site (www.iowadnr.gov)",
+   "web_read": "2026-11-23"
   },
   "US-5750": {
    "agency": "Bureau of Land Management",
@@ -15124,6 +15872,26 @@
    "map_date": "Map date not stated",
    "map_page": "https://www.swfwmd.state.fl.us/recreation/recreation-maps",
    "map_what": "PDF park map"
+  },
+  "US-6831": {
+   "web": "https://historicsites.nc.gov/all-sites/battleship-north-carolina",
+   "web_by": "bot: page reader, agency site (historicsites.nc.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-6838": {
+   "web": "https://historicsites.nc.gov/all-sites/duke-homestead",
+   "web_by": "bot: page reader, agency site (historicsites.nc.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-6853": {
+   "web": "https://historicsites.nc.gov/all-sites/thomas-wolfe-memorial",
+   "web_by": "bot: page reader, agency site (historicsites.nc.gov)",
+   "web_read": "2026-11-23"
+  },
+  "US-6855": {
+   "web": "https://historicsites.nc.gov/all-sites/tryon-palace",
+   "web_by": "bot: page reader, agency site (historicsites.nc.gov)",
+   "web_read": "2026-11-23"
   },
   "US-6857": {
    "map": "https://portal.ct.gov/-/media/deep/wildlife/pdf_files/maps/maps_hunting_area/map6.pdf",
@@ -16034,6 +16802,11 @@
    "map_date": "2025",
    "map_what": "Official Minnesota DNR Map and Guide PDF for Minnesota Valley State Recreation Area and Trail"
   },
+  "US-7185": {
+   "web": "https://www.agfc.com/wma/pine-city-natural-area-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
+  },
   "US-7189": {
    "map": "https://mdc.mo.gov/media/area/map/201111",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -16176,6 +16949,11 @@
    },
    "web": "https://www.agfc.com/wma/howard-county-wma/"
   },
+  "US-7298": {
+   "web": "https://www.agfc.com/wma/jamestown-independence-county-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
+  },
   "US-7299": {
    "agency": "Arkansas Game and Fish Commission",
    "map": "https://www.agfc.com/maps/",
@@ -16184,6 +16962,11 @@
     "map": "ok"
    },
    "web": "https://www.agfc.com/wma/jim-kress-wma/"
+  },
+  "US-7311": {
+   "web": "https://www.agfc.com/wma/ozan-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
   },
   "US-7315": {
    "agency": "Arkansas Game and Fish Commission",
@@ -16202,6 +16985,11 @@
     "map": "ok"
    },
    "web": "https://www.agfc.com/wma/rainey-wma/"
+  },
+  "US-7321": {
+   "web": "https://www.agfc.com/wma/ring-slough-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
   },
   "US-7325": {
    "agency": "Arkansas Game and Fish Commission",
@@ -16257,6 +17045,11 @@
    },
    "web": "https://www.agfc.com/wma/j-perry-mikles-blue-mountain-wma/"
   },
+  "US-7346": {
+   "web": "https://www.agfc.com/wma/little-bayou-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
+  },
   "US-7349": {
    "map": "http://www.swl.usace.army.mil/Missions/Recreation/ArkansasRiver/Ozark.aspx",
    "map_by": "bot: Recreation.gov RIDB (agency link)",
@@ -16264,6 +17057,11 @@
     "date": "2026-11-09",
     "map": "blocked (opens in a browser)"
    }
+  },
+  "US-7352": {
+   "web": "https://www.agfc.com/wma/roth-prairie-natural-area-wma/",
+   "web_by": "bot: page reader, agency site (www.agfc.com)",
+   "web_read": "2026-11-23"
   },
   "US-7354": {
    "agency": "Arkansas Game and Fish Commission",
@@ -17077,6 +17875,11 @@
    },
    "map_read": "2026-11-09"
   },
+  "US-7865": {
+   "web": "https://riparks.ri.gov/beaches/east-beach",
+   "web_by": "bot: page reader, agency site (riparks.ri.gov)",
+   "web_read": "2026-11-23"
+  },
   "US-7868": {
    "map": "https://mdc.mo.gov/media/area/map/9631",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -17085,6 +17888,11 @@
     "map": "ok"
    },
    "map_read": "2026-11-09"
+  },
+  "US-7870": {
+   "web": "https://www.nhstateparks.org/find-parks-trails/daniel-webster-birthplace",
+   "web_by": "bot: page reader, agency site (www.nhstateparks.org)",
+   "web_read": "2026-11-23"
   },
   "US-7873": {
    "map": "https://mdc.mo.gov/media/area/map/9238",
@@ -17299,6 +18107,11 @@
    "web": "https://www.fws.gov/mountain-prairie/refuges/mdl.php",
    "web_by": "bot: Managed Areas (land, state GIS table) (URL field)",
    "web_read": "2026-11-09"
+  },
+  "US-8016": {
+   "web": "https://www.nhstateparks.org/find-parks-trails/bedell-bridge-state-historic-site",
+   "web_by": "bot: page reader, agency site (www.nhstateparks.org)",
+   "web_read": "2026-11-23"
   },
   "US-8020": {
    "agency": "New Hampshire Division of Parks and Recreation",
