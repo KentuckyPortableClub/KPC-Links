@@ -8110,6 +8110,61 @@
    "d": "2026-11-19",
    "src": "world"
   },
+  "SI-0044": {
+   "n": "NOVA GORICA-LOKVICA / STAGE 9SI WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0045": {
+   "n": "LOKVICA-KOMEN STAGE 10 SI WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0046": {
+   "n": "KOMEN-MAVHINJE STAGE 11 SI WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0047": {
+   "n": "PLAVE-VODICE-NOVA  GORICA STAGE 7A SI WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0048": {
+   "n": "KAMBREŠKO-PLAVE - STAGE 6A SI  WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0049": {
+   "n": "Nova Gorica–Gorizia–Nova Gorica / STAGE 8 SI WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0050": {
+   "n": "ŠMARTNO-SABOTIN-NOVA GORICA / STAGE 7 SI WALK OF PEACE  / National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0052": {
+   "n": "KAMBREŠKO-ŠMARTNO STAGE 6SI WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0054": {
+   "n": "MENGORE TRIAL - STAGE 5a WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0055": {
+   "n": "MENGORE-KOZARŠČE TRAIL -STAGE 5b WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
+  "SI-0056": {
+   "n": "MAUNTAIN HUT KUHINJA-TOLMIN ST.4 - WALK OF PEACE National Historic Trail",
+   "d": "2026-11-23",
+   "src": "world"
+  },
   "SI-0088": {
    "n": "AAT e36 Lipica - Krvavi potok(meja) National Recreation Trail",
    "d": "2026-11-19",
@@ -9952,5 +10007,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-22"
+ "updated": "2026-11-23"
 }
