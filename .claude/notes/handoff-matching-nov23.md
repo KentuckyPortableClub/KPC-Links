@@ -39,6 +39,8 @@ Agency rows, by the pair "link says -> record says": FWS -> STATE 191 (NC 79); S
 
 ## Jobs, in order
 
+**23 Nov 1:05 PM (owner 12:58 PM):** jobs 5, 8, 9 (counts) are the OUTSIDE AGENT's: `.claude/inbox/JOBS-OUTSIDE-AGENT-23-Nov-PM.md`. Jobs 10 and 11 stay here. P1, P2, P4-P7 were MERGED 22 Nov (#346, grey areas PN-G1..G5 on the safe-side defaults); P3 goes with tracer steps 1, 2, 4, 5 (open), step 3 Thursday 26 Nov.
+
 **23 Nov 9:25 AM:** jobs 4, 6, 7 DONE by the outside agent (reports on tools-out key-quality/2026-11-23/). From them: W8 + W9 built as KPC-Links draft PR #355 (US rules -> 80554d0c21b6), waits for the owner. W8 + W9 MERGED 9:10 AM (US rules 80554d0c21b6, kit 23d on the PC). Job 7: the owner answered at 9:20 AM; W10 built as KPC-Links draft PR #356 (US rules -> 479d0c7cbbc8), waits for him; after merge: kit 23e.
 
 **23 Nov 8:25 AM (owner 8:18 AM): jobs 4, 6 and 7 are the OUTSIDE AGENT's** (`.claude/inbox/JOBS-OUTSIDE-AGENT-23-Nov.md`, counts only). No chat starts them; this chat reads the reports.
