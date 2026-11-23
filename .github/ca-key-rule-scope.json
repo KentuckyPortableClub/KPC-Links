@@ -94,6 +94,14 @@
    "why": "Job 8 (KPC owner 23 Nov 2026 2:12 PM, approving the outside agent's count; 4:43 PM 'Do it'): the US proofs on the Canada key. kpc_match_checks.canada_pass confirms a joined Canadian park by the agency's own size, POTA's link naming it with the pin in or by the land, the link and a page point inside it, or the park's own page carrying its name (pin in or by the land, or a page point inside it); name-joined rows 3 times off the agency's own figure go to the check list. No other check runs on Canada. Counted on the saved Canada keys and outlines with the 23 Nov park facts: 2,892 of 4,387 joined parks confirmed (link 2,239, page name 527, page point 60, page name and point 11, size 55); 80 rows of 27 parks to the check list by size. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (2:12 PM; 4:43 PM 'Do it'); merged only on his own review"
+  },
+  {
+   "id": "2026-11-23-review363-same-land-once",
+   "when": "2026-11-23",
+   "from": "3b4de92e4efb",
+   "why": "Review of #363 M3 (owner 23 Nov 2026 5:43 PM 'Yes'): the Canada size check counts the same land once. Canada often holds one piece in 2-3 layers (CPCAD plus the province's own); the sum counted it 2-3 times and sent correct joins to check (reviewer's count: 3 parks, 14 rows). MC.size_once: largest row first, a row whose box lies 80%+ inside a counted row's box of another layer is not added (the US W7 twin test). Scope none: no province is rebuilt for this alone.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (5:43 PM 'Yes'); merged only on his own review"
   }
  ]
 }

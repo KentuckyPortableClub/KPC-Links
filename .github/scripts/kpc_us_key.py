@@ -3815,6 +3815,10 @@ def _with_old_stamp(d):
 
 
 idx = {}
+# audit 1 MUST 1 (owner 23 Nov 2026 5:43 PM 'Yes'): importing this file used to run the whole 50-state build and rewrite the
+# key files. It runs only as a script (the workflows, runpy with __main__); tests exec its helper part (before 'idx = {}').
+if __name__ != '__main__':
+    raise ImportError('kpc_us_key.py is the US key build: run it as a script; tests exec its helper part (before idx = {})')
 try: idx = json.load(open(OUT / 'index.json')).get('states', {})
 except Exception: pass  # noqa: BLE001
 # GOLDEN CASES FIRST (Oct 22). If any known case comes out wrong, a matching rule is broken: write NO keys rather

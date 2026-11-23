@@ -946,7 +946,10 @@ for pv, parks_in in sorted(by.items()):
             r, pts = RID.get(str(rid)), MC.page_pins(_CA_FACTS.get(ref))
             if not r or not rings(r.get('_g')) or not pts: return None
             return any(inside(a, b, r['_g']) for a, b in pts)
-        MCC[pv] = MC.canada_pass(parks, {}, _CA_FACTS, _cplace, _cpage)
+        def _cbox(rid): return (RID.get(rid) or {}).get('_bb')
+        def _clayer(rid): return _rec_layer(RID[rid]) if rid in RID else None
+        _csize = lambda p_, m_: MC.size_once(p_, m_, _cbox, _clayer)   # review of #363: the same land in 2-3 layers counted once
+        MCC[pv] = MC.canada_pass(parks, {}, _CA_FACTS, _cplace, _cpage, size_of=_csize)
     cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']),
            'confirmed': sum(1 for p in parks.values() if (p.get('match') or {}).get('status') == 'confirmed'), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
            'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a')),

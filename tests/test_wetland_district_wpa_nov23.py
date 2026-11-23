@@ -27,12 +27,12 @@ got, _ = pick('Heron Slough', [rec('1', 'Heron Slough Waterfowl Production Area'
 check("a production area carrying the district's name joins, ONE record per name (the FWS realty copy first)",
       [a['OBJECTID'] for a in got] == ['fws9'])
 HOLDS.add('7')
-got, _ = pick('Funk', [rec('7', 'Phelps County Waterfowl Production Area'), rec('8', 'Kearney County Waterfowl Production Area')])
+got, _ = pick('Marten', [rec('7', 'Ashby County Waterfowl Production Area'), rec('8', 'Corran County Waterfowl Production Area')])
 check('a production area that holds the pin joins; one only near the pin does not (it may be another district\'s)',
       [a['OBJECTID'] for a in got] == ['7'])
 HOLDS.clear(); HOLDS.add('r1')
-got, _ = pick('Iowa', [rec('r1', 'Otter Slough National Wildlife Refuge'), rec('3', 'Clay County Waterfowl Production Area Of Iowa')])
-check("a pin inside a separate refuge, and a state tag at the end of a name ('... Of Iowa'), join nothing", got == [])
+got, _ = pick('Ohio', [rec('r1', 'Bracken Marsh National Wildlife Refuge'), rec('3', 'Tamsin County Waterfowl Production Area Of Ohio')])
+check("a pin inside a separate refuge, and a state tag at the end of a name ('... Of Ohio'), join nothing", got == [])
 HOLDS.clear()
 got, _ = pick('Willow Lake', [rec('4', 'Willow Lake Waterfowl Production Area', mang='SDGFP'), rec('5', 'Willow Lake State Game Production Area', mang='FWS')])
 check("another agency's production area, or a record that is not a production area, joins nothing", got == [])
