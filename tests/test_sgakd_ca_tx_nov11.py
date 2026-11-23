@@ -35,7 +35,10 @@ for st, units in WIRE.items():
     rows = [x for x in sg.get(st, []) if x.get('url') == NPS]
     codes[st] = set(re.findall(r"'([A-Z]{4})'", rows[0].get('where', ''))) if len(rows) == 1 else set()
     check(len(rows) == 1 and rows[0]['nm'] == 'UNIT_NAME' and codes[st] == want, f'{st}: the NPS LRD layer is listed once, for {"+".join(sorted(want))}')
-check(sorted(s for s, ls in sg.items() if any(x.get('url') == NPS for x in ls)) == ['AK', 'CA', 'CO', 'HI', 'MA', 'NE', 'NY', 'OH', 'PA', 'RI', 'SD', 'TX'], 'the other ten states are unchanged')
+# 23 Nov 2026 (owner 11:03 AM 'Fix it'; rule W11): 8 more states list the layer, each for its own saved answers' records only (OBJECTID IN)
+W11 = ['AL', 'AR', 'AZ', 'DC', 'FL', 'ID', 'LA', 'OR']
+check(sorted(s for s, ls in sg.items() if any(x.get('url') == NPS for x in ls)) == sorted(['AK', 'CA', 'CO', 'HI', 'MA', 'NE', 'NY', 'OH', 'PA', 'RI', 'SD', 'TX'] + W11), 'the other ten states are unchanged (and the 8 of W11 added)')
+check(all(len([x for x in sg[s] if x.get('url') == NPS]) == 1 and [x for x in sg[s] if x.get('url') == NPS][0]['where'].startswith('OBJECTID IN (') for s in W11), 'W11: each of the 8 lists it once, for named records only')
 lj = load(ROOT / 'data/us-key/layers.json')
 check(lj['sgakd'][0].split('/query')[0] == NPS, 'layers.json gives that layer the prefix sgakd (the key keys prefixes by address), so the ids stay sgakd1159 / sgakd1245')
 sys.path.insert(0, str(ROOT / '.github/scripts')); import kpc_overrides as _KOVR  # Nov 12 (KPC-Links #151): manifest + parts
