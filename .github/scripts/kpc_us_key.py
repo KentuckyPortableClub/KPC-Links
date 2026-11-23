@@ -2085,6 +2085,56 @@ def _saved_no(ref, rid, a):
     return rid in {str(y) for y in o.get('no') or []} or bool(KR.is_no(o, rid, a.get('Unit_Nm'), a.get('GIS_Acres')))
 
 
+RA_USED = {}
+_RA = [None]
+def record_attrs():
+    """{record id: {id field: value}} from KPC_RECORD_ATTRS (kpc_store_attrs.py), or {} when the switch has no file."""
+    if _RA[0] is None:
+        _RA[0] = {}
+        f = os.environ.get('KPC_RECORD_ATTRS') or ''
+        if f and os.path.isfile(f):
+            try:
+                with gzip.open(f, 'rt', encoding='utf-8') as fh: _RA[0] = json.load(fh).get('records') or {}
+            except Exception as e:  # noqa: BLE001
+                notice('US key', f'store id fields not read ({e}); the id checks use the saved copies only')
+    return _RA[0]
+
+
+def _maiden6(la, lo):
+    lo, la = lo + 180, la + 90
+    return (chr(65 + int(lo // 20)) + chr(65 + int(la // 10)) + str(int((lo % 20) // 2)) + str(int(la % 10))
+            + chr(97 + int((lo % 2) * 12)) + chr(97 + int((la % 1) * 24)))
+
+
+_GRIDS = {}
+def pota_grids(st):
+    """{park: POTA's own 6-character grid square} from the saved POTA list (data/pota/saved/parks/US-<st>.json.gz)."""
+    if st not in _GRIDS:
+        _GRIDS[st] = {}
+        try:
+            with gzip.open(f'data/pota/saved/parks/US-{st}.json.gz', 'rt', encoding='utf-8') as fh:
+                for p in json.load(fh).get('data') or []:
+                    if p.get('reference') and p.get('grid'): _GRIDS[st][p['reference']] = str(p['grid']).strip()
+        except Exception:  # noqa: BLE001
+            pass
+    return _GRIDS[st]
+
+
+def _grid_notes(st, parks, P, res):
+    """22 Nov 2026 (owner: "we have the grid squares of every park"): POTA's grid square is worked out from its pin for almost
+    every park; when the two disagree, the pin (or the grid) is wrong. A note for a person, counted; nothing moves."""
+    g, n = pota_grids(st), 0
+    for ref, p in parks.items():
+        r = P.get(ref) or []
+        if ref not in g or len(r) <= 6 or r[5] is None or r[6] is None or len(g[ref]) < 4: continue
+        try: mine = _maiden6(float(r[5]), float(r[6]))
+        except (TypeError, ValueError): continue
+        if g[ref][:6].upper() != mine[:len(g[ref][:6])].upper():
+            n += 1
+            if isinstance(p.get('match'), dict): p['match'].setdefault('notes', []).append('grid square differs from pin')
+    res['grid_differs'] = n
+
+
 def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
     """KPC owner, 20 Nov 2026 (APPROVED, docs/key-rules-change.txt): match by MORE than name (kpc_match_checks.pass_state).
     A same-kind id from POTA's own link confirms (and stands in for the name); any other name-joined record keeps drawing the
@@ -2104,6 +2154,16 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
         raise RuntimeError(f'US key {st}: KPC_MATCH_CHECKS is on but the layer table (.github/layer-agency-kind.json) is missing '
                            f'or unreadable ({e}): the state is held, never built without the rule') from e
     byid = {_oid(a): a for a in recs}
+    # 22 Nov 2026 (owner: "agency id ... the one for sure and the quickest"): in store mode the saved copies carry no agency id
+    # fields; the outline store's own records do (kpc_store_attrs.py -> KPC_RECORD_ATTRS). Their id fields are added to a COPY
+    # of each record the match checks read (SA), never to the record the key draws.
+    _ra = record_attrs()
+    if _ra:
+        for i, a in list(byid.items()):
+            x = _ra.get(i)
+            if x:
+                byid[i] = dict(a, SA=dict(x, **(a.get('SA') or {})))
+        RA_USED[st] = sum(1 for i in byid if i in _ra)
 
     def _pins_of(ref):
         r = P.get(ref) or []
@@ -2117,13 +2177,23 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
         return any(inside(la, lo, a['_g']) or (near(la, lo, a.get('_bb'), .01) and near_ring(la, lo, a['_g'], MC.NEAR_KM))
                    for la, lo in pts for a in shaped)
 
+    def _page_holds(ref, rid):
+        # 22 Nov 2026: a point on the park's own official page (not an office or mailing point) inside this record
+        a = byid.get(rid)
+        if not a or not rings(a.get('_g')): return None
+        pts = MC.page_pins(facts.get(ref))
+        if not pts: return None
+        return any(inside(la, lo, a['_g']) for la, lo in pts)
+
     def _holds(ref, rid):
         r, a = P.get(ref) or [], byid.get(rid)
         if not a or not rings(a.get('_g')) or len(r) <= 6 or r[5] is None or r[6] is None: return None
         return bool(inside(r[5], r[6], a['_g']))
 
     hits = []
-    res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL), st, MC.load_nps_units(), hits, _holds, table)
+    res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL), st, MC.load_nps_units(), hits, _holds, table,
+                        page_holds_fn=_page_holds)
+    _grid_notes(st, parks, P, res)
     res['facts'] = MC.facts_stamp(PFR.find())   # which park facts file decided (plan L6: a changed file is visible)
     for h in hits:
         MATCH_HIT.append([st] + h)
@@ -3476,7 +3546,11 @@ def run(st):
                                f"{_mc['parks']} joined parks; {_mc['gained']} record(s) joined by the park's own link id, {_mc['moved']} row(s) to check"
                                + (f"; own page: {_mc.get('second_name', 0)} by second name, {_mc.get('tract', 0)} tract(s), {_mc.get('parent', 0)} parent unit(s) "
                                   f"to check, {_mc.get('shared_record', 0)} shared record(s) to check; second-name near misses (report only): "
-                                  + ', '.join(f'{v} {w}' for w, v in (_mc.get('second_name_near') or {}).items()) if 'second_name' in _mc else ''))
+                                  + ', '.join(f'{v} {w}' for w, v in (_mc.get('second_name_near') or {}).items()) if 'second_name' in _mc else '')
+                               # 22 Nov 2026: the new witnesses, counted
+                               + f"; by id {_mc.get('by_id', 0)}, by page point {_mc.get('by_page point', 0)}, pieces kept by a page point "
+                                 f"{_mc.get('kept_by_page_point', 0)}; store id fields on {RA_USED.get(st, 0)} record(s); POTA grid square "
+                                 f"differs from the pin: {_mc.get('grid_differs', 0)}")
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),

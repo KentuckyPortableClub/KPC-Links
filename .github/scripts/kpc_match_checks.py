@@ -390,6 +390,7 @@ def page_pins(fact):
     if pg.get('own_page') != 'own' or pg.get('unofficial'): return []
     out = []
     for c in pg.get('coords') or []:
+        if isinstance(c, dict) and str(c.get('role') or '') in ('office', 'mailing'): continue   # 22 Nov: an office is not the park
         try:
             la, lo = (c.get('lat'), c.get('lon')) if isinstance(c, dict) else (c[0], c[1])
             la, lo = float(la), float(lo)
@@ -784,7 +785,7 @@ def outline_size(p, m):
 
 
 def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda ref, rid, a: False, skip=(), st='',
-               units=None, hits=None, holds_fn=None, layer_table=None):
+               units=None, hits=None, holds_fn=None, layer_table=None, page_holds_fn=None):
     """The whole pass for one state, shared by the US builder and the offline counter (one implementation).
     parks = the key's park rows (changed in place); recs = {record id: record}; place_fn(ref, [record ids]) -> True / False /
     None (pin inside or near; used to join a record by the park's link id); holds_fn(ref, record id) -> True / False / None
@@ -912,6 +913,9 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         out['parks'] += 1
         held = {}
         holds = lambda i: held.setdefault(i, holds_fn(ref, i))
+        # 22 Nov 2026 (owner: "more options to match other than name"): a point on the park's own official page inside a record
+        page_in = {}
+        on_page = lambda i: page_in.setdefault(i, (page_holds_fn(ref, i) is True) if page_holds_fn else False)
         drop = []
         for q in m:
             i = str(q[0]); rec = recs.get(i)
@@ -930,7 +934,9 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if compilation_kind_clash(nm, q[1], rec, layer_table):
                 drop.append((q, "kind: a compilation layer's record (no agency vote) names another kind of place than the park")); continue
             if national_flag(q, m, recs, nm): drop.append((q, "national: a national-layer record of another level of government than the park's name")); continue
-            if pin_3c(q, m, holds, nm): drop.append((q, "place: POTA's pin is in another of the park's records, none of this record's name")); continue
+            if pin_3c(q, m, holds, nm):
+                if on_page(i): out['kept_by_page_point'] = out.get('kept_by_page_point', 0) + 1; continue   # the park's own page puts it here
+                drop.append((q, "place: POTA's pin is in another of the park's records, none of this record's name")); continue
             if kind_check(typ, rec) == 'differs': notes.append('kind')                 # advisory only
         for q, w in drop: to_check(p, [q], w); out['moved'] += 1; hits.append([ref, reason_of(w), str(q[0])]); why.append(reason_of(w))
         left = p.get('m') or []
@@ -953,6 +959,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if id_ok: st_, how = 'confirmed', 'id'
             elif sv[0] == 'agrees': st_, how = 'confirmed', 'size'
             elif link_nm == 'strong' and place_ok: st_, how = 'confirmed', 'link'
+            elif link_nm in ('strong', 'part') and any(on_page(str(q[0])) for q in left): st_, how = 'confirmed', 'page point'
             else: st_ = 'outlined'
         p['match'] = {'status': st_, 'why': sorted(set(why))}
         if notes: p['match']['notes'] = sorted(set(notes))
@@ -960,7 +967,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         if id_ok: p['match']['id'] = f'{kind} {val}'
         if link_nm == 'strong': p['match']['link'] = 'strong'
         out[st_] += 1
-        if how: out['by_' + how] += 1
+        if how: out['by_' + how] = out.get('by_' + how, 0) + 1
         for w in set(why): out['why'][w] = out['why'].get(w, 0) + 1
         for w in set(notes): out['notes'][w] = out['notes'].get(w, 0) + 1
     return out

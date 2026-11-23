@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+"""kpc_store_attrs.py (22 Nov 2026, owner: "agency id wouldnt that be the one for sure and the quickest"): the agency id
+fields of every record the outline store holds, for the key's match checks in store mode. The saved copies the keys read
+(boundary-cache, early November) were trimmed before the id fields were kept (keep-record-fields.json, 21 Nov), so the id
+checks found almost nothing there. The store's own files keep each record's attributes; this tool takes from them ONLY the
+fields the id checks read (the keep-list's fields, the link-id ties' fields, the Park Service unit code and the id kinds'
+own fields) and writes one small file the key reads with KPC_RECORD_ATTRS:
+    {"about": ..., "made": ..., "records": {record id as the key spells it: {field: value}}}
+Record ids: a PAD-US record by its number, any other by its layer letters + number (sgtxd124), the same as the key.
+Never a WDPA field. Reads files only; nothing is fetched.
+  python kpc_store_attrs.py --store <store results folder> --out record-attrs.json.gz     (--selftest)"""
+import argparse, datetime, glob, gzip, json, os, re, sys, tempfile
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+WDPA = re.compile(r'wdpa', re.I)
+MAX_TEXT = 300
+
+
+def wanted_fields(gh=None):
+    """Lower-case field names the id checks read."""
+    gh = gh or os.path.join(HERE, '..')
+    out = {'unit_code', 's_loc_nm', 'loc_nm', 'mang_name'}
+    try:
+        for v in (json.load(open(os.path.join(gh, 'keep-record-fields.json'))).get('layers') or {}).values():
+            out |= {str(f).lower() for f in v.get('fields') or []}
+    except (OSError, ValueError):
+        pass
+    try:
+        for t in json.load(open(os.path.join(gh, 'link-id-ties.json'))).get('ties') or []:
+            if t.get('field'): out.add(str(t['field']).lower())
+    except (OSError, ValueError):
+        pass
+    try:
+        sys.path.insert(0, HERE)
+        import kpc_match_checks as MC
+        for spec in MC.ID_KINDS.values():
+            out |= {str(f).lower() for f in spec.get('sa') or ()}
+    except Exception:  # noqa: BLE001
+        pass
+    return {f for f in out if f and not WDPA.search(f)}
+
+
+def record_key(r):
+    layer, rid = str(r.get('layer') or ''), str(r.get('record_id') or '')
+    if layer == 'PAD-US':
+        return rid if rid.isdigit() else ''
+    k = str(r.get('key') or '')
+    return k if re.fullmatch(r'[a-z]+\d+', k) else ''
+
+
+def run(store, out, gh=None, today=None):
+    want = wanted_fields(gh)
+    recs, files = {}, 0
+    for path in sorted(glob.glob(os.path.join(store, '*.kpcstore.json.gz'))):
+        if '.prev.' in os.path.basename(path):
+            continue
+        files += 1
+        with gzip.open(path, 'rt', encoding='utf-8') as f:
+            d = json.load(f)
+        for p in d.get('parks') or []:
+            for r in p.get('records') or []:
+                k = record_key(r)
+                if not k:
+                    continue
+                a = r.get('attributes') or {}
+                got = {str(n): v for n, v in a.items() if str(n).lower() in want and v not in (None, '', ' ')
+                       and isinstance(v, (str, int, float)) and not isinstance(v, bool) and len(str(v)) <= MAX_TEXT}
+                if got:
+                    recs.setdefault(k, {}).update(got)
+    doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
+                    'Only the fields the id checks read; never WDPA. Collects, does not decide.',
+           'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs}
+    tmp = out + '.tmp'
+    with gzip.open(tmp, 'wt', encoding='utf-8') as f:
+        json.dump(doc, f, ensure_ascii=False, separators=(',', ':'))
+    os.replace(tmp, out)
+    print(f'Store id fields: {len(recs):,} records from {files} store files -> {out}')
+    return 0
+
+
+def selftest():
+    with tempfile.TemporaryDirectory() as t:
+        st = os.path.join(t, 'store'); os.mkdir(st)
+        park = {'ref': 'K4-0001', 'records': [
+            {'key': 'sgzza7', 'layer': 'sgzza', 'record_id': '7', 'attributes': {'URL': 'https://dec.ny.gov/lands/123.html', 'Notes': 'x' * 50, 'WDPA_Cd': 5}},
+            {'key': '3422', 'layer': 'PAD-US', 'record_id': '3422', 'attributes': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST', 'GIS_Acres': 4}},
+            {'key': 'point-circle', 'layer': 'point-circle', 'record_id': '', 'attributes': {'URL': 'x'}}]}
+        with gzip.open(os.path.join(st, 'US-ZZ.kpcstore.json.gz'), 'wt') as f: json.dump({'parks': [park]}, f)
+        with gzip.open(os.path.join(st, 'US-ZZ.kpcstore.prev.json.gz'), 'wt') as f: json.dump({'parks': [{'records': [{'key': 'sgold1', 'layer': 'sgold', 'record_id': '1', 'attributes': {'URL': 'old'}}]}]}, f)
+        gh = os.path.join(t, 'gh'); os.mkdir(gh)
+        json.dump({'layers': {'x': {'fields': ['Comments', 'WDPA_Cd']}}}, open(os.path.join(gh, 'keep-record-fields.json'), 'w'))
+        json.dump({'ties': [{'field': 'URL'}]}, open(os.path.join(gh, 'link-id-ties.json'), 'w'))
+        o = os.path.join(t, 'a.json.gz'); run(st, o, gh, '2026-11-22')
+        d = json.load(gzip.open(o, 'rt'))
+        ok = d['records'] == {'sgzza7': {'URL': 'https://dec.ny.gov/lands/123.html'}, '3422': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST'}}
+    print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']))
+    return 0 if ok else 1
+
+
+if __name__ == '__main__':
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--store'); ap.add_argument('--out', default='record-attrs.json.gz'); ap.add_argument('--selftest', action='store_true')
+    a = ap.parse_args()
+    sys.exit(selftest() if a.selftest else run(a.store, a.out))

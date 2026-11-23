@@ -718,6 +718,14 @@
    "from": "89c8814d9d0c",
    "why": "The park's own agency page helps the match (owner 22 Nov 2026 3:47 PM 'Yes' and 3:55 PM 'go for all'; notes/mapping.md plan P1-P7, rule sheet PN): P1 the page's clean total acres witness the size; P2 the page's own name joins the one record of exactly that name that holds POTA's pin (never a site heading, never another park's name); P4 the tracts the page names join their records on the park's own layer within 5 km; P5 a bigger unit the page says the park lies inside never stays as its outline; P6 nothing from a page that is not the park's own; P7 a record two parks claim by name stays with the park whose name and kind fit it (equal fits keep both); and check 4 leaves 'State' out on both sides. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-22-witnesses-page-point-store-ids-grid",
+   "when": "2026-11-22",
+   "from": "7e2040a74d06",
+   "why": "More witnesses than the name (owner 22 Nov 7:52-8:01 PM). (1) A point on the park's own official page (not an office or mailing point) inside a record keeps a piece the pin rule 3c would send to check, and with a link name that agrees (strong or part) it confirms the park ('page point'). (2) In store mode the outline store's id fields (kpc_store_attrs.py, KPC_RECORD_ATTRS) are added to a copy of each record the match checks read, so the id kinds and link-id ties (NPS unit code, MN DNR, NY DEC page number, CA State Parks page id, MT FWP lands id) can vote; the drawn record is never changed. (3) POTA's grid square is compared with its pin: a note for a person, nothing moves. All counted in the match-checks line. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "DRAFT: NOT REVIEWED"
   }
  ]
 }
