@@ -2203,6 +2203,27 @@ def pota_grids(st):
     return _GRIDS[st]
 
 
+def _page_point_checks(st, parks, byid, facts, res):
+    """22 Nov 2026 (owner 8:55 PM ruling W-G3, "Check list"): a park with no outline (pin only) whose OWN official page gives a
+    point (not an office or mailing point) inside a piece of land gets that piece on its check list for a person, never drawn.
+    A piece a person already said no to, or already on the list, is not added again. Counted."""
+    n = 0
+    for ref, p in parks.items():
+        if p.get('m'): continue
+        pts = MC.page_pins(facts.get(ref))
+        if not pts: continue
+        have = {str(x[0]) for x in p.get('c') or []}
+        o = OVR.get(ref) or {}
+        no = {str(x) for x in o.get('no') or []}
+        for i, a in byid.items():
+            if i in have or i in no or not a.get('_bb') or not rings(a.get('_g')): continue
+            if not any(near(la, lo, a['_bb'], 0) and inside(la, lo, a['_g']) for la, lo in pts): continue
+            p['c'] = list(p.get('c') or []) + [[a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', round(a.get('GIS_Acres') or 0),
+                                                 "check (page point: the park's own page puts a point inside this land; a person decides)"]]
+            have.add(i); n += 1
+    res['page_point_checks'] = n
+
+
 def _grid_notes(st, parks, P, res):
     """22 Nov 2026 (owner: "we have the grid squares of every park"): POTA's grid square is worked out from its pin for almost
     every park; when the two disagree, the pin (or the grid) is wrong. A note for a person, counted; nothing moves."""
@@ -2277,6 +2298,7 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
     res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL), st, MC.load_nps_units(), hits, _holds, table,
                         page_holds_fn=_page_holds)
     _grid_notes(st, parks, P, res)
+    _page_point_checks(st, parks, byid, facts, res)
     res['facts'] = MC.facts_stamp(PFR.find())   # which park facts file decided (plan L6: a changed file is visible)
     for h in hits:
         MATCH_HIT.append([st] + h)
@@ -3638,7 +3660,8 @@ def run(st):
                                # 22 Nov 2026: the new witnesses, counted
                                + f"; by id {_mc.get('by_id', 0)}, by page point {_mc.get('by_page point', 0)}, pieces kept by a page point "
                                  f"{_mc.get('kept_by_page_point', 0)}; store id fields on {RA_USED.get(st, 0)} record(s); POTA grid square "
-                                 f"differs from the pin: {_mc.get('grid_differs', 0)}")
+                                 f"differs from the pin: {_mc.get('grid_differs', 0)}; pin-only parks given a page-point check row: "
+                                 f"{_mc.get('page_point_checks', 0)}")
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
