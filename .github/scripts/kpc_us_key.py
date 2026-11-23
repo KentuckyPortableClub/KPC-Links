@@ -3691,7 +3691,8 @@ def run(st):
                                # 23 Nov 2026: the page's own name and its map link, counted
                                + f"; by page name {_mc.get('by_page name', 0) + _mc.get('by_page name and point', 0)}, by map link name "
                                  f"{_mc.get('by_map link name', 0)}; pin-only parks given a map-link check row: {_mc.get('map_name_checks', 0)}; joined parks whose "
-                                 f"map link names another record: {_mc.get('map_link_moved', 0)} moved to check, {_mc.get('map_link_other', 0)} noted")
+                                 f"map link names another record: {_mc.get('map_link_moved', 0)} moved to check, {_mc.get('map_link_other', 0)} noted; records outside the county the "
+                                 f"page names, moved to check: {_mc.get('county_moved', 0)}")
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
