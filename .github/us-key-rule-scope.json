@@ -839,6 +839,14 @@
     "why": "W-G6 tightened (the owner's 'did you make it worse' check, 23 Nov 2026 ~3 PM): a 'near a town' point is approximate; it never moves land POTA's pin lies in or by, nor land inside a county the same page names. Measured on the saved US keys with the 23 Nov park facts against the code as of the owner's 7:12 AM merges: 0 parks worse (was 1: a trail park confirmed by its link lost its land to a town line 36 km off), 22 better (21 confirmed near a town, 1 pin to outline). Scope none: no park is rebuilt until the owner starts a build.",
     "scope": "none",
     "approved": "owner's ruling W-G6 (6:37 AM); the guard is narrower than the rule merged at 1:55 PM; merged only on his own review"
+  },
+  {
+    "id": "2026-11-23-job8-canada-pass-shared",
+    "when": "2026-11-23",
+    "from": "d57b94088135",
+    "why": "kpc_match_checks.py (a US rule file) gains canada_pass for the Canada key (job 8). The US pass is untouched: no US join result changes.",
+    "scope": "none",
+    "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (job 8); merged only on his own review"
   }
  ]
 }

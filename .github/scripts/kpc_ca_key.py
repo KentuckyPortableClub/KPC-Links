@@ -19,6 +19,8 @@ import kpc_key_facts as KF  # noqa: E402  (links-10: pin distance + record kind 
 import kpc_source_fields as SF  # noqa: E402  (Nov 6: the one source-field table)
 import kpc_tracts as TR  # noqa: E402  (Nov 6: tract records + parks inside parks, side file)
 import kpc_master as KMASTER  # noqa: E402  (the one complete-read helper; not a rule file)
+import kpc_match_checks as MC  # noqa: E402  (job 8, KPC owner 23 Nov 2026: the US proofs on the Canada key)
+import kpc_park_facts_read as PFR  # noqa: E402
 try: import kpc_key_rules as KR  # noqa: E402  (Handoff 8: the rule switches, kpc_key_rules.DEFAULTS; a missing file = every switch off)
 except Exception: KR = None  # noqa: BLE001
 def _kr(name): return KR is not None and KR.on(name)
@@ -813,6 +815,12 @@ except Exception as _e: notice('Canada hard look', f'stopped: {str(_e)[:150]}') 
 by = {}
 for ref, x in P.items(): by.setdefault((x[10] if len(x) > 10 else '') or 'XX', {})[ref] = x
 idx = {}
+# Job 8 (KPC owner 23 Nov 2026 2:12 PM, approving the outside agent's count; 4:43 PM 'Do it'): the US proofs confirm Canadian
+# parks (kpc_match_checks.canada_pass: size, link, page point, page name); the size check sends a name join 3 times off the
+# agency's own figure to the check list. No park facts file = the pass does not run (the key is built as before) and says so.
+try: _CA_FACTS = {k: v for k, v in (PFR.parks() or {}).items() if str(k).startswith('CA-')}
+except Exception as _e: _CA_FACTS = {}; notice('Canada match checks', f'park facts not read ({str(_e)[:80]}): the proofs did not run')  # noqa: BLE001
+PINUSE, MCC = {}, {}
 for pv, parks_in in sorted(by.items()):
     parks, used = {}, set()
     _pins = [(x[5], x[6]) for x in parks_in.values() if x[5] or x[6]]
@@ -824,6 +832,7 @@ for pv, parks_in in sorted(by.items()):
         if not la and not lo: la = lo = None   # Oct 18: POTA has no pin for ~200 Canadian parks (0,0): match by name in the province only
         elif abs(la) > 90:                      # Oct 25: POTA has a few pins with latitude and longitude swapped (Churchill WMA 92.6, -57.1): Canada is north + west
             la, lo = abs(lo), -abs(la)
+        PINUSE[ref] = (la, lo)
         kp = kinds(name) | kinds(typ)
         m, c = [], []
         NEAR = around(la, lo)
@@ -926,7 +935,20 @@ for pv, parks_in in sorted(by.items()):
                     swap = [r for r in NEAR if (_nf(r['n']) in jn or _nf(r['nf']) in jn) and str(r['oid']) not in mids
                             and near(la, lo, r['_bb'], 0) and apart(r['_bb']) and rings(r.get('_g')) and inside(la, lo, r['_g'])]
                     if swap: parks[ref]['swap'] = [[r['oid'], r['n'] or r['nf'], acres(r)] for r in swap[:2]]
-    cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
+    if _CA_FACTS:
+        def _cplace(ref, ids):
+            la_, lo_ = PINUSE.get(ref, (None, None))
+            if la_ is None: return None
+            sh = [RID[i] for i in ids if i in RID and rings(RID[i].get('_g'))]
+            if not sh: return None
+            return any(inside(la_, lo_, r['_g']) or (near(la_, lo_, r['_bb'], .01) and (MC.km_to_record(la_, lo_, r) or 9e9) <= MC.NEAR_KM) for r in sh)
+        def _cpage(ref, rid):
+            r, pts = RID.get(str(rid)), MC.page_pins(_CA_FACTS.get(ref))
+            if not r or not rings(r.get('_g')) or not pts: return None
+            return any(inside(a, b, r['_g']) for a, b in pts)
+        MCC[pv] = MC.canada_pass(parks, {}, _CA_FACTS, _cplace, _cpage)
+    cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']),
+           'confirmed': sum(1 for p in parks.values() if (p.get('match') or {}).get('status') == 'confirmed'), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
            'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a')),
            'pin_outside': sum(1 for p in parks.values() if p.get('far')),
            'pin_well_outside': sum(1 for p in parks.values() if p.get('far') == 'well outside'),
@@ -951,6 +973,16 @@ for pv, parks_in in sorted(by.items()):
     PENDING[-1] += (R / f'CA-{pv}.md', '\n'.join(L) + '\n')
     idx[pv] = cnt
     print(f"{pv}: {cnt['parks']} parks, {cnt['matched']} joined, {cnt['check']} check, {cnt['none']} none", flush=True)
+if MCC:
+    _t = {}
+    for _v in MCC.values():
+        for _k, _n in _v.items():
+            if isinstance(_n, int): _t[_k] = _t.get(_k, 0) + _n
+    notice('Canada match checks', f"{_t.get('confirmed', 0)} confirmed, {_t.get('outlined', 0)} outlined, {_t.get('pin', 0)} pin only; "
+           f"by size {_t.get('by_size', 0)}, link {_t.get('by_link', 0)}, page point {_t.get('by_page point', 0)}, page name {_t.get('by_page name', 0)}, "
+           f"page name and point {_t.get('by_page name and point', 0)}; {_t.get('moved', 0)} row(s) to check by size (job 8)")
+elif not _CA_FACTS:
+    notice('Canada match checks', 'no park facts file: the proofs did not run (the key is built as before)')
 _all = {ref: p for _pv, _o, *_ in PENDING for ref, p in _o['parks'].items()}
 _bad = []
 for _ref, _nm in GATE_REFS.items():

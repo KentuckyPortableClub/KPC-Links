@@ -90,6 +90,8 @@ RULE_FILES['us-key'].append('.github/layer-agency-kind.json')
 # Canada and world keys also run kpc_park_facts_read.py (sizes feed the size check), so it is a rule file there too.
 RULE_FILES['ca-key'].append('.github/scripts/kpc_park_facts_read.py')
 RULE_FILES['world-key'].append('.github/scripts/kpc_park_facts_read.py')
+# Job 8 (KPC owner, 23 Nov 2026 2:12 PM + 4:43 PM 'Do it'): the Canada key runs the match checks' Canada pass (canada_pass)
+RULE_FILES['ca-key'].append('.github/scripts/kpc_match_checks.py')
 # KPC owner, 2026-11-21 (job B): the keep-list of agency id fields (and the module that reads it) decide what a saved record carries
 RULE_FILES['us-key'].append('.github/keep-record-fields.json')
 RULE_FILES['us-key'].append('.github/scripts/kpc_source_fields.py')
