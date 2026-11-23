@@ -1,4 +1,4 @@
-{"about":"WWFF -> POTA cross reference (KFF, part 2 of 2), written by .github/scripts/kpc_wwff_links.py; only status confirmed is used by the site (locations.json column 8 / data/canada.json). checked_date = the day this row last got its current answer.","credit":"VEFF-POTA cross reference list by VE3ZN (Aug 2025); KFF-POTA cross reference (2018); KFF County Database, KA2LHO et al., 2025-02-08","checked":"2026-11-16","columns":["wwff_ref","wwff_name","region","pota_ref","link_source","status","distance_km","checked_date","note"],"counts":{"proposed":123,"confirmed":3094,"conflict":42,"none":281},"rows":[
+{"about":"WWFF -> POTA cross reference (KFF, part 2 of 2), written by .github/scripts/kpc_wwff_links.py; only status confirmed is used by the site (locations.json column 8 / data/canada.json). checked_date = the day this row last got its current answer.","credit":"VEFF-POTA cross reference list by VE3ZN (Aug 2025); KFF-POTA cross reference (2018); KFF County Database, KA2LHO et al., 2025-02-08","checked":"2026-11-23","columns":["wwff_ref","wwff_name","region","pota_ref","link_source","status","distance_km","checked_date","note"],"counts":{"proposed":123,"confirmed":3094,"conflict":42,"none":281},"rows":[
 ["KFF-4000","Saxis","VA","US-4000","community-KFF-2025+community-KFF-2018","proposed","","2026-11-14","POTA park not on today's POTA list"],
 ["KFF-4001","Stewarts Creek","VA","US-4001","community-KFF-2025+community-KFF-2018","proposed","","2026-11-14","POTA park not on today's POTA list"],
 ["KFF-4002","Turkeycock","VA","US-4002","community-KFF-2025+community-KFF-2018","proposed","","2026-11-14","POTA park not on today's POTA list"],
@@ -463,7 +463,7 @@
 ["KFF-4465","Boise","ID","US-4474","repo+community-KFF-2025","confirmed",34.68,"2026-11-14",""],
 ["KFF-4466","Caribou (ID)","ID","US-4475","repo+community-KFF-2025+community-KFF-2018","confirmed",48.33,"2026-11-14",""],
 ["KFF-4467","Clearwater","ID","US-4476","repo+community-KFF-2025+community-KFF-2018","confirmed",27.04,"2026-11-14",""],
-["KFF-4468","Coeur d\\\\\\'Alene","ID","US-4477","community-KFF-2025","proposed",54.62,"2026-11-14","one source only"],
+["KFF-4468","Coeur d'Alene","ID","US-4477","community-KFF-2025","proposed",54.62,"2026-11-14","one source only"],
 ["KFF-4469","St. Joe","ID","US-4477","repo+community-KFF-2025","confirmed",139.46,"2026-11-14",""],
 ["KFF-4470","Kaniksu (ID)","ID","US-4477","repo+community-KFF-2025","confirmed",31.58,"2026-11-14",""],
 ["KFF-4471","Nez Perce","ID","US-4478","repo+community-KFF-2025+community-KFF-2018+rule-same-name-close-pin","confirmed",0.03,"2026-11-14",""],
@@ -537,7 +537,7 @@
 ["KFF-4539","Gilchrist Blue Springs","FL","US-11223","repo+community-KFF-2025","confirmed",0.51,"2026-11-14",""],
 ["KFF-4540","Caumsett","NY","US-8628","community-KFF-2025","proposed",1.6,"2026-11-14","one source only"],
 ["KFF-4541","Connetquot River","NY","US-4519","repo+community-KFF-2025+community-KFF-2018+rule-name-distance","confirmed",1.35,"2026-11-14",""],
-["KFF-4542","Molly\\'s Falls Pond","VT","US-4589","repo+community-KFF-2025","confirmed",0.09,"2026-11-14",""],
+["KFF-4542","Molly's Falls Pond","VT","US-4589","repo+community-KFF-2025+rule-same-name-close-pin","confirmed",0.09,"2026-11-23",""],
 ["KFF-4543","Muckross","VT","US-4590","repo+community-KFF-2025+rule-same-name-close-pin","confirmed",0.02,"2026-11-14",""],
 ["KFF-4544","Taconic Mountains Ramble","VT","US-4588","repo+community-KFF-2025+rule-same-name-close-pin","confirmed",0.05,"2026-11-14",""],
 ["KFF-4545","Fort Bridger","WY","US-6224","repo+community-KFF-2025+rule-same-name-close-pin","confirmed",0.34,"2026-11-14",""],
