@@ -32,6 +32,14 @@ No new rule. Point the US proofs the owner already ruled (id, link, size witness
 
 16 of the 22 wetland-district parks keep an outline (layer `fws`); 6 are pin only. The saved copies hold 897 records naming a wetland district or waterfowl production area (fws 393, padus 422, state layers 82). For the 6 (counts, no names): how many records of the saved copies sit within 5 km of each pin, which layer, whether one names the district, and whether the agency is the Fish and Wildlife Service. Done when: the 6 sorted into "a saved record fits", "records nearby but none names it", "nothing saved nearby". Nothing goes to the keeper (that is KPC-Store, not yours).
 
+## Job 4b (owner's ruling 23 Nov 2026 ~2 PM: "1 ill let the other agent do it"). Tighten W8 to your safe version
+
+The owner chose your safer version over W8 as merged. BUILD it (this one IS a rule change, so it goes as a draft PR on KPC-Links, merged only on his own review):
+- A record that shares the park's name is the park's own piece (not "another place") only with the EXACT name or another spelling, the SAME agency, and touching or within 500 m of the park's other joined land. Plus your narrow rule for the one Wisconsin forest whose POTA name covers two units.
+- Your count to repeat on the saved keys: 654 rows cleared, 1 risky (W8 today: 756, 19 risky).
+- Code: `kpc_match_checks.py` (`own_piece`, `pin_3c`). The PR must bring: a rule-sheet line (mapping.md, rule sheet W, "W8b"), a test that fails without it, a scope entry in `.github/us-key-rule-scope.json`, the new US hash and a changelog line at the TOP of `docs/key-rules-change.txt` with "<old> -> <new>" and "APPROVED, decided_by KPC owner, 2026-11-23", then `python3 .github/scripts/kpc_preflight.py --quick` green. No build: the fact check and the gold score come with the one build.
+- Draft PR #358 (W-G6) also changes `kpc_match_checks.py`: work from main, and say in your PR that #358 is open.
+
 ## After these
 
 Tell the owner; the matching chat reads your reports and brings him any rule change as a draft PR.
