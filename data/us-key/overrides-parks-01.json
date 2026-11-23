@@ -59,22 +59,11 @@
      111
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Fort Morgan' (chat 11 (Oct 31); applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgaki383567",
-     "fp": [
-      "Fort Morgan",
-      111
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgaki383567"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgaki383567 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 13:05: layers row YES 'Fort Morgan' (chat 11 (Oct 31); applied by kpc_key_answers)"
   },
   "US-0036": {
    "fp": {
@@ -1137,22 +1126,11 @@
      1
     ]
    },
-   "when": "2026-11-02",
-   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgakd935",
-     "fp": [
-      "Hamilton Grange National Memorial",
-      1
-     ],
-     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgakd935"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgakd935 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)"
   },
   "US-0782": {
    "join": [
@@ -8182,22 +8160,11 @@
      261
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cape May Point State Park' (chat 11; applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgnjb304",
-     "fp": [
-      "Cape May Point State Park",
-      261
-     ],
-     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgnjb304"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgnjb304 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 12:49: layers row YES 'Cape May Point State Park' (chat 11; applied by kpc_key_answers)"
   },
   "US-1611": {
    "fp": {
@@ -11304,22 +11271,11 @@
      198
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Amsterdam Beach' (chat 11; applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgnyb533",
-     "fp": [
-      "Amsterdam Beach",
-      198
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgnyb533"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgnyb533 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 12:49: layers row YES 'Amsterdam Beach' (chat 11; applied by kpc_key_answers)"
   },
   "US-2007": {
    "fp": {
@@ -11536,22 +11492,11 @@
      728
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Camp Hero' (chat 11; applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgnyb530",
-     "fp": [
-      "Camp Hero",
-      728
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgnyb530"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgnyb530 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 12:49: layers row YES 'Camp Hero' (chat 11; applied by kpc_key_answers)"
   },
   "US-2027": {
    "fp": {
@@ -12132,22 +12077,11 @@
      802
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hither Hills' (chat 11; applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgnyb786",
-     "fp": [
-      "Hither Hills",
-      802
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgnyb786"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgnyb786 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 12:49: layers row YES 'Hither Hills' (chat 11; applied by kpc_key_answers)"
   },
   "US-2079": {
    "fp": {
@@ -12488,22 +12422,11 @@
      165
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Montauk Downs' (chat 11; applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgnyb534",
-     "fp": [
-      "Montauk Downs",
-      165
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgnyb534"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgnyb534 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 12:49: layers row YES 'Montauk Downs' (chat 11; applied by kpc_key_answers)"
   },
   "US-2109": {
    "fp": {
@@ -12512,22 +12435,11 @@
      774
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Montauk Point' (chat 11; applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgnyb523",
-     "fp": [
-      "Montauk Point",
-      774
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgnyb523"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgnyb523 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 12:49: layers row YES 'Montauk Point' (chat 11; applied by kpc_key_answers)"
   },
   "US-2110": {
    "fp": {
@@ -12874,22 +12786,11 @@
      101
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Shadmoor' (chat 11; applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgnyb536",
-     "fp": [
-      "Shadmoor",
-      101
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgnyb536"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgnyb536 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 12:49: layers row YES 'Shadmoor' (chat 11; applied by kpc_key_answers)"
   },
   "US-2141": {
    "fp": {
@@ -32047,22 +31948,11 @@
      84
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Gunnison Massacre Site' (chat 11 (Oct 31); applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgaki400083",
-     "fp": [
-      "Gunnison Massacre Site",
-      84
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgaki400083"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgaki400083 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 13:05: layers row YES 'Gunnison Massacre Site' (chat 11 (Oct 31); applied by kpc_key_answers)"
   },
   "US-6012": {
    "fp": {

@@ -187,10 +187,30 @@ def protected_parks(keys, facts):
     return out
 
 
+def wired_layers(keys):
+    """{state: {layer prefix}}: the state layers data/state-gis.json sets to be read for each state (their prefixes from the key's
+    layers.json, by address). A saved answer on such a layer whose record is not in the saved copy yet WAITS for it (the owner's
+    accepted wirings: the NPS legal boundaries for CA / TX, the National Register records of 9 states); it is never retired."""
+    root = os.path.join(keys, '..', '..')
+    try:
+        sg = json.load(open(os.path.join(root, 'data', 'state-gis.json'), encoding='utf-8')).get('states') or {}
+        lj = json.load(open(os.path.join(keys, 'layers.json'), encoding='utf-8'))
+    except (OSError, ValueError):
+        return {}
+    by_url = {str(v[0]).split('/query')[0].rstrip('/'): k for k, v in lj.items() if str(k).startswith('sg') and isinstance(v, list) and v}
+    out = collections.defaultdict(set)
+    for st, lays in sg.items():
+        for l in lays or []:
+            k = by_url.get(str((l or {}).get('url') or '').rstrip('/'))
+            if k: out[st].add(k)
+    return out
+
+
 def cmd_fix(a):
     c, by_st, plans, doc = walk(a, True)
     parks = doc['parks']
     protected = protected_parks(a.keys, json.load(gzip.open(a.facts, 'rt'))['parks'])
+    wired = wired_layers(a.keys)
     k = collections.Counter()
     for ref, st, want, plan in plans:
         ov = parks[ref]
@@ -202,6 +222,8 @@ def cmd_fix(a):
             k['kept: a trail line or wild and scenic river park (pinned by its own sheet)'] += 1; continue
         if plan[0] == 'retire' and plan[1].startswith('the layer it came from'):
             k['kept: waits for its layer to be saved for this state'] += 1; continue   # an accepted cross-state answer waits; never retired
+        if plan[0] == 'retire' and fam(want) in wired.get(st, set()):
+            k['kept: its layer is wired for this state, waits for the saved copy'] += 1; continue
         i = join.index(want)
         kind = plan[0]
         if kind == 'renumber':
@@ -231,7 +253,7 @@ def cmd_fix(a):
     print(f'after the batch (with next state + all parcels): found {c2["found"]:,}, not found {c2["none"]:,}, fit two {c2["two"]:,}')
     print('  still not found, by why: ' + ', '.join(f'{n} {w}' for w, n in sorted(collections.Counter(
         ('kept signed or decided' if (parks[r].get('evidence') or parks[r].get('decided_by')) else 'kept pinned park' if r in protected
-         else 'waits for its layer' if p[1].startswith('the layer it came from') else 'other') for r, s, w, p in plans2).items())))
+         else 'waits for its layer' if p[1].startswith('the layer it came from') else 'wired, waits for the saved copy' if fam(w) in wired.get(s, set()) else 'other') for r, s, w, p in plans2).items())))
     return 0
 
 

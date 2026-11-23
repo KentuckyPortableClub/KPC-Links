@@ -7,8 +7,8 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "2d7078b5e3ef71540c52bafd0d04442809d0d2feaf16b56d2f8d119a38aa4a41",
-  "overrides-parks-02.json": "41ba82861896e5606a3d6bd3534e2948de2f345f4a2d851b51a7275f44202c16"
+  "overrides-parks-01.json": "148c86600c3f6d339d07c9e7d65865e66d53163a8466bed60245227074002158",
+  "overrides-parks-02.json": "ff0c48acbaec4a10ec08f5e9d5372aa06503e0192c6e4fa97c0b5dbfdb5a58ca"
  },
  "parks": {
   "US-0043": {

@@ -3158,22 +3158,11 @@
      40032
     ]
    },
-   "when": "2026-11-03",
-   "why": "2026-11-02 13:05: layers row YES 'Arabia Mountain National Heritage Area' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Arabia Mountain National Heritage Area' (auto recheck (AUTO-1); applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sggae56",
-     "fp": [
-      "Arabia Mountain National Heritage Area",
-      40032
-     ],
-     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sggae56"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sggae56 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-03",
+   "why": "2026-11-02 13:05: layers row YES 'Arabia Mountain National Heritage Area' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Arabia Mountain National Heritage Area' (auto recheck (AUTO-1); applied by kpc_key_answers)"
   },
   "US-7140": {
    "alias": [
@@ -10093,22 +10082,11 @@
      66
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Rush Lake (Osceola) WMA' (chat 11; applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgiac106173",
-     "fp": [
-      "Rush Lake (Osceola) WMA",
-      66
-     ],
-     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgiac106173"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgiac106173 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 12:49: layers row YES 'Rush Lake (Osceola) WMA' (chat 11; applied by kpc_key_answers)"
   },
   "US-9335": {
    "fp": {
@@ -12336,22 +12314,11 @@
      470
     ]
    },
-   "when": "2026-11-02",
-   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Amache National Historic Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Amache National Historic Site' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgakd1244",
-     "fp": [
-      "Amache National Historic Site",
-      470
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgakd1244"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgakd1244 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Amache National Historic Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Amache National Historic Site' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)"
   },
   "US-9684": {
    "fp": {
@@ -24176,22 +24143,11 @@
      40
     ]
    },
-   "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Walking Box Ranch' (chat 11 (Oct 31); applied by kpc_key_answers)",
-   "retired_join": [
-    {
-     "id": "sgaki397402",
-     "fp": [
-      "Walking Box Ranch",
-      40
-     ],
-     "why": "record gone: nothing of that name near the pin",
-     "when": "2026-11-23"
-    }
+   "join": [
+    "sgaki397402"
    ],
-   "fixed": [
-    "2026-11-23: saved answer sgaki397402 retire (owner 23 Nov 2026 9:20 AM, job 7)"
-   ]
+   "when": "2026-11-02",
+   "why": "2026-11-02 13:05: layers row YES 'Walking Box Ranch' (chat 11 (Oct 31); applied by kpc_key_answers)"
   },
   "US-13186": {
    "none": true,
