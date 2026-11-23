@@ -1074,6 +1074,10 @@ def area_tables(path=None):
     if not isinstance(ers, dict) or not ers: bad('EASEMENT_RECHECK_STATES missing or empty')
     for st, on in ers.items():
         if st not in ALL or not isinstance(on, bool): bad(f'EASEMENT_RECHECK_STATES {st!r} is not a state mapped to true or false')
+    nb = t.get('US_NEIGHBOURS')   # 23 Nov 2026 (KPC_SAVED_NEXT_STATE): {state: 'XX YY ...'}, every neighbour a state
+    if not isinstance(nb, dict) or not nb: bad('US_NEIGHBOURS missing or empty')
+    for st, v in nb.items():
+        if st not in ALL or not isinstance(v, str) or not all(x in ALL for x in v.split()): bad(f'US_NEIGHBOURS {st!r} is not a state with its bordering states')
     return t
 
 
@@ -1093,6 +1097,7 @@ def with_state_layers(national, entries):
 _AT = area_tables()
 EASEMENT_RECHECK_STATES = {st for st, on in _AT['EASEMENT_RECHECK_STATES'].items() if on}
 BOX_ADD = {st: tuple(b) for st, b in _AT['BOX_ADD'].items()}   # [west, south, east, north] added to the state's box (st_box)
+US_NEIGHBOURS = dict(_AT['US_NEIGHBOURS'])   # KPC_SAVED_NEXT_STATE (23 Nov 2026)
 
 
 def fws_state(st, have):
@@ -1778,6 +1783,9 @@ def save_cache(st, recs, seen):
     with gzip.open(cache_file(st), 'wt', encoding='utf-8') as f:
         json.dump(blob, f, separators=(',', ':'))
     CACHE_SAVED.append(st)
+
+
+NEXT_COPY = {}   # KPC_SAVED_NEXT_STATE: bordering states' saved copies, read once per run
 
 
 def load_cache(st):
@@ -2529,6 +2537,16 @@ def run(st):
             recs, seen, used_detail = old; CACHE_USED.append(st)
         elif CMODE in ('use', 'refresh') and not (st in FAILED_READ and old is None and cache_file(st).exists()): save_cache(st, recs, seen)
     recs = prefer_state_layer(st, recs, P)
+    if _kr('KPC_SAVED_NEXT_STATE'):
+        # 23 Nov 2026 (owner 9:20 AM, job 7): a saved answer of this state's park whose record only a bordering state's saved
+        # copy holds (a park across the state line) gets that record from the neighbour's copy; saved copies only, nothing fetched
+        _ids_read = {_oid(a) for a in recs}
+        _miss = sorted({str(w) for r_ in P for w in ((OVR.get(r_) or {}).get('join') or []) if re.fullmatch(r'[a-z_]*\d+', str(w)) and str(w) not in _ids_read})
+        if _miss:
+            _nx = KR.next_state_records(_miss, lambda s2: (NEXT_COPY.setdefault(s2, (load_cache(s2) or [None])[0]) or []), KR.neighbours(st, US_NEIGHBOURS))
+            if _nx:
+                recs = recs + _nx
+                notice(f'US key {st}', f"{len(_nx)} record(s) of saved answers read from a bordering state's saved copy (KPC_SAVED_NEXT_STATE)")
     if _kr('KPC_PADUS_DEDUPE'):
         # Nov 2 (mapping agent): PAD-US keeps the older copy of a place from the same provider (FWS_PADUS3_0 + FWS_PADUS4_0 for
         # every refuge); both joined, the park's 'official acres' came out doubled (230 'OFF smaller' map-audit rows) and the two
@@ -2647,7 +2665,7 @@ def run(st):
             if _kr('KPC_SAVED_ANSWERS_SAY'):
                 for _x in KR.join_and_no(ov): SAVED_SAY.append([st, 'join and no', ref, _x, 'one record under both join and no'])
             for want in ov.get('join', []):
-                _want0, _rv, _say = str(want), None, _kr('KPC_SAVED_ANSWERS_SAY')
+                _want0, _rv, _say, _all_ids = str(want), None, _kr('KPC_SAVED_ANSWERS_SAY'), set()
                 # Oct 27 (boundary review #3): PAD-US gives its records NEW ids in each version. A hand join by id whose id is gone
                 # is found again by its fingerprint (name + acres within 10%, near the pin), saved with it in overrides.json 'fp'
                 if not any(_oid(a) == str(want) for a in recs) and str(want) in (ov.get('fp') or {}):
@@ -2660,6 +2678,10 @@ def run(st):
                         _rv, _rh = KR.refind_saved(fn, fa, _fam, [(_oid(a), a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('GIS_Acres'))
                                                                   for a in recs if la is None or near(la, lo, a['_bb'], .6)])
                         if _rv == 'one': want = _rh
+                        elif _rv == 'two' and _kr('KPC_SAVED_ALL_PARCELS') and MC.all_parcels_ok(name, [a.get('Unit_Nm') or a.get('Loc_Nm') or '' for a in recs if _oid(a) in set(_rh)]):
+                            # 23 Nov 2026 (owner 9:20 AM, job 7: 'All parcels inside the park'): look-alike parcels that all carry the
+                            # park's own name are all this park's land: every one joins
+                            want = _rh[0]; _all_ids = set(_rh[1:])
                         elif _rv == 'two': want = _rh[0]; SAVED_SAY.append([st, 'two fits', ref, _want0, f"{fn} {fa} ac fits {' '.join(_rh)}; the first one joined, as before"])
                     else:
                         want = next((_oid(a) for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(fn) and (la is None or near(la, lo, a['_bb'], .6))
@@ -2677,7 +2699,7 @@ def run(st):
                         if _fs == 'ok': _far = True
                         elif _fs == 'nofit' and not any(str(x[0]) == _oid(a) for x in c): c.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), _fw])
                         elif _fs in ('noevidence', 'approx'): print(f'::warning title=US key {st}::{ref} {_want0}: {_fw}', flush=True)
-                    if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (_near or _far):   # Oct 25: an id in 'no' is never re-added by a same-name join
+                    if (_oid(a) == str(want) or _oid(a) in _all_ids or _nf(nm) == _nf(want)) and _oid(a) not in no and (_near or _far):   # Oct 25: an id in 'no' is never re-added by a same-name join
                         if _no_all(ov, a): continue   # Nov 2: a NO by name wins over a join by id
                         if _far: FAR_JOIN.append([st, ref, _oid(a), nm])
                         if _kr('KPC_ID_JOIN_NAME') and _oid(a) == str(want) and _nf(nm) != _nf(want):

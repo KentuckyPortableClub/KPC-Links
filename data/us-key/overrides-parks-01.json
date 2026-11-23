@@ -59,11 +59,22 @@
      111
     ]
    },
-   "join": [
-    "sgaki383567"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Fort Morgan' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Fort Morgan' (chat 11 (Oct 31); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgaki383567",
+     "fp": [
+      "Fort Morgan",
+      111
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgaki383567 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-0036": {
    "fp": {
@@ -520,11 +531,21 @@
    },
    "join": [
     "5382",
-    "4425",
-    "Lake Umbagog National Wildlife Refuge"
+    "4425"
    ],
    "when": "2026-10-29",
-   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2) · Oct 29 8:20 PM chat 11 release check: keep the old lines (the NH refuge parcels are the same refuge) · 2026-10-29 23:15: key-pieces row YES 'Umbagog National Wildlife Refuge' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Umbagog National Wildlife Refuge' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers)"
+   "why": "Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2) · Oct 29 1:50 PM: rule G-1 held piece 'Umbagog National Wildlife Refuge' = YES (chat 11, rechecked by chat 2) · Oct 29 8:20 PM chat 11 release check: keep the old lines (the NH refuge parcels are the same refuge) · 2026-10-29 23:15: key-pieces row YES 'Umbagog National Wildlife Refuge' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers) · 2026-10-29 23:15: key-pieces row YES 'Umbagog National Wildlife Refuge' (chat 11 (Sonnet), Oct 29; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "Lake Umbagog National Wildlife Refuge",
+     "fp": null,
+     "why": "a bare name answer: no single record of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer Lake Umbagog National Wildlife Refuge retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-0456": {
    "join": [
@@ -895,11 +916,24 @@
     ]
    },
    "join": [
-    "fnl1182",
     "sgakd894"
    ],
    "when": "2026-11-02",
-   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 64219.1 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id fnl1182 (bot: pin inside) · 2026-11-02 12:49: layers row YES 'Gulf Islands National Seashore' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 64219.1 ac) · Oct 29 1 PM: the alias did not join on the rebuild, so joined by the record id fnl1182 (bot: pin inside) · 2026-11-02 12:49: layers row YES 'Gulf Islands National Seashore' (chat 11 (Oct 31); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "fnl1182",
+     "fp": [
+      "Gulf Islands National Seashore",
+      64219.1
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer fnl1182 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-0673": {
    "join": [
@@ -1103,11 +1137,22 @@
      1
     ]
    },
-   "join": [
-    "sgakd935"
-   ],
    "when": "2026-11-02",
-   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)"
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Hamilton Grange National Memorial' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgakd935",
+     "fp": [
+      "Hamilton Grange National Memorial",
+      1
+     ],
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgakd935 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-0782": {
    "join": [
@@ -5979,42 +6024,60 @@
   },
   "US-1436": {
    "fp": {
-    "wid710041": [
+    "sgwia713561": [
      "Amnicon Falls State Park",
-     829
+     833.4
     ]
    },
    "join": [
-    "wid710041"
+    "sgwia713561"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Amnicon Falls State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Amnicon Falls State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710041": "sgwia713561"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710041 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1437": {
    "fp": {
-    "wid710042": [
+    "sgwia713562": [
      "Aztalan State Park",
-     176
+     177.9
     ]
    },
    "join": [
-    "wid710042"
+    "sgwia713562"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Aztalan State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Aztalan State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710042": "sgwia713562"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710042 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1438": {
    "fp": {
-    "wid710045": [
+    "272292": [
      "Belmont Mound State Park",
-     273
+     276.0
     ]
    },
    "join": [
-    "wid710045"
+    "272292"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Belmont Mound State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Belmont Mound State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710045": "272292"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710045 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1439": {
    "fp": {
@@ -6023,63 +6086,98 @@
      27
     ]
    },
-   "join": [
-    "wid710746"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Big Bay State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Big Bay State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "wid710746",
+     "fp": [
+      "Big Bay State Park",
+      27
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wid710746 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1440": {
    "fp": {
-    "wid710047": [
+    "sgwia713567": [
      "Big Foot Beach State Park",
-     267
+     267.6
     ]
    },
    "join": [
-    "wid710047"
+    "sgwia713567"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Big Foot Beach State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Big Foot Beach State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710047": "sgwia713567"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710047 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1441": {
    "fp": {
-    "wid710048": [
+    "sgwia713568": [
      "Blue Mound State Park",
-     1156
+     1161.8
     ]
    },
    "join": [
-    "wid710048"
+    "sgwia713568"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Blue Mound State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Blue Mound State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710048": "sgwia713568"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710048 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1442": {
    "fp": {
-    "wid710051": [
+    "sgwia713571": [
      "Brunet Island State Park",
-     1112
+     1140.3
     ]
    },
    "join": [
-    "wid710051"
+    "sgwia713571"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Brunet Island State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Brunet Island State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710051": "sgwia713571"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710051 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1443": {
    "fp": {
-    "wid710052": [
+    "sgwia713572": [
      "Buckhorn State Park",
-     3971
+     3994.4
     ]
    },
    "join": [
-    "wid710052"
+    "sgwia713572"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Buckhorn State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Buckhorn State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710052": "sgwia713572"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710052 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1444": {
    "fp": {
@@ -6096,29 +6194,41 @@
   },
   "US-1446": {
    "fp": {
-    "wid710067": [
+    "272313": [
      "Copper Falls State Park",
-     3513
+     3496.0
     ]
    },
    "join": [
-    "wid710067"
+    "272313"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Copper Falls State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Copper Falls State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710067": "272313"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710067 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1447": {
    "fp": {
-    "wid710068": [
+    "272314": [
      "Council Grounds State Park",
-     477
+     488.0
     ]
    },
    "join": [
-    "wid710068"
+    "272314"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Council Grounds State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Council Grounds State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710068": "272314"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710068 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1448": {
    "fp": {
@@ -6158,107 +6268,155 @@
   },
   "US-1450": {
    "fp": {
-    "wid710079": [
+    "sgwia713599": [
      "Grand Traverse Island State Park",
-     26
+     26.1
     ]
    },
    "join": [
-    "wid710079"
+    "sgwia713599"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Grand Traverse Island State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Grand Traverse Island State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710079": "sgwia713599"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710079 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1451": {
    "fp": {
-    "wid710077": [
+    "sgwia713597": [
      "Governor Dodge State Park",
-     5247
+     5278.1
     ]
    },
    "join": [
-    "wid710077"
+    "sgwia713597"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Governor Dodge State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Governor Dodge State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710077": "sgwia713597"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710077 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1452": {
    "fp": {
-    "wid710078": [
+    "sgwia713598": [
      "Governor Nelson State Park",
-     420
+     420.9
     ]
    },
    "join": [
-    "wid710078"
+    "sgwia713598"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Governor Nelson State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Governor Nelson State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710078": "sgwia713598"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710078 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1453": {
    "fp": {
-    "wid710056": [
+    "sgwia713576": [
      "Governor Thompson State Park",
-     2919
+     2944.6
     ]
    },
    "join": [
-    "wid710056"
+    "sgwia713576"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Governor Thompson State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Governor Thompson State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710056": "sgwia713576"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710056 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1454": {
    "fp": {
-    "wid710083": [
+    "272332": [
      "Harrington Beach State Park",
-     730
+     735.0
     ]
    },
    "join": [
-    "wid710083"
+    "272332"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Harrington Beach State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Harrington Beach State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710083": "272332"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710083 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1455": {
    "fp": {
-    "wid710084": [
+    "272333": [
      "Hartman Creek State Park",
-     1463
+     1466.0
     ]
    },
    "join": [
-    "wid710084"
+    "272333"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hartman Creek State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hartman Creek State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710084": "272333"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710084 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1456": {
    "fp": {
-    "wid710087": [
+    "272335": [
      "High Cliff State Park",
-     1094
+     1096.0
     ]
    },
    "join": [
-    "wid710087"
+    "272335"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'High Cliff State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'High Cliff State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710087": "272335"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710087 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1457": {
    "fp": {
-    "wid710118": [
+    "sgwia713638": [
      "Kinnickinnic State Park",
-     1350
+     1349.1
     ]
    },
    "join": [
-    "wid710118"
+    "sgwia713638"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Kinnickinnic State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Kinnickinnic State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710118": "sgwia713638"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710118 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1458": {
    "alias": [
@@ -6272,55 +6430,79 @@
   },
   "US-1459": {
    "fp": {
-    "wid710120": [
+    "272349": [
      "Lake Kegonsa State Park",
-     348
+     349.0
     ]
    },
    "join": [
-    "wid710120"
+    "272349"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Kegonsa State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lake Kegonsa State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710120": "272349"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710120 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1460": {
    "fp": {
-    "wid710123": [
+    "sgwia713643": [
      "Lake Wissota State Park",
-     1057
+     1056.8
     ]
    },
    "join": [
-    "wid710123"
+    "sgwia713643"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Wissota State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lake Wissota State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710123": "sgwia713643"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710123 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1461": {
    "fp": {
-    "wid710122": [
+    "272351": [
      "Lakeshore State Park",
-     50
+     51.0
     ]
    },
    "join": [
-    "wid710122"
+    "272351"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lakeshore State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lakeshore State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710122": "272351"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710122 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1462": {
    "fp": {
-    "wid710126": [
+    "272356": [
      "Merrick State Park",
-     284
+     289.0
     ]
    },
    "join": [
-    "wid710126"
+    "272356"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Merrick State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Merrick State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710126": "272356"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710126 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1463": {
    "fp": {
@@ -6337,224 +6519,326 @@
   },
   "US-1464": {
    "fp": {
-    "wid710130": [
+    "272360": [
      "Mirror Lake State Park",
-     2131
+     2150.0
     ]
    },
    "join": [
-    "wid710130"
+    "272360"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Mirror Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Mirror Lake State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710130": "272360"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710130 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1465": {
    "fp": {
-    "wid710131": [
+    "sgwia713651": [
      "Natural Bridge State Park",
-     523
+     526.1
     ]
    },
    "join": [
-    "wid710131"
+    "sgwia713651"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Natural Bridge State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Natural Bridge State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710131": "sgwia713651"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710131 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1466": {
    "fp": {
-    "wid710132": [
+    "sgwia713652": [
      "Nelson Dewey State Park",
-     740
+     744.0
     ]
    },
    "join": [
-    "wid710132"
+    "sgwia713652"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Nelson Dewey State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Nelson Dewey State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710132": "sgwia713652"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710132 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1467": {
    "fp": {
-    "wid710133": [
+    "272366": [
      "New Glarus Woods State Park",
-     432
+     430.0
     ]
    },
    "join": [
-    "wid710133"
+    "272366"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'New Glarus Woods State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'New Glarus Woods State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710133": "272366"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710133 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1468": {
    "fp": {
-    "wid710135": [
+    "272367": [
      "Newport State Park",
-     2451
+     2467.0
     ]
    },
    "join": [
-    "wid710135"
+    "272367"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Newport State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Newport State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710135": "272367"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710135 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1469": {
    "fp": {
-    "wid710146": [
+    "272375": [
      "Pattison State Park",
-     1532
+     1532.0
     ]
    },
    "join": [
-    "wid710146"
+    "272375"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Pattison State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Pattison State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710146": "272375"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710146 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1470": {
    "fp": {
-    "wid710149": [
+    "272378": [
      "Peninsula State Park",
-     3660
+     3699.0
     ]
    },
    "join": [
-    "wid710149"
+    "272378"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Peninsula State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Peninsula State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710149": "272378"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710149 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1471": {
    "fp": {
-    "wid710150": [
+    "sgwia713670": [
      "Perrot State Park",
-     1252
+     1261.2
     ]
    },
    "join": [
-    "wid710150"
+    "sgwia713670"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Perrot State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Perrot State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710150": "sgwia713670"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710150 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1472": {
    "fp": {
-    "wid710154": [
+    "272381": [
      "Potawatomi State Park",
-     1108
+     1098.0
     ]
    },
    "join": [
-    "wid710154"
+    "272381"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Potawatomi State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Potawatomi State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710154": "272381"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710154 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1473": {
    "fp": {
-    "wid710156": [
+    "sgwia713676": [
      "Rib Mountain State Park",
-     1540
+     1555.1
     ]
    },
    "join": [
-    "wid710156"
+    "sgwia713676"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Rib Mountain State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Rib Mountain State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710156": "sgwia713676"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710156 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1474": {
    "fp": {
-    "wid710157": [
+    "sgwia713677": [
      "Roche-A-Cri State Park",
-     449
+     453.0
     ]
    },
    "join": [
-    "wid710157"
+    "sgwia713677"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Roche-A-Cri State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Roche-A-Cri State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710157": "sgwia713677"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710157 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1475": {
    "fp": {
-    "wid710158": [
+    "272387": [
      "Rock Island State Park",
-     990
+     985.0
     ]
    },
    "join": [
-    "wid710158"
+    "272387"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Rock Island State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Rock Island State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710158": "272387"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710158 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1476": {
    "fp": {
-    "wid710160": [
+    "sgwia713680": [
      "Rocky Arbor State Park",
-     259
+     263.6
     ]
    },
    "join": [
-    "wid710160"
+    "sgwia713680"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Rocky Arbor State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Rocky Arbor State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710160": "sgwia713680"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710160 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1478": {
    "fp": {
-    "wid710168": [
+    "272399": [
      "Tower Hill State Park",
-     99
+     96.0
     ]
    },
    "join": [
-    "wid710168"
+    "272399"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Tower Hill State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Tower Hill State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710168": "272399"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710168 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1480": {
    "fp": {
-    "wid710182": [
+    "sgwia713702": [
      "Wildcat Mountain State Park",
-     3668
+     3688.7
     ]
    },
    "join": [
-    "wid710182"
+    "sgwia713702"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Wildcat Mountain State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Wildcat Mountain State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710182": "sgwia713702"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710182 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1481": {
    "fp": {
-    "wid710184": [
+    "272407": [
      "Willow River State Park",
-     2826
+     2855.0
     ]
    },
    "join": [
-    "wid710184"
+    "272407"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Willow River State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Willow River State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710184": "272407"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710184 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1482": {
    "fp": {
-    "wid710186": [
+    "272410": [
      "Wyalusing State Park",
-     2597
+     2616.0
     ]
    },
    "join": [
-    "wid710186"
+    "272410"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Wyalusing State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Wyalusing State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710186": "272410"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710186 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1483": {
    "fp": {
@@ -6563,11 +6847,22 @@
      10
     ]
    },
-   "join": [
-    "wid710188"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Yellowstone Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Yellowstone Lake State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "wid710188",
+     "fp": [
+      "Yellowstone Lake State Park",
+      10
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wid710188 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1484": {
    "fp": {
@@ -6576,37 +6871,60 @@
      2606
     ]
    },
-   "join": [
-    "mid108"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Algonac State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Algonac State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid108",
+     "fp": [
+      "Algonac State Park",
+      2606
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid108 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1485": {
    "fp": {
-    "mid229": [
+    "sgmic95": [
      "Aloha State Park",
-     184
+     174.8
     ]
    },
    "join": [
-    "mid229"
+    "sgmic95"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Aloha State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Aloha State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid229": "sgmic95"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid229 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1486": {
    "fp": {
-    "mid345": [
+    "sgmic639": [
      "Baraga State Park",
-     57
+     55.4
     ]
    },
    "join": [
-    "mid345"
+    "sgmic639"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Baraga State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Baraga State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid345": "sgmic639"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid345 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1488": {
    "fp": {
@@ -6615,50 +6933,79 @@
      496
     ]
    },
-   "join": [
-    "mid297"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Bewabic State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Bewabic State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid297",
+     "fp": [
+      "Bewabic State Park",
+      496
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid297 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1489": {
    "fp": {
-    "mid256": [
+    "sgmic30": [
      "Brimley State Park",
-     106
+     100.1
     ]
    },
    "join": [
-    "mid256"
+    "sgmic30"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Brimley State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Brimley State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid256": "sgmic30"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid256 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1490": {
    "fp": {
-    "mid121": [
+    "sgmia45": [
      "Burt Lake State Park",
-     133
+     133.8
     ]
    },
    "join": [
-    "mid121"
+    "sgmia45"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Burt Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Burt Lake State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid121": "sgmia45"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid121 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1491": {
    "fp": {
-    "mid271": [
+    "71515": [
      "Cheboygan State Park",
-     1276
+     1306.0
     ]
    },
    "join": [
-    "mid271"
+    "71515"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cheboygan State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Cheboygan State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid271": "71515"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid271 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1493": {
    "fp": {
@@ -6680,11 +7027,22 @@
      12942
     ]
    },
-   "join": [
-    "mid702"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Craig Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Craig Lake State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid702",
+     "fp": [
+      "Craig Lake State Park",
+      12942
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid702 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1495": {
    "fp": {
@@ -6693,11 +7051,22 @@
      114
     ]
    },
-   "join": [
-    "mid208"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Dodge 4 State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Dodge 4 State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid208",
+     "fp": [
+      "Dodge 4 State Park",
+      114
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid208 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1496": {
    "fp": {
@@ -6706,11 +7075,22 @@
      889
     ]
    },
-   "join": [
-    "mid868"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Duck Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Duck Lake State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid868",
+     "fp": [
+      "Duck Lake State Park",
+      889
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid868 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1497": {
    "fp": {
@@ -6719,24 +7099,41 @@
      5685
     ]
    },
-   "join": [
-    "mid754"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Fisherman's Island State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Fisherman's Island State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid754",
+     "fp": [
+      "Fisherman's Island State Park",
+      5685
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid754 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1500": {
    "fp": {
-    "mid617": [
+    "158088": [
      "Grand Mere State Park",
-     1228
+     1118.0
     ]
    },
    "join": [
-    "mid617"
+    "158088"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Grand Mere State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Grand Mere State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid617": "158088"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid617 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1501": {
    "fp": {
@@ -6745,37 +7142,60 @@
      137
     ]
    },
-   "join": [
-    "mid142"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Harrisville State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Harrisville State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid142",
+     "fp": [
+      "Harrisville State Park",
+      137
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid142 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1503": {
    "fp": {
-    "mid863": [
+    "sgmic91": [
      "Hartwick Pines State Park",
-     9327
+     9260.0
     ]
    },
    "join": [
-    "mid863"
+    "sgmic91"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hartwick Pines State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hartwick Pines State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid863": "sgmic91"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid863 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1504": {
    "fp": {
-    "mid16": [
+    "sgmia81": [
      "Hayes State Park",
-     667
+     674.1
     ]
    },
    "join": [
-    "mid16"
+    "sgmia81"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hayes State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hayes State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid16": "sgmia81"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid16 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1505": {
    "approx": true,
@@ -6793,16 +7213,22 @@
   },
   "US-1506": {
    "fp": {
-    "mid554": [
+    "71525": [
      "Hoeft State Park",
-     342
+     310.0
     ]
    },
    "join": [
-    "mid554"
+    "71525"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hoeft State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hoeft State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid554": "71525"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid554 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1507": {
    "fp": {
@@ -6811,11 +7237,22 @@
      1464
     ]
    },
-   "join": [
-    "mid425"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hoffmaster State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hoffmaster State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid425",
+     "fp": [
+      "Hoffmaster State Park",
+      1464
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid425 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1508": {
    "fp": {
@@ -6824,11 +7261,22 @@
      50
     ]
    },
-   "join": [
-    "mid313"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Holland State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Holland State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid313",
+     "fp": [
+      "Holland State Park",
+      50
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid313 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1509": {
    "fp": {
@@ -6837,24 +7285,41 @@
      264
     ]
    },
-   "join": [
-    "mid83"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Indian Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Indian Lake State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid83",
+     "fp": [
+      "Indian Lake State Park",
+      264
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid83 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1510": {
    "fp": {
-    "mid200": [
+    "sgmia23": [
      "Interlochen State Park",
-     176
+     178.6
     ]
    },
    "join": [
-    "mid200"
+    "sgmia23"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Interlochen State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Interlochen State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid200": "sgmia23"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid200 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1512": {
    "fp": {
@@ -6876,11 +7341,22 @@
      272
     ]
    },
-   "join": [
-    "mid758"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lakeport State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lakeport State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid758",
+     "fp": [
+      "Lakeport State Park",
+      272
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid758 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1515": {
    "fp": {
@@ -6889,37 +7365,60 @@
      2725
     ]
    },
-   "join": [
-    "mid178"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Leelanau State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Leelanau State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid178",
+     "fp": [
+      "Leelanau State Park",
+      2725
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid178 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1516": {
    "fp": {
-    "mid1025": [
+    "sgmic87": [
      "Ludington State Park",
-     5273
+     4746.0
     ]
    },
    "join": [
-    "mid1025"
+    "sgmic87"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Ludington State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Ludington State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid1025": "sgmic87"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid1025 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1518": {
    "fp": {
-    "mid525": [
+    "sgmia61": [
      "Maybury State Park",
-     931
+     944.0
     ]
    },
    "join": [
-    "mid525"
+    "sgmia61"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Maybury State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Maybury State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid525": "sgmia61"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid525 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1519": {
    "fp": {
@@ -6936,29 +7435,41 @@
   },
   "US-1520": {
    "fp": {
-    "mid698": [
+    "71532": [
      "Mears State Park",
-     56
+     45.0
     ]
    },
    "join": [
-    "mid698"
+    "71532"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Mears State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Mears State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid698": "71532"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid698 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1521": {
    "fp": {
-    "mid133": [
+    "sgmia64": [
      "Meridian-Baseline State Park",
-     101
+     105.9
     ]
    },
    "join": [
-    "mid133"
+    "sgmia64"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Meridian-Baseline State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Meridian-Baseline State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid133": "sgmia64"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid133 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1523": {
    "fp": {
@@ -6972,37 +7483,62 @@
     ]
    },
    "join": [
-    "sgmia53",
-    "mid743"
+    "sgmia53"
    ],
    "when": "2026-11-02",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'William Mitchell State Park' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'William Mitchell State Park' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Mitchell State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "Oct 29 5:55 PM: waiting-room piece 'William Mitchell State Park' YES (chat 11, rechecked: name + kind + size) · 2026-10-29 23:15: key-pieces row YES 'William Mitchell State Park' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Mitchell State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid743",
+     "fp": [
+      "Mitchell State Park",
+      960
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid743 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1524": {
    "fp": {
-    "mid680": [
+    "71534": [
      "Muskallonge Lake State Park",
-     250
+     236.0
     ]
    },
    "join": [
-    "mid680"
+    "71534"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Muskallonge Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Muskallonge Lake State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid680": "71534"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid680 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1525": {
    "fp": {
-    "mid264": [
+    "sgmia13": [
      "Muskegon State Park",
-     1481
+     1377.8
     ]
    },
    "join": [
-    "mid264"
+    "sgmia13"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Muskegon State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Muskegon State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid264": "sgmia13"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid264 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1526": {
    "fp": {
@@ -7011,11 +7547,22 @@
      2972
     ]
    },
-   "join": [
-    "mid703"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Negwegon State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Negwegon State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid703",
+     "fp": [
+      "Negwegon State Park",
+      2972
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid703 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1527": {
    "fp": {
@@ -7032,29 +7579,41 @@
   },
   "US-1528": {
    "fp": {
-    "mid469": [
+    "sgmic76": [
      "North Higgins Lake State Park",
-     490
+     449.2
     ]
    },
    "join": [
-    "mid469"
+    "sgmic76"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'North Higgins Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'North Higgins Lake State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid469": "sgmic76"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid469 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1529": {
    "fp": {
-    "mid767": [
+    "71538": [
      "Onaway State Park",
-     141
+     135.0
     ]
    },
    "join": [
-    "mid767"
+    "71538"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Onaway State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Onaway State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid767": "71538"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid767 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1530": {
    "fp": {
@@ -7063,11 +7622,22 @@
      242
     ]
    },
-   "join": [
-    "mid186"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Orchard Beach State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Orchard Beach State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid186",
+     "fp": [
+      "Orchard Beach State Park",
+      242
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid186 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1532": {
    "fp": {
@@ -7076,24 +7646,41 @@
      429
     ]
    },
-   "join": [
-    "mid427"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Palms Book State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Palms Book State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid427",
+     "fp": [
+      "Palms Book State Park",
+      429
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid427 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1533": {
    "fp": {
-    "mid741": [
+    "sgmic48": [
      "Petoskey State Park",
-     335
+     320.0
     ]
    },
    "join": [
-    "mid741"
+    "sgmic48"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Petoskey State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Petoskey State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid741": "sgmic48"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid741 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1534": {
    "fp": {
@@ -7115,11 +7702,22 @@
      1201
     ]
    },
-   "join": [
-    "mid572"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Port Crescent State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Port Crescent State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid572",
+     "fp": [
+      "Port Crescent State Park",
+      1201
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid572 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1536": {
    "fp": {
@@ -7128,24 +7726,41 @@
      1615
     ]
    },
-   "join": [
-    "mid442"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Saugatuck Dunes State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Saugatuck Dunes State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid442",
+     "fp": [
+      "Saugatuck Dunes State Park",
+      1615
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid442 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1537": {
    "fp": {
-    "mid706": [
+    "sgmia108": [
      "Seven Lakes State Park",
-     1624
+     1481.4
     ]
    },
    "join": [
-    "mid706"
+    "sgmia108"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Seven Lakes State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Seven Lakes State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid706": "sgmia108"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid706 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1539": {
    "fp": {
@@ -7154,24 +7769,41 @@
      1018
     ]
    },
-   "join": [
-    "mid655"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Sleeper State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Sleeper State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid655",
+     "fp": [
+      "Sleeper State Park",
+      1018
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid655 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1541": {
    "fp": {
-    "mid439": [
+    "sgmia104": [
      "South Higgins Lake State Park",
-     1422
+     1367.5
     ]
    },
    "join": [
-    "mid439"
+    "sgmia104"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'South Higgins Lake State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'South Higgins Lake State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid439": "sgmia104"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid439 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1542": {
    "fp": {
@@ -7180,11 +7812,22 @@
      1498
     ]
    },
-   "join": [
-    "mid951"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Sterling State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Sterling State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid951",
+     "fp": [
+      "Sterling State Park",
+      1498
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid951 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1543": {
    "fp": {
@@ -7206,11 +7849,22 @@
      58671
     ]
    },
-   "join": [
-    "mid610"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Tahquamenon Falls State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Tahquamenon Falls State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid610",
+     "fp": [
+      "Tahquamenon Falls State Park",
+      58671
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid610 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1545": {
    "fp": {
@@ -7219,24 +7873,41 @@
      1529
     ]
    },
-   "join": [
-    "mid182"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Tawas Point State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Tawas Point State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid182",
+     "fp": [
+      "Tawas Point State Park",
+      1529
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid182 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1546": {
    "fp": {
-    "mid759": [
+    "sgmic90": [
      "Thompson's Harbor State Park",
-     5532
+     5425.1
     ]
    },
    "join": [
-    "mid759"
+    "sgmic90"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Thompson's Harbor State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Thompson's Harbor State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid759": "sgmic90"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid759 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1547": {
    "fp": {
@@ -7258,11 +7929,22 @@
      231
     ]
    },
-   "join": [
-    "mid780"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Twin Lakes State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Twin Lakes State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid780",
+     "fp": [
+      "Twin Lakes State Park",
+      231
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid780 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1549": {
    "fp": {
@@ -7271,11 +7953,22 @@
      541
     ]
    },
-   "join": [
-    "mid312"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Van Buren State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Van Buren State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid312",
+     "fp": [
+      "Van Buren State Park",
+      541
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid312 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1550": {
    "fp": {
@@ -7292,94 +7985,156 @@
   },
   "US-1551": {
    "fp": {
-    "mid20": [
+    "sgmic628": [
      "Van Riper State Park",
-     1117
+     1114.8
     ]
    },
    "join": [
-    "mid20"
+    "sgmic628"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Van Riper State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Van Riper State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid20": "sgmic628"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid20 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1552": {
    "fp": {
-    "mid593": [
+    "sgmic66": [
      "Warren Dunes State Park",
-     1537
+     1479.0
     ]
    },
    "join": [
-    "mid593"
+    "sgmic66"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Warren Dunes State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Warren Dunes State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid593": "sgmic66"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid593 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1553": {
    "fp": {
-    "mid502": [
+    "71554": [
      "Warren Woods State Park",
-     898
+     311.0
+    ],
+    "sgmia54": [
+     "Warren Woods State Park",
+     311.1
+    ],
+    "sgmic3": [
+     "Warren Woods State Park",
+     311.1
     ]
    },
    "join": [
-    "mid502"
+    "71554",
+    "sgmia54",
+    "sgmic3"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Warren Woods State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Warren Woods State Park' (chat 11; applied by kpc_key_answers)",
+   "split_from": {
+    "mid502": {
+     "into": [
+      "71554",
+      "sgmia54",
+      "sgmic3"
+     ],
+     "fp": [
+      "Warren Woods State Park",
+      898
+     ]
+    }
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid502 split (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1554": {
    "fp": {
-    "mid165": [
+    "71268": [
      "Wells State Park",
-     698
+     703.0
     ]
    },
    "join": [
-    "mid165"
+    "71268"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Wells State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Wells State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid165": "71268"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid165 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1556": {
    "fp": {
-    "mid374": [
+    "sgmia91": [
      "Wilderness State Park",
-     11628
+     12305.0
     ]
    },
    "join": [
-    "mid374"
+    "sgmia91"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Wilderness State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Wilderness State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid374": "sgmia91"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid374 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1557": {
    "fp": {
-    "mid595": [
+    "sgmia22": [
      "Wilson State Park",
-     34
+     33.7
     ]
    },
    "join": [
-    "mid595"
+    "sgmia22"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Wilson State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Wilson State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid595": "sgmia22"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid595 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1558": {
    "fp": {
-    "mid699": [
+    "sgmic12": [
      "Young State Park",
-     570
+     564.9
     ]
    },
    "join": [
-    "mid699"
+    "sgmic12"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Young State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Young State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid699": "sgmic12"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid699 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1607": {
    "fp": {
@@ -7427,11 +8182,22 @@
      261
     ]
    },
-   "join": [
-    "sgnjb304"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cape May Point State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Cape May Point State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgnjb304",
+     "fp": [
+      "Cape May Point State Park",
+      261
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgnjb304 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1611": {
    "fp": {
@@ -10538,11 +11304,22 @@
      198
     ]
    },
-   "join": [
-    "sgnyb533"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Amsterdam Beach' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Amsterdam Beach' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgnyb533",
+     "fp": [
+      "Amsterdam Beach",
+      198
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgnyb533 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-2007": {
    "fp": {
@@ -10759,11 +11536,22 @@
      728
     ]
    },
-   "join": [
-    "sgnyb530"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Camp Hero' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Camp Hero' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgnyb530",
+     "fp": [
+      "Camp Hero",
+      728
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgnyb530 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-2027": {
    "fp": {
@@ -11344,11 +12132,22 @@
      802
     ]
    },
-   "join": [
-    "sgnyb786"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hither Hills' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hither Hills' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgnyb786",
+     "fp": [
+      "Hither Hills",
+      802
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgnyb786 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-2079": {
    "fp": {
@@ -11689,11 +12488,22 @@
      165
     ]
    },
-   "join": [
-    "sgnyb534"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Montauk Downs' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Montauk Downs' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgnyb534",
+     "fp": [
+      "Montauk Downs",
+      165
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgnyb534 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-2109": {
    "fp": {
@@ -11702,11 +12512,22 @@
      774
     ]
    },
-   "join": [
-    "sgnyb523"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Montauk Point' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Montauk Point' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgnyb523",
+     "fp": [
+      "Montauk Point",
+      774
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgnyb523 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-2110": {
    "fp": {
@@ -12053,11 +12874,22 @@
      101
     ]
    },
-   "join": [
-    "sgnyb536"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Shadmoor' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Shadmoor' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgnyb536",
+     "fp": [
+      "Shadmoor",
+      101
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgnyb536 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-2141": {
    "fp": {
@@ -18419,11 +19251,22 @@
      2782
     ]
    },
-   "join": [
-    "mid507"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Bay City State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Bay City State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid507",
+     "fp": [
+      "Bay City State Recreation Area",
+      2782
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid507 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3306": {
    "fp": {
@@ -18458,11 +19301,22 @@
      6249
     ]
    },
-   "join": [
-    "mid580"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Highland State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Highland State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid580",
+     "fp": [
+      "Highland State Recreation Area",
+      6249
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid580 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3313": {
    "fp": {
@@ -18473,24 +19327,43 @@
    },
    "join": [
     "Holly Recreation Area",
-    "Holly State Recreation Area",
-    "mid725"
+    "Holly State Recreation Area"
    ],
    "when": "2026-11-02",
-   "why": "Oct 25 round 5 hand check (outside research bot) · 2026-11-02 12:49: layers row YES 'Holly State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "Oct 25 round 5 hand check (outside research bot) · 2026-11-02 12:49: layers row YES 'Holly State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid725",
+     "fp": [
+      "Holly State Recreation Area",
+      4267
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid725 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3314": {
    "fp": {
-    "mid125": [
+    "157667": [
      "Ionia State Recreation Area",
-     4554
+     4413.0
     ]
    },
    "join": [
-    "mid125"
+    "157667"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Ionia State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Ionia State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid125": "157667"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid125 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3315": {
    "fp": {
@@ -18499,11 +19372,22 @@
      4318
     ]
    },
-   "join": [
-    "mid194"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Island Lake State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Island Lake State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid194",
+     "fp": [
+      "Island Lake State Recreation Area",
+      4318
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid194 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3316": {
    "fp": {
@@ -18512,11 +19396,22 @@
      3560
     ]
    },
-   "join": [
-    "mid47"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Hudson State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lake Hudson State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid47",
+     "fp": [
+      "Lake Hudson State Recreation Area",
+      3560
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid47 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3317": {
    "fp": {
@@ -18525,11 +19420,22 @@
      1244
     ]
    },
-   "join": [
-    "mid357"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Laughing Whitefish Falls State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Laughing Whitefish Falls State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid357",
+     "fp": [
+      "Laughing Whitefish Falls State Park",
+      1244
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid357 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3318": {
    "fp": {
@@ -18551,11 +19457,22 @@
      716
     ]
    },
-   "join": [
-    "mid688"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Metamora-Hadley State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Metamora-Hadley State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid688",
+     "fp": [
+      "Metamora-Hadley State Recreation Area",
+      716
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid688 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3321": {
    "fp": {
@@ -18564,11 +19481,22 @@
      5451
     ]
    },
-   "join": [
-    "mid440"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Ortonville State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Ortonville State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid440",
+     "fp": [
+      "Ortonville State Recreation Area",
+      5451
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid440 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3322": {
    "fp": {
@@ -18577,24 +19505,41 @@
      16836
     ]
    },
-   "join": [
-    "mid521"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Pinckney State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Pinckney State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid521",
+     "fp": [
+      "Pinckney State Recreation Area",
+      16836
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid521 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3323": {
    "fp": {
-    "mid573": [
+    "158166": [
      "Pontiac Lake State Recreation Area",
-     3588
+     3529.0
     ]
    },
    "join": [
-    "mid573"
+    "158166"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Pontiac Lake State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Pontiac Lake State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid573": "158166"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid573 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3324": {
    "fp": {
@@ -18603,11 +19548,22 @@
      3077
     ]
    },
-   "join": [
-    "mid210"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Proud Lake State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Proud Lake State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid210",
+     "fp": [
+      "Proud Lake State Recreation Area",
+      3077
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid210 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3325": {
    "fp": {
@@ -18616,11 +19572,22 @@
      7303
     ]
    },
-   "join": [
-    "mid897"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Rifle River State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Rifle River State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid897",
+     "fp": [
+      "Rifle River State Recreation Area",
+      7303
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid897 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3326": {
    "fp": {
@@ -18629,11 +19596,22 @@
      5949
     ]
    },
-   "join": [
-    "mid877"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Rockport State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Rockport State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid877",
+     "fp": [
+      "Rockport State Recreation Area",
+      5949
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid877 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3327": {
    "fp": {
@@ -18682,11 +19660,22 @@
      30748
     ]
    },
-   "join": [
-    "mid683"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Waterloo State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Waterloo State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid683",
+     "fp": [
+      "Waterloo State Recreation Area",
+      30748
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid683 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3332": {
    "fp": {
@@ -18708,11 +19697,22 @@
      1075
     ]
    },
-   "join": [
-    "mid177"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Wetzel State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Wetzel State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid177",
+     "fp": [
+      "Wetzel State Recreation Area",
+      1075
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid177 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3334": {
    "fp": {
@@ -18721,11 +19721,22 @@
      5072
     ]
    },
-   "join": [
-    "mid385"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Yankee Springs State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Yankee Springs State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "mid385",
+     "fp": [
+      "Yankee Springs State Recreation Area",
+      5072
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid385 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3335": {
    "fp": {
@@ -19219,16 +20230,22 @@
   },
   "US-3384": {
    "fp": {
-    "mid561": [
+    "158182": [
      "Brighton State Recreation Area",
-     5281
+     4957.0
     ]
    },
    "join": [
-    "mid561"
+    "158182"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Brighton State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Brighton State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid561": "158182"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid561 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3385": {
    "none": true,
@@ -24630,24 +25647,40 @@
    },
    "join": [
     "72062",
-    "272343",
-    "wid702757"
+    "272343"
    ],
    "when": "2026-10-22",
-   "why": "same place, another name (hand review Oct 22 (waiting list))"
+   "why": "same place, another name (hand review Oct 22 (waiting list))",
+   "retired_join": [
+    {
+     "id": "wid702757",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wid702757 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4243": {
    "fp": {
-    "wid710162": [
+    "sgwia713682": [
      "Sauk Prairie State Recreation Area",
-     3349
+     3370.0
     ]
    },
    "join": [
-    "wid710162"
+    "sgwia713682"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Sauk Prairie State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Sauk Prairie State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710162": "sgwia713682"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710162 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4244": {
    "approx": true,
@@ -24686,24 +25719,40 @@
    },
    "join": [
     "272401",
-    "wid702838",
     "sgwic6724"
    ],
    "when": "2026-11-02",
-   "why": "same place, another name (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Two Creeks Buried Forest' (chat 11; applied by kpc_key_answers)"
+   "why": "same place, another name (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Two Creeks Buried Forest' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "wid702838",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wid702838 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4247": {
    "fp": {
-    "wid710086": [
+    "sgwia713606": [
      "Heritage Hill State Park",
-     57
+     55.1
     ]
    },
    "join": [
-    "wid710086"
+    "sgwia713606"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Heritage Hill State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Heritage Hill State Park' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710086": "sgwia713606"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710086 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4248": {
    "fp": {
@@ -24712,11 +25761,22 @@
      11
     ]
    },
-   "join": [
-    "wid710125"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lost Dauphin State Park' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lost Dauphin State Park' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "wid710125",
+     "fp": [
+      "Lost Dauphin State Park",
+      11
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wid710125 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4249": {
    "join": [
@@ -24737,16 +25797,22 @@
   },
   "US-4251": {
    "fp": {
-    "wid710325": [
+    "sgwia713845": [
      "Bibon Swamp State Natural Area",
-     9527
+     9584.1
     ]
    },
    "join": [
-    "wid710325"
+    "sgwia713845"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Bibon Swamp State Natural Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Bibon Swamp State Natural Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710325": "sgwia713845"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710325 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4252": {
    "fp": {
@@ -24763,16 +25829,22 @@
   },
   "US-4253": {
    "fp": {
-    "wid710058": [
+    "sgwia713578": [
      "Cedarburg Bog State Natural Area",
-     1740
+     1752.7
     ]
    },
    "join": [
-    "wid710058"
+    "sgwia713578"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cedarburg Bog State Natural Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Cedarburg Bog State Natural Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710058": "sgwia713578"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710058 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4254": {
    "approx": true,
@@ -24788,63 +25860,97 @@
    },
    "join": [
     "272488",
-    "wid702473",
     "sgwic7343"
    ],
    "when": "2026-11-02",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Chimney Rock Oak Savanna' (chat 11; applied by kpc_key_answers)"
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-02 12:49: layers row YES 'Chimney Rock Oak Savanna' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "wid702473",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wid702473 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4256": {
    "fp": {
-    "wid710054": [
+    "272302": [
      "Cadiz Springs State Recreation Area",
-     631
+     640.0
     ]
    },
    "join": [
-    "wid710054"
+    "272302"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Cadiz Springs State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Cadiz Springs State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710054": "272302"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710054 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4257": {
    "fp": {
-    "wid710062": [
+    "sgwia713582": [
      "Chippewa Moraine State Recreation Area",
-     3424
+     3443.4
     ]
    },
    "join": [
-    "wid710062"
+    "sgwia713582"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Chippewa Moraine State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Chippewa Moraine State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710062": "sgwia713582"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710062 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4258": {
    "fp": {
-    "wid710074": [
+    "272320": [
      "Fischer Creek Recreation Area",
-     128
+     120.0
     ]
    },
    "join": [
-    "wid710074"
+    "272320"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Fischer Creek Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Fischer Creek Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710074": "272320"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710074 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4259": {
    "fp": {
-    "wid710089": [
+    "272337": [
      "Hoffman Hills Recreation Area",
-     714
+     714.0
     ]
    },
    "join": [
-    "wid710089"
+    "272337"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hoffman Hills Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hoffman Hills Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710089": "272337"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710089 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4263": {
    "approx": true,
@@ -24877,16 +25983,22 @@
   },
   "US-4265": {
    "fp": {
-    "wid710049": [
+    "sgwia713569": [
      "Richard Bong State Recreation Area",
-     4663
+     4691.0
     ]
    },
    "join": [
-    "wid710049"
+    "sgwia713569"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Richard Bong State Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Richard Bong State Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710049": "sgwia713569"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710049 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4266": {
    "fp": {
@@ -25085,16 +26197,22 @@
   },
   "US-4281": {
    "fp": {
-    "wid709820": [
+    "sgwia713340": [
      "Dell Creek Wildlife Area",
-     2664
+     2683.6
     ]
    },
    "join": [
-    "wid709820"
+    "sgwia713340"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Dell Creek Wildlife Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Dell Creek Wildlife Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709820": "sgwia713340"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709820 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4282": {
    "fp": {
@@ -25196,16 +26314,22 @@
   },
   "US-4290": {
    "fp": {
-    "wid709837": [
+    "sgwia713357": [
      "Grand River Marsh Wildlife Area",
-     7588
+     7609.4
     ]
    },
    "join": [
-    "wid709837"
+    "sgwia713357"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Grand River Marsh Wildlife Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Grand River Marsh Wildlife Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709837": "sgwia713357"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709837 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4291": {
    "fp": {
@@ -25365,16 +26489,22 @@
   },
   "US-4306": {
    "fp": {
-    "wid709878": [
+    "sgwia713398": [
      "Mack Wildlife Area",
-     1824
+     1830.8
     ]
    },
    "join": [
-    "wid709878"
+    "sgwia713398"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Mack Wildlife Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Mack Wildlife Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709878": "sgwia713398"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709878 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4307": {
    "fp": {
@@ -25515,16 +26645,22 @@
   },
   "US-4319": {
    "fp": {
-    "wid709902": [
+    "sgwia713422": [
      "Pershing Wildlife Area",
-     8675
+     8718.7
     ]
    },
    "join": [
-    "wid709902"
+    "sgwia713422"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Pershing Wildlife Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Pershing Wildlife Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709902": "sgwia713422"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709902 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4320": {
    "fp": {
@@ -25841,42 +26977,60 @@
   },
   "US-4348": {
    "fp": {
-    "wid709528": [
+    "sgwia713048": [
      "Black River State Forest",
-     68467
+     68861.1
     ]
    },
    "join": [
-    "wid709528"
+    "sgwia713048"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Black River State Forest' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Black River State Forest' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709528": "sgwia713048"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709528 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4349": {
    "fp": {
-    "wid709534": [
+    "sgwia713054": [
      "Flambeau River State Forest",
-     89223
+     89768.3
     ]
    },
    "join": [
-    "wid709534"
+    "sgwia713054"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Flambeau River State Forest' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Flambeau River State Forest' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709534": "sgwia713054"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709534 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4350": {
    "fp": {
-    "wid709535": [
+    "sgwia713055": [
      "Governor Knowles State Forest",
-     21113
+     21235.0
     ]
    },
    "join": [
-    "wid709535"
+    "sgwia713055"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Governor Knowles State Forest' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Governor Knowles State Forest' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709535": "sgwia713055"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709535 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4352": {
    "fp": {
@@ -25933,16 +27087,22 @@
   },
   "US-4354": {
    "fp": {
-    "wid710152": [
+    "sgwia713672": [
      "Point Beach State Forest",
-     3003
+     3026.5
     ]
    },
    "join": [
-    "wid710152"
+    "sgwia713672"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Point Beach State Forest' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Point Beach State Forest' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710152": "sgwia713672"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710152 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4355": {
    "fp": {
@@ -26326,12 +27486,28 @@
     "2663",
     "sgidd187",
     "Coeur d'Alene National Forest",
-    "Saint Joe National Forest",
-    "St. Joe National Forest",
     "Idaho Panhandle National Forests"
    ],
    "when": "2026-11-02",
-   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back Kaniksu NF (a unit of the Idaho Panhandle NFs; the old line) · 2026-10-29 23:15: key-pieces row YES 'Kaniksu National Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Idaho Panhandle National Forests' (chat 11 (Nov 1, by layer); applied by kpc_key_answers) · 2026-11-02 chat 2 (chat 11: 'Kaniksu NF is a part'): the forest = all three proclaimed forests it administers (Coeur d'Alene, Kaniksu, St. Joe), Forest Service-owned land (R2) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)"
+   "why": "Oct 29 5:55 PM: waiting-room piece 'Kaniksu National Forest' YES (chat 11, rechecked: name + kind + size) · Oct 29 8:20 PM chat 11 release check: YES put back Kaniksu NF (a unit of the Idaho Panhandle NFs; the old line) · 2026-10-29 23:15: key-pieces row YES 'Kaniksu National Forest' (chat 11 (Sonnet), Oct 29 evening; applied by kpc_key_answers) · 2026-11-02 13:05: layers row YES 'Idaho Panhandle National Forests' (chat 11 (Nov 1, by layer); applied by kpc_key_answers) · 2026-11-02 chat 2 (chat 11: 'Kaniksu NF is a part'): the forest = all three proclaimed forests it administers (Coeur d'Alene, Kaniksu, St. Joe), Forest Service-owned land (R2) · 2026-11-03 18:55: BOT A's auto-T1 YES (Nov 3) undone, the entry is back to its state before it (Brandon's answer to Quality's Q6, relayed by Super 6:52 PM CST: a person's answer always wins)",
+   "retired_join": [
+    {
+     "id": "Saint Joe National Forest",
+     "fp": null,
+     "why": "a bare name answer: no single record of that name near the pin",
+     "when": "2026-11-23"
+    },
+    {
+     "id": "St. Joe National Forest",
+     "fp": null,
+     "why": "a bare name answer: no single record of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer Saint Joe National Forest retire (owner 23 Nov 2026 9:20 AM, job 7)",
+    "2026-11-23: saved answer St. Joe National Forest retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-4480": {
    "fp": {
@@ -29062,16 +30238,22 @@
   },
   "US-5577": {
    "fp": {
-    "wid709529": [
+    "273028": [
      "Brule River State Forest",
-     46992
+     47143.0
     ]
    },
    "join": [
-    "wid709529"
+    "273028"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Brule River State Forest' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Brule River State Forest' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709529": "273028"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709529 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5578": {
    "fp": {
@@ -29101,16 +30283,22 @@
   },
   "US-5580": {
    "fp": {
-    "wid709542": [
+    "sgwia713062": [
      "Governor Earl Peshtigo River State Forest",
-     11734
+     11782.2
     ]
    },
    "join": [
-    "wid709542"
+    "sgwia713062"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Governor Earl Peshtigo River State Fores' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Governor Earl Peshtigo River State Fores' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709542": "sgwia713062"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709542 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5582": {
    "fp": {
@@ -29607,16 +30795,22 @@
   },
   "US-5643": {
    "fp": {
-    "wid709876": [
+    "272279": [
      "Lower Wisconsin State Riverway",
-     46191
+     46447.0
     ]
    },
    "join": [
-    "wid709876"
+    "272279"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lower Wisconsin State Riverway' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lower Wisconsin State Riverway' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709876": "272279"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709876 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5647": {
    "fp": {
@@ -29883,32 +31077,70 @@
   },
   "US-5682": {
    "join": [
-    "Moore's Creek State Recreation Area",
-    "Moores Creek State Recreation Area"
+    "sgide2422"
    ],
    "when": "2026-10-30",
-   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)"
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
+   "retired_join": [
+    {
+     "id": "Moore's Creek State Recreation Area",
+     "fp": null,
+     "why": "a bare name answer: no single record of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer Moore's Creek State Recreation Area retire (owner 23 Nov 2026 9:20 AM, job 7)",
+    "2026-11-23: saved answer Moores Creek State Recreation Area name (owner 23 Nov 2026 9:20 AM, job 7)"
+   ],
+   "fp": {
+    "sgide2422": [
+     "MOORES CREEK",
+     0.0
+    ]
+   },
+   "renumbered": {
+    "Moores Creek State Recreation Area": "sgide2422"
+   }
   },
   "US-5684": {
    "fp": {
     "sgide2417": [
      "ALLENS CREEK",
-     26
+     0.0
     ]
    },
    "join": [
-    "Allens Creek State Recreation Area",
+    "sgide2417",
     "sgide2417"
    ],
    "when": "2026-11-02",
-   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace) · 2026-11-02 13:05: layers row YES 'ALLENS CREEK' (chat 11; applied by kpc_key_answers)"
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace) · 2026-11-02 13:05: layers row YES 'ALLENS CREEK' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "Allens Creek State Recreation Area": "sgide2417"
+   },
+   "fixed": [
+    "2026-11-23: saved answer Allens Creek State Recreation Area name (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5686": {
    "join": [
-    "Fairfax State Recreation Area"
+    "sgide2420"
    ],
    "when": "2026-10-30",
-   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)"
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
+   "fp": {
+    "sgide2420": [
+     "FAIRFAX",
+     0.0
+    ]
+   },
+   "renumbered": {
+    "Fairfax State Recreation Area": "sgide2420"
+   },
+   "fixed": [
+    "2026-11-23: saved answer Fairfax State Recreation Area name (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5687": {
    "fp": {
@@ -29924,11 +31156,19 @@
    "why": "2026-11-02 13:05: layers row YES 'CUTRIGHT' (chat 11; applied by kpc_key_answers)"
   },
   "US-5688": {
-   "join": [
-    "Salt Creek State Recreation Area"
-   ],
    "when": "2026-10-30",
-   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)"
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
+   "retired_join": [
+    {
+     "id": "Salt Creek State Recreation Area",
+     "fp": null,
+     "why": "a bare name answer: no single record of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer Salt Creek State Recreation Area retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5697": {
    "fp": {
@@ -30340,16 +31580,22 @@
   },
   "US-5771": {
    "fp": {
-    "sgnmc11446": [
+    "rst11446": [
      "Cameo Cliffs",
-     15805
+     15641.5
     ]
    },
    "join": [
-    "sgnmc11446"
+    "rst11446"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Cameo Cliffs' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Cameo Cliffs' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc11446": "rst11446"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc11446 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5775": {
    "join": [
@@ -30406,16 +31652,22 @@
   },
   "US-5794": {
    "fp": {
-    "sgnmc14463": [
+    "rst14463": [
      "Colorado Riverway",
-     83541
+     86769.8
     ]
    },
    "join": [
-    "sgnmc14463"
+    "rst14463"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Colorado Riverway' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Colorado Riverway' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc14463": "rst14463"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc14463 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5796": {
    "fp": {
@@ -30451,16 +31703,22 @@
   },
   "US-5832": {
    "fp": {
-    "sgnmc9458": [
+    "rma9458": [
      "White Wash Sand Dunes",
-     1938
+     1943.9
     ]
    },
    "join": [
-    "sgnmc9458"
+    "rma9458"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'White Wash Sand Dunes' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'White Wash Sand Dunes' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc9458": "rma9458"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc9458 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5837": {
    "alias": [
@@ -30525,11 +31783,22 @@
      22821
     ]
    },
-   "join": [
-    "utw225"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Strawberry River WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Strawberry River WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw225",
+     "fp": [
+      "Strawberry River WMA",
+      22821
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw225 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5901": {
    "none": true,
@@ -30570,11 +31839,22 @@
      2876
     ]
    },
-   "join": [
-    "utw379"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lasson Draw WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lasson Draw WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw379",
+     "fp": [
+      "Lasson Draw WMA",
+      2876
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw379 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5926": {
    "alias": [
@@ -30605,16 +31885,22 @@
   },
   "US-5934": {
    "fp": {
-    "sgnmc11026": [
+    "rst11026": [
      "Pelican Lake",
-     1017
+     1020.4
     ]
    },
    "join": [
-    "sgnmc11026"
+    "rst11026"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Pelican Lake' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Pelican Lake' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc11026": "rst11026"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc11026 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5945": {
    "fp": {
@@ -30636,11 +31922,22 @@
      16638
     ]
    },
-   "join": [
-    "utw407"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Middle Fork WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Middle Fork WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw407",
+     "fp": [
+      "Middle Fork WMA",
+      16638
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw407 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5949": {
    "fp": {
@@ -30649,11 +31946,22 @@
      4821
     ]
    },
-   "join": [
-    "utw209"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Santaquin WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Santaquin WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw209",
+     "fp": [
+      "Santaquin WMA",
+      4821
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw209 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5950": {
    "fp": {
@@ -30695,16 +32003,22 @@
   },
   "US-5974": {
    "fp": {
-    "sgnmc9485": [
+    "rma9485": [
      "Little Sahara Recreation Site",
-     62472
+     62761.5
     ]
    },
    "join": [
-    "sgnmc9485"
+    "rma9485"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Little Sahara Recreation Site' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Little Sahara Recreation Site' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc9485": "rma9485"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc9485 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-5992": {
    "alias": [
@@ -30733,11 +32047,22 @@
      84
     ]
    },
-   "join": [
-    "sgaki400083"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Gunnison Massacre Site' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Gunnison Massacre Site' (chat 11 (Oct 31); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgaki400083",
+     "fp": [
+      "Gunnison Massacre Site",
+      84
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgaki400083 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-6012": {
    "fp": {
@@ -31212,12 +32537,26 @@
    "why": "2026-11-02 12:49: layers row YES 'Independence Rock' (chat 11; applied by kpc_key_answers)"
   },
   "US-6150": {
-   "join": [
-    "wsa29626",
-    "wsa29640"
-   ],
    "when": "2026-10-22",
-   "why": "same place, another name (hand review Oct 22 (waiting list))"
+   "why": "same place, another name (hand review Oct 22 (waiting list))",
+   "retired_join": [
+    {
+     "id": "wsa29626",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    },
+    {
+     "id": "wsa29640",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wsa29626 retire (owner 23 Nov 2026 9:20 AM, job 7)",
+    "2026-11-23: saved answer wsa29640 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-6151": {
    "fp": {
@@ -31260,11 +32599,19 @@
   },
   "US-6157": {
    "approx": true,
-   "join": [
-    "wsa29617"
-   ],
    "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))",
+   "retired_join": [
+    {
+     "id": "wsa29617",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wsa29617 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-6158": {
    "fp": {

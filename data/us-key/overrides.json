@@ -7,8 +7,8 @@
   "overrides-parks-02.json"
  ],
  "parts_sha256": {
-  "overrides-parks-01.json": "6adfac2a1ddbf249ed3723818bbc84bea970b5d0fdd0424bf548d2699dfaad52",
-  "overrides-parks-02.json": "15095c24bb4009a50cc11220e39a7732b95948229ccf57c48d5265be5c389189"
+  "overrides-parks-01.json": "2d7078b5e3ef71540c52bafd0d04442809d0d2feaf16b56d2f8d119a38aa4a41",
+  "overrides-parks-02.json": "41ba82861896e5606a3d6bd3534e2948de2f345f4a2d851b51a7275f44202c16"
  },
  "parks": {
   "US-0043": {
@@ -902,13 +902,13 @@
   },
   "US-1499": {
    "fp": {
-    "mid331": [
+    "sgmic34": [
      "Grand Haven State Park",
-     53
+     48.5
     ]
    },
    "join": [
-    "mid331"
+    "sgmic34"
    ],
    "no": [
     "157666"
@@ -920,7 +920,13 @@
     ]
    },
    "when": "2026-11-03",
-   "why": "2026-11-02 12:49: layers row YES 'Grand Haven State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 157666: Grand Haven State Game Area 5.2 km away; the park keeps its own records (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
+   "why": "2026-11-02 12:49: layers row YES 'Grand Haven State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 157666: Grand Haven State Game Area 5.2 km away; the park keeps its own records (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)",
+   "renumbered": {
+    "mid331": "sgmic34"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid331 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1538": {
    "fp": {
@@ -929,14 +935,25 @@
      3494
     ]
    },
-   "join": [
-    "mid532"
-   ],
    "no": [
     "71255"
    ],
    "when": "2026-11-03",
-   "why": "2026-11-02 12:49: layers row YES 'Silver Lake State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 71255: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
+   "why": "2026-11-02 12:49: layers row YES 'Silver Lake State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 71255: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)",
+   "retired_join": [
+    {
+     "id": "mid532",
+     "fp": [
+      "Silver Lake State Park",
+      3494
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid532 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1540": {
    "fp": {
@@ -945,15 +962,26 @@
      3288
     ]
    },
-   "join": [
-    "mid117"
-   ],
    "no": [
     "71257",
     "71260"
    ],
    "when": "2026-11-03",
-   "why": "2026-11-02 12:49: layers row YES 'Sleepy Hollow State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 71257, 71260: zero-area shapes (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
+   "why": "2026-11-02 12:49: layers row YES 'Sleepy Hollow State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 71257, 71260: zero-area shapes (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)",
+   "retired_join": [
+    {
+     "id": "mid117",
+     "fp": [
+      "Sleepy Hollow State Park",
+      3288
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mid117 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-1566": {
    "no": [
@@ -1378,13 +1406,13 @@
   },
   "US-2381": {
    "fp": {
-    "sgmea182": [
+    "206528": [
      "Baxter State Park",
-     8062
+     8156.0
     ]
    },
    "join": [
-    "sgmea182"
+    "206528"
    ],
    "no": [
     "58906",
@@ -1392,7 +1420,13 @@
     "206521"
    ],
    "when": "2026-11-03",
-   "why": "2026-11-02 12:49: layers row YES 'Baxter State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 58906, 58908, 206521: tiny copies (0.1 ac each, 4-41 km from the pin) that add nothing to the 184,000 ac park outline (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
+   "why": "2026-11-02 12:49: layers row YES 'Baxter State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 58906, 58908, 206521: tiny copies (0.1 ac each, 4-41 km from the pin) that add nothing to the 184,000 ac park outline (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)",
+   "renumbered": {
+    "sgmea182": "206528"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgmea182 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-2545": {
    "no": [
@@ -1560,19 +1594,25 @@
   },
   "US-3309": {
    "fp": {
-    "mid394": [
+    "71245": [
      "Fayette State Park",
-     783
+     838.0
     ]
    },
    "join": [
-    "mid394"
+    "71245"
    ],
    "no": [
     "71520"
    ],
    "when": "2026-11-03",
-   "why": "2026-11-02 12:49: layers row YES 'Fayette State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 71520: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)"
+   "why": "2026-11-02 12:49: layers row YES 'Fayette State Park' (chat 11; applied by kpc_key_answers) · 2026-11-03: NO 71520: zero-area shape (0.0 ac live) (Mapping's call, Nov 3 (Quality sampled 12/12 A+B of these rows; that is not Quality approving any overturn); remade on fresh main after KPC-Links #26/#27 / KPC-Data #8/#9)",
+   "renumbered": {
+    "mid394": "71245"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid394 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3523": {
    "no": [
@@ -1759,9 +1799,6 @@
    "why": "2026-11-02 13:05: layers row YES 'Kerr Lake' (chat 11; applied by kpc_key_answers) · Nov 2 map audit: chat 11 NO on 211902 (NO (chat 11, Nov 2, pattern CONFLICT lake): PIN. The record is the who)"
   },
   "US-3862": {
-   "join": [
-    "Nags Head Woods Ecological Preserve"
-   ],
    "no": [
     "sgnca7803",
     "sgnca9200",
@@ -1792,7 +1829,18 @@
     ]
    },
    "when": "2026-11-02",
-   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 271 m from the edge, 794.8 ac; a piece where the park is bigger) · 2026-11-02 12:49: gis-hunter row NO 'Town of Nags Head Open Space' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Nags Head Woods and Jockey's Ridge - Nat' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Nags Head Woods (Town of Nags Head) Regi' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Town of Nags Head Open Space' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Nags Head Woods (Town of Nags Head) Regi' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)"
+   "why": "Oct 29 1 PM: name-match bot + chat 2 + chat 11 YES (pin 271 m from the edge, 794.8 ac; a piece where the park is bigger) · 2026-11-02 12:49: gis-hunter row NO 'Town of Nags Head Open Space' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Nags Head Woods and Jockey's Ridge - Nat' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Nags Head Woods (Town of Nags Head) Regi' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Town of Nags Head Open Space' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers) · 2026-11-02 12:49: gis-hunter row NO 'Nags Head Woods (Town of Nags Head) Regi' (chat 11 (Oct 30, helper bot map check); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "Nags Head Woods Ecological Preserve",
+     "fp": null,
+     "why": "a bare name answer: no single record of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer Nags Head Woods Ecological Preserve retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-3879": {
    "fp": {

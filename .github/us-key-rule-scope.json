@@ -799,6 +799,14 @@
    "why": "Owner's go (23 Nov 2026, 8:45 AM: 'Go'; rules W8 and W9, from the outside agent's jobs 4 and 6). W8: the place test (pin 3c) sent the park's own pieces to the check list when a piece is named the park's name plus a short label ('X WMA - Y Tract', 'X Fishery Area-Polk', 'X State Park - Y Unit') or carries one part of a two-part park name of the same kind; they stay now, and a river, lake or road named like the park, another kind of place and a longer name that holds the park's still go to the check list. W9: the cap after the union counted a record with no acres on file as 0 acres (the two Maryland DNR layers), so 10 Maryland parks shrank to a few small pieces and dropped to a pin; such a record now adds its own measured area. On the saved US keys with the 23 Nov park facts (count only): place rows 1,798 -> 1,042; all check rows 6,679 -> 5,904; pin-only 96 -> 86 (Maryland 10); confirmed 6,308 -> 6,318 (W9 estimated without shapely). Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "owner's go, KPC owner, 2026-11-23 (8:45 AM 'Go'); merged only on his own review"
+  },
+  {
+   "id": "2026-11-23-w10-saved-answers",
+   "when": "2026-11-23",
+   "from": "80554d0c21b6",
+   "why": "Owner's answers (23 Nov 2026, 9:20 AM; rule W10, the outside agent's job 7). Saved answers that no longer found their record: a changed record number is re-pointed once to the same name and acres (one piece of ground), a split record joins its pieces when they add up, a bare-name answer becomes its record's id, a record only the bordering state's saved copy holds is read from there (KPC_SAVED_NEXT_STATE), look-alike parcels that all carry the park's name all join (KPC_SAVED_ALL_PARCELS), the rest is retired with its reason so the normal matching decides. On the saved keys (count only): not found 291 -> 42, fit two 64 -> 0; 123 re-pointed, 5 bare names, 1 split, 10 next door, 64 parcel answers, 112 retired; 42 kept as they are (32 wait for their layer in that state, 7 pinned trail / river parks, 3 signed or decided). A not-found answer joined nothing, so no outline is lost. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "owner's answers, KPC owner, 2026-11-23 (9:20 AM); merged only on his own review"
   }
  ]
 }

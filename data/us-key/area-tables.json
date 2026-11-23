@@ -13,7 +13,8 @@
   ],
   "*": [
    "XS state layers: Oct 18 (owner: 'go ahead'): the state agencies' own land maps (owner = the agency) for states with many unmatched parks; Oct 20: probe rounds 2 and 4 (owner = the state agency / state GIS office)."
-  ]
+  ],
+  "US_NEIGHBOURS": "23 Nov 2026 (owner 9:20 AM, job 7; KPC_SAVED_NEXT_STATE): the states each state borders; a saved answer's record that only a bordering state's saved copy holds is read from there. Kentucky is left out: this key does not build it (its own bots keep it)."
  },
  "BOX_ADD": {
   "FL": [
@@ -332,5 +333,57 @@
  ],
  "EASEMENT_RECHECK_STATES": {
   "NY": true
+ },
+ "US_NEIGHBOURS": {
+  "AL": "FL GA MS TN",
+  "AZ": "CA CO NM NV UT",
+  "AR": "LA MO MS OK TN TX",
+  "CA": "AZ NV OR",
+  "CO": "AZ KS NE NM OK UT WY",
+  "CT": "MA NY RI",
+  "DC": "MD VA",
+  "DE": "MD NJ PA",
+  "FL": "AL GA",
+  "GA": "AL FL NC SC TN",
+  "ID": "MT NV OR UT WA WY",
+  "IL": "IA IN MO WI",
+  "IN": "IL MI OH",
+  "IA": "IL MN MO NE SD WI",
+  "KS": "CO MO NE OK",
+  "LA": "AR MS TX",
+  "ME": "NH",
+  "MD": "DC DE PA VA WV",
+  "MA": "CT NH NY RI VT",
+  "MI": "IN OH WI",
+  "MN": "IA ND SD WI",
+  "MS": "AL AR LA TN",
+  "MO": "AR IA IL KS NE OK TN",
+  "MT": "ID ND SD WY",
+  "NE": "CO IA KS MO SD WY",
+  "NV": "AZ CA ID OR UT",
+  "NH": "MA ME VT",
+  "NJ": "DE NY PA",
+  "NM": "AZ CO OK TX UT",
+  "NY": "CT MA NJ PA VT",
+  "NC": "GA SC TN VA",
+  "ND": "MN MT SD",
+  "OH": "IN MI PA WV",
+  "OK": "AR CO KS MO NM TX",
+  "OR": "CA ID NV WA",
+  "PA": "DE MD NJ NY OH WV",
+  "RI": "CT MA",
+  "SC": "GA NC",
+  "SD": "IA MN MT ND NE WY",
+  "TN": "AL AR GA MO MS NC VA",
+  "TX": "AR LA NM OK",
+  "UT": "AZ CO ID NM NV WY",
+  "VT": "MA NH NY",
+  "VA": "DC MD NC TN WV",
+  "WA": "ID OR",
+  "WV": "MD OH PA VA",
+  "WI": "IA IL MI MN",
+  "WY": "CO ID MT NE SD UT",
+  "AK": "",
+  "HI": ""
  }
 }

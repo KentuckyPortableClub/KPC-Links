@@ -192,11 +192,19 @@
    "alias_ok_names": [
     "MONOCACY NRMA"
    ],
-   "join": [
-    "mdd3177"
-   ],
    "when": "2026-10-29",
-   "why": "same place, another name (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 2045.2 ac)"
+   "why": "same place, another name (hand review Oct 22 (waiting list)) · Oct 29 noon: name-match bot PASS + chat 2 review (pin inside; 2045.2 ac)",
+   "retired_join": [
+    {
+     "id": "mdd3177",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer mdd3177 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-6395": {
    "alias": [
@@ -442,17 +450,23 @@
   },
   "US-6443": {
    "fp": {
-    "sgnmc10958": [
+    "rma10958": [
      "Lowry Bridge",
-     83
+     82.2
     ]
    },
    "join": [
     "Lowry Bridge",
-    "sgnmc10958"
+    "rma10958"
    ],
    "when": "2026-11-02",
-   "why": "Oct 18 review: same place, official name written differently · 2026-11-02 13:05: layers row YES 'Lowry Bridge' (chat 11; applied by kpc_key_answers)"
+   "why": "Oct 18 review: same place, official name written differently · 2026-11-02 13:05: layers row YES 'Lowry Bridge' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc10958": "rma10958"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc10958 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-6454": {
    "alias": [
@@ -1689,16 +1703,22 @@
   },
   "US-6829": {
    "fp": {
-    "mid141": [
+    "71240": [
      "Wolf Lake State Fish Hatchery",
-     302
+     279.0
     ]
    },
    "join": [
-    "mid141"
+    "71240"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Wolf Lake State Fish Hatchery' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Wolf Lake State Fish Hatchery' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "mid141": "71240"
+   },
+   "fixed": [
+    "2026-11-23: saved answer mid141 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-6845": {
    "join": [
@@ -3138,11 +3158,22 @@
      40032
     ]
    },
-   "join": [
-    "sggae56"
-   ],
    "when": "2026-11-03",
-   "why": "2026-11-02 13:05: layers row YES 'Arabia Mountain National Heritage Area' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Arabia Mountain National Heritage Area' (auto recheck (AUTO-1); applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Arabia Mountain National Heritage Area' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Arabia Mountain National Heritage Area' (auto recheck (AUTO-1); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sggae56",
+     "fp": [
+      "Arabia Mountain National Heritage Area",
+      40032
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sggae56 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-7140": {
    "alias": [
@@ -5415,11 +5446,25 @@
   },
   "US-7842": {
    "join": [
-    "Red  Bridge State Recreation Area",
-    "Red Bridge State Recreation Area"
+    "sgide2902",
+    "sgide2902"
    ],
    "when": "2026-10-30",
-   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)"
+   "why": "Oct 30 8:45 AM chat 8 find (IN DNR ManagedLands layer, exact name, F/USACE land managed by DNR): hand join by name; the plain name test did not join it (to trace)",
+   "fp": {
+    "sgide2902": [
+     "RED BRIDGE",
+     0.0
+    ]
+   },
+   "renumbered": {
+    "Red  Bridge State Recreation Area": "sgide2902",
+    "Red Bridge State Recreation Area": "sgide2902"
+   },
+   "fixed": [
+    "2026-11-23: saved answer Red  Bridge State Recreation Area name (owner 23 Nov 2026 9:20 AM, job 7)",
+    "2026-11-23: saved answer Red Bridge State Recreation Area name (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-7843": {
    "fp": {
@@ -6046,39 +6091,43 @@
   },
   "US-8002": {
    "fp": {
-    "sgmng708": [
-     "NINEPIPE NATIONAL WILDLIFE REFUGE",
-     2097
-    ],
     "sgmtd235": [
      "Ninepipe National Wildlife Refuge",
-     2097
+     2085.0
     ]
    },
    "join": [
-    "sgmng708",
+    "sgmtd235",
     "sgmtd235"
    ],
    "when": "2026-11-03",
-   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 13:05: layers row YES 'NINEPIPE NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Ninepipe National Wildlife Refuge' (auto recheck (AUTO-1); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 13:05: layers row YES 'NINEPIPE NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Ninepipe National Wildlife Refuge' (auto recheck (AUTO-1); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join",
+   "renumbered": {
+    "sgmng708": "sgmtd235"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgmng708 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-8003": {
    "fp": {
-    "sgmng750": [
-     "PABLO NATIONAL WILDLIFE REFUGE",
-     2474
-    ],
     "sgmtd101": [
      "Pablo National Wildlife Refuge",
-     2474
+     2471.4
     ]
    },
    "join": [
-    "sgmng750",
+    "sgmtd101",
     "sgmtd101"
    ],
    "when": "2026-11-03",
-   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 13:05: layers row YES 'PABLO NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Pablo National Wildlife Refuge' (auto recheck (AUTO-1); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join"
+   "why": "Oct 22 hand review (waiting list): no outline found then; lifted later (see below; reason text cleaned Nov 9 PM, KZ4CP 5:12 PM CST) · 2026-11-02 13:05: layers row YES 'PABLO NATIONAL WILDLIFE REFUGE' (chat 11 (Oct 31); applied by kpc_key_answers) · 2026-11-03 17:08: gis-hunter row YES 'Pablo National Wildlife Refuge' (auto recheck (AUTO-1); applied by kpc_key_answers) · 2026-11-03 18:41: the older 'none' (no outline of its own) is replaced by this YES join",
+   "renumbered": {
+    "sgmng750": "sgmtd101"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgmng750 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-8006": {
    "join": [
@@ -7025,16 +7074,22 @@
   },
   "US-8210": {
    "fp": {
-    "wid710192": [
+    "sgwia713712": [
      "Bark Bay Slough State Natural Area",
-     640
+     644.7
     ]
    },
    "join": [
-    "wid710192"
+    "sgwia713712"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Bark Bay Slough State Natural Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Bark Bay Slough State Natural Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710192": "sgwia713712"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710192 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-8211": {
    "fp": {
@@ -7103,16 +7158,22 @@
   },
   "US-8218": {
    "fp": {
-    "wid710266": [
+    "sgwia713786": [
      "Hortonville Bog State Natural Area",
-     789
+     793.0
     ]
    },
    "join": [
-    "wid710266"
+    "sgwia713786"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hortonville Bog State Natural Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hortonville Bog State Natural Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710266": "sgwia713786"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710266 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-8220": {
    "join": [
@@ -7123,16 +7184,22 @@
   },
   "US-8224": {
    "fp": {
-    "wid710330": [
+    "272198": [
      "Lower Chippewa River State Natural Area",
-     3447
+     3437.0
     ]
    },
    "join": [
-    "wid710330"
+    "272198"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lower Chippewa River State Natural Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lower Chippewa River State Natural Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid710330": "272198"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid710330 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-8234": {
    "fp": {
@@ -10026,11 +10093,22 @@
      66
     ]
    },
-   "join": [
-    "sgiac106173"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Rush Lake (Osceola) WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Rush Lake (Osceola) WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgiac106173",
+     "fp": [
+      "Rush Lake (Osceola) WMA",
+      66
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgiac106173 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-9335": {
    "fp": {
@@ -12258,11 +12336,22 @@
      470
     ]
    },
-   "join": [
-    "sgakd1244"
-   ],
    "when": "2026-11-02",
-   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Amache National Historic Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Amache National Historic Site' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)"
+   "why": "Oct 29 10:55 PM: GIS-hunter record YES (chat 11, the agency's own record; chat 2 G-4 recheck: name + kind + size) · 2026-10-29 23:15: gis-hunter row YES 'Amache National Historic Site' (chat 11 (Oct 29-30); applied by kpc_key_answers) · 2026-11-02 12:49: layers row YES 'Amache National Historic Site' (chat 11 (Oct 31, same as my earlier answer); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgakd1244",
+     "fp": [
+      "Amache National Historic Site",
+      470
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgakd1244 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-9684": {
    "fp": {
@@ -12642,16 +12731,22 @@
   },
   "US-9832": {
    "fp": {
-    "wid709790": [
+    "272426": [
      "Avon Bottoms Wildlife Area",
-     4309
+     4295.0
     ]
    },
    "join": [
-    "wid709790"
+    "272426"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Avon Bottoms Wildlife Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Avon Bottoms Wildlife Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709790": "272426"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709790 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-9833": {
    "fp": {
@@ -12720,16 +12815,22 @@
   },
   "US-9841": {
    "fp": {
-    "wid709827": [
+    "sgwia713347": [
      "Evansville Wildlife Area",
-     734
+     740.7
     ]
    },
    "join": [
-    "wid709827"
+    "sgwia713347"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Evansville Wildlife Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Evansville Wildlife Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709827": "sgwia713347"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709827 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-9842": {
    "fp": {
@@ -13282,16 +13383,22 @@
   },
   "US-9862": {
    "fp": {
-    "wid709982": [
+    "272724": [
      "Peter Helland Wildlife Area",
-     3542
+     3549.0
     ]
    },
    "join": [
-    "wid709982"
+    "272724"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Peter Helland Wildlife Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Peter Helland Wildlife Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "wid709982": "272724"
+   },
+   "fixed": [
+    "2026-11-23: saved answer wid709982 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-9863": {
    "fp": {
@@ -14259,11 +14366,22 @@
      21
     ]
    },
-   "join": [
-    "utw223"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Stoddard Slough WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Stoddard Slough WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw223",
+     "fp": [
+      "Stoddard Slough WMA",
+      21
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw223 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10065": {
    "fp": {
@@ -14285,11 +14403,22 @@
      514
     ]
    },
-   "join": [
-    "utw359"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Hobble Creek WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Hobble Creek WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw359",
+     "fp": [
+      "Hobble Creek WMA",
+      514
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw359 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10067": {
    "fp": {
@@ -15306,32 +15435,58 @@
   },
   "US-10480": {
    "fp": {
-    "sgnmc13856": [
+    "rma13856": [
      "Chukar Park Recreation Site",
-     11
+     12.6
     ]
    },
    "join": [
-    "sgnmc13856"
+    "rma13856"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Chukar Park Recreation Site' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Chukar Park Recreation Site' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc13856": "rma13856"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc13856 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10483": {
    "approx": true,
    "fp": {
-    "sgnvh1907": [
+    "sgakh1907": [
      "Jordan Craters",
-     31146
+     31355.5
     ]
    },
    "join": [
-    "wsa31291",
-    "wsa31325",
-    "sgnvh1907"
+    "sgakh1907"
    ],
    "when": "2026-11-08",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-08 13:55: layers row YES 'Jordan Craters' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-08 13:55: layers row YES 'Jordan Craters' (chat 11 (Oct 31); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "wsa31291",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    },
+    {
+     "id": "wsa31325",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wsa31291 retire (owner 23 Nov 2026 9:20 AM, job 7)",
+    "2026-11-23: saved answer wsa31325 retire (owner 23 Nov 2026 9:20 AM, job 7)",
+    "2026-11-23: saved answer sgnvh1907 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ],
+   "renumbered": {
+    "sgnvh1907": "sgakh1907"
+   }
   },
   "US-10486": {
    "alias": [
@@ -15351,37 +15506,57 @@
   },
   "US-10487": {
    "approx": true,
-   "join": [
-    "wsa31224"
-   ],
    "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))",
+   "retired_join": [
+    {
+     "id": "wsa31224",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wsa31224 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10492": {
    "fp": {
-    "sgnmc9783": [
+    "rma9783": [
      "Provolt Recreation Site",
-     92
+     86.5
     ]
    },
    "join": [
-    "sgnmc9783"
+    "rma9783"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Provolt Recreation Site' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Provolt Recreation Site' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc9783": "rma9783"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc9783 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10494": {
    "fp": {
-    "sgnmc11269": [
+    "rma11269": [
      "Millpond Recreation Site",
-     34
+     30.8
     ]
    },
    "join": [
-    "sgnmc11269"
+    "rma11269"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Millpond Recreation Site' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Millpond Recreation Site' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc11269": "rma11269"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc11269 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10496": {
    "fp": {
@@ -15497,16 +15672,22 @@
   },
   "US-10525": {
    "fp": {
-    "sgnmc13966": [
+    "rma13966": [
      "Coal Banks Landing",
-     9
+     8.5
     ]
    },
    "join": [
-    "sgnmc13966"
+    "rma13966"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Coal Banks Landing' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Coal Banks Landing' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc13966": "rma13966"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc13966 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10527": {
    "alias_held": [
@@ -15638,11 +15819,22 @@
      13540
     ]
    },
-   "join": [
-    "utw245"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Wallsburg WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Wallsburg WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw245",
+     "fp": [
+      "Wallsburg WMA",
+      13540
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw245 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10561": {
    "approx": true,
@@ -15683,11 +15875,22 @@
      5827
     ]
    },
-   "join": [
-    "utw322"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'East Canyon WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'East Canyon WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw322",
+     "fp": [
+      "East Canyon WMA",
+      5827
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw322 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10567": {
    "fp": {
@@ -15742,11 +15945,19 @@
    "why": "2026-11-02 13:05: layers row YES 'Lipton CA' (chat 11; applied by kpc_key_answers)"
   },
   "US-10575": {
-   "join": [
-    "Walnut Woods Conservation Area"
-   ],
    "when": "2026-10-29",
-   "why": "Oct 29 5:55 PM: potamap lead + chat 11 YES (name variant; owner City of Liberty)"
+   "why": "Oct 29 5:55 PM: potamap lead + chat 11 YES (name variant; owner City of Liberty)",
+   "retired_join": [
+    {
+     "id": "Walnut Woods Conservation Area",
+     "fp": null,
+     "why": "a bare name answer: no single record of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer Walnut Woods Conservation Area retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10577": {
    "fp": {
@@ -16053,11 +16264,21 @@
     ]
    },
    "join": [
-    "272683",
-    "wid700396"
+    "272683"
    ],
    "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))",
+   "retired_join": [
+    {
+     "id": "wid700396",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wid700396 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10657": {
    "join": [
@@ -16497,16 +16718,22 @@
   },
   "US-10864": {
    "fp": {
-    "sgnmc11032": [
+    "rma11032": [
      "Killpecker Sand Dunes Open Play Area",
-     12752
+     12832.5
     ]
    },
    "join": [
-    "sgnmc11032"
+    "rma11032"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Killpecker Sand Dunes Open Play Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Killpecker Sand Dunes Open Play Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc11032": "rma11032"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc11032 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-10867": {
    "join": [
@@ -17249,16 +17476,22 @@
   },
   "US-11112": {
    "fp": {
-    "sgnmc10833": [
+    "rst10833": [
      "Factory Butte",
-     24263
+     24354.7
     ]
    },
    "join": [
-    "sgnmc10833"
+    "rst10833"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Factory Butte' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Factory Butte' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc10833": "rst10833"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc10833 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11115": {
    "join": [
@@ -17539,11 +17772,22 @@
      231
     ]
    },
-   "join": [
-    "utw323"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'East Fork Little Bear WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'East Fork Little Bear WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw323",
+     "fp": [
+      "East Fork Little Bear WMA",
+      231
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw323 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11160": {
    "fp": {
@@ -17565,11 +17809,22 @@
      2362
     ]
    },
-   "join": [
-    "utw230"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Timpanogos WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Timpanogos WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw230",
+     "fp": [
+      "Timpanogos WMA",
+      2362
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw230 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11163": {
    "fp": {
@@ -17578,11 +17833,22 @@
      14863
     ]
    },
-   "join": [
-    "utw429"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Currant Creek WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Currant Creek WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw429",
+     "fp": [
+      "Currant Creek WMA",
+      14863
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw429 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11165": {
    "fp": {
@@ -17657,11 +17923,22 @@
      4241
     ]
    },
-   "join": [
-    "utw393"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lower San Rafael River WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lower San Rafael River WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw393",
+     "fp": [
+      "Lower San Rafael River WMA",
+      4241
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw393 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11184": {
    "fp": {
@@ -17722,11 +17999,22 @@
      7974
     ]
    },
-   "join": [
-    "utw219"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Starvation WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Starvation WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw219",
+     "fp": [
+      "Starvation WMA",
+      7974
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw219 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11191": {
    "fp": {
@@ -17735,11 +18023,22 @@
      991
     ]
    },
-   "join": [
-    "utw282"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Birdseye WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Birdseye WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw282",
+     "fp": [
+      "Birdseye WMA",
+      991
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw282 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11192": {
    "fp": {
@@ -17748,11 +18047,22 @@
      2078
     ]
    },
-   "join": [
-    "utw412"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Mona Bench WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Mona Bench WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw412",
+     "fp": [
+      "Mona Bench WMA",
+      2078
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw412 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11195": {
    "fp": {
@@ -17761,11 +18071,22 @@
      140
     ]
    },
-   "join": [
-    "utw296"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Burraston Ponds WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Burraston Ponds WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw296",
+     "fp": [
+      "Burraston Ponds WMA",
+      140
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw296 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11196": {
    "fp": {
@@ -17787,11 +18108,22 @@
      15516
     ]
    },
-   "join": [
-    "utw340"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Gordon Creek WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Gordon Creek WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw340",
+     "fp": [
+      "Gordon Creek WMA",
+      15516
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw340 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11198": {
    "fp": {
@@ -17813,11 +18145,22 @@
      2189
     ]
    },
-   "join": [
-    "utw384"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Levan WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Levan WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw384",
+     "fp": [
+      "Levan WMA",
+      2189
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw384 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11201": {
    "fp": {
@@ -17865,11 +18208,22 @@
      2764
     ]
    },
-   "join": [
-    "utw212"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Six Mile WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Six Mile WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw212",
+     "fp": [
+      "Six Mile WMA",
+      2764
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw212 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11208": {
    "fp": {
@@ -18050,16 +18404,22 @@
   },
   "US-11242": {
    "fp": {
-    "sgnmc11382": [
+    "rst11382": [
      "Scratchgravel Hills",
-     5934
+     6014.4
     ]
    },
    "join": [
-    "sgnmc11382"
+    "rst11382"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Scratchgravel Hills' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Scratchgravel Hills' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc11382": "rst11382"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc11382 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11243": {
    "join": [
@@ -18101,16 +18461,22 @@
   },
   "US-11259": {
    "fp": {
-    "sgnmc13785": [
+    "rst13785": [
      "Silver City",
-     2564
+     2624.2
     ]
    },
    "join": [
-    "sgnmc13785"
+    "rst13785"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Silver City' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Silver City' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc13785": "rst13785"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc13785 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11263": {
    "fp": {
@@ -18373,16 +18739,22 @@
   },
   "US-11340": {
    "fp": {
-    "sgnjb257": [
+    "76298": [
      "Higbee Beach Wildlife Management Area",
-     1074
+     1089.0
     ]
    },
    "join": [
-    "sgnjb257"
+    "76298"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Higbee Beach Wildlife Management Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Higbee Beach Wildlife Management Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnjb257": "76298"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnjb257 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11342": {
    "fp": {
@@ -18438,11 +18810,22 @@
      1173
     ]
    },
-   "join": [
-    "utw418"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Nash Wash WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Nash Wash WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw418",
+     "fp": [
+      "Nash Wash WMA",
+      1173
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw418 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11351": {
    "approx": true,
@@ -18714,11 +19097,22 @@
      7441
     ]
    },
-   "join": [
-    "utw215"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Spencer Fork WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Spencer Fork WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw215",
+     "fp": [
+      "Spencer Fork WMA",
+      7441
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw215 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11643": {
    "fp": {
@@ -18727,11 +19121,22 @@
      2753
     ]
    },
-   "join": [
-    "utw377"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Lake Fork WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Lake Fork WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw377",
+     "fp": [
+      "Lake Fork WMA",
+      2753
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw377 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11644": {
    "fp": {
@@ -18740,11 +19145,22 @@
      12293
     ]
    },
-   "join": [
-    "utw389"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Loafer Mountain WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Loafer Mountain WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw389",
+     "fp": [
+      "Loafer Mountain WMA",
+      12293
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw389 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11646": {
    "fp": {
@@ -18753,11 +19169,22 @@
      4944
     ]
    },
-   "join": [
-    "utw316"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Dairy Fork WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Dairy Fork WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw316",
+     "fp": [
+      "Dairy Fork WMA",
+      4944
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw316 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11648": {
    "fp": {
@@ -18838,11 +19265,22 @@
      151
     ]
    },
-   "join": [
-    "utw420"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Nephi WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Nephi WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw420",
+     "fp": [
+      "Nephi WMA",
+      151
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw420 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11710": {
    "fp": {
@@ -18851,11 +19289,22 @@
      566
     ]
    },
-   "join": [
-    "utw405"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Marysvale WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Marysvale WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw405",
+     "fp": [
+      "Marysvale WMA",
+      566
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw405 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11711": {
    "approx": true,
@@ -18901,11 +19350,22 @@
      379
     ]
    },
-   "join": [
-    "utw337"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Fountain Green WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Fountain Green WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw337",
+     "fp": [
+      "Fountain Green WMA",
+      379
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw337 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11726": {
    "fp": {
@@ -18914,11 +19374,22 @@
      1200
     ]
    },
-   "join": [
-    "utw317"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Deep Creek WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Deep Creek WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw317",
+     "fp": [
+      "Deep Creek WMA",
+      1200
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw317 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11732": {
    "none": true,
@@ -18932,11 +19403,22 @@
      580
     ]
    },
-   "join": [
-    "utw285"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Black Canyon WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Black Canyon WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw285",
+     "fp": [
+      "Black Canyon WMA",
+      580
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw285 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11742": {
    "fp": {
@@ -18945,20 +19427,45 @@
      159
     ]
    },
-   "join": [
-    "utw266"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Yankee Meadows WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Yankee Meadows WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw266",
+     "fp": [
+      "Yankee Meadows WMA",
+      159
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw266 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11746": {
    "approx": true,
-   "join": [
-    "wsa30522",
-    "wsa30599"
-   ],
    "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))",
+   "retired_join": [
+    {
+     "id": "wsa30522",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    },
+    {
+     "id": "wsa30599",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wsa30522 retire (owner 23 Nov 2026 9:20 AM, job 7)",
+    "2026-11-23: saved answer wsa30599 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11753": {
    "join": [
@@ -18990,16 +19497,22 @@
   },
   "US-11770": {
    "fp": {
-    "sgnmc9672": [
+    "rma9672": [
      "Sacramento Pass Recreation Area",
-     29
+     31.5
     ]
    },
    "join": [
-    "sgnmc9672"
+    "rma9672"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Sacramento Pass Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Sacramento Pass Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc9672": "rma9672"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc9672 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-11771": {
    "fp": {
@@ -20406,42 +20919,60 @@
   },
   "US-12146": {
    "fp": {
-    "sgnmc9663": [
+    "rma9663": [
      "Buckskin Hills",
-     719
+     713.4
     ]
    },
    "join": [
-    "sgnmc9663"
+    "rma9663"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Buckskin Hills' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Buckskin Hills' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc9663": "rma9663"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc9663 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-12147": {
    "fp": {
-    "sgnmc9912": [
+    "rma9912": [
      "Jensen Hills",
-     930
+     930.8
     ]
    },
    "join": [
-    "sgnmc9912"
+    "rma9912"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Jensen Hills' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Jensen Hills' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc9912": "rma9912"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc9912 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-12160": {
    "fp": {
-    "sgnmc10768": [
+    "rma10768": [
      "Hot Well Dunes Recreation Area",
-     2222
+     2227.4
     ]
    },
    "join": [
-    "sgnmc10768"
+    "rma10768"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Hot Well Dunes Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Hot Well Dunes Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc10768": "rma10768"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc10768 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-12165": {
    "fp": {
@@ -20965,11 +21496,21 @@
     ]
    },
    "join": [
-    "272735",
-    "wid700411"
+    "272735"
    ],
    "when": "2026-10-22",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))"
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))",
+   "retired_join": [
+    {
+     "id": "wid700411",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wid700411 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-12361": {
    "fp": {
@@ -21157,17 +21698,23 @@
   },
   "US-12404": {
    "fp": {
-    "sgnmc10680": [
+    "rma10680": [
      "Folsom Farm Interpretive Site",
-     37
+     37.2
     ]
    },
    "join": [
     "Folsom Farm Interpretive Site",
-    "sgnmc10680"
+    "rma10680"
    ],
    "when": "2026-11-02",
-   "why": "Oct 18 review: same place, official name written differently · 2026-11-02 13:05: layers row YES 'Folsom Farm Interpretive Site' (chat 11; applied by kpc_key_answers)"
+   "why": "Oct 18 review: same place, official name written differently · 2026-11-02 13:05: layers row YES 'Folsom Farm Interpretive Site' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc10680": "rma10680"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc10680 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-12407": {
    "fp": {
@@ -23502,16 +24049,22 @@
   },
   "US-13106": {
    "fp": {
-    "sgnmc10516": [
+    "rst10516": [
      "Penitente Canyon Recreation Area",
-     4512
+     4549.2
     ]
    },
    "join": [
-    "sgnmc10516"
+    "rst10516"
    ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Penitente Canyon Recreation Area' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Penitente Canyon Recreation Area' (chat 11; applied by kpc_key_answers)",
+   "renumbered": {
+    "sgnmc10516": "rst10516"
+   },
+   "fixed": [
+    "2026-11-23: saved answer sgnmc10516 renumber (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-13136": {
    "join": [
@@ -23600,11 +24153,21 @@
     ]
    },
    "join": [
-    "wbl4778",
     "sgnvh1238"
    ],
    "when": "2026-11-08",
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-08 13:55: layers row YES 'Mount Irish' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) · 2026-11-08 13:55: layers row YES 'Mount Irish' (chat 11 (Oct 31); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "wbl4778",
+     "fp": null,
+     "why": "no fingerprint saved: the answer cannot be checked (key-quality.md: an id alone is never trusted)",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer wbl4778 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-13183": {
    "fp": {
@@ -23613,11 +24176,22 @@
      40
     ]
    },
-   "join": [
-    "sgaki397402"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 13:05: layers row YES 'Walking Box Ranch' (chat 11 (Oct 31); applied by kpc_key_answers)"
+   "why": "2026-11-02 13:05: layers row YES 'Walking Box Ranch' (chat 11 (Oct 31); applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "sgaki397402",
+     "fp": [
+      "Walking Box Ranch",
+      40
+     ],
+     "why": "record gone: nothing of that name near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer sgaki397402 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-13186": {
    "none": true,
@@ -24564,11 +25138,22 @@
      2549
     ]
    },
-   "join": [
-    "utw273"
-   ],
    "when": "2026-11-02",
-   "why": "2026-11-02 12:49: layers row YES 'Bald Mountain WMA' (chat 11; applied by kpc_key_answers)"
+   "why": "2026-11-02 12:49: layers row YES 'Bald Mountain WMA' (chat 11; applied by kpc_key_answers)",
+   "retired_join": [
+    {
+     "id": "utw273",
+     "fp": [
+      "Bald Mountain WMA",
+      2549
+     ],
+     "why": "record split, merged or redrawn: nothing of that name and size near the pin",
+     "when": "2026-11-23"
+    }
+   ],
+   "fixed": [
+    "2026-11-23: saved answer utw273 retire (owner 23 Nov 2026 9:20 AM, job 7)"
+   ]
   },
   "US-13608": {
    "fp": {
