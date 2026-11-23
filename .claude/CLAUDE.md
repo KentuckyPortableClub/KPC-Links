@@ -5,6 +5,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 
 - `.claude/notes/handoff-app-lounges-nov19.md`: where the APP + LOUNGES stand (Nov 19), what waits on Brandon, the carbon-copy rule. Read first in a new app/Lounge chat.
 - `.claude/notes/handoff-matching-nov23.md`: where MATCHING + ACCURACY stand (Nov 23), the next jobs in order, what waits on Brandon, how to bring his PC test kit up to date after a change. Read first in a new matching chat.
+- `.claude/notes/handoff-official-links-nov23.md`: the OWN-PAGE FINDER for parks with no link or a dead one (Nov 23): what exists, the plan, rule sheet L, done. Read first for the official-links job.
 **Notes are split by topic (Oct 20, to save usage). Read ONLY the file for the job at hand:**
 - `.claude/notes/mapping.md`: boundaries + answer keys (KY/US/Canada/world), trip planners, Park Control/Commander, Am I in the Park, Kit, Info Finder, Map Rep/Suggest, 2-fers, KY park data + access points, trails, boundary bots.
 - `.claude/notes/logger-lounge-digi.md`: KPC Logger, Hunters Lounge (public, VIP, beta room), DIGI tab + FT8 Android-audio history, CAT, QRZ, the KPC APP LOOK recipe, FT8 app build notes are in ideas.md.
