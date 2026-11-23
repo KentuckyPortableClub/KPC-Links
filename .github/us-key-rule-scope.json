@@ -815,6 +815,14 @@
    "why": "Owner's word (23 Nov 2026, 11:03 AM: 'Fix it'; rule W11). 41 records of saved answers sit on layers saved only for another state (parks across a state line: Park Service legal boundaries, national forests, refuges, BLM recreation sites, a heritage area, the National Register, Idaho's ownership layer, the Corps' recreation areas). data/state-gis.json now lists each for the park's own state too, for exactly those records (OBJECTID IN), with the same address so the prefix and the saved ids stay the same: 24 entries in 17 states. The master step asks the keeper for them; the answers join once the saved copies hold them. Nothing fetched here. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "owner's word, KPC owner, 2026-11-23 (11:03 AM 'Fix it'); merged only on his own review"
+  },
+  {
+    "id": "2026-11-23-wg6-near-a-town",
+    "when": "2026-11-23",
+    "from": "69100a58d956",
+    "why": "Owner's ruling W-G6 (23 Nov 2026, 6:37 AM: '4 I say yes'): a 'near a town' point the park's own official page gives in words (park facts page.near, made on the PC from the town lists, with how far off it may be) is a place witness. Land reaching its circle with a name that agrees confirms ('near a town'); when ALL the joined land lies far from there (over 3 times the circle and 25 km), it goes to the check list, never a record holding POTA's pin, never when an id or the agency's own size speaks for it. Measured on the saved US keys with the 23 Nov 12:32 PM park facts: 21 parks confirmed near a town, 1 park's joined land to the check list. Scope none: no park is rebuilt until the owner starts a build.",
+    "scope": "none",
+    "approved": "owner's ruling, KPC owner, 2026-11-23 (6:37 AM '4 I say yes'); merged only on his own review"
   }
  ]
 }
