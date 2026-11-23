@@ -3381,9 +3381,9 @@ def run(st):
         _nm_ac = 0
         for ref, p in parks.items():
             if p.get('ac') or not p.get('m'): continue
-            got = KR.measured_ac(p['m'], lambda i: rings(_byg[i]['_g']) if i in _byg else None, p.get('parts'))
+            got = KR.measured_ac(p['m'], lambda i: rings(_byg[i]['_g']) if i in _byg else None, p.get('parts'), p.get('twin'))
             if got: p['ac'], p['ac_how'] = got[0], 'measured'; _nm_ac += 1
-        if _nm_ac: notice(f'US key {st}', f"{_nm_ac} park(s) with a record that has no acres on file got 'ac' measured from the saved shape (Handoff 8 fix 4)")
+        if _nm_ac: notice(f'US key {st}', f"{_nm_ac} park(s) with no union acreage got one measured 'ac' (a record with no acres on file measured from its saved shape; the same ground in two layers counted once; Handoff 8 fix 4, W7)")
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
     for ref in parks:
         if (OVR.get(ref) or {}).get('note'): parks[ref]['note'] = OVR[ref]['note']
