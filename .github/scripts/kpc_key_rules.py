@@ -1246,3 +1246,35 @@ def next_state_records(missing, read_copy, states):
             if i in want:
                 out.append(a); want.discard(i)
     return out
+
+
+# W12 (owner 23 Nov 2026 2:12 PM, approving the outside agent's job 9): a Wetland Management District the FWS realty copy gives
+# no tract joins the Fish and Wildlife Service's own Waterfowl Production Area records that HOLD POTA's pin or CARRY the
+# district's place name. A pin inside a separate refuge, or a production area only NEAR the pin (it may be another district's),
+# joins nothing. One record per production-area name (the FWS realty copy 'fws...' first; the others are the same land in a
+# compilation list, which the D rules set aside).
+WPA_NAME = re.compile(r'waterfowl production area|\bWPA\b', re.I)
+
+
+def district_wpa_picks(core, la, lo, recs, holds_fn, is_no_fn):
+    """-> ([records], how many a person's no left out)."""
+    picks, no = {}, 0
+    for a in recs or ():
+        nm = str(a.get('Unit_Nm') or '')
+        if not WPA_NAME.search(nm):
+            continue
+        oid = str(a.get('OBJECTID'))
+        if not (str(a.get('Mang_Name') or '').upper() == 'FWS' or oid.startswith('fws')):
+            continue
+        bare = re.sub(r'\s+of\s+[A-Za-z .]{2,20}$', '', nm, flags=re.I)     # 'Clay County WPA Of Iowa': a state tag, not the district's name
+        named = bool(core) and re.search(r'\b' + re.escape(core) + r'\b', bare, re.I) is not None
+        holds = la is not None and lo is not None and bool(holds_fn(a))
+        if not (named or holds):
+            continue
+        if is_no_fn(a):
+            no += 1
+            continue
+        k = re.sub(r'\s+of\s+[a-z]{2}$', '', ' '.join(nm.lower().split()))
+        if k not in picks or (oid.startswith('fws') and not str(picks[k].get('OBJECTID')).startswith('fws')):
+            picks[k] = a
+    return list(picks.values()), no
