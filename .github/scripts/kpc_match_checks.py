@@ -884,6 +884,15 @@ def own_piece(rec_name, name):
     return len(rb) >= 2 and len(joined) >= 8 and (nb[:len(rb)] == rb or nb[-len(rb):] == rb)
 
 
+def all_parcels_ok(park_name, names):
+    """23 Nov 2026 (owner 9:20 AM, job 7: 'All parcels inside the park'; switch KPC_SAVED_ALL_PARCELS): a saved answer whose
+    fingerprint fits SEVERAL records (look-alike 40-acre survey parcels) joins them all, but only when every one of them carries
+    the park's own name (same_bare with POTA's name, or W8's own_piece: 'X Wildlife Area-Columbia'): then each is a parcel of this park's land. Fewer than two, or any other
+    name: as before (the first one joins and it is said)."""
+    names = [n for n in names or [] if n]
+    return len(names) >= 2 and bool(park_name) and all(same_bare(n, park_name) or own_piece(n, park_name) for n in names)
+
+
 def pin_3c(q, rows, holds, park_name='', held=None):
     """holds(record id) -> True / False / None (POTA's pin strictly inside the record). True = flag q.
     22 Nov 2026: a record that does not hold the pin stays when its bare name is the bare name of a record that holds it, or

@@ -182,7 +182,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_SELF_CHECKS': '0', 'KPC_CONF_SORT': '0', 'KPC_PADUS_DEDUPE': '0', 'KPC_PIECE_NAME': '0',
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_ANSWER_HOLDERS': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
-            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0', 'KPC_NO_FOLLOWS_FP': '0', 'KPC_SAVED_ANSWERS_SAY': '0',
+            'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0', 'KPC_NO_FOLLOWS_FP': '0', 'KPC_SAVED_ANSWERS_SAY': '0', 'KPC_SAVED_NEXT_STATE': '0', 'KPC_SAVED_ALL_PARCELS': '0',
             'KPC_MATCH_CHECKS': '0',
             'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1', 'KPC_PRESERVE_WITH_PARK': '1'}
 
@@ -1221,3 +1221,28 @@ def cap_acres(on_file, measured):
         return max(0.0, float(measured or 0))
     except (TypeError, ValueError):
         return 0.0
+
+
+# 23 Nov 2026 (owner 9:20 AM, job 7: "Fix it to where all parks that are mutiple states have record in each one"; switch
+# KPC_SAVED_NEXT_STATE): a park's saved answer may name a record that only the saved copy of a BORDERING state holds (a national
+# forest, refuge or park unit that crosses the line). The builder then reads that record from the neighbour's copy too.
+# the table itself is data/us-key/area-tables.json 'US_NEIGHBOURS' (D6: per-state tables live there, never in a rule file)
+
+
+def neighbours(st, table=None):
+    """The states that border st, from the area tables' US_NEIGHBOURS {state: 'XX YY ...'}; none for Alaska and Hawaii."""
+    return (((table or {}).get(str(st or '').upper())) or '').split()
+
+
+def next_state_records(missing, read_copy, states):
+    """KPC_SAVED_NEXT_STATE: the records with these ids from the bordering states' saved copies. missing = the saved-answer ids
+    this state's copy lacks; read_copy(state) -> [records] or None; states = neighbours(st). -> [records], each once, the first
+    copy holding an id wins. Nothing is fetched: saved copies only."""
+    want, out = {str(x) for x in missing or []}, []
+    for s2 in states or []:
+        if not want: break
+        for a in read_copy(s2) or []:
+            i = str(a.get('OBJECTID'))
+            if i in want:
+                out.append(a); want.discard(i)
+    return out
