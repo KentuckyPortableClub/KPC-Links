@@ -648,7 +648,8 @@
     ],
     "saved_ids": false
    },
-   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"  },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-20 (the owner handed the call on this PR to Grok Bot at 4:47 PM CT; approved after the review and the full gate on Python 3.12 and 3.13)"
+  },
   {
    "id": "2026-11-20-size-check-hold",
    "when": "2026-11-20",
@@ -742,6 +743,14 @@
    "why": "Owner ruling W-G3 (22 Nov 2026 8:55 PM, 'Check list'): a park with no outline (pin only) whose own official page gives a point (not an office or mailing point) inside a piece of land gets that piece on its check list for a person; it is never drawn. A piece a person said no to, or one already listed, is not added. Counted in the match-checks line. Rulings recorded with it: W-G1 a page point confirms a park only with a name that agrees (as built); ID disagreement moves the piece to check (as built); grid square vs pin is a note only (as built). Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-22 (8:55 PM ruling \"Check list\"; 9:02 PM: \"You merge\")"
+  },
+  {
+   "id": "2026-11-23-page-name-witness",
+   "when": "2026-11-23",
+   "from": "73b68951e0b8",
+   "why": "Owner rulings W-G4 and W-G5 (23 Nov 2026 12:51 AM: 'Yes I think so', 'Yes'): the park's own page on an official site that carries the park's own name (the page reader's name check: the same name, the same core, or the same words calling the place another kind) confirms a joined park when POTA's pin lies in the joined record ('page name'), or when the page's own point does ('page name and point', ruling W-G1 with the page's name as the name that agrees). It confirms only: no piece is joined, moved to check or dropped by it. A list, a shared page, an unofficial site or a page that names another place gives nothing. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (12:51 AM rulings 'Yes I think so' and 'Yes'); the merge waits for the owner's own review"
   }
  ]
 }

@@ -385,6 +385,17 @@ def claim_fit(park, rec, table=None):
     return sc
 
 
+PAGE_NAME_OK = ('same', 'same-core', 'same-words')   # W4 / W-G5 (owner 23 Nov 2026 12:51 AM)
+
+
+def page_name_agrees(fact):
+    """W4 (owner's rulings W-G4 "Yes I think so", W-G5 "Yes", 23 Nov 2026 12:51 AM): the park's OWN page on an official site
+    carries the park's own name. The page reader's name check decides it (KPC-Data park facts, page.name_vs_pota): the same
+    name, the same core, or the same words calling the place another kind ('Anthony Branch Fishery Area' for 'Anthony Branch
+    State Fish and Wildlife Area'). A list, a shared page, an unofficial site or a page that names another place gives nothing."""
+    return own_page(fact) and str((((fact or {}).get('page') or {}).get('name_vs_pota')) or '') in PAGE_NAME_OK
+
+
 def page_pins(fact):
     pg = (fact or {}).get('page') or {}
     if pg.get('own_page') != 'own' or pg.get('unofficial'): return []
@@ -964,6 +975,10 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             elif sv[0] == 'agrees': st_, how = 'confirmed', 'size'
             elif link_nm == 'strong' and place_ok: st_, how = 'confirmed', 'link'
             elif link_nm in ('strong', 'part') and any(on_page(str(q[0])) for q in left): st_, how = 'confirmed', 'page point'
+            # W4 (23 Nov 2026): the park's own official page carries its name, and POTA's pin lies in the joined record (or,
+            # W-G1 with the page's name as the name that agrees, the page's own point does). Confirms only: nothing is moved.
+            elif page_name_agrees(f) and place_ok: st_, how = 'confirmed', 'page name'
+            elif page_name_agrees(f) and any(on_page(str(q[0])) for q in left): st_, how = 'confirmed', 'page name and point'
             else: st_ = 'outlined'
         p['match'] = {'status': st_, 'why': sorted(set(why))}
         if notes: p['match']['notes'] = sorted(set(notes))
