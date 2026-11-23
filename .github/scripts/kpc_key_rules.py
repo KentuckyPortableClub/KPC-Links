@@ -1206,3 +1206,18 @@ def contest(record_name, parks, place=None, layer_kinds=(), agency=None, size=No
     # (b) 'same land, two park numbers' by place name was taken out (Fable's last look, 19 Nov: Seven Sisters US-12918 is a 7.8-acre
     # fishing access site beside the 1,554-acre WMA US-12646). A pair is the same land only when a person recorded it with evidence.
     return 'person', 'the record fits more than one of these parks'
+
+
+def cap_acres(on_file, measured):
+    """W9 (23 Nov 2026): what one record adds to the 'records' own acres added up' cap after the union. Its acres on file when it
+    has any; with none on file (0, blank or not a number) its own measured area (acres), never 0; with neither, 0."""
+    try:
+        a = float(on_file or 0)
+    except (TypeError, ValueError):
+        a = 0.0
+    if a > 0:
+        return a
+    try:
+        return max(0.0, float(measured or 0))
+    except (TypeError, ValueError):
+        return 0.0

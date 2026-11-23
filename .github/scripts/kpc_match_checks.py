@@ -848,6 +848,42 @@ def same_bare(a, b):
     return bool(px) and px == py
 
 
+# 23 Nov 2026 (owner 8:45 AM "Go", rule W8; outside agent's job 4: 1,798 place rows, most of them the park's own pieces): a record
+# named "<the park's own name> - <a short label of one piece>" ('Bullard Creek WMA - Montgomery Tract', 'Sand Creek Fishery
+# Area-Polk', 'Cooper Lake State Park - Johns Creek Unit') is the park's own piece; so is a record carrying ONE PART of a
+# two-part park name of the same kind ('Northern Highland State Forest' for the Northern Highland American Legion State Forest).
+PIECE_SEP = re.compile(r'\s+[-\u2013\u2014]+\s*|(?<=[A-Za-z.)])[-\u2013\u2014](?=\s*[A-Za-z0-9])|\s*,\s+|\s*\(')
+PIECE_TAIL = re.compile(r'\b(units?|tracts?|additions?|annex|phase|sections?|parcels?|count(?:y|ies)|parish)\b', re.I)
+PART_SPLIT = re.compile(r'\s+(?:and|&)\s+|\s*/\s*')
+
+
+def own_piece(rec_name, name):
+    """W8: True when the record is one piece of the park NAME (the park's POTA name, or a record that holds the pin).
+    (a) the record's name, cut at its first separator ( - , ( ), starts with a name that is the same park's (same_bare: the
+        same bare name and a kind that fits) and the rest is a short label: at most two words, or any words that hold a piece
+        word (Unit, Tract, Addition, Annex, Phase, Section, Parcel, County, Parish);
+    (b) the record's bare name is one part of the park's own two-part bare name: split at 'and' / '&' / '/', or the first or
+        last words of it, at least two words and 8 letters, the two names of the SAME kind (both named, both alike).
+    Never: a record that only shares a word, a longer name that holds the park's ('Crow Wing River' for Crow Wing State
+    Park), another kind of place ('X State Recreation Area' for X State Forest)."""
+    rec, name = str(rec_name or ''), str(name or '')
+    if not rec or not name: return False
+    bits = PIECE_SEP.split(rec, maxsplit=1)
+    if len(bits) == 2:
+        lead, tail = bits[0].strip(), bits[1].strip(' )')
+        words = re.findall(r"[A-Za-z0-9'.]+", tail)
+        if lead and words and (len(words) <= 2 or PIECE_TAIL.search(tail)) and same_bare(lead, name):
+            return True
+    kr, kn = kinds(full(rec)), kinds(full(name))
+    if not kr or kr != kn: return False
+    rb, nb = bare_name(rec).split(), bare_name(name).split()
+    if not rb or len(rb) >= len(nb): return False
+    joined = ' '.join(rb)
+    parts = [x.strip() for x in PART_SPLIT.split(bare_name(name)) if x.strip()]
+    if len(parts) > 1 and joined in parts and len(joined) >= 4: return True
+    return len(rb) >= 2 and len(joined) >= 8 and (nb[:len(rb)] == rb or nb[-len(rb):] == rb)
+
+
 def pin_3c(q, rows, holds, park_name='', held=None):
     """holds(record id) -> True / False / None (POTA's pin strictly inside the record). True = flag q.
     22 Nov 2026: a record that does not hold the pin stays when its bare name is the bare name of a record that holds it, or
@@ -858,7 +894,9 @@ def pin_3c(q, rows, holds, park_name='', held=None):
     if not held: return False                                   # no record holds the pin: says nothing about this one
     me = full(q[1])
     if any(full(x[1]) == me for x in held): return False
-    return not any(same_bare(q[1], n) for n in [x[1] for x in held] + ([park_name] if park_name else []))
+    names = [x[1] for x in held] + ([park_name] if park_name else [])
+    if any(own_piece(q[1], n) for n in names): return False   # W8 (23 Nov): the park's own piece, under a piece's label
+    return not any(same_bare(q[1], n) for n in names)
 
 
 def reason_of(w):
