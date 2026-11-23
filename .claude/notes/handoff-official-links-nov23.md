@@ -2,6 +2,12 @@
 
 Owner 7:30 AM: "hand off for opus to finish the bot like you wanted". He had been told (another chat, same morning) that the job was not started, and that two questions were open: a web-search service, and where the links go. Both are answered below from rules already in force. Nothing here needs a new ruling from him.
 
+## STATUS 23 Nov afternoon (Opus): FIRST FULL RUN DONE, L-list added
+First 2f run: 4,441 parks, 164 sure, 117 unsure, 4,160 not found (2,673 nothing named on the agency sites, 1,486 busy or resting sites,
+39 sites resting a day incl. fs.usda.gov, blm.gov, fws.gov, michigan.gov, nh.gov, parks.ky.gov). Biggest gaps: sites whose park pages
+carry numbers (parks.ca.gov 253, Parks Canada 433, Ohio DNR 258, Oregon 160). Fix: rule L3b (park LIST pages from the front page),
+KPC-Data 68d1b85c, PC copy sent and read back equal. Owner: upload the 1205 pack now; run 2f again TOMORROW (rests over).
+
 ## STATUS 23 Nov 8:30 AM (Opus): BUILT, waits for the owner
 KPC-Data draft PR #186, KPC-Links draft PR #354, rule sheet L as built in mapping.md (on #354). Changes from the plan: the second
 witness is a page point within 5 km of the PIN (the PC has no outlines) or the sister parks' list on a key-agency-table host; a page
