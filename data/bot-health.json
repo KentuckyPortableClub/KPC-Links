@@ -3,6 +3,7 @@
   "KPC-Data/kpc-answer-sheet-check.yml",
   "KPC-Data/kpc-camp-weekly.yml",
   "KPC-Data/kpc-convert-layers.yml",
+  "KPC-Data/kpc-copy-from-links.yml",
   "KPC-Data/kpc-detective.yml",
   "KPC-Data/kpc-eu-alerts.yml",
   "KPC-Data/kpc-fetch-files.yml",
@@ -10,6 +11,7 @@
   "KPC-Data/kpc-helpers.yml",
   "KPC-Data/kpc-map-pictures.yml",
   "KPC-Data/kpc-pages-sync.yml",
+  "KPC-Data/kpc-park-pages.yml",
   "KPC-Data/kpc-scoreboard.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-watch.yml",
@@ -20,6 +22,8 @@
   "kpc-bot-queue.yml",
   "kpc-discord-relay.yml",
   "kpc-hunters.json",
+  "kpc-hunters.yml",
+  "kpc-park-alerts.yml",
   "kpc-pota-discord.yml",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
@@ -378,7 +382,7 @@
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-23T10:37+00:00",
+ "checked": "2026-11-23T21:41+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3287,19 +3291,19 @@
    "b": 38569625
   },
   "L:data/pota": {
-   "b": 10207800
+   "b": 10182505
   },
   "L:data/canada.json": {
-   "b": 2558918
+   "b": 2558911
   },
   "L:kpc-top25.json": {
-   "b": 16585
+   "b": 16581
   },
   "L:data/ky-official-maps.json": {
    "b": 91558
   },
   "L:data/parkinfo-web.json": {
-   "b": 583380
+   "b": 615358
   },
   "L:data/state-gis.json": {
    "b": 128874
@@ -3320,7 +3324,7 @@
    "b": 5427673
   },
   "L:kpc-events-auto.json": {
-   "b": 21245
+   "b": 20991
   },
   "L:kpc-special-events.json": {
    "b": 16802
@@ -3366,7 +3370,7 @@
    "b": 93698
   },
   "D:data/closures": {
-   "b": 169940
+   "b": 169398
   },
   "D:data/intake": {
    "b": 39695215,
