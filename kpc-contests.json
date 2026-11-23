@@ -1,48 +1,6 @@
 {
- "updated": "2026-11-23T13:27:38Z",
+ "updated": "2026-11-23T22:15:04Z",
  "week": [
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gm1gw",
-   "when": "1300Z-1400Z, Nov 23",
-   "segs": [
-    [
-     "2026-11-23T13:00Z",
-     "2026-11-23T14:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "OK1WC Memorial (MWC)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gp1gr",
-   "when": "1630Z-1729Z, Nov 23",
-   "segs": [
-    [
-     "2026-11-23T16:30Z",
-     "2026-11-23T17:29Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gn41s",
-   "when": "1900Z-2000Z, Nov 23",
-   "segs": [
-    [
-     "2026-11-23T19:00Z",
-     "2026-11-23T20:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "Worldwide Sideband Activity Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gq41c",
@@ -1974,7 +1932,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (24)",
+  "WA7BNM": "ok (21)",
   "CORRAL": "ok (45)"
  }
 }
