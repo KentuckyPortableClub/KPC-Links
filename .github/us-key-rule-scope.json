@@ -711,6 +711,21 @@
    "from": "89c8814d9d0c",
    "why": "Match checks, place 3c and agency only (owner's go 22 Nov 2026 after the PC test, where every pulled piece went to check). 3c: a record that does not hold POTA's pin stays when its name, with the kind words of KINDS left out after full(), is the bare name of a record holding the pin or of the park's own POTA name, or differs only by a piece word (Addition, Unit, Tract, Parcel, Annex, Extension, North/South/East/West, a number); one name holding the other, a different name or a different kind stays a check. Agency: a layer the layer table marks a compilation (D11 'what', the layers D7 reads) gives no agency vote unless the record carries its own manager field; never from the record's name; on such a layer a record naming another kind of place than the park (park, wildlife area, refuge, forest) goes to check by kind. Florida (owner's yes 22 Nov 2026 8:28 PM): the three FL layers that list several agencies' land (two water-district layers and the state-owned-lands layer) carry the D11 label 'compilation' in data/state-gis.json (also read by D7 and the layer-type rule). Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none"
+  },
+  {
+   "id": "2026-11-22-page-reader-matching",
+   "when": "2026-11-22",
+   "from": "d1db993b0647",
+   "why": "The park's own agency page helps the match (owner 22 Nov 2026 3:47 PM 'Yes' and 3:55 PM 'go for all'; notes/mapping.md plan P1-P7, rule sheet PN): P1 the page's clean total acres witness the size; P2 the page's own name joins the one record of exactly that name that holds POTA's pin (never a site heading, never another park's name); P4 the tracts the page names join their records on the park's own layer within 5 km; P5 a bigger unit the page says the park lies inside never stays as its outline; P6 nothing from a page that is not the park's own; P7 a record two parks claim by name stays with the park whose name and kind fit it (equal fits keep both); and check 4 leaves 'State' out on both sides. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none"
+  },
+  {
+   "id": "2026-11-22-witnesses-page-point-store-ids-grid",
+   "when": "2026-11-22",
+   "from": "7e2040a74d06",
+   "why": "More witnesses than the name (owner 22 Nov 7:52-8:01 PM). (1) A point on the park's own official page (not an office or mailing point) inside a record keeps a piece the pin rule 3c would send to check, and with a link name that agrees (strong or part) it confirms the park ('page point'). (2) In store mode the outline store's id fields (kpc_store_attrs.py, KPC_RECORD_ATTRS) are added to a copy of each record the match checks read, so the id kinds and link-id ties (NPS unit code, MN DNR, NY DEC page number, CA State Parks page id, MT FWP lands id) can vote; the drawn record is never changed. (3) POTA's grid square is compared with its pin: a note for a person, nothing moves. All counted in the match-checks line. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "DRAFT: NOT REVIEWED"
   }
  ]
 }
