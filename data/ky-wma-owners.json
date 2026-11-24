@@ -1,9 +1,9 @@
 {
  "source": "Each WMA page on app.fw.ky.gov (Public Lands Search)",
- "updated": "2026-11-23 14:25 UTC",
+ "updated": "2026-11-24 01:09 UTC",
  "wmas": {
   "Asher Hunting Access Area": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Asher Land and Mineral, LLLP.",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=8198"
@@ -21,13 +21,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=129"
   },
   "Beaver Creek WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by U.S. Forest Service.",
    "type": "Federal",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=39"
   },
   "Beechy Creek WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=228"
@@ -75,13 +75,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9003"
   },
   "Buck Creek WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9132"
   },
   "Buckhorn Lake WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by U.S. Army Corps of Engineers.",
    "type": "Corps",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=27"
@@ -105,13 +105,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=131"
   },
   "Cedar Creek Lake WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "WMA is owned by the Kentucky Department of Fish and Wildlife.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9004"
   },
   "Clarks River National Wildlife Refuge": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by U.S. Fish and Wildlife Service. 91 U.S. Hwy. 641 North, Benton, KY 42025",
    "type": "Federal",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9075"
@@ -177,7 +177,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9717"
   },
   "Dennis-Gray WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Dennis-Gray WMA is owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148"
@@ -225,13 +225,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9124"
   },
   "Elk Horn Coal Hunting Access Area": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Use caution if active mining practices are underway, and give large trucks the right-of-way Owned by Elk Horn Coal.",
    "type": "Private",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9701"
   },
   "Ferguson Creek WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9715"
@@ -285,7 +285,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=29"
   },
   "Green River State Forest": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Division of Forestry.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9079"
@@ -297,7 +297,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9201"
   },
   "Harris-Dickerson WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by KY Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9709"
@@ -309,19 +309,19 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=136"
   },
   "Hidden Valley Training Area": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky National Guard.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9115"
   },
   "Higginson-Henry WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=132"
   },
   "Horsemill Branch WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9721"
@@ -363,7 +363,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=21"
   },
   "Kentenia State Forest": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Division of Forestry.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9080"
@@ -405,7 +405,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9121"
   },
   "L. B. Davison WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=16"
@@ -423,7 +423,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=157"
   },
   "Land Between The Lakes National Recreation Area": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by U. S. Forest Service",
    "type": "Federal",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9049"
@@ -441,7 +441,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=7101"
   },
   "Little Sexton Creek WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9725"
@@ -459,7 +459,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9133"
   },
   "Marrowbone State Forest and WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Co-owned by Kentucky Department of Fish and Wildlife Resources and Kentucky Division of Forestry.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9131"
@@ -471,13 +471,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=41"
   },
   "Martins Fork WMA and State Natural Area": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9118"
   },
   "Meadow Creek WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9224"
@@ -489,7 +489,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=37"
   },
   "Miller Welch-Central Kentucky WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=15"
@@ -507,7 +507,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=12"
   },
   "Nolin River Lake WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by U.S. Army Corps of Engineers.",
    "type": "Corps",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=31"
@@ -519,7 +519,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=176"
   },
   "Ohio River Islands National Wildlife Refuge": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by the U.S. Fish and Wildlife Service.",
    "type": "Federal",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9082"
@@ -549,7 +549,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=24"
   },
   "Paul Van Booven WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "The University of Kentucky owned property is the site of many ongoing research projects related to forest management and mine reclamation.",
    "type": "University",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9105"
@@ -585,13 +585,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9723"
   },
   "R. F. Tarter WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resource",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=171"
   },
   "RH Group WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by RH Group.",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9702"
@@ -603,7 +603,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=35"
   },
   "Reelfoot National Wildlife Refuge": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by U. S. Fish and Wildlife Service",
    "type": "Federal",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9074"
@@ -615,13 +615,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9120"
   },
   "Rockcastle River WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9217"
   },
   "Rolling Fork WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "",
    "type": "",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219"
@@ -657,13 +657,13 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=230"
   },
   "South Shore WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by the Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9067"
   },
   "Stephens Creek WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by the Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9232"
@@ -687,19 +687,19 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=156"
   },
   "Taylorsville Lake WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by U.S. Army Corps of Engineers",
    "type": "Corps",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=22"
   },
   "Tradewater WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=128"
   },
   "Twin Eagle WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources.",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=13"
@@ -729,7 +729,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9202"
   },
   "Wells Hunting Access Area": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Mountain Properties Inc and N&G Holdings Company, Inc. Wells Hunting Access Area is the result of a cooperative agreement between the landowner and the Kentucky Department of Fish and Wildlife Resources.",
    "type": "Private",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9206"
@@ -741,7 +741,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=137"
   },
   "Winford WMA": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by Kentucky Department of Fish and Wildlife Resources",
    "type": "State",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=20"
@@ -759,7 +759,7 @@
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=192"
   },
   "Zilpo Campground": {
-   "read": "2026-10-26",
+   "read": "2026-11-24",
    "says": "Owned by U.S. Forest Service",
    "type": "Federal",
    "url": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9094"
