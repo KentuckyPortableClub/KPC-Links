@@ -107,7 +107,7 @@
    "id": "2026-11-24-mi-dnr-tie-glue",
    "when": "2026-11-24",
    "from": "2668aab8c1c1",
-   "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US address-tie 'glue' for the Michigan DNR tie: an address id made of two parts is joined with the tie's glue. No Canada tie has a glue, so no Canada join result changes.",
+   "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US address-tie 'glue' for the Michigan DNR tie: an address id made of two parts is joined with the tie's glue. No Canada tie has a glue, so no Canada join result changes. Also the US bridge's map-box check (kpc_us_key.py, shared code): no Canada result changes.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (4:19 AM 'Just fix your part'); merged only on his own review"
   }

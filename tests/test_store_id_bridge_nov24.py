@@ -48,6 +48,15 @@ with tempfile.TemporaryDirectory() as td:
     check('two store records fit: no fields (never a guess)', bridge('sgzza65001', {'Unit_Nm': 'Twin Lakes', 'GIS_Acres': '50.1'}) is None)
     check('another layer: no fields', bridge('sgzzb65000', {'Unit_Nm': 'Heron Marsh Wild Forest', 'GIS_Acres': '1000'}) is None)
     check('no size: no fields', bridge('sgzza65000', {'Unit_Nm': 'Heron Marsh Wild Forest'}) is None)
+    # exchange check 24 Nov: a same-name same-size piece somewhere else is not the record (map boxes must overlap)
+    doc['by_name']['sgzzc'] = {'greenway': [[3.77, 'sgzza901', [-77.95, 42.59, -77.94, 42.60]]]}
+    ns['_RA_BY'][0] = doc['by_name']
+    check('same name and size but another place: no fields',
+          bridge('sgzzc768', {'Unit_Nm': 'Greenway', 'GIS_Acres': '3.768', '_bb': [-78.38, 42.17, -78.37, 42.18]}) is None)
+    check('same name, size and place: fields',
+          bridge('sgzzc768', {'Unit_Nm': 'Greenway', 'GIS_Acres': '3.768', '_bb': [-77.95, 42.59, -77.94, 42.60]}) is not None)
+    check('no box on the saved record: name and size decide as before',
+          bridge('sgzzc768', {'Unit_Nm': 'Greenway', 'GIS_Acres': '3.768'}) is not None)
 check('the key uses the bridge only for a record the store does not know and that carries no fields of its own',
       "if not x and not (a.get('SA') or {}):" in src and 'x = record_attrs_by_name(i, a)' in src)
 # the Michigan tie (24 Nov): the DNR layer's LinkID drops the ':' of the park's link id

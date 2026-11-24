@@ -55,6 +55,26 @@ def name_key(s):
     return re.sub(r'[^a-z0-9]', '', str(s or '').lower())
 
 
+def record_box(r):
+    """[minx, miny, maxx, maxy] of a store record's shape (rings are q-digit integers, first point then steps), rounded to
+    0.001 degree; None when the record has no rings. Exchange check 24 Nov: name + size alone hit the wrong piece of a
+    many-piece park once in 1,101 New York bridges; the box must also overlap."""
+    rg = r.get('rings')
+    if isinstance(rg, str):
+        try: rg = json.loads(rg)
+        except ValueError: return None
+    try: q = 10 ** int(r.get('q') or 6)
+    except (TypeError, ValueError): q = 10 ** 6
+    xs, ys = [], []
+    for ring in rg or []:
+        if not isinstance(ring, list) or len(ring) < 2: continue
+        x, y = ring[0], ring[1]; xs.append(x); ys.append(y)
+        for i in range(2, len(ring) - 1, 2):
+            x += ring[i]; y += ring[i + 1]; xs.append(x); ys.append(y)
+    if not xs: return None
+    return [round(min(xs) / q, 3), round(min(ys) / q, 3), round(max(xs) / q, 3), round(max(ys) / q, 3)]
+
+
 def record_acres(r):
     a = r.get('attributes') or {}
     for k in ('GIS_Acres', 'ACRES', 'Acres', 'acres', 'GISACRES', 'Shape_Acres'):
@@ -95,12 +115,14 @@ def run(store, out, gh=None, today=None):
                     ac = record_acres(r)
                     lay = re.match(r'[a-z]*', k).group(0)
                     if lay and ac:
+                        bx = record_box(r)
                         for nm in {name_key(r.get('record_name')), name_key(r.get('record_name_in_source'))} - {''}:
-                            by_name.setdefault(lay, {}).setdefault(nm, []).append([round(ac, 3), k])
+                            by_name.setdefault(lay, {}).setdefault(nm, []).append([round(ac, 3), k] + ([bx] if bx else []))
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 2, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
-           'by_name': {lay: {nm: sorted({tuple(x) for x in v}) for nm, v in d_.items()} for lay, d_ in by_name.items()}}
+           'format': 3, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
+                             for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
     with gzip.open(tmp, 'wt', encoding='utf-8') as f:
         json.dump(doc, f, ensure_ascii=False, separators=(',', ':'))
@@ -126,7 +148,7 @@ def selftest():
         d = json.load(gzip.open(o, 'rt'))
         ok = d['records'] == {'sgzza7': {'URL': 'https://dec.ny.gov/lands/123.html'}, '3422': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST'},
                               'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html'}}
-        ok = ok and d.get('format') == 2 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8']]
+        ok = ok and d.get('format') == 3 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8']]
     print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']))
     return 0 if ok else 1
 

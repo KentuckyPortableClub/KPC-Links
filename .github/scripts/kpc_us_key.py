@@ -2198,7 +2198,8 @@ def record_attrs():
 def record_attrs_by_name(i, a):
     """24 Nov 2026 (owner 4:19 AM 'fix your part'; store id fields by name): the store's id fields for a saved record whose
     number the store does not know (the agency renumbered its layer after our saved copy was made: New York DEC). Taken only
-    when exactly ONE store record of the same layer has the same name (letters and digits) and a size within 1%; else None.
+    when exactly ONE store record of the same layer has the same name (letters and digits), a size within 1% and (when both
+    boxes are known) a map box that overlaps the saved record's; else None.
     The fields only feed the id checks, which agree or say nothing (a different id never drops a record)."""
     lay = re.match(r'[a-z]*', str(i)).group(0)
     by = (_RA_BY[0] or {}).get(lay) if lay else None
@@ -2207,7 +2208,12 @@ def record_attrs_by_name(i, a):
     try: ac = float(a.get('GIS_Acres') or 0)
     except (TypeError, ValueError): ac = 0
     if not nm or ac <= 0: return None
-    hits = {k for x, k in by.get(nm) or [] if abs(float(x) - ac) <= 0.01 * ac}
+    bb = a.get('_bb')
+    def _meets(e):   # exchange check 24 Nov (1 of 1,101 NY bridges was another piece of a many-piece park): the store
+        if len(e) < 3 or not e[2] or not bb: return True   # record's box must overlap the saved record's box (0.01 degree slack)
+        b = e[2]
+        return b[0] <= bb[2] + 0.01 and bb[0] <= b[2] + 0.01 and b[1] <= bb[3] + 0.01 and bb[1] <= b[3] + 0.01
+    hits = {e[1] for e in by.get(nm) or [] if abs(float(e[0]) - ac) <= 0.01 * ac and _meets(e)}
     return (_RA[0] or {}).get(next(iter(hits))) if len(hits) == 1 else None
 
 
