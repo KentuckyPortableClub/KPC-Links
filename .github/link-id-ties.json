@@ -11,6 +11,7 @@
   {"kind": "NPS unit code", "layer": "sgmtd", "field": "URL", "rx": "nps\\.gov/([a-z]{4})(?:/|$)"},
   {"kind": "MN DNR unit id", "layer": "sgmnf", "field": "WEB_LINK1", "rx": "state_forests/(sft\\d{5})/"},
   {"kind": "NPS unit code", "layer": "sgvae", "field": "LANDLINK", "rx": "nps\\.gov/([a-z]{4})(?:/|$)"},
-  {"kind": "NPS unit code", "layer": "sgakd", "field": "METADATA", "rx": "tractsnet/documents/([A-Za-z]{4})/"}
+  {"kind": "NPS unit code", "layer": "sgakd", "field": "METADATA", "rx": "tractsnet/documents/([A-Za-z]{4})/"},
+  {"kind": "MI DNR parks and trails id", "layer": "sgmia", "field": "LinkID", "rx": "^(SPRK|SPTR)(\\d+)$", "glue": ":"}
  ]
 }

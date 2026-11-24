@@ -102,6 +102,14 @@
    "why": "Review of #363 M3 (owner 23 Nov 2026 5:43 PM 'Yes'): the Canada size check counts the same land once. Canada often holds one piece in 2-3 layers (CPCAD plus the province's own); the sum counted it 2-3 times and sent correct joins to check (reviewer's count: 3 parks, 14 rows). MC.size_once: largest row first, a row whose box lies 80%+ inside a counted row's box of another layer is not added (the US W7 twin test). Scope none: no province is rebuilt for this alone. Also audit 3 S7: an unreadable park facts file is said in the log (kpc_park_facts_read.py, a Canada rule file).",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (5:43 PM 'Yes'); merged only on his own review"
+  },
+  {
+   "id": "2026-11-24-mi-dnr-tie-glue",
+   "when": "2026-11-24",
+   "from": "2668aab8c1c1",
+   "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US address-tie 'glue' for the Michigan DNR tie: an address id made of two parts is joined with the tie's glue. No Canada tie has a glue, so no Canada join result changes. Also the US bridge's map-box check (kpc_us_key.py, shared code): no Canada result changes.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (4:19 AM 'Just fix your part'); merged only on his own review"
   }
  ]
 }

@@ -44,13 +44,54 @@ def record_key(r):
     layer, rid = str(r.get('layer') or ''), str(r.get('record_id') or '')
     if layer == 'PAD-US':
         return rid if rid.isdigit() else ''
-    k = str(r.get('key') or '')
+    # 24 Nov 2026 (owner 4:19 AM 'fix your part'): the store spells a state-layer record 'sgnya@68990'; the key spells it
+    # 'sgnya68990'. The '@' made every state-layer record fall out (New York DEC: 1,161 records, 0 reached the id checks).
+    k = str(r.get('key') or '').replace('@', '')
     return k if re.fullmatch(r'[a-z]+\d+', k) else ''
+
+
+def name_key(s):
+    """A record name for the name-and-size bridge: lower-case letters and digits only."""
+    return re.sub(r'[^a-z0-9]', '', str(s or '').lower())
+
+
+def record_box(r):
+    """[minx, miny, maxx, maxy] of a store record's shape (rings are q-digit integers, first point then steps), rounded to
+    0.001 degree; None when the record has no rings. Exchange check 24 Nov: name + size alone hit the wrong piece of a
+    many-piece park once in 1,101 New York bridges; the box must also overlap."""
+    rg = r.get('rings')
+    if isinstance(rg, str):
+        try: rg = json.loads(rg)
+        except ValueError: return None
+    try: q = 10 ** int(r.get('q') or 6)
+    except (TypeError, ValueError): q = 10 ** 6
+    xs, ys = [], []
+    for ring in rg or []:
+        if not isinstance(ring, list) or len(ring) < 2: continue
+        x, y = ring[0], ring[1]; xs.append(x); ys.append(y)
+        for i in range(2, len(ring) - 1, 2):
+            x += ring[i]; y += ring[i + 1]; xs.append(x); ys.append(y)
+    if not xs: return None
+    return [round(min(xs) / q, 3), round(min(ys) / q, 3), round(max(xs) / q, 3), round(max(ys) / q, 3)]
+
+
+def record_acres(r):
+    a = r.get('attributes') or {}
+    for k in ('GIS_Acres', 'ACRES', 'Acres', 'acres', 'GISACRES', 'Shape_Acres'):
+        try:
+            v = float(a.get(k))
+            if v > 0: return v
+        except (TypeError, ValueError):
+            pass
+    try:
+        return float(((r.get('attrs') or {}).get('_norm') or {}).get('acres') or 0) or None
+    except (TypeError, ValueError):
+        return None
 
 
 def run(store, out, gh=None, today=None):
     want = wanted_fields(gh)
-    recs, files = {}, 0
+    recs, files, by_name = {}, 0, {}
     for path in sorted(glob.glob(os.path.join(store, '*.kpcstore.json.gz'))):
         if '.prev.' in os.path.basename(path):
             continue
@@ -67,9 +108,21 @@ def run(store, out, gh=None, today=None):
                        and isinstance(v, (str, int, float)) and not isinstance(v, bool) and len(str(v)) <= MAX_TEXT}
                 if got:
                     recs.setdefault(k, {}).update(got)
+                    # 24 Nov: agencies renumber their records when they republish a layer (New York DEC between our early-
+                    # November saved copies and the store's later read), so the record number alone cannot find a saved
+                    # record's fields. Also index them by layer + name + size; the key takes a hit only when it is the ONE
+                    # store record of that layer with that name and a size within 1% (kpc_us_key, 'store id fields by name').
+                    ac = record_acres(r)
+                    lay = re.match(r'[a-z]*', k).group(0)
+                    if lay and ac:
+                        bx = record_box(r)
+                        for nm in {name_key(r.get('record_name')), name_key(r.get('record_name_in_source'))} - {''}:
+                            by_name.setdefault(lay, {}).setdefault(nm, []).append([round(ac, 3), k] + ([bx] if bx else []))
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs}
+           'format': 3, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
+                             for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
     with gzip.open(tmp, 'wt', encoding='utf-8') as f:
         json.dump(doc, f, ensure_ascii=False, separators=(',', ':'))
@@ -83,6 +136,7 @@ def selftest():
         st = os.path.join(t, 'store'); os.mkdir(st)
         park = {'ref': 'K4-0001', 'records': [
             {'key': 'sgzza7', 'layer': 'sgzza', 'record_id': '7', 'attributes': {'URL': 'https://dec.ny.gov/lands/123.html', 'Notes': 'x' * 50, 'WDPA_Cd': 5}},
+            {'key': 'sgzzb@8', 'layer': 'sgzzb', 'record_id': '8', 'record_name': 'Mud Lake Wildlife Area', 'attributes': {'URL': 'https://dec.ny.gov/lands/456.html', 'ACRES': 100.0}},
             {'key': '3422', 'layer': 'PAD-US', 'record_id': '3422', 'attributes': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST', 'GIS_Acres': 4}},
             {'key': 'point-circle', 'layer': 'point-circle', 'record_id': '', 'attributes': {'URL': 'x'}}]}
         with gzip.open(os.path.join(st, 'US-ZZ.kpcstore.json.gz'), 'wt') as f: json.dump({'parks': [park]}, f)
@@ -92,7 +146,9 @@ def selftest():
         json.dump({'ties': [{'field': 'URL'}]}, open(os.path.join(gh, 'link-id-ties.json'), 'w'))
         o = os.path.join(t, 'a.json.gz'); run(st, o, gh, '2026-11-22')
         d = json.load(gzip.open(o, 'rt'))
-        ok = d['records'] == {'sgzza7': {'URL': 'https://dec.ny.gov/lands/123.html'}, '3422': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST'}}
+        ok = d['records'] == {'sgzza7': {'URL': 'https://dec.ny.gov/lands/123.html'}, '3422': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST'},
+                              'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html'}}
+        ok = ok and d.get('format') == 3 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8']]
     print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']))
     return 0 if ok else 1
 
