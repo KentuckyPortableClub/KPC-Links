@@ -2002,7 +2002,7 @@ def _official_acres():
     for f in cands:
         if not f or not os.path.exists(f): continue
         try: d = json.load(open(f, encoding='utf-8'))
-        except Exception: continue  # noqa: BLE001
+        except Exception: continue  # noqa: BLE001  (the one notice below says it: 22 Nov review F9)
         d = d.get('parks', d) if isinstance(d, dict) else {}
         if not isinstance(d, dict): continue
         out = {}
@@ -3391,12 +3391,13 @@ def run(st):
         from shapely.geometry import Polygon as _Poly
         from shapely.ops import unary_union as _union
         byid = {_oid(a): a for a in recs if a.get('_g')}
-        nac, t_ac, skipped = 0, time.time(), 0
+        nac, work, skipped = 0, 0, 0   # 23 Nov (audit 3 S6): a fixed amount of work per state, not a clock (same input, same key)
         for ref, p in parks.items():
             ids = [str(x[0]) for x in p.get('m') or []]
             if len(ids) < 2 or not all(i in byid for i in ids): continue
-            if time.time() - t_ac > 90: skipped += 1; continue   # Oct 29: a time budget per state (the first run sat 2 h on Alaska)
             pts = [q for i in ids for r in rings(byid[i]['_g']) for q in r]
+            work += len(pts)
+            if work > 3_000_000: skipped += 1; continue   # Oct 29: a budget per state (the first run sat 2 h on Alaska); points, not seconds
             nr = sum(len(rings(byid[i]['_g'])) for i in ids)
             if not pts or len(pts) > 60000 or nr > 400: skipped += 1; continue   # huge refuges / forests: too heavy, left without 'ac'
             la0 = sum(q[1] for q in pts) / len(pts); kx, ky = 111320 * math.cos(math.radians(la0)), 110574

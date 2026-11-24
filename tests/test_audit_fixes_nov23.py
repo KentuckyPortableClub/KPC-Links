@@ -76,9 +76,24 @@ check('Canada: the same land in 3 layers agrees with the agency size: kept and c
       len(parks['CA-9001']['m']) == 3 and (parks['CA-9001'].get('match') or {}).get('by') == 'size')
 parks = {'CA-9001': {'n': 'X', 'm': [list(r) + ['same name'] for r in rows], 'c': []}}
 MC.canada_pass(parks, {}, f, lambda r, i: None, None)
-check('without the same-land count the 3 rows were moved (the bug the review found)', parks['CA-9001']['m'] == [])
+check('the plain outline size no longer adds the 3 rows up either (no vote: kept, not moved)', len(parks['CA-9001']['m']) == 3)
 ca = (ROOT / '.github/scripts/kpc_ca_key.py').read_text(encoding='utf-8')
 check('the Canada key passes the same-land size', 'size_of=_csize' in ca and 'MC.size_once(' in ca)
+
+# AUDIT 3 S5-S7 (owner 6:02 PM 'Yes')
+check("the size vote uses the measured size", MC.outline_size({'ac': 700}, [['a', 'X', 300], ['b', 'X', 300]]) == 700)
+check("one row: its own acres", MC.outline_size({}, [['a', 'X', 300]]) == 300)
+check("several rows and no measured size: no vote (never added up)", MC.outline_size({}, [['a', 'X', 300], ['b', 'X', 300]]) is None)
+check("no vote means no vote", MC.size_vote([(300.0, 'agency', 'agency_document')], None)[0] == 'no vote')
+uk = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
+check('the union size has a work budget, not a clock', 'if work > 3_000_000: skipped += 1; continue' in uk and 'time.time() - t_ac' not in uk)
+import tempfile, gzip, contextlib, io
+import kpc_park_facts_read as PFR
+with tempfile.TemporaryDirectory() as td:
+    bad = pathlib.Path(td) / 'park-facts.json.gz'; bad.write_bytes(b'not gzip')
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf): got = PFR.load(str(bad))
+    check('an unreadable park facts file is said in the log', got == {} and 'unreadable' in buf.getvalue())
 
 # AUDIT 1 MUST 1: importing the US key builder stops before any build
 import subprocess, os

@@ -113,6 +113,14 @@
    "why": "kpc_park_facts_read.py is in the world RULE_FILES (it was already a US rule file; world key runs already called it). A later edit to it moves the world hash. No join result changes; no country is rebuilt for this alone.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-21"
+  },
+  {
+   "id": "2026-11-23-audit3-park-facts-warning",
+   "when": "2026-11-23",
+   "from": "5bdc51d2d809",
+   "why": "Audit 3 S7 (owner 23 Nov 2026 6:02 PM 'Yes'): kpc_park_facts_read.py (a world rule file) says in the log when the park facts file cannot be read, instead of going on silently. No join result changes; no country is rebuilt for this alone.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (6:02 PM 'Yes'); merged only on his own review"
   }
  ]
 }

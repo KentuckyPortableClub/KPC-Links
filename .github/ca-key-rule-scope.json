@@ -99,7 +99,7 @@
    "id": "2026-11-23-review363-same-land-once",
    "when": "2026-11-23",
    "from": "3b4de92e4efb",
-   "why": "Review of #363 M3 (owner 23 Nov 2026 5:43 PM 'Yes'): the Canada size check counts the same land once. Canada often holds one piece in 2-3 layers (CPCAD plus the province's own); the sum counted it 2-3 times and sent correct joins to check (reviewer's count: 3 parks, 14 rows). MC.size_once: largest row first, a row whose box lies 80%+ inside a counted row's box of another layer is not added (the US W7 twin test). Scope none: no province is rebuilt for this alone.",
+   "why": "Review of #363 M3 (owner 23 Nov 2026 5:43 PM 'Yes'): the Canada size check counts the same land once. Canada often holds one piece in 2-3 layers (CPCAD plus the province's own); the sum counted it 2-3 times and sent correct joins to check (reviewer's count: 3 parks, 14 rows). MC.size_once: largest row first, a row whose box lies 80%+ inside a counted row's box of another layer is not added (the US W7 twin test). Scope none: no province is rebuilt for this alone. Also audit 3 S7: an unreadable park facts file is said in the log (kpc_park_facts_read.py, a Canada rule file).",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (5:43 PM 'Yes'); merged only on his own review"
   }

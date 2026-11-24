@@ -838,11 +838,6 @@ def reason_of(w):
     return 'no data: ' + ('record' if rest.startswith('the record') else rest.split(' ')[0])
 
 
-def outline_size(p, m):
-    twins = {str(t) for t in p.get('twin') or []}
-    return p.get('ac') or sum(float(q[2] or 0) for q in m if str(q[0]) not in twins)
-
-
 NATIONAL_PREFIXES = ('wld', 'hma', 'hab', 'rma', 'rst', 'wsrc', 'fwsr', 'fsod', 'nca', 'wsa', 'wbl', 'fws', 'trl', 'nps')
 
 
@@ -1115,8 +1110,13 @@ def reason_of(w):
 
 
 def outline_size(p, m):
+    """The joined outline's size for the size vote. 23 Nov (owner 'Yes', audit 3 S5): the key's measured 'ac' (the union of
+    the records), or the one row's own acres; several rows with no measured 'ac' give NO vote (None), because adding them up
+    counts land two layers both hold twice."""
+    if p.get('ac'): return p['ac']
     twins = {str(t) for t in p.get('twin') or []}
-    return p.get('ac') or sum(float(q[2] or 0) for q in m if str(q[0]) not in twins)
+    rows = [q for q in m if str(q[0]) not in twins]
+    return float(rows[0][2] or 0) if len(rows) == 1 else None
 
 
 def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda ref, rid, a: False, skip=(), st='',
