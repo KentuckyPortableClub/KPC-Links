@@ -62,3 +62,5 @@ The owner, 6:41 AM: "1-3 yes 1 name i been screaming this! 3 wtf 403 again check
 
 ## Work split (owner 6:57 AM: 'you for sure take webpage look up, acreage..both of you will complete work and then each other has to approve of the final drafts')
 Opus: page names list, spelling table, 'part of' data, page reader (P-1 redirect, re-read wrong-403 skips, open-data for real Disallow), acreage bot (NPS + USFS yearly lists, BLM map-data sizes as weak, sentence must name the park), PR #368. The other agent: #187/#188/#367 changes, #366, #189, auto-confirm rule (after his yes), the final-pass items, the solver's 'pin at the land' verdict. Each reviews the other's final drafts. Review: KPC-review-opus-nov24.zip.
+
+- **Forest Service yearly sizes (owner 24 Nov 8:55 AM 'Don't we have the file all ready?'):** we DO: LAR_FY2025.xlsx, downloaded by hand by the owner on 19 Nov; its rows are in KPC-Store `key-quality/2026-11-19/kitC-acreage/answers/kitC-usfs-acres.answers.csv`. Now on KPC-Data intake-files as `acres-usfs-lar-fy2025.json` (211 whole units). Before searching the web for a list again, check KPC-Store key-quality answers and the intake-files branch first.
