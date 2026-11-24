@@ -48,7 +48,8 @@ def load(path=None):
         with op(p, 'rt', encoding='utf-8') as f:
             d = json.load(f)
         d = d if isinstance(d, dict) and isinstance(d.get('parks'), dict) else {}
-    except (OSError, ValueError, EOFError):
+    except (OSError, ValueError, EOFError) as e:
+        print(f'::warning title=park facts::{p} unreadable ({type(e).__name__}): the build runs without park facts (audit 3 S7)', flush=True)
         d = {}
     _CACHE[p] = d
     return d

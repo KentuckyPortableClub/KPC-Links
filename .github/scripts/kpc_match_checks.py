@@ -838,11 +838,6 @@ def reason_of(w):
     return 'no data: ' + ('record' if rest.startswith('the record') else rest.split(' ')[0])
 
 
-def outline_size(p, m):
-    twins = {str(t) for t in p.get('twin') or []}
-    return p.get('ac') or sum(float(q[2] or 0) for q in m if str(q[0]) not in twins)
-
-
 NATIONAL_PREFIXES = ('wld', 'hma', 'hab', 'rma', 'rst', 'wsrc', 'fwsr', 'fsod', 'nca', 'wsa', 'wbl', 'fws', 'trl', 'nps')
 
 
@@ -1115,8 +1110,13 @@ def reason_of(w):
 
 
 def outline_size(p, m):
+    """The joined outline's size for the size vote. 23 Nov (owner 'Yes', audit 3 S5): the key's measured 'ac' (the union of
+    the records), or the one row's own acres; several rows with no measured 'ac' give NO vote (None), because adding them up
+    counts land two layers both hold twice."""
+    if p.get('ac'): return p['ac']
     twins = {str(t) for t in p.get('twin') or []}
-    return p.get('ac') or sum(float(q[2] or 0) for q in m if str(q[0]) not in twins)
+    rows = [q for q in m if str(q[0]) not in twins]
+    return float(rows[0][2] or 0) if len(rows) == 1 else None
 
 
 def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda ref, rid, a: False, skip=(), st='',
@@ -1314,16 +1314,19 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         id_ok = bool(kind) and any(id_agrees(kind, val, rids.get(str(q[0])) or {}, recs.get(str(q[0])), tie) for q in left)
         link_nm = link_name_agree(f)
         mnames = map_link_names(f)
+        # audit 1 MUST 2 (owner 23 Nov 2026 5:43 PM 'Yes'): the map link, county and town rules move only plain name joins that
+        # no id backs up; a row a person joined or checked, or one an official id ties, is never sent to the check list here
+        movable = lambda q: row_class(q) == 'name' and not id_agrees(kind, val, rids.get(str(q[0])) or {}, recs.get(str(q[0])), tie)
         if mnames and names_n is None:
             names_n = {}
             for a_ in recs.values(): names_n[bare_name(rec_name(a_))] = names_n.get(bare_name(rec_name(a_)), 0) + 1
         if mnames and left and not any(bare_name(q[1]) in mnames for q in left):
-            if not id_ok and sv[0] != 'agrees' and any(names_n.get(n) for n in mnames):
+            if not id_ok and sv[0] != 'agrees' and any(names_n.get(n) for n in mnames) and any(movable(q) for q in left):
                 # W-G10 (owner 23 Nov 2026 5:01 AM, 'yes'): the park's own page links the agency's map under ANOTHER record's
                 # name (a record of the state carries the map's name; none of the park's joined records does) and neither an
                 # id nor the agency's size speaks for the joined records: they go to the check list, as when an id disagrees
                 # (a same-name unit of another county: the map says 'Mud Lake Wildlife Area-Columbia', the key joined '-Door')
-                rows_ = list(left)
+                rows_ = [q for q in left if movable(q)]
                 to_check(p, rows_, "map link: the park's own page links the agency's map under another record's name")
                 why.append('map link'); hits.extend([ref, 'map link', str(q[0])] for q in rows_)
                 out['moved'] += len(rows_); out['map_link_moved'] = out.get('map_link_moved', 0) + 1
@@ -1338,7 +1341,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             # W6 / W-G8 (owner 23 Nov 2026, 'yes'): the park's own page names its county, and a joined record lies well
             # outside it (the same name in another part of the state): that record goes to the check list. Not when an id
             # or the agency's own size speaks for the joined records.
-            far_ = [q for q in left if outside_counties(recs.get(str(q[0])), careas)]
+            far_ = [q for q in left if movable(q) and outside_counties(recs.get(str(q[0])), careas)]
             if far_:
                 cn_ = ' / '.join(c[0] for c in careas)[:60]
                 to_check(p, far_, f"county: the park's own page names {cn_} County; this land lies outside it")
@@ -1360,7 +1363,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                 right_ = True
             if not right_ and careas and not any(outside_counties(recs.get(str(q[0])), careas) for q in left):
                 right_ = True
-            far_ = [] if right_ else [q for q in left if votes_[str(q[0])] == 'far']
+            far_ = [] if right_ else [q for q in left if movable(q) and votes_[str(q[0])] == 'far']
             if far_:
                 fr_ = npts[0][3][:60]
                 to_check(p, far_, f"town: the park's own page puts it {fr_}; this land lies far from there")
@@ -1402,7 +1405,27 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
 
 
 
-def canada_pass(parks, recs, facts, place_fn, page_holds_fn=None):
+def size_once(p, m, box_of, layer_of=lambda rid: None, same=0.8):
+    """The joined outline's size with the same land counted once (23 Nov review of #363: Canada often holds one piece in
+    2 or 3 layers, CPCAD plus the province's own). Largest row first; a row whose box lies 80%+ inside a counted row's box of
+    ANOTHER layer is the same ground and is not added (the US W7 twin test). The key's measured 'ac' wins when it has one."""
+    if p.get('ac'): return p['ac']
+    twins = {str(t) for t in p.get('twin') or []}
+    kept, tot = [], 0.0
+    for q in sorted(m, key=lambda q: -float(q[2] or 0)):
+        if str(q[0]) in twins: continue
+        bb, ly = box_of(str(q[0])), layer_of(str(q[0]))
+        if bb:
+            def share(a, b):
+                w = max(0.0, min(a[2], b[2]) - max(a[0], b[0])); h = max(0.0, min(a[3], b[3]) - max(a[1], b[1]))
+                return w * h / (min((a[2] - a[0]) * (a[3] - a[1]), (b[2] - b[0]) * (b[3] - b[1])) or 1e-12)
+            if any(ly != l2 and share(bb, b2) >= same for l2, b2 in kept): continue
+            kept.append((ly, bb))
+        tot += float(q[2] or 0)
+    return tot
+
+
+def canada_pass(parks, recs, facts, place_fn, page_holds_fn=None, size_of=None):
     """Job 8 (owner 23 Nov 2026 2:12 PM, approving the outside agent's count; 4:43 PM 'Do it'): the US proofs on the Canada key.
     Canada joins by name alone; these proofs confirm a joined park, the same way and with the same words as the US pass:
     the agency's own size (size), POTA's link naming the park with the pin in or by the land (link), the link naming it and a
@@ -1420,7 +1443,7 @@ def canada_pass(parks, recs, facts, place_fn, page_holds_fn=None):
         f = facts.get(ref) or {}
         why = []
         name_left = [q for q in m if row_class(q) == 'name']
-        sv = size_vote(size_witnesses(f, shared), outline_size(p, m))
+        sv = size_vote(size_witnesses(f, shared), (size_of or outline_size)(p, m))
         if name_left and sv[0] == 'far off':
             ids_ = {id(q) for q in name_left}
             p['m'] = [q for q in m if id(q) not in ids_]
