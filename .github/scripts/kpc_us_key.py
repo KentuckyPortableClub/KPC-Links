@@ -1170,6 +1170,7 @@ import kpc_source_fields as SF  # noqa: E402
 import kpc_tracts as TR  # noqa: E402
 import kpc_match_checks as MC  # noqa: E402  (KPC owner, 20 Nov 2026: match by more than name)
 import kpc_park_facts_read as PFR  # noqa: E402
+import kpc_confirm_report as CR  # noqa: E402  (24 Nov: report-only confirm headers and extra counters)
 def resolve(pre, url, nf, af):
     # 'svc:<service>|<layer name regex>' → (query url, name field, acres field, object id field)
     def rq(u):
@@ -2384,7 +2385,7 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
 
     hits = []
     res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL), st, MC.load_nps_units(), hits, _holds, table,
-                        page_holds_fn=_page_holds, near_fn=_near)
+                        page_holds_fn=_page_holds, near_fn=_near, size_hold=_kr('KPC_CONFIRM_SIZE_HOLD'))
     _grid_notes(st, parks, P, res)
     _page_point_checks(st, parks, byid, facts, res)
     _map_name_checks(st, parks, byid, facts, res)
@@ -3790,7 +3791,10 @@ def run(st):
                                + f"; by page name {_mc.get('by_page name', 0) + _mc.get('by_page name and point', 0)}, by map link name "
                                  f"{_mc.get('by_map link name', 0)}; pin-only parks given a map-link check row: {_mc.get('map_name_checks', 0)}; joined parks whose "
                                  f"map link names another record: {_mc.get('map_link_moved', 0)} moved to check, {_mc.get('map_link_other', 0)} noted; records outside the county the "
-                                 f"page names, moved to check: {_mc.get('county_moved', 0)}")
+                                 f"page names, moved to check: {_mc.get('county_moved', 0)}"
+                               # 24 Nov 2026 plan B: auto-confirm by rule, size flag, restock stamp (report only)
+                               + '; ' + CR.match_checks_extra(_mc, RA_USED.get(st, 0), RA_BRIDGED.get(st, 0),
+                                                              CR.restock_stamp(st)))
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
@@ -3895,6 +3899,12 @@ if REFILL_ONLY:
         except Exception as e: notice(f'US key {st}', f'refill FAILED: {e}')  # noqa: BLE001
     notice('US key refill', f"saved copies re-saved: {' '.join(CACHE_SAVED) or 'none'}")
     sys.exit(0)
+try:
+    for _ln in CR.header_lines(facts_path=PFR.find(), cache_dir=os.environ.get('GEO_CACHE'),
+                               states=STATES, last_rules=os.environ.get('KPC_LAST_TEST_RULES')):
+        notice('US key', _ln)
+except Exception as _e:  # noqa: BLE001
+    notice('US key', f'report header stamps skipped: {type(_e).__name__}: {str(_e)[:160]}')
 done = []
 STATE_S = {}
 for st in STATES:

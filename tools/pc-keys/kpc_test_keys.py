@@ -169,6 +169,24 @@ def kit_lines():
         out.append('Park facts: not found on this PC (the match checks have nothing to read).')
     ups = sorted(p.name.replace('.done-', '') for p in LINKS.glob('.done-*'))
     out.append('Kit updates added: ' + (', '.join(ups) if ups else 'none after 22 Nov') + '.')
+    # 24 Nov plan B: park-facts hash, page-reader version, restock stamps, rule changes since last test
+    try:
+        import sys as _sys
+        _sys.path.insert(0, str(LINKS / '.github' / 'scripts'))
+        import kpc_confirm_report as _CR
+        last = ''
+        last_rep = HERE / 'last-test' / 'RULES.txt'
+        if last_rep.is_file():
+            last = last_rep.read_text(encoding='utf-8').split()[0] if last_rep.stat().st_size else ''
+        states = [s for s in (os.environ.get('STATES') or '').upper().replace(',', ' ').split() if s and s not in ('US', 'CA', 'KY', 'CANADA')]
+        extra = _CR.header_lines(root=LINKS, facts_path=park_facts(),
+                                 cache_dir=str(LINKS / 'cache' / 'us'),
+                                 states=states or None,
+                                 last_rules=os.environ.get('KPC_LAST_TEST_RULES') or last)
+        # drop the rules line (kit_lines already printed it) and keep the rest
+        out.extend(x for x in extra if not x.startswith('Rules this run:'))
+    except Exception as e:  # noqa: BLE001
+        out.append(f'Confirm-report stamps skipped ({str(e)[:80]}).')
     return out
 
 
