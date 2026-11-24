@@ -493,26 +493,23 @@ def held_id_of(p):
     return ''
 
 
-def nearest_joined(ref, p, recs, pin, holds_fn=None):
-    """The joined record that holds POTA's pin (holds_fn yes, or the pin inside its saved outline), else the nearest one on the
-    saved outline: the same record the key later calls the held one ('bk'). '' when there is no pin or no saved shape."""
+def held_in_pass(ref, p, recs, pin, holds_fn=None):
+    """Inside the match pass 'held' and 'bk' are not set yet (review, 24 Nov): the held record is the joined record the builder
+    says holds POTA's pin, else (no answer from the builder) the one whose saved outline holds it. Neither: '' (no held record,
+    nothing is confirmed; never the nearest record by its edge)."""
     try:
         lat, lon = float(pin[0]), float(pin[1])
     except (TypeError, ValueError, IndexError):
         return ''
-    best, best_d = '', None
     for q in p.get('m') or []:
         i = str(q[0])
         rec = (recs or {}).get(i) or (recs or {}).get(q[0])
         if rec is None:
             continue
         h = holds_fn(ref, i) if holds_fn else None
-        if h is True or (h is None and _in_rings(lat, lon, rec)):   # the builder's own 'holds' answer wins; no answer: the saved outline
+        if h is True or (h is None and _in_rings(lat, lon, rec)):
             return i
-        d = km_to_record(lat, lon, rec)
-        if d is not None and (best_d is None or d < best_d):
-            best, best_d = i, d
-    return best
+    return ''
 
 
 def kinds_clash(p, rec, table=None):
@@ -540,7 +537,7 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
     if pin is None:
         pin = ((facts or {}).get(ref) or {}).get('pin')
     if not hid:
-        hid = nearest_joined(ref, p, recs, pin, holds_fn)   # 24 Nov: inside the match pass 'held' / 'bk' are not set yet
+        hid = held_in_pass(ref, p, recs, pin, holds_fn)   # 24 Nov: inside the match pass 'held' / 'bk' are not set yet
     if not hid:
         return False
     rec = (recs or {}).get(hid) or (recs or {}).get(str(hid))

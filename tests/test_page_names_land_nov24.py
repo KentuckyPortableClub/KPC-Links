@@ -72,6 +72,23 @@ TBL = {'sgzzb': {'agency': 'state wildlife', 'kind': 'wildlife area'}}
 check("a bare record name takes its layer's kind: a wildlife-area layer record never confirms a State Park",
       not ok_at([44.525, -88.475], holds_fn=lambda r, i: True, park=dict(P, m=[['sgzzb1', 'Invented Falls', 500, '']]), layer_table=TBL,
                 page=PAGE('Invented Falls')) and MC.kinds_clash({'t': 'State Park'}, HELD, TBL))
+# Review round 3: no held record is ever made up from the nearest edge. A tiny bare-named sliver 10 m off and a big same-place
+# park outline 20 m off, neither holding the pin, and no 'held' / 'bk' yet (a fresh pass): nothing is confirmed.
+SLIVER = {'OBJECTID': 'sgzzc1', 'Unit_Nm': 'Invented Falls', '_g': {'type': 'Polygon', 'coordinates': [[[-88.4499, 44.5249], [-88.4498, 44.5249],
+          [-88.4498, 44.5250], [-88.4499, 44.5250], [-88.4499, 44.5249]]]}}
+BIG = {'OBJECTID': 'sgzzc2', 'Unit_Nm': 'Invented Falls State Park', '_g': SQ}
+fresh = {'n': 'Invented Falls State Park', 't': 'State Park', 'm': [['sgzzc2', 'Invented Falls State Park', 500, ''], ['sgzzc1', 'Invented Falls', 1, '']]}
+pin_out = [44.52495, -88.45 + 0.00025]   # ~20 m east of the big outline, ~10 m from the sliver
+f_out = {'US-9003': {'name': fresh['n'], 'pin': pin_out}}
+check('a fresh pass with no record holding the pin confirms nothing (never the nearest sliver)',
+      not MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_out, pin=pin_out)
+      and MC.held_in_pass('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, pin_out) == '')
+f_in = {'US-9003': {'name': fresh['n'], 'pin': [44.525, -88.475]}}
+check('a fresh pass (no held / bk) with the pin inside the big outline: held name and pin confirms it',
+      MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_in, pin=[44.525, -88.475])
+      and MC.held_in_pass('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, [44.525, -88.475]) == 'sgzzc2')
+check("the builder's explicit no is final in a fresh pass: no held record, nothing confirmed",
+      not MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_in, pin=[44.525, -88.475], holds_fn=lambda r, i: False))
 src = (ROOT / '.github/scripts/kpc_match_checks.py').read_text(encoding='utf-8')
 check('the witness only confirms, through the auto-confirm gate, after it',
       "st_, how = 'confirmed', 'page names the land'" in src and 'NEAR_LAND_KM' not in src
