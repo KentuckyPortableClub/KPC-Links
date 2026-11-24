@@ -38,7 +38,8 @@ def run(recs, rows, county_areas=(OTTER,), own='own', unofficial=False, sizes=()
     f = {'US-9001': {'area': 'US-ZZ', 'name': 'Mud Lake State Wildlife Area', 'type': 'State Wildlife Area', 'pin': [44.5, -88.5], 'link': dict(LINK),
                      'page': {'kind': 'html', 'own_page': own, 'unofficial': unofficial, 'host': 'dnr.zz.example.gov', 'name_vs_pota': 'differs', 'name_on_page': '',
                               'sizes': list(sizes), 'coords': [], 'parts': [], 'inside_of': [], 'county_areas': list(county_areas)}}}
-    out = MC.pass_state(parks, recs, f, lambda ref, ids: False, st='ZZ', holds_fn=lambda ref, i: False, layer_table=TABLE)
+    out = MC.pass_state(parks, recs, f, lambda ref, ids: False, st='ZZ', holds_fn=lambda ref, i: False, layer_table=TABLE,
+                      auto_confirm_stops={'US-9001'})   # 24 Nov (#371): this rule alone; the held name and pin would auto-confirm
     p = parks['US-9001']
     return [q[0] for q in p.get('m') or []], [(x[0], x[3]) for x in p.get('c') or []], (p.get('match') or {}).get('status'), out
 

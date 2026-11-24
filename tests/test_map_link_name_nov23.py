@@ -45,7 +45,8 @@ def joined(map_names, recs=None, **kw):
     recs = recs or {'sgzza1': rec('sgzza1', 'Otter Marsh Wildlife Area', -80.0)}
     parks = {'US-9001': {'n': 'Otter Marsh State Wildlife Area', 't': 'State Wildlife Area', 'g': 'official', 'c': [],
                          'm': [['sgzza1', 'Otter Marsh Wildlife Area', 500, 'same name']]}}
-    MC.pass_state(parks, recs, {'US-9001': fact(map_names, **kw)}, lambda ref, ids: False, st='ZZ', holds_fn=lambda ref, i: False, layer_table=TABLE)
+    MC.pass_state(parks, recs, {'US-9001': fact(map_names, **kw)}, lambda ref, ids: False, st='ZZ', holds_fn=lambda ref, i: False, layer_table=TABLE,
+                      auto_confirm_stops={'US-9001'})   # 24 Nov (#371): this rule alone; the held name and pin would auto-confirm
     p = parks['US-9001']
     NOTES[:] = (p.get('match') or {}).get('notes') or []
     ROWS[:] = p.get('c') or []

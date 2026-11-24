@@ -58,7 +58,7 @@ def test_counter_counts_only():
                             '--facts', str(t / 'pf.json.gz'), '--units', str(t / 'units.json'), '--layer-table', str(t / 'lak.json'), '--out', str(t / 'o.json')], capture_output=True, text=True)
         assert r.returncode == 0, r.stderr
         o = json.load(open(t / 'o.json'))['modes']['rule']['total']
-        assert (o['joined_before'], o['confirmed'], o['outlined'], o['pin'], o['gain'], o['lose']) == (2, 1, 1, 1, 1, 1), o
+        assert (o['joined_before'], o['confirmed'], o['outlined'], o['pin'], o['gain'], o['lose']) == (2, 2, 0, 1, 1, 1), o   # 24 Nov: the held name and pin (auto-confirm, owner 7:06 AM) now confirm the second park too
         assert o['why: agency'] == 1
         assert 'Invented' not in r.stdout + (t / 'o.json').read_text()
 

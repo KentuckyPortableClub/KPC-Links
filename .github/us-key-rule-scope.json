@@ -903,6 +903,14 @@
    "why": "Repair of the merged 7:06 AM auto-confirm rule (owner approved that rule 24 Nov 2026 7:06 AM CT; repair go 9:03 AM CST): the held record is found during pass_state, when held and bk are not on the park yet. Held = the record the builder holds; else the saved outline that contains the pin; else the only joined saved outline within 100 m. If none of those apply, or two or more outlines are within 100 m and none contain the pin, do not confirm (no nearest-record fallback). Inside the saved outline counts as 0 m (not the distance to the edge). The IDs-only stop list ships at .github/auto-confirm-stops.json (1,278 calls-list IDs). A missing or unreadable stop list means confirm nothing (fail closed). Status only, never changes land. Stops: person-NO, the bad-ID list, land-wrong, pin-wrong, and the pile calls list. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT yes; repair go 9:03 AM CST)"
+  },
+  {
+   "id": "2026-11-24-page-names-the-land",
+   "when": "2026-11-24",
+   "from": "4ed32ac795e7",
+   "why": "Page names the land + spelling table (owner 24 Nov 2026 6:41 AM '1 name i been screaming this!', 6:57 AM 'Page reader whole reason is to read names!!'), on top of the #369 repair (#373): (1) a joined park is CONFIRMED (status only, no land moves) when the park's own official html page calls it by the HELD record's own name (heading or one part; never a site heading, never another POTA park's name in the state), through the auto-confirm gate (#373's held record, 100 m on the saved outline, person-NO, bad ids, the stop list); (2) RULE WIDENING: the auto-confirm held-name test also accepts the spelling table (same_place_name: SWA/SNA/FWA/WPA/SRMA/HMA... spelled out, CA/WA/GA only as a last word, sulphur = sulfur, trails = trail; every place kind has a family, so a trail, access or memorial is never a park), and (3) a park whose kind clashes with the held record's layer kind is never confirmed (kinds_clash, the claim_fit test; a bare record name takes its layer's kind). The nearest-by-edge fallback of the earlier draft is removed. Measured on local builds of NV and OR (saved copies + 24 Nov park facts) against main with #373: 94 more parks outlined -> confirmed (78 held name and pin, 16 page names the land), 0 worse, 0 land changed, 0 parks of the stop list. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "owner's word, KPC owner, 2026-11-24 (6:57 AM 'Page reader whole reason is to read names!!'; distance and stops = the 7:06 AM auto-confirm, #373); merged only after the other agent's review"
   }
  ]
 }
