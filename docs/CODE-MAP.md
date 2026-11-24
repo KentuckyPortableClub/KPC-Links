@@ -12,3 +12,10 @@ This file was absent from main at `06ab25a7`; the W8b change starts the map here
 - `.claude/notes/mapping.md`: W8b rule sheet. `docs/key-rules-change.txt`: approved old/new rules hashes.
 
 W8b changes no live data, Canada proofs or wetland-district rules. A separate-unit exception requires the complementary name in a pin-holding record; no park ID is hardcoded.
+
+## County safety belt (E, 24 Nov 2026)
+
+- `.github/scripts/kpc_match_checks.py`: in `pass_state`, the county check (`outside_counties`) no longer sends a name-joined record to the check list when `holds_fn` says POTA's pin is inside that land. `COUNTY_FAR_KM` (25) and `COUNTY_FAR_X` (2) are unchanged.
+- `tests/test_county_safety_belt_nov24.py`: invented parks only; fails if the belt is skipped or the distance test is loosened. `tests/test_county_check_nov23.py` still covers the original county cases.
+- `.github/us-key-rule-scope.json`, `.github/ca-key-rule-scope.json`, `docs/key-rules-change.txt`: approved old/new rules hashes (US `3aabd63147fd` -> `d525bb370fec`, CA `3a1d4bf2e112` -> `5826be395087`; world does not move). The Canada hash moves only because the shared helper is a Canada rule file.
+- The matching page-reader fix (a search or list URL is not a park's own page; no county tag unless the page names the park) lives in KPC-Data (`kpc_park_pages.py`, `kpc_park_pages_rules.py`, `tests/test_search_list_not_own_page_nov24.py`).

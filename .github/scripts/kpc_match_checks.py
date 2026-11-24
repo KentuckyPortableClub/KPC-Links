@@ -1343,7 +1343,10 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             # W6 / W-G8 (owner 23 Nov 2026, 'yes'): the park's own page names its county, and a joined record lies well
             # outside it (the same name in another part of the state): that record goes to the check list. Not when an id
             # or the agency's own size speaks for the joined records.
-            far_ = [q for q in left if movable(q) and outside_counties(recs.get(str(q[0])), careas)]
+            # 24 Nov 2026 (owner approved E, 5:39 AM CT): the county rule does not remove land that holds POTA's pin.
+            # The distance test itself is unchanged (max(25 km, 2 x county radius)).
+            far_ = [q for q in left if movable(q) and outside_counties(recs.get(str(q[0])), careas)
+                    and holds(str(q[0])) is not True]
             if far_:
                 cn_ = ' / '.join(c[0] for c in careas)[:60]
                 to_check(p, far_, f"county: the park's own page names {cn_} County; this land lies outside it")
