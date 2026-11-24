@@ -895,6 +895,14 @@
    "why": "S4 (owner 24 Nov 2026 5:00 AM ruled the settled-joins sheet: records a saved answer names are REQUIRED, never trimmed): the state-layer reader's copy check (a state record with the same name, kind and ground as a PAD-US record is a copy and is skipped) no longer skips a record a person's saved answer names (overrides join / fp / nofp). Found on the owner's PC cross-state run of 24 Nov 05:56: 6 New York State Parks and 6 Utah river records were fetched and then thrown away as copies, so their saved answers stay 'not found'. It only changes what the refill step keeps in a saved copy; matching rules are unchanged. Scope none.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (5:00 AM S4 ruling; 7:32 AM 'finish your to dos')"
+  },
+  {
+   "id": "2026-11-24-auto-confirm-held-pass",
+   "when": "2026-11-24",
+   "from": "59125e9b6357",
+   "why": "Repair of the merged 7:06 AM auto-confirm rule (owner approved that rule 24 Nov 2026 7:06 AM CT; repair go 9:03 AM CST): the held record is found during pass_state, when held and bk are not on the park yet. Held = the record the builder holds; else the saved outline that contains the pin; else the only joined saved outline within 100 m. If none of those apply, or two or more outlines are within 100 m and none contain the pin, do not confirm (no nearest-record fallback). Inside the saved outline counts as 0 m (not the distance to the edge). The IDs-only stop list ships at .github/auto-confirm-stops.json (1,278 calls-list IDs). A missing or unreadable stop list means confirm nothing (fail closed). Status only, never changes land. Stops: person-NO, the bad-ID list, land-wrong, pin-wrong, and the pile calls list. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT yes; repair go 9:03 AM CST)"
   }
-]
+ ]
 }
