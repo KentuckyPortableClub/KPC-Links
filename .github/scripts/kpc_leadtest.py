@@ -14,9 +14,11 @@ FED_ORG = re.compile(r'bureau of land management|\bblm\b|forest service|\busfs\b
                      r'parks canada|environment and climate change canada|statistics canada|government of (?:canada|alberta|british columbia|ontario|'
                      r'quebec|manitoba|saskatchewan|nova scotia|new brunswick|newfoundland|prince edward island|yukon|northwest territories|nunavut)', re.I)
 LAST = {}
+STOPPED = {}   # host -> why it was left for this run (R-NET1: a data request answered 401 / 403 / 429)
 # Nov 11 2026 (host rules, review package A): every request of the discovery bot goes through polite_open(): the host rules first
 # (kpc_net_guard: services*.arcgis.com and the never-contact hosts get no request of any kind, robots.txt included), then robots.txt
-# of that host (401 / 403 / 5xx / no answer = no; 404 / 410 = no rules), then pacing: 60 s between requests on ArcGIS Online / Hub
+# of that host (club rule R-NET1: any 4xx but 429 = no rules; 429 / 5xx / no answer = not this run; a Disallow line = no; a data
+# request answering 401 / 403 / 429 = that host is left for the run), then pacing: 60 s between requests on ArcGIS Online / Hub
 # portals (www.arcgis.com sharing search, *.maps.arcgis.com, hub.arcgis.com, *.opendata.arcgis.com), 2 s on every other host.
 import kpc_net_guard, urllib.robotparser  # noqa: E402,E401
 kpc_net_guard.install()
@@ -42,7 +44,7 @@ def robots_ok(url):
         try:
             with urllib.request.urlopen(urllib.request.Request(key + '/robots.txt', headers=UA), timeout=15) as r:
                 rp = urllib.robotparser.RobotFileParser(); rp.parse(r.read(512_000).decode('utf-8', 'replace').splitlines())
-        except urllib.error.HTTPError as e: rp = None if e.code in (404, 410) else False
+        except urllib.error.HTTPError as e: rp = None if (400 <= e.code < 500 and e.code != 429) else False   # club rule R-NET1: a robots 4xx (403 too) = no rules; 429 / 5xx = not this run
         except Exception: rp = False  # noqa: BLE001
         ROBOTS[key] = rp
     rp = ROBOTS[key]
@@ -56,8 +58,14 @@ def polite_open(req, timeout=20):
     ok, why = kpc_net_guard.host_ok(url)
     if not ok: raise NotAsked(f'BLOCKED (saved copy only, not asked): {why}', blocked=True)
     if not robots_ok(url): raise NotAsked(f'not asked: robots.txt of {urllib.parse.urlparse(url).netloc} says no')
+    host = urllib.parse.urlparse(url).netloc.lower()
+    if host in STOPPED: raise NotAsked(f'not asked: {host} answered {STOPPED[host]} earlier this run')
     _pace(urllib.parse.urlparse(url).netloc)
-    return urllib.request.urlopen(req, timeout=timeout)
+    try:
+        return urllib.request.urlopen(req, timeout=timeout)
+    except urllib.error.HTTPError as e:
+        if e.code in (401, 403, 429): STOPPED[host] = f'HTTP {e.code}'
+        raise
 
 
 def get(url, params=None, timeout=20, tries=2):

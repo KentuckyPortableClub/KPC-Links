@@ -35,7 +35,7 @@ NEVER_CONTACT = [('services.arcgis.com', '/33TOOklri9xpic7U'), ('ncnhde.naturese
 # services.arcgis.com and services<digits>.arcgis.com: no live read of any kind, robots.txt included.
 # This is hard-coded (not only the env list) so a count run cannot reach those hosts.
 ARCGIS_SERVICES_HOST_RE = re.compile(r'^services(?:\d+|-[a-z0-9]+)?\.arcgis\.com$')   # Nov 10: services, services2..9 and services-eu1 (any services-<region>) alike
-# Saved copies only, no live read (their robots.txt answers 403). Same default list as kpc_us_key.py (KPC_SAVED_ONLY_HOSTS).
+# Saved copies only, no live read for key builds (owner's rule; the keeper may read them). Same default list as kpc_us_key.py (KPC_SAVED_ONLY_HOSTS).
 # services*.arcgis.com is also blocked in live_ok even if this list is overridden or emptied.
 # KPC_SAVED_ONLY_HOSTS ADDS hosts; it can never drop a default one (owner rule, 2026-11-10).
 SAVED_ONLY_HOSTS = {'services.arcgis.com', 'services1.arcgis.com', 'apps.fs.usda.gov'} | kpc_net_guard.extra_hosts()
@@ -93,15 +93,20 @@ class Pacer:
 
 
 def robots_allows(url, get_robots, cache=None):
-    """get_robots(host_url) -> (status, text). 403 / 401 = disallow (a robots 403 is a 'no'). 404/410 = no file = allowed. 5xx / error = disallow."""
+    """get_robots(host_url) -> (status, text). The club rule (owner, R-NET1; RFC 9309 2.3.1.3; the same as the keeper, the page
+    reader and kpc_inbox_manners.robots_verdict): a robots.txt answering 401 / 403 / 404 / 410 or any other 4xx except 429 =
+    "unavailable" = no rules = allowed. 429 / 5xx / no answer = not this run. A real Disallow line = no.
+    (Before 24 Nov this said "a robots 403 is a no": that Nov 10 reading was replaced on Nov 15.) A data request that itself answers
+    401 / 403 / 429 stops that host for the run (http_fetcher does it). A robots.txt that cannot be read as rules = not this run."""
     u = urllib.parse.urlsplit(url); base = f'{u.scheme}://{u.netloc}'
     cache = cache if cache is not None else {}
     if base not in cache:
         try: st, txt = get_robots(base + '/robots.txt')
         except Exception: st, txt = 599, ''   # noqa: BLE001
-        if st in (404, 410): cache[base] = True
+        if isinstance(st, int) and 400 <= st < 500 and st != 429: cache[base] = True
         elif st == 200:
-            rp = robotparser.RobotFileParser(); rp.parse(str(txt).splitlines()); cache[base] = rp
+            try: rp = robotparser.RobotFileParser(); rp.parse(str(txt).splitlines()); cache[base] = rp
+            except Exception: cache[base] = False   # noqa: BLE001  (a robots.txt that cannot be read = not this run)
         else: cache[base] = False
     v = cache[base]
     return v if isinstance(v, bool) else v.can_fetch(UA, url)
@@ -109,7 +114,7 @@ def robots_allows(url, get_robots, cache=None):
 
 def http_fetcher(pacer=None, max_tries=3):
     """The live fetch(url, params) -> dict used by read_layer. Every call goes through live_ok, robots.txt and the per-host pacer."""
-    pacer, robots = pacer or Pacer(), {}
+    pacer, robots, stopped = pacer or Pacer(), {}, {}   # stopped: host -> the answer that stopped it (R-NET1)
 
     def raw(url, timeout=60):
         req = urllib.request.Request(url, headers={'User-Agent': UA})
@@ -136,6 +141,8 @@ def http_fetcher(pacer=None, max_tries=3):
         ok, why = live_ok(url)
         if not ok: raise LiveNotAllowed(why)
         if not robots_allows(url, robots_get, robots): raise LiveNotAllowed(f'{parts(url)[0]}: robots.txt does not allow this read')
+        host = parts(url)[0]
+        if host in stopped: raise LiveNotAllowed(f'{host}: stopped for this run (it answered {stopped[host]})')
         full = url + ('?' + urllib.parse.urlencode(params) if params else '')
         last = None
         for i in range(max_tries):
@@ -144,6 +151,9 @@ def http_fetcher(pacer=None, max_tries=3):
                 st, txt = raw(full)
                 if st == 200: return json.loads(txt)
                 last = f'HTTP {st}'
+                if st in (401, 403, 429):   # club rule R-NET1: the server said no or slow down: leave this host for the run
+                    stopped[host] = f'HTTP {st}'
+                    raise LiveNotAllowed(f'{host}: answered HTTP {st}: stopped for this run')
             except (urllib.error.URLError, ValueError, OSError) as e: last = str(e)
             time.sleep(8 * (i + 1))
         raise MasterError(f'{full[:120]}: {last}')
@@ -1068,7 +1078,7 @@ def wdpa_agency_lookup(rows):
 # hunters and the engine write there. The master step in this repo reads it and adds its own rows through the boundary-cache
 # release (asset needs-download.json, same schema), which KPC-Data's hourly copy job merges into the one file.
 #   who = 'bot'     the master downloads it itself (allowed host, robots.txt says yes)
-#         'person' a person downloads it in a browser (saved-copy-only host, services*.arcgis.com, or robots.txt says no / 403)
+#         'person' a person downloads it in a browser (saved-copy-only host, services*.arcgis.com, or robots.txt has a Disallow line)
 #         'never'   nobody contacts it (never-contact host); the saved copy is kept as it is
 NEEDS_FORMAT = 1
 NEEDS_FIELDS = ('id', 'area', 'layer', 'url', 'page', 'host', 'who', 'why', 'expected', 'have', 'source', 'added', 'status', 'note',
@@ -1086,7 +1096,7 @@ def who_for(url, robots_ok=None, file_url=None):
     ok, why = live_ok(url)
     if ok and (robots_ok is None or robots_ok(url)): return 'bot', ''
     if not ok: why = why + ': a person downloads it in a browser'
-    else: why = f'{host}: robots.txt does not allow a bot to read it (a 403 counts as no): a person downloads it'
+    else: why = f'{host}: robots.txt has a Disallow line for this address: a person downloads it'
     if file_url:
         fok, _ = live_ok(file_url)
         if fok and (robots_ok is None or robots_ok(file_url)):
@@ -1131,7 +1141,7 @@ def checked_opener(check, handlers=()):
 
 def download_official_file(url, dest, robots_get=None, pacer=None, handlers=(), max_bytes=2 << 30):
     """Nov 10: the official-file download path. live_ok first (never a services*.arcgis.com host, never a never-contact host,
-    nothing saved-copy-only), then robots.txt (a 403 = no), then the per-host pacer (60 s on hub portals). EVERY redirect hop is
+    nothing saved-copy-only), then robots.txt (a Disallow line = no; a robots 403 = no rules, R-NET1), then the per-host pacer (60 s on hub portals). EVERY redirect hop is
     checked the same way before it is followed (live_ok + robots.txt + pacing; a robots.txt redirect gets live_ok), and the final
     address is checked again. Streams the file to dest and returns its raw facts {name, size, sha256, source, date}. Raises
     LiveNotAllowed before any request it may not make. Only the master step calls it, and only when asked (--official-files,

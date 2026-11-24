@@ -169,7 +169,7 @@ check(M.is_arcgis_services_host('services.arcgis.com') and M.is_arcgis_services_
 check(M.live_ok('https://gis.example.gov/arc/0')[0], 'hosts: an ordinary agency host is allowed (then robots.txt decides)')
 get403 = lambda u: (403, ''); get404 = lambda u: (404, ''); get500 = lambda u: (503, '')
 getdis = lambda u: (200, 'User-agent: *\nDisallow: /arc/\n'); getok = lambda u: (200, 'User-agent: *\nDisallow: /private/\n')
-check(M.robots_allows('https://h.gov/arc/0', get403) is False, 'robots: a 403 on robots.txt = disallow')
+check(M.robots_allows('https://h.gov/arc/0', get403) is True, 'robots: a 403 on robots.txt = no rules = allowed (club rule R-NET1, 24 Nov)')
 check(M.robots_allows('https://h.gov/arc/0', get500) is False and M.robots_allows('https://h.gov/arc/0', getdis) is False, 'robots: a server error, or a Disallow rule = disallow')
 check(M.robots_allows('https://h.gov/arc/0', get404) and M.robots_allows('https://h.gov/arc/0', getok), 'robots: no robots.txt (404) or an allowing one = allowed')
 clk = [0.0]; slept = []; pc = M.Pacer(clock=lambda: clk[0], sleep=lambda s: (slept.append(s), clk.__setitem__(0, clk[0] + s)))

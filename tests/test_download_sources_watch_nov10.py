@@ -79,7 +79,8 @@ check('a field that stops being sent is not a change', not W.changed({'etag': '"
 # robots: a 403 robots.txt = no request of the file
 st, _ = (lambda: (None, None))()
 cache = {}
-check('robots.txt 403 = disallow', M.robots_allows('https://gis.example.gov/zz/parks.zip', lambda u: (403, ''), cache) is False)
+check('robots.txt 403 = no rules = allowed (club rule R-NET1, 24 Nov)', M.robots_allows('https://gis.example.gov/zz/parks.zip', lambda u: (403, ''), cache) is True)
+check('robots.txt 429 = not this run', M.robots_allows('https://gis2.example.gov/zz/parks.zip', lambda u: (429, ''), {}) is False)
 
 # held stays held unless the change check
 nd = {'format': M.NEEDS_FORMAT, 'rows': [dict(row, status='held', id='US-ZZ|zzy', layer='zzy')]}
