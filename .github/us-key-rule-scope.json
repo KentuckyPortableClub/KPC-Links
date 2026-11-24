@@ -911,6 +911,14 @@
    "why": "Page names the land + spelling table (owner 24 Nov 2026 6:41 AM '1 name i been screaming this!', 6:57 AM 'Page reader whole reason is to read names!!'), on top of the #369 repair (#373): (1) a joined park is CONFIRMED (status only, no land moves) when the park's own official html page calls it by the HELD record's own name (heading or one part; never a site heading, never another POTA park's name in the state), through the auto-confirm gate (#373's held record, 100 m on the saved outline, person-NO, bad ids, the stop list); (2) RULE WIDENING: the auto-confirm held-name test also accepts the spelling table (same_place_name: SWA/SNA/FWA/WPA/SRMA/HMA... spelled out, CA/WA/GA only as a last word, sulphur = sulfur, trails = trail; every place kind has a family, so a trail, access or memorial is never a park), and (3) a park whose kind clashes with the held record's layer kind is never confirmed (kinds_clash, the claim_fit test; a bare record name takes its layer's kind). The nearest-by-edge fallback of the earlier draft is removed. Measured on local builds of NV and OR (saved copies + 24 Nov park facts) against main with #373: 94 more parks outlined -> confirmed (78 held name and pin, 16 page names the land), 0 worse, 0 land changed, 0 parks of the stop list. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "owner's word, KPC owner, 2026-11-24 (6:57 AM 'Page reader whole reason is to read names!!'; distance and stops = the 7:06 AM auto-confirm, #373); merged only after the other agent's review"
+  },
+  {
+   "id": "2026-11-24-confirm-report",
+   "when": "2026-11-24",
+   "from": "ae8e40264dda",
+   "why": "Report only (plan B, 24 Nov 2026): the match-checks line counts auto-confirms by rule and by state (held name and pin, split into exact / spelling table / looser name; page names the land; county belt kept; store-id fields and the name-and-size bridge). Each confirm records which rule made it and its evidence (agency id, official and outline acres, pin distance in feet, page link). A confirm whose outline acres are far off the official acres (the same 3x band) is listed for a person; actually withholding that confirm is switch KPC_CONFIRM_SIZE_HOLD, which defaults OFF, and is an owner call. Report header stamps: park-facts hash, page-reader-facts version, per-state restock stamp, and a 'rule changes since the last test' line. Status only: never changes land. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (report-only counters, evidence, stamps, and a size flag; the size-hold switch stays off)"
   }
  ]
 }

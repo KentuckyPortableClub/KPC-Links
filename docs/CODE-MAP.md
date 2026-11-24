@@ -41,3 +41,13 @@ W8b changes no live data, Canada proofs or wetland-district rules. A separate-un
 - `.github/auto-confirm-stops.json`: IDs only, 1,278 parks from the 24 Nov calls list. A US rule file (in the hash).
 - `tests/test_auto_confirm_nov24.py`: invented parks only; fails without the repair (held id found at `pass_state` with no `bk`/`held`; shipped list loaded; neither-holds and two close outlines = no confirm; missing list = fail closed).
 - Hashes (rebased onto main after #372; scope written first, then measured, then declared): US `59125e9b6357` -> `4ed32ac795e7`; CA `e3211051927e` -> `8e14ea47d92e` (shared helper only). World and 2-fers do not move. Scope none.
+
+## Confirm report, counters and size flag (24 Nov 2026, plan B)
+
+- `.github/scripts/kpc_match_checks.py`: each confirm records `by`, `name_how` (exact / spelling table / looser name) and `evidence` (agency id, official and outline acres, pin distance in feet, page link). The pass counts auto-confirms by those rules, county-belt keeps, and confirms whose outline acres are far off the official acres (the same 3x band). Switch `KPC_CONFIRM_SIZE_HOLD` (default OFF) is the only path that would withhold a far-off auto-confirm; off = still confirmed, still flagged in the report. Status only; land is never changed.
+- `.github/scripts/kpc_us_key.py`: the match-checks notice line prints those counters, and the run prints header stamps (park-facts hash, page-reader-facts version, per-state restock stamp, rule changes since the last test).
+- `.github/scripts/kpc_confirm_report.py`: the header and extra-line helpers. Listed in `NOT_RULES` (no hash of its own).
+- `.github/scripts/kpc_key_rules.py`, `.github/key-switches.json`: `KPC_CONFIRM_SIZE_HOLD` defaults OFF (`on: []`). Owner call to turn on.
+- `tools/pc-keys/kpc_test_keys.py`: the same stamps on REPORT.txt.
+- `tests/test_confirm_report_nov24.py`: invented parks only; fails if a confirm has no evidence, if the switch off still withholds, if world/2-fer hashes move, or if the changelog hash is stale.
+- Hashes: US `ae8e40264dda` -> `84d0fb46a68d`; CA `7696c35aa512` -> `6cf67b0757cb` (shared helper only). World and 2-fers do not move. Scope none.

@@ -617,6 +617,116 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
     return d is not None and d <= AUTO_CONFIRM_KM + 1e-12
 
 
+
+FT_PER_KM = 3280.84   # 24 Nov report: pin distance is shown in feet
+
+
+def held_name_how(park_name, rec_name, table=None):
+    """Which held-name rule agreed: 'exact', 'spelling table', 'looser name', or ''."""
+    if names_match(park_name, rec_name, None):
+        return 'exact'
+    if table and names_match(park_name, rec_name, table):
+        return 'spelling table'
+    if same_place_name(park_name, rec_name):
+        return 'looser name'
+    return ''
+
+
+def official_acres_of(fact):
+    """Official acres from KPC-Data park facts (the size row), or None."""
+    s = (fact or {}).get('size') if isinstance(fact, dict) else None
+    if not isinstance(s, dict):
+        return None
+    try:
+        a = s.get('acres')
+        if a not in (None, '', 'n/a'):
+            return float(a)
+    except (TypeError, ValueError):
+        return None
+    return None
+
+
+def outline_acres_of(p):
+    """The park's outline acres: the measured 'ac' when present, else the joined row acres added up."""
+    if p.get('ac') not in (None, ''):
+        try:
+            return float(p['ac'])
+        except (TypeError, ValueError):
+            pass
+    tot = 0.0
+    for q in p.get('m') or []:
+        if len(q) > 2 and q[2] not in (None, ''):
+            try:
+                tot += float(q[2])
+            except (TypeError, ValueError):
+                pass
+    return tot
+
+
+def size_far_off(outline, official, far=None):
+    """True when the outline is SIZE_FAR times off the official acres (either way)."""
+    far = SIZE_FAR if far is None else far
+    if official is None or official <= 0 or outline is None:
+        return False, None
+    ratio = outline / official
+    if ratio > far or ratio < 1 / far:
+        return True, round(ratio, 3)
+    return False, round(ratio, 3)
+
+
+def agency_id_of(rec, fact=None):
+    """A stable agency id on the record (store fields) or the park facts link id, else ''."""
+    sa = (rec or {}).get('SA') or {}
+    if not isinstance(sa, dict):
+        sa = {}
+    for k in ('Unit_ID', 'UniqueID', 'UNIQUEID', 'uniqueid', 'LinkID', 'LINKID', 'sft',
+              'pgrm_project', 'UNITCODE', 'UnitCode', 'ParkID', 'UNIT_ID'):
+        v = sa.get(k)
+        if v not in (None, ''):
+            return str(v)
+    link = (fact or {}).get('link') or {}
+    if link.get('id_value') not in (None, ''):
+        kind = link.get('id_kind') or 'id'
+        return f"{kind} {link.get('id_value')}"
+    return ''
+
+
+def page_link_of(fact):
+    pg = (fact or {}).get('page') or {}
+    return str(pg.get('url') or '')
+
+
+def confirm_evidence(ref, p, recs, facts, hid, pin=None):
+    """Evidence for one confirm: agency id, sizes, pin distance in feet, page link. IDs only."""
+    fact = (facts or {}).get(ref) or {}
+    rec = (recs or {}).get(hid) or (recs or {}).get(str(hid or '')) or {}
+    if pin is None:
+        pin = fact.get('pin')
+    pin_ft = None
+    if pin and rec:
+        try:
+            d = _km_to_saved(float(pin[0]), float(pin[1]), rec)
+            if d is not None:
+                pin_ft = int(round(d * FT_PER_KM))
+        except (TypeError, ValueError, IndexError):
+            pin_ft = None
+    official = official_acres_of(fact)
+    outline = outline_acres_of(p)
+    far, ratio = size_far_off(outline, official)
+    ev = {
+        'held_id': str(hid or ''),
+        'agency_id': agency_id_of(rec, fact),
+        'outline_acres': None if outline is None else round(outline, 1),
+        'official_acres': None if official is None else round(official, 1),
+        'pin_ft': pin_ft,
+        'page_link': page_link_of(fact),
+    }
+    if far:
+        ev['size_flag'] = 'far off'
+        ev['size_ratio'] = ratio
+    return ev
+
+
 def on_edge(pin, rec):
     """PN-G2: True when the pin lies ON the record's edge (within 1 mm): on the line is not strictly inside."""
     d = km_to_record(pin[0], pin[1], rec) if pin and len(pin) == 2 else None
@@ -1442,7 +1552,7 @@ def outline_size(p, m):
 
 def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda ref, rid, a: False, skip=(), st='',
                units=None, hits=None, holds_fn=None, layer_table=None, page_holds_fn=None, near_fn=None,
-               blocked_ids=None, auto_confirm_stops=None, spelling_table=None):
+               blocked_ids=None, auto_confirm_stops=None, spelling_table=None, size_hold=False):
     """The whole pass for one state, shared by the US builder and the offline counter (one implementation).
     parks = the key's park rows (changed in place); recs = {record id: record}; place_fn(ref, [record ids]) -> True / False /
     None (pin inside or near; used to join a record by the park's link id); holds_fn(ref, record id) -> True / False / None
@@ -1451,7 +1561,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
     'why': [reasons], 'notes': [advisory], 'by': 'id' | 'size' | 'link'} (pin = no outline; 'by' only when confirmed).
     near_fn(ref, record id, [record ids]) -> True / False / None: the record touches or lies within NEAR_KM of those records
     (W8b; missing = no data, the same-name piece stays on the check list).
-    Returns counts and appends [park, what, record id] to hits."""
+    size_hold (24 Nov, switch KPC_CONFIRM_SIZE_HOLD, default off): if True, an auto-confirm whose outline acres are far off the official acres is left outlined and flagged. Off = still confirmed, still flagged in the report.\n    Returns counts and appends [park, what, record id] to hits."""
     hits = [] if hits is None else hits
     near_fn = near_fn or (lambda ref, i, ids: None)
     counties = set()    # W8b: the state's county names, from the park pages
@@ -1670,8 +1780,11 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             # or the agency's own size speaks for the joined records.
             # 24 Nov 2026 (owner approved E, 5:39 AM CT): the county rule does not remove land that holds POTA's pin.
             # The distance test itself is unchanged (max(25 km, 2 x county radius)).
-            far_ = [q for q in left if movable(q) and outside_counties(recs.get(str(q[0])), careas)
-                    and holds(str(q[0])) is not True]
+            far_all = [q for q in left if movable(q) and outside_counties(recs.get(str(q[0])), careas)]
+            belt = [q for q in far_all if holds(str(q[0])) is True]
+            if belt:
+                out['county_belt'] = out.get('county_belt', 0) + len(belt)
+            far_ = [q for q in far_all if holds(str(q[0])) is not True]
             if far_:
                 cn_ = ' / '.join(c[0] for c in careas)[:60]
                 to_check(p, far_, f"county: the park's own page names {cn_} County; this land lies outside it")
@@ -1735,13 +1848,35 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                     blocked=blocked_ids, stop_parks=auto_confirm_stops, pin=(facts.get(ref) or {}).get('pin'), layer_table=layer_table,
                     name_test=lambda pn, rn: page_names_land(f, pn, rn, heading_count, all_names - {full(pn)})):
                 st_, how = 'confirmed', 'page names the land'
+        ev, name_how = None, ''
+        if st_ == 'confirmed' and how:
+            pin_ = (facts.get(ref) or {}).get('pin')
+            hid = held_id_of(p) or held_id_for_pass(ref, p, recs, pin_, lambda _r, i: holds(i))
+            ev = confirm_evidence(ref, p, recs, facts, hid, pin=pin_)
+            if how == 'held name and pin':
+                rec_ = recs.get(hid) or recs.get(str(hid or '')) or {}
+                pn_ = p.get('n') or (facts.get(ref) or {}).get('name') or ''
+                name_how = held_name_how(pn_, rec_name(rec_), spelling_table)
+            if ev.get('size_flag'):
+                out['size_far_confirms'] = out.get('size_far_confirms', 0) + 1
+                out.setdefault('size_far_ids', []).append(ref)
+                if size_hold and how in ('held name and pin', 'page names the land'):
+                    st_, how = 'outlined', None
+                    out['size_hold'] = out.get('size_hold', 0) + 1
         p['match'] = {'status': st_, 'why': sorted(set(why))}
         if notes: p['match']['notes'] = sorted(set(notes))
         if how: p['match']['by'] = how
+        if ev: p['match']['evidence'] = ev
+        if name_how: p['match']['name_how'] = name_how
+        if ev and ev.get('size_flag') and size_hold and st_ == 'outlined':
+            p['match']['size_hold'] = True
         if id_ok: p['match']['id'] = f'{kind} {val}'
         if link_nm == 'strong': p['match']['link'] = 'strong'
         out[st_] += 1
-        if how: out['by_' + how] = out.get('by_' + how, 0) + 1
+        if how:
+            out['by_' + how] = out.get('by_' + how, 0) + 1
+            if name_how:
+                out['by_name_' + name_how] = out.get('by_name_' + name_how, 0) + 1
         for w in set(why): out['why'][w] = out['why'].get(w, 0) + 1
         for w in set(notes): out['notes'][w] = out['notes'].get(w, 0) + 1
     return out
