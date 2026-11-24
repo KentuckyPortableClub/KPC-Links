@@ -93,5 +93,54 @@ check('the clean-up report is listed as not a rules file, and is in no RULE_FILE
       'kpc_cleanup_report.py' in KF.NOT_RULES
       and not any('kpc_cleanup_report.py' in f for fs in KF.RULE_FILES.values() for f in fs))
 
+
+# Reason class: numbers and units fold; a named county folds; a person-NO tail folds.
+check('size: 15.01 times and size: 5.25 times are the same reason class',
+      CR.reason_class('size: 15.01 times the agency\'s own figure')
+      == CR.reason_class('size: 5.25 times the agency\'s own figure')
+      != '')
+check('county reasons that differ only by the county name are the same class',
+      CR.reason_class("county: the park's own page names Otter County; this land lies outside it")
+      == CR.reason_class("county: the park's own page names Bear County; this land lies outside it"))
+check('a person-NO reason is one class even when the rest of the line differs',
+      CR.reason_class('a person said no to this record: Invented Marsh Wildlife Area')
+      == CR.reason_class('a person said no to this record: Invented Pond State Park'))
+size_rows = [
+    {'park': 'US-9003', 'reason': 'size: 15.01 times the agency\'s own figure', 'record': 'sgzza1', 'state': 'ZZ'},
+    {'park': 'US-9003', 'reason': 'size: 5.25 times the agency\'s own figure', 'record': 'sgzza2', 'state': 'ZZ'},
+]
+sc = CR.collapse_check_rows(size_rows)
+check('two size reasons with different numbers on the same park collapse to one row',
+      len(sc) == 1 and sc[0]['count'] == 2 and set(sc[0]['records']) == {'sgzza1', 'sgzza2'})
+
+# Command: read US-*.json c rows, write the report, do not rewrite the key
+import json, tempfile
+with tempfile.TemporaryDirectory() as td:
+    td = pathlib.Path(td)
+    key = {
+        'parks': {
+            'US-9004': {'c': [
+                ['sgzza1', 'Invented Marsh', 500, 'size: 15.01 times the agency\'s own figure'],
+                ['sgzza2', 'Invented Marsh', 80, 'size: 5.25 times the agency\'s own figure'],
+            ]}
+        }
+    }
+    keys_dir = td / 'us-key'
+    keys_dir.mkdir()
+    (keys_dir / 'US-ZZ.json').write_text(json.dumps(key), encoding='utf-8')
+    key_before = (keys_dir / 'US-ZZ.json').read_text(encoding='utf-8')
+    out = td / 'collapsed.json'
+    public, line = CR.write_collapsed_report(keys_dir, out)
+    check('the command reports 2 rows collapsing to 1 by reason class, and does not rewrite the key',
+          public['input_count'] == 2 and public['collapsed_count'] == 1
+          and public['c_rows_rewritten'] is False
+          and (keys_dir / 'US-ZZ.json').read_text(encoding='utf-8') == key_before
+          and '2' in line and '1' in line and 'reason class' in line
+          and out.is_file() and 'name' not in json.loads(out.read_text())['rows'][0])
+    # hook text for REPORT.txt
+check('the REPORT.txt hook line names the before and after row counts',
+      '16,853' in CR.report_line({'input_count': 16853, 'collapsed_count': 2309, 'exact_reasons': 491, 'reason_classes': 70})
+      and '2,309' in CR.report_line({'input_count': 16853, 'collapsed_count': 2309, 'exact_reasons': 491, 'reason_classes': 70}))
+
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

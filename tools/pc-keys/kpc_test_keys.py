@@ -84,6 +84,34 @@ def compare(label, old, new):
             f'check rows {n["check"]} (before {n["check_before"]}); outlined only with the pin over 5 km off {n["far_outlined"]}'], n
 
 
+
+def check_row_collapse_lines(key_roots):
+    """24 Nov 2026 (owner approved D; review fix): report-only collapse of check rows, by reason class.
+    Counts only; the key's c rows are not rewritten. Looks for US-*.json under each root (data/us-key)."""
+    scripts = (HERE / 'links' / '.github' / 'scripts')
+    if not scripts.is_dir():
+        scripts = HERE.parents[1] / '.github' / 'scripts'
+    if scripts.is_dir() and str(scripts) not in sys.path:
+        sys.path.insert(0, str(scripts))
+    try:
+        import kpc_cleanup_report as CR
+    except ImportError:
+        return ['Check rows: the collapse report could not be loaded (kpc_cleanup_report.py was not found).']
+    lines, seen = [], set()
+    for root in key_roots:
+        root = pathlib.Path(root)
+        keys_dir = root if (root.is_dir() and any(root.glob('US-*.json'))) else root / 'data' / 'us-key'
+        if not keys_dir.is_dir() or not any(keys_dir.glob('US-*.json')):
+            continue
+        key = str(keys_dir.resolve())
+        if key in seen:
+            continue
+        seen.add(key)
+        rows = CR.rows_from_key_dir(keys_dir)
+        lines.append(CR.report_line(CR.collapse_summary(rows)))
+    return lines
+
+
 def notices(log):
     """The builder's own count lines for the report (never a park name)."""
     out = []
@@ -248,6 +276,7 @@ def main(argv):
                 f'pin to outline {tot.get("from_pin", 0)}; check rows {tot.get("check", 0)} (before {tot.get("check_before", 0)}); '
                 f'outlined only with the pin over 5 km off {tot.get("far_outlined", 0)} (report only: the owner decides); '
                 f'{tot.get("minutes", 0):.0f} minutes in all.']
+    out += [''] + check_row_collapse_lines([LINKS / 'data' / 'us-key', LINKS])
     (rep / 'REPORT.txt').write_text('\n'.join(out) + '\n', encoding='utf-8')
     say(''); [say(l) for l in out]
     say(f'\nThe report is in {rep / "REPORT.txt"}. Send that file to Claude.')
