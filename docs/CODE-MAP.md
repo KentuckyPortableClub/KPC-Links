@@ -12,3 +12,9 @@ This file was absent from main at `06ab25a7`; the W8b change starts the map here
 - `.claude/notes/mapping.md`: W8b rule sheet. `docs/key-rules-change.txt`: approved old/new rules hashes.
 
 W8b changes no live data, Canada proofs or wetland-district rules. A separate-unit exception requires the complementary name in a pin-holding record; no park ID is hardcoded.
+
+## Clean-up stage, report-only (D, 24 Nov 2026)
+
+- `.github/scripts/kpc_cleanup_report.py`: after a key join, collapse check rows to one row per park per reason (with a count and the record IDs), and pre-sort parks into sure / needs a person / pin wrong / land wrong / needs a layer. Solver verdicts may be attached as a last check. The key's `c` rows are not rewritten. Listed in `NOT_RULES` (no rules hash moves).
+- `tests/test_cleanup_report_nov24.py`: invented parks only; fails if copies are not folded, if a second state's own piece is dropped, if an unknown bucket is hidden, or if `c` rows are rewritten.
+- The matching settled-answers file (one KPC-Data file, IDs first; fingerprint is a stable agency ID, else name + acres within 10% + box to 0.001°; record number is a hint only; S4 lists a missing saved record and does not redo or drop it) lives in KPC-Data (`kpc_settled_answers.py`, `docs/settled-answers.md`, `tests/test_settled_answers_nov24.py`). Auto-apply is not part of this step.
