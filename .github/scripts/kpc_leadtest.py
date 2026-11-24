@@ -44,7 +44,7 @@ def robots_ok(url):
         try:
             with urllib.request.urlopen(urllib.request.Request(key + '/robots.txt', headers=UA), timeout=15) as r:
                 rp = urllib.robotparser.RobotFileParser(); rp.parse(r.read(512_000).decode('utf-8', 'replace').splitlines())
-        except urllib.error.HTTPError as e: rp = None if (400 <= e.code < 500 and e.code != 429) else False   # club rule R-NET1: a robots 4xx (403 too) = no rules; 429 / 5xx = no
+        except urllib.error.HTTPError as e: rp = None if (400 <= e.code < 500 and e.code != 429) else False   # club rule R-NET1: a robots 4xx (403 too) = no rules; 429 / 5xx = not this run
         except Exception: rp = False  # noqa: BLE001
         ROBOTS[key] = rp
     rp = ROBOTS[key]
