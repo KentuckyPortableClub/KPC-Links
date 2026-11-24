@@ -12,3 +12,9 @@ This file was absent from main at `06ab25a7`; the W8b change starts the map here
 - `.claude/notes/mapping.md`: W8b rule sheet. `docs/key-rules-change.txt`: approved old/new rules hashes.
 
 W8b changes no live data, Canada proofs or wetland-district rules. A separate-unit exception requires the complementary name in a pin-holding record; no park ID is hardcoded.
+
+## Auto-confirm, held name and pin (24 Nov 2026, 7:06 AM CT)
+
+- `.github/scripts/kpc_match_checks.py`: in `pass_state`, a joined park that would stay `outlined` is status-confirmed (`by: held name and pin`) when the held record's own name matches the park and the pin sits inside that record or within 100 m, measured on the saved outline (`km_to_record`), not the key's `bk` working copy. Land (`m`) is never changed. Stops: person-NO, a blocked id, and an IDs-only stop list (calls, land-wrong, pin-wrong). The spelling table is read from `data/names/spelling-table.json` (KPC-Data, agreed with the page-names work) or `.github/name-spelling-table.json`; if neither file is there yet, the shared letters-and-digits name key is used alone.
+- `tests/test_auto_confirm_nov24.py`: invented parks only; fails if the key's `bk` distance is used, if land is changed, or if a stop is skipped.
+- Hashes (measured, then declared): US `3aabd63147fd` -> `02f61d4a9470`; CA `3a1d4bf2e112` -> `c0436e6a9ab2` (shared helper only). World and 2-fers do not move. Scope none.
