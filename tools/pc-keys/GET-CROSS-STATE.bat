@@ -4,7 +4,8 @@ cd /d "%~dp0"
 title KPC cross-state pieces (W11)
 echo.
 echo  KPC cross-state pieces: asks the agencies ONCE for the few park pieces that sit across a state line
-echo  (rule W11), one at a time, 5 seconds apart, robots.txt obeyed. Then adds them to this PC's saved copies.
+echo  (rule W11) plus the saved-answer records the last test could not find, one at a time, 5 seconds apart,
+echo  robots.txt obeyed. Then adds them to this PC's saved copies.
 echo  Nothing goes to GitHub and nothing is published. Takes a few minutes.
 echo.
 set "PY="

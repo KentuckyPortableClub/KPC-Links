@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""kpc_get_cross_state.py: the W11 cross-state pieces, fetched once on the owner's PC and added to the PC's saved copies
+"""kpc_get_cross_state.py: the W11 cross-state pieces + (24 Nov) the saved-answer records the last PC test could not find, fetched once on the owner's PC and added to the PC's saved copies
 (owner 23 Nov 2026 5:26 PM: "Just make me a script to get them").
 
 What it is for. Rule W11 (23 Nov) lists, in data/state-gis.json, the records a state's saved answers need from a layer that is
@@ -87,6 +87,40 @@ def work_list(want):
                         'label': (lj.get(pre) or [None, None, ''])[2] if isinstance(lj.get(pre), list) and len(lj[pre]) > 2 else '',
                         'oidf': 'OBJECTID'})
     return out, notes
+
+
+def saved_answer_list(want):
+    """Owner 24 Nov 2026 5:00 AM (S-G4 'what ever easiest and quickest'): the records a person's saved answer names that the
+    last PC test could NOT find, not even by the saved name and size ('saved answers: not found' in reports\\test-*\\XX.log).
+    One ask per state and layer, only those record ids. A record that does not come back is reported (gone or renumbered)."""
+    tests = sorted((HERE / 'reports').glob('test-*'))
+    if not tests: return [], ['saved answers: no PC test report yet (run START-HERE.bat first); none asked']
+    lj = json.load(open(LINKS / 'data' / 'us-key' / 'layers.json', encoding='utf-8'))
+    need, out = {}, []
+    for lf in sorted(tests[-1].glob('??.log')):
+        st = lf.stem
+        if want and st not in want: continue
+        for m in re.finditer(r'not found: US-\d+ ([a-z]+)(\d+) fingerprint', lf.read_text(encoding='utf-8', errors='replace')):
+            if isinstance(lj.get(m.group(1)), list) and lj[m.group(1)]: need.setdefault((st, m.group(1)), set()).add(int(m.group(2)))
+    for (st, pre), ids in sorted(need.items()):
+        have = saved_ids(st) or set()
+        ids = sorted(i for i in ids if f'{pre}{i}' not in have)
+        if not ids: continue
+        l = lj[pre]
+        out.append({'st': st, 'pre': pre, 'url': _u(l[0]), 'nf': l[1] if len(l) > 1 else '', 'ids': ids,
+                    'label': l[2] if len(l) > 2 else '', 'oidf': 'OBJECTID', 'part_ok': True})
+    return out, [f"saved answers not found in {tests[-1].name}: {sum(len(e['ids']) for e in out)} record(s), {len(out)} layer list(s)"]
+
+
+def join_work(a, b):
+    """One ask per state and layer: the cross-state ids and the saved-answer ids together."""
+    by = {}
+    for e in a + b:
+        k = (e['st'], e['pre'])
+        if k in by:
+            by[k]['ids'] = sorted(set(by[k]['ids']) | set(e['ids'])); by[k]['part_ok'] = by[k].get('part_ok') and e.get('part_ok')
+        else: by[k] = dict(e)
+    return [by[k] for k in sorted(by)]
 
 
 def get(url, timeout=120):
@@ -216,6 +250,8 @@ def main(argv):
     if not (LINKS / '.github' / 'scripts' / 'kpc_us_key.py').is_file():
         say('STOPPED: links\\ is not unpacked yet. Run START-HERE.bat once first.'); return 2
     work, notes = work_list(want)
+    sa, sa_notes = saved_answer_list(want)
+    work, notes = join_work(work, sa), notes + sa_notes
     say(f'KPC cross-state pieces (W11), {datetime.datetime.now():%Y-%m-%d %H:%M}')
     for n in notes: say('  ' + n)
     say(f'To ask: {len(work)} layer list(s), {sum(len(e["ids"]) for e in work)} record(s)')
@@ -230,10 +266,14 @@ def main(argv):
         if feats is None: say(f'  {tag}: no answer ({err}); nothing kept'); continue
         back = {str(oid_of(f['properties'])) for f in feats}
         miss = [i for i in e['ids'] if str(i) not in back]
-        if miss or any(f['geometry'] is None for f in feats):
+        if e.get('part_ok') and feats:   # saved-answer records stand alone: keep the whole ones, report the rest
+            feats = [f for f in feats if f['geometry'] is not None]
+            if miss: say(f'  {tag}: {len(miss)} record(s) did not come back (renumbered or gone: the build checks the saved name and size)')
+        elif miss or any(f['geometry'] is None for f in feats):
             say(f'  {tag}: {len(feats)} of {len(e["ids"])} came back whole; nothing kept (all or nothing)'); continue
+        if not feats: say(f'  {tag}: none came back; nothing kept'); continue
         got.setdefault(e['st'], []).append(write_hand(e, feats, body, url))
-        say(f'  {tag}: all {len(feats)} received')
+        say(f'  {tag}: {len(feats)} received')
     say('Step 2 of 2: adding them to this PC\'s saved copies (offline)')
     for st in sorted(got): say('  ' + merge_state(st, got[st]))
     say('Done. Now run START-HERE.bat (type the states above, or US). To undo: copy links\\cache\\us-before-cross\\* back into links\\cache\\us\\.')
