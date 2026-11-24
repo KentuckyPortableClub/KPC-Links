@@ -57,6 +57,7 @@ P = {'n': 'Invented Falls State Park', 'm': [['sgzzb1', HELD['Unit_Nm'], 500, ''
 pg = PAGE('Invented Falls State Scenic Viewpoint')
 test = lambda f: (lambda pn, rn: PN(f, pn, rn))
 def ok_at(pin, page=pg, park=P, **kw):
+    kw.setdefault('stop_parks', set())   # #373: a missing stop list confirms nothing, so the tests pass an empty one
     facts = {'US-9002': dict(page, name=park['n'], pin=pin)}
     return MC.auto_confirm_ok('US-9002', park, recs, facts, pin=pin, name_test=test(facts['US-9002']), **kw)
 check('page names the held record, pin inside (holds = yes): confirms', ok_at([44.525, -88.475], holds_fn=lambda r, i: True))
@@ -81,14 +82,17 @@ fresh = {'n': 'Invented Falls State Park', 't': 'State Park', 'm': [['sgzzc2', '
 pin_out = [44.52495, -88.45 + 0.00025]   # ~20 m east of the big outline, ~10 m from the sliver
 f_out = {'US-9003': {'name': fresh['n'], 'pin': pin_out}}
 check('a fresh pass with no record holding the pin confirms nothing (never the nearest sliver)',
-      not MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_out, pin=pin_out)
-      and MC.held_in_pass('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, pin_out) == '')
+      not MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_out, pin=pin_out, stop_parks=set())
+      and MC.held_id_for_pass('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, pin_out) == '')
 f_in = {'US-9003': {'name': fresh['n'], 'pin': [44.525, -88.475]}}
 check('a fresh pass (no held / bk) with the pin inside the big outline: held name and pin confirms it',
-      MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_in, pin=[44.525, -88.475])
-      and MC.held_in_pass('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, [44.525, -88.475]) == 'sgzzc2')
-check("the builder's explicit no is final in a fresh pass: no held record, nothing confirmed",
-      not MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_in, pin=[44.525, -88.475], holds_fn=lambda r, i: False))
+      MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_in, pin=[44.525, -88.475], stop_parks=set())
+      and MC.held_id_for_pass('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, [44.525, -88.475]) == 'sgzzc2')
+check("#373: the builder's no does not veto the saved outline that holds the pin (the finer drawing)",
+      MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_in, pin=[44.525, -88.475], holds_fn=lambda r, i: False,
+                         stop_parks=set()))
+check('a missing stop list confirms nothing (fail closed, #373)',
+      not MC.auto_confirm_ok('US-9003', fresh, {'sgzzc1': SLIVER, 'sgzzc2': BIG}, f_in, pin=[44.525, -88.475], stop_parks=None))
 src = (ROOT / '.github/scripts/kpc_match_checks.py').read_text(encoding='utf-8')
 check('the witness only confirms, through the auto-confirm gate, after it',
       "st_, how = 'confirmed', 'page names the land'" in src and 'NEAR_LAND_KM' not in src

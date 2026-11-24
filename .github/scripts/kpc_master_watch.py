@@ -5,7 +5,7 @@ data/outlines/download-sources.json holds one entry per official download source
 last-seen FINGERPRINT: the file size, Last-Modified, ETag, the catalog's stated date or version, and the record count where stated.
 
   watch   a low-cost change check, allowed requests only: kpc_master.live_ok first (never a services*.arcgis.com host, never the
-          never-contact hosts, nothing on the saved-copy-only list), then robots.txt (a 403 = no), 2 s per host, 60 s on hub portals.
+          never-contact hosts, nothing on the saved-copy-only list), then robots.txt (a Disallow line = no; a robots 403 = no rules, R-NET1), 2 s per host, 60 s on hub portals.
           A HEAD of the direct file, or the catalog's own metadata (ScienceBase item JSON). Nothing is downloaded.
           A source a bot may not even check is check=person: it is NOT asked every run; once downloaded it goes on a rare
           reminder list instead (the PC helper's --reminders: done check=person rows older than REMIND_DAYS days).

@@ -381,8 +381,7 @@ SPELLING_TABLE_PATHS = (
     'data/names/spelling-table.json',  # KPC-Data
 )
 STOPS_PATHS = (
-    '.github/auto-confirm-stops.json',               # 24 Nov: IDs only, in this repo (the key build reads it; hashed)
-    'data/status-confirms/auto-confirm-stops.json',  # KPC-Data, IDs only, when present
+    '.github/auto-confirm-stops.json',  # 24 Nov repair: IDs only, in this repo (hashed with the US rules)
 )
 
 
@@ -430,15 +429,13 @@ def load_spelling_table(paths=None, root=None):
 
 
 def load_auto_confirm_stops(paths=None, root=None):
-    """IDs-only stop list (person-NO, bad-ID, land-wrong, pin-wrong, pile calls). Missing file: empty."""
+    """IDs-only stop list (calls, land-wrong, pin-wrong). Missing or unreadable: (None, None) = fail closed
+    (auto-confirm confirms nothing until the list can be read)."""
     root = pathlib.Path(root) if root else pathlib.Path(__file__).resolve().parents[2]
-    wanted = list(paths or [])
+    wanted = list(paths) if paths is not None else list(STOPS_PATHS)
     env = os.environ.get('KPC_AUTO_CONFIRM_STOPS') or ''
     if env:
         wanted = [env] + wanted
-    wanted.extend(STOPS_PATHS)
-    stops = set()
-    found = None
     for rel in wanted:
         f = pathlib.Path(rel)
         if not f.is_file():
@@ -448,14 +445,13 @@ def load_auto_confirm_stops(paths=None, root=None):
         try:
             data = json.loads(f.read_text(encoding='utf-8'))
         except (OSError, ValueError):
-            continue
+            return None, None   # present but unreadable: confirm nothing
         rows = data.get('parks') if isinstance(data, dict) else data
-        for x in rows or []:
-            if isinstance(x, str) and x:
-                stops.add(x)
-        found = str(f)
-        break
-    return stops, found
+        if not isinstance(rows, list):
+            return None, None
+        stops = {x for x in rows if isinstance(x, str) and x}
+        return stops, str(f)
+    return None, None   # no file: confirm nothing
 
 
 def spelled_key(s, table=None):
@@ -493,29 +489,75 @@ def held_id_of(p):
     return ''
 
 
-def held_in_pass(ref, p, recs, pin, holds_fn=None):
-    """Inside the match pass 'held' and 'bk' are not set yet (review, 24 Nov): the held record is the joined record the builder
-    says holds POTA's pin, else (no answer from the builder) the one whose saved outline holds it. Neither: '' (no held record,
-    nothing is confirmed; never the nearest record by its edge)."""
-    try:
-        lat, lon = float(pin[0]), float(pin[1])
-    except (TypeError, ValueError, IndexError):
-        return ''
-    for q in p.get('m') or []:
-        i = str(q[0])
-        rec = (recs or {}).get(i) or (recs or {}).get(q[0])
-        if rec is None:
-            continue
-        h = holds_fn(ref, i) if holds_fn else None
-        if h is True or (h is None and _in_rings(lat, lon, rec)):
-            return i
-    return ''
-
-
 def kinds_clash(p, rec, table=None):
     """True when the park's kind and the record's layer kind are both known and do not agree (the same test as claim_fit)."""
     a, b = kinds(p.get('t') or p.get('n') or ''), layer_kinds(rec, table)
     return bool(a and b and not (a & b or any(a & c and b & c for c in US_COMPAT)))
+
+
+def _saved_shape(rec):
+    """A record dict the distance helpers can read: prefer `_g`, else wrap a saved `_r` rings list.
+    Never changes the caller's record."""
+    rec = rec or {}
+    if rec.get('_g'):
+        return rec
+    if rec.get('_r'):
+        return dict(rec, _g={'rings': rec['_r']})
+    return rec
+
+
+def _pin_inside_saved(lat, lon, rec):
+    """True when the pin sits inside the saved outline (0 m, not the distance to the edge)."""
+    return _in_rings(lat, lon, _saved_shape(rec))
+
+
+def _km_to_saved(lat, lon, rec):
+    """Kilometres to the saved outline: 0 when the pin is inside, else edge distance."""
+    rec = _saved_shape(rec)
+    if _in_rings(lat, lon, rec):
+        return 0.0
+    return km_to_record(lat, lon, rec)
+
+
+def held_id_for_pass(ref, p, recs, pin, holds_fn=None):
+    """The held record during the match pass, when `held` / `bk` are not on the park yet.
+
+    1. The record the builder holds (holds_fn is True). That pick wins; no later fallback.
+    2. Else the first joined record (m order, usually largest first) whose SAVED outline
+       contains the pin.
+    3. Else, if the pin is within AUTO_CONFIRM_KM (100 m) of exactly one joined saved
+       outline, that record. Two or more within 100 m and none containing the pin: no
+       record (no nearest-of-many fallback).
+    '' when none of those apply, or when there is no usable pin for steps 2–3.
+    A person's NO is applied later in auto_confirm_ok, not here.
+    """
+    rows = []
+    for q in p.get('m') or []:
+        i = str(q[0])
+        rec = (recs or {}).get(i) or (recs or {}).get(q[0])
+        if rec is not None:
+            rows.append((i, rec))
+    if not rows:
+        return ''
+    if holds_fn:
+        for i, rec in rows:
+            if holds_fn(ref, i) is True:
+                return i
+    try:
+        lat, lon = float(pin[0]), float(pin[1])
+    except (TypeError, ValueError, IndexError):
+        return ''
+    inside = [i for i, rec in rows if _pin_inside_saved(lat, lon, rec)]
+    if inside:
+        return inside[0]
+    near = []
+    for i, rec in rows:
+        d = _km_to_saved(lat, lon, rec)
+        if d is not None and d <= AUTO_CONFIRM_KM + 1e-12:
+            near.append(i)
+    if len(near) == 1:
+        return near[0]
+    return ''
 
 
 def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked=None,
@@ -524,20 +566,27 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
 
     The held record's own name must match the park, and the pin must sit inside that
     record or within AUTO_CONFIRM_KM (100 m), measured on the saved outline in `recs`
-    with km_to_record (not the key's `bk` working-copy distance).
+    (inside = 0 m; not the key's `bk` working-copy distance).
+    The held record is held_id_of (when `held` / `bk` are already set), else
+    held_id_for_pass (the builder's hold, else the saved outline that contains the
+    pin, else the only outline within 100 m). If neither a held record nor a unique
+    close outline is found, this does not confirm.
     Stops: person-NO, a blocked id, or a park on the stop list (calls, land-wrong, pin-wrong).
     name_test(park name, held record name) replaces the name test (24 Nov: 'page names the land' uses the same
     record, the same stops and the same 100 m; only the name witness differs).
+    stop_parks is None (missing / unreadable list) = confirm nothing (fail closed).
     """
-    if ref in (stop_parks or ()):
+    if stop_parks is None:
+        return False
+    if ref in stop_parks:
         return False
     if not (p.get('m') or []):
         return False
-    hid = held_id_of(p)
     if pin is None:
         pin = ((facts or {}).get(ref) or {}).get('pin')
+    hid = held_id_of(p)
     if not hid:
-        hid = held_in_pass(ref, p, recs, pin, holds_fn)   # 24 Nov: inside the match pass 'held' / 'bk' are not set yet
+        hid = held_id_for_pass(ref, p, recs, pin, holds_fn)
     if not hid:
         return False
     rec = (recs or {}).get(hid) or (recs or {}).get(str(hid))
@@ -558,20 +607,13 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
         return False
     if kinds_clash(p, rec, layer_table):   # 24 Nov review: a bare record name ('Kiger') takes its kind from its layer
         return False
-    h = holds_fn(ref, hid) if holds_fn else None
-    if h is True:
-        return True
-    if pin is None:
-        pin = (facts.get(ref) or {}).get('pin')
     if not pin or len(pin) < 2 or pin[0] in (None, '') or pin[1] in (None, ''):
         return False
     try:
         lat, lon = float(pin[0]), float(pin[1])
     except (TypeError, ValueError):
         return False
-    if h is None and _in_rings(lat, lon, rec):   # 24 Nov: no 'holds' answer and the pin is inside the saved outline: 0 m away
-        return True
-    d = km_to_record(lat, lon, rec)
+    d = _km_to_saved(lat, lon, rec)
     return d is not None and d <= AUTO_CONFIRM_KM + 1e-12
 
 

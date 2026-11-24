@@ -56,7 +56,7 @@ check('who_for: apps.fs.usda.gov = person', M.who_for('https://apps.fs.usda.gov/
 check('who_for: robots says no (403) = person', M.who_for('https://gis.example.gov/arcgis/rest/services/x/MapServer/0', rb)[0] == 'person' and asked)
 check('who_for: allowed = bot', M.who_for('https://gis.example.gov/arcgis/rest/services/x/MapServer/0', lambda u: True)[0] == 'bot')
 get = lambda u: (403, '')
-check('robots_allows: a robots.txt 403 is a disallow', M.robots_allows('https://gis.example.gov/arcgis/rest/services/x', get, {}) is False)
+check('robots_allows: a robots.txt 403 = no rules = allowed (club rule R-NET1, 24 Nov)', M.robots_allows('https://gis.example.gov/arcgis/rest/services/x', get, {}) is True)
 
 # 3. the ONE needs list: schema, merge by area|layer, done stays done, no change = no save
 r1 = M.needs_row('US-AZ', 'fsod', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/X/MapServer/0/query', 'short', 'master', expected=12, have=12, date='2026-11-10')

@@ -97,8 +97,7 @@ RULE_FILES['us-key'].append('.github/keep-record-fields.json')
 RULE_FILES['us-key'].append('.github/scripts/kpc_source_fields.py')
 # KPC owner, 2026-11-21 (job A): the web address fields that carry a park's link id decide id ties
 RULE_FILES['us-key'].append('.github/link-id-ties.json')
-# KPC owner, 2026-11-24 (review of #371): the IDs that auto-confirm and 'page names the land' must never confirm
-RULE_FILES['us-key'].append('.github/auto-confirm-stops.json')
+RULE_FILES['us-key'].append('.github/auto-confirm-stops.json')   # 24 Nov: IDs-only auto-confirm stop list, in the US hash
 NOT_RULES = {'kpc_match_checks_count.py', 'kpc_match_checks_sample.py',   # Nov 20: offline counts / sample re-score of the match checks; decide no join
              'kpc_keep_fields.py',   # Nov 21 (job B): writes the keep-list config, decides nothing itself (the config is a rule file)
              'kpc_agency_table.py', 'kpc_key_drop_guard.py', 'kpc_outlines_from_key.py', 'kpc_outlines_keep_main.py', 'kpc_key_freeze.py', 'kpc_key_order.py', 'kpc_host_pace.py', 'kpc_save.py', 'kpc_us_key_issue.py', 'kpc_ca_key_issue.py', 'kpc_key_answers.py',

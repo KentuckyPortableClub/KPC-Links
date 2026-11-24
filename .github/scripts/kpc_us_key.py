@@ -1246,6 +1246,20 @@ def _sane_ac(ac, bb):
     return 0
 
 
+_SAVED_NAMED = []
+
+
+def saved_named():
+    """24 Nov 2026 (S4): every record id a person's saved answer names (overrides 'join', 'fp', 'nofp'), read once."""
+    if not _SAVED_NAMED:
+        ids = set()
+        for o in (globals().get('OVR') or {}).values():
+            if not isinstance(o, dict): continue
+            ids |= {str(x) for x in (o.get('join') or [])} | {str(x) for x in (o.get('fp') or {})} | {str(x) for x in (o.get('nofp') or {})}
+        _SAVED_NAMED.append(ids)
+    return _SAVED_NAMED[0]
+
+
 def _dup(have, key, bb):
     """Oct 29 (chat 2 trace): a state record is a COPY of a PAD-US record only when the same name + kind sits on the SAME
     ground (boxes overlap). Before, a same-name record ANYWHERE in the state hid it (WA Rock Creek / Telford Recreation Area,
@@ -1407,7 +1421,10 @@ def extra_state(st, have, only=None):
             if re.search(r'easement', nm, re.I) and _nf(nm) not in {_nf(w) for o in OVR.values() for w in (o.get('join') or []) + (o.get('alias') or [])}: continue
             k = kinds(nm) | kk
             if opt.get('not_in') and norm(nm) in {norm(o['Unit_Nm']) for o in out if str(o['OBJECTID']).startswith(opt['not_in'])}: continue
-            if not opt.get('where') and _dup(have, (norm(nm), frozenset(k)), bbox(f.get('geometry') or {})): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
+            # 24 Nov 2026 (owner's settled-joins ruling S4, 5:00 AM: records a saved answer names are REQUIRED, never trimmed): a state
+            # record a person's saved answer names is kept even when PAD-US has the same name on the same ground (the cross-state run
+            # of 24 Nov fetched NY State Parks and Utah river records a person had named, and this copy check threw them away)
+            if not opt.get('where') and (pre + str(a.get(oidf.lower()))) not in saved_named() and _dup(have, (norm(nm), frozenset(k)), bbox(f.get('geometry') or {})): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
             g = f.get('geometry') or {}
             nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
             out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),

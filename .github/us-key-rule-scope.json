@@ -889,12 +889,28 @@
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT)"
   },
   {
-   "id": "2026-11-24-page-names-the-land",
+   "id": "2026-11-24-saved-records-kept",
    "when": "2026-11-24",
    "from": "bac372a94136",
-   "why": "Page names the land + spelling table (owner 24 Nov 2026 6:41 AM '1 name i been screaming this!', 6:57 AM 'Page reader whole reason is to read names!!'): a joined park is CONFIRMED (status only, no land moves) when the park's own official html page calls it by the HELD record's own name (the page heading or one part; never a site heading, never another POTA park's name in the state), through the SAME gate as the auto-confirm rule the owner approved at 7:06 AM: the held record only, pin inside it or within 100 m on the saved outline, and the same stops (person-NO, bad ids, and the new IDs-only stop list .github/auto-confirm-stops.json = the 24 Nov person-pile calls list, 1,278 parks). The spelling table (same_place_name: SWA/SNA/FWA/WPA/SRMA/HMA... spelled out, CA/WA/GA only as a last word, sulphur = sulfur, trails = trail; every place kind has a family so a trail, access or memorial is never a park; a bare record name such as a herd-area layer's takes its layer's kind). Also fixes the auto-confirm gate: inside the match pass the held record was not known yet, so it confirmed almost nothing; it now takes the joined record that holds POTA's pin (else the nearest on the saved outline), and a pin inside the saved outline counts as 0 m. Measured on local builds of NV and OR (saved copies + 24 Nov park facts): 114 parks outlined -> confirmed (97 held name and pin, 17 page names the land), 0 worse, 0 land changed, 0 parks on the calls list confirmed. Scope none: no park is rebuilt until the owner starts a build.",
+   "why": "S4 (owner 24 Nov 2026 5:00 AM ruled the settled-joins sheet: records a saved answer names are REQUIRED, never trimmed): the state-layer reader's copy check (a state record with the same name, kind and ground as a PAD-US record is a copy and is skipped) no longer skips a record a person's saved answer names (overrides join / fp / nofp). Found on the owner's PC cross-state run of 24 Nov 05:56: 6 New York State Parks and 6 Utah river records were fetched and then thrown away as copies, so their saved answers stay 'not found'. It only changes what the refill step keeps in a saved copy; matching rules are unchanged. Scope none.",
    "scope": "none",
-   "approved": "owner's word, KPC owner, 2026-11-24 (6:57 AM 'Page reader whole reason is to read names!!'); distance and stops are the auto-confirm ones he approved at 7:06 AM; merged only after the other agent's review"
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (5:00 AM S4 ruling; 7:32 AM 'finish your to dos')"
+  },
+  {
+   "id": "2026-11-24-auto-confirm-held-pass",
+   "when": "2026-11-24",
+   "from": "59125e9b6357",
+   "why": "Repair of the merged 7:06 AM auto-confirm rule (owner approved that rule 24 Nov 2026 7:06 AM CT; repair go 9:03 AM CST): the held record is found during pass_state, when held and bk are not on the park yet. Held = the record the builder holds; else the saved outline that contains the pin; else the only joined saved outline within 100 m. If none of those apply, or two or more outlines are within 100 m and none contain the pin, do not confirm (no nearest-record fallback). Inside the saved outline counts as 0 m (not the distance to the edge). The IDs-only stop list ships at .github/auto-confirm-stops.json (1,278 calls-list IDs). A missing or unreadable stop list means confirm nothing (fail closed). Status only, never changes land. Stops: person-NO, the bad-ID list, land-wrong, pin-wrong, and the pile calls list. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT yes; repair go 9:03 AM CST)"
+  },
+  {
+   "id": "2026-11-24-page-names-the-land",
+   "when": "2026-11-24",
+   "from": "4ed32ac795e7",
+   "why": "Page names the land + spelling table (owner 24 Nov 2026 6:41 AM '1 name i been screaming this!', 6:57 AM 'Page reader whole reason is to read names!!'), on top of the #369 repair (#373): (1) a joined park is CONFIRMED (status only, no land moves) when the park's own official html page calls it by the HELD record's own name (heading or one part; never a site heading, never another POTA park's name in the state), through the auto-confirm gate (#373's held record, 100 m on the saved outline, person-NO, bad ids, the stop list); (2) RULE WIDENING: the auto-confirm held-name test also accepts the spelling table (same_place_name: SWA/SNA/FWA/WPA/SRMA/HMA... spelled out, CA/WA/GA only as a last word, sulphur = sulfur, trails = trail; every place kind has a family, so a trail, access or memorial is never a park), and (3) a park whose kind clashes with the held record's layer kind is never confirmed (kinds_clash, the claim_fit test; a bare record name takes its layer's kind). The nearest-by-edge fallback of the earlier draft is removed. Measured on local builds of NV and OR (saved copies + 24 Nov park facts) against main with #373: 94 more parks outlined -> confirmed (78 held name and pin, 16 page names the land), 0 worse, 0 land changed, 0 parks of the stop list. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "owner's word, KPC owner, 2026-11-24 (6:57 AM 'Page reader whole reason is to read names!!'; distance and stops = the 7:06 AM auto-confirm, #373); merged only after the other agent's review"
   }
  ]
 }

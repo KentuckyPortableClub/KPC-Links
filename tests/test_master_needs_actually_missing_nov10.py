@@ -68,9 +68,15 @@ for bad in ('https://services2.arcgis.com/x/file.zip', 'https://services-eu1.arc
     st_ = Stand({})
     try: M.download_official_file(bad, T / 'f.bin', handlers=[st_]); check(f'download refuses {bad}', False)
     except M.LiveNotAllowed: check(f'download refuses {bad.split("/")[2]} before any request (robots.txt included)', not st_.calls)
-st_ = Stand({'https://irma.nps.gov/robots.txt': (403, {}, b'')})
-try: M.download_official_file(OKF, T / 'f.bin', handlers=[st_]); check('robots 403 refuses', False)
-except M.LiveNotAllowed: check('download: a robots.txt 403 is a no (only robots.txt was asked)', st_.calls == ['https://irma.nps.gov/robots.txt'])
+# 24 Nov 2026 (club rule R-NET1): a robots.txt 403 = no rules = the file is asked; only a real Disallow line refuses
+st_ = Stand({'https://irma.nps.gov/robots.txt': (403, {}, b''), OKF: (200, {}, b'official file')})
+try:
+    M.download_official_file(OKF, T / 'f403.bin', handlers=[st_], pacer=P())
+    check('download: a robots.txt 403 means no rules: the file is asked and saved', OKF in st_.calls and (T / 'f403.bin').exists())
+except M.LiveNotAllowed as e: check(f'download: a robots.txt 403 means no rules (refused: {e})', False)
+st_ = Stand({'https://irma.nps.gov/robots.txt': (200, {}, b'User-agent: *\nDisallow: /DataStore/\n')})
+try: M.download_official_file(OKF, T / 'fd.bin', handlers=[st_]); check('a Disallow line refuses', False)
+except M.LiveNotAllowed: check('download: a real Disallow line is a no (only robots.txt was asked)', st_.calls == ['https://irma.nps.gov/robots.txt'])
 
 # every redirect hop is checked before it is followed (live_ok + robots.txt); a hop onto a forbidden host is refused, never asked
 for name, target in (('services2.arcgis.com', 'https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/x/FeatureServer/0/query?f=json'),
