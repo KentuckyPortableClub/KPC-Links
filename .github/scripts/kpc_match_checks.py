@@ -62,6 +62,7 @@ def kinds(s):
 
 SIZE_AGREE = (0.8, 1.25)   # within 25% either way: the outline and the agency's own figure tell the same story
 SIZE_FAR = 3.0             # 3 times off either way = the wrong land (owner's FI-2 hold mark)
+NEAR_LAND_KM = 1.0         # 24 Nov: 'page names the land' accepts a pin this close to the land (office, parking at the edge)
 NEAR_KM = 0.5              # a pin within half a kilometre of the line is 'near' (the keys read a ~0.1 km working copy)
 CODE_HOW = ('NPS', 'official', 'id')   # 'id': joined here by the park's own link id (plus place or size)
 PERSON_HOW = ('reviewed',)
@@ -383,6 +384,71 @@ def claim_fit(park, rec, table=None):
     a, b = kinds(park.get('t') or park.get('n') or ''), layer_kinds(rec, table)
     if a and b: sc += 1 if (a & b or any(a & c and b & c for c in US_COMPAT)) else -1
     return sc
+
+
+# 24 Nov 2026 (owner 6:41 AM "1 name i been screaming this!", 6:57 AM "Page reader whole reason is to read names!!"): the
+# SPELLING TABLE and the PAGE-NAMES-THE-LAND witness. The same name written another way: the short forms agencies use spelled out
+# (a code at the END of a name only for CA / WA / GA, never a state code in the middle), one spelling of sulfur, a plural trail,
+# then the kind words set aside. Two names agree when what is left is the same and the kinds of land do not clash.
+SPELL = {'swa': 'state wildlife area', 'sna': 'state natural area', 'fwa': 'fish and wildlife area', 'wpa': 'waterfowl production area',
+         'svra': 'state vehicular recreation area', 'srma': 'special recreation management area', 'erma': 'extensive recreation management area',
+         'wsa': 'wilderness study area', 'hp': 'heritage preserve', 'fwma': 'fish and wildlife management area', 'mua': 'multiple use area',
+         'hma': 'herd management area', 'col': 'colonel', 'sulphur': 'sulfur', 'trails': 'trail', 'mgmt': 'management', 'natl': 'national'}
+SPELL_LAST = {'ca': 'conservation area', 'wa': 'wildlife area', 'ga': 'game area'}
+KIND_WORDS = set('state national park parks wildlife area areas management conservation natural nature preserve reserve reservation '
+                 'recreation fishing fish and game land lands refuge forest forests habitat special extensive blm unit site historic '
+                 'historical memorial monument scenic trail public access waterfowl fishery comprehensive no of the at sanctuary study '
+                 'herd production multiple use vehicular heritage'.split())
+KIND_FAMILY = {'park': {'park', 'parks'}, 'forest': {'forest', 'forests'}, 'wildlife': {'wildlife', 'game', 'waterfowl', 'fish', 'fishery', 'habitat'},
+               'wilderness': {'wilderness'}, 'preserve': {'preserve', 'natural', 'nature'}}
+
+
+def spelled(name):
+    """full(name) with the agencies' short forms written out (SPELL_LAST only as the last word of a longer name)."""
+    w = full(name).split()
+    out = []
+    for i, x in enumerate(w):
+        out += (SPELL_LAST[x] if i == len(w) - 1 and len(w) > 1 and x in SPELL_LAST else SPELL.get(x, x)).split()
+    return out
+
+
+def name_core(name):
+    return ''.join(x for x in spelled(name) if x not in KIND_WORDS)
+
+
+def kind_families(name):
+    w = set(spelled(name))
+    return {k for k, v in KIND_FAMILY.items() if w & v}
+
+
+def same_place_name(a, b):
+    """True when two names are the same place name written another way: the same core (4+ letters) once the short forms are
+    spelled out and the kind words set aside, and no clash of kinds (a forest is not a park; Wilderness is not a Wilderness
+    Study Area). 'Ogden Treat SWA' = 'Ogden-Treat State Wildlife Area'; 'Hot Sulphur Springs' = 'Hot Sulfur Springs'."""
+    ca, cb = name_core(a), name_core(b)
+    if len(ca) < 4 or ca != cb: return False
+    fa, fb = kind_families(a), kind_families(b)
+    if fa and fb and not (fa & fb): return False
+    sa, sb = ' '.join(spelled(a)), ' '.join(spelled(b))
+    return ('wilderness study' in sa) == ('wilderness study' in sb)
+
+
+def page_names_land(fact, park_name, land_name, heading_count=None, names_in_state=None):
+    """The park's OWN official html page calls the park by the land's own name (the page heading or one part of it): the page and
+    the agency's map record name the same place. Never a site heading, never another POTA park's name in the state."""
+    if not own_page(fact) or not land_name: return False
+    pg = (fact or {}).get('page') or {}
+    if pg.get('kind') != 'html': return False
+    raw = str(pg.get('name_on_page') or '').strip()
+    if not raw or '\ufffd' in raw: return False
+    for part in [raw] + SECOND_NAME_SPLIT.split(raw):
+        part = part.strip()
+        n = full(part)
+        if not n: continue
+        if heading_count and heading_count.get((pg.get('host'), n), 0) >= SITE_HEADING_PARKS: continue
+        if names_in_state and n in names_in_state and n != full(park_name): continue
+        if n == full(land_name) or same_place_name(part, land_name): return True
+    return False
 
 
 PAGE_NAME_OK = ('same', 'same-core', 'same-words')   # W4 / W-G5 (owner 23 Nov 2026 12:51 AM)
@@ -1278,6 +1344,11 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         # 22 Nov 2026 (owner: "more options to match other than name"): a point on the park's own official page inside a record
         page_in = {}
         on_page = lambda i: page_in[i] if i in page_in else page_in.setdefault(i, (page_holds_fn(ref, i) is True) if page_holds_fn else False)
+        _pin = (f or {}).get('pin') or []
+        def pin_near(i):   # 24 Nov: POTA's pin within NEAR_LAND_KM of the record (an office or a parking lot at the edge)
+            if len(_pin) != 2 or recs.get(i) is None: return False
+            d = km_to_record(_pin[0], _pin[1], recs[i])
+            return d is not None and d <= NEAR_LAND_KM
         drop = []
         for q in m:
             i = str(q[0]); rec = recs.get(i)
@@ -1386,6 +1457,11 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             # W-G1 with the page's name as the name that agrees, the page's own point does). Confirms only: nothing is moved.
             elif page_name_agrees(f) and place_ok: st_, how = 'confirmed', 'page name'
             elif page_name_agrees(f) and any(on_page(str(q[0])) for q in left): st_, how = 'confirmed', 'page name and point'
+            # 24 Nov 2026 (owner: "Page reader whole reason is to read names!!"): the park's own page calls it by the joined land's
+            # own name, and POTA's pin (or the page's own point) is in or within NEAR_LAND_KM of that land. Confirms only.
+            elif any(page_names_land(f, nm, q[1], heading_count, all_names - {full(nm)}) and (
+                    holds(str(q[0])) is True or on_page(str(q[0])) or pin_near(str(q[0]))) for q in left):
+                st_, how = 'confirmed', 'page names the land'
             # W5 (23 Nov 2026): the park's own page links the agency's own map under this record's name, and exactly ONE
             # record of the state carries that bare name (two records of one name: unsure, nothing). Confirms only.
             elif mnames and any(bare_name(q[1]) in mnames and names_n.get(bare_name(q[1])) == 1 for q in left): st_, how = 'confirmed', 'map link name'

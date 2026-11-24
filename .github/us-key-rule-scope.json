@@ -817,12 +817,12 @@
    "approved": "owner's word, KPC owner, 2026-11-23 (11:03 AM 'Fix it'); merged only on his own review"
   },
   {
-    "id": "2026-11-23-wg6-near-a-town",
-    "when": "2026-11-23",
-    "from": "69100a58d956",
-    "why": "Owner's ruling W-G6 (23 Nov 2026, 6:37 AM: '4 I say yes'): a 'near a town' point the park's own official page gives in words (park facts page.near, made on the PC from the town lists, with how far off it may be) is a place witness. Land reaching its circle with a name that agrees confirms ('near a town'); when ALL the joined land lies far from there (over 3 times the circle and 25 km), it goes to the check list, never a record holding POTA's pin, never when an id or the agency's own size speaks for it. Measured on the saved US keys with the 23 Nov 12:32 PM park facts: 21 parks confirmed near a town, 1 park's joined land to the check list. Scope none: no park is rebuilt until the owner starts a build.",
-    "scope": "none",
-    "approved": "owner's ruling, KPC owner, 2026-11-23 (6:37 AM '4 I say yes'); merged only on his own review"
+   "id": "2026-11-23-wg6-near-a-town",
+   "when": "2026-11-23",
+   "from": "69100a58d956",
+   "why": "Owner's ruling W-G6 (23 Nov 2026, 6:37 AM: '4 I say yes'): a 'near a town' point the park's own official page gives in words (park facts page.near, made on the PC from the town lists, with how far off it may be) is a place witness. Land reaching its circle with a name that agrees confirms ('near a town'); when ALL the joined land lies far from there (over 3 times the circle and 25 km), it goes to the check list, never a record holding POTA's pin, never when an id or the agency's own size speaks for it. Measured on the saved US keys with the 23 Nov 12:32 PM park facts: 21 parks confirmed near a town, 1 park's joined land to the check list. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "owner's ruling, KPC owner, 2026-11-23 (6:37 AM '4 I say yes'); merged only on his own review"
   },
   {
    "id": "2026-11-23-w8b-safe-own-pieces",
@@ -833,20 +833,20 @@
    "approved": "owner's ruling, KPC owner, 2026-11-23 (2:55 PM 'Go ahead with the safer version'); merged only on his own review"
   },
   {
-    "id": "2026-11-23-wg6-town-guard",
-    "when": "2026-11-23",
-    "from": "c0c8aa0ddd7b",
-    "why": "W-G6 tightened (the owner's 'did you make it worse' check, 23 Nov 2026 ~3 PM): a 'near a town' point is approximate; it never moves land POTA's pin lies in or by, nor land inside a county the same page names. Measured on the saved US keys with the 23 Nov park facts against the code as of the owner's 7:12 AM merges: 0 parks worse (was 1: a trail park confirmed by its link lost its land to a town line 36 km off), 22 better (21 confirmed near a town, 1 pin to outline). Scope none: no park is rebuilt until the owner starts a build.",
-    "scope": "none",
-    "approved": "owner's ruling W-G6 (6:37 AM); the guard is narrower than the rule merged at 1:55 PM; merged only on his own review"
+   "id": "2026-11-23-wg6-town-guard",
+   "when": "2026-11-23",
+   "from": "c0c8aa0ddd7b",
+   "why": "W-G6 tightened (the owner's 'did you make it worse' check, 23 Nov 2026 ~3 PM): a 'near a town' point is approximate; it never moves land POTA's pin lies in or by, nor land inside a county the same page names. Measured on the saved US keys with the 23 Nov park facts against the code as of the owner's 7:12 AM merges: 0 parks worse (was 1: a trail park confirmed by its link lost its land to a town line 36 km off), 22 better (21 confirmed near a town, 1 pin to outline). Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "owner's ruling W-G6 (6:37 AM); the guard is narrower than the rule merged at 1:55 PM; merged only on his own review"
   },
   {
-    "id": "2026-11-23-w12-wetland-districts",
-    "when": "2026-11-23",
-    "from": "d57b94088135",
-    "why": "Owner's approval (23 Nov 2026 2:12 PM, the outside agent's job 9; 4:43 PM 'Do it'): a Wetland Management District the FWS realty copy gives no tract joins the Fish and Wildlife Service's own Waterfowl Production Area records that hold POTA's pin or carry the district's place name; a pin inside a separate refuge, a production area only near the pin, a state tag at the end of a name or another agency's record joins nothing. Measured on the saved copies: 4 of the 6 pin-only districts get an outline (Idaho, Maine, Nebraska, South Dakota); Iowa (pin inside a refuge) and Minnesota Valley (no production area holds the pin or carries the name) stay a pin. Scope none: no park is rebuilt until the owner starts a build.",
-    "scope": "none",
-    "approved": "KPC owner, 2026-11-23 2:12 PM (job 9) and 4:43 PM 'Do it'; merged only on his own review"
+   "id": "2026-11-23-w12-wetland-districts",
+   "when": "2026-11-23",
+   "from": "d57b94088135",
+   "why": "Owner's approval (23 Nov 2026 2:12 PM, the outside agent's job 9; 4:43 PM 'Do it'): a Wetland Management District the FWS realty copy gives no tract joins the Fish and Wildlife Service's own Waterfowl Production Area records that hold POTA's pin or carry the district's place name; a pin inside a separate refuge, a production area only near the pin, a state tag at the end of a name or another agency's record joins nothing. Measured on the saved copies: 4 of the 6 pin-only districts get an outline (Idaho, Maine, Nebraska, South Dakota); Iowa (pin inside a refuge) and Minnesota Valley (no production area holds the pin or carries the name) stay a pin. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "KPC owner, 2026-11-23 2:12 PM (job 9) and 4:43 PM 'Do it'; merged only on his own review"
   },
   {
    "id": "2026-11-23-job8-canada-pass-shared",
@@ -871,6 +871,14 @@
    "why": "Park-id fix (owner 24 Nov 2026 4:19 AM 'fix your part'): in store mode, a saved record whose number the outline store does not know (the agency renumbered its layer after our early-November saved copy: New York DEC) takes the store's agency id fields when exactly ONE store record of the same layer has the same name and a size within 1% (kpc_us_key.record_attrs_by_name). The fields feed only the id checks, which agree or say nothing. With kpc_store_attrs.py's '@' fix (the store spells sgnya@68990), New York goes from 143 to 635 confirmed parks (491 outlined -> confirmed by id, 1 keeps more land, 0 worse; counted on a NY build from the saved copy + 24 Nov park facts + the store's NY file). Scope none: no park is rebuilt until the owner starts a build. Same PR, second part (owner 24 Nov 2026 4:19 AM 'fix your part'): the Michigan DNR tie in link-id-ties.json: the DNR parks layer (sgmia) carries the park's own DNR id in its LinkID field, written without the link's ':' (SPRK433 = link SPRK:433); a tie may now name a 'glue' that joins the address id's parts (kpc_match_checks.ids_from). Agree-only like every address tie. Counted on a MI build from the saved copy + park facts + the store's MI file: 55 -> 149 confirmed (94 outlined -> confirmed by id, 2 parks gain the DNR's own record of the same land, 0 worse). Exchange check (24 Nov ~5:30 AM): name + size hit another piece of a many-piece park once in 1,101 New York bridges (same park, same park-level id, no result changed); the bridge now also needs the store record's map box to overlap the saved record's (kpc_store_attrs format 3 keeps each record's box). NY rebuilt: still 635 confirmed, 0 joins changed.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (4:19 AM 'Just fix your part'); merged only on his own review"
+  },
+  {
+   "id": "2026-11-24-page-names-the-land",
+   "when": "2026-11-24",
+   "from": "3aabd63147fd",
+   "why": "Page names the land (owner 24 Nov 2026 6:41 AM '1 name i been screaming this!', 6:57 AM 'Page reader whole reason is to read names!!', 7:06 AM 'Ok start on your part'): a joined park is CONFIRMED (status only, no land moves) when the park's own official html page calls it by the joined record's own name (the page heading or one part of it; never a site heading, never another POTA park's name in the state) and POTA's pin (or the page's own point) is in or within 1 km of that record. The names may differ only in spelling: a SPELLING TABLE (SWA/SNA/FWA/WPA/SRMA/HMA... spelled out, CA/WA/GA only as a last word, sulphur = sulfur, trails = trail) and the kind words set aside, with no clash of kinds (forest is not park; Wilderness is not a WSA) (kpc_match_checks.same_place_name, page_names_land). Measured on local builds of NV, OR, AR, MO from the saved copies + 21 Nov park facts: 41 parks outlined -> confirmed, 0 worse, 0 land changed. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (6:57 AM 'Page reader whole reason is to read names!!', 7:06 AM 'Ok start on your part'); merged only on his own review"
   }
  ]
 }

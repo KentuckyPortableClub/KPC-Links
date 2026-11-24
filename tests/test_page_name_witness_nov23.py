@@ -30,14 +30,14 @@ LINK = {'site': 'agency (known)', 'agency': 'ZZ State Parks', 'page_kind': 'own 
         'web_name': 'unit 4471', 'name_match': 'none'}
 
 
-def run(name_vs, own='own', unofficial=False, pin_inside=True, coords=(), link=LINK):
+def run(name_vs, own='own', unofficial=False, pin_inside=True, coords=(), link=LINK, page_name='Otter Branch Fishery Area'):
     recs = {'sgzza1': {'OBJECTID': 'sgzza1', 'Unit_Nm': 'Otter Branch State Fish and Wildlife Area', 'Mang_Type': 'STAT', 'Mang_Name': 'SPR',
                        'GIS_Acres': 500, '_g': SQ(-80.0, 40.0), '_bb': [-80.0, 40.0, -79.9, 40.1]}}
     parks = {'US-9001': {'n': 'Otter Branch State Fish and Wildlife Area', 't': 'State Fish and Wildlife Area', 'g': 'official', 'c': [],
                          'm': [['sgzza1', 'Otter Branch State Fish and Wildlife Area', 500, 'same name']]}}
     f = {'US-9001': {'area': 'US-ZZ', 'name': 'Otter Branch State Fish and Wildlife Area', 'type': 'State Fish and Wildlife Area', 'pin': [40.05, -79.95],
                      'page': {'kind': 'html', 'own_page': own, 'unofficial': unofficial, 'host': 'dnr.zz.example.gov', 'name_vs_pota': name_vs,
-                              'name_on_page': 'Otter Branch Fishery Area', 'sizes': [], 'coords': list(coords), 'parts': [], 'inside_of': []}}}
+                              'name_on_page': page_name, 'sizes': [], 'coords': list(coords), 'parts': [], 'inside_of': []}}}
     if link is not None: f['US-9001']['link'] = dict(link)
     in_rec = lambda la, lo: -80.0 <= lo <= -79.9 and 40.0 <= la <= 40.1
     page_holds = lambda ref, i: any(in_rec(la, lo) for la, lo in MC.page_pins(f[ref]))
@@ -50,8 +50,9 @@ check('has the page-name witness', hasattr(MC, 'page_name_agrees'))
 for nv in ('same', 'same-core', 'same-words'):
     check(f'the page carries the park\'s name ({nv}) and the pin is inside: confirmed by page name', run(nv)[:2] == ('confirmed', 'page name'))
 check('nothing is joined, moved or dropped by it', run('same')[2:] == (['sgzza1'], 0))
-check('the page names another place: not confirmed', run('differs')[0] == 'outlined')
-check('no name read from the page: not confirmed', run(None)[0] == 'outlined')
+# 24 Nov: a page heading that names the joined land itself now confirms ('page names the land'), so these two use another place's name
+check('the page names another place: not confirmed', run('differs', page_name='Beaver Pond Lake')[0] == 'outlined')
+check('no name read from the page: not confirmed', run(None, page_name='')[0] == 'outlined')
 check('a list page: not confirmed', run('same', own='list')[0] == 'outlined')
 check('a shared page: not confirmed', run('same', own='shared')[0] == 'outlined')
 check('an unofficial site: not confirmed', run('same', unofficial=True)[0] == 'outlined')
