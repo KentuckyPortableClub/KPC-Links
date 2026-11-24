@@ -63,7 +63,6 @@ def kinds(s):
 
 SIZE_AGREE = (0.8, 1.25)   # within 25% either way: the outline and the agency's own figure tell the same story
 SIZE_FAR = 3.0             # 3 times off either way = the wrong land (owner's FI-2 hold mark)
-NEAR_LAND_KM = 1.0         # 24 Nov: 'page names the land' accepts a pin this close to the land (office, parking at the edge)
 NEAR_KM = 0.5              # a pin within half a kilometre of the line is 'near' (the keys read a ~0.1 km working copy)
 CODE_HOW = ('NPS', 'official', 'id')   # 'id': joined here by the park's own link id (plus place or size)
 PERSON_HOW = ('reviewed',)
@@ -382,6 +381,7 @@ SPELLING_TABLE_PATHS = (
     'data/names/spelling-table.json',  # KPC-Data
 )
 STOPS_PATHS = (
+    '.github/auto-confirm-stops.json',               # 24 Nov: IDs only, in this repo (the key build reads it; hashed)
     'data/status-confirms/auto-confirm-stops.json',  # KPC-Data, IDs only, when present
 )
 
@@ -488,23 +488,52 @@ def held_id_of(p):
     if isinstance(held, dict) and (held.get('ids') or []):
         return str(held['ids'][0])
     bk = p.get('bk') or [None]
-    return str(bk[0]) if bk and bk[0] is not None else ''
+    if bk and bk[0] is not None:
+        return str(bk[0])
+    return ''
+
+
+def nearest_joined(ref, p, recs, pin, holds_fn=None):
+    """The joined record that holds POTA's pin (holds_fn yes, or the pin inside its saved outline), else the nearest one on the
+    saved outline: the same record the key later calls the held one ('bk'). '' when there is no pin or no saved shape."""
+    try:
+        lat, lon = float(pin[0]), float(pin[1])
+    except (TypeError, ValueError, IndexError):
+        return ''
+    best, best_d = '', None
+    for q in p.get('m') or []:
+        i = str(q[0])
+        rec = (recs or {}).get(i) or (recs or {}).get(q[0])
+        if rec is None:
+            continue
+        if (holds_fn and holds_fn(ref, i) is True) or _in_rings(lat, lon, rec):
+            return i
+        d = km_to_record(lat, lon, rec)
+        if d is not None and (best_d is None or d < best_d):
+            best, best_d = i, d
+    return best
 
 
 def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked=None,
-                    stop_parks=None, spelling=None, pin=None):
+                    stop_parks=None, spelling=None, pin=None, name_test=None):
     """True when this joined park may be status-confirmed. Never changes land.
 
     The held record's own name must match the park, and the pin must sit inside that
     record or within AUTO_CONFIRM_KM (100 m), measured on the saved outline in `recs`
     with km_to_record (not the key's `bk` working-copy distance).
     Stops: person-NO, a blocked id, or a park on the stop list (calls, land-wrong, pin-wrong).
+    name_test(park name, held record name) replaces the name test (24 Nov: 'page names the land' uses the same
+    record, the same stops and the same 100 m; only the name witness differs).
     """
     if ref in (stop_parks or ()):
         return False
     if not (p.get('m') or []):
         return False
     hid = held_id_of(p)
+    if pin is None:
+        pin = ((facts or {}).get(ref) or {}).get('pin')
+    if not hid:
+        hid = nearest_joined(ref, p, recs, pin, holds_fn)   # 24 Nov: inside the match pass 'held' / 'bk' are not set yet
     if not hid:
         return False
     rec = (recs or {}).get(hid) or (recs or {}).get(str(hid))
@@ -518,7 +547,10 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
     facts = facts or {}
     pn = p.get('n') or (facts.get(ref) or {}).get('name') or ''
     rn = rec_name(rec)
-    if not (names_match(pn, rn, spelling) or same_place_name(pn, rn)):   # 24 Nov: Opus's spelling table (same_place_name) too
+    if name_test is not None:
+        if not name_test(pn, rn):
+            return False
+    elif not (names_match(pn, rn, spelling) or same_place_name(pn, rn)):   # 24 Nov: Opus's spelling table (same_place_name) too
         return False
     if holds_fn and holds_fn(ref, hid) is True:
         return True
@@ -530,6 +562,8 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
         lat, lon = float(pin[0]), float(pin[1])
     except (TypeError, ValueError):
         return False
+    if _in_rings(lat, lon, rec):   # 24 Nov: a pin inside the saved outline is 0 m away (km_to_record measures to the edge)
+        return True
     d = km_to_record(lat, lon, rec)
     return d is not None and d <= AUTO_CONFIRM_KM + 1e-12
 
@@ -565,7 +599,12 @@ KIND_WORDS = set('state national park parks wildlife area areas management conse
                  'historical memorial monument scenic trail public access waterfowl fishery comprehensive no of the at sanctuary study '
                  'herd production multiple use vehicular heritage'.split())
 KIND_FAMILY = {'park': {'park', 'parks'}, 'forest': {'forest', 'forests'}, 'wildlife': {'wildlife', 'game', 'waterfowl', 'fish', 'fishery', 'habitat'},
-               'wilderness': {'wilderness'}, 'preserve': {'preserve', 'natural', 'nature'}}
+               'wilderness': {'wilderness'}, 'preserve': {'preserve', 'reserve', 'natural', 'nature'},
+               # 24 Nov review: every word that names a kind of place has a family, so 'X Trail' never equals 'X State Park'
+               'trail': {'trail'}, 'access': {'access', 'fishing'}, 'memorial': {'memorial'}, 'monument': {'monument'},
+               'historic': {'historic', 'historical', 'heritage'}, 'refuge': {'refuge', 'sanctuary'}, 'recreation': {'recreation'},
+               'conservation': {'conservation'}, 'reservation': {'reservation'}, 'herd': {'herd'}, 'vehicular': {'vehicular'},
+               'multiple use': {'multiple'}}
 
 
 def spelled(name):
@@ -1515,11 +1554,6 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         # 22 Nov 2026 (owner: "more options to match other than name"): a point on the park's own official page inside a record
         page_in = {}
         on_page = lambda i: page_in[i] if i in page_in else page_in.setdefault(i, (page_holds_fn(ref, i) is True) if page_holds_fn else False)
-        _pin = (f or {}).get('pin') or []
-        def pin_near(i):   # 24 Nov: POTA's pin within NEAR_LAND_KM of the record (an office or a parking lot at the edge)
-            if len(_pin) != 2 or recs.get(i) is None: return False
-            d = km_to_record(_pin[0], _pin[1], recs[i])
-            return d is not None and d <= NEAR_LAND_KM
         drop = []
         for q in m:
             i = str(q[0]); rec = recs.get(i)
@@ -1631,11 +1665,6 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             # W-G1 with the page's name as the name that agrees, the page's own point does). Confirms only: nothing is moved.
             elif page_name_agrees(f) and place_ok: st_, how = 'confirmed', 'page name'
             elif page_name_agrees(f) and any(on_page(str(q[0])) for q in left): st_, how = 'confirmed', 'page name and point'
-            # 24 Nov 2026 (owner: "Page reader whole reason is to read names!!"): the park's own page calls it by the joined land's
-            # own name, and POTA's pin (or the page's own point) is in or within NEAR_LAND_KM of that land. Confirms only.
-            elif any(page_names_land(f, nm, q[1], heading_count, all_names - {full(nm)}) and (
-                    holds(str(q[0])) is True or on_page(str(q[0])) or pin_near(str(q[0]))) for q in left):
-                st_, how = 'confirmed', 'page names the land'
             # W5 (23 Nov 2026): the park's own page links the agency's own map under this record's name, and exactly ONE
             # record of the state carries that bare name (two records of one name: unsure, nothing). Confirms only.
             elif mnames and any(bare_name(q[1]) in mnames and names_n.get(bare_name(q[1])) == 1 for q in left): st_, how = 'confirmed', 'map link name'
@@ -1650,6 +1679,13 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                     blocked=blocked_ids, stop_parks=auto_confirm_stops,
                     spelling=spelling_table, pin=(facts.get(ref) or {}).get('pin')):
                 st_, how = 'confirmed', 'held name and pin'
+            # 24 Nov 2026 (owner: "Page reader whole reason is to read names!!"; review: the same gate as auto-confirm): the park's
+            # own official page calls it by the HELD record's own name, with the same stops and the same 100 m on the saved outline.
+            elif st_ == 'outlined' and auto_confirm_ok(
+                    ref, p, recs, facts, holds_fn=lambda _r, i: holds(i), is_no=is_no,
+                    blocked=blocked_ids, stop_parks=auto_confirm_stops, pin=(facts.get(ref) or {}).get('pin'),
+                    name_test=lambda pn, rn: page_names_land(f, pn, rn, heading_count, all_names - {full(pn)})):
+                st_, how = 'confirmed', 'page names the land'
         p['match'] = {'status': st_, 'why': sorted(set(why))}
         if notes: p['match']['notes'] = sorted(set(notes))
         if how: p['match']['by'] = how

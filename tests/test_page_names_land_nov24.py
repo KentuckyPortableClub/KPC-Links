@@ -40,10 +40,44 @@ check("another POTA park's name on the page gives nothing",
       not PN(PAGE('Invented Lake State Park'), 'Invented Lake Access State Park', 'Invented Lake State Park', None, {MC.full('Invented Lake State Park')}))
 check('a site heading (same text on 3+ pages of the host) gives nothing',
       not PN(PAGE('State Parks'), 'Invented Lake State Park', 'State Parks', {('parks.invented.gov', MC.full('State Parks')): 3}))
+check('a trail is not a park (review: one side had no kind family)', not S('Invented Ridge Trail', 'Invented Ridge State Park'))
+check('an access is not a park', not S('Invented Lake Access', 'Invented Lake State Park'))
+check('a memorial is not a park', not S('Invented Memorial', 'Invented State Park'))
+check('a historic site is not a park', not S('Invented Mill State Historic Site', 'Invented Mill State Park'))
+check('a bare name still matches its land', S('Invented Marsh', 'Invented Marsh State Wildlife Area'))
+check('nature reserve = nature preserve', S('Invented Bog Nature Reserve', 'Invented Bog Nature Preserve'))
+
+# The same gate as auto-confirm (#369): the HELD record only, the stop list, person-NO, blocked ids, 100 m on the saved outline.
+SQ = {'type': 'Polygon', 'coordinates': [[[-88.50, 44.50], [-88.45, 44.50], [-88.45, 44.55], [-88.50, 44.55], [-88.50, 44.50]]]}
+HELD = {'OBJECTID': 'sgzzb1', 'Unit_Nm': 'Invented Falls State Scenic Viewpoint', 'GIS_Acres': 500, '_g': SQ}
+OTHER = {'OBJECTID': 'sgzzb2', 'Unit_Nm': 'Invented Falls Annex', 'GIS_Acres': 50, '_g': SQ}
+recs = {'sgzzb1': HELD, 'sgzzb2': OTHER}
+P = {'n': 'Invented Falls State Park', 'm': [['sgzzb1', HELD['Unit_Nm'], 500, ''], ['sgzzb2', OTHER['Unit_Nm'], 50, '']],
+     'bk': ['sgzzb1', 99], 'held': {'ids': ['sgzzb1']}}
+pg = PAGE('Invented Falls State Scenic Viewpoint')
+test = lambda f: (lambda pn, rn: PN(f, pn, rn))
+def ok_at(pin, page=pg, park=P, **kw):
+    facts = {'US-9002': dict(page, name=park['n'], pin=pin)}
+    return MC.auto_confirm_ok('US-9002', park, recs, facts, pin=pin, name_test=test(facts['US-9002']), **kw)
+check('page names the held record, pin inside (holds = yes): confirms', ok_at([44.525, -88.475], holds_fn=lambda r, i: True))
+check('pin deep inside the saved outline with no holds answer: confirms (0 m, not the distance to the edge)', ok_at([44.525, -88.475]))
+check('pin about 63 m outside: confirms (100 m, like auto-confirm)', ok_at([44.525, -88.45 + 0.0008]))
+check('pin about 400 m outside: not confirmed (was 1 km before the review)', not ok_at([44.525, -88.45 + 0.005]))
+check('a page naming only another joined row (not the held record) gives nothing',
+      not ok_at([44.525, -88.475], holds_fn=lambda r, i: True, page=PAGE('Invented Falls Annex')))
+check('a park on the stop list is never confirmed', not ok_at([44.525, -88.475], holds_fn=lambda r, i: True, stop_parks={'US-9002'}))
+check("a person's NO stops it", not ok_at([44.525, -88.475], holds_fn=lambda r, i: True, is_no=lambda r, i, a: True))
+check('a blocked id stops it', not ok_at([44.525, -88.475], holds_fn=lambda r, i: True, blocked={'US-9002': {'sgzzb1'}}))
 src = (ROOT / '.github/scripts/kpc_match_checks.py').read_text(encoding='utf-8')
-check('the witness only confirms: it sits in the status ladder, after W4, and moves no land',
-      "st_, how = 'confirmed', 'page names the land'" in src and src.index("'page name and point'") < src.index("st_, how = 'confirmed', 'page names the land'"))
-check('the place test is in or within NEAR_LAND_KM (1 km) of the land', MC.NEAR_LAND_KM == 1.0 and 'pin_near(str(q[0]))' in src)
+check('the witness only confirms, through the auto-confirm gate, after it',
+      "st_, how = 'confirmed', 'page names the land'" in src and 'NEAR_LAND_KM' not in src
+      and src.index("'held name and pin'") < src.index("st_, how = 'confirmed', 'page names the land'"))
 check('the auto-confirm held-name test also reads the spelling table', 'names_match(pn, rn, spelling) or same_place_name(pn, rn)' in src)
+import json as _j
+stops = _j.loads((ROOT / '.github/auto-confirm-stops.json').read_text(encoding='utf-8'))
+check('the stop list is IDs only and is read by default', all(str(x).startswith(('US-', 'CA-')) for x in stops['parks'])
+      and MC.load_auto_confirm_stops()[0] == set(stops['parks']))
+import kpc_key_freeze as KF
+check('the stop list is a US rule file (in the hash)', '.github/auto-confirm-stops.json' in KF.RULE_FILES['us-key'])
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

@@ -126,14 +126,14 @@
    "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US auto-confirm rule in the US pass. The rule is not applied on Canada, so no Canada join result changes. Scope none.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT)"
- },
- {
+  },
+  {
    "id": "2026-11-24-page-names-the-land-shared",
    "when": "2026-11-24",
    "from": "e3211051927e",
-   "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US 'page names the land' witness and the spelling helpers; the Canada pass does not use them, so no Canada result changes.",
+   "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US 'page names the land' witness, the spelling helpers and the auto-confirm held-record fix; the Canada pass does not use them, so no Canada result changes. Scope none.",
    "scope": "none",
-   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM 'Ok start on your part'); merged only on his own review"
+   "approved": "owner's word, KPC owner, 2026-11-24 (6:57 AM); merged only after the other agent's review"
   }
  ]
 }
