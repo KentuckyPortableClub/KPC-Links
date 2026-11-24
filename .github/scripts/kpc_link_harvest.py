@@ -43,7 +43,34 @@ def get(url, params=None, headers=None, timeout=60, raw=False):
         return b if raw else json.loads(b.decode('utf-8', 'replace'))
 
 
+_ROBOTS = {}
+
+
+def robots_ok(url):
+    """23 Nov 2026 (owner 'Yes', audit 4 item 5.1; the 15 Nov host ruling: robots.txt always obeyed): may this bot read url?
+    robots.txt is read once per host. No robots.txt (4xx) = no rules; a 5xx or no answer = not read (fail closed)."""
+    import urllib.robotparser
+    sp = urllib.parse.urlsplit(url); host = sp.netloc
+    if host not in _ROBOTS:
+        rp = urllib.robotparser.RobotFileParser()
+        try:
+            req = urllib.request.Request(f'{sp.scheme}://{host}/robots.txt', headers=UA)
+            with urllib.request.urlopen(req, timeout=20) as r: rp.parse(r.read(500_000).decode('utf-8', 'replace').splitlines())
+        except urllib.error.HTTPError as e:
+            rp = rp if 400 <= e.code < 500 else None
+            if rp is not None: rp.parse([])
+        except Exception: rp = None  # noqa: BLE001
+        _ROBOTS[host] = rp
+        if rp is None: LOG.append(f'robots: {host} not readable, skipped')
+    rp = _ROBOTS[host]
+    if rp is None: return False
+    if not rp.can_fetch(UA['User-Agent'], url):
+        LOG.append(f'robots: {host} says no to {sp.path[:60]}, skipped'); return False
+    return True
+
+
 def alive(url):
+    if not robots_ok(url): return False
     try:
         req = urllib.request.Request(url, headers=UA, method='GET')
         with urllib.request.urlopen(req, timeout=30) as r: return r.status < 400
@@ -82,6 +109,7 @@ def from_layers(P, found):
     for pre, ids in sorted(want.items()):
         if late(): LOG.append('layers: stopped for time'); break
         url = L[pre][0]
+        if not robots_ok(url.rstrip('/') + '/query'): continue   # audit 4 item 5.1
         oids = sorted(ids)
         for k in range(0, len(oids), 100):
             try:
@@ -194,6 +222,7 @@ def _rank(text, url):
 
 def page_links(url):
     import html as H
+    if not robots_ok(url): return []   # audit 4 item 5.1
     req = urllib.request.Request(url, headers=dict(UA, Accept='text/html'))
     with urllib.request.urlopen(req, timeout=40) as r:
         if 'html' not in (r.headers.get('Content-Type') or 'html'): return []
@@ -296,6 +325,8 @@ def main():
         for kind, (url, by) in kinds.items():
             if kind == 'web' and P.get(ref) and P[ref][1] and ref not in READER_OVER: continue   # the park already has its page
             if e.get(kind) and not str(e.get(kind + '_by', '')).startswith('bot:'): continue   # a person's value wins
+            # audit 4 item 5.2: the page reader's verified own page is replaced only by the reader itself (no flip-flop)
+            if kind == 'web' and e.get('web') and str(e.get('web_by') or '').startswith('bot: page reader') and not str(by).startswith('bot: page reader') and ref not in STALE: continue
             if e.get(kind) != url: added[kind] += 1
             # research-bots review #2: the day this link was last read from its source (same link = kept for a month)
             e[kind + '_read'] = read_dates({kind: e.get(kind)}, {kind: url}, {kind: e.get(kind + '_read')})[kind]
