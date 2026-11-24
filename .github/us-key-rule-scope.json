@@ -887,6 +887,14 @@
    "why": "Auto-confirm rule (owner 24 Nov 2026 7:06 AM CT, with both review additions): status only, never changes land. Confirms a joined park when the held record's own name matches the park (Opus spelling table when that file is present, otherwise the shared letters-and-digits name key) and the pin sits inside that held record or within 100 m, measured on the saved outline, not the key's working copy. Stops: person-NO, the bad-ID list, land-wrong, pin-wrong, and the pile calls list. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT)"
+  },
+  {
+   "id": "2026-11-24-saved-records-kept",
+   "when": "2026-11-24",
+   "from": "bac372a94136",
+   "why": "S4 (owner 24 Nov 2026 5:00 AM ruled the settled-joins sheet: records a saved answer names are REQUIRED, never trimmed): the state-layer reader's copy check (a state record with the same name, kind and ground as a PAD-US record is a copy and is skipped) no longer skips a record a person's saved answer names (overrides join / fp / nofp). Found on the owner's PC cross-state run of 24 Nov 05:56: 6 New York State Parks and 6 Utah river records were fetched and then thrown away as copies, so their saved answers stay 'not found'. It only changes what the refill step keeps in a saved copy; matching rules are unchanged. Scope none.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (5:00 AM S4 ruling; 7:32 AM 'finish your to dos')"
   }
- ]
+]
 }
