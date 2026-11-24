@@ -1,0 +1,287 @@
+{
+ "about": "Records named by a person's saved answer (data/us-key/overrides*.json) that are NOT in the saved copies (boundary cache, early Nov), from the PC test of 23 Nov 22:15 (45 itemized). Ids only. Each needs ONE fetch by the keeper (the only bot that reads agency servers) and must then never be trimmed from a saved copy (proposed rule S3, key-quality.md section 20). sgidd/sgnvg = Forest Service lists that also cover other states (the cross-state read was cut off by a connection reset on robots.txt).",
+ "made": "2026-11-24",
+ "by_layer": {
+  "sgidd": 11,
+  "sgnvg": 9,
+  "sgakd": 7,
+  "sgnyb": 6,
+  "sgute": 6,
+  "sgaki": 3,
+  "sggae": 1,
+  "sgiac": 1,
+  "sgnjb": 1
+ },
+ "rows": [
+  {
+   "st": "AL",
+   "park": "US-0025",
+   "layer": "sgaki",
+   "record": "383567"
+  },
+  {
+   "st": "AR",
+   "park": "US-4424",
+   "layer": "sgidd",
+   "record": "113"
+  },
+  {
+   "st": "AR",
+   "park": "US-4425",
+   "layer": "sgnvg",
+   "record": "94"
+  },
+  {
+   "st": "AZ",
+   "park": "US-4427",
+   "layer": "sgidd",
+   "record": "189"
+  },
+  {
+   "st": "CA",
+   "park": "US-0754",
+   "layer": "sgakd",
+   "record": "1159"
+  },
+  {
+   "st": "CA",
+   "park": "US-0915",
+   "layer": "sgakd",
+   "record": "1220"
+  },
+  {
+   "st": "CO",
+   "park": "US-4397",
+   "layer": "sgidd",
+   "record": "65"
+  },
+  {
+   "st": "CO",
+   "park": "US-9683",
+   "layer": "sgakd",
+   "record": "1244"
+  },
+  {
+   "st": "GA",
+   "park": "US-7139",
+   "layer": "sggae",
+   "record": "56"
+  },
+  {
+   "st": "IA",
+   "park": "US-9329",
+   "layer": "sgiac",
+   "record": "106173"
+  },
+  {
+   "st": "ID",
+   "park": "US-4387",
+   "layer": "sgnvg",
+   "record": "81"
+  },
+  {
+   "st": "ID",
+   "park": "US-4398",
+   "layer": "sgnvg",
+   "record": "45"
+  },
+  {
+   "st": "ID",
+   "park": "US-4480",
+   "layer": "sgnvg",
+   "record": "41"
+  },
+  {
+   "st": "MS",
+   "park": "US-0661",
+   "layer": "sgakd",
+   "record": "894"
+  },
+  {
+   "st": "NJ",
+   "park": "US-1610",
+   "layer": "sgnjb",
+   "record": "304"
+  },
+  {
+   "st": "NM",
+   "park": "US-4514",
+   "layer": "sgidd",
+   "record": "20"
+  },
+  {
+   "st": "NV",
+   "park": "US-13183",
+   "layer": "sgaki",
+   "record": "397402"
+  },
+  {
+   "st": "NY",
+   "park": "US-0778",
+   "layer": "sgakd",
+   "record": "935"
+  },
+  {
+   "st": "NY",
+   "park": "US-2005",
+   "layer": "sgnyb",
+   "record": "533"
+  },
+  {
+   "st": "NY",
+   "park": "US-2025",
+   "layer": "sgnyb",
+   "record": "530"
+  },
+  {
+   "st": "NY",
+   "park": "US-2076",
+   "layer": "sgnyb",
+   "record": "786"
+  },
+  {
+   "st": "NY",
+   "park": "US-2108",
+   "layer": "sgnyb",
+   "record": "534"
+  },
+  {
+   "st": "NY",
+   "park": "US-2109",
+   "layer": "sgnyb",
+   "record": "523"
+  },
+  {
+   "st": "NY",
+   "park": "US-2140",
+   "layer": "sgnyb",
+   "record": "536"
+  },
+  {
+   "st": "OK",
+   "park": "US-4424",
+   "layer": "sgidd",
+   "record": "113"
+  },
+  {
+   "st": "OK",
+   "park": "US-4514",
+   "layer": "sgidd",
+   "record": "20"
+  },
+  {
+   "st": "OR",
+   "park": "US-4379",
+   "layer": "sgnvg",
+   "record": "69"
+  },
+  {
+   "st": "OR",
+   "park": "US-4385",
+   "layer": "sgidd",
+   "record": "148"
+  },
+  {
+   "st": "OR",
+   "park": "US-4387",
+   "layer": "sgnvg",
+   "record": "81"
+  },
+  {
+   "st": "SD",
+   "park": "US-4501",
+   "layer": "sgidd",
+   "record": "145"
+  },
+  {
+   "st": "TX",
+   "park": "US-11900",
+   "layer": "sgakd",
+   "record": "1245"
+  },
+  {
+   "st": "TX",
+   "park": "US-4514",
+   "layer": "sgidd",
+   "record": "20"
+  },
+  {
+   "st": "UT",
+   "park": "US-10971",
+   "layer": "sgute",
+   "record": "9214"
+  },
+  {
+   "st": "UT",
+   "park": "US-10973",
+   "layer": "sgute",
+   "record": "9254"
+  },
+  {
+   "st": "UT",
+   "park": "US-10975",
+   "layer": "sgute",
+   "record": "9266"
+  },
+  {
+   "st": "UT",
+   "park": "US-10976",
+   "layer": "sgute",
+   "record": "9695"
+  },
+  {
+   "st": "UT",
+   "park": "US-4397",
+   "layer": "sgidd",
+   "record": "65"
+  },
+  {
+   "st": "UT",
+   "park": "US-4398",
+   "layer": "sgnvg",
+   "record": "45"
+  },
+  {
+   "st": "UT",
+   "park": "US-5999",
+   "layer": "sgaki",
+   "record": "400083"
+  },
+  {
+   "st": "UT",
+   "park": "US-6012",
+   "layer": "sgute",
+   "record": "9208"
+  },
+  {
+   "st": "UT",
+   "park": "US-6025",
+   "layer": "sgute",
+   "record": "9216"
+  },
+  {
+   "st": "WA",
+   "park": "US-4385",
+   "layer": "sgidd",
+   "record": "148"
+  },
+  {
+   "st": "WI",
+   "park": "US-4533",
+   "layer": "sgnvg",
+   "record": "107"
+  },
+  {
+   "st": "WV",
+   "park": "US-0015",
+   "layer": "sgakd",
+   "record": "1288"
+  },
+  {
+   "st": "WY",
+   "park": "US-4535",
+   "layer": "sgnvg",
+   "record": "36"
+  }
+ ]
+}

@@ -606,7 +606,9 @@ def ids_from(rec, url='', ties=None):
     for t in (load_link_ties() if ties is None else ties):
         if t['layer'] != lay or addr_key(t['kind']) in out: continue
         m = t['rx_c'].search(str(field_value(rec, t['field']) or ''))
-        if m and m.group(1): out[addr_key(t['kind'])] = norm_id(m.group(1))
+        if m and m.group(1):   # 'glue' (24 Nov): the field drops the link's ':' (MI DNR LinkID SPRK433 = link SPRK:433)
+            v = t['glue'].join(g for g in m.groups() if g) if t.get('glue') else m.group(1)
+            out[addr_key(t['kind'])] = norm_id(v)
     return out
 
 

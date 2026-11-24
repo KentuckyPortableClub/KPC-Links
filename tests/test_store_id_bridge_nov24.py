@@ -50,5 +50,15 @@ with tempfile.TemporaryDirectory() as td:
     check('no size: no fields', bridge('sgzza65000', {'Unit_Nm': 'Heron Marsh Wild Forest'}) is None)
 check('the key uses the bridge only for a record the store does not know and that carries no fields of its own',
       "if not x and not (a.get('SA') or {}):" in src and 'x = record_attrs_by_name(i, a)' in src)
+# the Michigan tie (24 Nov): the DNR layer's LinkID drops the ':' of the park's link id
+import kpc_match_checks as MC  # noqa: E402
+mi = [t for t in MC.load_link_ties() if t['layer'] == 'sgmia']
+check('the Michigan DNR tie is on file', len(mi) == 1 and mi[0]['field'] == 'LinkID')
+rid = MC.ids_from({'OBJECTID': 'sgmia12', 'SA': {'LinkID': 'SPRK433'}})
+check("LinkID SPRK433 agrees with the park's link SPRK:433", MC.id_agrees('MI DNR parks and trails id', MC.norm_id('SPRK:433'), rid))
+check('another park\'s id does not agree', not MC.id_agrees('MI DNR parks and trails id', 'SPRK:434', rid))
+check('a LinkID of another shape gives no id', MC.ids_from({'OBJECTID': 'sgmia12', 'SA': {'LinkID': 'FOO99'}}) == {})
+check('a tie with no glue still reads one group (New York)',
+      MC.ids_from({'OBJECTID': 'sgnya5', 'SA': {'URL': 'https://dec.ny.gov/lands/111.html'}}).get('addr:NY DEC page number') == '111')
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
