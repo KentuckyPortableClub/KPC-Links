@@ -88,7 +88,7 @@
    "id": "2026-11-23-bridge-world-build-487a",
    "when": "2026-11-23",
    "from": "487a51327b86",
-   "why": "Bridge (confirm of the audit response, 23 Nov 2026 evening; owner's OK relayed 8:10 PM): the world key's last build (W-44085508762, 17 Nov) wrote 'rules': '487a51327b86', its hash under the older 4-file definition, while the same run recorded 'rules_of_run': '24cd942eca01', the 'from' of the next entry. This entry joins the two, so the chain starts at the real last build. It changes no rule and no result.",
+   "why": "Bridge (confirm of the audit response, 23 Nov 2026 evening; owner's OK relayed 8:10 PM, wording corrected 8:54 PM): 487a51327b86 is the 4 Nov stamp carried by partial builds; areas use their own row rules (kpc_area_hash: a row with no rules of its own rebuilds). This entry joins the chain at that stamp. It changes no rule and no result.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (8:10 PM, the confirm's fix 1)"
   },
