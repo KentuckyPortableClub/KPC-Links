@@ -13,6 +13,10 @@ This file was absent from main at `06ab25a7`; the W8b change starts the map here
 
 W8b changes no live data, Canada proofs or wetland-district rules. A separate-unit exception requires the complementary name in a pin-holding record; no park ID is hardcoded.
 
+## Solver final-pass, pile report only (24 Nov 2026)
+
+- `.github/scripts/kpc_solver_final_pass.py`: recommendations only. Nothing is written to the key or to `c` rows. Listed in `NOT_RULES`, so the rules hashes do not move. Every distance is to the **held** record on the **saved** outline (`kpc_problem_solver.km`), not a nearby same-name candidate and not the key's `bk` working copy. "Pin at the land" is inside or within 100 m, and the held name must fit, before a KEEP. A record that is another POTA park's land is never recommended. Kind-of-land guard: state park / state forest / WMA, and Wilderness / Wilderness Study Area, do not KEEP a mismatch. A unit, tract, access, or campground must not take the whole park (or the other way around) — that is NEEDS LAYER. Trail parks drop the `trl` copy when the official trail holds the pin. Partial joins are labelled "partial, more pieces needed". Unresolved parks go on an IDs-only page-reader re-read list.
+- `tests/test_solver_final_pass_nov24.py`: invented parks only; fails without the KEEP rule, and checks that hashes stay at the current main values.
 ## Clean-up stage, report-only (D, 24 Nov 2026)
 
 - `.github/scripts/kpc_cleanup_report.py`: after a key join, collapse check rows to one row per park per reason class (numbers and units stripped; a count and the record IDs kept), and pre-sort parks into sure / needs a person / pin wrong / land wrong / needs a layer. Solver verdicts may be attached as a last check. The key's `c` rows are not rewritten. Listed in `NOT_RULES` (no rules hash moves). Command: `python3 .github/scripts/kpc_cleanup_report.py --keys data/us-key --out <report.json>`.
