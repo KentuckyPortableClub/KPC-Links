@@ -14,17 +14,13 @@
   "KPC-Data/kpc-scoreboard.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-watch.yml",
-  "KPC-Data/kpc-watchdog.yml",
   "guard:pubnoindex:kpc-log-checker.html",
   "guard:pubnoindex:kpc-maintenance.html",
-  "kpc-boards.yml",
   "kpc-bot-queue.yml",
-  "kpc-discord-watch.yml",
-  "kpc-fb-comments.yml",
+  "kpc-discord-relay.yml",
   "kpc-hunters.json",
-  "kpc-hunters.yml",
+  "kpc-park-alerts.yml",
   "kpc-pota-discord.yml",
-  "kpc-watchdog.yml",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
@@ -382,7 +378,7 @@
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-24T10:24+00:00",
+ "checked": "2026-11-24T20:21+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3291,7 +3287,7 @@
    "b": 38569625
   },
   "L:data/pota": {
-   "b": 10182161
+   "b": 10175133
   },
   "L:data/canada.json": {
    "b": 2558911
@@ -3327,7 +3323,7 @@
    "b": 20991
   },
   "L:kpc-special-events.json": {
-   "b": 16802
+   "b": 16317
   },
   "L:kpc-youtube.json": {
    "b": 2948
@@ -3346,7 +3342,7 @@
    "b": 1697496
   },
   "D:data/parkinfo": {
-   "b": 15430183
+   "b": 15419021
   },
   "D:data/trails": {
    "b": 32083811
