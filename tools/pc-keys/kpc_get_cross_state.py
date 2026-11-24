@@ -7,6 +7,10 @@ saved only under ANOTHER state (a park across a state line): 'where': 'OBJECTID 
 test keys report those answers 'not found'. This script asks the agency for exactly those records, nothing else, and adds
 them to links\\cache\\us\\US-XX.json.gz on this PC so START-HERE can join them.
 
+Owner's one-time exception (23 Nov 2026 6:20 PM, 'Yes, allow it once', after audit 4 found that 22 of the 24 lists sit on
+ArcGIS / Forest Service hosts the key's bots treat as saved-copy only): this person-run script may ask those hosts, once, slowly,
+for exactly these records. The key builder's never-contact lines stay as they are; the keeper stays the only bot that fetches.
+
 How it behaves (the 15 Nov host ruling: slow, one at a time, robots.txt always obeyed):
   1. lists the W11 entries whose records this PC's saved copy of that state does not already hold;
   2. reads each host's robots.txt once: a rule that says no = that host is skipped; 4xx = no rules (RFC 9309, the keeper's
@@ -51,10 +55,16 @@ def ids_of(where):
     return [int(x) for x in m.group(1).replace(' ', '').split(',') if x] if m else []
 
 
+_SAVED = {}
+
+
 def saved_ids(st):
-    p = CACHE / f'US-{st}.json.gz'
-    if not p.is_file(): return None
-    with gzip.open(p, 'rt', encoding='utf-8') as f: return {str(r.get('OBJECTID')) for r in json.load(f).get('recs') or []}
+    if st not in _SAVED:
+        p = CACHE / f'US-{st}.json.gz'
+        if not p.is_file(): _SAVED[st] = None
+        else:
+            with gzip.open(p, 'rt', encoding='utf-8') as f: _SAVED[st] = {str(r.get('OBJECTID')) for r in json.load(f).get('recs') or []}
+    return _SAVED[st]
 
 
 def work_list(want):
@@ -117,9 +127,15 @@ def fetch(e):
     q = {'where': 'OBJECTID IN (%s)' % ','.join(map(str, e['ids'])), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
          'maxAllowableOffset': 0.001, 'geometryPrecision': 5}
     last = ''
+    host = urllib.parse.urlsplit(e['url']).netloc
     for fmt in ('geojson', 'json'):
         url = e['url'] + '/query?' + urllib.parse.urlencode(dict(q, f=fmt))
         try: st, body = get(url)
+        except urllib.error.HTTPError as x:
+            last = f'HTTP {x.code}'; time.sleep(PAUSE)
+            if x.code == 429 or x.code >= 500:   # audit 4: a busy or failing server is not asked again this run
+                ROBOTS[host] = (None, f'the server answered {last}: resting this run'); break
+            continue
         except Exception as x: last = f'{type(x).__name__}: {str(x)[:120]}'; time.sleep(PAUSE); continue  # noqa: BLE001
         time.sleep(PAUSE)
         try: doc = json.loads(body.decode('utf-8'))
@@ -170,14 +186,17 @@ def merge_state(st, files):
                KPC_LAYER_IN=str(lin), KPC_KEY_OFFLINE='1', KPC_HOLD_ON_PASS_ERROR='0', GEO_DETAIL='0.001',
                KPC_SAVED_ONLY_HOSTS=all_hosts(), PYTHONUTF8='1', PYTHONIOENCODING='utf-8')
     env.pop('KPC_MASTER_OWNS', None)
-    r = subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py'], cwd=LINKS, env=env, capture_output=True,
-                       text=True, encoding='utf-8', errors='replace', timeout=3600)
+    cp = CACHE / f'US-{st}.json.gz'
+    BEFORE.mkdir(parents=True, exist_ok=True)   # audit 4: the undo copy is made BEFORE anything can touch the saved copy
+    if not (BEFORE / cp.name).exists(): shutil.copy(cp, BEFORE / cp.name)
+    try:
+        r = subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py'], cwd=LINKS, env=env, capture_output=True,
+                           text=True, encoding='utf-8', errors='replace', timeout=3600)
+    except subprocess.TimeoutExpired:
+        return f'{st}: the reader took over an hour and was stopped; the saved copy was not changed by this script'
     if r.returncode != 0: return f'{st}: the reader stopped (exit {r.returncode}); the saved copy was not changed'
     sys.path.insert(0, str(LINKS / '.github' / 'scripts'))
     import kpc_master as M   # after every fetch: it installs the never-contact guard for this process
-    cp = CACHE / f'US-{st}.json.gz'
-    BEFORE.mkdir(parents=True, exist_ok=True)
-    if not (BEFORE / cp.name).exists(): shutil.copy(cp, BEFORE / cp.name)
     blob = M.load_saved(cp); have = {str(x.get('OBJECTID')) for x in blob.get('recs') or []}
     add, parts = [], []
     for lf in sorted(lout.glob(f'US-{st}.*.geojson.gz')):
