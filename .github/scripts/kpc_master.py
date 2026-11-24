@@ -93,13 +93,17 @@ class Pacer:
 
 
 def robots_allows(url, get_robots, cache=None):
-    """get_robots(host_url) -> (status, text). 403 / 401 = disallow (a robots 403 is a 'no'). 404/410 = no file = allowed. 5xx / error = disallow."""
+    """get_robots(host_url) -> (status, text). The club rule (owner, R-NET1; RFC 9309 2.3.1.3; the same as the keeper, the page
+    reader and kpc_inbox_manners.robots_verdict): a robots.txt answering 401 / 403 / 404 / 410 or any other 4xx except 429 =
+    "unavailable" = no rules = allowed. 429 / 5xx / no answer = not this run. A real Disallow line = no.
+    (Before 24 Nov this said "a robots 403 is a no": that Nov 10 reading was replaced on Nov 15.) A data request that itself answers
+    401 / 403 / 429 still stops that host (the caller's job)."""
     u = urllib.parse.urlsplit(url); base = f'{u.scheme}://{u.netloc}'
     cache = cache if cache is not None else {}
     if base not in cache:
         try: st, txt = get_robots(base + '/robots.txt')
         except Exception: st, txt = 599, ''   # noqa: BLE001
-        if st in (404, 410): cache[base] = True
+        if isinstance(st, int) and 400 <= st < 500 and st != 429: cache[base] = True
         elif st == 200:
             rp = robotparser.RobotFileParser(); rp.parse(str(txt).splitlines()); cache[base] = rp
         else: cache[base] = False
@@ -1086,7 +1090,7 @@ def who_for(url, robots_ok=None, file_url=None):
     ok, why = live_ok(url)
     if ok and (robots_ok is None or robots_ok(url)): return 'bot', ''
     if not ok: why = why + ': a person downloads it in a browser'
-    else: why = f'{host}: robots.txt does not allow a bot to read it (a 403 counts as no): a person downloads it'
+    else: why = f'{host}: robots.txt has a Disallow line for this address: a person downloads it'
     if file_url:
         fok, _ = live_ok(file_url)
         if fok and (robots_ok is None or robots_ok(file_url)):

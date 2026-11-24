@@ -49,7 +49,7 @@ BANNED = (
     'gisportaldev.dot.ny.gov',  # NY OPRHP dev portal: do_not_ingest
     'ncnhde.natureserve.org',  # NC MAREA: AI-bot robots disallow; do_not_ingest
     'DEV_-_SCDNR_Public_Lands_Viewer',  # SC Public Lands layers 3 and 4: banned services.arcgis.com replica
-    'services.arcgis.com',  # robots 403 is a disallow; Hub/geoportal download is the alternative
+    'services.arcgis.com',  # saved copies only for key builds (owner's rule); the keeper may read it (15 Nov). A robots 403 = no rules (R-NET1)
 )
 
 KIND_TAILS = (
