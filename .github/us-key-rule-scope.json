@@ -863,6 +863,14 @@
    "why": "Audit 1 must-fixes (owner 23 Nov 2026 5:43 PM 'Yes'): (1) importing kpc_us_key.py stops with ImportError instead of running a 50-state build (no join result changes); (2) the map-link (W-G10), county (W6) and town (W-G6) rules move only plain name joins no id backs up: a row a person joined or checked, or one an official id ties, stays. Fewer rows to the check list, never more. Also kpc_match_checks.py gains size_once for the Canada key (US pass untouched). Correction to the W12 entry above (review of #361, 23 Nov 5:45 PM): W12 gives 2 of the 6 pin-only districts an outline (ME, SD), not 4: ID and NE stay a pin because a person's saved NO (Nov 1-2) rules out the production area that would join (the code keeps it, as it should); IA and MN stay a pin. Owner's decision (5:50 PM, through the review): the SD district keeps its W12 outline (an FWS realty record holds its pin), replacing the Nov 2 'PIN' answer. Scope none: no park is rebuilt until the owner starts a build. Audit 3 (owner 6:02 PM 'Yes'): S5 the size vote uses the measured 'ac' or a single row's own acres, never several rows added up (no vote then: two layers holding the same land were counted twice); S6 the union 'ac' has a fixed work budget per state (3,000,000 points), not 90 seconds, so the same input gives the same key; S7 an unreadable park facts file is said in the log, not skipped silently (an unreadable official sizes file already gets its one notice). Counted on every US park (saved keys, 23 Nov park facts), this branch vs main: 12,862 the same, 6 keep more land, 0 worse.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-23 (5:43 PM 'Yes'); merged only on his own review"
+  },
+  {
+   "id": "2026-11-24-store-id-fields-by-name",
+   "when": "2026-11-24",
+   "from": "5b55c6fad54a",
+   "why": "Park-id fix (owner 24 Nov 2026 4:19 AM 'fix your part'): in store mode, a saved record whose number the outline store does not know (the agency renumbered its layer after our early-November saved copy: New York DEC) takes the store's agency id fields when exactly ONE store record of the same layer has the same name and a size within 1% (kpc_us_key.record_attrs_by_name). The fields feed only the id checks, which agree or say nothing. With kpc_store_attrs.py's '@' fix (the store spells sgnya@68990), New York goes from 143 to 635 confirmed parks (491 outlined -> confirmed by id, 1 keeps more land, 0 worse; counted on a NY build from the saved copy + 24 Nov park facts + the store's NY file). Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (4:19 AM 'Just fix your part'); merged only on his own review"
   }
  ]
 }

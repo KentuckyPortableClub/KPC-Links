@@ -2177,7 +2177,9 @@ def _saved_no(ref, rid, a):
 
 
 RA_USED = {}
+RA_BRIDGED = {}
 _RA = [None]
+_RA_BY = [{}]
 def record_attrs():
     """{record id: {id field: value}} from KPC_RECORD_ATTRS (kpc_store_attrs.py), or {} when the switch has no file."""
     if _RA[0] is None:
@@ -2185,10 +2187,28 @@ def record_attrs():
         f = os.environ.get('KPC_RECORD_ATTRS') or ''
         if f and os.path.isfile(f):
             try:
-                with gzip.open(f, 'rt', encoding='utf-8') as fh: _RA[0] = json.load(fh).get('records') or {}
+                with gzip.open(f, 'rt', encoding='utf-8') as fh: doc = json.load(fh)
+                _RA[0] = doc.get('records') or {}
+                _RA_BY[0] = doc.get('by_name') or {}
             except Exception as e:  # noqa: BLE001
                 notice('US key', f'store id fields not read ({e}); the id checks use the saved copies only')
     return _RA[0]
+
+
+def record_attrs_by_name(i, a):
+    """24 Nov 2026 (owner 4:19 AM 'fix your part'; store id fields by name): the store's id fields for a saved record whose
+    number the store does not know (the agency renumbered its layer after our saved copy was made: New York DEC). Taken only
+    when exactly ONE store record of the same layer has the same name (letters and digits) and a size within 1%; else None.
+    The fields only feed the id checks, which agree or say nothing (a different id never drops a record)."""
+    lay = re.match(r'[a-z]*', str(i)).group(0)
+    by = (_RA_BY[0] or {}).get(lay) if lay else None
+    if not by: return None
+    nm = re.sub(r'[^a-z0-9]', '', str(a.get('Unit_Nm') or a.get('Loc_Nm') or '').lower())
+    try: ac = float(a.get('GIS_Acres') or 0)
+    except (TypeError, ValueError): ac = 0
+    if not nm or ac <= 0: return None
+    hits = {k for x, k in by.get(nm) or [] if abs(float(x) - ac) <= 0.01 * ac}
+    return (_RA[0] or {}).get(next(iter(hits))) if len(hits) == 1 else None
 
 
 def _maiden6(la, lo):
@@ -2296,11 +2316,16 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
     # of each record the match checks read (SA), never to the record the key draws.
     _ra = record_attrs()
     if _ra:
+        nb = 0
         for i, a in list(byid.items()):
             x = _ra.get(i)
+            if not x and not (a.get('SA') or {}):
+                x = record_attrs_by_name(i, a)
+                nb += bool(x)
             if x:
                 byid[i] = dict(a, SA=dict(x, **(a.get('SA') or {})))
         RA_USED[st] = sum(1 for i in byid if i in _ra)
+        RA_BRIDGED[st] = nb
 
     def _pins_of(ref):
         r = P.get(ref) or []
@@ -3735,7 +3760,7 @@ def run(st):
                                   + ', '.join(f'{v} {w}' for w, v in (_mc.get('second_name_near') or {}).items()) if 'second_name' in _mc else '')
                                # 22 Nov 2026: the new witnesses, counted
                                + f"; by id {_mc.get('by_id', 0)}, by page point {_mc.get('by_page point', 0)}, pieces kept by a page point "
-                                 f"{_mc.get('kept_by_page_point', 0)}; store id fields on {RA_USED.get(st, 0)} record(s); POTA grid square "
+                                 f"{_mc.get('kept_by_page_point', 0)}; store id fields on {RA_USED.get(st, 0)} record(s) (+{RA_BRIDGED.get(st, 0)} by name and size); POTA grid square "
                                  f"differs from the pin: {_mc.get('grid_differs', 0)}; pin-only parks given a page-point check row: "
                                  f"{_mc.get('page_point_checks', 0)}"
                                # 23 Nov 2026: the page's own name and its map link, counted

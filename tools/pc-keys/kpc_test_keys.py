@@ -104,7 +104,13 @@ def store_attrs():
         say(f'  (the outline store folder is not at {STORE}: the id checks use the saved copies only)')
         return ''
     newest = max((p.stat().st_mtime for p in STORE.glob('*.kpcstore.json.gz')), default=0)
-    if not out.is_file() or out.stat().st_mtime < newest:
+    fmt = 0
+    if out.is_file():   # 24 Nov: a file made before the '@' fix and the name-and-size index (format 2) is made again
+        try:
+            import gzip
+            with gzip.open(out, 'rt', encoding='utf-8') as fh: fmt = int(json.load(fh).get('format') or 0)
+        except Exception: fmt = 0  # noqa: BLE001
+    if not out.is_file() or out.stat().st_mtime < newest or fmt < 2:
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
         subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS)
