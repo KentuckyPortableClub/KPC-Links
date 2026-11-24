@@ -1,34 +1,6 @@
 {
- "updated": "2026-11-23T22:15:04Z",
+ "updated": "2026-11-24T12:57:22Z",
  "week": [
-  {
-   "name": "Worldwide Sideband Activity Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gq41c",
-   "when": "0100Z-0159Z, Nov 24",
-   "segs": [
-    [
-     "2026-11-24T01:00Z",
-     "2026-11-24T01:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003go6mo",
-   "when": "0300Z-0400Z, Nov 24",
-   "segs": [
-    [
-     "2026-11-24T03:00Z",
-     "2026-11-24T04:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "Tuesday's Telegraphy Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gwz1g",
@@ -316,6 +288,90 @@
    "modes": [
     "CW"
    ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gkbpl",
+   "when": "0000Z-0100Z, Nov 30",
+   "segs": [
+    [
+     "2026-11-30T00:00Z",
+     "2026-11-30T01:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QCX Challenge",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g7904",
+   "when": "1300Z-1400Z, Nov 30",
+   "segs": [
+    [
+     "2026-11-30T13:00Z",
+     "2026-11-30T14:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gm96o",
+   "when": "1300Z-1400Z, Nov 30",
+   "segs": [
+    [
+     "2026-11-30T13:00Z",
+     "2026-11-30T14:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "OK1WC Memorial (MWC)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gp96j",
+   "when": "1630Z-1729Z, Nov 30",
+   "segs": [
+    [
+     "2026-11-30T16:30Z",
+     "2026-11-30T17:29Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QCX Challenge",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g7gpw",
+   "when": "1900Z-2000Z, Nov 30",
+   "segs": [
+    [
+     "2026-11-30T19:00Z",
+     "2026-11-30T20:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gnbrk",
+   "when": "1900Z-2000Z, Nov 30",
+   "segs": [
+    [
+     "2026-11-30T19:00Z",
+     "2026-11-30T20:00Z"
+    ]
+   ],
+   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   }
@@ -1932,7 +1988,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (21)",
+  "WA7BNM": "ok (25)",
   "CORRAL": "ok (45)"
  }
 }

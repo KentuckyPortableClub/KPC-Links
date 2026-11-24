@@ -122,7 +122,7 @@ NOT_RULES = {'kpc_match_checks_count.py', 'kpc_match_checks_sample.py',   # Nov 
              # grades it against the people's answers; it decides no join and writes nothing into the checkout
              'kpc_key_scorecard.py',
              # Nov 7 (Brandon 4:55 PM CST): recommends a fix for each held park, writes only data/us-key/review/problem-solver.*
-             'kpc_problem_solver.py',
+             'kpc_problem_solver.py', 'kpc_solver_final_pass.py', 'kpc_cleanup_report.py',
              # Nov 9 amendment 2 (Brandon t943u/t942u): the research inbox + its xlsx converter recommend only, never decide a join
              'kpc_research_inbox.py', 'kpc_research_from_xlsx.py',
              # Nov 14 (KPC owner, 2026-11-14): the research inbox's request manners (robots.txt rule, 2 s, 200 per hour, 1500 per day);

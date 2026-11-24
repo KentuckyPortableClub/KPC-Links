@@ -871,6 +871,22 @@
    "why": "Park-id fix (owner 24 Nov 2026 4:19 AM 'fix your part'): in store mode, a saved record whose number the outline store does not know (the agency renumbered its layer after our early-November saved copy: New York DEC) takes the store's agency id fields when exactly ONE store record of the same layer has the same name and a size within 1% (kpc_us_key.record_attrs_by_name). The fields feed only the id checks, which agree or say nothing. With kpc_store_attrs.py's '@' fix (the store spells sgnya@68990), New York goes from 143 to 635 confirmed parks (491 outlined -> confirmed by id, 1 keeps more land, 0 worse; counted on a NY build from the saved copy + 24 Nov park facts + the store's NY file). Scope none: no park is rebuilt until the owner starts a build. Same PR, second part (owner 24 Nov 2026 4:19 AM 'fix your part'): the Michigan DNR tie in link-id-ties.json: the DNR parks layer (sgmia) carries the park's own DNR id in its LinkID field, written without the link's ':' (SPRK433 = link SPRK:433); a tie may now name a 'glue' that joins the address id's parts (kpc_match_checks.ids_from). Agree-only like every address tie. Counted on a MI build from the saved copy + park facts + the store's MI file: 55 -> 149 confirmed (94 outlined -> confirmed by id, 2 parks gain the DNR's own record of the same land, 0 worse). Exchange check (24 Nov ~5:30 AM): name + size hit another piece of a many-piece park once in 1,101 New York bridges (same park, same park-level id, no result changed); the bridge now also needs the store record's map box to overlap the saved record's (kpc_store_attrs format 3 keeps each record's box). NY rebuilt: still 635 confirmed, 0 joins changed.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (4:19 AM 'Just fix your part'); merged only on his own review"
+  },
+  {
+   "id": "2026-11-24-county-safety-belt",
+   "when": "2026-11-24",
+   "from": "3aabd63147fd",
+   "why": "County safety belt (owner 24 Nov 2026 5:39 AM CT approved E): if POTA's pin sits inside the joined land, the county rule does not remove that land. The distance test is unchanged (max(25 km, 2 x county radius)). Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (5:39 AM CT approved E)"
+ },
+ {
+   "id": "2026-11-24-auto-confirm-held-name-pin",
+   "when": "2026-11-24",
+   "from": "d525bb370fec",
+   "why": "Auto-confirm rule (owner 24 Nov 2026 7:06 AM CT, with both review additions): status only, never changes land. Confirms a joined park when the held record's own name matches the park (Opus spelling table when that file is present, otherwise the shared letters-and-digits name key) and the pin sits inside that held record or within 100 m, measured on the saved outline, not the key's working copy. Stops: person-NO, the bad-ID list, land-wrong, pin-wrong, and the pile calls list. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT)"
   }
  ]
 }

@@ -36,6 +36,7 @@ The rule:
     is never a tie.
 """
 import json, math, os, re
+import pathlib
 
 # The kind table of kpc_us_key.py, copied so the offline counter reads the same codes; the tests check both stay equal.
 KINDS = [('wma', r'wildlife management area|\bwma\b|\bswa\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting|fishery area|fishing access|habitat area|wildlife and environmental area|(?<!recreation )(?<!herd )(?<!conservation )management area'),
@@ -366,6 +367,170 @@ def km_to_record(lat, lon, rec):
             d = math.hypot(ax + t_ * dx, ay + t_ * dy)
             best = d if best is None or d < best else best
     return best
+
+
+
+# 24 Nov 2026 (owner 7:06 AM CT approved the auto-confirm rule, with both review additions):
+# status only, never changes land. The held record's own name must match (Opus spelling table when
+# the file is present, otherwise the shared letters-and-digits name key). The pin must sit inside
+# the held record or within 100 m, measured on the SAVED outline, not the key's working copy (`bk`).
+AUTO_CONFIRM_KM = 0.1
+# Path agreed with Opus for the spelling table. The file is not in the tree yet; we fall back to the name key.
+SPELLING_TABLE_PATHS = (
+    '.github/name-spelling-table.json',
+    'data/names/spelling-table.json',  # KPC-Data
+)
+STOPS_PATHS = (
+    'data/status-confirms/auto-confirm-stops.json',  # KPC-Data, IDs only, when present
+)
+
+
+def name_key(s):
+    """Letters and digits only, lower-case (same rule as kpc_store_attrs.name_key)."""
+    return re.sub(r'[^a-z0-9]', '', str(s or '').lower())
+
+
+def load_spelling_table(paths=None, root=None):
+    """Read Opus's spelling table if the file is there. map of name_key -> name_key, or a list of pairs.
+    Missing file: empty table (the name key is used alone)."""
+    root = pathlib.Path(root) if root else pathlib.Path(__file__).resolve().parents[2]
+    wanted = list(paths or [])
+    env = os.environ.get('KPC_SPELLING_TABLE') or ''
+    if env:
+        wanted = [env] + wanted
+    wanted.extend(SPELLING_TABLE_PATHS)
+    for rel in wanted:
+        f = pathlib.Path(rel)
+        if not f.is_file():
+            f = root / rel
+        if not f.is_file():
+            continue
+        try:
+            data = json.loads(f.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            continue
+        table = {}
+        raw = data.get('map') if isinstance(data, dict) else data
+        if isinstance(raw, dict):
+            for a, b in raw.items():
+                table[name_key(a)] = name_key(b)
+        elif isinstance(raw, list):
+            for pair in raw:
+                if isinstance(pair, (list, tuple)) and len(pair) >= 2:
+                    table[name_key(pair[0])] = name_key(pair[1])
+                    table[name_key(pair[1])] = name_key(pair[0])
+        pairs = (data.get('pairs') or []) if isinstance(data, dict) else []
+        for pair in pairs:
+            if isinstance(pair, (list, tuple)) and len(pair) >= 2:
+                table[name_key(pair[0])] = name_key(pair[1])
+                table[name_key(pair[1])] = name_key(pair[0])
+        return table, str(f)
+    return {}, None
+
+
+def load_auto_confirm_stops(paths=None, root=None):
+    """IDs-only stop list (person-NO, bad-ID, land-wrong, pin-wrong, pile calls). Missing file: empty."""
+    root = pathlib.Path(root) if root else pathlib.Path(__file__).resolve().parents[2]
+    wanted = list(paths or [])
+    env = os.environ.get('KPC_AUTO_CONFIRM_STOPS') or ''
+    if env:
+        wanted = [env] + wanted
+    wanted.extend(STOPS_PATHS)
+    stops = set()
+    found = None
+    for rel in wanted:
+        f = pathlib.Path(rel)
+        if not f.is_file():
+            f = root / rel
+        if not f.is_file():
+            continue
+        try:
+            data = json.loads(f.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            continue
+        rows = data.get('parks') if isinstance(data, dict) else data
+        for x in rows or []:
+            if isinstance(x, str) and x:
+                stops.add(x)
+        found = str(f)
+        break
+    return stops, found
+
+
+def spelled_key(s, table=None):
+    """name_key after each word is rewritten by the spelling table (SWA -> statewildlifearea)."""
+    words = re.findall(r'[a-z0-9]+', str(s or '').lower())
+    if not words:
+        return ''
+    if not table:
+        return ''.join(words)
+    return ''.join(table.get(w, w) for w in words)
+
+
+def names_match(park_name, rec_name, table=None):
+    """Held-name test: same name_key, or the same after the spelling table is applied to either side."""
+    a, b = name_key(park_name), name_key(rec_name)
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    if not table:
+        return False
+    a2, b2 = spelled_key(park_name, table), spelled_key(rec_name, table)
+    if a2 and a2 == b2:
+        return True
+    return table.get(a, a) == table.get(b, b) and bool(table.get(a, a))
+
+
+def held_id_of(p):
+    held = p.get('held') or {}
+    if isinstance(held, dict) and (held.get('ids') or []):
+        return str(held['ids'][0])
+    bk = p.get('bk') or [None]
+    return str(bk[0]) if bk and bk[0] is not None else ''
+
+
+def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked=None,
+                    stop_parks=None, spelling=None, pin=None):
+    """True when this joined park may be status-confirmed. Never changes land.
+
+    The held record's own name must match the park, and the pin must sit inside that
+    record or within AUTO_CONFIRM_KM (100 m), measured on the saved outline in `recs`
+    with km_to_record (not the key's `bk` working-copy distance).
+    Stops: person-NO, a blocked id, or a park on the stop list (calls, land-wrong, pin-wrong).
+    """
+    if ref in (stop_parks or ()):
+        return False
+    if not (p.get('m') or []):
+        return False
+    hid = held_id_of(p)
+    if not hid:
+        return False
+    rec = (recs or {}).get(hid) or (recs or {}).get(str(hid))
+    if rec is None:
+        return False
+    if is_no and is_no(ref, hid, rec):
+        return False
+    bl = blocked or {}
+    if hid in (bl.get(ref) or bl.get(str(ref)) or set()):
+        return False
+    facts = facts or {}
+    pn = p.get('n') or (facts.get(ref) or {}).get('name') or ''
+    rn = rec_name(rec)
+    if not names_match(pn, rn, spelling):
+        return False
+    if holds_fn and holds_fn(ref, hid) is True:
+        return True
+    if pin is None:
+        pin = (facts.get(ref) or {}).get('pin')
+    if not pin or len(pin) < 2 or pin[0] in (None, '') or pin[1] in (None, ''):
+        return False
+    try:
+        lat, lon = float(pin[0]), float(pin[1])
+    except (TypeError, ValueError):
+        return False
+    d = km_to_record(lat, lon, rec)
+    return d is not None and d <= AUTO_CONFIRM_KM + 1e-12
 
 
 def on_edge(pin, rec):
@@ -1122,7 +1287,8 @@ def outline_size(p, m):
 
 
 def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda ref, rid, a: False, skip=(), st='',
-               units=None, hits=None, holds_fn=None, layer_table=None, page_holds_fn=None, near_fn=None):
+               units=None, hits=None, holds_fn=None, layer_table=None, page_holds_fn=None, near_fn=None,
+               blocked_ids=None, auto_confirm_stops=None, spelling_table=None):
     """The whole pass for one state, shared by the US builder and the offline counter (one implementation).
     parks = the key's park rows (changed in place); recs = {record id: record}; place_fn(ref, [record ids]) -> True / False /
     None (pin inside or near; used to join a record by the park's link id); holds_fn(ref, record id) -> True / False / None
@@ -1142,6 +1308,11 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             _t = full(_c).replace(' county', '').strip()
             if _t: counties.add(_t)
     holds_fn = holds_fn or (lambda ref, i: None)
+    if spelling_table is None:
+        spelling_table, _ = load_spelling_table()
+    if auto_confirm_stops is None:
+        auto_confirm_stops, _ = load_auto_confirm_stops()
+    blocked_ids = blocked_ids or {}
     shared = shared_names(facts)
     names_n = None       # W5: how many records of the state carry each name (made when the first map-link name comes up)
     rids = {i: ids_from(a, url_of(a)) for i, a in recs.items()}
@@ -1343,7 +1514,10 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             # W6 / W-G8 (owner 23 Nov 2026, 'yes'): the park's own page names its county, and a joined record lies well
             # outside it (the same name in another part of the state): that record goes to the check list. Not when an id
             # or the agency's own size speaks for the joined records.
-            far_ = [q for q in left if movable(q) and outside_counties(recs.get(str(q[0])), careas)]
+            # 24 Nov 2026 (owner approved E, 5:39 AM CT): the county rule does not remove land that holds POTA's pin.
+            # The distance test itself is unchanged (max(25 km, 2 x county radius)).
+            far_ = [q for q in left if movable(q) and outside_counties(recs.get(str(q[0])), careas)
+                    and holds(str(q[0])) is not True]
             if far_:
                 cn_ = ' / '.join(c[0] for c in careas)[:60]
                 to_check(p, far_, f"county: the park's own page names {cn_} County; this land lies outside it")
@@ -1394,6 +1568,12 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             elif (link_nm in ('strong', 'part') or page_name_agrees(f)) and npts and any(
                     near_town_vote(recs.get(str(q[0])), npts) == 'inside' for q in left): st_, how = 'confirmed', 'near a town'
             else: st_ = 'outlined'
+            # 24 Nov 2026 7:06 AM CT: status-only auto-confirm (never changes land).
+            if st_ == 'outlined' and auto_confirm_ok(
+                    ref, p, recs, facts, holds_fn=lambda _r, i: holds(i), is_no=is_no,
+                    blocked=blocked_ids, stop_parks=auto_confirm_stops,
+                    spelling=spelling_table, pin=(facts.get(ref) or {}).get('pin')):
+                st_, how = 'confirmed', 'held name and pin'
         p['match'] = {'status': st_, 'why': sorted(set(why))}
         if notes: p['match']['notes'] = sorted(set(notes))
         if how: p['match']['by'] = how
