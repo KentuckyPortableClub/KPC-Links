@@ -873,9 +873,17 @@
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (4:19 AM 'Just fix your part'); merged only on his own review"
   },
   {
-   "id": "2026-11-24-auto-confirm-held-name-pin",
+   "id": "2026-11-24-county-safety-belt",
    "when": "2026-11-24",
    "from": "3aabd63147fd",
+   "why": "County safety belt (owner 24 Nov 2026 5:39 AM CT approved E): if POTA's pin sits inside the joined land, the county rule does not remove that land. The distance test is unchanged (max(25 km, 2 x county radius)). Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (5:39 AM CT approved E)"
+ },
+ {
+   "id": "2026-11-24-auto-confirm-held-name-pin",
+   "when": "2026-11-24",
+   "from": "d525bb370fec",
    "why": "Auto-confirm rule (owner 24 Nov 2026 7:06 AM CT, with both review additions): status only, never changes land. Confirms a joined park when the held record's own name matches the park (Opus spelling table when that file is present, otherwise the shared letters-and-digits name key) and the pin sits inside that held record or within 100 m, measured on the saved outline, not the key's working copy. Stops: person-NO, the bad-ID list, land-wrong, pin-wrong, and the pile calls list. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT)"

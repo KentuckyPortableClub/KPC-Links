@@ -112,9 +112,17 @@
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (4:19 AM 'Just fix your part'); merged only on his own review"
   },
   {
-   "id": "2026-11-24-auto-confirm-held-name-pin-shared",
+   "id": "2026-11-24-county-safety-belt-shared",
    "when": "2026-11-24",
    "from": "3a1d4bf2e112",
+   "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US county safety belt in the US pass. The belt is not applied on Canada, so no Canada join result changes. Scope none.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (5:39 AM CT approved E)"
+ },
+ {
+   "id": "2026-11-24-auto-confirm-held-name-pin-shared",
+   "when": "2026-11-24",
+   "from": "5826be395087",
    "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US auto-confirm rule in the US pass. The rule is not applied on Canada, so no Canada join result changes. Scope none.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT)"

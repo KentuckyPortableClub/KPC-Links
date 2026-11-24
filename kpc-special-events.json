@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T18:51:50Z",
+ "updated": "2026-11-24T12:57:14Z",
  "stations": [
   {
    "title": "SVARA 50th Birthday",
@@ -17,23 +17,6 @@
    "qsl": "QSL",
    "url": "",
    "note": ", Greenville, TX. Sabine Valley Amateur Radio Association. 7.250 14.250 21.350 28.350. QSL. SVARA 50th Birthday, PO BOX 843, Greenville, TX 75403."
-  },
-  {
-   "title": "W6SFM On-Air Bug Roundup",
-   "start": "2026-11-21",
-   "end": "2026-11-23",
-   "times": "0000Z-0000Z",
-   "call": "W6SFM",
-   "calls": [
-    "W6SFM"
-   ],
-   "where": "Sacramento, CA",
-   "st": "CA",
-   "by": "Samuel F",
-   "freqs": "",
-   "qsl": "QSL",
-   "url": "https://w6sfm.org/bug-roundup",
-   "note": ", Sacramento, CA. Samuel F. Morse Amateur Radio Club. 3.533 7.033 14.033 21.033. QSL. W6SFM c/o John Geyer, 4901 Minnesota Avenue, Fair Oaks, CA 95628."
   },
   {
    "title": "Amateur Radio Software Award",
@@ -467,6 +450,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (24)"
+  "ARRL": "ok (23)"
  }
 }
