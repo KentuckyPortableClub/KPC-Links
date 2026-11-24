@@ -873,9 +873,25 @@
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (4:19 AM 'Just fix your part'); merged only on his own review"
   },
   {
-   "id": "2026-11-24-page-names-the-land",
+   "id": "2026-11-24-county-safety-belt",
    "when": "2026-11-24",
    "from": "3aabd63147fd",
+   "why": "County safety belt (owner 24 Nov 2026 5:39 AM CT approved E): if POTA's pin sits inside the joined land, the county rule does not remove that land. The distance test is unchanged (max(25 km, 2 x county radius)). Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (5:39 AM CT approved E)"
+ },
+ {
+   "id": "2026-11-24-auto-confirm-held-name-pin",
+   "when": "2026-11-24",
+   "from": "d525bb370fec",
+   "why": "Auto-confirm rule (owner 24 Nov 2026 7:06 AM CT, with both review additions): status only, never changes land. Confirms a joined park when the held record's own name matches the park (Opus spelling table when that file is present, otherwise the shared letters-and-digits name key) and the pin sits inside that held record or within 100 m, measured on the saved outline, not the key's working copy. Stops: person-NO, the bad-ID list, land-wrong, pin-wrong, and the pile calls list. Scope none: no park is rebuilt until the owner starts a build.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (7:06 AM CT)"
+ },
+ {
+   "id": "2026-11-24-page-names-the-land",
+   "when": "2026-11-24",
+   "from": "bac372a94136",
    "why": "Page names the land (owner 24 Nov 2026 6:41 AM '1 name i been screaming this!', 6:57 AM 'Page reader whole reason is to read names!!', 7:06 AM 'Ok start on your part'): a joined park is CONFIRMED (status only, no land moves) when the park's own official html page calls it by the joined record's own name (the page heading or one part of it; never a site heading, never another POTA park's name in the state) and POTA's pin (or the page's own point) is in or within 1 km of that record. The names may differ only in spelling: a SPELLING TABLE (SWA/SNA/FWA/WPA/SRMA/HMA... spelled out, CA/WA/GA only as a last word, sulphur = sulfur, trails = trail) and the kind words set aside, with no clash of kinds (forest is not park; Wilderness is not a WSA) (kpc_match_checks.same_place_name, page_names_land). Measured on local builds of NV, OR, AR, MO from the saved copies + 21 Nov park facts: 41 parks outlined -> confirmed, 0 worse, 0 land changed. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (6:57 AM 'Page reader whole reason is to read names!!', 7:06 AM 'Ok start on your part'); merged only on his own review"

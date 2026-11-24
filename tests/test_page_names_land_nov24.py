@@ -44,5 +44,6 @@ src = (ROOT / '.github/scripts/kpc_match_checks.py').read_text(encoding='utf-8')
 check('the witness only confirms: it sits in the status ladder, after W4, and moves no land',
       "st_, how = 'confirmed', 'page names the land'" in src and src.index("'page name and point'") < src.index("st_, how = 'confirmed', 'page names the land'"))
 check('the place test is in or within NEAR_LAND_KM (1 km) of the land', MC.NEAR_LAND_KM == 1.0 and 'pin_near(str(q[0]))' in src)
+check('the auto-confirm held-name test also reads the spelling table', 'names_match(pn, rn, spelling) or same_place_name(pn, rn)' in src)
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
