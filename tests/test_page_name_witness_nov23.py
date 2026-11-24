@@ -41,7 +41,8 @@ def run(name_vs, own='own', unofficial=False, pin_inside=True, coords=(), link=L
     if link is not None: f['US-9001']['link'] = dict(link)
     in_rec = lambda la, lo: -80.0 <= lo <= -79.9 and 40.0 <= la <= 40.1
     page_holds = lambda ref, i: any(in_rec(la, lo) for la, lo in MC.page_pins(f[ref]))
-    MC.pass_state(parks, recs, f, lambda ref, ids: pin_inside, st='ZZ', holds_fn=lambda ref, i: pin_inside, layer_table=TABLE, page_holds_fn=page_holds)
+    MC.pass_state(parks, recs, f, lambda ref, ids: pin_inside, st='ZZ', holds_fn=lambda ref, i: pin_inside, layer_table=TABLE, page_holds_fn=page_holds,
+                  auto_confirm_stops={'US-9001'})   # 24 Nov: W4 alone (the held name and pin here would auto-confirm)
     p = parks['US-9001']
     return (p.get('match') or {}).get('status'), (p.get('match') or {}).get('by'), [q[0] for q in p.get('m') or []], len(p.get('c') or [])
 

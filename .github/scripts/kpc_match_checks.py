@@ -506,7 +506,8 @@ def nearest_joined(ref, p, recs, pin, holds_fn=None):
         rec = (recs or {}).get(i) or (recs or {}).get(q[0])
         if rec is None:
             continue
-        if (holds_fn and holds_fn(ref, i) is True) or _in_rings(lat, lon, rec):
+        h = holds_fn(ref, i) if holds_fn else None
+        if h is True or (h is None and _in_rings(lat, lon, rec)):   # the builder's own 'holds' answer wins; no answer: the saved outline
             return i
         d = km_to_record(lat, lon, rec)
         if d is not None and (best_d is None or d < best_d):
@@ -514,8 +515,14 @@ def nearest_joined(ref, p, recs, pin, holds_fn=None):
     return best
 
 
+def kinds_clash(p, rec, table=None):
+    """True when the park's kind and the record's layer kind are both known and do not agree (the same test as claim_fit)."""
+    a, b = kinds(p.get('t') or p.get('n') or ''), layer_kinds(rec, table)
+    return bool(a and b and not (a & b or any(a & c and b & c for c in US_COMPAT)))
+
+
 def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked=None,
-                    stop_parks=None, spelling=None, pin=None, name_test=None):
+                    stop_parks=None, spelling=None, pin=None, name_test=None, layer_table=None):
     """True when this joined park may be status-confirmed. Never changes land.
 
     The held record's own name must match the park, and the pin must sit inside that
@@ -552,7 +559,10 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
             return False
     elif not (names_match(pn, rn, spelling) or same_place_name(pn, rn)):   # 24 Nov: Opus's spelling table (same_place_name) too
         return False
-    if holds_fn and holds_fn(ref, hid) is True:
+    if kinds_clash(p, rec, layer_table):   # 24 Nov review: a bare record name ('Kiger') takes its kind from its layer
+        return False
+    h = holds_fn(ref, hid) if holds_fn else None
+    if h is True:
         return True
     if pin is None:
         pin = (facts.get(ref) or {}).get('pin')
@@ -562,7 +572,7 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
         lat, lon = float(pin[0]), float(pin[1])
     except (TypeError, ValueError):
         return False
-    if _in_rings(lat, lon, rec):   # 24 Nov: a pin inside the saved outline is 0 m away (km_to_record measures to the edge)
+    if h is None and _in_rings(lat, lon, rec):   # 24 Nov: no 'holds' answer and the pin is inside the saved outline: 0 m away
         return True
     d = km_to_record(lat, lon, rec)
     return d is not None and d <= AUTO_CONFIRM_KM + 1e-12
@@ -1677,13 +1687,13 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if st_ == 'outlined' and auto_confirm_ok(
                     ref, p, recs, facts, holds_fn=lambda _r, i: holds(i), is_no=is_no,
                     blocked=blocked_ids, stop_parks=auto_confirm_stops,
-                    spelling=spelling_table, pin=(facts.get(ref) or {}).get('pin')):
+                    spelling=spelling_table, pin=(facts.get(ref) or {}).get('pin'), layer_table=layer_table):
                 st_, how = 'confirmed', 'held name and pin'
             # 24 Nov 2026 (owner: "Page reader whole reason is to read names!!"; review: the same gate as auto-confirm): the park's
             # own official page calls it by the HELD record's own name, with the same stops and the same 100 m on the saved outline.
             elif st_ == 'outlined' and auto_confirm_ok(
                     ref, p, recs, facts, holds_fn=lambda _r, i: holds(i), is_no=is_no,
-                    blocked=blocked_ids, stop_parks=auto_confirm_stops, pin=(facts.get(ref) or {}).get('pin'),
+                    blocked=blocked_ids, stop_parks=auto_confirm_stops, pin=(facts.get(ref) or {}).get('pin'), layer_table=layer_table,
                     name_test=lambda pn, rn: page_names_land(f, pn, rn, heading_count, all_names - {full(pn)})):
                 st_, how = 'confirmed', 'page names the land'
         p['match'] = {'status': st_, 'why': sorted(set(why))}

@@ -68,6 +68,10 @@ check('a page naming only another joined row (not the held record) gives nothing
 check('a park on the stop list is never confirmed', not ok_at([44.525, -88.475], holds_fn=lambda r, i: True, stop_parks={'US-9002'}))
 check("a person's NO stops it", not ok_at([44.525, -88.475], holds_fn=lambda r, i: True, is_no=lambda r, i, a: True))
 check('a blocked id stops it', not ok_at([44.525, -88.475], holds_fn=lambda r, i: True, blocked={'US-9002': {'sgzzb1'}}))
+TBL = {'sgzzb': {'agency': 'state wildlife', 'kind': 'wildlife area'}}
+check("a bare record name takes its layer's kind: a wildlife-area layer record never confirms a State Park",
+      not ok_at([44.525, -88.475], holds_fn=lambda r, i: True, park=dict(P, m=[['sgzzb1', 'Invented Falls', 500, '']]), layer_table=TBL,
+                page=PAGE('Invented Falls')) and MC.kinds_clash({'t': 'State Park'}, HELD, TBL))
 src = (ROOT / '.github/scripts/kpc_match_checks.py').read_text(encoding='utf-8')
 check('the witness only confirms, through the auto-confirm gate, after it',
       "st_, how = 'confirmed', 'page names the land'" in src and 'NEAR_LAND_KM' not in src
