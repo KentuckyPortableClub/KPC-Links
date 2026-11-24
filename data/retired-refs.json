@@ -235,6 +235,176 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-10602": {
+   "n": "Sables siliceux et kaolinite eocenes des carrieres d'Hostun à Barbieres Conservation Area",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10622": {
+   "n": "Confluent de la Joyeuse et de l’Isere Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10623": {
+   "n": "L'Isere des portes de Romans a la Vanelle Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10638": {
+   "n": "marais des sagnes a saint romans Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10656": {
+   "n": "Pelouses des Jacots et combe de Maldina Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10705": {
+   "n": "Pelouse seche du Charron Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10706": {
+   "n": "Pelouse seche et boisement thermophile de Bel-Air Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10837": {
+   "n": "ETANG DE MONTFLAUX EN ST-DENIS-DE-GASTINES Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10838": {
+   "n": "LANDES ET PRES TOURBEUX DES HAIES Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10839": {
+   "n": "ETANG DE LA DIOTIERE Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10840": {
+   "n": "ANCIEN ETANG D'OURDES Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10841": {
+   "n": "ETANG DE PONTPIERRE Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10842": {
+   "n": "PRES TOURBEUX DE LA FOUAS ET DE LA GRANDINIERE, ETANG DE LA GRASSOTIERE Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10844": {
+   "n": "ETANG DE CHAMBRESSON Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10845": {
+   "n": "VALLON DE LA LEGERIE ET LA ROUERIE A LA DOREE ET FOUGEROLLES DU PLESSIS Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10846": {
+   "n": "QUEUE D'ETANG DE GOUE Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10847": {
+   "n": "EGLISE DE FOUGEROLLES DU PLESSIS Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10849": {
+   "n": "PRES TOURBEUX ET BOIS HUMIDE DU RUISSEAU DE BOIS PHILIPPE Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10850": {
+   "n": "VALLON DE LA SOERIE A LANDIVY Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10851": {
+   "n": "BORD DE L'AIRON DU PONT JUHEL A L'HABIT Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10852": {
+   "n": "RUISSEAU DU TABUERE Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10853": {
+   "n": "ETANG DE LA HAUTONNIERE Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10854": {
+   "n": "ETANG ASSECHE DE SAINT-AUBIN-FOSSE-LOUVAIN Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10859": {
+   "n": "LE COTEAU DE LA VALLEE Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10861": {
+   "n": "TOURBIERE DU BEL AIR Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-10864": {
+   "n": "TOURBIERE DU PETIT GLAINTIN Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-11104": {
+   "n": "Narse De Lascols Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-12166": {
+   "n": "ETANG DE LA RESSORTOIRE Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-12167": {
+   "n": "ETANG DES ORMES Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-12168": {
+   "n": "ETANG DE CHAORN Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-12171": {
+   "n": "ETANG DE LA VILLE ALAIN Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-12173": {
+   "n": "LE TRONCON Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-12177": {
+   "n": "MARECAGES DES PLANCHES Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-12253": {
+   "n": "VALLEE DE BRAY Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
   "FR-13871": {
    "n": "Square de l'hôtel de ville Recreation Park",
    "d": "2026-10-23",
@@ -465,6 +635,21 @@
    "d": "2026-10-25",
    "src": "world"
   },
+  "FR-14424": {
+   "n": "colline sableuse du birollet Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-14433": {
+   "n": "Bois de Souradous Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-14439": {
+   "n": "Marais des Narses Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
   "FR-14470": {
    "n": "Parc des Bordieres Recreation Park",
    "d": "2026-10-23",
@@ -508,6 +693,46 @@
   "FR-15372": {
    "n": "Square Sergent Aurelie Salel Recreation Park",
    "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-16162": {
+   "n": "deves et montagne des vaux Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-16165": {
+   "n": "sables de mirabel-aux-baronnies Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-16166": {
+   "n": "l’eygues en aval de la draye du moulin Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-16167": {
+   "n": "parcelle cultivee a tulette Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-16168": {
+   "n": "bois sableux de rochegude Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-16176": {
+   "n": "collines de chanabasset et chatillon Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-16177": {
+   "n": "massif de venterol Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-16178": {
+   "n": "bois de la fayette Biological Reserve",
+   "d": "2026-11-24",
    "src": "world"
   },
   "FR-16712": {
@@ -555,6 +780,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-4099": {
+   "n": "section a moules perlieres de la truyere Natura 2000",
+   "d": "2026-11-24",
+   "src": "world"
+  },
   "FR-4142": {
    "n": "lac du louet et ruisseau de louet daban en amont Biological Reserve",
    "d": "2026-11-11",
@@ -567,11 +797,6 @@
   },
   "FR-4391": {
    "n": "l'etang de l'usine roclaine Natura 2000",
-   "d": "2026-11-11",
-   "src": "world"
-  },
-  "FR-4492": {
-   "n": "Carrières des sables d'Ambonil Ecological Reserve",
    "d": "2026-11-11",
    "src": "world"
   },
@@ -6140,6 +6365,11 @@
    "d": "2026-11-21",
    "src": "world"
   },
+  "FR-7205": {
+   "n": "Volcan et coulee basaltique pleistocene de Jaujac Conservation Area",
+   "d": "2026-11-24",
+   "src": "world"
+  },
   "FR-7206": {
    "n": "Ruisseau du Rieusset Biological Reserve",
    "d": "2026-11-21",
@@ -6148,6 +6378,11 @@
   "FR-7207": {
    "n": "Thueyts Biological Reserve",
    "d": "2026-11-21",
+   "src": "world"
+  },
+  "FR-7208": {
+   "n": "Volcan pleistocene Gravenne de Thueyts Biological Reserve",
+   "d": "2026-11-24",
    "src": "world"
   },
   "FR-7209": {
@@ -7480,11 +7715,6 @@
    "d": "2026-11-21",
    "src": "world"
   },
-  "FR-7771": {
-   "n": "FORET DE BOISSIERE Biological Reserve",
-   "d": "2026-11-21",
-   "src": "world"
-  },
   "FR-7776": {
    "n": "Etang de la Morpiniere Biological Reserve",
    "d": "2026-11-21",
@@ -8048,6 +8278,71 @@
   "FR-8013": {
    "n": "Foret de Taillard Biological Reserve",
    "d": "2026-11-21",
+   "src": "world"
+  },
+  "FR-8018": {
+   "n": "ruisseau le tarze Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8516": {
+   "n": "Marais de Champagnat Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8553": {
+   "n": "Marais des Oches Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8713": {
+   "n": "Coteau de la chapelle a Tournon-sur-Rhone Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8724": {
+   "n": "Aeroport de Valence-Chabeuil Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8726": {
+   "n": "Carriere du bois des Pauvres Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8727": {
+   "n": "Mares de Bas-Chassiers Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8729": {
+   "n": "Plateau des Arras Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8730": {
+   "n": "Pelouse et boisements thermophiles de la Chaisse Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8731": {
+   "n": "Anciennes sablieres des Cumerts Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8732": {
+   "n": "Pelouse et boisement thermophile de Balaize Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-8734": {
+   "n": "Pelouse seche du Chatelar Biological Reserve",
+   "d": "2026-11-24",
+   "src": "world"
+  },
+  "FR-9162": {
+   "n": "MARAIS DE LA BRETECHE Biological Reserve",
+   "d": "2026-11-24",
    "src": "world"
   },
   "GB-0761": {
@@ -10007,5 +10302,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-23"
+ "updated": "2026-11-24"
 }
