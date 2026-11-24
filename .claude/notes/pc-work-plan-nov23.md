@@ -138,3 +138,12 @@ Each `HELP.txt` has four lines: **What it is. What reads it. What to run. What i
 9. Leave behind old versions and applied zips after a backup: YES.
 10. Housekeeping with a dry-run list first: YES.
 11. Control-panel wording: YES, for sure ("its confusing everything is").
+
+## The move, made simple (owner 24 Nov 2026 6:04 AM: "instead of renaming the layers maybe an answer key would be easier..lets make the move easy but the tools bring only what we need every labeled clearly and simply everything laid out in proper order tools need simple easy to use set up...let focus on writing etc being simple and more human like easy to understand")
+This replaces renaming layers (section 6 "Layer codes" and the tidy tool's 5-CLEAR-NAMES steps are no longer the plan).
+1. **No renaming. One answer key instead: `LAYER-GUIDE.csv`** (opens in Excel), made by a small script, never typed by hand. One row per layer file: file name and folder, code (sgakd...), plain name, agency, area (state / province / country), what uses it (US key, Canada key, 2-fers, store), last read. Built from what already exists: `data/us-key/layers.json`, `data/ca-key/layers.json`, the world key's list, `data/state-gis.json`, and the tidy tool's `LOOK-REPORT.csv` / `MASTER-SOURCES-v2.csv` for the files on the PC. Files and codes keep their names, so no tool or rule breaks. Remade by one button when layers change.
+2. **Bring only what's needed.** A move list with three parts: MUST BRING (can't be rebuilt), REBUILD (download fresh: links\ from GitHub, kit at today's version), LEAVE (old versions, applied zips, extra copies). Nothing on the leave list is deleted from the old PC until the new one passes its checks.
+3. **Folders numbered in the order you use them** (1-COLLECT, 2-MAP-STORE, 3-TEST-KEYS, 4-TWO-FERS, 5-RESEARCH, 6-TRACING, 7-CONTROL, LAYERS, BACKUPS), plain names, one `HELP.txt` each.
+4. **One setup button:** `SETUP.bat` checks Python, makes the folders, unpacks the tools, sets the one root folder for every tool, and runs the control panel's check. It ends with one line: READY, or what is missing in plain words.
+5. **Plain writing everywhere** (help files, buttons, reports, READMEs): short sentences, everyday words, one screen; say what to do first and what you'll see; details go in a separate "more" file. Every HELP.txt is four lines: What it is. What reads it. What to run. What it makes.
+
