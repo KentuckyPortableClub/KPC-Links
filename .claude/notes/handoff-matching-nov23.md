@@ -66,6 +66,8 @@ Every key rule change: a rule sheet line (mapping.md, rule sheet W) first; a tes
 
 - MERGED on his word (5:10 PM 'merge them'): #361 (W12 wetland districts) and #363 (job 8 Canada proofs; replaces #362). **Main US `a293424fef79`, Canada `3b4de92e4efb`, world `5bdc51d2d809`.** Kit update 23j read back equal.
 
+- MERGED on his word (9:06 PM): #364 (audit fixes; world bridge; squash 3716b447). **Main US `5b55c6fad54a`, Canada `2668aab8c1c1`, world `167bf55f79a8`.** Kit update 23k read back equal.
+
 The PC test kit is `D:\KPC GITHUB TOOL and MOre\key builder files`. `links\` is a full copy of KPC-Links; `START-HERE.bat` adds every `kpc-kit-update-*.zip` in the folder once (marker `links\.done-<zip name>`); `kpc_test_keys.py` prints the rules numbers, the park facts date and the kit updates on the first lines of every REPORT.txt.
 
 1. Key rules: from main take every file in `kpc_key_freeze.RULE_FILES` for us-key, ca-key and world-key, `.github/key-rules-version.json`, `docs/key-rules-change.txt` and any other changed file under `.github/scripts`. Write them under `links/` in `kpc-kit-update-<yyyy-mm-dd><letter>.zip` (add `links/.kit-main.txt` with the commit and the three hashes).
