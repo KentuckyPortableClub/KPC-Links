@@ -6028,13 +6028,13 @@
   },
   "US-7981": {
    "fp": {
-    "sgmea6064": [
+    "sgmea2914": [
      "Whaleback Shell Midden",
      1
     ]
    },
    "join": [
-    "sgmea6064"
+    "sgmea2914"
    ],
    "when": "2026-11-02",
    "why": "2026-11-02 12:49: layers row YES 'Whaleback Shell Midden' (chat 11; applied by kpc_key_answers)"
