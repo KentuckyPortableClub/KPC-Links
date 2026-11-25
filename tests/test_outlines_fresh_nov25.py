@@ -23,6 +23,16 @@ def check(msg, cond):
     print(('PASS ' if cond else 'FAIL ') + msg, flush=True)
 
 
+def stamp(keys, store, area='US-ZZ'):
+    """Q1: write the layer file's identity into the key, as the key does (sha256 of the file's bytes, made stamp)."""
+    import hashlib
+    kp = keys / f'{area}.json'; k = json.loads(kp.read_text())
+    b = (store / f'{area}.layer-records.json.gz').read_bytes()
+    k.setdefault('fresh_store', {})['layer_file'] = {'file': f'{area}.layer-records.json.gz', 'sha256': hashlib.sha256(b).hexdigest(),
+                                                     'made': str(json.loads(gzip.decompress(b)).get('made') or '')}
+    kp.write_text(json.dumps(k))
+
+
 def sq(x, y, d):
     return [[[x, y], [x + d, y], [x + d, y + d], [x, y + d], [x, y]]]
 
@@ -75,8 +85,26 @@ with tempfile.TemporaryDirectory() as t:
         json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'manifest': {'sgzzc': {'complete': True, 'source_count': 1, 'store_count': 1}},
                    'records': [{'key': 'sgzzc999', 'layer': 'sgzzc', 'record_id': '999', 'q': 6, 'publishable': True, 'rings': [[-70000000, 40000000, 10000, 0, 0, 10000, -10000, 0, 0, -10000]]}]}, f)
     added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store0)
-    check('a complete layer file: a park joined only to saved-copy records is still cut as before; a fresh id the complete layer lacks is skipped',
-          'US-9002' in {r['ref'] for r in added} and 'not in the store' in dict(skipped).get('US-9001', ''))
+    check('Q1: a key that does not name its layer file: the whole area is HELD (nothing cut, nothing dropped)',
+          not added and 'does not name the layer file' in dict(skipped).get('*', ''))
+    stamp(keys, store0)
+    calls = []
+    _sv, _la = O.M.save_area, O.M.load_area
+    O.M.save_area = lambda *a, **k: calls.append('save')
+    O.M.load_area = lambda area, root=None: {'US-9001': {'ref': 'US-9001', 'record_ids': ['sgzzc210'], 'layer_url': 'file:US-ZZ.json.gz'}}
+    added, skipped = O.build_state('ZZ', cache, dry=False, root=outl, key_dir=keys, say=lambda *a: None, store=store0)
+    check('Q1: the same complete layer file lacks a fresh id: the whole area is HELD, nothing saved, the old outline kept (never dropped)',
+          not added and calls == [] and 'the layer file does not hold' in dict(skipped).get('*', '') and 'sgzzc210' in dict(skipped).get('*', ''))
+    with contextlib.redirect_stdout(io.StringIO()) as buf:
+        rc = O.main(['--cache', str(cache), '--states', 'ZZ', '--root', str(outl), '--key', str(keys), '--store', str(store0)])
+    check('Q1: a fresh id missing from the layer file: the run exits 3 (HELD)', rc == 3 and calls == [] and 'HELD' in buf.getvalue())
+    with gzip.open(store_file0, 'wt', encoding='utf-8') as f:   # another download: the same records, another made stamp
+        json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'made': '2026-11-26', 'manifest': {'sgzzc': {'complete': True, 'source_count': 1, 'store_count': 1}},
+                   'records': [{'key': 'sgzzc999', 'layer': 'sgzzc', 'record_id': '999', 'q': 6, 'publishable': True, 'rings': [[-70000000, 40000000, 10000, 0, 0, 10000, -10000, 0, 0, -10000]]}]}, f)
+    added, skipped = O.build_state('ZZ', cache, dry=False, root=outl, key_dir=keys, say=lambda *a: None, store=store0)
+    check('Q1: the key was built from another download of the layer file: the whole area is HELD, nothing saved',
+          not added and calls == [] and 'another download' in dict(skipped).get('*', '') and '2026-11-26' in dict(skipped).get('*', ''))
+    O.M.save_area, O.M.load_area = _sv, _la
 
 def enc(ring, q=6):   # the store's ring spelling: first point, then steps, as q-digit integers
     m = 10 ** q; pts = [(round(x * m), round(y * m)) for x, y in ring]
@@ -106,13 +134,13 @@ with tempfile.TemporaryDirectory() as t:
             {'OBJECTID': 'sgzzc210', 'Unit_Nm': 'Crystal Spring', 'GIS_Acres': 40, '_r': sq(-94.70, 46.70, 0.003)}]}, f)
     (keys / 'US-ZZ.json').write_text(json.dumps({'st': 'ZZ', 'fresh_store': {'ids': ['sgzzc210']}, 'parks': {
         'US-9001': {'n': 'Lost Valley Prairie SNA', 'g': 'official', 'm': [['sgzzc210', 'Lost Valley Prairie', 216, 'name']]}}}))
-    store_file(store)
+    store_file(store); stamp(keys, store)
     added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store)
     r = {x['ref']: x for x in added}.get('US-9001') or {}
     txt = json.dumps(r)
     check('a fresh park is cut from the FULL LAYER FILE (the right land, near -92.83; the park store is not read), marked store:, read date from the file',
           bool(r) and '-92.83' in txt and '-94.7' not in txt and '-80.0' not in txt and 'store:US-ZZ.layer-records.json.gz' in txt and '2026-11-21' in txt)
-    store_file(store, publishable=False)
+    store_file(store, publishable=False); stamp(keys, store)
     added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store)
     check('a store record that is not publishable: not cut, listed (fail closed)',
           not added and 'not publishable' in dict(skipped).get('US-9001', ''))
@@ -127,7 +155,7 @@ with tempfile.TemporaryDirectory() as t:
     added, skipped = O.build_state('ZZ', cache, dry=False, root=outl, key_dir=keys, say=lambda *a: None, store=store)
     check("the old outline of a fresh park that cannot be cut from the store is DROPPED, never kept (it may hold other land)",
           'out' in saved and 'US-9001' not in saved['out'])
-    store_file(store, publishable=True)
+    store_file(store, publishable=True); stamp(keys, store)
     added, skipped = O.build_state('ZZ', cache, dry=False, root=outl, key_dir=keys, say=lambda *a: None, store=store)
     check('with the store record publishable the old outline (same record number) is rebuilt from the store',
           'store:' in json.dumps(saved['out'].get('US-9001') or {}) and '-94.7' not in json.dumps(saved['out'].get('US-9001') or {}))
@@ -144,6 +172,7 @@ with tempfile.TemporaryDirectory() as t:
         json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'manifest': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1}},
                    'records': [{'key': 'fws4026', 'layer': 'fws', 'record_id': '4026', 'q': 6, 'read': '2026-11-25', 'publishable': True,
                                 'agency_label': 'U.S. Fish and Wildlife Service', 'rings': [enc(sq(-95.8, 46.8, 0.01)[0])]}]}, f)
+    stamp(keys, store)
     old_rec = {'ref': 'US-9358', 'record_ids': ['fws4026'], 'layer_url': 'file:US-ZZ.json.gz'}
     saved = {}
     _sv, _la = O.M.save_area, O.M.load_area
@@ -157,6 +186,7 @@ with tempfile.TemporaryDirectory() as t:
         json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'manifest': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1}},
                    'records': [{'key': 'fws4026', 'layer': 'fws', 'record_id': '4026', 'q': 6,
                    'publishable': False, 'rings': [enc(sq(-95.8, 46.8, 0.01)[0])]}]}, f)
+    stamp(keys, store)
     added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store)
     check('a layer record that is not publishable is not cut (the same publishable-is-True rule)', not added and 'not publishable' in dict(skipped).get('US-9358', ''))
     O.M.save_area, O.M.load_area = _sv, _la
@@ -216,5 +246,20 @@ with tempfile.TemporaryDirectory() as t:
 src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
 check("the US key writes the fresh ids into the key file ('fresh_store') when KPC_STORE_FRESH is on",
       "out['fresh_store']" in src and "_kr('KPC_STORE_FRESH')" in src)
+check('Q1: the US key copies the layer file identity (kpc_store_attrs layer_files) into fresh_store.layer_file',
+      "_RA_LF[0] = doc.get('layer_files')" in src and "out['fresh_store']['layer_file']" in src)
+# Q1: the identity kpc_store_attrs writes (the key copies it) is the one the cutter computes for the same file, and not another's
+import kpc_store_attrs as SA  # noqa: E402
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t); st_ = t / 'store'; st_.mkdir()
+    with gzip.open(st_ / 'US-ZZ.layer-records.json.gz', 'wt', encoding='utf-8') as f:
+        json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'made': '2026-11-25T08:47', 'manifest': {}, 'records': []}, f)
+    with contextlib.redirect_stdout(io.StringIO()): SA.run(str(st_), str(t / 'a.json.gz'), str(ROOT / '.github'), '2026-11-25')
+    lf = json.load(gzip.open(t / 'a.json.gz', 'rt'))['layer_files']['US-ZZ']
+    same = O.layer_file_id(st_, 'US-ZZ')
+    with gzip.open(st_ / 'US-ZZ.layer-records.json.gz', 'wt', encoding='utf-8') as f:
+        json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'made': '2026-11-25T09:30', 'manifest': {}, 'records': []}, f)
+    check('Q1: store id fields and the cutter name the same file the same way (sha256 + made); another download differs',
+          lf == same and lf['made'] == '2026-11-25T08:47' and O.layer_file_id(st_, 'US-ZZ')['sha256'] != lf['sha256'])
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

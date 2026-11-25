@@ -5,11 +5,11 @@ fields of every record the outline store holds, for the key's match checks in st
 checks found almost nothing there. The store's own files keep each record's attributes; this tool takes from them ONLY the
 fields the id checks read (the keep-list's fields, the link-id ties' fields, the Park Service unit code and the id kinds'
 own fields) and writes one small file the key reads with KPC_RECORD_ATTRS:
-    {"about": ..., "made": ..., "records": {record id as the key spells it: {field: value}}}
+    {"about": ..., "made": ..., "layer_files": {area: {file, sha256, made}}, "records": {record id as the key spells it: {field: value}}}
 Record ids: a PAD-US record by its number, any other by its layer letters + number (sgtxd124), the same as the key.
 Never a WDPA field. Reads files only; nothing is fetched.
   python kpc_store_attrs.py --store <store results folder> --out record-attrs.json.gz     (--selftest)"""
-import argparse, datetime, glob, gzip, json, os, re, sys, tempfile
+import argparse, datetime, glob, gzip, hashlib, json, os, re, sys, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WDPA = re.compile(r'wdpa', re.I)
@@ -126,6 +126,7 @@ def run(store, out, gh=None, today=None):
     want = wanted_fields(gh)
     recs, files, by_name, refound = {}, 0, {}, {}
     manifest, broken = {}, set()
+    layer_files, skipped = {}, {}   # Q1 (grade of #380 round 8): each area's layer file identity; ids record_key cannot spell, counted
     paths_ = sorted(glob.glob(os.path.join(store, '*.kpcstore.json.gz'))) + sorted(glob.glob(os.path.join(store, '*.layer-records.json.gz')))
     for path in paths_:
         if '.prev.' in os.path.basename(path):
@@ -145,6 +146,9 @@ def run(store, out, gh=None, today=None):
             continue
         files += 1
         area = str(d.get('area') or re.sub(r'\.(kpcstore|layer-records)\.json\.gz$', '', os.path.basename(path)))
+        if is_layers:   # Q1: the key writes this into fresh_store.layer_file; the outline cutter HOLDS when its file differs
+            with open(path, 'rb') as fb: sha = hashlib.sha256(fb.read()).hexdigest()
+            layer_files[area] = {'file': os.path.basename(path), 'sha256': sha, 'made': str(d.get('made') or '')}
         # 25 Nov 2026 (format 8; KPC-Store kpc_layer_records.py, the owner's 8:21 AM fix): every record of every layer the keys
         # join, linked to a park or not, with a per-layer manifest (source count, store count, complete). The manifest goes along
         # so the key counts a layer as 'in the store' only when it is complete.
@@ -164,6 +168,9 @@ def run(store, out, gh=None, today=None):
             for r in p.get('records') or []:
                 k = record_key(r)
                 if not k:
+                    # 25 Nov (grade of round 8, later item): an id the key cannot spell (Canada's '<label>:<n>') is not silently lost
+                    if re.search(r'\d', str(r.get('key') or r.get('record_id') or '')):   # a real id (not a 'point-circle')
+                        sk = skipped.setdefault(area, {}); lay_ = str(r.get('layer') or '?'); sk[lay_] = sk.get(lay_, 0) + 1
                     continue
                 a = r.get('attributes') or {}
                 got = {str(n): v for n, v in a.items() if str(n).lower() in want and v not in (None, '', ' ')
@@ -207,10 +214,13 @@ def run(store, out, gh=None, today=None):
                         bx = record_box(r)
                         for nm in {name_key(r.get('record_name')), name_key(r.get('record_name_in_source'))} - {''}:
                             by_name.setdefault(lay, {}).setdefault(nm, []).append([round(ac, 3), k] + ([bx] if bx else []))
-    for a_ in broken: manifest.pop(a_, None)
+    for a_ in broken: manifest.pop(a_, None); layer_files.pop(a_, None)
+    for a_, sk in sorted(skipped.items()):
+        print(f'::warning title=Store id fields::{a_}: {sum(sk.values()):,} record id(s) not in the key\'s spelling, not indexed (listed as '
+              f"skipped_ids): {', '.join(f'{l} {n:,}' for l, n in sorted(sk.items()))}", flush=True)
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 8, 'manifest': manifest, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'format': 9, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
            'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
                              for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
@@ -252,7 +262,7 @@ def selftest():
         ok = ok and {k: {f: x for f, x in v.items() if f not in ('_st', '_rd', '_src')} for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
                                          'sgzzc30': {'URL': 'https://example.org/alpha', '_nm': 'Alpha Forest', '_ac': 50.0, '_kid': 'sgzzc12'},
                                          'sgzzd5': {'URL': 'https://example.org/refound', '_nm': '', '_kid': 'sgzzd9'}}
-        ok = ok and d.get('format') == 8 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
+        ok = ok and d.get('format') == 9 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
         ok = ok and d['by_name'].get('sgzzc', {}).get('alphaforest') == [[50.0, 'sgzzc30@']]
         e = d['refound'].get('sgzze4') or {}   # format 6: name, size, box and a light outline, for the same-land proof
         ok = ok and e.get('_nm') == 'Lost Valley Prairie' and e.get('_bx') == [-92.83, 44.8, -92.82, 44.81] and len((e.get('_g') or [[]])[0]) == 5
@@ -264,7 +274,8 @@ def selftest():
         with gzip.open(os.path.join(st, 'US-YY.layer-records.json.gz'), 'wt') as f:
             json.dump({'kpcstore_layers': 1, 'area': 'US-YY', 'manifest': {'fws': {'complete': True, 'source_count': 2, 'store_count': 2},
                                                                           'sgyya': {'complete': True, 'source_count': 0, 'store_count': 0}},
-                       'records': [{'key': 'fws7', 'layer': 'fws', 'record_id': '7', 'q': 6, 'rings': [[0, 0, 10, 0, 0, 10, -10, 0, 0, -10]]}]}, f)
+                       'records': [{'key': 'fws7', 'layer': 'fws', 'record_id': '7', 'q': 6, 'rings': [[0, 0, 10, 0, 0, 10, -10, 0, 0, -10]]},
+                                   {'key': 'nsprov:12', 'layer': 'nsprov', 'record_id': 'nsprov:12', 'q': 6, 'rings': [[0, 0, 10, 0, 0, 10, -10, 0, 0, -10]]}]}, f)
         with open(os.path.join(st, 'US-XX.layer-records.json.gz'), 'wb') as f: f.write(b'not a gzip file')
         o2 = os.path.join(t, 'b.json.gz')
         import io, contextlib
@@ -274,6 +285,13 @@ def selftest():
         ok = ok and d2['manifest']['US-YY']['fws']['complete'] is False and d2['manifest']['US-YY']['sgyya']['complete'] is False
         ok = ok and 'US-XX' not in d2['manifest'] and '::warning title=Store id fields::US-XX.layer-records.json.gz cannot be read' in buf.getvalue()
         ok = ok and 'fws4026' in d2['records']   # the rest is still written
+        # Q1 (grade of round 8): each layer file's identity (sha256 of its bytes), none for a broken file; later item: an id the key
+        # cannot spell (Canada '<label>:<n>') is counted in skipped_ids and warned, never silently lost; a 'point-circle' is no id
+        import hashlib
+        with open(os.path.join(st, 'US-ZZ.layer-records.json.gz'), 'rb') as fb: sha = hashlib.sha256(fb.read()).hexdigest()
+        ok = ok and d['layer_files'] == {'US-ZZ': {'file': 'US-ZZ.layer-records.json.gz', 'sha256': sha, 'made': ''}} and d['skipped_ids'] == {}
+        ok = ok and 'US-XX' not in d2['layer_files'] and d2['skipped_ids'] == {'US-YY': {'nsprov': 1}}
+        ok = ok and "::warning title=Store id fields::US-YY: 1 record id(s) not in the key's spelling" in buf.getvalue()
         for f_ in ('US-YY.layer-records.json.gz', 'US-XX.layer-records.json.gz'): os.remove(os.path.join(st, f_))
         ok = ok and e.get('_st') == 'US-ZZ' and d['records']['3422'].get('_pad') == {'Loc_Nm': 'TEST', 'GIS_Acres': 4}   # format 7
     print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']) + ' ' + json.dumps(d.get('refound')))

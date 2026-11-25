@@ -72,6 +72,21 @@ def layer_manifest(store, area):
     return out
 
 
+def layer_file_id(store, area):
+    """25 Nov 2026 (grade of #380 round 8, Q1): the identity of the area's full layer file: {'file', 'sha256' (of the file's bytes),
+    'made'}, or {} when there is no file. The key writes the same identity of the file it was built from (fresh_store.layer_file;
+    kpc_store_attrs layer_files), so the cut can prove it reads the SAME download."""
+    f = pathlib.Path(store or '') / f'{area}.layer-records.json.gz'
+    if not store or not f.is_file(): return {}
+    import hashlib
+    b = f.read_bytes()
+    made = ''
+    try: made = str(json.loads(gzip.decompress(b).decode('utf-8')).get('made') or '')
+    except Exception:  # noqa: BLE001  (a broken file is held by store_records / layer_manifest with its own reason)
+        pass
+    return {'file': f.name, 'sha256': hashlib.sha256(b).hexdigest(), 'made': made}
+
+
 class StoreUnreadable(Exception):
     """The area's full layer file is there but cannot be read: the area is HELD (nothing changed, exit 3), never a crash."""
 
@@ -167,6 +182,18 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
             return [], [('*', f'the full layer file for {area} does not hold these joined layers complete: '
                               + ', '.join(f"{l} ({(man.get(l) or {}).get('store_count', 0)} of {(man.get(l) or {}).get('source_count', '?')})" for l in bad)
                               + ': nothing changed, nothing saved, every old outline kept (HELD)')]
+        # Q1 (grade of round 8): the key and the cut must read the SAME download of the layer file. The key names the file it was
+        # built from (fresh_store.layer_file: sha256 of its bytes + made stamp); a different file, or a key that names none, = the
+        # whole area HELD (exit 3). A record missing from the right file would otherwise drop a good old outline.
+        want, got = (key.get('fresh_store') or {}).get('layer_file') or {}, layer_file_id(store, area)
+        if not want.get('sha256'):
+            return [], [('*', f'the key does not name the layer file it was built from (fresh_store.layer_file; a key made before '
+                              f'this check): nothing changed, nothing saved, every old outline kept (HELD); build the key again')]
+        if want.get('sha256') != got.get('sha256'):
+            return [], [('*', f"the key was built from another download of {area}'s layer file (key: made {want.get('made') or '?'}, "
+                              f"{str(want.get('sha256'))[:12]}; here: made {got.get('made') or '?'}, {str(got.get('sha256'))[:12]}): "
+                              'nothing changed, nothing saved, every old outline kept (HELD); build the key and cut from the same file')]
+    hold_missing = []   # Q1: [(ref, ids)] joined records of a fresh park the (same) layer file lacks: the area is HELD, nothing dropped
     for ref, q in sorted((key.get('parks') or {}).items()):
         if only and ref not in only: continue
         if ref in have and not stale(ref, have[ref], q): continue
@@ -177,11 +204,15 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         _fr = [i for i in ids if i in fresh]
         if _fr:
             # 25 Nov 2026: a park joined to fresh store records is cut from the STORE's own outlines, never the saved copy. Every
-            # one of its records must be in the store and publishable; else it is skipped and its old outline is DROPPED (it
-            # may hold land the fresh match left out): the park shows its pin. Fail closed.
+            # one of its records must be in the store and publishable. Q1 (grade of round 8): a record missing from the file the
+            # key was built from means the key and the file disagree: the whole AREA is HELD (below), no outline dropped. Only a
+            # record that is not publishable, or a park with no shape, drops its old outline (it may hold land the fresh match
+            # left out): the park shows its pin. Fail closed.
+            _miss = [i for i in ids if i not in srecs]
+            if _miss:
+                hold_missing.append((ref, _miss)); continue
             why = ''
-            if any(i not in srecs for i in ids): why = f'{sum(1 for i in ids if i not in srecs)} of {len(ids)} joined records not in the store ({" ".join([i for i in ids if i not in srecs][:4])})'
-            elif any(not srecs[i]['publishable'] for i in ids): why = f'{sum(1 for i in ids if not srecs[i]["publishable"])} of {len(ids)} joined store records not publishable (licence)'
+            if any(not srecs[i]['publishable'] for i in ids): why = f'{sum(1 for i in ids if not srecs[i]["publishable"])} of {len(ids)} joined store records not publishable (licence)'
             if why:
                 skipped.append((ref, f'fresh store records ({" ".join(_fr[:4])}): {why}; not cut (fail closed)'))
                 if ref in have: drop_fresh.append(ref)
@@ -218,6 +249,11 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         M.assert_public_safe(r); added.append(r)
         if ref in have: replaced.append(ref)
         say(f'  {"would write" if dry else "write"} {ref} {gk:<11} {len(ids)} record(s) {npts(g):>8,} points  {(q.get("n") or "")[:60]}')
+    if hold_missing:   # Q1: counts only in the reason (no park names: held parks are never named in public output)
+        n_ids = sum(len(x) for _r, x in hold_missing)
+        return [], [('*', f'{len(hold_missing)} park(s) joined to fresh records have {n_ids} record id(s) the layer file does not hold '
+                          f"(first: {' '.join(sorted({i for _r, x in hold_missing for i in x})[:4])}): the key and the file disagree; "
+                          'nothing changed, nothing saved, every old outline kept (HELD)')]
     out = {k: v for k, v in have.items() if k not in set(drop_fresh)}; out.update({r['ref']: r for r in added})
     # Always run save_area when there is something to drop (PIN leftovers, refs not in any key) or something to write, even
     # if this pass added no new park: an outline already in the file is otherwise never cleaned.

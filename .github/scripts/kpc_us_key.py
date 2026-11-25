@@ -2202,6 +2202,7 @@ _RA_BY = [{}]
 _RA_RF = [{}]     # 'refound' of kpc_store_attrs format 5: re-found store records, with their name, size and key_record_id
 _RA_KID = [{}]    # key_record_id -> the refound entries that name it
 _RA_MAN = [{}]    # 25 Nov 2026 (N3): {area: {layer: {'complete': bool, 'source_count', 'store_count'}}} from the store's layer records
+_RA_LF = [{}]     # 25 Nov 2026 (Q1, grade of round 8): {area: {'file', 'sha256', 'made'}}: the layer file each area's records came from
 def record_attrs():
     """{record id: {id field: value}} from KPC_RECORD_ATTRS (kpc_store_attrs.py), or {} when the switch has no file."""
     if _RA[0] is None:
@@ -2214,6 +2215,7 @@ def record_attrs():
                 _RA_BY[0] = doc.get('by_name') or {}
                 _RA_RF[0] = doc.get('refound') or {}
                 _RA_MAN[0] = doc.get('manifest') or {}   # format 8: per area, per layer: complete yes / no (KPC-Store kpc_layer_records)
+                _RA_LF[0] = doc.get('layer_files') or {}
                 _RA_KID[0] = {}
                 for k_, v_ in _RA_RF[0].items():
                     if v_.get('_kid'): _RA_KID[0].setdefault(v_['_kid'], []).append(k_)
@@ -4314,6 +4316,14 @@ def run(st):
         out['fresh_store'] = {'about': "joined record ids that are the outline store's own records (KPC_STORE_FRESH): "
                                        'their shapes are in the store, never in the saved copy',
                               'ids': sorted({str(x[0]) for p_ in parks.values() for x in p_.get('m') or [] if str(x[0]) in _fr_ids})}
+        # Q1 (grade of round 8): the identity of the layer file these records came from (sha256 of its bytes + made stamp). The
+        # outline cutter HOLDS the state (exit 3) when the file it reads is another download, so a record missing from a different
+        # download can never drop a good old outline. No identity (an older store id fields file) = the cut holds too.
+        _lf = (_RA_LF[0] or {}).get(f'US-{st}') or {}
+        if _lf.get('sha256'): out['fresh_store']['layer_file'] = {k_: _lf.get(k_) for k_ in ('file', 'sha256', 'made')}
+        elif out['fresh_store']['ids']:
+            notice(f'US key {st}', 'the store id fields file does not name the layer file (make it again with kpc_store_attrs.py): '
+                                   'the outline cut will HOLD this state')
     # plain-words review page for this state (GitHub shows .md files nicely)
     R = OUT / 'review'; R.mkdir(exist_ok=True)
     L = [f'# {st}: POTA parks vs official land (USGS PAD-US)', '', f"Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **{counts['matched']} of {counts['parks']}** parks joined to official land "
