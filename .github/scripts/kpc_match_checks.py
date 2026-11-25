@@ -560,8 +560,197 @@ def held_id_for_pass(ref, p, recs, pin, holds_fn=None):
     return ''
 
 
+# 24 Nov 2026 (owner t2067u 8:32 PM CT 'I agree work on it', after the 787 loose-name confirm check: 730 right, 18 wrong, 39
+# unsure). Four auto-confirm guards. Status only, except A3, which gives each same-name park only its own piece of a shared
+# record. A1: confirm only on a record still in the park's outline (its 'm' rows). A2: no auto-confirm when another park of the
+# state holds the same record. A4: the park's level of government (from POTA's type) must not clash with the record's.
+# A3: parks whose POTA names differ only by the words in brackets ('X (A County) State Forest', 'X (B County) State Forest') and
+# share one multi-part record each keep only the record's tracts nearest their own pin ('parts', the same field rule B12 writes).
+BRACKET_RX = re.compile(r'\(([^()]*)\)')
+A3_TRACT_GAP_KM = 1.0      # pieces closer than this are one tract (kpc_key_rules.tracts_of)
+A3_PINS_APART_KM = 15.0    # the pins of two bracket twins must be this far apart (the B12 / name-only prune distance)
+ONE_PLACE_KM = 15.0        # a record whose pieces all chain within this is one place (bracket words need not be in its name)
+
+
+def bracket_words(name):
+    """The words in brackets in a POTA name, as full() writes them: 'Lost Lake (Alpha County) State Forest' -> ('alpha county',).
+    full() itself drops bracket text, which is how two same-name forests looked like one park to the looser name rule."""
+    return tuple(t for t in (full(x) for x in BRACKET_RX.findall(str(name or ''))) if t)
+
+
+def rec_rings(rec):
+    """A record's rings ([lon, lat] lists of 3+ points) from `_g` ({'rings'} / Polygon / MultiPolygon) or a saved `_r` list."""
+    rec = rec or {}
+    g = rec.get('_g') or {}
+    if isinstance(g, dict) and g:
+        rs = g.get('rings') or (g.get('coordinates') if g.get('type') == 'Polygon' else
+                               [r for poly in g.get('coordinates') or [] for r in poly] if g.get('type') == 'MultiPolygon' else [])
+    else:
+        rs = rec.get('_r') or []
+    return [r for r in rs or [] if r and len(r) > 2]
+
+
+def ring_box(r):
+    return [min(q[0] for q in r), min(q[1] for q in r), max(q[0] for q in r), max(q[1] for q in r)]
+
+
+def box_gap_km(a, b):
+    la = (a[1] + a[3] + b[1] + b[3]) / 4
+    dx = max(0, b[0] - a[2], a[0] - b[2]) * 111.32 * math.cos(math.radians(la)); dy = max(0, b[1] - a[3], a[1] - b[3]) * 110.57
+    return math.hypot(dx, dy)
+
+
+def tracts_of(boxes, gap_km=A3_TRACT_GAP_KM):
+    """Group pieces ([w, s, e, n] boxes) into tracts: pieces closer than gap_km are one tract (same as kpc_key_rules.tracts_of)."""
+    n = len(boxes); grp = list(range(n))
+    def find(i):
+        while grp[i] != i: grp[i] = grp[grp[i]]; i = grp[i]
+        return i
+    for i in range(n):
+        for j in range(i + 1, n):
+            if box_gap_km(boxes[i], boxes[j]) <= gap_km: grp[find(i)] = find(j)
+    out = {}
+    for i in range(n): out.setdefault(find(i), []).append(i)
+    return sorted(out.values(), key=lambda v: v[0])
+
+
+def one_place(rec):
+    """True when every piece of the record chains within ONE_PLACE_KM (one place); a record with no shape counts as one place."""
+    rs = rec_rings(rec)
+    return len(rs) < 2 or len(tracts_of([ring_box(r) for r in rs], ONE_PLACE_KM)) == 1
+
+
+def bracket_place_ok(park_name, rec):
+    """A3 (matching): POTA's bracket words are not thrown away. A park named with words in brackets matches a record by name only
+    when the record's own name carries those words, or the record is one place (not two same-name places far apart)."""
+    bw = bracket_words(park_name)
+    if not bw: return True
+    rn = ' ' + re.sub(r'[^a-z0-9 ]+', ' ', str(rec_name(rec) or '').lower()) + ' '
+    rn = ' ' + ' '.join(rn.split()) + ' '
+    if all(' ' + w + ' ' in rn for w in bw): return True
+    return one_place(rec)
+
+
+def _ring_km(lat, lon, r):
+    """Kilometres from a pin to one ring: 0 inside, else the edge distance."""
+    ins, j = False, len(r) - 1
+    for i in range(len(r)):
+        xi, yi, xj, yj = r[i][0], r[i][1], r[j][0], r[j][1]
+        if (yi > lat) != (yj > lat) and lon < (xj - xi) * (lat - yi) / ((yj - yi) or 1e-12) + xi: ins = not ins
+        j = i
+    if ins: return 0.0
+    d = km_to_record(lat, lon, {'_g': {'rings': [r]}})
+    return 1e9 if d is None else d
+
+
+def _ring_acres(rr):
+    """Acres of a group of rings (signed shoelace added up, so holes written the other way round come off)."""
+    if not rr: return 0.0
+    la0 = sum(q[1] for r in rr for q in r) / sum(len(r) for r in rr)
+    kx, ky = 111320.0 * math.cos(math.radians(la0)), 110574.0
+    tot = 0.0
+    for r in rr:
+        tot += 0.5 * sum(x1 * kx * y2 * ky - x2 * kx * y1 * ky for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1]))
+    return abs(tot) / 4046.86
+
+
+def _pin_of(ref, facts):
+    pin = ((facts or {}).get(ref) or {}).get('pin')
+    try:
+        return float(pin[0]), float(pin[1])
+    except (TypeError, ValueError, IndexError):
+        return None
+
+
+def split_bracket_twins(parks, recs, facts, skip=(), held_by=None):
+    """A3: a multi-part record held by two or more parks whose POTA names are the same once the bracket words are left out, and
+    whose bracket words differ, is cut by tract: each tract goes to the park whose pin is nearest, and each park keeps only its
+    own tracts as 'parts' {record id: [[w, s, e, n], ...]} (what kpc_outlines_from_key and the 2-fer line already read).
+    Not done (left as it is) when: a park already has parts for the record (rule B12 did it), a park has no pin, two pins are
+    within A3_PINS_APART_KM, a park would get no tract, or the record is one tract. A person's ('reviewed') row is never cut.
+    The park's 'ac' and the row's acres drop by the land it no longer holds. Returns [(park, record id, kept, of)]."""
+    if held_by is None:
+        held_by = {}
+        for r_, p_ in parks.items():
+            if r_ in skip: continue
+            for q in p_.get('m') or []: held_by.setdefault(str(q[0]), set()).add(r_)
+    done = []
+    for rid, refs_ in sorted(held_by.items()):
+        refs = sorted(r for r in refs_ if r in parks and r not in skip)
+        rec = (recs or {}).get(rid)
+        if len(refs) < 2 or rec is None: continue
+        names = [parks[r].get('n') or ((facts or {}).get(r) or {}).get('name') or '' for r in refs]
+        if len({full(n) for n in names}) != 1 or not full(names[0]): continue
+        bws = [bracket_words(n) for n in names]
+        if len(set(bws)) != len(bws) or sum(1 for b in bws if not b) > 1: continue
+        if any(rid in (parks[r].get('parts') or {}) for r in refs): continue
+        pins = {r: _pin_of(r, facts) for r in refs}
+        if any(v is None for v in pins.values()): continue
+        if any(km(pins[a][0], pins[a][1], pins[b][0], pins[b][1]) <= A3_PINS_APART_KM for i, a in enumerate(refs) for b in refs[i + 1:]): continue
+        rs = rec_rings(rec)
+        if len(rs) < 2: continue
+        boxes = [ring_box(r) for r in rs]
+        tracts = tracts_of(boxes)
+        if len(tracts) < 2: continue
+        mine = {r: [] for r in refs}
+        for t in tracts:
+            d = {r: min(_ring_km(pins[r][0], pins[r][1], rs[i]) for i in t) for r in refs}
+            best = min(d.values())
+            for r in refs:
+                if d[r] is not None and d[r] <= best + 1e-9: mine[r].extend(t)
+        if any(not v for v in mine.values()): continue
+        whole = _ring_acres(rs)
+        for r in refs:
+            p = parks[r]
+            if len(mine[r]) == len(rs): continue
+            if any(str(q[0]) == rid and str(q[3] if len(q) > 3 else '').startswith('reviewed') for q in p.get('m') or []): continue
+            keep = sorted(mine[r])
+            p.setdefault('parts', {})[rid] = [[round(c, 4) for c in boxes[i]] for i in keep]
+            own = _ring_acres([rs[i] for i in keep])
+            for q in p.get('m') or []:
+                if str(q[0]) == rid and len(q) > 2: q[2] = round(own)
+            if p.get('ac') not in (None, ''):
+                try: p['ac'] = max(round(own), round(float(p['ac']) - max(0.0, whole - own)))
+                except (TypeError, ValueError): pass
+            done.append((r, rid, len(keep), len(rs)))
+    return done
+
+
+def park_gov_level(typ):
+    """POTA's park type -> 'STATE' / 'FED' / 'LOC' / None (the type says nothing about who runs it)."""
+    t = ' '.join(str(typ or '').lower().split())
+    if re.match(r'(state|commonwealth)\b', t): return 'STATE'
+    if re.match(r'(national|blm|federal|us|u\.s\.)\b', t) or t == 'wetland management district': return 'FED'
+    if re.match(r'(county|city|municipal|metro|metropolitan|regional|town|township|village|borough|parish)\b', t): return 'LOC'
+    return None
+
+
+def record_gov_level(rec, table=None):
+    """The record's level of government from its own agency (record_agency, never its name), or the state owner label (W-G11)."""
+    a = record_agency(rec, table)
+    if a is None: return 'STATE' if owner_family(rec) == 'STATE' else None
+    if a in FEDERAL or str(a).startswith('FED'): return 'FED'
+    if a in ('STATE', 'LOC', 'DIST', 'PVT', 'NGO', 'TRIB'): return a
+    return None
+
+
+def auto_confirm_agency_ok(fact, p, rec, st='', table=None):
+    """A4: False when POTA's link names another agency (agency_check 'differs'), or POTA's park type and the record's own agency
+    are of different levels of government (a state forest on county land, a county park on state land). No data either way =
+    no vote. The W-G11 (state-owned) and W-G12 (state park on federal lake land under its own name) exceptions still hold."""
+    if agency_check(fact, rec, st, table) == 'differs': return False
+    pl = park_gov_level(p.get('t') or (fact or {}).get('type'))
+    rl = record_gov_level(rec, table)
+    if pl is None or rl is None or pl == rl: return True
+    if pl == 'STATE' and owner_family(rec) == 'STATE': return True
+    if pl == 'STATE' and record_agency(rec, table) in RESERVOIR_OWNERS and \
+            same_park_name(p.get('n') or (fact or {}).get('name'), rec_name(rec)): return True
+    return False
+
+
 def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked=None,
-                    stop_parks=None, spelling=None, pin=None, name_test=None, layer_table=None):
+                    stop_parks=None, spelling=None, pin=None, name_test=None, layer_table=None,
+                    shared_by=None, st=''):
     """True when this joined park may be status-confirmed. Never changes land.
 
     The held record's own name must match the park, and the pin must sit inside that
@@ -575,6 +764,10 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
     name_test(park name, held record name) replaces the name test (24 Nov: 'page names the land' uses the same
     record, the same stops and the same 100 m; only the name witness differs).
     stop_parks is None (missing / unreadable list) = confirm nothing (fail closed).
+    24 Nov 2026 (owner t2067u): A1 the held record must still be one of the park's joined ('m') records (a record already moved to
+    the check list is not the outline); A2 shared_by {record id: {parks}}: no confirm when another park holds the same record;
+    A3 a park named with words in brackets needs them in the record's name, or a record that is one place (bracket_place_ok);
+    A4 the agency / level-of-government check (auto_confirm_agency_ok).
     """
     if stop_parks is None:
         return False
@@ -589,8 +782,12 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
         hid = held_id_for_pass(ref, p, recs, pin, holds_fn)
     if not hid:
         return False
+    if str(hid) not in {str(q[0]) for q in p.get('m') or []}:   # A1: only a record still in the outline
+        return False
     rec = (recs or {}).get(hid) or (recs or {}).get(str(hid))
     if rec is None:
+        return False
+    if set((shared_by or {}).get(str(hid)) or ()) - {ref}:   # A2: another park holds the same record
         return False
     if is_no and is_no(ref, hid, rec):
         return False
@@ -606,6 +803,10 @@ def auto_confirm_ok(ref, p, recs, facts=None, holds_fn=None, is_no=None, blocked
     elif not (names_match(pn, rn, spelling) or same_place_name(pn, rn)):   # 24 Nov: Opus's spelling table (same_place_name) too
         return False
     if kinds_clash(p, rec, layer_table):   # 24 Nov review: a bare record name ('Kiger') takes its kind from its layer
+        return False
+    if not bracket_place_ok(pn, rec):   # A3: POTA's bracket words are not thrown away
+        return False
+    if not auto_confirm_agency_ok(facts.get(ref) or {}, p, rec, st, layer_table):   # A4
         return False
     if not pin or len(pin) < 2 or pin[0] in (None, '') or pin[1] in (None, ''):
         return False
@@ -1589,9 +1790,16 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
            'by_id': 0, 'by_link': 0, 'by_size': 0, 'second_name': 0, 'tract': 0, 'parent': 0, 'shared_record': 0,
            'second_name_near': {w: 0 for w, _k in NEAR_MISS_KM}}
 
+    ref_of = {id(p_): r_ for r_, p_ in parks.items()}
+
     def to_check(p, rows, why):
         ids_ = {id(q) for q in rows}
         p['m'] = [q for q in p.get('m') or [] if id(q) not in ids_]
+        r_ = ref_of.get(id(p))
+        if r_:   # A2: a park whose row went to the check list no longer holds that record
+            still = {str(q[0]) for q in p['m']}
+            for q in rows:
+                if str(q[0]) not in still and str(q[0]) in held_by: held_by[str(q[0])].discard(r_)
         p['c'] = [list(q[:3]) + [f'check ({why})'] for q in rows] + list(p.get('c') or [])
 
     # 22 Nov 2026 (plan P2/P4/P7): what the park pages of this state say, read once
@@ -1607,13 +1815,15 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         n = full(rec_name(a))
         if n: by_name.setdefault(n, []).append(i)
 
-    def add_row(p, i, how):
+    def add_row(p, i, how, ref_=None):
         a = recs[i]
         p['m'] = sorted(list(p.get('m') or []) + [[a['OBJECTID'], rec_name(a), round(float(a.get('GIS_Acres') or 0)), how]],
                         key=lambda x: -(x[2] or 0))
         p['c'] = [x for x in p.get('c') or [] if str(x[0]) != i]
         if p.get('g') in (None, 'pin'): p['g'] = 'official'
+        if ref_: held_by.setdefault(str(i), set()).add(ref_)   # A2: the gained record is held by this park too
 
+    held_by = {}
     # P7: one record that two parks of the state claim by NAME stays with the park whose name and kind fit it best; the others go
     # to check. Equal fits keep it for both (real 'same land, two park numbers').
     claims = {}
@@ -1633,6 +1843,13 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if not rows: continue
             to_check(parks[r], rows, f"another park's record: {rec_name(recs[i])[:60]} fits {', '.join(winners)} better")
             out['moved'] += len(rows); out['shared_record'] += 1; hits.append([r, 'shared record', i])
+
+    # 24 Nov 2026 (owner t2067u): who holds each record (A2), and A3 bracket twins cut to their own tracts
+    for r_, p_ in parks.items():
+        if r_ in skip: continue
+        for q in p_.get('m') or []: held_by.setdefault(str(q[0]), set()).add(r_)
+    for r_, i_, k_, n_ in split_bracket_twins(parks, recs, facts, skip, held_by):
+        out['bracket_split'] = out.get('bracket_split', 0) + 1; hits.append([r_, 'own tracts (A3)', i_])
 
     for ref in sorted(parks):
         p = parks[ref]
@@ -1657,6 +1874,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                     p['m'] = sorted(list(p.get('m') or []) + [[a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '',
                                      round(float(a.get('GIS_Acres') or 0)), f"id: {kind} {val} (POTA's own link) + place"]], key=lambda x: -(x[2] or 0))
                     p['c'] = [x for x in p.get('c') or [] if str(x[0]) != i]
+                    held_by.setdefault(str(i), set()).add(ref)
                     out['gained'] += 1; hits.append([ref, 'joined (id)', i])
                 if p.get('g') in (None, 'pin'): p['g'] = 'official'
         # P2 (rule sheet PN): a second name from the park's own agency page joins a record of exactly that name that holds the pin
@@ -1671,7 +1889,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                 for w, k_ in NEAR_MISS_KM:
                     if d is not None and d <= k_: out['second_name_near'][w] += 1
             if len(cand) == 1:
-                add_row(p, cand[0], f'name: second name "{n2[:60]}" (the park\'s own page) + pin inside')
+                add_row(p, cand[0], f'name: second name "{n2[:60]}" (the park\'s own page) + pin inside', ref)
                 out['gained'] += 1; out['second_name'] += 1; hits.append([ref, 'joined (second name)', cand[0]]); have.add(cand[0])
             elif len(cand) > 1:
                 p['c'] = [[recs[i]['OBJECTID'], rec_name(recs[i]), round(float(recs[i].get('GIS_Acres') or 0)),
@@ -1689,7 +1907,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
                 if not rn or not any(rn == t or (rn.endswith(' ' + t) and words & set(rn.split())) for t in tracts): continue
                 if is_no(ref, i, a) or not near_box(pin[0], pin[1], a.get('_bb'), TRACT_KM): continue
                 if other_park_name(rec_name(a), nm, others): continue
-                add_row(p, i, f'name: tract "{rn[:60]}" (the park\'s own page lists it)')
+                add_row(p, i, f'name: tract "{rn[:60]}" (the park\'s own page lists it)', ref)
                 out['gained'] += 1; out['tract'] += 1; hits.append([ref, 'joined (tract)', i]); have.add(i)
         m = list(p.get('m') or [])
         if not m: continue
@@ -1839,14 +2057,15 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
             if st_ == 'outlined' and auto_confirm_ok(
                     ref, p, recs, facts, holds_fn=lambda _r, i: holds(i), is_no=is_no,
                     blocked=blocked_ids, stop_parks=auto_confirm_stops,
-                    spelling=spelling_table, pin=(facts.get(ref) or {}).get('pin'), layer_table=layer_table):
+                    spelling=spelling_table, pin=(facts.get(ref) or {}).get('pin'), layer_table=layer_table,
+                    shared_by=held_by, st=st):
                 st_, how = 'confirmed', 'held name and pin'
             # 24 Nov 2026 (owner: "Page reader whole reason is to read names!!"; review: the same gate as auto-confirm): the park's
             # own official page calls it by the HELD record's own name, with the same stops and the same 100 m on the saved outline.
             elif st_ == 'outlined' and auto_confirm_ok(
                     ref, p, recs, facts, holds_fn=lambda _r, i: holds(i), is_no=is_no,
                     blocked=blocked_ids, stop_parks=auto_confirm_stops, pin=(facts.get(ref) or {}).get('pin'), layer_table=layer_table,
-                    name_test=lambda pn, rn: page_names_land(f, pn, rn, heading_count, all_names - {full(pn)})):
+                    shared_by=held_by, st=st, name_test=lambda pn, rn: page_names_land(f, pn, rn, heading_count, all_names - {full(pn)})):
                 st_, how = 'confirmed', 'page names the land'
         ev, name_how = None, ''
         if st_ == 'confirmed' and how:

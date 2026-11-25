@@ -36,7 +36,7 @@ with tempfile.TemporaryDirectory() as t:
     check(p.returncode == 0 and rep.exists(), f'the report is written to data/status/finds-lines-report.json ({p.stdout.strip()[:120]})')
     check(sorted(q.name for q in (R / 'data/trails').iterdir()) == before, 'nothing new under data/trails/ (no report there, no line written by this script)')
     r = json.load(open(rep)); rows = json.load(open(out))
-    check(set(r) == {'about', 'count', 'rows'} and 'geometry' not in json.dumps(r), 'the report is a status report: about / count / rows, no geometry')
+    check({'about', 'count', 'rows'} <= set(r) <= {'about', 'count', 'rows', 'drops'} and 'geometry' not in json.dumps(r), 'the report is a status report: about / count / rows (24 Nov: drops), no geometry')
     check([x['ref'] for x in rows] == ['US-1'] and r['count'] == 1, 'the hand-off list has US-1 only: US-2 already has a saved line, never replaced by a found one')
 
 print('ALL PASS' if ok else 'SOME FAILED'); sys.exit(0 if ok else 1)

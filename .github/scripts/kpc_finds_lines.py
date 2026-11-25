@@ -25,6 +25,45 @@ REJECT_LAYERS = {
 }
 REJECT_HOSTS = re.compile(r'services9\.arcgis\.com/FF3qnCUixr5w9JQi/', re.I)   # third-party USGS_Trails re-host
 TRAILY = re.compile(r'\btrail\b|\btrails\b|\broute\b|greenway|\bpath\b|\bway\b|byway|towpath|rail.?trail', re.I)
+# 24 Nov 2026 (owner t2067u 'I agree work on it'): a found line under 1 km (about 0.6 mi) is never put on an AREA park (a park
+# whose POTA type is not a trail, river, route or greenway: a recreation area, wildlife area, park...). New rows for area parks
+# carry 'min_km' (kpc_us_trails.py checks the drawn length); a found line already saved under 1 km on an area park is handed
+# back as a 'drop' row, so the trail bot takes it off (listed, never silent).
+AREA_MIN_KM = 1.0
+TRAIL_TYPE = re.compile(r'trail|greenway|byway|path|route|river|towpath|blueway', re.I)
+
+
+def area_park(ptype):
+    """True when POTA's park type is not a trail / river / route type."""
+    return not TRAIL_TYPE.search(str(ptype or ''))
+
+
+def line_km(lines):
+    """Kilometres along [[lon, lat], ...] lines (great circle)."""
+    import math
+    def km(a, b, c, d):
+        r = math.radians
+        return 6371 * 2 * math.asin(math.sqrt(math.sin(r(c - a) / 2) ** 2 + math.cos(r(a)) * math.cos(r(c)) * math.sin(r(d - b) / 2) ** 2))
+    return sum(km(l[i][1], l[i][0], l[i + 1][1], l[i + 1][0]) for l in lines or [] for i in range(len(l) - 1)
+               if l[i] and l[i + 1] and len(l[i]) >= 2 and len(l[i + 1]) >= 2)
+
+
+def too_short_for_area(row, lines):
+    """True when a hand-off row carries min_km and the drawn line is shorter (kpc_us_trails.py: the line is not used)."""
+    mk = (row or {}).get('min_km')
+    return bool(mk) and line_km(lines) < float(mk)
+
+
+def saved_line_km(path):
+    """Kilometres of a saved line file (data/trails/<ref>.json); None when it cannot be read."""
+    try: g = json.load(open(path, encoding='utf-8'))
+    except Exception: return None  # noqa: BLE001
+    out = 0.0
+    for f in (g.get('features') or [g]):
+        gg = f.get('geometry') or {}
+        c = gg.get('coordinates') or []
+        out += line_km([c] if gg.get('type') == 'LineString' else c)
+    return out
 
 
 def load(p, d):
@@ -63,6 +102,15 @@ def main():
             if isinstance(q, dict) and re.match(r'\W*NO\b', str(q.get('answer') or ''), re.I):
                 no.add((str(q.get('ref') or ''), str(q.get('layer') or q.get('url') or '').rstrip('/')))
     HAND = set((load('data/trails-hand.json', {}).get('parks') or {}))
+    # 24 Nov 2026: found lines already saved on an area park under 1 km are handed back to be taken off
+    drops = []
+    for x in load('data/trails/index.json', []) or []:
+        r = str((x or {}).get('ref') or '')
+        if x.get('kind') != 'found' or not r.startswith('US-') or r in HAND or not area_park(typ.get(r, '')): continue
+        k = saved_line_km(f'data/trails/{r}.json')
+        if k is not None and k < AREA_MIN_KM:
+            drops.append({'ref': r, 'name': names.get(r) or x.get('name') or r, 'drop': True, 'kind': 'found',
+                          'why': f'a found line of {k * 3280.84:,.0f} ft on an area park (under 0.6 mi): not a trail line for this park'})
     cand = {}
     for k, v in pairs.items():
         if v.get('result') != 'SURE' or '|' not in k: continue
@@ -85,12 +133,16 @@ def main():
         rows.append({'ref': ref, 'name': names.get(ref) or v['record_name'], 'url': m.group(1), 'layer': int(m.group(2)),
                      'where': f"{L['name_field']} = '{nm}'", 'bbox': [round(lo - .3, 4), round(la - .3, 4), round(lo + .3, 4), round(la + .3, 4)],
                      'kind': 'found', 'by': f"official agency layer '{L.get('title') or ''}' ({L.get('host') or url.split('/')[2]}); sure match found by the outside research, wired by kpc_finds_lines"})
+        if area_park(typ.get(ref, '')): rows[-1]['min_km'] = AREA_MIN_KM   # 24 Nov: never a stub under 1 km on an area park
         rep.append([ref, names.get(ref), v['record_name'], url])
+    rows += drops
     json.dump(rows, open(out, 'w'), indent=1, ensure_ascii=False)
     os.makedirs('data/status', exist_ok=True)
-    json.dump({'about': 'SURE trail-line finds handed to the trail bot (kpc_finds_lines.py)', 'count': len(rows), 'rows': rep},
+    json.dump({'about': 'SURE trail-line finds handed to the trail bot (kpc_finds_lines.py)', 'count': len(rows) - len(drops), 'rows': rep,
+               'drops': [[d['ref'], d['why']] for d in drops]},
               open('data/status/finds-lines-report.json', 'w'), indent=1, ensure_ascii=False)
-    print(f"::notice title=Found trail lines::{len(rows)} trail parks still a pin had a SURE official line in the outside research: handed to the trail bot ({len(no)} NO answers respected)")
+    print(f"::notice title=Found trail lines::{len(rows) - len(drops)} trail parks still a pin had a SURE official line in the outside research: handed to the trail bot ({len(no)} NO answers respected); "
+          f"{len(drops)} found line(s) under 0.6 mi on an area park handed back to be taken off: {' '.join(d['ref'] for d in drops[:12])}")
 
 
 if __name__ == '__main__':

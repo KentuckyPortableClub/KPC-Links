@@ -8,7 +8,9 @@ and US-9203 cases protected. When the bot skips a write, it logs why.
 
 Synthetic data only. Offline, no network, no live trail files are read or written.
 This file does not import kpc_state_trails.py (that script starts a build at import time).
-(KPC owner, 2026-11-16)"""
+(KPC owner, 2026-11-16)
+24 Nov 2026 (owner t2067u): a saved state line read before Nov 2, or with no read date, is stale and may be replaced, so the
+protected rows here carry a read date after Nov 2."""
 import json, math, os, pathlib, sys, tempfile
 
 HERE = pathlib.Path(__file__).resolve().parent.parent
@@ -143,7 +145,7 @@ with tempfile.TemporaryDirectory() as tmp:
 with tempfile.TemporaryDirectory() as tmp:
     d = pathlib.Path(tmp)
     write_line(d, 'US-Z', 100, 100, official=True)
-    st = {'US-Z': {'ref': 'US-Z', 'official': True, 'source': 'official', 'by': 'US Forest Service', 'km': 100}}
+    st = {'US-Z': {'ref': 'US-Z', 'read': '2026-11-04', 'official': True, 'source': 'official', 'by': 'US Forest Service', 'km': 100}}
     saved = saved_record('US-Z', st, {}, str(d))
     why = keep_saved_reason(saved, True, 40, 30)
     check(why and 'kept' in why, f'a half-answered new official line does not replace the saved one; got {why!r}')
@@ -171,7 +173,7 @@ with tempfile.TemporaryDirectory() as tmp:
 with tempfile.TemporaryDirectory() as tmp:
     d = pathlib.Path(tmp)
     write_line(d, 'US-B', 200, 100, official=True)
-    st = {'US-B': {'ref': 'US-B', 'official': True, 'source': 'official', 'by': 'US Forest Service', 'km': 100}}
+    st = {'US-B': {'ref': 'US-B', 'read': '2026-11-04', 'official': True, 'source': 'official', 'by': 'US Forest Service', 'km': 100}}
     saved = saved_record('US-B', st, {}, str(d))
     try:
         why = keep_saved_reason(saved, True, 200, 50, True)
@@ -199,7 +201,7 @@ with tempfile.TemporaryDirectory() as tmp:
 with tempfile.TemporaryDirectory() as tmp:
     d = pathlib.Path(tmp)
     write_line(d, 'US-D', 400, 138, official=True)
-    st = {'US-D': {'ref': 'US-D', 'official': True, 'source': 'official', 'by': 'USGS National Transportation Dataset', 'km': 138}}
+    st = {'US-D': {'ref': 'US-D', 'read': '2026-11-04', 'official': True, 'source': 'official', 'by': 'USGS National Transportation Dataset', 'km': 138}}
     saved = saved_record('US-D', st, {}, str(d))
     why = keep_saved_reason(saved, True, 88, 40)
     check(why and 'kept' in why, f'a shorter or rougher official line does not replace the saved official line; got {why!r}')

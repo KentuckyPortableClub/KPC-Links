@@ -919,6 +919,17 @@
    "why": "Report only (plan B, 24 Nov 2026): the match-checks line counts auto-confirms by rule and by state (held name and pin, split into exact / spelling table / looser name; page names the land; county belt kept; store-id fields and the name-and-size bridge). Each confirm records which rule made it and its evidence (agency id, official and outline acres, pin distance in feet, page link). A confirm whose outline acres are far off the official acres (the same 3x band) is listed for a person; actually withholding that confirm is switch KPC_CONFIRM_SIZE_HOLD, which defaults OFF, and is an owner call. Report header stamps: park-facts hash, page-reader-facts version, per-state restock stamp, and a 'rule changes since the last test' line. Status only: never changes land. Scope none: no park is rebuilt until the owner starts a build.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (report-only counters, evidence, stamps, and a size flag; the size-hold switch stays off)"
+  },
+  {
+   "id": "2026-11-24-loose-name-guards",
+   "when": "2026-11-24",
+   "from": "84d0fb46a68d",
+   "why": "The four guards from the check of 787 loose-name confirms (kpc_match_checks.py). A1: auto-confirm only on a record still in the park's outline. A2: no auto-confirm when two parks hold the same record. A3: a park named with words in brackets (the NY state forests) needs them in the record's name, or a record that is one place; and bracket twins on one shared multi-part record each keep only the tracts nearest their own pin (parts), POTA's bracket county kept. A4: the agency / level-of-government check (a state forest on county land is not auto-confirmed). A1, A2 and A4 change status only; A3 changes the NY twins' outlines. Expected: 18 wrong confirms stopped, 19 NY outlines fixed, about 5 to 8 correct confirms back to outlined. Every state may change status, so all states; saved ids are not re-matched (the pass runs on carried parks too). Nothing is rebuilt until the owner starts a build.",
+   "scope": {
+    "all": true,
+    "saved_ids": false
+   },
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (t2067u 8:32 PM CT 'I agree work on it': the fixes from the check of 787 loose-name confirms)"
   }
  ]
 }

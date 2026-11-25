@@ -11,6 +11,7 @@ line file is still there. An entry is removed only when its line file is really 
 rather than silent."""
 import re, json, os, sys, time, urllib.request, urllib.parse
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
+from kpc_finds_lines import too_short_for_area, line_km   # 24 Nov 2026 (owner t2067u): no found line under 1 km on an area park
 NPS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/'
 T = json.load(open(os.path.join(os.path.dirname(__file__), 'kpc_us_trails.json')))
 try:   # Nov 1 (chat 2): SURE line finds from the outside research for trail parks still a pin (kpc_finds_lines.py, EXTRA_TRAILS)
@@ -57,6 +58,7 @@ def merge_index_entries(old, produced, outdir, note_fn=None):
 MODE = os.environ.get('MODE', 'build')
 if MODE == 'info':
     for x in T:
+        if x.get('drop'): continue
         try:
             u = svc(x); j = get(u + '?f=json')
             lay = [(l['id'], l['name'], l.get('geometryType')) for l in j.get('layers', [])]
@@ -135,10 +137,16 @@ def lines_of(g):
     if t == 'MultiPolygon': return [r for p in c for r in p]
     return []
 index, done, failed = [], 0, []
+SHORT_AREA, TAKEN_OFF = [], []
 old = {}
 try: old = {x['ref']: x for x in json.load(open(OUTDIR + '/index.json'))}
 except Exception: pass
 for x in T:
+    if x.get('drop'):   # 24 Nov 2026: kpc_finds_lines hands back a saved found line under 1 km on an area park: taken off, listed
+        _f = f"{OUTDIR}/{x['ref']}.json"
+        if (old.get(x['ref']) or {}).get('kind') == 'found' and os.path.exists(_f):
+            os.remove(_f); old.pop(x['ref'], None); TAKEN_OFF.append(x['ref']); note(x['ref'] + ' TAKEN OFF', x.get('why') or 'short found line on an area park')
+        continue
     try:
         u = svc(x); lid = pick_layer(u, x.get('layer')); WHERE = x.get('where') or '1=1'; GEOM = x.get('bbox')
         L = []
@@ -163,6 +171,9 @@ for x in T:
         except Exception: was = 0
         if x['ref'] in old and was > 20 and len(xs) < .5 * was:
             raise RuntimeError(f'only {len(xs)} points came back (saved copy has {was}): the saved copy is kept')
+        if too_short_for_area(x, L):   # 24 Nov 2026: an area park never gets a found line under 1 km (about 0.6 mi)
+            SHORT_AREA.append(x['ref']); note(x['ref'] + ' NOT USED', f"{x['name']}: the found line is {line_km(L) * 3280.84:,.0f} ft, under 0.6 mi, on an area park")
+            continue
         geo = {'type': 'Feature', 'properties': {'ref': x['ref'], 'name': x['name'] or x['ref'], **({'water_parts': WATER_IDX} if WATER_IDX else {})}, 'geometry': {'type': 'MultiLineString', 'coordinates': L}}
         json.dump(geo, open(f"{OUTDIR}/{x['ref']}.json", 'w'), separators=(',', ':'))
         npts = len(xs); kb = os.path.getsize(f"{OUTDIR}/{x['ref']}.json") // 1024
@@ -174,7 +185,8 @@ for x in T:
 index, _dropped = merge_index_entries(old, index, OUTDIR, note)
 index.sort(key=lambda r: r['name'])
 json.dump(index, open(OUTDIR + '/index.json', 'w'), indent=0)
-note('Trails done', f'{done} built, {len(failed)} failed {failed}')
+note('Trails done', f'{done} built, {len(failed)} failed {failed}; area parks: {len(SHORT_AREA)} found line(s) under 0.6 mi not used {SHORT_AREA[:12]}, '
+                    f'{len(TAKEN_OFF)} saved short found line(s) taken off {TAKEN_OFF[:12]}')
 # ---------------------------------------------------------------- Oct 28 self-grade gate
 why = []
 def _pts(fn):
