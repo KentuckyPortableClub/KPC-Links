@@ -19,6 +19,12 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   state parks (US-2485, US-2520, US-2483, US-6463, US-12388) lost rows that match by name + acres on complete layers; most are sgmne
   pieces. Next: read the MN fresh layer files (needs the owner's OK for the store folder). NY held: sgnyd (Catskill) 0 records.
 
+- **Round 10 (1f6e839, ~10:40 AM CT; grade R1-R7 after the 9:11 test, pre-approved; owner 9:50 AM pick 'Two sources agree'):** R1 agency
+  record ids, R2 rough outlines by grid points, R3 two fits by shared ground, R4 old joined size + two official sources at park level, R5
+  district tracts from the layer file, R6 row-proof.csv. US rules -> **3d367d4d143f** (NOT YET APPROVED). KPC-Store #38 75cfb48: R7 hand
+  downloads (layer-files\hand\<area>\<layer>\). Kit **25o** + the new LAYER-RECORDS on the PC, read back equal. Not graded yet.
+  Owner next: Catskill file into the hand folder, LAYER-RECORDS 1 + Y, START-HERE MN NY (report must say US 3d367d4d143f).
+
 ## The rules now (owner's words 25 Nov)
 - 6:20 / 6:28 AM: match by proof from fresh data: agency (unit) id, then shared ground (80% / 50%; piece 90% with a shared name),
   then real name + size within 10%; never a row number; unproven = POTA pin + "code to fix", no hand-offs to the reps.
